@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Hive를 사용하여 HDInsight Hadoop 데이터 과학 연습 | Microsoft Docs"
-description: "예측 분석을 수행하기 위해 Azure HDInsight Hadoop에서 Hive 사용을 보여 주는 Team Data Science Process의 예제입니다."
+title: "하이브를 사용 하 여 Azure에서 aaaHDInsight Hadoop 데이터 과학 연습 | Microsoft Docs"
+description: "Azure HDInsight Hadoop toodo 예측 분석에서 하이브 hello 사용 안내는 hello 팀 데이터 과학 프로세스의 예제입니다."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: bradsev
-ms.openlocfilehash: fb06c3c1b1ae30d970a2e4d45a49e22e9d78b876
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 77efbe4ea6377f309987849d9f44e8b2b859ae9a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="hdinsight-hadoop-data-science-walkthroughs-using-hive-on-azure"></a>Azure에서 Hive를 사용하여 HDInsight Hadoop 데이터 과학 연습 
 
-이 연습에서는 HDInsight Hadoop 클러스터와 Hive를 사용하여 예측 분석을 수행합니다. Team Data Science Process에 설명된 단계를 따릅니다. Team Data Science Process의 개요는 [데이터 과학 프로세스](data-science-process-overview.md)를 참조하세요. Azure HDInsight에 대한 소개는 [Azure HDInsight, Hadoop 기술 스택 및 Hadoop 클러스터에 대한 소개](../hdinsight/hdinsight-hadoop-introduction.md)를 참조하세요.
+이 연습에서는 HDInsight Hadoop 클러스터 toodo 예측 분석으로 하이브를 사용 합니다. Hello 팀 데이터 과학 프로세스에에서 설명 된 hello 단계를 따릅니다. Hello 팀 데이터 과학 프로세스의 개요를 참조 하십시오. [데이터 과학 프로세스](data-science-process-overview.md)합니다. HDInsight는 소개 tooAzure 참조 [소개 tooAzure HDInsight Hadoop 클러스터 및 Hadoop 기술 스택에서 hello](../hdinsight/hdinsight-hadoop-introduction.md)합니다.
 
-Team Data Science Process를 실행하는 추가 데이터 과학 연습은 사용하는 **플랫폼**에 따라 그룹화됩니다. 
+Hello 팀 데이터 과학 프로세스를 실행 하는 추가 데이터 과학 연습 hello 별로 그룹화 되어 **플랫폼** 사용 하는 합니다. 
 
 [!INCLUDE [tdsp-walkthroughs-by-platform](../../includes/tdsp-walkthroughs-by-platform.md)]
 
 
 ## <a name="predict-taxi-tips-using-hive-with-hdinsight-hadoop"></a>HDInsight Hadoop와 함께 Hive를 사용하여 택시 팁 예측
 
-[HDInsight Hadoop 클러스터 사용](machine-learning-data-science-process-hive-walkthrough.md) 연습은 뉴욕 택시에서 데이터를 사용하여 다음을 예측합니다. 
+hello [사용할 HDInsight Hadoop 클러스터](machine-learning-data-science-process-hive-walkthrough.md) 연습 뉴욕 택시 toopredict의 데이터를 사용 합니다. 
 
 - 팁 지불 여부 
-- 팁 금액의 분포
+- 포함 된 팁 hello 배포
 
-시나리오는 [Azure HDInsight Hadoop 클러스터](https://azure.microsoft.com/services/hdinsight/)와 함께 Hive를 사용하여 구현됩니다. 공개적으로 사용할 수 있는 NYC Taxi Trip 및 요금 데이터 집합에서 데이터를 저장, 탐색 및 기능 엔지니어링하는 방법을 배웁니다. 또한 Azure Machine Learning을 사용하여 모델을 빌드 및 배포할 수 있습니다.
+hello 시나리오가 Hive 사용를 사용 하 여 구현 되는 [Azure HDInsight Hadoop 클러스터](https://azure.microsoft.com/services/hdinsight/)합니다. Toostore를 탐색 및 기능에서 사용 가능한 공개 NYC 택시 여행 엔지니어 데이터 및 데이터 집합이 있어 방법을 배웁니다. 또한 Azure 기계 학습 toobuild를 사용 하 고 hello 모델을 배포 합니다.
 
 ## <a name="predict-advertisement-clicks-using-hive-with-hdinsight-hadoop"></a>HDInsight Hadoop와 함께 Hive를 사용하여 광고 클릭 예측
 
-[1TB 데이터 집합에서 Azure HDInsight Hadoop 클러스터 사용](machine-learning-data-science-process-hive-criteo-walkthrough.md) 연습에서는 공개적으로 사용할 수 있는 [Criteo](http://labs.criteo.com/downloads/download-terabyte-click-logs/) 클릭 데이터 집합을 사용하여 팁 지불 여부와 예상하는 금액 범위를 예측합니다. 시나리오는 샘플 데이터를 저장, 탐색, 기능 엔지니어링 및 다운하기 위해 [Azure HDInsight Hadoop 클러스터](https://azure.microsoft.com/services/hdinsight/)와 함께 Hive를 사용하여 구현됩니다. Azure Machine Learning을 사용하여 광고에 대한 사용자 클릭 여부를 예측하는 이진 분류 모델을 빌드, 학습 및 점수 매깁니다. 연습은 이러한 모델 중 하나를 웹 서비스로 게시하는 방법을 보여 주는 것으로 마칩니다.
+hello [1TB 데이터 집합에서 사용 하 여 Azure HDInsight Hadoop 클러스터](machine-learning-data-science-process-hive-criteo-walkthrough.md) 연습에서는 공개적으로 사용할 수 있는 사용 [Criteo](http://labs.criteo.com/downloads/download-terabyte-click-logs/) 팁을 지불 하 고 포함 된 예상 범위 hello 여부를 데이터 집합 toopredict를 클릭 합니다. hello 시나리오가 Hive 사용를 사용 하 여 구현 되는 [Azure HDInsight Hadoop 클러스터](https://azure.microsoft.com/services/hdinsight/) toostore, 탐색, 엔지니어, 기능 및 예제 데이터를 아래쪽입니다. Azure 기계 학습 toobuild 사용 하 여, 학습 및 점수 사용자 광고를 클릭할 수 있는지 여부를 예측 하는 이진 분류 모델입니다. hello 연습으로 어떻게 toopublish 다음 중 하나를 모델링 웹 서비스로 표시를 마칩니다.
 
 
 ## <a name="next-steps"></a>다음 단계
 
-Team Data Science Process를 구성하는 주요 구성의 논의는 [Team Data Science Process 개요](data-science-process-overview.md)를 참조하세요.
+Hello 팀 데이터 과학 프로세스를 구성 하는 hello 주요 구성 요소의 논의 알려면 [팀 데이터 과학 프로세스 개요](data-science-process-overview.md)합니다.
 
-데이터 과학 프로젝트를 구성하는 데 사용할 수 있는 Team Data Science Process 수명 주기의 논의는 [Team Data Science Process 수명 주기](data-science-process-lifecycle.md)를 참조하세요. 수명 주기는 일반적으로 프로젝트가 실행될 때 시작부터 끝까지 따라야 하는 단계를 간략하게 설명합니다. 
+데이터 과학 프로젝트, 참조에 대 한 설명은 한 toostructure를 사용할 수 있는 hello 팀 데이터 과학 프로세스 수명 주기 [팀 데이터 과학 프로세스 수명 주기](data-science-process-lifecycle.md)합니다. hello 수명 주기에서 다음에 나오는 프로젝트 일반적으로 실행 될 때 시작 toofinish hello 단계를 간략하게 설명 합니다. 
 

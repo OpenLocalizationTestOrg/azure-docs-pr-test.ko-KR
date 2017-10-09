@@ -1,0 +1,1 @@
+Azure는 현재 두 가지 배포 모델, Resource Manager와 클래식 모델에서 작동합니다. hello 두 모델이 완전히 서로 호환 되지 않습니다. 시작 하기 전에 해야 tooknow toowork에 원하는 어떤 모델. Hello 배포 모델에 대 한 정보를 참조 하십시오. [배포 모델을 이해](../articles/resource-manager-deployment-model.md)합니다. 새 tooAzure 인 경우 hello 리소스 관리자 배포 모델을 사용 하는 것이 좋습니다.

@@ -1,24 +1,24 @@
 ### <a name="troubleshoot-azure-diagnostics"></a>Azure Diagnostics 문제 해결
 
-다음과 같은 오류 메시지를 받으면 Microsoft.insights 리소스 공급자가 등록되지 않습니다.
+Hello 다음과 같은 오류 메시지가 표시 되 면 hello Microsoft.insights 리소스 공급자가 등록 되지 않았습니다.
 
-`Failed to update diagnostics for 'resource'. {"code":"Forbidden","message":"Please register the subscription 'subscription id' with Microsoft.Insights."}`
+`Failed tooupdate diagnostics for 'resource'. {"code":"Forbidden","message":"Please register hello subscription 'subscription id' with Microsoft.Insights."}`
 
-리소스 공급자를 등록하려면 Azure Portal에서 다음 단계를 수행합니다.
+tooregister hello 리소스 공급자 hello hello Azure 포털의에서 단계를 수행 합니다.
 
-1.  왼쪽의 탐색 창에서 *구독* 클릭
-2.  오류 메시지에서 식별된 구독 선택
+1.  Hello hello 왼쪽의 탐색 창에서 클릭 *구독*
+2.  Hello 오류 메시지에서 확인 하는 hello 구독 선택
 3.  *리소스 공급자* 클릭
-4.  *Microsoft.insights* 공급자 찾기
-5.  *등록* 링크 클릭
+4.  Hello *Microsoft.insights* 공급자
+5.  Hello 클릭 *등록* 링크
 
 ![Microsoft.insights 리소스 공급자 등록](./media/log-analytics-troubleshoot-azure-diagnostics/log-analytics-register-microsoft-diagnostics-resource-provider.png)
 
-*Microsoft.insights* 리소스 공급자가 등록되면 진단 구성을 다시 시도하세요.
+한 번 hello *Microsoft.insights* 리소스 공급자가 등록 진단 구성 프로그램을 다시 시도 하세요.
 
 
-PowerShell에서 다음과 같은 오류 메시지가 나타나면 PowerShell의 버전을 업데이트해야 합니다.
+PowerShell을 hello 다음과 같은 오류 메시지가 표시 되 면 PowerShell 버전에서 tooupdate 필요 합니다.
 
 `Set-AzureRmDiagnosticSetting : A parameter cannot be found that matches parameter name 'WorkspaceId'.`
 
-PowerShell의 버전을 2016년 11월(v2.3.0)로 업데이트하거나 나중에 [Azure PowerShell cmdlet 시작](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) 문서의 지침을 사용하여 릴리스합니다.
+2016 년 11 월 (v2.3.0) PowerShell toohello의 버전을 업데이트 또는 hello 지침을 사용 하 여 hello에를 릴리스 이상에서는 [Azure PowerShell cmdlet과 함께 시작](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) 문서.

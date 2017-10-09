@@ -1,6 +1,6 @@
 ---
-title: "C#을 사용하여 Azure Time Series Insights 환경에 대한 참조 데이터 관리 | Microsoft Docs"
-description: "이 자습서에서는 C#을 사용하여 Time Series Insights 환경에 대한 참조 데이터를 관리하는 방법을 다룹니다."
+title: "C#을 사용 하 여 Azure 시간 계열 Insights 환경에 대 한 참조 데이터 aaaManage | Microsoft Docs"
+description: "이 자습서에서는 toomanage C#을 사용 하 여 Azure 시간 계열 Insights 환경에 대 한 데이터를 참조 하는 방법"
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: venkatja
-ms.openlocfilehash: d3afa81286227fa0cc270c5911a8dd5913eb7e6c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 77b85aa7f9a5dc46c132afa56c82df48f41577fd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-reference-data-for-an-azure-time-series-insights-environment-by-using-c"></a>C#을 사용하여 Azure Time Series Insights 환경에 대한 참조 데이터 관리
 
-이 C# 샘플에서는 Time Series Insights 환경에 대한 참조 데이터를 관리하는 방법을 설명합니다.
-이 샘플을 실행하기 전에 다음 단계를 완료했는지 확인합니다.
+이 C# 샘플 toomanage Azure 시간 계열 Insights 환경에 대 한 데이터를 참조 하는 방법을 보여 줍니다.
+실행 중인 hello 샘플 하기 전에 hello 다음 단계는 완료를 확인 합니다.
 1. [이 문서](time-series-insights-add-reference-data-set.md)를 사용하여 참조 데이터 집합을 만들었습니다.
-2. 응용 프로그램을 실행할 때 사용한 액세스 토큰을 Azure Active Directory API를 통해 가져옵니다. 이 토큰을 모든 쿼리 API 요청의 `Authorization` 헤더에 전달해야 합니다. 비대화형 응용 프로그램을 설정하려면 [인증 및 권한 부여](time-series-insights-authentication-and-authorization.md) 문서를 참조하세요.
-3. 샘플의 시작 부분에 정의된 모든 상수를 올바르게 설정합니다.
+2. hello Azure Active Directory API를 통해 획득 hello 응용 프로그램을 실행할 때 사용 되는 액세스 토큰을 hello입니다. Hello이이 토큰을 전달 해야 `Authorization` 모든 쿼리 API 요청의 헤더입니다. 비 대화형 응용 프로그램, 설정에 대 한 참조 hello [인증 및 권한 부여](time-series-insights-authentication-and-authorization.md) 문서.
+3. Hello 샘플 hello 맨 앞에 정의 된 모든 hello 상수 올바르게 설정 됩니다.
 
 ## <a name="c-sample"></a>C# 샘플
 
@@ -46,24 +46,24 @@ namespace TimeSeriesInsightsReferenceDataSampleApp
 {
     public static class Program
     {
-        // SET the environment fqdn.
+        // SET hello environment fqdn.
         private static string EnvironmentFqdn = "#DUMMY#.env.timeseries.azure.com";
 
-        // SET the environment reference data set name used when creating it.
+        // SET hello environment reference data set name used when creating it.
         private static string EnvironmentReferenceDataSetName = "#DUMMY#";
 
         // For automated execution under application identity,
         // use application created in Active Directory.
-        // To create the application in AAD, follow the steps provided here:
+        // toocreate hello application in AAD, follow hello steps provided here:
         // https://docs.microsoft.com/en-us/azure/time-series-insights/time-series-insights-authentication-and-authorization
 
-        // SET the application ID of application registered in your Azure Active Directory
+        // SET hello application ID of application registered in your Azure Active Directory
         private static string ApplicationClientId = "#DUMMY#";
 
-        // SET the application key of the application registered in your Azure Active Directory
+        // SET hello application key of hello application registered in your Azure Active Directory
         private static string ApplicationClientSecret = "#DUMMY#";
 
-        // SET the Azure Active Directory tenant.
+        // SET hello Azure Active Directory tenant.
         private static string Tenant = "#DUMMY#.onmicrosoft.com";
 
         private static async Task DemoReferenceDataAsync()
@@ -155,7 +155,7 @@ namespace TimeSeriesInsightsReferenceDataSampleApp
             if (ApplicationClientId == "#DUMMY#" || ApplicationClientSecret == "#DUMMY#" || Tenant.StartsWith("#DUMMY#"))
             {
                 throw new Exception(
-                    $"Use the link {"https://docs.microsoft.com/en-us/azure/time-series-insights/time-series-insights-authentication-and-authorization"} to update the values of 'ApplicationClientId', 'ApplicationClientSecret' and 'Tenant'.");
+                    $"Use hello link {"https://docs.microsoft.com/en-us/azure/time-series-insights/time-series-insights-authentication-and-authorization"} tooupdate hello values of 'ApplicationClientId', 'ApplicationClientSecret' and 'Tenant'.");
             }
 
             var authenticationContext = new AuthenticationContext(
@@ -168,7 +168,7 @@ namespace TimeSeriesInsightsReferenceDataSampleApp
                     clientId: ApplicationClientId,
                     clientSecret: ApplicationClientSecret));
 
-            // Show interactive logon dialog to acquire token on behalf of the user.
+            // Show interactive logon dialog tooacquire token on behalf of hello user.
             // Suitable for native apps, and not on server-side of a web application.
             //AuthenticationResult token = await authenticationContext.AcquireTokenAsync(
             //    resource: "https://api.timeseries.azure.com/",
@@ -234,4 +234,4 @@ namespace TimeSeriesInsightsReferenceDataSampleApp
 
 ## <a name="next-steps"></a>다음 단계
 
-전체 API 참조는 [참조 데이터 API](/rest/api/time-series-insights/time-series-insights-reference-reference-data-api) 문서를 참조하세요.
+Hello 전체 API 참조에 대 한 참조 [참조 데이터 API](/rest/api/time-series-insights/time-series-insights-reference-reference-data-api) 문서.

@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Ansible을 사용하여 전체 Linux VM 만들기 | Microsoft 문서"
-description: "Azure에서 Ansible을 사용하여 전체 Linux 가상 컴퓨터 환경을 만들고 관리하는 방법을 알아봅니다"
+title: "Azure에서 Linux VM 전체 aaaUse Ansible toocreate | Microsoft Docs"
+description: "자세한 내용은 방법 toouse Ansible toocreate 전체 Azure에서 Linux 가상 컴퓨터 환경 관리"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/25/2017
 ms.author: iainfou
-ms.openlocfilehash: b2fcc288b40c12a9b3f966156ee2eedf4acca313
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 970b0427f39fc23240f9faab868196ca4f444e0f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-complete-linux-virtual-machine-environment-in-azure-with-ansible"></a>Azure에서 Ansible을 사용하여 전체 Linux 가상 컴퓨터 환경 만들기
-Ansible을 사용하면 사용자 환경에서 리소스의 배포 및 구성을 자동화할 수 있습니다. Azure에서 Ansible을 사용하여 다른 리소스와 동일한 방식으로 VM(가상 컴퓨터)을 관리할 수 있습니다. 이 문서에서는 Ansible을 사용하여 전체 Linux 환경 및 지원 리소스를 만드는 방법을 보여 줍니다. 또한 [Ansible을 사용하여 기본 VM을 만드는](ansible-create-vm.md) 방법을 배울 수 있습니다.
+Ansible 있습니다 tooautomate hello 배포 및 구성 리소스의 사용자 환경에서. Azure에서 가상 컴퓨터 (Vm) Ansible toomanage을 사용 하 여, 다른 리소스와 마찬가지로 동일한 hello 수 있습니다. 이 문서에서는 어떻게 toocreate 완벽 한 Linux 환경 및 Ansible 사용 하 여 리소스를 지원 합니다. 배울 수 있습니다 어떻게 너무[Ansible 기본 VM 만들기](ansible-create-vm.md)합니다.
 
 
 ## <a name="prerequisites"></a>필수 조건
-Ansible을 사용하여 Azure 리소스를 관리하려면 다음이 필요합니다.
+Azure toomanage Ansible 사용 하 여 리소스를 해야 다음 hello:
 
-- 호스트 시스템에 설치된 Ansible 및 Azure Python SDK 모듈
+- Ansible 호스트 시스템에 설치 된 Azure Python SDK 모듈 hello 및 합니다.
     - [Ubuntu 16.04 LTS](ansible-install-configure.md#ubuntu-1604-lts), [CentOS 7.3](ansible-install-configure.md#centos-73) 및 [SLES 12.2 SP2](ansible-install-configure.md#sles-122-sp2)에 Ansible 설치
-- Azure 자격 증명 및 이를 사용하도록 구성된 Ansible
+- Azure 자격 증명 및 구성 Ansible toouse 해당 합니다.
     - [Azure 자격 증명 만들기 및 Ansible 구성](ansible-install-configure.md#create-azure-credentials)
-- Azure CLI 버전 2.0.4 이상 `az --version`을 실행하여 버전을 찾습니다. 
-    - 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요. 또한 브라우저에서 [Cloud Shell](/azure/cloud-shell/quickstart)을 사용할 수도 있습니다.
+- Azure CLI 버전 2.0.4 이상 실행 `az --version` toofind hello 버전입니다. 
+    - Tooupgrade 필요한 경우 참조 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다. 또한 브라우저에서 [Cloud Shell](/azure/cloud-shell/quickstart)을 사용할 수도 있습니다.
 
 
 ## <a name="create-virtual-network"></a>가상 네트워크 만들기
-Ansible Playbook의 다음 섹션에서는 *10.0.0.0/16* 주소 공간에 *myVnet*이라는 가상 네트워크를 만듭니다.
+hello는 Ansible 플레이 북의 다음 섹션 가상 네트워크를 만들어 명명 된 *myVnet* hello에 *10.0.0.0/16* 주소 공간:
 
 ```yaml
 - name: Create virtual network
@@ -47,7 +47,7 @@ Ansible Playbook의 다음 섹션에서는 *10.0.0.0/16* 주소 공간에 *myVne
     address_prefixes: "10.10.0.0/16"
 ```
 
-서브넷을 추가하기 위해 다음 섹션에서는 *myVnet* 가상 네트워크에 *mySubnet*이라는 서브넷을 만듭니다.
+서브넷 tooadd 다음 단원을 hello 이라는 서브넷을 만듭니다. *mySubnet* hello에 *myVnet* 가상 네트워크:
 
 ```yaml
 - name: Add subnet
@@ -60,7 +60,7 @@ Ansible Playbook의 다음 섹션에서는 *10.0.0.0/16* 주소 공간에 *myVne
 
 
 ## <a name="create-public-ip-address"></a>공용 IP 주소 만들기
-인터넷을 통해 리소스에 액세스하려면 공용 IP 주소를 만들어 VM에 할당합니다. Ansible Playbook의 다음 섹션에서는 *myPublicIP*라는 공용 IP 주소를 만듭니다.
+hello 인터넷을 통해 tooaccess 리소스 만들고 공용 IP 주소 tooyour VM을 할당 합니다. hello는 Ansible 플레이 북의 다음 섹션 공용 IP 주소를 만들고 명명 된 *myPublicIP*:
 
 ```yaml
 - name: Create public IP address
@@ -72,7 +72,7 @@ Ansible Playbook의 다음 섹션에서는 *10.0.0.0/16* 주소 공간에 *myVne
 
 
 ## <a name="create-network-security-group"></a>네트워크 보안 그룹 만들기
-네트워크 보안 그룹은 VM 내/외부 네트워크 트래픽의 흐름을 제어합니다. Ansible Playbook의 다음 섹션에서는 *myNetworkSecurityGroup*이라는 네트워크 보안 그룹을 만들고 TCP 포트 22에서 SSH 트래픽을 허용하는 규칙을 정의합니다.
+네트워크 보안 그룹 VM 내부 및 외부 네트워크 트래픽의 hello 흐름을 제어 합니다. hello 다음 섹션에는 Ansible 플레이 북 네트워크 보안 그룹을 만듭니다 라는 *myNetworkSecurityGroup* 하 고 TCP 포트 22에서 규칙 tooallow SSH 트래픽 정의:
 
 ```yaml
 - name: Create Network Security Group that allows SSH
@@ -90,7 +90,7 @@ Ansible Playbook의 다음 섹션에서는 *10.0.0.0/16* 주소 공간에 *myVne
 
 
 ## <a name="create-virtual-network-interface-card"></a>가상 네트워크 인터페이스 카드 만들기
-가상 NIC(네트워크 인터페이스 카드)는 지정된 가상 네트워크, 공용 IP 주소 및 네트워크 보안 그룹에 VM을 연결합니다. Ansible Playbook의 다음 섹션에서는 사용자가 만든 가상 네트워킹 리소스에 연결된 *myNIC*라는 가상 NIC를 만듭니다.
+가상 네트워크 인터페이스 카드 (NIC) 가상 네트워크, 공용 IP 주소 및 네트워크 보안 그룹을 지정 하 여 VM tooa를 연결 합니다. hello는 Ansible 플레이 북의 다음 섹션을 만듭니다 라는 가상 NIC *myNIC* 만든 toohello 가상 네트워킹 리소스를 연결 합니다.
 
 ```yaml
 - name: Create virtual network inteface card
@@ -105,7 +105,7 @@ Ansible Playbook의 다음 섹션에서는 *10.0.0.0/16* 주소 공간에 *myVne
 
 
 ## <a name="create-virtual-machine"></a>가상 컴퓨터 만들기
-마지막 단계에서는 VM을 만들고 생성한 모든 리소스를 사용합니다. Ansible Playbook의 다음 섹션에서는 *myVM*이라는 VM을 만들고 *myNIC*라는 가상 NIC를 연결합니다. 다음과 같이 *key_data* 쌍으로 사용자 고유의 공개 키 데이터를 입력합니다.
+hello 마지막 단계가 toocreate VM 및 생성 된 모든 hello 리소스를 사용 합니다. hello는 Ansible 플레이 북의 다음 섹션을 만듭니다 라는 VM *myVM* 연결 합니다. 명명 된 가상 NIC hello 및 *myNIC*합니다. Hello에 공용 키 데이터를 입력 *key_data* 다음과 같이 쌍으로 연결 합니다.
 
 ```yaml
 - name: Create VM
@@ -127,7 +127,7 @@ Ansible Playbook의 다음 섹션에서는 *10.0.0.0/16* 주소 공간에 *myVne
 ```
 
 ## <a name="complete-ansible-playbook"></a>전체 Ansible Playbook
-이 모든 섹션을 함께 가져오려면 *azure_create_complete_vm.yml*이라는 Ansible Playbook을 만들고 다음 내용을 붙여넣습니다.
+toobring 만들 라는 Ansible 플레이 북 함께이 섹션에서는 모든 *azure_create_complete_vm.yml* 붙여넣기 hello 내용에 따라:
 
 ```yaml
 - name: Create Azure VM
@@ -187,19 +187,19 @@ Ansible Playbook의 다음 섹션에서는 *10.0.0.0/16* 주소 공간에 *myVne
         version: latest
 ```
 
-Ansible에는 모든 리소스를 배포할 리소스 그룹이 필요합니다. [az group create](/cli/azure/vm#create)를 사용하여 리소스 그룹을 만듭니다. 다음 예제에서는 *eastus* 위치에 *myResourceGroup*이라는 리소스 그룹을 만듭니다.
+Ansible에 모든 리소스를 리소스 그룹 toodeploy 필요합니다. [az group create](/cli/azure/vm#create)를 사용하여 리소스 그룹을 만듭니다. hello 다음 예제에서는 명명 된 리소스 그룹 *myResourceGroup* hello에 *eastus* 위치:
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
-Ansible을 사용하여 전체 VM 환경을 만들려면 다음과 같이 Playbook을 실행합니다.
+toocreate hello 완료 VM 환경과 Ansible, hello 플레이 북을 다음과 같이 실행:
 
 ```bash
 ansible-playbook azure_create_complete_vm.yml
 ```
 
-출력은 VM이 성공적으로 만들어졌음을 보여 주는 다음 예제와 유사합니다.
+hello 출력은 다음 VM 성공적으로 만들었습니다. hello를 보여 주는 예제와 비슷한 toohello 합니다.
 
 ```bash
 PLAY [Create Azure VM] ****************************************************
@@ -230,4 +230,4 @@ localhost                  : ok=7    changed=6    unreachable=0    failed=0
 ```
 
 ## <a name="next-steps"></a>다음 단계
-이 예제에서는 필요한 가상 네트워킹 리소스를 포함하여 전체 VM 환경을 만듭니다. 기본 옵션을 사용하여 기존 네트워크 리소스에 VM을 만드는 보다 직접적인 예제는 [VM 만들기](ansible-create-vm.md)를 참조하세요.
+이 예제에는 필요한 hello 가상 네트워킹 리소스를 포함 하 여 완벽 한 VM 환경을 만듭니다. 직접적 예제 toocreate 기본 옵션으로 기존 네트워크 리소스에 VM 참조 하십시오. [VM을 만들](ansible-create-vm.md)합니다.

@@ -53,7 +53,7 @@
 ## 관리
 ### [Service Bus 관리 라이브러리](service-bus-management-libraries.md)
 ### [Azure Resource Manager 템플릿 사용](service-bus-resource-manager-overview.md)
-### [PowerShell을 사용하여 엔터티 프로비전](service-bus-manage-with-ps.md)
+### [PowerShell tooprovision 엔터티를 사용 하 여](service-bus-manage-with-ps.md)
 
 # 참조
 ## .NET

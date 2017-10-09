@@ -12,7 +12,7 @@
 | [선호도 그룹](../articles/virtual-network/virtual-networks-migrate-to-regional-vnet.md)  |256 |256 |
 | 구독 당 경고 규칙 |250 |250 |
 
-<sup>1</sup>매우 작은 인스턴스는 부분 코어를 사용하더라도 코어 제한에 대해 하나의 코어로 계산됩니다.
+<sup>1</sup>부분 코어를 사용 하 여 불구 하 고 hello 코어 제한에 대해 하나의 코어로 횟수를 매우 작음으로 인스턴스.
 
-<sup>2</sup>표준 및 프리미엄 저장소 계정이 모두 포함됩니다. 저장소 계정이 200개 이상 필요한 경우 [Azure 지원](https://azure.microsoft.com/support/faq/)에 요청합니다. Azure 저장소 팀이 비즈니스 사례를 검토하고 저장소 계정을 250개까지 승인할 수 있습니다. 
+<sup>2</sup>표준 및 프리미엄 저장소 계정이 모두 포함됩니다. 저장소 계정이 200개 이상 필요한 경우 [Azure 지원](https://azure.microsoft.com/support/faq/)에 요청합니다. hello Azure 저장소 팀 비즈니스 사례를 검토 하 고 too250 저장소 계정을 승인 될 수 있습니다. 
 

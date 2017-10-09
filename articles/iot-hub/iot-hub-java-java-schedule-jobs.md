@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub(Java)를 사용하여 작업 예약 | Microsoft 문서"
-description: "여러 장치에서 직접 메서드를 호출하여 Azure IoT Hub 작업을 예약하고 원하는 속성을 설정하는 방법을 설명합니다. Java용 Azure IoT 장치 SDK를 사용하여 시뮬레이션된 장치 앱을 구현하고 Java용 Azure IoT 서비스 SDK를 사용하여 작업을 실행하는 서비스 앱을 구현합니다."
+title: "Azure IoT Hub (Java)와 aaaSchedule 작업 | Microsoft Docs"
+description: "Azure IoT Hub tooschedule tooinvoke 직접적인 방법 작업 방법과 여러 장치에서 원하는 속성을 설정 합니다. Hello Azure IoT 장치 SDK를 사용 하 여 Java tooimplement hello 시뮬레이션 된 장치 앱과 hello Java tooimplement 서비스 응용 프로그램 toorun hello 작업에 대 한 Azure IoT 서비스 SDK에 대 한 합니다."
 services: iot-hub
 documentationcenter: java
 author: dominicbetts
@@ -13,48 +13,48 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/10/2017
 ms.author: dobett
-ms.openlocfilehash: 003a548ef2da2921a699df1aa9f7aee366d341ab
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b1b05fa56c3ce96af0b33d4cca0dd54da0f4e927
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="schedule-and-broadcast-jobs-java"></a>작업 예약 및 브로드캐스트(Java)
 
 [!INCLUDE [iot-hub-selector-schedule-jobs](../../includes/iot-hub-selector-schedule-jobs.md)]
 
-Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작업을 예약하고 추적합니다. 작업을 사용하여 다음을 수행합니다.
+수백만 개의 장치로 업데이트 하는 Azure IoT Hub tooschedule 및 추적 작업을 사용 합니다. 작업을 사용하여 다음을 수행합니다.
 
 * desired 속성 업데이트
 * tags 업데이트
 * 직접 메서드 호출
 
-작업(job)은 이러한 작업(action) 중 하나를 래핑하고 장치 집합에 대한 실행을 추적합니다. 장치 쌍 쿼리에서는 작업 실행 대상인 장치 집합을 정의합니다. 예를 들어 백 엔드 앱은 작업(job)을 사용하여 10,000대 장치에 대해 장치를 재부팅하는 직접 메서드를 호출할 수 있습니다. 장치 쌍 쿼리로 장치 집합을 지정하고 향후 실행될 작업(job)을 예약합니다. 작업(job)은 해당하는 각 장치에서 재부팅 직접 메서드를 수신 및 실행할 때 진행 상태를 추적합니다.
+작업이 다음이 작업 중 하나를 래핑하고 트랙 hello 일련의 장치에 대 한 실행. 장치로 이중 쿼리 hello hello 작업에 대해 실행 되는 장치 집합을 정의 합니다. 예를 들어 백 엔드 응용 프로그램 hello 장치를 다시 부팅 하는 장치 10, 000에서 작업 tooinvoke 직접 메서드를 사용할 수 있습니다. 장치로 이중 쿼리로 hello 일련의 장치를 지정 하 고 hello 작업 toorun 이후 시간에 예약 합니다. 각 hello 장치로 작업 추적 진행 상황 hello 수신 하 고 hello 재부팅 직접 메서드를 실행 합니다.
 
-이러한 각 기능에 대한 자세한 내용은 다음을 참조하세요.
+이러한 기능의 각각에 대해 자세히 toolearn 참조:
 
 * 장치 쌍 및 속성: [장치 쌍 시작](iot-hub-java-java-twin-getstarted.md)
 * 직접 메서드: [IoT Hub 개발자 가이드 - 직접 메서드](iot-hub-devguide-direct-methods.md) 및 [자습서: 직접 메서드 사용](iot-hub-java-java-direct-methods.md)
 
 이 자습서에서는 다음을 수행하는 방법에 대해 설명합니다.
 
-* **lockDoor**라는 직접 메서드를 구현하는 장치 앱을 만듭니다. 또한 이 장치 앱은 백 엔드 앱에서 원하는 속성 변경 내용을 수신합니다.
-* 여러 장치에 대해 **lockDoor** 직접 메서드를 호출하는 작업을 만드는 백 엔드 앱을 만듭니다. 다른 작업이 여러 장치로 원하는 속성 업데이트를 보냅니다.
+* **lockDoor**라는 직접 메서드를 구현하는 장치 앱을 만듭니다. hello 장치 앱 hello 백 엔드 응용 프로그램에서 원하는 속성 변경 내용을 수신합니다.
+* 백 엔드 앱을 만드는 작업 toocall hello 만들기 **lockDoor** 여러 장치에서 직접적인 방법입니다. 다른 작업이 toomultiple 장치를 업데이트 하는 원하는 속성을 보냅니다.
 
-이 자습서를 마치면 다음과 같은 java 콘솔 장치 앱과 java 콘솔 백 엔드 앱이 생성됩니다.
+이 자습서의 hello 끝에 콘솔 장치 java 응용 프로그램 및 java 콘솔 백 엔드 응용 프로그램
 
-**simulated-device**: IoT Hub에 연결되고, **lockDoor** 직접 메서드를 구현하고, 원하는 속성 변경 내용을 처리합니다.
+**시뮬레이션 된 장치** tooyour IoT 허브를 연결 하는, 구현 hello **lockDoor** 메서드와 핸들 필요한 속성 변경 내용을 전송 합니다.
 
-**schedule-jobs** 작업을 사용하여 **lockDoor** 직접 메서드를 호출하고 여러 장치에서 장치 쌍의 원하는 속성을 업데이트합니다.
+**작업 예약** 작업 toocall hello를 사용 하는 **lockDoor** 원하는 여러 장치에서 속성을 직접 메서드와 업데이트 hello 장치로 이중 합니다.
 
 > [!NOTE]
-> [Azure IoT SDK](iot-hub-devguide-sdks.md) 문서는 장치 및 백 엔드 앱을 빌드하는 데 사용할 수 있는 Azure IoT SDK에 대한 정보를 제공합니다.
+> hello 문서 [Azure IoT Sdk](iot-hub-devguide-sdks.md) toobuild를 사용할 수 있는, Azure IoT Sdk hello에 대 한 정보를 제공 장치와 백 엔드 응용 프로그램입니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete 해야이 자습서에서는:
 
-* 최신 [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* 최신 hello [Java SE 개발 키트 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * [Maven 3](https://maven.apache.org/install.html)
 * 활성 Azure 계정. 계정이 없는 경우 몇 분 만에 [무료 계정](http://azure.microsoft.com/pricing/free-trial/)을 만들 수 있습니다.
 
@@ -62,26 +62,26 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
 
 [!INCLUDE [iot-hub-get-started-create-device-identity-portal](../../includes/iot-hub-get-started-create-device-identity-portal.md)]
 
-프로그래밍 방식으로 장치 ID를 만들려면 [Java를 사용하여 IoT 허브에 장치 연결](iot-hub-java-java-getstarted.md#create-a-device-identity) 문서의 해당 섹션을 참조하세요. [iothub-explorer](https://github.com/Azure/iothub-explorer) 도구를 사용하여 IoT Hub에 장치를 추가할 수도 있습니다.
+Toocreate hello 장치 id를 프로그래밍 방식으로 선호 하는 경우 hello의 hello 해당 섹션을 읽어 [Java를 사용 하 여 장치 tooyour IoT 허브 연결](iot-hub-java-java-getstarted.md#create-a-device-identity) 문서. Hello를 사용할 수도 있습니다 [iothub 탐색기](https://github.com/Azure/iothub-explorer) 도구 tooadd 장치 tooyour IoT 허브입니다.
 
-## <a name="create-the-service-app"></a>서비스 응용 프로그램 만들기
+## <a name="create-hello-service-app"></a>Hello 서비스 앱 만들기
 
 이 섹션에서는 작업을 통해 다음을 수행하는 Java 콘솔 앱을 만듭니다.
 
-* 여러 장치에서 **lockDoor** 직접 메서드 호출
-* 여러 장치로 원하는 속성 전송
+* Hello 호출 **lockDoor** 여러 장치에서 직접적인 방법입니다.
+* 원하는 속성 toomultiple 장치를 보냅니다.
 
-앱을 만들려면 다음을 수행합니다.
+toocreate hello 앱:
 
 1. 개발 컴퓨터에서 `iot-java-schedule-jobs`라는 빈 폴더를 만듭니다.
 
-1. `iot-java-schedule-jobs` 폴더에서 명령 프롬프트를 통해 다음 명령을 사용하여 **schedule-jobs**라는 Maven 프로젝트를 만듭니다. 긴 단일 명령입니다.
+1. Hello에 `iot-java-schedule-jobs` 폴더 라는 Maven 프로젝트를 만들 **작업 예약** hello 다음 명령 프롬프트에서 명령을 사용 하 여 합니다. 긴 단일 명령입니다.
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=schedule-jobs -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. 명령 프롬프트에서 `schedule-jobs` 폴더로 이동합니다.
+1. 명령 프롬프트에서 이동 toohello `schedule-jobs` 폴더입니다.
 
-1. 텍스트 편집기를 사용하여 `schedule-jobs` 폴더에서 `pom.xml` 파일을 열고 **종속성** 노드에 다음 종속성을 추가합니다. 이러한 종속성을 통해 IoT Hub와 통신하도록 앱에서 **iot-service-client** 패키지를 사용할 수 있습니다.
+1. Hello를 열고 텍스트 편집기를 사용 하 여 `pom.xml` hello에 대 한 파일 `schedule-jobs` 폴더 hello 종속성 toohello 다음 추가 **종속성** 노드. 이 종속성 하면 toouse hello **iot 서비스 클라이언트** IoT hub와 앱 toocommunicate 프로그램에서 패키지:
 
     ```xml
     <dependency>
@@ -93,9 +93,9 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     ```
 
     > [!NOTE]
-    > [Maven 검색](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-service-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22)을 사용하여 **iot-service-client**의 최신 버전을 확인할 수 있습니다.
+    > 최신 버전의 hello 확인할 수 있습니다 **iot 서비스 클라이언트** 를 사용 하 여 [Maven 검색](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-service-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22)합니다.
 
-1. **종속성** 노드 뒤에 다음 **빌드** 노드를 추가합니다. 이 구성에서는 Maven에 Java 1.8을 사용하여 앱을 빌드하도록 지시합니다.
+1. Hello 다음 추가 **빌드** hello 후 노드 **종속성** 노드. 이 구성은 지시 Maven toouse Java 1.8 toobuild hello 응용 프로그램.
 
     ```xml
     <build>
@@ -113,11 +113,11 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     </build>
     ```
 
-1. `pom.xml` 파일을 저장하고 닫습니다.
+1. 저장 후 닫기 hello `pom.xml` 파일입니다.
 
-1. 텍스트 편집기를 사용하여 `schedule-jobs\src\main\java\com\mycompany\app\App.java` 파일을 엽니다.
+1. Hello를 열고 텍스트 편집기를 사용 하 여 `schedule-jobs\src\main\java\com\mycompany\app\App.java` 파일입니다.
 
-1. 파일에 다음 **import** 문을 추가합니다.
+1. Hello 다음 추가 **가져올** 문 toohello 파일:
 
     ```java
     import com.microsoft.azure.sdk.iot.service.devicetwin.DeviceTwinDevice;
@@ -135,18 +135,18 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     import java.util.UUID;
     ```
 
-1. 다음 클래스 수준 변수를 **App** 클래스에 추가합니다. `{youriothubconnectionstring}`은 *IoT Hub 만들기* 섹션에서 기록한 IoT Hub 연결 문자열로 바꿉니다.
+1. 클래스 수준 변수 toohello 다음 hello 추가 **앱** 클래스입니다. 대체 `{youriothubconnectionstring}` hello에서 기록한 IoT 허브 연결 문자열로 *IoT 허브를 만듭니다.* 섹션:
 
     ```java
     public static final String iotHubConnectionString = "{youriothubconnectionstring}";
     public static final String deviceId = "myDeviceId";
 
-    // How long the job is permitted to run without
-    // completing its work on the set of devices
+    // How long hello job is permitted toorun without
+    // completing its work on hello set of devices
     private static final long maxExecutionTimeInSeconds = 30;
     ```
 
-1. **App** 클래스에 다음 메서드를 추가하여 장치 쌍에서 원하는 속성 **Building** 및 **Floor**를 업데이트하는 작업을 예약합니다.
+1. Hello 메서드 toohello 다음 추가 **앱** 클래스 tooschedule 작업 tooupdate hello **건물** 및 **Floor** 원하는 hello 장치로 이중의 속성:
 
     ```java
     private static JobResult scheduleJobSetDesiredProperties(JobClient jobClient, String jobId) {
@@ -158,7 +158,7 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
       // Optimistic concurrency control
       twin.setETag("*");
 
-      // Schedule the update twin job to run now
+      // Schedule hello update twin job toorun now
       // against a single device
       System.out.println("Schedule job " + jobId + " for device " + deviceId);
       try {
@@ -176,13 +176,13 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     }
     ```
 
-1. **lockDoor** 메서드를 호출하는 작업을 예약하려면 **App** 클래스에 다음 메서드를 추가합니다.
+1. 작업 toocall hello tooschedule **lockDoor** 메서드를 다음 메서드 toohello hello 추가 **앱** 클래스:
 
     ```java
     private static JobResult scheduleJobCallDirectMethod(JobClient jobClient, String jobId) {
-      // Schedule a job now to call the lockDoor direct method
+      // Schedule a job now toocall hello lockDoor direct method
       // against a single device. Response and connection
-      // timeouts are set to 5 seconds.
+      // timeouts are set too5 seconds.
       System.out.println("Schedule job " + jobId + " for device " + deviceId);
       try {
         JobResult jobResult = jobClient.scheduleDeviceMethod(jobId,
@@ -200,7 +200,7 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     };
     ```
 
-1. 작업을 모니터링하려면 **App** 클래스에 다음 메서드를 추가합니다.
+1. toomonitor 작업을 추가 메서드 toohello 다음 hello **앱** 클래스:
 
     ```java
     private static void monitorJob(JobClient jobClient, String jobId) {
@@ -211,7 +211,7 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
           System.out.println("No JobResult for: " + jobId);
           return;
         }
-        // Check the job result until it's completed
+        // Check hello job result until it's completed
         while(jobResult.getJobStatus() != JobStatus.completed)
         {
           Thread.sleep(100);
@@ -227,33 +227,33 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     }
     ```
 
-1. 실행한 작업의 세부 정보를 쿼리하려면 다음 메서드를 추가합니다.
+1. 를 실행 하는 hello 작업의 hello 세부 정보에 대 한 tooquery hello 다음 메서드를 추가 합니다.
 
     ```java
     private static void queryDeviceJobs(JobClient jobClient, String start) throws Exception {
       System.out.println("\nQuery device jobs since " + start);
 
-      // Create a jobs query using the time the jobs started
+      // Create a jobs query using hello time hello jobs started
       Query deviceJobQuery = jobClient
           .queryDeviceJob(SqlQuery.createSqlQuery("*", SqlQuery.FromType.JOBS, "devices.jobs.startTimeUtc > '" + start + "'", null).getQuery());
 
-      // Iterate over the list of jobs and print the details
+      // Iterate over hello list of jobs and print hello details
       while (jobClient.hasNextJob(deviceJobQuery)) {
         System.out.println(jobClient.getNextJob(deviceJobQuery));
       }
     }
     ```
 
-1. 다음 `throws` 절을 포함하도록 **main** 메서드 서명을 업데이트합니다.
+1. 업데이트 hello **주** 메서드 서명 tooinclude hello 다음 `throws` 절:
 
     ```java
     public static void main( String[] args ) throws Exception
     ```
 
-1. 두 작업을 순서대로 실행하고 모니터링하려면 **main** 메서드에 다음 코드를 추가합니다.
+1. toorun 및 모니터 두 가지 작업은 순차적으로 hello 코드 toohello 다음 추가 **주** 메서드:
 
     ```java
-    // Record the start time
+    // Record hello start time
     String start = Instant.now().toString();
 
     // Create JobClient
@@ -271,29 +271,29 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     scheduleJobCallDirectMethod(jobClient, directMethodJobId);
     monitorJob(jobClient, directMethodJobId);
 
-    // Run a query to show the job detail
+    // Run a query tooshow hello job detail
     queryDeviceJobs(jobClient, start);
 
     System.out.println("Shutting down schedule-jobs app");
     ```
 
-1. `schedule-jobs\src\main\java\com\mycompany\app\App.java` 파일을 저장하고 닫습니다.
+1. 저장 후 닫기 hello `schedule-jobs\src\main\java\com\mycompany\app\App.java` 파일
 
-1. **schedule-jobs** 앱을 빌드하고 오류를 수정합니다. 명령 프롬프트에서 `schedule-jobs` 폴더로 이동하고 다음 명령을 실행합니다.
+1. Hello 빌드 **작업 예약** 응용 프로그램 오류 수정 하십시오. 명령 프롬프트에서 이동 toohello `schedule-jobs` 폴더 및 다음 명령이 실행된 hello:
 
     `mvn clean package -DskipTests`
 
 ## <a name="create-a-device-app"></a>장치 앱 만들기
 
-이 섹션에서는 IoT Hub에서 전송한 원하는 속성을 처리하고 직접 메서드 호출을 구현하는 Java 콘솔 앱을 만듭니다.
+이 섹션에서는 Java 콘솔 앱을 핸들 hello IoT Hub와 구현 hello 직접 메서드 호출에서 전송 되는 원하는 속성을 만듭니다.
 
-1. 명령 프롬프트에서 다음 명령을 사용하여 `iot-java-schedule-jobs` 폴더에 **simulated-device**라는 Maven 프로젝트를 만듭니다. 긴 단일 명령입니다.
+1. Hello에 `iot-java-schedule-jobs` 폴더 라는 Maven 프로젝트를 만들 **시뮬레이션 된 장치** hello 다음 명령 프롬프트에서 명령을 사용 하 여 합니다. 긴 단일 명령입니다.
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=simulated-device -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. 명령 프롬프트에서 `simulated-device` 폴더로 이동합니다.
+1. 명령 프롬프트에서 이동 toohello `simulated-device` 폴더입니다.
 
-1. 텍스트 편집기를 사용하여 `simulated-device` 폴더에서 `pom.xml` 파일을 열고 **종속성** 노드에 다음 종속성을 추가합니다. 이러한 종속성을 통해 IoT 허브와 통신하도록 앱에서 **iot-device-client** 패키지를 사용할 수 있습니다.
+1. Hello를 열고 텍스트 편집기를 사용 하 여 `pom.xml` hello에 대 한 파일 `simulated-device` 폴더 hello 종속성 toohello 다음 추가 **종속성** 노드. 이 종속성 하면 toouse hello **iot 장치 클라이언트** IoT hub와 앱 toocommunicate 프로그램에서 패키지:
 
     ```xml
     <dependency>
@@ -304,9 +304,9 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     ```
 
     > [!NOTE]
-    > [Maven 검색](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-device-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22)을 사용하여 **iot-device-client**의 최신 버전을 확인할 수 있습니다.
+    > 최신 버전의 hello 확인할 수 있습니다 **iot 장치 클라이언트** 를 사용 하 여 [Maven 검색](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-device-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22)합니다.
 
-1. **종속성** 노드 뒤에 다음 **빌드** 노드를 추가합니다. 이 구성에서는 Maven에 Java 1.8을 사용하여 앱을 빌드하도록 지시합니다.
+1. Hello 다음 추가 **빌드** hello 후 노드 **종속성** 노드. 이 구성은 지시 Maven toouse Java 1.8 toobuild hello 응용 프로그램.
 
     ```xml
     <build>
@@ -324,11 +324,11 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     </build>
     ```
 
-1. `pom.xml` 파일을 저장하고 닫습니다.
+1. 저장 후 닫기 hello `pom.xml` 파일입니다.
 
-1. 텍스트 편집기를 사용하여 `simulated-device\src\main\java\com\mycompany\app\App.java` 파일을 엽니다.
+1. Hello를 열고 텍스트 편집기를 사용 하 여 `simulated-device\src\main\java\com\mycompany\app\App.java` 파일입니다.
 
-1. 파일에 다음 **import** 문을 추가합니다.
+1. Hello 다음 추가 **가져올** 문 toohello 파일:
 
     ```java
     import com.microsoft.azure.sdk.iot.device.*;
@@ -339,7 +339,7 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     import java.util.Scanner;
     ```
 
-1. 다음 클래스 수준 변수를 **App** 클래스에 추가합니다. `{youriothubname}`을 IoT 허브 이름으로 바꾸고 `{yourdevicekey}`를 *장치 ID 만들기* 섹션에서 만든 장치 키 값으로 바꿉니다.
+1. 클래스 수준 변수 toohello 다음 hello 추가 **앱** 클래스입니다. 교체 `{youriothubname}` 을 IoT 허브 이름으로, 및 `{yourdevicekey}` hello에 생성 된 hello 장치 키 값을 가진 *장치 id를 만드는* 섹션:
 
     ```java
     private static String connString = "HostName={youriothubname}.azure-devices.net;DeviceId=myDeviceID;SharedAccessKey={yourdevicekey}";
@@ -348,31 +348,31 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     private static final int METHOD_NOT_DEFINED = 404;
     ```
 
-    이 샘플 앱은 **DeviceClient** 개체를 인스턴스화할 때 **프로토콜** 변수를 사용합니다. 현재, 장치 쌍 기능을 사용하려면 MQTT 프로토콜을 사용해야 합니다.
+    이 샘플 응용 프로그램 hello를 사용 하 여 **프로토콜** 를 인스턴스화할 때 변수는 **DeviceClient** 개체입니다. 현재 toouse 장치로 이중 기능 hello MQTT 프로토콜을 사용 해야 합니다.
 
-1. 콘솔에 장치 쌍 알림을 인쇄하려면 다음 중첩 클래스를 **App** 클래스에 추가합니다.
+1. tooprint 장치로 이중 알림 toohello 콘솔에서 hello 다음 추가 클래스 toohello 중첩 **앱** 클래스:
 
     ```java
     // Handler for device twin operation notifications from IoT Hub
     protected static class DeviceTwinStatusCallBack implements IotHubEventCallback {
       public void execute(IotHubStatusCode status, Object context) {
-        System.out.println("IoT Hub responded to device twin operation with status " + status.name());
+        System.out.println("IoT Hub responded toodevice twin operation with status " + status.name());
       }
     }
     ```
 
-1. 콘솔에 직접 메서드 알림을 인쇄하려면 다음 중첩 클래스를 **App** 클래스에 추가합니다.
+1. tooprint 메서드 알림 toohello 직접 콘솔에서 hello 다음 추가 클래스 toohello 중첩 **앱** 클래스:
 
     ```java
     // Handler for direct method notifications from IoT Hub
     protected static class DirectMethodStatusCallback implements IotHubEventCallback {
       public void execute(IotHubStatusCode status, Object context) {
-        System.out.println("IoT Hub responded to direct method operation with status " + status.name());
+        System.out.println("IoT Hub responded toodirect method operation with status " + status.name());
       }
     }
     ```
 
-1. IoT Hub로부터의 직접 메서드 호출을 처리하려면 다음 중첩 클래스를 **App** 클래스에 추가합니다.
+1. IoT 허브에서 직접 메서드 호출 toohandle hello 다음 추가 클래스 toohello 중첩 **앱** 클래스:
 
     ```java
     // Handler for direct method calls from IoT Hub
@@ -397,21 +397,21 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     }
     ```
 
-1. 다음 `throws` 절을 포함하도록 **main** 메서드 서명을 업데이트합니다.
+1. 업데이트 hello **주** 메서드 서명 tooinclude hello 다음 `throws` 절:
 
     ```java
     public static void main( String[] args ) throws IOException, URISyntaxException
     ```
 
-1. **main** 메서드에 다음 코드를 추가합니다.
-    * IoT Hub와 통신하는 장치 클라이언트를 만듭니다.
-    * **Device** 개체를 만들어 장치 쌍 속성을 저장합니다.
+1. 다음 코드 toohello hello 추가 **주** 메서드:
+    * IoT Hub와 장치 클라이언트 toocommunicate를 만듭니다.
+    * 만들기는 **장치** toostore hello 장치로 이중 속성 개체입니다.
 
     ```java
     // Create a device client
     DeviceClient client = new DeviceClient(connString, protocol);
 
-    // An object to manage device twin desired and reported properties
+    // An object toomanage device twin desired and reported properties
     Device dataCollector = new Device() {
       @Override
       public void PropertyCall(String propertyKey, Object propertyValue, Object context)
@@ -421,13 +421,13 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     };
     ```
 
-1. 장치 클라이언트 서비스를 시작하려면 다음 코드를 **main** 메서드에 추가합니다.
+1. toostart hello 장치 클라이언트 서비스를 추가할 코드 toohello 다음 hello **주** 메서드:
 
     ```java
     try {
-      // Open the DeviceClient
-      // Start the device twin services
-      // Subscribe to direct method calls
+      // Open hello DeviceClient
+      // Start hello device twin services
+      // Subscribe toodirect method calls
       client.open();
       client.startDeviceTwin(new DeviceTwinStatusCallBack(), null, dataCollector, null);
       client.subscribeToDeviceMethod(new DirectMethodCallback(), null, new DirectMethodStatusCallback(), null);
@@ -439,11 +439,11 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     }
     ```
 
-1. 종료하기 전에 사용자가 **Enter** 키를 누를 때까지 대기하려면 다음 코드를 **main** 메서드 끝에 추가합니다.
+1. hello 사용자 toopress hello에 대 한 toowait **Enter** 종료 하기 전에 키에 추가 코드 toohello의 끝 다음 hello hello **주** 메서드:
 
     ```java
-    // Close the app
-    System.out.println("Press any key to exit...");
+    // Close hello app
+    System.out.println("Press any key tooexit...");
     Scanner scanner = new Scanner(System.in);
     scanner.nextLine();
     dataCollector.clean();
@@ -451,37 +451,37 @@ Azure IoT Hub를 사용하여 수백만 대의 장치를 업데이트하는 작�
     scanner.close();
     ```
 
-1. `simulated-device\src\main\java\com\mycompany\app\App.java` 파일을 저장하고 닫습니다.
+1. 저장 후 닫기 hello `simulated-device\src\main\java\com\mycompany\app\App.java` 파일입니다.
 
-1. **simulated-device** 앱을 빌드하고 오류를 수정합니다. 명령 프롬프트에서 `simulated-device` 폴더로 이동하고 다음 명령을 실행합니다.
+1. Hello 빌드 **시뮬레이션 된 장치** 응용 프로그램 오류 수정 하십시오. 명령 프롬프트에서 이동 toohello `simulated-device` 폴더 및 다음 명령이 실행된 hello:
 
     `mvn clean package -DskipTests`
 
-## <a name="run-the-apps"></a>앱 실행
+## <a name="run-hello-apps"></a>Hello 앱 실행
 
-이제 콘솔 앱을 실행할 준비가 되었습니다.
+준비 toorun hello 콘솔 응용 프로그램입니다.
 
-1. 명령 프롬프트의 `simulated-device` 폴더에서 다음 명령을 실행하여 원하는 속성 변경 내용과 직접 메서드 호출을 수신 대기하도록 장치 앱을 시작합니다.
+1. Hello에서 명령 프롬프트에서 `simulated-device` hello 원하는 속성 변경 및 직접 메서드 호출에 대 한 수신 대기 하는 명령 toostart hello 장치 앱을 따라를 실행 하는 폴더:
 
     `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
 
-    ![장치 클라이언트 시작](media/iot-hub-java-java-schedule-jobs/device-app-1.png)
+    ![hello 장치 클라이언트 시작](media/iot-hub-java-java-schedule-jobs/device-app-1.png)
 
-1. 명령 프롬프트의 `schedule-jobs` 폴더에서 다음 명령을 실행하여 **schedule-jobs** 서비스 앱을 실행해 두 작업을 실행합니다. 첫 번째 작업에서는 원하는 속성 값을 설정하고 두 번째 작업에서는 직접 메서드를 호출합니다.
+1. Hello에 명령 프롬프트에서 `schedule-jobs` hello 명령 toorun hello 다음를 실행 하는 폴더 **작업 예약** 앱 toorun 두 개의 작업 서비스입니다. hello hello 원하는 속성 값을 먼저 설정, 두 번째 호출 hello hello 직접적인 방법:
 
     `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
 
     ![Java IoT Hub 서비스 앱에서 두 개의 작업을 작성함](media/iot-hub-java-java-schedule-jobs/service-app-1.png)
 
-1. 장치 앱이 원하는 속성 변경 및 직접 메서드 호출을 처리합니다.
+1. hello 장치 앱 hello 원하는 속성을 변경 하 고 hello 직접 메서드 호출을 처리합니다.
 
-    ![장치 클라이언트에 변경 내용에 응답함](media/iot-hub-java-java-schedule-jobs/device-app-2.png)
+    ![장치 클라이언트 hello 응답 toohello 변경 내용](media/iot-hub-java-java-schedule-jobs/device-app-2.png)
 
 ## <a name="next-steps"></a>다음 단계
 
-이 자습서에서는 Azure Portal에서 새 IoT Hub를 구성한 다음, IoT Hub의 ID 레지스트리에서 장치 ID를 만들었습니다. 그리고 두 작업을 실행하는 백 엔드 앱을 만들었습니다. 첫 번째 작업은 원하는 속성 값을 설정했으며 두 번째 작업은 직접 메서드를 호출했습니다.
+이 자습서에서는 hello Azure 포털에서에서 새 IoT 허브를 구성 하 고 id 레지스트리에 hello IoT hub에서 장치 id를 만든 다음 합니다. 두 개의 작업 toorun 백 엔드 응용 프로그램을 만들었습니다. hello ल ी 원하는 속성 값, 직접 메서드를 호출 하는 hello 두 번째 작업을 설정 합니다.
 
-아래와 같이 실행할 방법을 알아보려면 다음 리소스를 참조하세요.
+사용 하 여 hello 리소스 toolearn을 어떻게 수행 하려면:
 
-* [IoT Hub 시작](iot-hub-java-java-getstarted.md) 자습서를 참조하여 장치에서 원격 분석을 보냅니다.
-* [직접 메서드 사용](iot-hub-java-java-direct-methods.md) 자습서를 참조하여 대화형으로(예: 사용자 제어 앱에서 팬 작동) 장치를 제어합니다.
+* Hello 사용 하 여 장치에서 원격 분석 전송 [IoT 허브 시작](iot-hub-java-java-getstarted.md) 자습서입니다.
+* Hello로 장치를 대화형으로 (예: 사용자 제어 응용 프로그램에서 팬 설정)를 제어할 [직접 메서드를 사용 하 여](iot-hub-java-java-direct-methods.md) 자습서입니다.

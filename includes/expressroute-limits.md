@@ -1,5 +1,5 @@
 #### <a name="expressroute-limits"></a>Express 경로 제한
-구독당 Express 경로 리소스에는 다음과 같은 제한이 적용됩니다.
+다음 제한 hello 구독 당 tooExpressRoute 리소스를 적용 합니다.
 
 | 리소스 | 기본 제한 |
 | --- | --- |

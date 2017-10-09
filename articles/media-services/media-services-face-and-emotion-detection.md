@@ -1,6 +1,6 @@
 ---
-title: "Azure 미디어 분석으로 얼굴 및 감정 탐지 | Microsoft 문서"
-description: "이 토픽에는 Azure Media Analytics로 얼굴 및 감정을 감지하는 방법을 보여 줍니다."
+title: "aaaDetect 얼굴 및 Azure 미디어 분석을 Emotion | Microsoft Docs"
+description: "이 항목에서는 toodetect 직면 하는 방법 및 감정을 Azure 미디어 분석을 보여 줍니다."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,45 +14,45 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: milanga;juliako;
-ms.openlocfilehash: d7f3bc6c0d21db7adbb0c16c752d4ce49e99da5a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f58d81d82dde08a694cdb4d92c6bab6a40a9c157
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="detect-face-and-emotion-with-azure-media-analytics"></a>Azure 미디어 분석으로 얼굴 및 감정 검색
 ## <a name="overview"></a>개요
-**Azure 미디어 얼굴 탐지기** MP(미디어 프로세서)를 사용하여 이동 추적, 계산이 가능해지며 표정을 통해 대상 그룹 참여 및 반응 판단도 가능합니다. 이 서비스는 두 가지 기능을 포함합니다. 
+hello **Azure 미디어 얼굴 탐지기** 미디어 프로세서 MP ()를 사용 하면 toocount, 트랙 이동을 계기 청중 참여도 있고 얼굴 식을 통해 반응 합니다. 이 서비스는 두 가지 기능을 포함합니다. 
 
 * **얼굴 검색**
   
-    얼굴 검색은 동영상 내의 얼굴을 찾아 추적합니다. 여러 얼굴이 검색될 수 있으며 이후 JSON 파일로 반환되는 시간 및 위치 메타데이터를 사용하여 얼굴이 움직일 때마다 추적할 수 있습니다. 추적하는 동안 화면에서 사용자가 움직일 때, 가려지거나 프레임에서 잠시 벗어나는 경우에도 동일한 얼굴에 일관된 ID를 지정하려고 합니다.
+    얼굴 검색은 동영상 내의 얼굴을 찾아 추적합니다. 여러 글꼴로 검색 하 hello 시간 및 위치 메타 데이터와 JSON 파일에서 반환 된, 이동 하는 동안 이후에 추적할 수 있습니다. 추적 하는 동안 toogive hello 사용자가 이동 화면의 hello 프레임을 간단 하 게 유지 되거나 방해 하는 경우에 하는 동안에 맞서게 동일한 일관 된 ID toohello 시도 합니다.
   
   > [!NOTE]
-  > 이 서비스는 안면 인식을 수행하지 않습니다. 너무 오래 프레임에서 벗어나있거나 가려지는 경우에는 다시 돌아왔을 때 새 ID가 지정됩니다.
+  > 이 서비스는 안면 인식을 수행하지 않습니다. Hello 프레임을 벗어나거나에 대 한 방해 되는 사람이 너무 오래 하 게 할 새 ID를 반환 합니다.
   > 
   > 
 * **감정 검색**
   
-    감정 검색은 검색된 얼굴로부터 행복, 슬픔, 두려움, 분노 등의 여러 감정적 특성에 대한 분석을 반환하는 얼굴 탐지 미디어 프로세서의 선택적 구성 요소입니다. 
+    Emotion 검색은 hello hello 얼굴 감지 만족도, 슬픔, 걱정, 분노를 등의 여러 있지만 특성을 분석을 반환 하는 얼굴 감지 미디어 프로세서의 선택적 구성 요소는 있습니다. 
 
-**Azure 미디어 얼굴 탐지기** MP는 현재 미리 보기 상태입니다.
+hello **Azure 미디어 얼굴 탐지기** MP는 현재 미리 보기로 합니다.
 
-이 토픽은 **Azure Media Face Detector** 에 대한 세부 정보 및 .NET용 Media Services SDK와 함께 사용하는 방법을 보여 줍니다.
+이 항목에 대 한 세부 정보를 제공 **Azure 미디어 얼굴 탐지기** 표시 방법을 toouse Media Services SDK for.NET으로 합니다.
 
 ## <a name="face-detector-input-files"></a>얼굴 탐지기 입력 파일
-동영상 파일입니다. 현재 MP4, MOV 및 WMV 형식이 지원됩니다.
+동영상 파일입니다. 현재 형식에 따라 hello 지원 됩니다: MP4, MOV, 및 WMV입니다.
 
 ## <a name="face-detector-output-files"></a>얼굴 탐지기 출력 파일
-얼굴 검색 및 추적 API는 한 동영상 내에서 최대 64명의 얼굴을 검색할 수 있는 고정밀도 얼굴 위치 검색 및 추적을 제공합니다. 정면이 최상의 결과를 제공하며 측면 또는 작은 얼굴(24x24 픽셀보다 작거나 같음)의 경우 비교적 정확도가 낮을 수 있습니다.
+hello 얼굴 감지 및 추적 API 고정밀 얼굴 위치 검색 및 비디오에 too64 휴먼 면을 검색할 수 있는 추적을 제공 합니다. 전면 제공 하는 동안 측면 및 작은 면 hello 최상의 결과 (미만 too24x24 픽셀 같은) 정확한 것으로 되지 않을 수 있습니다.
 
-검색 및 추적된 얼굴은 개별적인 추적을 나타내는 얼굴 ID 번호뿐만 아니라 이미지 내에서 얼굴의 위치를 픽셀 단위로 나타내는 좌표(왼쪽, 위쪽, 너비 및 높이)와 함께 반환됩니다. 얼굴 ID 번호는 프레임 안에 정면 얼굴이 없거나 겹쳐진 상황에서 재설정될 가능성이 크므로 결과적으로 일부 사용자에게 여러 ID가 할당될 수 있습니다.
+hello 검색 되 고 추적 되 면 반환 되 면 hello 이미지 픽셀에서의 hello 위치를 나타내는 수 있을 뿐만 아니라 글꼴 ID 번호 표시 하는 hello 해당 개인의 추적 된 좌표 (왼쪽, 위쪽, 너비 및 높이). 글꼴 ID 번호는 상황에서 발생 하기 쉬운 tooreset hello 전면 손실 되거나 hello 프레임에서 겹쳐진의 결과로 나타나는 일부 사용자를 가져오는 여러 Id를 할당 합니다.
 
-## <a id="output_elements"></a>출력 JSON 파일의 요소
+## <a id="output_elements"></a>Hello 출력 JSON 파일의 요소
 
 [!INCLUDE [media-services-analytics-output-json](../../includes/media-services-analytics-output-json.md)]
 
-얼굴 탐지기는 조각화 기술(메타데이터가 시간 기반 청크로 나뉠 수 있으며 필요한 것만 다운로드할 수 있음) 및 분할 기술(이벤트가 너무 커질 경우 분할)을 사용합니다. 몇 가지 간단한 계산으로 데이터를 변환할 수 있습니다. 예를 들어 이벤트가 6300(틱)에서 시작하고 날짜 표시줄이 2997(틱/초), 프레임 속도가 29.97(프레임/초)인 경우 다음과 같습니다.
+Face 탐지기 (여기서 hello 이벤트 분리 됩니다 너무 커질 경우) 분할 하 고 조각화 (여기서 hello 메타 데이터는 시간 기반 청크로 나눌 수 있습니다 및 필요한 기능만 다운로드할 수 있습니다) 기술을 사용 합니다. 몇 가지 간단한 계산 hello 데이터를 변형할 수 있습니다. 예를 들어 이벤트가 6300(틱)에서 시작하고 날짜 표시줄이 2997(틱/초), 프레임 속도가 29.97(프레임/초)인 경우 다음과 같습니다.
 
 * 시작/날짜 표시줄 = 2.1초
 * 초 x 프레임 속도 = 63개 프레임
@@ -62,7 +62,7 @@ ms.lasthandoff: 08/29/2017
 [입력 동영상](http://ampdemo.azureedge.net/azuremediaplayer.html?url=https%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fc8834d9f-0b49-4b38-bcaf-ece2746f1972%2FMicrosoft%20Convergence%202015%20%20Keynote%20Highlights.ism%2Fmanifest&amp;autoplay=false)
 
 ### <a name="task-configuration-preset"></a>작업 구성(기본 설정)
-**Azure 미디어 얼굴 탐지기**로 작업을 만들 때에는 구성 기본 설정을 지정해야 합니다. 다음은 얼굴 검색에 대한 구성 기본 설정입니다.
+**Azure 미디어 얼굴 탐지기**로 작업을 만들 때에는 구성 기본 설정을 지정해야 합니다. hello 구성 사전 설정에 따라 얼굴 감지 하는 데는 않습니다.
 
     {
       "version":"1.0",
@@ -77,7 +77,7 @@ ms.lasthandoff: 08/29/2017
 | Mode |빠르게: 처리 속도는 빠르지만 정확도가 떨어집니다(기본값).|
 
 ### <a name="json-output"></a>JSON 출력
-다음 JSON 출력 예는 잘린 상태입니다.
+다음 예에서는 JSON 출력의 hello가 잘렸습니다.
 
     {
     "version": 1,
@@ -131,7 +131,7 @@ ms.lasthandoff: 08/29/2017
 [입력 동영상](http://ampdemo.azureedge.net/azuremediaplayer.html?url=https%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fc8834d9f-0b49-4b38-bcaf-ece2746f1972%2FMicrosoft%20Convergence%202015%20%20Keynote%20Highlights.ism%2Fmanifest&amp;autoplay=false)
 
 ### <a name="task-configuration-preset"></a>작업 구성(기본 설정)
-**Azure 미디어 얼굴 탐지기**로 작업을 만들 때에는 구성 기본 설정을 지정해야 합니다. 다음 구성 기본 설정은 감정 검색을 기반으로 JSON을 만들도록 지정합니다.
+**Azure 미디어 얼굴 탐지기**로 작업을 만들 때에는 구성 기본 설정을 지정해야 합니다. 다음 구성 사전 설정 hello toocreate hello emotion 검색에 따라 JSON을 지정 합니다.
 
     {
       "version": "1.0",
@@ -147,11 +147,11 @@ ms.lasthandoff: 08/29/2017
 | 특성 이름 | 설명 |
 | --- | --- |
 | Mode |얼굴: 얼굴만 감지합니다.<br/>PerFaceEmotion: 각 얼굴 감지에 대해 독립적으로 감정을 반환합니다.<br/>AggregateEmotion: 프레임의 모든 얼굴에 대한 평균 감정 값을 반환합니다. |
-| AggregateEmotionWindowMs |AggregateEmotion 모드가 선택된 경우에 사용합니다. 각 집계 결과를 생성하는 데 사용되는 동영상의 길이를 밀리초 단위로 지정합니다. |
-| AggregateEmotionIntervalMs |AggregateEmotion 모드가 선택된 경우에 사용합니다. 집계 결과 생성 빈도를 지정합니다. |
+| AggregateEmotionWindowMs |AggregateEmotion 모드가 선택된 경우에 사용합니다. 밀리초 단위로 사용 되는 비디오 tooproduce의 hello 길이 각 집계 결과 지정합니다. |
+| AggregateEmotionIntervalMs |AggregateEmotion 모드가 선택된 경우에 사용합니다. 어떤 주파수 tooproduce 집계 결과를 지정 합니다. |
 
 #### <a name="aggregate-defaults"></a>집계 기본값
-집계 창 및 간격 설정에는 아래 값이 권장됩니다. AggregateEmotionWindowMs는 AggregateEmotionIntervalMs보다 길어야 합니다.
+아래 hello 집계 창 및 간격 설정에 대 한 값을 권장 됩니다. AggregateEmotionWindowMs는 AggregateEmotionIntervalMs보다 길어야 합니다.
 
 || 기본값 | 최소값 | 최대값 |
 |--- | --- | --- | --- |
@@ -313,26 +313,26 @@ ms.lasthandoff: 08/29/2017
                  "fear": 0,
 
 ## <a name="limitations"></a>제한 사항
-* 지원되는 입력 동영상 형식에는 MP4, MOV 및 WMV가 있습니다.
-* 검색 가능한 얼굴 크기 범위는 24x24 픽셀에서 2048x2048 픽셀입니다. 이 범위를 벗어난 얼굴은 검색되지 않습니다.
-* 각 동영상에서 반환되는 최대 얼굴 수는 64입니다.
-* 일부 얼굴은 기술적인 문제(예: 매우 큰 얼굴 각도(머리 포즈) 및 큰 폐색)로 인해 검색되지 않을 수 있습니다. 정면 및 정면에 가까운 얼굴이 최상의 결과를 생성합니다.
+* 입력된 비디오 형식을 지원 hello MP4, MOV, 및 WMV 포함 됩니다.
+* hello를 감지할 수 글꼴 크기 범위는 24 x 24 too2048x2048 픽셀입니다. 이 범위를 벗어난 hello 면 문제가 발견 되지 않습니다.
+* 각 비디오에 대 한 반환 되 면 hello 최대 개수는 64입니다.
+* 일부 면 tootechnical 과제; 인해 검색 되지 않습니다. 예를 들어 매우 큰 글꼴 각도 (h e a d-포즈)와 큰 폐색 합니다. 전면 및 근처 정면 얼굴 hello 최상의 결과 얻으려면 있어야 합니다.
 
 ## <a name="net-sample-code"></a>.NET 샘플 코드
 
-다음 프로그램은 방법을 보여 줍니다.
+hello 다음 프로그램 표시 하는 방법:
 
-1. 자산을 만들고 미디어 파일을 자산에 업로드합니다.
-2. 다음 json 기본 설정을 포함하는 구성 파일을 기반으로 얼굴 감지 작업을 만듭니다. 
+1. 자산 만들기 hello 자산 미디어 파일을 업로드 합니다.
+2. 다음 json 사전 설정을 hello를 포함 하는 구성 파일에 따라 얼굴 감지 작업과 작업을 만듭니다. 
    
         {
             "version": "1.0"
         }
-3. 출력 JSON 파일을 다운로드합니다. 
+3. Hello 출력 JSON 파일을 다운로드 합니다. 
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Visual Studio 프로젝트 만들기 및 구성
 
-개발 환경을 설정하고 [.NET을 사용한 Media Services 환경](media-services-dotnet-how-to-use.md)에 설명된 대로 연결 정보를 사용하여 app.config 파일을 채웁니다. 
+개발 환경을 설정 하 고에 설명 된 대로 연결 정보를 포함 하는 hello app.config 파일을 채울 [.net 미디어 서비스 개발](media-services-dotnet-how-to-use.md)합니다. 
 
 #### <a name="example"></a>예제
 
@@ -363,17 +363,17 @@ ms.lasthandoff: 08/29/2017
 
                 _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
-                // Run the FaceDetection job.
+                // Run hello FaceDetection job.
                 var asset = RunFaceDetectionJob(@"C:\supportFiles\FaceDetection\BigBuckBunny.mp4",
                                             @"C:\supportFiles\FaceDetection\config.json");
 
-                // Download the job output asset.
+                // Download hello job output asset.
                 DownloadAsset(asset, @"C:\supportFiles\FaceDetection\Output");
             }
 
             static IAsset RunFaceDetectionJob(string inputMediaFilePath, string configurationFile)
             {
-                // Create an asset and upload the input media file to storage.
+                // Create an asset and upload hello input media file toostorage.
                 IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
                     "My Face Detection Input Asset",
                     AssetCreationOptions.None);
@@ -381,38 +381,38 @@ ms.lasthandoff: 08/29/2017
                 // Declare a new job.
                 IJob job = _context.Jobs.Create("My Face Detection Job");
 
-                // Get a reference to Azure Media Face Detector.
+                // Get a reference tooAzure Media Face Detector.
                 string MediaProcessorName = "Azure Media Face Detector";
 
                 var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-                // Read configuration from the specified file.
+                // Read configuration from hello specified file.
                 string configuration = File.ReadAllText(configurationFile);
 
-                // Create a task with the encoding details, using a string preset.
+                // Create a task with hello encoding details, using a string preset.
                 ITask task = job.Tasks.AddNew("My Face Detection Task",
                     processor,
                     configuration,
                     TaskOptions.None);
 
-                // Specify the input asset.
+                // Specify hello input asset.
                 task.InputAssets.Add(asset);
 
-                // Add an output asset to contain the results of the job.
+                // Add an output asset toocontain hello results of hello job.
                 task.OutputAssets.AddNew("My Face Detectoion Output Asset", AssetCreationOptions.None);
 
-                // Use the following event handler to check job progress.  
+                // Use hello following event handler toocheck job progress.  
                 job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-                // Launch the job.
+                // Launch hello job.
                 job.Submit();
 
-                // Check job execution and wait for job to finish.
+                // Check job execution and wait for job toofinish.
                 Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
                 progressJobTask.Wait();
 
-                // If job state is Error, the event handling
+                // If job state is Error, hello event handling
                 // method for job progress should log errors.  Here we check
                 // for error state and exit if needed.
                 if (job.State == JobState.Error)

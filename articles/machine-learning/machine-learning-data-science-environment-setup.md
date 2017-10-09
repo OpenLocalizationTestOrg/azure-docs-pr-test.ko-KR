@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 데이터 과학 환경 설정 | Microsoft Docs"
-description: "팀 데이터 과학 프로세스에서 사용되는 Azure의 데이터 과학 환경을 설정합니다."
+title: "Azure에서 데이터 과학 환경을 aaaSet | Microsoft Docs"
+description: "데이터 과학 환경에서 설정 Azure hello 팀 데이터 과학 프로세스에서에서 사용 하기 위해."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/08/2017
 ms.author: bradsev
-ms.openlocfilehash: 4f2f66288428aa0aa41abb40ce0e43c4848543ff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 11e16416296d687c15fdaf17558aebc2d04737c9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="set-up-data-science-environments-for-use-in-the-team-data-science-process"></a>팀 데이터 과학 프로세스에서 사용되는 데이터 과학 환경 설정
-팀 데이터 과학 프로세스는 데이터의 저장, 처리 및 분석을 위해 다양한 데이터 과학 환경을 사용합니다. 여기에는 Azure Blob Storage, 여러 유형의 Azure 가상 컴퓨터, HDInsight(Hadoop) 클러스터 및 Azure Machine Learning 작업 영역이 포함됩니다. 사용할 환경에 대한 결정은 모델링할 데이터의 유형 및 양과 클라우드에서 해당 데이터의 대상에 따라 달라집니다. 
+# <a name="set-up-data-science-environments-for-use-in-hello-team-data-science-process"></a>설정 데이터 과학 환경을 사용 하기 위해 hello 팀 데이터 과학 프로세스에서
+hello 팀 데이터 과학 프로세스 hello 저장, 처리 및 분석 데이터에 대 한 다양 한 데이터 과학 환경을 사용합니다. 여기에는 Azure Blob Storage, 여러 유형의 Azure 가상 컴퓨터, HDInsight(Hadoop) 클러스터 및 Azure Machine Learning 작업 영역이 포함됩니다. 모델링 되는 환경에 대 한 toouse hello 유형 및 데이터 toobe의 수량에 따라 hello 의사 결정 및 hello 대상 hello 클라우드에서 해당 데이터에 대 한 대상입니다. 
 
-* 이러한 결정을 내릴 때 고려할 질문에 대한 지침은 [Azure Machine Learning 데이터 과학 환경 계획](machine-learning-data-science-plan-your-environment.md)을 참조하세요. 
-* 고급 분석을 수행할 때 발생할 수 있는 일부 시나리오의 카탈로그는 [팀 데이터 과학 프로세스 시나리오](machine-learning-data-science-plan-sample-scenarios.md)
+* 이 결정을 내릴 때 질문 tooconsider에 대 한 지침을 참조 하십시오. [Plan Your Azure 시스템 학습 데이터 과학 환경](machine-learning-data-science-plan-your-environment.md)합니다. 
+* 고급 분석을 수행 하는 경우 발생할 수 있습니다 hello 시나리오 중 일부의 카탈로그에 대 한 참조 [hello 팀 데이터 과학 프로세스에 대 한 시나리오](machine-learning-data-science-plan-sample-scenarios.md)
 
-이 메뉴는 팀 데이터 과학 프로세스에서 사용되는 다양한 데이터 과학 환경의 설정 방법을 설명하는 토픽에 연결됩니다.
+이 메뉴 tootopics tooset hello 다양 한 데이터 과학 환경에서 어떻게 사용 hello 팀 데이터 과학 프로세스를 설명 하는 연결 합니다.
 
 [!INCLUDE [data-science-environment-setup](../../includes/cap-setup-environments.md)]
 
-**Microsoft DSVM(데이터 과학 가상 컴퓨터)**은 Azure VM(가상 컴퓨터) 이미지로 사용할 수 있습니다. 이 VM은 데이터 분석 및 Machine Learning에 흔히 사용되는 몇 가지 인기 있는 도구로 사전 설치되고 구성됩니다. Windows 및 Linux에는 DSVM를 사용할 수 있습니다. 자세한 내용은 [Linux 및 Windows용 클라우드 기반 데이터 과학 가상 컴퓨터에 대한 소개](machine-learning-data-science-virtual-machine-overview.md)를 참조하세요.
+hello **Microsoft 데이터 과학 가상 컴퓨터 (DSVM)** Azure 가상 컴퓨터 (VM) 이미지 형식으로 제공 됩니다. 이 VM은 데이터 분석 및 Machine Learning에 흔히 사용되는 몇 가지 인기 있는 도구로 사전 설치되고 구성됩니다. hello DSVM는 Windows와 Linux 모두에서 사용할 수 있습니다. 자세한 내용은 참조 하십시오. [소개 toohello Linux 및 Windows에 대 한 데이터 과학 가상 컴퓨터 클라우드 기반](machine-learning-data-science-virtual-machine-overview.md)합니다.
 

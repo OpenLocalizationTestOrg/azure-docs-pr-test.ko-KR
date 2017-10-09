@@ -1,5 +1,5 @@
 ---
-title: "PowerShell을 사용하여 Log Analytics 작업 영역 만들기 및 구성 | Microsoft Docs"
+title: "aaaUse PowerShell tooCreate 하 고 로그 분석 작업 영역 구성 | Microsoft Docs"
 description: "Log Analytics는 온-프레미스 또는 클라우드 인프라의 서버에서 데이터를 사용합니다. Azure 진단에 의해 생성된 경우에 Azure 저장소에서 컴퓨터 데이터를 수집할 수 있습니다."
 services: log-analytics
 documentationcenter: 
@@ -14,64 +14,64 @@ ms.devlang: powershell
 ms.topic: article
 ms.date: 11/21/2016
 ms.author: richrund
-ms.openlocfilehash: 6807ab67e3593da82c147669b29bfdae3b6c967c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a6d66194204cc58de6aafb687a19fe9611e0c58e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-log-analytics-using-powershell"></a>PowerShell을 사용하여 Log Analytics 관리
-[Log Analytics PowerShell cmdlet](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx)을 사용하여 명령줄에서 또는 스크립트의 일부로 Log Analytics의 다양한 기능을 수행할 수 있습니다.  PowerShell을 사용하여 수행할 수 있는 작업의 예:
+Hello를 사용할 수 있습니다 [로그 분석 PowerShell cmdlet](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) tooperform 명령줄에서 또는 스크립트의 일부로 로그 분석에 대 한 다양 한 기능입니다.  PowerShell로 수행할 수 있는 하는 hello 작업의 예입니다.
 
 * 작업 영역 만들기
 * 솔루션 추가 또는 제거
 * 저장된 검색 가져오기 및 내보내기
 * 컴퓨터 그룹 만들기
-* Windows 에이전트가 설치된 컴퓨터에서 IIS 로그 수집 활성화
+* Hello Windows 에이전트가 설치 된 컴퓨터에서 IIS 로그의 컬렉션을 사용 하도록 설정
 * Linux 및 Windows 컴퓨터에서 성능 카운터 수집
 * Linux 컴퓨터의 syslog에서 이벤트 수집 
 * Windows 이벤트 로그에서 이벤트 수집
 * 사용자 지정 이벤트 로그 수집
-* Azure 가상 컴퓨터에 Log Analytics 에이전트 추가
-* Azure 진단을 사용하여 수집된 데이터를 인덱싱하도록 Log Analytics 구성
+* Hello 로그 분석 에이전트 tooan Azure 가상 컴퓨터를 추가 합니다.
+* Azure 진단을 사용 하 여 수집 된 로그 분석 tooindex 데이터 구성
 
-이 문서에서는 PowerShell에서 수행할 수 있는 몇 가지 기능을 보여 주는 두 가지 코드 샘플을 제공합니다.  다른 기능에 대해서는 [Log Analytics PowerShell Cmdlet 참조](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) 를 참조할 수 있습니다.
+이 문서에서는 PowerShell에서 수행할 수 있는 hello 함수 중 일부를 보여 주는 두 개의 코드 예제를 제공 합니다.  Toohello 참조할 수 있습니다 [로그 분석 PowerShell cmdlet 참조](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) 다른 함수에 대 한 합니다.
 
 > [!NOTE]
-> Log Analytics는 이전에 Operational Insights라고 했기 때문에 cmdlet에서는 Operational Insights라고 합니다.
+> 로그 분석이 이전에 hello cmdlet에 사용 되는 hello 이름을이 Operational Insights는 호출 합니다.
 > 
 > 
 
 ## <a name="prerequisites"></a>필수 조건
-이 예제는 AzureRm.OperationalInsights 모듈 버전 2.3.0 이상에서 작동합니다.
+이 예제에서는 버전 2.3.0 또는 hello AzureRm.OperationalInsights 모듈의 나중에 작동합니다.
 
 
 ## <a name="create-and-configure-a-log-analytics-workspace"></a>Log Analytics 작업 영역 만들기 및 구성
-다음 스크립트 샘플에서는 다음 작업의 방법을 보여 줍니다.
+hello 다음 스크립트 예제에서는 하는 방법:
 
 1. 작업 영역 만들기
-2. 사용 가능한 솔루션 나열
-3. 작업 영역에 솔루션 추가
+2. 목록 hello 사용 가능한 솔루션
+3. 추가 솔루션 toohello 작업 영역
 4. 저장된 검색 가져오기
 5. 저장된 검색 내보내기
 6. 컴퓨터 그룹 만들기
-7. Windows 에이전트가 설치된 컴퓨터에서 IIS 로그 수집 활성화
+7. Hello Windows 에이전트가 설치 된 컴퓨터에서 IIS 로그의 컬렉션을 사용 하도록 설정
 8. Linux 컴퓨터에서 논리 디스크 성능 카운터 수집(사용된 Inode 비율, 사용 가능한 MB, 사용된 공간 비율, 초당 디스크 전송, 초당 디스크 읽기, 초당 디스크 쓰기)
 9. Linux 컴퓨터에서 syslog 이벤트 수집
-10. Windows 컴퓨터에서 응용 프로그램 이벤트 로그의 오류 및 경고 이벤트 수집
+10. Windows 컴퓨터에서 hello 응용 프로그램 이벤트 로그에서에서 오류 및 경고 이벤트를 수집 합니다.
 11. Windows 컴퓨터에서 사용 가능한 메모리(MB) 성능 카운터 수집
 12. 사용자 지정 로그 수집 
 
 ```
 
 $ResourceGroup = "oms-example"
-$WorkspaceName = "log-analytics-" + (Get-Random -Maximum 99999) # workspace names need to be unique - Get-Random helps with this for the example code
+$WorkspaceName = "log-analytics-" + (Get-Random -Maximum 99999) # workspace names need toobe unique - Get-Random helps with this for hello example code
 $Location = "westeurope"
 
-# List of solutions to enable
+# List of solutions tooenable
 $Solutions = "Security", "Updates", "SQLAssessment"
 
-# Saved Searches to import
+# Saved Searches tooimport
 $ExportedSearches = @"
 [
     {
@@ -89,7 +89,7 @@ $ExportedSearches = @"
 ]
 "@ | ConvertFrom-Json
 
-# Custom Log to collect
+# Custom Log toocollect
 $CustomLog = @"
 {
     "customLogName": "sampleCustomLog1", 
@@ -127,14 +127,14 @@ $CustomLog = @"
     }
 "@
 
-# Create the resource group if needed
+# Create hello resource group if needed
 try {
     Get-AzureRmResourceGroup -Name $ResourceGroup -ErrorAction Stop
 } catch {
     New-AzureRmResourceGroup -Name $ResourceGroup -Location $Location
 }
 
-# Create the workspace
+# Create hello workspace
 New-AzureRmOperationalInsightsWorkspace -Location $Location -Name $WorkspaceName -Sku Standard -ResourceGroupName $ResourceGroup
 
 # List all solutions and their installation status
@@ -160,7 +160,7 @@ foreach ($search in $ExportedSearches) {
 # Create Computer Group based on a query
 New-AzureRmOperationalInsightsComputerGroup -ResourceGroupName $ResourceGroup -WorkspaceName $WorkspaceName -SavedSearchId "My Web Servers" -DisplayName "Web Servers" -Category "My Saved Searches" -Query "Computer=""web*"" | distinct Computer" -Version 1
 
-# Create a computer group based on names (up to 5000)
+# Create a computer group based on names (up too5000)
 $computerGroup = """servername1.contoso.com"",""servername2.contoso.com"",""servername3.contoso.com"",""servername4.contoso.com"""
 New-AzureRmOperationalInsightsComputerGroup -ResourceGroupName $ResourceGroup -WorkspaceName $WorkspaceName -SavedSearchId "My Named Servers" -DisplayName "Named Servers" -Category "My Saved Searches" -Query $computerGroup -Version 1
 
@@ -186,8 +186,8 @@ New-AzureRmOperationalInsightsCustomLogDataSource -ResourceGroupName $ResourceGr
 
 ```
 
-## <a name="configuring-log-analytics-to-index-azure-diagnostics"></a>Azure 진단을 인덱싱하도록 Log Analytics 구성
-에이전트 없이 Azure 리소스를 모니터링할 경우 리소스가 Azure 진단을 사용할 수 있어야 하며 Log Analytics 작업 영역에 쓰도록 구성되어야 합니다. 이러한 방식은 데이터를 Log Analytics에 바로 보내며 데이터를 저장소 계정에 쓸 필요가 없습니다. 지원되는 리소스는 다음과 같습니다.
+## <a name="configuring-log-analytics-tooindex-azure-diagnostics"></a>로그 분석 tooindex Azure 진단 구성
+Azure 리소스를 에이전트 없는 모니터링 hello 리소스 toohave Azure 진단을 사용 하도록 설정 하 고 구성 되어 toowrite tooa 로그 분석 작업 영역을 필요 합니다. 이 방법은 데이터를 보내는 tooLog 분석 직접 tooa 저장소 계정 작성 된 데이터 toobe 필요 하지 않습니다. 지원되는 리소스는 다음과 같습니다.
 
 | 리소스 종류 | 로그 | 메트릭 |
 | --- | --- | --- |
@@ -210,9 +210,9 @@ New-AzureRmOperationalInsightsCustomLogDataSource -ResourceGroupName $ResourceGr
 | 웹 사이트               |     | 예 |
 | 웹 서버 팜        |     | 예 |
 
-사용 가능한 메트릭에 대한 자세한 내용은 [Azure Monitor에서 지원되는 메트릭](../monitoring-and-diagnostics/monitoring-supported-metrics.md)을 참조하세요.
+너무 hello 사용 가능한 메트릭 hello 세부 정보를 참조[지원 되는 Azure 모니터로 메트릭](../monitoring-and-diagnostics/monitoring-supported-metrics.md)합니다.
 
-사용 가능한 로그에 대한 자세한 내용은 [진단 로그에 지원되는 서비스 및 스키마](../monitoring-and-diagnostics/monitoring-diagnostic-logs-schema.md)를 참조하세요.
+너무 hello hello 사용 가능한 로그의 세부 정보를 참조[진단 로그에 대 한 서비스 및 스키마 지원](../monitoring-and-diagnostics/monitoring-diagnostic-logs-schema.md)합니다.
 
 ```
 $workspaceId = "/subscriptions/d2e37fee-1234-40b2-5678-0b2199de3b50/resourcegroups/oi-default-east-us/providers/microsoft.operationalinsights/workspaces/rollingbaskets"
@@ -222,27 +222,27 @@ $resourceId = "/SUBSCRIPTIONS/ec11ca60-1234-491e-5678-0ea07feae25c/RESOURCEGROUP
 Set-AzureRmDiagnosticSetting -ResourceId $resourceId -WorkspaceId $workspaceId -Enabled $true
 ```
 
-위의 cmdlet을 사용하여 다른 구독에 속하는 리소스에서 로그를 수집할 수도 있습니다. 리소스 생성 로그의 ID 및 로그를 보내는 작업 영역의 ID를 모두 제공하기 때문에 cmdlet은 구독 간에 작업이 가능합니다.
+Hello 앞에 서로 다른 구독에 있는 리소스의 cmdlet toocollect 로그를 사용할 수 있습니다. hello cmdlet 없으므로 수 toowork 구독에서 제공 하는 중 로그를 만드는 두 hello 리소스의 hello id 및 hello 작업 영역 hello 로그 전송 됩니다.
 
 
-## <a name="configuring-log-analytics-to-index-azure-diagnostics-from-storage"></a>저장소에서 Azure 진단을 인덱싱하도록 Log Analytics 구성
-클래식 클라우드 서비스 또는 Service Fabric 클러스터의 실행 중인 인스턴스 내에서 로그 데이터를 수집하려면 먼저 Azure Storage에 데이터를 써야 합니다. 그런 다음 저장소 계정에서 로그를 수집하도록 Log Analytics를 구성합니다. 지원되는 리소스는 다음과 같습니다.
+## <a name="configuring-log-analytics-tooindex-azure-diagnostics-from-storage"></a>로그 분석 tooindex 저장소에서 Azure 진단 구성
+toocollect 로그 데이터의 경우 클래식 클라우드 서비스 또는 서비스 패브릭 클러스터의 실행 중인 인스턴스 내에서 toofirst 쓰기 hello 데이터 tooAzure 저장소가 필요 합니다. 로그 분석은 다음 hello 저장소 계정에서 toocollect hello 로그를 구성 합니다. 지원되는 리소스는 다음과 같습니다.
 
 * 기존 Cloud Services(웹 및 작업자 역할)
 * Service Fabric 클러스터
 
-아래 예제는 다음과 같은 작업의 방법을 보여 줍니다.
+hello 방법을 예제와 다음에:
 
-1. Log Analytics가 다음 출처에서 오는 데이터를 인덱싱하는 기존 저장소 계정 및 위치 나열
-2. 저장소 계정에서 읽을 구성 만들기
-3. 새로 만든 구성을 추가 위치에서 오는 데이터를 인덱싱하도록 업데이트
-4. 새로 만든 구성 삭제
+1. Hello 기존 저장소 계정 및 로그 분석은 데이터를 색인 위치 나열
+2. 저장소 계정에서 구성 tooread 만들기
+3. 추가 위치에서 구성 tooindex 데이터를 새로 만들어진 hello를 업데이트 합니다.
+4. 새로 만든 hello 구성 삭제
 
 ```
 # validTables = "WADWindowsEventLogsTable", "LinuxsyslogVer2v0", "WADServiceFabric*EventTable", "WADETWEventTable" 
 $workspace = (Get-AzureRmOperationalInsightsWorkspace).Where({$_.Name -eq "your workspace name"})
 
-# Update these two lines with the storage account resource ID and the storage account key for the storage account you want to Log Analytics to  
+# Update these two lines with hello storage account resource ID and hello storage account key for hello storage account you want tooLog Analytics too 
 $storageId = "/subscriptions/ec11ca60-1234-491e-5678-0ea07feae25c/resourceGroups/demo/providers/Microsoft.Storage/storageAccounts/wadv2storage"
 $key = "abcd=="
 
@@ -255,12 +255,12 @@ New-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.Resou
 # Update existing insight
 Set-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.ResourceGroupName -WorkspaceName $workspace.Name -Name "newinsight" -Tables @("WADWindowsEventLogsTable", "WADETWEventTable") -Containers @("wad-iis-logfiles")
 
-# Remove the insight
+# Remove hello insight
 Remove-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.ResourceGroupName -WorkspaceName $workspace.Name -Name "newinsight" 
 
 ```
 
-위의 스크립트를 사용하여 다른 구독에 속하는 저장소 계정에서 로그를 수집할 수도 있습니다. 저장소 계정 리소스 ID와 해당 액세스 키를 제공하기 때문에 스크립트는 구독 간에 작업이 가능합니다. 액세스 키를 변경할 때 저장소 정보가 새 키를 갖도록 업데이트해야 합니다.
+Hello 앞에 다른 구독의 저장소 계정에서 스크립트 toocollect 로그를 사용할 수 있습니다. hello 스크립트에서는 수 toowork 구독 전반에 걸쳐 이므로 hello 저장소 계정 리소스 id 및 해당 액세스 키를 제공 하는입니다. Hello 액세스 키를 변경 하면 tooupdate hello 저장소 통찰력 toohave hello 새 키가 필요 합니다.
 
 
 ## <a name="next-steps"></a>다음 단계

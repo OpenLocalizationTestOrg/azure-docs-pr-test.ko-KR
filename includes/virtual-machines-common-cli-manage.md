@@ -1,9 +1,9 @@
-Azure CLI 2.0을 사용하면 macOS, Linux 및 Windows에서 Azure 리소스를 만들고 관리할 수 있습니다. 이 문서에서는 VM(가상 컴퓨터)을 만들고 관리하는 가장 일반적인 몇 가지 명령에 대해 자세히 설명합니다.
+hello Azure CLI 2.0 toocreate 있으며 macOS, Linux 및 Windows에서 Azure 리소스를 관리 합니다. 이 문서는 가장 일반적인 명령 toocreate hello 중 일부에 대해 자세히 설명 하 고 가상 컴퓨터 (Vm)를 관리 합니다.
 
-이 문서에는 Azure CLI 버전 2.0.4 이상이 필요합니다. `az --version`을 실행하여 버전을 찾습니다. 업그레이드해야 하는 경우 [Azure CLI 2.0 설치](/cli/azure/install-azure-cli)를 참조하세요. 브라우저에서 [Cloud Shell](/azure/cloud-shell/quickstart)을 사용할 수도 있습니다.
+이 문서는 hello Azure CLI 버전 2.0.4 필요 이상. 실행 `az --version` toofind hello 버전입니다. Tooupgrade 필요한 경우 참조 [Azure CLI 2.0 설치](/cli/azure/install-azure-cli)합니다. 또한 브라우저에서 [Cloud Shell](/azure/cloud-shell/quickstart)을 사용할 수도 있습니다.
 
 ## <a name="basic-azure-resource-manager-commands-in-azure-cli"></a>Azure CLI의 기본 Azure Resource Manager 명령
-특정 명령줄 스위치와 옵션에 대해 자세한 도움말은 `az <command> <subcommand> --help`를 입력하여 온라인 명령 도움말과 옵션을 사용할 수 있습니다.
+Hello 온라인 명령 도움말 및 옵션을 입력 하 여 사용할 수 특정 명령줄 스위치 및 옵션에 대 한 도움 자세한 `az <command> <subcommand> --help`합니다.
 
 ### <a name="create-vms"></a>VM 만들기
 | 작업 | Azure CLI 명령 |
@@ -33,7 +33,7 @@ Azure CLI 2.0을 사용하면 macOS, Linux 및 Windows에서 Azure 리소스를 
 ## <a name="disks-and-images"></a>디스크 및 이미지
 | 작업 | Azure CLI 명령 |
 | --- | --- |
-| VM에 데이터 디스크 추가 | `az vm disk attach --resource-group myResourceGroup --vm-name myVM --disk myDataDisk --size-gb 128 --new ` |
+| 데이터 디스크 tooa VM 추가 | `az vm disk attach --resource-group myResourceGroup --vm-name myVM --disk myDataDisk --size-gb 128 --new ` |
 | VM에서 데이터 디스크 제거 | `az vm disk detach --resource-group myResourceGroup --vm-name myVM --disk myDataDisk` |
 | 디스크 크기 조정 | `az disk update --resource-group myResourceGroup --name myDataDisk --size-gb 256` |
 | 디스크 스냅숏 | `az snapshot create --resource-group myResourceGroup --name mySnapshot --source myDataDisk` |
@@ -42,5 +42,5 @@ Azure CLI 2.0을 사용하면 macOS, Linux 및 Windows에서 Azure 리소스를 
 
 
 ## <a name="next-steps"></a>다음 단계
-CLI 명령의 추가 예제는 [Azure CLI를 사용하여 Linux VM 만들기 및 관리](../articles/virtual-machines/linux/tutorial-manage-vm.md) 자습서를 참조하세요.
+Hello CLI 명령의 추가 예 참조 hello [만들기 및 Azure CLI hello로 Linux Vm 관리](../articles/virtual-machines/linux/tutorial-manage-vm.md) 자습서입니다.
 

@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric의 Reliable Actors| Microsoft Docs"
-description: "Reliable Actors를 Reliable Services에 계층화하고 서비스 패브릭 플랫폼의 기능을 사용하는 방법을 설명합니다."
+title: "행위자 서비스 패브릭에서 aaaReliable | Microsoft Docs"
+description: "Reliable Actors 신뢰할 수 있는 서비스에 계층화 하 고 hello 서비스 패브릭 플랫폼의 hello 기능을 사용 하는 방법에 대해 설명 합니다."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/07/2017
 ms.author: vturecek
-ms.openlocfilehash: 0a12da52b6e74c721cd25f89e7cde3c07153a396
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ecffb54139f1171c7839b77fed0be60950881198
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-reliable-actors-use-the-service-fabric-platform"></a>신뢰할 수 있는 행위자가 서비스 패브릭 플랫폼을 사용하는 방법
-이 문서에서는 Azure Service Fabric 플랫폼에서 Reliable Actors가 작동하는 방법을 설명합니다. Reliable Actors는 *행위자 서비스*라는 상태 저장 신뢰할 수 있는 서비스의 구현에서 호스트되는 프레임워크에서 실행됩니다. 행위자 서비스는 행위자에게 발송되는 수명 주기 및 메시지를 관리하는 데 필요한 모든 구성 요소를 포함합니다.
+# <a name="how-reliable-actors-use-hello-service-fabric-platform"></a>Reliable Actors hello 서비스 패브릭 플랫폼을 사용 하는 방법
+이 문서에서는 Reliable Actors hello Azure Service Fabric 플랫폼에서 작동 하는 방법을 설명 합니다. Reliable Actors hello를 호출 하는 신뢰할 수 있는 상태 저장 서비스의 구현에서 호스트 되는 프레임 워크에서 실행할 *행위자 서비스*합니다. hello 행위자 서비스 모든 hello 구성 요소가 필요한 toomanage hello 수명 주기 및 디스패치 하 여 작업자에 대 한 메시지에 포함 되어 있습니다.
 
-* 행위자 런타임은 수명 주기, 가비지 수집을 관리하고 단일 스레드 액세스를 적용합니다.
-* 행위자 서비스 원격 수신기는 행위자에 대한 원격 액세스 호출을 허용하고 적절한 행위자 인스턴스를 라우팅하는 디스패처에게 보냅니다.
-* 행위자 상태 제공자는 상태 공급자(예: 신뢰할 수 있는 컬렉션 상태 공급자)를 래핑하고 행위자 상태 관리에 대한 어댑터를 제공합니다.
+* hello 행위자 런타임, 가비지 수집 주기를 관리 하 고 단일 스레드 액세스를 적용 합니다.
+* 행위자 서비스 remoting 수신기 호출 tooactors 원격 액세스를 허용 하 고 tooa 발송자 tooroute toohello 적절 한 행위자 인스턴스에 보냅니다.
+* 행위자 상태 공급자 hello 상태 공급자 (예: hello 신뢰할 수 있는 컬렉션 상태 공급자)를 래핑하고 행위자 상태 관리에 대 한 어댑터를 제공 합니다.
 
-이러한 구성 요소는 Reliable Actor 프레임워크를 함께 구성합니다.
+이러한 구성 요소 구성 hello Reliable Actor 프레임 워크입니다.
 
 ## <a name="service-layering"></a>서비스 계층
-행위자 서비스 자체가 Reliable Service이므로 Reliable Services의 [응용 프로그램 모델](service-fabric-application-model.md), 수명 주기, [패키징](service-fabric-package-apps.md), [배포](service-fabric-deploy-remove-applications.md), 업그레이드 및 개념 확장은 모두 행위자 서비스에 동일한 방식으로 적용됩니다. 
+Hello 행위자 서비스 자체는 신뢰할 수 있는 서비스 이므로 모든 hello [응용 프로그램 모델](service-fabric-application-model.md), 수명 주기 [패키징](service-fabric-package-apps.md), [배포](service-fabric-deploy-remove-applications.md), 업그레이드 및 개념의 크기 조정 신뢰할 수 있는 서비스는 hello 적용 tooactor 서비스 동일한 방식으로 합니다. 
 
 ![행위자 서비스 계층][1]
 
-이전 다이어그램은 Service Fabric 응용 프로그램 프레임워크와 사용자 코드 간의 관계를 보여 줍니다. 블루 요소는 Reliable Services 응용 프로그램 프레임워크를 나타내고 오렌지는 Reliable Actor 프레임워크를 나타내며 그린은 사용자 코드를 나타냅니다.
+hello 이전 다이어그램 관계를 보여 줍니다 hello hello 서비스 패브릭 응용 프로그램 프레임 워크와 사용자 코드입니다. 파란색 요소 hello 신뢰할 수 있는 서비스 응용 프로그램 프레임 워크, 주황색 hello Reliable Actor 프레임 워크를 나타내는 나타내고 녹색 사용자 코드를 나타냅니다.
 
-Reliable Services에서 서비스는 `StatefulService` 클래스를 상속합니다. 이 클래스는 `StatefulServiceBase`(또는 상태 비저장 서비스의 경우 `StatelessService`)에서 파생됩니다. Reliable Actors에서 행위자 서비스를 사용합니다. 행위자 서비스는 행위자가 실행되는 행위자 패턴을 구현하는 `StatefulServiceBase` 클래스의 다른 구현입니다. 행위자 서비스 자체는 `StatefulServiceBase`의 구현이므로 `ActorService`에서 파생된 고유한 서비스를 작성할 수 있고 다음과 같이 `StatefulService`을 상속하는 경우와 동일한 방식으로 서비스 수준 기능을 구현할 수 있습니다.
+신뢰할 수 있는 서비스에서 서비스는 hello 상속 `StatefulService` 클래스입니다. 이 클래스는 `StatefulServiceBase`(또는 상태 비저장 서비스의 경우 `StatelessService`)에서 파생됩니다. Reliable Actors hello 행위자 서비스를 사용합니다. hello 행위자 서비스는 hello 다르게 구현 `StatefulServiceBase` 클래스에 작업 자가 실행 되는 위치는 구현 hello 행위자 패턴입니다. Hello 행위자 서비스 자체의 구현을 뿐 이므로 `StatefulServiceBase`에서 파생 되는 서비스를 작성할 수 있습니다 `ActorService` 구현 서비스 수준의 기능이 동일 hello 및 상속 된 경우 동일한 방식으로 `StatefulService`, 같은:
 
 * 서비스 백업 및 복원
 * 모든 행위자에 대한 공유 기능(예: 회로 차단기)
-* 행위자 서비스 자체 및 각 개별 행위자에서의 원격 프로시저 호출
+* 각 개별 행위자와 hello 행위자 서비스 자체에 원격 프로시저 호출 합니다.
 
 > [!NOTE]
 > 상태 저장 서비스는 현재 Java/Linux에서 지원되지 않습니다.
 
-### <a name="using-the-actor-service"></a>행위자 서비스 사용
-행위자 인스턴스는 실행 중인 행위자 서비스에 대한 액세스 권한이 있습니다. 행위자 인스턴스는 행위자 서비스를 통해 프로그래밍 방식으로 서비스 컨텍스트를 얻을 수 있습니다. 서비스 컨텍스트에는 파티션 ID, 서비스 이름, 응용 프로그램 이름 및 기타 Service Fabric 플랫폼 관련 정보가 있습니다.
+### <a name="using-hello-actor-service"></a>Hello 행위자 서비스를 사용 하 여
+행위자 인스턴스에 액세스 toohello 행위자 서비스를 실행 중인 사항이 있습니다. Hello 행위자 서비스를 통해 작업자 인스턴스 hello 서비스 컨텍스트를 프로그래밍 방식으로 얻을 수 있습니다. hello 서비스 컨텍스트는 hello 파티션 ID, 서비스 이름, 응용 프로그램 이름 및 기타 서비스 패브릭 플랫폼 관련 정보에 있습니다.
 
 ```csharp
 Task MyActorMethod()
@@ -68,7 +68,7 @@ CompletableFuture<?> MyActorMethod()
 ```
 
 
-Reliable Services처럼 행위자 서비스는 Service Fabric 런타임에서 서비스 유형으로 등록되어야 합니다. 행위자 인스턴스를 실행하는 행위자 서비스의 경우 행위자 서비스에 행위자 유형이 등록되어야 합니다. `ActorRuntime` 등록 메서드가 행위자에 대한 이 작업을 수행합니다. 가장 간단한 경우 행위자 형식만을 등록할 수 있고 기본 설정이 있는 행위자 서비스는 암시적으로 다음과 같은 경우 사용됩니다.
+모든 신뢰할 수 있는 서비스와 마찬가지로 hello 서비스 패브릭 런타임에서 서비스 유형의으로 hello 행위자 서비스를 등록 합니다. Hello 행위자 toorun 작업자 인스턴스를 서비스, 행위자 형식 hello 행위자 서비스에 등록 합니다. hello `ActorRuntime` 등록 메서드는 행위자를 위한이 작업을 수행 합니다. Hello 가장 간단한 경우에서 행위자 형식에만 등록할 수 있습니다 및 hello 행위자 서비스 기본 설정으로 암시적으로 사용 됩니다.
 
 ```csharp
 static class Program
@@ -82,7 +82,7 @@ static class Program
 }
 ```
 
-또는 행위자 서비스를 직접 생성하는 등록 메서드가 제공하는 람다를 사용할 수 있습니다. 그런 다음 생성자를 통해 행위자에 종속성을 주입할 수 있는 행위자 인스턴스를 명시적으로 생성하고 행위자 서비스를 구성할 수 있습니다.
+또는 hello 등록 메서드 tooconstruct hello 행위자 서비스에서 제공 하는 람다를 사용할 수 있습니다. 다음 hello 행위자 서비스를 구성할 수 있고 명시적으로 생성자를 통해 종속성 tooyour 행위자 주입할 수 있는 사용자 행위자 인스턴스가 생성 됩니다.
 
 ```csharp
 static class Program
@@ -113,10 +113,10 @@ static class Program
 ```
 
 ### <a name="actor-service-methods"></a>행위자 서비스 메서드
-행위자 서비스는 `IActorService`(C#) 또는 `ActorService`(Java)를 구현하며 이는 `IService`(C#) 또는 `Service`(Java)를 구현합니다. 그러면 원격 서비스 메서드에서 프로시저 호출을 허용하지 않는 Reliable Services 원격 서비스에서 사용되는 인터페이스입니다. 원격 서비스를 통해 원격으로 호출할 수 있는 서비스 수준 메서드가 포함되어 있습니다.
+행위자 서비스 구현 hello `IActorService` (C#) 또는 `ActorService` (Java) 다시 구현 하는 `IService` (C#) 또는 `Service` (Java 참조). 서비스 메서드에 적용 원격 프로시저 호출을 허용 하는 신뢰할 수 있는 서비스 원격 작업에서 사용 하는 hello 인터페이스입니다. 원격 서비스를 통해 원격으로 호출할 수 있는 서비스 수준 메서드가 포함되어 있습니다.
 
 #### <a name="enumerating-actors"></a>행위자 열거
-행위자 서비스를 사용하면 클라이언트가 서비스가 호스트하는 행위자에 대한 메타데이터를 열거할 수 있습니다. 행위자 서비스는 분할된 상태 저장 서비스이므로 열거는 파티션에 따라 수행됩니다. 각 파티션에는 많은 행위자가 포함될 수 있으므로 이 열거는 일련의 페이징된 결과로 반환됩니다. 페이지는 모든 페이지를 읽을 때까지 반복됩니다. 다음 예제에서는 행위자 서비스의 한 파티션에 있는 모든 활성 행위자의 목록을 만드는 방법을 보여줍니다.
+hello 행위자 서비스는 클라이언트 hello 서비스를 호스팅하는 hello 작업자에 대 한 tooenumerate 메타 데이터를 수 있습니다. Hello 행위자 서비스는 분할 된 상태 저장 서비스 이므로 열거형 파티션별로 수행 됩니다. 각 파티션에 여러 작업자 포함 될 수 있습니다, 때문에 hello 열거 하는 페이지 된 결과 집합으로 반환 됩니다. 모든 페이지를 읽을 때까지 반복 하 여 hello 페이지 처리할 됩니다. hello 방법을 예제와 다음 toocreate 행위자 서비스의 한 파티션에 있는 모든 활성 작업 자가 목록:
 
 ```csharp
 IActorService actorServiceProxy = ActorServiceProxy.Create(
@@ -160,7 +160,7 @@ while (continuationToken != null);
 ```
 
 #### <a name="deleting-actors"></a>행위자 삭제
-행위자 서비스에서도 행위자를 삭제하는 기능을 제공합니다.
+또한 hello 행위자 서비스 행위자를 삭제 하기 위한 함수가 제공 합니다.
 
 ```csharp
 ActorId actorToDelete = new ActorId(id);
@@ -179,10 +179,10 @@ ActorService myActorServiceProxy = ActorServiceProxy.create(
 myActorServiceProxy.deleteActorAsync(actorToDelete);
 ```
 
-행위자와 해당 상태를 삭제하는 데에 대한 자세한 내용은 [행위자 수명 주기 설명서](service-fabric-reliable-actors-lifecycle.md)를 참조하세요.
+행위자와 해당 상태를 삭제에 대 한 자세한 내용은 참조 hello [행위자 주기 설명서](service-fabric-reliable-actors-lifecycle.md)합니다.
 
 ### <a name="custom-actor-service"></a>사용자 지정 행위자 서비스
-행위자 등록 람다를 사용하여 `ActorService`(C#) 및 `FabricActorService`(Java)에서 파생된 사용자 지정 행위자 서비스를 등록할 수 있습니다. 이 사용자 지정 행위자 서비스에서 `ActorService`(C#) 또는 `FabricActorService`(Java)를 상속하는 서비스 클래스를 작성하여 고유한 서비스 수준 기능을 구현할 수 있습니다. 사용자 지정 행위자 서비스는 `ActorService`(C#) 또는 `FabricActorService`(Java)로부터 행위자 런타임 기능을 모두 상속하고 고유한 서비스 메서드를 구현하는 데 사용될 수 있습니다.
+파생 되는 고유한 사용자 지정 행위자 서비스를 등록할 수 hello 행위자 등록 람다를 사용 하 여 `ActorService` (C#) 및 `FabricActorService` (Java 참조). 이 사용자 지정 행위자 서비스에서 `ActorService`(C#) 또는 `FabricActorService`(Java)를 상속하는 서비스 클래스를 작성하여 고유한 서비스 수준 기능을 구현할 수 있습니다. 사용자 지정 행위자 서비스에서 모든 hello 행위자 런타임 기능을 상속 `ActorService` (C#) 또는 `FabricActorService` (Java) 서비스 메서드를 사용 하는 tooimplement를 수 있습니다.
 
 ```csharp
 class MyActorService : ActorService
@@ -230,7 +230,7 @@ public class Program
 ```
 
 #### <a name="implementing-actor-backup-and-restore"></a>행위자 백업 및 복원 구현
- 다음 예제에서는 사용자 지정 행위자 서비스가 `ActorService`에 이미 나타난 원격 수신기를 활용하여 행위자 데이터를 백업하는 메서드를 노출합니다.
+ 다음 예제는 hello, hello 사용자 지정 행위자 서비스를 노출 행위자 데이터를 메서드 tooback hello remoting 수신기에 이미 있는 이용 하 여 `ActorService`:
 
 ```csharp
 public interface IMyActorService : IService
@@ -253,7 +253,7 @@ class MyActorService : ActorService, IMyActorService
     {
         try
         {
-           // store the contents of backupInfo.Directory
+           // store hello contents of backupInfo.Directory
            return true;
         }
         finally
@@ -285,7 +285,7 @@ class MyActorServiceImpl extends ActorService implements MyActorService
     {
         try
         {
-           // store the contents of backupInfo.Directory
+           // store hello contents of backupInfo.Directory
            return true;
         }
         finally
@@ -307,7 +307,7 @@ class MyActorServiceImpl extends ActorService implements MyActorService
 ```
 
 
-이 예제에서 `IMyActorService`은 `IService`(C#) 또는 `Service`(Java)를 구현하는 원격 계약이고 `MyActorService`에서 구현됩니다. 이 원격 서비스 계약을 추가하면 `IMyActorService`의 메서드도 `ActorServiceProxy`를 통해 원격 프록시를 만들어 클라이언트에 사용할 수 있게 됩니다.
+이 예제에서 `IMyActorService`은 `IService`(C#) 또는 `Service`(Java)를 구현하는 원격 계약이고 `MyActorService`에서 구현됩니다. 이 원격 서비스 계약 메서드를 추가 하 여 `IMyActorService` 는 이제 사용 가능한 tooa 클라이언트를 통해 원격 프록시를 만들어 `ActorServiceProxy`:
 
 ```csharp
 IMyActorService myActorServiceProxy = ActorServiceProxy.Create<IMyActorService>(
@@ -323,31 +323,31 @@ myActorServiceProxy.backupActorsAsync();
 ```
 
 ## <a name="application-model"></a>응용 프로그램 모델
-행위자 서비스는 Reliable Services에 속하므로 응용 프로그램 모델이 동일합니다. 그러나 행위자 프레임워크 빌드 도구는 일부 응용 프로그램 모델 파일을 생성합니다.
+행위자 서비스 신뢰할 수 있는 서비스 되므로 hello 응용 프로그램 모델 동일 hello 됩니다. 그러나 hello 행위자 프레임 워크 빌드 도구 hello 응용 프로그램 모델 파일 중 일부를 생성 합니다.
 
 ### <a name="service-manifest"></a>서비스 매니페스트
-행위자 프레임워크 빌드 도구에서 행위자 서비스의 ServiceManifest.xml 파일의 콘텐츠를 자동으로 생성합니다. 이 파일에는 다음이 포함됩니다.
+hello 행위자 프레임 워크 빌드 도구 행위자 서비스의 ServiceManifest.xml 파일의 내용을 hello를 자동으로 생성합니다. 이 파일에는 다음이 포함됩니다.
 
-* 행위자 서비스 유형. 유형 이름은 행위자 프로젝트 이름에 따라 생성됩니다. 행위자의 지속성 특성에 따라 HasPersistedState 플래그도 적절하게 설정됩니다.
+* 행위자 서비스 유형. hello 형식 이름은 행위자의 프로젝트 이름을 기반으로 생성 됩니다. 행위자 사용자의 hello 지 속성 특성을 기반 hello HasPersistedState 플래그도에 따라 설정 됩니다.
 * 코드 패키지.
 * 구성 패키지.
 * 장치 및 끝점.
 
 ### <a name="application-manifest"></a>응용 프로그램 매니페스트.
-행위자 프레임워크 빌드 도구는 행위자 서비스에 대한 기본 서비스 정의를 자동으로 만듭니다. 빌드 도구가 기본 서비스 속성을 채웁니다.
+hello 행위자 프레임 워크 빌드 도구 행위자 서비스에 대 한 기본 서비스 정을 자동으로 만듭니다. hello 빌드 도구 hello 기본 서비스 속성을 채웁니다.
 
-* 복제본 세트 수는 행위자의 지속성 특성에 의해 결정됩니다. 행위자의 지속성 특성이 변경될 때마다 기본 서비스 정의에 있는 복제본 세트 수는 적절하게 다시 설정됩니다.
-* 파티션 구성표와 범위는 전체 Int64 키 범위인 균일한 Int64로 설정됩니다.
+* 복제본 집합 수는 hello 지 속성 특성에 작업자에 의해 결정 됩니다. 프로그램 행위자 각 시간 hello 지 속성 특성은 변경, hello 기본 서비스 정의에 hello 복제본 집합 수에 따라 다시 설정 됩니다.
+* 파티션 구성표와 범위 hello 전체 Int64 키 범위와 Int64 tooUniform 설정 됩니다.
 
 ## <a name="service-fabric-partition-concepts-for-actors"></a>행위자에 대한 서비스 패브릭 파티션 개념
 행위자 서비스는 분할된 상태 저장 서비스입니다. 행위자 서비스의 각 파티션은 일련의 행위자를 포함합니다. 서비스 파티션은 서비스 패브릭에 있는 여러 노드에 자동으로 배포됩니다. 결과적으로 행위자 인스턴스가 배포됩니다.
 
 ![행위자 분할 및 배포][5]
 
-Reliable Services는 다른 파티션 구성표와 파티션 키 범위로 만들어질 수 있습니다. 행위자 서비스는 전체 Int64 키 범위를 가진 Int64 파티션 구성표를 사용하여 파티션에 행위자를 매핑합니다.
+Reliable Services는 다른 파티션 구성표와 파티션 키 범위로 만들어질 수 있습니다. hello 행위자 서비스는 hello 전체 Int64 키 범위 toomap 행위자 toopartitions 인 hello Int64 파티션 구성표를 사용합니다.
 
 ### <a name="actor-id"></a>행위자 ID
-서비스에서 만들어진 각 행위자에는 그와 관련된 고유한 ID가 있고 `ActorId` 클래스에서 나타납니다. `ActorId`는 임의의 ID를 생성하여 서비스 파티션에 행위자를 균일하게 배포하기 위해 사용될 수 있는 불투명 ID 값입니다.
+에 연결 된 hello를 나타내는 고유 ID hello 서비스에서 생성 된 각 행위자 `ActorId` 클래스입니다. `ActorId`사용할 수 있는 작업자의 균일 한 분포에 대 한 hello 서비스 파티션 간에 임의의 Id를 생성 하 여는 불투명 ID 값:
 
 ```csharp
 ActorProxy.Create<IMyActor>(ActorId.CreateRandom());
@@ -357,7 +357,7 @@ ActorProxyBase.create<MyActor>(MyActor.class, ActorId.newId());
 ```
 
 
-모든 `ActorId`는 Int64로 해시됩니다. 그래서 행위자 서비스가 전체 Int64 키 범위가 있는 Int64 파티션 구성표를 사용해야 합니다. 그러나 사용자 지정 ID 값은 GUID/UUID, 문자열 및 Int64를 비롯한 `ActorID`에 사용할 수 있습니다.
+모든 `ActorId` 해시 된 tooan Int64 됩니다. 이 때문에 hello 행위자 서비스 hello 전체 Int64 키 범위와 Int64 파티션 구성표를 사용 해야 합니다. 그러나 사용자 지정 ID 값은 GUID/UUID, 문자열 및 Int64를 비롯한 `ActorID`에 사용할 수 있습니다.
 
 ```csharp
 ActorProxy.Create<IMyActor>(new ActorId(Guid.NewGuid()));
@@ -370,7 +370,7 @@ ActorProxyBase.create(MyActor.class, new ActorId("myActorId"));
 ActorProxyBase.create(MyActor.class, new ActorId(1234));
 ```
 
-GUID/UUID 및 문자열을 사용하는 경우 값은 Int64로 해시됩니다. 그러나 명시적으로 `ActorId`에 대한 Int64를 제공하는 경우 Int64는 해시를 추가하지 않고 파티션에 직접 매핑됩니다. 이 기술을 사용하여 행위자가 배치되는 파티션을 제어할 수 있습니다.
+Guid/Uuid 및 문자열을 사용 하는 hello 값은 해시 된 tooan Int64 됩니다. 그러나 때 명시적으로 제공 Int64 tooan `ActorId`, Int64 hello 매핑됩니다 직접 tooa 파티션 없이 해시 추가 합니다. 이 기술은 toocontrol 파티션 hello 행위자에 배치 되는 사용할 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
 * [행위자 상태 관리](service-fabric-reliable-actors-state-management.md)

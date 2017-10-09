@@ -1,6 +1,6 @@
 ---
-title: "Node.js에서 Blob Storage를 사용하는 방법 | Microsoft Docs"
-description: "Azure Blob 저장소(개체 저장소)를 사용하여 클라우드에 구조화되지 않은 데이터를 저장합니다."
+title: "Node.js에서 Blob 저장소 aaaHow toouse | Microsoft Docs"
+description: "Azure Blob 저장소 (개체 저장소)를 사용 하는 hello 클라우드에 구조화 되지 않은 데이터를 저장 합니다."
 services: storage
 documentationcenter: nodejs
 author: mmacy
@@ -14,33 +14,33 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-ms.openlocfilehash: e83ad647f6b7c70f34ef0c69b5bf322da5b6d60d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 572e7fc9f7b19ff01720a7cadd495c809ed49fb2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-blob-storage-from-nodejs"></a>Node.js에서 Blob Storage를 사용하는 방법
+# <a name="how-toouse-blob-storage-from-nodejs"></a>어떻게 toouse Node.js에서 Blob 저장소
 [!INCLUDE [storage-selector-blob-include](../../../includes/storage-selector-blob-include.md)]
 
 [!INCLUDE [storage-check-out-samples-all](../../../includes/storage-check-out-samples-all.md)]
 
 ## <a name="overview"></a>개요
-이 문서에서는 Blob Storage를 사용하여 일반 시나리오를 수행하는 방법을 보여 줍니다. 샘플은 Node.js API를 사용하여 작성되었습니다. 여기서 다루는 시나리오는 Blob을 업로드, 나열, 다운로드 및 삭제하는 방법을 포함합니다.
+이 문서에서는 Blob 저장소를 사용 하 여 tooperform 일반적인 시나리오입니다. hello 샘플 hello Node.js API를 통해 작성 됩니다. 가이드에서 다루는 hello 시나리오 tooupload를 나열, 다운로드 및 blob 삭제 방법을 포함 합니다.
 
 [!INCLUDE [storage-blob-concepts-include](../../../includes/storage-blob-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-nodejs-application"></a>Node.js 응용 프로그램 만들기
-Node.js 응용 프로그램을 만드는 방법에 대한 지침은 [Azure App Service에서 Node.js 웹앱 만들기], [Azure Cloud Service에 Node.js 응용 프로그램 빌드 및 배포](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md)(Windows PowerShell 사용) 또는 [Web Matrix를 사용하여 Azure에 Node.js 웹앱 빌드 및 배포](https://www.microsoft.com/web/webmatrix/)를 참조하세요.
+방법에 대 한 지침은 toocreate는 Node.js 응용 프로그램 참조 [Azure 앱 서비스에서 Node.js 웹 앱 만들기] [빌드하고 Node.js 응용 프로그램 tooan Azure 클라우드 서비스 배포](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md) -Windows PowerShell을 사용 하 여 또는 [빌드 및 웹 매트릭스를 사용 하는 Node.js 웹 응용 프로그램 tooAzure 배포](https://www.microsoft.com/web/webmatrix/)합니다.
 
-## <a name="configure-your-application-to-access-storage"></a>저장소에 액세스하도록 응용 프로그램 구성
-Azure 저장소를 사용하려면 저장소 REST 서비스와 통신하는 편리한 라이브러리 집합이 포함되어 있는 Node.js용 Azure 저장소 SDK가 필요합니다.
+## <a name="configure-your-application-tooaccess-storage"></a>응용 프로그램 tooaccess 저장소 구성
+Azure 저장소 toouse hello 저장소 REST 서비스와 통신 하는 편리한 라이브러리의 집합을 포함 하는 Node.js 용 hello Azure 저장소 SDK 할 수 있습니다.
 
-### <a name="use-node-package-manager-npm-to-obtain-the-package"></a>NPM(Node Package Manager)을 사용하여 패키지 가져오기
-1. **PowerShell**(Windows), **Terminal**(Mac), **Bash**(Unix) 등과 같은 명령줄 인터페이스를 사용하여 샘플 응용 프로그램을 만든 폴더로 이동합니다.
-2. 명령 창에 **npm install azure-storage** 를 입력합니다. 명령 출력은 다음 코드 예제와 비슷합니다.
+### <a name="use-node-package-manager-npm-tooobtain-hello-package"></a>노드 패키지 관리자 (NPM) tooobtain hello 패키지 사용
+1. 와 같은 명령줄 인터페이스를 사용 하 여 **PowerShell** (Windows) **터미널** (Mac) 또는 **를 이용한 적** (Unix) 샘플을 만들었으므로 toonavigate toohello 폴더 응용 프로그램입니다.
+2. 형식 **npm 설치 azure storage** hello 명령 창에서. Hello 명령 출력은 다음 코드 예제와 비슷한 toohello입니다.
 
         azure-storage@0.5.0 node_modules\azure-storage
         +-- extend@1.2.1
@@ -52,35 +52,35 @@ Azure 저장소를 사용하려면 저장소 REST 서비스와 통신하는 편�
         +-- readable-stream@1.0.33 (string_decoder@0.10.31, isarray@0.0.1, inherits@2.0.1, core-util-is@1.0.1)
         +-- xml2js@0.2.7 (sax@0.5.2)
         +-- request@2.57.0 (caseless@0.10.0, aws-sign2@0.5.0, forever-agent@0.6.1, stringstream@0.0.4, oauth-sign@0.8.0, tunnel-agent@0.4.1, isstream@0.1.2, json-stringify-safe@5.0.1, bl@0.9.4, combined-stream@1.0.5, qs@3.1.0, mime-types@2.0.14, form-data@0.2.0, http-signature@0.11.0, tough-cookie@2.0.0, hawk@2.3.1, har-validator@1.8.0)
-3. **ls** 명령을 수동으로 실행하여 **node\_modules** 폴더가 만들어졌는지 확인할 수 있습니다. 해당 폴더 내에서 저장소에 액세스하는 데 필요한 라이브러리가 들어 있는 **azure-storage** 패키지를 찾습니다.
+3. Hello를 수동으로 실행할 수 있습니다 **ls** 명령 tooverify 하는 **노드\_모듈** 폴더를 만들었습니다. 해당 폴더 내의 hello 찾습니다 **azure 저장소** tooaccess 저장 해야 하는 hello 라이브러리를 포함 하는 패키지입니다.
 
-### <a name="import-the-package"></a>패키지 가져오기
-메모장 또는 다른 텍스트 편집기를 사용하여 저장소를 사용할 응용 프로그램의 **server.js** 파일 맨 위에 다음을 추가합니다.
+### <a name="import-hello-package"></a>Hello 패키지 가져오기
+메모장 이나 다른 텍스트 편집기를 사용 하 여 추가 hello toohello 맨 뒤 hello **server.js** toouse 저장소 이점을 얻을 수 hello 응용 프로그램의 파일:
 
 ```nodejs
 var azure = require('azure-storage');
 ```
 
 ## <a name="set-up-an-azure-storage-connection"></a>Azure 저장소 연결 설정
-Azure 모듈은 및 또는 환경 변수를 읽고 `AZURE_STORAGE_ACCOUNT``AZURE_STORAGE_ACCESS_KEY`Azure 저장소 계정에 연결하는 데 `AZURE_STORAGE_CONNECTION_STRING`필요한 정보를 확인합니다. 이러한 환경 변수가 설정되어 있지 않은 경우 **createBlobService**를 호출할 때 계정 정보를 지정해야 합니다.
+hello Azure 모듈 읽힙니다 hello 환경 변수 `AZURE_STORAGE_ACCOUNT` 및 `AZURE_STORAGE_ACCESS_KEY`, 또는 `AZURE_STORAGE_CONNECTION_STRING`, 필요한 tooconnect tooyour Azure 저장소 계정 정보에 대 한 합니다. 호출할 때 hello 계정 정보를 지정 해야 이러한 환경 변수가 설정 되지 않은 경우 **createBlobService**합니다.
 
-Azure 웹앱의 [Azure Portal](https://portal.azure.com)에서 환경 변수를 설정하는 방법에 대한 예제는 [Azure Table Service를 사용하는 Node.js 웹앱](../../app-service-web/storage-nodejs-use-table-storage-web-site.md)을 참조하세요.
+Hello에 hello 환경 변수 설정에 대 한 예제 [Azure 포털](https://portal.azure.com) 는 Azure 웹 앱에 대 한 참조 [Azure 테이블 서비스 hello 사용 하 여 Node.js 웹 응용 프로그램](../../app-service-web/storage-nodejs-use-table-storage-web-site.md)합니다.
 
 ## <a name="create-a-container"></a>컨테이너 만들기
-**BlobService** 개체를 통해 컨테이너 및 Blob에 대한 작업을 할 수 있습니다. 다음 코드는 **BlobService** 개체를 만듭니다. **server.js**의 위쪽에 다음을 추가합니다.
+hello **BlobService** 개체 컨테이너 및 blob를 사용할 수 있습니다. hello 다음 코드에서는 **BlobService** 개체입니다. hello 위쪽 hello 다음 추가 **server.js**:
 
 ```nodejs
 var blobSvc = azure.createBlobService();
 ```
 
 > [!NOTE]
-> **createBlobServiceAnonymous** 를 사용하고 호스트 주소를 제공하여 익명으로 Blob에 액세스할 수 있습니다. 예를 들면 `var blobSvc = azure.createBlobServiceAnonymous('https://myblob.blob.core.windows.net/');`를 사용합니다.
+> 사용 하 여 blob을 익명으로 액세스할 수 있습니다 **createBlobServiceAnonymous** hello 호스트 주소를 제공 하 고 있습니다. 예를 들면 `var blobSvc = azure.createBlobServiceAnonymous('https://myblob.blob.core.windows.net/');`를 사용합니다.
 >
 >
 
 [!INCLUDE [storage-container-naming-rules-include](../../../includes/storage-container-naming-rules-include.md)]
 
-새 컨테이너를 만들려면 **createContainerIfNotExists**를 사용합니다. 다음 코드 예제에서는 'mycontainer'라는 이름의 새 컨테이너를 만듭니다.
+toocreate 새 컨테이너를 사용 하 여 **createContainerIfNotExists**합니다. hello 다음 코드 예제에서는 'mycontainer' 라는 새 컨테이너:
 
 ```nodejs
 blobSvc.createContainerIfNotExists('mycontainer', function(error, result, response){
@@ -90,54 +90,54 @@ blobSvc.createContainerIfNotExists('mycontainer', function(error, result, respon
 });
 ```
 
-컨테이너를 새로 작성하는 경우 `result.created` 는 true입니다. 컨테이너가 이미 있는 경우 `result.created` 는 false입니다. `response` 에는 컨테이너의 ETag 정보와 같은 작업 관련 정보가 포함됩니다.
+Hello 컨테이너를 새로 작성 하는 경우 `result.created` 그렇습니다. Hello 컨테이너에 이미 있으면 `result.created` 은 false입니다. `response`hello 컨테이너에 대 한 hello ETag 정보를 포함 하는 hello 작업에 대 한 정보를 포함 합니다.
 
 ### <a name="container-security"></a>컨테이너 보안
-기본적으로 새 컨테이너는 개인 컨테이너이며 익명으로 액세스할 수 없습니다. 컨테이너를 공용으로 만들어 익명으로 액세스할 수 있게 하려면 컨테이너의 액세스 수준을 **blob** 또는 **컨테이너**로 설정할 수 있습니다.
+기본적으로 새 컨테이너는 개인 컨테이너이며 익명으로 액세스할 수 없습니다. 익명으로 액세스할 수 있도록 공용 toomake hello 컨테이너 설정할 수 있습니다 hello 컨테이너의 액세스 수준을 너무**blob** 또는 **컨테이너**합니다.
 
-* **blob** - 이 컨테이너 내의 Blob 콘텐츠와 메타데이터에는 익명 읽기 액세스가 허용되지만, 컨테이너 내의 모든 Blob 나열과 같은 컨테이너 메타데이터에는 익명 읽기 권한이 허용되지 않습니다.
-* **컨테이너** - Blob 콘텐츠 및 메타데이터와 컨테이너 메타데이터에 대한 익명 읽기 권한을 허용합니다.
+* **blob** -익명 읽기 권한을 tooblob 콘텐츠 및이 컨테이너에 있는 메타 데이터는 있지만 하지 toocontainer 등의 메타 데이터 컨테이너 내 모든 blob을 나열 허용
+* **컨테이너** -익명 읽기 권한을 tooblob 콘텐츠 및 메타 데이터 뿐 아니라 컨테이너 메타 데이터를 허용 합니다.
 
-다음 코드 예제에서는 액세스 수준을 **Blob**으로 설정하는 방법을 보여 줍니다.
+hello 다음 코드 예제에서는 hello 액세스 수준을 설정 너무**blob**:
 
 ```nodejs
 blobSvc.createContainerIfNotExists('mycontainer', {publicAccessLevel : 'blob'}, function(error, result, response){
     if(!error){
       // Container exists and allows
-      // anonymous read access to blob
+      // anonymous read access tooblob
       // content and metadata within this container
     }
 });
 ```
 
-또는 **setContainerAcl** 로 액세스 수준을 지정하여 컨테이너의 액세스 수준을 수정할 수 있습니다. 다음 코드 예제에서는 액세스 수준을 container로 변경합니다.
+컨테이너의 액세스 수준을 hello를 사용 하 여 수정할 수 있습니다 또는 **setContainerAcl** toospecify hello 액세스 수준입니다. hello 다음 코드 예제에서는 변경 내용을 hello 액세스 수준 toocontainer:
 
 ```nodejs
 blobSvc.setContainerAcl('mycontainer', null /* signedIdentifiers */, {publicAccessLevel : 'container'} /* publicAccessLevel*/, function(error, result, response){
   if(!error){
-    // Container access level set to 'container'
+    // Container access level set too'container'
   }
 });
 ```
 
-result 값에는 컨테이너의 **ETag** 정보와 같은 작업 관련 정보가 포함됩니다.
+hello 결과 대 한 정보가 hello 현재 포함 하는 hello 작업 **ETag** hello 컨테이너에 대 한 합니다.
 
 ### <a name="filters"></a>필터
-**BlobService**를 사용하여 수행되는 작업에 선택적 필터링 작업을 적용할 수 있습니다. 필터링 작업은 로깅, 자동 재시도 등을 포함할 수 있습니다. 필터는 시그니쳐가 있는 메서드를 구현하는 개체입니다.
+선택적 작업 수행 toooperations 사용 하는 필터를 적용할 수 있습니다 **BlobService**합니다. 필터링 작업은 로깅, 자동 재시도 등을 포함할 수 있습니다. 필터는 hello 서명으로 메서드를 구현 하는 개체:
 
 ```nodejs
 function handle (requestOptions, next)
 ```
 
-요청 옵션에 대한 전처리를 수행한 후 메서드는 다음 서명을 사용하여 콜백을 전달하는 "next"를 호출해야 합니다.
+Hello 요청 옵션에 전처리를 수행한 후 hello 메서드는 toocall "다음" 필요 콜백을 뒤 서명에 hello로 전달 합니다.
 
 ```nodejs
 function (returnObject, finalCallback, next)
 ```
 
-이 콜백에서 returnObject(서버에 요청 응답 반환)를 처리한 후 콜백은 next(있는 경우)를 호출하여 다른 필터를 계속 처리하거나 finalCallback을 호출하여 서비스 호출을 종료해야 합니다.
+이 콜백에서 hello returnObject (hello toohello 서버 요청에서에서 응답 hello)를 처리 한 후, hello 콜백 필요 tooeither 단순히 finalCallback tooend hello 서비스를 호출 하거나 다른 필터를 처리 하는 toocontinue 있는 경우 다음에 호출할 호출 합니다.
 
-Node.js용 Azure SDK에는 재시도 논리를 구현하는 두 필터 **ExponentialRetryPolicyFilter** 및 **LinearRetryPolicyFilter**가 포함되어 있습니다. 다음은 **ExponentialRetryPolicyFilter**를 사용하는 **BlobService** 개체를 만듭니다.
+재시도 논리를 구현 하는 두 개의 필터 hello Node.js 용 Azure SDK에 포함 된 **ExponentialRetryPolicyFilter** 및 **LinearRetryPolicyFilter**합니다. hello 다음 만듭니다는 **BlobService** hello를 사용 하는 개체 **ExponentialRetryPolicyFilter**:
 
 ```nodejs
 var retryOperations = new azure.ExponentialRetryPolicyFilter();
@@ -145,17 +145,17 @@ var blobSvc = azure.createBlobService().withFilter(retryOperations);
 ```
 
 ## <a name="upload-a-blob-into-a-container"></a>컨테이너에 Blob 업로드
-블록 Blob, 페이지 Blob 및 추가 Blob의 세 가지 Blob 유형이 있습니다. 블록 Blob을 사용하면 대용량 데이터를 보다 효율적으로 업로드할 수 있습니다. 추가 Blob은 추가 작업에 최적화되어 있습니다. 페이지 Blob은 읽기/쓰기 작업에 최적화되어 있습니다. 자세한 내용은 [블록 Blob, 추가 Blob 및 페이지 Blob 이해](http://msdn.microsoft.com/library/azure/ee691964.aspx)를 참조하세요.
+블록 Blob, 페이지 Blob 및 추가 Blob의 세 가지 Blob 유형이 있습니다. 블록 blob를 사용 하면 toomore 효율적으로 큰 데이터를 업로드 합니다. 추가 Blob은 추가 작업에 최적화되어 있습니다. 페이지 Blob은 읽기/쓰기 작업에 최적화되어 있습니다. 자세한 내용은 [블록 Blob, 추가 Blob 및 페이지 Blob 이해](http://msdn.microsoft.com/library/azure/ee691964.aspx)를 참조하세요.
 
 ### <a name="block-blobs"></a>블록 Blob
-데이터를 블록 Blob으로 업로드하려면 다음을 사용합니다.
+tooupload 데이터 tooa 블록 blob을 사용 하 여 hello 다음:
 
-* **createBlockBlobFromLocalFile** - 새 블록 Blob을 만들고 파일 내용을 업로드합니다.
-* **createBlockBlobFromStream** - 새 블록 Blob을 만들고 스트림의 내용을 업로드합니다.
-* **createBlockBlobFromText** - 새 블록 Blob을 만들고 문자열의 내용을 업로드합니다.
-* **createWriteStreamToBlockBlob** - 블록 Blob에 쓰기 스트림을 제공합니다.
+* **createBlockBlobFromLocalFile** -새 블록 blob를 만들고 업로드 된 파일의 내용을 hello
+* **createBlockBlobFromStream** -새 블록 blob를 만들고 stream의 hello 내용 업로드
+* **createBlockBlobFromText** -새 블록 blob를 만들고 문자열의 내용을 hello 업로드
+* **createWriteStreamToBlockBlob** -쓰기 스트림을 tooa 블록 blob를 제공 합니다.
 
-다음 코드 예제에서는 **test.txt** 파일의 내용을 **myblob**에 업로드합니다.
+hello 다음 코드 예제에서는 업로드 hello 내용의 hello **test.txt** 파일 **myblob**합니다.
 
 ```nodejs
 blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', function(error, result, response){
@@ -165,17 +165,17 @@ blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', functi
 });
 ```
 
-이 메서드에 의해 `result` 반환되면 Blob의 **ETag** 와 같은 작업 관련 정보가 포함됩니다.
+hello `result` 이러한 메서드에 의해 반환 된 hello 등 hello 작업에 대 한 정보 **ETag** hello blob의 합니다.
 
 ### <a name="append-blobs"></a>추가 Blob
-데이터를 추가 Blob으로 업로드하려면 다음을 사용합니다.
+tooupload 데이터 tooa 새 blob을 추가, hello 다음을 사용 하 여:
 
-* **createAppendBlobFromLocalFile** - 새 추가 Blob을 만들고 파일 내용을 업로드합니다.
-* **createAppendBlobFromStream** - 새 추가 Blob을 만들고 스트림 내용을 업로드합니다.
-* **createAppendBlobFromText** - 새 추가 Blob을 만들고 문자열 내용을 업로드합니다.
-* **createWriteStreamToNewAppendBlob** - 새 추가 Blob을 만든 다음 쓸 스트림을 제공합니다.
+* **createAppendBlobFromLocalFile** -새 blob를 만들고 업로드 된 파일의 내용을 hello
+* **createAppendBlobFromStream** -새 blob를 만들고 stream의 hello 내용 업로드
+* **createAppendBlobFromText** -새 blob를 만들고 문자열의 내용을 hello 업로드
+* **createWriteStreamToNewAppendBlob** -새 blob 키를 만들고 다음 스트림 toowrite tooit 제공
 
-다음 코드 예제에서는 **test.txt** 파일의 내용을 **myappendblob**에 업로드합니다.
+hello 다음 코드 예제에서는 업로드 hello 내용의 hello **test.txt** 파일 **myappendblob**합니다.
 
 ```nodejs
 blobSvc.createAppendBlobFromLocalFile('mycontainer', 'myappendblob', 'test.txt', function(error, result, response){
@@ -185,23 +185,23 @@ blobSvc.createAppendBlobFromLocalFile('mycontainer', 'myappendblob', 'test.txt',
 });
 ```
 
-기존 추가 Blob에 블록을 추가하려면 다음을 사용합니다.
+tooappend 블록 tooan 기존 blob의 경우 다음 사용 하 여 hello를 추가 합니다.
 
-* **appendFromLocalFile** -기존 추가 Blob에 파일 내용을 추가합니다.
-* **appendFromStream** -기존 추가 Blob에 스트림 내용을 추가합니다.
-* **appendFromText** -기존 추가 Blob에 문자열 내용을 추가합니다.
-* **appendBlockFromStream** -기존 추가 Blob에 스트림 내용을 추가합니다.
-* **appendBlockFromText** -기존 추가 Blob에 문자열 내용을 추가합니다.
+* **appendFromLocalFile** -hello 내용을 추가 합니다. 기존 파일 tooan의 blob 추가
+* **appendFromStream** -hello 내용을 추가할 추가 blob를 기존 스트림에 tooan의
+* **appendFromText** -hello 내용을 추가 하는 문자열 tooan의 blob를 추가할 기존
+* **appendBlockFromStream** -hello 내용을 추가할 추가 blob를 기존 스트림에 tooan의
+* **appendBlockFromText** -hello 내용을 추가 하는 문자열 tooan의 blob를 추가할 기존
 
 > [!NOTE]
-> appendFromXXX API는 불필요한 서버 호출을 방지하기 위해 빠른 오류에 대한 일부 클라이언트 쪽 유효성 검사를 수행합니다. appendBlockFromXXX는 이를 수행하지 않습니다.
+> appendFromXXX Api는 일부 클라이언트 쪽 유효성 검사 toofail 빠른 tooavoid 불필요 한 서버 호출을 수행 합니다. appendBlockFromXXX는 이를 수행하지 않습니다.
 >
 >
 
-다음 코드 예제에서는 **test.txt** 파일의 내용을 **myappendblob**에 업로드합니다.
+hello 다음 코드 예제에서는 업로드 hello 내용의 hello **test.txt** 파일 **myappendblob**합니다.
 
 ```nodejs
-blobSvc.appendFromText('mycontainer', 'myappendblob', 'text to be appended', function(error, result, response){
+blobSvc.appendFromText('mycontainer', 'myappendblob', 'text toobe appended', function(error, result, response){
   if(!error){
     // text appended
   }
@@ -209,15 +209,15 @@ blobSvc.appendFromText('mycontainer', 'myappendblob', 'text to be appended', fun
 ```
 
 ### <a name="page-blobs"></a>페이지 Blob
-데이터를 페이지 Blob으로 업로드하려면 다음을 사용합니다.
+tooupload 데이터 tooa 페이지 blob의 경우 다음 사용 하 여 hello:
 
 * **createPageBlob** - 특정 길이의 새 페이지 Blob을 만듭니다.
-* **createPageBlobFromLocalFile** - 새 페이지 Blob을 만들고 파일 내용을 업로드합니다.
-* **createPageBlobFromStream** - 새 페이지 Blob을 만들고 스트림의 내용을 업로드합니다.
-* **createWriteStreamToExistingPageBlob** - 기존 페이지 Blob에 쓰기 스트림을 제공합니다.
-* **createWriteStreamToNewPageBlob** - 새 페이지 Blob을 만든 다음 쓸 스트림을 제공합니다.
+* **createPageBlobFromLocalFile** -새 페이지 blob를 만들고 업로드 된 파일의 내용을 hello
+* **createPageBlobFromStream** -새 페이지 blob를 만들고 stream의 hello 내용 업로드
+* **createWriteStreamToExistingPageBlob** -쓰기 스트림을 tooan 기존 페이지 blob를 제공 합니다.
+* **createWriteStreamToNewPageBlob** -새 페이지 blob를 만들고 스트림 toowrite tooit를 제공 합니다
 
-다음 코드 예제에서는 **test.txt** 파일의 내용을 **mypageblob**에 업로드합니다.
+hello 다음 코드 예제에서는 업로드 hello 내용의 hello **test.txt** 파일 **mypageblob**합니다.
 
 ```nodejs
 blobSvc.createPageBlobFromLocalFile('mycontainer', 'mypageblob', 'test.txt', function(error, result, response){
@@ -232,29 +232,29 @@ blobSvc.createPageBlobFromLocalFile('mycontainer', 'mypageblob', 'test.txt', fun
 >
 >
 
-## <a name="list-the-blobs-in-a-container"></a>컨테이너의 Blob 나열
-컨테이너 내의 Blob을 나열하려면 **listBlobsSegmented** 메서드를 사용합니다. 특정 접두사가 있는 Blob을 반환하려면 **listBlobsSegmentedWithPrefix**를 사용합니다.
+## <a name="list-hello-blobs-in-a-container"></a>컨테이너에서 hello blob 나열
+toolist hello blob 컨테이너에서 hello를 사용 하 여 **listBlobsSegmented** 메서드. 사용 하 여 지정 된 접두사로 tooreturn blob를 원하는 경우 **listBlobsSegmentedWithPrefix**합니다.
 
 ```nodejs
 blobSvc.listBlobsSegmented('mycontainer', null, function(error, result, response){
   if(!error){
-      // result.entries contains the entries
-      // If not all blobs were returned, result.continuationToken has the continuation token.
+      // result.entries contains hello entries
+      // If not all blobs were returned, result.continuationToken has hello continuation token.
   }
 });
 ```
 
-`result`에는 각 Blob을 설명하는 개체의 배열인 `entries` 컬렉션이 포함됩니다. 또한 Blob을 모두 반환할 수 없는 경우에는 `result`에서 추가 항목 검색에 두 번째 매개 변수로 사용할 수 있는 `continuationToken`을 제공합니다.
+hello `result` 포함 한 `entries` 컬렉션은 각 blob에 설명 하는 개체의 배열입니다. 모든 blob를 반환할 수 없는 경우 hello `result` 제공는 `continuationToken`, hello 두 번째 매개 변수 tooretrieve 추가 항목으로 사용할 수 있는 합니다.
 
 ## <a name="download-blobs"></a>Blob 다운로드
-Blob에서 데이터를 다운로드하려면 다음을 사용합니다.
+blob에서 toodownload 데이터 hello 다음을 사용 합니다.
 
-* **getBlobToLocalFile** - Blob의 내용을 파일에 씁니다.
-* **getBlobToStream** - Blob의 내용을 스트림에 씁니다.
-* **getBlobToText** - Blob의 내용을 문자열에 씁니다.
-* **createReadStream** - Blob에서 읽는 스트림을 제공합니다.
+* **getBlobToLocalFile** -hello blob 내용을 toofile 씁니다.
+* **getBlobToStream** -hello blob 내용을 tooa 스트림에 씁니다.
+* **getBlobToText** -hello blob 콘텐츠가 tooa 문자열을 씁니다.
+* **createReadStream** -hello blob에서 스트림 tooread 제공
 
-다음 코드 예제에서는 **getBlobToStream**을 사용하여 **myblob** Blob의 콘텐츠를 다운로드한 다음 스트림을 사용하여 **output.txt** 파일에 저장하는 방법을 보여 줍니다.
+hello 다음 코드 예제에서는 사용 하 여 **getBlobToStream** toodownload hello 내용의 hello **myblob** blob 및 toohello 저장 **output.txt 라는** 사용 하 여 파일을 스트림:
 
 ```nodejs
 var fs = require('fs');
@@ -265,10 +265,10 @@ blobSvc.getBlobToStream('mycontainer', 'myblob', fs.createWriteStream('output.tx
 });
 ```
 
-`result` 에는 **ETag** 정보를 비롯한 Blob 관련 정보가 포함됩니다.
+hello `result` hello blob에 대 한 정보도 포함 하 여 **ETag** 정보입니다.
 
 ## <a name="delete-a-blob"></a>Blob 삭제
-마지막으로 Blob을 삭제하려면 **deleteBlob**을 호출합니다. 다음 코드 예제에서는 **myblob**이라는 Blob을 삭제합니다.
+마지막으로, blob toodelete 호출 **deleteBlob**합니다. 다음 코드 예제에서는 삭제 hello 라는 blob hello **myblob**합니다.
 
 ```nodejs
 blobSvc.deleteBlob(containerName, 'myblob', function(error, response){
@@ -279,15 +279,15 @@ blobSvc.deleteBlob(containerName, 'myblob', function(error, response){
 ```
 
 ## <a name="concurrent-access"></a>동시 액세스
-여러 클라이언트 또는 여러 프로세스 인스턴스에서 Blob에 대한 동시 액세스를 지원하려면 **ETags** 또는 **임대**를 사용할 수 있습니다.
+사용할 수 있습니다 toosupport 동시 액세스 tooa 여러 클라이언트 또는 여러 프로세스에서 blob, **Etag** 또는 **임대**합니다.
 
-* **Etag** - Blob이나 컨테이너를 다른 프로세스에서 수정했는지 감지할 수 있습니다.
-* **임대** - Blob에 대해 일정 기간 동안 단독, 갱신 가능, 쓰기 또는 삭제 권한을 얻을 수 있습니다.
+* **Etag** -다른 프로세스에서 수정 했습니다. blob 또는 컨테이너 hello 하는 방식으로 toodetect 제공
+* **임대** -tooobtain 단독, 갱신, 쓰기 방식으로 제공 하거나 일정 기간에 대 한 액세스 tooa blob 삭제
 
 ### <a name="etag"></a>ETag
-ETag는 여러 클라이언트 또는 인스턴스에서 블록 Blob에 또는 페이지 Blob에 동시에 쓰기를 허용해야 하는 경우에 사용합니다. ETag를 사용하면 컨테이너나 Blob을 처음 읽거나 만든 후에 수정되었는지 확인하여 다른 클라이언트나 프로세스에서 커밋된 변경 사항을 덮어쓰는 것을 방지할 수 있습니다.
+여러 클라이언트 또는 인스턴스 toowrite toohello 블록 Blob 또는 페이지 Blob 동시에 tooallow 해야 할 경우 Etag를 사용 합니다. hello ETag 있습니다 toodetermine를 hello 컨테이너 또는 blob가 수정 되었으면 이후 처음 읽기 또는 생성자, 다른 클라이언트 또는 프로세스에 의해 커밋된 변경 내용을 덮어쓰지 tooavoid 있습니다.
 
-ETag 조건은 선택적인 `options.accessConditions` 매개 변수를 사용하여 설정할 수 있습니다. 다음 코드 예제에서는 Blob이 이미 존재하고 `etagToMatch`에 포함된 ETag 값이 있는 경우에만 **test.txt** 파일을 업로드합니다.
+선택적 hello를 사용 하 여 ETag 조건을 설정할 수 있습니다 `options.accessConditions` 매개 변수입니다. hello 다음 코드 예제에서는 업로드 hello **test.txt** hello blob에서 이미 존재 하 고 hello ETag 값이 파일에 포함 된 `etagToMatch`합니다.
 
 ```nodejs
 blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', { accessConditions: { EtagMatch: etagToMatch} }, function(error, result, response){
@@ -297,15 +297,15 @@ blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', { acce
 });
 ```
 
-ETag를 사용하는 경우 일반적인 패턴:
+Etag를 사용 하는 hello 일반적인 패턴은:
 
-1. create, list 또는 get 작업의 결과로 ETag를 얻습니다.
-2. ETag 값이 수정되지 않은 것을 확인하며 작업을 수행합니다.
+1. 만들기, 목록 또는 가져오기 작업의 hello 결과로 hello를 ETag를 가져옵니다.
+2. 해당 hello ETag 값을 수정 되지 않았는지 검사 동작을 수행 합니다.
 
-값이 수정되지 않았다면 ETag 값을 얻은 후로 다른 클라이언트 또는 인스턴스에서 Blob이나 컨테이너를 수정한 것을 의미합니다.
+Hello 값이 수정 된 경우 다른 클라이언트 또는 인스턴스 hello ETag 값을 가져온 이후 hello blob 또는 컨테이너를 수정 있음을 나타냅니다.
 
 ### <a name="lease"></a>임대
-**acquireLease** 메서드를 사용하여 임대를 받을 Blob 또는 컨테이너를 지정하면 새 임대를 받을 수 있습니다. 예를 들어 다음 코드에서는 **myblob**에 임대를 얻습니다.
+Hello를 사용 하 여 새로운 임대를 획득 수 **acquireLease** 메서드에 맞다면 tooobtain 임대에 hello blob 또는 컨테이너를 지정 합니다. Hello 코드 다음에 임대를 획득 하는 예를 들어 **myblob**합니다.
 
 ```nodejs
 blobSvc.acquireLease('mycontainer', 'myblob', function(error, result, response){
@@ -315,26 +315,26 @@ blobSvc.acquireLease('mycontainer', 'myblob', function(error, result, response){
 });
 ```
 
-**myblob**의 후속 작업에서는 `options.leaseId` 매개 변수를 제공해야 합니다. 임대 ID는 **acquireLease**에서 `result.id`로 반환됩니다.
+에 대 한 후속 작업 **myblob** hello를 제공 해야 `options.leaseId` 매개 변수입니다. ID가으로 반환 하는 hello 임대 `result.id` 에서 **acquireLease**합니다.
 
 > [!NOTE]
-> 기본적으로 임대 기간은 무한입니다. 15초에서 60초까지의 유한한 기간을 지정하려면 `options.leaseDuration` 매개 변수를 제공합니다.
+> 기본적으로 hello 임대 기간이 무한정입니다. Hello를 제공 하 여 (15 ~ 60 초) 사이 유한 기간을 지정할 수 있습니다 `options.leaseDuration` 매개 변수입니다.
 >
 >
 
-임대를 제거하려면 **releaseLease**를 사용합니다. 임대를 중단하면서 원래 기간이 만료될 때까지 다른 사람이 새 임대를 얻지 못하게 하려면 **breakLease**를 사용합니다.
+tooremove 임대를 사용 하 여 **releaseLease**합니다. 임대를 toobreak 하지만 다른 방지에서 hello 원래 지속 시간이 만료 될 때까지 새로운 임대를 획득할를 사용 하 여 **breakLease**합니다.
 
 ## <a name="work-with-shared-access-signatures"></a>공유 액세스 서명 작업
-SAS(공유 액세스 서명)는 저장소 계정 이름이나 키를 제공하지 않으면서 Blob 및 컨테이너에 세분화된 액세스 권한을 안전하게 제공하는 방법입니다. 공유 액세스 서명은 모바일 앱에서 Blob에 액세스하는 경우와 같이 데이터에 대해 제한된 액세스를 제공하는 경우에 자주 사용합니다.
+공유 액세스 서명 (SAS)은 안전 하 게 tooprovide 세부적인 액세스 tooblobs 및 저장소 계정 이름 또는 키를 제공 하지 않고 컨테이너입니다. 공유 액세스 서명에 사용 되는 tooprovide 제한 된 액세스 tooyour 데이터 tooaccess blob 모바일 앱을 허용 하는 등 경우가 많습니다.
 
 > [!NOTE]
-> Blob에 대해 익명 액세스를 허용할 수도 있지만 공유 액세스 서명에서 더 잘 제어된 액세스를 제공할 수 있으므로 SAS를 생성해야 합니다.
+> Tooblobs 익명 액세스를 허용할 수도 있습니다 공유 액세스 서명을 수 제어 요소가 많은 tooprovide 액세스 hello SAS를 생성 해야 합니다.
 >
 >
 
-클라우드 기반 서비스와 같이 신뢰할 수 있는 응용 프로그램에서는 **BlobService**의 **generateSharedAccessSignature**를 사용하여 공유 액세스 서명을 생성하고, 이를 모바일 앱과 같은 신뢰할 수 없거나 신뢰가 약한 응용 프로그램에 제공합니다. 공유 액세스 서명은 공유 액세스 서명이 유효한 시작 및 종료 날짜와 공유 액세스 서명 소유자에게 부여되는 액세스 수준을 설명하는 정책을 사용하여 생성됩니다.
+클라우드 기반 서비스와 같은 신뢰할 수 있는 응용 hello를 사용 하 여 공유 액세스 서명을 생성 하 **generateSharedAccessSignature** 의 hello **BlobService**, 제공 하 고 신뢰할 수 없는 tooan 또는 모바일 앱과 같은 부분 신뢰 응용 프로그램입니다. 공유 액세스 서명을 hello 시작에 설명 하는 정책을 사용 하 여 생성할 및 종료 날짜는 hello 하는 동안 공유 액세스 서명에 유효 뿐 아니라 hello 수준 부여한 toohello 공유 액세스 서명을 홀더를 액세스 합니다.
 
-다음 코드 예제에서는 공유 액세스 서명 소유자가 **myblob** Blob에서 읽기 작업을 수행할 수 있도록 허용하며 만든 후 100분이 지나면 만료되는 새 공유 액세스 정책을 생성합니다.
+hello 다음 코드 예제에서는 발생 하는 hello 공유 액세스 서명을 소유자 tooperform 읽기 hello에 대 한 작업을 허용 하는 새 공유 액세스 정책을 **myblob** blob, 이며 100 분 만들어질 hello 시간이 지난 후 만료 됩니다.
 
 ```nodejs
 var startDate = new Date();
@@ -354,9 +354,9 @@ var blobSAS = blobSvc.generateSharedAccessSignature('mycontainer', 'myblob', sha
 var host = blobSvc.host;
 ```
 
-공유 액세스 서명 소유자가 컨테이너에 액세스할 때 필요하므로 호스트 정보도 제공해야 합니다.
+Note 또한 필요에 따라 hello 공유 액세스 서명을 소유자가 시도할 때 tooaccess hello 컨테이너 제공 hello 호스트 정보 이어야 합니다.
 
-그러고 나면 클라이언트 응용 프로그램에서 **BlobServiceWithSAS** 에 공유 액세스 서명을 사용하여 Blob에 대한 작업을 수행합니다. 다음에서는 **myblob**에 대한 정보를 가져옵니다.
+hello 그런 다음 클라이언트 응용 프로그램 사용 하 여 공유 액세스 서명은 **BlobServiceWithSAS** hello blob에 대 한 tooperform 작업 합니다. hello 다음 정보를 가져옵니다에 대 한 **myblob**합니다.
 
 ```nodejs
 var sharedBlobSvc = azure.createBlobServiceWithSas(host, blobSAS);
@@ -367,12 +367,12 @@ sharedBlobSvc.getBlobProperties('mycontainer', 'myblob', function (error, result
 });
 ```
 
-Blob를 수정하려고 하는 경우 공유 액세스 서명이 읽기 전용 액세스로 생성되었으므로 오류가 반환됩니다.
+Hello 공유 액세스 서명을 toomodify hello blob 하려고 시도 하는 경우 읽기 전용 액세스 권한으로 생성 된 이후 오류가 반환 됩니다.
 
 ### <a name="access-control-lists"></a>액세스 제어 목록
-ACL(액세스 제어 목록)을 사용하여 SAS에 액세스 정책을 설정할 수도 있습니다. 이 방법은 여러 클라이언트에서 컨테이너에 액세스하게 하면서 각 클라이언트에 서로 다른 액세스 정책을 제공하려는 경우에 유용합니다.
+SAS에 대 한 액세스 제어 목록 (ACL) tooset hello 액세스 정책을 사용할 수도 있습니다. 각 클라이언트에 대 한 다른 액세스 정책을 제공 하지만 여러 클라이언트 tooaccess 컨테이너 tooallow 원하는 경우에 유용 합니다.
 
-ACL은 각 정책에 ID가 연결된 액세스 정책 배열을 사용하여 구현됩니다. 다음 코드 예제에서는 'user1'와 'user2'에 대해 하나씩, 두 개의 정책을 정의합니다.
+ACL은 각 정책에 ID가 연결된 액세스 정책 배열을 사용하여 구현됩니다. 다음 코드 예제는 hello 'user1' 및 'user2'에 대 한 두 개의 정책을 정의 합니다.
 
 ```nodejs
 var sharedAccessPolicy = {
@@ -389,7 +389,7 @@ var sharedAccessPolicy = {
 };
 ```
 
-다음 코드 예제에서는 **mycontainer**에 대한 현재 ACL을 가져온 다음 **setBlobAcl**을 사용하여 새 정책을 추가합니다. 이 접근 방식을 통해 다음을 수행할 수 있습니다.
+다음 코드 예제에서는 hello hello에 대 한 현재 ACL **mycontainer**, 다음 사용 하 여 hello 새 정책을 추가 **setBlobAcl**합니다. 이 접근 방식을 통해 다음을 수행할 수 있습니다.
 
 ```nodejs
 var extend = require('extend');
@@ -405,23 +405,23 @@ blobSvc.getBlobAcl('mycontainer', function(error, result, response) {
 });
 ```
 
-ACL이 설정되고 나면 정책의 ID를 기반으로 공유 액세스 서명을 만들 수 있습니다. 다음 코드 예제에서는 ‘user2'에 대한 새 공유 액세스 서명을 만듭니다.
+한 번 hello ACL이 설정, 만들 수 있습니다는 정책에 대 한 hello ID에 따라 공유 액세스 서명 합니다. 다음 코드 예제는 hello 사용자 '2'에 대 한 새 공유 액세스 서명을 만듭니다.
 
 ```nodejs
 blobSAS = blobSvc.generateSharedAccessSignature('mycontainer', { Id: 'user2' });
 ```
 
 ## <a name="next-steps"></a>다음 단계
-자세한 내용은 다음 리소스를 참조하세요.
+자세한 내용은 다음 리소스는 hello를 참조 하세요.
 
 * [Node용 Azure Storage SDK API 참조][Node용 Azure Storage SDK API 참조]
 * [Azure Storage 팀 블로그][Azure Storage 팀 블로그]
 * GitHub의 [Azure Storage SDK for Node][Azure Storage SDK for Node] 리포지토리
 * [Node.js 개발자 센터](https://azure.microsoft.com/develop/nodejs/)
-* [AzCopy 명령줄 유틸리티로 데이터 전송](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)
+* [Hello AzCopy 명령줄 유틸리티를 사용 하 여 데이터를 전송 합니다.](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)
 
 [Azure Storage SDK for Node]: https://github.com/Azure/azure-storage-node
 
-[Azure Table Service를 사용하는 Node.js 웹앱](../../app-service-web/storage-nodejs-use-table-storage-web-site.md)    
-[Web Matrix를 사용하여 Azure에 Node.js 웹앱 빌드 및 배포]: https://www.microsoft.com/web/webmatrix/  
-[REST API 사용]: http://msdn.microsoft.com/library/azure/hh264518.aspx [Azure Portal]: https://portal.azure.com [Azure Cloud Service에 Node.js 응용 프로그램 빌드 및 배포](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md) [Azure Storage 팀 블로그]: http://blogs.msdn.com/b/windowsazurestorage/ [Node용 Azure Storage SDK API 참조]: http://dl.windowsazure.com/nodestoragedocs/index.html
+[Hello Azure 테이블 서비스를 사용 하 여 Node.js 웹 응용 프로그램](../../app-service-web/storage-nodejs-use-table-storage-web-site.md)    
+[빌드하고 웹 매트릭스를 사용 하는 Node.js 웹 응용 프로그램 tooAzure 배포]: https://www.microsoft.com/web/webmatrix/  
+[REST API를 hello를 사용 하 여]: [Azure 포털] http://msdn.microsoft.com/library/azure/hh264518.aspx: https://portal.azure.com [빌드하고 Node.js 응용 프로그램 tooan Azure 클라우드 서비스 배포](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md) [Azure 저장소 팀 블로그]: http:// [Azure 저장소 노드 API 참조에 대 한 SDK] blogs.msdn.com/b/windowsazurestorage/: http://dl.windowsazure.com/nodestoragedocs/index.html

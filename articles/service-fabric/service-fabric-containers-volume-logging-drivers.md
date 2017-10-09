@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric Docker Compose 미리 보기 | Microsoft Docs"
-description: "Azure Service Fabric은 Docker Compose 형식을 수락하여 Service Fabric을 통해 기존 컨테이너를 보다 쉽게 조정할 수 있도록 합니다. 이 지원은 현재 미리 보기로 제공되고 있습니다."
+title: "서비스 패브릭 Docker 작성 미리 보기 aaaAzure | Microsoft Docs"
+description: "Azure 서비스 패브릭 형식 toomake Docker Compose를 허용 하기 서비스 패브릭을 사용 하 여 보다 쉽게 tooorchestrate exsiting 컨테이너입니다. 이 지원은 현재 미리 보기로 제공되고 있습니다."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: b12ef95add6347621f7d4865fac46568f91a1e12
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 824044fd698f0ed94c4212722bc82187905315dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="specifying-volume-plugins-and-logging-drivers-for-your-container"></a>컨테이너에 대한 볼륨 플러그 인 및 로깅 드라이버 지정
 
-Service Fabric은 컨테이너 서비스에 대한 [Docker 볼륨 플러그 인](https://docs.docker.com/engine/extend/plugins_volume/) 및 [Docker 로깅 드라이버](https://docs.docker.com/engine/admin/logging/overview/) 지정을 지원합니다. 플러그 인은 다음 매니페스트에 표시된 대로 응용 프로그램 매니페스트에서 지정됩니다.
+Service Fabric은 컨테이너 서비스에 대한 [Docker 볼륨 플러그 인](https://docs.docker.com/engine/extend/plugins_volume/) 및 [Docker 로깅 드라이버](https://docs.docker.com/engine/admin/logging/overview/) 지정을 지원합니다. hello 플러그 인 매니페스트를 수행 하는 hello와 같이 hello 응용 프로그램 매니페스트에 지정 됩니다.
 
 
 ```xml
@@ -56,9 +56,9 @@ Service Fabric은 컨테이너 서비스에 대한 [Docker 볼륨 플러그 인]
 </ApplicationManifest>
 ```
 
-앞의 예제에서 `Volume`에 대한 `Source` 태그는 원본 폴더를 나타냅니다. 원본 폴더는 컨테이너 또는 영구 원격 저장소를 호스트하는 VM의 폴더일 수 있습니다. `Destination` 태그는 실행 중인 컨테이너에서 `Source`가 매핑되는 위치입니다. 
+앞 예제는 hello에서 hello `Source` hello에 대 한 태그 `Volume` toohello 소스 폴더를 참조 합니다. hello 소스 폴더는 hello hello 컨테이너 또는 영구 원격 저장소를 호스팅하는 VM에에서 있는 폴더 수 있습니다. hello `Destination` 태그는 hello hello 위치 `Source` 매핑된 toowithin hello 컨테이너 실행 합니다. 
 
-볼륨 플러그 인을 지정할 때 Service Fabric은 지정된 매개 변수를 사용하여 볼륨을 자동으로 만듭니다. `Source` 태그는 볼륨의 이름이며 `Driver` 태그는 볼륨 드라이버 플러그 인을 지정합니다. 다음 코드 조각에 나와 있는 대로 `DriverOption` 태그를 사용하여 옵션을 지정할 수 있습니다.
+볼륨 플러그 인을 지정할 때 서비스 패브릭 지정 된 hello 매개 변수를 사용 하 여 hello 볼륨을 자동으로 만듭니다. hello `Source` 태그는 hello 볼륨 및 hello hello 이름 `Driver` 태그 hello 볼륨 드라이버 플러그 인을 지정 합니다. Hello를 사용 하 여 옵션을 지정할 수 있습니다 `DriverOption` hello 다음 코드 조각에에서 나와 있는 것 처럼 태그:
 
 ```xml
 <Volume Source="myvolume1" Destination="c:\testmountlocation4" Driver="azurefile" IsReadOnly="true">
@@ -66,9 +66,9 @@ Service Fabric은 컨테이너 서비스에 대한 [Docker 볼륨 플러그 인]
 </Volume>
 ```
 
-Docker 로그 드라이버가 지정된 경우 클러스터의 로그를 처리할 에이전트(또는 컨테이너)를 배포해야 합니다.  `DriverOption` 태그를 사용하여 로그 드라이버 옵션을 지정할 수 있습니다.
+Docker 로그 드라이버 지정 된 경우 필요한 toodeploy 에이전트 (또는 컨테이너) toohandle hello hello 클러스터 로그인입니다.  hello `DriverOption` 태그 사용된 toospecify 로그 드라이버 옵션도 될 수 있습니다.
 
-Service Fabric 클러스터에 컨테이너를 배포하려면 다음 문서를 참조하세요.
+Toohello 문서 toodeploy 컨테이너 tooa 서비스 패브릭 클러스터를 다음을 참조 하십시오.
 
 
 [Service Fabric에 컨테이너 배포](service-fabric-deploy-container.md)

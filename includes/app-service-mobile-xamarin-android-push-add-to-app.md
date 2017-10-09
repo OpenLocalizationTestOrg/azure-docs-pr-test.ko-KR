@@ -1,10 +1,10 @@
-1. `ToDoBroadcastReceiver`(이)라는 프로젝트에서 새 클래스를 만듭니다.
-2. **ToDoBroadcastReceiver** 클래스에 다음 using 문을 추가합니다.
+1. 라는 hello 프로젝트에서 새 클래스 만들기 `ToDoBroadcastReceiver`합니다.
+2. Hello 다음 추가 너무 문을 사용 하 여**ToDoBroadcastReceiver** 클래스:
    
         using Gcm.Client;
         using Microsoft.WindowsAzure.MobileServices;
         using Newtonsoft.Json.Linq;
-3. **using** 문과 **namespace** 선언 사이에 다음 사용 권한 요청을 추가합니다.
+3. 추가 권한 요청 hello 사이 다음 hello **를 사용 하 여** 문과 hello **네임 스페이스** 선언:
    
         [assembly: Permission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
         [assembly: UsesPermission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
@@ -14,7 +14,7 @@
         [assembly: UsesPermission(Name = "android.permission.GET_ACCOUNTS")]
         [assembly: UsesPermission(Name = "android.permission.INTERNET")]
         [assembly: UsesPermission(Name = "android.permission.WAKE_LOCK")]
-4. 기존 **ToDoBroadcastReceiver** 클래스 정의를 다음으로 바꿉니다.
+4. Hello 기존 항목 바꾸기 **ToDoBroadcastReceiver** 클래스 hello 다음과 같이 정의 합니다.
    
         [BroadcastReceiver(Permission = Gcm.Client.Constants.PERMISSION_GCM_INTENTS)]
         [IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_MESSAGE }, 
@@ -25,14 +25,14 @@
         Categories = new string[] { "@PACKAGE_NAME@" })]
         public class ToDoBroadcastReceiver : GcmBroadcastReceiverBase<PushHandlerService>
         {
-            // Set the Google app ID.
+            // Set hello Google app ID.
             public static string[] senderIDs = new string[] { "<PROJECT_NUMBER>" };
         }
    
-    위의 코드에서 Google 개발자 포털에서 앱을 프로비전할 때 Google에서 할당한 프로젝트 번호로 *`<PROJECT_NUMBER>`*을(를) 바꿉니다. 
-5. ToDoBroadcastReceiver.cs 프로젝트 파일에서 **PushHandlerService** 클래스를 정의하는 다음 코드를 추가합니다.
+    코드 위의 hello,에서는 대체 해야  *`<PROJECT_NUMBER>`*  hello 프로젝트 번호 hello Google 개발자 포털에서 응용 프로그램을 프로 비전 할 때 Google에서 할당 합니다. 
+5. Hello ToDoBroadcastReceiver.cs 프로젝트 파일에서 추가 hello를 정의 하는 코드를 다음 hello **PushHandlerService** 클래스:
    
-        // The ServiceAttribute must be applied to the class.
+        // hello ServiceAttribute must be applied toohello class.
         [Service] 
         public class PushHandlerService : GcmServiceBase
         {
@@ -41,26 +41,26 @@
             public PushHandlerService() : base(ToDoBroadcastReceiver.senderIDs) { }
         }
    
-    이 클래스는 **GcmServiceBase**에서 파생되며 **Service** 특성이 이 클래스에 적용되어야 합니다.
+    이 클래스에서 파생 되는 참고 **GcmServiceBase** 및 해당 hello **서비스** 특성이 있어야 toothis 클래스를 적용 합니다.
    
    > [!NOTE]
-   > **GcmServiceBase** 클래스는 **OnRegistered()**, **OnUnRegistered()**, **OnMessage()** 및 **OnError()** 메서드를 구현합니다. **PushHandlerService** 클래스에서 이러한 메서드를 재정의해야 합니다.
+   > hello **GcmServiceBase** 클래스 구현 hello **OnRegistered()**, **OnUnRegistered()**, **OnMessage()** 및  **OnError()** 메서드. Hello에서 이러한 메서드를 재정의 해야 **PushHandlerService** 클래스입니다.
    > 
    > 
-6. **OnRegistered** 이벤트 처리기를 재정의하는 **PushHandlerService** 클래스에 다음 코드를 추가합니다. 
+6. 다음 코드 toohello hello 추가 **PushHandlerService** hello를 재정의 하는 클래스 **OnRegistered** 이벤트 처리기입니다. 
    
         protected override void OnRegistered(Context context, string registrationId)
         {
-            System.Diagnostics.Debug.WriteLine("The device has been registered with GCM.", "Success!");
+            System.Diagnostics.Debug.WriteLine("hello device has been registered with GCM.", "Success!");
    
-            // Get the MobileServiceClient from the current activity instance.
+            // Get hello MobileServiceClient from hello current activity instance.
             MobileServiceClient client = ToDoActivity.CurrentActivity.CurrentClient;
             var push = client.GetPush();
    
             // Define a message body for GCM.
             const string templateBodyGCM = "{\"data\":{\"message\":\"$(messageParam)\"}}";
    
-            // Define the template registration as JSON.
+            // Define hello template registration as JSON.
             JObject templates = new JObject();
             templates["genericMessage"] = new JObject
             {
@@ -69,11 +69,11 @@
    
             try
             {
-                // Make sure we run the registration on the same thread as the activity, 
-                // to avoid threading errors.
+                // Make sure we run hello registration on hello same thread as hello activity, 
+                // tooavoid threading errors.
                 ToDoActivity.CurrentActivity.RunOnUiThread(
    
-                    // Register the template with Notification Hubs.
+                    // Register hello template with Notification Hubs.
                     async () => await push.RegisterAsync(registrationId, templates));
    
                 System.Diagnostics.Debug.WriteLine(
@@ -86,29 +86,29 @@
             }
         }
    
-    이 메서드는 반환된 GCM 등록 ID를 사용하여 푸시 알림을 위해 Azure에 등록합니다. 생성된 후 등록에 태그만 추가할 수 있습니다. 자세한 내용은 [방법: 태그에 푸시를 사용하도록 설정하기 위해 장치 설치에 태그 추가](../articles/app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#tags)를 참조하세요.
-7. **PushHandlerService**의 **OnMessage** 메서드를 다음 코드로 재정의합니다.
+    이 메서드는 푸시 알림에 대 한 GCM 등록 ID tooregister Azure와 함께 반환 된 hello를 사용 합니다. 태그 수를 추가할 수 있습니다 toohello 등록 생성 됩니다. 자세한 내용은 참조 [하는 방법: 추가 tooa 장치 설치 tooenable 푸시--태그에 태그를 삽입](../articles/app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#tags)합니다.
+7. Hello 재정의 **OnMessage** 메서드에서 **PushHandlerService** 코드 다음 hello로:
    
        protected override void OnMessage(Context context, Intent intent)
        {          
            string message = string.Empty;
    
-           // Extract the push notification message from the intent.
+           // Extract hello push notification message from hello intent.
            if (intent.Extras.ContainsKey("message"))
            {
                message = intent.Extras.Get("message").ToString();
                var title = "New item added:";
    
-               // Create a notification manager to send the notification.
+               // Create a notification manager toosend hello notification.
                var notificationManager = 
                    GetSystemService(Context.NotificationService) as NotificationManager;
    
-               // Create a new intent to show the notification in the UI. 
+               // Create a new intent tooshow hello notification in hello UI. 
                PendingIntent contentIntent = 
                    PendingIntent.GetActivity(context, 0, 
                    new Intent(this, typeof(ToDoActivity)), 0);              
    
-               // Create the notification using the builder.
+               // Create hello notification using hello builder.
                var builder = new Notification.Builder(context);
                builder.SetAutoCancel(true);
                builder.SetContentTitle(title);
@@ -117,12 +117,12 @@
                builder.SetContentIntent(contentIntent);
                var notification = builder.Build();
    
-               // Display the notification in the Notifications Area.
+               // Display hello notification in hello Notifications Area.
                notificationManager.Notify(1, notification);
    
            }
        }
-8. 다음 코드를 사용하여 **OnUnRegistered()** 및 **OnError()** 메서드를 재정의합니다.
+8. Hello 재정의 **OnUnRegistered()** 및 **OnError()** 코드 다음 hello 사용 하 여 메서드.
    
        protected override void OnUnRegistered(Context context, string registrationId)
        {
@@ -132,6 +132,6 @@
        protected override void OnError(Context context, string errorId)
        {
            System.Diagnostics.Debug.WriteLine(
-               string.Format("Error occurred in the notification: {0}.", errorId));
+               string.Format("Error occurred in hello notification: {0}.", errorId));
        }
 

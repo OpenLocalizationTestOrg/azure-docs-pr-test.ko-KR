@@ -1,5 +1,5 @@
 ---
-title: "Azure AD v2 iOS 시작 - 사용 | Microsoft Docs"
+title: "AD aaaAzure v2 iOS 시작-사용 | Microsoft Docs"
 description: "iOS(Swift) 응용 프로그램이 Azure Active Directory v2 끝점으로 보호되는 액세스 토큰을 필요로 하는 API를 호출하는 방식"
 services: active-directory
 documentationcenter: dev-center-name
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
-ms.openlocfilehash: 2ac1117a31a101705539a1f75520ce8de43809a2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 22e67850e2e0b14b6d68815d8f23e18ce2e878ac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-## <a name="use-the-microsoft-authentication-library-msal-to-get-a-token-for-the-microsoft-graph-api"></a>MSAL(Microsoft 인증 라이브러리)를 사용하여 Microsoft Graph API에 대한 토큰 가져오기
+## <a name="use-hello-microsoft-authentication-library-msal-tooget-a-token-for-hello-microsoft-graph-api"></a>Hello Microsoft 인증 라이브러리 (MSAL) tooget 토큰을 사용 하 여 hello Microsoft Graph API에 대 한
 
-`ViewController.swift`를 열고 코드를 다음으로 바꿉니다.
+열기 `ViewController.swift` hello 코드와 바꿉니다.
 
 ```swift
 import UIKit
@@ -42,16 +42,16 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
     @IBOutlet weak var loggingText: UITextView!
     @IBOutlet weak var signoutButton: UIButton!
 
-     // This button will invoke the call to the Microsoft Graph API. It uses the
-     // built in Swift libraries to create a connection.
+     // This button will invoke hello call toohello Microsoft Graph API. It uses the
+     // built in Swift libraries toocreate a connection.
     
     @IBAction func callGraphButton(_ sender: UIButton) {
         
         
         do {
             
-            // We check to see if we have a current logged in user. If we don't, then we need to sign someone in.
-            // We throw an interactionRequired so that we trigger the interactive signin.
+            // We check toosee if we have a current logged in user. If we don't, then we need toosign someone in.
+            // We throw an interactionRequired so that we trigger hello interactive signin.
             
             if  try self.applicationContext.users().isEmpty {
                 throw NSError.init(domain: "MSALErrorDomain", code: MSALErrorCode.interactionRequired.rawValue, userInfo: nil)
@@ -77,8 +77,8 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
             }
         }  catch let error as NSError {
             
-            // interactionRequired means we need to ask the user to sign-in. This usually happens
-            // when the user's Refresh Token is expired or if the user has changed their password
+            // interactionRequired means we need tooask hello user toosign-in. This usually happens
+            // when hello user's Refresh Token is expired or if hello user has changed their password
             // among other possible reasons.
             
             if error.code == MSALErrorCode.interactionRequired.rawValue {
@@ -99,9 +99,9 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
             
         } catch {
             
-            // This is the catch all error.
+            // This is hello catch all error.
             
-            self.loggingText.text = "Unable to acquire token. Got error: \(error)"
+            self.loggingText.text = "Unable tooacquire token. Got error: \(error)"
             
         }
     }
@@ -113,7 +113,7 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
              // Initialize a MSALPublicClientApplication with a given clientID and authority
             self.applicationContext = try MSALPublicClientApplication.init(clientId: kClientID, authority: kAuthority)
         } catch {
-            self.loggingText.text = "Unable to create Application Context. Error: \(error)"
+            self.loggingText.text = "Unable toocreate Application Context. Error: \(error)"
         }
     }
 
@@ -135,33 +135,33 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
 <!--start-collapse-->
 ### <a name="more-information"></a>추가 정보
 #### <a name="getting-a-user-token-interactively"></a>대화형으로 사용자 토큰 가져오기
-`acquireToken` 메서드를 호출하면 사용자에게 로그인하라는 브라우저 창이 표시됩니다. 사용자가 처음으로 보호되는 리소스에 액세스해야 하거나 토큰 획득을 위한 자동 작업에 실패한 경우(예: 사용자의 암호 만료) 일반적으로 사용자는 응용 프로그램에서 대화식으로 로그인해야 합니다.
+호출 hello `acquireToken` 라는 브라우저 창에서 메서드 결과에 대 한 사용자 toosign hello 합니다. 응용 프로그램 일반적으로 필요에 대화형으로 hello 사용자 toosign tooaccess 필요한 처음으로 보호 된 리소스 되거나 자동 작업 tooacquire 토큰 실패 (예: hello 사용자의 암호 만료 됨).
 
 #### <a name="getting-a-user-token-silently"></a>자동으로 사용자 토큰 가져오기
-`acquireTokenSilent` 메서드는 사용자 개입 없이 토큰 획득 및 갱신을 자동으로 처리합니다. `acquireToken`이 처음으로 실행된 후 일반적으로 `acquireTokenSilent` 메서드를 사용하여 후속 호출 시 보호되는 리소스에 액세스하는 데 사용되는 토큰을 가져옵니다. 즉, 토큰을 요청하거나 갱신하기 위한 호출이 자동으로 수행됩니다.
+hello `acquireTokenSilent` 토큰 획득 및 갱신 사용자 상호 작용 없이 처리 합니다. 후 `acquireToken` 처음으로 hello에 대 한 실행 `acquireTokenSilent` hello 일반적으로 사용 되는 방법 tooobtain 사용 되는 토큰 tooaccess 호출 toorequest로 보호 되는 대 한 후속 호출-리소스 또는 토큰을 갱신은 자동으로 수행 됩니다.
 
-결국 `acquireTokenSilent`에 실패합니다(예: 사용자 로그아웃 또는 다른 장치에서 사용자가 암호 변경). MSAL이 대화형 작업을 요구해 이 문제를 해결할 수 있다고 감지하면 `MSALErrorCode.interactionRequired` 예외를 발생합니다. 응용 프로그램에서는 이러한 예외를 다음 두 가지 방법으로 처리할 수 있습니다.
+결국 `acquireTokenSilent` 못합니다-예: hello 사용자가 로그 아웃 또는 다른 장치에서 암호 변경 되었습니다. MSAL 탐지 대화형 작업을 요구 하 여 hello 문제 해결을 발생 시킬는 `MSALErrorCode.interactionRequired` 예외입니다. 응용 프로그램에서는 이러한 예외를 다음 두 가지 방법으로 처리할 수 있습니다.
 
-1.  즉시 `acquireToken`에 대한 호출을 수행합니다. 그러면 사용자에게 로그인하라는 메시지가 표시됩니다. 이 패턴은 응용 프로그램에 사용자가 사용할 수 있는 오프라인 콘텐츠가 없는 온라인 응용 프로그램에서 일반적으로 사용됩니다. 이 단계별 설치에 따라 생성된 샘플 응용 프로그램은 이 패턴을 사용합니다. 이 패턴은 응용 프로그램을 처음 실행할 때 작동되는 것을 확인할 수 있습니다. 이 응용 프로그램을 사용한 사용자가 없으므로 `applicationContext.users().first`에는 null 값이 포함되며 ` MSALErrorCode.interactionRequired ` 예외가 throw됩니다. 샘플의 코드는 `acquireToken`를 호출해 예외를 처리하며, 사용자에게 로그인하라는 메시지가 표시됩니다.
+1.  에 대 한 호출 `acquireToken` 즉시 메시지를 표시에서 발생 하는 hello에 대 한 사용자 toosign 합니다. 이 패턴은 일반적으로 온라인 응용 프로그램에서 사용 되는 오프 라인 콘텐츠 hello 응용 프로그램의 hello 사용자에 대해 사용할 수 있습니다. 이 패턴을 사용 하 여이 단계별된 설치 프로그램에서 생성 된 hello 샘플 응용 프로그램: 나타나면 작업 hello에 처음으로 hello 응용 프로그램을 실행 합니다. 사용자 없음 hello 응용 프로그램을 사용 하기 때문에 `applicationContext.users().first` null 값이 포함 됩니다는 및 ` MSALErrorCode.interactionRequired ` 예외가 throw 됩니다. 핸들 예외를 호출 하 여 hello 다음 hello 샘플의 코드를 hello `acquireToken` 그 결과에서 사용자 toosign hello 메시지를 표시 합니다.
 
-2.  또한 응용 프로그램에서는 대화형 로그인이 필요하다는 시각적 표시를 사용자에게 보여줍니다. 따라서 사용자가 로그인할 적절한 시간을 선택하거나 이후에 응용 프로그램이 `acquireTokenSilent`를 다시 시작할 수 있습니다. 이는 사용자가 중단 없이 응용 프로그램의 기능을 사용할 수 있는 경우(예: 응용 프로그램에 사용 가능한 오프라인 콘텐츠가 있는 경우) 일반적으로 사용됩니다. 이 경우 사용자가 보호되는 리소스에 액세스하거나 오래된 정보를 새로 고치기 위해 로그인할 시점을 결정하거나 응용 프로그램이 일시적으로 사용할 수 없게 된 후 네트워크가 복원된 경우 `acquireTokenSilent`를 다시 시도하도록 결정할 수 있습니다.
+2.  응용 프로그램으로는 대화형 로그인가 필요 하지 않으므로 hello 선택할 수 있는, 적절 한 시기 toosign hello 또는 hello 응용 프로그램을 다시 시도할 수 있는 시각적으로 확인할 toohello 사용자 만들 수도 `acquireTokenSilent` 나중에 있습니다. 이 일반적으로 hello 사용자 중단 되지 않고 hello 응용 프로그램의 다른 기능을 사용할 수 있습니다-예를 들어 콘텐츠가 오프 라인 hello 응용 프로그램에서 사용할 수 있는 경우에 사용 됩니다. 때 toosign tooaccess hello 보호 된 리소스에서 원하는 또는 toorefresh hello 정보를 오래 된 항목 또는 응용 프로그램 tooretry를 결정할 수 hello 사용자 결정할 수는 경우 `acquireTokenSilent` 네트워크 일시적으로 사용할 수 없게 후 복원 된 경우.
 
 <!--end-collapse-->
 
-## <a name="call-the-microsoft-graph-api-using-the-token-you-just-obtained"></a>방금 가져온 토큰을 사용하여 Microsoft Graph API 호출
+## <a name="call-hello-microsoft-graph-api-using-hello-token-you-just-obtained"></a>얻은 hello 토큰을 사용 하 여 hello Microsoft Graph API를 호출 합니다.
 
-`ViewController.swift`에 아래의 새 메서드를 추가합니다. 이 메서드는 *HTTP 인증 헤더*를 사용하여 Microsoft Graph API에 대해 `GET` 요청을 수행하는 데 사용됩니다.
+아래 새 메서드의 hello 너무 추가`ViewController.swift`합니다. 이 메서드는 사용 되는 toomake는 `GET` hello Microsoft Graph API를 사용 하 여에 대 한 요청 된 *HTTP 권한 부여 헤더*:
 
 ```swift
 func getContentWithToken() {
     
     let sessionConfig = URLSessionConfiguration.default
     
-    // Specify the Graph API endpoint
+    // Specify hello Graph API endpoint
     let url = URL(string: kGraphURI)
     var request = URLRequest(url: url!)
     
-    // Set the Authorization header for the request. We use Bearer tokens, so we specify Bearer + the token we got from the result
+    // Set hello Authorization header for hello request. We use Bearer tokens, so we specify Bearer + hello token we got from hello result
     request.setValue("Bearer \(self.accessToken)", forHTTPHeaderField: "Authorization")
     let urlSession = URLSession(configuration: sessionConfig, delegate: self, delegateQueue: OperationQueue.main)
     
@@ -178,20 +178,20 @@ func getContentWithToken() {
 <!--start-collapse-->
 ### <a name="making-a-rest-call-against-a-protected-api"></a>보호되는 API에 대해 REST 호출 수행
 
-이 샘플 응용 프로그램에서 `getContentWithToken()` 메서드는 토큰이 필요한 보호되는 리소스에 대한 HTTP `GET` 요청을 실행한 다음 호출자에게 콘텐츠를 반환하는 데 사용됩니다. 이 메서드는 *HTTP 인증 헤더*에 획득된 토큰을 추가합니다. 이 샘플에서 리소스는 사용자 프로필 정보를 표시하는 Microsoft Graph API *me* 끝점입니다.
+이 샘플 응용 프로그램에서는 hello `getContentWithToken()` 메서드는 사용 되는 toomake HTTP `GET` 토큰 한 후 hello 콘텐츠 toohello 호출자를 요구 하는 보호 된 리소스에 대 한 요청입니다. 이 메서드는 hello에서 토큰 획득 hello 추가 *HTTP 권한 부여 헤더*합니다. 이 샘플에 대 한 hello 리소스는 Microsoft Graph API hello *me* 끝점으로 – hello 사용자의 프로필 정보를 표시 합니다.
 <!--end-collapse-->
 
 ## <a name="set-up-sign-out"></a>로그아웃 설정
 
-`ViewController.swift`에 다음 메서드를 추가하면 사용자가 로그아웃됩니다.
+메서드를 너무 뒤 hello 추가`ViewController.swift` toosign hello 사용자:
 
 ```swift 
 @IBAction func signoutButton(_ sender: UIButton) {
 
     do {
         
-        // Removes all tokens from the cache for this application for the provided user
-        // first parameter:   The user to remove from the cache
+        // Removes all tokens from hello cache for this application for hello provided user
+        // first parameter:   hello user tooremove from hello cache
         
         try self.applicationContext.remove(self.applicationContext.users().first)
         self.signoutButton.isEnabled = false;
@@ -204,14 +204,14 @@ func getContentWithToken() {
 <!--start-collapse-->
 ### <a name="more-info-on-sign-out"></a>로그아웃에 대한 자세한 정보
 
-`signoutButton` 메서드는 MSAL 사용자 캐시에서 사용자를 제거하여 MSAL에 현재 사용자를 잊으라고 효율적으로 전달합니다. 따라서 대화식으로 수행되는 경우에만 토큰 획득을 위한 이후 요청에 성공하게 됩니다.
+hello `signoutButton` 메서드 hello MSAL 사용자 캐시-에서 hello 사용자를 제거 합니다.이 쿼리 효과적으로 확인할 MSAL tooforget hello에 대 한 현재 사용자 후속 요청 tooacquire 만들어진 경우 toobe 대화형 토큰 성공만 됩니다.
 
-이 샘플의 응용 프로그램이 단일 사용자를 지원하더라도 MSAL은 동시에 여러 계정에 로그인할 수 있는 시나리오를 지원합니다(예: 사용자 한 명이 여러 계정을 가질 수 있는 메일 응용 프로그램).
+MSAL 여기서 여러 계정을 로그인 할 수 hello에 시나리오를 지원 hello 응용 프로그램에서이 샘플에서는 단일 사용자를 지원 하지만 동일한 시간-예로 전자 메일 응용 프로그램 사용자가 계정을 여러 개 있습니다.
 <!--end-collapse-->
 
-## <a name="register-the-callback"></a>콜백 등록
+## <a name="register-hello-callback"></a>Hello 콜백을 등록합니다
 
-사용자가 인증되면 브라우저는 사용자를 응용 프로그램으로 다시 리디렉션합니다. 아래 단계에 따라 이 콜백을 등록합니다.
+Hello 사용자가 인증 되 면 hello 브라우저 hello 사용자 백 toohello 응용 프로그램을 리디렉션합니다. 이 콜백은 tooregister 아래 hello 단계를 수행 합니다.
 
 1.  `AppDelegate.swift`를 열고 MSAL을 가져옵니다.
 
@@ -221,13 +221,13 @@ import MSAL
 <!-- Workaround for Docs conversion bug -->
 <ol start="2">
 <li>
-<code>AppDelegate</code> 클래스에 다음 메서드를 추가하여 콜백을 처리합니다.
+다음 메서드 tooyour hello 추가 <code>AppDelegate</code> toohandle 콜백 클래스.
 </li>
 </ol>
 
 ```swift
-// @brief Handles inbound URLs. Checks if the URL matches the redirect URI for a pending AppAuth
-// authorization request and if so, will look for the code in the response.
+// @brief Handles inbound URLs. Checks if hello URL matches hello redirect URI for a pending AppAuth
+// authorization request and if so, will look for hello code in hello response.
 
 func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
     

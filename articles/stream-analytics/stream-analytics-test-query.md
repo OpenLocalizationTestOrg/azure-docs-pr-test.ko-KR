@@ -1,6 +1,6 @@
 ---
-title: "Azure Stream Analytics 쿼리 테스트 | Microsoft Docs"
-description: "Stream Analytics 작업에서 쿼리를 테스트하는 방법"
+title: "스트림 분석 쿼리 테스트 aaaAzure | Microsoft Docs"
+description: "어떻게 tootest 스트림 분석 작업에 따라 쿼리 합니다."
 keywords: "쿼리 테스트, 쿼리 문제 해결"
 documentation center: 
 services: stream-analytics
@@ -15,33 +15,33 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 04/20/2017
 ms.author: jeffstok
-ms.openlocfilehash: 16bb3f26ec3a69e5204162db9e54a186cf1ec6a6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3b141d98332fdc170e696e181c8446796a86f78e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="test-azure-stream-analytics-queries-in-the-azure-portal"></a>Azure Portal에서 Azure Stream Analytics 쿼리 테스트
+# <a name="test-azure-stream-analytics-queries-in-hello-azure-portal"></a>Hello Azure 포털에서에서 Azure 스트림 분석 쿼리를 테스트 합니다.
 
-Azure Stream Analytics를 사용하면 작업을 시작하거나 중지하지 않고도 Azure Portal에서 쿼리를 테스트할 수 있습니다.
+Azure 스트림 분석에 toostart 필요 없이 hello Azure 포털에서에서 쿼리를 테스트 하거나 작업을 중지 합니다.
 
-## <a name="test-the-input"></a>입력 테스트
+## <a name="test-hello-input"></a>테스트 hello 입력
 
-1. 샘플 입력 데이터를 테스트하려면 사용자 입력 중 하나를 마우스 오른쪽 단추로 클릭한 다음 **파일에서 샘플 데이터 업로드**를 선택합니다.
+1. 샘플 입력 데이터로 tootest 입력을 중 하나를 마우스 오른쪽 단추로 클릭 한 다음 선택 **파일에서 샘플 데이터 업로드**합니다.
 
     ![Stream Analytics 쿼리 편집기 쿼리 테스트](media/stream-analytics-test-query/stream-analytics-test-query-editor-upload.png)
 
-2. 업로드가 완료되면 **테스트**를 클릭하여 입력한 샘플 데이터에 대해 이 쿼리를 테스트합니다.
+2. Hello 업로드가 완료 되 면 클릭 **테스트** tootest hello에 대해이 쿼리 예제 데이터를 제공 합니다.
 
     ![Stream Analytics 쿼리 편집기 샘플 데이터 테스트](media/stream-analytics-test-query/stream-analytics-test-query-editor-test.png)
 
-나중에 사용하기 위해 테스트 출력을 저장하려는 경우 사용자 쿼리의 출력이 다운로드 결과 링크와 함께 브라우저에 표시됩니다. 이제 쉽고 반복적으로 쿼리를 수정하고 반복적으로 테스트하여 출력이 어떻게 변화하는지 확인할 수 있습니다.
+쿼리 hello 출력 해야 toosave hello 테스트 출력에 대해 원하는 나중에 사용 하는 다운로드 결과 링크를 사용 하 여 hello 브라우저에 표시 됩니다. 이제 쉽고 반복적으로 쿼리를 수정 하 고 테스트할 수 것 반복 해 서 toosee 어떻게 변경 되는지 hello 출력 합니다.
 
 ![Stream Analytics 쿼리 편집기 샘플 출력](media/stream-analytics-test-query/stream-analytics-test-query-editor-samples-output.png)
 
-쿼리에서 사용된 여러 출력을 통해 두 출력에 대한 결과를 개별적으로 볼 수 있으며 서로 쉽게 전환할 수 있습니다.
+쿼리에 사용 되는 여러 출력을 두 출력 모두에 대 한 hello 결과 별도로 참조할 수 있으며 서로 쉽게 설정/해제할 키를 누릅니다.
 
-브라우저에 표시된 결과에 만족한다면 쿼리를 저장하고, 작업을 시작하여 오류 없이 이벤트를 처리할 수 있습니다.
+쿼리 저장, 작업을 시작 및 사용 hello 브라우저에 표시 된 hello 결과 원하는 대로 되 후 이벤트를 오류 없이 처리 합니다.
 
 ## <a name="get-help"></a>도움말 보기
 
@@ -49,7 +49,7 @@ Azure Stream Analytics를 사용하면 작업을 시작하거나 중지하지 �
 
 ## <a name="next-steps"></a>다음 단계
 
-* [Azure Stream Analytics 소개](stream-analytics-introduction.md)
+* [스트림 분석 소개 tooAzure](stream-analytics-introduction.md)
 * [Azure Stream Analytics 사용 시작](stream-analytics-real-time-fraud-detection.md)
 * [Azure  Stream Analytics 작업 규모 지정](stream-analytics-scale-jobs.md)
 * [Azure  Stream Analytics 쿼리 언어 참조](https://msdn.microsoft.com/library/azure/dn834998.aspx)

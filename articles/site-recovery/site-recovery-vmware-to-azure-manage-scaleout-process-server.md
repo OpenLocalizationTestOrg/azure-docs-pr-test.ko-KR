@@ -1,6 +1,6 @@
 ---
 title: " Azure Site Recovery에서 확장 프로세스 서버 관리 | Microsoft Docs"
-description: "이 문서에서는 Azure Site Recovery에서 확장 프로세스 서버를 설정하고 관리하는 방법을 설명합니다."
+description: "이 문서에서는 설명 방법을 tooset 및 Azure 사이트 복구에서 확장 프로세스 서버를 관리 합니다."
 services: site-recovery
 documentationcenter: 
 author: AnoopVasudavan
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: backup-recovery
 ms.date: 06/29/2017
 ms.author: anoopkv
-ms.openlocfilehash: e5c01de19917235c34c035415df86291b9152bf0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3d72f9c2c7014a4ff2fa2af168aa55ad1452eae5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-a-scale-out-process-server"></a>확장 프로세스 서버 관리
 
-확장 프로세스 서버는 Site Recovery 서비스와 온-프레미스 인프라 간의 데이터 전송에 대한 코디네이터로 작동합니다. 이 문서에서는 확장 프로세스 서버를 설정, 구성 및 관리하는 방법을 설명합니다.
+확장 프로세스 서버 hello Site Recovery 서비스와 온-프레미스 인프라 간의 데이터 전송을 위해 코디네이터로 작동합니다. 이 문서에서는 확장 프로세스 서버를 설정, 구성 및 관리하는 방법을 설명합니다.
 
 ## <a name="prerequisites"></a>필수 조건
-다음은 확장 프로세스 서버를 설정하는 데 필요한 권장되는 하드웨어, 소프트웨어 및 네트워크 구성입니다.
+hello 하드웨어, 소프트웨어 및 네트워크 구성이 필요 tooset 확장 프로세스 서버를 권장 하는 hello 다음과가 같습니다.
 
 > [!NOTE]
-> [용량 계획](site-recovery-capacity-planner.md)은 로드 요구 사항에 맞는 구성으로 확장 프로세스 서버를 배포하는지 확인하는 중요한 단계입니다. [확장 프로세스 서버에 대한 특성 크기 조정](#sizing-requirements-for-a-configuration-server)에 대해 자세히 알아봅니다.
+> [용량 계획](site-recovery-capacity-planner.md) 배포 하는 hello 확장 프로세스 서버와 구성 도구 모음의 해당 하는 중요 한 단계 tooensure는 로드 요구 합니다. [확장 프로세스 서버에 대한 특성 크기 조정](#sizing-requirements-for-a-configuration-server)에 대해 자세히 알아봅니다.
 
 [!INCLUDE [site-recovery-configuration-server-requirements](../../includes/site-recovery-configuration-and-scaleout-process-server-requirements.md)]
 
-## <a name="downloading-the-scale-out-process-server-software"></a>확장 프로세스 서버 소프트웨어 다운로드
-1. Azure Portal에 로그온하고 Recovery Services 자격 증명 모음으로 이동합니다.
-2. **Site Recovery 인프라** > **구성 서버**(VMware 및 물리적 컴퓨터용 아래)로 이동합니다.
-3. 구성 서버를 선택하여 구성 서버의 세부 정보 페이지로 드릴다운합니다.
-4. **+ 프로세스 서버** 단추를 클릭합니다.
-5. **프로세스 서버 추가** 페이지의 **프로세스 서버를 배포할 위치 선택** 드롭다운에서 **온-프레미스로 확장 프로세스 서버 배포** 옵션을 선택합니다.
+## <a name="downloading-hello-scale-out-process-server-software"></a>Hello 확장 프로세스 서버 소프트웨어를 다운로드합니다.
+1. Azure 포털 및 찾아보기 tooyour 복구 서비스 자격 증명 모음 toohello에 로그온 합니다.
+2. 너무 찾아보기**사이트 복구 인프라** > **구성 서버** (아래에 대 한 VMware & 물리적 컴퓨터의 경우).
+3. 아래로 hello 구성 서버 세부 정보 페이지에 구성 서버 toodrill를 선택 합니다.
+4. Hello 클릭 **+ 프로세스 서버** 단추입니다.
+5. Hello에 **추가 프로세스 서버** 페이지에서 **프로세스 서버를 확장 배포 온-프레미스** hello에서 옵션 **저장할 toodeploy 프로세스 서버 선택** 드롭 다운 합니다.
 
   ![서버 페이지 추가](./media/site-recovery-vmware-to-azure-manage-scaleout-process-server/add-process-server.png)
-6. **Microsoft Azure Site Recovery 통합 설치 다운로드** 링크를 클릭하여 확장 프로세스 서버 설치의 최신 버전을 다운로드합니다.
+6. Hello 클릭 **다운로드 hello Microsoft Azure Site Recovery 통합 설치** 링크 toodownload hello hello 확장 프로세스 서버 설치의 최신 버전입니다.
 
   > [!WARNING]
-  확장 프로세서 서버의 버전은 사용자 환경에서 실행 중인 구성 서버 버전과 동일하거나 낮아야 합니다. 버전 호환성을 보장하는 간단한 방법은 구성 서버를 설치/업데이트하는 데 최근에 사용한 동일한 설치 관리자 비트를 사용하는 것입니다.
+  hello 확장 프로세스 서버 버전이 같아야 tooor 사용자 환경에서 실행 하는 hello 구성 서버 버전 보다 낮습니다. 간단한 방법을 tooensure 버전 호환성은 toouse 최근에 사용 하 여 tooinstall/업데이트 구성 서버에 동일한 설치 관리자 비트 hello 합니다.
 
 ## <a name="installing-and-registering-a-scale-out-process-server-from-gui"></a>GUI에서 확장 프로세스 서버 설치 및 등록
-200대가 넘는 원본 컴퓨터로 배포 규모를 확장해야 하고 총 이탈률이 2TB를 초과하는 경우 트래픽 볼륨을 처리할 추가 프로세스가 필요합니다.
+원본 컴퓨터를 200 개 초과 배포 아웃 tooscale 했거나 총 매일 변동 비율로 2 테라바이트 이상 경우 추가 프로세스 서버 toohandle hello 트래픽 볼륨을 해야 합니다.
 
-[프로세스 서버에 대한 크기 권장 사항](#size-recommendations-for-the-process-server)을 확인한 후 다음 지침에 따라 프로세스 서버를 설정합니다. 서버를 설정한 후 이를 사용하도록 원본 컴퓨터를 마이그레이션할 수 있습니다.
+Hello 확인 [크기 프로세스 서버에 대 한 권장 사항](#size-recommendations-for-the-process-server), 한 다음 이러한 지침 tooset hello 프로세스 서버를 따릅니다. 마이그레이션한 원본 컴퓨터 toouse hello 서버를 설정한 후 것입니다.
 
 [!INCLUDE [site-recovery-configuration-server-requirements](../../includes/site-recovery-add-process-server.md)]
 
@@ -56,7 +56,7 @@ ms.lasthandoff: 07/11/2017
 ## <a name="installing-and-registering-a-scale-out-process-server-using-command-line"></a>명령줄을 사용하여 확장 프로세스 서버 설치 및 등록
 
 ```
-UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMWare/NonVMWare>] [/PSIP <IP address to be used for data transfer] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <Passphrase file path>]
+UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMWare/NonVMWare>] [/PSIP <IP address toobe used for data transfer] [/CSIP <IP address of CS toobe registered with>] [/PassphraseFilePath <Passphrase file path>]
 ```
 
 ### <a name="sample-usage"></a>샘플 사용
@@ -71,7 +71,7 @@ UNIFIEDSETUP.EXE /AcceptThirdpartyEULA /servermode "PS" /InstallLocation "D:\" /
 
 
 ### <a name="create-a-proxy-settings-configuration-file"></a>프록시 설정 구성 파일 만들기
-ProxySettingsFilePath 매개 변수는 입력으로 파일을 사용합니다. 다음 형식을 사용하여 파일을 만들고 입력 ProxySettingsFilePath 매개 변수로 전달합니다.
+ProxySettingsFilePath 매개 변수는 입력으로 파일을 사용합니다. 다음 서식을 지정 하 고 입력된 ProxySettingsFilePath 매개 변수로 전달 하는 hello를 사용 하 여 파일을 만듭니다.
 ```
 * [ProxySettings]
 * ProxyAuthentication = "Yes/No"
@@ -83,14 +83,14 @@ ProxySettingsFilePath 매개 변수는 입력으로 파일을 사용합니다. �
 ## <a name="modifying-proxy-settings-for-scale-out-process-server"></a>확장 프로세스 서버에 대한 프록시 설정 수정
 1. 확장 프로세스 서버에 로그인합니다.
 2. 관리자 PowerShell 명령 창을 엽니다.
-3. 다음 명령을 실행합니다.
+3. Hello 다음 명령을 실행 합니다.
   ```
   $pwd = ConvertTo-SecureString -String MyProxyUserPassword
   Set-OBMachineSetting -ProxyServer http://myproxyserver.domain.com -ProxyPort PortNumber –ProxyUserName domain\username -ProxyPassword $pwd
   net stop obengine
   net start obengine
   ```
-4. 그런 다음 디렉터리 **%PROGRAMDATA%\ASR\Agent**로 이동하고 다음 명령을 실행합니다.
+4. 그런 다음 toohello 디렉터리 찾아보기 **%PROGRAMDATA%\ASR\Agent** 다음 명령이 실행된 하는 hello 및
   ```
   cmd
   cdpcli.exe --registermt
@@ -106,7 +106,7 @@ ProxySettingsFilePath 매개 변수는 입력으로 파일을 사용합니다. �
 [!INCLUDE [site-recovery-vmware-register-process-server](../../includes/site-recovery-vmware-register-process-server.md)]
 
 * 그런 다음 관리자 명령 프롬프트를 엽니다.
-* **%PROGRAMDATA%\ASR\Agent** 디렉터리로 이동하고 다음 명령을 실행합니다.
+* Toohello 디렉터리 찾아보기 **%PROGRAMDATA%\ASR\Agent** hello 명령을 실행 하 고
 
 ```
 cdpcli.exe --registermt
@@ -121,19 +121,19 @@ net start obengine
 
 ## <a name="decommissioning-a-scale-out-process-server"></a>확장 프로세스 서버 서비스 해제
 1. 다음 사항을 확인합니다.
-  - Azure Portal에서 구성 서버의 연결 상태가 **Connected**로 표시됨
-  - 프로세스 서버는 여전히 구성 서버와 통신할 수 있습니다.
-2. 관리자 권한으로 프로세스 서버에 로그인
+  - 구성 서버의 연결 상태 표시 **연결 됨** hello Azure 포털에서
+  - 프로세스 서버 hello 구성 서버와 여전히 수 toocommunicate 됩니다.
+2. 관리자 권한으로 toohello 프로세스 서버에 로그인
 3. 제어판 > 프로그램 > 프로그램 제거 열기
-4. 다음 순서로 프로그램을 제거합니다.
+4. Hello 시퀀스 지정 된 다음에 hello 프로그램을 제거 합니다.
   * Microsoft Azure Site Recovery 구성 서버/프로세스 서버
   * Microsoft Azure Site Recovery 구성 서버 종속성
   * Microsoft Azure Recovery Services 에이전트
 
-프로세스 서버 삭제가 Azure Portal에 반영되는 데 최대 15분이 걸릴 수 있습니다.
+Hello Azure 포털에서에서 hello 프로세스 서버 삭제 tooreflect 위쪽 too15 분 걸릴 수 있습니다.
 
   > [!NOTE]
-  프로세스 서버가 구성 서버와 통신할 수 없는 경우(포털의 연결 상태가 Disconnected) 다음 단계를 따라 구성 서버에서 제거해야 합니다.
+  Hello 프로세스 서버가 구성 서버 hello로 없습니다 toocommunicate 인지 (포털에 대 한 연결 상태가 Disconnected)를 toofollow 필요 hello 단계 toopurge 다음 그 hello 구성 서버에서에서 합니다.
 
 ## <a name="unregistering-a-disconnected-scale-out-process-server-from-a-configuration-server"></a>구성 서버에서 연결이 끊긴 확장 프로세스 서버 등록 취소
 
@@ -144,5 +144,5 @@ net start obengine
 | **추가 프로세스 서버** | **캐시 디스크 크기** | **데이터 변경률** | **보호된 컴퓨터** |
 | --- | --- | --- | --- |
 |4개 vCPU(2개 소켓 * 2코어 @ 2.5GHz), 8GB 메모리 |300GB |250GB 이하 |85대 이하의 컴퓨터를 복제합니다. |
-|8개 vCPU(2개 소켓 * 4코어 @ 2.5GHz), 12GB 메모리 |600GB |250GB ~ 1TB |85-150대 컴퓨터를 복제합니다. |
-|12개 vCPU(2개 소켓 * 6코어 @ 2.5GHz), 24GB 메모리 |1TB |1TB ~ 2TB |150-225대 컴퓨터를 복제합니다. |
+|8개 vCPU(2개 소켓 * 4코어 @ 2.5GHz), 12GB 메모리 |600GB |250GB too1 TB |85-150대 컴퓨터를 복제합니다. |
+|12개 vCPU(2개 소켓 * 6코어 @ 2.5GHz), 24GB 메모리 |1TB |1TB too2 TB |150-225대 컴퓨터를 복제합니다. |

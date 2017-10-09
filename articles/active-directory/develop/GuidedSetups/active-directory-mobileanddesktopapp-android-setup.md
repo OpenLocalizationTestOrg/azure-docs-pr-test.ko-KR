@@ -1,5 +1,5 @@
 ---
-title: "Azure AD v2 Android 시작 - 설정 | Microsoft Docs"
+title: "AD aaaAzure v2 Android 시작-설치 | Microsoft Docs"
 description: "Android 앱이 액세스 토큰을 얻고 Azure Active Directory v2 끝점에서 액세스 토큰이 필요한 Microsoft Graph API를 한 개 이상 호출할 수 있는 방법"
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,27 +15,27 @@ ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: a43d7e30a6f4176afba27f0de2c2c116df741080
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: df2670d6d35b7a9a81158d4d7eb190540ca9c695
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 ## <a name="set-up-your-project"></a>프로젝트 설정
 
-> 이 샘플의 Android Studio 프로젝트를 다운로드하고 싶으세요? [프로젝트를 다운로드](https://github.com/Azure-Samples/active-directory-android-native-v2/archive/master.zip)하면 실행 전 코드 샘플을 구성하는 [구성 단계](#create-an-application-express)로 건너뛸 수 있습니다.
+> Toodownload이이 샘플의 Android Studio 프로젝트를 대신 선호? [프로젝트를 다운로드](https://github.com/Azure-Samples/active-directory-android-native-v2/archive/master.zip) toohello 건너뛸 [구성 단계](#create-an-application-express) tooconfigure hello 코드 샘플을 실행 하기 전에.
 
 
 ### <a name="create-a-new-project"></a>새 프로젝트 만들기 
 1.  Android Studio를 열고 `File` > `New` > `New Project`로 이동합니다.
 2.  응용 프로그램의 이름을 지정하고 `Next`를 클릭합니다.
-3.  *API 21 이상(Android 5.0)*이 선택되어 있는지 확인하고 `Next`를 클릭합니다.
+3.  있는지 tooselect 확인 *API 21 또는 최신 (Android 5.0)* 클릭`Next`
 4.  `Empty Activity`는 그대로 두고 `Next`을 클릭한 후 `Finish`를 클릭합니다.
 
 
-### <a name="add-the-microsoft-authentication-library-msal-to-your-project"></a>프로젝트에 MSAL(Microsoft 인증 라이브러리) 추가
+### <a name="add-hello-microsoft-authentication-library-msal-tooyour-project"></a>Hello Microsoft 인증 라이브러리 (MSAL) tooyour 프로젝트 추가
 1.  Android Studio에서 `Gradle Scripts` > `build.gradle (Module: app)`으로 이동합니다.
-2.  `Dependencies`아래에 다음 코드를 복사하여 붙여넣습니다.
+2.  아래 코드를 복사 및 붙여넣기 hello 다음 `Dependencies`:
 
 ```ruby  
 compile ('com.microsoft.identity.client:msal:0.1.+') {
@@ -47,15 +47,15 @@ compile 'com.android.volley:volley:1.0.0'
 <!--start-collapse-->
 ### <a name="about-this-package"></a>이 패키지 정보
 
-위의 패키지는 MSAL(Microsoft 인증 라이브러리)을 설치합니다. MSAL은 Azure Active Directory v2 끝점으로 보호되는 API에 액세스하는 데 사용되는 사용자 토큰의 획득, 캐싱 및 새로 고침을 처리합니다.
+위의 hello 패키지는 hello Microsoft 인증 라이브러리 (MSAL)를 설치합니다. MSAL 가져오는, 캐싱 및 사용자 토큰 tooaccess Azure Active Directory v2 끝점에 의해 보호 되는 Api를 새로 고침을 처리 합니다.
 <!--end-collapse-->
 
 ## <a name="create-your-applications-ui"></a>응용 프로그램 UI 만들기
 
 1.  `res` > `layout`에서 `activity_main.xml`을 엽니다.
-2.  `android.support.constraint.ConstraintLayout` 등에서 `LinearLayout`으로 작업 레이아웃을 변경합니다.
-3.  `LinearLayout` 노드에 `android:orientation="vertical"` 속성을 추가합니다.
-4.  다음 코드를 복사하여 `LinearLayout` 노드에 붙여넣어 현재 내용을 바꿉니다.
+2.  사용 되는 hello 활동 레이아웃 변경 `android.support.constraint.ConstraintLayout` 또는 기타 너무`LinearLayout`
+3.  추가 `android:orientation="vertical"` 속성 너무`LinearLayout` 노드
+4.  복사 및 붙여넣기 hello 다음 hello에 코딩할 `LinearLayout` 노드를 hello 현재 콘텐츠를 대체 합니다.
 
 ```xml
 <TextView

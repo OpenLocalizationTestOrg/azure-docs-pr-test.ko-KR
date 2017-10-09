@@ -1,6 +1,6 @@
 ---
-title: "Azure Import-Export 도구 사용 | Microsoft Docs"
-description: "Import/Export 도구를 사용하여 가져오기 작업을 위한 하드 드라이브 준비, 가져오기 작업 복구 또는 내보내기 작업 복구 방법을 알아봅니다."
+title: "aaaUsing hello Azure 가져오기/내보내기 도구 | Microsoft Docs"
+description: "어떻게 toouse hello 가져오기/내보내기 도구 tooprepare 하드 드라이브는 가져오기 작업에 대 한 가져오기 작업, 복구 또는 내보내기 작업 복구에 대해 알아봅니다."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: 86073f5d15253d658fcb371e913dd3a543a2b075
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fa2021e5a03281128e494e6e63f58bc6319aeb4c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-azure-importexport-tool"></a>Azure Import/Export 도구 사용 
+# <a name="using-hello-azure-importexport-tool"></a>Hello Azure 가져오기/내보내기 도구를 사용 하 여 
 
-Azure Import/Export 도구(WAImportExport.exe)는 Azure Import/Export 서비스의 작업을 만들고 관리하는 데 사용되어 Azure Blob Storage 내부 또는 외부로 대량의 데이터를 전송할 수 있게 해줍니다.
+hello Azure 가져오기/내보내기 도구 (WAImportExport.exe)가 사용 되는 toocreate 하 고 hello Azure 가져오기/내보내기 서비스 또는 Azure Blob 저장소 외부로 tootransfer 많은 양의 데이터를 지원에 대 한 작업을 관리 합니다.
 
-이 설명서는 Azure Import/Export 도구의 최신 버전에 대한 것입니다. V1 도구를 사용하는 방법에 대한 내용은 [Azure Import/Export 도구 V1 사용](storage-import-export-tool-how-to-v1.md)을 참조하세요.
+이 설명서는 hello 최신 버전의 hello Azure 가져오기/내보내기 도구에 대 한 합니다. Hello v1 도구를 사용 하는 방법에 대 한 정보를 참조 하십시오 [hello를 사용 하 여 Azure 가져오기/내보내기 도구 v1](storage-import-export-tool-how-to-v1.md)합니다.
 
-이 문서에서는 다음을 수행하는 도구를 사용하는 방법이 표시됩니다.  
+이 문서에서는 어떻게 toouse hello 도구 toodo hello 다음 표시 됩니다.  
 
-- Import/Export 도구를 설치 및 설정합니다.
-- 드라이브에서 Azure Blob Storage로 데이터를 가져오는 작업을 위한 하드 드라이브를 준비합니다.
-- 로그 파일 복사를 사용하여 작업 상태를 검토합니다. 
+- 설치 하 고 hello 가져오기/내보내기 도구를 설정 합니다.
+- 사용자 드라이브 tooAzure Blob 저장소에서에서 데이터를 가져오는 위치는 작업에 대 한 하드 드라이브를 준비 합니다.
+- 복사 로그 파일와 함께 작업의 hello 상태를 검토 합니다. 
 - 가져오기 작업을 복구합니다. 
 - 내보내기 작업을 복구합니다. 
-- 프로세스 중에 문제가 발생한 경우 Azure Import/Export 도구 문제를 해결합니다. 
+- Hello Azure 가져오기/내보내기 도구 문제를 해결 경우 프로세스 중에 문제가 발생 했습니다. 
 
 ## <a name="next-steps"></a>다음 단계
 
-* [WAImportExport 도구 설정](storage-import-export-tool-setup.md)
+* [Hello WAImportExport 도구 설정](storage-import-export-tool-setup.md)

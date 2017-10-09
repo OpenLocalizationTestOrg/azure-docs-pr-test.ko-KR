@@ -16,5 +16,5 @@
 
 
 > [!WARNING] 
-> Red Hat 제품에 대한 타사 소프트웨어 설치는 Red Hat 지원 조건에 영향을 줄 수 있습니다. [Red Hat 기술 자료 문서](https://access.redhat.com/articles/1067)를 참조하세요.
+> Red Hat 제품에 대 한 제 3 자 소프트웨어의 설치는 hello Red Hat 지원 조건이 발생할 수 있습니다. Hello 참조 [Red Hat 기술 자료 문서](https://access.redhat.com/articles/1067)합니다.
 >

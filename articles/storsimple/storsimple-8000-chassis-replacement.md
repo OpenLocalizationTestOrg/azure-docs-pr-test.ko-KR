@@ -1,6 +1,6 @@
 ---
-title: "StorSimple 8000 시리즈 장치의 섀시 교체 | Microsoft Docs"
-description: "StorSimple 기본 엔클로저 또는 EBOD 엔클로저에 섀시를 꺼내고 교체하는 방법을 설명합니다."
+title: "StorSimple 8000 시리즈 장치에 섀시 aaaReplace | Microsoft Docs"
+description: "Tooremove 및 바꾸기 StorSimple 기본 인클로저 또는 EBOD 인클로저 섀시 hello 방법을 설명 합니다."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,46 +14,46 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: alkohli
-ms.openlocfilehash: 073fcf0064f1d1482f4683d733f00cf918ff2f38
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 94bbd3d354a9b8866ece036238927e67ec5ce2a9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replace-the-chassis-on-your-storsimple-device"></a>StorSimple 장치의 섀시 교체
+# <a name="replace-hello-chassis-on-your-storsimple-device"></a>StorSimple 장치에 hello 섀시 교체
 ## <a name="overview"></a>개요
-이 자습서에서는 StorSimple 8000 시리즈 장치의 섀시를 꺼내고 교체하는 방법을 설명합니다. StorSimple 8100 모델은 단일 엔클로저 장치(섀시 1개)인 반면 8600은 이중 엔클로저 장치(섀시 2개)입니다. 8600 모델의 경우 장치에 오류가 발생할 수 있는 두 개의 섀시(기본 엔클로저용 섀시 또는 EBOD 엔클로저용 섀시)가 있습니다.
+이 자습서에 설명 어떻게 tooremove StorSimple 8000 시리즈 장치에 섀시를 바꿉니다. StorSimple 8100 hello 모델 반면 hello 8600 이중 인클로저 장치 (두 개의 섀시)는 단일 인클로저 장치 (하나의 섀시)은입니다. 8600 모델의 경우는 hello 장치에서 장애 사용할 수 있는 두 개의 섀시 잠재적으로: hello 기본 인클로저의 섀시 또는 EBOD 인클로저의 hello에 대 한 hello 섀시 hello 합니다.
 
-두 경우 모두 Microsoft에서 제공한 교체 섀시가 비게 됩니다. PCM(전원 및 냉각 모듈), 컨트롤러 모듈, SSD(반도체 디스크 드라이브), HDD(하드 디스크 드라이브) 또는 EBOD 모듈은 포함되지 않습니다.
+어떤 경우 든 Microsoft에서 제공 되는 hello 교체 섀시 비어 있습니다. PCM(전원 및 냉각 모듈), 컨트롤러 모듈, SSD(반도체 디스크 드라이브), HDD(하드 디스크 드라이브) 또는 EBOD 모듈은 포함되지 않습니다.
 
 > [!IMPORTANT]
-> 섀시를 꺼내고 교체하기 전에 [StorSimple 하드웨어 구성 요소 교체](storsimple-8000-hardware-component-replacement.md)에서 안전 정보를 검토하세요.
+> 분리 및 교체 hello 섀시 hello 보안 정보를 검토 하기 전에 [StorSimple 하드웨어 구성 요소 교체](storsimple-8000-hardware-component-replacement.md)합니다.
 
 
-## <a name="remove-the-chassis"></a>섀시 꺼내기
-StorSimple 장치의 섀시를 꺼내려면 다음 단계를 따르세요.
+## <a name="remove-hello-chassis"></a>Hello 섀시를 제거 합니다.
+Hello 단계 tooremove hello 섀시 StorSimple 장치에서 다음을 수행 합니다.
 
-#### <a name="to-remove-a-chassis"></a>섀시를 꺼내려면
-1. StorSimple 장치가 종료되고 모든 전원에서 연결이 끊어졌는지 확인합니다.
-2. 해당하는 경우 모든 네트워크 및 SAS 케이블을 뺍니다.
-3. 랙에서 장치를 꺼냅니다.
-4. 각 드라이브를 꺼내고 들어 있던 슬롯을 적어둡니다. 자세한 내용은 [디스크 드라이브 꺼내기](storsimple-8000-disk-drive-replacement.md#remove-the-disk-drive)를 참조하세요.
-5. EBOD 엔클로저에서(이 섀시에서 오류가 발생한 경우) EBOD 컨트롤러 모듈을 꺼냅니다. 자세한 내용은 [EBOD 컨트롤러 꺼내기](storsimple-8000-ebod-controller-replacement.md#remove-an-ebod-controller)를 참조하세요.
+#### <a name="tooremove-a-chassis"></a>tooremove 섀시
+1. Hello StorSimple 장치 종료 되 고 모든 hello 전원에서 연결이 해제 되어 있는지 확인 합니다.
+2. 해당 하는 경우 모든 hello 네트워크 및 SAS 케이블을 제거 합니다.
+3. Hello 랙에서 hello 단위를 제거 하십시오.
+4. 각 hello 드라이브를 제거 하 고 제거 되는 hello 슬롯을 기록해 둡니다. 자세한 내용은 참조 [hello 디스크 드라이브를 제거](storsimple-8000-disk-drive-replacement.md#remove-the-disk-drive)합니다.
+5. Hello EBOD 인클로저 (hello 발생 한 섀시 인 경우), hello EBOD 컨트롤러 모듈을 제거 합니다. 자세한 내용은 [EBOD 컨트롤러 꺼내기](storsimple-8000-ebod-controller-replacement.md#remove-an-ebod-controller)를 참조하세요.
    
-    기본 엔클로저에서(이 섀시에서 오류가 발생한 경우) 컨트롤러를 꺼내고 들어 있던 슬롯을 적어둡니다. 자세한 내용은 [컨트롤러 꺼내기](storsimple-8000-controller-replacement.md#remove-a-controller)를 참조하세요.
+    Hello에 기본 인클로저 (hello 발생 한 섀시 인 경우) hello 컨트롤러를 제거 하 고 확인 hello 슬롯 제거 됩니다. 자세한 내용은 [컨트롤러 꺼내기](storsimple-8000-controller-replacement.md#remove-a-controller)를 참조하세요.
 
-## <a name="install-the-chassis"></a>섀시 설치
-StorSimple 장치에 섀시를 설치하려면 다음 단계를 따르세요.
+## <a name="install-hello-chassis"></a>Hello 섀시를 설치 합니다.
+Hello 단계 tooinstall hello 섀시 StorSimple 장치에서 다음을 수행 합니다.
 
-#### <a name="to-install-a-chassis"></a>섀시를 설치하려면
-1. 섀시를 랙에 탑재합니다. 자세한 내용은 [StorSimple 8100 장치 랙 탑재](storsimple-8100-hardware-installation.md#rack-mount-your-storsimple-8100-device) 또는 [StorSimple 8600 장치 랙 탑재](storsimple-8600-hardware-installation.md#rack-mount-your-storsimple-8600-device)를 참조하세요.
-2. 섀시를 랙에 탑재한 후 이전에 설치된 곳과 동일한 위치에 컨트롤러 모듈을 설치합니다.
-3. 이전에 설치된 곳과 동일한 위치 및 슬롯에 드라이브를 설치합니다.
+#### <a name="tooinstall-a-chassis"></a>tooinstall 섀시
+1. Hello 섀시 hello 랙에 탑재 합니다. 자세한 내용은 [StorSimple 8100 장치 랙 탑재](storsimple-8100-hardware-installation.md#rack-mount-your-storsimple-8100-device) 또는 [StorSimple 8600 장치 랙 탑재](storsimple-8600-hardware-installation.md#rack-mount-your-storsimple-8600-device)를 참조하세요.
+2. Hello 섀시, hello 랙에 탑재 한 후에 이전에 설치한에 배치 동일 hello hello 컨트롤러 모듈을 설치 합니다.
+3. 설치 hello는 이전에 설치한에 배치 하 고 슬롯이 동일한 hello에서 구동 합니다.
    
    > [!NOTE]
-   > SSD를 먼저 슬롯에 설치한 다음 HDD를 설치하는 것이 좋습니다.
+   > Hello Ssd hello 슬롯을 먼저 설치 하 고 다음 hello Hdd를 설치 하는 것이 좋습니다.
   
-4. 장치를 랙에 탑재하고 구성 요소를 설치한 후 장치를 해당 전원에 연결하고 장치를 켭니다. 자세한 내용은 [StorSimple 8100 장치 케이블 연결](storsimple-8100-hardware-installation.md#cable-your-storsimple-8100-device) 또는 [StorSimple 8600 장치 케이블 연결](storsimple-8600-hardware-installation.md#cable-your-storsimple-8600-device)을 참조하세요.
+4. Hello 사용 hello 랙에 장치 탑재 및 hello 구성 요소를 설치 하 고, 사용자 장치 toohello 적절 한 전원에 연결 하 고 hello 장치를 켭니다. 자세한 내용은 [StorSimple 8100 장치 케이블 연결](storsimple-8100-hardware-installation.md#cable-your-storsimple-8100-device) 또는 [StorSimple 8600 장치 케이블 연결](storsimple-8600-hardware-installation.md#cable-your-storsimple-8600-device)을 참조하세요.
 
 ## <a name="next-steps"></a>다음 단계
 [StorSimple 하드웨어 구성 요소 교체](storsimple-8000-hardware-component-replacement.md)에 대해 자세히 알아봅니다.

@@ -1,5 +1,5 @@
 ---
-title: "Azure 간 가상 컴퓨터 복제에 대한 Azure Site Recovery 네트워킹 지침 | Microsoft Docs"
+title: "사이트 복구 tooAzure Azure에서 가상 컴퓨터 복제를 위한 네트워킹 지침 aaaAzure | Microsoft Docs"
 description: "Azure Virtual Machines 복제에 대한 네트워킹 지침"
 services: site-recovery
 documentationcenter: 
@@ -14,69 +14,69 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 05/13/2017
 ms.author: sujayt
-ms.openlocfilehash: eb7b6d606d1a7455710be5e1cf0298c368fc8b1e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3a3391b8c3512932d243458fd17d2a2b39248448
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="networking-guidance-for-replicating-azure-virtual-machines"></a>Azure Virtual Machines 복제에 대한 네트워킹 지침
 
 >[!NOTE]
 > Azure Virtual Machines에 대한 Site Recovery 복제는 현재 미리 보기로 제공됩니다.
 
-이 문서에서는 지역 간에 Azure Virtual Machines를 복제 및 복구할 때의 Azure Site Recovery에 대한 네트워킹 지침을 자세히 설명합니다. Azure Site Recovery 요구 사항에 대한 자세한 내용은 [필수 구성 요소](site-recovery-prereq.md) 문서를 참조하세요.
+복제 하 고 하나의 영역 tooanother 지역에서 Azure 가상 컴퓨터를 복구 하는 경우 Azure Site Recovery에 대 한 네트워킹 지침을 hello 하는이 문서에 자세히 설명 합니다. Azure 사이트 복구 요구 사항에 대 한 자세한 참조 hello [필수 구성 요소](site-recovery-prereq.md) 문서.
 
 ## <a name="site-recovery-architecture"></a>Site Recovery 아키텍처
 
-Site Recovery는 주 지역에서 가동이 중단된 경우 복구할 수 있도록 Azure Virtual Machines에서 실행 중인 응용 프로그램을 다른 Azure 지역에 복제할 수 있는 쉽고 간단한 방법을 제공합니다. [이 시나리오와 Site Recovery 아키텍처](site-recovery-azure-to-azure-architecture.md)에 대해 자세히 알아보세요.
+사이트 복구는 쉽고 간단한 방법이 tooreplicate에서 실행 중인 Azure 가상 컴퓨터 tooanother Azure 지역 hello 기본 지역에서 중단 한 경우 복구할 수 있도록 하는 응용 프로그램을 제공 합니다. [이 시나리오와 Site Recovery 아키텍처](site-recovery-azure-to-azure-architecture.md)에 대해 자세히 알아보세요.
 
 ## <a name="your-network-infrastructure"></a>네트워크 인프라
 
-다음 다이어그램에서는 Azure Virtual Machines에서 실행 중인 응용 프로그램에 대한 일반적인 Azure 환경을 보여 줍니다.
+hello 다음 다이어그램은 Azure 가상 컴퓨터에서 실행 중인 응용 프로그램에 대 한 일반적인 Azure 환경 hello:
 
 ![고객 환경](./media/site-recovery-azure-to-azure-architecture/source-environment.png)
 
-온-프레미스 네트워크와 Azure 간의 연결에 Azure ExpressRoute 또는 VPN 연결을 사용하는 경우 환경은 다음과 유사합니다.
+Azure express 경로 또는 온-프레미스 네트워크 tooAzure에서 VPN 연결을 사용 하는 경우 hello 환경은 다음과 같습니다.
 
 ![고객 환경](./media/site-recovery-azure-to-azure-architecture/source-environment-expressroute.png)
 
-일반적으로 고객은 방화벽 및/또는 NSG(네트워크 보안 그룹)를 사용하여 네트워크를 보호합니다. 방화벽은 URL 기반 또는 IP 기반 허용 목록을 사용하여 네트워크 연결을 제어할 수 있습니다. NSG는 IP 범위를 사용하여 네트워크 연결을 제어할 수 있는 규칙을 허용합니다.
+일반적으로 고객은 방화벽 및/또는 NSG(네트워크 보안 그룹)를 사용하여 네트워크를 보호합니다. hello 방화벽 네트워크 연결을 제어 하기 위한 URL 기반 또는 IP 기반 허용 목록을 사용할 수 있습니다. Nsg IP 범위 toocontrol 네트워크 연결을 사용 하 여 규칙을 허용 합니다.
 
 >[!IMPORTANT]
-> 인증된 프록시를 사용하여 네트워크 연결을 제어하는 경우 이는 지원되지 않으며 Site Recovery 복제를 사용할 수 없습니다. 
+> 인증 된 프록시 toocontrol 네트워크 연결을 사용 하는 경우 지원 되지 않습니다 및 사이트 복구 복제를 사용할 수 없습니다. 
 
-다음 섹션에서는 Site Recovery 복제가 작동하기 위해 Azure Virtual Machines에 필요한 네트워크 아웃바운드 연결 변경 사항을 설명합니다.
+hello 다음 섹션에서는 설명 하는 사이트 복구 복제 toowork에 대 한 Azure 가상 컴퓨터에서 필요한 hello 네트워크 아웃 바운드 연결 변경 합니다.
 
 ## <a name="outbound-connectivity-for-azure-site-recovery-urls"></a>Azure Site Recovery URL에 대한 아웃바운드 연결
 
-URL 기반 방화벽 프록시를 사용하여 아웃바운드 연결을 제어하는 경우 다음과 같은 필수 Azure Site Recovery 서비스 URL을 허용 목록에 포함해야 합니다.
+모든 방화벽 URL 기반 프록시 toocontrol 아웃 바운드 연결을 사용할 수 있는지 toowhitelist 다음의 필수 Azure Site Recovery 서비스 Url:
 
 
 **URL** | **목적**  
 --- | ---
-*.blob.core.windows.net | VM에서 원본 지역의 캐시 저장소 계정에 데이터를 쓸 수 있도록 하는 데 필요합니다.
-login.microsoftonline.com | Site Recovery 서비스 URL에 대한 권한 부여 및 인증에 필요합니다.
-*.hypervrecoverymanager.windowsazure.com | VM에서 Site Recovery 서비스 통신이 발생할 수 있도록 하는 데 필요합니다.
-*.servicebus.windows.net | VM에서 Site Recovery 모니터링 및 진단 데이터를 쓸 수 있도록 하는 데 필요합니다.
+*.blob.core.windows.net | 데이터 수 쓸 수 있도록 toohello 캐시 저장소 계정 hello 소스 영역에 hello VM에서에서 필요 합니다.
+login.microsoftonline.com | 권한 부여 및 인증 toohello Site Recovery 서비스 Url에 필요합니다.
+*.hypervrecoverymanager.windowsazure.com | Hello Site Recovery 서비스 통신 hello VM에서에서 실행 될 수 있도록 해야 합니다.
+*.servicebus.windows.net | Hello VM에서에서 hello 사이트 복구 모니터링 및 진단 데이터를 쓸 수 있도록 해야 합니다.
 
 ## <a name="outbound-connectivity-for-azure-site-recovery-ip-ranges"></a>Azure Site Recovery IP 범위에 대한 아웃바운드 연결
 
 >[!NOTE]
-> 네트워크 보안 그룹에서 필요한 NSG 규칙을 자동으로 만들려면 [이 스크립트를 다운로드하여 사용](https://gallery.technet.microsoft.com/Azure-Recovery-script-to-0c950702)하면 됩니다.
+> tooautomatically hello 네트워크 보안 그룹에 필요한 hello NSG 규칙을 만들 수 있습니다, [다운로드 하 여이 스크립트를 사용 하 여](https://gallery.technet.microsoft.com/Azure-Recovery-script-to-0c950702)합니다.
 
 >[!IMPORTANT]
-> * 프로덕션 네트워크 보안 그룹에서 규칙을 만들기 전에 테스트 네트워크 보안 그룹에서 필요한 NSG 규칙을 만들고 문제가 없는지 확인하는 것이 좋습니다.
-> * 필요한 개수의 NSG 규칙을 만들려면 구독이 허용 목록에 포함되어 있는지 확인합니다. 구독에서 NSG 규칙 제한을 늘리려면 지원 팀에 문의하세요.
+> * 테스트 네트워크 보안 그룹에서 필요한 hello NSG 규칙을 만들고 프로덕션 네트워크 보안 그룹에서 hello 규칙을 만들기 전에 문제 없이 되었는지 확인 하는 것이 좋습니다.
+> * NSG 규칙 toocreate 필요한 hello 수 가입이 허용 목록 인지 확인 합니다. 고객 지원으로 문의 tooincrease hello NSG 규칙 제한 구독에서입니다.
 
-IP 기반 방화벽 프록시 또는 NSG 규칙을 사용하여 아웃바운드 연결을 제어하는 경우 가상 컴퓨터의 원본 및 대상 위치에 따라 다음 IP 범위를 허용 목록에 포함해야 합니다.
+모든 IP 기반 방화벽 프록시 또는 NSG 규칙 toocontrol 아웃 바운드 연결을 사용 하는 경우 hello 다음 IP 범위 필요 hello 가상 컴퓨터의 hello 원본 및 대상 위치에 따라 toobe 허용 목록.
 
-- 원본 위치에 해당하는 모든 IP 범위 ([IP 범위](https://www.microsoft.com/download/confirmation.aspx?id=41653)를 다운로드할 수 있음). 허용 목록은 VM에서 캐시 저장소 계정에 데이터를 쓸 수 있도록 하는 데 필요합니다.
+- Toohello 원본 위치에 해당 하는 모든 IP 범위입니다. (Hello를 다운로드할 수 있습니다 [IP 범위](https://www.microsoft.com/download/confirmation.aspx?id=41653).) 데이터가 VM hello에서 toohello 캐시 저장소 계정 기록 될 수 있도록 허용 목록이 필요 합니다.
 
-- Office 365 [인증 및 ID IP V4 끝점](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity)에 해당하는 모든 IP 범위
+- TooOffice 365 해당 하는 모든 IP 범위 [인증 및 id IP V4 끝점](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity)합니다.
 
     >[!NOTE]
-    > 나중에 Office 365 IP 범위에 새 IP가 추가된 경우 새 NSG 규칙을 만들어야 합니다.
+    > Hello 앞에 새 Ip tooOffice 365 IP 범위 추가 하는 경우 새 NSG 규칙 toocreate 해야 합니다.
     
 - 대상 위치에 따라 다른 Site Recovery 서비스 끝점 IP([XML 파일로 제공](https://aka.ms/site-recovery-public-ips)) 
 
@@ -107,76 +107,76 @@ IP 기반 방화벽 프록시 또는 NSG 규칙을 사용하여 아웃바운드 
    영국 남부 | 51.140.43.158</br>51.140.29.146 | 51.140.189.52
 
 ## <a name="sample-nsg-configuration"></a>샘플 NSG 구성
-이 섹션에서는 가상 컴퓨터에서 Site Recovery 복제가 작동할 수 있도록 NSG 규칙을 구성하는 단계에 대해 설명합니다. NSG 규칙을 사용하여 아웃바운드 연결을 제어하는 경우 필요한 모든 IP 범위에 대해 "HTTPS 아웃바운드 허용" 규칙을 사용합니다.
+이 섹션에서는 사이트 복구 복제 가상 컴퓨터에서 작동할 수 있도록 hello 단계 tooconfigure NSG 규칙을 설명 합니다. NSG 규칙 toocontrol 아웃 바운드 연결을 사용 하는 경우 "허용 HTTPS 아웃 바운드" 규칙을 사용 하 여 모든 필요한 hello IP 범위에 대 한 합니다.
 
 >[!Note]
-> 네트워크 보안 그룹에서 필요한 NSG 규칙을 자동으로 만들려면 [이 스크립트를 다운로드하여 사용](https://gallery.technet.microsoft.com/Azure-Recovery-script-to-0c950702)하면 됩니다.
+> tooautomatically hello 네트워크 보안 그룹에 필요한 hello NSG 규칙을 만들 수 있습니다, [다운로드 하 여이 스크립트를 사용 하 여](https://gallery.technet.microsoft.com/Azure-Recovery-script-to-0c950702)합니다.
 
-예를 들어 VM의 원본 위치가 "미국 동부"이고 복제 대상 위치가 "미국 중부"인 경우 다음 두 섹션의 단계를 따릅니다.
+예를 들어 VM의 소스 위치가 "미국 동부" 하는 경우 복제 대상 위치는 "Central US" hello 다음 두 섹션에서 hello 단계를 수행 합니다.
 
 >[!IMPORTANT]
-> * 프로덕션 네트워크 보안 그룹에서 규칙을 만들기 전에 테스트 네트워크 보안 그룹에서 필요한 NSG 규칙을 만들고 문제가 없는지 확인하는 것이 좋습니다.
-> * 필요한 개수의 NSG 규칙을 만들려면 구독이 허용 목록에 포함되어 있는지 확인합니다. 구독에서 NSG 규칙 제한을 늘리려면 지원 팀에 문의하세요. 
+> * 테스트 네트워크 보안 그룹에서 필요한 hello NSG 규칙을 만들고 프로덕션 네트워크 보안 그룹에서 hello 규칙을 만들기 전에 문제 없이 되었는지 확인 하는 것이 좋습니다.
+> * NSG 규칙 toocreate 필요한 hello 수 가입이 허용 목록 인지 확인 합니다. 고객 지원으로 문의 tooincrease hello NSG 규칙 제한 구독에서입니다. 
 
-### <a name="nsg-rules-on-the-east-us-network-security-group"></a>미국 동부 네트워크 보안 그룹에 대한 NSG 규칙
+### <a name="nsg-rules-on-hello-east-us-network-security-group"></a>미국 동부 네트워크 보안 그룹을 hello에 NSG 규칙
 
-* [미국 동부 IP 범위](https://www.microsoft.com/download/confirmation.aspx?id=41653)에 해당하는 규칙을 만듭니다. 이는 VM에서 캐시 저장소 계정에 데이터를 쓸 수 있도록 하는 데 필요합니다.
+* 너무 해당 하는 규칙을 만들[동부 미국 IP 범위](https://www.microsoft.com/download/confirmation.aspx?id=41653)합니다. 데이터가 VM hello에서 toohello 캐시 저장소 계정 기록 될 수 있도록 이것이 필요 합니다.
 
-* Office 365 [인증 및 ID IP V4 끝점](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity)에 해당하는 모든 IP 범위에 대한 규칙을 만듭니다.
+* TooOffice 365 해당 하는 모든 IP 범위에 대 한 규칙을 만들 [인증 및 id IP V4 끝점](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity)합니다.
 
-* 대상 위치에 해당하는 규칙을 만듭니다.
+* Toohello 대상 위치에 해당 하는 규칙을 만듭니다.
 
-   **위치** | **Site Recovery 서비스 IP** |  **Site Recovery 모니터링 IP**
+   **위치**: | **Site Recovery 서비스 IP** |  **Site Recovery 모니터링 IP**
     --- | --- | ---
    미국 중부 | 40.69.144.231</br>40.69.167.116 | 52.165.34.144
 
-### <a name="nsg-rules-on-the-central-us-network-security-group"></a>미국 중부 네트워크 보안 그룹에 대한 NSG 규칙
+### <a name="nsg-rules-on-hello-central-us-network-security-group"></a>Hello 중미 네트워크 보안 그룹에 NSG 규칙
 
-이러한 규칙은 장애 조치 후 대상 지역에서 원본 지역으로의 복제를 활성화하는 데 필요합니다.
+Hello 대상 지역 toohello 소스 지역 장애 조치 후에서에서 복제를 사용할 수 있도록 이러한 규칙 요소가 필요 합니다.
 
-* [미국 중부 IP 범위](https://www.microsoft.com/download/confirmation.aspx?id=41653)에 해당하는 규칙. 이는 VM에서 캐시 저장소 계정에 데이터를 쓸 수 있도록 하는 데 필요합니다.
+* 너무 해당 하는 규칙[중앙 미국 IP 범위](https://www.microsoft.com/download/confirmation.aspx?id=41653)합니다. 이 데이터가 hello VM에서에서 toohello 캐시 저장소 계정 기록 될 수 있도록 필요 합니다.
 
-* Office 365 [인증 및 ID IP V4 끝점](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity)에 해당하는 모든 IP 범위에 대한 규칙
+* TooOffice 365 해당 하는 모든 IP 범위에 대 한 규칙 [인증 및 id IP V4 끝점](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity)합니다.
 
-* 원본 위치에 해당하는 규칙
+* Toohello 원본 위치에 해당 하는 규칙:
 
-   **위치** | **Site Recovery 서비스 IP** |  **Site Recovery 모니터링 IP**
+   **위치**: | **Site Recovery 서비스 IP** |  **Site Recovery 모니터링 IP**
     --- | --- | ---
    미국 동부 | 13.82.88.226</br>40.71.38.173 | 104.45.147.24
 
 
 ## <a name="guidelines-for-existing-azure-to-on-premises-expressroutevpn-configuration"></a>기존 Azure-온-프레미스 ExpressRoute/VPN 구성에 대한 지침
 
-온-프레미스와 Azure의 원본 위치 간에 ExpressRoute 또는 VPN 연결을 사용하는 경우 이 섹션의 지침을 따릅니다.
+온-프레미스와 hello 간에 VPN 또는 express 경로도 연결이 있는 경우 Azure의 위치를 원본,이 섹션의 hello 지침을 따릅니다.
 
 ### <a name="forced-tunneling-configuration"></a>강제 터널링 구성
 
-고객의 일반적인 구성은 아웃바운드 인터넷 트래픽이 온-프레미스을 통과하도록 강제하는 기본 경로(0.0.0.0/0)로 정의되어 있습니다. 이는 권장되지 않습니다. 복제 트래픽 및 Site Recovery 서비스 통신은 Azure 경계를 벗어날 수 없습니다. 따라서 복제 트래픽이 온-프레미스를 이동하지 않도록 [이러한 IP 범위](#outbound-connectivity-for-azure-site-recovery-ip-ranges)에 대해 사용자 정의 경로(UDR)를 추가해야 합니다.
+일반적인 고객 구성은 toodefine hello 온-프레미스 위치를 통해 아웃 바운드 인터넷 트래픽을 tooflow를 강제로 수행 하는 기본 경로 (0.0.0.0/0). 이는 권장되지 않습니다. 복제 트래픽을 hello 및 사이트 복구 서비스 통신 hello Azure 경계를 유지 하지 해야 합니다. hello 솔루션은 tooadd에 대 한 사용자 정의 경로 (UDRs) [이러한 IP 범위](#outbound-connectivity-for-azure-site-recovery-ip-ranges) hello 복제 트래픽을 온-프레미스를 이동 하지 않습니다.
 
-### <a name="connectivity-between-the-target-and-on-premises-location"></a>대상 및 온-프레미스 위치 간 연결
+### <a name="connectivity-between-hello-target-and-on-premises-location"></a>Hello 대상 및 온-프레미스 위치 간 연결
 
-대상 위치와 온-프레미스 위치 간 연결의 경우 다음 지침을 따릅니다.
-- 응용 프로그램을 온-프레미스 컴퓨터에 연결해야 하는 경우 또는 VPN/ExpressRoute를 통해 온-프레미스에서 응용 프로그램에 연결하는 클라이언트가 있는 경우 대상 Azure 지역과 온-프레미스 데이터 센터 간에 하나 이상의 [사이트 간 연결](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md)이 있어야 합니다.
+Hello 대상 위치와 hello 온-프레미스 위치 간 연결에 대 한 다음이 지침을 따릅니다.
+- 응용 프로그램에 필요한 tooconnect toohello 온-프레미스 컴퓨터 또는 VPN/ExpressRoute를 통해 온-프레미스에서 toohello 응용 프로그램을 연결 하는 클라이언트가 없는 경우 갖추어야 할 적어도 [사이트 간 연결](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) 사이 대상 Azure 지역과 hello 온-프레미스 데이터 센터입니다.
 
-- 대상 Azure 지역과 온-프레미스 데이터 센터 간에 많은 트래픽이 이동할 것으로 예상되는 경우에는 대상 Azure 지역과 온-프레미스 데이터 센터 간에 다른 [ExpressRoute 연결](../expressroute/expressroute-introduction.md)을 만들어야 합니다.
+- 경우에 예상 되는 대상 Azure 지역 및 hello 온-프레미스 데이터 센터 간의 트래픽 tooflow 많이 만든 다른 [ExpressRoute 연결](../expressroute/expressroute-introduction.md) hello 대상 Azure 지역과 hello 온-프레미스 데이터 센터 사이입니다.
 
-- 장애 조치 후 가상 컴퓨터의 IP를 유지하려면 연결이 끊어진 상태에서 대상 지역의 사이트 간/ExpressRoute 연결을 유지합니다. 이렇게 하면 원본 지역의 IP 범위와 대상 지역의 IP 범위 간에 범위 충돌이 발생하지 않습니다.
+- 장애 조치 후 hello 가상 컴퓨터에 대 한 Ip tooretain 사용 하려면, 연결이 끊어진 상태에서 hello 대상 지역 사이트-에-사이트/ExpressRoute 연결을 유지 합니다. 이 없는 범위 충돌 hello 소스 영역 IP 범위 및 대상 지역 IP 범위 사이 인지 toomake입니다.
 
 ### <a name="best-practices-for-expressroute-configuration"></a>ExpressRoute 구성에 대한 모범 사례
 ExpressRoute 구성의 경우 다음 모범 사례를 따릅니다.
 
-- 원본 지역과 대상 지역 모두에 ExpressRoute 회로를 만들어야 합니다. 그런 다음 아래 간의 연결을 만들어야 합니다.
-  - 원본 가상 네트워크와 ExpressRoute 회로
-  - 대상 가상 네트워크와 ExpressRoute 회로
+- 두 hello 원본과 대상 지역에서 ExpressRoute 회로 toocreate가 필요합니다. 그런 다음 toocreate 경우 연결이 필요합니다.
+  - hello 원본 가상 네트워크 및 hello ExpressRoute 회로 합니다.
+  - hello 대상 가상 네트워크 및 hello ExpressRoute 회로 합니다.
 
-- ExpressRoute 표준의 일부로 동일한 지역에 회로를 만들 수 있습니다. 서로 다른 지역에 ExpressRoute 회로를 만들려면 증분 비용이 포함된 Azure ExpressRoute Premium이 필요합니다. ExpressRoute Premium을 이미 사용 중인 경우에는 추가 비용이 발생하지 않습니다. 자세한 내용은 [ExpressRoute 위치 문서](../expressroute/expressroute-locations.md#azure-regions-to-expressroute-locations-within-a-geopolitical-region) 및 [ExpressRoute 가격 책정](https://azure.microsoft.com/pricing/details/expressroute/)을 참조하세요.
+- ExpressRoute 표준의 일부로 hello에서 회로 만들 수 있습니다 동일한 지리적 지역입니다. 서로 다른 지리적 지역에 toocreate ExpressRoute 회로 Azure ExpressRoute 프리미엄은 필요한 경우 증분 비용이 포함입니다. ExpressRoute Premium을 이미 사용 중인 경우에는 추가 비용이 발생하지 않습니다. 자세한 내용은 참조 hello [ExpressRoute 위치 문서](../expressroute/expressroute-locations.md#azure-regions-to-expressroute-locations-within-a-geopolitical-region) 및 [ExpressRoute 가격](https://azure.microsoft.com/pricing/details/expressroute/)합니다.
 
-- 원본 지역과 대상 지역에서 서로 다른 IP 범위를 사용하는 것이 좋습니다. ExpressRoute 회로는 IP 범위가 동일한 두 Azure 가상 네트워크와 동시에 연결할 수 없습니다.
+- 원본 지역과 대상 지역에서 서로 다른 IP 범위를 사용하는 것이 좋습니다. ExpressRoute 회로 hello 못할 hello에 tooconnect hello의 두 Azure 가상 네트워크와 동일한 IP 범위 동시 합니다.
 
-- 두 지역 모두에서 IP 범위가 동일한 가상 네트워크를 만든 다음 두 지역 모두에서 ExpressRoute 회로를 만들 수 있습니다. 장애 조치 발생 시 원본 가상 네트워크에서 회로의 연결을 끊고 대상 가상 네트워크에서 회로를 연결합니다.
+- Hello 동일한 IP 두 영역으로 범위를 만들고 다음 ExpressRoute 회로 두 지역에 있는 가상 네트워크를 만들 수 있습니다. 장애 조치 이벤트가 hello 경우 hello 회로 hello 원본 가상 네트워크에서 분리 하 고 hello 회로 hello 대상 가상 네트워크에 연결 합니다.
 
  >[!IMPORTANT]
- > 주 지역이 완전히 중단된 경우에는 연결 끊기 작업이 실패할 수 있습니다. 이는 대상 가상 네트워크에서 ExpressRoute에 연결되는 것을 방지합니다.
+ > Hello 완전히 아래쪽 hello 기본 지역의 경우, 연결 끊기 작업이 실패할 수 있습니다. Hello 대상 가상 네트워크를 방지 하는 express 경로 연결 수 없도록 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 [Azure Virtual Machines를 복제](site-recovery-azure-to-azure.md)하여 워크로드 보호를 시작합니다.

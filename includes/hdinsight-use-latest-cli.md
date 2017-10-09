@@ -1,0 +1,5 @@
+[! 중요]ASM(Azure Service Manager)을 사용하여 HDInsight 리소스를 관리하는 Azure CLI 지원은 더 이상 **지원되지 않고** 2017년 1월 1일에 제거되었습니다. 이 문서 명령 사용 하 여 hello 새 Azure CLI Azure 리소스 관리자와 함께 작동 하는의 hello 단계입니다.
+
+hello 단계를 따르십시오 [설치 하 고 Azure CLI 구성](../articles/cli-install-nodejs.md) tooinstall hello 최신 버전의 hello Azure CLI 합니다. 새 toouse hello Azure 리소스 관리자와 함께 작동 하는 명령을 toobe 수정 해야 하는 스크립트를 사용할 경우, 참조 [HDInsight 클러스터에 대 한 마이그레이션 tooAzure 리소스 관리자 기반 개발 도구](../articles/hdinsight/hdinsight-hadoop-development-using-azure-resource-manager.md) 에 대 한 자세한 내용은 합니다.
+
+

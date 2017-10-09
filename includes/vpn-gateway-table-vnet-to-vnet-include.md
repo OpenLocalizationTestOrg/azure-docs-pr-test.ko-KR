@@ -4,5 +4,5 @@
 | **리소스 관리자** |[문서+](../articles/vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md) |지원되지 않음 |[문서](../articles/vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md) |[문서](../articles/vpn-gateway/vpn-gateway-howto-vnet-vnet-cli.md)
 | **다양한 배포 모델 간의 연결** |[문서*](../articles/vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md) |지원됨* |[문서](../articles/vpn-gateway/vpn-gateway-connect-different-deployment-models-powershell.md) | 지원되지 않음 |
 
-(+)는 이 배포 방법은 동일한 구독에 있는 VNet에 대해서만 사용할 수 있음을 나타냅니다.<br>
+이 배포 방법은 hello에 Vnet에 대해서만 사용할 수를 나타냅니다 (+) 동일한 구독 합니다.<br>
 (*)는 이 배포 방법에도 PowerShell이 필요함을 나타냅니다.

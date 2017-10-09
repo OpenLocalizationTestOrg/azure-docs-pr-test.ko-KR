@@ -6,7 +6,7 @@
 | Redis 캐시 복제본(고가용성) |1 |
 | 클러스터링을 사용하여 프리미엄 캐시 분할 |10 |
 
-Azure Redis Cache 제한 및 크기는 각 가격 책정 계층에 따라 다릅니다. 가격 책정 계층 및 해당 크기를 확인하려면 [Azure Redis Cache 가격 책정](https://azure.microsoft.com/pricing/details/cache/)을 참조하세요.
+Azure Redis Cache 제한 및 크기는 각 가격 책정 계층에 따라 다릅니다. 가격 책정 계층 및 해당 관련된 크기 toosee hello 참조 [Azure Redis Cache 가격](https://azure.microsoft.com/pricing/details/cache/)합니다.
 
 Azure Redis Cache 구성 제한에 대한 정보는 [기본 Redis 서버 구성](../articles/redis-cache/cache-configure.md#default-redis-server-configuration)을 참조하세요.
 

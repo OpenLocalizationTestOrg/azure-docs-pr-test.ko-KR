@@ -1,15 +1,15 @@
 ## <a name="load-balancer"></a>부하 분산 장치
-부하 분산 장치는 응용 프로그램의 크기를 조정하려는 경우에 사용됩니다. 일반적인 배포 시나리오에는 여러 VM 인스턴스에서 실행 중인 응용 프로그램이 포함됩니다. 네트워크 트래픽을 다양한 인스턴스에 분산하는데 도움이 되는 부하 분산 장치가 VM 인스턴스의 앞에 옵니다. 
+부하 분산 장치는 tooscale 응용 프로그램을 사용할 때 사용 됩니다. 일반적인 배포 시나리오에는 여러 VM 인스턴스에서 실행 중인 응용 프로그램이 포함됩니다. hello VM 인스턴스는 프런트 toodistribute 네트워크 트래픽 toohello 다양 한 인스턴스 도움이 되는 부하 분산 장치를 통해. 
 
 ![단일 VM의 NIC](./media/resource-groups-networking/figure8.png)
 
 | 속성 | 설명 |
 | --- | --- |
-| *frontendIPConfigurations* |부하 분산 장치는 하나 이상의 프런트 엔드 IP 주소(VIP(가상 IP)라고 함)를 포함할 수 있습니다. 이러한 IP 주소는 트래픽의 수신을 처리하며, 공용 IP 또는 개인 IP일 수 있습니다. |
-| *backendAddressPools* |부하가 분산될 VM NIC에 연결된 IP 주소입니다. |
-| *loadBalancingRules* |규칙 속성은 지정된 프런트 엔드 IP와 포트 조합을 백 엔드 IP 주소와 포트 조합 집합에 매핑합니다. 부하 분산 장치 리소스의 단일 정의를 사용하여 각각 가상 컴퓨터에 연결된 프런트 엔드 IP와 포트 및 백 엔드 IP와 포트 조합을 반영하는 여러 부하 분산 규칙을 정의할 수 있습니다. 이 규칙은 프런트 엔드 풀의 포트 하나를 백 엔드 풀의 여러 가상 컴퓨터에 매핑합니다. |
-| *프로브* |검색을 사용하여 VM 인스턴스의 상태를 추적할 수 있습니다. 상태 검색에 실패한 경우 해당 가상 컴퓨터 인스턴스는 자동으로 회전에서 제외됩니다. |
-| *inboundNatRules* |프런트 엔드 IP를 통해 흐르고 특정 가상 컴퓨터 인스턴스에 대한 백 엔드 IP에 분산되는 인바운드 트래픽을 정의하는 NAT 규칙입니다. NAT 규칙은 프런트 엔드 풀의 포트 하나를 백 엔드 풀의 가상 컴퓨터 하나에 매핑합니다. |
+| *frontendIPConfigurations* |부하 분산 장치는 하나 이상의 프런트 엔드 IP 주소(VIP(가상 IP)라고 함)를 포함할 수 있습니다. 이러한 IP 주소 ingress hello 트래픽에 대 한 역할을 수행 하며 공용 IP 또는 개인 IP 수 |
+| *backendAddressPools* |다음은 VM Nic toowhich 부하 분산 됩니다 hello와 연결 된 IP 주소 |
+| *loadBalancingRules* |규칙 속성에 지정 된 프런트 엔드 IP 매핑합니다 조합 포트 및 포트 조합 tooa 백 엔드 IP 주소 집합입니다. 부하 분산 장치 리소스의 단일 정의를 사용하여 각각 가상 컴퓨터에 연결된 프런트 엔드 IP와 포트 및 백 엔드 IP와 포트 조합을 반영하는 여러 부하 분산 규칙을 정의할 수 있습니다. hello 규칙은 하나의 포트 hello 백 엔드 풀의 hello 프런트 엔드 풀 toomany 가상 컴퓨터에서 |
+| *프로브* |프로브를 사용 하면 tookeep VM 인스턴스의 hello 상태를 추적 합니다. 상태 검색이 실패 하면 가상 컴퓨터 인스턴스에 hello 수행 될 순환 순서에서 자동으로 |
+| *inboundNatRules* |Hello를 정의 하는 NAT 규칙 hello 프런트 엔드 IP를 통해 흐르는 트래픽 인바운드 및 toohello 백 엔드 IP tooa 특정 가상 컴퓨터 인스턴스를 배포 합니다. NAT 규칙은 하나의 포트 hello 백 엔드 풀의 hello 프런트 엔드 풀 tooone 가상 컴퓨터에 |
 
 Json 형식의 부하 분산 장치 템플릿 예:
 
@@ -33,7 +33,7 @@ Json 형식의 부하 분산 장치 템플릿 예:
             "Southeast Asia"
           ],
           "metadata": {
-            "description": "Location to deploy"
+            "description": "Location toodeploy"
           }
         },
         "addressPrefix": {

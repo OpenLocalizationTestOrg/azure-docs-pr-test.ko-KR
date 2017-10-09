@@ -1,28 +1,28 @@
-VNet 간 FAQ는 VPN Gateway 연결에 적용됩니다. VNet 피어링을 찾으려면 [가상 네트워크 피어링](../articles/virtual-network/virtual-network-peering-overview.md)을 참조하세요.
+VNet 대 VNet FAQ hello tooVPN 게이트웨이 연결을 적용합니다. VNet 피어링을 찾으려면 [가상 네트워크 피어링](../articles/virtual-network/virtual-network-peering-overview.md)을 참조하세요.
 
 ### <a name="does-azure-charge-for-traffic-between-vnets"></a>Azure는 VNet 간 트래픽에 요금을 청구하나요?
 
-VPN 게이트웨이 연결을 사용하는 경우 동일한 지역 내의 VNet 간 트래픽은 양방향 모두에 대해 무료입니다. 지역 전체 VNet 간 송신 트래픽은 원본 지역을 기반으로 아웃바운드 VNet 간 데이터 전송 요금으로 청구됩니다. 자세한 내용은 [VPN Gateway 가격 책정 페이지](https://azure.microsoft.com/pricing/details/vpn-gateway/)를 참조하세요. VPN Gateway 대신 VNet 피어링을 사용하여 VNet을 연결하는 경우 [Virtual Network 가격 책정 페이지](https://azure.microsoft.com/pricing/details/virtual-network/)를 참조하세요.
+Hello 내에서 VNet 대 VNet 트래픽이 동일 지역은 VPN 게이트웨이 연결을 사용 하는 경우 양방향에 대 한 무료입니다. 지역 VNet 대 VNet 송신 간 트래픽 hello 소스 지역을 기반으로 하는 hello 간 VNet 아웃 바운드 데이터 전송 속도 대금이 청구 됩니다. Toohello 참조 [VPN 게이트웨이 가격 책정 페이지](https://azure.microsoft.com/pricing/details/vpn-gateway/) 대 한 자세한 내용은 합니다. VNet 피어 링을 보다는 VPN 게이트웨이 사용 하 여 Vnet을 연결 하는 경우 참조 hello [가격 책정 페이지 가상 네트워크](https://azure.microsoft.com/pricing/details/virtual-network/)합니다.
 
-### <a name="does-vnet-to-vnet-traffic-travel-across-the-internet"></a>VNet 간 트래픽은 인터넷을 거쳐서 이동하나요?
+### <a name="does-vnet-to-vnet-traffic-travel-across-hello-internet"></a>VNet 대 VNet 트래픽이 hello 인터넷 거쳐야가?
 
-아니요. VNet 간 트래픽은 인터넷이 아닌 Microsoft Azure 백본을 거쳐서 이동합니다.
+아니요. VNet 대 VNet 트래픽이 hello backbone Microsoft Azure hello 인터넷 하지을 통과 합니다.
 
 ### <a name="is-vnet-to-vnet-traffic-secure"></a>VNet 간 트래픽은 안전한가요?
 
 예, IPsec/IKE 암호화로 보호됩니다.
 
-### <a name="do-i-need-a-vpn-device-to-connect-vnets-together"></a>VNet을 함께 연결하려면 VPN 장치가 필요한가요?
+### <a name="do-i-need-a-vpn-device-tooconnect-vnets-together"></a>VPN 장치 tooconnect Vnet을 함께 필요 수행 합니까?
 
 아니요. 크로스-프레미스 연결이 필요한 경우가 아니면 여러 Azure 가상 네트워크를 함께 연결할 때 VPN 장치는 필요하지 않습니다.
 
-### <a name="do-my-vnets-need-to-be-in-the-same-region"></a>VNet이 동일한 지역에 있어야 하나요?
+### <a name="do-my-vnets-need-toobe-in-hello-same-region"></a>Vnet 내 hello에 toobe 필요가 동일한 지역?
 
-아니요. 가상 네트워크는 같은 Azure 지역(위치)에 있을 수도 있고 다른 Azure 지역(위치)에 있을 수도 있습니다.
+아니요. hello에 hello 가상 네트워크 수 같거나 다른 Azure 지역 (위치).
 
-### <a name="if-the-vnets-are-not-in-the-same-subscription-do-the-subscriptions-need-to-be-associated-with-the-same-ad-tenant"></a>VNet이 동일한 구독에 없으면 구독이 동일한 AD 테넌트와 연결되어야 하나요?
+### <a name="if-hello-vnets-are-not-in-hello-same-subscription-do-hello-subscriptions-need-toobe-associated-with-hello-same-ad-tenant"></a>Hello Vnet에는 없는 경우 hello 동일한 구독을 hello 구독 필요가 hello 동일한 AD 테 넌 트와 연결 된 toobe?
 
-번호
+아니요.
 
 ### <a name="can-i-use-vnet-to-vnet-along-with-multi-site-connections"></a>VNet간 연결을 멀티 사이트 연결과 함께 사용할 수 있나요?
 
@@ -32,7 +32,7 @@ VPN 게이트웨이 연결을 사용하는 경우 동일한 지역 내의 VNet �
 
 [게이트웨이 요구 사항](../articles/vpn-gateway/vpn-gateway-about-vpn-gateway-settings.md#requirements) 테이블을 참조하세요.
 
-### <a name="can-i-use-vnet-to-vnet-to-connect-vms-or-cloud-services-outside-of-a-vnet"></a>VNet 간 연결을 사용하여 VNet 외부의 VM 또는 클라우드 서비스를 연결할 수 있나요?
+### <a name="can-i-use-vnet-to-vnet-tooconnect-vms-or-cloud-services-outside-of-a-vnet"></a>VNet 대 VNet tooconnect Vm을 사용 하거나 클라우드 서비스는 VNet 외부에서 수 있습니까?
 
 아니요. VNet 간 연결은 가상 네트워크 연결을 지원합니다. 가상 네트워크에 포함되어 있지 않은 가상 컴퓨터 또는 클라우드 서비스 연결은 지원되지 않습니다.
 
@@ -44,13 +44,13 @@ VPN 게이트웨이 연결을 사용하는 경우 동일한 지역 내의 VNet �
 
 아니요. VNet 간 연결 및 멀티 사이트 연결에는 RouteBased(이전 명칭: 동적 라우팅) VPN 유형의 Azure VPN 게이트웨이가 필요합니다.
 
-### <a name="can-i-connect-a-vnet-with-a-routebased-vpn-type-to-another-vnet-with-a-policybased-vpn-type"></a>PolicyBased VPN 형식을 가진 VNet을 다른 RouteBased VPN 형식을 가진 VNet과 연결할 수 있습니까?
+### <a name="can-i-connect-a-vnet-with-a-routebased-vpn-type-tooanother-vnet-with-a-policybased-vpn-type"></a>연결할 수 있습니까 VNet RouteBased VPN 유형을 tooanother VNet으로 PolicyBased VPN 형식과?
 
 아니요, 두 가상 네트워크는 모두 경로 기반(이전 명칭: 동적 라우팅) VPN을 사용해야 합니다.
 
 ### <a name="do-vpn-tunnels-share-bandwidth"></a>VPN 터널은 대역폭을 공유하나요?
 
-예. 가상 네트워크의 모든 VPN 터널은 Azure VPN 게이트웨이의 사용 가능한 대역폭 및 Azure의 동일 VPN 게이트웨이 작동 시간 SLA를 공유합니다.
+예. Hello 가상 네트워크의 모든 VPN 터널 hello hello Azure VPN 게이트웨이 사용 가능한 대역폭을 공유 하 고 Azure에서 동일한 VPN 게이트웨이 작동 시간 SLA hello 합니다.
 
 ### <a name="are-redundant-tunnels-supported"></a>중복 터널이 지원되나요?
 

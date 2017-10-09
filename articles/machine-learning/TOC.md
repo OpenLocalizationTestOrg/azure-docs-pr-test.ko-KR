@@ -17,7 +17,7 @@
 ### [Azure ML 사용](http://aka.ms/datascienceprocess)
 
 ## Machine Learning 스튜디오
-### [스튜디오는 무엇인가요?](machine-learning-what-is-ml-studio.md)
+### [Hello Studio 이란?](machine-learning-what-is-ml-studio.md)
 ### [스튜디오 기능](machine-learning-studio-overview-diagram.md)
 ### [인포 그래픽: ML 기본 사항](machine-learning-basics-infographic-with-algorithm-examples.md)
 
@@ -40,7 +40,7 @@
 ## 초급자를 위한 데이터 과학
 ### [1: 다섯 질문](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md)
 ### [2: 데이터가 준비되었습니까?](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md)
-### [3: 적절한 질문을 합니다](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)
+### [3: hello 오른쪽 질문](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)
 ### [4: 답변을 예측합니다](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md)
 ### [5: 다른 사람의 작업을 복사합니다](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md)
 
@@ -54,8 +54,8 @@
 ### [Hadoop 사용자 지정](machine-learning-data-science-customize-hadoop-cluster.md)
 ### 가상 컴퓨터 설정
 #### [DS VM 개요](machine-learning-data-science-virtual-machine-overview.md)
-#### [DS VM 사용 방법](machine-learning-data-science-vm-do-ten-things.md)
-#### [DS VM 프로비전](machine-learning-data-science-provision-vm.md)
+#### [Toouse DS VM hello 하는 방법](machine-learning-data-science-vm-do-ten-things.md)
+#### [Hello DS VM을 프로 비전](machine-learning-data-science-provision-vm.md)
 #### [Azure VM 설정](machine-learning-data-science-setup-virtual-machine.md)
 #### [SQL VM 설정](machine-learning-data-science-setup-sql-server-virtual-machine.md)
 #### [Linux VM 프로비전](machine-learning-data-science-linux-dsvm-intro.md)
@@ -79,8 +79,8 @@
 #### [AzCopy 사용](machine-learning-data-science-move-data-to-azure-blob-using-azcopy.md)
 #### [Python 사용](machine-learning-data-science-move-data-to-azure-blob-using-python.md)
 #### [SSIS 사용](machine-learning-data-science-move-data-to-azure-blob-using-ssis.md)
-#### [VM으로 이동](machine-learning-data-science-move-sql-server-virtual-machine.md)
-#### [SQL 데이터베이스로 이동](machine-learning-data-science-move-sql-azure.md)
+#### [Tooa VM 이동](machine-learning-data-science-move-sql-server-virtual-machine.md)
+#### [TooSQL 데이터베이스 이동](machine-learning-data-science-move-sql-azure.md)
 #### [Hive 테이블로 로드](machine-learning-data-science-move-hive-tables.md)
 #### [온-프레미스 SQL에서 로드](machine-learning-data-science-move-sql-azure-adf.md)
 #### [SQL 파티션 테이블 로드](machine-learning-data-science-parallel-load-sql-partitioned-tables.md)
@@ -119,7 +119,7 @@
 ### 모델을 만들고 학습 수행
 #### [실험 수명 주기 관리](machine-learning-version-control.md)
 #### [반복 관리](machine-learning-manage-experiment-iterations.md)
-#### [PowerShell을 사용하여 모델 만들기](machine-learning-create-models-and-endpoints-with-powershell.md)
+#### [PowerShell toocreate 모델을 사용 하 여](machine-learning-create-models-and-endpoints-with-powershell.md)
 #### 알고리즘 선택
 ##### [알고리즘 선택](machine-learning-algorithm-choice.md)
 ##### [알고리즘 치트 시트](machine-learning-algorithm-cheat-sheet.md)

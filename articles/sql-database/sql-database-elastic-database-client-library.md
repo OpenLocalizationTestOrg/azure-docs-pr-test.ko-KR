@@ -1,6 +1,6 @@
 ---
-title: "확장성 있는 클라우드 데이터베이스 빌드 | Microsoft Docs"
-description: "탄력적 데이터베이스 클라이언트 라이브러리와 함께 확장성 있는 .NET 데이터베이스 앱 빌드"
+title: "aaaBuilding 확장 가능한 클라우드 데이터베이스 | Microsoft Docs"
+description: "Hello 탄력적 데이터베이스 클라이언트 라이브러리를 사용 하 여 확장 가능한.NET 데이터베이스 앱 빌드"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -15,22 +15,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/06/2016
 ms.author: ddove
-ms.openlocfilehash: 0128b333f04847ab646dcb0759fcef5f7e86ffd9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ca34eff2078c0700dee1bc587f264bbfca979eb6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="building-scalable-cloud-databases"></a>확장성 있는 클라우드 데이터베이스 빌드
-Azure SQL 데이터베이스의 확장성 있는 도구 및 기능을 사용하여 데이터베이스 규모 확장을 쉽게 달성할 수 있습니다. 특히, **탄력적 데이터베이스 클라이언트 라이브러리** 를 사용하여 규모 확장된 데이터베이스를 만들고 관리할 수 있습니다. 이 기능을 통해 수백 또는 수천 개의 Azure SQL 데이터베이스를 사용하여 분할된 응용 프로그램을 쉽게 개발할 수 있습니다. [탄력적 작업](sql-database-elastic-jobs-powershell.md) 을 사용할 수 있습니다.
+Azure SQL 데이터베이스의 확장성 있는 도구 및 기능을 사용하여 데이터베이스 규모 확장을 쉽게 달성할 수 있습니다. 특히 hello를 사용할 수 있습니다 **탄력적 데이터베이스 클라이언트 라이브러리** toocreate 및 데이터베이스 확장을 관리 합니다. 이 기능을 통해 수백 또는 수천 개의 Azure SQL 데이터베이스를 사용하여 분할된 응용 프로그램을 쉽게 개발할 수 있습니다. [탄력적 작업](sql-database-elastic-jobs-powershell.md) 이러한 데이터베이스의 관리를 사용 하는 toohelp 용이 될 수 있습니다.
 
-라이브러리를 설치하려면 [Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)로 이동합니다. 
+tooinstall hello 라이브러리 너무 이동[Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)합니다. 
 
 ## <a name="documentation"></a>설명서
 1. [탄력적 데이터베이스 도구 시작하기](sql-database-elastic-scale-get-started.md)
 2. [탄력적 데이터베이스 기능](sql-database-elastic-scale-introduction.md)
 3. [분할된 데이터베이스 맵 관리](sql-database-elastic-scale-shard-map-management.md)
-4. [확장하기 위해 기존 데이터베이스 마이그레이션](sql-database-elastic-convert-to-use-elastic-tools.md)
+4. [기존 데이터베이스 tooscale 아웃 마이그레이션](sql-database-elastic-convert-to-use-elastic-tools.md)
 5. [데이터 종속 라우팅](sql-database-elastic-scale-data-dependent-routing.md)
 6. [다중 분할된 쿼리](sql-database-elastic-scale-multishard-querying.md)
 7. [탄력적 데이터베이스 도구를 사용하여 분할된 데이터베이스 추가하기](sql-database-elastic-scale-add-a-shard.md)
@@ -45,27 +45,27 @@ Azure SQL 데이터베이스의 확장성 있는 도구 및 기능을 사용하�
 16. [탄력적 데이터베이스 도구 FAQ](sql-database-elastic-scale-faq.md)
 
 ## <a name="client-capabilities"></a>클라이언트 기능
-*분할* 을 사용한 응용 프로그램 규모 확장은 개발자뿐 아니라 관리자에게도 과제를 제공합니다. 클라이언트 라이브러리는 개발자와 관리자가 규모 확장된 데이터베이스를 관리할 수 있는 도구를 제공하여 관리 작업을 간소화합니다. 일반적인 예로 "분할된 데이터베이스"라는 관리할 수많은 데이터베이스가 있습니다. 고객은 동일한 데이터베이스에 함께 배치되며 고객당 하나의 데이터베이스가 있습니다(단일 테넌트 체계). 클라이언트 라이브러리에는 다음과 같은 기능이 포함됩니다.
+스케일 아웃 응용 프로그램을 사용 하 여 *분할* hello 개발자 뿐만 아니라 관리자에 게 모두에 대 한 문제를 표시 합니다. hello 클라이언트 라이브러리 개발자가 둘 다를 수 있는 도구를 제공 하 여 hello 관리 작업을 간소화 하 고 관리자가 데이터베이스 확장을 관리 합니다. 일반적인 예로 "분할 된 데이터베이스," toomanage 라는 여러 데이터베이스를 있습니다. 고객에 함께 배치 hello 동일한 데이터베이스 이며 고객 (단일 테 넌 트 구성표) 당 하나의 데이터베이스만 합니다. hello 클라이언트 라이브러리는 이러한 기능이 포함 됩니다.
 
-- **분할된 데이터베이스 맵 관리**: "분할된 데이터베이스 맵 관리자"라는 특수 데이터베이스가 만들어집니다. 분할된 데이터베이스 맵 관리는 분할된 데이터베이스에 대한 메타데이터를 관리하는 응용 프로그램의 기능입니다. 개발자는 이 기능을 사용하여 데이터베이스를 분할된 데이터베이스처럼 등록하고, 개별 분할 키 또는 키 값 범위의 데이터베이스들 매핑을 설명하고, 숫자와 데이터베이스 조합이 용량 변경 내용을 반영하여 수정될 때 이 메타데이터를 유지 관리합니다. 탄력적 데이터베이스 클라이언트 라이브러리가 없으면 분할을 구현하는 경우 관리 코드를 작성하는데 많은 시간을 투자해야 합니다. 자세한 내용은 [분할된 데이터베이스 맵 관리](sql-database-elastic-scale-shard-map-management.md)를 참조하세요.
+- **분할 맵 관리**: "shard map manager" hello 라는 특수 데이터베이스가 만들어집니다. 분할 맵 관리는 해당 분할 영역에 대 한 응용 프로그램 toomanage 메타 데이터에 대 한 hello 기능입니다. 개발자가이 기능 tooregister 데이터베이스를 사용 하 여 분할 된 데이터베이스로, 개별 분할 키 또는 키 범위 toothose 데이터베이스의 매핑을 설명 하 고 수 hello 숫자로이 메타 데이터를 유지 관리 하 고 데이터베이스의 컴퍼지션 발전 tooreflect 용량 변경 합니다. Hello 탄력적 데이터베이스 클라이언트 라이브러리 없이 toospend 많은 시간을 분할을 구현 하는 경우 hello 관리 코드를 작성 해야 합니다. 자세한 내용은 [분할된 데이터베이스 맵 관리](sql-database-elastic-scale-shard-map-management.md)를 참조하세요.
 
-- **데이터 종속 라우팅**: 응용 프로그램에 들어오는 요청이 있다고 가정하겠습니다. 요청의 분할 키 값에 따라 응용 프로그램은 키 값을 기준으로 올바른 데이터베이스를 결정해야 합니다. 그런 다음 요청을 처리하는 데이터베이스에 대한 연결을 엽니다. 데이터 종속 라우팅은 응용 프로그램의 분할된 데이터베이스 맵에 대한 간편한 단일 호출을 사용하여 연결을 열 수 있는 기능을 제공합니다. 데이터 종속 라우팅은 지금은 탄력적 데이터베이스 클라이언트 라이브러리의 기능에서 담당하는 인프라 코드의 다른 영역이었습니다. 자세한 내용은 [데이터 종속 라우팅](sql-database-elastic-scale-data-dependent-routing.md)을 참조하세요.
-- **MSQ(다중 분할된 데이터베이스 쿼리)**: 분할된 다중 데이터베이스 쿼리 요청은 한 요청이 여러(또는 모든) 분할된 데이터베이스와 관련된 경우 작동합니다. 다중 분할된 데이터베이스 쿼리는 모든 분할된 데이터베이스 또는 분할된 데이터베이스 집합에서 동일한 T-SQL 코드를 실행합니다. 참여하는 분할된 데이터베이스의 결과는 UNION ALL 의미 체계를 사용하는 전반적인 결과 집합으로 병합됩니다. 이 기능은 클라이언트 라이브러리를 통해 표시되며 연결 관리, 스레드 관리, 오류 처리, 중간 결과 처리 등의 여러 작업을 처리합니다. MSQ는 수백 개까지 분할된 데이터베이스를 쿼리할 수 있습니다. 자세한 내용은 [다중 분할된 데이터베이스 쿼리](sql-database-elastic-scale-multishard-querying.md)를 참조하세요.
+- **데이터 종속 라우팅**: hello 응용 프로그램으로 들어오는 요청을 가정해 보세요. Hello 요청의 hello 분할 키 값에 따라, hello 응용 프로그램 데이터베이스 hello 키 값에 따라 올바른 toodetermine hello를 필요 합니다. 그런 다음 연결 toohello 데이터베이스 tooprocess hello 요청을 엽니다. 데이터 종속 라우팅 hello 응용 프로그램의 hello shard map으로 쉽게 단일 호출으로 tooopen 연결 hello 기능을 제공 합니다. 데이터 종속 라우팅 hello 탄력적 데이터베이스 클라이언트 라이브러리의 기능으로 이제 담당 하는 인프라 코드의 다른 영역 했습니다. 자세한 내용은 [데이터 종속 라우팅](sql-database-elastic-scale-data-dependent-routing.md)을 참조하세요.
+- **MSQ(다중 분할된 데이터베이스 쿼리)**: 분할된 다중 데이터베이스 쿼리 요청은 한 요청이 여러(또는 모든) 분할된 데이터베이스와 관련된 경우 작동합니다. 다중 분할 된 데이터베이스 쿼리 실행 hello 모든 분할 영역 또는 분할 된 데이터베이스의 집합에 대해 동일한 T-SQL 코드입니다. 분할 된 데이터베이스에 참여 하는 hello에서 hello 결과 UNION ALL 의미 체계를 사용 하 여 설정 하는 전체 결과에 병합 됩니다. hello 기능이 hello 클라이언트 라이브러리를 통해 노출 된 처리 같은 여러 가지 작업: 연결 관리, 스레드 관리, 오류 처리 및 중간 결과 처리 합니다. MSQ는 toohundreds 분할 된 데이터베이스를 쿼리할 수 있습니다. 자세한 내용은 [다중 분할된 데이터베이스 쿼리](sql-database-elastic-scale-multishard-querying.md)를 참조하세요.
 
-일반적으로, 고객의 탄력적 데이터베이스 도구 사용은 고유한 의미 체계를 가진 분할된 데이터베이스 간 작업과 반대로 분할된 데이터베이스 로컬 작업을 제출할 때 전체 T-SQL 기능을 가져올 수 있습니다.
+일반적으로 자신의 의미 체계가 있는 것과 반대로 toocross 분할 작업으로 분할-로컬 작업을 전송할 때 탄력적 데이터베이스 도구를 사용 하는 고객 tooget 전체 T-SQL 기능을 예상할 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
-클라이언트 함수를 보여 주는 [샘플 앱](sql-database-elastic-scale-get-started.md) 을 시도하세요. 
+Hello 시도 [샘플 응용 프로그램](sql-database-elastic-scale-get-started.md) hello 클라이언트 기능을 보여 주는 합니다. 
 
-라이브러리를 설치하려면 [탄력적 데이터베이스 클라이언트 라이브러리](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)로 이동하세요.
+tooinstall hello 라이브러리 너무 이동[탄력적 데이터베이스 클라이언트 라이브러리](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)합니다.
 
-분할-병합 도구 사용에 대한 지침은 [분할-병합 도구 개요](sql-database-elastic-scale-overview-split-and-merge.md)를 참조하세요.
+에 대 한 hello 분할 / 병합 도구를 사용 하 여 참조 hello [분할 / 병합 도구 개요](sql-database-elastic-scale-overview-split-and-merge.md)합니다.
 
 [탄력적 데이터베이스 클라이언트 라이브러리는 이제 소스가 공개되었습니다!](https://azure.microsoft.com/blog/elastic-database-client-library-is-now-open-sourced/)
 
 [탄력적 쿼리](sql-database-elastic-query-overview.md)를 사용합니다.
 
-라이브러리는 [GitHub](https://github.com/Azure/elastic-db-tools)에서 공개 소스 소프트웨어로 사용할 수 있습니다. 
+hello 라이브러리를 사용할 수에 대 한 오픈 소스 소프트웨어로 [GitHub](https://github.com/Azure/elastic-db-tools)합니다. 
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

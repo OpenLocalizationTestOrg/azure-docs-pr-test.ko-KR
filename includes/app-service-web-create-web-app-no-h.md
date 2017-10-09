@@ -1,14 +1,14 @@
-[az webapp create](/cli/azure/webapp#create) 명령을 사용하여 `myAppServicePlan` App Service 계획에 [웹앱](../articles/app-service-web/app-service-web-overview.md)을 만듭니다. 
+만들기는 [웹 앱](../articles/app-service-web/app-service-web-overview.md) hello에 `myAppServicePlan` hello로 앱 서비스 계획 [az webapp 만들](/cli/azure/webapp#create) 명령입니다. 
 
-웹앱은 코드에 대한 호스팅 공간을 제공하고, 배포된 앱을 확인하도록 URL을 제공합니다.
+hello 웹 응용 프로그램 코드에 대 한 호스팅 공간을 제공 하 고 URL tooview hello 배포 응용 프로그램을 제공 합니다.
 
-다음 명령에서 *\<app_name>*을 고유한 이름으로 바꿉니다(유효한 문자는 `a-z`, `0-9` 및 `-`). `<app_name>`이 고유하지 않으면 "지정된 이름이 <app_name>인 웹 사이트가 이미 있습니다."라는 오류 메시지가 표시됩니다. 웹앱의 기본 URL은 `https://<app_name>.azurewebsites.net`입니다. 
+Hello에서 다음 명령을, 대체  *\<app_name >* 고유 이름으로 (유효한 문자는 `a-z`, `0-9`, 및 `-`). 경우 `<app_name>` 가 고유 하지 않은 오류 메시지가 표시 hello "< app_name > 지정 된 이름의 웹 사이트 이미 있습니다." hello 웹 앱의 URL은 기본 hello `https://<app_name>.azurewebsites.net`합니다. 
 
 ```azurecli-interactive
 az webapp create --name <app_name> --resource-group myResourceGroup --plan myAppServicePlan
 ```
 
-웹앱을 만들었으면 Azure CLI는 다음 예와 비슷한 정보를 표시합니다.
+Hello 웹 응용 프로그램을 만들면 Azure CLI hello 정보 비슷한 toohello를 다음 예제를 보여 줍니다.
 
 ```json
 {
@@ -38,7 +38,7 @@ az webapp create --name <app_name> --resource-group myResourceGroup --plan myApp
 }
 ```
 
-사이트로 이동하여 새로 만든 웹앱을 봅니다.
+Toohello 사이트 toosee 새로 만든된 웹 응용 프로그램을 찾습니다.
 
 ```bash
 http://<app_name>.azurewebsites.net

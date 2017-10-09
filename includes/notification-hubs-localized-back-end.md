@@ -2,7 +2,7 @@
 
 
 
-템플릿 알림을 보낼 때 속성 집합만 제공하면 되지만 여기서는 최신 뉴스의 지역화된 버전을 포함하는 속성 집합을 보냅니다. 예:
+속성 집합이 tooprovide 하기만 하면 템플릿 알림을 보낼 때 경우에 메일이 hello 집합 예를 들어 hello hello 현재 뉴스의 지역화 된 버전을 포함 한 속성
 
     {
         "News_English": "World News in English!",
@@ -11,22 +11,22 @@
     }
 
 
-이 섹션에서는 콘솔 앱을 사용하여 알림을 보내는 방법을 보여 줍니다.
+이 섹션에서는 어떻게 콘솔 응용 프로그램을 사용 하 여 toosend 알림
 
-지원되는 모든 장치에 백엔드가 브로드캐스트할 수 있으므로 포함된 코드는 Windows 스토어와 iOS 장치 둘 다에 브로드캐스트합니다.
+hello는 hello 백 엔드 지원 hello 장치의 tooany 브로드캐스트할 수 있으므로 코드 브로드캐스트 tooboth Windows 스토어 및 iOS 장치를 포함 합니다.
 
-### <a name="to-send-notifications-using-a-c-console-app"></a>C# 콘솔 응용 프로그램을 사용하여 알림을 보내려면
-이전에 다음 코드를 사용하여 만든 콘솔 앱에서 `SendTemplateNotificationAsync` 메서드를 수정합니다. 이 경우 다른 로캘 및 플랫폼에 여러 알림을 보낼 필요가 없습니다.
+### <a name="toosend-notifications-using-a-c-console-app"></a>C# 콘솔 응용 프로그램을 사용 하 여 toosend 알림
+Hello 수정 `SendTemplateNotificationAsync` 코드 다음 hello를 사용 하 여 이전에 만든 hello 콘솔 응용 프로그램에서 메서드. 어떻게이 경우에 포함 되어 있음을 알 필요가 toosend 없습니다 다른 로캘 및 플랫폼에 대해 여러 알림을 합니다.
 
         private static async void SendTemplateNotificationAsync()
         {
-            // Define the notification hub.
+            // Define hello notification hub.
             NotificationHubClient hub = 
                 NotificationHubClient.CreateClientFromConnectionString(
                     "<connection string with full access>", "<hub name>");
 
-            // Sending the notification as a template notification. All template registrations that contain 
-            // "messageParam" or "News_<local selected>" and the proper tags will receive the notifications. 
+            // Sending hello notification as a template notification. All template registrations that contain 
+            // "messageParam" or "News_<local selected>" and hello proper tags will receive hello notifications. 
             // This includes APNS, GCM, WNS, and MPNS template registrations.
             Dictionary<string, string> templateParams = new Dictionary<string, string>();
 
@@ -52,10 +52,10 @@
         }
 
 
-이 간단한 호출은 알림 허브에서 네이티브 페이로드를 생성하여 특정 태그에 가입된 모든 장치에 전달할 때 플랫폼과 상관없이 올바르게 지역화된 뉴스를 **모든** 장치에 전달합니다.
+이 간단한 호출은 hello 지역화 된 부분의 뉴스를 너무 실현 될 것에 유의**모든** hello 플랫폼에 관계 없이 장치에 알림 허브를 작성 하 고 배달 hello 올바른 네이티브 페이로드 tooall hello 장치 등록 tooa 특정 태그입니다.
 
-### <a name="sending-the-notification-with-mobile-services"></a>모바일 서비스로 알림 보내기
-모바일 서비스 스케줄러에서 다음 스크립트를 사용할 수 있습니다.
+### <a name="sending-hello-notification-with-mobile-services"></a>모바일 서비스는 hello 알림을 보내기
+사용자의 모바일 서비스 스케줄러 hello 다음 스크립트를 사용할 수 있습니다.
 
     var azure = require('azure');
     var notificationHubService = azure.createNotificationHubService('<hub name>', '<connection string with full access>');

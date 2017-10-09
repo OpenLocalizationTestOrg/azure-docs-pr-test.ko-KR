@@ -1,6 +1,6 @@
 ---
-title: "OMS Log Analytics에서 경고에 대한 응답 | Microsoft Docs"
-description: "Log Analytics의 경고는 OMS 저장소의 중요한 정보를 식별하며 문제를 미리 알리거나 작업을 호출하여 문제 해결을 시도합니다.  이 문서에서는 경고 규칙을 만드는 방법을 설명하고 규칙에서 실행할 수 있는 여러 가지 작업을 자세히 설명합니다."
+title: "OMS 로그 분석에서 aaaResponses tooalerts | Microsoft Docs"
+description: "로그 분석에 OMS 리포지토리에 중요 한 정보를 식별 및 수 사전 문제점을 알려 경고나 작업 tooattempt toocorrect 호출을 합니다.  이 문서에서는 어떻게 toocreate 경고 규칙 및 세부 정보 hello 다양 한 작업 취할 수를 설명 합니다."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -15,78 +15,78 @@ ms.workload: infrastructure-services
 ms.date: 02/28/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: b8731e1fe48b7d809b113eb5273e3962542b8f34
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d24bb726a96e7143985f111c0599dc4e7898b4f0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-actions-to-alert-rules-in-log-analytics"></a>Log Analytics에서 경고 규칙에 작업 추가
-[경고가 Log Analytics에서 생성](log-analytics-alerts.md)될 때 하나 이상의 작업을 수행하는 [경고 규칙 구성](log-analytics-alerts.md)의 옵션이 있습니다.  이 문서에서는 사용 가능한 다양한 작업 및 각 종류를 구성하는 세부 정보를 설명합니다.
+# <a name="add-actions-tooalert-rules-in-log-analytics"></a>로그 분석의 동작 tooalert 규칙 추가
+때는 [로그 분석에 경고가 생성 됩니다](log-analytics-alerts.md), hello 옵션이 [구성 hello 경고 규칙](log-analytics-alerts.md) tooperform 하나 이상의 동작 합니다.  이 문서에서는 각 종류를 구성 하는 방법에 사용할 수 있는 다른 작업 hello 및 세부 정보를 설명 합니다.
 
-| 작업 | 설명 |
+| 동작 | 설명 |
 |:--|:--|
-| [Email](#email-actions) | 한 명 이상의 수신자에게 경고의 세부 정보가 포함된 전자 메일을 보냅니다. |
+| [Email](#email-actions) | Hello 경고 tooone 또는 더 많은 수신자 한 hello 세부 정보가 포함 된 전자 메일을 보냅니다. |
 | [웹후크](#webhook-actions) | 단일 HTTP POST 요청을 통해 외부 프로세스를 호출합니다. |
 | [Runbook](#runbook-actions) | Azure Automation에서 Runbook을 시작합니다. |
 
 
 ## <a name="email-actions"></a>전자 메일 작업
-전자 메일 작업은 한 명 이상의 수신자에게 경고의 세부 정보가 포함된 전자 메일을 보냅니다.  메일의 제목을 지정할 수 있지만 그 내용은 Log Analytics이 구성한 표준 형식입니다.  메일은 로그 검색에서 반환된 10개까지의 레코드에 대한 세부 정보 외에 경고의 이름과 같은 요약 정보를 포함하고 있습니다.  또한 쿼리에서 전체 레코드 집합을 반환할 Log Analytics의 로그 검색에 대한 링크를 포함하고 있습니다.   메일의 보낸 사람은 *Microsoft Operations Management Suite Team &lt;noreply@oms.microsoft.com&gt;*입니다. 
+전자 메일 작업 hello 경고 tooone 또는 더 많은 수신자 한 hello 세부 정보가 포함 된 전자 메일을 보냅니다.  Hello 메일의 hello 주체를 지정할 수는 있지만 콘텐츠는 로그 분석에 의해 생성 되는 표준 형식입니다.  Hello 로그 검색에서 반환 된 tooten 레코드를의 추가 toodetails에 hello 경고의 hello 이름과 같은 요약 정보를 포함 합니다.  또한 해당 쿼리에서 hello 레코드의 전체 집합을 반환 하는 로그 분석에 링크 tooa 로그 검색을 포함 합니다.   hello 메일의 보낸 사람이 hello *Microsoft Operations Management Suite 팀 &lt; noreply@oms.microsoft.com &gt;* 합니다. 
 
-전자 메일 작업에는 다음 표의 속성이 필요합니다.
+전자 메일 작업 hello 속성 hello 표 다음에 필요 합니다.
 
 | 속성 | 설명 |
 |:--- |:--- |
-| 제목 |전자 메일의 제목입니다.  메일의 본문을 수정할 수 없습니다. |
-| 받는 사람 |모든 전자 메일 받는 사람의 주소입니다.  둘 이상의 주소를 지정하는 경우 주소를 세미콜론(;)으로 구분합니다. |
+| 제목 |Hello 전자 메일의 제목입니다.  Hello 메일의 본문 hello를 수정할 수 없습니다. |
+| 받는 사람 |모든 전자 메일 받는 사람의 주소입니다.  세미콜론 (;)를 사용 하 여 여러 개의 주소가 다음 별도 hello 주소를 지정 합니다. |
 
 
 ## <a name="webhook-actions"></a>웹후크 작업
 
-웹후크 작업을 사용하여 단일 HTTP POST 요청을 통해 외부 프로세스를 호출할 수 있습니다.  호출 중인 서비스는 웹후크를 지원하고 수신하는 페이로드를 사용하는 방법을 결정해야 합니다.  또한 요청이 API에서 이해하는 형식으로 되어 있다면 웹후크를 명시적으로 지원하지 않는 REST API를 호출할 수도 있습니다.  경고에 대한 응답으로 웹후크를 사용하는 예는 [Slack](http://slack.com)에서 메시지를 보내거나 [PagerDuty](http://pagerduty.com/)에서 인시던트를 만드는 것입니다.  Slack을 호출하는 웹후크를 사용하여 경고 규칙을 생성하는 전체 연습은 [Log Analytics 경고의 웹후크](log-analytics-alerts-webhooks.md)에서 사용할 수 있습니다.
+Webhook 작업 tooinvoke 단일 HTTP POST 요청을 통해 외부 프로세스를 허용 합니다.  호출 중인 hello 서비스 webhook을 지원 하 고 모든 페이로드 사용 방식 결정 해야 수신 합니다.  또한 webhook hello 요청은 형식 API에 대 한 이해는 hello로 특별히 지원 하지 않는 REST API를 호출할 수 있습니다.  응답 tooan 경고에는 webhook을 사용 하는 예제는 메시지를 보내도록 [Slack](http://slack.com) 에서 인시던트를 만들거나 [PagerDuty](http://pagerduty.com/)합니다.  제공 되는 전체 연습은 webhook toocall 여유 시간을 사용 하 여 경고 규칙을 만드는 [로그 분석 경고에 대 한 Webhook](log-analytics-alerts-webhooks.md)합니다.
 
-웹후크 작업에는 다음 표의 속성이 필요합니다.
+Webhook 작업 hello 속성 hello 표 다음에 필요 합니다.
 
 | 속성 | 설명 |
 |:--- |:--- |
-| Webhook URL |웹후크의 URL입니다. |
-| 사용자 지정 JSON 페이로드 |웹후크와 함께 보낼 사용자 지정 페이로드입니다.  자세한 내용은 다음을 참조하세요. |
+| Webhook URL |hello webhook의 hello URL입니다. |
+| 사용자 지정 JSON 페이로드 |사용자 지정 페이로드 toosend hello webhook 사용 합니다.  자세한 내용은 다음을 참조하세요. |
 
 
-웹후크는 URL 및 외부 서비스에 보낸 데이터인 JSON 형식의 페이로드를 포함하고 있습니다.  기본적으로 페이로드는 다음 표의 값을 포함합니다.  이 페이로드를 자신만의 사용자 지정 페이로드로 바꾸도록 선택할 수 있습니다.  그러한 경우 각 매개 변수에 대한 표의 변수를 사용하여 해당 값을 사용자 지정 페이로드에 포함할 수 있습니다.
+Webhook URL을 포함 하 고 hello 데이터가 JSON으로 서식이 지정 된 페이로드 toohello 외부 서비스를 전송 합니다.  기본적으로 hello 페이로드는 다음 표에 hello에 hello 값을 포함 합니다.  사용자 고유의 중 하나를 사용자 지정이 페이로드의 tooreplace를 선택할 수 있습니다.  이 경우 사용할 수 있습니다 hello 테이블에 있는 hello 변수에 각 매개 변수 tooinclude hello에 대 한 해당 값에 사용자 지정 페이로드.
 
 | 매개 변수 | 변수 | 설명 |
 |:--- |:--- |:--- |
-| AlertRuleName |#alertrulename |경고 규칙의 이름입니다. |
-| AlertThresholdOperator |#thresholdoperator |경고 규칙에 대한 임계값 연산자입니다.  *보다 큼* 또는 *보다 작음*. |
-| AlertThresholdValue |#thresholdvalue |경고 규칙에 대한 임계값입니다. |
-| LinkToSearchResults |#linktosearchresults |경고를 생성한 쿼리에서 레코드를 반환하는 Log Analytics 로그 검색에 대한 링크입니다. |
-| ResultCount |#searchresultcount |검색 결과의 레코드 수입니다. |
-| SearchIntervalEndtimeUtc |#searchintervalendtimeutc |UTC 형식의 쿼리에 대한 종료 시간입니다. |
-| SearchIntervalInSeconds |#searchinterval |경고 규칙에 대한 기간입니다. |
-| SearchIntervalStartTimeUtc |#searchintervalstarttimeutc |UTC 형식의 쿼리에 대한 시작 시간입니다. |
-| SearchQuery |#searchquery |경고 규칙에서 사용하는 로그 검색 쿼리입니다. |
-| SearchResults |아래 참조 |JSON 형식의 쿼리에서 반환된 레코드입니다.  처음 5,000 개의 레코드로 제한됩니다. |
+| AlertRuleName |#alertrulename |Hello 경고 규칙의 이름입니다. |
+| AlertThresholdOperator |#thresholdoperator |Hello 경고 규칙에 대 한 임계값 연산자입니다.  *보다 큼* 또는 *보다 작음*. |
+| AlertThresholdValue |#thresholdvalue |Hello 경고 규칙에 대 한 임계값입니다. |
+| LinkToSearchResults |#linktosearchresults |Hello 경고를 생성 하는 hello 쿼리에서 hello 레코드를 반환 하는 tooLog 분석 로그 검색에 연결 합니다. |
+| ResultCount |#searchresultcount |Hello 검색 결과에서 레코드 수입니다. |
+| SearchIntervalEndtimeUtc |#searchintervalendtimeutc |Hello 쿼리 UTC 형식에서에 대 한 종료 시간입니다. |
+| SearchIntervalInSeconds |#searchinterval |Hello 경고 규칙에 대 한 시간 창입니다. |
+| SearchIntervalStartTimeUtc |#searchintervalstarttimeutc |Hello 쿼리에 대 한 시간을 UTC 형식에서 시작 합니다. |
+| SearchQuery |#searchquery |로그 검색 쿼리 hello 경고 규칙으로 사용 합니다. |
+| SearchResults |아래 참조 |JSON 형식의 hello 쿼리에서 반환 된 레코드입니다.  제한 된 toohello 먼저 5, 000 레코드입니다. |
 | WorkspaceID |#workspaceid |OMS 작업 영역의 ID입니다. |
 
-예를 들어 *text*라는 단일 매개변수를 포함하는 다음과 같은 사용자 지정 페이로드를 지정할 수 있습니다.  이 웹후크가 호출하는 서비스는 이 매개 변수를 예상합니다.
+예를 들어 다음 라는 단일 매개 변수를 포함 하는 사용자 지정 페이로드 hello를 지정할 수 있습니다 *텍스트*합니다.  이 webhook 호출 hello 서비스는이 매개 변수를 예상 합니다.
 
     {
         "text":"#alertrulename fired with #searchresultcount over threshold of #thresholdvalue."
     }
 
-이 예제 페이로드는 웹후크에 보낼 때 다음과 같은 내용으로 확인될 수 있습니다.
+이 예에서는 페이로드를 hello 때 다음 같은 toosomething 전송 toohello webhook 해결 합니다.
 
     {
         "text":"My Alert Rule fired with 18 records over threshold of 10 ."
     }
 
-검색 결과를 사용자 지정 페이로드에 포함하려면 JSON 페이로드의 최상위 속성으로 다음 줄을 추가합니다.  
+검색 결과 사용자 지정 페이로드를 tooinclude hello hello json 페이로드에서 최상위 속성으로 다음 줄을 추가 합니다.  
 
     "IncludeSearchResults":true
 
-예를 들어 경고 이름과 검색 결과만 포함하는 사용자 지정 페이로드를 만들려면 다음을 사용할 수 있습니다. 
+예를 들어 방금 hello 경고 이름 및 hello 검색 결과 포함 하는 사용자 지정 페이로드 toocreate hello 다음을 사용할 수 있습니다. 
 
     {
        "alertname":"#alertrulename",
@@ -94,29 +94,29 @@ ms.lasthandoff: 07/11/2017
     }
 
 
-웹후크를 통해 경고 규칙을 생성하여 [OMS Log Analytics에서 Slack에 메시지를 보내는 경고 웹후크 작업 만들기](log-analytics-alerts-webhooks.md)에서 외부 서비스를 시작하는 전체 예제를 연습할 수 있습니다.
+외부 서비스 webhook toostart를 사용 하 여 경고 규칙을 만드는 전체 예제를 진행할 수 [toosend 메시지 tooSlack OMS 로그 분석에서에서 경고 webhook 작업을 만들](log-analytics-alerts-webhooks.md)합니다.
 
 ## <a name="runbook-actions"></a>Runbook 작업
-Runbook 작업은 Azure 자동화에서 Runbook을 시작합니다.  이 유형의 작업을 사용하려면 OMS 작업 영역에 [자동화 솔루션](log-analytics-add-solutions.md) 을 설치하고 구성해야 합니다.  자동화 솔루션에서 구성한 자동화 계정의 Runbook 중에서 선택할 수 있습니다.
+Runbook 작업은 Azure 자동화에서 Runbook을 시작합니다.  주문 toouse 이런이 종류의 동작, hello 있어야 [자동화 솔루션](log-analytics-add-solutions.md) OMS 작업 영역에 설치 및 구성 합니다.  Hello 자동화 솔루션에서에서 구성한 hello 자동화 계정에서 hello runbook에서 선택할 수 있습니다.
 
-Runbook 작업에는 다음 표의 속성이 필요합니다.
+Runbook 작업에는 다음 표에 hello에 hello 속성 필요 합니다.
 
 | 속성 | 설명 |
 |:--- |:---|
-| Runbook | 경고가 생성될 때 시작하려는 Runbook입니다. |
-| 실행 | 클라우드에서 Runbook을 실행하려면 **Azure**를 지정합니다.  [Hybrid Runbook Worker](../automation/automation-hybrid-runbook-worker.md )가 설치된 에이전트에서 Runbook을 실행할 **Hybrid Worker**를 지정합니다.  |
+| Runbook | 경고를 만들 때 toostart 되도록 Runbook입니다. |
+| 실행 | 지정 **Azure** hello 클라우드에서 toorun hello runbook입니다.  지정 **Hybrid worker** 와 에이전트에서 toorun hello runbook [Hybrid Runbook Worker](../automation/automation-hybrid-runbook-worker.md ) 설치 합니다.  |
 
-Runbook 작업은 [웹후크](../automation/automation-webhooks.md)를 사용하여 Runbook을 시작합니다.  경고 규칙을 만들 때 이름 **OMS 경고 수정** 에 이어 GUID를 가진 Runbook에 대해 새 웹후크가 자동으로 생성됩니다.  
+Runbook 작업을 사용 하 여 hello runbook 시작는 [webhook](../automation/automation-webhooks.md)합니다.  Hello 경고 규칙을 만들 때 자동으로 만들어집니다 hello runbook에 대 한 새 webhook hello 이름의 **OMS 경고 재구성** GUID가 차례로 포함 합니다.  
 
-Runbook의 매개 변수를 직접 채울 수는 없으나 [$WebhookData 매개 변수](../automation/automation-webhooks.md)는 해당 경고를 생성한 로그 검색의 결과를 포함한 경고의 세부 정보를 포함합니다.  Runbook이 경고의 속성에 액세스하려면 **$WebhookData**를 매개 변수로 정의해야 합니다.  이 경고는 **$WebhookData**의 **RequestBody** 속성에서 **SearchResults**라고 하는 단일 속성에서 json 형식으로 사용할 수 있습니다.  이 항목은 다음 표의 속성을 가집니다.
+직접 hello runbook의 모든 매개 변수를 채울 하지만 hello 없습니다 [$WebhookData 매개 변수](../automation/automation-webhooks.md) hello를 만든 hello 로그 검색 결과 포함 하 여 hello 알림의 hello 세부 정보가 포함 됩니다.  hello runbook toodefine 할 **$WebhookData** 것에 대 한 매개 변수로 tooaccess hello hello 경고의 속성입니다.  hello 경고 데이터는 라는 단일 속성에 대 한 json 형식으로 사용할 수 있는 **SearchResults** hello에 **RequestBody** 속성 **$WebhookData**합니다.  다음 표에 hello hello 속성과 함께이 갖습니다.
 
 | 노드 | 설명 |
 |:--- |:--- |
-| id |경로와, 검색의 GUID입니다. |
-| __metadata |레코드 수 및 검색 결과 상태를 포함하는 경고 관련 정보입니다. |
-| value |검색 결과의 각 레코드에 대해 개별 항목입니다.  항목의 상세 정보는 레코드의 속성 및 값과 일치합니다. |
+| id |경로 hello 검색의 GUID입니다. |
+| __metadata |Hello 경고 포함 하 여 hello 레코드의 수 및 hello 검색 결과의 상태에 대 한 정보입니다. |
+| 값 |Hello 검색 결과의 각 레코드에 대 한 별도 항목입니다.  hello 항목의 hello 세부 정보에는 hello 레코드의 hello 속성 및 값과 일치 합니다. |
 
-예를 들어, 다음 Runbook은 로그 검색에서 반환된 레코드를 추출하고 각 레코드 유형에 따라 서로 다른 속성을 할당합니다.  Runbook은 JSON에서 **RequestBody**를 변환하여 시작되므로 PowerShell의 개체로 작동할 수 있습니다.
+예를 들어 hello 다음 runbook은 hello 로그 검색에서 반환 되는 hello 레코드를 추출 하 고 각 레코드의 hello 형식을 기반으로 하는 다른 속성을 할당 합니다.  변환 하 여 해당 hello runbook 시작 **RequestBody** 에서 json 한다는 PowerShell의 개체와 작동할 수 있도록 합니다.
 
     param ( 
         [object]$WebhookData
@@ -148,4 +148,4 @@ Runbook의 매개 변수를 직접 채울 수는 없으나 [$WebhookData 매개 
 
 ## <a name="next-steps"></a>다음 단계
 - 경고 규칙을 사용하여 [웹후크를 구성](log-analytics-alerts-webhooks.md) 하는 연습을 완료합니다.  
-- 경고에 의해 식별된 문제를 수정하는 [Azure 자동화의 Runbook](https://azure.microsoft.com/documentation/services/automation) 을 작성하는 방법에 대해 알아봅니다.
+- 자세한 내용은 어떻게 toowrite [Azure 자동화의 runbook](https://azure.microsoft.com/documentation/services/automation) tooremediate 문제를 경고로 식별 합니다.

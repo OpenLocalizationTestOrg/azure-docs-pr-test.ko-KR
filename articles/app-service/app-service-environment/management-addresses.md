@@ -1,6 +1,6 @@
 ---
-title: "Azure App Service Environment 관리 주소"
-description: "App Service Environment를 명령하는 데 사용되는 관리 주소를 나열합니다."
+title: "aaaAzure 앱 서비스 환경 관리 주소"
+description: "목록 hello 관리 주소가 toocommand 앱 서비스 환경 사용"
 services: app-service
 documentationcenter: na
 author: ccompy
@@ -13,22 +13,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: ccompy
-ms.openlocfilehash: e97a084772fd16252d925b62498d2e696629a25d
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: b34b6266dc3a35915421b14bf34eddc07c2825c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="app-service-environment-management-addresses"></a>App Service Environment 관리 주소
 
-ASE(App Service Environment)는 Azure App Service를 사용자의 Azure VNet(Virtual Network)의 서브넷에 배포한 것입니다.  ASE 는 관리가 가능하도록 Azure App Service에서 액세스할 수 있어야 합니다.  이 ASE 관리 트래픽은 사용자 제어 네트워크를 통과합니다.  Azure App Service 관리 서버에서 나와서 ASE와 연결된 공용 VIP로 이동합니다.  ASE 네트워킹 종속성에 대한 자세한 내용은 [네트워킹 고려 사항과 App Service Environment][networking]를 참조하세요.  시작하는 데 도움이 되는 ASE에 대한 일반적인 정보는 [App Service Environment 소개][intro]를 참조하세요.
+앱 서비스 Environment(ASE) hello는 Azure 가상 네트워크 (VNet)에서 서브넷에 hello Azure 앱 서비스의 배포입니다.  관리할 수 있도록 hello ASE hello Azure 앱 서비스에서에서 액세스할 수 있어야 합니다.  이 ASE 관리 트래픽을 hello 사용자 제어 네트워크에서 이동 합니다.  Azure 앱 서비스 관리 서버 toohello 공용 VIP hello ASE 연관 된에서 제공 합니다.  Hello ASE에 대 한 자세한 내용은 종속성 네트워킹 읽을 [네트워킹 고려 사항 및 앱 서비스 환경 hello][networking]합니다.  Hello ASE에 대 한 일반적인 정보로 시작할 수 있습니다 [소개 toohello 앱 서비스 환경][intro]합니다.
 
-이 문서에서는 ASE에 대한 관리 트래픽의 원본 IP를 나열합니다. 이 주소를 사용하여 들어오는 트래픽을 잠글 네트워크 보안 그룹을 만들거나 필요에 따라 경로 테이블에서 이 주소를 사용할 수 있습니다.  이 정보를 사용하려면 다음을 사용해야 합니다.
+이 문서에 대 한 관리 트래픽 toohello ASE hello 원본 Ip를 나열합니다. 이러한 주소 toocreate 네트워크 보안 그룹 toolock 들어오는 트래픽 다운을 사용 하거나 필요에 따라 경로 테이블에서 사용할 수 있습니다.  toouse toouse 필요한이 정보:
 
-* 모든 지역에 대해 나열된 IP 주소
-* ASE가 배포되어 있는 지역에 일치하는 IP 주소
+* 모든 지역에 대해 나열 된 hello IP 주소
+* hello IP 주소 여 ASE에 배포 된 해당 일치 toohello 지역.
 
-들어오는 관리 트래픽은 다음과 같은 IP 주소에서 포트 454 및 포트 455로 이동합니다.
+hello 들어오는 관리 트래픽에 이러한 IP 주소에서 tooports 454 및 455 있습니다.
 
 | 지역 | 주소 |
 |--------|-----------|

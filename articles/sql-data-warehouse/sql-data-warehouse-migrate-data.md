@@ -1,6 +1,6 @@
 ---
-title: "SQL Data Warehouse로 데이터 마이그레이션| Microsoft Docs"
-description: "솔루션 개발을 위한 Azure SQL 데이터 웨어하우스로 데이터를 마이그레이션하기 위한 팁"
+title: "aaaMigrate 사용자 데이터 tooSQL 데이터 웨어하우스 | Microsoft Docs"
+description: "솔루션 개발을 위한 사용자 데이터 tooAzure SQL 데이터 웨어하우스를 마이그레이션하기 위한 팁입니다."
 services: sql-data-warehouse
 documentationcenter: NA
 author: sqlmojo
@@ -15,140 +15,140 @@ ms.workload: data-services
 ms.custom: migrate
 ms.date: 06/29/2017
 ms.author: joeyong;barbkess
-ms.openlocfilehash: dbdf1696cd169aa7e5e23f116027a1170347f4ea
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fe4c6b7e82094c59c45e06be6da225fee1b707ba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="migrate-your-data"></a>데이터 마이그레이션
-다양한 도구를 사용하여 다양한 원본의 데이터를 SQL 데이터 웨어하우스로 이동할 수 있습니다.  이 작업을 위해 ADF Copy, SSIS 및 bcp를 모두 사용할 수 있습니다. 그러나 데이터 크기가 증가하면 단계별로 데이터 마이그레이션 프로세스 세분화를 고려해야 합니다. 부드러운 데이터 마이그레이션이 되도록 성능 및 복원 모두를 위한 각 단계를 최적화하는 기회를 제공합니다.
+다양한 도구를 사용하여 다양한 원본의 데이터를 SQL 데이터 웨어하우스로 이동할 수 있습니다.  ADF 복사, SSIS, 및 bcp 있을 수 있습니다 모두 사용 하는 tooachieve이이 목표입니다. 그러나 hello 데이터 양이 증가 하면 hello 데이터 마이그레이션 프로세스를 단계로 세분화 고려해 야 합니다. 이 통해 있습니다 hello 기회 toooptimize 성능 및 복원 력 tooensure 부드러운 데이터 마이그레이션에 대 한 각 단계입니다.
 
-이 문서에서는 먼저 ADF Copy, SSIS 및 bcp의 간단한 마이그레이션 시나리오를 설명합니다. 그런 다음 마이그레이션이 최적화되는 방법을 좀 더 깊게 살펴봅니다.
+먼저 ADF 복사, SSIS, 및 bcp의 hello 간단한 마이그레이션 시나리오에 설명합니다. 그런 다음 hello 마이그레이션 최적화 될 수 있습니다 어떻게를 자세하게 확인 합니다.
 
 ## <a name="azure-data-factory-adf-copy"></a>Azure 데이터 팩터리(ADF) 복사본
-[ADF 복사본][ADF Copy]은 [Azure Data Factory][Azure Data Factory]의 일부입니다. SQL 데이터 웨어하우스로 직접 또는 Azure blob 저장소에 있는 원격 플랫 파일, 로컬 저장소에 상주하는 플랫 파일로 데이터를 내보내는 데 ADF 복사본을 사용할 수 있습니다.
+[ADF 복사본][ADF Copy]은 [Azure Data Factory][Azure Data Factory]의 일부입니다. Azure blob 저장소에 또는 SQL 데이터 웨어하우스에 직접 tooremote 플랫 파일 보유 로컬 저장소에 있는 데이터 tooflat 파일 ADF 복사 tooexport를 사용할 수 있습니다.
 
-데이터가 플랫 파일에서 생성되는 경우 SQL Data Warehouse로 데이터 로드를 시작하기 전에 먼저 Azure Storage Blob에 데이터를 전송해야 합니다. 데이터가 Azure Blob Storage로 전송되면 [ADF 복사본][ADF Copy]을 다시 사용하도록 선택하여 SQL Data Warehouse로 데이터를 푸시합니다.
+플랫 파일에 있는 데이터 시작 하 여 다음 tootransfer 먼저 경우 것 로드를 시작 하기 전에 tooAzure 저장소 blob에 SQL 데이터 웨어하우스 합니다. Azure blob 저장소로 hello 전송 속도가 toouse 선택할 수 있습니다 [ADF 복사] [ ADF Copy] SQL 데이터 웨어하우스로 다시 toopush hello 데이터입니다.
 
-PolyBase는 데이터 로드를 위한 고성능 옵션도 제공합니다. 그러나 하나 대신 두 개의 도구를 사용하는 것을 의미합니다. 최상의 성능이 필요한 경우 PolyBase를 사용합니다. 단일 도구 환경을 원하는 경우(및 데이터가 크지 않음) ADF가 답입니다.
+PolyBase는 또한 hello 데이터 로드에 대 한 성능 옵션을 제공 합니다. 그러나 하나 대신 두 개의 도구를 사용하는 것을 의미합니다. 경우 최상의 성능을 얻으려면 hello 필요 PolyBase를 사용 하십시오. 단일 도구 환경을 원하는 (및 hello 데이터가 massive있지 않습니다) 하는 경우 ADF 답변이 됩니다.
 
 
 > 
 > 
 
-일부 훌륭한 [ADF 샘플][ADF samples]에 대한 다음 문서를 읽어 보세요.
+다음 문서에 대 한 몇 가지 훌륭한 toohello 통해 헤드 [ADF 샘플][ADF samples]합니다.
 
 ## <a name="integration-services"></a>Integration Services
-Integration Services(SSIS)는 강력하고 유연한 변환 및 로드(ETL) 도구로, 복잡한 워크플로, 데이터 변환 및 여러 데이터 로드 옵션을 지원합니다. SSIS를 사용하여 광범위한 마이그레이션의 일부로 또는 Azure로 데이터를 전송합니다.
+Integration Services(SSIS)는 강력하고 유연한 변환 및 로드(ETL) 도구로, 복잡한 워크플로, 데이터 변환 및 여러 데이터 로드 옵션을 지원합니다. SSIS toosimply 전송 데이터 tooAzure를 사용 하 여 또는 광범위 한 마이그레이션의 일환으로 합니다.
 
 > [!NOTE]
-> SSIS는 파일에 바이트 순서 표시가 없이 UTF-8로 내보낼 수 있습니다. 구성하려면 먼저 파생된 열 구성 요소를 사용하여 데이터 흐름의 문자 데이터를 변환하고 65001 UTF-8 코드 페이지를 사용해야 합니다. 열이 변환되면, 데이터를 플랫 파일 대상 어댑터에 작성하여 65001이 파일의 코드 페이지로 선택됩니다.
+> SSIS는 tooUTF-8 hello 바이트 순서 표시가 hello 파일에 내보낼 수 있습니다. 열 구성 요소 tooconvert hello 문자 데이터에서 파생 된 hello를 먼저 사용 해야이 tooconfigure hello 데이터 흐름 toouse hello 65001 utf-8 코드 페이지입니다. Hello 열으로 변환 되 면 hello 데이터 toohello 플랫 파일 대상 어댑터가 보장 65001 hello 파일에 대 한 코드 페이지 hello로 선택도 작성 합니다.
 > 
 > 
 
-SSIS는 SQL Server 배포에 연결한 것처럼 SQL 데이터 웨어하우스에 연결합니다. 그러나 ADO.NET 연결 관리자를 사용하여 수를 연결해야 합니다. 또한 주의해서 "사용 가능한 경우 대량 삽입 사용" 설정을 구성하여 처리량을 최대화합니다. 이 속성에 대해 자세히 알아보려면 [ADO.NET 대상 어댑터][ADO.NET destination adapter] 문서를 참조하세요.
+SSIS는 tooa SQL Server 배포에 연결 됩니다. 것 처럼 tooSQL 데이터 웨어하우스에 연결 합니다. 그러나 연결 toobe ADO.NET 연결 관리자를 사용 하 여 필요 합니다. 또한 주의 해야 tooconfigure hello "사용 가능한 경우 대량 삽입 사용" toomaximize 처리량 설정 합니다. Toohello를 참조 하십시오 [ADO.NET 대상 어댑터] [ ADO.NET destination adapter] 이 속성에 대 한 문서 toolearn
 
 > [!NOTE]
-> OLEDB를 사용한 Azure SQL 데이터 웨어하우스 연결은 지원되지 않습니다.
+> SQL 데이터 웨어하우스 tooAzure OLEDB를 사용 하 여 연결할 수 없습니다.
 > 
 > 
 
-또한 제한 또는 네트워크 문제로 인해 패키지가 실패할 수 있는 가능성은 항상 있습니다. 실패하기 전에 완료된 작업을 다시 실행하지 않고 실패 지점에서 재개할 수 있도록 패키지를 디자인합니다.
+또한 항상 hello 가능성은 패키지가 실패할 수 있는 toothrottling 또는 네트워크 문제 때문입니다. Hello 오류 발생 시점에 관계 없이 재개할 수 있도록 디자인 패키지 hello 오류 전에 완료 하는 작업을 다시 수행 합니다.
 
-자세한 내용은 [SSIS 설명서][SSIS documentation]를 참조하세요.
+자세한 내용은 참조 hello [SSIS 설명서][SSIS documentation]합니다.
 
 ## <a name="bcp"></a>bcp
-bcp는 플랫 파일 데이터 가져오기 및 내보내기를 위해 설계된 명령줄 유틸리티입니다. 일부 변환은 데이터를 내보내는 중에 수행될 수 있습니다. 수행하려면 간단한 변환은 쿼리를 사용하여 데이터를 선택하고 변환합니다. 내보낸 후 플랫 파일이 직접 대상 SQL 데이터 웨어하우스 데이터베이스로 로드될 수 있습니다.
+bcp는 플랫 파일 데이터 가져오기 및 내보내기를 위해 설계된 명령줄 유틸리티입니다. 일부 변환은 데이터를 내보내는 중에 수행될 수 있습니다. tooperform 단순 쿼리 tooselect를 사용 하 여 변환과 hello 데이터를 변환 합니다. 내보낸 후 hello 플랫 파일 hello 대상 hello SQL 데이터 웨어하우스 데이터베이스에 직접 로드 수 있습니다.
 
 > [!NOTE]
-> 대개 원본 시스템의 보기에서 데이터 내보내기 중에 사용되는 변환을 캡슐화하는 것이 좋습니다. 이렇게 하면 논리가 유지되며 과정이 반복됩니다.
+> Hello 원본 시스템에서 보기에서 내보낼 데이터 중에 사용 되는 변환 하는 것이 좋습니다 tooencapsulate hello 방식은 합니다. 이렇게 하면 hello 논리 유지 되는 있고 hello 프로세스를 반복 합니다.
 > 
 > 
 
 bcp의 이점은 다음과 같습니다.
 
-* 단순성입니다. bcp 명령은 간단하게 작성되고 실행됩니다.
-* 다시 시작 가능한 로드 프로세스입니다. 일단 내보내면, 임의의 횟수만큼 로드를 실행할 수 있습니다.
+* 단순성입니다. bcp 명령을 간단한 toobuild는 및 실행
+* 다시 시작 가능한 로드 프로세스입니다. 한 번 내보낸된 hello 로드 될 수 있습니다에 여러 번 실행
 
 bcp의 제한 사항은 다음과 같습니다.
 
 * bcp는 탭 형식의 플랫 파일에만 작동합니다. xml 또는 JSON 등의 파일에서는 작동하지 않습니다.
-* 데이터 변환 기능은 내보내기 단계로만 제한되며 기본적으로 단순합니다.
-* bcp는 인터넷을 통해 데이터를 로드할 때 강력한 것으로 조정되지 않았습니다. 모든 네트워크 불안정으로 로드 오류가 발생할 수 있습니다.
-* bcp는 로드하기 전에 대상 데이터베이스에 표시되는 스키마를 사용합니다.
+* 데이터 변환 기능 제한 toohello 내보내기 단계만 되며 기본적에서으로 단순한
+* bcp를 통해 데이터를 로드 하는 인터넷 hello 때 강력한 조정된 toobe 않았습니다. 모든 네트워크 불안정으로 로드 오류가 발생할 수 있습니다.
+* bcp은 hello 대상 데이터베이스 이전 toohello 부하에 없는 hello 스키마 사용
 
-자세한 내용은 [bcp를 사용하여 SQL Data Warehouse로 데이터 로드][Use bcp to load data into SQL Data Warehouse]를 참조하세요.
+자세한 내용은 참조 [bcp tooload 데이터를 사용 하 여 SQL 데이터 웨어하우스로][Use bcp tooload data into SQL Data Warehouse]합니다.
 
 ## <a name="optimizing-data-migration"></a>데이터 마이그레이션 최적화
 불연속 세 단계로 SQLDW 데이터 마이그레이션 프로세스를 효과적으로 나눌 수 있습니다.
 
 1. 원본 데이터의 내보내기
-2. Azure에 데이터 전송
-3. 대상 SQLDW 데이터베이스로 로드
+2. 데이터 tooAzure 전송
+3. Hello 대상 SQLDW 데이터베이스에 로드
 
-단계마다 성능을 최대화하는 강력하고 다시 시작 가능하며 복원력 있는 마이그레이션 프로세스를 만들도록 각 단계를 개별적으로 최적화할 수 있습니다.
+각 단계에는 개별적으로 최적화 된 toocreate 각 단계에서 성능을 최대화 하는 강력 하 고 복원 력 있는 사이트를 다시 시작할 마이그레이션 프로세스 일 수 있습니다.
 
 ## <a name="optimizing-data-load"></a>데이터 로드 최적화
-잠시 반대 순서로 살펴보면 데이터를 로드하는 가장 빠른 방법은 PolyBase를 통해서입니다. PolyBase 로드 프로세스를 최적화하는 경우 이전 단계에서 필수 구성 요소를 충족해야 하므로, 이 작업은 미리 숙지해 두는 것이 좋습니다. 아래에 이 계정과 키의 예제가 나와 있습니다.
+잠시;에 대 한 반대 순서로 이러한를 살펴보면 hello 가장 빠른 방법은 tooload 데이터 PolyBase 통하는 것입니다. PolyBase 로드 프로세스에 대 한 최적화 하면 필수 구성 요소에 이전 단계 최상의 toounderstand 되기 때문이 hello 업 프런트 합니다. 아래에 이 계정과 키의 예제가 나와 있습니다.
 
 1. 데이터 파일의 인코딩
 2. 데이터 파일의 형식
 3. 데이터 파일의 위치
 
 ### <a name="encoding"></a>인코딩
-PolyBase를 사용하려면 데이터 파일이 UTF-8 또는 UTF-16FE여야 합니다. 
+PolyBase는 데이터 파일 toobe utf-8 또는 u t F-16FE 필요합니다. 
 
 
 
 ### <a name="format-of-data-files"></a>데이터 파일의 형식
-PolyBase는 \n 또는 새 줄의 고정된 행 종결자를 규정합니다. 데이터 파일은 이 표준을 준수해야 합니다. 문자열 또는 열 종결자에 제한이 없습니다.
+PolyBase는 \n 또는 새 줄의 고정된 행 종결자를 규정합니다. 데이터 파일 toothis 표준을 준수 해야 합니다. 문자열 또는 열 종결자에 제한이 없습니다.
 
-PolyBase에서 외부 테이블의 일부로 파일에서 모든 열을 정의해야 합니다. 내보낸 모든 열이 필요하고 해당 형식은 필요한 표준을 준수해야 합니다.
+나면 toodefine 모든 열 hello 파일에 PolyBase에서 외부 테이블의 일부분으로 합니다. 내보낸된 모든 열은 필요 하며 필요한 toohello 표준 hello 형식을 따르는지 확인 합니다.
 
-지원되는 데이터 형식은 [스키마 마이그레이션] 문서를 다시 참조하세요.
+다시 toohello 참조 하십시오. [스키마 마이그레이션] 지원 되는 데이터 형식에 대 한 세부 정보에 대 한 문서입니다.
 
 ### <a name="location-of-data-files"></a>데이터 파일의 위치
-SQL 데이터 웨어하우스는 PolyBase를 사용하여 Azure blob 저장소에 데이터를 독점적으로 로드합니다. 따라서 데이터가 먼저 blob 저장소로 전송되어야 합니다.
+SQL 데이터 웨어하우스는 Azure Blob 저장소에서 PolyBase tooload 데이터를 단독으로 사용합니다. 따라서 hello 데이터 해야 먼저 전송 된 blob 저장소에 있습니다.
 
 ## <a name="optimizing-data-transfer"></a>데이터 전송 최적화
-데이터 마이그레이션의 느린 부분 중 하나는 Azure에 데이터를 전송하는 것입니다. 네트워크 대역폭 문제가 발생할 수 뿐만 아니라 네트워크 안정성 진행률 심각하게 방해가 될 수도 있습니다. 기본적으로 데이터를 Azure로 마이그레이션하는 전송 오류 발생 가능성 합리적으로 가능성이 있으므로 인터넷을 통해 됩니다. 그러나 이러한 오류는 데이터를 전부 또는 일부를 다시 보내어야 할 수 있습니다.
+데이터 마이그레이션의 hello 느린 부분 중 하나에 hello 데이터 tooAzure hello 전송입니다. 네트워크 대역폭 문제가 발생할 수 뿐만 아니라 네트워크 안정성 진행률 심각하게 방해가 될 수도 있습니다. 기본적으로 마이그레이션 데이터 tooAzure 인터넷 가능성이 합리적으로 발생 하는 전송 오류 가능성을 지금 hello hello 끝났습니다. 그러나 이러한 오류는 일부 또는 전부에서를 다시 보낼 데이터 toobe가 필요할 수 있습니다.
 
-다행히 속도 및 이 프로세스의 복원력을 향상시키는 여러 옵션이 있습니다.
+다행히 몇 가지 옵션 tooimprove hello 속도 및이 프로세스의 복구를 사용할 수 있습니다.
 
 ### <a name="expressrouteexpressroute"></a>[ExpressRoute][ExpressRoute]
-[ExpressRoute][ExpressRoute]를 사용하여 전송의 속도를 높일 수 있습니다. [ExpressRoute][ExpressRoute]는 Azure에 대한 개인 연결을 설정하므로 공용 인터넷을 통해 연결되지 않습니다. 이 단계는 필수 단계는 아닙니다. 그러나 온-프레미스 또는 공동 배치 위치에서 데이터를 Azure로 푸시하는 경우, 처리량이 향상됩니다.
+Tooconsider 사용 하 여 원하는 수 [ExpressRoute] [ ExpressRoute] toospeed hello 전송 구성 합니다. [ExpressRoute] [ ExpressRoute] 개인 설정 된 연결 tooAzure는 hello 연결을 통해 전달 되지 않습니다 하므로 hello 공용 인터넷을 제공 합니다. 이 단계는 필수 단계는 아닙니다. 그러나 온-프레미스에서 데이터 tooAzure 푸시할 때 처리량이 향상 될 것 또는 공동 배치 위치입니다.
 
-[ExpressRoute][ExpressRoute] 사용의 이점은 다음과 같습니다.
+사용의 이점 hello [ExpressRoute] [ ExpressRoute] 됩니다.
 
 1. 향상된 안정성
 2. 더 빨라진 네트워크 속도
 3. 줄어든 네트워크 대기 시간
 4. 강화된 네트워크 보안
 
-[ExpressRoute][ExpressRoute]는 마이그레이션뿐만이 아니라 다양한 시나리오에 대해 효과적입니다.
+[ExpressRoute] [ ExpressRoute] 마이그레이션 뿐 아니라 hello;은 다양 한 시나리오에 유용 합니다.
 
-관심이 있나요? 자세한 내용 및 가격은 [ExpressRoute 설명서][ExpressRoute documentation]를 참조하세요.
+관심이 있나요? 자세한 내용 및 하십시오 가격 책정에 대 한 방문 hello [express 경로 설명서][ExpressRoute documentation]합니다.
 
 ### <a name="azure-import-and-export-service"></a>Azure 가져오기 및 내보내기 서비스
-Azure 가져오기 및 내보내기 서비스는 큰(GB++) 데이터에서 대용량(TB++) 데이터까지 Azure로 전송하기 위해 설계된 데이터 전송 프로세스입니다. 디스크에 데이터 작성 및 Azure 데이터 센터에 배송이 포함됩니다. 사용자를 대신해 Azure Storage Blob에 디스크 콘텐츠가 로드됩니다.
+hello Azure 가져오기 / 내보내기 서비스는 큰 (g B + +) toomassive (t B + +) 전송에 데이터를 Azure로 설계 된 데이터 전송 프로세스입니다. 데이터 toodisks를 작성 하 고 tooan Azure 데이터 센터에 배송 야 합니다. 다음 사용자 대신 Azure 저장소 Blob에 hello 디스크 내용이 로드 됩니다.
 
-아래에는 가져오기/내보내기 프로세스가 대략적으로 표시되어 있습니다.
+높은 수준의 hello 가져오기 내보내기 프로세스는 다음과 같습니다.
 
-1. 데이터를 수신하도록 Azure Blob 저장소 컨테이너를 구성합니다.
-2. 로컬 저장소로 데이터 내보내기
-3. [Azure 가져오기/내보내기 도구]를 사용하여 3.5 인치 SATA II/III 하드 디스크 드라이브에 데이터 복사
-4. [Azure 가져오기/내보내기 도구]에서 생성된 저널 파일을 제공하는 Azure 가져오기 및 내보내기 서비스를 사용하여 가져오기 작업 만들기
-5. 지정된 Azure 데이터 센터로 디스크 배송
-6. Azure Blob 저장소 컨테이너로 데이터 전송
-7. PolyBase를 사용하여 SQLDW로 데이터 로드
+1. Azure Blob 저장소 컨테이너 tooreceive hello 데이터 구성
+2. 데이터 toolocal 저장소 내보내기
+3. Hello 데이터 too3.5 인치 SATA II/III 하드 디스크 드라이브 hello [Azure 가져오기/내보내기 도구]를 사용 하 여 복사
+4. Hello Azure 가져오기 및 내보내기 서비스 제공 hello [Azure 가져오기/내보내기 도구]에서 생성 된 hello 저널 파일을 사용 하 여 가져오기 작업 만들기
+5. 지정한 Azure 데이터 센터 hello 디스크 제공
+6. 데이터는 전송 된 tooyour Azure Blob 저장소 컨테이너
+7. PolyBase를 사용 하 여 SQLDW hello 데이터 로드
 
 ### <a name="azcopyazcopy-utility"></a>[AZCopy][AZCopy] 유틸리티
-[AZCopy][AZCopy] 유틸리티는 Azure 저장소 Blob으로 데이터를 전송하기 위한 훌륭한 도구입니다. 작은 데이터 전송(MB++)에서부터 매우 큰 데이터 전송(GB++)까지 설계되어 있습니다. [AZCopy] 도 좋은 복원력 있는 처리량 등 Azure에 데이터를 전송 하는 경우에 데이터 전송 단계에 대한 훌륭한 선택이 제공하도록 설계되었습니다. 한 번 전송되면, PolyBase를 사용하여 SQL 데이터 웨어하우스로 데이터를 로드할 수 있습니다. 또한 "프로세스 실행" 작업을 사용하여 SSIS 패키지로 AZCopy를 통합할 수 있습니다.
+hello [AZCopy][AZCopy] 유틸리티는 Azure 저장소 Blob으로 전송 하 여 데이터를 가져오는 데 좋은 도구입니다. 작은 (MB + +) toovery 큰 (g B + +) 데이터 전송을 위해 설계 되었습니다. [AZCopy] 되었습니다 복원 처리량이 좋은 디자인 된 tooprovide hello 데이터 전송 단계에 대 한 최선의 선택은 데이터 tooAzure 등을 전송 하는 경우. 한 번 전송 hello 데이터 PolyBase를 사용 하 여 SQL 데이터 웨어하우스로 로드할 수 있습니다. 또한 "프로세스 실행" 작업을 사용하여 SSIS 패키지로 AZCopy를 통합할 수 있습니다.
 
-AZCopy를 사용하려면 먼저 다운로드하고 설치해야 합니다. [프로덕션 버전][production version] 및 [미리 보기 버전][preview version]을 사용할 수 있습니다.
+toouse AZCopy 먼저 toodownload 필요 하 고 설치 됩니다. [프로덕션 버전][production version] 및 [미리 보기 버전][preview version]을 사용할 수 있습니다.
 
-파일 시스템에서 파일을 업로드하려면 아래와 같은 명령이 필요합니다.
+tooupload 해야 하나 hello 같은 명령을 아래 파일 시스템에서 파일:
 
 ```
 AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey:key /Pattern:abc.txt
@@ -156,30 +156,30 @@ AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/myconta
 
 이 프로세스는 대략적으로 다음과 같이 요약할 수 있습니다.
 
-1. 데이터를 수신하도록 Azure 저장소 Blob 컨테이너 구성
-2. 로컬 저장소로 데이터 내보내기
-3. Azure Blob 저장소 컨테이너의 데이터 AZCopy
-4. PolyBase를 사용하여 SQL 데이터 웨어하우스로 데이터 로드
+1. Azure 저장소 blob 컨테이너 tooreceive hello 데이터 구성
+2. 데이터 toolocal 저장소 내보내기
+3. AZCopy hello Azure Blob 저장소 컨테이너의 데이터
+4. PolyBase를 사용 하 여 SQL 데이터 웨어하우스 hello 데이터 로드
 
 사용 가능한 전체 설명서는 [AZCopy][AZCopy]입니다.
 
 ## <a name="optimizing-data-export"></a>데이터 내보내기 최적화
-내보내기가 PolyBase에서 설계한 배치 요구 사항에 맞는지 확인하는 것 외에도 데이터 내보내기를 최적화하여 프로세스가 더 향상되도록 시도할 수도 있습니다.
+또한 hello 내보내기 PolyBase에서으로 배치 toohello 요구 사항을 준수 하는지 tooensuring hello 데이터 tooimprove hello 프로세스의 추가 toooptimize hello 내보내기 또한 검색 수입니다.
 
 
 
 ### <a name="data-compression"></a>데이터 압축
-PolyBase는 gzip 압축된 데이터를 읽을 수 있습니다. gzip 파일로 데이터를 압축할 수 있는 경우 네트워크를 통해 푸시되는 데이터의 양을 최소화합니다.
+PolyBase는 gzip 압축된 데이터를 읽을 수 있습니다. Toocompress 수 있다면 데이터 toogzip 파일 하면 hello hello 네트워크를 통해 반영 하는 데이터 양을 최소화 됩니다.
 
 ### <a name="multiple-files"></a>여러 파일
-대형 테이블을 여러 파일로 분할하면 내보내기 속도를 향상시킬 수 뿐만 아니라 전송을 다시 시작 및 Azure blob 저장소에서의 전반적인 데이터 관리 효율성에도 도움이 됩니다. PolyBase의 여러 유용한 기능 중 하나는 폴더 내 모든 파일을 읽고 하나의 테이블로 처리된다는 점입니다. 따라서 각 테이블의 파일을 자체 폴더로 격리하는 것이 좋습니다.
+Tooimprove 속도 내보낼 수 뿐만 아니라 여러 파일로 큰 테이블 분할 사용 하 여 전송할 re-startability를 하 고 hello hello 데이터 hello Azure blob 저장소에 한 번의 전체 관리 합니다. PolyBase의 많은 유용한 기능이 됩니다 폴더 내의 모든 hello 파일 읽기를 한 테이블으로 처리 하는 hello 중 하나입니다. 따라서 자체 폴더 내에 있는 각 테이블에 대 한 것이 좋습니다 tooisolate hello 파일 버전이 있습니다.
 
-또한 PolyBase는 "재귀적 폴더 이동"이라는 기능을 지원합니다. 내보낸 데이터의 조직의 데이터 관리를 개선하도록 이 기능을 사용할 수 있습니다.
+또한 PolyBase는 "재귀적 폴더 이동"이라는 기능을 지원합니다. 이 기능을 사용할 수 toofurther 내보낸된 데이터 tooimprove의 hello 조직 데이터 관리를 향상 합니다.
 
-PolyBase 사용한 데이터 로드에 대해 자세히 알려면 [PolyBase를 사용하여 SQL Data Warehouse로 데이터 로드][Use PolyBase to load data into SQL Data Warehouse]를 참조하세요.
+PolyBase 사용 하 여 데이터 로드에 대 한 더 toolearn 참조 [SQL 데이터 웨어하우스를 사용 하 여 PolyBase tooload 데이터][Use PolyBase tooload data into SQL Data Warehouse]합니다.
 
 ## <a name="next-steps"></a>다음 단계
-마이그레이션에 대한 자세한 내용은 [SQL Data Warehouse로 솔루션 마이그레이션][Migrate your solution to SQL Data Warehouse]을 참조하세요.
+마이그레이션에 대 한 자세한 내용은 [사용자 솔루션 tooSQL 데이터 웨어하우스 마이그레이션][Migrate your solution tooSQL Data Warehouse]합니다.
 더 많은 개발 팁은 [개발 개요][development overview]를 참조하세요.
 
 <!--Image references-->
@@ -190,10 +190,10 @@ PolyBase 사용한 데이터 로드에 대해 자세히 알려면 [PolyBase를 �
 [ADF samples]: ../data-factory/data-factory-samples.md
 [ADF Copy examples]: ../data-factory/data-factory-copy-activity-tutorial-using-visual-studio.md
 [development overview]: sql-data-warehouse-overview-develop.md
-[Migrate your solution to SQL Data Warehouse]: sql-data-warehouse-overview-migrate.md
+[Migrate your solution tooSQL Data Warehouse]: sql-data-warehouse-overview-migrate.md
 [SQL Data Warehouse development overview]: sql-data-warehouse-overview-develop.md
-[Use bcp to load data into SQL Data Warehouse]: sql-data-warehouse-load-with-bcp.md
-[Use PolyBase to load data into SQL Data Warehouse]: sql-data-warehouse-get-started-load-with-polybase.md
+[Use bcp tooload data into SQL Data Warehouse]: sql-data-warehouse-load-with-bcp.md
+[Use PolyBase tooload data into SQL Data Warehouse]: sql-data-warehouse-get-started-load-with-polybase.md
 
 
 <!--MSDN references-->

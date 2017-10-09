@@ -1,31 +1,31 @@
-트리거를 추가했으므로 트리거에 의해 생성되는 데이터로 흥미로운 작업을 진행해볼 수 있습니다. 다음 단계에 따라 **SharePoint Online - 파일 만들기** 동작을 추가합니다. 이 동작은 새 항목 트리거가 실행될 때마다 SharePoint Online에서 파일을 만듭니다. 
+Hello 트리거에 의해 생성 되는 hello 데이터로 흥미로운 사항이 시간 toodo 해당 트리거를 추가 했습니다. 이러한 단계 tooadd hello에 따라 **SharePoint Online-파일을 만들** 동작 합니다. 이 작업 파일을 만듭니다는 SharePoint Online에서 각 시간 hello 새 항목 트리거 시작. 
 
-이 동작을 구성하려면 다음 정보를 제공해야 합니다. 이 정보를 제공하면 트리거에 의해 생성된 데이터를 새 파일의 일부 속성에 대한 입력으로 쉽게 사용할 수 있습니다.
+tooconfigure hello이 작업, 다음 정보는 tooprovide hello 필요 합니다. 이 정보를 제공 하는 대로 hello 새 파일에 대 한 hello 속성 중 일부에 대 한 입력으로 hello 트리거에 의해 생성 된 쉬운 toouse 데이터 임을 알 수 있습니다.
 
 | 파일 속성 만들기 | 설명 |
 | --- | --- |
-| 사이트 URL |새 파일을 만들려는 SharePoint Online 사이트의 URL입니다. 제공된 목록에서 사이트를 선택합니다. |
-| 폴더 경로 |새 파일을 배치할 폴더(이전 단계에서 선택한 사이트 URL에 있는)입니다. 폴더를 찾아 선택합니다. |
-| 파일 이름 |만들어지는 파일의 이름입니다. |
-| 파일 콘텐츠 |파일에 쓸 콘텐츠입니다. |
+| 사이트 URL |Hello SharePoint Online 사이트 toocreate hello에 대 한 새 파일의 hello URL입니다. 제공 된 hello 목록을 hello 사이트를 선택 합니다. |
+| 폴더 경로 |Hello 새 파일을 저장할 폴더 (hello hello 이전 단계에서 선택한 사이트 URL)에 hello는이 합니다. 찾아 hello 폴더를 선택 합니다. |
+| 파일 이름 |만들려는 hello 파일의 hello 이름입니다. |
+| 파일 콘텐츠 |hello 콘텐츠를 쓸 toohello 파일입니다. |
 
-1. **+ 새 단계** 를 선택하여 동작을 추가합니다.  
+1. 선택 **+ 새 단계** tooadd hello 동작 합니다.  
    ![SharePoint Online 동작 이미지 1](./media/connectors-create-api-sharepointonline/action-1.png)  
-2. **동작 추가** 링크를 선택합니다. 수행할 동작을 검색할 수 있는 검색 상자가 열립니다. 이 예제에서는 SharePoint 동작을 사용합니다.    
+2. 선택 hello **동작 추가** 링크 합니다. 검색할 수 있는 모든 작업에 대 한 있습니다이 열립니다 hello 검색 상자 tootake를 것인지 합니다. 이 예제에서는 SharePoint 동작을 사용합니다.    
    ![SharePoint Online 동작 이미지 2](./media/connectors-create-api-sharepointonline/action-2.png)    
-3. *sharepoint* 를 입력하여 SharePoint와 관련된 동작을 검색합니다.
-4. 수행할 동작으로 **SharePoint Online - 파일 만들기** 를 선택합니다.   **참고**: 이전에 SharePoint Online에 대한 연결을 만들지 않았으면 논리 앱에 SharePoint 계정에 액세스하기 위한 권한을 부여하라는 메시지가 표시됩니다.    
+3. 입력 *sharepoint* toosearch 관련된 tooSharePoint 작업에 대 한 합니다.
+4. 선택 **SharePoint Online-파일을 만들** 동작 tootake hello으로 합니다.   **참고**: 있습니다 SharePoint 계정 연결 tooSharePoint을 온라인을 이전에 만들지 않은 경우 프로그램 논리 앱 tooaccess tooauthorize 메시지 표시 됩니다.    
    ![SharePoint Online 동작 이미지 3](./media/connectors-create-api-sharepointonline/action-3.png)    
-5. **파일 만들기** 컨트롤이 열립니다.   
+5. hello **파일 만들기** 제어 열립니다.   
    ![SharePoint Online 동작 이미지 4](./media/connectors-create-api-sharepointonline/action-4.png)     
-6. **사이트 URL** 을 선택하고 파일을 만들려는 사이트를 찾은 후 해당 사이트로 이동합니다.     
+6. 선택 **사이트 URL** 및 원하는 사이트로 toocreate hello 파일 찾아보기 toofind hello 사이트입니다.     
    ![SharePoint Online 동작 이미지 5](./media/connectors-create-api-sharepointonline/action-5.png)  
-7. **폴더 경로** 를 선택하고 새 파일을 저장할 폴더를 찾은 후 해당 폴더로 이동합니다.  
+7. 선택 **폴더 경로** 및 hello 새 파일을 저장할 찾아보기 toofind hello 폴더입니다.  
    ![SharePoint Online 동작 이미지 6](./media/connectors-create-api-sharepointonline/action-6.png)  
-8. **파일 이름** 컨트롤을 선택하고 만들려는 파일의 이름을 입력합니다. 여기서 파일 이름을 직접 입력하거나 이전에 만든 트리거의 속성 중 하나를 사용할 수 있습니다. **새 항목이 만들어질 때의 출력**목록에서 속성을 선택하여 이 작업을 수행합니다. 이 목록은 **파일 이름** 컨트롤을 선택한 후에만 표시됩니다. 이 연습에서는 ID(새 목록 항목의 ID)를 **SharePoint Online - 파일 만들기** 동작에 의해 만들어지는 파일의 이름으로 선택했습니다.    
+8. 선택 hello **파일 이름** 제어 hello 이름을 입력 하 고 원하는 toocreate hello 파일의 합니다. 여기서 hello 파일 이름을 직접 입력 하거나 또는 이전에 만든 hello 트리거에서 hello 속성 중 하나를 사용할 수 있습니다. Hello 목록에서 속성을 선택 하 여이 작업을 수행 **새 항목이 만들어질 때의 출력을**합니다. Hello를 선택한 후에이 목록은 유일한 디스플레이 **파일 이름** 제어 합니다. 이 연습에서 선택 했는데 ID (hello 새 목록 항목의 hello ID) hello에 의해 생성 되 고 hello 파일의 hello 이름 **SharePoint Online-파일을 만들** 동작 합니다.    
    ![SharePoint Online 동작 이미지 7](./media/connectors-create-api-sharepointonline/action-7.png)  
-9. **파일 콘텐츠** 컨트롤을 선택하고 만들 파일에 기록할 콘텐츠를 입력합니다. 파일 콘텐츠를 입력할 때 이전에 만든 트리거의 모든 속성을 사용할 수 있습니다. 제공된 목록에서 속성을 선택하기만 하면 됩니다. 또는 컨트롤에 직접 **파일 콘텐츠** 텍스트를 입력할 수도 있습니다. 이 예제에서는 일부 속성을 선택하고 각 속성 사이에 공백 및 하이픈을 추가했습니다.        
+9. 선택 hello **콘텐츠 파일** 제어 하 고 만들 toohello 파일 쓸 hello 콘텐츠를 입력 합니다. Hello 파일 내용에 대 한 이전에 만든 hello 트리거에서 hello 속성을 사용할 수 있는지를 확인 합니다. 단순히 hello 목록 표시에서 hello 속성을 선택 합니다. Hello를 입력할 수 또는 **콘텐츠 파일** hello 컨트롤에 직접 텍스트입니다. 이 예제에서는 일부 속성을 선택하고 각 속성 사이에 공백 및 하이픈을 추가했습니다.        
    ![SharePoint Online 동작 이미지 8](./media/connectors-create-api-sharepointonline/action-8.png)  
-10. 워크플로에 대한 변경 내용을 저장합니다.  
-11. 축하합니다. 이제 SharePoint Online 목록에 새 항목이 추가될 때 트리거되는 전 기능 논리 앱이 구현되었습니다. 앱에서 새 목록 항목의 속성 중 일부를 사용하여 파일을 만듭니다.  이제 SharePoint 목록에 새 항목을 만들어 테스트할 수 있습니다. 
+10. Hello 변경 tooyour 워크플로 저장  
+11. 축, 새 항목 tooa SharePoint Online 목록에 추가 될 때 트리거되는 모든 기능을 갖춘 논리 앱 생깁니다. hello 앱에서 다음 hello 새 목록 항목에서 hello 속성 중 일부를 사용 하 여 파일을를 만듭니다.  이제 hello SharePoint 목록에 새 항목을 만들어 테스트할 수 있습니다. 
 

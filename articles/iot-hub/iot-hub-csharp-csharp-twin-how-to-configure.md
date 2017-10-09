@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub 장치 쌍 속성 사용(.NET/.NET) | Microsoft Docs"
-description: "Azure IoT Hub 장치 쌍을 사용하여 장치를 구성하는 방법입니다. .NET용 Azure IoT 장치 SDK를 사용하여 시뮬레이션된 장치 앱을 구현하고 .NET용 Azure IoT 서비스 SDK를 사용하여 장치 쌍을 통해 장치 구성을 수정하는 서비스 앱을 구현합니다."
+title: "aaaUse Azure IoT Hub 장치로 이중 속성 (.NET/.NET) | Microsoft Docs"
+description: "Azure IoT Hub 장치 toouse 트윈스 어떻게 tooconfigure 장치 .NET tooimplement 시뮬레이션 된 장치 응용 프로그램에 대 한 hello Azure IoT 장치 SDK 및.NET tooimplement 장치로 이중을 사용 하는 장치 구성을 수정 하는 서비스 응용 프로그램에 대 한 Azure IoT 서비스 SDK hello를 사용 합니다."
 services: iot-hub
 documentationcenter: .net
 author: dsk-2015
@@ -14,67 +14,67 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/10/2017
 ms.author: dkshir
-ms.openlocfilehash: 679cda28bf3ce9fb207fe3693a3453b355f1de15
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 486436d29abfd5158c253adc5abf5935e0e1fdba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-desired-properties-to-configure-devices"></a>desired 속성을 사용하여 장치 구성
+# <a name="use-desired-properties-tooconfigure-devices"></a>원하는 속성 tooconfigure 장치를 사용 하 여
 [!INCLUDE [iot-hub-selector-twin-how-to-configure](../../includes/iot-hub-selector-twin-how-to-configure.md)]
 
-이 자습서의 끝 부분에 다음 두 개의 .NET 콘솔 앱이 제공됩니다.
+이 자습서의 hello 끝에 두 개의.NET 콘솔 응용 프로그램 해야 합니다.
 
-* **SimulateDeviceConfiguration** - 원하는 구성 업데이트를 기다리고 시뮬레이션된 구성 업데이트 프로세스의 상태를 보고하는 시뮬레이션된 장치 앱입니다.
-* **SetDesiredConfigurationAndQuery** - 장치에 원하는 구성을 설정하고 구성 업데이트 프로세스를 쿼리하는 백 엔드 앱입니다.
+* **SimulateDeviceConfiguration**, 원하는 구성 업데이트를 대기 하 고 시뮬레이트된 구성 업데이트 프로세스의 hello 상태를 보고 하는 시뮬레이션 된 장치 앱.
+* **SetDesiredConfigurationAndQuery**, hello를 설정 하는 백 엔드 앱, 원하는 장치에서 구성 및 쿼리 hello 업데이트 프로세스를 구성 합니다.
 
 > [!NOTE]
-> [Azure IoT SDK][lnk-hub-sdks] 문서는 장치 및 백 엔드 앱을 빌드하는 데 사용할 수 있는 Azure IoT SDK에 대한 정보를 제공합니다.
+> hello 문서 [Azure IoT Sdk] [ lnk-hub-sdks] toobuild를 사용할 수 있는, Azure IoT Sdk hello에 대 한 정보를 제공 장치와 백 엔드 응용 프로그램입니다.
 > 
 > 
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete hello 다음 해야이 자습서:
 
 * Visual Studio 2015 또는 Visual Studio 2017.
-* 활성 Azure 계정. 계정이 없는 경우 몇 분 내에 [계정][lnk-free-trial]을 만들 수 있습니다.
+* 활성 Azure 계정. 계정이 없는 경우 몇 분 내에 [무료 계정][lnk-free-trial]을 만들 수 있습니다.
 
-[장치 쌍 시작][lnk-twin-tutorial] 자습서를 수행했으면 이미 IoT Hub 및 **myDeviceId**라는 장치 ID가 있습니다. 이 경우 [시뮬레이션된 장치 앱 만들기][lnk-how-to-configure-createapp] 섹션으로 건너뛸 수 있습니다.
+Hello를 따른 경우 [장치 트윈스 시작] [ lnk-twin-tutorial] 자습서에서는 이미 있는 IoT hub 및 호출 하 여 장치 id **myDeviceId**합니다. 이 경우 toohello 건너뛸 수 있습니다 [만들기 hello 시뮬레이션 된 장치 앱] [ lnk-how-to-configure-createapp] 섹션.
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity-portal.md)]
 
 <a id="#create-the-simulated-device-app"></a>
-## <a name="create-the-simulated-device-app"></a>시뮬레이션된 장치 앱 만들기
-이 섹션에서는 **myDeviceId**로 허브에 연결하는 .NET 콘솔 앱을 만들고, 원하는 구성 업데이트를 기다린 다음, 시뮬레이션된 구성 업데이트 프로세스의 업데이트를 보고합니다.
+## <a name="create-hello-simulated-device-app"></a>Hello 시뮬레이션 된 장치 앱 만들기
+Tooyour 허브를 연결 하는.NET 콘솔 응용 프로그램을 만들면이 섹션에서는 **myDeviceId**원하는 구성 업데이트 될 때까지 대기 하 고 시뮬레이션 hello 구성 업데이트 프로세스에서 업데이트를 보고 합니다.
 
-1. Visual Studio에서 **콘솔 응용 프로그램** 프로젝트 템플릿을 사용하여 새 Visual C# Windows 클래식 바탕 화면 프로젝트를 만듭니다. **SimulateDeviceConfiguration**으로 프로젝트 이름을 지정합니다.
+1. Visual Studio에서 hello를 사용 하 여 새 Visual C# Windows 클래식 데스크톱 프로젝트를 만들 **콘솔 응용 프로그램** 서식 파일 프로젝트. 이름 hello 프로젝트 **SimulateDeviceConfiguration**합니다.
    
     ![새 Visual C# Windows 클래식 장치 앱][img-createdeviceapp]
 
-1. 솔루션 탐색기에서 **SimulateDeviceConfiguration** 프로젝트를 마우스 오른쪽 단추로 클릭한 다음, **NuGet 패키지 관리...**를 클릭합니다.
-1. **NuGet 패키지 관리자** 창에서 **찾아보기**를 선택하고 **microsoft.azure.devices.client**를 검색합니다. **설치**를 선택하여 **Microsoft.Azure.Devices.Client** 패키지를 설치한 후 사용 약관에 동의합니다. 이 절차에서는 [Azure IoT 장치 SDK][lnk-nuget-client-sdk] NuGet 패키지 및 해당 종속 항목에 참조를 다운로드, 설치 및 추가합니다.
+1. 솔루션 탐색기에서 마우스 오른쪽 단추로 클릭 hello **SimulateDeviceConfiguration** 프로젝트를 마우스 클릭 **NuGet 패키지 관리...** .
+1. Hello에 **NuGet 패키지 관리자** 창에서 **찾아보기** 검색 한 **microsoft.azure.devices.client**합니다. 선택 **설치** tooinstall hello **Microsoft.Azure.Devices.Client** 패키지 및 hello 사용 약관에 동의 합니다. 이 절차를 다운로드, 설치 하 고 참조 toohello 추가 [Azure IoT 장치 SDK] [ lnk-nuget-client-sdk] NuGet 패키지 및 해당 종속성.
    
     ![NuGet 패키지 관리자 창 클라이언트 앱][img-clientnuget]
-1. **Program.cs** 파일 위에 다음 `using` 문을 추가합니다.
+1. Hello 다음 추가 `using` hello 위쪽 hello에 문을 **Program.cs** 파일:
    
         using Microsoft.Azure.Devices.Client;
         using Microsoft.Azure.Devices.Shared;
         using Newtonsoft.Json;
 
-1. **Program** 클래스에 다음 필드를 추가합니다. 자리 표시자 값을 이전 섹션에서 메모한 장치 연결 문자열로 대체합니다.
+1. 다음 필드 toohello hello 추가 **프로그램** 클래스입니다. Hello 이전 섹션에서 기록한 hello 장치 연결 문자열 hello 자리 표시자 값을 바꿉니다.
    
         static string DeviceConnectionString = "HostName=<yourIotHubName>.azure-devices.net;DeviceId=<yourIotDeviceName>;SharedAccessKey=<yourIotDeviceAccessKey>";
         static DeviceClient Client = null;
         static TwinCollection reportedProperties = new TwinCollection();
 
-1. **Program** 클래스에 다음 메서드를 추가합니다.
+1. 다음 메서드 toohello hello 추가 **프로그램** 클래스:
  
         public static void InitClient()
         {
             try
             {
-                Console.WriteLine("Connecting to hub");
+                Console.WriteLine("Connecting toohub");
                 Client = DeviceClient.CreateFromConnectionString(DeviceConnectionString, TransportType.Mqtt);
             }
             catch (Exception ex)
@@ -83,9 +83,9 @@ ms.lasthandoff: 07/29/2017
                 Console.WriteLine("Error in sample: {0}", ex.Message);
             }
         }
-    **Client** 개체는 서비스의 장치 쌍을 조작하는 데 필요한 모든 메서드를 표시합니다. 위에 표시된 코드는 **Client** 개체를 초기화한 다음 **myDeviceId**에 대한 장치 쌍을 검색합니다.
+    hello **클라이언트** 개체가 toointeract hello 장치에서 장치 트윈스과 필요한 모든 hello 메서드를 노출 합니다. 위에 표시 된 코드 hello 초기화 hello **클라이언트** 개체 및에 대 한 검색 hello 장치로 이중 **myDeviceId**합니다.
 
-1. **Program** 클래스에 다음 메서드를 추가합니다. 이 메서드는 로컬 장치에서 원격 분석의 초기 값을 설정하고 장치 쌍을 업데이트합니다.
+1. 다음 메서드 toohello hello 추가 **프로그램** 클래스입니다. 이 메서드는 hello 로컬 장치에서 원격 분석의 hello 초기 값을 설정 하 고 업데이트 hello 장치로 이중.
 
         public static async void InitTelemetry()
         {
@@ -116,7 +116,7 @@ ms.lasthandoff: 07/29/2017
             }
         }
 
-1. **Program** 클래스에 다음 메서드를 추가합니다. 장치 쌍에서 *원하는 속성*의 변경 내용을 검색하는 콜백입니다.
+1. 다음 메서드 toohello hello 추가 **프로그램** 클래스입니다. 이것은 변화를 확인할 하는 콜백을 *원하는 속성을* hello 장치로 이중에 있습니다.
 
         private static async Task OnDesiredPropertyChanged(TwinCollection desiredProperties, object userContext)
         {
@@ -154,9 +154,9 @@ ms.lasthandoff: 07/29/2017
             }
         }
 
-    이 메서드는 구성 업데이트 요청으로 로컬 장치 쌍 개체에서 reported 속성을 업데이트하고 상태를 **Pending**으로 설정한 다음 서비스에서 장치 쌍을 업데이트합니다. 장치 쌍을 업데이트한 후 아래 설명된 `CompleteConfigChange` 메서드를 호출하여 구성 변경을 완료합니다.
+    이 메서드가 업데이트 hello 너무 hello 구성 사용 하 여 hello 로컬 장치로 이중 개체의 속성 업데이트 요청 및 집합 hello 상태 보고**보류 중인**, 다음 업데이트 hello hello 서비스에 장치로 이중 합니다. Hello 장치로 이중을 성공적으로 업데이트 한 후 hello 메서드를 호출 하 여 hello 구성 변경을 완료 `CompleteConfigChange` hello 다음 지점에서 설명 합니다.
 
-1. **Program** 클래스에 다음 메서드를 추가합니다. 이 메서드는 장치 재설정을 시뮬레이션하고, 로컬 reported 속성을 업데이트하여 상태를 **Success**로 설정하고, **pendingConfig** 요소를 제거합니다. 그런 다음 서비스에서 장치 쌍을 업데이트합니다. 
+1. 다음 메서드 toohello hello 추가 **프로그램** 클래스입니다. 이 메서드는 장치 리셋을 시뮬레이션 한 다음 업데이트 hello 너무 hello 상태를 설정 하는 로컬 보고 속성**성공** 및 제거 hello **pendingConfig** 요소입니다. 그런 다음 hello 장치로 이중 hello 서비스에 업데이트 합니다. 
 
         public static async void CompleteConfigChange()
         {
@@ -174,7 +174,7 @@ ms.lasthandoff: 07/29/2017
                 currentTelemetryConfig["pendingConfig"] = null;
 
                 await Client.UpdateReportedPropertiesAsync(reportedProperties);
-                Console.WriteLine("Config change complete \nPress any key to exit.");
+                Console.WriteLine("Config change complete \nPress any key tooexit.");
             }
             catch (AggregateException ex)
             {
@@ -191,7 +191,7 @@ ms.lasthandoff: 07/29/2017
             }
         }
 
-1. 마지막으로 **Main** 메서드에 다음 줄을 추가합니다.
+1. 마지막으로 다음 줄 toohello hello 추가 **Main** 메서드:
 
         try
         {
@@ -217,31 +217,31 @@ ms.lasthandoff: 07/29/2017
         }
 
    > [!NOTE]
-   > 이 자습서는 동시 구성 업데이트에 대해 어떤 동작도 시뮬레이션하지 않습니다. 어떤 구성 업데이트 프로세스는 업데이트가 실행되는 중에 대상 구성의 변경을 수용할 수 있는 반면에 어떤 프로세스는 대기해야 하거나 오류 조건을 사용해 거부할 수 있습니다. 특정 구성 프로세스에 대해 원하는 동작을 고려하여 구성 변경을 시작하기 전에 적절한 논리를 추가해야 합니다.
+   > 이 자습서는 동시 구성 업데이트에 대해 어떤 동작도 시뮬레이션하지 않습니다. 일부 구성 업데이트 프로세스 hello 업데이트 실행 되는 동안 대상 구성의 변경 내용 수 tooaccommodate 수 있습니다, 그리고 일부 tooqueue 고, 일부 수 거부 오류 조건과 함께 있을 수 있습니다. 특정 구성 프로세스에 대해 원하는 동작을 hello 고 hello 구성 변경 시작 하기 전에 hello 적절 한 논리를 추가 했는지 tooconsider를 확인 합니다.
    > 
    > 
-1. 솔루션을 빌드하고 **F5**를 클릭하여 Visual Studio에서 장치 앱을 실행합니다. 시뮬레이션된 장치가 장치 쌍을 검색하고, 원격 분석을 설정하고, 원하는 속성 변경을 기다리고 있음을 나타내는 메시지가 출력 콘솔에 표시되어야 합니다. 앱이 계속 실행되게 합니다.
+1. Hello 솔루션을 구축 하 고 다음을 클릭 하 여 Visual Studio에서 hello 장치 응용 프로그램을 실행 **F5**합니다. Hello 출력 콘솔에 hello를 시뮬레이션 된 장치는 hello 장치로 이중 검색, hello 원격 분석 설정 및 원하는 속성 변경을 기다리는 있는지를 나타내는 메시지가 표시 됩니다. 실행 중인 hello 앱을 유지 합니다.
 
-## <a name="create-the-service-app"></a>서비스 응용 프로그램 만들기
-이 섹션에서는 새로운 원격 분석 구성 개체를 사용하여 **myDeviceId**와 연결된 장치 쌍에서 *desired 속성*을 업데이트하는 .NET 콘솔 앱을 만듭니다. 그런 다음 IoT Hub에 저장된 장치 쌍을 쿼리하고 장치의 desired 구성과 reported 구성 사이의 차이점을 표시합니다.
+## <a name="create-hello-service-app"></a>Hello 서비스 앱 만들기
+이 섹션에서는 만듭니다.NET 콘솔 응용 프로그램 업데이트 hello 해당 *원하는 속성을* 와 연결 된 장치로 이중 hello에 **myDeviceId** 새 원격 분석 구성 개체를 사용 합니다. 다음 hello IoT 허브에 저장 된 hello 장치 트윈스 쿼리하고 hello 차이 hello 원하는 및 보고 hello 장치의 구성을 표시 합니다.
 
-1. Visual Studio에서 **콘솔 응용 프로그램** 프로젝트 템플릿을 사용하여 Visual C# Windows 클래식 데스크톱 프로젝트를 최신 솔루션에 추가합니다. 프로젝트 이름을 **SetDesiredConfigurationAndQuery**로 지정합니다.
+1. Visual Studio에서 Visual C# Windows 클래식 데스크톱 프로젝트 toohello 현재 솔루션 hello를 사용 하 여 추가 **콘솔 응용 프로그램** 서식 파일 프로젝트. 이름 hello 프로젝트 **SetDesiredConfigurationAndQuery**합니다.
    
     ![새 Visual C# Windows 클래식 데스크톱 프로젝트][img-createapp]
-1. 솔루션 탐색기에서 **SetDesiredConfigurationAndQuery** 프로젝트를 마우스 오른쪽 단추로 클릭한 다음, **NuGet 패키지 관리...**를 클릭합니다.
-1. **NuGet 패키지 관리자** 창에서 **찾아보기**를 선택하고 **microsoft.azure.devices**를 검색한 다음 **설치**를 선택하여 **Microsoft.Azure.Devices** 패키지를 설치하고 사용 약관에 동의합니다. 이 프로시저에서는 [Azure IoT 서비스 SDK][lnk-nuget-service-sdk] NuGet 패키지 및 종속 항목에 참조를 다운로드, 설치 및 추가합니다.
+1. 솔루션 탐색기에서 마우스 오른쪽 단추로 클릭 hello **SetDesiredConfigurationAndQuery** 프로젝트를 마우스 클릭 **NuGet 패키지 관리...** .
+1. Hello에 **NuGet 패키지 관리자** 창에서 **찾아보기**, 검색할 **microsoft.azure.devices**선택, **설치** tooinstall hello **Microsoft.Azure.Devices** 패키지 및 hello 사용 약관에 동의 합니다. 이 절차를 다운로드, 설치 하 고 참조 toohello 추가 [Azure IoT 서비스 SDK] [ lnk-nuget-service-sdk] NuGet 패키지 및 해당 종속성.
    
     ![NuGet 패키지 관리자 창][img-servicenuget]
-1. **Program.cs** 파일 위에 다음 `using` 문을 추가합니다.
+1. Hello 다음 추가 `using` hello 위쪽 hello에 문을 **Program.cs** 파일:
    
         using Microsoft.Azure.Devices;
         using System.Threading;
         using Newtonsoft.Json;
-1. **Program** 클래스에 다음 필드를 추가합니다. 자리 표시자 값을 이전 섹션에서 만든 허브의 IoT Hub 연결 문자열로 대체합니다.
+1. 다음 필드 toohello hello 추가 **프로그램** 클래스입니다. Hello hello 이전 섹션에서 만든 hello 허브에 대 한 IoT 허브 연결 문자열 hello 자리 표시자 값을 바꿉니다.
    
         static RegistryManager registryManager;
         static string connectionString = "{iot hub connection string}";
-1. **Program** 클래스에 다음 메서드를 추가합니다.
+1. 다음 메서드 toohello hello 추가 **프로그램** 클래스:
    
         static private async Task SetDesiredConfigurationAndQuery()
         {
@@ -275,37 +275,37 @@ ms.lasthandoff: 07/29/2017
             }
         }
    
-    **레지스트리** 개체는 서비스의 장치 쌍을 조작하는 데 필요한 모든 메서드를 표시합니다. 이 코드에서는 **Registry** 개체를 초기화한 후 **myDeviceId**에 대한 장치 쌍을 검색하고, 새로운 원격 분석 구성 개체를 사용하여 desired 속성을 업데이트합니다.
-    그런 다음 10초마다 IoT Hub에 저장된 장치 쌍을 쿼리하고, 원하는 보고된 원격 분석 구성을 출력합니다. 모든 장치에서 다양한 보고서를 생성하는 방법을 알아보려면 [IoT Hub 쿼리 언어][lnk-query]를 참조하세요.
+    hello **레지스트리** 개체 hello 서비스에서 장치 트윈스와 모든 hello 메서드에 필요한 toointeract을 제공 합니다. 이 코드를 hello 초기화 **레지스트리** 개체를 검색에 대 한 장치로 이중 hello **myDeviceId**, 한 후 새 원격 분석 구성 개체를으로 원하는 속성을 업데이트 합니다.
+    그 후 hello 장치 트윈스 10 초 마다 hello IoT 허브에 저장 된 쿼리 및 인쇄 hello 원하는 및 원격 분석 구성을 보고 합니다. Toohello 참조 [IoT Hub 쿼리 언어] [ lnk-query] toolearn toogenerate 서식 있는 모든 장치에서 보고 하는 방법입니다.
    
    > [!IMPORTANT]
-   > 이 응용 프로그램은 설명 목적으로 10초 마다 IoT Hub를 쿼리합니다. 변경을 감지하기 위해서가 아니라 여러 장치에서 사용자용 보고서를 생성하기 위해 쿼리를 사용합니다. 솔루션에 장치 이벤트의 실시간 알림이 필요한 경우 [쌍 알림][lnk-twin-notifications]을 사용합니다.
+   > 이 응용 프로그램은 설명 목적으로 10초 마다 IoT Hub를 쿼리합니다. 사용 하 여 많은 장치와 toodetect 변경 내용이 아니라 걸쳐 toogenerate 사용자 용 보고서를 쿼리합니다. 솔루션에 장치 이벤트의 실시간 알림이 필요한 경우 [쌍 알림][lnk-twin-notifications]을 사용합니다.
    > 
    > 
-1. 마지막으로 **Main** 메서드에 다음 줄을 추가합니다.
+1. 마지막으로 다음 줄 toohello hello 추가 **Main** 메서드:
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);
         SetDesiredConfigurationAndQuery();
-        Console.WriteLine("Press any key to quit.");
+        Console.WriteLine("Press any key tooquit.");
         Console.ReadLine();
-1. 솔루션 탐색기에서 **시작 프로젝트 설정...**을 열고 **SetDesiredConfigurationAndQuery** 프로젝트의 **작업**이 **시작**인지 확인합니다. 솔루션을 빌드하십시오.
-1. **SimulateDeviceConfiguration** 장치 앱이 실행되고 있을 때 **F5**를 사용하여 Visual Studio에서 서비스 앱을 실행합니다. **Pending**에서 **Success**로의 reported 구성 변경 내용과 24시간이 아닌 5분이라는 새로운 활성 보내기 빈도가 표시되어야 합니다.
+1. Hello 솔루션 탐색기를 열고 hello **설정 시작 프로젝트...**  hello 있는지를 확인 하 고 **동작** 에 대 한 **SetDesiredConfigurationAndQuery** 프로젝트는 **시작**합니다. Hello 솔루션을 빌드하십시오.
+1. 와 **SimulateDeviceConfiguration** 응용 프로그램 실행 중인 장치, Visual Studio를 사용 하 여 서비스 응용 프로그램을 실행된 hello **F5**합니다. Hello 보고 된 구성에서 변경 표시 되어야 **보류 중인** 너무**성공** hello 새 활성 대신 24 시간 동안 5 분의 빈도 보냅니다.
 
  ![장치가 성공적으로 구성됨][img-deviceconfigured]
    
    > [!IMPORTANT]
-   > 장치 보고서 작업 및 쿼리 결과 사이에 최대 1분간 지연됩니다. 이는 쿼리 인프라를 매우 높은 규모에서 작업하도록 하기 위해서입니다. 단일 장치 쌍의 일관된 보기를 검색하려면 **Registry** 클래스의 **getDeviceTwin** 메서드를 사용합니다.
+   > hello 장치 보고서 작업 및 hello 쿼리 결과 사이 tooa 1 분 간의 지연이 있습니다. 이 매우 높은 대규모 tooenable hello 쿼리 인프라 toowork입니다. 단일 장치로 이중의 일관 된 뷰 tooretrieve hello를 사용 하 여 **getDeviceTwin** hello에 대 한 메서드 **레지스트리** 클래스입니다.
    > 
    > 
 
 ## <a name="next-steps"></a>다음 단계
-이 자습서에서는 솔루션 백 엔드에서 원하는 구성을 *desired 속성*으로 설정하고, 해당 변경 사항을 감지하고 reported 속성을 통해 상태를 보고하는 다단계 업데이트 프로세스를 시뮬레이션하는 장치 앱을 작성했습니다.
+이 자습서에서는으로 원하는 구성을 설정 하면 *원하는 속성을* hello 솔루션에서 백 엔드를 하 고 변경 하 고 보고 하는 hello 통해 해당 상태를 보고 multi-step 업데이트 프로세스를 시뮬레이션 하는 장치 앱 toodetect 작성 했습니다. 속성입니다.
 
-아래와 같이 실행할 방법을 알아보려면 다음 리소스를 참조하세요.
+사용 하 여 hello 리소스 toolearn을 어떻게 수행 하려면:
 
-* [IoT Hub 시작][lnk-iothub-getstarted] 자습서를 참조하여 장치에서 원격 분석을 보냅니다.
-* [jobs 예약 및 브로드캐스트][lnk-schedule-jobs] 자습서를 참조하여 대규모 장비 집합에 대한 작업을 예약하거나 수행합니다.
-* [직접 메서드 사용][lnk-methods-tutorial] 자습서를 참조하여 대화형으로(예: 사용자 제어 앱에서 팬 작동) 장치를 제어합니다.
+* hello 사용 하 여 장치에서 원격 분석 전송 [IoT 허브 시작] [ lnk-iothub-getstarted] 자습서
+* 예약 또는 수행 큰 집합의 장치에 대 한 작업 참조 hello [일정 및 브로드캐스트 작업] [ lnk-schedule-jobs] 자습서입니다.
+* 대화형으로 (예: 사용자 제어 응용 프로그램에서 팬)를 설정 하는 장치 hello로 제어 [직접 메서드를 사용 하 여] [ lnk-methods-tutorial] 자습서입니다.
 
 <!-- images -->
 [img-servicenuget]: media/iot-hub-csharp-csharp-twin-how-to-configure/servicesdknuget.png

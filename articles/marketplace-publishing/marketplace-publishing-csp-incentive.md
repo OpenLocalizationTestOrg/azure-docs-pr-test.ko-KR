@@ -1,6 +1,6 @@
 ---
-title: "클라우드 솔루션 공급자의 대리점 인센티브를 확인하고 변경하는 방법 | Microsoft Docs"
-description: "CSP 대리점 인센티브에 대한 선택 항목을 확인하고 변경하는 방법"
+title: "aaaHow tooview 및 변경 hello 클라우드 솔루션 공급자의 Reseller Incentive | Microsoft Docs"
+description: "어떻게 tooview Reseller Incentive CSP에 대 한 선택 내용을 변경 하 고"
 services: marketplace-publishing
 documentationcenter: na
 author: DavidBosland
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: DavidBosland
-ms.openlocfilehash: d6e6e13f352dea5c27939c39ecb8be97bf6990ca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4702d0167c38d100755a872f9b23e49cc7a46ba2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="view-and-change-your-cloud-solution-provider-reseller-incentive-in-the-azure-marketplace"></a>Azure 마켓플레이스에서 클라우드 솔루션 공급자 "대리점 인센티브"를 확인 및 변경
-2016년 3월 15일부터 마켓플레이스 게시자에게 CSP(클라우드 솔루션 공급자) "대리점 인센티브"가 제공됩니다.  이 인센티브 값의 기본 설정은 **예**입니다.  게시자는 인센티브 프로그램을 옵트아웃하도록 선택할 수 있습니다.  이 문서에서는 옵트아웃이 가능하도록 게시자 프로필에서 설정을 변경하는 방법을 보여 줍니다.
+# <a name="view-and-change-your-cloud-solution-provider-reseller-incentive-in-hello-azure-marketplace"></a>보기 및 변경 "Reseller Incentive" hello Azure Marketplace에서에서 클라우드 솔루션 공급자
+Hello 클라우드 솔루션 공급자 (Csp) "Reseller Incentive" 칠할 2016 년 3 월 15 일에 사용 가능한 tooMarketplace 게시자입니다.  보상 값이 기본 설정은 hello **예**합니다.  게시자로 hello 보상 프로그램 tooopt 아웃을 결정할 수 있습니다.  이 문서에서는 게시자에서 toochange hello 설정을 하므로 있습니다 제외할 수 있습니다를 프로 파일링 하는 방법을 보여 줍니다.
 
-"대리점 인센티브" 상태를 확인 또는 변경하려면 다음 단계를 수행하세요.
+tooview "Reseller Incentive" 상태를 변경 하거나, 다음이 단계를 수행 합니다.
 
-1. [Microsoft Azure 게시 계정](https://publish.windowsazure.com/workspace)
+1. Tooyour 로그인 [Microsoft Azure 게시 계정](https://publish.windowsazure.com/workspace)
 
    ![프로필 시작 화면][1]
 2. **게시자**
 
    ![프로필 시작 화면 - 게시자 링크][2]
-3. 프로필에서 CSP에 대한 정보를 확인합니다.  "대리점 인센티브"를 **예 또는 아니요로 설정하는 스위치**가 있습니다. 기본 설정은 “예”입니다.
+3. Csp에 대 한 프로필에 hello 정보를 확인 합니다.  한 **예 또는 아니요 toosay 전환** toohello "Reseller Incentive"-hello 기본 상태는 "아니요"를 선택 합니다.
 
    ![프로필 - 게시자][3]
-4. "대리점 인센티브" 상태를 변경하려면 게시자 프로필에 액세스한 다음 원하는 항목을 선택하고 저장합니다.
+4. toochange "Reseller Incentive" 상태 게시자 프로필에 액세스 한 다음 선택 하 고 저장 선택:
 
-   * Azure 마켓플레이스에 올린 응용 프로그램 및 서비스를 재판매하는 CSP에게 20% 할인을 제공하려면 **예** 를 선택합니다.  또는 이 인센티브 프로그램을 옵트아웃하려면 **아니요** 를 선택합니다.  어떤 것을 선택하든 게시자에게 동일한 금액이 지급됩니다.
-   * 원하는 항목을 선택한 후 오른쪽 상단 모서리에서 **저장** 을 클릭합니다.
+   * 선택 **예** toochoose tooprovide hello 20% 할인 toohello Csp hello 응용 프로그램 및 서비스 hello Azure Marketplace에에서 나열 된 재판매 되 게 합니다.  선택 또는 **아니요** tooopt 보상 프로그램이 부족 합니다.  두 사례 hello 게시자 받아 hello 동일한 성향을 합니다.
+   * 클릭 하면 확인 선택을 후 **저장** hello 오른쪽 위 모퉁이에 있습니다.
 
    ![프로필 - 게시자- 변경 상자][4]
 

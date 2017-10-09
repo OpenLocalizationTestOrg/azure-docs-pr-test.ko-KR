@@ -1,5 +1,5 @@
 ---
-title: "Azure Kubernetes 클러스터 모니터링 - 운영 관리 | Microsoft Docs"
+title: "aaaMonitor Azure Kubernetes 클러스터 운영 관리 | Microsoft Docs"
 description: "Microsoft Operations Management Suite를 사용하여 Azure Container Service에서 Kubernetes 클러스터 모니터링"
 services: container-service
 documentationcenter: 
@@ -17,29 +17,29 @@ ms.workload: na
 ms.date: 12/09/2016
 ms.author: bburns
 ms.custom: mvc
-ms.openlocfilehash: bd5c81435c091d25bc14710589b7c043e9f56a25
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7474ee1571134ffe43ff8e4041cf5a64f5635bb7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-an-azure-container-service-cluster-with-microsoft-operations-management-suite-oms"></a>Microsoft OMS(Operations Management Suite)를 사용하여 Azure Container Service 클러스터 모니터링
 
 ## <a name="prerequisites"></a>필수 조건
 이 연습에서는 [Azure Container Service를 사용하여 Kubernetes 클러스터를 만들었다고](container-service-kubernetes-walkthrough.md) 가정합니다.
 
-또한 `az` Azure CLI 및 `kubectl` 도구가 설치되어 있다고 가정합니다.
+또한 hello 있다고 가정 `az` Azure cli 및 `kubectl` 도구가 설치 되어 있습니다.
 
-다음을 실행하여 `az` 도구가 설치되어 있는지 테스트할 수 있습니다.
+Hello 있는 경우 테스트할 수 `az` 도구를 실행 하 여 설치 합니다.
 
 ```console
 $ az --version
 ```
 
-`az` 도구가 설치되어 있지 않으면 [여기](https://github.com/azure/azure-cli#installation)의 지침을 따르세요.  
-또는 사용자를 위해 이미 `az` Azure cli 및 `kubectl` 도구를 설치한 [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview)을 사용할 수 있습니다.  
+Hello 없는 경우 `az` 도구를 설치 하는 명령 [여기](https://github.com/azure/azure-cli#installation)합니다.  
+사용할 수 있습니다 [Azure 클라우드 셸](https://docs.microsoft.com/en-us/azure/cloud-shell/overview), hello가 `az` Azure cli 및 `kubectl` 도구가 이미 설치 되어 있습니다.  
 
-다음을 실행하여 `kubectl` 도구가 설치되어 있는지 테스트할 수 있습니다.
+Hello 있는 경우 테스트할 수 `kubectl` 도구를 실행 하 여 설치 합니다.
 
 ```console
 $ kubectl version
@@ -50,12 +50,12 @@ $ kubectl version
 $ az acs kubernetes install-cli
 ```
 
-kubectl 도구에 kubernetes 키를 설치했는지를 테스트하려면 다음을 실행하면 됩니다.
+tootest kubernetes 키 kubectl 도구에 설치 되어 있는 경우 실행할 수 있습니다.
 ```console
 $ kubectl get nodes
 ```
 
-위의 명령을 실행한 결과 오류가 출력되면 kubernetes 클러스터 키를 kubectl 도구에 설치해야 합니다. 이 작업은 다음 명령을 사용하여 수행할 수 있습니다.
+경우 hello 아웃 명령 오류, 위에 kubectl 도구 tooinstall kubernetes 클러스터 키 필요 합니다. 다음 명령을 hello로 수행할 수 있습니다.
 ```console
 RESOURCE_GROUP=my-resource-group
 CLUSTER_NAME=my-acs-name
@@ -64,46 +64,46 @@ az acs kubernetes get-credentials --resource-group=$RESOURCE_GROUP --name=$CLUST
 
 ## <a name="monitoring-containers-with-operations-management-suite-oms"></a>OMS(Operations Management Suite)를 사용하여 컨테이너 모니터링
 
-OMS(Microsoft Operations Management)는 온-프레미스 및 클라우드 인프라를 관리 및 보호하는 데 유용한 Microsoft의 클라우드 기반 IT 관리 솔루션입니다. Container Solution은 컨테이너 인벤토리, 성능 및 로그를 한 곳에서 볼 수 있는 OMS Log Analytics에 포함된 솔루션입니다. 중앙 위치에서 로그를 확인하여 컨테이너를 감사하고 문제를 해결하며 호스트에서 매우 과도하게 사용되는 컨테이너를 찾을 수 있습니다.
+OMS(Microsoft Operations Management)는 온-프레미스 및 클라우드 인프라를 관리 및 보호하는 데 유용한 Microsoft의 클라우드 기반 IT 관리 솔루션입니다. 컨테이너에서 hello 컨테이너 인벤토리 보기, 성능 및 단일 위치에 있는 로그를 사용 하면 OMS 로그 분석 솔루션을 합니다. 감사, 중앙된 위치에 hello 로그를 확인 하 여 컨테이너 문제 해결 및 사용 과다 컨테이너 호스트에 잡음이 있는 확인할 수 있습니다.
 
 ![](media/container-service-monitoring-oms/image1.png)
 
-Container Solution에 대한 자세한 내용은 [Container Solution Log Analytics](../../log-analytics/log-analytics-containers.md)를 참조하세요.
+컨테이너 솔루션에 대 한 자세한 내용은 읽어보십시오 toothe [컨테이너, 로그 분석 솔루션](../../log-analytics/log-analytics-containers.md)합니다.
 
 ## <a name="installing-oms-on-kubernetes"></a>Kubernetes에 OMS 설치
 
 ### <a name="obtain-your-workspace-id-and-key"></a>작업 영역 ID 및 키 가져오기
-OMS 에이전트가 서비스와 통신하려면 작업 영역 ID 및 작업 영역 키로 구성되어야 합니다. 작업 영역 ID 및 키를 모두 가져오려면 <https://mms.microsoft.com>에서 OMS 계정을 만들어야 합니다. 다음 단계에 따라 계정을 만듭니다. 계정을 만들었으면 아래와 같이 **설정**, **연결된 원본**, **Linux 서버**를 차례로 클릭하여 ID 및 키를 획득해야 합니다.
+OMS 에이전트 tootalk toohello 서비스 hello에 대 한 toobe 작업 영역 id와 작업 영역 키를 사용 하 여 구성 해야 합니다. 계정 tooget hello 작업 영역 id 및 toocreate는 OMS에 필요한 키 <https://mms.microsoft.com>합니다. Hello 단계 toocreate 계정을 수행 하십시오. Hello 계정 만들기를 완료 해야 tooobtain id 및 키를 클릭 하 여 **설정**, 다음 **연결 된 원본**, 차례로 **Linux 서버**다음과 같이 합니다.
 
  ![](media/container-service-monitoring-oms/image5.png)
 
-### <a name="install-the-oms-agent-using-a-daemonset"></a>DaemonSet을 사용하여 OMS 에이전트 설치
-DaemonSet은 Kubernetes가 클러스터의 각 호스트에서 컨테이너의 단일 인스턴스를 실행하기 위해 사용합니다.
+### <a name="install-hello-oms-agent-using-a-daemonset"></a>DaemonSet를 사용 하 여 hello OMS 에이전트를 설치 합니다.
+Kubernetes toorun에서 DaemonSets 사용 hello 클러스터의 각 호스트에서 컨테이너의 단일 인스턴스.
 모니터링 에이전트를 실행하는 데 완벽합니다.
 
-다음은 [DaemonSet YAML 파일](https://github.com/Microsoft/OMS-docker/tree/master/Kubernetes)입니다. `oms-daemonset.yaml`라는 파일로 저장하고 `WSID` 및 `KEY`에 대한 자리 표시자 값을 파일의 작업 영역 ID 및 키로 바꿉니다.
+여기에 hello [DaemonSet YAML 파일](https://github.com/Microsoft/OMS-docker/tree/master/Kubernetes)합니다. Tooa 파일의 이름이 저장 `oms-daemonset.yaml` 및 바꾸기에 대 한 자리 표시자 값 hello `WSID` 및 `KEY` 작업 영역 id와 hello 파일의 키입니다.
 
-작업 영역 ID와 키를 DaemonSet 구성에 추가한 후 `kubectl` 명령줄 도구를 사용하여 클러스터에 OMS 에이전트를 설치할 수 있습니다.
+작업 영역 ID 및 키 toohello DaemonSet 구성을 추가한 후 hello 사용 하 여 클러스터에 hello OMS 에이전트를 설치할 수 있습니다 `kubectl` 명령줄 도구:
 
 ```console
 $ kubectl create -f oms-daemonset.yaml
 ```
 
-### <a name="installing-the-oms-agent-using-a-kubernetes-secret"></a>Kubernetes 비밀을 사용하여 OMS 에이전트 설치
-OMS 작업 영역 ID 및 키를 보호하려면 Kubernetes 비밀을 DaemonSet YAML 파일의 일부로 사용하면 됩니다.
+### <a name="installing-hello-oms-agent-using-a-kubernetes-secret"></a>Kubernetes 암호를 사용 하 여 hello OMS 에이전트를 설치 합니다.
+tooprotect OMS 작업 영역 ID 및 키 Kubernetes 비밀 DaemonSet YAML 파일의 일부로 사용할 수 있습니다.
 
- - [리포지토리](https://github.com/Microsoft/OMS-docker/tree/master/Kubernetes)에서 스크립트, 비밀 템플릿 파일 및 DaemonSet YAML 파일을 복사하고 이러한 항목이 같은 디렉터리에 있는지 확인합니다. 
+ - Hello 스크립트, 비밀 템플릿 파일 및 hello DaemonSet YAML 파일 복사 (에서 [리포지토리](https://github.com/Microsoft/OMS-docker/tree/master/Kubernetes)) hello에 있는지 확인 하 고 동일한 디렉터리입니다. 
       - 비밀 생성 스크립트 - secret-gen.sh
       - 비밀 템플릿 - secret-template.yaml
    - DaemonSet YAML 파일 - omsagent-ds-secrets.yaml
- - 스크립트를 실행합니다. 스크립트에서 OMS 작업 영역 ID 및 기본 키를 요청합니다. 이러한 ID와 키를 삽입하면 스크립트는 사용자가 실행할 수 있도록 비밀 yaml 파일을 만듭니다.   
+ - Hello 스크립트를 실행 합니다. OMS 작업 영역 ID와 기본 키 hello 스크립트 hello에 대 한 요청 합니다. 넣은 hello 스크립트에서 실행할 수 있도록 비밀 yaml 파일을 만듭니다.   
    ```
    #> sudo bash ./secret-gen.sh 
    ```
 
-   - 다음을 실행하여 비밀 Pod를 만듭니다. ``` kubectl create -f omsagentsecret.yaml ```
+   - Hello 비밀 pod를 hello 다음을 실행 하 여 만듭니다.``` kubectl create -f omsagentsecret.yaml ```
  
-   - 확인하려면 다음을 실행합니다. 
+   - toocheck hello 다음 실행: 
 
    ``` 
    root@ubuntu16-13db:~# kubectl get secrets
@@ -127,4 +127,4 @@ OMS 작업 영역 ID 및 키를 보호하려면 Kubernetes 비밀을 DaemonSet Y
   - ``` kubectl create -f omsagent-ds-secrets.yaml ```을 실행하여 omsagent daemon-set 만들기
 
 ### <a name="conclusion"></a>결론
-이것으로 끝입니다. 몇 분 후 OMS 대시보드로 이동하는 데이터를 볼 수 있습니다.
+이것으로 끝입니다. 몇 분 후 수 toosee 데이터 tooyour OMS 대시보드에 흐름 있어야 합니다.

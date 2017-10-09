@@ -96,10 +96,10 @@ sql-database-service-tiers.md
 ||||||||
 
 > [!IMPORTANT]
->\* 풀링된 데이터베이스는 풀 저장소를 공유하므로 탄력적 풀의 데이터 저장소는 남은 풀 저장소 또는 데이터베이스당 최대 저장소 중 작은 값으로 제한됩니다. 
+>\*풀링된 데이터베이스 탄력적 풀의 데이터 저장소는 제한 된 toohello hello 나머지 풀 저장소 또는 데이터베이스 당 최대 저장소의 더 작은 풀 저장소를 공유 합니다. 
 >
 >
 >\*\* 200eDTU 이상부터 시작하는 데이터베이스당 최소/최대 eDTU는 공개 미리 보기 상태입니다.
 >
->\*\*\* 500eDTU 이상인 프리미엄 풀에 대한 풀당 기본 최대 데이터 저장소는 750GB입니다. 1,000eDTU를 초과하는 프리미엄 풀당 최대 데이터 저장소 크기를 늘리려면 Azure Portal 또는 [PowerShell](../articles/sql-database/sql-database-elastic-pool.md#manage-sql-database-elastic-pools-using-powershell), [Azure CLI](../articles/sql-database/sql-database-elastic-pool.md#manage-sql-database-elastic-pools-using-the-azure-cli) 또는 [REST API](../articles/sql-database/sql-database-elastic-pool.md#manage-sql-database-elastic-pools-using-the-rest-api)를 사용하여 이 크기를 명시적으로 선택해야 합니다. 1TB 이상의 저장소가 있는 프리미엄 풀은 현재 미국 동부2, 미국 서부, 미국 버지니아 주 정부, 유럽 서부, 독일 중부, 동남 아시아, 일본 동부, 오스트레일리아 동부, 캐나다 중부 및 캐나다 동부 지역에서 현재 공개 미리 보기 상태로 제공됩니다. 다른 모든 지역에서 풀당 최대 저장소는 현재 750GB로 제한됩니다.
+>\*\*\*이상 500 Edtu와 풀 프리미엄에 대 한 풀 당 hello 기본 최대 데이터 저장소는 750 GB입니다. tooobtain hello 1000 개 이상의 Edtu에 대 한 프리미엄 풀 당 최대 데이터 저장소 크기를 더 크게,이 크기 명시적으로 선택 해야 hello Azure 포털을 사용 하 여 [PowerShell](../articles/sql-database/sql-database-elastic-pool.md#manage-sql-database-elastic-pools-using-powershell), hello [Azure CLI](../articles/sql-database/sql-database-elastic-pool.md#manage-sql-database-elastic-pools-using-the-azure-cli), 또는 hello [REST API](../articles/sql-database/sql-database-elastic-pool.md#manage-sql-database-elastic-pools-using-the-rest-api)합니다. 프리미엄 1TB 개 이상의 저장소 풀은 현재 공개 미리 보기 영역을 다음 hello에 있는: 미국 East2, 미국 서 부, 미국 정부 기관용 버지니아, 서 부 유럽, 독일 중앙, 동남 아시아, 일본 동부, 오스트레일리아 동부, 중앙 캐나다 및 캐나다 동부 합니다. 다른 모든 지역에 대 한 풀 당 최대 저장소 hello는 현재 제한 too750 GB입니다.
 >

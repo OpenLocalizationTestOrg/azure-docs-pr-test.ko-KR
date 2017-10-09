@@ -1,6 +1,6 @@
 ---
-title: "Azure 진단 확장 구성 스키마 버전 및 기록 | Microsoft Docs"
-description: "Azure Virtual Machines, VM Scale Sets, Service Fabric 및 Cloud Services에서 성능 카운터 수집과 관련됩니다."
+title: "aaaAzure 진단 확장 구성 스키마 버전 및 기록 | Microsoft Docs"
+description: "Azure 가상 컴퓨터, VM 크기 집합이, 서비스 패브릭 및 클라우드 서비스에서 perf 카운터를 관련 toocollecting입니다."
 services: monitoring-and-diagnostics
 documentationcenter: .net
 author: rboucher
@@ -14,17 +14,17 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: robb
-ms.openlocfilehash: 119e8a237f24cdc80a1ab8e376f2b308c9eada05
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 854ad118f660810aa38703670284794d658142c7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-diagnostics-extention-configuration-schema-versions-and-history"></a>Azure 진단 확장 구성 스키마 버전 및 기록
-이 페이지는 Microsoft Azure SDK의 일부로 제공되는 Azure 진단 확장 스키마 버전을 인덱스합니다.  
+이 페이지 인덱스 Azure 진단 확장 스키마 버전 hello Microsoft Azure SDK의 일부로 제공 합니다.  
 
 > [!NOTE]
-> Azure 진단 확장은 성능 카운터 및 기타 통계를 수집하는 데 사용하는 구성 요소입니다.
+> hello Azure 진단 확장은 toocollect 성능 카운터 및 기타 통계에서 사용 하는 hello 구성 요소입니다.
 > - Azure 가상 컴퓨터 
 > - 가상 컴퓨터 크기 집합
 > - 서비스 패브릭 
@@ -33,7 +33,7 @@ ms.lasthandoff: 07/11/2017
 > 
 > 이 페이지는 이러한 서비스 중 하나를 사용하는 경우에만 해당됩니다.
 
-Azure 진단 확장은 Azure Monitor, Application Insights 및 Log Analytics와 같은 다른 Microsoft 진단 제품과 함께 사용됩니다. 자세한 내용은 [Microsoft 모니터링 도구 개요](monitoring-overview.md)를 참조하세요.
+Azure 진단 확장 hello Azure 모니터, Application Insights 및 분석 로그와 같은 다른 Microsoft 진단 제품과 함께 사용 됩니다. 자세한 내용은 [Microsoft 모니터링 도구 개요](monitoring-overview.md)를 참조하세요.
 
 ## <a name="azure-sdk-and-diagnostics-versions-shipping-chart"></a>Azure SDK 및 진단 버전 전달 차트  
 
@@ -53,9 +53,9 @@ Azure 진단 확장은 Azure Monitor, Application Insights 및 Log Analytics와 
 
 
 
- Azure 진단 버전 1.0은 처음에는 플러그 인 모델로 제공되었습니다. 따라서 Azure SDK를 설치할 때 함께 제공되는 Azure 진단 버전을 사용할 수 있게 되었습니다.  
+ Azure 진단 버전 1.0 hello Azure SDK를 설치할 때 함께 제공 되는 Azure 진단의 hello 버전을 가져온을 의미 하는 플러그 인 모델--에 처음 제공 합니다.  
 
- SDK 2.5(진단 버전 1.2)부터는 Azure 진단이 확장 모델로 이동되었습니다. 새 기능을 활용하기 위한 도구는 최신 Azure SDK에서만 사용할 수 있었지만 Azure 진단을 사용하는 모든 서비스는 Azure에서 직접 최신 전달 버전을 선택할 수 있습니다. 예를 들어, 여전히 SDK 2.5를 사용하는 모든 사용자는 최신 기능을 사용 중인지 여부와 관계 없이 이전 테이블에 표시된 최신 버전이 로딩됩니다.  
+ Azure 진단 (진단 버전 1.2) SDK 2.5 부터는 tooan 확장 모델을 오류가 발생 했습니다. hello 도구 tooutilize 새로운 기능 최신 Azure Sdk에서 사용할 수만 있었습니다. 하지만 Azure 진단을 사용 하 여 모든 서비스는 Azure에서 직접 hello 최신 배송 버전을 선택 하는 합니다. 예를 들어 여전히 SDK 2.5를 사용 하 여 모든 사용자는 로드할 수 hello 최신 버전 hello 최신 기능을 사용 중인 경우와 상관 없이 hello 이전 표에 표시 합니다.  
 
 ## <a name="schemas-index"></a>스키마 색인  
 서로 다른 버전의 Azure 진단은 다른 구성 스키마를 사용합니다. 
@@ -74,7 +74,7 @@ Docker 지원이 추가되었습니다.
 
 
 ### <a name="diagnostics-extension-181"></a>진단 확장 1.8.1 
-개인 구성에서 저장소 계정 키 대신 SAS 토큰을 지정할 수 있습니다. SAS 토큰이 제공된 경우 저장소 계정 키가 무시됩니다.
+Hello 개인 구성에서 저장소 계정 키 대신 SAS 토큰을 지정할 수 있습니다. SAS 토큰을 지정 하는 경우 hello 저장소 계정 키가 무시 됩니다.
 
 
 ```json
@@ -105,7 +105,7 @@ Docker 지원이 추가되었습니다.
 
 
 ### <a name="diagnostics-extension-18"></a>진단 확장 1.8 
-PublicConfig에 저장소 형식이 추가되었습니다. StorageType은 *Table*, *Blob*, *TableAndBlob*이 될 수 있습니다. *Table*이 기본값입니다.
+추가 된 저장 유형 tooPublicConfig 합니다. StorageType은 *Table*, *Blob*, *TableAndBlob*이 될 수 있습니다. *테이블* hello 기본값입니다.
 
 
 ```json
@@ -127,42 +127,42 @@ PublicConfig에 저장소 형식이 추가되었습니다. StorageType은 *Table
 
 
 ### <a name="diagnostics-extension-17"></a>진단 확장 1.7 
-EventHub로 라우팅하는 기능이 추가되었습니다.
+추가 된 hello 기능 tooroute tooEventHub 합니다.
 
 ### <a name="diagnostics-extension-15"></a>진단 확장 1.5
-[Application Insights](../application-insights/app-insights-cloudservices.md)에 진단 데이터를 전송하는 싱크 요소 및 기능이 추가되어 시스템 및 인프라 수준뿐만 아니라 응용 프로그램 전반에 나타나는 문제를 쉽게 진단할 수 있습니다.
+Hello 요소와 hello 기능 toosend 진단 데이터를 너무 싱크 추가[Application Insights](../application-insights/app-insights-cloudservices.md) hello 시스템 및 인프라 수준 뿐만 아니라 응용 프로그램에서 쉽게 toodiagnose 문제 만들기.
 
 ### <a name="azure-sdk-26-and-diagnostics-extension-13"></a>Azure SDK 2.6 및 진단 확장 1.3 
-Visual Studio에서 클라우드 서비스 프로젝트의 경우 다음 사항이 변경되었습니다. (이러한 변경 사항은 이후 버전의 Azure SDK에도 적용됩니다.)
+Visual Studio에서 클라우드 서비스 프로젝트에 대 한 변경 내용을 따라 hello 수행 됩니다. (이러한 변경 내용을 적용할 수도 toolater 버전의 Azure SDK.)
 
-* 이제 로컬 에뮬레이터에서 진단을 지원합니다. 따라서 Visual Studio에서 개발 및 테스트하는 동안 진단 데이터를 수집하고 응용 프로그램에서 올바른 추적을 생성하고 있는지 확인할 수 있습니다. 연결 문자열 `UseDevelopmentStorage=true` 는 Azure 저장소 에뮬레이터를 사용하여 Visual Studio에서 클라우드 서비스 프로젝트를 실행하는 동안 진단 데이터 수집을 사용하도록 설정합니다. 모든 진단 데이터는 (개발 저장소) 저장소 계정에 수집됩니다.
-* 진단 저장소 계정 연결 문자열(Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString)은 서비스 구성(.cscfg) 파일에 다시 저장됩니다. Azure SDK 2.5에서는 진단 저장소 계정이 diagnostics.wadcfgx 파일에 지정되었습니다.
+* hello 로컬 에뮬레이터는 이제 진단을 지원합니다. 즉, 진단 데이터를 수집 하 고 응용 프로그램은 hello 오른쪽 추적 생성 개발 하 고 Visual Studio에서 테스트 하는 동안 확인 수 있습니다. 연결 문자열 hello `UseDevelopmentStorage=true` hello Azure 저장소 에뮬레이터를 사용 하 여 Visual Studio에서 클라우드 서비스 프로젝트를 실행 하는 동안 진단 데이터 수집을 사용 합니다. Hello (개발 저장소) 저장소 계정에서 모든 진단 데이터 수집 됩니다.
+* hello 진단 저장소 계정 연결 문자열 (Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString) hello 서비스 구성 (.cscfg) 파일에 다시 저장 됩니다. Azure SDK 2.5에서 hello 진단 저장소 계정은 hello diagnostics.wadcfgx 파일에 지정 되었습니다.
 
-Azure SDK 2.4 이하와 Azure SDK 2.6 이상 버전에서 연결 문자열이 작동하는 방식 간에 몇 가지 주목할 만한 차이점이 있습니다.
+Azure SDK 2.4 및 이전 버전 hello 연결 문자열의 작동 방법 및 Azure SDK 2.6 이상 작동 방식에 몇 가지 주목할 만한 차이점 있습니다.
 
-* Azure SDK 2.4 이하 버전에서는 진단 로그를 전송하기 위한 저장소 계정 정보를 가져오기 위해 진단 플러그인에 의해 런타임으로 연결 문자열이 사용되었습니다.
-* Azure SDK 2.6 이상 버전에서는 게시하는 동안 적절한 저장소 계정 정보로 진단 확장을 구성하기 위해 Visual Studio에 의해 연결 문자열이 사용됩니다. 연결 문자열을 통해 사용자는 Visual Studio에서 게시하는 동안 사용할 다양한 서비스 구성에 대해 서로 다른 저장소 계정을 정의할 수 있습니다. 그러나 진단 플러그인을 더 이상 사용할 수 없으므로(Azure SDK 2.5 이후) .cscfg 파일 자체만으로 진단 확장을 활성화할 수 없습니다. Visual Studio 또는 PowerShell과 같은 도구를 통해 별도로 확장을 사용하도록 설정해야 합니다.
-* PowerShell을 사용한 진단 확장 구성 프로세스를 단순화하기 위해 Visual Studio의 패키지 출력에도 각 역할에 대한 진단 확장의 공용 구성 XML이 포함됩니다. Visual Studio에서는 진단 연결 문자열을 사용하여 공용 구성에 있는 저장소 계정 정보를 채웁니다. 공용 config 파일이 Extensions 폴더에서 생성되고 PaaSDiagnostics<RoleName>.PubConfig.xml 패턴을 따릅니다. 모든 PowerShell 기반 배포에서 이 패턴을 사용하여 각 구성을 역할에 매핑합니다.
-* .cscfg 파일의 연결 문자열은 Azure 포털에서 진단 데이터에 액세스하는 데도 사용되므로 **모니터링** 탭에 나타날 수 있습니다. 이 연결 문자열은 포털에서 자세한 모니터링 데이터를 표시하도록 서비스를 구성하는 데 필요 합니다.
+* Azure SDK 2.4 및 이전 버전에서는 hello 연결 문자열이 사용 되었습니다 런타임 hello 진단 플러그 인 tooget hello 저장소 계정 정보로 진단 로그를 전송에 대 한 합니다.
+* Azure SDK 2.6 이상 버전에서 게시 하는 동안 hello 적절 한 저장소 계정 정보로 Visual Studio tooconfigure hello 진단 확장에서 hello 진단 연결 문자열이 사용 됩니다. hello 연결 문자열에는 Visual Studio에서 게시할 때 사용할 다른 서비스 구성에 대 한 다른 저장소 계정을 정의할 수 있습니다. 그러나 hello 진단 플러그 인 (Azure SDK 2.5) 한 후 사용할 수 없게 되었기 때문에 hello.cscfg 파일이 자체적으로 hello 진단 확장을 사용할 수 없습니다. Visual Studio 또는 PowerShell과 같은 도구를 통해 개별적으로 tooenable hello 확장 프로그램이 있는 합니다.
+* PowerShell을 사용 하 여 hello 진단 확장 구성의 toosimplify hello 프로세스를 Visual Studio의 패키지 출력 hello hello 공용 구성 XML에 대 한 각 역할에 대 한 hello 진단 확장도 포함 됩니다. Visual Studio hello 진단 연결 문자열 toopopulate hello 저장소 계정 정보 hello 공용 구성에 사용합니다. hello 공용 구성 파일은 hello 확장 폴더에 만들어지며 PaaSDiagnostics hello 패턴을 따릅니다. <RoleName>. PubConfig.xml 합니다. 모든 PowerShell 기반 배포는 각 구성 tooa 역할 패턴 toomap이 사용할 수 있습니다.
+* hello hello.cscfg 파일에서 연결 문자열 에서도 사용 hello Azure 포털 tooaccess hello 진단 데이터 hello에 나타날 수 있도록 **모니터링** 탭 hello 연결 문자열은 필요한 tooconfigure hello 서비스 tooshow 자세한 정보 hello 포털에서 데이터를 모니터링 합니다.
 
-#### <a name="migrating-projects-to-azure-sdk-26-and-later"></a>Azure SDK 2.6 이상으로 프로젝트 마이그레이션
-Azure SDK 2.5에서 Azure SDK 2.6 이상으로 마이그레이션하는 경우 .wadcfgx 파일에 진단 저장소 계정이 지정된 경우 값이 계속 유지됩니다. 서로 다른 저장소 구성에 대해 서로 다른 저장소 계정을 유연성 있게 사용하려면 프로젝트에 연결 문자열을 수동으로 추가해야 합니다. Azure SDK 2.4 또는 이전 버전에서 Azure SDK 2.6으로 프로젝트를 마이그레이션하는 경우 진단 연결 문자열이 유지됩니다. 그러나 이전 섹션에서 지정된 것처럼 Azure SDK 2.6에서 연결 문자열을 처리하는 방식이 변경되었음을 유의하세요.
+#### <a name="migrating-projects-tooazure-sdk-26-and-later"></a>마이그레이션 프로젝트 tooAzure SDK 2.6 이상
+Azure SDK 2.5 tooAzure SDK 2.6에서에서 마이그레이션 또는 그 이후 버전 hello.wadcfgx 파일에 지정 된 진단 저장소 계정을 사용 했던 경우 다음이 계속 유지 됩니다. 다른 저장소 구성에 대 한 다른 저장소를 사용 하 여 hello 유연성 tootake 활용 계정, toomanually hello 연결 문자열 tooyour 프로젝트에 추가 해야 합니다. Azure SDK 2.4 또는 이전 tooAzure SDK 2.6에서 프로젝트를 마이그레이션하는, 진단 연결 문자열이 유지 됩니다를 hello 합니다. 그러나 hello 변경 내용 처리 방법에 연결 문자열은 Azure SDK 2.6에서 지정 된 대로 hello 이전 단원의 note 하십시오.
 
-#### <a name="how-visual-studio-determines-the-diagnostics-storage-account"></a>Visual Studio에서 진단 저장소 계정을 결정하는 방법
-* 진단 연결 문자열이.cscfg 파일에 지정된 경우 Visual Studio에서는 게시할 때와 패키징 중 공용 구성 xml 파일을 생성할 때 이 문자열을 사용하여 진단 확장을 구성합니다.
-* 진단 연결 문자열이.cscfg 파일에 지정되지 않은 경우 Visual Studio에서는 게시할 때와 패키징 중 공용 구성 xml 파일을 생성할 때 .wadcfgx 파일에 지정된 저장소 계정을 대신 사용하여 진단 확장을 구성합니다.
-* .cscfg 파일의 진단 연결 문자열은 .wadcfgx 파일의 저장소 계정보다 우선합니다. 진단 연결 문자열이.cscfg 파일에 지정된 경우, Visual Studio에서는 이 문자열을 사용하고 .wadcfgx의 저장소 계정은 무시합니다.
+#### <a name="how-visual-studio-determines-hello-diagnostics-storage-account"></a>Visual Studio hello 진단 저장소 계정을 결정 하는 방법
+* Hello.cscfg 파일에 진단 연결 문자열이 지정 된, Visual Studio 사용 tooconfigure hello 진단 확장을 게시 하면 및 패키징 시 hello 공용 구성 xml 파일을 생성할 때 합니다.
+* 진단 연결 문자열이 없는 hello.cscfg 파일에 지정 된, 다음 Visual Studio를 대신 hello.wadcfgx 파일 tooconfigure hello 진단 확장을 게시 하 고 hello 공개를 생성 하는 경우에 지정 된 toousing hello 저장소 계정 구성 xml 파일 패키징할 때 있습니다.
+* hello.cscfg 파일에 진단 연결 문자열 hello hello.wadcfgx 파일의 저장소 계정 hello 보다 우선합니다. 진단 연결 문자열은 hello.cscfg 파일에 지정 된 다음 Visual Studio를 사용 하 고 무시.wadcfgx의 저장소 계정을 hello 됩니다.
 
-#### <a name="what-does-the-update-development-storage-connection-strings-checkbox-do"></a>"개발 저장소 연결 문자열 업데이트..." 확인란의 기능은 무엇입니까?
-**Microsoft Azure에 게시할 때 Microsoft Azure 저장소 계정 자격 증명을 사용하여 진단 및 캐싱을 위한 개발 저장소 연결 문자열 업데이트** 확인란은 게시하는 동안 지정된 Azure 저장소 계정으로 개발 저장소 계정 연결 문자열을 업데이트하는 편리한 방법을 제공합니다.
+#### <a name="what-does-hello-update-development-storage-connection-strings-checkbox-do"></a>"... 개발 저장소 연결 문자열 업데이트" hello 않는 내용 확인란의 기능은 무엇입니까?
+에 대 한 확인란 hello **tooMicrosoft Azure에 게시할 때 진단 및 캐싱을 위한 개발 저장소 연결 문자열을 Microsoft Azure 저장소 계정 자격 증명으로 업데이트** 하면 편리 tooupdate 어떤 게시 하는 동안 지정 된 hello Azure 저장소 계정으로 개발 저장소 계정 연결 문자열입니다.
 
-예를 들어, 사용자가 이 확인란을 선택하고 진단 연결 문자열에서 `UseDevelopmentStorage=true`를 지정한다고 가정합니다. Azure에 프로젝트를 게시할 때 Visual Studio는 사용자가 게시 마법사에 지정한 저장소 계정을 사용하여 진단 연결 문자열을 자동으로 업데이트합니다. 그러나 실제 저장소 계정을 진단 연결 문자열로 지정한 경우 해당 계정이 대신 사용됩니다.
+예를 들어이 확인란을 선택 하 고 hello 진단 연결 문자열 지정 `UseDevelopmentStorage=true`합니다. Hello 프로젝트 tooAzure를 게시 하면 Visual Studio hello 게시 마법사에서 지정한 hello 스토리지 계정으로 hello 진단 연결 문자열을 자동으로 업데이트 합니다. 그러나 실제 저장소 계정을 hello 진단 연결 문자열로 지정 된 경우 다음 해당 계정은 대신 사용 됩니다.
 
 ### <a name="diagnostics-functionality-differences-between-azure-sdk-24-and-earlier-and-azure-sdk-25-and-later"></a>Azure SDK 2.4 이하 및 Azure SDK 2.5 이상 간의 진단 기능 차이점
-Azure SDK 2.4에서 Azure SDK 2.5 이상으로 업그레이드하는 경우 다음 진단 기능 차이점을 명심해야 합니다.
+Azure SDK 2.4 tooAzure SDK 2.5 이상에서 프로젝트를 업그레이드 하는 경우에 유의 hello 진단 기능의 차이 다음에 주의 해야 합니다.
 
-* **구성 API가 더 이상 사용되지 않음** – 진단의 프로그래밍 방식 구성은 Azure SDK 2.4 이하 버전에서는 사용할 수 있지만 Azure SDK 2.5 이상 버전에서는 더 이상 사용되지 않습니다. 코드에 진단 구성이 현재 정의된 경우 계속해서 진단하려면 마이그레이션된 프로젝트에서 해당 설정을 처음부터 다시 구성해야 합니다. Azure SDK 2.4에 대한 진단 구성 파일은 diagnostics.wadcfg이고 Azure SDK 2.5 이상에서는 diagnostics.wadcfgx입니다.
-* **클라우드 서비스 응용 프로그램에 대한 진단은 인스턴스 수준이 아닌 역할 수준에서만 구성할 수 있습니다.**
-* **앱을 배포할 때마다 진단 구성이 업데이트됨** – 이로 인해 서버 탐색기에서 진단 구성을 변경한 후 앱을 다시 배포하는 경우 패리티 문제가 발생할 수 있습니다.
-* **Azure SDK 2.5 이상에서 코드가 아닌 진단 구성 파일에 크래시 덤프가 구성됨** – 코드에 크래시 덤프가 구성된 경우, Azure SDK 2.6으로 마이그레이션하는 동안 크래시 덤프가 전송되지 않으므로 해당 구성을 코드에서 구성 파일로 수동으로 전송해야 합니다.
+* **구성 API가 더 이상 사용되지 않음** – 진단의 프로그래밍 방식 구성은 Azure SDK 2.4 이하 버전에서는 사용할 수 있지만 Azure SDK 2.5 이상 버전에서는 더 이상 사용되지 않습니다. 코드에서 진단 구성에 현재 정의 된 hello 마이그레이션된 프로젝트에서 진단 tookeep 작업에 대 한 처음부터 이러한 설정을 tooreconfigure 필요 합니다. Azure SDK 2.4 용 hello 진단 구성 파일 diagnostics.wadcfg이 고 Azure SDK 2.5 이상 diagnostics.wadcfgx 됩니다.
+* **클라우드 서비스 응용 프로그램에 대 한 진단 hello 인스턴스 수준이 아닌 hello 역할 수준에서 구성할 수만 있습니다.**
+* **Hello 진단 구성이 업데이트 될 때마다 응용 프로그램을 배포한** -서버 탐색기에서 진단 구성을 변경한 다음 응용 프로그램을 다시 배포 하는 경우이 패리티 문제가 발생할 수 있습니다.
+* **크래시 덤프 코드에 없는 hello 진단 구성 파일에서 구성 된 Azure SDK 2.5 이상 버전에서는** -코드에 구성 된 크래시 덤프를 설정한 경우 toomanually 전송 hello 구성 코드 toohello 구성 파일에서 hello 크래시 덤프 때문에 hello 마이그레이션 tooAzure SDK 2.6 하는 동안 전송 되지 않습니다.
 

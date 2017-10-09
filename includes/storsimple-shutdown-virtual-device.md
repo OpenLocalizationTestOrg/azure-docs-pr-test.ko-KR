@@ -1,5 +1,5 @@
-#### <a name="to-shut-down-a-virtual-device"></a>가상 장치를 종료하려면
-1. 관리 포털에 로그인합니다.
-2. **가상 컴퓨터**를 클릭한 다음 가상 장치를 선택합니다.
+#### <a name="tooshut-down-a-virtual-device"></a>가상 장치 아래로 tooshut
+1. Toohello 관리 포털에에서 로그인 합니다.
+2. 클릭 **가상 컴퓨터**을 다음 선택 hello 가상 장치 하 고 있습니다.
 3. **종료**를 클릭합니다.
 

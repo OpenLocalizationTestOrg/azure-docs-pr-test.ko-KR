@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric의 상태 모니터링 | Microsoft Docs"
-description: "클러스터 및 응용 프로그램과 서비스 모니터링을 제공하는 Azure 서비스 패브릭 상태 모니터링 모델 소개."
+title: "서비스 패브릭에서 aaaHealth 모니터링 | Microsoft Docs"
+description: "소개 toohello Azure 서비스 패브릭 상태 모니터링 hello 클러스터 및 응용 프로그램 및 서비스의 모니터링을 제공 하는 모델입니다."
 services: service-fabric
 documentationcenter: .net
 author: oanapl
@@ -14,92 +14,92 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/19/2017
 ms.author: oanapl
-ms.openlocfilehash: 598a4d35faebb592f840b1bec7e77c7a091ea2de
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 904f36374ca6ca7e4caa1d43c92584e7e4c50087
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-service-fabric-health-monitoring"></a>서비스 패브릭 상태 모니터링 소개
-다양하고 유연하며 확장 가능한 상태 평가 및 보고 기능을 제공하는 상태 모델이 Azure 서비스 패브릭에 도입되었습니다. 이 모델에서는 클러스터의 상태와 클러스터에서 실행되는 서비스의 상태를 거의 실시간으로 모니터링할 수 있습니다. 간편하게 상태 정보를 얻을 수 있고 잠재적인 문제로 인한 대규모 중단 사태가 발생하기 전에 해당 문제를 해결할 수 있습니다. 일반적인 모델에서는 서비스가 로컬 보기를 기반으로 한 보고서를 보내고 정보는 전체 클러스터 수준 보기를 제공하도록 집계됩니다.
+# <a name="introduction-tooservice-fabric-health-monitoring"></a>소개 tooService 패브릭 상태 모니터링
+다양하고 유연하며 확장 가능한 상태 평가 및 보고 기능을 제공하는 상태 모델이 Azure 서비스 패브릭에 도입되었습니다. hello 모델 hello 상태에서 실행 되는 hello 서비스 및 hello 클러스터 근처 실시간 모니터링할 수 있습니다. 간편하게 상태 정보를 얻을 수 있고 잠재적인 문제로 인한 대규모 중단 사태가 발생하기 전에 해당 문제를 해결할 수 있습니다. Hello 일반적인 모델에서 서비스의 로컬 뷰를 기반으로 보고서를 보내고 정보를 집계 tooprovide 전반적인 클러스터 수준 보기.
 
-Service Fabric 구성 요소는 이 풍부한 상태 모델을 사용하여 현재 상태를 보고합니다. 동일한 메커니즘을 사용하여 응용 프로그램의 상태를 보고할 수도 있습니다. 사용자 지정 조건을 캡처하는 고품질의 상태 보고에 투자하면 실행 중인 응용 프로그램에 대한 문제를 훨씬 더 쉽게 감지하고 수정할 수 있습니다.
+서비스 패브릭 구성 요소는 현재 상태로 풍부한 상태 모델 tooreport이를 사용합니다. 에서는 응용 프로그램에서 동일한 메커니즘 tooreport 상태 hello 합니다. 사용자 지정 조건을 캡처하는 고품질의 상태 보고에 투자하면 실행 중인 응용 프로그램에 대한 문제를 훨씬 더 쉽게 감지하고 수정할 수 있습니다.
 
-다음 Microsoft Virtual Academy 비디오에는 Service Fabric 상태 모델 및 사용 방법도 설명합니다. <center><a target="_blank" href="https://mva.microsoft.com/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=tevZw56yC_1906218965">
+hello 다음 Microsoft Virtual Academy 비디오는 hello 서비스 패브릭 상태 모델 및 사용 방법에 설명 합니다.<center><a target="_blank" href="https://mva.microsoft.com/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=tevZw56yC_1906218965">
 <img src="./media/service-fabric-health-introduction/HealthIntroVid.png" WIDTH="360" HEIGHT="244">
 </a></center>
 
 > [!NOTE]
-> 이전에는 모니터링되는 업그레이드에 대한 요구를 해결하기 위해 상태 하위 시스템을 시작했습니다. Service Fabric은 모니터링되는 응용 프로그램 및 클러스터 업그레이드를 제공하여 가동 중지 시간 없는 최대 가용성을 보장하고 사용자 개입을 최소화하거나 필요 없도록 합니다. 이 목표를 달성하기 위해 업그레이드에서는 구성된 업그레이드 정책을 기초로 상태를 확인합니다. 상태가 바람직한 임계값에 부합하는 경우에만 업그레이드를 진행할 수 있습니다. 그렇지 않으면 관리자가 문제를 해결할 수 있도록 업그레이드가 자동으로 롤백되거나 일시 중지됩니다. 응용 프로그램 업그레이드에 대한 자세한 내용은 [이 문서](service-fabric-application-upgrade.md)를 참조하세요.
+> Hello 상태 하위 시스템 tooaddress 모니터링 되는 업그레이드에 대 한 필요성을 시작 했습니다. 서비스 패브릭 전체 가용성, 가동 중지 시간 및 최소 toono 사용자 개입을 보장 하는 모니터링 된 응용 프로그램 및 클러스터 업그레이드를 제공 합니다. 이러한 목표를 hello 업그레이드 검사 상태에 따라 tooachieve 업그레이드 정책 구성. 상태가 바람직한 임계값에 부합하는 경우에만 업그레이드를 진행할 수 있습니다. 그렇지 않으면 hello 업그레이드 하거나 자동으로 롤백됩니다 또는 toogive 관리자 기회 toofix hello 문제를 일시 중지 합니다. 응용 프로그램 업그레이드에 대해 자세히 toolearn 참조 [이 여기서](service-fabric-application-upgrade.md)합니다.
 > 
 > 
 
 ## <a name="health-store"></a>Health 스토어
-Health 스토어는 클러스터의 엔터티에 대한 상태 관련 정보를 쉽게 검색하고 평가하기 위해 보관합니다. 또한 높은 가용성과 확장성을 제공할 수 있도록 서비스 패브릭 지속형 상태 저장 서비스로 구현됩니다. Health 스토어는 **fabric:/System** 응용 프로그램의 일부로, 클러스터가 가동되어 실행될 때 사용할 수 있습니다.
+hello 상태 저장소 쉽게 검색 및 평가 대 한 hello 클러스터의 엔터티에 대 한 상태 관련 정보를 유지합니다. 서비스 패브릭 유지 상태 저장 서비스 tooensure 고가용성 및 확장성 구현 됩니다. hello 상태 저장소의 일부인 hello **패브릭: / 시스템** 응용 프로그램, 그리고 그 되어 실행 되 고 hello 클러스터가 실행 중이 경우에 사용할 수 있습니다.
 
 ## <a name="health-entities-and-hierarchy"></a>상태 엔터티 및 계층 구조
-상태 엔터티는 여러 엔터티 간의 상호 작용 및 종속성을 캡처하는 논리적 계층 구조로 구성됩니다. 상태 저장소는 Service Fabric 구성 요소로부터 수신한 보고서를 기준으로 상태 엔터티와 계층 구조를 자동으로 빌드합니다.
+hello 상태 엔터티를 캡처하는 서로 다른 엔터티 간 종속성 및 상호 작용 논리적 계층 구조로 구성 됩니다. hello 상태 저장소 상태 엔터티 및 서비스 패브릭 구성 요소에서 받은 보고서에 기반 하는 계층 구조를 자동으로 작성 합니다.
 
-상태 엔터티는 서비스 패브릭 엔터티를 미러링합니다. (예: **상태 응용 프로그램 엔터티**가 클러스터에 배포된 응용 프로그램 인스턴스와 일치하는 반면, **상태 노드 엔터티**는 Service Fabric 클러스터 노드와 일치하는지 등.) 상태 계층 구조는 시스템 엔터티의 상호 작용을 캡처하며 고급 상태 평가를 위한 기준입니다. [서비스 패브릭 기술 개요](service-fabric-technical-overview.md)에서 주요 서비스 패브릭 개념에 대해 알아볼 수 있습니다. 응용 프로그램에 대한 자세한 내용은 [서비스 패브릭 응용 프로그램 모델](service-fabric-application-model.md)을 참조하세요.
+hello 상태 엔터티 hello 서비스 패브릭 엔터티를 반영합니다. (예를 들어 **상태 응용 프로그램 엔터티** 응용 프로그램 인스턴스를 일치을 hello 클러스터에 배포 하는 동안 **상태 노드 엔터티** 일치 서비스 패브릭 클러스터 노드입니다.) hello 상태 계층 구조의 캡처 hello 간의 상호 작용 하며 hello 시스템 엔터티는 고급 상태 평가 대 한 hello 기반입니다. [서비스 패브릭 기술 개요](service-fabric-technical-overview.md)에서 주요 서비스 패브릭 개념에 대해 알아볼 수 있습니다. 응용 프로그램에 대한 자세한 내용은 [서비스 패브릭 응용 프로그램 모델](service-fabric-application-model.md)을 참조하세요.
 
-상태 엔터티 및 계층 구조를 사용하면 클러스터와 응용 프로그램에 대한 효과적인 보고, 디버깅 및 모니터링이 가능합니다. 상태 모델은 클러스터에서 많이 이동되는 항목의 상태를 정확하게 *세분화* 하여 표현할 수 있습니다.
+hello 상태 엔터티 및 계층 구조 hello 클러스터와 응용 프로그램 toobe 효과적으로 보고, 디버깅 및 모니터링을 허용 합니다. hello 상태 모델이 정확한, 제공 *세부적인* 의 hello 상태의 표현을 hello hello 클러스터에 이동 많습니다.
 
 ![상태 엔터티.][1]
-상태 엔터티는 부모-자식 관계에 따른 계층 구조로 구성됩니다.
+hello 상태 엔터티를 부모-자식 관계를 기반으로 계층 구조로 구성 됩니다.
 
 [1]: ./media/service-fabric-health-introduction/servicefabric-health-hierarchy.png
 
-상태 엔터티는 다음과 같습니다.
+hello 상태 엔터티는:
 
-* **클러스터**. 서비스 패브릭 클러스터의 상태를 나타냅니다. 클러스터 상태 보고서에서는 전체 클러스터에 영향을 주는 상태를 설명합니다. 이러한 조건은 클러스터의 여러 엔터티나 클러스터 자체에 영향을 미칩니다. 조건에 따라 보고자는 하나 이상의 비정상 상태인 자식으로 문제 범위를 축소할 수 없습니다. 예를 들면 네트워크 분할 또는 통신 문제로 인한 클러스터의 스플릿 브레인이 포함됩니다.
-* **노드**. 서비스 패브릭 노드의 상태를 나타냅니다. 노드 상태 보고서에서는 노드 기능에 영향을 주는 상태를 설명합니다. 일반적으로 노드에서 실행되는 배포된 모든 엔터티에 영향을 줍니다. 예를 들면 노드에 디스크 공간(또는 메모리, 연결 등 기타 컴퓨터 전반적인 속성)이 부족하거나 노드가 다운되는 경우가 포함됩니다. 노드 엔터티는 노드 이름(문자열)으로 식별됩니다.
-* **응용 프로그램**. 클러스터에서 실행 중인 응용 프로그램 인스턴스의 상태를 나타냅니다. 응용 프로그램 상태 보고서에서는 전체 응용 프로그램 상태에 영향을 주는 상태를 설명합니다. 이 상태는 개별 자식(서비스 또는 배포된 응용 프로그램)으로 좁힐 수 없습니다. 예를 들면 응용 프로그램에서 서로 다른 서비스 간의 종단간 상호 작용이 포함됩니다. 응용 프로그램 엔터티는 응용 프로그램 이름(URI)으로 식별됩니다.
-* **서비스**. 클러스터에서 실행되는 서비스의 상태를 나타냅니다. 서비스 상태 보고서에서는 전체 서비스 상태에 영향을 주는 상태를 설명합니다. 보고자는 비정상 파티션 또는 복제본으로 문제 범위를 축소할 수 없습니다. 예를 들면 모든 파티션에 대해 문제를 일으키는 서비스 구성(포트 또는 외부 파일 공유 등)이 포함됩니다. 서비스 엔터티는 서비스 이름(URI)으로 식별됩니다.
-* **파티션**. 서비스 파티션의 상태를 나타냅니다. 파티션 상태 보고서에서는 전체 복제본 세트에 영향을 주는 상태를 설명합니다. 예를 들면 복제본의 수가 목표 개수 아래이거나 파티션이 쿼럼 손실 상태인 경우가 포함됩니다. 파티션 엔터티는 파티션 ID(GUID)로 식별됩니다.
-* **복제본**. 상태 저장 서비스 복제본 또는 상태 비저장 서비스 인스턴스의 상태를 나타냅니다. 복제본은 Watchdog 및 시스템 구성 요소가 응용 프로그램에 대해 보고할 수 있는 최소 단위입니다. 상태 저장 서비스의 경우 보조 복제본에 작업을 복제할 수 없는 주 복제본과 느린 복제를 예로 들 수 있습니다. 또한 상태 비저장 인스턴스는 리소스 부족 또는 연결 문제가 있는 경우에 보고할 수 있습니다. 복제본 엔터티는 파티션 ID(GUID) 및 복제본 또는 인스턴스 ID(long)로 식별됩니다.
-* **DeployedApplication**. *노드에서 실행되는 응용 프로그램*의 상태를 나타냅니다. 배포된 응용 프로그램 상태 보고서에서는 동일한 노드에 배포된 서비스 패키지로 좁힐 수 없는 노드의 응용 프로그램별 상태를 설명합니다. 예를 들면 응용 프로그램 패키지를 해당 노드에 다운로드할 수 없는 경우 또는 해당 노드에서 응용 프로그램 보안 주체를 설정하는 데 문제가 있는 경우가 포함됩니다. 배포된 응용 프로그램은 응용 프로그램 이름(URI) 및 노드 이름(문자열)으로 식별됩니다.
-* **DeployedServicePackage**. 클러스터의 노드에서 실행 중인 서비스 패키지의 상태를 나타냅니다. 동일한 응용 프로그램에 대해 동일한 노드의 다른 서비스 패키지에 영향을 주지 않는 서비스 패키지별 상태를 설명합니다. 예를 들면 서비스 패키지의 코드 패키지를 시작할 수 없거나 구성 패키지를 읽을 수 없는 경우가 포함됩니다. 배포된 서비스 패키지는 응용 프로그램 이름(URI), 노드 이름(문자열), 서비스 매니페스트 이름(문자열) 및 서비스 패키지 활성화 ID(문자열)로 식별됩니다.
+* **클러스터**. 서비스 패브릭 클러스터의 hello 상태를 나타냅니다. 클러스터 상태 보고서 hello 전체 클러스터에 영향을 주는 조건에 설명 합니다. 이러한 조건은 hello 클러스터 또는 hello 클러스터 자체의 여러 엔터티를 영향을 줍니다. Hello 보고자 hello 조건에 따라, 아래쪽 tooone 또는 비정상적인 자식 hello 문제를 축소할 수는 없습니다. Hello 뇌 toonetwork 분할 또는 통신 문제로 인해 분할 hello 클러스터의 예로 있습니다.
+* **노드**. 서비스 패브릭 노드의 hello 상태를 나타냅니다. 노드 상태 보고서 hello 노드 기능에 영향을 주는 조건에 설명 합니다. 일반적으로에서 실행 중인 모든 배포 된 hello 엔터티에 영향을 줍니다. 예를 들면 노드에 디스크 공간(또는 메모리, 연결 등 기타 컴퓨터 전반적인 속성)이 부족하거나 노드가 다운되는 경우가 포함됩니다. hello 노드 엔터티 hello 노드 이름 (문자열)으로 식별 됩니다.
+* **응용 프로그램**. Hello hello 클러스터에서 실행 중인 응용 프로그램 인스턴스 상태를 나타냅니다. 응용 프로그램 상태 보고 조건을 hello에 영향을 주는 설명 hello 응용 프로그램의 전반적인 상태입니다. (서비스 또는 배포 된 응용 프로그램) tooindividual 자식 좁힐 수 없습니다. 예를 들면 hello 응용 프로그램의 서로 다른 서비스 간의 hello 종단 간 상호 작용 합니다. hello 응용 프로그램 엔터티 hello 응용 프로그램 이름 (URI)으로 식별 됩니다.
+* **서비스**. Hello 클러스터에서 실행 되는 서비스의 hello 상태를 나타냅니다. 서비스 상태를 보고 조건을 hello에 영향을 주는 설명 hello 서비스의 전반적인 상태입니다. hello 보고자 hello 문제 tooan 비정상 파티션 또는 복제를 좁힐 수 없습니다. 예를 들면 모든 파티션에 대해 문제를 일으키는 서비스 구성(포트 또는 외부 파일 공유 등)이 포함됩니다. hello 서비스 이름 (URI)으로 hello 서비스 엔터티 식별 됩니다.
+* **파티션**. 서비스 파티션이 hello 상태를 나타냅니다. 파티션 상태 보고서 hello 전체 복제 세트에 영향을 주는 조건에 설명 합니다. 쿼럼 손실에서 되는 경우 및 hello 복제본 수가 대상 개수 보다 낮으면을 예로 들 수 있습니다. hello 파티션 엔터티 hello 파티션 ID (GUID)로 식별 됩니다.
+* **복제본**. 상태 저장 서비스 복제본 또는 상태 비저장 서비스 인스턴스의 hello 상태를 나타냅니다. hello 복제본은 hello watchdogs 및 시스템 구성 요소에서 응용 프로그램에 대해 보고할 수 있는 가장 작은 단위입니다. 상태 저장 서비스에 대 한 예로 주 복제본 작업 toosecondaries 및 느린 복제 복제할 수 없는 있습니다. 또한 상태 비저장 인스턴스는 리소스 부족 또는 연결 문제가 있는 경우에 보고할 수 있습니다. hello 복제 항목 (long) hello 파티션 ID (GUID) 및 hello 복제본 또는 인스턴스 ID로 식별 됩니다.
+* **DeployedApplication**. 나타냅니다 hello의 상태는 *노드에서 실행 되는 응용 프로그램*합니다. 배포 응용 프로그램 상태 보고서 hello에 배포 된 tooservice 패키지 좁힐 수 없는 hello 노드에서 조건 특정 toohello 응용 프로그램에 설명 동일한 노드. 예로 응용 프로그램 패키지를 다운로드 하 여 해당 노드에서 없습니다 및 hello 노드에서 응용 프로그램 보안 주체를 설정 하는 문제 오류가 있습니다. 배포 된 hello 응용 프로그램은 응용 프로그램 이름 (URI) 및 노드 이름 (문자열)으로 식별 됩니다.
+* **DeployedServicePackage**. Hello 클러스터의 노드에서 실행 되는 서비스 패키지의 hello 상태를 나타냅니다. Hello에 hello 영향을 미치지 않는 조건 특정 tooa 서비스 패키지를 다른 서비스 패키지 설명 hello에 대 한 동일한 노드에 동일한 응용 프로그램입니다. 예를 들면 시작할 수 없는 hello 서비스 패키지 및 읽을 수 없는 구성 패키지의 코드 패키지입니다. 배포 된 hello 서비스 패키지 응용 프로그램 이름 (URI), 노드 이름 (문자열), 서비스 매니페스트 이름 (문자열) 및 서비스 패키지 활성화 ID (문자열)으로 식별 됩니다.
 
-상태 모델의 세분성을 통해 문제를 쉽게 감지하여 수정할 수 있습니다. 예를 들어, 서비스가 응답하지 않는 경우 응용 프로그램 인스턴스가 비정상이라고 보고될 수 있습니다. 하지만 문제가 해당 응용 프로그램 내의 모든 서비스에 영향을 주지는 않을 수도 있으므로 그 수준에서 보고하는 것은 이상적이지 않습니다. 많은 정보가 해당 파티션을 가리키는 경우 보고서는 비정상 서비스에 적용되거나, 특정 자식 파티션에 적용되어야 합니다. 데이터가 계층 구조를 통해 자동으로 표면화되며 비정상 파티션을 서비스 및 응용 프로그램 수준에서 볼 수 있습니다. 이러한 집계는 문제의 근본 원인을 빠르고 정확하게 찾아내서 해결하는 데 도움이 됩니다.
+hello 상태 모델의 hello 세분성을 사용 하면 쉽게 toodetect 및 문제를 수정할 수 있습니다. 예를 들어 서비스가 응답 하지 않는 경우을 응용 프로그램 인스턴스가 hello tooreport 손상 되었습니다. 하지만 보고에 수준 아닌지 방식이 적절 hello 문제 해당 응용 프로그램 내의 모든 hello 서비스 영향 수도 있습니다. hello 보고서 방법은 toothat 파티션 하는 경우 적용 된 toohello 비정상적인 서비스 또는 tooa 특정 자식 파티션 여야 합니다. hello 데이터 자동으로 hello 계층 구조를 통해 화면 및 비정상 파티션 이루어집니다 표시 서비스 및 응용 프로그램 수준에서. 이 집계 toopinpoint 주며 보다 신속 하 게 hello 문제의 hello 근본 원인을 해결 합니다.
 
-상태 계층 구조는 부모-자식 관계로 이루어집니다. 클러스터는 노드 및 응용 프로그램으로 구성됩니다. 응용 프로그램에는 서비스 및 배포된 응용 프로그램이 포함됩니다. 배포된 응용 프로그램에는 배포된 서비스 패키지가 포함됩니다. 서비스에는 파티션이 있고 각 파티션에는 하나 이상의 복제본이 있습니다. 노드 및 배포된 엔터티 간에는 특수한 관계가 있습니다. 기관 시스템 구성 요소(장애 조치(Failover) 관리자 서비스)에서 비정상 노드로 보고되면 배포된 응용 프로그램, 서비스 패키지 및 배포된 복제본에 영향을 줍니다.
+hello 상태 계층 구조의 부모-자식 관계가 구성 됩니다. 클러스터는 노드 및 응용 프로그램으로 구성됩니다. 응용 프로그램에는 서비스 및 배포된 응용 프로그램이 포함됩니다. 배포된 응용 프로그램에는 배포된 서비스 패키지가 포함됩니다. 서비스에는 파티션이 있고 각 파티션에는 하나 이상의 복제본이 있습니다. 노드 및 배포된 엔터티 간에는 특수한 관계가 있습니다. 비정상 노드 해당 기관 시스템 구성 요소, hello Failover Manager service가 보고에 영향을 줍니다 hello 배포 응용 프로그램, 서비스 패키지 및 복제본에 배포 합니다.
 
-상태 계층 구조는 최신 상태 보고서에 기반한 시스템의 최신 상태를 나타내며, 이 정보는 거의 실시간 정보입니다.
-내부 및 외부 Watchdog는 동일한 엔터티에 대해 응용 프로그램별 논리 또는 사용자 지정 모니터링 상태에 따라 보고할 수 있습니다. 사용자 보고서는 시스템 보고서와 함께 존재합니다.
+hello 상태 계층 구조는 거의 실시간 정보 인 hello 최신 상태 보고서를 기반으로 hello 시스템의 hello 최신 상태를 나타냅니다.
+내부 및 외부 watchdogs 응용 프로그램별 논리 또는 사용자 지정 모니터링 대상된 상태에 따라 동일한 엔터티 hello에 보고할 수 있습니다. 사용자의 보고 hello 시스템 보고서 함께 사용할 수 있습니다.
 
-대규모 클라우드 서비스를 설계할 때 상태를 보고하고 이에 대응하는 방식에 대해 투자하도록 계획합니다. 이러한 선투자는 서비스를 손쉽게 디버깅하고 모니터링하고 운영하게 만듭니다.
+큰 클라우드 서비스의 hello 중 toohealth tooreport 및 응답을 디자인 하는 방법에 대 한 tooinvest를 계획 합니다. 이 사전 investement hello 서비스 쉽게 toodebug을, 모니터링 하 고 작업을 만듭니다.
 
 ## <a name="health-states"></a>성능 상태
-서비스 패브릭은 3가지 성능 상태(정상, 경고 및 오류)를 사용하여 엔터티가 정상인지 여부를 설명합니다. Health 스토어로 전송되는 모든 보고서에 이러한 상태 중 하나를 지정해야 합니다. 상태 평가 결과는 이러한 상태 중 하나입니다.
+서비스 패브릭 인지 엔터티가 정상 상태 상태 toodescribe 세 가지 사용 하 여: 확인, 경고 및 오류입니다. 모든 보고서가 전송 toohello 상태 저장소 이러한 상태 중 하나를 지정 해야 합니다. hello 상태 계산 결과 이러한 상태 중 하나입니다.
 
-사용 가능한 [성능 상태](https://docs.microsoft.com/dotnet/api/system.fabric.health.healthstate) 는 다음과 같습니다.
+가능한 hello [상태](https://docs.microsoft.com/dotnet/api/system.fabric.health.healthstate) 됩니다.
 
-* **확인**. 엔터티가 정상입니다. 엔터티 또는 자식(해당하는 경우)에 대해 보고된 알려진 문제가 없습니다.
-* **경고**. 엔터티에 몇 가지 문제가 있지만 여전히 제대로 작동합니다. 예를 들어, 지연이 있으나 아직 기능상의 문제는 없습니다. 일부 경우 외부 개입 없이도 경고 상태가 자체 해결되기도 합니다. 이러한 경우 상태 보고서는 알림을 전달하고 상황에 대한 정보를 제공합니다. 또한 사용자 개입이 없으면 심각한 문제를 초래하는 경고 상태도 있을 수 있습니다.
-* **오류**. 엔터티가 비정상입니다. 엔터티가 제대로 작동하지 않으므로 해당 엔터티의 상태를 해결하는 조치를 취해야 합니다.
-* **알 수 없음**. 엔터티가 Health 스토어에 존재하지 않습니다. 이 결과는 여러 구성 요소에서 결과를 병합하는 분산 쿼리에서 얻을 수 있습니다. 예를 들어, 노드 목록 가져오기 쿼리는**FailoverManager**, **ClusterManager** 및 **HealthManager**로, 응용 프로그램 목록 가져오기 쿼리는 **ClusterManager** 및 **HealthManager**로 갑니다. 이들 쿼리는 여러 시스템 구성 요소의 결과를 병합합니다. 다른 시스템 구성 요소에서 상태 저장소에 없는 엔터티를 반환할 경우 병합된 결과에 알 수 없는 상태가 있습니다. 상태 보고서가 아직 처리되지 않았거나 엔터티가 삭제 후 정리되지 않아 엔터티가 저장소에 없습니다.
+* **확인**. hello 엔터티는 정상입니다. 엔터티 또는 자식(해당하는 경우)에 대해 보고된 알려진 문제가 없습니다.
+* **경고**. hello 엔터티에 포함 된 몇 가지 문제가 있지만 올바르게 여전히 작동할 수 있습니다. 예를 들어, 지연이 있으나 아직 기능상의 문제는 없습니다. 경우에 따라 hello 경고 조건이 해결 될 수도 있습니다 자체 외부 개입 없이 합니다. 이러한 경우 상태 보고서는 알림을 전달하고 상황에 대한 정보를 제공합니다. 다른 경우 사용자 개입 없이 심각한 문제가 발생 hello 경고 조건이 저하 될 수 있습니다.
+* **오류**. hello 엔터티 손상 되었습니다. 제대로 작동 하기 때문에 동작 hello 엔터티의 toofix hello 상태를 수행 해야 합니다.
+* **알 수 없음**. hello 엔터티 hello health store에서 존재 하지 않습니다. 여러 구성 요소에서 결과 병합 하는 hello 분산 쿼리에서이 결과 얻을 수 있습니다. 예를 들어 hello get 노드 목록 쿼리 라인 너무**FailoverManager**, **ClusterManager**, 및 **HealthManager**; 응용 프로그램을 목록 쿼리 너무 라인 **ClusterManager** 및 **HealthManager**합니다. 이들 쿼리는 여러 시스템 구성 요소의 결과를 병합합니다. Health store에서 존재 하지 않는 엔터티를 반환 하는 다른 시스템 구성 요소 hello 병합 된 결과 알 수 없는 상태입니다. 엔터티는 아직 처리 되지 않은 상태 보고서 또는 hello 엔터티 삭제 후에 정리 하기 때문에 저장소에 없습니다.
 
 ## <a name="health-policies"></a>상태 정책
-Health 스토어는 상태 정책을 적용하여 보고서와 해당 자식에 따라 엔터티가 정상인지 결정합니다.
+상태 정책을 toodetermine 엔터티는 보고서 및 자식 함수에 따라 정상 여부를 적용 하는 hello 상태 저장소입니다.
 
 > [!NOTE]
-> 상태 정책은 클러스터 매니페스트(클러스터 및 노드 상태 평가용) 또는 응용 프로그램 매니페스트(응용 프로그램 및 해당 자식 평가용)에서 지정할 수 있습니다. 또한 해당 평가에만 사용되는 사용자 지정 상태 평가 정책에서 상태 평가 요청을 전달할 수도 있습니다.
+> 상태 정책 (대 한 상태 평가 클러스터 및 노드가) 클러스터 매니페스트에 hello 또는 (에 대 한 응용 프로그램 평가 및 해당 자식) hello 응용 프로그램 매니페스트에서 지정할 수 있습니다. 또한 해당 평가에만 사용되는 사용자 지정 상태 평가 정책에서 상태 평가 요청을 전달할 수도 있습니다.
 > 
 > 
 
-기본적으로 서비스 패브릭은 부모-자식 계층 구조 관계에 대한 엄격한 규칙(모든 것이 정상이어야 함)을 적용합니다. 자식 중 하나에 비정상 이벤트가 하나만 있어도 부모가 비정상으로 간주됩니다.
+기본적으로 서비스 패브릭 hello 부모-자식 계층 관계에 대 한 (모든 정상 상태 여야 합니다)는 엄격한 규칙을 적용 합니다. 한 비정상 이벤트 hello 자식 중 하나라도 있으면 hello 부모 비정상으로 간주 됩니다.
 
 ### <a name="cluster-health-policy"></a>클러스터 상태 정책
-[클러스터 상태 정책](https://docs.microsoft.com/dotnet/api/system.fabric.health.clusterhealthpolicy) 은 클러스터 성능 상태 및 노드 성능 상태를 평가하는 데 사용됩니다. 이 정책은 클러스터 매니페스트에서 정의할 수 있습니다. 없는 경우는 기본 정책(0 허용 실패)이 사용됩니다.
-클러스터 상태 정책은 다음과 같습니다.
+hello [클러스터 상태 정책](https://docs.microsoft.com/dotnet/api/system.fabric.health.clusterhealthpolicy) 사용 되는 tooevaluate hello 클러스터 상태 상태와 노드 상태가 됩니다. 클러스터 매니페스트에 hello hello 정책을 정의할 수 있습니다. 표시 되지 않으면 hello 기본 정책 (허용된 실패 횟수 0)이 사용 됩니다.
+hello 클러스터 상태 정책에 포함 되어 있습니다.
 
-* [ConsiderWarningAsError](https://docs.microsoft.com/dotnet/api/system.fabric.health.clusterhealthpolicy.considerwarningaserror). 상태를 평가하는 동안 경고 상태 보고를 오류로 처리할지 여부를 지정합니다. 기본값: false입니다.
-* [MaxPercentUnhealthyApplications](https://docs.microsoft.com/dotnet/api/system.fabric.health.clusterhealthpolicy.maxpercentunhealthyapplications). 클러스터에서 오류로 처리하기 전에 비정상 상태를 유지할 수 있는 응용 프로그램의 최대 허용 비율을 지정합니다.
-* [MaxPercentUnhealthyNodes](https://docs.microsoft.com/dotnet/api/system.fabric.health.clusterhealthpolicy.maxpercentunhealthynodes). 클러스터에서 오류로 처리하기 전에 비정상 상태를 유지할 수 있는 노드의 최대 허용 비율을 지정합니다. 대형 클러스터에는 항상 복구를 위해 다운되거나 중단되는 노드가 있으므로 이 비율은 이를 허용할 수 있도록 구성되어야 합니다.
-* [ApplicationTypeHealthPolicyMap](https://docs.microsoft.com/dotnet/api/system.fabric.health.clusterhealthpolicy.applicationtypehealthpolicymap). 클러스터 상태를 평가하는 동안 응용 프로그램 유형 상태 정책 맵을 사용하여 특수 응용 프로그램 유형을 설명할 수 있습니다. 기본적으로 모든 응용 프로그램은 풀에 배치되고 MaxPercentUnhealthyApplications를 사용하여 평가됩니다. 일부 응용 프로그램 유형을 다르게 처리해야 하는 경우, 전역 풀에서 꺼낼 수 있습니다. 대신, 맵 내의 해당 응용 프로그램 유형 이름과 연결된 백분율에 대해 평가됩니다. 예를 들어 클러스터에는 다양한 유형의 응용 프로그램 수천 개와 특수 응용 프로그램 유형의 제어 응용 프로그램 인스턴스가 약간 있습니다. 제어 응용 프로그램은 절대 오류가 발생하면 안 됩니다. 일부 실패를 허용하도록 전체 MaxPercentUnhealthyApplications를 20%로 설정할 수 있지만, 응용 프로그램 유형 "ControlApplicationType"의 경우에는 MaxPercentUnhealthyApplications를 0으로 설정해야 합니다. 이러한 방식으로, 여러 응용 프로그램 중 일부가 비정상 상태이더라도 전체 비정상 비율보다 낮으면 클러스터가 경고로 평가됩니다. 경고 상태는 클러스터 업그레이드 또는 오류 상태에 의해 트리거되는 기타 모니터링에 영향을 주지 않습니다. 하지만 제어 응용 프로그램 중 하나라도 잘못되면 클러스터가 비정상 상태가 되고, 이로 인해 클러스터 업그레이드는 업그레이드 구성에 따라 롤백 또는 차단됩니다.
-  맵에 정의된 응용 프로그램 유형의 경우 모든 응용 프로그램 인스턴스를 응용 프로그램 전체 풀에서 가져옵니다. 이러한 응용 프로그램은 맵의 특정 MaxPercentUnhealthyApplications를 사용하여 총 응용 프로그램 수를 기반으로 평가됩니다. 나머지 응용 프로그램은 전체 풀에 남아 있으며 MaxPercentUnhealthyApplications를 사용하여 평가됩니다.
+* [ConsiderWarningAsError](https://docs.microsoft.com/dotnet/api/system.fabric.health.clusterhealthpolicy.considerwarningaserror). 상태 평가 중 tootreat 경고 상태를 오류로 보고할지 여부를 지정 합니다. 기본값: false입니다.
+* [MaxPercentUnhealthyApplications](https://docs.microsoft.com/dotnet/api/system.fabric.health.clusterhealthpolicy.maxpercentunhealthyapplications). Hello 할 수 있는 정상 hello 클러스터 오류가 간주 되기 전에 응용 프로그램의 최대 허용된 비율을 지정 합니다.
+* [MaxPercentUnhealthyNodes](https://docs.microsoft.com/dotnet/api/system.fabric.health.clusterhealthpolicy.maxpercentunhealthynodes). Hello 할 수 있는 정상 hello 클러스터 오류가 간주 되기 전에 노드의 최대 허용된 비율을 지정 합니다. 대규모 클러스터의 일부 노드는 항상 아래쪽 아웃 복구에 대 한 하므로이 백분율 되어야 하거나 구성 된 tootolerate입니다.
+* [ApplicationTypeHealthPolicyMap](https://docs.microsoft.com/dotnet/api/system.fabric.health.clusterhealthpolicy.applicationtypehealthpolicymap). 클러스터 상태 평가 toodescribe 특별 한 응용 프로그램 종류 중 hello 응용 프로그램 종류 상태 정책 맵을 사용할 수 있습니다. 기본적으로 모든 응용 프로그램은 풀에 배치되고 MaxPercentUnhealthyApplications를 사용하여 평가됩니다. 일부 응용 프로그램 종류는 다르게 처리 해야, 하면 hello 전역 풀에서 가져올 수 있습니다. 대신, 해당 응용 프로그램 종류 이름 hello 맵에서 관련 된 hello 백분율에 대해 평가 됩니다. 예를 들어 클러스터에는 다양한 유형의 응용 프로그램 수천 개와 특수 응용 프로그램 유형의 제어 응용 프로그램 인스턴스가 약간 있습니다. hello 제어 응용 프로그램 오류에 안 됩니다. 일부 오류 글로벌 MaxPercentUnhealthyApplications too20 %tootolerate 지정할 수는 있지만 hello에 대 한 응용 프로그램 종류 "ControlApplicationType" hello MaxPercentUnhealthyApplications too0를 설정 합니다. 이 이렇게 하면 일부 hello 많은 응용 프로그램이 정상 상태가 아닌, 있지만 hello 전역 비정상 백분율, 이하인 hello 클러스터 것 tooWarning를 평가 합니다. 경고 상태는 클러스터 업그레이드 또는 오류 상태에 의해 트리거되는 기타 모니터링에 영향을 주지 않습니다. 하지만 오류가 하나라도 제어 응용 프로그램 하 게 만드는 클러스터 비정상 hello 업그레이드 구성에 따라 hello 클러스터 업그레이드를 일시 중지 또는 롤백을 트리거합니다.
+  Hello 지도에 정의 된 hello 응용 프로그램 형식에 대 한 모든 응용 프로그램 인스턴스는 응용 프로그램의 hello 전역 풀에서 수행 됩니다. Hello에서 특정 MaxPercentUnhealthyApplications 지도 hello를 사용 하 여, hello hello 응용 프로그램 종류의 응용 프로그램의 총 수에 따라 평가 됩니다. Hello 응용 프로그램의 모든 hello 나머지 hello 전역 풀에 남아 있으며 MaxPercentUnhealthyApplications를 사용 하 여 확인 됩니다.
 
-다음 예제는 클러스터 매니페스트에서 발췌한 내용입니다. 응용 프로그램 유형 맵에 항목을 정의하려면 매개 변수 이름 앞에 "ApplicationTypeMaxPercentUnhealthyApplications-"를 붙이고 그 뒤에 응용 프로그램 유형 이름을 붙이면 됩니다.
+다음 예제는 hello 클러스터 매니페스트 발췌 구문입니다. hello 응용 프로그램의 toodefine 항목 맵을 접두사 hello 매개 변수 이름이 "ApplicationTypeMaxPercentUnhealthyApplications-"로, hello 응용 프로그램 유형 이름 다음을 입력 합니다.
 
 ```xml
 <FabricSettings>
@@ -113,22 +113,22 @@ Health 스토어는 상태 정책을 적용하여 보고서와 해당 자식에 
 ```
 
 ### <a name="application-health-policy"></a>응용 프로그램 상태 정책
-[응용 프로그램 상태 정책](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthpolicy) 은 응용 프로그램 및 해당 자식에 대해 이벤트 및 하위 상태 집계의 평가를 수행하는 방법을 설명합니다. 응용 프로그램 패키지의 응용 프로그램 매니페스트 **ApplicationManifest.xml**에서 정의할 수 있습니다. 정책을 지정하지 않으면 상태 보고가 있거나 자식이 경고 또는 오류 성능 상태인 경우 서비스 패브릭에서 해당 엔터티를 비정상으로 가정합니다.
-구성 가능한 정책은 다음과 같습니다.
+hello [응용 프로그램 상태 정책](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthpolicy) 응용 프로그램 및 해당 하위 항목에 대 한 이벤트 및 하위 상태는 집계의 hello 평가 수행 되는 방법에 대해 설명 합니다. Hello 응용 프로그램 매니페스트를 정의할 수 있습니다 **ApplicationManifest.xml**, hello 응용 프로그램 패키지에 있습니다. 지정 된 정책이 없는 경우 서비스 패브릭 hello 엔터티 상태 보고서 나 자식 hello 경고 또는 오류 상태에 있는 경우 정상 임을 가정 합니다.
+hello 구성 가능한 정책은 다음과 같습니다.
 
-* [ConsiderWarningAsError](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthpolicy.considerwarningaserror.aspx). 상태를 평가하는 동안 경고 상태 보고를 오류로 처리할지 여부를 지정합니다. 기본값: false입니다.
-* [MaxPercentUnhealthyDeployedApplications](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthpolicy.maxpercentunhealthydeployedapplications). 응용 프로그램에서 오류로 처리하기 전에 비정상 상태를 유지할 수 있는 배포된 응용 프로그램의 최대 허용 비율을 지정합니다. 이 비율은 클러스터에서 응용 프로그램이 현재 배포되어 있는 노드 수에 대해 배포된 비정상 응용 프로그램의 수를 나누어 계산됩니다. 계산값은 적은 수의 노드에서 오류 하나를 허용할 수 있도록 반올림됩니다. 기본 비율: 0.
-* [DefaultServiceTypeHealthPolicy](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthpolicy.defaultservicetypehealthpolicy). 응용 프로그램에서 모든 서비스 유형의 기본 상태 정책을 대체하는 기본 서비스 유형 상태 정책을 지정합니다.
-* [ServiceTypeHealthPolicyMap](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthpolicy.servicetypehealthpolicymap). 서비스 유형별 서비스 상태 정책의 맵을 제공합니다. 이러한 정책은 지정된 서비스 유형의 기본 서비스 유형 상태 정책을 대체합니다. 예를 들어 응용 프로그램에 상태 비저장 게이트웨이 서비스 유형과 상태 저장 엔진 서비스 유형이 있다면, 평가를 위한 상태 정책을 다르게 구성할 수 있습니다. 서비스 유형별로 정책을 지정할 때 서비스의 상태를 좀더 세분화하여 제어할 수 있습니다.
+* [ConsiderWarningAsError](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthpolicy.considerwarningaserror.aspx). 상태 평가 중 tootreat 경고 상태를 오류로 보고할지 여부를 지정 합니다. 기본값: false입니다.
+* [MaxPercentUnhealthyDeployedApplications](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthpolicy.maxpercentunhealthydeployedapplications). 할 수 있는 정상 hello 응용 프로그램 오류에 간주 되기 전에 배포 된 응용 프로그램의 트랜잭션당 hello 최대 비율을 지정 합니다. 이 비율은 hello hello 응용 프로그램은에 현재 배포 된 hello 클러스터의 노드 수를 통해 배포 된 비정상 응용 프로그램의 hello 수를 분할 하 여 계산 됩니다. hello 계산 노드 중 작은 번호에 대 한 오류 tootolerate로 반올림합니다. 기본 비율: 0.
+* [DefaultServiceTypeHealthPolicy](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthpolicy.defaultservicetypehealthpolicy). Hello 기본 서비스 유형을 상태 정책 hello 응용 프로그램의 모든 서비스 형식에 대 한 기본 상태 정책을 hello 대체를 지정 합니다.
+* [ServiceTypeHealthPolicyMap](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthpolicy.servicetypehealthpolicymap). 서비스 유형별 서비스 상태 정책의 맵을 제공합니다. 이러한 정책에는 각 지정 된 서비스 유형에 대 한 hello 기본 서비스 유형을 상태 정책을 대체합니다. 예를 들어 응용 프로그램에 상태 비저장 게이트웨이 서비스 유형 및 상태 저장 엔진 서비스 유형의 계산에 대 한 상태 정책을 hello를 다르게 구성할 수 있습니다. 정책 당 서비스 종류를 지정 하면 hello 서비스의 상태를 hello 더 세부적으로 제어를 얻을 수 있습니다.
 
 ### <a name="service-type-health-policy"></a>서비스 유형 상태 정책
-[서비스 유형 상태 정책](https://docs.microsoft.com/dotnet/api/system.fabric.health.servicetypehealthpolicy) 은 서비스 및 서비스의 자식을 평가 및 집계하는 방법을 지정합니다. 정책은 다음과 같습니다.
+hello [서비스 유형 상태 정책](https://docs.microsoft.com/dotnet/api/system.fabric.health.servicetypehealthpolicy) tooevaluate 및 집계 서비스 hello 하 고 서비스의 자식 hello 방법을 지정 합니다. hello 정책에 포함 되어 있습니다.
 
-* [MaxPercentUnhealthyPartitionsPerService](https://docs.microsoft.com/dotnet/api/system.fabric.health.servicetypehealthpolicy.maxpercentunhealthypartitionsperservice). 서비스를 비정상으로 처리하기 전에 허용되는 최대 비정상 파티션 비율을 지정합니다. 기본 비율: 0.
-* [MaxPercentUnhealthyReplicasPerPartition](https://docs.microsoft.com/dotnet/api/system.fabric.health.servicetypehealthpolicy.maxpercentunhealthyreplicasperpartition). 파티션을 비정상으로 처리하기 전에 허용되는 최대 비정상 복제본 비율을 지정합니다. 기본 비율: 0.
-* [MaxPercentUnhealthyServices](https://docs.microsoft.com/dotnet/api/system.fabric.health.servicetypehealthpolicy.maxpercentunhealthyservices). 응용 프로그램을 비정상으로 처리하기 전에 허용되는 최대 비정상 서비스 비율을 지정합니다. 기본 비율: 0.
+* [MaxPercentUnhealthyPartitionsPerService](https://docs.microsoft.com/dotnet/api/system.fabric.health.servicetypehealthpolicy.maxpercentunhealthypartitionsperservice). 서비스가 비정상 간주 되기 전에 비정상 상태 파티션의의 트랜잭션당 최대 hello 비율을 지정 합니다. 기본 비율: 0.
+* [MaxPercentUnhealthyReplicasPerPartition](https://docs.microsoft.com/dotnet/api/system.fabric.health.servicetypehealthpolicy.maxpercentunhealthyreplicasperpartition). 파티션을 비정상 간주 되기 전에 비정상 복제본의 트랜잭션당 hello 최대 비율을 지정 합니다. 기본 비율: 0.
+* [MaxPercentUnhealthyServices](https://docs.microsoft.com/dotnet/api/system.fabric.health.servicetypehealthpolicy.maxpercentunhealthyservices). Hello 응용 프로그램은 비정상 상태로 간주 되기 전에 비정상 상태 서비스의 트랜잭션당 hello 최대 비율을 지정 합니다. 기본 비율: 0.
 
-다음 예제는 응용 프로그램 매니페스트에서 발췌한 내용입니다.
+다음 예제는 hello 응용 프로그램 매니페스트 발췌 구문입니다.
 
 ```xml
     <Policies>
@@ -151,29 +151,29 @@ Health 스토어는 상태 정책을 적용하여 보고서와 해당 자식에 
 ```
 
 ## <a name="health-evaluation"></a>상태 평가
-사용자 및 자동화된 서비스가 언제든지 엔터티의 상태를 평가할 수 있습니다. 엔터티 상태를 평가하기 위해서는 Health 스토어에서 엔터티에 대한 모든 상태 보고서를 집계하고 모든 자식(해당하는 경우)을 평가합니다. 상태 집계 알고리즘은 상태 보고서를 평가하는 방법과 자식 성능 상태(해당하는 경우)를 집계하는 방법을 지정하는 상태 정책을 사용합니다.
+사용자 및 자동화된 서비스가 언제든지 엔터티의 상태를 평가할 수 있습니다. tooevaluate 엔터티 상태, hello 상태 저장소 집계 모든 상태 hello 엔터티를 보고 및이 모든 자식 (있는 경우)을 평가 하는 합니다. hello 상태 집계 알고리즘 tooevaluate 상태 보고서를 어떻게 하 고 tooaggregate 하위 상태 (있는 경우)를 명시 하는 방법을 지정 하는 상태 정책을 사용 합니다.
 
 ### <a name="health-report-aggregation"></a>상태 보고서 집계
-하나의 엔터티에는 서로 다른 속성에 대해 서로 다른 보고자(시스템 구성 요소 또는 Watchdog)에서 보낸 여러 상태 보고서가 있을 수 있습니다. 집계에서는 연결된 상태 정책 특히, 응용 프로그램 또는 클러스터 상태 정책의 ConsiderWarningAsError 멤버를 사용합니다. ConsiderWarningAsError는 경고를 평가하는 방법을 지정합니다.
+하나의 엔터티에는 서로 다른 속성에 대해 서로 다른 보고자(시스템 구성 요소 또는 Watchdog)에서 보낸 여러 상태 보고서가 있을 수 있습니다. hello 집계 사용 하 여 연결 된 상태 정책을 hello, 특히 응용 프로그램의 ConsiderWarningAsError 구성원 hello 또는 클러스터 상태 정책 ConsiderWarningAsError 지정 방법을 tooevaluate 경고 합니다.
 
-집계된 성능 상태는 해당 엔터티에 대한 *최악* 의 상태 보고서에 의해 트리거됩니다. 오류 상태 보고서가 하나 이상 있는 경우, 집계된 성능 상태는 오류입니다.
+hello 집계 된 상태에 의해 트리거되는 hello *최악의* hello 엔터티 상태를 보고 합니다. 하나 이상의 오류 상태 보고서의 이면 hello 집계 된 상태는 오류입니다.
 
 ![오류 보고서가 있는 상태 보고서 집계.][2]
 
-하나 이상의 오류 상태 보고가 있는 상태 엔터티는 오류로 평가됩니다. 만료된 상태 보고서에 대해서도 그 상태와 상관없이 같은 내용이 적용됩니다.
+하나 이상의 오류 상태 보고가 있는 상태 엔터티는 오류로 평가됩니다. hello에 마찬가지입니다 해당 상태에 관계 없이 만료 된 상태 보고서.
 
 [2]: ./media/service-fabric-health-introduction/servicefabric-health-report-eval-error.png
 
-오류 보고서가 없고 하나 이상의 경고가 있는 경우 집계된 성능 상태는 ConsiderWarningAsError 정책 플래그에 따라 경고 또는 오류 중 하나입니다.
+하나 이상의 경고와 오류 보고서가 없는 경우 hello 집계 된 상태는 경고 또는 오류 hello ConsiderWarningAsError 정책 플래그에 따라.
 
 ![경고 보고서가 있고 ConsiderWarningAsError false인 상태 보고서 집계.][3]
 
-경고 보고서가 있고 ConsiderWarningAsError가 false(기본값)로 설정된 상태 보고서 집계.
+경고 보고서와 ConsiderWarningAsError 상태 보고서 집계 toofalse (기본값)을 설정합니다.
 
 [3]: ./media/service-fabric-health-introduction/servicefabric-health-report-eval-warning.png
 
 ### <a name="child-health-aggregation"></a>자식 상태 집계
-엔터티의 집계된 성능 상태는 자식 성능 상태(해당하는 경우)를 반영합니다. 자식 성능 상태를 집계하기 위한 알고리즘은 엔터티 유형에 따라 적용 가능한 상태 정책을 사용합니다.
+hello 엔터티의 집계 된 상태를 반영 hello 하위 상태 (있는 경우) 합니다. 하위 상태를 집계 하기 위한 hello 알고리즘 hello 상태 적용 가능한 정책은 해당 hello 엔터티 형식을 기반으로 사용 합니다.
 
 ![자식 엔터티 상태 집계.][4]
 
@@ -181,59 +181,59 @@ Health 스토어는 상태 정책을 적용하여 보고서와 해당 자식에 
 
 [4]: ./media/service-fabric-health-introduction/servicefabric-health-hierarchy-eval.png
 
-Health 스토어에서 모든 자식을 평가한 후 비정상 자식에 대해 구성된 최대 비율에 따라 성능 상태를 집계합니다. 이 비율은 엔터티 및 자식 유형을 기반으로 하는 정책에서 확보합니다.
+상태 저장소 hello이 모든 hello 자식을 계산 후 해당 상태 비정상 자식의 hello 구성 된 최대 백분율을 기반으로 집계 됩니다. 이 백분율은 hello 엔터티 및 자식 형식을 기반으로 하는 hello 정책에서 가져옵니다.
 
-* 모든 자식이 정상 상태이면 자식 집계 성능 상태도 정상입니다.
-* 자식에 정상 및 경고 상태가 모두 있으면 자식 집계 성능 상태는 경고입니다.
-* 허용된 최대 비정상 자식 비율에 들어가지 않는 오류 상태의 자식이 있으면 집계된 성능 상태는 오류입니다.
-* 오류 상태의 자식이 허용된 최대 비정상 자식 비율 내에 있으면 집계된 성능 상태는 경고입니다.
+* 모든 자식 항목 확인 상태 있으면 hello 집계는 자식 상태 확인입니다.
+* 자식 및가 둘 다 확인 경고 상태 하는 경우 hello 자식 집계 상태가 경고 임 합니다.
+* 오류 상태 모두 hello 최대 허용 되는 비정상 자식의 백분율을 고려 하지 않는 있는 자식에 없으면 hello 집계 된 상태는 오류입니다.
+* 최대 오류 상태 존중 hello로 hello 자식 hello 허용 되는 백분율 비정상 자식의 경우 집계 된 상태 (경고).
 
 ## <a name="health-reporting"></a>상태 보고
-시스템 구성 요소, 시스템 패브릭 응용 프로그램 및 내부/외부 Watchdog에서 Service Fabric 엔터티에 대해 보고할 수 있습니다. 보고자는 모니터링하는 상태를 바탕으로 모니터링되는 엔터티의 상태를 *로컬* 결정으로 파악합니다. 따라서 전역 상태를 살펴보거나 데이터를 집계할 필요가 없습니다. 바람직한 동작은 간단한 보고자를 갖는 것이지 보낼 정보를 추정하기 위해 많은 것들을 살펴봐야 하는 복잡한 조직체를 갖는 것이 아닙니다.
+시스템 구성 요소, 시스템 패브릭 응용 프로그램 및 내부/외부 Watchdog에서 Service Fabric 엔터티에 대해 보고할 수 있습니다. hello reporters 확인 *로컬* hello 상태를 모니터링 하 고 hello 조건에 따라 모니터링 hello 엔터티의으로 결정 합니다. 이러한 모든 전역 상태 또는 데이터를 집계 toolook이 필요 하지 않습니다. hello는 동작은 여러 가지 tooinfer에서 toolook 어떤 정보 toosend 해야 하는 복잡 하지 organisms toohave 간단한 reporters 원하는입니다.
 
-상태 데이터를 Health 스토어로 보내려면 보고자가 영향 받는 엔터티를 식별하여 상태 보고서를 작성해야 합니다. 보고서를 보내려면 [FabricClient.HealthClient.ReportHealth](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.reporthealth) API `Partition` 또는 `CodePackageActivationContext` 개체, PowerShell cmdlet 또는 REST에 노출된 상태 보고서 API를 사용합니다.
+toosend 상태 데이터 toohello 상태 저장소를 보고자 tooidentify hello 영향을 받는 엔터티 필요 하 고 상태 보고서를 만듭니다. toosend hello 보고서를 사용 하 여 hello [FabricClient.HealthClient.ReportHealth](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.reporthealth) API, Api hello에 노출 된 상태를 보고 `Partition` 또는 `CodePackageActivationContext` 개체, PowerShell cmdlet 또는 REST 합니다.
 
 ### <a name="health-reports"></a>상태 보고서
-클러스터의 각 엔터티에 대한 [상태 보고서](https://docs.microsoft.com/dotnet/api/system.fabric.health.healthreport) 에는 다음과 같은 정보가 포함됩니다.
+hello [상태 보고서](https://docs.microsoft.com/dotnet/api/system.fabric.health.healthreport) 각 hello 클러스터의 hello 엔터티에 대 한 hello 다음 정보를 포함 합니다.
 
-* **SourceId**. 상태 이벤트의 보고자를 고유하게 식별하는 문자열입니다.
-* **엔터티 식별자**. 보고서가 적용되는 엔터티를 식별합니다. 다음과 같은 [엔터티 유형](service-fabric-health-introduction.md#health-entities-and-hierarchy)에 따라 달라집니다.
+* **SourceId**. Hello 보고자 hello 상태 이벤트의 고유 하 게 식별 하는 문자열입니다.
+* **엔터티 식별자**. Hello 엔터티 hello 보고서 적용 되는 위치를 식별 합니다. Hello에 따라 다릅니다 [엔터티 형식](service-fabric-health-introduction.md#health-entities-and-hierarchy):
   
   * 클러스터. 없음.
   * 노드. 노드 이름(문자열).
-  * 응용 프로그램을 클릭합니다. 응용 프로그램 이름(URI). 클러스터에 배포된 응용 프로그램 인스턴스의 이름을 나타냅니다.
-  * 서비스. 서비스 이름(URI). 클러스터에 배포된 서비스 인스턴스의 이름을 나타냅니다.
-  * 파티션. 파티션 ID(GUID). 파티션 고유 식별자를 나타냅니다.
-  * 복제본. 상태 저장 서비스 복제본 ID 또는 상태 비저장 서비스 인스턴스 ID(INT64).
+  * 응용 프로그램을 클릭합니다. 응용 프로그램 이름(URI). Hello 클러스터에 배포 된 hello 응용 프로그램 인스턴스의 hello 이름을 나타냅니다.
+  * 서비스. 서비스 이름(URI). Hello 클러스터에 배포 된 hello 서비스 인스턴스의 hello 이름을 나타냅니다.
+  * 파티션. 파티션 ID(GUID). Hello 파티션 고유 식별자를 나타냅니다.
+  * 복제본. hello 상태 저장 서비스 복제본 ID 또는 hello 상태 비저장 서비스 인스턴스 ID (입니다 INT64).
   * DeployedApplication. 응용 프로그램 이름(URI) 및 노드 이름(문자열).
   * DeployedServicePackage. 응용 프로그램 이름(URI), 노드 이름(문자열) 및 서비스 매니페스트 이름(문자열).
-* **속성**. 보고자가 엔터티의 특정 속성에 대한 상태 이벤트를 분류하도록 허용하는 *문자열* (고정된 열거형 아님). 예를 들어, 보고자 A는 Node01 "저장소" 속성의 상태를 보고할 수 있으며 보고자 B는 Node01 "연결" 속성의 상태를 보고할 수 있습니다. Health 스토어에서 이 보고서는 Node01 엔터티에 대한 별도의 상태 이벤트로 처리됩니다.
-* **설명**. 보고자가 상태 이벤트에 대한 세부 정보를 제공하도록 허용하는 문자열. **SourceId**, **속성** 및 **HealthState**는 보고서를 완벽하게 설명해야 합니다. 설명을 통해 보고서에 대한 알기 쉬운 정보를 추가하면 관리자와 사용자가 상태 보고서를 손쉽게 이해할 수 있습니다.
-* **HealthState**. 보고서의 성능 상태를 설명하는 [열거형](service-fabric-health-introduction.md#health-states) . 허용되는 값은 정상, 경고 및 오류입니다.
-* **TimeToLive**. 상태 보고서가 유효 상태를 유지하는 기간. **RemoveWhenExpired**와 연결되어 있으므로 Health 스토어에서 만료된 이벤트를 평가하는 방법을 알 수 있습니다. 기본적으로 이 값은 무한대이고 보고서는 영원히 유효합니다.
-* **RemoveWhenExpired**. 부울. true로 설정되면 만료된 상태 보고서가 Health 스토어에서 자동으로 제거되며 엔터티 상태 평가에는 영향을 주지 않습니다. 보고서가 지정된 기간만 유효하고 보고자가 해당 보고서를 명시적으로 지울 필요가 없을 때 사용됩니다. Health 스토어에서 보고서를 삭제하는 데도 사용되며 예를 들어, Watchdog이 변경되어 이전 소스와 속성으로 보고서를 보내는 것을 중지합니다. RemoveWhenExpired와 함께 간략한 TimeToLive로 보고서를 보내 Health 스토어에서 이전 상태를 정리할 수 있습니다. 이 값을 false로 설정하면 만료된 보고서가 상태 평가에서 오류로 처리됩니다. false 값은 소스에서 이 속성에 대해 주기적으로 보고해야 함을 Health 스토어에 알려주는 것입니다. 그렇지 않은 경우 Watchdog에 문제가 있는 것입니다. Watchdog 상태는 이벤트를 오류로 간주하여 캡처됩니다.
-* **SequenceNumber**. 계속 증가되어야 하는 양의 정수로, 보고서의 순서를 나타냅니다. Health 스토어에서 네트워크 지연 또는 기타 문제 때문에 늦게 수신된 기한 경과된 보고서를 감지하는 데 사용됩니다. 시퀀스 번호가 동일한 엔터티, 소스 및 속성에 대해 가장 최근에 적용된 번호보다 작거나 같은 경우, 보고서는 거부됩니다. 시퀀스 번호를 지정하지 않으면 자동으로 생성됩니다. 상태 전환에 대해 보고하는 경우에만 시퀀스 번호를 부여해야 합니다. 이 경우 소스는 전송할 보고서를 기억해야 하며 장애 조치(failover)를 위해 복구에 대한 정보를 유지해야 합니다.
+* **속성**. A *문자열* (고정된 열거 되지) 수 있도록 해 주는 hello 보고자 toocategorize hello 상태 hello 엔터티의 특정 속성에 대 한 이벤트입니다. 예를 들어 A 보고자 hello Node01 "Storage" 속성의 hello 상태를 보고할 수 있습니다 및 보고자 B hello Node01 "연결" 속성의 hello 상태를 보고할 수 있습니다. Hello health store에서 이러한 보고서는 Node01 엔터티 hello에 대 한 별도 상태 이벤트로 처리 됩니다.
+* **설명**. 보고자 tooprovide 허용 하는 문자열 hello 상태 이벤트에 대 한 정보를 자세히 설명 합니다. **SourceId**, **속성**, 및 **HealthState** hello 보고서를 완전 하 게 설명 해야 합니다. hello 설명 hello 보고서에 대 한 사용자를 읽을 수 있는 정보를 추가합니다. hello 텍스트 toounderstand hello 상태 보고서 관리자와 사용자가 쉽게 있습니다.
+* **HealthState**. [열거형](service-fabric-health-introduction.md#health-states) hello 보고서의 hello 성능 상태를 설명 하는 합니다. hello 사용 가능한 값은 정상, 경고 및 오류입니다.
+* **TimeToLive**. Hello 상태 보고서 기간을 나타내는 시간 범위는 유효 합니다. 와 결합 되어 **RemoveWhenExpired**, hello 상태 저장소 tooevaluate 이벤트를 만료 하는 방법을 알 수 있습니다. 기본적으로 hello 값이 무한, 및 hello 보고서가 계속 유효 합니다.
+* **RemoveWhenExpired**. 부울. 경우 tootrue 설정, hello 만료 된 상태 보고서가 자동으로 hello health store에서 제거 하 고 hello 보고서 엔터티 상태 평가 영향을 주지 않습니다. Hello 보고서 시간만 및 hello 보고자 지정한 기간 동안 유효한 경우에 사용 하지 않습니다 필요 tooexplicitly 채워지므로 삭제 해야 합니다. 또한 hello health store에서 toodelete 보고서 사용 (예를 들어는 watchdog 변경 되 고 이전 소스와 속성을 사용 하 여 보고서를 보내는 것을 중지) 합니다. Hello health store에서 이전 상태를 RemoveWhenExpired tooclear 함께 간단한 TimeToLive 사용 하 여 보고서에 보낼 수 있습니다. Hello 값 toofalse을 설정 하는 경우 hello 만료 된 보고서로 처리 됩니다 hello 상태 평가에서 오류. 값이 false hello toohello 상태 저장소 신호를이 속성에 해당 hello 소스 주기적으로 보고 해야 합니다. 그렇지 않은 경우 다음 있어야 문제가 있는 hello 감시 합니다. hello watchdog 상태를 오류로 hello 이벤트를 고려 하 여 캡처됩니다.
+* **SequenceNumber**. Toobe 증가 해야 하는 양의 정수 hello 보고서의 hello 순서를 나타냅니다. Hello 상태 저장소 toodetect 오래 된 보고서에서 네트워크 지연을 또는 다른 문제로 인해 늦게 받은 사용 됩니다. Hello 시퀀스 번호 보다 작거나 같은 경우 보고서는 거부 동일한 엔터티, 소스 및 속성에 대 한 가장 최근에 적용 된 toohello 번호 hello 합니다. 지정 하지 않으면 hello 시퀀스 번호가 자동으로 생성 됩니다. 상태 전환에 대 한 보고 하는 경우에 필요한 tooput hello 시퀀스 번호에 유용 합니다. 이 경우 hello 소스 tooremember 보고서 전송 하 고 복구에 대 한 장애 조치 시 hello 정보를 유지 해야 합니다.
 
-SourceId, 엔터티 식별자, 속성 및 HealthState의 4가지 정보는 모든 상태 보고서에서 필요합니다. SourceId 문자열은 접두사 "**System.**"으로 시작할 수 없습니다. 이 접두사는 시스템 보고서용으로 예약되어 있습니다. 동일한 엔터티인 경우 동일한 소스 및 속성에 대해 하나의 보고서만 있습니다. 동일한 소스와 속성에 대한 여러 보고서는 상태 클라이언트(배치 처리된 경우) 또는 Health 스토어 중 한 군데에서 서로 재정의됩니다. 교체는 시퀀스 번호를 기준으로 수행됩니다. 최신 보고서(높은 시퀀스 번호)가 오래된 보고서를 대체합니다.
+SourceId, 엔터티 식별자, 속성 및 HealthState의 4가지 정보는 모든 상태 보고서에서 필요합니다. 원본 Id 문자열 hello toostart hello 접두사로 사용할 수 없습니다 "**시스템**", 시스템 보고서에 대 한 예약 되어 있는 합니다. Hello에 대 한 동일한 엔터티 hello에 대 한 하나의 보고서가 동일한 소스와 속성입니다. 여러 보고서에 대 한 동일한 소스 hello 및 hello 상태 클라이언트 쪽 (일괄 처리 되) 하는 경우 또는 hello 상태 저장소 쪽 서로 속성 재정의 합니다. 시퀀스 번호를 기반으로 하는 hello 대체 더 높은 시퀀스 번호) (포함 하는 최신 보고서는 이전 보고서를 대체합니다.
 
 ### <a name="health-events"></a>상태 이벤트
-내부적으로 Health 스토어에는 보고서와 추가 메타데이터의 모든 정보를 포함하는 [상태 이벤트](https://docs.microsoft.com/dotnet/api/system.fabric.health.healthevent)가 유지됩니다. 메타데이터에는 보고서를 상태 클라이언트에 제공한 시간 및 서버에서 보고서가 수정된 시간 등이 포함됩니다. 상태 이벤트는 [상태 쿼리](service-fabric-view-entities-aggregated-health.md#health-queries)로 반환됩니다.
+Hello 상태 저장소를 유지 내부적으로 [상태 이벤트](https://docs.microsoft.com/dotnet/api/system.fabric.health.healthevent), hello 보고서 및 추가 메타 데이터에서 모든 hello 정보를 포함 하는 합니다. hello 서버 쪽에서 수정 된 hello 시간과 hello 보고서 toohello 상태 클라이언트에 제공 된 hello 시간 hello 메타 데이터에 포함 되어 있습니다. hello 상태 이벤트에 반환한 [상태 쿼리 수](service-fabric-view-entities-aggregated-health.md#health-queries)합니다.
 
-추가된 메타데이터에는 다음이 포함됩니다.
+hello 추가 된 메타 데이터가 포함 되어 있습니다.
 
-* **SourceUtcTimestamp**. 보고서가 상태 클라이언트에 제공된 시간(협정 세계시).
-* **LastModifiedUtcTimestamp**. 서버에서 보고서가 마지막으로 수정된 시간(협정 세계시).
-* **IsExpired**. Health 스토어에 의해 쿼리가 실행된 시간에 보고서가 만료되었는지 여부를 나타내는 플래그. RemoveWhenExpired가 false인 경우에만 이벤트가 만료될 수 있습니다. 그렇지 않은 경우 쿼리에 의해 이벤트가 반환되지 않으며 스토어에서 제거됩니다.
-* **LastOkTransitionAt**, **LastWarningTransitionAt**, **LastErrorTransitionAt**. 마지막 정상/경고/오류 전환 시간. 이러한 필드는 이벤트에 대한 성능 상태 전환 기록을 제공합니다.
+* **SourceUtcTimestamp**. hello 시간 hello 보고서 toohello 상태 클라이언트 (협정 세계시) 제공 되었습니다.
+* **LastModifiedUtcTimestamp**. hello hello 보고서 시간 (협정 세계시) hello 서버 쪽에서 마지막으로 수정 된 합니다.
+* **IsExpired**. A 플래그 tooindicate hello 보고서 hello 쿼리 hello 상태 저장소에 의해 실행 될 때 만료 된 여부. RemoveWhenExpired가 false인 경우에만 이벤트가 만료될 수 있습니다. 그렇지 않으면 hello 이벤트 쿼리에 의해 반환 되지 않습니다 고 hello 저장소에서 제거 됩니다.
+* **LastOkTransitionAt**, **LastWarningTransitionAt**, **LastErrorTransitionAt**. hello 확인/경고/오류 전환에 대 한 마지막 시간입니다. 이러한 필드는 hello 이벤트에 대 한 hello 상태 상태 전환의 hello 기록을 제공합니다.
 
-상태 전환 필드는 보다 현명한 경고 또는 "시간에 따른" 상태 이벤트 정보에 대해 사용할 수 있습니다. 따라서 다음과 같은 시나리오가 가능해집니다.
+더 효율적인 경고 또는 이벤트 정보 "기록" 상태에 대 한 hello 상태 전환 필드를 사용할 수 있습니다. 따라서 다음과 같은 시나리오가 가능해집니다.
 
-* 속성이 X분 넘게 경고/오류 상태일 때 알림. 일정 기간에 대한 조건을 확인하면 임시 조건에 대한 경고를 방지합니다. 예를 들어, 5분 이상 경고 상태에 있었던 성능 상태가 (HealthState == 경고 및 현재 - LastWarningTransitionTime > 5분)으로 전환될 수 있는 경우.
-* 지난 X분 내에 변경된 상태에 대해서만 알림. 지정된 시간 이전부터 보고서가 오류 상태인 경우, 이전에 이미 알린 상태이므로 무시할 수 있습니다.
-* 속성이 경고와 오류 사이에 전환되고 있는 경우, 얼마나 오래 비정상(즉, 정상이 아닌 상태)이었는지 결정합니다. 예를 들어, 5분 이상 정상이 아니었던 속성이 (HealthState != 정상 및 현재 - LastOkTransitionTime > 5분)으로 전환될 수 있는 경우 알림.
+* 속성이 X분 넘게 경고/오류 상태일 때 알림. 일시적인 상태에 대해 경고를 방지 일정 기간에 대 한 hello 조건을 확인 합니다. 예를 들어 5 분에 대 한 hello 상태가 경고 되었습니다에 경고 번역할 수 있습니다 (HealthState 경고를 지금-LastWarningTransitionTime를 = = > 5 분)입니다.
+* X 분 마지막 hello에서 변경 된 조건에만 경고 합니다. 보고서를가 이미 오류 hello 시간을 지정 하기 전에 이미 신호를 받은 이전에 때문에 무시할 수 있습니다.
+* 속성이 경고와 오류 사이에 전환되고 있는 경우, 얼마나 오래 비정상(즉, 정상이 아닌 상태)이었는지 결정합니다. 예를 들어 5 분에 대 한 정상 hello 속성 되지 않았는지 경고 번역할 수 있습니다 (HealthState! = 정상, 이제-LastOkTransitionTime > 5 분)입니다.
 
 ## <a name="example-report-and-evaluate-application-health"></a>예: 응용 프로그램 상태 보고 및 평가
-다음 예에서는 소스 **MyWatchdog**의 **패브릭:/WordCount** 응용 프로그램에서 PowerShell을 통해 상태 보고서를 보냅니다. 상태 보고서에는 무한 TimeToLive와 함께 오류 성능 상태에서 상태 속성 Availability에 대한 정보가 포함됩니다. 그런 다음, 집계된 성능 상태 오류 및 보고된 상태 이벤트를 상태 이벤트 목록으로 반환되는 응용 프로그램 상태를 쿼리합니다.
+hello 다음 예제에서는 보내는 hello 응용 프로그램에서 PowerShell 통해 상태 보고서 **패브릭: / WordCount** hello 원본의 **MyWatchdog**합니다. hello 상태 보고서는 hello 상태 속성 "availability" 무한 TimeToLive와에서 오류 성능 상태에 대 한 정보를 포함합니다. 다음 hello 응용 프로그램 상태를 쿼리 상태 이벤트의 hello 목록에 대 한 상태 이벤트를 보고 집계 된 상태 상태 오류 및 hello를 반환 합니다.
 
 ```powershell
 PS C:\> Send-ServiceFabricApplicationHealthReport –ApplicationName fabric:/WordCount –SourceId "MyWatchdog" –HealthProperty "Availability" –HealthState Error
@@ -301,17 +301,17 @@ HealthEvents                    :
 ```
 
 ## <a name="health-model-usage"></a>상태 모델 사용
-상태 모델을 사용하면 클러스터 내의 여러 모니터에 모니터링 및 상태 결정이 분산되므로 클라우드 서비스 및 기본 서비스 패브릭 플랫폼을 확장할 수 있습니다.
-다른 시스템에는 서비스에서 내보낸 모든 *잠재적으로* 유용한 정보를 구문 분석하는 단일 중앙 집중 서비스가 클러스터 수준에 있습니다. 이 방법으로 인해 확장성이 저하됩니다. 문제 및 잠재적 문제를 가능한 한 근본 원인에 가깝게 식별하는 데 도움이 되는 매우 구체적인 정보를 수집할 수 없습니다.
+hello 상태 모델 hello 클러스터 내에서 여러 모니터 hello 간에 분포 되는 모니터링 및 상태 결정 하기 때문에 클라우드 서비스 및 서비스 패브릭 플랫폼 tooscale 원본으로 사용 하는 hello 허용 합니다.
+다른 시스템에는 모든 hello를 구문 분석 하는 hello 클러스터 수준에서 단일 중앙 집중식된 서비스가 *잠재적으로* 유용한 정보를 서비스에서 내보내집니다. 이 방법으로 인해 확장성이 저하됩니다. 것도 하지 않습니다 허용 가능한 닫기 toohello 근본 원인으로 잠재적인 문제 및 문제를 식별 하는 toohelp toocollect 특정 정보입니다.
 
-상태 모델은 모니터링 및 진단, 클러스터 및 응용 프로그램 상태 평가, 모니터링되는 업그레이드에서 굉장히 많이 사용됩니다. 다른 서비스에서는 상태 데이터를 사용하여 자동 복구를 수행하고 클러스터 상태 기록을 작성하고 특정 상태에 대한 알림을 생성합니다.
+모니터링 및 진단에 대 한, 클러스터 및 응용 프로그램 상태를 평가 하기 위한 및 모니터링 되는 업그레이드에 대 한 hello 상태 모델 과도 하 게 사용 됩니다. 다른 서비스 상태 데이터 tooperform 자동 복구를 사용 하 여 클러스터 상태 기록 빌드하고 특정 조건에 경고를 생성 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 [서비스 패브릭 상태 보고서 보기](service-fabric-view-entities-aggregated-health.md)
 
 [시스템 상태 보고서를 문제 해결에 사용](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)
 
-[서비스 상태를 보고 및 확인하는 방법](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
+[어떻게 tooreport 및 확인 서비스 상태](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
 
 [사용자 지정 서비스 패브릭 상태 보고서 추가](service-fabric-report-health.md)
 

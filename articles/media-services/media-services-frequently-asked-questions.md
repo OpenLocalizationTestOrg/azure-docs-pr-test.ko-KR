@@ -1,5 +1,5 @@
 ---
-title: "Azure Media Services 질문과 대답 | Microsoft Docs"
+title: "aaaAzure 미디어 서비스 질문과 대답 | Microsoft Docs"
 description: "FAQ(질문과 대답)"
 services: media-services
 documentationcenter: 
@@ -14,52 +14,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako
-ms.openlocfilehash: 48f3924d44a084d61c1d38002cd5098094001acb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6d48a5c1291f3c2559d8445921d571718d0a0a6d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="frequently-asked-questions"></a>질문과 대답
 
-이 문서에서는 AMS(Azure Media Services) 사용자 커뮤니티에 자주 올라오는 질문과 대답을 다룹니다.
+이 문서에서는 질문과 대답 hello Azure 미디어 서비스 (AMS) 사용자 커뮤니티에 의해 발생 합니다.
 
 ## <a name="general-ams-faqs"></a>일반 AMS FAQ
 Q: 인덱싱을 확장하려면 어떻게 하나요?
 
-A: 예약 단위는 인코딩 및 인덱싱 작업에서 동일합니다. [인코딩 예약 단위 크기를 조정하는 방법](media-services-scale-media-processing-overview.md)의 지침에 따르세요. **참고** : 인덱서 성능은 예약 단위 유형의 영향을 받지 않습니다.
+A: hello 예약 단위는 인코딩 및 인덱싱 작업에 대 한 동일한 hello 됩니다. 지침에 따라 [어떻게 tooScale 인코딩 예약 단위](media-services-scale-media-processing-overview.md)합니다. **참고** : 인덱서 성능은 예약 단위 유형의 영향을 받지 않습니다.
 
-Q: 업로드, 인코딩 및 동영상을 게시합니다. 스트리밍하려고 할 때 어떤 이유로 비디오가 재생되지 않는 걸까요?
+Q: 업로드, 인코딩 및 동영상을 게시합니다. Hello 이유 hello 비디오 것은 toostream 때 재생 되지 않으면 해당?
 
-A: 가장 일반적인 이유 중 하나는 재생하려고 하는 스트리밍 끝점이 **실행 중** 상태가 아니기 때문입니다.  
+A: hello 가장 일반적으로이 스트리밍 끝점에서 hello tooplayback 하려는 hello 없는 이유 중 하나 **실행** 상태입니다.  
 
 Q: 라이브 스트림에서 합치기를 수행할 수 있나요?
 
-A: 라이브 스트림 합치기는 현재 Azure 미디어 서비스에서 제공되지 않으므로, 컴퓨터에 미리 합치기를 수행해야 합니다.
+A: 합성 라이브 스트림에는 현재 제공 되지 않습니다 Azure 미디어 서비스에서 toopre 해야 하므로-컴퓨터에 작성 합니다.
 
 Q: 라이브 스트리밍으로 Azure CDN을 사용할 수 있나요?
 
-A: Media Services는 Azure CDN와의 통합을 지원합니다. 자세한 내용은 [Media Services 계정에서 스트리밍 끝점을 관리하는 방법](media-services-portal-manage-streaming-endpoints.md)을 참조하세요.  CDN을 사용하여 라이브 스트리밍을 사용할 수 있습니다. Azure 미디어 서비스는 부드러운 스트리밍, HLS 및 MPEG-DASH 출력을 제공합니다. 이러한 형식에서는 HTTP를 데이터 전송에 사용하여 HTTP 캐싱의 이점을 얻을 수 있습니다. 라이브 스트리밍에서 실제 비디오/오디오 데이터가 조각으로 분할되고 이 개별 조각은 CDN에 캐시됩니다. 새로 고쳐야 하는 데이터 요구는 매니페스트 데이터입니다. CDN은 매니페스트 데이터를 주기적으로 새로 고칩니다.
+A: 미디어 서비스와 Azure CDN 통합을 지원 (자세한 내용은 참조 [방법을 미디어 서비스 계정에서 tooManage 스트리밍 끝점](media-services-portal-manage-streaming-endpoints.md)).  CDN을 사용하여 라이브 스트리밍을 사용할 수 있습니다. Azure 미디어 서비스는 부드러운 스트리밍, HLS 및 MPEG-DASH 출력을 제공합니다. 이러한 형식에서는 HTTP를 데이터 전송에 사용하여 HTTP 캐싱의 이점을 얻을 수 있습니다. 라이브 스트리밍 비디오/오디오의 실제 데이터 분할된 toofragments 되며이 개별 조각을 CDN에 캐시 되는 것입니다. 새로 고친된 데이터 요구 toobe만는 hello 매니페스트 데이터입니다. CDN은 매니페스트 데이터를 주기적으로 새로 고칩니다.
 
 Q: Azure 미디어 서비스는 저장된 이미지를 지원하나요?
 
-A: JPEG 또는 PNG 이미지를 저장하기 위해 찾으려는 경우 Azure Blob 저장소에 유지해야 합니다. 비디오 또는 오디오 자산와 연결된 상태를 유지하려는 경우가 아니면 미디어 서비스 계정에 넣어도 이점은 없습니다. 또는 비디오 인코더에서 오버레이로 이미지를 사용해야 하는 경우입니다. 미디어 인코더 표준은 비디오 위에 이미지 겹치기를 지원하며 지원되는 입력 형식으로 JPEG 및 PNG를 나열합니다. 자세한 내용은 [오버레이 만들기](media-services-advanced-encoding-with-mes.md#overlay)를 참조하세요.
+A: toostore JPEG 또는 PNG 이미지 방금 찾으려는 경우 Azure Blob 저장소에 유지 해야 합니다. 비디오 또는 오디오 자산와 연결 된 해당 tookeep 사용 하려는 경우가 아니면 미디어 서비스에서 계정 없는 혜택 tooputting이 있습니다. 또는 경우 hello 비디오 인코더에 오버레이 필요 toouse hello 이미지를 할 수 있습니다. 미디어 인코더 표준 비디오, 위에 이미지 오버레이 지원 하며 JPEG 및 PNG 지원 나열 작업 하는 형식을 입력 합니다. 자세한 내용은 [오버레이 만들기](media-services-advanced-encoding-with-mes.md#overlay)를 참조하세요.
 
-Q: 미디어 서비스 계정 간에 자산을 복사하려면 어떻게 해야 하나요?
+Q: 자산 하나 미디어 서비스 계정 tooanother에서 어떻게 복사할 수 있습니다.
 
-A: .NET을 사용하여 Media Services 계정 간에 자산을 복사하려면 [Azure Media Services .NET SDK 확장](https://github.com/Azure/azure-sdk-for-media-services-extensions/) 리포지토리에서 제공하는 [IAsset.Copy](https://github.com/Azure/azure-sdk-for-media-services-extensions/blob/dev/MediaServices.Client.Extensions/IAssetExtensions.cs#L354) 확장 메서드를 사용합니다. 자세한 내용은 [이](https://social.msdn.microsoft.com/Forums/azure/28912d5d-6733-41c1-b27d-5d5dff2695ca/migrate-media-services-across-subscription?forum=MediaServices) 포럼 스레드를 참조하세요.
+A: toocopy 자산.NET을 사용 하 여 한 미디어 서비스 계정 tooanother에서 사용 하 여 [IAsset.Copy](https://github.com/Azure/azure-sdk-for-media-services-extensions/blob/dev/MediaServices.Client.Extensions/IAssetExtensions.cs#L354) hello에서 사용할 수 있는 확장 메서드 [Azure 미디어 서비스.NET SDK Extensions](https://github.com/Azure/azure-sdk-for-media-services-extensions/) 저장소입니다. 자세한 내용은 [이](https://social.msdn.microsoft.com/Forums/azure/28912d5d-6733-41c1-b27d-5d5dff2695ca/migrate-media-services-across-subscription?forum=MediaServices) 포럼 스레드를 참조하세요.
 
-Q: AMS에서 작업할 때 파일 이름 지정에 지원되는 문자는 무엇인가요?
+Q: hello 지원 되는 문자 AMS 작업할 때 파일 이름 지정
 
-A: Media Services에서는 스트리밍 콘텐츠의 URL을 작성할 때 IAssetFile.Name 속성 값을 사용합니다(예: http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters). 이러한 이유로 퍼센트 인코딩은 허용되지 않습니다. **Name** 속성 값에는 !*'();:@&=+$,/?%#[]"와 같은 [퍼센트 인코딩 예약 문자](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)를 사용할 수 없습니다. 또한 ‘.’ 하나만 사용할 수 있습니다. 또한 파일 이름 확장명에는 ‘.’ 하나만 사용할 수 있습니다.
+A: 미디어 서비스 스트리밍 콘텐츠 (예를 들어 http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters.) hello에 대 한 Url 작성 시 hello IAssetFile.Name 속성의 hello 값을 사용 이러한 이유로 퍼센트 인코딩은 허용되지 않습니다. 값의 hello hello **이름** 속성 hello 다음 중 하나를 사용할 수 없습니다 [퍼센트 인코딩 예약 문자](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters):! *' ();: @& = + $, /? % # "입니다. 또한 ‘.’ 하나만 사용할 수 있습니다. hello 파일 이름 확장명입니다.
 
-Q: REST를 사용하여 연결하려면 어떻게 해야 하나요?
+Q: 어떻게를 놓으면 tooconnect를 사용 하 여?
 
-A: AMS API에 연결하는 방법에 대한 자세한 내용은 [Azure AD 인증을 사용하여 Azure Media Services API 액세스](media-services-use-aad-auth-to-access-ams-api.md)를 참조하세요. https://media.windows.net에 연결하면 다른 미디어 서비스 URI를 지정하는 301 리디렉션을 받게 됩니다. 사용자는 새 URI에 대한 후속 호출을 해야 합니다. 
+A:에 대 한 내용은 tooconnect toohello AMS API를 확인 하려면 어떻게 해야 [Azure AD 인증 액세스 hello Azure 미디어 서비스 API](media-services-use-aad-auth-to-access-ams-api.md)합니다. Toohttps://media.windows.net을 성공적으로 연결한 후 다른 Media Services URI를 지정 하는 301 리디렉션을 받게 됩니다. 후속 호출 toohello 해야 새 URI입니다. 
 
-Q: 인코딩 프로세스 중에 비디오를 회전하려면 어떻게 해야 하나요?
+Q: hello 인코딩 프로세스 동안 비디오를 어떻게 회전할 수 있습니다.
 
-A: [미디어 인코더 표준](media-services-dotnet-encode-with-media-encoder-standard.md) 은 90/180/270도 회전을 지원합니다. 기본 동작은 들어오는 MP4/MOV 파일에서 회전 메타데이터를 검색하여 그에 맞게 보정하는 "Auto"입니다. 다음 **소스** 요소를 [여기](media-services-mes-presets-overview.md)에 정의된 json 사전 설정 중 하나에 포함합니다.
+A: hello [미디어 인코더 표준](media-services-dotnet-encode-with-media-encoder-standard.md) 90/180/270의 회전 각도으로 지원 합니다. hello 기본 동작은 "자동", hello 들어오는 MP4/MOV 파일에 toodetect hello 회전 메타 데이터를 시도 하 고 그에 대 한 보정 합니다. Hello 다음이 포함 **소스** hello json 정의 사전 설정의 요소 tooone [여기](media-services-mes-presets-overview.md):
 
     "Version": 1.0,
     "Sources": [

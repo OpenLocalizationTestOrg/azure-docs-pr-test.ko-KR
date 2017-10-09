@@ -7,8 +7,8 @@
 ### <a name="can-i-specify-a-partial-policy-on-a-connection-eg-only-ike-algorithms-but-not-ipsec"></a>연결에 대해 부분적 정책을 지정할 수 있나요? (예: IPsec을 제외하고 IKE 알고리즘만)
 아니요, IKE(주 모드) 및 IPsec(빠른 모드) 모두에 대한 모든 알고리즘 및 매개 변수를 지정해야 합니다. 부분 정책 지정은 허용되지 않습니다.
 
-### <a name="what-are-the-algorithms-and-key-strengths-supported-in-the-custom-policy"></a>사용자 지정 정책에서 지원되는 알고리즘과 키 강도는 어떻게 되나요?
-아래 표에는 고객이 구성 가능하도록 지원되는 암호화 알고리즘 및 키 강도가 나와 있습니다. 모든 필드에 대해 한 가지 옵션을 선택해야 합니다.
+### <a name="what-are-hello-algorithms-and-key-strengths-supported-in-hello-custom-policy"></a>Hello 알고리즘 및 키 길이 hello 사용자 지정 정책에서 지원 되는 것이 무엇입니까?
+hello 아래 표에 지원 hello 암호화 알고리즘 및 키 길이 hello 고객이 구성 가능 합니다. 모든 필드에 대해 한 가지 옵션을 선택해야 합니다.
 
 | **IPsec/IKEv2**  | **옵션**                                                                   |
 | ---              | ---                                                                           |
@@ -23,14 +23,14 @@
 |                  |                                                                               |
 
 > [!IMPORTANT]
-> 1. DHGroup2048 및 PFS2048은 IKE 및 IPsec PFS의 Diffie-Hellman 그룹 **14**와 동일합니다. 전체 매핑은 [Diffie-Hellman 그룹](#DH)을 참조하세요.
-> 2. GCMAES 알고리즘의 경우 IPsec 암호화 및 무결성 모두에 대해 동일한 GCMAES 알고리즘 및 키 길이를 지정해야 합니다.
-> 3. IKEv2 주 모드 SA 수명은 Azure VPN Gateway에서 28,800초로 고정됩니다.
+> 1. DHGroup2048 & PFS2048는 hello 동일 Diffie-hellman 그룹으로 **14** IKE 및 IPsec PFS 합니다. 참조 하십시오 [Diffie-hellman 그룹](#DH) hello에 대 한 매핑을 완료 합니다.
+> 2. 지정 해야 GCMAES 알고리즘에 대 한 IPsec 암호화와 무결성에 대 한 동일한 GCMAES 알고리즘 및 키 길이 hello 합니다.
+> 3. Hello Azure VPN 게이트웨이 28, 800 초 IKEv2 주 모드 SA 수명 동안 고정 됩니다.
 > 4. QM SA 수명은 선택적 매개 변수입니다. 지정되지 않으면 기본값인 27,000초(7.5시간) 및 102,400,000KB(102GB)가 사용됩니다.
-> 5. UsePolicyBasedTrafficSelector는 연결에 대한 옵션 매개 변수입니다. "UsePolicyBasedTrafficSelectors"에 대한 다음 FAQ 항목을 참조하세요.
+> 5. UsePolicyBasedTrafficSelector는 hello 연결에는 옵션 매개 변수입니다. Hello 다음 FAQ를 참조 하십시오 "UsePolicyBasedTrafficSelectors"에 대 한 항목
 
-### <a name="does-everything-need-to-match-between-the-azure-vpn-gateway-policy-and-my-on-premises-vpn-device-configurations"></a>Azure VPN Gateway 정책과 온-프레미스 VPN 장치 구성 간에 모든 항목이 일치해야 하나요?
-온-프레미스 VPN 장치 구성은 Azure IPsec/IKE 정책에서 지정한 다음 알고리즘 및 매개 변수가 일치하거나 포함해야 합니다.
+### <a name="does-everything-need-toomatch-between-hello-azure-vpn-gateway-policy-and-my-on-premises-vpn-device-configurations"></a>모든 Azure VPN 게이트웨이 정책 hello와 내 온-프레미스 VPN 장치 구성 간의 toomatch에 필요 합니까?
+온-프레미스 VPN 장치 구성 접두사와 일치 하거나 hello 다음 알고리즘을 포함 하 고 매개 변수에서 지정 하는 hello Azure IPsec/IKE 정책:
 
 * IKE 암호화 알고리즘
 * IKE 무결성 알고리즘
@@ -40,18 +40,18 @@
 * PFS 그룹
 * 트래픽 선택기(*)
 
-SA 수명은 로컬 사양일 뿐이며 일치하지 않아도 됩니다.
+SA hello 수명 사양임 로컬, toomatch 필요는 없습니다.
 
-**UsePolicyBasedTrafficSelectors**를 사용하도록 설정한 경우 VPN 장치에 온-프레미스 네트워크(로컬 네트워크 게이트웨이) 접두사 및 Azure Virtual Network 접두사 간의 모든 조합으로 정의된 일치하는 트래픽 선택기가 있는지 확인해야 합니다. 예를 들어 온-프레미스 네트워크 접두사가 10.1.0.0/16 및 10.2.0.0/16이고 가상 네트워크 접두사가 192.168.0.0/16 및 172.16.0.0/16이면 다음 트래픽 선택기를 지정해야 합니다.
+사용 하도록 설정 하면 **UsePolicyBasedTrafficSelectors**, VPN 장치에는 모든 조합의 hello에서 온-프레미스 네트워크 (로컬 네트워크 게이트웨이) 접두사를 사용 하 여 정의 하는 트래픽을 선택기와 일치 하는 hello tooensure 필요 Azure 가상 네트워크 접두사 any-에-any 대신 사용 합니다. 예를 들어 온-프레미스 네트워크 접두사는 10.1.0.0/16 및 10.2.0.0/16, 하는 경우 가상 네트워크 접두사는 192.168.0.0/16 및 172.16.0.0/16 트래픽 선택기 뒤 toospecify hello가 필요 합니다.
 * 10.1.0.0/16 <====> 192.168.0.0/16
 * 10.1.0.0/16 <====> 172.16.0.0/16
 * 10.2.0.0/16 <====> 192.168.0.0/16
 * 10.2.0.0/16 <====> 172.16.0.0/16
 
-이 옵션을 사용하는 방법에 대한 자세한 내용은 [여러 온-프레미스 정책 기반 VPN 장치 연결](../articles/vpn-gateway/vpn-gateway-connect-multiple-policybased-rm-ps.md)을 참조하세요.
+너무 참조[여러 온-프레미스 정책 기반 VPN 장치 연결](../articles/vpn-gateway/vpn-gateway-connect-multiple-policybased-rm-ps.md) 방법에 대 한 자세한 내용은 toouse이이 옵션입니다.
 
 ### <a name ="DH"></a>어떤 Diffie-Hellman 그룹이 지원됩니까?
-아래 표에는 IKE(DHGroup) 및 IPsec(PFSGroup)에 지원되는 Diffie-Hellman 그룹이 나열되어 있습니다.
+hello 아래 표에 지원 되는 hello Diffie-hellman 그룹 IKE (DHGroup) 및 IPsec (PFSGroup):
 
 | **Diffie-Hellman 그룹**  | **DHGroup**              | **PFSGroup** | **키 길이** |
 | ---                       | ---                      | ---          | ---            |
@@ -63,25 +63,25 @@ SA 수명은 로컬 사양일 뿐이며 일치하지 않아도 됩니다.
 | 24                        | DHGroup24                | PFS24        | 2048비트 MODP  |
 |                           |                          |              |                |
 
-자세한 내용은 [RFC3526](https://tools.ietf.org/html/rfc3526) 및 [RFC5114](https://tools.ietf.org/html/rfc5114)를 참조하세요.
+너무 참조[RFC3526](https://tools.ietf.org/html/rfc3526) 및 [RFC5114](https://tools.ietf.org/html/rfc5114) 내용을 확인 합니다.
 
-### <a name="does-the-custom-policy-replace-the-default-ipsecike-policy-sets-for-azure-vpn-gateways"></a>사용자 지정 정책이 Azure VPN Gateway에 대한 기본 IPsec/IKE 정책 집합을 대체하나요?
-예, 연결에 사용자 지정 정책이 지정되면 Azure VPN Gateway는 IKE 개시 장치 및 IKE 응답기로의 연결에만 정책을 사용합니다.
+### <a name="does-hello-custom-policy-replace-hello-default-ipsecike-policy-sets-for-azure-vpn-gateways"></a>사용자 지정 정책 hello hello Azure VPN 게이트웨이에 대 한 기본 IPsec/IKE 정책 집합을 대체 됩니까?
+예, 사용자 지정 정책이 연결에서 지정 된 후 Azure VPN 게이트웨이 IKE 개시자와 응답 자가 IKE로 모두 hello 연결에서 hello 정책은만 사용 됩니다.
 
-### <a name="if-i-remove-a-custom-ipsecike-policy-does-the-connection-become-unprotected"></a>사용자 지정 IPsec/IKE 정책을 제거하면 연결이 보호되지 않나요?
-아니요, 연결은 IPsec/IKE로 계속 보호됩니다. 연결에서 사용자 지정 정책을 제거하면 Azure VPN Gateway는 [IPsec/IKE 제안의 기본 목록](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md)으로 다시 되돌려지고 온-프레미스 VPN 장치와 IKE 핸드셰이크를 다시 시작합니다.
+### <a name="if-i-remove-a-custom-ipsecike-policy-does-hello-connection-become-unprotected"></a>IPsec/IKE 정책을 사용자 지정을 제거 하는 경우는 hello 연결 되 면 보호 되지 않는?
+아니요, hello 연결 여전히 IPsec/IKE에 의해 보호 됩니다. Hello Azure VPN 게이트웨이 백 toohello 되돌아갑니다 연결에서 사용자 지정 정책 hello를 제거 하면 [기본 IPsec/IKE 제안 목록을](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md) 및 hello 온-프레미스 VPN 장치를 사용 하 여 다시 IKE 핸드셰이크를 다시 시작 합니다.
 
 ### <a name="would-adding-or-updating-an-ipsecike-policy-disrupt-my-vpn-connection"></a>IPsec/IKE 정책을 추가 또는 업데이트하는 것이 VPN 연결에 방해가 될까요?
-예, Azure VPN Gateway가 기존 연결을 삭제하고 IKE 핸드셰이크를 다시 시작하여 새로운 암호화 알고리즘 및 매개 변수로 IPsec 터널을 다시 설정하므로 약간의 서비스 중단(몇 초)이 발생할 수 있습니다. 중단을 최소화하려면 온-프레미스 VPN 장치가 일치하는 알고리즘 및 키 강도로 구성되었는지도 확인하세요.
+Hello Azure VPN 게이트웨이에서는 hello 기존 연결을 종료 되었다가 다시 시작 하는 IKE 핸드셰이크 toore hello (몇 초)는 작은 중단 될 수 예,-hello 새 암호화 알고리즘 및 매개 변수와 함께 hello IPsec 터널을 설정 합니다. 온-프레미스 VPN 장치는 hello 일치 하는 알고리즘 및 키 길이 toominimize hello 중단 구성도 확인 하십시오.
 
 ### <a name="can-i-use-different-policies-on-different-connections"></a>다른 연결에 다른 정책을 사용할 수 있나요?
-예. 사용자 지정 정책은 각 연결 단위로 적용됩니다. 다른 연결에 서로 다른 IPsec/IKE 정책을 만들어 적용할 수 있습니다. 또한 연결의 하위 집합에 대해 사용자 지정 정책을 적용하도록 선택할 수도 있습니다. 나머지는 Azure 기본 IPsec/IKE 정책 집합을 사용합니다.
+예. 사용자 지정 정책은 각 연결 단위로 적용됩니다. 다른 연결에 서로 다른 IPsec/IKE 정책을 만들어 적용할 수 있습니다. 또한 tooapply 연결의 하위 집합에 사용자 지정 정책을 선택할 수 있습니다. 나머지 hello hello Azure 기본 IPsec/IKE 정책 집합을 사용 합니다.
 
-### <a name="can-i-use-the-custom-policy-on-vnet-to-vnet-connection-as-well"></a>VNet 간 연결에서도 사용자 지정 정책을 사용할 수 있나요?
+### <a name="can-i-use-hello-custom-policy-on-vnet-to-vnet-connection-as-well"></a>Hello 사용자 지정 정책에서 VNet 대 VNet 연결도 사용할 수 있습니까?
 예, IPsec 프레미스 간 연결 또는 VNet 간 연결 모두에 사용자 지정 정책을 적용할 수 있습니다.
 
-### <a name="do-i-need-to-specify-the-same-policy-on-both-vnet-to-vnet-connection-resources"></a>두 VNet 간 연결 리소스에 동일한 정책을 지정해야 하나요?
-예. Azure에서 VNet 간 터널은 두 개의 연결 리소스(각 방향당 하나씩)로 구성됩니다. 두 연결 리소스에 동일한 정책이 있는지 확인해야 합니다. 그렇지 않으면 VNet 간 연결이 설정되지 않습니다.
+### <a name="do-i-need-toospecify-hello-same-policy-on-both-vnet-to-vnet-connection-resources"></a>Toospecify 필요 한가요 VNet 대 VNet 연결 리소스 모두에 동일한 정책을 hello?
+예. Azure에서 VNet 간 터널은 두 개의 연결 리소스(각 방향당 하나씩)로 구성됩니다. 두 연결 리소스 tooensure 해야 hello 동일한 정책을 othereise hello VNet 대 VNet 연결을 설정 하지 것입니다.
 
 ### <a name="does-custom-ipsecike-policy-work-on-expressroute-connection"></a>ExpressRoute 연결에서 사용자 지정 IPsec/IKE 정책이 작동하나요?
-안 됩니다. IPsec/IKE 정책은 Azure VPN Gateway를 통해 S2S VPN 및 VNet 간 연결에서만 작동합니다.
+아니요. 정책 IPsec/IKE S2S VPN 및 hello Azure VPN 게이트웨이 통한 VNet 대 VNet 연결에 대해서만 작동 합니다.

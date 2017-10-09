@@ -1,7 +1,7 @@
 ---
 layout: LandingPage
-description: "클래식 배포의 Linux를 사용하여 가상 컴퓨터를 만드는 방법에 대해 알아보세요."
-title: "Linux(클래식 배포)용 Azure Virtual Machines 설명서 | Microsoft Docs"
+description: "클래식 배포와 함께 사용 하 여 가상 컴퓨터 toocreate Linux hello 방법에 대해 알아봅니다."
+title: "aaaAzure Linux (클래식 배포) 설명서에 대 한 가상 컴퓨터 | Microsoft Docs"
 services: virtual-machines-linux
 author: carolz
 manager: carolz
@@ -12,9 +12,9 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: a219f68c3cb214bb5b3b8cbbb36112e880a7d2d1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 79ab4b850ed09173fa9d64314e603214744dcf3e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---

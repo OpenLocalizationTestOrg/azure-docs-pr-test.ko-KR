@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory를 사용하는 셀프 서비스 응용 프로그램 액세스 및 위임된 관리 | Microsoft Docs"
-description: "이 문서는 Azure Active Directory를 사용하는 셀프 서비스 응용 프로그램 액세스 및 위임된 관리를 사용하는 방법을 설명합니다."
+title: "aaaSelf 서비스 응용 프로그램 액세스 및 Azure Active Directory와 위임 된 관리 | Microsoft Docs"
+description: "이 문서에서는 tooenable 셀프 서비스 응용 프로그램 액세스 하는 방법 및 Azure Active Directory와 위임 된 관리를 설명 합니다."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -16,90 +16,90 @@ ms.date: 07/26/2017
 ms.author: curtand
 ms.reviewer: asmalser
 ms.custom: oldportal;it-pro;
-ms.openlocfilehash: 7872d5229cdc053bfb9dc8ddba01785b0f8e5a9a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 90bec3bd71796f22a782929b028db0d18c3aa1c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="self-service-application-access-and-delegated-management-with-azure-active-directory"></a>Azure Active Directory를 사용하는 셀프 서비스 응용 프로그램 액세스 및 위임된 관리
-최종 사용자에 대한 셀프 서비스 기능을 사용하는 작업은 엔터프라이즈 IT에 대한 일반적인 시나리오입니다. 사용자가 많고 응용 프로그램의 많으며 액세스 권한 부여 결정을 내리는 가장 많은 정보를 가진 사람은 디렉터리 관리자가 아닐 수도 있습니다. 종종 응용 프로그램에 액세스할 수 있는 사용자를 결정하는 최상의 사용자는 팀 리더는 또는 다른 위임된 관리자입니다. 그러나 앱을 사용하는 것은 사용자이며, 사용자는 작업을 수행하는 데 무엇이 필요한지 알고 있습니다.
+최종 사용자에 대한 셀프 서비스 기능을 사용하는 작업은 엔터프라이즈 IT에 대한 일반적인 시나리오입니다. 사용자, 응용 프로그램 및 hello 사용자에 게 best-informed toomake 액세스 다양 한 많은 결정 디렉터리 관리자에 게 되지 않을 수 있습니다 권한을 부여 합니다. 종종 hello 최상의 사람 toodecide 응용 프로그램에 액세스할 수 있는 다른 위임 된 관리자 또는 팀 리더는입니다. 그러나 hello 앱을 사용 하는 hello 사용자 및 hello 사용자 무엇을 알고 toobe 수 toodo 업무 필요 합니다.
 
 > [!IMPORTANT]
-> 이 문서에서 참조되는 Azure 클래식 포털을 사용하는 대신 Azure Portal에서 [Azure AD 관리 센터](https://aad.portal.azure.com)를 사용하여 Azure AD를 관리하는 것이 좋습니다. 
+> Hello를 사용 하 여 Azure AD를 관리 하는 것이 좋습니다 [Azure AD 관리 센터](https://aad.portal.azure.com) hello에서 사용 하는 대신 Azure 포털 hello Azure 클래식 포털이이 문서에서 설명 합니다. 
 
 셀프 서비스 응용 프로그램 액세스는 디렉터리 관리자가 다음을 수행할 수 있도록 하는 [Azure Active Directory Premium](https://azure.microsoft.com/trial/get-started-active-directory/) P1 및 P2 라이선스의 기능입니다.
 
-* 사용자가 [Azure AD 액세스 패널](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users)에서 “응용 프로그램 더 가져오기” 타일을 사용하여 응용 프로그램에 대한 액세스를 요청할 수 있습니다.
+* Hello에 바둑판식으로 배열 tooapplications "Get 더 많은 응용 프로그램"를 사용 하 여 사용자가 toorequest 액세스할 수 있도록 [Azure AD 액세스 패널](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users)
 * 액세스를 요청할 수 있는 응용 프로그램 사용자 설정
-* 사용자가 응용 프로그램에 대한 액세스를 자체 할당할 수 있도록 승인이 필요한지 여부 설정
-* 각 응용 프로그램에 대한 요청을 승인하고 액세스를 관리해야 하는 사용자 설정
+* 사용자가 toobe 수 tooself 할당 액세스 tooan 응용 프로그램에 필요한 승인 되는지 여부를 설정 합니다.
+* Hello 요청을 승인 하 고 각 응용 프로그램에 대 한 액세스를 관리 해야 사용자 설정
 
-오늘날 이 기능은 [Azure Active Directory 응용 프로그램 갤러리](https://azure.microsoft.com/marketplace/active-directory/all/)에서 페더레이션된 또는 암호 기반 Single Sign-On을 지원하는 Salesforce, Dropbox, Google Apps과 같은 앱을 포함하여 미리 통합된 사용자 지정 앱을 지원합니다.
+이 기능은 모든 사전 통합 및 사용자 지정 앱에서에서 지 원하는 페더레이션 또는 암호 기반 single sign on hello 대해서는 오늘 [Azure Active Directory 응용 프로그램 갤러리](https://azure.microsoft.com/marketplace/active-directory/all/), Salesforce, Dropbox, 같은 앱을 포함 하 여 Google Apps 등입니다.
 이 문서에서는 다음과 같이 방법을 설명합니다.
 
 * 최종 사용자에게 선택적 승인 워크플로의 구성을 비롯한 셀프 서비스 응용 프로그램 액세스를 구성합니다. 
-* 조직에서 가장 적합한 사람에게 특정 응용 프로그램에 대한 액세스 관리를 위임하고, Azure AD 액세스 패널을 사용하여 액세스 요청을 승인하며, 선택된 사용자에 대한 액세스를 직접 할당하거나 또는 (선택적으로) 암호 기반 Single Sign-On이 구성된 경우 응용 프로그램 액세스에 대한 자격 증명을 설정합니다.
+* 특정 응용 프로그램 toohello 가장 적합 한 하면 조직의 사용자에 대 한 액세스 관리를 위임 하 고 toouse hello Azure AD 액세스 패널 tooapprove 액세스 요청을 다시 설정, tooselected 사용자 액세스에 직접 할당 또는 설정 (선택 사항) 암호 기반 single sign on 구성 된 경우 응용 프로그램 액세스에 대 한 자격 증명
 
 ## <a name="configuring-self-service-application-access"></a>셀프 서비스 응용 프로그램 액세스 구성
-셀프 서비스 응용 프로그램 액세스를 사용하도록 설정하고 최종 사용자가 추가 또는 요청할 수 있는 응용 프로그램을 구성하려면 다음 지침에 따릅니다.
+tooenable 셀프 서비스 응용 프로그램 액세스 및 응용 프로그램을 추가할 수 있습니다 또는 다음이 지침을 따라 최종 사용자가 요청한 사용자를 구성 합니다.
 
-1. [Azure 클래식 포털](https://manage.windowsazure.com/)에 로그인합니다.
+1. Hello에 로그인 [Azure 클래식 포털](https://manage.windowsazure.com/)합니다.
 
-2.   **Active Directory** 섹션에서 디렉터리를 선택한 다음 **응용 프로그램** 탭을 선택합니다. 
+2.   Hello에서 **Active Directory** 섹션, 디렉터리를 선택한 다음 선택 hello **응용 프로그램** 탭 합니다. 
 
-3. **추가** 단추를 선택하고 갤러리 옵션을 사용하여 응용 프로그램을 선택하고 추가합니다.
+3. 선택 hello **추가** , 단추 및 hello 갤러리 옵션 tooselect 사용 하 여 응용 프로그램을 추가 합니다.
 
-4. 앱이 추가되면 앱 빠른 시작 페이지가 표시됩니다. **Single Sign-On 구성**을 클릭하고 원하는 Single Sign-On 모드를 선택한 다음 구성을 저장합니다. 
+4. 앱 추가 된 후에 hello 앱 빠른 시작 페이지를 볼 수 있습니다. 클릭 **구성 Single Sign-on**, hello 원하는 single sign-on 모드를 선택 하 고 hello 구성을 저장 합니다. 
 
-5. 다음으로 **구성** 탭을 선택합니다. Azure AD 액세스 패널에서 사용자가 이 앱에 대한 액세스를 요청하도록 설정하려면 **셀프 서비스 응용 프로그램 액세스 허용**을 **예**로 설정합니다.
+5. 다음으로, 선택 hello **구성** 탭 tooenable 사용자 toorequest access toothis 앱 hello Azure AD 액세스 패널에서 설정 **셀프 서비스 응용 프로그램 액세스를 허용** 너무**예**.
   
   ![][1]
 
-6. 필요한 경우 액세스 요청에 대한 승인 워크플로를 구성하려면 **액세스 권한을 부여하기 전에 승인 필요**를 **예**로 설정합니다. **승인자** 단추를 사용하여 하나 이상의 승인자를 선택할 수 있습니다.
+6. 액세스 요청에 대 한 승인 워크플로 구성 하는 toooptionally 설정 **액세스 권한을 부여 하기 전에 승인 필요** 너무**예**합니다. Hello를 사용 하 여 하나 이상의 승인자를 선택할 수 있습니다 다음 **승인자** 단추입니다.
 
-  승인자는 Azure AD 계정이 있는 조직의 사용자일 수 있고 앱에 대한 액세스 권한을 부여하기 전에 조직이 요구하는 프로비전, 라이선스 또는 비즈니스 프로세스 중인 계정에 대한 책임을 집니다. 승인자는 하나 이상의 공유 계정 그룹 소유자일 수 있고 사용자를 이러한 그룹 중 하나를 할당하여 공유 계정을 통해 액세스 권한을 부여할 수 있습니다. 
+  승인자는 Azure AD 계정 사용 하는 hello 조직에서 모든 사용자 일 수를 유발할 수 계정 프로 비전에 대 한 라이선스 또는 조직에 tooan 앱 액세스 권한을 부여 하기 전에 필요한 다른 비즈니스 프로세스입니다. 하나 이상의 hello 그룹 소유자 계정 그룹을 공유 하 고가 공유 계정을 통해 액세스 권한을 이러한 그룹 toogive의 hello 사용자 tooone를 할당할 수 hello 승인자도 수 있습니다. 
 
-  승인이 필요 없는 경우 Azure AD 액세스 패널에 추가된 응용 프로그램이 즉시 사용자에게 제공됩니다. 응용 프로그램에 [자동 사용자 프로비저닝](active-directory-saas-app-provisioning.md) 또는 [“사용자 관리” 암호 SSO 모드](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)가 설정된 경우 사용자는 이미 사용자 계정을 보유하고 있으며 암호를 알고 있습니다.
+  승인이 필요한 경우 그런 다음 사용자가 즉시 가져오기 hello 응용 프로그램 추가 tootheir Azure AD 액세스 패널 Hello 응용 프로그램에 설정 된 경우 [자동 사용자 프로 비전](active-directory-saas-app-provisioning.md),이 설정 되었는지 또는 ["사용자 관리" 암호 SSO 모드](active-directory-appssoaccess-whatis.md#password-based-single-sign-on), hello 사용자는 이미 사용자 계정 및 hello 암호를 알고 있어야 합니다.
 
-7. 암호 기반 Single Sign-On을 사용하도록 응용 프로그램이 구성된 경우 승인자가 각 사용자를 대신하여 SSO 자격 증명을 설정하도록 허용하는 옵션을 사용할 수 있습니다. 자세한 내용은 [위임된 액세스 관리](#delegated-application-access-management)에 대한 섹션을 참조하세요.
+7. Hello 응용 프로그램에 구성 된 toouse 되었으면 암호 기반 single sign on, 각 사용자를 대신 하 여 hello SSO 자격 증명 tooset hello 승인자를 허용 하기 위한 옵션 제공 됩니다. 자세한 내용은 hello 섹션을 참조 [액세스 관리를 위임](#delegated-application-access-management)합니다.
 
-8. 마지막으로 **자체 할당된 사용자 그룹**은 응용 프로그램에 대한 액세스 권한이 부여되거나 할당된 사용자를 저장하는 데 사용되는 그룹 이름을 표시합니다. 액세스 승인자는 이 그룹의 소유자가 됩니다. 표시된 그룹 이름이 없는 경우 자동으로 생성됩니다. 필요에 따라 그룹 이름은 기존 그룹의 이름으로 설정할 수 있습니다.
+8. 마지막으로, hello **Self-Assigned 사용자에 대 한 그룹** 표시 hello hello 그룹을 사용 하는 toostore hello 사용자에 게 부여 되었거나 할당 된 액세스 toohello 응용 프로그램의 이름입니다. hello 액세스 승인자에는이 그룹의 hello 소유자가 됩니다. 표시 된 hello 그룹 이름을 없는 경우 자동으로 생성 됩니다. 필요에 따라 hello 그룹 이름에는 기존 그룹의 toohello 이름이 설정할 수 있습니다.
 
-9. 구성을 저장하려면 화면 맨 아래에서 **저장**을 클릭합니다. 이제 사용자가 액세스 패널에서 이 앱에 대한 액세스를 요청할 수 있습니다.
+9. toosave hello 구성 클릭 **저장** hello hello 화면 맨 아래에 있습니다. 이제 사용자는 hello 액세스 패널에서 toorequest 액세스 toothis 앱을 수 있습니다.
 
-10. 최종 사용자 환경을 테스트하려면 앱 승인자가 아닌 다른 계정을 사용하여 https://myapps.microsoft.com에서 조직의 Azure AD 액세스 패널에 로그인합니다. 
+10. tootry hello 최종 사용자에 게 앱 승인자 아닌 다른 계정을 사용 하 여 https://myapps.microsoft.com에서 조직의 Azure AD 액세스 패널에 로그인 합니다. 
 
-11. **응용 프로그램** 탭에서 **응용 프로그램 더 가져오기** 타일을 클릭합니다. 이 타일은 셀프 서비스 응용 프로그램 액세스를 사용하도록 설정된 모든 응용 프로그램의 갤러리를 표시하며, 왼쪽에 앱 범주별로 검색 및 필터링하는 기능이 제공됩니다. 
+11. Hello에서 **응용 프로그램** 탭에서 hello **추가 응용 프로그램 가져오기** 바둑판식으로 배열입니다. 이 타일의 모든 셀프 서비스 응용 프로그램 액세스 기능 toosearch hello 및 hello 왼쪽에 앱 범주별으로 필터 hello 디렉터리에 대 한 활성화 된 hello 응용 프로그램 갤러리를 표시 합니다. 
 
-12. 앱을 클릭하면 요청 프로세스가 시작됩니다. 승인 프로세스가 필요하지 않은 경우 짧게 확인한 후에 **응용 프로그램** 탭에 응용 프로그램을 즉시 추가합니다. 승인이 필요한 경우 이를 나타내는 대화 상자가 표시되고, 승인자에게 전자 메일이 전송됩니다. 이 요청 프로세스를 보려면 비-승인자로 액세스 패널에 로그인해야 합니다.
+12. 앱에 대해 클릭 하면 hello 요청 프로세스를 시작 합니다. 승인 프로세스가 필요한 경우 hello 아래 hello 응용 프로그램에 즉시 추가 됩니다 **응용 프로그램** 짧은 확인 한 후 탭 합니다. 승인이 필요한 경우이 나타내는 대화 상자를 표시 하 고 전자 메일 toohello 승인자를 전송 됩니다. Hello에 서명 해야이 요청 프로세스 아닌 승인자 toosee로 액세스 패널입니다.
 
-13. 전자 메일의 내용은 승인자에게 Azure AD 액세스 패널에 로그인하고 요청을 승인하라는 내용입니다. 요청이 승인되면(그리고 사용자가 정의한 특별 프로세스를 승인자가 수행하면) 사용자가 로그인할 수 있는 **응용 프로그램** 탭에 응용 프로그램이 나타납니다.
+13. hello 전자 메일 hello 승인자 toosign hello Azure AD 액세스 패널에 지시 하 고 hello 요청을 승인 합니다. 아래에 표시 하는 hello 응용 프로그램 hello 사용자에 게 표시 hello 요청이 승인 되 (및 정의 하는 특별 한 프로세스 hello 승인자에서 수행 된) 되 면 해당 **응용 프로그램** 탭에 서명할 수 있습니다.
 
 ## <a name="delegated-application-access-management"></a>위임된 응용 프로그램 액세스 관리
-응용 프로그램 액세스 승인자는 조직에서 문제의 응용 프로그램에 대한 액세스를 승인하거나 거부하는 가장 적절한 사용자일 수 있습니다. 이 사용자는 앱에 대한 액세스 권한을 부여하기 전에 조직이 요구하는 프로비전, 라이선스 또는 비즈니스 프로세스 중인 계정에 대한 책임을 집니다.
+응용 프로그램 액세스 승인자 toohello 응용 프로그램에 대 한 액세스를 거부 또는 hello 가장 적합 한 사람 tooapprove 인 조직에서 모든 사용자를 수 있습니다. 이 사용자를 유발할 수 계정 프로 비전에 대 한 라이선스 또는 조직에 tooan 앱 액세스 권한을 부여 하기 전에 필요한 다른 비즈니스 프로세스입니다.
 
-위에서 설명한 셀프 서비스 응용 프로그램 액세스를 구성할 때 할당된 응용 프로그램 승인자는 Azure AD 액세스 패널에서 추가 **응용 프로그램 관리** 타일을 확인하게 되며 이는 액세스 관리자가 동의하는 응용 프로그램을 보여줍니다. 앱을 클릭하면 몇 가지 옵션이 있는 화면을 보여줍니다.
+위에서 설명한 셀프 서비스 응용 프로그램 액세스를 구성할 때 모든 할당 된 응용 프로그램 승인자 참조 추가 **응용 프로그램 관리** 더 응용 프로그램 찍고 hello Azure AD 액세스 패널에서 타일 에 대 한 액세스 관리자에 게 합니다. 앱을 클릭하면 몇 가지 옵션이 있는 화면을 보여줍니다.
 
 ![][2]
 
 ### <a name="approve-requests"></a>요청 승인
-**승인 요청** 타일을 사용하면 승인자가 해당 앱에 특정한 보류 중인 승인을 볼 수 있고 요청이 승인되거나 거부될 수 있는 승인 탭으로 리디렉션합니다. 또한 수행할 사항을 지시하는 요청이 만들어질 때마다 승인자가 자동화된 전자 메일을 수신합니다.
+hello **승인 요청** 타일 허용 승인자 toosee 확인 하거나 거부할 수 모든 보류 중인 승인 특정 toothat 응용 프로그램 및 리디렉션 toohello 승인 탭 hello를 요청 합니다. 또한 hello 승인자 어떤 toodo 하도록 지시 하는 요청을 만들 때마다 자동화 된 전자 메일을 받습니다.
 
 ### <a name="add-users"></a>사용자 추가
-**사용자 추가** 타일을 사용하면 승인자가 선택된 사용자에게 직접 응용 프로그램에 대한 액세스 권한을 부여하도록 할 수 있습니다. 이 타일을 클릭하면 승인자가 대화 상자를 확인하여 디렉터리에서 사용자를 보고 검색할 수 있습니다. 사용자를 추가하면 해당 사용자의 Azure AD 액세스 패널 또는 Office 365에 표시되는 응용 프로그램에서 결과가 발생합니다. 사용자가 로그인할 수 있기 전에 수동 사용자 프로비저닝 프로세스가 앱에 필요한 경우 승인자는 액세스를 할당하기 전에 이 프로세스를 수행해야 합니다.  
+hello **사용자 추가** 타일 toodirectly grant 선택한 사용자가 액세스 toohello 응용 프로그램이 승인자 수 있도록 합니다. 이 타일을 클릭 하면 hello 승인자에 게 대화 수 있도록 tooview 및 사용자 검색 자신의 디렉터리에 표시 됩니다. 해당 사용자의 Azure AD 액세스 패널 또는 Office 365에 표시 되는 hello 응용 프로그램에서 사용자 결과 추가 합니다. 모든 수동 사용자 프로세스를 프로 비전 해야 하는 경우 hello 사용자 하기 전에 hello 앱 수 toosign에 다음 hello 승인자에 대 한 액세스를 할당 하기 전에이 프로세스를 수행 해야 합니다.  
 
 ### <a name="manage-users"></a>사용자 관리
-**사용자 관리** 타일을 사용하면 승인자가 직접 응용 프로그램에 액세스할 수 있는 사용자를 업데이트하거나 제거할 수 있습니다. 
+hello **사용자 관리** 승인자 toodirectly 업데이트 어댑터나 제거 액세스할 수 있는 사용자 타일 허용 toohello 응용 프로그램입니다. 
 
 ### <a name="configure-password-sso-credentials-if-applicable"></a>암호 SSO 자격 증명 구성(적용 가능한 경우)
-**구성** 타일은 응용 프로그램이 암호 기반 Single Sign-On을 사용하는 IT 관리자에 의해 구성되는 경우에만 표시되고 관리자는 앞에서 설명한 대로 암호 SSO 자격 증명을 설정하는 기능을 승인자에게 부여합니다. 선택하면 할당된 사용자에게 자격 증명을 전파하는 방법에 대한 몇 가지 옵션이 승인자에게 제공됩니다.
+hello **구성** hello 응용 프로그램에서 IT 관리자 toouse 암호 기반 single sign on, hello 구성 되 고 관리자에 게 부여 hello 승인자 hello 기능 tooset 암호 SSO 자격 증명 하는 경우 타일만 표시 앞서 설명한 합니다. 옵션을 선택 하면 hello 자격 증명 전파 tooassigned 사용자를가 하는 방법에 대 한 몇 가지 옵션 hello 승인자 표시 됩니다.
 
 ![][3]
 
-* **사용자가 고유의 암호를 사용하여 로그인** - 이 모드에서는 할당된 사용자가 응용 프로그램에 대한 자신의 사용자 이름 및 암호를 알고 있으며, 응용 프로그램에 처음으로 로그인할 때 사용자 이름 및 암호를 입력하라는 메시지가 표시됩니다. 이 시나리오는 [사용자가 자격 증명을 관리](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)하는 암호 SSO 사례에 해당합니다.
-* **승인자가 관리하는 별도의 계정을 사용하여 사용자 자동 로그인** - 이 모드에서는 할당된 사용자가 응용 프로그램에 로그인할 때 앱별 자격 증명을 입력하거나 알고 있을 필요가 없습니다. 대신 승인자는 **사용자 추가** 타일을 사용하여 액세스를 할당한 후에 각 사용자에 대한 자격 증명을 설정합니다. 사용자가 액세스 패널 또는 Office 365에서 응용 프로그램을 클릭하면 승인자가 설정한 자격 증명을 사용하여 자동으로 로그인됩니다. 이 시나리오는 [관리자가 자격 증명을 관리](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)하는 암호 SSO 사례에 해당합니다.
-* **승인자가 관리하는 단일 계정을 사용하여 사용자 자동 로그인** - 특수한 사례로, 할당된 모든 사용자에게 단일 공유 계정을 사용하여 액세스 권한을 부여해야 하는 경우에 적합합니다. 이 기능의 가장 일반적인 사용 사례는 조직에서 단일 "회사" 계정을 사용하고 여러 사용자가 이 계정을 업데이트해야 하는 소셜 미디어 응용 프로그램입니다. 또한 이 시나리오는 [관리자가 자격 증명을 관리](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)하는 암호 SSO 사례에 해당합니다. 그러나 이 옵션을 선택한 후에 승인자는 단일 공유 계정에 대한 사용자 이름 및 암호를 입력하라는 메시지가 표시됩니다. 완료되면 Azure AD 액세스 패널 또는 Office 365에서 응용 프로그램을 클릭할 때 할당된 모든 사용자가 이 계정을 사용하여 로그인됩니다.
+* **사용자가 자신의 암호를 사용 하 여 로그인** -이 모드에서는 hello 할당 된 사용자에 대해 알고 자신의 사용자 이름 및 암호 hello 응용 프로그램에 대 한 증명된 tooenter는 첫 번째 로그인 toohello 응용 프로그램에 해당 합니다. hello 시나리오 해당 toohello 암호 SSO 경우 여기서 hello [사용자 자격 증명 관리](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)합니다.
+* **사용자를 관리 하는 별도 계정을 사용 하 여 자동으로 로그인** -이 모드에서는 할당 된 hello 사용자 tooenter 필요 없는 또는 hello 응용 프로그램에 로그인 할 경우 응용 프로그램 특정 자격 증명을 알고 있습니다. 대신, hello 승인자 hello 자격 증명을 설정 각 사용자에 대 한 hello를 사용 하 여 액세스를 할당 한 후 **사용자 추가** 바둑판식으로 배열입니다. Hello 사용자가 액세스 패널 또는 Office 365에 hello 응용 프로그램을 클릭 하면 자동으로 hello 승인자가 설정 된 hello 자격 증명을 사용 하 여 서명 됩니다. hello 시나리오 해당 toohello 암호 SSO 경우 여기서 hello [관리자 자격 증명 관리](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)합니다.
+* **사용자는 자동으로 관리 하는 단일 계정을 사용 하 여 로그** -특수 한 경우,이 경우에도 적절 한 toouse 할당 된 모든 사용자가 단일 공유 계정을 사용 하 여 액세스를 부여 toobe 필요 합니다. 이 기능에 대 한 가장 일반적인 사용 사례 hello은 소셜 미디어 및 응용 프로그램과 함께, 여기서 조직 단일 "company" 계정에 여러 사용자가 toomake 업데이트 toothat 계정이 필요 합니다. hello 시나리오 또한 해당 toohello 암호 SSO 경우 여기서 hello [관리자 자격 증명 관리](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)합니다. 그러나,이 옵션을 선택한 후 hello 승인자 증명된 tooenter hello 사용자 이름 및 hello 단일 공유 계정에 대 한 암호를 수 있습니다. 완료 되 면 할당 된 모든 사용자가 Office 365 또는 Azure AD 액세스 패널에 hello 응용 프로그램을 클릭할 때이 계정을 사용 하 여 서명 됩니다.
 
 ## <a name="additional-resources"></a>추가 리소스
 * [Azure Active Directory의 응용 프로그램 관리를 위한 문서 인덱스](active-directory-apps-index.md)

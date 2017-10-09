@@ -1,6 +1,6 @@
 ---
-title: "Azure의 Linux 가상 컴퓨터를 비관리 디스크에서 Managed Disks로 변환 - Azure Managed Disks | Microsoft Docs"
-description: "Resource Manager 배포 모델에서 Azure CLI 2.0을 사용하여 Linux VM을 비관리 디스크에서 Managed Disks로 변환하는 방법"
+title: "Azure에서 Linux 가상 컴퓨터를 관리 되지 않는 aaaConvert toomanaged 디스크-Azure 관리 되는 디스크 디스크 | Microsoft Docs"
+description: "Linux VM에서 관리 되지 않는 디스크 toomanaged tooconvert hello 리소스 관리자 배포 모델에서 Azure CLI 2.0을 사용 하 여 디스크 방법"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -15,17 +15,17 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 06/23/2017
 ms.author: iainfou
-ms.openlocfilehash: 94f8e3330fb2d6547811315fcfdb8ced338e0247
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1b94da11deab46f344e28ab4491cf220506b6347
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="convert-a-linux-virtual-machine-from-unmanaged-disks-to-managed-disks"></a>Linux 가상 컴퓨터를 비관리 디스크에서 Managed Disks로 변환
+# <a name="convert-a-linux-virtual-machine-from-unmanaged-disks-toomanaged-disks"></a>관리 되지 않는 디스크 toomanaged 디스크에서 Linux 가상 컴퓨터 변환
 
-비관리 디스크를 사용하는 기존 Linux VM(가상 컴퓨터)이 있는 경우 [Azure Managed Disks](../windows/managed-disks-overview.md) 서비스를 통해 Managed Disks를 사용하도록 VM을 변환할 수 있습니다. 이 프로세스는 OS 디스크와 연결된 데이터 디스크를 변환합니다.
+기존 Linux 가상 컴퓨터 (Vm) 관리 되지 않는 디스크를 사용 하는 경우 hello 통해 hello Vm toouse 관리 되는 디스크를 변환할 수 있습니다 [Azure 관리 되는 디스크](../windows/managed-disks-overview.md) 서비스입니다. 이 프로세스는 hello OS 디스크 및 연결 된 데이터 디스크를 모두 변환합니다.
 
-이 문서에서는 Azure CLI를 사용하여 VM을 변환하는 방법을 보여 줍니다. CLI를 설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치](/cli/azure/install-azure-cli)를 참조하세요. 
+이 문서를 사용 하 여 Vm tooconvert Azure CLI hello 하는 방법을 보여 줍니다. Tooinstall 필요 하거나 업그레이드할 참조 [Azure CLI 2.0 설치](/cli/azure/install-azure-cli)합니다. 
 
 ## <a name="before-you-begin"></a>시작하기 전에
 
@@ -33,21 +33,21 @@ ms.lasthandoff: 08/29/2017
 
 
 ## <a name="convert-single-instance-vms"></a>단일 인스턴스 VM 변환
-이 섹션에서는 단일 인스턴스 Azure VM을 비관리 디스크에서 Managed Disks로 변환하는 방법을 설명합니다. VM이 가용성 집합에 있는 경우 다음 섹션을 참조하세요. 이 프로세스를 사용하여 프리미엄(SSD) 비관리 디스크에서 프리미엄 Managed Disks로 또는 표준(HDD) 비관리 디스크에서 표준 Managed Disks로 변환할 수 있습니다.
+이 섹션에서는 tooconvert 단일 인스턴스 Azure Vm에서 관리 되지 않는 toomanaged 디스크 디스크 하는 방법을 설명 합니다. (Vm 가용성 집합에 있는 경우 hello 다음 섹션 참조 합니다.) 이 프로세스 tooconvert hello Vm (HDD) 표준 또는 프리미엄 (SSD) 관리 되지 않는 디스크 toopremium 관리 되는 디스크에서 관리 되지 않는 디스크 toostandard 관리 되는 디스크를 사용할 수 있습니다.
 
-1. [az vm deallocate](/cli/azure/vm#deallocate)를 사용하여 VM의 할당을 취소합니다. 다음 예제에서는 리소스 그룹 `myResourceGroup`에서 `myVM`이라는 VM의 할당을 취소합니다.
+1. VM hello를 사용 하 여 할당 취소 [az vm 할당을 취소](/cli/azure/vm#deallocate)합니다. hello 다음 예제에서는 할당 취소 hello 라는 VM `myVM` 이라는 hello 리소스 그룹에 `myResourceGroup`:
 
     ```azurecli
     az vm deallocate --resource-group myResourceGroup --name myVM
     ```
 
-2. [az vm convert](/cli/azure/vm#convert)를 사용하여 VM을 Managed Disks로 변환합니다. 다음 프로세스는 OS 디스크 및 데이터 디스크를 포함하는 `myVM`이라는 VM을 변환합니다.
+2. 사용 하 여 hello VM toomanaged 디스크 변환 [az vm 변환](/cli/azure/vm#convert)합니다. 변환 프로세스를 수행 하는 hello hello 라는 VM `myVM`hello OS 디스크 및 모든 데이터 디스크를 포함 하 여:
 
     ```azurecli
     az vm convert --resource-group myResourceGroup --name myVM
     ```
 
-3. [az vm start](/cli/azure/vm#start)를 사용하여 VM을 Managed Disks로 변환한 후 시작합니다. 다음 예제에서는 리소스 그룹 `myResourceGroup`의 VM `myVM`을 시작합니다.
+3. 사용 하 여 hello 변환 toomanaged 디스크 후 hello VM 시작 [az vm 시작](/cli/azure/vm#start)합니다. 다음 예에서는 시작 하는 hello hello 라는 VM `myVM` 이라는 hello 리소스 그룹에 `myResourceGroup`합니다.
 
     ```azurecli
     az vm start --resource-group myResourceGroup --name myVM
@@ -55,11 +55,11 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="convert-vms-in-an-availability-set"></a>가용성 집합의 VM 변환
 
-관리되는 디스크로 변환하려는 VM이 가용성 집합에 있는 경우 먼저 가용성 집합을 관리되는 가용성 집합으로 변환해야 합니다.
+경우 tooconvert toomanaged 디스크 가용성 집합에는 원하는 hello Vm을 먼저 tooconvert hello 가용성 집합 tooa 관리 되는 가용성 집합입니다.
 
-가용성 집합을 변환하기 전에 가용성 집합에 있는 모든 VM의 할당을 취소해야 합니다. 가용성 집합이 관리되는 가용성 집합으로 변환된 후 모든 VM을 관리되는 디스크로 변환하려고 합니다. 그런 다음 모든 VM을 시작하고 정상적으로 운영을 계속합니다.
+Hello 가용성 집합을 변환 하기 전에 hello 가용성 집합에 있는 모든 Vm은 해제 해야 합니다. 모든 Vm toomanaged 디스크 hello 공급 후 자체적으로 설정 하는 계획 tooconvert 가용성 집합 관리 되는 변환 된 tooa 되었습니다. 그런 다음, 모든 hello Vm을 시작 하 고 계속 정상적으로 작동 합니다.
 
-1. [az vm availability-set list](/cli/azure/vm/availability-set#list)를 사용하여 가용성 집합의 모든 VM을 나열합니다. 다음 예제에서는 리소스 그룹 `myResourceGroup`의 가용성 집합 `myAvailabilitySet`에 있는 모든 VM을 나열합니다.
+1. [az vm availability-set list](/cli/azure/vm/availability-set#list)를 사용하여 가용성 집합의 모든 VM을 나열합니다. hello 다음 예에서는 나열 모든 Vm hello 가용성 명명 된 집합의 `myAvailabilitySet` 이라는 hello 리소스 그룹에 `myResourceGroup`:
 
     ```azurecli
     az vm availability-set show \
@@ -69,13 +69,13 @@ ms.lasthandoff: 08/29/2017
         --output table
     ```
 
-2. [az vm deallocate](/cli/azure/vm#deallocate)를 사용하여 모든 VM의 할당을 취소합니다. 다음 예제에서는 리소스 그룹 `myResourceGroup`에서 `myVM`이라는 VM의 할당을 취소합니다.
+2. 사용 하 여 모든 hello Vm 할당을 취소 [az vm 할당을 취소](/cli/azure/vm#deallocate)합니다. hello 다음 예제에서는 할당 취소 hello 라는 VM `myVM` 이라는 hello 리소스 그룹에 `myResourceGroup`:
 
     ```azurecli
     az vm deallocate --resource-group myResourceGroup --name myVM
     ```
 
-3. [az vm availability-set convert](/cli/azure/vm/availability-set#convert)를 사용하여 가용성 집합을 변환합니다. 다음 예제에서는 리소스 그룹 `myResourceGroup`의 가용성 집합 `myAvailabilitySet`을 변환합니다.
+3. 사용 하 여 설정 하는 hello 가용성 변환 [az vm 가용성 집합 convert](/cli/azure/vm/availability-set#convert)합니다. hello 다음 예제에서는 변환 hello 가용성 명명 된 집합 `myAvailabilitySet` 이라는 hello 리소스 그룹에 `myResourceGroup`:
 
     ```azurecli
     az vm availability-set convert \
@@ -83,13 +83,13 @@ ms.lasthandoff: 08/29/2017
         --name myAvailabilitySet
     ```
 
-4. [az vm convert](/cli/azure/vm#convert)를 사용하여 모든 VM을 Managed Disks로 변환합니다. 다음 프로세스는 OS 디스크 및 데이터 디스크를 포함하는 `myVM`이라는 VM을 변환합니다.
+4. 사용 하 여 모든 hello Vm toomanaged 디스크 변환 [az vm 변환](/cli/azure/vm#convert)합니다. 변환 프로세스를 수행 하는 hello hello 라는 VM `myVM`hello OS 디스크 및 모든 데이터 디스크를 포함 하 여:
 
     ```azurecli
     az vm convert --resource-group myResourceGroup --name myVM
     ```
 
-5. [az vm start](/cli/azure/vm#start)를 사용하여 모든 VM을 Managed Disks로 변환한 후 시작합니다. 다음 예제에서는 리소스 그룹 `myResourceGroup`의 VM `myVM`을 시작합니다.
+5. 사용 하 여 hello 변환 toomanaged 디스크 후 모든 hello Vm 시작 [az vm 시작](/cli/azure/vm#start)합니다. 다음 예에서는 시작 하는 hello hello 라는 VM `myVM` 이라는 hello 리소스 그룹에 `myResourceGroup`:
 
     ```azurecli
     az vm start --resource-group myResourceGroup --name myVM

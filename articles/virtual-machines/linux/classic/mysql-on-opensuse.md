@@ -1,6 +1,6 @@
 ---
-title: "OpenSUSE VM에 MySQL 설치 | Microsoft Docs"
-description: "Azure에서 OpenSUSE Linux 가상 컴퓨터에 MySQL을 설치하는 방법을 알아봅니다."
+title: "aaaInstall OpenSUSE VM에서 MySQL | Microsoft Docs"
+description: "Azure에서 Linux VMirtual OpenSUSE 컴퓨터 tooinstall MySQL에 알아봅니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,28 +15,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2016
 ms.author: cynthn
-ms.openlocfilehash: 01b798a25575b66f89057315ce80d6cc0cde53b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f96d29f29cb9c466dd7fdaf92b378783fdaacd6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="install-mysql-on-a-virtual-machine-running-opensuse-linux-in-azure"></a>Azure에서 OpenSUSE Linux를 실행하는 가상 컴퓨터에 MySQL 설치
-[MySQL][MySQL]은 인기 있는 오픈 소스 SQL Database입니다. 이 자습서에서는 OpenSUSE Linux를 실행하는 가상 컴퓨터를 만든 다음 MySQL을 설치하는 방법을 보여 줍니다.
+[MySQL][MySQL]은 인기 있는 오픈 소스 SQL Database입니다. 이 자습서에서는 어떻게 toocreate OpenSUSE Linux를 실행 하는 가상 컴퓨터 MySQL를 다음 설치 합니다.
 
 > [!IMPORTANT] 
-> Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다. 이 문서에서는 클래식 배포 모델 사용에 대해 설명합니다. 새로운 배포는 대부분 리소스 관리자 모델을 사용하는 것이 좋습니다.
+> Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다. 이 문서에서는 hello 클래식 배포 모델을 사용 하 여 설명 합니다. 대부분의 새로운 배포 hello 리소스 관리자 모델을 사용 하는 것이 좋습니다.
 
 <br>
 
 ## <a name="create-a-virtual-machine-running-opensuse-linux"></a>OpenSUSE Linux를 실행하는 가상 컴퓨터 만들기
 [!INCLUDE [create-and-configure-opensuse-vm-in-portal](../../../../includes/create-and-configure-opensuse-vm-in-portal.md)]
 
-## <a name="install-and-run-mysql-on-the-virtual-machine"></a>가상 컴퓨터에 MySQL 설치 및 실행
+## <a name="install-and-run-mysql-on-hello-virtual-machine"></a>설치 하 고 MySQL hello 가상 컴퓨터에서 실행
 [!INCLUDE [install-and-run-mysql-on-opensuse-vm](../../../../includes/install-and-run-mysql-on-opensuse-vm.md)]
 
 ## <a name="next-steps"></a>다음 단계
-MySQL에 대한 자세한 내용은 [MySQL 설명서][MySQLDocs]를 참조하세요.
+MySQL에 대 한 자세한 참조 hello [MySQL 설명서][MySQLDocs]합니다.
 
 [MySQLDocs]:http://dev.mysql.com/doc/index-topic.html
 [MySQL]:http://www.mysql.com

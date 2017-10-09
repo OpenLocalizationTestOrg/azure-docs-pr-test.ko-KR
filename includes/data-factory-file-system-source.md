@@ -1,6 +1,6 @@
-원본이 **FileSystemSource** 형식인 복사 작업의 경우 typeProperties 섹션에서 다음과 같은 속성을 사용할 수 있습니다.
+복사 작업에서는 원본 유형인 경우 **FileSystemSource**, 다음과 같은 속성 hello typeProperties 섹션에서 사용할 수 있는:
 
 | 속성 | 설명 | 허용되는 값 | 필수 |
 | --- | --- | --- | --- |
-| recursive |하위 폴더에서 또는 지정된 폴더에서만 데이터를 재귀적으로 읽을지 여부를 나타냅니다. |True, False(기본값) |아니요 |
+| recursive |Hello 데이터 읽는지 재귀적으로 hello 하위 폴더 또는 hello 지정한 폴더에서만 나타냅니다. |True, False(기본값) |아니요 |
 

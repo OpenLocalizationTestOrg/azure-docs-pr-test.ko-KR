@@ -1,5 +1,5 @@
 ---
-title: "스케줄러 아웃바운드 인증"
+title: "aaaScheduler 아웃 바운드 인증"
 description: "스케줄러 아웃바운드 인증"
 services: scheduler
 documentationcenter: .NET
@@ -14,42 +14,42 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/15/2016
 ms.author: deli
-ms.openlocfilehash: e345b2e22daae5b24c23645f7d2636f66df630ff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ef713f4770b48d0a9176415e87c1042a823582e5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scheduler-outbound-authentication"></a>스케줄러 아웃바운드 인증
-인증을 요구하는 서비스를 호출하기 위해 스케줄러 작업이 필요할 수 있습니다. 이를 통해, 호출된 서비스가 스케줄러 작업이 리소스에 액세스 가능한지 여부를 결정할 수 있습니다. 이러한 서비스 중 일부에는 다른 Azure 서비스, Salesforce.com, Facebook 및 보안 사용자 지정 웹사이트가 포함됩니다.
+스케줄러 작업 toocall 인증이 필요한 tooservices 아웃 해야 합니다. 이러한 방식으로 호출된 된 서비스 hello 스케줄러 작업 리소스에 액세스할 수 있는지 확인할 수 있습니다. 이러한 서비스 중 일부에는 다른 Azure 서비스, Salesforce.com, Facebook 및 보안 사용자 지정 웹사이트가 포함됩니다.
 
 ## <a name="adding-and-removing-authentication"></a>인증 추가 및 제거
-스케줄러 작업에 간단하게 인증을 추가할 수 있습니다. 즉 작업을 만들거나 업데이트할 때 JSON 자식 요소 `authentication`을 `request` 요소에 추가합니다. `authentication` 개체의 일부로 PUT, PATCH 또는 POST 요청에서 스케줄러 서비스에 전달되는 암호는 응답에서 절대 반환되지 않습니다. 응답에서 암호 정보는 null로 설정되거나, 인증된 엔터티를 나타내는 공용 토큰을 갖을 수 있습니다.
+추가 인증 tooa 스케줄러 작업은 간단-JSON 자식 요소를 추가 `authentication` toohello `request` 만들거나 작업을 업데이트할 때 요소입니다. 전달 되는 암호 toohello 스케줄러 서비스 – PUT, PATCH 또는 POST 요청에 hello의 일부로 `authentication` 개체 – 응답에서 반환 되지 않습니다. 응답에서는 비밀 정보 toonull 설정 되거나 인증 hello 엔터티를 나타내는 공용 토큰을 가질 수 있습니다.
 
-인증을 제거하려면 작업을 명시적으로 PUT 또는 PATCH하여 `authentication` 개체를 null로 설정합니다. 응답에는 인증 속성이 하나도 표시되지 않습니다.
+tooremove 인증 하거나 hello 작업을 명시적으로 패치 하 여 hello 설정 `authentication` toonull 개체입니다. 응답에는 인증 속성이 하나도 표시되지 않습니다.
 
-현재 지원되는 인증 유형은 `ClientCertificate`모델(SSL/TLS 클라이언트 인증서를 사용할 경우), `Basic`(기본 인증의 경우), `ActiveDirectoryOAuth`(Active Directory OAuth 인증용)뿐입니다.
+현재 지원만 hello 인증 유형에 hello `ClientCertificate` (사용 하 여 모델 hello SSL/TLS 클라이언트 인증서), hello `Basic` (기본 인증의 경우)에 대 한 모델 및 hello `ActiveDirectoryOAuth` 모델 (Active Directory OAuth 인증용)입니다.
 
 ## <a name="request-body-for-clientcertificate-authentication"></a>ClientCertificate 인증에 대한 요청 본문
-`ClientCertificate` 모델을 사용하여 인증을 추가할 때는 다음 추가 요소를 요청 본문에 추가합니다.  
+Hello를 사용 하 여 인증을 추가할 때 `ClientCertificate` 모델을 hello hello 요청 본문의 추가 요소에 다음을 지정 합니다.  
 
 | 요소 | 설명 |
 |:--- |:--- |
 | *인증(부모 요소)* |SSL 클라이언트 인증서를 사용하기 위한 인증 개체 입니다. |
-| *type* |필수입니다. 인증 유형입니다. SSL 클라이언트 인증서의 경우 이 값은 `ClientCertificate`입니다. |
-| *pfx* |필수입니다. PFX 파일의 Base64 인코딩 콘텐츠입니다. |
-| *암호* |필수입니다. PFX 파일에 액세스하기 위한 암호입니다. |
+| *type* |필수입니다. 인증 유형입니다. SSL 클라이언트 인증서에 대 한 hello 값 이어야 합니다 `ClientCertificate`합니다. |
+| *pfx* |필수입니다. Hello PFX 파일의 Base64 인코딩 콘텐츠입니다. |
+| *암호* |필수입니다. Tooaccess hello PFX 파일 암호입니다. |
 
 ## <a name="response-body-for-clientcertificate-authentication"></a>ClientCertificate 인증에 대한 응답 본문
-인증 정보와 함께 요청을 보내면 응답에는 다음 인증 관련 요소가 포함됩니다.
+요청 인증 정보와 함께 보내면 hello 응답 hello 다음 인증 관련 요소가 포함 됩니다.
 
 | 요소 | 설명 |
 |:--- |:--- |
 | *인증(부모 요소)* |SSL 클라이언트 인증서를 사용하기 위한 인증 개체 입니다. |
-| *type* |인증 유형입니다. SSL 클라이언트 인증서의 경우 이 값은 `ClientCertificate`입니다. |
-| *certificateThumbprint* |인증서의 지문입니다. |
-| *certificateSubjectName* |인증서의 주체 고유 이름입니다. |
-| *certificateExpiration* |인증서의 만료일입니다. |
+| *type* |인증 유형입니다. SSL 클라이언트 인증서 hello 값은 `ClientCertificate`합니다. |
+| *certificateThumbprint* |hello 인증서의 지문 안녕하세요입니다. |
+| *certificateSubjectName* |hello 인증서의 hello 주체의 고유 이름입니다. |
+| *certificateExpiration* |hello hello 인증서의 만료 날짜입니다. |
 
 ## <a name="sample-rest-request-for-clientcertificate-authentication"></a>ClientCertificate 인증에 대한 샘플 REST 요청
 ```
@@ -144,23 +144,23 @@ Date: Wed, 16 Mar 2016 19:04:23 GMT
 ```
 
 ## <a name="request-body-for-basic-authentication"></a>기본 인증의 요청 본문
-`Basic` 모델을 사용하여 인증을 추가할 때는 다음 추가 요소를 요청 본문에 추가합니다.
+Hello를 사용 하 여 인증을 추가할 때 `Basic` 모델을 hello hello 요청 본문의 추가 요소에 다음을 지정 합니다.
 
 | 요소 | 설명 |
 |:--- |:--- |
 | *인증(부모 요소)* |기본 인증을 사용 하기 위한 인증 개체입니다. |
-| *type* |필수입니다. 인증 유형입니다. 기본 인증의 경우 이 값은 `Basic`입니다. |
-| *사용자 이름* |필수입니다. 인증하기 위한 사용자 이름입니다. |
-| *암호* |필수입니다. 인증하기 위한 암호입니다. |
+| *type* |필수입니다. 인증 유형입니다. 기본 인증에 대 한 hello 값 이어야 합니다 `Basic`합니다. |
+| *사용자 이름* |필수입니다. 사용자 이름 tooauthenticate 합니다. |
+| *암호* |필수입니다. 암호 tooauthenticate 합니다. |
 
 ## <a name="response-body-for-basic-authentication"></a>기본 인증의 응답 본문
-인증 정보와 함께 요청을 보내면 응답에는 다음 인증 관련 요소가 포함됩니다.
+요청 인증 정보와 함께 보내면 hello 응답 hello 다음 인증 관련 요소가 포함 됩니다.
 
 | 요소 | 설명 |
 |:--- |:--- |
 | *인증(부모 요소)* |기본 인증을 사용 하기 위한 인증 개체입니다. |
-| *type* |인증 유형입니다. 기본 인증의 경우 이 값은 `Basic`입니다. |
-| *사용자 이름* |인증된 사용자 이름입니다. |
+| *type* |인증 유형입니다. 기본 인증을 hello 값은 `Basic`합니다. |
+| *사용자 이름* |hello 인증 사용자 이름. |
 
 ## <a name="sample-rest-request-for-basic-authentication"></a>기본 인증에 대한 샘플 REST 요청
 ```
@@ -254,30 +254,30 @@ Date: Wed, 16 Mar 2016 19:05:06 GMT
 ```
 
 ## <a name="request-body-for-activedirectoryoauth-authentication"></a>ActiveDirectoryOAuth 인증의 요청 본문
-`ActiveDirectoryOAuth` 모델을 사용하여 인증을 추가할 때는 다음 추가 요소를 요청 본문에 추가합니다.
+Hello를 사용 하 여 인증을 추가할 때 `ActiveDirectoryOAuth` 모델을 hello hello 요청 본문의 추가 요소에 다음을 지정 합니다.
 
 | 요소 | 설명 |
 |:--- |:--- |
 | *인증(부모 요소)* |ActiveDirectoryOAuth 인증을 사용하기 위한 인증 개체입니다. |
-| *type* |필수입니다. 인증 유형입니다. ActiveDirectoryOAuth 인증의 경우 이 값은 `ActiveDirectoryOAuth`입니다. |
-| *테넌트* |필수입니다. Azure AD 테넌트의 테넌트 식별자입니다. |
-| *대상* |필수입니다. 이는 https://management.core.windows.net/에 설정됩니다. |
-| *clientId* |필수입니다. Azure AD 응용 프로그램의 클라이언트 ID를 제공합니다. |
-| *암호* |필수입니다. 토큰을 요청하는 클라이언트의 암호입니다. |
+| *type* |필수입니다. 인증 유형입니다. ActiveDirectoryOAuth 인증에 대 한 hello 값 이어야 합니다 `ActiveDirectoryOAuth`합니다. |
+| *테넌트* |필수입니다. hello hello Azure AD 테 넌 트에 대 한 테 넌 트 식별자입니다. |
+| *대상* |필수입니다. 이 toohttps://management.core.windows.net/를 설정 됩니다. |
+| *clientId* |필수입니다. Hello Azure AD 응용 프로그램에 대 한 hello 클라이언트 식별자를 제공 합니다. |
+| *암호* |필수입니다. Hello 토큰을 요청 하는 hello 클라이언트의 암호입니다. |
 
 ### <a name="determining-your-tenant-identifier"></a>테넌트 식별자 확인
-Azure PowerShell에서 `Get-AzureAccount` 를 실행하여 Azure AD 테넌트의 테넌트 식별자를 확인할 수 있습니다.
+실행 하 여 hello Azure AD 테 넌 트에 대 한 hello 테 넌 트 식별자를 찾을 수 있습니다 `Get-AzureAccount` Azure PowerShell에서 합니다.
 
 ## <a name="response-body-for-activedirectoryoauth-authentication"></a>ActiveDirectoryOAuth 인증의 응답 본문
-인증 정보와 함께 요청을 보내면 응답에는 다음 인증 관련 요소가 포함됩니다.
+요청 인증 정보와 함께 보내면 hello 응답 hello 다음 인증 관련 요소가 포함 됩니다.
 
 | 요소 | 설명 |
 |:--- |:--- |
 | *인증(부모 요소)* |ActiveDirectoryOAuth 인증을 사용하기 위한 인증 개체입니다. |
-| *type* |인증 유형입니다. ActiveDirectoryOAuth 인증의 경우 이 값은 `ActiveDirectoryOAuth`입니다. |
-| *테넌트* |Azure AD 테넌트의 테넌트 식별자입니다. |
-| *대상* |이는 https://management.core.windows.net/에 설정됩니다. |
-| *clientId* |Azure AD 응용 프로그램의 클라이언트 ID입니다. |
+| *type* |인증 유형입니다. ActiveDirectoryOAuth 인증 hello 값은 `ActiveDirectoryOAuth`합니다. |
+| *테넌트* |hello hello Azure AD 테 넌 트에 대 한 테 넌 트 식별자입니다. |
+| *대상* |이 toohttps://management.core.windows.net/를 설정 됩니다. |
+| *clientId* |hello hello Azure AD 응용 프로그램에 대 한 클라이언트 식별자입니다. |
 
 ## <a name="sample-rest-request-for-activedirectoryoauth-authentication"></a>ActiveDirectoryOAuth 인증에 대한 샘플 REST 요청
 ```
@@ -380,7 +380,7 @@ Date: Wed, 16 Mar 2016 19:10:02 GMT
 
  [Azure 스케줄러 개념, 용어 및 엔터티 계층 구조](scheduler-concepts-terms.md)
 
- [Azure 포털에서 스케줄러 사용 시작](scheduler-get-started-portal.md)
+ [Hello Azure 포털에서에서 스케줄러 사용 시작](scheduler-get-started-portal.md)
 
  [Azure 스케줄러의 버전 및 요금 청구](scheduler-plans-billing.md)
 

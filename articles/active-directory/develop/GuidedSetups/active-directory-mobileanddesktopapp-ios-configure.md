@@ -1,5 +1,5 @@
 ---
-title: "Azure AD v2 iOS 시작 - 구성 | Microsoft Docs"
+title: "AD aaaAzure v2 iOS 시작-구성 | Microsoft Docs"
 description: "iOS(Swift) 응용 프로그램이 Azure Active Directory v2 끝점으로 보호되는 액세스 토큰을 필요로 하는 API를 호출하는 방식"
 services: active-directory
 documentationcenter: dev-center-name
@@ -13,26 +13,26 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
-ms.openlocfilehash: 0ebca65585fc87bd4a85ba092cd423fce9540f58
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 537cc7f0de6cd947fe340566c9e93f8bb08d57a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 ## <a name="create-an-application-express"></a>응용 프로그램(Express) 만들기
-이제 *Microsoft 응용 프로그램 등록 포털*에서 등용 프로그램을 등록해야 합니다.
-1. [Microsoft 응용 프로그램 등록 포털](https://apps.dev.microsoft.com/portal/register-app?appType=mobileAndDesktopApp&appTech=ios&step=configure)을 통해 응용 프로그램을 등록합니다.
+이제 tooregister hello에서 응용 프로그램 필요한 *Microsoft 응용 프로그램 등록 포털*:
+1. Hello 통해 응용 프로그램 등록 [Microsoft 응용 프로그램 등록 포털](https://apps.dev.microsoft.com/portal/register-app?appType=mobileAndDesktopApp&appTech=ios&step=configure)
 2.  응용 프로그램 이름과 메일을 입력합니다.
-3.  안내식 설정 옵션이 선택되어 있는지 확인합니다.
-4.  지침에 따라 응용 프로그램 ID를 가져와 코드에 붙여넣습니다.
+3.  설치 문제 해결에 대 한 hello 옵션을 선택 했는지 확인
+4.  Hello 지침 tooobtain hello 응용 프로그램 ID를 따르고 코드에 붙여
 
-### <a name="add-your-application-registration-information-to-your-solution-advanced"></a>솔루션에 응용 프로그램 등록 정보 추가(고급)
+### <a name="add-your-application-registration-information-tooyour-solution-advanced"></a>추가 응용 프로그램 등록 정보 tooyour 솔루션 (고급)
 
-1.  [Microsoft 응용 프로그램 등록 포털](https://apps.dev.microsoft.com/portal/register-app)로 이동합니다.
+1.  너무 이동[Microsoft 응용 프로그램 등록 포털](https://apps.dev.microsoft.com/portal/register-app)
 2.  응용 프로그램 이름과 메일을 입력합니다.
-3.  안내식 설정 옵션이 선택 취소되어 있는지 확인합니다.
+3.  설치 문제 해결에 대 한 hello 옵션을 선택 하지 않았는지 확인
 4.  `Add Platform`을 클릭한 다음 `Native Application`을 선택하고 `Save`를 클릭합니다.
-5.  Xcode로 돌아갑니다. `ViewController.swift`에서 '`let kClientID`'로 시작하는 줄을 방금 등록한 응용 프로그램 ID로 바꿉니다.
+5.  TooXcode 돌아갑니다. `ViewController.swift`, 대체 hello 줄으로 시작 '`let kClientID`' hello 응용 프로그램 id를 방금 등록:
 
 ```swift
 let kClientID = "Your_Application_Id_Here"
@@ -41,10 +41,10 @@ let kClientID = "Your_Application_Id_Here"
 <!-- Workaround for Docs conversion bug -->
 <ol start="6">
 <li>
-Ctrl 키를 누른 채로 <code>Info.plist</code>를 클릭하여 상황에 맞는 메뉴를 표시한 후 다음을 클릭합니다. <code>Open As</code>> <code>Source Code</code>
+제어 상태에서 클릭 <code>Info.plist</code> toobring hello 상황에 맞는 메뉴 및 클릭: <code>Open As</code>> <code>Source Code</code>
 </li>
 <li>
-<code>dict</code> 루트 노드 아래에 다음을 추가합니다.
+Hello에서 <code>dict</code> 루트 노드 hello 다음 추가 합니다.
 </li>
 </ol>
 
@@ -66,6 +66,6 @@ Ctrl 키를 누른 채로 <code>Info.plist</code>를 클릭하여 상황에 맞�
 ```
 <ol start="8">
 <li>
-<i><code>[Your_Application_Id_Here]</code></i>를 방금 등록한 응용 프로그램 ID로 바꿉니다.
+대체 <i> <code>[Your_Application_Id_Here]</code> </i> hello 방금 등록 한 응용 프로그램 Id로
 </li>
 </ol>

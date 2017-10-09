@@ -1,6 +1,6 @@
 ## <a name="net-sample-code-repositories"></a>.NET 샘플 코드 리포지토리
 
-Azure Storage .NET 클라이언트 라이브러리에 대한 모든 샘플 리포지토리 목록은 다음과 같습니다.
+Hello Azure 저장소.NET 클라이언트 라이브러리에 대 한 우리의 모든 샘플 저장소 목록은 다음과 같습니다.
 
 * [Azure Blob 저장소 사진 갤러리 웹 응용 프로그램](https://azure.microsoft.com/resources/samples/storage-blobs-dotnet-webapp/)
 * [.NET용 Azure Blob Storage 샘플](https://azure.microsoft.com/resources/samples/storage-blob-dotnet-getting-started/)

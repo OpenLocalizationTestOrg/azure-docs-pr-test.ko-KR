@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric Docker Compose 미리 보기"
-description: "Azure Service Fabric은 Service Fabric을 사용하여 기존 컨테이너를 보다 쉽게 조정할 수 있도록 Docker Compose 형식을 수락합니다. 이 지원은 현재 미리 보기로 제공되고 있습니다."
+title: "aaaAzure 서비스 패브릭 Docker 작성 미리 보기"
+description: "Azure 서비스 패브릭 형식 toomake Docker Compose를 허용 하기 서비스 패브릭을 사용 하 여 보다 쉽게 tooorchestrate 기존 컨테이너입니다. 이 지원은 현재 미리 보기로 제공되고 있습니다."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: e05d1a3d6111e3bbc34008226bcd1fdf35935450
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a60d1321fd6ef07b241a98c5ab2b8dfe5d441b53
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="docker-compose-application-support-in-azure-service-fabric-preview"></a>Azure Service Fabric의 Docker Compose 응용 프로그램 지원(미리 보기)
 
-Docker는 다중 컨테이너 응용 프로그램을 정의하기 위해 [docker-compose.yml](https://docs.docker.com/compose) 파일을 사용합니다. Docker에 익숙한 고객이 Azure Service Fabric에서 기존 컨테이너 응용 프로그램을 쉽게 조정하도록 하기 위해 플랫폼에 기본적으로 Docker Compose에 대한 미리 보기 지원을 포함했습니다. Service Fabric은 `docker-compose.yml` 파일의 버전 3 이상을 수락할 수 있습니다. 
+Docker hello를 사용 하 여 [docker compose.yml](https://docs.docker.com/compose) 다중 컨테이너 응용 프로그램 정의 파일입니다. toomake 것 Docker tooorchestrate 기존 컨테이너에서 응용 프로그램과 함께 Azure Service Fabric 친숙 한 고객을 쉽게의 포함 되어 있습니다 Docker Compose에 대 한 미리 보기 지원 고유 하 게 hello 플랫폼입니다. Service Fabric은 `docker-compose.yml` 파일의 버전 3 이상을 수락할 수 있습니다. 
 
 이 지원은 미리 보기로 제공되므로 Compose 지시문의 하위 집합만 지원됩니다. 예를 들어 응용 프로그램 업그레이드는 지원되지 않습니다. 그러나 응용 프로그램을 업그레이드하는 대신 항상 제거한 후 배포할 수 있습니다.
 
-이 미리 보기를 사용하려면 해당하는 SDK와 함께 Azure Portal을 통해 Service Fabric 런타임 버전 5.7 이상을 사용하여 클러스터를 만듭니다. 
+toouse 미리이 hello SDK에 해당 하는 hello와 함께 Azure 포털을 통해 서비스 패브릭 런타임을 hello 5.7 이상 버전으로 클러스터를 만듭니다. 
 
 > [!NOTE]
 > 이 기능은 미리 보기로 제공되며 프로덕션에서 지원되지 않습니다.
 
 ## <a name="deploy-a-docker-compose-file-on-service-fabric"></a>Service Fabric에서 Docker Compose 파일 배포
 
-다음 명령은 다른 Service Fabric 응용 프로그램과 유사하게 모니터링하고 관리할 수 있는 Service Fabric 응용 프로그램(이전 예제의 `fabric:/TestContainerApp`)을 만듭니다. 상태 쿼리에 대해서는 지정된 응용 프로그램 이름을 사용할 수 있습니다.
+hello 다음 명령은 서비스 패브릭 응용 프로그램을 만듭니다 (라는 `fabric:/TestContainerApp` hello 예에서는 앞에서)를 모니터링 하 고 다른 서비스 패브릭 응용 프로그램 처럼 관리할 수 있는 합니다. 상태 쿼리 수에 대 한 hello 지정 된 응용 프로그램 이름을 사용할 수 있습니다.
 
 ### <a name="use-powershell"></a>PowerShell 사용
 
-PowerShell에서 다음 명령을 실행하여 docker-compose.yml 파일에서 Service Fabric Compose 응용 프로그램을 만듭니다.
+Hello 다음 powershell에서 명령을 실행 하 여 docker compose.yml 파일에서 서비스 패브릭 구성 응용 프로그램을 만듭니다.
 
 ```powershell
 New-ServiceFabricComposeApplication -ApplicationName fabric:/TestContainerApp -Compose docker-compose.yml [-RegistryUserName <>] [-RegistryPassword <>] [-PasswordEncrypted]
 ```
 
-`RegistryUserName` 및 `RegistryPassword`는 컨테이너 레지스트리 사용자 이름 및 암호를 가리킵니다. 응용 프로그램을 완료한 후에는 다음 명령을 사용하여 그 상태를 확인할 수 있습니다.
+`RegistryUserName`및 `RegistryPassword` toohello 컨테이너 레지스트리 사용자 이름 및 암호를 참조 하십시오. Hello 응용 프로그램을 완료 한 후 다음 명령을 hello를 사용 하 여 해당 상태를 확인할 수 있습니다.
 
 ```powershell
 Get-ServiceFabricComposeApplicationStatus -ApplicationName fabric:/TestContainerApp -GetAllPages
 ```
 
-PowerShell을 통해 Compose 응용 프로그램을 삭제하려면 다음 명령을 사용합니다.
+toodelete hello PowerShell에서 다음 명령을 사용 하 여 hello 통해 응용 프로그램 작성.
 
 ```powershell
 Remove-ServiceFabricComposeApplication  -ApplicationName fabric:/TestContainerApp
@@ -57,19 +57,19 @@ Remove-ServiceFabricComposeApplication  -ApplicationName fabric:/TestContainerAp
 
 ### <a name="use-azure-service-fabric-cli-sfctl"></a>Azure Service Fabric CLI(sfctl) 사용
 
-또는 다음 Service Fabric CLI 명령을 사용할 수 있습니다.
+또는 다음 서비스 패브릭 CLI 명령을 hello를 사용할 수 있습니다.
 
 ```azurecli
 sfctl compose create --application-id fabric:/TestContainerApp --compose-file docker-compose.yml [ [ --repo-user --repo-pass --encrypted ] | [ --repo-user ] ] [ --timeout ]
 ```
 
-응용 프로그램을 만든 후에는 다음 명령을 사용하여 그 상태를 확인할 수 있습니다.
+Hello 응용 프로그램을 만든 후 다음 명령을 hello를 사용 하 여 해당 상태를 확인할 수 있습니다.
 
 ```azurecli
 sfctl compose status --application-id TestContainerApp [ --timeout ]
 ```
 
-Compose 응용 프로그램을 삭제하려면 다음 명령을 사용합니다.
+toodelete hello 작성할 응용 프로그램에는 hello 다음 명령을 사용 합니다.
 
 ```azurecli
 sfctl compose remove  --application-id TestContainerApp [ --timeout ]
@@ -77,7 +77,7 @@ sfctl compose remove  --application-id TestContainerApp [ --timeout ]
 
 ## <a name="supported-compose-directives"></a>지원되는 Compose 지시문
 
-이 미리 보기에서는 다음과 같은 기본 형식을 포함하여 Compose 버전 3형식의 구성 옵션 하위 집합을 지원합니다.
+이 미리 보기 hello Compose 3 버전 형식에 기본 형식 다음 hello를 포함 하 여 hello 구성 옵션의 하위 집합을 지원 합니다.
 
 * 서비스 > 배포 > 복제본
 * 서비스 > 배포 > 배치 > 제약 조건
@@ -94,26 +94,26 @@ sfctl compose remove  --application-id TestContainerApp [ --timeout ]
 * 서비스 > 로깅 > 드라이버 > 옵션
 * 볼륨 및 배포 > 볼륨
 
-클러스터는 [Service Fabric 리소스 관리](service-fabric-resource-governance.md)에 설명된 대로 리소스 제한을 적용하도록 설정합니다. 다른 모든 Docker Compose 지시문은 이 미리 보기에서 지원되지 않습니다.
+에 설명 된 대로 리소스 제한을 적용 하는 것에 대 한 hello 클러스터를 설정 [서비스 패브릭 리소스 관리](service-fabric-resource-governance.md)합니다. 다른 모든 Docker Compose 지시문은 이 미리 보기에서 지원되지 않습니다.
 
 ## <a name="servicednsname-computation"></a>ServiceDnsName 계산
 
-Compose 파일에 지정하는 서비스 이름이 정규화된 도메인 이름(즉, 마침표 [.] 포함)인 경우 Service Fabric에서 등록된 DNS 이름은 `<ServiceName>`(마침표 포함)입니다. 정규화된 도메인 이름이 아닌 경우 응용 프로그램 이름의 각 경로 세그먼트는 서비스 DNS 이름의 도메인 레이블이 됩니다. 이때 첫 번째 경로 세그먼트가 최상위 도메인 레이블이 됩니다.
+구성 파일에서 지정 하는 hello 서비스 이름을 정규화 된 도메인 이름인 경우 (즉, 포함 된 점 [.]) 서비스 패브릭에서 등록 하는 hello DNS 이름이 `<ServiceName>` (hello 점 포함). 그렇지 않은 경우 각 경로 세그먼트 hello 응용 프로그램 이름에 hello hello 최상위 도메인 레이블 되는 첫 번째 경로 세그먼트와 hello 서비스 DNS 이름에는 도메인 레이블이 됩니다.
 
-예를 들어 지정된 응용 프로그램 이름이 `fabric:/SampleApp/MyComposeApp`인 경우 `<ServiceName>.MyComposeApp.SampleApp`은 등록된 DNS 이름이 됩니다.
+예를 들어 hello 응용 프로그램 이름 지정은 `fabric:/SampleApp/MyComposeApp`, `<ServiceName>.MyComposeApp.SampleApp` hello 등록 된 DNS 이름을 것입니다.
 
 ## <a name="differences-between-compose-instance-definition-and-service-fabric-application-model-type-definition"></a>Compose(인스턴스 정의) 및 Service Fabric 응용 프로그램 모델(형식 정의) 간 차이
 
 docker-compose.yml 파일은 해당 속성 및 구성을 포함하는 컨테이너의 배포 가능 집합을 설명합니다.
-예를 들어 파일에는 환경 변수 및 포트가 포함될 수 있습니다. 배치 제약 조건, 리소스 제한, DNS 이름과 같은 배포 매개 변수는 docker-compose.yml 파일에도 지정할 수 있습니다.
+예를 들어 hello 파일 환경 변수 및 포트를 포함할 수 있습니다. Hello docker compose.yml 파일에서 DNS 이름, 배치 제약 조건 및 리소스 제한 등 배포 매개 변수를 지정할 수도 있습니다.
 
-[Service Fabric 응용 프로그램 모델](service-fabric-application-model.md)은 서비스 형식 및 응용 프로그램 형식을 사용합니다. 여기서 동일한 형식의 여러 응용 프로그램 인스턴스를 유지할 수 있습니다. 예를 들어 고객이 각자 하나의 응용 프로그램 인스턴스를 사용할 수 있습니다. 이 형식 기반 모델은 런타임에 등록된 동일한 응용 프로그램 유형의 여러 버전을 지원합니다.
+hello [서비스 패브릭 응용 프로그램 모델](service-fabric-application-model.md) 사용 하 여 서비스 유형 및 응용 프로그램 유형, 응용 프로그램 인스턴스 수를 사용할 수 있는 hello 같은 형식입니다. 예를 들어 고객이 각자 하나의 응용 프로그램 인스턴스를 사용할 수 있습니다. 이 형식 기반 모델에서는 여러 버전의 hello hello 런타임과 함께 등록 되어 있는 동일한 응용 프로그램 종류입니다.
 
-예를 들어 고객 A에는 1.0 형식의 AppTypeA로 인스턴스화된 응용 프로그램이 있고, 고객 B에는 동일한 형식 및 버전으로 인스턴스화된 다른 응용 프로그램을 유지할 수 있습니다. 응용 프로그램 유형은 응용 프로그램 매니페스트에서 정의하고, 응용 프로그램 이름 및 배포 매개 변수는 응용 프로그램을 만들 때 지정합니다.
+예를 들어 고객 A, AppTypeA 유형의 1.0 사용 하 여 인스턴스화되고 응용 프로그램을 가질 수 있습니다 및 B 고객에 게 다른 응용 프로그램 hello를 사용 하 여 인스턴스화되고 동일한 유형 및 버전입니다. Hello 응용 프로그램 매니페스트의 hello 응용 프로그램 종류를 정의 하 고 hello 응용 프로그램을 만들 때 hello 응용 프로그램 이름 및 배포 매개 변수를 지정 합니다.
 
-이 모델을 사용하면 유연하게 작업할 수 있지만 매니페스트 파일에서 형식이 암시되는 좀 더 간단한 인스턴스 기반 모델을 지원하려고 합니다. 이 모델에서 각 응용 프로그램은 자체의 독립적인 매니페스트를 갖게 됩니다. 인스턴스 기반 배포 형식인 docker-compose.yml에 대한 지원을 추가하여 이러한 방식을 미리 검토하고 있습니다.
+유연성을 제공 하는이 모델을 있지만 예정 toosupport hello 매니페스트 파일에서 형식을 암시적는 간단 하 고 인스턴스 기반 배포 모델입니다. 이 모델에서 각 응용 프로그램은 자체의 독립적인 매니페스트를 갖게 됩니다. 인스턴스 기반 배포 형식인 docker-compose.yml에 대한 지원을 추가하여 이러한 방식을 미리 검토하고 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-* [Service Fabric 응용 프로그램 모델](service-fabric-application-model.md)에 대해 자세히 알아보기
+* Hello에 대 [서비스 패브릭 응용 프로그램 모델](service-fabric-application-model.md)
 * [Service Fabric CLI 시작](service-fabric-cli.md)

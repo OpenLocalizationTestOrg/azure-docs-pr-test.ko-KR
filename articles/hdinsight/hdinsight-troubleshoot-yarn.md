@@ -1,6 +1,6 @@
 ---
-title: "Azure HDInsight를 사용한 YARN 문제 해결 | Microsoft Docs"
-description: "Apache Hadoop YARN 및 Azure HDInsight 작업에 대한 일반적인 질문에 답합니다."
+title: "Azure HDInsight를 사용 하 여 YARN aaaTroubleshoot | Microsoft Docs"
+description: "Apache Hadoop YARN 및 Azure HDInsight 작업에 대 한 toocommon 질문을 답변을 가져옵니다."
 keywords: "Azure HDInsight, YARN, FAQ, 문제 해결 가이드, 일반적인 질문"
 services: Azure HDInsight
 documentationcenter: na
@@ -15,55 +15,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/7/2017
 ms.author: arijitt
-ms.openlocfilehash: 63f2d88ad59661b7fbcffd0aaeb94c58d40bdb73
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 800d9738cb27e05a64db470ee58565af3b85aa99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-yarn-by-using-azure-hdinsight"></a>Azure HDInsight를 사용한 YARN 문제 해결
 
-Apache Ambari에서 Apache Hadoop YARN 페이로드를 사용할 때의 주요 문제 및 해결 방법을 알아봅니다.
+Apache Ambari에 Apache Hadoop YARN 페이로드를 작업할 때 hello 상위 문제와 그 해결 방법에 알아봅니다.
 
 ## <a name="how-do-i-create-a-new-yarn-queue-on-a-cluster"></a>클러스터에서 새 YARN 큐를 만드는 방법
 
 
 ### <a name="resolution-steps"></a>해결 단계: 
 
-Ambari에서 다음 단계를 사용하여 새 YARN 큐를 만들고 모든 큐에 용량이 균형 있게 할당되도록 조정합니다. 
+사용 하 여 hello 다음의에서 단계를 Ambari toocreate 새 YARN 큐를 다음 hello 용량 할당 모든 hello 큐 간에 균형을 조정 합니다. 
 
-이 예제에서는 기존 큐 두 개(**default** 및 **thriftsvr**) 모두 새 큐(spark)를 50% 용량으로 하여 50% 용량에서 25% 용량으로 변경됩니다.
+이 예제에서는 두 개의 기존 큐 (**기본** 및 **thriftsvr**) 둘 다에서 50% 용량 too25% 용량에 새 큐 (spark) 50% 용량 hello 제공 변경 됩니다.
 | 큐 | 용량 | 최대 용량 |
 | --- | --- | --- | --- |
 | 기본값 | 25% | 50% |
 | thrftsvr | 25% | 50% |
 | spark | 50% | 50% |
 
-1. **Ambari 뷰** 아이콘을 선택한 다음, 그리드 패턴을 선택합니다. 다음으로, **YARN 큐 관리자**를 선택합니다.
+1. 선택 hello **Ambari 뷰** 아이콘을 선택한 후 hello grid 패턴입니다. 다음으로, **YARN 큐 관리자**를 선택합니다.
 
-    ![Ambari 뷰 아이콘 선택](media/hdinsight-troubleshoot-yarn/create-queue-1.png)
-2. **default** 큐를 선택합니다.
+    ![Hello Ambari 뷰 아이콘을 선택 합니다.](media/hdinsight-troubleshoot-yarn/create-queue-1.png)
+2. 선택 hello **기본** 큐입니다.
 
-    ![default 큐 선택](media/hdinsight-troubleshoot-yarn/create-queue-2.png)
-3. **default** 큐의 경우 **용량**을 50%에서 25%로 변경합니다. **thriftsvr** 큐의 경우 **용량**을 25%로 변경합니다.
+    ![Hello 기본 큐를 선택 합니다.](media/hdinsight-troubleshoot-yarn/create-queue-2.png)
+3. Hello에 대 한 **기본** 큐, hello 변경 **용량** too25 50% %에서입니다. Hello에 대 한 **thriftsvr** 큐, hello 변경 **용량** too25%입니다.
 
-    ![default 및 thriftsvr 큐에 대해 용량을 25%로 변경](media/hdinsight-troubleshoot-yarn/create-queue-3.png)
-4. 새 큐를 만들려면 **큐 추가**를 선택합니다.
+    ![Hello 용량 too25 %hello 기본 및 thriftsvr 큐에 대 한 변경](media/hdinsight-troubleshoot-yarn/create-queue-3.png)
+4. 새 큐 toocreate 선택 **추가 큐**합니다.
 
     ![큐 추가 선택](media/hdinsight-troubleshoot-yarn/create-queue-4.png)
 
-5. 새 큐 이름을 지정합니다.
+5. 이름 hello 새 큐입니다.
 
-    ![큐 이름을 Spark로 지정](media/hdinsight-troubleshoot-yarn/create-queue-5.png)  
+    ![이름 hello 큐 Spark](media/hdinsight-troubleshoot-yarn/create-queue-5.png)  
 
-6. **용량** 값을 50%로 두고 **작업** 단추를 선택합니다.
+6. Hello 둡니다 **용량** 값 50% 및 선택 hello **작업** 단추입니다.
 
-    ![작업 단추 선택](media/hdinsight-troubleshoot-yarn/create-queue-6.png)  
+    ![Hello 동작 단추를 선택 합니다.](media/hdinsight-troubleshoot-yarn/create-queue-6.png)  
 7. **큐 저장 및 새로 고침**을 선택합니다.
 
     ![큐 저장 및 새로 고침 선택](media/hdinsight-troubleshoot-yarn/create-queue-7.png)  
 
-이러한 변경 내용은 YARN Scheduler UI에 즉시 표시됩니다.
+이러한 변경 내용은 즉시 hello YARN 스케줄러 UI에 표시 됩니다.
 
 ### <a name="additional-reading"></a>추가 참조 자료
 
@@ -75,14 +75,14 @@ Ambari에서 다음 단계를 사용하여 새 YARN 큐를 만들고 모든 큐�
 
 ### <a name="resolution-steps"></a>해결 단계: 
 
-1. SSH(Secure Shell) 클라이언트를 사용하여 HDInsight 클러스터에 연결합니다. 자세한 내용은 [더 보기](#additional-reading-2)를 참조하세요.
+1. SSH (보안 셸) 클라이언트를 사용 하 여 toohello HDInsight 클러스터를 연결 합니다. 자세한 내용은 [더 보기](#additional-reading-2)를 참조하세요.
 
-2. 현재 실행 중인 YARN 응용 프로그램의 모든 응용 프로그램 ID를 나열하려면 다음 명령을 사용합니다.
+2. 현재 실행 중인 hello YARN 응용 프로그램의 응용 프로그램 Id를 hello 모든 toolist hello 다음 명령을 실행 합니다.
 
     ```apache
     yarn top
     ```
-    ID가 **APPLICATIONID** 열에 나열됩니다. **APPLICATIONID** 열에서 로그를 다운로드할 수 있습니다.
+    hello Id에에서 나열 됩니다 hello **APPLICATIONID** 열입니다. Hello에서 로그를 다운로드할 수 **APPLICATIONID** 열입니다.
 
     ```apache
     YARN top - 18:00:07, up 19d, 0:14, 0 active users, queue(s): root
@@ -97,7 +97,7 @@ Ambari에서 다음 단계를 사용하여 새 YARN 큐를 만들고 모든 큐�
      application_1490377567345_0006 hive            spark  thriftsvr       1       0       1       0      1G      0G    1628430    2442645  10.00   18:20:20 Thrift JDBC/ODBC Server
     ```
 
-3. 모든 응용 프로그램 마스터에 대한 YARN 컨테이너 로그를 다운로드하려면 다음 명령을 사용합니다.
+3. 모든 응용 프로그램 마스터에 대 한 toodownload YARN 컨테이너 로그 hello 다음 명령을 사용 합니다.
    
     ```apache
     yarn logs -applicationIdn logs -applicationId <application_id> -am ALL > amlogs.txt
@@ -105,7 +105,7 @@ Ambari에서 다음 단계를 사용하여 새 YARN 큐를 만들고 모든 큐�
 
     amlogs.txt라는 로그 파일이 만들어집니다. 
 
-4. 최신 응용 프로그램 마스터에 대한 YARN 컨테이너 로그만 다운로드하려면 다음 명령을 사용합니다.
+4. master에 대 한 유일한 hello 최신 응용 프로그램, toodownload YARN 컨테이너 로그 hello 다음 명령을 사용 합니다.
 
     ```apache
     yarn logs -applicationIdn logs -applicationId <application_id> -am -1 > latestamlogs.txt
@@ -113,7 +113,7 @@ Ambari에서 다음 단계를 사용하여 새 YARN 큐를 만들고 모든 큐�
 
     latestamlogs.txt라는 로그 파일이 만들어집니다. 
 
-4. 처음 두 개 응용 프로그램 마스터에 대한 YARN 컨테이너 로그를 다운로드하려면 다음 명령을 사용합니다.
+4. 첫 번째 두 응용 프로그램 마스터 hello에 대 한 toodownload YARN 컨테이너 로그 hello 다음 명령을 사용 합니다.
 
     ```apache
     yarn logs -applicationIdn logs -applicationId <application_id> -am 1,2 > first2amlogs.txt 
@@ -121,7 +121,7 @@ Ambari에서 다음 단계를 사용하여 새 YARN 큐를 만들고 모든 큐�
 
     first2amlogs.txt라는 로그 파일이 만들어집니다. 
 
-5. 모든 YARN 컨테이너 로그를 다운로드하려면 다음 명령을 사용합니다.
+5. toodownload 모든 YARN 컨테이너 로그를 사용 하 여 다음 명령을 hello:
 
     ```apache
     yarn logs -applicationIdn logs -applicationId <application_id> > logs.txt
@@ -129,7 +129,7 @@ Ambari에서 다음 단계를 사용하여 새 YARN 큐를 만들고 모든 큐�
 
     logs.txt라는 로그 파일이 만들어집니다. 
 
-6. 특정 컨테이너에 대한 YARN 컨테이너 로그를 다운로드하려면 다음 명령을 사용합니다.
+6. toodownload hello YARN 컨테이너 로그에서 특정 컨테이너로, 다음 명령을 사용 하 여 hello:
 
     ```apache
     yarn logs -applicationIdn logs -applicationId <application_id> -containerId <container_id> > containerlogs.txt 
@@ -139,7 +139,7 @@ Ambari에서 다음 단계를 사용하여 새 YARN 큐를 만들고 모든 큐�
 
 ### <a name="additional-reading-2"></a>추가 참조 자료
 
-- [SSH를 사용하여 HDInsight(Hadoop)에 연결](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-linux-use-ssh-unix)
+- [SSH를 사용 하 여 tooHDInsight (Hadoop) 연결](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-linux-use-ssh-unix)
 - [Apache Hadoop YARN 개념 및 응용 프로그램](https://hortonworks.com/blog/apache-hadoop-yarn-concepts-and-applications/)
 
 

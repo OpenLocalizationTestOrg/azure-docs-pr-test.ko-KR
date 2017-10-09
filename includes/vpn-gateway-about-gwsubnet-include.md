@@ -1,0 +1,3 @@
+hello 가상 네트워크 게이트웨이 'GatewaySubnet' hello를 호출 하는 특정 서브넷을 사용 합니다. hello 게이트웨이 서브넷 hello VPN 게이트웨이 서비스에서 사용 되는 hello IP 주소를 포함 합니다. 게이트웨이 서브넷을 만들 때 이름을 'GatewaySubnet'으로 지정해야 합니다.  명명 된 서브넷 'GatewaySubnet' 지시 Azure 여기서 toocreate hello 게이트웨이 서비스 합니다. Hello 서브넷, 다른 작업 이름을 VPN 게이트웨이 구성 실패 합니다.
+
+GatewaySubnet hello에서 IP 주소 hello toohello 게이트웨이 서비스에 할당 됩니다. GatewaySubnet hello를 만들 때 hello hello 서브넷 IP 주소 수가 포함 지정할 수 있습니다. 사용자가 지정한 GatewaySubnet hello의 hello 크기 toocreate 원하는 hello VPN 게이트웨이 구성에 다릅니다. 가능한 toocreate/29 수신자로 GatewaySubnet 이지만, / 27 또는/28 선택 하 여 더 많은 주소를 포함 하는 큰 서브넷을 만들어야 하는 것이 좋습니다. 더 큰 게이트웨이 서브넷을 사용 하 여 구성에 대 한 충분 한 IP 주소 tooaccommodate 가능한 이후 수 있습니다.

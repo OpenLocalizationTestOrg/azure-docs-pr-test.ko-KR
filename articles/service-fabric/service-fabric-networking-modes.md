@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 컨테이너 서비스에 대한 네트워킹 모드 구성 | Microsoft Docs"
-description: "Azure Service Fabric에서 지원하는 다른 네트워킹 모드를 설정하는 방법을 알아봅니다."
+title: "Azure 서비스 패브릭 컨테이너 서비스에 대 한 모드 네트워킹 aaaConfigure | Microsoft Docs"
+description: "Toosetup hello 다른 네트워킹 모드는 Azure 서비스 패브릭에서 지 원하는 방법에 대해 알아봅니다."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: f792f9604a5d6e62551ed92c1049d6e2b4216417
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5c5dd4c590c7698a947503cbe8ef66ff7d6b503a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-container-networking-modes"></a>Service Fabric 컨테이너 네트워킹 모드
 
-컨테이너 서비스에 대해 Service Fabric 클러스터에서 제공되는 기본 네트워킹 모드는 `nat` 네트워킹 모드입니다. `nat` 네트워킹 모드에서 동일한 포트에 수신 대기하는 둘 이상의 컨테이너 서비스가 있는 경우 배포 오류가 발생합니다. 동일한 포트에서 여러 서비스가 수신 대기하도록 하기 위해 Service Fabric은 `open` 네트워킹 모드(버전 5.7 이상)을 지원합니다. `open` 네트워킹 모드에서 각 컨테이너 서비스는 내부적으로 여러 서비스를 동일한 포트에서 수신 대기할 수 있는 동적으로 할당된 IP 주소를 가져옵니다.   
+hello 기본 네트워킹 모드에서에서 제공 hello 서비스 패브릭 클러스터에 대 한 컨테이너 서비스는 hello `nat` 네트워킹 모드입니다. Hello로 `nat` 배포 오류에 대 한 결과 동일한 포트 네트워킹 모드를 둘 이상의 컨테이너 서비스 수신 대기 toohello 필요 합니다. 동일한 포트를 서비스 패브릭 지원 hello에서 수신 하는 몇 가지 서비스를 실행 하기 위한 hello `open` 네트워킹 모드 (5.7 이상 버전). Hello로 `open` 네트워킹 모드, 각 컨테이너 서비스 내부적으로 여러 서비스 toolisten toohello 동일한 포트를 허용 하는 동적으로 할당 된 IP 주소를 가져옵니다.   
 
-따라서 서비스 매니페스트에 정의된 고정 끝점을 갖는 단일 서비스 형식으로 `open` 네트워킹 모드를 사용하여 배포 오류 없이 새로운 서비스를 만들고 삭제할 수 있습니다. 마찬가지로 여러 서비스를 만들기 위해 고정 포트 매핑을 포함한 동일한 `docker-compose.yml` 파일을 사용할 수 있습니다.
+따라서 hello 서비스 매니페스트에서 정의 된 정적 끝점과 함께 단일 서비스 형식과 함께 새로운 서비스를 만들어 hello를 사용 하 여 배포 오류 없이 삭제 `open` 네트워킹 모드입니다. 마찬가지로, 하나 צ ְ ײ 동일 hello `docker-compose.yml` 여러 서비스를 만들기 위한 정적 포트 매핑 사용 하 여 파일입니다.
 
-서비스를 다시 시작하거나 다른 노드로 이동하는 경우 IP 주소를 변경하기 때문에 서비스를 검색하는 데 동적으로 할당된 IP를 사용하는 것은 좋지 않습니다. 서비스 검색을 위해 **Service Fabric 명명 서비스** 또는 **DNS 서비스**만을 사용합니다. 
+IP toodiscover 서비스를 동적으로 할당 하는 hello를 사용 하 여 권장 하지 않습니다 hello IP 주소 변경 내용을 이후 hello 서비스 다시 시작 하거나 tooanother 노드로 이동 하는 경우. 만 hello를 사용 하 여 **서비스 패브릭 명명 서비스** 또는 hello **DNS 서비스** 서비스 검색에 대 한 합니다. 
 
 
 > [!WARNING]
-> 총 4096개의 IP가 Azure의 vNET에서 허용됩니다. 따라서 노드 수 및 컨테이너 서비스 인스턴스 수의 합계(`open` 네트워킹을 포함)는 vNET 내에서 4096개를 초과할 수 없습니다. 이러한 고밀도 시나리오에는 `nat` 네트워킹 모드를 사용하는 것이 좋습니다.
+> 총 4096개의 IP가 Azure의 vNET에서 허용됩니다. 따라서 hello 노드 수 및 hello 컨테이너 서비스 인스턴스 수의 합을 hello (으로 `open` 네트워킹) vNET 내에서 4, 096를 초과할 수 없습니다. 이러한 고밀도 시나리오에 대 한 hello `nat` 네트워킹 모드를 사용 하는 것이 좋습니다.
 >
 
 ## <a name="setting-up-open-networking-mode"></a>오픈 네트워킹 모드 설정
 
-1. `fabricSettings`에서 DNS 서비스와 IP 공급자를 사용하여 Azure Resource Manager 템플릿을 설정합니다. 
+1. DNS 서비스를 사용 하 여 hello Azure 리소스 관리자 템플릿을 설정 하 고 아래에서 IP 공급자 hello `fabricSettings`합니다. 
 
     ```json
     "fabricSettings": [
@@ -78,7 +78,7 @@ ms.lasthandoff: 08/18/2017
             ],
     ```
 
-2. 클러스터의 각 노드에서 구성되어야 하는 여러 IP 주소를 허용하도록 네트워크 프로필 섹션을 설정합니다. 다음 예제에서는 Windows Service Fabric 클러스터에 노드당 5개의 IP 주소를 설정합니다(따라서 각 노드에서 포트에 수신 대기하는 5개의 서비스 인스턴스가 있을 수 있음).
+2. 여러 IP 주소 toobe hello 클러스터의 각 노드에 구성 하는 hello 네트워크 프로필 섹션 tooallow를 설정 합니다. hello 다음 예제에서는 설정 노드 당 5 개의 IP 주소 (따라서 할 있습니다 각 노드에서 toohello 포트를 수신 대기 하는 5 개의 서비스 인스턴스)는 Windows 서비스 패브릭 클러스터에 대 한 합니다.
 
     ```json
     "variables": {
@@ -175,7 +175,7 @@ ms.lasthandoff: 08/18/2017
               }
     ```
 
-    Linux 클러스터의 경우 아웃바운드 연결을 허용하는 추가 공용 IP 구성이 추가됩니다. 다음 코드 조각은 Linux 클러스터에 노드당 5개의 IP 주소를 설정합니다.
+    Linux 클러스터에 대 한 추가 공용 IP 구성은 tooallow 아웃 바운드 연결이 추가 됩니다. hello 다음 코드 조각 설정 Linux 클러스터에 대 한 노드당 5 개의 IP 주소:
 
     ```json
     "networkProfile": {
@@ -292,14 +292,14 @@ ms.lasthandoff: 08/18/2017
               }
     ```
 
-3. Windows 클러스터의 경우에만 다음 값을 갖는 vNET에 UDP/53 포트를 여는 NSG 규칙을 설정합니다.
+3. 클러스터만 NSG를 설정 하는 Windows에 대 한 다음 값에는 hello로 UDP/53 hello vNET에 대 한 포트를 열면 규칙:
 
    | 우선 순위 |    이름    |    원본      |  대상   |   부여    | 동작 |
    |:--------:|:----------:|:--------------:|:--------------:|:------------:|:------:|
    |     2000 | Custom_Dns | VirtualNetwork | VirtualNetwork | DNS(UDP/53) | 허용  |
 
 
-4. 각 `<NetworkConfig NetworkType="open">` 서비스에 대해 응용 프로그램 매니페스트에서 네트워킹 모드를 지정합니다.  `open` 모드에서는 서비스가 전용 IP 주소를 가져오도록 합니다. 모드를 지정하지 않으면 기본 `nat` 모드를 기본값으로 합니다. 따라서 다음 매니페스트 예제에서 `NodeContainerServicePackage1` 및 `NodeContainerServicePackage2`는 동일한 포트를 각각 수신할 수 있습니다(두 서비스는 모두 `Endpoint1`에서 수신 중).
+4. 각 서비스에 대 한 응용 프로그램 매니페스트에서 hello hello 네트워킹 모드를 지정 `<NetworkConfig NetworkType="open">`합니다.  hello 모드 `open` hello 서비스는 전용된 IP 주소 가져오기에 발생 합니다. 기본 toohello는 모드를 지정 하지 않으면 기본적으로 `nat` 모드입니다. 다음 예제에서는 매니페스트를 hello에 따라서 `NodeContainerServicePackage1` 및 `NodeContainerServicePackage2` 각 수신 toohello 수 동일한 포트 (두 서비스에서 수신 하는 `Endpoint1`).
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -329,7 +329,7 @@ ms.lasthandoff: 08/18/2017
       </ServiceManifestImport>
     </ApplicationManifest>
     ```
-Windows 클러스터용 응용 프로그램 내의 서비스에서 다른 네트워킹 모드를 혼합하고 일치시킬 수 있습니다. 따라서 `open` 모드에 일부 서비스가 있고 `nat` 네트워킹 모드에 일부 서비스가 있을 수 있습니다. `nat`로 서비스를 구성한 경우 수신하는 포트는 고유해야 합니다. 다른 서비스에 네트워킹 모드를 혼합하는 작업은 Linux 클러스터에서 지원되지 않습니다. 
+Windows 클러스터용 응용 프로그램 내의 서비스에서 다른 네트워킹 모드를 혼합하고 일치시킬 수 있습니다. 따라서 `open` 모드에 일부 서비스가 있고 `nat` 네트워킹 모드에 일부 서비스가 있을 수 있습니다. 서비스를 사용 하도록 구성 된 경우 `nat`, hello 포트를 수신 대기 toomust는 고유 해야 합니다. 다른 서비스에 네트워킹 모드를 혼합하는 작업은 Linux 클러스터에서 지원되지 않습니다. 
 
 
 ## <a name="next-steps"></a>다음 단계
@@ -337,5 +337,5 @@ Windows 클러스터용 응용 프로그램 내의 서비스에서 다른 네트
 
 * [서비스 패브릭 응용 프로그램 모델](service-fabric-application-model.md)
 * [Service Fabric 서비스 매니페스트 리소스](service-fabric-application-model.md)
-* [Windows Server 2016에서 Windows 컨테이너를 Service Fabric에 배포](service-fabric-get-started-containers.md)
-* [Linux에서 Docker 컨테이너를 Service Fabric에 배포](service-fabric-get-started-containers-linux.md)
+* [Windows 컨테이너 tooService 패브릭 Windows Server 2016 배포](service-fabric-get-started-containers.md)
+* [Docker 컨테이너 tooService 패브릭 linux 배포](service-fabric-get-started-containers-linux.md)

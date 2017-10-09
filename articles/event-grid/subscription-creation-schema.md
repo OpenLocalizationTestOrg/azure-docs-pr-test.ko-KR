@@ -1,6 +1,6 @@
 ---
-title: "Azure Event Grid 구독 스키마"
-description: "Azure Event Grid를 사용하여 이벤트에 대한 구독의 속성을 설명합니다."
+title: "aaaAzure 이벤트 표 형태 구독 스키마"
+description: "Azure 이벤트 표 형태를 사용 하 여 구독 tooan 이벤트에 대 한 hello 속성을 설명합니다."
 services: event-grid
 author: banisadr
 manager: timlt
@@ -8,49 +8,49 @@ ms.service: event-grid
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: babanisa
-ms.openlocfilehash: eff2352066a76010d6d882a7b7e1961870cd2d46
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 6a96d67975a5a733c5ea3c56ea54501f94ea4cd2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-grid-subscription-schema"></a>Event Grid 구독 스키마
 
-Event Grid 구독을 만들려면 이벤트 만들기 구독 작업에 요청을 보냅니다. 이때 다음 형식을 사용합니다.
+이벤트 표 형태 구독 toocreate 요청 toohello Create Event subscriptionoperation 보냅니다. 형식에 따라 hello를 사용 합니다.
 
 ```
 PUT /subscriptions/{subscription-id}/resourceGroups/{group-name}/providers/{resource-provider}/{resource-type}/{resource-name}/Microsoft.EventGrid/eventSubscriptions/{event-type-definitions}?api-version=2017-06-15-preview
 ``` 
 
-예를 들어 `examplegroup`이라는 리소스 그룹의 `examplestorage`라는 저장소 계정에 대한 이벤트 구독을 만들려면 다음 형식을 사용합니다.
+예를 들어 toocreate 라는 저장소 계정에 대 한 이벤트 구독 `examplestorage` 리소스 그룹 이름은 `examplegroup`를 사용 하 여 hello 다음 서식을 지정:
 
 ```
 PUT /subscriptions/{subscription-id}/resourceGroups/examplegroup/providers/Microsoft.Storage/storageaccounts/examplestorage/Microsoft.EventGrid/eventSubscriptions/{event-type-definitions}?api-version=2017-06-15-preview
 ``` 
 
-문서는 요청 본문에 대한 속성 및 스키마를 설명합니다.
+hello 문서 hello 속성 및 hello hello 요청 본문에 대 한 스키마를 설명합니다.
  
 ## <a name="event-subscription-properties"></a>이벤트 구독 속성
 
 | 속성 | 형식 | 설명 |
 | -------- | ---- | ----------- |
-| destination | object | 끝점을 정의하는 개체입니다. |
-| filter | object | 이벤트 유형을 필터링하기 위한 선택적 필드입니다. |
+| destination | object | hello 끝점을 정의 하는 hello 개체입니다. |
+| filter | object | Hello 유형의 이벤트를 필터링 하기 위한 선택적 필드입니다. |
 
 ### <a name="destination-object"></a>대상 개체
 
 | 속성 | 형식 | 설명 |
 | -------- | ---- | ----------- |
-| endpointType | string | 구독(웹후크/HTTP, Event Hub 또는 큐)에 대한 끝점의 형식입니다. | 
+| endpointType | string | hello 구독 (webhook/HTTP, 이벤트 허브 또는 큐)에 대 한 끝점의 hello 형식입니다. | 
 | endpointUrl | string |  | 
 
 ### <a name="filter-object"></a>필터 개체
 
 | 속성 | 형식 | 설명 |
 | -------- | ---- | ----------- |
-| includedEventTypes | array | 이벤트 메시지의 이벤트 유형이 이러한 이벤트 유형 이름 중 하나와 정확하게 일치할 때 일치합니다. 이벤트 이름이 이벤트 원본에 대해 등록된 이벤트 유형 이름과 일치하지 않는 경우 오류가 발생합니다. 기본값은 모든 이벤트 유형과 일치합니다. |
-| subjectBeginsWith | string | 이벤트 메시지의 제목 필드에 대한 접두사-일치 필터입니다. 기본값 또는 빈 문자열은 모두 일치합니다. | 
-| subjectEndsWith | string | 이벤트 메시지의 제목 필드에 대한 접미사-일치 필터입니다. 기본값 또는 빈 문자열은 모두 일치합니다. |
+| includedEventTypes | array | Hello 이벤트 유형을 hello 이벤트 메시지에는 정확히 일치 tooone 이러한 이벤트 유형 이름의 경우에 연결 합니다. 이벤트 이름 hello 이벤트 소스에 대 한 hello 등록 된 이벤트 형식 이름 일치 하지 않는 경우 오류가 발생 합니다. 기본값은 모든 이벤트 유형과 일치합니다. |
+| subjectBeginsWith | string | 접두사 일치 필터 toohello 제목 필드 hello 이벤트 메시지입니다. 빈 문자열 또는 hello 기본 모두와 일치합니다. | 
+| subjectEndsWith | string | 접미사 일치 필터가 toohello 제목 필드 hello 이벤트 메시지입니다. 빈 문자열 또는 hello 기본 모두와 일치합니다. |
 | subjectIsCaseSensitive | string | 필터에 대한 대/소문자 구분 일치를 제어합니다. |
 
 
@@ -77,4 +77,4 @@ PUT /subscriptions/{subscription-id}/resourceGroups/examplegroup/providers/Micro
 
 ## <a name="next-steps"></a>다음 단계
 
-* Event Grid에 대한 소개는 [Event Grid란?](overview.md)을 참조하세요.
+* 소개 tooEvent 표를 참조 하십시오. [이벤트 표 형태는 무엇입니까?](overview.md)

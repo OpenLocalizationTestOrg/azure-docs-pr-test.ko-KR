@@ -9,51 +9,51 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 05/10/2017
-ms.openlocfilehash: 150c4f53c5ab6a6425b6af7d286d4c1518b006f8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1d46a4434c483c3612a9a7b4cdef718d6dc3e765
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-database-for-postgresql-server-firewall-rules"></a>PostgreSQL용 Azure 데이터베이스 서버 방화벽 규칙
-방화벽은 권한이 있는 컴퓨터를 지정할 때까지 데이터베이스 서버에 대한 모든 액세스를 금지합니다. 방화벽은 각 요청이 시작된 IP 주소의 서버에 대한 액세스를 허용합니다.
-방화벽을 구성하려면 허용 가능한 IP 주소 범위를 지정하는 방화벽 규칙을 생성해야 합니다. 서버 수준의 방화벽 규칙을 만들 수 있습니다.
+방화벽은 권한이 있는 컴퓨터를 지정할 때까지 모든 액세스 tooyour 데이터베이스 서버를 차단 합니다. hello 방화벽 액세스 toohello 서버 hello 시작 IP 주소를 각 요청에 따라 권한을 부여 합니다.
+tooconfigure 허용 IP 주소 범위를 지정 하는 방화벽 규칙을 만들 방화벽입니다. Hello 서버 수준 방화벽 규칙을 만들 수 있습니다.
 
-**방화벽 규칙:** 이 규칙은 모든 PostgreSQL용 Azure 데이터베이스 서버, 즉, 동일한 논리 서버 내의 모든 데이터베이스에 클라이언트가 액세스할 수 있도록 합니다. Azure Portal 또는 Azure CLI 명령을 사용하여 서버 수준 방화벽 규칙을 구성할 수 있습니다. 서버 수준 방화벽 규칙을 만들려면 구독 소유자 또는 구독 참가자여야 합니다.
+**방화벽 규칙:** 내의 모든 hello 데이터베이스의 동일한 논리 서버 hello, 즉, 이러한 규칙을 통해 클라이언트 tooaccess 전체 Azure 데이터베이스에 PostgreSQL 서버에 대 한 합니다. Hello Azure 포털을 사용 하거나 Azure CLI 명령을 사용 하 여 서버 수준 방화벽 규칙을 구성할 수 있습니다. toocreate 서버 수준 방화벽 규칙 hello 구독 소유자 또는 구독 참가자 여야 합니다.
 
 ## <a name="firewall-overview"></a>방화벽 개요
-PostgreSQL용 Azure 데이터베이스 서버에 대한 모든 데이터베이스 액세스는 기본적으로 방화벽에 의해 차단됩니다. 다른 컴퓨터에서 서버를 사용하려면 해당 서버에 대한 액세스를 허용하는 하나 이상의 서버 수준 방화벽 규칙을 지정해야 합니다. 방화벽 규칙을 사용하여 허용할 인터넷에서의 IP 주소 범위를 지정합니다. Azure Portal 웹 사이트 자체에 대한 액세스는 이 방화벽 규칙의 영향을 받지 않습니다.
-인터넷과 Azure로부터의 연결 시도는 다음 다이어그램과 같이 PostgreSQL Database에 연결하기 전에 먼저 방화벽을 통과해야 합니다.
+모든 데이터베이스 액세스 tooyour Azure 데이터베이스 PostgreSQL 서버에 대 한 hello 방화벽에 의해 기본적으로 차단 됩니다. 다른 컴퓨터에서 서버를 사용 하 여 toobegin toospecify 하나 필요 또는 서버 수준 방화벽 규칙 tooenable 액세스 tooyour 서버입니다. Hello 방화벽 규칙 toospecify hello 인터넷 tooallow에서 어떤 IP 주소 범위를 사용 합니다. 자체 Azure 포털 웹 사이트 액세스 toohello hello 방화벽 규칙의 영향을 받지 않습니다.
+연결 시도 hello 인터넷 및 Azure 통과 해야 hello 방화벽 PostgreSQL 데이터베이스에 영향을 미칠 수 전에 hello 다음 다이어그램에에서 나와 있는 것 처럼:
 
-![방화벽 작동 방식을 보여 주는 예제 흐름](media/concepts-firewall-rules/1-firewall-concept.png)
+![Hello 방화벽의 작동 방식 예제 흐름](media/concepts-firewall-rules/1-firewall-concept.png)
 
-## <a name="connecting-from-the-internet"></a>인터넷에서 연결하기
-서버 수준 방화벽 규칙은 PostgreSQL용 Azure 데이터베이스 서버에 있는 모든 데이터베이스에 적용됩니다. 요청된 IP 주소가 서버 수준 방화벽 규칙의 지정된 범위 안에 있을 경우, 연결이 허용됩니다.
-요청 IP 주소가 데이터베이스 수준 또는 서버 수준 방화벽 규칙의 지정된 범위 안에 없을 경우, 연결 요청이 실패합니다.
-예를 들어 응용 프로그램에서 PostgreSQL용 JDBC 드라이버에 연결하는 경우 방화벽이 연결을 차단할 때 연결하려고 하면 다음 오류가 발생할 수 있습니다.
+## <a name="connecting-from-hello-internet"></a>Hello 인터넷에서 연결
+서버 수준 방화벽 규칙 tooall 데이터베이스를 PostgreSQL 서버에 대 한 hello Azure 데이터베이스에 적용 됩니다. Hello 요청의 hello IP 주소 중 한 hello 서버 수준 방화벽 규칙에 지정 된 hello 범위 내에 있으면 hello 연결이 승인 됩니다.
+내에 없으면 hello 요청의 hello IP 주소 hello 데이터베이스 수준 중 하나에 지정 된 hello 범위 또는 서버 수준 방화벽 규칙의 경우, hello 연결 요청이 실패 합니다.
+예를 들어 응용 프로그램에 연결 된 경우 JDBC 드라이버와 함께 PostgreSQL에 대 한 hello 방화벽이 hello 연결을 차단 하는 경우 tooconnect 동안이 오류가 발생할 수 있습니다.
 > java.util.concurrent.ExecutionException: java.lang.RuntimeException: org.postgresql.util.PSQLException: FATAL: no pg\_hba.conf entry for host "123.45.67.890", user "adminuser", database "postgresql", SSL
 
 ## <a name="programmatically-managing-firewall-rules"></a>방화벽 규칙을 프로그래밍 방식으로 관리
-Azure Portal 외에도 Azure CLI를 사용하여 방화벽 규칙을 프로그래밍 방식으로 관리할 수 있습니다.
+또한 toohello Azure 포털, 방화벽 규칙 될 수 있습니다 Azure CLI를 사용 하 여 프로그래밍 방식으로 관리 합니다.
 [Azure CLI를 사용한 PostgreSQL용 Azure 데이터베이스 방화벽 규칙 만들기 및 관리](howto-manage-firewall-using-cli.md)도 참조하세요.
 
-## <a name="troubleshooting-the-database-firewall"></a>데이터베이스 방화벽 문제 해결
-PostgreSQL용 Microsoft Azure 데이터베이스 서버 서비스로의 연결이 예상대로 작동되지 않는 경우 다음 사항을 고려하세요.
+## <a name="troubleshooting-hello-database-firewall"></a>Hello 데이터베이스 방화벽 문제 해결
+Hello를 PostgreSQL 서버 서비스에 대 한 액세스 toohello Microsoft Azure 데이터베이스에는 예상 대로 작동 하지 않는 경우 지점 뒤에 것이 좋습니다.
 
-* **허용 목록의 변경사항이 아직 적용되지 않았습니다.** PostgreSQL용 Azure 데이터베이스 서버 방화벽 구성에 변경 내용이 적용되려면 최대 5분 정도 걸릴 수 있습니다.
+* **변경 내용을 toohello 허용 목록이 아직 적용 되지 않음:** PostgreSQL 서버 방화벽 구성 tootake 효과 대 한 toohello Azure 데이터베이스를 변경 하는 데 5 분 지연 가능한 많이 있을 수 있습니다.
 
-* **로그인이 올바르지 않거나 암호가 올바르지 않습니다.** 로그인에 PostgreSQL용 Azure 데이터베이스 서버에 대한 권한이 없거나 사용한 암호가 틀렸을 경우 PostgreSQL용 Azure 데이터베이스 서버에 대한 연결이 거부됩니다. 방화벽 설정은 클라이언트에게 서버에 연결을 시도할 수 있는 기회를 제공합니다. 각 클라이언트는 꼭 필요한 보안 자격 증명을 제공해야 합니다.
+* **hello 로그인 권한이 없거나 잘못 된 암호를 사용한:** PostgreSQL 서버의 로그인에 사용 권한을 hello Azure 데이터베이스에 사용 되는 PostgreSQL 서버나 hello 암호 잘못 되었습니다. 하는 경우 hello 연결 toohello Azure 데이터베이스 거부 됩니다. Tooyour 서버;에 연결 하는 기회 tooattempt 클라이언트 제공 방화벽 설정 각 클라이언트 hello 필요한 보안 자격 증명을 제공 해야 합니다.
 
-예를 들어 JDBC 클라이언트를 사용하는 경우 다음 오류가 나타날 수 있습니다.
+다음 오류가 hello JDBC 클라이언트를 사용 하 여, 예를 들어 나타날 수 있습니다.
 > java.util.concurrent.ExecutionException: java.lang.RuntimeException: org.postgresql.util.PSQLException: FATAL: password authentication failed for user "yourusername"
 
-* **동적 IP 주소:** 동적 IP 주소를 통해 인터넷에 연결되어 있고 방화벽을 통과하는 데 문제가 있는 경우 다음 해결 방법 중 하나를 시도할 수 있습니다.
+* **동적 IP 주소:** 동적 IP 주소로 사용 하는 인터넷 연결이 있는 hello 방화벽을 통과 하는 데 문제가 있는 경우 hello 솔루션을 다음 중 하나를 시도할 수 있습니다.
 
-* ISP(인터넷 서비스 공급자)는 PostgreSQL용 Azure 데이터베이스 서버에 연결될 클라이언트에 할당된 IP 주소 범위를 요청하고, 방화벽 규칙에 따라 IP 주소 범위를 추가합니다.
+* 인터넷 서비스 공급자 (ISP) hello IP 주소 범위에 대 한 할당 된 클라이언트 컴퓨터 tooyour 해당 액세스 hello Azure 데이터베이스 PostgreSQL 서버에 대 한 게 문의 하 고 방화벽 규칙으로 hello IP 주소 범위를 추가 합니다.
 
-* 클라이언트 컴퓨터 대신 고정 IP 주소를 얻고, 방화벽 규칙에 따라 IP 주소 범위를 추가합니다.
+* 고정 IP 주소를 대신 클라이언트 컴퓨터에 대 한 가져오고 방화벽 규칙으로 hello IP 주소를 추가 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 서버 수준 및 데이터베이스 수준 방화벽 규칙 만들기에 대한 문서를 보려면 다음을 참조하세요.
-* [Azure Portal을 사용한 PostgreSQL용 Azure 데이터베이스 방화벽 규칙 만들기 및 관리](howto-manage-firewall-using-portal.md)
+* [만들기 및 hello Azure 포털을 사용 하 여 PostgreSQL 방화벽 규칙에 대 한 Azure 데이터베이스 관리](howto-manage-firewall-using-portal.md)
 * [Azure CLI를 사용한 PostgreSQL용 Azure 데이터베이스 방화벽 규칙 만들기 및 관리](howto-manage-firewall-using-cli.md)

@@ -28,13 +28,13 @@
 | SLA | |<p> |99.9% |99.95%<sup>10</sup> |99.95%<sup>10</sup> |
 
 <sup>1</sup>별도로 명시되지 않는 한 앱 서비스 계획당 앱 및 저장소 할당량입니다.  
-<sup>2</sup>이러한 컴퓨터에서 호스트할 수 있는 실제 앱 수는 앱의 활동, 컴퓨터 인스턴스 크기 및 해당 리소스 사용률에 따라 달라집니다.  
+<sup>2</sup>이 컴퓨터에 호스팅할 수 있는 앱의 실제 수 hello hello 앱의 hello 활동, hello 컴퓨터 인스턴스 및 해당 리소스 사용률 hello hello 크기에 따라 달라 집니다.  
 <sup>3</sup>전용 인스턴스의 크기는 다양할 수 있습니다. 자세한 내용은 [앱 서비스 가격 책정](https://azure.microsoft.com/pricing/details/data-transfers/pricing/details/app-service/)을 참조하십시오.  
-<sup>4</sup>Premium 계층은 앱 서비스 환경을 사용하는 경우 최대 50개의 계산 인스턴스(가용성에 따라)와 500GB의 디스크 공간이 가능하며, 그렇지 않으면 20개의 계산 인스턴스 및 250GB의 저장소가 가능합니다.  
-<sup>5</sup>저장소 제한은 동일한 앱 서비스 계획에서 모든 앱에 걸쳐 총 콘텐츠 크기입니다. 더 많은 저장소 옵션은 [앱 서비스 환경](../articles/app-service-web/app-service-web-configure-an-app-service-environment.md#storage)에서 사용할 수 있습니다.  
-<sup>6</sup>이러한 리소스는 전용 인스턴스의 실제 리소스(인스턴스 크기 및 인스턴스 수)에 의해 제한됩니다.  
-<sup>7</sup>두 인스턴스의 Basic 계층으로 앱을 조정하면 두 인스턴스 각각에 대해 동시에 350개가 연결됩니다.  
-<sup>8</sup>Premium 계층에서는 앱 서비스 환경을 사용하는 경우 최대 5분마다 그렇지 않으면 하루에 50번 백업 간격을 낮출 수 있습니다.  
-<sup>9</sup>사용자 지정 실행 파일 및/또는 스크립트를 주문형, 예약형 또는 지속형으로 앱 서비스 인스턴스 내에서 백그라운드 작업으로 실행합니다. Always On은 연속 Webjob 실행을 위해 필요합니다. Azure 스케줄러 무료 또는 표준은 예약된 WebJobs에 필요합니다. 앱 서비스 인스턴스를 실행할 수 있는 WebJob의 수에 미리 정의된 제한은 없지만 응용 프로그램 코드가 수행하려는 작업에 의존하는 실질적인 제한이 있습니다.   
+<sup>4</sup>프리미엄 계층에서 위로 허용 too50 인스턴스 (제목 tooavailability)을 계산 하 고 그렇지 않으면 500GB 디스크 공간 앱 서비스 환경에서 20을 사용 하는 경우의 계산 인스턴스 및 250GB 저장 합니다.  
+<sup>5</sup>hello 저장 용량 제한은 모든 앱에서 동일한 앱 서비스 계획의 hello 총 콘텐츠 크기를입니다. 더 많은 저장소 옵션은 [앱 서비스 환경](../articles/app-service-web/app-service-web-configure-an-app-service-environment.md#storage)에서 사용할 수 있습니다.  
+<sup>6</sup>이러한 리소스는 hello 전용 인스턴스 (hello 인스턴스 크기 및 인스턴스 수가 hello)에 물리적 리소스에 의해 제한 됩니다.  
+<sup>7</sup>hello 두 인스턴스는 각각에 대 한 동시 연결을 350 hello 기본 계층 tootwo 인스턴스에서 응용 프로그램을 확장 해야 합니다.  
+<sup>8</sup>프리미엄 계층에서 허용 백업 간격이 다운 tooevery를 5 분 앱 서비스 환경을 사용 하는 경우 및 50 회 하루 그렇지 않으면입니다.  
+<sup>9</sup>사용자 지정 실행 파일 및/또는 스크립트를 주문형, 예약형 또는 지속형으로 앱 서비스 인스턴스 내에서 백그라운드 작업으로 실행합니다. Always On은 연속 Webjob 실행을 위해 필요합니다. Azure 스케줄러 무료 또는 표준은 예약된 WebJobs에 필요합니다. 앱 서비스 인스턴스를 실행할 수 있는 WebJobs hello 수에 미리 정의 된 제한은 않는 toodo 시도 hello 응용 프로그램 코드에 종속 된 실제 제한.   
 <sup>10</sup>장애 조치(failover)에 대해 구성된 Azure 트래픽 관리자와 함께 여러 인스턴스를 사용하는 배포에 대해 99.95%의 SLA가 제공됩니다.  
 

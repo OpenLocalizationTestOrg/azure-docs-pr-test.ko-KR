@@ -1,17 +1,17 @@
 
 ## <a name="start-your-powershell-session"></a>PowerShell 세션 시작
-우선 최신 [Azure PowerShell](http://msdn.microsoft.com/library/mt619274.aspx) 을 설치하고 실행해야 합니다. 자세한 내용은 [Azure PowerShell을 설치 및 구성하는 방법](/powershell/azureps-cmdlets-docs)을 참조하세요.
+먼저 toohave hello 최신 [Azure PowerShell](http://msdn.microsoft.com/library/mt619274.aspx) 설치 하 고 실행 합니다. 자세한 내용은 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azureps-cmdlets-docs)합니다.
 
 > [!NOTE]
-> 이 항목의 예제에서는 [Azure Resource Manager 배포 모델](../articles/azure-resource-manager/resource-group-overview.md)을 사용하므로 예제에 [Azure Resource Manager cmdlet](http://msdn.microsoft.com/library/azure/mt125356.aspx)이 사용됩니다. 
+> 에서 예제가 항목에서는 hello [Azure 리소스 관리자 배포 모델](../articles/azure-resource-manager/resource-group-overview.md)예제 hello를 사용 하므로 [Azure 리소스 관리자 cmdlet](http://msdn.microsoft.com/library/azure/mt125356.aspx)합니다. 
 > 
 > 
 
-[**Add-AzureRmAccount**](http://msdn.microsoft.com/library/mt619267.aspx) cmdlet을 실행하면 자격 증명을 입력할 수 있는 로그인 화면이 나타납니다. Azure 포털에 로그인하는 데 사용하는 동일한 자격 증명을 사용합니다.
+Hello 실행 [ **추가 AzureRmAccount** ](http://msdn.microsoft.com/library/mt619267.aspx) cmdlet 하 고 나타납니다 화면 tooenter 로그인 자격 증명입니다. 사용 하 여 hello 동일 toosign toohello Azure 포털에서에서 사용 하는 자격 증명입니다.
 
     Add-AzureRmAccount
 
-여러 구독이 있는 경우 [**Set-AzureRmContext**](http://msdn.microsoft.com/library/mt619263.aspx) cmdlet을 사용하여 PowerShell 세션이 사용해야 하는 구독을 선택합니다. 현재 PowerShell 세션이 사용 중인 구독을 보려면 [**Get-AzureRmContext**](http://msdn.microsoft.com/library/mt619265.aspx)를 실행합니다. 모든 구독을 보려면 [**Get-AzureRmSubscription**](http://msdn.microsoft.com/library/mt619284.aspx)을 실행합니다.
+구독이 여러 개 있는 경우 hello 사용할 [ **집합 AzureRmContext** ](http://msdn.microsoft.com/library/mt619263.aspx) cmdlet tooselect 어떤 구독 PowerShell 세션에서 사용 하도록 합니다. 어떤 구독이 현재 PowerShell 세션을 사용 하는 hello toosee 실행 [ **Get AzureRmContext**](http://msdn.microsoft.com/library/mt619265.aspx)합니다. 모든 구독을 실행 하는 toosee [ **Get AzureRmSubscription**](http://msdn.microsoft.com/library/mt619284.aspx)합니다.
 
     Set-AzureRmContext -SubscriptionId '4cac86b0-1e56-bbbb-aaaa-000000000000'
 

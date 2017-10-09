@@ -1,6 +1,6 @@
 ---
-title: "Azure 진단 로그 지원 서비스 및 스키마 | Microsoft Docs"
-description: "Azure 진단 로그에 대해 지원되는 서비스 및 이벤트 스키마에 대해 알아봅니다."
+title: "aaaAzure 진단 로그 지원 서비스 및 스키마 | Microsoft Docs"
+description: "Azure 진단 로그에 대 한 hello 지원 되는 서비스 및 이벤트 스키마를 이해 합니다."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: johnkem
-ms.openlocfilehash: aa4fa6e0310b2725005dfa34e3225c89fb4282d6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a3cbf5267e1bd0dc257f4fb4f42c323644046a6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="supported-services-schemas-and-categories-for-azure-diagnostic-logs"></a>Azure 진단 로그에 대해 지원되는 서비스, 스키마 및 범주
 
-[Azure 리소스 진단 로그](monitoring-overview-of-diagnostic-logs.md)는 해당 리소스의 작업을 설명하는 Azure 리소스에서 내보낸 로그입니다. 이러한 로그는 리소스 종류별로 다릅니다. 이 문서에서는 각 서비스에서 내보내는 이벤트에 대해 지원되는 서비스 및 이벤트 스키마 집합에 대해 간략히 설명합니다. 또한 이 문서에는 리소스 종류당 사용 가능한 로그 범주의 전체 목록이 포함되어 있습니다.
+[Azure 리소스 진단 로그](monitoring-overview-of-diagnostic-logs.md) 는 해당 리소스의 hello 작업을 설명 하는 Azure 리소스에서 내보낸 로그입니다. 이러한 로그는 리소스 종류별로 다릅니다. 이 문서에서는 hello 집합이 내보내는 각 서비스에 의해 이벤트에 대 한 지원 되는 서비스 및 이벤트 스키마에 설명 합니다. 또한 이 문서에는 리소스 종류당 사용 가능한 로그 범주의 전체 목록이 포함되어 있습니다.
 
 ## <a name="supported-services-and-schemas-for-resource-diagnostic-logs"></a>리소스 진단 로그에 대해 지원되는 서비스 및 스키마
-리소스 진단 로그의 스키마는 리소스 및 로그 범주에 따라 달라집니다.   
+리소스 진단 로그에 대 한 hello 스키마 hello 리소스 및 로그 범주에 따라 달라 집니다.   
 
 | 부여 | 스키마 및 문서 |
 | --- | --- |
@@ -52,12 +52,12 @@ ms.lasthandoff: 08/29/2017
 ## <a name="supported-log-categories-per-resource-type"></a>각 리소스 유형별 지원되는 로그 범주
 |리소스 종류|Category|범주 표시 이름|
 |---|---|---|
-|Microsoft.ApiManagement/service|GatewayLogs|ApiManagement 게이트웨이 관련 로그|
+|Microsoft.ApiManagement/service|GatewayLogs|로그 관련된 tooApiManagement 게이트웨이|
 |Microsoft.Automation/automationAccounts|JobLogs|작업 로그|
 |Microsoft.Automation/automationAccounts|JobStreams|작업 스트림|
 |Microsoft.Automation/automationAccounts|DscNodeStatus|디스크 노드 상태|
 |Microsoft.Batch/batchAccounts|ServiceLog|서비스 로그|
-|Microsoft.Cdn/profiles/endpoints|CoreAnalytics|끝점의 메트릭(예: 대역폭, 송신 등)을 가져옵니다.|
+|Microsoft.Cdn/profiles/endpoints|CoreAnalytics|Hello 끝점의 예: 대역폭, 송신, 등 hello 메트릭을 가져옵니다.|
 |Microsoft.CustomerInsights/hubs|AuditEvents|AuditEvents|
 |Microsoft.DataLakeAnalytics/accounts|감사|감사 로그|
 |Microsoft.DataLakeAnalytics/accounts|요청|요청 로그|
@@ -89,6 +89,6 @@ ms.lasthandoff: 08/29/2017
 ## <a name="next-steps"></a>다음 단계
 
 * [진단 로그에 대해 자세히 알아보기](monitoring-overview-of-diagnostic-logs.md)
-* [**Event Hubs**로 리소스 진단 로그 스트림](monitoring-stream-diagnostic-logs-to-event-hubs.md)
-* [Azure Monitor REST API를 사용하여 리소스 진단 설정 변경](https://msdn.microsoft.com/library/azure/dn931931.aspx)
+* [진단 로그 리소스를 너무 스트림**이벤트 허브**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [Hello Azure 모니터 REST API를 사용 하 여 리소스 진단 설정 변경](https://msdn.microsoft.com/library/azure/dn931931.aspx)
 * [Azure Storage에서 Log Analytics를 사용하여 로그 분석](../log-analytics/log-analytics-azure-storage.md)

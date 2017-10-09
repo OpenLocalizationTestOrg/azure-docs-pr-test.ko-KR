@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric 서비스에 대해 데이터 손실을 호출하는 방법 | Microsoft Docs"
-description: "데이터 손실 API를 사용하는 방법을 설명합니다."
+title: "서비스 패브릭 서비스에서 데이터 손실이 aaaHow tooInvoke | Microsoft Docs"
+description: "Toouse 데이터 손실을 hello 하는 방법에 대해 설명 api"
 services: service-fabric
 documentationcenter: .net
 author: LMWF
@@ -15,23 +15,23 @@ ms.workload: NA
 ms.date: 09/19/2016
 ms.author: lemai
 redirect_url: /azure/service-fabric/service-fabric-testability-overview
-ms.openlocfilehash: 0c4791e56f84d0df38783a13c8d8c564fd25f55f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 014c7ebfd2c42d79a5fe1802ecc3fa0c1f26f9d7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-invoke-data-loss-on-services"></a>서비스에 대해 데이터 손실을 호출하는 방법
+# <a name="how-tooinvoke-data-loss-on-services"></a>어떻게 tooInvoke 서비스에서 데이터 손실
 > [!WARNING]
-> 이 문서에서는 서비스에서 데이터 손실을 유발하는 방법을 설명합니다. 이 문서는 주의해서 참조해야 합니다.
+> 이 문서에 설명 방법을 toocause 데이터 손실의 서비스에 주의 하 여 사용 해야 합니다.
 > 
 > 
 
 ## <a name="introduction"></a>소개
-StartPartitionDataLossAsync()를 호출하여 서비스 패브릭 서비스 파티션에서의 데이터 손실을 호출할 수 있습니다.  이 API는 오류 주입 및 분석 서비스를 사용하여 데이터 손실 조건을 일으키는 작업을 수행합니다.
+StartPartitionDataLossAsync()를 호출하여 서비스 패브릭 서비스 파티션에서의 데이터 손실을 호출할 수 있습니다.  이 api hello 오류 삽입 및 분석 서비스 tooperform hello 작업 toocause 데이터 손실 조건을 사용합니다.
 
-## <a name="using-the-fault-injection-and-analysis-service"></a>오류 주입 및 분석 서비스 사용
-오류 주입 및 분석 서비스는 현재 아래 차트에 나오는 다음과 같은 API를 지원합니다.  차트 오른쪽에는 각각에 해당하는 PowerShell cmdlet이 나와 있습니다.  각 API에 대한 자세한 내용은 각 API에 대한 MSDN 설명서를 참조하세요.
+## <a name="using-hello-fault-injection-and-analysis-service"></a>Hello 오류 삽입 및 분석 서비스를 사용 하 여
+hello 오류 삽입 및 분석 서비스는 현재 hello Api hello 차트 아래에 다음을 지원 합니다.  hello 차트의 오른쪽 hello hello 해당 PowerShell cmdlet을 보여 줍니다.  각각에 대 한 자세한 내용은 각 API에 대 한 toohello msdn 설명서를 참조 하십시오.
 
 | C# API | PowerShell Cmdlet |
 | --- | ---:|
@@ -40,41 +40,41 @@ StartPartitionDataLossAsync()를 호출하여 서비스 패브릭 서비스 파�
 | [StartPartitionRestartAsync][rp] |[Start-ServiceFabricPartitionRestart][psrp] |
 
 ## <a name="conceptual-overview-of-running-a-command"></a>명령 실행의 개념적 개요
-오류 주입 및 분석 서비스에서는 하나의 API(이 문서에서는 “Start" API)로 명령을 시작해서 최종 상태에 도달하거나 사용자가 취소할 때까지 "GetProgress" API를 통해 해당 명령의 진행 상황을 확인하는 비동기 모델을 사용합니다.
-명령을 시작하려면 해당 API에 대해 "Start" API를 호출합니다.  이 API는 오류 주입 및 분석 서비스가 요청을 수락할 때 반환됩니다.  그러나 명령이 얼마나 많이 실행되었는지, 심지어 시작되었는지 자체도 나타내지 않습니다.  명령의 진행 상태를 확인하려면 이전에 호출한 “Start” API에 해당하는 "GetProgress" API를 호출합니다.  "GetProgress" API는 State 속성 내에서 명령의 현재 상태를 나타내는 개체를 반환합니다.  명령을 다음이 실행될 때까지 무기한 실행됩니다.
+hello hello를 시작 하는 비동기 모델 하나 api를 명령을이 문서에서는 다음 검사 hello의 진행 상황 터미널에 도달할 때까지 "GetProgress" API를 사용 하 여이 명령 tooas hello "Start" API를 참조 하는 오류 삽입 및 분석 서비스 사용 할 때까지 또는 상태를 취소합니다.
+toostart 명령 hello 해당 API에 대 한 hello "시작" API를 호출 합니다.  이 API 오류 삽입 및 분석 서비스에서 hello 요청을 수락 하는 경우 hello에 반환 합니다.  그러나 명령이 얼마나 많이 실행되었는지, 심지어 시작되었는지 자체도 나타내지 않습니다.  명령의 순서 toocheck 진행 hello "GetProgress" toohello "시작" API 호출 이전에 해당 하는 API 호출 합니다.  hello "GetProgress" API의 상태 속성 내 hello 명령의 hello 현재 상태를 나타내는 개체를 반환 합니다.  명령을 다음이 실행될 때까지 무기한 실행됩니다.
 
-1. 성공적으로 완료됩니다.  이 경우 "GetProgress"를 호출하면 진행 중인 개체의 State는 Completed가 됩니다.
-2. 오류가 발생합니다.  이 경우 "GetProgress"를 호출하면 진행 중인 개체의 State는 Faulted가 됩니다.
-3. [CancelTestCommandAsync][cancel] API 또는 [Stop-ServiceFabricTestCommand][cancelps] PowerShell cmdlet을 통해 취소할 수 있습니다.  이 경우 "GetProgress"를 호출하면 진행 중인 개체의 State는 해당 API의 인수에 따라 Cancelled 또는 ForceCancelled가 됩니다.  자세한 내용은 [CancelTestCommandAsync][cancel]에 대한 설명서를 참조하세요.
+1. 성공적으로 완료됩니다.  이 경우 "GetProgress"를 호출 하면 hello 진행률 개체의 상태가 완료 됩니다.
+2. 오류가 발생합니다.  Hello 진행률 개체의 상태 오류가 발생 하기에 경우 "GetProgress" 호출 하는 경우
+3. Hello를 통해 취소 [CancelTestCommandAsync] [ cancel] API 또는 [중지 ServiceFabricTestCommand] [ cancelps] PowerShell cmdlet.  이 경우 "GetProgress"를 호출 하면 hello 진행률 개체의 상태가 취소 됨 또는 됩니다 ForceCancelled, 인수 toothat API에 따라 합니다.  Hello 설명서를 참조 하십시오 [CancelTestCommandAsync] [ cancel] 내용을 확인 합니다.
 
 ## <a name="details-of-running-a-command"></a>명령 실행의 세부 정보
-명령을 시작하려면 예상되는 인수를 사용하여 Start API를 호출합니다.  모든 Start API에는 operationId라는 GUID 인수가 있습니다.  operationId 인수는 이 명령의 진행률을 추적하는 데 사용되므로 추적해야 합니다.  그런 후 명령의 진행률을 추적하기 위해 "GetProgress" API에 전달해야 합니다.  operationId는 고유해야 합니다.
+순서 toostart 명령 예상 hello 인수를 갖는 hello 시작 API를 호출 합니다.  모든 Start API에는 operationId라는 GUID 인수가 있습니다.  해야의 추적할 있습니다 hello operationId 인수 사용 되기 때문이 명령의 tootrack 진행 합니다.  이 hello hello 명령의 순서 tootrack 진행 중 "GetProgress" API에 전달 되어야 합니다.  hello operationId 고유 해야 합니다.
 
-Start API를 성공적으로 호출하면 반환된 진행 중인 개체의 State 속성이 Completed가 될 때까지 GetProgress API가 반복해서 호출됩니다.  모든 [FabricTransientException][fte] 및 OperationCanceledException이 다시 시도됩니다.
-이 명령이 최종 상태(Completed, Faulted 또는 Cancelled)에 도달하면 반환된 진행 중인 개체의 Result 속성은 추가 정보를 제공합니다.  상태가 Completed이면 Result.SelectedPartition.PartitionId는 선택한 파티션 ID를 포함합니다.  Result.Exception은 null이 됩니다.  상태가 Faulted인 경우 Result.Exception에는 오류 주입 및 분석 서비스 기능에서 해당 명령이 실패한 이유가 포함됩니다.  Result.SelectedPartition.PartitionId는 선택한 파티션 ID가 됩니다.  상황에 따라 파티션을 선택할 만큼 명령이 충분히 진행되지 않았을 수 있습니다.  그런 경우에 PartitionId는 0이 됩니다.  상태가 Cancelled인 경우 Result.Exception은 null이 됩니다.  Faulted 사례와 같이, Result.SelectedPartition.PartitionId는 선택된 파티션 ID를 가지고 있지만 명령이 그럴 수 있을 정도로 충분히 진행되지 않은 경우 0이 됩니다.  아래 샘플을 참조하세요.
+Hello 진행 중 반환 될 때까지 루프에서 GetProgress API를 호출 해야 하는 hello hello 시작 API를 성공적으로 호출한 후 개체의 State 속성이 완료 됩니다.  모든 [FabricTransientException][fte] 및 OperationCanceledException이 다시 시도됩니다.
+Hello 명령은 종료 상태 (Completed, Faulted, 또는 취소 됨)에 도달 하면 hello 반환 진행률 개체의 Result 속성에 추가 정보가 포함 됩니다.  Hello 상태를 완료 한 경우 Result.SelectedPartition.PartitionId 선택 된 hello 파티션 id를 포함 됩니다.  Result.Exception은 null이 됩니다.  Hello 상태가 Faulted 인 경우 hello 이유 hello 오류 삽입 및 분석 서비스 오류가 발생 한 hello 명령 Result.Exception 해야 합니다.  Result.SelectedPartition.PartitionId 선택 된 hello 파티션 id를 갖습니다.  경우에 따라 hello 명령 수 있습니다는 붙지 않으며 만큼 toochoose 파티션을 합니다.  이 경우 hello PartitionId 0이 됩니다.  Hello 상태가 취소 되 면 Result.Exception null이 됩니다.  Hello Faulted 대/소문자, 같은 Result.SelectedPartition.PartitionId 선택한 hello 파티션 id가 있지만 hello 명령 만큼 toodo를 따라서 붙지 않으며가 면 0이 됩니다.  아래 toohello 샘플도 참조 하십시오.
 
-아래 샘플 코드에서는 명령을 시작한 후 진행 상태를 확인하고 특정 파티션에서 데이터 손실을 일으키는 방법을 보여 줍니다.
+아래 샘플 코드 hello toostart 특정 파티션에 명령 toocause 데이터 손실에서 진행 한 다음 확인 되는 방법을 보여 줍니다.
 
 ```csharp
     static async Task PerformDataLossSample()
     {
-        // Create a unique operation id for the command below
+        // Create a unique operation id for hello command below
         Guid operationId = Guid.NewGuid();
 
-        // Note: Use the appropriate overload for your configuration
+        // Note: Use hello appropriate overload for your configuration
         FabricClient fabricClient = new FabricClient();
 
-        // The name of the target service
+        // hello name of hello target service
         Uri targetServiceName = new Uri("fabric:/MyService");
 
-        // The id of the target partition inside the target service
+        // hello id of hello target partition inside hello target service
         Guid targetPartitionId = new Guid("00000000-0000-0000-0000-000002233445");
 
         PartitionSelector partitionSelector = PartitionSelector.PartitionIdOf(targetServiceName, targetPartitionId);
 
-        // Start the command.  Retry OperationCanceledException and all FabricTransientException's.  Note when StartPartitionDataLossAsync completes
-        // successfully it only means the Fault Injection and Analysis Service has saved the intent to perform this work.  It does not say anything about the progress
-        // of the command.
+        // Start hello command.  Retry OperationCanceledException and all FabricTransientException's.  Note when StartPartitionDataLossAsync completes
+        // successfully it only means hello Fault Injection and Analysis Service has saved hello intent tooperform this work.  It does not say anything about hello progress
+        // of hello command.
         while (true)
         {
             try
@@ -94,8 +94,8 @@ Start API를 성공적으로 호출하면 반환된 진행 중인 개체의 Stat
 
         PartitionDataLossProgress progress = null;
 
-        // Poll the progress using GetPartitionDataLossProgressAsync until it is either Completed or Faulted.  In this example, we're assuming
-        // the command won't be cancelled.        
+        // Poll hello progress using GetPartitionDataLossProgressAsync until it is either Completed or Faulted.  In this example, we're assuming
+        // hello command won't be cancelled.        
 
         while (true)
         {
@@ -116,13 +116,13 @@ Start API를 성공적으로 호출하면 반환된 진행 중인 개체의 Stat
             {
                 Console.WriteLine("Command '{0}' completed successfully", operationId);
 
-                // In a terminal state .Result.SelectedPartition.PartitionId will have the chosen partition
+                // In a terminal state .Result.SelectedPartition.PartitionId will have hello chosen partition
                 Console.WriteLine("  Printing selected partition='{0}'", progress.Result.SelectedPartition.PartitionId);
                 break;
             }
             else if (progress.State == TestCommandProgressState.Faulted)
             {
-                // If State is Faulted, the progress object's Result property's Exception property will have the reason why.
+                // If State is Faulted, hello progress object's Result property's Exception property will have hello reason why.
                 Console.WriteLine("Command '{0}' failed with '{1}'", operationId, progress.Result.Exception);
                 break;
             }
@@ -136,26 +136,26 @@ Start API를 성공적으로 호출하면 반환된 진행 중인 개체의 Stat
     }
 ```
 
-아래 샘플은 PartitionSelector를 사용하여 지정된 서비스의 임의 파티션을 선택하는 방법을 보여 줍니다.
+아래 hello 샘플 toouse PartitionSelector toochoose 지정된 된 서비스의 임의 파티션 hello 하는 방법을 보여 줍니다.
 
 ```csharp
     static async Task PerformDataLossUseSelectorSample()
     {
-        // Create a unique operation id for the command below
+        // Create a unique operation id for hello command below
         Guid operationId = Guid.NewGuid();
 
-        // Note: Use the appropriate overload for your configuration
+        // Note: Use hello appropriate overload for your configuration
         FabricClient fabricClient = new FabricClient();
 
-        // The name of the target service
+        // hello name of hello target service
         Uri targetServiceName = new Uri("fabric:/SampleService ");
 
-        // Use a PartitionSelector that will have the Fault Injection and Analysis Service choose a random partition of “targetServiceName”
+        // Use a PartitionSelector that will have hello Fault Injection and Analysis Service choose a random partition of “targetServiceName”
         PartitionSelector partitionSelector = PartitionSelector.RandomOf(targetServiceName);
 
-        // Start the command.  Retry OperationCanceledException and all FabricTransientException's.  Note when StartPartitionDataLossAsync completes
-        // successfully it only means the Fault Injection and Analysis Service has saved the intent to perform this work.  It does not say anything about the progress
-        // of the command.
+        // Start hello command.  Retry OperationCanceledException and all FabricTransientException's.  Note when StartPartitionDataLossAsync completes
+        // successfully it only means hello Fault Injection and Analysis Service has saved hello intent tooperform this work.  It does not say anything about hello progress
+        // of hello command.
         while (true)
         {
             try
@@ -180,8 +180,8 @@ Start API를 성공적으로 호출하면 반환된 진행 중인 개체의 Stat
 
         PartitionDataLossProgress progress = null;
 
-        // Poll the progress using GetPartitionDataLossProgressAsync until it is either Completed or Faulted.  In this example, we're assuming
-        // the command won't be cancelled.
+        // Poll hello progress using GetPartitionDataLossProgressAsync until it is either Completed or Faulted.  In this example, we're assuming
+        // hello command won't be cancelled.
 
         while (true)
         {
@@ -209,7 +209,7 @@ Start API를 성공적으로 호출하면 반환된 진행 중인 개체의 Stat
             }
             else if (progress.State == TestCommandProgressState.Faulted)
             {
-                // If State is Faulted, the progress object's Result property's Exception property will have the reason why.
+                // If State is Faulted, hello progress object's Result property's Exception property will have hello reason why.
                 Console.WriteLine("Command '{0}' failed with '{1}', SelectedPartition {2}", operationId, progress.Result.Exception, progress.Result.SelectedPartition);
                 break;
             }
@@ -224,7 +224,7 @@ Start API를 성공적으로 호출하면 반환된 진행 중인 개체의 Stat
 ```
 
 ## <a name="history-and-truncation"></a>기록 및 잘림
-명령이 최종 상태에 도달하면 해당 메타데이터는 특정 시간 동안 오류 주입 및 분석 서비스에 남아 있다가 공간 절약을 위해 제거됩니다.  명령이 제거된 후 명령의 operationId를 사용하여 "GetProgress"가 호출되면 ErrorCode인 KeyNotFound를 사용하여 FabricException을 반환합니다.
+명령 종료 상태에 도달 하면 해당 메타 데이터 hello 오류 삽입에에서 남아 있으며 특정 시간 전에 됩니다에 대 한 분석 서비스 toosave 공백을 제거 합니다.  "GetProgress" 명령의 operationId hello를 사용 하 여 제거 된 후 호출 되 면 오류 코드의 KeyNotFound와 FabricException 반환 됩니다.
 
 [dl]: https://msdn.microsoft.com/library/azure/mt693569.aspx
 [ql]: https://msdn.microsoft.com/library/azure/mt693558.aspx

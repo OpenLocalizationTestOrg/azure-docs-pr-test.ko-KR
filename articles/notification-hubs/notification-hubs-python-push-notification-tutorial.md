@@ -1,6 +1,6 @@
 ---
-title: "Python과 함께 알림 허브를 사용하는 방법"
-description: "Python 백 엔드에서 Azure 알림 허브를 사용하는 방법에 대해 알아봅니다."
+title: "aaaHow toouse python 알림 허브"
+description: "자세한 내용은 방법 toouse Azure 알림 허브는 Python 백 엔드에서 합니다."
 services: notification-hubs
 documentationcenter: 
 author: ysxu
@@ -14,19 +14,19 @@ ms.devlang: php
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: 9ceedb9940759427fc8cec74a1307e42472563a6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 21d5aaf7fc24c9936fac8e0a8de640c66c51ab0a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-notification-hubs-from-python"></a>Python에서 알림 허브를 사용하는 방법
+# <a name="how-toouse-notification-hubs-from-python"></a>어떻게 toouse Python에서 알림 허브
 [!INCLUDE [notification-hubs-backend-how-to-selector](../../includes/notification-hubs-backend-how-to-selector.md)]
 
-MSDN [항목 알림 허브 REST API](http://msdn.microsoft.com/library/dn223264.aspx)에 설명된 대로 알림 허브 REST 인터페이스를 사용하여 Java/PHP/Python/Ruby 백 엔드에서 모든 알림 허브 기능에 액세스할 수 있습니다.
+Java/PHP/Python/Ruby 백 엔드에서 모든 알림 허브 기능에 액세스할 수 hello MSDN 항목에 설명 된 대로 hello 알림 허브 REST 인터페이스를 사용 하 여 [알림 허브 REST Api](http://msdn.microsoft.com/library/dn223264.aspx)합니다.
 
 > [!NOTE]
-> 이는 Python에서 알림 보내기를 구현하기 위한 샘플 참조 구현이며 공식적으로 지원되는 알림 허브 Python SDK가 아닙니다.
+> 이 hello 알림을 보내고 Python에서 구현 하기 위한 샘플 참조 구현 않으며 hello 알림 허브 Python SDK를 공식적으로 지원 합니다.
 > 
 > 이 샘플은 Python 3.4를 사용하여 작성되었습니다.
 > 
@@ -35,42 +35,42 @@ MSDN [항목 알림 허브 REST API](http://msdn.microsoft.com/library/dn223264.
 이 항목에서는 다음 방법을 보여 줍니다.
 
 * Python에서 알림 허브 기능에 대한 REST 클라이언트를 빌드하는 방법
-* Python 인터페이스를 사용하여 알림 허브 REST API에 알림을 보냅니다. 
-* 디버그/교육 용도로 HTTP REST 요청/응답의 덤프를 가져옵니다. 
+* Hello Python 인터페이스 toohello 알림 허브 REST Api를 사용 하 여 알림을 보냅니다. 
+* 디버깅/교육 목적을 위해 hello HTTP REST 요청/응답의 덤프를 가져옵니다. 
 
-선택한 모바일 플랫폼에 대한 [시작 자습서](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) 에 따라 Python에서 백 엔드 부분을 구현할 수 있습니다.
+Hello를 따르면 [Get 시작된 자습서](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) Python에서 hello 백 엔드 부분을 구현 합니다. 원하는 모바일 플랫폼에 대 한 합니다.
 
 > [!NOTE]
-> 샘플 범위는 알림 보내기로만 제한되며 등록 관리는 수행하지 않습니다.
+> hello 샘플의 hello 범위 제한 toosend 알림만 이며 모든 등록 관리를 수행 하지 않습니다.
 > 
 > 
 
 ## <a name="client-interface"></a>클라이언트 인터페이스
-기본 클라이언트 인터페이스에서는 [.NET 알림 허브 SDK](http://msdn.microsoft.com/library/jj933431.aspx)에서 제공되는 것과 같은 메서드를 제공할 수 있습니다. 따라서 현재 이 사이트에서 사용 가능하며 인터넷 커뮤니티에서 제공한 모든 자습서 및 샘플을 직접 변환할 수 있습니다.
+hello 주 클라이언트 인터페이스 hello hello에서 사용할 수 있는 동일한 방법을 제공할 수 [.NET 알림 허브 SDK](http://msdn.microsoft.com/library/jj933431.aspx)합니다. 이렇게 하면 toodirectly 모든 hello 자습서 및이 사이트에서 현재 사용할 수 있는 샘플을 변환 하 고 hello 커뮤니티 hello에 제공한 인터넷 합니다.
 
-[Python REST 래퍼 샘플]에서 사용 가능한 모든 코드를 찾을 수 있습니다.
+Hello에서 사용할 수 있는 모든 hello 코드를 찾을 수 있습니다 [Python REST 래퍼 샘플]합니다.
 
-예를 들어 클라이언트를 만들려면 다음을 수행합니다.
+예를 들어 toocreate 클라이언트:
 
     isDebug = True
     hub = NotificationHub("myConnectionString", "myNotificationHubName", isDebug)
 
-Windows 알림 메시지를 보내려면
+toosend Windows 알림 메시지:
 
     wns_payload = """<toast><visual><binding template=\"ToastText01\"><text id=\"1\">Hello world!</text></binding></visual></toast>"""
     hub.send_windows_notification(wns_payload)
 
 ## <a name="implementation"></a>구현
-아직 하지 않았으면 백 엔드를 구현해야 하는 [시작 자습서] 의 마지막 섹션까지 수행하세요.
+되어 있지 않은 경우 따르십시오 우리의 [Get 시작된 자습서] tooimplement hello 백 엔드 있는 toohello 마지막 섹션을 합니다.
 
-전체 REST 래퍼를 구현하는 방법에 대한 자세한 내용은 [MSDN](http://msdn.microsoft.com/library/dn530746.aspx)을 참조하세요. 이 섹션에서는 알림 허브 REST 끝점에 액세스하고 알림을 보내는 데 필요한 기본 단계의 Python 구현에 대해 설명합니다.
+전체 REST 래퍼를 찾을 수 세부 정보 tooimplement hello 모든 [MSDN](http://msdn.microsoft.com/library/dn530746.aspx)합니다. 이 섹션에서는 hello Python 구현의 hello 주요 단계는 필요한 tooaccess 알림 허브 REST 끝점에 설명 하 고 알림을 보낼합니다
 
-1. 연결 문자열 구문 분석
-2. 인증 토큰 생성
+1. Hello 연결 문자열을 구문 분석
+2. Hello 인증 토큰을 생성 합니다.
 3. HTTP REST API를 사용하여 알림 보내기
 
-### <a name="parse-the-connection-string"></a>연결 문자열 구문 분석
-연결 문자열을 구문 분석하는 생성자가 포함된 클라이언트를 구현하는 기본 클래스는 다음과 같습니다.
+### <a name="parse-hello-connection-string"></a>Hello 연결 문자열을 구문 분석
+클라이언트 hello hello 연결 문자열을 구문 분석의 생성자를 구현 하는 hello 주 클래스는 다음과 같습니다.
 
     class NotificationHub:
         API_VERSION = "?api-version=2013-10"
@@ -95,8 +95,8 @@ Windows 알림 메시지를 보내려면
 
 
 ### <a name="create-security-token"></a>보안 토큰 만들기
-보안 토큰 만들기에 대한 자세한 내용은 [여기](http://msdn.microsoft.com/library/dn495627.aspx)를 참조하세요.
-현재 요청의 URI 및 연결 문자열에서 추출된 자격 증명에 따라 토큰을 만들려면 **NotificationHub** 클래스에 다음 메서드를 추가해야 합니다.
+hello 보안 토큰 생성 hello 세부 사항은 [여기](http://msdn.microsoft.com/library/dn495627.aspx)합니다.
+hello 다음 메서드는 추가 toobe toohello **NotificationHub** hello hello 현재 요청 및 hello 연결 문자열에서 추출 된 hello 자격 증명의 URI 기반으로 클래스 toocreate hello 토큰입니다.
 
     @staticmethod
     def get_expiry():
@@ -134,7 +134,7 @@ Windows 알림 메시지를 보내려면
             if not any(x in notification_format for x in valid_formats):
                 raise Exception(
                     "Invalid Notification format. " +
-                    "Must be one of the following - 'template', 'apple', 'gcm', 'windows', 'windowsphone', 'adm', 'baidu'")
+                    "Must be one of hello following - 'template', 'apple', 'gcm', 'windows', 'windowsphone', 'adm', 'baidu'")
 
             self.format = notification_format
             self.payload = payload
@@ -147,9 +147,9 @@ Windows 알림 메시지를 보내려면
 
 이 클래스는 기본 알림 본문(또는 템플릿 알림의 경우 속성 집합), 형식(기본 플랫폼 또는 템플릿)이 포함된 헤더 집합 및 플랫폼 특정 속성(예: Apple 만료 속성 및 WNS 헤더)에 대한 컨테이너입니다.
 
-모든 사용할 수 있는 옵션은 [알림 허브 REST API 설명서](http://msdn.microsoft.com/library/dn495827.aspx) 및 특정 알림 플랫폼의 형식을 참조하세요.
+Toohello를 참조 하십시오 [알림 허브 REST Api 설명서](http://msdn.microsoft.com/library/dn495827.aspx) 모든 hello 사용할 수 있는 옵션에 대 한 특정 알림 플랫폼 형식 hello 및 합니다.
 
-이제 이 클래스를 사용하여 **NotificationHub** 클래스 내부에서 알림 보내기 메서드를 쓸 수 있습니다.
+이 클래스와 같이 작성할 수 있습니다 hello 송신 hello 내 알림 방법 이제 **NotificationHub** 클래스입니다.
 
     def make_http_request(self, url, payload, headers):
         parsed_url = urllib.parse.urlparse(url)
@@ -157,7 +157,7 @@ Windows 알림 메시지를 보내려면
 
         if self.Debug > 0:
             connection.set_debuglevel(self.Debug)
-            # adding this querystring parameter gets detailed information about the PNS send notification outcome
+            # adding this querystring parameter gets detailed information about hello PNS send notification outcome
             url += self.DEBUG_SEND
             print("--- REQUEST ---")
             print("URI: " + url)
@@ -205,11 +205,11 @@ Windows 알림 메시지를 보내려면
         else:
             tag_list = tag_or_tag_expression
 
-        # add the tags/tag expressions to the headers collection
+        # add hello tags/tag expressions toohello headers collection
         if tag_list != "":
             headers.update({'ServiceBusNotification-Tags': tag_list})
 
-        # add any custom headers to the headers collection that the user may have added
+        # add any custom headers toohello headers collection that hello user may have added
         if notification.headers is not None:
             headers.update(notification.headers)
 
@@ -257,23 +257,23 @@ Windows 알림 메시지를 보내려면
         nh = Notification("template", properties)
         self.send_notification(nh, tags)
 
-위의 메서드는 알림을 보내기 위한 올바른 본문과 헤더가 있는 알림 허브의 /messages 끝점으로 HTTP POST 요청을 보냅니다.
+메서드 위에 hello hello 올바른 본문 및 헤더 toosend hello 알림을 사용 하 여 알림 허브의 HTTP POST 요청 toohello /messages 끝점을 보냅니다.
 
-### <a name="using-debug-property-to-enable-detailed-logging"></a>디버그 속성을 통해 자세한 로깅 사용
-알림 허브를 초기화하는 동안 디버그 속성을 사용하면 HTTP 요청 및 응답 덤프에 대한 자세한 로깅 정보 및 자세한 알림 메시지 전송 결과가 기록됩니다. 최근에 알림 보내기 결과에 대한 자세한 정보를 반환하는 [Notification Hubs TestSend](http://msdn.microsoft.com/library/microsoft.servicebus.notifications.notificationhubclient.enabletestsend.aspx) 라는 속성을 추가했습니다. 이 속성을 사용하려면 다음을 사용하여 초기화합니다.
+### <a name="using-debug-property-tooenable-detailed-logging"></a>디버그 속성 tooenable를 사용 하 여 자세한 로깅을
+Hello 알림 허브를 초기화 하는 동안 디버그 속성 설정에 쓰는 HTTP hello에 대 한 자세한 로깅 정보 요청 및 응답 덤프 뿐만 아니라 자세한 알림 메시지 보내기 결과입니다. 최근에 라는이 속성을 추가 했습니다 [알림 허브 TestSend 속성](http://msdn.microsoft.com/library/microsoft.servicebus.notifications.notificationhubclient.enabletestsend.aspx) hello 알림 보내기 결과 대 한 자세한 정보를 반환 하는 합니다. toouse 것-hello 다음을 사용 하 여 초기화 합니다.
 
     hub = NotificationHub("myConnectionString", "myNotificationHubName", isDebug)
 
-그 결과, 알림 허브 전송 요청 HTTP URL에 "test" 쿼리 문자열이 추가됩니다. 
+결과적으로 hello 알림 허브 보내기 요청 HTTP URL "test" querystring 추가 가져옵니다. 
 
-## <a name="complete-tutorial"></a>자습서 완료
-이제 Python 백 엔드에서 알림을 보내 시작 자습서를 완료할 수 있습니다.
+## <a name="complete-tutorial"></a>전체 hello 자습서
+이제 Python 백 엔드에서 hello 알림을 전송 하 여 hello 시작 자습서를 완료할 수 있습니다.
 
-알림 허브 클라이언트를 초기화합니다( [시작 자습서]에 설명된 대로 연결 문자열 및 허브 이름 대체).
+알림 허브 클라이언트 초기화 (hello에 설명 된 대로 hello 연결 문자열 및 허브 이름을 대체 [Get 시작된 자습서]):
 
     hub = NotificationHub("myConnectionString", "myNotificationHubName")
 
-그리고 대상 모바일 플랫폼에 따라 보내기 코드를 추가합니다. 또한 이 샘플은 플랫폼에 따라 알림 보내기를 사용하도록 설정하는 상위 수준의 메서드를 추가합니다(예: send_windows_notification(Windows), send_apple_notification(Apple) 등). 
+대상 모바일 플랫폼에 따라 hello 송신 코드를 추가 합니다. 이 샘플에도 windows;에 대 한 예를 들어 send_windows_notification hello 플랫폼에 따라 알림을 보낼 더 높은 수준 메서드와 tooenable 추가 send_apple_notification (apple)에 대 한 등. 
 
 ### <a name="windows-store-and-windows-phone-81-non-silverlight"></a>Windows 스토어 및 Windows Phone 8.1(비 Silverlight)
     wns_payload = """<toast><visual><binding template=\"ToastText01\"><text id=\"1\">Test</text></binding></visual></toast>"""
@@ -322,33 +322,33 @@ Python 코드를 실행하면 대상 장치에 나타나는 알림이 생성됩�
 
 ## <a name="examples"></a>예제:
 ### <a name="enabling-debug-property"></a>디버그 속성 사용
-NotificationHub를 초기화하는 동안 디버그 플래그를 사용하도록 설정하면 자세한 HTTP 요청 및 응답 덤프뿐 아니라 요청 시 전달된 HTTP 헤더 및 알림 허브에서 수신된 HTTP 응답을 확인할 수 있는 다음과 같은 NotificationOutcome이 표시됩니다. ![][1]
+어떤 HTTP 헤더 hello 요청에 전달 되 고 어떤 HTTP을 이해할 수 있습니다 hello 다음과 같은으로 HTTP 요청 및 응답 덤프 NotificationOutcome 자세히 볼 수 NotificationHub hello를 초기화 하는 동안 디버그 플래그를 사용 하면 hello 알림 허브에서에서 응답이 수신 되었습니다.![][1]
 
 예를 들어 메시지가 푸시 알림 서비스로 전송되면 
 
-* 자세한 알림 허브 결과가 표시됩니다. 
+* hello 메시지를 성공적으로 보내면 toohello 푸시 알림 서비스. 
   
-        <Outcome>The Notification was successfully sent to the Push Notification System</Outcome>
-* 푸시 알림의 대상을 찾을 수 없는 경우 등록에 불일치 태그가 있어서 알림을 전달할 등록을 찾을 수 없음을 나타내는 다음 메시지가 응답에 포함되기를 원할 것입니다.
+        <Outcome>hello Notification was successfully sent toohello Push Notification System</Outcome>
+* 대상을 찾을 수 없습니다 푸시 알림에 다음 (나타냄 hello 등록에 일부 아마도 toodeliver hello 알림을 찾을 수 없는 등록 했다는 hello 응답에서 toosee hello 다음 보아야 가능성이 있는 경우 일치 하지 않는 태그)
   
         '<NotificationOutcome xmlns="http://schemas.microsoft.com/netservices/2010/10/servicebus/connect" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><Success>0</Success><Failure>0</Failure><Results i:nil="true"/></NotificationOutcome>'
 
-### <a name="broadcast-toast-notification-to-windows"></a>Windows로 보내는 브로드캐스트 알림 메시지
-Windows 클라이언트로 브로드캐스트 알림 메시지를 보낼 때 전송되는 헤더를 확인합니다. 
+### <a name="broadcast-toast-notification-toowindows"></a>알림을 알림 tooWindows 브로드캐스트
+브로드캐스트 알림을 알림 tooWindows 클라이언트를 보낼 때 아웃 전송 하는 hello 헤더를 확인 합니다. 
 
     hub.send_windows_notification(wns_payload)
 
 ![][2]
 
 ### <a name="send-notification-specifying-a-tag-or-tag-expression"></a>태그(또는 태그 식)를 지정하여 알림 보내기
-HTTP 요청에 추가되는 태그 HTTP 헤더를 확인합니다. 아래 예제에서는 '스포츠' 페이로드가 있는 등록에만 알림을 보냅니다.
+Toohello HTTP 요청에 추가 되는 공지 hello 태그 HTTP 헤더 (hello 아래의 예제에서는 보낼 hello 알림만 tooregistrations '스포츠' 페이로드 포함)
 
     hub.send_windows_notification(wns_payload, "sports")
 
 ![][3]
 
 ### <a name="send-notification-specifying-multiple-tags"></a>여러 태그를 지정하여 알림 보내기
-여러 태그를 보낼 때 태그 HTTP 헤더가 어떻게 변경되는지 확인합니다. 
+Hello 태그 HTTP 헤더에서 여러 태그를 보내면을 변경 하는 방법을 확인 합니다. 
 
     tags = {'sports', 'politics'}
     hub.send_windows_notification(wns_payload, tags)
@@ -356,14 +356,14 @@ HTTP 요청에 추가되는 태그 HTTP 헤더를 확인합니다. 아래 예제
 ![][4]
 
 ### <a name="templated-notification"></a>템플릿 기반 알림
-형식 HTTP 헤더가 변경되고 페이로드 본문이 HTTP 요청 본문의 일부로 전송됩니다.
+Hello 형식 HTTP 헤더 변경 내용 및 페이로드 본문 hello는 hello HTTP 요청 본문의 일부로 전송 됩니다.
 
 **클라이언트 측 - 등록된 템플릿**
 
         var template =
                         @"<toast><visual><binding template=""ToastText01""><text id=""1"">$(greeting_en)</text></binding></visual></toast>";
 
-**서버 측 - 페이로드 보내기**
+**서버 쪽-hello 페이로드를 보내기**
 
         template_payload = {'greeting_en': 'Hello', 'greeting_fr': 'Salut'}
         hub.send_template_notification(template_payload)
@@ -371,17 +371,17 @@ HTTP 요청에 추가되는 태그 HTTP 헤더를 확인합니다. 아래 예제
 ![][5]
 
 ## <a name="next-steps"></a>다음 단계
-이 항목에서는 알림 허브에 대한 단순한 Python REST 클라이언트를 만드는 방법을 알아보았습니다. 여기에서 다음을 할 수 있습니다.
+이 항목에서 소개 된 방법을 toocreate 간단한 Python REST 클라이언트 알림 허브에 대 한 합니다. 여기에서 다음을 할 수 있습니다.
 
-* 위의 모든 코드가 포함된 전체 [Python REST 래퍼 샘플]을 다운로드합니다.
-* [속보 자습서]
-* [지역화 뉴스 자습서]
+* 전체 hello 다운로드 [Python REST 래퍼 샘플], 위의 모든 hello 코드가 포함 되어 있습니다.
+* 태그 기능은 hello에 알림 허브에 대해 알아보십시오 [속보 자습서]
+* Hello에 알림 허브 템플릿 기능에 대 한 학습을 계속 [지역화 속보 자습서]
 
 <!-- URLs -->
 [Python REST 래퍼 샘플]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/notificationhubs-rest-python
-[시작 자습서]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-get-started/
+[Get 시작된 자습서]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-get-started/
 [속보 자습서]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-send-breaking-news/
-[지역화 뉴스 자습서]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-send-localized-breaking-news/
+[지역화 속보 자습서]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-send-localized-breaking-news/
 
 <!-- Images. -->
 [1]: ./media/notification-hubs-python-backend-how-to/DetailedLoggingInfo.png

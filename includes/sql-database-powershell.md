@@ -1,19 +1,19 @@
 
 ## <a name="start-your-powershell-session"></a>PowerShell 세션 시작
-먼저 최신 Azure PowerShell을 설치하고 실행해야 합니다. 자세한 내용은 [Azure PowerShell을 설치 및 구성하는 방법](/powershell/azureps-cmdlets-docs)을 참조하세요.
+첫째, 있습니다 해야가 hello 최신 Azure PowerShell 설치 및 실행 합니다. 자세한 내용은 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azureps-cmdlets-docs)합니다.
 
 > [!NOTE]
-> SQL Database의 여러 새로운 기능은 [Azure Resource Manager 배포 모델](../articles/azure-resource-manager/resource-group-overview.md)을 사용할 때 지원되므로 예제는 Resource Manager에 [Azure SQL Database PowerShell cmdlet](https://msdn.microsoft.com/library/azure/mt574084\(v=azure.300\).aspx)을 사용합니다. 이전 버전과 호환성을 위해 서비스 관리(클래식) 배포 모델 [Azure SQL Database 서비스 관리 cmdlet](https://msdn.microsoft.com/library/azure/dn546723\(v=azure.300\).aspx)이 지원되지만 Resource Manager cmdlet을 사용하는 것이 좋습니다.
+> SQL 데이터베이스의 여러 가지 새로운 기능이 hello를 사용 하는 경우에 지원 됩니다 [Azure 리소스 관리자 배포 모델](../articles/azure-resource-manager/resource-group-overview.md)예제 hello를 사용 하므로 [Azure SQL 데이터베이스 PowerShell cmdlet](https://msdn.microsoft.com/library/azure/mt574084\(v=azure.300\).aspx) 리소스 관리자에 대 한 . hello 서비스 관리 (클래식) 배포 모델 [Azure SQL 데이터베이스 서비스 관리 cmdlet](https://msdn.microsoft.com/library/azure/dn546723\(v=azure.300\).aspx) 이전 버전과 호환성을 위해 사용할 수 있지만 리소스 관리자 cmdlet hello를 사용 하는 것이 좋습니다.
 > 
 > 
 
-[**Add-AzureRmAccount**](https://msdn.microsoft.com/library/azure/mt619267\(v=azure.300\).aspx) cmdlet을 실행하면 자격 증명을 입력할 수 있는 로그인 화면이 나타납니다. Azure 포털에 로그인하는 데 사용하는 동일한 자격 증명을 사용합니다.
+Hello 실행 [ **추가 AzureRmAccount** ](https://msdn.microsoft.com/library/azure/mt619267\(v=azure.300\).aspx) cmdlet과 있습니다 나타납니다 로그인 화면 tooenter 자격 증명입니다. 사용 하 여 hello 동일 toosign toohello Azure 포털에서에서 사용 하는 자격 증명입니다.
 
 ```PowerShell
 Add-AzureRmAccount
 ```
 
-여러 구독이 있는 경우 [**Set-AzureRmContext**](https://msdn.microsoft.com/library/azure/mt619263\(v=azure.300\).aspx) cmdlet을 사용하여 PowerShell 세션이 사용해야 하는 구독을 선택합니다. 현재 PowerShell 세션이 사용 중인 구독을 보려면 [**Get-AzureRmContext**](https://msdn.microsoft.com/library/azure/mt619265\(v=azure.300\).aspx)를 실행합니다. 모든 구독을 보려면 [**Get-AzureRmSubscription**](https://msdn.microsoft.com/library/azure/mt619284\(v=azure.300\).aspx)을 실행합니다.
+여러 구독이 있는 경우 사용 하 여 hello [ **집합 AzureRmContext** ](https://msdn.microsoft.com/library/azure/mt619263\(v=azure.300\).aspx) cmdlet tooselect 어떤 구독 PowerShell 세션에서 사용 하도록 합니다. 어떤 구독이 현재 PowerShell 세션을 사용 하는 hello toosee 실행 [ **Get AzureRmContext**](https://msdn.microsoft.com/library/azure/mt619265\(v=azure.300\).aspx)합니다. 모든 구독을 실행 하는 toosee [ **Get AzureRmSubscription**](https://msdn.microsoft.com/library/azure/mt619284\(v=azure.300\).aspx)합니다.
 
 ```PowerShell
 Set-AzureRmContext -SubscriptionId '4cac86b0-1e56-bbbb-aaaa-000000000000'

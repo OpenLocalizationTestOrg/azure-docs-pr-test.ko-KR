@@ -1,6 +1,6 @@
 ---
-title: "Azure Security Center에서 Just-In-Time 가상 컴퓨터 액세스 | Microsoft Docs"
-description: "이 문서에서는 Azure Security Center에서 Just-In-Time VM 액세스가 Azure 가상 컴퓨터에 대한 액세스를 제어하는 데 어떻게 도움이 되는지 보여 줍니다."
+title: "Azure 보안 센터에서 aaaJust 시간 가상 컴퓨터에 액세스 | Microsoft Docs"
+description: "이 문서를 안내해 어떻게 just-in-time Azure 보안 센터를 통해 제어할 수에서 VM 액세스 액세스 tooyour Azure 가상 컴퓨터."
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,171 +14,171 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: terrylan
-ms.openlocfilehash: 5bb87488dcfc79ed4baa1dbd81dc4e1174f84e4b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e6b58dd2c686cb227392b294e85914df5a546016
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-virtual-machine-access-using-just-in-time"></a>Just-In-Time를 사용하여 가상 컴퓨터 액세스 관리
 
-Just-In-Time VM(가상 컴퓨터) 액세스를 사용하면 Azure VM으로의 인바운드 트래픽을 잠글 수 있어 필요할 때 VM 연결을 위한 간편한 액세스를 제공하면서도 공격에 대한 노출을 줄일 수 있습니다.
+시간 가상 컴퓨터 (VM)에 액세스는 인바운드 트래픽 tooyour Azure Vm에서 쉽게 액세스할 수 있도록 tooconnect tooVMs 필요할 때 제공 하는 동안 노출 tooattacks 감소를 사용 하는 toolock 수 있습니다.
 
 > [!NOTE]
-> Just-In-Time 기능은 미리 보기로 제공되며 Security Center의 표준 계층에서 사용할 수 있습니다.  Security Center의 가격 책정 계층에 대해 자세히 알아보려면 [가격 책정](security-center-pricing.md)을 참조하세요.
+> 시간 기능에만 있는 hello 되며 미리 보기에서 hello 보안 센터의 표준 계층에 있습니다.  참조 [가격 책정](security-center-pricing.md) 보안 센터에 대해 자세히 toolearn 가격 책정 계층이 있습니다.
 >
 >
 
 ## <a name="attack-scenario"></a>공격 시나리오
 
-무차별 암호 대입 공격(brute force attack)은 일반적으로 VM에 대한 액세스 권한을 얻는 방법으로 관리 포트를 대상으로 합니다. 성공하면 공격자가 VM을 제어할 수 있으며 사용자 환경으로의 발판을 마련하게 됩니다.
+무차별 암호 대입 공격 수단 toogain 액세스 tooa VM으로 일반적으로 대상 관리 포트가 있습니다. 성공 하면 공격자 hello VM에 대 한 제어를 수행할를 업데이트 하 고 한 발판을 마련 환경으로 연결할 수 있습니다.
 
-무차별 암호 대입 공격을 줄이기 위한 한 가지 방법은 포트가 열려 있는 시간의 양을 제한하는 것입니다. 관리 포트는 항상 열려 있을 필요가 없습니다. 예를 들어 관리 또는 유지 관리 작업을 수행하기 위해 VM에 연결되는 동안에만 열려 있어야 합니다. Just-In-Time이 활성화되면 Security Center는 관리 포트에 대한 액세스를 제한하는 [NSG(네트워크 보안 그룹)](../virtual-network/virtual-networks-nsg.md) 규칙을 사용하여 공격자의 대상이 되지 않도록 합니다.
+한 가지 방법은 tooreduce 노출 tooa 무차별 암호 대입 공격은 toolimit hello의 포트가 열려 있는 시간입니다. 관리 포트가 언제 든 toobe 열기는 필요 하지 않습니다. Toobe만 해야 하는 동안 열려는 연결 된 VM을 예를 들어 tooperform toohello 관리 또는 유지 관리 작업입니다. 보안 센터를 사용 하는 just-in-time에서 활성화 되 면 [네트워크 보안 그룹](../virtual-network/virtual-networks-nsg.md) 공격자가 대상으로 지정할 수 있도록 액세스 toomanagement 포트를 제한 하는 (NSG) 규칙을 합니다.
 
 ![Just-In-Time 시나리오][1]
 
 ## <a name="how-does-just-in-time-access-work"></a>Just-In-Time 액세스는 어떻게 작동하나요?
 
-Just-In-Time이 활성화되면 Security Center는 NSG 규칙을 만들어 Azure VM으로의 인바운드 트래픽을 잠급니다. VM에서 인바운드 트래픽을 잠글 포트를 선택합니다. 이러한 포트는 Just-In-Time 솔루션에 의해 제어됩니다.
+Just-in-time에서 활성화 되 면 NSG 규칙을 만들어 보안 센터 인바운드 트래픽 tooyour Azure Vm 아래로 잠급니다. Hello 포트 선택 hello VM toowhich에 인바운드 트래픽을 잠기는 합니다. 이러한 포트는 hello 시간 솔루션에만 있는 것으로 제어 됩니다.
 
-사용자가 VM에 액세스를 요청하면 Security Center는 해당 사용자에게 Azure 리소스에 대한 쓰기 액세스 권한을 제공하는 [RBAC(역할 기반 액세스 제어)](../active-directory/role-based-access-control-configure.md) 권한이 있는지 확인합니다. 쓰기 권한이 있는 경우 요청이 승인되고 Security Center가 지정된 시간 동안 관리 포트로의 인바운드 트래픽을 허용하도록 NSG(네트워크 보안 그룹)을 자동으로 구성합니다. 시간이 만료되면 Security Center에서 NSG를 이전 상태로 복원합니다.
+보안 센터 해당 hello 사용자가을 확인 한 사용자 액세스 tooa VM를 요청 하면 [역할 기반 액세스 제어 (RBAC)](../active-directory/role-based-access-control-configure.md) hello Azure 리소스에 대 한 쓰기 액세스를 제공 하는 사용 권한입니다. 인바운드 트래픽 toohello 관리 포트 지정 된 시간을 양의 hello에 대 한 쓰기 권한이 있는, hello 요청이 승인 되 고 보안 센터 (Nsg) 네트워크 보안 그룹 tooallow hello를 자동으로 구성 하는 경우. Hello 시간 기간이 만료 되 면 보안 센터 hello Nsg tootheir 이전 상태로 복원 합니다.
 
 > [!NOTE]
-> Security Center Just-In-Time VM 액세스는 현재 Azure Resource Manager를 통해 배포된 VM만 지원합니다. 클래식 및 Resource Manager 배포 모델에 대한 자세한 내용은 [Azure Resource Manager 및 클래식 배포](../azure-resource-manager/resource-manager-deployment-model.md)를 참조하세요.
+> Security Center Just-In-Time VM 액세스는 현재 Azure Resource Manager를 통해 배포된 VM만 지원합니다. 클래식 hello 및 리소스 관리자 배포 모델에 대 한 자세한 참조 toolearn [Azure 리소스 관리자 및 클래식 배포](../azure-resource-manager/resource-manager-deployment-model.md)합니다.
 >
 >
 
 ## <a name="using-just-in-time-access"></a>Just-In-Time 액세스 사용
 
-**Security Center** 블레이드의 **Just-In-Time VM 액세스** 타일에는 Just-In-Time 액세스에 대해 구성된 VM 수와 지난 주 승인된 액세스 요청 수가 표시됩니다.
+hello **VM 액세스 시간에에서만** hello에 바둑판식으로 배열 **보안 센터** 블레이드 지난주 hello에 대 한 액세스 승인 된 요청 시간 액세스 및 hello 수에만 있는 것에 대해 구성 된 Vm의 hello 수를 표시 합니다.
 
-**Just-In-Time VM 액세스** 타일을 선택하면 **Just-In-Time VM 액세스** 블레이드가 열립니다.
+선택 hello **VM 액세스 시간에에서만** 타일 및 hello **VM 액세스 시간에에서만** 블레이드를 엽니다.
 
 ![Just-In-Time VM 액세스 타일][2]
 
-**Just-In-Time VM 액세스** 블레이드는 VM 상태에 대한 정보를 제공합니다.
+hello **VM 액세스 시간에에서만** 블레이드 Vm의 hello 상태에 대해 설명 합니다.
 
-- **구성됨** - Just-In-Time VM 액세스를 지원하도록 구성된 VM입니다. 표시된 데이터는 지난 주에 대한 데이터이며 각 VM에 대해 승인된 요청 수, 마지막 액세스 날짜 및 시간, 마지막 사용자를 포함합니다.
+- **구성** -VM 액세스 시간에만 구성 된 toosupport 상태인 Vm입니다. 표시 되는 hello 데이터 hello 지난 주에 대 한 이며 승인 된 요청, 마지막 사용 날짜 및 시간 및 마지막 사용자의 각 VM hello 번호에 대 한 포함 됩니다.
 - **권장** - Just-In-Time VM 액세스를 지원할 수 있지만 구성되지 않은 VM입니다. 이러한 VM에는 Just-In-Time VM 액세스 제어를 사용하도록 설정하는 것이 좋습니다. [Just-In-Time VM 액세스 사용](#enable-just-in-time-vm-access)을 참조하세요.
-- **권장 사항 없음** - VM이 권장되지 않을 수 있는 이유입니다.
-  - 누락된 NSG - Just-In-Time 솔루션을 사용하려면 NSG가 있어야 합니다.
-  - 클래식 VM - Security Center Just-In-Time VM 액세스는 현재 Azure Resource Manager를 통해 배포된 VM만 지원합니다. 클래식 배포는 Just-In-Time 솔루션에서 지원되지 않습니다.
-  - 기타 - Just-In-Time 솔루션이 구독 또는 리소스 그룹의 보안 정책에서 해제되거나 VM에 공용 IP가 없거나 NSG가 없는 경우 VM은 이 범주에 속합니다.
+- **권장 사항 없음** -권장 toobe 하지 VM을 일으킬 수 있는 원인은 다음과 같습니다.
+  - NSG-시간 솔루션에만 있는 hello 누락 된 위치에는 NSG toobe가 필요 합니다.
+  - 클래식 VM - Security Center Just-In-Time VM 액세스는 현재 Azure Resource Manager를 통해 배포된 VM만 지원합니다. 클래식 배포 시간 솔루션에만 있는 hello에서 지원 되지 않습니다.
+  - 다른-VM 하나 공용 IP 없습니다 아니며 위치에서 NSG를 포함 하지 않는 솔루션 hello 구독 또는 hello 리소스 그룹의 보안 정책을 hello 꺼져 just-in-time에서 hello 또는 해당 hello VM이이 범주에는.
 
 ## <a name="configuring-a-just-in-time-access-policy"></a>Just-In-Time 액세스 정책 구성
 
-사용하도록 설정할 VM을 선택하려면
+tooselect hello tooenable 원하는 Vm:
 
-1. **Just-In-Time VM 액세스** 블레이드에서 **권장** 탭을 선택합니다.
+1. Hello에 **VM 액세스 시간에에서만** 블레이드, 선택 hello **권장** 탭 합니다.
 
   ![Just-In-Time 액세스 사용][3]
 
-2. **VM** 아래에서 사용하도록 설정할 VM을 선택합니다. 그러면 VM 옆에 있는 확인 표시가 선택됩니다.
+2. 아래 **Vm**, 원하는 tooenable hello Vm을 선택 합니다. 확인 표시 다음 tooa VM을 추가합니다.
 3. **VM에서 JIT 사용**을 선택합니다.
 4. **저장**을 선택합니다.
 
 ### <a name="default-ports"></a>기본 포트
 
-Security Center에서 Just-In-Time 사용을 권장하는 기본 포트를 확인할 수 있습니다.
+보안 센터는 적시에 사용 하도록 권장 되는 hello 기본 포트를 확인할 수 있습니다.
 
-1. **Just-In-Time VM 액세스** 블레이드에서 **권장** 탭을 선택합니다.
+1. Hello에 **VM 액세스 시간에에서만** 블레이드, 선택 hello **권장** 탭 합니다.
 
   ![기본 포트 표시][6]
 
-2. **VM** 아래에서 VM을 선택합니다. 그러면 VM 옆에 있는 확인 표시가 선택되고 **JIT VM 액세스 구성** 블레이드가 열립니다. 이 블레이드에 기본 포트가 표시됩니다.
+2. **VM** 아래에서 VM을 선택합니다. 이렇게 하면 추가 확인 표시가 다음 toohello VM과 열립니다 hello **JIT VM 액세스 구성** 블레이드입니다. 이 블레이드는 hello 기본 포트를 표시합니다.
 
 ### <a name="add-ports"></a>포트 추가
 
-**JIT VM 액세스 구성** 블레이드에서 Just-In-Time 솔루션을 사용하려는 새 포트를 추가 및 구성할 수 있습니다.
+Hello에서 **JIT VM 액세스 구성** 블레이드를 추가 하 고 수도 있습니다 tooenable hello 시간 솔루션에만 있는 것을 원하는 새 포트를 구성 합니다.
 
-1. **JIT VM 액세스 구성** 블레이드에서 **추가**를 선택합니다. 그러면 **포트 추가 구성** 블레이드가 열립니다.
+1. Hello에 **JIT VM 액세스 구성** 블레이드를 **추가**합니다. Hello 열립니다 **포트 구성 추가** 블레이드입니다.
 
   ![포트 구성][7]
 
-2. **포트 추가 구성** 블레이드에서 포트, 프로토콜 유형, 허용되는 원본 IP 및 최대 요청 시간을 확인합니다.
+2. **포트 구성 추가** 허용 Ip, 소스 및 최대 요청 시간 hello 포트, 프로토콜 종류를 식별 블레이드를 만듭니다.
 
-  허용되는 원본 IP는 승인된 요청 시 액세스 권한을 얻도록 허용된 IP 범위입니다.
+  승인 된 요청에 따라 hello IP 범위 허용된 tooget 액세스는 원본 Ip 허용 합니다.
 
-  최대 요청 시간은 특정 포트를 열 수 있는 최대 기간입니다.
+  최대 요청 시간은 hello 최대 시간 창은 특정 포트를 열 수 있습니다.
 
 3. **확인**을 선택합니다.
 
-## <a name="requesting-access-to-a-vm"></a>VM에 대한 액세스 요청
+## <a name="requesting-access-tooa-vm"></a>VM 액세스 tooa 요청
 
-VM에 대한 액세스를 요청하려면
+toorequest 액세스 tooa VM:
 
-1. **Just-In-Time VM 액세스** 블레이드에서 **구성됨** 탭을 선택합니다.
-2. **VM** 아래에서 액세스가 가능하도록 할 VM을 선택합니다. 그러면 VM 옆에 있는 확인 표시가 선택됩니다.
-3. **액세스 요청**을 선택합니다. 그러면 **액세스 요청** 블레이드가 열립니다.
+1. Hello에 **VM 액세스 시간에에서만** 블레이드, 선택 hello **자동 구성** 탭 합니다.
+2. 아래 **Vm**, tooenable 액세스 해야 하는 hello Vm을 선택 합니다. 확인 표시 다음 tooa VM을 추가합니다.
+3. **액세스 요청**을 선택합니다. Hello 열립니다 **액세스 권한을 요청** 블레이드입니다.
 
-  ![VM에 대한 액세스 요청][4]
+  ![요청 액세스 tooa VM][4]
 
-4. **액세스 요청** 블레이드에서 각 VM에 대해, 열어 둘 포트, 포트가 열려 있는 원본 IP 및 포트를 열어 둘 기간을 구성합니다. Just-In-Time 정책에 구성된 포트에만 액세스를 요청할 수 있습니다. 각 포트에는 Just-In-Time 정책에서 파생된 최대 허용된 시간이 있습니다.
+4. Hello에 **액세스 권한을 요청** hello 포트는 hello 원본 IP와 함께 각 VM hello 포트 tooopen는 hello에 대 한 포트를 열지 tooand hello 시간 창을 열에 대 한 구성 블레이드를 만듭니다. 시간 정책에만 있는 hello에 구성 된 액세스만 toohello 포트를 요청할 수 있습니다. 각 포트에 시간 정책에만 있는 hello에서 파생 된 최대 허용된 시간입니다.
 5. **포트 열기**를 선택합니다.
 
 ## <a name="editing-a-just-in-time-access-policy"></a>Just-In-Time 액세스 정책 편집
 
-해당 VM에 대해 열 새 포트를 추가 및 구성하거나 이미 보호된 포트와 관련된 다른 매개 변수를 변경하여 VM의 기존 Just-In-Time 정책을 변경할 수 있습니다.
+VM의 시간 정책에 추가 하 고 해당 VM에 대 한 새 포트 tooopen를 구성 하 여 기존를 변경 하거나 다른 매개 변수를 변경 하 여 관련된 tooan 이미 보호 포트입니다.
 
-VM의 Just-In-Time 정책을 편집하기 위해 **구성됨** 탭이 사용됩니다.
+주문 tooedit에서 기존 VM의 시간 정책에만 hello **자동 구성** 탭을 사용 합니다.
 
-1. **VM** 아래에서 해당 VM에 대한 행 안의 3개 점을 클릭하여 포트를 추가할 VM을 선택합니다. 그러면 메뉴가 열립니다.
-2. 메뉴에서 **편집**을 선택합니다. 그러면 **JIT VM 액세스 구성** 블레이드가 열립니다.
+1. 아래 **Vm**를 해당 VM에 대 한 hello 행 내에서 hello 세 점을 클릭 하면 포트 tooby VM tooadd를 선택 합니다. 그러면 메뉴가 열립니다.
+2. 선택 **편집** hello 메뉴에 있습니다. Hello 열립니다 **JIT VM 액세스 구성** 블레이드입니다.
 
   ![정책 편집][8]
 
-3. **JIT VM 액세스 구성** 블레이드에서 포트를 클릭하여 이미 보호된 포트의 기존 설정을 편집하거나 **추가**를 선택할 수 있습니다. 그러면 **포트 추가 구성** 블레이드가 열립니다.
+3. Hello에 **JIT VM 액세스 구성** 블레이드에서 해당 포트를 클릭 하 여 hello 이미 보호 된 포트의 기존 설정을 편집 하거나 하거나 선택할 수 있습니다 **추가**합니다. Hello 열립니다 **포트 구성 추가** 블레이드입니다.
 
   ![포트 추가][7]
 
-4. **포트 추가 구성** 블레이드에서 포트, 프로토콜 유형, 허용되는 원본 IP 및 최대 요청 시간을 확인합니다.
+4. **포트 구성 추가** 블레이드 hello 포트, 프로토콜 종류, 허용 된 Ip, 소스 및 최대 요청 시간을 식별 합니다.
 5. **확인**을 선택합니다.
 6. **저장**을 선택합니다.
 
 ## <a name="auditing-just-in-time-access-activity"></a>Just-In-Time 액세스 활동 감사
 
-로그 검색을 사용하여 VM 활동에 대한 정보를 얻을 수 있습니다. 로그를 보려면
+로그 검색을 사용하여 VM 활동에 대한 정보를 얻을 수 있습니다. tooview 로그:
 
-1. **Just-In-Time VM 액세스** 블레이드에서 **구성됨** 탭을 선택합니다.
-2. **VM** 아래에서 해당 VM에 대한 행 안의 3개 점을 클릭하여 정보를 확인합니다. 그러면 메뉴가 열립니다.
-3. 메뉴에서 **활동 로그**를 선택합니다. 그러면 **활동 로그** 블레이드가 열립니다.
+1. Hello에 **VM 액세스 시간에에서만** 블레이드, 선택 hello **자동 구성** 탭 합니다.
+2. 아래 **Vm**를 해당 VM에 대 한 hello 행 내에서 hello 세 점을 클릭 하 여에 대 한 VM tooview 정보를 선택 합니다. 그러면 메뉴가 열립니다.
+3. 선택 **활동 로그** hello 메뉴에 있습니다. Hello 열립니다 **활동 로그** 블레이드입니다.
 
 ![활동 로그 선택][9]
 
-**활동 로그** 블레이드는 시간, 날짜 및 구독과 함께 해당 VM에 대한 이전 작업의 필터링된 보기를 제공합니다.
+hello **활동 로그** 블레이드 시간, 날짜 및 구독 함께 해당 VM에 대 한 이전 작업의 필터링된 된 뷰를 제공 합니다.
 
 ![활동 로그 보기][5]
 
-**여기를 클릭하여 모든 항목을 CSV로 다운로드하세요.**를 선택하여 로그 정보를 다운로드할 수 있습니다.
+선택 하 여 hello 로그 정보를 다운로드할 수 **여기 toodownload 모든 항목을 클릭 hello CSV로**합니다.
 
-필터를 수정하고 **적용**을 선택하여 검색 및 로그를 만듭니다.
+Hello 필터를 수정 하 고 선택 **적용** toocreate 로그와으로 검색 합니다.
 
 ## <a name="using-just-in-time-vm-access-via-powershell"></a>PowerShell을 통해 Just-In-Time VM 액세스 사용
 
-PowerShell을 통해 Just-In-Time 솔루션을 사용하려면 [최신](/powershell/azure/install-azurerm-ps) 버전의 Azure PowerShell 버전이 있어야 합니다.
-그러면 PowerShell 갤러리에서 [최신](https://www.powershellgallery.com/packages/Azure-Security-Center/0.0.12) Azure Security Center를 설치해야 합니다.
+PowerShell 통해 시간 솔루션에만 순서 toouse hello에서 hello 있는지 확인 [최신](/powershell/azure/install-azurerm-ps) Azure PowerShell 버전입니다.
+Tooinstall hello 이렇게 해야 [최신](https://www.powershellgallery.com/packages/Azure-Security-Center/0.0.12) hello PowerShell 갤러리에서 Azure 보안 센터입니다.
 
 ### <a name="configuring-a-just-in-time-policy-for-a-vm"></a>VM에 대한 Just-In-Time 정책 구성
 
-특정 VM에서 Just-In-Time 정책을 구성하려면 PowerShell 세션에서 Set-ASCJITAccessPolicy 명령을 실행해야 합니다.
-cmdlet 설명서에서 자세히 알아보세요.
+tooconfigure just가 특정 VM에 시간 정책에 필요한 toorun이이 명령은 PowerShell 세션에서: ASCJITAccessPolicy 집합입니다.
+Hello cmdlet 설명서 toolearn 자세한를 따릅니다.
 
-### <a name="requesting-access-to-a-vm"></a>VM에 대한 액세스 요청
+### <a name="requesting-access-tooa-vm"></a>VM 액세스 tooa 요청
 
-Just-In-Time 솔루션으로 보호되는 특정 VM에 액세스하려면 PowerShell 세션에서 Invoke-ASCJITAccess를 실행해야 합니다.
-cmdlet 설명서에서 자세히 알아보세요.
+로 보호 되는 특정 VM tooaccess 시간 솔루션에만 있는 hello, PowerShell 세션에서 toorun이이 명령은 필요: ASCJITAccess 호출 합니다.
+Hello cmdlet 설명서 toolearn 자세한를 따릅니다.
 
 ## <a name="next-steps"></a>다음 단계
-이 문서에서는 Azure Security Center에서 Just-In-Time VM 액세스가 Azure 가상 컴퓨터에 대한 액세스를 제어하는 데 어떻게 도움이 되는지 알아보았습니다.
+이 문서에서 배운 어떻게 just-in-time 보안 센터를 사용 하면 VM 액세스 액세스 tooyour Azure 제어 가상 컴퓨터.
 
-보안 센터에 대한 자세한 내용은 다음을 참조하세요.
+보안 센터에 대해 자세히 toolearn hello 다음을 참조 합니다.
 
-- [보안 정책 설정](security-center-policies.md) - Azure 구독 및 리소스 그룹에 대해 보안 정책을 구성하는 방법을 알아봅니다.
+- [보안 정책 설정](security-center-policies.md) -학습 방법을 Azure 구독 및 리소스 그룹에 대 한 tooconfigure 보안 정책입니다.
 - [보안 권장 사항 관리](security-center-recommendations.md) - 권장 사항이 Azure 리소스 보호에 어떤 도움이 되는지를 알아봅니다.
-- [보안 상태 모니터링](security-center-monitoring.md) - Azure 리소스의 상태를 모니터링하는 방법을 알아봅니다.
-- [보안 경고 관리 및 대응](security-center-managing-and-responding-alerts.md) - 보안 경고를 관리하고 대응하는 방법을 알아봅니다.
-- [파트너 솔루션 모니터링](security-center-partner-solutions.md) - 파트너 솔루션의 상태를 모니터링하는 방법을 알아봅니다.
-- [보안 센터 FAQ](security-center-faq.md) - 서비스 사용에 관한 질문과 대답을 찾습니다.
+- [보안 상태 모니터링](security-center-monitoring.md) -toomonitor Azure 리소스의 상태를 hello 하는 방법에 대해 알아봅니다.
+- [관리 및 toosecurity 경고 응답](security-center-managing-and-responding-alerts.md) -학습 방법을 toomanage 및 응답 toosecurity 경고 합니다.
+- [파트너 솔루션 모니터링](security-center-partner-solutions.md) -toomonitor 파트너 솔루션의 상태를 hello 하는 방법에 대해 알아봅니다.
+- [보안 센터 FAQ](security-center-faq.md) -찾기 hello 서비스를 사용 하는 방법에 대 한 질문과 대답입니다.
 - [Azure 보안 블로그](https://blogs.msdn.microsoft.com/azuresecurity/) - Azure 보안 및 규정 준수에 관한 블로그 게시물을 찾습니다.
 
 

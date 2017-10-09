@@ -1,6 +1,6 @@
 ---
-title: "기존 Azure 데이터 웨어하우스를 Premium Storage로 마이그레이션 | Microsoft Docs"
-description: "기존 데이터 웨어하우스를 Premium Storage로 마이그레이션하기 위한 지침"
+title: "aaaMigrate 기존 Azure 데이터 웨어하우스 toopremium 저장소 | Microsoft Docs"
+description: "기존 데이터 웨어하우스 toopremium 저장소로 마이그레이션하기 위한 지침"
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -15,19 +15,19 @@ ms.workload: data-services
 ms.custom: migrate
 ms.date: 11/29/2016
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 860e50b532b4b0a21d3be54f087730070b0e56bb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 145199c2da1f6f1fb8898626cd04886c42d82204
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrate-your-data-warehouse-to-premium-storage"></a>데이터 웨어하우스를 Premium Storage로 마이그레이션
-Azure SQL Data Warehouse는 최근에 도입된 [큰 성능 예측 가능성을 위한 Premium Storage][premium storage for greater performance predictability]입니다. 이제 표준 저장소에 있는 기존 데이터 웨어하우스를 Premium Storage로 마이그레이션할 수 있습니다. 자동 마이그레이션을 활용하거나, 마이그레이션할 시기를 제어하려면(가동 중지 시간 포함) 직접 마이그레이션할 수도 있습니다.
+# <a name="migrate-your-data-warehouse-toopremium-storage"></a>데이터 웨어하우스 toopremium 저장소 마이그레이션
+Azure SQL Data Warehouse는 최근에 도입된 [큰 성능 예측 가능성을 위한 Premium Storage][premium storage for greater performance predictability]입니다. Toopremium 저장소를 마이그레이션할 하는 기존 데이터 웨어하우스 표준 저장소에 현재 될 수 있습니다. 자동 마이그레이션의 이용할 수 있습니다 toocontrol 선호 하는 경우 또는 때 toomigrate (하는 과정이 가동 중지 시간이)를 할 수 있는 마이그레이션 직접 hello 합니다.
 
-둘 이상의 데이터 웨어하우스가 있는 경우 [자동 마이그레이션 일정][automatic migration schedule]을 사용하여 마이그레이션되는 시점을 확인하세요.
+둘 이상의 데이터 웨어하우스를 사용 하는 경우 사용 하 여 hello [일정 자동 마이그레이션] [ automatic migration schedule] toodetermine 마이그레이션하면도 됩니다.
 
 ## <a name="determine-storage-type"></a>저장소 유형 결정
-다음 날짜 이전에 데이터 웨어하우스를 생성한 경우 현재 표준 저장소를 사용하고 있는 것입니다.
+Hello 날짜를 수행 하기 전에 데이터 웨어하우스를 만든 경우 현재 표준 저장소를 사용 하는 것입니다.
 
 | **지역** | **이 날짜 이전에 만든 데이터 웨어하우스** |
 |:--- |:--- |
@@ -41,31 +41,31 @@ Azure SQL Data Warehouse는 최근에 도입된 [큰 성능 예측 가능성을 
 | 미국 중북부 |2016년 11월 10일 |
 
 ## <a name="automatic-migration-details"></a>자동 마이그레이션 세부 정보
-기본적으로 [자동 마이그레이션 일정][automatic migration schedule] 동안 하위 지역의 현지 시간으로 오후 6시~오전 6시 동안 데이터를 마이그레이션합니다. 마이그레이션하는 동안 기존 데이터 웨어하우스를 사용할 수 없습니다. 마이그레이션은 데이터 웨어하우스당 1TB의 저장소마다 약 1시간이 소요됩니다. 또한 자동 마이그레이션의 어느 부분에서도 비용이 청구되지 않습니다.
+기본적으로 마이그레이션할 예정 데이터베이스를 해당 지역의 현지 시간으로 오전 6 시와 오후 6시 사이 hello 중 [일정 자동 마이그레이션][automatic migration schedule]합니다. Hello 마이그레이션하는 동안 기존 데이터 웨어하우스의 사용할 수 없게 됩니다 수 있습니다. hello 마이그레이션 데이터 웨어하우스 당 저장소 테라바이트 당 약 1 시간이 걸립니다. Hello 자동 마이그레이션의 한 부분에 청구 되지 됩니다.
 
 > [!NOTE]
-> 마이그레이션이 완료되면 데이터 웨어하우스는 다시 온라인 상태가 되어 사용할 수 있게 됩니다.
+> Hello 마이그레이션이 완료 되 면 다시 온라인이 고 사용 가능한 데이터 웨어하우스가 됩니다.
 >
 >
 
-Microsoft는 다음 단계에 따라 마이그레이션을 완료하며 사용자는 개입할 필요가 없습니다. 이 예제에서는 표준 저장소의 기존 데이터 웨어하우스의 이름이 현재 "MyDW"라고 가정합니다.
+Microsoft는 hello 단계 toocomplete hello 마이그레이션 (사용자의 모든 참여 필요 하지 않습니다) 하는 데입니다. 이 예제에서는 표준 저장소의 기존 데이터 웨어하우스의 이름이 현재 "MyDW"라고 가정합니다.
 
-1. Microsoft는 "MyDW"를 "MyDW_DO_NOT_USE_[타임스탬프]"로 바꿉니다.
+1. 너무의 이름을 "MyDW" Microsoft "MyDW_DO_NOT_USE_ [타임 스탬프]"입니다.
 2. Microsoft는 "MyDW_DO_NOT_USE_[타임스탬프]"를 일시 중지합니다. 이 시간 동안 백업이 수행됩니다. 이 과정에서 문제가 발생한 경우 여러 일시 중지 및 다시 시작이 표시될 수 있습니다.
-3. Microsoft는 2단계에서 수행된 백업에서 Premium Storage에 "MyDW"라는 새 데이터 웨어하우스를 만듭니다. 복원이 완료될 때까지 "MyDW"는 나타나지 않습니다.
-4. 복원이 완료되면 "MyDW"는 동일한 데이터 웨어하우스 단위 및 마이그레이션 이전 상태(일시 중지 또는 활성)로 돌아갑니다.
-5. 마이그레이션이 완료되면 Microsoft는 "MyDW_DO_NOT_USE_[타임스탬프]"를 삭제합니다.
+3. Microsoft "MyDW" 프리미엄 저장소에 hello 백업에서 2 단계에서 수행 되 라는 새 데이터 웨어하우스를 만듭니다. "MyDW" hello 복원이 완료 된 후까지 표시 되지 않습니다.
+4. (일시 중지 된 또는 현재) "MyDW" toohello 동일한 데이터 웨어하우스 단위와 상태를 반환 hello 복원이 완료 되 면 hello 마이그레이션을 시작 하기 전에 있었던 합니다.
+5. Hello 마이그레이션이 완료 된 후 Microsoft "MyDW_DO_NOT_USE_ [타임 스탬프]"를 삭제 합니다.
 
 > [!NOTE]
-> 이러한 설정은 마이그레이션의 일부로 수행되지는 않습니다.
+> hello 다음 설정으로 이전 되지 않습니다 hello 마이그레이션의 일환으로:
 >
-> * 데이터베이스 수준에서 감사를 다시 사용하도록 설정해야 합니다.
-> * 데이터베이스 수준에서 방화벽 규칙을 다시 추가해야 합니다. 서버 수준에서 방화벽 규칙은 영향을 받지 않습니다.
+> * Hello 데이터베이스 수준 감사 toobe 다시 활성화 해야 합니다.
+> * Hello 데이터베이스 수준 방화벽 규칙 toobe 다시 추가 해야 합니다. Hello 서버 수준 방화벽 규칙의 영향을 받지 않습니다.
 >
 >
 
 ### <a name="automatic-migration-schedule"></a>자동 마이그레이션 일정
-자동 마이그레이션은 다음 중단 일정 동안 오후 6시 - 오전 6시(하위 지역별 현지 시간)에 발생합니다.
+자동 마이그레이션 중단 일정에 따라 hello 중 오후 6시 및 오전 6시 (현지 시간 / 지역당) 간에 발생 합니다.
 
 | **지역** | **예상된 시작 날짜** | **예상된 종료 날짜** |
 |:--- |:--- |:--- |
@@ -78,49 +78,49 @@ Microsoft는 다음 단계에 따라 마이그레이션을 완료하며 사용�
 | 일본 서부 |아직 결정되지 않음 |아직 결정되지 않음 |
 | 미국 중북부 |2017년 1월 9일 |2017년 1월 13일 |
 
-## <a name="self-migration-to-premium-storage"></a>Premium Storage로 자체 마이그레이션
-가동 중지가 발생하는 시간을 제어하려는 경우 아래 단계를 사용하여 표준 저장소의 기존 데이터 웨어하우스를 Premium Storage로 마이그레이션할 수 있습니다. 이 옵션을 선택하면 해당 하위 지역에서 자동 마이그레이션을 시작하기 전에 자체 마이그레이션을 완료해야 합니다. 이렇게 하면 자동 마이그레이션이 충돌할 위험을 피할 수 있습니다([자동 마이그레이션 일정][automatic migration schedule] 참조).
+## <a name="self-migration-toopremium-storage"></a>자동 마이그레이션 toopremium 저장소
+작동 중단 시간이 발생 한 경우 toocontrol를 원하는 경우 hello 나오는 단계 toomigrate 기존 데이터 웨어하우스 표준 저장소 toopremium 저장소에 사용할 수 있습니다. 이 옵션을 선택 하는 경우에 해당 지역에서 hello 자동 마이그레이션을 시작 하기 전에 hello 자체 마이그레이션을 완료 해야 합니다. 이렇게 하면 hello 자동 마이그레이션 충돌의 위험을 방지 하는 (toohello 참조 [일정 자동 마이그레이션][automatic migration schedule]).
 
 ### <a name="self-migration-instructions"></a>자체 마이그레이션 지침
-데이터 웨어하우스를 직접 마이그레이션하려면 백업 및 복원 기능을 사용하세요. 마이그레이션의 복원 부분은 데이터 웨어하우스당 1TB 저장소마다 약 1시간 정도가 소요될 예정입니다. 마이그레이션이 완료된 후 동일한 이름을 유지하려는 경우 [마이그레이션 중에 이름을 바꾸기 위한 단계][steps to rename during migration]를 따르세요.
+데이터 웨어하우스 직접 hello 백업 및 복원 기능 toomigrate 합니다. hello 복원의 hello 마이그레이션 부분이 예상된 tootake 데이터 웨어하우스 당 저장소 테라바이트 당 약 1 시간입니다. 마이그레이션이 완료 된 후 이름과 같은 이름을 tookeep hello 원한다 면 hello에 따라 [마이그레이션하는 동안 단계 toorename][steps toorename during migration]합니다.
 
 1. 데이터 웨어하우스를 [일시 중지][Pause]합니다. 자동 백업이 사용됩니다.
 2. 가장 최근의 스냅숏에서 [복원][Restore]합니다.
-3. 표준 저장소의 기존 데이터 웨어하우스를 삭제합니다. **이 단계의 수행에 실패하면 두 데이터 웨어하우스에 대해 비용이 청구됩니다.**
+3. 표준 저장소의 기존 데이터 웨어하우스를 삭제합니다. **Toodo을이 단계가 실패 하는 경우 데이터 웨어하우스 모두에 대 한 청구 됩니다.**
 
 > [!NOTE]
-> 이러한 설정은 마이그레이션의 일부로 수행되지는 않습니다.
+> hello 다음 설정으로 이전 되지 않습니다 hello 마이그레이션의 일환으로:
 >
-> * 데이터베이스 수준에서 감사를 다시 사용하도록 설정해야 합니다.
-> * 데이터베이스 수준에서 방화벽 규칙을 다시 추가해야 합니다. 서버 수준에서 방화벽 규칙은 영향을 받지 않습니다.
+> * Hello 데이터베이스 수준 감사 toobe 다시 활성화 해야 합니다.
+> * Hello 데이터베이스 수준 방화벽 규칙 toobe 다시 추가 해야 합니다. Hello 서버 수준 방화벽 규칙의 영향을 받지 않습니다.
 >
 >
 
 #### <a name="rename-data-warehouse-during-migration-optional"></a>마이그레이션 중 데이터 웨어하우스의 이름 바꾸기(선택 사항)
-동일한 논리 서버의 두 개의 데이터베이스는 동일한 이름을 가질 수 없습니다. 이제 SQL Data Warehouse는 데이터 웨어하우스 이름 바꾸기 기능을 지원합니다.
+두 데이터베이스를 동일한 논리 서버가 하 여야 하는 hello hello 동일한 이름입니다. SQL 데이터 웨어하우스는 이제 hello 기능 toorename 데이터 웨어하우스를 지원합니다.
 
 이 예제에서는 표준 저장소의 기존 데이터 웨어하우스의 이름이 현재 "MyDW"라고 가정합니다.
 
-1. 다음 ALTER DATABASE 명령을 사용하여 "MyDW"를 다른 이름으로 바꿉니다. (이 예제에서는 "MyDW_BeforeMigration"으로 이름을 지정합니다.) 이 명령은 기존 트랜잭션을 모두 중지하며, 작업 성공을 위해 master 데이터베이스에서 수행되어야 합니다.
+1. "MyDW" hello 다음 ALTER DATABASE 명령을 사용 하 여 이름을 바꿉니다. (이 예제에서는 합니다 이름을 바꾸지 "MyDW_BeforeMigration.")  이 명령은 모든 기존 트랜잭션을 중지 하 고 hello master 데이터베이스 toosucceed에서 수행 되어야 합니다.
    ```
    ALTER DATABASE CurrentDatabasename MODIFY NAME = NewDatabaseName;
    ```
 2. "MyDW_BeforeMigration"을 [일시 중지][Pause]합니다. 자동 백업이 사용됩니다.
-3. 가장 최근의 스냅숏에서 이전 이름(예: "MyDW")을 갖는 새 데이터베이스로 [복원][Restore]합니다.
-4. "MyDW_BeforeMigration"을 삭제합니다. **이 단계의 수행에 실패하면 두 데이터 웨어하우스에 대해 비용이 청구됩니다.**
+3. [복원] [ Restore] 가장 최근 스냅숏의 hello 이름으로 새 데이터베이스에서 toobe (예: "MyDW")이 사용 됩니다.
+4. "MyDW_BeforeMigration"을 삭제합니다. **Toodo을이 단계가 실패 하는 경우 데이터 웨어하우스 모두에 대 한 청구 됩니다.**
 
 
 ## <a name="next-steps"></a>다음 단계
-Premium Storage로 변경하여 데이터 웨어하우스의 기반 아키텍처에서 데이터베이스 blob 파일 수도 증가시켰습니다. 이 변경을 통해 성능을 최대한 개선하려면 다음 스크립트를 사용하여 클러스터형 columnstore 인덱스를 다시 작성하세요. 이 스크립트는 일부 기존 데이터를 추가 Blob에 강제로 적용하여 작동합니다. 아무 작업도 하지 않으면 자연스럽게 시간이 지나면서 테이블에 더 많은 데이터를 로드함에 따라 데이터가 재배포됩니다.
+데이터 웨어하우스의 hello 기본 아키텍처에서 데이터베이스 blob 파일의 횟수가 증가 레이블에도, hello로 toopremium 저장소를 변경 합니다. 이러한 변경의 toomaximize hello 성능 이점을 hello 다음 스크립트를 사용 하 여 클러스터형된 columnstore 인덱스 다시 작성 합니다. hello 스크립트는 기존 데이터 toohello 추가 blob 중 일부를 강제 적용 하 여 작동 합니다. 조치를 취하지 테이블에 더 많은 데이터를 로드 하는 대로 hello 데이터 시간에 따라 재배포할 자연스럽 게 됩니다.
 
 **필수 조건:**
 
-- 데이터 웨어하우스를 1,000개 이상의 데이터 웨어하우스 단위로 실행해야 합니다([계산 능력 크기 조정][scale compute power] 참조).
-- 스크립트를 실행하는 사용자가 [mediumrc 역할][mediumrc role] 이상이어야 합니다. 이 역할에 사용자를 추가하려면 다음을 실행합니다. ````EXEC sp_addrolemember 'xlargerc', 'MyUser'````
+- hello 데이터 웨어하우스를 실행할지 (1, 000 데이터 웨어하우스 단위 포함) 이상 (참조 [배율 계산 능력이][scale compute power]).
+- hello hello 스크립트를 실행 하는 사용자에에서 있어야 hello [mediumrc 역할] [ mediumrc role] 이상. 사용자 toothis 역할 tooadd hello 다음을 실행 합니다.````EXEC sp_addrolemember 'xlargerc', 'MyUser'````
 
 ````sql
 -------------------------------------------------------------------------------
--- Step 1: Create table to control index rebuild
+-- Step 1: Create table toocontrol index rebuild
 -- Run as user in mediumrc or higher
 --------------------------------------------------------------------------------
 create table sql_statements
@@ -138,7 +138,7 @@ where
 go
 
 --------------------------------------------------------------------------------
--- Step 2: Execute index rebuilds. If script fails, the below can be re-run to restart where last left off.
+-- Step 2: Execute index rebuilds. If script fails, hello below can be re-run toorestart where last left off.
 -- Run as user in mediumrc or higher
 --------------------------------------------------------------------------------
 
@@ -160,19 +160,19 @@ drop table sql_statements;
 go
 ````
 
-데이터 웨어하우스에 문제가 발생하는 경우 [지원 티켓을 만들고][create a support ticket] 가능한 원인으로 "Premium Storage로 마이그레이션"을 참조하세요.
+데이터 웨어하우스와 문제가 발생 하는 경우 [지원 티켓을 만드세요] [ create a support ticket] hello 가능한 원인으로 "마이그레이션 toopremium storage"를 참조 합니다.
 
 <!--Image references-->
 
 <!--Article references-->
 [automatic migration schedule]: #automatic-migration-schedule
-[self-migration to Premium Storage]: #self-migration-to-premium-storage
+[self-migration tooPremium Storage]: #self-migration-to-premium-storage
 [create a support ticket]: sql-data-warehouse-get-started-create-support-ticket.md
 [Azure paired region]: best-practices-availability-paired-regions.md
 [main documentation site]: services/sql-data-warehouse.md
 [Pause]: sql-data-warehouse-manage-compute-portal.md#pause-compute
 [Restore]: sql-data-warehouse-restore-database-portal.md
-[steps to rename during migration]: #optional-steps-to-rename-during-migration
+[steps toorename during migration]: #optional-steps-to-rename-during-migration
 [scale compute power]: sql-data-warehouse-manage-compute-portal.md#scale-compute-power
 [mediumrc role]: sql-data-warehouse-develop-concurrency.md
 

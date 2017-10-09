@@ -1,6 +1,6 @@
 ---
-title: "Azure Security Center에서 OS 버전 업데이트 | Microsoft Docs"
-description: "이 문서에서는 Azure 보안 센터 권장 사항 **OS 버전 업데이트**를 구현하는 방법을 보여 줍니다."
+title: "Azure 보안 센터에서 운영 체제 aaaUpdate 버전 | Microsoft Docs"
+description: "이 문서에서는 어떻게 tooimplement hello Azure 보안 센터 권장 * * 업데이트 OS 버전 * *입니다."
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/01/2016
 ms.author: terrylan
-ms.openlocfilehash: ce0d178914907750e5da59f223a4b1e04b9bb6fb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f3497d7266da40d3a965f9cb8e84392d2aaa28f0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="update-os-version-in-azure-security-center"></a>Azure 보안 센터에서 OS 버전 업데이트
-클라우드 서비스의 가상 컴퓨터(VM)의 경우 Azure 보안 센터는 사용 가능한 최신 버전이 있는 경우 운영 체제(OS) 업데이트를 권장합니다.  프로덕션 슬롯에서 실행되는 클라우드 서비스 웹 및 작업자 역할만 모니터링됩니다.
+클라우드 서비스에 가상 컴퓨터 (Vm)에 대 한 Azure 보안 센터에서 사용 가능한 최신 버전이 없는 경우 해당 hello 운영 체제 (OS) 업데이트 권장 합니다.  프로덕션 슬롯에서 실행되는 클라우드 서비스 웹 및 작업자 역할만 모니터링됩니다.
 
 > [!NOTE]
-> 이 문서에서는 배포 예제를 사용하여 서비스를 소개합니다.  단계별 가이드는 아닙니다.
+> 이 문서에서는 배포 예제를 사용 하 여 hello 서비스를 소개 합니다.  단계별 가이드는 아닙니다.
 > 
 > 
 
-## <a name="implement-the-recommendation"></a>권장 사항 구현
-1. **권장 사항** 블레이드에서 **OS 버전 업데이트**를 선택합니다.
+## <a name="implement-hello-recommendation"></a>Hello 권장 구성 구현
+1. Hello에 **권장 사항을** 블레이드를 **업데이트 OS 버전**합니다.
    ![OS 버전 업데이트][1]
-2. 이렇게 하면 **OS 버전 업데이트**블레이드가 열립니다. 이 블레이드의 단계를 따라 OS 버전을 업데이트합니다.
+2. Hello 블레이드가 열립니다 **업데이트 OS 버전**합니다. 이 블레이드 tooupdate hello OS 버전의 hello 단계를 수행 합니다.
 
 ## <a name="see-also"></a>참고 항목
-이 문서에서는 보안 센터 권장 사항 "OS 버전 업데이트"를 구현하는 방법을 보여 주었습니다. 클라우드 서비스 및 클라우드 서비스에 대한 OS 버전 업데이트에 대한 자세한 내용은 다음을 참조하세요.
+이 문서에 설명 했습니다 어떻게 tooimplement hello 보안 센터 권장 사항 "업데이트 OS 버전입니다." 클라우드 서비스 및 클라우드 서비스에 대 한 업데이트 hello OS 버전에 대해 자세히 toolearn 참조:
 
 * [클라우드 서비스 개요](../cloud-services/cloud-services-choose-me.md)
-* [클라우드 서비스를 업데이트하는 방법](../cloud-services/cloud-services-update-azure-service.md)
-* [클라우드 서비스를 구성하는 방법](../cloud-services/cloud-services-how-to-configure-portal.md)
+* [어떻게 tooupdate 클라우드 서비스](../cloud-services/cloud-services-update-azure-service.md)
+* [TooConfigure 클라우드 서비스 하는 방법](../cloud-services/cloud-services-how-to-configure-portal.md)
 
-보안 센터에 대한 자세한 내용은 다음을 참조하세요.
+보안 센터에 대해 자세히 toolearn hello 다음을 참조 합니다.
 
-* [Azure 보안 센터에서 보안 정책 설정](security-center-policies.md) -- Azure 구독 및 리소스 그룹에 대해 보안 정책을 구성하는 방법을 알아봅니다.
+* [Azure 보안 센터에서 보안 정책 설정](security-center-policies.md) -자세한 방법을 Azure 구독 및 리소스 그룹에 대 한 tooconfigure 보안 정책입니다.
 * [Azure 보안 센터에서 보안 권장 사항 관리](security-center-recommendations.md) -- 권장 사항이 Azure 리소스 보호에 어떤 도움이 되는지를 알아봅니다.
-* [Azure 보안 센터에서 보안 상태 모니터링](security-center-monitoring.md) –- Azure 리소스의 상태를 모니터링하는 방법을 알아봅니다.
-* [Azure 보안 센터에서 보안 경고 관리 및 대응](security-center-managing-and-responding-alerts.md) -- 보안 경고를 관리하고 대응하는 방법을 알아봅니다.
-* [Azure 보안 센터를 사용하여 파트너 솔루션 모니터링](security-center-partner-solutions.md) -- 파트너 솔루션의 상태를 모니터링하는 방법을 알아봅니다.
-* [Azure 보안 센터 FAQ](security-center-faq.md) -- 서비스 사용에 관한 질문과 대답을 찾습니다.
-* [Azure 보안 블로그](http://blogs.msdn.com/b/azuresecurity/) -- 최신 Azure 보안 뉴스 및 정보를 가져옵니다.
+* [Azure 보안 센터에서 보안 상태 모니터링](security-center-monitoring.md) -toomonitor Azure 리소스의 상태를 hello 하는 방법에 대해 알아봅니다.
+* [Azure 보안 센터에서 경고를 관리 하 고 응답 toosecurity](security-center-managing-and-responding-alerts.md) -자세한 방법을 toomanage 및 응답 toosecurity 경고 합니다.
+* [Azure 보안 센터를 사용 하 여 파트너 솔루션 모니터링](security-center-partner-solutions.md) -toomonitor 파트너 솔루션의 상태를 hello 하는 방법에 대해 알아봅니다.
+* [Azure 보안 센터 FAQ](security-center-faq.md) -찾기 hello 서비스를 사용 하는 방법에 대 한 질문과 대답입니다.
+* [Azure 보안 블로그](http://blogs.msdn.com/b/azuresecurity/) -hello 최신 Azure 보안 뉴스 및 정보를 가져옵니다.
 
 <!--Image references-->
 [1]: ./media/security-center-update-os-version/update-os-version.png

@@ -1,5 +1,5 @@
 ---
-title: "Azure의 SQL Server 가상 컴퓨터에서 데이터 탐색 | Microsoft Docs"
+title: "Azure에서 SQL Server 가상 컴퓨터의 데이터를 aaaExplore | Microsoft Docs"
 description: "Azure의 SQL Server 가상 컴퓨터에서 데이터를 탐색하고 기능 생성"
 services: machine-learning
 documentationcenter: 
@@ -14,44 +14,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: fashah;garye;bradsev
-ms.openlocfilehash: 16fabb29bdc8ec770efd843e18e9016e338a8f4e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 67f4b058b0f6557ee15fd42795c918d68f1a9871
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="heading"></a>Azure의 SQL Server 가상 컴퓨터에서 데이터 처리
-이 문서에서는 Azure의 SQL Server VM에 저장된 데이터를 탐색하고 데이터에 대한 기능을 생성하는 방법에 대해 알아봅니다. 이렇게 하려면 SQL을 사용하여 데이터 랭글링을 수행하거나 Python과 같은 프로그래밍 언어를 사용합니다.
+이 문서에서 다루는 방법을 tooexplore 데이터 및 Azure에서 SQL Server VM에 저장 된 데이터에 대 한 기능을 생성 합니다. 이렇게 하려면 SQL을 사용하여 데이터 랭글링을 수행하거나 Python과 같은 프로그래밍 언어를 사용합니다.
 
 > [!NOTE]
-> 이 문서의 샘플 SQL 문에서는 데이터가 SQL Server에 있는 것으로 가정합니다. 그렇지 않은 경우 데이터를 SQL Server로 이동하는 방법은 클라우드 데이터 과학 프로세스 맵을 참조하세요.
+> 이 문서에 hello 샘플 SQL 문을 SQL Server에서 데이터를 가정 합니다. 그렇지 않다면 참조 toohello 클라우드 데이터 과학 프로세스 지도 toolearn 어떻게 toomove 사용자 데이터 tooSQL 서버입니다.
 > 
 > 
 
 ## <a name="SQL"></a>SQL 사용
-이 섹션에서는 SQL을 사용하여 다음과 같은 데이터 랭글링 작업을 수행하는 방법에 대해 설명합니다.
+SQL을 사용 하 여이 섹션에서는 데이터 wrangling 작업을 수행 하는 hello 설명:
 
 1. [데이터 탐색](#sql-dataexploration)
 2. [기능 생성](#sql-featuregen)
 
 ### <a name="sql-dataexploration"></a>데이터 탐색
-SQL Server에서 데이터 저장소를 탐색하는 데 사용할 수 있는 몇 가지 샘플 SQL 스크립트는 다음과 같습니다.
+다음은 SQL Server의 데이터 저장소를 사용 하는 tooexplore 일 수 있는 몇 가지 예제 SQL 스크립트입니다.
 
 > [!NOTE]
-> 실용적인 예제에는 [NYC Taxi 데이터 집합](http://www.andresmh.com/nyctaxitrips/)을 사용할 수 있으며, 종단 간 연습에 [IPython Notebook 및 SQL Server를 사용한 NYC 데이터 랭글링](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/iPythonNotebooks/machine-Learning-data-science-process-sql-walkthrough.ipynb)이라는 IPNB를 참조할 수 있습니다.
+> 실제 예에 대 한 hello를 사용할 수 있습니다 [NYC 택시 dataset](http://www.andresmh.com/nyctaxitrips/) toohello 이라는 IPNB 참조 및 [NYC 데이터 wrangling IPython 전자 필기장 및 SQL Server를 사용 하 여](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/iPythonNotebooks/machine-Learning-data-science-process-sql-walkthrough.ipynb) 종단 간 연습 합니다.
 > 
 > 
 
-1. 일별 관찰 수 가져오기
+1. 하루 관찰 hello 개수
    
     `SELECT CONVERT(date, <date_columnname>) as date, count(*) as c from <tablename> group by CONVERT(date, <date_columnname>)` 
-2. 범주 열의 수준 가져오기
+2. 범주 열에서 hello 수준을 가져오려면
    
     `select  distinct <column_name> from <databasename>`
-3. 두 범주 열 조합의 수준 수 가져오기 
+3. 두 개의 범주 열 조합에 수준의 hello 수 가져오기 
    
     `select <column_a>, <column_b>,count(*) from <tablename> group by <column_a>, <column_b>`
-4. 숫자 열의 분포 가져오기
+4. 숫자 열에 대 한 hello 분포 가져오기
    
     `select <column_name>, count(*) from <tablename> group by <column_name>`
 
@@ -60,15 +60,15 @@ SQL Server에서 데이터 저장소를 탐색하는 데 사용할 수 있는 �
 
 1. [개수 기반 기능 생성](#sql-countfeature)
 2. [범주화 기능 생성](#sql-binningfeature)
-3. [단일 열에서 기능 롤아웃](#sql-featurerollout)
+3. [하나의 열에서 hello 기능 출시](#sql-featurerollout)
 
 > [!NOTE]
-> 추가 기능을 생성한 후 이를 기존 테이블에 열로 추가하거나, 추가 기능 및 기본 키를 사용하여 새 테이블을 만들어 원래 테이블에 조인할 수 있습니다. 
+> 추가 기능을 생성 한 후 toohello 기존 테이블 열으로 추가 하거나 hello 추가 기능 및 hello 원래 테이블과 조인할 수 있는 기본 키를 사용 하 여 새 테이블을 만듭니다. 
 > 
 > 
 
 ### <a name="sql-countfeature"></a>개수 기반 기능 생성
-다음의 예제에서는 개수 기능을 생성하는 두 가지 방법을 보여 줍니다. 첫 번째 방법에서는 조건부 합계를 사용하고, 두 번째 방법에서는 'where' 절을 사용합니다. 그런 다음 원래 데이터와 함께 개수 기능을 유지하도록 원래 테이블에 조인할 수 있습니다(기본 키 열 사용).
+hello 다음 예제에서는 두 가지 방법을 보여 수 기능을 생성 합니다. hello 첫 번째 방법은 조건부 합계를 사용 하 고 hello 두 번째 방법을 사용 하 여 hello 'where' 절. 이러한 기능을 통해 hello 원래 (기본 키 열을 사용 하 여) 테이블 toohave count hello 원래 데이터와 함께 다음 연결할 수 있습니다.
 
     select <column_name1>,<column_name2>,<column_name3>, COUNT(*) as Count_Features from <tablename> group by <column_name1>,<column_name2>,<column_name3> 
 
@@ -76,28 +76,28 @@ SQL Server에서 데이터 저장소를 탐색하는 데 사용할 수 있는 �
     where <column_name3> = '<some_value>' group by <column_name1>,<column_name2> 
 
 ### <a name="sql-binningfeature"></a>범주화 기능 생성
-다음 예제에서는 기능으로 사용할 수 있는 숫자 열을 범주화하여(다섯 개의 bin 사용) 범주화된 기능을 생성하는 방법을 보여 줍니다.
+hello 다음 예제는 어떻게 toogenerate 범주화 기능 (다섯 개의 bin 사용)을 범주화 하 여 숫자 열을 기능으로 대신 사용할 수 있는입니다.
 
     `SELECT <column_name>, NTILE(5) OVER (ORDER BY <column_name>) AS BinNumber from <tablename>`
 
 
-### <a name="sql-featurerollout"></a>단일 열에서 기능 롤아웃
-이 섹션에서는 테이블의 단일 열을 롤아웃하여 추가 기능을 생성하는 방법을 보여 줍니다. 이 예제에서는 기능을 생성하려는 테이블에 위도 또는 경도 열이 있는 것으로 가정합니다.
+### <a name="sql-featurerollout"></a>하나의 열에서 hello 기능 출시
+이 섹션에 대해서도 설명 방법을 tooroll 테이블 toogenerate 추가 기능에서 단일 열을 제외 합니다. hello 예제 toogenerate 기능 하려는 hello 표에 위도 또는 경도의 열 이라고 가정 합니다.
 
-다음은 위도/경도 위치 데이터에 대한 간략한 기초 정보입니다(stackoverflow [위도 및 경도의 정확도를 측정하는 방법](http://gis.stackexchange.com/questions/8650/how-to-measure-the-accuracy-of-latitude-and-longitude)에서 발췌). 위치 필드를 기능화하기 전에 이 정보를 이해하는 것이 좋습니다.
+위도/경도 위치 데이터에 대 한 간략 한 입문서입니다 (stackoverflow에서 리소스 [어떻게 toomeasure 위도 및 경도의 정확도 hello?](http://gis.stackexchange.com/questions/8650/how-to-measure-the-accuracy-of-latitude-and-longitude)). 다음은 유용한 toounderstand featurizing hello 위치 필드 앞입니다.
 
-* 부호는 지구에서 현재 위치의 방위(북쪽, 남쪽, 동쪽 또는 서쪽)를 알려 줍니다.
+* hello 로그인 여부는으로 북쪽 또는 남쪽, 동쪽 또는 서쪽 hello 전 세계의 알려줍니다.
 * 0이 아닌 100자리수는 위도가 아니라 경도를 사용하고 있음을 알려 줍니다.
-* 10자리수는 약 1,000km까지의 위치를 제공합니다. 현재 위치의 대륙 또는 대양에 대한 유용한 정보를 제공합니다.
-* 단위 자리수(하나의 도 단위)는 최대 111km(60해리, 약 69마일)까지의 위치를 제공합니다. 이는 현재 위치의 주 또는 국가를 대략적으로 알려 줍니다.
-* 첫 번째 소수 자릿수는 11.1km까지 적용되며, 하나의 대도시를 인접한 대도시와 구분할 수 있습니다.
-* 두 번째 소수 자릿수는 1.1km까지 적용되며, 하나의 마을을 다음 마을과 구분할 수 있습니다.
-* 세 번째 소수 자릿수는 110m까지 적용되며, 대규모 농경지 또는 기업 부지를 식별할 수 있습니다.
-* 네 번째 소수 자릿수는 11m까지 적용되며, 하나의 필지를 식별할 수 있습니다. 이는 간섭 없이 보정되지 않은 GPS 장치의 일반적인 정확도에 해당됩니다.
-* 다섯 번째 소수 자릿수는 1.1m까지 적용되며, 수목을 서로 구분할 수 있습니다. 상용 GPS 장치에서는 미분 보정을 통해서만 이 수준의 정확도를 실현할 수 있습니다.
-* 여섯 번째 소수 자릿수는 0.11m까지 적용되며, 상세 구조물 배치, 조경 설계, 도로 건설 등에 사용될 수 있습니다. 빙하 및 강의 이동을 추적하는 데 매우 적합합니다. 미분 보정된 GPS와 같은 GPS로 세밀히 측정하여 이를 수행할 수 있습니다.
+* hello 수십 자리는 1, 000 킬로미터 위치 tooabout를 제공합니다. 현재 위치의 대륙 또는 대양에 대한 유용한 정보를 제공합니다.
+* hello 단위 자리 (하나의 10 진수 각도) too111 킬로미터 (60 해상 마일, 69 마일 약)를 위치를 제공합니다. 이는 현재 위치의 주 또는 국가를 대략적으로 알려 줍니다.
+* 첫 번째 소수점 자리 hello 중일 가치가 too11.1 km: hello 인접 대도시에서 하나의 큰 도시 위치를 구별할 수 있습니다.
+* hello 2 소수 순위는 too1.1 km를: 하나의 village hello에서 다음 구분할 수 것입니다.
+* hello 3 소수 순위는 too110 m:를 큰 agricultural 필드 또는 규격화 캠퍼스 식별할 수 있습니다.
+* hello 네 번째 소수 자릿수는 가치가 too11 m: 육지의 파 슬 식별할 수 있습니다. 비교 가능한 toohello 일반적인 정확도 간섭이 없는 GPS 단위의 수정 되지 않은 경우
+* hello 다섯 번째 소수 순위는 too1.1 m:를 각 트리를 구별 합니다. 상용 GPS 단위와 정확도 toothis 수준은 차등 수정 내용과 함께 으로만 수행할 수 있습니다.
+* hello 여섯 번째 소수점 자리 가치가 too0.11 m: 사용할 수 있습니다이 구조 지형의 디자인에 대 한 세부 정보를 배치 하기 위한로로 작성 됩니다. 빙하 및 강의 이동을 추적하는 데 매우 적합합니다. 미분 보정된 GPS와 같은 GPS로 세밀히 측정하여 이를 수행할 수 있습니다.
 
-위치 정보는 다음과 같이 지역, 위치 및 도시 정보를 구분하여 기능화할 수 있습니다. 또한 Bing Maps API( [지점별 위치 찾기](https://msdn.microsoft.com/library/ff701710.aspx) )와 같은 REST 끝점을 호출하여 지역/구역 정보를 가져올 수 있습니다.
+hello 위치 정보 수 들어가지 않고 기능화 될 다음과 같은 영역, 위치 및 도시 정보 분리 합니다. Bing Maps API에서 사용할 수 있는 등 REST 끝점 호출 또한 수 [지점별 위치를 찾을](https://msdn.microsoft.com/library/ff701710.aspx) tooget hello 지역/지역 정보입니다.
 
     select 
         <location_columnname>
@@ -110,36 +110,36 @@ SQL Server에서 데이터 저장소를 탐색하는 데 사용할 수 있는 �
         ,l7=case when LEN (PARSENAME(round(ABS(<location_columnname>) - FLOOR(ABS(<location_columnname>)),6),1)) >= 6 then substring(PARSENAME(round(ABS(<location_columnname>) - FLOOR(ABS(<location_columnname>)),6),1),6,1) else '0' end     
     from <tablename>
 
-이러한 위치 기반 기능을 사용하여 앞서 설명한 대로 추가 개수 기능을 생성할 수도 있습니다. 
+이러한 위치 기반 기능이 될 수 있습니다 더 이상 사용 되는 toogenerate 추가 개수 기능 앞에서 설명한 대로 합니다. 
 
 > [!TIP]
-> 선택한 언어를 사용하여 프로그래밍 방식으로 레코드를 삽입할 수 있습니다. 쓰기 효율성을 개선하기 위해 청크에 데이터를 삽입해야 할 수도 있습니다. pyodbc를 사용하여 이 작업을 수행하는 방법에 대한 예제는 [Python을 사용하여 SQL Server에 액세스하는 HelloWorld 샘플](https://code.google.com/p/pypyodbc/wiki/A_HelloWorld_sample_to_access_mssql_with_python)을 참조하세요. 또 다른 방법은 [BCP 유틸리티](https://msdn.microsoft.com/library/ms162802.aspx)를 사용하여 데이터베이스에 데이터를 삽입하는 것입니다.
+> 프로그래밍 방식으로 선택한 언어를 사용 하 여 hello 레코드를 삽입할 수 있습니다. 데이터 청크 tooimprove 쓰기 효율성에 tooinsert hello를 할 수 있습니다 (방법의 예에 대 한 toodo이 pyodbc를 사용 하 여 참조 [python A HelloWorld 샘플 tooaccess SQLServer](https://code.google.com/p/pypyodbc/wiki/A_HelloWorld_sample_to_access_mssql_with_python)). 다른 방법은 hello를 사용 하 여 hello 데이터베이스의 데이터를 tooinsert [BCP 유틸리티](https://msdn.microsoft.com/library/ms162802.aspx)합니다.
 > 
 > 
 
-### <a name="sql-aml"></a>Azure 기계 학습에 연결
-새로 생성한 기능을 기존 테이블에 열로 추가하거나, 새 테이블에 저장하여 기계 학습을 위해 원래 테이블과 조인할 수 있습니다. Azure 기계 학습에서는 아래 표시된 대로 [데이터 가져오기][import-data] 모듈을 사용하여 기능을 생성하거나 액세스(이미 만든 경우)할 수 있습니다.
+### <a name="sql-aml"></a>TooAzure 기계 학습 연결
+새로 생성 하는 hello 기능을 열 tooan 기존 테이블로 추가 또는 새 테이블에 저장을 hello 기계 학습에 원래 테이블과 조인 될 수 있습니다. 기능을 생성 하거나 hello를 사용 하 여 이미 만든 경우 액세스할 수 [데이터 가져오기] [ import-data] 아래와 같이 Azure 기계 학습의 모듈:
 
 ![azureml 판독기][1] 
 
 ## <a name="python"></a>Python과 같은 프로그래밍 언어 사용
-데이터가 SQL Server에 있는 경우 Python을 사용하여 데이터를 탐색하고 기능을 생성하는 작업은 [데이터 과학 환경에서 Azure Blob 데이터 처리](machine-learning-data-science-process-data-blob.md)에 설명된 대로 Python을 사용하여 Azure Blob의 데이터를 처리하는 것과 유사합니다. 데이터베이스에서 pandas 데이터 프레임으로 데이터를 로드해야 하며, 그런 다음 데이터를 추가로 처리할 수 있습니다. 데이터베이스에 연결하여 데이터 프레임으로 데이터를 로드하는 프로세스는 이 섹션에 설명되어 있습니다.
+Python tooexplore 데이터를 사용 하 고 SQL Server의 데이터는 hello 비슷한 tooprocessing 데이터에 설명 된 대로 Python을 사용 하 여 Azure blob의 경우 기능 생성 [프로세스 Azure Blob 데이터에 데이터 과학 환경](machine-learning-data-science-process-data-blob.md)합니다. hello 데이터 toobe 팬더 데이터 프레임으로 hello 데이터베이스에서 로드 하며 다음 더 이상 처리할 수 있습니다. Toohello 데이터베이스를 연결 하 고이 섹션의 hello 데이터 프레임으로 hello 데이터 로드 hello 과정을 문서화 합니다.
 
-다음 연결 문자열 형식은 pyodbc를 사용(servername, dbname, username 및 password를 특정 값으로 대체)하여 Python에서 SQL Server 데이터베이스 연결하는 데 사용될 수 있습니다.
+연결 문자열 형식에 따라 hello pyodbc (서버 이름 바꾸기, dbname, 사용자 이름 및 특정 값으로 암호)를 사용 하 여 Python에서 사용 되는 tooconnect tooa SQL Server 데이터베이스를 사용할 수 있습니다.
 
-    #Set up the SQL Azure connection
+    #Set up hello SQL Azure connection
     import pyodbc    
     conn = pyodbc.connect('DRIVER={SQL Server};SERVER=<servername>;DATABASE=<dbname>;UID=<username>;PWD=<password>')
 
-Python의 [Pandas 라이브러리](http://pandas.pydata.org/) 에서는 Python 프로그래밍용 데이터 조작을 위한 다양한 데이터 구조 및 데이터 분석 도구 집합을 제공합니다. 아래 코드는 SQL Server 데이터베이스에서 Pandas 데이터 프레임으로 반환되는 결과를 읽습니다.
+hello [팬더 라이브러리](http://pandas.pydata.org/) Python에서는 Python 프로그래밍에 대 한 데이터 조작에 대 한 다양 한 데이터 구조 및 데이터 분석 도구를 제공 합니다. 아래 hello 코드 팬더 데이터 프레임으로 SQL Server 데이터베이스에서 반환 된 hello 결과 읽습니다.
 
-    # Query database and load the returned results in pandas data frame
+    # Query database and load hello returned results in pandas data frame
     data_frame = pd.read_sql('''select <columnname1>, <cloumnname2>... from <tablename>''', conn)
 
-이제 [데이터 과학 환경에서 Azure Blob 데이터 처리](machine-learning-data-science-process-data-blob.md) 문서에 설명된 대로 Pandas 데이터 프레임으로 작업할 수 있습니다.
+Hello 문서에서 다루는 hello 팬더 데이터 프레임 작업할 수 이제 [프로세스 Azure Blob 데이터에 데이터 과학 환경](machine-learning-data-science-process-data-blob.md)합니다.
 
 ## <a name="azure-data-science-in-action-example"></a>Azure 데이터 과학 작동 예제
-공용 데이터 집합을 사용한 Azure 데이터 과학 프로세스의 종단 간 연습 예제는 [Azure에서 Azure 데이터 과학 프로세스](machine-learning-data-science-process-sql-walkthrough.md)를 참조하세요.
+공용 데이터 집합을 사용 하 여 Azure 데이터 과학 프로세스 hello의 종단 간 연습 예제를 참조 하십시오. [Azure 데이터 과학 과정](machine-learning-data-science-process-sql-walkthrough.md)합니다.
 
 [1]: ./media/machine-learning-data-science-process-sql-server-virtual-machine/reader_db_featurizedinput.png
 

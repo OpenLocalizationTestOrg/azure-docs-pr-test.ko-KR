@@ -1,0 +1,1 @@
+필요한 경우 hello에 나오는 hello 지침을 사용 하 여 hello Azure PowerShell 모듈을 설치 [Azure PowerShell 가이드](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/), 한 다음 실행 `Login-AzureRmAccount` toocreate Azure와 연결 합니다. 또한 toohave 라는 SSH 공개 키가 필요한 `id_rsa.pub` 사용자 프로필의 hello.ssh 디렉터리에 있습니다.

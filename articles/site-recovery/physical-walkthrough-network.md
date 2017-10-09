@@ -1,6 +1,6 @@
 ---
-title: "Azure에 물리적 서버 복제를 위한 네트워킹 계획 | Microsoft Docs"
-description: "이 문서에서는 물리적 서버를 Azure에 복제하는 데 필요한 네트워킹 계획을 설명합니다."
+title: "물리적 서버 복제 tooAzure에 적합 한 네트워킹 aaaPlan | Microsoft Docs"
+description: "이 문서에서는 물리적 서버 tooAzure를 복제 하는 경우 네트워크 계획 필요"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,61 +14,61 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: f8a20b45b50f71631122e574b634818c1912f12e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e2ca2db2a1cb58ca5468d4ee2b0406f29ff09479
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-4-plan-networking-for-physical-server-replication-to-azure"></a>4단계: Azure에 물리적 서버 복제를 위한 네트워킹 계획
+# <a name="step-4-plan-networking-for-physical-server-replication-tooazure"></a>4 단계: 복제 tooAzure 물리적 서버에 대 한 네트워킹 계획
 
-이 문서에서는 [Azure Site Recovery](site-recovery-overview.md) 서비스를 사용하여 온-프레미스 물리적 서버를 Azure에 복제하는 경우에 네트워킹 계획 고려 사항을 설명합니다.
+이 문서 네트워크 때 복제 온-프레미스 물리적 서버 tooAzure hello를 사용 하 여 계획 고려 사항에 요약 [Azure Site Recovery](site-recovery-overview.md) 서비스입니다.
 
-이 문서의 하단에서 의견을 게시하거나 [Azure Recovery Services 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)에서 질문하세요.
+이 문서에서는 hello 맨 아래에 대 한 설명을 게시 하거나 hello에서 질문 하기 [Azure 복구 서비스 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)합니다.
 
 
-## <a name="connect-to-replica-azure-vms"></a>복제본 Azure VM에 연결
+## <a name="connect-tooreplica-azure-vms"></a>Tooreplica Azure Vm 연결
 
-복제 및 장애 조치(failover) 전략을 계획할 경우 주요 질문 중 하나는 장애 조치(failover) 후에 Azure VM에 어떻게 연결하는가에 대한 질문입니다. 복제본 Azure VM에 대한 네트워크 전략을 설계할 때 몇 가지 선택 항목이 있습니다.
+복제 및 장애 조치 전략을 계획할 때는 hello 주요 질문 중 하나는 어떻게 tooconnect toohello Azure VM 장애 조치 후 합니다. 복제본 Azure VM에 대한 네트워크 전략을 설계할 때 몇 가지 선택 항목이 있습니다.
 
-- **다른 IP 주소 사용**: 복제된 Azure VM 네트워크에 다른 IP 주소 범위를 사용하도록 선택할 수 있습니다. 이 시나리오에서 컴퓨터는 장애 조치(failover) 후에 새 IP 주소를 갖게 되며 DNS 업데이트가 필요합니다.
-- **동일한 IP 주소 사용**: 기본 온-프레미스 사이트에 있는 것과 동일한 IP 주소 범위를 장애 조치(failover) 후 Azure 네트워크에 대해 사용하려고 합니다. 동일한 IP 주소를 유지하면 장애 조치(failover) 후 네트워크 관련 문제가 줄어들어 복구가 간소화됩니다. 그러나 Azure에 복제하는 경우 장애 조치 후에 경로를 IP 주소의 새 위치로 업데이트해야 합니다.
+- **다른 IP 주소를 사용 하 여**:에 대해 선택할 수 toouse 다른 IP 주소 범위 hello Azure VM 네트워크를 복제 합니다. 이 시나리오에서는 hello 컴퓨터는 장애 조치의 경우와 DNS 업데이트가 필요한 작업을 새 IP 주소를 가져옵니다.
+- **사용 하 여 hello 동일한 IP 주소**: 할 수 있습니다 toouse hello hello 장애 조치 후 Azure 네트워크에 대 한 기본 온-프레미스 사이트에 있는 동일한 IP 주소 범위입니다. 동일한 IP 주소를 간소화 하면서 hello 장애 조치 후 네트워크 관련된 문제를 줄여 hello 복구 합니다. 그러나 tooAzure를 복제 하는 경우 tooupdate 경로 hello IP 주소의 hello 새 위치에 장애 조치 후 해야 합니다.
 
 ## <a name="retain-ip-addresses"></a>IP 주소 유지
 
-Site Recovery는 Azure에 장애 조치할 경우 서브넷 장애 조치를 사용하여 고정 IP 주소를 유지하는 기능을 제공합니다.
-서브넷 장애 조치를 사용하는 경우 특정 서브넷은 사이트 1 또는 사이트 2에 있으며 두 사이트에 동시에 존재하지는 않습니다. 장애 조치(failover) 시 IP 주소 공간을 유지 관리하기 위해 라우터 인프라에 대해 프로그래밍 방식으로 정렬하여 한 사이트에서 다른 사이트로 서브넷을 이동할 수 있습니다. 장애 조치(failover) 중에 서브넷은 연결되어 있는 보호된 VM과 함께 이동합니다. 주요 단점은 오류 발생 시 전체 서브넷을 이동해야 한다는 점입니다.
+서브넷 장애 조치 있는 tooAzure 장애 조치할 때 hello 기능 tooretain 고정 IP 주소를 제공 하는 사이트 복구 합니다.
+서브넷 장애 조치를 사용하는 경우 특정 서브넷은 사이트 1 또는 사이트 2에 있으며 두 사이트에 동시에 존재하지는 않습니다. 프로그래밍 방식으로 순서 toomaintain hello IP 주소 공간에서 hello 이벤트에는 장애 조치를 하나의 사이트 tooanother에서 hello 라우터 인프라 toomove hello 서브넷에 대 한 정렬합니다. 장애 조치 중 hello 서브넷 이동 hello로 보호 되는 Vm에 연결 합니다. hello 주요 단점은 실패 하는 hello 이벤트에서 toomove hello 전체 서브넷 있는입니다.
 
 ### <a name="failover-example"></a>장애 조치 예제
 
-Azure로 장애 조치(failover)에 관한 예제를 살펴보겠습니다.
+장애 조치 tooAzure에 대 한 예제를 살펴 보겠습니다.
 
 - Woodgrove Bank라는 가상의 회사에는 비즈니스 앱을 호스팅하는 온-프레미스 인프라가 있습니다. 모바일 응용 프로그램은 Azure에서 호스팅됩니다.
-- Azure 및 온-프레미스 서버에서 Woodgrove Bank VM 간의 연결은 온-프레미스 에지 네트워크와 Azure 가상 네트워크 간에 있는 사이트 간(VPN) 연결에서 제공됩니다.
-- 이 VPN은 Azure에서 회사의 가상 네트워크가 온-프레미스 네트워크의 확장으로 나타난다는 것을 의미합니다.
-- Woodgrove는 Site Recovery를 사용하여 온-프레미스 워크로드를 Azure로 복제하려고 합니다.
- - Woodgrove는 하드 코딩된 IP 주소에 종속된 응용 프로그램 및 구성을 처리해야 하므로 Azure로 장애 조치(failover)한 이후 해당 응용 프로그램의 IP 주소를 유지해야 합니다.
- - Woodgrove는 172.16.1.0/24, 172.16.2.0/24의 IP 주소를 Azure에서 실행 중인 해당 리소스에 할당합니다.
+- Azure 및 온-프레미스 서버에서 Woodgrove Bank Vm 간의 연결 hello 온-프레미스 지 네트워크와 hello Azure 가상 네트워크 간의 사이트 간 (VPN) 연결에서 제공 됩니다.
+- 회사의 가상 네트워크를 Azure의 hello VPN 즉 온-프레미스 네트워크의 확장으로 나타납니다.
+- Woodgrove는 toouse 사이트 복구 tooreplicate 온-프레미스 작업 부하 tooAzure 하려고합니다.
+ - Woodgrove 응용 프로그램과 하드 코드 된 IP 주소에 따라 다르며 따라서 tooAzure 장애 조치 후 응용 프로그램에 대 한 tooretain IP 주소를 필요한 구성을 toodeal에 있습니다.
+ - Woodgrove에 할당 된 IP 주소 범위 172.16.1.0/24에서 172.16.2.0/24 tooits 리소스 Azure에서 실행 합니다.
 
 
-Woodgrove가 IP 주소를 유지하는 동시에 해당 서버를 Azure로 복제할 수 있으려면 회사는 다음을 수행해야 합니다.
+해당 서버 tooAzure IP hello 유지 하는 동안 주소 toobe 수 tooreplicate을 Woodgrove, 여기는 hello 제조업체 필요한 toodo 다음과 같습니다.
 
-1. Azure 가상 네트워크를 만듭니다. 응용 프로그램이 원활하게 장애 조치(failover)할 수 있도록 온-프레미스 네트워크를 확장해야 합니다.
-2. Azure를 사용하면 Azure에서 만든 가상 네트워크에 대한 지점 및 사이트 간 연결뿐만 아니라 사이트 간 VPN 연결을 추가할 수 있습니다.
-3. 사이트 간 연결을 설정하는 경우 Azure 네트워크에서 IP 주소 범위가 온-프레미스 IP 주소 범위와 다른 경우에만 온-프레미스 위치(로컬 네트워크)에 트래픽을 라우팅할 수 있습니다.
-    - 이는 Azure는 확대 서브넷을 지원하지 않기 때문입니다. 따라서 온-프레미스에 서브넷 192.168.1.0/24가 있는 경우 Azure 네트워크에 로컬 네트워크 192.168.1.0/24를 추가할 수 없습니다.
-    - 이렇게 예측하는 이유는 Azure가 서브넷에 활성 컴퓨터가 없고 해당 서브넷이 재해 복구용으로만 만들어진다는 것을 모르기 때문입니다.
-    - Azure 네트워크 외부에서 네트워크 트래픽을 제대로 라우팅할 수 있으려면 네트워크 및 로컬 네트워크의 서브넷이 충돌하지 않아야 합니다.
+1. Azure 가상 네트워크를 만듭니다. 응용 프로그램이 원활 하 게 조치할 수 있도록 hello의 확장 온-프레미스 네트워크에 여야 합니다.
+2. Azure 있습니다 tooadd 사이트 간 VPN 연결을 또한 Azure에서 만든 사이트 간 toopoint 연결 toohello 가상 네트워크를 허용 됩니다.
+3. Hello 사이트 간 연결을 설정할 때 hello Azure 네트워크, IP 주소 범위 hello hello 온-프레미스 IP 주소 범위와에서 다른 경우에 toohello 온-프레미스 위치 (로컬 네트워크) 트래픽을 라우팅할 수 있습니다.
+    - 이는 Azure는 확대 서브넷을 지원하지 않기 때문입니다. 따라서 서브넷 192.168.1.0/24 온-프레미스를 사용 하도록 설정한 경우 로컬 네트워크 192.168.1.0/24 hello Azure 네트워크에에서 추가할 수 없습니다.
+    - Azure hello 서브넷에는 활성 컴퓨터가 없습니다 및 재해 복구에 해당 hello 서브넷 만들어집니다 인식 하지 않으므로 1 세대입니다.
+    - toobe 수 toocorrectly 네트워크 트래픽을 라우팅할 hello 네트워크 및 hello 로컬 네트워크에는 Azure 네트워크 hello 서브넷 부족 충돌 있어서는 안 됩니다.
 
 ![서브넷 장애 조치(failover) 전](./media/physical-walkthrough-network/network-design7.png)
 
 #### <a name="before-failover"></a>장애 조치(failover) 전
 
-1. 추가 네트워크(예: 복구 네트워크)를 만듭니다. 이것은 장애 조치 VM이 생성되는 네트워크입니다.
-2. 컴퓨터에 사용할 IP 주소가 장애 조치(failover) 후에 유지되는지 확인하려면 컴퓨터 속성 > **구성**에서 온-프레미스 서버와 동일한 IP 주소를 지정하고 **저장**을 클릭합니다.
-3. 컴퓨터가 장애 조치되는 경우 Azure Site Recovery는 가상 컴퓨터에 제공된 IP 주소를 할당합니다.
-4. 장애 조치가 트리거되고 Azure에서 필수 IP 주소로 VM이 생성된 후 [Vnet 대 Vnet 연결](../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md)을 사용하여 네트워크에 연결할 수 있습니다. 이 작업은 스크립팅될 수 있습니다.
-5. 이제 192.168.1.0/24가 Azure로 이동되었음을 반영하도록 경로를 적절하게 수정해야 합니다.
+1. 추가 네트워크(예: 복구 네트워크)를 만듭니다. 이 hello 네트워크는 Vm 조치할에서 생성 됩니다.
+2. hello 컴퓨터 속성에서 장애 조치 후에 유지 되는 IP 주소는 컴퓨터에 대 한 hello tooensure > **구성**, hello 서버 hello 동일한 IP 주소 온-프레미스에 있으며 클릭 지정 **저장**합니다.
+3. Hello 컴퓨터에 대 한 장애 조치 되, Azure Site Recovery 제공 IP 주소 tooit hello를 할당 합니다.
+4. 장애 조치에는 트리거, 트리거되고 hello 필요한 IP 주소를 가진 hello Vm을 Azure에 생성 되 면 toohello 네트워크를 사용 하 여 연결할 수 있습니다는 [Vnet tooVnet 연결](../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md)합니다. 이 작업은 스크립팅될 수 있습니다.
+5. 경로 필요 toobe 적절히 수정 tooreflect 해당 192.168.1.0/24 이제 tooAzure 옮겼습니다.
 
     ![서브넷 장애 조치(failover) 후](./media/physical-walkthrough-network/network-design9.png)
 
@@ -78,8 +78,8 @@ Woodgrove가 IP 주소를 유지하는 동시에 해당 서버를 Azure로 복�
 
 ## <a name="change-ip-addresses"></a>IP 주소 변경
 
-이 [블로그 게시물](http://azure.microsoft.com/blog/2014/09/04/networking-infrastructure-setup-for-microsoft-azure-as-a-disaster-recovery-site/)은 장애 조치(failover) 후 IP 주소를 유지할 필요가 없을 때 Azure 네트워킹 인프라를 설정하는 방법을 설명합니다. 응용 프로그램 설명으로 시작하여 온-프레미스 및 Azure의 네트워킹을 설정하는 방법을 찾고, 장애 조치(failover)를 실행하는 방법에 대한 정보로 마무리합니다.  
+이 [블로그 게시물](http://azure.microsoft.com/blog/2014/09/04/networking-infrastructure-setup-for-microsoft-azure-as-a-disaster-recovery-site/) 장애 조치 후 tooset hello tooretain IP 필요 하지 않을 때 Azure 네트워킹 인프라를 해결 하는 방법을 설명 합니다. 응용 프로그램 설명으로 시작, 어떻게 네트워킹 tooset 온-프레미스 및 Azure에서 찾아서 장애 조치를 실행 하는 방법에 대 한 정보로 결론을 내립니다.  
 
 ## <a name="next-steps"></a>다음 단계
 
-[5단계: Azure 준비](physical-walkthrough-prepare-azure.md)로 이동합니다.
+너무 이동[5 단계: Azure 준비](physical-walkthrough-prepare-azure.md)

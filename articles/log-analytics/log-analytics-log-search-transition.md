@@ -1,6 +1,6 @@
 ---
-title: "Azure Log Analytics 쿼리 언어 참고 자료 | Microsoft Docs"
-description: "이 문서는 이미 레거시 언어에 잘 알고 있는 경우에 Log Analytics에 대한 새로운 쿼리 언어로의 전환에 관한 지원을 제공합니다."
+title: "로그 분석 쿼리 언어 치트 시트를 aaaAzure | Microsoft Docs"
+description: "이 문서는 이미 hello 레거시 언어에 잘 알고 있다면 toohello 새로운 쿼리 언어 로그 분석에 대 한 전환에 지원을 제공 합니다."
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -13,29 +13,29 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/23/2017
 ms.author: bwren
-ms.openlocfilehash: 10b7f3ad23d9c5451bc7ff82b8927c260230f6da
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8b4ee3d0b5e1ec8a9f95a09e0ad9835615ad1342
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="transitioning-to-azure-log-analytics-new-query-language"></a>Azure Log Analytics 새로운 쿼리 언어로 전환
+# <a name="transitioning-tooazure-log-analytics-new-query-language"></a>TooAzure 로그 분석 새로운 쿼리 언어를 전환합니다.
 
 > [!NOTE]
-> [Azure Log Analytics 작업 영역을 새 로그 검색으로](log-analytics-log-search-upgrade.md) 업그레이드에서 새 Log Analytics 쿼리 언어에 대해 자세히 알아보고 작업 영역을 업그레이드하는 절차를 확인할 수 있습니다.
+> 새 로그 분석 쿼리 언어 및 get hello에 대 한 자세한 hello 프로시저 tooupgrade 업그레이드 작업 영역을 읽을 수 있습니다 프로그램 [Azure 로그 분석 작업 영역 toonew 로그 검색](log-analytics-log-search-upgrade.md)합니다.
 
-이 문서는 이미 레거시 언어에 잘 알고 있는 경우에 Log Analytics에 대한 새로운 쿼리 언어로의 전환에 관한 지원을 제공합니다.
+이 문서는 이미 hello 레거시 언어에 잘 알고 있다면 toohello 새로운 쿼리 언어 로그 분석에 대 한 전환에 지원을 제공 합니다.
 
 ## <a name="language-converter"></a>언어 변환기
 
-레거시 Log Analytics 쿼리 언어에 익숙한 경우 새 언어로 동일한 쿼리를 만드는 가장 쉬운 방법은 작업 영역을 변환할 때 로그 검색 포털에 설치된 언어 변환기를 사용하는 것입니다.  변환기를 사용하는 작업은 상위 텍스트 상자에 레거시 쿼리로 입력한 다음 **변환**을 클릭하기만 하면 됩니다.  검색 단추를 클릭하여 쿼리를 실행하거나, 다른 위치에서 사용하도록 복사하여 붙여넣을 수 있습니다.
+Hello 레거시 로그 분석 쿼리 언어에 익숙한 경우 hello toocreate hello hello 새로운 언어에서 동일한 쿼리는 가장 쉬운 방법은 toouse hello 작업 영역을 변환할 때 hello 로그 검색 포털에 설치 된 언어 변환기입니다.  Hello 변환기를 사용 하는 작업은 레거시 쿼리에 hello 상위 텍스트 상자에 입력 한 다음 클릭으로 **변환**합니다.  Hello 검색 단추 toorun hello 쿼리 또는 복사를 클릭 하 고 toouse 붙여 다른 곳입니다.
 
 ![언어 변환기](media/log-analytics-log-search-upgrade/language-converter.png)
 
 
 ## <a name="cheat-sheet"></a>참고 자료
 
-다음 테이블에서는 Azure Log Analytics의 신규 및 레거시 쿼리 언어 간 동등한 명령에 관해 다양한 일반 쿼리 간 비교를 제공합니다.
+hello 다음 표에서 다양 한 일반적인 쿼리 비교 하 여 Azure 로그 분석에서 hello 새롭고 레거시 쿼리 언어 간의 tooequivalent 명령.
 
 | 설명 | 레거시 | 신규 |
 |:--|:--|:--|
@@ -61,5 +61,5 @@ ms.lasthandoff: 08/29/2017
 
 
 ## <a name="next-steps"></a>다음 단계
-- 새로운 쿼리 언어를 사용한 [쿼리 작성 자습서](https://go.microsoft.com/fwlink/?linkid=856078)를 확인해 보세요.
-- [쿼리 언어 참조](https://go.microsoft.com/fwlink/?linkid=856079)에서 새 쿼리 언어에 대한 모든 명령, 연산자 및 함수를 자세히 알아보세요.  
+- 체크 아웃 한 [쿼리 작성의 자습서](https://go.microsoft.com/fwlink/?linkid=856078) hello 새로운 쿼리 언어를 사용 하 여 합니다.
+- Toohello 참조 [쿼리 언어 참조](https://go.microsoft.com/fwlink/?linkid=856079) 모든 명령, 연산자 및 hello 새로운 쿼리 언어에 대 한 함수에 대 한 자세한 내용은 합니다.  

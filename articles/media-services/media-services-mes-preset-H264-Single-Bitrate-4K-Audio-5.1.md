@@ -1,6 +1,6 @@
 ---
-title: "H264 단일 비트 전송률 4K Audio 5.1 | Microsoft Docs"
-description: "이 항목은 **H264 단일 비트 전송률 4K Audio 5.1** 태스크 미리 설정에 대한 개요를 제공합니다."
+title: "aaaH264 단일 비트 전송률 4k Audio 5.1 | Microsoft Docs"
+description: "hello에 대 한 개요를 제공 하는 hello 항목 * * H264 단일 비트 전송률 4k Audio 5.1* * 태스크 사전 설정입니다."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: d34fb5b640dbdbfc4d3d6b716fdd46176826a318
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8ed5d85a0c58eaa9b076be667f4499659d90b19e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="h264-single-bitrate-4k-audio-51"></a>H264 단일 비트 전송률 4K Audio 5.1
-`Media Encoder Standard`는 인코딩 작업을 만들 때 사용할 수 있는 인코딩 미리 설정을 정의합니다. `preset name`을 사용하여 미디어 파일을 인코딩할 형식을 지정할 수 있습니다. 또는 자신만의 JSON 또는 XML 기반 미리 설정(UTF-8 또는 UTF-16 인코딩을 사용하여)을 만들 수 있습니다. 그런 다음 사용자 지정 미리 설정을 인코더에 전달합니다. `Media Encoder Standard` 인코더에서 지원되는 모든 미리 설정 이름의 목록을 보려면 [Media Encoder Standard에 대한 작업 미리 설정](media-services-mes-presets-overview.md)을 참조하세요.  
+`Media Encoder Standard`는 인코딩 작업을 만들 때 사용할 수 있는 인코딩 미리 설정을 정의합니다. 사용할 수 있습니다는 `preset name` 어떤 형식으로 원하는 tooencode toospecify 미디어 파일입니다. 또는 자신만의 JSON 또는 XML 기반 미리 설정(UTF-8 또는 UTF-16 인코딩을 사용하여)을 만들 수 있습니다. 그런 다음 hello 미리 설정 된 toohello 사용자 지정 인코더를 전달 합니다. 사전 설정 이름을이에서 지 원하는 모든 hello 목록이 hello에 대 한 `Media Encoder Standard` 인코더 참조 [미디어 인코더 표준의 태스크 사전 설정](media-services-mes-presets-overview.md)합니다.  
   
- 이 항목은 XML 및 JSON 형식의 `H264 Single Bitrate 4K Audio 5.1` 미리 설정을 보여줍니다.  
+ 이 항목에서는 hello `H264 Single Bitrate 4K Audio 5.1` XML 및 JSON 형식으로 미리 설정 합니다.  
   
- 이 미리 설정은 AAC 5.1 오디오 및 비트 전송률이 18000kbps인 단일 MP4 파일을 생성합니다. 미리 설정의 프로필, 비트 전송률, 샘플링 주기 등에 대한 자세한 내용을 보려면 아래 정의된 XML 또는 JSON을 검토하세요. 각 요소의 의미 및 유효한 값에 대한 설명은 [Media Encoder Standard 스키마](media-services-mes-schema.md)를 참조하세요.  
+ 이 미리 설정은 AAC 5.1 오디오 및 비트 전송률이 18000kbps인 단일 MP4 파일을 생성합니다. 프로필에 대 한 자세한 정보에 대 한 비트 전송률, 샘플링 속도 등에이 사전 설정, XML 또는 JSON 아래에 정의 된 hello를 검사 합니다. 각 요소의 의미 및 hello 유효한 값의 각 요소에 대 한 설명을 참조 hello [미디어 인코더 표준 스키마](media-services-mes-schema.md)합니다.  
   
 > [!NOTE]
->  4K 인코딩으로 프리미엄 예약 단위 유형을 가져와야 합니다. 자세한 내용은 [인코딩 크기를 조정하는 방법](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units)을 참조하세요.  
+>  Hello Premium 예약을 얻어야 4k와 단위 형식을 인코딩합니다. 자세한 내용은 참조 [어떻게 tooScale 인코딩](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units)합니다.  
   
  XML  
   

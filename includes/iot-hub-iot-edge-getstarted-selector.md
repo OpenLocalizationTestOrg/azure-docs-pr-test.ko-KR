@@ -4,34 +4,34 @@
 > 
 > 
 
-이 문서에서는 [헬로 월드 샘플 코드][lnk-helloworld-sample]에 대한 자세한 연습을 제공하여 [Azure IoT Edge][lnk-iot-edge] 아키텍처의 기본 구성 요소에 대해 설명합니다. 샘플에서 Azure IoT Edge를 사용하여 5초마다 "헬로 월드" 메시지를 파일에 기록하는 간단한 게이트웨이를 빌드합니다.
+이 문서에서는 hello의 자세한 연습 [Hello World 예제 코드] [ lnk-helloworld-sample] tooillustrate hello의 기본 구성 요소 hello [Azure IoT 가장자리] [ lnk-iot-edge] 아키텍처. hello 샘플에서는 hello Azure IoT 가장자리 toobuild "hello world" 메시지 tooa 파일 5 초 마다 기록 하는 간단한 게이트웨이 합니다.
 
 이 연습에서는 다음 내용을 다룹니다.
 
-* **Hello World 샘플 아키텍처**: Hello World 샘플에 [Azure IoT Edge 아키텍처 개념][lnk-edge-concepts]이 어떻게 적용되는지 구성 요소가 어떻게 배치되는지를 설명합니다.
-* **샘플 작성 방법**: 샘플 작성에 필요한 단계입니다.
-* **샘플 실행 방법**: 샘플 실행에 필요한 단계입니다. 
-* **일반적인 출력**: 샘플을 실행할 때 예상되는 출력의 예입니다.
-* **코드 조각**: 헬로 월드 샘플에서 주요 IoT Edge 게이트웨이 구성 요소를 구현하는 방법을 보여 주는 코드 조각의 집합입니다.
+* **Hello World 샘플 아키텍처**: 설명 방법을 [Azure IoT 가장자리 아키텍처 개념] [ lnk-edge-concepts] toohello Hello World 예제 추가 정보 및 구성 요소 hello 개념이 서로 어떻게 적용 합니다.
+* **어떻게 toobuild hello 샘플**: hello 단계 필요한 toobuild hello 예제입니다.
+* **어떻게 toorun hello 샘플**: hello 단계 필요한 toorun hello 예제입니다. 
+* **일반적인 출력**: hello의 예는 hello 샘플을 실행 하면 tooexpect를 출력 합니다.
+* **코드 조각**: 핵심 IoT 가장자리 게이트웨이 구성 요소 코드 조각 tooshow hello Hello World 예제 구현 하는 방법의 컬렉션입니다.
 
 
 ## <a name="hello-world-sample-architecture"></a>Hello World 샘플 아키텍처
-Hello World 샘플은 이전 섹션에서 설명한 개념을 보여줍니다. 헬로 월드 샘플은 두 개의 IoT Edge 모듈로 구성된 파이프라인이 있는 IoT Edge 게이트웨이를 구현합니다.
+hello Hello World 예제는 hello 이전 섹션에 설명 된 hello 개념을 보여 줍니다. hello Hello World 예제는 두 IoT 가장자리 모듈로 구성 하는 파이프라인에 있는 IoT 지 게이트웨이 구현 합니다.
 
-* *hello world* 모듈은 5초마다 메시지를 생성하여 로거 모듈에 전달합니다.
-* *로거* 모듈은 수신하는 메시지를 파일에 기록합니다.
+* hello *hello world* 모듈 메시지 5 초 마다를 만들고 toohello로 거 모듈을 전달 합니다.
+* hello *로 거* 모듈 쓰기 hello 메시지 tooa 파일을 받습니다.
 
 ![Azure IoT Edge로 만든 헬로 월드 샘플 아키텍처][4]
 
-이전 섹션의 설명처럼, Hello World 모듈은 로거 모듈에 5초마다 메시지를 직접 전달하지 않습니다. 대신, 5초마다 broker에 메시지를 게시합니다.
+Hello 이전 섹션에서 설명한 대로 모듈은 전달 하지는 Hello World hello 메시지 직접 toohello로 거 모듈 5 초 마다 있습니다. 대신, 메시지 toohello 브로커 5 초 마다 게시합니다.
 
-로거 모듈은 broker에서 메시지를 받고 broker에서 메세지를 실행하며 메시지의 내용을 파일에 기록합니다.
+hello로 거 모듈 hello 브로커에서 hello 메시지를 수신 하 고 hello 메시지 tooa 파일의 hello 콘텐츠 쓰기,에 대해 실행 합니다.
 
-로거 모듈은 broker의 메시지를 사용하기만 하고 broker에 새 메시지를 게시하지는 않습니다.
+hello로 거 모듈을 사용 하므로 hello broker에서 메시지를 새 메시지 toohello 브로커를 게시 하지 않습니다.
 
-![Azure IoT Edge에서 Broker가 모듈 간에 메시지를 라우팅하는 방법][5]
+![Hello 브로커 Azure IoT 가장자리의 모듈 간에 메시지를 라우팅하 하는 방법][5]
 
-위 그림은 Hello World 샘플의 아키텍처와 [리포지토리][lnk-iot-edge]에서 샘플의 다른 부분을 구현하는 원본 파일에 대한 상대 경로를 보여줍니다. 코드를 직접 알아보거나 아래 코드 조각을 참조용으로 사용합니다.
+hello 위의 그림 hello 아키텍처 hello Hello World 예제 추가 정보 및 상대 경로 hello hello에 hello 샘플의 서로 다른 부분을 구현 하는 toohello 소스 파일 [리포지토리][lnk-iot-edge]합니다. 직접 hello 코드를 탐색 하거나 아래 코드 조각 hello 가이드로 사용 합니다.
 
 <!-- Images -->
 [4]: media/iot-hub-iot-edge-getstarted-selector/high_level_architecture.png

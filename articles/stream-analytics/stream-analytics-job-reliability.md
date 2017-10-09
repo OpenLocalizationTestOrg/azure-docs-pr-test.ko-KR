@@ -13,22 +13,22 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: 8dc19e1b37082c87d2990ad910d1af786f8b9280
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3ac65c93ecb47e93e963dd9869a7af70f73b19c7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="guarantee-stream-analytics-job-reliability-during-service-updates"></a>서비스 업데이트 도중 Stream Analytics 작업 안정성 보장
 
-완전히 관리되는 서비스가 되는 방법 중 하나는 새로운 서비스 기능 및 향상 기능을 빠른 속도로 도입하는 것입니다. 따라서 Stream Analytics는 매주(또는 더 자주) 서비스 업데이트 배포가 이루어질 수 있습니다. 얼마나 많은 테스트를 수행하든 관계없이 기존에 실행 중인 작업은 버그의 도입으로 인해 중단될 수 있는 위험이 있습니다. 중요한 스트리밍 처리 작업을 실행하는 고객은 이러한 위험을 방지해야 합니다. 고객이 이러한 위험을 줄이는 데 사용할 수 있는 메커니즘은 Azure의 **[지역 쌍](https://docs.microsoft.com/azure/best-practices-availability-paired-regions)** 모델입니다. 
+완전히 관리 되는 서비스의 일부에는 hello 기능 toointroduce 새로운 서비스 기능을 빠른 속도로 향상 된 기능입니다. 따라서 Stream Analytics는 매주(또는 더 자주) 서비스 업데이트 배포가 이루어질 수 있습니다. 얼마나 많은 테스트가 수행에 관계 없이 사업이 여전히 기존를 실행 하 고 작업을 바꾸어 벗어나지 버그 toohello 소개 인해 위험이 있습니다. 이러한 위험 중요 스트리밍 처리 작업을 실행 하는 고객에 대 한 피해 toobe가 필요 합니다. 메커니즘 고객 tooreduce צ ְ ײ이 위험을 Azure의  **[쌍을 이루는 지역](https://docs.microsoft.com/azure/best-practices-availability-paired-regions)**  모델입니다. 
 
 ## <a name="how-do-azure-paired-regions-address-this-concern"></a>Azure 지역 쌍은 이러한 문제를 어떻게 해결할까요?
 
-Stream Analytics는 지역 쌍의 작업이 별도의 일괄 처리로 업데이트되도록 보장합니다. 따라서 잠재적인 주요 버그를 식별하고 재구성하기 위해 업데이트 간에 충분 한 간격을 둡니다.
+Stream Analytics는 지역 쌍의 작업이 별도의 일괄 처리로 업데이트되도록 보장합니다. 결과적으로 tooidentify 잠재적 주요 버그 및이 수정할 hello 업데이트 간의 충분 한 시간 간격이 됩니다.
 
-Stream Analytics 업데이트 배포는 지역 쌍 집합에서 동시에 발생하지 않습니다. 단, 인도 남부가 지역 쌍이지만 Stream Analytics 상태가 없는 _인도 중부는 예외_입니다. **동일한 그룹에 속하는** 여러 지역에서는 배포가 **동시에** 발생할 수 있습니다.
+_중앙 인도 hello 제외_ (인 쌍을 이루는 지역, 남 인도에 현재 상태 스트림 분석) 쌍 이룬된 지역 집합이 시간이 hello 배포는 업데이트 tooStream 분석 hello에서 발생 하지 않습니다. 여러 지역에 배포 **hello에 동일한 그룹** 발생할 수 있습니다 **hello에 동시**합니다.
 
-쌍을 이루는 지역에 대한 최신 정보는 **[가용성 및 쌍을 이루는 지역](https://docs.microsoft.com/azure/best-practices-availability-paired-regions)**에 대한 문서에 있습니다.
+hello 문서  **[가용성과 쌍 이룬된 지역](https://docs.microsoft.com/azure/best-practices-availability-paired-regions)**  지역 쌍 hello 최신 정보는 합니다.
 
-고객은 두 지역 쌍 모두에 동일한 작업을 배포하는 것이 좋습니다. 또한 고객은 Stream Analytics의 내부 모니터링 기능 외에도 작업이 **둘 다** 프로덕션 작업인 것처럼 모니터링하는 것이 좋습니다. 중단이 발생한 이유가 Stream Analytics 서비스 업데이트 때문이라면 적절히 에스컬레이션하고 다운스트림 소비자를 정상 작업 출력으로 장애 조치(failover)합니다. 지원으로 에스컬레이션하면 지역 쌍이 새 배포의 영향을 받지 않게 되고 지역 쌍의 무결성이 유지됩니다.
+고객은이 권장된 toodeploy 동일 작업 쌍을 이루는 tooboth 영역. 또한 tooStream 분석 내부 모니터링 기능을 고객도 있습니다 알리도록 toomonitor hello 작업 처럼 **둘 다** 프로덕션 작업이 있습니다. 식별 된 toobe hello 스트림 분석 서비스 업데이트의 결과 중단을 사용 하는 경우 적절 하 게 에스컬레이션 및 장애 조치 모든 다운스트림 소비자 toohello 정상 작업 출력 합니다. 에스컬레이션 toosupport hello 새 배포에 의해 영향을 주지 않도록 hello 쌍을 이루는 지역을 작업이 방지 되 고 hello 쌍이 작업의 hello 무결성을 유지 합니다.

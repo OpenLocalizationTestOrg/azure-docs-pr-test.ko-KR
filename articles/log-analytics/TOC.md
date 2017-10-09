@@ -44,7 +44,7 @@
 ### [FAQ](log-analytics-log-search-faq.md)
 ### [로그 검색 개요](log-analytics-log-search-new.md)
 ### [로그 검색 포털](log-analytics-log-search-portals.md)
-#### [로그 검색 포털 사용](log-analytics-log-search-log-search-portal.md)
+#### [Hello 로그 검색 포털을 사용 하 여](log-analytics-log-search-log-search-portal.md)
 ### [레거시 언어에서 전환](log-analytics-log-search-transition.md)
 ### [흐름 커넥터](log-analytics-flow-tutorial.md)
 

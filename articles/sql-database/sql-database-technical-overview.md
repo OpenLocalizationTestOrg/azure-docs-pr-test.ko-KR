@@ -1,7 +1,7 @@
 ---
-title: "Azure SQL Database 서비스란? | Microsoft Docs"
-description: "SQL 데이터베이스에 대한 소개: 클라우드 환경에서 Microsoft의 관계형 데이터베이스 관리 시스템(RDBMS)의 기능과 기술 세부 정보를 살펴봅니다."
-keywords: "sql 소개, sql 소개, sql 데이터베이스란"
+title: "aaaWhat은 hello Azure SQL 데이터베이스 서비스는? | Microsoft Docs"
+description: "소개 tooSQL 데이터베이스 가져오기: 기술 세부 정보 및 성능이 나와 Microsoft의 관계형 데이터베이스 관리 시스템 (RDBMS) hello 클라우드에서 합니다."
+keywords: "소개 toosql, 소개 toosql, 이란 sql 데이터베이스"
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -16,22 +16,22 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 06/30/2017
 ms.author: carlrab
-ms.openlocfilehash: 28aa6d79f999fe9b247d9bb2c61a149a21e72a4a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 24ca383ad7e140133d19debc8899f172ee4aa424
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-is-the-azure-sql-database-service"></a>Azure SQL Database 서비스란? 
+# <a name="what-is-hello-azure-sql-database-service"></a>Hello Azure SQL 데이터베이스 서비스는 무엇입니까? 
 
-SQL Database는 관계형 데이터, 공간, JSON 및 XML과 같은 구조를 지원하는 Microsoft Azure의 범용 관계형 데이터베이스 서비스입니다. [동적으로 확장 가능한 성능](sql-database-service-tiers.md)을 제공하고 고도의 분석 및 보고를 위한 [columnstore 인덱스](https://docs.microsoft.com/sql/relational-databases/indexes/columnstore-indexes-overview) 및 고도의 트랜잭션 처리를 위한 [메모리 내 OLTP](sql-database-in-memory.md)와 같은 옵션을 제공합니다. Microsoft에서는 SQL 코드 베이스를 모두 원활하게 패치하고 업데이트하며 기본 인프라의 모든 관리를 추상화합니다. 
+SQL Database는 관계형 데이터, 공간, JSON 및 XML과 같은 구조를 지원하는 Microsoft Azure의 범용 관계형 데이터베이스 서비스입니다. [동적으로 확장 가능한 성능](sql-database-service-tiers.md)을 제공하고 고도의 분석 및 보고를 위한 [columnstore 인덱스](https://docs.microsoft.com/sql/relational-databases/indexes/columnstore-indexes-overview) 및 고도의 트랜잭션 처리를 위한 [메모리 내 OLTP](sql-database-in-memory.md)와 같은 옵션을 제공합니다. Microsoft는 모든 업데이트 및 패치 적용 hello SQL 코드 베이스 원활 하 게 처리 하 고 hello 기본 인프라의 모든 관리를 추상화 합니다. 
 
-SQL Database는 [Microsoft SQL Server 데이터베이스 엔진](https://docs.microsoft.com/sql/sql-server/sql-server-technical-documentation)을 사용하여 코드 베이스를 공유합니다. Microsoft의 클라우드 우선 전략을 사용하여 SQL Server의 최신 기능을 SQL Database에 먼저 릴리스한 다음 SQL Server 자체에 릴리스합니다. 이 방법은 패치 기능 또는 업그레이드에 대한 오버헤드 없이 수백만 개의 데이터베이스에 대해 테스트된 이러한 새로운 기능을 사용하여 최신 SQL Server 기능을 제공합니다. 별도로 공지된 새로운 기능에 대한 내용은 다음을 참조하세요.
+Hello와 동시에 코드 베이스를 공유 하는 SQL 데이터베이스 [Microsoft SQL Server 데이터베이스 엔진](https://docs.microsoft.com/sql/sql-server/sql-server-technical-documentation)합니다. Microsoft의 클라우드 우선 전략을 SQL Server의 최신 기능 hello은 출시 된 첫 번째 tooSQL 데이터베이스 및 다음 tooSQL 서버 자체입니다. 이 방법을 사용 하면 hello로 최신 SQL Server과 기능을 제공 패치 기능에 오버 헤드가 없습니다 또는 수백만 개의 데이터베이스에 대해 테스트 한-업그레이드 하 고 이러한 새로운 기능을 사용 합니다. 별도로 공지된 새로운 기능에 대한 내용은 다음을 참조하세요.
 
-- **[SQL Database의 Azure 로드맵](https://azure.microsoft.com/roadmap/?category=databases)**: 새로운 기능과 향후 제공될 기능을 확인할 수 있습니다. 
+- **[SQL 데이터베이스에 대 한 azure 로드맵](https://azure.microsoft.com/roadmap/?category=databases)**: 새로운 기능 및 향후 예정 사항 다음 장소 toofind 합니다. 
 - **[Azure SQL Database 블로그](https://azure.microsoft.com/blog/topics/database)**: SQL Database 뉴스 및 기능에 대한 SQL Server 제품 팀 구성원 블로그를 확인할 수 있습니다. 
 
-SQL Database는 가동 중지 시간 없이 기본 제공 지능형 최적화, 전역 확장성과 가용성 및 고급 보안 옵션을 포함하여 동적 확장성을 제공하는 여러 서비스 수준에서 별도로 관리하지 않고도 예측 가능한 성능을 제공합니다. 이러한 기능을 사용하면 가상 컴퓨터와 인프라를 관리하는 데 귀중한 시간과 리소스를 할당하는 대신 빠른 앱 개발에 집중하고 시장 출시 시간을 단축할 수 있습니다. SQL Database는 현재 전 세계에서 38개의 데이터 센터에 제공되며, 주변의 데이터 센터에서 데이터베이스를 실행할 수 있도록 정기적으로 더 많은 데이터 센터가 온라인될 예정입니다.
+SQL Database는 가동 중지 시간 없이 기본 제공 지능형 최적화, 전역 확장성과 가용성 및 고급 보안 옵션을 포함하여 동적 확장성을 제공하는 여러 서비스 수준에서 별도로 관리하지 않고도 예측 가능한 성능을 제공합니다. 이러한 기능을 사용 하면 빠른 응용 프로그램 개발 및 사용자 시간 toomarket를 가속화 하는 데 보다는에 시간을 단축 하 고 리소스 toomanaging 가상 컴퓨터 및 인프라 할당 toofocus 있습니다. hello 38 데이터 서비스는 현재 SQL 데이터베이스에 중점을 둡니다 hello world 더 많은 데이터 센터가 정기적으로 온라인 상태가 toorun 사용할 수 있는 가까운 데이터 센터에서 데이터베이스.
 
 > [!NOTE]
 > Azure의 플랫폼 보안에 대한 자세한 내용을 보려면 [Azure 보안 센터](https://azure.microsoft.com/support/trust-center/security/)를 참조하세요.
@@ -39,31 +39,31 @@ SQL Database는 가동 중지 시간 없이 기본 제공 지능형 최적화, �
 
 ## <a name="scalable-performance-and-pools"></a>확장 가능한 성능 및 풀
 
-SQL Database에서 각 데이터베이스는 보장된 성능 수준에서 고유한 [서비스 계층](sql-database-service-tiers.md)으로 서로 격리되고 이식 가능합니다. SQL Database는 다른 요구 사항에 대해 다른 성능 수준을 제공하며 데이터베이스가 리소스 사용을 최대화하고 비용을 절감하도록 풀링할 수 있습니다.
+SQL Database에서 각 데이터베이스는 보장된 성능 수준에서 고유한 [서비스 계층](sql-database-service-tiers.md)으로 서로 격리되고 이식 가능합니다. SQL 데이터베이스는 서로 다른 요구 사항에 대 한 다양 한 성능 수준을 제공 하 고 toobe 풀링된 toomaximize hello 리소스 사용 및 비용을 절감 하는 데이터베이스를 활성화 합니다.
 
 ### <a name="adjust-performance-and-scale-without-downtime"></a>가동 중지 시간 없이 성능 및 규모 조정
 
-SQL Database는 경량부터 중량까지의 데이터베이스 워크로드를 지원하도록 Basic, Standard, Premium 및 Premium RS라는 4개의 서비스 계층을 제공합니다. 매달 적은 비용으로 작은 단일 데이터베이스에 첫 번째 앱을 빌드한 다음 언제든지 수동 또는 프로그래밍 방식으로 서비스 계층을 변경하여 솔루션의 요구 사항을 충족시킬 수 있습니다. 앱이나 고객에게 가동 중지 시간 없이 성능을 조정할 수 있습니다. 동적 확장성을 통해 데이터베이스는 급변하는 리소스 요구 사항에 투명하게 대응할 수 있으며, 필요할 때 필요한 리소스에 대해서만 비용을 지불할 수 있습니다.
+SQL 데이터베이스는 toosupport tooheavyweight 경량 데이터베이스 작업 4 개의 서비스 계층을 제공: Basic, Standard, Premium 및 프리미엄 RS 합니다. 저렴 한 비용으로 매달 작은, 단일 데이터베이스에서 첫 번째 응용 프로그램을 작성 하 고 변경할 수 해당 서비스 계층 수동으로 또는 프로그래밍 방식으로 솔루션의 요구 하는 시간 toomeet hello에 있습니다. Tooyour 앱 또는 tooyour 고객 가동 중지 시간 없이 성능을 조정할 수 있습니다. 동적 확장성 데이터베이스 tootransparently 리소스 요구 사항 및 사용 하도록 설정 하면 tooonly hello 리소스에 대 한 지불이 필요할 때 해야 변경 toorapidly 응답할 수 있습니다.
 
    ![scaling](./media/sql-database-what-is-a-dtu/single_db_dtus.png)
 
-### <a name="elastic-pools-to-maximize-resource-utilization"></a>리소스 사용률 극대화를 위한 탄력적 풀
+### <a name="elastic-pools-toomaximize-resource-utilization"></a>탄력적 풀 toomaximize 리소스 사용률
 
-특히 사용 패턴이 비교적 예측 가능한 경우 많은 비즈니스 및 응용 프로그램에서 단일 데이터베이스를 만들고 필요에 따라 충분히 성능을 확장하거나 축소할 수 있습니다. 하지만 사용 패턴을 예측할 수 없는 경우 비용과 비즈니스 모델을 관리하기 어려워질 수 있습니다. [탄력적 풀](sql-database-elastic-pool.md)은 이 문제를 해결하도록 설계되었습니다. 개념은 간단합니다. 개별 데이터베이스가 아니라 풀에 성능 리소스를 할당하고 단일 데이터베이스 성능이 아니라 풀의 집합적 성능 리소스에 대해 요금을 지불합니다. 
+많은 비즈니스 및 응용 프로그램에 대 한 단일 데이터베이스 수 toocreate 되 전화를 성능 위로 또는 아래로 필요에 따라 사용 패턴은 상대적으로 예측 하는 경우에 특히는 충분 합니다. 하지만 예측할 수 없는 사용 패턴을 사용 하는 경우 그 수 하드 toomanage 비용 및 비즈니스 모델. [탄력적 풀](sql-database-elastic-pool.md) 디자인된 toosolve이이 문제가 됩니다. hello 개념은 간단 합니다. 개별 데이터베이스 보다는 성능 리소스 tooa 풀 이상을 할당 하 고 hello 풀의 hello 축적 성능 리소스에 대 한 아닌 단일 데이터베이스 성능에 대 한 비용을 지불 합니다. 
 
    ![탄력적 풀](./media/sql-database-what-is-a-dtu/sqldb_elastic_pools.png)
 
-탄력적 풀을 사용하면 리소스에 대한 요구가 변동함에 따라 데이터베이스 성능을 높이거나 낮추는 데 집중할 필요가 없습니다. 풀링된 데이터베이스는 필요에 따라 탄력적 풀의 성능 리소스를 사용합니다. 풀링된 데이터베이스는 풀의 한도를 사용하지만 초과하지 않으므로 개별 데이터베이스 사용량을 예측할 수 없는 경우에도 비용을 계속 예측할 수 있습니다. 뿐만 아니라 [풀에 데이터베이스를 추가 및 제거](sql-database-elastic-pool-manage-portal.md)하여 소수의 데이터베이스에서 수천 개의 데이터베이스까지 자신이 관리하는 예산 범위 내에서 앱의 규모를 조정할 수 있습니다. 풀의 데이터베이스에서 사용할 수 있는 최소 및 최대 리소스를 제어하여 풀의 어떤 데이터베이스도 풀 리소스 전체를 사용하지 못하도록 하고 풀링된 모든 데이터베이스에 최소한의 리소스를 보장할 수 있습니다. 탄력적 풀을 사용한 SaaS 응용 프로그램의 디자인 패턴에 대해 자세히 알아보려면 [SQL Database를 사용한 다중 테넌트 SaaS 응용 프로그램 디자인 패턴](sql-database-design-patterns-multi-tenancy-saas-applications.md)을 참조하세요.
+탄력적 풀과 리소스에 대 한 수요가 변경 됨에 따라 데이터베이스 성능 및 축소를 걸기에 toofocus가 필요는 없습니다. hello 풀링된 데이터베이스 리소스를 소비 hello 성능 hello 탄력적 풀의 필요에 따라 합니다. 풀링된 데이터베이스 소비 하지만 개별 데이터베이스 사용 하지 않는 경우에 비용 예측 가능한 게 hello 풀 hello도 초과 하지 않습니다. 더구나 수 [추가 하 고 데이터베이스 toohello 풀 제거](sql-database-elastic-pool-manage-portal.md)는 소수의 사용자가 제어 하는 예산 내에서 데이터베이스 toothousands에서 응용 프로그램을 확장 합니다. 또한 제어 hello 최소 수 있습니다 및 hello 풀 tooensure hello 풀에서 데이터베이스가 없습니다. 모든 사용에 사용할 수 있는 toodatabases 최대 리소스 풀 리소스 및 풀링된 모든 데이터베이스에 최소 보장된 리소스 용량이 있는지 hello 합니다. 탄력적 풀을 사용 하 여 SaaS 응용 프로그램에 대 한 디자인 패턴에 대해 자세히 toolearn 참조 [SQL 데이터베이스를 사용한 다중 테 넌 트 SaaS 응용 프로그램에 대 한 디자인 패턴](sql-database-design-patterns-multi-tenancy-saas-applications.md)합니다.
 
 ### <a name="blend-single-databases-with-pooled-databases"></a>단일 데이터베이스와 풀링된 데이터베이스의 혼합
 
-사용자는 단일 데이터베이스와 탄력적 풀 중 어느 한 쪽으로만 한정되지는 않습니다. 즉 단일 데이터베이스와 탄력적 풀을 혼합하고, 단일 데이터베이스와 탄력적 풀의 서비스 계층을 상황에 맞게 빠르고 쉽게 변경할 수 있습니다. Azure의 성능 및 도달 범위를 바탕으로 다른 Azure 서비스를 SQL Database와 조합하여 사용하면 고유한 앱 설계 요구를 충족시키고, 비용 및 리소스를 효율적으로 운용하고, 새로운 비즈니스 기회를 만들 수 있습니다.
+사용자는 단일 데이터베이스와 탄력적 풀 중 어느 한 쪽으로만 한정되지는 않습니다. 탄력적 풀을 사용 하 여 단일 데이터베이스를 혼합 하 고 신속 하 고 쉽게 단일 데이터베이스 및 탄력적 풀의 hello 서비스 계층을 변경할 수 있습니다 tooadapt tooyour 상황입니다. Hello 전원와 Azure의 도달 범위를 혼합 및 일치 다른 Azure SQL 데이터베이스 toomeet 고유한 응용 프로그램 디자인 요구 사항, 비용 드라이브 및 리소스 효율성을 사용 하 여 서비스와 새로운 비즈니스 기회 잠금을 해제할 수 있습니다.
 
 ### <a name="extensive-monitoring-and-alerting-capabilities"></a>광범위한 모니터링 및 경고 기능
 
-그러나 단일 데이터베이스와 탄력적 풀의 상대적 성능을 비교하려면 어떻게 해야 합니까? 확장 및 축소할 때 마우스 오른쪽 단추 클릭이 정지하는 것을 어떻게 알 수 있습니까? [단일 데이터베이스의 DTU(데이터베이스 트랜잭션 단위) 및 탄력적 풀의 eDTU(탄력적 DTU)](sql-database-what-is-a-dtu.md)에 기반한 성능 등급과 결합된 [기본 제공 성능 모니터링](sql-database-performance.md) 및 [경고](sql-database-insights-alerts-portal.md) 도구를 사용합니다. 이 도구를 사용하면 현재 또는 프로젝트의 성능 요구에 기반하여 확장 또는 축소의 영향을 신속하게 평가할 수 있습니다. 자세한 내용은 [SQL 데이터베이스 옵션 및 성능: 각 서비스 계층에서 사용할 수 있는 것 이해](sql-database-service-tiers.md) 를 참조하세요.
+하지만 단일 데이터베이스와 탄력적 풀의 상대 성능을 hello 어떻게 비교할 수 있습니까? 알 수 있을까요 hello 마우스 오른쪽 단추로 클릭 하 여 중지 아래로 전화 때? Hello를 사용 하 여 [기본 제공 성능 모니터링](sql-database-performance.md) 및 [경고](sql-database-insights-alerts-portal.md) hello 성능 등급에 따라 함께 도구 [단일 데이터베이스에 대 한 데이터베이스 트랜잭션 단위 (DTUs) 및 탄력적 풀에 대 한 탄력적 Dtu (Edtu)](sql-database-what-is-a-dtu.md)합니다. 이러한 도구를 사용 하 여 신속 하 게 평가할 수 확장 또는 축소 현재 기준의 hello 영향 또는 프로젝트 성능 요구 합니다. 자세한 내용은 [SQL 데이터베이스 옵션 및 성능: 각 서비스 계층에서 사용할 수 있는 것 이해](sql-database-service-tiers.md) 를 참조하세요.
 
-또한 SQL Database는 쉬운 모니터링을 위해 [메트릭 및 진단 로그를 내보낼](sql-database-metrics-diag-logging.md) 수 있습니다. 리소스 사용량, 작업자와 세션 및 연결을 이러한 Azure 리소스 중 하나에 저장하도록 SQL Database를 구성할 수 있습니다.
+또한 SQL Database는 쉬운 모니터링을 위해 [메트릭 및 진단 로그를 내보낼](sql-database-metrics-diag-logging.md) 수 있습니다. SQL 데이터베이스 toostore 리소스 사용량, 작업자 및 세션 및 Azure 이러한 리소스 중 하나에 대 한 연결을 구성할 수 있습니다.
 
 - **Azure Storage**: 작은 가격으로 방대한 양의 원격 분석을 보관하는 경우
 - **Azure Event Hub**: 사용자 지정 모니터링 솔루션 또는 핫 파이프라인과 SQL Database 원격 분석을 통합하는 경우
@@ -76,19 +76,19 @@ SQL Database는 경량부터 중량까지의 데이터베이스 워크로드를 
 Azure의 업계 선도적인 99.99% 가용성 [SLA](http://azure.microsoft.com/support/legal/sla/)(서비스 수준 계약)를 Microsoft에서 관리되는 전 세계 데이터 센터 네트워크의 지원을 받아 앱을 연중 무휴(24/7)로 실행할 수 있습니다. 또한 SQL Database는 다음을 포함하여 기본 제공 [비즈니스 연속성 및 글로벌 확장성](sql-database-business-continuity.md) 기능을 제공합니다.
 
 - **[자동 백업](sql-database-automated-backups.md)**: SQL Database는 전체, 차등 및 트랜잭션 로그 백업을 자동으로 수행합니다.
-- **[지정 시간 복구](sql-database-recovery-using-backups.md)**: SQL Database는 자동 백업 보존 기간 내에 모든 시점으로 복구하도록 지원합니다.
-- **[활성 지역 복제](sql-database-geo-replication-overview.md)**: SQL Database를 사용하면 세계적으로 분산된 Azure 데이터 센터 중 하나에서 최대 4개의 읽기 가능한 보조 데이터베이스를 구성할 수 있습니다.  예를 들어 읽기 전용 동시 트랜잭션 양이 많은 카탈로그 데이터베이스와 SaaS 응용 프로그램이 있는 경우 활성 지역 복제를 사용하여 세계적인 읽기 규모를 사용하도록 설정하고 읽기 워크로드로 인한 주 서버의 병목 상태를 제거합니다. 
-- **[장애 조치 그룹](sql-database-geo-replication-overview.md)**: SQL Database를 사용하면 큰 집합의 데이터베이스와 탄력적 풀에 대해 투명한 지역에서 복제 및 장애 조치를 포함하여 세계적인 규모로 고가용성 및 부하 분산을 사용할 수 있습니다. 장애 조치 그룹 및 활성 지역 복제를 사용하면 SQL Database에 대한 복잡한 모니터링, 라우팅 및 장애 조치 오케스트레이션 없이 최소한의 관리 오버헤드를 포함하여 전 세계적으로 분산된 SaaS 응용 프로그램을 만들 수 있습니다.
+- **[지정 시간 복원](sql-database-recovery-using-backups.md)**: SQL 데이터베이스 hello 자동 백업 보존 기간 내의 지정 시간 복구 tooany 지점을 지원 합니다.
+- **[활성 지리적 복제](sql-database-geo-replication-overview.md)**: SQL 데이터베이스를 통해 toofour 읽기 가능한 보조 복제본을 tooconfigure hello 중 하나에서 동일한 데이터베이스 또는 Azure 데이터 센터를 전역으로 분산 합니다.  예를 들어 SaaS 응용 프로그램의 동시 읽기 전용 트랜잭션 높은 볼륨이 있는 카탈로그 데이터베이스와를 설정한 경우 사용 하 여 활성 지리적 복제 tooenable 글로벌 눈금 읽고 tooread 워크 로드 되는 기본 hello에 병목 현상을 제거 합니다. 
+- **[장애 조치 그룹](sql-database-geo-replication-overview.md)**: SQL 데이터베이스 있습니다 tooenable 고가용성 및 투명 한 지리적 복제 및 데이터베이스와 탄력적 풀의 큰 집합의 장애 조치를 포함 하는 세계적인 규모의 부하 분산 합니다. 장애 조치 그룹 및 활성 지리적 복제 사용 생성 세계적으로 분산 된 SaaS 응용 프로그램을 최소한의 관리 오버 헤드 모든 hello 복잡 한 모니터링, 라우팅 및 오케스트레이션 tooSQL 데이터베이스 장애 조치를 종료 합니다.
 
 ## <a name="built-in-intelligence"></a>기본 제공 인텔리전스
 
-SQL Database에서 기본 제공 인텔리전스를 통해 데이터베이스를 실행하고 관리하는 비용을 크게 줄이고 응용 프로그램의 성능과 보안을 모두 극대화할 수 있습니다. SQL Database는 수백만 개의 고객 워크로드를 24시간 실행하여 많은 양의 원격 분석 데이터를 수집하고 처리하는 동시에 고객 개인 정보를 완벽하게 관리합니다. 다양한 알고리즘은 서비스가 응용 프로그램에 적용될 수 있도록 지속적으로 원격 분석 데이터를 평가합니다. 이 분석을 기반으로 서비스에서는 특정 워크로드에 맞게 성능 개선 권장 사항을 제공합니다. 
+SQL 데이터베이스 성능과 응용 프로그램의 보안을 극대화 하 고 실행 하 고 관리 데이터베이스의 hello 비용을 크게 줄일 수 있습니다 수 있도록 기본 제공 intelligence를 얻을 수 있습니다. 수백만 개의 고객 24 시간 작업을 실행, SQL 데이터베이스 수집 하 고 완전히 hello 백그라운드 고객 개인 정보를 유지 하는 동안 많은 양의 원격 분석 데이터를 처리 합니다. 지속적으로 다양 한 알고리즘은 hello 서비스 알아보고 응용 프로그램과 함께 적용할 수 있도록 hello 원격 분석 데이터를 평가 해야 합니다. 이 분석에 따르면 hello 서비스를 생성 하 성능 권장 사항 맞춤형된 tooyour 특정 작업을 향상 합니다. 
 
 ### <a name="automatic-performance-tuning"></a>자동 성능 튜닝
 
-SQL Database는 모니터링해야 하는 쿼리에 대한 자세한 정보를 제공합니다. SQL Database는 데이터베이스 패턴을 인식하고 워크로드에 맞게 데이터베이스 스키마를 적용할 수 있습니다. SQL Database는 [SQL Database Advisor](sql-database-advisor.md)를 사용하여 성능 튜닝 권장 구성을 제공하고 튜닝 작업을 검토하고 적용할 수 있습니다. 그러나 지속적으로 데이터베이스를 모니터링하는 것은 특히 많은 데이터베이스를 처리할 때 힘들고 지루한 작업입니다. SQL Database 및 Azure Portal에서 제공하는 모든 사용 가능한 도구 및 보고서를 사용하더라도 상당히 많은 데이터베이스를 효율적으로 관리하기 어려울 수 있습니다. 수동으로 데이터베이스를 모니터링하고 튜닝하는 대신 자동 튜닝 기능을 사용하여 SQL Database에 대한 모니터링 및 튜닝 작업을 위임하도록 고려할 수 있습니다. SQL Database는 권장 사항, 테스트를 자동으로 적용하고 해당 튜닝 작업을 확인하여 성능이 계속 향상되도록 합니다. 이러한 방식으로 SQL Database는 자동으로 안전하게 제어된 방법으로 워크로드에 적용됩니다. 자동 튜닝은 데이터베이스 성능을 신중하게 모니터링하고 모든 튜닝 작업 전후와 비교함을 의미합니다. 성능이 개선되지 않는 경우 튜닝 작업은 되돌려집니다.
+SQL 데이터베이스 hello에 대 한 자세한 정보를 toomonitor 해야 하는 쿼리를 제공 합니다. SQL 데이터베이스는 데이터베이스 패턴을 인식 하 고 있습니다 tooadapt 데이터베이스 스키마 tooyour 작업을 활성화 합니다. SQL Database는 [SQL Database Advisor](sql-database-advisor.md)를 사용하여 성능 튜닝 권장 구성을 제공하고 튜닝 작업을 검토하고 적용할 수 있습니다. 그러나 지속적으로 데이터베이스를 모니터링하는 것은 특히 많은 데이터베이스를 처리할 때 힘들고 지루한 작업입니다. 거 대 한 수의 데이터베이스를 관리할 수 있습니다 불가능 한 toodo 효율적으로 된 경우에 모든 사용 가능한 도구 및 SQL 데이터베이스 및 Azure 포털에서 제공 하는 보고서. 모니터링 수동으로 데이터베이스를 튜닝 하는 대신 해야 할 몇 가지 모니터링 및 튜닝 작업 tooSQL hello 위임 자동 튜닝 기능을 사용 하 여 데이터베이스입니다. SQL 데이터베이스는 자동으로 권장 구성, 테스트를 적용 하 고 각 튜닝 작업 tooensure hello 성능을 향상 계속 확인 합니다. SQL 데이터베이스는 이러한 방식으로 제어 되 고 안전한 방법으로 tooyour 작업을 자동으로 적응합니다. 자동 튜닝 있음을 나타내고 데이터베이스 성능 hello 신중 하 게 모니터링 하 고 모든 튜닝 작업 전후의 비교 작업을 튜닝 하는 hello 되돌려지는 hello 성능을 개선 하지 않습니다.
 
-현재 SQL Database를 기반으로 [SaaS 다중 테넌트 앱](sql-database-design-patterns-multi-tenancy-saas-applications.md)을 실행하는 파트너는 대부분 자동 성능 튜닝을 사용하여 응용 프로그램이 항상 안정적이고 예측 가능한 성능을 제공하도록 합니다. 이 기능은 갑자기 성능 인시던트가 발생하는 위험을 크게 줄여 줍니다. 또한 일부 해당 고객이 SQL Server를 사용하기 때문에 SQL Database에서 제공하는 동일한 인덱싱 권장 사항을 사용하여 SQL Server 고객을 도울 수 있습니다.
+오늘를 다 실행 여러 파트너의 [다중 테 넌 트 SaaS 앱](sql-database-design-patterns-multi-tenancy-saas-applications.md) 자동 성능 toomake 있는지 응용 프로그램 항상 안정적이 고 예측 가능한 성능 튜닝에 점을 SQL 데이터베이스를 기반으로 합니다. 이 기능에는 고객을 위해 hello 위험을 hello 밤 hello 가운데에 성능 문제가 발생 한을 크게 줄여 줍니다. 또한 고객 기반의 일부 SQL Server를 사용 하므로 hello 사용 중인 SQL Server 고객에 게 SQL 데이터베이스 toohelp에서 인덱싱 같은 권장 사항을 제공 합니다.
 
 SQL Database에서 사용할 수 있는 두 가지 자동 튜닝 측면이 있습니다.
 
@@ -97,56 +97,56 @@ SQL Database에서 사용할 수 있는 두 가지 자동 튜닝 측면이 있�
 
 ### <a name="adaptive-query-processing"></a>적응 쿼리 처리
 
-또한 다중 문 테이블 반환 함수, 일괄 처리 모드 메모리 부여 피드백 및 일괄 처리 모드 적응 조인에 대해 인터리브된 실행을 포함하여 [적응 쿼리 처리](/sql/relational-databases/performance/adaptive-query-processing) 기능 모음을 SQL Database에 추가하려고 합니다. 이러한 적응 쿼리 처리 기능은 각각 유사한 "알아보기 및 적용" 방법을 적용하고 지금까지 다루기 힘든 쿼리 최적화 문제와 관련된 성능 문제를 추가로 해결할 수 있도록 합니다.
+또한 hello 추가 하 고 [적응 쿼리 처리](/sql/relational-databases/performance/adaptive-query-processing) 기능 tooSQL 다중 문 테이블 반환 함수에 대 한 인터리브 방식된으로 실행을 포함 하 여 데이터베이스의 제품군 모드 메모리 부여 피드백 일괄 처리 및 모드 적응 조인 일괄 처리 . 각각의 적응 쿼리 처리 기능 적용 유사한 "알아보고 조정" 방법을 추가 주소 성능 문제 관련된 toohistorically 다루기 쿼리 최적화 문제 수 있도록 지원 합니다.
 
 ### <a name="intelligent-threat-detection"></a>지능형 위협 검색
 
- [SQL 위협 요소 감지](sql-database-threat-detection.md)는 [SQL Database 감사](sql-database-auditing.md)를 활용하여 중요한 데이터에 액세스하는 잠재적으로 위험한 시도에 대해 Azure SQL Database를 지속적으로 모니터링합니다. SQL 위협 감지는 비정상적인 활동에 대한 보안 경고를 제공하여 잠재적인 위협이 발생하면 고객이 이를 감지하고 대응할 수 있도록 하는 새로운 차원의 보안을 제공합니다. 사용자는 의심스러운 데이터베이스 활동, 잠재적 취약성 및 SQL 삽입 공격은 물론 비정상적인 데이터베이스 액세스 패턴에 대한 경고를 받게 됩니다. SQL 위협 감지 경고는 의심스러운 활동에 대한 세부 정보 제공하고 위협을 조사하고 완화하는 방법에 대한 조치를 권장합니다. 사용자는 데이터베이스의 데이터에 액세스, 침범 또는 악용하려는 시도로 이벤트가 발생했는지를 결정하기 위해서 의심스러운 이벤트를 탐색할 수 있습니다. 위협 감지는 보안 전문가가 되거나 고급 보안 모니터링 시스템을 관리할 필요 없이 데이터베이스에 대한 잠재적인 위협에 간단하게 대처할 수 있도록 합니다.
+ [SQL 위협 요소 탐지](sql-database-threat-detection.md) 활용 [SQL 데이터베이스 감사](sql-database-auditing.md) toocontinuously 모니터 Azure SQL 데이터베이스 tooaccess 중요 한 데이터의 잠재적으로 위험한 시도 합니다. SQL 위협 요소 탐지 새 고객 toodetect 있고 비정상적인 활동에서 보안 경고를 제공 하 여 발생 하는 대로 toopotential 위협 응답을 보안 계층을 제공 합니다. 사용자는 의심스러운 데이터베이스 활동, 잠재적 취약성 및 SQL 삽입 공격은 물론 비정상적인 데이터베이스 액세스 패턴에 대한 경고를 받게 됩니다. SQL 위협 검색 경고가 의심 스러운 활동의 세부 정보를 제공 하 고 방법에 대 한 작업을 권장 tooinvestigate hello 위협을 완화 합니다. 사용자는 시도 tooaccess에서 hello 이벤트 결과 위반를 주거나 이들을 착취 hello 데이터베이스의에서 데이터를 하는 경우 hello 의심 스러운 이벤트 toodetermine를 탐색할 수 있습니다. 위협 요소 탐지 하면 간단한 tooaddress 잠재적인 위협 toohello 데이터베이스 없이 hello 필요 toobe 보안 전문가 또는 시스템 모니터링 하는 고급 보안을 관리 합니다.
 
 ## <a name="advanced-security-and-compliance"></a>고급 보안 및 규정 준수
 
-SQL Database는 다양한 [기본 제공 보안 및 규정 준수 기능](sql-database-security-overview.md)을 제공하여 응용 프로그램이 다양한 보안 및 규정 준수 요구 사항을 충족할 수 있도록 합니다. 
+SQL 데이터베이스는 다양 한 제공 [기본 제공 보안 및 규정 준수 기능](sql-database-security-overview.md) toohelp 응용 프로그램에 다양 한 보안 및 규정 준수 요구 사항을 충족 합니다. 
 
 ### <a name="auditing-for-compliance-and-security"></a>규정 준수 및 보안에 대한 감사
 
-[SQL Database 감사](sql-database-auditing.md)는 데이터베이스 이벤트를 추적하고 Azure 저장소 계정의 감사 로그에 이벤트를 기록합니다. 감사는 규정 준수를 유지 관리하고, 데이터베이스 작업을 이해하고, 비즈니스 문제나 의심스러운 보안 위반을 나타낼 수 있는 불일치 및 이상 활동을 파악하는 데 도움이 될 수 있습니다.
+[SQL 데이터베이스 감사](sql-database-auditing.md) 데이터베이스 이벤트를 추적 하 고 Azure 저장소 계정에 tooan 감사 로그를 기록 합니다. 감사는 규정 준수를 유지 관리하고, 데이터베이스 작업을 이해하고, 비즈니스 문제나 의심스러운 보안 위반을 나타낼 수 있는 불일치 및 이상 활동을 파악하는 데 도움이 될 수 있습니다.
 
 ### <a name="data-encryption-at-rest"></a>휴지 상태의 암호화
 
-SQL Database [투명한 데이터 암호화](https://docs.microsoft.com/sql/relational-databases/security/encryption/transparent-data-encryption-with-azure-sql-database)는 응용 프로그램에 대한 변경 요구 없이 데이터베이스, 연결된 백업 및 저장된 트랜잭션 로그 파일에 대한 실시간 암호화 및 암호 해독을 수행하여 악의적인 활동의 위협으로부터 보호합니다. 2017년 5월부터 시작하여 새로 만든 모든 Azure SQL Database는 TDE(투명한 데이터 암호화)를 사용하여 자동으로 보호됩니다. TDE는 저장소 미디어의 도용으로부터 보호하기 위해 많은 규정 준수 표준에 필요한 정지된 암호화 기술로써 SQL에서 입증되었습니다. 고객은 Azure Key Vault를 사용하여 TDE 암호화 키 및 다른 비밀을 안전한 규격 방식으로 관리할 수 있습니다.
+SQL 데이터베이스 [투명 한 데이터 암호화](https://docs.microsoft.com/sql/relational-databases/security/encryption/transparent-data-encryption-with-azure-sql-database) 의 hello 데이터베이스에 연결 된 백업, 실시간 암호화 / 해독을 수행 하 여 악의적인 활동의 hello 취약점 으로부터 보호 하 고 미사용 트랜잭션 로그 파일 toohello 응용 프로그램 변경 하지 않고도 합니다. 2017년 5월부터 시작하여 새로 만든 모든 Azure SQL Database는 TDE(투명한 데이터 암호화)를 사용하여 자동으로 보호됩니다. TDE는 저장소 미디어의 도난 방지 하는 많은 규정 준수 표준 tooprotect에 필요한 휴지 암호화 기술을 입증 된 SQL의 합니다. 고객은 Azure 키 자격 증명 모음을 사용 하 여 안전 하 고 규격 방식에서 hello TDE 암호화 키 및 기타 암호 관리할 수 있습니다.
 
 ### <a name="data-encryption-in-motion"></a>진행 중인 데이터 암호화
 
-SQL Database는 [Always Encrypted](https://docs.microsoft.com/sql/relational-databases/security/encryption/always-encrypted-database-engine)를 사용하여 쿼리를 처리하는 동안 전송 중인 중요한 미사용 데이터의 보호를 제공하는 유일한 데이터베이스 시스템입니다. Always Encrypted는 중요한 데이터의 도용을 비롯한 위반에 대해 최상의 데이터 보안을 제공하는 업계 최고의 기능입니다. 예를 들어 Always Encrypted를 사용하여 쿼리를 처리하는 동안에도 고객의 신용 카드 번호가 데이터베이스에 암호화되어 저장됩니다. 또한 해당 데이터를 처리해야 하는 권한이 부여된 직원 또는 응용 프로그램에 의해 사용 시점에 암호를 해독할 수 있습니다.
+SQL 데이터베이스는 hello만 시스템 toooffer 보호 데이터베이스 이동 중인을 미사용 및 쿼리를 처리 하는 동안 중요 한 데이터의 [항상 암호화](https://docs.microsoft.com/sql/relational-databases/security/encryption/always-encrypted-database-engine)합니다. 상시 암호화는 최상의 데이터를 제공 하는 업계 중심 hello 도난 중요 한 데이터를 포함 하는 위반에 대 한 보안. 예를 들어 상시 암호화, 고객의 신용 카드 번호를 저장 쿼리 처리 중에 항상 그렇지는 hello 데이터베이스에서 암호화 데이터를 권한이 부여 된 직원 또는 tooprocess 해야 하는 응용 프로그램에서 사용 하 여 hello 시점에서 암호 해독을 허용 합니다.
 
 ### <a name="dynamic-data-masking"></a>동적 데이터 마스킹
 
-[SQL Database 동적 데이터 마스킹](sql-database-dynamic-data-masking-get-started.md)에서는 권한이 없는 사용자에 대해 중요한 데이터를 마스킹해 표시함으로써 데이터 노출을 제한합니다. 동적 데이터 마스킹을 수행하면 고객이 응용 프로그램 레이어에 대한 영향을 최소화하면서 표시할 중요한 데이터의 양을 지정할 수 있도록 하여 중요한 데이터에 대한 무단 액세스를 방지할 수 있습니다. 동적 데이터 마스킹은 지정된 데이터베이스 필드에 대한 쿼리의 결과 집합에서 중요한 데이터를 숨기는 정책 기반 보안 기능입니다. 이때 데이터베이스의 데이터 자체는 변경되지 않습니다.
+[SQL 데이터베이스 동적 데이터 마스킹](sql-database-dynamic-data-masking-get-started.md) toonon 권한이 사용자에 게 마스킹하 여 중요 한 데이터 노출을 제한 합니다. 동적 데이터 마스킹 고객 toodesignate를 사용 하 여 toosensitive 데이터를 무단된 액세스를 방지할 수 어느 정도의 hello 중요 한 데이터 tooreveal hello 응용 프로그램 계층에 미치는 영향을 최소화 합니다. hello 데이터베이스의 hello 데이터는 변경 되지 않으면 지정 된 데이터베이스 필드를 통해 hello hello 쿼리 결과 집합에서 중요 한 데이터를 숨기는 정책 기반 보안 기능.
 
 ### <a name="row-level-security"></a>행 수준 보안
 
-[행 수준 보안](https://docs.microsoft.com/sql/relational-databases/security/row-level-security)을 통해 고객은 쿼리를 실행하는 사용자의 특성(예: 그룹 멤버 자격 또는 실행 컨텍스트)을 기반으로 하여 데이터베이스 테이블의 행에 대한 액세스를 제어할 수 있습니다. RLS(행 수준 보안)는 응용 프로그램의 보안 설계 및 코딩을 간소화합니다. RLS를 사용하면 데이터 행 액세스에 대한 제한을 구현할 수 있습니다. 예를 들어 작업자가 자신의 부서와 관련된 데이터 행에만 액세스하거나 고객의 데이터 액세스를 회사와 관련된 데이터만으로 제한할 수 있습니다.
+[행 수준 보안](https://docs.microsoft.com/sql/relational-databases/security/row-level-security) 쿼리를 실행 하는 hello 사용자의 hello 특성에 따라 데이터베이스 테이블에서 고객 toocontrol 액세스 toorows 수 있습니다 (같은 그룹 멤버십 또는 실행 컨텍스트별). 행 수준 보안 (RLS) hello 설계 및 응용 프로그램의 보안 코딩을 간소화 합니다. RLS 사용 하면 데이터 행 액세스에 tooimplement 제한 사항이 있습니다. 예를 들어 작업 자가 관련 tootheir 부서는 데이터 행만 액세스할 수 있는지를 확인 하거나 고객의 데이터 액세스 tooonly hello 데이터 관련 tootheir 회사를 제한 합니다.
 
 ### <a name="azure-active-directory-integration-and-multi-factor-authentication"></a>Azure Active Directory 통합 및 Multi-Factor Authentication
 
-SQL Database를 사용하면 [Azure Active Directory 통합](sql-database-aad-authentication.md)에서 데이터베이스 사용자 및 다른 Microsoft 서비스의 ID를 중앙 집중식으로 관리할 수 있습니다. 이 기능은 사용 권한 관리를 간소화하고 보안을 향상시킵니다. Azure Active Directory는 MFA([Multi-Factor Authentication](sql-database-ssms-mfa-authentication.md))을 제공하여 단일 로그인 프로세스를 지원하는 동시에 데이터 및 응용 프로그램 보안을 향상시킵니다.
+Toocentrally 하면 데이터베이스 사용자 및 기타 Microsoft 서비스와 id를 관리 하는 SQL 데이터베이스 사용 [Azure Active Directory 통합](sql-database-aad-authentication.md)합니다. 이 기능은 사용 권한 관리를 간소화하고 보안을 향상시킵니다. Azure Active Directory 지원 [다단계 인증](sql-database-ssms-mfa-authentication.md) 단일 사인 인 프로세스를 지원 하면서 (MFA) tooincrease 데이터 및 응용 프로그램 보안 합니다.
 
 ### <a name="compliance-certification"></a>규정 준수 인증
 
-SQL Database는 일반 감사에 참여하고 몇 가지 준수 표준에 대해 인증됩니다. 자세한 내용은 [Microsoft Azure 보안 센터](https://azure.microsoft.com/support/trust-center/)를 참조하세요. 여기서 최신 [SQL Database 규정 준수 인증서](https://azure.microsoft.com/support/trust-center/services/) 목록을 찾을 수 있습니다.
+SQL Database는 일반 감사에 참여하고 몇 가지 준수 표준에 대해 인증됩니다. 자세한 내용은 참조 hello [Microsoft Azure 보안 센터](https://azure.microsoft.com/support/trust-center/)여기서 hello의 최신 목록을 찾을 수 있습니다 [SQL 데이터베이스 규정 준수 인증](https://azure.microsoft.com/support/trust-center/services/)합니다.
 
 ## <a name="easy-to-use-tools"></a>사용하기 쉬운 도구
 
-SQL Database로 응용 프로그램을 빌드하고 관리하는 작업의 편의성과 생산성을 높이세요. SQL Database를 사용하면 멋진 앱을 만드는 데만 집중할 수 있습니다. 이미 설치된 도구와 기술을 사용하여 SQL Database에서 관리하고 개발할 수 있습니다.
+SQL Database로 응용 프로그램을 빌드하고 관리하는 작업의 편의성과 생산성을 높이세요. SQL 데이터베이스를 통해 수행할 작업에 가장 잘 toofocus: 유용한 앱을 작성 합니다. 이미 설치된 도구와 기술을 사용하여 SQL Database에서 관리하고 개발할 수 있습니다.
 
-- **[Azure Portal](https://portal.azure.com/)**: 모든 Azure 서비스를 관리하는 웹 기반 응용 프로그램 
-- **[SQL Server Management Studio](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)**: SQL Server에서 SQL Database에 이르는 모든 SQL 인프라를 관리하는 체험 다운로드 가능한 클라이언트 응용 프로그램
+- **[Azure 포털 hello](https://portal.azure.com/)**: 모든 Azure 서비스를 관리 하기 위한 웹 기반 응용 프로그램 
+- **[SQL Server Management Studio](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)**: SQL Server tooSQL 데이터베이스에서에서 모든 SQL 인프라를 관리 하기 위한, 무료로 다운로드할 수 있는 클라이언트 응용 프로그램
 - **[Visual Studio의 SQL Server Data Tools](https://docs.microsoft.com/sql/ssdt/download-sql-server-data-tools-ssdt)**: SQL Server 관계형 데이터베이스, Azure SQL Database, Integration Services 패키지, Analysis Services 데이터 모델 및 Reporting Services 보고서를 개발하는 체험 다운로드 가능한 클라이언트 응용 프로그램
-- **[Visual Studio Code](https://code.visualstudio.com/docs)**: Microsoft SQL Server, Azure SQL Database 및 SQL Data Warehouse를 쿼리하는 [mssql 확장](https://aka.ms/mssql-marketplace)을 비롯한 여러 확장을 지원하는 Windows, macOS 및 Linux용 체험 다운로드 가능한 오픈 소스 코드 편집기
+- **[Visual Studio Code](https://code.visualstudio.com/docs)**: Windows, macOS 등 및 hello를 포함 하 여 확장을 지 원하는 Linux 용 코드 편집기, 무료 다운로드 가능한 오픈 소스 [확장명이 mssql](https://aka.ms/mssql-marketplace) Microsoft SQL Server를 쿼리 하기 위한 Azure SQL 데이터베이스 및 SQL 데이터 웨어하우스
 
-SQL Database는 MacOS, Linux 및 Windows에서 Python, Java, Node.js, PHP, Ruby 및 .NET을 사용하여 응용 프로그램을 빌드하도록 지원합니다. SQL Database는 동일한 [연결 라이브러리](sql-database-libraries.md)를 SQL Server로 지원합니다.
+SQL 데이터베이스는 Python, Java, Node.js, PHP, Ruby, 및 hello MacOS에서.NET, Linux 및 Windows를 사용한 응용 프로그램 작성을 지원합니다. SQL 데이터베이스 지원 hello 동일 [연결 라이브러리](sql-database-libraries.md) SQL 서버로 합니다.
 
-## <a name="engage-with-the-sql-server-engineering-team"></a>SQL Server 엔지니어링 팀에 문의
+## <a name="engage-with-hello-sql-server-engineering-team"></a>Hello SQL Server 엔지니어링 팀에 문의
 
 - [DBA 스택 교환(영문)](https://dba.stackexchange.com/questions/tagged/sql-server): 데이터베이스 관리 관련 질문
 - [Stack Overflow(영문)](http://stackoverflow.com/questions/tagged/sql-server): 개발 관련 질문
@@ -156,12 +156,12 @@ SQL Database는 MacOS, Linux 및 Windows에서 Python, Java, Node.js, PHP, Ruby 
 
 ## <a name="next-steps"></a>다음 단계
 
-- 단일 데이터베이스 및 탄력적 풀의 비용 비교 및 계산기는 [가격 책정 페이지](https://azure.microsoft.com/pricing/details/sql-database/)를 참조하세요.
+- Hello 참조 [가격 책정 페이지](https://azure.microsoft.com/pricing/details/sql-database/) 단일 데이터베이스 및 탄력적 풀 비용 비교 및 계산기에 대 한 합니다.
 
-- 이러한 빠른 시작을 참조하여 다음 항목을 시작하세요.
+- 이 빠른 시작 했는지 tooget 참조:
 
-  - [Azure Portal에서 SQL Database 만들기](sql-database-get-started-portal.md)  
-  - [Azure CLI를 사용하여 SQL Database 만들기](sql-database-get-started-cli.md)
+  - [Hello Azure 포털에서에서 SQL 데이터베이스 만들기](sql-database-get-started-portal.md)  
+  - [Hello Azure CLI로 SQL 데이터베이스 만들기](sql-database-get-started-cli.md)
   - [PowerShell을 사용하여 SQL Database 만들기](sql-database-get-started-powershell.md)
 
 - 일련의 Azure CLI 및 PowerShell 샘플은 다음을 참조하세요.

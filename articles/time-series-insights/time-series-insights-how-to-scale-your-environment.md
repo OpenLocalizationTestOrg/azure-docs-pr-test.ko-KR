@@ -1,6 +1,6 @@
 ---
-title: "Azure Time Series Insights 환경의 크기를 조정하는 방법 | Microsoft Docs"
-description: "이 자습서에서는 Azure Time Series Insights 환경의 크기를 조정하는 방법을 다룹니다."
+title: "aaaHow tooscale Azure 시간 계열 Insights 환경 | Microsoft Docs"
+description: "이 자습서에서는 어떻게 tooscale Azure 시간 계열 Insights 환경"
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/19/2017
 ms.author: edett
-ms.openlocfilehash: 8f6c66ea2173c98179ec899d6626c2ab6f7ec4b6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 55eda388997589185bd34228762b95e182b228ba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-scale-your-time-series-insights-environment"></a>Time Series Insights 환경의 크기를 조정하는 방법
+# <a name="how-tooscale-your-time-series-insights-environment"></a>어떻게 tooscale 시간 시계열 Insights 환경
 
-이 자습서에서는 Time Series Insights 환경의 크기를 조정하는 방법을 다룹니다.
+이 자습서에서는 어떻게 tooscale 시간 시계열 Insights 환경입니다.
 
 > [!NOTE]
 > SKU 형식 전반에서의 강화는 허용되지 않습니다. S1 SKU를 사용한 환경은 S2 환경으로 변환할 수 없습니다.
@@ -44,12 +44,12 @@ ms.lasthandoff: 07/11/2017
 
 용량은 연속해서 크기가 조정되므로 용량 2의 S1 SKU는 일일 2GB(2백만) 이벤트 수신 속도 및 매달 60GB(6천만 이벤트)를 지원합니다.
 
-## <a name="changing-the-capacity-of-your-environment"></a>사용자 환경의 용량 변경
+## <a name="changing-hello-capacity-of-your-environment"></a>사용자 환경의 hello 용량 변경
 
-1. Azure Portal에서 용량을 변경할 환경을 선택합니다.
+1. Hello Azure 포털에서에서 선택 hello 환경 용량 toochange 원하는 합니다.
 1. 설정에서 구성을 클릭합니다.
-1. 용량 슬라이더를 사용하여 수신 속도 및 저장소 용량에 대한 요구 사항을 충족하는 용량을 선택합니다.
+1. Hello 용량 슬라이더 tooselect hello 수신 속도 대 한 hello 요구 사항을 충족 하는 용량과 저장소 용량을 사용 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-* 새 용량이 제한을 방지하기에 충분한지 확인합니다. 자세한 내용은 [여기](time-series-insights-diagnose-and-solve-problems.md)에서 *사용자 환경이 제한될 수 있습니다* 섹션을 참조하세요.
+* Hello 새 용량이 충분 한지 확인 tooprevent 제한 합니다. 자세한 내용은 참조 hello *환경 있습니다 수 제한에 이르기* 섹션 [여기](time-series-insights-diagnose-and-solve-problems.md)합니다.

@@ -1,5 +1,5 @@
 ---
-title: "Azure Mobile Engagement - Windows 유니버설 앱 SDK 릴리스 정보 | Microsoft Docs"
+title: "aaaAzure Mobile Engagement Windows 유니버설 앱 SDK 릴리스 정보 | Microsoft Docs"
 description: "Azure Mobile Engagement - Windows 유니버설 앱 SDK 릴리스 정보"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 11/03/2016
 ms.author: piyushjo
-ms.openlocfilehash: dc5529a9e8f4eba867732f719ca8fff718c00d5a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 280bd064888f69a77d6fe0c31eafd98a0bbf724e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="windows-universal-apps-sdk-release-notes"></a>Windows 유니버설 앱 SDK 릴리스 정보
 ## <a name="341-11032016"></a>3.4.1 (11/03/2016)
@@ -27,8 +27,8 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="340-04192016"></a>3.4.0(2016/04/19)
 * 도달률 오버레이 개선 사항입니다.
-* SDK로 내보낸 콘솔 로그를 사용/사용 안 함/필터링하기 위해 "TestLogLevel" API를 추가했습니다.
-* 앱을 시작할 때 표시되지 않는 첫 번째 활동을 대상으로 하는 비활성 알림을 수정했습니다.
+* 추가 된 "TestLogLevel" API tooenable/사용 안 함/필터 콘솔 로그 hello SDK가 내보냅니다.
+* Hello स व र 응용 프로그램에는 첫 번째 활동을 대상으로 하는 고정된 활동에 알림을 시작 합니다.
 
 ## <a name="331-02182016"></a>3.3.1(2016/02/18)
 * 웹 알림의 HTML 콘텐츠와 SDK의 HTML 페이지 간 충돌을 해결했습니다.
@@ -42,19 +42,19 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="320-11202015"></a>3.2.0(11/20/2015)
 * Windows 10 유니버설 Windows 플랫폼 응용 프로그램에 대한 지원이 추가되었습니다.
-* 채널 충돌(이제 Azure 알림 허브와 호환됨)을 해결하는 푸시 채널 공유 기능이 추가되었습니다.
-* 초기화 바로 다음에 장치 ID를 요청하는 동안 크래시를 수정하였습니다.
+* 추가 된 푸시 채널 공유 기능 toofix 채널 충돌이 (Azure 알림 허브와는 호환 이제).
+* Hello 초기화 후 바로 hello 장치 id를 요청 하는 동안 고정된 충돌 합니다.
 * 콘솔은 향상된 기능을 기록합니다.
 * 일부 처리되지 않은 예외를 구문 분석하는 동안 크래시를 수정하였습니다.
 
 ## <a name="310-05212015"></a>3.1.0(05/21/2015)
-* 이제 Mobile Engagement 장치 ID는 설치 시 생성된 GUID를 따릅니다.
+* hello Mobile Engagement 장치 id는 이제 설치 중에 생성 된 GUID를 기반으로 합니다.
 
 ## <a name="301-04292015"></a>3.0.1(2015/04/29)
-* 일부 Windows Phone WinRT 앱에서 SDK 초기화에 영향을 미치는 버그가 수정되었습니다.
+* Hello SDK 초기화 일부 WinRT Windows Phone 앱에 영향을 주지는 버그를 수정 합니다.
 
 ## <a name="300-04032015"></a>3.0.0(2015/04/03)
-* 유니버설 앱(Windows 및 Windows Phone WinRT)용 모바일 Engagement SDK를 소개 합니다.
+* 유니버설 앱 (Windows 및 Windows Phone WinRT)에 대 한 hello Mobile Engagement SDK를 소개 합니다.
 * 기본 알림 아이콘이 업데이트되었습니다.
 * 알림을 클릭할 때 백 시스템 알림 작업 피드백을 보냅니다.
 * 클릭 후 가끔 앱 내에서 재생되는 시스템 알림이 수정되었습니다.

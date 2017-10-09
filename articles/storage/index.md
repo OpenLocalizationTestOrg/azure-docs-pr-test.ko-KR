@@ -1,6 +1,6 @@
 ---
-title: "Azure Storage 설명서 - 자습서, API 참조 | Microsoft Docs"
-description: "클라우드에서 Azure Storage - Blob, 테이블, 큐, 파일 및 Virtual Machine 디스크 저장소를 사용하는 방법에 대해 알아봅니다. 자습서, API, 참조 및 기타 설명서입니다."
+title: "aaaAzure 저장소 설명서-자습서, API 참조 | Microsoft Docs"
+description: "자세한 내용은 방법 toouse Azure 저장소-hello 클라우드에서 Blob, 테이블, 큐, 파일 및 가상 컴퓨터 디스크 저장소. 자습서, API, 참조 및 기타 설명서입니다."
 services: storage
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: af6bc7cc4245208d2dc92a9b248aa4686cf42272
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7155feb190c8c769eb9c8f8712cca939708d57b9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="storage-documentation"></a>저장소 설명서
 
-내구성, 가용성 및 확장성이 뛰어난 클라우드 저장소 서비스인 Azure Storage를 사용하는 방법에 대해 알아봅니다. 자습서, API 참조 및 기타 설명서에서는 Blob, 테이블, 큐, 파일 및 Virtual Machine 디스크 저장소를 설정하고 관리하는 방법을 보여 줍니다.
+자세한 내용은 내구성이 있는 고, 사용할 수 있는 확장 가능한은 어떻게 toouse Azure 저장소, 클라우드 저장소 서비스에 있습니다. 자습서, API 참조, 및 기타 문서 방법을 보여 줍니다 tooset 및 Blob, 테이블, 큐, 파일 및 가상 컴퓨터 디스크 저장소를 관리 합니다.
 
 <ul class="panelContent cardsFTitle">
     <li>

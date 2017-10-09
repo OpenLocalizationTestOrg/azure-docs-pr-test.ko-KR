@@ -1,6 +1,6 @@
 ---
-title: "Ruby에서 Blob Storage(개체 저장소)를 사용하는 방법 | Microsoft Docs"
-description: "Azure Blob 저장소(개체 저장소)를 사용하여 클라우드에 구조화되지 않은 데이터를 저장합니다."
+title: "aaaHow toouse Ruby에서 Blob 저장소 (개체 저장소) | Microsoft Docs"
+description: "Azure Blob 저장소 (개체 저장소)를 사용 하는 hello 클라우드에 구조화 되지 않은 데이터를 저장 합니다."
 services: storage
 documentationcenter: ruby
 author: mmacy
@@ -14,21 +14,21 @@ ms.devlang: ruby
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-ms.openlocfilehash: d27cf1594d6a31a746ca85b5c3184f8a5dbbaa54
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 776e7d788e69d4960f8dde0b783513f6b39b7a47
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-blob-storage-from-ruby"></a>Ruby에서 Blob Storage를 사용하는 방법
+# <a name="how-toouse-blob-storage-from-ruby"></a>어떻게 toouse Ruby에서 Blob 저장소
 [!INCLUDE [storage-selector-blob-include](../../../includes/storage-selector-blob-include.md)]
 
 [!INCLUDE [storage-try-azure-tools-queues](../../../includes/storage-try-azure-tools-blobs.md)]
 
 ## <a name="overview"></a>개요
-Azure Blob 저장소는 클라우드에 구조화되지 않은 데이터를 개체/Blob로 저장하는 서비스입니다. Blob 저장소는 문서, 미디어 파일 또는 응용 프로그램 설치 프로그램과 같은 모든 종류의 텍스트 또는 이진 데이터를 저장할 수 있습니다. 또한 Blob Storage를 개체 저장소라고 합니다.
+Azure Blob 저장소는 hello 클라우드에서 개체/blob으로 구조화 되지 않은 데이터를 저장 하는 서비스입니다. Blob storage는 문서, 미디어 파일 또는 응용 프로그램 설치 프로그램과 같은 모든 종류의 텍스트 또는 이진 데이터를 저장할 수 있습니다. Blob 저장소 참조 tooas 개체 저장소 이기도합니다.
 
-이 가이드에서는 Blob Storage를 사용하여 일반 시나리오를 수행하는 방법을 보여 줍니다. 샘플은 Ruby API를 사용하여 작성되었습니다. 여기서 다루는 시나리오에는 Blob **업로드, 나열, 다운로드** 및 **삭제**가 포함됩니다.
+이 가이드에서는 설명 어떻게 tooperform Blob 저장소를 사용 하는 일반적인 시나리오입니다. hello 샘플 hello Ruby API를 사용 하 여 기록 됩니다. hello 가이드에서 다루는 시나리오 포함 **업로드, 나열, 다운로드,** 및 **삭제** blob입니다.
 
 [!INCLUDE [storage-blob-concepts-include](../../../includes/storage-blob-concepts-include.md)]
 
@@ -37,42 +37,42 @@ Azure Blob 저장소는 클라우드에 구조화되지 않은 데이터를 개�
 ## <a name="create-a-ruby-application"></a>Ruby 응용 프로그램 만들기
 Ruby 응용 프로그램을 만듭니다. 지침은 [Azure VM의 Ruby on Rails 웹 응용 프로그램](../../virtual-machines/linux/classic/virtual-machines-linux-classic-ruby-rails-web-app.md)을 참조하세요.
 
-## <a name="configure-your-application-to-access-storage"></a>저장소에 액세스하도록 응용 프로그램 구성
-Azure 저장소를 사용하려면 저장소 REST 서비스와 통신하는 편리한 라이브러리 집합이 포함된 Ruby Azure 패키지를 다운로드하여 사용해야 합니다.
+## <a name="configure-your-application-tooaccess-storage"></a>사용자 응용 프로그램 tooaccess 저장소 구성
+Azure 저장소 toouse toodownload 및 사용 하 여 hello hello 저장소 REST 서비스와 통신 하는 편리한 라이브러리의 집합을 포함 하는 Ruby azure 패키지 해야 합니다.
 
-### <a name="use-rubygems-to-obtain-the-package"></a>RubyGems를 사용하여 패키지 가져오기
+### <a name="use-rubygems-tooobtain-hello-package"></a>RubyGems tooobtain hello 패키지 사용
 1. **PowerShell**(Windows), **Terminal**(Mac) 또는 **Bash**(Unix)와 같은 명령줄 인터페이스를 사용합니다.
-2. 명령 창에 "gem install azure"를 입력하여 gem 및 종속성을 설치합니다.
+2. "보석" 설치 azure의 hello 명령 창 tooinstall hello 보석 및 종속성을 입력 합니다.
 
-### <a name="import-the-package"></a>패키지 가져오기
-원하는 텍스트 편집기를 사용하여 저장소를 사용하려는 Ruby 파일의 맨 위에 다음을 추가합니다.
+### <a name="import-hello-package"></a>Hello 패키지 가져오기
+원하는 텍스트 편집기를 사용 하 여 hello toohello 위쪽 hello toouse 저장소 이점을 얻을 수 Ruby 파일에 다음을 추가 합니다.
 
 ```ruby
 require "azure"
 ```
 
 ## <a name="set-up-an-azure-storage-connection"></a>Azure Storage 연결 설정
-Azure 모듈은 **AZURE\_STORAGE\_ACCOUNT** 및 **AZURE\_STORAGE\_ACCESS_KEY** 환경 변수를 읽고 Azure Storage 계정에 연결하는 데 필요한 정보를 확인합니다. 이러한 환경 변수가 설정되지 않으면 **Azure::Blob::BlobService** 를 사용하기 전에 다음 코드로 계정 정보를 지정해야 합니다.
+hello azure 모듈 hello 환경 변수는 읽기 **AZURE\_저장소\_계정** 및 **AZURE\_저장소\_ACCESS_KEY** 에 대 한 정보는 tooconnect tooyour Azure 저장소 계정이 필요합니다. 사용 하기 전에 hello 계정 정보를 지정 해야 이러한 환경 변수가 설정 되지 않은 경우 **Azure::Blob::BlobService** 코드 다음 hello로:
 
 ```ruby
 Azure.config.storage_account_name = "<your azure storage account>"
 Azure.config.storage_access_key = "<your azure storage access key>"
 ```
 
-Azure 포털의 클래식 또는 Resource Manager 저장소 계정에서 이러한 값을 가져오려면
+tooobtain hello Azure 포털에서에서 기존 또는 리소스 관리자 저장소에서 이러한 값 계정:
 
-1. [Azure 포털](https://portal.azure.com)에 로그인합니다.
-2. 사용하려는 저장소 계정으로 이동합니다.
-3. 오른쪽의 설정 블레이드에서 **액세스 키**를 클릭합니다.
-4. 나타나는 액세스 키 블레이드에 액세스 키 1 및 액세스 키 2가 표시되어 있습니다. 이 둘 중 하나를 사용할 수 있습니다.
-5. 복사 아이콘을 클릭하여 키를 클립보드에 복사합니다.
+1. Toohello 로그인 [Azure 포털](https://portal.azure.com)합니다.
+2. Toouse 사용할 toohello 저장소 계정을 이동 합니다.
+3. Hello 오른쪽에 hello 설정 블레이드에서 클릭 **선택 키**합니다.
+4. 나타나는 hello 액세스 키 블레이드에서 hello 선택 키 1 및 2 선택 키 표시 됩니다. 이 둘 중 하나를 사용할 수 있습니다.
+5. Hello 아이콘 toocopy hello 키 toohello 클립보드로 복사를 클릭 합니다.
 
 ## <a name="create-a-container"></a>컨테이너 만들기
 [!INCLUDE [storage-container-naming-rules-include](../../../includes/storage-container-naming-rules-include.md)]
 
-**Azure::Blob::BlobService** 개체를 통해 컨테이너 및 Blob에 대한 작업을 할 수 있습니다. 컨테이너를 만들려면 **create\_container()** 메서드를 사용합니다.
+hello **Azure::Blob::BlobService** 개체 컨테이너 및 blob를 사용할 수 있습니다. toocreate 컨테이너를 사용 하 여 hello **만들\_container()** 메서드.
 
-다음 코드 예제에서는 컨테이너를 만들거나, 컨테이너가 있을 경우 오류를 출력합니다.
+hello 다음 코드 예제에서는 컨테이너 만들거나 되어 hello 오류를 인쇄 합니다.
 
 ```ruby
 azure_blob_service = Azure::Blob::BlobService.new
@@ -83,32 +83,32 @@ rescue
 end
 ```
 
-컨테이너 파일을 공용으로 지정하려는 경우 컨테이너의 사용 권한을 설정할 수 있습니다.
+Hello 컨테이너에서 hello 파일 toomake를 지정 하려면 공용 hello 컨테이너의 사용 권한을 설정할 수 있습니다.
 
-<strong>create\_container()</strong> 호출을 수정하기만 하면 **:public\_access\_level** 옵션을 전달할 수 있습니다.
+Hello만 수정할 수 있습니다 <strong>만들\_container()</strong> 호출 toopass hello **: 공용\_액세스\_수준** 옵션:
 
 ```ruby
 container = azure_blob_service.create_container("test-container",
     :public_access_level => "<public access level>")
 ```
 
-유효한 **:public\_access\_level** 옵션 값은 다음과 같습니다.
+Hello에 대 한 유효한 값 **: 공용\_액세스\_수준** 옵션:
 
-* **blob:** BLOB에 대한 공용 읽기 권한을 지정합니다. 이 컨테이너 내의 Blob 데이터는 익명 요청을 통해 읽을 수 있으나 컨테이너 데이터는 읽을 수 없습니다. 클라이언트는 익명 요청을 통해 컨테이너 내의 Blob을 열거할 수 없습니다.
-* **container:** 컨테이너 및 BLOB 데이터에 대한 전체 공용 읽기 액세스 권한을 지정합니다. 클라이언트는 익명 요청을 통해 컨테이너 내에서 Blob을 열거할 수 있지만 저장소 계정 내에서 컨테이너를 열거할 수는 없습니다.
+* **blob:** BLOB에 대한 공용 읽기 권한을 지정합니다. 이 컨테이너 내의 Blob 데이터는 익명 요청을 통해 읽을 수 있으나 컨테이너 데이터는 읽을 수 없습니다. 클라이언트는 익명 요청을 통해 hello 컨테이너 내 blob를 열거할 수 없습니다.
+* **container:** 컨테이너 및 BLOB 데이터에 대한 전체 공용 읽기 액세스 권한을 지정합니다. 클라이언트가 익명 요청을 통해 hello 컨테이너 내 blob를 열거할 수 있지만 hello 저장소 계정 내 컨테이너는 열거할 수 없습니다.
 
-또는 **set\_container\_acl()** 메서드로 공용 액세스 수준을 지정하여 컨테이너의 공용 액세스 수준을 수정할 수 있습니다.
+컨테이너의 공용 액세스 수준을 hello를 사용 하 여 수정할 수 있습니다 또는 **설정\_컨테이너\_acl()** 메서드 toospecify hello 공용 액세스 수준을 합니다.
 
-다음 코드 예제에서는 공용 액세스 수준을 **container**로 변경합니다.
+다음 코드 예제에서는 변경 내용을 hello 공용 액세스 수준을 너무 hello**컨테이너**:
 
 ```ruby
 azure_blob_service.set_container_acl('test-container', "container")
 ```
 
 ## <a name="upload-a-blob-into-a-container"></a>컨테이너에 Blob 업로드
-Blob에 콘텐츠를 업로드하려면 **create\_block\_blob()** 메서드를 사용하여 Blob을 만들고 Blob의 콘텐츠로 파일이나 문자열을 사용합니다.
+tooupload 콘텐츠 tooa blob을 사용 하 여 hello **만들\_블록\_blob()** 메서드 toocreate hello blob 파일을 사용 또는 hello blob의 콘텐츠를 hello로 문자열입니다.
 
-다음 코드에서는 **test.png** 파일을 "image-blob"이라는 새 Blob으로 컨테이너에 업로드합니다.
+hello 다음 코드 파일을 업로드 hello **test.png** 라는 "이미지 blob" hello 컨테이너에서 새 blob으로 합니다.
 
 ```ruby
 content = File.open("test.png", "rb") { |file| file.read }
@@ -117,11 +117,11 @@ blob = azure_blob_service.create_block_blob(container.name,
 puts blob.name
 ```
 
-## <a name="list-the-blobs-in-a-container"></a>컨테이너의 Blob 나열
-컨테이너를 나열하려면 **list_containers()** 메서드를 사용합니다.
-컨테이너 내에 Blob을 나열하려면 **list\_blobs()** 메서드를 사용합니다.
+## <a name="list-hello-blobs-in-a-container"></a>컨테이너에서 hello blob 나열
+toolist hello 컨테이너를 사용 하 여 **list_containers()** 메서드.
+toolist hello blob는 컨테이너 내에서 사용 하 여 **목록\_blobs()** 메서드.
 
-이 메서드는 계정에 대해 모든 컨테이너에 있는 모든 Blob의 URL을 출력합니다.
+모든 hello blob hello 계정에 대 한 모든 hello 컨테이너에서 hello url를 출력합니다.
 
 ```ruby
 containers = azure_blob_service.list_containers()
@@ -134,9 +134,9 @@ end
 ```
 
 ## <a name="download-blobs"></a>Blob 다운로드
-Blob을 다운로드하려면 **get\_blob()** 메서드를 사용하여 콘텐츠를 가져옵니다.
+toodownload blob을 사용 하 여 hello **가져오기\_blob()** 메서드 tooretrieve hello 내용입니다.
 
-다음 코드 예제에서는 **get\_blob()**을 사용하여 "image-blob"의 콘텐츠를 다운로드하고 그 콘텐츠를 로컬 파일에 쓰는 방법을 보여 줍니다.
+hello 다음 코드 예제에서는 사용 하 여 **가져오기\_blob()** toodownload "이미지 blob"의 내용을 hello 및 tooa 로컬 파일을 작성 합니다.
 
 ```ruby
 blob, content = azure_blob_service.get_blob(container.name,"image-blob")
@@ -144,16 +144,16 @@ File.open("download.png","wb") {|f| f.write(content)}
 ```
 
 ## <a name="delete-a-blob"></a>Blob 삭제
-마지막으로 Blob을 삭제하려면 **delete\_blob()** 메서드를 사용합니다. 다음 코드 예제에서는 Blob을 삭제하는 방법을 보여 줍니다.
+Blob를 toodelete hello를 사용 하는 마지막으로, **삭제\_blob()** 메서드. hello 다음 코드 예제에서는 어떻게 toodelete blob입니다.
 
 ```ruby
 azure_blob_service.delete_blob(container.name, "image-blob")
 ```
 
 ## <a name="next-steps"></a>다음 단계
-더 복잡한 저장소 작업에 대해 알아보려면 다음 링크를 따라가세요.
+더 복잡 한 저장소 작업에 대 한 toolearn 다음 링크:
 
 * [Azure 저장소 팀 블로그](http://blogs.msdn.com/b/windowsazurestorage/)
 * [Azure SDK for Ruby](https://github.com/WindowsAzure/azure-sdk-for-ruby) (영문) 리포지토리
-* [AzCopy 명령줄 유틸리티로 데이터 전송](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)
+* [Hello AzCopy 명령줄 유틸리티를 사용 하 여 데이터를 전송 합니다.](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)
 

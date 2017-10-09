@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> 프로젝트에 사용되는 SCP.Net 버전은 HDInsight 클러스터에 있는 Storm 버전과 일치해야 합니다. 다음 표를 사용하여 사용해야 할 버전을 확인합니다.
+> 프로젝트에 사용 되는 hello SCP.Net 버전 HDInsight 클러스터에 있는 hello 스톰 버전을 일치 해야 합니다. 다음 버전을 사용할지 테이블 toodetermine hello를 사용 합니다.
 > 
 > | HDInsight 버전 | Apache Storm 버전 | SCP.NET 버전 | 기본 모노 버전 |
 > |:---:|:---:|:---:|:---:|

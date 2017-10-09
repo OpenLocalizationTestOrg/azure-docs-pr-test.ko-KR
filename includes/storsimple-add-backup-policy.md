@@ -1,14 +1,14 @@
 
 <!--author=alkohli last changed: 9/11/15-->
 
-#### <a name="to-add-a-storsimple-backup-policy"></a>StorSimple 백업 정책을 추가하려면
-1. 장치 **빠른 시작** 페이지에서 **백업 정책** 탭을 클릭합니다. 이렇게 하면 **백업 정책** 페이지로 이동됩니다.
-2. 페이지 아래쪽에서 **추가**를 클릭합니다.
-3. **백업 정책 추가** 대화 상자에서 다음을 수행합니다.
+#### <a name="tooadd-a-storsimple-backup-policy"></a>tooadd StorSimple 백업 정책
+1. Hello 장치에서 **빠른 시작** 페이지에서 hello **백업 정책** 탭 합니다. 그러면 toohello **백업 정책** 페이지.
+2. Hello hello 페이지의 아래쪽에 있는 클릭 **추가**합니다.
+3. Hello에 **백업 정책 추가** 대화 상자에서 다음 hello지 않습니다.
    
    1. 백업 정책 이름을 3~150자 사이로 지정합니다.
-   2. 이 백업 정책에 하나 이상의 볼륨을 할당합니다. 다른 클라우드 서비스 공급자를 사용하는 경우 첫 번째 선택에 따라 드롭다운 목록에 해당 클라우드 서비스 공급자에 속하는 볼륨만 표시됩니다. 이렇게 하면 스냅숏 만들기에 대한 단일 클라우드 서비스 공급자에 속하는 볼륨을 그룹화할 수 있습니다.
-   3. 확인 아이콘  ![확인 아이콘](./media/storsimple-add-backup-policy/HCS_CheckIcon-include.png) 을 클릭하여 정책을 저장합니다.
+   2. Toothis 백업 정책을 하나 이상의 볼륨을 할당 합니다. 첫 번째 선택에 따라 다른 클라우드 서비스 공급자를 사용 하는 경우 클라우드 서비스 공급자 tooonly 속한 볼륨 hello 드롭 다운 목록에 표시 됩니다. 이렇게 하면 스냅숏을 만드는 것에 대 한 단일 클라우드 서비스 공급자 tooa 속하는 toogroup 볼륨입니다.
+   3. Hello 확인 아이콘을 클릭 합니다. ![확인 아이콘](./media/storsimple-add-backup-policy/HCS_CheckIcon-include.png) toosave hello 정책입니다.
 
-새로 추가된 정책은 **백업 정책** 페이지입에서 테이블 형식 뷰로 표시됩니다.
+hello 새로 추가 된 정책 hello hello에서 테이블 형식 보기에 표시 됩니다 **백업 정책** 페이지.
 

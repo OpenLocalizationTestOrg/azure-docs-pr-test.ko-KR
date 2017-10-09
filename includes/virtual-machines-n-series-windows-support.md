@@ -15,5 +15,5 @@
 | Windows Server 2012 R2 | [376.84](http://us.download.nvidia.com/Windows/Quadro_Certified/376.84/376.84-tesla-desktop-winserver2008-2012r2-64bit-international-whql.exe)(.exe) |
 
 > [!NOTE]
-> Tesla 드라이버 다운로드 링크는 발표 시점에 제공된 링크입니다. 최신 드라이버에 대해서는 [NVIDIA](http://www.nvidia.com/) 웹 사이트를 참조하세요.
+> Tesla 드라이버 다운로드 링크는 발표 시점에 제공된 링크입니다. Hello 최신 드라이버에 대 한 방문 hello [NVIDIA](http://www.nvidia.com/) 웹 사이트입니다.
 >

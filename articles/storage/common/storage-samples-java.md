@@ -1,6 +1,6 @@
 ---
-title: "Java를 사용한 Azure Storage 샘플 | Microsoft Docs"
-description: "Azure 저장소에 대한 샘플 코드 및 응용 프로그램을 확인하고 다운로드하여 실행합니다. Java 저장소 클라이언트 라이브러리를 사용하여 BLOB, 큐, 테이블 및 파일에 대한 예제 시작을 검색합니다."
+title: "Java를 사용 하 여 aaaAzure 저장소 샘플 | Microsoft Docs"
+description: "Azure 저장소에 대한 샘플 코드 및 응용 프로그램을 확인하고 다운로드하여 실행합니다. Hello Java 저장소 클라이언트 라이브러리를 사용 하 여 blob, 큐, 테이블 및 파일에 대 한 샘플 시작을 검색 합니다."
 services: storage
 documentationcenter: na
 author: seguler
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: storage
 ms.date: 01/12/2017
 ms.author: seguler
-ms.openlocfilehash: fd27e1ac9a773e7b0f5245aa74acdb0521cd098c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6aec326cbfedc1166fc61037ac39d33c15d28d2c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-samples-using-java"></a>Java를 사용한 Azure Storage 샘플
 
 ## <a name="java-sample-index"></a>Java 샘플 인덱스
 
-다음 테이블에서는 샘플 리포지토리 및 각 샘플에서 다루는 시나리오에 대한 개요를 제공합니다. GitHub에서 해당 샘플 코드를 보려면 링크를 클릭합니다.
+hello 다음 표에 간략하게 샘플 리포지토리 및 hello 시나리오 각 샘플에 포함 합니다. Hello 링크 tooview hello 해당 샘플 코드에 GitHub에서 클릭 합니다.
 
 <table style="font-size:90%"><thead><tr><th style="font-size:110%">끝점</th><th style="font-size:110%">시나리오</th><th style="font-size:110%">샘플 코드</th></tr></thead><tbody> 
 <tr> 
@@ -197,13 +197,13 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="azure-code-samples-library"></a>Azure 코드 샘플 라이브러리
 
-코드 샘플 라이브러리를 보려면 다운로드하여 로컬로 실행할 수 있는 Azure Storage에 대한 샘플이 포함되어 있는 [Azure 코드 샘플](https://azure.microsoft.com/resources/samples/?service=storage) 라이브러리로 이동합니다. 코드 샘플 라이브러리에서 .zip 형식으로 샘플 코드를 제공합니다. 또는 각 샘플에 대한 GitHub 리포지토리를 찾아 복제할 수 있습니다.
+tooview hello 전체 예제 라이브러리를 이동 toohello [Azure 코드 예제](https://azure.microsoft.com/resources/samples/?service=storage) 다운로드 하 고 로컬로 실행할 수 있는 Azure 저장소에 대 한 샘플을 포함 하는 라이브러리입니다. 코드 예제 라이브러리 hello.zip 형식에서 샘플 코드를 제공 합니다. 또는 검색 하 고 각 샘플에 대 한 hello GitHub 리포지토리 복제 수 있습니다.
 
 [!INCLUDE [storage-java-samples-include](../../../includes/storage-java-samples-include.md)]
 
 ## <a name="getting-started-guides"></a>시작 가이드
 
-Azure Storage 클라이언트 라이브러리를 설치하고 시작하는 방법에 대한 지침은 찾고 있는 경우 다음 가이드를 확인해 보세요.
+체크 아웃 방법에 대 한 원하는 경우 지침을 따라 hello tooinstall 및 Azure 저장소 클라이언트 라이브러리 hello로 시작 합니다.
 
 * [Java에서 Azure Blob Service 시작](../blobs/storage-java-how-to-use-blob-storage.md)
 * [Java에서 Azure Queue Service 시작](../storage-java-how-to-use-queue-storage.md)

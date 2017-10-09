@@ -1,0 +1,11 @@
+Azure 저장소 사용 비용은 저장소 계정에 따라 청구됩니다. 저장소 비용 기반으로 요소를 다음 hello: 지역/위치, 계정 유형, 저장소 용량, 복제 체계, 저장소 트랜잭션 및 데이터 송신 합니다.
+
+* 영역이 계정 기반 toohello 지리적 위치 영역을 참조 합니다.
+* 계정 유형은 toowhether 범용 저장소 계정 또는 Blob 저장소 계정을 사용 하 여 참조 합니다. Blob 저장소 계정을 사용 하 여 hello 액세스 계층 또한 hello hello 계정에 대 한 청구 모델을 결정합니다.
+* 저장소 용량 참조 toohow 훨씬 저장소 계정 서비스 toostore 데이터를 사용 하는 합니다.
+* 복제에 따라 한 번에 유지 관리되는 데이터의 복사본 수 및 위치가 결정됩니다.
+* 트랜잭션을은 tooall 읽기를 작업 tooAzure 저장소 쓰기 나타냅니다.
+* 데이터 유출은 toodata Azure 영역 외부로 전송 합니다. Hello에 실행 되지 않는 응용 프로그램에서 저장소 계정의 hello 데이터에 액세스할 때 동일한 지역 데이터 유출 청구 됩니다. (Azure 서비스에 대해 수행할 수 데이터와 서비스 단계 toogroup hello에 동일한 데이터 센터 tooreduce 또는 데이터 전송 요금을 제거 합니다.)
+
+hello [Azure 저장소 가격](https://azure.microsoft.com/pricing/details/storage/) 계정 유형, 저장소 용량, 복제 및 트랜잭션 기반 세부 가격 책정 정보를 제공 합니다. hello [데이터 전송 가격 정보](https://azure.microsoft.com/pricing/details/data-transfers/) 데이터 유출 가격 책정 세부 정보를 제공 합니다. Hello를 사용할 수 있습니다 [Azure 저장소 가격 계산기](https://azure.microsoft.com/pricing/calculator/?scenario=data-management) toohelp 예상 비용입니다.
+

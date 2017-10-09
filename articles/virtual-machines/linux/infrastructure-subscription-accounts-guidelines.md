@@ -1,6 +1,6 @@
 ---
-title: "Linux VM에 대한 Azure 구독 및 계정 | Microsoft Docs"
-description: "Azure의 구독 및 계정에 대한 핵심 디자인 및 구현 지침에 대해 알아봅니다."
+title: "aaaSubscription Azure에서 Linux Vm에 대 한 계정 및 | Microsoft Docs"
+description: "Hello 주요 디자인 및 구현에 대 한 지침이 구독 및 Azure에서 계정에 알아봅니다."
 documentationcenter: 
 services: virtual-machines-linux
 author: iainfoulds
@@ -16,50 +16,50 @@ ms.topic: article
 ms.date: 06/26/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 19695a9960d8e8f0dfca4bf0ca10761fe6ae7ff0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9025a40783c008310ebd0f674deb4a9001ae974a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-subscription-and-accounts-guidelines-for-linux-vms"></a>Linux VM에 대한 Azure 구독 및 계정 지침
 
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
 
-이 문서에서는 환경 및 사용자 기반이 커질 때 구독 및 계정 관리에 접근하는 방식을 이해하는 데 주안점을 둡니다.
+이 문서는 사용자 환경 및 사용자 기반으로 구독 및 계정 관리와 tooapproach 증가 하는 방법을 이해에 중점을 둡니다.
 
 ## <a name="implementation-guidelines-for-subscriptions-and-accounts"></a>구독 및 계정에 대한 구현 지침
 의사 결정:
 
-* IT 작업 또는 인프라를 호스트하는 데 필요한 구독 및 계정 집합은 무엇인가?
-* 조직에 맞게 계층을 어떻게 분류해야 하는가?
+* 집합의 구독 및 계정 필요 한가요 toohost IT 작업 또는 인프라?
+* 어떻게 hello 계층 toofit 아래로 toobreak 조직?
 
 작업:
 
-* 구독 수준에서 관리하려고 하므로 논리 조직 계층을 정의합니다.
-* 이러한 논리 계층 구조에 맞게 필요한 계정을 정의하고 각 계정 아래에 구독을 정의합니다.
-* 명명 규칙을 사용하여 구독 및 계정 집합을 만듭니다.
+* Toomanage 원하는 만큼 논리적 구성이 계층 정의 구독 수준에서 합니다.
+* toomatch이 논리적 계층 구조 필요한 hello 계정 및 각 계정 아래에서 구독을 정의 합니다.
+* Hello 집합을 구독 및 명명 규칙을 사용 하 여 계정을 만듭니다.
 
 ## <a name="subscriptions-and-accounts"></a>구독 및 계정
-Azure를 사용하려면 하나 이상의 Azure 구독이 필요합니다. VM(가상 컴퓨터) 또는 가상 네트워크와 같은 리소스는 해당 구독에 존재합니다.
+Azure와 toowork, 하나 이상의 Azure 구독이 필요합니다. VM(가상 컴퓨터) 또는 가상 네트워크와 같은 리소스는 해당 구독에 존재합니다.
 
-* 기업 고객은 일반적으로 기업 등록 계약을 합니다. 이는 계층에서 가장 중요한 리소스이며 하나 이상의 계정과 관련됩니다.
-* 기업 등록 계약이 없는 소비자 및 고객의 경우, 가장 중요한 리소스는 계정입니다.
-* 구독은 계정과 관련되며 계정당 하나 이상의 구독이 될 수 있습니다. Azure는 구독 단계에서 청구 정보를 기록합니다.
+* 일반적으로 기업 고객은 hello 계층의 최상위 리소스 hello 되었고 관련된 tooone 또는 계정을 더는 기업 등록 계약을 가집니다.
+* 소비자 및 기업 등록 없는 고객에 대 한 최상위 리소스 hello hello 계정입니다.
+* 구독은 연결된 tooaccounts 있으며 계정당 구독을 하나 이상 있을 수 있습니다. Azure 레코드 hello 구독 수준에서 정보를 청구 합니다.
 
-계정/구독 관계에 두 계층 단계의 제한이 있기 때문에 청구 요구에 계정 및 구독의 명명 규칙을 할당하는 것은 중요합니다. 예를 들어 글로벌 기업에서 Azure를 사용하는 경우 지역당 하나의 계정을 갖도록, 지역 수준에서 구독이 관리되도록 선택할 수 있습니다.
+Hello 계정/구독 관계에 있는 두 명의 계층 수준의 toohello 제한을 인해 계정 및 구독 toohello 요구 청구의 중요 한 tooalign hello 명명 규칙은 것입니다. 예를 들어, 글로벌 기업에서 Azure를 사용 하는 경우 있습니다 수 toohave 하나 계정 / 지역당, 선택한 구독에서 관리 지역 수준을 hello:
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub01.png)
 
-예를 들어, 다음 구조를 사용할 수 있습니다.
+예를 들어, 다음 구조 hello를 사용할 수 있습니다.
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub02.png)
 
-한 지역에 특정 그룹과 관련된 두 개 이상의 구독을 갖도록 결정하는 경우 명명 규칙은 계정 또는 구독 이름에 추가 데이터를 인코딩하기 위해 하나의 방법으로 통합해야 합니다. 이 조직에서는 청구 보고 중에 새 계층 단계를 생성하는 데 청구 데이터 조작을 허용합니다.
+Hello ô ä ¢ 방법을 tooencode를 통합 해야 영역 toohave 둘 이상의 구독을 하나 관련된 tooa 특정 그룹을 경우 hello hello 계정 또는 hello 구독 이름에 추가 데이터입니다. 이 조직에 청구 보고서 중 청구 데이터 toogenerate hello 새 계층의 수준 massaging 허용 됩니다.
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub03.png)
 
-조직은 다음 예제와 같습니다.
+hello 조직 다음 예제는 hello와 같을 수 있습니다.
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub04.png)
 

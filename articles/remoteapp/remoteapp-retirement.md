@@ -1,6 +1,6 @@
 ---
-title: "Azure RemoteApp 사용 중지"
-description: "Azure RemoteApp의 임박한 사용 중지에 관한 정보"
+title: "aaaAzure RemoteApp 사용 중지"
+description: "Azure RemoteApp의 hello 임박한 사용 중지에 대 한 정보"
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,19 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/15/2017
 ms.author: mbaldwin
-ms.openlocfilehash: d12cd49427b3fa4a93d73abc43011bb59f405f7e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a45c27e59757ae3683fc689aa88638108a9c66b6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-remoteapp-retirement"></a>Azure RemoteApp 사용 중지
-Azure RemoteApp 사용 중지를 알려 드리려고 했지만 연락이 닫지 않아서 이 문서로 안내해 드립니다. 
+지시한 toothis 아티클 수 toocontact 있습니다 tooacknowledge hello Azure RemoteApp의 사용 중지 되지 않은 것입니다. 
 
-Azure RemoteApp이 2017년 8월 31일에 사용 중지된다는 사실을 아는지 확인하기 위해 귀하와 다른 Azure 구독 관리자에게 연락을 시도해 왔습니다. [Azure RemoteApp 사용 중지는 2016년 8월 12일에 발표](http://aka.ms/araretirement)되었습니다.   다음 사항을 확인하는 내용을 [arainfo@microsoft.com](mailto:arainfo@microsoft.com)으로 긴급히 회신해 주셨으면 합니다.
-1.  귀하 및 귀하의 조직은 2017년 8월 31일 사용 중지를 인정합니다.
+우리는 시도 toocontact 및 hello 31 2017 년 1 년 8 월에 Azure RemoteApp 끝난를 인식 하는 순서 tooverify에서 다른 Azure 구독 관리자에서는 [년 8 월 12 일에 Azure RemoteApp의 hello 사용 중지가 발표 2016](http://aka.ms/araretirement)합니다.   너무 회신을 긴급 요청[ arainfo@microsoft.com ](mailto:arainfo@microsoft.com) 나타내는:
+1.  사용자와 사용자 조직이 승인 31 2017 년 8 월에 hello 사용 중지
 2.  마이그레이션 계획에 대해 알려주십시오 - 필요한 경우 도움을 드릴 수 있습니다. 마이그레이션 옵션은 Citrix XenApp Essentials, MyCloudIT, Frame 등과 같이 [Azure RemoteApp에서 마이그레이션하기 위한 옵션](http://aka.ms/aramigration)에 자세히 설명되어 있습니다. 
 
-Azure 관리 포털의 REMOTEAPP 노드가 차단되었을 수 있습니다. 만약 그렇다면 귀하와 연락이 되지 않는 상황에서 귀하의 참여를 강제로 적용해야 했기 때문입니다.  Azure 구독과 관련된 이메일 주소가 모니터링되지 않았거나 유효하지 않기 때문에 전자 메일을 받지 못하셨을 수 있습니다.  Azure Portal로 이동하여 구독 관리자를 확인하여 Azure 구독과 연결된 이메일 주소가 유효하고 모니터링되고 있는지 꼭 확인해 주시기 바랍니다.  
+hello REMOTEAPP 노드 hello Azure 관리 포털 내에서 차단, 줄였습니다 म 있습니다에 연결 하지 못해 했으며 tooforce와 체결 원하며 때문에 있습니다.  있습니다 받지 못했을 수 우리의 메일 때문에 Azure 구독 hello와 연결 된 hello 전자 메일 주소 모니터링 되지 않거나 유효 하지 않습니다.  좋습니다 toovalidate hello 전자 메일 주소 Azure 구독에 연결 된 유효 하 고 모니터링, toohello Azure 포털을 탐색 하 고 hello 구독 관리자를 확인 하 여이 작업을 수행할 수 있습니다.  
 
 다른 질문이 있거나 마이그레이션 지원이 필요하신가요?  [arainfo@microsoft.com](mailto:arainfo@microsoft.com)으로 전자 메일을 보내거나 전환 팀과의 [회의를 예약](http://aka.ms/ericorman)하세요. 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Import/Export 가져오기 작업 복구 - v1 | Microsoft Docs"
-description: "Azure Import/Export 서비스를 사용하여 생성 및 실행된 가져오기 작업을 복구하는 방법을 알아봅니다."
+title: "Azure 가져오기/내보내기 가져오기 작업-v1 aaaRepairing | Microsoft Docs"
+description: "어떻게 생성 되어 사용 하 여 실행 가져오기 작업 toorepair hello Azure 가져오기/내보내기에 알아봅니다 서비스입니다."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: c837713fd9e7d03287ae5a3644fd6bb47714c9d4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b1cb7d7832276a05c0912cf57505e2a5d79e7846
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="repairing-an-import-job"></a>가져오기 작업 복구
-Microsoft Azure Import/Export 서비스는 Microsoft Azure Blob Service에 파일 또는 파일의 일부를 복사하지 못할 수 있습니다. 이 오류의 몇 가지 원인은 다음과 같습니다.  
+Microsoft Azure 가져오기/내보내기 서비스 hello toocopy 못할 일부 파일 또는 파일 toohello Windows Azure Blob 서비스의 일부입니다. 이 오류의 몇 가지 원인은 다음과 같습니다.  
   
 -   손상된 파일  
   
 -   손상된 드라이브  
   
--   파일이 전송되는 동안 저장소 계정 키가 변경되었습니다.  
+-   저장소 계정 키 hello hello 파일 전송 되 고 변경 합니다.  
   
-가져오기 작업의 복사 로그 파일을 사용하여 Microsoft Azure Import/Export 도구를 실행할 수 있습니다. 이 도구는 누락된 파일(또는 파일의 일부)을 Microsoft Azure Storage 계정으로 업로드하여 가져오기 작업을 완료합니다.  
+Hello hello 가져오기 작업의 복사 로그 파일, 및 hello 도구 업로드 hello 누락 된 파일 (또는 파일의 일부)와 Microsoft Azure 가져오기/내보내기 도구 tooyour Windows Azure 저장소 계정 toocomplete hello 가져오기 작업을 실행할 수 있습니다.  
   
 ## <a name="repairimport-parameters"></a>RepairImport 매개 변수
 
-**RepairImport**와 함께 다음 매개 변수를 지정할 수 있습니다. 
+hello 다음 매개 변수 지정 될 수 있습니다 **RepairImport**: 
   
 |||  
 |-|-|  
-|**/r:**<RepairFile\>|**필수** 복구의 진행 상황을 추적하고 중단된 복구를 다시 시작할 수 있도록 하는 복구 파일의 경로입니다. 각 드라이브에는 하나의 복구 파일만 있어야 합니다. 지정된 드라이브의 복구를 시작할 때 아직 존재하지 않는 복구 파일의 경로를 지정합니다. 중단된 복구를 다시 시작하려면 기존 복구 파일의 이름을 제공해야 합니다. 대상 드라이브에 해당하는 복구 파일을 항상 지정해야 합니다.|  
-|**/logdir:**<LogDirectory\>|**선택** 로그 디렉터리입니다. 이 디렉터리에 자세한 로그 파일이 기록됩니다. 로그 디렉터리를 지정하지 않는 경우 현재 디렉터리가 로그 디렉터리로 사용됩니다.|  
-|**/d:**<TargetDirectories\>|**필수** 가져온 원본 파일을 포함하는 하나 이상의 세미콜론으로 구분된 디렉터리. 가져오기 드라이브도 사용할 수 있으나 원본 파일의 대체 위치를 사용할 수 있는 경우 필요하지 않습니다.|  
-|**/bk:**<BitLockerKey\>|**선택** 이 도구를 사용하여 원본 파일을 사용할 수 있는 암호화된 드라이브의 잠금을 해제하려면 BitLocker 키를 지정해야 합니다.|  
-|**/sn:**<StorageAccountName\>|**필수** 가져오기 작업에 대한 저장소 계정의 이름입니다.|  
-|**/sk:**<StorageAccountKey\>|컨테이너 SAS가 지정되지 않은 경우에만 **필수**입니다. 가져오기 작업에 대한 저장소 계정의 계정 키입니다.|  
-|**/csas:**<ContainerSas\>|저장소 계정 키가 지정되지 않은 경우에만 **필수**입니다. 가져오기 작업과 연결된 blob에 액세스하기 위한 컨테이너 SAS입니다.|  
-|**/CopyLogFile:**<DriveCopyLogFile\>|**필수** 드라이브 복사 로그 파일(자세한 로그 또는 오류 로그)의 경로입니다. 이 파일은 Microsoft Azure Import/Export 서비스에 의해 생성되고 작업과 연결된 Blob Storage에서 다운로드할 수 있습니다. 복사 로그 파일에는 복구해야 하는 실패한 blob 또는 파일에 대한 정보가 포함되어 있습니다.|  
-|**/PathMapFile:**<DrivePathMapFile\>|**선택** 같은 작업에서 가져오는 여러 파일이 같은 이름을 갖는 경우 모호성을 해결하기 위해 사용할 수 있는 텍스트 파일의 경로입니다. 이 도구는 처음 실행될 때 모호한 모든 이름으로 이 파일을 채울 수 있습니다. 이 도구를 이후에 실행하면 이 파일이 모호성을 해결하는 데 사용됩니다.|  
+|**/r:**<RepairFile\>|**필수** 경로 toohello 복구는 파일 hello 복구 hello 진행 상태를 추적 하 고 중단된 된 복구 tooresume 있습니다. 각 드라이브에는 하나의 복구 파일만 있어야 합니다. 지정 된 드라이브의 복구를 시작할 때 아직 존재 하지 않는 hello 경로 tooa 복구 파일을 전달 합니다. 중단된 된 복구 tooresume 기존 복구 파일의 hello 이름에 전달 해야 합니다. hello 복구 파일 해당 toohello 대상 드라이브를 항상 지정 되어야 합니다.|  
+|**/logdir:**<LogDirectory\>|**선택** hello 로그 디렉터리입니다. 자세한 로그 파일 toothis 디렉터리에 기록 됩니다. 없는 로그 디렉터리를 지정 하는 경우 hello 현재 디렉터리가 hello 로그 디렉터리로 사용 됩니다.|  
+|**/d:**<TargetDirectories\>|**필수** 하나 이상의 세미콜론으로 구분 된 디렉터리를 포함 하는 hello 가져온 원본 파일입니다. hello 가져오기 드라이브도 사용할 수, 있지만 원본 파일의 대체 위치를 사용할 수 있는 경우 필요 하지 않습니다.|  
+|**/bk:**<BitLockerKey\>|**선택** Hello 도구 toounlock hello 원본 파일을 사용할 수 있는 암호화 된 드라이브를 원하는 경우 hello BitLocker 키를 지정 해야 합니다.|  
+|**/sn:**<StorageAccountName\>|**필수** hello hello 저장소 계정의 이름으로 hello에 대 한 작업을 가져옵니다.|  
+|**/sk:**<StorageAccountKey\>|컨테이너 SAS가 지정되지 않은 경우에만 **필수**입니다. hello에 대 한 hello 저장소 계정에 대 한 hello 계정 키 가져오기 작업입니다.|  
+|**/csas:**<ContainerSas\>|**필요한** hello 저장소 계정 키를 지정 하지 않으면 하는 경우에 합니다. hello 가져오기 작업과 관련 된 hello blob 액세스를 위한 hello 컨테이너 SAS입니다.|  
+|**/CopyLogFile:**<DriveCopyLogFile\>|**필수** 경로 toohello 드라이브 복사 로그 파일 (자세한 로그 또는 오류 로그). hello 파일 hello Windows Azure 가져오기/내보내기 서비스에서 생성 되 고 hello 작업과 연결 된 hello blob 저장소에서 다운로드할 수 있습니다. hello 복사 로그 파일을 사용 하면 실패 한 blob 또는 파일은 toobe 복구 하는 방법에 대 한 정보가 있습니다.|  
+|**/PathMapFile:**<DrivePathMapFile\>|**선택** 사용할 수 있는 경로 tooa 텍스트 파일 tooresolve 모호성이 hello에서 가져온 이름과 같은 이름을 가진 여러 파일이 있는 경우 hello 같은 작업입니다. hello 첫 번째 시간 hello 도구가 실행 되는, 모든 hello 모호한 이름을 사용해 서이 파일을 채울 수 있습니다. Hello 도구의 후속 실행이 파일 tooresolve hello 모호성을 사용합니다.|  
   
-## <a name="using-the-repairimport-command"></a>RepairImport 명령 사용  
-네트워크를 통해 데이터를 스트리밍하여 가져오기 데이터를 복구하려면 `/d` 매개 변수를 사용하여 가져오는 원본 파일을 포함하는 디렉터리를 지정해야 합니다. 또한 저장소 계정에서 다운로드한 복사 로그 파일도 지정해야 합니다. 부분적으로 실패한 가져오기 작업을 복구하는 일반적인 명령줄은 다음과 같습니다.  
+## <a name="using-hello-repairimport-command"></a>Hello RepairImport 명령 사용  
+toorepair hello 네트워크를 통해 hello 데이터를 스트리밍하여 가져오기 데이터를 지정 해야 사용 하 여 가져오는 hello 원본 파일을 포함 하는 hello 디렉터리 hello `/d` 매개 변수입니다. 저장소 계정에서 다운로드 한 hello 복사 로그 파일을 지정 해야 합니다. 일반적인 명령줄 toorepair 있는 가져오기 작업을 부분적인 오류는 다음과 같습니다.  
   
 ```  
 WAImportExport.exe RepairImport /r:C:\WAImportExport\9WM35C2V.rep /d:C:\Users\bob\Pictures;X:\BobBackup\photos /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /CopyLogFile:C:\WAImportExport\9WM35C2V.log  
 ```  
   
-다음의 로그 파일 복사 예제에서는 가져오기 작업용으로 전송된 드라이브에서 64K의 파일 조각이 손상되었습니다. 이것이 명시된 유일한 문제이므로 작업의 나머지 blob은 성공적으로 가져왔습니다.  
+Hello 한 64-K 부분 파일의 복사 로그 파일의 다음 예제는 hello 가져오기 작업에 대 한 배송 된 hello 드라이브에서 손상 되었습니다. Hello만 하 게 나타난 오류 이므로, hello 작업의 hello blob hello 나머지 성공적으로 가져왔습니다.  
   
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  
@@ -73,39 +73,39 @@ WAImportExport.exe RepairImport /r:C:\WAImportExport\9WM35C2V.rep /d:C:\Users\bo
 </DriveLog>  
 ```
   
-이 복사 로그가 Azure Import/Export 도구로 전달될 때 도구는 네트워크를 통해 누락된 콘텐츠를 복사하여 이 파일에 대한 가져오기를 완료하려고 합니다. 위의 예제에서 도구는 두 디렉터리 `C:\Users\bob\Pictures` 및 `X:\BobBackup\photos` 내에서 원본 파일 `\animals\koala.jpg`를 찾습니다. 파일 `C:\Users\bob\Pictures\animals\koala.jpg`가 있는 경우 Azure Import/Export 도구는 해당 blob `http://bobmediaaccount.blob.core.windows.net/pictures/animals/koala.jpg`에 누락된 데이터 범위를 복사합니다.  
+이 복사 로그가 Azure 가져오기/내보내기 도구 toohello에 전달 될 때는 hello 도구 hello 네트워크를 통해 hello 누락 콘텐츠를 복사 하 여이 파일에 대 한 toofinish hello 가져오기를 시도 합니다. Hello 원본 파일에 대 한 hello 도구는 hello 위의 예에서 다음 `\animals\koala.jpg` hello 두 디렉터리 내에서 `C:\Users\bob\Pictures` 및 `X:\BobBackup\photos`합니다. 이면 hello 파일 `C:\Users\bob\Pictures\animals\koala.jpg` hello Azure 가져오기/내보내기 도구 복사본 hello toohello 해당 blob 데이터의 누락 된 범위 있으면 `http://bobmediaaccount.blob.core.windows.net/pictures/animals/koala.jpg`합니다.  
   
 ## <a name="resolving-conflicts-when-using-repairimport"></a>RepairImport를 사용할 경우의 충돌 해결  
-상황에 따라 이 도구는 파일을 찾을 수 없거나, 파일에 액세스할 수 없거나, 파일 이름이 모호하거나, 파일 내용이 더 이상 올바르지 않는 등의 이유로 인해 필요한 파일을 찾거나 열지 못할 수 있습니다.  
+경우에 따라 hello 도구 아닐 수 toofind 또는 hello 다음 이유 중 하나에 대해 필요한 파일을 열고 hello: hello 파일을 찾을 수 없습니다, hello 파일에 액세스할 수 없는, hello 파일 이름이 모호, 또는 hello hello 파일의 내용이 더 이상 올바른 합니다.  
   
-이 도구가 `\animals\koala.jpg`를 찾으려고 하고 `C:\Users\bob\pictures` 및 `X:\BobBackup\photos`에 해당 이름의 파일이 있는 경우 모호성 오류가 발생할 수 있습니다. 즉, `C:\Users\bob\pictures\animals\koala.jpg` 및 `X:\BobBackup\photos\animals\koala.jpg`가 둘 다 가져오기 작업 드라이브에 존재하는 경우입니다.  
+Hello 도구 toolocate 시도 하는 경우 모호한 오류가 발생할 수 `\animals\koala.jpg` 둘 다에 해당 이름의 파일이 있으면 `C:\Users\bob\pictures` 및 `X:\BobBackup\photos`합니다. 즉, 둘 다 `C:\Users\bob\pictures\animals\koala.jpg` 및 `X:\BobBackup\photos\animals\koala.jpg` hello 가져오기 작업 드라이브에 존재 합니다.  
   
-`/PathMapFile` 옵션을 사용하면 이러한 오류를 해결할 수 있습니다. 도구가 제대로 식별할 수 없는 파일 목록에 포함될 파일의 이름을 지정할 수 있습니다. 다음 명령줄 예제에서는 `9WM35C2V_pathmap.txt`를 채웁니다.  
+hello `/PathMapFile` 옵션 tooresolve을 사용 하면 이러한 오류입니다. Hello 도구 hello 파일 목록이 포함 된 hello 파일의 hello 이름 수 없습니다. 지정할 수 있습니다 toocorrectly 식별 합니다. hello 다음 명령줄 예제에서는 `9WM35C2V_pathmap.txt`:  
   
 ```
 WAImportExport.exe RepairImport /r:C:\WAImportExport\9WM35C2V.rep /d:C:\Users\bob\Pictures;X:\BobBackup\photos /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /CopyLogFile:C:\WAImportExport\9WM35C2V.log /PathMapFile:C:\WAImportExport\9WM35C2V_pathmap.txt  
 ```
   
-도구는 문제가 있는 `9WM35C2V_pathmap.txt`의 파일 경로를 한 줄에 하나씩 씁니다. 예를 들어 이 명령을 실행하면 파일에 다음 항목이 포함될 수 있습니다.  
+hello을 다음 작성할 hello 문제가 있는 파일 경로 너무`9WM35C2V_pathmap.txt`, 줄에 하나씩 있습니다. 예를 들어 hello 파일 hello 항목 hello 명령을 실행 한 후 다음을 포함할 수 있습니다.  
  
 ```
 \animals\koala.jpg  
 \animals\kangaroo.jpg  
 ```
   
- 목록의 각 파일에 대해 도구에서 사용할 수 있는 파일을 찾아서 엽니다. 명시적으로 도구에 파일을 찾을 위치를 지정하려면 경로 맵 파일을 수정하고 같은 줄에 탭 문자로 구분해서 각 파일의 경로를 추가할 수 있습니다.  
+ Hello 목록에서 각 파일에 대해 toolocate 시도 열고 hello 파일 tooensure toohello 사용할 수 있는 도구입니다. Tootell hello 도구를 원하는 경우 수정할 수 있습니다 toofind 파일 위치에 명시적으로 hello 경로 맵 파일 파일을 추가 hello 경로 tooeach hello에 탭 문자로 분리 되어 같은 줄:  
   
 ```
 \animals\koala.jpg           C:\Users\bob\Pictures\animals\koala.jpg  
 \animals\kangaroo.jpg        X:\BobBackup\photos\animals\kangaroo.jpg  
 ```
   
-도구에서 필요한 파일을 사용할 수 있게 만들거나 경로 맵 파일을 업데이트한 후에 도구를 다시 실행하여 가져오기 프로세스를 완료할 수 있습니다.  
+함으로써 hello 필요한 파일 사용 가능한 toohello 도구 또는 hello 경로 맵 파일을 업데이트 한 후 hello 도구 toocomplete hello 가져오기 프로세스를 다시 실행할 수 있습니다.  
   
 ## <a name="next-steps"></a>다음 단계
  
-* [Azure Import/Export 도구 설정](storage-import-export-tool-setup-v1.md)   
+* [설정 hello Azure 가져오기/내보내기 도구](storage-import-export-tool-setup-v1.md)   
 * [가져오기 작업을 위한 하드 드라이브 준비](../storage-import-export-tool-preparing-hard-drives-import-v1.md)   
 * [복사 로그 파일을 사용하여 작업 상태 검토](storage-import-export-tool-reviewing-job-status-v1.md)   
 * [내보내기 작업 복구](../storage-import-export-tool-repairing-an-export-job-v1.md)   
-* [Azure Import/Export 도구 문제 해결](storage-import-export-tool-troubleshooting-v1.md)
+* [Hello Azure 가져오기/내보내기 도구 문제 해결](storage-import-export-tool-troubleshooting-v1.md)

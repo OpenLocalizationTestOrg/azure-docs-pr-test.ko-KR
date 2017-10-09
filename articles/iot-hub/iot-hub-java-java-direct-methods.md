@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub 직접 메서드 사용 (Java) | Microsoft Docs"
-description: "Azure IoT Hub 직접 메서드를 사용하는 방법입니다. Java용 Azure IoT 장치 SDK를 사용하여 직접 메서드를 포함한 시뮬레이션된 장치 앱을 구현하며 Java용 Azure IoT service SDK를 사용하여 직접 메서드를 호출하는 서비스 앱을 구현합니다."
+title: "Azure IoT Hub aaaUse 직접 메서드 (Java) | Microsoft Docs"
+description: "어떻게 toouse Azure IoT Hub는 메서드를 전달 합니다. Hello Azure IoT 장치 SDK를 사용 하 여 Java tooimplement 직접적인 방법 및 hello Java tooimplement hello 직접 메서드를 호출 하는 서비스 응용 프로그램에 대 한 Azure IoT 서비스 SDK 포함 하는 시뮬레이션 된 장치 앱에 대 한 합니다."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: 6243a1a8cc971c53c797182b2beb6f594d2ac5f7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b6f2f4a64535ab649a3965cd9c5a19bebaf88eef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-direct-methods-java"></a>직접 메서드 사용(Java)
 
@@ -26,16 +26,16 @@ ms.lasthandoff: 08/18/2017
 
 이 자습서에서는 다음 두 개의 Java 콘솔 앱을 만듭니다.
 
-* **invoke-direct-method**: 시뮬레이트된 장치 앱에서 메서드를 호출하고 응답을 표시하는 Java 백엔드 앱입니다.
-* **simulated-device**: IoT Hub를 사용자가 만드는 장치 ID에 연결하는 장치를 시뮬레이트하는 Java 앱입니다. 이 앱은 백 엔드의 직접 호출에 응답합니다.
+* **직접-메서드 호출**, hello 시뮬레이션 된 장치 응용 프로그램의 메서드를 호출 하 고 hello 응답을 표시 하는 Java 백 엔드 앱.
+* **시뮬레이션 된 장치**, tooyour IoT hub를 만들면 hello 장치 id를 사용 하 여 연결 하는 장치를 시뮬레이션 하는 Java 응용 프로그램입니다. 이 응용 프로그램 응답 toohello hello 백 엔드에서 직접 호출 합니다.
 
 > [!NOTE]
-> 장치와 솔루션 백 엔드에서 실행하기 위해 응용 프로그램을 빌드하는 데 사용할 수 있는 SDK에 관한 정보는 [Azure IoT SDK][lnk-hub-sdks]를 참조하세요.
+> 장치 및 백 엔드 솔루션에서 응용 프로그램 toorun toobuild를 사용할 수 있는 Sdk hello에 대 한 정보를 참조 하십시오. [Azure IoT Sdk][lnk-hub-sdks]합니다.
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete 해야이 자습서에서는:
 
-* Java SE 8. <br/> [개발 환경 준비][lnk-dev-setup]는 Windows 또는 Linux에서 이 자습서에 대한 Java를 설치하는 방법을 설명합니다.
-* Maven 3.  <br/> [개발 환경 준비][lnk-dev-setup]는 Windows 또는 Linux에서 이 자습서에 대한 [Maven][lnk-maven]을 설치하는 방법을 설명합니다.
+* Java SE 8. <br/> [개발 환경을 준비] [ lnk-dev-setup] 설명 방법을 Windows 또는 Linux에서이 자습서에 대 한 Java tooinstall 합니다.
+* Maven 3.  <br/> [개발 환경을 준비] [ lnk-dev-setup] 설명 방법을 tooinstall [Maven] [ lnk-maven] Windows 또는 Linux에서이 자습서에 대 한 합니다.
 * [Node.js 버전 0.10.0 이상](http://nodejs.org)
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
@@ -44,17 +44,17 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="create-a-simulated-device-app"></a>시뮬레이션된 장치 앱 만들기
 
-이 섹션에서는 솔루션 백 엔드에서 호출한 메서드에 응답하는 Java 콘솔 앱을 만듭니다.
+이 섹션에서는 응답 tooa 메서드 끝 hello 솔루션 다시에서 호출 하 여 Java 콘솔 응용 프로그램을 만들 수 있습니다.
 
 1. iot-java-direct-method라는 빈 폴더를 만듭니다.
 
-1. 명령 프롬프트에서 다음 명령을 사용하여 iot-java-direct-method 폴더에 **simulated-device**라는 새 Maven 프로젝트를 만듭니다. 다음 명령은 긴 단일 명령입니다.
+1. Hello java 직접 메서드 iot 폴더에서 만들 라는 Maven 프로젝트 **시뮬레이션 된 장치** hello 다음 명령 프롬프트에서 명령을 사용 하 여 합니다. 다음 명령을 hello은 단일, 긴 명령입니다.
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=simulated-device -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. 명령 프롬프트에서 simulated-device 폴더로 이동합니다.
+1. 명령 프롬프트 toohello 시뮬레이션 된 장치 폴더를 이동 합니다.
 
-1. 텍스트 편집기를 사용하여 simulated-device 폴더에서 pom.xml 파일을 열고 **종속성** 노드에 다음 종속성을 추가합니다. 이러한 종속성을 통해 IoT Hub와 통신하도록 앱에서 iot-device-client 패키지를 사용할 수 있습니다.
+1. 텍스트 편집기를 사용 하 여 hello pom.xml 파일 hello 시뮬레이션 된 장치 폴더에서 열고 추가 종속성 toohello 다음 hello **종속성** 노드. 이 종속성 있습니다 toouse hello iot 장치 클라이언트에서에서 패키지를 IoT hub와 사용자 응용 프로그램 toocommunicate 수 있습니다.
 
     ```xml
     <dependency>
@@ -65,9 +65,9 @@ ms.lasthandoff: 08/18/2017
     ```
 
     > [!NOTE]
-    > [Maven 검색][lnk-maven-device-search]을 사용하여 **iot-device-client**의 최신 버전을 확인할 수 있습니다.
+    > 최신 버전의 hello 확인할 수 있습니다 **iot 장치 클라이언트** 를 사용 하 여 [Maven 검색][lnk-maven-device-search]합니다.
 
-1. **종속성** 노드 뒤에 다음 **빌드** 노드를 추가합니다. 이 구성에서는 Maven에 Java 1.8을 사용하여 앱을 빌드하도록 지시합니다.
+1. Hello 다음 추가 **빌드** hello 후 노드 **종속성** 노드. 이 구성은 지시 Maven toouse Java 1.8 toobuild hello 응용 프로그램.
 
     ```xml
     <build>
@@ -85,11 +85,11 @@ ms.lasthandoff: 08/18/2017
     </build>
     ```
 
-1. pom.xml 파일을 저장하고 닫습니다.
+1. 저장 하 고 hello pom.xml 파일을 닫습니다.
 
-1. 텍스트 편집기를 사용하여 simulated-device\src\main\java\com\mycompany\app\App.java 파일을 엽니다.
+1. 텍스트 편집기를 사용 하 여 hello simulated-device\src\main\java\com\mycompany\app\App.java 파일을 엽니다.
 
-1. 파일에 다음 **import** 문을 추가합니다.
+1. Hello 다음 추가 **가져올** 문 toohello 파일:
 
     ```java
     import com.microsoft.azure.sdk.iot.device.*;
@@ -100,7 +100,7 @@ ms.lasthandoff: 08/18/2017
     import java.util.Scanner;
     ```
 
-1. 다음 클래스 수준 변수를 **App** 클래스에 추가합니다. `{youriothubname}`을 IoT 허브 이름으로 바꾸고 `{yourdevicekey}`를 *장치 ID 만들기* 섹션에서 만든 장치 키 값으로 바꿉니다.
+1. 클래스 수준 변수 toohello 다음 hello 추가 **앱** 클래스입니다. 교체 `{youriothubname}` 을 IoT 허브 이름으로, 및 `{yourdevicekey}` hello에 생성 된 hello 장치 키 값을 가진 *장치 id를 만드는* 섹션:
 
     ```java
     private static String connString = "HostName={youriothubname}.azure-devices.net;DeviceId=myDeviceID;SharedAccessKey={yourdevicekey}";
@@ -110,21 +110,21 @@ ms.lasthandoff: 08/18/2017
     private static final int METHOD_NOT_DEFINED = 404;
     ```
 
-    이 샘플 앱은 **DeviceClient** 개체를 인스턴스화할 때 **프로토콜** 변수를 사용합니다. 현재, 직접 메서드를 사용하려면 MQTT 프로토콜을 사용해야 합니다.
+    이 샘플 응용 프로그램 hello를 사용 하 여 **프로토콜** 를 인스턴스화할 때 변수는 **DeviceClient** 개체입니다. 현재 toouse 직접 hello MQTT 프로토콜을 사용 해야 하는 방법입니다.
 
-1. 상태 코드를 IoT Hub로 반환하려면 중첩된 다음 클래스를 **App** 클래스에 추가합니다.
+1. 상태 코드 tooyour IoT 허브를 tooreturn hello 다음 추가 클래스 toohello 중첩 **앱** 클래스:
 
     ```java
     protected static class DirectMethodStatusCallback implements IotHubEventCallback
     {
       public void execute(IotHubStatusCode status, Object context)
       {
-        System.out.println("IoT Hub responded to device method operation with status " + status.name());
+        System.out.println("IoT Hub responded toodevice method operation with status " + status.name());
       }
     }
     ```
 
-1. 솔루션 백 엔드의 직접 메서드 호출을 처리하려면 중첩된 다음 클래스를 **App** 클래스에 추가합니다.
+1. hello 솔루션 백 엔드 toohandle hello 직접 메서드 호출 hello 다음 추가 클래스 toohello 중첩 **앱** 클래스:
 
     ```java
     protected static class DirectMethodCallback implements com.microsoft.azure.sdk.iot.device.DeviceTwin.DeviceMethodCallback
@@ -153,7 +153,7 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. **DeviceClient**를 만들고 직접 메서드 호출을 수신 대기하려면 **main** 메서드를 **App** 클래스에 추가합니다.
+1. toocreate는 **DeviceClient** 직접 메서드 호출에 대 한 수신 대기 하 고, 추가 **주** 메서드 toohello **앱** 클래스:
 
     ```java
     public static void main(String[] args)
@@ -167,7 +167,7 @@ ms.lasthandoff: 08/18/2017
       {
         client.open();
         client.subscribeToDeviceMethod(new DirectMethodCallback(), null, new DirectMethodStatusCallback(), null);
-        System.out.println("Subscribed to direct methods. Waiting...");
+        System.out.println("Subscribed toodirect methods. Waiting...");
       }
       catch (Exception e)
       {
@@ -176,7 +176,7 @@ ms.lasthandoff: 08/18/2017
         System.out.println("Shutting down...");
       }
 
-      System.out.println("Press any key to exit...");
+      System.out.println("Press any key tooexit...");
       Scanner scanner = new Scanner(System.in);
       scanner.nextLine();
       scanner.close();
@@ -185,23 +185,23 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. simulated-device\src\main\java\com\mycompany\app\App.java 파일을 저장한 후 닫습니다.
+1. 저장 후 닫기 hello simulated-device\src\main\java\com\mycompany\app\App.java 파일
 
-1. **simulated-device** 앱을 빌드하고 오류를 수정합니다. 명령 프롬프트에서 simulated-device 폴더로 이동한 후 다음 명령을 실행합니다.
+1. Hello 빌드 **시뮬레이션 된 장치** 응용 프로그램 오류 수정 하십시오. 명령 프롬프트에서 다음 명령이 실행된 hello 및 toohello 시뮬레이션 된 장치 폴더를 이동 합니다.
 
     `mvn clean package -DskipTests`
 
 ## <a name="call-a-direct-method-on-a-device"></a>장치에서 직접 메서드 호출
 
-이 섹션에서는 직접 메서드를 호출하고 응답을 표시하는 Java 콘솔 앱을 만듭니다. 이 콘솔 앱은 IoT Hub에 연결하여 직접 메서드를 호출합니다.
+이 섹션에서는 직접 메서드를 호출 하 고 다음 hello 응답을 표시 하는 Java 콘솔 앱을 만듭니다. 이 콘솔 응용 프로그램 tooyour IoT Hub tooinvoke hello에 대 한 직접 메서드를 연결합니다.
 
-1. 명령 프롬프트에서 다음 명령을 사용하여 iot-java-direct-method 폴더에 **invoke-direct-method**라는 새 Maven 프로젝트를 만듭니다. 다음 명령은 긴 단일 명령입니다.
+1. Hello java 직접 메서드 iot 폴더에서 만들 라는 Maven 프로젝트 **-직접-메서드 호출** hello 다음 명령 프롬프트에서 명령을 사용 하 여 합니다. 다음 명령을 hello은 단일, 긴 명령입니다.
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=invoke-direct-method -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. 명령 프롬프트에서 invoke-direct-method 폴더로 이동합니다.
+1. 명령 프롬프트 toohello-직접-메서드 호출 폴더를 이동 합니다.
 
-1. 텍스트 편집기를 사용하여 invoke-direct-method 폴더에서 pom.xml 파일을 열고 **종속성** 노드에 다음 종속성을 추가합니다. 이러한 종속성을 통해 IoT Hub와 통신하도록 앱에서 iot-service-client 패키지를 사용할 수 있습니다.
+1. 텍스트 편집기를 사용 하 여 hello pom.xml 파일 hello-직접-메서드 호출 폴더에서 열고 추가 종속성 toohello 다음 hello **종속성** 노드. 이 종속성 있습니다 toouse hello iot 서비스 클라이언트에서에서 패키지를 IoT hub와 사용자 응용 프로그램 toocommunicate 수 있습니다.
 
     ```xml
     <dependency>
@@ -213,9 +213,9 @@ ms.lasthandoff: 08/18/2017
     ```
 
     > [!NOTE]
-    > [Maven 검색][lnk-maven-service-search]을 사용하여 **iot-service-client**의 최신 버전을 확인할 수 있습니다.
+    > 최신 버전의 hello 확인할 수 있습니다 **iot 서비스 클라이언트** 를 사용 하 여 [Maven 검색][lnk-maven-service-search]합니다.
 
-1. **종속성** 노드 뒤에 다음 **빌드** 노드를 추가합니다. 이 구성에서는 Maven에 Java 1.8을 사용하여 앱을 빌드하도록 지시합니다.
+1. Hello 다음 추가 **빌드** hello 후 노드 **종속성** 노드. 이 구성은 지시 Maven toouse Java 1.8 toobuild hello 응용 프로그램.
 
     ```xml
     <build>
@@ -233,11 +233,11 @@ ms.lasthandoff: 08/18/2017
     </build>
     ```
 
-1. pom.xml 파일을 저장하고 닫습니다.
+1. 저장 하 고 hello pom.xml 파일을 닫습니다.
 
-1. 텍스트 편집기를 사용하여 invoke-direct-method\src\main\java\com\mycompany\app\App.java 파일을 엽니다.
+1. 텍스트 편집기를 사용 하 여 hello invoke-direct-method\src\main\java\com\mycompany\app\App.java 파일을 엽니다.
 
-1. 파일에 다음 **import** 문을 추가합니다.
+1. Hello 다음 추가 **가져올** 문 toohello 파일:
 
     ```java
     import com.microsoft.azure.sdk.iot.service.devicetwin.DeviceMethod;
@@ -248,7 +248,7 @@ ms.lasthandoff: 08/18/2017
     import java.util.concurrent.TimeUnit;
     ```
 
-1. 다음 클래스 수준 변수를 **App** 클래스에 추가합니다. `{youriothubconnectionstring}`은 *IoT Hub 만들기* 섹션에서 기록한 IoT Hub 연결 문자열로 바꿉니다.
+1. 클래스 수준 변수 toohello 다음 hello 추가 **앱** 클래스입니다. 대체 `{youriothubconnectionstring}` hello에서 기록한 IoT 허브 연결 문자열로 *IoT 허브를 만듭니다.* 섹션:
 
     ```java
     public static final String iotHubConnectionString = "{youriothubconnectionstring}";
@@ -257,10 +257,10 @@ ms.lasthandoff: 08/18/2017
     public static final String methodName = "writeLine";
     public static final Long responseTimeout = TimeUnit.SECONDS.toSeconds(30);
     public static final Long connectTimeout = TimeUnit.SECONDS.toSeconds(5);
-    public static final String payload = "a line to be written";
+    public static final String payload = "a line toobe written";
     ```
 
-1. 시뮬레이트된 장치에서 메서드를 호출하려면 **main** 메서드에 다음 코드를 추가합니다.
+1. hello 시뮬레이션 된 장치에서 tooinvoke hello 메서드 추가 코드 toohello 다음 hello **주** 메서드:
 
     ```java
     System.out.println("Starting sample...");
@@ -286,39 +286,39 @@ ms.lasthandoff: 08/18/2017
     System.out.println("Shutting down sample...");
     ```
 
-1. invoke-direct-method\src\main\java\com\mycompany\app\App.java 파일을 저장하고 닫습니다.
+1. 저장 후 닫기 hello invoke-direct-method\src\main\java\com\mycompany\app\App.java 파일
 
-1. **invoke-direct-method** 앱을 빌드하고 오류를 수정합니다. 명령 프롬프트에서 invoke-direct-method 폴더로 이동한 후 다음 명령을 실행합니다.
+1. Hello 빌드 **-직접-메서드 호출** 응용 프로그램 오류 수정 하십시오. 명령 프롬프트 toohello-직접-메서드 호출 폴더 및 다음 명령이 실행된 hello를 이동 합니다.
 
     `mvn clean package -DskipTests`
 
-## <a name="run-the-apps"></a>앱 실행
+## <a name="run-hello-apps"></a>Hello 앱 실행
 
-이제 콘솔 앱을 실행할 준비가 되었습니다.
+준비 toorun hello 콘솔 응용 프로그램입니다.
 
-1. simulated-device 폴더의 명령 프롬프트에서 다음 명령을 실행하여 IoT Hub의 메서드 호출에 대한 대기를 시작합니다.
-
-    `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
-
-    ![직접 메서드 호출을 수신 대기할 Java IoT Hub 시뮬레이트된 장치 앱][8]
-
-1. invoke-direct-method 폴더의 명령 프롬프트에서 다음 명령을 실행하여 IoT Hub의 시뮬레이트된 장치에 대해 메서드를 호출합니다.
+1. Hello 시뮬레이션 된 장치 폴더에서 명령 프롬프트에서 다음 명령을 toobegin IoT 허브에서 메서드 호출을 수신 대기 하는 hello를 실행 합니다.
 
     `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
 
-    ![직접 메서드 호출을 수행할 Java IoT Hub 서비스 앱][7]
+    ![Java IoT Hub에 장치 앱 toolisten 직접 메서드 호출에 대 한 시뮬레이션 된][8]
 
-1. 시뮬레이트된 장치는 직접 메서드 호출에 응답합니다.
+1. Hello-직접-메서드 호출 폴더에 명령 프롬프트에서 다음 명령을 toocall hello 메서드가 장치에서 실행 시뮬레이션 IoT 허브에서:
 
-    ![Java IoT Hub 시뮬레이트된 장치 앱은 직접 메서드 호출에 응답합니다.][9]
+    `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
+
+    ![Java IoT 허브 서비스 응용 프로그램 toocall 직접적인 방법][7]
+
+1. hello 시뮬레이션 된 장치 응답 toohello 직접 메서드를 호출 합니다.
+
+    ![Java IoT Hub 시뮬레이션 된 장치 응용 프로그램 응답 toohello 직접 메서드 호출][9]
 
 ## <a name="next-steps"></a>다음 단계
 
-이 자습서에서는 Azure Portal에서 새 IoT Hub를 구성한 다음, IoT Hub의 ID 레지스트리에서 장치 ID를 만들었습니다. 시뮬레이션된 장치 앱이 클라우드에서 호출한 메서드에 반응할 수 있도록 장치 ID를 사용했습니다. 장치에서 메서드를 호출하고 장치의 응답을 표시하는 앱도 만들었습니다.
+이 자습서에서는 hello Azure 포털에서에서 새 IoT 허브를 구성 하 고 id 레지스트리에 hello IoT hub에서 장치 id를 만든 다음 합니다. 이 장치 identity tooenable hello 시뮬레이션 된 장치 앱 tooreact toomethods hello 클라우드 호출한 사용 했습니다. 또한 hello 장치에 대 한 메서드를 호출 하 고 hello 장치에서 hello 응답을 표시 하는 응용 프로그램을 만들었습니다.
 
-다른 IoT 시나리오를 탐색하려면 [여러 장치에서 작업 예약][lnk-devguide-jobs]을 참조하세요.
+tooexplore IoT 시나리오도 참조 [여러 장치에서 작업을 예약][lnk-devguide-jobs]합니다.
 
-IoT 솔루션을 확장하고 여러 장치에서 메서드 호출을 예약하는 방법을 알아보려면 [jobs 예약 및 브로드캐스트][lnk-tutorial-jobs] 자습서를 참조하세요.
+toolearn tooextend IoT 솔루션 및 일정 메서드를 여러 장치에서 호출 하는 방법 참조 hello [일정 및 브로드캐스트 작업] [ lnk-tutorial-jobs] 자습서입니다.
 
 <!-- Images. -->
 [7]: ./media/iot-hub-java-java-direct-methods/invoke-method.png

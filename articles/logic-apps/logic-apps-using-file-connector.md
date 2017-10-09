@@ -1,6 +1,6 @@
 ---
-title: "Azure Logic Apps에서 온-프레미스 파일 시스템에 연결 | Microsoft Docs"
-description: "온-프레미스 데이터 게이트웨이 및 파일 시스템 커넥터를 통해 논리 앱 워크플로에서 온-프레미스 파일 시스템에 연결"
+title: "aaaConnect tooon 온-프레미스 파일 시스템에서 Azure 논리 앱 | Microsoft Docs"
+description: "온-프레미스 데이터 게이트웨이 hello와 파일 시스템 커넥터를 통해 논리 앱 워크플로에서 tooon 온-프레미스 파일 시스템 연결"
 keywords: "파일 시스템"
 services: logic-apps
 author: derek1ee
@@ -14,66 +14,66 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/27/2017
 ms.author: LADocs; deli
-ms.openlocfilehash: f33e7c58103c57e17e4e273caba1ab9b83f0cd2b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: beb5565293def4aba81f63f19e77d7498aac38c5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-to-on-premises-file-systems-from-logic-apps-with-the-file-system-connector"></a>파일 시스템 커넥터를 사용하여 Logic Apps에서 온-프레미스 파일 시스템에 연결
+# <a name="connect-tooon-premises-file-systems-from-logic-apps-with-hello-file-system-connector"></a>Hello 파일 시스템 커넥터를 사용 하 여 논리 앱에서 tooon 온-프레미스 파일 시스템 연결
 
-하이브리드 클라우드 연결은 Logic Apps의 핵심이므로, 온-프레미스 리소스에서 데이터를 관리하고 안전하게 액세스하기 위해 Logic Apps에서는 온-프레미스 데이터 게이트웨이를 사용할 수 있습니다. 이 문서에서는 기본적인 시나리오 “Dropbox에 업로드된 파일을 파일 공유에 복사한 다음 전자 메일 전송”를 사용하여 온-프레미스 파일 시스템에 연결하는 방법을 보여 줍니다.
+하이브리드 클라우드 연결 중앙 toologic 앱, 따라서 toomanage 데이터 하며 안전 하 게 액세스 온-프레미스 리소스, 논리 앱 hello 온-프레미스 데이터 게이트웨이 사용할 수 있습니다. 이 문서에서는 어떻게 tooconnect tooan 온-프레미스 파일 시스템 기본 시나리오를 보여 줍니다:는 업로드 된 tooDropbox tooa 파일 공유를 다음 전자 메일을 보낼 파일을 복사 합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-- 최신 [온-프레미스 데이터 게이트웨이](https://www.microsoft.com/download/details.aspx?id=53127)를 설치하고 구성합니다.
-- 최신 온-프레미스 데이터 게이트웨이 버전 1.15.6150.1 이상을 설치합니다. [온-프레미스 데이터 게이트웨이에 연결](http://aka.ms/logicapps-gateway)에서 단계를 나열하고 있습니다. 나머지 단계를 계속하기 전에 게이트웨이를 온-프레미스 컴퓨터에 설치해야 합니다.
+- 설치 하 고 최신 hello 구성 [온-프레미스 데이터 게이트웨이](https://www.microsoft.com/download/details.aspx?id=53127)합니다.
+- 설치 hello 최신 온-프레미스 데이터 게이트웨이 1.15.6150.1 버전 이상. [Toohello 온-프레미스 데이터 게이트웨이 연결](http://aka.ms/logicapps-gateway) 목록 hello 단계입니다. hello 나머지 hello 단계를 계속 하기 전에 hello 게이트웨이 온-프레미스 컴퓨터에 설치 되어야 합니다.
 
-## <a name="add-trigger-and-actions-for-connecting-to-your-file-system"></a>파일 시스템에 연결하기 위한 트리거 및 작업 추가
+## <a name="add-trigger-and-actions-for-connecting-tooyour-file-system"></a>트리거 및 tooyour 파일 시스템 연결에 대 한 작업 추가
 
 1. 논리 앱을 만들고 Dropbox 트리거: **파일이 만들어진 경우**를 추가합니다. 
-2. 트리거에서 **다음 단계** > **작업 추가**를 선택합니다. 
-3. 파일 시스템 커넥터에 대해 지원되는 모든 작업을 볼 수 있도록 검색 상자에서 `file system`을 입력합니다.
+2. Hello 트리거 선택 **다음 단계** > **동작 추가**합니다. 
+3. Hello 검색 상자에 입력 `file system` hello 파일 시스템 커넥터에 대 한 지원 되는 모든 작업을 볼 수 있도록 합니다.
 
    ![파일 커넥터 검색](media/logic-apps-using-file-connector/search-file-connector.png)
 
-2. **파일 만들기** 작업을 선택하고 파일 시스템에 대한 연결을 만듭니다.
+2. Hello 선택 **파일 만들기** 동작을 연결 tooyour 파일 시스템을 만듭니다.
 
-   기존 연결이 없으면 새로 만들라는 메시지가 표시됩니다.
+   기존 연결 되지 않은 경우 하나 toocreate 메시지 표시 됩니다.
 
    1. **온-프레미스 데이터 게이트웨이를 통해 연결**을 선택합니다. 더 많은 속성이 표시됩니다.
    2. 파일 시스템에 대한 루트 폴더를 선택합니다.
       
        > [!NOTE]
-       > 루트 폴더는 모든 파일 관련 작업의 상대 경로에 사용되는 기본 상위 폴더입니다. 온-프레미스 데이터 게이트웨이가 설치된 컴퓨터의 로컬 폴더 또는 컴퓨터에서 액세스할 수 있는 네트워크 공유 폴더를 지정할 수 있습니다.
+       > hello 루트 폴더는 모든 파일 관련 작업에 대 한 상대 경로에 사용 되는 hello 기본 부모 폴더입니다. Hello 컴퓨터 hello 폴더 hello 컴퓨터는 네트워크 공유에 액세스할 수 있을 수 있습니다 또는 hello 온-프레미스 데이터 게이트웨이가 설치 된 위치에서 로컬 폴더를 지정할 수 있습니다.
 
-   3. 게이트웨이에 대한 사용자 이름과 암호를 입력합니다.
-   4. 이전에 설치한 게이트웨이를 선택합니다.
+   3. Hello 게이트웨이에 대 한 hello 사용자 이름 및 암호를 입력 합니다.
+   4. 이전에 설치한 hello 게이트웨이 선택 합니다.
 
        ![연결 구성](media/logic-apps-using-file-connector/create-file.png)
 
-3. 모든 세부 정보를 제공한 후 **만들기**를 선택합니다. 
+3. Hello에 대 한 세부 정보를 모두 제공한 후 선택 **만들기**합니다. 
 
-   Logic Apps는 연결을 구성하고 테스트하여 제대로 작동되는지 확인합니다. 
-   연결이 제대로 설치되면 이전에 선택한 작업에 대한 옵션이 표시됩니다. 
-   이제 파일 시스템 커넥터를 사용할 준비가 되었습니다.
+   논리 앱 구성 및 hello 연결이 제대로 작동 하는지 확인 하 여 연결을 테스트 합니다. 
+   Hello 연결 올바르게 설치 되 면 이전에 선택한 hello 동작에 대 한 옵션이 표시 됩니다. 
+   hello 파일 시스템 커넥터가 사용할 준비가 되었습니다.
 
-4. 온-프레미스 파일 공유를 위해 Dropbox의 파일을 루트 폴더로 복사할 것임을 지정합니다.
+4. 온-프레미스 파일 공유에 대 한 Dropbox toohello 루트 폴더에서 파일 toocopy 되도록 지정 합니다.
 
    ![파일 작업 만들기](media/logic-apps-using-file-connector/create-file-filled.png)
 
-5. 논리 앱에서 파일을 복사한 후에는 관련 사용자만 새 파일에 대해 알 수 있도록 전자 메일을 보내는 Outlook 작업을 추가합니다. 전자 메일의 받는 사람, 제목 및 본문을 입력합니다. 
+5. 논리 앱 복사본 hello 파일을 후 hello 새 파일에 대 한 관련 사용자를 확인할 수 있도록 전자 메일을 보내는 Outlook 동작을 추가 합니다. Hello 받는 사람, 제목 및 hello 전자 메일의 본문을 입력 합니다. 
 
-   동적 콘텐츠 선택기에는 전자 메일에 더 많은 세부 정보를 추가할 수 있도록 파일 커넥터의 데이터 출력을 선택할 수 있습니다.
+   Hello 동적 콘텐츠 편집기 도구 모음에서 더 많은 세부 정보 toohello 전자 메일을 추가할 수 있도록 hello 파일 커넥터에서 데이터 출력 선택할 수 있습니다.
 
    ![전자 메일 보내기 작업](media/logic-apps-using-file-connector/send-email.png)
 
-6. 논리 앱을 저장합니다. Dropbox에 파일을 업로드하여 앱을 테스트합니다. 파일은 온-프레미스 파일 공유로 복사되며 해당 작업에 대한 전자 메일 알림이 수신됩니다.
+6. 논리 앱을 저장합니다. 파일 tooDropbox 업로드 하 여 응용 프로그램을 테스트 합니다. hello 파일을 복사한 toohello 온-프레미스 파일 공유를 얻어야 하 고 hello 작업에 대 한 전자 메일을 받게 됩니다.
 
    > [!TIP] 
-   > [Logic Apps 모니터링](../logic-apps/logic-apps-monitor-your-logic-apps.md) 방법을 확인합니다.
+   > 너무 방법에 대해 알아봅니다[논리 앱 모니터링](../logic-apps/logic-apps-monitor-your-logic-apps.md)합니다.
 
-축하합니다. 이제 온-프레미스 파일 시스템에 연결할 수 있는 작업 논리 앱이 생성되었습니다. 다음과 같이 커넥터가 제공하는 다른 기능도 함께 탐색해 보세요.
+축, tooyour 온-프레미스 파일 시스템에 연결할 수 있는 작업 중인 논리 앱 생깁니다. 예를 들어 커넥터 제공 hello 다른 기능을 탐색 하십시오.
 
 - 파일 만들기
 - 폴더의 파일 나열
@@ -86,16 +86,16 @@ ms.lasthandoff: 07/11/2017
 - 루트 폴더의 파일 나열
 - 파일 업데이트
 
-## <a name="view-the-swagger"></a>swagger 보기
-[swagger 정보](/connectors/fileconnector/)를 참조하세요. 
+## <a name="view-hello-swagger"></a>Hello swagger 보기
+Hello 참조 [세부 정보를 swagger](/connectors/fileconnector/)합니다. 
 
 ## <a name="get-help"></a>도움말 보기
 
-질문하고, 질문에 답변하고, 다른 Azure Logic Apps 사용자가 어떤 일을 하는지 알아보려면 [Azure Logic Apps 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)을 방문하세요.
+tooask 질문 질문에 답변 하 고 다른 Azure 논리 앱을 수행 하는 사용자가 방문 hello 자세한 [Azure 논리 앱 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)합니다.
 
-Azure Logic Apps 및 커넥터 개선에 도움을 주려면 [Azure Logic Apps 사용자 의견 사이트](http://aka.ms/logicapps-wish)에서 투표하고 아이디어를 제출하세요.
+Azure 논리 앱 및 커넥터 향상, 투표 하거나 hello에서 아이디어 제출 toohelp [Azure 논리 앱 사용자 의견 사이트](http://aka.ms/logicapps-wish)합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-- Logic Apps에서 [온-프레미스 데이터에 연결](../logic-apps/logic-apps-gateway-connection.md)
+- [Tooon 온-프레미스 데이터 연결](../logic-apps/logic-apps-gateway-connection.md) 논리 앱에서
 - [엔터프라이즈 통합](../logic-apps/logic-apps-enterprise-integration-overview.md)에 대해 알아봅니다.

@@ -1,4 +1,4 @@
-Azure Data Factory는 개별적 또는 다른 작업과 연계하여 파이프라인에 추가할 수 있는 다음과 같은 변환 작업을 지원합니다.
+Azure Data Factory 변환 활동이 추가 된 toopipelines 하거나 개별적으로 되거나 되 연결 된 다른 활동을 포함 하는 hello를 지원 합니다.
 
 | 데이터 변환 작업 | 컴퓨팅 환경 |
 |:--- |:--- |
@@ -13,8 +13,8 @@ Azure Data Factory는 개별적 또는 다른 작업과 연계하여 파이프�
 | [DotNet](../articles/data-factory/data-factory-use-custom-activities.md) |HDInsight [Hadoop] 또는 Azure Batch |
 
 > [!NOTE]
-> MapReduce 작업을 사용하여 HDInsight Spark 클러스터에서 Spark 프로그램을 실행할 수 있습니다. 자세한 내용은 [Azure Data Factory에서 Spark 프로그램 호출](../articles/data-factory/data-factory-spark.md) 을 참조하세요.
-> R이 설치된 HDInsight 클러스터에서 R 스크립트를 실행하는 사용자 지정 작업을 만들 수 있습니다. [Azure Data Factory를 사용하여 R 스크립트 실행](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)을 참조하세요.
+> MapReduce 작업 toorun Spark 프로그램 HDInsight Spark 클러스터에서 사용할 수 있습니다. 자세한 내용은 [Azure Data Factory에서 Spark 프로그램 호출](../articles/data-factory/data-factory-spark.md) 을 참조하세요.
+> 만들 수 있습니다는 사용자 지정 활동 toorun R 스크립트에서 HDInsight 클러스터에 설치 된 R을 사용. [Azure Data Factory를 사용하여 R 스크립트 실행](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)을 참조하세요.
 > 
 > 
 

@@ -1,12 +1,12 @@
 <!--author=alkohli last changed: 9/16/15-->
 
-#### <a name="to-cable-for-power"></a>전원을 케이블로 연결하려면
-1. 각 PCM(전원 및 냉각 모듈)의 전원 스위치가 OFF 위치에 있는지 확인합니다.
-2. 기본 엔클로저에서 각 PCM에 전원 코드를 연결합니다.
-3. 다음 그림과 같이 전원 코드를 랙 PDU(전원 분배 장치)에 연결합니다. 두 개의 PCM이 개별 전원을 사용하는지 확인합니다.
+#### <a name="toocable-for-power"></a>전원 toocable
+1. 각각 hello 전원 스위치가 hello 전원 및 냉각 모듈 (Pcm) hello OFF 위치에 있는지 확인 합니다.
+2. 기본 인클로저 hello에에서 hello Pcm의 전원 코드 tooeach hello를 연결 합니다.
+3. 다음 이미지는 hello와 같이 hello 전원 코드 toohello 랙 pdu 배전 ()를 연결 합니다. Hello 두 Pcm이 별도 전원을 사용 하 고 있는지 확인 합니다.
    
    > [!IMPORTANT]
-   > 시스템의 고가용성을 보장하려면 다음 다이어그램에 표시된 것처럼 전원 케이블 연결 방식을 엄격히 준수하는 것이 좋습니다. 
+   > 시스템에 대 한 높은 수준의 가용성 tooensure toohello 전원 케이블 연결 hello 다음 다이어그램에에서 표시 된 체계를 엄격 하 게 준수 하는 두는 것이 좋습니다. 
    > 
    > 
    
@@ -21,5 +21,5 @@
    | 3 |컨트롤러 0 |
    | 4 |PCM 1 |
    | 5 |PDU |
-4. 시스템의 전원을 켜려면 양쪽 PCM의 전원 스위치를 ON 위치로 누릅니다.
+4. hello 시스템에 tooturn, 플립 hello 전원 두 Pcm toohello ON 위치로 전환입니다.
 

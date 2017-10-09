@@ -1,6 +1,6 @@
 ---
-title: "Log Analytics의 IIS 로그 | Microsoft Docs"
-description: "IIS(인터넷 정보 서비스)는 Log Analytics에서 수집할 수 있는 로그 파일에 사용자 활동을 저장합니다.  이 문서에서는 IIS 로그 수집을 구성하는 방법을 설명하고, OMS 리포지토리에 생성되는 레코드에 대한 자세한 정보를 제공합니다."
+title: "로그 분석에 aaaIIS 기록 | Microsoft Docs"
+description: "IIS(인터넷 정보 서비스)는 Log Analytics에서 수집할 수 있는 로그 파일에 사용자 활동을 저장합니다.  이 문서는 hello 레코드의 세부 정보 및 IIS 로그 컬렉션 tooconfigure 작성 방법과 hello OMS 리포지토리에 대해 설명 합니다."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/12/2017
 ms.author: bwren
-ms.openlocfilehash: 2114bdafb3b9fe2eb0632271840b8b70a76d10f1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c5575351090cdabaf651bcb49867794ee3a4b6e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="iis-logs-in-log-analytics"></a>Log Analytics의 IIS 로그
 IIS(인터넷 정보 서비스)는 Log Analytics에서 수집할 수 있는 로그 파일에 사용자 활동을 저장합니다.  
@@ -31,63 +31,63 @@ Log Analytics는 IIS에서 생성된 로그 파일의 항목을 수집하므로 
 Log Analytics는 W3C 형식으로 저장된 IIS 로그 파일만 지원하며 사용자 지정 필드 또는 IIS 고급 로깅을 지원하지 않습니다.  
 Log Analytics는 NCSA 또는 IIS 네이티브 형식의 로그를 수집하지 않습니다.
 
-[Log Analytics 설정의 데이터 메뉴](log-analytics-data-sources.md#configuring-data-sources)에서 Log Analytics의 IIS 로그를 구성합니다.  **W3C 형식 IIS 로그 파일 수집**을 선택하는 것 외에 다른 구성은 필요 없습니다.
+로그 분석에서 hello에서 IIS 로그를 구성 [로그 분석 설정의 데이터 메뉴](log-analytics-data-sources.md#configuring-data-sources)합니다.  **W3C 형식 IIS 로그 파일 수집**을 선택하는 것 외에 다른 구성은 필요 없습니다.
 
-IIS 로그 수집을 사용하도록 설정하는 경우 각 서버에서 IIS 로그 롤오버 설정을 구성하는 것이 좋습니다.
+IIS 로그 컬렉션을 사용 하도록 설정 하면 각 서버에서 hello IIS 로그 롤오버 설정을 구성 해야 하는 것이 좋습니다.
 
 ## <a name="data-collection"></a>데이터 수집
-Log Analytics는 연결된 각 원본에서 대략 15분마다 IIS 로그 항목을 수집합니다.  에이전트는 수집하는 각 이벤트 로그에 해당 위치를 기록합니다.  에이전트가 오프라인 상태로 전환된 경우 Log Analytics는 마지막으로 오프라인 상태가 유지된 위치에서 이벤트를 수집하며, 이는 에이전트가 오프라인 상태에 있는 동안 해당 이벤트가 생성된 경우에도 마찬가지입니다.
+Log Analytics는 연결된 각 원본에서 대략 15분마다 IIS 로그 항목을 수집합니다.  hello 에이전트를 수집 하는 각 이벤트 로그에 해당 위치를 기록 합니다.  Hello 에이전트 오프 라인인 경우 다음 로그 분석에서 이벤트를 수집 마지막 중단, 이러한 이벤트는 hello 에이전트 오프 라인 상태인 동안 생성 된 경우에 합니다.
 
 ## <a name="iis-log-record-properties"></a>IIS 로그 레코드 속성
-IIS 로그 레코드는 **W3CIISLog** 형식이며, 다음 표의 속성이 있습니다.
+IIS 로그 레코드에는 형식이 **W3CIISLog** 한 hello 속성의 다음 표에 hello:
 
 | 속성 | 설명 |
 |:--- |:--- |
-| 컴퓨터 |이벤트가 수집된 컴퓨터의 이름입니다. |
-| cIP |클라이언트의 IP 주소입니다. |
-| csMethod |GET 또는 POST와 같은 요청 메서드입니다. |
-| csReferer |사용자가 현재 사이트로 이동하는 데 사용된 링크가 있던 사이트입니다. |
-| csUserAgent |클라이언트의 브라우저 유형입니다. |
-| csUserName |서버에 액세스한 인증된 사용자의 이름입니다. 익명 사용자는 하이픈으로 표시됩니다. |
-| csUriStem |웹 페이지와 같은 요청의 대상입니다. |
-| csUriQuery |클라이언트가 수행하려고 한 쿼리입니다(있는 경우). |
-| ManagementGroupName |Operations Manager 에이전트의 관리 그룹 이름.  다른 에이전트의 경우 AOI-\<작업 영역 ID\>입니다. |
-| RemoteIPCountry |클라이언트의 IP 주소 국가입니다. |
-| RemoteIPLatitude |클라이언트 IP 주소의 위도입니다. |
-| RemoteIPLongitude |클라이언트 IP 주소의 경도입니다. |
+| 컴퓨터 |이벤트 hello hello 컴퓨터의 이름에서 수집 되었습니다. |
+| cIP |Hello 클라이언트의 IP 주소입니다. |
+| csMethod |GET 또는 POST 등 hello 요청의 메서드. |
+| csReferer |해당 hello 사이트 toohello 현재 사이트에서 사용자가 링크를 팔 로우. |
+| csUserAgent |Hello 클라이언트의 브라우저 종류입니다. |
+| csUserName |Hello 서버에 액세스 하는 사용자를 인증 하는 hello의 이름입니다. 익명 사용자는 하이픈으로 표시됩니다. |
+| csUriStem |Hello 요청 웹 페이지 등의 대상입니다. |
+| csUriQuery |쿼리를 있는 경우 해당 hello 클라이언트 tooperform을 시도 되었습니다. |
+| ManagementGroupName |Operations Manager 에이전트에 대 한 hello 관리 그룹의 이름입니다.  다른 에이전트의 경우 AOI-\<작업 영역 ID\>입니다. |
+| RemoteIPCountry |Hello 클라이언트의 IP 주소 hello의 국가입니다. |
+| RemoteIPLatitude |위도 hello 클라이언트 IP 주소입니다. |
+| RemoteIPLongitude |경도 hello 클라이언트 IP 주소입니다. |
 | scStatus |HTTP 상태 코드입니다. |
 | scSubStatus |하위 상태 오류 코드입니다. |
 | scWin32Status |Windows 상태 코드입니다. |
-| sIP |웹 서버의 IP 주소입니다. |
+| sIP |Hello 웹 서버의 IP 주소입니다. |
 | SourceSystem |OpsMgr |
-| sPort |클라이언트가 연결된 서버의 포트입니다. |
-| sSiteName |IIS 사이트의 이름입니다. |
-| TimeGenerated |항목이 로깅된 날짜 및 시간입니다. |
-| TimeTaken |요청을 처리할 시간의 길이(밀리초)입니다. |
+| sPort |Hello 서버 hello 클라이언트에 연결 된 포트입니다. |
+| sSiteName |Hello IIS 사이트의 이름입니다. |
+| TimeGenerated |날짜 및 시간 hello 항목 기록 되었습니다. |
+| TimeTaken |시간 tooprocess hello의 길이 (밀리초)에 요청 합니다. |
 
 ## <a name="log-searches-with-iis-logs"></a>IIS 로그로 로그 검색
-다음 표에는 IIS 로그 레코드를 검색하는 로그 쿼리의 여러 예제가 나와 있습니다.
+hello 다음 표에서 다른 로그 있는 쿼리 예의 IIS 로그 레코드를 검색 합니다.
 
 | 쿼리 | 설명 |
 |:--- |:--- |
 | Type=W3CIISLog |모든 IIS 로그 레코드 |
 | Type=W3CIISLog scStatus=500 |반환 상태가 500인 모든 IIS 로그 레코드입니다. |
 | Type=W3CIISLog &#124; Measure count() by cIP |클라이언트 IP 주소별 IIS 로그 항목 수 |
-| Type=W3CIISLog csHost="www.contoso.com" &#124; Measure count() by csUriStem |호스트 www.contoso.com의 URL별 IIS 로그 항목 수 |
+| Type=W3CIISLog csHost="www.contoso.com" &#124; Measure count() by csUriStem |Count의 IIS 로그 hello 호스트 www.contoso.com에 대 한 url 항목입니다. |
 | Type=W3CIISLog &#124; Measure Sum(csBytes) by Computer &#124; top 500000 |각 IIS 컴퓨터에서 받은 총 바이트 수 |
 
 >[!NOTE]
-> 작업 영역을 [새 Log Analytics 쿼리 언어](log-analytics-log-search-upgrade.md)로 업그레이드한 경우에는 위의 쿼리가 다음과 같이 변경됩니다.
+> 작업 영역에는 업그레이드 된 toohello 되었으면 [새 로그 분석 쿼리 언어](log-analytics-log-search-upgrade.md), 쿼리 위에 hello toohello 다음 변경 합니다.
 
 > | 쿼리 | 설명 |
 |:--- |:--- |
 | W3CIISLog |모든 IIS 로그 레코드 |
 | W3CIISLog &#124; where scStatus==500 |반환 상태가 500인 모든 IIS 로그 레코드입니다. |
 | W3CIISLog &#124; summarize count() by cIP |클라이언트 IP 주소별 IIS 로그 항목 수 |
-| W3CIISLog &#124; where csHost=="www.contoso.com" &#124; summarize count() by csUriStem |호스트 www.contoso.com의 URL별 IIS 로그 항목 수 |
+| W3CIISLog &#124; where csHost=="www.contoso.com" &#124; summarize count() by csUriStem |Count의 IIS 로그 hello 호스트 www.contoso.com에 대 한 url 항목입니다. |
 | W3CIISLog &#124; summarize sum(csBytes) by Computer &#124; take 500000 |각 IIS 컴퓨터에서 받은 총 바이트 수 |
 
 ## <a name="next-steps"></a>다음 단계
-* 분석을 위해 다른 [데이터 원본](log-analytics-data-sources.md) 을 수집하도록 Log Analytics를 구성합니다.
-* 데이터 원본 및 솔루션에서 수집한 데이터를 분석하기 위해 [로그 검색](log-analytics-log-searches.md)에 대해 알아봅니다.
-* IIS 로그에서 발견된 중요한 조건을 사전에 알리도록 Log Analytics의 경고를 구성합니다.
+* 로그 분석 toocollect 다른 구성 [데이터 원본](log-analytics-data-sources.md) 분석 합니다.
+* 에 대 한 자세한 내용은 [검색 로그](log-analytics-log-searches.md) tooanalyze hello 데이터가 데이터 원본 및 솔루션에서 수집 합니다.
+* 로그 분석 tooproactively 알려 IIS 로그에서 발견 되는 중요 한 조건을에서 경고를 구성 합니다.

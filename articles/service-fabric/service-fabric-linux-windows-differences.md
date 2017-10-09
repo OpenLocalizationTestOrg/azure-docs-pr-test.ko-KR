@@ -1,6 +1,6 @@
 ---
-title: "Linux와 Windows 간의 Azure Service Fabric 차이점 | Microsoft Docs"
-description: "Linux의 Azure Service Fabric 미리 보기와 Windows의 Azure Service Fabric의 차이점입니다."
+title: "Linux와 Windows 간에 차이 aaaAzure 서비스 패브릭 | Microsoft Docs"
+description: "Hello Linux에서 Azure 서비스 패브릭 미리 보기와 windows Azure 서비스 패브릭 간의 차이 제공 합니다."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: 7b80bb7d4a4e6a1b4cf47ce87200f47339785c53
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7a16a440dfc8d9006e274f46951be1562e6f10d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="differences-between-service-fabric-on-linux-preview-and-windows-generally-available"></a>Linux(미리 보기)와 Windows(일반적으로 사용 가능)의 Service Fabric 간의 차이점
 
-Linux의 Service Fabric이 미리 보기이므로 일부 기능은 Windows에서는 지원되지만 Linux에서는 지원되지 않습니다. 결국 Linux의 Service Fabric이 일반적으로 사용할 수 있게 되는 경우 기능 집합이 동등해 집니다. 향후 릴리스에서는 이 기능 차이가 축소됩니다. 제공되는 최신 릴리스(즉, Windows에서 버전 5.6 및 Linux에서 버전 5.5) 간에는 다음과 같은 차이점이 있습니다. 
+Linux의 Service Fabric이 미리 보기이므로 일부 기능은 Windows에서는 지원되지만 Linux에서는 지원되지 않습니다. 결국 hello 기능 집합 linux 서비스 패브릭 일반적으로 사용 가능 해지면 패리티에 됩니다. 향후 릴리스에서는 이 기능 차이가 축소됩니다. hello 다음 사이 차이점이 최신 사용 가능한 릴리스가 hello (즉, Windows 및 linux 버전 5.5에 5.6 버전 사이의): 
 
 * Reliable Collections(및 Reliable Stateful Services) 
 * ReverseProxy 
 * 독립 실행형 설치 관리자 
 * 매니페스트 파일에 대한 XML 스키마 유효성 검사 
 * 콘솔 리디렉션 
-* FAS(오류 분석 서비스)
+* hello 오류 분석 서비스 (FAS)
 * Docker Compose 및 볼륨, 컨테이너에 대한 로깅 드라이버 
 * 컨테이너 및 서비스에 대한 리소스 관리 
 * DNS 서비스
 * Azure Active Directory 지원
 * 특정 Powershell 명령에 있는 동일한 CLI 명령 
-* PowerShell 명령의 하위 집합만을 (다음 섹션에서 확장된 대로) Linux 클러스터에서 실행할 수 있습니다.
+* Powershell 명령 중 일부만 Linux 클러스터 (으로 hello 다음 섹션에서 확장)에 대해 실행할 수 있습니다.
 
 >[!NOTE]
 >콘솔 리디렉션은 Windows의 경우에도 프로덕션 클러스터에서 지원되지 않습니다.
@@ -106,4 +106,4 @@ Windows와 Linux의 개발 도구도 서로 다릅니다. VisualStudio, Powershe
 * [Yeoman을 사용하여 Linux에서 첫 번째 Service Fabric Java 응용 프로그램 만들기 및 배포](service-fabric-create-your-first-linux-application-with-java.md)
 * [Eclipse용 Service Fabric 플러그 인을 사용하여 Linux에서 첫 번째 Service Fabric Java 응용 프로그램 만들기 및 배포](service-fabric-get-started-eclipse.md)
 * [Linux에서 첫 번째 CSharp 응용 프로그램 만들기](service-fabric-create-your-first-linux-application-with-csharp.md)
-* [Service Fabric CLI를 사용하여 응용 프로그램 관리](service-fabric-application-lifecycle-sfctl.md)
+* [서비스 패브릭 CLI toomanage hello 응용 프로그램 사용](service-fabric-application-lifecycle-sfctl.md)

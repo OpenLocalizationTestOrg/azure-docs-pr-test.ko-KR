@@ -25,15 +25,15 @@
 # 방법
 
 ## [Azure RemoteApp에서 사용자 데이터 마이그레이션](remoteapp-migrate.md)
-## [MyCloudIT로 마이그레이션](remoteapp-migrate-mycloudit.md)
-## [Citrix XenApp Essentials로 마이그레이션](remoteapp-migrate-citrix.md)
+## [TooMyCloudIT 마이그레이션](remoteapp-migrate-mycloudit.md)
+## [TooCitrix XenApp Essentials 마이그레이션](remoteapp-migrate-citrix.md)
 ## RemoteApp 컬렉션 만들기
 ### [어떤 컬렉션이 필요한가요?](remoteapp-collections.md)
 ### [클라우드 컬렉션 만들기](remoteapp-create-cloud-deployment.md)
 ### [하이브리드 컬렉션 만들기](remoteapp-create-hybrid-deployment.md)
 ### [컬렉션 업데이트](remoteapp-update.md)
 ### [RemoteApp 이미지 만들기](remoteapp-imageoptions.md)
-### [템플릿 이미지에는 무엇이 포함되어 있나요?](remoteapp-images.md)
+### [Hello 템플릿 이미지에는 무엇입니까?](remoteapp-images.md)
 ### [이미지 요구 사항](remoteapp-imagereqs.md)
 ### [이미지 업로드](remoteapp-uploadimage.md)
 ### [Azure VM에서 이미지 만들기](remoteapp-image-on-azurevm.md)
@@ -41,13 +41,13 @@
 ### [VNET 계획](remoteapp-planvnet.md)
 ### [포트 및 URL 정보](remoteapp-ports.md)
 ### [VNET 유효성 검사](remoteapp-vnet.md)
-### [Azure VNET으로 마이그레이션](remoteapp-migratevnet.md)
+### [Tooan Azure VNET을 마이그레이션](remoteapp-migratevnet.md)
 ## 응용 프로그램 게시
-### [앱 게시 방법](remoteapp-publish.md)
+### [어떻게 toopublish 응용 프로그램](remoteapp-publish.md)
 ## 사용자 관리
-### [사용자 추가 방법](remoteapp-user.md)
+### [어떻게 tooadd 사용자](remoteapp-user.md)
 ### [Active Directory 구성](remoteapp-ad.md)
-### [Azure AD 테넌트 변경](remoteapp-changetenant.md)
+### [변경 hello Azure AD 테 넌 트](remoteapp-changetenant.md)
 ### [Office 365 사용자 계정](remoteapp-o365user.md)
 ### [보안 데이터](remoteapp-secureaccess.md)
 ### [사용자 데이터](remoteapp-upd.md)

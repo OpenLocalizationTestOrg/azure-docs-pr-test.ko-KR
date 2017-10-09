@@ -1,22 +1,22 @@
 ## <a name="create-a-device-identity"></a>장치 ID 만들기
-이 섹션에서는 IoT Hub의 ID 레지스트리에서 장치 ID를 만드는 .NET 콘솔 앱을 작성합니다. ID 레지스트리에 항목이 없는 경우 장치를 IoT Hub에 연결할 수 없습니다. 자세한 내용은 [IoT Hub 개발자 가이드][lnk-devguide-identity]의 "ID 레지스트리" 섹션을 참조하세요. 이 콘솔 앱을 실행하면 장치-클라우드 메시지를 IoT Hub로 보낼 때 장치가 자체적으로 ID를 식별하는 데 사용할 수 있는 고유한 장치 ID와 키를 생성합니다. 장치 ID는 대/소문자를 구분합니다.
+이 섹션에서는 IoT 허브에 대 한 hello identity 레지스트리에 장치 id를 생성 하 여.NET 콘솔 응용 프로그램을 만듭니다. 장치 id 레지스트리에 hello에 항목이 없는 경우 tooIoT 허브를 연결할 수 없습니다. 자세한 내용은 hello의 hello "Id 레지스트리에" 섹션을 참조 [IoT 허브 개발자 가이드][lnk-devguide-identity]합니다. 이 콘솔 응용 프로그램을 실행 하면 고유한 장치 ID를 생성 및 메시지 tooIoT 허브를 키 장치-클라우드 보낼 때 장치가 tooidentify 자체를 사용할 수 있습니다. 장치 ID는 대/소문자를 구분합니다.
 
-1. Visual Studio에서 **콘솔 앱(.NET Framework)** 프로젝트 템플릿을 사용하여 Visual C# Windows 클래식 바탕화면 프로젝트를 새 솔루션에 추가합니다. .NET Framework 버전이 4.5.1 이상인지 확인합니다. 프로젝트 이름을 **CreateDeviceIdentity**로 솔루션 이름을 **IoTHubGetStarted**로 지정합니다.
+1. Visual Studio에서 Visual C# Windows 클래식 데스크톱 프로젝트 tooa 새 솔루션 hello를 사용 하 여 추가 **콘솔 응용 프로그램 (.NET Framework)** 서식 파일 프로젝트. Hello.NET Framework 버전 4.5.1 인지 확인 하거나 나중에 있습니다. 이름 hello 프로젝트 **CreateDeviceIdentity** 및 이름 hello 솔루션 **IoTHubGetStarted**합니다.
    
     ![새 Visual C# Windows 클래식 데스크톱 프로젝트][10]
-2. 솔루션 탐색기에서 **CreateDeviceIdentity** 프로젝트를 마우스 오른쪽 단추로 클릭한 다음, **NuGet 패키지 관리**를 클릭합니다.
-3. **NuGet 패키지 관리자** 창에서 **찾아보기**를 선택하고 **microsoft.azure.devices**를 검색한 다음 **설치**를 선택하여 **Microsoft.Azure.Devices** 패키지를 설치하고 사용 약관에 동의합니다. 이 프로시저에서는 [Azure IoT 서비스 SDK][lnk-nuget-service-sdk] NuGet 패키지 및 종속 항목에 참조를 다운로드, 설치 및 추가합니다.
+2. 솔루션 탐색기에서 마우스 오른쪽 단추로 클릭 hello **CreateDeviceIdentity** 프로젝트를 마우스 클릭 **NuGet 패키지 관리**합니다.
+3. Hello에 **NuGet 패키지 관리자** 창에서 **찾아보기**, 검색할 **microsoft.azure.devices**선택, **설치** tooinstall hello **Microsoft.Azure.Devices** 패키지 및 hello 사용 약관에 동의 합니다. 이 절차를 다운로드, 설치 하 고 참조 toohello 추가 [Azure IoT 서비스 SDK] [ lnk-nuget-service-sdk] NuGet 패키지 및 해당 종속성.
    
     ![NuGet 패키지 관리자 창][11]
-4. **Program.cs** 파일 위에 다음 `using` 문을 추가합니다.
+4. Hello 다음 추가 `using` hello 위쪽 hello에 문을 **Program.cs** 파일:
    
         using Microsoft.Azure.Devices;
         using Microsoft.Azure.Devices.Common.Exceptions;
-5. **Program** 클래스에 다음 필드를 추가합니다. 자리 표시자 값을 이전 섹션에서 만든 허브의 IoT Hub 연결 문자열로 대체합니다.
+5. 다음 필드 toohello hello 추가 **프로그램** 클래스입니다. Hello hello 이전 섹션에서 만든 hello 허브에 대 한 IoT 허브 연결 문자열 hello 자리 표시자 값을 바꿉니다.
    
         static RegistryManager registryManager;
         static string connectionString = "{iot hub connection string}";
-6. **Program** 클래스에 다음 메서드를 추가합니다.
+6. 다음 메서드 toohello hello 추가 **프로그램** 클래스:
    
         private static async Task AddDeviceAsync()
         {
@@ -33,20 +33,20 @@
             Console.WriteLine("Generated device key: {0}", device.Authentication.SymmetricKey.PrimaryKey);
         }
    
-    이 메서드는 ID **myFirstDevice**로 장치 ID를 만듭니다. ID 레지스트리에 해당 장치 ID가 이미 있는 경우 코드는 기존 장치 정보만 검색합니다. 그러면 앱에서 해당 ID에 대한 기본 키를 표시합니다. 이 키를 시뮬레이션된 장치 앱에서 사용하여 IoT Hub에 연결합니다.
+    이 메서드는 ID **myFirstDevice**로 장치 ID를 만듭니다. (해당 장치 ID에에서 이미 있으면 hello id 레지스트리에, hello 코드 단순히 hello 기존 장치 정보 검색 합니다.) hello 앱 hello 해당 id에 대 한 기본 키를 표시합니다. 시뮬레이션 된 hello 장치 앱 tooconnect tooyour IoT 허브에서이 키를 사용 합니다.
 [!INCLUDE [iot-hub-pii-note-naming-device](iot-hub-pii-note-naming-device.md)]
 
-7. 마지막으로 **Main** 메서드에 다음 줄을 추가합니다.
+7. 마지막으로 다음 줄 toohello hello 추가 **Main** 메서드:
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);
         AddDeviceAsync().Wait();
         Console.ReadLine();
-8. 이 응용 프로그램을 실행하고 장치 키를 기록합니다.
+8. 이 응용 프로그램을 실행 하 고 hello 장치 키를 메모 합니다.
    
-    ![응용 프로그램에서 생성된 장치 키][12]
+    ![Hello 응용 프로그램에 의해 생성 된 장치 키][12]
 
 > [!NOTE]
-> IoT Hub ID 레지스트리는 장치 ID만 저장하여 IoT Hub에 보안 액세스를 사용합니다. 보안 자격 증명으로 사용하기 위해 장치 ID 및 키와 개별 장치에 대해 액세스하지 못하도록 설정할 수 있는 사용/사용 안 함 플래그를 저장합니다. 응용 프로그램이 다른 장치별 메타데이터를 저장해야 할 경우 응용 프로그램별 저장소를 사용해야 합니다. 자세한 내용은 [IoT Hub 개발자 가이드][lnk-devguide-identity]를 참조하세요.
+> IoT Hub id 레지스트리에 hello만 장치 identities tooenable 보안 액세스 toohello IoT 허브를 저장합니다. 장치 Id와 키 toouse 보안 자격 증명 및 개별 장치에 대 한 toodisable 액세스를 사용할 수 있는 사용/사용 안 함 플래그로 저장 합니다. 응용 프로그램는 toostore 다른 장치 관련 메타 데이터를 필요한 경우에 응용 프로그램별 저장소를 사용 해야 합니다. 자세한 내용은 [IoT Hub 개발자 가이드][lnk-devguide-identity]를 참조하세요.
 > 
 > 
 

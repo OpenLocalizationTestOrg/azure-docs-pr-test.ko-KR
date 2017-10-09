@@ -1,6 +1,6 @@
 ---
-title: "Azure Stream Analytics 및 AzureML 함수를 사용한 작업 크기 조정 | Microsoft Docs"
-description: "Azure Machine Learning 함수를 사용할 때 Stream Analytics 작업의 크기를 적절하게 조정하는 방법(분할, SU 수량 등)에 대해 알아봅니다."
+title: "Azure 스트림 분석 및 AzureML 함수와 함께 크기 조정 aaaJob | Microsoft Docs"
+description: "Tooproperly 스트림 분석 작업 (분할 SU 수량 등)를 확장 하는 방법을 알아보려면 Azure 기계 학습 함수를 사용 하는 경우."
 keywords: 
 documentationcenter: 
 services: stream-analytics
@@ -15,41 +15,41 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: 5e07e4efcd14cd8c12124cb34058ef6c345f7f47
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3fbdfaf7e8e86896c56f1d18bbde3a10bd3dca04
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scale-your-stream-analytics-job-with-azure-machine-learning-functions"></a>Azure Machine Learning 함수를 사용하여 Stream Analytics 작업의 크기 조정
-Stream Analytics 작업을 설정하고 그 작업을 통해 몇 가지 샘플 데이터를 실행하면 아주 간단한 경우가 종종 있습니다. 더 큰 데이터 볼륨으로 같은 작업을 실행해야 할 때 어떻게 해야 할까요? 크기를 조정할 수 있도록 Stream Analytics 작업을 구성하는 방법을 이해해야 합니다. 이 문서에서는 Machine Learning 함수를 사용하여 Stream Analytics 작업의 크기를 조정하는 방법을 집중적으로 다루겠습니다. Stream Analytics 작업의 크기를 조정하는 일반적인 방법은 [작업 크기 조정](stream-analytics-scale-jobs.md)을 참조하세요.
+스트림 분석 작업을 매우 쉽게 tooset 수 있으며 예행 몇 가지 샘플 데이터. 어떻게 해야 하지 toorun 필요한 경우 더 큰 데이터 볼륨 사용 작업이 동일한 hello? 필요 우리 toounderstand 하 게 확장할 수 있도록 tooconfigure hello 스트림 분석 작업 하는 방법. 이 문서에서는 살펴볼 것 hello 크기 조정 스트림 분석의 특별 한 측면에 기계 학습 함수를 사용 하 여 작업입니다. Tooscale 스트림 분석 작업이 hello 문서 일반적 참조 되는 방법에 대 한 내용은 [크기 조정 작업](stream-analytics-scale-jobs.md)합니다.
 
 ## <a name="what-is-an-azure-machine-learning-function-in-stream-analytics"></a>Stream Analytics의 Azure Machine Learning 함수란 무엇입니까?
-Stream Analytics의 Machine Learning 함수는 Stream Analytics 쿼리 언어에 일반 함수 호출처럼 사용할 수 있습니다. 그러나 내부를 들여다보면, 함수 호출이 실제로는 Azure Machine Learning 웹 서비스 요청입니다. Machine Learning 웹 서비스는 같은 웹 서비스 API 호출의 여러 행을 "배치로 처리"하여 전체적인 처리량을 개선할 수 있으며, 이러한 배치를 미니 배치라고 부릅니다. 자세한 내용은 [Stream Analytics의 Azure Machine Learning 함수](https://blogs.technet.microsoft.com/machinelearning/2015/12/10/azure-ml-now-available-as-a-function-in-azure-stream-analytics/) 및 [Azure Machine Learning 웹 서비스](../machine-learning/machine-learning-consume-web-services.md) 문서를 참조하세요.
+스트림 분석에는 기계 학습 함수 hello 스트림 분석 쿼리 언어에에서는 일반 함수 호출 처럼 사용할 수 있습니다. 그러나 hello 함수 호출 뒤에 hello 장면 실제로 Azure 기계 학습 웹 서비스 요청이 포함 됩니다. 컴퓨터 학습 웹 서비스 최소 일괄 처리 라고 함 지원 "일괄 처리" 여러 행, 동일한 웹 서비스 API 호출, tooimprove hello에 전체 처리량입니다. 자세한 내용은;에 대 한 아티클을 다음 hello를 참조 하세요 [스트림 분석의 azure 기계 학습 함수](https://blogs.technet.microsoft.com/machinelearning/2015/12/10/azure-ml-now-available-as-a-function-in-azure-stream-analytics/) 및 [Azure 컴퓨터 학습 웹 서비스](../machine-learning/machine-learning-consume-web-services.md)합니다.
 
 ## <a name="configure-a-stream-analytics-job-with-machine-learning-functions"></a>Machine Learning 함수를 사용하여 Stream Analytics 작업 구성
-Stream Analytics 작업에 대한 Machine Learning 함수를 구성할 때 두 가지 매개 변수를 고려해야 합니다. 하나는 Machine Learning 함수 호출의 배치 크기이고, 다른 하나는 Stream Analytics 작업에 프로비전된 SU(스트리밍 단위)입니다. 이러한 개매 변수의 적절한 값을 결정하려면 먼저 대기 시간과 처리량, 즉, Stream Analytics 작업의 대기 시간과 각 SU의 처리량을 결정해야 합니다. SU를 추가하면 작업 실행 비용이 증가하기는 하지만 언제나 SU를 작업에 추가하여 적절하게 분할된 Stream Analytics 쿼리의 처리량을 높일 수 있습니다.
+스트림 분석 작업에 대 한 기계 학습 함수를 구성할 때는 커넥터가 있으며 두 개의 매개 변수 tooconsider hello 기계 학습 함수 호출 및 스트리밍 단위 (SUs) hello 스트림 분석 작업에 대 한 사용자를 프로 비전 하는 hello hello 일괄 처리 크기입니다. 이러한 toodetermine hello의 적절 한 값을 먼저는 내려야 합니다 사이의 대기 시간 및 처리량, 즉, hello 스트림 분석 작업의 대기 시간 및 각 SU의 처리량입니다. SUs 항상 추가할 수 있습니다 올바르게 분할 스트림 분석 쿼리 tooa 작업 tooincrease 처리량 추가 SUs을 사용 하면 실행 중인 hello 작업의 hello 비용.
 
-따라서 Stream Analytics 작업을 실행할 때 대기 시간 *허용 오차*를 결정하는 것이 중요합니다. Azure Machine Learning 서비스 요청의 실행 대기 시간이 길어지면 당연히 배치 크기가 커지고, 결과적으로 Stream Analytics 작업의 대기 시간이 더욱 길어집니다. 반면, 배치 크기를 늘리면 Stream Analytics 작업이 *같은 수*의 Machine Learning 웹 서비스 요청으로 더 많은 이벤트*를 처리할 수 있습니다. Machine Learning 웹 서비스의 대기 시간이 배치 크기에 비례해서 거의 선형적으로 증가하는 경우가 종종 있기 때문에 주어진 상황에서 Machine Learning 웹 서비스에 가장 경제적인 배치 크기를 고려해야 합니다. 웹 서비스 요청의 기본 배치 크기는 1000이며 [Stream Analytics REST API](https://msdn.microsoft.com/library/mt653706.aspx "Stream Analytics REST API") 또는 [Stream Analytics용 PowerShell 클라이언트](stream-analytics-monitor-and-manage-jobs-use-powershell.md "Stream Analytics용 PowerShell 클라이언트")를 사용하여 수정할 수 있습니다.
+따라서 변수는 중요 한 toodetermine hello *허용 오차* 스트림 분석 작업에 대 한 대기 시간입니다. Azure 기계 학습 서비스 요청을 실행 중에서 추가 대기 시간 hello 스트림 분석 작업의 대기 시간 hello 복합는 일괄 처리 크기를 자연스럽 게 늘어납니다. Hello 반면, 일괄 처리 크기를 늘리면 허용 hello 스트림 분석 작업 tooprocess * hello로 더 많은 이벤트 *같은 번호* 기계 학습의 웹 서비스 요청 합니다. 기계 학습 웹 서비스 대기 시간 증가 종종 hello은 특정된 상황에서는 기계 학습 웹 서비스에 대 한 중요 한 tooconsider hello 가장 비용 효율적인 일괄 처리 크기 없으므로 일괄 처리 크기의 선형적 toohello 증가 합니다. hello 웹 서비스에 대 한 hello 기본 일괄 처리 크기는 1000 및 hello를 사용 하 여 수정할 수 있습니다 요청 [스트림 분석 REST API](https://msdn.microsoft.com/library/mt653706.aspx "스트림 분석 REST API") 또는 hello [PowerShell 클라이언트 스트림 분석에 대 한](stream-analytics-monitor-and-manage-jobs-use-powershell.md "스트림 분석에 대 한 PowerShell 클라이언트")합니다.
 
-배치 크기가 결정되면 함수가 초당 처리할 이벤트 수에 따라 SU(스트리밍 단위)의 양을 결정할 수 있습니다. 스트리밍 단위에 대한 자세한 내용은 [Stream Analytics 크기 조정 작업](stream-analytics-scale-jobs.md)을 참조하세요.
+일괄 처리 크기가 결정 되 면 hello 양을 스트리밍 단위 (SUs) 결정 될 수 있습니다 수에 따라 hello 이벤트를 hello 함수 초당 tooprocess를 해야 하는 합니다. 스트리밍 단위에 대한 자세한 내용은 [Stream Analytics 크기 조정 작업](stream-analytics-scale-jobs.md)을 참조하세요.
 
-1SU 작업과 3SU 작업도 20개의 동시 연결을 갖는다는 점을 제외하면, 일반적으로 6SU마다 Machine Learning 웹 서비스에 대한 20개의 동시 연결이 있습니다.  예를 들어 입력 데이터 속도가 초당 200,000 이벤트이고 배치 크기를 기본값인 1000으로 두면 1000 이벤트 미니 배치가 포함된 웹 서비스 대기 시간은 200ms입니다. 즉, 모든 연결에서 Machine Learning 웹 서비스에 초당 5개의 요청을 만들 수 있습니다. 연결이 20개이면 Stream Analytics 작업에서 200ms 동안 20,000개 이벤트를 처리할 수 있으므로 초당 100,000개 이벤트를 처리할 수 있습니다. 그러므로 초당 200,000 이벤트를 처리하려면 Stream Analytics 작업에 동시 연결 40개가 필요하고, 12SU가 필요하다는 결론이 나옵니다. 아래 다이어그램은 Stream Analytics 작업에서 Machine Learning 웹 서비스 끝점으로 전송되는 요청을 보여줍니다. 6SU마다 Machine Learning 웹 서비스에 대한 최대 동시 연결 20개가 있습니다.
+일반적으로 연결이 20 동시 toohello 기계 학습 웹 서비스에 대 한 모든 6 SUs 제외 하 고 1 SU 작업과 3 SU 작업이 받아볼 20 개의 동시 연결도 있습니다.  예를 들어 hello 입력된 데이터 속도가 초당 200, 000 이벤트 고 hello 일괄 처리 크기는 남아 toohello 1000 hello 결과 웹 서비스 대기 시간 1000 이벤트 최소 일괄 처리의 기본값이 200ms입니다. 이 모든 연결 요청을 수행할 수 5 toohello 기계 학습 웹 서비스에서 초당 것을 의미 합니다. 20 개의 연결 된 hello 스트림 분석 작업이 200ms에 20, 000 이벤트 및 10만 개 이벤트를 따라서 1 초 동안에서 처리할 수 있습니다. 초당 200, 000 tooprocess 이벤트, hello 스트림 분석 작업 필요한 등 40 동시 연결 될 too12 SUs 합니다. hello 다이어그램 아래 hello 스트림 분석 작업 toohello 기계 학습 웹 서비스 끝점의 hello 요청을 보여 줍니다.-모든 6 SUs가 최대 20 동시 연결 tooMachine 학습 웹 서비스를 포함 합니다.
 
 ![Machine Learning 함수 2 작업 예제를 사용한 Stream Analytics 크기 조정](./media/stream-analytics-scale-with-ml-functions/stream-analytics-scale-with-ml-functions-00.png "Machine Learning 함수 2 작업 예제를 사용한 Stream Analytics 크기 조정")
 
-일반적으로 배치 크기가 ***B***이고, 배치 크기 B의 웹 서비스 대기 시간이 ***L***밀리초이면 SU ***N***개가 포함된 Stream Analytics 작업의 처리량은 다음과 같습니다.
+일반적으로 ***B*** 일괄 처리 크기에 대 한 ***L*** hello 웹 서비스 대기 시간 (밀리초) 일괄 처리 크기 B에서를 사용 하는 스트림 분석 작업의 처리량을 hello ***N*** SUs는:
 
 ![Machine Learning 함수 수식을 사용한 Stream Analytics 크기 조정](./media/stream-analytics-scale-with-ml-functions/stream-analytics-scale-with-ml-functions-02.png "Machine Learning 함수 수식을 사용한 Stream Analytics 크기 조정")
 
-Machine Learning 웹 서비스 쪽의 '최대 동시 호출'도 고려해야 합니다. 이 값을 최대 값(현재는 200)으로 설정하는 것이 좋습니다.
+분석도 고려해 야 hello '최대 동시 호출' hello 기계 학습 웹 서비스 쪽에서을 것이 좋습니다 tooset이 toohello 최 댓 값 (200 현재).
 
-이 설정에 대한 자세한 내용은 [Machine Learning 웹 서비스와 관련된 크기 조정 문서](../machine-learning/machine-learning-scaling-webservice.md)를 참조하세요.
+이 설정에 대 한 자세한 내용은 hello를 검토 하십시오 [컴퓨터 학습 웹 서비스에 대 한 조정이 문서의](../machine-learning/machine-learning-scaling-webservice.md)합니다.
 
 ## <a name="example--sentiment-analysis"></a>예 – 정서 분석
-다음 예제는 [Stream Analytics Machine Learning 통합 자습서](stream-analytics-machine-learning-integration-tutorial.md)에 설명된 대로 정서 분석 Machine Learning 함수를 사용하는 Stream Analytics 작업을 포함하고 있습니다.
+hello 다음 예제에서는 포함 hello 감성 분석 기계 학습 함수를 사용 하는 스트림 분석 작업 hello에 설명 된 대로 [스트림 분석 기계 학습 통합 자습서](stream-analytics-machine-learning-integration-tutorial.md)합니다.
 
-아래와 같이 완전히 분할된 간단한 쿼리 다음에 **sentiment** 함수가 옵니다.
+hello 쿼리는 hello 뒤 간단한 완벽 하 게 분할 된 쿼리 **감성** 아래와 같이 작동 합니다.
 
     WITH subquery AS (
         SELECT text, sentiment(text) as result from input
@@ -59,23 +59,23 @@ Machine Learning 웹 서비스 쪽의 '최대 동시 호출'도 고려해야 합
     Into output
     From subquery
 
-처리량이 초당 10,000 트윗인 Stream Analytics 작업을 만들어서 트윗(이벤트) 정서 분석을 수행해야 하는 시나리오를 가정해 보겠습니다. 1SU를 사용하면 이 Stream Analytics 작업에서 트래픽을 처리할 수 있을까요? 기본 배치 크기인 1000을 사용하면 작업에서 입력을 처리할 수 있습니다. 뿐만 아니라 추가된 Machine Learning 함수가 생성하는 대기 시간이 정서 분석 Machine Learning 웹 서비스(배치 크기는 기본값인 1000)의 일반적인 기본 대기 시간인 1초를 초과하면 안 됩니다. Stream Analytics 작업의 **전체적인** 또는 종단 간 대기 시간은 일반적으로 몇 초입니다. 이 Stream Analytics 작업, *특히* Machine Learning 함수 호출에 대해 좀 더 자세히 살펴보겠습니다. 배치 크기가 1000이면 10,000 이벤트를 처리하기 위해 웹 서버로 약 10개의 요청을 보내야 합니다. 1SU를 사용하더라도 이 입력 트래픽을 처리하기에 충분한 동시 연결이 있습니다.
+Hello를; 시나리오를 따르는 것이 좋습니다 초당 10, 000 트 윗의 처리량으로 스트림 분석 작업 tooperform 감성 분석 hello 트 윗 (이벤트)을 만들어야 합니다. 1 SU를 사용 하 여이 스트림 분석 작업 수 수 toohandle hello 트래픽? 1000 hello 작업의 hello 기본 일괄 처리 크기를 사용 하 여 있어야 수 tookeep를 hello 입력을 사용 합니다. 추가 hello 추가 기계 학습 함수 hello 일반 기본적으로 대기 시간 hello 감성 분석 기계 학습 웹 서비스 (1000의 기본 일괄 처리 크기) 인 대기 시간의 초 보다 더 이상 생성 해야 합니다. hello 스트림 분석 작업 **전반적인** 또는 종단 간 대기 시간이 몇 초 정도 대체로 됩니다. 이 스트림 분석 작업에 대해 보다 자세한 고려 *특히* hello 기계 학습 함수를 호출 합니다. 1000으로 hello 일괄 처리 크기를 having, 10, 000 이벤트의 처리량이 걸립니다 약 10 개 요청 tooweb 서비스. 1 SU 된 경우에는 동시 연결 tooaccommodate 충분 한 트래픽을이 입력 합니다.
 
-하지만 입력 이벤트 속도가 100배 증가하여 이제 Stream Analytics 작업에서 초당 1,000,000 트윗을 처리해야 한다면 어떻게 해야 할까요? 두 가지 옵션이 있습니다.
+하지만 경우에 어떻게 hello 입력된 이벤트 속도 100 배로 증가 하 고 hello 스트림 분석 작업에서 초당 tooprocess 1000000 트 윗을 요구 하는 이제? 두 가지 옵션이 있습니다.
 
-1. 배치 크기를 늘립니다.
-2. 입력 스트림을 분할하여 이벤트를 병렬로 처리합니다.
+1. Hello 일괄 처리 크기를 늘리고 또는
+2. 병렬에서 파티션 hello 입력된 스트림 tooprocess hello 이벤트
 
-첫 번째 옵션을 사용하면 작업 **대기 시간** 이 증가합니다.
+Hello 첫 번째 옵션을 사용 하면 작업 hello **대기 시간** 증가 합니다.
 
-두 번째 옵션을 사용하면 더 많은 SU를 프로비전해야 하고, 따라서 더 많은 동시 Machine Learning 웹 서비스 요청을 생성해야 합니다. 즉, 작업 **비용** 이 증가합니다.
+Hello 두 번째 옵션을 사용 하면 더 많은 SUs toobe 프로 비전 해야 하 고 따라서 더 많은 동시 기계 학습 웹 서비스 요청을 생성 게 됩니다. 즉, hello 작업 **비용** 증가 합니다.
 
-정서 분석 Machine Learning 웹 서비스의 대기 시간이 1000개 미만 이벤트 배치에서는 200ms, 5,000 이벤트 배치에서는 250ms, 10,000 이벤트 배치에서는 300ms, 또는 25,000 이벤트 배치에서는 500ms라고 가정하겠습니다.
+Hello 감성 분석 기계 학습 웹 서비스의 hello 대기 시간은 200ms 1000 이벤트 일괄 처리에 대 한 이하일 증가가 5,000 이벤트 일괄 처리의 경우 10, 000 이벤트 일괄 처리에 대 한 300ms 또는 500ms 25000 이벤트 일괄 처리에 대 한 가정 합니다.
 
-1. 첫 번째 옵션을 사용할 경우(추가 SU를 프로비전하지 **않음**) 배치 크기를 **25,000**으로 늘릴 수 있습니다. 이렇게 하면 작업에서 Machine Learning 웹 서비스에 대한 동시 연결 20개(호출당 대기 시간 500ms)를 사용하여 1,000,000 이벤트를 처리할 수 있습니다. Machine Learning 웹 서비스 요청에 대한 감정 함수 요청으로 인해 Stream Analytics 작업의 대기 시간이 **200ms**에서 **500ms**로 증가합니다. 그러나 배치 크기를 무한정 늘릴 수는 **없습니다**. Machine Learning 웹 서비스는 작업 후 100초가 지나면 웹 서비스 요청 시간이 초과되므로 요청의 페이로드 크기가 4MB 이하여야 하기 때문입니다.
-2. 두 번째 옵션을 사용할 경우 배치 크기는 1000으로 유지되고 웹 서비스 대기 시간이 200ms이므로, 웹 서비스에 대한 동시 연결 20개마다 1000 * 20 * 5 이벤트 = 초당 100,000 이벤트를 처리할 수 있습니다. 따라서 초당 1,000,000 이벤트를 처리하려면 작업에 60SU가 필요합니다. 첫 번째 옵션과 비교하면, Stream Analytics 작업에서 웹 서비스 배치 요청을 더 많이 만들며, 그로 인해 비용도 함께 증가합니다.
+1. Hello 첫 번째 옵션을 사용 하 여 (**하지** 자세한 SUs 프로 비전), hello 일괄 처리 크기를 너무 늘릴 수 없습니다**25000**합니다. 그러면 그러면 hello 작업 tooprocess 20 개의 동시 연결 toohello 기계 학습 웹 서비스와 함께 1000000 이벤트 (호출당 500 밀리초의 대기 시간)으로 있습니다. 따라서 기계 학습 웹 서비스 요청에서 증가 하므로 hello에 대 한 toohello 감성 함수 요청 인해 hello 스트림 분석 작업의 대기 시간이 추가 hello **200ms** 너무**500ms**합니다. 그러나 해당 일괄 처리 크기를 기록 **없습니다** 무한히 hello 기계 학습 웹 서비스에 필요한 만큼 요청 hello 페이로드 크기 증가 4mb 또는 더 작은 작업의 100 초 후 서비스 요청 제한 시간을 웹 합니다.
+2. Hello 두 번째 옵션을 사용 하 여 hello 일괄 처리 크기에 그대로 유지 됩니다 1000, 200ms 웹 서비스에 대 한 대기 시간과 함께 이면 모든 20 개의 동시 연결 toohello 웹 서비스는 수 tooprocess 5 * 20 * 1000 이벤트 = 초당 100, 000입니다. 따라서 두 번째, hello 작업당 tooprocess 1000000 이벤트 60 SUs 필요 합니다. 비교 toohello 첫 번째 옵션을 스트림 분석 작업이 더 많은 서비스 일괄 처리 요청을 다시 웹 하 게 만드는 증가 비용을 생성 합니다.
 
-아래는 SU 및 배치 크기(초당 이벤트 수)에 따른 Stream Analytics 작업의 처리량을 보여 주는 테이블입니다.
+다음 다른 SUs 및 일괄 처리 크기 (초당 이벤트 수)에 대 한 hello 스트림 분석 작업의 처리량 hello에 대 한 테이블은입니다.
 
 | 배치 크기(ML 대기 시간) | 500(200ms) | 1,000(200ms) | 5,000(250ms) | 10,000(300ms) | 25,000(500ms) |
 | --- | --- | --- | --- | --- | --- |
@@ -88,34 +88,34 @@ Machine Learning 웹 서비스 쪽의 '최대 동시 호출'도 고려해야 합
 | **…** |… |… |… |… |… |
 | **60SU** |25,000 |50,000 |200,000 |300,000 |500,000 |
 
-이제 Stream Analytics 작업에서 Machine Learning 함수가 어떻게 작동하는지 충분히 이해하셨을 것입니다. 또한 Stream Analytics 작업이 데이터 원본에서 데이터를 "끌어오며" 각 "끌어오기"는 Stream Analytics 작업에서 처리할 이벤트 배치를 반환한다는 내용도 이해하셨을 것입니다. 이 끌어오기 모델이 Machine Learning 웹 서비스 요청에 어떤 영향을 미칠까요?
+이제 Stream Analytics 작업에서 Machine Learning 함수가 어떻게 작동하는지 충분히 이해하셨을 것입니다. 가능성이 또한 알려 각 "끌어오기" 데이터 원본에서 데이터를 "끌어온" 일괄 처리에 대 한 이벤트를 반환 하는 스트림 분석 작업 스트림 분석 작업 tooprocess hello 하 합니다. 이 끌어오기 모델 hello 기계 학습 웹 서비스 요청에 주는 영향가?
 
-일반적으로 Machine Learning 함수에 대해 설정하는 배치 크기를 각 Stream Analytics 작업의 “끌어오기”에서 반환하는 이벤트 수로 나누어서 딱 떨어지는 경우는 별로 없습니다. 이와 같은 경우 Machine Learning 웹 서비스가 “부분” 배치를 통해 호출됩니다. 이는 끌어오기 간에 이벤트를 병합할 때 추가 작업 대기 시간 오버헤드를 유발하지 않기 위한 조치입니다.
+일반적으로 기계 학습 함수에 대 한 설정 hello 일괄 처리 크기 정확 하 게 hello "끌어오기" 각 스트림 분석 작업에 의해 반환 되는 이벤트 수로 나눌 수 없습니다. 이 경우 "부분" 일괄 처리와 hello 기계 학습 웹 서비스 호출 됩니다. 이 작업은 수행 toonot 추가 작업 대기 시간 끌어오기 toopull의 이벤트를 결합에 오버 헤드를 유발 합니다.
 
 ## <a name="new-function-related-monitoring-metrics"></a>새 함수 관련 모니터링 메트릭
-Stream Analytics 작업의 모니터링 영역에 함수 관련 메트릭 세 개가 추가되었습니다. 이 세 개 함수는 아래 그림에 나와 있는 것처럼 FUNCTION REQUESTS, FUNCTION EVENTS 및 FAILED FUNCTION REQUESTS입니다.
+스트림 분석 작업의 모니터 영역 hello, 세 개의 추가 기능 관련 메트릭을 추가 되었습니다. 서로 함수 요청, 함수 이벤트 및 실패 한 함수 요청 hello 그래픽 아래에 나와 있는 것 처럼입니다.
 
 ![Machine Learning 함수 메트릭을 사용한 Stream Analytics 크기 조정](./media/stream-analytics-scale-with-ml-functions/stream-analytics-scale-with-ml-functions-01.png "Machine Learning 함수 메트릭을 사용한 Stream Analytics 크기 조정")
 
-함수는 아래와 같이 정의됩니다.
+hello ´ ï ´ ù.
 
-**FUNCTION REQUESTS**: 함수 요청의 수
+**함수 요청**: hello 함수 요청 수입니다.
 
-**FUNCTION EVENTS**: 함수 요청의 이벤트 수
+**함수 이벤트**: hello의 hello 번호 이벤트 함수 요청 합니다.
 
-**FAILED FUNCTION REQUESTS**: 실패한 함수 요청의 수.
+**실패 한 함수 요청**: hello 실패 한 함수별 요청 수입니다.
 
 ## <a name="key-takeaways"></a>핵심 내용
-핵심을 요약하자면, Machine Learning 함수를 사용하여 Stream Analytics 작업의 크기를 조정하려면 다음 사항을 고려해야 합니다.
+toosummarize hello 주요 데이터 요소 순서 tooscale 기계 학습 함수를 사용 하는 스트림 분석 작업 hello 다음과 같은 항목이 고려해 야 합니다.
 
-1. 입력 이벤트 속도
-2. 실행 중인 Stream Analytics 작업에 허용되는 대기 시간(따라서 Machine Learning 웹 서비스 요청의 배치 크기)
-3. 프로비전된 Stream Analytics SU 및 Machine Learning 웹 서비스 요청 수(추가 함수 관련 비용)
+1. hello 입력된 이벤트 율
+2. hello 트랜잭션당 스트림 분석 작업을 실행 하는 hello에 대 한 대기 시간 (및 따라서 hello 일괄 처리 크기 hello 기계 학습 웹 서비스의 요청)
+3. 스트림 분석 SUs 및 기계 학습 웹 서비스 요청 (hello 추가 기능 관련 된 비용) hello 수 hello를 프로 비전
 
-이 예에서는 완전하게 분할된 Stream Analytics 쿼리가 사용되었습니다. 보다 복잡한 쿼리가 필요한 경우 [Azure Stream Analytics 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics) 에서 Stream Analytics 팀에게 추가 도움을 받을 수 있습니다.
+이 예에서는 완전하게 분할된 Stream Analytics 쿼리가 사용되었습니다. 더 복잡 한 쿼리 필요 하지 않으면 hello [Azure 스트림 분석 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics) hello 스트림 분석 팀의 추가 도움말에 대 한 중요 한 리소스입니다.
 
 ## <a name="next-steps"></a>다음 단계
-Stream Analytics에 대한 자세한 내용은 다음 항목을 참조하세요.
+스트림 분석에 대해 자세히 toolearn 참조:
 
 * [Azure Stream Analytics 사용 시작](stream-analytics-real-time-fraud-detection.md)
 * [Azure  Stream Analytics 작업 규모 지정](stream-analytics-scale-jobs.md)

@@ -1,6 +1,6 @@
 ---
-title: "StorSimple 암호 변경 | Microsoft Docs"
-description: "StorSimple 장치 관리자 서비스를 사용하여 StorSimple 스냅숏 관리자 및 장치 관리자 암호를 변경하는 방법에 대해 설명합니다."
+title: "aaaChange StorSimple 암호 | Microsoft Docs"
+description: "어떻게 toouse hello StorSimple 장치 관리자 서비스 toochange StorSimple 스냅숏 관리자 및 장치 관리자 암호에 설명 합니다."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,40 +14,40 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 07/03/2017
 ms.author: alkohli
-ms.openlocfilehash: 7762f8499c67672f0a2ffed99e98baea4c940fa0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cf884be31b4bbf9e372c0aa11b9da2eadcda35dd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-device-manager-service-to-change-your-storsimple-passwords"></a>StorSimple 장치 관리자 서비스를 사용하여 StorSimple 암호 변경
+# <a name="use-hello-storsimple-device-manager-service-toochange-your-storsimple-passwords"></a>Hello StorSimple 장치 관리자 서비스 toochange StorSimple 암호 사용
 
 ## <a name="overview"></a>개요
-Azure Portal의 **장치 관리자** 옵션에는 StorSimple 장치 관리자 서비스로 관리되는 StorSimple 장치에서 다시 구성할 수 있는 모든 장치 매개 변수가 포함되어 있습니다. 이 자습서에서는 **장치 설정**에서 **보안** 옵션을 사용하여 장치 관리자 또는 StorSimple Snapshot Manager 암호를 변경하는 방법에 대해 설명합니다.
+Azure 포털 hello **장치 설정** 옵션 StorSimple 장치 관리자 서비스에서 관리 되는 StorSimple 장치에는 다시 구성할 수 있는 모든 hello 장치 매개 변수를 포함 합니다. 이 자습서에서는 hello를 사용 하는 방법에 대해 설명 **보안** 옵션에서 **장치 설정** toochange 장치 관리자 또는 StorSimple 스냅숏 관리자 암호입니다.
 
-## <a name="change-the-device-administrator-password"></a>장치 관리자 암호 구성
-Windows PowerShell 인터페이스를 사용하여 StorSimple 장치에 액세스할 때 장치 관리자 암호를 입력해야 합니다. StorSimple 장치를 서비스에 처음으로 등록할 때 이 인터페이스의 기본 암호는 *Password1*입니다. 데이터 보안을 위해 등록 과정 마지막에 이 암호를 변경해야 합니다. 이 암호를 변경하지 않고 등록 과정을 종료할 수 없습니다. 자세한 내용은 [3단계: StorSimple용 Windows PowerShell을 통해 장치 구성 및 등록](storsimple-8000-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple)을 참조하세요.
+## <a name="change-hello-device-administrator-password"></a>Hello 장치 관리자 암호 변경
+Windows PowerShell 인터페이스 tooaccess hello StorSimple 장치를 사용 하 여 필요한 tooenter 장치 관리자 암호 됩니다. 이 인터페이스에 대 한 hello 기본 암호는 서비스와 hello 첫 번째 StorSimple 장치를 등록 하는 경우 *Password1*합니다. 데이터의 hello 보안, 사용자가 필요한 toochange 때이 암호를 hello hello 등록 프로세스 완료 합니다. 이 암호를 변경 하지 않고 hello 등록 프로세스를 종료할 수 없습니다. 자세한 내용은 참조 [3 단계: 구성 및 StorSimple 용 Windows PowerShell을 통해 hello 장치를 등록](storsimple-8000-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple)합니다.
 
-등록하는 동안 먼저 Windows PowerShell 인터페이스를 통해 설정된 암호는 나중에 Azure Portal을 통해 변경할 수 있습니다. 장치 관리자 암호를 변경하려면 다음 단계를 수행합니다.
+hello 설정 된 암호를 먼저 hello Windows PowerShell 인터페이스를 통해 등록 하는 동안 hello Azure 포털을 통해 나중에 변경할 수 있습니다. Hello 단계 toochange hello 장치 관리자 암호를 다음을 수행 합니다.
 
-#### <a name="to-change-the-device-administrator-password"></a>장치 관리자 암호 변경 방법
-1. StorSimple 장치 관리자 서비스로 이동한 다음 **장치**를 클릭합니다.
+#### <a name="toochange-hello-device-administrator-password"></a>toochange hello 장치 관리자 암호
+1. Tooyour StorSimple 장치 관리자 서비스를 이동 하 고 클릭 **장치**합니다.
 
-2. 장치를 나열하는 테이블에서 해당 암호를 변경하려는 장치를 클릭합니다.
+2. 장치의 hello 테이블 형식 목록에서 선택 하 고 hello 장치 암호를 클릭 하려는 toochange 합니다.
 
     ![](./media/storsimple-8000-change-passwords/changepwd1.png)
 
-3. **설정** 블레이드에서 **장치 설정 > 보안**으로 이동합니다.
+3. Hello에 **설정** 블레이드에서 너무 이동**장치 설정 > 보안**합니다.
 
     ![](./media/storsimple-8000-change-passwords/changepwd2.png)
 
-4. **보안 설정** 블레이드에서 **암호**를 클릭하여 장치 관리자 암호를 변경합니다.
+4. Hello에 **보안 설정** 블레이드에서 클릭 **암호** toochange hello 장치 관리자 암호입니다.
 
     ![](./media/storsimple-8000-change-passwords/changepwd3.png)
 
-5. **암호** 블레이드에서 8자에서 15자를 포함하는 관리자 암호를 입력합니다. 암호는 대문자, 소문자, 숫자 및 특수 문자 중 3가지 이상의 조합이어야 합니다.
+5. Hello에 **암호** 블레이드에서 8 too15 문자를 포함 하는 관리자 암호를 제공 합니다. hello 암호의 3 개 이상의 대문자, 소문자, 숫자 및 특수 문자 조합을 이어야 합니다.
 
-6. 암호를 확인합니다.
+6. Hello 암호를 확인 합니다.
 
     ![](./media/storsimple-8000-change-passwords/changepwd4.png)
 
@@ -55,33 +55,33 @@ Windows PowerShell 인터페이스를 사용하여 StorSimple 장치에 액세�
 
     ![](./media/storsimple-8000-change-passwords/changepwd6.png)
 
-이제 장치 관리자 암호를 업데이트해야 합니다. 이 수정된 암호를 사용하여 Windows PowerShell 인터페이스에 액세스할 수 있습니다.
+이제 hello 장치 관리자 암호를 업데이트 해야 합니다. 이 수정 된 암호 tooaccess hello Windows PowerShell 인터페이스를 사용할 수 있습니다.
 
-## <a name="set-the-storsimple-snapshot-manager-password"></a>StorSimple 스냅숏 관리자 암호 설정
-StorSimple 스냅숏 관리자 소프트웨어는 Windows 호스트에 상주하며 관리자가 로컬 및 클라우드 스냅숏의 형태로 StorSimple 장치의 백업을 관리할 수 있습니다.
+## <a name="set-hello-storsimple-snapshot-manager-password"></a>Hello StorSimple 스냅숏 관리자 암호 설정
+StorSimple 스냅숏 관리자 소프트웨어는 Windows 호스트에 상주 하며 관리자 hello 형태의 로컬 및 클라우드 스냅숏 StorSimple 장치의 toomanage 백업을 허용 합니다.
 
-StorSimple 스냅숏 관리자에서 장치를 구성하면, 장치 IP 주소 및 암호를 입력하여 저장소 장치를 인증하라는 메시지가 표시됩니다.
+장치를 StorSimple 스냅숏 관리자를 구성할 때 메시지가 표시 됩니다 tooprovide hello 장치 IP 주소와 암호 tooauthenticate 저장 장치입니다.
 
-Azure Portal을 통해 StorSimple Snapshot Manager에 대한 암호를 설정하거나 변경할 수 있습니다. 다음 단계를 수행하여 StorSimple Snapshot Manager 암호를 설정하거나 변경합니다.
+설정 하거나 hello Azure 포털을 통해 StorSimple 스냅숏 관리자에 대 한 hello 암호를 변경할 수 있습니다. 다음 단계 tooset hello 하거나 hello StorSimple 스냅숏 관리자 암호를 변경 합니다.
 
-#### <a name="to-set-the-storsimple-snapshot-manager-password"></a>StorSimple Snapshot Manager 암호를 설정하려면
-1. StorSimple 장치 관리자 서비스로 이동한 다음 **장치**를 클릭합니다.
+#### <a name="tooset-hello-storsimple-snapshot-manager-password"></a>tooset hello StorSimple 스냅숏 관리자 암호
+1. Tooyour StorSimple 장치 관리자 서비스를 이동 하 고 클릭 **장치**합니다.
 
-2. 장치를 나열하는 테이블에서 해당 StorSimple Snapshot Manager 암호를 설정하거나 변경하려는 장치를 클릭하여 선택합니다.
+2. 장치의 hello 테이블 형식 목록에서 선택 하 고 hello 장치를 클릭 합니다. StorSimple 스냅숏 관리자 암호 tooset 또는 변경 합니다.
 
      ![](./media/storsimple-8000-change-passwords/changepwd1.png)
 
-3. **설정** 블레이드에서 **장치 설정 > 보안**으로 이동합니다.
+3. Hello에 **설정** 블레이드에서 너무 이동**장치 설정 > 보안**합니다.
 
      ![](./media/storsimple-8000-change-passwords/changepwd2.png)
 
-4. **보안 설정** 블레이드에서 **암호**를 클릭하여 StorSimple Snapshot Manager 암호를 설정하거나 변경합니다.
+4. Hello에 **보안 설정** 블레이드에서 클릭 **암호** tooset 또는 변경 hello StorSimple 스냅숏 관리자 암호입니다.
 
      ![](./media/storsimple-8000-change-passwords/changepwd3.png) 
 
-5. **암호** 블레이드에서 14자 또는 15자인 암호를 입력합니다. 암호에 대문자, 소문자, 숫자 및 특수 문자 중 3가지 이상의 조합이 포함되어 있는지 확인합니다.
+5. Hello에 **암호** 블레이드에서 암호는 14 자 또는 15 자를 입력 합니다. Hello 암호의 3 개 이상의 대문자, 소문자, 숫자 및 특수 문자의 조합이 포함 되어 있는지 확인 합니다.
 
-6. 암호를 확인합니다.
+6. Hello 암호를 확인 합니다.
 
      ![](./media/storsimple-8000-change-passwords/changepwd5.png)
 
@@ -89,10 +89,10 @@ Azure Portal을 통해 StorSimple Snapshot Manager에 대한 암호를 설정하
 
      ![](./media/storsimple-8000-change-passwords/changepwd6.png)
 
-이제 StorSimple 스냅숏 관리자 암호가 업데이트됩니다.
+이제 hello StorSimple 스냅숏 관리자 암호를 업데이트 해야 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 * [StorSimple 보안](storsimple-8000-security.md)에 대해 자세히 알아봅니다.
 * [장치 구성을 수정](storsimple-8000-modify-device-config.md)하는 방법을 자세히 알아봅니다.
-* [StorSimple 장치 관리자 서비스를 사용하여 StorSimple 장치를 관리하는 방법](storsimple-8000-manager-service-administration.md)에 대해 자세히 알아봅니다.
+* 에 대 한 자세한 내용은 [StorSimple 장치의 StorSimple 장치 관리자 서비스 tooadminister를 hello를 사용 하 여](storsimple-8000-manager-service-administration.md)합니다.
 

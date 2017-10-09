@@ -1,6 +1,6 @@
 ---
-title: "경로를 사용하여 Azure IoT Hub 장치-클라우드 메시지 처리(.Net) | Microsoft Docs"
-description: "다른 백 엔드 서비스에 메시지를 발송하기 위해 경로 규칙 및 사용자 지정 끝점을 사용하여 IoT Hub 장치-클라우드 메시지를 처리하는 방법을 설명합니다."
+title: "경로 (.NET)를 사용 하 여 aaaProcess Azure IoT Hub 장치-클라우드 메시지 | Microsoft Docs"
+description: "어떻게 tooprocess 라우팅 규칙 및 사용자 지정 끝점 toodispatch를 사용 하 여 IoT Hub 장치-클라우드 메시지 tooother 백 엔드 서비스 메시지입니다."
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -14,31 +14,31 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: 1d2b52ea005ab520bf294efa603512c00a92ee63
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c1dd5be04ca30c65af2be466ba6c8c1858333154
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="process-iot-hub-device-to-cloud-messages-using-routes-net"></a>경로를 사용하여 IoT Hub 장치-클라우드 메시지 처리(.Net)
 
 [!INCLUDE [iot-hub-selector-process-d2c](../../includes/iot-hub-selector-process-d2c.md)]
 
-이 자습서는 [IoT Hub 시작] 자습서를 기반으로 합니다. 이 자습서의 내용은 다음과 같습니다.
+이 자습서는 hello에 빌드 [IoT 허브 시작] 자습서입니다. hello 자습서:
 
-* I라우팅 규칙을 사용하여 손쉬운 구성 기반 방식으로 장치-클라우드 메시지를 발송하는 방법을 보여 줍니다.
-* 추가 처리를 위해 솔루션 백 엔드의 즉각적인 작업을 요구하는 대화형 메시지를 격리하는 방법을 보여 줍니다. 예를 들어 장치는 CRM 시스템으로의 티켓 삽입을 트리거하는 경보 메시지를 보낼 수 있습니다. 반면 온도 원격 분석과 같은 데이터 요소 메시지는 분석 엔진으로 전달됩니다.
+* Toouse 라우팅 규칙 방식 toodispatch 장치-클라우드 메시지를 쉽게, 구성 기반 방식으로 보여 줍니다.
+* Tooisolate 대화형 메시지 hello 솔루션에서 즉각적인 조치를 필요로 하는 추가 처리에 대 한 끝을 백업 하는 방법을 보여 줍니다. 예를 들어 장치는 CRM 시스템으로의 티켓 삽입을 트리거하는 경보 메시지를 보낼 수 있습니다. 반면 온도 원격 분석과 같은 데이터 요소 메시지는 분석 엔진으로 전달됩니다.
 
-이 자습서의 끝 부분에서 다음의 세 가지 .NET 콘솔 앱을 실행합니다.
+이 자습서의 hello 끝 세 개의.NET 콘솔 응용 프로그램 실행합니다.
 
-* **SimulatedDevice** - [IoT Hub 시작] 자습서에서 만든 수정된 버전의 앱이며, 매초 데이터 요소 장치-클라우드 메시지를 보내고 10초마다 대화형 장치-클라우드 메시지를 보냅니다.
-* **ReadDeviceToCloudMessages** - 장치 앱에서 보낸 중요하지 않은 원격 분석을 표시합니다.
-* **ReadCriticalQueue** - Service Bus 큐에서 장치 앱이 보낸 중요한 메시지를 큐에서 제거합니다. 이 큐는 IoT Hub에 연결됩니다.
+* **SimulatedDevice**, hello에서 만든 hello 응용 프로그램의 수정된 된 버전 [IoT 허브 시작] 자습서 1 초 마다 데이터 요소 장치-클라우드 메시지를 보냅니다 및 대화형 장치-클라우드 메시지 마다 10 시간 (초)입니다.
+* **ReadDeviceToCloudMessages** 디스플레이 장치 앱으로 전송 하는 중요 하지 않은 원격 분석 hello 하 합니다.
+* **ReadCriticalQueue** 장치 앱에서 서비스 버스 큐에서 보낸 hello 중요 한 메시지 큐에 넣고 제거 합니다. 이 큐는 연결 된 toohello IoT 허브입니다.
 
 > [!NOTE]
-> IoT Hub는 많은 장치 플랫폼 및 언어(C, Java 및 JavaScript 포함)에 SDK를 지원합니다. 이 자습서의 시뮬레이션된 장치를 실제 장치로 바꾸는 방법에 대해 알아보려면 [Azure IoT 개발자 센터]를 참조하세요.
+> IoT Hub는 많은 장치 플랫폼 및 언어(C, Java 및 JavaScript 포함)에 SDK를 지원합니다. toolearn tooreplace이이 자습서의 시뮬레이션 된 장치는 물리적 장치와 hello 참조 hello [Azure IoT 개발자 센터]합니다.
 
-이 자습서를 완료하려면 다음이 필요합니다.
+toocomplete이이 자습서에서는 다음 hello 필요:
 
 * Visual Studio 2015 또는 Visual Studio 2017.
 * 활성 Azure 계정. <br/>계정이 없는 경우 몇 분 안에 [무료 계정](https://azure.microsoft.com/free/) 을 만들 수 있습니다.
@@ -47,9 +47,9 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="send-interactive-messages"></a>대화형 메시지 전송
 
-[IoT Hub 시작] 자습서에서 만든 장치 앱을 수정하여 대화형 메시지를 가끔씩 보낼 수 있습니다.
+Hello 장치 hello에서 만든 응용 프로그램 수정 [IoT 허브 시작] 자습서 toooccasionally 대화형 메시지를 전송 합니다.
 
-Visual Studio의 **SimulatedDevice** 프로젝트에서 `SendDeviceToCloudMessagesAsync` 메서드를 다음 코드로 바꿉니다.
+Hello에 Visual Studio에서 **SimulatedDevice** 프로젝트를 hello 대체 `SendDeviceToCloudMessagesAsync` 메서드 코드 다음 hello로:
 
 ```csharp
 private static async void SendDeviceToCloudMessagesAsync()
@@ -93,66 +93,66 @@ private static async void SendDeviceToCloudMessagesAsync()
 }
 ```
 
-이 메서드는 장치에서 보낸 메시지에 `"level": "critical"` 속성을 임의로 추가합니다. 그러면 솔루션 백 엔드에 의한 즉각적인 작업을 요구하는 메시지를 시뮬레이션합니다. 장치 앱에서 메시지 본문 대신 메시지 속성에 이 정보를 전달하므로 IoT Hub에서 메시지를 적절한 메시지 대상으로 라우팅할 수 있습니다.
+이 메서드는 임의로 hello 속성 추가 `"level": "critical"` toomessages hello 솔루션 백 엔드 하 여 즉각적인 동작이 필요한 메시지를 시뮬레이트하는 hello 장치에 전송 합니다. 해당 IoT 허브는 hello 메시지 toohello 적절 한 메시지 대상 라우팅할 수 있도록 hello 장치 앱 hello 메시지 속성에서이 정보 대신 hello 메시지 본문에 전달 합니다.
 
 > [!NOTE]
-> 메시지 속성을 사용하면 여기서 보여 주는 실행 부하 과다 경로(hot path) 예제 외에도 실행 부하 과소 경로(cold path) 처리를 포함하여 다양한 시나리오의 메시지를 라우팅할 수 있습니다.
+> 콜드 경로 toohello 실행 부하 과다 경로 여기에 표시 된 예에서는 또한 처리를 포함 하는 다양 한 시나리오에 대 한 메시지 속성 tooroute 메시지를 사용할 수 있습니다.
 
 > [!NOTE]
-> 간단히 하기 위해 이 자습서에서는 재시도 정책을 구현하지 않습니다. 프로덕션 코드에서는 MSDN 문서 [일시적인 오류 처리]에서 제시한 대로 재시도 정책(예: 지수 백오프)을 구현해야 합니다.
+> 이 자습서는 간단한 hello 위해서 어떠한 재시도 정책도 구현 하지 않습니다. 프로덕션 코드에서는 hello MSDN 문서에 설명 된 대로 지 수 백오프 같은 다시 시도 정책을 구현 해야 [일시적인 오류 처리]합니다.
 
-## <a name="route-messages-to-a-queue-in-your-iot-hub"></a>IoT Hub에서 큐에 메시지 라우팅
+## <a name="route-messages-tooa-queue-in-your-iot-hub"></a>IoT 허브에서 메시지 tooa 큐 경로
 
 이 섹션에서는 다음을 수행합니다.
 
 * Service Bus 큐를 만듭니다.
-* IoT Hub에 연결합니다.
-* 메시지의 속성 존재 여부를 기반으로 큐에 메시지를 보내도록 IoT Hub를 구성합니다.
+* Tooyour IoT 허브를 연결 합니다.
+* Hello 메시지에서 속성의 hello 존재 여부에 따라 IoT 허브 toosend 메시지 toohello 큐를 구성 합니다.
 
-Service Bus 큐에서 메시지를 처리하는 방법에 대한 자세한 내용은 [큐 시작][Service Bus queue]을 참조하세요.
+서비스 버스 큐에서 메시지를 tooprocess 방법에 대 한 자세한 내용은 참조 [큐 작업 시작][Service Bus queue]합니다.
 
-1. [큐 시작][Service Bus queue]에서 설명한 대로 Service Bus 큐를 만듭니다. 큐는 IoT Hub와 동일한 구독 및 지역에 있어야 합니다. 네임스페이스 및 큐 이름을 적어둡니다.
+1. [큐 시작][Service Bus queue]에서 설명한 대로 Service Bus 큐를 만듭니다. hello 큐는 hello에 있어야 합니다. 동일한 구독 및 지역이 IoT 허브입니다. Hello 네임 스페이스와 큐 이름을 기록해 둡니다.
 
     > [!NOTE]
-    > IoT Hub으로 사용되는 Service Bus 큐 및 토픽에는 **세션** 또는 **중복 검색**이 사용하도록 설정되어 있어서는 안 됩니다. 두 옵션 중 하나가 사용하도록 설정되어 있으면 Azure Portal에서 끝점이 **연결할 수 없음**으로 표시됩니다.
+    > IoT Hub으로 사용되는 Service Bus 큐 및 토픽에는 **세션** 또는 **중복 검색**이 사용하도록 설정되어 있어서는 안 됩니다. Hello 끝점으로 표시 되는 이러한 옵션 중 하나를 사용할 수 있으면 **연결할 수 없는** hello Azure 포털의에서.
 
-2. Azure Portal에서 IoT Hub를 열고 **끝점**을 클릭합니다.
+2. 에 Azure 포털 hello IoT 허브를 열고 클릭 **끝점**합니다.
     
     ![IoT Hub의 끝점][30]
 
-3. **끝점** 블레이드 위쪽에서 **추가**를 클릭하여 IoT Hub에 큐를 추가합니다. 끝점 이름을 **CriticalQueue**로 지정하고 드롭다운을 사용하여 **Service Bus 큐**, 큐가 있는 Service Bus 네임스페이스 및 큐 이름을 선택합니다. 완료되면 아래쪽의 **저장** 을 클릭합니다.
+3. Hello에 **끝점** 블레이드에서 클릭 **추가** 에 hello 상위 tooadd 큐 tooyour IoT 허브입니다. 이름 hello 끝점 **CriticalQueue** 드롭다운 tooselect hello를 사용 하 여 **서비스 버스 큐**, 큐 상주 하는 서비스 버스 네임 스페이스 hello 및 hello 큐의 이름입니다. 완료 되 면 클릭 **저장** hello 맨 아래에 있습니다.
     
     ![끝점 추가][31]
     
-4. 이제 IoT Hub에서 **경로**를 클릭합니다. 블레이드 위쪽에서 **추가**를 클릭하여 방금 추가한 큐로 메시지를 라우팅하는 라우팅 규칙을 만듭니다. 데이터 원본으로 **DeviceTelemetry**를 선택합니다. 조건으로 `level="critical"`을 입력하고 방금 사용자 지정 끝점으로 추가한 큐를 경로 규칙 끝점으로 선택합니다. 완료되면 아래쪽의 **저장** 을 클릭합니다.
+4. 이제 IoT Hub에서 **경로**를 클릭합니다. 클릭 **추가** toohello 방금 하면 큐 메시지를 라우팅하는 라우팅 규칙을 추가 하는 hello 블레이드 toocreate hello 위쪽에 있습니다. 선택 **DeviceTelemetry** hello 데이터 원본으로 합니다. 입력 `level="critical"` hello 조건으로 사용자 지정 끝점으로 라우팅 규칙 끝점 hello로 방금 추가한 hello 큐를 선택 합니다. 완료 되 면 클릭 **저장** hello 맨 아래에 있습니다.
     
     ![경로 추가][32]
     
-    대체(fallback) 경로가 **ON**으로 설정되어 있는지 확인합니다. 이 값은 IoT Hub에 대한 기본 구성입니다.
+    대체 경로 hello 너무 설정 되어 있는지 확인**ON**합니다. 이 값은 IoT 허브에 대 한 hello 기본 구성입니다.
     
     ![대체(fallback) 경로][33]
 
-## <a name="read-from-the-queue-endpoint"></a>큐 끝점에서 읽기
+## <a name="read-from-hello-queue-endpoint"></a>Hello 큐 끝점에서 읽기
 
-이 섹션에서는 큐 끝점에서 메시지를 읽습니다.
+이 섹션에서는 hello 큐 끝점에서 hello 메시지를 읽습니다.
 
-1. Visual Studio에서 **콘솔 앱(.NET Framework)** 프로젝트 템플릿을 사용하여 Visual C# Windows 클래식 바탕화면 프로젝트를 현재 솔루션에 추가합니다. **ReadCriticalQueue** 프로젝트의 이름을 지정합니다.
+1. Visual Studio에서 Visual C# Windows 클래식 데스크톱 프로젝트 toohello 현재 솔루션을 hello를 사용 하 여 추가 **콘솔 응용 프로그램 (.NET Framework)** 서식 파일 프로젝트. 이름 hello 프로젝트 **ReadCriticalQueue**합니다.
 
-2. [솔루션 탐색기]에서 **ReadCriticalQueue** 프로젝트를 마우스 오른쪽 단추로 클릭한 다음, **NuGet 패키지 관리**를 클릭합니다. 이 작업을 수행하면 **Nuget 패키지 관리자** 창이 표시됩니다.
+2. 솔루션 탐색기에서 마우스 오른쪽 단추로 클릭 hello **ReadCriticalQueue** 프로젝트를 마우스 클릭 **NuGet 패키지 관리**합니다. 이 작업 표시 hello **NuGet 패키지 관리자** 창.
 
-3. **WindowsAzure.ServiceBus**를 검색하여 **설치**를 클릭하고 사용 약관에 동의합니다. 이 작업을 수행하면 모든 종속성과 함께 Azure Service Bus에 대한 참조를 다운로드, 설치 및 추가합니다.
+3. 검색할 **WindowsAzure.ServiceBus**, 클릭 **설치**, hello 사용 약관을 수락 합니다. 이 작업을 다운로드 하 고 설치 하 여 모든 종속성과 함께 참조 toohello Azure 서비스 버스를 추가 합니다.
 
-4. **Program.cs** 파일의 맨 위에 다음 **using** 문을 추가합니다.
+4. Hello 다음 추가 **를 사용 하 여** hello 위쪽 hello에 문을 **Program.cs** 파일:
    
     ```csharp
     using System.IO;
     using Microsoft.ServiceBus.Messaging;
     ```
 
-5. 마지막으로 **Main** 메서드에 다음 줄을 추가합니다. 연결 문자열을 큐에 대한 **수신 대기** 권한으로 바꿉니다.
+5. 마지막으로 다음 줄 toohello hello 추가 **Main** 메서드. Hello 연결 문자열을 대체할 **수신** hello 큐에 대 한 사용 권한:
    
     ```csharp
-    Console.WriteLine("Receive critical messages. Ctrl-C to exit.\n");
+    Console.WriteLine("Receive critical messages. Ctrl-C tooexit.\n");
     var connectionString = "{service bus listen string}";
     var queueName = "{queue name}";
     
@@ -169,24 +169,24 @@ Service Bus 큐에서 메시지를 처리하는 방법에 대한 자세한 내�
     Console.ReadLine();
     ```
 
-## <a name="run-the-applications"></a>응용 프로그램 실행
-이제 응용 프로그램을 실행할 준비가 되었습니다.
+## <a name="run-hello-applications"></a>Hello 응용 프로그램 실행
+이제 준비 toorun hello 응용 프로그램 됩니다.
 
-1. 솔루션 탐색기의 Visual Studio에서 솔루션을 마우스 오른쪽 단추로 클릭하고 **시작 프로젝트 설정**을 선택합니다. **여러 개의 시작 프로젝트**를 선택한 다음 **ReadDeviceToCloudMessages**, **SimulatedDevice** 및 **ReadCriticalQueue** 프로젝트에 대한 작업으로 **시작**을 선택합니다.
-2. **F5** 키를 눌러 세 가지 콘솔 앱을 시작합니다. **ReadDeviceToCloudMessages** 앱에는 **SimulatedDevice** 응용 프로그램에서 보낸 중요하지 않은 메시지만 있고, **ReadCriticalQueue** 앱에는 중요한 메시지만 있습니다.
+1. 솔루션 탐색기의 Visual Studio에서 솔루션을 마우스 오른쪽 단추로 클릭하고 **시작 프로젝트 설정**을 선택합니다. 선택 **여러 개의 시작 프로젝트**을 선택한 후 **시작** hello에 대 한 hello 동작으로 **ReadDeviceToCloudMessages**, **SimulatedDevice**, 및 **ReadCriticalQueue** 프로젝트.
+2. 키를 눌러 **F5** toostart hello 세 개의 콘솔 앱입니다. hello **ReadDeviceToCloudMessages** 응용 프로그램에 중요 하지 않은 메시지만 hello에서 보낸 **SimulatedDevice** 응용 프로그램, 그리고 hello **ReadCriticalQueue** 응용 프로그램에만 중요 한 메시지입니다.
    
    ![3개의 콘솔 앱][50]
 
 ## <a name="next-steps"></a>다음 단계
-이 자습서에서는 IoT Hub의 메시지 라우팅 기능을 사용하여 장치-클라우드 메시지를 안정적으로 전달하는 방법을 살펴보았습니다.
+이 자습서에서는 tooreliably IoT 허브의 hello 메시지 라우팅 기능을 사용 하 여 장치-클라우드 메시지를 디스패치 하는 방법을 배웠습니다.
 
-[IoT Hub를 사용하여 클라우드-장치 메시지를 보내는 방법][lnk-c2d]에서는 솔루션 백 엔드에서 장치로 메시지를 보내는 방법을 보여줍니다.
+hello [IoT Hub와 toosend 클라우드-장치 메시지 방법을] [ lnk-c2d] toosend 솔루션 백 엔드에서 tooyour 장치 메시지 하는 방법을 보여 줍니다.
 
-IoT Hub를 사용하는 전체 종단 간 솔루션의 예를 보려면 [Azure IoT Suite][lnk-suite]를 참조하세요.
+IoT 허브를 사용 하는 완벽 한 종단 간 솔루션의 toosee 예 참조 [Azure IoT Suite][lnk-suite]합니다.
 
-IoT Hub를 사용하여 솔루션을 개발하는 방법에 대한 자세한 내용은 [IoT Hub 개발자 가이드]를 참조하세요.
+IoT 허브를 사용 하 여 솔루션 개발에 대 한 더 toolearn 참조 hello [IoT 허브 개발자 가이드]합니다.
 
-IoT Hub의 메시지 라우팅에 대한 자세한 내용은 [IoT Hub를 통해 메시지 보내고 받기][lnk-devguide-messaging]를 참조하세요.
+IoT Hub에 메시지 라우팅에 대 한 더 toolearn 참조 [IoT Hub와 메시지를 주고받을][lnk-devguide-messaging]합니다.
 
 <!-- Images. -->
 [50]: ./media/iot-hub-csharp-csharp-process-d2c/run1.png
@@ -199,8 +199,8 @@ IoT Hub의 메시지 라우팅에 대한 자세한 내용은 [IoT Hub를 통해 
 [Service Bus queue]: ../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md
 [Azure Storage]: https://azure.microsoft.com/documentation/services/storage/
 [Azure Service Bus]: https://azure.microsoft.com/documentation/services/service-bus/
-[IoT Hub 개발자 가이드]: iot-hub-devguide.md
-[IoT Hub 시작]: iot-hub-csharp-csharp-getstarted.md
+[IoT 허브 개발자 가이드]: iot-hub-devguide.md
+[IoT 허브 시작]: iot-hub-csharp-csharp-getstarted.md
 [lnk-devguide-messaging]: iot-hub-devguide-messaging.md
 [Azure IoT 개발자 센터]: https://azure.microsoft.com/develop/iot
 [일시적인 오류 처리]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx

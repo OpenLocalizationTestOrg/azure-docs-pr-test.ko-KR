@@ -1,6 +1,6 @@
 ---
-title: "IntelliJ용 Azure 도구 키트 - HDInsight Spark에서 원격으로 응용 프로그램 디버그 | Microsoft Docs"
-description: "IntelliJ용 Azure 도구 키트의 HDInsight 도구를 사용하여 VPN을 통해 HDInsight Spark 클러스터에서 실행 중인 응용 프로그램을 원격으로 디버그하는 방법을 알아봅니다."
+title: "IntelliJ-HDInsight Spark에 원격으로 디버그 응용 프로그램에 대 한 도구 키트 aaaAzure | Microsoft Docs"
+description: "자세한 내용은 방법 IntelliJ tooremotely 디버그 실행 중인 응용 프로그램 vpn 통해 HDInsight Spark 클러스터에 대 한 Azure 도구 키트의 HDInsight 도구를 사용 합니다."
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -16,60 +16,60 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: 5ce282aac94d0f22ea587cbe4005819310e23b1f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ad67d23bf609d0a7afb38b2acb110062f8b27b39
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-toolkit-for-intellij-to-debug-applications-remotely-on-hdinsight-spark-through-vpn"></a>IntelliJ용 Azure 도구 키트를 사용하여 VPN을 통해 HDInsight Spark에서 원격으로 응용 프로그램 디버그
+# <a name="use-azure-toolkit-for-intellij-toodebug-applications-remotely-on-hdinsight-spark-through-vpn"></a>Azure 도구 키트를 사용 하 여 VPN 통해 HDInsight Spark에 원격으로 IntelliJ toodebug 응용 프로그램에 대 한
 
-ssh를 통해 원격으로 spark 응용 프로그램을 디버그하는 것이 좋습니다. 자세한 내용은 [IntelliJ용 Azure 도구 키트를 사용하여 SSH를 통해 HDInsight 클러스터에서 원격으로 Spark 응용 프로그램 디버그](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-apache-spark-intellij-tool-debug-remotely-through-ssh)를 참조하세요.
+디버깅을 통해 원격으로 spark applicaltion ssh hello 방식 으로를 사용 하는 것이 좋습니다. 자세한 내용은 [IntelliJ용 Azure 도구 키트를 사용하여 SSH를 통해 HDInsight 클러스터에서 원격으로 Spark 응용 프로그램 디버그](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-apache-spark-intellij-tool-debug-remotely-through-ssh)를 참조하세요.
 
-이 문서에서는 IntelliJ용 Azure 도구 키트의 HDInsight 도구를 사용하여 HDInsight Spark 클러스터에서 Spark 작업을 제출한 다음 데스크톱 컴퓨터에서 원격으로 디버그하는 방법에 대한 단계별 지침을 제공합니다. 이렇게 하려면 다음과 같은 개략적인 단계를 수행해야 합니다.
+이 문서에서는 toouse IntelliJ toosubmit HDInsight Spark 클러스터에서 Spark 작업에 대 한 Azure 도구 키트의 HDInsight 도구 hello 하 고 다음 데스크톱 컴퓨터에서 원격으로 디버깅 하는 방법에 대 한 단계별 지침을 제공 합니다. toodo hello 상위 수준 단계를 수행 해야 하는.
 
-1. 사이트 간 또는 지점 및 사이트 간 Azure 가상 네트워크를 만듭니다. 이 문서의 단계에서는 사이트 간 네트워크를 사용하는 것으로 가정합니다.
-2. 사이트 간 Azure 가상 네트워크의 일부인 Azure HDInsight에서 Spark 클러스터를 만듭니다.
-3. 클러스터 헤드 노드 및 데스크톱 간의 연결을 확인합니다.
+1. 사이트 간 또는 지점 및 사이트 간 Azure 가상 네트워크를 만듭니다. 이 문서에 hello 단계는 사이트 간 네트워크를 사용 하는 가정 합니다.
+2. Hello 사이트 및 사이트 간 Azure 가상 네트워크의 일부인 Azure HDInsight의 Spark 클러스터를 만듭니다.
+3. Hello hello 클러스터 헤드 노드 및 데스크톱 연결 상태를 확인 합니다.
 4. IntelliJ IDEA에서 Scala 응용 프로그램을 만들고 원격 디버깅을 위해 구성합니다.
-5. 응용 프로그램을 실행하고 디버그합니다.
+5. 실행 하 고 hello 응용 프로그램을 디버깅 합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 * Azure 구독. [Azure 평가판](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)을 참조하세요.
 * HDInsight의 Apache Spark 클러스터입니다. 자세한 내용은 [Azure HDInsight에서 Apache Spark 클러스터 만들기](hdinsight-apache-spark-jupyter-spark-sql.md)를 참조하세요.
 * Oracle Java Development 키트. [여기](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)에서 설치할 수 있습니다.
 * IntelliJ IDEA. 이 문서에서는 버전 2017.1을 사용합니다. [여기](https://www.jetbrains.com/idea/download/)에서 설치할 수 있습니다.
-* IntelliJ용 Azure 도구 키트의 HDInsight 도구. IntelliJ용 HDInsight 도구는 IntelliJ용 Azure 도구 키트에 포함되어 제공됩니다. Azure 도구 키트를 설치하는 방법에 대한 지침은 [IntelliJ용 Azure 도구 키트 설치](../azure-toolkit-for-intellij-installation.md)를 참조하세요.
-* IntelliJ IDEA에서 Azure 구독에 로그인. [여기](hdinsight-apache-spark-intellij-tool-plugin.md)에 나와 있는 지침을 따르세요.
-* Windows 컴퓨터에서 원격으로 디버깅하기 위해 Spark Scala 응용 프로그램을 실행하는 중에 [SPARK-2356](https://issues.apache.org/jira/browse/SPARK-2356)에서 설명한 예외가 발생할 수 있습니다. 이 예외는 Windows에 WinUtils.exe가 없는 경우에 발생합니다. 이 오류를 해결하려면 [여기서 실행 파일을 다운로드](http://public-repo-1.hortonworks.com/hdp-win-alpha/winutils.exe)하여 **C:\WinUtils\bin** 등의 위치에 저장한 다음 **HADOOP_HOME** 환경 변수를 추가하고 이 변수 값을 **C\WinUtils**로 설정해야 합니다.
+* IntelliJ용 Azure 도구 키트의 HDInsight 도구. IntelliJ에 대 한 HDInsight 도구를 사용할 수 hello IntelliJ 용 Azure 도구 키트의 일환으로 합니다. 에 대 한 지침은 어떻게 tooinstall hello Azure 도구 키트를 참조 하세요. [IntelliJ 용 Azure 도구 키트 설치 hello](../azure-toolkit-for-intellij-installation.md)합니다.
+* IntelliJ IDEA에서 Azure 구독에 로그인. Hello 지침에 따라 [여기](hdinsight-apache-spark-intellij-tool-plugin.md)합니다.
+* Windows 컴퓨터에서 원격 디버깅을 위해 Spark Scala 응용 프로그램을 실행 하는 동안 발생할 수에 설명 된 대로 예외 [SPARK 2356](https://issues.apache.org/jira/browse/SPARK-2356) tooa 누락 인해 발생 하는 Windows에서 WinUtils.exe 합니다. 이 오류를 해결 toowork를 수행 해야 [여기에서 실행 하는 hello 다운로드](http://public-repo-1.hortonworks.com/hdp-win-alpha/winutils.exe) tooa 위치 **C:\WinUtils\bin**합니다. 그런 다음 환경 변수를 추가 해야 **HADOOP_HOME** 너무 hello hello 변수 값을 설정 하 고**C\WinUtils**합니다.
 
 ## <a name="step-1-create-an-azure-virtual-network"></a>1단계: Azure 가상 네트워크 만들기
-아래 링크의 지침을 따라 Azure 가상 네트워크를 만든 다음 데스크톱 및 Azure 가상 네트워크 간의 연결을 확인합니다.
+아래 링크 toocreate Azure 가상 네트워크는 hello에서 hello 지침에 따라 하 고 hello 데스크톱 및 Azure 가상 네트워크 간의 hello 연결을 확인 합니다.
 
 * [Azure 포털을 사용하여 사이트 간 VPN 연결로 VNet 만들기](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md)
 * [PowerShell을 사용하여 사이트 간 VPN 연결로 VNet 만들기](../vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md)
-* [PowerShell을 사용하여 가상 네트워크에 지점 및 사이트 간 연결 구성](../vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps.md)
+* [PowerShell을 사용 하 여 지점 및 사이트 연결 tooa 가상 네트워크 구성](../vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps.md)
 
 ## <a name="step-2-create-an-hdinsight-spark-cluster"></a>2단계: HDInsight Spark 클러스터 만들기
-또한 만든 Azure 가상 네트워크의 일부인 Azure HDInsight에서 Apache Spark 클러스터를 만들어야 합니다. [HDInsight에서 Linux 기반 클러스터 만들기](hdinsight-hadoop-provision-linux-clusters.md)에서 제공되는 정보를 사용합니다. 선택적 구성의 일부로 이전 단계에서 만든 Azure 가상 네트워크를 선택합니다.
+또한 hello 만든 Azure 가상 네트워크의 일부인 Azure HDInsight의 Apache Spark 클러스터를 만들어야 합니다. 사용할 수 있는 hello 정보를 사용 하 여 [HDInsight에서 클러스터 만들기 Linux 기반](hdinsight-hadoop-provision-linux-clusters.md)합니다. 선택적 구성의 일부로 hello hello 이전 단계에서 만든 Azure 가상 네트워크를 선택 합니다.
 
-## <a name="step-3-verify-the-connectivity-between-the-cluster-headnode-and-your-desktop"></a>3단계: 클러스터 헤드 노드 및 데스크톱 간의 연결 확인
-1. 헤드 노드의 IP 주소를 가져옵니다. 클러스터에 대한 Ambari UI를 엽니다. 클러스터 블레이드에서 **대시보드**를 클릭합니다.
+## <a name="step-3-verify-hello-connectivity-between-hello-cluster-headnode-and-your-desktop"></a>3 단계: 클러스터 헤드 노드에 hello와 데스크톱 사이 hello 연결을 확인 하십시오.
+1. Hello 헤드 노드에의 hello IP 주소를 가져옵니다. Hello 클러스터에 대 한 Ambari UI를 엽니다. Hello 클러스터 블레이드에서 클릭 **대시보드**합니다.
 
     ![헤드 노드 IP 찾기](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/launch-ambari-ui.png)
-2. Ambari UI의 오른쪽 위 모서리에서 **호스트**를 클릭합니다.
+2. Hello 오른쪽 위 모서리에서 hello Ambari UI에서에서 클릭 **호스트**합니다.
 
     ![헤드 노드 IP 찾기](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/ambari-hosts.png)
-3. 헤드 노드, 작업자 노드 및 zookeeper 노드 목록이 표시됩니다. 헤드 노드는 **hn*** 접두사를 가집니다. 첫 번째 헤드 노드를 클릭합니다.
+3. 헤드 노드, 작업자 노드 및 zookeeper 노드 목록이 표시됩니다. hello headnodes 있는 hello **hn*** 접두사입니다. 첫 번째 헤드 노드에 hello를 클릭 합니다.
 
     ![헤드 노드 IP 찾기](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/cluster-headnodes.png)
-4. 열리는 페이지의 아래쪽에 **요약** 상자에서 헤드 노드의 IP 주소 및 호스트 이름을 복사합니다.
+4. Hello hello에서 열리는 hello 페이지 맨 아래에 **요약** 상자의 hello 헤드 노드에 및 hello 호스트 이름을 복사 hello IP 주소입니다.
 
     ![헤드 노드 IP 찾기](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/headnode-ip-address.png)
-5. 헤드 노드의 IP 주소 및 호스트 이름을 Spark 작업을 실행하고 원격으로 디버그하려는 컴퓨터의 **호스트** 파일에 포함합니다. 이렇게 하면 IP 주소뿐만 아니라 호스트 이름을 사용하여 헤드 노드와 통신할 수 있습니다.
+5. Hello IP 주소 및 hello 헤드 노드에 toohello의 hello 호스트 이름 포함 **호스트** toorun 원하는 및 hello Spark 작업을 원격으로 디버그 hello 컴퓨터에서 파일입니다. 이렇게 하면 toocommunicate hello IP 주소 뿐만 아니라 hello 호스트 이름을 사용 하 여 hello 헤드 노드에 사용 합니다.
 
-   1. 관리자 권한으로 메모장을 엽니다. 파일 메뉴에서 **열기** 를 클릭한 다음 호스트 파일의 위치로 이동합니다. Windows 컴퓨터에서 `C:\Windows\System32\Drivers\etc\hosts`입니다.
-   2. **호스트** 파일에 다음을 추가합니다.
+   1. 관리자 권한으로 메모장을 엽니다. Hello 파일 메뉴에서 클릭 **열려** hello 호스트 파일의 toohello 위치를 이동 합니다. Windows 컴퓨터에서 `C:\Windows\System32\Drivers\etc\hosts`입니다.
+   2. Hello toohello 다음 추가 **호스트** 파일입니다.
 
            # For headnode0
            192.xxx.xx.xx hn0-nitinp
@@ -78,59 +78,59 @@ ssh를 통해 원격으로 spark 응용 프로그램을 디버그하는 것이 �
            # For headnode1
            192.xxx.xx.xx hn1-nitinp
            192.xxx.xx.xx hn1-nitinp.lhwwghjkpqejawpqbwcdyp3.gx.internal.cloudapp.net
-6. HDInsight 클러스터에서 사용되는 Azure 가상 네트워크에 연결된 컴퓨터에서 IP 주소뿐만 아니라 호스트 이름을 사용하여 두 헤드 노드에 ping을 실행할 수 있는지 확인합니다.
-7. [SSH를 사용하여 HDInsight 클러스터에 연결](hdinsight-hadoop-linux-use-ssh-unix.md)의 지침을 사용하여 클러스터 헤드 노드에 SSH를 사용합니다. 클러스터 헤드 노드에서 데스크톱 컴퓨터의 IP 주소에 ping을 실행합니다. 컴퓨터에 할당된 두 IP 주소에 대한 연결을 테스트해야 합니다. 하나는 네트워크 연결이고 다른 하나는 컴퓨터가 연결된 Azure 가상 네트워크에 대한 것입니다.
-8. 다른 헤드 노드에서도 해당 단계를 반복합니다.
+6. Toohello hello HDInsight 클러스터에서 사용 되는 Azure 가상 네트워크를 연결 하는 hello 컴퓨터에서 모두 hello headnodes hello IP 주소 뿐만 아니라 hello 호스트 이름을 사용 하 여 ping 수 있는지를 확인 합니다.
+7. Hello 지침을 사용 하 여 클러스터 헤드 노드에 hello에 대 한 SSH [SSH를 사용 하 여 연결 tooan HDInsight 클러스터](hdinsight-hadoop-linux-use-ssh-unix.md)합니다. Hello 클러스터 헤드 노드에에서 hello 데스크톱 컴퓨터의 hello IP 주소를 ping 합니다. Hello 네트워크 연결에 대해 하나씩 toohello 컴퓨터를 할당 하는 연결 tooboth hello IP 주소를 테스트 해야 하 고 hello 컴퓨터 hello Azure 가상 네트워크에 대 한 다른 hello에 연결 되어 있습니다.
+8. Hello도 다른 헤드 노드에 hello 단계를 반복 합니다.
 
-## <a name="step-4-create-a-spark-scala-application-using-the-hdinsight-tools-in-azure-toolkit-for-intellij-and-configure-it-for-remote-debugging"></a>4단계: IntelliJ용 Azure 도구 키트의 HDInsight 도구를 사용하여 Spark Scala 응용 프로그램 만들기 및 원격 디버깅이 가능하도록 구성
-1. IntelliJ IDEA를 시작하고 새 프로젝트를 만듭니다. 새 프로젝트 대화 상자에서 다음과 같이 선택하고 **다음**을 클릭합니다.
+## <a name="step-4-create-a-spark-scala-application-using-hello-hdinsight-tools-in-azure-toolkit-for-intellij-and-configure-it-for-remote-debugging"></a>4 단계: IntelliJ Azure 도구 키트의 hello HDInsight 도구를 사용 하 여 Spark Scala 응용 프로그램을 만들고 원격 디버깅 구성
+1. IntelliJ IDEA를 시작하고 새 프로젝트를 만듭니다. Hello 새 프로젝트 대화 상자에서 확인 클릭 및 선택 항목을 다음 hello **다음**합니다.
 
     ![Spark Scala 응용 프로그램 만들기](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/create-hdi-scala-app.png)
 
-   * 왼쪽 창에서 **HDInsight**를 선택합니다.
-   * 오른쪽 창에서 **HDInsight의 Spark(Scala)**를 선택합니다.
+   * Hello 왼쪽된 창에서 선택 **HDInsight**합니다.
+   * Hello 오른쪽 창에서 선택 **(Scala) HDInsight의 Spark**합니다.
    * **다음**을 누릅니다.
-2. 다음 창에서 다음 프로젝트 세부 정보를 제공하고 **마침**을 클릭합니다.  
+2. Hello 다음 창의 hello 다음 프로젝트 세부 정보를 입력 한 다음 **마침**합니다.  
    - 프로젝트 이름과 프로젝트 위치를 제공합니다.
    - **프로젝트 SDK**의 경우 Spark 2.x 클러스터에 Java 1.8을 사용하고 Spark 1.x 클러스터에 Java 1.7을 사용합니다.
-   - **Spark 버전**의 경우 Scala 프로젝트 생성 마법사는 Spark SDK 및 Scala SDK.에 대한 적절한 버전을 통합합니다. Spark 클러스터 2.0 이하 버전을 사용하는 경우 Spark 1.x을 선택합니다. 그렇지 않으면 Spark 2.x를 선택해야 합니다. 이 예제에서는 Spark 2.0.2(Scala 2.11.8)를 사용합니다.
+   - **Spark 버전**의 경우 Scala 프로젝트 생성 마법사는 Spark SDK 및 Scala SDK.에 대한 적절한 버전을 통합합니다. 더 낮은 2.0 hello spark 클러스터 버전을 사용 하는 경우 선택 1.x 멤버입니다. 그렇지 않으면 Spark 2.x를 선택해야 합니다. 이 예제에서는 Spark 2.0.2(Scala 2.11.8)를 사용합니다.
        ![Spark Scala 응용 프로그램 만들기](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/hdi-scala-project-details.png)
   
-3. Spark 프로젝트가 자동으로 아티팩트를 만듭니다. 아티팩트를 확인하려면 이 단계를 따릅니다.
+3. hello Spark 프로젝트는 자동으로 만들 아티팩트입니다. toosee hello 아티팩트를 다음이 단계를 수행 합니다.
 
-   1. **파일** 메뉴에서 **프로젝트 구조**를 클릭합니다.
-   2. **프로젝트 구조** 대화 상자에서 **아티팩트**를 클릭하여 만들어지는 기본 아티팩트를 봅니다.
+   1. Hello에서 **파일** 메뉴를 클릭 하 여 **프로젝트 구조**합니다.
+   2. Hello에 **프로젝트 구조** 대화 상자를 클릭 **아티팩트** 만들어진 toosee hello 기본 아티팩트입니다.
    ![JAR 만들기](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/default-artifact.png)
 
-      위의 그림에서 강조 표시된 **+** 아이콘을 클릭하여 사용자 고유의 아티팩트를 만들 수도 있습니다.
+      사용자 고유의 아티팩트를 만들 수도 있습니다 bly hello 클릭 하면  **+**  아이콘을 위 hello 이미지에서 강조 표시 됩니다.
 
-4. 프로젝트에 라이브러리를 추가합니다. 라이브러리를 추가하려면 프로젝트 트리에서 프로젝트 이름을 마우스 오른쪽 단추로 클릭한 다음 **모듈 설정 열기**를 클릭합니다. **프로젝트 구조** 대화 상자의 왼쪽 창에서 **라이브러리**, (+) 기호, **Maven에서**를 차례로 클릭합니다.
+4. 라이브러리 tooyour 프로젝트를 추가 합니다. 라이브러리를 tooadd hello 프로젝트 트리에서 hello 프로젝트 이름을 마우스 오른쪽 단추로 클릭 **모듈 설정 열기**합니다. Hello에 **프로젝트 구조** hello 왼쪽된 창에서 대화 상자를 클릭 **라이브러리**, hello (+) 기호를 클릭 하 고 클릭 **에서 Maven**합니다.
 
     ![라이브러리 추가](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/add-library.png)
 
-    **Maven 리포지토리에서 라이브러리 다운로드** 대화 상자에서 다음 라이브러리를 검색하고 추가합니다.
+    Hello에 **Maven 리포지토리에서 라이브러리 다운로드** 대화 상자, 검색 및 라이브러리를 수행 하는 hello를 추가 합니다.
 
    * `org.scalatest:scalatest_2.10:2.2.1`
    * `org.apache.hadoop:hadoop-azure:2.7.1`
-5. 클러스터 헤드 노드에서 `yarn-site.xml` 및 `core-site.xml`을(를) 복사하고 프로젝트에 추가합니다. 다음 명령을 사용하여 파일을 복사합니다. [Cygwin](https://cygwin.com/install.html)을 사용하여 클러스터 헤드 노드에서 파일을 복사하도록 다음 `scp` 명령을 실행할 수 있습니다.
+5. 복사 `yarn-site.xml` 및 `core-site.xml` hello에서 toohello 프로젝트를 추가 하 고 클러스터 헤드 노드에 있습니다. 다음 명령은 toocopy hello 파일이 hello를 사용 합니다. 사용할 수 있습니다 [Cygwin](https://cygwin.com/install.html) toorun hello 다음 `scp` hello 클러스터 headnodes에서 toocopy hello 파일 명령입니다.
 
         scp <ssh user name>@<headnode IP address or host name>://etc/hadoop/conf/core-site.xml .
 
-    데스크톱의 호스트 파일에 대한 클러스터 헤드 노드 IP 주소 및 호스트 이름을 이미 추가했으므로 다음과 같이 **scp** 명령을 사용할 수 있습니다.
+    Hello 클러스터 헤드 노드에 IP 주소 및 호스트 이름은 fo hello 호스트 hello 바탕 화면에 파일을 이미 추가 했으므로 hello를 사용할 수 있습니다 **scp** hello 방식으로 다음에 명령 합니다.
 
         scp sshuser@hn0-nitinp:/etc/hadoop/conf/core-site.xml .
         scp sshuser@hn0-nitinp:/etc/hadoop/conf/yarn-site.xml .
 
-    프로젝트 트리의 **/src** 폴더 아래에 복사하여 이러한 파일을 프로젝트에 추가합니다(예: `<your project directory>\src`).
-6. `core-site.xml` 을(를) 업데이트하여 다음과 같이 변경합니다.
+    Hello에서 복사 하 여 이러한 파일 tooyour 프로젝트 추가 **/src** 예를 들어 프로그램 프로젝트 트리에서 폴더 `<your project directory>\src`합니다.
+6. 업데이트 hello `core-site.xml` toomake hello 변경 내용을 수행 합니다.
 
-   1. `core-site.xml` 은(는) 클러스터와 연결된 저장소 계정에 암호화된 키를 포함합니다. 프로젝트에 추가한 `core-site.xml` 에서 암호화된 키를 기본 저장소 계정과 연결된 실제 저장소 키로 대체합니다. [저장소 액세스 키 관리](../storage/common/storage-create-storage-account.md#manage-your-storage-account)를 참조하세요.
+   1. `core-site.xml`hello 클러스터와 연결 된 암호화 hello 키 toohello 저장소 계정이 포함 됩니다. Hello에 `core-site.xml` toohello 프로젝트, 바꾸기 hello hello 기본 저장소 계정에 연결 된 hello 실제 저장소 키로 암호화 된 키를 추가 합니다. [저장소 액세스 키 관리](../storage/common/storage-create-storage-account.md#manage-your-storage-account)를 참조하세요.
 
            <property>
                  <name>fs.azure.account.key.hdistoragecentral.blob.core.windows.net</name>
                  <value>access-key-associated-with-the-account</value>
            </property>
-   2. `core-site.xml`에서 다음 항목을 제거합니다.
+   2. Hello에서 항목을 다음 hello 제거 `core-site.xml`합니다.
 
            <property>
                  <name>fs.azure.account.keyprovider.hdistoragecentral.blob.core.windows.net</name>
@@ -146,14 +146,14 @@ ssh를 통해 원격으로 spark 응용 프로그램을 디버그하는 것이 �
                  <name>net.topology.script.file.name</name>
                  <value>/etc/hadoop/conf/topology_script.py</value>
            </property>
-   3. 파일을 저장합니다.
-7. 응용 프로그램에 대한 기본 클래스를 추가합니다. **프로젝트 탐색기**에서 **src**를 마우스 오른쪽 단추로 클릭하고 **새로 만들기**를 가리킨 다음 **Scala 클래스**를 클릭합니다.
+   3. Hello 파일을 저장 합니다.
+7. 응용 프로그램에 대 한 hello 기본 클래스를 추가 합니다. Hello에서 **프로젝트 탐색기**를 마우스 오른쪽 단추로 클릭 **src**, 너무 가리킨**새로**, 클릭 하 고 **Scala 클래스**합니다.
 
     ![소스 코드 추가](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/hdi-spark-scala-code.png)
-8. **새 Scala 클래스 만들기** 대화 상자에서 이름을 제공하고 **종류**에 대해 **개체**를 선택하고 **확인**을 클릭합니다.
+8. Hello에 **새 Scala 클래스 만들기** 대화 상자에서 대 한 이름을 제공 **종류** 선택 **개체**, 클릭 하 고 **확인**합니다.
 
     ![소스 코드 추가](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/hdi-spark-scala-code-object.png)
-9. `MyClusterAppMain.scala` 파일에서 다음 코드를 붙여 넣습니다. 이 코드는 Spark 컨텍스트를 만들고 `SparkSample` 개체에서 `executeJob` 메서드를 실행합니다.
+9. Hello에 `MyClusterAppMain.scala` 파일, 코드 다음 hello를 붙여 넣습니다. 이 코드 hello Spark 컨텍스트 연결을 만들고 시작 프로그램 `executeJob` hello 메서드에서 `SparkSample` 개체입니다.
 
         import org.apache.spark.{SparkConf, SparkContext}
 
@@ -169,7 +169,7 @@ ssh를 통해 원격으로 spark 응용 프로그램을 디버그하는 것이 �
           }
         }
 
-10. 위의 8 및 9단계를 반복하여 `SparkSample`(이)라는 새 Scala 개체를 추가합니다. 이 클래스에 다음 코드를 추가합니다. 이 코드는 HVAC.csv(모든 HDInsight Spark 클러스터에서 사용 가능)에서 데이터를 읽고, CSV의 일곱 번째 열에 한 자리 수만 있는 행을 검색하고, 출력을 클러스터의 기본 저장 컨테이너 아래의 **/HVACOut** 에 씁니다.
+10. 8 단계와 9 단계 위에 새 Scala 개체 라는 tooadd 반복 `SparkSample`합니다. toothis 클래스 코드 다음 hello를 추가 합니다. 이 코드 hello HVAC.csv (모든 HDInsight Spark 클러스터에서 사용 가능)에서 hello 데이터를 읽고, hello hello CSV의에서 일곱 번째 열에 숫자를 하나만 hello 행을 검색 및 너무 hello 출력을 기록**/HVACOut** hello 기본 hello 클러스터에 대 한 저장소 컨테이너입니다.
 
         import org.apache.spark.SparkContext
 
@@ -177,7 +177,7 @@ ssh를 통해 원격으로 spark 응용 프로그램을 디버그하는 것이 �
          def executeJob (sc: SparkContext, input: String, output: String): Unit = {
            val rdd = sc.textFile(input)
 
-           //find the rows which have only one digit in the 7th column in the CSV
+           //find hello rows which have only one digit in hello 7th column in hello CSV
            val rdd1 =  rdd.filter(s => s.split(",")(6).length() == 1)
 
            val s = sc.parallelize(rdd.take(5)).cartesian(rdd).count()
@@ -187,7 +187,7 @@ ssh를 통해 원격으로 spark 응용 프로그램을 디버그하는 것이 �
            //rdd1.collect().foreach(println)
          }
         }
-11. 위의 8 및 9단계를 반복하여 `RemoteClusterDebugging`(이)라는 새 클래스를 추가합니다. 이 클래스는 응용 프로그램 디버깅에 사용되는 Spark 테스트 프레임워크를 구현합니다. `RemoteClusterDebugging` 클래스에 다음 코드를 추가합니다.
+11. 8, 9 라는 새 클래스가 tooadd 위의 단계를 반복 `RemoteClusterDebugging`합니다. 이 클래스는 응용 프로그램 디버깅에 사용 되는 hello Spark 테스트 프레임 워크를 구현 합니다. 다음 코드 toohello hello 추가 `RemoteClusterDebugging` 클래스입니다.
 
         import org.apache.spark.{SparkConf, SparkContext}
         import org.scalatest.FunSuite
@@ -209,58 +209,58 @@ ssh를 통해 원격으로 spark 응용 프로그램을 디버그하는 것이 �
          }
         }
 
-     유의해야 할 몇 가지 중요한 사항은 다음과 같습니다.
+     여기에 중요 한 사항이 toonote 몇:
 
-   * `.set("spark.yarn.jar", "wasb:///hdp/apps/2.4.2.0-258/spark-assembly-1.6.1.2.4.2.0-258-hadoop2.7.1.2.4.2.0-258.jar")`의 경우 Spark 어셈블리 JAR를 지정된 경로의 클러스터 저장소에서 사용할 수 있는지 확인합니다.
-   * `setJars`의 경우 아티팩트 jar를 만들 위치를 지정합니다. 일반적으로 `<Your IntelliJ project directory>\out\<project name>_DefaultArtifact\default_artifact.jar`입니다.
-12. `RemoteClusterDebugging` 클래스에서 마우스 오른쪽 단추로 `test` 키워드를 클릭하고 **RemoteClusterDebugging 구성 만들기**를 선택합니다.
+   * 에 대 한 `.set("spark.yarn.jar", "wasb:///hdp/apps/2.4.2.0-258/spark-assembly-1.6.1.2.4.2.0-258-hadoop2.7.1.2.4.2.0-258.jar")`, Spark 어셈블리 JAR hello hello 지정된 경로에 hello 클러스터 저장소에 사용할 수 있는지 확인 합니다.
+   * 에 대 한 `setJars`, hello 아티팩트 jar 만들어지는 hello 위치를 지정 합니다. 일반적으로 `<Your IntelliJ project directory>\out\<project name>_DefaultArtifact\default_artifact.jar`입니다.
+12. Hello에 `RemoteClusterDebugging` 클래스, hello를 마우스 오른쪽 단추로 클릭 `test` 키워드와 선택 **RemoteClusterDebugging 구성 만들기**합니다.
 
     ![원격 구성 만들기](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/create-remote-config.png)
 
-13. 대화 상자에서 구성에 대한 이름을 제공하고 **테스트 이름**으로 **테스트 종류**를 선택합니다. 기본적으로 다른 모든 값을 그대로 두고 **적용**을 클릭한 다음 **확인**을 클릭합니다.
+13. Hello 대화 상자에서 hello 구성에 대 한 이름을 입력 하 고 hello를 선택 **종류 테스트** 으로 **테스트 이름**합니다. 기본적으로 다른 모든 값을 그대로 두고 **적용**을 클릭한 다음 **확인**을 클릭합니다.
 
     ![원격 구성 만들기](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/provide-config-value.png)
-14. 이제 메뉴 모음에서 **원격 실행** 구성 드롭다운이 표시됩니다.
+14. 이제는 **원격 실행** 드롭 다운 hello 메뉴 모음에서 구성 합니다.
 
     ![원격 구성 만들기](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/config-run.png)
 
-## <a name="step-5-run-the-application-in-debug-mode"></a>5단계: 디버그 모드에서 응용 프로그램 실행
-1. IntelliJ IDEA 프로젝트에서 `SparkSample.scala` 을(를) 열고 'val rdd1' 옆에 중단점을 만듭니다. 중단점을 만들기 위한 팝업 메뉴에서 **함수 executeJob에서 줄**을 선택합니다.
+## <a name="step-5-run-hello-application-in-debug-mode"></a>5 단계: hello 응용 프로그램을 디버그 모드에서 실행
+1. IntelliJ 아이디어 프로젝트를 열고 `SparkSample.scala` 중단점 다음 too'val rdd1 만들고 '. 중단점을 만들기 위한 hello 팝업 메뉴에서 선택 **함수 executeJob에 줄**합니다.
 
     ![중단점 추가](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/create-breakpoint.png)
-2. **원격 실행** 구성 드롭다운 옆의 **디버그 실행** 단추를 클릭하여 응용 프로그램 실행을 시작합니다.
+2. Hello 클릭 **실행 디버그** 단추 다음 toohello **원격 실행** 구성 드롭 다운 toostart hello 응용 프로그램을 실행 합니다.
 
-    ![디버그 모드에서 프로그램 실행](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/debug-run-mode.png)
-3. 프로그램 실행이 중단점에 도달하면 아래 창에 **디버거** 탭이 표시됩니다.
+    ![Hello 프로그램을 디버그 모드에서 실행](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/debug-run-mode.png)
+3. Hello 프로그램 실행 hello 중단점에 도달 하면 표시 됩니다는 **디버거** hello 아래쪽 창의 탭 합니다.
 
-    ![디버그 모드에서 프로그램 실행](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/debug-add-watch.png)
-4. (**+**) 아이콘을 클릭하여 아래 이미지에 표시된 것처럼 시계를 추가합니다.
+    ![Hello 프로그램을 디버그 모드에서 실행](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/debug-add-watch.png)
+4. Hello 클릭 (**+**) 아이콘 tooadd hello 이미지 아래에 나와 있는 것 처럼 감시 합니다.
 
-    ![디버그 모드에서 프로그램 실행](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/debug-add-watch-variable.png)
+    ![Hello 프로그램을 디버그 모드에서 실행](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/debug-add-watch-variable.png)
 
-    여기에서 변수 `rdd1`이(가) 만들어지기 전에 응용 프로그램이 중단되기 때문에 이 시계를 사용하여 변수 `rdd`에서 첫 번째 5행이 무엇인지 볼 수 있습니다. **ENTER**키를 누릅니다.
+    Hello 변수 하기 전에 hello 응용 프로그램 중단 때문에 여기서 `rdd1` 를 사용 하 여 만들어진 hello 변수에서 처음 5 개 행을 hello은 무엇을 볼 수 있습니다이 조사식 `rdd`합니다. **ENTER**키를 누릅니다.
 
-    ![디버그 모드에서 프로그램 실행](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/debug-add-watch-variable-value.png)
+    ![Hello 프로그램을 디버그 모드에서 실행](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/debug-add-watch-variable-value.png)
 
-    위의 이미지에서 보는 것은 런타임 시이며 테라바이트의 데이터를 쿼리하고 응용 프로그램이 진행되는 방법을 디버그할 수 있습니다. 예를 들어 위의 이미지에 표시된 출력에서 출력의 첫 번째 행이 헤더임을 볼 수 있습니다. 이를 기반으로 필요한 경우 응용 프로그램 코드를 헤더 행을 건너뛰도록 수정할 수 있습니다.
-5. 이제 **프로그램 다시 시작** 아이콘을 클릭하여 응용 프로그램 실행을 진행할 수 있습니다.
+    런타임 시 데이터와 디버그 terrabytes 쿼리할 수는 위의 hello 그림에서 볼 수 있는 방법을 응용 프로그램 진행 합니다. 예를 들어 위의 hello 이미지에 표시 된 hello 출력에 나타나면 해당 hello hello 출력의 첫 번째 행은 헤더가 있습니다. 이에 따라 필요한 경우 응용 프로그램 코드 tooskip hello 머리글 행을 수정할 수 있습니다.
+5. Hello을 클릭할 수 있습니다 **Resume 프로그램** 아이콘 tooproceed와 응용 프로그램을 실행 합니다.
 
-    ![디버그 모드에서 프로그램 실행](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/debug-continue-run.png)
-6. 응용 프로그램이 성공적으로 완료되면 다음과 유사한 출력이 표시됩니다.
+    ![Hello 프로그램을 디버그 모드에서 실행](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/debug-continue-run.png)
+6. Hello 응용 프로그램 성공적으로 완료 되 면 hello 다음과 같은 출력을 표시 됩니다.
 
-    ![디버그 모드에서 프로그램 실행](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/debug-complete.png)
+    ![Hello 프로그램을 디버그 모드에서 실행](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely-through-vpn/debug-complete.png)
 
 ## <a name="seealso"></a>참고 항목
 * [개요: Azure HDInsight에서 Apache Spark](hdinsight-apache-spark-overview.md)
 
 ### <a name="demo"></a>데모
 * Scala 프로젝트 만들기(비디오): [Spark Scala 응용 프로그램 만들기](https://channel9.msdn.com/Series/AzureDataLake/Create-Spark-Applications-with-the-Azure-Toolkit-for-IntelliJ)
-* 원격 디버그(비디오): [IntelliJ용 Azure 도구 키트를 사용하여 HDInsight 클러스터에서 원격으로 Spark 응용 프로그램 디버그](https://channel9.msdn.com/Series/AzureDataLake/Debug-HDInsight-Spark-Applications-with-Azure-Toolkit-for-IntelliJ)
+* 원격 디버그 (비디오): [HDInsight 클러스터에 원격으로 IntelliJ toodebug Spark 응용 프로그램에 대 한 Azure 도구 키트 사용](https://channel9.msdn.com/Series/AzureDataLake/Debug-HDInsight-Spark-Applications-with-Azure-Toolkit-for-IntelliJ)
 
 ### <a name="scenarios"></a>시나리오
 * [BI와 Spark: BI 도구와 함께 HDInsight에서 Spark를 사용하여 대화형 데이터 분석 수행](hdinsight-apache-spark-use-bi-tools.md)
 * [기계 학습과 Spark: HVAC 데이터를 사용하여 건물 온도를 분석하는 데 HDInsight의 Spark 사용](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [기계 학습과 Spark: 음식 검사 결과를 예측하는 데 HDInsight의 Spark 사용](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark와 기계 학습: HDInsight toopredict 음식 검사 결과에 사용 하 여 Spark](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark 스트리밍: HDInsight에서 Spark를 사용하여 실시간 스트리밍 응용 프로그램 빌드](hdinsight-apache-spark-eventhub-streaming.md)
 * [HDInsight의 Spark를 사용하여 웹 사이트 로그 분석](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 
@@ -269,15 +269,15 @@ ssh를 통해 원격으로 spark 응용 프로그램을 디버그하는 것이 �
 * [Livy를 사용하여 Spark 클러스터에서 원격으로 작업 실행](hdinsight-apache-spark-livy-rest-interface.md)
 
 ### <a name="tools-and-extensions"></a>도구 및 확장
-* [IntelliJ용 Azure 도구 키트의 HDInsight 도구를 사용하여 Spark Scala 응용 프로그램 만들기 및 제출](hdinsight-apache-spark-intellij-tool-plugin.md)
-* [IntelliJ용 Azure 도구 키트를 사용하여 SSH를 통해 원격으로 Spark 응용 프로그램 디버그](hdinsight-apache-spark-intellij-tool-debug-remotely-through-ssh.md)
+* [IntelliJ toocreate에 대 한 Azure 도구 키트의 HDInsight 도구를 사용 하 고 스파크 Scala 개 제출](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [SSH 통해 원격으로 IntelliJ toodebug Spark 응용 프로그램에 대 한 Azure 도구 키트를 사용 합니다.](hdinsight-apache-spark-intellij-tool-debug-remotely-through-ssh.md)
 * [Hortonworks 샌드박스에서 IntelliJ용 HDInsight Tools 사용](hdinsight-tools-for-intellij-with-hortonworks-sandbox.md)
-* [Eclipse용 Azure 도구 키트의 HDInsight 도구를 사용하여 Spark 응용 프로그램 만들기](hdinsight-apache-spark-eclipse-tool-plugin.md)
+* [Azure Toolkit for Eclipse toocreate Spark 응용 프로그램에서에서 사용 하 여 HDInsight 도구](hdinsight-apache-spark-eclipse-tool-plugin.md)
 * [HDInsight에서 Spark 클러스터와 함께 Zeppelin Notebook 사용](hdinsight-apache-spark-zeppelin-notebook.md)
 * [HDInsight의 Spark 클러스터에서 Jupyter Notebook에 사용할 수 있는 커널](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 * [Jupyter 노트북에서 외부 패키지 사용](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
-* [컴퓨터에 Jupyter를 설치하고 HDInsight Spark 클러스터에 연결](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [Jupyter 사용자 컴퓨터에 설치 하 고 tooan HDInsight Spark 클러스터를 연결 합니다.](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
 ### <a name="manage-resources"></a>리소스 관리
-* [Azure HDInsight에서 Apache Spark 클러스터에 대한 리소스 관리](hdinsight-apache-spark-resource-manager.md)
+* [Azure HDInsight의 Apache Spark 클러스터 hello에 대 한 리소스를 관리 합니다.](hdinsight-apache-spark-resource-manager.md)
 * [HDInsight의 Apache Spark 클러스터에서 실행되는 작업 추적 및 디버그](hdinsight-apache-spark-job-debugging.md)

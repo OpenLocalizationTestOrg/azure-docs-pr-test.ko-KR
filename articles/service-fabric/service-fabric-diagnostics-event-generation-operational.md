@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 작동 채널 | Microsoft Docs"
-description: "Azure Service Fabric 클러스터의 작동 채널에서 생성된 로그의 포괄적인 목록입니다."
+title: "서비스 패브릭 Operational 채널 aaaAzure | Microsoft Docs"
+description: "Hello operational 채널의 Azure 서비스 패브릭 클러스터에 생성 된 로그의 포괄적인 목록입니다."
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/19/2017
 ms.author: dekapur
-ms.openlocfilehash: 934719868ab9968db352db2b440014d35dbc0274
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 358782420ed62b202d6a89fe0f200b5ef0384c9c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="operational-channel"></a>작동 채널 
 
-작동 채널은 노드 및 클러스터의 Service Fabric에서 수행되는 상위 수준 작업의 로그로 구성됩니다. 클러스터에 대해 "진단"을 사용하도록 설정하면 Azure 진단 에이전트가 클러스터에 배포되고 기본적으로 작동 패널의 로그를 읽도록 구성됩니다. 추가 로그 또는 성능 카운터를 확인하려면 진단 구성을 수정하도록 [Azure 진단 에이전트](service-fabric-diagnostics-event-aggregation-wad.md)를 구성하는 방법에 대한 자세한 내용을 읽어보세요. 
+노드 및 클러스터 서비스 패브릭에서 수행 하는 상위 수준 작업에서 로그의 hello 작동 채널이 구성 됩니다. "진단" hello Azure 진단 에이전트가 클러스터에 배포 되 고는 기본적으로 클러스터에 대해 설정 된 경우 tooread hello Operational 채널에서 로그를 구성 합니다. Hello 구성에 대해 자세히 읽어보세요 [Azure 진단 에이전트가](service-fabric-diagnostics-event-aggregation-wad.md) 자세한 로그 또는 성능 카운터를 프로그램 클러스터 toopick의 toomodify hello 진단 구성 합니다. 
 
 ## <a name="operational-channel-logs"></a>작동 채널 로그 
 
-다음은 작동 채널에서 Service Fabric이 제공하는 로그의 포괄적인 목록입니다. 
+다음은 hello operational 채널의 서비스 패브릭에서 제공 하는 로그의 포괄적인 목록입니다. 
 
 | EventId | 이름 | 원본(태스크) | 수준 |
 | --- | --- | --- | --- |
@@ -56,6 +56,6 @@ ms.lasthandoff: 07/29/2017
 
 ## <a name="next-steps"></a>다음 단계
 
-* Service Fabric에서 전반적인 [플랫폼 수준의 이벤트 생성](service-fabric-diagnostics-event-generation-infra.md)에 대해 자세히 알아보기
-* 더 많은 로그를 수집하도록 [Azure 진단](service-fabric-diagnostics-event-aggregation-wad.md) 구성 수정
-* 작동 채널 로그를 표시하도록 [Application Insights 설정](service-fabric-diagnostics-event-analysis-appinsights.md)
+* 전체에 대 한 자세한 [hello 플랫폼 수준에서 이벤트 생성](service-fabric-diagnostics-event-generation-infra.md) 서비스 패브릭에서
+* 수정 프로그램 [Azure 진단](service-fabric-diagnostics-event-aggregation-wad.md) 구성 toocollect 더 기록 합니다.
+* [Application Insights 설정](service-fabric-diagnostics-event-analysis-appinsights.md) toosee Operational 채널에 기록

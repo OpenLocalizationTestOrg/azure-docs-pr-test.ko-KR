@@ -1,5 +1,5 @@
 ---
-title: "Azure Mobile Engagement Android SDK 통합"
+title: "Mobile Engagement Android SDK 통합 aaaAzure"
 description: "Azure Mobile Engagement용 Android SDK의 최신 업데이트 및 절차"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,26 +14,26 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: piyushjo
-ms.openlocfilehash: c179c39a43da0aa35e945acceacbf27fe8e328f3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 16b098198674c49567d720d0c01d984cb763ed8a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="release-notes"></a>릴리스 정보
 
 ## <a name="431-07172017"></a>4.3.1 (07/17/2017)
-* `EngagementApplication` 클래스에서도 `EngagementAgentUtils.isInDedicatedEngagementProcess`를 호출할 때 드물게 발생할 수 있는 충돌을 해결합니다.
+* 호출할 때 거의 발생할 수 있는 충돌을 해결 `EngagementAgentUtils.isInDedicatedEngagementProcess`, hello에서 사용 되는 `EngagementApplication` 클래스입니다.
 
 ## <a name="430-06272017"></a>4.3.0 (06/27/2017)
-* Android 8 지원(이전 버전의 SDK는 Android 8에서 작동하지 않음)
+* Android 8 지원 (이전 버전의 hello SDK는 Android 8에서 작동 하지 것입니다).
 * 지원 라이브러리에 대한 종속성이 더 이상 없습니다.
 * `EngagementFragmentActivity` 클래스를 제거합니다.
-* Android 8의 [백그라운드 실행 제한](https://developer.android.com/preview/features/background.html)으로 인해 사용자가 장치를 조작할 때까지 백그라운드의 로그가 지연될 수 있습니다. 장치가 절전 모드인 경우 이로 인해 푸시 캠페인 **배달됨** 및 **시스템 알림 표시됨** 통계가 지연될 수 있습니다(알림은 계속 표시되며, 문제없이 실시간으로 울리고 진동함).
-* [백그라운드 위치 제한](https://developer.android.com/preview/features/background-location-limits.html)으로 인해 Android 8에서는 백그라운드의 실시간 위치가 자주 업데이트되지 않습니다.
+* 기한 너무[배경 실행 제한](https://developer.android.com/preview/features/background.html) Android 8에서 백그라운드로 로그 지연 될 수 있습니다 hello 사용자 hello 장치 상호 작용할 때까지, 푸시 캠페인에 영향을 미치게 됩니다이 **Delivered** 및 **시스템 알림 표시** 통계 hello 장치 중지 된 경우 지연 되 고 (hello 알림이 표시 됩니다, 링 되며 문제 없이 실시간으로 진동).
+* 기한 너무[배경 위치 제한](https://developer.android.com/preview/features/background-location-limits.html), Android 8 hello 실시간으로 위치 백그라운드에서 자주 업데이트 되지 것입니다.
 
 ## <a name="424-03302017"></a>4.2.4 (03/30/2017)
-* Android 7의 앱 내 알림 텍스트 색을 이전 Android 버전과 동일하게 수정합니다.
+* 앱 내 알림이 Android 7 toobe에서 텍스트 색 hello 동일 이전 Android 버전으로 수정 합니다.
 
 ## <a name="423-08102016"></a>4.2.3 (08/10/2016)
 * 더 이상 WIFI 잠금은 없습니다.
@@ -45,10 +45,10 @@ ms.lasthandoff: 08/03/2017
 ## <a name="421-05102016"></a>4.2.1(2016/05/10)
 * 보안: 웹 보기 로컬 파일 액세스를 비활성화합니다.
 * 보안: 사용되지 않고 보호되지 않는 `PreferenceActivity` 클래스를 확장하는 `EngagementPreferenceActivity` 클래스를 제거합니다.
-* 보안: 도달률 활동에서 현재 `exported="false"`을(를) 사용하도록 문서화되어 있으며 이 플래그는 이전 SDK 버전에서 사용할 수 있습니다.
+* 보안: 활동은 이제 reach 문서화 toouse `exported="false"`, 이전 SDK 버전에도이 플래그를 사용할 수 있습니다.
 
 ## <a name="420-03112016"></a>4.2.0(2016/03/11)
-* SDK는 이제 MIT에 따라 사용이 허가됩니다.
+* hello SDK는 이제 MIT 따라 사용이 허가 됩니다.
 * SDK 초기화 시에 사용자 지정 장치 식별자를 지정할 수 있습니다.
 
 ## <a name="415-02012016"></a>4.1.5(2016/02/01)
@@ -73,19 +73,19 @@ ms.lasthandoff: 08/03/2017
 * 안정성 향상
 
 ## <a name="400-07062015"></a>4.0.0(07/06/2015)
-* 내부 프로토콜이 분석을 수행하고 더 안정적으로 푸시하도록 변경됩니다.
-* 네이티브 푸시(GCM/ADM)가 이제 앱 알림에도 사용되므로 모든 푸시 캠페인 유형에 대한 네이티브 푸시 자격 증명을 구성해야 합니다.
+* 내부 프로토콜 toomake 분석 워크 로드와 푸시 안정적 수를 변경합니다.
+* 네이티브 푸시 GCM/ADM ()는 이제에 사용 앱 알림에서 때문에 모든 유형의 푸시 캠페인에 대 한 hello 네이티브 푸시 자격 증명을 구성 해야 합니다.
 * 큰 그림 알림을 수정합니다. 푸시된 후 10초만 표시되었습니다.
-* 웹 보기에서 버그 수정: 링크를 클릭하면 기본 작업 URL도 실행되었습니다.
-* 로컬 저장소 관리와 관련된 드문 충돌을 수정합니다.
+* 웹 보기의 버그 수정: 링크를 클릭 하면 기본 작업 URL hello 마찬가지로 실행 되었습니다.
+* 드문 충돌 해결 toolocal 저장소 관리와 관련 된 합니다.
 * 동적 구성 문자열 관리를 수정합니다.
 * EULA를 업데이트합니다.
 
 ## <a name="300-02172015"></a>3.0.0(2015/02/17)
 * Azure Mobile Engagement의 최초 릴리스입니다.
 * appId 구성이 연결 문자열 구성으로 대체됩니다.
-* 임의의 XMPP 엔터티에서 임의의 XMPP 메시지를 보내고 받기 위한 API가 제거되었습니다.
-* 장치 간에 메시지를 보내고 받기 위한 API가 제거되었습니다.
+* API toosend를 제거 하 고 임의의 XMPP 엔터티에서 임의의 XMPP 메시지를 수신 합니다.
+* API toosend를 제거 하 고 장치 간에 메시지를 수신 합니다.
 * 보안이 개선되었습니다.
 * Google Play 및 SmartAd 추적을 제거했습니다.
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement 웹 SDK 개요 | Microsoft Docs"
-description: "Azure Mobile Engagement용 웹 SDK의 최신 업데이트 및 절차"
+title: "aaaAzure Mobile Engagement 웹 SDK 개요 | Microsoft Docs"
+description: "Azure Mobile Engagement에 대 한 최신 업데이트 및 hello 웹 SDK에 대 한 절차 hello"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,48 +14,48 @@ ms.devlang: js
 ms.topic: article
 ms.date: 10/18/2016
 ms.author: piyushjo
-ms.openlocfilehash: 770a83131a3e661771db50b22ce7de25b2d541cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9e60a232b5eb2c41c405041a88e09d7137563513
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-mobile-engagement-web-sdk"></a>Azure Mobile Engagement 웹 SDK
-이 문서에서는 웹앱에 Azure Mobile Engagement를 통합하는 방법에 대한 모든 세부 사항을 확인할 수 있습니다. 자신의 고유한 웹앱으로 시작하기 전에 연습해 보려면 [15분 자습서](mobile-engagement-web-app-get-started.md)를 참조하세요.
+모든 방법에 대 한 세부 정보를 hello에 대 한 여기에서 시작 웹 앱에서 Azure Mobile Engagement toointegrate 합니다. Toogive 원하는 경우 웹 앱을 시작 하기 전에 try 참조 하는 것이 [15 분 자습서](mobile-engagement-web-app-get-started.md)합니다.
 
 ## <a name="integration-procedures"></a>통합 절차
-1. [웹앱에서 Mobile Engagement를 통합하는 방법](mobile-engagement-web-integrate-engagement.md)에 대해 알아보세요.
-2. 태그 계획 구현의 경우 [웹앱에서 고급 Mobile Engagement 태깅 API를 사용하는 방법](mobile-engagement-web-use-engagement-api.md)을 알아보세요.
+1. 자세한 내용은 [어떻게 toointegrate Mobile Engagement 웹 앱의](mobile-engagement-web-integrate-engagement.md)합니다.
+2. 태그 계획 구현에 대 한 자세한 내용은 [어떻게 toouse hello 고급 Mobile Engagement 웹 응용 프로그램에 API를 태깅](mobile-engagement-web-use-engagement-api.md)합니다.
 
 ## <a name="release-notes"></a>릴리스 정보
 ### <a name="202-10182016"></a>2.0.2 (10/18/2016)
 * 개인 브라우징(Safari)의 작동 중단 문제가 해결되었습니다.
 * 쿠키를 사용하지 않는 브라우저의 작동 중단 문제가 해결되었습니다.
 
-모든 버전에 대한 내용은 [전체 릴리스 정보](mobile-engagement-web-release-notes.md)를 참조하세요.
+모든 버전에 대 한 hello를 참조 하십시오 [릴리스 정보 완료](mobile-engagement-web-release-notes.md)합니다.
 
 ## <a name="upgrade-procedures"></a>업그레이드 절차
-### <a name="upgrade-from-121-to-200"></a>1.2.1에서 2.0.0으로 업그레이드
-다음 섹션에서는 Capptain SAS가 제공하는 Capptain 서비스에서 Azure Mobile Engagement 앱으로 Mobile Engagement 웹 SDK 통합을 마이그레이션하는 방법을 설명합니다. 1.2.1 이전 버전에서 마이그레이션하는 경우 Capptain 웹 사이트를 참조하여 먼저 1.2.1으로 마이그레이션한 후 다음 절차를 적용하세요.
+### <a name="upgrade-from-121-too200"></a>1.2.1에서 업그레이드 too2.0.0
+hello 다음 단원에서는 어떻게 toomigrate Mobile Engagement 웹 SDK 통합 hello Capptain 서비스에서 제공한 Capptain SAS, tooan Azure Mobile Engagement 응용 프로그램. 마이그레이션하는 경우 이전 버전 1.2.1, 보다 먼저 hello Capptain 웹 사이트 toomigrate too1.2.1를 참조 하십시오 하 고 절차를 수행 하는 hello를 적용 합니다.
 
-이 버전의 Mobile Engagement 웹 SDK는 삼성 스마트 TV, OperaTV, webOS 또는 도달률 기능을 지원하지 않습니다.
+이 버전의 hello Mobile Engagement 웹 SDK 삼성 스마트 TV, Opera TV, webOS, 또는 hello Reach 기능을 지원 하지 않습니다.
 
 > [!IMPORTANT]
-> Capptain과 Azure Mobile Engagement는 같은 서비스가 아니며, 다음 절차에서는 클라이언트 앱을 마이그레이션하는 방법만 중점적으로 설명합니다. 앱의 Mobile Engagement 웹 SDK를 마이그레이션해도 데이터가 Capptain 서버에서 Mobile Engagement 서버로 마이그레이션되지는 않습니다.
+> Capptain 및 Azure Mobile Engagement는 동일한 서비스 hello 되지 하 고 절차를 수행 하는 hello toomigrate 클라이언트 응용 프로그램을 hello 하는 방법에 강조 표시 합니다. Hello 앱에 마이그레이션 hello Mobile Engagement 웹 SDK Capptain 서버 tooa Mobile Engagement 서버에서 데이터를 마이그레이션하지 않습니다.
 > 
 > 
 
 #### <a name="javascript-files"></a>JavaScript 파일
-파일 capptain-sdk.js를 파일 azure-engagement.js로 바꾸고 그에 맞게 스크립트 가져오기를 업데이트합니다.
+Hello 파일 capptain sdk.js hello 파일 azure-engagement.js, 및 스크립트를 적절 하 게 가져오는 다음 업데이트 대체 합니다.
 
 #### <a name="remove-capptain-reach"></a>Capptain Reach 제거
-이 버전의 Mobile Engagement 웹 SDK는 Reach 기능을 지원하지 않습니다. Capptain Reach를 응용 프로그램에 통합한 경우는 제거해야 합니다.
+이 버전의 hello Mobile Engagement 웹 SDK hello Reach 기능을 지원 하지 않습니다. Tooremove Capptain 도달 범위를 응용 프로그램에 통합 한 경우 필요한 것입니다.
 
-페이지에서 Reach CSS 가져오기를 제거하고 관련 .css 파일(기본: capptain-reach.css)을 삭제합니다.
+Hello 도달 CSS 가져오기 페이지에서 제거한 hello 관련된.css 파일 (capptain-reach.css, 기본적으로)를 삭제 합니다.
 
-다음 Reach 리소스 삭제: 닫기 이미지(기본: capptain-close.png) 및 브랜드 아이콘(기본: capptain-notification-icon).
+Reach 리소스 다음 hello 삭제: hello 닫기 이미지 (capptain-close.png, 기본적으로)와 hello 브랜드 아이콘 (capptain-알림-아이콘을 기본적으로).
 
-앱 내 알림에 대한 Reach UI를 제거합니다. 기본 레이아웃은 다음과 같습니다.
+앱에서 알림에 대 한 UI 도달 hello를 제거 합니다. hello 기본 레이아웃은 다음과 같습니다.
 
     <!-- capptain notification -->
     <div id="capptain_notification_area" class="capptain_category_default">
@@ -72,7 +72,7 @@ ms.lasthandoff: 07/11/2017
       </div>
     </div>
 
-텍스트, 웹 알림 및 설문 조사에 대한 Reach UI를 제거합니다. 기본 레이아웃은 다음과 같습니다.
+텍스트 및 웹 공지 및 설문 조사의 hello 도달 UI를 제거 합니다. hello 기본 레이아웃은 다음과 같습니다.
 
     <div id="capptain_overlay" class="capptain_category_default">
       <button id="capptain_overlay_close">x</button>
@@ -85,7 +85,7 @@ ms.lasthandoff: 07/11/2017
       </div>
     </div>
 
-구성에 `reach` 개체가 있으면 제거합니다. 다음과 같이 표시됩니다.
+Hello 제거 `reach` 있는 경우, 사용자 구성에서 개체입니다. 다음과 같이 표시됩니다.
 
     window.capptain = {
       [...]
@@ -97,16 +97,16 @@ ms.lasthandoff: 07/11/2017
 범주 등의 다른 Reach 사용자 지정을 제거합니다.
 
 #### <a name="remove-deprecated-apis"></a>사용이 중단된 API 제거
-Capptain의 일부 API는 Mobile Engagement 웹 SDK에서 사용이 중단되었습니다.
+Capptain에서 일부 Api는 Mobile Engagement 웹 SDK hello에서는 사용 되지 않습니다.
 
-다음 API 호출을 제거합니다. `agent.connect`, `agent.disconnect`, `agent.pause` 및 `agent.sendMessageToDevice`
+다음 Api 호출 toohello 모든 제거: `agent.connect`, `agent.disconnect`, `agent.pause`, 및 `agent.sendMessageToDevice`합니다.
 
-Capptain 구성에서 다음 콜백을 모두 제거합니다. `onConnected`, `onDisconnected`, `onDeviceMessageReceived` 및 `onPushMessageReceived`
+Hello 콜백을 Capptain 구성에서 다음 중 하나를 제거: `onConnected`, `onDisconnected`, `onDeviceMessageReceived`, 및 `onPushMessageReceived`합니다.
 
 #### <a name="configuration"></a>구성
-Mobile Engagement에서는 연결 문자열을 사용하여 응용 프로그램 식별자와 같은 SDK 식별자를 구성합니다.
+Mobile Engagement는 연결 문자열 tooconfigure SDK 식별자, 예를 들어 hello 응용 프로그램 식별자를 사용합니다.
 
-응용 프로그램 ID를 연결 문자열로 바꿉니다. SDK 구성에 대한 전역 개체가 `capptain`에서 `azureEngagement`로 변경됩니다.
+연결 문자열 hello 응용 프로그램 ID를 바꿉니다. Hello SDK 구성에서 변경에 대 한 해당 hello 전역 개체 참고 `capptain` 너무`azureEngagement`합니다.
 
 마이그레이션 전:
 
@@ -122,12 +122,12 @@ Mobile Engagement에서는 연결 문자열을 사용하여 응용 프로그램 
       [...]
     };
 
-응용 프로그램의 연결 문자열은 Azure 포털에 표시됩니다.
+응용 프로그램에 대 한 연결 문자열 hello hello Azure 포털에에서 표시 됩니다.
 
 #### <a name="javascript-apis"></a>JavaScript API
-전역 JavaScript 개체 `window.capptain`은 이름이 `window.azureEngagement`로 변경되었지만 API 호출에 `window.engagement` 별칭을 사용할 수 있습니다. SDK 구성 정의에는 별칭을 사용할 수 없습니다.
+hello 전역 JavaScript 개체 `window.capptain` 이름이 변경 되었습니다 `window.azureEngagement`, hello를 사용할 수 있지만 `window.engagement` API 호출에 대 한 별칭입니다. 이 별칭 toodefine hello SDK 구성을 사용할 수 없습니다.
 
 예: `capptain.deviceId`가 `engagement.deviceId`로 변경, `capptain.agent.startActivity`가 `engagement.agent.startActivity`로 변경 등...
 
-이전 버전의 Azure Mobile Engagement 웹 SDK를 응용 프로그램에 이미 통합한 경우 [업그레이드 절차](mobile-engagement-web-upgrade-procedure.md)에 대해 알아보세요.
+응용 프로그램에 이미 이전 버전의 hello Azure Mobile Engagement 웹 SDK를 통합 하는 경우에 대 한 읽으십시오 [업그레이드 절차](mobile-engagement-web-upgrade-procedure.md)합니다.
 

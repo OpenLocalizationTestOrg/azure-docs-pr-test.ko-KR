@@ -1,5 +1,7 @@
 > [!NOTE]
 > **사용자 지정 정책은 공개 미리 보기입니다.**
 
-> [사용자 지정 정책](..\articles\active-directory-b2c\active-directory-b2c-overview-custom.md#custom-policies)은 주로 복잡한 시나리오를 해결해야 하는 ID 전문가를 위해 설계되었습니다. 대부분의 시나리오에서 Azure Active Directory B2C [기본 제공 정책](..\articles\active-directory-b2c\active-directory-b2c-overview-custom.md)을 사용하는 것이 좋습니다. 기본 제공 정책은 구성에 대해 설정하기가 더 쉽습니다. 동일한 Azure Active Directory B2C 테넌트에서 기본 제공 및 사용자 지정 정책을 사용할 수 있습니다. 자세한 내용은 [사용자 지정 정책 개요](..\articles\active-directory-b2c\active-directory-b2c-overview-custom.md)를 참조하세요.
+HO Sipi tootrigger 테스트 하 여 편집 합니다.
+
+> [사용자 지정 정책을](..\articles\active-directory-b2c\active-directory-b2c-overview-custom.md#custom-policies) 주로 tooaddress 복잡 한 시나리오를 해야 하는 identity 전문가 위한 설계 합니다. 대부분의 시나리오에서 Azure Active Directory B2C [기본 제공 정책](..\articles\active-directory-b2c\active-directory-b2c-overview-custom.md)을 사용하는 것이 좋습니다. 기본 제공 정책 구성에 대해 보다 쉽게 tooset 됩니다. 사용자 지정 정책 hello 동일한 Azure Active Directory B2C 테 넌 트 및 기본 제공을 사용할 수 있습니다. toolearn hello을 더 참조 [사용자 지정 정책의 개요](..\articles\active-directory-b2c\active-directory-b2c-overview-custom.md)합니다.
 

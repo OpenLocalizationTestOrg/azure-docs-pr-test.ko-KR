@@ -1,6 +1,6 @@
 ---
-title: "Java에서 첫 번째 행위자 기반 Azure 마이크로 서비스 만들기 | Microsoft Docs"
-description: "이 자습서에서는 서비스 패브릭 Reliable Actors를 사용하여 간단한 행위자 기반 서비스를 생성, 디버깅 및 배포하는 과정을 단계별로 안내합니다."
+title: "aaaCreate 프로그램 첫 번째 행위자 기반 Azure 마이크로 서비스 java에서 | Microsoft Docs"
+description: "이 자습서의 만들기, 디버깅 및 서비스 패브릭 Reliable Actors를 사용 하 여 간단한 행위자 기반 서비스를 배포 hello 단계를 안내 합니다."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/04/2017
 ms.author: vturecek
-ms.openlocfilehash: 288f1ed1016f50031065e66444d2562427194dc7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 24718a8d7034360c53597f139169580f1a6ce732
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-started-with-reliable-actors"></a>Reliable Actors 시작
 > [!div class="op_single_selector"]
@@ -27,37 +27,37 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-이 문서는 Azure Service Fabric Reliable Actors의 기본 개념을 설명하고 Java에서 간단한 Reliable Actor 응용 프로그램을 생성 및 배포하는 과정을 안내합니다.
+이 문서는 Azure 서비스 패브릭 Reliable Actors의 hello 기본 사항에 설명 하 고 만들기 및 java에서 간단한 Reliable Actor 응용 프로그램을 배포 하는 과정을 보여 줍니다.
 
 ## <a name="installation-and-setup"></a>설치 및 설정
-시작하기 전에 컴퓨터에 Service Fabric 개발 환경이 설정되어 있는지 확인합니다.
-설정해야 하는 경우 [Mac에서 시작](service-fabric-get-started-mac.md) 또는 [Linux에서 시작](service-fabric-get-started-linux.md)으로 이동합니다.
+시작 하기 전에 hello 서비스 패브릭 개발 환경 컴퓨터에 설정 되어 있는지 확인 합니다.
+Tooset 해야 할 경우, 상태로 업데이트 너무 않을[Mac에서 시작](service-fabric-get-started-mac.md) 또는 [linux 시작](service-fabric-get-started-linux.md)합니다.
 
 ## <a name="basic-concepts"></a>기본 개념
-Reliable Actors를 시작하려면 몇 가지 기본 개념만 이해하면 됩니다.
+Reliable Actors만 시작 tooget toounderstand 몇 가지 기본 개념을 필요 합니다.
 
-* **행위자 서비스**. Reliable Actors는 서비스 패브릭 인프라에 배포될 수 있는 Reliable Services에 패키징됩니다. 행위자 인스턴스는 명명된 서비스 인스턴스에서 활성화됩니다.
-* **행위자 등록**. Reliable Services와 마찬가지로 Reliable Actor 서비스를 Service Fabric 런타임에 등록해야 합니다. 또한 행위자 형식을 행위자 런타임에 등록해야 합니다.
-* **행위자 인터페이스**. 행위자 인터페이스는 행위자에 대한 강력한 형식의 공용 인터페이스를 정의하는 데 사용됩니다. Reliable Actor 모델 용어에서 행위자 인터페이스는 행위자가 이해하고 처리할 수 있는 메시지의 유형을 정의합니다. 행위자 인터페이스는 다른 행위자 또는 클라이언트 응용 프로그램에서 메시지를 행위자에게 "보내는"(비동기) 데 사용됩니다. Reliable Actors는 여러 인터페이스를 구현할 수 있습니다.
-* **ActorProxy 클래스**. ActorProxy 클래스는 클라이언트 응용 프로그램에서 행위자 인터페이스를 통해 노출되는 메서드를 호출하는 데 사용됩니다. ActorProxy 클래스는 다음 두 가지 중요한 기능을 제공합니다.
+* **행위자 서비스**. Reliable Actors hello 서비스 패브릭 인프라에 배포할 수 있는 신뢰할 수 있는 서비스에 패키지 됩니다. 행위자 인스턴스는 명명된 서비스 인스턴스에서 활성화됩니다.
+* **행위자 등록**. 신뢰할 수 있는 서비스와 함께 하 Reliable Actor 서비스에 등록 된 hello 서비스 패브릭 런타임을 toobe가 필요 합니다. 또한 hello 행위자 형식에 등록 된 hello 행위자 런타임 toobe가 필요 합니다.
+* **행위자 인터페이스**. hello 행위자 인터페이스는 사용 되는 toodefine 행위자의 강력한 형식의 공용 인터페이스입니다. Reliable Actor 모델 용어 hello hello 행위자 인터페이스 hello 행위자 hello 메시지 유형을 이해 하 고 처리할 수를 정의 합니다. 클라이언트 응용 프로그램 너무 "send" (비동기) 메시지 toohello 행위자 및 hello 행위자 인터페이스 다른 행위자가 사용 됩니다. Reliable Actors는 여러 인터페이스를 구현할 수 있습니다.
+* **ActorProxy 클래스**. hello ActorProxy 클래스 클라이언트 응용 프로그램 tooinvoke에서 사용 하는 hello hello 행위자 인터페이스를 통해 노출 되는 메서드. hello ActorProxy 클래스는 두 가지 중요 한 기능을 제공합니다.
   
-  * 이름 확인: 클러스터에서 행위자를 찾을 수 있습니다(호스트되는 클러스터의 노드 찾기).
-  * 오류 처리: 메서드 호출을 다시 시도하고 행위자를 클러스터의 다른 노드로 재배치해야 하는 경우 등의 오류가 발생한 후 행위자의 위치를 다시 파악할 수 있습니다.
+  * 이름 확인: hello 클러스터 (찾기 그 데이터베이스가 호스팅될 hello 클러스터의 노드 hello)에서 수 toolocate hello 작업자는 합니다.
+  * 오류 처리: hello 행위자 toobe를 필요로 하는 오류 hello 클러스터의 노드 tooanother 재배치 하는 예를 들어,이 메서드 호출을 다시 시도 하 고 다시 후 hello 행위자 위치를 확인할 수 있습니다.
 
-행위자 인터페이스와 관련된 다음 규칙을 확인하면 도움이 됩니다.
+hello tooactor 인터페이스와 관련 된 규칙 설명이 사항이 있습니다.
 
 * 행위자 인터페이스 메서드는 오버로드할 수 없습니다.
 * 행위자 인터페이스 메서드에는 out, ref 또는 선택적 매개 변수가 없어야 합니다.
 * 제네릭 인터페이스는 지원되지 않습니다.
 
 ## <a name="create-an-actor-service"></a>행위자 서비스 만들기
-새 Service Fabric 응용 프로그램을 만들어 시작합니다. Linux용 Service Fabric SDK는 Service Fabric 응용 프로그램용 스캐폴딩에 상태 비저장 서비스를 제공하기 위해 Yeoman 생성기를 포함합니다. 다음 Yeoman 명령을 실행하여 시작합니다.
+새 Service Fabric 응용 프로그램을 만들어 시작합니다. Linux 용 서비스 패브릭 SDK hello 포함 한 Yeoman 생성기 tooprovide hello 스 캐 폴딩 상태 비저장 서비스와 서비스 패브릭 응용 프로그램에 대 한 합니다. Hello를 실행 하 여 시작 Yeoman 다음 명령:
 
 ```bash
 $ yo azuresfjava
 ```
 
-지침에 따라 **신뢰할 수 있는 행위자 서비스**를 만듭니다. 이 자습서에서는 응용 프로그램을 "HelloWorldActorApplication", 행위자를 "HelloWorldActor"라고 이름을 지정합니다. 다음 스캐폴딩이 만들어집니다.
+Hello 지침 toocreate에 따라 한 **Reliable Actor 서비스**합니다. 이 자습서에서는 이름을 hello 응용 프로그램 "HelloWorldActorApplication" 및 hello 행위자 "HelloWorldActor." 스 캐 폴딩 다음 hello는 만듭니다.
 
 ```bash
 HelloWorldActorApplication/
@@ -100,10 +100,10 @@ HelloWorldActorApplication/
 ```
 
 ## <a name="reliable-actors-basic-building-blocks"></a>신뢰할 수 있는 행위자 기본 구성 요소
-앞에서 설명한 기본 개념은 신뢰할 수 있는 행위자 서비스의 기본 구성 요소로 변환합니다.
+앞에서 설명한 hello 기본 개념 hello Reliable Actor 서비스의 기본 빌딩 블록으로 변환 합니다.
 
 ### <a name="actor-interface"></a>행위자 인터페이스
-여기에는 행위자에 대한 인터페이스 정의가 포함됩니다. 이 인터페이스는 행위자 구현과 행위자를 호출하는 클라이언트에 의해 공유되는 행위자 계약을 정의하므로 일반적으로 행위자 구현과는 별개이고 다른 여러 서비스 또는 클라이언트 응용 프로그램이 공유할 수 있는 장소에서 정의하는 것이 좋습니다.
+이 hello 작업자에 대해 hello 인터페이스 정의 포함 합니다. Hello 행위자 구현과 hello 행위자를 호출 하 여 일반적으로 의미 toodefine hello 행위자 구현과에서 분리 하 고 다른 여러에서 공유할 수 있는 위치에 있으므로 hello 클라이언트가에서 공유 하는 hello 행위자 계약을 정의 하는이 인터페이스 서비스 또는 클라이언트 응용 프로그램입니다.
 
 `HelloWorldActorInterface/src/reliableactor/HelloWorldActor.java`:
 
@@ -117,7 +117,7 @@ public interface HelloWorldActor extends Actor {
 ```
 
 ### <a name="actor-service"></a>행위자 서비스
-여기에는 행위자 구현 및 행위자 등록 코드가 포함됩니다. 행위자 클래스는 행위자 인터페이스를 구현합니다. 사용자 행위자가 작업을 수행하는 위치입니다.
+여기에는 행위자 구현 및 행위자 등록 코드가 포함됩니다. hello 행위자 클래스 hello 행위자 인터페이스를 구현합니다. 사용자 행위자가 작업을 수행하는 위치입니다.
 
 `HelloWorldActor/src/reliableactor/HelloWorldActorImpl`:
 
@@ -148,7 +148,7 @@ public class HelloWorldActorImpl extends ReliableActor implements HelloWorldActo
 ```
 
 ### <a name="actor-registration"></a>행위자 등록
-행위자 서비스는 서비스 패브릭 런타임에서 서비스 유형에 등록되어야 합니다. 행위자 서비스에서 행위자 인스턴스를 실행하려면 행위자 서비스에 행위자 유형이 등록되어야 합니다. `ActorRuntime` 등록 메서드가 행위자에 대한 이 작업을 수행합니다.
+hello 행위자 서비스는 hello 서비스 패브릭 런타임에서 서비스 유형으로 등록 되어야 합니다. 주문 hello 행위자 서비스 toorun 행위자 인스턴스, 행위자 형식 hello 행위자 서비스에도 등록 해야 합니다. hello `ActorRuntime` 등록 메서드는 행위자를 위한이 작업을 수행 합니다.
 
 `HelloWorldActor/src/reliableactor/HelloWorldActorHost`:
 
@@ -171,14 +171,14 @@ public class HelloWorldActorHost {
 ```
 
 ### <a name="test-client"></a>테스트 클라이언트
-이는 행위자 서비스를 테스트하기 위해 Service Fabric 응용 프로그램과 별개로 실행할 수 있는 간단한 테스트 클라이언트 응용 프로그램입니다. 이는 행위자 인스턴스를 활성화하고 통신하기 위해 ActorProxy를 사용할 수 있는 위치의 예입니다. 사용자의 서비스와 함께 배포되지 않습니다.
+간단한 테스트 클라이언트 응용 프로그램에서 실행할 수 있습니다 별도로 hello 서비스 패브릭 응용 프로그램 tootest 행위자 서비스입니다. 이 예제는 hello ActorProxy 사용된 tooactivate 수 및 행위자 인스턴스와 통신할 수 있는 합니다. 사용자의 서비스와 함께 배포되지 않습니다.
 
-### <a name="the-application"></a>응용 프로그램
-마지막으로, 응용 프로그램은 배포를 위해 나중에 추가할 수 있는 행위자 서비스와 기타 모든 서비스를 패키징합니다. 여기에는 *ApplicationManifest.xml*와 행위자 서비스 패키지를 위한 자리 표시자가 포함됩니다.
+### <a name="hello-application"></a>hello 응용 프로그램
+마지막으로, 응용 프로그램 패키지 hello hello 행위자 서비스 및 기타 서비스 배포에 대 한 향후 hello에 추가할 수도 있습니다. Hello 포함 되어 *ApplicationManifest.xml* 및 hello 행위자 서비스 패키지에 대 한 자리 표시자입니다.
 
-## <a name="run-the-application"></a>응용 프로그램 실행
+## <a name="run-hello-application"></a>Hello 응용 프로그램 실행
 
-Yeoman 스캐폴딩은 응용 프로그램을 빌드하는 Gradle 스크립트와 응용 프로그램을 배포하고 제거하는 Bash 스크립트를 포함합니다. 응용 프로그램을 배포하려면 먼저 다음과 같은 Gradle을 통해 응용 프로그램을 빌드합니다.
+hello Yeoman 스 캐 폴딩 gradle 스크립트 toobuild hello 응용 프로그램 및 bash 스크립트 toodeploy 및 응용 프로그램 제거를 포함 합니다. toodeploy hello 응용 프로그램, gradle 하는 첫 번째 빌드 hello 적용:
 
 ```bash
 $ gradle
@@ -188,8 +188,8 @@ $ gradle
 
 ### <a name="deploy-service-fabric-cli"></a>Service Fabric CLI 배포
 
-install.sh 스크립트는 응용 프로그램 패키지를 배포하는 데 필요한 Service Fabric CLI(sfctl) 명령을 포함합니다.
-install.sh 스크립트를 실행하여 응용 프로그램을 배포합니다.
+hello install.sh 스크립트 hello 필요한 서비스 패브릭 CLI (sfctl) 명령을 toodeploy hello 응용 프로그램 패키지를 포함합니다.
+Hello install.sh 스크립트 toodeploy hello 응용 프로그램을 실행 합니다.
 
 ```bash
 $ ./install.sh

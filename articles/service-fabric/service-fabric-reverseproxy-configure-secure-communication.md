@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 역방향 프록시 보안 통신 | Microsoft Docs"
-description: "안전한 종단 간 통신을 사용하려면 역방향 프록시를 구성합니다."
+title: "서비스 패브릭 aaaAzure 역방향 프록시 보안 통신 | Microsoft Docs"
+description: "역방향 프록시 tooenable 보안 종단 간 통신을 구성 합니다."
 services: service-fabric
 documentationcenter: .net
 author: kavyako
@@ -13,27 +13,27 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 08/10/2017
 ms.author: kavyako
-ms.openlocfilehash: 568f9638c59282bcd7d3fae058a1588a889c22dc
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e1248dffe2c324373ad0d09d3f5f094db74480d7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-to-a-secure-service-with-the-reverse-proxy"></a>역방향 프록시를 사용하여 보안 서비스 연결
+# <a name="connect-tooa-secure-service-with-hello-reverse-proxy"></a>보안 서비스 tooa hello 역방향 프록시를 사용 하 여 연결
 
-이 문서에서는 역방향 프록시와 서비스 간에 보안 연결을 설정하여 종단 간 보안 채널을 사용하도록 설정하는 방법에 대해 설명합니다.
+이 문서에서는 tooestablish hello 역방향 프록시 및 서비스를 최종 tooend 보안 채널을 사용할 수 있게 간의 연결을 보호 하는 방법을 설명 합니다.
 
-보안 서비스에 연결하는 것은 역방향 프록시가 HTTPS에서 수신하도록 구성된 경우에만 지원됩니다. 이 문서의 나머지 부분에서는 이 구성을 전제로 합니다.
-Service Fabric에서 역방향 프록시를 구성하려면 [Azure Service Fabric의 역방향 프록시](https://docs.microsoft.com/azure/service-fabric/service-fabric-reverseproxy)를 참조하세요.
+Toosecure 서비스를 연결 하면 역방향 프록시 구성된 toolisten HTTPS에는 하는 경우에 지원 됩니다. Hello 문서의 나머지 부분에서는 hello 좋다고 가정 합니다.
+너무 참조[역방향 프록시 Azure 서비스 패브릭에서](https://docs.microsoft.com/azure/service-fabric/service-fabric-reverseproxy) tooconfigure hello 서비스 패브릭에서 역방향 프록시입니다.
 
-## <a name="secure-connection-establishment-between-the-reverse-proxy-and-services"></a>역방향 프록시와 서비스 간의 안전한 연결 설정 
+## <a name="secure-connection-establishment-between-hello-reverse-proxy-and-services"></a>역방향 프록시 hello와 서비스 간의 보안 연결 설정 
 
-### <a name="reverse-proxy-authenticating-to-services"></a>서비스를 인증하는 역방향 프록시:
-역방향 프록시는 해당 인증서를 사용하여 자체적으로 서비스를 식별하며 **클러스터** [리소스 종류 섹션](../azure-resource-manager/resource-group-authoring-templates.md)의 ***reverseProxyCertificate*** 속성에서 지정됩니다. 서비스는 역방향 프록시에서 제공한 인증서를 확인하기 위한 논리를 구현할 수 있습니다. 이 서비스는 허용된 클라이언트 인증서 세부 정보를 구성 패키지의 구성 설정으로 지정할 수 있습니다. 이는 런타임 시 읽을 수 있으며 역방향 프록시에서 제공한 인증서의 유효성을 검사하는 데 사용됩니다. 구성 설정을 추가하려면 [응용 프로그램 매개 변수 관리](service-fabric-manage-multiple-environment-app-configuration.md)를 참조하세요. 
+### <a name="reverse-proxy-authenticating-tooservices"></a>역방향 프록시 tooservices 인증:
+hello 역방향 프록시 구분 정보를 지정 된 해당 인증서를 사용 하 여 tooservices ***reverseProxyCertificate*** hello에 대 한 속성 **클러스터** [리소스 유형 섹션](../azure-resource-manager/resource-group-authoring-templates.md). 서비스는 hello 역방향 프록시에서 제공 하는 hello 논리 tooverify hello 인증서를 구현할 수 있습니다. hello 서비스는 hello 구성 패키지의 구성 설정으로 허용 하는 hello 클라이언트 인증서 세부 정보를 지정할 수 있습니다. 이 런타임에 읽을 수 및 hello 역방향 프록시를 제공한 toovalidate hello 인증서를 사용 합니다. 너무 참조[매개 변수를 응용 프로그램 관리](service-fabric-manage-multiple-environment-app-configuration.md) tooadd hello 구성 설정입니다. 
 
-### <a name="reverse-proxy-verifying-the-services-identity-via-the-certificate-presented-by-the-service"></a>서비스에서 제공한 인증서를 통해 서비스의 ID를 확인하는 역방향 프록시:
-역방향 프록시는 서비스에서 제공하는 인증서의 서버 인증서 유효성 검사를 수행하기 위해 None, ServiceCommonNameAndIssuer 및 ServiceCertificateThumbprints 옵션 중 하나를 지원합니다.
-이러한 세 가지 옵션 중 하나를 선택하려면 [fabricSettings](service-fabric-cluster-fabric-settings.md) 아래에 있는 ApplicationGateway/Http 요소의 parameters 섹션에서 **ApplicationCertificateValidationPolicy**를 지정합니다.
+### <a name="reverse-proxy-verifying-hello-services-identity-via-hello-certificate-presented-by-hello-service"></a>역방향 프록시 hello 서비스에서 제공 하는 hello 인증서를 통해 hello 서비스 id를 확인 하는 중:
+hello 다음 옵션 중 하나 tooperform 서버 인증서 유효성 검사의 hello 서비스에서 제공 하는 hello 인증서를 역방향 프록시 지원: None, ServiceCommonNameAndIssuer, 및 ServiceCertificateThumbprints 합니다.
+이러한 세 가지 옵션 중 하나는 tooselect 지정 hello **ApplicationCertificateValidationPolicy** 에서 ApplicationGateway/Http 요소의 hello 매개 변수 섹션에서 [fabricSettings](service-fabric-cluster-fabric-settings.md)합니다.
 
 ```json
 {
@@ -53,14 +53,14 @@ Service Fabric에서 역방향 프록시를 구성하려면 [Azure Service Fabri
 }
 ```
 
-이러한 각 옵션의 추가 구성에 대한 자세한 내용은 다음 섹션을 참조하세요.
+이러한 각 옵션에 대 한 추가 구성에 대 한 내용은 toohello 다음 섹션을 참조 하십시오.
 
 ### <a name="service-certificate-validation-options"></a>서비스 인증서 유효성 검사 옵션 
 
-- **None**: 역방향 프록시가 프록시 설정된 서비스 인증서의 확인을 건너뛰고 보안 연결을 설정합니다. 기본 동작입니다.
-ApplicationGateway/Http 요소의 parameters 섹션에서 값이 **None**인 **ApplicationCertificateValidationPolicy**를 지정합니다.
+- **None**: 역방향 프록시 hello 프록시 서비스 인증서의 확인을 건너뛰고 hello 보안 연결을 설정 합니다. 이 hello 기본 동작입니다.
+Hello 지정 **ApplicationCertificateValidationPolicy** 값을 가진 **None** ApplicationGateway/Http 요소의 hello 매개 변수 섹션에서.
 
-- **ServiceCommonNameAndIssuer**: 역방향 프록시가 인증서의 일반 이름과 직접 발급자의 지문을 기반으로 서비스에서 제공하는 인증서를 확인합니다. ApplicationGateway/Http 요소의 parameters 섹션에서 값이 **ServiceCommonNameAndIssuer**인 **ApplicationCertificateValidationPolicy**를 지정합니다.
+- **ServiceCommonNameAndIssuer**: 역방향 프록시 hello 인증서 hello 서비스 인증서의 일반 이름 및 즉시 발급자 지문에 따라 제시 확인: hello 지정 **ApplicationCertificateValidationPolicy**  값을 가진 **ServiceCommonNameAndIssuer** ApplicationGateway/Http 요소의 hello 매개 변수 섹션에서.
 
 ```json
 {
@@ -80,9 +80,9 @@ ApplicationGateway/Http 요소의 parameters 섹션에서 값이 **None**인 **A
 }
 ```
 
-서비스 일반 이름 및 발급자 지문 목록을 지정하려면 아래 표시된 것처럼 fabricSettings 아래에 **ApplicationGateway/Http/ServiceCommonNameAndIssuer** 요소를 추가합니다. 여러 인증서 일반 이름 및 발급자 지문 쌍을 매개 변수 배열 요소에 추가할 수 있습니다. 
+일반 서비스 이름 및 발급자 지문 toospecify hello 목록을 추가 **ApplicationGateway/Http/ServiceCommonNameAndIssuer** fabricSettings, 아래와 같이 요소입니다. Hello 매개 변수 배열 요소에 여러 인증서 일반 이름 및 발급자 지문 쌍을 추가할 수 있습니다. 
 
-끝점 역방향 프록시가 연결되어 일반 이름과 발급자 지문이 여기에 지정된 값과 일치하는 인증서가 제시되면 SSL 채널이 설정됩니다. 인증서 세부 정보가 일치하지 않으면 502(잘못된 게이트웨이) 상태 코드와 함께 역방향 프록시가 클라이언트 요청에 대해 실패합니다. HTTP 상태 줄에 "잘못된 SSL 인증서"라는 구문이 포함됩니다. 
+Toopresents 일반적인 인 인증서를 연결 하는 hello 끝점에 대 한 역방향 프록시 이름 및 발급자 지문 중 하 나와 일치 여기에서 지정 된 hello 값, SSL 채널이 설정 합니다. 실패 toomatch hello 인증서 세부 정보에 역방향 프록시 502 (잘못 된 게이트웨이) 상태 코드와 함께 hello 클라이언트의 요청에 실패 합니다. HTTP 상태 줄 hello hello 구 "잘못 된 SSL 인증서"도 포함 됩니다. 
 
 ```json
 {
@@ -107,7 +107,7 @@ ApplicationGateway/Http 요소의 parameters 섹션에서 값이 **None**인 **A
 ```
 
 
-- **ServiceCertificateThumbprints**: 역방향 프록시가 지문을 기반으로 프록시 설정된 서비스 인증서를 확인합니다. 서비스가 자체 서명된 인증서로 구성될 때 이 경로를 선택할 수 있습니다. ApplicationGateway/Http 요소의 parameters 섹션에서 값이 **ServiceCertificateThumbprints**인 **ApplicationCertificateValidationPolicy**를 지정합니다.
+- **ServiceCertificateThumbprints**: 역방향 프록시는 해당 지문에 기반한 hello 프록시 서비스 인증서를 확인 합니다. 선택할 수 있습니다 toogo이이 경로 hello 서비스는 자체 서명 된 인증서로 구성 된 경우: hello 지정 **ApplicationCertificateValidationPolicy** 값을 가진 **ServiceCertificateThumbprints**ApplicationGateway/Http 요소의 hello 매개 변수 섹션에서.
 
 ```json
 {
@@ -127,7 +127,7 @@ ApplicationGateway/Http 요소의 parameters 섹션에서 값이 **None**인 **A
 }
 ```
 
-또한 ApplicationGateway/Http 요소의 parameters 섹션에서 **ServiceCertificateThumbprints** 항목이 있는 지문을 지정합니다. 값 필드에서 여러 개의 지문을 쉼표로 구분된 목록으로 지정할 수 있습니다(아래 그림 참조).
+와 hello 지문을 지정는 **ServiceCertificateThumbprints** ApplicationGateway/Http 요소의 매개 변수 섹션 아래 항목을 입력 합니다. 아래와 같이 여러 지문이 hello 값 필드에 쉼표로 구분 된 목록으로 지정할 수 있습니다.
 
 ```json
 {
@@ -148,13 +148,13 @@ ApplicationGateway/Http 요소의 parameters 섹션에서 값이 **None**인 **A
 }
 ```
 
-이 구성 항목 목록에 서버 인증서의 지문이 있으면 역방향 프록시가 SSL 연결에 성공합니다. 그렇지 않으면 연결을 종료하고 502(잘못된 게이트웨이)와 함께 클라이언트의 요청에 실패합니다. HTTP 상태 줄에 "잘못된 SSL 인증서"라는 구문이 포함됩니다.
+Hello 서버 인증서의 지문 안녕하세요가 구성 항목에 표시 되 면 역방향 프록시 hello SSL 연결에 성공 합니다. 그렇지 않으면 hello 연결을 종료 하 고 실패 hello 502 (잘못 된 게이트웨이)와 클라이언트의 요청 합니다. HTTP 상태 줄 hello hello 구 "잘못 된 SSL 인증서"도 포함 됩니다.
 
 ## <a name="endpoint-selection-logic-when-services-expose-secure-as-well-as-unsecured-endpoints"></a>서비스가 보안 끝점과 비보안 끝점을 노출할 때 끝점 선택 논리
 Service Fabric은 서비스에 대한 다중 끝점 구성을 지원합니다. 
           [서비스 매니페스트에서 리소스 지정](service-fabric-service-manifest-resources.md)을 참조하세요.
 
-역방향 프록시는 **ListenerName** 쿼리 매개 변수를 기반으로 요청을 전달할 끝점 중 하나를 선택합니다. 이 값이 지정되지 않은 경우 끝점 목록에서 아무 끝점이나 선택할 수 있습니다. 이제 HTTP 또는 HTTPS 끝점을 선택할 수 있습니다. 역방향 프록시가 “보안 전용 모드”로 작동하게 하려는 시나리오/요구 사항이 있을 수 있습니다. 즉, 보안 역방향 프록시가 비보안 끝점으로 요청을 전달하지 않도록 하고 싶습니다. 이렇게 하려면 ApplicationGateway/Http 요소의 parameters 섹션에서 값이 **true**인 **SecureOnlyMode** 구성 항목을 지정합니다.   
+역방향 프록시 hello에 따라 hello 끝점 tooforward hello 요청 중 하나를 선택 합니다. **ListenerName** 쿼리 매개 변수입니다. 지정 하지 않으면 모든 끝점 hello 끝점 목록에서 선택할 수 있습니다. 이제 HTTP 또는 HTTPS 끝점을 선택할 수 있습니다. 있을 수 있습니다 시나리오/요구 사항 "보안 유일한 모드 에서는" hello 역방향 프록시 toooperate 저장할 즉, hello 보안 역방향 프록시 tooforward 요청 toounsecured 끝점 되기를 원하지 않습니다. Hello를 지정 하 여 이렇게 할 **SecureOnlyMode** 값을 가진 구성 항목 **true** ApplicationGateway/Http 요소의 hello 매개 변수 섹션에서.   
 
 ```json
 {
@@ -176,23 +176,23 @@ Service Fabric은 서비스에 대한 다중 끝점 구성을 지원합니다.
 ```
 
 > 
-> **SecureOnlyMode**에서 작동할 때 클라이언트가 HTTP(비보안) 끝점에 해당하는 **ListenerName**을 지정한 경우 역방향 프록시는 404(찾을 수 없음) HTTP 상태 코드와 함께 요청에 실패합니다.
+> 작업할 경우 **SecureOnlyMode**클라이언트에서 지정 하는 경우, 한 **ListenerName** tooan HTTP(unsecured) 끝점, 해당 역방향 프록시 404 (찾을 수 없음) HTTP 상태 코드로 hello 요청에 실패 합니다.
 
-## <a name="setting-up-client-certificate-authentication-through-the-reverse-proxy"></a>역방향 프록시를 통한 클라이언트 인증서 인증 설정
-SSL 종료는 역방향 프록시에서 발생하며 모든 클라이언트 인증서 데이터가 손실됩니다. 서비스가 클라이언트 인증서 인증을 수행하려면 ApplicationGateway/Http 요소의 parameters 섹션에서 **ForwardClientCertificate** 설정을 지정합니다.
+## <a name="setting-up-client-certificate-authentication-through-hello-reverse-proxy"></a>Hello 역방향 프록시를 통해 클라이언트 인증서 인증을 설정
+SSL 종료 hello 역방향 프록시에서 발생 하 고 모든 hello 클라이언트 인증서 데이터 손실 됩니다. Hello 서비스 tooperform 클라이언트 인증서 인증에 대 한 hello 설정 **ForwardClientCertificate** ApplicationGateway/Http 요소의 hello 매개 변수 섹션에서 설정 합니다.
 
-1. **ForwardClientCertificate**가 **false**로 설정되면 역방향 프록시가 클라이언트와의 SSL 핸드셰이크 중 클라이언트 인증서를 요청하지 않습니다.
-기본 동작입니다.
+1. 때 **ForwardClientCertificate** 너무 설정**false**역방향 프록시 요청 하지 것입니다 hello 클라이언트 인증서는 SSL 핸드셰이크 중 hello 클라이언트와 함께 합니다.
+이 hello 기본 동작입니다.
 
-2. **ForwardClientCertificate**가 **true**로 설정되면 역방향 프록시가 클라이언트와의 SSL 핸드셰이크 중 클라이언트 인증서를 요청합니다.
-그런 다음 **X-Client-Certificate**라는 사용자 지정 HTTP 헤더에 클라이언트 인증서 데이터를 전달합니다. 헤더 값은 클라이언트 인증서의 base64로 인코딩된 PEM 형식의 문자열입니다. 서비스는 인증서 데이터를 검사한 후 요청에 성공하거나/적절한 상태 코드와 함께 실패할 수 있습니다.
-클라이언트가 인증서를 제시하지 않으면 역방향 프록시는 빈 헤더를 전달하고 서비스에서 처리하도록 합니다.
+2. 때 **ForwardClientCertificate** 너무 설정**true**, hello 클라이언트와의 SSL 핸드셰이크 중 hello 클라이언트의 인증서에 대 한 프록시 요청을 반전 합니다.
+그런 다음 보냅니다 hello 클라이언트 인증서 데이터 라는 사용자 지정 HTTP 헤더를 **X 클라이언트 인증서**합니다. hello 헤더 값이 hello hello 클라이언트 인증서의 base64 인코딩 PEM 형식 문자열입니다. hello 서비스 수 성공/실패 적절 한 상태 코드를 사용 하 여 hello 요청 hello 인증서 데이터를 검사 한 후 합니다.
+Hello 클라이언트 인증서를 제공 하지 않으면 역방향 프록시 헤더가 비어 있으면를 전달 하 고 hello 서비스 핸들 hello 대/소문자를 사용 합니다.
 
-> 역방향 프록시는 단지 전달자일 뿐입니다. 클라이언트 인증서의 유효성 검사를 수행하지는 않습니다.
+> 역방향 프록시는 단지 전달자일 뿐입니다. Hello 클라이언트 인증서의 유효성 검사를 수행 하지 않습니다.
 
 
 ## <a name="next-steps"></a>다음 단계
-* 다른 서비스 인증서 유효성 검사 옵션을 사용하여 보안 역방향 프록시를 구성하려면 [Configure reverse proxy to connect to secure services](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/ReverseProxySecureSample#configure-reverse-proxy-to-connect-to-secure-services)(보안 서비스에 연결하도록 역방향 프록시 구성)에서 Azure Resource Manager 템플릿 샘플을 참조하세요.
+* 너무 참조[역방향 프록시 tooconnect toosecure 서비스 구성](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/ReverseProxySecureSample#configure-reverse-proxy-to-connect-to-secure-services) Azure 리소스 관리자에 대 한 서식 파일을 tooconfigure 보안 역방향 프록시 hello 다양 한 서비스 인증서 유효성 검사 옵션으로 샘플링 합니다.
 * [GitHub의 샘플 프로젝트](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)에서 서비스 간 HTTP 통신의 예제를 참조하세요.
 * [Reliable Services 원격을 사용하여 원격 프로시저 호출](service-fabric-reliable-services-communication-remoting.md)
 * [Reliable Services에서 OWIN을 사용하는 Web API](service-fabric-reliable-services-communication-webapi.md)

@@ -1,6 +1,6 @@
 ---
-title: "Visual Studio에서 Linux VM 만들기 및 관리 | Microsoft Docs"
-description: "Visual Studio를 사용하여 Linux를 실행하는 Azure VM을 만들고 관리하는 방법을 알아봅니다."
+title: "aaaCreate Linux Vm의 경우 Visual Studio에서 관리 하 고 | Microsoft Docs"
+description: "자세한 내용은 방법 toouse Visual Studio toocreate 및 Linux를 실행 하는 Azure Vm 관리"
 services: visual-studio-online,virtual-machines-linux
 documentationcenter: na
 author: kraigb
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: na
 ms.date: 12/09/2016
 ms.author: kraigb
-ms.openlocfilehash: fb91e6cf1fd32833d1e9711a55b41dfa410fee5d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 44467ba04a98ea7e5bc509677fa7b2654e6d7ab6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-manage-linux-virtual-machines-in-visual-studio"></a>Visual Studio에서 Linux 가상 컴퓨터 만들기 및 관리
 [!INCLUDE [virtual-machines-common-classic-manage-visual-studio](../../../../includes/virtual-machines-common-classic-manage-visual-studio.md)]

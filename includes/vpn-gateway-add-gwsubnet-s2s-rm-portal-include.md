@@ -1,9 +1,9 @@
-1. 포털에서 가상 네트워크 게이트웨이를 만들려는 가상 네트워크로 이동합니다.
-2. VNet 페이지의 **설정** 섹션에서 **서브넷**을 클릭하여 서브넷 페이지를 확장합니다.
-3. **서브넷** 페이지의 맨 위에서 **+게이트웨이 서브넷**을 클릭하여 **서브넷 추가** 페이지를 엽니다.
+1. Hello 포털에서 가상 네트워크 게이트웨이 toocreate 원하는 toohello 가상 네트워크를 이동 합니다.
+2. Hello에 **설정** 섹션 VNet 페이지의 클릭 **서브넷** tooexpand hello 서브넷 페이지.
+3. Hello에 **서브넷** 페이지 **+ 게이트웨이 서브넷** hello 상위 tooopen hello에 **서브넷 추가** 페이지.
 
-  ![게이트웨이 서브넷 추가](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/add-gw-subnet.png "게이트웨이 서브넷 추가")
-4. 서브넷의 **이름**에 'GatewaySubnet' 값이 자동으로 채워집니다. Azure가 서브넷을 게이트웨이 서브넷으로 인식하기 위해 GatewaySubnet 값이 필요합니다. 자동으로 채워진 **주소 범위** 값을 구성 요구 사항과 일치하도록 조정합니다.
+  ![Hello 게이트웨이 서브넷 추가](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/add-gw-subnet.png "hello 게이트웨이 서브넷 추가")
+4. hello **이름** 값 'GatewaySubnet' 서브넷에 자동으로 hello를 사용 하 여 채워집니다. Azure toorecognize hello 서브넷에 대 한 순서 hello 게이트웨이 서브넷으로 hello GatewaySubnet 값이 필요 합니다. 자동으로 채워진 hello 조정 **주소 범위** 값 toomatch 사용자 구성 요구 사항입니다.
 
-  ![게이트웨이 서브넷 추가](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/gwsubnetip.png "게이트웨이 서브넷 추가")
-5. 서브넷을 만들려면 페이지 아래쪽에서 **확인**을 클릭합니다.
+  ![Hello 게이트웨이 서브넷 추가](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/gwsubnetip.png "hello 게이트웨이 서브넷 추가")
+5. toocreate 서브넷 hello, 클릭 **확인** hello hello 페이지 맨 아래에 있습니다.

@@ -1,6 +1,6 @@
 ---
-title: "논리 앱 한도 및 구성 | Microsoft Docs"
-description: "논리 앱에 사용 가능한 서비스 한도 및 구성 값에 대한 개요입니다."
+title: "aaaLogic 앱 제한 및 구성 | Microsoft Docs"
+description: "Hello 서비스 제한 및 논리 앱에 대 한 구성 값의 개요입니다."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: jeffhollan
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/18/2017
 ms.author: LADocs; jehollan
-ms.openlocfilehash: da23bd9fe71a0c41bc236b55bc9f56e123a9d77a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 739509afe5c9a7b7e946ba3571951264127e5297
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="logic-app-limits-and-configuration"></a>논리 앱 한도 및 구성
 
-Azure Logic Apps에 대한 현재 제한 사항 및 구성 정보는 다음과 같습니다.
+다음은 Azure 논리 앱에 대 한 hello 현재 제한과 구성 세부 정보에 대 한 정보입니다.
 
 ## <a name="limits"></a>제한
 
@@ -47,22 +47,22 @@ Azure Logic Apps에 대한 현재 제한 사항 및 구성 정보는 다음과 �
 
 |Name|제한|참고 사항|
 |----|----|----|
-|다시 시도 횟수|10| 기본값은 4입니다. [재시도 정책 매개 변수](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)로 구성할 수 있음|
-|재시도 최대 지연 시간|1시간|[재시도 정책 매개 변수](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)로 구성할 수 있음|
-|재시도 최소 지연 시간|5초|[재시도 정책 매개 변수](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)로 구성할 수 있음|
+|다시 시도 횟수|10| 기본값은 4입니다. Hello로 구성할 수 [정책 매개 변수를 다시 시도](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
+|재시도 최대 지연 시간|1시간|Hello로 구성할 수 [정책 매개 변수를 다시 시도](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
+|재시도 최소 지연 시간|5초|Hello로 구성할 수 [정책 매개 변수를 다시 시도](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
 
 ### <a name="run-duration-and-retention"></a>실행 기간 및 보존
 
-단일 논리 앱 실행에 대한 한도는 다음과 같습니다.
+다음은를 실행 하는 단일 논리 앱에 대 한 hello 제한 합니다.
 
 |이름|제한|참고 사항|
 |----|----|----|
 |실행 기간|90일||
-|저장소 보존|90일|실행 시작 시간부터 시작|
+|저장소 보존|90일|Hello 실행 시작 시간에서 시작|
 |최소 되풀이 간격|1초|| 앱 서비스 계획이 있는 논리 앱의 경우 15초
 |최대 되풀이 간격|500일||
 
-정상적인 처리 흐름에서 실행 기간 또는 저장소 보존 한도를 초과할 것으로 예상하는 경우 요구 사항에 도움이 될 수 있도록 [문의하세요](mailto://logicappsemail@microsoft.com).
+Tooexceed 기간 또는 저장소 보존 제한을 정상적인 처리 흐름에서 실행 하려는 경우 [문의처](mailto://logicappsemail@microsoft.com) 에서는 요구 사항에 도움이 될 수 있도록 합니다.
 
 
 ### <a name="looping-and-debatching-limits"></a>반복 및 분리 한도
@@ -71,10 +71,10 @@ Azure Logic Apps에 대한 현재 제한 사항 및 구성 정보는 다음과 �
 
 |이름|제한|참고 사항|
 |----|----|----|
-|ForEach 항목|100,000|[쿼리 작업](../connectors/connectors-native-query.md) 을 사용하여 필요에 따라 큰 배열을 필터링할 수 있습니다.|
+|ForEach 항목|100,000|Hello를 사용할 수 있습니다 [작업 쿼리](../connectors/connectors-native-query.md) 필요에 따라 더 큰 배열 toofilter|
 |Until 반복|5, 000||
 |SplitOn 항목|100,000||
-|ForEach 병렬 처리|50| 기본값은 20입니다. `foreach` 작업에 `"operationOptions": "Sequential"`를 추가하여 순차적인 foreach로 설정하거나 `runtimeConfiguration`을 사용하여 특정 병렬 수준으로 설정할 수 있습니다.|
+|ForEach 병렬 처리|50| 기본값은 20입니다. 추가 하 여 순차적 foreach tooa를 설정할 수 있습니다 `"operationOptions": "Sequential"` toohello `foreach` 작업 또는 특정 수준의 병렬 처리를 사용 하 여`runtimeConfiguration`|
 
 
 ### <a name="throughput-limits"></a>처리량 한도
@@ -84,12 +84,12 @@ Azure Logic Apps에 대한 현재 제한 사항 및 구성 정보는 다음과 �
 |이름|제한|참고 사항|
 |----|----|----|
 |5분당 작업 실행 |100,000|필요에 따라 여러 앱에 워크로드를 배포할 수 있음|
-|작업 나가는 동시 호출 |~2,500|필요에 따라 동시 요청 수를 줄이거나 기간을 단축|
-|런타임 끝점 들어오는 동시 호출 |~1,000|필요에 따라 동시 요청 수를 줄이거나 기간을 단축|
+|작업 나가는 동시 호출 |~2,500|동시 요청 수를 줄이거나 필요에 따라 hello 기간 축소|
+|런타임 끝점 들어오는 동시 호출 |~1,000|동시 요청 수를 줄이거나 필요에 따라 hello 기간 축소|
 |런타임 끝점은 5분마다 호출을 읽음 |60,000|필요에 따라 여러 앱에 워크로드를 배포할 수 있음|
 |런타임 끝점은 5분마다 호출을 수행함 |45,000|필요에 따라 여러 앱에 워크로드를 배포할 수 있음|
 
-정상적인 처리에서 이 한도를 초과하길 기대하거나 일정 기간 동안 이 한도를 초과할 수 있는 부하 테스트를 실행하려는 경우 요구 사항에 도움을 줄 수 있도록 [문의하세요](mailto://logicappsemail@microsoft.com).
+예상 되는 경우 tooexceed 정상적인 처리 또는 희망 toorun 부하 테스트의 시간 동안이 한도 초과 하는이 제한을 [문의처](mailto://logicappsemail@microsoft.com) 에서는 요구 사항에 도움이 될 수 있도록 합니다.
 
 ### <a name="definition-limits"></a>정의 한도
 
@@ -97,8 +97,8 @@ Azure Logic Apps에 대한 현재 제한 사항 및 구성 정보는 다음과 �
 
 |이름|제한|참고 사항|
 |----|----|----|
-|워크플로당 작업|500|중첩된 워크플로를 추가하여 필요에 따라 이 한도를 확장할 수 있음|
-|허용된 작업 중첩 깊이|8|중첩된 워크플로를 추가하여 필요에 따라 이 한도를 확장할 수 있음|
+|워크플로당 작업|500|중첩 된 워크플로 tooextend 필요에 따라이 한도 추가할 수 있습니다.|
+|허용된 작업 중첩 깊이|8|중첩 된 워크플로 tooextend 필요에 따라이 한도 추가할 수 있습니다.|
 |구독당 지역별 워크플로|1000||
 |워크플로당 트리거|10||
 |Switch 범위 사례 제한|25||
@@ -112,26 +112,26 @@ Azure Logic Apps에 대한 현재 제한 사항 및 구성 정보는 다음과 �
 
 ### <a name="integration-account-limits"></a>통합 계정 제한
 
-통합 계정에 추가되는 아티팩트에 대한 한도는 다음과 같습니다.
+다음은 아티팩트 추가 toointegration 계정에 대 한 제한
 
 |이름|제한|참고 사항|
 |----|----|----|
-|스키마|8MB|[blob URI](logic-apps-enterprise-integration-schemas.md)를 사용하여 2MB보다 큰 파일을 업로드할 수 있음 |
+|스키마|8MB|사용할 수 있습니다 [blob URI](logic-apps-enterprise-integration-schemas.md) tooupload 2MB 보다 큰 파일 |
 |맵(XSLT 파일)|2MB| |
 |런타임 끝점은 5분마다 호출을 읽음 |60,000|필요에 따라 여러 계정에 워크로드를 배포할 수 있음|
 |런타임 끝점은 5분마다 호출을 수행함 |45,000|필요에 따라 여러 계정에 워크로드를 배포할 수 있음|
 |런타임 끝점 5분마다 호출 추적 |45,000|필요에 따라 여러 계정에 워크로드를 배포할 수 있음|
-|런타임 끝점이 동시 호출을 차단함 |~1,000|필요에 따라 동시 요청 수를 줄이거나 기간을 단축|
+|런타임 끝점이 동시 호출을 차단함 |~1,000|동시 요청 수를 줄이거나 필요에 따라 hello 기간 축소|
 
 ### <a name="b2b-protocols-as2-x12-edifact-message-size"></a>B2B 프로토콜(AS2, X12, EDIFACT) 메시지 크기
 
-다음은 B2B 프로토콜에 대한 한도임
+다음은 B2B 프로토콜에 대 한 hello 제한
 
 |이름|제한|참고 사항|
 |----|----|----|
-|AS2|50MB|디코딩 및 인코딩에 적용|
-|X12|50MB|디코딩 및 인코딩에 적용|
-|EDIFACT|50MB|디코딩 및 인코딩에 적용|
+|AS2|50MB|적용 가능한 toodecode 인코딩 및|
+|X12|50MB|적용 가능한 toodecode 인코딩 및|
+|EDIFACT|50MB|적용 가능한 toodecode 인코딩 및|
 
 ## <a name="configuration"></a>구성
 
@@ -139,7 +139,7 @@ Azure Logic Apps에 대한 현재 제한 사항 및 구성 정보는 다음과 �
 
 #### <a name="logic-app-service"></a>논리 앱 서비스
 
-논리 앱에서 직접(즉, [HTTP](../connectors/connectors-native-http.md) 또는 [HTTP + Swagger](../connectors/connectors-native-http-swagger.md)를 통해) 또는 다른 HTTP 요청을 통해 발생한 호출은 다음 목록에 지정된 IP 주소에서 가져옵니다.
+논리 앱에서 직접 수행한 호출 (즉, 통해 [HTTP](../connectors/connectors-native-http.md) 또는 [HTTP + Swagger](../connectors/connectors-native-http-swagger.md)) 또는 hello hello 목록 뒤에 지정 된 IP 주소에서에서 발생 한 다른 HTTP 요청:
 
 |논리 앱 지역|아웃바운드 IP|
 |-----|----|
@@ -168,7 +168,7 @@ Azure Logic Apps에 대한 현재 제한 사항 및 구성 정보는 다음과 �
 
 #### <a name="connectors"></a>커넥터
 
-[커넥터](../connectors/apis-list.md)에서 발생한 호출은 다음 목록에 지정된 IP 주소에서 가져옵니다.
+호출 된 [커넥터](../connectors/apis-list.md) hello hello 목록 뒤에 지정 된 IP 주소에서에서 제공 합니다.
 
 |논리 앱 지역|아웃바운드 IP|
 |-----|----|
@@ -198,7 +198,7 @@ Azure Logic Apps에 대한 현재 제한 사항 및 구성 정보는 다음과 �
 
 ## <a name="next-steps"></a>다음 단계  
 
-- Logic Apps를 시작하려면 [논리 앱 만들기](../logic-apps/logic-apps-create-a-logic-app.md) 자습서를 수행합니다.  
+- 논리 앱 시작 tooget hello에 따라 [논리 앱 만들기](../logic-apps/logic-apps-create-a-logic-app.md) 자습서입니다.  
 - [일반적인 예제 및 시나리오 보기](../logic-apps/logic-apps-examples-and-scenarios.md)
 - [논리 앱으로 비즈니스 프로세스를 자동화할 수 있습니다](http://channel9.msdn.com/Events/Build/2016/T694) 
-- [논리 앱과 시스템을 통합하는 방법을 알아봅니다](http://channel9.msdn.com/Events/Build/2016/P462)
+- [자세한 내용은 방법 tooIntegrate 논리 앱 시스템](http://channel9.msdn.com/Events/Build/2016/P462)

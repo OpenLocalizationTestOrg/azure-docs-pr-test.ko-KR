@@ -1,19 +1,19 @@
 ## <a name="extended-iot-scenarios"></a>확장된 IoT 시나리오
 
-다른 Azure 서비스 및 도구를 사용합니다. 장치를 IoT Hub에 연결할 때 다른 Azure 도구 및 서비스를 사용하는 추가 시나리오를 탐색할 수 있습니다.
+다른 Azure 서비스 및 도구를 사용합니다. 사용자 장치 tooIoT 허브에 연결 했으므로 다른 Azure 도구와 서비스를 사용 하는 추가 시나리오를 탐색할 수 있습니다.
 
 | 시나리오                                                   | Azure 서비스 또는 도구              |
 |----------------------------------------------------------- |------------------------------------|
 | [IoT Hub 메시지 관리][Mg_IoT_Hub_Msg]                  | iothub-explorer tool               |
 | [IoT 장치 관리][Mg_IoT_Dv]                        | iothub-explorer tool               |
-| [Save IoT Hub messages to Azure storage][Sv_IoT_Msg_Stor]  | Azure Table Storage                |
+| [IoT Hub tooAzure 저장소 메시지 저장][Sv_IoT_Msg_Stor]  | Azure Table Storage                |
 | [센서 데이터 시각화][Vis_Data]                          | Microsoft Power BI, Azure Web Apps |
 | [센서 데이터를 사용하여 날씨 예측][Weather_Forecast]      | Azure 기계 학습             |
 | [자동 변칙 검색 및 반응][Anomaly_Detect] | Azure Logic Apps                   |
 
 ## <a name="next-steps"></a>다음 단계
 
-이러한 자습서를 완료한 후 [개발자 가이드][lnk-dev-guide]에서 IoT Hub의 기능을 추가로 탐색할 수 있습니다. [방법][lnk-how-to] 섹션에서 추가 자습서를 찾을 수 있습니다.
+이 자습서를 완료 hello에서 IoT Hub의 hello 기능을 추가로 탐색할 수 있습니다 [개발자 가이드][lnk-dev-guide]합니다. Hello에 추가 자습서를 찾을 수 [방법] [ lnk-how-to] 섹션.
 
 
 [Mg_IoT_Hub_Msg]: ../articles/iot-hub/iot-hub-explorer-cloud-device-messaging.md

@@ -1,5 +1,5 @@
 ---
-title: "Hive 쿼리를 사용하여 Hive 테이블의 데이터 탐색 | Microsoft Docs"
+title: "하이브 쿼리 인 하이브 테이블에서 데이터 aaaExplore | Microsoft Docs"
 description: "Hive 쿼리를 사용하여 Hive 테이블의 데이터를 탐색합니다."
 services: machine-learning
 documentationcenter: 
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.openlocfilehash: 67a33a9abc3d3dcdd2fc7205e11feff97e3582a3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2ede3d41682aa08ced19284f7a83ec95e0c2a93a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="explore-data-in-hive-tables-with-hive-queries"></a>Hive 쿼리를 사용하여 Hive 테이블의 데이터 탐색
-이 문서는 HDInsight Hadoop 클러스터의 Hive 테이블에서 데이터를 탐색하는 데 사용된 샘플 Hive 스크립트를 제공합니다.
+이 문서는 HDInsight Hadoop 클러스터의 Hive 테이블에 사용 되는 tooexplore 데이터 예제 하이브 스크립트를 제공 합니다.
 
-다음 **메뉴** 는 다양한 저장소 환경에서 데이터를 탐색하기 위해 도구를 사용하는 방법을 설명하는 토픽에 연결되는 링크입니다.
+hello 다음 **메뉴** tootopics toouse 도구 tooexplore 데이터 저장소, 다양 한 환경에서 하는 방법을 설명 하는 링크입니다.
 
 [!INCLUDE [cap-explore-data-selector](../../includes/cap-explore-data-selector.md)]
 
@@ -31,18 +31,18 @@ ms.lasthandoff: 08/29/2017
 이 문서에서는 사용자가 다음 작업을 수행한 것으로 가정합니다.
 
 * Azure 저장소 계정을 만들었습니다. 지침이 필요한 경우 [Azure Storage 계정 만들기](../storage/common/storage-create-storage-account.md#create-a-storage-account)를 참조하세요.
-* 사용자 지정된 Hadoop 클러스터에 HDInsight 서비스를 프로비전했습니다. 지침이 필요한 경우 [고급 분석을 위한 Azure HDInsight Hadoop 클러스터 사용자 지정](machine-learning-data-science-customize-hadoop-cluster.md)을 참조하세요.
-* Azure HDInsight Hadoop 클러스터의 Hive 테이블에 데이터가 업로드되었습니다. 업로드되지 않은 경우 [데이터를 만들어서 Hive 테이블에 로드](machine-learning-data-science-move-hive-tables.md) 의 지침에 따라 먼저 Hive 테이블에 데이터를 업로드하세요.
-* 클러스터에 대한 원격 액세스가 설정되었습니다. 지침이 필요한 경우 [Hadoop 클러스터의 헤드 노드에 액세스](machine-learning-data-science-customize-hadoop-cluster.md#headnode)를 참조하세요.
-* Hive 쿼리를 제출하는 방법에 대한 지침이 필요한 경우 [Hive 쿼리를 제출하는 방법](machine-learning-data-science-move-hive-tables.md#submit)
+* Hello HDInsight 서비스를 사용 하 여 사용자 지정 된 Hadoop 클러스터 프로 비전 합니다. 지침이 필요한 경우 [고급 분석을 위한 Azure HDInsight Hadoop 클러스터 사용자 지정](machine-learning-data-science-customize-hadoop-cluster.md)을 참조하세요.
+* hello 데이터가 Azure HDInsight Hadoop 클러스터에서 업로드 된 tooHive 테이블 되었습니다. 그렇지 않은 경우 hello 지침에 따라 [데이터 tooHive 테이블을 만들고 부하](machine-learning-data-science-move-hive-tables.md) tooupload 데이터 tooHive 먼저 테이블입니다.
+* 원격 액세스 toohello 클러스터를 사용할 수 있습니다. 지침이 필요한 경우 참조 [액세스 hello Hadoop 클러스터의 헤드 노드](machine-learning-data-science-customize-hadoop-cluster.md#headnode)합니다.
+* 방법에 대 한 지침이 필요한 경우 toosubmit 하이브 쿼리에서 참조 [어떻게 tooSubmit 하이브 쿼리](machine-learning-data-science-move-hive-tables.md#submit)
 
 ## <a name="example-hive-query-scripts-for-data-exploration"></a>데이터 탐색에 대한 예제 Hive 쿼리 스크립트
-1. 파티션당 관찰 수 가져오기 `SELECT <partitionfieldname>, count(*) from <databasename>.<tablename> group by <partitionfieldname>;`
-2. 일별 관찰 수 가져오기 `SELECT to_date(<date_columnname>), count(*) from <databasename>.<tablename> group by to_date(<date_columnname>);`
-3. 범주 열의 수준 가져오기   
+1. 파티션당 관찰 hello 개수`SELECT <partitionfieldname>, count(*) from <databasename>.<tablename> group by <partitionfieldname>;`
+2. 하루 관찰 hello 개수`SELECT to_date(<date_columnname>), count(*) from <databasename>.<tablename> group by to_date(<date_columnname>);`
+3. 범주 열에서 hello 수준을 가져오려면  
     `SELECT  distinct <column_name> from <databasename>.<tablename>`
-4. 두 범주 열 조합의 수준 수 가져오기 `SELECT <column_a>, <column_b>, count(*) from <databasename>.<tablename> group by <column_a>, <column_b>`
-5. 숫자 열의 분포 가져오기   
+4. 두 개의 범주 열 조합에 수준의 hello 수 가져오기`SELECT <column_a>, <column_b>, count(*) from <databasename>.<tablename> group by <column_a>, <column_b>`
+5. 숫자 열에 대 한 hello 분포 가져오기  
     `SELECT <column_name>, count(*) from <databasename>.<tablename> group by <column_name>`
 6. 두 조인 테이블의 레코드 추출
    
@@ -72,5 +72,5 @@ ms.lasthandoff: 08/29/2017
             ON a.<common_columnname1>=b.<common_columnname1> and a.<common_columnname2>=b.<common_columnname2>
 
 ## <a name="additional-query-scripts-for-taxi-trip-data-scenarios"></a>택시 여정 데이터 시나리오에 대한 추가 쿼리 스크립트
-또한 [NYC Taxi Trip Data](http://chriswhong.com/open-data/foil_nyc_taxi/) 시나리오에 대한 쿼리 예제가 [GitHub 리포지토리](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts)에 제공됩니다. 이러한 쿼리는 이미 데이터 스키마가 지정되어 있으며 바로 제출하여 실행할 수 있습니다.
+너무 관련 된 쿼리 예제[NYC 택시 여행 데이터](http://chriswhong.com/open-data/foil_nyc_taxi/) 시나리오에도 제공 되어 [GitHub 리포지토리](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts)합니다. 이러한 쿼리 이미 지정 된 데이터 스키마 않으며 제출 준비 toobe toorun 합니다.
 
