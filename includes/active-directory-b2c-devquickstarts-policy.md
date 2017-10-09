@@ -1,0 +1,5 @@
+> [!NOTE]
+> <span data-ttu-id="d2f16-101">Azure AD B2C에서 정책 이름의 앞에는 `b2c_1_`이 붙습니다(예: `b2c_1_sign_up`).</span><span class="sxs-lookup"><span data-stu-id="d2f16-101">In Azure AD B2C, your policy's name will be prefixed with `b2c_1_`, like `b2c_1_sign_up`.</span></span>  <span data-ttu-id="d2f16-102">하면 클라이언트와 서버 응용 프로그램의 모든 무료 toouse 정책 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d2f16-102">You are free toouse your policies across all of your apps, both client and server.</span></span>  <span data-ttu-id="d2f16-103">이전에 다른 B2C 연습에서 정책을 만든, 하는 경우 없습니다 필요 toodo 다시입니다.</span><span class="sxs-lookup"><span data-stu-id="d2f16-103">If you've previously created policies in another B2C walk-through, there is no need toodo so again.</span></span> <span data-ttu-id="d2f16-104">이전에 만든 hello 포털에서 일치 하는 경우 hello 응용 프로그램의 hello 요구 사항을 hello 정책을 다시 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d2f16-104">You may reuse hello policies you've previously created in hello portal if they match hello requirements of hello application.</span></span>
+> 
+> 
+

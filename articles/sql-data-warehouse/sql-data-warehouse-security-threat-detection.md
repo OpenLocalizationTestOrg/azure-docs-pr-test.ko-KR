@@ -1,6 +1,6 @@
 ---
-title: "SQL 데이터 웨어하우스 위협 감지 시작"
-description: "위협 감지를 시작하는 시기"
+title: "aaaGet은 SQL 데이터 웨어하우스 위협 검색 시작"
+description: "위협 검색 tooget 시작 하는 방법"
 services: sql-data-warehouse
 documentationcenter: 
 author: ronortloff
@@ -15,64 +15,64 @@ ms.workload: data-services
 ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
-ms.openlocfilehash: f4a2376fe4fb710d031c35ca7fdbf4c7bb0f3caa
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dec0b734849e7f52434e099db0b38fbf0bf6ad53
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-threat-detection"></a><span data-ttu-id="ae909-103">위협 감지 시작</span><span class="sxs-lookup"><span data-stu-id="ae909-103">Get started with threat detection</span></span>
+# <a name="get-started-with-threat-detection"></a><span data-ttu-id="e10d8-103">위협 감지 시작</span><span class="sxs-lookup"><span data-stu-id="e10d8-103">Get started with threat detection</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="ae909-104">감사</span><span class="sxs-lookup"><span data-stu-id="ae909-104">Auditing</span></span>](sql-data-warehouse-auditing-overview.md)
-> * [<span data-ttu-id="ae909-105">위협 감지</span><span class="sxs-lookup"><span data-stu-id="ae909-105">Threat detection</span></span>](sql-data-warehouse-security-threat-detection.md)
+> * [<span data-ttu-id="e10d8-104">감사</span><span class="sxs-lookup"><span data-stu-id="e10d8-104">Auditing</span></span>](sql-data-warehouse-auditing-overview.md)
+> * [<span data-ttu-id="e10d8-105">위협 감지</span><span class="sxs-lookup"><span data-stu-id="e10d8-105">Threat detection</span></span>](sql-data-warehouse-security-threat-detection.md)
 > 
 > 
 
-## <a name="overview"></a><span data-ttu-id="ae909-106">개요</span><span class="sxs-lookup"><span data-stu-id="ae909-106">Overview</span></span>
-<span data-ttu-id="ae909-107">위협 감지는 데이터베이스에 대한 잠재적인 보안 위협을 나타내는 비정상적인 데이터베이스 활동을 감지합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-107">Threat Detection detects anomalous database activities indicating potential security threats to the database.</span></span> <span data-ttu-id="ae909-108">위협 감지는 미리 보기로 제공되며 SQL 데이터 웨어하우스를 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-108">Threat Detection is in preview and is supported for SQL Data Warehouse.</span></span>
+## <a name="overview"></a><span data-ttu-id="e10d8-106">개요</span><span class="sxs-lookup"><span data-stu-id="e10d8-106">Overview</span></span>
+<span data-ttu-id="e10d8-107">위협 검색 잠재적 보안 위협을 toohello 데이터베이스 비정상 데이터베이스 작업을 검색 합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-107">Threat Detection detects anomalous database activities indicating potential security threats toohello database.</span></span> <span data-ttu-id="e10d8-108">위협 감지는 미리 보기로 제공되며 SQL 데이터 웨어하우스를 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-108">Threat Detection is in preview and is supported for SQL Data Warehouse.</span></span>
 
-<span data-ttu-id="ae909-109">위협 감지는 비정상적인 활동에 대한 보안 경고를 제공하여 잠재적인 위협이 발생하면 고객이 이를 감지하고 대응할 수 있도록 하는 새로운 차원의 보안을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-109">Threat Detection provides a new layer of security, which enables customers to detect and respond to potential threats as they occur by providing security alerts on anomalous activities.</span></span> <span data-ttu-id="ae909-110">사용자는 데이터 웨어하우스의 데이터를 액세스, 침해 또는 악용하려는 시도로 인해 의심스러운 이벤트가 발생했는지를 판단하기 위해서 [Azure SQL Data Warehouse 감사](sql-data-warehouse-auditing-overview.md) 를 사용하여 의심스러운 이벤트를 살펴볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-110">Users can explore the suspicious events using [Azure SQL Data Warehouse Auditing](sql-data-warehouse-auditing-overview.md) to determine if they result from an attempt to access, breach or exploit data in the data warehouse.</span></span>
-<span data-ttu-id="ae909-111">위협 감지는 보안 전문가가 되거나 고급 보안 모니터링 시스템을 관리할 필요 없이 데이터 웨어하우스에 대한 잠재적인 위협에 간단하게 대처할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-111">Threat Detection makes it simple to address potential threats to the data warehouse without the need to be a security expert or manage advanced security monitoring systems.</span></span>
+<span data-ttu-id="e10d8-109">위협 요소 탐지 새 고객 toodetect 있고 비정상적인 활동에서 보안 경고를 제공 하 여 발생 하는 대로 toopotential 위협 응답을 보안 계층을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-109">Threat Detection provides a new layer of security, which enables customers toodetect and respond toopotential threats as they occur by providing security alerts on anomalous activities.</span></span> <span data-ttu-id="e10d8-110">사용자가 사용 하 여 hello 의심 스러운 이벤트를 탐색할 수 [Azure SQL 데이터 웨어하우스 감사](sql-data-warehouse-auditing-overview.md) 는 시도 tooaccess에서 발생 한 경우 toodetermine 위반를 주거나 이들을 착취 hello 데이터 웨어하우스의 데이터에서에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-110">Users can explore hello suspicious events using [Azure SQL Data Warehouse Auditing](sql-data-warehouse-auditing-overview.md) toodetermine if they result from an attempt tooaccess, breach or exploit data in hello data warehouse.</span></span>
+<span data-ttu-id="e10d8-111">위협 요소 탐지 간단한 tooaddress 잠재적 위협 toohello 데이터 보안 전문가 hello 필요 toobe 없이 웨어하우스 또는 시스템 모니터링 하는 고급 보안을 관리 하면 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-111">Threat Detection makes it simple tooaddress potential threats toohello data warehouse without hello need toobe a security expert or manage advanced security monitoring systems.</span></span>
 
-<span data-ttu-id="ae909-112">예를 들어 위협 감지는 잠재적인 SQL 삽입 시도를 나타내는 비정상적인 데이터베이스 활동을 감지합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-112">For example, Threat Detection detects certain anomalous database activities indicating potential SQL injection attempts.</span></span> <span data-ttu-id="ae909-113">SQL 삽입은 데이터 기반 응용 프로그램 공격에 사용되는 인터넷 상의 일반적인 웹 응용 프로그램 보안 문제 중 하나입니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-113">SQL injection is one of the common Web application security issues on the Internet, used to attack data-driven applications.</span></span> <span data-ttu-id="ae909-114">공격자는 데이터베이스의 데이터를 침범하거나 수정하기 위해 응용 프로그램의 취약성을 이용하여 악의적인 SQL 문을 응용 프로그램 항목 필드에 삽입합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-114">Attackers take advantage of application vulnerabilities to inject malicious SQL statements into application entry fields, for breaching or modifying data in the database.</span></span>
+<span data-ttu-id="e10d8-112">예를 들어 위협 감지는 잠재적인 SQL 삽입 시도를 나타내는 비정상적인 데이터베이스 활동을 감지합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-112">For example, Threat Detection detects certain anomalous database activities indicating potential SQL injection attempts.</span></span> <span data-ttu-id="e10d8-113">SQL 주입 hello 일반적인 웹 응용 프로그램 보안 문제에 hello 인터넷을 사용 하는 tooattack 데이터 기반 응용 프로그램 중 하나입니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-113">SQL injection is one of hello common Web application security issues on hello Internet, used tooattack data-driven applications.</span></span> <span data-ttu-id="e10d8-114">공격자가 활용 응용 프로그램 취약점 tooinject 악의적인 SQL 문을 졌는 지 또는 hello 데이터베이스의 데이터 수정에 대 한 응용 프로그램 입력 필드에 합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-114">Attackers take advantage of application vulnerabilities tooinject malicious SQL statements into application entry fields, for breaching or modifying data in hello database.</span></span>
 
-## <a name="set-up-threat-detection-for-your-database"></a><span data-ttu-id="ae909-115">데이터베이스에 대한 위협 감지 설정</span><span class="sxs-lookup"><span data-stu-id="ae909-115">Set up threat detection for your database</span></span>
-1. <span data-ttu-id="ae909-116">[https://portal.azure.com](https://portal.azure.com)에서 Azure 포털을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-116">Launch the Azure Portal at [https://portal.azure.com](https://portal.azure.com).</span></span>
-2. <span data-ttu-id="ae909-117">모니터링할 SQL 데이터 웨어하우스의 구성 블레이드로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-117">Navigate to the configuration blade of the SQL Data Warehouse you want to monitor.</span></span> <span data-ttu-id="ae909-118">설정 블레이드에서 **감사 및 위협 감지**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-118">In the Settings blade, select **Auditing & Threat Detection**.</span></span>
+## <a name="set-up-threat-detection-for-your-database"></a><span data-ttu-id="e10d8-115">데이터베이스에 대한 위협 감지 설정</span><span class="sxs-lookup"><span data-stu-id="e10d8-115">Set up threat detection for your database</span></span>
+1. <span data-ttu-id="e10d8-116">시작 hello Azure 포털에 [https://portal.azure.com](https://portal.azure.com)합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-116">Launch hello Azure Portal at [https://portal.azure.com](https://portal.azure.com).</span></span>
+2. <span data-ttu-id="e10d8-117">SQL 데이터 웨어하우스 toomonitor 원하는 hello의 구성 블레이드에서 toohello 이동 합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-117">Navigate toohello configuration blade of hello SQL Data Warehouse you want toomonitor.</span></span> <span data-ttu-id="e10d8-118">Hello 설정 블레이드에서 선택 **감사 및 위협 요소 탐지**합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-118">In hello Settings blade, select **Auditing & Threat Detection**.</span></span>
    
     ![탐색 창][1]
-3. <span data-ttu-id="ae909-120">**감사 및 위협 감지** 구성 블레이드에서 감사를 **켜면** 위협 감지 설정이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-120">In the **Auditing & Threat Detection** configuration blade turn **ON** auditing, which will display the Threat detection settings.</span></span>
+3. <span data-ttu-id="e10d8-120">Hello에 **감사 및 위협 요소 탐지** 구성 블레이드 turn **ON** 감사를 위해 표시 하는 hello 위협 검색 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-120">In hello **Auditing & Threat Detection** configuration blade turn **ON** auditing, which will display hello Threat detection settings.</span></span>
    
     ![탐색 창][2]
-4. <span data-ttu-id="ae909-122">위협 감지를 **켭니다**</span><span class="sxs-lookup"><span data-stu-id="ae909-122">Turn **ON** Threat detection.</span></span>
-5. <span data-ttu-id="ae909-123">비정상적인 데이터 웨어하우스 활동이 감지되는 경우 보안 경고를 수신할 이메일 목록을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-123">Configure the list of emails that will receive security alerts upon detection of anomalous data warehouse activities.</span></span>
-6. <span data-ttu-id="ae909-124">**감사 및 위협 감지** 구성 블레이드에서 **저장**을 클릭하여 새로운 또는 업데이트된 감사 및 위협 감지 정책을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-124">Click **Save** in the **Auditing & Threat detection** configuration blade to save the new or updated auditing and threat detection policy.</span></span>
+4. <span data-ttu-id="e10d8-122">위협 감지를 **켭니다**</span><span class="sxs-lookup"><span data-stu-id="e10d8-122">Turn **ON** Threat detection.</span></span>
+5. <span data-ttu-id="e10d8-123">비정상적인 데이터 웨어하우스 작업 검색에 대해 보안 경고를 받을 전자 메일의 hello 목록을 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-123">Configure hello list of emails that will receive security alerts upon detection of anomalous data warehouse activities.</span></span>
+6. <span data-ttu-id="e10d8-124">클릭 **저장** hello에 **감사 및 위협 검색** 구성 블레이드 toosave hello 신규 또는 업데이트 된 감사 및 위협 검색 정책입니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-124">Click **Save** in hello **Auditing & Threat detection** configuration blade toosave hello new or updated auditing and threat detection policy.</span></span>
    
     ![탐색 창][3]
 
-## <a name="explore-anomalous-data-warehouse-activities-upon-detection-of-a-suspicious-event"></a><span data-ttu-id="ae909-126">의심스러운 이벤트 감지 시 비정상적인 데이터 웨어하우스 활동 살펴보기</span><span class="sxs-lookup"><span data-stu-id="ae909-126">Explore anomalous data warehouse activities upon detection of a suspicious event</span></span>
-1. <span data-ttu-id="ae909-127">비정상적인 데이터베이스 활동이 감지되면 이메일 알림을 받게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-127">You will receive an email notification upon detection of anomalous database activities.</span></span> <br/>
-   <span data-ttu-id="ae909-128">이메일에는 비정상적인 활동의 특징, 데이터베이스 이름, 서버 이름, 이벤트 시간을 포함하여 의심스러운 보안 이벤트에 대한 정보가 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-128">The email will provide information on the suspicious security event including the nature of the anomalous activities, database name, server name and the event time.</span></span> <span data-ttu-id="ae909-129">또한 가능한 원인에 대한 정보와 데이터베이스에 대한 잠재적인 위협을 조사하고 완화시키기 위해 권장되는 조치가 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-129">In addition, it will provide information on possible causes and recommended actions to investigate and mitigate the potential threat to the database.</span></span><br/>
+## <a name="explore-anomalous-data-warehouse-activities-upon-detection-of-a-suspicious-event"></a><span data-ttu-id="e10d8-126">의심스러운 이벤트 감지 시 비정상적인 데이터 웨어하우스 활동 살펴보기</span><span class="sxs-lookup"><span data-stu-id="e10d8-126">Explore anomalous data warehouse activities upon detection of a suspicious event</span></span>
+1. <span data-ttu-id="e10d8-127">비정상적인 데이터베이스 활동이 감지되면 이메일 알림을 받게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-127">You will receive an email notification upon detection of anomalous database activities.</span></span> <br/>
+   <span data-ttu-id="e10d8-128">hello 전자 메일 hello 비정상적인 활동, 데이터베이스 이름, 서버 이름 및 hello 이벤트 시간의 hello 특성을 포함 하 여 hello 의심 되는 보안 이벤트를 처리 정보를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-128">hello email will provide information on hello suspicious security event including hello nature of hello anomalous activities, database name, server name and hello event time.</span></span> <span data-ttu-id="e10d8-129">또한, 가능한 원인에 정보를 제공 합니다 및 작업 tooinvestigate 권장 하 고 hello 잠재적인 위협 toohello 데이터베이스 완화 합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-129">In addition, it will provide information on possible causes and recommended actions tooinvestigate and mitigate hello potential threat toohello database.</span></span><br/>
    
     ![탐색 창][4]
-2. <span data-ttu-id="ae909-131">이메일에서 **Azure SQL 감사 로그** 링크를 클릭하면 Azure 클래식 포털이 열리고 의심스러운 이벤트가 발생한 무렵의 시간에 해당하는 감사 레코드가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-131">In the email, click on the **Azure SQL Auditing Log** link, which will launch the Azure Classic Portal and show the relevant Auditing records around the time of the suspicious event.</span></span>
+2. <span data-ttu-id="e10d8-131">Hello 전자 메일의 hello에서 클릭 **Azure SQL 감사 로그** 링크를 hello Azure 클래식 포털을 시작 하 고 hello 의심 스러운 이벤트의 hello 시간대 hello 관련 된 감사 레코드가 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-131">In hello email, click on hello **Azure SQL Auditing Log** link, which will launch hello Azure Classic Portal and show hello relevant Auditing records around hello time of hello suspicious event.</span></span>
    
     ![탐색 창][5]
-3. <span data-ttu-id="ae909-133">의심스러운 데이터베이스 활동에 대한 세부 정보(예: SQL 문, 실패 원인, 클라이언트 IP)를 보려면 감사 레코드를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-133">Click on the audit records to view more details on the suspicious database activities such as SQL statement, failure reason and client IP.</span></span>
+3. <span data-ttu-id="e10d8-133">SQL 문 처럼 hello 데이터베이스 의심 스러운 활동에 대 한 자세한 내용은 hello 감사 레코드 tooview 클릭 실패 이유 및 클라이언트 IP입니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-133">Click on hello audit records tooview more details on hello suspicious database activities such as SQL statement, failure reason and client IP.</span></span>
    
     ![탐색 창][6]
-4. <span data-ttu-id="ae909-135">미리 구성된 Excel 템플릿을 열고 의심스러운 이벤트가 발생한 무렵의 시간에 대한 감사 로그를 가져와서 심층적인 분석을 실행하려면 감사 레코드 블레이드에서 **Excel에서 열기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-135">In the Auditing Records blade, click  **Open in Excel** to open a pre-configured excel template to import and run deeper analysis of the audit log around the time of the suspicious event.</span></span><br/><span data-ttu-id="ae909-136">
-   **참고:** Excel 2010 이상의 경우 파워 쿼리 및 **빠른 결합** 설정이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-136">
-**Note:** In Excel 2010 or later, Power Query and the **Fast Combine** setting is required</span></span>
+4. <span data-ttu-id="e10d8-135">Hello 감사 레코드 블레이드에서 클릭 **Excel에서 열기** tooopen 미리 구성 된 excel 서식 파일 tooimport 및 hello 의심 스러운 이벤트의 hello 시간대 hello 감사 로그의 심층 분석을 실행된 합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-135">In hello Auditing Records blade, click  **Open in Excel** tooopen a pre-configured excel template tooimport and run deeper analysis of hello audit log around hello time of hello suspicious event.</span></span><br/><span data-ttu-id="e10d8-136">
+   **참고:** Excel 2010 또는 나중에 파워 쿼리 및 hello **빠른 결합** 설정은 필수입니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-136">
+**Note:** In Excel 2010 or later, Power Query and hello **Fast Combine** setting is required</span></span>
    
     ![탐색 창][7]
-5. <span data-ttu-id="ae909-138">**빠른 결합** 설정을 구성하려면 - **파워 쿼리** 리본 탭에서 **옵션**을 선택하여 옵션 대화 상자를 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-138">To configure the **Fast Combine** setting - In the **POWER QUERY** ribbon tab, select **Options** to display the Options dialog.</span></span> <span data-ttu-id="ae909-139">개인 정보 섹션을 선택하고 두 번째 옵션 '개인 정보 보호 수준을 무시하고 잠재적으로 성능 향상'을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-139">Select the Privacy section and choose the second option - 'Ignore the Privacy Levels and potentially improve performance':</span></span>
+5. <span data-ttu-id="e10d8-138">tooconfigure hello **빠른 결합** hello에 설정- **파워 쿼리** 리본 탭 **옵션** toodisplay hello 옵션 대화 상자.</span><span class="sxs-lookup"><span data-stu-id="e10d8-138">tooconfigure hello **Fast Combine** setting - In hello **POWER QUERY** ribbon tab, select **Options** toodisplay hello Options dialog.</span></span> <span data-ttu-id="e10d8-139">Hello 개인 정보 섹션을 선택 하 고 hello 두 번째 옵션-'hello 개인 정보 수준을 무시 하 고 잠재적으로 성능 향상'를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-139">Select hello Privacy section and choose hello second option - 'Ignore hello Privacy Levels and potentially improve performance':</span></span>
    
     ![탐색 창][8]
-6. <span data-ttu-id="ae909-141">SQL 감사 로그를 로드하려면, 설정 탭의 매개 변수가 바르게 설정되었는지 확인한 후 '데이터' 리본을 선택하고 '모두 새로 고침' 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-141">To load SQL audit logs, ensure that the parameters in the settings tab are set correctly and then select the 'Data' ribbon and click the 'Refresh All' button.</span></span>
+6. <span data-ttu-id="e10d8-141">tooload SQL 감사 로그 hello 매개 변수가 확인 hello 설정 탭에서 올바르게 설정 하 고 다음 hello '데이터' 리본 선택 hello ' 모두 새로 고침 ' 단추를 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-141">tooload SQL audit logs, ensure that hello parameters in hello settings tab are set correctly and then select hello 'Data' ribbon and click hello 'Refresh All' button.</span></span>
    
     ![탐색 창][9]
-7. <span data-ttu-id="ae909-143">**SQL 감사 로그** 시트에 결과가 표시되며 사용자는 이를 통해 감지된 비정상적인 활동을 심층적으로 분석하고 응용 프로그램의 보안 이벤트에 대한 영향을 완화시킬 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ae909-143">The results appear in the **SQL Audit Logs** sheet which enables you to run deeper analysis of the anomalous activities that were detected, and mitigate the impact of the security event in your application.</span></span>
+7. <span data-ttu-id="e10d8-143">hello에 hello 결과가 표시 **SQL 감사 로그** 시트 발견 되 고 응용 프로그램에서 hello 보안 이벤트의 hello 영향을 완화 하는 hello 비정상적인 활동의 심층 분석 toorun 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e10d8-143">hello results appear in hello **SQL Audit Logs** sheet which enables you toorun deeper analysis of hello anomalous activities that were detected, and mitigate hello impact of hello security event in your application.</span></span>
 
 <!--Image references-->
 [1]: ./media/sql-data-warehouse-security-threat-detection/1_td_click_on_settings.png

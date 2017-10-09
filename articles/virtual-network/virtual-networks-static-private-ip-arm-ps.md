@@ -1,6 +1,6 @@
 ---
-title: "VM에 대한 개인 IP 주소 구성 - Azure PowerShell | Microsoft Docs"
-description: "PowerShell을 사용하여 가상 컴퓨터에 대한 개인 IP 주소를 구성하는 방법을 알아봅니다."
+title: "Vm-Azure PowerShell에 대 한 aaaConfigure 개인 IP 주소 | Microsoft Docs"
+description: "PowerShell을 사용 하 여 가상 컴퓨터에 대 한 개인 IP tooconfigure 해결 하는 방법을 알아봅니다."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,51 +16,51 @@ ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 2810190897c44c944912ef3325b1f40479aa3078
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4a3eb67de583e08208fcab40de1c2a8a9b65618c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-private-ip-addresses-for-a-virtual-machine-using-powershell"></a><span data-ttu-id="2df58-103">PowerShell을 사용하여 가상 컴퓨터에 대한 개인 IP 주소 구성</span><span class="sxs-lookup"><span data-stu-id="2df58-103">Configure private IP addresses for a virtual machine using PowerShell</span></span>
+# <a name="configure-private-ip-addresses-for-a-virtual-machine-using-powershell"></a><span data-ttu-id="327f7-103">PowerShell을 사용하여 가상 컴퓨터에 대한 개인 IP 주소 구성</span><span class="sxs-lookup"><span data-stu-id="327f7-103">Configure private IP addresses for a virtual machine using PowerShell</span></span>
 
 [!INCLUDE [virtual-networks-static-private-ip-selectors-arm-include](../../includes/virtual-networks-static-private-ip-selectors-arm-include.md)]
 
 [!INCLUDE [virtual-networks-static-private-ip-intro-include](../../includes/virtual-networks-static-private-ip-intro-include.md)]
 
-<span data-ttu-id="2df58-104">Azure에는 Azure Resource Manager 및 클래식이라는 두 가지 배포 모델이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-104">Azure has two deployment models: Azure Resource Manager and classic.</span></span> <span data-ttu-id="2df58-105">Resource Manager 배포 모델을 통해 리소스를 만드는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-105">Microsoft recommends creating resources through the Resource Manager deployment model.</span></span> <span data-ttu-id="2df58-106">두 가지 모델의 차이점에 대해 자세히 알아보려면 [Azure 배포 모델 이해](../azure-resource-manager/resource-manager-deployment-model.md) 문서를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2df58-106">To learn more about the differences between the two models, read the [Understand Azure deployment models](../azure-resource-manager/resource-manager-deployment-model.md) article.</span></span> <span data-ttu-id="2df58-107">이 문서에서는 리소스 관리자 배포 모델에 대해 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-107">This article covers the Resource Manager deployment model.</span></span> <span data-ttu-id="2df58-108">[클래식 배포 모델에서 정적 개인 IP 주소를 관리](virtual-networks-static-private-ip-classic-ps.md)할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-108">You can also [manage static private IP address in the classic deployment model](virtual-networks-static-private-ip-classic-ps.md).</span></span>
+<span data-ttu-id="327f7-104">Azure에는 Azure Resource Manager 및 클래식이라는 두 가지 배포 모델이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-104">Azure has two deployment models: Azure Resource Manager and classic.</span></span> <span data-ttu-id="327f7-105">Hello 리소스 관리자 배포 모델을 통해 리소스를 만드는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-105">Microsoft recommends creating resources through hello Resource Manager deployment model.</span></span> <span data-ttu-id="327f7-106">hello 읽기에 대해 더 알아봅니다 toolearn hello 두 모델 간의 차이 hello [이해 Azure 배포 모델](../azure-resource-manager/resource-manager-deployment-model.md) 문서.</span><span class="sxs-lookup"><span data-stu-id="327f7-106">toolearn more about hello differences between hello two models, read hello [Understand Azure deployment models](../azure-resource-manager/resource-manager-deployment-model.md) article.</span></span> <span data-ttu-id="327f7-107">이 문서에서는 hello 리소스 관리자 배포 모델에 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-107">This article covers hello Resource Manager deployment model.</span></span> <span data-ttu-id="327f7-108">수도 있습니다 [hello 클래식 배포 모델에 개인 고정 IP 주소 관리](virtual-networks-static-private-ip-classic-ps.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-108">You can also [manage static private IP address in hello classic deployment model](virtual-networks-static-private-ip-classic-ps.md).</span></span>
 
 [!INCLUDE [virtual-networks-static-ip-scenario-include](../../includes/virtual-networks-static-ip-scenario-include.md)]
 
-<span data-ttu-id="2df58-109">아래 샘플 PowerShell 명령에는 위의 시나리오를 기반으로 이미 만들어져 있는 단순한 환경이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-109">The sample PowerShell commands below expect a simple environment already created based on the scenario above.</span></span> <span data-ttu-id="2df58-110">이 문서에 표시된 대로 명령을 실행하려는 경우 먼저 [vnet 만들기](virtual-networks-create-vnet-arm-ps.md)에 설명된 테스트 환경을 구축합니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-110">If you want to run the commands as they are displayed in this document, first build the test environment described in [create a vnet](virtual-networks-create-vnet-arm-ps.md).</span></span>
+<span data-ttu-id="327f7-109">위의 hello 시나리오를 기반으로 hello 예제 PowerShell 명령 아래에 이미 만든 단순한 환경 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-109">hello sample PowerShell commands below expect a simple environment already created based on hello scenario above.</span></span> <span data-ttu-id="327f7-110">이 문서에 표시 된 대로 toorun hello 명령을 원하는 경우 먼저 hello 테스트 환경을 구축에 설명 된 [vnet을 만든](virtual-networks-create-vnet-arm-ps.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-110">If you want toorun hello commands as they are displayed in this document, first build hello test environment described in [create a vnet](virtual-networks-create-vnet-arm-ps.md).</span></span>
 
-## <a name="create-a-vm-with-a-static-private-ip-address"></a><span data-ttu-id="2df58-111">고정 개인 IP 주소를 사용하는 VM 만들기</span><span class="sxs-lookup"><span data-stu-id="2df58-111">Create a VM with a static private IP address</span></span>
-<span data-ttu-id="2df58-112">*192.168.1.101*의 정적 개인 IP 주소를 사용하여 *TestVNet*이라는 VNet의 *FrontEnd* 서브넷에 *DNS01*이라는 VM을 만들려면 다음 단계를 따르세요.</span><span class="sxs-lookup"><span data-stu-id="2df58-112">To create a VM named *DNS01* in the *FrontEnd* subnet of a VNet named *TestVNet* with a static private IP of *192.168.1.101*, follow the steps below:</span></span>
+## <a name="create-a-vm-with-a-static-private-ip-address"></a><span data-ttu-id="327f7-111">고정 개인 IP 주소를 사용하는 VM 만들기</span><span class="sxs-lookup"><span data-stu-id="327f7-111">Create a VM with a static private IP address</span></span>
+<span data-ttu-id="327f7-112">toocreate 라는 VM *DNS01* hello에 *프런트 엔드* 라는 VNet의 서브넷 *TestVNet* 의 정적 개인 ip *192.168.1.101*, 아래의 hello 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-112">toocreate a VM named *DNS01* in hello *FrontEnd* subnet of a VNet named *TestVNet* with a static private IP of *192.168.1.101*, follow hello steps below:</span></span>
 
-1. <span data-ttu-id="2df58-113">사용할 저장소 계정, 위치, 리소스 그룹 및 자격 증명에 대한 변수를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-113">Set variables for the storage account, location, resource group, and credentials to be used.</span></span> <span data-ttu-id="2df58-114">VM에 대한 사용자 이름 및 암호를 입력해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-114">You will need to enter a user name and password for the VM.</span></span> <span data-ttu-id="2df58-115">저장소 계정 및 리소스 그룹이 이미 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-115">The storage account and resource group must already exist.</span></span>
+1. <span data-ttu-id="327f7-113">Hello 저장소 계정, 위치, 리소스 그룹 및 자격 증명 toobe 사용에 대 한 변수를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-113">Set variables for hello storage account, location, resource group, and credentials toobe used.</span></span> <span data-ttu-id="327f7-114">Hello VM에 대 한 tooenter 사용자 이름 및 암호가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-114">You will need tooenter a user name and password for hello VM.</span></span> <span data-ttu-id="327f7-115">hello 저장소 계정 및 리소스 그룹을 이미 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-115">hello storage account and resource group must already exist.</span></span>
 
     ```powershell
     $stName  = "vnetstorage"
     $locName = "Central US"
     $rgName  = "TestRG"
-    $cred    = Get-Credential -Message "Type the name and password of the local administrator account."
+    $cred    = Get-Credential -Message "Type hello name and password of hello local administrator account."
     ```
 
-2. <span data-ttu-id="2df58-116">VM을 만들 가상 네트워크 및 서브넷을 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-116">Retrieve the virtual network and subnet you want to create the VM in.</span></span>
+2. <span data-ttu-id="327f7-116">검색 hello 가상 네트워크 및 서브넷 toocreate 선택에서 VM hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-116">Retrieve hello virtual network and subnet you want toocreate hello VM in.</span></span>
 
     ```powershell
     $vnet   = Get-AzureRmVirtualNetwork -ResourceGroupName TestRG -Name TestVNet
     $subnet = $vnet.Subnets[0].Id
     ```
 
-3. <span data-ttu-id="2df58-117">필요한 경우 인터넷에서 VM에 액세스하기 위한 공용 IP 주소를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-117">If necessary, create a public IP address to access the VM from the Internet.</span></span>
+3. <span data-ttu-id="327f7-117">필요한 경우 hello 인터넷에서에서 공용 IP 주소 tooaccess hello VM을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-117">If necessary, create a public IP address tooaccess hello VM from hello Internet.</span></span>
 
     ```powershell
     $pip = New-AzureRmPublicIpAddress -Name TestPIP -ResourceGroupName $rgName `
     -Location $locName -AllocationMethod Dynamic
     ```
 
-4. <span data-ttu-id="2df58-118">VM에 할당하려는 정적 개인 IP 주소를 사용하여 NIC를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-118">Create a NIC using the static private IP address you want to assign to the VM.</span></span> <span data-ttu-id="2df58-119">IP가 VM을 추가할 서브넷 범위에 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-119">Make sure the IP is from the subnet range you are adding the VM to.</span></span> <span data-ttu-id="2df58-120">다음은 이 문서의 주요 단계로, 여기에서 개인 IP를 정적으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-120">This is the main step for this article, where you set the private IP to be static.</span></span>
+4. <span data-ttu-id="327f7-118">Hello 정적 개인 IP 주소를 tooassign toohello VM을 사용 하 여 NIC를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-118">Create a NIC using hello static private IP address you want tooassign toohello VM.</span></span> <span data-ttu-id="327f7-119">있는지 hello IP가 추가 하는 hello 서브넷 범위의 hello VM을 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-119">Make sure hello IP is from hello subnet range you are adding hello VM to.</span></span> <span data-ttu-id="327f7-120">이 여기서 설정한 hello 개인 IP toobe 정적이 문서에 대 한 hello 주요 단계입니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-120">This is hello main step for this article, where you set hello private IP toobe static.</span></span>
 
     ```powershell
     $nic = New-AzureRmNetworkInterface -Name TestNIC -ResourceGroupName $rgName `
@@ -68,7 +68,7 @@ ms.lasthandoff: 07/11/2017
     -PrivateIpAddress 192.168.1.101
     ```
 
-5. <span data-ttu-id="2df58-121">위에서 만든 NIC를 사용하여 VM을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-121">Create the VM using the NIC created above.</span></span>
+5. <span data-ttu-id="327f7-121">Hello 위에서 만든 hello NIC를 사용 하 여 VM을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-121">Create hello VM using hello NIC created above.</span></span>
 
     ```powershell
     $vm = New-AzureRmVMConfig -VMName DNS01 -VMSize "Standard_A1"
@@ -83,7 +83,7 @@ ms.lasthandoff: 07/11/2017
     New-AzureRmVM -ResourceGroupName $rgName -Location $locName -VM $vm 
     ```
 
-    <span data-ttu-id="2df58-122">예상 출력:</span><span class="sxs-lookup"><span data-stu-id="2df58-122">Expected output:</span></span>
+    <span data-ttu-id="327f7-122">예상 출력:</span><span class="sxs-lookup"><span data-stu-id="327f7-122">Expected output:</span></span>
     
         EndTime             : [Date and time]
         Error               : 
@@ -94,14 +94,14 @@ ms.lasthandoff: 07/11/2017
         RequestId           : [Id]
         StatusCode          : OK 
 
-## <a name="retrieve-static-private-ip-address-information-for-a-network-interface"></a><span data-ttu-id="2df58-123">네트워크 인터페이스의 고정 개인 IP 주소 정보 검색</span><span class="sxs-lookup"><span data-stu-id="2df58-123">Retrieve static private IP address information for a network interface</span></span>
-<span data-ttu-id="2df58-124">위의 스크립트로 만든 VM에 대한 정적 개인 IP 주소 정보를 보려면 다음 PowerShell 명령을 실행하고 *PrivateIpAddress* 및 *PrivateIpAllocationMethod*에 대한 값을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-124">To view the static private IP address information for the VM created with the script above, run the following PowerShell command and observe the values for *PrivateIpAddress* and *PrivateIpAllocationMethod*:</span></span>
+## <a name="retrieve-static-private-ip-address-information-for-a-network-interface"></a><span data-ttu-id="327f7-123">네트워크 인터페이스의 고정 개인 IP 주소 정보 검색</span><span class="sxs-lookup"><span data-stu-id="327f7-123">Retrieve static private IP address information for a network interface</span></span>
+<span data-ttu-id="327f7-124">tooview hello 정적 개인 IP 주소 VM hello 다음 PowerShell 명령을 실행 합니다. 위의 hello 스크립트를 사용 하 여 만든 hello에 대 한 정보 및 hello에 대 한 값이 확인 *PrivateIpAddress* 및  *PrivateIpAllocationMethod*:</span><span class="sxs-lookup"><span data-stu-id="327f7-124">tooview hello static private IP address information for hello VM created with hello script above, run hello following PowerShell command and observe hello values for *PrivateIpAddress* and *PrivateIpAllocationMethod*:</span></span>
 
 ```powershell
 Get-AzureRmNetworkInterface -Name TestNIC -ResourceGroupName TestRG
 ```
 
-<span data-ttu-id="2df58-125">예상 출력:</span><span class="sxs-lookup"><span data-stu-id="2df58-125">Expected output:</span></span>
+<span data-ttu-id="327f7-125">예상 출력:</span><span class="sxs-lookup"><span data-stu-id="327f7-125">Expected output:</span></span>
 
     Name                 : TestNIC
     ResourceGroupName    : TestRG
@@ -141,8 +141,8 @@ Get-AzureRmNetworkInterface -Name TestNIC -ResourceGroupName TestRG
     NetworkSecurityGroup : null
     Primary              : True
 
-## <a name="remove-a-static-private-ip-address-from-a-network-interface"></a><span data-ttu-id="2df58-126">네트워크 인터페이스에서 고정 개인 IP 주소 제거</span><span class="sxs-lookup"><span data-stu-id="2df58-126">Remove a static private IP address from a network interface</span></span>
-<span data-ttu-id="2df58-127">위의 스크립트에서 VM에 추가된 정적 개인 IP 주소를 제거하려면 다음 PowerShell 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-127">To remove the static private IP address added to the VM in the script above, run the following PowerShell commands:</span></span>
+## <a name="remove-a-static-private-ip-address-from-a-network-interface"></a><span data-ttu-id="327f7-126">네트워크 인터페이스에서 고정 개인 IP 주소 제거</span><span class="sxs-lookup"><span data-stu-id="327f7-126">Remove a static private IP address from a network interface</span></span>
+<span data-ttu-id="327f7-127">다음 PowerShell 명령이 실행된 hello 위의 hello 스크립트 toohello VM을 추가 하는 tooremove hello 정적 개인 IP 주소:</span><span class="sxs-lookup"><span data-stu-id="327f7-127">tooremove hello static private IP address added toohello VM in hello script above, run hello following PowerShell commands:</span></span>
 
 ```powershell
 $nic=Get-AzureRmNetworkInterface -Name TestNIC -ResourceGroupName TestRG
@@ -150,7 +150,7 @@ $nic.IpConfigurations[0].PrivateIpAllocationMethod = "Dynamic"
 Set-AzureRmNetworkInterface -NetworkInterface $nic
 ```
 
-<span data-ttu-id="2df58-128">예상 출력:</span><span class="sxs-lookup"><span data-stu-id="2df58-128">Expected output:</span></span>
+<span data-ttu-id="327f7-128">예상 출력:</span><span class="sxs-lookup"><span data-stu-id="327f7-128">Expected output:</span></span>
 
     Name                 : TestNIC
     ResourceGroupName    : TestRG
@@ -190,8 +190,8 @@ Set-AzureRmNetworkInterface -NetworkInterface $nic
     NetworkSecurityGroup : null
     Primary              : True
 
-## <a name="add-a-static-private-ip-address-to-a-network-interface"></a><span data-ttu-id="2df58-129">네트워크 인터페이스에 고정 개인 IP 주소 추가</span><span class="sxs-lookup"><span data-stu-id="2df58-129">Add a static private IP address to a network interface</span></span>
-<span data-ttu-id="2df58-130">위의 스크립트를 사용하여 만든 VM에 정적 개인 IP 주소를 추가하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-130">To add a static private IP address to the VM created using the script above, run the following commands:</span></span>
+## <a name="add-a-static-private-ip-address-tooa-network-interface"></a><span data-ttu-id="327f7-129">정적 개인 IP 주소 tooa 네트워크 인터페이스를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-129">Add a static private IP address tooa network interface</span></span>
+<span data-ttu-id="327f7-130">tooadd는 정적 개인 IP 주소 toohello 위의 hello 스크립트를 사용 하 여 만든 VM hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-130">tooadd a static private IP address toohello VM created using hello script above, run hello following commands:</span></span>
 
 ```powershell
 $nic=Get-AzureRmNetworkInterface -Name TestNIC -ResourceGroupName TestRG
@@ -199,9 +199,9 @@ $nic.IpConfigurations[0].PrivateIpAllocationMethod = "Static"
 $nic.IpConfigurations[0].PrivateIpAddress = "192.168.1.101"
 Set-AzureRmNetworkInterface -NetworkInterface $nic
 ```
-## <a name="change-the-allocation-method-for-a-private-ip-address-assigned-to-a-network-interface"></a><span data-ttu-id="2df58-131">네트워크 인터페이스에 할당된 개인 IP 주소의 할당 방법 변경</span><span class="sxs-lookup"><span data-stu-id="2df58-131">Change the allocation method for a private IP address assigned to a network interface</span></span>
+## <a name="change-hello-allocation-method-for-a-private-ip-address-assigned-tooa-network-interface"></a><span data-ttu-id="327f7-131">Tooa 네트워크 인터페이스에 할당 된 개인 IP 주소에 대 한 hello 할당 방법 변경</span><span class="sxs-lookup"><span data-stu-id="327f7-131">Change hello allocation method for a private IP address assigned tooa network interface</span></span>
 
-<span data-ttu-id="2df58-132">개인 IP 주소는 고정 또는 동적 할당 방법을 사용하여 NIC에 할당됩니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-132">A private IP address is assigned to a NIC with the static or dynamic allocation method.</span></span> <span data-ttu-id="2df58-133">동적 IP 주소는 이전에 중지(할당 취소) 상태였던 VM을 시작한 후 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-133">Dynamic IP addresses can change after starting a VM that was previously in the stopped (deallocated) state.</span></span> <span data-ttu-id="2df58-134">이렇게 하면 VM이 동일한 IP 주소가 필요한 서비스를 호스팅하는 경우 중지(할당 취소) 상태에서 다시 시작하더라도 문제가 발생할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-134">This can potentially cause issues if the VM is hosting a service that requires the same IP address, even after restarts from a stopped (deallocated) state.</span></span> <span data-ttu-id="2df58-135">고정 IP 주소는 VM이 삭제될 때까지 유지됩니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-135">Static IP addresses are retained until the VM is deleted.</span></span> <span data-ttu-id="2df58-136">IP 주소 할당 방법을 변경하려면 할당 방법을 동적에서 고정으로 변경하는 다음 스크립트를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-136">To change the allocation method of an IP address, run the following script, which changes the allocation method from dynamic to static.</span></span> <span data-ttu-id="2df58-137">현재 개인 IP 주소의 할당 방법이 고정이면 *고정*을 *동적*으로 변경한 후 스크립트를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-137">If the allocation method for the current private IP address is static, change *Static* to *Dynamic* before executing the script.</span></span>
+<span data-ttu-id="327f7-132">개인 IP 주소가 NIC tooa hello 정적 또는 동적 할당 방법으로 할당 됩니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-132">A private IP address is assigned tooa NIC with hello static or dynamic allocation method.</span></span> <span data-ttu-id="327f7-133">동적 IP 주소 (할당 취소) 상태 중지 hello에 이전에 있던 VM을 시작 후 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-133">Dynamic IP addresses can change after starting a VM that was previously in hello stopped (deallocated) state.</span></span> <span data-ttu-id="327f7-134">Hello VM hello를 필요로 하는 서비스를 호스팅하는 경우 문제가 발생할 수 있습니다이 중지 (할당 취소) 상태에서 다시 시작 후에 동일한 IP 주소입니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-134">This can potentially cause issues if hello VM is hosting a service that requires hello same IP address, even after restarts from a stopped (deallocated) state.</span></span> <span data-ttu-id="327f7-135">고정 IP 주소는 hello VM 삭제 될 때까지 유지 됩니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-135">Static IP addresses are retained until hello VM is deleted.</span></span> <span data-ttu-id="327f7-136">hello 뒤에서 동적 toostatic hello 할당 방법 변경 하는 스크립트를 실행 하는 IP 주소의 toochange hello 할당 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-136">toochange hello allocation method of an IP address, run hello following script, which changes hello allocation method from dynamic toostatic.</span></span> <span data-ttu-id="327f7-137">Hello 할당 방법 hello 현재 개인 IP 주소에 대 한 정적 이면 변경 *정적* 너무*동적* hello 스크립트를 실행 하기 전에.</span><span class="sxs-lookup"><span data-stu-id="327f7-137">If hello allocation method for hello current private IP address is static, change *Static* too*Dynamic* before executing hello script.</span></span>
 
 ```powershell
 $RG = "TestRG"
@@ -212,17 +212,17 @@ $nic.IpConfigurations[0].PrivateIpAllocationMethod = 'Static'
 Set-AzureRmNetworkInterface -NetworkInterface $nic 
 $IP = $nic.IpConfigurations[0].PrivateIpAddress
 
-Write-Host "The allocation method is now set to"$nic.IpConfigurations[0].PrivateIpAllocationMethod"for the IP address" $IP"." -NoNewline
+Write-Host "hello allocation method is now set to"$nic.IpConfigurations[0].PrivateIpAllocationMethod"for hello IP address" $IP"." -NoNewline
 ```
 
-<span data-ttu-id="2df58-138">NIC의 이름을 모르는 경우 다음 명령을 입력하여 리소스 그룹 내에서 NIC 목록을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-138">If you don't know the name of the NIC, you can view a list of NICs within a resource group by entering the following command:</span></span>
+<span data-ttu-id="327f7-138">Hello NIC의 hello 이름을 모르면 hello 다음 명령을 입력 하 여 리소스 그룹 내의 Nic의 목록을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-138">If you don't know hello name of hello NIC, you can view a list of NICs within a resource group by entering hello following command:</span></span>
 
 ```powershell
 Get-AzureRmNetworkInterface -ResourceGroupName $RG | Where-Object {$_.ProvisioningState -eq 'Succeeded'} 
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="2df58-139">다음 단계</span><span class="sxs-lookup"><span data-stu-id="2df58-139">Next steps</span></span>
-* <span data-ttu-id="2df58-140">[예약된 공용 IP](virtual-networks-reserved-public-ip.md) 주소에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-140">Learn about [reserved public IP](virtual-networks-reserved-public-ip.md) addresses.</span></span>
-* <span data-ttu-id="2df58-141">[ILPIP(인스턴스 수준 공용 IP)](virtual-networks-instance-level-public-ip.md) 주소에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-141">Learn about [instance-level public IP (ILPIP)](virtual-networks-instance-level-public-ip.md) addresses.</span></span>
-* <span data-ttu-id="2df58-142">[예약된 IP REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx)를 참조합니다.</span><span class="sxs-lookup"><span data-stu-id="2df58-142">Consult the [Reserved IP REST APIs](https://msdn.microsoft.com/library/azure/dn722420.aspx).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="327f7-139">다음 단계</span><span class="sxs-lookup"><span data-stu-id="327f7-139">Next steps</span></span>
+* <span data-ttu-id="327f7-140">[예약된 공용 IP](virtual-networks-reserved-public-ip.md) 주소에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-140">Learn about [reserved public IP](virtual-networks-reserved-public-ip.md) addresses.</span></span>
+* <span data-ttu-id="327f7-141">[ILPIP(인스턴스 수준 공용 IP)](virtual-networks-instance-level-public-ip.md) 주소에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-141">Learn about [instance-level public IP (ILPIP)](virtual-networks-instance-level-public-ip.md) addresses.</span></span>
+* <span data-ttu-id="327f7-142">Hello 참조 [예약 된 IP REST Api](https://msdn.microsoft.com/library/azure/dn722420.aspx)합니다.</span><span class="sxs-lookup"><span data-stu-id="327f7-142">Consult hello [Reserved IP REST APIs](https://msdn.microsoft.com/library/azure/dn722420.aspx).</span></span>
 

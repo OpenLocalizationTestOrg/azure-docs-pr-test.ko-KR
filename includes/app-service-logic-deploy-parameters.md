@@ -1,0 +1,13 @@
+<span data-ttu-id="159c2-101">Azure 리소스 관리자와 정의한 매개 변수 값에 대 한 원하는 toospecify hello 서식 파일을 배포할 때.</span><span class="sxs-lookup"><span data-stu-id="159c2-101">With Azure Resource Manager, you define parameters for values you want toospecify when hello template is deployed.</span></span> <span data-ttu-id="159c2-102">hello 템플릿은 모든 hello 매개 변수 값이 포함 된 매개 변수 라는 섹션을 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="159c2-102">hello template includes a section called Parameters that contains all of hello parameter values.</span></span>
+<span data-ttu-id="159c2-103">에 배포 하는 hello 환경에 따라 또는 배포 하는 hello 프로젝트에 따라 달라 집니다는 해당 값에 대 한 매개 변수를 정의 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="159c2-103">You should define a parameter for those values that will vary based on hello project you are deploying or based on hello environment you are deploying to.</span></span> <span data-ttu-id="159c2-104">항상 유지 되는 값 동일 hello에 대 한 매개 변수를 정의 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="159c2-104">Do not define parameters for values that will always stay hello same.</span></span> <span data-ttu-id="159c2-105">각 매개 변수 값은 리소스를 배포 하는 hello 템플릿 toodefine hello에 사용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="159c2-105">Each parameter value is used in hello template toodefine hello resources that are deploy.</span></span> 
+
+<span data-ttu-id="159c2-106">매개 변수를 정의할 때 사용 하 여 hello **allowedValues** 필드 toospecify 값이 사용자는 배포 중에 제공할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="159c2-106">When defining parameters, use hello **allowedValues** field toospecify which values a user can provide during deployment.</span></span> <span data-ttu-id="159c2-107">사용 하 여 hello **defaultValue** 필드 tooassign 값 toohello 매개 변수를 배포 하는 동안 제공 된 값이 없는 경우.</span><span class="sxs-lookup"><span data-stu-id="159c2-107">Use hello **defaultValue** field tooassign a value toohello parameter, if no value is provided during deployment.</span></span>
+
+<span data-ttu-id="159c2-108">Hello 서식 파일의 각 매개 변수에 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="159c2-108">We will describe each parameter in hello template.</span></span>
+
+### <a name="logicappname"></a><span data-ttu-id="159c2-109">logicAppName</span><span class="sxs-lookup"><span data-stu-id="159c2-109">logicAppName</span></span>
+<span data-ttu-id="159c2-110">hello 논리 앱 toocreate의 hello 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="159c2-110">hello name of hello logic app toocreate.</span></span>
+
+    "logicAppName": {
+        "type": "string"
+    }

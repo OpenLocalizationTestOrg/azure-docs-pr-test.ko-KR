@@ -1,0 +1,9 @@
+<span data-ttu-id="a02f8-101">다른 종류의 트리거에 toocreate 작동 방법 또는 toointegrate 다른 Azure 서비스와 작동 하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="a02f8-101">Learn how toocreate functions with other kinds of triggers or how toointegrate functions with other Azure services.</span></span>
+
+
++ [<span data-ttu-id="a02f8-102">일정에 따라 실행되는 함수 만들기</span><span class="sxs-lookup"><span data-stu-id="a02f8-102">Create a function that runs on a schedule</span></span>](../articles/azure-functions/functions-create-scheduled-function.md) 
++ [<span data-ttu-id="a02f8-103">Storage 큐 메시지에 의해 트리거되는 함수 만들기</span><span class="sxs-lookup"><span data-stu-id="a02f8-103">Create a function triggered by Storage queue messages</span></span>](../articles/azure-functions/functions-create-storage-queue-triggered-function.md) 
++ [<span data-ttu-id="a02f8-104">제네릭 웹후크를 통해 트리거되는 함수 만들기</span><span class="sxs-lookup"><span data-stu-id="a02f8-104">Create a function triggered by a generic webhook</span></span>](../articles/azure-functions/functions-create-generic-webhook-triggered-function.md)
++ [<span data-ttu-id="a02f8-105">GitHub 웹후크를 통해 트리거되는 함수 만들기</span><span class="sxs-lookup"><span data-stu-id="a02f8-105">Create a function triggered by a GitHub webhook</span></span>](../articles/azure-functions/functions-create-github-webhook-triggered-function.md) 
++ [<span data-ttu-id="a02f8-106">함수를 사용 하 여 메시지 tooan Azure 저장소 큐를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="a02f8-106">Add messages tooan Azure Storage queue using Functions</span></span>](../articles/azure-functions/functions-integrate-storage-queue-output-binding.md) 
++ [<span data-ttu-id="a02f8-107">Functions를 사용하여 Azure Cosmos DB에 구조화되지 않은 데이터 저장</span><span class="sxs-lookup"><span data-stu-id="a02f8-107">Store unstructured data in Azure Cosmos DB using Functions</span></span>](../articles/azure-functions/functions-integrate-store-unstructured-data-cosmosdb.md)

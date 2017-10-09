@@ -1,0 +1,6 @@
+## <a name="versions-of-hello-azure-cli"></a><span data-ttu-id="e47d7-101">Hello Azure CLI의 버전</span><span class="sxs-lookup"><span data-stu-id="e47d7-101">Versions of hello Azure CLI</span></span>
+
+<span data-ttu-id="e47d7-102">현재 사용할 수는 hello Azure 명령줄 인터페이스 (CLI)의 두 가지 버전이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e47d7-102">There are two versions of hello Azure Command-Line Interface (CLI) currently available:</span></span>
+
+* <span data-ttu-id="e47d7-103">[Azure CLI 2.0](../articles/storage/common/storage-azure-cli.md): Python hello 리소스 관리자 배포 모델에 사용 하기 위해 작성 된 차세대 CLI 취급 합니다.</span><span class="sxs-lookup"><span data-stu-id="e47d7-103">[Azure CLI 2.0](../articles/storage/common/storage-azure-cli.md): Our next-generation CLI written in Python, for use with hello Resource Manager deployment model.</span></span>
+* <span data-ttu-id="e47d7-104">[Azure CLI 1.0](../articles/storage/common/storage-azure-cli-nodejs.md): Our CLI hello 클래식 및 리소스 관리자 배포 모델을 모두 사용 하기 위해 Node.js에 작성 합니다.</span><span class="sxs-lookup"><span data-stu-id="e47d7-104">[Azure CLI 1.0](../articles/storage/common/storage-azure-cli-nodejs.md): Our CLI written in Node.js, for use with both hello classic and Resource Manager deployment models.</span></span>

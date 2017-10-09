@@ -15,46 +15,46 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/12/2017
 ms.author: yushwang
-ms.openlocfilehash: b00a3fe7ba4b12c2e9c486188c292cd6fafb60a3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a9d13ae6b319e2efa8965dc2955c9b89ac3fd12b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-bgp-on-azure-vpn-gateways-using-powershell"></a><span data-ttu-id="14541-103">PowerShell을 사용하여 Azure VPN Gateway에서 BGP를 구성하는 방법</span><span class="sxs-lookup"><span data-stu-id="14541-103">How to configure BGP on Azure VPN Gateways using PowerShell</span></span>
-<span data-ttu-id="14541-104">이 문서에서는 리소스 관리자 배포 모델 및 PowerShell을 사용하여 프레미스 간 S2S(사이트 간) VPN 연결 및 VNet 간 연결에서 BGP를 사용하도록 설정하는 단계를 안내합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-104">This article walks you through the steps to enable BGP on a cross-premises Site-to-Site (S2S) VPN connection and a VNet-to-VNet connection using the Resource Manager deployment model and PowerShell.</span></span>
+# <a name="how-tooconfigure-bgp-on-azure-vpn-gateways-using-powershell"></a><span data-ttu-id="4ce96-103">어떻게 tooconfigure BGP PowerShell을 사용 하 여 Azure VPN 게이트웨이</span><span class="sxs-lookup"><span data-stu-id="4ce96-103">How tooconfigure BGP on Azure VPN Gateways using PowerShell</span></span>
+<span data-ttu-id="4ce96-104">이 문서에서는 크로스-프레미스 사이트 및 사이트 간 (S2S) VPN 연결 및 hello 리소스 관리자 배포 모델 및 PowerShell을 사용 하는 VNet 대 VNet 연결에 hello 단계 tooenable BGP 안내 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-104">This article walks you through hello steps tooenable BGP on a cross-premises Site-to-Site (S2S) VPN connection and a VNet-to-VNet connection using hello Resource Manager deployment model and PowerShell.</span></span>
 
-## <a name="about-bgp"></a><span data-ttu-id="14541-105">BGP 정보</span><span class="sxs-lookup"><span data-stu-id="14541-105">About BGP</span></span>
-<span data-ttu-id="14541-106">BGP는 두 개 이상의 네트워크 간에 라우팅 및 연결 정보를 교환하도록 인터넷에서 일반적으로 사용하는 표준 라우팅 프로토콜입니다.</span><span class="sxs-lookup"><span data-stu-id="14541-106">BGP is the standard routing protocol commonly used in the Internet to exchange routing and reachability information between two or more networks.</span></span> <span data-ttu-id="14541-107">BGP를 통해 Azure VPN 게이트웨이 및 온-프레미스 VPN 장치(BGP 피어 또는 인접이라고 함)는 관련된 게이트웨이 또는 라우터를 거치도록 해당 접두사의 가용성 및 연결 가능성에 대한 정보를 두 게이트웨이에 제공하는 "경로"를 교환할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-107">BGP enables the Azure VPN Gateways and your on-premises VPN devices, called BGP peers or neighbors, to exchange "routes" that will inform both gateways on the availability and reachability for those prefixes to go through the gateways or routers involved.</span></span> <span data-ttu-id="14541-108">BGP 게이트웨이가 하나의 BGP 피어에서 파악한 경로를 다른 모든 BGP 피어로 전파하여 BGP를 통해 여러 네트워크 간에 전송 라우팅을 사용할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-108">BGP can also enable transit routing among multiple networks by propagating routes a BGP gateway learns from one BGP peer to all other BGP peers.</span></span>
+## <a name="about-bgp"></a><span data-ttu-id="4ce96-105">BGP 정보</span><span class="sxs-lookup"><span data-stu-id="4ce96-105">About BGP</span></span>
+<span data-ttu-id="4ce96-106">BGP는 hello 표준 라우팅 프로토콜 hello 인터넷 tooexchange 라우팅과 연결 가능성 정보 두 개 이상의 네트워크 사이에서 일반적으로 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-106">BGP is hello standard routing protocol commonly used in hello Internet tooexchange routing and reachability information between two or more networks.</span></span> <span data-ttu-id="4ce96-107">BGP hello Azure VPN 게이트웨이 및 BGP 피어 또는 인접 한 항목을 호출 하 여 온-프레미스 VPN 장치, tooexchange "같은 경로"에서는 두 게이트웨이 hello 가용성을 하는 것에 대해 hello 게이트웨이 또는 라우터로 관련 된 통해 toogo 접두사입니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-107">BGP enables hello Azure VPN Gateways and your on-premises VPN devices, called BGP peers or neighbors, tooexchange "routes" that will inform both gateways on hello availability and reachability for those prefixes toogo through hello gateways or routers involved.</span></span> <span data-ttu-id="4ce96-108">BGP 경로 BGP 게이트웨이 한 BGP 피어 tooall에서 학습을 전파 하 여 여러 네트워크 간에 전송 라우팅과 활성화할 수도 다른 BGP 피어입니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-108">BGP can also enable transit routing among multiple networks by propagating routes a BGP gateway learns from one BGP peer tooall other BGP peers.</span></span>
 
-<span data-ttu-id="14541-109">BGP의 이점에 대한 자세한 설명과 BGP 사용의 기술 요구 사항 및 고려 사항을 이해하려면 [Azure VPN Gateway에서의 BGP 개요](vpn-gateway-bgp-overview.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="14541-109">See [Overview of BGP with Azure VPN Gateways](vpn-gateway-bgp-overview.md) for more discussion on benefits of BGP and to understand the technical requirements and considerations of using BGP.</span></span>
+<span data-ttu-id="4ce96-109">참조 [Azure VPN 게이트웨이 사용한 BGP의 개요](vpn-gateway-bgp-overview.md) 에 대 한 자세한 설명은 이점에 BGP 및 toounderstand hello 기술 요구 사항 및 고려 사항이 BGP를 사용 하 여 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-109">See [Overview of BGP with Azure VPN Gateways](vpn-gateway-bgp-overview.md) for more discussion on benefits of BGP and toounderstand hello technical requirements and considerations of using BGP.</span></span>
 
-## <a name="getting-started-with-bgp-on-azure-vpn-gateways"></a><span data-ttu-id="14541-110">Azure VPN 게이트웨이에서 BGP 시작하기</span><span class="sxs-lookup"><span data-stu-id="14541-110">Getting started with BGP on Azure VPN gateways</span></span>
+## <a name="getting-started-with-bgp-on-azure-vpn-gateways"></a><span data-ttu-id="4ce96-110">Azure VPN 게이트웨이에서 BGP 시작하기</span><span class="sxs-lookup"><span data-stu-id="4ce96-110">Getting started with BGP on Azure VPN gateways</span></span>
 
-<span data-ttu-id="14541-111">이 문서는 다음 작업을 수행하는 단계를 안내합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-111">This article walks you through the steps to do the following tasks:</span></span>
+<span data-ttu-id="4ce96-111">이 문서는 hello 단계 toodo hello 다음 작업을 안내 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-111">This article walks you through hello steps toodo hello following tasks:</span></span>
 
-* [<span data-ttu-id="14541-112">1부 - Azure VPN 게이트웨이에서 BGP 사용</span><span class="sxs-lookup"><span data-stu-id="14541-112">Part 1 - Enable BGP on your Azure VPN gateway</span></span>](#enablebgp)
-* [<span data-ttu-id="14541-113">2부 - BGP를 사용하여 프레미스 간 연결 설정</span><span class="sxs-lookup"><span data-stu-id="14541-113">Part 2 - Establish a cross-premises connection with BGP</span></span>](#crossprembgp)
-* [<span data-ttu-id="14541-114">3부 - BGP를 사용하여 VNet 간 연결 설정</span><span class="sxs-lookup"><span data-stu-id="14541-114">Part 3 - Establish a VNet-to-VNet connection with BGP</span></span>](#v2vbgp)
+* [<span data-ttu-id="4ce96-112">1부 - Azure VPN 게이트웨이에서 BGP 사용</span><span class="sxs-lookup"><span data-stu-id="4ce96-112">Part 1 - Enable BGP on your Azure VPN gateway</span></span>](#enablebgp)
+* [<span data-ttu-id="4ce96-113">2부 - BGP를 사용하여 프레미스 간 연결 설정</span><span class="sxs-lookup"><span data-stu-id="4ce96-113">Part 2 - Establish a cross-premises connection with BGP</span></span>](#crossprembgp)
+* [<span data-ttu-id="4ce96-114">3부 - BGP를 사용하여 VNet 간 연결 설정</span><span class="sxs-lookup"><span data-stu-id="4ce96-114">Part 3 - Establish a VNet-to-VNet connection with BGP</span></span>](#v2vbgp)
 
-<span data-ttu-id="14541-115">지침의 각 부는 네트워크 연결에서 BGP를 사용하기 위한 기본 구성 요소를 형성합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-115">Each part of the instructions forms a basic building block for enabling BGP in your network connectivity.</span></span> <span data-ttu-id="14541-116">세 부 모두 완료하면 다음 다이어그램에 표시된 대로 토폴로지를 빌드합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-116">If you complete all three parts, you build the topology as shown in the following diagram:</span></span>
+<span data-ttu-id="4ce96-115">네트워크 연결에서 BGP를 사용 하기 위한 기본 구성 요소로 hello 지침의 각 부분을 형성 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-115">Each part of hello instructions forms a basic building block for enabling BGP in your network connectivity.</span></span> <span data-ttu-id="4ce96-116">세 부분을 모두 완료 하면 hello 다음 다이어그램에에서 표시 된 대로 hello 토폴로지 빌드:</span><span class="sxs-lookup"><span data-stu-id="4ce96-116">If you complete all three parts, you build hello topology as shown in hello following diagram:</span></span>
 
 ![BGP 토폴로지](./media/vpn-gateway-bgp-resource-manager-ps/bgp-crosspremv2v.png)
 
-<span data-ttu-id="14541-118">파트를 결합하여 필요에 따라 더 복잡한 다중 홉 전송 네트워크를 빌드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-118">You can combine parts together to build a more complex, multi-hop, transit network that meets your needs.</span></span>
+<span data-ttu-id="4ce96-118">부분 함께 toobuild 요구 사항을 충족 하는 보다 복잡 한, 다중 홉 전송 네트워크를 결합할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-118">You can combine parts together toobuild a more complex, multi-hop, transit network that meets your needs.</span></span>
 
-## <span data-ttu-id="14541-119"><a name ="enablebgp"></a>1부 - Azure VPN 게이트웨이에서 BGP 구성</span><span class="sxs-lookup"><span data-stu-id="14541-119"><a name ="enablebgp"></a>Part 1 - Configure BGP on the Azure VPN Gateway</span></span>
-<span data-ttu-id="14541-120">구성 단계에서는 다음 다이어그램에 표시된 대로 Azure VPN 게이트웨이의 BGP 매개 변수를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-120">The configuration steps set up the BGP parameters of the Azure VPN gateway as shown in the following diagram:</span></span>
+## <span data-ttu-id="4ce96-119"><a name ="enablebgp"></a>1 부-hello Azure VPN 게이트웨이에서 BGP를 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-119"><a name ="enablebgp"></a>Part 1 - Configure BGP on hello Azure VPN Gateway</span></span>
+<span data-ttu-id="4ce96-120">hello 구성 단계를 설정 hello hello Azure VPN 게이트웨이의 BGP 매개 변수 hello 다음 다이어그램에에서 표시 된 대로:</span><span class="sxs-lookup"><span data-stu-id="4ce96-120">hello configuration steps set up hello BGP parameters of hello Azure VPN gateway as shown in hello following diagram:</span></span>
 
 ![BGP 게이트웨이](./media/vpn-gateway-bgp-resource-manager-ps/bgp-gateway.png)
 
-### <a name="before-you-begin"></a><span data-ttu-id="14541-122">시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="14541-122">Before you begin</span></span>
-* <span data-ttu-id="14541-123">Azure 구독이 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-123">Verify that you have an Azure subscription.</span></span> <span data-ttu-id="14541-124">Azure 구독이 아직 없는 경우 [MSDN 구독자 혜택](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)을 활성화하거나 [무료 계정](https://azure.microsoft.com/pricing/free-trial/)에 등록할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-124">If you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) or sign up for a [free account](https://azure.microsoft.com/pricing/free-trial/).</span></span>
-* <span data-ttu-id="14541-125">Azure Resource Manager PowerShell cmdlet을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-125">Install the Azure Resource Manager PowerShell cmdlets.</span></span> <span data-ttu-id="14541-126">PowerShell cmdlet 설치에 대한 자세한 내용은 [Azure PowerShell 설치 및 구성 방법](/powershell/azure/overview)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="14541-126">For more information about installing the PowerShell cmdlets, see [How to install and configure Azure PowerShell](/powershell/azure/overview).</span></span> 
+### <a name="before-you-begin"></a><span data-ttu-id="4ce96-122">시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="4ce96-122">Before you begin</span></span>
+* <span data-ttu-id="4ce96-123">Azure 구독이 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-123">Verify that you have an Azure subscription.</span></span> <span data-ttu-id="4ce96-124">Azure 구독이 아직 없는 경우 [MSDN 구독자 혜택](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)을 활성화하거나 [무료 계정](https://azure.microsoft.com/pricing/free-trial/)에 등록할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-124">If you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) or sign up for a [free account](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+* <span data-ttu-id="4ce96-125">Hello Azure 리소스 관리자 PowerShell cmdlet을 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-125">Install hello Azure Resource Manager PowerShell cmdlets.</span></span> <span data-ttu-id="4ce96-126">Hello PowerShell cmdlet을 설치 하는 방법에 대 한 자세한 내용은 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview)합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-126">For more information about installing hello PowerShell cmdlets, see [How tooinstall and configure Azure PowerShell](/powershell/azure/overview).</span></span> 
 
-### <a name="step-1---create-and-configure-vnet1"></a><span data-ttu-id="14541-127">1단계 - VNet1 만들기 및 구성</span><span class="sxs-lookup"><span data-stu-id="14541-127">Step 1 - Create and configure VNet1</span></span>
-#### <a name="1-declare-your-variables"></a><span data-ttu-id="14541-128">1. 변수 선언</span><span class="sxs-lookup"><span data-stu-id="14541-128">1. Declare your variables</span></span>
-<span data-ttu-id="14541-129">이 연습에서는 먼저 변수를 선언합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-129">For this exercise, we start by declaring our variables.</span></span> <span data-ttu-id="14541-130">다음 예제에서는 이 연습에 대한 값을 사용하여 변수를 선언합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-130">The following example declares the variables using the values for this exercise.</span></span> <span data-ttu-id="14541-131">생산을 위해 구성하는 경우 값을 사용자의 값으로 바꾸어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-131">Be sure to replace the values with your own when configuring for production.</span></span> <span data-ttu-id="14541-132">이 구성 유형에 익숙해지기 위해 단계를 차례로 실행하는 경우 이 변수를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-132">You can use these variables if you are running through the steps to become familiar with this type of configuration.</span></span> <span data-ttu-id="14541-133">변수를 수정한 다음 복사하여 PowerShell 콘솔에 붙여 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-133">Modify the variables, and then copy and paste into your PowerShell console.</span></span>
+### <a name="step-1---create-and-configure-vnet1"></a><span data-ttu-id="4ce96-127">1단계 - VNet1 만들기 및 구성</span><span class="sxs-lookup"><span data-stu-id="4ce96-127">Step 1 - Create and configure VNet1</span></span>
+#### <a name="1-declare-your-variables"></a><span data-ttu-id="4ce96-128">1. 변수 선언</span><span class="sxs-lookup"><span data-stu-id="4ce96-128">1. Declare your variables</span></span>
+<span data-ttu-id="4ce96-129">이 연습에서는 먼저 변수를 선언합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-129">For this exercise, we start by declaring our variables.</span></span> <span data-ttu-id="4ce96-130">hello 다음 예제에서는 변수를 선언 hello hello 값을 사용 하 여이 연습에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-130">hello following example declares hello variables using hello values for this exercise.</span></span> <span data-ttu-id="4ce96-131">프로덕션 환경에 구성 하는 경우 사용자의 정보로 있는지 tooreplace hello 값 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-131">Be sure tooreplace hello values with your own when configuring for production.</span></span> <span data-ttu-id="4ce96-132">이러한 유형의 구성에 잘 알고 hello 단계 toobecome를 통해 실행 하는 경우 이러한 변수를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-132">You can use these variables if you are running through hello steps toobecome familiar with this type of configuration.</span></span> <span data-ttu-id="4ce96-133">Hello 변수를 수정 복사 하 고 PowerShell 콘솔에 붙여 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-133">Modify hello variables, and then copy and paste into your PowerShell console.</span></span>
 
 ```powershell
 $Sub1 = "Replace_With_Your_Subcription_Name"
@@ -78,10 +78,10 @@ $Connection12 = "VNet1toVNet2"
 $Connection15 = "VNet1toSite5"
 ```
 
-#### <a name="2-connect-to-your-subscription-and-create-a-new-resource-group"></a><span data-ttu-id="14541-134">2. 구독에 연결하고 새 리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="14541-134">2. Connect to your subscription and create a new resource group</span></span>
-<span data-ttu-id="14541-135">Resource Manager cmdlet을 사용하려면 PowerShell 모드로 전환해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-135">To use the Resource Manager cmdlets, Make sure you switch to PowerShell mode.</span></span> <span data-ttu-id="14541-136">자세한 내용은 [리소스 관리자에서 Windows PowerShell 사용](../powershell-azure-resource-manager.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="14541-136">For more information, see [Using Windows PowerShell with Resource Manager](../powershell-azure-resource-manager.md).</span></span>
+#### <a name="2-connect-tooyour-subscription-and-create-a-new-resource-group"></a><span data-ttu-id="4ce96-134">2. Tooyour 구독을 연결 하 고 새 리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="4ce96-134">2. Connect tooyour subscription and create a new resource group</span></span>
+<span data-ttu-id="4ce96-135">toouse hello 리소스 관리자 cmdlet tooPowerShell 모드를 전환 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-135">toouse hello Resource Manager cmdlets, Make sure you switch tooPowerShell mode.</span></span> <span data-ttu-id="4ce96-136">자세한 내용은 [리소스 관리자에서 Windows PowerShell 사용](../powershell-azure-resource-manager.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4ce96-136">For more information, see [Using Windows PowerShell with Resource Manager](../powershell-azure-resource-manager.md).</span></span>
 
-<span data-ttu-id="14541-137">PowerShell 콘솔을 열고 계정에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-137">Open your PowerShell console and connect to your account.</span></span> <span data-ttu-id="14541-138">연결에 도움이 되도록 다음 샘플을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-138">Use the following sample to help you connect:</span></span>
+<span data-ttu-id="4ce96-137">PowerShell 콘솔을 열고 tooyour 계정을 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-137">Open your PowerShell console and connect tooyour account.</span></span> <span data-ttu-id="4ce96-138">다음 샘플 toohelp 연결한 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-138">Use hello following sample toohelp you connect:</span></span>
 
 ```powershell
 Login-AzureRmAccount
@@ -89,8 +89,8 @@ Select-AzureRmSubscription -SubscriptionName $Sub1
 New-AzureRmResourceGroup -Name $RG1 -Location $Location1
 ```
 
-#### <a name="3-create-testvnet1"></a><span data-ttu-id="14541-139">3. TestVNet1 만들기</span><span class="sxs-lookup"><span data-stu-id="14541-139">3. Create TestVNet1</span></span>
-<span data-ttu-id="14541-140">다음 샘플에서는 TestVNet1이라는 가상 네트워크와 GatewaySubnet, FrontEnd 및 Backend라는 세 개의 서브넷을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="14541-140">The following sample creates a virtual network named TestVNet1 and three subnets, one called GatewaySubnet, one called FrontEnd, and one called Backend.</span></span> <span data-ttu-id="14541-141">값을 대체할 때 언제나 게이트웨이 서브넷 이름을 GatewaySubnet라고 명시적으로 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-141">When substituting values, it's important that you always name your gateway subnet specifically GatewaySubnet.</span></span> <span data-ttu-id="14541-142">다른 이름을 지정하는 경우 게이트웨이 만들기가 실패합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-142">If you name it something else, your gateway creation fails.</span></span>
+#### <a name="3-create-testvnet1"></a><span data-ttu-id="4ce96-139">3. TestVNet1 만들기</span><span class="sxs-lookup"><span data-stu-id="4ce96-139">3. Create TestVNet1</span></span>
+<span data-ttu-id="4ce96-140">hello 다음 예제에서는 만듭니다 TestVNet1 세 개의 서브넷, 하나의 호출된 GatewaySubnet, 하나의 호출된 프런트 엔드, 및 라는 하나의 호출된 백 엔드 가상 네트워크입니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-140">hello following sample creates a virtual network named TestVNet1 and three subnets, one called GatewaySubnet, one called FrontEnd, and one called Backend.</span></span> <span data-ttu-id="4ce96-141">값을 대체할 때 언제나 게이트웨이 서브넷 이름을 GatewaySubnet라고 명시적으로 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-141">When substituting values, it's important that you always name your gateway subnet specifically GatewaySubnet.</span></span> <span data-ttu-id="4ce96-142">다른 이름을 지정하는 경우 게이트웨이 만들기가 실패합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-142">If you name it something else, your gateway creation fails.</span></span>
 
 ```powershell
 $fesub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName1 -AddressPrefix $FESubPrefix1 $besub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $BESubName1 -AddressPrefix $BESubPrefix1
@@ -99,9 +99,9 @@ $gwsub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $GWSubName1 -AddressPrefix
 New-AzureRmVirtualNetwork -Name $VNetName1 -ResourceGroupName $RG1 -Location $Location1 -AddressPrefix $VNetPrefix11,$VNetPrefix12 -Subnet $fesub1,$besub1,$gwsub1
 ```
 
-### <a name="step-2---create-the-vpn-gateway-for-testvnet1-with-bgp-parameters"></a><span data-ttu-id="14541-143">2단계 - BGP 매개 변수를 사용하여 TestVNet1용 VPN 게이트웨이 만들기</span><span class="sxs-lookup"><span data-stu-id="14541-143">Step 2 - Create the VPN Gateway for TestVNet1 with BGP parameters</span></span>
-#### <a name="1-create-the-ip-and-subnet-configurations"></a><span data-ttu-id="14541-144">1. IP 및 서브넷 구성 만들기</span><span class="sxs-lookup"><span data-stu-id="14541-144">1. Create the IP and subnet configurations</span></span>
-<span data-ttu-id="14541-145">VNet용으로 만들 게이트웨이에 할당할 공용 IP 주소를 요청합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-145">Request a public IP address to be allocated to the gateway you will create for your VNet.</span></span> <span data-ttu-id="14541-146">필요한 서브넷 및 IP 구성도 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-146">You'll also define the required subnet and IP configurations.</span></span>
+### <a name="step-2---create-hello-vpn-gateway-for-testvnet1-with-bgp-parameters"></a><span data-ttu-id="4ce96-143">2 단계-TestVNet1에 대 한 BGP 매개 변수가 hello VPN 게이트웨이 만들기</span><span class="sxs-lookup"><span data-stu-id="4ce96-143">Step 2 - Create hello VPN Gateway for TestVNet1 with BGP parameters</span></span>
+#### <a name="1-create-hello-ip-and-subnet-configurations"></a><span data-ttu-id="4ce96-144">1. Hello IP 및 서브넷 구성 만들기</span><span class="sxs-lookup"><span data-stu-id="4ce96-144">1. Create hello IP and subnet configurations</span></span>
+<span data-ttu-id="4ce96-145">공용 IP 주소 toobe 할당 된 toohello 게이트웨이 만들려는 VNet에 대 한 요청 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-145">Request a public IP address toobe allocated toohello gateway you will create for your VNet.</span></span> <span data-ttu-id="4ce96-146">또한 필요한 hello 서브넷과 IP 구성을 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-146">You'll also define hello required subnet and IP configurations.</span></span>
 
 ```powershell
 $gwpip1 = New-AzureRmPublicIpAddress -Name $GWIPName1 -ResourceGroupName $RG1 -Location $Location1 -AllocationMethod Dynamic
@@ -111,22 +111,22 @@ $subnet1 = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualN
 $gwipconf1 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName1 -Subnet $subnet1 -PublicIpAddress $gwpip1
 ```
 
-#### <a name="2-create-the-vpn-gateway-with-the-as-number"></a><span data-ttu-id="14541-147">2. AS 번호를 사용하여 VPN 게이트웨이 만들기</span><span class="sxs-lookup"><span data-stu-id="14541-147">2. Create the VPN gateway with the AS number</span></span>
-<span data-ttu-id="14541-148">TestVNet1용 가상 네트워크 게이트웨이를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="14541-148">Create the virtual network gateway for TestVNet1.</span></span> <span data-ttu-id="14541-149">TestVNet1용 ASN(AS 번호)을 설정하려면 추가 매개 변수(-Asn)와 함께 BGP에 경로 기반 VPN 게이트웨이가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-149">BGP requires a Route-Based VPN gateway, and also the addition parameter, -Asn, to set the ASN (AS Number) for TestVNet1.</span></span> <span data-ttu-id="14541-150">ASN 매개 변수를 설정하지 않으면 ASN 65515가 할당됩니다.</span><span class="sxs-lookup"><span data-stu-id="14541-150">If you do not set the ASN parameter, ASN 65515 is assigned.</span></span> <span data-ttu-id="14541-151">게이트웨이 만들기는 꽤 시간이 걸릴 수 있습니다(완료되려면 30분 이상).</span><span class="sxs-lookup"><span data-stu-id="14541-151">Creating a gateway can take a while (30 minutes or more to complete).</span></span>
+#### <a name="2-create-hello-vpn-gateway-with-hello-as-number"></a><span data-ttu-id="4ce96-147">2. Hello로 hello VPN 게이트웨이 만들기 숫자로</span><span class="sxs-lookup"><span data-stu-id="4ce96-147">2. Create hello VPN gateway with hello AS number</span></span>
+<span data-ttu-id="4ce96-148">TestVNet1에 대 한 hello 가상 네트워크 게이트웨이 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-148">Create hello virtual network gateway for TestVNet1.</span></span> <span data-ttu-id="4ce96-149">BGP TestVNet1는 경로 기반 VPN 게이트웨이 및 hello 추가 매개 변수를-Asn, tooset hello ASN (AS 번호)가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-149">BGP requires a Route-Based VPN gateway, and also hello addition parameter, -Asn, tooset hello ASN (AS Number) for TestVNet1.</span></span> <span data-ttu-id="4ce96-150">Hello ASN 매개 변수를 설정 하지 않으면 ASN 65515 할당 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-150">If you do not set hello ASN parameter, ASN 65515 is assigned.</span></span> <span data-ttu-id="4ce96-151">한 게이트웨이 만드는 시간이 오래 걸릴 수 있습니다 (30 분 또는 자세한 toocomplete).</span><span class="sxs-lookup"><span data-stu-id="4ce96-151">Creating a gateway can take a while (30 minutes or more toocomplete).</span></span>
 
 ```powershell
 New-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1 -Location $Location1 -IpConfigurations $gwipconf1 -GatewayType Vpn -VpnType RouteBased -GatewaySku HighPerformance -Asn $VNet1ASN
 ```
 
-#### <a name="3-obtain-the-azure-bgp-peer-ip-address"></a><span data-ttu-id="14541-152">3. Azure BGP 피어 IP 주소 가져오기</span><span class="sxs-lookup"><span data-stu-id="14541-152">3. Obtain the Azure BGP Peer IP address</span></span>
-<span data-ttu-id="14541-153">게이트웨이를 만든 후 Azure VPN Gateway에서 BGP 피어 IP 주소를 가져와야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-153">Once the gateway is created, you need to obtain the BGP Peer IP address on the Azure VPN Gateway.</span></span> <span data-ttu-id="14541-154">온-프레미스 VPN 장치에 대해 Azure VPN 게이트웨이를 BGP 피어로 구성하려면 이 주소가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-154">This address is needed to configure the Azure VPN Gateway as a BGP Peer for your on-premises VPN devices.</span></span>
+#### <a name="3-obtain-hello-azure-bgp-peer-ip-address"></a><span data-ttu-id="4ce96-152">3. Hello Azure BGP 피어 IP 주소 가져오기</span><span class="sxs-lookup"><span data-stu-id="4ce96-152">3. Obtain hello Azure BGP Peer IP address</span></span>
+<span data-ttu-id="4ce96-153">Hello 게이트웨이 만든 후 Azure VPN 게이트웨이 hello에 tooobtain hello BGP 피어 IP 주소가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-153">Once hello gateway is created, you need tooobtain hello BGP Peer IP address on hello Azure VPN Gateway.</span></span> <span data-ttu-id="4ce96-154">온-프레미스 VPN 장치에 대 한 BGP 피어도 필요한 tooconfigure hello Azure VPN 게이트웨이 주소가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-154">This address is needed tooconfigure hello Azure VPN Gateway as a BGP Peer for your on-premises VPN devices.</span></span>
 
 ```powershell
 $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
 $vnet1gw.BgpSettingsText
 ```
 
-<span data-ttu-id="14541-155">마지막 명령을 통해 해당 BGP 구성을 Azure VPN Gateway에 표시합니다. 예를 들어 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-155">The last command shows the corresponding BGP configurations on the Azure VPN Gateway; for example:</span></span>
+<span data-ttu-id="4ce96-155">hello 마지막 명령은 hello Azure VPN 게이트웨이;에 해당 BGP 구성은 hello를 보여 줍니다. 예를 들어:</span><span class="sxs-lookup"><span data-stu-id="4ce96-155">hello last command shows hello corresponding BGP configurations on hello Azure VPN Gateway; for example:</span></span>
 
 ```powershell
 $vnet1gw.BgpSettingsText
@@ -137,21 +137,21 @@ $vnet1gw.BgpSettingsText
 }
 ```
 
-<span data-ttu-id="14541-156">게이트웨이가 만들어지면 BGP를 사용하여 프레미스 간 연결 또는 VNet 간 연결을 설정하도록 이 게이트웨이를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-156">Once the gateway is created, you can use this gateway to establish cross-premises connection or VNet-to-VNet connection with BGP.</span></span> <span data-ttu-id="14541-157">다음 섹션에서는 연습을 완료하는 단계를 안내합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-157">The following sections walk through the steps to complete the exercise.</span></span>
+<span data-ttu-id="4ce96-156">Hello 게이트웨이 만든 후 BGP를 사용이 tooestablish 크로스-프레미스 게이트웨이 연결 또는 VNet 대 VNet 연결을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-156">Once hello gateway is created, you can use this gateway tooestablish cross-premises connection or VNet-to-VNet connection with BGP.</span></span> <span data-ttu-id="4ce96-157">hello 다음 섹션에서는 안내 hello 단계 toocomplete hello 연습 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-157">hello following sections walk through hello steps toocomplete hello exercise.</span></span>
 
-## <span data-ttu-id="14541-158"><a name ="crossprembbgp"></a>2부 - BGP를 사용하여 프레미스 간 연결 설정</span><span class="sxs-lookup"><span data-stu-id="14541-158"><a name ="crossprembbgp"></a>Part 2 - Establish a cross-premises connection with BGP</span></span>
+## <span data-ttu-id="4ce96-158"><a name ="crossprembbgp"></a>2부 - BGP를 사용하여 프레미스 간 연결 설정</span><span class="sxs-lookup"><span data-stu-id="4ce96-158"><a name ="crossprembbgp"></a>Part 2 - Establish a cross-premises connection with BGP</span></span>
 
-<span data-ttu-id="14541-159">프레미스 간 연결을 설정하려면 온-프레미스 VPN 장치를 나타내는 로컬 네트워크 게이트웨이를 만들고 VPN 게이트웨이와 로컬 네트워크 게이트웨이를 연결하는 연결을 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-159">To establish a cross-premises connection, you need to create a Local Network Gateway to represent your on-premises VPN device, and a Connection to connect the VPN gateway with the local network gateway.</span></span> <span data-ttu-id="14541-160">이러한 단계를 안내하는 문서가 있지만 이 문서는 BGP 구성 매개 변수를 지정하는 데 필요한 추가 속성을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-160">While there are articles that walk you through these steps, this article contains the additional properties required to specify the BGP configuration parameters.</span></span>
+<span data-ttu-id="4ce96-159">로컬 네트워크 게이트웨이 toorepresent toocreate 해야 tooestablish 크로스-프레미스 연결을 온-프레미스 VPN 장치 및 hello 로컬 네트워크 게이트웨이와 tooconnect hello VPN 게이트웨이 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-159">tooestablish a cross-premises connection, you need toocreate a Local Network Gateway toorepresent your on-premises VPN device, and a Connection tooconnect hello VPN gateway with hello local network gateway.</span></span> <span data-ttu-id="4ce96-160">이러한 단계를 안내 하는 문서가 있을 때는이 문서 hello 추가 속성 필요한 toospecify hello BGP 구성 매개 변수를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-160">While there are articles that walk you through these steps, this article contains hello additional properties required toospecify hello BGP configuration parameters.</span></span>
 
 ![프레미스 간에 대한 BGP](./media/vpn-gateway-bgp-resource-manager-ps/bgp-crossprem.png)
 
-<span data-ttu-id="14541-162">계속하기 전에 이 연습의 [1부](#enablebgp)를 완료했는지 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="14541-162">Before proceeding, make sure you have completed [Part 1](#enablebgp) of this exercise.</span></span>
+<span data-ttu-id="4ce96-162">계속하기 전에 이 연습의 [1부](#enablebgp)를 완료했는지 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="4ce96-162">Before proceeding, make sure you have completed [Part 1](#enablebgp) of this exercise.</span></span>
 
-### <a name="step-1---create-and-configure-the-local-network-gateway"></a><span data-ttu-id="14541-163">1단계 - 로컬 네트워크 게이트웨이 만들기 및 구성</span><span class="sxs-lookup"><span data-stu-id="14541-163">Step 1 - Create and configure the local network gateway</span></span>
+### <a name="step-1---create-and-configure-hello-local-network-gateway"></a><span data-ttu-id="4ce96-163">1 단계-만들고 hello 로컬 네트워크 게이트웨이 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-163">Step 1 - Create and configure hello local network gateway</span></span>
 
-#### <a name="1-declare-your-variables"></a><span data-ttu-id="14541-164">1. 변수 선언</span><span class="sxs-lookup"><span data-stu-id="14541-164">1. Declare your variables</span></span>
+#### <a name="1-declare-your-variables"></a><span data-ttu-id="4ce96-164">1. 변수 선언</span><span class="sxs-lookup"><span data-stu-id="4ce96-164">1. Declare your variables</span></span>
 
-<span data-ttu-id="14541-165">이 연습에서는 다이어그램에 표시된 구성을 계속 빌드합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-165">This exercise continues to build the configuration shown in the diagram.</span></span> <span data-ttu-id="14541-166">값을 구성에 사용할 값으로 바꾸어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-166">Be sure to replace the values with the ones that you want to use for your configuration.</span></span>
+<span data-ttu-id="4ce96-165">이 연습 계속 toobuild hello 구성을 hello 다이어그램에 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-165">This exercise continues toobuild hello configuration shown in hello diagram.</span></span> <span data-ttu-id="4ce96-166">수 있는지 tooreplace 것 hello 사용 하 여 hello 값 구성에 대 한 toouse 되도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-166">Be sure tooreplace hello values with hello ones that you want toouse for your configuration.</span></span>
 
 ```powershell
 $RG5 = "TestBGPRG5"
@@ -163,17 +163,17 @@ $LNGASN5 = 65050
 $BGPPeerIP5 = "10.52.255.254"
 ```
 
-<span data-ttu-id="14541-167">로컬 네트워크 게이트웨이 매개 변수와 관련하여 몇 가지 주의할 점은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-167">A couple of things to note regarding the local network gateway parameters:</span></span>
+<span data-ttu-id="4ce96-167">몇 가지 작업 toonote hello 로컬 네트워크 게이트웨이 매개 변수 관련:</span><span class="sxs-lookup"><span data-stu-id="4ce96-167">A couple of things toonote regarding hello local network gateway parameters:</span></span>
 
-* <span data-ttu-id="14541-168">로컬 네트워크 게이트웨이는 VPN 게이트웨이와 같거나 다른 위치 및 리소스 그룹에 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-168">The local network gateway can be in the same or different location and resource group as the VPN gateway.</span></span> <span data-ttu-id="14541-169">이 예제에서는 다른 위치의 다른 리소스 그룹에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="14541-169">This example shows them in different resource groups in different locations.</span></span>
-* <span data-ttu-id="14541-170">로컬 네트워크 게이트웨이에 대해 선언해야 하는 최소 접두사는 VPN 장치의 BGP 피어 IP 주소의 호스트 주소입니다.</span><span class="sxs-lookup"><span data-stu-id="14541-170">The minimum prefix you need to declare for the local network gateway is the host address of your BGP Peer IP address on your VPN device.</span></span> <span data-ttu-id="14541-171">이 경우에는 "10.52.255.254/32"의 접두사 /32입니다.</span><span class="sxs-lookup"><span data-stu-id="14541-171">In this case, it's a /32 prefix of "10.52.255.254/32".</span></span>
-* <span data-ttu-id="14541-172">다시 확인하면 온-프레미스 네트워크와 Azure VNet 간에는 서로 다른 BGP ASN을 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-172">As a reminder, you must use different BGP ASNs between your on-premises networks and Azure VNet.</span></span> <span data-ttu-id="14541-173">동일한 경우 온-프레미스 VPN 장치가 이미 다른 BGP 인접과의 피어에 ASN을 사용하고 있으면 VNet ASN을 변경해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-173">If they are the same, you need to change your VNet ASN if your on-premises VPN device already uses the ASN to peer with other BGP neighbors.</span></span>
+* <span data-ttu-id="4ce96-168">로컬 네트워크 게이트웨이 hello 동일 hello 또는 VPN 게이트웨이 hello와 그룹을 다른 위치 및 리소스 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-168">hello local network gateway can be in hello same or different location and resource group as hello VPN gateway.</span></span> <span data-ttu-id="4ce96-169">이 예제에서는 다른 위치의 다른 리소스 그룹에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-169">This example shows them in different resource groups in different locations.</span></span>
+* <span data-ttu-id="4ce96-170">toodeclare hello 로컬 네트워크 게이트웨이에 대 한 필요한 hello 최소 접두사는 hello 호스트 주소를 VPN 장치에서 BGP 피어 IP 주소입니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-170">hello minimum prefix you need toodeclare for hello local network gateway is hello host address of your BGP Peer IP address on your VPN device.</span></span> <span data-ttu-id="4ce96-171">이 경우에는 "10.52.255.254/32"의 접두사 /32입니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-171">In this case, it's a /32 prefix of "10.52.255.254/32".</span></span>
+* <span data-ttu-id="4ce96-172">다시 확인하면 온-프레미스 네트워크와 Azure VNet 간에는 서로 다른 BGP ASN을 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-172">As a reminder, you must use different BGP ASNs between your on-premises networks and Azure VNet.</span></span> <span data-ttu-id="4ce96-173">동일 hello는 이러한, 해야 toochange VNet ASN BGP 인접 항목과 다른 온-프레미스 VPN 장치 이미 사용 하 여 hello ASN toopeer 경우.</span><span class="sxs-lookup"><span data-stu-id="4ce96-173">If they are hello same, you need toochange your VNet ASN if your on-premises VPN device already uses hello ASN toopeer with other BGP neighbors.</span></span>
 
-<span data-ttu-id="14541-174">계속하기 전에 여전히 구독 1에 연결되어 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-174">Before you continue, make sure you are still connected to Subscription 1.</span></span>
+<span data-ttu-id="4ce96-174">계속 하기 전에 연결된 되어 tooSubscription 1이 선택 되어 있는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-174">Before you continue, make sure you are still connected tooSubscription 1.</span></span>
 
-#### <a name="2-create-the-local-network-gateway-for-site5"></a><span data-ttu-id="14541-175">2. Site5용 로컬 네트워크 게이트웨이를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="14541-175">2. Create the local network gateway for Site5</span></span>
+#### <a name="2-create-hello-local-network-gateway-for-site5"></a><span data-ttu-id="4ce96-175">2. Site5에 대 한 hello 로컬 네트워크 게이트웨이 만들기</span><span class="sxs-lookup"><span data-stu-id="4ce96-175">2. Create hello local network gateway for Site5</span></span>
 
-<span data-ttu-id="14541-176">리소스 그룹이 만들어져 있지 않은 경우 로컬 네트워크 게이트웨이를 만들기 전에 먼저 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-176">Be sure to create the resource group if it is not created, before you create the local network gateway.</span></span> <span data-ttu-id="14541-177">로컬 네트워크 게이트웨이에 대한 두 개의 추가 매개 변수(Asn 및 BgpPeerAddress)를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-177">Notice the two additional parameters for the local network gateway: Asn and BgpPeerAddress.</span></span>
+<span data-ttu-id="4ce96-176">작성 되지 않은, hello 로컬 네트워크 게이트웨이 만들기 전에 경우 있는지 toocreate hello 리소스 그룹 수입니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-176">Be sure toocreate hello resource group if it is not created, before you create hello local network gateway.</span></span> <span data-ttu-id="4ce96-177">Hello 두 hello 로컬 네트워크 게이트웨이에 대 한 추가 매개 변수 확인: Asn과 BgpPeerAddress 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-177">Notice hello two additional parameters for hello local network gateway: Asn and BgpPeerAddress.</span></span>
 
 ```powershell
 New-AzureRmResourceGroup -Name $RG5 -Location $Location5
@@ -181,55 +181,55 @@ New-AzureRmResourceGroup -Name $RG5 -Location $Location5
 New-AzureRmLocalNetworkGateway -Name $LNGName5 -ResourceGroupName $RG5 -Location $Location5 -GatewayIpAddress $LNGIP5 -AddressPrefix $LNGPrefix50 -Asn $LNGASN5 -BgpPeeringAddress $BGPPeerIP5
 ```
 
-### <a name="step-2---connect-the-vnet-gateway-and-local-network-gateway"></a><span data-ttu-id="14541-178">2단계 - VNet 게이트웨이 및 로컬 네트워크 게이트웨이 연결</span><span class="sxs-lookup"><span data-stu-id="14541-178">Step 2 - Connect the VNet gateway and local network gateway</span></span>
+### <a name="step-2---connect-hello-vnet-gateway-and-local-network-gateway"></a><span data-ttu-id="4ce96-178">2 단계-hello VNet 게이트웨이 및 로컬 네트워크 게이트웨이 연결</span><span class="sxs-lookup"><span data-stu-id="4ce96-178">Step 2 - Connect hello VNet gateway and local network gateway</span></span>
 
-#### <a name="1-get-the-two-gateways"></a><span data-ttu-id="14541-179">1. 두 게이트웨이 가져오기</span><span class="sxs-lookup"><span data-stu-id="14541-179">1. Get the two gateways</span></span>
+#### <a name="1-get-hello-two-gateways"></a><span data-ttu-id="4ce96-179">1. Hello 두 게이트웨이 가져오기</span><span class="sxs-lookup"><span data-stu-id="4ce96-179">1. Get hello two gateways</span></span>
 
 ```powershell
 $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1  -ResourceGroupName $RG1
 $lng5gw  = Get-AzureRmLocalNetworkGateway -Name $LNGName5 -ResourceGroupName $RG5
 ```
 
-#### <a name="2-create-the-testvnet1-to-site5-connection"></a><span data-ttu-id="14541-180">2. TestVNet1 및 Site5 간 연결 만들기</span><span class="sxs-lookup"><span data-stu-id="14541-180">2. Create the TestVNet1 to Site5 connection</span></span>
+#### <a name="2-create-hello-testvnet1-toosite5-connection"></a><span data-ttu-id="4ce96-180">2. Hello TestVNet1 tooSite5 연결 만들기</span><span class="sxs-lookup"><span data-stu-id="4ce96-180">2. Create hello TestVNet1 tooSite5 connection</span></span>
 
-<span data-ttu-id="14541-181">이 단계에서는 TestVNet1에서 Site5까지 연결을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="14541-181">In this step, you create the connection from TestVNet1 to Site5.</span></span> <span data-ttu-id="14541-182">이 연결에 BGP를 사용하려면 "-EnableBGP $True"를 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-182">You must specify "-EnableBGP $True" to enable BGP for this connection.</span></span> <span data-ttu-id="14541-183">앞에서 설명한 대로 동일한 Azure VPN 게이트웨이에 대해 BGP와 비BGP를 모두 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-183">As discussed earlier, it is possible to have both BGP and non-BGP connections for the same Azure VPN Gateway.</span></span> <span data-ttu-id="14541-184">연결 속성에서 BGP를 사용하도록 설정할 수 없으면 BGP 매개 변수가 두 게이트웨이에 이미 구성된 경우에도 Azure가 이 연결에 대해 BGP를 사용하도록 설정하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-184">Unless BGP is enabled in the connection property, Azure will not enable BGP for this connection even though BGP parameters are already configured on both gateways.</span></span>
+<span data-ttu-id="4ce96-181">이 단계에서 TestVNet1 tooSite5 hello 연결을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-181">In this step, you create hello connection from TestVNet1 tooSite5.</span></span> <span data-ttu-id="4ce96-182">지정 해야 합니다 "-EnableBGP $True"이이 연결에 대 한 BGP tooenable 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-182">You must specify "-EnableBGP $True" tooenable BGP for this connection.</span></span> <span data-ttu-id="4ce96-183">앞에서 설명한 것 처럼 가능한 toohave BGP 및 비-BGP 연결 모두에 대 한 동일한 Azure VPN 게이트웨이에 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-183">As discussed earlier, it is possible toohave both BGP and non-BGP connections for hello same Azure VPN Gateway.</span></span> <span data-ttu-id="4ce96-184">BGP를 사용 하 여 hello 연결 속성에서 하지 않으면 Azure가 사용 하지 않습니다 BGP이이 연결에 대 한 BGP 매개 변수는 두 게이트웨이에 이미 구성 된 경우에 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-184">Unless BGP is enabled in hello connection property, Azure will not enable BGP for this connection even though BGP parameters are already configured on both gateways.</span></span>
 
 ```powershell
 New-AzureRmVirtualNetworkGatewayConnection -Name $Connection15 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -LocalNetworkGateway2 $lng5gw -Location $Location1 -ConnectionType IPsec -SharedKey 'AzureA1b2C3' -EnableBGP $True
 ```
 
-<span data-ttu-id="14541-185">다음 예제에서 이 연습을 위해 온-프레미스 VPN 장치의 BGP 구성 섹션에 입력할 매개 변수를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-185">The following example lists the parameters you enter into the BGP configuration section on your on-premises VPN device for this exercise:</span></span>
+<span data-ttu-id="4ce96-185">hello 다음 예제에서는 hello 매개 변수를 나열이 연습에 대 한 온-프레미스 VPN 장치에서 hello BGP 구성 섹션에 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-185">hello following example lists hello parameters you enter into hello BGP configuration section on your on-premises VPN device for this exercise:</span></span>
 
 ```
 
 - Site5 ASN            : 65050
 - Site5 BGP IP         : 10.52.255.254
-- Prefixes to announce : (for example) 10.51.0.0/16 and 10.52.0.0/16
+- Prefixes tooannounce : (for example) 10.51.0.0/16 and 10.52.0.0/16
 - Azure VNet ASN       : 65010
 - Azure VNet BGP IP    : 10.12.255.30
-- Static route         : Add a route for 10.12.255.30/32, with nexthop being the VPN tunnel interface on your device
-- eBGP Multihop        : Ensure the "multihop" option for eBGP is enabled on your device if needed
+- Static route         : Add a route for 10.12.255.30/32, with nexthop being hello VPN tunnel interface on your device
+- eBGP Multihop        : Ensure hello "multihop" option for eBGP is enabled on your device if needed
 ```
 
-<span data-ttu-id="14541-186">몇 분 후 연결이 설정되며, IPsec 연결이 설정되면 BGP 피어링 세션이 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="14541-186">The connection is established after a few minutes, and the BGP peering session starts once the IPsec connection is established.</span></span>
+<span data-ttu-id="4ce96-186">IPsec 연결 hello 설정 되 면 몇 분 고 hello BGP 피어 링 세션 시작 된 후 hello 연결이 설정 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-186">hello connection is established after a few minutes, and hello BGP peering session starts once hello IPsec connection is established.</span></span>
 
-## <span data-ttu-id="14541-187"><a name ="v2vbgp"></a>3부 - BGP를 사용하여 VNet 간 연결 설정</span><span class="sxs-lookup"><span data-stu-id="14541-187"><a name ="v2vbgp"></a>Part 3 - Establish a VNet-to-VNet connection with BGP</span></span>
+## <span data-ttu-id="4ce96-187"><a name ="v2vbgp"></a>3부 - BGP를 사용하여 VNet 간 연결 설정</span><span class="sxs-lookup"><span data-stu-id="4ce96-187"><a name ="v2vbgp"></a>Part 3 - Establish a VNet-to-VNet connection with BGP</span></span>
 
-<span data-ttu-id="14541-188">이 섹션에서는 다음 다이어그램에 표시된 대로 BGP를 사용하여 VNet 간 연결을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-188">This section adds a VNet-to-VNet connection with BGP, as shown in the following diagram:</span></span>
+<span data-ttu-id="4ce96-188">이 섹션 hello 다음 다이어그램에에서 나와 있는 것 처럼 BGP와 VNet 대 VNet 연결을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-188">This section adds a VNet-to-VNet connection with BGP, as shown in hello following diagram:</span></span>
 
 ![VNet-VNet에 대한 BGP](./media/vpn-gateway-bgp-resource-manager-ps/bgp-vnet2vnet.png)
 
-<span data-ttu-id="14541-190">다음 지침은 이전 단계에서 계속합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-190">The following instructions continue from the previous steps.</span></span> <span data-ttu-id="14541-191">BGP를 사용하여 TestVNet1 및 VPN 게이트웨이를 만들고 구성하려면 [1부](#enablebgp) 를 완료해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-191">You must complete [Part I](#enablebgp) to create and configure TestVNet1 and the VPN Gateway with BGP.</span></span> 
+<span data-ttu-id="4ce96-190">지침에 따라 hello hello 이전 단계에서 계속 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-190">hello following instructions continue from hello previous steps.</span></span> <span data-ttu-id="4ce96-191">완료 해야 [1 부에서](#enablebgp) toocreate TestVNet1를 구성 하 고 hello VPN 게이트웨이 BGP 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-191">You must complete [Part I](#enablebgp) toocreate and configure TestVNet1 and hello VPN Gateway with BGP.</span></span> 
 
-### <a name="step-1---create-testvnet2-and-the-vpn-gateway"></a><span data-ttu-id="14541-192">1단계 - TestVNet2 및 VPN 게이트웨이 만들기</span><span class="sxs-lookup"><span data-stu-id="14541-192">Step 1 - Create TestVNet2 and the VPN gateway</span></span>
+### <a name="step-1---create-testvnet2-and-hello-vpn-gateway"></a><span data-ttu-id="4ce96-192">1 단계-TestVNet2 및 hello VPN 게이트웨이 만들기</span><span class="sxs-lookup"><span data-stu-id="4ce96-192">Step 1 - Create TestVNet2 and hello VPN gateway</span></span>
 
-<span data-ttu-id="14541-193">새 가상 네트워크 TestVNet2의 IP 주소 공간이 VNet 범위와 겹치지 않는지 확인해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-193">It is important to make sure that the IP address space of the new virtual network, TestVNet2, does not overlap with any of your VNet ranges.</span></span>
+<span data-ttu-id="4ce96-193">것이 중요 한 toomake hello 새 가상 네트워크를 TestVNet2의 hello IP 주소 공간 VNet 범위와 겹치지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-193">It is important toomake sure that hello IP address space of hello new virtual network, TestVNet2, does not overlap with any of your VNet ranges.</span></span>
 
-<span data-ttu-id="14541-194">이 예제에서 가상 네트워크는 동일한 구독에 속합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-194">In this example, the virtual networks belong to the same subscription.</span></span> <span data-ttu-id="14541-195">다른 구독 간의 VNet 간 연결을 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-195">You can set up VNet-to-VNet connections between different subscriptions.</span></span> <span data-ttu-id="14541-196">자세한 내용은 [VNet 간 연결 구성](vpn-gateway-vnet-vnet-rm-ps.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="14541-196">For more information, see [Configure a VNet-to-VNet connection](vpn-gateway-vnet-vnet-rm-ps.md).</span></span> <span data-ttu-id="14541-197">BGP를 사용하는 연결을 만들 때 "-EnableBgp $True"를 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-197">Make sure you add the "-EnableBgp $True" when creating the connections to enable BGP.</span></span>
+<span data-ttu-id="4ce96-194">이 예제에서는 가상 네트워크 hello 속해 toohello 동일한 구독 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-194">In this example, hello virtual networks belong toohello same subscription.</span></span> <span data-ttu-id="4ce96-195">다른 구독 간의 VNet 간 연결을 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-195">You can set up VNet-to-VNet connections between different subscriptions.</span></span> <span data-ttu-id="4ce96-196">자세한 내용은 [VNet 간 연결 구성](vpn-gateway-vnet-vnet-rm-ps.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4ce96-196">For more information, see [Configure a VNet-to-VNet connection](vpn-gateway-vnet-vnet-rm-ps.md).</span></span> <span data-ttu-id="4ce96-197">Hello 추가 "-EnableBgp $True" 때 연결 tooenable BGP hello 만들기.</span><span class="sxs-lookup"><span data-stu-id="4ce96-197">Make sure you add hello "-EnableBgp $True" when creating hello connections tooenable BGP.</span></span>
 
-#### <a name="1-declare-your-variables"></a><span data-ttu-id="14541-198">1. 변수 선언</span><span class="sxs-lookup"><span data-stu-id="14541-198">1. Declare your variables</span></span>
+#### <a name="1-declare-your-variables"></a><span data-ttu-id="4ce96-198">1. 변수 선언</span><span class="sxs-lookup"><span data-stu-id="4ce96-198">1. Declare your variables</span></span>
 
-<span data-ttu-id="14541-199">값을 구성에 사용할 값으로 바꾸어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-199">Be sure to replace the values with the ones that you want to use for your configuration.</span></span>
+<span data-ttu-id="4ce96-199">수 있는지 tooreplace 것 hello 사용 하 여 hello 값 구성에 대 한 toouse 되도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-199">Be sure tooreplace hello values with hello ones that you want toouse for your configuration.</span></span>
 
 ```powershell
 $RG2 = "TestBGPRG2"
@@ -252,7 +252,7 @@ $Connection21 = "VNet2toVNet1"
 $Connection12 = "VNet1toVNet2"
 ```
 
-#### <a name="2-create-testvnet2-in-the-new-resource-group"></a><span data-ttu-id="14541-200">2. 새 리소스 그룹에서 TestVNet2 만들기</span><span class="sxs-lookup"><span data-stu-id="14541-200">2. Create TestVNet2 in the new resource group</span></span>
+#### <a name="2-create-testvnet2-in-hello-new-resource-group"></a><span data-ttu-id="4ce96-200">2. TestVNet2 hello 새 리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="4ce96-200">2. Create TestVNet2 in hello new resource group</span></span>
 
 ```powershell
 New-AzureRmResourceGroup -Name $RG2 -Location $Location2
@@ -264,9 +264,9 @@ $gwsub2 = New-AzureRmVirtualNetworkSubnetConfig -Name $GWSubName2 -AddressPrefix
 New-AzureRmVirtualNetwork -Name $VNetName2 -ResourceGroupName $RG2 -Location $Location2 -AddressPrefix $VNetPrefix21,$VNetPrefix22 -Subnet $fesub2,$besub2,$gwsub2
 ```
 
-#### <a name="3-create-the-vpn-gateway-for-testvnet2-with-bgp-parameters"></a><span data-ttu-id="14541-201">3. BGP 매개 변수를 사용하여 TestVNet2용 VPN 게이트웨이 만들기</span><span class="sxs-lookup"><span data-stu-id="14541-201">3. Create the VPN gateway for TestVNet2 with BGP parameters</span></span>
+#### <a name="3-create-hello-vpn-gateway-for-testvnet2-with-bgp-parameters"></a><span data-ttu-id="4ce96-201">3. TestVNet2에 대 한 BGP 매개 변수가 hello VPN 게이트웨이 만들기</span><span class="sxs-lookup"><span data-stu-id="4ce96-201">3. Create hello VPN gateway for TestVNet2 with BGP parameters</span></span>
 
-<span data-ttu-id="14541-202">VNet용으로 만들 게이트웨이에 할당할 공용 IP 주소를 요청하고 필요한 서브넷 및 IP 구성을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-202">Request a public IP address to be allocated to the gateway you will create for your VNet and define the required subnet and IP configurations.</span></span>
+<span data-ttu-id="4ce96-202">공용 IP 주소 toobe 할당 된 toohello 게이트웨이 VNet에 대 한 만들고 필요한 hello 서브넷 및 IP 구성 정의 요청 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-202">Request a public IP address toobe allocated toohello gateway you will create for your VNet and define hello required subnet and IP configurations.</span></span>
 
 ```powershell
 $gwpip2    = New-AzureRmPublicIpAddress -Name $GWIPName2 -ResourceGroupName $RG2 -Location $Location2 -AllocationMethod Dynamic
@@ -276,28 +276,28 @@ $subnet2   = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -Virtua
 $gwipconf2 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName2 -Subnet $subnet2 -PublicIpAddress $gwpip2
 ```
 
-<span data-ttu-id="14541-203">AS 번호를 사용하여 VPN 게이트웨이를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="14541-203">Create the VPN gateway with the AS number.</span></span> <span data-ttu-id="14541-204">Azure VPN 게이트웨이에서 기본 ASN을 재정의해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-204">You must override the default ASN on your Azure VPN gateways.</span></span> <span data-ttu-id="14541-205">BGP 및 전송 라우팅을 사용할 수 있도록 하려면 연결된 VNet용 ASN은 서로 달라야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-205">The ASNs for the connected VNets must be different to enable BGP and transit routing.</span></span>
+<span data-ttu-id="4ce96-203">Hello로 hello VPN 게이트웨이 만들기 숫자로 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-203">Create hello VPN gateway with hello AS number.</span></span> <span data-ttu-id="4ce96-204">Azure VPN 게이트웨이 hello 기본 ASN을 재정의 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-204">You must override hello default ASN on your Azure VPN gateways.</span></span> <span data-ttu-id="4ce96-205">hello에 대 한 Asn hello Vnet 연결 된 다른 tooenable BGP 및 전송 라우팅과 이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-205">hello ASNs for hello connected VNets must be different tooenable BGP and transit routing.</span></span>
 
 ```powershell
 New-AzureRmVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $RG2 -Location $Location2 -IpConfigurations $gwipconf2 -GatewayType Vpn -VpnType RouteBased -GatewaySku Standard -Asn $VNet2ASN
 ```
 
-### <a name="step-2---connect-the-testvnet1-and-testvnet2-gateways"></a><span data-ttu-id="14541-206">2단계 - TestVNet1 및 TestVNet2 게이트웨이 연결</span><span class="sxs-lookup"><span data-stu-id="14541-206">Step 2 - Connect the TestVNet1 and TestVNet2 gateways</span></span>
+### <a name="step-2---connect-hello-testvnet1-and-testvnet2-gateways"></a><span data-ttu-id="4ce96-206">2 단계-hello TestVNet1 및 TestVNet2 게이트웨이 연결</span><span class="sxs-lookup"><span data-stu-id="4ce96-206">Step 2 - Connect hello TestVNet1 and TestVNet2 gateways</span></span>
 
-<span data-ttu-id="14541-207">이 예제에서 두 게이트웨이는 동일한 구독에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-207">In this example, both gateways are in the same subscription.</span></span> <span data-ttu-id="14541-208">동일한 PowerShell 세션에서 이 단계를 완료할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-208">You can complete this step in the same PowerShell session.</span></span>
+<span data-ttu-id="4ce96-207">이 예에서 두 게이트웨이 hello에는 동일한 구독 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-207">In this example, both gateways are in hello same subscription.</span></span> <span data-ttu-id="4ce96-208">Hello에이 단계를 완료 하려면 같은 PowerShell 세션입니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-208">You can complete this step in hello same PowerShell session.</span></span>
 
-#### <a name="1-get-both-gateways"></a><span data-ttu-id="14541-209">1. 두 게이트웨이 가져오기</span><span class="sxs-lookup"><span data-stu-id="14541-209">1. Get both gateways</span></span>
+#### <a name="1-get-both-gateways"></a><span data-ttu-id="4ce96-209">1. 두 게이트웨이 가져오기</span><span class="sxs-lookup"><span data-stu-id="4ce96-209">1. Get both gateways</span></span>
 
-<span data-ttu-id="14541-210">로그인하고 구독 1에 연결해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-210">Make sure you log in and connect to Subscription 1.</span></span>
+<span data-ttu-id="4ce96-210">로그인 하 고 연결 tooSubscription 1에 있는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-210">Make sure you log in and connect tooSubscription 1.</span></span>
 
 ```powershell
 $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
 $vnet2gw = Get-AzureRmVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $RG2
 ```
 
-#### <a name="2-create-both-connections"></a><span data-ttu-id="14541-211">2. 두 연결 만들기</span><span class="sxs-lookup"><span data-stu-id="14541-211">2. Create both connections</span></span>
+#### <a name="2-create-both-connections"></a><span data-ttu-id="4ce96-211">2. 두 연결 만들기</span><span class="sxs-lookup"><span data-stu-id="4ce96-211">2. Create both connections</span></span>
 
-<span data-ttu-id="14541-212">이 단계에서는 TestVNet1에서 TestVNet2까지 및 TestVNet2에서 TestVNet1까지의 연결을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="14541-212">In this step, you create the connection from TestVNet1 to TestVNet2, and the connection from TestVNet2 to TestVNet1.</span></span>
+<span data-ttu-id="4ce96-212">이 단계에서는 만들어야 TestVNet1 tooTestVNet2에서 hello 연결과 hello 연결 TestVNet2 tooTestVNet1에서.</span><span class="sxs-lookup"><span data-stu-id="4ce96-212">In this step, you create hello connection from TestVNet1 tooTestVNet2, and hello connection from TestVNet2 tooTestVNet1.</span></span>
 
 ```powershell
 New-AzureRmVirtualNetworkGatewayConnection -Name $Connection12 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -VirtualNetworkGateway2 $vnet2gw -Location $Location1 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3' -EnableBgp $True
@@ -306,16 +306,16 @@ New-AzureRmVirtualNetworkGatewayConnection -Name $Connection21 -ResourceGroupNam
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="14541-213">두 연결 모두에 대해 BGP를 사용하도록 설정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="14541-213">Be sure to enable BGP for BOTH connections.</span></span>
+> <span data-ttu-id="4ce96-213">두 연결에 대 한 있는지 tooenable BGP를 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-213">Be sure tooenable BGP for BOTH connections.</span></span>
 > 
 > 
 
-<span data-ttu-id="14541-214">이 단계를 완료한 후 몇 분 후에 연결이 설정됩니다.</span><span class="sxs-lookup"><span data-stu-id="14541-214">After completing these steps, the connection is established after a few minutes.</span></span> <span data-ttu-id="14541-215">VNet 간 연결이 완료되면 BGP 피어링 세션이 끝납니다.</span><span class="sxs-lookup"><span data-stu-id="14541-215">The BGP peering session is up once the VNet-to-VNet connection is completed.</span></span>
+<span data-ttu-id="4ce96-214">다음이 단계를 완료 한 후 몇 분 후 hello 연결이 설정 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-214">After completing these steps, hello connection is established after a few minutes.</span></span> <span data-ttu-id="4ce96-215">hello BGP 피어 링 세션 제공 hello VNet 대 VNet 연결을 완료 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-215">hello BGP peering session is up once hello VNet-to-VNet connection is completed.</span></span>
 
-<span data-ttu-id="14541-216">이 연습의 세 부를 모두 완료하면 다음 네트워크 토폴로지가 설정됩니다.</span><span class="sxs-lookup"><span data-stu-id="14541-216">If you completed all three parts of this exercise, you have established the following network topology:</span></span>
+<span data-ttu-id="4ce96-216">이 작업의 세 부분이 모두 같기를 완료 한 경우 네트워크 토폴로지에 따라 hello 설정:</span><span class="sxs-lookup"><span data-stu-id="4ce96-216">If you completed all three parts of this exercise, you have established hello following network topology:</span></span>
 
 ![VNet-VNet에 대한 BGP](./media/vpn-gateway-bgp-resource-manager-ps/bgp-crosspremv2v.png)
 
-## <a name="next-steps"></a><span data-ttu-id="14541-218">다음 단계</span><span class="sxs-lookup"><span data-stu-id="14541-218">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="4ce96-218">다음 단계</span><span class="sxs-lookup"><span data-stu-id="4ce96-218">Next steps</span></span>
 
-<span data-ttu-id="14541-219">연결이 완료되면 가상 네트워크에 가상 컴퓨터를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="14541-219">Once your connection is complete, you can add virtual machines to your virtual networks.</span></span> <span data-ttu-id="14541-220">단계는 [가상 컴퓨터 만들기](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="14541-220">See [Create a Virtual Machine](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) for steps.</span></span>
+<span data-ttu-id="4ce96-219">연결이 완료 되 면 가상 컴퓨터 tooyour 가상 네트워크를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4ce96-219">Once your connection is complete, you can add virtual machines tooyour virtual networks.</span></span> <span data-ttu-id="4ce96-220">단계는 [가상 컴퓨터 만들기](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4ce96-220">See [Create a Virtual Machine](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) for steps.</span></span>

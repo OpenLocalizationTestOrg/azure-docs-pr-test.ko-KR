@@ -1,5 +1,5 @@
 ---
-title: "Azure Linux VM에서 Oracle Golden Gate 구현 | Microsoft Docs"
+title: "Azure Linux VM에서 Oracle 골든 게이트 aaaImplement | Microsoft Docs"
 description: "Oracle Golden Gate를 Azure 환경에서 빠르게 시작하고 실행합니다."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -15,60 +15,60 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: rclaus
-ms.openlocfilehash: a05711357d345267647c02e42336fd37c09e1bff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 320cafd5d23ee472f0af9f92577bc6f432f65778
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="implement-oracle-golden-gate-on-an-azure-linux-vm"></a><span data-ttu-id="ae812-103">Azure Linux VM에서 Oracle Golden Gate 구현</span><span class="sxs-lookup"><span data-stu-id="ae812-103">Implement Oracle Golden Gate on an Azure Linux VM</span></span> 
+# <a name="implement-oracle-golden-gate-on-an-azure-linux-vm"></a><span data-ttu-id="94575-103">Azure Linux VM에서 Oracle Golden Gate 구현</span><span class="sxs-lookup"><span data-stu-id="94575-103">Implement Oracle Golden Gate on an Azure Linux VM</span></span> 
 
-<span data-ttu-id="ae812-104">명령줄 또는 스크립트에서 Azure 리소스를 만들고 관리하는 데 Azure CLI가 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-104">The Azure CLI is used to create and manage Azure resources from the command line or in scripts.</span></span> <span data-ttu-id="ae812-105">이 가이드에서는 Azure CLI를 사용하여 Azure Marketplace 갤러리 이미지에서 Oracle 12c 데이터베이스를 배포하는 방법을 자세히 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-105">This guide details how to use the Azure CLI to deploy an Oracle 12c database from the Azure Marketplace gallery image.</span></span> 
+<span data-ttu-id="94575-104">hello Azure CLI 사용된 toocreate 이며 hello 명령줄에서 또는 스크립트에서 Azure 리소스를 관리 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-104">hello Azure CLI is used toocreate and manage Azure resources from hello command line or in scripts.</span></span> <span data-ttu-id="94575-105">이 가이드를 세부 정보 hello Azure 마켓플레이스 갤러리 이미지에서 Oracle 12c toouse hello Azure CLI toodeploy 데이터베이스 하는 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-105">This guide details how toouse hello Azure CLI toodeploy an Oracle 12c database from hello Azure Marketplace gallery image.</span></span> 
 
-<span data-ttu-id="ae812-106">이 문서에서는 Azure VM에서 Oracle Golden Gate를 만들고, 설치 및 구성하는 방법을 단계별로 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-106">This document shows you step-by-step how to create, install, and configure Oracle Golden Gate on an Azure VM.</span></span>
+<span data-ttu-id="94575-106">이 문서에서는 단계별 toocreate를 설치 하 고 Azure VM에서 Oracle 골든 게이트를 구성 하는 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-106">This document shows you step-by-step how toocreate, install, and configure Oracle Golden Gate on an Azure VM.</span></span>
 
-<span data-ttu-id="ae812-107">시작하기 전에 Azure CLI가 설치되었는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-107">Before you start, make sure that the Azure CLI has been installed.</span></span> <span data-ttu-id="ae812-108">자세한 내용은 [Azure CLI 설치 가이드](https://docs.microsoft.com/cli/azure/install-azure-cli)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="ae812-108">For more information, see [Azure CLI installation guide](https://docs.microsoft.com/cli/azure/install-azure-cli).</span></span>
+<span data-ttu-id="94575-107">시작 하기 전에 해야 Azure CLI 설치가 완료 된 후 해당 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-107">Before you start, make sure that hello Azure CLI has been installed.</span></span> <span data-ttu-id="94575-108">자세한 내용은 [Azure CLI 설치 가이드](https://docs.microsoft.com/cli/azure/install-azure-cli)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="94575-108">For more information, see [Azure CLI installation guide](https://docs.microsoft.com/cli/azure/install-azure-cli).</span></span>
 
-## <a name="prepare-the-environment"></a><span data-ttu-id="ae812-109">환경 준비</span><span class="sxs-lookup"><span data-stu-id="ae812-109">Prepare the environment</span></span>
+## <a name="prepare-hello-environment"></a><span data-ttu-id="94575-109">Hello 환경 준비</span><span class="sxs-lookup"><span data-stu-id="94575-109">Prepare hello environment</span></span>
 
-<span data-ttu-id="ae812-110">Oracle Golden Gate 설치를 수행하려면 동일한 가용성 집합에서 두 개의 Azure VM을 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-110">To perform the Oracle Golden Gate installation, you need to create two Azure VMs on the same availability set.</span></span> <span data-ttu-id="ae812-111">VM을 만드는 데 사용하는 Marketplace 이미지는 **Oracle:Oracle-Database-Ee:12.1.0.2:latest**입니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-111">The Marketplace image you use to create the VMs is **Oracle:Oracle-Database-Ee:12.1.0.2:latest**.</span></span>
+<span data-ttu-id="94575-110">hello에 toocreate 2 Azure Vm을 필요한 tooperform hello Oracle 골든 게이트 설치 동일한 가용성 집합입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-110">tooperform hello Oracle Golden Gate installation, you need toocreate two Azure VMs on hello same availability set.</span></span> <span data-ttu-id="94575-111">toocreate hello Vm을 사용 하 여 hello 마켓플레이스 이미지는 **Oracle: Oracle-데이터베이스-Ee:12.1.0.2:latest**합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-111">hello Marketplace image you use toocreate hello VMs is **Oracle:Oracle-Database-Ee:12.1.0.2:latest**.</span></span>
 
-<span data-ttu-id="ae812-112">Unix 편집기 vi를 잘 알고 있고 x11(X Windows)을 기본적으로 이해해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-112">You also need to be familiar with Unix editor vi and have a basic understanding of x11 (X Windows).</span></span>
+<span data-ttu-id="94575-112">또한 toobe 편집기 vi Unix에 잘 알고 있어야 하 고 x11 (X Windows)에 대 한 기본적인 이해가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-112">You also need toobe familiar with Unix editor vi and have a basic understanding of x11 (X Windows).</span></span>
 
-<span data-ttu-id="ae812-113">다음은 환경 구성에 대한 요약입니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-113">The following is a summary of the environment configuration:</span></span>
+<span data-ttu-id="94575-113">hello 다음은 hello 환경 구성 요약입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-113">hello following is a summary of hello environment configuration:</span></span>
 > 
-> |  | <span data-ttu-id="ae812-114">**기본 사이트**</span><span class="sxs-lookup"><span data-stu-id="ae812-114">**Primary site**</span></span> | <span data-ttu-id="ae812-115">**복제 사이트**</span><span class="sxs-lookup"><span data-stu-id="ae812-115">**Replicate site**</span></span> |
+> |  | <span data-ttu-id="94575-114">**기본 사이트**</span><span class="sxs-lookup"><span data-stu-id="94575-114">**Primary site**</span></span> | <span data-ttu-id="94575-115">**복제 사이트**</span><span class="sxs-lookup"><span data-stu-id="94575-115">**Replicate site**</span></span> |
 > | --- | --- | --- |
-> | <span data-ttu-id="ae812-116">**Oracle 릴리스**</span><span class="sxs-lookup"><span data-stu-id="ae812-116">**Oracle release**</span></span> |<span data-ttu-id="ae812-117">Oracle 12c 릴리스 2 – (12.1.0.2)</span><span class="sxs-lookup"><span data-stu-id="ae812-117">Oracle 12c Release 2 – (12.1.0.2)</span></span> |<span data-ttu-id="ae812-118">Oracle 12c 릴리스 2 – (12.1.0.2)</span><span class="sxs-lookup"><span data-stu-id="ae812-118">Oracle 12c Release 2 – (12.1.0.2)</span></span>|
-> | <span data-ttu-id="ae812-119">**컴퓨터 이름**</span><span class="sxs-lookup"><span data-stu-id="ae812-119">**Machine name**</span></span> |<span data-ttu-id="ae812-120">myVM1</span><span class="sxs-lookup"><span data-stu-id="ae812-120">myVM1</span></span> |<span data-ttu-id="ae812-121">myVM2</span><span class="sxs-lookup"><span data-stu-id="ae812-121">myVM2</span></span> |
-> | <span data-ttu-id="ae812-122">**운영 체제**</span><span class="sxs-lookup"><span data-stu-id="ae812-122">**Operating system**</span></span> |<span data-ttu-id="ae812-123">Oracle Linux 6.x</span><span class="sxs-lookup"><span data-stu-id="ae812-123">Oracle Linux 6.x</span></span> |<span data-ttu-id="ae812-124">Oracle Linux 6.x</span><span class="sxs-lookup"><span data-stu-id="ae812-124">Oracle Linux 6.x</span></span> |
-> | <span data-ttu-id="ae812-125">**Oracle SID**</span><span class="sxs-lookup"><span data-stu-id="ae812-125">**Oracle SID**</span></span> |<span data-ttu-id="ae812-126">CDB1</span><span class="sxs-lookup"><span data-stu-id="ae812-126">CDB1</span></span> |<span data-ttu-id="ae812-127">CDB1</span><span class="sxs-lookup"><span data-stu-id="ae812-127">CDB1</span></span> |
-> | <span data-ttu-id="ae812-128">**복제 스키마**</span><span class="sxs-lookup"><span data-stu-id="ae812-128">**Replication schema**</span></span> |<span data-ttu-id="ae812-129">테스트</span><span class="sxs-lookup"><span data-stu-id="ae812-129">TEST</span></span>|<span data-ttu-id="ae812-130">테스트</span><span class="sxs-lookup"><span data-stu-id="ae812-130">TEST</span></span> |
-> | <span data-ttu-id="ae812-131">**Golden Gate 소유자/복제**</span><span class="sxs-lookup"><span data-stu-id="ae812-131">**Golden Gate owner/replicate**</span></span> |<span data-ttu-id="ae812-132">C##GGADMIN</span><span class="sxs-lookup"><span data-stu-id="ae812-132">C##GGADMIN</span></span> |<span data-ttu-id="ae812-133">REPUSER</span><span class="sxs-lookup"><span data-stu-id="ae812-133">REPUSER</span></span> |
-> | <span data-ttu-id="ae812-134">**Golden Gate 프로세스**</span><span class="sxs-lookup"><span data-stu-id="ae812-134">**Golden Gate process**</span></span> |<span data-ttu-id="ae812-135">EXTORA</span><span class="sxs-lookup"><span data-stu-id="ae812-135">EXTORA</span></span> |<span data-ttu-id="ae812-136">REPORA</span><span class="sxs-lookup"><span data-stu-id="ae812-136">REPORA</span></span>|
+> | <span data-ttu-id="94575-116">**Oracle 릴리스**</span><span class="sxs-lookup"><span data-stu-id="94575-116">**Oracle release**</span></span> |<span data-ttu-id="94575-117">Oracle 12c 릴리스 2 – (12.1.0.2)</span><span class="sxs-lookup"><span data-stu-id="94575-117">Oracle 12c Release 2 – (12.1.0.2)</span></span> |<span data-ttu-id="94575-118">Oracle 12c 릴리스 2 – (12.1.0.2)</span><span class="sxs-lookup"><span data-stu-id="94575-118">Oracle 12c Release 2 – (12.1.0.2)</span></span>|
+> | <span data-ttu-id="94575-119">**컴퓨터 이름**</span><span class="sxs-lookup"><span data-stu-id="94575-119">**Machine name**</span></span> |<span data-ttu-id="94575-120">myVM1</span><span class="sxs-lookup"><span data-stu-id="94575-120">myVM1</span></span> |<span data-ttu-id="94575-121">myVM2</span><span class="sxs-lookup"><span data-stu-id="94575-121">myVM2</span></span> |
+> | <span data-ttu-id="94575-122">**운영 체제**</span><span class="sxs-lookup"><span data-stu-id="94575-122">**Operating system**</span></span> |<span data-ttu-id="94575-123">Oracle Linux 6.x</span><span class="sxs-lookup"><span data-stu-id="94575-123">Oracle Linux 6.x</span></span> |<span data-ttu-id="94575-124">Oracle Linux 6.x</span><span class="sxs-lookup"><span data-stu-id="94575-124">Oracle Linux 6.x</span></span> |
+> | <span data-ttu-id="94575-125">**Oracle SID**</span><span class="sxs-lookup"><span data-stu-id="94575-125">**Oracle SID**</span></span> |<span data-ttu-id="94575-126">CDB1</span><span class="sxs-lookup"><span data-stu-id="94575-126">CDB1</span></span> |<span data-ttu-id="94575-127">CDB1</span><span class="sxs-lookup"><span data-stu-id="94575-127">CDB1</span></span> |
+> | <span data-ttu-id="94575-128">**복제 스키마**</span><span class="sxs-lookup"><span data-stu-id="94575-128">**Replication schema**</span></span> |<span data-ttu-id="94575-129">테스트</span><span class="sxs-lookup"><span data-stu-id="94575-129">TEST</span></span>|<span data-ttu-id="94575-130">테스트</span><span class="sxs-lookup"><span data-stu-id="94575-130">TEST</span></span> |
+> | <span data-ttu-id="94575-131">**Golden Gate 소유자/복제**</span><span class="sxs-lookup"><span data-stu-id="94575-131">**Golden Gate owner/replicate**</span></span> |<span data-ttu-id="94575-132">C##GGADMIN</span><span class="sxs-lookup"><span data-stu-id="94575-132">C##GGADMIN</span></span> |<span data-ttu-id="94575-133">REPUSER</span><span class="sxs-lookup"><span data-stu-id="94575-133">REPUSER</span></span> |
+> | <span data-ttu-id="94575-134">**Golden Gate 프로세스**</span><span class="sxs-lookup"><span data-stu-id="94575-134">**Golden Gate process**</span></span> |<span data-ttu-id="94575-135">EXTORA</span><span class="sxs-lookup"><span data-stu-id="94575-135">EXTORA</span></span> |<span data-ttu-id="94575-136">REPORA</span><span class="sxs-lookup"><span data-stu-id="94575-136">REPORA</span></span>|
 
 
-### <a name="sign-in-to-azure"></a><span data-ttu-id="ae812-137">Azure에 로그인</span><span class="sxs-lookup"><span data-stu-id="ae812-137">Sign in to Azure</span></span> 
+### <a name="sign-in-tooazure"></a><span data-ttu-id="94575-137">TooAzure에 로그인</span><span class="sxs-lookup"><span data-stu-id="94575-137">Sign in tooAzure</span></span> 
 
-<span data-ttu-id="ae812-138">[az login](/cli/azure/#login) 명령을 사용하여 Azure 구독에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-138">Sign in to your Azure subscription with the [az login](/cli/azure/#login) command.</span></span> <span data-ttu-id="ae812-139">그런 다음 화면에 나타나는 지침에 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-139">Then follow the on-screen directions.</span></span>
+<span data-ttu-id="94575-138">Tooyour hello로 Azure 구독에에서 로그인 [az 로그인](/cli/azure/#login) 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-138">Sign in tooyour Azure subscription with hello [az login](/cli/azure/#login) command.</span></span> <span data-ttu-id="94575-139">그런 다음 지시 hello 화면에 나타나는 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-139">Then follow hello on-screen directions.</span></span>
 
 ```azurecli
 az login
 ```
 
-### <a name="create-a-resource-group"></a><span data-ttu-id="ae812-140">리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="ae812-140">Create a resource group</span></span>
+### <a name="create-a-resource-group"></a><span data-ttu-id="94575-140">리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="94575-140">Create a resource group</span></span>
 
-<span data-ttu-id="ae812-141">[az group create](/cli/azure/group#create) 명령을 사용하여 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-141">Create a resource group with the [az group create](/cli/azure/group#create) command.</span></span> <span data-ttu-id="ae812-142">Azure 리소스 그룹은 Azure 리소스가 배포되며 관리될 수 있는 논리적 컨테이너입니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-142">An Azure resource group is a logical container into which Azure resources are deployed and from which they can be managed.</span></span> 
+<span data-ttu-id="94575-141">Hello로 리소스 그룹 만들기 [az 그룹 만들기](/cli/azure/group#create) 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-141">Create a resource group with hello [az group create](/cli/azure/group#create) command.</span></span> <span data-ttu-id="94575-142">Azure 리소스 그룹은 Azure 리소스가 배포되며 관리될 수 있는 논리적 컨테이너입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-142">An Azure resource group is a logical container into which Azure resources are deployed and from which they can be managed.</span></span> 
 
-<span data-ttu-id="ae812-143">다음 예제는 `westus` 위치에 `myResourceGroup`이라는 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-143">The following example creates a resource group named `myResourceGroup` in the `westus` location.</span></span>
+<span data-ttu-id="94575-143">hello 다음 예제에서는 명명 된 리소스 그룹 `myResourceGroup` hello에 `westus` 위치 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-143">hello following example creates a resource group named `myResourceGroup` in hello `westus` location.</span></span>
 
 ```azurecli
 az group create --name myResourceGroup --location westus
 ```
 
-### <a name="create-an-availability-set"></a><span data-ttu-id="ae812-144">가용성 집합 만들기</span><span class="sxs-lookup"><span data-stu-id="ae812-144">Create an availability set</span></span>
+### <a name="create-an-availability-set"></a><span data-ttu-id="94575-144">가용성 집합 만들기</span><span class="sxs-lookup"><span data-stu-id="94575-144">Create an availability set</span></span>
 
-<span data-ttu-id="ae812-145">다음 단계는 선택 사항이지만 권장됩니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-145">The following step is optional but recommended.</span></span> <span data-ttu-id="ae812-146">자세한 내용은 [Windows VM에 대한 Azure 가용성 집합 지침](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="ae812-146">For more information, see [Azure availability sets guide](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines).</span></span>
+<span data-ttu-id="94575-145">단계 다음에 나오는 hello 선택 사항 이지만 권장 됩니다.</span><span class="sxs-lookup"><span data-stu-id="94575-145">hello following step is optional but recommended.</span></span> <span data-ttu-id="94575-146">자세한 내용은 [Windows VM에 대한 Azure 가용성 집합 지침](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="94575-146">For more information, see [Azure availability sets guide](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines).</span></span>
 
 ```azurecli
 az vm availability-set create \
@@ -78,13 +78,13 @@ az vm availability-set create \
     --platform-update-domain-count 2
 ```
 
-### <a name="create-a-virtual-machine"></a><span data-ttu-id="ae812-147">가상 컴퓨터 만들기</span><span class="sxs-lookup"><span data-stu-id="ae812-147">Create a virtual machine</span></span>
+### <a name="create-a-virtual-machine"></a><span data-ttu-id="94575-147">가상 컴퓨터 만들기</span><span class="sxs-lookup"><span data-stu-id="94575-147">Create a virtual machine</span></span>
 
-<span data-ttu-id="ae812-148">[az vm create](/cli/azure/vm#create) 명령을 사용하여 VM을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-148">Create a VM with the [az vm create](/cli/azure/vm#create) command.</span></span> 
+<span data-ttu-id="94575-148">Hello로 VM을 만들 [az vm 만들기](/cli/azure/vm#create) 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-148">Create a VM with hello [az vm create](/cli/azure/vm#create) command.</span></span> 
 
-<span data-ttu-id="ae812-149">다음 예제에서는 `myVM1` 및 `myVM2`라고 하는 VM 두 개를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-149">The following example creates two VMs named `myVM1` and `myVM2`.</span></span> <span data-ttu-id="ae812-150">기본 키 위치에 SSH 키가 없는 경우 이 키를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-150">Create SSH keys if they do not already exist in a default key location.</span></span> <span data-ttu-id="ae812-151">특정 키 집합을 사용하려면 `--ssh-key-value` 옵션을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-151">To use a specific set of keys, use the `--ssh-key-value` option.</span></span>
+<span data-ttu-id="94575-149">hello 다음 예제에서는 라는 두 개의 Vm `myVM1` 및 `myVM2`합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-149">hello following example creates two VMs named `myVM1` and `myVM2`.</span></span> <span data-ttu-id="94575-150">기본 키 위치에 SSH 키가 없는 경우 이 키를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="94575-150">Create SSH keys if they do not already exist in a default key location.</span></span> <span data-ttu-id="94575-151">toouse 특정 키의 집합, hello를 사용 하 여 `--ssh-key-value` 옵션입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-151">toouse a specific set of keys, use hello `--ssh-key-value` option.</span></span>
 
-#### <a name="create-myvm1-primary"></a><span data-ttu-id="ae812-152">myVM1(기본) 만들기:</span><span class="sxs-lookup"><span data-stu-id="ae812-152">Create myVM1 (primary):</span></span>
+#### <a name="create-myvm1-primary"></a><span data-ttu-id="94575-152">myVM1(기본) 만들기:</span><span class="sxs-lookup"><span data-stu-id="94575-152">Create myVM1 (primary):</span></span>
 ```azurecli
 az vm create \
      --resource-group myResourceGroup \
@@ -95,7 +95,7 @@ az vm create \
      --generate-ssh-keys \
 ```
 
-<span data-ttu-id="ae812-153">VM을 만든 후 Azure CLI는 다음 예제와 비슷한 정보를 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-153">After the VM has been created, the Azure CLI shows information similar to the following example.</span></span> <span data-ttu-id="ae812-154">`publicIpAddress`를 기록해 둡니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-154">(Take note of the `publicIpAddress`.</span></span> <span data-ttu-id="ae812-155">이 주소는 VM에 액세스하는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-155">This address is used to access the VM.)</span></span>
+<span data-ttu-id="94575-153">VM을 만든 hello, 후 hello Azure CLI 다음 예제와 비슷한 toohello를 정보를 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-153">After hello VM has been created, hello Azure CLI shows information similar toohello following example.</span></span> <span data-ttu-id="94575-154">(Hello를 메모해 `publicIpAddress`합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-154">(Take note of hello `publicIpAddress`.</span></span> <span data-ttu-id="94575-155">이 주소는 사용 되는 tooaccess hello VM입니다.)</span><span class="sxs-lookup"><span data-stu-id="94575-155">This address is used tooaccess hello VM.)</span></span>
 
 ```azurecli
 {
@@ -110,7 +110,7 @@ az vm create \
 }
 ```
 
-#### <a name="create-myvm2-replicate"></a><span data-ttu-id="ae812-156">myVM2(복제) 만들기:</span><span class="sxs-lookup"><span data-stu-id="ae812-156">Create myVM2 (replicate):</span></span>
+#### <a name="create-myvm2-replicate"></a><span data-ttu-id="94575-156">myVM2(복제) 만들기:</span><span class="sxs-lookup"><span data-stu-id="94575-156">Create myVM2 (replicate):</span></span>
 ```azurecli
 az vm create \
      --resource-group myResourceGroup \
@@ -121,13 +121,13 @@ az vm create \
      --generate-ssh-keys \
 ```
 
-<span data-ttu-id="ae812-157">VM을 만든 후 `publicIpAddress`도 기록해 둡니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-157">Take note of the `publicIpAddress` as well after it has been created.</span></span>
+<span data-ttu-id="94575-157">Hello를 메모해 `publicIpAddress` 만들어진 후에 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-157">Take note of hello `publicIpAddress` as well after it has been created.</span></span>
 
-### <a name="open-the-tcp-port-for-connectivity"></a><span data-ttu-id="ae812-158">연결에 대한 TCP 포트 열기</span><span class="sxs-lookup"><span data-stu-id="ae812-158">Open the TCP port for connectivity</span></span>
+### <a name="open-hello-tcp-port-for-connectivity"></a><span data-ttu-id="94575-158">연결에 대 한 hello TCP 포트 열기</span><span class="sxs-lookup"><span data-stu-id="94575-158">Open hello TCP port for connectivity</span></span>
 
-<span data-ttu-id="ae812-159">다음 단계에서는 Oracle 데이터베이스에 원격으로 액세스할 수 있는 외부 끝점을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-159">The next step is to configure external endpoints,  which enable you to access the Oracle database remotely.</span></span> <span data-ttu-id="ae812-160">외부 끝점을 구성하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-160">To configure the external endpoints, run the following commands.</span></span>
+<span data-ttu-id="94575-159">hello 다음 단계는 데 사용할 수 있는 tooaccess hello Oracle 데이터베이스 원격으로 tooconfigure 외부 끝점입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-159">hello next step is tooconfigure external endpoints,  which enable you tooaccess hello Oracle database remotely.</span></span> <span data-ttu-id="94575-160">hello 다음 명령을 실행 tooconfigure hello 외부 끝점입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-160">tooconfigure hello external endpoints, run hello following commands.</span></span>
 
-#### <a name="open-the-port-for-myvm1"></a><span data-ttu-id="ae812-161">myVM1에 대한 포트 열기:</span><span class="sxs-lookup"><span data-stu-id="ae812-161">Open the port for myVM1:</span></span>
+#### <a name="open-hello-port-for-myvm1"></a><span data-ttu-id="94575-161">MyVM1 hello 포트 열기:</span><span class="sxs-lookup"><span data-stu-id="94575-161">Open hello port for myVM1:</span></span>
 
 ```azurecli
 az network nsg rule create --resource-group myResourceGroup\
@@ -137,7 +137,7 @@ az network nsg rule create --resource-group myResourceGroup\
     --destination-address-prefix '*' --destination-port-range 1521 --access allow
 ```
 
-<span data-ttu-id="ae812-162">결과는 다음 응답과 유사하게 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-162">The results should look similar to the following response:</span></span>
+<span data-ttu-id="94575-162">hello 결과 응답 다음 비슷한 toohello 같아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-162">hello results should look similar toohello following response:</span></span>
 
 ```bash
 {
@@ -158,7 +158,7 @@ az network nsg rule create --resource-group myResourceGroup\
 }
 ```
 
-#### <a name="open-the-port-for-myvm2"></a><span data-ttu-id="ae812-163">myVM2에 대한 포트 열기:</span><span class="sxs-lookup"><span data-stu-id="ae812-163">Open the port for myVM2:</span></span>
+#### <a name="open-hello-port-for-myvm2"></a><span data-ttu-id="94575-163">MyVM2 hello 포트 열기:</span><span class="sxs-lookup"><span data-stu-id="94575-163">Open hello port for myVM2:</span></span>
 
 ```azurecli
 az network nsg rule create --resource-group myResourceGroup\
@@ -168,25 +168,25 @@ az network nsg rule create --resource-group myResourceGroup\
     --destination-address-prefix '*' --destination-port-range 1521 --access allow
 ```
 
-### <a name="connect-to-the-virtual-machine"></a><span data-ttu-id="ae812-164">가상 컴퓨터에 연결</span><span class="sxs-lookup"><span data-stu-id="ae812-164">Connect to the virtual machine</span></span>
+### <a name="connect-toohello-virtual-machine"></a><span data-ttu-id="94575-164">Toohello 가상 컴퓨터에 연결</span><span class="sxs-lookup"><span data-stu-id="94575-164">Connect toohello virtual machine</span></span>
 
-<span data-ttu-id="ae812-165">다음 명령을 사용하여 가상 컴퓨터와의 SSH 세션을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-165">Use the following command to create an SSH session with the virtual machine.</span></span> <span data-ttu-id="ae812-166">해당 IP 주소를 가상 컴퓨터의 `publicIpAddress`로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-166">Replace the IP address with the `publicIpAddress` of your virtual machine.</span></span>
+<span data-ttu-id="94575-165">사용 하 여 hello 다음 명령은 toocreate hello 가상 컴퓨터와의 SSH 세션입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-165">Use hello following command toocreate an SSH session with hello virtual machine.</span></span> <span data-ttu-id="94575-166">Hello로 hello IP 주소를 교체 `publicIpAddress` 의 가상 컴퓨터.</span><span class="sxs-lookup"><span data-stu-id="94575-166">Replace hello IP address with hello `publicIpAddress` of your virtual machine.</span></span>
 
 ```bash 
 ssh <publicIpAddress>
 ```
 
-### <a name="create-the-database-on-myvm1-primary"></a><span data-ttu-id="ae812-167">myVM1(기본)에서 데이터베이스 만들기</span><span class="sxs-lookup"><span data-stu-id="ae812-167">Create the database on myVM1 (primary)</span></span>
+### <a name="create-hello-database-on-myvm1-primary"></a><span data-ttu-id="94575-167">Hello 데이터베이스를 만드는 위치 myVM1 (기본)</span><span class="sxs-lookup"><span data-stu-id="94575-167">Create hello database on myVM1 (primary)</span></span>
 
-<span data-ttu-id="ae812-168">Oracle 소프트웨어는 Marketplace 이미지에 이미 설치되어 있으므로 다음 단계에서 데이터베이스를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-168">The Oracle software is already installed on the Marketplace image, so the next step is to install the database.</span></span> 
+<span data-ttu-id="94575-168">Oracle 소프트웨어 hello 있으므로 hello 다음 단계는 tooinstall hello 데이터베이스 hello 마켓플레이스 이미지에 이미 설치 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="94575-168">hello Oracle software is already installed on hello Marketplace image, so hello next step is tooinstall hello database.</span></span> 
 
-<span data-ttu-id="ae812-169">'oracle' 슈퍼 사용자로 소프트웨어 실행:</span><span class="sxs-lookup"><span data-stu-id="ae812-169">Run the software as the 'oracle' superuser:</span></span>
+<span data-ttu-id="94575-169">Hello 'oracle' superuser로 hello 소프트웨어를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-169">Run hello software as hello 'oracle' superuser:</span></span>
 
 ```bash
 sudo su - oracle
 ```
 
-<span data-ttu-id="ae812-170">데이터베이스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-170">Create the database:</span></span>
+<span data-ttu-id="94575-170">hello 데이터베이스 만드는 위치:</span><span class="sxs-lookup"><span data-stu-id="94575-170">Create hello database:</span></span>
 
 ```bash
 $ dbca -silent \
@@ -207,7 +207,7 @@ $ dbca -silent \
    -storageType FS \
    -ignorePreReqs
 ```
-<span data-ttu-id="ae812-171">출력은 다음 응답과 유사하게 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-171">Outputs should look similar to the following response:</span></span>
+<span data-ttu-id="94575-171">출력에는 다음 응답 비슷한 toohello 같아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-171">Outputs should look similar toohello following response:</span></span>
 
 ```bash
 Copying database files
@@ -236,10 +236,10 @@ Completing Database Creation
 Creating Pluggable Databases
 78% complete
 100% complete
-Look at the log file "/u01/app/oracle/cfgtoollogs/dbca/cdb1/cdb1.log" for more details.
+Look at hello log file "/u01/app/oracle/cfgtoollogs/dbca/cdb1/cdb1.log" for more details.
 ```
 
-<span data-ttu-id="ae812-172">ORACLE_SID 및 ORACLE_HOME 변수를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-172">Set the ORACLE_SID and ORACLE_HOME variables.</span></span>
+<span data-ttu-id="94575-172">Hello ORACLE_SID 및 ORACLE_HOME 변수를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-172">Set hello ORACLE_SID and ORACLE_HOME variables.</span></span>
 
 ```bash
 $ ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
@@ -247,7 +247,7 @@ $ ORACLE_SID=gg1; export ORACLE_SID
 $ LD_LIBRARY_PATH=ORACLE_HOME/lib; export LD_LIBRARY_PATH
 ```
 
-<span data-ttu-id="ae812-173">필요에 따라 .bashrc 파일에 ORACLE_HOME 및 ORACLE_SID를 추가하여 후속 로그인을 위해 이러한 설정을 저장할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-173">Optionally, you can add ORACLE_HOME and ORACLE_SID to the .bashrc file, so that these settings are saved for future sign-ins:</span></span>
+<span data-ttu-id="94575-173">필요에 따라는 이후 로그인에 대 한 이러한 설정을 저장할 수 있도록 ORACLE_HOME 및 ORACLE_SID toohello.bashrc 파일을 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="94575-173">Optionally, you can add ORACLE_HOME and ORACLE_SID toohello .bashrc file, so that these settings are saved for future sign-ins:</span></span>
 
 ```bash
 # add oracle home
@@ -258,18 +258,18 @@ export ORACLE_SID=gg1
 export LD_LIBRARY_PATH=$ORACLE_HOME/lib
 ```
 
-### <a name="start-oracle-listener"></a><span data-ttu-id="ae812-174">Oracle 수신기 시작</span><span class="sxs-lookup"><span data-stu-id="ae812-174">Start Oracle listener</span></span>
+### <a name="start-oracle-listener"></a><span data-ttu-id="94575-174">Oracle 수신기 시작</span><span class="sxs-lookup"><span data-stu-id="94575-174">Start Oracle listener</span></span>
 ```bash
 $ sudo su - oracle
 $ lsnrctl start
 ```
 
-### <a name="create-the-database-on-myvm2-replicate"></a><span data-ttu-id="ae812-175">myVM2(복제)에서 데이터베이스 만들기</span><span class="sxs-lookup"><span data-stu-id="ae812-175">Create the database on myVM2 (replicate)</span></span>
+### <a name="create-hello-database-on-myvm2-replicate"></a><span data-ttu-id="94575-175">MyVM2에 hello 데이터베이스 만들기 (복제)</span><span class="sxs-lookup"><span data-stu-id="94575-175">Create hello database on myVM2 (replicate)</span></span>
 
 ```bash
 sudo su - oracle
 ```
-<span data-ttu-id="ae812-176">데이터베이스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-176">Create the database:</span></span>
+<span data-ttu-id="94575-176">hello 데이터베이스 만드는 위치:</span><span class="sxs-lookup"><span data-stu-id="94575-176">Create hello database:</span></span>
 
 ```bash
 $ dbca -silent \
@@ -290,7 +290,7 @@ $ dbca -silent \
    -storageType FS \
    -ignorePreReqs
 ```
-<span data-ttu-id="ae812-177">ORACLE_SID 및 ORACLE_HOME 변수를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-177">Set the ORACLE_SID and ORACLE_HOME variables.</span></span>
+<span data-ttu-id="94575-177">Hello ORACLE_SID 및 ORACLE_HOME 변수를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-177">Set hello ORACLE_SID and ORACLE_HOME variables.</span></span>
 
 ```bash
 $ ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
@@ -298,7 +298,7 @@ $ ORACLE_SID=cdb1; export ORACLE_SID
 $ LD_LIBRARY_PATH=ORACLE_HOME/lib; export LD_LIBRARY_PATH
 ```
 
-<span data-ttu-id="ae812-178">필요에 따라 .bashrc 파일에 ORACLE_HOME 및 ORACLE_SID를 추가하여 후속 로그인을 위해 이러한 설정을 저장할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-178">Optionally, you can added ORACLE_HOME and ORACLE_SID to the .bashrc file, so that these settings are saved for future sign-ins.</span></span>
+<span data-ttu-id="94575-178">필요에 따라는 이후 로그인에 대 한 이러한 설정을 저장할 수 있도록 추가 된 ORACLE_HOME 및 ORACLE_SID toohello.bashrc 파일을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="94575-178">Optionally, you can added ORACLE_HOME and ORACLE_SID toohello .bashrc file, so that these settings are saved for future sign-ins.</span></span>
 
 ```bash
 # add oracle home
@@ -309,16 +309,16 @@ export ORACLE_SID=cdb1
 export LD_LIBRARY_PATH=$ORACLE_HOME/lib
 ```
 
-### <a name="start-oracle-listener"></a><span data-ttu-id="ae812-179">Oracle 수신기 시작</span><span class="sxs-lookup"><span data-stu-id="ae812-179">Start Oracle listener</span></span>
+### <a name="start-oracle-listener"></a><span data-ttu-id="94575-179">Oracle 수신기 시작</span><span class="sxs-lookup"><span data-stu-id="94575-179">Start Oracle listener</span></span>
 ```bash
 $ sudo su - oracle
 $ lsnrctl start
 ```
 
-## <a name="configure-golden-gate"></a><span data-ttu-id="ae812-180">Golden Gate 구성</span><span class="sxs-lookup"><span data-stu-id="ae812-180">Configure Golden Gate</span></span> 
-<span data-ttu-id="ae812-181">Golden Gate를 구성하려면 이 섹션의 단계를 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-181">To configure Golden Gate, take the steps in this section.</span></span>
+## <a name="configure-golden-gate"></a><span data-ttu-id="94575-180">Golden Gate 구성</span><span class="sxs-lookup"><span data-stu-id="94575-180">Configure Golden Gate</span></span> 
+<span data-ttu-id="94575-181">이 섹션의 hello 단계를 수행 하는 tooconfigure 골든 게이트입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-181">tooconfigure Golden Gate, take hello steps in this section.</span></span>
 
-### <a name="enable-archive-log-mode-on-myvm1-primary"></a><span data-ttu-id="ae812-182">myVM1(기본)에서 보관 로그 모드 사용</span><span class="sxs-lookup"><span data-stu-id="ae812-182">Enable archive log mode on myVM1 (primary)</span></span>
+### <a name="enable-archive-log-mode-on-myvm1-primary"></a><span data-ttu-id="94575-182">myVM1(기본)에서 보관 로그 모드 사용</span><span class="sxs-lookup"><span data-stu-id="94575-182">Enable archive log mode on myVM1 (primary)</span></span>
 
 ```bash
 $ sqlplus / as sysdba
@@ -333,7 +333,7 @@ SQL> STARTUP MOUNT;
 SQL> ALTER DATABASE ARCHIVELOG;
 SQL> ALTER DATABASE OPEN;
 ```
-<span data-ttu-id="ae812-183">강제 로깅을 사용하도록 설정하고 하나 이상의 로그 파일이 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-183">Enable force logging, and make sure at least one log file is present.</span></span>
+<span data-ttu-id="94575-183">강제 로깅을 사용하도록 설정하고 하나 이상의 로그 파일이 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-183">Enable force logging, and make sure at least one log file is present.</span></span>
 
 ```bash
 SQL> ALTER DATABASE FORCE LOGGING;
@@ -345,25 +345,25 @@ SQL> ALTER DATABASE ADD SUPPLEMENTAL LOG DATA;
 SQL> EXIT;
 ```
 
-### <a name="download-golden-gate-software"></a><span data-ttu-id="ae812-184">Golden Gate 소프트웨어 다운로드</span><span class="sxs-lookup"><span data-stu-id="ae812-184">Download Golden Gate software</span></span>
-<span data-ttu-id="ae812-185">Oracle Golden Gate 소프트웨어를 다운로드 및 준비하려면 다음 단계를 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-185">To download and prepare the Oracle Golden Gate software, complete the following steps:</span></span>
+### <a name="download-golden-gate-software"></a><span data-ttu-id="94575-184">Golden Gate 소프트웨어 다운로드</span><span class="sxs-lookup"><span data-stu-id="94575-184">Download Golden Gate software</span></span>
+<span data-ttu-id="94575-185">toodownload hello Oracle 골든 게이트 소프트웨어, 단계를 수행 하는 전체 hello 준비 및:</span><span class="sxs-lookup"><span data-stu-id="94575-185">toodownload and prepare hello Oracle Golden Gate software, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="ae812-186">[Oracle Golden Gate 다운로드 페이지](http://www.oracle.com/technetwork/middleware/goldengate/downloads/index.html)에서 **fbo_ggs_Linux_x64_shiphome.zip** 파일을 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-186">Download the **fbo_ggs_Linux_x64_shiphome.zip** file from the [Oracle Golden Gate download page](http://www.oracle.com/technetwork/middleware/goldengate/downloads/index.html).</span></span> <span data-ttu-id="ae812-187">다운로드 제목 **Oracle GoldenGate 12.x.x.x for Oracle Linux x86-64** 아래에 다운로드할 .zip 파일 집합이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-187">Under the download title **Oracle GoldenGate 12.x.x.x for Oracle Linux x86-64**, there should be a set of .zip files to download.</span></span>
+1. <span data-ttu-id="94575-186">Hello 다운로드 **fbo_ggs_Linux_x64_shiphome.zip** hello에서 파일 [Oracle 골든 게이트 다운로드 페이지](http://www.oracle.com/technetwork/middleware/goldengate/downloads/index.html)합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-186">Download hello **fbo_ggs_Linux_x64_shiphome.zip** file from hello [Oracle Golden Gate download page](http://www.oracle.com/technetwork/middleware/goldengate/downloads/index.html).</span></span> <span data-ttu-id="94575-187">Hello에서 제목 다운로드 **Oracle Linux x86-64에 대 한 Oracle GoldenGate 12.x.x.x**,.zip 파일 toodownload 집합이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-187">Under hello download title **Oracle GoldenGate 12.x.x.x for Oracle Linux x86-64**, there should be a set of .zip files toodownload.</span></span>
 
-2. <span data-ttu-id="ae812-188">.zip 파일을 클라이언트 컴퓨터로 다운로드한 후 SCP(Secure Copy Protocol)를 사용하여 파일을 VM으로 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-188">After you download the .zip files to your client computer, use Secure Copy Protocol (SCP) to copy the files to your VM:</span></span>
+2. <span data-ttu-id="94575-188">Hello.zip tooyour 클라이언트 컴퓨터 파일을 다운로드 한 후 복사 프로토콜 보안 (SCP) toocopy hello 파일 tooyour VM을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-188">After you download hello .zip files tooyour client computer, use Secure Copy Protocol (SCP) toocopy hello files tooyour VM:</span></span>
 
   ```bash
   $ scp fbo_ggs_Linux_x64_shiphome.zip <publicIpAddress>:<folder>
   ```
 
-3. <span data-ttu-id="ae812-189">.zip 파일을 **/opt** 폴더로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-189">Move the .zip files to the **/opt** folder.</span></span> <span data-ttu-id="ae812-190">그다음에 다음과 같이 파일의 소유자를 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-190">Then change the owner of the files as follows:</span></span>
+3. <span data-ttu-id="94575-189">Hello.zip 파일 toohello 이동 **/opt** 폴더입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-189">Move hello .zip files toohello **/opt** folder.</span></span> <span data-ttu-id="94575-190">그런 다음 hello 파일의 hello 소유자를 다음과 같이 변경.</span><span class="sxs-lookup"><span data-stu-id="94575-190">Then change hello owner of hello files as follows:</span></span>
 
   ```bash
   $ sudo su -
   # mv <folder>/*.zip /opt
   ```
 
-4. <span data-ttu-id="ae812-191">파일의 압축을 풉니다. (Linux 압축 풀기 유틸리티가 설치되어 있지 않은 경우 이를 설치합니다.)</span><span class="sxs-lookup"><span data-stu-id="ae812-191">Unzip the files (install the Linux unzip utility if it's not already installed):</span></span>
+4. <span data-ttu-id="94575-191">Hello 파일을 (설치 hello Linux의 압축을 푸는 유틸리티 설치 되어 있지 않은 경우)의 압축을 풉니다.</span><span class="sxs-lookup"><span data-stu-id="94575-191">Unzip hello files (install hello Linux unzip utility if it's not already installed):</span></span>
 
   ```bash
   # yum install unzip
@@ -371,32 +371,32 @@ SQL> EXIT;
   # unzip fbo_ggs_Linux_x64_shiphome.zip
   ```
 
-5. <span data-ttu-id="ae812-192">사용 권한을 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-192">Change permission:</span></span>
+5. <span data-ttu-id="94575-192">사용 권한을 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-192">Change permission:</span></span>
 
   ```bash
   # chown -R oracle:oinstall /opt/fbo_ggs_Linux_x64_shiphome
   ```
 
-### <a name="prepare-the-client-and-vm-to-run-x11-for-windows-clients-only"></a><span data-ttu-id="ae812-193">x11을 실행하는 클라이언트 및 VM을 준비합니다(Windows 클라이언트에만 해당).</span><span class="sxs-lookup"><span data-stu-id="ae812-193">Prepare the client and VM to run x11 (for Windows clients only)</span></span>
-<span data-ttu-id="ae812-194">선택적 단계입니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-194">This is an optional step.</span></span> <span data-ttu-id="ae812-195">Linux 클라이언트를 사용하거나 x11을 이미 설치한 경우 이 단계를 건너뛸 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-195">You can skip this step if you are using a Linux client or already have x11 setup.</span></span>
+### <a name="prepare-hello-client-and-vm-toorun-x11-for-windows-clients-only"></a><span data-ttu-id="94575-193">클라이언트 hello와 준비 VM toorun x11 (Windows 클라이언트에만 해당)</span><span class="sxs-lookup"><span data-stu-id="94575-193">Prepare hello client and VM toorun x11 (for Windows clients only)</span></span>
+<span data-ttu-id="94575-194">선택적 단계입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-194">This is an optional step.</span></span> <span data-ttu-id="94575-195">Linux 클라이언트를 사용하거나 x11을 이미 설치한 경우 이 단계를 건너뛸 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="94575-195">You can skip this step if you are using a Linux client or already have x11 setup.</span></span>
 
-1. <span data-ttu-id="ae812-196">Windows 컴퓨터에 PuTTY 및 Xming을 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-196">Download PuTTY and Xming to your Windows computer:</span></span>
+1. <span data-ttu-id="94575-196">PuTTY 및 Xming tooyour Windows 컴퓨터를 다운로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-196">Download PuTTY and Xming tooyour Windows computer:</span></span>
 
-  * [<span data-ttu-id="ae812-197">PuTTY 다운로드</span><span class="sxs-lookup"><span data-stu-id="ae812-197">Download PuTTY</span></span>](http://www.putty.org/)
-  * [<span data-ttu-id="ae812-198">Xming 다운로드</span><span class="sxs-lookup"><span data-stu-id="ae812-198">Download Xming</span></span>](https://xming.en.softonic.com/)
+  * [<span data-ttu-id="94575-197">PuTTY 다운로드</span><span class="sxs-lookup"><span data-stu-id="94575-197">Download PuTTY</span></span>](http://www.putty.org/)
+  * [<span data-ttu-id="94575-198">Xming 다운로드</span><span class="sxs-lookup"><span data-stu-id="94575-198">Download Xming</span></span>](https://xming.en.softonic.com/)
 
-2.  <span data-ttu-id="ae812-199">PuTTY를 PuTTY 폴더(예: C:\Program Files\PuTTY)에 설치한 후 puttygen.exe(PuTTY 키 생성기)를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-199">After you install PuTTY, in the PuTTY folder (for example, C:\Program Files\PuTTY), run puttygen.exe (PuTTY Key Generator).</span></span>
+2.  <span data-ttu-id="94575-199">PuTTY를 설치한 후에 PuTTY 폴더 (예를 들어 C:\Program Files\PuTTY) hello, puttygen.exe (PuTTY 키 생성기)를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-199">After you install PuTTY, in hello PuTTY folder (for example, C:\Program Files\PuTTY), run puttygen.exe (PuTTY Key Generator).</span></span>
 
-3.  <span data-ttu-id="ae812-200">PuTTY 키 생성기에서,</span><span class="sxs-lookup"><span data-stu-id="ae812-200">In PuTTY Key Generator:</span></span>
+3.  <span data-ttu-id="94575-200">PuTTY 키 생성기에서,</span><span class="sxs-lookup"><span data-stu-id="94575-200">In PuTTY Key Generator:</span></span>
 
-  - <span data-ttu-id="ae812-201">키를 생성하려면 **생성** 단추를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-201">To generate a key, select the **Generate** button.</span></span>
-  - <span data-ttu-id="ae812-202">키의 콘텐츠를 복사합니다(**Ctrl + C**).</span><span class="sxs-lookup"><span data-stu-id="ae812-202">Copy the contents of the key (**Ctrl+C**).</span></span>
-  - <span data-ttu-id="ae812-203">**개인 키 저장** 단추를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-203">Select the **Save private key** button.</span></span>
-  - <span data-ttu-id="ae812-204">표시되는 경고를 무시하고 **확인**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-204">Ignore the warning that appears, and then select **OK**.</span></span>
+  - <span data-ttu-id="94575-201">키를 선택 hello toogenerate **생성** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-201">toogenerate a key, select hello **Generate** button.</span></span>
+  - <span data-ttu-id="94575-202">Hello 키의 hello 내용을 복사 (**Ctrl + C**).</span><span class="sxs-lookup"><span data-stu-id="94575-202">Copy hello contents of hello key (**Ctrl+C**).</span></span>
+  - <span data-ttu-id="94575-203">선택 hello **개인 키 저장** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-203">Select hello **Save private key** button.</span></span>
+  - <span data-ttu-id="94575-204">다음을 선택 하 고, 나타나는 hello 경고를 무시 **확인**합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-204">Ignore hello warning that appears, and then select **OK**.</span></span>
 
-    ![PuTTY 키 생성기 페이지의 스크린샷](./media/oracle-golden-gate/puttykeygen.png)
+    ![Hello PuTTY 키 생성기 페이지의 스크린샷](./media/oracle-golden-gate/puttykeygen.png)
 
-4.  <span data-ttu-id="ae812-206">VM에서 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-206">In your VM, run these commands:</span></span>
+4.  <span data-ttu-id="94575-206">VM에서 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-206">In your VM, run these commands:</span></span>
 
   ```bash
   # sudo su - oracle
@@ -404,61 +404,61 @@ SQL> EXIT;
   $ cd .ssh
   ```
 
-5. <span data-ttu-id="ae812-207">**authorized_keys**라는 파일을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-207">Create a file named **authorized_keys**.</span></span> <span data-ttu-id="ae812-208">키의 콘텐츠를 이 파일에 붙여넣은 다음 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-208">Paste the contents of the key in this file, and then save the file.</span></span>
+5. <span data-ttu-id="94575-207">**authorized_keys**라는 파일을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="94575-207">Create a file named **authorized_keys**.</span></span> <span data-ttu-id="94575-208">이 파일의 hello 키의 내용을 hello를 붙여 넣고 hello 파일을 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-208">Paste hello contents of hello key in this file, and then save hello file.</span></span>
 
   > [!NOTE]
-  > <span data-ttu-id="ae812-209">키에는 문자열 `ssh-rsa`가 포함되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-209">The key must contain the string `ssh-rsa`.</span></span> <span data-ttu-id="ae812-210">또한 키의 콘텐츠는 한 줄 텍스트여야 합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-210">Also, the contents of the key must be a single line of text.</span></span>
+  > <span data-ttu-id="94575-209">hello 키 hello 문자열을 포함 해야 `ssh-rsa`합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-209">hello key must contain hello string `ssh-rsa`.</span></span> <span data-ttu-id="94575-210">또한 hello 키의 내용을 hello 텍스트 한 줄 이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-210">Also, hello contents of hello key must be a single line of text.</span></span>
   >  
 
-6. <span data-ttu-id="ae812-211">PuTTY를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-211">Start PuTTY.</span></span> <span data-ttu-id="ae812-212">**범주** 창에서 **연결** > **SSH** > **인증**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-212">In the **Category** pane, select **Connection** > **SSH** > **Auth**.</span></span> <span data-ttu-id="ae812-213">**인증에 대한 개인 키 파일** 상자에서 이전에 생성한 키를 찾아봅니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-213">In the **Private key file for authentication** box, browse to the key that you generated earlier.</span></span>
+6. <span data-ttu-id="94575-211">PuTTY를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-211">Start PuTTY.</span></span> <span data-ttu-id="94575-212">Hello에 **범주** 창 선택 **연결** > **SSH** > **Auth**합니다. Hello에 **인증에 대 한 개인 키 파일** 상자 이전에 생성 toohello 키를 검색 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-212">In hello **Category** pane, select **Connection** > **SSH** > **Auth**. In hello **Private key file for authentication** box, browse toohello key that you generated earlier.</span></span>
 
-  ![개인 키 설정 페이지의 스크린샷](./media/oracle-golden-gate/setprivatekey.png)
+  ![Hello 개인 키 설정 페이지의 스크린샷](./media/oracle-golden-gate/setprivatekey.png)
 
-7. <span data-ttu-id="ae812-215">**범주** 창에서 **연결** > **SSH** > **X11**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-215">In the **Category** pane, select **Connection** > **SSH** > **X11**.</span></span> <span data-ttu-id="ae812-216">그다음에 **X11 전달을 사용하도록 설정** 상자를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-216">Then select the **Enable X11 forwarding** box.</span></span>
+7. <span data-ttu-id="94575-214">Hello에 **범주** 창 선택 **연결** > **SSH** > **X11**합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-214">In hello **Category** pane, select **Connection** > **SSH** > **X11**.</span></span> <span data-ttu-id="94575-215">다음 hello 선택 **사용 X11 전달** 상자입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-215">Then select hello **Enable X11 forwarding** box.</span></span>
 
-  ![X11 사용 페이지의 스크린샷](./media/oracle-golden-gate/enablex11.png)
+  ![Hello X11 설정 페이지의 스크린샷](./media/oracle-golden-gate/enablex11.png)
 
-8. <span data-ttu-id="ae812-218">**카테고리** 창에서 **세션**으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-218">In the **Category** pane, go to **Session**.</span></span> <span data-ttu-id="ae812-219">호스트 정보를 입력한 다음 **열기**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-219">Enter the host information, and then select **Open**.</span></span>
+8. <span data-ttu-id="94575-217">Hello에 **범주** 창 너무 이동**세션**합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-217">In hello **Category** pane, go too**Session**.</span></span> <span data-ttu-id="94575-218">Hello 호스트 정보를 입력 한 다음 선택 **열려**합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-218">Enter hello host information, and then select **Open**.</span></span>
 
-  ![세션 페이지의 스크린샷](./media/oracle-golden-gate/puttysession.png)
+  ![Hello 세션 페이지의 스크린샷](./media/oracle-golden-gate/puttysession.png)
 
-### <a name="install-golden-gate-software"></a><span data-ttu-id="ae812-221">Golden Gate 소프트웨어 설치</span><span class="sxs-lookup"><span data-stu-id="ae812-221">Install Golden Gate software</span></span>
+### <a name="install-golden-gate-software"></a><span data-ttu-id="94575-220">Golden Gate 소프트웨어 설치</span><span class="sxs-lookup"><span data-stu-id="94575-220">Install Golden Gate software</span></span>
 
-<span data-ttu-id="ae812-222">Oracle Golden Gate를 설치하려면 다음 단계를 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-222">To install Oracle Golden Gate, complete the following steps:</span></span>
+<span data-ttu-id="94575-221">tooinstall Oracle 골든 게이트 단계를 수행 하는 전체 hello:</span><span class="sxs-lookup"><span data-stu-id="94575-221">tooinstall Oracle Golden Gate, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="ae812-223">oracle로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-223">Sign in as oracle.</span></span> <span data-ttu-id="ae812-224">(로그인할 때 암호 입력 화면이 나타나지 않아야 합니다.) 설치를 시작하기 전에 Xming이 실행되고 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-224">(You should be able to sign in without being prompted for a password.) Make sure that Xming is running before you begin the installation.</span></span>
+1. <span data-ttu-id="94575-222">oracle로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-222">Sign in as oracle.</span></span> <span data-ttu-id="94575-223">(암호를 입력 하지 않고에 수 toosign 수 있어야 합니다.) Hello 설치를 시작 하기 전에 Xming 실행 되 고 있는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-223">(You should be able toosign in without being prompted for a password.) Make sure that Xming is running before you begin hello installation.</span></span>
  
   ```bash
   $ cd /opt/fbo_ggs_Linux_x64_shiphome/Disk1
   $ ./runInstaller
   ```
-2. <span data-ttu-id="ae812-225">'Oracle GoldenGate for Oracle Database 12c'를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-225">Select 'Oracle GoldenGate for Oracle Database 12c'.</span></span> <span data-ttu-id="ae812-226">그리고 **다음**을 선택하여 계속합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-226">Then select **Next** to continue.</span></span>
+2. <span data-ttu-id="94575-224">'Oracle GoldenGate for Oracle Database 12c'를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-224">Select 'Oracle GoldenGate for Oracle Database 12c'.</span></span> <span data-ttu-id="94575-225">그런 다음 선택 **다음** toocontinue 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-225">Then select **Next** toocontinue.</span></span>
 
-  ![설치 관리자 설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_01.png)
+  ![Hello 설치 관리자 선택 설치 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_01.png)
 
-3. <span data-ttu-id="ae812-228">소프트웨어 위치를 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-228">Change the software location.</span></span> <span data-ttu-id="ae812-229">그다음에 **관리자 시작** 상자를 선택하고 데이터베이스 위치를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-229">Then select  the **Start Manager** box and enter the database location.</span></span> <span data-ttu-id="ae812-230">**다음**을 선택하여 계속합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-230">Select **Next** to continue.</span></span>
+3. <span data-ttu-id="94575-227">Hello 소프트웨어 위치를 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-227">Change hello software location.</span></span> <span data-ttu-id="94575-228">다음 hello 선택 **관리자 시작** 상자 하 고 hello 데이터베이스 위치를 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-228">Then select  hello **Start Manager** box and enter hello database location.</span></span> <span data-ttu-id="94575-229">선택 **다음** toocontinue 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-229">Select **Next** toocontinue.</span></span>
 
-  ![설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_02.png)
+  ![Hello 설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_02.png)
 
-4. <span data-ttu-id="ae812-232">인벤토리 디렉터리를 변경하고 **다음**을 선택하여 계속합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-232">Change the inventory directory, and then select **Next** to continue.</span></span>
+4. <span data-ttu-id="94575-231">Hello 인벤토리 디렉터리를 변경 하 고 다음 선택 **다음** toocontinue 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-231">Change hello inventory directory, and then select **Next** toocontinue.</span></span>
 
-  ![설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_03.png)
+  ![Hello 설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_03.png)
 
-5. <span data-ttu-id="ae812-234">**요약** 화면에서 **설치**를 선택하여 계속합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-234">On the **Summary** screen, select **Install** to continue.</span></span>
+5. <span data-ttu-id="94575-233">Hello에 **요약** 화면에서 **설치** toocontinue 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-233">On hello **Summary** screen, select **Install** toocontinue.</span></span>
 
-  ![설치 관리자 설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_04.png)
+  ![Hello 설치 관리자 선택 설치 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_04.png)
 
-6. <span data-ttu-id="ae812-236">스크립트를 'root'로 실행할지 묻는 메시지가 표시될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-236">You might be prompted to run a script as 'root'.</span></span> <span data-ttu-id="ae812-237">메시지가 표시되면 별도의 세션, ssh를 VM으로, sudo를 root로 열고 스크립트를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-237">If so, open a separate session, ssh to the VM, sudo to root, and then run the script.</span></span> <span data-ttu-id="ae812-238">**확인**을 선택하여 계속합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-238">Select **OK** continue.</span></span>
+6. <span data-ttu-id="94575-235">'루트'로 입력 정보 요청된 toorun 스크립트 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="94575-235">You might be prompted toorun a script as 'root'.</span></span> <span data-ttu-id="94575-236">그렇다면 별도 세션을 열고, ssh toohello VM을 sudo tooroot 고 hello 스크립트를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-236">If so, open a separate session, ssh toohello VM, sudo tooroot, and then run hello script.</span></span> <span data-ttu-id="94575-237">**확인**을 선택하여 계속합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-237">Select **OK** continue.</span></span>
 
-  ![설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_05.png)
+  ![Hello 설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_05.png)
 
-7. <span data-ttu-id="ae812-240">설치가 완료되면 **닫기**를 선택하여 프로세스를 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-240">When the installation has finished, select **Close** to complete the process.</span></span>
+7. <span data-ttu-id="94575-239">Hello 설치가 완료 되 면 선택 **닫기** toocomplete hello 프로세스입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-239">When hello installation has finished, select **Close** toocomplete hello process.</span></span>
 
-  ![설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_06.png)
+  ![Hello 설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_06.png)
 
-### <a name="set-up-service-on-myvm1-primary"></a><span data-ttu-id="ae812-242">myVM1(기본)에서 서비스 설정</span><span class="sxs-lookup"><span data-stu-id="ae812-242">Set up service on myVM1 (primary)</span></span>
+### <a name="set-up-service-on-myvm1-primary"></a><span data-ttu-id="94575-241">myVM1(기본)에서 서비스 설정</span><span class="sxs-lookup"><span data-stu-id="94575-241">Set up service on myVM1 (primary)</span></span>
 
-1. <span data-ttu-id="ae812-243">tnsnames.ora 파일 만들거나 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-243">Create or update the tnsnames.ora file:</span></span>
+1. <span data-ttu-id="94575-242">만들거나 hello tnsnames.ora 파일을 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-242">Create or update hello tnsnames.ora file:</span></span>
 
   ```bash
   $ cd $ORACLE_HOME/network/admin
@@ -491,29 +491,29 @@ SQL> EXIT;
     )
   ```
 
-2. <span data-ttu-id="ae812-244">Golden Gate 소유자 및 사용자 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-244">Create the Golden Gate owner and user accounts.</span></span>
+2. <span data-ttu-id="94575-243">Hello 골든 게이트 소유자 및 사용자 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="94575-243">Create hello Golden Gate owner and user accounts.</span></span>
 
   > [!NOTE]
-  > <span data-ttu-id="ae812-245">소유자 계정에는 C## 접두사가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-245">The owner account must have C## prefix.</span></span>
+  > <span data-ttu-id="94575-244">hello 소유자 계정에는 C# # 접두사가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-244">hello owner account must have C## prefix.</span></span>
   >
 
     ```bash
     $ sqlplus / as sysdba
     SQL> CREATE USER C##GGADMIN identified by ggadmin;
     SQL> EXEC dbms_goldengate_auth.grant_admin_privilege('C##GGADMIN',container=>'ALL');
-    SQL> GRANT DBA to C##GGADMIN container=all;
+    SQL> GRANT DBA tooC##GGADMIN container=all;
     SQL> connect C##GGADMIN/ggadmin
     SQL> ALTER SESSION SET CONTAINER=PDB1;
     SQL> EXIT;
     ```
 
-3. <span data-ttu-id="ae812-246">Golden Gate 테스트 사용자 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-246">Create the Golden Gate test user account:</span></span>
+3. <span data-ttu-id="94575-245">Hello 골든 게이트 테스트 사용자 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="94575-245">Create hello Golden Gate test user account:</span></span>
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ sqlplus system/OraPasswd1@pdb1
   SQL> CREATE USER test identified by test DEFAULT TABLESPACE USERS TEMPORARY TABLESPACE TEMP;
-  SQL> GRANT connect, resource, dba TO test;
+  SQL> GRANT connect, resource, dba tootest;
   SQL> ALTER USER test QUOTA 100M on USERS;
   SQL> connect test/test@pdb1
   SQL> @demo_ora_create
@@ -521,9 +521,9 @@ SQL> EXIT;
   SQL> EXIT;
   ```
 
-4. <span data-ttu-id="ae812-247">extract 매개 변수 파일을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-247">Configure the extract parameter file.</span></span>
+4. <span data-ttu-id="94575-246">Hello 매개 변수 파일의 압축 해제를 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-246">Configure hello extract parameter file.</span></span>
 
- <span data-ttu-id="ae812-248">Golden Gate 명령줄 인터페이스(ggsci)를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-248">Start the Golden gate command-line interface (ggsci):</span></span>
+ <span data-ttu-id="94575-247">Hello 골든 게이트 명령줄 인터페이스 (ggsci)를 시작 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-247">Start hello Golden gate command-line interface (ggsci):</span></span>
 
   ```bash
   $ sudo su - oracle
@@ -537,7 +537,7 @@ SQL> EXIT;
 
   GGSCI> EDIT PARAMS EXTORA
   ```
-5. <span data-ttu-id="ae812-249">EXTRACT 매개 변수 파일에 다음을 추가합니다(vi 명령 사용).</span><span class="sxs-lookup"><span data-stu-id="ae812-249">Add the following to the EXTRACT parameter file (by using vi commands).</span></span> <span data-ttu-id="ae812-250">Esc 키, ':wq!'를 눌러</span><span class="sxs-lookup"><span data-stu-id="ae812-250">Press Esc key, ':wq!'</span></span> <span data-ttu-id="ae812-251">파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-251">to save file.</span></span> 
+5. <span data-ttu-id="94575-248">Hello (vi 명령 사용)에서 다음 toohello 추출 매개 변수 파일을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-248">Add hello following toohello EXTRACT parameter file (by using vi commands).</span></span> <span data-ttu-id="94575-249">Esc 키, ':wq!'를 눌러</span><span class="sxs-lookup"><span data-stu-id="94575-249">Press Esc key, ':wq!'</span></span> <span data-ttu-id="94575-250">toosave 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="94575-250">toosave file.</span></span> 
 
   ```bash
   EXTRACT EXTORA
@@ -551,7 +551,7 @@ SQL> EXIT;
   TABLE pdb1.test.TCUSTMER;
   TABLE pdb1.test.TCUSTORD;
   ```
-6. <span data-ttu-id="ae812-252">extract--integrated extract를 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-252">Register extract--integrated extract:</span></span>
+6. <span data-ttu-id="94575-251">extract--integrated extract를 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-251">Register extract--integrated extract:</span></span>
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
@@ -566,7 +566,7 @@ SQL> EXIT;
 
   GGSCI> exit
   ```
-7. <span data-ttu-id="ae812-253">extract 검사점을 설정하고 실시간 추출을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-253">Set up extract checkpoints and start real-time extract:</span></span>
+7. <span data-ttu-id="94575-252">extract 검사점을 설정하고 실시간 추출을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-252">Set up extract checkpoints and start real-time extract:</span></span>
 
   ```bash
   $ ./ggsci
@@ -578,7 +578,7 @@ SQL> EXIT;
 
   GGSCI>  START EXTRACT EXTORA
 
-  Sending START request to MANAGER ...
+  Sending START request tooMANAGER ...
   EXTRACT EXTORA starting
 
   GGSCI > info all
@@ -588,7 +588,7 @@ SQL> EXIT;
   MANAGER     RUNNING
   EXTRACT     RUNNING     EXTORA      00:00:11      00:00:04
   ```
-<span data-ttu-id="ae812-254">이 단계에서는 나중에 다른 섹션에서 사용되는 시작 SCN을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-254">In this step, you find the starting SCN, which will be used later, in a different section:</span></span>
+<span data-ttu-id="94575-253">이 단계에서는 SCN 나중 다른 단원에서 사용 되는 시작 하는 hello를 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="94575-253">In this step, you find hello starting SCN, which will be used later, in a different section:</span></span>
 
   ```bash
   $ sqlplus / as sysdba
@@ -617,10 +617,10 @@ SQL> EXIT;
   GGSCI> ADD EXTRACT INITEXT, SOURCEISTABLE
   ```
 
-### <a name="set-up-service-on-myvm2-replicate"></a><span data-ttu-id="ae812-255">myVM2(복제)에서 서비스 설정</span><span class="sxs-lookup"><span data-stu-id="ae812-255">Set up service on myVM2 (replicate)</span></span>
+### <a name="set-up-service-on-myvm2-replicate"></a><span data-ttu-id="94575-254">myVM2(복제)에서 서비스 설정</span><span class="sxs-lookup"><span data-stu-id="94575-254">Set up service on myVM2 (replicate)</span></span>
 
 
-1. <span data-ttu-id="ae812-256">tnsnames.ora 파일 만들거나 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-256">Create or update the tnsnames.ora file:</span></span>
+1. <span data-ttu-id="94575-255">만들거나 hello tnsnames.ora 파일을 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-255">Create or update hello tnsnames.ora file:</span></span>
 
   ```bash
   $ cd $ORACLE_HOME/network/admin
@@ -653,39 +653,39 @@ SQL> EXIT;
     )
   ```
 
-2. <span data-ttu-id="ae812-257">복제 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-257">Create a replicate account:</span></span>
+2. <span data-ttu-id="94575-256">복제 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="94575-256">Create a replicate account:</span></span>
 
   ```bash
   $ sqlplus / as sysdba
   SQL> alter session set container = pdb1;
   SQL> create user repuser identified by rep_pass container=current;
-  SQL> grant dba to repuser;
+  SQL> grant dba toorepuser;
   SQL> exec dbms_goldengate_auth.grant_admin_privilege('REPUSER',container=>'PDB1');
   SQL> connect repuser/rep_pass@pdb1 
   SQL> EXIT;
   ```
 
-3. <span data-ttu-id="ae812-258">Golden Gate 테스트 사용자 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-258">Create a Golden Gate test user account:</span></span>
+3. <span data-ttu-id="94575-257">Golden Gate 테스트 사용자 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="94575-257">Create a Golden Gate test user account:</span></span>
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ sqlplus system/OraPasswd1@pdb1
   SQL> CREATE USER test identified by test DEFAULT TABLESPACE USERS TEMPORARY TABLESPACE TEMP;
-  SQL> GRANT connect, resource, dba TO test;
+  SQL> GRANT connect, resource, dba tootest;
   SQL> ALTER USER test QUOTA 100M on USERS;
   SQL> connect test/test@pdb1
   SQL> @demo_ora_create
   SQL> EXIT;
   ```
 
-4. <span data-ttu-id="ae812-259">변경 내용을 복제하기 위한 REPLICAT 매개 변수 파일:</span><span class="sxs-lookup"><span data-stu-id="ae812-259">REPLICAT parameter file to replicate changes:</span></span> 
+4. <span data-ttu-id="94575-258">REPLICAT 매개 변수 파일 tooreplicate 변경 내용:</span><span class="sxs-lookup"><span data-stu-id="94575-258">REPLICAT parameter file tooreplicate changes:</span></span> 
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ ./ggsci
   GGSCI> EDIT PARAMS REPORA  
   ```
-  <span data-ttu-id="ae812-260">REPORA 매개 변수 파일의 콘텐츠:</span><span class="sxs-lookup"><span data-stu-id="ae812-260">Content of REPORA parameter file:</span></span>
+  <span data-ttu-id="94575-259">REPORA 매개 변수 파일의 콘텐츠:</span><span class="sxs-lookup"><span data-stu-id="94575-259">Content of REPORA parameter file:</span></span>
 
   ```bash
   REPLICAT REPORA
@@ -698,7 +698,7 @@ SQL> EXIT;
   MAP pdb1.test.*, TARGET pdb1.test.*;
   ```
 
-5. <span data-ttu-id="ae812-261">replicat 검사점을 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-261">Set up a replicat checkpoint:</span></span>
+5. <span data-ttu-id="94575-260">replicat 검사점을 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-260">Set up a replicat checkpoint:</span></span>
 
   ```bash
   GGSCI> ADD REPLICAT REPORA, INTEGRATED, EXTTRAIL ./dirdat/rt
@@ -718,22 +718,22 @@ SQL> EXIT;
   GGSCI> ADD REPLICAT INITREP, SPECIALRUN
   ```
 
-### <a name="set-up-the-replication-myvm1-and-myvm2"></a><span data-ttu-id="ae812-262">복제 설정(myVM1 및 myVM2)</span><span class="sxs-lookup"><span data-stu-id="ae812-262">Set up the replication (myVM1 and myVM2)</span></span>
+### <a name="set-up-hello-replication-myvm1-and-myvm2"></a><span data-ttu-id="94575-261">(MyVM1 및 myVM2) hello 복제 설정</span><span class="sxs-lookup"><span data-stu-id="94575-261">Set up hello replication (myVM1 and myVM2)</span></span>
 
-#### <a name="1-set-up-the-replication-on-myvm2-replicate"></a><span data-ttu-id="ae812-263">1. myVM2(복제)에서 복제 설정</span><span class="sxs-lookup"><span data-stu-id="ae812-263">1. Set up the replication on myVM2 (replicate)</span></span>
+#### <a name="1-set-up-hello-replication-on-myvm2-replicate"></a><span data-ttu-id="94575-262">1. MyVM2에 hello 복제 설정 (복제)</span><span class="sxs-lookup"><span data-stu-id="94575-262">1. Set up hello replication on myVM2 (replicate)</span></span>
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ ./ggsci
   GGSCI> EDIT PARAMS MGR
   ```
-<span data-ttu-id="ae812-264">다음을 사용하여 파일을 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-264">Update the file with the following:</span></span>
+<span data-ttu-id="94575-263">Hello 다음과 같이 hello 파일을 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-263">Update hello file with hello following:</span></span>
 
   ```bash
   PORT 7809
   ACCESSRULE, PROG *, IPADDR *, ALLOW
   ```
-<span data-ttu-id="ae812-265">관리자 서비스를 다시 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-265">Then restart the Manager service:</span></span>
+<span data-ttu-id="94575-264">그런 다음 hello 관리자 서비스를 다시 시작 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-264">Then restart hello Manager service:</span></span>
 
   ```bash
   GGSCI> STOP MGR
@@ -741,9 +741,9 @@ SQL> EXIT;
   GGSCI> EXIT
   ```
 
-#### <a name="2-set-up-the-replication-on-myvm1-primary"></a><span data-ttu-id="ae812-266">2. myVM1(기본)에서 복제 설정</span><span class="sxs-lookup"><span data-stu-id="ae812-266">2. Set up the replication on myVM1 (primary)</span></span>
+#### <a name="2-set-up-hello-replication-on-myvm1-primary"></a><span data-ttu-id="94575-265">2. (기본) myVM1에 hello 복제를 설정</span><span class="sxs-lookup"><span data-stu-id="94575-265">2. Set up hello replication on myVM1 (primary)</span></span>
 
-<span data-ttu-id="ae812-267">초기 로드를 시작하고 오류를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-267">Start the initial load and check for errors:</span></span>
+<span data-ttu-id="94575-266">Hello 초기 로드 시작 오류를 확인 하십시오.</span><span class="sxs-lookup"><span data-stu-id="94575-266">Start hello initial load and check for errors:</span></span>
 
 ```bash
 $ cd /u01/app/oracle/product/12.1.0/oggcore_1
@@ -751,60 +751,60 @@ $ ./ggsci
 GGSCI> START EXTRACT INITEXT
 GGSCI> VIEW REPORT INITEXT
 ```
-#### <a name="3-set-up-the-replication-on-myvm2-replicate"></a><span data-ttu-id="ae812-268">3. myVM2(복제)에서 복제 설정</span><span class="sxs-lookup"><span data-stu-id="ae812-268">3. Set up the replication on myVM2 (replicate)</span></span>
+#### <a name="3-set-up-hello-replication-on-myvm2-replicate"></a><span data-ttu-id="94575-267">3. MyVM2에 hello 복제 설정 (복제)</span><span class="sxs-lookup"><span data-stu-id="94575-267">3. Set up hello replication on myVM2 (replicate)</span></span>
 
-<span data-ttu-id="ae812-269">이전에 얻은 번호로 SCN 번호를 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-269">Change the SCN number with the number you obtained before:</span></span>
+<span data-ttu-id="94575-268">하기 전에 얻은 hello hello 번호로 SCN 수를 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-268">Change hello SCN number with hello number you obtained before:</span></span>
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ ./ggsci
   START REPLICAT REPORA, AFTERCSN 1857887
   ```
-<span data-ttu-id="ae812-270">복제가 시작되면 새 레코드를 TEST 테이블에 삽입하여 테스트할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-270">The replication has begun, and you can test it by inserting new records to TEST tables.</span></span>
+<span data-ttu-id="94575-269">hello 복제를 시작 하 고 새 레코드 tooTEST 테이블을 삽입 하 여 테스트할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="94575-269">hello replication has begun, and you can test it by inserting new records tooTEST tables.</span></span>
 
 
-### <a name="view-job-status-and-troubleshooting"></a><span data-ttu-id="ae812-271">작업 상태 보기 및 문제 해결</span><span class="sxs-lookup"><span data-stu-id="ae812-271">View job status and troubleshooting</span></span>
+### <a name="view-job-status-and-troubleshooting"></a><span data-ttu-id="94575-270">작업 상태 보기 및 문제 해결</span><span class="sxs-lookup"><span data-stu-id="94575-270">View job status and troubleshooting</span></span>
 
-#### <a name="view-reports"></a><span data-ttu-id="ae812-272">보고서 보기</span><span class="sxs-lookup"><span data-stu-id="ae812-272">View reports</span></span>
-<span data-ttu-id="ae812-273">myVM1에서 보고서를 보려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-273">To view reports on myVM1, run the following commands:</span></span>
+#### <a name="view-reports"></a><span data-ttu-id="94575-271">보고서 보기</span><span class="sxs-lookup"><span data-stu-id="94575-271">View reports</span></span>
+<span data-ttu-id="94575-272">tooview는 hello 다음 명령을 실행 myVM1을 보고 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-272">tooview reports on myVM1, run hello following commands:</span></span>
 
   ```bash
   GGSCI> VIEW REPORT EXTORA 
   ```
  
-<span data-ttu-id="ae812-274">myVM2에서 보고서를 보려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-274">To view reports on myVM2, run the following commands:</span></span>
+<span data-ttu-id="94575-273">tooview는 hello 다음 명령을 실행 myVM2을 보고 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-273">tooview reports on myVM2, run hello following commands:</span></span>
 
   ```bash
   GGSCI> VIEW REPORT REPORA
   ```
 
-#### <a name="view-status-and-history"></a><span data-ttu-id="ae812-275">상태 및 기록 보기</span><span class="sxs-lookup"><span data-stu-id="ae812-275">View status and history</span></span>
-<span data-ttu-id="ae812-276">myVM1에서 상태 및 기록을 보려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-276">To view status and history on myVM1, run the following commands:</span></span>
+#### <a name="view-status-and-history"></a><span data-ttu-id="94575-274">상태 및 기록 보기</span><span class="sxs-lookup"><span data-stu-id="94575-274">View status and history</span></span>
+<span data-ttu-id="94575-275">tooview 상태 및 hello 다음 명령을 실행 myVM1에 기록 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-275">tooview status and history on myVM1, run hello following commands:</span></span>
 
   ```bash
   GGSCI> dblogin userid c##ggadmin, password ggadmin 
   GGSCI> INFO EXTRACT EXTORA, DETAIL
   ```
 
-<span data-ttu-id="ae812-277">myVM2에서 상태 및 기록을 보려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-277">To view status and history on myVM2, run the following commands:</span></span>
+<span data-ttu-id="94575-276">tooview 상태 및 hello 다음 명령을 실행 myVM2에 기록 합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-276">tooview status and history on myVM2, run hello following commands:</span></span>
 
   ```bash
   GGSCI> dblogin userid repuser@pdb1 password rep_pass 
   GGSCI> INFO REP REPORA, DETAIL
   ```
-<span data-ttu-id="ae812-278">이렇게 하면 Oracle linux에서 Golden Gate의 설치 및 구성이 완료됩니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-278">This completes the installation and configuration of Golden Gate on Oracle linux.</span></span>
+<span data-ttu-id="94575-277">Hello 설치 및 Oracle linux에서 골든 게이트의 구성을 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="94575-277">This completes hello installation and configuration of Golden Gate on Oracle linux.</span></span>
 
 
-## <a name="delete-the-virtual-machine"></a><span data-ttu-id="ae812-279">가상 컴퓨터 삭제</span><span class="sxs-lookup"><span data-stu-id="ae812-279">Delete the virtual machine</span></span>
+## <a name="delete-hello-virtual-machine"></a><span data-ttu-id="94575-278">Hello 가상 컴퓨터 삭제</span><span class="sxs-lookup"><span data-stu-id="94575-278">Delete hello virtual machine</span></span>
 
-<span data-ttu-id="ae812-280">더 이상 필요하지 않은 경우 다음 명령을 사용하여 리소스 그룹, VM 및 모든 관련된 리소스를 제거할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ae812-280">When it's no longer needed, the following command can be used to remove the resource group, VM, and all related resources.</span></span>
+<span data-ttu-id="94575-279">더 이상 필요 hello 다음 명령을 사용 하는 tooremove hello 리소스 그룹, VM 및 관련 된 모든 리소스 될 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="94575-279">When it's no longer needed, hello following command can be used tooremove hello resource group, VM, and all related resources.</span></span>
 
 ```azurecli
 az group delete --name myResourceGroup
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="ae812-281">다음 단계</span><span class="sxs-lookup"><span data-stu-id="ae812-281">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="94575-280">다음 단계</span><span class="sxs-lookup"><span data-stu-id="94575-280">Next steps</span></span>
 
-[<span data-ttu-id="ae812-282">고가용성 가상 컴퓨터 만들기 자습서</span><span class="sxs-lookup"><span data-stu-id="ae812-282">Create highly available virtual machines tutorial</span></span>](../../linux/create-cli-complete.md)
+[<span data-ttu-id="94575-281">고가용성 가상 컴퓨터 만들기 자습서</span><span class="sxs-lookup"><span data-stu-id="94575-281">Create highly available virtual machines tutorial</span></span>](../../linux/create-cli-complete.md)
 
-[<span data-ttu-id="ae812-283">VM 배포 CLI 샘플 탐색</span><span class="sxs-lookup"><span data-stu-id="ae812-283">Explore VM deployment CLI samples</span></span>](../../linux/cli-samples.md)
+[<span data-ttu-id="94575-282">VM 배포 CLI 샘플 탐색</span><span class="sxs-lookup"><span data-stu-id="94575-282">Explore VM deployment CLI samples</span></span>](../../linux/cli-samples.md)

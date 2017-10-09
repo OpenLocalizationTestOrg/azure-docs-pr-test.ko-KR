@@ -1,6 +1,6 @@
 ---
-title: "Azure Logic Apps에서 온-프레미스 SAP 시스템에 연결 | Microsoft Docs"
-description: "온-프레미스 데이터 게이트웨이를 통해 논리 앱 워크플로에서 온-프레미스 SAP 시스템에 연결"
+title: "aaaConnect tooan 온-프레미스 SAP 시스템에 Azure 논리 앱 | Microsoft Docs"
+description: "Hello 온-프레미스 데이터 게이트웨이 통해 논리 앱 워크플로에서 tooan 온-프레미스 SAP 시스템에 연결"
 services: logic-apps
 author: padmavc
 manager: anneta
@@ -13,80 +13,80 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/01/2017
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 3fea93f558d5a4ef62550fd1f6486903cb812930
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 594ec5fed337398bf931d396684630ee9f907d2f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-to-an-on-premises-sap-system-from-logic-apps-with-the-sap-connector"></a><span data-ttu-id="4d82f-103">SAP 커넥터를 사용하여 Logic Apps에서 온-프레미스 SAP 시스템에 연결</span><span class="sxs-lookup"><span data-stu-id="4d82f-103">Connect to an on-premises SAP system from logic apps with the SAP connector</span></span> 
+# <a name="connect-tooan-on-premises-sap-system-from-logic-apps-with-hello-sap-connector"></a><span data-ttu-id="7c33e-103">Hello SAP connector 사용 하 여 논리 앱에서 tooan 온-프레미스 SAP 시스템에 연결</span><span class="sxs-lookup"><span data-stu-id="7c33e-103">Connect tooan on-premises SAP system from logic apps with hello SAP connector</span></span> 
 
-<span data-ttu-id="4d82f-104">온-프레미스 데이터 게이트웨이를 사용하면 온-프레미스에 있는 데이터를 관리하고 리소스에 안전하게 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-104">The on-premises data gateway enables you to manage data, and securely access resources that are on-premises.</span></span> <span data-ttu-id="4d82f-105">이 항목에서는 온-프레미스 SAP 시스템에 Logic Apps를 연결하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-105">This topic shows how you can connect logic apps to an on-premises SAP system.</span></span> <span data-ttu-id="4d82f-106">이 예제에서 논리 앱은 HTTP를 통한 IDOC를 요청하고 응답을 다시 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-106">In this example, your logic app requests an IDOC over HTTP and sends the response back.</span></span>    
+<span data-ttu-id="7c33e-104">hello 온-프레미스 데이터 게이트웨이 toomanage 데이터 있으며는 온-프레미스 리소스에 안전 하 게 액세스 합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-104">hello on-premises data gateway enables you toomanage data, and securely access resources that are on-premises.</span></span> <span data-ttu-id="7c33e-105">이 항목에서는 논리 앱 tooan 온-프레미스 SAP 시스템을 연결 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-105">This topic shows how you can connect logic apps tooan on-premises SAP system.</span></span> <span data-ttu-id="7c33e-106">이 예제에서는 논리 앱 HTTP를 통한 IDOC를 요청 하 고 hello 응답을 다시 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-106">In this example, your logic app requests an IDOC over HTTP and sends hello response back.</span></span>    
 
 > [!NOTE]
-> <span data-ttu-id="4d82f-107">현재 제한 사항:</span><span class="sxs-lookup"><span data-stu-id="4d82f-107">Current limitations:</span></span> 
-> - <span data-ttu-id="4d82f-108">응답에 필요한 모든 단계가 [요청 시간 초과](./logic-apps-limits-and-config.md) 내에 완료되지 못한 경우 논리 앱은 시간 초과됩니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-108">Your logic app times out if all steps required for the response don't finish within the [request timeout limit](./logic-apps-limits-and-config.md).</span></span> <span data-ttu-id="4d82f-109">이 시나리오에서는 요청이 차단될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-109">In this scenario, requests might get blocked.</span></span> 
-> - <span data-ttu-id="4d82f-110">파일 선택에 사용 가능한 모든 필드가 표시되지는 않습니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-110">The file picker does not display all the available fields.</span></span> <span data-ttu-id="4d82f-111">이 시나리오에서는 경로를 수동으로 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-111">In this scenario, you can manually add paths.</span></span>
+> <span data-ttu-id="7c33e-107">현재 제한 사항:</span><span class="sxs-lookup"><span data-stu-id="7c33e-107">Current limitations:</span></span> 
+> - <span data-ttu-id="7c33e-108">Hello 응답에 필요한 모든 단계 hello 내에 완료 하지 않는 경우 논리 앱 시간 초과 [요청 시간 제한](./logic-apps-limits-and-config.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-108">Your logic app times out if all steps required for hello response don't finish within hello [request timeout limit](./logic-apps-limits-and-config.md).</span></span> <span data-ttu-id="7c33e-109">이 시나리오에서는 요청이 차단될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-109">In this scenario, requests might get blocked.</span></span> 
+> - <span data-ttu-id="7c33e-110">hello 파일 선택기는 hello 사용 가능한 모든 필드를 표시 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-110">hello file picker does not display all hello available fields.</span></span> <span data-ttu-id="7c33e-111">이 시나리오에서는 경로를 수동으로 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-111">In this scenario, you can manually add paths.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="4d82f-112">필수 조건</span><span class="sxs-lookup"><span data-stu-id="4d82f-112">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="7c33e-112">필수 조건</span><span class="sxs-lookup"><span data-stu-id="7c33e-112">Prerequisites</span></span>
 
-- <span data-ttu-id="4d82f-113">최신 [온-프레미스 데이터 게이트웨이](https://www.microsoft.com/download/details.aspx?id=53127) 버전 1.15.6150.1 이상을 설치하고 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-113">Install and configure the latest [on-premises data gateway](https://www.microsoft.com/download/details.aspx?id=53127) version 1.15.6150.1 or newer.</span></span> <span data-ttu-id="4d82f-114">[논리 앱에서 온-프레미스 데이터 게이트웨이에 연결하는 방법](http://aka.ms/logicapps-gateway)에 해당 단계가 나와 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-114">[How to connect to the on-premises data gateway in a logic app](http://aka.ms/logicapps-gateway) lists the steps.</span></span> <span data-ttu-id="4d82f-115">계속 진행하기 전에 게이트웨이를 온-프레미스 컴퓨터에 설치해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-115">The gateway must be installed on an on-premises machine before you can proceed.</span></span>
+- <span data-ttu-id="7c33e-113">설치 하 고 최신 hello 구성 [온-프레미스 데이터 게이트웨이](https://www.microsoft.com/download/details.aspx?id=53127) 1.15.6150.1 버전 이상.</span><span class="sxs-lookup"><span data-stu-id="7c33e-113">Install and configure hello latest [on-premises data gateway](https://www.microsoft.com/download/details.aspx?id=53127) version 1.15.6150.1 or newer.</span></span> <span data-ttu-id="7c33e-114">[어떻게 tooconnect toohello 온-프레미스 데이터 게이트웨이 논리 앱에서](http://aka.ms/logicapps-gateway) 목록 hello 단계입니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-114">[How tooconnect toohello on-premises data gateway in a logic app](http://aka.ms/logicapps-gateway) lists hello steps.</span></span> <span data-ttu-id="7c33e-115">hello 게이트웨이 계속 하려면 먼저 온-프레미스 컴퓨터에 설치 되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-115">hello gateway must be installed on an on-premises machine before you can proceed.</span></span>
 
-- <span data-ttu-id="4d82f-116">데이터 게이트웨이를 설치한 컴퓨터에서 최신 SAP 클라이언트 라이브러리를 다운로드하여 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-116">Download and install the latest SAP client library on the same machine where you installed the data gateway.</span></span> <span data-ttu-id="4d82f-117">다음 SAP 버전 중 하나를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-117">Use any of the following SAP versions:</span></span> 
-    - <span data-ttu-id="4d82f-118">SAP Server</span><span class="sxs-lookup"><span data-stu-id="4d82f-118">SAP Server</span></span>
-        - <span data-ttu-id="4d82f-119">.NET Connector(NCo) 3.0을 지원하는 SAP 서버</span><span class="sxs-lookup"><span data-stu-id="4d82f-119">Any SAP Server that support the .NET Connector (NCo) 3.0</span></span>
+- <span data-ttu-id="7c33e-116">다운로드 및 설치 hello 최신 SAP 클라이언트 라이브러리에 hello hello 데이터 게이트웨이 설치한 컴퓨터 동일 합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-116">Download and install hello latest SAP client library on hello same machine where you installed hello data gateway.</span></span> <span data-ttu-id="7c33e-117">Hello SAP 버전을 다음 중 하나를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-117">Use any of hello following SAP versions:</span></span> 
+    - <span data-ttu-id="7c33e-118">SAP Server</span><span class="sxs-lookup"><span data-stu-id="7c33e-118">SAP Server</span></span>
+        - <span data-ttu-id="7c33e-119">SAP 서버는 지원 hello.NET 커넥터 (NCo) 3.0</span><span class="sxs-lookup"><span data-stu-id="7c33e-119">Any SAP Server that support hello .NET Connector (NCo) 3.0</span></span>
  
-    - <span data-ttu-id="4d82f-120">SAP Client</span><span class="sxs-lookup"><span data-stu-id="4d82f-120">SAP Client</span></span>
-        - <span data-ttu-id="4d82f-121">SAP .NET Connector(NCo) 3.0</span><span class="sxs-lookup"><span data-stu-id="4d82f-121">SAP .NET Connector (NCo) 3.0</span></span>
+    - <span data-ttu-id="7c33e-120">SAP Client</span><span class="sxs-lookup"><span data-stu-id="7c33e-120">SAP Client</span></span>
+        - <span data-ttu-id="7c33e-121">SAP .NET Connector(NCo) 3.0</span><span class="sxs-lookup"><span data-stu-id="7c33e-121">SAP .NET Connector (NCo) 3.0</span></span>
 
-## <a name="add-triggers-and-actions-for-connecting-to-your-sap-system"></a><span data-ttu-id="4d82f-122">SAP 시스템에 연결하기 위한 트리거 및 작업 추가</span><span class="sxs-lookup"><span data-stu-id="4d82f-122">Add triggers and actions for connecting to your SAP system</span></span>
+## <a name="add-triggers-and-actions-for-connecting-tooyour-sap-system"></a><span data-ttu-id="7c33e-122">트리거 및 tooyour SAP 시스템 연결에 대 한 작업 추가</span><span class="sxs-lookup"><span data-stu-id="7c33e-122">Add triggers and actions for connecting tooyour SAP system</span></span>
 
-<span data-ttu-id="4d82f-123">SAP 커넥터에는 작업이 있으나 트리거는 없습니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-123">The SAP connector has actions, but not triggers.</span></span> <span data-ttu-id="4d82f-124">따라서 워크플로가 시작될 때 다른 트리거를 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-124">So, we have to use another trigger at the start of the workflow.</span></span> 
+<span data-ttu-id="7c33e-123">hello SAP connector에 동작을 있지만 트리거 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-123">hello SAP connector has actions, but not triggers.</span></span> <span data-ttu-id="7c33e-124">따라서는 toouse 다른 트리거 hello 워크플로의 hello 시작 부분에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-124">So, we have toouse another trigger at hello start of hello workflow.</span></span> 
 
-1. <span data-ttu-id="4d82f-125">요청/응답 트리거를 추가하고 **새 단계**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-125">Add the Request/Response trigger, and then select **New step**.</span></span>
+1. <span data-ttu-id="7c33e-125">Hello 요청/응답 트리거를 추가 하 고 다음 선택 **새 단계**합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-125">Add hello Request/Response trigger, and then select **New step**.</span></span>
 
-2. <span data-ttu-id="4d82f-126">**작업 추가**를 선택하고 검색 필드에 `SAP`를 입력하여 SAP 커넥터를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-126">Select **Add an action**, and then select the SAP connector by typing `SAP` in the search field:</span></span>    
+2. <span data-ttu-id="7c33e-126">선택 **동작 추가**, 다음을 입력 하 여 hello SAP 커넥터를 선택 하 고 `SAP` hello 검색 필드에:</span><span class="sxs-lookup"><span data-stu-id="7c33e-126">Select **Add an action**, and then select hello SAP connector by typing `SAP` in hello search field:</span></span>    
 
      ![SAP 응용 프로그램 서버 또는 SAP 메시지 서버 선택](media/logic-apps-using-sap-connector/sap-action.png)
 
-3. <span data-ttu-id="4d82f-128">SAP 설치 프로그램에 따라 [**SAP 응용 프로그램 서버**](https://wiki.scn.sap.com/wiki/display/ABAP/ABAP+Application+Server) 또는 [**SAP 메시지 서버**](http://help.sap.com/saphelp_nw70/helpdata/en/40/c235c15ab7468bb31599cc759179ef/frameset.htm)를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-128">Select [**SAP Application Server**](https://wiki.scn.sap.com/wiki/display/ABAP/ABAP+Application+Server) or [**SAP Message Server**](http://help.sap.com/saphelp_nw70/helpdata/en/40/c235c15ab7468bb31599cc759179ef/frameset.htm), based on your SAP setup.</span></span> <span data-ttu-id="4d82f-129">기존 연결이 없으면 새로 만들라는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-129">If you don't have an existing connection, you are prompted to create one.</span></span>
+3. <span data-ttu-id="7c33e-128">SAP 설치 프로그램에 따라 [**SAP 응용 프로그램 서버**](https://wiki.scn.sap.com/wiki/display/ABAP/ABAP+Application+Server) 또는 [**SAP 메시지 서버**](http://help.sap.com/saphelp_nw70/helpdata/en/40/c235c15ab7468bb31599cc759179ef/frameset.htm)를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-128">Select [**SAP Application Server**](https://wiki.scn.sap.com/wiki/display/ABAP/ABAP+Application+Server) or [**SAP Message Server**](http://help.sap.com/saphelp_nw70/helpdata/en/40/c235c15ab7468bb31599cc759179ef/frameset.htm), based on your SAP setup.</span></span> <span data-ttu-id="7c33e-129">기존 연결 되지 않은 경우 하나 toocreate 메시지 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-129">If you don't have an existing connection, you are prompted toocreate one.</span></span>
 
-   1. <span data-ttu-id="4d82f-130">**온-프레미스 데이터 게이트웨이를 통해 연결**을 선택하고 SAP 시스템에 대한 세부 정보를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-130">Select **Connect via on-premises data gateway**, and enter the details for your SAP system:</span></span>   
+   1. <span data-ttu-id="7c33e-130">선택 **온-프레미스 데이터 게이트웨이 통해 연결**, SAP 시스템에 대 한 hello 세부 정보를 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-130">Select **Connect via on-premises data gateway**, and enter hello details for your SAP system:</span></span>   
 
-       ![SAP에 연결 문자열 추가](media/logic-apps-using-sap-connector/picture2.png)  
+       ![연결 문자열 tooSAP 추가](media/logic-apps-using-sap-connector/picture2.png)  
 
-   2. <span data-ttu-id="4d82f-132">**게이트웨이** 아래에서 기존 게이트웨이를 선택하거나 새 게이트웨이를 설치하려면 **게이트웨이 설치**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-132">Under **Gateway**, select an existing gateway, or to install a new gateway, select **Install Gateway**.</span></span>
+   2. <span data-ttu-id="7c33e-132">아래 **게이트웨이**, 기존 게이트웨이 또는 tooinstall 새 게이트웨이 선택, 선택 **게이트웨이 설치**합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-132">Under **Gateway**, select an existing gateway, or tooinstall a new gateway, select **Install Gateway**.</span></span>
 
         ![새 게이트웨이 설치](media/logic-apps-using-sap-connector/install-gateway.png)
   
-   3. <span data-ttu-id="4d82f-134">모든 세부 정보를 입력한 후 **만들기**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-134">After you enter all the details, select **Create**.</span></span> 
-   <span data-ttu-id="4d82f-135">Logic Apps는 연결을 구성하고 테스트하여 제대로 작동되는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-135">Logic Apps configures and tests the connection, making sure that the connection works properly.</span></span>
+   3. <span data-ttu-id="7c33e-134">Hello에 대 한 세부 정보를 모두 입력 한 후 선택 **만들기**합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-134">After you enter all hello details, select **Create**.</span></span> 
+   <span data-ttu-id="7c33e-135">논리 앱 구성 및 hello 연결이 제대로 작동 하는지 확인 하는 hello 연결을 테스트 합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-135">Logic Apps configures and tests hello connection, making sure that hello connection works properly.</span></span>
 
-4. <span data-ttu-id="4d82f-136">SAP 연결의 이름을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-136">Enter a name for your SAP connection.</span></span>
+4. <span data-ttu-id="7c33e-136">SAP 연결의 이름을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-136">Enter a name for your SAP connection.</span></span>
 
-5. <span data-ttu-id="4d82f-137">이제 여러 다른 SAP 옵션을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-137">The different SAP options are now available.</span></span> <span data-ttu-id="4d82f-138">IDOC 범주를 찾으려면 목록에서 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-138">To find your IDOC category, select from the list.</span></span> <span data-ttu-id="4d82f-139">또는 경로를 수동으로 입력하고 **본문** 필드에서 HTTP 응답을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-139">Or manually type in the path, and select the HTTP response in the **body** field:</span></span>
+5. <span data-ttu-id="7c33e-137">hello 다른 SAP 옵션을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-137">hello different SAP options are now available.</span></span> <span data-ttu-id="7c33e-138">toofind IDOC 범주를 hello 목록에서 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-138">toofind your IDOC category, select from hello list.</span></span> <span data-ttu-id="7c33e-139">Hello 경로 및 hello에 대 한 선택 hello HTTP 응답에 수동으로 입력 하거나 **본문** 필드:</span><span class="sxs-lookup"><span data-stu-id="7c33e-139">Or manually type in hello path, and select hello HTTP response in hello **body** field:</span></span>
 
      ![SAP 작업](media/logic-apps-using-sap-connector/picture3.png)
 
-6. <span data-ttu-id="4d82f-141">**HTTP 응답**을 만들기 위한 작업을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-141">Add the action for creating an **HTTP Response**.</span></span> <span data-ttu-id="4d82f-142">응답 메시지는 SAP 출력에서 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-142">The response message should be from the SAP output.</span></span>
+6. <span data-ttu-id="7c33e-141">Hello 동작을 만들기 위한 추가 **HTTP 응답**합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-141">Add hello action for creating an **HTTP Response**.</span></span> <span data-ttu-id="7c33e-142">hello 응답 메시지의 hello SAP 출력 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-142">hello response message should be from hello SAP output.</span></span>
 
-7. <span data-ttu-id="4d82f-143">논리 앱을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-143">Save your logic app.</span></span> <span data-ttu-id="4d82f-144">HTTP 트리거 URL을 통해 IDOC를 전송하여 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-144">Test it by sending an IDOC through the HTTP trigger URL.</span></span> <span data-ttu-id="4d82f-145">IDOC가 전송되면 논리 앱의 응답을 기다립니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-145">After the IDOC is sent, wait for the response from the logic app:</span></span>   
+7. <span data-ttu-id="7c33e-143">논리 앱을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-143">Save your logic app.</span></span> <span data-ttu-id="7c33e-144">IDOC hello HTTP 트리거 URL 통해 전송 하 여 테스트 하십시오.</span><span class="sxs-lookup"><span data-stu-id="7c33e-144">Test it by sending an IDOC through hello HTTP trigger URL.</span></span> <span data-ttu-id="7c33e-145">IDOC 보내집니다 hello, 후 hello 논리 앱에서 hello 응답을 기다립니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-145">After hello IDOC is sent, wait for hello response from hello logic app:</span></span>   
 
      > [!TIP]
-     > <span data-ttu-id="4d82f-146">[Logic Apps 모니터링](../logic-apps/logic-apps-monitor-your-logic-apps.md) 방법을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-146">Check out how to [monitor your Logic Apps](../logic-apps/logic-apps-monitor-your-logic-apps.md).</span></span>
+     > <span data-ttu-id="7c33e-146">방법에 대해 너무 확인[논리 앱 모니터링](../logic-apps/logic-apps-monitor-your-logic-apps.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-146">Check out how too[monitor your Logic Apps](../logic-apps/logic-apps-monitor-your-logic-apps.md).</span></span>
 
-<span data-ttu-id="4d82f-147">이제 SAP 커넥터가 논리 앱에 추가되었으므로 다른 기능을 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-147">Now that the SAP connector is added to your logic app, start exploring other functionalities:</span></span>
+<span data-ttu-id="7c33e-147">Hello SAP connector는 tooyour 논리 앱을 추가 하는 다른 기능과 탐색을 시작 합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-147">Now that hello SAP connector is added tooyour logic app, start exploring other functionalities:</span></span>
 
-- <span data-ttu-id="4d82f-148">BAPI</span><span class="sxs-lookup"><span data-stu-id="4d82f-148">BAPI</span></span>
-- <span data-ttu-id="4d82f-149">RFC</span><span class="sxs-lookup"><span data-stu-id="4d82f-149">RFC</span></span>
+- <span data-ttu-id="7c33e-148">BAPI</span><span class="sxs-lookup"><span data-stu-id="7c33e-148">BAPI</span></span>
+- <span data-ttu-id="7c33e-149">RFC</span><span class="sxs-lookup"><span data-stu-id="7c33e-149">RFC</span></span>
 
-## <a name="get-help"></a><span data-ttu-id="4d82f-150">도움말 보기</span><span class="sxs-lookup"><span data-stu-id="4d82f-150">Get help</span></span>
+## <a name="get-help"></a><span data-ttu-id="7c33e-150">도움말 보기</span><span class="sxs-lookup"><span data-stu-id="7c33e-150">Get help</span></span>
 
-<span data-ttu-id="4d82f-151">질문하고, 질문에 답변하고, 다른 Azure Logic Apps 사용자가 어떤 일을 하는지 알아보려면 [Azure Logic Apps 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)을 방문하세요.</span><span class="sxs-lookup"><span data-stu-id="4d82f-151">To ask questions, answer questions, and learn what other Azure Logic Apps users are doing, visit the [Azure Logic Apps forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps).</span></span>
+<span data-ttu-id="7c33e-151">tooask 질문 질문에 답변 하 고 다른 Azure 논리 앱을 수행 하는 사용자가 방문 hello 자세한 [Azure 논리 앱 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-151">tooask questions, answer questions, and learn what other Azure Logic Apps users are doing, visit hello [Azure Logic Apps forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps).</span></span>
 
-<span data-ttu-id="4d82f-152">Azure Logic Apps 및 커넥터 개선에 도움을 주려면 [Azure Logic Apps 사용자 의견 사이트](http://aka.ms/logicapps-wish)에서 투표하고 아이디어를 제출하세요.</span><span class="sxs-lookup"><span data-stu-id="4d82f-152">To help improve Azure Logic Apps and connectors, vote on or submit ideas at the [Azure Logic Apps user feedback site](http://aka.ms/logicapps-wish).</span></span>
+<span data-ttu-id="7c33e-152">Azure 논리 앱 및 커넥터 향상, 투표 하거나 hello에서 아이디어 제출 toohelp [Azure 논리 앱 사용자 의견 사이트](http://aka.ms/logicapps-wish)합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-152">toohelp improve Azure Logic Apps and connectors, vote on or submit ideas at hello [Azure Logic Apps user feedback site](http://aka.ms/logicapps-wish).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="4d82f-153">다음 단계</span><span class="sxs-lookup"><span data-stu-id="4d82f-153">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="7c33e-153">다음 단계</span><span class="sxs-lookup"><span data-stu-id="7c33e-153">Next steps</span></span>
 
-- <span data-ttu-id="4d82f-154">[엔터프라이즈 통합 팩](../logic-apps/logic-apps-enterprise-integration-overview.md)에서 유효성 검사, 변환을 수행하는 방법과 기타 BizTalk 유사 함수에 대해서도 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="4d82f-154">Learn how to validate, transform, and other BizTalk-like functions in the [Enterprise Integration Pack](../logic-apps/logic-apps-enterprise-integration-overview.md).</span></span> 
-- <span data-ttu-id="4d82f-155">Logic Apps에서 [온-프레미스 데이터에 연결](../logic-apps/logic-apps-gateway-connection.md)</span><span class="sxs-lookup"><span data-stu-id="4d82f-155">[Connect to on-premises data](../logic-apps/logic-apps-gateway-connection.md) from logic apps</span></span>
+- <span data-ttu-id="7c33e-154">자세한 내용은 방법 toovalidate, 변환 및 다른 BizTalk와 비슷한 함수 hello에서 [엔터프라이즈 통합 팩](../logic-apps/logic-apps-enterprise-integration-overview.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="7c33e-154">Learn how toovalidate, transform, and other BizTalk-like functions in hello [Enterprise Integration Pack](../logic-apps/logic-apps-enterprise-integration-overview.md).</span></span> 
+- <span data-ttu-id="7c33e-155">[Tooon 온-프레미스 데이터 연결](../logic-apps/logic-apps-gateway-connection.md) 논리 앱에서</span><span class="sxs-lookup"><span data-stu-id="7c33e-155">[Connect tooon-premises data](../logic-apps/logic-apps-gateway-connection.md) from logic apps</span></span>

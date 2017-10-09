@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Bus를 사용하는 .NET 다중 계층 응용 프로그램 | Microsoft Docs"
-description: "Azure에서 서비스 버스 큐를 사용하여 계층 간에 통신하는 다중 계층 응용 프로그램을 개발하는 데 도움이 되는 .NET 자습서입니다."
+title: "Azure 서비스 버스를 사용 하 여 다중 계층 응용 프로그램 aaa.NET | Microsoft Docs"
+description: "서비스 버스 큐 toocommunicate 계층 사이 사용 하 여 Azure에서 다중 계층 응용 프로그램을 개발 하는 때 도움이 되는.NET 자습서입니다."
 services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
@@ -14,100 +14,100 @@ ms.devlang: dotnet
 ms.topic: get-started-article
 ms.date: 04/11/2017
 ms.author: sethm
-ms.openlocfilehash: 8b502f5ac5d89801d390a872e7a8b06e094ecbba
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 485910ff1d3b8b0a709ee14ede32e57cf873829a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="net-multi-tier-application-using-azure-service-bus-queues"></a><span data-ttu-id="cdead-103">Azure 서비스 버스 큐를 사용하는 .NET 다중 계층 응용 프로그램</span><span class="sxs-lookup"><span data-stu-id="cdead-103">.NET multi-tier application using Azure Service Bus queues</span></span>
-## <a name="introduction"></a><span data-ttu-id="cdead-104">소개</span><span class="sxs-lookup"><span data-stu-id="cdead-104">Introduction</span></span>
-<span data-ttu-id="cdead-105">Visual Studio 및 무료로 제공되는 Azure SDK for .NET을 사용하면 Microsoft Azure용 개발이 간단합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-105">Developing for Microsoft Azure is easy using Visual Studio and the free Azure SDK for .NET.</span></span> <span data-ttu-id="cdead-106">이 자습서에서는 로컬 환경에서 실행되는 여러 Azure 리소스를 사용하는 응용 프로그램을 만드는 단계를 안내합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-106">This tutorial walks you through the steps to create an application that uses multiple Azure resources running in your local environment.</span></span>
+# <a name="net-multi-tier-application-using-azure-service-bus-queues"></a><span data-ttu-id="539dc-103">Azure 서비스 버스 큐를 사용하는 .NET 다중 계층 응용 프로그램</span><span class="sxs-lookup"><span data-stu-id="539dc-103">.NET multi-tier application using Azure Service Bus queues</span></span>
+## <a name="introduction"></a><span data-ttu-id="539dc-104">소개</span><span class="sxs-lookup"><span data-stu-id="539dc-104">Introduction</span></span>
+<span data-ttu-id="539dc-105">Microsoft Azure가 Visual Studio를 사용 하 여 쉽게, hello.NET 용 Azure SDK를 무료 개발 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-105">Developing for Microsoft Azure is easy using Visual Studio and hello free Azure SDK for .NET.</span></span> <span data-ttu-id="539dc-106">이 자습서에서는 hello 단계 toocreate 로컬 환경에서 실행 되는 여러 Azure 리소스를 사용 하는 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-106">This tutorial walks you through hello steps toocreate an application that uses multiple Azure resources running in your local environment.</span></span>
 
-<span data-ttu-id="cdead-107">다음을 학습합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-107">You will learn the following:</span></span>
+<span data-ttu-id="539dc-107">Hello 다음에 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-107">You will learn hello following:</span></span>
 
-* <span data-ttu-id="cdead-108">한 번 다운로드하고 설치하여 Azure 개발용 컴퓨터를 사용하도록 설정하는 방법</span><span class="sxs-lookup"><span data-stu-id="cdead-108">How to enable your computer for Azure development with a single download and install.</span></span>
-* <span data-ttu-id="cdead-109">Visual Studio를 사용하여 Azure용으로 개발하는 방법</span><span class="sxs-lookup"><span data-stu-id="cdead-109">How to use Visual Studio to develop for Azure.</span></span>
-* <span data-ttu-id="cdead-110">웹 및 작업자 역할을 사용하여 Azure에서 다중 계층 응용 프로그램을 만드는 방법</span><span class="sxs-lookup"><span data-stu-id="cdead-110">How to create a multi-tier application in Azure using web and worker roles.</span></span>
-* <span data-ttu-id="cdead-111">서비스 버스 큐를 사용하여 계층 간에 통신하는 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-111">How to communicate between tiers using Service Bus queues.</span></span>
+* <span data-ttu-id="539dc-108">어떻게 tooenable 단일 Azure 개발 컴퓨터에서 다운로드 및 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-108">How tooenable your computer for Azure development with a single download and install.</span></span>
+* <span data-ttu-id="539dc-109">어떻게 Azure에 대 한 Visual Studio toodevelop toouse 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-109">How toouse Visual Studio toodevelop for Azure.</span></span>
+* <span data-ttu-id="539dc-110">어떻게 toocreate 웹 및 작업자 역할을 사용 하 여 Azure에서 다중 계층 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-110">How toocreate a multi-tier application in Azure using web and worker roles.</span></span>
+* <span data-ttu-id="539dc-111">사이의 toocommunicate 서비스 버스 큐를 사용 하 여 눈금 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-111">How toocommunicate between tiers using Service Bus queues.</span></span>
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-<span data-ttu-id="cdead-112">이 자습서에서는 Azure 클라우드 서비스에서 다중 계층 응용 프로그램을 빌드하고 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-112">In this tutorial you'll build and run the multi-tier application in an Azure cloud service.</span></span> <span data-ttu-id="cdead-113">프런트 엔드는 ASP.NET MVC 웹 역할이고 백 엔드는 Service Bus 큐를 사용하는 작업자 역할입니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-113">The front end is an ASP.NET MVC web role and the back end is a worker-role that uses a Service Bus queue.</span></span> <span data-ttu-id="cdead-114">클라우드 서비스가 아닌 Azure 웹 사이트에 배포되는 웹 프로젝트와 동일한 다중 계층 응용 프로그램(프런트 엔드 포함)을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-114">You can create the same multi-tier application with the front end as a web project, that is deployed to an Azure website instead of a cloud service.</span></span> <span data-ttu-id="cdead-115">[.NET 온-프레미스/클라우드 하이브리드 응용 프로그램](../service-bus-relay/service-bus-dotnet-hybrid-app-using-service-bus-relay.md) 자습서를 시도해 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-115">You can also try out the [.NET on-premises/cloud hybrid application](../service-bus-relay/service-bus-dotnet-hybrid-app-using-service-bus-relay.md) tutorial.</span></span>
+<span data-ttu-id="539dc-112">이 자습서에서는 빌드하고 Azure 클라우드 서비스에서 hello 다중 계층 응용 프로그램을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-112">In this tutorial you'll build and run hello multi-tier application in an Azure cloud service.</span></span> <span data-ttu-id="539dc-113">hello 프런트 엔드는 ASP.NET MVC 웹 역할 및 hello 백 엔드는 서비스 버스 큐를 사용 하는 작업자 역할입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-113">hello front end is an ASP.NET MVC web role and hello back end is a worker-role that uses a Service Bus queue.</span></span> <span data-ttu-id="539dc-114">만들 수 있습니다 같은 다중 계층 응용 프로그램 프런트 엔드 hello와 배포 tooan 클라우드 서비스가 아닌 Azure 웹 사이트를 웹 프로젝트로 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-114">You can create hello same multi-tier application with hello front end as a web project, that is deployed tooan Azure website instead of a cloud service.</span></span> <span data-ttu-id="539dc-115">Hello 아웃 보십시오 [.NET에서-프레미스/클라우드 하이브리드 응용 프로그램](../service-bus-relay/service-bus-dotnet-hybrid-app-using-service-bus-relay.md) 자습서입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-115">You can also try out hello [.NET on-premises/cloud hybrid application](../service-bus-relay/service-bus-dotnet-hybrid-app-using-service-bus-relay.md) tutorial.</span></span>
 
-<span data-ttu-id="cdead-116">다음 스크린샷에서는 완성된 응용 프로그램을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-116">The following screen shot shows the completed application.</span></span>
+<span data-ttu-id="539dc-116">hello 다음 스크린 샷에 표시 완료 hello 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-116">hello following screen shot shows hello completed application.</span></span>
 
 ![][0]
 
-## <a name="scenario-overview-inter-role-communication"></a><span data-ttu-id="cdead-117">시나리오 개요: 역할 간 통신</span><span class="sxs-lookup"><span data-stu-id="cdead-117">Scenario overview: inter-role communication</span></span>
-<span data-ttu-id="cdead-118">처리할 주문을 제출하려면 웹 역할에서 실행되는 프런트 엔드 UI 구성 요소가 작업자 역할에서 실행되는 중간 계층 논리와 상호 작용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-118">To submit an order for processing, the front-end UI component, running in the web role, must interact with the middle tier logic running in the worker role.</span></span> <span data-ttu-id="cdead-119">이 예제에서는 계층 간 통신에 Service Bus 메시징을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-119">This example uses Service Bus messaging for the communication between the tiers.</span></span>
+## <a name="scenario-overview-inter-role-communication"></a><span data-ttu-id="539dc-117">시나리오 개요: 역할 간 통신</span><span class="sxs-lookup"><span data-stu-id="539dc-117">Scenario overview: inter-role communication</span></span>
+<span data-ttu-id="539dc-118">hello 프런트 엔드 UI 구성 요소, hello 웹 역할에서 실행을 처리 하는 것에 대 한 주문 toosubmit hello 작업자 역할에서 실행 하는 hello 중간 계층 논리와 상호 작용 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-118">toosubmit an order for processing, hello front-end UI component, running in hello web role, must interact with hello middle tier logic running in hello worker role.</span></span> <span data-ttu-id="539dc-119">이 예제에서는 서비스 버스 메시징 hello 계층 간 hello 통신에 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-119">This example uses Service Bus messaging for hello communication between hello tiers.</span></span>
 
-<span data-ttu-id="cdead-120">웹과 중간 계층 간에 Service Bus 메시징을 사용하면 두 구성 요소가 분리됩니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-120">Using Service Bus messaging between the web and middle tiers decouples the two components.</span></span> <span data-ttu-id="cdead-121">직접 메시징(즉, TCP 또는 HTTP)과 달리 웹 계층은 중간 계층에 직접 연결되지 않고 작업 단위를 메시지로 서비스 버스에 푸시하여 중간 계층에서 사용하고 처리할 준비가 될 때까지 안정적으로 유지합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-121">In contrast to direct messaging (that is, TCP or HTTP), the web tier does not connect to the middle tier directly; instead it pushes units of work, as messages, into Service Bus, which reliably retains them until the middle tier is ready to consume and process them.</span></span>
+<span data-ttu-id="539dc-120">서비스 버스를 사용 하 여 hello 웹 및 중간 계층 간의 메시징 분리 하는 두 구성 요소.</span><span class="sxs-lookup"><span data-stu-id="539dc-120">Using Service Bus messaging between hello web and middle tiers decouples the two components.</span></span> <span data-ttu-id="539dc-121">반대로 hello toodirect 메시징 (즉, TCP 또는 HTTP) 웹 계층 toohello 중간 계층을 직접; 연결 되지 않습니다 대신 안정적으로 hello 중간 계층은 tooconsume 준비 될 때까지 유지 하 고 처리 하는 서비스 버스에 메시지로 작업의 단위 밀어냅니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-121">In contrast toodirect messaging (that is, TCP or HTTP), hello web tier does not connect toohello middle tier directly; instead it pushes units of work, as messages, into Service Bus, which reliably retains them until hello middle tier is ready tooconsume and process them.</span></span>
 
-<span data-ttu-id="cdead-122">서비스 버스는 조정된 메시징을 지원하는 두 개의 엔터티인 큐와 토픽을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-122">Service Bus provides two entities to support brokered messaging: queues and topics.</span></span> <span data-ttu-id="cdead-123">큐를 사용하면 큐로 전송된 각 메시지가 단일 수신기에서 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-123">With queues, each message sent to the queue is consumed by a single receiver.</span></span> <span data-ttu-id="cdead-124">토픽은 게시된 각 메시지를 토픽에 등록된 구독에서 사용할 수 있게 하는 게시/구독 패턴을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-124">Topics support the publish/subscribe pattern in which each published message is made available to a subscription registered with the topic.</span></span> <span data-ttu-id="cdead-125">각 구독은 메시지의 고유한 큐를 논리적으로 유지 관리합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-125">Each subscription logically maintains its own queue of messages.</span></span> <span data-ttu-id="cdead-126">또한 구독은 구독 큐에 전달되는 메시지 집합을 필터와 일치하는 메시지로 제한하는 필터 규칙을 사용하여 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-126">Subscriptions can also be configured with filter rules that restrict the set of messages passed to the subscription queue to those that match the filter.</span></span> <span data-ttu-id="cdead-127">다음 예에서는 서비스 버스 큐를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-127">The following example uses Service Bus queues.</span></span>
+<span data-ttu-id="539dc-122">두 엔터티 toosupport 조정 된 메시징을 제공 하는 서비스 버스: 큐 및 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-122">Service Bus provides two entities toosupport brokered messaging: queues and topics.</span></span> <span data-ttu-id="539dc-123">큐와 각 메시지를 보낼 toohello 큐는 단일 수신기에서 사용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-123">With queues, each message sent toohello queue is consumed by a single receiver.</span></span> <span data-ttu-id="539dc-124">항목 게시 된 각 메시지 hello 항목으로 등록 하는 사용 가능한 tooa 구독 수는 hello 게시/구독 패턴을 지원 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-124">Topics support hello publish/subscribe pattern in which each published message is made available tooa subscription registered with hello topic.</span></span> <span data-ttu-id="539dc-125">각 구독은 메시지의 고유한 큐를 논리적으로 유지 관리합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-125">Each subscription logically maintains its own queue of messages.</span></span> <span data-ttu-id="539dc-126">메시지 전달 hello 구독 큐 toothose hello 필터와 일치 하는 hello 집합을 제한 하는 필터 규칙으로 구독을 구성할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-126">Subscriptions can also be configured with filter rules that restrict hello set of messages passed to hello subscription queue toothose that match hello filter.</span></span> <span data-ttu-id="539dc-127">hello 다음 예제에서는 서비스 버스 큐.</span><span class="sxs-lookup"><span data-stu-id="539dc-127">hello following example uses Service Bus queues.</span></span>
 
 ![][1]
 
-<span data-ttu-id="cdead-128">이 통신 메커니즘은 직접 메시징에 비해 몇 가지 장점이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-128">This communication mechanism has several advantages over direct messaging:</span></span>
+<span data-ttu-id="539dc-128">이 통신 메커니즘은 직접 메시징에 비해 몇 가지 장점이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-128">This communication mechanism has several advantages over direct messaging:</span></span>
 
-* <span data-ttu-id="cdead-129">**임시 분리**</span><span class="sxs-lookup"><span data-stu-id="cdead-129">**Temporal decoupling.**</span></span> <span data-ttu-id="cdead-130">비동기 메시징 패턴을 사용하면 생산자와 소비자가 동시에 온라인 상태일 필요가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-130">With the asynchronous messaging pattern, producers and consumers need not be online at the same time.</span></span> <span data-ttu-id="cdead-131">서비스 버스는 소비하는 쪽에서 메시지를 수신할 준비가 될 때까지 메시지를 안정적으로 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-131">Service Bus reliably stores messages until the consuming party is ready to receive them.</span></span> <span data-ttu-id="cdead-132">따라서 전체 시스템에는 영향을 주지 않고 자발적으로(예: 유지 관리의 경우) 또는 구성 요소 크래시로 인해 분산 응용 프로그램 구성 요소의 연결을 끊을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-132">This enables the components of the distributed application to be disconnected, either voluntarily, for example, for maintenance, or due to a component crash, without impacting the system as a whole.</span></span> <span data-ttu-id="cdead-133">또한 소비 응용 프로그램은 하루 중 특정 기간 동안만 온라인 상태로 전환해야 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-133">Furthermore, the consuming application might only need to come online during certain times of the day.</span></span>
-* <span data-ttu-id="cdead-134">**부하 평준화**</span><span class="sxs-lookup"><span data-stu-id="cdead-134">**Load leveling.**</span></span> <span data-ttu-id="cdead-135">많은 응용 프로그램에서 시스템 부하는 시간에 따라 다르지만 각 작업 단위에 필요한 처리 시간은 일반적으로 일정합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-135">In many applications, system load varies over time, while the processing time required for each unit of work is typically constant.</span></span> <span data-ttu-id="cdead-136">큐를 사용한 메시지 생산자와 소비자 조정은 최대 부하가 아닌 평균 부하를 수용하려면 소비 응용 프로그램(작업자)만 프로비전해야 함을 의미합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-136">Intermediating message producers and consumers with a queue means that the consuming application (the worker) only needs to be provisioned to accommodate average load rather than peak load.</span></span> <span data-ttu-id="cdead-137">수신 부하가 변경됨에 따라 큐의 깊이가 증가하고 축소됩니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-137">The depth of the queue grows and contracts as the incoming load varies.</span></span> <span data-ttu-id="cdead-138">따라서 응용 프로그램 부하를 제공하는 데 필요한 인프라의 크기와 관련하여 비용이 직접적으로 절약됩니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-138">This directly saves money in terms of the amount of infrastructure required to service the application load.</span></span>
-* <span data-ttu-id="cdead-139">**부하 분산**</span><span class="sxs-lookup"><span data-stu-id="cdead-139">**Load balancing.**</span></span> <span data-ttu-id="cdead-140">부하가 증가하면 뷰에서 읽을 작업자 프로세스가 더 추가될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-140">As load increases, more worker processes can be added to read from the queue.</span></span> <span data-ttu-id="cdead-141">각 메시지는 하나의 작업자 프로세스를 통해서만 처리됩니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-141">Each message is processed by only one of the worker processes.</span></span> <span data-ttu-id="cdead-142">또한 이 가져오기 기반 부하 분산에서는 작업자 컴퓨터가 최대 속도로 메시지를 가져올 때 처리 능력이 다른 경우에도 작업자 컴퓨터의 최적 사용률을 허용합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-142">Furthermore, this pull-based load balancing enables optimal use of the worker machines even if the worker machines differ in terms of processing power, as they will pull messages at their own maximum rate.</span></span> <span data-ttu-id="cdead-143">이 패턴을 종종 *경쟁 소비자* 패턴이라고 부릅니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-143">This pattern is often termed the *competing consumer* pattern.</span></span>
+* <span data-ttu-id="539dc-129">**임시 분리**</span><span class="sxs-lookup"><span data-stu-id="539dc-129">**Temporal decoupling.**</span></span> <span data-ttu-id="539dc-130">Hello 비동기 메시징 패턴을 사용한 생산자와 소비자가 아니어도 hello에서 온라인으로 동시 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-130">With hello asynchronous messaging pattern, producers and consumers need not be online at hello same time.</span></span> <span data-ttu-id="539dc-131">서비스 버스 사용 중인 파티가 hello를 받을 준비가 될 때까지 메시지를 안정적으로 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-131">Service Bus reliably stores messages until hello consuming party is ready to receive them.</span></span> <span data-ttu-id="539dc-132">이 통해 연결이 해제 하거나 자발적으로 tooa 구성 요소 크래시 등 기한 또는 유지 관리에 대 한 예를 들어 시스템 전체에 영향을 주지 않고 hello 분산 응용 프로그램 toobe의 hello 구성 요소.</span><span class="sxs-lookup"><span data-stu-id="539dc-132">This enables hello components of hello distributed application toobe disconnected, either voluntarily, for example, for maintenance, or due tooa component crash, without impacting the system as a whole.</span></span> <span data-ttu-id="539dc-133">또한 응용 프로그램을 사용 하는 hello은 hello 하루 중 특정 시간 동안 toocome 온라인 하기만 하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-133">Furthermore, hello consuming application might only need toocome online during certain times of hello day.</span></span>
+* <span data-ttu-id="539dc-134">**부하 평준화**</span><span class="sxs-lookup"><span data-stu-id="539dc-134">**Load leveling.**</span></span> <span data-ttu-id="539dc-135">각 작업 단위에 필요한 hello 처리 시간은 일반적으로 일정는 많은 응용 프로그램에서 시스템 부하 시간이 지남에 따라 다릅니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-135">In many applications, system load varies over time, while hello processing time required for each unit of work is typically constant.</span></span> <span data-ttu-id="539dc-136">여 메시지 생산자와 소비자는 큐와 최대 부하 대신 평균 부하 tooaccommodate 프로 비전 하는 응용 프로그램 (hello 작업자)만 요구 toobe를 사용해 해당 hello 의미 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-136">Intermediating message producers and consumers with a queue means that hello consuming application (hello worker) only needs toobe provisioned tooaccommodate average load rather than peak load.</span></span> <span data-ttu-id="539dc-137">증가 하 고 hello 수신 부하가 변경 됨에 따라 축소 하는 hello 큐의 hello 깊이입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-137">hello depth of hello queue grows and contracts as hello incoming load varies.</span></span> <span data-ttu-id="539dc-138">직접 money hello 양의 인프라 필요한 tooservice hello 응용 프로그램 부하를 기준으로 저장 됩니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-138">This directly saves money in terms of hello amount of infrastructure required tooservice hello application load.</span></span>
+* <span data-ttu-id="539dc-139">**부하 분산**</span><span class="sxs-lookup"><span data-stu-id="539dc-139">**Load balancing.**</span></span> <span data-ttu-id="539dc-140">부하가 증가 하면 작업자 프로세스가 더 추가할 수 있습니다 tooread hello 큐에서.</span><span class="sxs-lookup"><span data-stu-id="539dc-140">As load increases, more worker processes can be added tooread from hello queue.</span></span> <span data-ttu-id="539dc-141">Hello 작업자 프로세스 중 하나에만 각 메시지를 처리 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-141">Each message is processed by only one of hello worker processes.</span></span> <span data-ttu-id="539dc-142">또한이 끌어오기 기반 부하 분산 사용 하면 hello 작업자 컴퓨터의 최적 사용 작업자 컴퓨터의 관점에서 처리 능력을 다른 경우에 자신의 최대 속도로 메시지를 가져올 때.</span><span class="sxs-lookup"><span data-stu-id="539dc-142">Furthermore, this pull-based load balancing enables optimal use of hello worker machines even if the worker machines differ in terms of processing power, as they will pull messages at their own maximum rate.</span></span> <span data-ttu-id="539dc-143">이 패턴을 hello 종종 *경쟁 소비자* 패턴입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-143">This pattern is often termed hello *competing consumer* pattern.</span></span>
   
   ![][2]
 
-<span data-ttu-id="cdead-144">다음 섹션에서는 이 아키텍처를 구현하는 코드에 대해 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-144">The following sections discuss the code that implements this architecture.</span></span>
+<span data-ttu-id="539dc-144">다음 섹션 hello이이 아키텍처를 구현 하는 hello 코드에 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-144">hello following sections discuss hello code that implements this architecture.</span></span>
 
-## <a name="set-up-the-development-environment"></a><span data-ttu-id="cdead-145">개발 환경 설정</span><span class="sxs-lookup"><span data-stu-id="cdead-145">Set up the development environment</span></span>
-<span data-ttu-id="cdead-146">Azure 응용 프로그램 개발을 시작하려면 먼저 도구를 얻고 개발 환경을 설정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-146">Before you can begin developing Azure applications, get the tools and set up your development environment.</span></span>
+## <a name="set-up-hello-development-environment"></a><span data-ttu-id="539dc-145">Hello 개발 환경 설정</span><span class="sxs-lookup"><span data-stu-id="539dc-145">Set up hello development environment</span></span>
+<span data-ttu-id="539dc-146">Azure 응용 프로그램 개발을 시작 하려면 먼저 hello 도구 가져오고 개발 환경을 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-146">Before you can begin developing Azure applications, get hello tools and set up your development environment.</span></span>
 
-1. <span data-ttu-id="cdead-147">SDK [다운로드 페이지](https://azure.microsoft.com/downloads/)에서 .NET용 Azure SDK를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-147">Install the Azure SDK for .NET from the SDK [downloads page](https://azure.microsoft.com/downloads/).</span></span>
-2. <span data-ttu-id="cdead-148">**.NET** 열에서 사용 중인 [Visual Studio](http://www.visualstudio.com) 버전을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-148">In the **.NET** column, click the version of [Visual Studio](http://www.visualstudio.com) you are using.</span></span> <span data-ttu-id="cdead-149">이 자습서의 단계에서는 Visual Studio 2015를 사용하지만 Visual Studio 2017에도 작동합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-149">The steps in this tutorial use Visual Studio 2015, but they also work with Visual Studio 2017.</span></span>
-3. <span data-ttu-id="cdead-150">설치 관리자를 실행할지 또는 저장할지를 묻는 메시지가 표시되면 **실행**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-150">When prompted to run or save the installer, click **Run**.</span></span>
-4. <span data-ttu-id="cdead-151">**웹 플랫폼 설치 관리자**에서 **설치**를 클릭하여 설치를 계속합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-151">In the **Web Platform Installer**, click **Install** and proceed with the installation.</span></span>
-5. <span data-ttu-id="cdead-152">설치가 완료되면 앱을 개발하기 시작하는 데 필요한 내용이 모두 준비된 것입니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-152">Once the installation is complete, you will have everything necessary to start to develop the app.</span></span> <span data-ttu-id="cdead-153">SDK에는 Visual Studio에서 Azure 응용 프로그램을 쉽게 개발할 수 있는 도구가 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-153">The SDK includes tools that let you easily develop Azure applications in Visual Studio.</span></span>
+1. <span data-ttu-id="539dc-147">Hello SDK에서에서 hello Azure SDK for.NET 설치 [다운로드 페이지](https://azure.microsoft.com/downloads/)합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-147">Install hello Azure SDK for .NET from hello SDK [downloads page](https://azure.microsoft.com/downloads/).</span></span>
+2. <span data-ttu-id="539dc-148">Hello에 **.NET** 열 hello 버전 [Visual Studio](http://www.visualstudio.com) 사용 하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-148">In hello **.NET** column, click hello version of [Visual Studio](http://www.visualstudio.com) you are using.</span></span> <span data-ttu-id="539dc-149">이 자습서 사용 하 여 Visual Studio 2015에서에서 hello 실행 하지만 Visual Studio 2017를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-149">hello steps in this tutorial use Visual Studio 2015, but they also work with Visual Studio 2017.</span></span>
+3. <span data-ttu-id="539dc-150">Toorun 라는 메시지가 표시 하거나 저장 hello 설치 관리자를 클릭 **실행**합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-150">When prompted toorun or save hello installer, click **Run**.</span></span>
+4. <span data-ttu-id="539dc-151">Hello에 **웹 플랫폼 설치 관리자**, 클릭 **설치** hello 설치를 진행 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-151">In hello **Web Platform Installer**, click **Install** and proceed with hello installation.</span></span>
+5. <span data-ttu-id="539dc-152">Hello 설치가 완료 되 면 할 모든 필요한 toostart toodevelop hello 앱.</span><span class="sxs-lookup"><span data-stu-id="539dc-152">Once hello installation is complete, you will have everything necessary toostart toodevelop hello app.</span></span> <span data-ttu-id="539dc-153">hello SDK는 Visual Studio에서 Azure 응용 프로그램을 쉽게 개발할 수 있는 도구를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-153">hello SDK includes tools that let you easily develop Azure applications in Visual Studio.</span></span>
 
-## <a name="create-a-namespace"></a><span data-ttu-id="cdead-154">네임스페이스 만들기</span><span class="sxs-lookup"><span data-stu-id="cdead-154">Create a namespace</span></span>
-<span data-ttu-id="cdead-155">다음 단계에서는 서비스 네임스페이스를 만들고 SAS(공유 액세스 서명) 키를 얻습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-155">The next step is to create a service namespace, and obtain a Shared Access Signature (SAS) key.</span></span> <span data-ttu-id="cdead-156">네임스페이스는 서비스 버스를 통해 노출되는 각 응용 프로그램에 대한 응용 프로그램 경계를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-156">A namespace provides an application boundary for each application exposed through Service Bus.</span></span> <span data-ttu-id="cdead-157">SAS 키는 네임스페이스가 만들어질 때 시스템에 의해 자동으로 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-157">A SAS key is generated by the system when a namespace is created.</span></span> <span data-ttu-id="cdead-158">네임스페이스 및 SAS 키 조합은 서비스 버스에 자격 증명을 제공하여 응용 프로그램에 대한 액세스를 인증합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-158">The combination of namespace and SAS key provides the credentials for Service Bus to authenticate access to an application.</span></span>
+## <a name="create-a-namespace"></a><span data-ttu-id="539dc-154">네임스페이스 만들기</span><span class="sxs-lookup"><span data-stu-id="539dc-154">Create a namespace</span></span>
+<span data-ttu-id="539dc-155">다음 단계 hello toocreate 서비스 네임 스페이스 이며 공유 액세스 서명 (SAS) 키를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-155">hello next step is toocreate a service namespace, and obtain a Shared Access Signature (SAS) key.</span></span> <span data-ttu-id="539dc-156">네임스페이스는 서비스 버스를 통해 노출되는 각 응용 프로그램에 대한 응용 프로그램 경계를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-156">A namespace provides an application boundary for each application exposed through Service Bus.</span></span> <span data-ttu-id="539dc-157">네임 스페이스를 만들 때 SAS 키 hello 시스템에 의해 생성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-157">A SAS key is generated by hello system when a namespace is created.</span></span> <span data-ttu-id="539dc-158">네임 스페이스와 SAS 키 조합 hello 서비스 버스 tooauthenticate 액세스 tooan 응용 프로그램에 대 한 hello 자격 증명을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-158">hello combination of namespace and SAS key provides hello credentials for Service Bus tooauthenticate access tooan application.</span></span>
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
-## <a name="create-a-web-role"></a><span data-ttu-id="cdead-159">웹 역할 만들기</span><span class="sxs-lookup"><span data-stu-id="cdead-159">Create a web role</span></span>
-<span data-ttu-id="cdead-160">이 섹션에서는 응용 프로그램의 프런트 엔드를 빌드합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-160">In this section, you build the front end of your application.</span></span> <span data-ttu-id="cdead-161">먼저 응용 프로그램에서 표시하는 페이지를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-161">First, you create the pages that your application displays.</span></span>
-<span data-ttu-id="cdead-162">그런 다음 서비스 버스 큐에 항목을 제출하고 큐에 대한 상태 정보를 표시하는 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-162">After that, add code that submits items to a Service Bus queue and displays status information about the queue.</span></span>
+## <a name="create-a-web-role"></a><span data-ttu-id="539dc-159">웹 역할 만들기</span><span class="sxs-lookup"><span data-stu-id="539dc-159">Create a web role</span></span>
+<span data-ttu-id="539dc-160">이 섹션에서는 응용 프로그램의 프런트 엔드 hello 빌드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-160">In this section, you build hello front end of your application.</span></span> <span data-ttu-id="539dc-161">먼저, 응용 프로그램을 표시 하는 hello 페이지를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-161">First, you create hello pages that your application displays.</span></span>
+<span data-ttu-id="539dc-162">그 후 항목 tooa 서비스 버스 큐를 전송 하 고 hello 큐에 대 한 상태 정보를 표시 하는 코드를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-162">After that, add code that submits items tooa Service Bus queue and displays status information about hello queue.</span></span>
 
-### <a name="create-the-project"></a><span data-ttu-id="cdead-163">프로젝트 만들기</span><span class="sxs-lookup"><span data-stu-id="cdead-163">Create the project</span></span>
-1. <span data-ttu-id="cdead-164">관리자 권한을 사용하여 Visual Studio 시작: **Visual Studio** 프로그램 아이콘을 마우스 오른쪽 단추로 클릭한 다음 **관리자 권한으로 실행**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-164">Using administrator privileges, start Visual Studio: right-click the **Visual Studio** program icon, and then click **Run as administrator**.</span></span> <span data-ttu-id="cdead-165">이 문서의 뒷부분에서 설명하는 Azure 계산 에뮬레이터를 사용하려면 Visual Studio를 관리자 권한으로 실행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-165">The Azure compute emulator, discussed later in this article, requires that Visual Studio be started with administrator privileges.</span></span>
+### <a name="create-hello-project"></a><span data-ttu-id="539dc-163">Hello 프로젝트 만들기</span><span class="sxs-lookup"><span data-stu-id="539dc-163">Create hello project</span></span>
+1. <span data-ttu-id="539dc-164">Visual Studio를 시작 관리자 권한을 사용 하 여,: 마우스 오른쪽 단추 클릭 hello **Visual Studio** 프로그램 아이콘을 클릭 하 고 **관리자 권한으로 실행**합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-164">Using administrator privileges, start Visual Studio: right-click hello **Visual Studio** program icon, and then click **Run as administrator**.</span></span> <span data-ttu-id="539dc-165">이 문서의 뒷부분에 설명 된 hello Azure 계산 에뮬레이터는 Visual Studio를 관리자 권한으로 시작할 수 없다는 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-165">hello Azure compute emulator, discussed later in this article, requires that Visual Studio be started with administrator privileges.</span></span>
    
-   <span data-ttu-id="cdead-166">Visual Studio의 **파일** 메뉴에서 **새로 만들기**를 클릭한 다음 **프로젝트**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-166">In Visual Studio, on the **File** menu, click **New**, and then click **Project**.</span></span>
-2. <span data-ttu-id="cdead-167">**설치된 템플릿**의 **Visual C#**에서 **클라우드**를 클릭한 다음 **Azure Cloud Service**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-167">From **Installed Templates**, under **Visual C#**, click **Cloud** and then click **Azure Cloud Service**.</span></span> <span data-ttu-id="cdead-168">프로젝트의 이름을 **MultiTierApp**으로 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-168">Name the project **MultiTierApp**.</span></span> <span data-ttu-id="cdead-169">그런 후 **OK**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-169">Then click **OK**.</span></span>
+   <span data-ttu-id="539dc-166">Hello에 Visual Studio에서 **파일** 메뉴를 클릭 **새로**, 클릭 하 고 **프로젝트**합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-166">In Visual Studio, on hello **File** menu, click **New**, and then click **Project**.</span></span>
+2. <span data-ttu-id="539dc-167">**설치된 템플릿**의 **Visual C#**에서 **클라우드**를 클릭한 다음 **Azure Cloud Service**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-167">From **Installed Templates**, under **Visual C#**, click **Cloud** and then click **Azure Cloud Service**.</span></span> <span data-ttu-id="539dc-168">이름 hello 프로젝트 **MultiTierApp**합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-168">Name hello project **MultiTierApp**.</span></span> <span data-ttu-id="539dc-169">그런 후 **OK**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-169">Then click **OK**.</span></span>
    
    ![][9]
-3. <span data-ttu-id="cdead-170">**.NET Framework 4.5** 역할에서 **ASP.NET 웹 역할**을 두 번 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-170">From **.NET Framework 4.5** roles, double-click **ASP.NET Web Role**.</span></span>
+3. <span data-ttu-id="539dc-170">**.NET Framework 4.5** 역할에서 **ASP.NET 웹 역할**을 두 번 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-170">From **.NET Framework 4.5** roles, double-click **ASP.NET Web Role**.</span></span>
    
    ![][10]
-4. <span data-ttu-id="cdead-171">**Azure Cloud Service 솔루션**에서 **WebRole1**을 마우스로 가리키고 연필 아이콘을 클릭한 다음 웹 역할의 이름을 **FrontendWebRole**로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-171">Hover over **WebRole1** under **Azure Cloud Service solution**, click the pencil icon, and rename the web role to **FrontendWebRole**.</span></span> <span data-ttu-id="cdead-172">그런 후 **OK**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-172">Then click **OK**.</span></span> <span data-ttu-id="cdead-173">"FrontEnd"가 아니라 소문자 "e"를 사용하여 "Frontend"를 입력해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-173">(Make sure you enter "Frontend" with a lower-case 'e,' not "FrontEnd".)</span></span>
+4. <span data-ttu-id="539dc-171">위로 마우스를 가져가고 **WebRole1** 아래 **Azure 클라우드 서비스 솔루션**hello 연필 아이콘을 클릭 하 고 너무 hello 웹 역할의 이름을 바꿀**FrontendWebRole**합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-171">Hover over **WebRole1** under **Azure Cloud Service solution**, click hello pencil icon, and rename hello web role too**FrontendWebRole**.</span></span> <span data-ttu-id="539dc-172">그런 후 **OK**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-172">Then click **OK**.</span></span> <span data-ttu-id="539dc-173">"FrontEnd"가 아니라 소문자 "e"를 사용하여 "Frontend"를 입력해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-173">(Make sure you enter "Frontend" with a lower-case 'e,' not "FrontEnd".)</span></span>
    
    ![][11]
-5. <span data-ttu-id="cdead-174">**새 ASP.NET 프로젝트** 대화 상자의 **템플릿 선택** 목록에서 **MVC**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-174">From the **New ASP.NET Project** dialog box, in the **Select a template** list, click **MVC**.</span></span>
+5. <span data-ttu-id="539dc-174">Hello에서 **새 ASP.NET 프로젝트** 대화 상자의 hello **´ ï ´** 목록에서 클릭 **MVC**합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-174">From hello **New ASP.NET Project** dialog box, in hello **Select a template** list, click **MVC**.</span></span>
    
    ![][12]
-6. <span data-ttu-id="cdead-175">**새 ASP.NET 프로젝트** 대화 상자에서 **인증 변경** 단추를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-175">Still in the **New ASP.NET Project** dialog box, click the **Change Authentication** button.</span></span> <span data-ttu-id="cdead-176">**인증 변경** 대화 상자에서 **인증 없음**, **확인**을 차례로 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-176">In the **Change Authentication** dialog box, click **No Authentication**, and then click **OK**.</span></span> <span data-ttu-id="cdead-177">이 자습서의 경우 사용자 로그인이 필요하지 않은 앱을 배포하고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-177">For this tutorial, you're deploying an app that doesn't need a user login.</span></span>
+6. <span data-ttu-id="539dc-175">Hello에 여전히 **새 ASP.NET 프로젝트** 대화 상자를 클릭 hello **인증 변경** 단추입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-175">Still in hello **New ASP.NET Project** dialog box, click hello **Change Authentication** button.</span></span> <span data-ttu-id="539dc-176">Hello에 **인증 변경** 대화 상자를 클릭 **인증 안 함**, 클릭 하 고 **확인**합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-176">In hello **Change Authentication** dialog box, click **No Authentication**, and then click **OK**.</span></span> <span data-ttu-id="539dc-177">이 자습서의 경우 사용자 로그인이 필요하지 않은 앱을 배포하고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-177">For this tutorial, you're deploying an app that doesn't need a user login.</span></span>
    
     ![][16]
-7. <span data-ttu-id="cdead-178">**새 ASP.NET 프로젝트** 대화 상자로 돌아와서 **확인**을 클릭하여 프로젝트를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-178">Back in the **New ASP.NET Project** dialog box, click **OK** to create the project.</span></span>
-8. <span data-ttu-id="cdead-179">**FrontendWebRole** 프로젝트의 **솔루션 탐색기**에서 **참조**를 마우스 오른쪽 단추로 클릭한 후 **NuGet 패키지 관리**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-179">In **Solution Explorer**, in the **FrontendWebRole** project, right-click **References**, then click **Manage NuGet Packages**.</span></span>
-9. <span data-ttu-id="cdead-180">**찾아보기** 탭을 클릭한 다음 `Microsoft Azure Service Bus`를 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-180">Click the **Browse** tab, then search for `Microsoft Azure Service Bus`.</span></span> <span data-ttu-id="cdead-181">**WindowsAzure.ServiceBus** 패키지를 선택하고 **설치**를 클릭하고 사용 약관에 동의합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-181">Select the **WindowsAzure.ServiceBus** package, click **Install**, and accept the terms of use.</span></span>
+7. <span data-ttu-id="539dc-178">Hello에 다시 **새 ASP.NET 프로젝트** 대화 상자를 클릭 **확인** toocreate hello 프로젝트.</span><span class="sxs-lookup"><span data-stu-id="539dc-178">Back in hello **New ASP.NET Project** dialog box, click **OK** toocreate hello project.</span></span>
+8. <span data-ttu-id="539dc-179">**솔루션 탐색기**, hello에 **FrontendWebRole** 프로젝트를 마우스 오른쪽 단추로 클릭 **참조**, 클릭 **NuGet 패키지 관리**합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-179">In **Solution Explorer**, in hello **FrontendWebRole** project, right-click **References**, then click **Manage NuGet Packages**.</span></span>
+9. <span data-ttu-id="539dc-180">Hello 클릭 **찾아보기** tab, 이후 검색할 `Microsoft Azure Service Bus`합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-180">Click hello **Browse** tab, then search for `Microsoft Azure Service Bus`.</span></span> <span data-ttu-id="539dc-181">선택 hello **WindowsAzure.ServiceBus** 클릭, 패키지 **설치**, hello 사용 약관을 수락 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-181">Select hello **WindowsAzure.ServiceBus** package, click **Install**, and accept hello terms of use.</span></span>
    
    ![][13]
    
-   <span data-ttu-id="cdead-182">이제 필요한 클라이언트 어셈블리가 참조되고 몇 가지 새 코드 파일이 추가되었습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-182">Note that the required client assemblies are now referenced and some new code files have been added.</span></span>
-10. <span data-ttu-id="cdead-183">**솔루션 탐색기**에서 **모델**을 마우스 오른쪽 단추로 클릭하고 **추가**를 클릭한 다음 **클래스**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-183">In **Solution Explorer**, right-click **Models** and click **Add**, then click **Class**.</span></span> <span data-ttu-id="cdead-184">**이름** 상자에 **OnlineOrder.cs**라는 이름을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-184">In the **Name** box, type the name **OnlineOrder.cs**.</span></span> <span data-ttu-id="cdead-185">그런 다음 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-185">Then click **Add**.</span></span>
+   <span data-ttu-id="539dc-182">이제 클라이언트 어셈블리를 참조 하 고 몇 가지 새 코드 파일이 추가 되었습니다. 해당 hello 필요한 note 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-182">Note that hello required client assemblies are now referenced and some new code files have been added.</span></span>
+10. <span data-ttu-id="539dc-183">**솔루션 탐색기**에서 **모델**을 마우스 오른쪽 단추로 클릭하고 **추가**를 클릭한 다음 **클래스**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-183">In **Solution Explorer**, right-click **Models** and click **Add**, then click **Class**.</span></span> <span data-ttu-id="539dc-184">Hello에 **이름** 상자 hello 이름을 입력 합니다 **OnlineOrder.cs**합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-184">In hello **Name** box, type hello name **OnlineOrder.cs**.</span></span> <span data-ttu-id="539dc-185">그런 다음 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-185">Then click **Add**.</span></span>
 
-### <a name="write-the-code-for-your-web-role"></a><span data-ttu-id="cdead-186">웹 역할에 대한 코드 작성</span><span class="sxs-lookup"><span data-stu-id="cdead-186">Write the code for your web role</span></span>
-<span data-ttu-id="cdead-187">이 섹션에서는 응용 프로그램에서 표시하는 다양한 페이지를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-187">In this section, you create the various pages that your application displays.</span></span>
+### <a name="write-hello-code-for-your-web-role"></a><span data-ttu-id="539dc-186">웹 역할에 대 한 hello 코드 작성</span><span class="sxs-lookup"><span data-stu-id="539dc-186">Write hello code for your web role</span></span>
+<span data-ttu-id="539dc-187">이 섹션에서는 hello 응용 프로그램이 표시 하는 다양 한 페이지를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-187">In this section, you create hello various pages that your application displays.</span></span>
 
-1. <span data-ttu-id="cdead-188">Visual Studio의 OnlineOrder.cs 파일에서 기존 네임스페이스 정의를 다음 코드로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-188">In the OnlineOrder.cs file in Visual Studio, replace the existing namespace definition with the following code:</span></span>
+1. <span data-ttu-id="539dc-188">Visual Studio에서 hello OnlineOrder.cs 파일에서 기존 네임 스페이스 정을 코드 다음 hello로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-188">In hello OnlineOrder.cs file in Visual Studio, replace the existing namespace definition with hello following code:</span></span>
    
    ```csharp
    namespace FrontendWebRole.Models
@@ -119,14 +119,14 @@ ms.lasthandoff: 07/11/2017
        }
    }
    ```
-2. <span data-ttu-id="cdead-189">**솔루션 탐색기**에서 **Controllers\HomeController.cs**를 두 번 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-189">In **Solution Explorer**, double-click **Controllers\HomeController.cs**.</span></span> <span data-ttu-id="cdead-190">파일 맨 위에 다음 **using** 문을 추가하여 Service Bus뿐만 아니라 방금 만든 모델에 대한 네임스페이스를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-190">Add the following **using** statements at the top of the file to include the namespaces for the model you just created, as well as Service Bus.</span></span>
+2. <span data-ttu-id="539dc-189">**솔루션 탐색기**에서 **Controllers\HomeController.cs**를 두 번 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-189">In **Solution Explorer**, double-click **Controllers\HomeController.cs**.</span></span> <span data-ttu-id="539dc-190">Hello 다음 추가 **를 사용 하 여** hello hello 맨 문 파일 서비스 버스와 방금 만든 모델에 대 한 tooinclude hello 네임 스페이스입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-190">Add hello following **using** statements at hello top of hello file tooinclude hello namespaces for the model you just created, as well as Service Bus.</span></span>
    
    ```csharp
    using FrontendWebRole.Models;
    using Microsoft.ServiceBus.Messaging;
    using Microsoft.ServiceBus;
    ```
-3. <span data-ttu-id="cdead-191">또한 Visual Studio의 HomeController.cs 파일에서 기존 네임스페이스 정의를 다음 코드로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-191">Also in the HomeController.cs file in Visual Studio, replace the existing namespace definition with the following code.</span></span> <span data-ttu-id="cdead-192">이 코드에는 큐에 대한 항목 제출을 처리하는 메서드가 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-192">This code contains methods for handling the submission of items to the queue.</span></span>
+3. <span data-ttu-id="539dc-191">또한 Visual Studio에서 hello HomeController.cs 파일에서 기존 네임 스페이스 정의 코드 다음 hello로 대체 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-191">Also in hello HomeController.cs file in Visual Studio, replace the existing namespace definition with hello following code.</span></span> <span data-ttu-id="539dc-192">이 코드는 hello 제출 항목 toohello 큐를 처리 하기 위한 메서드를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-192">This code contains methods for handling hello submission of items toohello queue.</span></span>
    
    ```csharp
    namespace FrontendWebRole.Controllers
@@ -135,7 +135,7 @@ ms.lasthandoff: 07/11/2017
        {
            public ActionResult Index()
            {
-               // Simply redirect to Submit, since Submit will serve as the
+               // Simply redirect tooSubmit, since Submit will serve as the
                // front page of this application.
                return RedirectToAction("Submit");
            }
@@ -146,7 +146,7 @@ ms.lasthandoff: 07/11/2017
            }
    
            // GET: /Home/Submit.
-           // Controller method for a view you will create for the submission
+           // Controller method for a view you will create for hello submission
            // form.
            public ActionResult Submit()
            {
@@ -156,17 +156,17 @@ ms.lasthandoff: 07/11/2017
            }
    
            // POST: /Home/Submit.
-           // Controller method for handling submissions from the submission
+           // Controller method for handling submissions from hello submission
            // form.
            [HttpPost]
-           // Attribute to help prevent cross-site scripting attacks and
+           // Attribute toohelp prevent cross-site scripting attacks and
            // cross-site request forgery.  
            [ValidateAntiForgeryToken]
            public ActionResult Submit(OnlineOrder order)
            {
                if (ModelState.IsValid)
                {
-                   // Will put code for submitting to queue here.
+                   // Will put code for submitting tooqueue here.
    
                    return RedirectToAction("Submit");
                }
@@ -178,34 +178,34 @@ ms.lasthandoff: 07/11/2017
        }
    }
    ```
-4. <span data-ttu-id="cdead-193">**빌드** 메뉴에서 **솔루션 빌드**를 클릭하여 지금까지의 작업에 대한 정확성을 테스트합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-193">From the **Build** menu, click **Build Solution** to test the accuracy of your work so far.</span></span>
-5. <span data-ttu-id="cdead-194">이제 위에서 만든 `Submit()` 메서드에 대한 보기를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-194">Now, create the view for the `Submit()` method you created earlier.</span></span> <span data-ttu-id="cdead-195">`Submit()` 메서드(매개 변수를 사용하지 않는 `Submit()`의 오버로드) 내에서 마우스 오른쪽 단추로 클릭한 다음 **보기 추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-195">Right-click within the `Submit()` method (the overload of `Submit()` that takes no parameters), and then choose **Add View**.</span></span>
+4. <span data-ttu-id="539dc-193">Hello에서 **빌드** 메뉴를 클릭 하 여 **솔루션 빌드** tootest hello 정확도 지금까지 작업 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-193">From hello **Build** menu, click **Build Solution** tootest hello accuracy of your work so far.</span></span>
+5. <span data-ttu-id="539dc-194">이제 hello에 대 한 hello 보기를 만들 `Submit()` 앞에서 만든 메서드.</span><span class="sxs-lookup"><span data-stu-id="539dc-194">Now, create hello view for hello `Submit()` method you created earlier.</span></span> <span data-ttu-id="539dc-195">Hello 내에서 마우스 오른쪽 단추로 클릭 `Submit()` 메서드 (hello 오버 로드 `Submit()` 매개 변수를 사용 하는)을 선택한 후 **뷰 추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-195">Right-click within hello `Submit()` method (hello overload of `Submit()` that takes no parameters), and then choose **Add View**.</span></span>
    
    ![][14]
-6. <span data-ttu-id="cdead-196">보기를 만들 수 있는 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-196">A dialog box appears for creating the view.</span></span> <span data-ttu-id="cdead-197">**템플릿** 목록에서 **만들기**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-197">In the **Template** list, choose **Create**.</span></span> <span data-ttu-id="cdead-198">**모델 클래스** 목록에서 **OnlineOrder** 클래스를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-198">In the **Model class** list, click the **OnlineOrder** class.</span></span>
+6. <span data-ttu-id="539dc-196">Hello 보기를 만드는 방법에 대 한 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-196">A dialog box appears for creating hello view.</span></span> <span data-ttu-id="539dc-197">Hello에 **템플릿** 목록에서 선택 **만들기**합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-197">In hello **Template** list, choose **Create**.</span></span> <span data-ttu-id="539dc-198">Hello에 **모델 클래스** 목록에서 클릭 hello **OnlineOrder** 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-198">In hello **Model class** list, click hello **OnlineOrder** class.</span></span>
    
    ![][15]
-7. <span data-ttu-id="cdead-199">**추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-199">Click **Add**.</span></span>
-8. <span data-ttu-id="cdead-200">이제 응용 프로그램의 표시 이름을 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-200">Now, change the displayed name of your application.</span></span> <span data-ttu-id="cdead-201">**솔루션 탐색기**에서 **Views\Shared\\_Layout.cshtml** 파일을 두 번 클릭하여 Visual Studio 편집기에서 엽니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-201">In **Solution Explorer**, double-click the **Views\Shared\\_Layout.cshtml** file to open it in the Visual Studio editor.</span></span>
-9. <span data-ttu-id="cdead-202">**내 ASP.NET 응용 프로그램**과 일치하는 모든 항목을 **LITWARE 제품**으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-202">Replace all occurrences of **My ASP.NET Application** with **LITWARE'S Products**.</span></span>
-10. <span data-ttu-id="cdead-203">**홈**, **정보** 및 **연락처** 링크를 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-203">Remove the **Home**, **About**, and **Contact** links.</span></span> <span data-ttu-id="cdead-204">강조 표시된 코드를 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-204">Delete the highlighted code:</span></span>
+7. <span data-ttu-id="539dc-199">**추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-199">Click **Add**.</span></span>
+8. <span data-ttu-id="539dc-200">이제 변경 hello 응용 프로그램의 이름을 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-200">Now, change hello displayed name of your application.</span></span> <span data-ttu-id="539dc-201">**솔루션 탐색기**를 두 번 클릭은 **Views\Shared\\_Layout.cshtml** tooopen 파일 hello Visual Studio 편집기에서.</span><span class="sxs-lookup"><span data-stu-id="539dc-201">In **Solution Explorer**, double-click the **Views\Shared\\_Layout.cshtml** file tooopen it in hello Visual Studio editor.</span></span>
+9. <span data-ttu-id="539dc-202">**내 ASP.NET 응용 프로그램**과 일치하는 모든 항목을 **LITWARE 제품**으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-202">Replace all occurrences of **My ASP.NET Application** with **LITWARE'S Products**.</span></span>
+10. <span data-ttu-id="539dc-203">Hello 제거 **홈**, **에 대 한**, 및 **연락처** 링크 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-203">Remove hello **Home**, **About**, and **Contact** links.</span></span> <span data-ttu-id="539dc-204">Hello 강조 표시 된 코드를 삭제 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-204">Delete hello highlighted code:</span></span>
     
     ![][28]
-11. <span data-ttu-id="cdead-205">마지막으로 큐에 대한 일부 정보를 포함하도록 제출 페이지를 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-205">Finally, modify the submission page to include some information about the queue.</span></span> <span data-ttu-id="cdead-206">**솔루션 탐색기**에서 **Views\Home\Submit.cshtml** 파일을 두 번 클릭하여 Visual Studio 편집기에서 엽니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-206">In **Solution Explorer**, double-click the **Views\Home\Submit.cshtml** file to open it in the Visual Studio editor.</span></span> <span data-ttu-id="cdead-207">`<h2>Submit</h2>` 뒤에 다음 줄을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-207">Add the following line after `<h2>Submit</h2>`.</span></span> <span data-ttu-id="cdead-208">이제 `ViewBag.MessageCount`은(는) 비어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-208">For now, the `ViewBag.MessageCount` is empty.</span></span> <span data-ttu-id="cdead-209">나중에 채웁니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-209">You will populate it later.</span></span>
+11. <span data-ttu-id="539dc-205">Hello 제출 페이지 tooinclude hello 큐에 대 한 일부 정보를 마지막으로 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-205">Finally, modify hello submission page tooinclude some information about hello queue.</span></span> <span data-ttu-id="539dc-206">**솔루션 탐색기**를 두 번 클릭은 **Views\Home\Submit.cshtml** tooopen 파일 hello Visual Studio 편집기에서.</span><span class="sxs-lookup"><span data-stu-id="539dc-206">In **Solution Explorer**, double-click the **Views\Home\Submit.cshtml** file tooopen it in hello Visual Studio editor.</span></span> <span data-ttu-id="539dc-207">다음 줄을 다음 hello 추가 `<h2>Submit</h2>`합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-207">Add hello following line after `<h2>Submit</h2>`.</span></span> <span data-ttu-id="539dc-208">지금은 hello `ViewBag.MessageCount` 비어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-208">For now, hello `ViewBag.MessageCount` is empty.</span></span> <span data-ttu-id="539dc-209">나중에 채웁니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-209">You will populate it later.</span></span>
     
     ```html
-    <p>Current number of orders in queue waiting to be processed: @ViewBag.MessageCount</p>
+    <p>Current number of orders in queue waiting toobe processed: @ViewBag.MessageCount</p>
     ```
-12. <span data-ttu-id="cdead-210">이제 UI를 구현했습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-210">You now have implemented your UI.</span></span> <span data-ttu-id="cdead-211">**F5** 키를 눌러 응용 프로그램을 실행하고 예상대로 나타나는지 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-211">You can press **F5** to run your application and confirm that it looks as expected.</span></span>
+12. <span data-ttu-id="539dc-210">이제 UI를 구현했습니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-210">You now have implemented your UI.</span></span> <span data-ttu-id="539dc-211">누르면 **F5** toorun 응용 프로그램이 예상 대로 표시 되는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-211">You can press **F5** toorun your application and confirm that it looks as expected.</span></span>
     
     ![][17]
 
-### <a name="write-the-code-for-submitting-items-to-a-service-bus-queue"></a><span data-ttu-id="cdead-212">서비스 버스 큐에 항목을 제출하는 코드 작성</span><span class="sxs-lookup"><span data-stu-id="cdead-212">Write the code for submitting items to a Service Bus queue</span></span>
-<span data-ttu-id="cdead-213">이제 큐에 항목을 제출하는 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-213">Now, add code for submitting items to a queue.</span></span> <span data-ttu-id="cdead-214">먼저 서비스 버스 큐 연결 정보를 포함하는 클래스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-214">First, you create a class that contains your Service Bus queue connection information.</span></span> <span data-ttu-id="cdead-215">그런 다음 Global.aspx.cs에서 연결을 초기화합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-215">Then, initialize your connection from Global.aspx.cs.</span></span> <span data-ttu-id="cdead-216">끝으로, 앞에서 만든 제출 코드를 HomeController.cs에서 업데이트하여 항목을 서비스 버스 큐에 실제로 제출합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-216">Finally, update the submission code you created earlier in HomeController.cs to actually submit items to a Service Bus queue.</span></span>
+### <a name="write-hello-code-for-submitting-items-tooa-service-bus-queue"></a><span data-ttu-id="539dc-212">항목 tooa 서비스 버스 큐를 전송 하기 위한 hello 코드 작성</span><span class="sxs-lookup"><span data-stu-id="539dc-212">Write hello code for submitting items tooa Service Bus queue</span></span>
+<span data-ttu-id="539dc-213">이제 항목 tooa 큐 전송에 대 한 코드를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-213">Now, add code for submitting items tooa queue.</span></span> <span data-ttu-id="539dc-214">먼저 서비스 버스 큐 연결 정보를 포함하는 클래스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-214">First, you create a class that contains your Service Bus queue connection information.</span></span> <span data-ttu-id="539dc-215">그런 다음 Global.aspx.cs에서 연결을 초기화합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-215">Then, initialize your connection from Global.aspx.cs.</span></span> <span data-ttu-id="539dc-216">HomeController.cs tooactually 전송 항목 tooa 서비스 버스 큐의 앞부분에서 만든 hello 제출 코드를 마지막으로 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-216">Finally, update hello submission code you created earlier in HomeController.cs tooactually submit items tooa Service Bus queue.</span></span>
 
-1. <span data-ttu-id="cdead-217">**솔루션 탐색기**에서 **FrontendWebRole**을 마우스 오른쪽 단추로 클릭합니다(역할이 아닌 프로젝트를 마우스 오른쪽 단추로 클릭).</span><span class="sxs-lookup"><span data-stu-id="cdead-217">In **Solution Explorer**, right-click **FrontendWebRole** (right-click the project, not the role).</span></span> <span data-ttu-id="cdead-218">**추가**를 클릭한 후 **클래스**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-218">Click **Add**, and then click **Class**.</span></span>
-2. <span data-ttu-id="cdead-219">클래스 이름을 **QueueConnector.cs**로 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-219">Name the class **QueueConnector.cs**.</span></span> <span data-ttu-id="cdead-220">**추가**를 클릭하여 클래스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-220">Click **Add** to create the class.</span></span>
-3. <span data-ttu-id="cdead-221">이제 연결 정보를 캡슐화하고 서비스 버스 큐에 대한 연결을 초기화하는 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-221">Now, add code that encapsulates the connection information and initializes the connection to a Service Bus queue.</span></span> <span data-ttu-id="cdead-222">QueueConnector.cs의 전체 내용을 다음 코드로 바꾸고 `your Service Bus namespace`(네임스페이스 이름) 및 `yourKey`의 값을 입력합니다. 이는 Azure Portal에서 이전에 가져온 **기본 키**입니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-222">Replace the entire contents of QueueConnector.cs with the following code, and enter values for `your Service Bus namespace` (your namespace name) and `yourKey`, which is the **primary key** you previously obtained from the Azure portal.</span></span>
+1. <span data-ttu-id="539dc-217">**솔루션 탐색기**를 마우스 오른쪽 단추로 클릭 **FrontendWebRole** (하지 hello 역할, hello 프로젝트를 마우스 오른쪽 단추 클릭).</span><span class="sxs-lookup"><span data-stu-id="539dc-217">In **Solution Explorer**, right-click **FrontendWebRole** (right-click hello project, not hello role).</span></span> <span data-ttu-id="539dc-218">**추가**를 클릭한 후 **클래스**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-218">Click **Add**, and then click **Class**.</span></span>
+2. <span data-ttu-id="539dc-219">Hello 클래스 이름을 **QueueConnector.cs**합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-219">Name hello class **QueueConnector.cs**.</span></span> <span data-ttu-id="539dc-220">클릭 **추가** toocreate hello 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-220">Click **Add** toocreate hello class.</span></span>
+3. <span data-ttu-id="539dc-221">이제 hello 연결 정보를 캡슐화 하 고 hello 연결 tooa 서비스 버스 큐를 초기화 하는 코드를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-221">Now, add code that encapsulates hello connection information and initializes hello connection tooa Service Bus queue.</span></span> <span data-ttu-id="539dc-222">코드를 다음 hello hello QueueConnector.cs의 전체 내용을 바꾸고 값을 입력 `your Service Bus namespace` (네임 스페이스 이름) 및 `yourKey`, 하는 hello **기본 키** hello Azure에서에서 이전에 가져온 포털입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-222">Replace hello entire contents of QueueConnector.cs with hello following code, and enter values for `your Service Bus namespace` (your namespace name) and `yourKey`, which is hello **primary key** you previously obtained from hello Azure portal.</span></span>
    
    ```csharp
    using System;
@@ -223,15 +223,15 @@ ms.lasthandoff: 07/11/2017
            // on every request.
            public static QueueClient OrdersQueueClient;
    
-           // Obtain these values from the portal.
+           // Obtain these values from hello portal.
            public const string Namespace = "your Service Bus namespace";
    
-           // The name of your queue.
+           // hello name of your queue.
            public const string QueueName = "OrdersQueue";
    
            public static NamespaceManager CreateNamespaceManager()
            {
-               // Create the namespace manager which gives you access to
+               // Create hello namespace manager which gives you access to
                // management operations.
                var uri = ServiceBusEnvironment.CreateServiceUri(
                    "sb", Namespace, String.Empty);
@@ -242,21 +242,21 @@ ms.lasthandoff: 07/11/2017
    
            public static void Initialize()
            {
-               // Using Http to be friendly with outbound firewalls.
+               // Using Http toobe friendly with outbound firewalls.
                ServiceBusEnvironment.SystemConnectivity.Mode =
                    ConnectivityMode.Http;
    
-               // Create the namespace manager which gives you access to
+               // Create hello namespace manager which gives you access to
                // management operations.
                var namespaceManager = CreateNamespaceManager();
    
-               // Create the queue if it does not exist already.
+               // Create hello queue if it does not exist already.
                if (!namespaceManager.QueueExists(QueueName))
                {
                    namespaceManager.CreateQueue(QueueName);
                }
    
-               // Get a client to the queue.
+               // Get a client toohello queue.
                var messagingFactory = MessagingFactory.Create(
                    namespaceManager.Address,
                    namespaceManager.Settings.TokenProvider);
@@ -266,40 +266,40 @@ ms.lasthandoff: 07/11/2017
        }
    }
    ```
-4. <span data-ttu-id="cdead-223">이제 **Initialize** 메서드가 호출되는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-223">Now, ensure that your **Initialize** method gets called.</span></span> <span data-ttu-id="cdead-224">**솔루션 탐색기**에서 **Global.asax\Global.asax.cs**를 두 번 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-224">In **Solution Explorer**, double-click **Global.asax\Global.asax.cs**.</span></span>
-5. <span data-ttu-id="cdead-225">다음 코드 줄을 **Application_Start** 메서드의 끝에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-225">Add the following line of code at the end of the **Application_Start** method.</span></span>
+4. <span data-ttu-id="539dc-223">이제 **Initialize** 메서드가 호출되는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-223">Now, ensure that your **Initialize** method gets called.</span></span> <span data-ttu-id="539dc-224">**솔루션 탐색기**에서 **Global.asax\Global.asax.cs**를 두 번 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-224">In **Solution Explorer**, double-click **Global.asax\Global.asax.cs**.</span></span>
+5. <span data-ttu-id="539dc-225">Hello 다음 hello의 hello 끝에 코드 줄을 추가 **Application_Start** 메서드.</span><span class="sxs-lookup"><span data-stu-id="539dc-225">Add hello following line of code at hello end of hello **Application_Start** method.</span></span>
    
    ```csharp
    FrontendWebRole.QueueConnector.Initialize();
    ```
-6. <span data-ttu-id="cdead-226">끝으로, 앞에서 만든 웹 코드를 업데이트하여 항목을 큐에 제출합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-226">Finally, update the web code you created earlier, to submit items to the queue.</span></span> <span data-ttu-id="cdead-227">**솔루션 탐색기**에서 **Controllers\HomeController.cs**를 두 번 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-227">In **Solution Explorer**, double-click **Controllers\HomeController.cs**.</span></span>
-7. <span data-ttu-id="cdead-228">다음과 같이 `Submit()` 메서드(매개 변수를 사용하지 않는 오버로드)를 업데이트하여 큐에 대한 메시지 수를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-228">Update the `Submit()` method (the overload that takes no parameters) as follows to get the message count for the queue.</span></span>
+6. <span data-ttu-id="539dc-226">마지막으로, 항목 toohello 큐를 제출 하려면 앞에서 만든 hello 웹 코드를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-226">Finally, update hello web code you created earlier, to submit items toohello queue.</span></span> <span data-ttu-id="539dc-227">**솔루션 탐색기**에서 **Controllers\HomeController.cs**를 두 번 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-227">In **Solution Explorer**, double-click **Controllers\HomeController.cs**.</span></span>
+7. <span data-ttu-id="539dc-228">업데이트 hello `Submit()` 메서드 (hello 오버 로드에 매개 변수가 없으면) 다음과 같이 tooget hello 메시지 수 hello 큐에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-228">Update hello `Submit()` method (hello overload that takes no parameters) as follows tooget hello message count for hello queue.</span></span>
    
    ```csharp
    public ActionResult Submit()
    {
-       // Get a NamespaceManager which allows you to perform management and
+       // Get a NamespaceManager which allows you tooperform management and
        // diagnostic operations on your Service Bus queues.
        var namespaceManager = QueueConnector.CreateNamespaceManager();
    
-       // Get the queue, and obtain the message count.
+       // Get hello queue, and obtain hello message count.
        var queue = namespaceManager.GetQueue(QueueConnector.QueueName);
        ViewBag.MessageCount = queue.MessageCount;
    
        return View();
    }
    ```
-8. <span data-ttu-id="cdead-229">다음과 같이 `Submit(OnlineOrder order)` 메서드(하나의 매개 변수를 사용하는 오버로드)를 업데이트하여 큐에 주문 정보를 제출합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-229">Update the `Submit(OnlineOrder order)` method (the overload that takes one parameter) as follows to submit order information to the queue.</span></span>
+8. <span data-ttu-id="539dc-229">업데이트 hello `Submit(OnlineOrder order)` 메서드 (hello 오버 로드 매개 변수를 사용 하는) 다음과 같이 toosubmit 주문 정보 toohello 큐입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-229">Update hello `Submit(OnlineOrder order)` method (hello overload that takes one parameter) as follows toosubmit order information toohello queue.</span></span>
    
    ```csharp
    public ActionResult Submit(OnlineOrder order)
    {
        if (ModelState.IsValid)
        {
-           // Create a message from the order.
+           // Create a message from hello order.
            var message = new BrokeredMessage(order);
    
-           // Submit the order.
+           // Submit hello order.
            QueueConnector.OrdersQueueClient.Send(message);
            return RedirectToAction("Submit");
        }
@@ -309,65 +309,65 @@ ms.lasthandoff: 07/11/2017
        }
    }
    ```
-9. <span data-ttu-id="cdead-230">이제 응용 프로그램을 다시 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-230">You can now run the application again.</span></span> <span data-ttu-id="cdead-231">주문을 제출할 때마다 메시지 수가 증가합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-231">Each time you submit an order, the message count increases.</span></span>
+9. <span data-ttu-id="539dc-230">이제 hello 응용 프로그램을 다시 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-230">You can now run hello application again.</span></span> <span data-ttu-id="539dc-231">주문 제출 때마다 hello 메시지 수가 증가 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-231">Each time you submit an order, hello message count increases.</span></span>
    
    ![][18]
 
-## <a name="create-the-worker-role"></a><span data-ttu-id="cdead-232">작업자 역할 만들기</span><span class="sxs-lookup"><span data-stu-id="cdead-232">Create the worker role</span></span>
-<span data-ttu-id="cdead-233">이제 주문 제출을 처리하는 작업자 역할을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-233">You will now create the worker role that processes the order submissions.</span></span> <span data-ttu-id="cdead-234">이 예제에서는 **Service Bus 큐가 있는 작업자 역할** Visual Studio 프로젝트 템플릿을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-234">This example uses the **Worker Role with Service Bus Queue** Visual Studio project template.</span></span> <span data-ttu-id="cdead-235">포털에서 필요한 자격 증명을 이미 가져왔습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-235">You already obtained the required credentials from the portal.</span></span>
+## <a name="create-hello-worker-role"></a><span data-ttu-id="539dc-232">Hello 작업자 역할 만들기</span><span class="sxs-lookup"><span data-stu-id="539dc-232">Create hello worker role</span></span>
+<span data-ttu-id="539dc-233">이제 hello 주문 제출을 처리 하는 hello 작업자 역할을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-233">You will now create hello worker role that processes hello order submissions.</span></span> <span data-ttu-id="539dc-234">이 예에서는 hello **서비스 버스 큐가 있는 작업자 역할** Visual Studio 프로젝트 템플릿이 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-234">This example uses hello **Worker Role with Service Bus Queue** Visual Studio project template.</span></span> <span data-ttu-id="539dc-235">이미 hello 포털에서 필요한 hello 자격 증명을 획득 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-235">You already obtained hello required credentials from hello portal.</span></span>
 
-1. <span data-ttu-id="cdead-236">Visual Studio를 Azure 계정에 연결해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-236">Make sure you have connected Visual Studio to your Azure account.</span></span>
-2. <span data-ttu-id="cdead-237">Visual Studio의 **솔루션 탐색기**에서 **MultiTierApp** 프로젝트 아래의 **역할** 폴더를 마우스 오른쪽 단추로 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-237">In Visual Studio, in **Solution Explorer** right-click the **Roles** folder under the **MultiTierApp** project.</span></span>
-3. <span data-ttu-id="cdead-238">**추가**를 클릭한 후 **새 작업자 역할 프로젝트**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-238">Click **Add**, and then click **New Worker Role Project**.</span></span> <span data-ttu-id="cdead-239">**새 역할 프로젝트 추가** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-239">The **Add New Role Project** dialog box appears.</span></span>
+1. <span data-ttu-id="539dc-236">Visual Studio tooyour Azure 계정을 연결 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-236">Make sure you have connected Visual Studio tooyour Azure account.</span></span>
+2. <span data-ttu-id="539dc-237">Visual Studio에서의 **솔루션 탐색기** 마우스 오른쪽 단추로 클릭는 **역할** hello 아래에 폴더 **MultiTierApp** 프로젝트.</span><span class="sxs-lookup"><span data-stu-id="539dc-237">In Visual Studio, in **Solution Explorer** right-click the **Roles** folder under hello **MultiTierApp** project.</span></span>
+3. <span data-ttu-id="539dc-238">**추가**를 클릭한 후 **새 작업자 역할 프로젝트**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-238">Click **Add**, and then click **New Worker Role Project**.</span></span> <span data-ttu-id="539dc-239">hello **새 역할 프로젝트 추가** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-239">hello **Add New Role Project** dialog box appears.</span></span>
    
    ![][26]
-4. <span data-ttu-id="cdead-240">**새 역할 프로젝트 추가** 대화 상자에서 **Service Bus 큐가 있는 작업자 역할**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-240">In the **Add New Role Project** dialog box, click **Worker Role with Service Bus Queue**.</span></span>
+4. <span data-ttu-id="539dc-240">Hello에 **새 역할 프로젝트 추가** 대화 상자를 클릭 **서비스 버스 큐가 있는 작업자 역할**합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-240">In hello **Add New Role Project** dialog box, click **Worker Role with Service Bus Queue**.</span></span>
    
    ![][23]
-5. <span data-ttu-id="cdead-241">**이름** 상자에서 프로젝트 이름을 **OrderProcessingRole**로 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-241">In the **Name** box, name the project **OrderProcessingRole**.</span></span> <span data-ttu-id="cdead-242">그런 다음 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-242">Then click **Add**.</span></span>
-6. <span data-ttu-id="cdead-243">"서비스 버스 네임스페이스 만들기" 섹션의 9단계에서 얻은 연결 문자열을 클립보드에 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-243">Copy the connection string that you obtained in step 9 of the "Create a Service Bus namespace" section to the clipboard.</span></span>
-7. <span data-ttu-id="cdead-244">**솔루션 탐색기**에서, 5단계에서 만든 **OrderProcessingRole**을 마우스 오른쪽 단추로 클릭합니다. 이때 클래스가 아니라 **역할**에서 **OrderProcessingRole**을 마우스 오른쪽 단추로 클릭해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-244">In **Solution Explorer**, right-click the **OrderProcessingRole** you created in step 5 (make sure that you right-click **OrderProcessingRole** under **Roles**, and not the class).</span></span> <span data-ttu-id="cdead-245">그런 다음 **속성**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-245">Then click **Properties**.</span></span>
-8. <span data-ttu-id="cdead-246">**속성** 대화 상자의 **설정** 탭에서 **Microsoft.ServiceBus.ConnectionString**의 **값** 상자 내부를 클릭한 다음 6단계에서 복사한 끝점 값을 붙여 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-246">On the **Settings** tab of the **Properties** dialog box, click inside the **Value** box for **Microsoft.ServiceBus.ConnectionString**, and then paste the endpoint value you copied in step 6.</span></span>
+5. <span data-ttu-id="539dc-241">Hello에 **이름** 상자, 이름 hello 프로젝트 **OrderProcessingRole**합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-241">In hello **Name** box, name hello project **OrderProcessingRole**.</span></span> <span data-ttu-id="539dc-242">그런 다음 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-242">Then click **Add**.</span></span>
+6. <span data-ttu-id="539dc-243">Hello "서비스 버스 네임 스페이스 만들기" 섹션 toohello 클립보드의 9 단계에서 가져온 hello 연결 문자열을 복사 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-243">Copy hello connection string that you obtained in step 9 of hello "Create a Service Bus namespace" section toohello clipboard.</span></span>
+7. <span data-ttu-id="539dc-244">**솔루션 탐색기**를 마우스 오른쪽 단추로 클릭 hello **OrderProcessingRole** 5 단계에서 만든 (오른쪽 단추로 클릭 하 고 있는지 확인 **OrderProcessingRole** 아래**역할**, 하지 클래스 hello 및).</span><span class="sxs-lookup"><span data-stu-id="539dc-244">In **Solution Explorer**, right-click hello **OrderProcessingRole** you created in step 5 (make sure that you right-click **OrderProcessingRole** under **Roles**, and not hello class).</span></span> <span data-ttu-id="539dc-245">그런 다음 **속성**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-245">Then click **Properties**.</span></span>
+8. <span data-ttu-id="539dc-246">Hello에 **설정** hello 탭 **속성** 대화 상자, hello 내부를 클릭 **값** 에 대 한 **Microsoft.ServiceBus.ConnectionString**, 6 단계에서 복사한 hello 끝점 값을 붙여 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-246">On hello **Settings** tab of hello **Properties** dialog box, click inside hello **Value** box for **Microsoft.ServiceBus.ConnectionString**, and then paste hello endpoint value you copied in step 6.</span></span>
    
    ![][25]
-9. <span data-ttu-id="cdead-247">**OnlineOrder** 클래스를 만들어 큐에서 처리할 때 주문을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-247">Create an **OnlineOrder** class to represent the orders as you process them from the queue.</span></span> <span data-ttu-id="cdead-248">이미 만든 클래스를 다시 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-248">You can reuse a class you have already created.</span></span> <span data-ttu-id="cdead-249">**솔루션 탐색기**에서 **OrderProcessingRole** 클래스를 마우스 오른쪽 단추로 클릭합니다(역할이 아닌 클래스 아이콘을 마우스 오른쪽 단추로 클릭).</span><span class="sxs-lookup"><span data-stu-id="cdead-249">In **Solution Explorer**, right-click the **OrderProcessingRole** class (right-click the class icon, not the role).</span></span> <span data-ttu-id="cdead-250">**추가**를 클릭한 후 **기존 항목**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-250">Click **Add**, then click **Existing Item**.</span></span>
-10. <span data-ttu-id="cdead-251">**FrontendWebRole\Models**의 하위 폴더로 이동하고 **OnlineOrder.cs**를 두 번 클릭하여 이 프로젝트에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-251">Browse to the subfolder for **FrontendWebRole\Models**, and then double-click **OnlineOrder.cs** to add it to this project.</span></span>
-11. <span data-ttu-id="cdead-252">**WorkerRole.cs**에서 다음 코드와 같이 **QueueName** 변수 값을 `"ProcessingQueue"`에서 `"OrdersQueue"`(으)로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-252">In **WorkerRole.cs**, change the value of the **QueueName** variable from `"ProcessingQueue"` to `"OrdersQueue"` as shown in the following code.</span></span>
+9. <span data-ttu-id="539dc-247">만들기는 **OnlineOrder** hello 큐에서 처리 하는 동안 toorepresent hello orders 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-247">Create an **OnlineOrder** class toorepresent hello orders as you process them from hello queue.</span></span> <span data-ttu-id="539dc-248">이미 만든 클래스를 다시 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-248">You can reuse a class you have already created.</span></span> <span data-ttu-id="539dc-249">**솔루션 탐색기**를 마우스 오른쪽 단추로 클릭 hello **OrderProcessingRole** 클래스 (하지 hello 역할, hello 클래스 아이콘을 마우스 오른쪽 단추 클릭).</span><span class="sxs-lookup"><span data-stu-id="539dc-249">In **Solution Explorer**, right-click hello **OrderProcessingRole** class (right-click hello class icon, not hello role).</span></span> <span data-ttu-id="539dc-250">**추가**를 클릭한 후 **기존 항목**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-250">Click **Add**, then click **Existing Item**.</span></span>
+10. <span data-ttu-id="539dc-251">Toohello 하위 폴더에 대 한 찾아보기 **FrontendWebRole\Models**를 두 번 클릭 하 고 **OnlineOrder.cs** tooadd 것 toothis 프로젝트.</span><span class="sxs-lookup"><span data-stu-id="539dc-251">Browse toohello subfolder for **FrontendWebRole\Models**, and then double-click **OnlineOrder.cs** tooadd it toothis project.</span></span>
+11. <span data-ttu-id="539dc-252">**WorkerRole.cs**, hello의 hello 값 변경 **QueueName** 변수 `"ProcessingQueue"` 너무`"OrdersQueue"` hello 코드 다음에 표시 된 대로 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-252">In **WorkerRole.cs**, change hello value of hello **QueueName** variable from `"ProcessingQueue"` too`"OrdersQueue"` as shown in hello following code.</span></span>
     
     ```csharp
-    // The name of your queue.
+    // hello name of your queue.
     const string QueueName = "OrdersQueue";
     ```
-12. <span data-ttu-id="cdead-253">WorkerRole.cs 파일 맨 위에 다음 using 문을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-253">Add the following using statement at the top of the WorkerRole.cs file.</span></span>
+12. <span data-ttu-id="539dc-253">Hello 다음 추가 문을 사용 하 여 hello hello WorkerRole.cs 파일 위쪽에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-253">Add hello following using statement at hello top of hello WorkerRole.cs file.</span></span>
     
     ```csharp
     using FrontendWebRole.Models;
     ```
-13. <span data-ttu-id="cdead-254">`Run()` 함수의 `OnMessage()` 호출 내에서 `try` 절의 내용을 다음 코드로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-254">In the `Run()` function, inside the `OnMessage()` call, replace the contents of the `try` clause with the following code.</span></span>
+13. <span data-ttu-id="539dc-254">Hello에 `Run()` 함수 hello 내부 `OnMessage()` 호출, hello hello 내용 바꾸기 `try` 코드 다음 hello로 절.</span><span class="sxs-lookup"><span data-stu-id="539dc-254">In hello `Run()` function, inside hello `OnMessage()` call, replace hello contents of hello `try` clause with hello following code.</span></span>
     
     ```csharp
     Trace.WriteLine("Processing", receivedMessage.SequenceNumber.ToString());
-    // View the message as an OnlineOrder.
+    // View hello message as an OnlineOrder.
     OnlineOrder order = receivedMessage.GetBody<OnlineOrder>();
     Trace.WriteLine(order.Customer + ": " + order.Product, "ProcessingMessage");
     receivedMessage.Complete();
     ```
-14. <span data-ttu-id="cdead-255">응용 프로그램을 완성했습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-255">You have completed the application.</span></span> <span data-ttu-id="cdead-256">솔루션 탐색기에서 MultiTierApp 프로젝트를 마우스 오른쪽 단추로 클릭하고 **시작 프로젝트로 설정**을 선택한 후 F5 키를 눌러 전체 응용 프로그램을 테스트할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-256">You can test the full application by right-clicking the MultiTierApp project in Solution Explorer, selecting **Set as Startup Project**, and then pressing F5.</span></span> <span data-ttu-id="cdead-257">작업자 역할에서 큐의 항목을 처리하고 완료로 표시하므로 메시지 수가 증가하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-257">Note that the message count does not increment, because the worker role processes items from the queue and marks them as complete.</span></span> <span data-ttu-id="cdead-258">Azure 계산 에뮬레이터 UI를 표시하여 작업자 역할의 추적 출력을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-258">You can see the trace output of your worker role by viewing the Azure Compute Emulator UI.</span></span> <span data-ttu-id="cdead-259">이 작업은 작업 표시줄의 알림 영역에 있는 에뮬레이터 아이콘을 마우스 오른쪽 단추로 클릭하고 **계산 에뮬레이터 UI 표시**를 선택하여 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="cdead-259">You can do this by right-clicking the emulator icon in the notification area of your taskbar and selecting **Show Compute Emulator UI**.</span></span>
+14. <span data-ttu-id="539dc-255">Hello 응용 프로그램을 완료 했습니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-255">You have completed hello application.</span></span> <span data-ttu-id="539dc-256">솔루션 탐색기에서 hello MultiTierApp 프로젝트를 마우스 오른쪽 단추로 클릭 하 여 hello 전체 응용 프로그램을 테스트할 수 있습니다 선택 **시작 프로젝트로 설정**, 한 다음 F5 키를 눌러 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-256">You can test hello full application by right-clicking hello MultiTierApp project in Solution Explorer, selecting **Set as Startup Project**, and then pressing F5.</span></span> <span data-ttu-id="539dc-257">메시지 수는 증가 하지 않습니다 hello 작업자 역할 hello 큐에서 항목을 처리 하 고 완료 된 것으로 표시 하기 때문에 유의 합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-257">Note that the message count does not increment, because hello worker role processes items from hello queue and marks them as complete.</span></span> <span data-ttu-id="539dc-258">Hello Azure 계산 에뮬레이터 UI를 확인 하 여 작업자 역할의 hello 추적 출력을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-258">You can see hello trace output of your worker role by viewing hello Azure Compute Emulator UI.</span></span> <span data-ttu-id="539dc-259">작업 표시줄의 알림 영역 hello에에서 hello 에뮬레이터 아이콘을 마우스 오른쪽 단추로 클릭 하 고 선택 하 여이 작업을 수행할 수 **계산 에뮬레이터 UI 표시**합니다.</span><span class="sxs-lookup"><span data-stu-id="539dc-259">You can do this by right-clicking hello emulator icon in hello notification area of your taskbar and selecting **Show Compute Emulator UI**.</span></span>
     
     ![][19]
     
     ![][20]
 
-## <a name="next-steps"></a><span data-ttu-id="cdead-260">다음 단계</span><span class="sxs-lookup"><span data-stu-id="cdead-260">Next steps</span></span>
-<span data-ttu-id="cdead-261">서비스 버스에 대한 자세한 내용은 다음 리소스를 참조하십시오.</span><span class="sxs-lookup"><span data-stu-id="cdead-261">To learn more about Service Bus, see the following resources:</span></span>  
+## <a name="next-steps"></a><span data-ttu-id="539dc-260">다음 단계</span><span class="sxs-lookup"><span data-stu-id="539dc-260">Next steps</span></span>
+<span data-ttu-id="539dc-261">서비스 버스에 대 한 자세한 toolearn hello 다음 리소스 참조:</span><span class="sxs-lookup"><span data-stu-id="539dc-261">toolearn more about Service Bus, see hello following resources:</span></span>  
 
-* <span data-ttu-id="cdead-262">[Azure Service Bus 설명서][sbdocs]</span><span class="sxs-lookup"><span data-stu-id="cdead-262">[Azure Service Bus documentation][sbdocs]</span></span>  
-* <span data-ttu-id="cdead-263">[Service Bus 서비스 페이지][sbacom]</span><span class="sxs-lookup"><span data-stu-id="cdead-263">[Service Bus service page][sbacom]</span></span>  
-* <span data-ttu-id="cdead-264">[Service Bus 큐를 사용하는 방법][sbacomqhowto]</span><span class="sxs-lookup"><span data-stu-id="cdead-264">[How to Use Service Bus Queues][sbacomqhowto]</span></span>  
+* <span data-ttu-id="539dc-262">[Azure Service Bus 설명서][sbdocs]</span><span class="sxs-lookup"><span data-stu-id="539dc-262">[Azure Service Bus documentation][sbdocs]</span></span>  
+* <span data-ttu-id="539dc-263">[Service Bus 서비스 페이지][sbacom]</span><span class="sxs-lookup"><span data-stu-id="539dc-263">[Service Bus service page][sbacom]</span></span>  
+* <span data-ttu-id="539dc-264">[어떻게 tooUse 서비스 버스 큐][sbacomqhowto]</span><span class="sxs-lookup"><span data-stu-id="539dc-264">[How tooUse Service Bus Queues][sbacomqhowto]</span></span>  
 
-<span data-ttu-id="cdead-265">다중 계층 시나리오에 대한 자세한 내용은 다음을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="cdead-265">To learn more about multi-tier scenarios, see:</span></span>  
+<span data-ttu-id="539dc-265">다중 계층 시나리오에 대해 자세히 toolearn 참조:</span><span class="sxs-lookup"><span data-stu-id="539dc-265">toolearn more about multi-tier scenarios, see:</span></span>  
 
-* <span data-ttu-id="cdead-266">[저장소 테이블, 큐 및 Blob을 사용하는 .NET 다중 계층 응용 프로그램][mutitierstorage]</span><span class="sxs-lookup"><span data-stu-id="cdead-266">[.NET Multi-Tier Application Using Storage Tables, Queues, and Blobs][mutitierstorage]</span></span>  
+* <span data-ttu-id="539dc-266">[저장소 테이블, 큐 및 Blob을 사용하는 .NET 다중 계층 응용 프로그램][mutitierstorage]</span><span class="sxs-lookup"><span data-stu-id="539dc-266">[.NET Multi-Tier Application Using Storage Tables, Queues, and Blobs][mutitierstorage]</span></span>  
 
 [0]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-app.png
 [1]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-100.png

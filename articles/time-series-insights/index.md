@@ -1,6 +1,6 @@
 ---
-title: "Azure Time Series Insights 설명서 - 자습서, API 참조 | Microsoft Docs"
-description: "완전히 관리되는 이벤트 처리를 사용하여 클라우드에서 IoT 분석을 실행하는 방법에 대해 알아봅니다. 응용 프로그램, 센서, 장치 등에서 실시간으로 데이터를 분석합니다."
+title: "aaaAzure 시간 계열 Insights 설명서-자습서, API 참조 | Microsoft Docs"
+description: "어떻게 hello에서 toorun IoT 분석 하 여 클라우드로 완전히 관리 되는 이벤트 처리에 알아봅니다. 응용 프로그램, 센서, 장치 등에서 실시간으로 데이터를 분석합니다."
 services: time-series-insights
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 04/13/2017
 ms.author: carolz
-ms.openlocfilehash: d22a3f0484da78d03dbe8411e74eb408185b1f30
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2301d20aa2fb685279e2efc657ffcd41571af0c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-time-series-insights-documentation"></a>Azure Time Series Insights 설명서 
  
-Time Series Insights 환경을 설정하고 IoT 솔루션 또는 연결된 사물의 시계열 데이터를 탐색 및 분석하는 방법에 대해 알아봅니다. 설명서에서는 필수 구성 요소, 방법, API 참조와 신속하게 시작하는 데 도움이 되는 기타 설명서를 공유합니다. 
+시간 시계열 Insights 환 tooset를 탐색 및 IoT 솔루션의 시계열 데이터를 분석 하거나 작업 연결 방법에 대해 알아봅니다. 문서 공유 hello 필수 구성 요소를 어떻게, API 참조 및 기타 설명서 toohelp 있습니다 tooget 분에 시작 합니다. 
  
 <ul class="panelContent cardsFTitle"> 
     <li> 

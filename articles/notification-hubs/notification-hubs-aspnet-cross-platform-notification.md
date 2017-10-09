@@ -1,6 +1,6 @@
 ---
-title: "알림 허브를 통해 사용자에게 크로스 플랫폼 알림 보내기(ASP.NET)"
-description: "알림 허브 템플릿을 사용하여 모든 플랫폼을 대상으로 하는 플랫폼 중립적인 알림을 단일 요청으로 보내는 방법을 보여 줍니다."
+title: "알림 허브 (ASP.NET)와 aaaSend 플랫폼 간 알림 toousers"
+description: "자세한 내용은 방법 toouse 알림 허브 템플릿 toosend 단일 요청에서 모든 플랫폼을 대상 플랫폼 제약 없는 알림입니다."
 services: notification-hubs
 documentationcenter: 
 author: ysxu
@@ -14,26 +14,26 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: ef971fcfe68978ea9ce0810c69efbe134bb15f8a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f105b871b809e739dd5c05ea819ad135e842ebb0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="send-cross-platform-notifications-to-users-with-notification-hubs"></a><span data-ttu-id="31f47-103">알림 허브를 통해 사용자에게 크로스 플랫폼 알림 보내기</span><span class="sxs-lookup"><span data-stu-id="31f47-103">Send cross-platform notifications to users with Notification Hubs</span></span>
-<span data-ttu-id="31f47-104">이전 자습서인 [알림 허브를 통해 사용자에게 알림]에서는 인증된 특정 사용자가 등록한 모든 장치에 알림을 푸시하는 방법을 배웠습니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-104">In the previous tutorial [Notify users with Notification Hubs], you learned how to push notifications to all devices registered by a specific authenticated user.</span></span> <span data-ttu-id="31f47-105">해당 자습서에서는 지원되는 각 클라이언트 플랫폼에 알림을 보내기 위해 여러 요청이 필요했습니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-105">In that tutorial, multiple requests were required to send a notification to each supported client platform.</span></span> <span data-ttu-id="31f47-106">알림 허브는 특정 장치가 알림을 받는 방법을 지정할 수 있는 템플릿을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-106">Notification Hubs supports templates, which let you specify how a specific device wants to receive notifications.</span></span> <span data-ttu-id="31f47-107">이 경우 크로스 플랫폼 알림 전송이 간소화됩니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-107">This simplifies sending cross-platform notifications.</span></span> <span data-ttu-id="31f47-108">이 항목에서는 템플릿을 사용하여 단일 요청으로 모든 플랫폼을 대상으로 하는, 플랫폼을 알 수 없는 알림을 보내는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-108">This topic demonstrates how to take advantage of templates to send, in a single request, a platform-agnostic notification that targets all platforms.</span></span> <span data-ttu-id="31f47-109">템플릿에 대한 자세한 내용은 [Azure Notification Hubs 개요][Templates]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="31f47-109">For more detailed information about templates, see [Azure Notification Hubs Overview][Templates].</span></span>
+# <a name="send-cross-platform-notifications-toousers-with-notification-hubs"></a><span data-ttu-id="d35ad-103">알림 허브와 toousers 플랫폼 간 알림 보내기</span><span class="sxs-lookup"><span data-stu-id="d35ad-103">Send cross-platform notifications toousers with Notification Hubs</span></span>
+<span data-ttu-id="d35ad-104">Hello 이전 자습서에서 [알림 허브와 사용자에 게 알림], toopush 알림 tooall 장치는 특정 인증 된 사용자가 등록 하는 방법을 배웠습니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-104">In hello previous tutorial [Notify users with Notification Hubs], you learned how toopush notifications tooall devices registered by a specific authenticated user.</span></span> <span data-ttu-id="d35ad-105">이 자습서에서는 여러 요청 필요한 toosend 알림 tooeach 지원 클라이언트 플랫폼 이었습니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-105">In that tutorial, multiple requests were required toosend a notification tooeach supported client platform.</span></span> <span data-ttu-id="d35ad-106">알림 허브 수 있는 템플릿을 지 원하는 특정 장치 tooreceive 알림을가 하는 방법을 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-106">Notification Hubs supports templates, which let you specify how a specific device wants tooreceive notifications.</span></span> <span data-ttu-id="d35ad-107">이 경우 크로스 플랫폼 알림 전송이 간소화됩니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-107">This simplifies sending cross-platform notifications.</span></span> <span data-ttu-id="d35ad-108">이 항목에서 설명 방법을 단일 요청에서 모든 플랫폼을 대상 플랫폼 제약 없는 알림 템플릿 toosend tootake 활용 합니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-108">This topic demonstrates how tootake advantage of templates toosend, in a single request, a platform-agnostic notification that targets all platforms.</span></span> <span data-ttu-id="d35ad-109">템플릿에 대한 자세한 내용은 [Azure Notification Hubs 개요][Templates]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="d35ad-109">For more detailed information about templates, see [Azure Notification Hubs Overview][Templates].</span></span>
 > [!IMPORTANT]
-> <span data-ttu-id="31f47-110">Windows Phone 프로젝트 8.1 및 이전 버전은 Visual Studio 2017에서 지원되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-110">Windows Phone projects 8.1 and earlier are not supported using Visual Studio 2017.</span></span> <span data-ttu-id="31f47-111">자세한 내용은 [Visual Studio 2017 플랫폼 대상 지정 및 호환성](https://www.visualstudio.com/en-us/productinfo/vs2017-compatibility-vs)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="31f47-111">For more information, see [Visual Studio 2017 Platform Targeting and Compatibility](https://www.visualstudio.com/en-us/productinfo/vs2017-compatibility-vs).</span></span>
+> <span data-ttu-id="d35ad-110">Windows Phone 프로젝트 8.1 및 이전 버전은 Visual Studio 2017에서 지원되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-110">Windows Phone projects 8.1 and earlier are not supported using Visual Studio 2017.</span></span> <span data-ttu-id="d35ad-111">자세한 내용은 [Visual Studio 2017 플랫폼 대상 지정 및 호환성](https://www.visualstudio.com/en-us/productinfo/vs2017-compatibility-vs)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="d35ad-111">For more information, see [Visual Studio 2017 Platform Targeting and Compatibility](https://www.visualstudio.com/en-us/productinfo/vs2017-compatibility-vs).</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="31f47-112">알림 허브를 사용하면 장치가 동일한 태그로 여러 템플릿을 등록할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-112">Notification Hubs allows a device to register multiple templates with the same tag.</span></span> <span data-ttu-id="31f47-113">이 경우 해당 태그를 대상으로 들어오는 메시지가 있으면 각 템플릿에 대해 하나씩 여러 개의 알림이 장치에 전달됩니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-113">In this case, an incoming message targeting that tag results in multiple notifications delivered to the device, one for each template.</span></span> <span data-ttu-id="31f47-114">이런 방식으로 Windows 스토어 앱에 알림 메시지와 배지 둘 다로 표시하는 등 여러 시각적 알림에 동일한 메시지를 표시할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-114">This enables you to display the same message in multiple visual notifications, such as both as a badge and as a toast notification in a Windows Store app.</span></span>
+> <span data-ttu-id="d35ad-112">알림 허브 사용 하면 장치 tooregister hello 사용 하 여 여러 템플릿을 같은 태그입니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-112">Notification Hubs allows a device tooregister multiple templates with hello same tag.</span></span> <span data-ttu-id="d35ad-113">이 경우 들어오는 메시지에서 여러 개의 알림이 태그에 결과 대상으로 배달 각 템플릿에 대해 하나 toohello 장치.</span><span class="sxs-lookup"><span data-stu-id="d35ad-113">In this case, an incoming message targeting that tag results in multiple notifications delivered toohello device, one for each template.</span></span> <span data-ttu-id="d35ad-114">Toodisplay 있습니다 hello 배지로 Windows 스토어 앱에 알림 메시지 둘 다 등의 여러 시각적 알림의 동일 메시지 따라서 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-114">This enables you toodisplay hello same message in multiple visual notifications, such as both as a badge and as a toast notification in a Windows Store app.</span></span>
 > 
 > 
 
-<span data-ttu-id="31f47-115">템플릿을 사용하여 크로스 플랫폼 알림을 보내려면 다음 단계를 따르십시오.</span><span class="sxs-lookup"><span data-stu-id="31f47-115">Complete the following steps to send cross-platform notifications using templates:</span></span>
+<span data-ttu-id="d35ad-115">Hello 단계 toosend 플랫폼 간 알림 템플릿을 사용 하 여 다음을 완료 합니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-115">Complete hello following steps toosend cross-platform notifications using templates:</span></span>
 
-1. <span data-ttu-id="31f47-116">Visual Studio의 솔루션 탐색기에서 **컨트롤러** 폴더를 확장한 다음 RegisterController.cs 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-116">In the Solution Explorer in Visual Studio, expand the **Controllers** folder, then open the RegisterController.cs file.</span></span>
-2. <span data-ttu-id="31f47-117">**Put** 메서드에서 새 등록을 만드는 코드 블록을 찾아서 `switch`의 내용을 다음 코드로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-117">Locate the block of code in the **Put** method that creates a new registration replace the `switch` content with the following code:</span></span>
+1. <span data-ttu-id="d35ad-116">Hello Visual Studio의 솔루션 탐색기에서에서 확장 hello **컨트롤러** 폴더를 다음 열기 hello RegisterController.cs 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-116">In hello Solution Explorer in Visual Studio, expand hello **Controllers** folder, then open hello RegisterController.cs file.</span></span>
+2. <span data-ttu-id="d35ad-117">Hello에 hello 코드 블록을 찾아 **배치** 새 등록을 만드는 메서드를 대체 hello `switch` 코드 다음 hello를 사용 하 여 콘텐츠:</span><span class="sxs-lookup"><span data-stu-id="d35ad-117">Locate hello block of code in hello **Put** method that creates a new registration replace hello `switch` content with hello following code:</span></span>
    
         switch (deviceUpdate.Platform)
         {
@@ -62,8 +62,8 @@ ms.lasthandoff: 08/18/2017
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
         }
    
-    <span data-ttu-id="31f47-118">이 코드는 플랫폼 특정 메서드를 호출하여 기본 등록이 아니라 템플릿 등록을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-118">This code calls the platform-specific method to create a template registration instead of a native registration.</span></span> <span data-ttu-id="31f47-119">템플릿 등록은 기본 등록에서 파생되므로 기존 등록을 수정할 필요는 없습니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-119">Existing registrations need not be modified because template registrations derive from native registrations.</span></span>
-3. <span data-ttu-id="31f47-120">**알림** 컨트롤러에서 **sendNotification** 메서드를 다음 코드로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-120">In the **Notifications** controller, replace the **sendNotification** method with the following code:</span></span>
+    <span data-ttu-id="d35ad-118">이 코드는 hello 플랫폼별 메서드 toocreate 네이티브 등록 하는 대신 템플릿 등록을 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-118">This code calls hello platform-specific method toocreate a template registration instead of a native registration.</span></span> <span data-ttu-id="d35ad-119">템플릿 등록은 기본 등록에서 파생되므로 기존 등록을 수정할 필요는 없습니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-119">Existing registrations need not be modified because template registrations derive from native registrations.</span></span>
+3. <span data-ttu-id="d35ad-120">Hello에 **알림** 컨트롤러, replace hello **sendNotification** 메서드 코드 다음 hello로:</span><span class="sxs-lookup"><span data-stu-id="d35ad-120">In hello **Notifications** controller, replace hello **sendNotification** method with hello following code:</span></span>
    
         public async Task<HttpResponseMessage> Post()
         {
@@ -76,18 +76,18 @@ ms.lasthandoff: 08/18/2017
             return Request.CreateResponse(HttpStatusCode.OK);
         }
    
-    <span data-ttu-id="31f47-121">이 코드는 네이티브 페이로드를 지정할 필요 없이 동시에 모든 플랫폼에 알림을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-121">This code sends a notification to all platforms at the same time and without having to specify a native payload.</span></span> <span data-ttu-id="31f47-122">Notification Hubs는 등록된 템플릿에 지정된 대로 올바른 페이로드를 작성하고 제공된 *태그* 값을 가진 모든 장치에 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-122">Notification Hubs builds and delivers the correct payload to every device with the provided *tag* value, as specified in the registered templates.</span></span>
-4. <span data-ttu-id="31f47-123">WebApi 백 엔드 프로젝트를 다시 게시합니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-123">Re-publish your WebApi back-end project.</span></span>
-5. <span data-ttu-id="31f47-124">클라이언트 앱을 다시 실행하고 등록이 성공했는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-124">Run the client app again and verify that registration succeeds.</span></span>
-6. <span data-ttu-id="31f47-125">(옵션) 클라이언트 앱을 두 번째 장치에 배포한 후 앱을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-125">(Optional) Deploy the client app to a second device, then run the app.</span></span>
+    <span data-ttu-id="d35ad-121">이 코드 tooall 플랫폼 알림을 전송에서 hello 동일한 시간 및 toospecify 필요 없이 원시 페이로드입니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-121">This code sends a notification tooall platforms at hello same time and without having toospecify a native payload.</span></span> <span data-ttu-id="d35ad-122">알림 허브 빌드되고 제공 제공 hello로 올바른 페이로드 tooevery 장치 hello *태그* hello 등록 서식 파일에 지정 된 값입니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-122">Notification Hubs builds and delivers hello correct payload tooevery device with hello provided *tag* value, as specified in hello registered templates.</span></span>
+4. <span data-ttu-id="d35ad-123">WebApi 백 엔드 프로젝트를 다시 게시합니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-123">Re-publish your WebApi back-end project.</span></span>
+5. <span data-ttu-id="d35ad-124">Hello 클라이언트 응용 프로그램을 다시 실행 하 고 등록에 성공 했는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-124">Run hello client app again and verify that registration succeeds.</span></span>
+6. <span data-ttu-id="d35ad-125">(선택 사항) Hello 클라이언트 응용 프로그램 tooa 두 번째 장치를 배포한 다음 hello 응용 프로그램을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-125">(Optional) Deploy hello client app tooa second device, then run hello app.</span></span>
    
-    <span data-ttu-id="31f47-126">각 장치에 알림이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-126">Note that a notification is displayed on each device.</span></span>
+    <span data-ttu-id="d35ad-126">각 장치에 알림이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-126">Note that a notification is displayed on each device.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="31f47-127">다음 단계</span><span class="sxs-lookup"><span data-stu-id="31f47-127">Next Steps</span></span>
-<span data-ttu-id="31f47-128">이 자습서를 마쳤습니다. 이제 다음 항목에서 알림 허브 및 템플릿에 대해 자세히 알아보십시오.</span><span class="sxs-lookup"><span data-stu-id="31f47-128">Now that you have completed this tutorial, find out more about Notification Hubs and templates in these topics:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d35ad-127">다음 단계</span><span class="sxs-lookup"><span data-stu-id="d35ad-127">Next Steps</span></span>
+<span data-ttu-id="d35ad-128">이 자습서를 마쳤습니다. 이제 다음 항목에서 알림 허브 및 템플릿에 대해 자세히 알아보십시오.</span><span class="sxs-lookup"><span data-stu-id="d35ad-128">Now that you have completed this tutorial, find out more about Notification Hubs and templates in these topics:</span></span>
 
-* <span data-ttu-id="31f47-129">**[Notification Hubs를 사용하여 뉴스 속보 보내기]**</span><span class="sxs-lookup"><span data-stu-id="31f47-129">**[Use Notification Hubs to send breaking news]**</span></span> <br/><span data-ttu-id="31f47-130">다른 템플릿 사용 시나리오를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-130">Demonstrates another scenario for using templates</span></span>
-* <span data-ttu-id="31f47-131">**[Azure Notification Hubs 개요][Templates]**</span><span class="sxs-lookup"><span data-stu-id="31f47-131">**[Azure Notification Hubs Overview][Templates]**</span></span><br/><span data-ttu-id="31f47-132">개요 항목에는 템플릿에 대한 세부 정보가 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="31f47-132">Overview topic has more detailed information on templates.</span></span>
+* <span data-ttu-id="d35ad-129">**[알림 허브 toosend 최신 뉴스를 사용 하 여]**</span><span class="sxs-lookup"><span data-stu-id="d35ad-129">**[Use Notification Hubs toosend breaking news]**</span></span> <br/><span data-ttu-id="d35ad-130">다른 템플릿 사용 시나리오를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-130">Demonstrates another scenario for using templates</span></span>
+* <span data-ttu-id="d35ad-131">**[Azure Notification Hubs 개요][Templates]**</span><span class="sxs-lookup"><span data-stu-id="d35ad-131">**[Azure Notification Hubs Overview][Templates]**</span></span><br/><span data-ttu-id="d35ad-132">개요 항목에는 템플릿에 대한 세부 정보가 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d35ad-132">Overview topic has more detailed information on templates.</span></span>
 
 <!-- Anchors. -->
 
@@ -97,12 +97,12 @@ ms.lasthandoff: 08/18/2017
 
 
 <!-- URLs. -->
-[Push to users ASP.NET]: /manage/services/notification-hubs/notify-users-aspnet
-[Push to users Mobile Services]: /manage/services/notification-hubs/notify-users/
+[Push toousers ASP.NET]: /manage/services/notification-hubs/notify-users-aspnet
+[Push toousers Mobile Services]: /manage/services/notification-hubs/notify-users/
 [Visual Studio 2012 Express for Windows 8]: http://go.microsoft.com/fwlink/?LinkId=257546
 
-<span data-ttu-id="31f47-133">[Notification Hubs를 사용하여 뉴스 속보 보내기]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md</span><span class="sxs-lookup"><span data-stu-id="31f47-133">[Use Notification Hubs to send breaking news]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md</span></span>
+[알림 허브 toosend 최신 뉴스를 사용 하 여]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
 [Azure Notification Hubs]: http://go.microsoft.com/fwlink/p/?LinkId=314257
-<span data-ttu-id="31f47-134">[알림 허브를 통해 사용자에게 알림]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md</span><span class="sxs-lookup"><span data-stu-id="31f47-134">[Notify users with Notification Hubs]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md</span></span>
+[알림 허브와 사용자에 게 알림]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
 [Templates]: http://go.microsoft.com/fwlink/p/?LinkId=317339
-[Notification Hub How to for Windows Store]: http://msdn.microsoft.com/library/windowsazure/jj927172.aspx
+[Notification Hub How toofor Windows Store]: http://msdn.microsoft.com/library/windowsazure/jj927172.aspx

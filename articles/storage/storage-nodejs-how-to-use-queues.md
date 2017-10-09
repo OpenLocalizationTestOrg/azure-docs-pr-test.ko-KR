@@ -1,6 +1,6 @@
 ---
-title: "Node.js에서 큐 저장소를 사용하는 방법 | Microsoft Docs"
-description: "Azure 큐 서비스를 사용하여 큐를 작성 및 삭제하고 메시지를 삽입하고 가져오고 삭제하는 방법을 알아봅니다. 샘플은 Node.js로 작성되었습니다."
+title: "Node.js에서 큐 저장소 aaaHow toouse | Microsoft Docs"
+description: "방법 toouse hello Azure 큐 서비스 toocreate 및 큐 삭제 및 삽입, 및 메시지 삭제에 대해 알아봅니다. 샘플은 Node.js로 작성되었습니다."
 services: storage
 documentationcenter: nodejs
 author: robinsh
@@ -14,33 +14,33 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
-ms.openlocfilehash: e30297bd0cc65105c92d6428035d2e6c156448af
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 977e5994c0be1b5d71c60b7479698ccb694ab860
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-queue-storage-from-nodejs"></a><span data-ttu-id="2c3f0-104">Node.js에서 큐 저장소를 사용하는 방법</span><span class="sxs-lookup"><span data-stu-id="2c3f0-104">How to use Queue storage from Node.js</span></span>
+# <a name="how-toouse-queue-storage-from-nodejs"></a><span data-ttu-id="b83b1-104">어떻게 toouse Node.js에서 큐 저장소</span><span class="sxs-lookup"><span data-stu-id="b83b1-104">How toouse Queue storage from Node.js</span></span>
 [!INCLUDE [storage-selector-queue-include](../../includes/storage-selector-queue-include.md)]
 
 [!INCLUDE [storage-check-out-samples-all](../../includes/storage-check-out-samples-all.md)]
 
-## <a name="overview"></a><span data-ttu-id="2c3f0-105">개요</span><span class="sxs-lookup"><span data-stu-id="2c3f0-105">Overview</span></span>
-<span data-ttu-id="2c3f0-106">이 가이드에서는 Microsoft Azure 큐 서비스를 사용하여 일반 시나리오를 수행하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-106">This guide shows you how to perform common scenarios using the Microsoft Azure Queue service.</span></span> <span data-ttu-id="2c3f0-107">샘플은 Node.js API를 사용하여 작성되었습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-107">The samples are written using the Node.js API.</span></span> <span data-ttu-id="2c3f0-108">여기서 다루는 시나리오에는 **큐 만들기 및 삭제**뿐만 아니라 큐 메시지 **삽입**, **보기**, **가져오기** 및 **삭제**가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-108">The scenarios covered include **inserting**, **peeking**, **getting**, and **deleting** queue messages, as well as **creating and deleting queues**.</span></span>
+## <a name="overview"></a><span data-ttu-id="b83b1-105">개요</span><span class="sxs-lookup"><span data-stu-id="b83b1-105">Overview</span></span>
+<span data-ttu-id="b83b1-106">이 가이드에서는 tooperform 일반적인 시나리오를 사용 하 여 Microsoft Azure 큐 서비스를 hello 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-106">This guide shows you how tooperform common scenarios using hello Microsoft Azure Queue service.</span></span> <span data-ttu-id="b83b1-107">hello 샘플 hello Node.js API를 사용 하 여 기록 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-107">hello samples are written using hello Node.js API.</span></span> <span data-ttu-id="b83b1-108">hello 가이드에서 다루는 시나리오 포함 **삽입**, **관찰**, **가져오는**, 및 **삭제** 메시지를 큐와  **만들기 및 큐 삭제**합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-108">hello scenarios covered include **inserting**, **peeking**, **getting**, and **deleting** queue messages, as well as **creating and deleting queues**.</span></span>
 
 [!INCLUDE [storage-queue-concepts-include](../../includes/storage-queue-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
-## <a name="create-a-nodejs-application"></a><span data-ttu-id="2c3f0-109">Node.js 응용 프로그램 만들기</span><span class="sxs-lookup"><span data-stu-id="2c3f0-109">Create a Node.js Application</span></span>
-<span data-ttu-id="2c3f0-110">빈 Node.js 응용 프로그램을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-110">Create a blank Node.js application.</span></span> <span data-ttu-id="2c3f0-111">Node.js 응용 프로그램을 만드는 방법에 대한 지침은 [Azure App Service에서 Node.js 웹앱 만들기], [Azure Cloud Service에 Node.js 응용 프로그램 빌드 및 배포](Windows PowerShell 사용) 또는 [Web Matrix를 사용하여 Azure에 Node.js 웹앱 빌드 및 배포]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-111">For instructions creating a Node.js application, see [Create a Node.js web app in Azure App Service], [Build and deploy a Node.js application to an Azure Cloud Service] using Windows PowerShell, or [Build and deploy a Node.js web app to Azure using Web Matrix].</span></span>
+## <a name="create-a-nodejs-application"></a><span data-ttu-id="b83b1-109">Node.js 응용 프로그램 만들기</span><span class="sxs-lookup"><span data-stu-id="b83b1-109">Create a Node.js Application</span></span>
+<span data-ttu-id="b83b1-110">빈 Node.js 응용 프로그램을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-110">Create a blank Node.js application.</span></span> <span data-ttu-id="b83b1-111">Node.js 응용 프로그램을 만드는 지침은 [Azure 앱 서비스에 Node.js 웹 응용 프로그램을 만들], [빌드하고 Node.js 응용 프로그램 tooan Azure 클라우드 서비스 배포] 또는WindowsPowerShell을사용하여[ 빌드 및 배포 웹 매트릭스를 사용 하는 Node.js 웹 응용 프로그램 tooAzure]합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-111">For instructions creating a Node.js application, see [Create a Node.js web app in Azure App Service], [Build and deploy a Node.js application tooan Azure Cloud Service] using Windows PowerShell, or [Build and deploy a Node.js web app tooAzure using Web Matrix].</span></span>
 
-## <a name="configure-your-application-to-access-storage"></a><span data-ttu-id="2c3f0-112">저장소에 액세스하도록 응용 프로그램 구성</span><span class="sxs-lookup"><span data-stu-id="2c3f0-112">Configure Your Application to Access Storage</span></span>
-<span data-ttu-id="2c3f0-113">Azure 저장소를 사용하려면 저장소 REST 서비스와 통신하는 편리한 라이브러리 집합이 포함되어 있는 Node.js용 Azure 저장소 SDK가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-113">To use Azure storage, you need the Azure Storage SDK for Node.js, which includes a set of convenience libraries that communicate with the storage REST services.</span></span>
+## <a name="configure-your-application-tooaccess-storage"></a><span data-ttu-id="b83b1-112">응용 프로그램 tooAccess 저장소 구성</span><span class="sxs-lookup"><span data-stu-id="b83b1-112">Configure Your Application tooAccess Storage</span></span>
+<span data-ttu-id="b83b1-113">Azure 저장소 toouse hello 저장소 REST 서비스와 통신 하는 편리한 라이브러리의 집합을 포함 하는 Node.js 용 hello Azure 저장소 SDK 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-113">toouse Azure storage, you need hello Azure Storage SDK for Node.js, which includes a set of convenience libraries that communicate with hello storage REST services.</span></span>
 
-### <a name="use-node-package-manager-npm-to-obtain-the-package"></a><span data-ttu-id="2c3f0-114">NPM(Node Package Manager)을 사용하여 패키지 가져오기</span><span class="sxs-lookup"><span data-stu-id="2c3f0-114">Use Node Package Manager (NPM) to obtain the package</span></span>
-1. <span data-ttu-id="2c3f0-115">**PowerShell**(Windows), **Terminal**(Mac) 또는 **Bash** (Unix)과 같은 명령줄 인터페이스를 사용하여 샘플 응용 프로그램을 만든 폴더로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-115">Use a command-line interface such as **PowerShell** (Windows,) **Terminal** (Mac,) or **Bash** (Unix), navigate to the folder where you created your sample application.</span></span>
-2. <span data-ttu-id="2c3f0-116">명령 창에 **npm install azure-storage** 를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-116">Type **npm install azure-storage** in the command window.</span></span> <span data-ttu-id="2c3f0-117">명령 출력은 다음 예제와 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-117">Output from the command is similar to the following example.</span></span>
+### <a name="use-node-package-manager-npm-tooobtain-hello-package"></a><span data-ttu-id="b83b1-114">노드 패키지 관리자 (NPM) tooobtain hello 패키지 사용</span><span class="sxs-lookup"><span data-stu-id="b83b1-114">Use Node Package Manager (NPM) tooobtain hello package</span></span>
+1. <span data-ttu-id="b83b1-115">와 같은 명령줄 인터페이스를 사용 하 여 **PowerShell** (Windows) **터미널** (Mac) 또는 **를 이용한 적** (Unix) toohello 폴더 예제 응용 프로그램을 만들 위치를 이동 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-115">Use a command-line interface such as **PowerShell** (Windows,) **Terminal** (Mac,) or **Bash** (Unix), navigate toohello folder where you created your sample application.</span></span>
+2. <span data-ttu-id="b83b1-116">형식 **npm 설치 azure storage** hello 명령 창에서.</span><span class="sxs-lookup"><span data-stu-id="b83b1-116">Type **npm install azure-storage** in hello command window.</span></span> <span data-ttu-id="b83b1-117">Hello 명령 출력은 다음 예제와 비슷한 toohello입니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-117">Output from hello command is similar toohello following example.</span></span>
  
     ```
     azure-storage@0.5.0 node_modules\azure-storage
@@ -55,28 +55,28 @@ ms.lasthandoff: 07/11/2017
     +-- request@2.57.0 (caseless@0.10.0, aws-sign2@0.5.0, forever-agent@0.6.1, stringstream@0.0.4, oauth-sign@0.8.0, tunnel-agent@0.4.1, isstream@0.1.2, json-stringify-safe@5.0.1, bl@0.9.4, combined-stream@1.0.5, qs@3.1.0, mime-types@2.0.14, form-data@0.2.0, http-signature@0.11.0, tough-cookie@2.0.0, hawk@2.3.1, har-validator@1.8.0)
     ```
 
-3. <span data-ttu-id="2c3f0-118">**ls** 명령을 수동으로 실행하여 **node\_modules** 폴더가 만들어졌는지 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-118">You can manually run the **ls** command to verify that a **node\_modules** folder was created.</span></span> <span data-ttu-id="2c3f0-119">이 폴더에서 저장소에 액세스하는 데 필요한 라이브러리가 들어 있는 **azure-storage** 패키지를 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-119">Inside that folder you will find the **azure-storage** package, which contains the libraries you need to access storage.</span></span>
+3. <span data-ttu-id="b83b1-118">Hello를 수동으로 실행할 수 있습니다 **ls** 명령 tooverify 하는 **노드\_모듈** 폴더를 만들었습니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-118">You can manually run hello **ls** command tooverify that a **node\_modules** folder was created.</span></span> <span data-ttu-id="b83b1-119">해당 폴더에 있습니다. hello **azure 저장소** 저장소에 액세스 해야 하는 hello 라이브러리를 포함 하는 패키지입니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-119">Inside that folder you will find hello **azure-storage** package, which contains hello libraries you need to access storage.</span></span>
 
-### <a name="import-the-package"></a><span data-ttu-id="2c3f0-120">패키지 가져오기</span><span class="sxs-lookup"><span data-stu-id="2c3f0-120">Import the package</span></span>
-<span data-ttu-id="2c3f0-121">메모장 또는 다른 텍스트 편집기를 사용하여 저장소를 사용할 응용 프로그램의 **server.js** 파일 맨 위에 다음을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-121">Using Notepad or another text editor, add the following to the top the **server.js** file of the application where you intend to use storage:</span></span>
+### <a name="import-hello-package"></a><span data-ttu-id="b83b1-120">Hello 패키지 가져오기</span><span class="sxs-lookup"><span data-stu-id="b83b1-120">Import hello package</span></span>
+<span data-ttu-id="b83b1-121">메모장 이나 다른 텍스트 편집기를 사용 하 여 추가 toohello 위쪽 다음 hello는 **server.js** toouse 저장소 이점을 얻을 수 hello 응용 프로그램의 파일:</span><span class="sxs-lookup"><span data-stu-id="b83b1-121">Using Notepad or another text editor, add hello following toohello top the **server.js** file of hello application where you intend toouse storage:</span></span>
 
 ```
 var azure = require('azure-storage');
 ```
 
-## <a name="setup-an-azure-storage-connection"></a><span data-ttu-id="2c3f0-122">Azure 저장소 연결 설정</span><span class="sxs-lookup"><span data-stu-id="2c3f0-122">Setup an Azure Storage Connection</span></span>
-<span data-ttu-id="2c3f0-123">Azure 모듈은 AZURE\_STORAGE\_ACCOUNT 및 AZURE\_STORAGE\_ACCESS\_KEY 또는 AZURE\_STORAGE\_CONNECTION\_STRING 환경 변수를 읽고 Azure Storage 계정에 연결하는 데 필요한 정보를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-123">The azure module will read the environment variables AZURE\_STORAGE\_ACCOUNT and AZURE\_STORAGE\_ACCESS\_KEY, or AZURE\_STORAGE\_CONNECTION\_STRING for information required to connect to your Azure storage account.</span></span> <span data-ttu-id="2c3f0-124">이러한 환경 변수가 설정되지 않은 경우 **createQueueService**를 호출할 때 계정 정보를 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-124">If these environment variables are not set, you must specify the account information when calling **createQueueService**.</span></span>
+## <a name="setup-an-azure-storage-connection"></a><span data-ttu-id="b83b1-122">Azure 저장소 연결 설정</span><span class="sxs-lookup"><span data-stu-id="b83b1-122">Setup an Azure Storage Connection</span></span>
+<span data-ttu-id="b83b1-123">hello azure 모듈 AZURE hello 환경 변수는 읽기\_저장소\_계정 및 AZURE\_저장소\_액세스\_키 또는 AZURE\_저장소\_연결 \_필요한 정보 tooconnect tooyour Azure 저장소 계정에 대 한 문자열입니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-123">hello azure module will read hello environment variables AZURE\_STORAGE\_ACCOUNT and AZURE\_STORAGE\_ACCESS\_KEY, or AZURE\_STORAGE\_CONNECTION\_STRING for information required tooconnect tooyour Azure storage account.</span></span> <span data-ttu-id="b83b1-124">호출할 때 hello 계정 정보를 지정 해야 이러한 환경 변수가 설정 되지 않은 경우 **createQueueService**합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-124">If these environment variables are not set, you must specify hello account information when calling **createQueueService**.</span></span>
 
-<span data-ttu-id="2c3f0-125">Azure 웹 사이트의 [Azure Portal](https://portal.azure.com)에서 환경 변수를 설정하는 방법에 대한 예제는 [Azure Table Service를 사용하는 Node.js 웹앱]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-125">For an example of setting the environment variables in the [Azure Portal](https://portal.azure.com) for an Azure Website, see [Node.js web app using the Azure Table Service].</span></span>
+<span data-ttu-id="b83b1-125">Hello에 hello 환경 변수 설정에 대 한 예제 [Azure 포털](https://portal.azure.com) 는 Azure 웹 사이트를 참조 하십시오. [Azure 테이블 서비스 hello 사용 하 여 Node.js 웹 응용 프로그램]합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-125">For an example of setting hello environment variables in hello [Azure Portal](https://portal.azure.com) for an Azure Website, see [Node.js web app using hello Azure Table Service].</span></span>
 
-## <a name="how-to-create-a-queue"></a><span data-ttu-id="2c3f0-126">큐를 만드는 방법</span><span class="sxs-lookup"><span data-stu-id="2c3f0-126">How To: Create a Queue</span></span>
-<span data-ttu-id="2c3f0-127">다음 코드는 **QueueService** 개체를 만들어 큐 작업을 수행할 수 있게 해 줍니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-127">The following code creates a **QueueService** object, which enables you to work with queues.</span></span>
+## <a name="how-to-create-a-queue"></a><span data-ttu-id="b83b1-126">큐를 만드는 방법</span><span class="sxs-lookup"><span data-stu-id="b83b1-126">How To: Create a Queue</span></span>
+<span data-ttu-id="b83b1-127">hello 다음 코드에서는 **QueueService** toowork 큐로 사용할 수 있는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-127">hello following code creates a **QueueService** object, which enables you toowork with queues.</span></span>
 
 ```
 var queueSvc = azure.createQueueService();
 ```
 
-<span data-ttu-id="2c3f0-128">**createQueueIfNotExists** 메서드를 사용합니다. 이 메서드는 지정된 큐가 이미 있으면 해당 큐를 반환하고 지정된 큐가 아직 없으면 지정한 이름으로 새 큐를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-128">Use the **createQueueIfNotExists** method, which returns the specified queue if it already exists or creates a new queue with the specified name if it does not already exist.</span></span>
+<span data-ttu-id="b83b1-128">사용 하 여 hello **createQueueIfNotExists** 이미 존재 하거나 존재 하지 않는 경우 hello 지정한 이름을 가진 새 큐를 만듭니다 경우 hello 지정 된 큐를 반환 하는 메서드.</span><span class="sxs-lookup"><span data-stu-id="b83b1-128">Use hello **createQueueIfNotExists** method, which returns hello specified queue if it already exists or creates a new queue with hello specified name if it does not already exist.</span></span>
 
 ```
 queueSvc.createQueueIfNotExists('myqueue', function(error, result, response){
@@ -86,32 +86,32 @@ queueSvc.createQueueIfNotExists('myqueue', function(error, result, response){
 });
 ```
 
-<span data-ttu-id="2c3f0-129">큐가 만들어지면 `result.created` 는 true가 됩니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-129">If the queue is created, `result.created` is true.</span></span> <span data-ttu-id="2c3f0-130">큐가 있을 경우 `result.created` 는 false가 됩니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-130">If the queue exists, `result.created` is false.</span></span>
+<span data-ttu-id="b83b1-129">Hello 큐를 만든 경우 `result.created` 그렇습니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-129">If hello queue is created, `result.created` is true.</span></span> <span data-ttu-id="b83b1-130">Hello 큐가 있는 경우 `result.created` 은 false입니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-130">If hello queue exists, `result.created` is false.</span></span>
 
-### <a name="filters"></a><span data-ttu-id="2c3f0-131">필터</span><span class="sxs-lookup"><span data-stu-id="2c3f0-131">Filters</span></span>
-<span data-ttu-id="2c3f0-132">**QueueService**를 사용하여 수행되는 작업에 선택적 필터링 작업을 적용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-132">Optional filtering operations can be applied to operations performed using **QueueService**.</span></span> <span data-ttu-id="2c3f0-133">필터링 작업은 로깅, 자동 재시도 등을 포함할 수 있습니다. 필터는 시그니쳐가 있는 메서드를 구현하는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-133">Filtering operations can include logging, automatically retrying, etc. Filters are objects that implement a method with the signature:</span></span>
+### <a name="filters"></a><span data-ttu-id="b83b1-131">필터</span><span class="sxs-lookup"><span data-stu-id="b83b1-131">Filters</span></span>
+<span data-ttu-id="b83b1-132">(옵션) 필터링 작업이 적용 된 toooperations 사용 하 여 수행 될 수 있습니다 **QueueService**합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-132">Optional filtering operations can be applied toooperations performed using **QueueService**.</span></span> <span data-ttu-id="b83b1-133">필터링 작업은 로깅, 자동 재시도 등을 포함할 수 있습니다. 필터는 hello 서명으로 메서드를 구현 하는 개체:</span><span class="sxs-lookup"><span data-stu-id="b83b1-133">Filtering operations can include logging, automatically retrying, etc. Filters are objects that implement a method with hello signature:</span></span>
 
 ```
 function handle (requestOptions, next)
 ```
 
-<span data-ttu-id="2c3f0-134">요청 옵션에 대한 전처리를 수행한 후 메서드는 다음 서명을 사용하여 콜백을 전달하는 "next"를 호출해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-134">After doing its preprocessing on the request options, the method needs to call "next" passing a callback with the following signature:</span></span>
+<span data-ttu-id="b83b1-134">Hello 요청 옵션에 전처리를 수행한 후 hello 메서드 toocall "다음" 콜백을 뒤 서명에 hello로 전달 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-134">After doing its preprocessing on hello request options, hello method needs toocall "next" passing a callback with hello following signature:</span></span>
 
 ```
 function (returnObject, finalCallback, next)
 ```
 
-<span data-ttu-id="2c3f0-135">이 콜백에서 returnObject(서버에 요청 응답 반환)를 처리한 후 콜백은 next(있는 경우)를 호출하여 다른 필터를 계속 처리하거나 finalCallback을 호출하여 서비스 호출을 종료해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-135">In this callback, and after processing the returnObject (the response from the request to the server), the callback needs to either invoke next if it exists to continue processing other filters or simply invoke finalCallback otherwise to end up the service invocation.</span></span>
+<span data-ttu-id="b83b1-135">이 콜백에서 hello returnObject (hello toohello 서버 요청에서에서 응답 hello)를 처리 한 후, hello 콜백 필요 tooeither 단순히 finalCallback를 호출 하거나 다른 필터를 처리 하는 toocontinue 있는 경우 다음에 호출할 hello 그렇지 않으면 tooend 서비스 호출 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-135">In this callback, and after processing hello returnObject (hello response from hello request toohello server), hello callback needs tooeither invoke next if it exists toocontinue processing other filters or simply invoke finalCallback otherwise tooend up hello service invocation.</span></span>
 
-<span data-ttu-id="2c3f0-136">Node.js용 Azure SDK에는 재시도 논리를 구현하는 두 필터 **ExponentialRetryPolicyFilter** 및 **LinearRetryPolicyFilter**가 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-136">Two filters that implement retry logic are included with the Azure SDK for Node.js, **ExponentialRetryPolicyFilter** and **LinearRetryPolicyFilter**.</span></span> <span data-ttu-id="2c3f0-137">다음은 **ExponentialRetryPolicyFilter**를 사용하는 **QueueService** 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-137">The following creates a **QueueService** object that uses the **ExponentialRetryPolicyFilter**:</span></span>
+<span data-ttu-id="b83b1-136">재시도 논리를 구현 하는 두 개의 필터 hello Node.js 용 Azure SDK에 포함 된 **ExponentialRetryPolicyFilter** 및 **LinearRetryPolicyFilter**합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-136">Two filters that implement retry logic are included with hello Azure SDK for Node.js, **ExponentialRetryPolicyFilter** and **LinearRetryPolicyFilter**.</span></span> <span data-ttu-id="b83b1-137">hello 다음 만듭니다는 **QueueService** hello를 사용 하는 개체 **ExponentialRetryPolicyFilter**:</span><span class="sxs-lookup"><span data-stu-id="b83b1-137">hello following creates a **QueueService** object that uses hello **ExponentialRetryPolicyFilter**:</span></span>
 
 ```
 var retryOperations = new azure.ExponentialRetryPolicyFilter();
 var queueSvc = azure.createQueueService().withFilter(retryOperations);
 ```
 
-## <a name="how-to-insert-a-message-into-a-queue"></a><span data-ttu-id="2c3f0-138">큐에 메시지를 삽입하는 방법</span><span class="sxs-lookup"><span data-stu-id="2c3f0-138">How To: Insert a Message into a Queue</span></span>
-<span data-ttu-id="2c3f0-139">큐에 메시지를 삽입하려면 **createMessage** 메서드를 사용하여 새 메시지를 만들고 이 메시지를 큐에 추가하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-139">To insert a message into a queue, use the **createMessage** method to create a new message and add it to the queue.</span></span>
+## <a name="how-to-insert-a-message-into-a-queue"></a><span data-ttu-id="b83b1-138">큐에 메시지를 삽입하는 방법</span><span class="sxs-lookup"><span data-stu-id="b83b1-138">How To: Insert a Message into a Queue</span></span>
+<span data-ttu-id="b83b1-139">tooinsert 큐로 사용 하 여 hello 메시지 **createMessage** 메서드를 새 메시지를 만들고 toohello 큐를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-139">tooinsert a message into a queue, use hello **createMessage** method to create a new message and add it toohello queue.</span></span>
 
 ```
 queueSvc.createMessage('myqueue', "Hello world!", function(error, result, response){
@@ -121,8 +121,8 @@ queueSvc.createMessage('myqueue', "Hello world!", function(error, result, respon
 });
 ```
 
-## <a name="how-to-peek-at-the-next-message"></a><span data-ttu-id="2c3f0-140">다음 메시지를 보는 방법</span><span class="sxs-lookup"><span data-stu-id="2c3f0-140">How To: Peek at the Next Message</span></span>
-<span data-ttu-id="2c3f0-141">큐에서 메시지를 제거하지 않고도 **peekMessages** 메서드를 호출하여 큐의 맨 앞에서 원하는 메시지를 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-141">You can peek at the message in the front of a queue without removing it from the queue by calling the **peekMessages** method.</span></span> <span data-ttu-id="2c3f0-142">기본적으로 **peekMessages** 는 단일 메시지를 볼 수 있게 해 줍니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-142">By default, **peekMessages** peeks at a single message.</span></span>
+## <a name="how-to-peek-at-hello-next-message"></a><span data-ttu-id="b83b1-140">방법: hello 다음 메시지 피킹</span><span class="sxs-lookup"><span data-stu-id="b83b1-140">How To: Peek at hello Next Message</span></span>
+<span data-ttu-id="b83b1-141">Hello를 호출 하 여 hello 큐에서 제거 하지 않고 큐의 hello 앞에 hello 메시지를 피킹할 수 있습니다 **peekMessages** 메서드.</span><span class="sxs-lookup"><span data-stu-id="b83b1-141">You can peek at hello message in hello front of a queue without removing it from hello queue by calling hello **peekMessages** method.</span></span> <span data-ttu-id="b83b1-142">기본적으로 **peekMessages** 는 단일 메시지를 볼 수 있게 해 줍니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-142">By default, **peekMessages** peeks at a single message.</span></span>
 
 ```
 queueSvc.peekMessages('myqueue', function(error, result, response){
@@ -132,20 +132,20 @@ queueSvc.peekMessages('myqueue', function(error, result, response){
 });
 ```
 
-<span data-ttu-id="2c3f0-143">`result` 에 메시지가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-143">The `result` contains the message.</span></span>
+<span data-ttu-id="b83b1-143">hello `result` hello 메시지를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-143">hello `result` contains hello message.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="2c3f0-144">큐에 메시지가 없을 때 **peekMessages** 를 사용하면 오류가 반환되지 않지만 메시지도 반환되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-144">Using **peekMessages** when there are no messages in the queue will not return an error, however no messages will be returned.</span></span>
+> <span data-ttu-id="b83b1-144">사용 하 여 **peekMessages** hello 큐에 메시지가 없는 경우 오류가 반환 되지는, 있지만 메시지가 반환 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-144">Using **peekMessages** when there are no messages in hello queue will not return an error, however no messages will be returned.</span></span>
 > 
 > 
 
-## <a name="how-to-dequeue-the-next-message"></a><span data-ttu-id="2c3f0-145">큐에서 다음 메시지를 제거하는 방법</span><span class="sxs-lookup"><span data-stu-id="2c3f0-145">How To: Dequeue the Next Message</span></span>
-<span data-ttu-id="2c3f0-146">메시지 처리는 2단계 프로세스입니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-146">Processing a message is a two-stage process:</span></span>
+## <a name="how-to-dequeue-hello-next-message"></a><span data-ttu-id="b83b1-145">방법: hello 다음 메시지 큐에서 제거</span><span class="sxs-lookup"><span data-stu-id="b83b1-145">How To: Dequeue hello Next Message</span></span>
+<span data-ttu-id="b83b1-146">메시지 처리는 2단계 프로세스입니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-146">Processing a message is a two-stage process:</span></span>
 
-1. <span data-ttu-id="2c3f0-147">메시지를 큐에서 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-147">Dequeue the message.</span></span>
-2. <span data-ttu-id="2c3f0-148">메시지를 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-148">Delete the message.</span></span>
+1. <span data-ttu-id="b83b1-147">Hello 메시지를 큐에서 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-147">Dequeue hello message.</span></span>
+2. <span data-ttu-id="b83b1-148">Hello 메시지를 삭제 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-148">Delete hello message.</span></span>
 
-<span data-ttu-id="2c3f0-149">메시지를 큐에서 제거하려면 **getMessage**를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-149">To dequeue a message, use **getMessages**.</span></span> <span data-ttu-id="2c3f0-150">그러면 큐에서 메시지가 보이지 않으므로 다른 클라이언트에서 처리할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-150">This makes the messages invisible in the queue, so no other clients can process them.</span></span> <span data-ttu-id="2c3f0-151">응용 프로그램에서 메시지를 처리하고 나면 **deleteMessage** 를 호출하여 큐에서 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-151">Once your application has processed a message, call **deleteMessage** to delete it from the queue.</span></span> <span data-ttu-id="2c3f0-152">다음 예제에서는 메시지를 가져온 후 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-152">The following example gets a message, then deletes it:</span></span>
+<span data-ttu-id="b83b1-149">toodequeue 메시지를 사용 하 여 **getMessages**합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-149">toodequeue a message, use **getMessages**.</span></span> <span data-ttu-id="b83b1-150">따라서 hello 메시지 hello 큐에 표시 되지 않는 다른 클라이언트가 처리할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-150">This makes hello messages invisible in hello queue, so no other clients can process them.</span></span> <span data-ttu-id="b83b1-151">메시지를 처리 하는 응용 프로그램 나면 호출할 **deleteMessage** toodelete hello 큐에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-151">Once your application has processed a message, call **deleteMessage** toodelete it from hello queue.</span></span> <span data-ttu-id="b83b1-152">다음 예제는 hello 메시지를 가져오고 삭제:</span><span class="sxs-lookup"><span data-stu-id="b83b1-152">hello following example gets a message, then deletes it:</span></span>
 
 ```
 queueSvc.getMessages('myqueue', function(error, result, response){
@@ -162,20 +162,20 @@ queueSvc.getMessages('myqueue', function(error, result, response){
 ```
 
 > [!NOTE]
-> <span data-ttu-id="2c3f0-153">기본적으로 메시지는 30초 동안만 숨겨져 있다가 다른 클라이언트에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-153">By default, a message is only hidden for 30 seconds, after which it is visible to other clients.</span></span> <span data-ttu-id="2c3f0-154">`options.visibilityTimeout` 와 **getMessages**를 사용하여 다른 값을 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-154">You can specify a different value by using `options.visibilityTimeout` with **getMessages**.</span></span>
+> <span data-ttu-id="b83b1-153">기본적으로는 메시지는 이후에 표시 tooother 클라이언트는 30 초 동안만 숨겨집니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-153">By default, a message is only hidden for 30 seconds, after which it is visible tooother clients.</span></span> <span data-ttu-id="b83b1-154">`options.visibilityTimeout` 와 **getMessages**를 사용하여 다른 값을 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-154">You can specify a different value by using `options.visibilityTimeout` with **getMessages**.</span></span>
 > 
 > [!NOTE]
-> <span data-ttu-id="2c3f0-155">큐에 메시지가 없을 때 **getMessages** 를 사용하면 오류가 반환되지 않지만 메시지도 반환되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-155">Using **getMessages** when there are no messages in the queue will not return an error, however no messages will be returned.</span></span>
+> <span data-ttu-id="b83b1-155">사용 하 여 **getMessages** hello 큐에 메시지가 없는 경우 오류가 반환 되지는, 있지만 메시지가 반환 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-155">Using **getMessages** when there are no messages in hello queue will not return an error, however no messages will be returned.</span></span>
 > 
 > 
 
-## <a name="how-to-change-the-contents-of-a-queued-message"></a><span data-ttu-id="2c3f0-156">대기 중인 메시지의 콘텐츠 변경 방법</span><span class="sxs-lookup"><span data-stu-id="2c3f0-156">How To: Change the Contents of a Queued Message</span></span>
-<span data-ttu-id="2c3f0-157">**updateMessage**를 사용하면 큐에 있는 메시지의 콘텐츠를 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-157">You can change the contents of a message in-place in the queue using **updateMessage**.</span></span> <span data-ttu-id="2c3f0-158">다음 예제에서는 메시지의 텍스트를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-158">The following example updates the text of a message:</span></span>
+## <a name="how-to-change-hello-contents-of-a-queued-message"></a><span data-ttu-id="b83b1-156">방법: 대기 중인 메시지의 내용을 hello 변경</span><span class="sxs-lookup"><span data-stu-id="b83b1-156">How To: Change hello Contents of a Queued Message</span></span>
+<span data-ttu-id="b83b1-157">메시지 내부에서 사용 하 여 hello 큐의 hello 내용을 변경할 수 있습니다 **updateMessage**합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-157">You can change hello contents of a message in-place in hello queue using **updateMessage**.</span></span> <span data-ttu-id="b83b1-158">다음 예제는 hello 메시지의 hello 텍스트를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-158">hello following example updates hello text of a message:</span></span>
 
 ```
 queueSvc.getMessages('myqueue', function(error, result, response){
   if(!error){
-    // Got the message
+    // Got hello message
     var message = result[0];
     queueSvc.updateMessage('myqueue', message.messageId, message.popReceipt, 10, {messageText: 'new text'}, function(error, result, response){
       if(!error){
@@ -186,13 +186,13 @@ queueSvc.getMessages('myqueue', function(error, result, response){
 });
 ```
 
-## <a name="how-to-additional-options-for-dequeuing-messages"></a><span data-ttu-id="2c3f0-159">dequeuing 메시지의 추가옵션을 설정하는 방법</span><span class="sxs-lookup"><span data-stu-id="2c3f0-159">How To: Additional Options for Dequeuing Messages</span></span>
-<span data-ttu-id="2c3f0-160">큐에서 메시지 검색을 사용자 지정할 수 있는 방법으로는 두 가지가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-160">There are two ways you can customize message retrieval from a queue:</span></span>
+## <a name="how-to-additional-options-for-dequeuing-messages"></a><span data-ttu-id="b83b1-159">dequeuing 메시지의 추가옵션을 설정하는 방법</span><span class="sxs-lookup"><span data-stu-id="b83b1-159">How To: Additional Options for Dequeuing Messages</span></span>
+<span data-ttu-id="b83b1-160">큐에서 메시지 검색을 사용자 지정할 수 있는 방법으로는 두 가지가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-160">There are two ways you can customize message retrieval from a queue:</span></span>
 
-* <span data-ttu-id="2c3f0-161">`options.numOfMessages` - 메시지 배치를 검색합니다(최대 32개).</span><span class="sxs-lookup"><span data-stu-id="2c3f0-161">`options.numOfMessages` - Retrieve a batch of messages (up to 32.)</span></span>
-* <span data-ttu-id="2c3f0-162">`options.visibilityTimeout` - 표시하지 않는 시간 제한을 더 길거나 짧게 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-162">`options.visibilityTimeout` - Set a longer or shorter invisibility timeout.</span></span>
+* <span data-ttu-id="b83b1-161">`options.numOfMessages`-일괄 처리 메시지 (위쪽 too32.)를 검색 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-161">`options.numOfMessages` - Retrieve a batch of messages (up too32.)</span></span>
+* <span data-ttu-id="b83b1-162">`options.visibilityTimeout` - 표시하지 않는 시간 제한을 더 길거나 짧게 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-162">`options.visibilityTimeout` - Set a longer or shorter invisibility timeout.</span></span>
 
-<span data-ttu-id="2c3f0-163">다음 예에서는 **getMessages** 메서드를 사용하여 한 번 호출에 15개의 메시지를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-163">The following example uses the **getMessages** method to get 15 messages in one call.</span></span> <span data-ttu-id="2c3f0-164">그런 다음에 for 루프를 사용하여 각 메시지를 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-164">Then it processes each message using a for loop.</span></span> <span data-ttu-id="2c3f0-165">또한 이 메서드에서 반환되는 모든 메시지의 표시하지 않는 시간 제한을 5분으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-165">It also sets the invisibility timeout to five minutes for all messages returned by this method.</span></span>
+<span data-ttu-id="b83b1-163">hello 다음 예제에서는 hello **getMessages** 메서드 tooget 15 메시지 한 번 호출에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-163">hello following example uses hello **getMessages** method tooget 15 messages in one call.</span></span> <span data-ttu-id="b83b1-164">그런 다음에 for 루프를 사용하여 각 메시지를 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-164">Then it processes each message using a for loop.</span></span> <span data-ttu-id="b83b1-165">또한이 메서드에서 반환 된 모든 메시지에 대 한 hello 표시 안 함 시간 초과 toofive 분을 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-165">It also sets hello invisibility timeout toofive minutes for all messages returned by this method.</span></span>
 
 ```
 queueSvc.getMessages('myqueue', {numOfMessages: 15, visibilityTimeout: 5 * 60}, function(error, result, response){
@@ -211,8 +211,8 @@ queueSvc.getMessages('myqueue', {numOfMessages: 15, visibilityTimeout: 5 * 60}, 
 });
 ```
 
-## <a name="how-to-get-the-queue-length"></a><span data-ttu-id="2c3f0-166">방법: 큐 길이 가져오기</span><span class="sxs-lookup"><span data-stu-id="2c3f0-166">How To: Get the Queue Length</span></span>
-<span data-ttu-id="2c3f0-167">**getQueueMetadata** 에서는 큐에서 대기 중인 메시지의 대략적인 수와 같이 큐에 관련된 메타데이터를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-167">The **getQueueMetadata** returns metadata about the queue, including the approximate number of messages waiting in the queue.</span></span>
+## <a name="how-to-get-hello-queue-length"></a><span data-ttu-id="b83b1-166">방법: hello 큐 길이 가져오기</span><span class="sxs-lookup"><span data-stu-id="b83b1-166">How To: Get hello Queue Length</span></span>
+<span data-ttu-id="b83b1-167">hello **getQueueMetadata** hello 대략적인 hello 큐에 대기 중인 메시지 수를 포함 하 여 hello 큐에 대 한 메타 데이터를 반환 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-167">hello **getQueueMetadata** returns metadata about hello queue, including hello approximate number of messages waiting in hello queue.</span></span>
 
 ```
 queueSvc.getQueueMetadata('myqueue', function(error, result, response){
@@ -222,21 +222,21 @@ queueSvc.getQueueMetadata('myqueue', function(error, result, response){
 });
 ```
 
-## <a name="how-to-list-queues"></a><span data-ttu-id="2c3f0-168">큐 나열하는 방법</span><span class="sxs-lookup"><span data-stu-id="2c3f0-168">How To: List Queues</span></span>
-<span data-ttu-id="2c3f0-169">큐 목록을 검색하려면 **listQueuesSegmented**를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-169">To retrieve a list of queues, use **listQueuesSegmented**.</span></span> <span data-ttu-id="2c3f0-170">특정 접두사를 기준으로 필터링된 목록을 검색하려면 **listQueuesSegmentedWithPrefix**를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-170">To retrieve a list filtered by a specific prefix, use **listQueuesSegmentedWithPrefix**.</span></span>
+## <a name="how-to-list-queues"></a><span data-ttu-id="b83b1-168">큐 나열하는 방법</span><span class="sxs-lookup"><span data-stu-id="b83b1-168">How To: List Queues</span></span>
+<span data-ttu-id="b83b1-169">큐를 사용 하 여 목록 tooretrieve **listQueuesSegmented**합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-169">tooretrieve a list of queues, use **listQueuesSegmented**.</span></span> <span data-ttu-id="b83b1-170">tooretrieve 특정 접두사를 기준으로 목록을 필터링 할 사용 하 여 **listQueuesSegmentedWithPrefix**합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-170">tooretrieve a list filtered by a specific prefix, use **listQueuesSegmentedWithPrefix**.</span></span>
 
 ```
 queueSvc.listQueuesSegmented(null, function(error, result, response){
   if(!error){
-    // result.entries contains the list of queues
+    // result.entries contains hello list of queues
   }
 });
 ```
 
-<span data-ttu-id="2c3f0-171">큐를 모두 반환할 수 없는 경우에는 `result.continuationToken`을 **listQueuesSegmented**의 첫 번째 매개 변수나 **listQueuesSegmentedWithPrefix**의 두 번째 매개 변수로 사용하여 더 많은 결과를 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-171">If all queues cannot be returned, `result.continuationToken` can be used as the first parameter of **listQueuesSegmented** or the second parameter of **listQueuesSegmentedWithPrefix** to retrieve more results.</span></span>
+<span data-ttu-id="b83b1-171">모든 큐를 반환할 수 없는 경우 `result.continuationToken` hello 첫 번째 매개 변수에 사용할 수 **listQueuesSegmented** 또는의 두 번째 매개 변수를 환영 **listQueuesSegmentedWithPrefix** tooretrieve 더 결과입니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-171">If all queues cannot be returned, `result.continuationToken` can be used as hello first parameter of **listQueuesSegmented** or hello second parameter of **listQueuesSegmentedWithPrefix** tooretrieve more results.</span></span>
 
-## <a name="how-to-delete-a-queue"></a><span data-ttu-id="2c3f0-172">방법: 큐 삭제</span><span class="sxs-lookup"><span data-stu-id="2c3f0-172">How To: Delete a Queue</span></span>
-<span data-ttu-id="2c3f0-173">큐 및 해당 큐의 모든 메시지를 삭제하려면 큐 개체의 **deleteQueue** 메서드를 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-173">To delete a queue and all the messages contained in it, call the **deleteQueue** method on the queue object.</span></span>
+## <a name="how-to-delete-a-queue"></a><span data-ttu-id="b83b1-172">방법: 큐 삭제</span><span class="sxs-lookup"><span data-stu-id="b83b1-172">How To: Delete a Queue</span></span>
+<span data-ttu-id="b83b1-173">toodelete는 큐와 모든 hello 메시지에 포함 된, 호출 된 **deleteQueue** hello 큐 개체에서 메서드.</span><span class="sxs-lookup"><span data-stu-id="b83b1-173">toodelete a queue and all hello messages contained in it, call the **deleteQueue** method on hello queue object.</span></span>
 
 ```
 queueSvc.deleteQueue(queueName, function(error, response){
@@ -246,14 +246,14 @@ queueSvc.deleteQueue(queueName, function(error, response){
 });
 ```
 
-<span data-ttu-id="2c3f0-174">큐를 삭제하지 않고 모든 메시지를 지우려면 **clearMessages**를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-174">To clear all messages from a queue without deleting it, use **clearMessages**.</span></span>
+<span data-ttu-id="b83b1-174">모든 메시지를 삭제 하지 않고 큐에서 사용 하 여 tooclear **clearMessages**합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-174">tooclear all messages from a queue without deleting it, use **clearMessages**.</span></span>
 
-## <a name="how-to-work-with-shared-access-signatures"></a><span data-ttu-id="2c3f0-175">공유 액세스 서명 작업 방법</span><span class="sxs-lookup"><span data-stu-id="2c3f0-175">How to: Work with Shared Access Signatures</span></span>
-<span data-ttu-id="2c3f0-176">SAS(공유 액세스 서명)는 저장소 계정 이름이나 키를 제공하지 않으면서 큐에 세분화된 액세스 권한을 안전하게 제공하는 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-176">Shared Access Signatures (SAS) are a secure way to provide granular access to queues without providing your storage account name or keys.</span></span> <span data-ttu-id="2c3f0-177">SAS는 모바일 앱에서 메시지를 제출하도록 허용하는 경우와 같이 큐에 대해 제한된 액세스를 제공하는 경우에 자주 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-177">SAS are often used to provide limited access to your queues, such as allowing a mobile app to submit messages.</span></span>
+## <a name="how-to-work-with-shared-access-signatures"></a><span data-ttu-id="b83b1-175">공유 액세스 서명 작업 방법</span><span class="sxs-lookup"><span data-stu-id="b83b1-175">How to: Work with Shared Access Signatures</span></span>
+<span data-ttu-id="b83b1-176">공유 액세스 서명 (SAS) 저장소 계정 이름 또는 키를 제공 하지 않고 안전 하 게 tooprovide 세부적인 액세스 tooqueues 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-176">Shared Access Signatures (SAS) are a secure way tooprovide granular access tooqueues without providing your storage account name or keys.</span></span> <span data-ttu-id="b83b1-177">SAS는 toosubmit 메시지 모바일 앱을 허용 하는 등 사용 되는 tooprovide 제한 된 액세스 tooyour 큐 경우가 많습니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-177">SAS are often used tooprovide limited access tooyour queues, such as allowing a mobile app toosubmit messages.</span></span>
 
-<span data-ttu-id="2c3f0-178">클라우드 기반 서비스와 같이 신뢰할 수 있는 응용 프로그램에서는 **QueueService**의 **generateSharedAccessSignature**를 사용하여 SAS를 생성하고 신뢰할 수 없거나 신뢰가 약한 응용 프로그램에 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-178">A trusted application such as a cloud-based service generates a SAS using the **generateSharedAccessSignature** of the **QueueService**, and provides it to an untrusted or semi-trusted application.</span></span> <span data-ttu-id="2c3f0-179">예를 들면 모바일 앱이 여기에 해당됩니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-179">For example, a mobile app.</span></span> <span data-ttu-id="2c3f0-180">SAS는 SAS가 유효한 시작 및 종료 날짜와 SAS 소유자에게 부여되는 액세스 수준을 설명하는 정책을 사용하여 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-180">The SAS is generated using a policy, which describes the start and end dates during which the SAS is valid, as well as the access level granted to the SAS holder.</span></span>
+<span data-ttu-id="b83b1-178">Hello를 사용 하 여 SAS를 생성 하는 클라우드 기반 서비스 등는 신뢰할 수 있는 응용 프로그램 **generateSharedAccessSignature** 의 hello **QueueService**, tooan 제공 하 고 신뢰할 수 없는 또는 부분적으로 신뢰할 수 있는 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-178">A trusted application such as a cloud-based service generates a SAS using hello **generateSharedAccessSignature** of hello **QueueService**, and provides it tooan untrusted or semi-trusted application.</span></span> <span data-ttu-id="b83b1-179">예를 들면 모바일 앱이 여기에 해당됩니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-179">For example, a mobile app.</span></span> <span data-ttu-id="b83b1-180">hello SAS hello 시작에 설명 하는 정책 및 SAS는 hello 하는 동안 유효는 종료 날짜를 사용 하 여 생성으로 액세스 수준 부여한 toohello SAS 소유자 hello.</span><span class="sxs-lookup"><span data-stu-id="b83b1-180">hello SAS is generated using a policy, which describes hello start and end dates during which hello SAS is valid, as well as hello access level granted toohello SAS holder.</span></span>
 
-<span data-ttu-id="2c3f0-181">다음 예에서는 SAS 소유자가 큐에 메시지를 추가할 수 있도록 허용하며 만든 후 100분이 지나면 만료되는 새 공유 액세스 정책을 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-181">The following example generates a new shared access policy that will allow the SAS holder to add messages to the queue, and expires 100 minutes after the time it is created.</span></span>
+<span data-ttu-id="b83b1-181">다음 예제는 hello hello SAS 소유자 tooadd 메시지 toohello 큐 수 있는 새로운 공유 액세스 정책을 생성 이며 100 분 만들어질 hello 시간이 지난 후 만료 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-181">hello following example generates a new shared access policy that will allow hello SAS holder tooadd messages toohello queue, and expires 100 minutes after hello time it is created.</span></span>
 
 ```
 var startDate = new Date();
@@ -273,9 +273,9 @@ var queueSAS = queueSvc.generateSharedAccessSignature('myqueue', sharedAccessPol
 var host = queueSvc.host;
 ```
 
-<span data-ttu-id="2c3f0-182">SAS 소유자가 큐에 액세스할 때 필요하므로 호스트 정보도 제공해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-182">Note that the host information must be provided also, as it is required when the SAS holder attempts to access the queue.</span></span>
+<span data-ttu-id="b83b1-182">Note 또한 필요에 따라 hello SAS 소유자가 시도할 때 tooaccess hello 큐 제공 hello 호스트 정보 이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-182">Note that hello host information must be provided also, as it is required when hello SAS holder attempts tooaccess hello queue.</span></span>
 
-<span data-ttu-id="2c3f0-183">그러고 나면 클라이언트 응용 프로그램에서 **QueueServiceWithSAS** 에 SAS를 사용하여 큐에 대한 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-183">The client application then uses the SAS with **QueueServiceWithSAS** to perform operations against the queue.</span></span> <span data-ttu-id="2c3f0-184">다음 예에서는 큐를 연결하고 메시지를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-184">The following example connects to the queue and creates a message.</span></span>
+<span data-ttu-id="b83b1-183">클라이언트 응용 프로그램을 사용 하 여 hello SAS와 다음 hello **QueueServiceWithSAS** hello 큐에 대 한 tooperform 작업 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-183">hello client application then uses hello SAS with **QueueServiceWithSAS** tooperform operations against hello queue.</span></span> <span data-ttu-id="b83b1-184">다음 예제는 hello toohello 큐를 연결 하 고 메시지를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-184">hello following example connects toohello queue and creates a message.</span></span>
 
 ```
 var sharedQueueService = azure.createQueueServiceWithSas(host, queueSAS);
@@ -286,12 +286,12 @@ sharedQueueService.createMessage('myqueue', 'Hello world from SAS!', function(er
 });
 ```
 
-<span data-ttu-id="2c3f0-185">SAS가 추가 액세스만으로 생성되었기 때문에 메시지를 읽거나 업데이트, 삭제하려고 하면 오류가 반환됩니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-185">Since the SAS was generated with add access, if an attempt were made to read, update or delete messages, an error would be returned.</span></span>
+<span data-ttu-id="b83b1-185">Hello SAS가 생성 된 후 추가 액세스를 시도 tooread, 업데이트 또는 메시지 삭제 된 경우, 오류가 반환 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-185">Since hello SAS was generated with add access, if an attempt were made tooread, update or delete messages, an error would be returned.</span></span>
 
-### <a name="access-control-lists"></a><span data-ttu-id="2c3f0-186">액세스 제어 목록</span><span class="sxs-lookup"><span data-stu-id="2c3f0-186">Access control lists</span></span>
-<span data-ttu-id="2c3f0-187">ACL(액세스 제어 목록)을 사용하여 SAS에 액세스 정책을 설정할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-187">You can also use an Access Control List (ACL) to set the access policy for a SAS.</span></span> <span data-ttu-id="2c3f0-188">이 방법은 여러 클라이언트에서 큐에 액세스하게 하면서 각 클라이언트에 서로 다른 액세스 정책을 제공하려는 경우에 유용합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-188">This is useful if you wish to allow multiple clients to access the queue, but provide different access policies for each client.</span></span>
+### <a name="access-control-lists"></a><span data-ttu-id="b83b1-186">액세스 제어 목록</span><span class="sxs-lookup"><span data-stu-id="b83b1-186">Access control lists</span></span>
+<span data-ttu-id="b83b1-187">SAS에 대 한 액세스 제어 목록 (ACL) tooset hello 액세스 정책을 사용할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-187">You can also use an Access Control List (ACL) tooset hello access policy for a SAS.</span></span> <span data-ttu-id="b83b1-188">각 클라이언트에 대 한 다른 액세스 정책을 제공 하지만 여러 클라이언트 tooaccess hello 큐 tooallow 원하는 경우에 유용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-188">This is useful if you wish tooallow multiple clients tooaccess hello queue, but provide different access policies for each client.</span></span>
 
-<span data-ttu-id="2c3f0-189">ACL은 각 정책에 ID가 연결된 액세스 정책 배열을 사용하여 구현됩니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-189">An ACL is implemented using an array of access policies, with an ID associated with each policy.</span></span> <span data-ttu-id="2c3f0-190">다음 예에서는 'user1'과 'user2'에 대해 하나씩, 두 개의 정책을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-190">The  following example defines two policies; one for 'user1' and one for 'user2':</span></span>
+<span data-ttu-id="b83b1-189">ACL은 각 정책에 ID가 연결된 액세스 정책 배열을 사용하여 구현됩니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-189">An ACL is implemented using an array of access policies, with an ID associated with each policy.</span></span> <span data-ttu-id="b83b1-190">다음 예제는 hello 두 정책을; 정의 '사용자 1' 및 'user2'에 대 한 하나입니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-190">hello  following example defines two policies; one for 'user1' and one for 'user2':</span></span>
 
 ```
 var sharedAccessPolicy = {
@@ -308,7 +308,7 @@ var sharedAccessPolicy = {
 };
 ```
 
-<span data-ttu-id="2c3f0-191">다음 예에서는 **myqueue**에 대한 현재 ACL을 가져온 다음 **setQueueAcl**을 사용하여 새 정책을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-191">The following example gets the current ACL for **myqueue**, then adds the new policies using **setQueueAcl**.</span></span> <span data-ttu-id="2c3f0-192">이 접근 방식을 통해 다음을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-192">This approach allows:</span></span>
+<span data-ttu-id="b83b1-191">다음 예제에서는 hello hello에 대 한 현재 ACL **myqueue**, 다음 사용 하 여 hello 새 정책을 추가 **setQueueAcl**합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-191">hello following example gets hello current ACL for **myqueue**, then adds hello new policies using **setQueueAcl**.</span></span> <span data-ttu-id="b83b1-192">이 접근 방식을 통해 다음을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-192">This approach allows:</span></span>
 
 ```
 var extend = require('extend');
@@ -324,25 +324,25 @@ queueSvc.getQueueAcl('myqueue', function(error, result, response) {
 });
 ```
 
-<span data-ttu-id="2c3f0-193">ACL이 설정되고 나면 정책의 ID를 기반으로 SAS를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-193">Once the ACL has been set, you can then create a SAS based on the ID for a policy.</span></span> <span data-ttu-id="2c3f0-194">다음 예에서는 'user2'에 대해 새 SAS를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-194">The following example creates a new SAS for 'user2':</span></span>
+<span data-ttu-id="b83b1-193">한 번 ACL 설정 된 hello, 만들 수 있습니다는 정책에 대 한 hello ID에 따라 SAS 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-193">Once hello ACL has been set, you can then create a SAS based on hello ID for a policy.</span></span> <span data-ttu-id="b83b1-194">다음 예제는 hello 사용자 '2'에 대 한 새 SAS를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-194">hello following example creates a new SAS for 'user2':</span></span>
 
 ```
 queueSAS = queueSvc.generateSharedAccessSignature('myqueue', { Id: 'user2' });
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="2c3f0-195">다음 단계</span><span class="sxs-lookup"><span data-stu-id="2c3f0-195">Next Steps</span></span>
-<span data-ttu-id="2c3f0-196">이제 큐 저장소의 기본 사항을 배웠으므로 다음 링크를 따라 좀 더 복잡한 저장소 작업에 대해 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-196">Now that you've learned the basics of queue storage, follow these links to learn about more complex storage tasks.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="b83b1-195">다음 단계</span><span class="sxs-lookup"><span data-stu-id="b83b1-195">Next Steps</span></span>
+<span data-ttu-id="b83b1-196">큐 저장소의 hello 기본 사항 학습 한, 했으므로 더 복잡 한 저장소 작업에 대 한 이러한 링크 toolearn을 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-196">Now that you've learned hello basics of queue storage, follow these links toolearn about more complex storage tasks.</span></span>
 
-* <span data-ttu-id="2c3f0-197">[Azure Storage 팀 블로그][Azure Storage Team Blog](영문)를 방문하세요.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-197">Visit the [Azure Storage Team Blog][Azure Storage Team Blog].</span></span>
-* <span data-ttu-id="2c3f0-198">GitHub에서 [Azure Storage SDK for Node][Azure Storage SDK for Node] 리포지토리를 방문하세요.</span><span class="sxs-lookup"><span data-stu-id="2c3f0-198">Visit the [Azure Storage SDK for Node][Azure Storage SDK for Node] repository on GitHub.</span></span>
+* <span data-ttu-id="b83b1-197">Hello 방문 [Azure 저장소 팀 블로그][Azure Storage Team Blog]합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-197">Visit hello [Azure Storage Team Blog][Azure Storage Team Blog].</span></span>
+* <span data-ttu-id="b83b1-198">Hello 방문 [노드에 대 한 Azure 저장소 SDK] [ Azure Storage SDK for Node] GitHub의 리포지토리 합니다.</span><span class="sxs-lookup"><span data-stu-id="b83b1-198">Visit hello [Azure Storage SDK for Node][Azure Storage SDK for Node] repository on GitHub.</span></span>
 
 [Azure Storage SDK for Node]: https://github.com/Azure/azure-storage-node
-[using the REST API]: http://msdn.microsoft.com/library/azure/hh264518.aspx
+[using hello REST API]: http://msdn.microsoft.com/library/azure/hh264518.aspx
 [Azure Portal]: https://portal.azure.com
-<span data-ttu-id="2c3f0-199">[Azure App Service에서 Node.js 웹앱 만들기]: ../app-service-web/app-service-web-get-started-nodejs.md</span><span class="sxs-lookup"><span data-stu-id="2c3f0-199">[Create a Node.js web app in Azure App Service]: ../app-service-web/app-service-web-get-started-nodejs.md</span></span>
-<span data-ttu-id="2c3f0-200">[Azure Table Service를 사용하는 Node.js 웹앱]: ../app-service-web/storage-nodejs-use-table-storage-web-site.md</span><span class="sxs-lookup"><span data-stu-id="2c3f0-200">[Node.js web app using the Azure Table Service]: ../app-service-web/storage-nodejs-use-table-storage-web-site.md</span></span>
+[Azure 앱 서비스에 Node.js 웹 응용 프로그램을 만들]: ../app-service-web/app-service-web-get-started-nodejs.md
+[Azure 테이블 서비스 hello 사용 하 여 Node.js 웹 응용 프로그램]: ../app-service-web/storage-nodejs-use-table-storage-web-site.md
 
 
-<span data-ttu-id="2c3f0-201">[Azure Cloud Service에 Node.js 응용 프로그램 빌드 및 배포]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md</span><span class="sxs-lookup"><span data-stu-id="2c3f0-201">[Build and deploy a Node.js application to an Azure Cloud Service]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md</span></span>
+[빌드하고 Node.js 응용 프로그램 tooan Azure 클라우드 서비스 배포]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
 [Azure Storage Team Blog]: http://blogs.msdn.com/b/windowsazurestorage/
-<span data-ttu-id="2c3f0-202">[Web Matrix를 사용하여 Azure에 Node.js 웹앱 빌드 및 배포]: ../app-service-web/web-sites-nodejs-use-webmatrix.md</span><span class="sxs-lookup"><span data-stu-id="2c3f0-202">[Build and deploy a Node.js web app to Azure using Web Matrix]: ../app-service-web/web-sites-nodejs-use-webmatrix.md</span></span>
+[ 빌드 및 배포 웹 매트릭스를 사용 하는 Node.js 웹 응용 프로그램 tooAzure]: ../app-service-web/web-sites-nodejs-use-webmatrix.md

@@ -1,6 +1,6 @@
 ---
-title: "AzureLogCollector VM 확장 | Microsoft Docs"
-description: "모든 로그 파일을 수집하고 Azure 저장소의 한 위치에 모으는 AzureLogCollector VM 확장에 대해 설명합니다."
+title: "VM 확장 aaaAzureLogCollector | Microsoft Docs"
+description: "Hello 모든 hello 로그 파일을 수집 하 고 Azure 저장소의 한 위치로 가져오는 AzureLogCollector VM 확장에 설명 합니다."
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: squillace
@@ -14,12 +14,12 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 08/23/2016
 ms.author: rasquill
-ms.openlocfilehash: 629fc1f95f8596c11ceadeda44a9b57eaefc702e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 40b3d8bbf82445aa12d2f77d5db859d3019ff179
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azurelogcollector-extension"></a><span data-ttu-id="7af7a-103">AzureLogCollector 확장</span><span class="sxs-lookup"><span data-stu-id="7af7a-103">AzureLogCollector Extension</span></span>
+# <a name="azurelogcollector-extension"></a><span data-ttu-id="cf42c-103">AzureLogCollector 확장</span><span class="sxs-lookup"><span data-stu-id="cf42c-103">AzureLogCollector Extension</span></span>
 [!INCLUDE [virtual-machines-common-log-collector-extension](../../../includes/virtual-machines-common-log-collector-extension.md)]
 

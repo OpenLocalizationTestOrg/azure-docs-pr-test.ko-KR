@@ -1,6 +1,6 @@
 ---
-title: "Azure Queue Storage 및 Visual Studio 연결 서비스 시작(ASP.NET) | Microsoft Docs"
-description: "Visual Studio 연결 서비스를 사용하여 저장소 계정에 연결한 후 Visual Studio ASP.NET 프로젝트에서 Azure Queue Storage 사용을 시작하는 방법입니다."
+title: "Visual Studio 연결 된 서비스 (ASP.NET) 및 Azure 큐 저장소 시작: aaaGet | Microsoft Docs"
+description: "Visual Studio에서 ASP.NET 프로젝트를 Azure 큐 저장소를 사용 하 여 Visual Studio 연결 된 서비스를 사용 하 여 tooa 저장소 계정을 연결한 후 tooget을 시작 하는 방법"
 services: storage
 documentationcenter: 
 author: TomArcher
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/23/2016
 ms.author: tarcher
-ms.openlocfilehash: 76b0d5e270e16a317ce8a7b424c06c867b537a8e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a9d6ecb1e8d61d75f59658d0ea3fa63d26fd7354
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-azure-queue-storage-and-visual-studio-connected-services-aspnet"></a><span data-ttu-id="9c545-103">Azure Queue Storage 및 Visual Studio 연결 서비스 시작(ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="9c545-103">Get started with Azure queue storage and Visual Studio Connected Services (ASP.NET)</span></span>
+# <a name="get-started-with-azure-queue-storage-and-visual-studio-connected-services-aspnet"></a><span data-ttu-id="fc73c-103">Azure Queue Storage 및 Visual Studio 연결 서비스 시작(ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="fc73c-103">Get started with Azure queue storage and Visual Studio Connected Services (ASP.NET)</span></span>
 [!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-queues.md)]
 
-## <a name="overview"></a><span data-ttu-id="9c545-104">개요</span><span class="sxs-lookup"><span data-stu-id="9c545-104">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="fc73c-104">개요</span><span class="sxs-lookup"><span data-stu-id="fc73c-104">Overview</span></span>
 
-<span data-ttu-id="9c545-105">Azure Queue Storage는 응용 프로그램 구성 요소 간에 클라우드 메시징을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-105">Azure queue storage provides cloud messaging between application components.</span></span> <span data-ttu-id="9c545-106">규모를 고려하여 응용 프로그램을 디자인할 때는 응용 프로그램 구성 요소를 개별적으로 확장할 수 있도록 각 구성 요소를 분리하는 경우가 많습니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-106">In designing applications for scale, application components are often decoupled, so that they can scale independently.</span></span> <span data-ttu-id="9c545-107">큐 저장소는 클라우드, 데스크톱, 온-프레미스 서버 또는 모바일 장치에서 실행 중인지와 관계 없이 응용 프로그램 구성 요소 간에 통신을 위한 비동기 메시징을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-107">Queue storage delivers asynchronous messaging for communication between application components, whether they are running in the cloud, on the desktop, on an on-premises server, or on a mobile device.</span></span> <span data-ttu-id="9c545-108">큐 저장소는 또한 비동기 작업 관리와 프로세스 워크플로 작성을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-108">Queue storage also supports managing asynchronous tasks and building process work flows.</span></span>
+<span data-ttu-id="fc73c-105">Azure Queue Storage는 응용 프로그램 구성 요소 간에 클라우드 메시징을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-105">Azure queue storage provides cloud messaging between application components.</span></span> <span data-ttu-id="fc73c-106">규모를 고려하여 응용 프로그램을 디자인할 때는 응용 프로그램 구성 요소를 개별적으로 확장할 수 있도록 각 구성 요소를 분리하는 경우가 많습니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-106">In designing applications for scale, application components are often decoupled, so that they can scale independently.</span></span> <span data-ttu-id="fc73c-107">큐 저장소는 클라우드 hello hello 데스크톱, 온-프레미스 서버 또는 모바일 장치에서에서 실행 되는 여부를 비동기 메시징 응용 프로그램 구성 요소 간의 통신을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-107">Queue storage delivers asynchronous messaging for communication between application components, whether they are running in hello cloud, on hello desktop, on an on-premises server, or on a mobile device.</span></span> <span data-ttu-id="fc73c-108">큐 저장소는 또한 비동기 작업 관리와 프로세스 워크플로 작성을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-108">Queue storage also supports managing asynchronous tasks and building process work flows.</span></span>
 
-<span data-ttu-id="9c545-109">이 자습서에서는 Azure Queue Storage 항목을 사용하여 몇 가지 일반적인 시나리오에 대한 ASP.NET 코드를 작성하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-109">This tutorial shows how to write ASP.NET code for some common scenarios using Azure queue storage entities.</span></span> <span data-ttu-id="9c545-110">이러한 시나리오는 Azure 큐 작성, 큐 메시지 추가, 수정, 읽기 및 제거와 같은 일반적인 작업을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-110">These scenarios include common tasks such as creating an Azure queue, and adding, modifying, reading, and removing queue messages.</span></span>
+<span data-ttu-id="fc73c-109">이 자습서에서는 Azure 큐 저장소 엔터티를 사용 하 여 몇 가지 일반적인 시나리오에 대 한 ASP.NET toowrite 코드 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-109">This tutorial shows how toowrite ASP.NET code for some common scenarios using Azure queue storage entities.</span></span> <span data-ttu-id="fc73c-110">이러한 시나리오는 Azure 큐 작성, 큐 메시지 추가, 수정, 읽기 및 제거와 같은 일반적인 작업을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-110">These scenarios include common tasks such as creating an Azure queue, and adding, modifying, reading, and removing queue messages.</span></span>
 
-##<a name="prerequisites"></a><span data-ttu-id="9c545-111">필수 조건</span><span class="sxs-lookup"><span data-stu-id="9c545-111">Prerequisites</span></span>
+##<a name="prerequisites"></a><span data-ttu-id="fc73c-111">필수 조건</span><span class="sxs-lookup"><span data-stu-id="fc73c-111">Prerequisites</span></span>
 
-* [<span data-ttu-id="9c545-112">Microsoft Visual Studio</span><span class="sxs-lookup"><span data-stu-id="9c545-112">Microsoft Visual Studio</span></span>](https://www.visualstudio.com/downloads/)
-* [<span data-ttu-id="9c545-113">Azure 저장소 계정</span><span class="sxs-lookup"><span data-stu-id="9c545-113">Azure storage account</span></span>](storage-create-storage-account.md#create-a-storage-account)
+* [<span data-ttu-id="fc73c-112">Microsoft Visual Studio</span><span class="sxs-lookup"><span data-stu-id="fc73c-112">Microsoft Visual Studio</span></span>](https://www.visualstudio.com/downloads/)
+* [<span data-ttu-id="fc73c-113">Azure 저장소 계정</span><span class="sxs-lookup"><span data-stu-id="fc73c-113">Azure storage account</span></span>](storage-create-storage-account.md#create-a-storage-account)
 
 [!INCLUDE [storage-queue-concepts-include](../../includes/storage-queue-concepts-include.md)]
 
@@ -40,21 +40,21 @@ ms.lasthandoff: 08/03/2017
 
 [!INCLUDE [storage-development-environment-include](../../includes/vs-storage-aspnet-getting-started-setup-dev-env.md)]
 
-### <a name="create-an-mvc-controller"></a><span data-ttu-id="9c545-114">MVC 컨트롤러 만들기</span><span class="sxs-lookup"><span data-stu-id="9c545-114">Create an MVC controller</span></span> 
+### <a name="create-an-mvc-controller"></a><span data-ttu-id="fc73c-114">MVC 컨트롤러 만들기</span><span class="sxs-lookup"><span data-stu-id="fc73c-114">Create an MVC controller</span></span> 
 
-1. <span data-ttu-id="9c545-115">**솔루션 탐색기**에서 **컨트롤러**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->컨트롤러**를 차례로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-115">In the **Solution Explorer**, right-click **Controllers**, and, from the context menu, select **Add->Controller**.</span></span>
+1. <span data-ttu-id="fc73c-115">Hello에 **솔루션 탐색기**를 마우스 오른쪽 단추로 클릭 **컨트롤러**, hello 상황에 맞는 메뉴에서 **추가-컨트롤러 >**합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-115">In hello **Solution Explorer**, right-click **Controllers**, and, from hello context menu, select **Add->Controller**.</span></span>
 
-    ![ASP.NET MVC 앱에 컨트롤러 추가](./media/vs-storage-aspnet-getting-started-queues/add-controller-menu.png)
+    ![컨트롤러 tooan ASP.NET MVC 응용 프로그램 추가](./media/vs-storage-aspnet-getting-started-queues/add-controller-menu.png)
 
-1. <span data-ttu-id="9c545-117">**스캐폴드 추가** 대화 상자에서 **MVC 5 컨트롤러 - 비어 있음**을 선택하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-117">On the **Add Scaffold** dialog, select **MVC 5 Controller - Empty**, and select **Add**.</span></span>
+1. <span data-ttu-id="fc73c-117">Hello에 **추가 스 캐 폴드** 대화 상자에서 **MVC 5 컨트롤러-비어 있지**, 선택한 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-117">On hello **Add Scaffold** dialog, select **MVC 5 Controller - Empty**, and select **Add**.</span></span>
 
     ![MVC 컨트롤러 유형 지정](./media/vs-storage-aspnet-getting-started-queues/add-controller.png)
 
-1. <span data-ttu-id="9c545-119">**컨트롤러 추가** 대화 상자에서 컨트롤러 이름을 *QueuesController*로 설정하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-119">On the **Add Controller** dialog, name the controller *QueuesController*, and select **Add**.</span></span>
+1. <span data-ttu-id="fc73c-119">Hello에 **컨트롤러 추가** 대화 상자에서 이름 hello 컨트롤러 *QueuesController*를 선택 하 고 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-119">On hello **Add Controller** dialog, name hello controller *QueuesController*, and select **Add**.</span></span>
 
-    ![MVC 컨트롤러 이름 지정](./media/vs-storage-aspnet-getting-started-queues/add-controller-name.png)
+    ![Hello MVC 컨트롤러 이름](./media/vs-storage-aspnet-getting-started-queues/add-controller-name.png)
 
-1. <span data-ttu-id="9c545-121">다음 *using* 지시문을 `QueuesController.cs` 파일에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-121">Add the following *using* directives to the `QueuesController.cs` file:</span></span>
+1. <span data-ttu-id="fc73c-121">Hello 다음 추가 *를 사용 하 여* 지시문 toohello `QueuesController.cs` 파일:</span><span class="sxs-lookup"><span data-stu-id="fc73c-121">Add hello following *using* directives toohello `QueuesController.cs` file:</span></span>
 
     ```csharp
     using Microsoft.Azure;
@@ -62,62 +62,62 @@ ms.lasthandoff: 08/03/2017
     using Microsoft.WindowsAzure.Storage.Auth;
     using Microsoft.WindowsAzure.Storage.Queue;
     ```
-## <a name="create-a-queue"></a><span data-ttu-id="9c545-122">큐 만들기</span><span class="sxs-lookup"><span data-stu-id="9c545-122">Create a queue</span></span>
+## <a name="create-a-queue"></a><span data-ttu-id="fc73c-122">큐 만들기</span><span class="sxs-lookup"><span data-stu-id="fc73c-122">Create a queue</span></span>
 
-<span data-ttu-id="9c545-123">다음 단계에서는 큐를 만드는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-123">The following steps illustrate how to create a queue:</span></span>
+<span data-ttu-id="fc73c-123">hello 아래 단계에 설명 방법을 toocreate 큐:</span><span class="sxs-lookup"><span data-stu-id="fc73c-123">hello following steps illustrate how toocreate a queue:</span></span>
 
 > [!NOTE]
 > 
-> <span data-ttu-id="9c545-124">이 섹션에서는 [개발 환경 설정](#set-up-the-development-environment) 단계를 완료했다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-124">This section assumes you have completed the steps [Set up the development environment](#set-up-the-development-environment).</span></span> 
+> <span data-ttu-id="fc73c-124">이 섹션에서는 hello 단계를 완료 한 가정 [hello 개발 환경 설정](#set-up-the-development-environment)합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-124">This section assumes you have completed hello steps [Set up hello development environment](#set-up-the-development-environment).</span></span> 
 
-1. <span data-ttu-id="9c545-125">`QueuesController.cs` 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-125">Open the `QueuesController.cs` file.</span></span> 
+1. <span data-ttu-id="fc73c-125">열기 hello `QueuesController.cs` 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-125">Open hello `QueuesController.cs` file.</span></span> 
 
-1. <span data-ttu-id="9c545-126">**ActionResult**를 반환하는 **CreateQueue**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-126">Add a method called **CreateQueue** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="fc73c-126">**ActionResult**를 반환하는 **CreateQueue**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-126">Add a method called **CreateQueue** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult CreateQueue()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
 
-1. <span data-ttu-id="9c545-127">**CreateQueue** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-127">Within the **CreateQueue** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="9c545-128">다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure 저장소 계정의 이름으로 변경).</span><span class="sxs-lookup"><span data-stu-id="9c545-128">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="fc73c-127">Hello 내 **CreateQueue** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-127">Within hello **CreateQueue** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="fc73c-128">사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)</span><span class="sxs-lookup"><span data-stu-id="fc73c-128">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
 
-1. <span data-ttu-id="9c545-129">큐 서비스 클라이언트를 나타내는 **CloudQueueClient** 개체를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-129">Get a **CloudQueueClient** object represents a queue service client.</span></span>
+1. <span data-ttu-id="fc73c-129">큐 서비스 클라이언트를 나타내는 **CloudQueueClient** 개체를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-129">Get a **CloudQueueClient** object represents a queue service client.</span></span>
    
     ```csharp
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
-1. <span data-ttu-id="9c545-130">원하는 큐 이름에 대한 참조를 나타내는 **CloudQueue** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-130">Get a **CloudQueue** object that represents a reference to the desired queue name.</span></span> <span data-ttu-id="9c545-131">**CloudQueueClient.GetQueueReference** 메서드는 큐 저장소에 대한 요청을 만들지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-131">The **CloudQueueClient.GetQueueReference** method does not make a request against queue storage.</span></span> <span data-ttu-id="9c545-132">큐가 있는지 여부에 관계없이 참조가 반환됩니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-132">The reference is returned whether or not the queue exists.</span></span> 
+1. <span data-ttu-id="fc73c-130">가져오기는 **CloudQueue** 참조 toohello 원하는 큐 이름을 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-130">Get a **CloudQueue** object that represents a reference toohello desired queue name.</span></span> <span data-ttu-id="fc73c-131">hello **CloudQueueClient.GetQueueReference** 메서드 큐 저장소에 대 한 요청을 만들지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-131">hello **CloudQueueClient.GetQueueReference** method does not make a request against queue storage.</span></span> <span data-ttu-id="fc73c-132">hello 큐가 여부 hello 참조가 반환 됩니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-132">hello reference is returned whether or not hello queue exists.</span></span> 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. <span data-ttu-id="9c545-133">큐가 아직 없으면 **CloudQueue.CreateIfNotExists** 메서드를 호출하여 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-133">Call the **CloudQueue.CreateIfNotExists** method to create the queue if it does not yet exist.</span></span> <span data-ttu-id="9c545-134">큐가 없는 경우 큐가 성공적으로 생성되면 **CloudQueue.CreateIfNotExists** 메서드는 **true**를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-134">The **CloudQueue.CreateIfNotExists** method returns **true** if the queue does not exist, and is successfully created.</span></span> <span data-ttu-id="9c545-135">그렇지 않으면 **false**가 반환됩니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-135">Otherwise, **false** is returned.</span></span>    
+1. <span data-ttu-id="fc73c-133">Hello 호출 **CloudQueue.CreateIfNotExists** 메서드 toocreate hello 큐 아직 존재 하지 않는 경우.</span><span class="sxs-lookup"><span data-stu-id="fc73c-133">Call hello **CloudQueue.CreateIfNotExists** method toocreate hello queue if it does not yet exist.</span></span> <span data-ttu-id="fc73c-134">hello **CloudQueue.CreateIfNotExists** 메서드 반환 **true** hello 대기열 존재 하지 않는 하 고 성공적으로 생성 되는 경우.</span><span class="sxs-lookup"><span data-stu-id="fc73c-134">hello **CloudQueue.CreateIfNotExists** method returns **true** if hello queue does not exist, and is successfully created.</span></span> <span data-ttu-id="fc73c-135">그렇지 않으면 **false**가 반환됩니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-135">Otherwise, **false** is returned.</span></span>    
 
     ```csharp
     ViewBag.Success = queue.CreateIfNotExists();
     ```
 
-1. <span data-ttu-id="9c545-136">**ViewBag**을 큐의 이름으로 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-136">Update the **ViewBag** with the name of the queue.</span></span>
+1. <span data-ttu-id="fc73c-136">업데이트 hello **ViewBag** hello 큐의 hello 이름을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-136">Update hello **ViewBag** with hello name of hello queue.</span></span>
 
     ```csharp
     ViewBag.QueueName = queue.Name;
     ```
 
-1. <span data-ttu-id="9c545-137">**솔루션 탐색기**에서 **보기** 폴더를 확장한 다음 **큐**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->보기**를 차례로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-137">In the **Solution Explorer**, expand the **Views** folder, right-click **Queues**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="fc73c-137">Hello에 **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 **큐**, hello 상황에 맞는 메뉴에서 선택 하 고 **추가보기->**.</span><span class="sxs-lookup"><span data-stu-id="fc73c-137">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Queues**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="9c545-138">**보기 추가** 대화 상자에서 보기 이름으로 **CreateQueue**를 입력하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-138">On the **Add View** dialog, enter **CreateQueue** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="fc73c-138">Hello에 **뷰 추가** 대화 상자에서 입력 **CreateQueue** hello 뷰 이름과 선택에 대 한 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-138">On hello **Add View** dialog, enter **CreateQueue** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="9c545-139">`CreateQueue.cshtml`을 열고 다음 코드 조각과 같이 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-139">Open `CreateQueue.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="fc73c-139">열기 `CreateQueue.cshtml`, 다음 코드 조각 hello 모양이 되도록 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-139">Open `CreateQueue.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @{
@@ -129,84 +129,84 @@ ms.lasthandoff: 08/03/2017
     Creation of @ViewBag.QueueName @(ViewBag.Success == true ? "succeeded" : "failed")
     ```
 
-1. <span data-ttu-id="9c545-140">**솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-140">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="fc73c-140">Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-140">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="9c545-141">마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-141">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="fc73c-141">Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="fc73c-141">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Create queue", "CreateQueue", "Queues")</li>
     ```
 
-1. <span data-ttu-id="9c545-142">응용 프로그램을 실행하고 **큐 만들기**를 선택하여 다음 스크린샷과 유사한 결과를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-142">Run the application, and select **Create queue** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="fc73c-142">Hello 응용 프로그램을 실행 하 고 선택 **만들기 큐** toosee 스크린 샷 다음 유사한 toohello 결과:</span><span class="sxs-lookup"><span data-stu-id="fc73c-142">Run hello application, and select **Create queue** toosee results similar toohello following screen shot:</span></span>
   
     ![큐 만들기](./media/vs-storage-aspnet-getting-started-queues/create-queue-results.png)
 
-    <span data-ttu-id="9c545-144">앞에서 언급했듯이 큐가 없고 만들어진 경우에만 **CloudQueue.CreateIfNotExists** 메서드에서 **true**를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-144">As mentioned previously, the **CloudQueue.CreateIfNotExists** method returns **true** only when the queue doesn't exist and is created.</span></span> <span data-ttu-id="9c545-145">따라서 큐가 있을 때 앱을 실행하면 메서드에서 **false**를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-145">Therefore, if you run the app when the queue exists, the method returns **false**.</span></span> <span data-ttu-id="9c545-146">앱을 여러 번 실행하려면 앱을 다시 실행하기 전에 큐를 삭제해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-146">To run the app multiple times, you must delete the queue before running the app again.</span></span> <span data-ttu-id="9c545-147">**CloudQueue.Delete** 메서드를 통해 큐 삭제를 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-147">Deleting the queue can be done via the **CloudQueue.Delete** method.</span></span> <span data-ttu-id="9c545-148">또한 [Azure Portal](http://go.microsoft.com/fwlink/p/?LinkID=525040) 또는 [Microsoft Azure Storage 탐색기](../vs-azure-tools-storage-manage-with-storage-explorer.md)를 사용하여 큐를 삭제할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-148">You can also delete the queue using the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040) or the [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md).</span></span>  
+    <span data-ttu-id="fc73c-144">앞에서 설명한 대로 hello **CloudQueue.CreateIfNotExists** 메서드 반환 **true** hello 큐 존재 하지 않는 있고 만들어지는 경우에 합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-144">As mentioned previously, hello **CloudQueue.CreateIfNotExists** method returns **true** only when hello queue doesn't exist and is created.</span></span> <span data-ttu-id="fc73c-145">따라서 hello 큐가 있는 경우 hello 앱을 실행 하면 hello 메서드는 반환 **false**합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-145">Therefore, if you run hello app when hello queue exists, hello method returns **false**.</span></span> <span data-ttu-id="fc73c-146">toorun hello 앱 여러 번 삭제 해야 hello 큐 hello 응용 프로그램을 다시 실행 하기 전에.</span><span class="sxs-lookup"><span data-stu-id="fc73c-146">toorun hello app multiple times, you must delete hello queue before running hello app again.</span></span> <span data-ttu-id="fc73c-147">Hello 통해 hello 큐 삭제를 수행할 수 있습니다 **CloudQueue.Delete** 메서드.</span><span class="sxs-lookup"><span data-stu-id="fc73c-147">Deleting hello queue can be done via hello **CloudQueue.Delete** method.</span></span> <span data-ttu-id="fc73c-148">Hello를 사용 하 여 hello 큐를 삭제할 수도 있습니다 [Azure 포털](http://go.microsoft.com/fwlink/p/?LinkID=525040) 또는 hello [Microsoft Azure 저장소 탐색기](../vs-azure-tools-storage-manage-with-storage-explorer.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-148">You can also delete hello queue using hello [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040) or hello [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md).</span></span>  
 
-## <a name="add-a-message-to-a-queue"></a><span data-ttu-id="9c545-149">큐에 메시지 추가</span><span class="sxs-lookup"><span data-stu-id="9c545-149">Add a message to a queue</span></span>
+## <a name="add-a-message-tooa-queue"></a><span data-ttu-id="fc73c-149">메시지 tooa 큐 추가</span><span class="sxs-lookup"><span data-stu-id="fc73c-149">Add a message tooa queue</span></span>
 
-<span data-ttu-id="9c545-150">[큐를 만든](#create-a-queue) 후 해당 큐에 메시지를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-150">Once you've [created a queue](#create-a-queue), you can add messages to that queue.</span></span> <span data-ttu-id="9c545-151">이 섹션에서는 큐 *test-queue*에 메시지를 추가하는 과정을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-151">This section walks you through adding a message to a queue *test-queue*.</span></span> 
+<span data-ttu-id="fc73c-150">한 후 [큐를 만든](#create-a-queue), toothat 큐 메시지를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-150">Once you've [created a queue](#create-a-queue), you can add messages toothat queue.</span></span> <span data-ttu-id="fc73c-151">이 섹션에서는 메시지 tooa 큐를 추가 하는 과정에서는 *큐 테스트*합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-151">This section walks you through adding a message tooa queue *test-queue*.</span></span> 
 
 > [!NOTE]
 > 
-> <span data-ttu-id="9c545-152">이 섹션에서는 [개발 환경 설정](#set-up-the-development-environment) 단계를 완료했다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-152">This section assumes you have completed the steps [Set up the development environment](#set-up-the-development-environment).</span></span> 
+> <span data-ttu-id="fc73c-152">이 섹션에서는 hello 단계를 완료 한 가정 [hello 개발 환경 설정](#set-up-the-development-environment)합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-152">This section assumes you have completed hello steps [Set up hello development environment](#set-up-the-development-environment).</span></span> 
 
-1. <span data-ttu-id="9c545-153">`QueuesController.cs` 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-153">Open the `QueuesController.cs` file.</span></span>
+1. <span data-ttu-id="fc73c-153">열기 hello `QueuesController.cs` 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-153">Open hello `QueuesController.cs` file.</span></span>
 
-1. <span data-ttu-id="9c545-154">**ActionResult**를 반환하는 **AddMessage**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-154">Add a method called **AddMessage** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="fc73c-154">**ActionResult**를 반환하는 **AddMessage**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-154">Add a method called **AddMessage** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult AddMessage()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. <span data-ttu-id="9c545-155">**AddMessage** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-155">Within the **AddMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="9c545-156">다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure 저장소 계정의 이름으로 변경).</span><span class="sxs-lookup"><span data-stu-id="9c545-156">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="fc73c-155">Hello 내 **AddMessage** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-155">Within hello **AddMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="fc73c-156">사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)</span><span class="sxs-lookup"><span data-stu-id="fc73c-156">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
    
-1. <span data-ttu-id="9c545-157">큐 서비스 클라이언트를 나타내는 **CloudQueueClient** 개체를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-157">Get a **CloudQueueClient** object represents a queue service client.</span></span>
+1. <span data-ttu-id="fc73c-157">큐 서비스 클라이언트를 나타내는 **CloudQueueClient** 개체를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-157">Get a **CloudQueueClient** object represents a queue service client.</span></span>
    
     ```csharp
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
 
-1. <span data-ttu-id="9c545-158">큐에 대한 참조를 나타내는 **CloudQueueContainer** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-158">Get a **CloudQueueContainer** object that represents a reference to the queue.</span></span> 
+1. <span data-ttu-id="fc73c-158">가져오기는 **CloudQueueContainer** 참조 toohello 큐를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-158">Get a **CloudQueueContainer** object that represents a reference toohello queue.</span></span> 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. <span data-ttu-id="9c545-159">큐에 추가할 메시지를 나타내는 **CloudQueueMessage** 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-159">Create the **CloudQueueMessage** object representing the message you want to add to the queue.</span></span> <span data-ttu-id="9c545-160">**CloudQueueMessage** 개체는 문자열(UTF-8 형식) 또는 바이트 배열에서 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-160">A **CloudQueueMessage** object can be created from either a string (in UTF-8 format) or a byte array.</span></span>
+1. <span data-ttu-id="fc73c-159">Hello 만들기 **CloudQueueMessage** tooadd toohello 큐 hello 메시지를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-159">Create hello **CloudQueueMessage** object representing hello message you want tooadd toohello queue.</span></span> <span data-ttu-id="fc73c-160">**CloudQueueMessage** 개체는 문자열(UTF-8 형식) 또는 바이트 배열에서 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-160">A **CloudQueueMessage** object can be created from either a string (in UTF-8 format) or a byte array.</span></span>
 
     ```csharp
     CloudQueueMessage message = new CloudQueueMessage("Hello, Azure Queue Storage");
     ```
 
-1. <span data-ttu-id="9c545-161">**CloudQueue.AddMessage** 메서드를 호출하여 큐에 메시지를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-161">Call the **CloudQueue.AddMessage** method to add the messaged to the queue.</span></span>
+1. <span data-ttu-id="fc73c-161">Hello 호출 **CloudQueue.AddMessage** 메서드 tooadd hello 방식과 toohello 큐입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-161">Call hello **CloudQueue.AddMessage** method tooadd hello messaged toohello queue.</span></span>
 
     ```csharp
     queue.AddMessage(message);
     ```
 
-1. <span data-ttu-id="9c545-162">보기에 표시하기 위한 몇 가지 **ViewBag** 속성을 만들고 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-162">Create and set a couple of **ViewBag** properties for display in the view.</span></span>
+1. <span data-ttu-id="fc73c-162">만들고 몇 가지 설정 **ViewBag** hello 보기에 표시 하기 위한 속성입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-162">Create and set a couple of **ViewBag** properties for display in hello view.</span></span>
 
     ```csharp
     ViewBag.QueueName = queue.Name;
     ViewBag.Message = message.AsString;
     ```
 
-1. <span data-ttu-id="9c545-163">**솔루션 탐색기**에서 **보기** 폴더를 확장한 다음 **큐**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->보기**를 차례로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-163">In the **Solution Explorer**, expand the **Views** folder, right-click **Queues**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="fc73c-163">Hello에 **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 **큐**, hello 상황에 맞는 메뉴에서 선택 하 고 **추가보기->**.</span><span class="sxs-lookup"><span data-stu-id="fc73c-163">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Queues**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="9c545-164">**보기 추가** 대화 상자에서 보기 이름으로 **AddMessage**를 입력하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-164">On the **Add View** dialog, enter **AddMessage** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="fc73c-164">Hello에 **뷰 추가** 대화 상자에서 입력 **AddMessage** hello 뷰 이름과 선택에 대 한 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-164">On hello **Add View** dialog, enter **AddMessage** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="9c545-165">`AddMessage.cshtml`을 열고 다음 코드 조각과 같이 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-165">Open `AddMessage.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="fc73c-165">열기 `AddMessage.cshtml`, 다음 코드 조각 hello 모양이 되도록 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-165">Open `AddMessage.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @{
@@ -215,81 +215,81 @@ ms.lasthandoff: 08/03/2017
     
     <h2>Add Message results</h2>
     
-    The message '@ViewBag.Message' was added to the queue '@ViewBag.QueueName'.
+    hello message '@ViewBag.Message' was added toohello queue '@ViewBag.QueueName'.
     ```
 
-1. <span data-ttu-id="9c545-166">**솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-166">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="fc73c-166">Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-166">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="9c545-167">마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-167">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="fc73c-167">Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="fc73c-167">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Add message", "AddMessage", "Queues")</li>
     ```
 
-1. <span data-ttu-id="9c545-168">응용 프로그램을 실행하고 **메시지 추가**를 선택하여 다음 스크린샷과 유사한 결과를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-168">Run the application, and select **Add message** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="fc73c-168">Hello 응용 프로그램을 실행 하 고 선택 **추가 메시지** toosee 스크린 샷 다음 유사한 toohello 결과:</span><span class="sxs-lookup"><span data-stu-id="fc73c-168">Run hello application, and select **Add message** toosee results similar toohello following screen shot:</span></span>
   
     ![메시지 추가](./media/vs-storage-aspnet-getting-started-queues/add-message-results.png)
 
-<span data-ttu-id="9c545-170">두 개의 섹션 - [메시지를 제거하지 않고 큐에서 읽기](#read-a-message-from-a-queue-without-removing-it) 및 [큐에서 메시지 읽기 및 제거](#read-and-remove-a-message-from-a-queue) - 큐에서 메시지를 읽는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-170">The two sections - [Read a message from a queue without removing it](#read-a-message-from-a-queue-without-removing-it) and [Read and remove a message from a queue](#read-and-remove-a-message-from-a-queue) - illustrate how to read messages from a queue.</span></span>    
+<span data-ttu-id="fc73c-170">두 개의 섹션-hello [제거 하지 않고 큐에서 메시지를 읽으려면](#read-a-message-from-a-queue-without-removing-it) 및 [읽기 및 큐에서 메시지 제거](#read-and-remove-a-message-from-a-queue) -tooread 큐에서 메시지 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-170">hello two sections - [Read a message from a queue without removing it](#read-a-message-from-a-queue-without-removing-it) and [Read and remove a message from a queue](#read-and-remove-a-message-from-a-queue) - illustrate how tooread messages from a queue.</span></span>  
 
-## <a name="read-a-message-from-a-queue-without-removing-it"></a><span data-ttu-id="9c545-171">메시지를 제거하지 않고 큐에서 읽기</span><span class="sxs-lookup"><span data-stu-id="9c545-171">Read a message from a queue without removing it</span></span>
+## <a name="read-a-message-from-a-queue-without-removing-it"></a><span data-ttu-id="fc73c-171">메시지를 제거하지 않고 큐에서 읽기</span><span class="sxs-lookup"><span data-stu-id="fc73c-171">Read a message from a queue without removing it</span></span>
 
-<span data-ttu-id="9c545-172">이 섹션에서는 대기 중인 메시지를 미리 확인하는 방법을 설명합니다(첫 번째 메시지를 제거하지 않고 읽음).</span><span class="sxs-lookup"><span data-stu-id="9c545-172">This section illustrates how to peek at a queued message (read the first message without removing it).</span></span>  
+<span data-ttu-id="fc73c-172">이 섹션에서는 어떻게 toopeek 큐에 대기 중인 메시지 (제거 하지 않고 첫 번째 메시지 읽기 hello).</span><span class="sxs-lookup"><span data-stu-id="fc73c-172">This section illustrates how toopeek at a queued message (read hello first message without removing it).</span></span>  
 
 > [!NOTE]
 > 
-> <span data-ttu-id="9c545-173">이 섹션에서는 [개발 환경 설정](#set-up-the-development-environment) 단계를 완료했다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-173">This section assumes you have completed the steps [Set up the development environment](#set-up-the-development-environment).</span></span> 
+> <span data-ttu-id="fc73c-173">이 섹션에서는 hello 단계를 완료 한 가정 [hello 개발 환경 설정](#set-up-the-development-environment)합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-173">This section assumes you have completed hello steps [Set up hello development environment](#set-up-the-development-environment).</span></span> 
 
-1. <span data-ttu-id="9c545-174">`QueuesController.cs` 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-174">Open the `QueuesController.cs` file.</span></span>
+1. <span data-ttu-id="fc73c-174">열기 hello `QueuesController.cs` 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-174">Open hello `QueuesController.cs` file.</span></span>
 
-1. <span data-ttu-id="9c545-175">**ActionResult**를 반환하는 **PeekMessage**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-175">Add a method called **PeekMessage** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="fc73c-175">**ActionResult**를 반환하는 **PeekMessage**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-175">Add a method called **PeekMessage** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult PeekMessage()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. <span data-ttu-id="9c545-176">**PeekMessage** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-176">Within the **PeekMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="9c545-177">다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure 저장소 계정의 이름으로 변경).</span><span class="sxs-lookup"><span data-stu-id="9c545-177">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="fc73c-176">Hello 내 **PeekMessage** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-176">Within hello **PeekMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="fc73c-177">사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)</span><span class="sxs-lookup"><span data-stu-id="fc73c-177">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
    
-1. <span data-ttu-id="9c545-178">큐 서비스 클라이언트를 나타내는 **CloudQueueClient** 개체를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-178">Get a **CloudQueueClient** object represents a queue service client.</span></span>
+1. <span data-ttu-id="fc73c-178">큐 서비스 클라이언트를 나타내는 **CloudQueueClient** 개체를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-178">Get a **CloudQueueClient** object represents a queue service client.</span></span>
    
     ```csharp
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
 
-1. <span data-ttu-id="9c545-179">큐에 대한 참조를 나타내는 **CloudQueueContainer** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-179">Get a **CloudQueueContainer** object that represents a reference to the queue.</span></span> 
+1. <span data-ttu-id="fc73c-179">가져오기는 **CloudQueueContainer** 참조 toohello 큐를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-179">Get a **CloudQueueContainer** object that represents a reference toohello queue.</span></span> 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. <span data-ttu-id="9c545-180">**CloudQueue.PeekMessage** 메서드를 호출하여 큐에서 메시지를 제거하지 않고도 큐의 첫 번째 메시지를 읽습니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-180">Call the **CloudQueue.PeekMessage** method to read the first message in the queue without removing it from the queue.</span></span> 
+1. <span data-ttu-id="fc73c-180">Hello 호출 **CloudQueue.PeekMessage** 메서드 tooread hello hello 큐에서 제거 하지 않고 hello 큐의 첫 번째 메시지입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-180">Call hello **CloudQueue.PeekMessage** method tooread hello first message in hello queue without removing it from hello queue.</span></span> 
 
     ```csharp
     CloudQueueMessage message = queue.PeekMessage();
     ```
 
-1. <span data-ttu-id="9c545-181">읽힌 큐 이름 및 메시지의 두 값으로 **ViewBag**을 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-181">Update the **ViewBag** with two values: the queue name and the message that was read.</span></span> <span data-ttu-id="9c545-182">**CloudQueueMessage** 개체는 개체의 값을 가져오기 위해 두 개의 속성(**CloudQueueMessage.AsBytes** 및 **CloudQueueMessage.AsString**)을 노출합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-182">The **CloudQueueMessage** object exposes two properties for getting the object's value: **CloudQueueMessage.AsBytes** and **CloudQueueMessage.AsString**.</span></span> <span data-ttu-id="9c545-183">**AsString**(이 예제에서 사용)은 문자열을 반환하는 반면 **AsBytes**는 바이트 배열을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-183">**AsString** (used in this example) returns a string, while **AsBytes** returns a byte array.</span></span>
+1. <span data-ttu-id="fc73c-181">업데이트 hello **ViewBag** 두 값이 포함: hello 큐 이름 및 hello 메시지를 읽었습니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-181">Update hello **ViewBag** with two values: hello queue name and hello message that was read.</span></span> <span data-ttu-id="fc73c-182">hello **CloudQueueMessage** 개체 hello 개체의 값을 가져오기 위한 두 가지 속성을 노출: **CloudQueueMessage.AsBytes** 및 **CloudQueueMessage.AsString**합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-182">hello **CloudQueueMessage** object exposes two properties for getting hello object's value: **CloudQueueMessage.AsBytes** and **CloudQueueMessage.AsString**.</span></span> <span data-ttu-id="fc73c-183">**AsString**(이 예제에서 사용)은 문자열을 반환하는 반면 **AsBytes**는 바이트 배열을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-183">**AsString** (used in this example) returns a string, while **AsBytes** returns a byte array.</span></span>
 
     ```csharp
     ViewBag.QueueName = queue.Name; 
     ViewBag.Message = (message != null ? message.AsString : "");
     ```
 
-1. <span data-ttu-id="9c545-184">**솔루션 탐색기**에서 **보기** 폴더를 확장한 다음 **큐**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->보기**를 차례로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-184">In the **Solution Explorer**, expand the **Views** folder, right-click **Queues**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="fc73c-184">Hello에 **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 **큐**, hello 상황에 맞는 메뉴에서 선택 하 고 **추가보기->**.</span><span class="sxs-lookup"><span data-stu-id="fc73c-184">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Queues**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="9c545-185">**보기 추가** 대화 상자에서 보기 이름으로 **PeekMessage**를 입력하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-185">On the **Add View** dialog, enter **PeekMessage** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="fc73c-185">Hello에 **뷰 추가** 대화 상자에서 입력 **PeekMessage** hello 뷰 이름과 선택에 대 한 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-185">On hello **Add View** dialog, enter **PeekMessage** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="9c545-186">`PeekMessage.cshtml`을 열고 다음 코드 조각과 같이 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-186">Open `PeekMessage.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="fc73c-186">열기 `PeekMessage.cshtml`, 다음 코드 조각 hello 모양이 되도록 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-186">Open `PeekMessage.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @{
@@ -304,83 +304,83 @@ ms.lasthandoff: 08/03/2017
     </table>    
     ```
 
-1. <span data-ttu-id="9c545-187">**솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-187">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="fc73c-187">Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-187">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="9c545-188">마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-188">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="fc73c-188">Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="fc73c-188">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Peek message", "PeekMessage", "Queues")</li>
     ```
 
-1. <span data-ttu-id="9c545-189">응용 프로그램을 실행하고 **메시지 보기**를 선택하여 다음 스크린샷과 유사한 결과를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-189">Run the application, and select **Peek message** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="fc73c-189">Hello 응용 프로그램을 실행 하 고 선택 **Peek 메시지** toosee 스크린 샷 다음 유사한 toohello 결과:</span><span class="sxs-lookup"><span data-stu-id="fc73c-189">Run hello application, and select **Peek message** toosee results similar toohello following screen shot:</span></span>
   
     ![메시지 보기](./media/vs-storage-aspnet-getting-started-queues/peek-message-results.png)
 
-## <a name="read-and-remove-a-message-from-a-queue"></a><span data-ttu-id="9c545-191">큐에서 메시지 읽기 및 제거</span><span class="sxs-lookup"><span data-stu-id="9c545-191">Read and remove a message from a queue</span></span>
+## <a name="read-and-remove-a-message-from-a-queue"></a><span data-ttu-id="fc73c-191">큐에서 메시지 읽기 및 제거</span><span class="sxs-lookup"><span data-stu-id="fc73c-191">Read and remove a message from a queue</span></span>
 
-<span data-ttu-id="9c545-192">이 섹션에서는 큐에서 메시지를 읽고 제거하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-192">In this section, you learn how to read and remove a message from a queue.</span></span>   
+<span data-ttu-id="fc73c-192">이 섹션에서는 설명 어떻게 tooread 큐에서 메시지를 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-192">In this section, you learn how tooread and remove a message from a queue.</span></span>   
 
 > [!NOTE]
 > 
-> <span data-ttu-id="9c545-193">이 섹션에서는 [개발 환경 설정](#set-up-the-development-environment) 단계를 완료했다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-193">This section assumes you have completed the steps [Set up the development environment](#set-up-the-development-environment).</span></span> 
+> <span data-ttu-id="fc73c-193">이 섹션에서는 hello 단계를 완료 한 가정 [hello 개발 환경 설정](#set-up-the-development-environment)합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-193">This section assumes you have completed hello steps [Set up hello development environment](#set-up-the-development-environment).</span></span> 
 
-1. <span data-ttu-id="9c545-194">`QueuesController.cs` 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-194">Open the `QueuesController.cs` file.</span></span>
+1. <span data-ttu-id="fc73c-194">열기 hello `QueuesController.cs` 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-194">Open hello `QueuesController.cs` file.</span></span>
 
-1. <span data-ttu-id="9c545-195">**ActionResult**를 반환하는 **ReadMessage**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-195">Add a method called **ReadMessage** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="fc73c-195">**ActionResult**를 반환하는 **ReadMessage**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-195">Add a method called **ReadMessage** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult ReadMessage()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. <span data-ttu-id="9c545-196">**ReadMessage** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-196">Within the **ReadMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="9c545-197">다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure 저장소 계정의 이름으로 변경).</span><span class="sxs-lookup"><span data-stu-id="9c545-197">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="fc73c-196">Hello 내 **ReadMessage** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-196">Within hello **ReadMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="fc73c-197">사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)</span><span class="sxs-lookup"><span data-stu-id="fc73c-197">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
    
-1. <span data-ttu-id="9c545-198">큐 서비스 클라이언트를 나타내는 **CloudQueueClient** 개체를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-198">Get a **CloudQueueClient** object represents a queue service client.</span></span>
+1. <span data-ttu-id="fc73c-198">큐 서비스 클라이언트를 나타내는 **CloudQueueClient** 개체를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-198">Get a **CloudQueueClient** object represents a queue service client.</span></span>
    
     ```csharp
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
 
-1. <span data-ttu-id="9c545-199">큐에 대한 참조를 나타내는 **CloudQueueContainer** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-199">Get a **CloudQueueContainer** object that represents a reference to the queue.</span></span> 
+1. <span data-ttu-id="fc73c-199">가져오기는 **CloudQueueContainer** 참조 toohello 큐를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-199">Get a **CloudQueueContainer** object that represents a reference toohello queue.</span></span> 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. <span data-ttu-id="9c545-200">**CloudQueue.GetMessage** 메서드를 호출하여 큐의 첫 번째 메시지를 읽습니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-200">Call the **CloudQueue.GetMessage** method to read the first message in the queue.</span></span> <span data-ttu-id="9c545-201">**CloudQueue.GetMessage** 메서드는 메시지를 읽는 다른 코드에 해당 메시지가 30초(기본값) 동안 보이지 않도록 하여 사용자가 메시지를 처리하는 동안 다른 코드가 메시지를 수정하거나 삭제할 수 없게 합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-201">The **CloudQueue.GetMessage** method makes the message invisible for 30 seconds (by default) to any other code reading messages so that no other code can modify or delete the message while your processing it.</span></span> <span data-ttu-id="9c545-202">메시지가 보이지 않는 기간을 변경하려면 **CloudQueue.GetMessage** 메서드에 전달되는 **visibilityTimeout** 매개 변수를 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-202">To change the amount of time the message is invisible, modify the **visibilityTimeout** parameter being passed to the **CloudQueue.GetMessage** method.</span></span>
+1. <span data-ttu-id="fc73c-200">Hello 호출 **CloudQueue.GetMessage** 메서드 tooread hello hello 큐의 첫 번째 메시지입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-200">Call hello **CloudQueue.GetMessage** method tooread hello first message in hello queue.</span></span> <span data-ttu-id="fc73c-201">hello **CloudQueue.GetMessage** 메서드 hello 메시지 보이지 않는 기본적으로 30 초 tooany에 대 한 다른 코드 수정 하거나 사용자 처리 하는 동안 hello 메시지를 삭제할 수 있도록 메시지를 읽고 다른 코드를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-201">hello **CloudQueue.GetMessage** method makes hello message invisible for 30 seconds (by default) tooany other code reading messages so that no other code can modify or delete hello message while your processing it.</span></span> <span data-ttu-id="fc73c-202">toochange hello 양의 시간 hello 메시지 보이지 않으면, hello 수정 **visibilityTimeout** toohello 전달 되는 매개 변수 **CloudQueue.GetMessage** 메서드.</span><span class="sxs-lookup"><span data-stu-id="fc73c-202">toochange hello amount of time hello message is invisible, modify hello **visibilityTimeout** parameter being passed toohello **CloudQueue.GetMessage** method.</span></span>
 
     ```csharp
-    // This message will be invisible to other code for 30 seconds.
+    // This message will be invisible tooother code for 30 seconds.
     CloudQueueMessage message = queue.GetMessage();     
     ```
 
-1. <span data-ttu-id="9c545-203">**CloudQueueMessage.Delete** 메서드를 호출하여 큐에서 메시지를 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-203">Call the **CloudQueueMessage.Delete** method to delete the message from the queue.</span></span>
+1. <span data-ttu-id="fc73c-203">Hello 호출 **CloudQueueMessage.Delete** hello 큐에서 메서드 toodelete hello 메시지입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-203">Call hello **CloudQueueMessage.Delete** method toodelete hello message from hello queue.</span></span>
 
     ```csharp
     queue.DeleteMessage(message);
     ```
 
-1. <span data-ttu-id="9c545-204">**ViewBag**을 삭제된 메시지로 업데이트하고 큐의 이름을 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-204">Update the **ViewBag** with the message deleted, and the name of the queue.</span></span>
+1. <span data-ttu-id="fc73c-204">업데이트 hello **ViewBag** hello로 메시지를 삭제 하 고 hello hello 큐의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-204">Update hello **ViewBag** with hello message deleted, and hello name of hello queue.</span></span>
 
     ```csharp
     ViewBag.QueueName = queue.Name;
     ViewBag.Message = message.AsString;
     ```
  
-1. <span data-ttu-id="9c545-205">**솔루션 탐색기**에서 **보기** 폴더를 확장한 다음 **큐**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->보기**를 차례로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-205">In the **Solution Explorer**, expand the **Views** folder, right-click **Queues**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="fc73c-205">Hello에 **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 **큐**, hello 상황에 맞는 메뉴에서 선택 하 고 **추가보기->**.</span><span class="sxs-lookup"><span data-stu-id="fc73c-205">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Queues**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="9c545-206">**보기 추가** 대화 상자에서 보기 이름으로 **ReadMessage**를 입력하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-206">On the **Add View** dialog, enter **ReadMessage** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="fc73c-206">Hello에 **뷰 추가** 대화 상자에서 입력 **ReadMessage** hello 뷰 이름과 선택에 대 한 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-206">On hello **Add View** dialog, enter **ReadMessage** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="9c545-207">`ReadMessage.cshtml`을 열고 다음 코드 조각과 같이 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-207">Open `ReadMessage.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="fc73c-207">열기 `ReadMessage.cshtml`, 다음 코드 조각 hello 모양이 되도록 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-207">Open `ReadMessage.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @{
@@ -395,82 +395,82 @@ ms.lasthandoff: 08/03/2017
     </table>
     ```
 
-1. <span data-ttu-id="9c545-208">**솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-208">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="fc73c-208">Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-208">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="9c545-209">마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-209">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="fc73c-209">Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="fc73c-209">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Read/Delete message", "ReadMessage", "Queues")</li>
     ```
 
-1. <span data-ttu-id="9c545-210">응용 프로그램을 실행하고 **메시지 읽기/삭제**를 선택하여 다음 스크린샷과 유사한 결과를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-210">Run the application, and select **Read/Delete message** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="fc73c-210">Hello 응용 프로그램을 실행 하 고 선택 **읽기/삭제 메시지** toosee 스크린 샷 다음 유사한 toohello 결과:</span><span class="sxs-lookup"><span data-stu-id="fc73c-210">Run hello application, and select **Read/Delete message** toosee results similar toohello following screen shot:</span></span>
   
     ![메시지 읽기 및 삭제](./media/vs-storage-aspnet-getting-started-queues/read-message-results.png)
 
-## <a name="get-the-queue-length"></a><span data-ttu-id="9c545-212">큐 길이 가져오기</span><span class="sxs-lookup"><span data-stu-id="9c545-212">Get the queue length</span></span>
+## <a name="get-hello-queue-length"></a><span data-ttu-id="fc73c-212">Hello 큐 길이 가져오기</span><span class="sxs-lookup"><span data-stu-id="fc73c-212">Get hello queue length</span></span>
 
-<span data-ttu-id="9c545-213">이 섹션에서는 큐 길이(메시지 수)를 가져오는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-213">This section illustrates how to get the queue length (number of messages).</span></span> 
+<span data-ttu-id="fc73c-213">이 섹션에서는 tooget 큐 길이 (메시지 수) hello 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-213">This section illustrates how tooget hello queue length (number of messages).</span></span> 
 
 > [!NOTE]
 > 
-> <span data-ttu-id="9c545-214">이 섹션에서는 [개발 환경 설정](#set-up-the-development-environment) 단계를 완료했다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-214">This section assumes you have completed the steps [Set up the development environment](#set-up-the-development-environment).</span></span> 
+> <span data-ttu-id="fc73c-214">이 섹션에서는 hello 단계를 완료 한 가정 [hello 개발 환경 설정](#set-up-the-development-environment)합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-214">This section assumes you have completed hello steps [Set up hello development environment](#set-up-the-development-environment).</span></span> 
 
-1. <span data-ttu-id="9c545-215">`QueuesController.cs` 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-215">Open the `QueuesController.cs` file.</span></span>
+1. <span data-ttu-id="fc73c-215">열기 hello `QueuesController.cs` 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-215">Open hello `QueuesController.cs` file.</span></span>
 
-1. <span data-ttu-id="9c545-216">**ActionResult**를 반환하는 **GetQueueLength**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-216">Add a method called **GetQueueLength** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="fc73c-216">**ActionResult**를 반환하는 **GetQueueLength**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-216">Add a method called **GetQueueLength** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult GetQueueLength()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. <span data-ttu-id="9c545-217">**ReadMessage** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-217">Within the **ReadMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="9c545-218">다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure 저장소 계정의 이름으로 변경).</span><span class="sxs-lookup"><span data-stu-id="9c545-218">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="fc73c-217">Hello 내 **ReadMessage** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-217">Within hello **ReadMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="fc73c-218">사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)</span><span class="sxs-lookup"><span data-stu-id="fc73c-218">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
    
-1. <span data-ttu-id="9c545-219">큐 서비스 클라이언트를 나타내는 **CloudQueueClient** 개체를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-219">Get a **CloudQueueClient** object represents a queue service client.</span></span>
+1. <span data-ttu-id="fc73c-219">큐 서비스 클라이언트를 나타내는 **CloudQueueClient** 개체를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-219">Get a **CloudQueueClient** object represents a queue service client.</span></span>
    
     ```csharp
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
 
-1. <span data-ttu-id="9c545-220">큐에 대한 참조를 나타내는 **CloudQueueContainer** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-220">Get a **CloudQueueContainer** object that represents a reference to the queue.</span></span> 
+1. <span data-ttu-id="fc73c-220">가져오기는 **CloudQueueContainer** 참조 toohello 큐를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-220">Get a **CloudQueueContainer** object that represents a reference toohello queue.</span></span> 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. <span data-ttu-id="9c545-221">**CloudQueue.FetchAttributes** 메서드를 호출하여 큐의 특성(길이 포함)을 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-221">Call the **CloudQueue.FetchAttributes** method to retrieve the queue's attributes (including its length).</span></span> 
+1. <span data-ttu-id="fc73c-221">Hello 호출 **CloudQueue.FetchAttributes** 메서드 tooretrieve hello 큐의 특성 (길이 포함).</span><span class="sxs-lookup"><span data-stu-id="fc73c-221">Call hello **CloudQueue.FetchAttributes** method tooretrieve hello queue's attributes (including its length).</span></span> 
 
     ```csharp
     queue.FetchAttributes();
     ```
 
-6. <span data-ttu-id="9c545-222">**CloudQueue.ApproximateMessageCount** 속성에 액세스하여 큐의 길이를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-222">Access the **CloudQueue.ApproximateMessageCount** property to get the queue's length.</span></span>
+6. <span data-ttu-id="fc73c-222">액세스 hello **CloudQueue.ApproximateMessageCount** 속성 tooget hello 큐 길이입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-222">Access hello **CloudQueue.ApproximateMessageCount** property tooget hello queue's length.</span></span>
  
     ```csharp
     int? nMessages = queue.ApproximateMessageCount;
     ```
 
-1. <span data-ttu-id="9c545-223">**ViewBag**을 큐의 이름으로 업데이트하고 해당 길이를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-223">Update the **ViewBag** with the name of the queue, and its length.</span></span>
+1. <span data-ttu-id="fc73c-223">업데이트 hello **ViewBag** hello 큐 길이 hello 이름을 사용해 합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-223">Update hello **ViewBag** with hello name of hello queue, and its length.</span></span>
 
     ```csharp
     ViewBag.QueueName = queue.Name;
     ViewBag.Length = nMessages;
     ```
  
-1. <span data-ttu-id="9c545-224">**솔루션 탐색기**에서 **보기** 폴더를 확장한 다음 **큐**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->보기**를 차례로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-224">In the **Solution Explorer**, expand the **Views** folder, right-click **Queues**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="fc73c-224">Hello에 **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 **큐**, hello 상황에 맞는 메뉴에서 선택 하 고 **추가보기->**.</span><span class="sxs-lookup"><span data-stu-id="fc73c-224">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Queues**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="9c545-225">**보기 추가** 대화 상자에서 보기 이름으로 **GetQueueLength**를 입력하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-225">On the **Add View** dialog, enter **GetQueueLength** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="fc73c-225">Hello에 **뷰 추가** 대화 상자에서 입력 **GetQueueLength** hello 뷰 이름과 선택에 대 한 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-225">On hello **Add View** dialog, enter **GetQueueLength** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="9c545-226">`GetQueueLengthMessage.cshtml`을 열고 다음 코드 조각과 같이 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-226">Open `GetQueueLengthMessage.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="fc73c-226">열기 `GetQueueLengthMessage.cshtml`, 다음 코드 조각 hello 모양이 되도록 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-226">Open `GetQueueLengthMessage.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @{
@@ -479,78 +479,78 @@ ms.lasthandoff: 08/03/2017
     
     <h2>Get Queue Length results</h2>
     
-    The queue '@ViewBag.QueueName' has a length of (number of messages): @ViewBag.Length
+    hello queue '@ViewBag.QueueName' has a length of (number of messages): @ViewBag.Length
     ```
 
-1. <span data-ttu-id="9c545-227">**솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-227">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="fc73c-227">Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-227">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="9c545-228">마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-228">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="fc73c-228">Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="fc73c-228">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Get queue length", "GetQueueLength", "Queues")</li>
     ```
 
-1. <span data-ttu-id="9c545-229">응용 프로그램을 실행하고 **큐 길이 가져오기**를 선택하여 다음 스크린샷과 유사한 결과를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-229">Run the application, and select **Get queue length** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="fc73c-229">Hello 응용 프로그램을 실행 하 고 선택 **큐 길이 가져오기** toosee 스크린 샷 다음 유사한 toohello 결과:</span><span class="sxs-lookup"><span data-stu-id="fc73c-229">Run hello application, and select **Get queue length** toosee results similar toohello following screen shot:</span></span>
   
     ![큐 길이 가져오기](./media/vs-storage-aspnet-getting-started-queues/get-queue-length-results.png)
 
 
-## <a name="delete-a-queue"></a><span data-ttu-id="9c545-231">큐 삭제</span><span class="sxs-lookup"><span data-stu-id="9c545-231">Delete a queue</span></span>
-<span data-ttu-id="9c545-232">이 섹션에서는 큐를 삭제하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-232">This section illustrates how to delete a queue.</span></span> 
+## <a name="delete-a-queue"></a><span data-ttu-id="fc73c-231">큐 삭제</span><span class="sxs-lookup"><span data-stu-id="fc73c-231">Delete a queue</span></span>
+<span data-ttu-id="fc73c-232">이 섹션에서는 어떻게 toodelete 큐입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-232">This section illustrates how toodelete a queue.</span></span> 
 
 > [!NOTE]
 > 
-> <span data-ttu-id="9c545-233">이 섹션에서는 [개발 환경 설정](#set-up-the-development-environment) 단계를 완료했다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-233">This section assumes you have completed the steps [Set up the development environment](#set-up-the-development-environment).</span></span> 
+> <span data-ttu-id="fc73c-233">이 섹션에서는 hello 단계를 완료 한 가정 [hello 개발 환경 설정](#set-up-the-development-environment)합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-233">This section assumes you have completed hello steps [Set up hello development environment](#set-up-the-development-environment).</span></span> 
 
-1. <span data-ttu-id="9c545-234">`QueuesController.cs` 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-234">Open the `QueuesController.cs` file.</span></span>
+1. <span data-ttu-id="fc73c-234">열기 hello `QueuesController.cs` 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-234">Open hello `QueuesController.cs` file.</span></span>
 
-1. <span data-ttu-id="9c545-235">**ActionResult**를 반환하는 **DeleteQueue**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-235">Add a method called **DeleteQueue** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="fc73c-235">**ActionResult**를 반환하는 **DeleteQueue**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-235">Add a method called **DeleteQueue** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult DeleteQueue()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. <span data-ttu-id="9c545-236">**DeleteQueue** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-236">Within the **DeleteQueue** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="9c545-237">다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure 저장소 계정의 이름으로 변경).</span><span class="sxs-lookup"><span data-stu-id="9c545-237">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="fc73c-236">Hello 내 **DeleteQueue** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-236">Within hello **DeleteQueue** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="fc73c-237">사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)</span><span class="sxs-lookup"><span data-stu-id="fc73c-237">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
    
-1. <span data-ttu-id="9c545-238">큐 서비스 클라이언트를 나타내는 **CloudQueueClient** 개체를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-238">Get a **CloudQueueClient** object represents a queue service client.</span></span>
+1. <span data-ttu-id="fc73c-238">큐 서비스 클라이언트를 나타내는 **CloudQueueClient** 개체를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-238">Get a **CloudQueueClient** object represents a queue service client.</span></span>
    
     ```csharp
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
 
-1. <span data-ttu-id="9c545-239">큐에 대한 참조를 나타내는 **CloudQueueContainer** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-239">Get a **CloudQueueContainer** object that represents a reference to the queue.</span></span> 
+1. <span data-ttu-id="fc73c-239">가져오기는 **CloudQueueContainer** 참조 toohello 큐를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-239">Get a **CloudQueueContainer** object that represents a reference toohello queue.</span></span> 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. <span data-ttu-id="9c545-240">**CloudQueue.Delete** 메서드를 호출하여 **CloudQueue** 개체로 나타내는 큐를 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-240">Call the **CloudQueue.Delete** method to delete the queue represented by the **CloudQueue** object.</span></span>
+1. <span data-ttu-id="fc73c-240">Hello 호출 **CloudQueue.Delete** hello가 나타내는 메서드 toodelete hello 큐 **CloudQueue** 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-240">Call hello **CloudQueue.Delete** method toodelete hello queue represented by hello **CloudQueue** object.</span></span>
 
     ```csharp
     queue.Delete();
     ```
 
-1. <span data-ttu-id="9c545-241">**ViewBag**을 큐의 이름으로 업데이트하고 해당 길이를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-241">Update the **ViewBag** with the name of the queue, and its length.</span></span>
+1. <span data-ttu-id="fc73c-241">업데이트 hello **ViewBag** hello 큐 길이 hello 이름을 사용해 합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-241">Update hello **ViewBag** with hello name of hello queue, and its length.</span></span>
 
     ```csharp
     ViewBag.QueueName = queue.Name;
     ```
  
-1. <span data-ttu-id="9c545-242">**솔루션 탐색기**에서 **보기** 폴더를 확장한 다음 **큐**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->보기**를 차례로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-242">In the **Solution Explorer**, expand the **Views** folder, right-click **Queues**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="fc73c-242">Hello에 **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 **큐**, hello 상황에 맞는 메뉴에서 선택 하 고 **추가보기->**.</span><span class="sxs-lookup"><span data-stu-id="fc73c-242">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Queues**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="9c545-243">**보기 추가** 대화 상자에서 보기 이름으로 **DeleteQueue**를 입력하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-243">On the **Add View** dialog, enter **DeleteQueue** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="fc73c-243">Hello에 **뷰 추가** 대화 상자에서 입력 **DeleteQueue** hello 뷰 이름과 선택에 대 한 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-243">On hello **Add View** dialog, enter **DeleteQueue** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="9c545-244">`DeleteQueue.cshtml`을 열고 다음 코드 조각과 같이 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-244">Open `DeleteQueue.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="fc73c-244">열기 `DeleteQueue.cshtml`, 다음 코드 조각 hello 모양이 되도록 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-244">Open `DeleteQueue.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @{
@@ -562,20 +562,20 @@ ms.lasthandoff: 08/03/2017
     @ViewBag.QueueName deleted.
     ```
 
-1. <span data-ttu-id="9c545-245">**솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-245">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="fc73c-245">Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-245">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="9c545-246">마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-246">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="fc73c-246">Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="fc73c-246">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Delete queue", "DeleteQueue", "Queues")</li>
     ```
 
-1. <span data-ttu-id="9c545-247">응용 프로그램을 실행하고 **큐 길이 가져오기**를 선택하여 다음 스크린샷과 유사한 결과를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="9c545-247">Run the application, and select **Get queue length** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="fc73c-247">Hello 응용 프로그램을 실행 하 고 선택 **큐 길이 가져오기** toosee 스크린 샷 다음 유사한 toohello 결과:</span><span class="sxs-lookup"><span data-stu-id="fc73c-247">Run hello application, and select **Get queue length** toosee results similar toohello following screen shot:</span></span>
   
     ![큐 삭제](./media/vs-storage-aspnet-getting-started-queues/delete-queue-results.png)
 
-## <a name="next-steps"></a><span data-ttu-id="9c545-249">다음 단계</span><span class="sxs-lookup"><span data-stu-id="9c545-249">Next steps</span></span>
-<span data-ttu-id="9c545-250">Azure에 데이터를 저장하기 위한 추가 옵션에 대한 자세한 내용은 추가 기능 가이드를 참조하십시오.</span><span class="sxs-lookup"><span data-stu-id="9c545-250">View more feature guides to learn about additional options for storing data in Azure.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="fc73c-249">다음 단계</span><span class="sxs-lookup"><span data-stu-id="fc73c-249">Next steps</span></span>
+<span data-ttu-id="fc73c-250">Azure에 데이터를 저장 하기 위한 추가 옵션에 대 한 자세한 기능 가이드 toolearn을 봅니다.</span><span class="sxs-lookup"><span data-stu-id="fc73c-250">View more feature guides toolearn about additional options for storing data in Azure.</span></span>
 
-  * [<span data-ttu-id="9c545-251">Azure Blob 저장소 및 Visual Studio 연결된 서비스 시작(ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="9c545-251">Get started with Azure blob storage and Visual Studio Connected Services (ASP.NET)</span></span>](./vs-storage-aspnet-getting-started-blobs.md)
-  * [<span data-ttu-id="9c545-252">Azure 테이블 저장소 및 Visual Studio 연결된 서비스 시작(ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="9c545-252">Get started with Azure table storage and Visual Studio Connected Services (ASP.NET)</span></span>](./vs-storage-aspnet-getting-started-tables.md)
+  * [<span data-ttu-id="fc73c-251">Azure Blob 저장소 및 Visual Studio 연결된 서비스 시작(ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="fc73c-251">Get started with Azure blob storage and Visual Studio Connected Services (ASP.NET)</span></span>](./vs-storage-aspnet-getting-started-blobs.md)
+  * [<span data-ttu-id="fc73c-252">Azure 테이블 저장소 및 Visual Studio 연결된 서비스 시작(ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="fc73c-252">Get started with Azure table storage and Visual Studio Connected Services (ASP.NET)</span></span>](./vs-storage-aspnet-getting-started-tables.md)

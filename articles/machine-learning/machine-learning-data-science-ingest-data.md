@@ -1,6 +1,6 @@
 ---
-title: "분석용 Azure 저장소 환경에 데이터 로드 | Microsoft Docs"
-description: "Azure Blob 저장소의 데이터 이동"
+title: "분석에 대 한 Azure 저장소 환경으로 데이터 aaaLoad | Microsoft Docs"
+description: "Azure Blob 저장소에서 데이터 tooand 이동"
 services: machine-learning,storage
 documentationcenter: 
 author: bradsev
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-ms.openlocfilehash: 7fbf3bfedca8fa57a5e9428c9399558992b4acbd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0fea2290991f9fa63d9e46c3a657000e27d95289
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="load-data-into-storage-environments-for-analytics"></a><span data-ttu-id="da676-103">분석용 저장소 환경에 데이터 로드</span><span class="sxs-lookup"><span data-stu-id="da676-103">Load data into storage environments for analytics</span></span>
-<span data-ttu-id="da676-104">팀 데이터 과학 프로세스는 프로세스의 각 단계에서 가장 적절한 방법으로 처리되거나 분석되도록 데이터가 다양한 저장소 환경에 수집되거나 로드되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="da676-104">The Team Data Science Process requires that data be ingested or loaded into a variety of different storage environments to be processed or analyzed in the most appropriate way in each stage of the process.</span></span> <span data-ttu-id="da676-105">처리하기 위해 일반적으로 사용하는 데이터 대상에는 Azure Blob 저장소, SQL Azure 데이터베이스, Azure VM의 SQL Server, HDInsight(Hadoop) 및 Azure 기계 학습이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="da676-105">Data destinations commonly used for processing include Azure Blob Storage, SQL Azure databases, SQL Server on Azure VM, HDInsight (Hadoop), and Azure Machine Learning.</span></span> 
+# <a name="load-data-into-storage-environments-for-analytics"></a><span data-ttu-id="5ddfb-103">분석용 저장소 환경에 데이터 로드</span><span class="sxs-lookup"><span data-stu-id="5ddfb-103">Load data into storage environments for analytics</span></span>
+<span data-ttu-id="5ddfb-104">hello 팀 데이터 과학 프로세스는 데이터 수집 된 것인지에 다양 한 다른 저장소 환경 toobe 처리 되거나 hello 프로세스의 각 단계에서 hello 가장 적합 한 방식에서으로 분석할 로드 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ddfb-104">hello Team Data Science Process requires that data be ingested or loaded into a variety of different storage environments toobe processed or analyzed in hello most appropriate way in each stage of hello process.</span></span> <span data-ttu-id="5ddfb-105">처리하기 위해 일반적으로 사용하는 데이터 대상에는 Azure Blob 저장소, SQL Azure 데이터베이스, Azure VM의 SQL Server, HDInsight(Hadoop) 및 Azure 기계 학습이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="5ddfb-105">Data destinations commonly used for processing include Azure Blob Storage, SQL Azure databases, SQL Server on Azure VM, HDInsight (Hadoop), and Azure Machine Learning.</span></span> 
 
 [!INCLUDE [cap-ingest-data-selector](../../includes/cap-ingest-data-selector.md)]
 
-<span data-ttu-id="da676-106">이 **메뉴** 는 데이터가 저장되고 처리되는 이러한 대상 환경으로 데이터를 수집하는 방법을 설명하는 토픽에 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="da676-106">This **menu** links to topics that describe how to ingest data into these target environments where the data is stored and processed.</span></span>
+<span data-ttu-id="5ddfb-106">이 **메뉴** tootopics tooingest 데이터를 이러한 환경 hello 데이터가 저장 되 고 처리를 대상 하는 방법을 설명 하는 링크입니다.</span><span class="sxs-lookup"><span data-stu-id="5ddfb-106">This **menu** links tootopics that describe how tooingest data into these target environments where hello data is stored and processed.</span></span>
 
-<span data-ttu-id="da676-107">데이터의 처음 위치, 형식 및 크기는 물론 기술 및 비즈니스 요구에 따라 분석의 목표를 달성하기 위해 데이터를 수집해야 하는 대상 환경이 결정됩니다.</span><span class="sxs-lookup"><span data-stu-id="da676-107">Technical and business needs, as well as the initial location, format and size of your data will determine the target environments into which the data needs to be ingested to achieve the goals of your analysis.</span></span> <span data-ttu-id="da676-108">예측 모델을 구성하는 데 필요한 다양한 작업을 구현하기 위해 데이터가 여러 환경 사이를 이동해야 하는 시나리오는 일반적이지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="da676-108">It is not uncommon for a scenario to require data to be moved between several environments to achieve the variety of tasks required to construct a predictive model.</span></span> <span data-ttu-id="da676-109">이 작업 시퀀스에는 데이터 탐색, 사전 처리, 정리, 다운 샘플링, 모델 학습 등이 포함될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="da676-109">This sequence of tasks can include, for example, data exploration, pre-processing, cleaning, down-sampling, and model training.</span></span>
+<span data-ttu-id="5ddfb-107">기술 및 비즈니스 요구 사항 뿐 아니라 hello 초기 위치를 포맷 하 고 데이터의 크기는 hello 대상 환경에는 hello이 필요한 데이터 분석의 수집 된 toobe tooachieve hello 목표를 결정 합니다.</span><span class="sxs-lookup"><span data-stu-id="5ddfb-107">Technical and business needs, as well as hello initial location, format and size of your data will determine hello target environments into which hello data needs toobe ingested tooachieve hello goals of your analysis.</span></span> <span data-ttu-id="5ddfb-108">여러 환경 tooachieve hello 다양 한 작업 필요한 tooconstruct 예측 모델 간에 이동 하는 시나리오 toorequire 데이터 toobe도 드물지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="5ddfb-108">It is not uncommon for a scenario toorequire data toobe moved between several environments tooachieve hello variety of tasks required tooconstruct a predictive model.</span></span> <span data-ttu-id="5ddfb-109">이 작업 시퀀스에는 데이터 탐색, 사전 처리, 정리, 다운 샘플링, 모델 학습 등이 포함될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5ddfb-109">This sequence of tasks can include, for example, data exploration, pre-processing, cleaning, down-sampling, and model training.</span></span>
 

@@ -1,0 +1,5 @@
+### <a name="need-some-help"></a><span data-ttu-id="cef4e-101">도움이 필요하신가요?</span><span class="sxs-lookup"><span data-stu-id="cef4e-101">Need some help?</span></span>
+<span data-ttu-id="cef4e-102">Azure 포럼 hello에서 질문을 게시 합니다.</span><span class="sxs-lookup"><span data-stu-id="cef4e-102">Post questions in hello Azure forums.</span></span><span data-ttu-id="cef4e-103"> - [MSDN 방문](http://go.microsoft.com/fwlink/?LinkId=780719)</span><span class="sxs-lookup"><span data-stu-id="cef4e-103"> - [Visit MSDN](http://go.microsoft.com/fwlink/?LinkId=780719)</span></span>
+
+<span data-ttu-id="cef4e-104">질문 hello 키워드와 함께 태그 `azure-functions`합니다.</span><span class="sxs-lookup"><span data-stu-id="cef4e-104">Tag questions with hello keyword `azure-functions`.</span></span><span data-ttu-id="cef4e-105"> - [스택 오버플로 방문 합니다.](http://stackoverflow.com/questions/tagged/azure-functions)</span><span class="sxs-lookup"><span data-stu-id="cef4e-105"> - [Visit Stack Overflow](http://stackoverflow.com/questions/tagged/azure-functions)</span></span>
+

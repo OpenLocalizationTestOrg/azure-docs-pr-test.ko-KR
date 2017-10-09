@@ -1,0 +1,3 @@
+| <span data-ttu-id="c39fb-101">리소스</span><span class="sxs-lookup"><span data-stu-id="c39fb-101">Resource</span></span> | <span data-ttu-id="c39fb-102">기본 제한</span><span class="sxs-lookup"><span data-stu-id="c39fb-102">Default Limit</span></span> |
+| --- | --- |
+| <span data-ttu-id="c39fb-103">[구독](../articles/billing-buy-sign-up-azure-subscription.md)당 컨테이너 그룹</span><span class="sxs-lookup"><span data-stu-id="c39fb-103">Container groups per [subscription](../articles/billing-buy-sign-up-azure-subscription.md)</span></span> | <span data-ttu-id="c39fb-104">20</span><span class="sxs-lookup"><span data-stu-id="c39fb-104">20</span></span> |

@@ -1,6 +1,6 @@
 ---
-title: "Azure Table Storage 및 Visual Studio 연결 서비스 시작(ASP.NET) | Microsoft Docs"
-description: "Visual Studio 연결 서비스를 사용하여 저장소 계정에 연결한 후 Visual Studio ASP.NET 프로젝트에서 Azure Table Storage 사용을 시작하는 방법입니다."
+title: "Azure 테이블 저장소 및 Visual Studio 연결 된 서비스 (ASP.NET) aaaGet 시작 | Microsoft Docs"
+description: "Visual Studio에서 ASP.NET 프로젝트에서 Azure 테이블 저장소를 사용 하 여 Visual Studio 연결 된 서비스를 사용 하 여 tooa 저장소 계정을 연결한 후 tooget을 시작 하는 방법"
 services: storage
 documentationcenter: 
 author: TomArcher
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/21/2016
 ms.author: tarcher
-ms.openlocfilehash: d9cb32483d3f582bbeb0ccc6a204a8b6d9ea5c96
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e7ed17098c8742954972dc9e1b50eca77221e327
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-azure-table-storage-and-visual-studio-connected-services-aspnet"></a><span data-ttu-id="52b5e-103">Azure Table Storage 및 Visual Studio 연결 서비스 시작</span><span class="sxs-lookup"><span data-stu-id="52b5e-103">Get started with Azure table storage and Visual Studio Connected Services (ASP.NET)</span></span>
+# <a name="get-started-with-azure-table-storage-and-visual-studio-connected-services-aspnet"></a><span data-ttu-id="b1565-103">Azure Table Storage 및 Visual Studio 연결 서비스 시작</span><span class="sxs-lookup"><span data-stu-id="b1565-103">Get started with Azure table storage and Visual Studio Connected Services (ASP.NET)</span></span>
 [!INCLUDE [storage-try-azure-tools-tables](../../includes/storage-try-azure-tools-tables.md)]
 
-## <a name="overview"></a><span data-ttu-id="52b5e-104">개요</span><span class="sxs-lookup"><span data-stu-id="52b5e-104">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="b1565-104">개요</span><span class="sxs-lookup"><span data-stu-id="b1565-104">Overview</span></span>
 
-<span data-ttu-id="52b5e-105">Azure 테이블 저장소를 사용하면 많은 양의 구조화된 데이터를 저장할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-105">Azure Table storage enables you to store large amounts of structured data.</span></span> <span data-ttu-id="52b5e-106">이 서비스는 Azure 클라우드 내부 및 외부에서 인증된 호출을 수락하는 NoSQL 데이터 저장소입니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-106">The service is a NoSQL datastore that accepts authenticated calls from inside and outside the Azure cloud.</span></span> <span data-ttu-id="52b5e-107">Azure 테이블은 구조화된 비관계형 데이터를 저장하는 데 적합합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-107">Azure tables are ideal for storing structured, non-relational data.</span></span>
+<span data-ttu-id="b1565-105">Azure 테이블 저장소에서는 많은 양의 구조화 된 데이터를 toostore 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-105">Azure Table storage enables you toostore large amounts of structured data.</span></span> <span data-ttu-id="b1565-106">hello 서비스는 내부 및 외부 hello Azure 클라우드에서 인증 된 호출을 허용 하는 NoSQL 데이터 저장소입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-106">hello service is a NoSQL datastore that accepts authenticated calls from inside and outside hello Azure cloud.</span></span> <span data-ttu-id="b1565-107">Azure 테이블은 구조화된 비관계형 데이터를 저장하는 데 적합합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-107">Azure tables are ideal for storing structured, non-relational data.</span></span>
 
-<span data-ttu-id="52b5e-108">이 자습서에서는 Azure Table Storage 항목을 사용하여 몇 가지 일반적인 시나리오에 대한 ASP.NET 코드를 작성하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-108">This tutorial shows how to write ASP.NET code for some common scenarios using Azure table storage entities.</span></span> <span data-ttu-id="52b5e-109">이러한 시나리오는 테이블 만들기 및 테이블 엔터티 추가, 쿼리 및 삭제를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-109">These scenarios include creating a table, and adding, querying, and deleting table entities.</span></span> 
+<span data-ttu-id="b1565-108">이 자습서에서는 Azure 테이블 저장소 엔터티를 사용 하 여 몇 가지 일반적인 시나리오에 대 한 ASP.NET toowrite 코드 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-108">This tutorial shows how toowrite ASP.NET code for some common scenarios using Azure table storage entities.</span></span> <span data-ttu-id="b1565-109">이러한 시나리오는 테이블 만들기 및 테이블 엔터티 추가, 쿼리 및 삭제를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-109">These scenarios include creating a table, and adding, querying, and deleting table entities.</span></span> 
 
-##<a name="prerequisites"></a><span data-ttu-id="52b5e-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="52b5e-110">Prerequisites</span></span>
+##<a name="prerequisites"></a><span data-ttu-id="b1565-110">필수 조건</span><span class="sxs-lookup"><span data-stu-id="b1565-110">Prerequisites</span></span>
 
-* [<span data-ttu-id="52b5e-111">Microsoft Visual Studio</span><span class="sxs-lookup"><span data-stu-id="52b5e-111">Microsoft Visual Studio</span></span>](https://www.visualstudio.com/downloads/)
-* [<span data-ttu-id="52b5e-112">Azure 저장소 계정</span><span class="sxs-lookup"><span data-stu-id="52b5e-112">Azure storage account</span></span>](storage-create-storage-account.md#create-a-storage-account)
+* [<span data-ttu-id="b1565-111">Microsoft Visual Studio</span><span class="sxs-lookup"><span data-stu-id="b1565-111">Microsoft Visual Studio</span></span>](https://www.visualstudio.com/downloads/)
+* [<span data-ttu-id="b1565-112">Azure 저장소 계정</span><span class="sxs-lookup"><span data-stu-id="b1565-112">Azure storage account</span></span>](storage-create-storage-account.md#create-a-storage-account)
 
 [!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
@@ -40,21 +40,21 @@ ms.lasthandoff: 08/03/2017
 
 [!INCLUDE [storage-development-environment-include](../../includes/vs-storage-aspnet-getting-started-setup-dev-env.md)]
 
-### <a name="create-an-mvc-controller"></a><span data-ttu-id="52b5e-113">MVC 컨트롤러 만들기</span><span class="sxs-lookup"><span data-stu-id="52b5e-113">Create an MVC controller</span></span> 
+### <a name="create-an-mvc-controller"></a><span data-ttu-id="b1565-113">MVC 컨트롤러 만들기</span><span class="sxs-lookup"><span data-stu-id="b1565-113">Create an MVC controller</span></span> 
 
-1. <span data-ttu-id="52b5e-114">**솔루션 탐색기**에서 **컨트롤러**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->컨트롤러**를 차례로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-114">In the **Solution Explorer**, right-click **Controllers**, and, from the context menu, select **Add->Controller**.</span></span>
+1. <span data-ttu-id="b1565-114">Hello에 **솔루션 탐색기**를 마우스 오른쪽 단추로 클릭 **컨트롤러**, hello 상황에 맞는 메뉴에서 **추가-컨트롤러 >**합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-114">In hello **Solution Explorer**, right-click **Controllers**, and, from hello context menu, select **Add->Controller**.</span></span>
 
-    ![ASP.NET MVC 앱에 컨트롤러 추가](./media/vs-storage-aspnet-getting-started-tables/add-controller-menu.png)
+    ![컨트롤러 tooan ASP.NET MVC 응용 프로그램 추가](./media/vs-storage-aspnet-getting-started-tables/add-controller-menu.png)
 
-1. <span data-ttu-id="52b5e-116">**스캐폴드 추가** 대화 상자에서 **MVC 5 컨트롤러 - 비어 있음**을 선택하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-116">On the **Add Scaffold** dialog, select **MVC 5 Controller - Empty**, and select **Add**.</span></span>
+1. <span data-ttu-id="b1565-116">Hello에 **추가 스 캐 폴드** 대화 상자에서 **MVC 5 컨트롤러-비어 있지**, 선택한 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-116">On hello **Add Scaffold** dialog, select **MVC 5 Controller - Empty**, and select **Add**.</span></span>
 
     ![MVC 컨트롤러 유형 지정](./media/vs-storage-aspnet-getting-started-tables/add-controller.png)
 
-1. <span data-ttu-id="52b5e-118">**컨트롤러 추가** 대화 상자에서 컨트롤러 이름을*TablesController*로 설정하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-118">On the **Add Controller** dialog, name the controller *TablesController*, and select **Add**.</span></span>
+1. <span data-ttu-id="b1565-118">Hello에 **컨트롤러 추가** 대화 상자에서 이름 hello 컨트롤러 *TablesController*를 선택 하 고 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-118">On hello **Add Controller** dialog, name hello controller *TablesController*, and select **Add**.</span></span>
 
-    ![MVC 컨트롤러 이름 지정](./media/vs-storage-aspnet-getting-started-tables/add-controller-name.png)
+    ![Hello MVC 컨트롤러 이름](./media/vs-storage-aspnet-getting-started-tables/add-controller-name.png)
 
-1. <span data-ttu-id="52b5e-120">다음 *using* 지시문을 `TablesController.cs` 파일에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-120">Add the following *using* directives to the `TablesController.cs` file:</span></span>
+1. <span data-ttu-id="b1565-120">Hello 다음 추가 *를 사용 하 여* 지시문 toohello `TablesController.cs` 파일:</span><span class="sxs-lookup"><span data-stu-id="b1565-120">Add hello following *using* directives toohello `TablesController.cs` file:</span></span>
 
     ```csharp
     using Microsoft.Azure;
@@ -63,21 +63,21 @@ ms.lasthandoff: 08/03/2017
     using Microsoft.WindowsAzure.Storage.Table;
     ```
 
-### <a name="create-a-model-class"></a><span data-ttu-id="52b5e-121">모델 클래스 만들기</span><span class="sxs-lookup"><span data-stu-id="52b5e-121">Create a model class</span></span>
+### <a name="create-a-model-class"></a><span data-ttu-id="b1565-121">모델 클래스 만들기</span><span class="sxs-lookup"><span data-stu-id="b1565-121">Create a model class</span></span>
 
-<span data-ttu-id="52b5e-122">이 문서에서 대부분의 예제는 **CustomerEntity**라는 **TableEntity** 파생 클래스를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-122">Many of the examples in this article use a **TableEntity**-derived class called **CustomerEntity**.</span></span> <span data-ttu-id="52b5e-123">다음 단계는 모델 클래스로 이 클래스를 선언하는 과정을 안내합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-123">The following steps guide you through declaring this class as a model class:</span></span>
+<span data-ttu-id="b1565-122">사용 하 여 다양 한 hello 예제가 문서는 **TableEntity**-라는 클래스를 파생 **CustomerEntity**합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-122">Many of hello examples in this article use a **TableEntity**-derived class called **CustomerEntity**.</span></span> <span data-ttu-id="b1565-123">단계를 수행 하는 hello 모델 클래스와이 클래스를 선언 하는 과정을 안내 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-123">hello following steps guide you through declaring this class as a model class:</span></span>
 
-1. <span data-ttu-id="52b5e-124">**솔루션 탐색기**에서 **모델**을 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->클래스**를 차례로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-124">In the **Solution Explorer**, right-click **Models**, and, from the context menu, select **Add->Class**.</span></span>
+1. <span data-ttu-id="b1565-124">Hello에 **솔루션 탐색기**를 마우스 오른쪽 단추로 클릭 **모델**, hello 상황에 맞는 메뉴에서 **추가-클래스 >**합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-124">In hello **Solution Explorer**, right-click **Models**, and, from hello context menu, select **Add->Class**.</span></span>
 
-1. <span data-ttu-id="52b5e-125">**새 항목 추가** 대화 상자에서 클래스의 이름을 **CustomerEntity**로 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-125">On the **Add New Item** dialog, name the class, **CustomerEntity**.</span></span>
+1. <span data-ttu-id="b1565-125">Hello에 **새 항목 추가** 대화 상자에서 이름 hello 클래스 **CustomerEntity**합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-125">On hello **Add New Item** dialog, name hello class, **CustomerEntity**.</span></span>
 
-1. <span data-ttu-id="52b5e-126">`CustomerEntity.cs` 파일을 열고 다음 **using** 지시문을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-126">Open the `CustomerEntity.cs` file, and add the following **using** directive:</span></span>
+1. <span data-ttu-id="b1565-126">열기 hello `CustomerEntity.cs` 파일을 선택한 다음 hello 추가 **를 사용 하 여** 지시문:</span><span class="sxs-lookup"><span data-stu-id="b1565-126">Open hello `CustomerEntity.cs` file, and add hello following **using** directive:</span></span>
 
     ```csharp
     using Microsoft.WindowsAzure.Storage.Table;
     ```
 
-1. <span data-ttu-id="52b5e-127">완료되면 클래스가 다음 코드와 같이 선언되도록 클래스를 해당 내용으로 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-127">Modify the class so that, when finished, the class is declared as in the following code.</span></span> <span data-ttu-id="52b5e-128">클래스는 고객의 이름을 행 키로 사용하고 성을 파티션 키로 사용하는 **CustomerEntity**라는 엔터티 클래스를 선언합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-128">The class declares an entity class called **CustomerEntity** that uses the customer's first name as the row key and last name as the partition key.</span></span>
+1. <span data-ttu-id="b1565-127">완료 되 면 hello 클래스는 코드 다음 hello와 같이 선언 됩니다 되도록 hello 클래스를 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-127">Modify hello class so that, when finished, hello class is declared as in hello following code.</span></span> <span data-ttu-id="b1565-128">라고 하는 엔터티 클래스를 선언 하는 hello 클래스 **CustomerEntity** hello 행 키로 고객의 이름 및 성 hello 파티션 키로 사용 하 여 hello 하 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-128">hello class declares an entity class called **CustomerEntity** that uses hello customer's first name as hello row key and last name as hello partition key.</span></span>
 
     ```csharp
     public class CustomerEntity : TableEntity
@@ -94,63 +94,63 @@ ms.lasthandoff: 08/03/2017
     }
     ```
 
-## <a name="create-a-table"></a><span data-ttu-id="52b5e-129">테이블 만들기</span><span class="sxs-lookup"><span data-stu-id="52b5e-129">Create a table</span></span>
+## <a name="create-a-table"></a><span data-ttu-id="b1565-129">테이블 만들기</span><span class="sxs-lookup"><span data-stu-id="b1565-129">Create a table</span></span>
 
-<span data-ttu-id="52b5e-130">다음 단계에서는 테이블을 만드는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-130">The following steps illustrate how to create a table:</span></span>
+<span data-ttu-id="b1565-130">hello 아래 단계에 설명 방법을 toocreate 테이블:</span><span class="sxs-lookup"><span data-stu-id="b1565-130">hello following steps illustrate how toocreate a table:</span></span>
 
 > [!NOTE]
 > 
-> <span data-ttu-id="52b5e-131">이 섹션에서는 [개발 환경 설정](#set-up-the-development-environment)의 단계를 완료했다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-131">This section assumes you have completed the steps in [Set up the development environment](#set-up-the-development-environment).</span></span> 
+> <span data-ttu-id="b1565-131">이 섹션의 hello 단계를 완료 하는 것으로 가정 [hello 개발 환경 설정](#set-up-the-development-environment)합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-131">This section assumes you have completed hello steps in [Set up hello development environment](#set-up-the-development-environment).</span></span> 
 
-1. <span data-ttu-id="52b5e-132">`TablesController.cs` 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-132">Open the `TablesController.cs` file.</span></span>
+1. <span data-ttu-id="b1565-132">열기 hello `TablesController.cs` 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-132">Open hello `TablesController.cs` file.</span></span>
 
-1. <span data-ttu-id="52b5e-133">**ActionResult**를 반환하는 **CreateTable**이라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-133">Add a method called **CreateTable** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="b1565-133">**ActionResult**를 반환하는 **CreateTable**이라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-133">Add a method called **CreateTable** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult CreateTable()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
 
-1. <span data-ttu-id="52b5e-134">**CreateTable** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-134">Within the **CreateTable** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="52b5e-135">다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure 저장소 계정의 이름으로 변경).</span><span class="sxs-lookup"><span data-stu-id="52b5e-135">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="b1565-134">Hello 내 **CreateTable** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-134">Within hello **CreateTable** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="b1565-135">사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)</span><span class="sxs-lookup"><span data-stu-id="b1565-135">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
 
-1. <span data-ttu-id="52b5e-136">Table service 클라이언트를 나타내는 **CloudTableClient** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-136">Get a **CloudTableClient** object represents a table service client.</span></span>
+1. <span data-ttu-id="b1565-136">Table service 클라이언트를 나타내는 **CloudTableClient** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-136">Get a **CloudTableClient** object represents a table service client.</span></span>
    
     ```csharp
     CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
     ```
 
-1. <span data-ttu-id="52b5e-137">원하는 테이블 이름에 대한 참조를 나타내는 **CloudTable** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-137">Get a **CloudTable** object that represents a reference to the desired table name.</span></span> <span data-ttu-id="52b5e-138">**CloudTableClient.GetTableReference** 메서드는 테이블 저장소에 대한 요청을 만들지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-138">The **CloudTableClient.GetTableReference** method does not make a request against table storage.</span></span> <span data-ttu-id="52b5e-139">테이블이 있는지 여부에 관계없이 참조가 반환됩니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-139">The reference is returned whether or not the table exists.</span></span> 
+1. <span data-ttu-id="b1565-137">가져오기는 **CloudTable** 참조 toohello 원하는 테이블 이름을 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-137">Get a **CloudTable** object that represents a reference toohello desired table name.</span></span> <span data-ttu-id="b1565-138">hello **CloudTableClient.GetTableReference** 메서드 테이블 저장소에 대 한 요청을 만들지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-138">hello **CloudTableClient.GetTableReference** method does not make a request against table storage.</span></span> <span data-ttu-id="b1565-139">hello 테이블이 존재 여부 hello 참조가 반환 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-139">hello reference is returned whether or not hello table exists.</span></span> 
    
     ```csharp
     CloudTable table = tableClient.GetTableReference("TestTable");
     ```
 
-1. <span data-ttu-id="52b5e-140">테이블이 아직 없으면 **CloudTable.CreateIfNotExists** 메서드를 호출하여 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-140">Call the **CloudTable.CreateIfNotExists** method to create the table if it does not yet exist.</span></span> <span data-ttu-id="52b5e-141">테이블이 없는 경우 테이블이 성공적으로 생성되면 **CloudTable.CreateIfNotExists** 메서드는 **true**를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-141">The **CloudTable.CreateIfNotExists** method returns **true** if the table does not exist, and is successfully created.</span></span> <span data-ttu-id="52b5e-142">그렇지 않으면 **false**가 반환됩니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-142">Otherwise, **false** is returned.</span></span>    
+1. <span data-ttu-id="b1565-140">Hello 호출 **CloudTable.CreateIfNotExists** 메서드 toocreate hello 테이블이 아직 존재 하지 않는 경우.</span><span class="sxs-lookup"><span data-stu-id="b1565-140">Call hello **CloudTable.CreateIfNotExists** method toocreate hello table if it does not yet exist.</span></span> <span data-ttu-id="b1565-141">hello **CloudTable.CreateIfNotExists** 메서드 반환 **true** hello 테이블이 존재 하지 않는 성공적으로 생성 되는 경우.</span><span class="sxs-lookup"><span data-stu-id="b1565-141">hello **CloudTable.CreateIfNotExists** method returns **true** if hello table does not exist, and is successfully created.</span></span> <span data-ttu-id="b1565-142">그렇지 않으면 **false**가 반환됩니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-142">Otherwise, **false** is returned.</span></span>    
 
     ```csharp
     ViewBag.Success = table.CreateIfNotExists();
     ```
 
-1. <span data-ttu-id="52b5e-143">**ViewBag**을 테이블의 이름으로 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-143">Update the **ViewBag** with the name of the table.</span></span>
+1. <span data-ttu-id="b1565-143">업데이트 hello **ViewBag** hello 테이블의 hello 이름의 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-143">Update hello **ViewBag** with hello name of hello table.</span></span>
 
     ```csharp
     ViewBag.TableName = table.Name;
     ```
 
-1. <span data-ttu-id="52b5e-144">**솔루션 탐색기**에서 **보기** 폴더를 확장한 다음 **Tables**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->보기**를 차례로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-144">In the **Solution Explorer**, expand the **Views** folder, right-click **Tables**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="b1565-144">Hello에 **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 **테이블**, hello 상황에 맞는 메뉴에서 선택 하 고 **추가보기->**.</span><span class="sxs-lookup"><span data-stu-id="b1565-144">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Tables**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="52b5e-145">**보기 추가** 대화 상자에서 보기 이름으로 **CreateTable**을 입력하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-145">On the **Add View** dialog, enter **CreateTable** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="b1565-145">Hello에 **뷰 추가** 대화 상자에서 입력 **CreateTable** hello 뷰 이름과 선택에 대 한 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-145">On hello **Add View** dialog, enter **CreateTable** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="52b5e-146">`CreateTable.cshtml`을 열고 다음 코드 조각과 같이 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-146">Open `CreateTable.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="b1565-146">열기 `CreateTable.cshtml`, 다음 코드 조각 hello 모양이 되도록 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-146">Open `CreateTable.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @{
@@ -162,98 +162,98 @@ ms.lasthandoff: 08/03/2017
     Creation of @ViewBag.TableName @(ViewBag.Success == true ? "succeeded" : "failed")
     ```
 
-1. <span data-ttu-id="52b5e-147">**솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-147">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="b1565-147">Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-147">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="52b5e-148">마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-148">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="b1565-148">Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="b1565-148">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Create table", "CreateTable", "Tables")</li>
     ```
 
-1. <span data-ttu-id="52b5e-149">응용 프로그램을 실행하고 **테이블 만들기**를 선택하여 다음 스크린샷과 유사한 결과를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-149">Run the application, and select **Create table** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="b1565-149">Hello 응용 프로그램을 실행 하 고 선택 **테이블 만들기** toosee 스크린 샷 다음 유사한 toohello 결과:</span><span class="sxs-lookup"><span data-stu-id="b1565-149">Run hello application, and select **Create table** toosee results similar toohello following screen shot:</span></span>
   
     ![테이블 만들기](./media/vs-storage-aspnet-getting-started-tables/create-table-results.png)
 
-    <span data-ttu-id="52b5e-151">앞에서 언급했듯이 테이블이 없고 만들어진 경우에만 **CloudTable.CreateIfNotExists** 메서드에서 **true**를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-151">As mentioned previously, the **CloudTable.CreateIfNotExists** method returns **true** only when the table doesn't exist and is created.</span></span> <span data-ttu-id="52b5e-152">따라서 테이블이 있을 때 앱을 실행하면 메서드에서 **false**를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-152">Therefore, if you run the app when the table exists, the method returns **false**.</span></span> <span data-ttu-id="52b5e-153">앱을 여러 번 실행하려면 앱을 다시 실행하기 전에 테이블을 삭제해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-153">To run the app multiple times, you must delete the table before running the app again.</span></span> <span data-ttu-id="52b5e-154">**CloudTable.Delete** 메서드를 통해 테이블 삭제를 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-154">Deleting the table can be done via the **CloudTable.Delete** method.</span></span> <span data-ttu-id="52b5e-155">또한 [Azure Portal](http://go.microsoft.com/fwlink/p/?LinkID=525040) 또는 [Microsoft Azure Storage 탐색기](../vs-azure-tools-storage-manage-with-storage-explorer.md)를 사용하여 테이블을 삭제할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-155">You can also delete the table using the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040) or the [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md).</span></span>  
+    <span data-ttu-id="b1565-151">앞에서 설명한 대로 hello **CloudTable.CreateIfNotExists** 메서드 반환 **true** hello 테이블 존재 하지 않는 있고 만들어지는 경우에 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-151">As mentioned previously, hello **CloudTable.CreateIfNotExists** method returns **true** only when hello table doesn't exist and is created.</span></span> <span data-ttu-id="b1565-152">따라서 hello 테이블이 존재 하는 경우 hello 앱을 실행 하면 hello 메서드는 반환 **false**합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-152">Therefore, if you run hello app when hello table exists, hello method returns **false**.</span></span> <span data-ttu-id="b1565-153">toorun hello 앱 여러 번 삭제 해야 hello 테이블 hello 응용 프로그램을 다시 실행 하기 전에.</span><span class="sxs-lookup"><span data-stu-id="b1565-153">toorun hello app multiple times, you must delete hello table before running hello app again.</span></span> <span data-ttu-id="b1565-154">Hello 통해 hello 테이블 삭제를 수행할 수 있습니다 **CloudTable.Delete** 메서드.</span><span class="sxs-lookup"><span data-stu-id="b1565-154">Deleting hello table can be done via hello **CloudTable.Delete** method.</span></span> <span data-ttu-id="b1565-155">Hello를 사용 하 여 hello 테이블을 삭제할 수도 있습니다 [Azure 포털](http://go.microsoft.com/fwlink/p/?LinkID=525040) 또는 hello [Microsoft Azure 저장소 탐색기](../vs-azure-tools-storage-manage-with-storage-explorer.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-155">You can also delete hello table using hello [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040) or hello [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md).</span></span>  
 
-## <a name="add-an-entity-to-a-table"></a><span data-ttu-id="52b5e-156">테이블에 엔터티 추가</span><span class="sxs-lookup"><span data-stu-id="52b5e-156">Add an entity to a table</span></span>
+## <a name="add-an-entity-tooa-table"></a><span data-ttu-id="b1565-156">엔터티 tooa 테이블 추가</span><span class="sxs-lookup"><span data-stu-id="b1565-156">Add an entity tooa table</span></span>
 
-<span data-ttu-id="52b5e-157">*엔터티*는 **TableEntity**에서 파생된 사용자 지정 클래스를 사용하여 C\# 개체에 매핑됩니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-157">*Entities* map to C\# objects by using a custom class derived from **TableEntity**.</span></span> <span data-ttu-id="52b5e-158">테이블에 엔터티를 추가하려면 엔터티의 속성을 정의하는 클래스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-158">To add an entity to a table, create a class that defines the properties of your entity.</span></span> <span data-ttu-id="52b5e-159">이 섹션에서는 고객의 이름을 행 키로 사용하고 성을 파티션 키로 사용하는 엔터티 클래스를 정의하는 방법을 알아보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-159">In this section, you'll see how to define an entity class that uses the customer's first name as the row key and last name as the partition key.</span></span> <span data-ttu-id="52b5e-160">엔터티의 파티션과 행 키가 결합되어 테이블에서 엔터티를 고유하게 식별합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-160">Together, an entity's partition and row key uniquely identify the entity in the table.</span></span> <span data-ttu-id="52b5e-161">동일한 파티션 키를 가진 엔터티는 다른 파티션 키를 가진 엔터티보다 더 빨리 쿼리할 수 있지만 다양한 파티션 키를 사용하면 병렬 작업 확장성이 커집니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-161">Entities with the same partition key can be queried faster than entities with different partition keys, but using diverse partition keys allows for greater scalability of parallel operations.</span></span> <span data-ttu-id="52b5e-162">테이블 서비스에 저장되어야 하는 속성의 경우 속성은 설정과 검색 값을 모두 표시하는 지원되는 형식의 공용 속성이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-162">For any property that should be stored in the table service, the property must be a public property of a supported type that exposes both setting and retrieving values.</span></span>
-<span data-ttu-id="52b5e-163">엔터티 클래스는 공용 매개 변수가 없는 생성자를 선언*해야* 합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-163">The entity class *must* declare a public parameter-less constructor.</span></span>
+<span data-ttu-id="b1565-157">*엔터티* tooC 매핑할\# 사용자 지정 클래스를 사용 하 여 개체에서 파생 된 **TableEntity**합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-157">*Entities* map tooC\# objects by using a custom class derived from **TableEntity**.</span></span> <span data-ttu-id="b1565-158">엔터티 tooa 테이블 tooadd hello 엔터티 속성을 정의 하는 클래스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-158">tooadd an entity tooa table, create a class that defines hello properties of your entity.</span></span> <span data-ttu-id="b1565-159">이 섹션에서는 hello 행 키로 고객의 이름 및 성 hello 파티션 키로 사용 하는 엔터티 클래스 toodefine hello 하는 방법을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-159">In this section, you'll see how toodefine an entity class that uses hello customer's first name as hello row key and last name as hello partition key.</span></span> <span data-ttu-id="b1565-160">함께 엔터티의 파티션과 행 키는 hello 엔터티 hello 테이블에 고유 하 게 식별 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-160">Together, an entity's partition and row key uniquely identify hello entity in hello table.</span></span> <span data-ttu-id="b1565-161">동일한 파티션 키를 가진 엔터티는 다른 파티션 키를 가진 엔터티보다 더 빨리 쿼리할 수 있지만 다양한 파티션 키를 사용하면 병렬 작업 확장성이 커집니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-161">Entities with the same partition key can be queried faster than entities with different partition keys, but using diverse partition keys allows for greater scalability of parallel operations.</span></span> <span data-ttu-id="b1565-162">Hello 테이블 서비스에 저장 해야 하는 모든 속성에 대 한 hello 속성 노출 설정 하 고 값을 검색 하는 지원 되는 형식의 공용 속성 이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-162">For any property that should be stored in hello table service, hello property must be a public property of a supported type that exposes both setting and retrieving values.</span></span>
+<span data-ttu-id="b1565-163">엔터티 클래스를 hello *해야* 공용 매개 변수 없는 생성자를 선언 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-163">hello entity class *must* declare a public parameter-less constructor.</span></span>
 
 > [!NOTE]
 > 
-> <span data-ttu-id="52b5e-164">이 섹션에서는 [개발 환경 설정](#set-up-the-development-environment)의 단계를 완료했다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-164">This section assumes you have completed the steps in [Set up the development environment](#set-up-the-development-environment).</span></span>
+> <span data-ttu-id="b1565-164">이 섹션의 hello 단계를 완료 하는 것으로 가정 [hello 개발 환경 설정](#set-up-the-development-environment)합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-164">This section assumes you have completed hello steps in [Set up hello development environment](#set-up-the-development-environment).</span></span>
 
-1. <span data-ttu-id="52b5e-165">`TablesController.cs` 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-165">Open the `TablesController.cs` file.</span></span>
+1. <span data-ttu-id="b1565-165">열기 hello `TablesController.cs` 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-165">Open hello `TablesController.cs` file.</span></span>
 
-1. <span data-ttu-id="52b5e-166">`TablesController.cs` 파일의 코드가 **CustomerEntity** 클래스에 액세스할 수 있도록 다음 지시문을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-166">Add the following directive so that the code in the `TablesController.cs` file can access the **CustomerEntity** class:</span></span>
+1. <span data-ttu-id="b1565-166">추가 하는 hello hello에 대 한 코드 하므로 지시문 다음 hello `TablesController.cs` hello 파일에 액세스할 수 **CustomerEntity** 클래스:</span><span class="sxs-lookup"><span data-stu-id="b1565-166">Add hello following directive so that hello code in hello `TablesController.cs` file can access hello **CustomerEntity** class:</span></span>
 
     ```csharp
     using StorageAspnet.Models;
     ```
 
-1. <span data-ttu-id="52b5e-167">**ActionResult**를 반환하는 **AddEntity**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-167">Add a method called **AddEntity** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="b1565-167">**ActionResult**를 반환하는 **AddEntity**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-167">Add a method called **AddEntity** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult AddEntity()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
 
-1. <span data-ttu-id="52b5e-168">**AddEntity** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-168">Within the **AddEntity** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="52b5e-169">다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure 저장소 계정의 이름으로 변경).</span><span class="sxs-lookup"><span data-stu-id="52b5e-169">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="b1565-168">Hello 내 **AddEntity** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-168">Within hello **AddEntity** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="b1565-169">사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)</span><span class="sxs-lookup"><span data-stu-id="b1565-169">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
 
-1. <span data-ttu-id="52b5e-170">Table service 클라이언트를 나타내는 **CloudTableClient** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-170">Get a **CloudTableClient** object represents a table service client.</span></span>
+1. <span data-ttu-id="b1565-170">Table service 클라이언트를 나타내는 **CloudTableClient** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-170">Get a **CloudTableClient** object represents a table service client.</span></span>
    
     ```csharp
     CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
     ```
 
-1. <span data-ttu-id="52b5e-171">새 엔터티를 추가하려는 테이블에 대한 참조를 나타내는 **CloudTable** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-171">Get a **CloudTable** object that represents a reference to the table to which you are going to add the new entity.</span></span> 
+1. <span data-ttu-id="b1565-171">가져오기는 **CloudTable** 참조 toohello 테이블 toowhich를 tooadd hello에 대 한 새 엔터티는 것을 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-171">Get a **CloudTable** object that represents a reference toohello table toowhich you are going tooadd hello new entity.</span></span> 
    
     ```csharp
     CloudTable table = tableClient.GetTableReference("TestTable");
     ```
 
-1. <span data-ttu-id="52b5e-172">**CustomerEntity** 클래스를 인스턴스화 및 초기화합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-172">Instantiate and initialize the **CustomerEntity** class.</span></span>
+1. <span data-ttu-id="b1565-172">인스턴스화 및 초기화 hello **CustomerEntity** 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-172">Instantiate and initialize hello **CustomerEntity** class.</span></span>
 
     ```csharp
     CustomerEntity customer1 = new CustomerEntity("Harp", "Walter");
     customer1.Email = "Walter@contoso.com";
     ```
 
-1. <span data-ttu-id="52b5e-173">customer 엔터티를 삽입하는 **TableOperation** 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-173">Create a **TableOperation** object that inserts the customer entity.</span></span>
+1. <span data-ttu-id="b1565-173">만들기는 **TableOperation** hello customer 엔터티를 삽입 하는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-173">Create a **TableOperation** object that inserts hello customer entity.</span></span>
 
     ```csharp
     TableOperation insertOperation = TableOperation.Insert(customer1);
     ```
 
-1. <span data-ttu-id="52b5e-174">**CloudTable.Execute** 메서드를 호출하여 삽입 작업을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-174">Execute the insert operation by calling the **CloudTable.Execute** method.</span></span> <span data-ttu-id="52b5e-175">**TableResult.HttpStatusCode** 속성을 검사하여 작업의 결과를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-175">You can verify the result of the operation by inspecting the **TableResult.HttpStatusCode** property.</span></span> <span data-ttu-id="52b5e-176">상태 코드 2xx는 클라이언트에서 요청한 작업이 성공적으로 처리되었음을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-176">A status code of 2xx indicates the action requested by the client was processed successfully.</span></span> <span data-ttu-id="52b5e-177">예를 들어 새 엔터티를 성공적으로 삽입하면 작업이 성공적으로 처리되었고 서버가 어떤 콘텐츠도 반환하지 않았음을 의미하는 HTTP 상태 코드 204가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-177">For example, successful insertions of new entities results in an HTTP status code of 204, meaning that the operation was successfully processed and the server did not return any content.</span></span>
+1. <span data-ttu-id="b1565-174">호출 hello 여 hello 삽입 작업을 실행 **CloudTable.Execute** 메서드.</span><span class="sxs-lookup"><span data-stu-id="b1565-174">Execute hello insert operation by calling hello **CloudTable.Execute** method.</span></span> <span data-ttu-id="b1565-175">Hello를 검사 하 여 hello 연산의 hello 결과 확인할 수 있습니다 **TableResult.HttpStatusCode** 속성입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-175">You can verify hello result of hello operation by inspecting hello **TableResult.HttpStatusCode** property.</span></span> <span data-ttu-id="b1565-176">2xx의 상태 코드가 나타냅니다 hello 클라이언트에서 요청 된 hello 동작을 처리 했습니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-176">A status code of 2xx indicates hello action requested by hello client was processed successfully.</span></span> <span data-ttu-id="b1565-177">예를 들어 성공적으로 삽입 한 새 엔터티는 HTTP 상태 코드 204, 즉 hello 작업이 성공적으로 처리 되 고 hello 서버는 콘텐츠를 반환 하지 않았습니다 발생 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-177">For example, successful insertions of new entities results in an HTTP status code of 204, meaning that hello operation was successfully processed and hello server did not return any content.</span></span>
 
     ```csharp
     TableResult result = table.Execute(insertOperation);
     ```
 
-1. <span data-ttu-id="52b5e-178">**ViewBag**을 테이블 이름으로 업데이트하고 삽입 작업의 결과를 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-178">Update the **ViewBag** with the table name, and the results of the insert operation.</span></span>
+1. <span data-ttu-id="b1565-178">업데이트 hello **ViewBag** hello 테이블 이름 및 hello 삽입 작업의 hello 결과 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-178">Update hello **ViewBag** with hello table name, and hello results of hello insert operation.</span></span>
 
     ```csharp
     ViewBag.TableName = table.Name;
     ViewBag.Result = result.HttpStatusCode;
     ```
 
-1. <span data-ttu-id="52b5e-179">**솔루션 탐색기**에서 **보기** 폴더를 확장한 다음 **Tables**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->보기**를 차례로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-179">In the **Solution Explorer**, expand the **Views** folder, right-click **Tables**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="b1565-179">Hello에 **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 **테이블**, hello 상황에 맞는 메뉴에서 선택 하 고 **추가보기->**.</span><span class="sxs-lookup"><span data-stu-id="b1565-179">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Tables**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="52b5e-180">**보기 추가** 대화 상자에서 보기 이름으로 **AddEntity**를 입력하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-180">On the **Add View** dialog, enter **AddEntity** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="b1565-180">Hello에 **뷰 추가** 대화 상자에서 입력 **AddEntity** hello 뷰 이름과 선택에 대 한 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-180">On hello **Add View** dialog, enter **AddEntity** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="52b5e-181">`AddEntity.cshtml`을 열고 다음 코드 조각과 같이 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-181">Open `AddEntity.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="b1565-181">열기 `AddEntity.cshtml`, 다음 코드 조각 hello 모양이 되도록 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-181">Open `AddEntity.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @{
@@ -264,61 +264,61 @@ ms.lasthandoff: 08/03/2017
 
     Insert of entity into @ViewBag.TableName @(ViewBag.Result == 204 ? "succeeded" : "failed")
     ```
-1. <span data-ttu-id="52b5e-182">**솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-182">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="b1565-182">Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-182">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="52b5e-183">마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-183">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="b1565-183">Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="b1565-183">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Add entity", "AddEntity", "Tables")</li>
     ```
 
-1. <span data-ttu-id="52b5e-184">응용 프로그램을 실행하고 **엔터티 추가**를 선택하여 다음 스크린샷과 유사한 결과를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-184">Run the application, and select **Add entity** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="b1565-184">Hello 응용 프로그램을 실행 하 고 선택 **엔터티 추가** toosee 스크린 샷 다음 유사한 toohello 결과:</span><span class="sxs-lookup"><span data-stu-id="b1565-184">Run hello application, and select **Add entity** toosee results similar toohello following screen shot:</span></span>
   
     ![엔터티 추가](./media/vs-storage-aspnet-getting-started-tables/add-entity-results.png)
 
-    <span data-ttu-id="52b5e-186">[단일 엔터티 가져오기](#get-a-single-entity) 섹션의 단계를 수행하여 엔터티가 추가되었는지 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-186">You can verify that the entity was added by following the steps in the section, [Get a single entity](#get-a-single-entity).</span></span> <span data-ttu-id="52b5e-187">[Microsoft Azure Storage 탐색기](../vs-azure-tools-storage-manage-with-storage-explorer.md)를 사용하여 테이블에 대한 모든 엔터티를 볼 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-187">You can also use the [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) to view all the entities for your tables.</span></span>
+    <span data-ttu-id="b1565-186">Hello 엔터티 hello 섹션의 hello 단계에 따라 추가 되는지 확인할 수 있습니다 [단일 엔터티를 가져올](#get-a-single-entity)합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-186">You can verify that hello entity was added by following hello steps in hello section, [Get a single entity](#get-a-single-entity).</span></span> <span data-ttu-id="b1565-187">Hello를 사용할 수도 있습니다 [Microsoft Azure 저장소 탐색기](../vs-azure-tools-storage-manage-with-storage-explorer.md) tooview 모든 테이블에 대 한 엔터티를 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-187">You can also use hello [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) tooview all hello entities for your tables.</span></span>
 
-## <a name="add-a-batch-of-entities-to-a-table"></a><span data-ttu-id="52b5e-188">테이블에 엔터티를 일괄로 추가</span><span class="sxs-lookup"><span data-stu-id="52b5e-188">Add a batch of entities to a table</span></span>
+## <a name="add-a-batch-of-entities-tooa-table"></a><span data-ttu-id="b1565-188">엔터티 tooa 테이블의 일괄 처리 추가</span><span class="sxs-lookup"><span data-stu-id="b1565-188">Add a batch of entities tooa table</span></span>
 
-<span data-ttu-id="52b5e-189">[한 번에 하나의 테이블에 엔터티를 추가](#add-an-entity-to-a-table)할 수 있을 뿐 아니라 엔터티를 일괄로 추가할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-189">In addition to being able to [add an entity to a table one at a time](#add-an-entity-to-a-table), you can also add entities in batch.</span></span> <span data-ttu-id="52b5e-190">엔터티를 일괄로 추가하면 코드와 Azure Table service 간의 왕복 수가 줄어듭니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-190">Adding entities in batch reduces the number of round-trips between your code and the Azure table service.</span></span> <span data-ttu-id="52b5e-191">다음 단계에서는 단일 삽입 작업으로 여러 엔터티를 테이블에 추가하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-191">The following steps illustrate how to add multiple entities to a table with a single insert operation:</span></span>
+<span data-ttu-id="b1565-189">또한 toobeing 수에 너무[한 번에 하나씩는 엔터티 tooa 테이블 추가](#add-an-entity-to-a-table), 일괄 처리에서 엔터티를 추가할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-189">In addition toobeing able too[add an entity tooa table one at a time](#add-an-entity-to-a-table), you can also add entities in batch.</span></span> <span data-ttu-id="b1565-190">엔터티 일괄 처리의 추가 hello 수가 줄어 코드와 hello Azure 테이블 서비스 간의 왕복 회수 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-190">Adding entities in batch reduces hello number of round-trips between your code and hello Azure table service.</span></span> <span data-ttu-id="b1565-191">단계를 수행 하는 hello 방법을 tooadd 여러 엔터티 tooa 테이블의 단일 삽입 작업을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-191">hello following steps illustrate how tooadd multiple entities tooa table with a single insert operation:</span></span>
 
 > [!NOTE]
 > 
-> <span data-ttu-id="52b5e-192">이 섹션에서는 [개발 환경 설정](#set-up-the-development-environment)의 단계를 완료했다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-192">This section assumes you have completed the steps in [Set up the development environment](#set-up-the-development-environment).</span></span>
+> <span data-ttu-id="b1565-192">이 섹션의 hello 단계를 완료 하는 것으로 가정 [hello 개발 환경 설정](#set-up-the-development-environment)합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-192">This section assumes you have completed hello steps in [Set up hello development environment](#set-up-the-development-environment).</span></span>
 
-1. <span data-ttu-id="52b5e-193">`TablesController.cs` 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-193">Open the `TablesController.cs` file.</span></span>
+1. <span data-ttu-id="b1565-193">열기 hello `TablesController.cs` 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-193">Open hello `TablesController.cs` file.</span></span>
 
-1. <span data-ttu-id="52b5e-194">**ActionResult**를 반환하는 **AddEntities**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-194">Add a method called **AddEntities** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="b1565-194">**ActionResult**를 반환하는 **AddEntities**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-194">Add a method called **AddEntities** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult AddEntities()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
 
-1. <span data-ttu-id="52b5e-195">**AddEntities** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-195">Within the **AddEntities** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="52b5e-196">다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure 저장소 계정의 이름으로 변경).</span><span class="sxs-lookup"><span data-stu-id="52b5e-196">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="b1565-195">Hello 내 **AddEntities** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-195">Within hello **AddEntities** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="b1565-196">사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)</span><span class="sxs-lookup"><span data-stu-id="b1565-196">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
 
-1. <span data-ttu-id="52b5e-197">Table service 클라이언트를 나타내는 **CloudTableClient** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-197">Get a **CloudTableClient** object represents a table service client.</span></span>
+1. <span data-ttu-id="b1565-197">Table service 클라이언트를 나타내는 **CloudTableClient** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-197">Get a **CloudTableClient** object represents a table service client.</span></span>
    
     ```csharp
     CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
     ```
 
-1. <span data-ttu-id="52b5e-198">새 엔터티를 추가하려는 테이블에 대한 참조를 나타내는 **CloudTable** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-198">Get a **CloudTable** object that represents a reference to the table to which you are going to add the new entities.</span></span> 
+1. <span data-ttu-id="b1565-198">가져오기는 **CloudTable** 하락 tooadd hello에 대 한 새 엔터티는 한 참조 toohello 테이블 toowhich를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-198">Get a **CloudTable** object that represents a reference toohello table toowhich you are going tooadd hello new entities.</span></span> 
    
     ```csharp
     CloudTable table = tableClient.GetTableReference("TestTable");
     ```
 
-1. <span data-ttu-id="52b5e-199">[테이블에 엔터티 추가](#add-an-entity-to-a-table) 섹션에 표시되는 **CustomerEntity** 모델 클래스에 따라 일부 고객 개체를 인스턴스화합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-199">Instantiate some customer objects based on the **CustomerEntity** model class presented in the section, [Add an entity to a table](#add-an-entity-to-a-table).</span></span>
+1. <span data-ttu-id="b1565-199">Hello에 따라 일부 고객 개체를 인스턴스화할 **CustomerEntity** 모델 hello 섹션에 제공 된 클래스 [엔터티 tooa 테이블 추가](#add-an-entity-to-a-table)합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-199">Instantiate some customer objects based on hello **CustomerEntity** model class presented in hello section, [Add an entity tooa table](#add-an-entity-to-a-table).</span></span>
 
     ```csharp
     CustomerEntity customer1 = new CustomerEntity("Smith", "Jeff");
@@ -328,36 +328,36 @@ ms.lasthandoff: 08/03/2017
     customer2.Email = "Ben@contoso.com";
     ```
 
-1. <span data-ttu-id="52b5e-200">**TableBatchOperation** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-200">Get a **TableBatchOperation** object.</span></span>
+1. <span data-ttu-id="b1565-200">**TableBatchOperation** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-200">Get a **TableBatchOperation** object.</span></span>
 
     ```csharp
     TableBatchOperation batchOperation = new TableBatchOperation();
     ```
 
-1. <span data-ttu-id="52b5e-201">일괄 삽입 작업 개체에 엔터티를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-201">Add entities to the batch insert operation object.</span></span>
+1. <span data-ttu-id="b1565-201">엔터티 toohello 일괄 처리 삽입 작업 개체를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-201">Add entities toohello batch insert operation object.</span></span>
 
     ```csharp
     batchOperation.Insert(customer1);
     batchOperation.Insert(customer2);
     ```
 
-1. <span data-ttu-id="52b5e-202">**CloudTable.ExecuteBatch** 메서드를 호출하여 일괄 삽입 작업을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-202">Execute the batch insert operation by calling the **CloudTable.ExecuteBatch** method.</span></span>   
+1. <span data-ttu-id="b1565-202">호출 hello 여 hello 일괄 처리 삽입 작업을 실행 **CloudTable.ExecuteBatch** 메서드.</span><span class="sxs-lookup"><span data-stu-id="b1565-202">Execute hello batch insert operation by calling hello **CloudTable.ExecuteBatch** method.</span></span>   
 
     ```csharp
     IList<TableResult> results = table.ExecuteBatch(batchOperation);
     ```
 
-1. <span data-ttu-id="52b5e-203">**CloudTable.ExecuteBatch** 메서드는 **TableResult** 개체 목록을 반환합니다. 여기에서 각 개별 작업의 성공 여부를 확인하도록 각 **TableResult** 개체를 검사할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-203">The **CloudTable.ExecuteBatch** method returns a list of **TableResult** objects where each **TableResult** object can be examined to determine the success or failure of each individual operation.</span></span> <span data-ttu-id="52b5e-204">이 예에서는 보기로 목록을 전달하고 보기에 각 작업의 결과를 표시하도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-204">For this example, pass the list to a view and let the view display the results of each operation.</span></span> 
+1. <span data-ttu-id="b1565-203">hello **CloudTable.ExecuteBatch** 메서드 목록을 반환 **TableResult** 개체 여기서 각 **TableResult** 개체 검사 toodetermine hello 성공 또는 실패 수 각 개별 작업입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-203">hello **CloudTable.ExecuteBatch** method returns a list of **TableResult** objects where each **TableResult** object can be examined toodetermine hello success or failure of each individual operation.</span></span> <span data-ttu-id="b1565-204">예를 들어 각 작업의 hello 결과 표시 하는 hello 보기를 hello 목록 tooa 뷰에 전달 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-204">For this example, pass hello list tooa view and let hello view display hello results of each operation.</span></span> 
  
     ```csharp
     return View(results);
     ```
 
-1. <span data-ttu-id="52b5e-205">**솔루션 탐색기**에서 **보기** 폴더를 확장한 다음 **Tables**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->보기**를 차례로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-205">In the **Solution Explorer**, expand the **Views** folder, right-click **Tables**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="b1565-205">Hello에 **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 **테이블**, hello 상황에 맞는 메뉴에서 선택 하 고 **추가보기->**.</span><span class="sxs-lookup"><span data-stu-id="b1565-205">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Tables**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="52b5e-206">**보기 추가** 대화 상자에서 보기 이름으로 **AddEntities**를 입력하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-206">On the **Add View** dialog, enter **AddEntities** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="b1565-206">Hello에 **뷰 추가** 대화 상자에서 입력 **AddEntities** hello 뷰 이름과 선택에 대 한 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-206">On hello **Add View** dialog, enter **AddEntities** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="52b5e-207">`AddEntities.cshtml`을 열고 다음과 같이 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-207">Open `AddEntities.cshtml`, and modify it so that it looks like the following.</span></span>
+1. <span data-ttu-id="b1565-207">열기 `AddEntities.cshtml`, 및을 hello 다음과 같이 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-207">Open `AddEntities.cshtml`, and modify it so that it looks like hello following.</span></span>
 
     ```csharp
     @model IEnumerable<Microsoft.WindowsAzure.Storage.Table.TableResult>
@@ -384,83 +384,83 @@ ms.lasthandoff: 08/03/2017
     </table>
     ```
 
-1. <span data-ttu-id="52b5e-208">**솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-208">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="b1565-208">Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-208">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="52b5e-209">마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-209">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="b1565-209">Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="b1565-209">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Add entities", "AddEntities", "Tables")</li>
     ```
 
-1. <span data-ttu-id="52b5e-210">응용 프로그램을 실행하고 **엔터티 추가**를 선택하여 다음 스크린샷과 유사한 결과를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-210">Run the application, and select **Add entities** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="b1565-210">Hello 응용 프로그램을 실행 하 고 선택 **엔터티를 추가** toosee 스크린 샷 다음 유사한 toohello 결과:</span><span class="sxs-lookup"><span data-stu-id="b1565-210">Run hello application, and select **Add entities** toosee results similar toohello following screen shot:</span></span>
   
     ![엔터티 추가](./media/vs-storage-aspnet-getting-started-tables/add-entities-results.png)
 
-    <span data-ttu-id="52b5e-212">[단일 엔터티 가져오기](#get-a-single-entity) 섹션의 단계를 수행하여 엔터티가 추가되었는지 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-212">You can verify that the entity was added by following the steps in the section, [Get a single entity](#get-a-single-entity).</span></span> <span data-ttu-id="52b5e-213">[Microsoft Azure Storage 탐색기](../vs-azure-tools-storage-manage-with-storage-explorer.md)를 사용하여 테이블에 대한 모든 엔터티를 볼 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-213">You can also use the [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) to view all the entities for your tables.</span></span>
+    <span data-ttu-id="b1565-212">Hello 엔터티 hello 섹션의 hello 단계에 따라 추가 되는지 확인할 수 있습니다 [단일 엔터티를 가져올](#get-a-single-entity)합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-212">You can verify that hello entity was added by following hello steps in hello section, [Get a single entity](#get-a-single-entity).</span></span> <span data-ttu-id="b1565-213">Hello를 사용할 수도 있습니다 [Microsoft Azure 저장소 탐색기](../vs-azure-tools-storage-manage-with-storage-explorer.md) tooview 모든 테이블에 대 한 엔터티를 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-213">You can also use hello [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) tooview all hello entities for your tables.</span></span>
 
-## <a name="get-a-single-entity"></a><span data-ttu-id="52b5e-214">단일 엔터티 가져오기</span><span class="sxs-lookup"><span data-stu-id="52b5e-214">Get a single entity</span></span>
+## <a name="get-a-single-entity"></a><span data-ttu-id="b1565-214">단일 엔터티 가져오기</span><span class="sxs-lookup"><span data-stu-id="b1565-214">Get a single entity</span></span>
 
-<span data-ttu-id="52b5e-215">이 섹션에서는 엔터티의 행 키 및 파티션 키를 사용하여 테이블에서 단일 엔터티를 가져오는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-215">This section illustrates how to get a single entity from a table using the entity's row key and partition key.</span></span> 
+<span data-ttu-id="b1565-215">이 섹션에서는 엔터티의 행 키 및 파티션 키 사용 하 여 테이블에서 단일 엔터티 tooget hello 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-215">This section illustrates how tooget a single entity from a table using hello entity's row key and partition key.</span></span> 
 
 > [!NOTE]
 > 
-> <span data-ttu-id="52b5e-216">이 섹션은 [개발 환경 설정](#set-up-the-development-environment)의 단계를 완료했다고 가정하고 [테이블에 엔터티를 일괄로 추가](#add-a-batch-of-entities-to-a-table)의 데이터를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-216">This section assumes you have completed the steps in [Set up the development environment](#set-up-the-development-environment), and uses data from [Add a batch of entities to a table](#add-a-batch-of-entities-to-a-table).</span></span> 
+> <span data-ttu-id="b1565-216">이 섹션의 hello 단계를 완료 하는 것으로 가정 [hello 개발 환경 설정](#set-up-the-development-environment), 데이터를 사용 하 고 [엔터티 tooa 테이블의 일괄 처리 추가](#add-a-batch-of-entities-to-a-table)합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-216">This section assumes you have completed hello steps in [Set up hello development environment](#set-up-the-development-environment), and uses data from [Add a batch of entities tooa table](#add-a-batch-of-entities-to-a-table).</span></span> 
 
-1. <span data-ttu-id="52b5e-217">`TablesController.cs` 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-217">Open the `TablesController.cs` file.</span></span>
+1. <span data-ttu-id="b1565-217">열기 hello `TablesController.cs` 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-217">Open hello `TablesController.cs` file.</span></span>
 
-1. <span data-ttu-id="52b5e-218">**ActionResult**를 반환하는 **GetSingle**이라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-218">Add a method called **GetSingle** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="b1565-218">**ActionResult**를 반환하는 **GetSingle**이라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-218">Add a method called **GetSingle** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult GetSingle()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
 
-1. <span data-ttu-id="52b5e-219">**GetSingle** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-219">Within the **GetSingle** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="52b5e-220">다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure 저장소 계정의 이름으로 변경).</span><span class="sxs-lookup"><span data-stu-id="52b5e-220">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="b1565-219">Hello 내 **GetSingle** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-219">Within hello **GetSingle** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="b1565-220">사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)</span><span class="sxs-lookup"><span data-stu-id="b1565-220">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
 
-1. <span data-ttu-id="52b5e-221">Table service 클라이언트를 나타내는 **CloudTableClient** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-221">Get a **CloudTableClient** object represents a table service client.</span></span>
+1. <span data-ttu-id="b1565-221">Table service 클라이언트를 나타내는 **CloudTableClient** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-221">Get a **CloudTableClient** object represents a table service client.</span></span>
    
     ```csharp
     CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
     ```
 
-1. <span data-ttu-id="52b5e-222">엔터티를 검색하려는 테이블에 대한 참조를 나타내는 **CloudTable** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-222">Get a **CloudTable** object that represents a reference to the table from which you are retrieving the entity.</span></span> 
+1. <span data-ttu-id="b1565-222">가져오기는 **CloudTable** hello 엔터티 가져오려는 참조 toohello 테이블을 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-222">Get a **CloudTable** object that represents a reference toohello table from which you are retrieving hello entity.</span></span> 
    
     ```csharp
     CloudTable table = tableClient.GetTableReference("TestTable");
     ```
 
-1. <span data-ttu-id="52b5e-223">**TableEntity**에서 파생된 엔터티 개체를 사용하는 검색 작업 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-223">Create a retrieve operation object that takes an entity object derived from **TableEntity**.</span></span> <span data-ttu-id="52b5e-224">첫 번째 매개 변수는 *partitionKey*이고, 두 번째 매개 변수는 *rowKey*입니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-224">The first parameter is the *partitionKey*, and the second parameter is the *rowKey*.</span></span> <span data-ttu-id="52b5e-225">다음 코드 조각은 **CustomerEntity** 클래스 및 [테이블에 엔터티를 일괄로 추가](#add-a-batch-of-entities-to-a-table) 섹션에 표시되는 데이터를 사용하여 *partitionKey* 값 "Smith" 및 *rowKey* 값 "Ben"을 사용하여 테이블에서 **CustomerEntity** 엔터티를 쿼리합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-225">Using the **CustomerEntity** class and data presented in the section [Add a batch of entities to a table](#add-a-batch-of-entities-to-a-table), the following code snippet queries the table for a **CustomerEntity** entity with a *partitionKey* value of "Smith" and a *rowKey* value of "Ben":</span></span>
+1. <span data-ttu-id="b1565-223">**TableEntity**에서 파생된 엔터티 개체를 사용하는 검색 작업 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-223">Create a retrieve operation object that takes an entity object derived from **TableEntity**.</span></span> <span data-ttu-id="b1565-224">hello 첫 번째 매개 변수는 hello *partitionKey*, hello 두 번째 매개 변수는 hello 및 *rowKey*합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-224">hello first parameter is hello *partitionKey*, and hello second parameter is hello *rowKey*.</span></span> <span data-ttu-id="b1565-225">Hello를 사용 하 여 **CustomerEntity** 클래스 및 hello 섹션에 제공 된 데이터 [엔터티 tooa 테이블의 일괄 처리 추가](#add-a-batch-of-entities-to-a-table), 다음 코드 조각 쿼리 hello 테이블에 대 한 hello는 **CustomerEntity** 인 엔터티는 *partitionKey* "Smith"의 값 및 *rowKey* "Ben"의 값:</span><span class="sxs-lookup"><span data-stu-id="b1565-225">Using hello **CustomerEntity** class and data presented in hello section [Add a batch of entities tooa table](#add-a-batch-of-entities-to-a-table), hello following code snippet queries hello table for a **CustomerEntity** entity with a *partitionKey* value of "Smith" and a *rowKey* value of "Ben":</span></span>
 
     ```csharp
     TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Smith", "Ben");
     ```
 
-1. <span data-ttu-id="52b5e-226">검색 작업을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-226">Execute the retrieve operation.</span></span>   
+1. <span data-ttu-id="b1565-226">Hello 검색 작업을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-226">Execute hello retrieve operation.</span></span>   
 
     ```csharp
     TableResult result = table.Execute(retrieveOperation);
     ```
 
-1. <span data-ttu-id="52b5e-227">표시를 위해 결과를 보기에 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-227">Pass the result to the view for display.</span></span>
+1. <span data-ttu-id="b1565-227">디스플레이 대 한 hello 결과 toohello 보기를 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-227">Pass hello result toohello view for display.</span></span>
 
     ```csharp
     return View(result);
     ```
 
-1. <span data-ttu-id="52b5e-228">**솔루션 탐색기**에서 **보기** 폴더를 확장한 다음 **Tables**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->보기**를 차례로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-228">In the **Solution Explorer**, expand the **Views** folder, right-click **Tables**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="b1565-228">Hello에 **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 **테이블**, hello 상황에 맞는 메뉴에서 선택 하 고 **추가보기->**.</span><span class="sxs-lookup"><span data-stu-id="b1565-228">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Tables**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="52b5e-229">**보기 추가** 대화 상자에서 보기 이름으로 **GetSingle**을 입력하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-229">On the **Add View** dialog, enter **GetSingle** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="b1565-229">Hello에 **뷰 추가** 대화 상자에서 입력 **GetSingle** hello 뷰 이름과 선택에 대 한 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-229">On hello **Add View** dialog, enter **GetSingle** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="52b5e-230">`GetSingle.cshtml`을 열고 다음 코드 조각과 같이 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-230">Open `GetSingle.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="b1565-230">열기 `GetSingle.cshtml`, 다음 코드 조각 hello 모양이 되도록 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-230">Open `GetSingle.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @model Microsoft.WindowsAzure.Storage.Table.TableResult
@@ -486,59 +486,59 @@ ms.lasthandoff: 08/03/2017
     </table>
     ```
 
-1. <span data-ttu-id="52b5e-231">**솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-231">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="b1565-231">Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-231">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="52b5e-232">마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-232">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="b1565-232">Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="b1565-232">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Get single", "GetSingle", "Tables")</li>
     ```
 
-1. <span data-ttu-id="52b5e-233">응용 프로그램을 실행하고 **단일 가져오기**를 선택하여 다음 스크린샷과 유사한 결과를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-233">Run the application, and select **Get Single** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="b1565-233">Hello 응용 프로그램을 실행 하 고 선택 **단일 가져오기** toosee 스크린 샷 다음 유사한 toohello 결과:</span><span class="sxs-lookup"><span data-stu-id="b1565-233">Run hello application, and select **Get Single** toosee results similar toohello following screen shot:</span></span>
   
     ![단일 가져오기](./media/vs-storage-aspnet-getting-started-tables/get-single-results.png)
 
-## <a name="get-all-entities-in-a-partition"></a><span data-ttu-id="52b5e-235">파티션의 모든 엔터티 가져오기</span><span class="sxs-lookup"><span data-stu-id="52b5e-235">Get all entities in a partition</span></span>
+## <a name="get-all-entities-in-a-partition"></a><span data-ttu-id="b1565-235">파티션의 모든 엔터티 가져오기</span><span class="sxs-lookup"><span data-stu-id="b1565-235">Get all entities in a partition</span></span>
 
-<span data-ttu-id="52b5e-236">[테이블에 엔터티 추가](#add-an-entity-to-a-table) 섹션에서 설명했듯이 파티션 및 행 키의 조합은 테이블의 엔터티를 고유하게 식별합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-236">As mentioned in the section, [Add an entity to a table](#add-an-entity-to-a-table), the combination of a partition and a row key uniquely identify an entity in a table.</span></span> <span data-ttu-id="52b5e-237">동일한 파티션 키를 가진 엔터티는 다른 파티션 키를 가진 엔터티보다 더 빨리 쿼리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-237">Entities with the same partition key can be queried faster than entities with different partition keys.</span></span> <span data-ttu-id="52b5e-238">이 섹션은 지정된 파티션에서 모든 엔터티에 대한 테이블을 쿼리하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-238">This section illustrates how to query a table for all the entities from a specified partition.</span></span>  
+<span data-ttu-id="b1565-236">Hello 섹션에서 설명한 것 처럼 [엔터티 tooa 테이블 추가](#add-an-entity-to-a-table)는 파티션 및 행 키의 hello 조합 테이블에서 엔터티를 고유 하 게 식별 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-236">As mentioned in hello section, [Add an entity tooa table](#add-an-entity-to-a-table), hello combination of a partition and a row key uniquely identify an entity in a table.</span></span> <span data-ttu-id="b1565-237">동일한 파티션 키를 가진 엔터티는 다른 파티션 키를 가진 엔터티보다 더 빨리 쿼리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-237">Entities with the same partition key can be queried faster than entities with different partition keys.</span></span> <span data-ttu-id="b1565-238">이 섹션에서는 어떻게 tooquery에서 지정된 된 파티션의 모든 hello 엔터티에 대 한 테이블입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-238">This section illustrates how tooquery a table for all hello entities from a specified partition.</span></span>  
 
 > [!NOTE]
 > 
-> <span data-ttu-id="52b5e-239">이 섹션은 [개발 환경 설정](#set-up-the-development-environment)의 단계를 완료했다고 가정하고 [테이블에 엔터티를 일괄로 추가](#add-a-batch-of-entities-to-a-table)의 데이터를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-239">This section assumes you have completed the steps in [Set up the development environment](#set-up-the-development-environment), and uses data from [Add a batch of entities to a table](#add-a-batch-of-entities-to-a-table).</span></span> 
+> <span data-ttu-id="b1565-239">이 섹션의 hello 단계를 완료 하는 것으로 가정 [hello 개발 환경 설정](#set-up-the-development-environment), 데이터를 사용 하 고 [엔터티 tooa 테이블의 일괄 처리 추가](#add-a-batch-of-entities-to-a-table)합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-239">This section assumes you have completed hello steps in [Set up hello development environment](#set-up-the-development-environment), and uses data from [Add a batch of entities tooa table](#add-a-batch-of-entities-to-a-table).</span></span> 
 
-1. <span data-ttu-id="52b5e-240">`TablesController.cs` 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-240">Open the `TablesController.cs` file.</span></span>
+1. <span data-ttu-id="b1565-240">열기 hello `TablesController.cs` 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-240">Open hello `TablesController.cs` file.</span></span>
 
-1. <span data-ttu-id="52b5e-241">**ActionResult**를 반환하는 **GetPartition**이라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-241">Add a method called **GetPartition** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="b1565-241">**ActionResult**를 반환하는 **GetPartition**이라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-241">Add a method called **GetPartition** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult GetPartition()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
 
-1. <span data-ttu-id="52b5e-242">**GetPartition** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-242">Within the **GetPartition** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="52b5e-243">다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure 저장소 계정의 이름으로 변경).</span><span class="sxs-lookup"><span data-stu-id="52b5e-243">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="b1565-242">Hello 내 **GetPartition** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-242">Within hello **GetPartition** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="b1565-243">사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)</span><span class="sxs-lookup"><span data-stu-id="b1565-243">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
 
-1. <span data-ttu-id="52b5e-244">Table service 클라이언트를 나타내는 **CloudTableClient** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-244">Get a **CloudTableClient** object represents a table service client.</span></span>
+1. <span data-ttu-id="b1565-244">Table service 클라이언트를 나타내는 **CloudTableClient** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-244">Get a **CloudTableClient** object represents a table service client.</span></span>
    
     ```csharp
     CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
     ```
 
-1. <span data-ttu-id="52b5e-245">엔터티를 검색하려는 테이블에 대한 참조를 나타내는 **CloudTable** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-245">Get a **CloudTable** object that represents a reference to the table from which you are retrieving the entities.</span></span> 
+1. <span data-ttu-id="b1565-245">가져오기는 **CloudTable** hello 엔터티 가져오려는 참조 toohello 테이블을 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-245">Get a **CloudTable** object that represents a reference toohello table from which you are retrieving hello entities.</span></span> 
    
     ```csharp
     CloudTable table = tableClient.GetTableReference("TestTable");
     ```
 
-1. <span data-ttu-id="52b5e-246">**TableQuery** 개체를 인스턴스화하고 **Where** 절에 쿼리를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-246">Instantiate a **TableQuery** object specifying the query in the **Where** clause.</span></span> <span data-ttu-id="52b5e-247">다음 코드 조각은 **CustomerEntity** 클래스 및 [테이블에 엔터티를 일괄로 추가](#add-a-batch-of-entities-to-a-table) 섹션에 표시되는 데이터를 사용하여 **PartitionKey**(고객의 성) 값이 "Smith"인 모든 엔터티를 테이블에서 쿼리합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-247">Using the **CustomerEntity** class and data presented in the section [Add a batch of entities to a table](#add-a-batch-of-entities-to-a-table), the following code snippet queries the table for a all entities where the **PartitionKey** (customer's last name) has a value of "Smith":</span></span>
+1. <span data-ttu-id="b1565-246">인스턴스화하는 **TableQuery** hello에 hello 쿼리를 지정 하는 개체 **여기서** 절.</span><span class="sxs-lookup"><span data-stu-id="b1565-246">Instantiate a **TableQuery** object specifying hello query in hello **Where** clause.</span></span> <span data-ttu-id="b1565-247">Hello를 사용 하 여 **CustomerEntity** 클래스 및 hello 섹션에 제공 된 데이터 [엔터티 tooa 테이블의 일괄 처리 추가](#add-a-batch-of-entities-to-a-table), 여기서 hello hello 다음 코드 조각 쿼리 hello 테이블 모든 엔터티에 대 한  **PartitionKey** (고객의 성을) "Smith"의 값이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-247">Using hello **CustomerEntity** class and data presented in hello section [Add a batch of entities tooa table](#add-a-batch-of-entities-to-a-table), hello following code snippet queries hello table for a all entities where hello **PartitionKey** (customer's last name) has a value of "Smith":</span></span>
 
     ```csharp
     TableQuery<CustomerEntity> query = 
@@ -546,7 +546,7 @@ ms.lasthandoff: 08/03/2017
         .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Smith"));
     ```
 
-1. <span data-ttu-id="52b5e-248">루프 내에서 **CloudTable.ExecuteQuerySegmented** 메서드를 호출하고 이전 단계에서 인스턴스화한 쿼리 개체를 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-248">Within a loop, call the **CloudTable.ExecuteQuerySegmented** method passing the query object you instantiated in the previous step.</span></span>  <span data-ttu-id="52b5e-249">**CloudTable.ExecuteQuerySegmented** 메서드는 **TableContinuationToken** 개체를 반환합니다. 이 개체는 **null**인 경우 검색할 추가 엔터티가 없음을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-249">The **CloudTable.ExecuteQuerySegmented** method returns a **TableContinuationToken** object that - when **null** - indicates that there are no more entities to retrieve.</span></span> <span data-ttu-id="52b5e-250">루프 내에서 다른 루프를 사용하여 반환된 엔터티를 반복합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-250">Within the loop, use another loop to iterate over the returned entities.</span></span> <span data-ttu-id="52b5e-251">다음 코드 예제에서는 반환된 각 엔터티가 목록에 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-251">In the following code example, each returned entity is added to a list.</span></span> <span data-ttu-id="52b5e-252">루프가 종료되면 표시를 위해 목록이 보기에 전달됩니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-252">Once the loop ends, the list is passed to a view for display:</span></span> 
+1. <span data-ttu-id="b1565-248">루프 내에서 호출 hello **CloudTable.ExecuteQuerySegmented** hello 이전 단계에서 인스턴스화한 hello 쿼리 개체를 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-248">Within a loop, call hello **CloudTable.ExecuteQuerySegmented** method passing hello query object you instantiated in hello previous step.</span></span>  <span data-ttu-id="b1565-249">hello **CloudTable.ExecuteQuerySegmented** 메서드가 반환 되는 **TableContinuationToken** 개체를-때 **null** -더 많은 엔터티가 있는 tooretrieve 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-249">hello **CloudTable.ExecuteQuerySegmented** method returns a **TableContinuationToken** object that - when **null** - indicates that there are no more entities tooretrieve.</span></span> <span data-ttu-id="b1565-250">Hello 루프 내에서 엔터티를 반환 하는 hello를 통해 다른 루프 tooiterate를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-250">Within hello loop, use another loop tooiterate over hello returned entities.</span></span> <span data-ttu-id="b1565-251">다음 코드 예제는 hello, tooa 목록 각 반환 된 엔터티를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-251">In hello following code example, each returned entity is added tooa list.</span></span> <span data-ttu-id="b1565-252">루프 끝을 한 번 hello, hello 목록 표시에 대 한 tooa 보기 전달 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-252">Once hello loop ends, hello list is passed tooa view for display:</span></span> 
 
     ```csharp
     List<CustomerEntity> customers = new List<CustomerEntity>();
@@ -565,11 +565,11 @@ ms.lasthandoff: 08/03/2017
     return View(customers);
     ```
 
-1. <span data-ttu-id="52b5e-253">**솔루션 탐색기**에서 **보기** 폴더를 확장한 다음 **Tables**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->보기**를 차례로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-253">In the **Solution Explorer**, expand the **Views** folder, right-click **Tables**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="b1565-253">Hello에 **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 **테이블**, hello 상황에 맞는 메뉴에서 선택 하 고 **추가보기->**.</span><span class="sxs-lookup"><span data-stu-id="b1565-253">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Tables**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="52b5e-254">**보기 추가** 대화 상자에서 보기 이름으로 **GetPartition**을 입력하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-254">On the **Add View** dialog, enter **GetPartition** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="b1565-254">Hello에 **뷰 추가** 대화 상자에서 입력 **GetPartition** hello 뷰 이름과 선택에 대 한 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-254">On hello **Add View** dialog, enter **GetPartition** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="52b5e-255">`GetPartition.cshtml`을 열고 다음 코드 조각과 같이 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-255">Open `GetPartition.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="b1565-255">열기 `GetPartition.cshtml`, 다음 코드 조각 hello 모양이 되도록 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-255">Open `GetPartition.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @model IEnumerable<StorageAspnet.Models.CustomerEntity>
@@ -596,82 +596,82 @@ ms.lasthandoff: 08/03/2017
     </table>
     ```
 
-1. <span data-ttu-id="52b5e-256">**솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-256">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="b1565-256">Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-256">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="52b5e-257">마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-257">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="b1565-257">Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="b1565-257">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Get partition", "GetPartition", "Tables")</li>
     ```
 
-1. <span data-ttu-id="52b5e-258">응용 프로그램을 실행하고 **파티션 가져오기**를 선택하여 다음 스크린샷과 유사한 결과를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-258">Run the application, and select **Get Partition** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="b1565-258">Hello 응용 프로그램을 실행 하 고 선택 **가져올 파티션** toosee 스크린 샷 다음 유사한 toohello 결과:</span><span class="sxs-lookup"><span data-stu-id="b1565-258">Run hello application, and select **Get Partition** toosee results similar toohello following screen shot:</span></span>
   
     ![파티션 가져오기](./media/vs-storage-aspnet-getting-started-tables/get-partition-results.png)
 
-## <a name="delete-an-entity"></a><span data-ttu-id="52b5e-260">엔터티 삭제</span><span class="sxs-lookup"><span data-stu-id="52b5e-260">Delete an entity</span></span>
+## <a name="delete-an-entity"></a><span data-ttu-id="b1565-260">엔터티 삭제</span><span class="sxs-lookup"><span data-stu-id="b1565-260">Delete an entity</span></span>
 
-<span data-ttu-id="52b5e-261">이 섹션에서는 테이블에서 엔터티를 삭제하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-261">This section illustrates how to delete an entity from a table.</span></span>
+<span data-ttu-id="b1565-261">이 섹션에서는 어떻게 toodelete 테이블에서 엔터티.</span><span class="sxs-lookup"><span data-stu-id="b1565-261">This section illustrates how toodelete an entity from a table.</span></span>
 
 > [!NOTE]
 > 
-> <span data-ttu-id="52b5e-262">이 섹션은 [개발 환경 설정](#set-up-the-development-environment)의 단계를 완료했다고 가정하고 [테이블에 엔터티를 일괄로 추가](#add-a-batch-of-entities-to-a-table)의 데이터를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-262">This section assumes you have completed the steps in [Set up the development environment](#set-up-the-development-environment), and uses data from [Add a batch of entities to a table](#add-a-batch-of-entities-to-a-table).</span></span> 
+> <span data-ttu-id="b1565-262">이 섹션의 hello 단계를 완료 하는 것으로 가정 [hello 개발 환경 설정](#set-up-the-development-environment), 데이터를 사용 하 고 [엔터티 tooa 테이블의 일괄 처리 추가](#add-a-batch-of-entities-to-a-table)합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-262">This section assumes you have completed hello steps in [Set up hello development environment](#set-up-the-development-environment), and uses data from [Add a batch of entities tooa table](#add-a-batch-of-entities-to-a-table).</span></span> 
 
-1. <span data-ttu-id="52b5e-263">`TablesController.cs` 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-263">Open the `TablesController.cs` file.</span></span>
+1. <span data-ttu-id="b1565-263">열기 hello `TablesController.cs` 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-263">Open hello `TablesController.cs` file.</span></span>
 
-1. <span data-ttu-id="52b5e-264">**ActionResult**를 반환하는 **DeleteEntity**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-264">Add a method called **DeleteEntity** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="b1565-264">**ActionResult**를 반환하는 **DeleteEntity**라는 메서드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-264">Add a method called **DeleteEntity** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult DeleteEntity()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
 
-1. <span data-ttu-id="52b5e-265">**DeleteEntity** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-265">Within the **DeleteEntity** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="52b5e-266">다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure 저장소 계정의 이름으로 변경).</span><span class="sxs-lookup"><span data-stu-id="52b5e-266">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="b1565-265">Hello 내 **DeleteEntity** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-265">Within hello **DeleteEntity** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="b1565-266">사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)</span><span class="sxs-lookup"><span data-stu-id="b1565-266">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
 
-1. <span data-ttu-id="52b5e-267">Table service 클라이언트를 나타내는 **CloudTableClient** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-267">Get a **CloudTableClient** object represents a table service client.</span></span>
+1. <span data-ttu-id="b1565-267">Table service 클라이언트를 나타내는 **CloudTableClient** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-267">Get a **CloudTableClient** object represents a table service client.</span></span>
    
     ```csharp
     CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
     ```
 
-1. <span data-ttu-id="52b5e-268">엔터티를 삭제하려는 테이블에 대한 참조를 나타내는 **CloudTable** 개체를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-268">Get a **CloudTable** object that represents a reference to the table from which you are deleting the entity.</span></span> 
+1. <span data-ttu-id="b1565-268">가져오기는 **CloudTable** hello 엔터티는 삭제할 참조 toohello 테이블을 나타내는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-268">Get a **CloudTable** object that represents a reference toohello table from which you are deleting hello entity.</span></span> 
    
     ```csharp
     CloudTable table = tableClient.GetTableReference("TestTable");
     ```
 
-1. <span data-ttu-id="52b5e-269">**TableEntity**에서 파생된 엔터티 개체를 사용하는 삭제 작업 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-269">Create a delete operation object that takes an entity object derived from **TableEntity**.</span></span> <span data-ttu-id="52b5e-270">이 경우 **CustomerEntity** 클래스 및 [테이블에 엔터티를 일괄로 추가](#add-a-batch-of-entities-to-a-table) 섹션에 표시되는 데이터를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-270">In this case, we use the **CustomerEntity** class and data presented in the section [Add a batch of entities to a table](#add-a-batch-of-entities-to-a-table).</span></span> <span data-ttu-id="52b5e-271">엔터티의 **ETag**는 유효한 값으로 설정되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-271">The entity's **ETag** must be set to a valid value.</span></span>  
+1. <span data-ttu-id="b1565-269">**TableEntity**에서 파생된 엔터티 개체를 사용하는 삭제 작업 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-269">Create a delete operation object that takes an entity object derived from **TableEntity**.</span></span> <span data-ttu-id="b1565-270">이 경우 hello 사용 **CustomerEntity** 클래스 및 hello 섹션에 제공 된 데이터 [엔터티 tooa 테이블의 일괄 처리 추가](#add-a-batch-of-entities-to-a-table)합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-270">In this case, we use hello **CustomerEntity** class and data presented in hello section [Add a batch of entities tooa table](#add-a-batch-of-entities-to-a-table).</span></span> <span data-ttu-id="b1565-271">엔터티의 hello **ETag** tooa 유효한 값을 설정 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-271">hello entity's **ETag** must be set tooa valid value.</span></span>  
 
     ```csharp
     TableOperation deleteOperation = 
         TableOperation.Delete(new CustomerEntity("Smith", "Ben") { ETag = "*" } );
     ```
 
-1. <span data-ttu-id="52b5e-272">삭제 작업을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-272">Execute the delete operation.</span></span>   
+1. <span data-ttu-id="b1565-272">Hello 삭제 작업을 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-272">Execute hello delete operation.</span></span>   
 
     ```csharp
     TableResult result = table.Execute(deleteOperation);
     ```
 
-1. <span data-ttu-id="52b5e-273">표시를 위해 결과를 보기에 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-273">Pass the result to the view for display.</span></span>
+1. <span data-ttu-id="b1565-273">디스플레이 대 한 hello 결과 toohello 보기를 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-273">Pass hello result toohello view for display.</span></span>
 
     ```csharp
     return View(result);
     ```
 
-1. <span data-ttu-id="52b5e-274">**솔루션 탐색기**에서 **보기** 폴더를 확장한 다음 **Tables**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->보기**를 차례로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-274">In the **Solution Explorer**, expand the **Views** folder, right-click **Tables**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="b1565-274">Hello에 **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 **테이블**, hello 상황에 맞는 메뉴에서 선택 하 고 **추가보기->**.</span><span class="sxs-lookup"><span data-stu-id="b1565-274">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Tables**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="52b5e-275">**보기 추가** 대화 상자에서 보기 이름으로 **DeleteEntity**를 입력하고 **추가**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-275">On the **Add View** dialog, enter **DeleteEntity** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="b1565-275">Hello에 **뷰 추가** 대화 상자에서 입력 **DeleteEntity** hello 뷰 이름과 선택에 대 한 **추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-275">On hello **Add View** dialog, enter **DeleteEntity** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="52b5e-276">`DeleteEntity.cshtml`을 열고 다음 코드 조각과 같이 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-276">Open `DeleteEntity.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="b1565-276">열기 `DeleteEntity.cshtml`, 다음 코드 조각 hello 모양이 되도록 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-276">Open `DeleteEntity.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @model Microsoft.WindowsAzure.Storage.Table.TableResult
@@ -696,20 +696,20 @@ ms.lasthandoff: 08/03/2017
 
     ```
 
-1. <span data-ttu-id="52b5e-277">**솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-277">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="b1565-277">Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-277">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="52b5e-278">마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-278">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="b1565-278">Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="b1565-278">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Delete entity", "DeleteEntity", "Tables")</li>
     ```
 
-1. <span data-ttu-id="52b5e-279">응용 프로그램을 실행하고 **엔터티 삭제**를 선택하여 다음 스크린샷과 유사한 결과를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="52b5e-279">Run the application, and select **Delete entity** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="b1565-279">Hello 응용 프로그램을 실행 하 고 선택 **엔터티 삭제** toosee 스크린 샷 다음 유사한 toohello 결과:</span><span class="sxs-lookup"><span data-stu-id="b1565-279">Run hello application, and select **Delete entity** toosee results similar toohello following screen shot:</span></span>
   
     ![단일 가져오기](./media/vs-storage-aspnet-getting-started-tables/delete-entity-results.png)
 
-## <a name="next-steps"></a><span data-ttu-id="52b5e-281">다음 단계</span><span class="sxs-lookup"><span data-stu-id="52b5e-281">Next steps</span></span>
-<span data-ttu-id="52b5e-282">Azure에 데이터를 저장하기 위한 추가 옵션에 대한 자세한 내용은 추가 기능 가이드를 참조하십시오.</span><span class="sxs-lookup"><span data-stu-id="52b5e-282">View more feature guides to learn about additional options for storing data in Azure.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="b1565-281">다음 단계</span><span class="sxs-lookup"><span data-stu-id="b1565-281">Next steps</span></span>
+<span data-ttu-id="b1565-282">Azure에 데이터를 저장 하기 위한 추가 옵션에 대 한 자세한 기능 가이드 toolearn을 봅니다.</span><span class="sxs-lookup"><span data-stu-id="b1565-282">View more feature guides toolearn about additional options for storing data in Azure.</span></span>
 
-  * [<span data-ttu-id="52b5e-283">Azure Blob 저장소 및 Visual Studio 연결된 서비스 시작(ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="52b5e-283">Get started with Azure blob storage and Visual Studio Connected Services (ASP.NET)</span></span>](./vs-storage-aspnet-getting-started-blobs.md)
-  * [<span data-ttu-id="52b5e-284">Azure 큐 저장소 및 Visual Studio 연결된 서비스 시작(ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="52b5e-284">Get started with Azure queue storage and Visual Studio Connected Services (ASP.NET)</span></span>](./vs-storage-aspnet-getting-started-queues.md)
+  * [<span data-ttu-id="b1565-283">Azure Blob 저장소 및 Visual Studio 연결된 서비스 시작(ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="b1565-283">Get started with Azure blob storage and Visual Studio Connected Services (ASP.NET)</span></span>](./vs-storage-aspnet-getting-started-blobs.md)
+  * [<span data-ttu-id="b1565-284">Azure 큐 저장소 및 Visual Studio 연결된 서비스 시작(ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="b1565-284">Get started with Azure queue storage and Visual Studio Connected Services (ASP.NET)</span></span>](./vs-storage-aspnet-getting-started-queues.md)

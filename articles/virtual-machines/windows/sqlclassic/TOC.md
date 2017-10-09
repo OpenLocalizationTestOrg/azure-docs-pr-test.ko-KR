@@ -4,21 +4,21 @@
 ## [FAQ](../sql/virtual-machines-windows-sql-server-iaas-faq.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 
 # 시작
-## [Azure Portal에서 VM 프로비전](../sql/virtual-machines-windows-portal-sql-server-provision.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
+## [Hello Azure 포털에서에서 VM을 프로 비전](../sql/virtual-machines-windows-portal-sql-server-provision.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 ## [Azure PowerShell을 사용하여 VM 프로비전](virtual-machines-windows-classic-ps-sql-create.md)
-## [VM에 연결](virtual-machines-windows-classic-sql-connect.md)
+## [Tooa VM 연결](virtual-machines-windows-classic-sql-connect.md)
 ## [SQL Server 데이터베이스 마이그레이션](../sql/virtual-machines-windows-migrate-sql.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 
 # 방법
 ## 고가용성 구성
 ### [고가용성 옵션](../sql/virtual-machines-windows-sql-high-availability-dr.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json) 
-### [클래식 포털에서 Always On 가용성 그룹 구성](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
+### [Hello 클래식 포털에서 Always On 가용성 그룹 구성](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
 ### [PowerShell을 사용하여 Always On 가용성 그룹 구성](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
 ### [가용성 그룹에 대한 내부 수신기 구성](virtual-machines-windows-classic-ps-sql-int-listener.md)
 ### [가용성 그룹에 대한 외부 수신기 구성](virtual-machines-windows-classic-ps-sql-ext-listener.md)
-### [온-프레미스 가용성 그룹을 Azure에 확장](virtual-machines-windows-classic-sql-onprem-availability.md)
+### [온-프레미스 가용성 그룹 tooAzure 확장](virtual-machines-windows-classic-sql-onprem-availability.md)
 ## 관리
-### [SQL Server IaaS 에이전트 확장 사용](virtual-machines-windows-classic-sql-server-agent-extension.md)
+### [SQL Server IaaS 에이전트 확장 hello를 사용 하 여](virtual-machines-windows-classic-sql-server-agent-extension.md)
 ### [자동화된 패치](virtual-machines-windows-classic-sql-automated-patching.md)
 ### [Azure Key Vault 통합 구성](virtual-machines-windows-classic-ps-sql-keyvault.md)
 ### [Premium Storage 사용](virtual-machines-windows-classic-sql-server-premium-storage.md)
@@ -30,7 +30,7 @@
 ## 비즈니스 인텔리전스
 ### [Azure VM의 SQL Server Business Intelligence](virtual-machines-windows-classic-ps-sql-bi.md)
 ### [Azure에서 호스트되는 웹 사이트에서 ReportViewer 사용](virtual-machines-windows-classic-sql-server-reportviewer.md)
-### [PowerShell을 사용하여 보고서 서버로 Azure VM 만들기](virtual-machines-windows-classic-ps-sql-report.md)
+### [보고서 서버와 PowerShell toocreate Azure VM을 사용 하 여](virtual-machines-windows-classic-ps-sql-report.md)
 ## [성능 모범 사례](../sql/virtual-machines-windows-sql-performance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 ## [응용 프로그램 패턴](../sql/virtual-machines-windows-sql-server-app-patterns-dev-strategies.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 

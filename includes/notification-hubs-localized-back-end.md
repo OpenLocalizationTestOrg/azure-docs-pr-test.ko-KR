@@ -2,7 +2,7 @@
 
 
 
-<span data-ttu-id="ce14f-101">템플릿 알림을 보낼 때 속성 집합만 제공하면 되지만 여기서는 최신 뉴스의 지역화된 버전을 포함하는 속성 집합을 보냅니다. 예:</span><span class="sxs-lookup"><span data-stu-id="ce14f-101">When you send template notifications you only need to provide a set of properties, in our case we will send the set of properties containing the localized version of the current news, for instance:</span></span>
+<span data-ttu-id="f32bf-101">속성 집합이 tooprovide 하기만 하면 템플릿 알림을 보낼 때 경우에 메일이 hello 집합 예를 들어 hello hello 현재 뉴스의 지역화 된 버전을 포함 한 속성</span><span class="sxs-lookup"><span data-stu-id="f32bf-101">When you send template notifications you only need tooprovide a set of properties, in our case we will send hello set of properties containing hello localized version of hello current news, for instance:</span></span>
 
     {
         "News_English": "World News in English!",
@@ -11,22 +11,22 @@
     }
 
 
-<span data-ttu-id="ce14f-102">이 섹션에서는 콘솔 앱을 사용하여 알림을 보내는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="ce14f-102">This section shows how to send notifications using a console app</span></span>
+<span data-ttu-id="f32bf-102">이 섹션에서는 어떻게 콘솔 응용 프로그램을 사용 하 여 toosend 알림</span><span class="sxs-lookup"><span data-stu-id="f32bf-102">This section shows how toosend notifications using a console app</span></span>
 
-<span data-ttu-id="ce14f-103">지원되는 모든 장치에 백엔드가 브로드캐스트할 수 있으므로 포함된 코드는 Windows 스토어와 iOS 장치 둘 다에 브로드캐스트합니다.</span><span class="sxs-lookup"><span data-stu-id="ce14f-103">The included code broadcasts to both Windows Store and iOS devices, since the backend can broadcast to any of the supported devices.</span></span>
+<span data-ttu-id="f32bf-103">hello는 hello 백 엔드 지원 hello 장치의 tooany 브로드캐스트할 수 있으므로 코드 브로드캐스트 tooboth Windows 스토어 및 iOS 장치를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="f32bf-103">hello included code broadcasts tooboth Windows Store and iOS devices, since hello backend can broadcast tooany of hello supported devices.</span></span>
 
-### <a name="to-send-notifications-using-a-c-console-app"></a><span data-ttu-id="ce14f-104">C# 콘솔 응용 프로그램을 사용하여 알림을 보내려면</span><span class="sxs-lookup"><span data-stu-id="ce14f-104">To send notifications using a C# console app</span></span>
-<span data-ttu-id="ce14f-105">이전에 다음 코드를 사용하여 만든 콘솔 앱에서 `SendTemplateNotificationAsync` 메서드를 수정합니다.</span><span class="sxs-lookup"><span data-stu-id="ce14f-105">Modify the `SendTemplateNotificationAsync` method in the console app you previously created with the following code.</span></span> <span data-ttu-id="ce14f-106">이 경우 다른 로캘 및 플랫폼에 여러 알림을 보낼 필요가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="ce14f-106">Notice how in this case there is no need to send multiple notifications for different locales and platforms.</span></span>
+### <a name="toosend-notifications-using-a-c-console-app"></a><span data-ttu-id="f32bf-104">C# 콘솔 응용 프로그램을 사용 하 여 toosend 알림</span><span class="sxs-lookup"><span data-stu-id="f32bf-104">toosend notifications using a C# console app</span></span>
+<span data-ttu-id="f32bf-105">Hello 수정 `SendTemplateNotificationAsync` 코드 다음 hello를 사용 하 여 이전에 만든 hello 콘솔 응용 프로그램에서 메서드.</span><span class="sxs-lookup"><span data-stu-id="f32bf-105">Modify hello `SendTemplateNotificationAsync` method in hello console app you previously created with hello following code.</span></span> <span data-ttu-id="f32bf-106">어떻게이 경우에 포함 되어 있음을 알 필요가 toosend 없습니다 다른 로캘 및 플랫폼에 대해 여러 알림을 합니다.</span><span class="sxs-lookup"><span data-stu-id="f32bf-106">Notice how in this case there is no need toosend multiple notifications for different locales and platforms.</span></span>
 
         private static async void SendTemplateNotificationAsync()
         {
-            // Define the notification hub.
+            // Define hello notification hub.
             NotificationHubClient hub = 
                 NotificationHubClient.CreateClientFromConnectionString(
                     "<connection string with full access>", "<hub name>");
 
-            // Sending the notification as a template notification. All template registrations that contain 
-            // "messageParam" or "News_<local selected>" and the proper tags will receive the notifications. 
+            // Sending hello notification as a template notification. All template registrations that contain 
+            // "messageParam" or "News_<local selected>" and hello proper tags will receive hello notifications. 
             // This includes APNS, GCM, WNS, and MPNS template registrations.
             Dictionary<string, string> templateParams = new Dictionary<string, string>();
 
@@ -52,10 +52,10 @@
         }
 
 
-<span data-ttu-id="ce14f-107">이 간단한 호출은 알림 허브에서 네이티브 페이로드를 생성하여 특정 태그에 가입된 모든 장치에 전달할 때 플랫폼과 상관없이 올바르게 지역화된 뉴스를 **모든** 장치에 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="ce14f-107">Note that this simple call will deliver the localized piece of news to **all** your devices, irrespective of the platform, as your Notification Hub builds and delivers the correct native payload to all the devices subscribed to a specific tag.</span></span>
+<span data-ttu-id="f32bf-107">이 간단한 호출은 hello 지역화 된 부분의 뉴스를 너무 실현 될 것에 유의**모든** hello 플랫폼에 관계 없이 장치에 알림 허브를 작성 하 고 배달 hello 올바른 네이티브 페이로드 tooall hello 장치 등록 tooa 특정 태그입니다.</span><span class="sxs-lookup"><span data-stu-id="f32bf-107">Note that this simple call will deliver hello localized piece of news too**all** your devices, irrespective of hello platform, as your Notification Hub builds and delivers hello correct native payload tooall hello devices subscribed tooa specific tag.</span></span>
 
-### <a name="sending-the-notification-with-mobile-services"></a><span data-ttu-id="ce14f-108">모바일 서비스로 알림 보내기</span><span class="sxs-lookup"><span data-stu-id="ce14f-108">Sending the notification with Mobile Services</span></span>
-<span data-ttu-id="ce14f-109">모바일 서비스 스케줄러에서 다음 스크립트를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="ce14f-109">In your Mobile Service scheduler, you can use the following script:</span></span>
+### <a name="sending-hello-notification-with-mobile-services"></a><span data-ttu-id="f32bf-108">모바일 서비스는 hello 알림을 보내기</span><span class="sxs-lookup"><span data-stu-id="f32bf-108">Sending hello notification with Mobile Services</span></span>
+<span data-ttu-id="f32bf-109">사용자의 모바일 서비스 스케줄러 hello 다음 스크립트를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="f32bf-109">In your Mobile Service scheduler, you can use hello following script:</span></span>
 
     var azure = require('azure');
     var notificationHubService = azure.createNotificationHubService('<hub name>', '<connection string with full access>');

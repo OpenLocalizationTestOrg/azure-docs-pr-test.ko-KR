@@ -1,5 +1,5 @@
 ---
-title: "Azure SQL Database를 사용하여 다중 테넌트 SaaS 응용 프로그램 구현 | Microsoft Docs"
+title: "aaaImplement 다중 테 넌 트 SaaS 응용 프로그램을 Azure SQL 데이터베이스 | Microsoft Docs"
 description: "Azure SQL Database를 사용하여 다중 테넌트 SaaS 응용 프로그램을 구현합니다."
 services: sql-database
 documentationcenter: 
@@ -16,48 +16,48 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 05/08/2017
 ms.author: AyoOlubek
-ms.openlocfilehash: 0aea69d86a51c38c99a72f46737de1eea27bef83
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b87b8f296e2c20a8f674b56375f43fdc92df76d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="implement-a-multi-tenant-saas-application-using-azure-sql-database"></a><span data-ttu-id="8ec0b-103">Azure SQL Database를 사용하여 다중 테넌트 SaaS 응용 프로그램 구현</span><span class="sxs-lookup"><span data-stu-id="8ec0b-103">Implement a multi-tenant SaaS application using Azure SQL Database</span></span>
+# <a name="implement-a-multi-tenant-saas-application-using-azure-sql-database"></a><span data-ttu-id="15c72-103">Azure SQL Database를 사용하여 다중 테넌트 SaaS 응용 프로그램 구현</span><span class="sxs-lookup"><span data-stu-id="15c72-103">Implement a multi-tenant SaaS application using Azure SQL Database</span></span>
 
-<span data-ttu-id="8ec0b-104">다중 테넌트 응용 프로그램은 클라우드 환경에서 호스팅되는 응용 프로그램이며, 서로의 데이터를 공유하거나 보지 않는 수백 또는 수천 명의 테넌트에게 동일한 서비스 집합을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-104">A multi-tenant application is an application hosted in a cloud environment and that provides the same set of services to hundreds or thousands of tenants who do not share or see each other’s data.</span></span> <span data-ttu-id="8ec0b-105">예를 들어 클라우드 호스팅 환경에서 테넌트에 서비스를 제공하는 SaaS 응용 프로그램이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-105">An example is an SaaS application that provides services to tenants in a cloud-hosted environment.</span></span> <span data-ttu-id="8ec0b-106">이 모델은 각 테넌트에 대한 데이터를 격리하고 비용에 맞춰 리소스 배포를 최적화합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-106">This model isolates the data for each tenant and optimizes the distribution of resources for cost.</span></span> 
+<span data-ttu-id="15c72-104">다중 테 넌 트 응용 프로그램은 클라우드 환경에서 호스팅되는 응용 프로그램 및 서비스 toohundreds 또는 수천 개의 공유 하지 않거나 다른 사용자의 데이터를 볼 수 있는 테 넌 트가 집합이 동일한 hello를 제공 하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-104">A multi-tenant application is an application hosted in a cloud environment and that provides hello same set of services toohundreds or thousands of tenants who do not share or see each other’s data.</span></span> <span data-ttu-id="15c72-105">예로 서비스 tootenants 클라우드 호스팅 환경에서 제공 하는 SaaS 응용 프로그램.</span><span class="sxs-lookup"><span data-stu-id="15c72-105">An example is an SaaS application that provides services tootenants in a cloud-hosted environment.</span></span> <span data-ttu-id="15c72-106">이 모델 각 테 넌 트에 대 한 hello 데이터를 격리 하 고 비용에 대 한 리소스의 hello 배포를 최적화 합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-106">This model isolates hello data for each tenant and optimizes hello distribution of resources for cost.</span></span> 
 
-<span data-ttu-id="8ec0b-107">이 자습서에서는 Azure SQL Database를 사용하여 다중 테넌트 SaaS 응용 프로그램을 만드는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-107">This tutorial demonstrates how to create a multi-tenant SaaS application using Azure SQL Database.</span></span>
+<span data-ttu-id="15c72-107">이 자습서에서는 설명 방법을 toocreate Azure SQL 데이터베이스를 사용 하 여 다중 테 넌 트 SaaS 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-107">This tutorial demonstrates how toocreate a multi-tenant SaaS application using Azure SQL Database.</span></span>
 
-<span data-ttu-id="8ec0b-108">이 자습서에서 다음에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-108">In this tutorial, you will learn to:</span></span>
+<span data-ttu-id="15c72-108">이 자습서에서 다음에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-108">In this tutorial, you will learn to:</span></span>
 > [!div class="checklist"]
-> * <span data-ttu-id="8ec0b-109">테넌트당 데이터베이스 패턴을 사용하여 다중 테넌트 SaaS 응용 프로그램을 지원하는 데이터베이스 환경 설정</span><span class="sxs-lookup"><span data-stu-id="8ec0b-109">Set up a database environment to support a multi-tenant SaaS application, using the Database-per-tenant pattern</span></span>
-> * <span data-ttu-id="8ec0b-110">테넌트 카탈로그 만들기</span><span class="sxs-lookup"><span data-stu-id="8ec0b-110">Create a tenant catalog</span></span>
-> * <span data-ttu-id="8ec0b-111">테넌트 데이터베이스 프로비전 및 테넌트 카탈로그에 등록</span><span class="sxs-lookup"><span data-stu-id="8ec0b-111">Provision a tenant database and register it in the tenant catalog</span></span>
-> * <span data-ttu-id="8ec0b-112">샘플 Java 응용 프로그램 설정</span><span class="sxs-lookup"><span data-stu-id="8ec0b-112">Set up a sample Java application</span></span> 
-> * <span data-ttu-id="8ec0b-113">간단한 Java 콘솔 응용 프로그램을 통한 테넌트 데이터베이스 액세스</span><span class="sxs-lookup"><span data-stu-id="8ec0b-113">Access tenant databases simple a Java console application</span></span>
-> * <span data-ttu-id="8ec0b-114">테넌트 삭제</span><span class="sxs-lookup"><span data-stu-id="8ec0b-114">Delete a tenant</span></span>
+> * <span data-ttu-id="15c72-109">데이터베이스 환경 toosupport hello 테 넌 당 데이터베이스 패턴을 사용 하 여 다중 테 넌 트 SaaS 응용 프로그램, 설정</span><span class="sxs-lookup"><span data-stu-id="15c72-109">Set up a database environment toosupport a multi-tenant SaaS application, using hello Database-per-tenant pattern</span></span>
+> * <span data-ttu-id="15c72-110">테넌트 카탈로그 만들기</span><span class="sxs-lookup"><span data-stu-id="15c72-110">Create a tenant catalog</span></span>
+> * <span data-ttu-id="15c72-111">테 넌 트 데이터베이스 프로 비전 하 고 hello 테 넌 트 카탈로그에 등록</span><span class="sxs-lookup"><span data-stu-id="15c72-111">Provision a tenant database and register it in hello tenant catalog</span></span>
+> * <span data-ttu-id="15c72-112">샘플 Java 응용 프로그램 설정</span><span class="sxs-lookup"><span data-stu-id="15c72-112">Set up a sample Java application</span></span> 
+> * <span data-ttu-id="15c72-113">간단한 Java 콘솔 응용 프로그램을 통한 테넌트 데이터베이스 액세스</span><span class="sxs-lookup"><span data-stu-id="15c72-113">Access tenant databases simple a Java console application</span></span>
+> * <span data-ttu-id="15c72-114">테넌트 삭제</span><span class="sxs-lookup"><span data-stu-id="15c72-114">Delete a tenant</span></span>
 
-<span data-ttu-id="8ec0b-115">Azure 구독이 아직 없는 경우 시작하기 전에 [체험](https://azure.microsoft.com/free/) 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-115">If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin.</span></span>
+<span data-ttu-id="15c72-115">Azure 구독이 아직 없는 경우 시작하기 전에 [체험](https://azure.microsoft.com/free/) 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-115">If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="8ec0b-116">필수 조건</span><span class="sxs-lookup"><span data-stu-id="8ec0b-116">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="15c72-116">필수 조건</span><span class="sxs-lookup"><span data-stu-id="15c72-116">Prerequisites</span></span>
 
-<span data-ttu-id="8ec0b-117">이 자습서를 완료하려면 다음이 설치되어 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-117">To complete this tutorial, make sure you have:</span></span>
+<span data-ttu-id="15c72-117">toocomplete이 자습서, 확인을 준비 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-117">toocomplete this tutorial, make sure you have:</span></span>
 
-* <span data-ttu-id="8ec0b-118">최신 버전의 PowerShell 및 [최신 Azure PowerShell SDK](http://azure.microsoft.com/downloads/)</span><span class="sxs-lookup"><span data-stu-id="8ec0b-118">Installed the newest version of PowerShell and the [latest Azure PowerShell SDK](http://azure.microsoft.com/downloads/)</span></span>
+* <span data-ttu-id="15c72-118">설치 된 hello 최신 버전의 PowerShell 및 hello [최신 Azure PowerShell SDK](http://azure.microsoft.com/downloads/)</span><span class="sxs-lookup"><span data-stu-id="15c72-118">Installed hello newest version of PowerShell and hello [latest Azure PowerShell SDK](http://azure.microsoft.com/downloads/)</span></span>
 
-* <span data-ttu-id="8ec0b-119">최신 버전의 [SQL Server Management Studio](http://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)</span><span class="sxs-lookup"><span data-stu-id="8ec0b-119">Installed the latest version of [SQL Server Management Studio](http://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms).</span></span> <span data-ttu-id="8ec0b-120">SQL Server Management Studio를 설치하면 다양한 데이터베이스 개발 작업을 자동화하는 데 사용할 수 있는 명령줄 유틸리티인 SQLPackage의 최신 버전도 설치됩니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-120">Installing SQL Server Management Studio also installs the latest version of SQLPackage, a command-line utility that can be used to automate a range of database development tasks.</span></span>
+* <span data-ttu-id="15c72-119">최신 버전의 설치 된 hello [SQL Server Management Studio](http://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-119">Installed hello latest version of [SQL Server Management Studio](http://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms).</span></span> <span data-ttu-id="15c72-120">SQL Server Management Studio를 설치 hello SQLPackage 사용 하는 데이터베이스 개발 태스크의 범위 tooautomate 일 수 있는 명령줄 유틸리티의 최신 버전도 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-120">Installing SQL Server Management Studio also installs hello latest version of SQLPackage, a command-line utility that can be used tooautomate a range of database development tasks.</span></span>
 
-* <span data-ttu-id="8ec0b-121">컴퓨터에 설치된 [JRE(Java Runtime Environment) 8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) 및 [최신 JDK(JAVA Development Kit)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)</span><span class="sxs-lookup"><span data-stu-id="8ec0b-121">Installed the [Java Runtime Environment (JRE) 8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) and the [latest JAVA Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) installed on your machine.</span></span> 
+* <span data-ttu-id="15c72-121">설치 된 hello [Java Runtime Environment (JRE) 8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) 및 hello [최신 키트 JDK (JAVA Development)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 컴퓨터에 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-121">Installed hello [Java Runtime Environment (JRE) 8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) and hello [latest JAVA Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) installed on your machine.</span></span> 
 
-* <span data-ttu-id="8ec0b-122">[Apache Maven](https://maven.apache.org/download.cgi)</span><span class="sxs-lookup"><span data-stu-id="8ec0b-122">Installed [Apache Maven](https://maven.apache.org/download.cgi).</span></span> <span data-ttu-id="8ec0b-123">Maven은 종속성을 관리하고 샘플 Java 프로젝트를 빌드, 테스트 및 실행하는 데 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-123">Maven will be used to help manage dependencies, build, test and run the sample Java project</span></span>
+* <span data-ttu-id="15c72-122">[Apache Maven](https://maven.apache.org/download.cgi)</span><span class="sxs-lookup"><span data-stu-id="15c72-122">Installed [Apache Maven](https://maven.apache.org/download.cgi).</span></span> <span data-ttu-id="15c72-123">Maven 사용될지 toohelp 종속성 관리, 빌드, 테스트 및 hello 샘플 Java 프로젝트를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-123">Maven will be used toohelp manage dependencies, build, test and run hello sample Java project</span></span>
 
-## <a name="set-up-data-environment"></a><span data-ttu-id="8ec0b-124">데이터 환경 설정</span><span class="sxs-lookup"><span data-stu-id="8ec0b-124">Set up data environment</span></span>
+## <a name="set-up-data-environment"></a><span data-ttu-id="15c72-124">데이터 환경 설정</span><span class="sxs-lookup"><span data-stu-id="15c72-124">Set up data environment</span></span>
 
-<span data-ttu-id="8ec0b-125">테넌트당 데이터베이스를 프로비전합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-125">You will be provisioning a database per tenant.</span></span> <span data-ttu-id="8ec0b-126">테넌트당 데이터베이스 모델은 DevOps 비용이 거의 들지 않으면서 테넌트 간에 가장 높은 수준의 격리를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-126">The database-per-tenant model provides the highest degree of isolation between tenants, with little DevOps cost.</span></span> <span data-ttu-id="8ec0b-127">또한 클라우드 리소스 비용을 최적화하려면 데이터베이스 그룹에 대한 가격 대비 성능을 최적화할 수 있는 탄력적 풀에 테넌트 데이터베이스를 프로비전합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-127">To optimize the cost of cloud resources, you will also be provisioning the tenant databases into an elastic pool which allows you to optimize the price performance for a group of databases.</span></span> <span data-ttu-id="8ec0b-128">다른 데이터베이스 프로비전 모델에 대해 알아보려면 [여기를 참조하세요](sql-database-design-patterns-multi-tenancy-saas-applications.md#multi-tenant-data-models).</span><span class="sxs-lookup"><span data-stu-id="8ec0b-128">To learn about other database provisioning models [see here](sql-database-design-patterns-multi-tenancy-saas-applications.md#multi-tenant-data-models).</span></span>
+<span data-ttu-id="15c72-125">테넌트당 데이터베이스를 프로비전합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-125">You will be provisioning a database per tenant.</span></span> <span data-ttu-id="15c72-126">hello 테 넌 당 데이터베이스 모델 hello 가장 높은 수준의 DevOps 비용이 들지 않는 테 넌 트 간에 격리를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-126">hello database-per-tenant model provides hello highest degree of isolation between tenants, with little DevOps cost.</span></span> <span data-ttu-id="15c72-127">클라우드 리소스의 toooptimize hello 비용, 됩니다도 프로 비전 됩니까 hello 테 넌 트 데이터베이스를 탄력적 풀 데이터베이스 그룹에 대 한 toooptimize hello 가격 성능 수 있는로 합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-127">toooptimize hello cost of cloud resources, you will also be provisioning hello tenant databases into an elastic pool which allows you toooptimize hello price performance for a group of databases.</span></span> <span data-ttu-id="15c72-128">모델을 프로 비전 하는 다른 데이터베이스에 대 한 toolearn [여기에서 볼](sql-database-design-patterns-multi-tenancy-saas-applications.md#multi-tenant-data-models)합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-128">toolearn about other database provisioning models [see here](sql-database-design-patterns-multi-tenancy-saas-applications.md#multi-tenant-data-models).</span></span>
 
-<span data-ttu-id="8ec0b-129">다음 단계에 따라 모든 테넌트 데이터베이스를 호스팅할 SQL 서버와 탄력적 풀을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-129">Follow these steps to create a SQL server and an elastic pool that will host all your tenant databases.</span></span> 
+<span data-ttu-id="15c72-129">SQL server 및 모든 테 넌 트 데이터베이스를 호스팅하는 탄력적인 풀에 이러한 단계 toocreate를 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-129">Follow these steps toocreate a SQL server and an elastic pool that will host all your tenant databases.</span></span> 
 
-1. <span data-ttu-id="8ec0b-130">자습서의 나머지 부분에서 사용할 값을 저장하는 변수를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-130">Create variables to store values that will be used in the rest of the tutorial.</span></span> <span data-ttu-id="8ec0b-131">IP 주소를 포함하도록 IP 주소 변수를 수정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-131">Make sure to modify the IP address variable to include your IP address</span></span> 
+1. <span data-ttu-id="15c72-130">Hello 자습서의 나머지 부분 hello에에서 toostore 값 사용 되는 변수를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-130">Create variables toostore values that will be used in hello rest of hello tutorial.</span></span> <span data-ttu-id="15c72-131">있는지 toomodify hello IP 주소 변수 tooinclude IP 주소 확인</span><span class="sxs-lookup"><span data-stu-id="15c72-131">Make sure toomodify hello IP address variable tooinclude your IP address</span></span> 
    
    ```PowerShell 
    # Set an admin login and password for your database
@@ -69,15 +69,15 @@ ms.lasthandoff: 07/11/2017
    $tenant1 = "geolamice"
    $tenant2 = "ranplex"
    
-   # Store current client IP address (modify to include your IP address)
+   # Store current client IP address (modify tooinclude your IP address)
    $startIpAddress = 0.0.0.0 
    $endIpAddress = 0.0.0.0
    ```
    
-2. <span data-ttu-id="8ec0b-132">Azure에 로그인하고 SQL 서버와 탄력적 풀을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-132">Login to Azure and create a SQL server and elastic pool</span></span> 
+2. <span data-ttu-id="15c72-132">로그인 tooAzure 및 SQL server 및 탄력적인 풀 만들기</span><span class="sxs-lookup"><span data-stu-id="15c72-132">Login tooAzure and create a SQL server and elastic pool</span></span> 
    
    ```PowerShell
-   # Login to Azure 
+   # Login tooAzure 
    Login-AzureRmAccount
    
    # Create resource group 
@@ -103,11 +103,11 @@ ms.lasthandoff: 07/11/2017
        -DatabaseDtuMax 20
    ```
    
-## <a name="create-tenant-catalog"></a><span data-ttu-id="8ec0b-133">테넌트 카탈로그 만들기</span><span class="sxs-lookup"><span data-stu-id="8ec0b-133">Create tenant catalog</span></span> 
+## <a name="create-tenant-catalog"></a><span data-ttu-id="15c72-133">테넌트 카탈로그 만들기</span><span class="sxs-lookup"><span data-stu-id="15c72-133">Create tenant catalog</span></span> 
 
-<span data-ttu-id="8ec0b-134">다중 테넌트 SaaS 응용 프로그램에서 테넌트 정보가 저장되어 있는 위치를 알고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-134">In a multi-tenant SaaS application, it’s important to know where information for a tenant is stored.</span></span> <span data-ttu-id="8ec0b-135">이 정보는 일반적으로 카탈로그 데이터베이스에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-135">This is commonly stored in a catalog database.</span></span> <span data-ttu-id="8ec0b-136">카탈로그 데이터베이스는 테넌트와 해당 테넌트의 데이터가 저장된 데이터베이스 간의 매핑을 유지하는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-136">The catalog database is used to hold a mapping between a tenant and a database in which that tenant’s data is stored.</span></span>  <span data-ttu-id="8ec0b-137">기본 패턴은 다중 테넌트 또는 단일 테넌트 데이터베이스가 사용되는지 여부에 관계 없이 적용됩니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-137">The basic pattern applies whether a multi-tenant or a single-tenant database is used.</span></span>
+<span data-ttu-id="15c72-134">다중 테 넌 트 SaaS 응용 프로그램에서는 테 넌 트에 대 한 정보가 저장 된 중요 한 tooknow는.</span><span class="sxs-lookup"><span data-stu-id="15c72-134">In a multi-tenant SaaS application, it’s important tooknow where information for a tenant is stored.</span></span> <span data-ttu-id="15c72-135">이 정보는 일반적으로 카탈로그 데이터베이스에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-135">This is commonly stored in a catalog database.</span></span> <span data-ttu-id="15c72-136">hello 카탈로그 데이터베이스에 사용 되는 테 넌 트 및 해당 테 넌 트의 데이터가 저장 되는 데이터베이스 간의 매핑을 toohold입니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-136">hello catalog database is used toohold a mapping between a tenant and a database in which that tenant’s data is stored.</span></span>  <span data-ttu-id="15c72-137">단일 테 넌 트 데이터베이스를 사용 또는 여부는 다중 테 넌 트 hello 기본 패턴 적용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-137">hello basic pattern applies whether a multi-tenant or a single-tenant database is used.</span></span>
 
-<span data-ttu-id="8ec0b-138">다음 단계에 따라 샘플 SaaS 응용 프로그램에 대한 카탈로그 데이터베이스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-138">Follow these steps to create a catalog database for the sample SaaS application.</span></span>
+<span data-ttu-id="15c72-138">이러한 단계 toocreate hello 샘플 SaaS 응용 프로그램에 대 한 카탈로그 데이터베이스를 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-138">Follow these steps toocreate a catalog database for hello sample SaaS application.</span></span>
 
 ```PowerShell
 # Create empty database in pool
@@ -116,7 +116,7 @@ New-AzureRmSqlDatabase  -ResourceGroupName "myResourceGroup" `
     -DatabaseName "tenantCatalog" `
     -ElasticPoolName "myElasticPool"
 
-# Create table to track mapping between tenants and their databases
+# Create table tootrack mapping between tenants and their databases
 $commandText = "
 CREATE TABLE Tenants
 (
@@ -137,8 +137,8 @@ Invoke-SqlCmd `
     -EncryptConnection
 ```
 
-## <a name="provision-database-for-tenant1-and-register-in-tenant-catalog"></a><span data-ttu-id="8ec0b-139">'tenant1'에 대한 데이터베이스 프로비전 및 테넌트 카탈로그에 등록</span><span class="sxs-lookup"><span data-stu-id="8ec0b-139">Provision database for 'tenant1' and register in tenant catalog</span></span> 
-<span data-ttu-id="8ec0b-140">Powershell을 사용하여 새로운 'tenant1' 테넌트에 대한 데이터베이스를 프로비전하고 이 테넌트를 카탈로그에 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-140">Use Powershell to provision a database for a new tenant 'tenant1' and register this tenant in the catalog.</span></span> 
+## <a name="provision-database-for-tenant1-and-register-in-tenant-catalog"></a><span data-ttu-id="15c72-139">'tenant1'에 대한 데이터베이스 프로비전 및 테넌트 카탈로그에 등록</span><span class="sxs-lookup"><span data-stu-id="15c72-139">Provision database for 'tenant1' and register in tenant catalog</span></span> 
+<span data-ttu-id="15c72-140">새 테 넌 트 'tenant1'에 대 한 Powershell tooprovision 데이터베이스를 사용 하 하며이 테 넌이 트 hello 카탈로그에서 등록 키를 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-140">Use Powershell tooprovision a database for a new tenant 'tenant1' and register this tenant in hello catalog.</span></span> 
 
 ```PowerShell
 # Create empty database in pool for 'tenant1'
@@ -147,7 +147,7 @@ New-AzureRmSqlDatabase  -ResourceGroupName "myResourceGroup" `
     -DatabaseName $tenant1 `
     -ElasticPoolName "myElasticPool"
 
-# Create table WhoAmI and insert tenant name into the table 
+# Create table WhoAmI and insert tenant name into hello table 
 $commandText = "
 CREATE TABLE WhoAmI (TenantName NVARCHAR(128) NOT NULL);
 INSERT INTO WhoAmI VALUES ('Tenant $tenant1');"
@@ -161,7 +161,7 @@ Invoke-SqlCmd `
     -Query $commandText `
     -EncryptConnection
 
-# Register 'tenant1' in the tenant catalog 
+# Register 'tenant1' in hello tenant catalog 
 $commandText = "
 INSERT INTO Tenants VALUES ('$tenant1', '$tenant1');"
 Invoke-SqlCmd `
@@ -174,8 +174,8 @@ Invoke-SqlCmd `
     -EncryptConnection
 ```
 
-## <a name="provision-database-for-tenant2-and-register-in-tenant-catalog"></a><span data-ttu-id="8ec0b-141">'tenant2'에 대한 데이터베이스 프로비전 및 테넌트 카탈로그에 등록</span><span class="sxs-lookup"><span data-stu-id="8ec0b-141">Provision database for 'tenant2' and register in tenant catalog</span></span>
-<span data-ttu-id="8ec0b-142">Powershell을 사용하여 새로운 'tenant2' 테넌트에 대한 데이터베이스를 프로비전하고 이 테넌트를 카탈로그에 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-142">Use Powershell to provision a database for a new tenant 'tenant2' and register this tenant in the catalog.</span></span> 
+## <a name="provision-database-for-tenant2-and-register-in-tenant-catalog"></a><span data-ttu-id="15c72-141">'tenant2'에 대한 데이터베이스 프로비전 및 테넌트 카탈로그에 등록</span><span class="sxs-lookup"><span data-stu-id="15c72-141">Provision database for 'tenant2' and register in tenant catalog</span></span>
+<span data-ttu-id="15c72-142">새 테 넌 트 'tenant2'에 대 한 Powershell tooprovision 데이터베이스를 사용 하 하며이 테 넌이 트 hello 카탈로그에서 등록 키를 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-142">Use Powershell tooprovision a database for a new tenant 'tenant2' and register this tenant in hello catalog.</span></span> 
 
 ```PowerShell
 # Create empty database in pool for 'tenant2'
@@ -184,7 +184,7 @@ New-AzureRmSqlDatabase  -ResourceGroupName "myResourceGroup" `
     -DatabaseName $tenant2 `
     -ElasticPoolName "myElasticPool"
 
-# Create table WhoAmI and insert tenant name into the table 
+# Create table WhoAmI and insert tenant name into hello table 
 $commandText = "
 CREATE TABLE WhoAmI (TenantName NVARCHAR(128) NOT NULL);
 INSERT INTO WhoAmI VALUES ('Tenant $tenant2');"
@@ -198,7 +198,7 @@ Invoke-SqlCmd `
     -Query $commandText `
     -EncryptConnection
 
-# Register tenant 'tenant2' in the tenant catalog 
+# Register tenant 'tenant2' in hello tenant catalog 
 $commandText = "
 INSERT INTO Tenants VALUES ('$tenant2', '$tenant2');"
 Invoke-SqlCmd `
@@ -211,15 +211,15 @@ Invoke-SqlCmd `
     -EncryptConnection
 ```
 
-## <a name="set-up-sample-java-application"></a><span data-ttu-id="8ec0b-143">샘플 Java 응용 프로그램 설정</span><span class="sxs-lookup"><span data-stu-id="8ec0b-143">Set up sample Java application</span></span> 
+## <a name="set-up-sample-java-application"></a><span data-ttu-id="15c72-143">샘플 Java 응용 프로그램 설정</span><span class="sxs-lookup"><span data-stu-id="15c72-143">Set up sample Java application</span></span> 
 
-1. <span data-ttu-id="8ec0b-144">maven 프로젝트를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-144">Create a maven project.</span></span> <span data-ttu-id="8ec0b-145">명령 프롬프트 창에서 다음을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-145">Type the following in a command prompt window:</span></span>
+1. <span data-ttu-id="15c72-144">maven 프로젝트를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-144">Create a maven project.</span></span> <span data-ttu-id="15c72-145">명령 프롬프트 창의 hello 다음을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-145">Type hello following in a command prompt window:</span></span>
    
    ```
    mvn archetype:generate -DgroupId=com.microsoft.sqlserver -DartifactId=mssql-jdbc -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
    ```
    
-2. <span data-ttu-id="8ec0b-146">이러한 종속성, 언어 수준 및 jar의 매니페스트 파일을 지원하는 빌드 옵션을 pom.xml 파일에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-146">Add this dependency, language level, and build option to support manifest files in jars to the pom.xml file:</span></span>
+2. <span data-ttu-id="15c72-146">이 종속성, 언어 수준 및 추가 빌드 옵션 toosupport jar toohello pom.xml 파일에 매니페스트 파일:</span><span class="sxs-lookup"><span data-stu-id="15c72-146">Add this dependency, language level, and build option toosupport manifest files in jars toohello pom.xml file:</span></span>
    
    ```XML
    <dependency>
@@ -251,7 +251,7 @@ Invoke-SqlCmd `
    </build>
    ```
 
-3. <span data-ttu-id="8ec0b-147">App.java 파일에 다음을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-147">Add the following into the App.java file:</span></span>
+3. <span data-ttu-id="15c72-147">Hello 다음 hello App.java 파일을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-147">Add hello following into hello App.java file:</span></span>
 
    ```java 
    package com.sqldbsamples;
@@ -306,7 +306,7 @@ Invoke-SqlCmd `
    
    System.out.println(" " + CMD_QUERY + " <NAME> - connect and tenant query tenant <NAME>");
    
-   System.out.println(" " + CMD_QUIT + " - quit the application\n");
+   System.out.println(" " + CMD_QUIT + " - quit hello application\n");
    
    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
    
@@ -352,7 +352,7 @@ Invoke-SqlCmd `
    
    private static void listTenants() {
    
-   // List all tenants that currently exist in the system
+   // List all tenants that currently exist in hello system
    
    String sql = "SELECT TenantName FROM Tenants";
    
@@ -380,7 +380,7 @@ Invoke-SqlCmd `
    
    private static void queryTenant(String name) {
    
-   // Query the data that was previously inserted into the primary database from the geo replicated database
+   // Query hello data that was previously inserted into hello primary database from hello geo replicated database
    
    String url = null;
    
@@ -445,21 +445,21 @@ Invoke-SqlCmd `
    }
    ```
 
-4. <span data-ttu-id="8ec0b-148">파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-148">Save the file.</span></span>
+4. <span data-ttu-id="15c72-148">Hello 파일을 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-148">Save hello file.</span></span>
 
-5. <span data-ttu-id="8ec0b-149">명령 콘솔로 이동하여 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-149">Go to command console and execute</span></span>
+5. <span data-ttu-id="15c72-149">Toocommand 콘솔 이동 및 실행</span><span class="sxs-lookup"><span data-stu-id="15c72-149">Go toocommand console and execute</span></span>
 
    ```bash
    mvn package
    ```
 
-6. <span data-ttu-id="8ec0b-150">완료되면 다음을 실행하여 응용 프로그램을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-150">When finished, execute the following to run the application</span></span> 
+6. <span data-ttu-id="15c72-150">완료 되 면 hello 다음 toorun hello 응용 프로그램 실행</span><span class="sxs-lookup"><span data-stu-id="15c72-150">When finished, execute hello following toorun hello application</span></span> 
    
    ```
    mvn -q -e exec:java "-Dexec.mainClass=com.sqldbsamples.App"
    ```
    
-<span data-ttu-id="8ec0b-151">성공적으로 실행되면 출력은 다음과 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-151">The output will look like this if it runs successfully:</span></span>
+<span data-ttu-id="15c72-151">hello 출력 성공적으로 실행 되는 경우 다음과 같이 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-151">hello output will look like this if it runs successfully:</span></span>
 
 ```
 ############################
@@ -474,15 +474,15 @@ LIST - list tenants
 
 QUERY <NAME> - connect and tenant query tenant <NAME>
 
-QUIT - quit the application
+QUIT - quit hello application
 
-* List the tenants
+* List hello tenants
 
 * Query tenants you created
 ```
 
-## <a name="delete-first-tenant"></a><span data-ttu-id="8ec0b-152">첫 번째 테넌트 삭제</span><span class="sxs-lookup"><span data-stu-id="8ec0b-152">Delete first tenant</span></span> 
-<span data-ttu-id="8ec0b-153">PowerShell을 사용하여 첫 번째 테넌트에 대한 테넌트 데이터베이스 및 카탈로그 항목을 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-153">Use PowerShell to delete the tenant database and catalog entry for the first tenant.</span></span>
+## <a name="delete-first-tenant"></a><span data-ttu-id="15c72-152">첫 번째 테넌트 삭제</span><span class="sxs-lookup"><span data-stu-id="15c72-152">Delete first tenant</span></span> 
+<span data-ttu-id="15c72-153">Hello 첫 번째 테 넌 트에 대 한 PowerShell는 toodelete hello 테 넌 트 데이터베이스 및 카탈로그 항목을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-153">Use PowerShell toodelete hello tenant database and catalog entry for hello first tenant.</span></span>
 
 ```PowerShell
 # Remove 'tenant1' from catalog 
@@ -502,24 +502,24 @@ Remove-AzureRmSqlDatabase -ResourceGroupName "myResourceGroup" `
     -DatabaseName $tenant1
 ```
 
-<span data-ttu-id="8ec0b-154">Java 응용 프로그램을 사용하여 'tenant1'에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-154">Try connecting to 'tenant1' using the Java application.</span></span> <span data-ttu-id="8ec0b-155">테넌트가 존재하지 않는다는 오류가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-155">You will get an error stating that the tenant does not exist.</span></span>
+<span data-ttu-id="15c72-154">연결을 시도 너무 Java 응용 프로그램 hello 'tenant1'를 사용 하 여 합니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-154">Try connecting too'tenant1' using hello Java application.</span></span> <span data-ttu-id="15c72-155">오류 메시지가 해당 hello 테 넌 트 존재 하지 않는 얻게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-155">You will get an error stating that hello tenant does not exist.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="8ec0b-156">다음 단계</span><span class="sxs-lookup"><span data-stu-id="8ec0b-156">Next steps</span></span> 
+## <a name="next-steps"></a><span data-ttu-id="15c72-156">다음 단계</span><span class="sxs-lookup"><span data-stu-id="15c72-156">Next steps</span></span> 
 
-<span data-ttu-id="8ec0b-157">이 자습서에서는 다음에 대해 알아보았습니다.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-157">In this tutorial, you learned to:</span></span>
+<span data-ttu-id="15c72-157">이 자습서에서는 다음에 대해 알아보았습니다.</span><span class="sxs-lookup"><span data-stu-id="15c72-157">In this tutorial, you learned to:</span></span>
 > [!div class="checklist"]
-> * <span data-ttu-id="8ec0b-158">테넌트당 데이터베이스 패턴을 사용하여 다중 테넌트 SaaS 응용 프로그램을 지원하는 데이터베이스 환경 설정</span><span class="sxs-lookup"><span data-stu-id="8ec0b-158">Set up a database environment to support a multi-tenant SaaS application, using the Database-per-tenant pattern</span></span>
-> * <span data-ttu-id="8ec0b-159">테넌트 카탈로그 만들기</span><span class="sxs-lookup"><span data-stu-id="8ec0b-159">Create a tenant catalog</span></span>
-> * <span data-ttu-id="8ec0b-160">테넌트 데이터베이스 프로비전 및 테넌트 카탈로그에 등록</span><span class="sxs-lookup"><span data-stu-id="8ec0b-160">Provision a tenant database and register it in the tenant catalog</span></span>
-> * <span data-ttu-id="8ec0b-161">샘플 Java 응용 프로그램 설정</span><span class="sxs-lookup"><span data-stu-id="8ec0b-161">Set up a sample Java application</span></span> 
-> * <span data-ttu-id="8ec0b-162">간단한 Java 콘솔 응용 프로그램을 통한 테넌트 데이터베이스 액세스</span><span class="sxs-lookup"><span data-stu-id="8ec0b-162">Access tenant databases simple a Java console application</span></span>
-> * <span data-ttu-id="8ec0b-163">테넌트 삭제</span><span class="sxs-lookup"><span data-stu-id="8ec0b-163">Delete a tenant</span></span>
+> * <span data-ttu-id="15c72-158">데이터베이스 환경 toosupport hello 테 넌 당 데이터베이스 패턴을 사용 하 여 다중 테 넌 트 SaaS 응용 프로그램, 설정</span><span class="sxs-lookup"><span data-stu-id="15c72-158">Set up a database environment toosupport a multi-tenant SaaS application, using hello Database-per-tenant pattern</span></span>
+> * <span data-ttu-id="15c72-159">테넌트 카탈로그 만들기</span><span class="sxs-lookup"><span data-stu-id="15c72-159">Create a tenant catalog</span></span>
+> * <span data-ttu-id="15c72-160">테 넌 트 데이터베이스 프로 비전 하 고 hello 테 넌 트 카탈로그에 등록</span><span class="sxs-lookup"><span data-stu-id="15c72-160">Provision a tenant database and register it in hello tenant catalog</span></span>
+> * <span data-ttu-id="15c72-161">샘플 Java 응용 프로그램 설정</span><span class="sxs-lookup"><span data-stu-id="15c72-161">Set up a sample Java application</span></span> 
+> * <span data-ttu-id="15c72-162">간단한 Java 콘솔 응용 프로그램을 통한 테넌트 데이터베이스 액세스</span><span class="sxs-lookup"><span data-stu-id="15c72-162">Access tenant databases simple a Java console application</span></span>
+> * <span data-ttu-id="15c72-163">테넌트 삭제</span><span class="sxs-lookup"><span data-stu-id="15c72-163">Delete a tenant</span></span>
 
-* <span data-ttu-id="8ec0b-164">일반적인 작업에 대한 PowerShell 샘플은 [SQL Database PowerShell 샘플](https://docs.microsoft.com/azure/sql-database/sql-database-powershell-samples)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-164">PowerShell samples for common tasks, see [SQL Database PowerShell samples](https://docs.microsoft.com/azure/sql-database/sql-database-powershell-samples)</span></span>
+* <span data-ttu-id="15c72-164">일반적인 작업에 대한 PowerShell 샘플은 [SQL Database PowerShell 샘플](https://docs.microsoft.com/azure/sql-database/sql-database-powershell-samples)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="15c72-164">PowerShell samples for common tasks, see [SQL Database PowerShell samples](https://docs.microsoft.com/azure/sql-database/sql-database-powershell-samples)</span></span>
 
-* <span data-ttu-id="8ec0b-165">다중 테넌트 SaaS 응용 프로그램에 대한 디자인 패턴은 [디자인 패턴](https://docs.microsoft.com/azure/sql-database/sql-database-design-patterns-multi-tenancy-saas-applications)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-165">Design patterns for multi-tenant SaaS applications see [Design patterns](https://docs.microsoft.com/azure/sql-database/sql-database-design-patterns-multi-tenancy-saas-applications)</span></span>
+* <span data-ttu-id="15c72-165">다중 테넌트 SaaS 응용 프로그램에 대한 디자인 패턴은 [디자인 패턴](https://docs.microsoft.com/azure/sql-database/sql-database-design-patterns-multi-tenancy-saas-applications)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="15c72-165">Design patterns for multi-tenant SaaS applications see [Design patterns](https://docs.microsoft.com/azure/sql-database/sql-database-design-patterns-multi-tenancy-saas-applications)</span></span>
 
-* <span data-ttu-id="8ec0b-166">일반적인 Azure 작업에 대한 Java 샘플은 [Java 개발자 센터](https://azure.microsoft.com/develop/java/)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8ec0b-166">Java samples for common Azure tasks, see [Java Developer Center](https://azure.microsoft.com/develop/java/)</span></span>
+* <span data-ttu-id="15c72-166">일반적인 Azure 작업에 대한 Java 샘플은 [Java 개발자 센터](https://azure.microsoft.com/develop/java/)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="15c72-166">Java samples for common Azure tasks, see [Java Developer Center](https://azure.microsoft.com/develop/java/)</span></span>
 
 
 

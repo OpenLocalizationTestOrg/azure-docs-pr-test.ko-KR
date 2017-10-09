@@ -1,6 +1,6 @@
 ---
-title: Publish-WebApplicationVM | Microsoft Docs
-description: "가상 컴퓨터에 웹 응용 프로그램을 배포하는 방법을 알아봅니다. 없는 경우 이 스크립트는 Azure 구독에 필요한 리소스를 만듭니다."
+title: aaaPublish WebApplicationVM | Microsoft Docs
+description: "자세한 내용은 방법 toodeploy 웹 응용 프로그램 tooa 가상 컴퓨터. 이 스크립트는 없는 경우 Azure 구독에서 hello 필요한 리소스를 만듭니다."
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 11/11/2016
 ms.author: kraigb
-ms.openlocfilehash: 2738fc1dff50a177a227ae2c7719bd9a192d82ad
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e4b52b620bebf44b87ddfc3b19c155bb65111814
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="publish-webapplicationvm-windows-powershell-script"></a><span data-ttu-id="1ff6a-104">Publish-WebApplicationVM (Windows PowerShell 스크립트)</span><span class="sxs-lookup"><span data-stu-id="1ff6a-104">Publish-WebApplicationVM (Windows PowerShell script)</span></span>
-<span data-ttu-id="1ff6a-105">가상 컴퓨터에 웹 응용 프로그램을 배포합니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-105">Deploys a web application to a virtual machine.</span></span> <span data-ttu-id="1ff6a-106">없는 경우 스크립트는 Azure 구독에 필요한 리소스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-106">The script creates the required resources in your Azure subscription if they don't exist.</span></span>
+# <a name="publish-webapplicationvm-windows-powershell-script"></a><span data-ttu-id="a646a-104">Publish-WebApplicationVM (Windows PowerShell 스크립트)</span><span class="sxs-lookup"><span data-stu-id="a646a-104">Publish-WebApplicationVM (Windows PowerShell script)</span></span>
+<span data-ttu-id="a646a-105">웹 응용 프로그램 tooa 가상 컴퓨터를 배포합니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-105">Deploys a web application tooa virtual machine.</span></span> <span data-ttu-id="a646a-106">hello 스크립트 없는 경우 Azure 구독에 필요한 hello 리소스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-106">hello script creates hello required resources in your Azure subscription if they don't exist.</span></span>
 
 ```
 Publish-WebApplicationVM
@@ -34,87 +34,87 @@ Publish-WebApplicationVM
 -Verbose
 ```
 
-### <a name="configuration"></a><span data-ttu-id="1ff6a-107">구성</span><span class="sxs-lookup"><span data-stu-id="1ff6a-107">Configuration</span></span>
-<span data-ttu-id="1ff6a-108">배포의 세부 정보를 설명하는 JSON 구성 파일에 대한 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-108">The path to the JSON configuration file that describes the details of the deployment.</span></span>
+### <a name="configuration"></a><span data-ttu-id="a646a-107">구성</span><span class="sxs-lookup"><span data-stu-id="a646a-107">Configuration</span></span>
+<span data-ttu-id="a646a-108">hello 경로 toohello는 JSON 구성 파일 hello 배포의 hello 세부 사항을 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-108">hello path toohello JSON configuration file that describes hello details of hello deployment.</span></span>
 
-| <span data-ttu-id="1ff6a-109">Aliases</span><span class="sxs-lookup"><span data-stu-id="1ff6a-109">Aliases</span></span> | <span data-ttu-id="1ff6a-110">없음</span><span class="sxs-lookup"><span data-stu-id="1ff6a-110">none</span></span> |
+| <span data-ttu-id="a646a-109">Aliases</span><span class="sxs-lookup"><span data-stu-id="a646a-109">Aliases</span></span> | <span data-ttu-id="a646a-110">없음</span><span class="sxs-lookup"><span data-stu-id="a646a-110">none</span></span> |
 | --- | --- |
-| <span data-ttu-id="1ff6a-111">Required?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-111">Required?</span></span> |<span data-ttu-id="1ff6a-112">true</span><span class="sxs-lookup"><span data-stu-id="1ff6a-112">true</span></span> |
-| <span data-ttu-id="1ff6a-113">Position</span><span class="sxs-lookup"><span data-stu-id="1ff6a-113">Position</span></span> |<span data-ttu-id="1ff6a-114">named</span><span class="sxs-lookup"><span data-stu-id="1ff6a-114">named</span></span> |
-| <span data-ttu-id="1ff6a-115">기본값</span><span class="sxs-lookup"><span data-stu-id="1ff6a-115">Default value</span></span> |<span data-ttu-id="1ff6a-116">없음</span><span class="sxs-lookup"><span data-stu-id="1ff6a-116">none</span></span> |
-| <span data-ttu-id="1ff6a-117">Accept Pipeline Input?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-117">Accept pipeline input?</span></span> |<span data-ttu-id="1ff6a-118">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-118">false</span></span> |
-| <span data-ttu-id="1ff6a-119">Accept Wildcard Characters?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-119">Accept wildcard characters?</span></span> |<span data-ttu-id="1ff6a-120">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-120">false</span></span> |
+| <span data-ttu-id="a646a-111">Required?</span><span class="sxs-lookup"><span data-stu-id="a646a-111">Required?</span></span> |<span data-ttu-id="a646a-112">true</span><span class="sxs-lookup"><span data-stu-id="a646a-112">true</span></span> |
+| <span data-ttu-id="a646a-113">Position</span><span class="sxs-lookup"><span data-stu-id="a646a-113">Position</span></span> |<span data-ttu-id="a646a-114">named</span><span class="sxs-lookup"><span data-stu-id="a646a-114">named</span></span> |
+| <span data-ttu-id="a646a-115">기본값</span><span class="sxs-lookup"><span data-stu-id="a646a-115">Default value</span></span> |<span data-ttu-id="a646a-116">없음</span><span class="sxs-lookup"><span data-stu-id="a646a-116">none</span></span> |
+| <span data-ttu-id="a646a-117">Accept Pipeline Input?</span><span class="sxs-lookup"><span data-stu-id="a646a-117">Accept pipeline input?</span></span> |<span data-ttu-id="a646a-118">false</span><span class="sxs-lookup"><span data-stu-id="a646a-118">false</span></span> |
+| <span data-ttu-id="a646a-119">Accept Wildcard Characters?</span><span class="sxs-lookup"><span data-stu-id="a646a-119">Accept wildcard characters?</span></span> |<span data-ttu-id="a646a-120">false</span><span class="sxs-lookup"><span data-stu-id="a646a-120">false</span></span> |
 
-### <a name="subscriptionname"></a><span data-ttu-id="1ff6a-121">SubscriptionName</span><span class="sxs-lookup"><span data-stu-id="1ff6a-121">SubscriptionName</span></span>
-<span data-ttu-id="1ff6a-122">가상 컴퓨터를 만들려는 Azure 구독의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-122">The name of the Azure subscription in which you want to create the virtual machine.</span></span>
+### <a name="subscriptionname"></a><span data-ttu-id="a646a-121">SubscriptionName</span><span class="sxs-lookup"><span data-stu-id="a646a-121">SubscriptionName</span></span>
+<span data-ttu-id="a646a-122">hello 이름 hello toocreate hello 가상 컴퓨터를 원하는 Azure 구독.</span><span class="sxs-lookup"><span data-stu-id="a646a-122">hello name of hello Azure subscription in which you want toocreate hello virtual machine.</span></span>
 
-| <span data-ttu-id="1ff6a-123">Aliases</span><span class="sxs-lookup"><span data-stu-id="1ff6a-123">Aliases</span></span> | <span data-ttu-id="1ff6a-124">없음</span><span class="sxs-lookup"><span data-stu-id="1ff6a-124">none</span></span> |
+| <span data-ttu-id="a646a-123">Aliases</span><span class="sxs-lookup"><span data-stu-id="a646a-123">Aliases</span></span> | <span data-ttu-id="a646a-124">없음</span><span class="sxs-lookup"><span data-stu-id="a646a-124">none</span></span> |
 | --- | --- |
-| <span data-ttu-id="1ff6a-125">Required?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-125">Required?</span></span> |<span data-ttu-id="1ff6a-126">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-126">false</span></span> |
-| <span data-ttu-id="1ff6a-127">Position</span><span class="sxs-lookup"><span data-stu-id="1ff6a-127">Position</span></span> |<span data-ttu-id="1ff6a-128">named</span><span class="sxs-lookup"><span data-stu-id="1ff6a-128">named</span></span> |
-| <span data-ttu-id="1ff6a-129">기본값</span><span class="sxs-lookup"><span data-stu-id="1ff6a-129">Default value</span></span> |<span data-ttu-id="1ff6a-130">구독 파일의 첫 번째 구독을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-130">Uses the first subscription in the subscription file</span></span> |
-| <span data-ttu-id="1ff6a-131">Accept Pipeline Input?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-131">Accept pipeline input?</span></span> |<span data-ttu-id="1ff6a-132">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-132">false</span></span> |
-| <span data-ttu-id="1ff6a-133">Accept Wildcard Characters?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-133">Accept wildcard characters?</span></span> |<span data-ttu-id="1ff6a-134">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-134">false</span></span> |
+| <span data-ttu-id="a646a-125">Required?</span><span class="sxs-lookup"><span data-stu-id="a646a-125">Required?</span></span> |<span data-ttu-id="a646a-126">false</span><span class="sxs-lookup"><span data-stu-id="a646a-126">false</span></span> |
+| <span data-ttu-id="a646a-127">Position</span><span class="sxs-lookup"><span data-stu-id="a646a-127">Position</span></span> |<span data-ttu-id="a646a-128">named</span><span class="sxs-lookup"><span data-stu-id="a646a-128">named</span></span> |
+| <span data-ttu-id="a646a-129">기본값</span><span class="sxs-lookup"><span data-stu-id="a646a-129">Default value</span></span> |<span data-ttu-id="a646a-130">Hello 구독 파일의 첫 번째 구독 hello를 사용 하 여</span><span class="sxs-lookup"><span data-stu-id="a646a-130">Uses hello first subscription in hello subscription file</span></span> |
+| <span data-ttu-id="a646a-131">Accept Pipeline Input?</span><span class="sxs-lookup"><span data-stu-id="a646a-131">Accept pipeline input?</span></span> |<span data-ttu-id="a646a-132">false</span><span class="sxs-lookup"><span data-stu-id="a646a-132">false</span></span> |
+| <span data-ttu-id="a646a-133">Accept Wildcard Characters?</span><span class="sxs-lookup"><span data-stu-id="a646a-133">Accept wildcard characters?</span></span> |<span data-ttu-id="a646a-134">false</span><span class="sxs-lookup"><span data-stu-id="a646a-134">false</span></span> |
 
-### <a name="webdeploypackage"></a><span data-ttu-id="1ff6a-135">WebDeployPackage</span><span class="sxs-lookup"><span data-stu-id="1ff6a-135">WebDeployPackage</span></span>
-<span data-ttu-id="1ff6a-136">가상 컴퓨터에 게시하는 웹 배포 패키지에 대한 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-136">The path to the web deployment package to publish to the virtual machine.</span></span> <span data-ttu-id="1ff6a-137">Visual Studio에서 웹 게시 마법사를 사용하여 이 패키지를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-137">You can create this package by using the Publish Web wizard in Visual Studio.</span></span> <span data-ttu-id="1ff6a-138">[방법: Visual Studio에서 웹 배포 패키지 만들기](https://msdn.microsoft.com/library/dd465323.aspx)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-138">See [How to: Create a Web Deployment Package in Visual Studio](https://msdn.microsoft.com/library/dd465323.aspx).</span></span>
+### <a name="webdeploypackage"></a><span data-ttu-id="a646a-135">WebDeployPackage</span><span class="sxs-lookup"><span data-stu-id="a646a-135">WebDeployPackage</span></span>
+<span data-ttu-id="a646a-136">hello 경로 toohello 웹 배포 패키지 toopublish toohello 가상 컴퓨터가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-136">hello path toohello web deployment package toopublish toohello virtual machine.</span></span> <span data-ttu-id="a646a-137">Visual Studio에서 hello 웹 게시 마법사를 사용 하 여이 패키지를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-137">You can create this package by using hello Publish Web wizard in Visual Studio.</span></span> <span data-ttu-id="a646a-138">[방법: Visual Studio에서 웹 배포 패키지 만들기](https://msdn.microsoft.com/library/dd465323.aspx)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a646a-138">See [How to: Create a Web Deployment Package in Visual Studio](https://msdn.microsoft.com/library/dd465323.aspx).</span></span>
 
-| <span data-ttu-id="1ff6a-139">Aliases</span><span class="sxs-lookup"><span data-stu-id="1ff6a-139">Aliases</span></span> | <span data-ttu-id="1ff6a-140">없음</span><span class="sxs-lookup"><span data-stu-id="1ff6a-140">none</span></span> |
+| <span data-ttu-id="a646a-139">Aliases</span><span class="sxs-lookup"><span data-stu-id="a646a-139">Aliases</span></span> | <span data-ttu-id="a646a-140">없음</span><span class="sxs-lookup"><span data-stu-id="a646a-140">none</span></span> |
 | --- | --- |
-| <span data-ttu-id="1ff6a-141">Required?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-141">Required?</span></span> |<span data-ttu-id="1ff6a-142">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-142">false</span></span> |
-| <span data-ttu-id="1ff6a-143">Position</span><span class="sxs-lookup"><span data-stu-id="1ff6a-143">Position</span></span> |<span data-ttu-id="1ff6a-144">named</span><span class="sxs-lookup"><span data-stu-id="1ff6a-144">named</span></span> |
-| <span data-ttu-id="1ff6a-145">기본값</span><span class="sxs-lookup"><span data-stu-id="1ff6a-145">Default value</span></span> |<span data-ttu-id="1ff6a-146">없음</span><span class="sxs-lookup"><span data-stu-id="1ff6a-146">none</span></span> |
-| <span data-ttu-id="1ff6a-147">Accept Pipeline Input?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-147">Accept pipeline input?</span></span> |<span data-ttu-id="1ff6a-148">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-148">false</span></span> |
-| <span data-ttu-id="1ff6a-149">Accept Wildcard Characters?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-149">Accept wildcard characters?</span></span> |<span data-ttu-id="1ff6a-150">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-150">false</span></span> |
+| <span data-ttu-id="a646a-141">Required?</span><span class="sxs-lookup"><span data-stu-id="a646a-141">Required?</span></span> |<span data-ttu-id="a646a-142">false</span><span class="sxs-lookup"><span data-stu-id="a646a-142">false</span></span> |
+| <span data-ttu-id="a646a-143">Position</span><span class="sxs-lookup"><span data-stu-id="a646a-143">Position</span></span> |<span data-ttu-id="a646a-144">named</span><span class="sxs-lookup"><span data-stu-id="a646a-144">named</span></span> |
+| <span data-ttu-id="a646a-145">기본값</span><span class="sxs-lookup"><span data-stu-id="a646a-145">Default value</span></span> |<span data-ttu-id="a646a-146">없음</span><span class="sxs-lookup"><span data-stu-id="a646a-146">none</span></span> |
+| <span data-ttu-id="a646a-147">Accept Pipeline Input?</span><span class="sxs-lookup"><span data-stu-id="a646a-147">Accept pipeline input?</span></span> |<span data-ttu-id="a646a-148">false</span><span class="sxs-lookup"><span data-stu-id="a646a-148">false</span></span> |
+| <span data-ttu-id="a646a-149">Accept Wildcard Characters?</span><span class="sxs-lookup"><span data-stu-id="a646a-149">Accept wildcard characters?</span></span> |<span data-ttu-id="a646a-150">false</span><span class="sxs-lookup"><span data-stu-id="a646a-150">false</span></span> |
 
-### <a name="allowuntrusted"></a><span data-ttu-id="1ff6a-151">AllowUntrusted</span><span class="sxs-lookup"><span data-stu-id="1ff6a-151">AllowUntrusted</span></span>
-<span data-ttu-id="1ff6a-152">True인 경우 신뢰할 수 있는 루트 인증 기관에서 서명되지 않은 인증서 사용을 허용합니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-152">If true, allow the use of certificates that aren't signed by a trusted root authority.</span></span>
+### <a name="allowuntrusted"></a><span data-ttu-id="a646a-151">AllowUntrusted</span><span class="sxs-lookup"><span data-stu-id="a646a-151">AllowUntrusted</span></span>
+<span data-ttu-id="a646a-152">True 인 경우에 신뢰할 수 있는 루트 인증 기관에서 서명 하지 않은 인증서 hello 사용할을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-152">If true, allow hello use of certificates that aren't signed by a trusted root authority.</span></span>
 
-| <span data-ttu-id="1ff6a-153">Aliases</span><span class="sxs-lookup"><span data-stu-id="1ff6a-153">Aliases</span></span> | <span data-ttu-id="1ff6a-154">없음</span><span class="sxs-lookup"><span data-stu-id="1ff6a-154">none</span></span> |
+| <span data-ttu-id="a646a-153">Aliases</span><span class="sxs-lookup"><span data-stu-id="a646a-153">Aliases</span></span> | <span data-ttu-id="a646a-154">없음</span><span class="sxs-lookup"><span data-stu-id="a646a-154">none</span></span> |
 | --- | --- |
-| <span data-ttu-id="1ff6a-155">Required?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-155">Required?</span></span> |<span data-ttu-id="1ff6a-156">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-156">false</span></span> |
-| <span data-ttu-id="1ff6a-157">Position</span><span class="sxs-lookup"><span data-stu-id="1ff6a-157">Position</span></span> |<span data-ttu-id="1ff6a-158">named</span><span class="sxs-lookup"><span data-stu-id="1ff6a-158">named</span></span> |
-| <span data-ttu-id="1ff6a-159">기본값</span><span class="sxs-lookup"><span data-stu-id="1ff6a-159">Default value</span></span> |<span data-ttu-id="1ff6a-160">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-160">false</span></span> |
-| <span data-ttu-id="1ff6a-161">Accept Pipeline Input?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-161">Accept pipeline input?</span></span> |<span data-ttu-id="1ff6a-162">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-162">false</span></span> |
-| <span data-ttu-id="1ff6a-163">Accept Wildcard Characters?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-163">Accept wildcard characters?</span></span> |<span data-ttu-id="1ff6a-164">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-164">false</span></span> |
+| <span data-ttu-id="a646a-155">Required?</span><span class="sxs-lookup"><span data-stu-id="a646a-155">Required?</span></span> |<span data-ttu-id="a646a-156">false</span><span class="sxs-lookup"><span data-stu-id="a646a-156">false</span></span> |
+| <span data-ttu-id="a646a-157">Position</span><span class="sxs-lookup"><span data-stu-id="a646a-157">Position</span></span> |<span data-ttu-id="a646a-158">named</span><span class="sxs-lookup"><span data-stu-id="a646a-158">named</span></span> |
+| <span data-ttu-id="a646a-159">기본값</span><span class="sxs-lookup"><span data-stu-id="a646a-159">Default value</span></span> |<span data-ttu-id="a646a-160">false</span><span class="sxs-lookup"><span data-stu-id="a646a-160">false</span></span> |
+| <span data-ttu-id="a646a-161">Accept Pipeline Input?</span><span class="sxs-lookup"><span data-stu-id="a646a-161">Accept pipeline input?</span></span> |<span data-ttu-id="a646a-162">false</span><span class="sxs-lookup"><span data-stu-id="a646a-162">false</span></span> |
+| <span data-ttu-id="a646a-163">Accept Wildcard Characters?</span><span class="sxs-lookup"><span data-stu-id="a646a-163">Accept wildcard characters?</span></span> |<span data-ttu-id="a646a-164">false</span><span class="sxs-lookup"><span data-stu-id="a646a-164">false</span></span> |
 
-### <a name="vmpassword"></a><span data-ttu-id="1ff6a-165">VMPassword</span><span class="sxs-lookup"><span data-stu-id="1ff6a-165">VMPassword</span></span>
-<span data-ttu-id="1ff6a-166">가상 컴퓨터 계정에 대한 자격 증명입니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-166">The credentials for the virtual machine account.</span></span> <span data-ttu-id="1ff6a-167">예: VMPassword @{Name = "admin"; 암호 = "password"}</span><span class="sxs-lookup"><span data-stu-id="1ff6a-167">Example: -VMPassword @{Name = "admin"; Password = "password"}</span></span>
+### <a name="vmpassword"></a><span data-ttu-id="a646a-165">VMPassword</span><span class="sxs-lookup"><span data-stu-id="a646a-165">VMPassword</span></span>
+<span data-ttu-id="a646a-166">hello 가상 컴퓨터 계정에 대 한 hello 자격 증명입니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-166">hello credentials for hello virtual machine account.</span></span> <span data-ttu-id="a646a-167">예: VMPassword @{Name = "admin"; 암호 = "password"}</span><span class="sxs-lookup"><span data-stu-id="a646a-167">Example: -VMPassword @{Name = "admin"; Password = "password"}</span></span>
 
-| <span data-ttu-id="1ff6a-168">Aliases</span><span class="sxs-lookup"><span data-stu-id="1ff6a-168">Aliases</span></span> | <span data-ttu-id="1ff6a-169">없음</span><span class="sxs-lookup"><span data-stu-id="1ff6a-169">none</span></span> |
+| <span data-ttu-id="a646a-168">Aliases</span><span class="sxs-lookup"><span data-stu-id="a646a-168">Aliases</span></span> | <span data-ttu-id="a646a-169">없음</span><span class="sxs-lookup"><span data-stu-id="a646a-169">none</span></span> |
 | --- | --- |
-| <span data-ttu-id="1ff6a-170">Required?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-170">Required?</span></span> |<span data-ttu-id="1ff6a-171">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-171">false</span></span> |
-| <span data-ttu-id="1ff6a-172">Position</span><span class="sxs-lookup"><span data-stu-id="1ff6a-172">Position</span></span> |<span data-ttu-id="1ff6a-173">named</span><span class="sxs-lookup"><span data-stu-id="1ff6a-173">named</span></span> |
-| <span data-ttu-id="1ff6a-174">기본값</span><span class="sxs-lookup"><span data-stu-id="1ff6a-174">Default value</span></span> |<span data-ttu-id="1ff6a-175">없음</span><span class="sxs-lookup"><span data-stu-id="1ff6a-175">none</span></span> |
-| <span data-ttu-id="1ff6a-176">Accept Pipeline Input?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-176">Accept pipeline input?</span></span> |<span data-ttu-id="1ff6a-177">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-177">false</span></span> |
-| <span data-ttu-id="1ff6a-178">Accept Wildcard Characters?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-178">Accept wildcard characters?</span></span> |<span data-ttu-id="1ff6a-179">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-179">false</span></span> |
+| <span data-ttu-id="a646a-170">Required?</span><span class="sxs-lookup"><span data-stu-id="a646a-170">Required?</span></span> |<span data-ttu-id="a646a-171">false</span><span class="sxs-lookup"><span data-stu-id="a646a-171">false</span></span> |
+| <span data-ttu-id="a646a-172">Position</span><span class="sxs-lookup"><span data-stu-id="a646a-172">Position</span></span> |<span data-ttu-id="a646a-173">named</span><span class="sxs-lookup"><span data-stu-id="a646a-173">named</span></span> |
+| <span data-ttu-id="a646a-174">기본값</span><span class="sxs-lookup"><span data-stu-id="a646a-174">Default value</span></span> |<span data-ttu-id="a646a-175">없음</span><span class="sxs-lookup"><span data-stu-id="a646a-175">none</span></span> |
+| <span data-ttu-id="a646a-176">Accept Pipeline Input?</span><span class="sxs-lookup"><span data-stu-id="a646a-176">Accept pipeline input?</span></span> |<span data-ttu-id="a646a-177">false</span><span class="sxs-lookup"><span data-stu-id="a646a-177">false</span></span> |
+| <span data-ttu-id="a646a-178">Accept Wildcard Characters?</span><span class="sxs-lookup"><span data-stu-id="a646a-178">Accept wildcard characters?</span></span> |<span data-ttu-id="a646a-179">false</span><span class="sxs-lookup"><span data-stu-id="a646a-179">false</span></span> |
 
-### <a name="databaseserverpassword"></a><span data-ttu-id="1ff6a-180">DatabaseServerPassword</span><span class="sxs-lookup"><span data-stu-id="1ff6a-180">DatabaseServerPassword</span></span>
-<span data-ttu-id="1ff6a-181">Azure에서 SQL 데이터베이스에 대한 자격 증명입니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-181">The credentials for the SQL database in Azure.</span></span> <span data-ttu-id="1ff6a-182">예: DatabaseServerPassword @{Name = "admin"; 암호 = "password"}</span><span class="sxs-lookup"><span data-stu-id="1ff6a-182">Example: -DatabaseServerPassword @{Name = "admin"; Password = "password"}</span></span>
+### <a name="databaseserverpassword"></a><span data-ttu-id="a646a-180">DatabaseServerPassword</span><span class="sxs-lookup"><span data-stu-id="a646a-180">DatabaseServerPassword</span></span>
+<span data-ttu-id="a646a-181">Azure의 hello SQL 데이터베이스에 대 한 hello 자격 증명입니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-181">hello credentials for hello SQL database in Azure.</span></span> <span data-ttu-id="a646a-182">예: DatabaseServerPassword @{Name = "admin"; 암호 = "password"}</span><span class="sxs-lookup"><span data-stu-id="a646a-182">Example: -DatabaseServerPassword @{Name = "admin"; Password = "password"}</span></span>
 
-| <span data-ttu-id="1ff6a-183">Aliases</span><span class="sxs-lookup"><span data-stu-id="1ff6a-183">Aliases</span></span> | <span data-ttu-id="1ff6a-184">없음</span><span class="sxs-lookup"><span data-stu-id="1ff6a-184">none</span></span> |
+| <span data-ttu-id="a646a-183">Aliases</span><span class="sxs-lookup"><span data-stu-id="a646a-183">Aliases</span></span> | <span data-ttu-id="a646a-184">없음</span><span class="sxs-lookup"><span data-stu-id="a646a-184">none</span></span> |
 | --- | --- |
-| <span data-ttu-id="1ff6a-185">Required?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-185">Required?</span></span> |<span data-ttu-id="1ff6a-186">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-186">false</span></span> |
-| <span data-ttu-id="1ff6a-187">Position</span><span class="sxs-lookup"><span data-stu-id="1ff6a-187">Position</span></span> |<span data-ttu-id="1ff6a-188">named</span><span class="sxs-lookup"><span data-stu-id="1ff6a-188">named</span></span> |
-| <span data-ttu-id="1ff6a-189">기본값</span><span class="sxs-lookup"><span data-stu-id="1ff6a-189">Default value</span></span> |<span data-ttu-id="1ff6a-190">없음</span><span class="sxs-lookup"><span data-stu-id="1ff6a-190">none</span></span> |
-| <span data-ttu-id="1ff6a-191">Accept Pipeline Input?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-191">Accept pipeline input?</span></span> |<span data-ttu-id="1ff6a-192">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-192">false</span></span> |
-| <span data-ttu-id="1ff6a-193">Accept Wildcard Characters?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-193">Accept wildcard characters?</span></span> |<span data-ttu-id="1ff6a-194">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-194">false</span></span> |
+| <span data-ttu-id="a646a-185">Required?</span><span class="sxs-lookup"><span data-stu-id="a646a-185">Required?</span></span> |<span data-ttu-id="a646a-186">false</span><span class="sxs-lookup"><span data-stu-id="a646a-186">false</span></span> |
+| <span data-ttu-id="a646a-187">Position</span><span class="sxs-lookup"><span data-stu-id="a646a-187">Position</span></span> |<span data-ttu-id="a646a-188">named</span><span class="sxs-lookup"><span data-stu-id="a646a-188">named</span></span> |
+| <span data-ttu-id="a646a-189">기본값</span><span class="sxs-lookup"><span data-stu-id="a646a-189">Default value</span></span> |<span data-ttu-id="a646a-190">없음</span><span class="sxs-lookup"><span data-stu-id="a646a-190">none</span></span> |
+| <span data-ttu-id="a646a-191">Accept Pipeline Input?</span><span class="sxs-lookup"><span data-stu-id="a646a-191">Accept pipeline input?</span></span> |<span data-ttu-id="a646a-192">false</span><span class="sxs-lookup"><span data-stu-id="a646a-192">false</span></span> |
+| <span data-ttu-id="a646a-193">Accept Wildcard Characters?</span><span class="sxs-lookup"><span data-stu-id="a646a-193">Accept wildcard characters?</span></span> |<span data-ttu-id="a646a-194">false</span><span class="sxs-lookup"><span data-stu-id="a646a-194">false</span></span> |
 
-### <a name="sendhostmessagestooutput"></a><span data-ttu-id="1ff6a-195">SendHostMessagesToOutput</span><span class="sxs-lookup"><span data-stu-id="1ff6a-195">SendHostMessagesToOutput</span></span>
-<span data-ttu-id="1ff6a-196">True이면 스크립트에서 출력 스트림으로 메시지를 프린트합니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-196">If true, print messages from the script to the output stream.</span></span>
+### <a name="sendhostmessagestooutput"></a><span data-ttu-id="a646a-195">SendHostMessagesToOutput</span><span class="sxs-lookup"><span data-stu-id="a646a-195">SendHostMessagesToOutput</span></span>
+<span data-ttu-id="a646a-196">True 이면 hello 스크립트 toohello에서 메시지를 인쇄 출력 스트림에입니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-196">If true, print messages from hello script toohello output stream.</span></span>
 
-| <span data-ttu-id="1ff6a-197">Aliases</span><span class="sxs-lookup"><span data-stu-id="1ff6a-197">Aliases</span></span> | <span data-ttu-id="1ff6a-198">없음</span><span class="sxs-lookup"><span data-stu-id="1ff6a-198">none</span></span> |
+| <span data-ttu-id="a646a-197">Aliases</span><span class="sxs-lookup"><span data-stu-id="a646a-197">Aliases</span></span> | <span data-ttu-id="a646a-198">없음</span><span class="sxs-lookup"><span data-stu-id="a646a-198">none</span></span> |
 | --- | --- |
-| <span data-ttu-id="1ff6a-199">Required?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-199">Required?</span></span> |<span data-ttu-id="1ff6a-200">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-200">false</span></span> |
-| <span data-ttu-id="1ff6a-201">Position</span><span class="sxs-lookup"><span data-stu-id="1ff6a-201">Position</span></span> |<span data-ttu-id="1ff6a-202">named</span><span class="sxs-lookup"><span data-stu-id="1ff6a-202">named</span></span> |
-| <span data-ttu-id="1ff6a-203">기본값</span><span class="sxs-lookup"><span data-stu-id="1ff6a-203">Default value</span></span> |<span data-ttu-id="1ff6a-204">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-204">false</span></span> |
-| <span data-ttu-id="1ff6a-205">Accept Pipeline Input?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-205">Accept pipeline input?</span></span> |<span data-ttu-id="1ff6a-206">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-206">false</span></span> |
-| <span data-ttu-id="1ff6a-207">Accept Wildcard Characters?</span><span class="sxs-lookup"><span data-stu-id="1ff6a-207">Accept wildcard characters?</span></span> |<span data-ttu-id="1ff6a-208">false</span><span class="sxs-lookup"><span data-stu-id="1ff6a-208">false</span></span> |
+| <span data-ttu-id="a646a-199">Required?</span><span class="sxs-lookup"><span data-stu-id="a646a-199">Required?</span></span> |<span data-ttu-id="a646a-200">false</span><span class="sxs-lookup"><span data-stu-id="a646a-200">false</span></span> |
+| <span data-ttu-id="a646a-201">Position</span><span class="sxs-lookup"><span data-stu-id="a646a-201">Position</span></span> |<span data-ttu-id="a646a-202">named</span><span class="sxs-lookup"><span data-stu-id="a646a-202">named</span></span> |
+| <span data-ttu-id="a646a-203">기본값</span><span class="sxs-lookup"><span data-stu-id="a646a-203">Default value</span></span> |<span data-ttu-id="a646a-204">false</span><span class="sxs-lookup"><span data-stu-id="a646a-204">false</span></span> |
+| <span data-ttu-id="a646a-205">Accept Pipeline Input?</span><span class="sxs-lookup"><span data-stu-id="a646a-205">Accept pipeline input?</span></span> |<span data-ttu-id="a646a-206">false</span><span class="sxs-lookup"><span data-stu-id="a646a-206">false</span></span> |
+| <span data-ttu-id="a646a-207">Accept Wildcard Characters?</span><span class="sxs-lookup"><span data-stu-id="a646a-207">Accept wildcard characters?</span></span> |<span data-ttu-id="a646a-208">false</span><span class="sxs-lookup"><span data-stu-id="a646a-208">false</span></span> |
 
-## <a name="remarks"></a><span data-ttu-id="1ff6a-209">설명</span><span class="sxs-lookup"><span data-stu-id="1ff6a-209">Remarks</span></span>
-<span data-ttu-id="1ff6a-210">스크립트를 사용하여 개발 및 테스트 환경을 만드는 방법에 대한 전체 설명은 [Windows PowerShell 스크립트를 사용하여 개발 및 테스트 환경에 게시](vs-azure-tools-publishing-using-powershell-scripts.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-210">For a complete explanation of how to use the script to create Dev and Test environments, see [Using Windows PowerShell Scripts to Publish to Dev and Test Environments](vs-azure-tools-publishing-using-powershell-scripts.md).</span></span>
+## <a name="remarks"></a><span data-ttu-id="a646a-209">설명</span><span class="sxs-lookup"><span data-stu-id="a646a-209">Remarks</span></span>
+<span data-ttu-id="a646a-210">자세한 설명은 toouse hello 스크립트 toocreate 개발 및 테스트 환경을 참조 하는 방법에 대 한 [Windows PowerShell 스크립트를 사용 하 여 tooPublish tooDev 및 시험 환경](vs-azure-tools-publishing-using-powershell-scripts.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-210">For a complete explanation of how toouse hello script toocreate Dev and Test environments, see [Using Windows PowerShell Scripts tooPublish tooDev and Test Environments](vs-azure-tools-publishing-using-powershell-scripts.md).</span></span>
 
-<span data-ttu-id="1ff6a-211">JSON 구성 파일은 배포될 내용의 세부 정보를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-211">The JSON configuration file specifies the details of what is to be deployed.</span></span> <span data-ttu-id="1ff6a-212">프로젝트를 만들 때 지정한 정보(예: 가상 컴퓨터의 이름, 선호도 그룹, VHD 이미지, 크기)를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-212">It includes the information that you specified when you created the project, such as the name, affinity group, VHD image, and size of the virtual machine.</span></span> <span data-ttu-id="1ff6a-213">또한 가상 컴퓨터의 끝점, 프로비전할 데이터베이스(있는 경우), 웹 배포 매개 변수를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-213">It also includes the endpoints on the virtual machine, the databases to provision, if any, and web deployment parameters.</span></span> <span data-ttu-id="1ff6a-214">다음 코드에서는 JSON 구성 파일을 예로 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-214">The following code shows an example JSON configuration file:</span></span>
+<span data-ttu-id="a646a-211">hello JSON 구성 파일의 배포 toobe 이란 hello 세부 정보를 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-211">hello JSON configuration file specifies hello details of what is toobe deployed.</span></span> <span data-ttu-id="a646a-212">Hello 이름, 선호도 그룹, VHD 이미지 및 hello 가상 컴퓨터의 크기와 같은 hello 프로젝트를 만들 때 지정한 hello 정보가 포함 됩니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-212">It includes hello information that you specified when you created hello project, such as hello name, affinity group, VHD image, and size of hello virtual machine.</span></span> <span data-ttu-id="a646a-213">도 있는 경우 hello 끝점 hello 데이터베이스 tooprovision hello 가상 컴퓨터를 포함 하 고 웹 배포 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-213">It also includes hello endpoints on hello virtual machine, hello databases tooprovision, if any, and web deployment parameters.</span></span> <span data-ttu-id="a646a-214">hello 코드 다음 JSON 구성 파일을 예를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-214">hello following code shows an example JSON configuration file:</span></span>
 
 ```
 {
@@ -183,5 +183,5 @@ Publish-WebApplicationVM
 }
 ```
 
-<span data-ttu-id="1ff6a-215">프로비전한 내용을 변경하도록 JSON 구성 파일을 편집할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-215">You can edit the JSON configuration file to change what is provisioned.</span></span> <span data-ttu-id="1ff6a-216">가상 컴퓨터 및 클라우드 서비스는 필요하지만 데이터베이스 섹션은 선택 사항입니다.</span><span class="sxs-lookup"><span data-stu-id="1ff6a-216">A virtual machine and a cloud service are required, but the database section is optional.</span></span>
+<span data-ttu-id="a646a-215">프로 비전 된 hello JSON 구성 파일 toochange를 편집할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-215">You can edit hello JSON configuration file toochange what is provisioned.</span></span> <span data-ttu-id="a646a-216">가상 컴퓨터 및 클라우드 서비스 필요 하지만 hello 데이터베이스 섹션은 선택 사항입니다.</span><span class="sxs-lookup"><span data-stu-id="a646a-216">A virtual machine and a cloud service are required, but hello database section is optional.</span></span>
 

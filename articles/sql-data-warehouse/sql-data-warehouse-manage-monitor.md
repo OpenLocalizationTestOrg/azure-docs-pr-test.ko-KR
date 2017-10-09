@@ -1,6 +1,6 @@
 ---
-title: "DMV를 사용하여 작업 모니터링 | Microsoft Docs"
-description: "DMV를 사용하여 작업을 모니터링하는 방법을 알아봅니다."
+title: "aaaMonitor Dmv를 사용 하 여 작업 | Microsoft Docs"
+description: "자세한 내용은 방법 toomonitor Dmv를 사용 하 여 작업 합니다."
 services: sql-data-warehouse
 documentationcenter: NA
 author: sqlmojo
@@ -15,41 +15,41 @@ ms.workload: data-services
 ms.custom: performance
 ms.date: 10/31/2016
 ms.author: joeyong;barbkess
-ms.openlocfilehash: 7ce6c2cdf1e28852da536414533ccdcdaeb437e5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: acccf952d165ccec3de3b4b1c633b18bbbf78077
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-your-workload-using-dmvs"></a><span data-ttu-id="28eab-103">DMV를 사용하여 작업 모니터링</span><span class="sxs-lookup"><span data-stu-id="28eab-103">Monitor your workload using DMVs</span></span>
-<span data-ttu-id="28eab-104">이 문서에서는 DMV(동적 관리 뷰)를 사용하여 작업을 모니터링하고 Azure SQL 데이터 웨어하우스의 쿼리 실행을 조사하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-104">This article describes how to use Dynamic Management Views (DMVs) to monitor your workload and investigate query execution in Azure SQL Data Warehouse.</span></span>
+# <a name="monitor-your-workload-using-dmvs"></a><span data-ttu-id="2b1f9-103">DMV를 사용하여 작업 모니터링</span><span class="sxs-lookup"><span data-stu-id="2b1f9-103">Monitor your workload using DMVs</span></span>
+<span data-ttu-id="2b1f9-104">이 문서에서는 설명 방법을 toouse 동적 관리 뷰 (Dmv) toomonitor 작업 하 고 Azure SQL 데이터 웨어하우스에 쿼리 실행을 조사 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-104">This article describes how toouse Dynamic Management Views (DMVs) toomonitor your workload and investigate query execution in Azure SQL Data Warehouse.</span></span>
 
-## <a name="permissions"></a><span data-ttu-id="28eab-105">권한</span><span class="sxs-lookup"><span data-stu-id="28eab-105">Permissions</span></span>
-<span data-ttu-id="28eab-106">이 문서의 DMV를 쿼리하려면 VIEW DATABASE STATE 또는 CONTROL 권한이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-106">To query the DMVs in this article, you need either VIEW DATABASE STATE or CONTROL permission.</span></span> <span data-ttu-id="28eab-107">일반적으로 VIEW DATABASE STATE 권한 부여를 선호합니다. 훨씬 제한적이기 때문입니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-107">Usually granting VIEW DATABASE STATE is the preferred permission as it is much more restrictive.</span></span>
+## <a name="permissions"></a><span data-ttu-id="2b1f9-105">권한</span><span class="sxs-lookup"><span data-stu-id="2b1f9-105">Permissions</span></span>
+<span data-ttu-id="2b1f9-106">tooquery hello Dmv이 문서에서는 VIEW DATABASE STATE 또는 CONTROL 권한이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-106">tooquery hello DMVs in this article, you need either VIEW DATABASE STATE or CONTROL permission.</span></span> <span data-ttu-id="2b1f9-107">일반적으로 훨씬 제한적 이므로 VIEW DATABASE STATE를 부여 하는 것에 기본 설정 hello 권한입니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-107">Usually granting VIEW DATABASE STATE is hello preferred permission as it is much more restrictive.</span></span>
 
 ```sql
-GRANT VIEW DATABASE STATE TO myuser;
+GRANT VIEW DATABASE STATE toomyuser;
 ```
 
-## <a name="monitor-connections"></a><span data-ttu-id="28eab-108">연결 모니터링</span><span class="sxs-lookup"><span data-stu-id="28eab-108">Monitor connections</span></span>
-<span data-ttu-id="28eab-109">SQL Data Warehouse에 대한 모든 로그인은 [sys.dm_pdw_exec_sessions][sys.dm_pdw_exec_sessions]에 기록됩니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-109">All logins to SQL Data Warehouse are logged to [sys.dm_pdw_exec_sessions][sys.dm_pdw_exec_sessions].</span></span>  <span data-ttu-id="28eab-110">이 DMV에는 마지막 10,000회의 로그인 정보가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-110">This DMV contains the last 10,000 logins.</span></span>  <span data-ttu-id="28eab-111">session_id(기본 키)는 각각의 새 로그인에 대해 순차적으로 할당됩니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-111">The session_id is the primary key and is assigned sequentially for each new logon.</span></span>
+## <a name="monitor-connections"></a><span data-ttu-id="2b1f9-108">연결 모니터링</span><span class="sxs-lookup"><span data-stu-id="2b1f9-108">Monitor connections</span></span>
+<span data-ttu-id="2b1f9-109">모든 로그인 tooSQL 데이터 웨어하우스 너무 로깅됩니다[sys.dm_pdw_exec_sessions][sys.dm_pdw_exec_sessions]합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-109">All logins tooSQL Data Warehouse are logged too[sys.dm_pdw_exec_sessions][sys.dm_pdw_exec_sessions].</span></span>  <span data-ttu-id="2b1f9-110">이 DMV hello가 포함 되어 마지막 10, 000 로그인 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-110">This DMV contains hello last 10,000 logins.</span></span>  <span data-ttu-id="2b1f9-111">hello session_id hello 기본 키 이며 각 새 로그온에 대해 순차적으로 할당 됩니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-111">hello session_id is hello primary key and is assigned sequentially for each new logon.</span></span>
 
 ```sql
 -- Other Active Connections
 SELECT * FROM sys.dm_pdw_exec_sessions where status <> 'Closed' and session_id <> session_id();
 ```
 
-## <a name="monitor-query-execution"></a><span data-ttu-id="28eab-112">쿼리 실행 모니터링</span><span class="sxs-lookup"><span data-stu-id="28eab-112">Monitor query execution</span></span>
-<span data-ttu-id="28eab-113">SQL Data Warehouse에 대해 실행되는 모든 쿼리는 [sys.dm_pdw_exec_requests][sys.dm_pdw_exec_requests]에 기록됩니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-113">All queries executed on SQL Data Warehouse are logged to [sys.dm_pdw_exec_requests][sys.dm_pdw_exec_requests].</span></span>  <span data-ttu-id="28eab-114">이 DMV에는 마지막으로 실행한 쿼리 10,000개가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-114">This DMV contains the last 10,000 queries executed.</span></span>  <span data-ttu-id="28eab-115">이 DMV의 기본 키인 request_id는 각 쿼리를 고유하게 식별합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-115">The request_id uniquely identifies each query and is the primary key for this DMV.</span></span>  <span data-ttu-id="28eab-116">request_id는 각각의 새 쿼리에 대해 순차적으로 할당되며 쿼리 ID를 나타내는 QID가 접두사로 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-116">The request_id is assigned sequentially for each new query and is prefixed with QID, which stands for query ID.</span></span>  <span data-ttu-id="28eab-117">이 DMV에서 지정된 session_id를 쿼리하면 지정된 로그온에 대한 모든 쿼리가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-117">Querying this DMV for a given session_id shows all queries for a given logon.</span></span>
+## <a name="monitor-query-execution"></a><span data-ttu-id="2b1f9-112">쿼리 실행 모니터링</span><span class="sxs-lookup"><span data-stu-id="2b1f9-112">Monitor query execution</span></span>
+<span data-ttu-id="2b1f9-113">SQL 데이터 웨어하우스에서 실행 되는 모든 쿼리는 너무 로깅됩니다[sys.dm_pdw_exec_requests][sys.dm_pdw_exec_requests]합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-113">All queries executed on SQL Data Warehouse are logged too[sys.dm_pdw_exec_requests][sys.dm_pdw_exec_requests].</span></span>  <span data-ttu-id="2b1f9-114">이 DMV hello가 포함 되어 실행 되는 10, 000 쿼리 지속 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-114">This DMV contains hello last 10,000 queries executed.</span></span>  <span data-ttu-id="2b1f9-115">고유 하 게 hello request_id는 각 쿼리를 식별 하 고 hello이이 DMV에 대 한 기본 키가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-115">hello request_id uniquely identifies each query and is hello primary key for this DMV.</span></span>  <span data-ttu-id="2b1f9-116">hello request_id 각 쿼리에 대해 순차적으로 할당 되 고이 쿼리 id는 QID 접두사로</span><span class="sxs-lookup"><span data-stu-id="2b1f9-116">hello request_id is assigned sequentially for each new query and is prefixed with QID, which stands for query ID.</span></span>  <span data-ttu-id="2b1f9-117">이 DMV에서 지정된 session_id를 쿼리하면 지정된 로그온에 대한 모든 쿼리가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-117">Querying this DMV for a given session_id shows all queries for a given logon.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="28eab-118">저장 프로시저는 여러 요청 ID를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-118">Stored procedures use multiple Request IDs.</span></span>  <span data-ttu-id="28eab-119">요청 ID는 순차적으로 할당됩니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-119">Request IDs are assigned in sequential order.</span></span> 
+> <span data-ttu-id="2b1f9-118">저장 프로시저는 여러 요청 ID를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-118">Stored procedures use multiple Request IDs.</span></span>  <span data-ttu-id="2b1f9-119">요청 ID는 순차적으로 할당됩니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-119">Request IDs are assigned in sequential order.</span></span> 
 > 
 > 
 
-<span data-ttu-id="28eab-120">특정 쿼리에 대한 쿼리 실행 계획 및 시간을 조사하기 위해 수행하는 단계는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-120">Here are steps to follow to investigate query execution plans and times for a particular query.</span></span>
+<span data-ttu-id="2b1f9-120">다음은 단계 toofollow tooinvestigate 쿼리 실행 계획 및 특정 쿼리에 대 한 시간입니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-120">Here are steps toofollow tooinvestigate query execution plans and times for a particular query.</span></span>
 
-### <a name="step-1-identify-the-query-you-wish-to-investigate"></a><span data-ttu-id="28eab-121">1단계: 조사하려는 쿼리 식별</span><span class="sxs-lookup"><span data-stu-id="28eab-121">STEP 1: Identify the query you wish to investigate</span></span>
+### <a name="step-1-identify-hello-query-you-wish-tooinvestigate"></a><span data-ttu-id="2b1f9-121">1 단계: tooinvestigate 원하는 hello 쿼리를 식별 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-121">STEP 1: Identify hello query you wish tooinvestigate</span></span>
 ```sql
 -- Monitor active queries
 SELECT * 
@@ -63,18 +63,18 @@ SELECT TOP 10 *
 FROM sys.dm_pdw_exec_requests 
 ORDER BY total_elapsed_time DESC;
 
--- Find a query with the Label 'My Query'
--- Use brackets when querying the label column, as it it a key word
+-- Find a query with hello Label 'My Query'
+-- Use brackets when querying hello label column, as it it a key word
 SELECT  *
 FROM    sys.dm_pdw_exec_requests
 WHERE   [label] = 'My Query';
 ```
 
-<span data-ttu-id="28eab-122">위의 쿼리 결과에서 조사할 쿼리의 **요청 ID를 적어 둡니다** .</span><span class="sxs-lookup"><span data-stu-id="28eab-122">From the preceding query results, **note the Request ID** of the query that you would like to investigate.</span></span>
+<span data-ttu-id="2b1f9-122">쿼리 결과 앞에 오는 hello에서 **참고 hello 요청 ID** 싶다는 의사를 tooinvestigate hello 쿼리 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-122">From hello preceding query results, **note hello Request ID** of hello query that you would like tooinvestigate.</span></span>
 
-<span data-ttu-id="28eab-123">**일시 중단됨** 상태의 쿼리는 동시성 제한으로 인해 대기 중인 쿼리입니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-123">Queries in the **Suspended** state are being queued due to concurrency limits.</span></span> <span data-ttu-id="28eab-124">이러한 쿼리는 sys.dm_pdw_waits 대기 쿼리에도 UserConcurrencyResourceType 형식으로 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-124">These queries also appear in the sys.dm_pdw_waits waits query with a type of UserConcurrencyResourceType.</span></span> <span data-ttu-id="28eab-125">동시성 제한에 대한 자세한 내용은 [동시성 및 워크로드 관리][Concurrency and workload management]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="28eab-125">See [Concurrency and workload management][Concurrency and workload management] for more details on concurrency limits.</span></span> <span data-ttu-id="28eab-126">쿼리는 개체 잠금 등의 기타 이유로 인해 대기 상태일 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-126">Queries can also wait for other reasons such as for object locks.</span></span>  <span data-ttu-id="28eab-127">쿼리가 리소스를 대기 중인 경우 이 문서 뒷부분의 [리소스를 대기 중인 쿼리 조사][Investigating queries waiting for resources]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="28eab-127">If your query is waiting for a resource, see [Investigating queries waiting for resources][Investigating queries waiting for resources] further down in this article.</span></span>
+<span data-ttu-id="2b1f9-123">Hello에 대 한 쿼리 **Suspended** tooconcurrency 제한 인해 대기 중인 상태입니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-123">Queries in hello **Suspended** state are being queued due tooconcurrency limits.</span></span> <span data-ttu-id="2b1f9-124">이러한 쿼리 UserConcurrencyResourceType 유형의으로 hello sys.dm_pdw_waits 대기 쿼리에도 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-124">These queries also appear in hello sys.dm_pdw_waits waits query with a type of UserConcurrencyResourceType.</span></span> <span data-ttu-id="2b1f9-125">동시성 제한에 대한 자세한 내용은 [동시성 및 워크로드 관리][Concurrency and workload management]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-125">See [Concurrency and workload management][Concurrency and workload management] for more details on concurrency limits.</span></span> <span data-ttu-id="2b1f9-126">쿼리는 개체 잠금 등의 기타 이유로 인해 대기 상태일 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-126">Queries can also wait for other reasons such as for object locks.</span></span>  <span data-ttu-id="2b1f9-127">쿼리가 리소스를 대기 중인 경우 이 문서 뒷부분의 [리소스를 대기 중인 쿼리 조사][Investigating queries waiting for resources]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-127">If your query is waiting for a resource, see [Investigating queries waiting for resources][Investigating queries waiting for resources] further down in this article.</span></span>
 
-<span data-ttu-id="28eab-128">sys.dm_pdw_exec_requests 테이블에서 쿼리 조회를 간소화하려면 [LABEL][LABEL]을 사용하여 sys.dm_pdw_exec_requests 보기에서 조회할 수 있는 주석을 쿼리에 할당합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-128">To simplify the lookup of a query in the sys.dm_pdw_exec_requests table, use [LABEL][LABEL] to assign a comment to your query that can be looked up in the sys.dm_pdw_exec_requests view.</span></span>
+<span data-ttu-id="2b1f9-128">hello sys.dm_pdw_exec_requests 테이블을 사용 하 여 쿼리의 toosimplify hello 조회 [레이블] [ LABEL] tooassign 주석 tooyour 쿼리 hello sys.dm_pdw_exec_requests 보기에서 조회할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-128">toosimplify hello lookup of a query in hello sys.dm_pdw_exec_requests table, use [LABEL][LABEL] tooassign a comment tooyour query that can be looked up in hello sys.dm_pdw_exec_requests view.</span></span>
 
 ```sql
 -- Query with Label
@@ -84,11 +84,11 @@ OPTION (LABEL = 'My Query')
 ;
 ```
 
-### <a name="step-2-investigate-the-query-plan"></a><span data-ttu-id="28eab-129">2단계: 쿼리 계획 조사</span><span class="sxs-lookup"><span data-stu-id="28eab-129">STEP 2: Investigate the query plan</span></span>
-<span data-ttu-id="28eab-130">요청 ID를 사용하여 [sys.dm_pdw_request_steps][sys.dm_pdw_request_steps]에서 쿼리의 DSQL(분산된 SQL) 계획을 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-130">Use the Request ID to retrieve the query's distributed SQL (DSQL) plan from [sys.dm_pdw_request_steps][sys.dm_pdw_request_steps].</span></span>
+### <a name="step-2-investigate-hello-query-plan"></a><span data-ttu-id="2b1f9-129">2 단계: hello 쿼리 계획을 조사</span><span class="sxs-lookup"><span data-stu-id="2b1f9-129">STEP 2: Investigate hello query plan</span></span>
+<span data-ttu-id="2b1f9-130">Hello 요청 ID tooretrieve hello의 분산된 SQL (DSQL)에서 쿼리 계획을 사용 하 여 [sys.dm_pdw_request_steps][sys.dm_pdw_request_steps]합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-130">Use hello Request ID tooretrieve hello query's distributed SQL (DSQL) plan from [sys.dm_pdw_request_steps][sys.dm_pdw_request_steps].</span></span>
 
 ```sql
--- Find the distributed query plan steps for a specific query.
+-- Find hello distributed query plan steps for a specific query.
 -- Replace request_id with value from Step 1.
 
 SELECT * FROM sys.dm_pdw_request_steps
@@ -96,51 +96,51 @@ WHERE request_id = 'QID####'
 ORDER BY step_index;
 ```
 
-<span data-ttu-id="28eab-131">DSQL 계획의 시간이 생각보다 오래 걸리는 경우 계획이 여러 DSQL 단계를 포함하여 복잡하거나 한 단계에 시간이 오래 걸리는 것일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-131">When a DSQL plan is taking longer than expected, the cause can be a complex plan with many DSQL steps or just one step taking a long time.</span></span>  <span data-ttu-id="28eab-132">계획에 많은 단계가 포함되어 있으며 여러 이동 작업이 수행되는 경우에는 테이블 분산을 최적화하여 데이터 이동을 줄일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-132">If the plan is many steps with several move operations, consider optimizing your table distributions to reduce data movement.</span></span> <span data-ttu-id="28eab-133">[테이블 분산][Table distribution] 문서에서는 쿼리를 확인하기 위해 데이터를 이동해야 하는 이유와, 데이터 이동을 최소화하기 위한 몇 가지 분산 전략에 대해 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-133">The [Table distribution][Table distribution] article explains why data must be moved to solve a query and explains some distribution strategies to minimize data movement.</span></span>
+<span data-ttu-id="2b1f9-131">DSQL 계획 예상 보다 오래 걸리면, 복잡 한 계획을 여러 DSQL 단계 나 한 단계로 너무 오래 걸리면 hello 원인이 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-131">When a DSQL plan is taking longer than expected, hello cause can be a complex plan with many DSQL steps or just one step taking a long time.</span></span>  <span data-ttu-id="2b1f9-132">여러 개의 이동 작업을 사용 하 여 많은 단계 hello 계획을 사용 하는 경우에 최적화 프로그램 테이블 분포 tooreduce 데이터를 이동 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-132">If hello plan is many steps with several move operations, consider optimizing your table distributions tooreduce data movement.</span></span> <span data-ttu-id="2b1f9-133">hello [배포 테이블] [ Table distribution] 문서에서는 데이터 쿼리 toosolve 이동된 해야 하 고 몇 가지 배포 전략 toominimize 데이터 이동에 설명 하는 이유 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-133">hello [Table distribution][Table distribution] article explains why data must be moved toosolve a query and explains some distribution strategies toominimize data movement.</span></span>
 
-<span data-ttu-id="28eab-134">한 단계에서 추가 세부 정보를 조사하려면 오래 실행되는 쿼리 단계의 *operation_type* 열을 확인하고 **단계 인덱스**를 적어 둡니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-134">To investigate further details about a single step, the *operation_type* column of the long-running query step and note the **Step Index**:</span></span>
+<span data-ttu-id="2b1f9-134">tooinvestigate 자세한 내용은 한 번에 대 한 hello *operation_type* hello 장기 실행 쿼리 단계 및 참고 hello 열 **단계 인덱스**:</span><span class="sxs-lookup"><span data-stu-id="2b1f9-134">tooinvestigate further details about a single step, hello *operation_type* column of hello long-running query step and note hello **Step Index**:</span></span>
 
-* <span data-ttu-id="28eab-135">OnOperation, RemoteOperation, ReturnOperation 등의 **SQL 작업**에 대해 3a단계를 진행합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-135">Proceed with Step 3a for **SQL operations**: OnOperation, RemoteOperation, ReturnOperation.</span></span>
-* <span data-ttu-id="28eab-136">ShuffleMoveOperation, BroadcastMoveOperation, TrimMoveOperation, PartitionMoveOperation, MoveOperation, CopyOperation 등의 **데이터 이동 작업**에 대해 3b단계를 진행합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-136">Proceed with Step 3b for **Data Movement operations**: ShuffleMoveOperation, BroadcastMoveOperation, TrimMoveOperation, PartitionMoveOperation, MoveOperation, CopyOperation.</span></span>
+* <span data-ttu-id="2b1f9-135">OnOperation, RemoteOperation, ReturnOperation 등의 **SQL 작업**에 대해 3a단계를 진행합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-135">Proceed with Step 3a for **SQL operations**: OnOperation, RemoteOperation, ReturnOperation.</span></span>
+* <span data-ttu-id="2b1f9-136">ShuffleMoveOperation, BroadcastMoveOperation, TrimMoveOperation, PartitionMoveOperation, MoveOperation, CopyOperation 등의 **데이터 이동 작업**에 대해 3b단계를 진행합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-136">Proceed with Step 3b for **Data Movement operations**: ShuffleMoveOperation, BroadcastMoveOperation, TrimMoveOperation, PartitionMoveOperation, MoveOperation, CopyOperation.</span></span>
 
-### <a name="step-3a-investigate-sql-on-the-distributed-databases"></a><span data-ttu-id="28eab-137">3a단계: 분산 데이터베이스에서 SQL 조사</span><span class="sxs-lookup"><span data-stu-id="28eab-137">STEP 3a: Investigate SQL on the distributed databases</span></span>
-<span data-ttu-id="28eab-138">요청 ID와 단계 인덱스를 사용하여 [sys.dm_pdw_sql_requests][sys.dm_pdw_sql_requests]에서 세부 정보를 검색합니다. 이 보기에는 모든 분산 데이터베이스에 대한 쿼리 단계의 실행 정보가 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-138">Use the Request ID and the Step Index to retrieve details from [sys.dm_pdw_sql_requests][sys.dm_pdw_sql_requests], which contains execution information of the query step on all of the distributed databases.</span></span>
+### <a name="step-3a-investigate-sql-on-hello-distributed-databases"></a><span data-ttu-id="2b1f9-137">3a 단계: hello 배포 데이터베이스에서 SQL 조사</span><span class="sxs-lookup"><span data-stu-id="2b1f9-137">STEP 3a: Investigate SQL on hello distributed databases</span></span>
+<span data-ttu-id="2b1f9-138">Hello 요청 ID와 hello 단계 인덱스 tooretrieve 세부 정보를 사용 하 여 [sys.dm_pdw_sql_requests][sys.dm_pdw_sql_requests], 모든 hello hello 쿼리 단계의 실행 정보가 포함 된 데이터베이스를 배포 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-138">Use hello Request ID and hello Step Index tooretrieve details from [sys.dm_pdw_sql_requests][sys.dm_pdw_sql_requests], which contains execution information of hello query step on all of hello distributed databases.</span></span>
 
 ```sql
--- Find the distribution run times for a SQL step.
+-- Find hello distribution run times for a SQL step.
 -- Replace request_id and step_index with values from Step 1 and 3.
 
 SELECT * FROM sys.dm_pdw_sql_requests
 WHERE request_id = 'QID####' AND step_index = 2;
 ```
 
-<span data-ttu-id="28eab-139">쿼리 단계가 실행되고 있으면 [DBCC PDW_SHOWEXECUTIONPLAN][DBCC PDW_SHOWEXECUTIONPLAN]을 사용하여 특정 분산에서 현재 실행 중인 단계에 대해 SQL Server 계획 캐시에서 SQL Server 예상 계획을 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-139">When the query step is running, [DBCC PDW_SHOWEXECUTIONPLAN][DBCC PDW_SHOWEXECUTIONPLAN] can be used to retrieve the SQL Server estimated plan from the SQL Server plan cache for the step running on a particular distribution.</span></span>
+<span data-ttu-id="2b1f9-139">Hello 쿼리 단계가 실행 되는 경우 [상태가 아니므로 DBCC PDW_SHOWEXECUTIONPLAN] [ DBCC PDW_SHOWEXECUTIONPLAN] hello hello 단계에서 특정 실행에 대 한 SQL Server 계획 캐시에서에서 사용 되는 tooretrieve hello SQL Server 예상된 계획 수 배포 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-139">When hello query step is running, [DBCC PDW_SHOWEXECUTIONPLAN][DBCC PDW_SHOWEXECUTIONPLAN] can be used tooretrieve hello SQL Server estimated plan from hello SQL Server plan cache for hello step running on a particular distribution.</span></span>
 
 ```sql
--- Find the SQL Server execution plan for a query running on a specific SQL Data Warehouse Compute or Control node.
+-- Find hello SQL Server execution plan for a query running on a specific SQL Data Warehouse Compute or Control node.
 -- Replace distribution_id and spid with values from previous query.
 
 DBCC PDW_SHOWEXECUTIONPLAN(1, 78);
 ```
 
-### <a name="step-3b-investigate-data-movement-on-the-distributed-databases"></a><span data-ttu-id="28eab-140">3b단계: 분산 데이터베이스에서 데이터 이동 조사</span><span class="sxs-lookup"><span data-stu-id="28eab-140">STEP 3b: Investigate data movement on the distributed databases</span></span>
-<span data-ttu-id="28eab-141">요청 ID 및 단계 인덱스를 사용하여 [sys.dm_pdw_dms_workers][sys.dm_pdw_dms_workers]에서 각 분산에 대해 실행 중인 데이터 이동 단계에 대한 정보를 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-141">Use the Request ID and the Step Index to retrieve information about a data movement step running on each distribution from [sys.dm_pdw_dms_workers][sys.dm_pdw_dms_workers].</span></span>
+### <a name="step-3b-investigate-data-movement-on-hello-distributed-databases"></a><span data-ttu-id="2b1f9-140">3b 단계: 조사 hello 배포 데이터베이스에서 데이터 이동</span><span class="sxs-lookup"><span data-stu-id="2b1f9-140">STEP 3b: Investigate data movement on hello distributed databases</span></span>
+<span data-ttu-id="2b1f9-141">Hello 요청 ID 및 단계 인덱스 tooretrieve 정보에서 각 배포에서 실행 되는 데이터 이동 단계에 대 한 hello를 사용 하 여 [sys.dm_pdw_dms_workers][sys.dm_pdw_dms_workers]합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-141">Use hello Request ID and hello Step Index tooretrieve information about a data movement step running on each distribution from [sys.dm_pdw_dms_workers][sys.dm_pdw_dms_workers].</span></span>
 
 ```sql
--- Find the information about all the workers completing a Data Movement Step.
+-- Find hello information about all hello workers completing a Data Movement Step.
 -- Replace request_id and step_index with values from Step 1 and 3.
 
 SELECT * FROM sys.dm_pdw_dms_workers
 WHERE request_id = 'QID####' AND step_index = 2;
 ```
 
-* <span data-ttu-id="28eab-142">*total_elapsed_time* 열을 검사하여 특정 배포에서 데이터 이동 시간이 다른 배포보다 오래 걸리는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-142">Check the *total_elapsed_time* column to see if a particular distribution is taking significantly longer than others for data movement.</span></span>
-* <span data-ttu-id="28eab-143">장기 실행 배포의 경우 *rows_processed* 열을 검사하여 해당 배포에서 이동되는 행 수가 다른 배포보다 훨씬 큰지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-143">For the long-running distribution, check the *rows_processed* column to see if the number of rows being moved from that distribution is significantly larger than others.</span></span> <span data-ttu-id="28eab-144">이동되는 행 수가 훨씬 많으면 기본 데이터가 기울어진 것일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-144">If so, this may indicate skew of your underlying data.</span></span>
+* <span data-ttu-id="2b1f9-142">Hello 확인 *total_elapsed_time* 열 toosee 특정 분포 데이터 이동에 대 한 다른 항목 보다 시간이 많이 소요 되는 경우.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-142">Check hello *total_elapsed_time* column toosee if a particular distribution is taking significantly longer than others for data movement.</span></span>
+* <span data-ttu-id="2b1f9-143">Hello 장기 실행 배포용 hello 확인 *rows_processed* 열 toosee hello 해당 배포에서 이동 하는 행 수가 다른 항목 보다 훨씬 큰 경우.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-143">For hello long-running distribution, check hello *rows_processed* column toosee if hello number of rows being moved from that distribution is significantly larger than others.</span></span> <span data-ttu-id="2b1f9-144">이동되는 행 수가 훨씬 많으면 기본 데이터가 기울어진 것일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-144">If so, this may indicate skew of your underlying data.</span></span>
 
-<span data-ttu-id="28eab-145">쿼리가 실행되고 있으면 [DBCC PDW_SHOWEXECUTIONPLAN][DBCC PDW_SHOWEXECUTIONPLAN]을 사용하여 특정 배포 내에서 현재 실행 중인 SQL 단계에 대한 SQL Server 계획 캐시에서 SQL Server 예상 계획을 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-145">If the query is running, [DBCC PDW_SHOWEXECUTIONPLAN][DBCC PDW_SHOWEXECUTIONPLAN] can be used to retrieve the SQL Server estimated plan from the SQL Server plan cache for the currently running SQL Step within a particular distribution.</span></span>
+<span data-ttu-id="2b1f9-145">Hello 쿼리가 실행 중인 경우 [상태가 아니므로 DBCC PDW_SHOWEXECUTIONPLAN] [ DBCC PDW_SHOWEXECUTIONPLAN] hello 현재 특정 내에서 SQL 단계를 실행 하는 hello에 대 한 SQL Server 계획 캐시에서에서 사용 되는 tooretrieve hello SQL Server 예상된 계획 수 배포 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-145">If hello query is running, [DBCC PDW_SHOWEXECUTIONPLAN][DBCC PDW_SHOWEXECUTIONPLAN] can be used tooretrieve hello SQL Server estimated plan from hello SQL Server plan cache for hello currently running SQL Step within a particular distribution.</span></span>
 
 ```sql
--- Find the SQL Server estimated plan for a query running on a specific SQL Data Warehouse Compute or Control node.
+-- Find hello SQL Server estimated plan for a query running on a specific SQL Data Warehouse Compute or Control node.
 -- Replace distribution_id and spid with values from previous query.
 
 DBCC PDW_SHOWEXECUTIONPLAN(55, 238);
@@ -148,8 +148,8 @@ DBCC PDW_SHOWEXECUTIONPLAN(55, 238);
 
 <a name="waiting"></a>
 
-## <a name="monitor-waiting-queries"></a><span data-ttu-id="28eab-146">대기 중인 쿼리 모니터링</span><span class="sxs-lookup"><span data-stu-id="28eab-146">Monitor waiting queries</span></span>
-<span data-ttu-id="28eab-147">쿼리가 리소스를 대기하는 중이어서 진행되고 있지 않은 경우, 쿼리가 대기 중인 모든 리소스를 표시하는 쿼리는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-147">If you discover that your query is not making progress because it is waiting for a resource, here is a query that shows all the resources a query is waiting for.</span></span>
+## <a name="monitor-waiting-queries"></a><span data-ttu-id="2b1f9-146">대기 중인 쿼리 모니터링</span><span class="sxs-lookup"><span data-stu-id="2b1f9-146">Monitor waiting queries</span></span>
+<span data-ttu-id="2b1f9-147">쿼리에 진행 되지 않습니다는 리소스에 대 한 대기 하 고 있으므로 발견 한 경우에 대 한 쿼리를 기다리고 hello 리소스를 모두 표시 하는 쿼리 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-147">If you discover that your query is not making progress because it is waiting for a resource, here is a query that shows all hello resources a query is waiting for.</span></span>
 
 ```sql
 -- Find queries 
@@ -171,15 +171,15 @@ WHERE waits.request_id = 'QID####'
 ORDER BY waits.object_name, waits.object_type, waits.state;
 ```
 
-<span data-ttu-id="28eab-148">쿼리가 적극적으로 다른 쿼리의 리소스를 대기 중인 경우 상태는 **AcquireResources**입니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-148">If the query is actively waiting on resources from another query, then the state will be **AcquireResources**.</span></span>  <span data-ttu-id="28eab-149">쿼리가 필요한 리소스를 모두 가지고 있으면 상태는 **Granted**입니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-149">If the query has all the required resources, then the state will be **Granted**.</span></span>
+<span data-ttu-id="2b1f9-148">Hello 쿼리가 다른 쿼리에서 리소스에 적극적으로 대기 중인 경우 hello 상태가 됩니다 **AcquireResources**합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-148">If hello query is actively waiting on resources from another query, then hello state will be **AcquireResources**.</span></span>  <span data-ttu-id="2b1f9-149">Hello 쿼리에 모든 필수 hello 리소스 경우 hello 상태가 됩니다 **Granted**합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-149">If hello query has all hello required resources, then hello state will be **Granted**.</span></span>
 
-## <a name="monitor-tempdb"></a><span data-ttu-id="28eab-150">tempdb 모니터링</span><span class="sxs-lookup"><span data-stu-id="28eab-150">Monitor tempdb</span></span>
-<span data-ttu-id="28eab-151">높은 tempdb 사용량은 성능 저하 및 메모리 부족 문제의 근본 원인일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-151">High tempdb utilization can be the root cause for slow performance and out of memory issues.</span></span> <span data-ttu-id="28eab-152">먼저 데이터 기울이기 또는 저품질의 행 그룹이 있는지 확인하고 적절한 조치를 취하세요.</span><span class="sxs-lookup"><span data-stu-id="28eab-152">Please first check if you have data skew or poor quality rowgroups and take the appropriate actions.</span></span> <span data-ttu-id="28eab-153">tempdb가 쿼리 실행 중 한계에 도달한 것을 발견한 경우 데이터 웨어하우스를 확장하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-153">Consider scaling your data warehouse if you find tempdb reaching its limits during query execution.</span></span> <span data-ttu-id="28eab-154">다음은 각 노드의 쿼리당 tempdb 사용량을 식별하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-154">The following describes how to identify tempdb usage per query on each node.</span></span> 
+## <a name="monitor-tempdb"></a><span data-ttu-id="2b1f9-150">tempdb 모니터링</span><span class="sxs-lookup"><span data-stu-id="2b1f9-150">Monitor tempdb</span></span>
+<span data-ttu-id="2b1f9-151">높은 tempdb 사용 hello 근본 원인을 메모리가 부족 한 문제 및 성능 저하 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-151">High tempdb utilization can be hello root cause for slow performance and out of memory issues.</span></span> <span data-ttu-id="2b1f9-152">데이터 기울기 또는 낮은 품질로 rowgroup을 사용할 및 hello 적절 한 조치를 수행 하는 경우 먼저 확인 하십시오.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-152">Please first check if you have data skew or poor quality rowgroups and take hello appropriate actions.</span></span> <span data-ttu-id="2b1f9-153">tempdb가 쿼리 실행 중 한계에 도달한 것을 발견한 경우 데이터 웨어하우스를 확장하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-153">Consider scaling your data warehouse if you find tempdb reaching its limits during query execution.</span></span> <span data-ttu-id="2b1f9-154">hello 다음 설명 방법을 각 노드에 대 한 쿼리당 tooidentify tempdb 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-154">hello following describes how tooidentify tempdb usage per query on each node.</span></span> 
 
-<span data-ttu-id="28eab-155">sys.dm_pdw_sql_requests에 대한 적절한 노드 ID를 연결하도록 다음 보기를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-155">Create the following view to associate the appropriate node id for sys.dm_pdw_sql_requests.</span></span> <span data-ttu-id="28eab-156">이렇게 하면 다른 통과 DMV를 활용하고 해당 테이블을 sys.dm_pdw_sql_requests에 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-156">This will enable you to leverage other pass-through DMVs and join those tables with sys.dm_pdw_sql_requests.</span></span>
+<span data-ttu-id="2b1f9-155">Hello 다음 sys.dm_pdw_sql_requests 보기 tooassociate hello 적합 한 노드 id를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-155">Create hello following view tooassociate hello appropriate node id for sys.dm_pdw_sql_requests.</span></span> <span data-ttu-id="2b1f9-156">Tooleverage 있습니다 다른 통과 Dmv를 사용 되 고 sys.dm_pdw_sql_requests 해당 테이블에 조인 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-156">This will enable you tooleverage other pass-through DMVs and join those tables with sys.dm_pdw_sql_requests.</span></span>
 
 ```sql
--- sys.dm_pdw_sql_requests with the correct node id
+-- sys.dm_pdw_sql_requests with hello correct node id
 CREATE VIEW sql_requests AS
 (SELECT
        sr.request_id,
@@ -200,7 +200,7 @@ CREATE VIEW sql_requests AS
 FROM sys.pdw_distributions AS d
 RIGHT JOIN sys.dm_pdw_sql_requests AS sr ON d.distribution_id = sr.distribution_id)
 ```
-<span data-ttu-id="28eab-157">다음 쿼리를 실행하여 tempdb를 모니터링합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-157">Run the following query to monitor tempdb:</span></span>
+<span data-ttu-id="2b1f9-157">다음 쿼리 toomonitor tempdb hello를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-157">Run hello following query toomonitor tempdb:</span></span>
 
 ```sql
 -- Monitor tempdb
@@ -231,11 +231,11 @@ WHERE DB_NAME(ssu.database_id) = 'tempdb'
     AND es.login_name <> 'sa' 
 ORDER BY sr.request_id;
 ```
-## <a name="monitor-memory"></a><span data-ttu-id="28eab-158">메모리 모니터링</span><span class="sxs-lookup"><span data-stu-id="28eab-158">Monitor memory</span></span>
+## <a name="monitor-memory"></a><span data-ttu-id="2b1f9-158">메모리 모니터링</span><span class="sxs-lookup"><span data-stu-id="2b1f9-158">Monitor memory</span></span>
 
-<span data-ttu-id="28eab-159">메모리는 성능 저하 및 메모리 부족 문제의 근본 원인일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-159">Memory can be the root cause for slow performance and out of memory issues.</span></span> <span data-ttu-id="28eab-160">먼저 데이터 기울이기 또는 저품질의 행 그룹이 있는지 확인하고 적절한 조치를 취하세요.</span><span class="sxs-lookup"><span data-stu-id="28eab-160">Please first check if you have data skew or poor quality rowgroups and take the appropriate actions.</span></span> <span data-ttu-id="28eab-161">SQL Server 메모리 사용량이 쿼리 실행 중 한계에 도달한 것을 발견한 경우 데이터 웨어하우스를 확장하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-161">Consider scaling your data warehouse if you find SQL Server memory usage reaching its limits during query execution.</span></span>
+<span data-ttu-id="2b1f9-159">메모리 성능 저하 및 메모리가 부족 한 문제 hello 근본 원인이 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-159">Memory can be hello root cause for slow performance and out of memory issues.</span></span> <span data-ttu-id="2b1f9-160">데이터 기울기 또는 낮은 품질로 rowgroup을 사용할 및 hello 적절 한 조치를 수행 하는 경우 먼저 확인 하십시오.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-160">Please first check if you have data skew or poor quality rowgroups and take hello appropriate actions.</span></span> <span data-ttu-id="2b1f9-161">SQL Server 메모리 사용량이 쿼리 실행 중 한계에 도달한 것을 발견한 경우 데이터 웨어하우스를 확장하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-161">Consider scaling your data warehouse if you find SQL Server memory usage reaching its limits during query execution.</span></span>
 
-<span data-ttu-id="28eab-162">다음 쿼리는 노드당 SQL Server 메모리 사용량 및 메모리 부족을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-162">The following query returns SQL Server memory usage and memory pressure per node:</span></span>   
+<span data-ttu-id="2b1f9-162">다음 쿼리에서 hello 노드당 SQL Server 메모리 사용량 및 메모리 부족을 반환 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-162">hello following query returns SQL Server memory usage and memory pressure per node:</span></span> 
 ```sql
 -- Memory consumption
 SELECT
@@ -257,8 +257,8 @@ WHERE
 pc1.counter_name = 'Total Server Memory (KB)'
 AND pc2.counter_name = 'Target Server Memory (KB)'
 ```
-## <a name="monitor-transaction-log-size"></a><span data-ttu-id="28eab-163">트랜잭션 로그 크기 모니터링</span><span class="sxs-lookup"><span data-stu-id="28eab-163">Monitor transaction log size</span></span>
-<span data-ttu-id="28eab-164">다음 쿼리는 각 배포에서 트랜잭션 로그 크기를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-164">The following query returns the transaction log size on each distribution.</span></span> <span data-ttu-id="28eab-165">데이터 기울이기 또는 저품질의 행 그룹이 있는지 확인하고 적절한 조치를 취하세요.</span><span class="sxs-lookup"><span data-stu-id="28eab-165">Please check if you have data skew or poor quality rowgroups and take the appropriate actions.</span></span> <span data-ttu-id="28eab-166">로그 파일 중 하나가 160GB에 도달하는 경우 인스턴스를 확장하거나 트랜잭션 크기를 제한해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-166">If one of the log files is reaching 160GB, you should consider scaling up your instance or limiting your transaction size.</span></span> 
+## <a name="monitor-transaction-log-size"></a><span data-ttu-id="2b1f9-163">트랜잭션 로그 크기 모니터링</span><span class="sxs-lookup"><span data-stu-id="2b1f9-163">Monitor transaction log size</span></span>
+<span data-ttu-id="2b1f9-164">hello 다음 쿼리는 반환 hello 트랜잭션 로그 크기에 각 배포 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-164">hello following query returns hello transaction log size on each distribution.</span></span> <span data-ttu-id="2b1f9-165">데이터 기울기 또는 낮은 품질로 rowgroup을 사용할 및 hello 적절 한 조치를 수행 하는 경우 확인 하십시오.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-165">Please check if you have data skew or poor quality rowgroups and take hello appropriate actions.</span></span> <span data-ttu-id="2b1f9-166">160GB에 도달 하는 hello 로그 파일 중 하나 하는 경우에 인스턴스를 확장 하거나 트랜잭션 크기를 제한 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-166">If one of hello log files is reaching 160GB, you should consider scaling up your instance or limiting your transaction size.</span></span> 
 ```sql
 -- Transaction log size
 SELECT
@@ -271,8 +271,8 @@ instance_name like 'Distribution_%'
 AND counter_name = 'Log File(s) Used Size (KB)'
 AND counter_name = 'Target Server Memory (KB)'
 ```
-## <a name="monitor-transaction-log-rollback"></a><span data-ttu-id="28eab-167">트랜잭션 로그 롤백 모니터링</span><span class="sxs-lookup"><span data-stu-id="28eab-167">Monitor transaction log rollback</span></span>
-<span data-ttu-id="28eab-168">쿼리가 실패하거나 진행하는 데 시간이 오래 걸리는 경우 트랜잭션 롤백이 있는지 확인하고 모니터링할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="28eab-168">If your queries are failing or taking a long time to proceed, you can check and monitor if you have any transactions rolling back.</span></span>
+## <a name="monitor-transaction-log-rollback"></a><span data-ttu-id="2b1f9-167">트랜잭션 로그 롤백 모니터링</span><span class="sxs-lookup"><span data-stu-id="2b1f9-167">Monitor transaction log rollback</span></span>
+<span data-ttu-id="2b1f9-168">쿼리는 실패 하거나 시간이 오래 tooproceed 라인으로 전환를 확인 하 고 있는 모든 트랜잭션을 롤백하는 경우를 모니터링할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-168">If your queries are failing or taking a long time tooproceed, you can check and monitor if you have any transactions rolling back.</span></span>
 ```sql
 -- Monitor rollback
 SELECT 
@@ -284,9 +284,9 @@ JOIN sys.dm_pdw_nodes nod ON t.pdw_node_id = nod.pdw_node_id
 GROUP BY t.pdw_node_id, nod.[type]
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="28eab-169">다음 단계</span><span class="sxs-lookup"><span data-stu-id="28eab-169">Next steps</span></span>
-<span data-ttu-id="28eab-170">DMV에 대한 자세한 내용은 [시스템 뷰][System views]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="28eab-170">See [System views][System views] for more information on DMVs.</span></span>
-<span data-ttu-id="28eab-171">모범 사례에 대한 자세한 내용은 [SQL Data Warehouse 모범 사례][SQL Data Warehouse best practices]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="28eab-171">See [SQL Data Warehouse best practices][SQL Data Warehouse best practices] for more information about best practices</span></span>
+## <a name="next-steps"></a><span data-ttu-id="2b1f9-169">다음 단계</span><span class="sxs-lookup"><span data-stu-id="2b1f9-169">Next steps</span></span>
+<span data-ttu-id="2b1f9-170">DMV에 대한 자세한 내용은 [시스템 뷰][System views]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-170">See [System views][System views] for more information on DMVs.</span></span>
+<span data-ttu-id="2b1f9-171">모범 사례에 대한 자세한 내용은 [SQL Data Warehouse 모범 사례][SQL Data Warehouse best practices]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2b1f9-171">See [SQL Data Warehouse best practices][SQL Data Warehouse best practices] for more information about best practices</span></span>
 
 <!--Image references-->
 

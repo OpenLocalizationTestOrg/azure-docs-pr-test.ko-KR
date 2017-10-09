@@ -1,0 +1,5 @@
+
+
+<span data-ttu-id="ef576-101">이 샘플 toorun, hello 최신 설치 했는지 확인 [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)합니다.</span><span class="sxs-lookup"><span data-stu-id="ef576-101">toorun this sample, make sure you have installed hello latest [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli).</span></span> <span data-ttu-id="ef576-102">실행 toostart `az login` toocreate Azure와 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="ef576-102">toostart, run `az login` toocreate a connection with Azure.</span></span>
+
+<span data-ttu-id="ef576-103">이 샘플은 Bash 셸에서 작동합니다.</span><span class="sxs-lookup"><span data-stu-id="ef576-103">This sample works in a Bash shell.</span></span> <span data-ttu-id="ef576-104">Windows 클라이언트에서 Azure CLI 스크립트를 실행 하는 옵션에 대 한 참조 [hello Azure CLI Windows에서 실행 중인](../articles/virtual-machines/windows/cli-options.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="ef576-104">For options on running Azure CLI scripts on Windows client, see [Running hello Azure CLI in Windows](../articles/virtual-machines/windows/cli-options.md).</span></span>

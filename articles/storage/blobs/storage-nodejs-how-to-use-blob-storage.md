@@ -1,6 +1,6 @@
 ---
-title: "Node.js에서 Blob Storage를 사용하는 방법 | Microsoft Docs"
-description: "Azure Blob 저장소(개체 저장소)를 사용하여 클라우드에 구조화되지 않은 데이터를 저장합니다."
+title: "Node.js에서 Blob 저장소 aaaHow toouse | Microsoft Docs"
+description: "Azure Blob 저장소 (개체 저장소)를 사용 하는 hello 클라우드에 구조화 되지 않은 데이터를 저장 합니다."
 services: storage
 documentationcenter: nodejs
 author: mmacy
@@ -14,33 +14,33 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-ms.openlocfilehash: e83ad647f6b7c70f34ef0c69b5bf322da5b6d60d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 572e7fc9f7b19ff01720a7cadd495c809ed49fb2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-blob-storage-from-nodejs"></a><span data-ttu-id="255ef-103">Node.js에서 Blob Storage를 사용하는 방법</span><span class="sxs-lookup"><span data-stu-id="255ef-103">How to use Blob storage from Node.js</span></span>
+# <a name="how-toouse-blob-storage-from-nodejs"></a><span data-ttu-id="10987-103">어떻게 toouse Node.js에서 Blob 저장소</span><span class="sxs-lookup"><span data-stu-id="10987-103">How toouse Blob storage from Node.js</span></span>
 [!INCLUDE [storage-selector-blob-include](../../../includes/storage-selector-blob-include.md)]
 
 [!INCLUDE [storage-check-out-samples-all](../../../includes/storage-check-out-samples-all.md)]
 
-## <a name="overview"></a><span data-ttu-id="255ef-104">개요</span><span class="sxs-lookup"><span data-stu-id="255ef-104">Overview</span></span>
-<span data-ttu-id="255ef-105">이 문서에서는 Blob Storage를 사용하여 일반 시나리오를 수행하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-105">This article shows you how to perform common scenarios using Blob storage.</span></span> <span data-ttu-id="255ef-106">샘플은 Node.js API를 사용하여 작성되었습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-106">The samples are written via the Node.js API.</span></span> <span data-ttu-id="255ef-107">여기서 다루는 시나리오는 Blob을 업로드, 나열, 다운로드 및 삭제하는 방법을 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-107">The scenarios covered include how to upload, list, download, and delete blobs.</span></span>
+## <a name="overview"></a><span data-ttu-id="10987-104">개요</span><span class="sxs-lookup"><span data-stu-id="10987-104">Overview</span></span>
+<span data-ttu-id="10987-105">이 문서에서는 Blob 저장소를 사용 하 여 tooperform 일반적인 시나리오입니다.</span><span class="sxs-lookup"><span data-stu-id="10987-105">This article shows you how tooperform common scenarios using Blob storage.</span></span> <span data-ttu-id="10987-106">hello 샘플 hello Node.js API를 통해 작성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="10987-106">hello samples are written via hello Node.js API.</span></span> <span data-ttu-id="10987-107">가이드에서 다루는 hello 시나리오 tooupload를 나열, 다운로드 및 blob 삭제 방법을 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-107">hello scenarios covered include how tooupload, list, download, and delete blobs.</span></span>
 
 [!INCLUDE [storage-blob-concepts-include](../../../includes/storage-blob-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../../includes/storage-create-account-include.md)]
 
-## <a name="create-a-nodejs-application"></a><span data-ttu-id="255ef-108">Node.js 응용 프로그램 만들기</span><span class="sxs-lookup"><span data-stu-id="255ef-108">Create a Node.js application</span></span>
-<span data-ttu-id="255ef-109">Node.js 응용 프로그램을 만드는 방법에 대한 지침은 [Azure App Service에서 Node.js 웹앱 만들기], [Azure Cloud Service에 Node.js 응용 프로그램 빌드 및 배포](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md)(Windows PowerShell 사용) 또는 [Web Matrix를 사용하여 Azure에 Node.js 웹앱 빌드 및 배포](https://www.microsoft.com/web/webmatrix/)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="255ef-109">For instructions on how to create a Node.js application, see [Create a Node.js web app in Azure App Service], [Build and deploy a Node.js application to an Azure Cloud Service](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md) -- using Windows PowerShell, or [Build and deploy a Node.js web app to Azure using Web Matrix](https://www.microsoft.com/web/webmatrix/).</span></span>
+## <a name="create-a-nodejs-application"></a><span data-ttu-id="10987-108">Node.js 응용 프로그램 만들기</span><span class="sxs-lookup"><span data-stu-id="10987-108">Create a Node.js application</span></span>
+<span data-ttu-id="10987-109">방법에 대 한 지침은 toocreate는 Node.js 응용 프로그램 참조 [Azure 앱 서비스에서 Node.js 웹 앱 만들기] [빌드하고 Node.js 응용 프로그램 tooan Azure 클라우드 서비스 배포](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md) -Windows PowerShell을 사용 하 여 또는 [빌드 및 웹 매트릭스를 사용 하는 Node.js 웹 응용 프로그램 tooAzure 배포](https://www.microsoft.com/web/webmatrix/)합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-109">For instructions on how toocreate a Node.js application, see [Create a Node.js web app in Azure App Service], [Build and deploy a Node.js application tooan Azure Cloud Service](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md) -- using Windows PowerShell, or [Build and deploy a Node.js web app tooAzure using Web Matrix](https://www.microsoft.com/web/webmatrix/).</span></span>
 
-## <a name="configure-your-application-to-access-storage"></a><span data-ttu-id="255ef-110">저장소에 액세스하도록 응용 프로그램 구성</span><span class="sxs-lookup"><span data-stu-id="255ef-110">Configure your application to access storage</span></span>
-<span data-ttu-id="255ef-111">Azure 저장소를 사용하려면 저장소 REST 서비스와 통신하는 편리한 라이브러리 집합이 포함되어 있는 Node.js용 Azure 저장소 SDK가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-111">To use Azure storage, you need the Azure Storage SDK for Node.js, which includes a set of convenience libraries that communicate with the storage REST services.</span></span>
+## <a name="configure-your-application-tooaccess-storage"></a><span data-ttu-id="10987-110">응용 프로그램 tooaccess 저장소 구성</span><span class="sxs-lookup"><span data-stu-id="10987-110">Configure your application tooaccess storage</span></span>
+<span data-ttu-id="10987-111">Azure 저장소 toouse hello 저장소 REST 서비스와 통신 하는 편리한 라이브러리의 집합을 포함 하는 Node.js 용 hello Azure 저장소 SDK 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="10987-111">toouse Azure storage, you need hello Azure Storage SDK for Node.js, which includes a set of convenience libraries that communicate with hello storage REST services.</span></span>
 
-### <a name="use-node-package-manager-npm-to-obtain-the-package"></a><span data-ttu-id="255ef-112">NPM(Node Package Manager)을 사용하여 패키지 가져오기</span><span class="sxs-lookup"><span data-stu-id="255ef-112">Use Node Package Manager (NPM) to obtain the package</span></span>
-1. <span data-ttu-id="255ef-113">**PowerShell**(Windows), **Terminal**(Mac), **Bash**(Unix) 등과 같은 명령줄 인터페이스를 사용하여 샘플 응용 프로그램을 만든 폴더로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-113">Use a command-line interface such as **PowerShell** (Windows), **Terminal** (Mac), or **Bash** (Unix), to navigate to the folder where you created your sample application.</span></span>
-2. <span data-ttu-id="255ef-114">명령 창에 **npm install azure-storage** 를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-114">Type **npm install azure-storage** in the command window.</span></span> <span data-ttu-id="255ef-115">명령 출력은 다음 코드 예제와 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-115">Output from the command is similar to the following code example.</span></span>
+### <a name="use-node-package-manager-npm-tooobtain-hello-package"></a><span data-ttu-id="10987-112">노드 패키지 관리자 (NPM) tooobtain hello 패키지 사용</span><span class="sxs-lookup"><span data-stu-id="10987-112">Use Node Package Manager (NPM) tooobtain hello package</span></span>
+1. <span data-ttu-id="10987-113">와 같은 명령줄 인터페이스를 사용 하 여 **PowerShell** (Windows) **터미널** (Mac) 또는 **를 이용한 적** (Unix) 샘플을 만들었으므로 toonavigate toohello 폴더 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="10987-113">Use a command-line interface such as **PowerShell** (Windows), **Terminal** (Mac), or **Bash** (Unix), toonavigate toohello folder where you created your sample application.</span></span>
+2. <span data-ttu-id="10987-114">형식 **npm 설치 azure storage** hello 명령 창에서.</span><span class="sxs-lookup"><span data-stu-id="10987-114">Type **npm install azure-storage** in hello command window.</span></span> <span data-ttu-id="10987-115">Hello 명령 출력은 다음 코드 예제와 비슷한 toohello입니다.</span><span class="sxs-lookup"><span data-stu-id="10987-115">Output from hello command is similar toohello following code example.</span></span>
 
         azure-storage@0.5.0 node_modules\azure-storage
         +-- extend@1.2.1
@@ -52,35 +52,35 @@ ms.lasthandoff: 08/29/2017
         +-- readable-stream@1.0.33 (string_decoder@0.10.31, isarray@0.0.1, inherits@2.0.1, core-util-is@1.0.1)
         +-- xml2js@0.2.7 (sax@0.5.2)
         +-- request@2.57.0 (caseless@0.10.0, aws-sign2@0.5.0, forever-agent@0.6.1, stringstream@0.0.4, oauth-sign@0.8.0, tunnel-agent@0.4.1, isstream@0.1.2, json-stringify-safe@5.0.1, bl@0.9.4, combined-stream@1.0.5, qs@3.1.0, mime-types@2.0.14, form-data@0.2.0, http-signature@0.11.0, tough-cookie@2.0.0, hawk@2.3.1, har-validator@1.8.0)
-3. <span data-ttu-id="255ef-116">**ls** 명령을 수동으로 실행하여 **node\_modules** 폴더가 만들어졌는지 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-116">You can manually run the **ls** command to verify that a **node\_modules** folder was created.</span></span> <span data-ttu-id="255ef-117">해당 폴더 내에서 저장소에 액세스하는 데 필요한 라이브러리가 들어 있는 **azure-storage** 패키지를 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-117">Inside that folder, find the **azure-storage** package, which contains the libraries that you need to access storage.</span></span>
+3. <span data-ttu-id="10987-116">Hello를 수동으로 실행할 수 있습니다 **ls** 명령 tooverify 하는 **노드\_모듈** 폴더를 만들었습니다.</span><span class="sxs-lookup"><span data-stu-id="10987-116">You can manually run hello **ls** command tooverify that a **node\_modules** folder was created.</span></span> <span data-ttu-id="10987-117">해당 폴더 내의 hello 찾습니다 **azure 저장소** tooaccess 저장 해야 하는 hello 라이브러리를 포함 하는 패키지입니다.</span><span class="sxs-lookup"><span data-stu-id="10987-117">Inside that folder, find hello **azure-storage** package, which contains hello libraries that you need tooaccess storage.</span></span>
 
-### <a name="import-the-package"></a><span data-ttu-id="255ef-118">패키지 가져오기</span><span class="sxs-lookup"><span data-stu-id="255ef-118">Import the package</span></span>
-<span data-ttu-id="255ef-119">메모장 또는 다른 텍스트 편집기를 사용하여 저장소를 사용할 응용 프로그램의 **server.js** 파일 맨 위에 다음을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-119">Using Notepad or another text editor, add the following to the top of the **server.js** file of the application where you intend to use storage:</span></span>
+### <a name="import-hello-package"></a><span data-ttu-id="10987-118">Hello 패키지 가져오기</span><span class="sxs-lookup"><span data-stu-id="10987-118">Import hello package</span></span>
+<span data-ttu-id="10987-119">메모장 이나 다른 텍스트 편집기를 사용 하 여 추가 hello toohello 맨 뒤 hello **server.js** toouse 저장소 이점을 얻을 수 hello 응용 프로그램의 파일:</span><span class="sxs-lookup"><span data-stu-id="10987-119">Using Notepad or another text editor, add hello following toohello top of hello **server.js** file of hello application where you intend toouse storage:</span></span>
 
 ```nodejs
 var azure = require('azure-storage');
 ```
 
-## <a name="set-up-an-azure-storage-connection"></a><span data-ttu-id="255ef-120">Azure 저장소 연결 설정</span><span class="sxs-lookup"><span data-stu-id="255ef-120">Set up an Azure Storage connection</span></span>
-<span data-ttu-id="255ef-121">Azure 모듈은 및 또는 환경 변수를 읽고 `AZURE_STORAGE_ACCOUNT``AZURE_STORAGE_ACCESS_KEY`Azure 저장소 계정에 연결하는 데 `AZURE_STORAGE_CONNECTION_STRING`필요한 정보를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-121">The Azure module will read the environment variables `AZURE_STORAGE_ACCOUNT` and `AZURE_STORAGE_ACCESS_KEY`, or `AZURE_STORAGE_CONNECTION_STRING`, for information required to connect to your Azure storage account.</span></span> <span data-ttu-id="255ef-122">이러한 환경 변수가 설정되어 있지 않은 경우 **createBlobService**를 호출할 때 계정 정보를 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-122">If these environment variables are not set, you must specify the account information when calling **createBlobService**.</span></span>
+## <a name="set-up-an-azure-storage-connection"></a><span data-ttu-id="10987-120">Azure 저장소 연결 설정</span><span class="sxs-lookup"><span data-stu-id="10987-120">Set up an Azure Storage connection</span></span>
+<span data-ttu-id="10987-121">hello Azure 모듈 읽힙니다 hello 환경 변수 `AZURE_STORAGE_ACCOUNT` 및 `AZURE_STORAGE_ACCESS_KEY`, 또는 `AZURE_STORAGE_CONNECTION_STRING`, 필요한 tooconnect tooyour Azure 저장소 계정 정보에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-121">hello Azure module will read hello environment variables `AZURE_STORAGE_ACCOUNT` and `AZURE_STORAGE_ACCESS_KEY`, or `AZURE_STORAGE_CONNECTION_STRING`, for information required tooconnect tooyour Azure storage account.</span></span> <span data-ttu-id="10987-122">호출할 때 hello 계정 정보를 지정 해야 이러한 환경 변수가 설정 되지 않은 경우 **createBlobService**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-122">If these environment variables are not set, you must specify hello account information when calling **createBlobService**.</span></span>
 
-<span data-ttu-id="255ef-123">Azure 웹앱의 [Azure Portal](https://portal.azure.com)에서 환경 변수를 설정하는 방법에 대한 예제는 [Azure Table Service를 사용하는 Node.js 웹앱](../../app-service-web/storage-nodejs-use-table-storage-web-site.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="255ef-123">For an example of setting the environment variables in the [Azure portal](https://portal.azure.com) for an Azure web app, see [Node.js web app using the Azure Table Service](../../app-service-web/storage-nodejs-use-table-storage-web-site.md).</span></span>
+<span data-ttu-id="10987-123">Hello에 hello 환경 변수 설정에 대 한 예제 [Azure 포털](https://portal.azure.com) 는 Azure 웹 앱에 대 한 참조 [Azure 테이블 서비스 hello 사용 하 여 Node.js 웹 응용 프로그램](../../app-service-web/storage-nodejs-use-table-storage-web-site.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-123">For an example of setting hello environment variables in hello [Azure portal](https://portal.azure.com) for an Azure web app, see [Node.js web app using hello Azure Table Service](../../app-service-web/storage-nodejs-use-table-storage-web-site.md).</span></span>
 
-## <a name="create-a-container"></a><span data-ttu-id="255ef-124">컨테이너 만들기</span><span class="sxs-lookup"><span data-stu-id="255ef-124">Create a container</span></span>
-<span data-ttu-id="255ef-125">**BlobService** 개체를 통해 컨테이너 및 Blob에 대한 작업을 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-125">The **BlobService** object lets you work with containers and blobs.</span></span> <span data-ttu-id="255ef-126">다음 코드는 **BlobService** 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-126">The following code creates a **BlobService** object.</span></span> <span data-ttu-id="255ef-127">**server.js**의 위쪽에 다음을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-127">Add the following near the top of **server.js**:</span></span>
+## <a name="create-a-container"></a><span data-ttu-id="10987-124">컨테이너 만들기</span><span class="sxs-lookup"><span data-stu-id="10987-124">Create a container</span></span>
+<span data-ttu-id="10987-125">hello **BlobService** 개체 컨테이너 및 blob를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="10987-125">hello **BlobService** object lets you work with containers and blobs.</span></span> <span data-ttu-id="10987-126">hello 다음 코드에서는 **BlobService** 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="10987-126">hello following code creates a **BlobService** object.</span></span> <span data-ttu-id="10987-127">hello 위쪽 hello 다음 추가 **server.js**:</span><span class="sxs-lookup"><span data-stu-id="10987-127">Add hello following near hello top of **server.js**:</span></span>
 
 ```nodejs
 var blobSvc = azure.createBlobService();
 ```
 
 > [!NOTE]
-> <span data-ttu-id="255ef-128">**createBlobServiceAnonymous** 를 사용하고 호스트 주소를 제공하여 익명으로 Blob에 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-128">You can access a blob anonymously by using **createBlobServiceAnonymous** and providing the host address.</span></span> <span data-ttu-id="255ef-129">예를 들면 `var blobSvc = azure.createBlobServiceAnonymous('https://myblob.blob.core.windows.net/');`를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-129">For example, use `var blobSvc = azure.createBlobServiceAnonymous('https://myblob.blob.core.windows.net/');`.</span></span>
+> <span data-ttu-id="10987-128">사용 하 여 blob을 익명으로 액세스할 수 있습니다 **createBlobServiceAnonymous** hello 호스트 주소를 제공 하 고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="10987-128">You can access a blob anonymously by using **createBlobServiceAnonymous** and providing hello host address.</span></span> <span data-ttu-id="10987-129">예를 들면 `var blobSvc = azure.createBlobServiceAnonymous('https://myblob.blob.core.windows.net/');`를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-129">For example, use `var blobSvc = azure.createBlobServiceAnonymous('https://myblob.blob.core.windows.net/');`.</span></span>
 >
 >
 
 [!INCLUDE [storage-container-naming-rules-include](../../../includes/storage-container-naming-rules-include.md)]
 
-<span data-ttu-id="255ef-130">새 컨테이너를 만들려면 **createContainerIfNotExists**를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-130">To create a new container, use **createContainerIfNotExists**.</span></span> <span data-ttu-id="255ef-131">다음 코드 예제에서는 'mycontainer'라는 이름의 새 컨테이너를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-131">The following code example creates a new container named 'mycontainer':</span></span>
+<span data-ttu-id="10987-130">toocreate 새 컨테이너를 사용 하 여 **createContainerIfNotExists**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-130">toocreate a new container, use **createContainerIfNotExists**.</span></span> <span data-ttu-id="10987-131">hello 다음 코드 예제에서는 'mycontainer' 라는 새 컨테이너:</span><span class="sxs-lookup"><span data-stu-id="10987-131">hello following code example creates a new container named 'mycontainer':</span></span>
 
 ```nodejs
 blobSvc.createContainerIfNotExists('mycontainer', function(error, result, response){
@@ -90,72 +90,72 @@ blobSvc.createContainerIfNotExists('mycontainer', function(error, result, respon
 });
 ```
 
-<span data-ttu-id="255ef-132">컨테이너를 새로 작성하는 경우 `result.created` 는 true입니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-132">If the container is newly created, `result.created` is true.</span></span> <span data-ttu-id="255ef-133">컨테이너가 이미 있는 경우 `result.created` 는 false입니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-133">If the container already exists, `result.created` is false.</span></span> <span data-ttu-id="255ef-134">`response` 에는 컨테이너의 ETag 정보와 같은 작업 관련 정보가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-134">`response` contains information about the operation, including the ETag information for the container.</span></span>
+<span data-ttu-id="10987-132">Hello 컨테이너를 새로 작성 하는 경우 `result.created` 그렇습니다.</span><span class="sxs-lookup"><span data-stu-id="10987-132">If hello container is newly created, `result.created` is true.</span></span> <span data-ttu-id="10987-133">Hello 컨테이너에 이미 있으면 `result.created` 은 false입니다.</span><span class="sxs-lookup"><span data-stu-id="10987-133">If hello container already exists, `result.created` is false.</span></span> <span data-ttu-id="10987-134">`response`hello 컨테이너에 대 한 hello ETag 정보를 포함 하는 hello 작업에 대 한 정보를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-134">`response` contains information about hello operation, including hello ETag information for hello container.</span></span>
 
-### <a name="container-security"></a><span data-ttu-id="255ef-135">컨테이너 보안</span><span class="sxs-lookup"><span data-stu-id="255ef-135">Container security</span></span>
-<span data-ttu-id="255ef-136">기본적으로 새 컨테이너는 개인 컨테이너이며 익명으로 액세스할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-136">By default, new containers are private and cannot be accessed anonymously.</span></span> <span data-ttu-id="255ef-137">컨테이너를 공용으로 만들어 익명으로 액세스할 수 있게 하려면 컨테이너의 액세스 수준을 **blob** 또는 **컨테이너**로 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-137">To make the container public so that you can access it anonymously, you can set the container's access level to **blob** or **container**.</span></span>
+### <a name="container-security"></a><span data-ttu-id="10987-135">컨테이너 보안</span><span class="sxs-lookup"><span data-stu-id="10987-135">Container security</span></span>
+<span data-ttu-id="10987-136">기본적으로 새 컨테이너는 개인 컨테이너이며 익명으로 액세스할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="10987-136">By default, new containers are private and cannot be accessed anonymously.</span></span> <span data-ttu-id="10987-137">익명으로 액세스할 수 있도록 공용 toomake hello 컨테이너 설정할 수 있습니다 hello 컨테이너의 액세스 수준을 너무**blob** 또는 **컨테이너**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-137">toomake hello container public so that you can access it anonymously, you can set hello container's access level too**blob** or **container**.</span></span>
 
-* <span data-ttu-id="255ef-138">**blob** - 이 컨테이너 내의 Blob 콘텐츠와 메타데이터에는 익명 읽기 액세스가 허용되지만, 컨테이너 내의 모든 Blob 나열과 같은 컨테이너 메타데이터에는 익명 읽기 권한이 허용되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-138">**blob** - allows anonymous read access to blob content and metadata within this container, but not to container metadata such as listing all blobs within a container</span></span>
-* <span data-ttu-id="255ef-139">**컨테이너** - Blob 콘텐츠 및 메타데이터와 컨테이너 메타데이터에 대한 익명 읽기 권한을 허용합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-139">**container** - allows anonymous read access to blob content and metadata as well as container metadata</span></span>
+* <span data-ttu-id="10987-138">**blob** -익명 읽기 권한을 tooblob 콘텐츠 및이 컨테이너에 있는 메타 데이터는 있지만 하지 toocontainer 등의 메타 데이터 컨테이너 내 모든 blob을 나열 허용</span><span class="sxs-lookup"><span data-stu-id="10987-138">**blob** - allows anonymous read access tooblob content and metadata within this container, but not toocontainer metadata such as listing all blobs within a container</span></span>
+* <span data-ttu-id="10987-139">**컨테이너** -익명 읽기 권한을 tooblob 콘텐츠 및 메타 데이터 뿐 아니라 컨테이너 메타 데이터를 허용 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-139">**container** - allows anonymous read access tooblob content and metadata as well as container metadata</span></span>
 
-<span data-ttu-id="255ef-140">다음 코드 예제에서는 액세스 수준을 **Blob**으로 설정하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-140">The following code example demonstrates setting the access level to **blob**:</span></span>
+<span data-ttu-id="10987-140">hello 다음 코드 예제에서는 hello 액세스 수준을 설정 너무**blob**:</span><span class="sxs-lookup"><span data-stu-id="10987-140">hello following code example demonstrates setting hello access level too**blob**:</span></span>
 
 ```nodejs
 blobSvc.createContainerIfNotExists('mycontainer', {publicAccessLevel : 'blob'}, function(error, result, response){
     if(!error){
       // Container exists and allows
-      // anonymous read access to blob
+      // anonymous read access tooblob
       // content and metadata within this container
     }
 });
 ```
 
-<span data-ttu-id="255ef-141">또는 **setContainerAcl** 로 액세스 수준을 지정하여 컨테이너의 액세스 수준을 수정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-141">Alternatively, you can modify the access level of a container by using **setContainerAcl** to specify the access level.</span></span> <span data-ttu-id="255ef-142">다음 코드 예제에서는 액세스 수준을 container로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-142">The following code example changes the access level to container:</span></span>
+<span data-ttu-id="10987-141">컨테이너의 액세스 수준을 hello를 사용 하 여 수정할 수 있습니다 또는 **setContainerAcl** toospecify hello 액세스 수준입니다.</span><span class="sxs-lookup"><span data-stu-id="10987-141">Alternatively, you can modify hello access level of a container by using **setContainerAcl** toospecify hello access level.</span></span> <span data-ttu-id="10987-142">hello 다음 코드 예제에서는 변경 내용을 hello 액세스 수준 toocontainer:</span><span class="sxs-lookup"><span data-stu-id="10987-142">hello following code example changes hello access level toocontainer:</span></span>
 
 ```nodejs
 blobSvc.setContainerAcl('mycontainer', null /* signedIdentifiers */, {publicAccessLevel : 'container'} /* publicAccessLevel*/, function(error, result, response){
   if(!error){
-    // Container access level set to 'container'
+    // Container access level set too'container'
   }
 });
 ```
 
-<span data-ttu-id="255ef-143">result 값에는 컨테이너의 **ETag** 정보와 같은 작업 관련 정보가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-143">The result contains information about the operation, including the current **ETag** for the container.</span></span>
+<span data-ttu-id="10987-143">hello 결과 대 한 정보가 hello 현재 포함 하는 hello 작업 **ETag** hello 컨테이너에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-143">hello result contains information about hello operation, including hello current **ETag** for hello container.</span></span>
 
-### <a name="filters"></a><span data-ttu-id="255ef-144">필터</span><span class="sxs-lookup"><span data-stu-id="255ef-144">Filters</span></span>
-<span data-ttu-id="255ef-145">**BlobService**를 사용하여 수행되는 작업에 선택적 필터링 작업을 적용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-145">You can apply optional filtering operations to operations performed using **BlobService**.</span></span> <span data-ttu-id="255ef-146">필터링 작업은 로깅, 자동 재시도 등을 포함할 수 있습니다. 필터는 시그니쳐가 있는 메서드를 구현하는 개체입니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-146">Filtering operations can include logging, automatically retrying, etc. Filters are objects that implement a method with the signature:</span></span>
+### <a name="filters"></a><span data-ttu-id="10987-144">필터</span><span class="sxs-lookup"><span data-stu-id="10987-144">Filters</span></span>
+<span data-ttu-id="10987-145">선택적 작업 수행 toooperations 사용 하는 필터를 적용할 수 있습니다 **BlobService**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-145">You can apply optional filtering operations toooperations performed using **BlobService**.</span></span> <span data-ttu-id="10987-146">필터링 작업은 로깅, 자동 재시도 등을 포함할 수 있습니다. 필터는 hello 서명으로 메서드를 구현 하는 개체:</span><span class="sxs-lookup"><span data-stu-id="10987-146">Filtering operations can include logging, automatically retrying, etc. Filters are objects that implement a method with hello signature:</span></span>
 
 ```nodejs
 function handle (requestOptions, next)
 ```
 
-<span data-ttu-id="255ef-147">요청 옵션에 대한 전처리를 수행한 후 메서드는 다음 서명을 사용하여 콜백을 전달하는 "next"를 호출해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-147">After doing its preprocessing on the request options, the method needs to call "next", passing a callback with the following signature:</span></span>
+<span data-ttu-id="10987-147">Hello 요청 옵션에 전처리를 수행한 후 hello 메서드는 toocall "다음" 필요 콜백을 뒤 서명에 hello로 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-147">After doing its preprocessing on hello request options, hello method needs toocall "next", passing a callback with hello following signature:</span></span>
 
 ```nodejs
 function (returnObject, finalCallback, next)
 ```
 
-<span data-ttu-id="255ef-148">이 콜백에서 returnObject(서버에 요청 응답 반환)를 처리한 후 콜백은 next(있는 경우)를 호출하여 다른 필터를 계속 처리하거나 finalCallback을 호출하여 서비스 호출을 종료해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-148">In this callback, and after processing the returnObject (the response from the request to the server), the callback needs to either invoke next if it exists to continue processing other filters or simply invoke finalCallback to end the service invocation.</span></span>
+<span data-ttu-id="10987-148">이 콜백에서 hello returnObject (hello toohello 서버 요청에서에서 응답 hello)를 처리 한 후, hello 콜백 필요 tooeither 단순히 finalCallback tooend hello 서비스를 호출 하거나 다른 필터를 처리 하는 toocontinue 있는 경우 다음에 호출할 호출 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-148">In this callback, and after processing hello returnObject (hello response from hello request toohello server), hello callback needs tooeither invoke next if it exists toocontinue processing other filters or simply invoke finalCallback tooend hello service invocation.</span></span>
 
-<span data-ttu-id="255ef-149">Node.js용 Azure SDK에는 재시도 논리를 구현하는 두 필터 **ExponentialRetryPolicyFilter** 및 **LinearRetryPolicyFilter**가 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-149">Two filters that implement retry logic are included with the Azure SDK for Node.js, **ExponentialRetryPolicyFilter** and **LinearRetryPolicyFilter**.</span></span> <span data-ttu-id="255ef-150">다음은 **ExponentialRetryPolicyFilter**를 사용하는 **BlobService** 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-150">The following creates a **BlobService** object that uses the **ExponentialRetryPolicyFilter**:</span></span>
+<span data-ttu-id="10987-149">재시도 논리를 구현 하는 두 개의 필터 hello Node.js 용 Azure SDK에 포함 된 **ExponentialRetryPolicyFilter** 및 **LinearRetryPolicyFilter**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-149">Two filters that implement retry logic are included with hello Azure SDK for Node.js, **ExponentialRetryPolicyFilter** and **LinearRetryPolicyFilter**.</span></span> <span data-ttu-id="10987-150">hello 다음 만듭니다는 **BlobService** hello를 사용 하는 개체 **ExponentialRetryPolicyFilter**:</span><span class="sxs-lookup"><span data-stu-id="10987-150">hello following creates a **BlobService** object that uses hello **ExponentialRetryPolicyFilter**:</span></span>
 
 ```nodejs
 var retryOperations = new azure.ExponentialRetryPolicyFilter();
 var blobSvc = azure.createBlobService().withFilter(retryOperations);
 ```
 
-## <a name="upload-a-blob-into-a-container"></a><span data-ttu-id="255ef-151">컨테이너에 Blob 업로드</span><span class="sxs-lookup"><span data-stu-id="255ef-151">Upload a blob into a container</span></span>
-<span data-ttu-id="255ef-152">블록 Blob, 페이지 Blob 및 추가 Blob의 세 가지 Blob 유형이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-152">There are three types of blobs: block blobs, page blobs and append blobs.</span></span> <span data-ttu-id="255ef-153">블록 Blob을 사용하면 대용량 데이터를 보다 효율적으로 업로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-153">Block blobs allow you to more efficiently upload large data.</span></span> <span data-ttu-id="255ef-154">추가 Blob은 추가 작업에 최적화되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-154">Append blobs are optimized for append operations.</span></span> <span data-ttu-id="255ef-155">페이지 Blob은 읽기/쓰기 작업에 최적화되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-155">Page blobs are optimized for read/write operations.</span></span> <span data-ttu-id="255ef-156">자세한 내용은 [블록 Blob, 추가 Blob 및 페이지 Blob 이해](http://msdn.microsoft.com/library/azure/ee691964.aspx)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="255ef-156">For more information, see [Understanding Block Blobs, Append Blobs, and Page Blobs](http://msdn.microsoft.com/library/azure/ee691964.aspx).</span></span>
+## <a name="upload-a-blob-into-a-container"></a><span data-ttu-id="10987-151">컨테이너에 Blob 업로드</span><span class="sxs-lookup"><span data-stu-id="10987-151">Upload a blob into a container</span></span>
+<span data-ttu-id="10987-152">블록 Blob, 페이지 Blob 및 추가 Blob의 세 가지 Blob 유형이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="10987-152">There are three types of blobs: block blobs, page blobs and append blobs.</span></span> <span data-ttu-id="10987-153">블록 blob를 사용 하면 toomore 효율적으로 큰 데이터를 업로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-153">Block blobs allow you toomore efficiently upload large data.</span></span> <span data-ttu-id="10987-154">추가 Blob은 추가 작업에 최적화되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="10987-154">Append blobs are optimized for append operations.</span></span> <span data-ttu-id="10987-155">페이지 Blob은 읽기/쓰기 작업에 최적화되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="10987-155">Page blobs are optimized for read/write operations.</span></span> <span data-ttu-id="10987-156">자세한 내용은 [블록 Blob, 추가 Blob 및 페이지 Blob 이해](http://msdn.microsoft.com/library/azure/ee691964.aspx)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="10987-156">For more information, see [Understanding Block Blobs, Append Blobs, and Page Blobs](http://msdn.microsoft.com/library/azure/ee691964.aspx).</span></span>
 
-### <a name="block-blobs"></a><span data-ttu-id="255ef-157">블록 Blob</span><span class="sxs-lookup"><span data-stu-id="255ef-157">Block blobs</span></span>
-<span data-ttu-id="255ef-158">데이터를 블록 Blob으로 업로드하려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-158">To upload data to a block blob, use the following:</span></span>
+### <a name="block-blobs"></a><span data-ttu-id="10987-157">블록 Blob</span><span class="sxs-lookup"><span data-stu-id="10987-157">Block blobs</span></span>
+<span data-ttu-id="10987-158">tooupload 데이터 tooa 블록 blob을 사용 하 여 hello 다음:</span><span class="sxs-lookup"><span data-stu-id="10987-158">tooupload data tooa block blob, use hello following:</span></span>
 
-* <span data-ttu-id="255ef-159">**createBlockBlobFromLocalFile** - 새 블록 Blob을 만들고 파일 내용을 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-159">**createBlockBlobFromLocalFile** - creates a new block blob and uploads the contents of a file</span></span>
-* <span data-ttu-id="255ef-160">**createBlockBlobFromStream** - 새 블록 Blob을 만들고 스트림의 내용을 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-160">**createBlockBlobFromStream** - creates a new block blob and uploads the contents of a stream</span></span>
-* <span data-ttu-id="255ef-161">**createBlockBlobFromText** - 새 블록 Blob을 만들고 문자열의 내용을 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-161">**createBlockBlobFromText** - creates a new block blob and uploads the contents of a string</span></span>
-* <span data-ttu-id="255ef-162">**createWriteStreamToBlockBlob** - 블록 Blob에 쓰기 스트림을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-162">**createWriteStreamToBlockBlob** - provides a write stream to a block blob</span></span>
+* <span data-ttu-id="10987-159">**createBlockBlobFromLocalFile** -새 블록 blob를 만들고 업로드 된 파일의 내용을 hello</span><span class="sxs-lookup"><span data-stu-id="10987-159">**createBlockBlobFromLocalFile** - creates a new block blob and uploads hello contents of a file</span></span>
+* <span data-ttu-id="10987-160">**createBlockBlobFromStream** -새 블록 blob를 만들고 stream의 hello 내용 업로드</span><span class="sxs-lookup"><span data-stu-id="10987-160">**createBlockBlobFromStream** - creates a new block blob and uploads hello contents of a stream</span></span>
+* <span data-ttu-id="10987-161">**createBlockBlobFromText** -새 블록 blob를 만들고 문자열의 내용을 hello 업로드</span><span class="sxs-lookup"><span data-stu-id="10987-161">**createBlockBlobFromText** - creates a new block blob and uploads hello contents of a string</span></span>
+* <span data-ttu-id="10987-162">**createWriteStreamToBlockBlob** -쓰기 스트림을 tooa 블록 blob를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-162">**createWriteStreamToBlockBlob** - provides a write stream tooa block blob</span></span>
 
-<span data-ttu-id="255ef-163">다음 코드 예제에서는 **test.txt** 파일의 내용을 **myblob**에 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-163">The following code example uploads the contents of the **test.txt** file into **myblob**.</span></span>
+<span data-ttu-id="10987-163">hello 다음 코드 예제에서는 업로드 hello 내용의 hello **test.txt** 파일 **myblob**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-163">hello following code example uploads hello contents of hello **test.txt** file into **myblob**.</span></span>
 
 ```nodejs
 blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', function(error, result, response){
@@ -165,17 +165,17 @@ blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', functi
 });
 ```
 
-<span data-ttu-id="255ef-164">이 메서드에 의해 `result` 반환되면 Blob의 **ETag** 와 같은 작업 관련 정보가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-164">The `result` returned by these methods contains information on the operation, such as the **ETag** of the blob.</span></span>
+<span data-ttu-id="10987-164">hello `result` 이러한 메서드에 의해 반환 된 hello 등 hello 작업에 대 한 정보 **ETag** hello blob의 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-164">hello `result` returned by these methods contains information on hello operation, such as hello **ETag** of hello blob.</span></span>
 
-### <a name="append-blobs"></a><span data-ttu-id="255ef-165">추가 Blob</span><span class="sxs-lookup"><span data-stu-id="255ef-165">Append blobs</span></span>
-<span data-ttu-id="255ef-166">데이터를 추가 Blob으로 업로드하려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-166">To upload data to a new append blob, use the following:</span></span>
+### <a name="append-blobs"></a><span data-ttu-id="10987-165">추가 Blob</span><span class="sxs-lookup"><span data-stu-id="10987-165">Append blobs</span></span>
+<span data-ttu-id="10987-166">tooupload 데이터 tooa 새 blob을 추가, hello 다음을 사용 하 여:</span><span class="sxs-lookup"><span data-stu-id="10987-166">tooupload data tooa new append blob, use hello following:</span></span>
 
-* <span data-ttu-id="255ef-167">**createAppendBlobFromLocalFile** - 새 추가 Blob을 만들고 파일 내용을 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-167">**createAppendBlobFromLocalFile** - creates a new append blob and uploads the contents of a file</span></span>
-* <span data-ttu-id="255ef-168">**createAppendBlobFromStream** - 새 추가 Blob을 만들고 스트림 내용을 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-168">**createAppendBlobFromStream** - creates a new append blob and uploads the contents of a stream</span></span>
-* <span data-ttu-id="255ef-169">**createAppendBlobFromText** - 새 추가 Blob을 만들고 문자열 내용을 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-169">**createAppendBlobFromText** - creates a new append blob and uploads the contents of a string</span></span>
-* <span data-ttu-id="255ef-170">**createWriteStreamToNewAppendBlob** - 새 추가 Blob을 만든 다음 쓸 스트림을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-170">**createWriteStreamToNewAppendBlob** - creates a new append blob and then provides a stream to write to it</span></span>
+* <span data-ttu-id="10987-167">**createAppendBlobFromLocalFile** -새 blob를 만들고 업로드 된 파일의 내용을 hello</span><span class="sxs-lookup"><span data-stu-id="10987-167">**createAppendBlobFromLocalFile** - creates a new append blob and uploads hello contents of a file</span></span>
+* <span data-ttu-id="10987-168">**createAppendBlobFromStream** -새 blob를 만들고 stream의 hello 내용 업로드</span><span class="sxs-lookup"><span data-stu-id="10987-168">**createAppendBlobFromStream** - creates a new append blob and uploads hello contents of a stream</span></span>
+* <span data-ttu-id="10987-169">**createAppendBlobFromText** -새 blob를 만들고 문자열의 내용을 hello 업로드</span><span class="sxs-lookup"><span data-stu-id="10987-169">**createAppendBlobFromText** - creates a new append blob and uploads hello contents of a string</span></span>
+* <span data-ttu-id="10987-170">**createWriteStreamToNewAppendBlob** -새 blob 키를 만들고 다음 스트림 toowrite tooit 제공</span><span class="sxs-lookup"><span data-stu-id="10987-170">**createWriteStreamToNewAppendBlob** - creates a new append blob and then provides a stream toowrite tooit</span></span>
 
-<span data-ttu-id="255ef-171">다음 코드 예제에서는 **test.txt** 파일의 내용을 **myappendblob**에 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-171">The following code example uploads the contents of the **test.txt** file into **myappendblob**.</span></span>
+<span data-ttu-id="10987-171">hello 다음 코드 예제에서는 업로드 hello 내용의 hello **test.txt** 파일 **myappendblob**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-171">hello following code example uploads hello contents of hello **test.txt** file into **myappendblob**.</span></span>
 
 ```nodejs
 blobSvc.createAppendBlobFromLocalFile('mycontainer', 'myappendblob', 'test.txt', function(error, result, response){
@@ -185,39 +185,39 @@ blobSvc.createAppendBlobFromLocalFile('mycontainer', 'myappendblob', 'test.txt',
 });
 ```
 
-<span data-ttu-id="255ef-172">기존 추가 Blob에 블록을 추가하려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-172">To append a block to an existing append blob, use the following:</span></span>
+<span data-ttu-id="10987-172">tooappend 블록 tooan 기존 blob의 경우 다음 사용 하 여 hello를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-172">tooappend a block tooan existing append blob, use hello following:</span></span>
 
-* <span data-ttu-id="255ef-173">**appendFromLocalFile** -기존 추가 Blob에 파일 내용을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-173">**appendFromLocalFile** - append the contents of a file to an existing append blob</span></span>
-* <span data-ttu-id="255ef-174">**appendFromStream** -기존 추가 Blob에 스트림 내용을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-174">**appendFromStream** - append the contents of a stream to an existing append blob</span></span>
-* <span data-ttu-id="255ef-175">**appendFromText** -기존 추가 Blob에 문자열 내용을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-175">**appendFromText** - append the contents of a string to an existing append blob</span></span>
-* <span data-ttu-id="255ef-176">**appendBlockFromStream** -기존 추가 Blob에 스트림 내용을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-176">**appendBlockFromStream** - append the contents of a stream to an existing append blob</span></span>
-* <span data-ttu-id="255ef-177">**appendBlockFromText** -기존 추가 Blob에 문자열 내용을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-177">**appendBlockFromText** - append the contents of a string to an existing append blob</span></span>
+* <span data-ttu-id="10987-173">**appendFromLocalFile** -hello 내용을 추가 합니다. 기존 파일 tooan의 blob 추가</span><span class="sxs-lookup"><span data-stu-id="10987-173">**appendFromLocalFile** - append hello contents of a file tooan existing append blob</span></span>
+* <span data-ttu-id="10987-174">**appendFromStream** -hello 내용을 추가할 추가 blob를 기존 스트림에 tooan의</span><span class="sxs-lookup"><span data-stu-id="10987-174">**appendFromStream** - append hello contents of a stream tooan existing append blob</span></span>
+* <span data-ttu-id="10987-175">**appendFromText** -hello 내용을 추가 하는 문자열 tooan의 blob를 추가할 기존</span><span class="sxs-lookup"><span data-stu-id="10987-175">**appendFromText** - append hello contents of a string tooan existing append blob</span></span>
+* <span data-ttu-id="10987-176">**appendBlockFromStream** -hello 내용을 추가할 추가 blob를 기존 스트림에 tooan의</span><span class="sxs-lookup"><span data-stu-id="10987-176">**appendBlockFromStream** - append hello contents of a stream tooan existing append blob</span></span>
+* <span data-ttu-id="10987-177">**appendBlockFromText** -hello 내용을 추가 하는 문자열 tooan의 blob를 추가할 기존</span><span class="sxs-lookup"><span data-stu-id="10987-177">**appendBlockFromText** - append hello contents of a string tooan existing append blob</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="255ef-178">appendFromXXX API는 불필요한 서버 호출을 방지하기 위해 빠른 오류에 대한 일부 클라이언트 쪽 유효성 검사를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-178">appendFromXXX APIs will do some client-side validation to fail fast to avoid unnecessary server calls.</span></span> <span data-ttu-id="255ef-179">appendBlockFromXXX는 이를 수행하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-179">appendBlockFromXXX won't.</span></span>
+> <span data-ttu-id="10987-178">appendFromXXX Api는 일부 클라이언트 쪽 유효성 검사 toofail 빠른 tooavoid 불필요 한 서버 호출을 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-178">appendFromXXX APIs will do some client-side validation toofail fast tooavoid unnecessary server calls.</span></span> <span data-ttu-id="10987-179">appendBlockFromXXX는 이를 수행하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="10987-179">appendBlockFromXXX won't.</span></span>
 >
 >
 
-<span data-ttu-id="255ef-180">다음 코드 예제에서는 **test.txt** 파일의 내용을 **myappendblob**에 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-180">The following code example uploads the contents of the **test.txt** file into **myappendblob**.</span></span>
+<span data-ttu-id="10987-180">hello 다음 코드 예제에서는 업로드 hello 내용의 hello **test.txt** 파일 **myappendblob**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-180">hello following code example uploads hello contents of hello **test.txt** file into **myappendblob**.</span></span>
 
 ```nodejs
-blobSvc.appendFromText('mycontainer', 'myappendblob', 'text to be appended', function(error, result, response){
+blobSvc.appendFromText('mycontainer', 'myappendblob', 'text toobe appended', function(error, result, response){
   if(!error){
     // text appended
   }
 });
 ```
 
-### <a name="page-blobs"></a><span data-ttu-id="255ef-181">페이지 Blob</span><span class="sxs-lookup"><span data-stu-id="255ef-181">Page blobs</span></span>
-<span data-ttu-id="255ef-182">데이터를 페이지 Blob으로 업로드하려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-182">To upload data to a page blob, use the following:</span></span>
+### <a name="page-blobs"></a><span data-ttu-id="10987-181">페이지 Blob</span><span class="sxs-lookup"><span data-stu-id="10987-181">Page blobs</span></span>
+<span data-ttu-id="10987-182">tooupload 데이터 tooa 페이지 blob의 경우 다음 사용 하 여 hello:</span><span class="sxs-lookup"><span data-stu-id="10987-182">tooupload data tooa page blob, use hello following:</span></span>
 
-* <span data-ttu-id="255ef-183">**createPageBlob** - 특정 길이의 새 페이지 Blob을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-183">**createPageBlob** - creates a new page blob of a specific length</span></span>
-* <span data-ttu-id="255ef-184">**createPageBlobFromLocalFile** - 새 페이지 Blob을 만들고 파일 내용을 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-184">**createPageBlobFromLocalFile** - creates a new page blob and uploads the contents of a file</span></span>
-* <span data-ttu-id="255ef-185">**createPageBlobFromStream** - 새 페이지 Blob을 만들고 스트림의 내용을 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-185">**createPageBlobFromStream** - creates a new page blob and uploads the contents of a stream</span></span>
-* <span data-ttu-id="255ef-186">**createWriteStreamToExistingPageBlob** - 기존 페이지 Blob에 쓰기 스트림을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-186">**createWriteStreamToExistingPageBlob** - provides a write stream to an existing page blob</span></span>
-* <span data-ttu-id="255ef-187">**createWriteStreamToNewPageBlob** - 새 페이지 Blob을 만든 다음 쓸 스트림을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-187">**createWriteStreamToNewPageBlob** - creates a new page blob and then provides a stream to write to it</span></span>
+* <span data-ttu-id="10987-183">**createPageBlob** - 특정 길이의 새 페이지 Blob을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="10987-183">**createPageBlob** - creates a new page blob of a specific length</span></span>
+* <span data-ttu-id="10987-184">**createPageBlobFromLocalFile** -새 페이지 blob를 만들고 업로드 된 파일의 내용을 hello</span><span class="sxs-lookup"><span data-stu-id="10987-184">**createPageBlobFromLocalFile** - creates a new page blob and uploads hello contents of a file</span></span>
+* <span data-ttu-id="10987-185">**createPageBlobFromStream** -새 페이지 blob를 만들고 stream의 hello 내용 업로드</span><span class="sxs-lookup"><span data-stu-id="10987-185">**createPageBlobFromStream** - creates a new page blob and uploads hello contents of a stream</span></span>
+* <span data-ttu-id="10987-186">**createWriteStreamToExistingPageBlob** -쓰기 스트림을 tooan 기존 페이지 blob를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-186">**createWriteStreamToExistingPageBlob** - provides a write stream tooan existing page blob</span></span>
+* <span data-ttu-id="10987-187">**createWriteStreamToNewPageBlob** -새 페이지 blob를 만들고 스트림 toowrite tooit를 제공 합니다</span><span class="sxs-lookup"><span data-stu-id="10987-187">**createWriteStreamToNewPageBlob** - creates a new page blob and then provides a stream toowrite tooit</span></span>
 
-<span data-ttu-id="255ef-188">다음 코드 예제에서는 **test.txt** 파일의 내용을 **mypageblob**에 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-188">The following code example uploads the contents of the **test.txt** file into **mypageblob**.</span></span>
+<span data-ttu-id="10987-188">hello 다음 코드 예제에서는 업로드 hello 내용의 hello **test.txt** 파일 **mypageblob**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-188">hello following code example uploads hello contents of hello **test.txt** file into **mypageblob**.</span></span>
 
 ```nodejs
 blobSvc.createPageBlobFromLocalFile('mycontainer', 'mypageblob', 'test.txt', function(error, result, response){
@@ -228,33 +228,33 @@ blobSvc.createPageBlobFromLocalFile('mycontainer', 'mypageblob', 'test.txt', fun
 ```
 
 > [!NOTE]
-> <span data-ttu-id="255ef-189">페이지 Bobl은 512바이트의 '페이지'로 구성됩니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-189">Page blobs consist of 512-byte 'pages'.</span></span> <span data-ttu-id="255ef-190">크기가 512의 배수가 아닌 경우에는 데이터를 업로드할 때 오류가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-190">You will receive an error when uploading data with a size that is not a multiple of 512.</span></span>
+> <span data-ttu-id="10987-189">페이지 Bobl은 512바이트의 '페이지'로 구성됩니다.</span><span class="sxs-lookup"><span data-stu-id="10987-189">Page blobs consist of 512-byte 'pages'.</span></span> <span data-ttu-id="10987-190">크기가 512의 배수가 아닌 경우에는 데이터를 업로드할 때 오류가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="10987-190">You will receive an error when uploading data with a size that is not a multiple of 512.</span></span>
 >
 >
 
-## <a name="list-the-blobs-in-a-container"></a><span data-ttu-id="255ef-191">컨테이너의 Blob 나열</span><span class="sxs-lookup"><span data-stu-id="255ef-191">List the blobs in a container</span></span>
-<span data-ttu-id="255ef-192">컨테이너 내의 Blob을 나열하려면 **listBlobsSegmented** 메서드를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-192">To list the blobs in a container, use the **listBlobsSegmented** method.</span></span> <span data-ttu-id="255ef-193">특정 접두사가 있는 Blob을 반환하려면 **listBlobsSegmentedWithPrefix**를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-193">If you'd like to return blobs with a specific prefix, use **listBlobsSegmentedWithPrefix**.</span></span>
+## <a name="list-hello-blobs-in-a-container"></a><span data-ttu-id="10987-191">컨테이너에서 hello blob 나열</span><span class="sxs-lookup"><span data-stu-id="10987-191">List hello blobs in a container</span></span>
+<span data-ttu-id="10987-192">toolist hello blob 컨테이너에서 hello를 사용 하 여 **listBlobsSegmented** 메서드.</span><span class="sxs-lookup"><span data-stu-id="10987-192">toolist hello blobs in a container, use hello **listBlobsSegmented** method.</span></span> <span data-ttu-id="10987-193">사용 하 여 지정 된 접두사로 tooreturn blob를 원하는 경우 **listBlobsSegmentedWithPrefix**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-193">If you'd like tooreturn blobs with a specific prefix, use **listBlobsSegmentedWithPrefix**.</span></span>
 
 ```nodejs
 blobSvc.listBlobsSegmented('mycontainer', null, function(error, result, response){
   if(!error){
-      // result.entries contains the entries
-      // If not all blobs were returned, result.continuationToken has the continuation token.
+      // result.entries contains hello entries
+      // If not all blobs were returned, result.continuationToken has hello continuation token.
   }
 });
 ```
 
-<span data-ttu-id="255ef-194">`result`에는 각 Blob을 설명하는 개체의 배열인 `entries` 컬렉션이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-194">The `result` contains an `entries` collection, which is an array of objects that describe each blob.</span></span> <span data-ttu-id="255ef-195">또한 Blob을 모두 반환할 수 없는 경우에는 `result`에서 추가 항목 검색에 두 번째 매개 변수로 사용할 수 있는 `continuationToken`을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-195">If all blobs cannot be returned, the `result` also provides a `continuationToken`, which you may use as the second parameter to retrieve additional entries.</span></span>
+<span data-ttu-id="10987-194">hello `result` 포함 한 `entries` 컬렉션은 각 blob에 설명 하는 개체의 배열입니다.</span><span class="sxs-lookup"><span data-stu-id="10987-194">hello `result` contains an `entries` collection, which is an array of objects that describe each blob.</span></span> <span data-ttu-id="10987-195">모든 blob를 반환할 수 없는 경우 hello `result` 제공는 `continuationToken`, hello 두 번째 매개 변수 tooretrieve 추가 항목으로 사용할 수 있는 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-195">If all blobs cannot be returned, hello `result` also provides a `continuationToken`, which you may use as hello second parameter tooretrieve additional entries.</span></span>
 
-## <a name="download-blobs"></a><span data-ttu-id="255ef-196">Blob 다운로드</span><span class="sxs-lookup"><span data-stu-id="255ef-196">Download blobs</span></span>
-<span data-ttu-id="255ef-197">Blob에서 데이터를 다운로드하려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-197">To download data from a blob, use the following:</span></span>
+## <a name="download-blobs"></a><span data-ttu-id="10987-196">Blob 다운로드</span><span class="sxs-lookup"><span data-stu-id="10987-196">Download blobs</span></span>
+<span data-ttu-id="10987-197">blob에서 toodownload 데이터 hello 다음을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-197">toodownload data from a blob, use hello following:</span></span>
 
-* <span data-ttu-id="255ef-198">**getBlobToLocalFile** - Blob의 내용을 파일에 씁니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-198">**getBlobToLocalFile** - writes the blob contents to file</span></span>
-* <span data-ttu-id="255ef-199">**getBlobToStream** - Blob의 내용을 스트림에 씁니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-199">**getBlobToStream** - writes the blob contents to a stream</span></span>
-* <span data-ttu-id="255ef-200">**getBlobToText** - Blob의 내용을 문자열에 씁니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-200">**getBlobToText** - writes the blob contents to a string</span></span>
-* <span data-ttu-id="255ef-201">**createReadStream** - Blob에서 읽는 스트림을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-201">**createReadStream** - provides a stream to read from the blob</span></span>
+* <span data-ttu-id="10987-198">**getBlobToLocalFile** -hello blob 내용을 toofile 씁니다.</span><span class="sxs-lookup"><span data-stu-id="10987-198">**getBlobToLocalFile** - writes hello blob contents toofile</span></span>
+* <span data-ttu-id="10987-199">**getBlobToStream** -hello blob 내용을 tooa 스트림에 씁니다.</span><span class="sxs-lookup"><span data-stu-id="10987-199">**getBlobToStream** - writes hello blob contents tooa stream</span></span>
+* <span data-ttu-id="10987-200">**getBlobToText** -hello blob 콘텐츠가 tooa 문자열을 씁니다.</span><span class="sxs-lookup"><span data-stu-id="10987-200">**getBlobToText** - writes hello blob contents tooa string</span></span>
+* <span data-ttu-id="10987-201">**createReadStream** -hello blob에서 스트림 tooread 제공</span><span class="sxs-lookup"><span data-stu-id="10987-201">**createReadStream** - provides a stream tooread from hello blob</span></span>
 
-<span data-ttu-id="255ef-202">다음 코드 예제에서는 **getBlobToStream**을 사용하여 **myblob** Blob의 콘텐츠를 다운로드한 다음 스트림을 사용하여 **output.txt** 파일에 저장하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-202">The following code example demonstrates using **getBlobToStream** to download the contents of the **myblob** blob and store it to the **output.txt** file by using a stream:</span></span>
+<span data-ttu-id="10987-202">hello 다음 코드 예제에서는 사용 하 여 **getBlobToStream** toodownload hello 내용의 hello **myblob** blob 및 toohello 저장 **output.txt 라는** 사용 하 여 파일을 스트림:</span><span class="sxs-lookup"><span data-stu-id="10987-202">hello following code example demonstrates using **getBlobToStream** toodownload hello contents of hello **myblob** blob and store it toohello **output.txt** file by using a stream:</span></span>
 
 ```nodejs
 var fs = require('fs');
@@ -265,10 +265,10 @@ blobSvc.getBlobToStream('mycontainer', 'myblob', fs.createWriteStream('output.tx
 });
 ```
 
-<span data-ttu-id="255ef-203">`result` 에는 **ETag** 정보를 비롯한 Blob 관련 정보가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-203">The `result` contains information about the blob, including **ETag** information.</span></span>
+<span data-ttu-id="10987-203">hello `result` hello blob에 대 한 정보도 포함 하 여 **ETag** 정보입니다.</span><span class="sxs-lookup"><span data-stu-id="10987-203">hello `result` contains information about hello blob, including **ETag** information.</span></span>
 
-## <a name="delete-a-blob"></a><span data-ttu-id="255ef-204">Blob 삭제</span><span class="sxs-lookup"><span data-stu-id="255ef-204">Delete a blob</span></span>
-<span data-ttu-id="255ef-205">마지막으로 Blob을 삭제하려면 **deleteBlob**을 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-205">Finally, to delete a blob, call **deleteBlob**.</span></span> <span data-ttu-id="255ef-206">다음 코드 예제에서는 **myblob**이라는 Blob을 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-206">The following code example deletes the blob named **myblob**.</span></span>
+## <a name="delete-a-blob"></a><span data-ttu-id="10987-204">Blob 삭제</span><span class="sxs-lookup"><span data-stu-id="10987-204">Delete a blob</span></span>
+<span data-ttu-id="10987-205">마지막으로, blob toodelete 호출 **deleteBlob**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-205">Finally, toodelete a blob, call **deleteBlob**.</span></span> <span data-ttu-id="10987-206">다음 코드 예제에서는 삭제 hello 라는 blob hello **myblob**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-206">hello following code example deletes hello blob named **myblob**.</span></span>
 
 ```nodejs
 blobSvc.deleteBlob(containerName, 'myblob', function(error, response){
@@ -278,16 +278,16 @@ blobSvc.deleteBlob(containerName, 'myblob', function(error, response){
 });
 ```
 
-## <a name="concurrent-access"></a><span data-ttu-id="255ef-207">동시 액세스</span><span class="sxs-lookup"><span data-stu-id="255ef-207">Concurrent access</span></span>
-<span data-ttu-id="255ef-208">여러 클라이언트 또는 여러 프로세스 인스턴스에서 Blob에 대한 동시 액세스를 지원하려면 **ETags** 또는 **임대**를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-208">To support concurrent access to a blob from multiple clients or multiple process instances, you can use **ETags** or **leases**.</span></span>
+## <a name="concurrent-access"></a><span data-ttu-id="10987-207">동시 액세스</span><span class="sxs-lookup"><span data-stu-id="10987-207">Concurrent access</span></span>
+<span data-ttu-id="10987-208">사용할 수 있습니다 toosupport 동시 액세스 tooa 여러 클라이언트 또는 여러 프로세스에서 blob, **Etag** 또는 **임대**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-208">toosupport concurrent access tooa blob from multiple clients or multiple process instances, you can use **ETags** or **leases**.</span></span>
 
-* <span data-ttu-id="255ef-209">**Etag** - Blob이나 컨테이너를 다른 프로세스에서 수정했는지 감지할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-209">**Etag** - provides a way to detect that the blob or container has been modified by another process</span></span>
-* <span data-ttu-id="255ef-210">**임대** - Blob에 대해 일정 기간 동안 단독, 갱신 가능, 쓰기 또는 삭제 권한을 얻을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-210">**Lease** - provides a way to obtain exclusive, renewable, write or delete access to a blob for a period of time</span></span>
+* <span data-ttu-id="10987-209">**Etag** -다른 프로세스에서 수정 했습니다. blob 또는 컨테이너 hello 하는 방식으로 toodetect 제공</span><span class="sxs-lookup"><span data-stu-id="10987-209">**Etag** - provides a way toodetect that hello blob or container has been modified by another process</span></span>
+* <span data-ttu-id="10987-210">**임대** -tooobtain 단독, 갱신, 쓰기 방식으로 제공 하거나 일정 기간에 대 한 액세스 tooa blob 삭제</span><span class="sxs-lookup"><span data-stu-id="10987-210">**Lease** - provides a way tooobtain exclusive, renewable, write or delete access tooa blob for a period of time</span></span>
 
-### <a name="etag"></a><span data-ttu-id="255ef-211">ETag</span><span class="sxs-lookup"><span data-stu-id="255ef-211">ETag</span></span>
-<span data-ttu-id="255ef-212">ETag는 여러 클라이언트 또는 인스턴스에서 블록 Blob에 또는 페이지 Blob에 동시에 쓰기를 허용해야 하는 경우에 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-212">Use ETags if you need to allow multiple clients or instances to write to the block Blob or page Blob simultaneously.</span></span> <span data-ttu-id="255ef-213">ETag를 사용하면 컨테이너나 Blob을 처음 읽거나 만든 후에 수정되었는지 확인하여 다른 클라이언트나 프로세스에서 커밋된 변경 사항을 덮어쓰는 것을 방지할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-213">The ETag allows you to determine if the container or blob was modified since you initially read or created it, which allows you to avoid overwriting changes committed by another client or process.</span></span>
+### <a name="etag"></a><span data-ttu-id="10987-211">ETag</span><span class="sxs-lookup"><span data-stu-id="10987-211">ETag</span></span>
+<span data-ttu-id="10987-212">여러 클라이언트 또는 인스턴스 toowrite toohello 블록 Blob 또는 페이지 Blob 동시에 tooallow 해야 할 경우 Etag를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-212">Use ETags if you need tooallow multiple clients or instances toowrite toohello block Blob or page Blob simultaneously.</span></span> <span data-ttu-id="10987-213">hello ETag 있습니다 toodetermine를 hello 컨테이너 또는 blob가 수정 되었으면 이후 처음 읽기 또는 생성자, 다른 클라이언트 또는 프로세스에 의해 커밋된 변경 내용을 덮어쓰지 tooavoid 있습니다.</span><span class="sxs-lookup"><span data-stu-id="10987-213">hello ETag allows you toodetermine if hello container or blob was modified since you initially read or created it, which allows you tooavoid overwriting changes committed by another client or process.</span></span>
 
-<span data-ttu-id="255ef-214">ETag 조건은 선택적인 `options.accessConditions` 매개 변수를 사용하여 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-214">You can set ETag conditions by using the optional `options.accessConditions` parameter.</span></span> <span data-ttu-id="255ef-215">다음 코드 예제에서는 Blob이 이미 존재하고 `etagToMatch`에 포함된 ETag 값이 있는 경우에만 **test.txt** 파일을 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-215">The following code example only uploads the **test.txt** file if the blob already exists and has the ETag value contained by `etagToMatch`.</span></span>
+<span data-ttu-id="10987-214">선택적 hello를 사용 하 여 ETag 조건을 설정할 수 있습니다 `options.accessConditions` 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="10987-214">You can set ETag conditions by using hello optional `options.accessConditions` parameter.</span></span> <span data-ttu-id="10987-215">hello 다음 코드 예제에서는 업로드 hello **test.txt** hello blob에서 이미 존재 하 고 hello ETag 값이 파일에 포함 된 `etagToMatch`합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-215">hello following code example only uploads hello **test.txt** file if hello blob already exists and has hello ETag value contained by `etagToMatch`.</span></span>
 
 ```nodejs
 blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', { accessConditions: { EtagMatch: etagToMatch} }, function(error, result, response){
@@ -297,15 +297,15 @@ blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', { acce
 });
 ```
 
-<span data-ttu-id="255ef-216">ETag를 사용하는 경우 일반적인 패턴:</span><span class="sxs-lookup"><span data-stu-id="255ef-216">When you're using ETags, the general pattern is:</span></span>
+<span data-ttu-id="10987-216">Etag를 사용 하는 hello 일반적인 패턴은:</span><span class="sxs-lookup"><span data-stu-id="10987-216">When you're using ETags, hello general pattern is:</span></span>
 
-1. <span data-ttu-id="255ef-217">create, list 또는 get 작업의 결과로 ETag를 얻습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-217">Obtain the ETag as the result of a create, list, or get operation.</span></span>
-2. <span data-ttu-id="255ef-218">ETag 값이 수정되지 않은 것을 확인하며 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-218">Perform an action, checking that the ETag value has not been modified.</span></span>
+1. <span data-ttu-id="10987-217">만들기, 목록 또는 가져오기 작업의 hello 결과로 hello를 ETag를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="10987-217">Obtain hello ETag as hello result of a create, list, or get operation.</span></span>
+2. <span data-ttu-id="10987-218">해당 hello ETag 값을 수정 되지 않았는지 검사 동작을 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-218">Perform an action, checking that hello ETag value has not been modified.</span></span>
 
-<span data-ttu-id="255ef-219">값이 수정되지 않았다면 ETag 값을 얻은 후로 다른 클라이언트 또는 인스턴스에서 Blob이나 컨테이너를 수정한 것을 의미합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-219">If the value was modified, this indicates that another client or instance modified the blob or container since you obtained the ETag value.</span></span>
+<span data-ttu-id="10987-219">Hello 값이 수정 된 경우 다른 클라이언트 또는 인스턴스 hello ETag 값을 가져온 이후 hello blob 또는 컨테이너를 수정 있음을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="10987-219">If hello value was modified, this indicates that another client or instance modified hello blob or container since you obtained hello ETag value.</span></span>
 
-### <a name="lease"></a><span data-ttu-id="255ef-220">임대</span><span class="sxs-lookup"><span data-stu-id="255ef-220">Lease</span></span>
-<span data-ttu-id="255ef-221">**acquireLease** 메서드를 사용하여 임대를 받을 Blob 또는 컨테이너를 지정하면 새 임대를 받을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-221">You can acquire a new lease by using the **acquireLease** method, specifying the blob or container that you wish to obtain a lease on.</span></span> <span data-ttu-id="255ef-222">예를 들어 다음 코드에서는 **myblob**에 임대를 얻습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-222">For example, the following code acquires a lease on **myblob**.</span></span>
+### <a name="lease"></a><span data-ttu-id="10987-220">임대</span><span class="sxs-lookup"><span data-stu-id="10987-220">Lease</span></span>
+<span data-ttu-id="10987-221">Hello를 사용 하 여 새로운 임대를 획득 수 **acquireLease** 메서드에 맞다면 tooobtain 임대에 hello blob 또는 컨테이너를 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-221">You can acquire a new lease by using hello **acquireLease** method, specifying hello blob or container that you wish tooobtain a lease on.</span></span> <span data-ttu-id="10987-222">Hello 코드 다음에 임대를 획득 하는 예를 들어 **myblob**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-222">For example, hello following code acquires a lease on **myblob**.</span></span>
 
 ```nodejs
 blobSvc.acquireLease('mycontainer', 'myblob', function(error, result, response){
@@ -315,26 +315,26 @@ blobSvc.acquireLease('mycontainer', 'myblob', function(error, result, response){
 });
 ```
 
-<span data-ttu-id="255ef-223">**myblob**의 후속 작업에서는 `options.leaseId` 매개 변수를 제공해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-223">Subsequent operations on **myblob** must provide the `options.leaseId` parameter.</span></span> <span data-ttu-id="255ef-224">임대 ID는 **acquireLease**에서 `result.id`로 반환됩니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-224">The lease ID is returned as `result.id` from **acquireLease**.</span></span>
+<span data-ttu-id="10987-223">에 대 한 후속 작업 **myblob** hello를 제공 해야 `options.leaseId` 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="10987-223">Subsequent operations on **myblob** must provide hello `options.leaseId` parameter.</span></span> <span data-ttu-id="10987-224">ID가으로 반환 하는 hello 임대 `result.id` 에서 **acquireLease**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-224">hello lease ID is returned as `result.id` from **acquireLease**.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="255ef-225">기본적으로 임대 기간은 무한입니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-225">By default, the lease duration is infinite.</span></span> <span data-ttu-id="255ef-226">15초에서 60초까지의 유한한 기간을 지정하려면 `options.leaseDuration` 매개 변수를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-226">You can specify a non-infinite duration (between 15 and 60 seconds) by providing the `options.leaseDuration` parameter.</span></span>
+> <span data-ttu-id="10987-225">기본적으로 hello 임대 기간이 무한정입니다.</span><span class="sxs-lookup"><span data-stu-id="10987-225">By default, hello lease duration is infinite.</span></span> <span data-ttu-id="10987-226">Hello를 제공 하 여 (15 ~ 60 초) 사이 유한 기간을 지정할 수 있습니다 `options.leaseDuration` 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="10987-226">You can specify a non-infinite duration (between 15 and 60 seconds) by providing hello `options.leaseDuration` parameter.</span></span>
 >
 >
 
-<span data-ttu-id="255ef-227">임대를 제거하려면 **releaseLease**를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-227">To remove a lease, use **releaseLease**.</span></span> <span data-ttu-id="255ef-228">임대를 중단하면서 원래 기간이 만료될 때까지 다른 사람이 새 임대를 얻지 못하게 하려면 **breakLease**를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-228">To break a lease, but prevent others from obtaining a new lease until the original duration has expired, use **breakLease**.</span></span>
+<span data-ttu-id="10987-227">tooremove 임대를 사용 하 여 **releaseLease**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-227">tooremove a lease, use **releaseLease**.</span></span> <span data-ttu-id="10987-228">임대를 toobreak 하지만 다른 방지에서 hello 원래 지속 시간이 만료 될 때까지 새로운 임대를 획득할를 사용 하 여 **breakLease**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-228">toobreak a lease, but prevent others from obtaining a new lease until hello original duration has expired, use **breakLease**.</span></span>
 
-## <a name="work-with-shared-access-signatures"></a><span data-ttu-id="255ef-229">공유 액세스 서명 작업</span><span class="sxs-lookup"><span data-stu-id="255ef-229">Work with shared access signatures</span></span>
-<span data-ttu-id="255ef-230">SAS(공유 액세스 서명)는 저장소 계정 이름이나 키를 제공하지 않으면서 Blob 및 컨테이너에 세분화된 액세스 권한을 안전하게 제공하는 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-230">Shared access signatures (SAS) are a secure way to provide granular access to blobs and containers without providing your storage account name or keys.</span></span> <span data-ttu-id="255ef-231">공유 액세스 서명은 모바일 앱에서 Blob에 액세스하는 경우와 같이 데이터에 대해 제한된 액세스를 제공하는 경우에 자주 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-231">Shared access signatures are often used to provide limited access to your data, such as allowing a mobile app to access blobs.</span></span>
+## <a name="work-with-shared-access-signatures"></a><span data-ttu-id="10987-229">공유 액세스 서명 작업</span><span class="sxs-lookup"><span data-stu-id="10987-229">Work with shared access signatures</span></span>
+<span data-ttu-id="10987-230">공유 액세스 서명 (SAS)은 안전 하 게 tooprovide 세부적인 액세스 tooblobs 및 저장소 계정 이름 또는 키를 제공 하지 않고 컨테이너입니다.</span><span class="sxs-lookup"><span data-stu-id="10987-230">Shared access signatures (SAS) are a secure way tooprovide granular access tooblobs and containers without providing your storage account name or keys.</span></span> <span data-ttu-id="10987-231">공유 액세스 서명에 사용 되는 tooprovide 제한 된 액세스 tooyour 데이터 tooaccess blob 모바일 앱을 허용 하는 등 경우가 많습니다.</span><span class="sxs-lookup"><span data-stu-id="10987-231">Shared access signatures are often used tooprovide limited access tooyour data, such as allowing a mobile app tooaccess blobs.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="255ef-232">Blob에 대해 익명 액세스를 허용할 수도 있지만 공유 액세스 서명에서 더 잘 제어된 액세스를 제공할 수 있으므로 SAS를 생성해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-232">While you can also allow anonymous access to blobs, shared access signatures allow you to provide more controlled access, as you must generate the SAS.</span></span>
+> <span data-ttu-id="10987-232">Tooblobs 익명 액세스를 허용할 수도 있습니다 공유 액세스 서명을 수 제어 요소가 많은 tooprovide 액세스 hello SAS를 생성 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-232">While you can also allow anonymous access tooblobs, shared access signatures allow you tooprovide more controlled access, as you must generate hello SAS.</span></span>
 >
 >
 
-<span data-ttu-id="255ef-233">클라우드 기반 서비스와 같이 신뢰할 수 있는 응용 프로그램에서는 **BlobService**의 **generateSharedAccessSignature**를 사용하여 공유 액세스 서명을 생성하고, 이를 모바일 앱과 같은 신뢰할 수 없거나 신뢰가 약한 응용 프로그램에 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-233">A trusted application such as a cloud-based service generates shared access signatures using the **generateSharedAccessSignature** of the **BlobService**, and provides it to an untrusted or semi-trusted application such as a mobile app.</span></span> <span data-ttu-id="255ef-234">공유 액세스 서명은 공유 액세스 서명이 유효한 시작 및 종료 날짜와 공유 액세스 서명 소유자에게 부여되는 액세스 수준을 설명하는 정책을 사용하여 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-234">Shared access signatures are generated using a policy, which describes the start and end dates during which the shared access signatures are valid, as well as the access level granted to the shared access signatures holder.</span></span>
+<span data-ttu-id="10987-233">클라우드 기반 서비스와 같은 신뢰할 수 있는 응용 hello를 사용 하 여 공유 액세스 서명을 생성 하 **generateSharedAccessSignature** 의 hello **BlobService**, 제공 하 고 신뢰할 수 없는 tooan 또는 모바일 앱과 같은 부분 신뢰 응용 프로그램입니다.</span><span class="sxs-lookup"><span data-stu-id="10987-233">A trusted application such as a cloud-based service generates shared access signatures using hello **generateSharedAccessSignature** of hello **BlobService**, and provides it tooan untrusted or semi-trusted application such as a mobile app.</span></span> <span data-ttu-id="10987-234">공유 액세스 서명을 hello 시작에 설명 하는 정책을 사용 하 여 생성할 및 종료 날짜는 hello 하는 동안 공유 액세스 서명에 유효 뿐 아니라 hello 수준 부여한 toohello 공유 액세스 서명을 홀더를 액세스 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-234">Shared access signatures are generated using a policy, which describes hello start and end dates during which hello shared access signatures are valid, as well as hello access level granted toohello shared access signatures holder.</span></span>
 
-<span data-ttu-id="255ef-235">다음 코드 예제에서는 공유 액세스 서명 소유자가 **myblob** Blob에서 읽기 작업을 수행할 수 있도록 허용하며 만든 후 100분이 지나면 만료되는 새 공유 액세스 정책을 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-235">The following code example generates a new shared access policy that allows the shared access signatures holder to perform read operations on the **myblob** blob, and expires 100 minutes after the time it is created.</span></span>
+<span data-ttu-id="10987-235">hello 다음 코드 예제에서는 발생 하는 hello 공유 액세스 서명을 소유자 tooperform 읽기 hello에 대 한 작업을 허용 하는 새 공유 액세스 정책을 **myblob** blob, 이며 100 분 만들어질 hello 시간이 지난 후 만료 됩니다.</span><span class="sxs-lookup"><span data-stu-id="10987-235">hello following code example generates a new shared access policy that allows hello shared access signatures holder tooperform read operations on hello **myblob** blob, and expires 100 minutes after hello time it is created.</span></span>
 
 ```nodejs
 var startDate = new Date();
@@ -354,9 +354,9 @@ var blobSAS = blobSvc.generateSharedAccessSignature('mycontainer', 'myblob', sha
 var host = blobSvc.host;
 ```
 
-<span data-ttu-id="255ef-236">공유 액세스 서명 소유자가 컨테이너에 액세스할 때 필요하므로 호스트 정보도 제공해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-236">Note that the host information must be provided also, as it is required when the shared access signatures holder attempts to access the container.</span></span>
+<span data-ttu-id="10987-236">Note 또한 필요에 따라 hello 공유 액세스 서명을 소유자가 시도할 때 tooaccess hello 컨테이너 제공 hello 호스트 정보 이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-236">Note that hello host information must be provided also, as it is required when hello shared access signatures holder attempts tooaccess hello container.</span></span>
 
-<span data-ttu-id="255ef-237">그러고 나면 클라이언트 응용 프로그램에서 **BlobServiceWithSAS** 에 공유 액세스 서명을 사용하여 Blob에 대한 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-237">The client application then uses shared access signatures with **BlobServiceWithSAS** to perform operations against the blob.</span></span> <span data-ttu-id="255ef-238">다음에서는 **myblob**에 대한 정보를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-238">The following gets information about **myblob**.</span></span>
+<span data-ttu-id="10987-237">hello 그런 다음 클라이언트 응용 프로그램 사용 하 여 공유 액세스 서명은 **BlobServiceWithSAS** hello blob에 대 한 tooperform 작업 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-237">hello client application then uses shared access signatures with **BlobServiceWithSAS** tooperform operations against hello blob.</span></span> <span data-ttu-id="10987-238">hello 다음 정보를 가져옵니다에 대 한 **myblob**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-238">hello following gets information about **myblob**.</span></span>
 
 ```nodejs
 var sharedBlobSvc = azure.createBlobServiceWithSas(host, blobSAS);
@@ -367,12 +367,12 @@ sharedBlobSvc.getBlobProperties('mycontainer', 'myblob', function (error, result
 });
 ```
 
-<span data-ttu-id="255ef-239">Blob를 수정하려고 하는 경우 공유 액세스 서명이 읽기 전용 액세스로 생성되었으므로 오류가 반환됩니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-239">Since the shared access signatures were generated with read-only access, if an attempt is made to modify the blob, an error will be returned.</span></span>
+<span data-ttu-id="10987-239">Hello 공유 액세스 서명을 toomodify hello blob 하려고 시도 하는 경우 읽기 전용 액세스 권한으로 생성 된 이후 오류가 반환 됩니다.</span><span class="sxs-lookup"><span data-stu-id="10987-239">Since hello shared access signatures were generated with read-only access, if an attempt is made toomodify hello blob, an error will be returned.</span></span>
 
-### <a name="access-control-lists"></a><span data-ttu-id="255ef-240">액세스 제어 목록</span><span class="sxs-lookup"><span data-stu-id="255ef-240">Access control lists</span></span>
-<span data-ttu-id="255ef-241">ACL(액세스 제어 목록)을 사용하여 SAS에 액세스 정책을 설정할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-241">You can also use an access control list (ACL) to set the access policy for SAS.</span></span> <span data-ttu-id="255ef-242">이 방법은 여러 클라이언트에서 컨테이너에 액세스하게 하면서 각 클라이언트에 서로 다른 액세스 정책을 제공하려는 경우에 유용합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-242">This is useful if you wish to allow multiple clients to access a container but provide different access policies for each client.</span></span>
+### <a name="access-control-lists"></a><span data-ttu-id="10987-240">액세스 제어 목록</span><span class="sxs-lookup"><span data-stu-id="10987-240">Access control lists</span></span>
+<span data-ttu-id="10987-241">SAS에 대 한 액세스 제어 목록 (ACL) tooset hello 액세스 정책을 사용할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="10987-241">You can also use an access control list (ACL) tooset hello access policy for SAS.</span></span> <span data-ttu-id="10987-242">각 클라이언트에 대 한 다른 액세스 정책을 제공 하지만 여러 클라이언트 tooaccess 컨테이너 tooallow 원하는 경우에 유용 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-242">This is useful if you wish tooallow multiple clients tooaccess a container but provide different access policies for each client.</span></span>
 
-<span data-ttu-id="255ef-243">ACL은 각 정책에 ID가 연결된 액세스 정책 배열을 사용하여 구현됩니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-243">An ACL is implemented using an array of access policies, with an ID associated with each policy.</span></span> <span data-ttu-id="255ef-244">다음 코드 예제에서는 'user1'와 'user2'에 대해 하나씩, 두 개의 정책을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-244">The following code example defines two policies, one for 'user1' and one for 'user2':</span></span>
+<span data-ttu-id="10987-243">ACL은 각 정책에 ID가 연결된 액세스 정책 배열을 사용하여 구현됩니다.</span><span class="sxs-lookup"><span data-stu-id="10987-243">An ACL is implemented using an array of access policies, with an ID associated with each policy.</span></span> <span data-ttu-id="10987-244">다음 코드 예제는 hello 'user1' 및 'user2'에 대 한 두 개의 정책을 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-244">hello following code example defines two policies, one for 'user1' and one for 'user2':</span></span>
 
 ```nodejs
 var sharedAccessPolicy = {
@@ -389,7 +389,7 @@ var sharedAccessPolicy = {
 };
 ```
 
-<span data-ttu-id="255ef-245">다음 코드 예제에서는 **mycontainer**에 대한 현재 ACL을 가져온 다음 **setBlobAcl**을 사용하여 새 정책을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-245">The following code example gets the current ACL for **mycontainer**, and then adds the new policies using **setBlobAcl**.</span></span> <span data-ttu-id="255ef-246">이 접근 방식을 통해 다음을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-246">This approach allows:</span></span>
+<span data-ttu-id="10987-245">다음 코드 예제에서는 hello hello에 대 한 현재 ACL **mycontainer**, 다음 사용 하 여 hello 새 정책을 추가 **setBlobAcl**합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-245">hello following code example gets hello current ACL for **mycontainer**, and then adds hello new policies using **setBlobAcl**.</span></span> <span data-ttu-id="10987-246">이 접근 방식을 통해 다음을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="10987-246">This approach allows:</span></span>
 
 ```nodejs
 var extend = require('extend');
@@ -405,23 +405,23 @@ blobSvc.getBlobAcl('mycontainer', function(error, result, response) {
 });
 ```
 
-<span data-ttu-id="255ef-247">ACL이 설정되고 나면 정책의 ID를 기반으로 공유 액세스 서명을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-247">Once the ACL is set, you can then create shared access signatures based on the ID for a policy.</span></span> <span data-ttu-id="255ef-248">다음 코드 예제에서는 ‘user2'에 대한 새 공유 액세스 서명을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="255ef-248">The following code example creates new shared access signatures for 'user2':</span></span>
+<span data-ttu-id="10987-247">한 번 hello ACL이 설정, 만들 수 있습니다는 정책에 대 한 hello ID에 따라 공유 액세스 서명 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-247">Once hello ACL is set, you can then create shared access signatures based on hello ID for a policy.</span></span> <span data-ttu-id="10987-248">다음 코드 예제는 hello 사용자 '2'에 대 한 새 공유 액세스 서명을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="10987-248">hello following code example creates new shared access signatures for 'user2':</span></span>
 
 ```nodejs
 blobSAS = blobSvc.generateSharedAccessSignature('mycontainer', { Id: 'user2' });
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="255ef-249">다음 단계</span><span class="sxs-lookup"><span data-stu-id="255ef-249">Next steps</span></span>
-<span data-ttu-id="255ef-250">자세한 내용은 다음 리소스를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="255ef-250">For more information, see the following resources.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="10987-249">다음 단계</span><span class="sxs-lookup"><span data-stu-id="10987-249">Next steps</span></span>
+<span data-ttu-id="10987-250">자세한 내용은 다음 리소스는 hello를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="10987-250">For more information, see hello following resources.</span></span>
 
-* <span data-ttu-id="255ef-251">[Node용 Azure Storage SDK API 참조][Node용 Azure Storage SDK API 참조]</span><span class="sxs-lookup"><span data-stu-id="255ef-251">[Azure Storage SDK for Node API Reference][Azure Storage SDK for Node API Reference]</span></span>
-* <span data-ttu-id="255ef-252">[Azure Storage 팀 블로그][Azure Storage 팀 블로그]</span><span class="sxs-lookup"><span data-stu-id="255ef-252">[Azure Storage Team Blog][Azure Storage Team Blog]</span></span>
-* <span data-ttu-id="255ef-253">GitHub의 [Azure Storage SDK for Node][Azure Storage SDK for Node] 리포지토리</span><span class="sxs-lookup"><span data-stu-id="255ef-253">[Azure Storage SDK for Node][Azure Storage SDK for Node] repository on GitHub</span></span>
-* [<span data-ttu-id="255ef-254">Node.js 개발자 센터</span><span class="sxs-lookup"><span data-stu-id="255ef-254">Node.js Developer Center</span></span>](https://azure.microsoft.com/develop/nodejs/)
-* [<span data-ttu-id="255ef-255">AzCopy 명령줄 유틸리티로 데이터 전송</span><span class="sxs-lookup"><span data-stu-id="255ef-255">Transfer data with the AzCopy command-line utility</span></span>](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)
+* <span data-ttu-id="10987-251">[Node용 Azure Storage SDK API 참조][Node용 Azure Storage SDK API 참조]</span><span class="sxs-lookup"><span data-stu-id="10987-251">[Azure Storage SDK for Node API Reference][Azure Storage SDK for Node API Reference]</span></span>
+* <span data-ttu-id="10987-252">[Azure Storage 팀 블로그][Azure Storage 팀 블로그]</span><span class="sxs-lookup"><span data-stu-id="10987-252">[Azure Storage Team Blog][Azure Storage Team Blog]</span></span>
+* <span data-ttu-id="10987-253">GitHub의 [Azure Storage SDK for Node][Azure Storage SDK for Node] 리포지토리</span><span class="sxs-lookup"><span data-stu-id="10987-253">[Azure Storage SDK for Node][Azure Storage SDK for Node] repository on GitHub</span></span>
+* [<span data-ttu-id="10987-254">Node.js 개발자 센터</span><span class="sxs-lookup"><span data-stu-id="10987-254">Node.js Developer Center</span></span>](https://azure.microsoft.com/develop/nodejs/)
+* [<span data-ttu-id="10987-255">Hello AzCopy 명령줄 유틸리티를 사용 하 여 데이터를 전송 합니다.</span><span class="sxs-lookup"><span data-stu-id="10987-255">Transfer data with hello AzCopy command-line utility</span></span>](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)
 
 [Azure Storage SDK for Node]: https://github.com/Azure/azure-storage-node
 
-<span data-ttu-id="255ef-256">[Azure Table Service를 사용하는 Node.js 웹앱](../../app-service-web/storage-nodejs-use-table-storage-web-site.md)  </span><span class="sxs-lookup"><span data-stu-id="255ef-256">[Node.js web app using the Azure Table Service](../../app-service-web/storage-nodejs-use-table-storage-web-site.md)  </span></span>  
-<span data-ttu-id="255ef-257">[Web Matrix를 사용하여 Azure에 Node.js 웹앱 빌드 및 배포]: https://www.microsoft.com/web/webmatrix/</span><span class="sxs-lookup"><span data-stu-id="255ef-257">[Build and deploy a Node.js web app to Azure using Web Matrix]: https://www.microsoft.com/web/webmatrix/</span></span>  
-<span data-ttu-id="255ef-258">[REST API 사용]: http://msdn.microsoft.com/library/azure/hh264518.aspx [Azure Portal]: https://portal.azure.com [Azure Cloud Service에 Node.js 응용 프로그램 빌드 및 배포](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md) [Azure Storage 팀 블로그]: http://blogs.msdn.com/b/windowsazurestorage/ [Node용 Azure Storage SDK API 참조]: http://dl.windowsazure.com/nodestoragedocs/index.html</span><span class="sxs-lookup"><span data-stu-id="255ef-258">[Using the REST API]: http://msdn.microsoft.com/library/azure/hh264518.aspx [Azure portal]: https://portal.azure.com [Build and deploy a Node.js application to an Azure Cloud Service](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md) [Azure Storage Team Blog]: http://blogs.msdn.com/b/windowsazurestorage/ [Azure Storage SDK for Node API Reference]: http://dl.windowsazure.com/nodestoragedocs/index.html</span></span>
+<span data-ttu-id="10987-256">[Hello Azure 테이블 서비스를 사용 하 여 Node.js 웹 응용 프로그램](../../app-service-web/storage-nodejs-use-table-storage-web-site.md)  </span><span class="sxs-lookup"><span data-stu-id="10987-256">[Node.js web app using hello Azure Table Service](../../app-service-web/storage-nodejs-use-table-storage-web-site.md)  </span></span>  
+<span data-ttu-id="10987-257">[빌드하고 웹 매트릭스를 사용 하는 Node.js 웹 응용 프로그램 tooAzure 배포]: https://www.microsoft.com/web/webmatrix/</span><span class="sxs-lookup"><span data-stu-id="10987-257">[Build and deploy a Node.js web app tooAzure using Web Matrix]: https://www.microsoft.com/web/webmatrix/</span></span>  
+<span data-ttu-id="10987-258">[REST API를 hello를 사용 하 여]: [Azure 포털] http://msdn.microsoft.com/library/azure/hh264518.aspx: https://portal.azure.com [빌드하고 Node.js 응용 프로그램 tooan Azure 클라우드 서비스 배포](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md) [Azure 저장소 팀 블로그]: http:// [Azure 저장소 노드 API 참조에 대 한 SDK] blogs.msdn.com/b/windowsazurestorage/: http://dl.windowsazure.com/nodestoragedocs/index.html</span><span class="sxs-lookup"><span data-stu-id="10987-258">[Using hello REST API]: http://msdn.microsoft.com/library/azure/hh264518.aspx [Azure portal]: https://portal.azure.com [Build and deploy a Node.js application tooan Azure Cloud Service](../../cloud-services/cloud-services-nodejs-develop-deploy-app.md) [Azure Storage Team Blog]: http://blogs.msdn.com/b/windowsazurestorage/ [Azure Storage SDK for Node API Reference]: http://dl.windowsazure.com/nodestoragedocs/index.html</span></span>

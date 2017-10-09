@@ -1,6 +1,6 @@
 ---
-title: "Azure Blob에서 Azure 데이터 웨어하우스로 로드 | Microsoft Docs"
-description: "PolyBase를 사용하여 Azure blob 저장소에서 SQL 데이터 웨어하우스로 데이터를 로드하는 방법을 알아봅니다. 몇 개의 테이블을 공용 데이터에서 Contoso 소매 데이터 웨어하우스 스키마로 로드합니다."
+title: "Azure blob tooAzure 데이터 웨어하우스에서 aaaLoad | Microsoft Docs"
+description: "어떻게 toouse PolyBase tooload 데이터에서 Azure blob 저장소에 SQL 데이터 웨어하우스에 대해 알아봅니다. 공용 데이터에서 몇 가지 테이블을 hello Contoso 소매 데이터 웨어하우스 스키마를 로드 합니다."
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
@@ -15,50 +15,50 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 2859c1144f72fd685af89f83024df1409902ab0c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4b4978ccefa4d55ff5c89fba84c5e705422ddbb7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="load-data-from-azure-blob-storage-into-sql-data-warehouse-polybase"></a><span data-ttu-id="6eba4-104">Azure blob 저장소에서 SQL 데이터 웨어하우스로 데이터를 로드합니다(PolyBase).</span><span class="sxs-lookup"><span data-stu-id="6eba4-104">Load data from Azure blob storage into SQL Data Warehouse (PolyBase)</span></span>
+# <a name="load-data-from-azure-blob-storage-into-sql-data-warehouse-polybase"></a><span data-ttu-id="9cc93-104">Azure blob 저장소에서 SQL 데이터 웨어하우스로 데이터를 로드합니다(PolyBase).</span><span class="sxs-lookup"><span data-stu-id="9cc93-104">Load data from Azure blob storage into SQL Data Warehouse (PolyBase)</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="6eba4-105">데이터 팩터리</span><span class="sxs-lookup"><span data-stu-id="6eba4-105">Data Factory</span></span>](sql-data-warehouse-load-from-azure-blob-storage-with-data-factory.md)
-> * [<span data-ttu-id="6eba4-106">PolyBase</span><span class="sxs-lookup"><span data-stu-id="6eba4-106">PolyBase</span></span>](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md)
+> * [<span data-ttu-id="9cc93-105">데이터 팩터리</span><span class="sxs-lookup"><span data-stu-id="9cc93-105">Data Factory</span></span>](sql-data-warehouse-load-from-azure-blob-storage-with-data-factory.md)
+> * [<span data-ttu-id="9cc93-106">PolyBase</span><span class="sxs-lookup"><span data-stu-id="9cc93-106">PolyBase</span></span>](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md)
 > 
 > 
 
-<span data-ttu-id="6eba4-107">Azure Blob 저장소에서 Azure SQL 데이터 웨어하우스로 데이터 로드하기 위해 PolyBase와 T-SQL 명령을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-107">Use PolyBase and T-SQL commands to load data from Azure blob storage into Azure SQL Data Warehouse.</span></span> 
+<span data-ttu-id="9cc93-107">PolyBase T-SQL 명령을 tooload의에서 및 데이터를 Azure blob 저장소를 사용 하 여 Azure SQL 데이터 웨어하우스로.</span><span class="sxs-lookup"><span data-stu-id="9cc93-107">Use PolyBase and T-SQL commands tooload data from Azure blob storage into Azure SQL Data Warehouse.</span></span> 
 
-<span data-ttu-id="6eba4-108">간단히 말하자면, 이 자습서는 공용 Azure 저장소 Blob에서 두 테이블을 Contoso 소매 데이터 웨어하우스 스키마로 로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-108">To keep it simple, this tutorial loads two tables from a public Azure Storage Blob into the Contoso Retail Data Warehouse schema.</span></span> <span data-ttu-id="6eba4-109">전체 데이터 집합을 로드하려면 Microsoft SQL Server 샘플 리포지토리에서 예제 [전체 Contoso 소매 데이터 웨어하우스 로드하기][Load the full Contoso Retail Data Warehouse]를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-109">To load the full data set, run the example [Load the full Contoso Retail Data Warehouse][Load the full Contoso Retail Data Warehouse] from the Microsoft SQL Server Samples repository.</span></span>
+<span data-ttu-id="9cc93-108">단순,이 자습서에서는 두 테이블에서에서 로드 공용 Azure 저장소 Blob hello Contoso 소매 데이터 웨어하우스 스키마로 tookeep 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-108">tookeep it simple, this tutorial loads two tables from a public Azure Storage Blob into hello Contoso Retail Data Warehouse schema.</span></span> <span data-ttu-id="9cc93-109">tooload hello 전체 데이터 집합을 hello 예제 실행 [부하 hello 전체 Contoso 소매 데이터 웨어하우스] [ Load hello full Contoso Retail Data Warehouse] hello Microsoft SQL Server Samples 리포지토리에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-109">tooload hello full data set, run hello example [Load hello full Contoso Retail Data Warehouse][Load hello full Contoso Retail Data Warehouse] from hello Microsoft SQL Server Samples repository.</span></span>
 
-<span data-ttu-id="6eba4-110">이 자습서에서는 다음 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-110">In this tutorial you will:</span></span>
+<span data-ttu-id="9cc93-110">이 자습서에서는 다음 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-110">In this tutorial you will:</span></span>
 
-1. <span data-ttu-id="6eba4-111">Azure blob 저장소에서 로드하기 위한 PolyBase 구성</span><span class="sxs-lookup"><span data-stu-id="6eba4-111">Configure PolyBase to load from Azure blob storage</span></span>
-2. <span data-ttu-id="6eba4-112">공용 데이터를 데이터베이스에 로드</span><span class="sxs-lookup"><span data-stu-id="6eba4-112">Load public data into your database</span></span>
-3. <span data-ttu-id="6eba4-113">로드가 완료 된 후에 최적화를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-113">Perform optimizations after the load is finished.</span></span>
+1. <span data-ttu-id="9cc93-111">Azure blob 저장소에서 PolyBase tooload 구성</span><span class="sxs-lookup"><span data-stu-id="9cc93-111">Configure PolyBase tooload from Azure blob storage</span></span>
+2. <span data-ttu-id="9cc93-112">공용 데이터를 데이터베이스에 로드</span><span class="sxs-lookup"><span data-stu-id="9cc93-112">Load public data into your database</span></span>
+3. <span data-ttu-id="9cc93-113">Hello 로드가 완료 된 후에 최적화를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-113">Perform optimizations after hello load is finished.</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="6eba4-114">시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="6eba4-114">Before you begin</span></span>
-<span data-ttu-id="6eba4-115">이 자습서를 실행하려면 SQL 데이터 웨어하우스 데이터베이스를 이미 가지고 있는 Azure 계정이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-115">To run this tutorial, you need an Azure account that already has a SQL Data Warehouse database.</span></span> <span data-ttu-id="6eba4-116">계정이 아직 없다면 [SQL Data Warehouse 만들기][Create a SQL Data Warehouse]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="6eba4-116">If you don't already have this, see [Create a SQL Data Warehouse][Create a SQL Data Warehouse].</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="9cc93-114">시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="9cc93-114">Before you begin</span></span>
+<span data-ttu-id="9cc93-115">toorun이이 자습서에서는 SQL 데이터 웨어하우스 데이터베이스에 이미 있는 Azure 계정이 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-115">toorun this tutorial, you need an Azure account that already has a SQL Data Warehouse database.</span></span> <span data-ttu-id="9cc93-116">계정이 아직 없다면 [SQL Data Warehouse 만들기][Create a SQL Data Warehouse]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9cc93-116">If you don't already have this, see [Create a SQL Data Warehouse][Create a SQL Data Warehouse].</span></span>
 
-## <a name="1-configure-the-data-source"></a><span data-ttu-id="6eba4-117">1. 데이터 원본 구성</span><span class="sxs-lookup"><span data-stu-id="6eba4-117">1. Configure the data source</span></span>
-<span data-ttu-id="6eba4-118">PolyBase는 T-SQL 외부 개체를 사용하여 외부 데이터의 위치와 특성을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-118">PolyBase uses T-SQL external objects to define the location and attributes of the external data.</span></span> <span data-ttu-id="6eba4-119">외부 개체의 정의는 SQL 데이터 웨어하우스에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-119">The external object definitions are stored in SQL Data Warehouse.</span></span> <span data-ttu-id="6eba4-120">데이터 자체는 외부에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-120">The data itself is stored externally.</span></span>
+## <a name="1-configure-hello-data-source"></a><span data-ttu-id="9cc93-117">1. Hello 데이터 소스 구성</span><span class="sxs-lookup"><span data-stu-id="9cc93-117">1. Configure hello data source</span></span>
+<span data-ttu-id="9cc93-118">PolyBase는 T-SQL 개체 외부 toodefine hello 위치 및 hello 외부 데이터의 특성을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-118">PolyBase uses T-SQL external objects toodefine hello location and attributes of hello external data.</span></span> <span data-ttu-id="9cc93-119">hello 외부 개체 정의 SQL 데이터 웨어하우스에 저장 됩니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-119">hello external object definitions are stored in SQL Data Warehouse.</span></span> <span data-ttu-id="9cc93-120">hello 데이터 자체는 외부적으로 저장 됩니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-120">hello data itself is stored externally.</span></span>
 
-### <a name="11-create-a-credential"></a><span data-ttu-id="6eba4-121">1.1.</span><span class="sxs-lookup"><span data-stu-id="6eba4-121">1.1.</span></span> <span data-ttu-id="6eba4-122">자격 증명 만들기</span><span class="sxs-lookup"><span data-stu-id="6eba4-122">Create a credential</span></span>
-<span data-ttu-id="6eba4-123">**이 단계를 건너뜁니다** .</span><span class="sxs-lookup"><span data-stu-id="6eba4-123">**Skip this step** if you are loading the Contoso public data.</span></span> <span data-ttu-id="6eba4-124">공용 데이터는 누구나 액세스할 수 있으므로 보안 액세스가 필요하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-124">You don't need secure access to the public data since it is already accessible to anyone.</span></span>
+### <a name="11-create-a-credential"></a><span data-ttu-id="9cc93-121">1.1.</span><span class="sxs-lookup"><span data-stu-id="9cc93-121">1.1.</span></span> <span data-ttu-id="9cc93-122">자격 증명 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc93-122">Create a credential</span></span>
+<span data-ttu-id="9cc93-123">**이 단계는** hello Contoso 공용 데이터를 로드 하는 경우.</span><span class="sxs-lookup"><span data-stu-id="9cc93-123">**Skip this step** if you are loading hello Contoso public data.</span></span> <span data-ttu-id="9cc93-124">액세스할 수 있는 tooanyone 이미 있기 때문에 보안 액세스 toohello 공용 데이터를 필요 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-124">You don't need secure access toohello public data since it is already accessible tooanyone.</span></span>
 
-<span data-ttu-id="6eba4-125">**이 단계를 건너뛰지 마십시오** .</span><span class="sxs-lookup"><span data-stu-id="6eba4-125">**Don't skip this step** if you are using this tutorial as a template for loading your own data.</span></span> <span data-ttu-id="6eba4-126">자격 증명을 통해 액세스하려면 다음 스크립트를 사용해 데이터베이스 범위 자격 증명을 생성하고 데이터 원본의 위치를 정의할 때 이를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-126">To access data through a credential, use the following script to create a database-scoped credential, and then use it when defining the location of the data source.</span></span>
+<span data-ttu-id="9cc93-125">**이 단계를 건너뛰지 마십시오** .</span><span class="sxs-lookup"><span data-stu-id="9cc93-125">**Don't skip this step** if you are using this tutorial as a template for loading your own data.</span></span> <span data-ttu-id="9cc93-126">자격 증명을 사용 하 여 hello 다음 통해 tooaccess 데이터 toocreate 데이터베이스 범위 자격 증명을 스크립트 하 고 hello 데이터 원본의 hello 위치를 정의할 때 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-126">tooaccess data through a credential, use hello following script toocreate a database-scoped credential, and then use it when defining hello location of hello data source.</span></span>
 
 ```sql
 -- A: Create a master key.
 -- Only necessary if one does not already exist.
--- Required to encrypt the credential secret in the next step.
+-- Required tooencrypt hello credential secret in hello next step.
 
 CREATE MASTER KEY;
 
 
 -- B: Create a database scoped credential
--- IDENTITY: Provide any string, it is not used for authentication to Azure storage.
+-- IDENTITY: Provide any string, it is not used for authentication tooAzure storage.
 -- SECRET: Provide your Azure storage account key.
 
 
@@ -70,9 +70,9 @@ WITH
 
 
 -- C: Create an external data source
--- TYPE: HADOOP - PolyBase uses Hadoop APIs to access data in Azure blob storage.
+-- TYPE: HADOOP - PolyBase uses Hadoop APIs tooaccess data in Azure blob storage.
 -- LOCATION: Provide Azure storage account name and blob container name.
--- CREDENTIAL: Provide the credential created in the previous step.
+-- CREDENTIAL: Provide hello credential created in hello previous step.
 
 CREATE EXTERNAL DATA SOURCE AzureStorage
 WITH (
@@ -82,10 +82,10 @@ WITH (
 );
 ```
 
-<span data-ttu-id="6eba4-127">2단계로 건너뜁니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-127">Skip to step 2.</span></span>
+<span data-ttu-id="9cc93-127">Toostep 2를 건너뜁니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-127">Skip toostep 2.</span></span>
 
-### <a name="12-create-the-external-data-source"></a><span data-ttu-id="6eba4-128">1.2.</span><span class="sxs-lookup"><span data-stu-id="6eba4-128">1.2.</span></span> <span data-ttu-id="6eba4-129">외부 데이터 원본 만들기</span><span class="sxs-lookup"><span data-stu-id="6eba4-129">Create the external data source</span></span>
-<span data-ttu-id="6eba4-130">이 [CREATE EXTERNAL DATA SOURCE][CREATE EXTERNAL DATA SOURCE] 명령을 사용하여 데이터의 위치와 데이터의 형식을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-130">Use this [CREATE EXTERNAL DATA SOURCE][CREATE EXTERNAL DATA SOURCE] command to store the location of the data, and the type of data.</span></span> 
+### <a name="12-create-hello-external-data-source"></a><span data-ttu-id="9cc93-128">1.2.</span><span class="sxs-lookup"><span data-stu-id="9cc93-128">1.2.</span></span> <span data-ttu-id="9cc93-129">Hello 외부 데이터 원본 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc93-129">Create hello external data source</span></span>
+<span data-ttu-id="9cc93-130">이 사용 하 여 [외부 데이터 원본 만들기] [ CREATE EXTERNAL DATA SOURCE] hello 데이터 및 데이터 형식을 hello toostore hello 위치 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-130">Use this [CREATE EXTERNAL DATA SOURCE][CREATE EXTERNAL DATA SOURCE] command toostore hello location of hello data, and hello type of data.</span></span> 
 
 ```sql
 CREATE EXTERNAL DATA SOURCE AzureStorage_west_public
@@ -97,12 +97,12 @@ WITH
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="6eba4-131">Azure blob 저장소 컨테이너를 공용으로 만들도록 선택하는 경우 데이터가 데이터 센터에서 떠날 때 데이터 소유자로서 귀하에게 데이터 송신 요금이 부과될 것임을 염두에 두어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-131">If you choose to make your azure blob storage containers public, remember that as the data owner you will be charged for data egress charges when data leaves the data center.</span></span> 
+> <span data-ttu-id="9cc93-131">Toomake 개인 azure blob 저장소 컨테이너 폴더를 선택 하면는 hello 데이터 소유자로 청구 됩니다 데이터에 대 한 전송 요금 데이터 hello 데이터 센터를 벗어날 때 기억해 야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-131">If you choose toomake your azure blob storage containers public, remember that as hello data owner you will be charged for data egress charges when data leaves hello data center.</span></span> 
 > 
 > 
 
-## <a name="2-configure-data-format"></a><span data-ttu-id="6eba4-132">2. 데이터 형식 구성</span><span class="sxs-lookup"><span data-stu-id="6eba4-132">2. Configure data format</span></span>
-<span data-ttu-id="6eba4-133">데이터는 Azure blob 저장소에 텍스트 파일로 저장되고 각 필드는 구분 기호로 구분됩니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-133">The data is stored in text files in Azure blob storage, and each field is separated with a delimiter.</span></span> <span data-ttu-id="6eba4-134">이 [CREATE EXTERNAL FILE FORMAT][CREATE EXTERNAL FILE FORMAT] 명령을 실행하여 텍스트 파일로 된 데이터의 형식을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-134">Run this [CREATE EXTERNAL FILE FORMAT][CREATE EXTERNAL FILE FORMAT] command to specify the format of the data in the text files.</span></span> <span data-ttu-id="6eba4-135">Contoso 데이터는 압축되어 있지 않으며 파이프로 구분됩니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-135">The Contoso data is uncompressed and pipe delimited.</span></span>
+## <a name="2-configure-data-format"></a><span data-ttu-id="9cc93-132">2. 데이터 형식 구성</span><span class="sxs-lookup"><span data-stu-id="9cc93-132">2. Configure data format</span></span>
+<span data-ttu-id="9cc93-133">hello 데이터는 Azure blob 저장소에 있는 텍스트 파일에 저장 하 고 각 필드 구분 기호로 구분 됩니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-133">hello data is stored in text files in Azure blob storage, and each field is separated with a delimiter.</span></span> <span data-ttu-id="9cc93-134">이 스크립트를 실행 [CREATE EXTERNAL FILE FORMAT] [ CREATE EXTERNAL FILE FORMAT] hello 텍스트 파일의 hello 데이터 형식의 toospecify hello 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-134">Run this [CREATE EXTERNAL FILE FORMAT][CREATE EXTERNAL FILE FORMAT] command toospecify hello format of hello data in hello text files.</span></span> <span data-ttu-id="9cc93-135">hello Contoso 데이터 압축 되지 않으며 파이프 구분 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-135">hello Contoso data is uncompressed and pipe delimited.</span></span>
 
 ```sql
 CREATE EXTERNAL FILE FORMAT TextFileFormat 
@@ -116,21 +116,21 @@ WITH
 );
 ``` 
 
-## <a name="3-create-the-external-tables"></a><span data-ttu-id="6eba4-136">3. 외부 테이블 만들기</span><span class="sxs-lookup"><span data-stu-id="6eba4-136">3. Create the external tables</span></span>
-<span data-ttu-id="6eba4-137">이제 데이터 원본과 파일 형식을 지정했으니 외부 테이블을 만들 준비가 완료되었습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-137">Now that you have specified the data source and file format, you are ready to create the external tables.</span></span> 
+## <a name="3-create-hello-external-tables"></a><span data-ttu-id="9cc93-136">3. Hello 외부 테이블 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc93-136">3. Create hello external tables</span></span>
+<span data-ttu-id="9cc93-137">이제 사용자가 지정한 데이터 원본 및 파일 형식이 hello 준비 toocreate hello에 대 한 외부 테이블 있는지 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-137">Now that you have specified hello data source and file format, you are ready toocreate hello external tables.</span></span> 
 
-### <a name="31-create-a-schema-for-the-data"></a><span data-ttu-id="6eba4-138">3.1.</span><span class="sxs-lookup"><span data-stu-id="6eba4-138">3.1.</span></span> <span data-ttu-id="6eba4-139">데이터에 대한 스키마를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-139">Create a schema for the data.</span></span>
-<span data-ttu-id="6eba4-140">데이터베이스에 Contoso 데이터를 저장할 수 있는 위치를 만들려면 스키마를 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-140">To create a place to store the Contoso data in your database, create a schema.</span></span>
+### <a name="31-create-a-schema-for-hello-data"></a><span data-ttu-id="9cc93-138">3.1.</span><span class="sxs-lookup"><span data-stu-id="9cc93-138">3.1.</span></span> <span data-ttu-id="9cc93-139">Hello 데이터에 대 한 스키마를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-139">Create a schema for hello data.</span></span>
+<span data-ttu-id="9cc93-140">toocreate 장소 toostore hello Contoso 데이터베이스의 데이터를, 스키마를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-140">toocreate a place toostore hello Contoso data in your database, create a schema.</span></span>
 
 ```sql
 CREATE SCHEMA [asb]
 GO
 ```
 
-### <a name="32-create-the-external-tables"></a><span data-ttu-id="6eba4-141">3.2.</span><span class="sxs-lookup"><span data-stu-id="6eba4-141">3.2.</span></span> <span data-ttu-id="6eba4-142">외부 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-142">Create the external tables.</span></span>
-<span data-ttu-id="6eba4-143">DimProduct와 FactOnlineSales 외부 테이블을 만들려면 이 스크립트를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-143">Run this script to create the DimProduct and FactOnlineSales external tables.</span></span> <span data-ttu-id="6eba4-144">여기에서는 열 이름과 데이터 형식을 정의하고 이들을 Azure blob 저장소 파일의 위치와 형식에 바인딩합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-144">All we are doing here is defining column names and data types, and binding them to the location and format of the Azure blob storage files.</span></span> <span data-ttu-id="6eba4-145">정의는 SQL 데이터 웨어하우스에 저장되고 데이터는 여전히 Azure 저장소 Blob에 위치합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-145">The definition is stored in SQL Data Warehouse and the data is still in the Azure Storage Blob.</span></span>
+### <a name="32-create-hello-external-tables"></a><span data-ttu-id="9cc93-141">3.2.</span><span class="sxs-lookup"><span data-stu-id="9cc93-141">3.2.</span></span> <span data-ttu-id="9cc93-142">Hello 외부 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-142">Create hello external tables.</span></span>
+<span data-ttu-id="9cc93-143">이 스크립트 toocreate hello DimProduct 및 FactOnlineSales 외부 테이블을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-143">Run this script toocreate hello DimProduct and FactOnlineSales external tables.</span></span> <span data-ttu-id="9cc93-144">여기서 수행 하는 모든 열 이름과 데이터 형식을 정의 이며 toohello 위치와 서식을 hello Azure blob 저장소 파일의 바인딩.</span><span class="sxs-lookup"><span data-stu-id="9cc93-144">All we are doing here is defining column names and data types, and binding them toohello location and format of hello Azure blob storage files.</span></span> <span data-ttu-id="9cc93-145">hello 정의 SQL 데이터 웨어하우스에 저장 된 및 hello 데이터는 아직 hello Azure 저장소 Blob입니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-145">hello definition is stored in SQL Data Warehouse and hello data is still in hello Azure Storage Blob.</span></span>
 
-<span data-ttu-id="6eba4-146">**위치** 매개 변수는 Azure Storage Blob의 루트 폴더 아래에 있는 폴더입니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-146">The  **LOCATION** parameter is the folder under the root folder in the Azure Storage Blob.</span></span> <span data-ttu-id="6eba4-147">각 테이블은 서로 다른 폴더에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-147">Each table is in a different folder.</span></span>
+<span data-ttu-id="9cc93-146">hello **위치** 매개 변수는 hello Azure 저장소 Blob hello 루트 폴더 아래의 하위 hello 폴더입니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-146">hello  **LOCATION** parameter is hello folder under hello root folder in hello Azure Storage Blob.</span></span> <span data-ttu-id="9cc93-147">각 테이블은 서로 다른 폴더에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-147">Each table is in a different folder.</span></span>
 
 ```sql
 
@@ -215,23 +215,23 @@ WITH
 ;
 ```
 
-## <a name="4-load-the-data"></a><span data-ttu-id="6eba4-148">4. 데이터 로드</span><span class="sxs-lookup"><span data-stu-id="6eba4-148">4. Load the data</span></span>
-<span data-ttu-id="6eba4-149">외부 데이터에 액세스하는 방법은 여러 가지가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-149">There's different ways to access external data.</span></span>  <span data-ttu-id="6eba4-150">외부 테이블에서 직접 쿼리할 수 있고 새 데이터베이스로 데이터를 로드하거나 기존 데이터베이스 테이블에 외부 데이터를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-150">You can query data directly from the external table, load the data into new database tables, or add external data to existing database tables.</span></span>  
+## <a name="4-load-hello-data"></a><span data-ttu-id="9cc93-148">4. Hello 데이터 로드</span><span class="sxs-lookup"><span data-stu-id="9cc93-148">4. Load hello data</span></span>
+<span data-ttu-id="9cc93-149">다양 한 방법 tooaccess 외부 데이터는.</span><span class="sxs-lookup"><span data-stu-id="9cc93-149">There's different ways tooaccess external data.</span></span>  <span data-ttu-id="9cc93-150">Hello 외부 테이블에서 직접 데이터를 쿼리 하 hello 데이터 새 데이터베이스 테이블에 로드 하거나 외부 데이터 tooexisting 데이터베이스 테이블을 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-150">You can query data directly from hello external table, load hello data into new database tables, or add external data tooexisting database tables.</span></span>  
 
-### <a name="41-create-a-new-schema"></a><span data-ttu-id="6eba4-151">4.1.</span><span class="sxs-lookup"><span data-stu-id="6eba4-151">4.1.</span></span> <span data-ttu-id="6eba4-152">새 스키마를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-152">Create a new schema</span></span>
-<span data-ttu-id="6eba4-153">CTAS는 데이터가 포함된 새 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-153">CTAS creates a new table that contains data.</span></span>  <span data-ttu-id="6eba4-154">먼저 contoso 데이터에 대한 스키마를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-154">First, create a schema for the contoso data.</span></span>
+### <a name="41-create-a-new-schema"></a><span data-ttu-id="9cc93-151">4.1.</span><span class="sxs-lookup"><span data-stu-id="9cc93-151">4.1.</span></span> <span data-ttu-id="9cc93-152">새 스키마를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-152">Create a new schema</span></span>
+<span data-ttu-id="9cc93-153">CTAS는 데이터가 포함된 새 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-153">CTAS creates a new table that contains data.</span></span>  <span data-ttu-id="9cc93-154">먼저 hello contoso 데이터에 대 한 스키마를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-154">First, create a schema for hello contoso data.</span></span>
 
 ```sql
 CREATE SCHEMA [cso]
 GO
 ```
 
-### <a name="42-load-the-data-into-new-tables"></a><span data-ttu-id="6eba4-155">4.2.</span><span class="sxs-lookup"><span data-stu-id="6eba4-155">4.2.</span></span> <span data-ttu-id="6eba4-156">데이터를 새 테이블에 로드합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-156">Load the data into new tables</span></span>
-<span data-ttu-id="6eba4-157">Azure Blob Storage에서 데이터를 로드하여 데이터베이스 내부의 테이블에 저장하려면 [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)] 문을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-157">To load data from Azure blob storage and save it in a table inside of your database, use the [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)] statement.</span></span> <span data-ttu-id="6eba4-158">CTAS를 사용하여 로드하면 방금 생성한 강력한 형식의 외부 테이블이 활용됩니다. 새 테이블에 데이터를 로드하려면 테이블당 하나의 [CTAS][CTAS] 문을 사용하세요.</span><span class="sxs-lookup"><span data-stu-id="6eba4-158">Loading with CTAS leverages the strongly typed external tables you have just created.To load the data into new tables, use one [CTAS][CTAS] statement per table.</span></span> 
+### <a name="42-load-hello-data-into-new-tables"></a><span data-ttu-id="9cc93-155">4.2.</span><span class="sxs-lookup"><span data-stu-id="9cc93-155">4.2.</span></span> <span data-ttu-id="9cc93-156">Hello 데이터를 새 테이블로 로드</span><span class="sxs-lookup"><span data-stu-id="9cc93-156">Load hello data into new tables</span></span>
+<span data-ttu-id="9cc93-157">blob 저장소와 데이터베이스 내의 테이블에 저장 hello를 사용 하 여 Azure tooload 데이터 [CREATE TABLE AS SELECT (Transact SQL)] [ CREATE TABLE AS SELECT (Transact-SQL)] 문.</span><span class="sxs-lookup"><span data-stu-id="9cc93-157">tooload data from Azure blob storage and save it in a table inside of your database, use hello [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)] statement.</span></span> <span data-ttu-id="9cc93-158">CTAS에는 포함 된 로드 활용 하 여 hello 강력한 형식의 정당한 created.tooload hello 데이터를 새 테이블에 있는 외부 테이블 하나를 사용 하십시오 [CTAS] [ CTAS] 테이블당 문입니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-158">Loading with CTAS leverages hello strongly typed external tables you have just created.tooload hello data into new tables, use one [CTAS][CTAS] statement per table.</span></span> 
  
-<span data-ttu-id="6eba4-159">CTAS는 새 테이블을 만들고 select 문의 결과와 함께 새 테이블을 정보표시합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-159">CTAS creates a new table and populates it with the results of a select statement.</span></span> <span data-ttu-id="6eba4-160">CTAS는 select 문의 결과에 부합하는 동일한 열과 데이터 형식을 가지도록 새 테이블을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-160">CTAS defines the new table to have the same columns and data types as the results of the select statement.</span></span> <span data-ttu-id="6eba4-161">외부 테이블에서 모든 열을 선택하는 경우 새 테이블은 외부 테이블의 열과 데이터 형식의 복제본이 됩니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-161">If you select all the columns from an external table, the new table will be a replica of the columns and data types in the external table.</span></span>
+<span data-ttu-id="9cc93-159">CTAS에는 새 테이블을 만들고을 select 문의 hello 결과 함께 채웁니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-159">CTAS creates a new table and populates it with hello results of a select statement.</span></span> <span data-ttu-id="9cc93-160">CTAS에는 새 테이블 toohave hello 정의의 hello hello 결과 select 문 처럼 동일한 열과 데이터 형식을 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-160">CTAS defines hello new table toohave hello same columns and data types as hello results of hello select statement.</span></span> <span data-ttu-id="9cc93-161">외부 테이블에서 모든 hello 열을 선택 하면 hello 새 테이블에 hello 외부 테이블의 hello 열과 데이터 형식을의 복제본이 됩니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-161">If you select all hello columns from an external table, hello new table will be a replica of hello columns and data types in hello external table.</span></span>
 
-<span data-ttu-id="6eba4-162">이 예제에서는 차원과 해시 분산 테이블로서 팩트 테이블을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-162">In this example, we create both the dimension and the fact table as hash distributed tables.</span></span> 
+<span data-ttu-id="9cc93-162">이 예제에서는 hello 차원과 hello 팩트 테이블 분산된 테이블 해시로 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-162">In this example, we create both hello dimension and hello fact table as hash distributed tables.</span></span> 
 
 ```sql
 SELECT GETDATE();
@@ -241,20 +241,20 @@ CREATE TABLE [cso].[DimProduct]            WITH (DISTRIBUTION = HASH([ProductKey
 CREATE TABLE [cso].[FactOnlineSales]       WITH (DISTRIBUTION = HASH([ProductKey]  ) ) AS SELECT * FROM [asb].[FactOnlineSales]        OPTION (LABEL = 'CTAS : Load [cso].[FactOnlineSales]        ');
 ```
 
-### <a name="43-track-the-load-progress"></a><span data-ttu-id="6eba4-163">4.3 로드 진행률 추적</span><span class="sxs-lookup"><span data-stu-id="6eba4-163">4.3 Track the load progress</span></span>
-<span data-ttu-id="6eba4-164">DMV(동적 관리 뷰)를 사용하여 로드 진행률을 추적할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-164">You can track the progress of your load using dynamic management views (DMVs).</span></span> 
+### <a name="43-track-hello-load-progress"></a><span data-ttu-id="9cc93-163">4.3 hello 부하 진행률 추적</span><span class="sxs-lookup"><span data-stu-id="9cc93-163">4.3 Track hello load progress</span></span>
+<span data-ttu-id="9cc93-164">동적 관리 뷰 (Dmv)를 사용 하 여 부하의 hello 진행률을 추적할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-164">You can track hello progress of your load using dynamic management views (DMVs).</span></span> 
 
 ```sql
--- To see all requests
+-- toosee all requests
 SELECT * FROM sys.dm_pdw_exec_requests;
 
--- To see a particular request identified by its label
+-- toosee a particular request identified by its label
 SELECT * FROM sys.dm_pdw_exec_requests as r
 WHERE r.[label] = 'CTAS : Load [cso].[DimProduct]             '
       OR r.[label] = 'CTAS : Load [cso].[FactOnlineSales]        '
 ;
 
--- To track bytes and files
+-- tootrack bytes and files
 SELECT
     r.command,
     s.request_id,
@@ -277,10 +277,10 @@ ORDER BY
     gb_processed desc;
 ```
 
-## <a name="5-optimize-columnstore-compression"></a><span data-ttu-id="6eba4-165">5. Columnstore 압축을 최적화합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-165">5. Optimize columnstore compression</span></span>
-<span data-ttu-id="6eba4-166">기본적으로 SQL 데이터 웨어하우스는 클러스터형 columnstore 인덱스로 테이블을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-166">By default, SQL Data Warehouse stores the table as a clustered columnstore index.</span></span> <span data-ttu-id="6eba4-167">로드를 완료한 후 데이터 행 일부는 columnstore로 압축되지 않을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-167">After a load completes, some of the data rows might not be compressed into the columnstore.</span></span>  <span data-ttu-id="6eba4-168">여기에는 다양한 이유가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-168">There's a variety of reasons why this can happen.</span></span> <span data-ttu-id="6eba4-169">자세한 내용은 [Columnstore 인덱스 관리][manage columnstore indexes]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="6eba4-169">To learn more, see [manage columnstore indexes][manage columnstore indexes].</span></span>
+## <a name="5-optimize-columnstore-compression"></a><span data-ttu-id="9cc93-165">5. Columnstore 압축을 최적화합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-165">5. Optimize columnstore compression</span></span>
+<span data-ttu-id="9cc93-166">기본적으로 SQL 데이터 웨어하우스는 hello 테이블을 클러스터형된 columnstore 인덱스로 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-166">By default, SQL Data Warehouse stores hello table as a clustered columnstore index.</span></span> <span data-ttu-id="9cc93-167">로드를 완료 한 후 일부 hello 데이터 행 수 압축 되지 hello columnstore에 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-167">After a load completes, some of hello data rows might not be compressed into hello columnstore.</span></span>  <span data-ttu-id="9cc93-168">여기에는 다양한 이유가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-168">There's a variety of reasons why this can happen.</span></span> <span data-ttu-id="9cc93-169">toolearn 더 참조 [columnstore 인덱스 관리][manage columnstore indexes]합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-169">toolearn more, see [manage columnstore indexes][manage columnstore indexes].</span></span>
 
-<span data-ttu-id="6eba4-170">로드 후 쿼리 성능과 columnstore 압축을 최적화하려면 모든 행을 압축하기 위해 columnstore 인덱스를 강제 적용할 테이블을 다시 빌드합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-170">To optimize query performance and columnstore compression after a load, rebuild the table to force the columnstore index to compress all the rows.</span></span> 
+<span data-ttu-id="9cc93-170">toooptimize 쿼리 성능 및 columnstore 압축 하 여 로드 한 후 모든 hello 행 hello 테이블 tooforce hello columnstore 인덱스 toocompress를 다시 작성 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-170">toooptimize query performance and columnstore compression after a load, rebuild hello table tooforce hello columnstore index toocompress all hello rows.</span></span> 
 
 ```sql
 SELECT GETDATE();
@@ -290,14 +290,14 @@ ALTER INDEX ALL ON [cso].[DimProduct]               REBUILD;
 ALTER INDEX ALL ON [cso].[FactOnlineSales]          REBUILD;
 ```
 
-<span data-ttu-id="6eba4-171">Columnstore 인덱스 유지 관리에 대한 자세한 내용은 [Columnstore 인덱스 관리][manage columnstore indexes] 문서를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="6eba4-171">For more information on maintaining columnstore indexes, see the [manage columnstore indexes][manage columnstore indexes] article.</span></span>
+<span data-ttu-id="9cc93-171">Columnstore 인덱스 유지 관리에 대 한 자세한 내용은 참조 hello [columnstore 인덱스 관리] [ manage columnstore indexes] 문서.</span><span class="sxs-lookup"><span data-stu-id="9cc93-171">For more information on maintaining columnstore indexes, see hello [manage columnstore indexes][manage columnstore indexes] article.</span></span>
 
-## <a name="6-optimize-statistics"></a><span data-ttu-id="6eba4-172">6. 통계를 최적화합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-172">6. Optimize statistics</span></span>
-<span data-ttu-id="6eba4-173">로드 직후 단일 열 통계를 만드는 것이 가장 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-173">It is best to create single-column statistics immediately after a load.</span></span> <span data-ttu-id="6eba4-174">통계에 대한 몇 가지 선택 사항이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-174">There are some choices for statistics.</span></span> <span data-ttu-id="6eba4-175">예를 들어 모든 열에 단일 열 통계를 만드는 경우 모든 통계를 다시 작성하는 데 시간이 오래 걸릴 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-175">For example, if you create single-column statistics on every column it might take a long time to rebuild all the statistics.</span></span> <span data-ttu-id="6eba4-176">쿼리 조건자에 위치하지 않을 특정 열에 대해 알고 있다면 이들 열에 대한 통계 생성 과정은 건너뛸 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-176">If you know certain columns are not going to be in query predicates, you can skip creating statistics on those columns.</span></span>
+## <a name="6-optimize-statistics"></a><span data-ttu-id="9cc93-172">6. 통계를 최적화합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-172">6. Optimize statistics</span></span>
+<span data-ttu-id="9cc93-173">부하 후 즉시 최상의 toocreate 단일 열 통계에는 다른 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-173">It is best toocreate single-column statistics immediately after a load.</span></span> <span data-ttu-id="9cc93-174">통계에 대한 몇 가지 선택 사항이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-174">There are some choices for statistics.</span></span> <span data-ttu-id="9cc93-175">예를 들어 모든 열에 단일 열 통계를 만드는 경우 걸릴 수 있습니다는 오랜 시간이 toorebuild 모든 hello 통계.</span><span class="sxs-lookup"><span data-stu-id="9cc93-175">For example, if you create single-column statistics on every column it might take a long time toorebuild all hello statistics.</span></span> <span data-ttu-id="9cc93-176">특정 열 쿼리 조건자의 toobe 것을 알고 있는 경우 해당 열에 만드는 통계를 건너뛸 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-176">If you know certain columns are not going toobe in query predicates, you can skip creating statistics on those columns.</span></span>
 
-<span data-ttu-id="6eba4-177">단일 열 통계를 모든 테이블의 모든 열에 대해 만들기로 결정한 경우 [통계][statistics] 문서에 저장된 프로시저 코드 샘플 `prc_sqldw_create_stats`를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-177">If you decide to create single-column statistics on every column of every table, you can use the stored procedure code sample `prc_sqldw_create_stats` in the [statistics][statistics] article.</span></span>
+<span data-ttu-id="9cc93-177">모든 테이블의 모든 열에 단일 열 통계 toocreate 결정 한 경우에 hello 저장된 프로시저 코드 샘플을 사용할 수 있습니다 `prc_sqldw_create_stats` hello에 [통계] [ statistics] 문서.</span><span class="sxs-lookup"><span data-stu-id="9cc93-177">If you decide toocreate single-column statistics on every column of every table, you can use hello stored procedure code sample `prc_sqldw_create_stats` in hello [statistics][statistics] article.</span></span>
 
-<span data-ttu-id="6eba4-178">다음 예제는 통계를 만들기 위한 좋은 출발점이 됩니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-178">The following example is a good starting point for creating statistics.</span></span> <span data-ttu-id="6eba4-179">차원 테이블의 각 열과 팩트 테이블의 각 조인 열의 단일 열 통계를 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-179">It creates single-column statistics on each column in the dimension table, and on each joining column in the fact tables.</span></span> <span data-ttu-id="6eba4-180">이후 언제라도 다른 팩트 테이블 열에 단일 또는 여러 열 통계를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-180">You can always add single or multi-column statistics to other fact table columns later on.</span></span>
+<span data-ttu-id="9cc93-178">다음 예제는 hello은 통계를 만들기 위한 좋은 시작 지점입니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-178">hello following example is a good starting point for creating statistics.</span></span> <span data-ttu-id="9cc93-179">Hello 팩트 테이블에 각 조인 열 및 hello 차원 테이블의 각 열에 단일 열 통계를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-179">It creates single-column statistics on each column in hello dimension table, and on each joining column in hello fact tables.</span></span> <span data-ttu-id="9cc93-180">항상 단일 또는 여러 열 통계 tooother 팩트 테이블 열을 나중에 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-180">You can always add single or multi-column statistics tooother fact table columns later on.</span></span>
 
 ```sql
 CREATE STATISTICS [stat_cso_DimProduct_AvailableForSaleDate] ON [cso].[DimProduct]([AvailableForSaleDate]);
@@ -341,10 +341,10 @@ CREATE STATISTICS [stat_cso_FactOnlineSales_PromotionKey] ON [cso].[FactOnlineSa
 CREATE STATISTICS [stat_cso_FactOnlineSales_StoreKey] ON [cso].[FactOnlineSales]([StoreKey]);
 ```
 
-## <a name="achievement-unlocked"></a><span data-ttu-id="6eba4-181">목표를 달성했습니다!</span><span class="sxs-lookup"><span data-stu-id="6eba4-181">Achievement unlocked!</span></span>
-<span data-ttu-id="6eba4-182">이제 Azure SQL 데이터 웨어하우스에 공용 데이터를 성공적으로 로드했습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-182">You have successfully loaded public data into Azure SQL Data Warehouse.</span></span> <span data-ttu-id="6eba4-183">잘 하셨습니다!</span><span class="sxs-lookup"><span data-stu-id="6eba4-183">Great job!</span></span>
+## <a name="achievement-unlocked"></a><span data-ttu-id="9cc93-181">목표를 달성했습니다!</span><span class="sxs-lookup"><span data-stu-id="9cc93-181">Achievement unlocked!</span></span>
+<span data-ttu-id="9cc93-182">이제 Azure SQL 데이터 웨어하우스에 공용 데이터를 성공적으로 로드했습니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-182">You have successfully loaded public data into Azure SQL Data Warehouse.</span></span> <span data-ttu-id="9cc93-183">잘 하셨습니다!</span><span class="sxs-lookup"><span data-stu-id="9cc93-183">Great job!</span></span>
 
-<span data-ttu-id="6eba4-184">다음과 같은 쿼리를 사용하여 테이블 쿼리를 시작할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6eba4-184">You can now start querying the tables using queries like the following:</span></span>
+<span data-ttu-id="9cc93-184">이제 hello 다음과 같은 쿼리를 사용 하 여 hello 테이블 쿼리를 시작할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-184">You can now start querying hello tables using queries like hello following:</span></span>
 
 ```sql
 SELECT  SUM(f.[SalesAmount]) AS [sales_by_brand_amount]
@@ -354,8 +354,8 @@ JOIN    [cso].[DimProduct]      AS p ON f.[ProductKey] = p.[ProductKey]
 GROUP BY p.[BrandName]
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="6eba4-185">다음 단계</span><span class="sxs-lookup"><span data-stu-id="6eba4-185">Next steps</span></span>
-<span data-ttu-id="6eba4-186">전체 Contoso 소매 데이터 웨어하우스 데이터를 로드하려면 더 많은 개발 팁(For more development tips)의 스크립트를 사용하고 [SQL Data Warehouse 개발 개요][SQL Data Warehouse development overview]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="6eba4-186">To load the full Contoso Retail Data Warehouse data, use the script in For more development tips, see [SQL Data Warehouse development overview][SQL Data Warehouse development overview].</span></span>
+## <a name="next-steps"></a><span data-ttu-id="9cc93-185">다음 단계</span><span class="sxs-lookup"><span data-stu-id="9cc93-185">Next steps</span></span>
+<span data-ttu-id="9cc93-186">tooload hello 전체 Contoso 소매 데이터 웨어하우스의 데이터에서 hello 스크립트를 사용 하 여 더 많은 개발 팁에 대 한 참조 하십시오. [SQL 데이터 웨어하우스 개발 개요][SQL Data Warehouse development overview]합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc93-186">tooload hello full Contoso Retail Data Warehouse data, use hello script in For more development tips, see [SQL Data Warehouse development overview][SQL Data Warehouse development overview].</span></span>
 
 <!--Image references-->
 
@@ -377,4 +377,4 @@ GROUP BY p.[BrandName]
 
 <!--Other Web references-->
 [Microsoft Download Center]: http://www.microsoft.com/download/details.aspx?id=36433
-[Load the full Contoso Retail Data Warehouse]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md
+[Load hello full Contoso Retail Data Warehouse]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md

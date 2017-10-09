@@ -4,9 +4,9 @@
 ## [FAQ](virtual-machines-windows-sql-server-iaas-faq.md)
  
 # 시작
-## [Azure Portal에서 VM 프로비전](virtual-machines-windows-portal-sql-server-provision.md)
+## [Hello Azure 포털에서에서 VM을 프로 비전](virtual-machines-windows-portal-sql-server-provision.md)
 ## [Azure PowerShell을 사용하여 VM 프로비전](virtual-machines-windows-ps-sql-create.md)
-## [VM에 연결](virtual-machines-windows-sql-connect.md)
+## [Tooa VM 연결](virtual-machines-windows-sql-connect.md)
 ## [SQL Server 데이터베이스 마이그레이션](virtual-machines-windows-migrate-sql.md)
 
 # 방법
@@ -23,7 +23,7 @@
 #### [구성](virtual-machines-windows-portal-sql-create-failover-cluster.md)
 
 ## 관리
-### [SQL Server IaaS 에이전트 확장 사용](virtual-machines-windows-sql-server-agent-extension.md)
+### [SQL Server IaaS 에이전트 확장 hello를 사용 하 여](virtual-machines-windows-sql-server-agent-extension.md)
 ### [자동화된 패치](virtual-machines-windows-sql-automated-patching.md)
 ### [Azure Key Vault 통합 구성](virtual-machines-windows-ps-sql-keyvault.md)
 ### [보안 고려사항](virtual-machines-windows-sql-security.md)

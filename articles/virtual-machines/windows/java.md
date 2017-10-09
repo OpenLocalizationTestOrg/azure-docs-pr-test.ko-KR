@@ -1,6 +1,6 @@
 ---
-title: "Java를 사용하여 Azure Virtual Machine 만들기 및 관리 | Microsoft Docs"
-description: "Java 및 Azure Resource Manager를 사용하여 가상 컴퓨터 및 모든 지원 리소스를 배포합니다."
+title: "aaaCreate 및 Azure 가상 컴퓨터를 사용 하 여 Java 관리 | Microsoft Docs"
+description: "가상 컴퓨터와 해당 지원 리소스를 모두 toodeploy Java 및 Azure 리소스 관리자를 사용 합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -15,32 +15,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: davidmu
-ms.openlocfilehash: b9e739a07c5863577285fb3a221b372b385c6762
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 31ac8d59f92ecff887e64906940933dd6fd50815
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-manage-windows-vms-in-azure-using-java"></a><span data-ttu-id="9cc32-103">Java를 사용하여 Azure에서 Windows VM 만들기 및 관리</span><span class="sxs-lookup"><span data-stu-id="9cc32-103">Create and manage Windows VMs in Azure using Java</span></span>
+# <a name="create-and-manage-windows-vms-in-azure-using-java"></a><span data-ttu-id="40b69-103">Java를 사용하여 Azure에서 Windows VM 만들기 및 관리</span><span class="sxs-lookup"><span data-stu-id="40b69-103">Create and manage Windows VMs in Azure using Java</span></span>
 
-<span data-ttu-id="9cc32-104">[Azure VM(Virtual Machine)](overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)에 몇 가지 지원 Azure 리소스가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-104">An [Azure Virtual Machine](overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (VM) needs several supporting Azure resources.</span></span> <span data-ttu-id="9cc32-105">이 문서에서는 Java를 사용하여 VM 리소스 만들기, 관리 및 삭제에 대해 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-105">This article covers creating, managing, and deleting VM resources using Java.</span></span> <span data-ttu-id="9cc32-106">다음 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-106">You learn how to:</span></span>
+<span data-ttu-id="40b69-104">[Azure VM(Virtual Machine)](overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)에 몇 가지 지원 Azure 리소스가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-104">An [Azure Virtual Machine](overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (VM) needs several supporting Azure resources.</span></span> <span data-ttu-id="40b69-105">이 문서에서는 Java를 사용하여 VM 리소스 만들기, 관리 및 삭제에 대해 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-105">This article covers creating, managing, and deleting VM resources using Java.</span></span> <span data-ttu-id="40b69-106">다음 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-106">You learn how to:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="9cc32-107">Maven 프로젝트 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc32-107">Create a Maven project</span></span>
-> * <span data-ttu-id="9cc32-108">종속성 추가</span><span class="sxs-lookup"><span data-stu-id="9cc32-108">Add dependencies</span></span>
-> * <span data-ttu-id="9cc32-109">자격 증명 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc32-109">Create credentials</span></span>
-> * <span data-ttu-id="9cc32-110">리소스 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc32-110">Create resources</span></span>
-> * <span data-ttu-id="9cc32-111">관리 작업 수행</span><span class="sxs-lookup"><span data-stu-id="9cc32-111">Perform management tasks</span></span>
-> * <span data-ttu-id="9cc32-112">리소스 삭제</span><span class="sxs-lookup"><span data-stu-id="9cc32-112">Delete resources</span></span>
-> * <span data-ttu-id="9cc32-113">응용 프로그램 실행</span><span class="sxs-lookup"><span data-stu-id="9cc32-113">Run the application</span></span>
+> * <span data-ttu-id="40b69-107">Maven 프로젝트 만들기</span><span class="sxs-lookup"><span data-stu-id="40b69-107">Create a Maven project</span></span>
+> * <span data-ttu-id="40b69-108">종속성 추가</span><span class="sxs-lookup"><span data-stu-id="40b69-108">Add dependencies</span></span>
+> * <span data-ttu-id="40b69-109">자격 증명 만들기</span><span class="sxs-lookup"><span data-stu-id="40b69-109">Create credentials</span></span>
+> * <span data-ttu-id="40b69-110">리소스 만들기</span><span class="sxs-lookup"><span data-stu-id="40b69-110">Create resources</span></span>
+> * <span data-ttu-id="40b69-111">관리 작업 수행</span><span class="sxs-lookup"><span data-stu-id="40b69-111">Perform management tasks</span></span>
+> * <span data-ttu-id="40b69-112">리소스 삭제</span><span class="sxs-lookup"><span data-stu-id="40b69-112">Delete resources</span></span>
+> * <span data-ttu-id="40b69-113">Hello 응용 프로그램 실행</span><span class="sxs-lookup"><span data-stu-id="40b69-113">Run hello application</span></span>
 
-<span data-ttu-id="9cc32-114">이러한 단계를 수행하려면 약 20분이 걸립니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-114">It takes about 20 minutes to do these steps.</span></span>
+<span data-ttu-id="40b69-114">다음이 단계 toodo 약 20 분이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-114">It takes about 20 minutes toodo these steps.</span></span>
 
-## <a name="create-a-maven-project"></a><span data-ttu-id="9cc32-115">Maven 프로젝트 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc32-115">Create a Maven project</span></span>
+## <a name="create-a-maven-project"></a><span data-ttu-id="40b69-115">Maven 프로젝트 만들기</span><span class="sxs-lookup"><span data-stu-id="40b69-115">Create a Maven project</span></span>
 
-1. <span data-ttu-id="9cc32-116">아직 수행하지 않았다면 [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-116">If you haven't already done so, install [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html).</span></span>
-2. <span data-ttu-id="9cc32-117">[Maven](http://maven.apache.org/download.cgi)을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-117">Install [Maven](http://maven.apache.org/download.cgi).</span></span>
-3. <span data-ttu-id="9cc32-118">새 폴더와 프로젝트를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-118">Create a new folder and the project:</span></span>
+1. <span data-ttu-id="40b69-116">아직 수행하지 않았다면 [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-116">If you haven't already done so, install [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html).</span></span>
+2. <span data-ttu-id="40b69-117">[Maven](http://maven.apache.org/download.cgi)을 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-117">Install [Maven](http://maven.apache.org/download.cgi).</span></span>
+3. <span data-ttu-id="40b69-118">새 폴더 및 hello 프로젝트를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-118">Create a new folder and hello project:</span></span>
     
     ```
     mkdir java-azure-test
@@ -49,9 +49,9 @@ ms.lasthandoff: 08/29/2017
     mvn archetype:generate -DgroupId=com.fabrikam -DartifactId=testAzureApp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
 
-## <a name="add-dependencies"></a><span data-ttu-id="9cc32-119">종속성 추가</span><span class="sxs-lookup"><span data-stu-id="9cc32-119">Add dependencies</span></span>
+## <a name="add-dependencies"></a><span data-ttu-id="40b69-119">종속성 추가</span><span class="sxs-lookup"><span data-stu-id="40b69-119">Add dependencies</span></span>
 
-1. <span data-ttu-id="9cc32-120">`testAzureApp` 폴더에서 `pom.xml` 파일을 열고 빌드 구성을 &lt;프로젝트&gt;에 추가하여 응용 프로그램의 빌드를 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-120">Under the `testAzureApp` folder, open the `pom.xml` file and add the build configuration to &lt;project&gt; to enable the building of your application:</span></span>
+1. <span data-ttu-id="40b69-120">Hello에서 `testAzureApp` 폴더, 열기 hello `pom.xml` 파일을 너무 hello 빌드 구성을 추가&lt;프로젝트&gt; 응용 프로그램의 tooenable hello 빌딩:</span><span class="sxs-lookup"><span data-stu-id="40b69-120">Under hello `testAzureApp` folder, open hello `pom.xml` file and add hello build configuration too&lt;project&gt; tooenable hello building of your application:</span></span>
 
     ```xml
     <build>
@@ -67,7 +67,7 @@ ms.lasthandoff: 08/29/2017
     </build>
     ```
 
-2. <span data-ttu-id="9cc32-121">Azure Java SDK에 액세스하는 데 필요한 종속성을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-121">Add the dependencies that are needed to access the Azure Java SDK.</span></span>
+2. <span data-ttu-id="40b69-121">Hello 종속성 필요한 tooaccess hello Azure Java SDK에 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-121">Add hello dependencies that are needed tooaccess hello Azure Java SDK.</span></span>
 
     ```xml
     <dependency>
@@ -112,15 +112,15 @@ ms.lasthandoff: 08/29/2017
     </dependency>
     ```
 
-3. <span data-ttu-id="9cc32-122">파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-122">Save the file.</span></span>
+3. <span data-ttu-id="40b69-122">Hello 파일을 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-122">Save hello file.</span></span>
 
-## <a name="create-credentials"></a><span data-ttu-id="9cc32-123">자격 증명 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc32-123">Create credentials</span></span>
+## <a name="create-credentials"></a><span data-ttu-id="40b69-123">자격 증명 만들기</span><span class="sxs-lookup"><span data-stu-id="40b69-123">Create credentials</span></span>
 
-<span data-ttu-id="9cc32-124">이 단계를 시작하기 전에 [Active Directory 서비스 사용자](../../azure-resource-manager/resource-group-create-service-principal-portal.md)에 액세스할 수 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-124">Before you start this step, make sure that you have access to an [Active Directory service principal](../../azure-resource-manager/resource-group-create-service-principal-portal.md).</span></span> <span data-ttu-id="9cc32-125">또한 이후 단계에서 필요한 응용 프로그램 ID, 인증 키 및 테넌트 ID를 기록해 두어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-125">You should also record the application ID, the authentication key, and the tenant ID that you need in a later step.</span></span>
+<span data-ttu-id="40b69-124">이 단계를 시작 하기 전에 액세스 tooan 했는지 확인 [Active Directory 서비스 사용자](../../azure-resource-manager/resource-group-create-service-principal-portal.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-124">Before you start this step, make sure that you have access tooan [Active Directory service principal](../../azure-resource-manager/resource-group-create-service-principal-portal.md).</span></span> <span data-ttu-id="40b69-125">이후 단계에서 또한 hello 응용 프로그램 ID, 인증 키 hello 및 필요한 hello 테 넌 트 ID을 기록해 야 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-125">You should also record hello application ID, hello authentication key, and hello tenant ID that you need in a later step.</span></span>
 
-### <a name="create-the-authorization-file"></a><span data-ttu-id="9cc32-126">권한 부여 파일 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc32-126">Create the authorization file</span></span>
+### <a name="create-hello-authorization-file"></a><span data-ttu-id="40b69-126">Hello 권한 부여 파일 만들기</span><span class="sxs-lookup"><span data-stu-id="40b69-126">Create hello authorization file</span></span>
 
-1. <span data-ttu-id="9cc32-127">`azureauth.properties`라는 파일을 만들고 이러한 속성을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-127">Create a file named `azureauth.properties` and add these properties to it:</span></span>
+1. <span data-ttu-id="40b69-127">라는 파일을 만들어 `azureauth.properties` 하 고 이러한 속성 tooit 추가:</span><span class="sxs-lookup"><span data-stu-id="40b69-127">Create a file named `azureauth.properties` and add these properties tooit:</span></span>
 
     ```
     subscription=<subscription-id>
@@ -133,20 +133,20 @@ ms.lasthandoff: 08/29/2017
     graphURL=https://graph.windows.net/
     ```
 
-    <span data-ttu-id="9cc32-128">**&lt;subscription-id&gt;**를 구독 식별자, **&lt;application-id&gt;**를 Active Directory 응용 프로그램 식별자, **&lt;authentication-key&gt;**를 응용 프로그램 키, **&lt;tenant-id&gt;**를 테넌트 식별자로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-128">Replace **&lt;subscription-id&gt;** with your subscription identifier, **&lt;application-id&gt;** with the Active Directory application identifier, **&lt;authentication-key&gt;** with the application key, and **&lt;tenant-id&gt;** with the tenant identifier.</span></span>
+    <span data-ttu-id="40b69-128">대체  **&lt;-&gt;**  구독 식별자를 가진  **&lt;응용 프로그램 id&gt;**  Active Directory 응용 프로그램 hello로 식별자,  **&lt;인증 키&gt;**  hello 응용 프로그램 키를 포함 하 고  **&lt;테 넌 트 id&gt;**  hello 테 넌 트와 식별자입니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-128">Replace **&lt;subscription-id&gt;** with your subscription identifier, **&lt;application-id&gt;** with hello Active Directory application identifier, **&lt;authentication-key&gt;** with hello application key, and **&lt;tenant-id&gt;** with hello tenant identifier.</span></span>
 
-2. <span data-ttu-id="9cc32-129">파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-129">Save the file.</span></span>
-3. <span data-ttu-id="9cc32-130">인증 파일에 전체 경로로 프로그램 셸의 AZURE_AUTH_LOCATION이라는 환경 변수를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-130">Set an environment variable named AZURE_AUTH_LOCATION in your shell with the full path to the authentication file.</span></span>
+2. <span data-ttu-id="40b69-129">Hello 파일을 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-129">Save hello file.</span></span>
+3. <span data-ttu-id="40b69-130">Hello 전체 경로 toohello 인증 파일 프로그램 셸의 AZURE_AUTH_LOCATION 라는 환경 변수를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-130">Set an environment variable named AZURE_AUTH_LOCATION in your shell with hello full path toohello authentication file.</span></span>
 
-### <a name="create-the-management-client"></a><span data-ttu-id="9cc32-131">관리 클라이언트 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc32-131">Create the management client</span></span>
+### <a name="create-hello-management-client"></a><span data-ttu-id="40b69-131">Hello 관리 클라이언트 만들기</span><span class="sxs-lookup"><span data-stu-id="40b69-131">Create hello management client</span></span>
 
-1. <span data-ttu-id="9cc32-132">`src\main\java\com\fabrikam`에 있는 `App.java` 파일을 열고 이 패키지 문이 위쪽에 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-132">Open the `App.java` file under `src\main\java\com\fabrikam` and make sure this package statement is at the top:</span></span>
+1. <span data-ttu-id="40b69-132">열기 hello `App.java` 아래 파일 `src\main\java\com\fabrikam` hello 위쪽에이 패키지 문을 인지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-132">Open hello `App.java` file under `src\main\java\com\fabrikam` and make sure this package statement is at hello top:</span></span>
 
     ```java
     package com.fabrikam.testAzureApp;
     ```
 
-2. <span data-ttu-id="9cc32-133">패키지 문에서 다음과 같은 import 문을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-133">Under the package statement, add these import statements:</span></span>
+2. <span data-ttu-id="40b69-133">이러한 추가 hello 패키지 문 아래 import 문의:</span><span class="sxs-lookup"><span data-stu-id="40b69-133">Under hello package statement, add these import statements:</span></span>
    
     ```java
     import com.microsoft.azure.management.Azure;
@@ -168,7 +168,7 @@ ms.lasthandoff: 08/29/2017
     import java.util.Scanner;
     ```
 
-2. <span data-ttu-id="9cc32-134">요청을 해야 하는 Active Directory 자격 증명을 만들려면 App 클래스의 Main 메서드에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-134">To create the Active Directory credentials that you need to make requests, add this code to the main method of the App class:</span></span>
+2. <span data-ttu-id="40b69-134">toocreate hello Active Directory 자격 증명 toomake 요청 해야 하는 hello App 클래스의이 코드 toohello main 메서드를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-134">toocreate hello Active Directory credentials that you need toomake requests, add this code toohello main method of hello App class:</span></span>
    
     ```java
     try {    
@@ -184,13 +184,13 @@ ms.lasthandoff: 08/29/2017
 
     ```
 
-## <a name="create-resources"></a><span data-ttu-id="9cc32-135">리소스 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc32-135">Create resources</span></span>
+## <a name="create-resources"></a><span data-ttu-id="40b69-135">리소스 만들기</span><span class="sxs-lookup"><span data-stu-id="40b69-135">Create resources</span></span>
 
-### <a name="create-the-resource-group"></a><span data-ttu-id="9cc32-136">리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc32-136">Create the resource group</span></span>
+### <a name="create-hello-resource-group"></a><span data-ttu-id="40b69-136">Hello 리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="40b69-136">Create hello resource group</span></span>
 
-<span data-ttu-id="9cc32-137">모든 리소스는 [리소스 그룹](../../azure-resource-manager/resource-group-overview.md)에 포함되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-137">All resources must be contained in a [Resource group](../../azure-resource-manager/resource-group-overview.md).</span></span>
+<span data-ttu-id="40b69-137">모든 리소스는 [리소스 그룹](../../azure-resource-manager/resource-group-overview.md)에 포함되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-137">All resources must be contained in a [Resource group](../../azure-resource-manager/resource-group-overview.md).</span></span>
 
-<span data-ttu-id="9cc32-138">응용 프로그램의 값을 지정하고 리소스 그룹을 만들려면 Main 메서드의 try 블록에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-138">To specify values for the application and create the resource group, add this code to the try block in the main method:</span></span>
+<span data-ttu-id="40b69-138">toospecify 값에 대 한 응용 프로그램 hello 및 hello 리소스 그룹 만들기 hello 기본 방법에서이 코드 toohello try 블록을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-138">toospecify values for hello application and create hello resource group, add this code toohello try block in hello main method:</span></span>
 
 ```java
 System.out.println("Creating resource group...");
@@ -200,11 +200,11 @@ ResourceGroup resourceGroup = azure.resourceGroups()
     .create();
 ```
 
-### <a name="create-the-availability-set"></a><span data-ttu-id="9cc32-139">가용성 집합 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc32-139">Create the availability set</span></span>
+### <a name="create-hello-availability-set"></a><span data-ttu-id="40b69-139">Hello 가용성 집합 만들기</span><span class="sxs-lookup"><span data-stu-id="40b69-139">Create hello availability set</span></span>
 
-<span data-ttu-id="9cc32-140">[가용성 집합](tutorial-availability-sets.md)은 응용 프로그램에서 사용되는 가상 컴퓨터를 쉽게 유지 관리할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-140">[Availability sets](tutorial-availability-sets.md) make it easier for you to maintain the virtual machines used by your application.</span></span>
+<span data-ttu-id="40b69-140">[가용성 집합](tutorial-availability-sets.md) 쉽게 드립니다 toomaintain hello 가상 컴퓨터 응용 프로그램에서 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-140">[Availability sets](tutorial-availability-sets.md) make it easier for you toomaintain hello virtual machines used by your application.</span></span>
 
-<span data-ttu-id="9cc32-141">가용성 집합을 만들려면 Main 메서드의 try 블록에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-141">To create the availability set, add this code to the try block in the main method:</span></span>
+<span data-ttu-id="40b69-141">toocreate hello 가용성 설정, hello main 메서드에이 코드 toohello try 블록을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-141">toocreate hello availability set, add this code toohello try block in hello main method:</span></span>
 
 ```java
 System.out.println("Creating availability set...");
@@ -215,11 +215,11 @@ AvailabilitySet availabilitySet = azure.availabilitySets()
     .withSku(AvailabilitySetSkuTypes.MANAGED)
     .create();
 ```
-### <a name="create-the-public-ip-address"></a><span data-ttu-id="9cc32-142">공용 IP 주소 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc32-142">Create the public IP address</span></span>
+### <a name="create-hello-public-ip-address"></a><span data-ttu-id="40b69-142">Hello 공용 IP 주소 만들기</span><span class="sxs-lookup"><span data-stu-id="40b69-142">Create hello public IP address</span></span>
 
-<span data-ttu-id="9cc32-143">[공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview-arm.md)는 가상 컴퓨터와 통신하는 데 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-143">A [Public IP address](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) is needed to communicate with the virtual machine.</span></span>
+<span data-ttu-id="40b69-143">A [공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) hello 가상 컴퓨터와 필요한 toocommunicate 됩니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-143">A [Public IP address](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) is needed toocommunicate with hello virtual machine.</span></span>
 
-<span data-ttu-id="9cc32-144">가상 컴퓨터의 공용 IP 주소를 만들려면 Main 메서드의 try 블록에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-144">To create the public IP address for the virtual machine, add this code to the try block in the main method:</span></span>
+<span data-ttu-id="40b69-144">hello 가상 컴퓨터용 toocreate hello 공용 IP 주소 hello main 메서드에이 코드 toohello try 블록을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-144">toocreate hello public IP address for hello virtual machine, add this code toohello try block in hello main method:</span></span>
 
 ```java
 System.out.println("Creating public IP address...");
@@ -231,11 +231,11 @@ PublicIPAddress publicIPAddress = azure.publicIPAddresses()
     .create();
 ```
 
-### <a name="create-the-virtual-network"></a><span data-ttu-id="9cc32-145">가상 네트워크 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc32-145">Create the virtual network</span></span>
+### <a name="create-hello-virtual-network"></a><span data-ttu-id="40b69-145">Hello 가상 네트워크 만들기</span><span class="sxs-lookup"><span data-stu-id="40b69-145">Create hello virtual network</span></span>
 
-<span data-ttu-id="9cc32-146">가상 컴퓨터는 [가상 네트워크](../../virtual-network/virtual-networks-overview.md)의 서브넷에 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-146">A virtual machine must be in a subnet of a [Virtual network](../../virtual-network/virtual-networks-overview.md).</span></span>
+<span data-ttu-id="40b69-146">가상 컴퓨터는 [가상 네트워크](../../virtual-network/virtual-networks-overview.md)의 서브넷에 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-146">A virtual machine must be in a subnet of a [Virtual network](../../virtual-network/virtual-networks-overview.md).</span></span>
 
-<span data-ttu-id="9cc32-147">서브넷 및 가상 네트워크를 만들려면 Main 메서드의 try 블록에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-147">To create a subnet and a virtual network, add this code to the try block in the main method:</span></span>
+<span data-ttu-id="40b69-147">toocreate는 서브넷과 가상 네트워크 hello main 메서드에이 코드 toohello try 블록을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-147">toocreate a subnet and a virtual network, add this code toohello try block in hello main method:</span></span>
 
 ```java
 System.out.println("Creating virtual network...");
@@ -248,11 +248,11 @@ Network network = azure.networks()
     .create();
 ```
 
-### <a name="create-the-network-interface"></a><span data-ttu-id="9cc32-148">네트워크 인터페이스 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc32-148">Create the network interface</span></span>
+### <a name="create-hello-network-interface"></a><span data-ttu-id="40b69-148">Hello 네트워크 인터페이스 만들기</span><span class="sxs-lookup"><span data-stu-id="40b69-148">Create hello network interface</span></span>
 
-<span data-ttu-id="9cc32-149">가상 컴퓨터는 가상 네트워크에서 통신하기 위해 네트워크 인터페이스가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-149">A virtual machine needs a network interface to communicate on the virtual network.</span></span>
+<span data-ttu-id="40b69-149">가상 컴퓨터에는 hello 가상 네트워크에서 네트워크 인터페이스 toocommunicate가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-149">A virtual machine needs a network interface toocommunicate on hello virtual network.</span></span>
 
-<span data-ttu-id="9cc32-150">네트워크 인터페이스를 만들려면 Main 메서드의 try 블록에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-150">To create a network interface, add this code to the try block in the main method:</span></span>
+<span data-ttu-id="40b69-150">네트워크 인터페이스 toocreate hello main 메서드에이 코드 toohello try 블록을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-150">toocreate a network interface, add this code toohello try block in hello main method:</span></span>
 
 ```java
 System.out.println("Creating network interface...");
@@ -267,11 +267,11 @@ NetworkInterface networkInterface = azure.networkInterfaces()
     .create();
 ```
 
-### <a name="create-the-virtual-machine"></a><span data-ttu-id="9cc32-151">가상 컴퓨터 만들기</span><span class="sxs-lookup"><span data-stu-id="9cc32-151">Create the virtual machine</span></span>
+### <a name="create-hello-virtual-machine"></a><span data-ttu-id="40b69-151">Hello 가상 컴퓨터 만들기</span><span class="sxs-lookup"><span data-stu-id="40b69-151">Create hello virtual machine</span></span>
 
-<span data-ttu-id="9cc32-152">모든 지원 리소스를 만들었으므로 가상 컴퓨터를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-152">Now that you created all the supporting resources, you can create a virtual machine.</span></span>
+<span data-ttu-id="40b69-152">리소스를 지 원하는 모든 hello, 만든 가상 컴퓨터를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-152">Now that you created all hello supporting resources, you can create a virtual machine.</span></span>
 
-<span data-ttu-id="9cc32-153">가상 컴퓨터를 만들려면 Main 메서드의 try 블록에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-153">To create the virtual machine, add this code to the try block in the main method:</span></span>
+<span data-ttu-id="40b69-153">toocreate 가상 컴퓨터를 hello hello 기본 방법에서이 코드 toohello try 블록을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-153">toocreate hello virtual machine, add this code toohello try block in hello main method:</span></span>
 
 ```java
 System.out.println("Creating virtual machine...");
@@ -288,16 +288,16 @@ VirtualMachine virtualMachine = azure.virtualMachines()
     .withSize("Standard_DS1")
     .create();
 Scanner input = new Scanner(System.in);
-System.out.println("Press enter to get information about the VM...");
+System.out.println("Press enter tooget information about hello VM...");
 input.nextLine();
 ```
 
 > [!NOTE]
-> <span data-ttu-id="9cc32-154">이 자습서는 Windows Server 운영 체제의 버전을 실행하는 가상 컴퓨터를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-154">This tutorial creates a virtual machine running a version of the Windows Server operating system.</span></span> <span data-ttu-id="9cc32-155">기타 이미지 선택에 대해 자세히 알아보려면 [Windows PowerShell 및 Azure CLI를 사용하여 Azure 가상 컴퓨터 탐색 및 선택](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9cc32-155">To learn more about selecting other images, see [Navigate and select Azure virtual machine images with Windows PowerShell and the Azure CLI](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+> <span data-ttu-id="40b69-154">이 자습서는 hello Windows Server 운영 체제의 버전을 실행 하는 가상 컴퓨터를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-154">This tutorial creates a virtual machine running a version of hello Windows Server operating system.</span></span> <span data-ttu-id="40b69-155">다른 이미지 선택에 대 한 더 toolearn 참조 [탐색 하 고 Windows PowerShell 및 Azure CLI hello를 사용 하 여 Azure 가상 컴퓨터 이미지 선택](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-155">toolearn more about selecting other images, see [Navigate and select Azure virtual machine images with Windows PowerShell and hello Azure CLI](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
 > 
 >
 
-<span data-ttu-id="9cc32-156">마켓플레이스 이미지 대신 기존 디스크를 사용하려면 다음 코드를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-156">If you want to use an existing disk instead of a marketplace image, use this code:</span></span> 
+<span data-ttu-id="40b69-156">Toouse 마켓플레이스 이미지 대신 기존 디스크를 사용 하도록 하려는 경우이 코드를 사용 하세요.</span><span class="sxs-lookup"><span data-stu-id="40b69-156">If you want toouse an existing disk instead of a marketplace image, use this code:</span></span> 
 
 ```java
 ManagedDisk managedDisk = azure.disks.define("myosdisk") 
@@ -318,19 +318,19 @@ azure.virtualMachines.define("myVM")
     .create(); 
 ``` 
 
-## <a name="perform-management-tasks"></a><span data-ttu-id="9cc32-157">관리 작업 수행</span><span class="sxs-lookup"><span data-stu-id="9cc32-157">Perform management tasks</span></span>
+## <a name="perform-management-tasks"></a><span data-ttu-id="40b69-157">관리 작업 수행</span><span class="sxs-lookup"><span data-stu-id="40b69-157">Perform management tasks</span></span>
 
-<span data-ttu-id="9cc32-158">가상 컴퓨터의 수명 주기 동안 가상 컴퓨터 시작, 중지 또는 삭제 등의 관리 작업을 실행하려고 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-158">During the lifecycle of a virtual machine, you may want to run management tasks such as starting, stopping, or deleting a virtual machine.</span></span> <span data-ttu-id="9cc32-159">또한 반복적이거나 복잡한 작업을 자동화하는 코드를 만들 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-159">Additionally, you may want to create code to automate repetitive or complex tasks.</span></span>
+<span data-ttu-id="40b69-158">가상 컴퓨터의 hello 수명 주기 동안 시작, 중지, 또는 가상 컴퓨터를 삭제 하는 등의 toorun 관리 작업을 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-158">During hello lifecycle of a virtual machine, you may want toorun management tasks such as starting, stopping, or deleting a virtual machine.</span></span> <span data-ttu-id="40b69-159">또한 toocreate 코드 tooautomate 반복적 복잡 한 작업을 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-159">Additionally, you may want toocreate code tooautomate repetitive or complex tasks.</span></span>
 
-<span data-ttu-id="9cc32-160">VM에서 작업을 수행해야 하는 경우 VM의 인스턴스를 가져와야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-160">When you need to do anything with the VM, you need to get an instance of it.</span></span> <span data-ttu-id="9cc32-161">Main 메서드의 try 블록에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-161">Add this code to the try block of the main method:</span></span>
+<span data-ttu-id="40b69-160">필요한 toodo VM hello로 아무 것도 해당 형식의 인스턴스 tooget가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-160">When you need toodo anything with hello VM, you need tooget an instance of it.</span></span> <span data-ttu-id="40b69-161">이 코드 toohello try 블록의 hello main 메서드를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-161">Add this code toohello try block of hello main method:</span></span>
 
 ```java
 VirtualMachine vm = azure.virtualMachines().getByResourceGroup("myResourceGroup", "myVM");
 ```
 
-### <a name="get-information-about-the-vm"></a><span data-ttu-id="9cc32-162">VM 관련 정보 가져오기</span><span class="sxs-lookup"><span data-stu-id="9cc32-162">Get information about the VM</span></span>
+### <a name="get-information-about-hello-vm"></a><span data-ttu-id="40b69-162">Hello VM에 대 한 정보 가져오기</span><span class="sxs-lookup"><span data-stu-id="40b69-162">Get information about hello VM</span></span>
 
-<span data-ttu-id="9cc32-163">가상 컴퓨터에 대한 정보를 가져오려면 Main 메서드의 try 블록에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-163">To get information about the virtual machine, add this code to the try block in the main method:</span></span>
+<span data-ttu-id="40b69-163">hello 가상 컴퓨터에 대 한 tooget 정보 hello main 메서드에이 코드 toohello try 블록을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-163">tooget information about hello virtual machine, add this code toohello try block in hello main method:</span></span>
 
 ```java
 System.out.println("hardwareProfile");
@@ -382,94 +382,94 @@ for(InstanceViewStatus status : vm.instanceView().statuses()) {
     System.out.println("  code: " + status.code());
     System.out.println("  displayStatus: " + status.displayStatus());
 }
-System.out.println("Press enter to continue...");
+System.out.println("Press enter toocontinue...");
 input.nextLine();   
 ```
 
-### <a name="stop-the-vm"></a><span data-ttu-id="9cc32-164">VM을 중지합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-164">Stop the VM</span></span>
+### <a name="stop-hello-vm"></a><span data-ttu-id="40b69-164">Hello VM 중지</span><span class="sxs-lookup"><span data-stu-id="40b69-164">Stop hello VM</span></span>
 
-<span data-ttu-id="9cc32-165">가상 컴퓨터를 중지하고 해당 설정을 모두 그대로 유지하면 계속 요금이 청구될 수 있습니다. 그렇지 않으려면 가상 컴퓨터를 중지하고 할당을 해제합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-165">You can stop a virtual machine and keep all its settings, but continue to be charged for it, or you can stop a virtual machine and deallocate it.</span></span> <span data-ttu-id="9cc32-166">가상 컴퓨터를 할당을 해제하면 연결된 모든 리소스의 할당이 취소되고 대금 청구가 끝납니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-166">When a virtual machine is deallocated, all resources associated with it are also deallocated and billing ends for it.</span></span>
+<span data-ttu-id="40b69-165">가상 컴퓨터를 중지 하 고 해당 설정을 모두 그대로 유지 하지만 계속 toobe 유료로 제공, 가상 컴퓨터를 중지 하 고 할당을 취소 하거나 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-165">You can stop a virtual machine and keep all its settings, but continue toobe charged for it, or you can stop a virtual machine and deallocate it.</span></span> <span data-ttu-id="40b69-166">가상 컴퓨터를 할당을 해제하면 연결된 모든 리소스의 할당이 취소되고 대금 청구가 끝납니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-166">When a virtual machine is deallocated, all resources associated with it are also deallocated and billing ends for it.</span></span>
 
-<span data-ttu-id="9cc32-167">할당을 취소하지 않고 가상 컴퓨터를 중지하려면 Main 메서드의 try 블록에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-167">To stop the virtual machine without deallocating it, add this code to the try block in the main method:</span></span>
+<span data-ttu-id="40b69-167">toostop hello 가상 컴퓨터를 할당 취소 하지 않고 hello main 메서드에이 코드 toohello try 블록을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-167">toostop hello virtual machine without deallocating it, add this code toohello try block in hello main method:</span></span>
 
 ```java
 System.out.println("Stopping vm...");
 vm.powerOff();
-System.out.println("Press enter to continue...");
+System.out.println("Press enter toocontinue...");
 input.nextLine();
 ```
 
-<span data-ttu-id="9cc32-168">가상 컴퓨터의 할당을 취소하려는 경우 PowerOff 호출을 이 코드로 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-168">If you want to deallocate the virtual machine, change the PowerOff call to this code:</span></span>
+<span data-ttu-id="40b69-168">Toodeallocate hello 가상 컴퓨터를 하려면 hello 전원 꺼짐 통화 toothis 코드를 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-168">If you want toodeallocate hello virtual machine, change hello PowerOff call toothis code:</span></span>
 
 ```java
 vm.deallocate();
 ```
 
-### <a name="start-the-vm"></a><span data-ttu-id="9cc32-169">VM 시작</span><span class="sxs-lookup"><span data-stu-id="9cc32-169">Start the VM</span></span>
+### <a name="start-hello-vm"></a><span data-ttu-id="40b69-169">Hello VM 시작</span><span class="sxs-lookup"><span data-stu-id="40b69-169">Start hello VM</span></span>
 
-<span data-ttu-id="9cc32-170">가상 컴퓨터를 시작하려면 Main 메서드의 try 블록에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-170">To start the virtual machine, add this code to the try block in the main method:</span></span>
+<span data-ttu-id="40b69-170">toostart 가상 컴퓨터를 hello hello 기본 방법에서이 코드 toohello try 블록을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-170">toostart hello virtual machine, add this code toohello try block in hello main method:</span></span>
 
 ```java
 System.out.println("Starting vm...");
 vm.start();
-System.out.println("Press enter to continue...");
+System.out.println("Press enter toocontinue...");
 input.nextLine();
 ```
 
-### <a name="resize-the-vm"></a><span data-ttu-id="9cc32-171">VM 크기 조정</span><span class="sxs-lookup"><span data-stu-id="9cc32-171">Resize the VM</span></span>
+### <a name="resize-hello-vm"></a><span data-ttu-id="40b69-171">Hello VM의 크기를 조정합니다</span><span class="sxs-lookup"><span data-stu-id="40b69-171">Resize hello VM</span></span>
 
-<span data-ttu-id="9cc32-172">가상 컴퓨터의 크기를 결정할 때 배포의 여러 측면을 고려해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-172">Many aspects of deployment should be considered when deciding on a size for your virtual machine.</span></span> <span data-ttu-id="9cc32-173">자세한 내용은 [VM 크기](sizes.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9cc32-173">For more information, see [VM sizes](sizes.md).</span></span>  
+<span data-ttu-id="40b69-172">가상 컴퓨터의 크기를 결정할 때 배포의 여러 측면을 고려해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-172">Many aspects of deployment should be considered when deciding on a size for your virtual machine.</span></span> <span data-ttu-id="40b69-173">자세한 내용은 [VM 크기](sizes.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="40b69-173">For more information, see [VM sizes](sizes.md).</span></span>  
 
-<span data-ttu-id="9cc32-174">가상 컴퓨터의 크기를 변경하려면 Main 메서드의 try 블록에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-174">To change size of the virtual machine, add this code to the try block in the main method:</span></span>
+<span data-ttu-id="40b69-174">hello 가상 컴퓨터의 toochange 크기 hello main 메서드에이 코드 toohello try 블록을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-174">toochange size of hello virtual machine, add this code toohello try block in hello main method:</span></span>
 
 ```java
 System.out.println("Resizing vm...");
 vm.update()
     .withSize(VirtualMachineSizeTypes.STANDARD_DS2)
     .apply();
-System.out.println("Press enter to continue...");
+System.out.println("Press enter toocontinue...");
 input.nextLine();
 ```
 
-### <a name="add-a-data-disk-to-the-vm"></a><span data-ttu-id="9cc32-175">VM에 데이터 디스크 추가</span><span class="sxs-lookup"><span data-stu-id="9cc32-175">Add a data disk to the VM</span></span>
+### <a name="add-a-data-disk-toohello-vm"></a><span data-ttu-id="40b69-175">데이터 디스크 toohello VM 추가</span><span class="sxs-lookup"><span data-stu-id="40b69-175">Add a data disk toohello VM</span></span>
 
-<span data-ttu-id="9cc32-176">가상 컴퓨터에 크기가 2GB이고 LUN이 0이며 캐싱 형식이 읽기/쓰기인 데이터 디스크를 추가하려면 Main 메서드의 try 블록에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-176">To add a data disk to the virtual machine that is 2 GB in size, has a LUN of 0, and a caching type of ReadWrite, add this code to the try block in the main method:</span></span>
+<span data-ttu-id="40b69-176">tooadd 크기가 2 GB 있는 데이터 디스크 toohello 가상 컴퓨터에 0이 고 캐싱 유형의 ReadWrite LUN hello 기본 방법에서이 코드 toohello try 블록을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-176">tooadd a data disk toohello virtual machine that is 2 GB in size, has a LUN of 0, and a caching type of ReadWrite, add this code toohello try block in hello main method:</span></span>
 
 ```java
 System.out.println("Adding data disk...");
 vm.update()
     .withNewDataDisk(2, 0, CachingTypes.READ_WRITE)
     .apply();
-System.out.println("Press enter to delete resources...");
+System.out.println("Press enter toodelete resources...");
 input.nextLine();
 ```
 
-## <a name="delete-resources"></a><span data-ttu-id="9cc32-177">리소스 삭제</span><span class="sxs-lookup"><span data-stu-id="9cc32-177">Delete resources</span></span>
+## <a name="delete-resources"></a><span data-ttu-id="40b69-177">리소스 삭제</span><span class="sxs-lookup"><span data-stu-id="40b69-177">Delete resources</span></span>
 
-<span data-ttu-id="9cc32-178">Azure에서 사용되는 리소스에 대한 요금이 부과되기 때문에, 더 이상 필요하지 않은 리소스를 항상 삭제하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-178">Because you are charged for resources used in Azure, it is always good practice to delete resources that are no longer needed.</span></span> <span data-ttu-id="9cc32-179">가상 컴퓨터 및 모든 지원 리소스를 삭제하려는 경우, 리소스 그룹을 삭제해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-179">If you want to delete the virtual machines and all the supporting resources, all you have to do is delete the resource group.</span></span>
+<span data-ttu-id="40b69-178">Azure에서 사용 되는 리소스에 대 한 요금이 청구 되므로 항상 것은 더 이상 필요 없는 것이 좋습니다 toodelete 리소스입니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-178">Because you are charged for resources used in Azure, it is always good practice toodelete resources that are no longer needed.</span></span> <span data-ttu-id="40b69-179">Toodelete hello 가상 컴퓨터 및 리소스를 지 원하는 모든 hello, 모든 있는 toodo hello 리소스 그룹 삭제 됩니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-179">If you want toodelete hello virtual machines and all hello supporting resources, all you have toodo is delete hello resource group.</span></span>
 
-1. <span data-ttu-id="9cc32-180">리소스 그룹을 삭제하려면 Main 메서드의 try 블록에 이 코드를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-180">To delete the resource group, add this code to the try block in the main method:</span></span>
+1. <span data-ttu-id="40b69-180">toodelete hello 리소스 그룹에서이 코드 toohello try 블록 hello main 메서드에 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-180">toodelete hello resource group, add this code toohello try block in hello main method:</span></span>
    
 ```java
 System.out.println("Deleting resources...");
 azure.resourceGroups().deleteByName("myResourceGroup");
 ```
 
-2. <span data-ttu-id="9cc32-181">App.java 파일을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-181">Save the App.java file.</span></span>
+2. <span data-ttu-id="40b69-181">Hello App.java 파일을 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-181">Save hello App.java file.</span></span>
 
-## <a name="run-the-application"></a><span data-ttu-id="9cc32-182">응용 프로그램 실행</span><span class="sxs-lookup"><span data-stu-id="9cc32-182">Run the application</span></span>
+## <a name="run-hello-application"></a><span data-ttu-id="40b69-182">Hello 응용 프로그램 실행</span><span class="sxs-lookup"><span data-stu-id="40b69-182">Run hello application</span></span>
 
-<span data-ttu-id="9cc32-183">이 콘솔 응용 프로그램을 처음부터 끝까지 완전히 실행하려면 약 5분이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-183">It should take about five minutes for this console application to run completely from start to finish.</span></span>
+<span data-ttu-id="40b69-183">이 콘솔 응용 프로그램 toorun 시작 toofinish에서 완전히에 대 일 분 정도 취해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-183">It should take about five minutes for this console application toorun completely from start toofinish.</span></span>
 
-1. <span data-ttu-id="9cc32-184">응용 프로그램을 실행하려면 이 Maven 명령을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-184">To run the application, use this Maven command:</span></span>
+1. <span data-ttu-id="40b69-184">toorun 응용 프로그램 hello이 Maven 명령을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-184">toorun hello application, use this Maven command:</span></span>
 
     ```
     mvn compile exec:java
     ```
 
-2. <span data-ttu-id="9cc32-185">**Enter** 키를 눌러 리소스를 삭제하기 전에 Azure Portal에서 리소스 만들기를 확인하는 데에 몇 분이 걸릴 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-185">Before you press **Enter** to start deleting resources, you could take a few minutes to verify the creation of the resources in the Azure portal.</span></span> <span data-ttu-id="9cc32-186">배포에 대한 정보를 보려면 배포 상태를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="9cc32-186">Click the deployment status to see information about the deployment.</span></span>
+2. <span data-ttu-id="40b69-185">누르기 전에 **Enter** toostart 삭제 리소스를 가져올 수 있었습니다 몇 분 정도 hello 리소스 tooverify hello 만들기 hello Azure 포털의에서.</span><span class="sxs-lookup"><span data-stu-id="40b69-185">Before you press **Enter** toostart deleting resources, you could take a few minutes tooverify hello creation of hello resources in hello Azure portal.</span></span> <span data-ttu-id="40b69-186">Hello 배포 상태 toosee hello 배포에 대 한 정보를 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-186">Click hello deployment status toosee information about hello deployment.</span></span>
 
 
-## <a name="next-steps"></a><span data-ttu-id="9cc32-187">다음 단계</span><span class="sxs-lookup"><span data-stu-id="9cc32-187">Next steps</span></span>
-* <span data-ttu-id="9cc32-188">[Java용 Azure 라이브러리](https://docs.microsoft.com/en-us/java/azure/java-sdk-azure-overview) 사용에 대해 자세히 알아보세요.</span><span class="sxs-lookup"><span data-stu-id="9cc32-188">Learn more about using the [Azure libraries for Java](https://docs.microsoft.com/en-us/java/azure/java-sdk-azure-overview).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="40b69-187">다음 단계</span><span class="sxs-lookup"><span data-stu-id="40b69-187">Next steps</span></span>
+* <span data-ttu-id="40b69-188">Hello를 사용 하는 방법에 대 한 자세한 정보 [Java 용 Azure 라이브러리](https://docs.microsoft.com/en-us/java/azure/java-sdk-azure-overview)합니다.</span><span class="sxs-lookup"><span data-stu-id="40b69-188">Learn more about using hello [Azure libraries for Java](https://docs.microsoft.com/en-us/java/azure/java-sdk-azure-overview).</span></span>
 

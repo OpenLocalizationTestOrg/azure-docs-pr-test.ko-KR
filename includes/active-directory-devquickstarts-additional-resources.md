@@ -1,0 +1,7 @@
+## <a name="additional-resources"></a><span data-ttu-id="23ef9-101">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="23ef9-101">Additional resources</span></span>
+* [<span data-ttu-id="23ef9-102">Azure AD hello 개발자 가이드</span><span class="sxs-lookup"><span data-stu-id="23ef9-102">hello Azure AD developer's guide</span></span>](../articles/active-directory/develop/active-directory-developers-guide.md)
+* [<span data-ttu-id="23ef9-103">GitHub의 Azure AD 샘플</span><span class="sxs-lookup"><span data-stu-id="23ef9-103">Azure AD samples on GitHub</span></span>](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=active-directory)
+* [<span data-ttu-id="23ef9-104">CloudIdentity.com</span><span class="sxs-lookup"><span data-stu-id="23ef9-104">CloudIdentity.com</span></span>](http://cloudidentity.com)
+
+## <a name="get-security-updates-for-our-products"></a><span data-ttu-id="23ef9-105">당사 제품에 대한 보안 업데이트 가져오기</span><span class="sxs-lookup"><span data-stu-id="23ef9-105">Get security updates for our products</span></span>
+<span data-ttu-id="23ef9-106">보안 사고를 방문 하 여 발생 하는 경우의 알림 tooget 좋습니다 [Microsoft 기술 보안 알림 hello TechCenter 페이지](https://technet.microsoft.com/security/dd252948) 및 toosecurity 자문 경고를 구독 합니다.</span><span class="sxs-lookup"><span data-stu-id="23ef9-106">We encourage you tooget notifications of when security incidents occur by visiting [hello TechCenter page for Microsoft technical security notifications](https://technet.microsoft.com/security/dd252948) and subscribing toosecurity advisory alerts.</span></span>

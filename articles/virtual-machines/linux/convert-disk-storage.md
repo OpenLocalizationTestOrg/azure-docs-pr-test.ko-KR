@@ -1,6 +1,6 @@
 ---
-title: "Azure 관리 디스크 저장소를 표준에서 프리미엄으로, 또 그 반대로 변환 | Microsoft Docs"
-description: "Azure CLI를 사용하여 Azure 관리 디스크 저장소를 표준에서 프리미엄으로, 또 그 반대로 변환하는 방법"
+title: "aaaConvert Azure 디스크 저장소를 관리 되는 표준 toopremium에서 그 반대의 | Microsoft Docs"
+description: "어떻게 tooconvert Azure 표준 toopremium에서, 또는 그 반대로 Azure CLI를 사용 하 여 디스크 저장소를 관리 합니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: ramankum
@@ -15,97 +15,97 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: ramankum
-ms.openlocfilehash: 0380b4aaa23b4aaba4c67d05e2d62f3ef41d6a32
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 261d77202f7fd381085c4e25211a5d0026f43b01
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="convert-azure-managed-disks-storage-from-standard-to-premium-and-vice-versa"></a><span data-ttu-id="9c60f-103">Azure 관리 디스크 저장소를 표준에서 프리미엄으로, 또 그 반대로 변환</span><span class="sxs-lookup"><span data-stu-id="9c60f-103">Convert Azure managed disks storage from standard to premium, and vice versa</span></span>
+# <a name="convert-azure-managed-disks-storage-from-standard-toopremium-and-vice-versa"></a><span data-ttu-id="d453f-103">Azure 변환 디스크 저장소를 관리 되는 표준 toopremium에서 그 반대의</span><span class="sxs-lookup"><span data-stu-id="d453f-103">Convert Azure managed disks storage from standard toopremium, and vice versa</span></span>
 
-<span data-ttu-id="9c60f-104">Managed Disks는 [프리미엄](../../storage/storage-premium-storage.md)(SSD 기반) 및 [표준](../../storage/storage-standard-storage.md)(HDD 기반)이라는 두 가지 저장소 옵션을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-104">Managed disks offers two storage options: [Premium](../../storage/storage-premium-storage.md) (SSD-based) and [Standard](../../storage/storage-standard-storage.md) (HDD-based).</span></span> <span data-ttu-id="9c60f-105">성능 요구 사항에 따라 최소한의 가동 중지 시간으로 두 가지 옵션 사이를 쉽게 전환할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-105">It allows you to easily switch between the two options with minimal downtime based on your performance needs.</span></span> <span data-ttu-id="9c60f-106">이 기능은 관리되지 않는 디스크에 사용할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-106">This capability is not available for unmanaged disks.</span></span> <span data-ttu-id="9c60f-107">하지만 두 옵션 사이를 쉽게 전환하도록 [관리 디스크로 변환](convert-unmanaged-to-managed-disks.md)할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-107">But you can easily [convert to managed disks](convert-unmanaged-to-managed-disks.md) to easily switch between the two options.</span></span>
+<span data-ttu-id="d453f-104">Managed Disks는 [프리미엄](../../storage/storage-premium-storage.md)(SSD 기반) 및 [표준](../../storage/storage-standard-storage.md)(HDD 기반)이라는 두 가지 저장소 옵션을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-104">Managed disks offers two storage options: [Premium](../../storage/storage-premium-storage.md) (SSD-based) and [Standard](../../storage/storage-standard-storage.md) (HDD-based).</span></span> <span data-ttu-id="d453f-105">성능 요구 사항에 따라 최소한의 가동 중지 시간 hello 두 옵션 중 적합 한 tooeasily 스위치가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-105">It allows you tooeasily switch between hello two options with minimal downtime based on your performance needs.</span></span> <span data-ttu-id="d453f-106">이 기능은 관리되지 않는 디스크에 사용할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-106">This capability is not available for unmanaged disks.</span></span> <span data-ttu-id="d453f-107">에 쉽게 하지만 [toomanaged 디스크 변환](convert-unmanaged-to-managed-disks.md) tooeasily hello 두 옵션 사이 전환 합니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-107">But you can easily [convert toomanaged disks](convert-unmanaged-to-managed-disks.md) tooeasily switch between hello two options.</span></span>
 
-<span data-ttu-id="9c60f-108">이 문서는 Azure CLI를 사용하여 관리 디스크를 표준에서 프리미엄으로, 또 그 반대로 변환하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-108">This article shows you how to convert managed disks from standard to premium, and vice versa by using Azure CLI.</span></span> <span data-ttu-id="9c60f-109">CLI를 설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치](/cli/azure/install-azure-cli.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="9c60f-109">If you need to install or upgrade it, see [Install Azure CLI 2.0](/cli/azure/install-azure-cli.md).</span></span> 
+<span data-ttu-id="d453f-108">이 문서에서 표준 toopremium 그 반대의 Azure CLI를 사용 하 여 tooconvert 디스크를 관리 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-108">This article shows you how tooconvert managed disks from standard toopremium, and vice versa by using Azure CLI.</span></span> <span data-ttu-id="d453f-109">Tooinstall 필요 하거나 업그레이드할 참조 [Azure CLI 2.0 설치](/cli/azure/install-azure-cli.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-109">If you need tooinstall or upgrade it, see [Install Azure CLI 2.0](/cli/azure/install-azure-cli.md).</span></span> 
 
-## <a name="before-you-begin"></a><span data-ttu-id="9c60f-110">시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="9c60f-110">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="d453f-110">시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="d453f-110">Before you begin</span></span>
 
-* <span data-ttu-id="9c60f-111">변환은 기존 유지 관리 기간 동안 디스크 저장소의 마이그레이션을 예약하도록 VM의 재시작이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-111">The conversion requires a restart of the VM, so schedule the migration of your disks storage during a pre-existing maintenance window.</span></span> 
-* <span data-ttu-id="9c60f-112">관리되지 않는 디스크를 사용하는 경우 이 문서를 사용하여 두 가지 저장소 옵션 사이로 전환하려면 먼저 [관리 디스크로 변환](convert-unmanaged-to-managed-disks.md)해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-112">If you are using unmanaged disks, first [convert to managed disks](convert-unmanaged-to-managed-disks.md) to use this article to switch between the two storage options.</span></span> 
+* <span data-ttu-id="d453f-111">hello 변환 hello VM의 다시 시작이 필요한, 하므로 기존 유지 관리 기간 동안 디스크 저장소의 hello 마이그레이션을 예약 합니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-111">hello conversion requires a restart of hello VM, so schedule hello migration of your disks storage during a pre-existing maintenance window.</span></span> 
+* <span data-ttu-id="d453f-112">먼저 관리 되지 않는 디스크를 사용 하는 경우 [toomanaged 디스크 변환](convert-unmanaged-to-managed-disks.md) toouse hello 두 저장소 옵션 중 적합 한이 문서 tooswitch 합니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-112">If you are using unmanaged disks, first [convert toomanaged disks](convert-unmanaged-to-managed-disks.md) toouse this article tooswitch between hello two storage options.</span></span> 
 
 
-## <a name="convert-all-the-managed-disks-of-a-vm-from-standard-to-premium-and-vice-versa"></a><span data-ttu-id="9c60f-113">VM의 모든 관리 디스크를 표준에서 프리미엄으로, 또 그 반대로 변환</span><span class="sxs-lookup"><span data-stu-id="9c60f-113">Convert all the managed disks of a VM from standard to premium, and vice versa</span></span>
+## <a name="convert-all-hello-managed-disks-of-a-vm-from-standard-toopremium-and-vice-versa"></a><span data-ttu-id="d453f-113">모든 hello convert 관리 디스크 VM의 표준 toopremium에서 그 반대의</span><span class="sxs-lookup"><span data-stu-id="d453f-113">Convert all hello managed disks of a VM from standard toopremium, and vice versa</span></span>
 
-<span data-ttu-id="9c60f-114">다음 예제에서는 VM의 모든 디스크를 표준에서 프리미엄 저장소로 전환하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-114">In the following example, we show how to switch all the disks of a VM from standard to premium storage.</span></span> <span data-ttu-id="9c60f-115">프리미엄 관리 디스크를 사용하려면 VM에서 프리미엄 저장소를 지원하는 [VM 크기](sizes.md)를 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-115">To use premium managed disks, your VM must use a [VM size](sizes.md) that supports premium storage.</span></span> <span data-ttu-id="9c60f-116">또한 이 예제에서는 프리미엄 저장소를 지원하는 크기로 전환합니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-116">This example also switches to a size that supports premium storage.</span></span>
+<span data-ttu-id="d453f-114">다음 예제는 hello,에서는 보여줍니다 방법을 tooswitch 표준 toopremium 저장소에서 VM의 디스크 hello 모든 합니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-114">In hello following example, we show how tooswitch all hello disks of a VM from standard toopremium storage.</span></span> <span data-ttu-id="d453f-115">toouse 프리미엄 관리 디스크 VM 사용 해야 합니다는 [VM 크기](sizes.md) 프리미엄 저장소를 지 원하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-115">toouse premium managed disks, your VM must use a [VM size](sizes.md) that supports premium storage.</span></span> <span data-ttu-id="d453f-116">이 예제에서는 프리미엄 저장소를 지 원하는 tooa 크기를 전환 하기도 합니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-116">This example also switches tooa size that supports premium storage.</span></span>
 
  ```azurecli
 
-#resource group that contains the virtual machine
+#resource group that contains hello virtual machine
 rgName='yourResourceGroup'
 
-#Name of the virtual machine
+#Name of hello virtual machine
 vmName='yourVM'
 
 #Premium capable size 
-#Required only if converting from standard to premium
+#Required only if converting from standard toopremium
 size='Standard_DS2_v2'
 
 #Choose between Standard_LRS and Premium_LRS based on your scenario
 sku='Premium_LRS'
 
-#Deallocate the VM before changing the size of the VM
+#Deallocate hello VM before changing hello size of hello VM
 az vm deallocate --name $vmName --resource-group $rgName
 
-#Change the VM size to a size that supports premium storage 
-#Skip this step if converting storage from premium to standard
+#Change hello VM size tooa size that supports premium storage 
+#Skip this step if converting storage from premium toostandard
 az vm resize --resource-group $rgName --name $vmName --size $size
 
-#Update the sku of all the data disks 
+#Update hello sku of all hello data disks 
 az vm show -n $vmName -g $rgName --query storageProfile.dataDisks[*].managedDisk -o tsv \
  | awk -v sku=$sku '{system("az disk update --sku "sku" --ids "$1)}'
 
-#Update the sku of the OS disk
+#Update hello sku of hello OS disk
 az vm show -n $vmName -g $rgName --query storageProfile.osDisk.managedDisk -o tsv \
 | awk -v sku=$sku '{system("az disk update --sku "sku" --ids "$1)}'
 
 az vm start --name $vmName --resource-group $rgName
 
 ```
-## <a name="convert-a-managed-disk-from-standard-to-premium-and-vice-versa"></a><span data-ttu-id="9c60f-117">관리 디스크를 표준에서 프리미엄으로, 또 그 반대로 변환</span><span class="sxs-lookup"><span data-stu-id="9c60f-117">Convert a managed disk from standard to premium, and vice versa</span></span>
+## <a name="convert-a-managed-disk-from-standard-toopremium-and-vice-versa"></a><span data-ttu-id="d453f-117">관리 되는 디스크 변환에서 표준 toopremium 그 반대의</span><span class="sxs-lookup"><span data-stu-id="d453f-117">Convert a managed disk from standard toopremium, and vice versa</span></span>
 
-<span data-ttu-id="9c60f-118">개발/테스트 워크로드의 경우 비용을 줄이기 위해 표준 및 프리미엄 디스크를 혼합할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-118">For your dev/test workload, you may want to have mixture of standard and premium disks to reduce your cost.</span></span> <span data-ttu-id="9c60f-119">더 나은 성능을 요구하는 디스크만 프리미엄 저장소로 업그레이드하여 이를 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-119">You can accomplish it by upgrading to premium storage, only the disks that require better performance.</span></span> <span data-ttu-id="9c60f-120">다음 예제에서는 VM의 단일 디스크를 표준에서 프리미엄 저장소로, 또 그 반대로 전환하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-120">In the following example, we show how to switch a single disk of a VM from standard to premium storage, and vice versa.</span></span> <span data-ttu-id="9c60f-121">프리미엄 관리 디스크를 사용하려면 VM에서 프리미엄 저장소를 지원하는 [VM 크기](sizes.md)를 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-121">To use premium managed disks, your VM must use a [VM size](sizes.md) that supports premium storage.</span></span> <span data-ttu-id="9c60f-122">또한 이 예제에서는 프리미엄 저장소를 지원하는 크기로 전환합니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-122">This example also switches to a size that supports premium storage.</span></span>
+<span data-ttu-id="d453f-118">개발/테스트 워크 로드에 대 한 toohave 다양 한 표준 및 프리미엄 디스크 tooreduce 비용을 원하는 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-118">For your dev/test workload, you may want toohave mixture of standard and premium disks tooreduce your cost.</span></span> <span data-ttu-id="d453f-119">더 나은 성능을 요구 하는 hello 디스크만 toopremium 저장소를 업그레이드 하 여이 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-119">You can accomplish it by upgrading toopremium storage, only hello disks that require better performance.</span></span> <span data-ttu-id="d453f-120">다음 예제는 hello,에서는 보여줍니다 어떻게 tooswitch VM의 단일 디스크 표준 toopremium 저장소에서 그 반대의 합니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-120">In hello following example, we show how tooswitch a single disk of a VM from standard toopremium storage, and vice versa.</span></span> <span data-ttu-id="d453f-121">toouse 프리미엄 관리 디스크 VM 사용 해야 합니다는 [VM 크기](sizes.md) 프리미엄 저장소를 지 원하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-121">toouse premium managed disks, your VM must use a [VM size](sizes.md) that supports premium storage.</span></span> <span data-ttu-id="d453f-122">이 예제에서는 프리미엄 저장소를 지 원하는 tooa 크기를 전환 하기도 합니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-122">This example also switches tooa size that supports premium storage.</span></span>
 
  ```azurecli
 
-#resource group that contains the managed disk
+#resource group that contains hello managed disk
 rgName='yourResourceGroup'
 
 #Name of your managed disk
 diskName='yourManagedDiskName'
 
 #Premium capable size 
-#Required only if converting from standard to premium
+#Required only if converting from standard toopremium
 size='Standard_DS2_v2'
 
 #Choose between Standard_LRS and Premium_LRS based on your scenario
 sku='Premium_LRS'
 
-#Get the parent VM Id 
+#Get hello parent VM Id 
 vmId=$(az disk show --name $diskName --resource-group $rgName --query managedBy --output tsv)
 
-#Deallocate the VM before changing the size of the VM
+#Deallocate hello VM before changing hello size of hello VM
 az vm deallocate --ids $vmId 
 
-#Change the VM size to a size that supports premium storage 
-#Skip this step if converting storage from premium to standard
+#Change hello VM size tooa size that supports premium storage 
+#Skip this step if converting storage from premium toostandard
 az vm resize --ids $vmId --size $size
 
-# Update the sku
+# Update hello sku
 az disk update --sku $sku --name $diskName --resource-group $rgName 
 
 az vm start --ids $vmId 
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="9c60f-123">다음 단계</span><span class="sxs-lookup"><span data-stu-id="9c60f-123">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d453f-123">다음 단계</span><span class="sxs-lookup"><span data-stu-id="d453f-123">Next steps</span></span>
 
-<span data-ttu-id="9c60f-124">[스냅숏](snapshot-copy-managed-disk.md)을 사용하여 VM의 읽기 전용 복사본을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9c60f-124">Take a read-only copy of a VM by using [snapshots](snapshot-copy-managed-disk.md).</span></span>
+<span data-ttu-id="d453f-124">[스냅숏](snapshot-copy-managed-disk.md)을 사용하여 VM의 읽기 전용 복사본을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="d453f-124">Take a read-only copy of a VM by using [snapshots](snapshot-copy-managed-disk.md).</span></span>
 

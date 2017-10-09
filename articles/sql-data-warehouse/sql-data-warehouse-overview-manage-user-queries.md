@@ -1,6 +1,6 @@
 ---
-title: "Azure SQL Data Warehouse의 사용자 쿼리 모니터링 | Microsoft Docs"
-description: "고려 사항, 모범 사례 및 Azure SQL 데이터 웨어하우스의 사용자 쿼리 모니터링 작업 개요입니다."
+title: "Azure SQL 데이터 웨어하우스에 aaaMonitor 사용자 쿼리 | Microsoft Docs"
+description: "Hello 고려 사항, 모범 사례 및 Azure SQL 데이터 웨어하우스에 사용자 쿼리를 모니터링 하는 것에 대 한 작업의 개요"
 services: sql-data-warehouse
 documentationcenter: NA
 author: sqlmojo
@@ -15,22 +15,22 @@ ms.workload: data-services
 ms.custom: performance
 ms.date: 10/31/2016
 ms.author: joeyong;barbkess
-ms.openlocfilehash: 65509a65c2b34553822cc02d7a7fa5a614adc57f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 67639e81b04635452e1ed844fe2d7245aa96a4fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-user-queries-in-azure-sql-data-warehouse"></a><span data-ttu-id="f5f71-103">Azure SQL 데이터 웨어하우스의 사용자 쿼리 모니터링</span><span class="sxs-lookup"><span data-stu-id="f5f71-103">Monitor user queries in Azure SQL Data Warehouse</span></span>
-<span data-ttu-id="f5f71-104">고려 사항, 모범 사례 및 SQL 데이터 웨어하우스의 사용자 쿼리 모니터링 작업 개요입니다.</span><span class="sxs-lookup"><span data-stu-id="f5f71-104">Overview of the considerations, best practices, and tasks for monitoring user queries in SQL Data Warehouse.</span></span>
+# <a name="monitor-user-queries-in-azure-sql-data-warehouse"></a><span data-ttu-id="7f164-103">Azure SQL 데이터 웨어하우스의 사용자 쿼리 모니터링</span><span class="sxs-lookup"><span data-stu-id="7f164-103">Monitor user queries in Azure SQL Data Warehouse</span></span>
+<span data-ttu-id="7f164-104">Hello 고려 사항, 모범 사례 및 SQL 데이터 웨어하우스에 사용자 쿼리를 모니터링 하는 것에 대 한 작업의 개요입니다.</span><span class="sxs-lookup"><span data-stu-id="7f164-104">Overview of hello considerations, best practices, and tasks for monitoring user queries in SQL Data Warehouse.</span></span>
 
-| <span data-ttu-id="f5f71-105">Category</span><span class="sxs-lookup"><span data-stu-id="f5f71-105">Category</span></span> | <span data-ttu-id="f5f71-106">작업 또는 고려 사항</span><span class="sxs-lookup"><span data-stu-id="f5f71-106">Task or consideration</span></span> | <span data-ttu-id="f5f71-107">설명</span><span class="sxs-lookup"><span data-stu-id="f5f71-107">Description</span></span> |
+| <span data-ttu-id="7f164-105">Category</span><span class="sxs-lookup"><span data-stu-id="7f164-105">Category</span></span> | <span data-ttu-id="7f164-106">작업 또는 고려 사항</span><span class="sxs-lookup"><span data-stu-id="7f164-106">Task or consideration</span></span> | <span data-ttu-id="7f164-107">설명</span><span class="sxs-lookup"><span data-stu-id="7f164-107">Description</span></span> |
 |:--- |:--- |:--- |
-| <span data-ttu-id="f5f71-108">성능 저하</span><span class="sxs-lookup"><span data-stu-id="f5f71-108">Slow performance</span></span> |<span data-ttu-id="f5f71-109">장기 실행 사용자 쿼리 찾기</span><span class="sxs-lookup"><span data-stu-id="f5f71-109">Find a long-running user query</span></span> |<span data-ttu-id="f5f71-110">[장기 실행 쿼리 찾기][Find long-running queries]</span><span class="sxs-lookup"><span data-stu-id="f5f71-110">[Find long-running queries][Find long-running queries]</span></span> |
-| <span data-ttu-id="f5f71-111">동시성</span><span class="sxs-lookup"><span data-stu-id="f5f71-111">Concurrency</span></span> |<span data-ttu-id="f5f71-112">사용자 쿼리에 동시 리소스 할당</span><span class="sxs-lookup"><span data-stu-id="f5f71-112">Assign concurrent resources to user queries</span></span> |<span data-ttu-id="f5f71-113">[동시성 및 워크로드 관리][Concurrency and workload management]</span><span class="sxs-lookup"><span data-stu-id="f5f71-113">[Concurrency and workload management][Concurrency and workload management]</span></span> |
+| <span data-ttu-id="7f164-108">성능 저하</span><span class="sxs-lookup"><span data-stu-id="7f164-108">Slow performance</span></span> |<span data-ttu-id="7f164-109">장기 실행 사용자 쿼리 찾기</span><span class="sxs-lookup"><span data-stu-id="7f164-109">Find a long-running user query</span></span> |<span data-ttu-id="7f164-110">[장기 실행 쿼리 찾기][Find long-running queries]</span><span class="sxs-lookup"><span data-stu-id="7f164-110">[Find long-running queries][Find long-running queries]</span></span> |
+| <span data-ttu-id="7f164-111">동시성</span><span class="sxs-lookup"><span data-stu-id="7f164-111">Concurrency</span></span> |<span data-ttu-id="7f164-112">동시 리소스 toouser 쿼리 할당</span><span class="sxs-lookup"><span data-stu-id="7f164-112">Assign concurrent resources toouser queries</span></span> |<span data-ttu-id="7f164-113">[동시성 및 워크로드 관리][Concurrency and workload management]</span><span class="sxs-lookup"><span data-stu-id="7f164-113">[Concurrency and workload management][Concurrency and workload management]</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="f5f71-114">다음 단계</span><span class="sxs-lookup"><span data-stu-id="f5f71-114">Next steps</span></span>
-<span data-ttu-id="f5f71-115">추가 관리 팁을 보려면 [관리 개요][Management overview]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="f5f71-115">For more management tips, head over to the [Management overview][Management overview].</span></span>
+## <a name="next-steps"></a><span data-ttu-id="7f164-114">다음 단계</span><span class="sxs-lookup"><span data-stu-id="7f164-114">Next steps</span></span>
+<span data-ttu-id="7f164-115">추가 관리 팁에 대 한 toohello 통해 head [관리 개요][Management overview]합니다.</span><span class="sxs-lookup"><span data-stu-id="7f164-115">For more management tips, head over toohello [Management overview][Management overview].</span></span>
 
 <!--Image references-->
 

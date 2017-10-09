@@ -1,0 +1,6 @@
+## <a name="prerequisite-install-hello-azure-powershell-module"></a><span data-ttu-id="e849f-101">필수 구성 요소: hello Azure PowerShell 모듈 설치</span><span class="sxs-lookup"><span data-stu-id="e849f-101">Prerequisite: Install hello Azure PowerShell Module</span></span>
+
+<span data-ttu-id="e849f-102">tooperform hello이 문서의 단계를 것 너무[tooinstall Azure PowerShell을 구성 하 고](/powershell/azureps-cmdlets-docs) 모든 hello 방식으로 toohello toosign를 Azure로 끝나고 구독을 선택 하는 hello 지침을 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="e849f-102">tooperform hello steps in this article, you'll need too[tooinstall and configure Azure PowerShell](/powershell/azureps-cmdlets-docs) and follow hello instructions all hello way toohello end toosign into Azure and select your subscription.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="e849f-103">Azure 계정이 없는 경우 계정이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="e849f-103">If you don't have an Azure account, you'll need one.</span></span> <span data-ttu-id="e849f-104">[여기서 무료 평가판](../articles/active-directory/sign-up-organization.md)에 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="e849f-104">Go sign up for a [free trial here](../articles/active-directory/sign-up-organization.md).</span></span>

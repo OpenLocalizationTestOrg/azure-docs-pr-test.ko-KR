@@ -1,6 +1,6 @@
 ---
-title: "Linux VM에 대한 Azure 지역 및 가용성 | Microsoft Docs"
-description: "Azure에서 Linux 가상 컴퓨터를 실행하기 위한 지역 및 가용성 기능에 대해 알아봅니다."
+title: "aaaAzure 영역 및 Linux Vm에 대 한 가용성 | Microsoft Docs"
+description: "Hello 영역 및 Azure에서 Linux 가상 컴퓨터를 실행 하기 위한 기능을 사용 하는 방법에 대 한 자세한 내용은"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 07/10/2017
 ms.author: iainfou
-ms.openlocfilehash: 1b83825e0208adb43b52a8c809b6448b934edaea
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: be59ad7cbd487bfa48a84a2194681016ed23faa9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 [!INCLUDE [virtual-machines-common-regions-and-availability](../../../includes/virtual-machines-common-regions-and-availability.md)]
 

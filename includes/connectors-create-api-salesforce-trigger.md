@@ -1,0 +1,18 @@
+<span data-ttu-id="386d5-101">이 연습에서는 살펴보겠습니다 어떻게 toouse hello **Salesforce-개체가 만들어질 때** Salesforce에서 새 잠재 고객을 만들면 tooinitiate 논리 앱 워크플로 트리거할 합니다.</span><span class="sxs-lookup"><span data-stu-id="386d5-101">In this walk-through, you will learn how toouse hello **Salesforce - When an object is created** trigger tooinitiate a logic app workflow when a new lead is created in your Salesforce.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="386d5-102">받아볼 수 증명된 toosign Salesforce 계정에 아직 만들지 않은 경우는 *연결* tooSalesforce 합니다.</span><span class="sxs-lookup"><span data-stu-id="386d5-102">You will get prompted toosign into your Salesforce account if you have not already created a *connection* tooSalesforce.</span></span>  
+> 
+> 
+
+1. <span data-ttu-id="386d5-103">입력 *salesforce* hello 논리 앱 디자이너에 hello 검색 상자에 다음 hello 선택 **Salesforce-개체가 만들어질 때** 트리거.</span><span class="sxs-lookup"><span data-stu-id="386d5-103">Enter *salesforce* in hello search box on hello logic apps designer then select hello **Salesforce - When an object is created**  trigger.</span></span>  
+   <span data-ttu-id="386d5-104">![Salesforce 트리거 이미지 1](./media/connectors-create-api-salesforce/trigger-1.png)</span><span class="sxs-lookup"><span data-stu-id="386d5-104">![Salesforce trigger image 1](./media/connectors-create-api-salesforce/trigger-1.png)</span></span>   
+2. <span data-ttu-id="386d5-105">hello **개체를 만들 때** 컨트롤이 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="386d5-105">hello **When an object is created** control is displayed.</span></span>  
+   <span data-ttu-id="386d5-106">![Salesforce 트리거 이미지 2](./media/connectors-create-api-salesforce/trigger-2.png)</span><span class="sxs-lookup"><span data-stu-id="386d5-106">![Salesforce trigger image 2](./media/connectors-create-api-salesforce/trigger-2.png)</span></span>   
+3. <span data-ttu-id="386d5-107">선택 hello **개체 유형** 다음 선택 *발생할* 개체의 hello 목록에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="386d5-107">Select hello **Object Type** then select *Lead* from hello list of objects.</span></span> <span data-ttu-id="386d5-108">이 단계에서는 Salesforce에서 새 잠재 고객을 만들 때마다 논리 앱에 알리는 트리거를 만들고 있음을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="386d5-108">In this step you are indicating that you are creating a trigger that will notify your logic app whenever a new lead is created in Salesforce.</span></span>   
+   <span data-ttu-id="386d5-109">![Salesforce 트리거 이미지 3](./media/connectors-create-api-salesforce/trigger-3.png)</span><span class="sxs-lookup"><span data-stu-id="386d5-109">![Salesforce trigger image 3](./media/connectors-create-api-salesforce/trigger-3.png)</span></span>   
+4. <span data-ttu-id="386d5-110">이것으로 끝입니다.</span><span class="sxs-lookup"><span data-stu-id="386d5-110">That's it.</span></span> <span data-ttu-id="386d5-111">Hello 트리거를 만들었습니다.</span><span class="sxs-lookup"><span data-stu-id="386d5-111">You've created hello trigger.</span></span> <span data-ttu-id="386d5-112">그러나 toocreate 해야 작업을 하나 이상이 toomake 요청에 유효한 논리 앱.</span><span class="sxs-lookup"><span data-stu-id="386d5-112">However, you need toocreate at least one action in order toomake this a valid logic app.</span></span>    
+   ![Salesforce 트리거 이미지 4](./media/connectors-create-api-salesforce/trigger-4.png)   
+
+<span data-ttu-id="386d5-114">이 시점에서 시작 하는 됩니다 hello 실행 하는 다른 트리거 및 작업 hello 워크플로에서 Salesforce에서 새 항목이 만들어질 때 트리거 논리 앱 구성 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="386d5-114">At this point, your logic app has been configured with a trigger that will begin a run of hello other triggers and actions in hello workflow when a new item is created in your Salesforce.</span></span>  
+

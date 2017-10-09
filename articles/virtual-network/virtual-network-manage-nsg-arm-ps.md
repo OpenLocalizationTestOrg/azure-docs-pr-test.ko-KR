@@ -1,6 +1,6 @@
 ---
-title: "네트워크 보안 그룹 관리 - Azure PowerShell | Microsoft Docs"
-description: "PowerShell을 사용하여 네트워크 보안 그룹을 관리하는 방법을 알아봅니다."
+title: "aaaManage 네트워크 보안 그룹-Azure PowerShell | Microsoft Docs"
+description: "Toomanage PowerShell을 사용 하 여 보안 그룹을 네트워크 하는 방법에 대해 알아봅니다."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,33 +16,33 @@ ms.workload: infrastructure-services
 ms.date: 03/14/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ca7f4926ca4edf9d20612aca74f6ae5f0ed847b3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 930fe5e0827896ad67b24d84e41a5d3f898ba838
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-network-security-groups-using-powershell"></a><span data-ttu-id="e7aa7-103">PowerShell을 사용하여 네트워크 보안 그룹 관리</span><span class="sxs-lookup"><span data-stu-id="e7aa7-103">Manage network security groups using PowerShell</span></span>
+# <a name="manage-network-security-groups-using-powershell"></a><span data-ttu-id="29214-103">PowerShell을 사용하여 네트워크 보안 그룹 관리</span><span class="sxs-lookup"><span data-stu-id="29214-103">Manage network security groups using PowerShell</span></span>
 
 [!INCLUDE [virtual-network-manage-arm-selectors-include.md](../../includes/virtual-network-manage-nsg-arm-selectors-include.md)]
 
 [!INCLUDE [virtual-network-manage-nsg-intro-include.md](../../includes/virtual-network-manage-nsg-intro-include.md)]
 
 > [!NOTE]
-> <span data-ttu-id="e7aa7-104">Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-104">Azure has two different deployment models for creating and working with resources:  [Resource Manager and classic](../resource-manager-deployment-model.md).</span></span> <span data-ttu-id="e7aa7-105">이 문서에서는 Resource Manager 배포 모델 사용을 설명하며 Microsoft에서는 대부분의 새로운 배포에 대해 클래식 배포 모델 대신 이 모델을 사용하도록 권장합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-105">This article covers using the Resource Manager deployment model, which Microsoft recommends for most new deployments instead of the classic deployment model.</span></span>
+> <span data-ttu-id="29214-104">Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="29214-104">Azure has two different deployment models for creating and working with resources:  [Resource Manager and classic](../resource-manager-deployment-model.md).</span></span> <span data-ttu-id="29214-105">이 문서에서는 Microsoft hello 클래식 배포 모델 대신 대부분의 새 배포에 권장 하는 hello 리소스 관리자 배포 모델을 사용 하 여 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-105">This article covers using hello Resource Manager deployment model, which Microsoft recommends for most new deployments instead of hello classic deployment model.</span></span>
 >
 
 [!INCLUDE [virtual-network-manage-nsg-arm-scenario-include.md](../../includes/virtual-network-manage-nsg-arm-scenario-include.md)]
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
-## <a name="retrieve-information"></a><span data-ttu-id="e7aa7-106">정보 검색</span><span class="sxs-lookup"><span data-stu-id="e7aa7-106">Retrieve Information</span></span>
-<span data-ttu-id="e7aa7-107">기존 NSG를 보고 기존 NSG에 대한 규칙을 검색하며 NSG가 연결된 리소스에 대해 알아볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-107">You can view your existing NSGs, retrieve rules for an existing NSG, and find out what resources an NSG is associated to.</span></span>
+## <a name="retrieve-information"></a><span data-ttu-id="29214-106">정보 검색</span><span class="sxs-lookup"><span data-stu-id="29214-106">Retrieve Information</span></span>
+<span data-ttu-id="29214-107">기존 NSG를 보고 기존 NSG에 대한 규칙을 검색하며 NSG가 연결된 리소스에 대해 알아볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="29214-107">You can view your existing NSGs, retrieve rules for an existing NSG, and find out what resources an NSG is associated to.</span></span>
 
-### <a name="view-existing-nsgs"></a><span data-ttu-id="e7aa7-108">기존 NSG 보기</span><span class="sxs-lookup"><span data-stu-id="e7aa7-108">View existing NSGs</span></span>
-<span data-ttu-id="e7aa7-109">구독에서 모든 기존 NSG를 보려면 `Get-AzureRmNetworkSecurityGroup` cmdlet을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-109">To view all existing NSGs in a subscription, run the `Get-AzureRmNetworkSecurityGroup` cmdlet.</span></span>
+### <a name="view-existing-nsgs"></a><span data-ttu-id="29214-108">기존 NSG 보기</span><span class="sxs-lookup"><span data-stu-id="29214-108">View existing NSGs</span></span>
+<span data-ttu-id="29214-109">tooview 구독에서 모든 기존 Nsg 실행 hello `Get-AzureRmNetworkSecurityGroup` cmdlet.</span><span class="sxs-lookup"><span data-stu-id="29214-109">tooview all existing NSGs in a subscription, run hello `Get-AzureRmNetworkSecurityGroup` cmdlet.</span></span>
 
-<span data-ttu-id="e7aa7-110">예상된 결과:</span><span class="sxs-lookup"><span data-stu-id="e7aa7-110">Expected result:</span></span>
+<span data-ttu-id="29214-110">예상된 결과:</span><span class="sxs-lookup"><span data-stu-id="29214-110">Expected result:</span></span>
 
     Name                 : NSG-BackEnd
     ResourceGroupName    : RG-NSG
@@ -87,9 +87,9 @@ ms.lasthandoff: 07/11/2017
     Subnets              : [...]
 
 
-<span data-ttu-id="e7aa7-111">특정 리소스 그룹에 있는 NSG 목록을 보려면 `Get-AzureRmNetworkSecurityGroup` cmdlet을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-111">To view the list of NSGs in a specific resource group, run the `Get-AzureRmNetworkSecurityGroup` cmdlet.</span></span>
+<span data-ttu-id="29214-111">Nsg hello 실행은 특정 리소스 그룹의 tooview hello 목록 `Get-AzureRmNetworkSecurityGroup` cmdlet.</span><span class="sxs-lookup"><span data-stu-id="29214-111">tooview hello list of NSGs in a specific resource group, run hello `Get-AzureRmNetworkSecurityGroup` cmdlet.</span></span>
 
-<span data-ttu-id="e7aa7-112">예상 출력:</span><span class="sxs-lookup"><span data-stu-id="e7aa7-112">Expected output:</span></span>
+<span data-ttu-id="29214-112">예상 출력:</span><span class="sxs-lookup"><span data-stu-id="29214-112">Expected output:</span></span>
 
     Name                 : NSG-BackEnd
     ResourceGroupName    : RG-NSG
@@ -119,14 +119,14 @@ ms.lasthandoff: 07/11/2017
     NetworkInterfaces    : [...]
     Subnets              : [...]
 
-### <a name="list-all-rules-for-an-nsg"></a><span data-ttu-id="e7aa7-113">NSG에 대한 모든 규칙 나열</span><span class="sxs-lookup"><span data-stu-id="e7aa7-113">List all rules for an NSG</span></span>
-<span data-ttu-id="e7aa7-114">**NSG-FrontEnd**로 명명된 NSG의 규칙을 보려면 다음 명령을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-114">To view the rules of an NSG named **NSG-FrontEnd**, enter the following command:</span></span>
+### <a name="list-all-rules-for-an-nsg"></a><span data-ttu-id="29214-113">NSG에 대한 모든 규칙 나열</span><span class="sxs-lookup"><span data-stu-id="29214-113">List all rules for an NSG</span></span>
+<span data-ttu-id="29214-114">명명 된 NSG의 tooview hello 규칙 **NSG 프런트 엔드**, hello 다음 명령을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-114">tooview hello rules of an NSG named **NSG-FrontEnd**, enter hello following command:</span></span>
 
 ```powershell
 Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd | Select SecurityRules -ExpandProperty SecurityRules
 ```
 
-<span data-ttu-id="e7aa7-115">예상 출력:</span><span class="sxs-lookup"><span data-stu-id="e7aa7-115">Expected output:</span></span>
+<span data-ttu-id="29214-115">예상 출력:</span><span class="sxs-lookup"><span data-stu-id="29214-115">Expected output:</span></span>
 
     Name                     : rdp-rule
     Id                       : /subscriptions/[Subscription Id]/resourceGroups/RG-NSG/providers/                           Microsoft.Network/networkSecurityGroups/NSG-FrontEnd/securityRules/rdp-rule
@@ -157,17 +157,17 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd | S
     Direction                : Inbound
 
 > [!NOTE]
-> <span data-ttu-id="e7aa7-116">또한 `Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name "NSG-FrontEnd" | Select DefaultSecurityRules -ExpandProperty DefaultSecurityRules`을 사용하여 **NSG-FrontEnd** NSG에서 기본 규칙을 나열할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-116">You can also use `Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name "NSG-FrontEnd" | Select DefaultSecurityRules -ExpandProperty DefaultSecurityRules` to list the default rules from the **NSG-FrontEnd** NSG.</span></span>
+> <span data-ttu-id="29214-116">사용할 수도 있습니다 `Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name "NSG-FrontEnd" | Select DefaultSecurityRules -ExpandProperty DefaultSecurityRules` hello에서 toolist hello 기본 규칙 **NSG 프런트 엔드** NSG 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-116">You can also use `Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name "NSG-FrontEnd" | Select DefaultSecurityRules -ExpandProperty DefaultSecurityRules` toolist hello default rules from hello **NSG-FrontEnd** NSG.</span></span>
 > 
 
-### <a name="view-nsgs-associations"></a><span data-ttu-id="e7aa7-117">NSG 연결 보기</span><span class="sxs-lookup"><span data-stu-id="e7aa7-117">View NSGs associations</span></span>
-<span data-ttu-id="e7aa7-118">**NSG-FrontEnd** NSG가 연결된 리소스를 보려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-118">To view what resources the **NSG-FrontEnd** NSG is associate with, run the following command:</span></span>
+### <a name="view-nsgs-associations"></a><span data-ttu-id="29214-117">NSG 연결 보기</span><span class="sxs-lookup"><span data-stu-id="29214-117">View NSGs associations</span></span>
+<span data-ttu-id="29214-118">tooview 어떤 리소스 hello **NSG 프런트 엔드** NSG와 연결, 실행 hello 다음 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="29214-118">tooview what resources hello **NSG-FrontEnd** NSG is associate with, run hello following command:</span></span>
 
 ```powershell
 Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
 ```
 
-<span data-ttu-id="e7aa7-119">아래와 같이 **NetworkInterfaces** 및 **서브넷** 속성을 찾아봅니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-119">Look for the **NetworkInterfaces** and **Subnets** properties as shown below:</span></span>
+<span data-ttu-id="29214-119">Hello에 대 한 확인 **NetworkInterfaces** 및 **서브넷** 아래와 같이 속성:</span><span class="sxs-lookup"><span data-stu-id="29214-119">Look for hello **NetworkInterfaces** and **Subnets** properties as shown below:</span></span>
 
     NetworkInterfaces    : []
     Subnets              : [
@@ -177,21 +177,21 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
                              }
                            ]
 
-<span data-ttu-id="e7aa7-120">이전 예에서 NSG는 NIC(네트워크 인터페이스)에 연결되지 않습니다. **FrontEnd**라는 서브넷에 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-120">In the previous example, the NSG is not associated to any network interfaces (NICs); it is associated to a subnet named **FrontEnd**.</span></span>
+<span data-ttu-id="29214-120">Hello 이전 예에서 hello NSG는 되지 연결된 tooany Nic (네트워크 인터페이스); 명명 된 연결된 tooa 서브넷은 **프런트 엔드**합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-120">In hello previous example, hello NSG is not associated tooany network interfaces (NICs); it is associated tooa subnet named **FrontEnd**.</span></span>
 
-## <a name="manage-rules"></a><span data-ttu-id="e7aa7-121">규칙 관리</span><span class="sxs-lookup"><span data-stu-id="e7aa7-121">Manage rules</span></span>
-<span data-ttu-id="e7aa7-122">기존 NSG에 규칙을 추가하고 기존 규칙을 편집하며 규칙을 제거할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-122">You can add rules to an existing NSG, edit existing rules, and remove rules.</span></span>
+## <a name="manage-rules"></a><span data-ttu-id="29214-121">규칙 관리</span><span class="sxs-lookup"><span data-stu-id="29214-121">Manage rules</span></span>
+<span data-ttu-id="29214-122">기존 NSG 규칙 tooan 추가, 기존 규칙을 편집 하 고 규칙을 제거할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="29214-122">You can add rules tooan existing NSG, edit existing rules, and remove rules.</span></span>
 
-### <a name="add-a-rule"></a><span data-ttu-id="e7aa7-123">규칙 추가</span><span class="sxs-lookup"><span data-stu-id="e7aa7-123">Add a rule</span></span>
-<span data-ttu-id="e7aa7-124">컴퓨터에서 **NSG-FrontEnd** NSG에 포트 **443**에 대한 **인바운드** 트래픽을 허용하는 규칙을 추가하려면 다음 단계를 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-124">To add a rule allowing **inbound** traffic to port **443** from any machine to the **NSG-FrontEnd** NSG, complete the following steps:</span></span>
+### <a name="add-a-rule"></a><span data-ttu-id="29214-123">규칙 추가</span><span class="sxs-lookup"><span data-stu-id="29214-123">Add a rule</span></span>
+<span data-ttu-id="29214-124">허용 하는 규칙 tooadd **인바운드** 트래픽 tooport **443** 모든 컴퓨터 toohello에서 **NSG 프런트 엔드** NSG, 단계를 수행 하는 전체 hello:</span><span class="sxs-lookup"><span data-stu-id="29214-124">tooadd a rule allowing **inbound** traffic tooport **443** from any machine toohello **NSG-FrontEnd** NSG, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="e7aa7-125">다음 명령을 실행하여 기존 NSG를 검색하고 변수에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-125">Run the following command to retrieve the existing NSG and store it in a variable:</span></span>
+1. <span data-ttu-id="29214-125">다음 기존 NSG 명령 tooretrieve hello hello를 실행 하 고 변수에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-125">Run hello following command tooretrieve hello existing NSG and store it in a variable:</span></span>
 
     ```powershell   
     $nsg = Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
     ```
 
-2. <span data-ttu-id="e7aa7-126">다음 명령을 실행하여 규칙을 NSG에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-126">Run the following command to add a rule to the NSG:</span></span>
+2. <span data-ttu-id="29214-126">다음 명령은 tooadd hello 규칙 toohello NSG를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-126">Run hello following command tooadd a rule toohello NSG:</span></span>
 
     ```powershell
     Add-AzureRmNetworkSecurityRuleConfig -NetworkSecurityGroup $nsg `
@@ -207,12 +207,12 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
     -DestinationPortRange 443
     ```
 
-3. <span data-ttu-id="e7aa7-127">NSG에 대한 변경 사항을 저장하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-127">To save the changes made to the NSG, run the following command:</span></span>
+3. <span data-ttu-id="29214-127">toosave hello 변경 toohello NSG를 hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-127">toosave hello changes made toohello NSG, run hello following command:</span></span>
 
     ```powershell
     Set-AzureRmNetworkSecurityGroup -NetworkSecurityGroup $nsg
     ```
-    <span data-ttu-id="e7aa7-128">보안 규칙만 표시하는 확장된 출력:</span><span class="sxs-lookup"><span data-stu-id="e7aa7-128">Expected output showing only the security rules:</span></span>
+    <span data-ttu-id="29214-128">보안 규칙만 hello를 보여 주는 예상된 출력:</span><span class="sxs-lookup"><span data-stu-id="29214-128">Expected output showing only hello security rules:</span></span>
    
         Name                 : NSG-FrontEnd
         ...
@@ -242,16 +242,16 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
                                  }
                                ]
 
-### <a name="change-a-rule"></a><span data-ttu-id="e7aa7-129">규칙 변경</span><span class="sxs-lookup"><span data-stu-id="e7aa7-129">Change a rule</span></span>
-<span data-ttu-id="e7aa7-130">**인터넷** 에서 인바운드 트래픽을 허용하도록 위에서 만든 규칙을 변경하려면는 아래 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-130">To change the rule created above to allow inbound traffic from the **Internet** only, follow the steps below.</span></span>
+### <a name="change-a-rule"></a><span data-ttu-id="29214-129">규칙 변경</span><span class="sxs-lookup"><span data-stu-id="29214-129">Change a rule</span></span>
+<span data-ttu-id="29214-130">tooallow 위에서 만든 toochange hello 규칙 hello에서 트래픽 인바운드 **인터넷** 만 아래의 hello 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-130">toochange hello rule created above tooallow inbound traffic from hello **Internet** only, follow hello steps below.</span></span>
 
-1. <span data-ttu-id="e7aa7-131">다음 명령을 실행하여 기존 NSG를 검색하고 변수에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-131">Run the following command to retrieve the existing NSG and store it in a variable:</span></span>
+1. <span data-ttu-id="29214-131">다음 기존 NSG 명령 tooretrieve hello hello를 실행 하 고 변수에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-131">Run hello following command tooretrieve hello existing NSG and store it in a variable:</span></span>
 
     ```powershell 
     $nsg = Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
     ```
 
-2. <span data-ttu-id="e7aa7-132">새 규칙 설정을 사용하여 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-132">Run the following command with the new rule settings:</span></span>
+2. <span data-ttu-id="29214-132">Hello 다음 hello 새 규칙 설정으로 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-132">Run hello following command with hello new rule settings:</span></span>
 
     ```powershell
     Set-AzureRmNetworkSecurityRuleConfig -NetworkSecurityGroup $nsg `
@@ -267,13 +267,13 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
     -DestinationPortRange 443
     ```
 
-3. <span data-ttu-id="e7aa7-133">NSG에 대한 변경 사항을 저장하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-133">To save the changes made to the NSG, run the following command:</span></span>
+3. <span data-ttu-id="29214-133">toosave hello 변경 toohello NSG를 hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-133">toosave hello changes made toohello NSG, run hello following command:</span></span>
 
     ```powershell
     Set-AzureRmNetworkSecurityGroup -NetworkSecurityGroup $nsg
     ```
 
-    <span data-ttu-id="e7aa7-134">보안 규칙만 표시하는 확장된 출력:</span><span class="sxs-lookup"><span data-stu-id="e7aa7-134">Expected output showing only the security rules:</span></span>
+    <span data-ttu-id="29214-134">보안 규칙만 hello를 보여 주는 예상된 출력:</span><span class="sxs-lookup"><span data-stu-id="29214-134">Expected output showing only hello security rules:</span></span>
    
         Name                 : NSG-FrontEnd
         ...
@@ -303,26 +303,26 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
                                  }
                                ]
 
-### <a name="delete-a-rule"></a><span data-ttu-id="e7aa7-135">규칙 삭제</span><span class="sxs-lookup"><span data-stu-id="e7aa7-135">Delete a rule</span></span>
-1. <span data-ttu-id="e7aa7-136">다음 명령을 실행하여 기존 NSG를 검색하고 변수에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-136">Run the following command to retrieve the existing NSG and store it in a variable:</span></span>
+### <a name="delete-a-rule"></a><span data-ttu-id="29214-135">규칙 삭제</span><span class="sxs-lookup"><span data-stu-id="29214-135">Delete a rule</span></span>
+1. <span data-ttu-id="29214-136">다음 기존 NSG 명령 tooretrieve hello hello를 실행 하 고 변수에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-136">Run hello following command tooretrieve hello existing NSG and store it in a variable:</span></span>
 
     ```powershell
     $nsg = Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
     ```
 
-2. <span data-ttu-id="e7aa7-137">NSG로부터 규칙을 삭제하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-137">Run the following command to remove the rule from the NSG:</span></span>
+2. <span data-ttu-id="29214-137">Hello 명령 tooremove hello 규칙 hello NSG에서에서 다음을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-137">Run hello following command tooremove hello rule from hello NSG:</span></span>
 
     ```powershell
     Remove-AzureRmNetworkSecurityRuleConfig -NetworkSecurityGroup $nsg -Name https-rule
     ```
 
-3. <span data-ttu-id="e7aa7-138">NSG에 대한 변경 사항을 저장하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-138">Save the changes made to the NSG, by running the following command:</span></span>
+3. <span data-ttu-id="29214-138">Hello 다음 명령을 실행 하 여 hello 변경 내용을 toohello NSG를 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-138">Save hello changes made toohello NSG, by running hello following command:</span></span>
 
     ```powershell
     Set-AzureRmNetworkSecurityGroup -NetworkSecurityGroup $nsg
     ```
 
-    <span data-ttu-id="e7aa7-139">보안 규칙만 표시하는 예상된 출력에는 더 이상 **https-rule** 이 나열되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-139">Expected output showing only the security rules, notice the **https-rule** is no longer listed:</span></span>
+    <span data-ttu-id="29214-139">보안 규칙 통지 hello만 hello를 보여 주는 예상된 출력 **https 규칙** 더 이상 나열 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-139">Expected output showing only hello security rules, notice hello **https-rule** is no longer listed:</span></span>
    
         Name                 : NSG-FrontEnd
         ...
@@ -337,37 +337,37 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
                                  }
                                ]
 
-## <a name="manage-associations"></a><span data-ttu-id="e7aa7-140">연결 관리</span><span class="sxs-lookup"><span data-stu-id="e7aa7-140">Manage associations</span></span>
-<span data-ttu-id="e7aa7-141">NSG를 서브넷 및 NIC에 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-141">You can associate an NSG to subnets and NICs.</span></span> <span data-ttu-id="e7aa7-142">또한 연결된 모든 리소스에서 NSG를 분리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-142">You can also dissociate an NSG from any resource it's associated to.</span></span>
+## <a name="manage-associations"></a><span data-ttu-id="29214-140">연결 관리</span><span class="sxs-lookup"><span data-stu-id="29214-140">Manage associations</span></span>
+<span data-ttu-id="29214-141">NSG toosubnets 및 Nic를 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="29214-141">You can associate an NSG toosubnets and NICs.</span></span> <span data-ttu-id="29214-142">또한 연결된 모든 리소스에서 NSG를 분리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="29214-142">You can also dissociate an NSG from any resource it's associated to.</span></span>
 
-### <a name="associate-an-nsg-to-a-nic"></a><span data-ttu-id="e7aa7-143">NIC에 NSG 연결</span><span class="sxs-lookup"><span data-stu-id="e7aa7-143">Associate an NSG to a NIC</span></span>
-<span data-ttu-id="e7aa7-144">**NSG-FrontEnd** NSG를 **TestNICWeb1** NIC에 연결하려면 다음 단계를 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-144">To associate the **NSG-FrontEnd** NSG to the **TestNICWeb1** NIC, complete the following steps:</span></span>
+### <a name="associate-an-nsg-tooa-nic"></a><span data-ttu-id="29214-143">NSG tooa NIC에 연결</span><span class="sxs-lookup"><span data-stu-id="29214-143">Associate an NSG tooa NIC</span></span>
+<span data-ttu-id="29214-144">tooassociate hello **NSG 프런트 엔드** NSG toohello **TestNICWeb1** NIC를 다음 단계 완료 hello:</span><span class="sxs-lookup"><span data-stu-id="29214-144">tooassociate hello **NSG-FrontEnd** NSG toohello **TestNICWeb1** NIC, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="e7aa7-145">다음 명령을 실행하여 기존 NSG를 검색하고 변수에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-145">Run the following command to retrieve the existing NSG and store it in a variable:</span></span>
+1. <span data-ttu-id="29214-145">다음 기존 NSG 명령 tooretrieve hello hello를 실행 하 고 변수에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-145">Run hello following command tooretrieve hello existing NSG and store it in a variable:</span></span>
 
     ```powershell
     $nsg = Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
     ```
 
-2. <span data-ttu-id="e7aa7-146">다음 명령을 실행하여 기존 NIC를 검색하고 변수에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-146">Run the following command to retrieve the existing NIC and store it in a variable:</span></span>
+2. <span data-ttu-id="29214-146">Hello 명령 tooretrieve hello 기존 NIC를 다음을 실행 하 고 변수에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-146">Run hello following command tooretrieve hello existing NIC and store it in a variable:</span></span>
 
     ```powershell
     $nic = Get-AzureRmNetworkInterface -ResourceGroupName RG-NSG -Name TestNICWeb1
     ```
 
-3. <span data-ttu-id="e7aa7-147">**NIC** 변수의 **NetworkSecurityGroup** 속성을 다음 명령을 입력하여 **NSG** 변수의 값으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-147">Set the **NetworkSecurityGroup** property of the **NIC** variable to the value of the **NSG** variable, by entering the following command:</span></span>
+3. <span data-ttu-id="29214-147">집합 hello **NetworkSecurityGroup** hello 속성 **NIC** hello 변수 toohello 값 **NSG** hello 다음 명령을 입력 하 여 변수:</span><span class="sxs-lookup"><span data-stu-id="29214-147">Set hello **NetworkSecurityGroup** property of hello **NIC** variable toohello value of hello **NSG** variable, by entering hello following command:</span></span>
 
     ```powershell
     $nic.NetworkSecurityGroup = $nsg
     ```
 
-4. <span data-ttu-id="e7aa7-148">NIC에 대한 변경 사항을 저장하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-148">To save the changes made to the NIC, run the following command:</span></span>
+4. <span data-ttu-id="29214-148">toosave hello 변경 toohello NIC를 hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-148">toosave hello changes made toohello NIC, run hello following command:</span></span>
 
     ```powershell
     Set-AzureRmNetworkInterface -NetworkInterface $nic
     ```
    
-    <span data-ttu-id="e7aa7-149">**NetworkSecurityGroup** 속성만을 표시하는 예상된 출력입니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-149">Expected output showing only the **NetworkSecurityGroup** property:</span></span>
+    <span data-ttu-id="29214-149">예상된 출력이 보여 주는 hello **NetworkSecurityGroup** 속성:</span><span class="sxs-lookup"><span data-stu-id="29214-149">Expected output showing only hello **NetworkSecurityGroup** property:</span></span>
    
         NetworkSecurityGroup : {
                                  "SecurityRules": [],
@@ -377,59 +377,59 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
                                  "Id": "/subscriptions/[Subscription Id]/resourceGroups/RG-NSG/providers/Microsoft.Network/networkSecurityGroups/NSG-FrontEnd"
                                }
 
-### <a name="dissociate-an-nsg-from-a-nic"></a><span data-ttu-id="e7aa7-150">NIC에서 NSG 분리</span><span class="sxs-lookup"><span data-stu-id="e7aa7-150">Dissociate an NSG from a NIC</span></span>
-<span data-ttu-id="e7aa7-151">**NSG-FrontEnd** NSG를 **TestNICWeb1** NIC에서 분리하려면 다음 단계를 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-151">To dissociate the **NSG-FrontEnd** NSG from the **TestNICWeb1** NIC, complete the following steps:</span></span>
+### <a name="dissociate-an-nsg-from-a-nic"></a><span data-ttu-id="29214-150">NIC에서 NSG 분리</span><span class="sxs-lookup"><span data-stu-id="29214-150">Dissociate an NSG from a NIC</span></span>
+<span data-ttu-id="29214-151">toodissociate hello **NSG 프런트 엔드** hello에서 NSG **TestNICWeb1** NIC를 다음 단계 완료 hello:</span><span class="sxs-lookup"><span data-stu-id="29214-151">toodissociate hello **NSG-FrontEnd** NSG from hello **TestNICWeb1** NIC, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="e7aa7-152">다음 명령을 실행하여 기존 NIC를 검색하고 변수에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-152">Run the following command to retrieve the existing NIC and store it in a variable:</span></span>
+1. <span data-ttu-id="29214-152">Hello 명령 tooretrieve hello 기존 NIC를 다음을 실행 하 고 변수에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-152">Run hello following command tooretrieve hello existing NIC and store it in a variable:</span></span>
 
     ```powershell
     $nic = Get-AzureRmNetworkInterface -ResourceGroupName RG-NSG -Name TestNICWeb1
     ```
 
-2. <span data-ttu-id="e7aa7-153">**NIC** 변수의 **NetworkSecurityGroup** 속성을 다음 명령을 실행하여 **$null** 변수의 값으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-153">Set the **NetworkSecurityGroup** property of the **NIC** variable to **$null** by running the following command:</span></span>
+2. <span data-ttu-id="29214-153">집합 hello **NetworkSecurityGroup** hello 속성 **NIC** 변수 너무**$null** hello 다음 명령을 실행 하 여:</span><span class="sxs-lookup"><span data-stu-id="29214-153">Set hello **NetworkSecurityGroup** property of hello **NIC** variable too**$null** by running hello following command:</span></span>
 
     ```powershell
     $nic.NetworkSecurityGroup = $null
     ```
 
-3. <span data-ttu-id="e7aa7-154">NIC에 대한 변경 사항을 저장하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-154">To save the changes made to the NIC, run the following command:</span></span>
+3. <span data-ttu-id="29214-154">toosave hello 변경 toohello NIC를 hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-154">toosave hello changes made toohello NIC, run hello following command:</span></span>
 
     ```powershell
     Set-AzureRmNetworkInterface -NetworkInterface $nic
     ```
    
-    <span data-ttu-id="e7aa7-155">**NetworkSecurityGroup** 속성만을 표시하는 예상된 출력입니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-155">Expected output showing only the **NetworkSecurityGroup** property:</span></span>
+    <span data-ttu-id="29214-155">예상된 출력이 보여 주는 hello **NetworkSecurityGroup** 속성:</span><span class="sxs-lookup"><span data-stu-id="29214-155">Expected output showing only hello **NetworkSecurityGroup** property:</span></span>
    
         NetworkSecurityGroup : null
 
-### <a name="dissociate-an-nsg-from-a-subnet"></a><span data-ttu-id="e7aa7-156">서브넷에서 NSG 분리</span><span class="sxs-lookup"><span data-stu-id="e7aa7-156">Dissociate an NSG from a subnet</span></span>
-<span data-ttu-id="e7aa7-157">**NSG-FrontEnd** NSG를 **FrontEnd** 서브넷에서 분리하려면 다음 단계를 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-157">To dissociate the **NSG-FrontEnd** NSG from the **FrontEnd** subnet, complete the following steps:</span></span>
+### <a name="dissociate-an-nsg-from-a-subnet"></a><span data-ttu-id="29214-156">서브넷에서 NSG 분리</span><span class="sxs-lookup"><span data-stu-id="29214-156">Dissociate an NSG from a subnet</span></span>
+<span data-ttu-id="29214-157">toodissociate hello **NSG 프런트 엔드** hello에서 NSG **프런트 엔드** 서브넷, 단계를 수행 하는 전체 hello:</span><span class="sxs-lookup"><span data-stu-id="29214-157">toodissociate hello **NSG-FrontEnd** NSG from hello **FrontEnd** subnet, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="e7aa7-158">다음 명령을 실행하여 기존 VNet 을 검색하고 변수에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-158">Run the following command to retrieve the existing VNet and store it in a variable:</span></span>
+1. <span data-ttu-id="29214-158">Hello 명령 tooretrieve hello 기존 VNet을 다음을 실행 하 고 변수에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-158">Run hello following command tooretrieve hello existing VNet and store it in a variable:</span></span>
 
     ```powershell
     $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName RG-NSG -Name TestVNet
     ```
 
-2. <span data-ttu-id="e7aa7-159">다음 명령을 실행하여 **FrontEnd** 서브넷을 검색하고 변수에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-159">Run the following command to retrieve the **FrontEnd** subnet and store it in a variable:</span></span>
+2. <span data-ttu-id="29214-159">실행 hello 명령 tooretrieve hello 다음 **프런트 엔드** 서브넷 변수에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-159">Run hello following command tooretrieve hello **FrontEnd** subnet and store it in a variable:</span></span>
 
     ```powershell
     $subnet = Get-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name FrontEnd
     ```
  
-3. <span data-ttu-id="e7aa7-160">**서브넷** 변수의 **NetworkSecurityGroup** 속성을 다음 명령을 입력하여 **$null** 변수의 값으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-160">Set the **NetworkSecurityGroup** property of the **subnet** variable to **$null** by entering the following command:</span></span>
+3. <span data-ttu-id="29214-160">집합 hello **NetworkSecurityGroup** hello 속성 **서브넷** 변수 너무**$null** hello 다음 명령을 입력 하 여:</span><span class="sxs-lookup"><span data-stu-id="29214-160">Set hello **NetworkSecurityGroup** property of hello **subnet** variable too**$null** by entering hello following command:</span></span>
 
     ```powershell
     $subnet.NetworkSecurityGroup = $null
     ```
 
-4. <span data-ttu-id="e7aa7-161">서브넷에 대한 변경 사항을 저장하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-161">To save the changes made to the subnet, run the following command:</span></span>
+4. <span data-ttu-id="29214-161">toosave hello 변경 서브넷 toohello hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-161">toosave hello changes made toohello subnet, run hello following command:</span></span>
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
     ```
 
-    <span data-ttu-id="e7aa7-162">**FrontEnd** 서브넷의 속성만을 표시하는 예상된 출력입니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-162">Expected output showing only the properties of the **FrontEnd** subnet.</span></span> <span data-ttu-id="e7aa7-163">**NetworkSecurityGroup**에 대한 속성이 없습니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-163">Notice there isn't a property for **NetworkSecurityGroup**:</span></span>
+    <span data-ttu-id="29214-162">Hello의 hello 속성만 보여 주는 예상된 출력 **프런트 엔드** 서브넷입니다.</span><span class="sxs-lookup"><span data-stu-id="29214-162">Expected output showing only hello properties of hello **FrontEnd** subnet.</span></span> <span data-ttu-id="29214-163">**NetworkSecurityGroup**에 대한 속성이 없습니다.</span><span class="sxs-lookup"><span data-stu-id="29214-163">Notice there isn't a property for **NetworkSecurityGroup**:</span></span>
    
             ...
             Subnets           : [
@@ -451,40 +451,40 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
                                     ...
                                 ]
 
-### <a name="associate-an-nsg-to-a-subnet"></a><span data-ttu-id="e7aa7-164">서브넷에 NSG 연결</span><span class="sxs-lookup"><span data-stu-id="e7aa7-164">Associate an NSG to a subnet</span></span>
-<span data-ttu-id="e7aa7-165">**NSG-FrontEnd** NSG를 **FronEnd** 서브넷에 다시 연결하려면 다음 단계를 완료합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-165">To associate the **NSG-FrontEnd** NSG to the **FronEnd** subnet again, complete the following steps:</span></span>
+### <a name="associate-an-nsg-tooa-subnet"></a><span data-ttu-id="29214-164">NSG tooa 서브넷 연결</span><span class="sxs-lookup"><span data-stu-id="29214-164">Associate an NSG tooa subnet</span></span>
+<span data-ttu-id="29214-165">tooassociate hello **NSG 프런트 엔드** NSG toohello **FronEnd** 다시 서브넷, 단계를 수행 하는 전체 hello:</span><span class="sxs-lookup"><span data-stu-id="29214-165">tooassociate hello **NSG-FrontEnd** NSG toohello **FronEnd** subnet again, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="e7aa7-166">다음 명령을 실행하여 기존 VNet 을 검색하고 변수에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-166">Run the following command to retrieve the existing VNet and store it in a variable:</span></span>
+1. <span data-ttu-id="29214-166">Hello 명령 tooretrieve hello 기존 VNet을 다음을 실행 하 고 변수에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-166">Run hello following command tooretrieve hello existing VNet and store it in a variable:</span></span>
 
     ```powershell
     $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName RG-NSG -Name TestVNet
     ```
 
-2. <span data-ttu-id="e7aa7-167">다음 명령을 실행하여 **FrontEnd** 서브넷을 검색하고 변수에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-167">Run the following command to retrieve the **FrontEnd** subnet and store it in a variable:</span></span>
+2. <span data-ttu-id="29214-167">실행 hello 명령 tooretrieve hello 다음 **프런트 엔드** 서브넷 변수에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-167">Run hello following command tooretrieve hello **FrontEnd** subnet and store it in a variable:</span></span>
 
     ```powershell
     $subnet = Get-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name FrontEnd
     ```
  
-3. <span data-ttu-id="e7aa7-168">다음 명령을 실행하여 기존 NSG를 검색하고 변수에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-168">Run the following command to retrieve the existing NSG and store it in a variable:</span></span>
+3. <span data-ttu-id="29214-168">다음 기존 NSG 명령 tooretrieve hello hello를 실행 하 고 변수에 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-168">Run hello following command tooretrieve hello existing NSG and store it in a variable:</span></span>
 
     ```powershell
     $nsg = Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
     ```
 
-4. <span data-ttu-id="e7aa7-169">**서브넷** 변수의 **NetworkSecurityGroup** 속성을 다음 명령을 실행하여 **$null** 변수의 값으로 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-169">Set the **NetworkSecurityGroup** property of the **subnet** variable to **$null** by running the following command:</span></span>
+4. <span data-ttu-id="29214-169">집합 hello **NetworkSecurityGroup** hello 속성 **서브넷** 변수 너무**$null** hello 다음 명령을 실행 하 여:</span><span class="sxs-lookup"><span data-stu-id="29214-169">Set hello **NetworkSecurityGroup** property of hello **subnet** variable too**$null** by running hello following command:</span></span>
 
     ```powershell
     $subnet.NetworkSecurityGroup = $nsg
     ```
 
-5. <span data-ttu-id="e7aa7-170">서브넷에 대한 변경 사항을 저장하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-170">To save the changes made to the subnet, run the following command:</span></span>
+5. <span data-ttu-id="29214-170">toosave hello 변경 서브넷 toohello hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-170">toosave hello changes made toohello subnet, run hello following command:</span></span>
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
     ```
 
-    <span data-ttu-id="e7aa7-171">**FrontEnd** 서브넷의 **NetworkSecurityGroup** 속성만을 표시하는 예상된 출력입니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-171">Expected output showing only the **NetworkSecurityGroup** property of the **FrontEnd** subnet:</span></span>
+    <span data-ttu-id="29214-171">예상된 출력이 보여 주는 hello **NetworkSecurityGroup** hello 속성 **프런트 엔드** 서브넷:</span><span class="sxs-lookup"><span data-stu-id="29214-171">Expected output showing only hello **NetworkSecurityGroup** property of hello **FrontEnd** subnet:</span></span>
    
         ...
         "NetworkSecurityGroup": {
@@ -496,22 +496,22 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
                                 }
         ...
 
-## <a name="delete-an-nsg"></a><span data-ttu-id="e7aa7-172">NSG 삭제</span><span class="sxs-lookup"><span data-stu-id="e7aa7-172">Delete an NSG</span></span>
-<span data-ttu-id="e7aa7-173">리소스에 연결되지 않은 경우 NSG를 삭제할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-173">You can only delete an NSG if it's not associated to any resource.</span></span> <span data-ttu-id="e7aa7-174">NSG를 삭제하려면 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-174">To delete an NSG, follow the steps below.</span></span>
+## <a name="delete-an-nsg"></a><span data-ttu-id="29214-172">NSG 삭제</span><span class="sxs-lookup"><span data-stu-id="29214-172">Delete an NSG</span></span>
+<span data-ttu-id="29214-173">NSG tooany 리소스를 연결 되지 않은 경우에 삭제할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="29214-173">You can only delete an NSG if it's not associated tooany resource.</span></span> <span data-ttu-id="29214-174">NSG를 toodelete는 아래의 hello 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-174">toodelete an NSG, follow hello steps below.</span></span>
 
-1. <span data-ttu-id="e7aa7-175">NSG에 연결된 리소스를 확인하려면 [NSG 연결 보기](#View-NSGs-associations)에서처럼 `azure network nsg show`을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-175">To check the resources associated to an NSG, run the `azure network nsg show` as shown in [View NSGs associations](#View-NSGs-associations).</span></span>
-2. <span data-ttu-id="e7aa7-176">NSG가 NIC에 연결된 경우 각 NIC에 대한 [NIC에서 NSG 분리](#Dissociate-an-NSG-from-a-NIC)에서처럼 `azure network nic set`을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-176">If the NSG is associated to any NICs, run the `azure network nic set` as shown in [Dissociate an NSG from a NIC](#Dissociate-an-NSG-from-a-NIC) for each NIC.</span></span> 
-3. <span data-ttu-id="e7aa7-177">NSG가 서브넷에 연결된 경우 각 서브넷에 대한 [서브넷에서 NSG 분리](#Dissociate-an-NSG-from-a-subnet)에서처럼 `azure network vnet subnet set`을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-177">If the NSG is associated to any subnet, run the `azure network vnet subnet set` as shown in [Dissociate an NSG from a subnet](#Dissociate-an-NSG-from-a-subnet) for each subnet.</span></span>
-4. <span data-ttu-id="e7aa7-178">NSG를 삭제하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-178">To delete the NSG, run the following command:</span></span>
+1. <span data-ttu-id="29214-175">toocheck hello 리소스 관련 tooan NSG를 hello 실행 `azure network nsg show` 에서처럼 [보기 Nsg 연결](#View-NSGs-associations)합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-175">toocheck hello resources associated tooan NSG, run hello `azure network nsg show` as shown in [View NSGs associations](#View-NSGs-associations).</span></span>
+2. <span data-ttu-id="29214-176">Hello NSG 연결된 tooany Nic 이면 hello 실행 `azure network nic set` 에서처럼 [NIC에서 NSG를 분리](#Dissociate-an-NSG-from-a-NIC) 각 NIC.에 대 한</span><span class="sxs-lookup"><span data-stu-id="29214-176">If hello NSG is associated tooany NICs, run hello `azure network nic set` as shown in [Dissociate an NSG from a NIC](#Dissociate-an-NSG-from-a-NIC) for each NIC.</span></span> 
+3. <span data-ttu-id="29214-177">Hello NSG 연결된 tooany 서브넷 이면 hello 실행 `azure network vnet subnet set` 에서처럼 [서브넷에서 NSG를 분리](#Dissociate-an-NSG-from-a-subnet) 각 서브넷에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-177">If hello NSG is associated tooany subnet, run hello `azure network vnet subnet set` as shown in [Dissociate an NSG from a subnet](#Dissociate-an-NSG-from-a-subnet) for each subnet.</span></span>
+4. <span data-ttu-id="29214-178">toodelete hello NSG hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="29214-178">toodelete hello NSG, run hello following command:</span></span>
 
     ```powershell
     Remove-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd -Force
     ```
    
    > [!NOTE]
-   > <span data-ttu-id="e7aa7-179">`-Force` 매개 변수를 사용하면 삭제를 확인하지 않아도 됩니다.</span><span class="sxs-lookup"><span data-stu-id="e7aa7-179">The `-Force` parameter ensures you don't need to confirm the deletion.</span></span>
+   > <span data-ttu-id="29214-179">hello `-Force` 매개 변수를 사용 하면 tooconfirm hello 삭제 필요 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="29214-179">hello `-Force` parameter ensures you don't need tooconfirm hello deletion.</span></span>
    > 
 
-## <a name="next-steps"></a><span data-ttu-id="e7aa7-180">다음 단계</span><span class="sxs-lookup"><span data-stu-id="e7aa7-180">Next steps</span></span>
-* <span data-ttu-id="e7aa7-181">[로깅을 사용합니다](virtual-network-nsg-manage-log.md) .</span><span class="sxs-lookup"><span data-stu-id="e7aa7-181">[Enable logging](virtual-network-nsg-manage-log.md) for NSGs.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="29214-180">다음 단계</span><span class="sxs-lookup"><span data-stu-id="29214-180">Next steps</span></span>
+* <span data-ttu-id="29214-181">[로깅을 사용합니다](virtual-network-nsg-manage-log.md) .</span><span class="sxs-lookup"><span data-stu-id="29214-181">[Enable logging](virtual-network-nsg-manage-log.md) for NSGs.</span></span>
 

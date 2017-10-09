@@ -1,6 +1,6 @@
 ---
-title: "Azure Import/Export 도구 사용 - v1 | Microsoft Docs"
-description: "Import/Export 도구를 사용하여 가져오기 작업을 위한 하드 드라이브 준비, 가져오기 작업 복구 또는 내보내기 작업 복구 방법을 알아봅니다."
+title: "aaaUsing hello Azure 가져오기/내보내기 도구-v 1 | Microsoft Docs"
+description: "어떻게 toouse hello 가져오기/내보내기 도구 tooprepare 하드 드라이브는 가져오기 작업에 대 한 가져오기 작업, 복구 또는 내보내기 작업 복구에 대해 알아봅니다."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 1/15/2017
 ms.author: muralikk
-ms.openlocfilehash: 4ce2273cc0dcc456c2edc8c5dd2fc22496f20380
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 030dbad403cae76799c9ddf3cb8d2ced7cd41911
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-azure-importexport-tool-classic-deployment-model"></a><span data-ttu-id="6d94b-103">Azure Import/Export 도구 사용(클래식 배포 모델)</span><span class="sxs-lookup"><span data-stu-id="6d94b-103">Using the Azure Import/Export Tool (classic deployment model)</span></span>
+# <a name="using-hello-azure-importexport-tool-classic-deployment-model"></a><span data-ttu-id="39acc-103">Hello Azure 가져오기/내보내기 도구 (클래식 배포 모델)을 사용 하 여</span><span class="sxs-lookup"><span data-stu-id="39acc-103">Using hello Azure Import/Export Tool (classic deployment model)</span></span>
 
-<span data-ttu-id="6d94b-104">Azure Import/Export 도구(WAImportExport.exe)는 Azure Import/Export 서비스의 작업을 만들고 관리하는 데 사용되어 Azure Blob Storage 내부 또는 외부로 대량의 데이터를 전송할 수 있게 해줍니다.</span><span class="sxs-lookup"><span data-stu-id="6d94b-104">The Azure Import/Export Tool (WAImportExport.exe) is used to create and manage jobs for the Azure Import/Export service, enabling you to transfer large amounts of data into or out of Azure Blob Storage.</span></span>
+<span data-ttu-id="39acc-104">hello Azure 가져오기/내보내기 도구 (WAImportExport.exe)가 사용 되는 toocreate 하 고 hello Azure 가져오기/내보내기 서비스 또는 Azure Blob 저장소 외부로 tootransfer 많은 양의 데이터를 지원에 대 한 작업을 관리 합니다.</span><span class="sxs-lookup"><span data-stu-id="39acc-104">hello Azure Import/Export Tool (WAImportExport.exe) is used toocreate and manage jobs for hello Azure Import/Export service, enabling you tootransfer large amounts of data into or out of Azure Blob Storage.</span></span>
 
-<span data-ttu-id="6d94b-105">이 설명서는 Azure Import/Export 도구의 클래식 배포 모델에 대한 것입니다.</span><span class="sxs-lookup"><span data-stu-id="6d94b-105">This documentation is for the classic deployment model of the Azure Import/Export Tool.</span></span> <span data-ttu-id="6d94b-106">최신 버전의 도구를 사용하는 방법에 대한 내용은 [Azure Import/Export 도구 사용](../storage-import-export-tool-how-to.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="6d94b-106">For information about using the most recent version of the tool, see [Using the Azure Import/Export Tool](../storage-import-export-tool-how-to.md).</span></span>
+<span data-ttu-id="39acc-105">이 설명서의 hello Azure 가져오기/내보내기 도구 hello 클래식 배포 모델입니다.</span><span class="sxs-lookup"><span data-stu-id="39acc-105">This documentation is for hello classic deployment model of hello Azure Import/Export Tool.</span></span> <span data-ttu-id="39acc-106">Hello hello 도구의 최신 버전을 사용 하는 방법에 대 한 정보를 참조 하십시오. [Azure 가져오기/내보내기 도구를 사용 하 여 hello](../storage-import-export-tool-how-to.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="39acc-106">For information about using hello most recent version of hello tool, see [Using hello Azure Import/Export Tool](../storage-import-export-tool-how-to.md).</span></span>
 
-<span data-ttu-id="6d94b-107">다음 문서에서는 해당 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="6d94b-107">The following articles show you how to:</span></span>
+<span data-ttu-id="39acc-107">hello 다음 문서는 방법을 배웁니다에:</span><span class="sxs-lookup"><span data-stu-id="39acc-107">hello following articles show you how to:</span></span>
 
-- <span data-ttu-id="6d94b-108">Import/Export 도구를 설치 및 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="6d94b-108">Install and set up the Import/Export Tool.</span></span>
-- <span data-ttu-id="6d94b-109">드라이브에서 Azure Blob Storage로 데이터를 가져오는 작업을 위한 하드 드라이브를 준비합니다.</span><span class="sxs-lookup"><span data-stu-id="6d94b-109">Prepare your hard drives for a job where you import data from your drives to Azure Blob Storage.</span></span>
-- <span data-ttu-id="6d94b-110">로그 파일 복사를 사용하여 작업 상태를 검토합니다.</span><span class="sxs-lookup"><span data-stu-id="6d94b-110">Review the status of a job with Copy Log Files.</span></span> 
-- <span data-ttu-id="6d94b-111">가져오기 작업을 복구합니다.</span><span class="sxs-lookup"><span data-stu-id="6d94b-111">Repair an import job.</span></span> 
-- <span data-ttu-id="6d94b-112">내보내기 작업을 복구합니다.</span><span class="sxs-lookup"><span data-stu-id="6d94b-112">Repair an export job.</span></span> 
-- <span data-ttu-id="6d94b-113">프로세스 중에 문제가 발생한 경우 Azure Import/Export 도구 문제를 해결합니다.</span><span class="sxs-lookup"><span data-stu-id="6d94b-113">Troubleshoot the Azure Import/Export Tool, in case you had a problem during process.</span></span> 
+- <span data-ttu-id="39acc-108">설치 하 고 hello 가져오기/내보내기 도구를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="39acc-108">Install and set up hello Import/Export Tool.</span></span>
+- <span data-ttu-id="39acc-109">사용자 드라이브 tooAzure Blob 저장소에서에서 데이터를 가져오는 위치는 작업에 대 한 하드 드라이브를 준비 합니다.</span><span class="sxs-lookup"><span data-stu-id="39acc-109">Prepare your hard drives for a job where you import data from your drives tooAzure Blob Storage.</span></span>
+- <span data-ttu-id="39acc-110">복사 로그 파일와 함께 작업의 hello 상태를 검토 합니다.</span><span class="sxs-lookup"><span data-stu-id="39acc-110">Review hello status of a job with Copy Log Files.</span></span> 
+- <span data-ttu-id="39acc-111">가져오기 작업을 복구합니다.</span><span class="sxs-lookup"><span data-stu-id="39acc-111">Repair an import job.</span></span> 
+- <span data-ttu-id="39acc-112">내보내기 작업을 복구합니다.</span><span class="sxs-lookup"><span data-stu-id="39acc-112">Repair an export job.</span></span> 
+- <span data-ttu-id="39acc-113">Hello Azure 가져오기/내보내기 도구 문제를 해결 경우 프로세스 중에 문제가 발생 했습니다.</span><span class="sxs-lookup"><span data-stu-id="39acc-113">Troubleshoot hello Azure Import/Export Tool, in case you had a problem during process.</span></span> 
 
-## <a name="next-steps"></a><span data-ttu-id="6d94b-114">다음 단계</span><span class="sxs-lookup"><span data-stu-id="6d94b-114">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="39acc-114">다음 단계</span><span class="sxs-lookup"><span data-stu-id="39acc-114">Next steps</span></span>
 
-* [<span data-ttu-id="6d94b-115">WAImportExport 도구 설정</span><span class="sxs-lookup"><span data-stu-id="6d94b-115">Setting up the WAImportExport tool</span></span>](../storage-import-export-tool-how-to.md)
+* [<span data-ttu-id="39acc-115">Hello WAImportExport 도구 설정</span><span class="sxs-lookup"><span data-stu-id="39acc-115">Setting up hello WAImportExport tool</span></span>](../storage-import-export-tool-how-to.md)

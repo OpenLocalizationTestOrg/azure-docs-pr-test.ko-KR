@@ -1,6 +1,6 @@
 ---
-title: "Linux VM에 대한 Azure 구독 및 계정 | Microsoft Docs"
-description: "Azure의 구독 및 계정에 대한 핵심 디자인 및 구현 지침에 대해 알아봅니다."
+title: "aaaSubscription Azure에서 Linux Vm에 대 한 계정 및 | Microsoft Docs"
+description: "Hello 주요 디자인 및 구현에 대 한 지침이 구독 및 Azure에서 계정에 알아봅니다."
 documentationcenter: 
 services: virtual-machines-linux
 author: iainfoulds
@@ -16,55 +16,55 @@ ms.topic: article
 ms.date: 06/26/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 19695a9960d8e8f0dfca4bf0ca10761fe6ae7ff0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9025a40783c008310ebd0f674deb4a9001ae974a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-subscription-and-accounts-guidelines-for-linux-vms"></a><span data-ttu-id="08d80-103">Linux VM에 대한 Azure 구독 및 계정 지침</span><span class="sxs-lookup"><span data-stu-id="08d80-103">Azure subscription and accounts guidelines for Linux VMs</span></span>
+# <a name="azure-subscription-and-accounts-guidelines-for-linux-vms"></a><span data-ttu-id="d4a8b-103">Linux VM에 대한 Azure 구독 및 계정 지침</span><span class="sxs-lookup"><span data-stu-id="d4a8b-103">Azure subscription and accounts guidelines for Linux VMs</span></span>
 
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
 
-<span data-ttu-id="08d80-104">이 문서에서는 환경 및 사용자 기반이 커질 때 구독 및 계정 관리에 접근하는 방식을 이해하는 데 주안점을 둡니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-104">This article focuses on understanding how to approach subscription and account management as your environment and user base grows.</span></span>
+<span data-ttu-id="d4a8b-104">이 문서는 사용자 환경 및 사용자 기반으로 구독 및 계정 관리와 tooapproach 증가 하는 방법을 이해에 중점을 둡니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-104">This article focuses on understanding how tooapproach subscription and account management as your environment and user base grows.</span></span>
 
-## <a name="implementation-guidelines-for-subscriptions-and-accounts"></a><span data-ttu-id="08d80-105">구독 및 계정에 대한 구현 지침</span><span class="sxs-lookup"><span data-stu-id="08d80-105">Implementation guidelines for subscriptions and accounts</span></span>
-<span data-ttu-id="08d80-106">의사 결정:</span><span class="sxs-lookup"><span data-stu-id="08d80-106">Decisions:</span></span>
+## <a name="implementation-guidelines-for-subscriptions-and-accounts"></a><span data-ttu-id="d4a8b-105">구독 및 계정에 대한 구현 지침</span><span class="sxs-lookup"><span data-stu-id="d4a8b-105">Implementation guidelines for subscriptions and accounts</span></span>
+<span data-ttu-id="d4a8b-106">의사 결정:</span><span class="sxs-lookup"><span data-stu-id="d4a8b-106">Decisions:</span></span>
 
-* <span data-ttu-id="08d80-107">IT 작업 또는 인프라를 호스트하는 데 필요한 구독 및 계정 집합은 무엇인가?</span><span class="sxs-lookup"><span data-stu-id="08d80-107">What set of subscriptions and accounts do you need to host your IT workload or infrastructure?</span></span>
-* <span data-ttu-id="08d80-108">조직에 맞게 계층을 어떻게 분류해야 하는가?</span><span class="sxs-lookup"><span data-stu-id="08d80-108">How to break down the hierarchy to fit your organization?</span></span>
+* <span data-ttu-id="d4a8b-107">집합의 구독 및 계정 필요 한가요 toohost IT 작업 또는 인프라?</span><span class="sxs-lookup"><span data-stu-id="d4a8b-107">What set of subscriptions and accounts do you need toohost your IT workload or infrastructure?</span></span>
+* <span data-ttu-id="d4a8b-108">어떻게 hello 계층 toofit 아래로 toobreak 조직?</span><span class="sxs-lookup"><span data-stu-id="d4a8b-108">How toobreak down hello hierarchy toofit your organization?</span></span>
 
-<span data-ttu-id="08d80-109">작업:</span><span class="sxs-lookup"><span data-stu-id="08d80-109">Tasks:</span></span>
+<span data-ttu-id="d4a8b-109">작업:</span><span class="sxs-lookup"><span data-stu-id="d4a8b-109">Tasks:</span></span>
 
-* <span data-ttu-id="08d80-110">구독 수준에서 관리하려고 하므로 논리 조직 계층을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-110">Define your logical organization hierarchy as you would like to manage it from a subscription level.</span></span>
-* <span data-ttu-id="08d80-111">이러한 논리 계층 구조에 맞게 필요한 계정을 정의하고 각 계정 아래에 구독을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-111">To match this logical hierarchy, define the accounts required and subscriptions under each account.</span></span>
-* <span data-ttu-id="08d80-112">명명 규칙을 사용하여 구독 및 계정 집합을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-112">Create the set of subscriptions and accounts using your naming convention.</span></span>
+* <span data-ttu-id="d4a8b-110">Toomanage 원하는 만큼 논리적 구성이 계층 정의 구독 수준에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-110">Define your logical organization hierarchy as you would like toomanage it from a subscription level.</span></span>
+* <span data-ttu-id="d4a8b-111">toomatch이 논리적 계층 구조 필요한 hello 계정 및 각 계정 아래에서 구독을 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-111">toomatch this logical hierarchy, define hello accounts required and subscriptions under each account.</span></span>
+* <span data-ttu-id="d4a8b-112">Hello 집합을 구독 및 명명 규칙을 사용 하 여 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-112">Create hello set of subscriptions and accounts using your naming convention.</span></span>
 
-## <a name="subscriptions-and-accounts"></a><span data-ttu-id="08d80-113">구독 및 계정</span><span class="sxs-lookup"><span data-stu-id="08d80-113">Subscriptions and accounts</span></span>
-<span data-ttu-id="08d80-114">Azure를 사용하려면 하나 이상의 Azure 구독이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-114">To work with Azure, you need one or more Azure subscriptions.</span></span> <span data-ttu-id="08d80-115">VM(가상 컴퓨터) 또는 가상 네트워크와 같은 리소스는 해당 구독에 존재합니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-115">Resources like virtual machines (VMs) or virtual networks exist in of those subscriptions.</span></span>
+## <a name="subscriptions-and-accounts"></a><span data-ttu-id="d4a8b-113">구독 및 계정</span><span class="sxs-lookup"><span data-stu-id="d4a8b-113">Subscriptions and accounts</span></span>
+<span data-ttu-id="d4a8b-114">Azure와 toowork, 하나 이상의 Azure 구독이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-114">toowork with Azure, you need one or more Azure subscriptions.</span></span> <span data-ttu-id="d4a8b-115">VM(가상 컴퓨터) 또는 가상 네트워크와 같은 리소스는 해당 구독에 존재합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-115">Resources like virtual machines (VMs) or virtual networks exist in of those subscriptions.</span></span>
 
-* <span data-ttu-id="08d80-116">기업 고객은 일반적으로 기업 등록 계약을 합니다. 이는 계층에서 가장 중요한 리소스이며 하나 이상의 계정과 관련됩니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-116">Enterprise customers typically have an Enterprise Enrollment, which is the top-most resource in the hierarchy, and is associated to one or more accounts.</span></span>
-* <span data-ttu-id="08d80-117">기업 등록 계약이 없는 소비자 및 고객의 경우, 가장 중요한 리소스는 계정입니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-117">For consumers and customers without an Enterprise Enrollment, the top-most resource is the account.</span></span>
-* <span data-ttu-id="08d80-118">구독은 계정과 관련되며 계정당 하나 이상의 구독이 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-118">Subscriptions are associated to accounts, and there can be one or more subscriptions per account.</span></span> <span data-ttu-id="08d80-119">Azure는 구독 단계에서 청구 정보를 기록합니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-119">Azure records billing information at the subscription level.</span></span>
+* <span data-ttu-id="d4a8b-116">일반적으로 기업 고객은 hello 계층의 최상위 리소스 hello 되었고 관련된 tooone 또는 계정을 더는 기업 등록 계약을 가집니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-116">Enterprise customers typically have an Enterprise Enrollment, which is hello top-most resource in hello hierarchy, and is associated tooone or more accounts.</span></span>
+* <span data-ttu-id="d4a8b-117">소비자 및 기업 등록 없는 고객에 대 한 최상위 리소스 hello hello 계정입니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-117">For consumers and customers without an Enterprise Enrollment, hello top-most resource is hello account.</span></span>
+* <span data-ttu-id="d4a8b-118">구독은 연결된 tooaccounts 있으며 계정당 구독을 하나 이상 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-118">Subscriptions are associated tooaccounts, and there can be one or more subscriptions per account.</span></span> <span data-ttu-id="d4a8b-119">Azure 레코드 hello 구독 수준에서 정보를 청구 합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-119">Azure records billing information at hello subscription level.</span></span>
 
-<span data-ttu-id="08d80-120">계정/구독 관계에 두 계층 단계의 제한이 있기 때문에 청구 요구에 계정 및 구독의 명명 규칙을 할당하는 것은 중요합니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-120">Due to the limit of two hierarchy levels on the Account/Subscription relationship, it is important to align the naming convention of accounts and subscriptions to the billing needs.</span></span> <span data-ttu-id="08d80-121">예를 들어 글로벌 기업에서 Azure를 사용하는 경우 지역당 하나의 계정을 갖도록, 지역 수준에서 구독이 관리되도록 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-121">For instance, if a global company uses Azure, they might choose to have one account per region, and have subscriptions managed at the region level:</span></span>
+<span data-ttu-id="d4a8b-120">Hello 계정/구독 관계에 있는 두 명의 계층 수준의 toohello 제한을 인해 계정 및 구독 toohello 요구 청구의 중요 한 tooalign hello 명명 규칙은 것입니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-120">Due toohello limit of two hierarchy levels on hello Account/Subscription relationship, it is important tooalign hello naming convention of accounts and subscriptions toohello billing needs.</span></span> <span data-ttu-id="d4a8b-121">예를 들어, 글로벌 기업에서 Azure를 사용 하는 경우 있습니다 수 toohave 하나 계정 / 지역당, 선택한 구독에서 관리 지역 수준을 hello:</span><span class="sxs-lookup"><span data-stu-id="d4a8b-121">For instance, if a global company uses Azure, they might choose toohave one account per region, and have subscriptions managed at hello region level:</span></span>
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub01.png)
 
-<span data-ttu-id="08d80-122">예를 들어, 다음 구조를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-122">For instance, you might use the following structure:</span></span>
+<span data-ttu-id="d4a8b-122">예를 들어, 다음 구조 hello를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-122">For instance, you might use hello following structure:</span></span>
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub02.png)
 
-<span data-ttu-id="08d80-123">한 지역에 특정 그룹과 관련된 두 개 이상의 구독을 갖도록 결정하는 경우 명명 규칙은 계정 또는 구독 이름에 추가 데이터를 인코딩하기 위해 하나의 방법으로 통합해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-123">If a region decides to have more than one subscription associated to a particular group, the naming convention should incorporate a way to encode the extra data on either the account or the subscription name.</span></span> <span data-ttu-id="08d80-124">이 조직에서는 청구 보고 중에 새 계층 단계를 생성하는 데 청구 데이터 조작을 허용합니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-124">This organization allows massaging billing data to generate the new levels of hierarchy during billing reports:</span></span>
+<span data-ttu-id="d4a8b-123">Hello ô ä ¢ 방법을 tooencode를 통합 해야 영역 toohave 둘 이상의 구독을 하나 관련된 tooa 특정 그룹을 경우 hello hello 계정 또는 hello 구독 이름에 추가 데이터입니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-123">If a region decides toohave more than one subscription associated tooa particular group, hello naming convention should incorporate a way tooencode hello extra data on either hello account or hello subscription name.</span></span> <span data-ttu-id="d4a8b-124">이 조직에 청구 보고서 중 청구 데이터 toogenerate hello 새 계층의 수준 massaging 허용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-124">This organization allows massaging billing data toogenerate hello new levels of hierarchy during billing reports:</span></span>
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub03.png)
 
-<span data-ttu-id="08d80-125">조직은 다음 예제와 같습니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-125">The organization could look like the following example:</span></span>
+<span data-ttu-id="d4a8b-125">hello 조직 다음 예제는 hello와 같을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-125">hello organization could look like hello following example:</span></span>
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub04.png)
 
-<span data-ttu-id="08d80-126">기업 계약의 단일 계정 또는 모든 계정에 대해 다운로드한 파일을 통해 자세한 청구를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="08d80-126">We provide detailed billing via a downloadable file for a single account, or for all accounts in an enterprise agreement.</span></span>
+<span data-ttu-id="d4a8b-126">기업 계약의 단일 계정 또는 모든 계정에 대해 다운로드한 파일을 통해 자세한 청구를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="d4a8b-126">We provide detailed billing via a downloadable file for a single account, or for all accounts in an enterprise agreement.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="08d80-127">다음 단계</span><span class="sxs-lookup"><span data-stu-id="08d80-127">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d4a8b-127">다음 단계</span><span class="sxs-lookup"><span data-stu-id="d4a8b-127">Next steps</span></span>
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)]
 

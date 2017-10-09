@@ -1,0 +1,27 @@
+<span data-ttu-id="1ad40-101">tooenable 응용 프로그램에 등록, 등록 정책 toocreate가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-101">tooenable sign-up on your application, you need toocreate a sign-up policy.</span></span> <span data-ttu-id="1ad40-102">이 정책은 성공적인 로그인 ups에 소비자를 등록 하는 동안 통과 및 hello 내용의 토큰 hello 응용 프로그램을 수신 하는 hello 환경을 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-102">This policy describes hello experiences that consumers go through during sign-up and hello contents of tokens that hello application receives on successful sign-ups.</span></span>
+
+[!INCLUDE [active-directory-b2c-portal-navigate-b2c-service](active-directory-b2c-portal-navigate-b2c-service.md)]
+
+<span data-ttu-id="1ad40-103">**등록 정책**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-103">Click **Sign-up policies**.</span></span>
+
+<span data-ttu-id="1ad40-104">클릭 **+ 추가** hello hello 블레이드 위쪽에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-104">Click **+Add** at hello top of hello blade.</span></span>
+
+<span data-ttu-id="1ad40-105">hello **이름** 응용 프로그램에서 사용 하는 hello 등록 정책 이름을 결정 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-105">hello **Name** determines hello sign-up policy name used by your application.</span></span> <span data-ttu-id="1ad40-106">예를 들어 **SiUp**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-106">For example, enter **SiUp**.</span></span>
+
+<span data-ttu-id="1ad40-107">**ID 공급자**를 클릭하고 **전자 메일 등록**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-107">Click **Identity providers** and select **Email signup**.</span></span> <span data-ttu-id="1ad40-108">또한 필요에 따라 이미 구성되어 있는 소셜 ID 공급자를 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-108">Optionally, you can also select social identity providers, if already configured.</span></span> <span data-ttu-id="1ad40-109">**확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-109">Click **OK**.</span></span>
+
+<span data-ttu-id="1ad40-110">**등록 특성**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-110">Click **Sign-up attributes**.</span></span> <span data-ttu-id="1ad40-111">다음 특성을 선택 하면 등록 하는 동안 hello 소비자에서 toocollect 되도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-111">Here you choose attributes that you want toocollect from hello consumer during sign-up.</span></span> <span data-ttu-id="1ad40-112">예를 들어 **국가/지역**, **표시 이름** 및 **우편 번호**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-112">For example, select **Country/Region**, **Display Name**, and **Postal Code**.</span></span> <span data-ttu-id="1ad40-113">**확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-113">Click **OK**.</span></span>
+
+<span data-ttu-id="1ad40-114">**응용 프로그램 클레임**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-114">Click **Application claims**.</span></span> <span data-ttu-id="1ad40-115">여기 hello 토큰에 반환 된 원하는 클레임 전송 백 tooyour 응용 프로그램을 성공적으로 등록 환경 후 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-115">Here you choose claims that you want returned in hello tokens sent back tooyour application after a successful sign-up experience.</span></span> <span data-ttu-id="1ad40-116">예를 들어 **표시 이름**, **ID 공급자**, **우편 번호**, **새 사용자** 및 **사용자의 개체 ID**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-116">For example, select **Display Name**, **Identity Provider**, **Postal Code**, **User is new**, and **User's Object ID**.</span></span>
+
+<span data-ttu-id="1ad40-117">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-117">Click **Create**.</span></span> <span data-ttu-id="1ad40-118">생성 된 hello 정책으로 표시 **B2C_1_SiUp** (hello **B2C\_1\_**  조각 자동으로 추가) hello에 **등록 정책** 블레이드입니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-118">hello policy created appears as **B2C_1_SiUp** (hello **B2C\_1\_** fragment is automatically added) in hello **Sign-up policies** blade.</span></span>
+
+<span data-ttu-id="1ad40-119">클릭 하 여 hello 정책 열고 **B2C_1_SiUp**합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-119">Open hello policy by clicking **B2C_1_SiUp**.</span></span>
+
+<span data-ttu-id="1ad40-120">선택 **Contoso B2C 앱** hello에 **응용 프로그램** 드롭 다운 및 `https://localhost:44321/` hello에 **회신 URL / URI 리디렉션** 드롭 다운 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-120">Select **Contoso B2C app** in hello **Applications** drop-down and `https://localhost:44321/` in hello **Reply URL / Redirect URI** drop-down.</span></span>
+
+<span data-ttu-id="1ad40-121">**지금 실행**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-121">Click **Run now**.</span></span> <span data-ttu-id="1ad40-122">새 브라우저 탭 열리고 응용 프로그램에 등록의 hello 소비자 환경을 통해 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-122">A new browser tab opens, and you can run through hello consumer experience of signing up for your application.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="1ad40-123">정책 만들기에 대 일 분 차지 하 고 tootake 효과 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ad40-123">It takes up tooa minute for policy creation and updates tootake effect.</span></span>
+>

@@ -1,6 +1,6 @@
 ---
-title: ".NET과 함께 미디어 인코더 표준을 사용하여 미리 보기를 생성하는 방법"
-description: "이 항목에서는 .NET과 함께 Media Encoder Standard를 사용하여 동시에 자산을 인코드하고 미리 보기를 생성하는 방법을 보여 줍니다."
+title: "미디어 인코더 표준.NET과 함께 사용 하 여 aaaHow toogenerate 미리 보기"
+description: "이 항목에서는 방법을 toouse.NET tooencode 자산 hello에 대 한 미리 보기 생성 및 사용 하 여 미디어 인코더 표준 동시 합니다."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: juliako
-ms.openlocfilehash: 89d15cbdf71a140e78f34e07ff208776b7d4cab3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 23d3e4d9bf64a688d45499c045f19d2792167990
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-generate-thumbnails-using-media-encoder-standard-with-net"></a><span data-ttu-id="3507b-103">.NET과 함께 미디어 인코더 표준을 사용하여 미리 보기를 생성하는 방법</span><span class="sxs-lookup"><span data-stu-id="3507b-103">How to generate thumbnails using Media Encoder Standard with .NET</span></span>
+# <a name="how-toogenerate-thumbnails-using-media-encoder-standard-with-net"></a><span data-ttu-id="02c39-103">어떻게 미디어 인코더 표준.NET과 함께 사용 하 여 toogenerate 미리 보기</span><span class="sxs-lookup"><span data-stu-id="02c39-103">How toogenerate thumbnails using Media Encoder Standard with .NET</span></span>
 
-<span data-ttu-id="3507b-104">Media Encoder Standard를 사용하여 입력 동영상에서 하나 이상의 미리 보기를 [JPEG](https://en.wikipedia.org/wiki/JPEG), [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics) 또는 [BMP](https://en.wikipedia.org/wiki/BMP_file_format) 이미지 파일 형식으로 생성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-104">You can use Media Encoder Standard to generate one or more thumbnails from your input video in [JPEG](https://en.wikipedia.org/wiki/JPEG), [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics), or [BMP](https://en.wikipedia.org/wiki/BMP_file_format) image file formats.</span></span> <span data-ttu-id="3507b-105">이미지를 생성하는 작업을 제출하거나 미리 보기 생성을 인코딩과 결합할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-105">You can submit Tasks that produce only images, or you can combine thumbnail generation with encoding.</span></span> <span data-ttu-id="3507b-106">이 항목에는 이런 시나리오를 위해 몇 가지 예제 XML 및 JSON 미리 보기 사전 설정을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-106">This topic provides a few sample XML and JSON thumbnail presets for such scenarios.</span></span> <span data-ttu-id="3507b-107">항목 끝에는 Media Services .NET SDK를 사용하여 인코딩 작업을 완료하는 방법을 보여 주는 [예제 코드](#code_sample)가 나와 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-107">At the end of the topic, there is a [sample code](#code_sample) that shows how to use the Media Services .NET SDK to accomplish the encoding task.</span></span>
+<span data-ttu-id="02c39-104">사용자 입력의 비디오에서 하나 이상의 미리 보기 미디어 인코더 표준 toogenerate를 사용할 수 [JPEG](https://en.wikipedia.org/wiki/JPEG), [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics), 또는 [BMP](https://en.wikipedia.org/wiki/BMP_file_format) 이미지 파일 형식입니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-104">You can use Media Encoder Standard toogenerate one or more thumbnails from your input video in [JPEG](https://en.wikipedia.org/wiki/JPEG), [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics), or [BMP](https://en.wikipedia.org/wiki/BMP_file_format) image file formats.</span></span> <span data-ttu-id="02c39-105">이미지를 생성하는 작업을 제출하거나 미리 보기 생성을 인코딩과 결합할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-105">You can submit Tasks that produce only images, or you can combine thumbnail generation with encoding.</span></span> <span data-ttu-id="02c39-106">이 항목에는 이런 시나리오를 위해 몇 가지 예제 XML 및 JSON 미리 보기 사전 설정을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-106">This topic provides a few sample XML and JSON thumbnail presets for such scenarios.</span></span> <span data-ttu-id="02c39-107">Hello hello 항목의 끝에는 한 [샘플 코드](#code_sample) toouse hello 미디어 서비스.NET SDK tooaccomplish 인코딩 작업을 hello 하는 방법을 보여 주는 합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-107">At hello end of hello topic, there is a [sample code](#code_sample) that shows how toouse hello Media Services .NET SDK tooaccomplish hello encoding task.</span></span>
 
-<span data-ttu-id="3507b-108">예제 사전 설정에 사용되는 요소에 대한 자세한 내용은 [Media Encoder Standard 스키마](media-services-mes-schema.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="3507b-108">For more details on the elements that are used in sample presets, you should review [Media Encoder Standard schema](media-services-mes-schema.md).</span></span>
+<span data-ttu-id="02c39-108">샘플 사전 설정에 사용 되는 hello 요소에 대 한 자세한 내용은 검토 해야 [미디어 인코더 표준 스키마](media-services-mes-schema.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-108">For more details on hello elements that are used in sample presets, you should review [Media Encoder Standard schema](media-services-mes-schema.md).</span></span>
 
-<span data-ttu-id="3507b-109">[고려 사항](media-services-dotnet-generate-thumbnail-with-mes.md#considerations) 섹션을 검토해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-109">Make sure to review the [Considerations](media-services-dotnet-generate-thumbnail-with-mes.md#considerations) section.</span></span>
+<span data-ttu-id="02c39-109">있는지 tooreview hello 확인 [고려 사항](media-services-dotnet-generate-thumbnail-with-mes.md#considerations) 섹션.</span><span class="sxs-lookup"><span data-stu-id="02c39-109">Make sure tooreview hello [Considerations](media-services-dotnet-generate-thumbnail-with-mes.md#considerations) section.</span></span>
 
-## <a name="example--single-png-file"></a><span data-ttu-id="3507b-110">예 – 단일 PNG 파일</span><span class="sxs-lookup"><span data-stu-id="3507b-110">Example – single PNG file</span></span>
+## <a name="example--single-png-file"></a><span data-ttu-id="02c39-110">예 – 단일 PNG 파일</span><span class="sxs-lookup"><span data-stu-id="02c39-110">Example – single PNG file</span></span>
 
-<span data-ttu-id="3507b-111">다음 JSON 및 XML 기본 설정은 입력 동영상의 첫 몇 초 분량에서 단일 출력 PNG 파일을 생성하는 데 사용할 수 있습니다. 여기서 인코더는 “흥미로운” 프레임을 찾기 위해 최상의 노력을 합니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-111">The following JSON and XML preset can be used to produce a single output PNG file out of the first few seconds of the input video, where the encoder makes a best-effort attempt at finding an “interesting” frame.</span></span> <span data-ttu-id="3507b-112">출력 이미지 크기는 100%로 설정되어 있습니다. 다시 말해서, 입력 동영상과 크기와 일치합니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-112">Note that the output image dimensions have been set to 100%, meaning these will match the dimensions of the input video.</span></span> <span data-ttu-id="3507b-113">또한 “Outputs”의 “Format” 설정이 “Codecs” 섹션의 “PngLayers” 사용과 일치해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-113">Note also how the “Format” setting in “Outputs” is required to match the use of “PngLayers” in the “Codecs” section.</span></span> 
+<span data-ttu-id="02c39-111">다음 JSON hello 및 XML 사전 설정을 사용 하는 tooproduce 단일 출력 PNG 파일 hello에서 처음 몇 수 hello 인코더의 "흥미로운" 프레임을 찾는 시도 하는 최상의 노력 하면 여기서 hello 입력된 비디오의 초입니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-111">hello following JSON and XML preset can be used tooproduce a single output PNG file out of hello first few seconds of hello input video, where hello encoder makes a best-effort attempt at finding an “interesting” frame.</span></span> <span data-ttu-id="02c39-112">Note는 hello 출력 이미지 크기를 설정한 too100%, 즉이 hello 입력된 비디오의 hello 크기와 일치 합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-112">Note that hello output image dimensions have been set too100%, meaning these will match hello dimensions of hello input video.</span></span> <span data-ttu-id="02c39-113">"출력" hello "형식" 설정이 필요한 어떤가요도 참고 "PngLayers" hello "코덱" 섹션에서 toomatch hello 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-113">Note also how hello “Format” setting in “Outputs” is required toomatch hello use of “PngLayers” in hello “Codecs” section.</span></span> 
 
-### <a name="json-preset"></a><span data-ttu-id="3507b-114">JSON 사전 설정</span><span class="sxs-lookup"><span data-stu-id="3507b-114">JSON preset</span></span>
+### <a name="json-preset"></a><span data-ttu-id="02c39-114">JSON 사전 설정</span><span class="sxs-lookup"><span data-stu-id="02c39-114">JSON preset</span></span>
 
     {
       "Version": 1.0,
@@ -59,7 +59,7 @@ ms.lasthandoff: 08/29/2017
       ]
     }
     
-### <a name="xml-preset"></a><span data-ttu-id="3507b-115">XML 사전 설정</span><span class="sxs-lookup"><span data-stu-id="3507b-115">XML preset</span></span>
+### <a name="xml-preset"></a><span data-ttu-id="02c39-115">XML 사전 설정</span><span class="sxs-lookup"><span data-stu-id="02c39-115">XML preset</span></span>
 
     <?xml version="1.0" encoding="utf-16"?>
     <Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
@@ -80,11 +80,11 @@ ms.lasthandoff: 08/29/2017
       </Outputs>
     </Preset>
 
-## <a name="example--a-series-of-jpeg-images"></a><span data-ttu-id="3507b-116">예 – 일련의 JPEG 이미지</span><span class="sxs-lookup"><span data-stu-id="3507b-116">Example – a series of JPEG images</span></span>
+## <a name="example--a-series-of-jpeg-images"></a><span data-ttu-id="02c39-116">예 – 일련의 JPEG 이미지</span><span class="sxs-lookup"><span data-stu-id="02c39-116">Example – a series of JPEG images</span></span>
 
-<span data-ttu-id="3507b-117">다음 JSON 및 XML 기본 설정은 입력 타임라인의 타임스탬프 5%, 15%, …, 95%에서 일련의 10개의 이미지를 생성하는 데 사용할 수 있습니다. 여기서 이미지 크기는 입력 동영상의 1/4로 지정되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-117">The following JSON and XML preset can be used to produce a set of 10 images at timestamps of 5%, 15%, …, 95% of the input timeline, where the image size is specified to be one quarter that of the input video.</span></span>
+<span data-ttu-id="02c39-117">다음 JSON hello 및 XML 사전 설정을 사용 하는 tooproduce 일련의 5%의 타임 스탬프에서 10 이미지 될 수 있습니다 15%, …, 여기서 hello 이미지 크기는 지정 된 toobe hello 비디오를 입력 하는 1/4 hello 입력된 타임 라인의 95%입니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-117">hello following JSON and XML preset can be used tooproduce a set of 10 images at timestamps of 5%, 15%, …, 95% of hello input timeline, where hello image size is specified toobe one quarter that of hello input video.</span></span>
 
-### <a name="json-preset"></a><span data-ttu-id="3507b-118">JSON 사전 설정</span><span class="sxs-lookup"><span data-stu-id="3507b-118">JSON preset</span></span>
+### <a name="json-preset"></a><span data-ttu-id="02c39-118">JSON 사전 설정</span><span class="sxs-lookup"><span data-stu-id="02c39-118">JSON preset</span></span>
 
     {
       "Version": 1.0,
@@ -114,7 +114,7 @@ ms.lasthandoff: 08/29/2017
       ]
     }
 
-### <a name="xml-preset"></a><span data-ttu-id="3507b-119">XML 사전 설정</span><span class="sxs-lookup"><span data-stu-id="3507b-119">XML preset</span></span>
+### <a name="xml-preset"></a><span data-ttu-id="02c39-119">XML 사전 설정</span><span class="sxs-lookup"><span data-stu-id="02c39-119">XML preset</span></span>
     
     <?xml version="1.0" encoding="utf-16"?>
     <Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
@@ -136,11 +136,11 @@ ms.lasthandoff: 08/29/2017
       </Outputs>
     </Preset>
 
-## <a name="example--one-image-at-a-specific-timestamp"></a><span data-ttu-id="3507b-120">예 – 특정 타임스탬프의 1개 이미지</span><span class="sxs-lookup"><span data-stu-id="3507b-120">Example – one image at a specific timestamp</span></span>
+## <a name="example--one-image-at-a-specific-timestamp"></a><span data-ttu-id="02c39-120">예 – 특정 타임스탬프의 1개 이미지</span><span class="sxs-lookup"><span data-stu-id="02c39-120">Example – one image at a specific timestamp</span></span>
 
-<span data-ttu-id="3507b-121">다음 JSON 및 XML 기본 설정은 입력 동영상의 30초 마크에 단일 JPEG 이미지를 생성하는 데 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-121">The following JSON and XML preset can be used to produce a single JPEG image at the 30 second mark of the input video.</span></span> <span data-ttu-id="3507b-122">이 사전 설정에서는 입력 데이터가 30초를 넘을 것으로 예상합니다(그렇지 않으면 작업이 실패함).</span><span class="sxs-lookup"><span data-stu-id="3507b-122">This preset expects the input to be more than 30 seconds in duration (else the job will fail).</span></span>
+<span data-ttu-id="02c39-121">hello 다음 JSON과 XML 사전 설정을 사용 하는 tooproduce hello 입력된 비디오의 hello에 단일 JPEG 이미지 30 초 표시 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-121">hello following JSON and XML preset can be used tooproduce a single JPEG image at hello 30 second mark of hello input video.</span></span> <span data-ttu-id="02c39-122">이 사전 설정에서는 hello 입력된 toobe 지속 시간이 30 초 이상 (다른 hello 작업이 실패 합니다.).</span><span class="sxs-lookup"><span data-stu-id="02c39-122">This preset expects hello input toobe more than 30 seconds in duration (else hello job will fail).</span></span>
 
-### <a name="json-preset"></a><span data-ttu-id="3507b-123">JSON 사전 설정</span><span class="sxs-lookup"><span data-stu-id="3507b-123">JSON preset</span></span>
+### <a name="json-preset"></a><span data-ttu-id="02c39-123">JSON 사전 설정</span><span class="sxs-lookup"><span data-stu-id="02c39-123">JSON preset</span></span>
 
     {
       "Version": 1.0,
@@ -170,7 +170,7 @@ ms.lasthandoff: 08/29/2017
       ]
     }
     
-### <a name="xml-preset"></a><span data-ttu-id="3507b-124">XML 사전 설정</span><span class="sxs-lookup"><span data-stu-id="3507b-124">XML preset</span></span>
+### <a name="xml-preset"></a><span data-ttu-id="02c39-124">XML 사전 설정</span><span class="sxs-lookup"><span data-stu-id="02c39-124">XML preset</span></span>
     
     <?xml version="1.0" encoding="utf-16"?>
     <Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
@@ -192,23 +192,23 @@ ms.lasthandoff: 08/29/2017
       </Outputs>
     </Preset>
 
-## <span data-ttu-id="3507b-125"><a id="code_sample"></a>예 – 동영상 인코드 및 미리 보기 생성</span><span class="sxs-lookup"><span data-stu-id="3507b-125"><a id="code_sample"></a>Example – encode video and generate thumbnail</span></span>
+## <span data-ttu-id="02c39-125"><a id="code_sample"></a>예 – 동영상 인코드 및 미리 보기 생성</span><span class="sxs-lookup"><span data-stu-id="02c39-125"><a id="code_sample"></a>Example – encode video and generate thumbnail</span></span>
 
-<span data-ttu-id="3507b-126">다음 코드 예제에서는 미디어 서비스 .NET SDK를 사용하여 다음 작업을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-126">The following code example uses Media Services .NET SDK to perform the following tasks:</span></span>
+<span data-ttu-id="02c39-126">다음 코드 예제는 hello 작업을 수행 하는 미디어 서비스.NET SDK tooperform hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-126">hello following code example uses Media Services .NET SDK tooperform hello following tasks:</span></span>
 
-* <span data-ttu-id="3507b-127">인코딩 작업을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-127">Create an encoding job.</span></span>
-* <span data-ttu-id="3507b-128">미디어 인코더 표준 인코더에 대한 참조를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-128">Get a reference to the Media Encoder Standard encoder.</span></span>
-* <span data-ttu-id="3507b-129">미리 보기를 생성하는 데 필요한 정보 및 Encoding 기본 설정이 포함된 기본 설정 [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) 또는 [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json)을 로드합니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-129">Load the preset [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) or [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) that contain the encoding preset as well as information needed to generate thumbnails.</span></span> <span data-ttu-id="3507b-130">이 [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) 또는 [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json)을 파일에 저장하고 다음 코드를 사용하여 파일을 로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-130">You can save this  [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) or [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) in a file and use the following code to load the file.</span></span>
+* <span data-ttu-id="02c39-127">인코딩 작업을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-127">Create an encoding job.</span></span>
+* <span data-ttu-id="02c39-128">참조 toohello 미디어 인코더 표준 인코더를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-128">Get a reference toohello Media Encoder Standard encoder.</span></span>
+* <span data-ttu-id="02c39-129">부하 hello 사전 설정 [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) 또는 [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) hello 뿐만 아니라 필요한 정보를 toogenerate 축소판 그림 미리 설정 된 인코딩을 포함 하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-129">Load hello preset [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) or [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) that contain hello encoding preset as well as information needed toogenerate thumbnails.</span></span> <span data-ttu-id="02c39-130">이 저장할 수 [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) 또는 [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) 파일 및 사용 하 여 hello 다음 코드 tooload hello 파일에에서 있습니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-130">You can save this  [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) or [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) in a file and use hello following code tooload hello file.</span></span>
   
-        // Load the XML (or JSON) from the local file.
+        // Load hello XML (or JSON) from hello local file.
         string configuration = File.ReadAllText(fileName);  
-* <span data-ttu-id="3507b-131">작업에 단일 인코딩을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-131">Add a single encoding task to the job.</span></span> 
-* <span data-ttu-id="3507b-132">인코딩할 입력 자산을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-132">Specify the input asset to be encoded.</span></span>
-* <span data-ttu-id="3507b-133">인코딩된 자산을 포함할 출력 자산을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-133">Create an output asset that will contain the encoded asset.</span></span>
-* <span data-ttu-id="3507b-134">작업 진행 상태를 확인할 이벤트 처리기를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-134">Add an event handler to check the job progress.</span></span>
-* <span data-ttu-id="3507b-135">작업을 제출합니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-135">Submit the job.</span></span>
+* <span data-ttu-id="02c39-131">인코딩 작업의 단일 toohello 작업을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-131">Add a single encoding task toohello job.</span></span> 
+* <span data-ttu-id="02c39-132">Hello 입력 지정 인코딩된 자산 toobe 합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-132">Specify hello input asset toobe encoded.</span></span>
+* <span data-ttu-id="02c39-133">Hello 인코딩된 자산에 포함 될 출력 자산을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-133">Create an output asset that will contain hello encoded asset.</span></span>
+* <span data-ttu-id="02c39-134">이벤트 처리기 toocheck hello 작업 진행률을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-134">Add an event handler toocheck hello job progress.</span></span>
+* <span data-ttu-id="02c39-135">Hello 작업을 제출 합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-135">Submit hello job.</span></span>
 
-<span data-ttu-id="3507b-136">개발 환경을 설정하는 방법에 대한 지침은 [.NET을 사용한 Media Services 개발](media-services-dotnet-how-to-use.md) 항목을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="3507b-136">See the [Media Services development with .NET](media-services-dotnet-how-to-use.md) topic for directions on how to set up your dev environment.</span></span>
+<span data-ttu-id="02c39-136">Hello 참조 [.net 미디어 서비스 개발](media-services-dotnet-how-to-use.md) 방법에 대 한 지침은 항목 tooset 개발 환경 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-136">See hello [Media Services development with .NET](media-services-dotnet-how-to-use.md) topic for directions on how tooset up your dev environment.</span></span>
 
         using System;
         using System.Configuration;
@@ -221,7 +221,7 @@ ms.lasthandoff: 08/29/2017
         {
         class Program
         {
-            // Read values from the App.config file.
+            // Read values from hello App.config file.
             private static readonly string _AADTenantDomain =
             ConfigurationManager.AppSettings["AADTenantDomain"];
             private static readonly string _RESTAPIEndpoint =
@@ -245,7 +245,7 @@ ms.lasthandoff: 08/29/2017
             // Get an uploaded asset.
             var asset = _context.Assets.FirstOrDefault();
 
-            // Encode and generate the thumbnails.
+            // Encode and generate hello thumbnails.
             EncodeToAdaptiveBitrateMP4Set(asset);
 
             Console.ReadLine();
@@ -255,11 +255,11 @@ ms.lasthandoff: 08/29/2017
             {
             // Declare a new job.
             IJob job = _context.Jobs.Create("Media Encoder Standard Job");
-            // Get a media processor reference, and pass to it the name of the 
-            // processor to use for the specific task.
+            // Get a media processor reference, and pass tooit hello name of hello 
+            // processor toouse for hello specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-            // Load the XML (or JSON) from the local file.
+            // Load hello XML (or JSON) from hello local file.
             string configuration = File.ReadAllText("ThumbnailPreset_JSON.json");
 
             // Create a task
@@ -268,11 +268,11 @@ ms.lasthandoff: 08/29/2017
                 configuration,
                 TaskOptions.None);
 
-            // Specify the input asset to be encoded.
+            // Specify hello input asset toobe encoded.
             task.InputAssets.Add(asset);
-            // Add an output asset to contain the results of the job. 
+            // Add an output asset toocontain hello results of hello job. 
             // This output is specified as AssetCreationOptions.None, which 
-            // means the output asset is not encrypted. 
+            // means hello output asset is not encrypted. 
             task.OutputAssets.AddNew("Output asset",
                 AssetCreationOptions.None);
 
@@ -326,8 +326,8 @@ ms.lasthandoff: 08/29/2017
         }
         }
 
-## <span data-ttu-id="3507b-137"><a id="json"></a>미리 보기 JSON 기본 설정</span><span class="sxs-lookup"><span data-stu-id="3507b-137"><a id="json"></a>Thumbnail JSON preset</span></span>
-<span data-ttu-id="3507b-138">스키마에 대한 자세한 내용은 [이 항목](https://msdn.microsoft.com/library/mt269962.aspx) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="3507b-138">For information about schema, see [this](https://msdn.microsoft.com/library/mt269962.aspx) topic.</span></span>
+## <span data-ttu-id="02c39-137"><a id="json"></a>미리 보기 JSON 기본 설정</span><span class="sxs-lookup"><span data-stu-id="02c39-137"><a id="json"></a>Thumbnail JSON preset</span></span>
+<span data-ttu-id="02c39-138">스키마에 대한 자세한 내용은 [이 항목](https://msdn.microsoft.com/library/mt269962.aspx) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="02c39-138">For information about schema, see [this](https://msdn.microsoft.com/library/mt269962.aspx) topic.</span></span>
 
     {
       "Version": 1.0,
@@ -389,8 +389,8 @@ ms.lasthandoff: 08/29/2017
       ]
     }
 
-## <span data-ttu-id="3507b-139"><a id="xml"></a>미리 보기 XML 기본 설정</span><span class="sxs-lookup"><span data-stu-id="3507b-139"><a id="xml"></a>Thumbnail XML preset</span></span>
-<span data-ttu-id="3507b-140">스키마에 대한 자세한 내용은 [이 항목](https://msdn.microsoft.com/library/mt269962.aspx) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="3507b-140">For information about schema, see [this](https://msdn.microsoft.com/library/mt269962.aspx) topic.</span></span>
+## <span data-ttu-id="02c39-139"><a id="xml"></a>미리 보기 XML 기본 설정</span><span class="sxs-lookup"><span data-stu-id="02c39-139"><a id="xml"></a>Thumbnail XML preset</span></span>
+<span data-ttu-id="02c39-140">스키마에 대한 자세한 내용은 [이 항목](https://msdn.microsoft.com/library/mt269962.aspx) 을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="02c39-140">For information about schema, see [this](https://msdn.microsoft.com/library/mt269962.aspx) topic.</span></span>
     
     <?xml version="1.0" encoding="utf-16"?>
     <Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
@@ -442,32 +442,32 @@ ms.lasthandoff: 08/29/2017
       </Outputs>
     </Preset>
 
-## <a name="considerations"></a><span data-ttu-id="3507b-141">고려 사항</span><span class="sxs-lookup"><span data-stu-id="3507b-141">Considerations</span></span>
-<span data-ttu-id="3507b-142">고려 사항은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-142">The following considerations apply:</span></span>
+## <a name="considerations"></a><span data-ttu-id="02c39-141">고려 사항</span><span class="sxs-lookup"><span data-stu-id="02c39-141">Considerations</span></span>
+<span data-ttu-id="02c39-142">hello 고려 사항에 따라 적용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-142">hello following considerations apply:</span></span>
 
-* <span data-ttu-id="3507b-143">시작/단계/범위에 대한 명시적 타임스탬프 사용 시 입력 소스의 길이가 1분 이상이라고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-143">The use of explicit timestamps for Start/Step/Range assumes that the input source is at least 1 minute long.</span></span>
-* <span data-ttu-id="3507b-144">Jpg/Png/BmpImage 요소에는 시작, 단계, 범위 문자열 특성이 있으며, 이러한 특성은 다음과 같이 해석될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-144">Jpg/Png/BmpImage elements have Start, Step and Range string attributes – these can be interpreted as:</span></span>
+* <span data-ttu-id="02c39-143">시작/단계/범위에 대 한 명시적 타임 스탬프의 hello 사용 해당 hello 입력된 소스 1 분 이상 오래을 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-143">hello use of explicit timestamps for Start/Step/Range assumes that hello input source is at least 1 minute long.</span></span>
+* <span data-ttu-id="02c39-144">Jpg/Png/BmpImage 요소에는 시작, 단계, 범위 문자열 특성이 있으며, 이러한 특성은 다음과 같이 해석될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-144">Jpg/Png/BmpImage elements have Start, Step and Range string attributes – these can be interpreted as:</span></span>
   
-  * <span data-ttu-id="3507b-145">음수가 아닌 정수인 경우 프레임 번호, 예:</span><span class="sxs-lookup"><span data-stu-id="3507b-145">Frame Number if they are non-negative integers, eg.</span></span> <span data-ttu-id="3507b-146">"Start": "120",</span><span class="sxs-lookup"><span data-stu-id="3507b-146">"Start": "120",</span></span>
-  * <span data-ttu-id="3507b-147">% 접미사로 표시된 경우 원본 기간 기준, 예:</span><span class="sxs-lookup"><span data-stu-id="3507b-147">Relative to source duration if expressed as %-suffixed, eg.</span></span> <span data-ttu-id="3507b-148">"Start": "15%", OR</span><span class="sxs-lookup"><span data-stu-id="3507b-148">"Start": "15%", OR</span></span>
-  * <span data-ttu-id="3507b-149">HH:MM:SS...</span><span class="sxs-lookup"><span data-stu-id="3507b-149">Timestamp if expressed as HH:MM:SS…</span></span> <span data-ttu-id="3507b-150">형식.</span><span class="sxs-lookup"><span data-stu-id="3507b-150">format.</span></span> <span data-ttu-id="3507b-151">예:</span><span class="sxs-lookup"><span data-stu-id="3507b-151">Eg.</span></span> <span data-ttu-id="3507b-152">"Start" : "00:01:00"</span><span class="sxs-lookup"><span data-stu-id="3507b-152">"Start" : "00:01:00"</span></span>
+  * <span data-ttu-id="02c39-145">음수가 아닌 정수인 경우 프레임 번호, 예:</span><span class="sxs-lookup"><span data-stu-id="02c39-145">Frame Number if they are non-negative integers, eg.</span></span> <span data-ttu-id="02c39-146">"Start": "120",</span><span class="sxs-lookup"><span data-stu-id="02c39-146">"Start": "120",</span></span>
+  * <span data-ttu-id="02c39-147">예: % 접미사로로 표시 하는 경우 상대 toosource 기간입니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-147">Relative toosource duration if expressed as %-suffixed, eg.</span></span> <span data-ttu-id="02c39-148">"Start": "15%", OR</span><span class="sxs-lookup"><span data-stu-id="02c39-148">"Start": "15%", OR</span></span>
+  * <span data-ttu-id="02c39-149">HH:MM:SS...</span><span class="sxs-lookup"><span data-stu-id="02c39-149">Timestamp if expressed as HH:MM:SS…</span></span> <span data-ttu-id="02c39-150">형식.</span><span class="sxs-lookup"><span data-stu-id="02c39-150">format.</span></span> <span data-ttu-id="02c39-151">예:</span><span class="sxs-lookup"><span data-stu-id="02c39-151">Eg.</span></span> <span data-ttu-id="02c39-152">"Start" : "00:01:00"</span><span class="sxs-lookup"><span data-stu-id="02c39-152">"Start" : "00:01:00"</span></span>
     
-    <span data-ttu-id="3507b-153">표기법을 원하는 대로 혼용하거나 일치시킬 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-153">You can mix and match notations as you please.</span></span>
+    <span data-ttu-id="02c39-153">표기법을 원하는 대로 혼용하거나 일치시킬 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-153">You can mix and match notations as you please.</span></span>
     
-    <span data-ttu-id="3507b-154">또한 Start는 콘텐츠의 첫 번째 "흥미로운" 프레임의 결정을 시도하는 특수 Macro:{Best}를 지원합니다. 참고: (Step 및 Range는 Start를 {Best}로 설정하면 무시됨)</span><span class="sxs-lookup"><span data-stu-id="3507b-154">Additionally, Start also supports a special Macro:{Best}, which attempts to determine the first “interesting” frame of the content NOTE: (Step and Range are ignored when Start is set to {Best})</span></span>
-  * <span data-ttu-id="3507b-155">기본값: Start:{Best}</span><span class="sxs-lookup"><span data-stu-id="3507b-155">Defaults: Start:{Best}</span></span>
-* <span data-ttu-id="3507b-156">각 이미지 형식에 대해 출력 형식을 명시적으로 제공해야 합니다. Jpg/Png/BmpFormat.</span><span class="sxs-lookup"><span data-stu-id="3507b-156">Output format needs to be explicitly provided for each Image format: Jpg/Png/BmpFormat.</span></span> <span data-ttu-id="3507b-157">있는 경우 MES는 JpgFormat을 JpgVideo에 일치시키는 식으로 진행합니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-157">When present, MES will match JpgVideo to JpgFormat and so on.</span></span> <span data-ttu-id="3507b-158">OutputFormat은 새 이미지 코덱 특유의 Macro: {Index}를 도입하며, 이는 이미지 출력 형식에 대해 존재해야(한 번만) 합니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-158">OutputFormat introduces a new image-codec specific Macro: {Index}, which needs to be present (once and only once) for image output formats.</span></span>
+    <span data-ttu-id="02c39-154">시작 특수 매크로 지원 되는 또한: {최고}, toodetermine hello 첫 번째 "흥미로운" 프레임 참고 hello 콘텐츠의 시도: (단계 및 범위 시작 너무 설정 된 경우 무시 됩니다 {최상의})</span><span class="sxs-lookup"><span data-stu-id="02c39-154">Additionally, Start also supports a special Macro:{Best}, which attempts toodetermine hello first “interesting” frame of hello content NOTE: (Step and Range are ignored when Start is set too{Best})</span></span>
+  * <span data-ttu-id="02c39-155">기본값: Start:{Best}</span><span class="sxs-lookup"><span data-stu-id="02c39-155">Defaults: Start:{Best}</span></span>
+* <span data-ttu-id="02c39-156">출력 형식 필요한 각 이미지 형식에 대해 명시적으로 제공 된 toobe: Jpg/Png/BmpFormat 합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-156">Output format needs toobe explicitly provided for each Image format: Jpg/Png/BmpFormat.</span></span> <span data-ttu-id="02c39-157">있는 경우 MES JpgVideo tooJpgFormat 등과 일치 합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-157">When present, MES will match JpgVideo tooJpgFormat and so on.</span></span> <span data-ttu-id="02c39-158">새 이미지 코덱 특정 매크로 소개: {인덱스로} 요구 toobe 있는 (한 번만 한 번)에 있는 이미지 출력 형식의 합니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-158">OutputFormat introduces a new image-codec specific Macro: {Index}, which needs toobe present (once and only once) for image output formats.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="3507b-159">다음 단계</span><span class="sxs-lookup"><span data-stu-id="3507b-159">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="02c39-159">다음 단계</span><span class="sxs-lookup"><span data-stu-id="02c39-159">Next steps</span></span>
 
-<span data-ttu-id="3507b-160">인코딩 작업이 보류 중인 동안 [작업 진행 상태](media-services-check-job-progress.md)를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3507b-160">You can check the [job progress](media-services-check-job-progress.md) while the encoding job is pending.</span></span>
+<span data-ttu-id="02c39-160">Hello를 확인할 수 있습니다 [진행률 작업](media-services-check-job-progress.md) 인코딩 작업 hello 하는 동안 보류 중입니다.</span><span class="sxs-lookup"><span data-stu-id="02c39-160">You can check hello [job progress](media-services-check-job-progress.md) while hello encoding job is pending.</span></span>
 
-## <a name="media-services-learning-paths"></a><span data-ttu-id="3507b-161">미디어 서비스 학습 경로</span><span class="sxs-lookup"><span data-stu-id="3507b-161">Media Services learning paths</span></span>
+## <a name="media-services-learning-paths"></a><span data-ttu-id="02c39-161">미디어 서비스 학습 경로</span><span class="sxs-lookup"><span data-stu-id="02c39-161">Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="3507b-162">피드백 제공</span><span class="sxs-lookup"><span data-stu-id="3507b-162">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="02c39-162">피드백 제공</span><span class="sxs-lookup"><span data-stu-id="02c39-162">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-## <a name="see-also"></a><span data-ttu-id="3507b-163">참고 항목</span><span class="sxs-lookup"><span data-stu-id="3507b-163">See Also</span></span>
-[<span data-ttu-id="3507b-164">미디어 서비스 인코딩 개요</span><span class="sxs-lookup"><span data-stu-id="3507b-164">Media Services Encoding Overview</span></span>](media-services-encode-asset.md)
+## <a name="see-also"></a><span data-ttu-id="02c39-163">참고 항목</span><span class="sxs-lookup"><span data-stu-id="02c39-163">See Also</span></span>
+[<span data-ttu-id="02c39-164">미디어 서비스 인코딩 개요</span><span class="sxs-lookup"><span data-stu-id="02c39-164">Media Services Encoding Overview</span></span>](media-services-encode-asset.md)
 

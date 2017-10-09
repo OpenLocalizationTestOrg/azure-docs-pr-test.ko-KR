@@ -1,5 +1,5 @@
 ---
-title: "Linux VM 배포 RM 문제 해결 | Microsoft Docs"
+title: "Linux VM 배포 RM aaaTroubleshoot | Microsoft Docs"
 description: "Azure에서 새 Linux 가상 컴퓨터 생성 시 Resource Manager 배포 문제 해결"
 services: virtual-machines-linux, azure-resource-manager
 documentationcenter: 
@@ -15,77 +15,77 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/09/2016
 ms.author: cjiang
-ms.openlocfilehash: aea5db05843b0175b8ef8b713944e12262e33010
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2dd7f1855bba75d86eb90f88e6d573cd42fd8d87
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshoot-resource-manager-deployment-issues-with-creating-a-new-linux-virtual-machine-in-azure"></a><span data-ttu-id="b54bd-103">Azure에서 새 Linux 가상 컴퓨터 생성 관련 Resource Manager 배포 문제 해결</span><span class="sxs-lookup"><span data-stu-id="b54bd-103">Troubleshoot Resource Manager deployment issues with creating a new Linux virtual machine in Azure</span></span>
+# <a name="troubleshoot-resource-manager-deployment-issues-with-creating-a-new-linux-virtual-machine-in-azure"></a><span data-ttu-id="4b9a5-103">Azure에서 새 Linux 가상 컴퓨터 생성 관련 Resource Manager 배포 문제 해결</span><span class="sxs-lookup"><span data-stu-id="4b9a5-103">Troubleshoot Resource Manager deployment issues with creating a new Linux virtual machine in Azure</span></span>
 [!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-opening](../../../includes/virtual-machines-troubleshoot-deployment-new-vm-opening-include.md)]
 
 [!INCLUDE [support-disclaimer](../../../includes/support-disclaimer.md)]
 
-## <a name="top-issues"></a><span data-ttu-id="b54bd-104">주요 문제</span><span class="sxs-lookup"><span data-stu-id="b54bd-104">Top issues</span></span>
+## <a name="top-issues"></a><span data-ttu-id="4b9a5-104">주요 문제</span><span class="sxs-lookup"><span data-stu-id="4b9a5-104">Top issues</span></span>
 [!INCLUDE [support-disclaimer](../../../includes/virtual-machines-linux-troubleshoot-deploy-vm-top.md)]
 
-<span data-ttu-id="b54bd-105">VM 배포 문제 및 질문은 [Azure에서 Linux 가상 컴퓨터 배포 문제 해결](troubleshoot-deploy-vm.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="b54bd-105">For other VM deployment issues and questions, see [Troubleshoot deploying Linux virtual machine issues in Azure](troubleshoot-deploy-vm.md).</span></span>
-## <a name="collect-activity-logs"></a><span data-ttu-id="b54bd-106">활동 로그 선택</span><span class="sxs-lookup"><span data-stu-id="b54bd-106">Collect activity logs</span></span>
-<span data-ttu-id="b54bd-107">문제 해결을 시작하려면 문제와 관련된 오류를 파악하기 위해 활동 로그를 수집합니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-107">To start troubleshooting, collect the activity logs to identify the error associated with the issue.</span></span> <span data-ttu-id="b54bd-108">다음 링크에는 수행할 프로세스에 대한 자세한 내용이 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-108">The following links contain detailed information on the process to follow.</span></span>
+<span data-ttu-id="4b9a5-105">VM 배포 문제 및 질문은 [Azure에서 Linux 가상 컴퓨터 배포 문제 해결](troubleshoot-deploy-vm.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-105">For other VM deployment issues and questions, see [Troubleshoot deploying Linux virtual machine issues in Azure](troubleshoot-deploy-vm.md).</span></span>
+## <a name="collect-activity-logs"></a><span data-ttu-id="4b9a5-106">활동 로그 선택</span><span class="sxs-lookup"><span data-stu-id="4b9a5-106">Collect activity logs</span></span>
+<span data-ttu-id="4b9a5-107">문제 해결, toostart 수집 hello 활동 hello 문제와 연결 된 tooidentify hello 오류를 기록 합니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-107">toostart troubleshooting, collect hello activity logs tooidentify hello error associated with hello issue.</span></span> <span data-ttu-id="4b9a5-108">hello 다음 링크 포함 프로세스 toofollow hello에 대 한 자세한 정보.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-108">hello following links contain detailed information on hello process toofollow.</span></span>
 
-[<span data-ttu-id="b54bd-109">배포 작업 보기</span><span class="sxs-lookup"><span data-stu-id="b54bd-109">View deployment operations</span></span>](../../azure-resource-manager/resource-manager-deployment-operations.md)
+[<span data-ttu-id="4b9a5-109">배포 작업 보기</span><span class="sxs-lookup"><span data-stu-id="4b9a5-109">View deployment operations</span></span>](../../azure-resource-manager/resource-manager-deployment-operations.md)
 
-[<span data-ttu-id="b54bd-110">활동 로그를 보고 Azure 리소스 관리</span><span class="sxs-lookup"><span data-stu-id="b54bd-110">View activity logs to manage Azure resources</span></span>](../../resource-group-audit.md)
+[<span data-ttu-id="4b9a5-110">Azure 활동 로그 toomanage 보기 리소스</span><span class="sxs-lookup"><span data-stu-id="4b9a5-110">View activity logs toomanage Azure resources</span></span>](../../resource-group-audit.md)
 
 [!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-issue1](../../../includes/virtual-machines-troubleshoot-deployment-new-vm-issue1-include.md)]
 
 [!INCLUDE [virtual-machines-linux-troubleshoot-deployment-new-vm-table](../../../includes/virtual-machines-linux-troubleshoot-deployment-new-vm-table.md)]
 
-<span data-ttu-id="b54bd-111">**Y:** OS가 일반화된 Linux인 경우, 일반화된 설정을 사용하여 업로드되거나 캡처되고, 오류는 발생하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-111">**Y:** If the OS is Linux generalized, and it is uploaded and/or captured with the generalized setting, then there won’t be any errors.</span></span> <span data-ttu-id="b54bd-112">마찬가지로 OS가 특수화된 Linux인 경우, 특수화된 설정을 사용하여 업로드되거나 캡처되고, 오류는 발생하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-112">Similarly, if the OS is Linux specialized, and it is uploaded and/or captured with the specialized setting, then there won’t be any errors.</span></span>
+<span data-ttu-id="4b9a5-111">**Y:** hello OS 일반화, Linux 및 이며 업로드 또는 설정, 일반화 hello를 사용 하 여 캡처할 경우 모든 오류 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-111">**Y:** If hello OS is Linux generalized, and it is uploaded and/or captured with hello generalized setting, then there won’t be any errors.</span></span> <span data-ttu-id="4b9a5-112">마찬가지로, Linux 특수화 되 고 업로드 하거나 사용 하 여 캡처할 운영 체제 hello는 hello 오류 않을 다음 설정을 특수화 된입니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-112">Similarly, if hello OS is Linux specialized, and it is uploaded and/or captured with hello specialized setting, then there won’t be any errors.</span></span>
 
-<span data-ttu-id="b54bd-113">**업로드 오류:**</span><span class="sxs-lookup"><span data-stu-id="b54bd-113">**Upload Errors:**</span></span>
+<span data-ttu-id="4b9a5-113">**업로드 오류:**</span><span class="sxs-lookup"><span data-stu-id="4b9a5-113">**Upload Errors:**</span></span>
 
-<span data-ttu-id="b54bd-114">**N<sup>1</sup>:** OS가 일반화된 Linux이고 특수화된 것으로 업로드된다면, VM이 프로비전 단계에서 중단되기 때문에 프로비전 시간 초과 오류가 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-114">**N<sup>1</sup>:** If the OS is Linux generalized, and it is uploaded as specialized, you will get a provisioning timeout error because the VM is stuck at the provisioning stage.</span></span>
+<span data-ttu-id="4b9a5-114">**N<sup>1</sup>:** hello OS 일반화, Linux 이며으로 업로드 되는 경우 특수화 했으므로 발생 합니다 프로비저닝 시간 초과 오류가 hello VM 단계 프로 비전 하는 hello에서 중단 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-114">**N<sup>1</sup>:** If hello OS is Linux generalized, and it is uploaded as specialized, you will get a provisioning timeout error because hello VM is stuck at hello provisioning stage.</span></span>
 
-<span data-ttu-id="b54bd-115">**N<sup>2</sup>:** OS가 특수화된 Linux이고 일반화된 것으로 업로드된다면, 새 VM이 원래 컴퓨터 이름, 사용자 이름 및 암호로 실행되기 때문에 프로비전 실패 오류가 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-115">**N<sup>2</sup>:** If the OS is Linux specialized, and it is uploaded as generalized, you will get a provisioning failure error because the new VM is running with the original computer name, username and password.</span></span>
+<span data-ttu-id="4b9a5-115">**N<sup>2</sup>:** hello 새 VM으로 실행 되 고 hello 원래 컴퓨터 이름, 사용자 이름 및 암호 때문에 프로 비전 실패 오류가 발생 합니다 hello OS 이면 Linux 특수화 및 일반화으로 업로드 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-115">**N<sup>2</sup>:** If hello OS is Linux specialized, and it is uploaded as generalized, you will get a provisioning failure error because hello new VM is running with hello original computer name, username and password.</span></span>
 
-<span data-ttu-id="b54bd-116">**해결 방법:**</span><span class="sxs-lookup"><span data-stu-id="b54bd-116">**Resolution:**</span></span>
+<span data-ttu-id="4b9a5-116">**해결 방법:**</span><span class="sxs-lookup"><span data-stu-id="4b9a5-116">**Resolution:**</span></span>
 
-<span data-ttu-id="b54bd-117">이 두 가지 오류를 모두 해결하려면, 온-프레미스에 있는 원본 VHD를, OS와 같은 설정(일반화/특수화)으로 업로드합니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-117">To resolve both these errors, upload the original VHD, available on-prem, with the same setting as that for the OS (generalized/specialized).</span></span> <span data-ttu-id="b54bd-118">일반화된 것으로 업로드하려면, 먼저 프로비전 해제를 실행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-118">To upload as generalized, remember to run -deprovision first.</span></span>
+<span data-ttu-id="4b9a5-117">tooresolve 이러한 두 오류 업로드 원본 VHD를 사용할 수 있는 온-프레미스 hello, 동일한 hello hello (일반화/특수화) 운영 체제에 대 한 유형을 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-117">tooresolve both these errors, upload hello original VHD, available on-prem, with hello same setting as that for hello OS (generalized/specialized).</span></span> <span data-ttu-id="4b9a5-118">일반화 하면 대로 tooupload 기억 toorun-먼저 프로 비전 해제 합니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-118">tooupload as generalized, remember toorun -deprovision first.</span></span>
 
-<span data-ttu-id="b54bd-119">**캡처 오류:**</span><span class="sxs-lookup"><span data-stu-id="b54bd-119">**Capture Errors:**</span></span>
+<span data-ttu-id="4b9a5-119">**캡처 오류:**</span><span class="sxs-lookup"><span data-stu-id="4b9a5-119">**Capture Errors:**</span></span>
 
-<span data-ttu-id="b54bd-120">**N<sup>3</sup>:** OS가 일반화된 Linux이고 특수화된 것으로 캡처된다면, 원본 VM이 일반화된 것으로 표시되어 사용할 수 없기 때문에 프로비전 시간 초과 오류가 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-120">**N<sup>3</sup>:** If the OS is Linux generalized, and it is captured as specialized, you will get a provisioning timeout error because the original VM is not usable as it is marked as generalized.</span></span>
+<span data-ttu-id="4b9a5-120">**N<sup>3</sup>:** hello OS 일반화, Linux 이며로 캡처된 경우 특수화를 얻게 됩니다 프로비저닝 시간 초과 오류가 hello 원래 VM 사용 가능 하지 않습니다 일반화 된 상태로 표시 되기 때문에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-120">**N<sup>3</sup>:** If hello OS is Linux generalized, and it is captured as specialized, you will get a provisioning timeout error because hello original VM is not usable as it is marked as generalized.</span></span>
 
-<span data-ttu-id="b54bd-121">**N<sup>4</sup>:** OS가 특수화된 Linux이고 일반화된 것으로 캡처된다면, 새 VM이 원래 컴퓨터 이름, 사용자 이름 및 암호로 실행되기 때문에 프로비전 실패 오류가 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-121">**N<sup>4</sup>:** If the OS is Linux specialized, and it is captured as generalized, you will get a provisioning failure error because the new VM is running with the original computer name, username and password.</span></span> <span data-ttu-id="b54bd-122">또한, 원본 VM이 일반화된 것으로 표시되기 때문에 사용할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-122">Also, the original VM is not usable because it is marked as specialized.</span></span>
+<span data-ttu-id="4b9a5-121">**N<sup>4</sup>:** hello 새 VM으로 실행 hello 원래 컴퓨터 이름, 사용자 이름 및 암호 프로 비전 실패 오류가 hello OS Linux 특수화 및 일반화 된 대로 캡처 이면 발생 합니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-121">**N<sup>4</sup>:** If hello OS is Linux specialized, and it is captured as generalized, you will get a provisioning failure error because hello new VM is running with hello original computer name, username and password.</span></span> <span data-ttu-id="4b9a5-122">또한 hello 원본 VM을 사용할 수 없으면 표시 되어 있으므로 같이 특수 합니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-122">Also, hello original VM is not usable because it is marked as specialized.</span></span>
 
-<span data-ttu-id="b54bd-123">**해결 방법:**</span><span class="sxs-lookup"><span data-stu-id="b54bd-123">**Resolution:**</span></span>
+<span data-ttu-id="4b9a5-123">**해결 방법:**</span><span class="sxs-lookup"><span data-stu-id="4b9a5-123">**Resolution:**</span></span>
 
-<span data-ttu-id="b54bd-124">이 두 가지 오류를 모두 해결하려면, 현재 이미지를 포털에서 제거하고, OS와 같은 설정(일반화/특수화)으로 [현재 VHD에서 다시 캡처](capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 합니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-124">To resolve both these errors, delete the current image from the portal, and [recapture it from the current VHDs](capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) with the same setting as that for the OS (generalized/specialized).</span></span>
+<span data-ttu-id="4b9a5-124">tooresolve 이러한 두 오류 hello 포털에서 hello 현재 이미지를 삭제 하 고 [hello에서 다시 캡처 현재 Vhd](capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 와 hello hello (일반화/특수화) 운영 체제에 대 한 설정 것과 동일한 합니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-124">tooresolve both these errors, delete hello current image from hello portal, and [recapture it from hello current VHDs](capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) with hello same setting as that for hello OS (generalized/specialized).</span></span>
 
-## <a name="issue-custom-gallery-marketplace-image-allocation-failure"></a><span data-ttu-id="b54bd-125">문제: 사용자 지정/ 갤러리/ 마켓플레이스 이미지; 할당 오류</span><span class="sxs-lookup"><span data-stu-id="b54bd-125">Issue: Custom/ gallery/ marketplace image; allocation failure</span></span>
-<span data-ttu-id="b54bd-126">이 오류는 요청되는 VM 크기를 지원할 수 없거나 요청을 수용할 여유 공간이 없는 클러스터에 새 VM 요청이 고정된 상황에서 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-126">This error arises in situations when the new VM request is pinned to a cluster that either cannot support the VM size being requested, or does not have available free space to accommodate the request.</span></span>
+## <a name="issue-custom-gallery-marketplace-image-allocation-failure"></a><span data-ttu-id="4b9a5-125">문제: 사용자 지정/ 갤러리/ 마켓플레이스 이미지; 할당 오류</span><span class="sxs-lookup"><span data-stu-id="4b9a5-125">Issue: Custom/ gallery/ marketplace image; allocation failure</span></span>
+<span data-ttu-id="4b9a5-126">이 오류는 hello 새 VM 요청은 요청 되 고 hello v M 크기를 지원할 수 없는 또는 사용 가능한 공간 tooaccommodate hello 요청에 없는 고정 된 tooa 클러스터 때 경우에 발생 합니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-126">This error arises in situations when hello new VM request is pinned tooa cluster that either cannot support hello VM size being requested, or does not have available free space tooaccommodate hello request.</span></span>
 
-<span data-ttu-id="b54bd-127">**원인 1:** 클러스터가 요청한 VM 크기를 지원할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-127">**Cause 1:** The cluster cannot support the requested VM size.</span></span>
+<span data-ttu-id="4b9a5-127">**원인 1:** hello 클러스터를 지원할 수 없는 hello 요청 된 VM 크기입니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-127">**Cause 1:** hello cluster cannot support hello requested VM size.</span></span>
 
-<span data-ttu-id="b54bd-128">**해결 방법 1:**</span><span class="sxs-lookup"><span data-stu-id="b54bd-128">**Resolution 1:**</span></span>
+<span data-ttu-id="4b9a5-128">**해결 방법 1:**</span><span class="sxs-lookup"><span data-stu-id="4b9a5-128">**Resolution 1:**</span></span>
 
-* <span data-ttu-id="b54bd-129">더 작은 VM 크기를 사용하여 요청을 다시 시도합니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-129">Retry the request using a smaller VM size.</span></span>
-* <span data-ttu-id="b54bd-130">요청한 VM의 크기를 변경할 수 없으면:</span><span class="sxs-lookup"><span data-stu-id="b54bd-130">If the size of the requested VM cannot be changed:</span></span>
-  * <span data-ttu-id="b54bd-131">가용성 집합의 VM을 모두 중지합니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-131">Stop all the VMs in the availability set.</span></span>
-    <span data-ttu-id="b54bd-132">**리소스 그룹** > *사용자의 리소스 그룹* > **리소스** > *사용자의 가용성 집합* > **가상 컴퓨터** > *사용자의 가상 컴퓨터* > **중지**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-132">Click **Resource groups** > *your resource group* > **Resources** > *your availability set* > **Virtual Machines** > *your virtual machine* > **Stop**.</span></span>
-  * <span data-ttu-id="b54bd-133">VM을 모두 중지한 후에, 원하는 크기로 VM을 새로 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-133">After all the VMs stop, create the new VM in the desired size.</span></span>
-  * <span data-ttu-id="b54bd-134">먼저 VM을 시작한 후에 중지된 각각의 VM을 선택하고 **시작**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-134">Start the new VM first, and then select each of the stopped VMs and click **Start**.</span></span>
+* <span data-ttu-id="4b9a5-129">더 작은 VM 크기를 사용 하 여 hello 요청을 다시 시도 하십시오.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-129">Retry hello request using a smaller VM size.</span></span>
+* <span data-ttu-id="4b9a5-130">Hello 크기인 요청한 경우 hello VM을 변경할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-130">If hello size of hello requested VM cannot be changed:</span></span>
+  * <span data-ttu-id="4b9a5-131">Hello 가용성 집합에 있는 모든 hello Vm을 중지 합니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-131">Stop all hello VMs in hello availability set.</span></span>
+    <span data-ttu-id="4b9a5-132">**리소스 그룹** > *사용자의 리소스 그룹* > **리소스** > *사용자의 가용성 집합* > **가상 컴퓨터** > *사용자의 가상 컴퓨터* > **중지**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-132">Click **Resource groups** > *your resource group* > **Resources** > *your availability set* > **Virtual Machines** > *your virtual machine* > **Stop**.</span></span>
+  * <span data-ttu-id="4b9a5-133">모든 Vm 중지 hello, 끝났으면 hello hello에 새 VM 원하는 크기입니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-133">After all hello VMs stop, create hello new VM in hello desired size.</span></span>
+  * <span data-ttu-id="4b9a5-134">시작 새 VM을 먼저 hello 하 고 각 선택의 hello 클릭 하 고 Vm을 중지 하는 다음 **시작**합니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-134">Start hello new VM first, and then select each of hello stopped VMs and click **Start**.</span></span>
 
-<span data-ttu-id="b54bd-135">**원인 2:** 클러스터에 여유 리소스가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-135">**Cause 2:** The cluster does not have free resources.</span></span>
+<span data-ttu-id="4b9a5-135">**원인 2:** hello 클러스터 리소스를 해제가 없습니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-135">**Cause 2:** hello cluster does not have free resources.</span></span>
 
-<span data-ttu-id="b54bd-136">**해결 방법 2:**</span><span class="sxs-lookup"><span data-stu-id="b54bd-136">**Resolution 2:**</span></span>
+<span data-ttu-id="4b9a5-136">**해결 방법 2:**</span><span class="sxs-lookup"><span data-stu-id="4b9a5-136">**Resolution 2:**</span></span>
 
-* <span data-ttu-id="b54bd-137">요청을 나중에 다시 시도합니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-137">Retry the request at a later time.</span></span>
-* <span data-ttu-id="b54bd-138">새 VM이 다른 가용성 집합의 일부가 될 수 있다면</span><span class="sxs-lookup"><span data-stu-id="b54bd-138">If the new VM can be part of a different availability set</span></span>
-  * <span data-ttu-id="b54bd-139">다른 가용성 집합(동일한 지역의)에 새 VM을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-139">Create a new VM in a different availability set (in the same region).</span></span>
-  * <span data-ttu-id="b54bd-140">새 VM을 동일한 가상 네트워크에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="b54bd-140">Add the new VM to the same virtual network.</span></span>
+* <span data-ttu-id="4b9a5-137">나중에 hello 요청을 다시 시도 합니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-137">Retry hello request at a later time.</span></span>
+* <span data-ttu-id="4b9a5-138">Hello 새 VM 수 있는 경우 다른 가용성의 일부 설정 합니까</span><span class="sxs-lookup"><span data-stu-id="4b9a5-138">If hello new VM can be part of a different availability set</span></span>
+  * <span data-ttu-id="4b9a5-139">다른 가용성 집합에 새 VM을 만듭니다 (hello에 동일한 지역).</span><span class="sxs-lookup"><span data-stu-id="4b9a5-139">Create a new VM in a different availability set (in hello same region).</span></span>
+  * <span data-ttu-id="4b9a5-140">새 VM toohello hello 추가 동일한 가상 네트워크입니다.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-140">Add hello new VM toohello same virtual network.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="b54bd-141">다음 단계</span><span class="sxs-lookup"><span data-stu-id="b54bd-141">Next steps</span></span>
-<span data-ttu-id="b54bd-142">중지된 Linux VM을 시작하거나 Azure에서 기존 Linux VM의 크기를 조정할 때 문제가 발생하면 [Azure의 기존 Linux 가상 컴퓨터 재시작 또는 크기 조정 관련 Resource Manager 배포 문제 해결](restart-resize-error-troubleshooting.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="b54bd-142">If you encounter issues when you start a stopped Linux VM or resize an existing Linux VM in Azure, see [Troubleshoot Resource Manager deployment issues with restarting or resizing an existing Linux Virtual Machine in Azure](restart-resize-error-troubleshooting.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="4b9a5-141">다음 단계</span><span class="sxs-lookup"><span data-stu-id="4b9a5-141">Next steps</span></span>
+<span data-ttu-id="4b9a5-142">중지된 Linux VM을 시작하거나 Azure에서 기존 Linux VM의 크기를 조정할 때 문제가 발생하면 [Azure의 기존 Linux 가상 컴퓨터 재시작 또는 크기 조정 관련 Resource Manager 배포 문제 해결](restart-resize-error-troubleshooting.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4b9a5-142">If you encounter issues when you start a stopped Linux VM or resize an existing Linux VM in Azure, see [Troubleshoot Resource Manager deployment issues with restarting or resizing an existing Linux Virtual Machine in Azure](restart-resize-error-troubleshooting.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
 

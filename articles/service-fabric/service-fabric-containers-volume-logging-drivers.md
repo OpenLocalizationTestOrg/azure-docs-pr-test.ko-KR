@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric Docker Compose 미리 보기 | Microsoft Docs"
-description: "Azure Service Fabric은 Docker Compose 형식을 수락하여 Service Fabric을 통해 기존 컨테이너를 보다 쉽게 조정할 수 있도록 합니다. 이 지원은 현재 미리 보기로 제공되고 있습니다."
+title: "서비스 패브릭 Docker 작성 미리 보기 aaaAzure | Microsoft Docs"
+description: "Azure 서비스 패브릭 형식 toomake Docker Compose를 허용 하기 서비스 패브릭을 사용 하 여 보다 쉽게 tooorchestrate exsiting 컨테이너입니다. 이 지원은 현재 미리 보기로 제공되고 있습니다."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: b12ef95add6347621f7d4865fac46568f91a1e12
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 824044fd698f0ed94c4212722bc82187905315dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="specifying-volume-plugins-and-logging-drivers-for-your-container"></a><span data-ttu-id="0e25e-104">컨테이너에 대한 볼륨 플러그 인 및 로깅 드라이버 지정</span><span class="sxs-lookup"><span data-stu-id="0e25e-104">Specifying volume plugins and logging drivers for your container</span></span>
+# <a name="specifying-volume-plugins-and-logging-drivers-for-your-container"></a><span data-ttu-id="e549a-104">컨테이너에 대한 볼륨 플러그 인 및 로깅 드라이버 지정</span><span class="sxs-lookup"><span data-stu-id="e549a-104">Specifying volume plugins and logging drivers for your container</span></span>
 
-<span data-ttu-id="0e25e-105">Service Fabric은 컨테이너 서비스에 대한 [Docker 볼륨 플러그 인](https://docs.docker.com/engine/extend/plugins_volume/) 및 [Docker 로깅 드라이버](https://docs.docker.com/engine/admin/logging/overview/) 지정을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="0e25e-105">Service Fabric supports specifying [Docker volume plugins](https://docs.docker.com/engine/extend/plugins_volume/) and [Docker logging drivers](https://docs.docker.com/engine/admin/logging/overview/) for your container service.</span></span> <span data-ttu-id="0e25e-106">플러그 인은 다음 매니페스트에 표시된 대로 응용 프로그램 매니페스트에서 지정됩니다.</span><span class="sxs-lookup"><span data-stu-id="0e25e-106">The plugins are specified in the application manifest as shown in the following manifest:</span></span>
+<span data-ttu-id="e549a-105">Service Fabric은 컨테이너 서비스에 대한 [Docker 볼륨 플러그 인](https://docs.docker.com/engine/extend/plugins_volume/) 및 [Docker 로깅 드라이버](https://docs.docker.com/engine/admin/logging/overview/) 지정을 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="e549a-105">Service Fabric supports specifying [Docker volume plugins](https://docs.docker.com/engine/extend/plugins_volume/) and [Docker logging drivers](https://docs.docker.com/engine/admin/logging/overview/) for your container service.</span></span> <span data-ttu-id="e549a-106">hello 플러그 인 매니페스트를 수행 하는 hello와 같이 hello 응용 프로그램 매니페스트에 지정 됩니다.</span><span class="sxs-lookup"><span data-stu-id="e549a-106">hello plugins are specified in hello application manifest as shown in hello following manifest:</span></span>
 
 
 ```xml
@@ -56,9 +56,9 @@ ms.lasthandoff: 08/18/2017
 </ApplicationManifest>
 ```
 
-<span data-ttu-id="0e25e-107">앞의 예제에서 `Volume`에 대한 `Source` 태그는 원본 폴더를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="0e25e-107">In the preceding example, the `Source` tag for the `Volume` refers to the source folder.</span></span> <span data-ttu-id="0e25e-108">원본 폴더는 컨테이너 또는 영구 원격 저장소를 호스트하는 VM의 폴더일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0e25e-108">The source folder could be a folder in the VM that hosts the containers or a persistent remote store.</span></span> <span data-ttu-id="0e25e-109">`Destination` 태그는 실행 중인 컨테이너에서 `Source`가 매핑되는 위치입니다.</span><span class="sxs-lookup"><span data-stu-id="0e25e-109">The `Destination` tag is the location that the `Source` is mapped to within the running container.</span></span> 
+<span data-ttu-id="e549a-107">앞 예제는 hello에서 hello `Source` hello에 대 한 태그 `Volume` toohello 소스 폴더를 참조 합니다.</span><span class="sxs-lookup"><span data-stu-id="e549a-107">In hello preceding example, hello `Source` tag for hello `Volume` refers toohello source folder.</span></span> <span data-ttu-id="e549a-108">hello 소스 폴더는 hello hello 컨테이너 또는 영구 원격 저장소를 호스팅하는 VM에에서 있는 폴더 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e549a-108">hello source folder could be a folder in hello VM that hosts hello containers or a persistent remote store.</span></span> <span data-ttu-id="e549a-109">hello `Destination` 태그는 hello hello 위치 `Source` 매핑된 toowithin hello 컨테이너 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="e549a-109">hello `Destination` tag is hello location that hello `Source` is mapped toowithin hello running container.</span></span> 
 
-<span data-ttu-id="0e25e-110">볼륨 플러그 인을 지정할 때 Service Fabric은 지정된 매개 변수를 사용하여 볼륨을 자동으로 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0e25e-110">When specifying a volume plugin, Service Fabric automatically creates the volume using the parameters specified.</span></span> <span data-ttu-id="0e25e-111">`Source` 태그는 볼륨의 이름이며 `Driver` 태그는 볼륨 드라이버 플러그 인을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="0e25e-111">The `Source` tag is the name of the volume, and the `Driver` tag specifies the volume driver plugin.</span></span> <span data-ttu-id="0e25e-112">다음 코드 조각에 나와 있는 대로 `DriverOption` 태그를 사용하여 옵션을 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0e25e-112">Options can be specified using the `DriverOption` tag as shown in the following snippet:</span></span>
+<span data-ttu-id="e549a-110">볼륨 플러그 인을 지정할 때 서비스 패브릭 지정 된 hello 매개 변수를 사용 하 여 hello 볼륨을 자동으로 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="e549a-110">When specifying a volume plugin, Service Fabric automatically creates hello volume using hello parameters specified.</span></span> <span data-ttu-id="e549a-111">hello `Source` 태그는 hello 볼륨 및 hello hello 이름 `Driver` 태그 hello 볼륨 드라이버 플러그 인을 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="e549a-111">hello `Source` tag is hello name of hello volume, and hello `Driver` tag specifies hello volume driver plugin.</span></span> <span data-ttu-id="e549a-112">Hello를 사용 하 여 옵션을 지정할 수 있습니다 `DriverOption` hello 다음 코드 조각에에서 나와 있는 것 처럼 태그:</span><span class="sxs-lookup"><span data-stu-id="e549a-112">Options can be specified using hello `DriverOption` tag as shown in hello following snippet:</span></span>
 
 ```xml
 <Volume Source="myvolume1" Destination="c:\testmountlocation4" Driver="azurefile" IsReadOnly="true">
@@ -66,10 +66,10 @@ ms.lasthandoff: 08/18/2017
 </Volume>
 ```
 
-<span data-ttu-id="0e25e-113">Docker 로그 드라이버가 지정된 경우 클러스터의 로그를 처리할 에이전트(또는 컨테이너)를 배포해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="0e25e-113">If a Docker log driver is specified, it is necessary to deploy agents (or containers) to handle the logs in the cluster.</span></span>  <span data-ttu-id="0e25e-114">`DriverOption` 태그를 사용하여 로그 드라이버 옵션을 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0e25e-114">The `DriverOption` tag can be used to specify log driver options as well.</span></span>
+<span data-ttu-id="e549a-113">Docker 로그 드라이버 지정 된 경우 필요한 toodeploy 에이전트 (또는 컨테이너) toohandle hello hello 클러스터 로그인입니다.</span><span class="sxs-lookup"><span data-stu-id="e549a-113">If a Docker log driver is specified, it is necessary toodeploy agents (or containers) toohandle hello logs in hello cluster.</span></span>  <span data-ttu-id="e549a-114">hello `DriverOption` 태그 사용된 toospecify 로그 드라이버 옵션도 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e549a-114">hello `DriverOption` tag can be used toospecify log driver options as well.</span></span>
 
-<span data-ttu-id="0e25e-115">Service Fabric 클러스터에 컨테이너를 배포하려면 다음 문서를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="0e25e-115">Refer to the following articles to deploy containers to a Service Fabric cluster:</span></span>
+<span data-ttu-id="e549a-115">Toohello 문서 toodeploy 컨테이너 tooa 서비스 패브릭 클러스터를 다음을 참조 하십시오.</span><span class="sxs-lookup"><span data-stu-id="e549a-115">Refer toohello following articles toodeploy containers tooa Service Fabric cluster:</span></span>
 
 
-[<span data-ttu-id="0e25e-116">Service Fabric에 컨테이너 배포</span><span class="sxs-lookup"><span data-stu-id="0e25e-116">Deploy a container on Service Fabric</span></span>](service-fabric-deploy-container.md)
+[<span data-ttu-id="e549a-116">Service Fabric에 컨테이너 배포</span><span class="sxs-lookup"><span data-stu-id="e549a-116">Deploy a container on Service Fabric</span></span>](service-fabric-deploy-container.md)
 
