@@ -1,37 +1,37 @@
-#### <a name="to-stop-and-start-a-cloud-appliance"></a><span data-ttu-id="57321-101">클라우드 어플라이언스를 중지 및 시작하려면</span><span class="sxs-lookup"><span data-stu-id="57321-101">To stop and start a cloud appliance</span></span>
+#### <a name="toostop-and-start-a-cloud-appliance"></a><span data-ttu-id="47be8-101">toostop 및 클라우드 어플라이언스에 시작</span><span class="sxs-lookup"><span data-stu-id="47be8-101">toostop and start a cloud appliance</span></span>
 
-1. <span data-ttu-id="57321-102">클라우드 어플라이언스를 중지하려면 클라우드 어플라이언스에 대한 VM으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="57321-102">To stop a cloud appliance, go to the VM for your cloud appliance.</span></span>
-    <span data-ttu-id="57321-103">![StorSimple Cloud Appliance 가상 컴퓨터](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart1.png)</span><span class="sxs-lookup"><span data-stu-id="57321-103">![StorSimple Cloud Appliance Virtual Machine](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart1.png)</span></span>
+1. <span data-ttu-id="47be8-102">클라우드 어플라이언스에 toostop toohello VM 클라우드 장비에 대 한 이동 합니다.</span><span class="sxs-lookup"><span data-stu-id="47be8-102">toostop a cloud appliance, go toohello VM for your cloud appliance.</span></span>
+    <span data-ttu-id="47be8-103">![StorSimple Cloud Appliance 가상 컴퓨터](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart1.png)</span><span class="sxs-lookup"><span data-stu-id="47be8-103">![StorSimple Cloud Appliance Virtual Machine](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart1.png)</span></span>
 
-2. <span data-ttu-id="57321-104">명령 모음에서 **중지**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="57321-104">From the command bar, click **Stop**.</span></span>
+2. <span data-ttu-id="47be8-104">Hello 명령 모음에서 클릭 **중지**합니다.</span><span class="sxs-lookup"><span data-stu-id="47be8-104">From hello command bar, click **Stop**.</span></span>
 
     ![StorSimple Cloud Appliance 가상 컴퓨터](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart2.png)
 
-3. <span data-ttu-id="57321-106">확인하라는 메시지가 표시되면 **예**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="57321-106">When prompted for confirmation, click **Yes**.</span></span>
+3. <span data-ttu-id="47be8-106">확인하라는 메시지가 표시되면 **예**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="47be8-106">When prompted for confirmation, click **Yes**.</span></span>
 
     ![StorSimple Cloud Appliance 가상 컴퓨터](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart3.png)
 
-4. <span data-ttu-id="57321-108">VM을 중지하면 할당 취소됩니다.</span><span class="sxs-lookup"><span data-stu-id="57321-108">When you stop a VM, it gets deallocated.</span></span> <span data-ttu-id="57321-109">클라우드 어플라이언스를 중지하는 동안에는 상태가 **할당 취소 중**입니다.</span><span class="sxs-lookup"><span data-stu-id="57321-109">While the cloud appliance is stopping, its status is **Deallocating**.</span></span> <span data-ttu-id="57321-110">클라우드 어플라이언스를 중지한 후에는 상태가 **중지됨(할당 취소됨)**입니다.</span><span class="sxs-lookup"><span data-stu-id="57321-110">After the cloud appliance is stopped, its status is **Stopped (deallocated)**.</span></span>
+4. <span data-ttu-id="47be8-108">VM을 중지하면 할당 취소됩니다.</span><span class="sxs-lookup"><span data-stu-id="47be8-108">When you stop a VM, it gets deallocated.</span></span> <span data-ttu-id="47be8-109">상태는 hello 클라우드 장비를 중지 하는 동안 **Deallocating**합니다.</span><span class="sxs-lookup"><span data-stu-id="47be8-109">While hello cloud appliance is stopping, its status is **Deallocating**.</span></span> <span data-ttu-id="47be8-110">Hello 클라우드 어플라이언스에 중지 된 후에 상태가 **중지 됨 (할당 취소 됨)**합니다.</span><span class="sxs-lookup"><span data-stu-id="47be8-110">After hello cloud appliance is stopped, its status is **Stopped (deallocated)**.</span></span>
 
     ![StorSimple Cloud Appliance 가상 컴퓨터](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart4.png)
 
-5. <span data-ttu-id="57321-112">VM이 중지되면 **시작**(단추를 사용할 수 있게 됨)을 클릭하여 VM을 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="57321-112">Once a VM is stopped, click **Start** (button becomes available) to start the VM.</span></span> <span data-ttu-id="57321-113">클라우드 어플라이언스가 시작되면 상태는 **시작됨**입니다.</span><span class="sxs-lookup"><span data-stu-id="57321-113">After the cloud appliance has started up, its status is **Started**.</span></span>
+5. <span data-ttu-id="47be8-112">VM 중지 되 고 나면 클릭 **시작** (단추를 사용할 수) toostart hello VM입니다.</span><span class="sxs-lookup"><span data-stu-id="47be8-112">Once a VM is stopped, click **Start** (button becomes available) toostart hello VM.</span></span> <span data-ttu-id="47be8-113">Hello 클라우드 장비 시작 된 후에 상태가 **Started**합니다.</span><span class="sxs-lookup"><span data-stu-id="47be8-113">After hello cloud appliance has started up, its status is **Started**.</span></span>
 
     ![StorSimple Cloud Appliance 가상 컴퓨터](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart5.png)
 
-<span data-ttu-id="57321-115">다음 cmdlet을 사용하여 클라우드 어플라이언스를 중지했다가 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="57321-115">Use the following cmdlets to stop and start a cloud appliance.</span></span>
+<span data-ttu-id="47be8-115">다음 cmdlet toostop hello를 사용 하 고 클라우드 장비를 시작 합니다.</span><span class="sxs-lookup"><span data-stu-id="47be8-115">Use hello following cmdlets toostop and start a cloud appliance.</span></span>
 
 `Stop-AzureVM -ServiceName "MyStorSimpleservice1" -Name "MyStorSimpleDevice"`
 
 `Start-AzureVM -ServiceName "MyStorSimpleservice1" -Name "MyStorSimpleDevice"`
 
-#### <a name="to-restart-a-cloud-appliance"></a><span data-ttu-id="57321-116">클라우드 어플라이언스를 다시 시작하려면</span><span class="sxs-lookup"><span data-stu-id="57321-116">To restart a cloud appliance</span></span>
+#### <a name="toorestart-a-cloud-appliance"></a><span data-ttu-id="47be8-116">클라우드 어플라이언스에 toorestart</span><span class="sxs-lookup"><span data-stu-id="47be8-116">toorestart a cloud appliance</span></span>
 
-<span data-ttu-id="57321-117">클라우드 어플라이언스를 다시 시작하려면 클라우드 어플라이언스에 대한 VM으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="57321-117">To restart a cloud appliance, go to the VM for your cloud appliance.</span></span> <span data-ttu-id="57321-118">명령 모음에서 **다시 시작**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="57321-118">From the command bar, click **Restart**.</span></span> <span data-ttu-id="57321-119">메시지가 표시되면 다시 시작을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="57321-119">When prompted, confirm the restart.</span></span> <span data-ttu-id="57321-120">클라우드 어플라이언스를 사용할 준비가 되면 상태는 **실행 중**입니다.</span><span class="sxs-lookup"><span data-stu-id="57321-120">When the cloud appliance is ready for you to use, its status is **Running**.</span></span>
+<span data-ttu-id="47be8-117">클라우드 어플라이언스에 toorestart toohello VM 클라우드 장비에 대 한 이동 합니다.</span><span class="sxs-lookup"><span data-stu-id="47be8-117">toorestart a cloud appliance, go toohello VM for your cloud appliance.</span></span> <span data-ttu-id="47be8-118">Hello 명령 모음에서 클릭 **다시 시작**합니다.</span><span class="sxs-lookup"><span data-stu-id="47be8-118">From hello command bar, click **Restart**.</span></span> <span data-ttu-id="47be8-119">메시지가 표시 되 면 hello를 다시 시작을 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="47be8-119">When prompted, confirm hello restart.</span></span> <span data-ttu-id="47be8-120">상태는 hello 클라우드 어플라이언스에 toouse 있습니다에 대 한 준비 되 면 **실행**합니다.</span><span class="sxs-lookup"><span data-stu-id="47be8-120">When hello cloud appliance is ready for you toouse, its status is **Running**.</span></span>
 
 ![StorSimple Cloud Appliance 가상 컴퓨터](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart6.png)
 
-<span data-ttu-id="57321-122">다음 cmdlet을 사용하여 클라우드 어플라이언스를 다시 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="57321-122">Use the following cmdlet to restart a cloud appliance.</span></span>
+<span data-ttu-id="47be8-122">다음 cmdlet toorestart 클라우드 어플라이언스에 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="47be8-122">Use hello following cmdlet toorestart a cloud appliance.</span></span>
 
 `Restart-AzureVM -ServiceName "MyStorSimpleservice1" -Name "MyStorSimpleDevice"`
 

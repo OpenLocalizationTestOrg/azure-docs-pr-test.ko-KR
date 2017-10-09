@@ -1,0 +1,20 @@
+
+<!--author=SharS last changed: 9/15/15-->
+
+
+#### <a name="toocreate-a-manual-backup"></a><span data-ttu-id="1ea6c-101">toocreate 수동 백업</span><span class="sxs-lookup"><span data-stu-id="1ea6c-101">toocreate a manual backup</span></span>
+1. <span data-ttu-id="1ea6c-102">Hello에 **장치** 페이지에서 이동 toohello **백업 정책** 탭 합니다. 이 탭을 tooback 원하는 hello 볼륨에 대 한 hello 정책을 포함 하 여 테이블 형식으로의 모든 hello 백업 정책을 나열 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ea6c-102">On hello **Devices** page, go toohello **Backup Policies** tab. This tab lists all hello backup policies in a tabular format, including hello policy for hello volume that you want tooback up.</span></span>
+2. <span data-ttu-id="1ea6c-103">Hello hello 첫 번째 열을 제외한 해당 행을 클릭 하 여 hello 정책을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ea6c-103">Select hello policy by clicking anywhere in hello corresponding row except for hello first column.</span></span> <span data-ttu-id="1ea6c-104">Hello hello 페이지의 아래쪽에 있는 클릭 **백업을**합니다.</span><span class="sxs-lookup"><span data-stu-id="1ea6c-104">At hello bottom of hello page, click **Take backup**.</span></span> <span data-ttu-id="1ea6c-105">hello 단추가 확장 tooshow hello 백업 옵션: 로컬 스냅숏과 클라우드 스냅숏 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ea6c-105">hello button will expand tooshow hello backup options: local snapshot and cloud snapshot.</span></span> 
+3. <span data-ttu-id="1ea6c-106">이러한 옵션 중 하나를 선택하면 확인을 묻는 메시지가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="1ea6c-106">When you choose either of these options, you will be prompted for confirmation.</span></span> <span data-ttu-id="1ea6c-107">**예**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1ea6c-107">Click **Yes**.</span></span> 
+   
+    ![수동 백업 만들기](./media/storsimple-create-manual-backup/HCS_CreateManualBackup1-include.png)
+   
+    <span data-ttu-id="1ea6c-109">그러면 작업 toocreate 스냅숏으로 시작 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1ea6c-109">This will start a job toocreate a snapshot.</span></span> <span data-ttu-id="1ea6c-110">Hello 작업이 정상적으로 만들어지면 알림이 hello hello 페이지 맨 아래에 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="1ea6c-110">You will see a notification at hello bottom of hello page after hello job is successfully created.</span></span>
+4. <span data-ttu-id="1ea6c-111">toomonitor hello 작업을 클릭 하 여 **작업 보기** hello 알림 영역 (의 hello hello 아래쪽).</span><span class="sxs-lookup"><span data-stu-id="1ea6c-111">toomonitor hello job, click **View Job** in hello notification area (at hello bottom of hello page).</span></span> 
+   
+    ![모니터 hello 수동 백업](./media/storsimple-create-manual-backup/HCS_CreateManualBackup2-include.png)
+5. <span data-ttu-id="1ea6c-113">Hello 백업 작업이 완료 된 후 이동 toohello **백업 카탈로그** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ea6c-113">After hello backup job is finished, go toohello **Backup catalog** tab.</span></span>
+6. <span data-ttu-id="1ea6c-114">Hello 필터 선택 항목 toohello 적절 한 장치, 백업 정책 및 시간 범위를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ea6c-114">Set hello filter selections toohello appropriate device, backup policy, and time range.</span></span> <span data-ttu-id="1ea6c-115">Hello 확인 아이콘을 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ea6c-115">Click hello check icon</span></span> ![확인 아이콘](./media/storsimple-create-manual-backup/HCS_CheckIcon-include.png) <span data-ttu-id="1ea6c-117">후 hello 필터를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="1ea6c-117">after setting hello filters.</span></span>
+   
+   <span data-ttu-id="1ea6c-118">hello 백업이 hello 카탈로그에 표시 되는 백업 세트의 hello 목록에 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="1ea6c-118">hello backup should appear in hello list of backup sets that is displayed in hello catalog.</span></span>
+

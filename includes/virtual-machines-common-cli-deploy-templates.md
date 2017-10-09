@@ -1,46 +1,46 @@
 
-* [<span data-ttu-id="38bc0-101">Azure에서 가상 컴퓨터 빨리 만들기</span><span class="sxs-lookup"><span data-stu-id="38bc0-101">Quick-create a virtual machine in Azure</span></span>](#quick-create-a-vm-in-azure)
-* [<span data-ttu-id="38bc0-102">템플릿에서 Azure의 가상 컴퓨터 배포</span><span class="sxs-lookup"><span data-stu-id="38bc0-102">Deploy a virtual machine in Azure from a template</span></span>](#deploy-a-vm-in-azure-from-a-template)
-* [<span data-ttu-id="38bc0-103">사용자 지정 이미지에서 가상 컴퓨터 만들기</span><span class="sxs-lookup"><span data-stu-id="38bc0-103">Create a virtual machine from a custom image</span></span>](#create-a-custom-vm-image)
-* [<span data-ttu-id="38bc0-104">가상 네트워크 및 부하 분산 장치를 사용하는 가상 컴퓨터 배포</span><span class="sxs-lookup"><span data-stu-id="38bc0-104">Deploy a virtual machine that uses a virtual network and a load balancer</span></span>](#deploy-a-multi-vm-application-that-uses-a-virtual-network-and-an-external-load-balancer)
-* [<span data-ttu-id="38bc0-105">리소스 그룹 제거</span><span class="sxs-lookup"><span data-stu-id="38bc0-105">Remove a resource group</span></span>](#remove-a-resource-group)
-* [<span data-ttu-id="38bc0-106">리소스 그룹 배포에 대한 로그 표시</span><span class="sxs-lookup"><span data-stu-id="38bc0-106">Show the log for a resource group deployment</span></span>](#show-the-log-for-a-resource-group-deployment)
-* [<span data-ttu-id="38bc0-107">가상 컴퓨터에 대한 정보 표시</span><span class="sxs-lookup"><span data-stu-id="38bc0-107">Display information about a virtual machine</span></span>](#display-information-about-a-virtual-machine)
-* [<span data-ttu-id="38bc0-108">Linux 기반 가상 컴퓨터에 연결</span><span class="sxs-lookup"><span data-stu-id="38bc0-108">Connect to a Linux-based virtual machine</span></span>](#log-on-to-a-linux-based-virtual-machine)
-* [<span data-ttu-id="38bc0-109">가상 컴퓨터 중지</span><span class="sxs-lookup"><span data-stu-id="38bc0-109">Stop a virtual machine</span></span>](#stop-a-virtual-machine)
-* [<span data-ttu-id="38bc0-110">가상 컴퓨터 시작</span><span class="sxs-lookup"><span data-stu-id="38bc0-110">Start a virtual machine</span></span>](#start-a-virtual-machine)
-* [<span data-ttu-id="38bc0-111">데이터 디스크 연결</span><span class="sxs-lookup"><span data-stu-id="38bc0-111">Attach a data disk</span></span>](#attach-a-data-disk)
+* [<span data-ttu-id="0ec62-101">Azure에서 가상 컴퓨터 빨리 만들기</span><span class="sxs-lookup"><span data-stu-id="0ec62-101">Quick-create a virtual machine in Azure</span></span>](#quick-create-a-vm-in-azure)
+* [<span data-ttu-id="0ec62-102">템플릿에서 Azure의 가상 컴퓨터 배포</span><span class="sxs-lookup"><span data-stu-id="0ec62-102">Deploy a virtual machine in Azure from a template</span></span>](#deploy-a-vm-in-azure-from-a-template)
+* [<span data-ttu-id="0ec62-103">사용자 지정 이미지에서 가상 컴퓨터 만들기</span><span class="sxs-lookup"><span data-stu-id="0ec62-103">Create a virtual machine from a custom image</span></span>](#create-a-custom-vm-image)
+* [<span data-ttu-id="0ec62-104">가상 네트워크 및 부하 분산 장치를 사용하는 가상 컴퓨터 배포</span><span class="sxs-lookup"><span data-stu-id="0ec62-104">Deploy a virtual machine that uses a virtual network and a load balancer</span></span>](#deploy-a-multi-vm-application-that-uses-a-virtual-network-and-an-external-load-balancer)
+* [<span data-ttu-id="0ec62-105">리소스 그룹 제거</span><span class="sxs-lookup"><span data-stu-id="0ec62-105">Remove a resource group</span></span>](#remove-a-resource-group)
+* [<span data-ttu-id="0ec62-106">리소스 그룹 배포에 대 한 hello 로그 표시</span><span class="sxs-lookup"><span data-stu-id="0ec62-106">Show hello log for a resource group deployment</span></span>](#show-the-log-for-a-resource-group-deployment)
+* [<span data-ttu-id="0ec62-107">가상 컴퓨터에 대한 정보 표시</span><span class="sxs-lookup"><span data-stu-id="0ec62-107">Display information about a virtual machine</span></span>](#display-information-about-a-virtual-machine)
+* [<span data-ttu-id="0ec62-108">Tooa Linux 기반 가상 컴퓨터에 연결</span><span class="sxs-lookup"><span data-stu-id="0ec62-108">Connect tooa Linux-based virtual machine</span></span>](#log-on-to-a-linux-based-virtual-machine)
+* [<span data-ttu-id="0ec62-109">가상 컴퓨터 중지</span><span class="sxs-lookup"><span data-stu-id="0ec62-109">Stop a virtual machine</span></span>](#stop-a-virtual-machine)
+* [<span data-ttu-id="0ec62-110">가상 컴퓨터 시작</span><span class="sxs-lookup"><span data-stu-id="0ec62-110">Start a virtual machine</span></span>](#start-a-virtual-machine)
+* [<span data-ttu-id="0ec62-111">데이터 디스크 연결</span><span class="sxs-lookup"><span data-stu-id="0ec62-111">Attach a data disk</span></span>](#attach-a-data-disk)
 
-## <a name="getting-ready"></a><span data-ttu-id="38bc0-112">준비</span><span class="sxs-lookup"><span data-stu-id="38bc0-112">Getting ready</span></span>
-<span data-ttu-id="38bc0-113">Azure 리소스 그룹에서 Azure CLI를 사용하려면 올바른 Azure CLI 버전 및 Azure 계정이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-113">Before you can use the Azure CLI with Azure resource groups, you need to have the right Azure CLI version and an Azure account.</span></span> <span data-ttu-id="38bc0-114">Azure CLI가 없으면 [설치](../articles/cli-install-nodejs.md)하세요.</span><span class="sxs-lookup"><span data-stu-id="38bc0-114">If you don't have the Azure CLI, [install it](../articles/cli-install-nodejs.md).</span></span>
+## <a name="getting-ready"></a><span data-ttu-id="0ec62-112">준비</span><span class="sxs-lookup"><span data-stu-id="0ec62-112">Getting ready</span></span>
+<span data-ttu-id="0ec62-113">Azure 리소스 그룹과 hello Azure CLI를 사용 하려면 먼저 toohave hello 오른쪽 Azure CLI 버전 및 Azure 계정이 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-113">Before you can use hello Azure CLI with Azure resource groups, you need toohave hello right Azure CLI version and an Azure account.</span></span> <span data-ttu-id="0ec62-114">Hello Azure CLI 없는 경우 [설치](../articles/cli-install-nodejs.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-114">If you don't have hello Azure CLI, [install it](../articles/cli-install-nodejs.md).</span></span>
 
-### <a name="update-your-azure-cli-version-to-090-or-later"></a><span data-ttu-id="38bc0-115">0.9.0 이상으로 Azure CLI 버전 업데이트</span><span class="sxs-lookup"><span data-stu-id="38bc0-115">Update your Azure CLI version to 0.9.0 or later</span></span>
-<span data-ttu-id="38bc0-116">0.9.0 버전 이상을 이미 설치했는지 확인하려면 `azure --version` 을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-116">Type `azure --version` to see whether you have already installed version 0.9.0 or later.</span></span>
+### <a name="update-your-azure-cli-version-too090-or-later"></a><span data-ttu-id="0ec62-115">Azure CLI 버전 too0.9.0 업데이트 이상 버전</span><span class="sxs-lookup"><span data-stu-id="0ec62-115">Update your Azure CLI version too0.9.0 or later</span></span>
+<span data-ttu-id="0ec62-116">형식 `azure --version` 설치 된 버전 0.9.0 이미 있는지 toosee 이상.</span><span class="sxs-lookup"><span data-stu-id="0ec62-116">Type `azure --version` toosee whether you have already installed version 0.9.0 or later.</span></span>
 
 ```azurecli
 azure --version
 0.9.0 (node: 0.10.25)
 ```
 
-<span data-ttu-id="38bc0-117">버전이 0.9.0 이상이 아닌 경우 기본 설치 관리자 중 하나를 사용하거나 `npm update -g azure-cli`를 입력하여 **npm**을 통해 업데이트해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-117">If your version is not 0.9.0 or later, you need to update it by using one of the native installers or through **npm** by typing `npm update -g azure-cli`.</span></span>
+<span data-ttu-id="0ec62-117">기본 설치 관리자 hello 중 하나를 사용 하 여 사용 중인 버전 0.9.0 아니거나 tooupdate 필요 이상 버전에서는 또는 **npm** 입력 하 여 `npm update -g azure-cli`합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-117">If your version is not 0.9.0 or later, you need tooupdate it by using one of hello native installers or through **npm** by typing `npm update -g azure-cli`.</span></span>
 
-<span data-ttu-id="38bc0-118">다음 [Docker 이미지](https://registry.hub.docker.com/u/microsoft/azure-cli/)를 사용하여 Docker 컨테이너로 Azure CLI를 실행할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-118">You can also run Azure CLI as a Docker container by using the following [Docker image](https://registry.hub.docker.com/u/microsoft/azure-cli/).</span></span> <span data-ttu-id="38bc0-119">Docker 호스트에서 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-119">From a Docker host, run the following command:</span></span>
+<span data-ttu-id="0ec62-118">또한 Azure CLI Docker 컨테이너 hello 다음을 사용 하 여 실행할 수 있습니다 [Docker 이미지](https://registry.hub.docker.com/u/microsoft/azure-cli/)합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-118">You can also run Azure CLI as a Docker container by using hello following [Docker image](https://registry.hub.docker.com/u/microsoft/azure-cli/).</span></span> <span data-ttu-id="0ec62-119">Docker 호스트에서 hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-119">From a Docker host, run hello following command:</span></span>
 
 ```bash
 docker run -it microsoft/azure-cli
 ```
 
-### <a name="set-your-azure-account-and-subscription"></a><span data-ttu-id="38bc0-120">Azure 계정 및 구독 설정</span><span class="sxs-lookup"><span data-stu-id="38bc0-120">Set your Azure account and subscription</span></span>
-<span data-ttu-id="38bc0-121">Azure 구독은 아직 없지만 MSDN 구독은 있는 경우 [MSDN 구독자 혜택](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)을 활성화할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-121">If you don't already have an Azure subscription but you do have an MSDN subscription, you can activate your [MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/).</span></span> <span data-ttu-id="38bc0-122">또는 [무료 평가판](https://azure.microsoft.com/pricing/free-trial/)에 등록할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-122">Or you can sign up for a [free trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+### <a name="set-your-azure-account-and-subscription"></a><span data-ttu-id="0ec62-120">Azure 계정 및 구독 설정</span><span class="sxs-lookup"><span data-stu-id="0ec62-120">Set your Azure account and subscription</span></span>
+<span data-ttu-id="0ec62-121">Azure 구독은 아직 없지만 MSDN 구독은 있는 경우 [MSDN 구독자 혜택](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)을 활성화할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-121">If you don't already have an Azure subscription but you do have an MSDN subscription, you can activate your [MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/).</span></span> <span data-ttu-id="0ec62-122">또는 [무료 평가판](https://azure.microsoft.com/pricing/free-trial/)에 등록할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-122">Or you can sign up for a [free trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-<span data-ttu-id="38bc0-123">이제 `azure login`를 입력하여 [Azure 계정에 대화식으로 로그인](../articles/xplat-cli-connect.md#scenario-1-azure-login-with-interactive-login)하고 Azure 계정의 대화식 로그인 환경에 대한 메시지를 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-123">Now [log in to your Azure account interactively](../articles/xplat-cli-connect.md#scenario-1-azure-login-with-interactive-login) by typing `azure login` and following the prompts for an interactive login experience to your Azure account.</span></span> 
+<span data-ttu-id="0ec62-123">이제 [tooyour Azure 계정에에서 대화형 로그온](../articles/xplat-cli-connect.md#scenario-1-azure-login-with-interactive-login) 입력 하 여 `azure login` 고 대화형 로그인 경험 tooyour Azure 계정에 대 한 hello 프롬프트를 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-123">Now [log in tooyour Azure account interactively](../articles/xplat-cli-connect.md#scenario-1-azure-login-with-interactive-login) by typing `azure login` and following hello prompts for an interactive login experience tooyour Azure account.</span></span> 
 
 > [!NOTE]
-> <span data-ttu-id="38bc0-124">회사 또는 학교 ID가 있고 2단계 인증이 활성화되지 않은 경우에는 대화형 세션 *없이* 로그인하도록 회사 또는 학교 ID와 함께 `azure login -u`를 사용할 **수도** 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-124">If you have a work or school ID and you know you do not have two-factor authentication enabled, you can **also** use `azure login -u` along with the work or school ID to log in *without* an interactive session.</span></span> <span data-ttu-id="38bc0-125">회사 또는 학교 ID가 없는 경우, 같은 방식으로 로그인하려면 [개인 Microsoft 계정에서 회사 또는 학교 ID를 만들 수](../articles/virtual-machines/windows/create-aad-work-id.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-125">If you don't have a work or school ID, you can [create a work or school id from your personal Microsoft account](../articles/virtual-machines/windows/create-aad-work-id.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) to log in the same way.</span></span>
+> <span data-ttu-id="0ec62-124">회사 또는 학교 ID 2 단계 인증을 사용할 수 없는, 있습니다 수를 아는 경우 **도** 사용 `azure login -u` 에 ID toolog ळ ा hello와 함께 작동 *없이* 대화형 세션입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-124">If you have a work or school ID and you know you do not have two-factor authentication enabled, you can **also** use `azure login -u` along with hello work or school ID toolog in *without* an interactive session.</span></span> <span data-ttu-id="0ec62-125">회사 또는 학교 ID 하지 않는 경우 다음을 할 수 있습니다 [개인 Microsoft 계정에서 회사 또는 학교 id를 만들려면](../articles/virtual-machines/windows/create-aad-work-id.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) toolog hello에서 같은 방식으로 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-125">If you don't have a work or school ID, you can [create a work or school id from your personal Microsoft account](../articles/virtual-machines/windows/create-aad-work-id.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) toolog in hello same way.</span></span>
 >
 >
 
-<span data-ttu-id="38bc0-126">계정에는 둘 이상의 구독이 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-126">Your account may have more than one subscription.</span></span> <span data-ttu-id="38bc0-127">`azure account list`를 입력하여 구독을 나열할 수 있으며, 다음과 같이 표시될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-127">You can list your subscriptions by typing `azure account list`, which might look something like this:</span></span>
+<span data-ttu-id="0ec62-126">계정에는 둘 이상의 구독이 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-126">Your account may have more than one subscription.</span></span> <span data-ttu-id="0ec62-127">`azure account list`를 입력하여 구독을 나열할 수 있으며, 다음과 같이 표시될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-127">You can list your subscriptions by typing `azure account list`, which might look something like this:</span></span>
 
 ```azurecli
 azure account list
@@ -53,37 +53,37 @@ data:    Fabrikam test                     xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx 
 data:    Contoso production                xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  false  
 ```
 
-<span data-ttu-id="38bc0-128">다음을 입력하여 현재 Azure 구독을 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-128">You can set the current Azure subscription by typing the following.</span></span> <span data-ttu-id="38bc0-129">관리하려는 리소스가 있는 구독 이름 또는 ID를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-129">Use the subscription name or the ID that has the resources you want to manage.</span></span>
+<span data-ttu-id="0ec62-128">Hello 다음을 입력 하 여 hello 현재 Azure 구독을 설정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-128">You can set hello current Azure subscription by typing hello following.</span></span> <span data-ttu-id="0ec62-129">Hello 이름 또는 hello 하는 구독 ID에서 원하는 toomanage hello 리소스를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-129">Use hello subscription name or hello ID that has hello resources you want toomanage.</span></span>
 
 ```azurecli
 azure account set <subscription name or ID> true
 ```
 
-### <a name="switch-to-the-azure-cli-resource-group-mode"></a><span data-ttu-id="38bc0-130">Azure CLI 리소스 그룹 모드로 전환</span><span class="sxs-lookup"><span data-stu-id="38bc0-130">Switch to the Azure CLI resource group mode</span></span>
-<span data-ttu-id="38bc0-131">기본적으로 Azure CLI는 서비스 관리 모드(**asm** 모드)로 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-131">By default, the Azure CLI starts in the service management mode (**asm** mode).</span></span> <span data-ttu-id="38bc0-132">다음을 입력하여 리소스 그룹 모드로 전환합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-132">Type the following to switch to resource group mode.</span></span>
+### <a name="switch-toohello-azure-cli-resource-group-mode"></a><span data-ttu-id="0ec62-130">Toohello Azure CLI 리소스 그룹 모드 전환</span><span class="sxs-lookup"><span data-stu-id="0ec62-130">Switch toohello Azure CLI resource group mode</span></span>
+<span data-ttu-id="0ec62-131">기본적으로 Azure CLI hello hello 서비스 관리 모드에서 시작 (**asm** 모드).</span><span class="sxs-lookup"><span data-stu-id="0ec62-131">By default, hello Azure CLI starts in hello service management mode (**asm** mode).</span></span> <span data-ttu-id="0ec62-132">Hello tooswitch tooresource 그룹 모드를 다음을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-132">Type hello following tooswitch tooresource group mode.</span></span>
 
 ```azurecli
 azure config mode arm
 ```
 
-## <a name="understanding-azure-resource-templates-and-resource-groups"></a><span data-ttu-id="38bc0-133">Azure 리소스 템플릿 및 리소스 그룹 이해</span><span class="sxs-lookup"><span data-stu-id="38bc0-133">Understanding Azure resource templates and resource groups</span></span>
-<span data-ttu-id="38bc0-134">대부분의 응용 프로그램은 다양한 리소스 유형(예: 하나 이상의 VM 및 저장소 계정, SQL 데이터베이스, 가상 네트워크 또는 콘텐츠 배달 네트워크)의 조합으로 구축되었습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-134">Most applications are built from a combination of different resource types (such as one or more VMs and storage accounts, a SQL database, a virtual network, or a content delivery network).</span></span> <span data-ttu-id="38bc0-135">기본 Azure 서비스 관리 API 및 Azure 클래식 포털에서는 서비스 단위 접근 방식을 사용하여 이러한 항목을 나타냈습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-135">The default Azure service management API and the Azure classic portal represented these items by using a service-by-service approach.</span></span> <span data-ttu-id="38bc0-136">이 접근 방식에서는 하나의 논리적인 배포 단위가 아니라 개별적으로 각 서비스를 배포하고 관리(또는 이러한 작업을 수행하는 다른 도구를 찾아야 함)해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-136">This approach requires you to deploy and manage the individual services individually (or find other tools that do so), and not as a single logical unit of deployment.</span></span>
+## <a name="understanding-azure-resource-templates-and-resource-groups"></a><span data-ttu-id="0ec62-133">Azure 리소스 템플릿 및 리소스 그룹 이해</span><span class="sxs-lookup"><span data-stu-id="0ec62-133">Understanding Azure resource templates and resource groups</span></span>
+<span data-ttu-id="0ec62-134">대부분의 응용 프로그램은 다양한 리소스 유형(예: 하나 이상의 VM 및 저장소 계정, SQL 데이터베이스, 가상 네트워크 또는 콘텐츠 배달 네트워크)의 조합으로 구축되었습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-134">Most applications are built from a combination of different resource types (such as one or more VMs and storage accounts, a SQL database, a virtual network, or a content delivery network).</span></span> <span data-ttu-id="0ec62-135">기본 Azure 서비스 관리 API hello와 hello Azure 클래식 포털 표현 이러한 항목-서비스 접근 방식을 사용 하 여 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-135">hello default Azure service management API and hello Azure classic portal represented these items by using a service-by-service approach.</span></span> <span data-ttu-id="0ec62-136">이 방법을 사용 해야 toodeploy 및 hello 개별 서비스를 개별적으로 관리 (또는 작업을 수행 하는 다른 도구를 찾을), 배포의 단일 논리 단위 아니라 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-136">This approach requires you toodeploy and manage hello individual services individually (or find other tools that do so), and not as a single logical unit of deployment.</span></span>
 
-<span data-ttu-id="38bc0-137">하지만 *Azure 리소스 관리자 템플릿*을 사용하면 선언적 방식으로 이러한 다양한 리소스를 하나의 논리적 배포 단위로 배포하고 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-137">*Azure Resource Manager templates*, however, make it possible for you to deploy and manage these different resources as one logical deployment unit in a declarative fashion.</span></span> <span data-ttu-id="38bc0-138">명령을 통해 차례로 배포할 항목을 Azure에 지시하는 대신 JSON 파일에서 전체 배포(모든 리소스와 관련된 구성 및 배포 매개 변수)를 설명하고 이러한 리소스를 하나의 그룹으로 배포하도록 Azure에 지시합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-138">Instead of imperatively telling Azure what to deploy one command after another, you describe your entire deployment in a JSON file -- all of the resources and associated configuration and deployment parameters -- and tell Azure to deploy those resources as one group.</span></span>
+<span data-ttu-id="0ec62-137">*그러나 Azure 리소스 관리자 템플릿*, toodeploy 있습니다 수 및 선언적 방식으로 하나의 논리적 배포 단위로 이러한 다른 리소스를 관리 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-137">*Azure Resource Manager templates*, however, make it possible for you toodeploy and manage these different resources as one logical deployment unit in a declarative fashion.</span></span> <span data-ttu-id="0ec62-138">명령적 지시 Azure 어떤 toodeploy 하나의 명령 다음에 다른, 대신-hello 리소스 및 관련된 구성 및 배포 매개 변수 모두-JSON 파일의 전체 배포에 설명 하 고이 Azure toodeploy 하나로 이러한 리소스 설명 그룹입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-138">Instead of imperatively telling Azure what toodeploy one command after another, you describe your entire deployment in a JSON file -- all of hello resources and associated configuration and deployment parameters -- and tell Azure toodeploy those resources as one group.</span></span>
 
-<span data-ttu-id="38bc0-139">그런 다음 Azure CLI 리소스 관리 명령을 사용하여 그룹 리소스의 전체 수명 주기를 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-139">You can then manage the overall life cycle of the group's resources by using Azure CLI resource management commands to:</span></span>
+<span data-ttu-id="0ec62-139">Hello를 관리할 수 있습니다에 Azure CLI 리소스 관리 명령을 사용 하 여 hello 그룹 리소스의 전체 수명 주기:</span><span class="sxs-lookup"><span data-stu-id="0ec62-139">You can then manage hello overall life cycle of hello group's resources by using Azure CLI resource management commands to:</span></span>
 
-* <span data-ttu-id="38bc0-140">그룹 내의 모든 리소스를 한 번에 중지, 시작 또는 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-140">Stop, start, or delete all of the resources within the group at once.</span></span>
-* <span data-ttu-id="38bc0-141">RBAC(역할 기반 액세스 제어) 규칙을 적용하여 리소스에 대한 보안 권한을 잠급니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-141">Apply Role-Based Access Control (RBAC) rules to lock down security permissions on them.</span></span>
-* <span data-ttu-id="38bc0-142">작업을 감사합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-142">Audit operations.</span></span>
-* <span data-ttu-id="38bc0-143">추가 메타데이터로 리소스에 태그를 지정하여 추적을 개선합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-143">Tag resources with additional metadata for better tracking.</span></span>
+* <span data-ttu-id="0ec62-140">중지, 시작 또는 hello 그룹 내의 hello 리소스를 모두 한 번에 삭제 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-140">Stop, start, or delete all of hello resources within hello group at once.</span></span>
+* <span data-ttu-id="0ec62-141">보안 권한 아래로 규칙 toolock 역할 기반 액세스 제어 (RBAC)에 적용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-141">Apply Role-Based Access Control (RBAC) rules toolock down security permissions on them.</span></span>
+* <span data-ttu-id="0ec62-142">작업을 감사합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-142">Audit operations.</span></span>
+* <span data-ttu-id="0ec62-143">추가 메타데이터로 리소스에 태그를 지정하여 추적을 개선합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-143">Tag resources with additional metadata for better tracking.</span></span>
 
-<span data-ttu-id="38bc0-144">Azure 리소스 그룹 및 기능에 대한 자세한 내용은 [Azure Resource Manager 개요](../articles/azure-resource-manager/resource-group-overview.md)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-144">You can learn lots more about Azure resource groups and what they can do for you in the [Azure Resource Manager overview](../articles/azure-resource-manager/resource-group-overview.md).</span></span> <span data-ttu-id="38bc0-145">템플릿 작성에 관심이 있다면 [Azure 리소스 관리자 템플릿 작성](../articles/resource-group-authoring-templates.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="38bc0-145">If you're interested in authoring templates, see [Authoring Azure Resource Manager templates](../articles/resource-group-authoring-templates.md).</span></span>
+<span data-ttu-id="0ec62-144">Azure 리소스 그룹 및 수 있는 작업 수에 대 한 hello에 대 한 기타 등등 학습할 수 있는 [Azure 리소스 관리자 개요](../articles/azure-resource-manager/resource-group-overview.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-144">You can learn lots more about Azure resource groups and what they can do for you in hello [Azure Resource Manager overview](../articles/azure-resource-manager/resource-group-overview.md).</span></span> <span data-ttu-id="0ec62-145">템플릿 작성에 관심이 있다면 [Azure 리소스 관리자 템플릿 작성](../articles/resource-group-authoring-templates.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="0ec62-145">If you're interested in authoring templates, see [Authoring Azure Resource Manager templates](../articles/resource-group-authoring-templates.md).</span></span>
 
-## <span data-ttu-id="38bc0-146"><a id="quick-create-a-vm-in-azure"></a>작업: Azure에서 VM 빠르게 만들기</span><span class="sxs-lookup"><span data-stu-id="38bc0-146"><a id="quick-create-a-vm-in-azure"></a>Task: Quick-create a VM in Azure</span></span>
-<span data-ttu-id="38bc0-147">경우에 따라 필요한 이미지를 알고 있고 해당 이미지로 만든 VM이 당장 필요할 수 있지만 인프라에 대해서는 너무 염려하지 않아도 됩니다. 새 VM에서 테스트할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-147">Sometimes you know what image you need, and you need a VM from that image right now and you don't care too much about the infrastructure -- maybe you have to test something on a clean VM.</span></span> <span data-ttu-id="38bc0-148">이때 `azure vm quick-create` 명령을 사용하고 VM 및 해당 인프라를 만드는 데 필요한 인수를 전달하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-148">That's when you want to use the `azure vm quick-create` command, and pass the arguments necessary to create a VM and its infrastructure.</span></span>
+## <span data-ttu-id="0ec62-146"><a id="quick-create-a-vm-in-azure"></a>작업: Azure에서 VM 빠르게 만들기</span><span class="sxs-lookup"><span data-stu-id="0ec62-146"><a id="quick-create-a-vm-in-azure"></a>Task: Quick-create a VM in Azure</span></span>
+<span data-ttu-id="0ec62-147">어떤 이미지를 알고 있는 경우에 따라 하 고 해당 이미지에서 VM을 지금 당장 필요한 및 중요 하지 않으면 hello 인프라에 대해 자세히-미정 tootest 결과가 있는 클린 VM에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-147">Sometimes you know what image you need, and you need a VM from that image right now and you don't care too much about hello infrastructure -- maybe you have tootest something on a clean VM.</span></span> <span data-ttu-id="0ec62-148">이 경우에 원하는 toouse hello `azure vm quick-create` 명령을 실행 하 고 VM 및 인프라 hello 인수 필요한 toocreate를 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-148">That's when you want toouse hello `azure vm quick-create` command, and pass hello arguments necessary toocreate a VM and its infrastructure.</span></span>
 
-<span data-ttu-id="38bc0-149">먼저 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-149">First, create your resource group.</span></span>
+<span data-ttu-id="0ec62-149">먼저 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-149">First, create your resource group.</span></span>
 
 ```azurecli
 azure group create coreos-quick westus
@@ -100,34 +100,34 @@ data:
 info:    group create command OK
 ```
 
-<span data-ttu-id="38bc0-150">두 번째로 이미지가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-150">Second, you'll need an image.</span></span> <span data-ttu-id="38bc0-151">Azure CLI를 사용하여 이미지를 찾으려면 [PowerShell 및 Azure CLI를 사용하여 Azure 가상 컴퓨터 이미지 탐색 및 선택](../articles/virtual-machines/linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="38bc0-151">To find an image with the Azure CLI, see [Navigating and selecting Azure virtual machine images with PowerShell and the Azure CLI](../articles/virtual-machines/linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span> <span data-ttu-id="38bc0-152">그러나 이 문서에서는 다음과 같이 많이 사용되는 간단한 이미지 목록을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-152">But for this article, here's a short list of popular images.</span></span> <span data-ttu-id="38bc0-153">이 quick-create에서는 CoreOS의 Stable 이미지를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-153">We'll use CoreOS's Stable image for this quick-create.</span></span>
+<span data-ttu-id="0ec62-150">두 번째로 이미지가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-150">Second, you'll need an image.</span></span> <span data-ttu-id="0ec62-151">hello Azure CLI로 이미지 toofind 참조 [Navigating PowerShell 및 Azure CLI hello를 사용 하 여 Azure 가상 컴퓨터 이미지를 선택 하 고](../articles/virtual-machines/linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-151">toofind an image with hello Azure CLI, see [Navigating and selecting Azure virtual machine images with PowerShell and hello Azure CLI](../articles/virtual-machines/linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span> <span data-ttu-id="0ec62-152">그러나 이 문서에서는 다음과 같이 많이 사용되는 간단한 이미지 목록을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-152">But for this article, here's a short list of popular images.</span></span> <span data-ttu-id="0ec62-153">이 quick-create에서는 CoreOS의 Stable 이미지를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-153">We'll use CoreOS's Stable image for this quick-create.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="38bc0-154">ComputeImageVersion의 경우, 템플릿 언어 및 Azure CLI 모두에서 매개 변수로 단순히 '최신'을 제공할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-154">For ComputeImageVersion, you can also simply supply 'latest' as the parameter in both the template language and in the Azure CLI.</span></span> <span data-ttu-id="38bc0-155">이렇게 하면 사용자 스크립트 또는 템플릿을 수정하지 않고도 최신 및 패치가 적용된 버전의 이미지를 항상 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-155">This will allow you to always use the latest and patched version of the image without having to modify your scripts or templates.</span></span> <span data-ttu-id="38bc0-156">다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-156">This is shown below.</span></span>
+> <span data-ttu-id="0ec62-154">ComputeImageVersion에 대 한 제공할 수 있습니다 놓는 '최신' hello 매개 변수 hello Azure CLI 및 두 hello 템플릿 언어에 따라.</span><span class="sxs-lookup"><span data-stu-id="0ec62-154">For ComputeImageVersion, you can also simply supply 'latest' as hello parameter in both hello template language and in hello Azure CLI.</span></span> <span data-ttu-id="0ec62-155">따라서 스크립트 또는 템플릿 toomodify 필요 없이 hello 이미지의 최신 및 패치 버전을 hello를 사용 하면 tooalways 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-155">This will allow you tooalways use hello latest and patched version of hello image without having toomodify your scripts or templates.</span></span> <span data-ttu-id="0ec62-156">다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-156">This is shown below.</span></span>
 >
 >
 
-| <span data-ttu-id="38bc0-157">PublisherName</span><span class="sxs-lookup"><span data-stu-id="38bc0-157">PublisherName</span></span> | <span data-ttu-id="38bc0-158">제안</span><span class="sxs-lookup"><span data-stu-id="38bc0-158">Offer</span></span> | <span data-ttu-id="38bc0-159">SKU</span><span class="sxs-lookup"><span data-stu-id="38bc0-159">Sku</span></span> | <span data-ttu-id="38bc0-160">버전</span><span class="sxs-lookup"><span data-stu-id="38bc0-160">Version</span></span> |
+| <span data-ttu-id="0ec62-157">PublisherName</span><span class="sxs-lookup"><span data-stu-id="0ec62-157">PublisherName</span></span> | <span data-ttu-id="0ec62-158">제안</span><span class="sxs-lookup"><span data-stu-id="0ec62-158">Offer</span></span> | <span data-ttu-id="0ec62-159">SKU</span><span class="sxs-lookup"><span data-stu-id="0ec62-159">Sku</span></span> | <span data-ttu-id="0ec62-160">버전</span><span class="sxs-lookup"><span data-stu-id="0ec62-160">Version</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="38bc0-161">OpenLogic</span><span class="sxs-lookup"><span data-stu-id="38bc0-161">OpenLogic</span></span> |<span data-ttu-id="38bc0-162">CentOS</span><span class="sxs-lookup"><span data-stu-id="38bc0-162">CentOS</span></span> |<span data-ttu-id="38bc0-163">7</span><span class="sxs-lookup"><span data-stu-id="38bc0-163">7</span></span> |<span data-ttu-id="38bc0-164">7.0.201503</span><span class="sxs-lookup"><span data-stu-id="38bc0-164">7.0.201503</span></span> |
-| <span data-ttu-id="38bc0-165">OpenLogic</span><span class="sxs-lookup"><span data-stu-id="38bc0-165">OpenLogic</span></span> |<span data-ttu-id="38bc0-166">CentOS</span><span class="sxs-lookup"><span data-stu-id="38bc0-166">CentOS</span></span> |<span data-ttu-id="38bc0-167">7.1</span><span class="sxs-lookup"><span data-stu-id="38bc0-167">7.1</span></span> |<span data-ttu-id="38bc0-168">7.1.201504</span><span class="sxs-lookup"><span data-stu-id="38bc0-168">7.1.201504</span></span> |
-| <span data-ttu-id="38bc0-169">CoreOS</span><span class="sxs-lookup"><span data-stu-id="38bc0-169">CoreOS</span></span> |<span data-ttu-id="38bc0-170">CoreOS</span><span class="sxs-lookup"><span data-stu-id="38bc0-170">CoreOS</span></span> |<span data-ttu-id="38bc0-171">베타</span><span class="sxs-lookup"><span data-stu-id="38bc0-171">Beta</span></span> |<span data-ttu-id="38bc0-172">647.0.0</span><span class="sxs-lookup"><span data-stu-id="38bc0-172">647.0.0</span></span> |
-| <span data-ttu-id="38bc0-173">CoreOS</span><span class="sxs-lookup"><span data-stu-id="38bc0-173">CoreOS</span></span> |<span data-ttu-id="38bc0-174">CoreOS</span><span class="sxs-lookup"><span data-stu-id="38bc0-174">CoreOS</span></span> |<span data-ttu-id="38bc0-175">Stable</span><span class="sxs-lookup"><span data-stu-id="38bc0-175">Stable</span></span> |<span data-ttu-id="38bc0-176">633.1.0</span><span class="sxs-lookup"><span data-stu-id="38bc0-176">633.1.0</span></span> |
-| <span data-ttu-id="38bc0-177">MicrosoftDynamicsNAV</span><span class="sxs-lookup"><span data-stu-id="38bc0-177">MicrosoftDynamicsNAV</span></span> |<span data-ttu-id="38bc0-178">DynamicsNAV</span><span class="sxs-lookup"><span data-stu-id="38bc0-178">DynamicsNAV</span></span> |<span data-ttu-id="38bc0-179">2015</span><span class="sxs-lookup"><span data-stu-id="38bc0-179">2015</span></span> |<span data-ttu-id="38bc0-180">8.0.40459</span><span class="sxs-lookup"><span data-stu-id="38bc0-180">8.0.40459</span></span> |
-| <span data-ttu-id="38bc0-181">MicrosoftSharePoint</span><span class="sxs-lookup"><span data-stu-id="38bc0-181">MicrosoftSharePoint</span></span> |<span data-ttu-id="38bc0-182">MicrosoftSharePointServer</span><span class="sxs-lookup"><span data-stu-id="38bc0-182">MicrosoftSharePointServer</span></span> |<span data-ttu-id="38bc0-183">2013</span><span class="sxs-lookup"><span data-stu-id="38bc0-183">2013</span></span> |<span data-ttu-id="38bc0-184">1.0.0</span><span class="sxs-lookup"><span data-stu-id="38bc0-184">1.0.0</span></span> |
-| <span data-ttu-id="38bc0-185">msopentech</span><span class="sxs-lookup"><span data-stu-id="38bc0-185">msopentech</span></span> |<span data-ttu-id="38bc0-186">Oracle-Database-12c-Weblogic-Server-12c</span><span class="sxs-lookup"><span data-stu-id="38bc0-186">Oracle-Database-12c-Weblogic-Server-12c</span></span> |<span data-ttu-id="38bc0-187">Standard</span><span class="sxs-lookup"><span data-stu-id="38bc0-187">Standard</span></span> |<span data-ttu-id="38bc0-188">1.0.0</span><span class="sxs-lookup"><span data-stu-id="38bc0-188">1.0.0</span></span> |
-| <span data-ttu-id="38bc0-189">msopentech</span><span class="sxs-lookup"><span data-stu-id="38bc0-189">msopentech</span></span> |<span data-ttu-id="38bc0-190">Oracle-Database-12c-Weblogic-Server-12c</span><span class="sxs-lookup"><span data-stu-id="38bc0-190">Oracle-Database-12c-Weblogic-Server-12c</span></span> |<span data-ttu-id="38bc0-191">Enterprise</span><span class="sxs-lookup"><span data-stu-id="38bc0-191">Enterprise</span></span> |<span data-ttu-id="38bc0-192">1.0.0</span><span class="sxs-lookup"><span data-stu-id="38bc0-192">1.0.0</span></span> |
-| <span data-ttu-id="38bc0-193">MicrosoftSQLServer</span><span class="sxs-lookup"><span data-stu-id="38bc0-193">MicrosoftSQLServer</span></span> |<span data-ttu-id="38bc0-194">SQL2014-WS2012R2</span><span class="sxs-lookup"><span data-stu-id="38bc0-194">SQL2014-WS2012R2</span></span> |<span data-ttu-id="38bc0-195">Enterprise-Optimized-for-DW</span><span class="sxs-lookup"><span data-stu-id="38bc0-195">Enterprise-Optimized-for-DW</span></span> |<span data-ttu-id="38bc0-196">12.0.2430</span><span class="sxs-lookup"><span data-stu-id="38bc0-196">12.0.2430</span></span> |
-| <span data-ttu-id="38bc0-197">MicrosoftSQLServer</span><span class="sxs-lookup"><span data-stu-id="38bc0-197">MicrosoftSQLServer</span></span> |<span data-ttu-id="38bc0-198">SQL2014-WS2012R2</span><span class="sxs-lookup"><span data-stu-id="38bc0-198">SQL2014-WS2012R2</span></span> |<span data-ttu-id="38bc0-199">Enterprise-Optimized-for-OLTP</span><span class="sxs-lookup"><span data-stu-id="38bc0-199">Enterprise-Optimized-for-OLTP</span></span> |<span data-ttu-id="38bc0-200">12.0.2430</span><span class="sxs-lookup"><span data-stu-id="38bc0-200">12.0.2430</span></span> |
-| <span data-ttu-id="38bc0-201">Canonical</span><span class="sxs-lookup"><span data-stu-id="38bc0-201">Canonical</span></span> |<span data-ttu-id="38bc0-202">UbuntuServer</span><span class="sxs-lookup"><span data-stu-id="38bc0-202">UbuntuServer</span></span> |<span data-ttu-id="38bc0-203">12.04.5-LTS</span><span class="sxs-lookup"><span data-stu-id="38bc0-203">12.04.5-LTS</span></span> |<span data-ttu-id="38bc0-204">12.04.201504230</span><span class="sxs-lookup"><span data-stu-id="38bc0-204">12.04.201504230</span></span> |
-| <span data-ttu-id="38bc0-205">Canonical</span><span class="sxs-lookup"><span data-stu-id="38bc0-205">Canonical</span></span> |<span data-ttu-id="38bc0-206">UbuntuServer</span><span class="sxs-lookup"><span data-stu-id="38bc0-206">UbuntuServer</span></span> |<span data-ttu-id="38bc0-207">14.04.2-LTS</span><span class="sxs-lookup"><span data-stu-id="38bc0-207">14.04.2-LTS</span></span> |<span data-ttu-id="38bc0-208">14.04.201503090</span><span class="sxs-lookup"><span data-stu-id="38bc0-208">14.04.201503090</span></span> |
-| <span data-ttu-id="38bc0-209">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="38bc0-209">MicrosoftWindowsServer</span></span> |<span data-ttu-id="38bc0-210">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="38bc0-210">WindowsServer</span></span> |<span data-ttu-id="38bc0-211">2012-Datacenter</span><span class="sxs-lookup"><span data-stu-id="38bc0-211">2012-Datacenter</span></span> |<span data-ttu-id="38bc0-212">3.0.201503</span><span class="sxs-lookup"><span data-stu-id="38bc0-212">3.0.201503</span></span> |
-| <span data-ttu-id="38bc0-213">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="38bc0-213">MicrosoftWindowsServer</span></span> |<span data-ttu-id="38bc0-214">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="38bc0-214">WindowsServer</span></span> |<span data-ttu-id="38bc0-215">2012-R2-Datacenter</span><span class="sxs-lookup"><span data-stu-id="38bc0-215">2012-R2-Datacenter</span></span> |<span data-ttu-id="38bc0-216">4.0.201503</span><span class="sxs-lookup"><span data-stu-id="38bc0-216">4.0.201503</span></span> |
-| <span data-ttu-id="38bc0-217">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="38bc0-217">MicrosoftWindowsServer</span></span> |<span data-ttu-id="38bc0-218">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="38bc0-218">WindowsServer</span></span> |<span data-ttu-id="38bc0-219">Windows-Server-Technical-Preview</span><span class="sxs-lookup"><span data-stu-id="38bc0-219">Windows-Server-Technical-Preview</span></span> |<span data-ttu-id="38bc0-220">5.0.201504</span><span class="sxs-lookup"><span data-stu-id="38bc0-220">5.0.201504</span></span> |
-| <span data-ttu-id="38bc0-221">MicrosoftWindowsServerEssentials</span><span class="sxs-lookup"><span data-stu-id="38bc0-221">MicrosoftWindowsServerEssentials</span></span> |<span data-ttu-id="38bc0-222">WindowsServerEssentials</span><span class="sxs-lookup"><span data-stu-id="38bc0-222">WindowsServerEssentials</span></span> |<span data-ttu-id="38bc0-223">WindowsServerEssentials</span><span class="sxs-lookup"><span data-stu-id="38bc0-223">WindowsServerEssentials</span></span> |<span data-ttu-id="38bc0-224">1.0.141204</span><span class="sxs-lookup"><span data-stu-id="38bc0-224">1.0.141204</span></span> |
-| <span data-ttu-id="38bc0-225">MicrosoftWindowsServerHPCPack</span><span class="sxs-lookup"><span data-stu-id="38bc0-225">MicrosoftWindowsServerHPCPack</span></span> |<span data-ttu-id="38bc0-226">WindowsServerHPCPack</span><span class="sxs-lookup"><span data-stu-id="38bc0-226">WindowsServerHPCPack</span></span> |<span data-ttu-id="38bc0-227">2012R2</span><span class="sxs-lookup"><span data-stu-id="38bc0-227">2012R2</span></span> |<span data-ttu-id="38bc0-228">4.3.4665</span><span class="sxs-lookup"><span data-stu-id="38bc0-228">4.3.4665</span></span> |
+| <span data-ttu-id="0ec62-161">OpenLogic</span><span class="sxs-lookup"><span data-stu-id="0ec62-161">OpenLogic</span></span> |<span data-ttu-id="0ec62-162">CentOS</span><span class="sxs-lookup"><span data-stu-id="0ec62-162">CentOS</span></span> |<span data-ttu-id="0ec62-163">7</span><span class="sxs-lookup"><span data-stu-id="0ec62-163">7</span></span> |<span data-ttu-id="0ec62-164">7.0.201503</span><span class="sxs-lookup"><span data-stu-id="0ec62-164">7.0.201503</span></span> |
+| <span data-ttu-id="0ec62-165">OpenLogic</span><span class="sxs-lookup"><span data-stu-id="0ec62-165">OpenLogic</span></span> |<span data-ttu-id="0ec62-166">CentOS</span><span class="sxs-lookup"><span data-stu-id="0ec62-166">CentOS</span></span> |<span data-ttu-id="0ec62-167">7.1</span><span class="sxs-lookup"><span data-stu-id="0ec62-167">7.1</span></span> |<span data-ttu-id="0ec62-168">7.1.201504</span><span class="sxs-lookup"><span data-stu-id="0ec62-168">7.1.201504</span></span> |
+| <span data-ttu-id="0ec62-169">CoreOS</span><span class="sxs-lookup"><span data-stu-id="0ec62-169">CoreOS</span></span> |<span data-ttu-id="0ec62-170">CoreOS</span><span class="sxs-lookup"><span data-stu-id="0ec62-170">CoreOS</span></span> |<span data-ttu-id="0ec62-171">베타</span><span class="sxs-lookup"><span data-stu-id="0ec62-171">Beta</span></span> |<span data-ttu-id="0ec62-172">647.0.0</span><span class="sxs-lookup"><span data-stu-id="0ec62-172">647.0.0</span></span> |
+| <span data-ttu-id="0ec62-173">CoreOS</span><span class="sxs-lookup"><span data-stu-id="0ec62-173">CoreOS</span></span> |<span data-ttu-id="0ec62-174">CoreOS</span><span class="sxs-lookup"><span data-stu-id="0ec62-174">CoreOS</span></span> |<span data-ttu-id="0ec62-175">Stable</span><span class="sxs-lookup"><span data-stu-id="0ec62-175">Stable</span></span> |<span data-ttu-id="0ec62-176">633.1.0</span><span class="sxs-lookup"><span data-stu-id="0ec62-176">633.1.0</span></span> |
+| <span data-ttu-id="0ec62-177">MicrosoftDynamicsNAV</span><span class="sxs-lookup"><span data-stu-id="0ec62-177">MicrosoftDynamicsNAV</span></span> |<span data-ttu-id="0ec62-178">DynamicsNAV</span><span class="sxs-lookup"><span data-stu-id="0ec62-178">DynamicsNAV</span></span> |<span data-ttu-id="0ec62-179">2015</span><span class="sxs-lookup"><span data-stu-id="0ec62-179">2015</span></span> |<span data-ttu-id="0ec62-180">8.0.40459</span><span class="sxs-lookup"><span data-stu-id="0ec62-180">8.0.40459</span></span> |
+| <span data-ttu-id="0ec62-181">MicrosoftSharePoint</span><span class="sxs-lookup"><span data-stu-id="0ec62-181">MicrosoftSharePoint</span></span> |<span data-ttu-id="0ec62-182">MicrosoftSharePointServer</span><span class="sxs-lookup"><span data-stu-id="0ec62-182">MicrosoftSharePointServer</span></span> |<span data-ttu-id="0ec62-183">2013</span><span class="sxs-lookup"><span data-stu-id="0ec62-183">2013</span></span> |<span data-ttu-id="0ec62-184">1.0.0</span><span class="sxs-lookup"><span data-stu-id="0ec62-184">1.0.0</span></span> |
+| <span data-ttu-id="0ec62-185">msopentech</span><span class="sxs-lookup"><span data-stu-id="0ec62-185">msopentech</span></span> |<span data-ttu-id="0ec62-186">Oracle-Database-12c-Weblogic-Server-12c</span><span class="sxs-lookup"><span data-stu-id="0ec62-186">Oracle-Database-12c-Weblogic-Server-12c</span></span> |<span data-ttu-id="0ec62-187">Standard</span><span class="sxs-lookup"><span data-stu-id="0ec62-187">Standard</span></span> |<span data-ttu-id="0ec62-188">1.0.0</span><span class="sxs-lookup"><span data-stu-id="0ec62-188">1.0.0</span></span> |
+| <span data-ttu-id="0ec62-189">msopentech</span><span class="sxs-lookup"><span data-stu-id="0ec62-189">msopentech</span></span> |<span data-ttu-id="0ec62-190">Oracle-Database-12c-Weblogic-Server-12c</span><span class="sxs-lookup"><span data-stu-id="0ec62-190">Oracle-Database-12c-Weblogic-Server-12c</span></span> |<span data-ttu-id="0ec62-191">Enterprise</span><span class="sxs-lookup"><span data-stu-id="0ec62-191">Enterprise</span></span> |<span data-ttu-id="0ec62-192">1.0.0</span><span class="sxs-lookup"><span data-stu-id="0ec62-192">1.0.0</span></span> |
+| <span data-ttu-id="0ec62-193">MicrosoftSQLServer</span><span class="sxs-lookup"><span data-stu-id="0ec62-193">MicrosoftSQLServer</span></span> |<span data-ttu-id="0ec62-194">SQL2014-WS2012R2</span><span class="sxs-lookup"><span data-stu-id="0ec62-194">SQL2014-WS2012R2</span></span> |<span data-ttu-id="0ec62-195">Enterprise-Optimized-for-DW</span><span class="sxs-lookup"><span data-stu-id="0ec62-195">Enterprise-Optimized-for-DW</span></span> |<span data-ttu-id="0ec62-196">12.0.2430</span><span class="sxs-lookup"><span data-stu-id="0ec62-196">12.0.2430</span></span> |
+| <span data-ttu-id="0ec62-197">MicrosoftSQLServer</span><span class="sxs-lookup"><span data-stu-id="0ec62-197">MicrosoftSQLServer</span></span> |<span data-ttu-id="0ec62-198">SQL2014-WS2012R2</span><span class="sxs-lookup"><span data-stu-id="0ec62-198">SQL2014-WS2012R2</span></span> |<span data-ttu-id="0ec62-199">Enterprise-Optimized-for-OLTP</span><span class="sxs-lookup"><span data-stu-id="0ec62-199">Enterprise-Optimized-for-OLTP</span></span> |<span data-ttu-id="0ec62-200">12.0.2430</span><span class="sxs-lookup"><span data-stu-id="0ec62-200">12.0.2430</span></span> |
+| <span data-ttu-id="0ec62-201">Canonical</span><span class="sxs-lookup"><span data-stu-id="0ec62-201">Canonical</span></span> |<span data-ttu-id="0ec62-202">UbuntuServer</span><span class="sxs-lookup"><span data-stu-id="0ec62-202">UbuntuServer</span></span> |<span data-ttu-id="0ec62-203">12.04.5-LTS</span><span class="sxs-lookup"><span data-stu-id="0ec62-203">12.04.5-LTS</span></span> |<span data-ttu-id="0ec62-204">12.04.201504230</span><span class="sxs-lookup"><span data-stu-id="0ec62-204">12.04.201504230</span></span> |
+| <span data-ttu-id="0ec62-205">Canonical</span><span class="sxs-lookup"><span data-stu-id="0ec62-205">Canonical</span></span> |<span data-ttu-id="0ec62-206">UbuntuServer</span><span class="sxs-lookup"><span data-stu-id="0ec62-206">UbuntuServer</span></span> |<span data-ttu-id="0ec62-207">14.04.2-LTS</span><span class="sxs-lookup"><span data-stu-id="0ec62-207">14.04.2-LTS</span></span> |<span data-ttu-id="0ec62-208">14.04.201503090</span><span class="sxs-lookup"><span data-stu-id="0ec62-208">14.04.201503090</span></span> |
+| <span data-ttu-id="0ec62-209">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="0ec62-209">MicrosoftWindowsServer</span></span> |<span data-ttu-id="0ec62-210">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="0ec62-210">WindowsServer</span></span> |<span data-ttu-id="0ec62-211">2012-Datacenter</span><span class="sxs-lookup"><span data-stu-id="0ec62-211">2012-Datacenter</span></span> |<span data-ttu-id="0ec62-212">3.0.201503</span><span class="sxs-lookup"><span data-stu-id="0ec62-212">3.0.201503</span></span> |
+| <span data-ttu-id="0ec62-213">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="0ec62-213">MicrosoftWindowsServer</span></span> |<span data-ttu-id="0ec62-214">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="0ec62-214">WindowsServer</span></span> |<span data-ttu-id="0ec62-215">2012-R2-Datacenter</span><span class="sxs-lookup"><span data-stu-id="0ec62-215">2012-R2-Datacenter</span></span> |<span data-ttu-id="0ec62-216">4.0.201503</span><span class="sxs-lookup"><span data-stu-id="0ec62-216">4.0.201503</span></span> |
+| <span data-ttu-id="0ec62-217">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="0ec62-217">MicrosoftWindowsServer</span></span> |<span data-ttu-id="0ec62-218">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="0ec62-218">WindowsServer</span></span> |<span data-ttu-id="0ec62-219">Windows-Server-Technical-Preview</span><span class="sxs-lookup"><span data-stu-id="0ec62-219">Windows-Server-Technical-Preview</span></span> |<span data-ttu-id="0ec62-220">5.0.201504</span><span class="sxs-lookup"><span data-stu-id="0ec62-220">5.0.201504</span></span> |
+| <span data-ttu-id="0ec62-221">MicrosoftWindowsServerEssentials</span><span class="sxs-lookup"><span data-stu-id="0ec62-221">MicrosoftWindowsServerEssentials</span></span> |<span data-ttu-id="0ec62-222">WindowsServerEssentials</span><span class="sxs-lookup"><span data-stu-id="0ec62-222">WindowsServerEssentials</span></span> |<span data-ttu-id="0ec62-223">WindowsServerEssentials</span><span class="sxs-lookup"><span data-stu-id="0ec62-223">WindowsServerEssentials</span></span> |<span data-ttu-id="0ec62-224">1.0.141204</span><span class="sxs-lookup"><span data-stu-id="0ec62-224">1.0.141204</span></span> |
+| <span data-ttu-id="0ec62-225">MicrosoftWindowsServerHPCPack</span><span class="sxs-lookup"><span data-stu-id="0ec62-225">MicrosoftWindowsServerHPCPack</span></span> |<span data-ttu-id="0ec62-226">WindowsServerHPCPack</span><span class="sxs-lookup"><span data-stu-id="0ec62-226">WindowsServerHPCPack</span></span> |<span data-ttu-id="0ec62-227">2012R2</span><span class="sxs-lookup"><span data-stu-id="0ec62-227">2012R2</span></span> |<span data-ttu-id="0ec62-228">4.3.4665</span><span class="sxs-lookup"><span data-stu-id="0ec62-228">4.3.4665</span></span> |
 
-<span data-ttu-id="38bc0-229">`azure vm quick-create` 명령을 입력하고 프롬프트를 준비하여 VM을 만들면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-229">Just create your VM by entering the `azure vm quick-create` command and being ready for the prompts.</span></span> <span data-ttu-id="38bc0-230">다음과 같이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-230">It should look something like this:</span></span>
+<span data-ttu-id="0ec62-229">Hello를 입력 하 여 VM을 만들기만 `azure vm quick-create` 명령에 대 한 준비 되 고 hello 묻는 메시지를 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-229">Just create your VM by entering hello `azure vm quick-create` command and being ready for hello prompts.</span></span> <span data-ttu-id="0ec62-230">다음과 같이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-230">It should look something like this:</span></span>
 
 ```azurecli
 azure vm quick-create
@@ -140,31 +140,31 @@ ImageURN (format: "publisherName:offer:skus:version"): coreos:coreos:stable:late
 User name: ops
 Password: *********
 Confirm password: *********
-+ Looking up the VM "coreos"
-info:    Using the VM Size "Standard_A1"
-info:    The [OS, Data] Disk or image configuration requires storage account
++ Looking up hello VM "coreos"
+info:    Using hello VM Size "Standard_A1"
+info:    hello [OS, Data] Disk or image configuration requires storage account
 + Retrieving storage accounts
-info:    Could not find any storage accounts in the region "westus", trying to create new one
+info:    Could not find any storage accounts in hello region "westus", trying toocreate new one
 + Creating storage account "cli9fd3fce49e9a9b3d14302" in "westus"
-+ Looking up the storage account cli9fd3fce49e9a9b3d14302
-+ Looking up the NIC "coreo-westu-1430261891570-nic"
++ Looking up hello storage account cli9fd3fce49e9a9b3d14302
++ Looking up hello NIC "coreo-westu-1430261891570-nic"
 info:    An nic with given name "coreo-westu-1430261891570-nic" not found, creating a new one
-+ Looking up the virtual network "coreo-westu-1430261891570-vnet"
-info:    Preparing to create new virtual network and subnet
++ Looking up hello virtual network "coreo-westu-1430261891570-vnet"
+info:    Preparing toocreate new virtual network and subnet
 / Creating a new virtual network "coreo-westu-1430261891570-vnet" [address prefix: "10.0.0.0/16"] with subnet "coreo-westu-1430261891570-sne+" [address prefix: "10.0.1.0/24"]
-+ Looking up the virtual network "coreo-westu-1430261891570-vnet"
-+ Looking up the subnet "coreo-westu-1430261891570-snet" under the virtual network "coreo-westu-1430261891570-vnet"
-info:    Found public ip parameters, trying to setup PublicIP profile
-+ Looking up the public ip "coreo-westu-1430261891570-pip"
++ Looking up hello virtual network "coreo-westu-1430261891570-vnet"
++ Looking up hello subnet "coreo-westu-1430261891570-snet" under hello virtual network "coreo-westu-1430261891570-vnet"
+info:    Found public ip parameters, trying toosetup PublicIP profile
++ Looking up hello public ip "coreo-westu-1430261891570-pip"
 info:    PublicIP with given name "coreo-westu-1430261891570-pip" not found, creating a new one
 + Creating public ip "coreo-westu-1430261891570-pip"
-+ Looking up the public ip "coreo-westu-1430261891570-pip"
++ Looking up hello public ip "coreo-westu-1430261891570-pip"
 + Creating NIC "coreo-westu-1430261891570-nic"
-+ Looking up the NIC "coreo-westu-1430261891570-nic"
++ Looking up hello NIC "coreo-westu-1430261891570-nic"
 + Creating VM "coreos"
-+ Looking up the VM "coreos"
-+ Looking up the NIC "coreo-westu-1430261891570-nic"
-+ Looking up the public ip "coreo-westu-1430261891570-pip"
++ Looking up hello VM "coreos"
++ Looking up hello NIC "coreo-westu-1430261891570-nic"
++ Looking up hello public ip "coreo-westu-1430261891570-pip"
 data:    Id                              :/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/coreos-quick/providers/Microsoft.Compute/virtualMachines/coreos
 data:    ProvisioningState               :Succeeded
 data:    Name                            :coreos
@@ -212,29 +212,29 @@ data:            FQDN                    :coreo-westu-1430261891570-pip.westus.c
 info:    vm quick-create command OK
 ```
 
-<span data-ttu-id="38bc0-231">이제 새 VM으로 전환하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-231">And away you go with your new VM.</span></span>
+<span data-ttu-id="0ec62-231">이제 새 VM으로 전환하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-231">And away you go with your new VM.</span></span>
 
-## <span data-ttu-id="38bc0-232"><a id="deploy-a-vm-in-azure-from-a-template"></a>작업: 템플릿에서 Azure의 VM 배포</span><span class="sxs-lookup"><span data-stu-id="38bc0-232"><a id="deploy-a-vm-in-azure-from-a-template"></a>Task: Deploy a VM in Azure from a template</span></span>
-<span data-ttu-id="38bc0-233">Azure CLI 및 템플릿을 사용하여 새 Azure VM을 배포하려면 이러한 섹션의 지침을 사용하세요.</span><span class="sxs-lookup"><span data-stu-id="38bc0-233">Use the instructions in these sections to deploy a new Azure VM by using a template with the Azure CLI.</span></span> <span data-ttu-id="38bc0-234">이 템플릿에서는 단일 서브넷을 사용하는 새 가상 네트워크에 단일 가상 컴퓨터를 만들고 `azure vm quick-create`와 달리 원하는 항목을 정확하게 설명하고 오류 없이 반복할 수 있도록 합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-234">This template creates a single virtual machine in a new virtual network with a single subnet, and unlike `azure vm quick-create`, enables you to describe what you want precisely and repeat it without errors.</span></span> <span data-ttu-id="38bc0-235">다음은 이 템플릿에서 만드는 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-235">Here's what this template creates:</span></span>
+## <span data-ttu-id="0ec62-232"><a id="deploy-a-vm-in-azure-from-a-template"></a>작업: 템플릿에서 Azure의 VM 배포</span><span class="sxs-lookup"><span data-stu-id="0ec62-232"><a id="deploy-a-vm-in-azure-from-a-template"></a>Task: Deploy a VM in Azure from a template</span></span>
+<span data-ttu-id="0ec62-233">이 섹션에서는 toodeploy 새 Azure VM에에서 Azure CLI hello 함께 서식 파일을 사용 하 여 hello 지침을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-233">Use hello instructions in these sections toodeploy a new Azure VM by using a template with hello Azure CLI.</span></span> <span data-ttu-id="0ec62-234">이 서식 파일은 새 가상 네트워크와는 달리 지역 및 단일 서브넷에 단일 가상 컴퓨터를 만듭니다 `azure vm quick-create`, 원하는 대로 정확 하 게 toodescribe 있습니다 수 있도록 하 고 오류 없이 반복 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-234">This template creates a single virtual machine in a new virtual network with a single subnet, and unlike `azure vm quick-create`, enables you toodescribe what you want precisely and repeat it without errors.</span></span> <span data-ttu-id="0ec62-235">다음은 이 템플릿에서 만드는 항목입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-235">Here's what this template creates:</span></span>
 
 ![](./media/virtual-machines-common-cli-deploy-templates/new-vm.png)
 
-### <a name="step-1-examine-the-json-file-for-the-template-parameters"></a><span data-ttu-id="38bc0-236">1단계: JSON 파일에서 템플릿 매개 변수 검사</span><span class="sxs-lookup"><span data-stu-id="38bc0-236">Step 1: Examine the JSON file for the template parameters</span></span>
-<span data-ttu-id="38bc0-237">다음은 템플릿에 대한 JSON 파일의 내용입니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-237">Here are the contents of the JSON file for the template.</span></span> <span data-ttu-id="38bc0-238">(템플릿은 [GitHub](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json)에도 있습니다.)</span><span class="sxs-lookup"><span data-stu-id="38bc0-238">(The template is also located in [GitHub](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json).)</span></span>
+### <a name="step-1-examine-hello-json-file-for-hello-template-parameters"></a><span data-ttu-id="0ec62-236">1 단계: hello JSON 파일 hello 템플릿 매개 변수를 검사 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-236">Step 1: Examine hello JSON file for hello template parameters</span></span>
+<span data-ttu-id="0ec62-237">다음은 hello 템플릿에 대 한 hello JSON 파일의 hello 내용입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-237">Here are hello contents of hello JSON file for hello template.</span></span> <span data-ttu-id="0ec62-238">(또한 hello 서식 파일에 있는 [GitHub](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json).)</span><span class="sxs-lookup"><span data-stu-id="0ec62-238">(hello template is also located in [GitHub](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json).)</span></span>
 
-<span data-ttu-id="38bc0-239">템플릿은 유연하므로 디자이너는 많은 매개 변수를 제공하도록 선택하거나 좀더 수정된 템플릿을 만들어 몇 개의 매개 변수만 제공하도록 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-239">Templates are flexible, so the designer may have chosen to give you lots of parameters or chosen to offer only a few by creating a template that is more fixed.</span></span> <span data-ttu-id="38bc0-240">템플릿을 매개 변수로 전달하는 데 필요한 정보를 수집하려면 템플릿 파일(이 항목에는 아래의 인라인에 템플릿이 있음)을 열고 **매개 변수** 값을 검사합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-240">In order to collect the information you need to pass the template as parameters, open the template file (this topic has a template inline, below) and examine the **parameters** values.</span></span>
+<span data-ttu-id="0ec62-239">Hello 디자이너 toogive 많은 매개 변수를 선택 또는 선택 toooffer 더 수정 하는 템플릿을 만들어 일부만 되었을 하므로 템플릿은 유연 하 고,입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-239">Templates are flexible, so hello designer may have chosen toogive you lots of parameters or chosen toooffer only a few by creating a template that is more fixed.</span></span> <span data-ttu-id="0ec62-240">순서 toocollect hello 정보에서 매개 변수로 toopass hello 템플릿이 필요 hello 템플릿 파일 (이 항목 아래 템플릿 인라인 있음)을 열고 확인 hello **매개 변수** 값입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-240">In order toocollect hello information you need toopass hello template as parameters, open hello template file (this topic has a template inline, below) and examine hello **parameters** values.</span></span>
 
-<span data-ttu-id="38bc0-241">이 경우 아래의 템플릿에서 다음 사항을 요청합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-241">In this case, the template below will ask for:</span></span>
+<span data-ttu-id="0ec62-241">이 경우 hello 템플릿이 묻는 메시지가 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-241">In this case, hello template below will ask for:</span></span>
 
-* <span data-ttu-id="38bc0-242">고유한 저장소 계정 이름</span><span class="sxs-lookup"><span data-stu-id="38bc0-242">A unique storage account name.</span></span>
-* <span data-ttu-id="38bc0-243">VM의 관리 사용자 이름</span><span class="sxs-lookup"><span data-stu-id="38bc0-243">An admin user name for the VM.</span></span>
-* <span data-ttu-id="38bc0-244">암호</span><span class="sxs-lookup"><span data-stu-id="38bc0-244">A password.</span></span>
-* <span data-ttu-id="38bc0-245">사용할 외부 세계의 도메인 이름</span><span class="sxs-lookup"><span data-stu-id="38bc0-245">A domain name for the outside world to use.</span></span>
-* <span data-ttu-id="38bc0-246">Ubuntu Server 버전 번호 -- 목록 중 하나만 허용</span><span class="sxs-lookup"><span data-stu-id="38bc0-246">An Ubuntu Server version number -- but it will accept only one of a list.</span></span>
+* <span data-ttu-id="0ec62-242">고유한 저장소 계정 이름</span><span class="sxs-lookup"><span data-stu-id="0ec62-242">A unique storage account name.</span></span>
+* <span data-ttu-id="0ec62-243">Hello VM에 대 한 관리자 사용자 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-243">An admin user name for hello VM.</span></span>
+* <span data-ttu-id="0ec62-244">암호</span><span class="sxs-lookup"><span data-stu-id="0ec62-244">A password.</span></span>
+* <span data-ttu-id="0ec62-245">Hello world toouse 외부에 대 한 도메인 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-245">A domain name for hello outside world toouse.</span></span>
+* <span data-ttu-id="0ec62-246">Ubuntu Server 버전 번호 -- 목록 중 하나만 허용</span><span class="sxs-lookup"><span data-stu-id="0ec62-246">An Ubuntu Server version number -- but it will accept only one of a list.</span></span>
 
-<span data-ttu-id="38bc0-247">자세한 내용은 [사용자 이름 및 암호 요구 사항](../articles/virtual-machines/linux/faq.md#what-are-the-username-requirements-when-creating-a-vm)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="38bc0-247">See more about [username and password requirements](../articles/virtual-machines/linux/faq.md#what-are-the-username-requirements-when-creating-a-vm).</span></span>
+<span data-ttu-id="0ec62-247">자세한 내용은 [사용자 이름 및 암호 요구 사항](../articles/virtual-machines/linux/faq.md#what-are-the-username-requirements-when-creating-a-vm)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="0ec62-247">See more about [username and password requirements](../articles/virtual-machines/linux/faq.md#what-are-the-username-requirements-when-creating-a-vm).</span></span>
 
-<span data-ttu-id="38bc0-248">이러한 값을 확인했으면 해당 그룹을 만들고 Azure 구독에 이 템플릿을 배포할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-248">Once you decide on these values, you're ready to create a group for and deploy this template into your Azure subscription.</span></span>
+<span data-ttu-id="0ec62-248">이러한 값을 사용 하도록 결정 되 면 준비 toocreate에 대 한 그룹 하 고 Azure 구독에이 서식 파일을 배포 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-248">Once you decide on these values, you're ready toocreate a group for and deploy this template into your Azure subscription.</span></span>
 
 ```json
 {
@@ -244,25 +244,25 @@ info:    vm quick-create command OK
     "newStorageAccountName": {
     "type": "string",
     "metadata": {
-        "description": "Unique DNS name for the storage account where the virtual machine's disks will be placed."
+        "description": "Unique DNS name for hello storage account where hello virtual machine's disks will be placed."
     }
     },
     "adminUsername": {
     "type": "string",
     "metadata": {
-        "description": "User name for the virtual machine."
+        "description": "User name for hello virtual machine."
     }
     },
     "adminPassword": {
     "type": "securestring",
     "metadata": {
-        "description": "Password for the virtual machine."
+        "description": "Password for hello virtual machine."
     }
     },
     "dnsNameForPublicIP": {
     "type": "string",
     "metadata": {
-        "description": "Unique DNS name for the public IP used to access the virtual machine."
+        "description": "Unique DNS name for hello public IP used tooaccess hello virtual machine."
     }
     },
     "ubuntuOSVersion": {
@@ -274,7 +274,7 @@ info:    vm quick-create command OK
         "15.04"
     ],
     "metadata": {
-        "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 12.04.5-LTS, 14.04.2-LTS, 15.04."
+        "description": "hello Ubuntu version for hello VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 12.04.5-LTS, 14.04.2-LTS, 15.04."
     }
     }
 },
@@ -413,10 +413,10 @@ info:    vm quick-create command OK
 }
 ```
 
-### <a name="step-2-create-the-virtual-machine-by-using-the-template"></a><span data-ttu-id="38bc0-249">2단계: 템플릿을 사용하여 가상 컴퓨터 만들기</span><span class="sxs-lookup"><span data-stu-id="38bc0-249">Step 2: Create the virtual machine by using the template</span></span>
-<span data-ttu-id="38bc0-250">매개 변수 값을 준비했으면 템플릿 배포를 위한 리소스 그룹을 만든 다음 템플릿을 배포해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-250">Once you have your parameter values ready, you must create a resource group for your template deployment and then deploy the template.</span></span>
+### <a name="step-2-create-hello-virtual-machine-by-using-hello-template"></a><span data-ttu-id="0ec62-249">2 단계: hello 템플릿을 사용 하 여 hello 가상 컴퓨터 만들기</span><span class="sxs-lookup"><span data-stu-id="0ec62-249">Step 2: Create hello virtual machine by using hello template</span></span>
+<span data-ttu-id="0ec62-250">매개 변수 값을 준비 했으면 템플릿 배포에 대 한 리소스 그룹 만들기 하며 다음 hello 서식 파일을 배포 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-250">Once you have your parameter values ready, you must create a resource group for your template deployment and then deploy hello template.</span></span>
 
-<span data-ttu-id="38bc0-251">리소스 그룹을 만들려면 원하는 그룹 이름 및 배포할 데이터 센터 위치를 사용하여 `azure group create <group name> <location>` 을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-251">To create the resource group, type `azure group create <group name> <location>` with the name of the group you want and the datacenter location into which you want to deploy.</span></span> <span data-ttu-id="38bc0-252">이 작업은 신속하게 수행됩니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-252">This happens quickly:</span></span>
+<span data-ttu-id="0ec62-251">toocreate hello 리소스 그룹으로 형식 `azure group create <group name> <location>` hello 그룹 및 toodeploy 넣을 hello 데이터 센터 위치 hello 이름의 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-251">toocreate hello resource group, type `azure group create <group name> <location>` with hello name of hello group you want and hello datacenter location into which you want toodeploy.</span></span> <span data-ttu-id="0ec62-252">이 작업은 신속하게 수행됩니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-252">This happens quickly:</span></span>
 
 ```azurecli
 azure group create myResourceGroup westus
@@ -433,28 +433,28 @@ data:
 info:    group create command OK
 ```
 
-<span data-ttu-id="38bc0-253">이제 배포를 만들려면 `azure group deployment create` 를 호출하고 다음을 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-253">Now to create the deployment, call `azure group deployment create` and pass:</span></span>
+<span data-ttu-id="0ec62-253">지금은 toocreate hello 배포, 호출 `azure group deployment create` 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-253">Now toocreate hello deployment, call `azure group deployment create` and pass:</span></span>
 
-* <span data-ttu-id="38bc0-254">템플릿 파일(위의 JSON 템플릿을 로컬 파일에 저장한 경우)</span><span class="sxs-lookup"><span data-stu-id="38bc0-254">The template file (if you saved the above JSON template to a local file).</span></span>
-* <span data-ttu-id="38bc0-255">템플릿 URI(Github 또는 다른 웹 주소에 있는 파일을 가리키려는 경우)</span><span class="sxs-lookup"><span data-stu-id="38bc0-255">A template URI (if you want to point at the file in GitHub or some other web address).</span></span>
-* <span data-ttu-id="38bc0-256">배포에 사용할 리소스 그룹</span><span class="sxs-lookup"><span data-stu-id="38bc0-256">The resource group into which you want to deploy.</span></span>
-* <span data-ttu-id="38bc0-257">배포 이름(선택 사항)</span><span class="sxs-lookup"><span data-stu-id="38bc0-257">An optional deployment name.</span></span>
+* <span data-ttu-id="0ec62-254">hello 템플릿 파일 (JSON 템플릿 tooa 로컬 파일 위에 hello 저장) 하는 경우입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-254">hello template file (if you saved hello above JSON template tooa local file).</span></span>
+* <span data-ttu-id="0ec62-255">(원할 경우 hello 파일 GitHub 또는 일부 다른 웹 주소에 toopoint) URI 템플릿.</span><span class="sxs-lookup"><span data-stu-id="0ec62-255">A template URI (if you want toopoint at hello file in GitHub or some other web address).</span></span>
+* <span data-ttu-id="0ec62-256">toodeploy 넣을 hello 리소스 그룹입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-256">hello resource group into which you want toodeploy.</span></span>
+* <span data-ttu-id="0ec62-257">배포 이름(선택 사항)</span><span class="sxs-lookup"><span data-stu-id="0ec62-257">An optional deployment name.</span></span>
 
-<span data-ttu-id="38bc0-258">JSON 파일의 "parameters" 섹션에 매개 변수 값을 제공하라는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-258">You will be prompted to supply the values of parameters in the "parameters" section of the JSON file.</span></span> <span data-ttu-id="38bc0-259">모든 매개 변수 값을 지정하면 배포가 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-259">When you have specified all the parameter values, your deployment will begin.</span></span>
+<span data-ttu-id="0ec62-258">입력 정보 요청된 toosupply hello 매개 변수 값의 hello JSON 파일의 hello "parameters" 섹션에 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-258">You will be prompted toosupply hello values of parameters in hello "parameters" section of hello JSON file.</span></span> <span data-ttu-id="0ec62-259">모든 hello 매개 변수 값을 지정한 경우 배포 시작 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-259">When you have specified all hello parameter values, your deployment will begin.</span></span>
 
-<span data-ttu-id="38bc0-260">다음은 예제입니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-260">Here is an example:</span></span>
+<span data-ttu-id="0ec62-260">다음은 예제입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-260">Here is an example:</span></span>
 
 ```azurecli
 azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json myResourceGroup firstDeployment
 info:    Executing command group deployment create
-info:    Supply values for the following parameters
+info:    Supply values for hello following parameters
 newStorageAccountName: storageaccount
 adminUsername: ops
 adminPassword: password
 dnsNameForPublicIP: newdomainname
 ```
 
-<span data-ttu-id="38bc0-261">다음과 같은 유형의 정보가 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-261">You will receive the following type of information:</span></span>
+<span data-ttu-id="0ec62-261">Hello 다음 유형의 정보를 받게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-261">You will receive hello following type of information:</span></span>
 
 ```azurecli
 + Initializing template configurations and parameters
@@ -464,7 +464,7 @@ info:    Created template deployment "firstDeployment"
 info:    Registering provider microsoft.storage
 info:    Registering provider microsoft.network
 info:    Registering provider microsoft.compute
-+ Waiting for deployment to complete
++ Waiting for deployment toocomplete
 data:    DeploymentName     : firstDeployment
 data:    ResourceGroupName  : myResourceGroup
 data:    ProvisioningState  : Succeeded
@@ -483,13 +483,13 @@ info:    group deployment create command OK
 ```
 
 
-## <span data-ttu-id="38bc0-262"><a id="create-a-custom-vm-image"></a>작업: 사용자 지정 VM 이미지 만들기</span><span class="sxs-lookup"><span data-stu-id="38bc0-262"><a id="create-a-custom-vm-image"></a>Task: Create a custom VM image</span></span>
-<span data-ttu-id="38bc0-263">위에서 템플릿의 기본 사용법을 확인했으므로 이제 유사한 지침을 사용하여 Azure의 특정 .vhd 파일에서 Azure CLI를 통해 템플릿을 사용하여 사용자 지정 VM을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-263">You've seen the basic usage of templates above, so now we can use similar instructions to create a custom VM from a specific .vhd file in Azure by using a template via the Azure CLI.</span></span> <span data-ttu-id="38bc0-264">여기서 차이점은 이 템플릿의 경우 특정 VHD(가상 하드 디스크)에서 단일 가상 컴퓨터를 만든다는 점입니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-264">The difference here is that this template creates a single virtual machine from a specified virtual hard disk (VHD).</span></span>
+## <span data-ttu-id="0ec62-262"><a id="create-a-custom-vm-image"></a>작업: 사용자 지정 VM 이미지 만들기</span><span class="sxs-lookup"><span data-stu-id="0ec62-262"><a id="create-a-custom-vm-image"></a>Task: Create a custom VM image</span></span>
+<span data-ttu-id="0ec62-263">위의 서식 파일의 기본 사용법 hello를 살펴 보았으며, 따라서 म 수를 사용 하 여 비슷한 지침 toocreate 사용자 지정 VM Azure에서 특정.vhd 파일 로부터 통해 템플릿을 사용 하 여 hello Azure CLI 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-263">You've seen hello basic usage of templates above, so now we can use similar instructions toocreate a custom VM from a specific .vhd file in Azure by using a template via hello Azure CLI.</span></span> <span data-ttu-id="0ec62-264">hello 차이점은이 템플릿은 지정 된 가상 하드 디스크 (VHD)에서 단일 가상 컴퓨터를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-264">hello difference here is that this template creates a single virtual machine from a specified virtual hard disk (VHD).</span></span>
 
-### <a name="step-1-examine-the-json-file-for-the-template"></a><span data-ttu-id="38bc0-265">1단계: JSON 파일에서 템플릿 검사</span><span class="sxs-lookup"><span data-stu-id="38bc0-265">Step 1: Examine the JSON file for the template</span></span>
-<span data-ttu-id="38bc0-266">다음은 이 섹션에서 예로 사용하는 템플릿에 대한 JSON 파일의 내용입니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-266">Here are the contents of the JSON file for the template that this section uses as an example.</span></span> <span data-ttu-id="38bc0-267">(템플릿은 [GitHub](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-from-user-image/azuredeploy.json)에도 있습니다.)</span><span class="sxs-lookup"><span data-stu-id="38bc0-267">(The template is also located in [GitHub](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-from-user-image/azuredeploy.json).)</span></span>
+### <a name="step-1-examine-hello-json-file-for-hello-template"></a><span data-ttu-id="0ec62-265">Hello 서식 파일에 대 한 hello JSON 파일을 검사 하는 1 단계:</span><span class="sxs-lookup"><span data-stu-id="0ec62-265">Step 1: Examine hello JSON file for hello template</span></span>
+<span data-ttu-id="0ec62-266">예를 들어이 섹션을 사용 하는 hello 서식 파일에 대 한 hello JSON 파일의 hello 콘텐츠는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-266">Here are hello contents of hello JSON file for hello template that this section uses as an example.</span></span> <span data-ttu-id="0ec62-267">(또한 hello 서식 파일에 있는 [GitHub](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-from-user-image/azuredeploy.json).)</span><span class="sxs-lookup"><span data-stu-id="0ec62-267">(hello template is also located in [GitHub](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-from-user-image/azuredeploy.json).)</span></span>
 
-<span data-ttu-id="38bc0-268">또한 기본값이 없는 매개 변수에 대해 입력할 값을 찾아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-268">Again, you will need to find the values you want to enter for the parameters that do not have default values.</span></span> <span data-ttu-id="38bc0-269">`azure group deployment create` 명령을 실행하면 해당 값을 입력하라는 메시지가 Azure CLI에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-269">When you run the `azure group deployment create` command, the Azure CLI will prompt you to enter those values.</span></span>
+<span data-ttu-id="0ec62-268">다시, 기본값이 없는 hello 매개 변수에 대 한 tooenter 원하는 toofind hello 값이 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-268">Again, you will need toofind hello values you want tooenter for hello parameters that do not have default values.</span></span> <span data-ttu-id="0ec62-269">Hello를 실행 하는 경우 `azure group deployment create` 명령, Azure CLI hello 라는 tooenter 하면 해당 값 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-269">When you run hello `azure group deployment create` command, hello Azure CLI will prompt you tooenter those values.</span></span>
 
 ```json
 {
@@ -674,15 +674,15 @@ info:    group deployment create command OK
 }
 ```
 
-### <a name="step-2-obtain-the-vhd"></a><span data-ttu-id="38bc0-270">2단계: VHD 얻기</span><span class="sxs-lookup"><span data-stu-id="38bc0-270">Step 2: Obtain the VHD</span></span>
-<span data-ttu-id="38bc0-271">이 경우 .vhd가 반드시 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-271">Obviously, you'll need a .vhd for this.</span></span> <span data-ttu-id="38bc0-272">이미 Azure에 있는 VHD를 사용하거나 업로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-272">You can use one you already have in Azure, or you can upload one.</span></span>
+### <a name="step-2-obtain-hello-vhd"></a><span data-ttu-id="0ec62-270">2 단계: hello VHD 받기</span><span class="sxs-lookup"><span data-stu-id="0ec62-270">Step 2: Obtain hello VHD</span></span>
+<span data-ttu-id="0ec62-271">이 경우 .vhd가 반드시 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-271">Obviously, you'll need a .vhd for this.</span></span> <span data-ttu-id="0ec62-272">이미 Azure에 있는 VHD를 사용하거나 업로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-272">You can use one you already have in Azure, or you can upload one.</span></span>
 
-<span data-ttu-id="38bc0-273">Windows 기반 가상 컴퓨터의 경우 [Windows Server VHD를 만들어서 Azure에 업로드](../articles/virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="38bc0-273">For a Windows-based virtual machine, see [Create and upload a Windows Server VHD to Azure](../articles/virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).</span></span>
+<span data-ttu-id="0ec62-273">Windows 기반 가상 컴퓨터에 대 한 참조 [만들기 및 업로드 Windows Server VHD tooAzure](../articles/virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-273">For a Windows-based virtual machine, see [Create and upload a Windows Server VHD tooAzure](../articles/virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).</span></span>
 
-<span data-ttu-id="38bc0-274">Linux 기반 가상 컴퓨터의 경우 [Linux 운영 체제를 포함하는 가상 하드 디스크 만들기 및 업로드](../articles/virtual-machines/linux/classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="38bc0-274">For a Linux-based virtual machine, see [Creating and uploading a virtual hard disk that contains the Linux operating system](../articles/virtual-machines/linux/classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).</span></span>
+<span data-ttu-id="0ec62-274">Linux 기반 가상 컴퓨터에 대 한 참조 [만들기 및 업로드 hello Linux 운영 체제를 포함 하는 가상 하드 디스크](../articles/virtual-machines/linux/classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-274">For a Linux-based virtual machine, see [Creating and uploading a virtual hard disk that contains hello Linux operating system](../articles/virtual-machines/linux/classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).</span></span>
 
-### <a name="step-3-create-the-virtual-machine-by-using-the-template"></a><span data-ttu-id="38bc0-275">3단계: 템플릿을 사용하여 가상 컴퓨터 만들기</span><span class="sxs-lookup"><span data-stu-id="38bc0-275">Step 3: Create the virtual machine by using the template</span></span>
-<span data-ttu-id="38bc0-276">이제 .vhd에 기반을 둔 새 가상 컴퓨터를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-276">Now you're ready to create a new virtual machine based on the .vhd.</span></span> <span data-ttu-id="38bc0-277">`azure group create <location>`을 사용하여 배포할 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-277">Create a group to deploy into, by using `azure group create <location>`:</span></span>
+### <a name="step-3-create-hello-virtual-machine-by-using-hello-template"></a><span data-ttu-id="0ec62-275">3 단계: hello 템플릿을 사용 하 여 hello 가상 컴퓨터 만들기</span><span class="sxs-lookup"><span data-stu-id="0ec62-275">Step 3: Create hello virtual machine by using hello template</span></span>
+<span data-ttu-id="0ec62-276">이제 준비 toocreate hello.vhd에 따라 새 가상 컴퓨터.</span><span class="sxs-lookup"><span data-stu-id="0ec62-276">Now you're ready toocreate a new virtual machine based on hello .vhd.</span></span> <span data-ttu-id="0ec62-277">사용 하 여, 그룹 toodeploy 만들기 `azure group create <location>`:</span><span class="sxs-lookup"><span data-stu-id="0ec62-277">Create a group toodeploy into, by using `azure group create <location>`:</span></span>
 
 ```azurecli
 azure group create myResourceGroupUser eastus
@@ -699,7 +699,7 @@ data:
 info:    group create command OK
 ```
 
-<span data-ttu-id="38bc0-278">그런 다음 `--template-uri` 옵션을 사용하여 템플릿에서 직접 호출하여 배포를 만들거나 `--template-file` 옵션을 사용하여 로컬에 저장한 파일을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-278">Then create the deployment by using the `--template-uri` option to call in the template directly (or you can use the `--template-file` option to use a file that you have saved locally).</span></span> <span data-ttu-id="38bc0-279">템플릿에는 기본값이 지정되어 있으므로 몇 가지 항목만 입력하면 됩니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-279">Note that because the template has defaults specified, you are prompted for only a few things.</span></span> <span data-ttu-id="38bc0-280">템플릿을 다른 위치에 배포하는 경우 기본값에서 이름이 충돌하는 경우를 확인할 수 있습니다(특히 직접 만든 DNS 이름).</span><span class="sxs-lookup"><span data-stu-id="38bc0-280">If you deploy the template in different places, you may find that some naming collisions occur with the default values (particularly the DNS name you create).</span></span>
+<span data-ttu-id="0ec62-278">그런 다음 hello를 사용 하 여 hello 배포를 만들 `--template-uri` hello 템플릿에서 직접 옵션 toocall (하거나 hello를 사용할 수 있습니다 `--template-file` 옵션 toouse 로컬로 저장 된 파일).</span><span class="sxs-lookup"><span data-stu-id="0ec62-278">Then create hello deployment by using hello `--template-uri` option toocall in hello template directly (or you can use hello `--template-file` option toouse a file that you have saved locally).</span></span> <span data-ttu-id="0ec62-279">Hello 템플릿에 지정한 기본값을 사용 하므로 메시지가 표시 됩니다만 몇 가지 사항에 대 한 참고 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-279">Note that because hello template has defaults specified, you are prompted for only a few things.</span></span> <span data-ttu-id="0ec62-280">서로 다른 위치에서 hello 서식 파일을 배포 하는 경우 일부 명명 충돌과 hello 기본값 (특히 hello DNS 이름 만들면) 헤드로 알 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-280">If you deploy hello template in different places, you may find that some naming collisions occur with hello default values (particularly hello DNS name you create).</span></span>
 
 ```azurecli
 azure group deployment create \
@@ -707,14 +707,14 @@ azure group deployment create \
 > myResourceGroup \
 > customVhdDeployment
 info:    Executing command group deployment create
-info:    Supply values for the following parameters
+info:    Supply values for hello following parameters
 adminUserName: ops
 adminPassword: password
 osType: linux
 subscriptionId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
 
-<span data-ttu-id="38bc0-281">출력은 다음과 같이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-281">Output looks something like the following:</span></span>
+<span data-ttu-id="0ec62-281">출력은 hello 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-281">Output looks something like hello following:</span></span>
 
 ```azurecli
 + Initializing template configurations and parameters
@@ -723,7 +723,7 @@ info:    Created template deployment "customVhdDeployment"
 + Registering providers
 info:    Registering provider microsoft.network
 info:    Registering provider microsoft.compute
-+ Waiting for deployment to complete
++ Waiting for deployment toocomplete
 error:   Deployment provisioning state was not successful
 data:    DeploymentName     : customVhdDeployment
 data:    ResourceGroupName  : myResourceGroupUser
@@ -751,15 +751,15 @@ data:    nicName                        String        myNIC
 info:    group deployment create command OK
 ```
 
-## <span data-ttu-id="38bc0-282"><a id="deploy-a-multi-vm-application-that-uses-a-virtual-network-and-an-external-load-balancer"></a>작업: 가상 네트워크 및 외부 부하 분산 장치를 사용하는 여러 VM 응용 프로그램 배포</span><span class="sxs-lookup"><span data-stu-id="38bc0-282"><a id="deploy-a-multi-vm-application-that-uses-a-virtual-network-and-an-external-load-balancer"></a>Task: Deploy a multi-VM application that uses a virtual network and an external load balancer</span></span>
-<span data-ttu-id="38bc0-283">이 템플릿에서는 하나의 부하 분산 장치 아래에 2개의 가상 컴퓨터를 만들고 포트 80에서 부하 분산 규칙을 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-283">This template allows you to create two virtual machines under a load balancer and configure a load-balancing rule on Port 80.</span></span> <span data-ttu-id="38bc0-284">또한 이 템플릿에서는 저장소 계정, 가상 네트워크, 공용 IP 주소, 가용성 집합 및 네트워크 인터페이스를 배포합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-284">This template also deploys a storage account, virtual network, public IP address, availability set, and network interfaces.</span></span>
+## <span data-ttu-id="0ec62-282"><a id="deploy-a-multi-vm-application-that-uses-a-virtual-network-and-an-external-load-balancer"></a>작업: 가상 네트워크 및 외부 부하 분산 장치를 사용하는 여러 VM 응용 프로그램 배포</span><span class="sxs-lookup"><span data-stu-id="0ec62-282"><a id="deploy-a-multi-vm-application-that-uses-a-virtual-network-and-an-external-load-balancer"></a>Task: Deploy a multi-VM application that uses a virtual network and an external load balancer</span></span>
+<span data-ttu-id="0ec62-283">이 서식 파일에는 포트 80에는 부하 분산 규칙을 구성 및 부하 분산 장치 아래의 toocreate 두 개의 가상 컴퓨터가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-283">This template allows you toocreate two virtual machines under a load balancer and configure a load-balancing rule on Port 80.</span></span> <span data-ttu-id="0ec62-284">또한 이 템플릿에서는 저장소 계정, 가상 네트워크, 공용 IP 주소, 가용성 집합 및 네트워크 인터페이스를 배포합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-284">This template also deploys a storage account, virtual network, public IP address, availability set, and network interfaces.</span></span>
 
 ![](./media/virtual-machines-common-cli-deploy-templates/multivmextlb.png)
 
-<span data-ttu-id="38bc0-285">Azure PowerShell 명령을 통해 Github 템플릿 리포지토리의 리소스 관리자 템플릿을 사용하여 가상 네트워크 및 부하 분산 장치를 사용하는 여러 VM 응용 프로그램을 배포하려면 다음 단계를 수행하세요.</span><span class="sxs-lookup"><span data-stu-id="38bc0-285">Follow these steps to deploy a multi-VM application that uses a virtual network and a load balancer by using a Resource Manager template in the GitHub template repository via Azure PowerShell commands.</span></span>
+<span data-ttu-id="0ec62-285">이러한 단계 toodeploy Azure PowerShell 명령을 통해 hello GitHub 서식 파일 저장소에서 리소스 관리자 템플릿을 사용 하 여 가상 네트워크 및 부하 분산 장치를 사용 하는 다중 VM 응용 프로그램을 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-285">Follow these steps toodeploy a multi-VM application that uses a virtual network and a load balancer by using a Resource Manager template in hello GitHub template repository via Azure PowerShell commands.</span></span>
 
-### <a name="step-1-examine-the-json-file-for-the-template"></a><span data-ttu-id="38bc0-286">1단계: JSON 파일에서 템플릿 검사</span><span class="sxs-lookup"><span data-stu-id="38bc0-286">Step 1: Examine the JSON file for the template</span></span>
-<span data-ttu-id="38bc0-287">다음은 템플릿에 대한 JSON 파일의 내용입니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-287">Here are the contents of the JSON file for the template.</span></span> <span data-ttu-id="38bc0-288">최신 버전은 [템플릿의 GitHub 리포지토리](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.json)에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-288">If you want the most recent version, it's located [at the GitHub repository for templates](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.json).</span></span> <span data-ttu-id="38bc0-289">이 항목에서는 `--template-uri` 스위치를 사용하여 템플릿에서 호출하지만 `--template-file` 스위치를 사용하여 로컬 버전을 전달할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-289">This topic uses the `--template-uri` switch to call in the template, but you can also use the `--template-file` switch to pass a local version.</span></span>
+### <a name="step-1-examine-hello-json-file-for-hello-template"></a><span data-ttu-id="0ec62-286">Hello 서식 파일에 대 한 hello JSON 파일을 검사 하는 1 단계:</span><span class="sxs-lookup"><span data-stu-id="0ec62-286">Step 1: Examine hello JSON file for hello template</span></span>
+<span data-ttu-id="0ec62-287">다음은 hello 템플릿에 대 한 hello JSON 파일의 hello 내용입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-287">Here are hello contents of hello JSON file for hello template.</span></span> <span data-ttu-id="0ec62-288">Hello 가장 최신 버전을 원하는 경우 것 찾았으며 [서식 파일에 대 한 hello GitHub 리포지토리에서](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.json)합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-288">If you want hello most recent version, it's located [at hello GitHub repository for templates](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.json).</span></span> <span data-ttu-id="0ec62-289">이 항목에서는 hello `--template-uri` hello 서식 파일에서 스위치 toocall hello 사용할 수도 `--template-file` toopass 로컬 버전을 전환 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-289">This topic uses hello `--template-uri` switch toocall in hello template, but you can also use hello `--template-file` switch toopass a local version.</span></span>
 
 ```json
 {
@@ -807,7 +807,7 @@ info:    group deployment create command OK
             "type": "string",
             "defaultValue": "myVM",
             "metadata": {
-                "description": "Prefix to use for VM names"
+                "description": "Prefix toouse for VM names"
             }
         },
         "vmSourceImageName": {
@@ -846,7 +846,7 @@ info:    group deployment create command OK
             "type": "string",
             "defaultValue": "Standard_A1",
             "metadata": {
-                "description": "Size of the VM"
+                "description": "Size of hello VM"
             }
         }
     },
@@ -1094,8 +1094,8 @@ info:    group deployment create command OK
 }
 ```
 
-### <a name="step-2-create-the-deployment-by-using-the-template"></a><span data-ttu-id="38bc0-290">2단계: 템플릿을 사용하여 배포 만들기</span><span class="sxs-lookup"><span data-stu-id="38bc0-290">Step 2: Create the deployment by using the template</span></span>
-<span data-ttu-id="38bc0-291">`azure group create <location>`을 사용하여 템플릿에 대한 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-291">Create a resource group for the template by using `azure group create <location>`.</span></span> <span data-ttu-id="38bc0-292">그런 다음 `azure group deployment create` 을 사용하여 리소스 그룹, 배포 이름을 전달하고 기본값이 없는 템플릿의 매개 변수에 대한 프롬프트에 응답하여 해당 리소스 그룹에 대한 배포를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-292">Then, create a deployment into that resource group by using `azure group deployment create` and passing the resource group, passing a deployment name, and answering the prompts for parameters in the template that did not have default values.</span></span>
+### <a name="step-2-create-hello-deployment-by-using-hello-template"></a><span data-ttu-id="0ec62-290">2 단계: hello 템플릿을 사용 하 여 hello 배포 만들기</span><span class="sxs-lookup"><span data-stu-id="0ec62-290">Step 2: Create hello deployment by using hello template</span></span>
+<span data-ttu-id="0ec62-291">사용 하 여 hello 서식 파일에 대 한 리소스 그룹 만들기 `azure group create <location>`합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-291">Create a resource group for hello template by using `azure group create <location>`.</span></span> <span data-ttu-id="0ec62-292">그런 다음 사용 하 여 해당 리소스 그룹에 배포를 만드는 `azure group deployment create` 하 고 전달 hello 리소스 그룹, 배포 이름을 전달 하 고 매개 변수에 기본값을 갖지 않은 hello 서식 파일에 대 한 hello 메시지에 응답 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-292">Then, create a deployment into that resource group by using `azure group deployment create` and passing hello resource group, passing a deployment name, and answering hello prompts for parameters in hello template that did not have default values.</span></span>
 
 ```azurecli
 azure group create lbgroup westus
@@ -1112,7 +1112,7 @@ data:
 info:    group create command OK
 ```
 
-<span data-ttu-id="38bc0-293">이제 `azure group deployment create` 명령 및 `--template-uri` 옵션을 사용하여 템플릿을 배포합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-293">Now use the `azure group deployment create` command and the `--template-uri` option to deploy the template.</span></span> <span data-ttu-id="38bc0-294">아래와 같이 메시지가 표시되면 매개 변수 값을 입력할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-294">Be ready with your parameter values when it prompts you, as shown below.</span></span>
+<span data-ttu-id="0ec62-293">이제 hello를 사용 하 여 `azure group deployment create` 명령과 hello `--template-uri` toodeploy hello 서식 파일 옵션입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-293">Now use hello `azure group deployment create` command and hello `--template-uri` option toodeploy hello template.</span></span> <span data-ttu-id="0ec62-294">아래와 같이 메시지가 표시되면 매개 변수 값을 입력할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-294">Be ready with your parameter values when it prompts you, as shown below.</span></span>
 
 ```azurecli
 azure group deployment create \
@@ -1120,7 +1120,7 @@ azure group deployment create \
 > lbgroup \
 > newdeployment
 info:    Executing command group deployment create
-info:    Supply values for the following parameters
+info:    Supply values for hello following parameters
 location: westus
 newStorageAccountName: storagename
 adminUsername: ops
@@ -1133,7 +1133,7 @@ info:    Created template deployment "newdeployment"
 info:    Registering provider microsoft.storage
 info:    Registering provider microsoft.compute
 info:    Registering provider microsoft.network
-+ Waiting for deployment to complete
++ Waiting for deployment toocomplete
 data:    DeploymentName     : newdeployment
 data:    ResourceGroupName  : lbgroup
 data:    ProvisioningState  : Succeeded
@@ -1161,10 +1161,10 @@ data:    vmSize                 String        Standard_A1
 info:    group deployment create command OK
 ```
 
-<span data-ttu-id="38bc0-295">이 템플릿은 Windows Server 이미지를 배포하지만 Linux 이미지로 간단하게 대체할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-295">Note that this template deploys a Windows Server image; however, it could easily be replaced by any Linux image.</span></span> <span data-ttu-id="38bc0-296">여러 swarm 관리자로 Docker Cluster를 만들려고 하시나요?</span><span class="sxs-lookup"><span data-stu-id="38bc0-296">Want to create a Docker cluster with multiple swarm managers?</span></span> <span data-ttu-id="38bc0-297">[가능합니다](https://azure.microsoft.com/documentation/templates/docker-swarm-cluster/).</span><span class="sxs-lookup"><span data-stu-id="38bc0-297">[You can do it](https://azure.microsoft.com/documentation/templates/docker-swarm-cluster/).</span></span>
+<span data-ttu-id="0ec62-295">이 템플릿은 Windows Server 이미지를 배포하지만 Linux 이미지로 간단하게 대체할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-295">Note that this template deploys a Windows Server image; however, it could easily be replaced by any Linux image.</span></span> <span data-ttu-id="0ec62-296">여러 웜 관리자와 toocreate Docker 클러스터를 선택 하십시오.</span><span class="sxs-lookup"><span data-stu-id="0ec62-296">Want toocreate a Docker cluster with multiple swarm managers?</span></span> <span data-ttu-id="0ec62-297">[가능합니다](https://azure.microsoft.com/documentation/templates/docker-swarm-cluster/).</span><span class="sxs-lookup"><span data-stu-id="0ec62-297">[You can do it](https://azure.microsoft.com/documentation/templates/docker-swarm-cluster/).</span></span>
 
-## <span data-ttu-id="38bc0-298"><a id="remove-a-resource-group"></a>작업: 리소스 그룹 제거</span><span class="sxs-lookup"><span data-stu-id="38bc0-298"><a id="remove-a-resource-group"></a>Task: Remove a resource group</span></span>
-<span data-ttu-id="38bc0-299">리소스 그룹에 다시 배포할 수 있습니다. 그러나 사용을 마친 경우에는 `azure group delete <group name>`을 사용하여 삭제합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-299">Remember that you can redeploy to a resource group, but if you are done with one, you can delete it by using `azure group delete <group name>`.</span></span>
+## <span data-ttu-id="0ec62-298"><a id="remove-a-resource-group"></a>작업: 리소스 그룹 제거</span><span class="sxs-lookup"><span data-stu-id="0ec62-298"><a id="remove-a-resource-group"></a>Task: Remove a resource group</span></span>
+<span data-ttu-id="0ec62-299">Tooa 리소스 그룹을 다시 배포할 수 없지만 하나 완료 된 후 사용 하 여 삭제할 수 있습니다 `azure group delete <group name>`합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-299">Remember that you can redeploy tooa resource group, but if you are done with one, you can delete it by using `azure group delete <group name>`.</span></span>
 
 ```azurecli
 azure group delete myResourceGroup
@@ -1174,25 +1174,25 @@ Delete resource group myResourceGroup? [y/n] y
 info:    group delete command OK
 ```
 
-## <span data-ttu-id="38bc0-300"><a id="show-the-log-for-a-resource-group-deployment"></a>작업: 리소스 그룹 배포에 대한 로그 표시</span><span class="sxs-lookup"><span data-stu-id="38bc0-300"><a id="show-the-log-for-a-resource-group-deployment"></a>Task: Show the log for a resource group deployment</span></span>
-<span data-ttu-id="38bc0-301">템플릿을 만들거나 사용할 때 일반적인 작업입니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-301">This one is common while you're creating or using templates.</span></span> <span data-ttu-id="38bc0-302">그룹에 대한 배포 로그를 표시하려면 `azure group log show <groupname>`을 호출합니다. 그러면 특정 작업이 수행되거나 수행되지 않은 이유를 이해하는 데 유용한 많은 정보가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-302">The call to display the deployment logs for a group is `azure group log show <groupname>`, which displays quite a bit of information that's useful for understanding why something happened -- or didn't.</span></span> <span data-ttu-id="38bc0-303">(배포 문제 해결에 대한 자세한 내용 및 문제에 대한 기타 정보는 [Azure Resource Manager를 사용한 일반적인 Azure 배포 오류 해결](../articles/azure-resource-manager/resource-manager-common-deployment-errors.md)을 참조하세요.)</span><span class="sxs-lookup"><span data-stu-id="38bc0-303">(For more information on troubleshooting your deployments, as well as other information about issues, see [Troubleshoot common Azure deployment errors with Azure Resource Manager](../articles/azure-resource-manager/resource-manager-common-deployment-errors.md).)</span></span>
+## <span data-ttu-id="0ec62-300"><a id="show-the-log-for-a-resource-group-deployment"></a>리소스 그룹 배포에 대 한 hello 로그를 표시 하는 작업:</span><span class="sxs-lookup"><span data-stu-id="0ec62-300"><a id="show-the-log-for-a-resource-group-deployment"></a>Task: Show hello log for a resource group deployment</span></span>
+<span data-ttu-id="0ec62-301">템플릿을 만들거나 사용할 때 일반적인 작업입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-301">This one is common while you're creating or using templates.</span></span> <span data-ttu-id="0ec62-302">그룹에 대 한 hello 호출 toodisplay hello 배포 로그 `azure group log show <groupname>`, 많은 양의 발생 한 시간-또는 하지 않은 이유를 이해 하는 데 유용한 정보를 표시 하는 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-302">hello call toodisplay hello deployment logs for a group is `azure group log show <groupname>`, which displays quite a bit of information that's useful for understanding why something happened -- or didn't.</span></span> <span data-ttu-id="0ec62-303">(배포 문제 해결에 대한 자세한 내용 및 문제에 대한 기타 정보는 [Azure Resource Manager를 사용한 일반적인 Azure 배포 오류 해결](../articles/azure-resource-manager/resource-manager-common-deployment-errors.md)을 참조하세요.)</span><span class="sxs-lookup"><span data-stu-id="0ec62-303">(For more information on troubleshooting your deployments, as well as other information about issues, see [Troubleshoot common Azure deployment errors with Azure Resource Manager](../articles/azure-resource-manager/resource-manager-common-deployment-errors.md).)</span></span>
 
-<span data-ttu-id="38bc0-304">예를 들어 특정 오류를 대상으로 지정하려면 **jq** 와 같은 도구를 사용하여 해결해야 하는 개별 오류와 같은 항목을 좀더 정확하게 쿼리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-304">To target specific failures, for example, you might use tools like **jq** to query things a bit more precisely, such as which individual failures you need to correct.</span></span> <span data-ttu-id="38bc0-305">다음 예제에서는 **jq**를 사용하여 **lbgroup**에 대한 배포 로그를 구문 분석하고 오류를 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-305">The following example uses **jq** to parse a deployment log for **lbgroup**, looking for failures.</span></span>
+<span data-ttu-id="0ec62-304">특정 오류 tootarget, 예를 들어 사용할 수 있습니다와 같은 도구 **jq** 좀 더 정확 하 게, toocorrect 필요한는 개별 오류와 같은 tooquery 것입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-304">tootarget specific failures, for example, you might use tools like **jq** tooquery things a bit more precisely, such as which individual failures you need toocorrect.</span></span> <span data-ttu-id="0ec62-305">hello 다음 예제에서는 **jq** 배포에 대 한 로그 tooparse **lbgroup**찾고 오류에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-305">hello following example uses **jq** tooparse a deployment log for **lbgroup**, looking for failures.</span></span>
 
 ```azurecli
 azure group log show lbgroup -l --json | jq '.[] | select(.status.value == "Failed") | .properties'
 ```
-<span data-ttu-id="38bc0-306">잘못되어 수정하거나 다시 시도할 항목을 매우 신속하게 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-306">You can discover very quickly what went wrong, fix, and retry.</span></span> <span data-ttu-id="38bc0-307">다음과 같은 경우 템플릿에서 두 개의 VM을 동시에 만들고 .vhd에 잠금을 만들었습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-307">In the following case, the template had been creating two VMs at the same time, which created a lock on the .vhd.</span></span> <span data-ttu-id="38bc0-308">템플릿을 수정한 후 바로 배포가 성공했습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-308">(After we modified the template, the deployment succeeded quickly.)</span></span>
+<span data-ttu-id="0ec62-306">잘못되어 수정하거나 다시 시도할 항목을 매우 신속하게 검색할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-306">You can discover very quickly what went wrong, fix, and retry.</span></span> <span data-ttu-id="0ec62-307">사례를 따르는 hello에서 hello 서식 파일에 된 Vm을 만들 두 hello에 동시 잠금을 hello.vhd에 생성 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-307">In hello following case, hello template had been creating two VMs at hello same time, which created a lock on hello .vhd.</span></span> <span data-ttu-id="0ec62-308">(Hello 서식 파일을 수정한 후 hello 배포 성공 신속 하 게 합니다.)</span><span class="sxs-lookup"><span data-stu-id="0ec62-308">(After we modified hello template, hello deployment succeeded quickly.)</span></span>
 
 ```json
 {
     "statusCode": "Conflict",
-    "statusMessage": "{\"status\":\"Failed\",\"error\":{\"code\":\"ResourceDeploymentFailure\",\"message\":\"The resource operation completed with terminal provisioning state 'Failed'.\",\"details\":[{\"code\":\"AcquireDiskLeaseFailed\",\"message\":\"Failed to acquire lease while creating disk 'osdisk' using blob with URI http://storage.blob.core.windows.net/vhds/osdisk.vhd.\"}]}}"
+    "statusMessage": "{\"status\":\"Failed\",\"error\":{\"code\":\"ResourceDeploymentFailure\",\"message\":\"hello resource operation completed with terminal provisioning state 'Failed'.\",\"details\":[{\"code\":\"AcquireDiskLeaseFailed\",\"message\":\"Failed tooacquire lease while creating disk 'osdisk' using blob with URI http://storage.blob.core.windows.net/vhds/osdisk.vhd.\"}]}}"
 }
 ```
 
-## <span data-ttu-id="38bc0-309"><a id="display-information-about-a-virtual-machine"></a>작업: 가상 컴퓨터에 대한 정보 표시</span><span class="sxs-lookup"><span data-stu-id="38bc0-309"><a id="display-information-about-a-virtual-machine"></a>Task: Display information about a virtual machine</span></span>
-<span data-ttu-id="38bc0-310">`azure vm show <groupname> <vmname>` 명령을 사용하여 리소스 그룹의 특정 VM에 대한 정보를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-310">You can see information about specific VMs in your resource group by using the `azure vm show <groupname> <vmname>` command.</span></span> <span data-ttu-id="38bc0-311">그룹에 VM이 둘 이상 있는 경우 `azure vm list <groupname>`을 사용하여 한 그룹의 VM을 먼저 나열해야 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-311">If you have more than one VM in your group, you might first need to list the VMs in a group by using `azure vm list <groupname>`.</span></span>
+## <span data-ttu-id="0ec62-309"><a id="display-information-about-a-virtual-machine"></a>작업: 가상 컴퓨터에 대한 정보 표시</span><span class="sxs-lookup"><span data-stu-id="0ec62-309"><a id="display-information-about-a-virtual-machine"></a>Task: Display information about a virtual machine</span></span>
+<span data-ttu-id="0ec62-310">Hello를 사용 하 여 리소스 그룹에 특정 Vm에 대 한 정보를 볼 수 `azure vm show <groupname> <vmname>` 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-310">You can see information about specific VMs in your resource group by using hello `azure vm show <groupname> <vmname>` command.</span></span> <span data-ttu-id="0ec62-311">그룹에 있는 둘 이상의 VM가 있으면 먼저 해야 toolist hello Vm 그룹에서 사용 하 여 `azure vm list <groupname>`합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-311">If you have more than one VM in your group, you might first need toolist hello VMs in a group by using `azure vm list <groupname>`.</span></span>
 
 ```azurecli
 azure vm list zoo
@@ -1204,13 +1204,13 @@ data:    myVM0  Succeeded          westus    Standard_A1
 data:    myVM1  Failed             westus    Standard_A1
 ```
 
-<span data-ttu-id="38bc0-312">그런 다음 myVM1을 조회합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-312">And then, looking up myVM1:</span></span>
+<span data-ttu-id="0ec62-312">그런 다음 myVM1을 조회합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-312">And then, looking up myVM1:</span></span>
 
 ```azurecli
 azure vm show zoo myVM1
 info:    Executing command vm show
-+ Looking up the VM "myVM1"
-+ Looking up the NIC "nic1"
++ Looking up hello VM "myVM1"
++ Looking up hello NIC "nic1"
 data:    Id                              :/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/zoo/providers/Microsoft.Compute/virtualMachines/myVM1
 data:    ProvisioningState               :Failed
 data:    Name                            :myVM1
@@ -1259,50 +1259,50 @@ info:    vm show command OK
 ```
 
 > [!NOTE]
-> <span data-ttu-id="38bc0-313">콘솔 명령의 출력을 프로그래밍 방식으로 저장하고 조작하려는 경우 **[jq](https://github.com/stedolan/jq)**, **[jsawk](https://github.com/micha/jsawk)** 또는 작업에 적합한 언어 라이브러리 같은 JSON 구문 분석 도구를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-313">If you want to programmatically store and manipulate the output of your console commands, you may want to use a JSON parsing tool such as **[jq](https://github.com/stedolan/jq)** or **[jsawk](https://github.com/micha/jsawk)**, or language libraries that are good for the task.</span></span>
+> <span data-ttu-id="0ec62-313">Tooprogrammatically 저장소 콘솔 명령의 hello 출력을 조작 하는 경우에 toouse 같은 도구는 JSON을 구문 분석을 설정할 수 있습니다 있습니다  **[jq](https://github.com/stedolan/jq)**  또는  **[jsawk](https://github.com/micha/jsawk)** , 또는 hello 작업에 대 한 좋은 되는 언어 라이브러리입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-313">If you want tooprogrammatically store and manipulate hello output of your console commands, you may want toouse a JSON parsing tool such as **[jq](https://github.com/stedolan/jq)** or **[jsawk](https://github.com/micha/jsawk)**, or language libraries that are good for hello task.</span></span>
 >
 >
 
-## <span data-ttu-id="38bc0-314"><a id="log-on-to-a-linux-based-virtual-machine"></a>작업: Linux 기반 가상 컴퓨터에 로그온</span><span class="sxs-lookup"><span data-stu-id="38bc0-314"><a id="log-on-to-a-linux-based-virtual-machine"></a>Task: Log on to a Linux-based virtual machine</span></span>
-<span data-ttu-id="38bc0-315">일반적으로 Linux 컴퓨터는 SSH를 통해 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-315">Typically Linux machines are connected to through SSH.</span></span> <span data-ttu-id="38bc0-316">자세한 내용은 [Azure에서 Linux와 함께 SSH를 사용하는 방법](../articles/virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="38bc0-316">For more information, see [How to use SSH with Linux on Azure](../articles/virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+## <span data-ttu-id="0ec62-314"><a id="log-on-to-a-linux-based-virtual-machine"></a>작업: tooa Linux 기반 가상 컴퓨터에 로그온</span><span class="sxs-lookup"><span data-stu-id="0ec62-314"><a id="log-on-to-a-linux-based-virtual-machine"></a>Task: Log on tooa Linux-based virtual machine</span></span>
+<span data-ttu-id="0ec62-315">일반적으로 Linux 컴퓨터에 연결 된 toothrough SSH 됩니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-315">Typically Linux machines are connected toothrough SSH.</span></span> <span data-ttu-id="0ec62-316">자세한 내용은 참조 [어떻게 toouse와 Azure에서 Linux에 SSH](../articles/virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-316">For more information, see [How toouse SSH with Linux on Azure](../articles/virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
 
-## <span data-ttu-id="38bc0-317"><a id="stop-a-virtual-machine"></a>작업: VM 중지</span><span class="sxs-lookup"><span data-stu-id="38bc0-317"><a id="stop-a-virtual-machine"></a>Task: Stop a VM</span></span>
-<span data-ttu-id="38bc0-318">다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-318">Run this command:</span></span>
+## <span data-ttu-id="0ec62-317"><a id="stop-a-virtual-machine"></a>작업: VM 중지</span><span class="sxs-lookup"><span data-stu-id="0ec62-317"><a id="stop-a-virtual-machine"></a>Task: Stop a VM</span></span>
+<span data-ttu-id="0ec62-318">다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-318">Run this command:</span></span>
 
 ```azurecli
 azure vm stop <group name> <virtual machine name>
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="38bc0-319">해당 vnet의 마지막 VM인 경우 이 매개 변수를 사용하여 vnet의 VIP(가상 IP)를 유지합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-319">Use this parameter to keep the virtual IP (VIP) of the vnet in case it's the last VM in that vnet.</span></span> <br><br> <span data-ttu-id="38bc0-320">`StayProvisioned` 매개 변수를 사용하는 경우에도 VM에 대한 요금이 청구됩니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-320">If you use the `StayProvisioned` parameter, you'll still be billed for the VM.</span></span>
+> <span data-ttu-id="0ec62-319">경우이 매개 변수 tookeep hello의 가상 IP (VIP) hello vnet 사용 하 여 해당 vnet의 마지막 VM hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-319">Use this parameter tookeep hello virtual IP (VIP) of hello vnet in case it's hello last VM in that vnet.</span></span> <br><br> <span data-ttu-id="0ec62-320">Hello를 사용 하는 경우 `StayProvisioned` 매개 변수를 계속 청구 됩니다 hello VM에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-320">If you use hello `StayProvisioned` parameter, you'll still be billed for hello VM.</span></span>
 >
 >
 
-## <span data-ttu-id="38bc0-321"><a id="start-a-virtual-machine"></a>작업: VM 시작</span><span class="sxs-lookup"><span data-stu-id="38bc0-321"><a id="start-a-virtual-machine"></a>Task: Start a VM</span></span>
-<span data-ttu-id="38bc0-322">다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-322">Run this command:</span></span>
+## <span data-ttu-id="0ec62-321"><a id="start-a-virtual-machine"></a>작업: VM 시작</span><span class="sxs-lookup"><span data-stu-id="0ec62-321"><a id="start-a-virtual-machine"></a>Task: Start a VM</span></span>
+<span data-ttu-id="0ec62-322">다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-322">Run this command:</span></span>
 
 ```azurecli
 azure vm start <group name> <virtual machine name>
 ```
 
-## <span data-ttu-id="38bc0-323"><a id="attach-a-data-disk"></a>작업: 데이터 디스크 연결</span><span class="sxs-lookup"><span data-stu-id="38bc0-323"><a id="attach-a-data-disk"></a>Task: Attach a data disk</span></span>
-<span data-ttu-id="38bc0-324">또한 새 디스크를 연결할지 데이터를 포함하는 디스크를 연결할지를 결정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-324">You'll also need to decide whether to attach a new disk or one that contains data.</span></span> <span data-ttu-id="38bc0-325">새 디스크의 경우 명령에서 .vhd 파일을 만들고 동일한 명령으로 디스크를 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-325">For a new disk, the command creates the .vhd file and attaches it in the same command.</span></span>
+## <span data-ttu-id="0ec62-323"><a id="attach-a-data-disk"></a>작업: 데이터 디스크 연결</span><span class="sxs-lookup"><span data-stu-id="0ec62-323"><a id="attach-a-data-disk"></a>Task: Attach a data disk</span></span>
+<span data-ttu-id="0ec62-324">또한 해야 toodecide tooattach 새 디스크 또는 하나를 포함 하는지 여부를 데이터입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-324">You'll also need toodecide whether tooattach a new disk or one that contains data.</span></span> <span data-ttu-id="0ec62-325">새 디스크에 대 한 hello 명령 hello.vhd 파일 만들고 연결 hello에 동일한 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-325">For a new disk, hello command creates hello .vhd file and attaches it in hello same command.</span></span>
 
-<span data-ttu-id="38bc0-326">새 디스크를 연결하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-326">To attach a new disk, run this command:</span></span>
+<span data-ttu-id="0ec62-326">새 디스크 tooattach이 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-326">tooattach a new disk, run this command:</span></span>
 
 ```azurecli
     azure vm disk attach-new <resource-group> <vm-name> <size-in-gb>
 ```
 
-<span data-ttu-id="38bc0-327">기존 데이터 디스크를 연결하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-327">To attach an existing data disk, run this command:</span></span>
+<span data-ttu-id="0ec62-327">기존의 데이터 디스크를 tooattach이 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-327">tooattach an existing data disk, run this command:</span></span>
 
 ```azurecli
 azure vm disk attach <resource-group> <vm-name> [vhd-url]
 ```
 
-<span data-ttu-id="38bc0-328">그런 다음 일반적으로 Linux에서처럼 디스크를 탑재해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="38bc0-328">Then you'll need to mount the disk, as you normally would in Linux.</span></span>
+<span data-ttu-id="0ec62-328">그런 다음 Linux에서와 마찬가지로 toomount hello 디스크에 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-328">Then you'll need toomount hello disk, as you normally would in Linux.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="38bc0-329">다음 단계</span><span class="sxs-lookup"><span data-stu-id="38bc0-329">Next steps</span></span>
-<span data-ttu-id="38bc0-330">**arm** 모드의 Azure CLI 사용에 대한 더 많은 예제는 [Azure 리소스 관리자에 Mac, Linux 및 Windows용 Azure CLI 사용](../articles/xplat-cli-azure-resource-manager.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="38bc0-330">For far more examples of Azure CLI usage with the **arm** mode, see [Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Manager](../articles/xplat-cli-azure-resource-manager.md).</span></span> <span data-ttu-id="38bc0-331">Azure 리소스 및 해당 개념에 대한 자세한 내용은 [Azure Resource Manager 개요](../articles/azure-resource-manager/resource-group-overview.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="38bc0-331">To learn more about Azure resources and their concepts, see [Azure Resource Manager overview](../articles/azure-resource-manager/resource-group-overview.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="0ec62-329">다음 단계</span><span class="sxs-lookup"><span data-stu-id="0ec62-329">Next steps</span></span>
+<span data-ttu-id="0ec62-330">훨씬 더 많은 사용 예제를 보려면 Azure CLI hello로 **arm** 모드 참조 [Mac, Linux 및 Windows Azure 리소스 관리자에 대 한 Azure CLI를 사용 하 여 hello](../articles/xplat-cli-azure-resource-manager.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-330">For far more examples of Azure CLI usage with hello **arm** mode, see [Using hello Azure CLI for Mac, Linux, and Windows with Azure Resource Manager](../articles/xplat-cli-azure-resource-manager.md).</span></span> <span data-ttu-id="0ec62-331">Azure 리소스와 해당 개념에 대해 자세히 toolearn 참조 [Azure 리소스 관리자 개요](../articles/azure-resource-manager/resource-group-overview.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="0ec62-331">toolearn more about Azure resources and their concepts, see [Azure Resource Manager overview](../articles/azure-resource-manager/resource-group-overview.md).</span></span>
 
-<span data-ttu-id="38bc0-332">사용할 수 있는 더 많은 템플릿은 [Azure 빠른 시작 템플릿](https://azure.microsoft.com/documentation/templates/) 및 [템플릿을 사용하는 응용 프로그램 프레임워크](../articles/virtual-machines/linux/app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="38bc0-332">For more templates you can use, see [Azure Quickstart templates](https://azure.microsoft.com/documentation/templates/) and [Application frameworks using templates](../articles/virtual-machines/linux/app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+<span data-ttu-id="0ec62-332">사용할 수 있는 더 많은 템플릿은 [Azure 빠른 시작 템플릿](https://azure.microsoft.com/documentation/templates/) 및 [템플릿을 사용하는 응용 프로그램 프레임워크](../articles/virtual-machines/linux/app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="0ec62-332">For more templates you can use, see [Azure Quickstart templates](https://azure.microsoft.com/documentation/templates/) and [Application frameworks using templates](../articles/virtual-machines/linux/app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>

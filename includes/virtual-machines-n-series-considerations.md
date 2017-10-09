@@ -1,0 +1,20 @@
+## <a name="deployment-considerations"></a><span data-ttu-id="eb918-101">배포 고려 사항</span><span class="sxs-lookup"><span data-stu-id="eb918-101">Deployment considerations</span></span>
+
+* <span data-ttu-id="eb918-102">N 시리즈 VM의 가용성에 대해서는 [지역별 사용 가능한 제품](https://azure.microsoft.com/en-us/regions/services/)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="eb918-102">For availability of N-series VMs, see [Products available by region](https://azure.microsoft.com/en-us/regions/services/).</span></span>
+
+* <span data-ttu-id="eb918-103">N 시리즈 Vm hello 리소스 관리자 배포 모델에만 배포할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb918-103">N-series VMs can only be deployed in hello Resource Manager deployment model.</span></span>
+
+* <span data-ttu-id="eb918-104">경우 Azure 포털에서 hello 사용 하 여 N 시리즈 VM 만들기 hello **기본 사항** 블레이드를는 **VM 디스크 유형** 의 **HDD**합니다.</span><span class="sxs-lookup"><span data-stu-id="eb918-104">When creating an N-series VM using hello Azure portal, on hello **Basics** blade, select a **VM disk type** of **HDD**.</span></span> <span data-ttu-id="eb918-105">hello에 사용할 수 있는 N 시리즈 toochoose 크기 **크기** 블레이드에서 클릭 **모든 보기**합니다.</span><span class="sxs-lookup"><span data-stu-id="eb918-105">toochoose an available N-series size, on hello **Size** blade, click **View all**.</span></span>
+
+* <span data-ttu-id="eb918-106">N 시리즈 VM은 Azure Premium Storage에서 지원하는 VM 디스크를 지원하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="eb918-106">N-series VMs do not support VM disks that are backed by Azure Premium storage.</span></span>
+
+* <span data-ttu-id="eb918-107">여러 N 시리즈 Vm toodeploy을 원하는 경우 종 량 제 구독 또는 기타 구입 옵션을 고려 합니다.</span><span class="sxs-lookup"><span data-stu-id="eb918-107">If you want toodeploy more than a few N-series VMs, consider a pay-as-you-go subscription or other purchase options.</span></span> <span data-ttu-id="eb918-108">[Azure 무료 계정](https://azure.microsoft.com/free/)을 사용하는 경우, 제한된 수의 Azure 계산 코어만 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb918-108">If you're using an [Azure free account](https://azure.microsoft.com/free/), you can use only a limited number of Azure compute cores.</span></span>
+
+* <span data-ttu-id="eb918-109">Azure 구독에서 영역별 tooincrease hello 코어 할당량을 할 수도 있으며 hello NC 또는 NV 코어에 대 한 별도 할당량을 늘릴 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb918-109">You might need tooincrease hello cores quota (per region) in your Azure subscription, and increase hello separate quota for NC or NV cores.</span></span> <span data-ttu-id="eb918-110">toorequest 할당량 증가 [온라인 고객 지원 요청을 개시](../articles/azure-supportability/how-to-create-azure-support-request.md) 비용 없이 합니다.</span><span class="sxs-lookup"><span data-stu-id="eb918-110">toorequest a quota increase, [open an online customer support request](../articles/azure-supportability/how-to-create-azure-support-request.md) at no charge.</span></span> <span data-ttu-id="eb918-111">기본 제한은 구독 범주에 따라 달라질 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="eb918-111">Default limits may vary depending on your subscription category.</span></span>
+
+* <span data-ttu-id="eb918-112">N 시리즈 Vm에 배포할 수 있습니다 하나 VM 이미지는 hello [Azure 데이터 과학 가상 컴퓨터](../articles/machine-learning/machine-learning-data-science-virtual-machine-overview.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="eb918-112">One VM image you can deploy on N-series VMs is hello [Azure Data Science Virtual Machine](../articles/machine-learning/machine-learning-data-science-virtual-machine-overview.md).</span></span> <span data-ttu-id="eb918-113">데이터 과학 가상 컴퓨터 hello이 사전 설치 하 고 많은 일반적인 데이터 과학 및 전체 학습 도구를 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="eb918-113">hello Data Science Virtual Machine preinstalls and configures many popular data science and deep learning tools.</span></span> <span data-ttu-id="eb918-114">또한 NC 인스턴스용 NVIDIA Tesla GPU 드라이버도 사전 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="eb918-114">It also preinstalls NVIDIA Tesla GPU drivers for NC instances.</span></span>
+
+
+
+
+
