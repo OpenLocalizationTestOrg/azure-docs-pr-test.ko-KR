@@ -1,6 +1,6 @@
 ---
-title: "Azure Windows VM에 대한 시스템 다시 부팅 이해 | Microsoft Docs"
-description: "Windows VM이 다시 부팅되게 할 수 있는 이벤트를 나열합니다."
+title: "Windows Azure VM에 대 한 시스템 다시 부팅 aaaUnderstand | Microsoft Docs"
+description: "Windows VM tooreboot hello를 일으킬 수 있는 hello 이벤트를 나열 합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: genlin
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/24/2017
 ms.author: genli
-ms.openlocfilehash: da8c1bf3d283e7514e1ab13fd31d7d581771ea4f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b37b110e242570adda775da90bb106a1a924191e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-a-system-reboot-for-azure-vm"></a>Azure VM에 대한 시스템 다시 부팅 이해
 

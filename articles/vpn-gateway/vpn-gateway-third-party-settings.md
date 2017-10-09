@@ -15,22 +15,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/04/2017
 ms.author: delhan
-ms.openlocfilehash: 79df187c9093eb01f18b3dfdc25d1d19a2f63c62
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c695d23167ddba11283f6e223769e29b18a5c7ba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="community-suggested-third-party-vpn-or-firewall-device-settings-for-azure-vpn-gateway"></a>Azure VPN Gateway에 대해 커뮤니티에서 제안한 타사 VPN 또는 방화벽 장치 설정
 
 이 문서에서는 Azure VPN Gateway와 함께 사용되는 타사 VPN 또는 방화벽 장치에 대해 제안된 몇 가지 솔루션을 제공합니다.
 
 > [!Note]
-> 타사 VPN 또는 방화벽 장치에 대한 기술 지원은 장치 공급업체에서 제공합니다. 
+> 타사 방화벽 또는 VPN 장치에 대 한 기술 지원은 hello 장치 공급 업체에서 제공 됩니다. 
 
 ## <a name="more-information"></a>자세한 정보
 
-다음 표에는 몇 가지 일반적인 장치 및 관련 도움말이 나열되어 있습니다.
+다음 표에서 hello 몇 가지 일반적인 장치 및 관련된 도움말을 보여 줍니다.
 
 |제품    |참조                                                |
 |-----------|-----------------------------------------------------------|

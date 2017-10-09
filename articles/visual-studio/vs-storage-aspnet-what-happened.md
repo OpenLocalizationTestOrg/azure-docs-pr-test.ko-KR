@@ -1,6 +1,6 @@
 ---
-title: "내 ASP.NET 프로젝트가 어떻게 되었습니까? | Microsoft Docs"
-description: "Visual Studio 연결 서비스를 사용하여 ASP.NET 프로젝트에 Azure 저장소를 추가한 후 변경 내용에 대해 설명합니다."
+title: "aaaWhat은 toomy ASP.NET 프로젝트 되었나요? | Microsoft Docs"
+description: "연결 된 서비스를 Visual Studio를 사용 하 여 Azure 저장소 tooa ASP.NET 프로젝트 추가 후의 상황에 대해 설명"
 services: storage
 documentationcenter: 
 author: kraigb
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: kraigb
-ms.openlocfilehash: 680960f51201a98c81db4bce3615e1602e795651
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 175e9b825c32f4930d5093b6a4ad13ffb9ab8aa7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-happened-to-my-aspnet-project-visual-studio-azure-storage-connected-service"></a>내 ASP.NET 프로젝트(Visual Studio Azure 저장소 연결 서비스)의 변경 내용
+# <a name="what-happened-toomy-aspnet-project-visual-studio-azure-storage-connected-service"></a>어떤 발생 했습니다 toomy ASP.NET 프로젝트 (Visual Studio Azure 저장소 서비스를 연결 하는 데 사용)?
 ## <a name="references-added"></a>참조 추가됨
-Azure Storage NuGet 패키지가 Visual Studio 프로젝트에 추가되었습니다.  
-이 패키지는 다음.NET 참조를 추가합니다.
+hello Azure 저장소 NuGet 패키지 tooyour Visual Studio 프로젝트에 추가 되었습니다.  
+이 패키지는 hello 다음.NET 참조를 추가 합니다.
 
 * **Microsoft.Data.Edm**
 * **Microsoft.Data.OData**
@@ -35,7 +35,7 @@ Azure Storage NuGet 패키지가 Visual Studio 프로젝트에 추가되었습�
 * **System.Spatial**
 
 ## <a name="connection-string-for-azure-storage-added"></a>추가된 Azure 저장소에 대한 연결 문자열
-프로젝트의 web.config 파일에 선택한 저장소 계정의 연결 문자열과 키를 포함하는 요소가 생성되었습니다.
+프로젝트의 hello web.config 파일에 요소가 hello 선택한 저장소 계정 연결 문자열 및 키도 만들어졌습니다.
 
 자세한 내용은 [ASP.NET](http://www.asp.net)을 참조하세요.
 

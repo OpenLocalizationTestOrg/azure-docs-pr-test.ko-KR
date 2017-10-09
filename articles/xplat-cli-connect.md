@@ -1,6 +1,6 @@
 ---
-title: "CLI에서 Azure에 로그인 | Microsoft Docs"
-description: "Mac, Linux 및 Windows용 Azure 명령줄 인터페이스(Azure CLI)에서 Azure 구독에 연결"
+title: "CLI hello에서 tooAzure에 aaaLog | Microsoft Docs"
+description: "Mac, Linux 및 Windows 용 Azure 명령줄 인터페이스 (Azure CLI) hello에서 tooyour Azure 구독 연결"
 editor: tysonn
 manager: timlt
 documentationcenter: 
@@ -16,38 +16,38 @@ ms.topic: article
 ms.date: 10/04/2016
 ms.author: rasquill
 "\"/": 
-ms.openlocfilehash: 31efab60690b54faf7992251fcd01e307c4464f2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 42682c00c8dea78b2c624e640379716d1d4d7a2d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="log-in-to-azure-from-the-azure-cli"></a>Azure CLI에서 Azure에 로그인
-Azure CLI는 Azure 리소스 작업을 위한 플랫폼 간 공개 소스 명령 집합입니다. 이 문서에서는 Azure 계정 자격 증명을 제공하여 Azure CLI를 Azure 구독에 연결하는 다양한 방법을 설명합니다.
+# <a name="log-in-tooazure-from-hello-azure-cli"></a>TooAzure hello Azure CLI에서 로그인
+hello Azure CLI는 Azure 리소스 작업에 대 한 오픈 소스, 크로스 플랫폼 명령 집합. 이 문서에서는 다양 한 방법 tooprovide hello Azure 계정 자격 증명 tooconnect hello Azure CLI tooyour를 Azure 구독을 설명합니다.
 
-* `azure login` CLI 명령을 실행하여 Azure Active Directory를 통해 인증을 받습니다. 이 방법을 사용하면 두 [명령 모드](#cli-command-modes)에서 CLI 명령에 액세스할 수 있습니다. 추가 옵션 없이 명령을 실행하면 `azure login`에서 웹 포털을 통해 대화형으로 계속 로그인할지 묻습니다. 추가 `azure login` 명령 옵션에 대해서는 이 문서의 시나리오를 참조하거나 `azure login --help`를 입력하세요.
-* Azure 서비스 관리 모드 CLI 명령만 사용해야 하는 경우(대부분의 새로운 배포에서는 권장되지 않음) 컴퓨터에 게시 설정 파일을 다운로드하고 설치할 수 있습니다.
+* Hello 실행 `azure login` Azure Active Directory를 통해 CLI 명령 tooauthenticate 합니다. 이 메서드에 액세스할 수 있도록 모두 tooCLI 명령을 [모드 명령](#cli-command-modes)합니다. 추가 옵션 없이 hello 명령을 실행할 때 `azure login` 묻는 toocontinue 웹 포털을 통해 대화형으로 로그인 합니다. 에 대 한 추가 `azure login` 명령 옵션,이 문서에서는 또는 입력 hello 시나리오 참조 `azure login --help`합니다.
+* 하기만 toouse Azure 서비스 관리 모드 CLI 명령 (대부분의 새로운 배포에 대 한 권장 하지 않음) 하는 경우 다운로드 하 고 게시 설정 파일을 컴퓨터에를 설치할 수 있습니다.
 
-이미 CLI를 설치하지 않은 경우 [Azure CLI 설치](cli-install-nodejs.md)를 참조하세요. Azure 구독이 없는 경우 몇 분 만에 [무료 계정](http://azure.microsoft.com/free/) 을 만들 수 있습니다.
+Hello CLI를 아직 설치 하지 않은 경우 참조 [설치 hello Azure CLI](cli-install-nodejs.md)합니다. Azure 구독이 없는 경우 몇 분 만에 [무료 계정](http://azure.microsoft.com/free/) 을 만들 수 있습니다.
 
 다른 계정 ID 및 Azure 구독에 대한 배경 정보는 [Azure 구독과 Azure Active Directory의 연관 관계](active-directory/active-directory-how-subscriptions-associated-directory.md)를 참조하세요.
 
 ## <a name="scenario-1-azure-login-with-interactive-login"></a>시나리오 1: 대화형 로그인을 사용한 Azure 로그인
-특정 계정에서 CLI는 `azure login`을 실행한 후 웹 포털을 통해 웹 브라우저를 사용해서 로그인 프로세스를 계속 진행하도록 요구합니다. 이 프로세스를 *대화형 로그인*이라고 합니다. 일반적인 이유는 다단계 인증을 요구하도록 설정된 회사 또는 학교 계정(*조직 계정*이라고도 함)이 있는 경우입니다. 또한 Resource Manager 모드 명령을 사용할 경우 Microsoft 계정으로 대화형 로그인을 사용합니다.
+특정 계정으로 hello CLI 해야 toorun `azure login` 후 웹 포털 이라는 프로세스를 통해 웹 브라우저를 사용 하 여 hello 로그인 프로세스를 계속 *대화형 로그인*합니다. 일반적인 이유는 회사 또는 학교 계정이 있는 경우 (라고도 *조직 계정*) toorequire 다단계 인증 설정 된 합니다. 또한 toouse 리소스 관리자 모드 명령 하려는 경우 य ा Microsoft ख 대화형 로그인을 사용 합니다.
 
-대화형 로그인은 쉽습니다. 다음 예제와 같이 아무 옵션도 없이 `azure login`을 입력하면 됩니다.
+대화형 로그인 쉽습니다: 형식 `azure login` -옵션-없이 hello 다음 예제와 같이:
 
 ```
 azure login
 ```                                                                                             
 
-출력은 다음과 유사합니다.
+hello 출력 hello 다음과 같은 내용이 나타납니다.
 
 ```         
 info:    Executing command login
-info:    To sign in, use a web browser to open the page http://aka.ms/devicelogin. Enter the code XXXXXXXXX to authenticate.
+info:    toosign in, use a web browser tooopen hello page http://aka.ms/devicelogin. Enter hello code XXXXXXXXX tooauthenticate.
 ```
-제공된 코드를 명령 출력에 복사하고 브라우저에서 http://aka.ms/devicelogin 또는 지정된 다른 페이지를 엽니다. (동일한 컴퓨터 또는 다른 컴퓨터나 장치에서 브라우저를 열 수 있습니다.) 코드를 입력하면 사용하려는 ID의 사용자 이름 및 암호를 입력하라는 메시지가 표시됩니다. 해당 프로세스가 완료되면 명령 셸이 로그인을 완료합니다. 다음과 같이 표시될 수 있습니다.
+Tooyou hello 명령 출력에 제공 하는 hello 코드를 복사 하 고 지정 된 경우 브라우저 toohttp://aka.ms/devicelogin 또는 다른 페이지를 엽니다. (Hello에서 브라우저를 열 수 동일한 컴퓨터 또는 다른 컴퓨터 또는 장치입니다.) Hello 코드를 입력 및 입력 정보 요청된 tooenter hello 사용자 이름 및 암호는 다음 원하는 toouse hello id에 대 한 합니다. 해당 프로세스가 완료 되 면 hello 명령 셸 hello 로그인을 완료 합니다. 다음과 같이 표시될 수 있습니다.
 
     info:    Added subscription Visual Studio Ultimate with MSDN
     info:    Added subscription Azure Free Trial
@@ -56,75 +56,75 @@ info:    To sign in, use a web browser to open the page http://aka.ms/devicelogi
     info:    login command OK
 
 > [!NOTE]
-> 대화형 로그인을 사용할 경우 인증 및 권한 부여는 Azure Active Directory를 사용하여 수행합니다. Microsoft 계정 ID를 사용하는 경우 로그인 프로세스에서 Azure Active Directory 기본 도메인에 액세스합니다. 무료 Azure 계정에 등록한 경우 Azure Active Directory에서 계정에 대한 기본 도메인이 자동으로 생성됩니다.
+> 대화형 로그인을 사용할 경우 인증 및 권한 부여는 Azure Active Directory를 사용하여 수행합니다. Microsoft 계정 id를 사용 하는 경우 Azure Active Directory 기본 도메인 hello 로그인 프로세스에 액세스 합니다. 무료 Azure 계정에 등록한 경우 Azure Active Directory에서 계정에 대한 기본 도메인이 자동으로 생성됩니다.
 >
 >
 
 ## <a name="scenario-2-azure-login-with-a-username-and-password"></a>시나리오 2: 사용자 이름 및 암호를 사용한 Azure 로그인
-다단계 인증이 필요 없는 회사 또는 학교 계정을 사용하여 인증하려면 사용자 이름(`-u`) 매개 변수와 함께 `azure login` 명령을 사용합니다. 명령줄에서 암호가 요구되거나 경우에 따라 `azure login` 명령의 추가 매개 변수로 암호를 제공할 수 있습니다. 다음 예제에서는 조직 계정의 사용자 이름을 전달합니다.
+사용 하 여 hello `azure login` hello 사용자 이름을 가진 명령 (`-u`) 매개 변수 tooauthenticate toouse 회사 또는 학교 계정을 하는 경우 다단계 인증에 필요 하지 않습니다. Hello 암호에 대 한 hello 명령줄에서 메시지가 표시 됩니다 (hello의 추가 매개 변수로 hello 암호를 선택적으로 전달할 수 또는 `azure login` 명령). hello 다음 예제에서는 전달 조직 계정의 hello 사용자 이름:
 
     azure login -u myUserName@contoso.onmicrosoft.com
 
-그런 다음 암호를 입력하라는 메시지가 표시됩니다.
+다음은 메시지가 tooenter 암호:
 
     info:    Executing command login
     Password: *********
 
-그런 후에 로그인 프로세스가 완료됩니다.
+hello 로그인 프로세스 다음 완료 됩니다.
 
     info:    Added subscription Visual Studio Ultimate with MSDN
     +
     info:    login command OK
 
-이러한 자격 증명으로 처음 로그인하는 경우 인증 토큰을 캐시할지 확인하는 메시지가 표시됩니다. 이 메시지는 `azure logout` 명령(이 문서의 뒷부분에 설명)을 이전에 사용한 경우에도 표시됩니다. 자동화 시나리오에서 이 메시지를 표시하지 않으려면 `-q` 매개 변수로 `azure login`을(를) 실행합니다.
+이러한 자격 증명을 사용 하 여 프로그램 처음 로그온 이면 tooverify 묻는 한다고 toocache 인증 토큰입니다. Hello 이전에 사용한 경우에이 메시지가 발생 `azure logout` 명령 (hello 문서의 뒷부분에 나오는 설명 참조). toobypass 자동화 시나리오에 대 한이 프롬프트 실행 `azure login` hello로 `-q` 매개 변수입니다.
 
 ## <a name="scenario-3-azure-login-with-a-service-principal"></a>시나리오 3: 서비스 사용자와 함께 Azure 로그인 사용
-Active Directory 응용 프로그램에 대한 서비스 사용자를 만들고 해당 서비스 사용자에게 구독에 대한 권한이 있는 경우 `azure login` 명령을 사용하여 서비스 사용자를 인증할 수 있습니다. 시나리오에 따라 서비스 사용자의 자격 증명을 `azure login` 명령의 명시적 매개 변수로 제공할 수 있습니다. 예를 들어 다음 명령은 서비스 사용자 이름 및 Active Directory 테넌트 ID를 전달합니다.
+Active Directory 응용 프로그램에 대 한 서비스 사용자를 만들고 hello 서비스 사용자에 대 한 권한이 구독을 하는 경우에 hello을 사용할 수 있습니다 `azure login` 명령 tooauthenticate hello 서비스 사용자입니다. 시나리오에 따라 hello의 명시적 매개 변수로 hello 서비스 사용자의 hello 자격 증명을 제공할 수 있습니다 `azure login` 명령입니다. 예를 들어 hello 다음 명령을 전달 hello 서비스 사용자 이름 및 Active Directory 테 넌 트 ID:
 
     azure login -u https://www.contoso.org/example --service-principal --tenant myTenantID
 
-그런 다음 암호를 입력하라는 메시지가 표시됩니다. CLI 스크립트 또는 응용 프로그램 코드를 통해 자격 증명을 제공하거나 인증서를 사용하여 자동화 시나리오에 맞게 비대화식으로 서비스 사용자를 인증할 수 있습니다. 자세한 내용 및 예제는 [Azure Resource Manager를 사용하여 서비스 사용자 인증](resource-group-authenticate-service-principal-cli.md)을 참조하세요.
+입력 정보 요청된 tooprovide hello 암호 않은 합니다. CLI 스크립트 또는 응용 프로그램 코드를 통해 hello 자격 증명을 제공 하거나 자동화 시나리오에 대 한 비 대화형 인증서 tooauthenticate hello 서비스 사용자를 사용할 수 있습니다. 자세한 내용 및 예제는 [Azure Resource Manager를 사용하여 서비스 사용자 인증](resource-group-authenticate-service-principal-cli.md)을 참조하세요.
 
 ## <a name="scenario-4-use-a-publish-settings-file"></a>시나리오 4: 게시 설정 파일 사용
-Azure 서비스 관리 모드 CLI 명령만 사용해야 하는 경우(예를 들어 클래식 배포 모델에서 Azure VM을 배포하려는 경우) 게시 설정 파일을 사용하여 연결할 수 있습니다. 이 방법은 구독 및 인증서가 유효한 경우 관리 작업을 수행할 수 있도록 로컬 컴퓨터에 인증서를 설치합니다.
+Toouse hello Azure 서비스 관리 모드 CLI 명령 자체입니다 (예: hello 클래식 배포 모델에서 Azure Vm toodeploy) 하기만 하는 경우 게시 설정 파일을 사용 하 여 연결할 수 있습니다. 이 메서드는 hello 구독 및 hello 인증서는 유효한 상태로 tooperform 관리 작업에 대 한 수 있는 로컬 컴퓨터에 인증서를 설치 합니다.
 
-* 계정에 대한 **게시 설정 파일을 다운로드하려면** `azure config mode asm`CLI가 서비스 관리 모드인지 확인합니다. 그런 후 다음 명령을 실행합니다.
+* **게시 설정 파일을 toodownload hello** 회원님의 계정에 대 한 확인 CLI를 입력 하 여 서비스 관리 모드에는 해당 hello `azure config mode asm`합니다. Hello 다음 명령을 실행 합니다.
 
         azure account download
 
-기본 브라우저가 열리고 [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인하라는 메시지가 표시됩니다. 로그인하면 `.publishsettings` 파일이 다운로드됩니다. 이 파일이 저장된 위치를 기록해 둡니다.
+기본 브라우저가 열리고 toohello에 toosign 묻는 [Azure 클래식 포털](https://manage.windowsazure.com)합니다. 로그인하면 `.publishsettings` 파일이 다운로드됩니다. 이 파일이 저장된 위치를 기록해 둡니다.
 
 > [!NOTE]
-> 계정이 여러 개의 Azure Active Directory 테넌트와 연결된 경우 게시 설정 파일을 다운로드하려는 Active Directory를 선택하라는 메시지가 표시될 수도 있습니다.
+> 계정이 여러 Azure Active Directory 테 넌 트와 연결 된 경우에 Active Directory 게시 설정을 toodownload을 원하는 파일에 대 한 증명된 tooselect 수도 있습니다.
 >
 >
 
-Azure 클래식 포털을 방문하여 다운로드 페이지를 사용하도록 선택한 후에는 선택한 Active Directory가 클래식 포털 및 다운로드 페이지에서 기본값으로 사용됩니다. 기본값이 설정되고 나면 다운로드 페이지의 맨 위에 '**선택 페이지로 돌아가려면 여기를 클릭하십시오.**' 텍스트가 표시됩니다. 제공된 링크를 사용하여 선택 페이지로 돌아갑니다.
+Hello Azure 클래식 포털을 방문 하 여 또는 hello 다운로드 페이지를 사용 하 여 선택 하 고 나면 hello 선택한 Active Directory은 hello 기본 hello 클래식 포털 및 다운로드 페이지에서 사용 됩니다. Hello 텍스트를 참조 하는 기본 설정 된 후 '**여기 tooreturn toohello 선택 페이지를 클릭**' hello hello 다운로드 페이지 위쪽에 있습니다. 링크 tooreturn toohello 선택 페이지를 제공 하는 hello를 사용 합니다.
 
-* **게시 설정 파일을 가져오려면**다음 명령을 실행합니다.
+* **게시 설정 파일을 tooimport hello**실행 hello 다음 명령을:
 
-        azure account import <path to your .publishsettings file>
+        azure account import <path tooyour .publishsettings file>
 
 > [!IMPORTANT]
-> 게시 설정을 가져온 후에는 `.publishsettings` 파일을 삭제해야 합니다. 더 이상 Azure CLI에 필요하지 않으며 구독에 액세스하는 데 사용될 수 있으므로 보안상 위험하기 때문입니다.
+> 가져온 후에 게시 설정, hello를 삭제 해야 `.publishsettings` 파일입니다. Hello Azure CLI에 더 이상 필요한 하 고 사용된 toogain 액세스 tooyour 구독 지 보안 위험이 없습니다.
 >
 >
 
 ## <a name="cli-command-modes"></a>CLI 명령 모드
-Azure CLI는 Azure 리소스로 작업하는 두 가지 명령 모드(명령 집합이 서로 다름)를 제공합니다.
+hello Azure CLI 다른 명령 집합을 사용 하 여 Azure 리소스를 사용 하기 위한 두 가지 명령 모드를 제공 합니다.
 
-* **Resource Manager 모드** - Resource Manager 배포 모델에서 Azure 리소스를 사용합니다. 이 모드를 설정하려면 `azure config mode arm`을 실행합니다.
-* **서비스 관리 모드** - 클래식 배포 모델에서 Azure 리소스를 사용합니다. 이 모드를 설정하려면 `azure config mode asm`을 실행합니다.
+* **리소스 관리자 모드** -hello 리소스 관리자 배포 모델에서 Azure 리소스를 사용 합니다. tooset 실행이 모드에서는 `azure config mode arm`합니다.
+* **서비스 관리 모드** -hello 클래식 배포 모델에서 Azure 리소스를 사용 합니다. tooset 실행이 모드에서는 `azure config mode asm`합니다.
 
-처음 설치 시 CLI의 현재 릴리스는 Resource Manager 모드입니다.
+를 처음 설치할 때 현재 릴리스의 리소스 관리자 모드에서 CLI는 hello hello 합니다.
 
 > [!NOTE]
-> 리소스 관리자 모드와 서비스 관리 모드는 함께 사용할 수 없습니다. 즉, 한 모드에서 만든 리소스는 다른 모드에서 관리할 수 없습니다.
+> hello Resource Manager 모드와 서비스 관리 모드는 함께 사용할 수 없습니다. Hello에서 하나의 모드로 생성 된 리소스를 관리할 수 없습니다, 즉 다른 모드입니다.
 >
 >
 
 ## <a name="multiple-subscriptions"></a>여러 구독
-Azure 구독이 여러 개 있는 경우 Azure에 연결하면 자격 증명과 연결된 모든 구독에 액세스할 수 있습니다. 기본 구독으로 한 가지 구독이 선택되며, 작업을 수행할 때 Azure CLI에서 사용됩니다. `azure account list` 명령을 사용하여 현재 기본 구독을 포함하는 구독을 확인할 수 있습니다. 이 명령은 다음과 유사한 정보를 반환합니다.
+여러 Azure 구독이 있는 경우 액세스 tooall 구독에 연결 된 자격 증명 부여 tooAzure 연결 합니다. 구독을 하나 hello 기본적으로 선택 된 이며 hello Azure CLI 작업을 수행할 때 사용 됩니다. 현재 기본 구독 hello를 포함 하 여, hello를 사용 하 여 hello 구독을 볼 수 있습니다 `azure account list` 명령입니다. 이 명령은 비슷한 toohello 다음을 정보를 반환합니다.
 
     info:    Executing command account list
     data:    Name              Id                                    Current
@@ -132,36 +132,36 @@ Azure 구독이 여러 개 있는 경우 Azure에 연결하면 자격 증명과 
     data:    Azure-sub-1       ####################################  true
     data:    Azure-sub-2       ####################################  false
 
-위의 목록에서 **Current** 열은 현재 기본 구독으로 Azure-sub-1을 나타냅니다. 기본 구독을 변경하려면 `azure account set` 명령을 사용하고, 기본으로 사용할 구독을 지정합니다. 예:
+Hello 목록 앞에에서 hello **현재** 열을 Azure 하위 1 hello 현재 기본 구독을 나타냅니다. toochange hello 기본 구독을 사용 하 여 hello `azure account set` 명령을 실행 하 고 원하는 toobe hello 기본 hello 구독을 지정 합니다. 예:
 
     azure account set Azure-sub-2
 
-이 경우 기본 구독이 Azure-sub-2로 변경됩니다.
+이렇게 하면 hello 기본 구독 tooAzure-하위-2를 변경 합니다.
 
 > [!NOTE]
-> 기본 구독을 변경하면 즉시 적용되며 전역적으로 변경됩니다. 동일한 명령줄 인스턴스에서 실행되거나 다른 인스턴스를 실행되는 새 Azure CLI 명령은 새 기본 구독을 사용합니다.
+> Hello 기본 구독 변경 즉시 적용 되며 전역 변경; 새 Azure CLI 명령에서 실행 하는지 여부 hello 동일한 명령줄 인스턴스 또는 다른 인스턴스나 hello 새 기본 구독을 사용 합니다.
 >
 >
 
-Azure CLI와 함께 기본값이 아닌 구독을 사용하지만 현재 기본값을 변경하지 않으려는 경우 해당 명령에 대해 `--subscription` 옵션을 사용하고 작업에 사용할 구독의 이름을 제공할 수 있습니다.
+Hello toouse hello Azure CLI로 기본이 아닌 구독을 선택 해도 toochange hello에 대 한 현재 기본 하지 않을 경우 사용할 수 있습니다 `--subscription` hello 명령에 대 한 옵션 및 hello 이름을 제공 원하는 toouse hello 작업에 대 한 hello 구독 합니다.
 
-Azure 구독에 연결하게 되면 Azure CLI 명령을 사용하여 Azure 리소스 작업을 시작할 수 있습니다.
+연결 된 Azure 구독 tooyour 했으면 Azure CLI 명령을 toowork hello를 사용 하 여 Azure 리소스에 시작할 수 있습니다.
 
 ## <a name="storage-of-cli-settings"></a>CLI 설정 저장소
-`azure login` 명령을 사용하여 로그인하거나 게시 설정을 가져올 때 CLI 프로필과 로그가 `user` 디렉터리에 있는 `.azure` 디렉터리에 저장됩니다. `user` 디렉터리는 운영 체제에 의해 보호됩니다. 그러나 추가 단계를 수행하여 `user` 디렉터리를 암호화하는 것이 좋습니다. 다음과 같은 방법으로 이 작업을 수행할 수 있습니다.
+Hello를 사용 하 여 기록할 것인지 여부를 `azure login` 명령 또는 가져오기에 대 한 게시 설정, CLI 프로필 및 로그에 저장 됩니다는 `.azure` 디렉터리에 있는 프로그램 `user` 디렉터리입니다. `user` 디렉터리는 운영 체제에 의해 보호됩니다. 그러나 좋습니다 tooencrypt 추가 단계를 수행 하는 프로그램 `user` 디렉터리입니다. 다음 방법으로 hello에 그렇게 할 수 있습니다.
 
-* Windows에서는 디렉터리 속성을 수정하거나 BitLocker를 사용합니다.
-* Mac에서는 디렉터리에 대해 FileVault를 켭니다.
-* Ubuntu에서는 암호화된 홈 디렉터리 기능을 사용합니다. 기타 Linux 배포에서도 유사한 기능을 제공합니다.
+* Windows에서는 hello 디렉터리 속성을 수정 하거나 BitLocker를 사용 합니다.
+* Mac을 설정 FileVault hello 디렉터리에 대 한 합니다.
+* Ubuntu, hello 암호화 홈 디렉터리 기능을 사용 합니다. 기타 Linux 배포에서도 유사한 기능을 제공합니다.
 
 ## <a name="logging-out"></a>로그아웃
-로그아웃하려면 다음 명령을 사용합니다.
+다음 명령을 사용 하 여 hello 아웃 toolog:
 
     azure logout -u <username>
 
-계정과 연결된 구독이 Active Directory에서만 인증된 경우 로그아웃하면 구독 정보가 로컬 프로필에서 삭제됩니다. 그러나 구독에 대해 게시 설정 파일도 가져온 경우에는 로그아웃해도 Active Directory 관련 정보만 로컬 프로필에서 삭제됩니다.
+와 연결 된 hello 구독 hello 계정 로그 아웃 hello 로컬 프로필의 삭제 hello 구독 정보를 Active Directory와만 인증 됩니다. 그러나 또한 hello 구독에 대 한 게시 설정 파일을 가져온 경우, 로그 아웃 삭제 Active Directory에서에서 관련 정보 hello 로컬 프로필에만 합니다.
 
 ## <a name="next-steps"></a>다음 단계
-* CLI 명령을 사용하려면 [Resource Manager 모드의 Azure CLI 명령](virtual-machines/azure-cli-arm-commands.md) 및 [서비스 관리 모드의 Azure CLI 명령](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)을 참조하세요.
-* Azure CLI에 대한 자세한 내용을 보거나, 소스 코드를 다운로드하거나, 문제를 보고하거나, 프로젝트에 기여하려면 [Azure CLI에 대한 GitHub 리포지토리](https://github.com/azure/azure-xplat-cli)를 방문하세요.
-* Azure CLI 또는 Azure를 사용하는 데 문제가 있는 경우 [Azure 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurescripting)을 방문하세요.
+* toouse Azure CLI 명령을 참조 [리소스 관리자 모드에서 Azure CLI 명령을](virtual-machines/azure-cli-arm-commands.md) 및 [서비스 관리 모드에서 Azure CLI 명령을](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)합니다.
+* hello Azure CLI에 대해 자세히 toolearn 소스 코드를 다운로드, 문제를 보고 또는 toohello 프로젝트 참가, hello 방문 [Azure CLI hello에 대 한 GitHub 리포지토리](https://github.com/azure/azure-xplat-cli)합니다.
+* Hello Azure CLI 또는 Azure를 사용 하 여 문제를 발생 하는 경우 방문 hello [의 Azure 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurescripting)합니다.

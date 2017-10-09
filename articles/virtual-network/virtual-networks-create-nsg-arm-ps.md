@@ -1,6 +1,6 @@
 ---
-title: "네트워크 보안 그룹 만들기 - Azure PowerShell | Microsoft Docs"
-description: "PowerShell을 사용하여 네트워크 보안 그룹을 만들고 배포하는 방법을 알아봅니다."
+title: "aaaCreate 네트워크 보안 그룹-Azure PowerShell | Microsoft Docs"
+description: "자세한 내용은 방법 toocreate 및 PowerShell을 사용 하 여 네트워크 보안 그룹을 배포 합니다."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,11 +16,11 @@ ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 26fe67b43d63c6685d8ae7644dd7df6931a4d2a5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1c8db773febb163d9cb010d23f2913b5ebe0fa94
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-network-security-groups-using-powershell"></a>PowerShell을 사용하여 네트워크 보안 그룹 만들기
 
@@ -28,17 +28,17 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
-Azure에는 Azure Resource Manager 및 클래식이라는 두 가지 배포 모델이 있습니다. Resource Manager 배포 모델을 통해 리소스를 만드는 것이 좋습니다. 두 가지 모델의 차이점에 대해 자세히 알아보려면 [Azure 배포 모델 이해](../azure-resource-manager/resource-manager-deployment-model.md) 문서를 참조하세요. 이 문서에서는 리소스 관리자 배포 모델에 대해 설명합니다. [클래식 배포 모델에서 NSG를 만들](virtual-networks-create-nsg-classic-ps.md)수도 있습니다.
+Azure에는 Azure Resource Manager 및 클래식이라는 두 가지 배포 모델이 있습니다. Hello 리소스 관리자 배포 모델을 통해 리소스를 만드는 것이 좋습니다. hello 읽기에 대해 더 알아봅니다 toolearn hello 두 모델 간의 차이 hello [이해 Azure 배포 모델](../azure-resource-manager/resource-manager-deployment-model.md) 문서. 이 문서에서는 hello 리소스 관리자 배포 모델에 설명 합니다. 수도 있습니다 [hello 클래식 배포 모델에서 Nsg를 만들](virtual-networks-create-nsg-classic-ps.md)합니다.
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-아래 샘플 PowerShell 명령에는 위의 시나리오를 기반으로 이미 만들어져 있는 단순한 환경이 필요합니다. 이 문서에 표시된 대로 명령을 실행하려는 경우 먼저 [이 템플릿](http://github.com/telmosampaio/azure-templates/tree/master/201-IaaS-WebFrontEnd-SQLBackEnd)을 배포하여 테스트 환경을 구축하고 **Azure에 배포**를 클릭한 다음 필요한 경우 기본 매개 변수 값을 바꾸고 포털의 지침을 따릅니다.
+위의 hello 시나리오를 기반으로 hello 예제 PowerShell 명령 아래에 이미 만든 단순한 환경 필요 합니다. 이 문서에 표시 된 대로 toorun hello 명령을 원하는 경우 먼저 hello 테스트 환경을 구축 배포 하 여 [이 서식 파일](http://github.com/telmosampaio/azure-templates/tree/master/201-IaaS-WebFrontEnd-SQLBackEnd), 클릭 **tooAzure 배포**, 대체 hello 기본 매개 변수 값 필요한 경우, 및의 지침에 따라 hello hello 포털 하는 경우.
 
-## <a name="how-to-create-the-nsg-for-the-front-end-subnet"></a>프런트 엔드 서브넷에 대한 NSG를 만드는 방법
-시나리오에 따라 *NSG-FrontEnd*라는 NSG를 만들려면 다음 단계를 완료하세요.
+## <a name="how-toocreate-hello-nsg-for-hello-front-end-subnet"></a>Toocreate NSG hello 프런트 엔드 서브넷에 대 한 hello 하는 방법
+toocreate 라는 NSG *NSG 프런트 엔드* hello 시나리오에 따라, hello 다음 단계를 완료 합니다.
 
-1. Azure PowerShell을 처음 사용하는 경우 [Azure PowerShell을 설치 및 구성하는 방법](/powershell/azure/overview) 을 참조하고 지침을 끝까지 따르면서 Azure에 로그인하고 구독을 선택합니다.
-2. 인터넷에서 포트 3389에 액세스할 수 있도록 허용하는 보안 규칙을 만듭니다.
+1. Azure PowerShell을 처음 사용 하는 경우 참조 [어떻게 tooInstall 및 Azure PowerShell 구성](/powershell/azure/overview) 모든 hello 방식으로 toohello toosign를 Azure로 끝나고 구독을 선택 하는 hello 지침을 따릅니다.
+2. Hello 인터넷 tooport 3389에서에서 액세스를 허용 하는 보안 규칙을 만듭니다.
 
     ```powershell
     $rule1 = New-AzureRmNetworkSecurityRuleConfig -Name rdp-rule -Description "Allow RDP" `
@@ -47,7 +47,7 @@ Azure에는 Azure Resource Manager 및 클래식이라는 두 가지 배포 모�
     -DestinationAddressPrefix * -DestinationPortRange 3389
     ```
 
-3. 인터넷에서 포트 80에 액세스할 수 있도록 허용하는 보안 규칙을 만듭니다.
+3. Hello 인터넷 tooport 80에서에서의 액세스를 허용 하는 보안 규칙을 만듭니다.
 
     ```powershell
     $rule2 = New-AzureRmNetworkSecurityRuleConfig -Name web-rule -Description "Allow HTTP" `
@@ -56,20 +56,20 @@ Azure에는 Azure Resource Manager 및 클래식이라는 두 가지 배포 모�
     -DestinationPortRange 80
     ```
 
-4. 위에서 만든 규칙을 **NSG-FrontEnd**라는 새 NSG에 추가합니다.
+4. 새 NSG 라는 tooa 위에서 만든 hello 규칙 추가 **NSG 프런트 엔드**합니다.
 
     ```powershell
     $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName TestRG -Location westus `
     -Name "NSG-FrontEnd" -SecurityRules $rule1,$rule2
     ```
 
-5. 다음을 입력하여 NSG에서 만든 규칙을 확인합니다.
+5. Hello 다음을 입력 하 여 hello NSG에서에서 만든 hello 규칙을 확인 합니다.
 
     ```powershell
     $nsg
     ```
    
-    보안 규칙만 표시하는 출력:
+    표시 된 정당한 hello 보안 규칙을 출력 합니다.
    
         SecurityRules        : [
                                  {
@@ -103,7 +103,7 @@ Azure에는 Azure Resource Manager 및 클래식이라는 두 가지 배포 모�
                                    "ProvisioningState": "Succeeded"
                                  }
                                ]
-6. 위에서 만든 NSG를 *FrontEnd* 서브넷에 연결합니다.
+6. NSG toohello 위에서 만든 연결 hello *프런트 엔드* 서브넷입니다.
 
     ```powershell
     $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName TestRG -Name TestVNet
@@ -111,7 +111,7 @@ Azure에는 Azure Resource Manager 및 클래식이라는 두 가지 배포 모�
     -AddressPrefix 192.168.1.0/24 -NetworkSecurityGroup $nsg
     ```
 
-    *FrontEnd* 서브넷 설정을 보여 주는 출력에서 **NetworkSecurityGroup** 속성의 값을 확인합니다.
+    출력 표시 된 유일한 hello *프런트 엔드* 서브넷 설정, hello에 대 한 공지 hello 값 **NetworkSecurityGroup** 속성:
    
                     Subnets           : [
                                           {
@@ -135,25 +135,25 @@ Azure에는 Azure Resource Manager 및 클래식이라는 두 가지 배포 모�
                                           }
    
    > [!WARNING]
-   > 위의 명령에 대한 출력에서는 PowerShell을 실행 중인 컴퓨터에만 존재하는 가상 네트워크 구성 개체에 대한 콘텐츠를 보여 줍니다. 이러한 설정을 Azure에 저장하려면 `Set-AzureRmVirtualNetwork` cmdlet을 실행해야 합니다.
+   > 위의 hello 명령에 대 한 hello 출력에는 PowerShell를 실행 하는 hello 컴퓨터에만 존재 하는 hello 가상 네트워크 구성 개체에 대 한 hello 콘텐츠를 보여 줍니다. Toorun hello 필요한 `Set-AzureRmVirtualNetwork` cmdlet toosave 이러한 설정 tooAzure 합니다.
    > 
    > 
-7. Azure에 새 VNet 설정을 저장합니다.
+7. 새 VNet 설정 tooAzure hello를 저장 합니다.
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
     ```
 
-    NSG 부분만 표시하는 출력:
+    Hello NSG 부분만 표시를 출력 합니다.
    
         "NetworkSecurityGroup": {
           "Id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/TestRG/providers/Microsoft.Network/networkSecurityGroups/NSG-FrontEnd"
         }
 
-## <a name="how-to-create-the-nsg-for-the-back-end-subnet"></a>백 엔드 서브넷에 대한 NSG를 만드는 방법
-시나리오에 따라 *NSG-BackEnd*라는 NSG를 만들려면 다음 단계를 완료하세요.
+## <a name="how-toocreate-hello-nsg-for-hello-back-end-subnet"></a>Toocreate NSG hello 백 엔드 서브넷에 대 한 hello 하는 방법
+toocreate 라는 NSG *NSG 백 엔드* 위의 hello 시나리오에 따라, hello 다음 단계를 완료 합니다.
 
-1. 프런트 엔드 서브넷에서 포트 1433(SQL Server에서 사용되는 기본 포트)에 액세스할 수 있도록 허용하는 보안 규칙을 만듭니다.
+1. Hello 프런트 엔드 서브넷 tooport 1433 (SQL Server에서 사용 하는 기본 포트)에서 액세스를 허용 하는 보안 규칙을 만듭니다.
 
     ```powershell
     $rule1 = New-AzureRmNetworkSecurityRuleConfig -Name frontend-rule `
@@ -163,7 +163,7 @@ Azure에는 Azure Resource Manager 및 클래식이라는 두 가지 배포 모�
     -DestinationAddressPrefix * -DestinationPortRange 1433
     ```
 
-2. 인터넷에 대한 액세스를 차단하는 보안 규칙을 만듭니다.
+2. 인터넷 액세스 toohello 차단 보안 규칙을 만듭니다.
 
     ```powershell
     $rule2 = New-AzureRmNetworkSecurityRuleConfig -Name web-rule `
@@ -173,7 +173,7 @@ Azure에는 Azure Resource Manager 및 클래식이라는 두 가지 배포 모�
     -DestinationAddressPrefix Internet -DestinationPortRange *
     ```
 
-3. 위에서 만든 규칙을 **NSG-BackEnd**라는 새 NSG에 추가합니다.
+3. 새 NSG 라는 tooa 위에서 만든 hello 규칙 추가 **NSG 백 엔드**합니다.
 
     ```powershell
     $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName TestRG `
@@ -181,14 +181,14 @@ Azure에는 Azure Resource Manager 및 클래식이라는 두 가지 배포 모�
     -SecurityRules $rule1,$rule2
     ```
 
-4. 위에서 만든 NSG를 *BackEnd* 서브넷에 연결합니다.
+4. NSG toohello 위에서 만든 연결 hello *백 엔드* 서브넷입니다.
 
     ```powershell
     Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name BackEnd ` 
     -AddressPrefix 192.168.2.0/24 -NetworkSecurityGroup $nsg
     ```
 
-    *BackEnd* 서브넷 설정을 보여 주는 출력에서 **NetworkSecurityGroup** 속성의 값을 확인합니다.
+    출력 표시 된 유일한 hello *백 엔드* 서브넷 설정, hello에 대 한 공지 hello 값 **NetworkSecurityGroup** 속성:
    
         Subnets           : [
                       {
@@ -203,16 +203,16 @@ Azure에는 Azure Resource Manager 및 클래식이라는 두 가지 배포 모�
                         "RouteTable": null,
                         "ProvisioningState": "Succeeded"
                       }
-5. Azure에 새 VNet 설정을 저장합니다.
+5. 새 VNet 설정 tooAzure hello를 저장 합니다.
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
     ```
 
-## <a name="how-to-remove-an-nsg"></a>NSG를 제거하는 방법
-기존 NSG(이 경우 *NSG-Frontend*를 삭제하려면 다음 단계를 수행합니다.
+## <a name="how-tooremove-an-nsg"></a>어떻게 tooremove NSG
+toodelete 기존 NSG 호출 *NSG 프런트 엔드* 이 경우 아래의 hello 단계를 수행 합니다.
 
-아래에 표시된 **Remove-AzureRmNetworkSecurityGroup**을 실행하고 NSG가 있는 리소스 그룹을 포함해야 합니다.
+Hello 실행 **제거 AzureRmNetworkSecurityGroup** 아래에 표시 된 NSG 중인 있는지 tooinclude hello 리소스 그룹 hello 수입니다.
 
 ```powershell
 Remove-AzureRmNetworkSecurityGroup -Name "NSG-FrontEnd" -ResourceGroupName "TestRG"

@@ -1,5 +1,5 @@
 ---
-title: "Azure Linux 가상 컴퓨터에서 Oracle Data Guard 구현 | Microsoft Docs"
+title: "Azure Linux 가상 컴퓨터에서 Oracle Data Guard aaaImplement | Microsoft Docs"
 description: "Azure 환경에서 Oracle Data Guard를 신속하게 가동하고 실행합니다."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -15,31 +15,31 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/10/2017
 ms.author: rclaus
-ms.openlocfilehash: 11492b85e95ddb39489e36c572af2a168b4c7af8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6bb530098737e3ca7dd8bab3f4306ecbb620f3f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="implement-oracle-data-guard-on-an-azure-linux-virtual-machine"></a>Azure Linux 가상 컴퓨터에서 Oracle Data Guard 구현 
 
-Azure CLI는 명령줄 또는 스크립트에서 Azure 리소스를 만들고 관리하는 데 사용됩니다. 이 문서에서는 Azure CLI를 사용하여 Azure Marketplace 이미지에서 Oracle Database 12c 데이터베이스를 배포하는 방법을 설명합니다. 그런 다음 이 문서는 Azure VM(가상 컴퓨터)에서 Data Guard를 설치하고 구성하는 방법을 단계별로 보여 줍니다.
+Azure CLI 사용된 toocreate 이며 hello 명령줄에서 또는 스크립트에서 Azure 리소스를 관리 합니다. 이 문서에서는 toouse Azure CLI toodeploy Oracle 데이터베이스 12c hello Azure 마켓플레이스 이미지 로부터 데이터베이스를 설명 합니다. 이 문서의 다음 방법을 보여 줍니다, 단계별 방법 tooinstall 및 Azure 가상 컴퓨터 (VM)에서 Data Guard를 구성 합니다.
 
-시작하기 전에 Azure CLI가 설치되어 있는지 확인합니다. 자세한 내용은 [Azure CLI 설치 가이드](https://docs.microsoft.com/cli/azure/install-azure-cli)를 참조하세요.
+시작하기 전에 Azure CLI가 설치되어 있는지 확인합니다. 자세한 내용은 참조 hello [Azure CLI 설치 가이드](https://docs.microsoft.com/cli/azure/install-azure-cli)합니다.
 
-## <a name="prepare-the-environment"></a>환경 준비
+## <a name="prepare-hello-environment"></a>Hello 환경 준비
 ### <a name="assumptions"></a>가정
 
-Oracle Data Guard를 설치하려면 동일한 가용성 집합에서 두 개의 Azure VM을 만들어야 합니다.
+hello에 toocreate 2 Azure Vm을 필요한 Oracle Data Guard tooinstall 동일한 가용성 집합:
 
-- 기본 VM(myVM1)에 실행 중인 Oracle 인스턴스가 있습니다.
-- 대기 VM(myVM2)에는 Oracle 소프트웨어만 설치되어 있습니다.
+- hello 기본 VM (myVM1)에 실행 중인 Oracle 인스턴스.
+- hello 대기 VM (myVM2)에 hello Oracle 소프트웨어가 설치 되어 있습니다.
 
-VM을 만드는 데 사용하는 Marketplace 이미지는 Oracle:Oracle-Database-Ee:12.1.0.2:latest입니다.
+hello 마켓플레이스 이미지 toocreate hello Vm을 사용 하는 Oracle: Oracle-데이터베이스-Ee:12.1.0.2:latest 합니다.
 
-### <a name="sign-in-to-azure"></a>Azure에 로그인 
+### <a name="sign-in-tooazure"></a>TooAzure에 로그인 
 
-[az login](/cli/azure/#login) 명령을 사용하여 Azure 구독에 로그인하고 화면의 지시를 따릅니다.
+Hello를 사용 하 여 Azure 구독 tooyour 로그인 [az 로그인](/cli/azure/#login) 명령 열고 지시를 따른 hello 화면에 표시 합니다.
 
 ```azurecli
 az login
@@ -47,9 +47,9 @@ az login
 
 ### <a name="create-a-resource-group"></a>리소스 그룹 만들기
 
-[az group create](/cli/azure/group#create) 명령을 사용하여 리소스 그룹을 만듭니다. Azure 리소스 그룹은 Azure 리소스가 배포 및 관리되는 논리적 컨테이너입니다. 
+Hello를 사용 하 여 리소스 그룹 만들기 [az 그룹 만들기](/cli/azure/group#create) 명령입니다. Azure 리소스 그룹은 Azure 리소스가 배포 및 관리되는 논리적 컨테이너입니다. 
 
-다음 예제에서는 `westus` 위치에 `myResourceGroup`이라는 리소스 그룹을 만듭니다.
+hello 다음 예제에서는 명명 된 리소스 그룹 `myResourceGroup` hello에 `westus` 위치:
 
 ```azurecli
 az group create --name myResourceGroup --location westus
@@ -69,9 +69,9 @@ az vm availability-set create \
 
 ### <a name="create-a-virtual-machine"></a>가상 컴퓨터 만들기
 
-[az vm create](/cli/azure/vm#create) 명령을 사용하여 VM을 만듭니다. 
+Hello를 사용 하 여 VM을 만들 [az vm 만들기](/cli/azure/vm#create) 명령입니다. 
 
-다음 예제에서는 `myVM1` 및 `myVM2`라고 하는 VM 두 개를 만듭니다. 또한 기본 키 위치에 SSH 키가 없는 경우 이 키를 만듭니다. 특정 키 집합을 사용하려면 `--ssh-key-value` 옵션을 사용합니다.
+hello 다음 예제에서는 라는 두 개의 Vm `myVM1` 및 `myVM2`합니다. 또한 기본 키 위치에 SSH 키가 없는 경우 이 키를 만듭니다. toouse 특정 키의 집합, hello를 사용 하 여 `--ssh-key-value` 옵션입니다.
 
 myVM1(기본) 만들기:
 ```azurecli
@@ -85,7 +85,7 @@ az vm create \
      --generate-ssh-keys \
 ```
 
-VM을 만든 후 Azure CLI는 다음 예제와 비슷한 정보를 표시합니다. `publicIpAddress` 값을 기록해 둡니다. 이 주소는 VM에 액세스하는 데 사용됩니다.
+Hello VM을 만든 후 Azure CLI 정보 비슷한 toohello를 다음 예제를 보여 줍니다. Hello 값을 기록해 둡니다 `publicIpAddress`합니다. VM이 주소 tooaccess hello를 사용 합니다.
 
 ```azurecli
 {
@@ -112,13 +112,13 @@ az vm create \
      --generate-ssh-keys \
 ```
 
-myVM2를 만든 후 `publicIpAddress` 값을 기록해 둡니다.
+Hello 값을 기록해 둡니다 `publicIpAddress` myVM2을 생성 합니다.
 
-### <a name="open-the-tcp-port-for-connectivity"></a>연결에 대한 TCP 포트 열기
+### <a name="open-hello-tcp-port-for-connectivity"></a>연결에 대 한 hello TCP 포트 열기
 
-이 단계에서는 Oracle 데이터베이스에 대한 원격 액세스를 허용하는 외부 끝점을 구성합니다.
+이 단계에서는 원격 액세스 toohello Oracle 데이터베이스를 허용 하는 외부 끝점을 구성 합니다.
 
-myVM1에 대한 포트 열기:
+MyVM1 hello 포트 열기:
 
 ```azurecli
 az network nsg rule create --resource-group myResourceGroup\
@@ -128,7 +128,7 @@ az network nsg rule create --resource-group myResourceGroup\
     --destination-address-prefix '*' --destination-port-range 1521 --access allow
 ```
 
-결과는 다음 응답과 유사하게 나타납니다.
+hello 결과 응답 다음 비슷한 toohello 같아야 합니다.
 
 ```bash
 {
@@ -149,7 +149,7 @@ az network nsg rule create --resource-group myResourceGroup\
 }
 ```
 
-myVM2에 대한 포트 열기:
+MyVM2 hello 포트 열기:
 
 ```azurecli
 az network nsg rule create --resource-group myResourceGroup\
@@ -159,25 +159,25 @@ az network nsg rule create --resource-group myResourceGroup\
     --destination-address-prefix '*' --destination-port-range 1521 --access allow
 ```
 
-### <a name="connect-to-the-virtual-machine"></a>가상 컴퓨터에 연결
+### <a name="connect-toohello-virtual-machine"></a>Toohello 가상 컴퓨터에 연결
 
-다음 명령을 사용하여 가상 컴퓨터와의 SSH 세션을 만듭니다. 해당 IP 주소를 가상 컴퓨터의 `publicIpAddress` 값으로 바꿉니다.
+사용 하 여 hello 다음 명령은 toocreate hello 가상 컴퓨터와의 SSH 세션입니다. Hello로 hello IP 주소를 교체 `publicIpAddress` 가상 컴퓨터에 대 한 값입니다.
 
 ```bash 
 $ ssh azureuser@<publicIpAddress>
 ```
 
-### <a name="create-the-database-on-myvm1-primary"></a>myVM1(기본)에서 데이터베이스 만들기
+### <a name="create-hello-database-on-myvm1-primary"></a>Hello 데이터베이스를 만드는 위치 myVM1 (기본)
 
-Oracle 소프트웨어는 Marketplace 이미지에 이미 설치되어 있으므로 다음 단계에서 데이터베이스를 설치합니다. 
+Oracle 소프트웨어 hello 있으므로 hello 다음 단계는 tooinstall hello 데이터베이스 hello 마켓플레이스 이미지에 이미 설치 되어 있습니다. 
 
-Oracle superuser로 전환합니다.
+Toohello Oracle superuser을 전환 합니다.
 
 ```bash
 $ sudo su - oracle
 ```
 
-데이터베이스를 만듭니다.
+hello 데이터베이스 만드는 위치:
 
 ```bash
 $ dbca -silent \
@@ -198,7 +198,7 @@ $ dbca -silent \
    -storageType FS \
    -ignorePreReqs
 ```
-출력은 다음 응답과 유사하게 나타납니다.
+출력에는 다음 응답 비슷한 toohello 같아야 합니다.
 
 ```bash
 Copying database files
@@ -227,17 +227,17 @@ Completing Database Creation
 Creating Pluggable Databases
 78% complete
 100% complete
-Look at the log file "/u01/app/oracle/cfgtoollogs/dbca/cdb1/cdb1.log" for further details.
+Look at hello log file "/u01/app/oracle/cfgtoollogs/dbca/cdb1/cdb1.log" for further details.
 ```
 
-ORACLE_SID 및 ORACLE_HOME 변수를 설정합니다.
+Hello ORACLE_SID 및 ORACLE_HOME 변수를 설정 합니다.
 
 ```bash
 $ ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
 $ ORACLE_SID=cdb1; export ORACLE_SID
 ```
 
-필요에 따라 /home/oracle/.bashrc 파일에 ORACLE_HOME 및 ORACLE_SID를 추가하여 후속 로그인을 위해 이러한 설정을 저장할 수 있습니다.
+필요에 따라는 이후 로그인에 대 한 이러한 설정을 저장할 수 있도록 ORACLE_HOME 및 ORACLE_SID toohello /home/oracle/.bashrc 파일을 추가할 수 있습니다.
 
 ```bash
 # add oracle home
@@ -279,7 +279,7 @@ SQL> ALTER DATABASE ADD STANDBY LOGFILE ('/u01/app/oracle/oradata/cdb1/standby_r
 SQL> ALTER DATABASE ADD STANDBY LOGFILE ('/u01/app/oracle/oradata/cdb1/standby_redo04.log') SIZE 50M;
 ```
 
-복구가 훨씬 용이해지는 플래시백을 설정하고 STANDBY\_FILE\_MANAGEMENT를 자동으로 설정합니다. 그런 다음 SQL*Plus를 끝냅니다.
+(하면을 복구 훨씬 쉽게) 플래시 백을 설정 하 고 대기 모드를 설정\_파일\_관리 tooauto 합니다. 그런 다음 SQL*Plus를 끝냅니다.
 
 ```bash
 SQL> ALTER DATABASE FLASHBACK ON;
@@ -289,9 +289,9 @@ SQL> EXIT;
 
 ### <a name="set-up-service-on-myvm1-primary"></a>myVM1(기본)에서 서비스 설정
 
-$ORACLE_HOME\network\admin 폴더에서 tnsnames.ora 파일을 편집하거나 만듭니다.
+편집 하거나 hello $ORACLE_HOME\network\admin 폴더에 있는 hello tnsnames.ora 파일을 만듭니다.
 
-다음 항목을 추가합니다.
+Hello 다음 항목을 추가 합니다.
 
 ```bash
 cdb1 =
@@ -315,9 +315,9 @@ cdb1_stby =
   )
 ```
 
-$ORACLE_HOME\network\admin 폴더에서 listener.ora 파일을 편집하거나 만듭니다.
+편집 하거나 hello $ORACLE_HOME\network\admin 폴더에 있는 hello listener.ora 파일을 만듭니다.
 
-다음 항목을 추가합니다.
+Hello 다음 항목을 추가 합니다.
 
 ```bash
 LISTENER =
@@ -346,7 +346,7 @@ $ sqlplus / as sysdba
 SQL> ALTER SYSTEM SET dg_broker_start=true;
 SQL> EXIT;
 ```
-수신기를 시작합니다.
+Hello 수신기를 시작 합니다.
 
 ```bash
 $ lsnrctl stop
@@ -355,7 +355,7 @@ $ lsnrctl start
 
 ### <a name="set-up-service-on-myvm2-standby"></a>myVM2(대기)에서 서비스 설정
 
-myVM2에 대해 SSH를 설정합니다.
+SSH toomyVM2:
 
 ```bash 
 $ ssh azureuser@<publicIpAddress>
@@ -367,9 +367,9 @@ Oracle로 로그인합니다.
 $ sudo su - oracle
 ```
 
-$ORACLE_HOME\network\admin 폴더에서 tnsnames.ora 파일을 편집하거나 만듭니다.
+편집 하거나 hello $ORACLE_HOME\network\admin 폴더에 있는 hello tnsnames.ora 파일을 만듭니다.
 
-다음 항목을 추가합니다.
+Hello 다음 항목을 추가 합니다.
 
 ```bash
 cdb1 =
@@ -393,9 +393,9 @@ cdb1_stby =
   )
 ```
 
-$ORACLE_HOME\network\admin 폴더에서 listener.ora 파일을 편집하거나 만듭니다.
+편집 하거나 hello $ORACLE_HOME\network\admin 폴더에 있는 hello listener.ora 파일을 만듭니다.
 
-다음 항목을 추가합니다.
+Hello 다음 항목을 추가 합니다.
 
 ```bash
 LISTENER =
@@ -418,7 +418,7 @@ SID_LIST_LISTENER =
 ADR_BASE_LISTENER = /u01/app/oracle
 ```
 
-수신기를 시작합니다.
+Hello 수신기를 시작 합니다.
 
 ```bash
 $ lsnrctl stop
@@ -426,9 +426,9 @@ $ lsnrctl start
 ```
 
 
-### <a name="restore-the-database-to-myvm2-standby"></a>myVM2(대기)로 데이터베이스 복원
+### <a name="restore-hello-database-toomyvm2-standby"></a>Hello 데이터베이스 toomyVM2 복원 (대기)
 
-다음 콘텐츠로 매개 변수 파일 /tmp/initcdb1_stby.ora를 만듭니다.
+Hello 매개 변수 파일 /tmp/initcdb1_stby.ora를 내용을 따라 hello로 만듭니다.
 ```bash
 *.db_name='cdb1'
 ```
@@ -447,7 +447,7 @@ mkdir -p /u01/app/oracle/admin/cdb1/adump
 ```bash
 $ orapwd file=/u01/app/oracle/product/12.1.0/dbhome_1/dbs/orapwcdb1 password=OraPasswd1 entries=10
 ```
-myVM2에서 데이터베이스를 시작합니다.
+MyVM2 시작 hello 데이터베이스 위치:
 
 ```bash
 $ export ORACLE_SID=cdb1
@@ -457,13 +457,13 @@ SQL> STARTUP NOMOUNT PFILE='/tmp/initcdb1_stby.ora';
 SQL> EXIT;
 ```
 
-RMAN 도구를 사용하여 데이터베이스를 복원합니다.
+Hello RMAN 도구를 사용 하 여 hello 데이터베이스를 복원 합니다.
 
 ```bash
 $ rman TARGET sys/OraPasswd1@cdb1 AUXILIARY sys/OraPasswd1@cdb1_stby
 ```
 
-RMAN에서 다음 명령을 실행합니다.
+Hello 다음 RMAN에서 명령을 실행 합니다.
 ```bash
 DUPLICATE TARGET DATABASE
   FOR STANDBY
@@ -474,7 +474,7 @@ DUPLICATE TARGET DATABASE
   NOFILENAMECHECK;
 ```
 
-명령이 완료되면 다음과 비슷한 메시지가 표시됩니다. RMAN을 끝냅니다.
+Hello 명령이 완료 되 면 비슷한 toohello 다음 메시지가 표시 됩니다. RMAN을 끝냅니다.
 ```bash
 media recovery complete, elapsed time: 00:00:00
 Finished recover at 29-JUN-17
@@ -483,7 +483,7 @@ Finished Duplicate Db at 29-JUN-17
 RMAN> EXIT;
 ```
 
-필요에 따라 /home/oracle/.bashrc 파일에 ORACLE_HOME 및 ORACLE_SID를 추가하여 후속 로그인을 위해 이러한 설정을 저장할 수 있습니다.
+필요에 따라는 이후 로그인에 대 한 이러한 설정을 저장할 수 있도록 ORACLE_HOME 및 ORACLE_SID toohello /home/oracle/.bashrc 파일을 추가할 수 있습니다.
 
 ```bash
 # add oracle home
@@ -501,7 +501,7 @@ SQL> EXIT;
 
 ### <a name="configure-data-guard-broker-on-myvm1-primary"></a>myVM1(기본)에서 Data Guard Broker 구성
 
-Data Guard Manager를 시작하고 SYS 및 암호를 사용하여 로그인합니다. OS 인증을 사용하지 마세요. 다음을 수행합니다.
+Data Guard Manager를 시작하고 SYS 및 암호를 사용하여 로그인합니다. OS 인증을 사용하지 마세요. Hello 다음을 수행 합니다.
 
 ```bash
 $ dgmgrl sys/OraPasswd1@cdb1
@@ -509,7 +509,7 @@ DGMGRL for Linux: Version 12.1.0.2.0 - 64bit Production
 
 Copyright (c) 2000, 2013, Oracle. All rights reserved.
 
-Welcome to DGMGRL, type "help" for information.
+Welcome tooDGMGRL, type "help" for information.
 Connected as SYSDBA.
 DGMGRL> CREATE CONFIGURATION my_dg_config AS PRIMARY DATABASE IS cdb1 CONNECT IDENTIFIER IS cdb1;
 Configuration "my_dg_config" created with primary database "cdb1"
@@ -519,7 +519,7 @@ DGMGRL> ENABLE CONFIGURATION;
 Enabled.
 ```
 
-구성을 검토합니다.
+Hello 구성 검토:
 ```bash
 DGMGRL> SHOW CONFIGURATION;
 
@@ -536,13 +536,13 @@ Configuration Status:
 SUCCESS   (status updated 26 seconds ago)
 ```
 
-Oracle Data Guard 설정이 완료되었습니다. 다음 섹션에서는 연결 및 전환을 테스트하는 방법을 보여 줍니다.
+Hello Oracle Data Guard 설치를 완료 합니다. hello 다음 섹션에는 tootest hello 연결 하 고 전환 하는 방법을 보여줍니다.
 
-### <a name="connect-the-database-from-the-client-machine"></a>클라이언트 컴퓨터에서 데이터베이스 연결
+### <a name="connect-hello-database-from-hello-client-machine"></a>Hello 데이터베이스 hello 클라이언트 컴퓨터에서 연결
 
-클라이언트 컴퓨터에서 tnsnames.ora 파일을 업데이트하거나 만듭니다. 이 파일은 일반적으로 $ORACLE_HOME\network\admin에 있습니다.
+업데이트 또는 클라이언트 컴퓨터의 hello tnsnames.ora 파일을 만듭니다. 이 파일은 일반적으로 $ORACLE_HOME\network\admin에 있습니다.
 
-해당 IP 주소를 myVM1 및 myVM2의 `publicIpAddress` 값으로 바꿉니다.
+Hello IP 주소를 교체 하면 `publicIpAddress` myVM1 및 myVM2 값:
 
 ```bash
 cdb1=
@@ -582,15 +582,15 @@ Copyright (c) 1982, 2016, Oracle.  All rights reserved.
 
 Connected to:
 Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
-With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+With hello Partitioning, OLAP, Advanced Analytics and Real Application Testing options
 
 SQL>
 ```
-## <a name="test-the-data-guard-configuration"></a>Data Guard 구성 테스트
+## <a name="test-hello-data-guard-configuration"></a>테스트 hello Data Guard 구성
 
-### <a name="switch-over-the-database-on-myvm1-primary"></a>myVM1(기본)에서 데이터베이스 전환
+### <a name="switch-over-hello-database-on-myvm1-primary"></a>(기본) myVM1 hello 데이터베이스 전환
 
-기본에서 대기(cdb1에서 cdb1_stby)로 전환하려면 다음을 실행합니다.
+기본 toostandby (cdb1 toocdb1_stby)에서 tooswitch:
 
 ```bash
 $ dgmgrl sys/OraPasswd1@cdb1
@@ -598,12 +598,12 @@ DGMGRL for Linux: Version 12.1.0.2.0 - 64bit Production
 
 Copyright (c) 2000, 2013, Oracle. All rights reserved.
 
-Welcome to DGMGRL, type "help" for information.
+Welcome tooDGMGRL, type "help" for information.
 Connected as SYSDBA.
-DGMGRL> SWITCHOVER TO cdb1_stby;
+DGMGRL> SWITCHOVER toocdb1_stby;
 Performing switchover NOW, please wait...
-Operation requires a connection to instance "cdb1" on database "cdb1_stby"
-Connecting to instance "cdb1"...
+Operation requires a connection tooinstance "cdb1" on database "cdb1_stby"
+Connecting tooinstance "cdb1"...
 Connected as SYSDBA.
 New primary database "cdb1_stby" is opening...
 Operation requires start up of instance "cdb1" on database "cdb1"
@@ -614,7 +614,7 @@ Switchover succeeded, new primary is "cdb1_stby"
 DGMGRL>
 ```
 
-이제 대기 데이터베이스에 연결할 수 있습니다.
+Toohello 대기 데이터베이스를 연결할 수 있습니다.
 
 SQL*Plus를 시작합니다.
 
@@ -627,26 +627,26 @@ Copyright (c) 1982, 2016, Oracle.  All rights reserved.
 
 Connected to:
 Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
-With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+With hello Partitioning, OLAP, Advanced Analytics and Real Application Testing options
 
 SQL>
 ```
 
-### <a name="switch-over-the-database-on-myvm2-standby"></a>myVM2(대기)에서 데이터베이스 전환
+### <a name="switch-over-hello-database-on-myvm2-standby"></a>MyVM2 hello 데이터베이스 전환 (대기)
 
-전환하려면 myVM2에서 다음을 실행합니다.
+조치 tooswitch myVM2 hello 다음을 실행 합니다.
 ```bash
 $ dgmgrl sys/OraPasswd1@cdb1_stby
 DGMGRL for Linux: Version 12.1.0.2.0 - 64bit Production
 
 Copyright (c) 2000, 2013, Oracle. All rights reserved.
 
-Welcome to DGMGRL, type "help" for information.
+Welcome tooDGMGRL, type "help" for information.
 Connected as SYSDBA.
-DGMGRL> SWITCHOVER TO cdb1;
+DGMGRL> SWITCHOVER toocdb1;
 Performing switchover NOW, please wait...
-Operation requires a connection to instance "cdb1" on database "cdb1"
-Connecting to instance "cdb1"...
+Operation requires a connection tooinstance "cdb1" on database "cdb1"
+Connecting tooinstance "cdb1"...
 Connected as SYSDBA.
 New primary database "cdb1" is opening...
 Operation requires start up of instance "cdb1" on database "cdb1_stby"
@@ -656,7 +656,7 @@ Database mounted.
 Switchover succeeded, new primary is "cdb1"
 ```
 
-다시 한번, 주 데이터베이스에 연결할 수 있어야 합니다.
+다시 한 번 수 tooconnect toohello 주 데이터베이스 수 있어야 합니다.
 
 SQL*Plus를 시작합니다.
 
@@ -669,17 +669,17 @@ Copyright (c) 1982, 2016, Oracle.  All rights reserved.
 
 Connected to:
 Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
-With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+With hello Partitioning, OLAP, Advanced Analytics and Real Application Testing options
 
 SQL>
 ```
 
-Oracle Linux에서 Data Guard의 설치 및 구성을 완료했습니다.
+Oracle Linux에서 Data Guard의 hello 설치 및 구성 작업을 완료 했습니다.
 
 
-## <a name="delete-the-virtual-machine"></a>가상 컴퓨터 삭제
+## <a name="delete-hello-virtual-machine"></a>Hello 가상 컴퓨터 삭제
 
-더 이상 VM이 필요하지 않은 경우 다음 명령을 사용하여 리소스 그룹, VM 및 모든 관련된 리소스를 제거할 수 있습니다.
+더 이상 VM hello 필요 hello 명령 tooremove hello 리소스 그룹, VM 및 관련 된 모든 리소스에 따라 사용할 수 없습니다.
 
 ```azurecli
 az group delete --name myResourceGroup

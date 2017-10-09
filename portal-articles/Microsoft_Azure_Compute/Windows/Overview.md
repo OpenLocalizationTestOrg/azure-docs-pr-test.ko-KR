@@ -1,5 +1,5 @@
 ---
-title: "Windows 가상 컴퓨터 개요 | Microsoft Docs"
+title: "가상 컴퓨터 개요 aaaWindows | Microsoft Docs"
 description: "Azure 포털 내에서 Windows 가상 컴퓨터 개요에 대 한 콘텐츠를 도움말"
 services: virtual-machines-windows
 author: sewatson
@@ -8,19 +8,19 @@ ms.service: virtual-machines-windows
 ms.topic: article
 ms.date: 04/27/2017
 ms.author: sewatson
-ms.openlocfilehash: 03b204d9970a3831543a03dfa08e2a4d8b274034
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1992c0715d39669565cf1754975d2d82b19d3b22
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="windows-virtual-machines-documentation"></a>Windows Virtual Machines 설명서
 
-Azure Windows Virtual Machines는 Windows Server를 사용하여 안전하고 가상화된 주문형 대규모 인프라를 제공합니다. 빠른 시작, 자습서 및 샘플로 Windows VM을 생성, 구성, 관리 및 확장하는 방법을 알아봅니다.
+Azure Windows Virtual Machines는 Windows Server를 사용하여 안전하고 가상화된 주문형 대규모 인프라를 제공합니다. 어떻게 toocreate, 구성, 관리 하 고 Windows Vm의 크기를 조정 퀵 스타트, 자습서 및 샘플에 알아봅니다.
 
 ## <a name="5-minute-quickstarts"></a>5분 빠른 시작
 
-Windows Server 2016을 실행하는 Virtual Machine 내에 IIS 웹 서버를 배포하는 방법을 알아봅니다.
+자세한 내용은 방법 Windows Server 2016을 실행 하는 가상 컴퓨터 내 toodeploy IIS 웹 서버:
 
 - [Azure 포털](/azure/virtual-machines/virtual-machines-windows-quick-create-portal?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 - [Azure PowerShell](/azure/virtual-machines/virtual-machines-windows-quick-create-powershell?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
@@ -28,7 +28,7 @@ Windows Server 2016을 실행하는 Virtual Machine 내에 IIS 웹 서버를 배
 
 ## <a name="step-by-step-tutorials"></a>단계별 자습서
 
-배포, 관리 및 Azure에서 Windows Vm을 모니터링 하는 방법에 알아봅니다.
+Toodeploy, 관리 하 고 Azure에서 Windows Vm을 모니터링 하는 방법에 대해 알아봅니다.
 
 - [Windows VM 생성 및 관리](/azure/virtual-machines/windows/tutorial-manage-vm)
 - [VM 디스크 생성 및 관리](/azure/virtual-machines/windows/tutorial-manage-data-disk)
@@ -51,12 +51,12 @@ Windows Server 2016을 실행하는 Virtual Machine 내에 IIS 웹 서버를 배
 
 ## <a name="samples"></a>샘플
 
-Azure에 첫 번째 응용 프로그램을 배포합니다.
+첫 번째 응용 프로그램 tooAzure 프로그램을 배포 합니다.
 
 - [Azure CLI](/azure/virtual-machines/virtual-machines-windows-cli-samples?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 - [Azure PowerShell](/azure/virtual-machines/virtual-machines-windows-powershell-samples?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## <a name="more"></a>추가
 
-- [자세한 내용은 설명서를 참조 합니다.](/azure/virtual-machines/windows/index)
+- [자세한 설명서 toolearn 방문](/azure/virtual-machines/windows/index)
 - [모든 Azure 서비스에 알아보기](https://aka.ms/j3wr7y)

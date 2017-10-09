@@ -1,6 +1,6 @@
 ---
-title: "DMZ에 사용할 Azure 샘플 응용 프로그램 | Microsoft Docs"
-description: "트래픽 흐름 시나리오를 테스트하기 위해 DMZ을 만든 다음 이 간단한 웹 응용 프로그램을 배포합니다."
+title: "Dmz와 함께 사용할 aaaAzure 샘플 응용 프로그램 | Microsoft Docs"
+description: "DMZ tootest 트래픽 흐름 시나리오를 만든 후이 간단한 웹 응용 프로그램 배포"
 services: virtual-network
 documentationcenter: na
 author: tracsman
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/03/2017
 ms.author: jonor
-ms.openlocfilehash: 8506238e41c5d9dac8d76d729d4919b30a0528b9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e0d9cf14590f75b50c64b677efce2c5425b83ec6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sample-application-for-use-with-dmzs"></a>DMZ에 사용할 샘플 응용 프로그램
-[보안 경계 모범 사례 페이지로 돌아가기][HOME]
+[Toohello 보안 모범 사례 페이지 경계를 반환 합니다.][HOME]
 
-이러한 PowerShell 스크립트는 IIS01 및 AppVM01 서버에서 로컬로 실행하여 프런트 엔드 IIS01 서버에서 백 엔드 AppVM01 서버의 콘텐츠가 포함된 html 페이지를 표시하는 간단한 웹 응용 프로그램을 설치 및 설정할 수 있습니다.
+이 PowerShell 스크립트를 hello IIS01 및 AppVM01 서버 tooinstall에서 로컬로 실행 하 고 백 엔드 AppVM01 서버 hello의에서 내용으로 hello 프런트 엔드 IIS01 서버에서 html 페이지를 표시 하는 간단한 웹 응용 프로그램을 설정할 수 있습니다.
 
-그러면 다양한 DMZ 예제를 위한 간단한 테스트 환경을 제공하고 끝점, NSG, UDR, 방화벽 규칙을 변경할 경우 트래픽 흐름에 어떤 영향을 미치는지 확인할 수 있습니다.
+이 응용 프로그램 많은 hello DMZ 예제 및 UDR, 끝점, Nsg에 변경 내용을 hello 하는 방법에 대 한 단순한 테스트 환경 하며 방화벽 규칙 트래픽 흐름에 영향을 줄 수 있습니다.
 
-## <a name="firewall-rule-to-allow-icmp"></a>ICMP를 허용하기 위한 방화벽 규칙
-이 간단한 PowerShell 문은 모든 Windows VM에서 실행하여 ICMP(Ping) 트래픽을 허용할 수 있습니다. 이 경우 방화벽 업데이트가 Windows 방화벽을 통과하도록 하여 테스트와 문제 해결을 더욱 간단히 수행할 수 있습니다(대부분의 Linux 배포판에서 ICMP는 기본적으로 사용하도록 설정되어 있음).
+## <a name="firewall-rule-tooallow-icmp"></a>방화벽 규칙 tooallow ICMP
+모든 Windows VM tooallow ICMP (Ping) 트래픽을이 간단한 PowerShell 문을 실행할 수 있습니다. 보다 쉽게 테스트 하 고 (기본적으로 켜져 ICMP 대부분 Linux 배포판)에 대 한 hello windows 방화벽을 통해 hello ping 프로토콜 toopass 허용 하 여 문제 해결이 방화벽 업데이트 수 있습니다.
 
 ```PowerShell
 # Turn On ICMPv4
@@ -36,25 +36,25 @@ New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" `
     -Protocol ICMPv4 -Enabled True -Profile Any -Action Allow
 ```
 
-다음 스크립트를 사용하는 경우 이 방화벽 규칙 추가가 첫 번째 문입니다.
+다음 스크립트는 hello를 사용 하는 경우이 방화벽 규칙 추가 hello 첫 번째 문입니다.
 
 ## <a name="iis01---web-application-installation-script"></a>IIS01 - 웹 응용 프로그램 설치 스크립트
 이 스크립트는 다음과 같은 기능을 수행합니다.
 
-1. 손쉬운 테스트를 위해 로컬 서버 Windows 방화벽에서 IMCPv4(Ping)를 엽니다.
-2. IIS 및 .Net Framework v4.5를 설치합니다.
+1. IMCPv4 열고 쉽게 테스트용 hello 로컬 서버의 windows 방화벽 (Ping)
+2. IIS를 설치 하 고 hello.Net Framework v4.5
 3. ASP.NET 웹 페이지와 Web.config 파일을 만듭니다.
-4. 파일에 쉽게 액세스할 수 있도록 기본 응용 프로그램 풀을 변경합니다.
-5. 관리자 계정과 암호에 익명 사용자를 설정합니다.
+4. Hello 기본 응용 프로그램 풀 toomake 파일 액세스를 변경 합니다.
+5. Hello 익명 사용자 tooyour 관리자 계정 및 암호를 설정 합니다.
 
 이 PowerShell 스크립트는 IIS01에 RDP 처리된 동안 로컬로 실행해야 합니다.
 
 ```PowerShell
 # IIS Server Post Build Config Script
 # Get Admin Account and Password
-    Write-Host "Please enter the admin account information used to create this VM:" -ForegroundColor Cyan
-    $theAdmin = Read-Host -Prompt "The Admin Account Name (no domain or machine name)"
-    $thePassword = Read-Host -Prompt "The Admin Password"
+    Write-Host "Please enter hello admin account information used toocreate this VM:" -ForegroundColor Cyan
+    $theAdmin = Read-Host -Prompt "hello Admin Account Name (no domain or machine name)"
+    $thePassword = Read-Host -Prompt "hello Admin Password"
 
 # Turn On ICMPv4
     Write-Host "Creating ICMP Rule in Windows Firewall" -ForegroundColor Cyan
@@ -89,21 +89,21 @@ New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" `
       <form id="frmMain" runat="server">
         <div>
           <h1>Looks like you made it!</h1>
-          This is a page from the inside (a web server on a private network),<br />
-          and it is making its way to the outside! (If you are viewing this from the internet)<br />
+          This is a page from hello inside (a web server on a private network),<br />
+          and it is making its way toohello outside! (If you are viewing this from hello internet)<br />
           <br />
-          The following sections show:
+          hello following sections show:
           <ul style="margin-top: 0px;">
             <li> Local Server Time - Shows if this page is or isnt cached anywhere</li>
-            <li> File Output - Shows that the web server is reaching AppVM01 on the backend subnet and successfully returning content</li>
-            <li> Image from the Internet - Doesnt really show anything, but it made me happy to see this when the app worked</li>
+            <li> File Output - Shows that hello web server is reaching AppVM01 on hello backend subnet and successfully returning content</li>
+            <li> Image from hello Internet - Doesnt really show anything, but it made me happy toosee this when hello app worked</li>
           </ul>
           <div style="border: 2px solid #8AC007; border-radius: 25px; padding: 20px; margin: 10px; width: 650px;">
             <b>Local Web Server Time</b>: <asp:Label runat="server" ID="lblTime" /></div>
           <div style="border: 2px solid #8AC007; border-radius: 25px; padding: 20px; margin: 10px; width: 650px;">
             <b>File Output from AppVM01</b>: <asp:Label runat="server" ID="lblOutput" /></div>
           <div style="border: 2px solid #8AC007; border-radius: 25px; padding: 20px; margin: 10px; width: 650px;">
-            <b>Image File Linked from the Internet</b>:<br />
+            <b>Image File Linked from hello Internet</b>:<br />
             <br />
             <img src="http://sd.keepcalm-o-matic.co.uk/i/keep-calm-you-made-it-7.png" alt="You made it!" width="150" length="175"/></div>
         </div>
@@ -131,13 +131,13 @@ New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" `
     $MainPage | Out-File -FilePath "C:\inetpub\wwwroot\Home.aspx" -Encoding ascii
     $WebConfig | Out-File -FilePath "C:\inetpub\wwwroot\Web.config" -Encoding ascii
 
-# Set App Pool to Clasic Pipeline to remote file access will work easier
+# Set App Pool tooClasic Pipeline tooremote file access will work easier
     Write-Host "Updaing IIS Settings" -ForegroundColor Cyan
     c:\windows\system32\inetsrv\appcmd.exe set app "Default Web Site/" /applicationPool:".NET v4.5 Classic"
     c:\windows\system32\inetsrv\appcmd.exe set config "Default Web Site/" /section:system.webServer/security/authentication/anonymousAuthentication /userName:$theAdmin /password:$thePassword /commit:apphost
 
-# Make sure the IIS settings take
-    Write-Host "Restarting the W3SVC" -ForegroundColor Cyan
+# Make sure hello IIS settings take
+    Write-Host "Restarting hello W3SVC" -ForegroundColor Cyan
     Restart-Service -Name W3SVC
 
     Write-Host
@@ -146,24 +146,24 @@ New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" `
 ```
 
 ## <a name="appvm01---file-server-installation-script"></a>AppVM01 - 파일 서버 설치 스크립트
-이 스크립트는 이 간단한 응용 프로그램의 백 엔드를 설정합니다. 이 스크립트는 다음과 같은 기능을 수행합니다.
+이 스크립트는이 간단한 응용 프로그램에 대 한 hello 백 엔드를 설정 합니다. 이 스크립트는 다음과 같은 기능을 수행합니다.
 
-1. 손쉬운 테스트를 위해 방화벽에서 IMCPv4(Ping)를 엽니다.
-2. 웹 사이트에 대한 디렉터리를 만듭니다.
-3. 웹 페이지에서 원격으로 액세스할 텍스트 파일을 만듭니다.
-4. 디렉터리와 파일에 익명으로 액세스할 수 있는 권한을 설정합니다.
-5. 이 서버에서 쉽게 탐색할 수 있도록 IE의 강화된 보안을 해제합니다. 
+1. IMCPv4 열고 hello 방화벽 쉽게 테스트 하는 것에 대 한 (Ping)
+2. Hello 웹 사이트에 대 한 디렉터리 만들기
+3. 텍스트 파일 toobe를 원격으로 생성할 hello 웹 페이지에 액세스
+4. Hello 디렉터리 및 파일 tooAnonymous tooallow 액세스 사용 권한을 설정합니다
+5. IE 보안 강화 tooallow 쉽게이 서버에서 검색 해제 
 
 > [!IMPORTANT]
-> **모범 사례**: 프로덕션 서버에서 IE의 강화된 보안을 해제하지 마십시오. 프로덕션 서버에서 웹을 탐색하는 것도 좋지 않습니다. 또한 익명 액세스를 위해 파일 공유를 여는 것도 바람직하지 않지만 여기서는 간단한 설명을 위해 사용합니다.
+> **모범 사례**:는 일반적으로 프로덕션 서버에서 바람직하지 toosurf hello 웹 및 하지 프로덕션 서버에서 IE 보안 강화를 해제 합니다. 또한 익명 액세스를 위해 파일 공유를 여는 것도 바람직하지 않지만 여기서는 간단한 설명을 위해 사용합니다.
 > 
 > 
 
-이 PowerShell 스크립트는 AppVM01에 RDP 처리된 동안 로컬로 실행해야 합니다. 관리자가 성공적 실행을 보장하기 위해 PowerShell을 실행해야 합니다.
+이 PowerShell 스크립트는 AppVM01에 RDP 처리된 동안 로컬로 실행해야 합니다. PowerShell은 필요한 toobe 관리자 tooensure 성공적으로 실행으로 실행 합니다.
 
 ```PowerShell
 # AppVM01 Server Post Build Config Script
-# PowerShell must be run as Administrator for Net Share commands to work
+# PowerShell must be run as Administrator for Net Share commands toowork
 
 # Turn On ICMPv4
     New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" -Protocol ICMPv4 -Enabled True -Profile Any -Action Allow
@@ -172,7 +172,7 @@ New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" `
     New-Item "C:\WebShare" -ItemType Directory
 
 # Write out Rand.txt
-    $FileContent = "Hello, I'm the contents of a remote file on AppVM01."
+    $FileContent = "Hello, I'm hello contents of a remote file on AppVM01."
     $FileContent | Out-File -FilePath "C:\WebShare\Rand.txt" -Encoding ascii
 
 # Set Permissions on share
@@ -193,12 +193,12 @@ New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" `
 ```
 
 ## <a name="dns01---dns-server-installation-script"></a>DNS01 - DNS 서버 설치 스크립트
-이 샘플 응용 프로그램에는 DNS 서버를 설치할 스크립트가 포함되어 있지 않습니다. 방화벽 규칙을 테스트하는 경우 NSG 또는 UDR에서 DNS 트래픽을 포함해야 하며 DNS01 서버를 수동으로 설정해야 합니다. 두 예제의 네트워크 구성 xml 파일 및 Resource Manager 템플릿에는 기본 DNS 서버로 DNS01이 포함되어 있으며 수준 3에서 호스팅하는 공용 DNS 서버는 백업 DNS 서버로 포함되어 있습니다. 수준 3 DNS 서버가 비로컬 트래픽에 사용되는 실제 DNS 서버가 되며, DNS01이 설정되지 않은 경우 로컬 네트워크 DNS가 발생하지 않습니다.
+이 샘플 응용 프로그램 tooset hello DNS 서버를에 포함 된 스크립트가 있습니다. Hello DNS01 서버 toobe 있어야 hello 방화벽 규칙, NSG, 또는 UDR 테스트 tooinclude DNS 트래픽이 필요한 경우 수동으로 설정 합니다. hello 네트워크 구성 xml 파일을 두 예제 모두에 대 한 리소스 관리자 템플릿을 DNS01 hello DNS 서버를 백업 하는 hello와 수준 3에 의해 호스팅되는 공용 DNS 서버 및 주 DNS 서버 hello로 포함 되어 있습니다. hello 수준 3 DNS 서버 hello 로컬이 아닌 트래픽에 사용 되는 실제 DNS 서버 라인과 DNS01으로 설정 하지, DNS 발생 하는 로컬 네트워크에 없습니다.
 
 ## <a name="next-steps"></a>다음 단계
-* IIS 서버에서 IIS01 스크립트 실행
+* IIS 서버의 hello IIS01 스크립트를 실행 합니다.
 * AppVM01에서 파일 서버 스크립트 실행
-* 빌드 유효성을 검증하기 위해 IIS01의 공용 IP로 이동
+* 빌드 IIS01 toovalidate에 공용 IP toohello 찾아보기
 
 <!--Link References-->
 [HOME]: ../best-practices-network-security.md

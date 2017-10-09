@@ -15,50 +15,50 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/12/2017
 ms.author: yushwang
-ms.openlocfilehash: 798014b6e8d4495db99ef2e2d2ea487ae7d02fd0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f8d2e29276efdec7071f2aa0d463b1abd64a5253
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-ipsecike-policy-for-s2s-vpn-or-vnet-to-vnet-connections"></a>S2S VPN 또는 VNet 간 연결에 대한 IPsec/IKE 정책 구성
 
-이 문서에서는 Resource Manager 배포 모델 및 PowerShell을 사용하여 사이트 간 VPN 또는 VNet 간 연결에 대한 IPsec/IKE 정책을 구성하는 단계를 안내합니다.
+이 문서는 hello 단계 tooconfigure hello 리소스 관리자 배포 모델 및 PowerShell을 사용 하 여 사이트 간 VPN 또는 VNet 대 VNet 연결을 위한 IPsec/IKE 정책을 안내 합니다.
 
 ## <a name="about"></a>Azure VPN Gateway에 대한 IPsec 및 IKE 정책 매개 변수 정보
-IPsec 및 IKE 프로토콜 표준은 다양하게 결합된 다양한 암호화 알고리즘을 지원합니다. 이러한 지원이 어떻게 프레미스 간 및 VNet 간 연결이 준수 또는 보안 요구 사항을 충족하도록 하는 데 도움이 될 수 있는지를 확인하려면 [암호화 요구 사항 및 Azure VPN Gateway 정보](vpn-gateway-about-compliance-crypto.md)를 참조하세요.
+IPsec 및 IKE 프로토콜 표준은 다양하게 결합된 다양한 암호화 알고리즘을 지원합니다. 너무 참조[Azure VPN 게이트웨이 및 암호화 요구 사항에 대 한](vpn-gateway-about-compliance-crypto.md) toosee이 도울 수 있는 방법 크로스-프레미스 및 VNet 대 VNet 연결을 확인 하면 규정 준수 또는 보안 요구 사항을 충족 합니다.
 
-이 문서에서는 IPsec/IKE 정책을 만들고 구성하여 새 연결 또는 기존 연결에 적용하기 위한 지침을 제공합니다.
+이 문서 toocreate 지침을 제공 하 고 IPsec/IKE 정책을 구성 하 고 tooa 기존 또는 새 연결을 적용:
 
-* [1부 - IPsec/IKE 정책을 만들고 설정하는 워크플로](#workflow)
+* [1-워크플로 toocreate 부 및 IPsec/IKE 정책 설정](#workflow)
 * [2부 - 지원되는 암호화 알고리즘 및 키 수준](#params)
 * [3부 - IPsec/IKE 정책을 사용하여 새 S2S VPN 연결 만들기](#crossprem)
 * [4부 - IPsec/IKE 정책을 사용하여 새 VNet 간 연결 만들기](#vnet2vnet)
 * [5부 - 연결에 대한 IPsec/IKE 정책 관리(만들기, 추가, 제거)](#managepolicy)
 
 > [!IMPORTANT]
-> 1. IPsec/IKE 정책은 다음 게이트웨이 SKU에만 작동합니다.
+> 1. IPsec/IKE 정책 hello 게이트웨이 Sku를 다음에 작동 한다는 note:
 >    * ***VpnGw1, VpnGw2, VpnGw3***(경로 기반)
 >    * ***Standard*** 및 ***HighPerformance***(경로 기반)
 > 2. 지정된 연결에 대해 ***하나의*** 정책 조합만 지정할 수 있습니다.
 > 3. IKE(주 모드)와 IPsec(빠른 모드) 둘 다에 대한 모든 알고리즘 및 매개 변수를 지정해야 합니다. 부분 정책 지정은 허용되지 않습니다.
-> 4. 해당 VPN 장치 공급업체 사양을 참조하여 정책이 해당 온-프레미스 VPN 장치에서 지원되는지 확인하세요. 정책이 호환되지 않는 경우 S2S 또는 VNet 간 연결을 설정할 수 없습니다.
+> 4. VPN 장치 공급 업체 사양을 tooensure hello 정책은 온-프레미스 VPN 장치 지원에 문의 하십시오. Hello 정책 호환 되지 않습니다 S2S 또는 VNet 대 VNet 연결을 설정할 수 없습니다.
 
-## <a name ="workflow"></a>1부 - IPsec/IKE 정책을 만들고 설정하는 워크플로
-이 섹션에서는 S2S VPN 또는 VNet 간 연결에 대한 IPsec/IKE 정책을 만들고 업데이트하는 워크플로를 설명합니다.
+## <a name ="workflow"></a>1-워크플로 toocreate 부 및 IPsec/IKE 정책 설정
+이 섹션에서는 연결 S2S VPN 또는 VNet 대 VNet 연결 hello 워크플로 toocreate 및 update IPsec/IKE 정책 설명:
 1. 가상 네트워크 및 VPN Gateway 만들기
 2. 프레미스 간 연결에 대한 로컬 네트워크 게이트웨이 또는 VNet 간 연결에 대한 다른 가상 네트워크 및 게이트웨이 만들기
 3. 선택한 알고리즘 및 매개 변수를 사용하여 IPsec/IKE 정책 만들기
-4. IPsec/IKE 정책을 사용하여 연결(IPsec 또는 VNet 간) 만들기
+4. Hello IPsec/IKE 정책을 사용 하 여 연결 (IPsec 또는 VNet2VNet) 만들기
 5. 기존 연결에 대한 IPsec/IKE 정책 추가/업데이트/제거
 
-이 문서의 지침에서는 다음 다이어그램에 표시된 대로 IPsec/IKE 정책을 설정하고 구성하도록 돕습니다.
+이 문서의 지침 hello를 사용 하 여를 설정 하 고 hello 다이어그램에 나타난 대로 IPsec/IKE 정책을 구성할 수 있습니다.
 
 ![ipsec-ike-policy](./media/vpn-gateway-ipsecikepolicy-rm-powershell/ipsecikepolicy.png)
 
 ## <a name ="params"></a>2부 - 지원되는 암호화 알고리즘 및 키 수준
 
-다음 표에는 고객이 구성 가능하도록 지원되는 암호화 알고리즘 및 키 강도가 나와 있습니다.
+hello 다음 표에 지원 되는 hello 암호화 알고리즘 및 hello 고객에 의해 구성 가능한 키 길이:
 
 | **IPsec/IKEv2**  | **옵션**    |
 | ---  | --- 
@@ -73,9 +73,9 @@ IPsec 및 IKE 프로토콜 표준은 다양하게 결합된 다양한 암호화 
 |  |  |
 
 > [!IMPORTANT]
-> 1. **GCMAES가 IPsec 암호화 알고리즘에 사용되면 IPsec 무결성에 대해 동일한 GCMAES 알고리즘 및 키 길이를 선택해야 합니다(예: 둘 다에 대해 GCMAES128 사용).**
-> 2. IKEv2 주 모드 SA 수명은 Azure VPN Gateway에서 28,800초로 고정됩니다.
-> 3. 연결에 대해 “UsePolicyBasedTrafficSelectors”를 $True로 설정하면 온-프레미스의 정책 기반 VPN 방화벽에 연결되도록 Azure VPN Gateway가 구성됩니다. PolicyBasedTrafficSelectors를 사용하도록 설정한 경우 VPN 장치에 온-프레미스 네트워크(로컬 네트워크 게이트웨이) 접두사 및 Azure Virtual Network 접두사 간의 모든 조합으로 정의된 일치하는 트래픽 선택기가 있는지 확인해야 합니다. 예를 들어 온-프레미스 네트워크 접두사가 10.1.0.0/16 및 10.2.0.0/16이고 가상 네트워크 접두사가 192.168.0.0/16 및 172.16.0.0/16이면 다음 트래픽 선택기를 지정해야 합니다.
+> 1. **선택 해야 GCMAES IPsec 암호화 알고리즘의 경우와 사용 하는 경우 IPsec 무결성;에 대 한 동일한 GCMAES 알고리즘 및 키 길이 hello 예를 들어 GCMAES128 둘 다에 대해 사용 하 여**
+> 2. Hello Azure VPN 게이트웨이 28, 800 초 IKEv2 주 모드 SA 수명 동안 고정 됩니다.
+> 3. 설정 "UsePolicyBasedTrafficSelectors" $True 연결에는 구성 너무 hello Azure VPN 게이트웨이 tooconnect toopolicy 기반 VPN 방화벽 온-프레미스 합니다. VPN 장치에는 온-프레미스 네트워크 (로컬 네트워크 게이트웨이) 접두사 hello Azure 가상 네트워크 접두사를의 모든 조합으로 정의 된 hello 일치 하는 트래픽을 선택기 tooensure 필요한 PolicyBasedTrafficSelectors을 설정한 경우 대신 any-에-any입니다. 예를 들어 온-프레미스 네트워크 접두사는 10.1.0.0/16 및 10.2.0.0/16, 하는 경우 가상 네트워크 접두사는 192.168.0.0/16 및 172.16.0.0/16 트래픽 선택기 뒤 toospecify hello가 필요 합니다.
 >    * 10.1.0.0/16 <====> 192.168.0.0/16
 >    * 10.1.0.0/16 <====> 172.16.0.0/16
 >    * 10.2.0.0/16 <====> 192.168.0.0/16
@@ -83,7 +83,7 @@ IPsec 및 IKE 프로토콜 표준은 다양하게 결합된 다양한 암호화 
 
 정책 기반 트래픽 선택기에 대한 자세한 내용은 [여러 온-프레미스 정책 기반 VPN 장치 연결](vpn-gateway-connect-multiple-policybased-rm-ps.md)을 참조하세요.
 
-다음 표에는 사용자 지정 정책에서 지원하는 해당 Diffie-hellman 그룹이 나열되어 있습니다.
+다음 표에 hello hello hello 사용자 지정 정책에서 지 원하는 해당 Diffie-hellman 그룹:
 
 | **Diffie-Hellman 그룹**  | **DHGroup**              | **PFSGroup** | **키 길이** |
 | --- | --- | --- | --- |
@@ -94,11 +94,11 @@ IPsec 및 IKE 프로토콜 표준은 다양하게 결합된 다양한 암호화 
 | 20                        | ECP384                   | ECP284       | 384비트 ECP    |
 | 24                        | DHGroup24                | PFS24        | 2048비트 MODP  |
 
-자세한 내용은 [RFC3526](https://tools.ietf.org/html/rfc3526) 및 [RFC5114](https://tools.ietf.org/html/rfc5114)를 참조하세요.
+너무 참조[RFC3526](https://tools.ietf.org/html/rfc3526) 및 [RFC5114](https://tools.ietf.org/html/rfc5114) 내용을 확인 합니다.
 
 ## <a name ="crossprem"></a>3부 - IPsec/IKE 정책을 사용하여 새 S2S VPN 연결 만들기
 
-이 섹션에서는 IPsec/IKE 정책을 사용하여 S2S VPN 연결을 만드는 단계를 안내합니다. 다음 단계에서는 다음 다이어그램에 표시된 대로 연결을 만듭니다.
+이 섹션에서는 hello IPsec/IKE 정책과 S2S VPN 연결을 만드는 과정을 안내 합니다. hello 다음 단계를 만듭니다 hello 연결 hello 다이어그램에 나타난 대로:
 
 ![s2s-policy](./media/vpn-gateway-ipsecikepolicy-rm-powershell/s2spolicy.png)
 
@@ -107,13 +107,13 @@ S2S VPN 연결을 만드는 자세한 단계별 지침은 [S2S VPN 연결 만들
 ### <a name="before"></a>시작하기 전에
 
 * Azure 구독이 있는지 확인합니다. Azure 구독이 아직 없는 경우 [MSDN 구독자 혜택](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)을 활성화하거나 [무료 계정](https://azure.microsoft.com/pricing/free-trial/)에 등록할 수 있습니다.
-* Azure Resource Manager PowerShell cmdlet을 설치합니다. PowerShell cmdlet 설치에 대한 자세한 내용은 [Azure PowerShell 개요](/powershell/azure/overview)를 참조하세요.
+* Hello Azure 리소스 관리자 PowerShell cmdlet을 설치 합니다. 참조 [Azure PowerShell 개요](/powershell/azure/overview) hello PowerShell cmdlet을 설치 하는 방법에 대 한 자세한 내용은 합니다.
 
-### <a name="createvnet1"></a>1단계 - 가상 네트워크, VPN Gateway 및 로컬 네트워크 게이트웨이 만들기
+### <a name="createvnet1"></a>1 단계-hello 가상 네트워크, VPN 게이트웨이와 로컬 네트워크 게이트웨이 만들기
 
 #### <a name="1-declare-your-variables"></a>1. 변수 선언
 
-이 연습에서는 먼저 변수를 선언합니다. 생산을 위해 구성하는 경우 값을 사용자의 값으로 바꾸어야 합니다.
+이 연습에서는 먼저 변수를 선언합니다. 프로덕션 환경에 구성 하는 경우 사용자의 정보로 있는지 tooreplace hello 값 수 있습니다.
 
 ```powershell
 $Sub1          = "<YourSubscriptionName>"
@@ -140,11 +140,11 @@ $LNGPrefix62   = "10.62.0.0/16"
 $LNGIP6        = "131.107.72.22"
 ```
 
-#### <a name="2-connect-to-your-subscription-and-create-a-new-resource-group"></a>2. 구독에 연결하고 새 리소스 그룹 만들기
+#### <a name="2-connect-tooyour-subscription-and-create-a-new-resource-group"></a>2. Tooyour 구독을 연결 하 고 새 리소스 그룹 만들기
 
-리소스 관리자 cmdlet을 사용하려면 PowerShell 모드로 전환해야 합니다. 자세한 내용은 [리소스 관리자에서 Windows PowerShell 사용](../powershell-azure-resource-manager.md)을 참조하세요.
+TooPowerShell 모드 toouse hello 리소스 관리자 cmdlet을 전환 하 고 있는지 확인 합니다. 자세한 내용은 [리소스 관리자에서 Windows PowerShell 사용](../powershell-azure-resource-manager.md)을 참조하세요.
 
-PowerShell 콘솔을 열고 계정에 연결합니다. 연결에 도움이 되도록 다음 샘플을 사용합니다.
+PowerShell 콘솔을 열고 tooyour 계정을 연결 합니다. 다음 샘플 toohelp 연결한 hello를 사용 합니다.
 
 ```powershell
 Login-AzureRmAccount
@@ -152,9 +152,9 @@ Select-AzureRmSubscription -SubscriptionName $Sub1
 New-AzureRmResourceGroup -Name $RG1 -Location $Location1
 ```
 
-#### <a name="3-create-the-virtual-network-vpn-gateway-and-local-network-gateway"></a>3. 가상 네트워크, VPN Gateway 및 로컬 네트워크 게이트웨이 만들기
+#### <a name="3-create-hello-virtual-network-vpn-gateway-and-local-network-gateway"></a>3. Hello 가상 네트워크, VPN 게이트웨이와 로컬 네트워크 게이트웨이 만들기
 
-아래 샘플은 세 개의 서브넷과 VPN Gateway가 있는 가상 네트워크 TestVNet1을 만듭니다. 값을 대체할 때 언제나 게이트웨이 서브넷 이름을 GatewaySubnet라고 명시적으로 지정해야 합니다. 다른 이름을 지정하는 경우 게이트웨이 만들기가 실패합니다.
+다음 예제는 hello 세 개의 서브넷 및 hello VPN 게이트웨이 사용 하 여 TestVNet1, hello 가상 네트워크를 만듭니다. 값을 대체할 때 언제나 게이트웨이 서브넷 이름을 GatewaySubnet라고 명시적으로 지정해야 합니다. 다른 이름을 지정하는 경우 게이트웨이 만들기가 실패합니다.
 
 ```powershell
 $fesub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName1 -AddressPrefix $FESubPrefix1
@@ -177,7 +177,7 @@ New-AzureRmLocalNetworkGateway -Name $LNGName6 -ResourceGroupName $RG1 -Location
 
 #### <a name="1-create-an-ipsecike-policy"></a>1. IPsec/IKE 정책 만들기
 
-다음 샘플 스크립트는 다음 알고리즘 및 매개 변수를 사용하여 IPsec/IKE 정책을 만듭니다.
+다음 샘플 스크립트는 hello hello로 IPsec/IKE 정책을 만듭니다 알고리즘 및 매개 변수:
 
 * IKEv2: AES256, SHA384, DHGroup24
 * IPsec: AES256, SHA256, PFS24, SA 수명 7,200초 및 2,048KB
@@ -186,7 +186,7 @@ New-AzureRmLocalNetworkGateway -Name $LNGName6 -ResourceGroupName $RG1 -Location
 $ipsecpolicy6 = New-AzureRmIpsecPolicy -IkeEncryption AES256 -IkeIntegrity SHA384 -DhGroup DHGroup24 -IpsecEncryption AES256 -IpsecIntegrity SHA256 -PfsGroup PFS24 -SALifeTimeSeconds 7200 -SADataSizeKilobytes 2048
 ```
 
-IPsec으로 GCMAES를 사용하는 경우 IPsec 암호화 및 무결성 모두에 대해 동일한 GCMAES 알고리즘 및 키 길이를 사용해야 합니다. 예를 들면 다음과 같습니다.
+사용 해야 GCMAES ipsec을 사용 하면 동일한 GCMAES 알고리즘 및 키 길이 IPsec 암호화와 무결성에 대 한 예를 들어 hello:
 
 * IKEv2: AES256, SHA384, DHGroup24
 * IPsec: **GCMAES256, GCMAES256**, PFS24, SA 수명 7200초 및 2048KB
@@ -195,9 +195,9 @@ IPsec으로 GCMAES를 사용하는 경우 IPsec 암호화 및 무결성 모두�
 $ipsecpolicy6 = New-AzureRmIpsecPolicy -IkeEncryption AES256 -IkeIntegrity SHA384 -DhGroup DHGroup24 -IpsecEncryption GCMAES256 -IpsecIntegrity GCMAES256 -PfsGroup PFS24 -SALifeTimeSeconds 7200 -SADataSizeKilobytes 2048
 ```
 
-#### <a name="2-create-the-s2s-vpn-connection-with-the-ipsecike-policy"></a>2. IPsec/IKE 정책을 사용하여 S2S VPN 연결 만들기
+#### <a name="2-create-hello-s2s-vpn-connection-with-hello-ipsecike-policy"></a>2. IPsec/IKE 정책 hello로 hello S2S VPN 연결 만들기
 
-S2S VPN 연결을 만들고 이전에 만든 IPsec/IKE 정책을 적용합니다.
+S2S VPN 연결을 만들고 앞에서 만든 hello IPsec/IKE 정책을 적용 합니다.
 
 ```powershell
 $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1  -ResourceGroupName $RG1
@@ -206,25 +206,25 @@ $lng6 = Get-AzureRmLocalNetworkGateway  -Name $LNGName6 -ResourceGroupName $RG1
 New-AzureRmVirtualNetworkGatewayConnection -Name $Connection16 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -LocalNetworkGateway2 $lng6 -Location $Location1 -ConnectionType IPsec -IpsecPolicies $ipsecpolicy6 -SharedKey 'AzureA1b2C3'
 ```
 
-필요한 경우 “-UsePolicyBasedTrafficSelectors $True”를 추가하여 연결 cmdlet을 만듦으로써 Azure VPN Gateway가 위에 설명된 대로 온-프레미스의 정책 기반 VPN 장치에 연결하도록 할 수 있습니다.
+선택적으로 추가할 수 있습니다 "-UsePolicyBasedTrafficSelectors $True" toohello 연결 만듭니다 cmdlet tooenable Azure VPN 게이트웨이 tooconnect toopolicy 기반 VPN 장치와 온-프레미스로 위에서 설명한 것 처럼 합니다.
 
 > [!IMPORTANT]
-> 연결에 IPsec/IKE 정책이 지정되고 나면 Azure VPN Gateway는 해당 특정 연결에 지정된 암호화 알고리즘 및 키 수준으로 된 IPsec/IKE 제안만 보내거나 수락합니다. 연결에 대한 온-프레미스 VPN 장치에서 정확한 정책 조합을 사용하거나 수락하는지 확인합니다. 그러지 않으면 S2S VPN 터널이 설정되지 않습니다.
+> 연결에 IPsec/IKE 정책을 지정 되 면 hello Azure VPN 게이트웨이 보내거나 지정 된 암호화 알고리즘 및 키 길이 특정 연결에 IPsec/IKE 제안 hello 수락 합니다. Hello 연결에 대 한 온-프레미스 VPN 장치를 사용 하거나 그렇지 않으면 hello S2S VPN 터널을 설정 하지 것입니다 hello 정확한 정책 조합을 받아들이는 있는지 확인 합니다.
 
 
 ## <a name ="vnet2vnet"></a>4부 - IPsec/IKE 정책을 사용하여 새 VNet 간 연결 만들기
 
-IPsec/IKE 정책을 사용하여 VNet 간 연결을 만드는 단계는 S2S VPN 연결을 만드는 단계와 유사합니다. 다음 샘플 스크립트는 다음 다이어그램에 표시된 대로 연결을 만듭니다.
+hello IPsec/IKE 정책을 사용 하 여 VNet 대 VNet 연결을 만드는 단계는 S2S VPN 연결의 유사한 toothat 합니다. hello 다음 예제 스크립트 만들기 hello 연결 hello 다이어그램에 나타난 대로:
 
 ![v2v-policy](./media/vpn-gateway-ipsecikepolicy-rm-powershell/v2vpolicy.png)
 
-VNet 간 연결을 만드는 자세한 단계는 [VNet 간 연결 만들기](vpn-gateway-vnet-vnet-rm-ps.md)를 참조하세요. TestVNet1 및 VPN Gateway를 만들고 구성하려면 [3부](#crossprem)를 완료해야 합니다.
+VNet 간 연결을 만드는 자세한 단계는 [VNet 간 연결 만들기](vpn-gateway-vnet-vnet-rm-ps.md)를 참조하세요. 완료 해야 [3 부](#crossprem) toocreate TestVNet1를 구성 하 고 VPN 게이트웨이 hello 합니다.
 
-### <a name="createvnet2"></a>1단계 - 두 번째 가상 네트워크 및 VPN 게이트웨이 만들기
+### <a name="createvnet2"></a>1 단계-hello 두 번째 가상 네트워크 및 VPN 게이트웨이 만들기
 
 #### <a name="1-declare-your-variables"></a>1. 변수 선언
 
-값을 구성에 사용할 값으로 바꾸어야 합니다.
+수 있는지 tooreplace 것 hello 사용 하 여 hello 값 구성에 대 한 toouse 되도록 합니다.
 
 ```powershell
 $RG2          = "TestPolicyRG2"
@@ -246,7 +246,7 @@ $Connection21 = "VNet2toVNet1"
 $Connection12 = "VNet1toVNet2"
 ```
 
-#### <a name="2-create-the-second-virtual-network-and-vpn-gateway-in-the-new-resource-group"></a>2. 새 리소스 그룹에 두 번째 가상 네트워크 및 VPN 게이트웨이 만들기
+#### <a name="2-create-hello-second-virtual-network-and-vpn-gateway-in-hello-new-resource-group"></a>2. Hello 새 리소스 그룹에 hello 두 번째 가상 네트워크 및 VPN 게이트웨이 만들기
 
 ```powershell
 New-AzureRmResourceGroup -Name $RG2 -Location $Location2
@@ -265,13 +265,13 @@ $gw2ipconf1 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GW2IPconf1 -Subnet
 New-AzureRmVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $RG2 -Location $Location2 -IpConfigurations $gw2ipconf1 -GatewayType Vpn -VpnType RouteBased -GatewaySku HighPerformance
 ```
 
-### <a name="step-2---create-a-vnet-tovnet-connection-with-the-ipsecike-policy"></a>2단계 - IPsec/IKE 정책을 사용하여 VNet 간 연결 만들기
+### <a name="step-2---create-a-vnet-tovnet-connection-with-hello-ipsecike-policy"></a>2 단계-IPsec/IKE 정책 hello로 VNet toVNet 연결 만들기
 
-S2S VPN 연결과 유사하게 IPsec/IKE 정책을 만든 다음 새 연결에 정책을 적용합니다.
+비슷한 toohello S2S VPN 연결을 IPsec/IKE 정책을 만든 다음 toopolicy toohello 새 연결을 적용 합니다.
 
 #### <a name="1-create-an-ipsecike-policy"></a>1. IPsec/IKE 정책 만들기
 
-다음 샘플 스크립트는 다음 알고리즘 및 매개 변수를 사용하여 다른 IPsec/IKE 정책을 만듭니다.
+다음 샘플 스크립트는 hello hello로 다른 IPsec/IKE 정책을 만듭니다 알고리즘 및 매개 변수:
 * IKEv2: AES128, SHA1, DHGroup14
 * IPsec: GCMAES128, GCMAES128, PFS14, SA 수명 7,200초 및 4,096KB
 
@@ -279,9 +279,9 @@ S2S VPN 연결과 유사하게 IPsec/IKE 정책을 만든 다음 새 연결에 �
 $ipsecpolicy2 = New-AzureRmIpsecPolicy -IkeEncryption AES128 -IkeIntegrity SHA1 -DhGroup DHGroup14 -IpsecEncryption GCMAES128 -IpsecIntegrity GCMAES128 -PfsGroup PFS14 -SALifeTimeSeconds 7200 -SADataSizeKilobytes 4096
 ```
 
-#### <a name="2-create-vnet-to-vnet-connections-with-the-ipsecike-policy"></a>2. IPsec/IKE 정책을 사용하여 VNet 간 연결 만들기
+#### <a name="2-create-vnet-to-vnet-connections-with-hello-ipsecike-policy"></a>2. IPsec/IKE 정책 hello VNet 대 VNet 연결을 만듭니다.
 
-VNet 간 연결을 만들고 만든 IPsec/IKE 정책을 적용합니다. 이 예제에서 두 게이트웨이는 동일한 구독에 있습니다. 따라서 같은 PowerShell 세션에서 같은 IPsec/IKE 정책을 사용하여 두 연결을 만들고 구성할 수 있습니다.
+VNet 대 VNet 연결을 만들고 사용자가 만든 hello IPsec/IKE 정책을 적용 합니다. 이 예에서 두 게이트웨이 hello에는 동일한 구독 합니다. 가능한 toocreate 이며와 모두 연결을 구성 하도록 hello hello에 동일한 IPsec/IKE 정책을 같은 PowerShell 세션입니다.
 
 ```powershell
 $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1  -ResourceGroupName $RG1
@@ -293,29 +293,29 @@ New-AzureRmVirtualNetworkGatewayConnection -Name $Connection21 -ResourceGroupNam
 ```
 
 > [!IMPORTANT]
-> 연결에 IPsec/IKE 정책이 지정되고 나면 Azure VPN Gateway는 해당 특정 연결에 지정된 암호화 알고리즘 및 키 수준으로 된 IPsec/IKE 제안만 보내거나 수락합니다. 두 연결에 대한 IPsec 정책이 같은지 확인합니다. 그러지 않으면 VNet 간 연결이 설정되지 않습니다.
+> 연결에 IPsec/IKE 정책을 지정 되 면 hello Azure VPN 게이트웨이 보내거나 지정 된 암호화 알고리즘 및 키 길이 특정 연결에 IPsec/IKE 제안 hello 수락 합니다. 확인 한 다음 있는지 hello IPsec 정책을 모두 연결 된 hello 동일 하지만, 그렇지 않으면 VNet 대 VNet 연결을 설정 하지 것입니다.
 
-이러한 단계를 완료하고 나면 몇 분 후에 연결이 설정되고, 시작 부분에 표시된 대로 다음과 같은 네트워크 토폴로지가 구현됩니다.
+다음이 단계를 완료 한 후 몇 분 안에 hello 연결이 설정 되 고 hello hello 시작 부분에 표시 된 대로 네트워크 토폴로지를 수행 해야 합니다.
 
 ![ipsec-ike-policy](./media/vpn-gateway-ipsecikepolicy-rm-powershell/ipsecikepolicy.png)
 
 
 ## <a name ="managepolicy"></a>5부 - 연결에 대한 IPsec/IKE 정책 업데이트
 
-마지막 섹션에서는 기존 S2S 또는 VNet 간 연결에 대한 IPsec/IKE 정책을 관리하는 방법을 보여 줍니다. 아래 연습에서는 연결에 대한 다음 작업을 안내합니다.
+표시 하는 hello 마지막 섹션 toomanage 기존 S2S 또는 VNet 대 VNet 연결에 대 한 IPsec/IKE 정책입니다. 아래 hello 연습 hello 다음 연결에 대 한 작업을 안내 합니다.
 
-1. 연결의 IPsec/IKE 정책 표시
-2. 연결에 대한 IPsec/IKE 정책 추가 또는 업데이트
-3. 연결에서 IPsec/IKE 정책 제거
+1. 연결의 IPsec/IKE 정책 hello를 표시 합니다.
+2. 추가 하거나 hello IPsec/IKE 정책 tooa 연결 업데이트
+3. 연결에서 hello IPsec/IKE 정책 제거
 
-같은 단계가 S2S 연결과 VNet 간 연결에도 모두 적용됩니다.
+hello 동일한 단계 적용 tooboth S2S 및 VNet 대 VNet 연결 됩니다.
 
 > [!IMPORTANT]
-> IPsec/IKE 정책은 *표준* 및 *고성능* 경로 기반 VPN 게이트웨이에서만 지원됩니다. 기본 게이트웨이 SKU 또는 정책 기반 VPN 게이트웨이에서는 작동하지 않습니다.
+> IPsec/IKE 정책은 *표준* 및 *고성능* 경로 기반 VPN 게이트웨이에서만 지원됩니다. Hello 기본 게이트웨이 SKU 또는 hello 정책 기반 VPN 게이트웨이 작동 하지 않습니다.
 
-#### <a name="1-show-the-ipsecike-policy-of-a-connection"></a>1. 연결의 IPsec/IKE 정책 표시
+#### <a name="1-show-hello-ipsecike-policy-of-a-connection"></a>1. 연결의 IPsec/IKE 정책 hello를 표시 합니다.
 
-다음 예제는 연결에 대해 IPsec/IKE 정책을 구성하는 방법을 보여 줍니다. 또한 스크립트는 위의 연습에서 계속됩니다.
+다음 예제는 hello tooget 연결에 구성 된 IPsec/IKE 정책 hello 하는 방법을 보여 줍니다. hello 스크립트는 또한 위의 hello 연습에서 진행합니다.
 
 ```powershell
 $RG1          = "TestPolicyRG1"
@@ -324,7 +324,7 @@ $connection6  = Get-AzureRmVirtualNetworkGatewayConnection -Name $Connection16 -
 $connection6.IpsecPolicies
 ```
 
-마지막 명령은 연결에 대해 구성된 현재 IPsec/IKE 정책이 있는 경우 이를 나열합니다. 다음 샘플 출력은 연결에 대한 것입니다.
+마지막 명령은 hello 되어 hello 연결에 구성 된 hello 현재 IPsec/IKE 정책을 나열 합니다. 샘플 출력 다음 hello hello 연결입니다.
 
 ```powershell
 SALifeTimeSeconds   : 3600
@@ -337,11 +337,11 @@ DhGroup             : DHGroup24
 PfsGroup            : PFS24
 ```
 
-구성된 IPsec/IKE 정책이 없는 경우 명령(PS> $connection6.policy)을 실행한 결과로 반환되는 내용이 없습니다. 반환되는 내용이 없다고 해서 연결에 대해 IPsec/IKE 정책이 구성되지 않았다는 의미는 아니며, 사용자 지정 IPsec/IKE 정책이 없는 것입니다. 실제 연결은 온-프레미스 VPN 장치 및 Azure VPN Gateway 간에 협상된 기본 정책을 사용합니다.
+IPsec/IKE 정책 구성 안 됨 이면 hello 명령 (PS > $connection6.policy)는 빈 반환 가져옵니다. IPsec/IKE hello 연결에 구성 되어 있지 않습니다 이지만 사용자 지정 하는 IPsec/IKE 정책이 없는 있다는 것을 의미 하지 않습니다. hello 실제 연결은 온-프레미스 VPN 장치 및 hello Azure VPN 게이트웨이 간의 협상 hello 기본 정책이 사용 합니다.
 
 #### <a name="2-add-or-update-an-ipsecike-policy-for-a-connection"></a>2. 연결에 대한 IPsec/IKE 정책 추가 또는 업데이트
 
-연결에 대한 새 정책을 추가하거나 기존 정책을 업데이트하는 단계는 같습니다. 새 정책을 만든 다음 연결에 새 정책을 적용합니다.
+hello 단계 tooadd 새 정책 또는 업데이트 한 연결에서 기존 정책을 사용 하면 동일한 hello: 새 정책을 만든 다음 hello 새 정책 toohello 연결을 적용 합니다.
 
 ```powershell
 $RG1          = "TestPolicyRG1"
@@ -353,20 +353,20 @@ $newpolicy6   = New-AzureRmIpsecPolicy -IkeEncryption AES128 -IkeIntegrity SHA1 
 Set-AzureRmVirtualNetworkGatewayConnection -VirtualNetworkGatewayConnection $connection6 -IpsecPolicies $newpolicy6
 ```
 
-온-프레미스 정책 기반 VPN 장치에 연결할 때 “UsePolicyBasedTrafficSelectors”를 사용하도록 설정하려면 cmdlet에 “-UsePolicyBaseTrafficSelectors” 매개 변수를 추가하거나, 이 매개 변수를 $False로 설정하여 옵션을 사용하지 않도록 설정합니다.
+tooenable 때 tooan 연결 온-프레미스 정책 기반 VPN 장치를 "UsePolicyBasedTrafficSelectors" hello 추가 "-UsePolicyBaseTrafficSelectors" 매개 변수 toohello cmdlet 너무 설정 또는 $False toodisable hello 옵션:
 
 ```powershell
 Set-AzureRmVirtualNetworkGatewayConnection -VirtualNetworkGatewayConnection $connection6 -IpsecPolicies $newpolicy6 -UsePolicyBasedTrafficSelectors $True
 ```
 
-연결을 다시 가져와 정책이 업데이트되었는지 확인할 수 있습니다.
+Hello 연결을 가져올 수 있습니다 hello 정책이 업데이트 되는 경우 다시 toocheck 합니다.
 
 ```powershell
 $connection6  = Get-AzureRmVirtualNetworkGatewayConnection -Name $Connection16 -ResourceGroupName $RG1
 $connection6.IpsecPolicies
 ```
 
-마지막 줄의 출력은 다음 예제와 같습니다.
+다음 예제는 hello와 같이 hello 마지막 줄의 hello 출력을 나타나야 합니다.
 
 ```powershell
 SALifeTimeSeconds   : 3600
@@ -381,7 +381,7 @@ PfsGroup            : None
 
 #### <a name="3-remove-an-ipsecike-policy-from-a-connection"></a>3. 연결에서 IPsec/IKE 정책 제거
 
-연결에서 사용자 지정 정책을 제거하고 나면 Azure VPN Gateway는 [IPsec/IKE 제안의 기본 목록](vpn-gateway-about-vpn-devices.md)으로 되돌려지고 온-프레미스 VPN 장치와 다시 협상합니다.
+Hello Azure VPN 게이트웨이 백 toohello 되돌립니다 연결에서 사용자 지정 정책 hello를 제거 하면 [기본 IPsec/IKE 제안 목록을](vpn-gateway-about-vpn-devices.md) 및 다시 온-프레미스 VPN 장치와 재협상 합니다.
 
 ```powershell
 $RG1           = "TestPolicyRG1"
@@ -394,10 +394,10 @@ $connection6.IpsecPolicies.Remove($currentpolicy)
 Set-AzureRmVirtualNetworkGatewayConnection -VirtualNetworkGatewayConnection $connection6
 ```
 
-같은 스크립트를 사용하여 연결에서 정책이 제거되었는지 확인할 수 있습니다.
+사용할 수 있습니다 hello 정책 hello 연결에서 제거 된 경우 동일한 스크립트 toocheck hello 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
 정책 기반 트래픽 선택기에 대한 자세한 내용은 [여러 온-프레미스 정책 기반 VPN 장치 연결](vpn-gateway-connect-multiple-policybased-rm-ps.md)을 참조하세요.
 
-연결이 완료되면 가상 네트워크에 가상 컴퓨터를 추가할 수 있습니다. 단계는 [가상 컴퓨터 만들기](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 를 참조하세요.
+연결이 완료 되 면 가상 컴퓨터 tooyour 가상 네트워크를 추가할 수 있습니다. 단계는 [가상 컴퓨터 만들기](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 를 참조하세요.

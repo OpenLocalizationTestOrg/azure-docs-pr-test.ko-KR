@@ -1,6 +1,6 @@
 ---
-title: "Azure Blob 저장소 및 Visual Studio 연결된 서비스 시작(ASP.NET) | Microsoft Docs"
-description: "Visual Studio 연결된 서비스를 사용하여 저장소 계정에 연결한 후 Visual Studio의 ASP.NET 프로젝트에서 Azure Blob 저장소를 사용하는 방법에 대해 설명합니다."
+title: "Visual Studio 연결 된 서비스 (ASP.NET) 및 Azure blob 저장소 시작: aaaGet | Microsoft Docs"
+description: "Visual Studio에서 ASP.NET 프로젝트에서 Azure blob 저장소를 사용 하 여 Visual Studio 연결 된 서비스를 사용 하 여 tooa 저장소 계정을 연결한 후 tooget을 시작 하는 방법"
 services: storage
 documentationcenter: 
 author: kraigb
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/21/2016
 ms.author: kraig
-ms.openlocfilehash: e953c7978705379a28581213e8f1c665473ddd60
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7b3e160da5bb95967ca4650b124afb8e867c03d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-blob-storage-and-visual-studio-connected-services-aspnet"></a>Azure Blob 저장소 및 Visual Studio 연결된 서비스 시작(ASP.NET)
 [!INCLUDE [storage-try-azure-tools-blobs](../../includes/storage-try-azure-tools-blobs.md)]
 
 ## <a name="overview"></a>개요
 
-Azure Blob 저장소는 구조화되지 않은 데이터를 개체/Blob으로 클라우드에 저장하는 서비스입니다. Blob 저장소는 문서, 미디어 파일 또는 응용 프로그램 설치 프로그램과 같은 모든 종류의 텍스트 또는 이진 데이터를 저장할 수 있습니다. 또한 Blob 저장소를 개체 저장소라고 합니다.
+Azure blob 저장소는 hello 클라우드에서 개체/blob으로 구조화 되지 않은 데이터를 저장 하는 서비스입니다. Blob storage는 문서, 미디어 파일 또는 응용 프로그램 설치 프로그램과 같은 모든 종류의 텍스트 또는 이진 데이터를 저장할 수 있습니다. Blob 저장소 참조 tooas 개체 저장소 이기도합니다.
 
-이 자습서에서는 Azure Blob 저장소를 사용하여 몇 가지 일반적인 시나리오를 위한 ASP.NET 코드를 작성하는 방법을 보여 줍니다. 시나리오에는 Blob 컨테이너 만들기, Blob 업로드, 나열, 다운로드 및 삭제가 포함됩니다.
+이 자습서에서는 Azure blob 저장소를 사용 하 여 몇 가지 일반적인 시나리오에 대 한 ASP.NET toowrite 코드 하는 방법을 보여 줍니다. 시나리오에는 Blob 컨테이너 만들기, Blob 업로드, 나열, 다운로드 및 삭제가 포함됩니다.
 
 ##<a name="prerequisites"></a>필수 조건
 
@@ -42,19 +42,19 @@ Azure Blob 저장소는 구조화되지 않은 데이터를 개체/Blob으로 �
 
 ### <a name="create-an-mvc-controller"></a>MVC 컨트롤러 만들기 
 
-1. **솔루션 탐색기**에서 **컨트롤러**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->컨트롤러**를 차례로 선택합니다.
+1. Hello에 **솔루션 탐색기**를 마우스 오른쪽 단추로 클릭 **컨트롤러**, hello 상황에 맞는 메뉴에서 **추가-컨트롤러 >**합니다.
 
-    ![ASP.NET MVC 앱에 컨트롤러 추가](./media/vs-storage-aspnet-getting-started-blobs/add-controller-menu.png)
+    ![컨트롤러 tooan ASP.NET MVC 응용 프로그램 추가](./media/vs-storage-aspnet-getting-started-blobs/add-controller-menu.png)
 
-1. **스캐폴드 추가** 대화 상자에서 **MVC 5 컨트롤러 - 비어 있음**을 선택하고 **추가**를 선택합니다.
+1. Hello에 **추가 스 캐 폴드** 대화 상자에서 **MVC 5 컨트롤러-비어 있지**, 선택한 **추가**합니다.
 
     ![MVC 컨트롤러 유형 지정](./media/vs-storage-aspnet-getting-started-blobs/add-controller.png)
 
-1. **컨트롤러 추가** 대화 상자에서 컨트롤러 이름을*BlobsController*로 설정하고 **추가**를 선택합니다.
+1. Hello에 **컨트롤러 추가** 대화 상자에서 이름 hello 컨트롤러 *BlobsController*를 선택 하 고 **추가**합니다.
 
-    ![MVC 컨트롤러 이름 지정](./media/vs-storage-aspnet-getting-started-blobs/add-controller-name.png)
+    ![Hello MVC 컨트롤러 이름](./media/vs-storage-aspnet-getting-started-blobs/add-controller-name.png)
 
-1. 다음 *using* 지시문을 `BlobsController.cs` 파일에 추가합니다.
+1. Hello 다음 추가 *를 사용 하 여* 지시문 toohello `BlobsController.cs` 파일:
 
     ```csharp
     using Microsoft.Azure;
@@ -65,26 +65,26 @@ Azure Blob 저장소는 구조화되지 않은 데이터를 개체/Blob으로 �
 
 ## <a name="create-a-blob-container"></a>Blob 컨테이너 만들기
 
-Blob 컨테이너는 Blob 및 폴더의 중첩된 계층 구조입니다. 다음 단계에서는 Blob 컨테이너를 만드는 방법을 보여 줍니다.
+Blob 컨테이너는 Blob 및 폴더의 중첩된 계층 구조입니다. hello 아래 단계에 설명 방법을 toocreate blob 컨테이너:
 
 > [!NOTE]
 > 
-> 이 섹션의 코드는 [개발 환경 설정](#set-up-the-development-environment) 섹션의 단계를 완료했다고 가정합니다. 
+> hello이 섹션의 코드 가정 hello 섹션의 hello 단계를 완료 [hello 개발 환경 설정](#set-up-the-development-environment)합니다. 
 
-1. `BlobsController.cs` 파일을 엽니다.
+1. 열기 hello `BlobsController.cs` 파일입니다.
 
 1. **ActionResult**를 반환하는 **CreateBlobContainer**라는 메서드를 추가합니다.
 
     ```csharp
     public ActionResult CreateBlobContainer()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. **CreateBlobContainer** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다. Azure 서비스 구성에서 저장소 연결 문자열 및 저장소 계정 정보를 가져오려면 다음 코드를 사용합니다. (*&lt;storage-account-name>*을 액세스 중인 Azure Storage 계정의 이름으로 변경합니다.)
+1. Hello 내 **CreateBlobContainer** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다. 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성에서 hello를 사용 합니다. (변경  *&lt;저장소 계정 이름 >* toohello 이름 hello에 액세스 하는 Azure 저장소 계정입니다.)
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
@@ -97,29 +97,29 @@ Blob 컨테이너는 Blob 및 폴더의 중첩된 계층 구조입니다. 다음
     CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
     ```
 
-1. 원하는 Blob 컨테이너 이름에 대한 참조를 나타내는 **CloudBlobContainer** 개체를 가져옵니다. **CloudBlobClient.GetContainerReference** 메서드는 Blob 저장소에 대한 요청을 만들지 않습니다. Blob 컨테이너가 있는지 여부에 관계없이 참조가 반환됩니다. 
+1. 가져오기는 **CloudBlobContainer** 참조 toohello 원하는 blob 컨테이너 이름을 나타내는 개체입니다. hello **CloudBlobClient.GetContainerReference** 메서드는 blob 저장소에 대 한 요청을 만들지 않습니다. hello blob 컨테이너의 존재 여부 hello 참조가 반환 됩니다. 
    
     ```csharp
     CloudBlobContainer container = blobClient.GetContainerReference("test-blob-container");
     ```
 
-1. 컨테이너가 아직 없으면 **CloudBlobContainer.CreateIfNotExists** 메서드를 호출하여 해당 컨테이너를 만듭니다. 컨테이너가 없고 성공적으로 만들어지면 **CloudBlobContainer.CreateIfNotExists** 메서드에서 **true**를 반환합니다. 그렇지 않으면 **false**가 반환됩니다.    
+1. Hello 호출 **CloudBlobContainer.CreateIfNotExists** 메서드 toocreate hello 컨테이너 아직 존재 하지 않는 경우. hello **CloudBlobContainer.CreateIfNotExists** 메서드 반환 **true** hello 컨테이너 존재 하지 않는 하 고 성공적으로 만들었습니다. 그렇지 않으면 **false**가 반환됩니다.    
 
     ```csharp
     ViewBag.Success = container.CreateIfNotExists();
     ```
 
-1. **ViewBag**을 Blob 컨테이너의 이름으로 업데이트합니다.
+1. 업데이트 hello **ViewBag** hello blob 컨테이너의 hello 이름의 합니다.
 
     ```csharp
     ViewBag.BlobContainerName = container.Name;
     ```
 
-1. **솔루션 탐색기**에서 **보기** 폴더를 확장한 다음 **Blobs**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->보기**를 차례로 선택합니다.
+1. Hello에 **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 **Blob**, hello 상황에 맞는 메뉴에서 선택 하 고 **추가보기->**.
 
-1. **보기 추가** 대화 상자에서 보기 이름으로 **CreateBlobContainer**를 입력하고 **추가**를 선택합니다.
+1. Hello에 **뷰 추가** 대화 상자에서 입력 **CreateBlobContainer** hello 뷰 이름과 선택에 대 한 **추가**합니다.
 
-1. `CreateBlobContainer.cshtml`을 열고 다음 코드 조각과 같이 수정합니다.
+1. 열기 `CreateBlobContainer.cshtml`, 다음 코드 조각 hello 모양이 되도록 수정 합니다.
 
     ```csharp
     @{
@@ -131,42 +131,42 @@ Blob 컨테이너는 Blob 및 폴더의 중첩된 계층 구조입니다. 다음
     Creation of @ViewBag.BlobContainerName @(ViewBag.Success == true ? "succeeded" : "failed")
     ```
 
-1. **솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.
+1. Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.
 
-1. 마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.
+1. Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:
 
     ```html
     <li>@Html.ActionLink("Create blob container", "CreateBlobContainer", "Blobs")</li>
     ```
 
-1. 응용 프로그램을 실행하고 **Blob 컨테이너 만들기**를 선택하여 다음 스크린샷과 유사한 결과를 확인합니다.
+1. Hello 응용 프로그램을 실행 하 고 선택 **Create Blob Container** toosee 스크린 샷 다음 유사한 toohello 결과:
   
     ![Blob 컨테이너 만들기](./media/vs-storage-aspnet-getting-started-blobs/create-blob-container-results.png)
 
-    앞에서 언급했듯이 컨테이너가 없고 만들어진 경우에만 **CloudBlobContainer.CreateIfNotExists** 메서드에서 **true**를 반환합니다. 따라서 컨테이너가 있을 때 앱을 실행하면 메서드에서 **false**를 반환합니다. 앱을 여러 번 실행하려면 앱을 다시 실행하기 전에 컨테이너를 삭제해야 합니다. 컨테이너 삭제는 **CloudBlobContainer.Delete** 메서드를 통해 수행할 수 있습니다. 또한 [Azure Portal](http://go.microsoft.com/fwlink/p/?LinkID=525040) 또는 [Microsoft Azure Storage 탐색기](../vs-azure-tools-storage-manage-with-storage-explorer.md)를 사용하여 컨테이너를 삭제할 수도 있습니다.  
+    앞에서 설명한 대로 hello **CloudBlobContainer.CreateIfNotExists** 메서드 반환 **true** hello 컨테이너 존재 하지 않는 있고 만들어지는 경우에 합니다. 따라서 hello 컨테이너 있을 때 hello 앱을 실행 하면 hello 메서드는 반환 **false**합니다. toorun hello 앱 여러 번 삭제 해야 hello 컨테이너 hello 응용 프로그램을 다시 실행 하기 전에. Hello 통해 hello 컨테이너 삭제를 수행할 수 있습니다 **CloudBlobContainer.Delete** 메서드. Hello를 사용 하 여 hello 컨테이너를 삭제할 수도 있습니다 [Azure 포털](http://go.microsoft.com/fwlink/p/?LinkID=525040) 또는 hello [Microsoft Azure 저장소 탐색기](../vs-azure-tools-storage-manage-with-storage-explorer.md)합니다.  
 
 ## <a name="upload-a-blob-into-a-blob-container"></a>Blob 컨테이너에 Blob 업로드
 
-[Blob 컨테이너를 만들면](#create-a-blob-container) 해당 컨테이너에 파일을 업로드할 수 있습니다. 이 섹션에서는 Blob 컨테이너에 로컬 파일을 업로드하는 과정을 안내합니다. 이 단계에서는 *test-blob-container*라는 이름의 Blob 컨테이너를 만들었다고 가정합니다. 
+[Blob 컨테이너를 만들면](#create-a-blob-container) 해당 컨테이너에 파일을 업로드할 수 있습니다. 이 섹션에서는 로컬 파일 tooa blob 컨테이너를 업로드 하는 과정을 안내 합니다. hello 단계 라는 blob 컨테이너를 만들었으면 가정 *테스트 blob 컨테이너*합니다. 
 
 > [!NOTE]
 > 
-> 이 섹션의 코드는 [개발 환경 설정](#set-up-the-development-environment) 섹션의 단계를 완료했다고 가정합니다. 
+> hello이 섹션의 코드 가정 hello 섹션의 hello 단계를 완료 [hello 개발 환경 설정](#set-up-the-development-environment)합니다. 
 
-1. `BlobsController.cs` 파일을 엽니다.
+1. 열기 hello `BlobsController.cs` 파일입니다.
 
 1. **EmptyResult**를 반환하는 **UploadBlob**라는 메서드를 추가합니다.
 
     ```csharp
     public EmptyResult UploadBlob()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return new EmptyResult();
     }
     ```
  
-1. **UploadBlob** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다. 다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure Storage 계정의 이름으로 변경).
+1. Hello 내 **UploadBlob** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다. 사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
@@ -179,19 +179,19 @@ Blob 컨테이너는 Blob 및 폴더의 중첩된 계층 구조입니다. 다음
     CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
     ```
 
-1. Blob 컨테이너 이름에 대한 참조를 나타내는 **CloudBlobContainer** 개체를 가져옵니다. 
+1. 가져오기는 **CloudBlobContainer** 참조 toohello blob 컨테이너 이름을 나타내는 개체입니다. 
    
     ```csharp
     CloudBlobContainer container = blobClient.GetContainerReference("test-blob-container");
     ```
 
-1. 앞에서 설명한 대로 Azure 저장소는 다양한 Blob 유형을 지원합니다. 페이지 Blob에 대한 참조를 검색하려면 **CloudBlobContainer.GetPageBlobReference** 메서드를 호출합니다. 블록 Blob에 대한 참조를 검색하려면 **CloudBlobContainer.GetBlockBlobReference** 메서드를 호출합니다. 일반적으로 블록 Blob을 사용하는 것이 좋습니다. 업로드하면 <blob-name>*을 Blob에 부여할 이름으로 변경합니다.
+1. 앞에서 설명한 대로 Azure 저장소는 다양한 Blob 유형을 지원합니다. tooretrieve 참조 tooa 페이지 blob의 경우 호출 hello **CloudBlobContainer.GetPageBlobReference** 메서드. tooretrieve 참조 tooa 블록 blob 호출 hello **CloudBlobContainer.GetBlockBlobReference** 메서드. 일반적으로 블록 blob는 hello 형식 toouse 것이 좋습니다. (변경 < blob-이름 > * toogive hello blob을 한 번 업로드 하려는 toohello 이름입니다.)
 
     ```csharp
     CloudBlockBlob blob = container.GetBlockBlobReference(<blob-name>);
     ```
 
-1. Blob 참조가 있으면 Blob 참조 개체의 **UploadFromStream** 메서드를 호출하여 데이터 스트림을 업로드할 수 있습니다. **UploadFromStream** 메서드는 Blob이 없는 경우 새로 만들고, Blob이 있는 경우 덮어씁니다. *&lt;file-to-upload>*를 업로드하려는 파일의 정규화된 경로로 변경합니다.
+1. Hello blob 참조 개체를 호출 하 여 데이터 스트림이 tooit 모든를 업로드할 수 blob 참조를 만든 후 **UploadFromStream** 메서드. hello **UploadFromStream** 파일이 있으면 덮어씁니다 하거나가 존재 하지 않는 경우 메서드는 hello blob을 만듭니다. (변경  *&lt;파일 업로드 >* tooa tooupload 원하는 toohello 파일 경로 정규화 합니다.)
 
     ```csharp
     using (var fileStream = System.IO.File.OpenRead(<file-to-upload>))
@@ -200,42 +200,42 @@ Blob 컨테이너는 Blob 및 폴더의 중첩된 계층 구조입니다. 다음
     }
     ```
 
-1. **솔루션 탐색기**에서 **보기** 폴더를 확장한 다음 **Blobs**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->보기**를 차례로 선택합니다.
+1. Hello에 **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 **Blob**, hello 상황에 맞는 메뉴에서 선택 하 고 **추가보기->**.
 
-1. **솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.
+1. Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.
 
-1. 마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.
+1. Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:
 
     ```html
     <li>@Html.ActionLink("Upload blob", "UploadBlob", "Blobs")</li>
     ```
 
-1. 응용 프로그램을 실행하고 **Blob 업로드**를 선택합니다.  
+1. Hello 응용 프로그램을 실행 하 고 선택 **업로드 blob**합니다.  
   
-이 섹션([Blob 컨테이너에 Blob 나열](#list-the-blobs-in-a-blob-container))에서는 Blob 컨테이너에 Blob을 나열하는 방법을 보여 줍니다.    
+섹션-hello [blob 컨테이너에서 hello blob 나열](#list-the-blobs-in-a-blob-container) -toolist hello blob 컨테이너에 blob 하는 방법을 보여 줍니다.  
 
-## <a name="list-the-blobs-in-a-blob-container"></a>Blob 컨테이너에 Blob 나열
+## <a name="list-hello-blobs-in-a-blob-container"></a>Blob 컨테이너에서 hello blob 나열
 
-이 섹션에서는 Blob 컨테이너에 Blob을 나열하는 방법을 보여 줍니다. 샘플 코드는 [Blob 컨테이너 만들기](#create-a-blob-container) 섹션에서 만든 *test-blob-container*를 참조합니다.
+이 섹션에서는 toolist hello blob 컨테이너에 blob 하는 방법을 보여 줍니다. hello 샘플 코드에서 참조 hello *테스트 blob 컨테이너* hello 섹션에서 만든 [blob 컨테이너 만들기](#create-a-blob-container)합니다.
 
 > [!NOTE]
 > 
-> 이 섹션의 코드는 [개발 환경 설정](#set-up-the-development-environment) 섹션의 단계를 완료했다고 가정합니다. 
+> hello이 섹션의 코드 가정 hello 섹션의 hello 단계를 완료 [hello 개발 환경 설정](#set-up-the-development-environment)합니다. 
 
-1. `BlobsController.cs` 파일을 엽니다.
+1. 열기 hello `BlobsController.cs` 파일입니다.
 
 1. **ActionResult**를 반환하는 **ListBlobs**라는 메서드를 추가합니다.
 
     ```csharp
     public ActionResult ListBlobs()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. **ListBlobs** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다. 다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure Storage 계정의 이름으로 변경).
+1. Hello 내 **ListBlobs** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다. 사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
@@ -248,13 +248,13 @@ Blob 컨테이너는 Blob 및 폴더의 중첩된 계층 구조입니다. 다음
     CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
     ```
 
-1. Blob 컨테이너 이름에 대한 참조를 나타내는 **CloudBlobContainer** 개체를 가져옵니다. 
+1. 가져오기는 **CloudBlobContainer** 참조 toohello blob 컨테이너 이름을 나타내는 개체입니다. 
    
     ```csharp
     CloudBlobContainer container = blobClient.GetContainerReference("test-blob-container");
     ```
 
-1. Blob 컨테이너에 Blob을 나열하려면 **CloudBlobContainer.ListBlobs** 메서드를 사용합니다. **CloudBlobContainer.ListBlobs** 메서드는 **CloudBlockBlob**, **CloudPageBlob** 또는 **CloudBlobDirectory** 개체에 캐스팅하는 **IListBlobItem** 개체를 반환합니다. 다음 코드 조각은 Blob 컨테이너에 있는 모든 Blob를 열거합니다. 각 Blob은 형식에 따라 적절한 개체로 캐스팅되며 해당 이름(또는 **CloudBlobDirectory**의 경우에 URI)이 목록에 추가됩니다.
+1. blob 컨테이너에서 hello blob toolist hello를 사용 하 여 **CloudBlobContainer.ListBlobs** 메서드. hello **CloudBlobContainer.ListBlobs** 메서드가 반환 되는 **IListBlobItem** tooa 캐스팅 개체 **CloudBlockBlob**, **CloudPageBlob**, 또는 **CloudBlobDirectory** 개체입니다. hello 다음 코드 조각 열거 된 blob 컨테이너에서 모든 hello blob 합니다. 각 blob은 해당 형식과 해당 이름에 따라 캐스트 toohello 적절 한 개체 (또는 URI의 hello 대/소문자는 **CloudBlobDirectory**) tooa 목록에 추가 됩니다.
 
     ```csharp
     List<string> blobs = new List<string>();
@@ -281,19 +281,19 @@ Blob 컨테이너는 Blob 및 폴더의 중첩된 계층 구조입니다. 다음
     return View(blobs);
     ```
 
-    Blob 컨테이너는 Blob 외에도 디렉터리를 포함할 수 있습니다. 다음 계층 구조를 가진 *test-blob-container*라는 Blob 컨테이너가 있다고 가정해 보겠습니다.
+    또한 tooblobs blob 컨테이너 디렉터리를 포함할 수 있습니다. 라는 blob 컨테이너에 있다고 가정 하겠습니다 *테스트 blob 컨테이너* 계층을 따라 hello로:
 
         foo.png
         dir1/bar.png
         dir2/baz.png
 
-    앞의 코드 예제를 사용하면 **Blob** 문자열 목록에 다음과 비슷한 값이 포함됩니다.
+    코드 예제에서는 앞에 오는 hello를 사용 하 여 hello **blob** 값 비슷한 toohello 다음을 포함 하는 문자열 목록:
 
         foo.png
         <storage-account-url>/test-blob-container/dir1
         <storage-account-url>/test-blob-container/dir2
 
-    여기서 볼 수 있듯이 목록에는 중첩된 엔터티가 아닌 최상위 엔터티만 포함됩니다(*bar.png* 및 *baz.png*). Blob 컨테이너 내의 모든 엔터티를 나열하려면 **CloudBlobContainer.ListBlobs** 메서드를 호출하고 **useFlatBlobListing** 매개 변수에 대해 **true**를 전달해야 합니다.    
+    볼 수 있듯이 hello 목록 hello 최상위 엔터티만 포함 됩니다. hello 하지는 스토리를 중첩 (*bar.png* 및 *baz.png*). toolist hello를 호출 해야 합니다는 blob 컨테이너 내에서 엔터티에 hello 모든 **CloudBlobContainer.ListBlobs** 메서드와 패스 **true** hello에 대 한 **useFlatBlobListing** 매개 변수입니다.    
 
     ```csharp
     ...
@@ -301,17 +301,17 @@ Blob 컨테이너는 Blob 및 폴더의 중첩된 계층 구조입니다. 다음
     ...
     ```
 
-    **useFlatBlobListing** 매개 변수를 **true**로 설정하면 Blob 컨테이너의 모든 항목에 대한 플랫 목록이 반환되고 다음 결과가 생성됩니다.
+    설정 hello **useFlatBlobListing** 매개 변수가 너무**true** hello blob 컨테이너에 있는 모든 엔터티의 플랫 목록 반환 하 고 결과 다음 hello 생성:
 
         foo.png
         dir1/bar.png
         dir2/baz.png
 
-1. **솔루션 탐색기**에서 **보기** 폴더를 확장한 다음 **Blobs**를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가->보기**를 차례로 선택합니다.
+1. Hello에 **솔루션 탐색기**, hello 확장 **뷰** 폴더를 마우스 오른쪽 단추로 클릭 **Blob**, hello 상황에 맞는 메뉴에서 선택 하 고 **추가보기->**.
 
-1. **보기 추가** 대화 상자에서 보기 이름으로 **ListBlobs**를 입력하고 **추가**를 선택합니다.
+1. Hello에 **뷰 추가** 대화 상자에서 입력 **ListBlobs** hello 뷰 이름과 선택에 대 한 **추가**합니다.
 
-1. `ListBlobs.cshtml`을 열고 다음 코드 조각과 같이 수정합니다.
+1. 열기 `ListBlobs.cshtml`, 다음 코드 조각 hello 모양이 되도록 수정 합니다.
 
     ```html
     @model List<string>
@@ -329,36 +329,36 @@ Blob 컨테이너는 Blob 및 폴더의 중첩된 계층 구조입니다. 다음
     </ul>
     ```
 
-1. **솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.
+1. Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.
 
-1. 마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.
+1. Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:
 
     ```html
     <li>@Html.ActionLink("List blobs", "ListBlobs", "Blobs")</li>
     ```
 
-1. 응용 프로그램을 실행하고 **Blob 나열**을 선택하여 다음 스크린샷과 유사한 결과를 확인합니다.
+1. Hello 응용 프로그램을 실행 하 고 선택 **blob 나열** toosee 스크린 샷 다음 유사한 toohello 결과:
   
     ![Blob 나열](./media/vs-storage-aspnet-getting-started-blobs/listblobs.png)
 
 ## <a name="download-blobs"></a>Blob 다운로드
 
-이 섹션에서는 Blob을 다운로드하고 로컬 저장소에 저장하거나 내용을 문자열로 읽는 방법을 보여 줍니다. 샘플 코드는 [Blob 컨테이너 만들기](#create-a-blob-container) 섹션에서 만든 *test-blob-container*를 참조합니다.
+이 섹션에서는 어떻게 toodownload blob이 고 보관 toolocal 저장소 또는 읽기 hello 내용을 문자열로 보여 줍니다. hello 샘플 코드에서 참조 hello *테스트 blob 컨테이너* hello 섹션에서 만든 [blob 컨테이너 만들기](#create-a-blob-container)합니다.
 
-1. `BlobsController.cs` 파일을 엽니다.
+1. 열기 hello `BlobsController.cs` 파일입니다.
 
 1. **ActionResult**를 반환하는 **DownloadBlob**이라는 메서드를 추가합니다.
 
     ```csharp
     public EmptyResult DownloadBlob()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return new EmptyResult();
     }
     ```
  
-1. **DownloadBlob** 메서드 내에서 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다. 다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure Storage 계정의 이름으로 변경).
+1. Hello 내 **DownloadBlob** 메서드를 가져오기는 **CloudStorageAccount** 저장소 계정 정보를 나타내는 개체입니다. 사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
@@ -371,19 +371,19 @@ Blob 컨테이너는 Blob 및 폴더의 중첩된 계층 구조입니다. 다음
     CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
     ```
 
-1. Blob 컨테이너 이름에 대한 참조를 나타내는 **CloudBlobContainer** 개체를 가져옵니다. 
+1. 가져오기는 **CloudBlobContainer** 참조 toohello blob 컨테이너 이름을 나타내는 개체입니다. 
    
     ```csharp
     CloudBlobContainer container = blobClient.GetContainerReference("test-blob-container");
     ```
 
-1. **CloudBlobContainer.GetBlockBlobReference** 또는 **CloudBlobContainer.GetPageBlobReference** 메서드를 호출하여 Blob 참조 개체를 가져옵니다. *&lt;blob-name>*을 다운로드하는 Blob의 이름으로 변경합니다.
+1. **CloudBlobContainer.GetBlockBlobReference** 또는 **CloudBlobContainer.GetPageBlobReference** 메서드를 호출하여 Blob 참조 개체를 가져옵니다. (변경  *&lt;blob 이름 >* 다운로드 하는 hello blob의 toohello 이름입니다.)
 
     ```csharp
     CloudBlockBlob blob = container.GetBlockBlobReference(<blob-name>);
     ```
 
-1. Blob을 다운로드하려면 Blob 유형에 따라 **CloudBlockBlob.DownloadToStream** 또는 **CloudPageBlob.DownloadToStream** 메서드를 사용합니다. 다음 코드 조각에서는 **CloudBlockBlob.DownloadToStream** 메서드를 사용하여 Blob의 내용을 스트림 개체로 전송하고 로컬 파일에 저장합니다. (*&lt;local-file-name>*을 Blob을 다운로드하려는 위치를 나타내는 정규화된 파일 이름으로 변경합니다.) 
+1. toodownload blob를 사용 하 여 hello **CloudBlockBlob.DownloadToStream** 또는 **CloudPageBlob.DownloadToStream** hello blob 유형에 따라 메서드. hello 다음 코드 조각을 사용 하 여 hello **CloudBlockBlob.DownloadToStream** blob의 내용을 tooa 스트림 되는 개체 메서드 tootransfer tooa 로컬 파일을 유지 됩니다: (변경  *&lt;로컬 파일 이름 >* toohello 정규화 된 파일 이름을 나타내는 hello blob 다운로드를 원하는.) 
 
     ```csharp
     using (var fileStream = System.IO.File.OpenWrite(<local-file-name>))
@@ -392,38 +392,38 @@ Blob 컨테이너는 Blob 및 폴더의 중첩된 계층 구조입니다. 다음
     }
     ```
 
-1. **솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.
+1. Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.
 
-1. 마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.
+1. Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:
 
     ```html
     <li>@Html.ActionLink("Download blob", "DownloadBlob", "Blobs")</li>
     ```
 
-1. 응용 프로그램을 실행하고 **Blob 다운로드**를 선택하여 Blob을 다운로드합니다. **CloudBlobContainer.GetBlockBlobReference** 메서드 호출에서 지정한 Blob은 **File.OpenWrite** 메서드 호출에서 지정한 위치로 다운로드됩니다. 
+1. Hello 응용 프로그램을 실행 하 고 선택 **다운로드 blob** toodownload hello blob입니다. hello에 지정 된 hello blob **CloudBlobContainer.GetBlockBlobReference** 메서드 호출 다운로드 hello에 지정한 toohello 위치 **File.OpenWrite** 메서드를 호출 합니다. 
 
 ## <a name="delete-blobs"></a>Blob 삭제
 
-다음 단계에서는 Blob을 삭제하는 방법을 보여 줍니다.
+hello 아래 단계에 설명 방법을 toodelete blob:
 
 > [!NOTE]
 > 
-> 이 섹션의 코드는 [개발 환경 설정](#set-up-the-development-environment) 섹션의 단계를 완료했다고 가정합니다. 
+> hello이 섹션의 코드 가정 hello 섹션의 hello 단계를 완료 [hello 개발 환경 설정](#set-up-the-development-environment)합니다. 
 
-1. `BlobsController.cs` 파일을 엽니다.
+1. 열기 hello `BlobsController.cs` 파일입니다.
 
 1. **ActionResult**를 반환하는 **DeleteBlob**이라는 메서드를 추가합니다.
 
     ```csharp
     public EmptyResult DeleteBlob()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return new EmptyResult();
     }
     ```
 
-1. 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다. 다음 코드를 사용하여 Azure 서비스 구성에서 저장소 연결 문자열과 저장소 계정 정보를 가져옵니다(*&lt;storage-account-name>*을 액세스하는 Azure Storage 계정의 이름으로 변경).
+1. 저장소 계정 정보를 나타내는 **CloudStorageAccount** 개체를 가져옵니다. 사용 하 여 hello 다음 코드 tooget hello 저장소 연결 문자열 및 저장소 계정 정보 hello Azure 서비스 구성: (변경  *&lt;저장소 계정 이름 >* hello Azure 저장소의 toohello 이름 계정에 액세스할 때는입니다.)
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
@@ -436,36 +436,36 @@ Blob 컨테이너는 Blob 및 폴더의 중첩된 계층 구조입니다. 다음
     CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
     ```
 
-1. Blob 컨테이너 이름에 대한 참조를 나타내는 **CloudBlobContainer** 개체를 가져옵니다. 
+1. 가져오기는 **CloudBlobContainer** 참조 toohello blob 컨테이너 이름을 나타내는 개체입니다. 
    
     ```csharp
     CloudBlobContainer container = blobClient.GetContainerReference("test-blob-container");
     ```
 
-1. **CloudBlobContainer.GetBlockBlobReference** 또는 **CloudBlobContainer.GetPageBlobReference** 메서드를 호출하여 Blob 참조 개체를 가져옵니다. *&lt;blob-name>*을 삭제하는 Blob의 이름으로 변경합니다.
+1. **CloudBlobContainer.GetBlockBlobReference** 또는 **CloudBlobContainer.GetPageBlobReference** 메서드를 호출하여 Blob 참조 개체를 가져옵니다. (변경  *&lt;blob 이름 >* toohello 이름 삭제 하는 hello blob입니다.)
 
     ```csharp
     CloudBlockBlob blob = container.GetBlockBlobReference(<blob-name>);
         ```
 
-1. To delete a blob, use the **Delete** method.
+1. toodelete a blob, use hello **Delete** method.
 
     ```csharp
     blob.Delete();
     ```
 
-1. **솔루션 탐색기**에서 **보기->공유됨** 폴더를 차례로 확장하고 `_Layout.cshtml`을 엽니다.
+1. Hello에 **솔루션 탐색기**, hello 확장 **뷰 공유->** 폴더를 연 `_Layout.cshtml`합니다.
 
-1. 마지막 **Html.ActionLink** 뒤에 다음 **Html.ActionLink**를 추가합니다.
+1. Hello 후 마지막 **Html.ActionLink**, hello 다음 추가 **Html.ActionLink**:
 
     ```html
     <li>@Html.ActionLink("Delete blob", "DeleteBlob", "Blobs")</li>
     ```
 
-1. 응용 프로그램을 실행하고 **Blob 삭제**를 선택하여 **CloudBlobContainer.GetBlockBlobReference** 메서드 호출에서 지정한 Blob을 삭제합니다. 
+1. Hello 응용 프로그램을 실행 하 고 선택 **Delete blob** hello에 지정 된 toodelete hello blob **CloudBlobContainer.GetBlockBlobReference** 메서드를 호출 합니다. 
 
 ## <a name="next-steps"></a>다음 단계
-Azure에 데이터를 저장하기 위한 추가 옵션에 대한 자세한 내용은 추가 기능 가이드를 참조하십시오.
+Azure에 데이터를 저장 하기 위한 추가 옵션에 대 한 자세한 기능 가이드 toolearn을 봅니다.
 
   * [Azure 테이블 저장소 및 Visual Studio 연결된 서비스 시작(ASP.NET)](vs-storage-aspnet-getting-started-tables.md)
   * [Azure 큐 저장소 및 Visual Studio 연결된 서비스 시작(ASP.NET)](vs-storage-aspnet-getting-started-queues.md)

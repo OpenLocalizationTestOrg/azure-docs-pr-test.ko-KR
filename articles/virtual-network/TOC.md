@@ -80,15 +80,15 @@
 #### [가속 네트워킹을 사용하여 VM 만들기](virtual-network-create-vm-accelerated-networking.md)
 
 ### 연결 시나리오
-#### [가상 네트워크(VNet)에서 VNet으로](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
-#### [VNet(Resource Manager)에서 VNet(클래식)으로](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
-#### [VNet에서 온-프레미스 네트워크(VPN)로](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
-#### [VNet에서 온-프레미스 네트워크(ExpressRoute)로](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+#### [가상 네트워크 (VNet) tooVNet](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+#### [VNet (리소스 관리자) tooa VNet (클래식)](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+#### [VNet tooon 온-프레미스 네트워크 VPN)](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+#### [VNet tooon 온-프레미스 네트워크 (express 경로)](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 #### [고가용성 하이브리드 네트워크 아키텍처](../guidance/guidance-hybrid-network-expressroute-vpn-failover.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 
 ### 보안 시나리오
 #### [가상 어플라이언스를 사용하여 네트워크 보안](virtual-network-scenario-udr-gw-nva.md)
-#### [Azure와 인터넷 간의 DMZ](../guidance/guidance-iaas-ra-secure-vnet-dmz.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+#### [DMZ hello 인터넷 및 Azure 간](../guidance/guidance-iaas-ra-secure-vnet-dmz.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 #### [클라우드 서비스 및 네트워크 보안](../best-practices-network-security.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 ##### [NSG와 간단한 DMZ](virtual-networks-dmz-nsg-asm.md)
 ##### [방화벽 및 NSG와 DMZ](virtual-networks-dmz-nsg-fw-asm.md)
@@ -118,7 +118,7 @@
 #### [피어링](virtual-network-manage-peering.md)
 #### 클래식
 ##### [네트워크 구성 파일](virtual-networks-using-network-configuration-file.md)
-##### [선호도 그룹에서 지역으로 마이그레이션](virtual-networks-migrate-to-regional-vnet.md)
+##### [선호도 그룹 tooa 영역에서 마이그레이션](virtual-networks-migrate-to-regional-vnet.md)
 ### 네트워크 보안 그룹
 #### [포털](virtual-network-manage-nsg-arm-portal.md)
 #### [PowerShell](virtual-network-manage-nsg-arm-ps.md)
@@ -128,7 +128,7 @@
 #### [NIC 만들기, 변경 또는 삭제](virtual-network-network-interface.md)
 #### [IP 주소 추가, 변경 또는 제거](virtual-network-network-interface-addresses.md)
 ### 가상 컴퓨터
-#### [다른 서브넷으로 VM 이동](virtual-networks-move-vm-role-to-subnet.md)
+#### [VM tooa 다른 서브넷 이동](virtual-networks-move-vm-role-to-subnet.md)
 ### [공용 IP 주소](virtual-network-public-ip-address.md)
 
 ## 문제 해결
@@ -140,7 +140,7 @@
 #### [PowerShell](virtual-network-routes-troubleshoot-powershell.md)
 ### [처리량 테스트](virtual-network-bandwidth-testing.md)
 ### [가상 네트워크를 삭제할 수 없음](virtual-network-troubleshoot-cannot-delete-vnet.md)
-### [VM 간 연결 문제](virtual-network-troubleshoot-connectivity-problem-between-vms.md)
+### [VM tooVM 연결 문제](virtual-network-troubleshoot-connectivity-problem-between-vms.md)
 
 # 참조
 ## [코드 샘플](https://azure.microsoft.com/en-us/resources/samples/?service=virtual-network)

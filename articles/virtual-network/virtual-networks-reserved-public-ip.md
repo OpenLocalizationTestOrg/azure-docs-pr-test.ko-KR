@@ -1,6 +1,6 @@
 ---
-title: "Azure 예약 IP 주소(클래식) 관리 - PowerShell | Microsoft Docs"
-description: "예약된 IP 주소(클래식)과 PowerShell을 사용하여 관리하는 방법을 이해합니다."
+title: "예약 된 IP 주소 (클래식)-PowerShell aaaManage Azure | Microsoft Docs"
+description: "예약 된 IP 주소 (클래식) 이해 및 방법을 toomanage PowerShell을 사용 하 게 합니다."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/10/2016
 ms.author: jdial
-ms.openlocfilehash: 5e9c83cebec96c6bc8afd53b0c637d7af899746f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c0a77b2ab8b1ab9bef6015c903eb735ea4358a35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reserved-ip-addresses-classic"></a>예약된 IP 주소(클래식)
 
@@ -29,43 +29,43 @@ ms.lasthandoff: 07/11/2017
 > * [템플릿](virtual-network-deploy-static-pip-arm-template.md)
 > * [PowerShell(클래식)](virtual-networks-reserved-public-ip.md)
 
-Azure의 IP 주소는 두 범주 즉, 동적 IP 및 예약된 IP로 나뉩니다. Azure에서 관리하는 공용 IP 주소는 기본적으로 동적입니다. 즉, 지정된 클라우드 서비스에 사용되는 IP 주소(VIP) 또는 VM이나 역할 인스턴스에 직접 액세스하는 데 사용되는 IP 주소(ILPIP)는 리소스가 종료 또는 중지(할당 취소)된 경우 때때로 변경될 수 있습니다.
+Azure의 IP 주소는 두 범주 즉, 동적 IP 및 예약된 IP로 나뉩니다. Azure에서 관리하는 공용 IP 주소는 기본적으로 동적입니다. 해당 IP 주소 (VIP) 지정 된 클라우드 서비스에 사용 되는 hello 있다는 것을 의미 하거나 tooaccess 리소스 종료 되거나 중지 (할당 취소) 되 면 VM 또는 역할 인스턴스를 직접 (ILPIP) 시간 tootime에서 변경할 수 있습니다.
 
-IP 주소의 변경을 방지하기 위해 IP 주소를 예약할 수 있습니다. 예약된 IP는 VIP로만 사용할 수 있으므로 리소스가 종료 또는 중지(할당 취소)된 때에도 클라우드 서비스의 IP 주소가 동일하게 유지됩니다. 또한 VIP로 사용하는 기존의 동적 IP를 예약된 IP 주소로 변환할 수 있습니다.
+가 변경할 tooprevent IP 주소, IP 주소를 예약할 수 있습니다. 예약 된 Ip 남아 리소스가 종료 되는 때에 동일 hello 또는 중지 (할당 취소) hello 클라우드 서비스에 대 한 hello IP 주소가 있는지 확인 한 VIP로만 사용할 수 있습니다. 또한 VIP tooa 예약 된 IP 주소로 사용 되는 기존 동적 Ip를 변환할 수 있습니다.
 
 > [!IMPORTANT]
-> Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../azure-resource-manager/resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다. 이 문서에서는 클래식 배포 모델 사용에 대해 설명합니다. 새로운 배포는 대부분 리소스 관리자 모델을 사용하는 것이 좋습니다. [Resource Manager 배포 모델](virtual-network-ip-addresses-overview-arm.md)을 사용하여 고정 공용 IP 주소를 예약하는 방법을 알아봅니다.
+> Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../azure-resource-manager/resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다. 이 문서에서는 hello 클래식 배포 모델을 사용 하 여 설명 합니다. 대부분의 새로운 배포 hello 리소스 관리자 모델을 사용 하는 것이 좋습니다. 고정 공용 IP 주소를 사용 하 여 tooreserve hello 하는 방법에 대해 알아봅니다 [리소스 관리자 배포 모델](virtual-network-ip-addresses-overview-arm.md)합니다.
 
-Azure의 IP 주소에 대한 자세한 내용을 알아보려면 [IP 주소](virtual-network-ip-addresses-overview-classic.md)를 확인하세요.
+Azure에서 toolearn IP에 대 한 주소, hello 읽기 [IP 주소](virtual-network-ip-addresses-overview-classic.md) 문서.
 
 ## <a name="when-do-i-need-a-reserved-ip"></a>예약된 IP는 언제 필요한가요?
-* **IP가 구독에서 예약되어 있는지 확인하려고 합니다**. 어떤 상황에서도 구독에서 해제되지 않을 IP 주소를 예약하려는 경우 예약된 공용 IP를 사용해야 합니다.  
-* **중지 상태 또는 할당 취소 상태(VM)에서도 IP를 클라우드 서비스에서 유지하려고 합니다**. 클라우드 서비스의 VM이 종료 또는 중지(할당 취소)된 경우에도 변경되지 않는 IP 주소를 사용하여 서비스에 액세스할 수 있도록 설정하기를 원합니다.
-* **Azure의 아웃바운드 트래픽이 예측 가능한 IP 주소를 사용하는지 확인하려고 합니다**. 특정 IP 주소의 트래픽만 허용하도록 온-프레미스 방화벽을 구성할 수 있습니다. IP를 예약하면 원본 IP 주소를 알고 있으므로 IP 변경 때문에 방화벽 규칙을 업데이트할 필요가 없습니다.
+* **IP hello tooensure 구독에서 예약 되는 것이 원하는**합니다. 어떤 상황에서 구독에서 해제 되 고 있는 IP 주소가 tooreserve 하려는 경우 예약된 된 공용 IP를 사용 해야 합니다.  
+* **클라우드 서비스와 IP toostay에 걸쳐 중지 또는 상태 (Vm)를 할당 취소 하려는**합니다. 변경 되지 않는 IP 주소를 사용 하 여 액세스 하 여 서비스 toobe 원한다 면 hello의 Vm 클라우드 하는 경우에 서비스를 종료 또는 중지 (할당 해제) 합니다.
+* **Azure의 아웃 바운드 트래픽이 예측 가능한 IP 주소를 사용 하는 tooensure 원하는**합니다. 특정 IP 주소에서 온-프레미스 방화벽 구성 tooallow만 트래픽이 있을 수 있습니다. IP를 예약 하 여 알고 hello 원본 IP 주소, 및 tooupdate tooan IP 변경 인해 방화벽 규칙에 필요 하지 않습니다.
 
 ## <a name="faq"></a>FAQ
 1. 모든 Azure 서비스에 예약된 IP를 사용할 수 있나요? <br>
     아니요. 예약된 IP는 VM 및 VIP를 통해 노출되는 클라우드 서비스 인스턴스 역할에만 사용할 수 있습니다.
 2. 예약된 IP를 몇 개까지 사용할 수 있나요? <br>
-    자세한 내용은 참조는 [Azure 제한](../azure-subscription-service-limits.md#networking-limits) 문서.
+    자세한 내용은 참조 hello [Azure 제한](../azure-subscription-service-limits.md#networking-limits) 문서.
 3. 예약된 IP는 사용 요금이 있나요? <br>
-    때때로 그렇습니다. 가격 책정 정보는 [예약된 IP 주소 가격 책정 정보](http://go.microsoft.com/fwlink/?LinkID=398482)를 참조하세요.
+    때때로 그렇습니다. 가격 세부 정보를 보려면 참조 hello [예약 된 IP 주소 가격 정보](http://go.microsoft.com/fwlink/?LinkID=398482) 페이지.
 4. IP 주소를 어떻게 예약하나요? <br>
-    PowerShell을 사용할 수 있습니다는 [Azure 관리 REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx), 또는 [Azure 포털](https://portal.azure.com) Azure 지역에서 IP 주소를 예약 하 고 있습니다. 예약된 IP 주소는 구독에 연결됩니다.
+    PowerShell을 사용할 있습니다, hello [Azure 관리 REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx), 또는 hello [Azure 포털](https://portal.azure.com) tooreserve Azure 지역에서 IP 주소입니다. 예약 된 IP 주소 연결된 tooyour 구독입니다.
 5. 선호도 그룹 기반 VNet에서 예약된 IP를 사용할 수 있나요? <br>
-    아니요. 예약된 IP는 지역 VNet에서만 지원됩니다. 예약된 IP는 선호도 그룹과 연결된 VNet에 대해 지원되지 않습니다. VNet을 지역 또는 선호도 그룹과 연결하는 방법에 대한 자세한 내용은 [지역 VNet 및 선호도 그룹 정보](virtual-networks-migrate-to-regional-vnet.md) 문서를 참조하세요.
+    아니요. 예약된 IP는 지역 VNet에서만 지원됩니다. 예약된 IP는 선호도 그룹과 연결된 VNet에 대해 지원되지 않습니다. VNet 지역 또는 선호도 그룹을 연결 하는 방법에 대 한 자세한 내용은 참조 hello [지역 Vnet 및 선호도 그룹](virtual-networks-migrate-to-regional-vnet.md) 문서.
 
 ## <a name="manage-reserved-vips"></a>예약된 VIP 관리
 
-[PowerShell 설치 및 구성](/powershell/azure/overview) 문서에 나오는 단계를 완료하여 PowerShell을 설치 및 구성했는지 확인합니다. 
+설치 하 고 PowerShell hello의 hello 단계를 완료 하 여 구성 확인 [설치 PowerShell을 구성 하 고](/powershell/azure/overview) 문서. 
 
-예약된 IP를 사용하려면 먼저 구독에 예약된 IP를 추가해야 합니다. *미국 중부* 위치에서 사용할 수 있는 공용 IP 주소 풀에서 예약된 IP를 만들려면 다음 명령을 실행합니다.
+예약 된 Ip를 사용 하려면 먼저 tooyour 구독을 추가 해야 합니다. 공용 IP의 hello 풀에서 예약 된 IP toocreate hello에 사용할 수 있는 주소 *중앙 미국* hello 다음 명령을 실행 합니다. 위치:
 
 ```powershell
 New-AzureReservedIP –ReservedIPName MyReservedIP –Location "Central US"
 ```
 
-그러나 예약할 IP를 지정할 수 없습니다. 구독에서 예약된 IP 주소를 보려면 다음 PowerShell 명령을 실행하고 *ReservedIPName* 및 *Address*의 값을 확인합니다.
+그러나 예약할 IP를 지정할 수 없습니다. tooview에서는 어떤 IP 주소 hello 다음 PowerShell 명령을 실행 합니다. 구독에서 예약 되어 있으며 hello 값에 유의 하세요 *ReservedIPName* 및 *주소*:
 
 ```powershell
 Get-AzureReservedIP
@@ -87,23 +87,23 @@ Get-AzureReservedIP
     OperationStatus      : Succeeded
 
 >[!NOTE]
->PowerShell을 사용하여 예약된 IP 주소를 만들 때 예약된 IP를 만들 리소스 그룹을 지정할 수 없습니다. Azure에서 *Default-Networking*이라는 리소스 그룹에 자동으로 추가합니다. [Azure Portal](http://portal.azure.com)을 사용하여 예약된 IP를 만드는 경우 원하는 어떤 리소스 그룹도 지정할 수 있습니다. 그러나 *Default-Networking* 이외의 리소스 그룹에서 예약된 IP를 만드는 경우 `Get-AzureReservedIP` 및 `Remove-AzureReservedIP`와 같은 명령으로 예약된 IP를 참조할 때마다 이름 *Group resource-group-name reserved-ip-name*을 참조해야 합니다.  예를 들어 *myResourceGroup* 리소스 그룹에 *myReservedIP*라는 예약된 IP를 만드는 경우 예약된 IP의 이름을 *Group myResourceGroup myReservedIP*로 참조해야 합니다.   
+>PowerShell 사용 하 여 예약된 된 IP 주소를 만들 때의 리소스 그룹 toocreate hello 예약 된 IP를 지정할 수 없습니다. Azure에서 *Default-Networking*이라는 리소스 그룹에 자동으로 추가합니다. Hello를 사용 하 여 hello 예약 된 IP를 만들면 [Azure 포털](http://portal.azure.com), 선택한 리소스 그룹을 지정할 수 있습니다. 그러나 이외의 다른 리소스 그룹에서 hello 예약 된 IP를 만드는 경우 *기본 네트워킹* 참조할 경우 항상 hello 예약 된 IP 명령과 같은 `Get-AzureReservedIP` 및 `Remove-AzureReservedIP`, hello이름을참조해야*그룹 리소스 그룹 이름 예약 된 ip 이름 간*합니다.  예를 들어, 명명 된 예약된 된 IP를 만들면 *인 myReservedIP* 리소스 그룹 이름은 *myResourceGroup*,으로 hello 예약 된 IP의 hello 이름을 참조 해야 *그룹 myResourceGroup 인 myReservedIP*합니다.   
 
-IP를 예약하면 예약된 IP는 삭제될 때까지 계속 구독에 연결됩니다. 예약된 IP를 삭제하려면 다음 PowerShell 명령을 실행합니다.
+IP 예약 되 면 삭제 하기 전까지 연결된 tooyour 구독 남아 합니다. toodelete 예약 된 IP 다음 PowerShell 명령이 실행된 hello:
 
 ```powershell
 Remove-AzureReservedIP -ReservedIPName "MyReservedIP"
 ```
 
-## <a name="reserve-the-ip-address-of-an-existing-cloud-service"></a>기존 클라우드 서비스의 IP 주소 예약
-`-ServiceName` 매개 변수를 추가하여 기존 클라우드 서비스의 IP 주소를 예약할 수 있습니다. *미국 중부* 위치에서 클라우드 서비스 *TestService*의 IP 주소를 예약하려면 다음 PowerShell 명령을 실행합니다.
+## <a name="reserve-hello-ip-address-of-an-existing-cloud-service"></a>기존 클라우드 서비스의 hello IP 주소를 예약 합니다.
+Hello를 추가 하 여 기존 클라우드 서비스의 hello IP 주소를 예약할 수 있습니다 `-ServiceName` 매개 변수입니다. 클라우드 서비스의 tooreserve hello IP 주소 *TestService* hello에 *중앙 미국* hello 다음 PowerShell 명령을 실행 합니다. 위치:
 
 ```powershell
 New-AzureReservedIP –ReservedIPName MyReservedIP –Location "Central US" -ServiceName TestService
 ```
 
-## <a name="associate-a-reserved-ip-to-a-new-cloud-service"></a>예약된 IP를 새 클라우드 서비스에 연결
-다음 스크립트는 예약된 새 IP를 만든 후 *TestService*라는 이름의 새 클라우드 서비스에 연결합니다.
+## <a name="associate-a-reserved-ip-tooa-new-cloud-service"></a>예약 된 IP tooa 새 클라우드 서비스에 연결
+hello 다음 스크립트에서는 새로운 예약된 된 IP 다음 라는 tooa 새 클라우드 서비스가 연결 *TestService*합니다.
 
 ```powershell
 New-AzureReservedIP –ReservedIPName MyReservedIP –Location "Central US"
@@ -116,22 +116,22 @@ New-AzureVMConfig -Name TestVM -InstanceSize Small -ImageName $image.ImageName `
 ```
 
 > [!NOTE]
-> 클라우드 서비스에서 사용할 예약된 IP를 만들 때 여전히 인바운드 통신에 *VIP:&lt;포트 번호>*를 사용하여 VM을 참조해야 합니다. IP를 예약했다고 VM에 직접 연결할 수 있다는 의미는 아닙니다. 예약된 IP는 VM이 배포된 클라우드 서비스에 할당됩니다. IP 통해 VM에 직접 연결하려는 경우 인스턴스 수준 공용 IP를 구성해야 합니다. 인스턴스 수준 공용 IP(ILPIP라고 함)는 VM에 직접 할당된 공용 IP의 한 유형입니다. ILPIP는 예약할 수 없습니다. 자세한 내용은 [인스턴스 수준 공용 IP(ILPIP)](virtual-networks-instance-level-public-ip.md) 문서를 참조하세요.
+> 사용 하 여 toohello VM 클라우드 서비스와 예약 된 IP toouse를 만들면 여전히 참조 *VIP:&lt;포트 번호 >* 인바운드 통신에 대 한 합니다. IP 예약 의미가 toohello VM에 직접 연결할 수 있습니다. hello 예약 된 IP가 할당 toohello 클라우드 서비스 VM이 배포 된 hello 해당 합니다. 직접 tooconnect tooa IP 통해 VM을 원하는 경우 인스턴스 수준 공용 IP tooconfigure 수 있습니다. 인스턴스 수준 공용 IP는 VM tooyour 직접 할당 된 공용 IP (한 ILPIP 라고 함)의 형식입니다. ILPIP는 예약할 수 없습니다. 자세한 내용은 hello 읽을 [인스턴스 수준 공용 IP (ILPIP)](virtual-networks-instance-level-public-ip.md) 문서.
 > 
 
 ## <a name="remove-a-reserved-ip-from-a-running-deployment"></a>실행 중인 배포에서 예약된 IP 제거
-새 클라우드 서비스에 추가된 예약된 IP를 제거하려면 다음 PowerShell 명령을 실행합니다.
+tooremove 예약 된 IP 추가 tooa 새 클라우드 서비스를 hello 다음 PowerShell 명령을 실행 합니다.
 
 ```powershell
 Remove-AzureReservedIPAssociation -ReservedIPName MyReservedIP -ServiceName TestService
 ```
 
 > [!NOTE]
-> 실행 중인 배포에서 예약된 IP를 제거해도 구독에서 예약이 제거되지는 않습니다. 단지 구독의 다른 리소스에서 사용할 수 있도록 IP가 해제됩니다.
+> 실행 중인 배포에서 예약된 된 IP를 제거 해도 구독에서 hello 예약이 제거 되지 않습니다. 단순히 구독에서 다른 리소스에서 사용 하는 hello IP toobe를 해제 합니다.
 > 
 
-## <a name="associate-a-reserved-ip-to-a-running-deployment"></a>실행 중인 배포에 예약된 IP 연결
-다음 명령은 *TestVM2*라는 새 VM을 사용하여 *TestService2*라는 클라우드 서비스를 만듭니다. 그러면 기존의 예약된 IP *MyReservedIP*가 클라우드 서비스에 연결됩니다.
+## <a name="associate-a-reserved-ip-tooa-running-deployment"></a>배포 실행 예약 된 IP tooa 연결
+hello 다음 명령을 클라우드 서비스를 만들 라는 *TestService2* 명명 된 새 VM과 *TestVM2*합니다. 예약 된 IP 이름이 hello 기존 *인 MyReservedIP* 관련된 toohello 클라우드 서비스에 있으면 합니다.
 
 ```powershell
 $image = Get-AzureVMImage|?{$_.ImageName -like "*RightImage-Windows-2012R2-x64*"}
@@ -143,8 +143,8 @@ New-AzureVMConfig -Name TestVM2 -InstanceSize Small -ImageName $image.ImageName 
 Set-AzureReservedIPAssociation -ReservedIPName MyReservedIP -ServiceName TestService2
 ```
 
-## <a name="associate-a-reserved-ip-to-a-cloud-service-by-using-a-service-configuration-file"></a>서비스 구성 파일을 사용하여 클라우드 서비스에 예약된 IP 연결
-서비스 구성(CSCFG) 파일을 사용하여 클라우드 서비스에 예약된 IP를 연결할 수도 있습니다. 다음 샘플 xml에서는 *MyReservedIP*라는 예약된 VIP를 사용하도록 클라우드 서비스를 구성하는 방법을 보여 줍니다.
+## <a name="associate-a-reserved-ip-tooa-cloud-service-by-using-a-service-configuration-file"></a>서비스 구성 파일을 사용 하 여 예약 된 IP tooa 클라우드 서비스에 연결
+서비스 구성 (CSCFG) 파일을 사용 하 여 예약 된 IP tooa 클라우드 서비스를 연결할 수도 있습니다. hello 다음 샘플 xml 표시 방법을 tooconfigure 예약 된 VIP는 클라우드 서비스 toouse 라는 *인 MyReservedIP*:
 
     <?xml version="1.0" encoding="utf-8"?>
     <ServiceConfiguration serviceName="ReservedIPSample" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-01.2.3">
@@ -164,7 +164,7 @@ Set-AzureReservedIPAssociation -ReservedIPName MyReservedIP -ServiceName TestSer
     </ServiceConfiguration>
 
 ## <a name="next-steps"></a>다음 단계
-* 클래식 배포 모델에서 [IP 주소 지정](virtual-network-ip-addresses-overview-classic.md) 이 어떻게 작동하는지 이해합니다.
+* 이해 어떻게 [IP 주소 지정](virtual-network-ip-addresses-overview-classic.md) hello 클래식 배포 모델에서 작동 합니다.
 * [예약된 개인 IP 주소](virtual-networks-reserved-private-ip.md)에 대해 알아봅니다.
 * [ILPIP(인스턴스 수준 공용 IP) 주소](virtual-networks-instance-level-public-ip.md)에 대해 알아봅니다.
 
