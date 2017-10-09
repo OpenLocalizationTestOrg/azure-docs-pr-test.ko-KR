@@ -1,6 +1,6 @@
 ---
-title: "Python 및 SDK 설치 - Azure"
-description: "Azure에서 사용할 Python 및 SDK를 설치하는 방법에 대해 알아봅니다."
+title: "aaaInstall Python 및 Azure SDK-hello"
+description: "자세한 내용은 방법 azure tooinstall Python 및 hello SDK toouse 합니다."
 services: 
 documentationcenter: python
 author: lmazuel
@@ -14,68 +14,68 @@ ms.devlang: python
 ms.topic: article
 ms.date: 09/06/2016
 ms.author: lmazuel
-ms.openlocfilehash: c9df4e1f7677b2ed10684f6f3c981f2abf64f171
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c1b394770f9abd3e654a23d79ae179a9af89e2fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="installing-python-and-the-sdk"></a>Python 및 SDK 설치
-Python은 Windows에서 쉽게 설정할 수 있으며 Mac, Linux 및 [Bash for Windows](https://msdn.microsoft.com/commandline/wsl/about)에서는 사전 설치되어 제공됩니다. 이 가이드에서는 설치 및 Azure와 함께 사용할 수 있도록 컴퓨터를 설정하는 작업을 단계별로 안내합니다.
+# <a name="installing-python-and-hello-sdk"></a>Python 및 hello SDK 설치
+Python을 쉽게 tooset를 Windows 켜져 있고, Linux, Mac에 미리 설치 되어 나오는 및 [Windows 용를 이용한 적](https://msdn.microsoft.com/commandline/wsl/about)합니다. 이 가이드에서는 설치 및 Azure와 함께 사용할 수 있도록 컴퓨터를 설정하는 작업을 단계별로 안내합니다.
 
-## <a name="whats-in-the-python-azure-sdk"></a>Python Azure SDK에 포함된 내용
-Python용 Azure SDK에는 Azure용 Python 응용 프로그램을 개발, 배포 및 관리할 수 있는 구성 요소가 포함되어 있습니다. 구체적으로 말해서 Python용 Azure SDK에는 다음이 포함되어 있습니다.
+## <a name="whats-in-hello-python-azure-sdk"></a>작업은에 hello Python Azure SDK?
+Python 용 Azure SDK hello toodevelop 사용 하면 배포 하 고 Azure에 대 한 Python 응용 프로그램을 관리 하는 구성 요소를 포함 합니다. 특히, Python 용 Azure SDK hello hello 다음이 포함 됩니다.
 
 * **관리 라이브러리**. 이러한 클래스 라이브러리는 저장소, 계정, 가상 컴퓨터와 같은 Azure 리소스를 관리하는 인터페이스를 제공합니다.
 * **런타임 라이브러리**. 이러한 클래스 라이브러리는 저장소 및 서비스 버스와 같은 Azure 기능에 액세스하는 인터페이스를 제공합니다.
 
-## <a name="which-python-and-which-version-to-use"></a>사용할 Python 및 버전
+## <a name="which-python-and-which-version-toouse"></a>Python 및 어떤 버전 toouse
 사용할 수 있는 몇 가지의 Python 인터프리터 옵션이 있으며 다음을 예로 들 수 있습니다.
 
-* CPython - 가장 일반적으로 사용되는 표준 Python 인터프리터
-* PyPy - 빠르고 규정을 준수하는 CPython에 대한 대체 구현
+* CPython-hello 표준 및 가장 자주 사용 되는 Python 인터프리터
+* PyPy-규정을 준수 하는 빠른 대체 구현 tooCPython
 * IronPython - .Net/CLR에서 실행되는 Python 인터프리터
-* Jython - Java 가상 컴퓨터에서 실행되는 Python 인터프리터
+* Jython-hello Java 가상 컴퓨터에서 실행 되는 Python 인터프리터
 
-**CPython** v2.7 또는 v3.3 이상 및 PyPy 5.4.0은 Python Azure SDK에 대해 테스트 및 지원됩니다.
+**CPython** v2.7 또는 v3.3 + 및 PyPy 5.4.0 테스트 되 고 hello Python Azure SDK에 대 한 지원.
 
-## <a name="where-to-get-python"></a>Python을 구하는 위치
-CPython을 구하는 몇 가지 방법이 있습니다.
+## <a name="where-tooget-python"></a>여기서 tooget Python?
+여러 가지 방법으로 tooget CPython 가지가 있습니다.
 
 * [www.python.org][www.python.org]에서 직접
 * [www.continuum.io][www.continuum.io], [www.enthought.com][www.enthought.com] 또는 [www.activestate.com][www.activestate.com]과 같은 신뢰할 수 있는 배포자로부터
 * 원본에서 빌드
 
-구체적인 요구 사항이 없다면 처음 두 가지 옵션을 사용하는 것이 좋습니다.
+특별히 필요한 경우가 hello 처음 두 가지 옵션 권장 합니다.
 
 ## <a name="sdk-installation-on-windows-linux-and-macos-client-libraries-only"></a>Windows, Linux 및 MacOS에 SDK 설치(클라이언트 라이브러리만 해당)
-Python이 이미 설치되어 있는 경우 pip를 사용하여 기존 Python 2.7 또는 Python 3.3 + 환경에 모든 클라이언트 라이브러리의 번들을 설치할 수 있습니다. 이 경우 [PyPI(Python 패키지 인덱스)][Python Package Index]에서 패키지를 다운로드합니다.
+Python 설치를 이미 있는 경우에 pip tooinstall 기존 Python 2.7 또는 Python 3.3 + 환경에서 모든 hello 클라이언트 라이브러리의 번들을 사용할 수 있습니다. Hello에서 hello 패키지를 다운로드이 [Python 패키지 인덱스] [ Python Package Index] (PyPI).
 
 관리자 권한이 필요할 수 있습니다.
 
-* Linux 및 MacOS, 다음 `sudo` 명령을 사용합니다. `sudo pip install azure-mgmt-compute`.
+* Linux와 MacOS 등 hello를 사용 하 여 `sudo` 명령: `sudo pip install azure-mgmt-compute`합니다.
 * Windows: 관리자로 PowerShell/명령 프롬프트를 엽니다.
 
 각 Azure 서비스에 대한 각 라이브러리를 개별적으로 설치할 수 있습니다.
 
 ```console
-   $ pip install azure-batch          # Install the latest Batch runtime library
-   $ pip install azure-mgmt-scheduler # Install the latest Storage management library
+   $ pip install azure-batch          # Install hello latest Batch runtime library
+   $ pip install azure-mgmt-scheduler # Install hello latest Storage management library
 ```
 
-미리 보기 패키지는 `--pre` 플래그를 사용하여 설치할 수 있습니다.
+Hello를 사용 하 여 미리 보기 패키지를 설치할 수 있습니다 `--pre` 플래그:
 
 ```console
-   $ pip install --pre azure-mgmt-compute # installs only the latest Compute Management library
+   $ pip install --pre azure-mgmt-compute # installs only hello latest Compute Management library
 ```
 
-`azure` 메타패키지를 사용하여 한 줄로 Azure 라이브러리의 집합도 설치할 수 있습니다. 이 메타패키지에서 일부 패키지는 아직 안정적으로 게시되지 않으므로 `azure` 메타패키지는 아직 미리 보기 상태입니다.
-하지만 코어 패키지는 코드 품질/완전성 관점에서 현재 "안정적"으로 간주할 수 있습니다.
+Hello를 사용 하 여 한 줄에 Azure 라이브러리의 집합을 설치할 수도 있습니다 `azure` 메타 패키지입니다. 이 메타 패키지의 모든 패키지를 아직 안정적으로 게시 됩니다. 이후 hello `azure` 메타 패키지는 아직 미리 보기 상태입니다.
+그러나 코드 품질/완결성 관점에서 hello 코어 패키지 간주할 수 "안정적인"이 이번에
 
 * 가능한 빠른 시간 내에 다른 언어와 동기화되어 공식적으로 레이블 표시될 예정입니다.
   그때까지는 더 이상의 주요 변경 내용은 계획에 없습니다.
 
-미리 보기 릴리스 상태이므로 `--pre` 플래그를 사용해야 합니다.
+Toouse hello 필요 미리 보기 버전 이므로 `--pre` 플래그:
 
 ```console
    $ pip install --pre azure
@@ -88,7 +88,7 @@ Python이 이미 설치되어 있는 경우 pip를 사용하여 기존 Python 2.
 ```
 
 ## <a name="getting-more-packages"></a>추가 패키지 가져오기
-PyPI([Python 패키지 인덱스][Python Package Index])에서 다양한 Python 라이브러리를 선택할 수 있습니다.  Distro를 설치하도록 선택했다면 웹 개발 및 기술 컴퓨팅을 포함한 다양한 시나리오에 맞는 거의 모든 흥미로운 기능을 이미 갖추었습니다.
+hello [Python 패키지 인덱스] [ Python Package Index] (PyPI)에 Python 라이브러리의 풍부한 선택 합니다.  대부분의 웹 개발 tooTechnical에서 다양 한 시나리오에 대 한 비트 흥미로운 hello 이미 해야 tooinstall는 배포판을 선택한 경우 컴퓨팅입니다.
 
 ## <a name="python-tools-for-visual-studio"></a>Python Tools for Visual Studio
 [Python Tools for Visual Studio][Python Tools for Visual Studio](PTVS)는 VS를 완전한 Python IDE로 전환하는 Microsoft의 무료/OSS 플러그 인입니다.
@@ -97,26 +97,26 @@ PyPI([Python 패키지 인덱스][Python Package Index])에서 다양한 Python 
 
 PTVS는 선택 사항이지만 Python 및 웹 프로젝트/솔루션 지원, 디버깅, 프로파일링, 대화형 창, 템플릿 편집 및 Intellisense를 제공합니다.
 
-또한 PTVS를 사용하면 [Cloud Services](cloud-services/cloud-services-python-ptvs.md) 및 [Websites](app-service-web/web-sites-python-ptvs-django-mysql.md) 배포 지원과 함께 Microsoft Azure에 쉽게 배포할 수 있습니다.
+PTVS을 사용 하면 쉽게 toodeploy tooMicrosoft Azure 배포에 대 한 지원과 함께 너무[클라우드 서비스](cloud-services/cloud-services-python-ptvs.md) 및 [웹 사이트](app-service-web/web-sites-python-ptvs-django-mysql.md)합니다.
 
 PTVS는 기존 Visual Studio 2013, 2015 또는 2017 설치와 작동합니다.  설명서, 다운로드 및 토론에 대한 자세한 내용은 [Python Tools for Visual Studio]를 참조하세요.  
 
 ## <a name="python-azure-scenarios-for-linux-and-macos"></a>Linux 및 MacOS용 Python Azure 시나리오
 Linux 또는 MacOS의 경우 지원되는 주요 Azure 시나리오는 다음과 같습니다.
 
-1. Python용 클라이언트 라이브러리를 사용하여 Azure 서비스 사용
+1. Python 용 hello 클라이언트 라이브러리를 사용 하 여 Azure 서비스 사용
 2. Linux VM에서 앱 실행
-3. Git를 사용하여 개발 및 Azure 웹 사이트에 게시
+3. 개발 하 고 tooAzure 웹 사이트 게시 Git를 사용 하 여
 
-첫 번째 시나리오에서는 Azure REST API용 Python 래퍼를 통해 [Blob 저장소](virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json), [큐 저장소](storage/queues/storage-python-how-to-use-queue-storage.md), [테이블 저장소](cosmos-db/table-storage-how-to-use-python.md) 등의 Azure PaaS 기능을 활용하는 풍부한 기능의 웹앱을 작성할 수 있습니다. 이 기능은 Windows, Mac 및 Linux에서 동일하게 작동합니다.  또한 로컬 개발 컴퓨터 또는 Azure에서 실행되는 Linux VM에서 이러한 클라이언트 라이브러리를 사용할 수 있습니다.
+hello 첫 번째 시나리오를 활용 하는 hello의 Azure PaaS 기능와 같은 tooauthor 풍부한 웹 앱을 사용 하면 [blob 저장소](virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json), [큐 저장소](storage/queues/storage-python-how-to-use-queue-storage.md), [테이블 저장소](cosmos-db/table-storage-how-to-use-python.md) hello Azure REST Api에 대 한 Pythonic 래퍼를 통해 등입니다. 이 기능은 Windows, Mac 및 Linux에서 동일하게 작동합니다.  또한 로컬 개발 컴퓨터 또는 Azure에서 실행되는 Linux VM에서 이러한 클라이언트 라이브러리를 사용할 수 있습니다.
 
-VM 시나리오의 경우, 원하는 Linux VM(Ubuntu, CentOS, SUSE)을 시작한 후 원하는 대로 실행하고 관리하면 됩니다.  예를 들어 Windows/Mac/Linux 컴퓨터에서 [IPython][IPython] REPL/notebook을 실행하고 Azure에서 IPython Engine을 실행하는 Linux 또는 Windows 다중 프로세싱 VM으로 브라우저를 가리키면 됩니다.
+Hello VM 시나리오의 경우 단순히 (Ubuntu, CentOS, Suse) 선택한 Linux VM을 시작 했으며 어떤 점이 좋은지 실행/관리  예를 들어, 실행할 수 있습니다 [IPython] [ IPython] REPL/노트북 Linux/Windows/Mac 컴퓨터와 브라우저 tooa Linux 또는 Windows 다중 프로세서 VM 실행 중에 Azure에서 IPython 엔진 hello 지점입니다.
 
-Linux VM을 설정하는 방법에 대한 자세한 내용은 [Linux를 실행하는 가상 컴퓨터 만들기](virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 참조하십시오.
+방법에 대 한 Linux VM을 tooset 참조 hello [는 Linux 가상 컴퓨터 실행을 만들](virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 자습서입니다.
 
-Git 배포를 사용하여 Python 웹 응용 프로그램을 개발하고 모든 운영 체제에서 Azure 웹 사이트에 게시할 수 있습니다.  Azure에 리포지토리를 푸시할 때 가상 환경이 자동으로 만들어지고 PIP가 필요한 패키지를 설치합니다.
+Git 배포를 사용 하 여 Python 웹 응용 프로그램을 개발 하 고 운영 체제에서 tooan Azure 웹 사이트를 게시할 수 있습니다.  리포지토리 tooAzure 푸시할 때 자동으로 가상 환경을 만듭니다 및 pip 필요한 패키지를 설치 합니다.
 
-Azure Websites 개발 및 게시에 대한 자세한 내용은 [Django를 사용하여 Websites 만들기](app-service-web/web-sites-python-create-deploy-django-app.md), [Bottle을 사용하여 Websites 만들기](app-service-web/web-sites-python-create-deploy-bottle-app.md) 및 [Flask를 사용하여 Websites 만들기](app-service-web/web-sites-python-create-deploy-flask-app.md)에 대한 자습서를 참조하십시오. WSGI 규격 프레임워크 사용에 대한 일반적인 정보는 [Azure Websites를 사용하여 Python 구성](app-service-web/web-sites-python-configure.md)을 참조하세요.
+개발 및 Azure 웹 사이트를 게시에 대 한 자세한 내용은 참조에 대 한 hello 자습서 [Django로 웹 사이트를 만드는](app-service-web/web-sites-python-create-deploy-django-app.md), [Bottle로 웹 사이트를 만드는](app-service-web/web-sites-python-create-deploy-bottle-app.md), 및 [로 웹 사이트 만들기 플라스](app-service-web/web-sites-python-create-deploy-flask-app.md)합니다. WSGI 규격 프레임워크 사용에 대한 일반적인 정보는 [Azure Websites를 사용하여 Python 구성](app-service-web/web-sites-python-configure.md)을 참조하세요.
 
 ## <a name="additional-software-and-resources"></a>추가 소프트웨어 및 리소스
 * [Python ReadTheDocs용 Azure SDK](http://azure-sdk-for-python.readthedocs.io/en/latest/)
@@ -152,8 +152,8 @@ Azure Websites 개발 및 게시에 대한 자세한 내용은 [Django를 사용
 [Python Package Index]: http://pypi.python.org/pypi
 [Microsoft Azure SDK for Python 2.7]: http://go.microsoft.com/fwlink/?LinkId=254281
 [Microsoft Azure SDK for Python 3.4]: http://go.microsoft.com/fwlink/?LinkID=516990
-[Setting up a Linux VM via the Azure portal]: create-and-configure-opensuse-vm-in-portal.md
-[How to use the Azure Command-Line Interface]: crossplat-cmd-tools.md
+[Setting up a Linux VM via hello Azure portal]: create-and-configure-opensuse-vm-in-portal.md
+[How toouse hello Azure Command-Line Interface]: crossplat-cmd-tools.md
 [Create a Virtual Machine Running Linux]: virtual-machines-linux-quick-create-cli.md
 [Creating Websites with Django]: web-sites-python-create-deploy-django-app.md
 [Creating Websites with Bottle]: web-sites-python-create-deploy-bottle-app.md

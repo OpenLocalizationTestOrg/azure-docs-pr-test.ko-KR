@@ -1,6 +1,6 @@
 ---
 title: "최종 사용자 인증: Azure Active Directory를 사용하여 Data Lake Store로 | Microsoft Docs"
-description: "Azure Active Directory를 사용하여 Data Lake Store로 최종 사용자 인증을 수행하는 방법을 알아봅니다."
+description: "자세한 내용은 방법 tooachieve 최종 사용자 인증에 Azure Active Directory를 사용 하 여 데이터 레이크 저장소"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/21/2017
 ms.author: nitinme
-ms.openlocfilehash: c20f5c39b00992d801909c8e5de292f3c2f12673
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fd58f4f2d8fc915b8bc51d9e5b040d2cee34047e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="end-user-authentication-with-data-lake-store-using-azure-active-directory"></a>Azure Active Directory를 사용하여 Data Lake Store로 최종 사용자 인증
 > [!div class="op_single_selector"]
@@ -27,47 +27,47 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Azure Data Lake Store는 인증을 위해 Azure Active Directory를 사용합니다. Azure Data Lake Store 또는 Azure Data Lake Analytics와 함께 작동하는 응용 프로그램을 제작하기 전에 먼저 Azure Active Directory(Azure AD)를 사용하여 응용 프로그램을 인증하려는 방법을 결정해야 합니다. 사용할 수 있는 두 가지 주요 옵션은 다음과 같습니다.
+Azure Data Lake Store는 인증을 위해 Azure Active Directory를 사용합니다. Azure 데이터 레이크 저장소 또는 Azure 데이터 레이크 분석을 사용 하는 응용 프로그램을 제작 하기 전에 먼저 결정 해야 방법을 원하는 tooauthenticate 응용 프로그램을 Azure Active Directory (Azure AD). hello 두 가지 주요 사용 가능한 옵션은:
 
 * 최종 사용자 인증(이 문서)
 * 서비스 간 인증
 
-이 두 옵션 모두 Azure Data Lake Store 또는 Azure Data Lake Analytics에 대해 만들어진 각 요청에 연결하는 OAuth 2.0 토큰과 함께 제공되는 응용 프로그램에서 발생합니다.
+두이 옵션 모두 연결 된 tooeach 수행 된 요청 tooAzure 데이터 레이크 저장소 또는 Azure 데이터 레이크 분석을 가져오는 OAuth 2.0 토큰으로 제공 되 고 응용 프로그램에서 발생 합니다.
 
 이 문서는 최종 사용자 인증을 위한 **Azure AD 네이티브 응용 프로그램**을 만드는 방법에 대해 설명합니다. 서비스 간 인증을 위해 Azure AD 응용 프로그램 구성을 수행하는 방법은 [Azure Active Directory를 사용하여 Data Lake Store로 서비스 간 인증](data-lake-store-authenticate-using-active-directory.md)을 참조하세요.
 
 ## <a name="prerequisites"></a>필수 조건
 * Azure 구독. [Azure 무료 평가판](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요.
 
-* 구독 ID. Azure Portal에서 검색할 수 있습니다. 예를 들어 Data Lake Store 계정 블레이드에서 사용할 수 있습니다.
+* 구독 ID. Hello Azure 포털에서에서 검색할 수 있습니다. 예를 들어 hello Data Lake 저장소 계정 블레이드에서 가능 합니다.
   
     ![구독 ID 가져오기](./media/data-lake-store-end-user-authenticate-using-active-directory/get-subscription-id.png)
 
-* Azure AD 도메인 이름. Azure Portal의 오른쪽 위 모서리에 마우스를 가져가서 검색할 수 있습니다. 아래 스크린샷에서 도메인 이름은 **contoso.onmicrosoft.com**이며 괄호 안의 GUID는 테넌트 ID입니다. 
+* Azure AD 도메인 이름. Hello Azure 포털의 hello 오른쪽 위 모서리에 hello 마우스 호버 하 여 검색할 수 있습니다. 아래 hello 스크린샷에서에서 hello 도메인 이름이 **contoso.onmicrosoft.com**, 괄호 안에 hello GUID는 hello 테 넌 트 id입니다. 
   
     ![AAD 도메인 가져오기](./media/data-lake-store-end-user-authenticate-using-active-directory/get-aad-domain.png)
 
 ## <a name="end-user-authentication"></a>최종 사용자 인증
-최종 사용자가 Azure AD를 통해 응용 프로그램에 로그인하기를 원하는 경우 권장되는 방법입니다. 응용 프로그램은 로그인한 최종 사용자와 동일한 수준의 액세스로 Azure 리소스에 액세스할 수 있게 됩니다. 최종 사용자는 응용 프로그램이 액세스를 유지할 수 있도록 주기적으로 자격 증명을 제공해야 합니다.
+이 Azure AD 통해 tooyour 응용 프로그램에는 최종 사용자 toolog 하려는 경우 권장 접근법 hello입니다. 응용 프로그램이 받을 수 tooaccess hello 사용 하 여 Azure 리소스에 기록 하는 hello 최종 사용자와 동일한 수준의 액세스 합니다. 최종 사용자는 응용 프로그램 toomaintain 액세스에 대 한 순서에 따라 정기적으로 자격 증명 tooprovide 필요 합니다.
 
-최종 사용자의 로그인으로 인해 응용 프로그램에 액세스 토큰 및 새로 고침 토큰이 제공됩니다. 액세스 토큰은 Data Lake Store 또는 Data Lake Analytics에 대해 만들어진 각 요청에 연결하며 기본적으로 1시간 동안 유효합니다. 새로 고침 토큰은 새 액세스 토큰을 가져오는 데 사용할 수 있고 정기적으로 사용되는 경우 기본적으로 최대 2주 동안 유효합니다. 최종 사용자 로그인에 두 가지 방법을 사용할 수 있습니다.
+hello에 로그인 하는 hello 최종 사용자의 만들어집니다 액세스 토큰 및 새로 고침 토큰을 응용 프로그램 제공 됩니다. hello 액세스 토큰 tooData Lake 저장소 또는 데이터 레이크 분석을 수행 하는 연결 된 tooeach 요청 가져오고 기본적으로 1 시간 동안 올바른지 합니다. hello 새로 고침 토큰에는 새 액세스 토큰을 되며 적합 기본적으로 tootwo 주를 정기적으로 사용 하는 경우 사용 되는 tooobtain 될 수 있습니다. 최종 사용자 로그인에 두 가지 방법을 사용할 수 있습니다.
 
-### <a name="using-the-oauth-20-pop-up"></a>OAuth 2.0 팝업 사용
-응용 프로그램은 최종 사용자가 자격 증명을 입력할 수 있는 OAuth 2.0 권한 부여 팝업을 트리거할 수 있습니다. 이 팝업은 필요한 경우 Azure AD 2단계 인증(2FA) 프로세스와도 작동합니다. 
+### <a name="using-hello-oauth-20-pop-up"></a>OAuth 2.0 hello 팝업을 사용 하 여
+응용 프로그램이 OAuth 2.0 권한 부여 팝업이 최종 사용자는 hello에 자격 증명을 입력할 수를 트리거할 수 있습니다. 필요한 경우이 팝업 hello (2FA) Azure AD 2 단계 인증 프로세스와도 작동 합니다. 
 
 > [!NOTE]
-> 이 방법은 Python 또는 Java용 Azure ADAL(AD 인증 라이브러리)에서 아직 지원되지 않습니다.
+> 이 메서드는 아직 지원 되지 hello Azure AD 인증 라이브러리 (ADAL)에 대 한 Python, Java.
 > 
 > 
 
 ### <a name="directly-passing-in-user-credentials"></a>사용자 자격 증명에서 직접 전달
-응용 프로그램은 Azure AD에 사용자 자격 증명을 직접 제공할 수 있습니다. 이 방법은 조직 ID 사용자 계정과만 작동합니다. @outlook.com 또는 @live.com으로 끝나는 계정을 포함한 개인/"live ID" 사용자 계정과 호환되지 않습니다. 또한 이 방법은 Azure AD 2단계 인증(2FA)이 필요한 사용자 계정과 호환되지 않습니다.
+응용 프로그램에서 사용자 자격 증명 tooAzure AD 제공할 직접 수 있습니다. 이 방법은 조직 ID 사용자 계정과만 작동합니다. @outlook.com 또는 @live.com으로 끝나는 계정을 포함한 개인/"live ID" 사용자 계정과 호환되지 않습니다. 또한 이 방법은 Azure AD 2단계 인증(2FA)이 필요한 사용자 계정과 호환되지 않습니다.
 
-### <a name="what-do-i-need-to-use-this-approach"></a>이 방법을 사용하려면 무엇이 필요한가요?
-* Azure AD 도메인 이름. 이 이름은 이 문서의 필수 구성 요소에 이미 나열되어 있습니다.
+### <a name="what-do-i-need-toouse-this-approach"></a>무엇을이 이렇게 toouse 필요 합니까?
+* Azure AD 도메인 이름. 이 테이블은이 문서의 hello 전제 조건에서 이미 표시 합니다.
 * Azure AD **네이티브 응용 프로그램**
-* Azure AD 네이티브 응용 프로그램에 대한 응용 프로그램 ID
-* Azure AD 네이티브 응용 프로그램에 대한 리디렉션 URI
+* Azure AD hello 네이티브 응용 프로그램에 대 한 응용 프로그램 ID
+* Hello Azure AD에 네이티브 응용 프로그램에 대 한 리디렉션 URI
 * 위임된 권한 설정
 
 
@@ -75,47 +75,47 @@ Azure Data Lake Store는 인증을 위해 Azure Active Directory를 사용합니
 
 Azure Active Directory를 사용하여 Azure Data Lake Store로 최종 사용자 인증을 위한 Azure AD 네이티브 응용 프로그램을 만들고 구성합니다. 지침에 대해서는 [Azure AD 응용 프로그램 만들기](../azure-resource-manager/resource-group-create-service-principal-portal.md)를 참조하세요.
 
-위의 링크에 있는 지침을 수행하는 동안 아래 스크린샷과 같이 응용 프로그램 유형으로 **네이티브**를 선택해야 합니다.
+링크 위에 hello에 hello 지침을 따르면 하는 동안 선택 했는지 확인 **네이티브** 아래 hello 스크린샷에 표시 된 대로 응용 프로그램 종류에 대 한 합니다.
 
 ![웹앱 만들기](./media/data-lake-store-end-user-authenticate-using-active-directory/azure-active-directory-create-native-app.png "네이티브 앱 만들기")
 
 ## <a name="step-2-get-application-id-and-redirect-uri"></a>2단계: 응용 프로그램 ID 및 리디렉션 URI 가져오기
 
-Azure AD 네이티브 응용 프로그램의 응용 프로그램 ID(Azure 클래식 포털에서는 클라이언트 ID라고도 함)를 검색하려면 [응용 프로그램 ID 가져오기](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key)를 참조하세요.
+참조 [hello 응용 프로그램 ID 가져오기](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key) tooretrieve hello 응용 프로그램 (클라이언트 ID hello hello Azure 클래식 포털에서에서) hello Azure AD 네이티브 응용 프로그램의 id입니다.
 
-리디렉션 URI를 검색하려면 다음 단계를 수행합니다.
+tooretrieve hello 리디렉션 URI, 아래의 hello 단계를 수행 합니다.
 
-1. Azure Portal에서 **Azure Active Directory**를 선택하고 **앱 등록**을 클릭한 다음 방금 만든 Azure AD 네이티브 응용 프로그램을 찾아서 클릭합니다.
+1. Hello Azure 포털에서에서 선택 **Azure Active Directory**, 클릭 **앱 등록**와 다음을 찾고 방금 만든 hello Azure AD 네이티브 응용 프로그램을 클릭 합니다.
 
-2. 응용 프로그램에 대한 **설정** 블레이드에서 **리디렉션 URI**를 클릭합니다.
+2. Hello에서 **설정** 블레이드 hello 응용 프로그램에 대 한 클릭 **리디렉션 Uri**합니다.
 
     ![리디렉션 URI 가져오기](./media/data-lake-store-end-user-authenticate-using-active-directory/azure-active-directory-redirect-uri.png)
 
-3. 표시되는 값을 복사합니다.
+3. 표시 되는 hello 값을 복사 합니다.
 
 
 ## <a name="step-3-set-permissions"></a>3단계: 사용 권한 설정
 
-1. Azure Portal에서 **Azure Active Directory**를 선택하고 **앱 등록**을 클릭한 다음 방금 만든 Azure AD 네이티브 응용 프로그램을 찾아서 클릭합니다.
+1. Hello Azure 포털에서에서 선택 **Azure Active Directory**, 클릭 **앱 등록**와 다음을 찾고 방금 만든 hello Azure AD 네이티브 응용 프로그램을 클릭 합니다.
 
-2. 응용 프로그램에 대한 **설정** 블레이드에서 **필요한 사용 권한**을 클릭하고 **추가**를 클릭합니다.
+2. Hello에서 **설정** 블레이드 hello 응용 프로그램에 대 한 클릭 **필요한 권한**, 클릭 하 고 **추가**합니다.
 
     ![클라이언트 ID](./media/data-lake-store-end-user-authenticate-using-active-directory/aad-end-user-auth-set-permission-1.png)
 
-3. **API 액세스 추가** 블레이드에서 **API 선택**을 클릭하고 **Azure Data Lake**를 클릭한 후 **선택**을 클릭합니다.
+3. Hello에 **API 액세스 추가** 블레이드에서 클릭 **API 선택**, 클릭 **Azure 데이터 레이크**, 클릭 하 고 **선택**합니다.
 
     ![클라이언트 ID](./media/data-lake-store-end-user-authenticate-using-active-directory/aad-end-user-auth-set-permission-2.png)
  
-4.  **API 액세스 추가** 블레이드에서 **사용 권한 선택**을 클릭한 후 **Data Lake Store에 대한 모든 권한**을 부여하기 위한 확인란을 선택하고 **선택**을 클릭합니다.
+4.  Hello에 **API 액세스 추가** 블레이드에서 클릭 **사용 권한을 선택**, 선택 확인란 toogive hello **전체 tooData 레이크 스토어에 액세스**, 클릭 하 고 **선택** .
 
     ![클라이언트 ID](./media/data-lake-store-end-user-authenticate-using-active-directory/aad-end-user-auth-set-permission-3.png)
 
     **Done**을 클릭합니다.
 
-5. 마지막 두 단계를 반복하여 **Microsoft Azure Service Management API**에 대한 권한도 부여합니다.
+5. 반복 hello 마지막 두 단계에 대 한 권한을 toogrant **Windows Azure 서비스 관리 API** 도 합니다.
    
 ## <a name="next-steps"></a>다음 단계
-이 문서에서는 Azure AD 네이티브 응용 프로그램을 만들고 .NET SDK, Java SDK, REST API 등을 사용하여 만든 클라이언트 응용 프로그램에 필요한 정보를 수집했습니다. 이제 다음 문서를 읽고 Azure AD 웹 응용 프로그램을 사용하여 Data Lake Store로 인증한 다음 저장소에서 다른 작업을 수행하는 방법에 대해 알아볼 수 있습니다.
+이 문서에서 Azure AD 네이티브 응용 프로그램을 만든 및.NET SDK, Java SDK, REST API 등을 사용 하 여 제작 하는 클라이언트 응용 프로그램에서 필요한 hello 정보를 수집 합니다. 이제 toohello 다음 toouse hello Azure AD 웹 응용 프로그램 toofirst 데이터 레이크 저장소와 인증 하는 방법에 대해 설명 하 고 다음 hello 저장소에서 다른 작업을 수행 하는 문서를 진행할 수 있습니다.
 
 * [.NET SDK를 사용하여 Azure 데이터 레이크 저장소 시작](data-lake-store-get-started-net-sdk.md)
 * [Java SDK를 사용하여 Azure Data Lake Store 시작](data-lake-store-get-started-java-sdk.md)

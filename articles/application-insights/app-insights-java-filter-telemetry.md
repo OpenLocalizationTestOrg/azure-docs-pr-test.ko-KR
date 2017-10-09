@@ -1,6 +1,6 @@
 ---
-title: "Java 웹앱에서 Azure Application Insights 원격 분석 필터링 | Microsoft Docs"
-description: "모니터링하지 않아도 되는 이벤트를 필터링하여 원격 분석 트래픽을 줄입니다."
+title: "Java 웹 앱의 Azure Application Insights 원격 분석 aaaFilter | Microsoft Docs"
+description: "원격 분석 트래픽을 줄이기 hello 이벤트를 필터링 하 여 toomonitor 필요 하지 않습니다."
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -12,25 +12,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: bwren
-ms.openlocfilehash: 5f6d6d4ad590b85810c42e9f9520850024c5446a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 95713e11d5f86472777c67e4e7f3177fbf2cd0b4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="filter-telemetry-in-your-java-web-app"></a>Java 웹앱에서 원격 분석 필터링
 
-필터는 [Java 웹앱이 Application Insights로 보내는](app-insights-java-get-started.md) 원격 분석을 선택하는 방법을 제공합니다. 사용할 수 있는 몇 가지 기본 필터가 있으며 사용자 지정 필터를 직접 작성할 수도 있습니다.
+필터 제공 방법을 tooselect hello 원격 분석 하 여 [Java 웹 응용 프로그램 보내는 tooApplication Insights](app-insights-java-get-started.md)합니다. 사용할 수 있는 몇 가지 기본 필터가 있으며 사용자 지정 필터를 직접 작성할 수도 있습니다.
 
-기본 필터는 다음과 같습니다.
+hello 기본적으로 필터는 다음과 같습니다.
 
 * 추적 심각도 수준
 * 특정 URL, 키워드 또는 응답 코드
-* 빠른 응답(앱이 빠르게 응답한 요청)
+* 빠른 응답-요청을 toowhich 즉, 앱 tooquickly을 응답 했습니다.
 * 특정 이벤트 이름
 
 > [!NOTE]
-> 필터는 앱 메트릭의 타이밍 스큐를 발생합니다. 예를 들어 느린 응답을 진단하기 위해서는 빠른 응답 시간을 삭제하는 필터를 설정하도록 결정할 수 있습니다. 하지만 Application Insights에서 보고하는 평균 응답 시간이 실제 속도보다 느리고 요청 수가 실제 수보다 작을 것이라는 점을 알아야 합니다.
+> 필터를 왜곡 시킬 응용 프로그램의 hello 메트릭. 예를 들어, 순서 toodiagnose 느린 응답을 설정 해 필터 toodiscard 빠른 응답 시간을 결정할 수 있습니다. 하지만 Application Insights에서 보고 한 hello 평균 응답 시간 hello true 속도 보다 느린 됩니다 및 요청의 hello 수 hello 실제 개수 보다 작아야 알고 있어야 합니다.
 > 이것이 문제가 될 경우 대신 [샘플링](app-insights-sampling.md)을 사용합니다.
 
 ## <a name="setting-filters"></a>필터 설정
@@ -60,7 +60,7 @@ ApplicationInsights.xml에서 다음 예제와 같이 `TelemetryProcessors` 섹�
            </Processor>
 
            <Processor type="TelemetryEventFilter">
-                  <!-- Names of events we don't want to see -->
+                  <!-- Names of events we don't want toosee -->
                   <Add name="NotNeededNames" value="Start,Stop,Pause"/>
            </Processor>
 
@@ -88,7 +88,7 @@ ApplicationInsights.xml에서 다음 예제와 같이 `TelemetryProcessors` 섹�
 
 
 
-[전체 기본 제공 프로세서 집합을 검사](https://github.com/Microsoft/ApplicationInsights-Java/tree/master/core/src/main/java/com/microsoft/applicationinsights/internal/processor)합니다.
+[기본 제공 프로세서 중 일부만 hello 검사](https://github.com/Microsoft/ApplicationInsights-Java/tree/master/core/src/main/java/com/microsoft/applicationinsights/internal/processor)합니다.
 
 ## <a name="built-in-filters"></a>기본 제공 필터
 
@@ -115,9 +115,9 @@ ApplicationInsights.xml에서 다음 예제와 같이 `TelemetryProcessors` 섹�
            </Processor>
 ```
 
-* `DurationThresholdInMS` - 기간은 페이지를 로드하는 데 걸린 시간을 나타냅니다. 이 값으로 설정하는 경우 이 시간보다 더 빠르게 로드된 페이지는 보고되지 않습니다.
+* `DurationThresholdInMS`-기간 toohello 백업의 tooload hello 페이지를 참조 합니다. 이 값으로 설정하는 경우 이 시간보다 더 빠르게 로드된 페이지는 보고되지 않습니다.
 * `NotNeededNames` - 쉼표로 구분된 페이지 이름 목록입니다.
-* `NotNeededUrls` - 쉼표로 구분된 URL 조각 목록입니다. 예를 들어 `"home"`은 URL에 "home"이 포함된 모든 페이지를 필터링합니다.
+* `NotNeededUrls` - 쉼표로 구분된 URL 조각 목록입니다. 예를 들어 `"home"` "홈" hello URL에 있는 모든 페이지를 필터링 합니다.
 
 
 ### <a name="request-telemetry-filter"></a>요청 원격 분석 필터
@@ -136,7 +136,7 @@ ApplicationInsights.xml에서 다음 예제와 같이 `TelemetryProcessors` 섹�
 
 ### <a name="synthetic-source-filter"></a>가상 원본 필터
 
-SyntheticSource 속성에 값이 있는 모든 원격 분석을 필터링합니다. 여기에는 봇, 스파이더 및 가용성 테스트에 대한 요청이 포함됩니다.
+Hello SyntheticSource 속성에에서 값을 가진 모든 원격 분석 필터링 합니다. 여기에는 봇, 스파이더 및 가용성 테스트에 대한 요청이 포함됩니다.
 
 모든 가상 요청에 대한 원격 분석을 필터링합니다.
 
@@ -187,7 +187,7 @@ SyntheticSource 속성에 값이 있는 모든 원격 분석을 필터링합니�
 
 * `FromSeverityLevel` 유효한 값은 다음과 같습니다.
  *  OFF             - 모든 추적 필터링
- *  TRACE           - 필터링하지 않음 추적 수준과 같음
+ *  TRACE           - 필터링하지 않음 equals tooTrace 수준
  *  INFO            - TRACE 수준 필터링
  *  WARN            - TRACE 및 INFO 필터링
  *  ERROR           - WARN, INFO, TRACE 필터링
@@ -208,18 +208,18 @@ SyntheticSource 속성에 값이 있는 모든 원격 분석을 필터링합니�
 
     public class SuccessFilter implements TelemetryProcessor {
 
-       /* Any parameters that are required to support the filter.*/
+       /* Any parameters that are required toosupport hello filter.*/
        private final String successful;
 
-       /* Initializers for the parameters, named "setParameterName" */
+       /* Initializers for hello parameters, named "setParameterName" */
        public void setNotNeeded(String successful)
        {
           this.successful = successful;
        }
 
-       /* This method is called for each item of telemetry to be sent.
-          Return false to discard it.
-          Return true to allow other processors to inspect it. */
+       /* This method is called for each item of telemetry toobe sent.
+          Return false toodiscard it.
+          Return true tooallow other processors tooinspect it. */
        @Override
        public boolean process(Telemetry telemetry) {
         if (telemetry == null) { return true; }
@@ -235,7 +235,7 @@ SyntheticSource 속성에 값이 있는 모든 원격 분석을 필터링합니�
 ```
 
 
-### <a name="2-invoke-your-filter-in-the-configuration-file"></a>2. 구성 파일에서 필터 호출
+### <a name="2-invoke-your-filter-in-hello-configuration-file"></a>2. Hello 구성 파일에 대 한 필터 호출
 
 ApplicationInsights.xml:
 
@@ -258,7 +258,7 @@ ApplicationInsights.xml:
 
 *내 필터가 작동하지 않습니다.*
 
-* 유효한 매개 변수 값을 제공했는지 확인합니다. 예를 들어 기간은 정수여야 합니다. 잘못된 값을 설정하면 필터가 무시됩니다. 사용자 지정 필터가 생성자 또는 set 메서드에서 예외를 throw하는 경우 무시됩니다.
+* 유효한 매개 변수 값을 제공했는지 확인합니다. 예를 들어 기간은 정수여야 합니다. 잘못 된 값 hello 필터 toobe 무시 하면 됩니다. 사용자 지정 필터가 생성자 또는 set 메서드에서 예외를 throw하는 경우 무시됩니다.
 
 ## <a name="next-steps"></a>다음 단계
 

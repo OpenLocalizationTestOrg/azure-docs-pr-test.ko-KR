@@ -1,6 +1,6 @@
 ---
-title: "VHD를 만드는 동안 일반적인 문제 해결 방법 | Microsoft Docs"
-description: "VHD 만드는 동안 문제를 해결하는 일반적인 질문 및 문제에 대답합니다."
+title: "VHD 만드는 동안 aaaHow tootroubleshoot 일반적인 문제 | Microsoft Docs"
+description: "대답 toocommon 문제 해결 질문 및 VHD 만드는 동안 발급 합니다."
 services: Azure Marketplace
 documentationcenter: 
 author: HannibalSII
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: Azure
 ms.workload: na
 ms.date: 09/26/2016
 ms.author: hascipio; v-divte
-ms.openlocfilehash: c4e88a9fbb15dd90d619b159ae1065dfacc1907f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e4ff09a979bdf575badff2d33f2299abb17c947d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-troubleshoot-common-issues-encountered-during-vhd-creation"></a>VHD를 만드는 동안 발생하는 일반적인 문제 해결 방법
-이 문서는 가상 컴퓨터 솔루션을 게시하거나 관리하는 동안 문제가 발생하거나 관련된 일반적인 질문이 있는 Azure Marketplace 게시자 및/또는 공동 관리자를 돕기 위해 제공됩니다.
+# <a name="how-tootroubleshoot-common-issues-encountered-during-vhd-creation"></a>일반적인 문제 tootroubleshoot VHD 만드는 동안 발생 하는 방법
+이 문서는 Azure 마켓플레이스 게시자 및/또는 있는 경우 문제가 발생할 수도 있고 관련 된 일반적인 질문을 게시 하거나 자신의 가상 컴퓨터 솔루션을 관리 하는 동안 공동 관리자 toohelp를 제공 합니다.
 
-1. 호스트의 이름을 변경하려면 어떻게 해야 하나요?
+1. Hello 호스트의 hello 이름을 변경 하려면 어떻게 해야 합니까?
    
-    VM이 만들어지면 사용자는 호스트의 이름을 업데이트할 수 없습니다.
-2. 원격 데스크톱 서비스 또는 해당 로그인 암호를 다시 설정하려면 어떻게 해야 하나요?
+    VM을 만든 후 사용자가 hello 호스트의 hello 이름을 업데이트할 수 없습니다.
+2. 어떻게 tooreset 원격 데스크톱 서비스 또는 로그인 암호 hello?
    
    * [Windows VM에 대한 참조](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-reset-rdp/)
    * [Linux VM에 대한 참조](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-classic-reset-access/)
-3. 새 SSH 인증서를 생성하려면 어떻게 해야 하나요?
+3. 어떻게 새 toogenerate ssh 인증서?
    
-   [https://azure.microsoft.com/documentation/articles/virtual-machines-linux-classic-reset-access/](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-classic-reset-access/) 링크를 참조하세요.
-4. 열린 VPN 인증서를 구성하려면 어떻게 해야 하나요?
+   Toohello 링크를 참조 하십시오: [https://azure.microsoft.com/documentation/articles/virtual-machines-linux-classic-reset-access/](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-classic-reset-access/)
+4. 어떻게 tooconfigure 개방형 VPN 인증서를 사용 하는?
    
-   [https://azure.microsoft.com/documentation/articles/vpn-gateway-point-to-site-create/](https://azure.microsoft.com/documentation/articles/vpn-gateway-point-to-site-create/) 링크를 참조하세요.
-5. Microsoft Azure 가상 컴퓨터 환경(infrastructure-as-a-service)에서 Microsoft 서버 소프트웨어를 실행하기 위한 지원 정책은 무엇인가요?
+   Toohello 링크를 참조 하십시오: [https://azure.microsoft.com/documentation/articles/vpn-gateway-point-to-site-create/](https://azure.microsoft.com/documentation/articles/vpn-gateway-point-to-site-create/)
+5. Hello Microsoft Azure 가상 컴퓨터 환경 (인프라-as a service)에서 Microsoft 서버 소프트웨어를 실행 하기 위한 hello 지원 정책 이란?
    
-   [https://support.microsoft.com/kb/2721672](https://support.microsoft.com/kb/2721672) 링크를 참조하세요.
+   Toohello 링크를 참조 하십시오: [https://support.microsoft.com/kb/2721672](https://support.microsoft.com/kb/2721672)
 6. 가상 컴퓨터는 고유 식별자를 가지고 있나요?
    
    Azure는 모든 VM에 Azure VM 고유 ID를 인코딩합니다. 이 블로그 및 문서에서 세부 정보를 참조하세요.
-7. VM에서 시작 태스크에 있는 사용자 지정 스크립트 확장을 어떻게 관리할 수 있나요?
+7. Vm에서 관리 방법 hello 시작 작업에서 사용자 지정 스크립트 확장 hello?
    
-   [https://azure.microsoft.com/documentation/articles/virtual-machines-windows-extensions-customscript/](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-extensions-customscript/) 링크를 참조하세요.
-8. Premium Storage에 업로드된 VHD를 사용하여 Azure Portal에서 VM을 만들려면 어떻게 해야 하나요?
+   Toohello 링크를 참조 하십시오: [https://azure.microsoft.com/documentation/articles/virtual-machines-windows-extensions-customscript/](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-extensions-customscript/)
+8. 어떻게 toocreate hello 포털 사용 하 여 Azure에서 VM hello 된 VHD 업로드 toopremium 저장소?
    
    이 기능을 지원하지 않습니다.
-9. 32비트 앱은 Azure Marketplace에서 지원되나요?
+9. 32 비트 응용 프로그램은 Azure 마켓플레이스 hello에서 지원?
    
-   지원 정책에 대한 자세한 내용은 [https://support.microsoft.com/kb/2721672](https://support.microsoft.com/kb/2721672) 링크를 참조하세요.
-10. 내 VHD에서 이미지를 만들려고 할 때마다 PowerShell에서 "리소스인 이미지 리포지토리로 VHD를 이미 등록했습니다." 오류가 표시됩니다. 이미지를 만들지 않았거나 Azure에서 이 이름을 가진 이미지를 찾지 못했습니다. 이 문제를 해결하려면 어떻게 해야 하나요?
+   Hello 지원 정책에 대 한 자세한 내용은 toohello 링크를 참조 하십시오: [https://support.microsoft.com/kb/2721672](https://support.microsoft.com/kb/2721672)
+10. 내 Vhd에서 이미지 toocreate 려 할 때마다 오류가 hello "입니다. VHD에에서 이미 등록 되어 이미지 리포지토리에 hello 리소스로 "PowerShell. 이미지를 만들지 않았거나 Azure에서 이 이름을 가진 이미지를 찾지 못했습니다. 이 문제를 해결하려면 어떻게 해야 하나요?
     
-    이 문제는 일반적으로 사용자가 이 VHD에서 VM을 프로비전하고 해당 VHD에 대한 잠금이 있는 경우에 발생합니다. 이 VHD에서 할당된 VM이 없는지 확인합니다. 오류가 계속되는 경우 이 링크를 사용하거나 관련된 게시 포털에서 지원 티켓을 제기합니다.(질문 11의 답변에서 세부 정보를 제공).
+    일반적으로 이렇게 hello 사용자가이 VHD에서 VM 프로 비전 하 고 해당 VHD에 대 한 잠금의 없을 경우. 이 VHD에서 할당된 VM이 없는지 확인합니다. Hello 오류 여전히 계속 되 면 다음이 링크를 사용 하 여 지원 티켓을 반환 하십시오 또는 hello에서이 대 한 포털에 게시 (11 질문의 답 hello 세부 정보 제공 됨).

@@ -1,5 +1,5 @@
 ---
-title: "Azure Resource Manager 코어 할당량 증가 요청 | Microsoft Docs"
+title: "aaaAzure 리소스 관리자 코어 할당량 증가 요청 | Microsoft Docs"
 description: "Azure Resource Manager 코어 할당량 증가 요청"
 author: ganganarayanan
 ms.author: gangan
@@ -7,24 +7,24 @@ ms.date: 1/18/2017
 ms.topic: article
 ms.service: microsoft-docs
 ms.assetid: ce37c848-ddd9-46ab-978e-6a1445728a3b
-ms.openlocfilehash: cb6c5b3e86f126d4110d1cd29d8c9891e356e414
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b158b9f0e0338eb239da9253c2146ea93c02e316
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resource-manager-core-quota-increase-requests"></a>Resource Manager 코어 할당량 증가 요청
 
-Resource Manager 코어 할당량은 지역 수준 및 SKU 제품군 수준에 적용됩니다.
-[Azure 구독 및 서비스 제한](http://aka.ms/quotalimits) 페이지에서 할당량이 적용되는 방식에 대해 자세히 알아보세요.
-SKU 제품군에 대해 알아보려면 [Virtual Machines 가격 책정](http://aka.ms/pricingcompute) 페이지에서 비용과 성능을 비교할 수 있습니다.
+리소스 관리자 코어 할당량은 hello 지역 수준과 SKU 제품군 수준에서 적용 됩니다.
+Hello에 할당량을 시행 하는 방법에 대 한 자세한 [Azure 구독 및 서비스 제한](http://aka.ms/quotalimits) 페이지.
+toolearn SKU 제품군에 대 한 자세한, 비용 및 성능 hello에 비교할 수 있습니다 있습니다 [가상 컴퓨터 가격](http://aka.ms/pricingcompute) 페이지.
 
-증가를 요청하려면 Azure Portal [https://portal.azure.com](https://portal.azure.com)에서 코어에 대한 할당량 지원 사례를 만듭니다.
+증가는 toorequest hello Azure 포털에에서 코어 할당량 지원 케이스를 만들어 [https://portal.azure.com](https://portal.azure.com)합니다.
 
 > [!NOTE]
-> Azure Portal에서 [지원 요청을 만드는](https://docs.microsoft.com/azure/azure-supportability/how-to-create-azure-support-request) 방법 알아보기
+> 너무 방법에 대해 알아봅니다[지원 요청](https://docs.microsoft.com/azure/azure-supportability/how-to-create-azure-support-request) hello Azure 포털에서
 
-1. 새 지원 요청 페이지에서 문제 유형은 "할당량"으로 할당량 유형은 "코어"로 선택합니다.
+1. Hello 새 지원 요청 페이지에 "할당량"으로 문제 유형 및 할당량 유형 "코어"를 선택 합니다.
 
     ![할당량 기본 사항 블레이드](./media/resource-manager-core-quotas-request/Basics-blade.png)
 
@@ -32,13 +32,13 @@ SKU 제품군에 대해 알아보려면 [Virtual Machines 가격 책정](http://
 
     ![할당량 문제 블레이드](./media/resource-manager-core-quotas-request/Problem-step.png)
 
-3. 증가가 필요한 SKU 제품군을 선택합니다.
+3. 증가 필요로 하는 hello SKU 제품군을 선택 합니다.
 
     ![SKU 시리즈 선택됨](./media/resource-manager-core-quotas-request/SKU-selected.png)
 
-4. 구독에 대한 새 한도를 입력합니다.
+4. Hello 구독에 대해 원하는 hello 새로운 제한을 입력 합니다.
 
     ![SKU 새 할당량 요청](./media/resource-manager-core-quotas-request/SKU-new-quota.png)
 
-- 줄을 제거하려면 SKU 제품군 드롭다운에서 SKU 선택을 해제하거나 삭제 "x" 아이콘을 클릭합니다.
-각 SKU 제품군에 대해 원하는 할당량을 입력한 다음 문제 단계 페이지에서 "다음"을 클릭하여 지원 요청 만들기를 계속합니다.
+- tooremove 줄 hello SKU hello SKU 제품군 dropdown 또는 클릭 hello 삭제 "x" 아이콘에서을 선택 취소 합니다.
+"Hello 원하는 할당량 각 SKU 제품군에 대해를 입력 한 후 다음" 클릭 hello에 문제 단계 페이지 toocontinue hello 지원 요청을 만드는 사용 합니다.

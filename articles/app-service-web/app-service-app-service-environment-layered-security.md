@@ -1,5 +1,5 @@
 ---
-title: "앱 서비스 환경으로 계층화된 보안 아키텍처"
+title: "aaaLayered 앱 서비스 환경을 사용 하 여 보안 아키텍처"
 description: "앱 서비스 환경으로 계층화된 보안 아키텍처 구현"
 services: app-service
 documentationcenter: 
@@ -14,83 +14,83 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/30/2016
 ms.author: stefsch
-ms.openlocfilehash: 0fb02c13f99a8f4a46e0142c20da3b152c809b6b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0627ba6fa849908506fe62c451c888c147cabc03
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="implementing-a-layered-security-architecture-with-app-service-environments"></a>앱 서비스 환경으로 계층화된 보안 아키텍처 구현
 ## <a name="overview"></a>개요
 앱 서비스 환경이 가상 네트워크에 배포된 격리된 런타임 환경을 제공하므로 개발자는 실제 응용 프로그램 계층 각각에 서로 다른 수준으로 네트워크 액세스를 제공하는 계층화된 보안 아키텍처를 만들 수 있습니다.
 
-일반적으로 일반 인터넷 액세스로부터 API 백 엔드를 숨기거나 API가 업스트림 웹앱에서 호출될 수 있도록 하기 원합니다.  [네트워크 보안 그룹(NSG)][NetworkSecurityGroups]은 App Service 환경을 포함하는 서브넷에서 사용되어 API 응용 프로그램에 대한 공용 액세스를 제한할 수 있습니다.
+일반적인 desire toohide API 백 엔드가 일반 인터넷 액세스 로부터 이며 Api toobe 업스트림 웹 응용 프로그램에 의해 호출을 허용 합니다.  [네트워크 보안 그룹 (Nsg)] [ NetworkSecurityGroups] 앱 서비스 환경 toorestrict 공용 액세스 tooAPI 응용 프로그램이 포함 된 서브넷에서 사용할 수 있습니다.
 
-아래 다이어그램은 앱 서비스 환경에 배포된 Web API 기반 앱을 사용한 예제 아키텍처를 보여줍니다.  3개의 별도 앱 서비스 환경에 배포된 3개의 별도 웹앱 인스턴스는 동일한 Web API 앱에 백 엔드 호출을 수행합니다.
+아래 hello 다이어그램와 앱 서비스 환경에 배포 된 WebAPI 기반 응용 프로그램 예제 아키텍처를 보여 줍니다.  세 가지 별도 앱 서비스 환경에 배포 된 세 개의 별도 웹 앱 인스턴스 확인 백 엔드 호출 toohello 동일한 WebAPI 앱.
 
 ![개념적 아키텍처][ConceptualArchitecture] 
 
-녹색 더하기 기호는 "apiase"를 포함하는 서브넷의 네트워크 보안 그룹이 자체에서 호출 뿐만 아니라 업스트림 웹앱에서 인바운드 호출을 허용한다는 사실을 나타냅니다.  그러나 동일한 네트워크 보안 그룹은 인터넷에서 일반 인바운드 트래픽에 대한 액세스를 명시적으로 거부합니다. 
+hello 녹색 더하기 기호 나타냅니다 해당 hello "apiase"를 포함 하는 hello 서브넷에 네트워크 보안 그룹 인바운드의 호출을 허용 hello 업스트림 웹 응용 프로그램, 자신에 게 서도 호출 합니다.  하지만 동일한 네트워크 보안 그룹을 명시적으로 거부 하는 hello toogeneral에 액세스 트래픽을 hello 인터넷에서에서 인바운드 합니다. 
 
-이 항목의 나머지 부분에서는 "apiase"를 포함하는 서브넷에 네트워크 보안 그룹을 구성하는 데 필요한 단계를 안내합니다.
+이 항목의 나머지 부분에서는 hello "apiase"를 포함 하는 hello 서브넷에 hello 단계 필요한 tooconfigure hello 네트워크 보안 그룹을 안내 합니다.
 
-## <a name="determining-the-network-behavior"></a>네트워크 동작 확인
-어떤 네트워크 보안 규칙이 필요한지 알기 위해 어떤 네트워크 클라이언트가 API 앱을 포함하는 앱 서비스 환경에 연결할 수 있고 어떤 클라이언트를 차단할지 결정해야 합니다.
+## <a name="determining-hello-network-behavior"></a>Hello 네트워크 동작 결정
+순서 tooknow 네트워크 보안 규칙이 필요한 해야 toodetermine tooreach hello 앱 서비스 환경 포함 hello API 앱과 차단 될 어떤 클라이언트 네트워크 클라이언트 허용 됩니다.
 
-[네트워크 보안 그룹(NSG)][NetworkSecurityGroups]이 서브넷에 적용되고 App Service 환경이 서브넷에 배포되기 때문에 NSG에 포함된 규칙은 App Service 환경에서 실행하는 **모든** 앱에 적용됩니다.  네트워크 보안 그룹이 "apiase"를 포함하는 서브넷에 적용되면 이 문서에 대한 샘플 아키텍처를 사용하여 "apiase" 앱 서비스 환경에서 실행되는 모든 앱은 동일한 집합의 보안 규칙에 의해 보호됩니다. 
+이후 [네트워크 보안 그룹 (Nsg)] [ NetworkSecurityGroups] 적용된 toosubnets 되며 앱 서비스 환경에 배포 된 서브넷에 NSG에 포함 된 hello 규칙이 적용 너무**모든** 앱 서비스 환경에서 실행 되는 앱입니다.  보안 규칙 집합를 네트워크 보안 그룹에 적용 된 toohello 서브넷 "apiase" hello "apiase" hello 하 여 보호 될 앱 서비스 환경에서 실행 되는 모든 앱을 포함 하 되 면이 문서에 대 한 hello 샘플 아키텍처를 사용 하 여 동일 합니다. 
 
-* **업스트림 호출자의 아웃 바운드 IP 주소 확인:** IP 주소 또는 업스트림 호출자의 주소는 무엇입니까?  이러한 주소는 NSG에서 명시적으로 액세스하도록 허용해야 합니다.  앱 서비스 환경 간의 호출이 "Internet" 호출을 고려하기 때문에 각 세 업스트림 응용 프로그램 서비스 환경에 할당된 아웃 바운드 IP 주소는 "apiase" 서브넷에 대한 NSG에서 액세스하도록 허용해야 한다는 것을 의미합니다.   App Service 환경에서 실행되는 앱에 대한 아웃 바운드 IP 주소를 확인하는 데 대한 자세한 내용은 [네트워크 아키텍처][NetworkArchitecture] 개요 문서를 참조하세요.
-* **백 엔드 API 앱 자체를 호출해야 합니까?**  때로는 간과되고 미묘한 점은 백 엔드 응용 프로그램이 자신을 호출해야 한다는 시나리오입니다.  또한 앱 서비스 환경에서 백 엔드 API 응용 프로그램이 자신을 호출하는 경우 "인터넷" 호출로 처리됩니다.  샘플 아키텍처에서는 "apiase" 앱 서비스 환경의 아웃 바운드 IP 주소에서 액세스하도록 허락이 필요합니다.
+* **Hello 업스트림 호출자의 아웃 바운드 IP 주소 확인:** hello 업스트림 호출자의 hello IP 주소 또는 주소 란?  이러한 주소 toobe NSG hello에 대 한 액세스를 명시적으로 허용 해야 합니다.  앱 서비스 환경 간의 호출 "Internet" 호출 고려 하는 경우이 hello 세 업스트림 앱 서비스 환경 요구 toobe hello "apiase" 서브넷에 NSG hello에 대 한 액세스가 허용의 hello 아웃 바운드 IP 주소가 할당 tooeach를 의미 합니다.   앱 서비스 환경에서 실행 되는 앱 참조 hello에 대 한 hello 아웃 바운드 IP 주소를 결정 하는 대 한 자세한 내용은 [네트워크 아키텍처] [ NetworkArchitecture] 개요 문서.
+* **Hello 백 엔드 API 앱 자체 toocall 필요 한가요?**  경우에 따라 간과 하 고 미묘한 지점은 hello 시나리오는 hello 백 엔드 응용 프로그램이 해야 toocall 자체입니다.  앱 서비스 환경에 있는 백 엔드 API 응용 프로그램 자체 toocall 경우,이 처리도 "Internet" 호출으로 합니다.  필요 hello 샘플 아키텍처의 hello "apiase" 앱 서비스 환경도 hello 아웃 바운드 IP 주소에서 액세스할 수 있도록 합니다.
 
-## <a name="setting-up-the-network-security-group"></a>네트워크 보안 그룹 설치
-아웃 바운드 IP 주소 집합을 모두 알고 나면 다음 단계에서 네트워크 보안 그룹을 생성합니다.  클래식 가상 네트워크뿐만 아니라 가상 네트워크를 기반으로 하는 두 Resource Manager에 네트워크 보안 그룹을 만들 수 있습니다.  아래 예제에서는 Powershell을 사용하여 기존 가상 네트워크에 NSG를 만들고 구성하는 방법을 보여 줍니다.
+## <a name="setting-up-hello-network-security-group"></a>네트워크 보안 그룹 hello 설정
+hello 설정 되 면 아웃 바운드 IP 주소 알려진, hello 다음 단계는 tooconstruct 네트워크 보안 그룹입니다.  클래식 가상 네트워크뿐만 아니라 가상 네트워크를 기반으로 하는 두 Resource Manager에 네트워크 보안 그룹을 만들 수 있습니다.  hello 아래 예와 만들기 및 Powershell을 사용 하 여 클래식 가상 네트워크에 NSG를 구성 합니다.
 
-샘플 아키텍처의 경우 환경은 미국 중남부에 있으므로 빈 NSG는 해당 지역에서 만들어집니다.
+Hello 샘플 아키텍처에 대 한 빈 NSG 되어 해당 지역에서 만들어 hello 환경 남 중앙 미국에 있습니다.
 
     New-AzureNetworkSecurityGroup -Name "RestrictBackendApi" -Location "South Central US" -Label "Only allow web frontend and loopback traffic"
 
-먼저 명시적 허용 규칙은App Service 환경에 대한 [인바운드 트래픽][InboundTraffic] 문서에서 설명한 대로 Azure 관리 인프라에 추가됩니다.
+먼저 명시적 허용 hello Azure 관리 인프라에는 hello 문서에서 설명한 대로 대 한 규칙은 추가 [트래픽 인바운드] [ InboundTraffic] 앱 서비스 환경에 대 한 합니다.
 
     #Open ports for access by Azure management infrastructure
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW AzureMngmt" -Type Inbound -Priority 100 -Action Allow -SourceAddressPrefix 'INTERNET' -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '454-455' -Protocol TCP
 
-다음으로 첫 번째 업스트림 앱 서비스 환경("fe1ase")에서 HTTP 및 HTTPS 호출을 허용하도록 두 규칙을 추가합니다.
+다음으로, 두 개의 규칙이 tooallow HTTP를 추가 하 고 HTTPS 호출에서 hello 첫 번째 업스트림 앱 서비스 환경 ("fe1ase").
 
-    #Grant access to requests from the first upstream web front-end
+    #Grant access toorequests from hello first upstream web front-end
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTP fe1ase" -Type Inbound -Priority 200 -Action Allow -SourceAddressPrefix '65.52.xx.xyz'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTPS fe1ase" -Type Inbound -Priority 300 -Action Allow -SourceAddressPrefix '65.52.xx.xyz'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
 
-두 번째 및 세 번째 업스트림 앱 서비스 환경("fe2ase" 및 "fe3ase")을 다듬고 반복합니다.
+고 및 반복에 대 한 hello 두 번째 및 세 번째 업스트림 앱 서비스 환경 ("fe2ase" 및 "fe3ase").
 
-    #Grant access to requests from the second upstream web front-end
+    #Grant access toorequests from hello second upstream web front-end
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTP fe2ase" -Type Inbound -Priority 400 -Action Allow -SourceAddressPrefix '191.238.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTPS fe2ase" -Type Inbound -Priority 500 -Action Allow -SourceAddressPrefix '191.238.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
 
-    #Grant access to requests from the third upstream web front-end
+    #Grant access toorequests from hello third upstream web front-end
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTP fe3ase" -Type Inbound -Priority 600 -Action Allow -SourceAddressPrefix '23.98.abc.xyz'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTPS fe3ase" -Type Inbound -Priority 700 -Action Allow -SourceAddressPrefix '23.98.abc.xyz'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
 
-마지막으로 백 엔드 API의 앱 서비스 환경의 아웃 바운드 IP 주소에 대한 액세스를 부여하므로 자신에 다시 호출할 수 있습니다.
+마지막으로, 자신으로 다시 호출할 수 있도록 hello 백 엔드 API의 앱 서비스 환경을 액세스 toohello 아웃 바운드 IP 주소를 부여 합니다.
 
-    #Allow apps on the apiase environment to call back into itself
+    #Allow apps on hello apiase environment toocall back into itself
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTP apiase" -Type Inbound -Priority 800 -Action Allow -SourceAddressPrefix '70.37.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTPS apiase" -Type Inbound -Priority 900 -Action Allow -SourceAddressPrefix '70.37.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
 
-모든 NSG에 기본적으로 인터넷에서 인바운드 액세스를 차단하는 기본 규칙의 집합이 있기 때문에 다른 네트워크 보안 규칙은 구성할 필요가 없습니다.
+다른 네트워크 보안 규칙이 기본적으로 모든 NSG에 hello 인터넷에서에서 인바운드 액세스를 차단 하는 기본 규칙 집합이 구성 toobe가 필요 합니다.
 
-네트워크 보안 그룹에 있는 규칙의 전체 목록은 아래에 표시됩니다.  강조 표시된 마지막 규칙이 명시적으로 액세스를 부여한 호출자를 제외한 모든 호출자에서 인바운드 액세스를 차단하는 방법을 확인합니다.
+hello hello 네트워크 보안 그룹의 규칙의 전체 목록은 다음과 같습니다.  Note 강조 표시 되어 있는 hello 마지막 규칙에서 명시적으로 부여 된 액세스 된 것과 다른 모든 호출자가에서 인바운드 액세스를 차단 하는 방법입니다.
 
 ![NSG 구성][NSGConfiguration] 
 
-마지막 단계는 "apiase" 앱 서비스 환경에 포함된 서브넷에 NSG를 적용합니다.  
+hello 마지막 단계는 hello "apiase" 앱 서비스 환경에 포함 된 tooapply hello NSG toohello 서브넷입니다.  
 
-     #Apply the NSG to the backend API subnet
+     #Apply hello NSG toohello backend API subnet
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityGroupToSubnet -VirtualNetworkName 'yourvnetnamehere' -SubnetName 'API-ASE-Subnet'
 
-서브넷에 적용된 NSG를 사용하여 3개의 업스트림 앱 서비스 환경 및 API 백 엔드를 포함하는 앱 서비스 환경은 "apiase" 환경으로 호출하도록 합니다.
+Hello 적용할 NSG toohello 서브넷과만 hello 세 업스트림 앱 서비스 환경 및 hello 앱 서비스 환경 포함 hello API 백 엔드는 허용 toocall hello "apiase" 환경에.
 
 ## <a name="additional-links-and-information"></a>추가 링크 및 정보
-앱 서비스 환경에 대한 모든 문서와 지침은 [응용 프로그램 서비스 환경의 추가 정보](../app-service/app-service-app-service-environments-readme.md)에 있습니다.
+모든 문서와 방법을-hello에서 사용할 수 있는 앱 서비스 환경에 대 한의 하려면 [응용 프로그램 서비스 환경에 대 한 추가 정보](../app-service/app-service-app-service-environments-readme.md)합니다.
 
 [네트워크 보안 그룹](../virtual-network/virtual-networks-nsg.md)에 대한 정보. 
 

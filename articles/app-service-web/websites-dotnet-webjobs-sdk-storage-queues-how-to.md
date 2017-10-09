@@ -1,6 +1,6 @@
 ---
-title: "WebJob SDK를 사용하여 Azure 큐 저장소로 작업하는 방법"
-description: "WebJobs SDK를 사용하여 Azure 큐 저장소로 작업하는 방법에 대해 알아봅니다. 큐 만들기 및 삭제, 큐 메시지 삽입, 미리 보기, 가져오기 및 삭제 등의 작업을 알아봅니다."
+title: "aaaHow toouse hello WebJobs SDK로 Azure 큐 저장소"
+description: "Toouse Azure WebJobs SDK hello 사용 하 여 저장소를 대기 하는 방법에 대해 알아봅니다. 큐 만들기 및 삭제, 큐 메시지 삽입, 미리 보기, 가져오기 및 삭제 등의 작업을 알아봅니다."
 services: app-service\web, storage
 documentationcenter: .net
 author: ggailey777
@@ -14,19 +14,19 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/01/2016
 ms.author: glenga
-ms.openlocfilehash: 63b987a2c9471f2929b8d2dd605323910d2ad43b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 49f844436b0453489800b2762a5c7dc30b9db805
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-queue-storage-with-the-webjobs-sdk"></a>WebJob SDK를 사용하여 Azure 큐 저장소로 작업하는 방법
+# <a name="how-toouse-azure-queue-storage-with-hello-webjobs-sdk"></a>Toouse Azure WebJobs SDK hello 사용 하 여 저장소를 대기 하는 방법
 ## <a name="overview"></a>개요
-이 가이드에서는 Azure 큐 저장소 서비스에서 Azure WebJobs SDK 버전 1.x를 사용하는 방법을 보여 주는 C# 코드 샘플을 제공합니다.
+이 가이드에서는 C# 코드 샘플 toouse Azure WebJobs SDK 버전을 hello 하는 방법을 보여 주는 제공 1.x hello Azure 큐 저장소 서비스 사용 합니다.
 
-이 가이드에서는 [저장소 계정 또는](websites-dotnet-webjobs-sdk-get-started.md) 여러 저장소 계정 [을 가리키는 연결 문자열을 사용하여 Visual Studio에서 WebJob 프로젝트를 만드는 방법](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs) 을 알고 있는 것으로 가정합니다.
+hello 가이드 알고 있다고 가정 [toocreate 연결이 포함 된 Visual Studio에서 WebJob 프로젝트의 해당 지점 tooyour 저장소 계정 문자열 어떻게](websites-dotnet-webjobs-sdk-get-started.md) 또는 너무[여러 저장소 계정을](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs)합니다.
 
-대부분의 코드 조각은 다음 예제와 같이 `JobHost` 개체를 만드는 코드가 아니라 함수만 보여 줍니다.
+Hello를 만드는 코드를 hello 표시 기능을 대부분 hello 코드 조각의 `JobHost` 다음이 예제와 같이 개체:
 
         static void Main(string[] args)
         {
@@ -34,76 +34,76 @@ ms.lasthandoff: 07/11/2017
             host.RunAndBlock();
         }
 
-이 가이드에는 다음 항목이 포함되어 있습니다.
+hello 가이드 hello를 다음 항목 포함 되어 있습니다.
 
-* [큐 메시지가 수신될 때 함수를 트리거하는 방법](#trigger)
+* [어떻게 tootrigger 큐 메시지를 받을 때 함수](#trigger)
   * 문자열 큐 메시지
   * POCO 큐 메시지
   * 비동기 함수
-  * QueueTrigger 특성이 작동하는 유형
+  * 형식 hello QueueTrigger 특성 사용
   * 폴링 알고리즘
   * 여러 인스턴스
   * 병렬 실행
   * 큐 또는 큐 메시지 메타데이터 가져오기
   * 정상 종료
-* [큐 메시지를 처리하는 동안 큐 메시지를 만드는 방법](#createqueue)
+* [큐 메시지를 처리 하는 동안 toocreate 큐 메시지 하는 방법](#createqueue)
   * 문자열 큐 메시지
   * POCO 큐 메시지
   * 여러 메시지 만들기 또는 비동기 함수로 큐 메시지 만들기
-  * 큐 특성이 작동하는 유형
-  * 함수 본문에 WebJobs SDK 특성 사용
-* [큐 메시지를 처리하는 동안 Blob을 읽고 쓰는 방법](#blobs)
+  * 형식 hello 큐 특성 사용
+  * WebJobs SDK 특성 hello 함수 본문에서 사용 하 여
+* [큐 메시지를 처리 하는 동안 blob tooread 및 쓰기](#blobs)
   * 문자열 큐 메시지
   * POCO 큐 메시지
-  * Blob 특성이 작동하는 유형
-* [포이즌 메시지를 처리하는 방법](#poison)
+  * 형식 hello Blob 특성 사용
+* [어떻게 toohandle 포이즌 메시지](#poison)
   * 자동 포이즌 메시지 처리
   * 수동 포이즌 메시지 처리
-* [구성 옵션을 설정하는 방법](#config)
+* [어떻게 tooset 구성 옵션](#config)
   * 코드에서 SDK 연결 문자열 설정
   * QueueTrigger 설정 구성
   * 코드에서 WebJobs SDK 생성자 매개 변수 값 설정
-* [수동으로 함수를 트리거하는 방법](#manual)
-* [로그를 작성하는 방법](#logs)
-* [오류를 처리하고 시간 제한을 구성하는 방법](#errors)
+* [어떻게 tootrigger 함수 수동으로](#manual)
+* [Toowrite 기록 하는 방법](#logs)
+* [어떻게 toohandle 오류 시간 제한을 구성 하 고](#errors)
 * [다음 단계](#nextsteps)
 
-## <a id="trigger"></a> 큐 메시지가 수신될 때 함수를 트리거하는 방법
-큐 메시지가 수신될 때 WebJobs SDK에서 호출하는 함수를 작성하려면 `QueueTrigger` 특성을 사용합니다. 특성 생성자는 폴링할 큐의 이름을 지정하는 문자열 매개 변수를 사용합니다. [큐 이름을 동적으로 설정](#config)할 수도 있습니다
+## <a id="trigger"></a>어떻게 tootrigger 큐 메시지를 받을 때 함수
+큐 메시지를 받을 때 toowrite hello WebJobs SDK는 함수 호출, hello를 사용 하 여 `QueueTrigger` 특성입니다. hello 특성 생성자 hello 큐 toopoll의 hello 이름을 지정 하는 문자열 매개 변수를 사용 합니다. 수도 있습니다 [hello 큐 이름을 동적으로 설정할](#config)합니다.
 
 ### <a name="string-queue-messages"></a>문자열 큐 메시지
-다음 예제에서는 큐에 문자열 메시지가 포함되므로 큐 메시지의 내용을 포함하는 `logMessage`라는 문자열 매개 변수에 `QueueTrigger`가 적용됩니다. 이 함수는 [대시보드에 로그 메시지를 씁니다](#logs).
+Hello 큐에서 다음 예제는 hello, 문자열 메시지를 따라서 포함 `QueueTrigger` 라는 적용된 tooa 문자열 매개 변수는 `logMessage` hello 큐 메시지의 hello 콘텐츠를 포함 하 합니다. 함수 hello [로그 메시지 toohello 대시보드 씁니다](#logs)합니다.
 
         public static void ProcessQueueMessage([QueueTrigger("logqueue")] string logMessage, TextWriter logger)
         {
             logger.WriteLine(logMessage);
         }
 
-`string` 외에도 이 매개 변수는 바이트 배열, `CloudQueueMessage` 개체 또는 정의한 POCO 개체일 수 있습니다.
+외에 `string`, hello 매개 변수를 바이트 배열로 일 수는 `CloudQueueMessage` 개체 또는 사용자가 정의한 POCO 합니다.
 
 ### <a name="poco-plain-old-clr-objecthttpenwikipediaorgwikiplainoldclrobject-queue-messages"></a>POCO( [Plain Old CLR Object](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object)) 큐 메시지
-다음 예제에서는 큐 메시지에 `BlobName` 속성을 포함하는 `BlobInformation` 개체에 대한 JSON이 포함됩니다. SDK에서 자동으로 개체를 역직렬화합니다.
+다음 예제는 hello, hello 큐 메시지에 대 한 JSON 포함 한 `BlobInformation` 포함 하는 개체는 `BlobName` 속성입니다. hello SDK는 자동으로 hello 개체를 역직렬화합니다.
 
         public static void WriteLogPOCO([QueueTrigger("logqueue")] BlobInformation blobInfo, TextWriter logger)
         {
-            logger.WriteLine("Queue message refers to blob: " + blobInfo.BlobName);
+            logger.WriteLine("Queue message refers tooblob: " + blobInfo.BlobName);
         }
 
-이 SDK는 [Newtonsoft.Json NuGet 패키지](http://www.nuget.org/packages/Newtonsoft.Json) 를 사용하여 메시지를 직렬화 및 역직렬화합니다. WebJobs SDK를 사용하지 않는 프로그램에서 큐 메시지를 만드는 경우 다음 예제와 같은 코드를 작성하여 SDK에서 구문 분석할 수 있는 POCO 큐 메시지를 만들 수 있습니다.
+hello SDK hello를 사용 하 여 [Newtonsoft.Json NuGet 패키지](http://www.nuget.org/packages/Newtonsoft.Json) tooserialize 및 메시지를 역직렬화 합니다. Hello WebJobs SDK를 사용 하지 않는 프로그램에서 메시지 큐를 만들면 해당 hello SDK 구문 분석할 수 있는 다음 예에서는 toocreate POCO 큐 메시지 hello 같은 코드를 작성할 수 있습니다.
 
         BlobInformation blobInfo = new BlobInformation() { BlobName = "log.txt" };
         var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(blobInfo));
         logQueue.AddMessage(queueMessage);
 
 ### <a name="async-functions"></a>비동기 함수
-다음 비동기 함수는 [대시보드에 로그를 씁니다](#logs).
+async 함수 다음 hello [로그 toohello 대시보드 씁니다](#logs)합니다.
 
         public async static Task ProcessQueueMessageAsync([QueueTrigger("logqueue")] string logMessage, TextWriter logger)
         {
             await logger.WriteLineAsync(logMessage);
         }
 
-Blob을 복사하는 다음 예제와 같이 비동기 함수는 [취소 토큰](http://www.asp.net/mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4#CancelToken)을 사용할 수 있습니다. `queueTrigger` 자리 표시자에 대한 자세한 내용은 [Blob](#blobs) 섹션을 참조하세요.
+비동기 함수 걸릴 수 있습니다는 [취소 토큰](http://www.asp.net/mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4#CancelToken)hello 다음 blob를 복사 하는 예제에에서 나온 것 처럼 합니다. (에 대 한 설명은 hello `queueTrigger` 자리 표시자를 hello 참조 [Blob](#blobs) 섹션.)
 
         public async static Task ProcessQueueMessageAsyncCancellationToken(
             [QueueTrigger("blobcopyqueue")] string blobName,
@@ -114,8 +114,8 @@ Blob을 복사하는 다음 예제와 같이 비동기 함수는 [취소 토큰]
             await blobInput.CopyToAsync(blobOutput, 4096, token);
         }
 
-### <a id="qtattributetypes"></a> QueueTrigger 특성이 작동하는 유형
-다음 유형에서 `QueueTrigger` 를 사용할 수 있습니다.
+### <a id="qtattributetypes"></a>형식 hello QueueTrigger 특성 사용
+사용할 수 있습니다 `QueueTrigger` 유형만 hello로:
 
 * `string`
 * JSON으로 serialize된 POCO 유형
@@ -123,20 +123,20 @@ Blob을 복사하는 다음 예제와 같이 비동기 함수는 [취소 토큰]
 * `CloudQueueMessage`
 
 ### <a id="polling"></a> 폴링 알고리즘
-SDK는 무작위 지수 백오프 알고리즘을 구현하여 유휴 큐 폴링이 저장소 트랜잭션 비용에 미치는 영향을 줄입니다.  메시지가 발견되면 SDK는 2초 대기하고 다른 메시지가 있는지 확인하며, 메시지가 발견되지 않으면 4초 정도 대기하고 나서 다시 시도합니다. 후속 시도로 큐 메시지를 가져오지 못하면 최대 대기 시간(기본값 1분)에 도달할 때까지 대기 시간이 계속 증가합니다. [최대 대기 시간은 구성 가능합니다](#config).
+hello SDK 유휴 큐 폴링에 저장소 트랜잭션 비용의 임의 지 수 백오프 알고리즘 tooreduce hello 효과 구현 합니다.  메시지가 발견 되 면 hello SDK 2 초 동안 기다린 후; 다른 메시지를 확인 합니다. 메시지가 발견 되 면 다시 시도 하기 전에 4 초 정도 대기 합니다. 후속 실패 한 시도 tooget 큐 메시지 후 hello 대기 시간이 계속 tooincrease hello 최대 대기 시간에 도달할 때까지 어떤 기본값 tooone 분입니다. [hello 최대 대기 시간은 구성 가능](#config)합니다.
 
 ### <a id="instances"></a> 여러 인스턴스
-웹앱이 여러 인스턴스에서 실행되는 경우 연속적인 WebJob이 각 컴퓨터에서 실행되고, 각 컴퓨터는 트리거를 기다렸다가 함수 실행을 시도합니다. WebJobs SDK 큐 트리거는 함수가 큐 메시지를 여러 번 처리하는 것을 방지합니다. 함수를 idempotent로 작성할 필요가 없습니다. 그러나 호스트 웹앱의 여러 인스턴스가 있는 경우에는 함수는 하나의 인스턴스만 실행되도록 하려는 경우 `Singleton` 특성을 사용할 수 있습니다.
+웹 앱이 여러 인스턴스에서 실행 하는 경우 각 컴퓨터에서 실행 되는 연속 WebJob를 각 컴퓨터 트리거에 대 한 대기 되며 toorun 함수를 시도 합니다. WebJobs SDK 큐 트리거 hello에서 여러 번; 큐 메시지를 처리 하는 함수는 자동으로 방지 함수는 toobe toobe idempotent 작성 권한이 없습니다. 그러나 tooensure 하려는 경우 함수의 인스턴스를 하나만 실행 hello 호스트 웹 응용 프로그램의 여러 인스턴스가 있는 경우에, hello를 사용할 수 있습니다 `Singleton` 특성입니다.
 
 ### <a id="parallel"></a> 병렬 실행
-여러 함수가 서로 다른 큐에서 수신 대기 중이면 메시지가 동시에 수신될 경우 SDK에서 병렬로 호출합니다.
+다른 큐에서 수신 대기 하는 여러 개의 함수를 사용 하도록 설정한 경우 hello SDK는 전화할 동시에 동시에 메시지를 받을 때입니다.
 
-단일 큐에 대해 여러 메시지가 수신되는 경우에도 마찬가지입니다. 기본적으로 SDK는 한 번에 16개의 큐 메시지를 일괄로 가져오고 해당 메시지를 병렬로 처리하는 함수를 실행합니다. [일괄 처리 크기는 구성 가능합니다](#config). 처리되는 개수가 일괄 처리 크기의 절반으로 감소하면 SDK에서 다른 일괄 처리를 가져와 해당 메시지의 처리를 시작합니다. 따라서 함수당 처리되는 최대 동시 메시지 수는 일괄 처리 크기의 1.5배입니다. 이 제한은 `QueueTrigger` 특성이 있는 각 함수에 개별적으로 적용됩니다.
+hello는 경우도 마찬가지 단일 큐에 대 한 여러 메시지를 수신 합니다. 기본적으로 hello SDK 한 번에 16 큐 메시지의 일괄 처리를 가져오고을 병렬로 처리 hello 함수를 실행 합니다. [hello 일괄 처리 크기는 구성 가능한](#config)합니다. 처리 중인 hello 번호 hello 일괄 처리 크기의 toohalf 아래로 가져오면 hello SDK는 다른 일괄 처리를 가져오고 해당 메시지의 처리를 시작 합니다. 따라서 함수 당 처리 중인 동시 메시지 hello 최대 수에는 하나의 1.5 배 hello 일괄 처리 크기입니다. 이 제한은 개별적으로 적용 됩니다. 있는 tooeach 함수는 `QueueTrigger` 특성입니다.
 
-하나의 큐에 수신된 메시지에 대해 병렬 실행을 사용하지 않으려면 일괄 처리 크기를 1로 설정하면 됩니다. **Azure WebJobs SDK 1.1.0 RTM** 에서 [큐 처리에 대한 제어 강화](https://azure.microsoft.com/blog/azure-webjobs-sdk-1-1-0-rtm/)를 참조하세요.
+하나의 큐에 수신 된 메시지에 대 한 병렬 실행 사용 하지 않으려는 경우에 일괄 처리 크기 too1 hello를 설정할 수 있습니다. **Azure WebJobs SDK 1.1.0 RTM** 에서 [큐 처리에 대한 제어 강화](https://azure.microsoft.com/blog/azure-webjobs-sdk-1-1-0-rtm/)를 참조하세요.
 
 ### <a id="queuemetadata"></a>큐 또는 큐 메시지 메타데이터 가져오기
-메서드 서명에 매개 변수를 추가하여 다음 메시지 속성을 가져올 수 있습니다.
+Hello 매개 변수 toohello 메서드 시그니처를 추가 하 여 다음과 같은 메시지 속성을 가져올 수 있습니다.
 
 * `DateTimeOffset` expirationTime
 * `DateTimeOffset` insertionTime
@@ -146,9 +146,9 @@ SDK는 무작위 지수 백오프 알고리즘을 구현하여 유휴 큐 폴링
 * `string` popReceipt
 * `int` dequeueCount
 
-Azure 저장소 API로 직접 작업하려는 경우 `CloudStorageAccount` 매개 변수를 추가할 수도 있습니다.
+원하는 경우 toowork hello Azure 저장소 API 사용 하 여 직접 추가할 수도 있습니다는 `CloudStorageAccount` 매개 변수입니다.
 
-다음 예제에서는 이러한 모든 메타데이터를 INFO 응용 프로그램 로그에 씁니다. 예제에서 logMessage와 queueTrigger에는 둘 다 큐 메시지의 내용이 포함됩니다.
+hello 다음 예제에서는 모든이 메타 데이터 tooan 정보 응용 프로그램 로그 Hello 예제 logMessage와 queueTrigger hello 큐 메시지의 hello 내용이 포함 됩니다.
 
         public static void WriteLog([QueueTrigger("logqueue")] string logMessage,
             DateTimeOffset expirationTime,
@@ -175,7 +175,7 @@ Azure 저장소 API로 직접 작업하려는 경우 `CloudStorageAccount` 매�
                 queueTrigger);
         }
 
-다음은 샘플 코드에 의해 작성된 샘플 로그입니다.
+Hello 샘플 코드에 의해 작성 된 샘플 로그는 다음과 같습니다.
 
         logMessage=Hello world!
         expirationTime=10/14/2014 10:31:04 PM +00:00
@@ -188,9 +188,9 @@ Azure 저장소 API로 직접 작업하려는 경우 `CloudStorageAccount` 매�
         queueTrigger=Hello world!
 
 ### <a id="graceful"></a>정상 종료
-연속 WebJob에서 실행되는 함수는 WebJob이 종료될 때 운영 체제가 함수에 알릴 수 있게 해주는 `CancellationToken` 매개 변수를 사용할 수 있습니다. 이 알림을 통해 함수가 예기치 않게 종료되어 데이터가 일관되지 않은 상태가 되는 것을 방지할 수 있습니다.
+연속 WebJob을 실행 하는 함수를 사용할 수는 `CancellationToken` toobe 종료에 대 한 경우 hello hello 운영 체제 toonotify hello 함수를 사용 하도록 설정 하는 매개 변수 WebJob은 합니다. 이 알림 toomake hello 함수는 데이터 일관성 없는 상태로 유지 하는 방식으로 예기치 않게 종료 하지 않는 있는지를 사용할 수 있습니다.
 
-다음 예제에서는 함수에서 임박한 WebJob 종료를 확인하는 방법을 보여 줍니다.
+hello 방법을 예제와 다음 toocheck 함수에 게 컴퓨터가 곧 WebJob 종료 합니다.
 
     public static void GracefulShutdownDemo(
                 [QueueTrigger("inputqueue")] string inputText,
@@ -209,15 +209,15 @@ Azure 저장소 API로 직접 작업하려는 경우 `CloudStorageAccount` 매�
         }
     }
 
-**참고:** 대시보드에 종료된 함수의 상태와 출력이 올바르게 표시되지 않을 수도 있습니다.
+**참고:** hello 대시보드 hello 상태 및 종료 된 함수의 출력에 올바르게 표시 되지 않습니다.
 
 자세한 내용은 [WebJobs 정상 종료](http://blog.amitapple.com/post/2014/05/webjobs-graceful-shutdown/#.VCt1GXl0wpR)를 참조하세요.   
 
-## <a id="createqueue"></a> 큐 메시지를 처리하는 동안 큐 메시지를 만드는 방법
-새 큐 메시지를 만드는 함수를 작성하려면 `Queue` 특성을 사용합니다. `QueueTrigger`와 마찬가지로 큐 이름을 문자열로 전달하거나, [동적으로 큐 이름을 설정](#config)할 수 있습니다
+## <a id="createqueue"></a>큐 메시지를 처리 하는 동안 toocreate 큐 메시지 하는 방법
+새 큐 메시지를 사용 하 여 hello를 만드는 함수를 toowrite `Queue` 특성입니다. 마찬가지로 `QueueTrigger`, hello 큐 이름을 문자열로 전달 또는 할 수 있습니다 [hello 큐 이름을 동적으로 설정할](#config)합니다.
 
 ### <a name="string-queue-messages"></a>문자열 큐 메시지
-다음 비동기가 아닌 코드 샘플에서는 "inputqueue"라는 큐에 수신된 큐 메시지와 동일한 콘텐츠를 가진 새로운 큐 메시지를 "outputqueue"라는 큐에 만듭니다. 비동기 함수는 이 섹션의 뒷부분에 나와 있는 것처럼 `IAsyncCollector<T>` 를 사용합니다.
+아래의 비동기 코드 예제는 hello hello hello 큐 메시지로 콘텐츠 수신 "inputqueue" 라는 hello 큐에 있는 "outputqueue" 라는 hello 큐에 새 큐 메시지를 만듭니다. 비동기 함수는 이 섹션의 뒷부분에 나와 있는 것처럼 `IAsyncCollector<T>` 를 사용합니다.
 
         public static void CreateQueueMessage(
             [QueueTrigger("inputqueue")] string queueMessage,
@@ -227,7 +227,7 @@ Azure 저장소 API로 직접 작업하려는 경우 `CloudStorageAccount` 매�
         }
 
 ### <a name="poco-plain-old-clr-objecthttpenwikipediaorgwikiplainoldclrobject-queue-messages"></a>POCO( [Plain Old CLR Object](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object)) 큐 메시지
-문자열 대신 POCO가 포함된 큐 메시지를 만들려면 POCO 유형을 출력 매개 변수로 `Queue` 특성 생성자에 전달합니다.
+출력 매개 변수 toohello로 toocreate 문자열로 전달 hello POCO가 아닌는 POCO 포함 하는 큐 메시지 입력 `Queue` 특성 생성자입니다.
 
         public static void CreateQueueMessage(
             [QueueTrigger("inputqueue")] BlobInformation blobInfoInput,
@@ -236,10 +236,10 @@ Azure 저장소 API로 직접 작업하려는 경우 `CloudStorageAccount` 매�
             blobInfoOutput = blobInfoInput;
         }
 
-SDK에서 자동으로 개체를 JSON으로 serialize합니다. 개체가 null인 경우에도 항상 큐 메시지가 생성됩니다.
+hello SDK hello 개체 tooJSON를 자동으로 serialize합니다. 큐 메시지는 hello 개체가 null 인 경우에 항상 생성 됩니다.
 
 ### <a name="create-multiple-messages-or-in-async-functions"></a>여러 메시지 만들기 또는 비동기 함수로 큐 메시지 만들기
-여러 개의 메시지를 만들려면 다음 예제와 같이 출력 큐의 매개 변수 유형을 `ICollector<T>` 또는 `IAsyncCollector<T>`로 설정합니다.
+toocreate 여러 개의 메시지를 확인 hello 출력 큐에 대 한 hello 매개 변수 형식을 `ICollector<T>` 또는 `IAsyncCollector<T>`hello 다음 예제에에서 나온 것 처럼 합니다.
 
         public static void CreateQueueMessages(
             [QueueTrigger("inputqueue")] string queueMessage,
@@ -251,23 +251,23 @@ SDK에서 자동으로 개체를 JSON으로 serialize합니다. 개체가 null�
             outputQueueMessage.Add(queueMessage + "2");
         }
 
-`Add` 메서드를 호출하면 각 큐 메시지가 즉시 생성됩니다.
+각 큐 메시지 즉시 때 만들어집니다 hello `Add` 메서드를 호출 합니다.
 
-### <a name="types-that-the-queue-attribute-works-with"></a>큐 특성이 작동하는 유형
-다음 매개 변수 유형에서 `Queue` 특성을 사용할 수 있습니다.
+### <a name="types-that-hello-queue-attribute-works-with"></a>해당 hello 큐 특성 작동 형식
+Hello를 사용할 수 있습니다 `Queue` 특성 매개 변수 유형만 hello에:
 
-* `out string`(함수가 종료될 때 매개 변수 값이 null이 아닌 경우 큐 메시지 생성)
+* `out string`(hello 함수 종료 될 때 매개 변수 값이 null이 아닌 큐 메시지 생성)
 * `out byte[]`(`string`처럼 작동)
 * `out CloudQueueMessage`(`string`처럼 작동)
-* `out POCO` (serialize 가능한 유형, 함수가 종료될 때 매개 변수가 null인 경우 null 개체가 포함된 메시지 생성)
+* `out POCO`(직렬화 가능 형식 메시지를 만듭니다는 null 개체에 hello 함수가 종료 되어도 hello 매개 변수가 null 이면)
 * `ICollector`
 * `IAsyncCollector`
-* `CloudQueue` (Azure 저장소 API를 직접 사용하여 수동으로 메시지 생성)
+* `CloudQueue`(사용 하 여 수동으로 메시지를 만들기 위한 hello Azure 저장소 API 직접)
 
-### <a id="ibinder"></a>함수 본문에 WebJobs SDK 특성 사용
-`Queue`, `Blob` 또는 `Table`과 같은 WebJobs SDK 특성을 사용하기 전에 함수에서 일부 작업을 수행해야 하는 경우 `IBinder` 인터페이스를 사용할 수 있습니다.
+### <a id="ibinder"></a>WebJobs SDK 특성 hello 함수 본문에서 사용 하 여
+함수에서와 같은 WebJobs SDK 특성을 사용 하기 전에 작동 toodo 해야 할 경우 `Queue`, `Blob`, 또는 `Table`, hello를 사용할 수 있습니다 `IBinder` 인터페이스입니다.
 
-다음 예제에서는 입력 큐 메시지를 사용하여 동일한 내용의 새 메시지를 출력 큐에 만듭니다. 출력 큐 이름은 함수 본문에서 코드로 설정됩니다.
+다음 예제는 hello 입력된 큐 메시지를 출력 큐에서 같은 콘텐츠에 hello로 새 메시지를 만듭니다. hello 출력 큐 이름은 코드 hello hello 함수 본문에 의해 설정 됩니다.
 
         public static void CreateQueueMessage(
             [QueueTrigger("inputqueue")] string queueMessage,
@@ -279,15 +279,15 @@ SDK에서 자동으로 개체를 JSON으로 serialize합니다. 개체가 null�
             outputQueue.AddMessage(new CloudQueueMessage(queueMessage));
         }
 
-`IBinder` 인터페이스를 `Table` 및 `Blob` 특성과 함께 사용할 수도 있습니다.
+hello `IBinder` 인터페이스 hello로 사용할 수도 있습니다 `Table` 및 `Blob` 특성입니다.
 
-## <a id="blobs"></a> 큐 메시지를 처리하는 동안 Blob 및 테이블을 읽고 쓰는 방법
-`Blob` 및 `Table` 특성을 사용하여 Blob 및 테이블을 읽고 쓸 수 있습니다. 이 섹션의 샘플은 Blob에 적용됩니다. Blob이 생성되거나 업데이트될 때 프로세스를 트리거하는 방법을 보여 주는 코드 샘플은 [WebJobs SDK를 사용하여 Azure Blob Storage로 작업하는 방법](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)을 참조하고, 테이블을 읽고 쓰는 코드 샘플은 [WebJobs SDK를 사용하여 Azure Table Storage로 작업하는 방법](websites-dotnet-webjobs-sdk-storage-tables-how-to.md)을 참조하세요.
+## <a id="blobs"></a>Tooread 및 쓰기의 blob 및 큐 메시지를 처리 하는 동안 테이블
+hello `Blob` 및 `Table` 특성을 사용 하면 tooread 고 blob 및 테이블을 작성 합니다. 이 단원의 샘플 hello tooblobs를 적용 됩니다. Blob 생성 되거나 업데이트 되 면 tootrigger 처리 하는 방법을 보여 주는 코드 샘플을 참조 하십시오. [어떻게 toouse Azure blob 저장소에 hello WebJobs SDK로](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md), 읽기 / 테이블을 작성 하는 코드 샘플 및 [어떻게 toouse Azure 테이블 hello WebJobs SDK를 사용 하 여 저장소](websites-dotnet-webjobs-sdk-storage-tables-how-to.md)합니다.
 
 ### <a name="string-queue-messages-triggering-blob-operations"></a>Blob 작업을 트리거하는 문자열 큐 메시지
-문자열이 포함된 큐 메시지의 경우 `queueTrigger`는 메시지 내용이 포함된 `Blob` 특성의 `blobPath` 매개 변수에 사용할 수 있는 자리 표시자입니다.
+문자열을 포함 하는 큐 메시지에 대 한 `queueTrigger` hello에 사용할 수 있습니다 자리 표시자 `Blob` 특성의 `blobPath` hello hello 메시지에 대 한 콘텐츠를 포함 하는 매개 변수입니다.
 
-다음 예제에서는 `Stream` 개체를 사용하여 Blob를 읽고 씁니다. 큐 메시지는 textblobs 컨테이너에 있는 Blob의 이름입니다. 이름에 "-new"가 추가된 Blob 복사본이 동일한 컨테이너에 생성됩니다.
+hello 다음 예제에서는 `Stream` tooread 및 쓰기 blob 개체입니다. hello 큐 메시지는 hello textblobs 컨테이너에 있는 blob의 hello 이름입니다. 사용 하 여 hello blob의 복사본 "-새로운" 추가 된 toohello 만든 hello 동일한 컨테이너입니다.
 
         public static void ProcessQueueMessage(
             [QueueTrigger("blobcopyqueue")] string blobName,
@@ -297,11 +297,11 @@ SDK에서 자동으로 개체를 JSON으로 serialize합니다. 개체가 null�
             blobInput.CopyTo(blobOutput, 4096);
         }
 
-`Blob` 특성 생성자는 컨테이너 및 Blob 이름을 지정하는 `blobPath` 매개 변수를 가져옵니다. 이 자리 표시자에 대한 자세한 내용은 [WebJob SDK를 사용하여 Azure Blob 저장소로 작업하는 방법](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)을 참조하세요
+hello `Blob` 특성 생성자는 `blobPath` hello 컨테이너 및 blob 이름을 지정 하는 매개 변수입니다. 이 자리 표시자에 대 한 자세한 내용은 참조 [어떻게 toouse Azure blob 저장소에 hello WebJobs SDK로](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md),
 
-특성이 `Stream` 개체를 데코레이팅하는 경우 또 다른 생성자 매개 변수가 `FileAccess` 모드를 읽기, 쓰기 또는 읽기/쓰기로 지정합니다.
+Hello 특성 데코 레이트 하는 경우는 `Stream` 개체를 다른 생성자 매개 변수 지정 hello `FileAccess` 읽기, 쓰기 또는 읽기/쓰기 모드입니다.
 
-다음 예제에서는 `CloudBlockBlob` 개체를 사용하여 Blob를 삭제합니다. 큐 메시지는 Blob의 이름입니다.
+hello 다음 예제에서는 한 `CloudBlockBlob` toodelete blob 개체입니다. hello 큐 메시지는 hello blob의 hello 이름입니다.
 
         public static void DeleteBlob(
             [QueueTrigger("deleteblobqueue")] string blobName,
@@ -311,9 +311,9 @@ SDK에서 자동으로 개체를 JSON으로 serialize합니다. 개체가 null�
         }
 
 ### <a id="pocoblobs"></a> POCO( [Plain Old CLR Object](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object)) 큐 메시지
-큐 메시지에 JSON으로 저장된 POCO의 경우 개체 속성의 이름을 지정하는 자리 표시자를 `Queue` 특성의 `blobPath` 매개 변수에 사용할 수 있습니다. [큐 메타데이터 속성 이름](#queuemetadata) 을 자리 표시자로 사용할 수도 있습니다.
+Hello 큐 메시지의 JSON으로 저장 하는 POCO에 대 한 hello에 hello 개체의 속성 이름을 지정 하는 자리 표시자를 사용할 수 있습니다 `Queue` 특성의 `blobPath` 매개 변수입니다. [큐 메타데이터 속성 이름](#queuemetadata) 을 자리 표시자로 사용할 수도 있습니다.
 
-다음 예제에서는 Blob을 확장명이 다른 새 Blob에 복사합니다. 큐 메시지는 `BlobInformation` 및 `BlobName` 속성이 포함된 `BlobNameWithoutExtension` 개체입니다. 속성 이름은 `Blob` 특성에 대한 Blob 경로에서 자리 표시자로 사용됩니다.
+hello 다음 예제에서는 blob tooa 새 blob을 복사 다른 확장명으로 합니다. hello 큐 메시지는 한 `BlobInformation` 포함 된 개체 `BlobName` 및 `BlobNameWithoutExtension` 속성입니다. hello 속성 이름이 hello에 대 한 hello blob 경로에 대 한 자리 표시자로 사용 됩니다 `Blob` 특성입니다.
 
         public static void CopyBlobPOCO(
             [QueueTrigger("copyblobqueue")] BlobInformation blobInfo,
@@ -323,38 +323,38 @@ SDK에서 자동으로 개체를 JSON으로 serialize합니다. 개체가 null�
             blobInput.CopyTo(blobOutput, 4096);
         }
 
-이 SDK는 [Newtonsoft.Json NuGet 패키지](http://www.nuget.org/packages/Newtonsoft.Json) 를 사용하여 메시지를 직렬화 및 역직렬화합니다. WebJobs SDK를 사용하지 않는 프로그램에서 큐 메시지를 만드는 경우 다음 예제와 같은 코드를 작성하여 SDK에서 구문 분석할 수 있는 POCO 큐 메시지를 만들 수 있습니다.
+hello SDK hello를 사용 하 여 [Newtonsoft.Json NuGet 패키지](http://www.nuget.org/packages/Newtonsoft.Json) tooserialize 및 메시지를 역직렬화 합니다. Hello WebJobs SDK를 사용 하지 않는 프로그램에서 메시지 큐를 만들면 해당 hello SDK 구문 분석할 수 있는 다음 예에서는 toocreate POCO 큐 메시지 hello 같은 코드를 작성할 수 있습니다.
 
         BlobInformation blobInfo = new BlobInformation() { BlobName = "boot.log", BlobNameWithoutExtension = "boot" };
         var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(blobInfo));
         logQueue.AddMessage(queueMessage);
 
-Blob을 개체에 바인딩하기 전에 함수에서 일부 작업을 수행해야 하는 경우 [앞의 Queue 특성처럼](#ibinder)함수 본문에 특성을 사용할 수 있습니다
+Blob tooan 개체를 바인딩하기 전에 일부 작동 toodo 함수에서 해야 할 경우 hello 특성 hello hello 함수 본문에 사용할 수 있습니다 [hello 큐 특성에 대해 설명한 것 처럼](#ibinder)합니다.
 
-### <a id="blobattributetypes"></a> Blob 특성을 사용할 수 있는 유형
-`Blob` 특성은 다음 유형에서 사용할 수 있습니다.
+### <a id="blobattributetypes"></a>형식 hello를 사용할 수 있는 특성 Blob
+hello `Blob` 특성 유형만 hello로 사용할 수 있습니다.
 
-* `Stream` (읽기 또는 쓰기, FileAccess 생성자 매개 변수를 통해 지정)
+* `Stream`(읽기 또는 쓰기 파일 그룹, hello FileAccess 생성자 매개 변수를 사용 하 여 지정)
 * `TextReader`
 * `TextWriter`
 * `string` (읽기)
-* `out string` (쓰기, 함수가 반환될 때 문자열 매개 변수가 null이 아닌 경우에만 Blob 생성)
+* `out string`(쓰기; hello 문자열 매개 변수는 hello 함수를 반환 하는 경우 null이 아닌 경우에 blob을 만듭니다.)
 * POCO(읽기)
-* out POCO(쓰기, 항상 Blob 생성, 함수가 반환될 때 POCO 매개 변수가 null인 경우 null 개체로 생성)
+* POCO 아웃 (쓰기; 항상 blob, 만들어집니다 null 개체로 hello 함수가 반환 될 때 POCO 매개 변수가 null 이면)
 * `CloudBlobStream` (쓰기)
 * `ICloudBlob` (읽기 또는 쓰기)
 * `CloudBlockBlob` (읽기 또는 쓰기)
 * `CloudPageBlob` (읽기 또는 쓰기)
 
-## <a id="poison"></a> 포이즌 메시지를 처리하는 방법
-함수가 실패하게 만드는 내용이 포함된 메시지를 *포이즌 메시지*라고 합니다. 함수가 실패할 경우 큐 메시지가 삭제되지 않고 결국 다시 선택되어 주기가 반복됩니다. SDK에서 제한된 반복 횟수 후에 자동으로 주기를 중단하거나 수동으로 중단할 수 있습니다.
+## <a id="poison"></a>어떻게 toohandle 포이즌 메시지
+메시지 내용이 함수 toofail 하면 라고 *포이즌 메시지*합니다. Hello 함수가 실패할 때 hello 큐 메시지는 삭제 되지 않습니다 및 결국 선택 다시 발생 시키는 hello 주기 toobe 반복 합니다. hello SDK 중단할 수 있으며 자동으로 hello 주기 후 제한 된 수의 반복 하거나 수동으로 수행할 수 있습니다.
 
 ### <a name="automatic-poison-message-handling"></a>자동 포이즌 메시지 처리
-SDK는 최대 5회까지 함수를 호출하여 큐 메시지를 처리합니다. 다섯 번째 시도가 실패하면 메시지가 포이즌 큐로 이동됩니다. [최대 다시 시도 횟수는 구성 가능합니다](#config).
+hello SDK too5 번 tooprocess 큐 메시지를 함수를 호출 합니다. Hello 다섯 번째 시도 실패 하면 hello 메시지 이동된 tooa 포이즌 큐는입니다. [hello 최대 재시도 횟수를 구성할 수](#config)합니다.
 
-포이즌 큐의 이름은 *{originalqueuename}*-poison으로 지정됩니다. 메시지를 기록하거나 수동 작업이 필요하다는 알림을 보내 포이즌 큐의 메시지를 처리하는 함수를 작성할 수 있습니다.
+hello 포이즌 큐 이름은 *{originalqueuename}*-포이즌 합니다. 작성할 수 있습니다 함수 tooprocess 메시지 hello 포이즌 큐에서 해당 로그 하거나 수동 주의가 필요한 알림을 보내기.
 
-다음 예제에서는 큐 메시지에 존재하지 않는 Blob 이름이 포함되어 있을 경우 `CopyBlob` 함수가 실패합니다. 이 경우 메시지가 copyblobqueue 큐에서 copyblobqueue-poison 큐로 이동됩니다. 그런 다음 `ProcessPoisonMessage` 가 포이즌 메시지를 기록합니다.
+다음 예에서는 hello hello에 `CopyBlob` 큐 메시지에는 존재 하지 않는 blob의 hello 이름을 포함 하는 경우 함수 실패 합니다. 에 도달 하면 hello 메시지 hello copyblobqueue 큐 toohello copyblobqueue 포이즌 큐에서 이동 됩니다. hello `ProcessPoisonMessage` 로그 환영 포이즌 메시지가 다음 합니다.
 
         public static void CopyBlob(
             [QueueTrigger("copyblobqueue")] string blobName,
@@ -367,15 +367,15 @@ SDK는 최대 5회까지 함수를 호출하여 큐 메시지를 처리합니다
         public static void ProcessPoisonMessage(
             [QueueTrigger("copyblobqueue-poison")] string blobName, TextWriter logger)
         {
-            logger.WriteLine("Failed to copy blob, name=" + blobName);
+            logger.WriteLine("Failed toocopy blob, name=" + blobName);
         }
 
-다음 그림에서는 포이즌 메시지를 처리할 때 이러한 함수의 콘솔 출력을 보여 줍니다.
+hello 다음 그림에서는 이러한 함수에서 콘솔 출력 포이즌 메시지를 처리 하는 경우.
 
 ![포이즌 메시지 처리에 대한 콘솔 출력](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/poison.png)
 
 ### <a name="manual-poison-message-handling"></a>수동 포이즌 메시지 처리
-`dequeueCount`라는 `int` 매개 변수를 함수에 추가하여 메시지가 처리를 위해 선택된 횟수를 가져올 수 있습니다. 함수 코드를 통해 큐에서 제거한 횟수를 확인하고 다음 예제와 같이 횟수가 임계값을 초과할 경우 고유한 포이즌 메시지 처리를 수행할 수 있습니다.
+Hello 횟수 만큼 메시지 선택 않은 처리를 위해 추가 하 여 가져올 수 있습니다는 `int` 라는 매개 변수 `dequeueCount` tooyour 함수입니다. 검사 hello 함수 코드에서의 개수를 큐에서 제거 하 고 hello 다음 예제와 같이 hello 번호가 임계값을 초과 하는 경우 사용자 고유의 포이즌 메시지 처리를 수행할 수 있습니다.
 
         public static void CopyBlob(
             [QueueTrigger("copyblobqueue")] string blobName, int dequeueCount,
@@ -385,7 +385,7 @@ SDK는 최대 5회까지 함수를 호출하여 큐 메시지를 처리합니다
         {
             if (dequeueCount > 3)
             {
-                logger.WriteLine("Failed to copy blob, name=" + blobName);
+                logger.WriteLine("Failed toocopy blob, name=" + blobName);
             }
             else
             {
@@ -393,15 +393,15 @@ SDK는 최대 5회까지 함수를 호출하여 큐 메시지를 처리합니다
             }
         }
 
-## <a id="config"></a> 구성 옵션을 설정하는 방법
-`JobHostConfiguration` 유형을 사용하여 다음 구성 옵션을 설정할 수 있습니다.
+## <a id="config"></a>어떻게 tooset 구성 옵션
+Hello를 사용할 수 있습니다 `JobHostConfiguration` 형식 tooset hello 다음 구성 옵션:
 
-* 코드에서 SDK 연결 문자열 설정
+* 코드에서 hello SDK 연결 문자열을 설정 합니다.
 * 최대 큐에서 제거 횟수와 같은 `QueueTrigger` 설정을 구성합니다.
 * 구성에서 큐 이름을 가져옵니다.
 
 ### <a id="setconnstr"></a>코드에서 SDK 연결 문자열 설정
-코드에서 SDK 연결 문자열을 설정하면 다음 예제와 같이 구성 파일이나 환경 변수에 고유한 연결 문자열 이름을 사용할 수 있습니다.
+Hello SDK 연결 문자열에에서 설정 코드 수 있습니다 있습니다 toouse 구성 파일 또는 환경 변수에서 고유한 연결 문자열 이름을 hello 다음 예제와 같이 합니다.
 
         static void Main(string[] args)
         {
@@ -423,13 +423,13 @@ SDK는 최대 5회까지 함수를 호출하여 큐 메시지를 처리합니다
         }
 
 ### <a id="configqueue"></a>QueueTrigger 설정 구성
-큐 메시지 처리에 적용되는 다음 설정을 구성할 수 있습니다.
+Hello 다음 toohello 큐 메시지 처리에 적용 되는 설정을 구성할 수 있습니다.
 
-* 병렬로 실행하도록 동시에 선택되는 최대 큐 메시지 수(기본값은 16).
-* 큐 메시지가 포이즌 큐로 전송되기 전의 최대 재시도 횟수(기본값은 5).
-* 큐가 비어 있을 때 다시 폴링하기 전의 최대 대기 시간(기본값은 1분).
+* hello 병렬 실행 toobe 동시에 선택 하는 큐 메시지의 최대 수 (기본값은 16).
+* 큐 메시지 tooa 포이즌 큐를 보내기 전에 최대 재시도 횟수를 hello (기본값은 5).
+* 큐가 비어 다시 폴링하기 전에 hello 최대 대기 시간 (기본값은 1 분)입니다.
 
-다음 예제에서는 이러한 설정을 구성하는 방법을 보여 줍니다.
+hello 방법을 예제와 다음 tooconfigure 이러한 설정:
 
         static void Main(string[] args)
         {
@@ -442,18 +442,18 @@ SDK는 최대 5회까지 함수를 호출하여 큐 메시지를 처리합니다
         }
 
 ### <a id="setnamesincode"></a>코드에서 WebJobs SDK 생성자 매개 변수 값 설정
-경우에 따라 큐 이름, Blob 이름 또는 컨테이너, 테이블 이름을 하드 코드하지 않고 코드에서 지정할 수 있습니다. 예를 들어 구성 파일 또는 환경 변수에서 `QueueTrigger`에 대한 큐 이름을 지정할 수 있습니다.
+큐 이름, blob 이름 또는 컨테이너 toospecify 사용할 경우에 따라 또는 테이블 이름을 하드 코드 하지 않고 코드. 예를 들어 toospecify hello 큐 이름에 대 한 경우가 `QueueTrigger` 구성 파일이 나 환경 변수에서입니다.
 
-이렇게 하려면 `NameResolver` 개체를 `JobHostConfiguration` 유형으로 전달하면 됩니다. WebJobs SDK 특성 생성자 매개 변수에 백분율(%) 기호로 묶어 특정 자리 표시자를 포함하면 `NameResolver` 코드가 해당 자리 표시자 위치에서 사용할 실제 값을 지정합니다.
+전달 하 여 수행할 수 있습니다는 `NameResolver` toohello 개체 `JobHostConfiguration` 유형입니다. WebJobs SDK 특성 생성자 매개 변수, 백분율 (%) 기호 둘러싸인 특수 한 자리 표시자를 포함 및 `NameResolver` hello 실제 값 toobe 이와 같은 자리 표시자를 대신 사용 되는 코드를 지정 합니다.
 
-예를 들어 테스트 환경에 logqueuetest라는 큐를 사용하고 프로덕션에 logqueueprod라는 큐를 사용한다고 가정해 보겠습니다. 하드 코드된 큐 이름 대신 실제 큐 이름을 포함하는 `appSettings` 컬렉션의 항목 이름을 지정하려고 합니다. `appSettings` 키가 logqueue이면 함수가 다음 예제처럼 표시될 수 있습니다.
+예를 들어 toouse 한다고 가정 큐 이름은 hello 테스트 환경에서 logqueuetest과 프로덕션 환경에서 명명된 한 logqueueprod입니다. 원하는 hello에 있는 항목의 toospecify hello 이름을 하드 코드 된 큐 이름 대신 `appSettings` hello 실제 큐 이름이 있는 컬렉션입니다. 경우 hello `appSettings` 키는 logqueue, 다음 예제는 hello 함수 보여 줍니다.
 
         public static void WriteLog([QueueTrigger("%logqueue%")] string logMessage)
         {
             Console.WriteLine(logMessage);
         }
 
-그런 다음 `NameResolver` 클래스가 다음 예제와 같이 `appSettings`에서 큐 이름을 가져올 수 있습니다.
+프로그램 `NameResolver` 클래스에서 hello 큐 이름을 가져올 다음 수 `appSettings` hello 다음 예제와 같이:
 
         public class QueueNameResolver : INameResolver
         {
@@ -463,7 +463,7 @@ SDK는 최대 5회까지 함수를 호출하여 큐 메시지를 처리합니다
             }
         }
 
-다음 예제와 같이 `NameResolver` 클래스를 `JobHost` 개체에 전달합니다.
+Hello 전달 `NameResolver` toohello 클래스 `JobHost` hello 다음 예제와 같이 개체입니다.
 
         static void Main(string[] args)
         {
@@ -473,10 +473,10 @@ SDK는 최대 5회까지 함수를 호출하여 큐 메시지를 처리합니다
             host.RunAndBlock();
         }
 
-**참고:** 큐, 테이블 및 Blob 이름은 함수가 호출될 때마다 확인되지만 Blob 컨테이너 이름은 응용 프로그램이 시작될 때만 확인됩니다. 작업이 실행되는 동안에는 Blob 컨테이너 이름을 변경할 수 없습니다.
+**참고:** 큐, 테이블 및 blob 이름 해결 하는 함수를 호출할 때마다 하지만 hello 응용 프로그램을 시작 하는 경우에 blob 컨테이너 이름이 확인 됩니다. Hello 작업이 실행 되는 동안 blob 컨테이너 이름을 변경할 수 없습니다.
 
-## <a id="manual"></a>수동으로 함수를 트리거하는 방법
-함수를 수동으로 트리거하려면 다음 예제와 같이 `JobHost` 개체에서 `Call` 또는 `CallAsync` 메서드를 사용하고 함수에서 `NoAutomaticTrigger` 특성을 사용합니다.
+## <a id="manual"></a>어떻게 tootrigger 함수 수동으로
+tootrigger 함수를 직접 사용 하 여 hello `Call` 또는 `CallAsync` 메서드 hello `JobHost` 개체 및 hello `NoAutomaticTrigger` hello 다음 예제와 같이 hello 함수에 특성입니다.
 
         public class Program
         {
@@ -497,29 +497,29 @@ SDK는 최대 5회까지 함수를 호출하여 큐 메시지를 처리합니다
             }
         }
 
-## <a id="logs"></a>로그를 작성하는 방법
-대시보드의 두 곳, 즉 WebJob의 페이지 및 특정 WebJob 호출의 페이지에 로그가 표시됩니다.
+## <a id="logs"></a>Toowrite 기록 하는 방법
+hello 대시보드 두 위치에서 로그를 보여 줍니다: WebJob hello에 대 한 hello 페이지와 특정 웹 작업 호출에 대 한 hello 페이지입니다.
 
 ![WebJob 페이지에서 로그](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardapplogs.png)
 
 ![함수 호출 페이지에서 로그](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardlogs.png)
 
-함수 또는 `Main()` 메서드에서 호출한 콘솔 메서드의 출력은 특정 메서드 호출에 대한 페이지가 아니라 WebJob에 대한 대시보드 페이지에 표시됩니다. 메서드 서명의 매개 변수에서 가져오는 TextWriter 개체의 출력은 메서드 호출에 대한 대시보드 페이지에 표시됩니다.
+Hello 또는 함수에서 호출 하는 콘솔 메서드에서 출력 `Main()` 메서드가 특정 메서드 호출에 대 한 hello 페이지 아닌 WebJob hello에 대 한 hello 대시보드 페이지에 나타납니다. 메서드 시그니처의 매개 변수에서 얻을 수 있는 hello TextWriter 개체에서 출력 된 메서드 호출에 대 한 hello 대시보드 페이지에 나타납니다.
 
-많은 작업 기능이 동시에 실행될 수 있지만 콘솔은 단일 스레드이므로 콘솔 출력을 특정 메서드 호출에 연결할 수 없습니다. 따라서 SDK에서는 각 함수 호출에 고유한 로그 작성기 개체를 제공합니다.
+Hello 콘솔 단일 스레드 hello에서 많은 작업 함수를 실행 중일 수 있습니다 하는 동안이 콘솔 출력 연결 된 tooa 특정 메서드 호출 수 없습니다 동시 합니다. 바로 이러한 이유로 hello SDK 자체 고유한 로그 기록기 개체와 각 함수 호출을 제공 합니다.
 
-[응용 프로그램 추적 로그](web-sites-dotnet-troubleshoot-visual-studio.md#logsoverview)를 기록하려면 INFO로 표시되는 로그를 만드는 `Console.Out` 및 ERROR로 표시되는 로그를 만드는 `Console.Error`를 사용합니다. 그렇지 않으면 Info 및 Error 외에 Verbose, Warning 및 Critical 수준을 제공하는 [추적 또는 TraceSource](http://blogs.msdn.com/b/mcsuksoldev/archive/2014/09/04/adding-trace-to-azure-web-sites-and-web-jobs.aspx)를 사용합니다. 응용 프로그램 추적 로그는 Azure 웹 앱을 구성한 방식에 따라 웹 앱 로그 파일, Azure 테이블 또는 Azure Blob에 표시됩니다. 모든 콘솔 출력과 마찬가지로 가장 최근 100개의 응용 프로그램 로그도 함수 호출에 대한 페이지가 아니라 WebJob에 대한 대시보드 페이지에 표시됩니다.
+toowrite [응용 프로그램 추적 로그](web-sites-dotnet-troubleshoot-visual-studio.md#logsoverview)를 사용 하 여 `Console.Out` (정보로 표시 된 로그 생성) 및 `Console.Error` (오류로 표시 된 로그 생성). 대체 항목은 toouse [추적 또는 TraceSource](http://blogs.msdn.com/b/mcsuksoldev/archive/2014/09/04/adding-trace-to-azure-web-sites-and-web-jobs.aspx), 경고, 자세한 정보를 제공 하 고 더하기 tooInfo 및 오류의 위험 수준. 응용 프로그램 추적 로그 hello 웹 앱 로그 파일, Azure 테이블에에서 표시 하거나 Azure 웹 앱을 구성 하는 방법에 따라 Azure blob 합니다. 모든 콘솔 출력의 true 이면 hello 가장 최근의 100 응용 프로그램 로그는 함수 호출에 대 한 hello 페이지가 아닌 WebJob hello에 대 한 hello 대시보드 페이지에도 표시 됩니다.
 
-콘솔 출력은 프로그램이 Azure WebJob에서 실행되는 경우에만 대시보드에 표시되고, 프로그램이 로컬로 실행되거나 다른 환경에서 실행되는 경우에는 표시되지 않습니다.
+콘솔 출력 hello hello 프로그램을 로컬로 실행 하는 경우에 하지는 Azure WebJob에 hello 프로그램을 실행 하는 경우에 대시보드 또는 다른 환경에 나타납니다.
 
-처리량이 많은 시나리오에 대해 대시보드 로깅을 사용하지 않도록 설정합니다. 기본적으로 SDK는 저장소에 로그를 쓰며, 많은 메시지를 처리하는 경우 이 작업으로 인해 성능이 저하될 수 있습니다. 로깅을 사용하지 않도록 설정하려면 다음 예제와 같이 대시보드 연결 문자열을 null로 설정합니다.
+처리량이 많은 시나리오에 대해 대시보드 로깅을 사용하지 않도록 설정합니다. 기본적으로 hello SDK 로그 toostorage 쓰고 많은 메시지를 처리 하는 경우이 작업 성능이 저하 됩니다. 로깅, toodisable hello 다음 예제와 같이 hello 대시보드 연결 문자열 toonull를 설정 합니다.
 
         JobHostConfiguration config = new JobHostConfiguration();       
         config.DashboardConnectionString = "";        
         JobHost host = new JobHost(config);
         host.RunAndBlock();
 
-다음 예제에서는 로그를 작성하는 여러 가지 방법을 보여 줍니다.
+hello 다음 예제에서는 여러 가지 방법을 보여 줍니다 toowrite 로그:
 
         public static void WriteLog(
             [QueueTrigger("logqueue")] string logMessage,
@@ -531,50 +531,50 @@ SDK는 최대 5회까지 함수를 호출하여 큐 메시지를 처리합니다
             logger.WriteLine("TextWriter - " + logMessage);
         }
 
-WebJobs SDK 대시보드에서 `TextWriter` 개체 출력은 특정 함수 호출에 대한 페이지로 이동하여 **Toggle Output**을 클릭할 때 표시됩니다.
+WebJobs SDK 대시보드 hello에서 출력을 hello hello `TextWriter` 개체 toohello 페이지 특정 작업에 대해 수행 하는 경우 나타남 함수 호출 및 클릭 **토글 출력**:
 
 ![함수 호출 링크 클릭](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardinvocations.png)
 
 ![함수 호출 페이지에서 로그](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardlogs.png)
 
-WebJobs SDK 대시보드에서 콘솔 출력의 최근 100줄은 함수 호출이 아니라 WebJob에 대한 페이지로 이동하여 **Toggle Output**을 클릭할 때 표시됩니다.
+에 hello WebJobs SDK 대시보드, 가장 최근의 100 hello 줄 콘솔의 출력 표시를 하지 않습니다 (hello 함수 호출)을 위해 WebJob hello에 대 한 toohello 페이지로 이동 하 고 클릭 **토글 출력**합니다.
 
 ![출력 설정/해제 클릭](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardapplogs.png)
 
-연속 WebJob에서는 응용 프로그램 로그가 웹앱 파일 시스템의 /data/jobs/continuous/*{webjobname}*/job_log.txt에 표시됩니다.
+연속 WebJob에서 응용 프로그램 로그에 표시/데이터/작업/연속/*{webjobname}*/job_log.txt hello 웹 응용 프로그램 파일 시스템에 있습니다.
 
         [09/26/2014 21:01:13 > 491e54: INFO] Console.Write - Hello world!
         [09/26/2014 21:01:13 > 491e54: ERR ] Console.Error - Hello world!
         [09/26/2014 21:01:13 > 491e54: INFO] Console.Out - Hello world!
 
-Azure Blob에서 응용 프로그램 로그는 다음과 같습니다. 2014-09-26T21:01:13,Information,contosoadsnew,491e54,635473620738373502,0,17404,17,Console.Write - Hello world!, 2014-09-26T21:01:13,Error,contosoadsnew,491e54,635473620738373502,0,17404,19,Console.Error - Hello world!, 2014-09-26T21:01:13,Information,contosoadsnew,491e54,635473620738529920,0,17404,17,Console.Out - Hello world!,
+Azure blob hello 응용 프로그램 로그는 다음과 같이 표시: 26T21:01:13,Information,contosoadsnew,491e54,635473620738373502,0,17404,17,Console.Write-2014-09-Hello world!, 2014-09-26T21:01:13, 오류, contosoadsnew, 491e54, 635473620738373502,0,17404,19,Console.Error-Hello world!, 26T21:01:13,Information,contosoadsnew,491e54,635473620738529920,0,17404,17,Console.Out-2014-09-Hello world!,
 
-또한 Azure 테이블에서 `Console.Out` 및 `Console.Error` 로그는 다음과 같이 표시됩니다.
+와 Azure 테이블 hello `Console.Out` 및 `Console.Error` 로그는 다음과 같습니다.
 
 ![테이블에 대한 정보 로그](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/tableinfo.png)
 
 ![테이블에 대한 오류 로그](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/tableerror.png)
 
-사용자 고유의 로거를 연결하려면 [이 예제](http://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Program.cs)를 참조하세요.
+자신만로 거에 tooplug를 원하는 경우 참조 [이 예제](http://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Program.cs)합니다.
 
-## <a id="errors"></a>오류를 처리하고 시간 제한을 구성하는 방법
-WebJobs SDK에는 지정된 기간 내에 완료되지 않는 경우 함수를 취소하는 데 사용할 수 있는 [Timeout](http://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Functions.cs) 특성도 포함되어 있습니다. 또한 지정된 기간 내에 너무 많은 오류가 발생한 경우 경고를 표시하는 데 `ErrorTrigger` 특성을 사용할 수 있습니다. 다음은 [ErrorTrigger 예제](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Error-Monitoring)입니다.
+## <a id="errors"></a>어떻게 toohandle 오류 시간 제한을 구성 하 고
+hello WebJobs SDK도 포함 되어는 [Timeout](http://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Functions.cs) toocause 함수 toobe 취소 하는 경우 사용할 수 있는 특성 지정된 된 기간 내에 완료 하지 않습니다. Hello를 사용 하 여 지정 된 기간 내에 너무 많은 오류가 발생 하는 경우 경고 tooraise을 하려는 경우 `ErrorTrigger` 특성입니다. 다음은 [ErrorTrigger 예제](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Error-Monitoring)입니다.
 
 ```
 public static void ErrorMonitor(
 [ErrorTrigger("00:01:00", 1)] TraceFilter filter, TextWriter log,
 [SendGrid(
-    To = "admin@emailaddress.com",
+    too= "admin@emailaddress.com",
     Subject = "Error!")]
  SendGridMessage message)
 {
-    // log last 5 detailed errors to the Dashboard
+    // log last 5 detailed errors toohello Dashboard
    log.WriteLine(filter.GetDetailedMessage(5));
    message.Text = filter.GetDetailedMessage(1);
 }
 ```
 
-구성 스위치(앱 설정이거나 환경 변수 이름일 수 있음)를 사용하여 함수를 동적으로 사용하거나 사용하지 않도록 설정함으로써 함수가 트리거될 수 있는지 여부를 제어할 수도 있습니다. 샘플 코드는 [WebJobs SDK 샘플 리포지토리](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Functions.cs)에서 `Disable` 특성을 참조하세요.
+동적으로 사용 하지 않도록 설정 하을 트리거할 수 있습니다, 응용 프로그램 설정 또는 환경 변수 이름이 될 수 있는 구성 스위치를 사용 하 여 여부 함수 toocontrol 사용 수 있습니다. 샘플 코드에 대 한 참조 hello `Disable` 특성 [hello WebJobs SDK 샘플 리포지토리](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Functions.cs)합니다.
 
 ## <a id="nextsteps"></a> 다음 단계
-이 가이드에서는 Azure 큐 작업에 대한 일반적인 시나리오를 처리하는 방법을 보여 주는 코드 샘플을 제공했습니다. Azure WebJob 및 WebJob SDK를 사용하는 방법에 대한 자세한 내용은 [Azure WebJob 권장 리소스](http://go.microsoft.com/fwlink/?linkid=390226)를 참조하세요.
+이 가이드는 코드를 제공 하는 방법을 보여 주는 샘플 toohandle Azure 큐 작업에 대 한 일반적인 시나리오입니다. Azure WebJobs toouse 및 hello WebJobs SDK를 참조 하는 방법에 대 한 자세한 내용은 [Azure WebJobs 리소스 권장](http://go.microsoft.com/fwlink/?linkid=390226)합니다.

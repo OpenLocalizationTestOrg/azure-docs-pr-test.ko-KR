@@ -1,6 +1,6 @@
 ---
-title: "PowerShell을 사용한 Azure 솔루션 관리 | Microsoft Docs"
-description: "Azure PowerShell 및 Resource Manager를 사용하여 리소스를 관리합니다."
+title: "aaaManage Azure PowerShell 사용 하 여 솔루션 | Microsoft Docs"
+description: "Azure PowerShell 및 리소스 관리자 toomanage 리소스를 사용 합니다."
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: tomfitz
-ms.openlocfilehash: ff42e5cb29005c5f4b97babdae58bef9382071f0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 47a91af8d7eb59585bcfd43571ce76b90a0d7971
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-resources-with-azure-powershell-and-resource-manager"></a>Azure PowerShell 및 Resource Manager를 사용하여 리소스 관리
 > [!div class="op_single_selector"]
@@ -29,43 +29,43 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-이 문서에서는 Azure PowerShell 및 Azure Resource Manager를 사용하여 솔루션을 관리하는 방법을 알아봅니다. Resource Manager에 익숙하지 않은 경우에는 [Resource Manager 개요](resource-group-overview.md) 참조하세요. 이 항목에서는 관리 작업에 중점을 둡니다. 다음을 수행합니다.
+이 문서에서는 설명 어떻게 toomanage Azure PowerShell 및 Azure 리소스 관리자를 사용 하 여 솔루션입니다. Resource Manager에 익숙하지 않은 경우에는 [Resource Manager 개요](resource-group-overview.md) 참조하세요. 이 항목에서는 관리 작업에 중점을 둡니다. 다음을 수행합니다.
 
 1. 리소스 그룹 만들기
-2. 리소스 그룹에 리소스 추가
-3. 리소스에 태그 추가
+2. 리소스 toohello 리소스 그룹 추가
+3. 태그 toohello 리소스 추가
 4. 이름 또는 태그 값을 기반으로 리소스 쿼리
-5. 리소스에 대하 잠금 적용 및 제거
+5. 적용 및 hello 리소스에 대 한 잠금을 제거 합니다.
 6. 리소스 그룹 삭제
 
-이 문서에서는 Resource Manager 템플릿을 구독에 배포하는 방법을 보여 주지 않습니다. 해당 정보는 [Resource Manager 템플릿과 Azure PowerShell로 리소스 배포](resource-group-template-deploy.md)를 참조하세요.
+이 문서는 표시 되지 않습니다 어떻게 toodeploy 리소스 관리자 템플릿 tooyour 구독 합니다. 해당 정보는 [Resource Manager 템플릿과 Azure PowerShell로 리소스 배포](resource-group-template-deploy.md)를 참조하세요.
 
 ## <a name="get-started-with-azure-powershell"></a>Azure PowerShell 시작
 
-Azure PowerShell을 설치하지 않은 경우 [Azure PowerShell을 설치 및 구성하는 방법](/powershell/azure/overview)을 참조하세요.
+Azure PowerShell을 설치 하지 않은 경우 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview)합니다.
 
-Azure PowerShell을 전에 설치했지만 최근에 업데이트하지 않은 경우에는 최신 버전을 설치하는 것이 좋습니다. 설치하는 방법과 동일한 방법을 통해 버전을 업데이트할 수 있습니다. 예를 들어 웹 플랫폼 설치 관리자를 사용한 경우에는 관리자를 다시 시작하고 업데이트를 찾아봅니다.
+지난 hello에서 Azure PowerShell 설치 해도 최근 업데이트 하지 않은 경우에 hello 최신 버전을 설치 하는 것이 좋습니다. Hello 통해 hello 버전을 업데이트할 수 있습니다 tooinstall 사용한 동일한 방법을 것입니다. 예를 들어 hello 웹 플랫폼 설치 관리자를 사용 하는 경우 다시 시작 하 고 업데이트에 대 한 확인 합니다.
 
-Azure 리소스 모듈의 버전을 확인하려면 다음 cmdlet을 사용합니다.
+toocheck 프로그램 버전의 hello Azure 리소스 모듈을 사용 하 여 다음 cmdlet hello:
 
 ```powershell
 Get-Module -ListAvailable -Name AzureRm.Resources | Select Version
 ```
 
-이 항목은 버전 3.3.0에 대해 업데이트되었습니다. 이보다 오래된 버전이 설치되어 있는 경우에는 사용자의 환경이 이 항목에 표시되는 단계와 일치하지 않을 수 있습니다. 이 버전의 cmdlet에 대한 설명서는 [AzureRM.Resources Module](/powershell/module/azurerm.resources)을 참조하세요.
+이 항목은 버전 3.3.0에 대해 업데이트되었습니다. 이전 버전을 설치 환경이이 항목에 설명 된 hello 단계와 일치 하지 않습니다. 이 버전의 hello cmdlet에 대 한 설명서를 참조 하십시오. [AzureRM.Resources 모듈](/powershell/module/azurerm.resources)합니다.
 
-## <a name="log-in-to-your-azure-account"></a>Azure 계정에 로그인합니다.
-솔루션에서 작업하기 전에 자신의 계정으로 로그인해야 합니다.
+## <a name="log-in-tooyour-azure-account"></a>Azure 계정 tooyour에 로그인
+솔루션 작업을 하기 전에 tooyour 계정에 로그인 해야 합니다.
 
-Azure 계정에 로그인하려면 **Login-AzureRmAccount** Cmdlet을 사용합니다.
+toolog tooyour Azure 계정에서에서 사용 하 여 hello **로그인 AzureRmAccount** cmdlet.
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-Cmdlet가 Azure 계정에 대한 로그인 자격 증명을 유도합니다. 로그인한 다음 Azure PowerShell에 사용할 수 있도록 계정 설정을 다운로드합니다.
+hello cmdlet Azure 계정에 대 한 hello 로그인 자격 증명을 묻습니다. 로그인 한 후 PowerShell tooAzure를 사용할 수 있도록 계정 설정을 다운로드 합니다.
 
-이 cmdlet은 작업에 사용할 구독과 계정에 대한 정보를 반환합니다.
+hello cmdlet hello 작업에 대 한 사용자 계정 및 hello 구독 toouse에 대 한 정보를 반환합니다.
 
 ```powershell
 Environment           : AzureCloud
@@ -77,7 +77,7 @@ CurrentStorageAccount :
 
 ```
 
-구독이 둘 이상인 경우에는 다른 구독으로 전환할 수 있습니다. 우선 계정에 대한 모든 구독을 살펴보겠습니다.
+둘 이상의 구독을 보유 하는 경우 다른 구독 tooa 전환할 수 있습니다. 첫째, 모든 hello 구독 계정에 대해 살펴보겠습니다.
 
 ```powershell
 Get-AzureRmSubscription
@@ -102,22 +102,22 @@ TenantId         : {guid}
 State            : Disabled
 ```
 
-다른 구독으로 전환하려면 **Set-AzureRmContext** cmdlet에 구독 이름을 제공합니다.
+tooswitch tooa 다른 구독 hello로 hello 구독 이름 제공 **집합 AzureRmContext** cmdlet.
 
 ```powershell
 Set-AzureRmContext -SubscriptionName "Example Subscription Two"
 ```
 
 ## <a name="create-a-resource-group"></a>리소스 그룹 만들기
-구독에 리소스를 배포하려면 리소스를 포함하는 리소스 그룹을 만들어야 합니다.
+모든 리소스 tooyour 구독을 배포 하기 전에 hello 리소스 포함 될 리소스 그룹을 만들어야 합니다.
 
-리소스 그룹을 만들려면 **New-AzureRmResourceGroup** Cmdlet을 사용합니다. 이 명령은 **Name** 매개 변수를 사용하여 리소스 그룹에 대한 이름을 지정하고 **Location** 매개 변수를 사용하여 위치를 지정합니다.
+리소스 그룹 toocreate hello를 사용 하 여 **새로 AzureRmResourceGroup** cmdlet. hello 명령은 hello를 사용 하 여 **이름** 매개 변수 toospecify hello 리소스 그룹 및 hello에 대 한 이름 **위치** 매개 변수 toospecify의 위치입니다.
 
 ```powershell
 New-AzureRmResourceGroup -Name TestRG1 -Location "South Central US"
 ```
 
-다음 형식으로 출력됩니다.
+hello 출력 형식에 따라 hello 다음과 같습니다.
 
 ```powershell
 ResourceGroupName : TestRG1
@@ -127,30 +127,30 @@ Tags              :
 ResourceId        : /subscriptions/{guid}/resourceGroups/TestRG1
 ```
 
-나중에 리소스 그룹을 검색해야 하는 경우 다음 cmdlet을 사용합니다.
+Tooretrieve hello 리소스 그룹을 나중에 필요한 경우 hello 다음 cmdlet을 사용 합니다.
 
 ```powershell
 Get-AzureRmResourceGroup -ResourceGroupName TestRG1
 ```
 
-구독에서 리소스 그룹을 모두 가져오려면 이름을 지정하지 않습니다.
+tooget 모든 hello 구독에서 리소스 그룹, 이름을 지정 하지 않습니다.
 
 ```powershell
 Get-AzureRmResourceGroup
 ```
 
-## <a name="add-resources-to-a-resource-group"></a>리소스 그룹에 리소스 추가
-리소스를 리소스 그룹에 추가하려면 **New-AzureRmResource** cmdlet을 사용하거나 만드는 리소스의 종류에 해당하는 cmdlet(예: **New-AzureRmStorageAccount**)을 사용합니다. 리소스의 종류에 해당하는 cmdlet에는 새 리소스에 필요한 속성의 매개 변수가 포함되기 때문에 이 cmdlet을 사용하는 것이 간편합니다. **New-AzureRmResource**를 사용하는 경우 속성을 설정하라는 메시지를 표시하지 않으려면 설정할 속성을 모두 알아야 합니다.
+## <a name="add-resources-tooa-resource-group"></a>리소스 tooa 리소스 그룹 추가
+리소스 toohello 리소스 그룹 tooadd hello를 사용할 수 있습니다 **새로 AzureRmResource** 만드는 cmdlet 또는 리소스의 특정 toohello 형식인 cmdlet (같은 **새로 AzureRmStorageAccount**). 보다 쉽게 toouse hello 새 리소스에 필요한 hello 속성에 대 한 매개 변수를 포함 하기 때문에 특정 tooa 리소스 종류를 된 cmdlet을 찾을 수 있습니다. toouse **새로 AzureRmResource**, 해당 입력 하지 않고도 모든 hello 속성 tooset를 알고 있어야 합니다.
 
-하지만 cmdlet을 통해 리소스를 추가하면 새 리소스가 Resource Manager 템플릿에 존재하지 않기 때문에 나중에 혼동을 일으킬 수 있습니다. Azure 솔루션에 대한 인프라는 Resource Manager 템플릿에서 구성하는 것이 좋습니다. 템플릿을 사용하면 솔루션을 안정적이고 반복적으로 배포할 수 있습니다. 이 항목에서는 PowerShell cmdlet을 사용하여 저장소 계정을 만들지만 나중에 리소스 그룹에서 템플릿을 생성합니다.
+그러나 cmdlet 통해 리소스 추가 hello 새 리소스는 리소스 관리자 템플릿을에 없기 때문에 이후 혼란이 발생할 수 있습니다. 리소스 관리자 템플릿을에서 Azure 솔루션에 대 한 hello 인프라를 정의 하는 것이 좋습니다. 템플릿과 tooreliably를 사용 하면 반복적으로 솔루션을 배포 합니다. 이 항목에서는 PowerShell cmdlet을 사용하여 저장소 계정을 만들지만 나중에 리소스 그룹에서 템플릿을 생성합니다.
 
-다음 cmdlet은 저장소 계정을 만듭니다. 예제에 표시된 이름을 사용하는 대신 저장소 계정에 대한 고유 이름을 제공합니다. 이름은 길이가 3자에서 24자 사이여야 하고 숫자 및 소문자만 사용해야 합니다. 예제에 표시된 이름을 사용하면 해당 이름을 이미 사용 중이기 때문에 오류가 표시됩니다.
+cmdlet을 다음 hello 저장소 계정을 만듭니다. Hello 예제에 표시 된 hello 이름을 사용 하는 대신 hello 저장소 계정에 대 한 고유 이름을 제공 합니다. hello 이름은 길이가 3 ~ 24 자 사이 여야 하 고 숫자 및 소문자만 사용 합니다. Hello 예제에 표시 된 hello 이름을 사용 하는 경우 해당 이름을 이미 사용 중이기 때문에 오류가 나타납니다.
 
 ```powershell
 New-AzureRmStorageAccount -ResourceGroupName TestRG1 -AccountName mystoragename -Type "Standard_LRS" -Location "South Central US"
 ```
 
-나중에 이 리소스를 검색해야 하는 경우 다음 cmdlet을 사용합니다.
+필요한 경우 tooretrieve이이 리소스 나중, 사용 cmdlet을 다음 hello:
 
 ```powershell
 Get-AzureRmResource -ResourceName mystoragename -ResourceGroupName TestRG1
@@ -158,15 +158,15 @@ Get-AzureRmResource -ResourceName mystoragename -ResourceGroupName TestRG1
 
 ## <a name="add-a-tag"></a>태그 추가
 
-태그를 사용하면 다양한 속성에 따라 리소스를 구성할 수 있습니다. 예를 들어 동일한 부서에 속하는 여러 리소스 그룹에 몇 가지 리소스를 둘 수 있습니다. 리소스에 부서 태그 및 값을 적용하여 동일한 범주에 속하는 것으로 표시할 수 있습니다. 또는 리소스가 프로덕션 환경에서 사용되는지 또는 테스트 환경에서 사용되는지를 표시할 수 있습니다. 이 항목에서는 하나의 리소스에만 태그를 적용하지만 사용자 환경에서는 모든 리소스에 태그를 적용하는 것이 대부분 타당합니다.
+태그 사용 하면 tooorganize toodifferent 속성에 따라 리소스 있습니다. 예를 들어 여러 리소스 toohello 속하는 다른 리소스 그룹에 있을 수 있습니다 같은 동일 부서입니다. 부서 태그 및 값 toothose 리소스 toomark를 적용할 수 속하는 toohello 것 같은 범주입니다. 또는 리소스가 프로덕션 환경에서 사용되는지 또는 테스트 환경에서 사용되는지를 표시할 수 있습니다. 이 항목에서는 태그 tooonly, 리소스가 두 개를 적용 하지만 사용자 환경에서 가장 가능성이 높은 의미가 tooapply 태그 tooall 리소스.
 
-다음 cmdlet은 저장소 계정에 두 개의 태그를 적용합니다.
+hello 다음 cmdlet은 두 태그 tooyour 저장소 계정에 적용 됩니다.
 
 ```powershell
 Set-AzureRmResource -Tag @{ Dept="IT"; Environment="Test" } -ResourceName mystoragename -ResourceGroupName TestRG1 -ResourceType Microsoft.Storage/storageAccounts
  ```
 
-태그는 단일 개체로 업데이트됩니다. 이미 태그가 포함된 리소스에 태그를 추가하려면 우선 기존 태그를 검색합니다. 기존 태그가 포함된 개체에 새 태그를 추가하고 리소스에 모든 태그를 다시 적용합니다.
+태그는 단일 개체로 업데이트됩니다. 먼저 tooadd 태그에 이미 포함 되어 있는 태그 tooa 리소스 hello 기존 태그를 검색 합니다. Hello 새 태그 toohello 개체가 있는 hello 기존 태그를 추가 하 고 모든 hello 태그 toohello 리소스를 다시 적용 합니다.
 
 ```powershell
 $tags = (Get-AzureRmResource -ResourceName mystoragename -ResourceGroupName TestRG1).Tags
@@ -176,27 +176,27 @@ Set-AzureRmResource -Tag $tags -ResourceName mystoragename -ResourceGroupName Te
 
 ## <a name="search-for-resources"></a>리소스 검색
 
-다른 검색 조건에 대해 리소스를 검색하려면 **Find-AzureRmResource** cmdlet을 사용합니다.
+사용 하 여 hello **찾기 AzureRmResource** 다른 검색 조건에 대 한 cmdlet tooretrieve 리소스입니다.
 
-* 이름으로 리소스를 가져오려면 **ResourceNameContains** 매개 변수를 제공합니다.
+* 이름으로 리소스 tooget 제공 hello **ResourceNameContains** 매개 변수:
 
   ```powershell
   Find-AzureRmResource -ResourceNameContains mystoragename
   ```
 
-* 리소스 그룹의 리소스를 모두 가져오려면 **ResourceGroupNameContains** 매개 변수를 제공합니다.
+* tooget 리소스 그룹의 모든 hello 리소스 제공 hello **ResourceGroupNameContains** 매개 변수:
 
   ```powershell
   Find-AzureRmResource -ResourceGroupNameContains TestRG1
   ```
 
-* 태그 이름 및 값을 사용하여 리소스를 모두 가져오려면 **TagName** 및 **TagValue** 매개 변수를 제공합니다.
+* tooget 태그 이름 및 값을 가진 모든 hello 리소스 제공 hello **TagName** 및 **TagValue** 매개 변수:
 
   ```powershell
   Find-AzureRmResource -TagName Dept -TagValue IT
   ```
 
-* 특정 리소스 종류에 해당하는 리소스를 모두 가져오려면 **ResourceType** 매개 변수를 제공합니다.
+* 특정 리소스 종류를 사용 하 여 tooall hello 리소스 제공 hello **ResourceType** 매개 변수:
 
   ```powershell
   Find-AzureRmResource -ResourceType Microsoft.Storage/storageAccounts
@@ -204,17 +204,17 @@ Set-AzureRmResource -Tag $tags -ResourceName mystoragename -ResourceGroupName Te
 
 ## <a name="lock-a-resource"></a>리소스 잠금
 
-중요한 리소스가 실수로 삭제되거나 수정되지 않도록 해야 하는 경우에는 리소스에 잠금을 적용합니다. **CanNotDelete** 또는 **ReadOnly**를 지정할 수 있습니다.
+Toomake 중요 한 리소스를 실수로 삭제 하거나 수정 해야 하는 경우에 잠금 toohello 리소스를 적용 합니다. **CanNotDelete** 또는 **ReadOnly**를 지정할 수 있습니다.
 
-관리 잠금을 만들거나 삭제하려면 `Microsoft.Authorization/*` 또는 `Microsoft.Authorization/locks/*` 작업에 대한 액세스 권한이 있어야 합니다. 기본 제공 역할의 경우 소유자 및 사용자 액세스 관리자에게만 이러한 작업의 권한이 부여됩니다.
+관리 잠금 toocreate 또는 delete 권한이 너무`Microsoft.Authorization/*` 또는 `Microsoft.Authorization/locks/*` 동작 합니다. Hello 기본 제공 역할의 소유자 및 사용자 액세스 관리자에 게 이러한 작업을 부여 됩니다.
 
-잠금을 적용하려면 다음 cmdlet을 사용합니다.
+잠금을 tooapply hello 다음 cmdlet을 사용 합니다.
 
 ```powershell
 New-AzureRmResourceLock -LockLevel CanNotDelete -LockName LockStorage -ResourceName mystoragename -ResourceType Microsoft.Storage/storageAccounts -ResourceGroupName TestRG1
 ```
 
-앞의 예제에서 잠긴 리소스는 잠금이 제거될 때까지 삭제될 수 없습니다. 잠금을 제거하려면 다음을 사용합니다.
+hello hello 예제에서는 이전에 잠긴된 리소스 삭제할 수 없습니다 hello 잠금을 제거 합니다. tooremove 잠금을 사용 합니다.
 
 ```powershell
 Remove-AzureRmResourceLock -LockName LockStorage -ResourceName mystoragename -ResourceType Microsoft.Storage/storageAccounts -ResourceGroupName TestRG1
@@ -223,36 +223,36 @@ Remove-AzureRmResourceLock -LockName LockStorage -ResourceName mystoragename -Re
 잠금 설정에 대한 자세한 내용은 [Azure Resource Manager를 사용하여 리소스 잠그기](resource-group-lock-resources.md)를 참조하세요.
 
 ## <a name="remove-resources-or-resource-group"></a>리소스 또는 리소스 그룹 제거
-리소스 또는 리소스 그룹을 제거할 수 있습니다. 리소스 그룹을 제거하면 리소스 그룹에 포함된 리소스도 모두 제거됩니다.
+리소스 또는 리소스 그룹을 제거할 수 있습니다. 리소스 그룹을 제거 하면 해당 리소스 그룹 내의 모든 hello 리소스 제거할 수도 있습니다.
 
-* 리소스 그룹에서 리소스를 삭제하려면 **Remove-AzureRmResource** cmdlet를 사용합니다. 이 cmdlet은 리소스를 삭제하지만 리소스 그룹은 삭제하지 않습니다.
+* toodelete hello 리소스 그룹을 사용 하 여 hello에서 리소스 **제거 AzureRmResource** cmdlet. 이 cmdlet은 hello 리소스를 삭제 하지만 hello 리소스 그룹을 삭제 하지 않습니다.
 
   ```powershell
   Remove-AzureRmResource -ResourceName mystoragename -ResourceType Microsoft.Storage/storageAccounts -ResourceGroupName TestRG1
   ```
 
-* 리소스 그룹과 거기에 포함된 리소스를 모두 삭제하려면 **Remove-AzureRmResourceGroup** cmdlet을 사용합니다.
+* toodelete 리소스 그룹 및 모든 리소스를 사용 하 여 hello **제거 AzureRmResourceGroup** cmdlet.
 
   ```powershell
   Remove-AzureRmResourceGroup -Name TestRG1
   ```
 
-두 cmdlet 모두, 리소스 또는 리소스 그룹을 제거할지를 묻는 메시지가 표시됩니다. 작업에서 리소스 또는 리소스 그룹이 성공적으로 삭제되면 **True**가 반환됩니다.
+두 cmdlet 모두에 대 한 tooconfirm 묻는 tooremove hello 리소스 또는 리소스 그룹 한다고 합니다. 반환 하는 경우 hello 작업 hello 리소스 또는 리소스 그룹이 성공적으로 삭제, **True**합니다.
 
 ## <a name="run-resource-manager-scripts-with-azure-automation"></a>Azure Automation을 사용하여 Resource Manager 스크립트 실행
 
-이 항목은 Azure PowerShell을 사용하여 리소스에 기본적인 작업을 수행하는 방법을 보여줍니다. 고급 관리 시나리오의 경우 일반적으로 스크립트를 만들고 필요에 따라 또는 일정에 따라 스크립트를 다시 사용합니다. [Azure Automation](../automation/automation-intro.md)은 Azure 솔루션을 관리하는 자주 사용되는 스크립트를 자동화하는 방법을 제공합니다.
+이 항목에서는 tooperform Azure PowerShell을 사용한 리소스에 대 한 기본 작업입니다. 고급 관리 시나리오에 대 한 일반적으로 스크립트를 toocreate을 필요에 따라 또는 일정에 따라 해당 스크립트를 다시 사용 합니다. [Azure 자동화](../automation/automation-intro.md) Azure 솔루션을 관리 하는 tooautomate 자주 사용 되는 스크립트를 한 방법을 제공 합니다.
 
-다음 항목은 Azure Automation, Resource Manager 및 PowerShell을 사용하여 관리 작업을 효과적으로 수행하는 방법을 보여줍니다.
+hello 다음 항목 보여 toouse Azure 자동화, 리소스 관리자 및 PowerShell tooeffectively 관리 작업을 수행 방법:
 
 - Runbook 만들기에 대한 내용은 [내 첫 번째 PowerShell Runbook](../automation/automation-first-runbook-textual-powershell.md)을 참조하세요.
 - 스크립트 갤러리 작업에 대한 내용은 [Azure Automation용 Runbook 및 모듈 갤러리](../automation/automation-runbook-gallery.md)를 참조하세요.
-- 가상 컴퓨터를 시작하고 중지하는 Runbook에 대한 내용은 [Azure Automation 시나리오: JSON 형식 태그를 사용하여 Azure VM 시작 및 종료 일정 만들기](../automation/automation-scenario-start-stop-vm-wjson-tags.md)를 참조하세요.
+- 시작 하 고 가상 컴퓨터를 중지 하는 runbook에 대 한 참조 [Azure 자동화 시나리오: 태그를 사용 하 여 JSON 형식 toocreate Azure VM 시작 및 종료에 대 한 일정](../automation/automation-scenario-start-stop-vm-wjson-tags.md)합니다.
 - 가상 컴퓨터 업무 외 시간을 시작하고 중지하는 Runbook에 대한 내용은 [Automation의 업무 시간 외 VM 시작/중지 솔루션](../automation/automation-solution-vm-management.md)을 참조하세요.
 
 ## <a name="next-steps"></a>다음 단계
-* Resource Manager 템플릿을 만드는 방법에 대한 자세한 내용은 [Azure Resource Manager 템플릿 작성](resource-group-authoring-templates.md)을 참조하세요.
-* 템플릿 배포에 대한 자세한 내용은 [Azure Resource Manager 템플릿을 사용하여 응용 프로그램 배포](resource-group-template-deploy.md)를 참조하세요.
-* 기존 리소스를 새 리소스 그룹으로 이동할 수 있습니다. 예제를 보려면 [새 리소스 그룹 또는 구독으로 리소스 이동](resource-group-move-resources.md)을 참조하세요.
-* 엔터프라이즈에서 리소스 관리자를 사용하여 구독을 효과적으로 관리할 수 있는 방법에 대한 지침은 [Azure 엔터프라이즈 스캐폴드 - 규범적 구독 거버넌스](resource-manager-subscription-governance.md)를 참조하세요.
+* 리소스 관리자 템플릿을 만드는 방법에 대해 toolearn 참조 [Azure 리소스 관리자 템플릿 제작](resource-group-authoring-templates.md)합니다.
+* 템플릿 배포에 대 한 toolearn 참조 [Azure 리소스 관리자 템플릿을 사용 하 여 응용 프로그램 배포](resource-group-template-deploy.md)합니다.
+* 기존 리소스 tooa 새 리소스 그룹을 이동할 수 있습니다. 예제를 보려면 [구독 또는 리소스 그룹 리소스 이동 tooNew](resource-group-move-resources.md)합니다.
+* 기업에서는 리소스 관리자 tooeffectively 사용 방법에 대 한 지침에 대 한 구독을 관리, 참조 [Azure enterprise 스 캐 폴드-규범적인 구독 거 버 넌 스](resource-manager-subscription-governance.md)합니다.
 

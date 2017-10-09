@@ -1,6 +1,6 @@
 ---
-title: "StorSimple 저장소 계정 관리 | Microsoft Docs"
-description: "StorSimple 관리자 구성 페이지를 사용하여 저장소 계정에 대한 보안 키를 추가, 편집, 삭제 또는 회전하는 방법을 설명합니다."
+title: "aaaManage StorSimple 저장소 계정의 | Microsoft Docs"
+description: "저장소 계정에 대 한 StorSimple Manager 구성 페이지 tooadd hello, 편집, 삭제 또는 회전 hello 보안 키를 사용 하는 방법을 설명 합니다."
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 04/29/2016
 ms.author: v-sharos
-ms.openlocfilehash: 68b767c9c93f2daff476a21029b9813f347590b5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 78f408818ee8532dfaac445200048145547c987c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-manager-service-to-manage-your-storage-account"></a>StorSimple 관리자 서비스를 사용하여 저장소 계정 관리
+# <a name="use-hello-storsimple-manager-service-toomanage-your-storage-account"></a>저장소 계정을 StorSimple 관리자 서비스 toomanage hello를 사용 합니다.
 ## <a name="overview"></a>개요
-**구성** 페이지는 StorSimple 관리자 서비스에서 만들 수 있는 모든 글로벌 서비스 매개 변수를 표시합니다. 이러한 매개 변수는 서비스에 연결된 모든 장치에 적용할 수 있으며 다음을 포함합니다.
+hello **구성** 페이지 hello StorSimple Manager 서비스에서에서 만들 수 있는 모든 hello 글로벌 서비스 매개 변수를 표시 합니다. 이러한 매개 변수에 적용 된 tooall hello 장치 toohello 서비스를 연결 하 고 포함 될 수 있습니다.
 
 * 저장소 계정 
 * 대역폭 템플릿 
 * 액세스 제어 레코드 
 
-이 자습서에서는 **구성** 페이지를 사용하여 저장소 계정을 추가, 편집 또는 삭제하거나, 저장소 계정에 대한 보안 키를 회전하는 방법에 대해 설명합니다.
+이 자습서에서는 hello를 사용 하는 방법에 대해 설명 **구성** tooadd, 편집 또는 저장소 계정 삭제, 페이지 또는 저장소 계정에 대 한 hello 보안 키를 회전 합니다.
 
  ![구성 페이지](./media/storsimple-manage-storage-accounts/HCS_ConfigureService.png)  
 
-저장소 계정은 클라우드 서비스 공급자와 저장소 계정에 액세스하기 위해 장치가 사용하는 자격 증명을 포함합니다. Microsoft Azure 저장소 계정의 경우 계정 이름 및 기본 액세스 키와 같은 자격 증명이 있습니다. 
+저장소 계정에는 저장소 계정과 클라우드 서비스 공급자 장치 사용 하 여 tooaccess hello는 hello 자격 증명을 포함 됩니다. Microsoft Azure 저장소 계정에 대 한 hello 계정 이름 및 hello 기본 액세스 키 등의 자격 증명 이들은입니다. 
 
-**구성** 페이지에서 청구 구독에 대해 만들어진 모든 저장소 계정이 다음 정보를 포함하여 테이블 형식으로 표시됩니다.
+Hello에 **구성** 페이지, 모든 저장소 계정을 구독 청구 hello에 대해 생성 된 hello 다음 정보를 포함 하는 테이블 형식으로 표시 됩니다.
 
-* **이름** – 만들어졌을 때 계정에 할당된 고유 이름입니다.
-* **SSL 사용** – SSL 사용 및 장치와 클라우드 사이의 통신이 보안 채널을 통해 이루어지는지 여부입니다.
-* **사용 볼륨** – 저장소 계정을 사용하는 볼륨의 수입니다.
+* **이름** – 만들어질 때 할당 된 고유한 이름 toohello 계정 hello 합니다.
+* **SSL 사용 가능** – 여부 hello SSL을 사용 및 장치-클라우드 간 통신이 보안 채널 hello 됩니다.
+* **사용 하는** – hello hello 저장소 계정을 사용 하 여 볼륨의 수입니다.
 
-저장소 계정 관련하여 **구성** 페이지에서 수행할 수 있는 가장 일반적인 작업은 다음과 같습니다.
+hello 가장 일반적인 작업 관련 hello에 수행할 수 있는 toostorage 계정 **구성** 페이지:
 
 * 저장소 계정 추가 
 * 저장소 계정 편집 
@@ -50,21 +50,21 @@ ms.lasthandoff: 08/29/2017
 ## <a name="types-of-storage-accounts"></a>저장소 계정 유형
 StorSimple 장치에서 사용할 수 있는 저장소 계정에는 다음과 같은 세 종류가 있습니다.
 
-* **자동 생성된 저장소 계정** – 이름 제안 시, 서비스를 처음 만들 때 이 저장소 계정 유형이 자동으로 생성됩니다. 이 저장소 계정을 만드는 방법에 대해 자세히 알아보려면 [온-프레미스 StorSimple 장치 배포](storsimple-deployment-walkthrough.md)에서 [1단계: 새 서비스 만들기](storsimple-deployment-walkthrough-u1.md#step-1-create-a-new-service)를 참조하세요. 
-* **서비스 구독의 저장소 계정** – 이러한 계정은 서비스와 동일한 구독과 연결된 Azure 저장소 계정입니다. 이러한 저장소 계정을 만드는 방법에 대해 더 알아보려면 [Azure 저장소 계정 정보](../storage/common/storage-create-storage-account.md)를 참조하세요. 
-* **서비스 구독 외의 저장소 계정** - 이러한 계정은 서비스와 연결되지 않았고 서비스가 만들어지기 전에 존재했던 Azure 저장소 계정입니다.
+* **자동 생성 된 저장소 계정은** – hello 서비스를 처음 만들 때 이러한 유형의 저장소 계정 자동으로 생성 hello 이름에서 알 수 있듯이 합니다. 이 저장소 계정을 만든 방법에 대해 자세히 toolearn 참조 [1 단계: 새 서비스 만들기](storsimple-deployment-walkthrough-u1.md#step-1-create-a-new-service) 에 [온-프레미스 StorSimple 장치 배포](storsimple-deployment-walkthrough.md)합니다. 
+* **Hello 서비스 구독의 저장소 계정에에서** – hello와 관련 된 hello Azure 저장소 계정 hello 서비스와 동일한 구독 합니다. 이러한 저장소 계정이 생성 되는 방법에 대해 자세히 toolearn 참조 [Azure 저장소 계정에 대 한](../storage/common/storage-create-storage-account.md)합니다. 
+* **Hello 서비스 구독 외부 저장소 계정** – 서비스와 연결 되지 않은 hello Azure 저장소 계정 및 가능성이 하기 전에 기존된 hello 서비스를 만들었습니다.
 
 ## <a name="add-a-storage-account"></a>저장소 계정 추가
-저장소 계정(지정된 클라우드 서비스 공급자를 통해)에 연결된 액세스 자격 증명 및 친숙한 고유 이름을 제공하여 저장소 계정을 추가할 수 있습니다. 장치와 클라우드 사이에서 네트워크 통신을 위한 보안 채널을 만들기 위해 SSL(Secure Sockets Layer) 모드를 사용하는 옵션도 있습니다.
+고유한 제공 하 여 저장소 계정을 추가할 수 있습니다 친숙 한 이름 및 액세스 자격 증명을 toohello 저장소 계정 (hello 지정 된 클라우드 서비스 공급자)에 연결 합니다. Hello secure sockets layer (SSL) 모드 toocreate 장치와 hello 클라우드 사이의 네트워크 통신을 위한 보안 채널 설정의 hello 옵션이 있습니다.
 
-특정 클라우드 서비스 공급자에 대해 여러 계정을 만들 수 있습니다. 하지만 저장소 계정을 만든 후에는 클라우드 서비스 공급자를 변경할 수 없습니다.
+특정 클라우드 서비스 공급자에 대해 여러 계정을 만들 수 있습니다. 그러나 주의 저장소 계정이 만들어지면 hello 클라우드 서비스 공급자 변경할 수 없습니다.
 
-저장소 계정을 저장하는 동안 해당 서비스는 클라우드 서비스 공급자와 통신을 시도합니다. 사용자가 지정한 자격 증명 및 액세스 자료가 이 때 인증됩니다. 인증에 성공하는 경우에만 저장소 계정이 만들어집니다. 인증에 실패하는 경우 그에 따른 오류 메시지가 표시됩니다.
+Hello 저장소 계정, 저장 하는 동안 hello 서비스는 클라우드 서비스 공급자와 toocommunicate을 시도 합니다. 이 이번에 hello 자격 증명 및 사용자가 제공한 hello 액세스 자료가 인증 됩니다. 저장소 계정에는 hello 인증에 성공 하는 경우에 생성 됩니다. Hello 인증에 실패 하면 적절 한 오류 메시지가 표시 됩니다.
 
-Azure 포털에서 만든 Resource Manager 저장소 계정은 StorSimple에서도 지원됩니다. Resource Manager 저장소 계정은 볼륨 컨테이너를 만들려고 할 때 드롭다운 목록에서 선택할 수 있도록 표시되지 않으며, Azure 클래식 포털에서 만든 저장소 계정만 표시됩니다. 아래에 설명된 저장소 계정 추가 절차에 따라 Resource Manager 저장소 계정을 추가해야 합니다.
+Azure 포털에서 만든 Resource Manager 저장소 계정은 StorSimple에서도 지원됩니다. hello toocreate 볼륨 컨테이너를 시도할 때 hello 드롭다운 목록에서 선택에 대 한 저장소 계정이 표시 되지 것입니다는 리소스 관리자는 hello Azure 클래식 포털에서에서 만든 계정에 표시 되는 저장소만 hello 합니다. 리소스 관리자 저장소 계정은 toobe hello 프로시저 tooadd 아래에 설명 된 저장소 계정을 사용 하 여 추가 해야 합니다.
 
 > [!NOTE]
-> 저장소 계정을 추가하기 위한 절차는 사용하는 StorSimple 소프트웨어 버전에 따라 다릅니다. StorSimple 버전에 대한 올바른 절차를 수행해야 합니다.
+> hello 프로시저 저장소 계정을 추가 하는 데 사용 하는 hello StorSimple 소프트웨어 버전에 따라 다릅니다. StorSimple 버전에 대 한 있는지 toofollow hello 올바른 프로시저가 수 있습니다.
 > 
 > 
 
@@ -73,74 +73,74 @@ Azure 포털에서 만든 Resource Manager 저장소 계정은 StorSimple에서�
 [!INCLUDE [add-a-storage-account](../../includes/storsimple-configure-new-storage-account.md)]
 
 ## <a name="edit-a-storage-account"></a>저장소 계정 편집
-볼륨 컨테이너에서 사용되는 저장소 계정을 편집할 수 있습니다. 현재 사용 중인 저장소 계정을 편집할 경우 수정할 수 있는 유일한 필드는 저장소 계정에 대한 액세스 키입니다. 새 저장소 액세스 키를 제공할 수 있으며 업데이트된 설정을 저장할 수 있습니다.
+볼륨 컨테이너에서 사용되는 저장소 계정을 편집할 수 있습니다. 현재 사용 중인 저장소 계정을 편집할 경우 hello 필드 에서만 사용할 수 있는 toomodify는 hello hello 저장소 계정 액세스 키입니다. Hello 새로운 저장소 액세스 키를 제공 하 고 업데이트 hello 설정을 저장할 수 있습니다.
 
-#### <a name="to-edit-a-storage-account"></a>저장소 계정을 편집하려면
-1. 서비스 방문 페이지에서 서비스를 선택하고 서비스 이름을 두 번 클릭한 다음 **구성**을 클릭합니다.
+#### <a name="tooedit-a-storage-account"></a>tooedit 저장소 계정
+1. Hello 서비스 방문 페이지에서 서비스를 선택, hello 서비스 이름을 두 번 클릭 하 고 클릭 **구성**합니다.
 2. **저장소 계정 추가/편집**을 클릭합니다.
-3. **저장소 계정 추가/편집** 대화 상자에서:
+3. Hello에 **저장소 계정 추가/편집** 대화 상자:
    
-   1. **저장소 계정**드롭다운 목록에서 수정하려는 기존 계정을 선택합니다. 서비스를 처음 만들 때 자동으로 생성된 저장소 계정이 포함될 수도 있습니다.
-   2. 필요에 따라 **SSL 모드 사용** 선택을 수정할 수 있습니다.
-   3. 저장소 계정 액세스 키를 회전하도록 선택할 수 있습니다. 키 회전을 수행하는 방법에 대한 자세한 내용은 [저장소 계정의 키 회전](#key-rotation-of-storage-accounts) 을 참조하세요.
-   4. 확인 아이콘 ![확인 아이콘](./media/storsimple-manage-storage-accounts/HCS_CheckIcon.png) 을 클릭하여 설정을 저장합니다. 설정은 **구성** 페이지에서 업데이트됩니다. **저장** 을 클릭하여 새로 업데이트된 설정을 저장합니다.
+   1. Hello 드롭 다운 목록에서 **저장소 계정은**, 싶다는 의사를 toomodify 기존 계정을 선택 합니다. 여기에 hello 서비스를 처음 만들 때 자동으로 생성 된 hello 저장소 계정이 포함 될 수 있습니다.
+   2. 필요에 따라 수정할 수 있습니다 hello **SSL 모드 사용** 선택 합니다.
+   3. Toorotate 저장소 계정 액세스 키를 선택할 수 있습니다. 참조 [키 저장소 계정의 순환](#key-rotation-of-storage-accounts) tooperform 키 순환 하는 방법에 대 한 자세한 내용은 합니다.
+   4. Hello 확인 아이콘을 클릭 ![확인 아이콘](./media/storsimple-manage-storage-accounts/HCS_CheckIcon.png) toosave hello 설정 합니다. hello 설정은 hello에 업데이트 됩니다 **구성** 페이지. 클릭 **저장** toosave hello 설정을 새로 업데이트 합니다.
       
       ![저장소 계정 편집](./media/storsimple-manage-storage-accounts/HCs_AddEditStorageAccount.png)
 
 ## <a name="delete-a-storage-account"></a>저장소 계정 삭제
 > [!IMPORTANT]
-> 볼륨 컨테이너에서 사용하지 않는 경우에만 저장소 계정을 삭제할 수 있습니다. 저장소 계정을 볼륨 컨테이너에서 사용 중인 경우 먼저 볼륨 컨테이너를 삭제하고 연결된 저장소 계정을 삭제합니다.
+> 볼륨 컨테이너에서 사용하지 않는 경우에만 저장소 계정을 삭제할 수 있습니다. 저장소 계정이 볼륨 컨테이너에서 사용 중인 먼저 hello 볼륨 컨테이너를 삭제 한 다음 hello 연결 된 저장소 계정을 삭제 합니다.
 > 
 > 
 
-#### <a name="to-delete-a-storage-account"></a>저장소 계정을 삭제하려면
-1. StorSimple 관리자 서비스 방문 페이지에서 서비스를 선택하고 서비스 이름을 두 번 클릭한 다음 **구성**을 클릭합니다.
-2. 저장소 계정의 테이블 형식 목록에서 삭제하려는 계정을 마우스로 가리킵니다.
-3. 삭제 아이콘(**x**)이 해당 저장소 계정의 맨 오른쪽 열에 표시됩니다. **x** 아이콘을 클릭하여 자격 증명을 삭제합니다.
-4. 확인 메시지가 나타나면 **예** 를 클릭하여 삭제를 계속합니다. 테이블 형식 목록이 변경 내용을 반영하도록 업데이트됩니다.
+#### <a name="toodelete-a-storage-account"></a>toodelete 저장소 계정
+1. Hello StorSimple 관리자 서비스 방문 페이지에서 서비스를 선택, hello 서비스 이름을 두 번 클릭 하 고 클릭 **구성**합니다.
+2. 저장소 계정의 hello 테이블 형식 목록에서 원하는 toodelete hello 계정 마우스로 가리킵니다.
+3. 삭제 아이콘 (**x**) 해당 저장소 계정에 대 한 hello 맨 오른쪽 열에 표시 됩니다. Hello 클릭 **x** 아이콘 toodelete hello 자격 증명입니다.
+4. 확인 메시지가 나타나면 클릭 **예** toocontinue hello 삭제 합니다. hello 테이블 형식 목록에는 업데이트 된 tooreflect hello 변경 됩니다.
 
 ## <a name="key-rotation-of-storage-accounts"></a>저장소 계정의 키 회전
 보안상의 이유로 키 회전이 데이터 센터에서 요구되기도 합니다. 
 
 > [!NOTE]
-> 다음의 키 회전 정보 및 회전 절차는 Microsoft Azure 저장소 계정에만 적용 됩니다. 다른 클라우드 서비스 공급자를 사용하는 경우에 해당 공급자의 대시보드를 통해 저장소 계정 키를 관리할 수 있습니다.
+> 키 회전 정보와 hello 회전 절차를 수행 하는 hello tooMicrosoft Azure 저장소 계정에만 적용 됩니다. 다른 클라우드 서비스 공급자를 사용하는 경우에 해당 공급자의 대시보드를 통해 저장소 계정 키를 관리할 수 있습니다.
 > 
 > 
 
-각 Microsoft Azure 구독에 하나 이상의 연결된 저장소 계정을 만들 수 있습니다. 이러한 계정에 대한 액세스는 해당 저장소 계정에 대한 구독 및 액세스 키를 통해 제어됩니다. 
+각 Microsoft Azure 구독에 하나 이상의 연결된 저장소 계정을 만들 수 있습니다. hello 액세스 toothese 계정은 hello 구독 및 각 저장소 계정에 대 한 선택 키에 의해 제어 됩니다. 
 
-저장소 계정을 만들면 Microsoft Azure에서 두 개의 512비트 저장소 액세스 키를 생성합니다. 이 키는 저장소 계정에 액세스하는 경우 인증에 사용됩니다. 두 개의 저장소 액세스 키가 있으면 저장소 서비스나 해당 서비스에 대한 액세스에 중단 없이 키를 다시 생성할 수 있습니다. 현재 사용 중인 키는 *기본* 키이며 백업 키는 *보조* 키라고 합니다. Microsoft Azure StorSimple 장치가 클라우드 저장소 서비스 공급자에 액세스할 때 이러한 두 키 중 하나를 제공해야 합니다.
+저장소 계정을 만들 때 Microsoft Azure hello 저장소 계정에 액세스할 때 인증에 사용 되는 두 개의 512 비트 저장소 액세스 키를 생성 합니다. 두 개의 저장소 액세스 키를 갖는 것 중단 tooyour 저장소 서비스와 액세스 toothat 서비스 없는 tooregenerate hello 키가 있습니다. hello 현재 사용 중인 키는 hello *기본* 키와 hello 백업 키가 참조 tooas hello *보조* 키입니다. Microsoft Azure StorSimple 장치가 클라우드 저장소 서비스 공급자에 액세스할 때 이러한 두 키 중 하나를 제공해야 합니다.
 
 ## <a name="what-is-key-rotation"></a>키 회전 정의
-일반적으로 응용 프로그램은 데이터 액세스에 키 중 하나만 사용합니다. 특정 시간이 지나면 응용 프로그램이 두 번째 키를 사용하도록 전환할 수 있습니다. 두 번째 키로 응용 프로그램을 전환한 후 첫 번째 키를 사용 중지한 다음 새 키를 생성합니다. 이러한 방식으로 두 키를 사용하면 가동 중지 시간 없이 응용 프로그램이 데이터에 액세스할 수 있습니다.
+일반적으로 응용 프로그램 중 하나만 사용 hello 키 tooaccess 데이터입니다. 특정 시간이 지나면, toousing hello에 대 한 두 번째 키 전환 하는 응용 프로그램을 사용할 수 있습니다. 응용 프로그램 toohello 보조 키를 전환한 후 hello 첫 번째 키를 사용 중지 하 고 새 키를 생성 합니다. 이러한 방식으로 hello 두 키를 사용 하 여 가동 중지 시간 없이 응용 프로그램 액세스 toohello 데이터 수 있습니다.
 
-저장소 계정 키는 항상 암호화된 형태로 서비스에 저장됩니다. 하지만 StorSimple 관리자 서비스를 통해 재설정할 수 있습니다. 서비스는 StorSimple 관리자 서비스를 처음 만들 때 생성한 기본 저장소 계정뿐 아니라 저장소 계정에서 만든 계정을 비롯하여 동일한 구독의 모든 저장소 계정에 대해 기본 키 및 보조 키를 가져올 수 있습니다. StorSimple 관리자 서비스는 Azure 클래식 포털에서 항상 이러한 키를 가져와 암호화된 방법으로 저장합니다.
+hello 저장소 계정 키는 항상 암호화 된 형태로 hello 서비스에 저장 됩니다. 그러나 이러한 hello StorSimple Manager 서비스를 통해 재설정할 수 있습니다. hello 서비스는 hello 기본 키를 얻을 수 있습니다 및 보조 키 hello 기본 저장소 계정을 hello 저장소 서비스에서 만들어지는 계정과 포함 하 여 동일한 구독을 생성 하는 hello에 있는 저장소 계정의 모든 hello에 대 한 StorSimple Manager 서비스 hello 때 서비스를 처음 만들 합니다. hello StorSimple 관리자 서비스는 항상 이러한 키 hello Azure 클래식 포털에서에서 가져오고 그런 다음 암호화 된 방식에서 모두를 저장 합니다.
 
 ## <a name="rotation-workflow"></a>회전 워크플로
-Microsoft Azure 관리자가 저장소 계정에 직접 액세스하여(Microsoft Azure 저장소 서비스를 통해) 기본 키 또는 보조 키를 다시 생성하거나 변경할 수 있습니다. StorSimple 관리자 서비스는이 변경을 자동으로 표시하지 않습니다.
+Microsoft Azure 관리자가 다시 생성 하거나 (Microsoft Azure 저장소 서비스 hello)를 통해 hello 저장소 계정에 직접 액세스 하 여 hello 기본 또는 보조 키를 변경할 수 있습니다. hello StorSimple Manager 서비스는이 변경 내용을 자동으로 표시 되지 않습니다.
 
-StorSimple 관리자 서비스에 변경을 알리려면 StorSimple 관리자 서비스에 액세스하고 저장소 계정에 액세스한 다음 기본 또는 보조 키(변경된 키에 따라 다름)를 동기화해야 합니다. 그러면 서비스는 최신 키를 가져오고 해당 키를 암호화하여 장치에 암호화된 키를 보냅니다.
+hello 변경의 tooinform hello StorSimple Manager 서비스를 해야 tooaccess hello StorSimple Manager 서비스 hello 저장소 계정에 액세스 한 후 (변경 된 어떤 것에 따라) hello 기본 또는 보조 키를 동기화 합니다. hello 서비스 다음 hello 최신 키를 가져옵니다, 그리고 hello 키 암호화 및 hello 키 toohello 장치 암호화를 보냅니다.
 
-#### <a name="to-synchronize-keys-for-storage-accounts-in-the-same-subscription-as-the-service-azure-only"></a>서비스와 동일한 구독에서 저장소 계정에 대한 키를 동기화하려면(Azure에만 해당)
-1. **서비스** 페이지에서 **구성** 탭을 클릭합니다.
+#### <a name="toosynchronize-keys-for-storage-accounts-in-hello-same-subscription-as-hello-service-azure-only"></a>저장소 계정에 대 한 키 toosynchronize hello hello 서비스 (Azure에만 해당)와 같은 구독
+1. Hello에 **서비스** 페이지에서 hello **구성** 탭 합니다.
 2. **저장소 계정 추가/편집**을 클릭합니다.
-3. 대화 상자에서 다음을 수행합니다.
+3. Hello 대화 상자에서 수행 hello를 수행 합니다.
    
-   1. 동기화하려는 키가 있는 저장소 계정을 선택합니다. 표시되면 저장소 계정 키가 암호화됩니다.
-   2. StorSimple 관리자 서비스에서 이전에 Microsoft Azure 저장소 서비스에서 변경된 키를 업데이트해야 합니다. 기본 액세스 키가 변경(다시 생성)된 경우 **기본 키 동기화**를 클릭합니다. 보조키가 변경된 경우 **보조 키 동기화**를 클릭합니다.
+   1. 원하는 toosynchronize hello 키가 있는 hello 저장소 계정을 선택 합니다. hello 저장소 계정 키 표시 될 때 암호화 됩니다.
+   2. StorSimple Manager 서비스 hello hello Microsoft Azure 저장소 서비스에서에서 이전에 변경 된 tooupdate hello 키를 해야 합니다. 클릭 하 여 hello 기본 액세스 키 (다시 생성)가 변경 되었을 **기본 키 동기화**합니다. 클릭 하 여 hello 보조 키를 변경한 경우 **보조 키 동기화**합니다.
       
       ![키 동기화](./media/storsimple-manage-storage-accounts/HCS_KeyRotationStorageAccountSameSubscriptionAsService.png)
 
-#### <a name="to-synchronize-keys-for-storage-accounts-outside-of-the-service-subscription"></a>서비스 구독 외의 저장소 계정에 대한 키를 동기화하려면
-1. **서비스** 페이지에서 **구성** 탭을 클릭합니다.
+#### <a name="toosynchronize-keys-for-storage-accounts-outside-of-hello-service-subscription"></a>toosynchronize는 hello 서비스 구독 외부 저장소 계정에 대 한 키
+1. Hello에 **서비스** 페이지에서 hello **구성** 탭 합니다.
 2. **저장소 계정 추가/편집**을 클릭합니다.
-3. 대화 상자에서 다음을 수행합니다.
+3. Hello 대화 상자에서 수행 hello를 수행 합니다.
    
-   1. 업데이트하려는 액세스 키가 있는 저장소 계정을 선택합니다.
-   2. StorSimple 관리자 서비스에서 저장소 액세스 키를 업데이트해야 합니다. 이 경우 저장소 액세스 키를 볼 수 있습니다. **저장소 계정 액세스 키**상자에 새 키를 입력합니다. 
+   1. 원하는 tooupdate hello 액세스 키를 가진 hello 저장소 계정을 선택 합니다.
+   2. Hello StorSimple Manager 서비스에서에서 tooupdate hello 저장소 액세스 키가 필요 합니다. 이 경우 hello 저장소 액세스 키를 볼 수 있습니다. Hello에 hello 새 키를 입력 **저장소 계정 액세스 키**y 상자입니다. 
    3. 변경 내용을 저장합니다. 이제 저장소 계정 액세스 키가 업데이트됩니다.
 
 ## <a name="next-steps"></a>다음 단계
 * [StorSimple 보안](storsimple-security.md)에 대해 자세히 알아봅니다.
-* [StorSimple Manager 서비스를 사용하여 StorSimple 장치를 관리](storsimple-manager-service-administration.md)하는 방법을 자세히 알아봅니다.
+* 에 대 한 자세한 내용은 [StorSimple 장치의 StorSimple Manager 서비스 tooadminister를 hello를 사용 하 여](storsimple-manager-service-administration.md)합니다.
 

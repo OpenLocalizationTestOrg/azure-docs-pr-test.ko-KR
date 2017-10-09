@@ -1,6 +1,6 @@
 ---
-title: "PowerShell 예제 Azure SQL Database 이동 SQL 탄력적 풀 | Microsoft Docs"
-description: "PowerShell을 사용하여 탄력적 풀 간에 SQL Database를 이동하는 Azure PowerShell 스크립트 샘플"
+title: "aaaPowerShell 예제 이동 Azure SQL 데이터베이스 SQL 탄력적인 풀 | Microsoft Docs"
+description: "Azure PowerShell 예제 스크립트 toomove PowerShell을 사용 하 여 탄력적 풀 간에 SQL 데이터베이스"
 services: sql-database
 documentationcenter: sql-database
 author: janeng
@@ -16,25 +16,25 @@ ms.tgt_pltfrm: sql-database
 ms.workload: database
 ms.date: 06/23/2017
 ms.author: janeng
-ms.openlocfilehash: 58f14dc668f25f17e93fcaf30f72b15a46d71484
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 501e82ce93a31264d0625fb0243b4e44dcb2d007
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-powershell-to-create-elastic-pools-and-move-databases-between-elastic-pools"></a>PowerShell을 사용한 탄력적 풀 만들기 및 탄력적 풀 간에 데이터베이스 이동
+# <a name="use-powershell-toocreate-elastic-pools-and-move-databases-between-elastic-pools"></a>PowerShell toocreate 탄력적 풀을 사용 하 고 탄력적 풀 간에 데이터베이스 이동
 
-이 PowerShell 스크립트 예제는 두 개의 탄력적 풀을 만들고 한 탄력적 풀에서 다른 탄력적 풀로 데이터베이스를 이동한 다음 탄력적 풀에서 단일 데이터베이스 성능 수준으로 데이터베이스를 이동합니다. 
+이 PowerShell 스크립트 예에서는 두 개의 탄력적 풀을 만듭니다 및 데이터베이스 한 탄력적 풀에서 다른 탄력적 풀으로 이동한 다음 데이터베이스는 탄력적인 풀 tooa 단일 데이터베이스 성능 수준을 벗어났습니다 이동 합니다. 
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
 ## <a name="sample-script"></a>샘플 스크립트
 
-[!code-powershell[기본](../../../powershell_scripts/sql-database/move-database-between-pools-and-standalone/move-database-between-pools-and-standalone.ps1?highlight=17-18 "풀 간에 데이터베이스 이동")]
+[!code-powershell[main](../../../powershell_scripts/sql-database/move-database-between-pools-and-standalone/move-database-between-pools-and-standalone.ps1?highlight=17-18 "Move database between pools")]
 
 ## <a name="clean-up-deployment"></a>배포 정리
 
-스크립트 샘플을 실행한 후에 다음 명령을 사용하여 리소스 그룹 및 관련된 모든 리소스를 제거할 수 있습니다.
+Hello 스크립트 예제를 실행 한 후 다음 명령을 hello 사용된 tooremove hello 리소스 그룹과 연결 된 모든 리소스가 수 있습니다.
 
 ```powershell
 Remove-AzureRmResourceGroup -ResourceGroupName "myResourceGroup"
@@ -42,7 +42,7 @@ Remove-AzureRmResourceGroup -ResourceGroupName "myResourceGroup"
 
 ## <a name="script-explanation"></a>스크립트 설명
 
-이 스크립트는 다음 명령을 사용합니다. 테이블에 있는 각 명령은 명령에 해당하는 문서에 연결됩니다.
+이 스크립트 명령 뒤 hello를 사용 합니다. Hello 테이블의 각 명령이 toocommand 특정 문서를 연결합니다.
 
 | 명령 | 참고 사항 |
 |---|---|
@@ -56,6 +56,6 @@ Remove-AzureRmResourceGroup -ResourceGroupName "myResourceGroup"
 
 ## <a name="next-steps"></a>다음 단계
 
-Azure PowerShell에 대한 자세한 내용은 [Azure PowerShell 설명서](/powershell/azure/overview)를 참조하세요.
+Azure PowerShell hello에 대 한 자세한 내용은 참조 하십시오. [Azure PowerShell 설명서](/powershell/azure/overview)합니다.
 
-추가 SQL Database PowerShell 스크립트 샘플은 [Azure SQL Database PowerShell 스크립트](../sql-database-powershell-samples.md)에 있습니다.
+추가 SQL 데이터베이스 PowerShell 스크립트 예제는 hello에서 확인할 수 있습니다 [Azure SQL 데이터베이스 PowerShell 스크립트를](../sql-database-powershell-samples.md)합니다.

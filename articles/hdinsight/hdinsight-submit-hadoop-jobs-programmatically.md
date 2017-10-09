@@ -1,6 +1,6 @@
 ---
-title: "HDInsight에서 Hadoop 작업 제출 | Microsoft Docs"
-description: "Azure HDInsight Hadoop에 Hadoop 작업을 제출하는 방법에 대해 알아봅니다."
+title: "HDInsight에서 Hadoop aaaSubmit 작업 | Microsoft Docs"
+description: "Hadoop toosubmit tooAzure HDInsight Hadoop 작업 하는 방법에 대해 알아봅니다."
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
@@ -16,11 +16,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: 6829ff82afc7fcea9e027ad14ec7ed0c8015a5fe
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6c3acde744e8e384088a6cd56e4273c001c0c9fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="submit-hadoop-jobs-in-hdinsight"></a>HDInsight에서 Hadoop 작업 제출
 
@@ -30,7 +30,7 @@ ms.lasthandoff: 07/11/2017
 
   - [비대화형 인증 .NET 응용 프로그램 만들기](hdinsight-create-non-interactive-authentication-dotnet-applications.md)
   - [HDInsight .NET SDK를 사용하여 Hive 쿼리 실행](hdinsight-hadoop-use-hive-dotnet-sdk.md)
-  - [HDInsight에서 Hadoop용 .NET SDK를 사용하여 Pig 작업 실행](hdinsight-hadoop-use-pig-dotnet-sdk.md)
+  - [HDInsight에서 Hadoop에 대 한 hello.NET SDK를 사용 하 여 Pig 작업 실행](hdinsight-hadoop-use-pig-dotnet-sdk.md)
   - [HDInsight에서 Hadoop용 .NET SDK를 사용하여 Sqoop 작업 실행](hdinsight-hadoop-use-sqoop-dotnet-sdk.md)
   - [HDInsight .NET SDK를 사용하여 MapReduce 작업 실행](hdinsight-hadoop-use-mapreduce-dotnet-sdk.md)
 

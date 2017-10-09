@@ -1,5 +1,5 @@
 ---
-title: "Azure Batch CLI 샘플 | Microsoft Docs"
+title: "일괄 처리 CLI 샘플 aaaAzure | Microsoft Docs"
 description: "Azure Batch CLI 샘플"
 services: batch
 documentationcenter: 
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/01/2017
 ms.author: antisch
-ms.openlocfilehash: 51fd27536994ca36bf9559a780660c3a16bf30cc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0d700a6edebd35a3b2bb86926d1e57d4a33584b4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-batch-cli-samples"></a>Azure Batch CLI 샘플
 
 ## <a name="tutorials-with-sample-shell-scripts"></a>샘플 셸 스크립트에 대한 자습서
 
-다음 표는 Batch 서비스 사용을 보여 주는 Azure CLI를 사용하여 빌드된 Bash 스크립트에 대한 링크를 포함합니다.
+hello 다음 표는 링크 toobash 스크립트 hello Azure CLI를 사용 하 여 빌드된 hello 일괄 처리 서비스를 사용 하는 방법을 보여 주는.
 
 | 스크립트 | 참고 사항 |
 |---|---|
@@ -35,4 +35,4 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="next-steps"></a>다음 단계
 
-Azure CLI에 대한 자세한 내용은 [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)를 참조하세요.
+Azure CLI hello에 대 한 자세한 내용은 참조 하십시오. [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)합니다.

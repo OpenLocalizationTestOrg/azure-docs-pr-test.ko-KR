@@ -1,5 +1,5 @@
 ---
-title: "Azure Stream Analytics: 스트리밍 단위를 효율적으로 사용하도록 작업을 최적화 | Microsoft Docs"
+title: "Azure 스트림 분석: 사용자 작업 toouse 스트리밍 단위를 효율적으로 최적화 | Microsoft Docs"
 description: "Azure Stream Analytics의 크기 조정 및 확장에 대한 모범 사례를 쿼리합니다."
 keywords: "스트리밍 단위, 쿼리 성능"
 services: stream-analytics
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 04/20/2017
 ms.author: jeffstok
-ms.openlocfilehash: 1441a5df4fd92abf85763ca9a1512503b1a0da56
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5ad98b34d625190a879260f54c9eff0294e230cb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="optimize-your-job-to-use-streaming-units-efficiently"></a>스트리밍 단위를 효율적으로 사용하도록 작업을 최적화
+# <a name="optimize-your-job-toouse-streaming-units-efficiently"></a>사용자 작업 toouse 스트리밍 단위를 효율적으로 최적화
 
-Azure Stream Analytics는 실행하는 작업의 성능 "가중치"를 SU(스트림 단위)에 집계합니다. SU는 작업을 실행하는 데 사용하는 컴퓨팅 리소스를 나타냅니다. SU는 CPU, 메모리의 혼합된 측정치 및 읽기/쓰기 속도를 기반으로 상대적 이벤트 처리 용량을 설명하는 방법을 제공합니다. 이 용량을 통해 사용자는 쿼리 논리에 집중할 수 있습니다. 또한 사용자가 저장소 계층 성능 고려 사항에 대해 알고, 작업에 대한 메모리를 수동으로 할당하고, 작업을 시기적절하게 실행하는 데 필요한 CPU 코어 수를 예상할 필요가 없어집니다.
+Azure 스트림 분석 집계 hello 성능 "weight"의 스트리밍 단위 (SUs)에 작업을 실행 합니다. SUs는 hello 컴퓨팅 리소스를 소비 된 tooexecute 작업을 나타냅니다. SUs는 이벤트를 제공할 방법 toodescribe hello 상대 처리 용량은 CPU, 메모리의 복합된 측정에 기반 하 고 읽기 및 쓰기 속도로 합니다. 이 용량 확인할 수 있습니다 쿼리 논리 hello 설정 하 고 수동으로 작업에 대 한 메모리를 할당 하 고 적절 하 게에서 hello CPU 필요한 core-count toorun 작업 대략적인 필요 tooknow 저장소 계층 성능 고려 사항에서를 제거 합니다.
 
 ## <a name="how-many-sus-are-required-for-a-job"></a>작업에 필요한 SU 수는?
 
-특정 작업에 필요한 SU 수 선택은 입력에 대한 파티션 구성 및 작업에 정의된 쿼리에 따라 달라집니다. **규모** 블레이드를 사용하면 올바른 SU 수를 설정할 수 있습니다. 필요한 것보다 많은 SU를 할당하는 것이 좋습니다. Stream Analytics 처리 엔진은 메모리를 추가로 할당하는 비용으로 대기 시간과 처리량을 최적화합니다.
+특정 작업에 대 한 필수 sus hello 번호를 선택 하는 작업은 hello 입력과 hello 작업 내에서 정의 된 hello 쿼리에 대 한 hello 파티션 구성에 따라 다릅니다. hello **배율** 블레이드 있습니다 tooset hello SUs 오른쪽 횟수입니다. 되기는 것 보다 더 많은 SUs tooallocate이 좋습니다. 대기 시간 및 추가 메모리 할당의 hello 비용에는 처리량에 대 한 hello 스트림 분석 처리 엔진을 최적화 합니다.
 
-일반적으로 *파티션 기준*을 사용하지 않는 쿼리에 대해 6 SU로 시작하는 것이 좋습니다. 그런 다음 대표적인 데이터 양을 전달하고 SU % 사용률 메트릭을 시험한 후 SU 수를 수정하는 평가판 및 오류 메서드를 사용하여 가장 적절한 부분을 판단합니다.
+일반적으로 hello 모범 사례는 사용 하지 않는 쿼리에 대 한 6 SUs와 toostart *PARTITION BY*합니다. 그런 다음 대표 양의 데이터를 전달 하 고 hello SU % 사용률 메트릭을 검사 후 SUs hello 수가 수정 하는 시행 착오 메서드를 사용 하 여 hello 부분은 결정 합니다.
 
-Azure Stream Analytics는 처리를 시작하기 전에 “다시 정렬 버퍼”라는 창에 이벤트를 둡니다. 이벤트는 다시 정렬 창에 시간별로 정렬되며 후속 작업은 임시로 정렬된 이벤트에서 수행됩니다. 시간으로 다시 정렬된 이벤트를 통해 연산자는 규정된 시간 내에 모든 이벤트에 대한 가시성이 확보됩니다. 또한 연산자는 필수 처리를 수행하고 출력을 생성할 수 있습니다. 이 메커니즘의 부작용은 다시 정렬 창의 기간에 의해 처리가 지연되는 것입니다. 작업의 메모리 공간(SU 사용에 영향을 줌)은 이 다시 정렬 창의 크기와 창에 포함된 이벤트 수의 함수입니다.
+Azure 스트림 분석 처리를 시작 하기 전에 "재주문 버퍼" hello 라는 창에서 이벤트를 유지 합니다. 시간까지 hello 재주문 창 내 정렬 되어 있는 이벤트 및 후속 작업이 일시적으로 정렬 하는 hello 이벤트에서 수행 됩니다. 이벤트 시간으로 다시 정렬. 그러면 해당 hello 연산자에 모든 열로 표시 유형 조건 hello의 hello 이벤트 기간으로 규정 합니다. 또한 hello 연산자를 hello 필수 처리를 수행 하 고 출력을 생성할 수 있습니다. 이 메커니즘의 부작용은 처리 hello 순서 바꾸기 창의 hello 기간으로 지연 됩니다. hello 작업 (SU 소비 영향을 줌)의 hello 메모리 공간에는 그 안에 포함 된 이벤트의이 순서 바꾸기 창과 hello 번호의 hello 크기의 함수입니다.
 
 > [!NOTE]
-> 작업을 업그레이드하는 동안 판독기 수가 변경되면 일시적인 경고가 감사 로그에 기록됩니다. Stream Analytics 작업은 자동으로 이러한 일시적인 문제를 복구합니다.
+> 업그레이드 작업 중 hello 판독기 수 변경 되 면 일시적인 경고 tooaudit 로그 기록 됩니다. Stream Analytics 작업은 자동으로 이러한 일시적인 문제를 복구합니다.
 
 ## <a name="common-high-memory-causes-for-high-su-usage-for-running-jobs"></a>높은 공용 메모리로 인해 실행 중인 작업에 높은 SU 사용량 유발
 
 ### <a name="high-cardinality-for-group-by"></a>그룹화 기준에 대한 높은 카디널리티
 
-들어오는 이벤트의 카디널리티는 작업에 대한 메모리 사용량을 결정합니다.
+들어오는 이벤트의 hello 카디널리티 hello 작업에 대 한 메모리 사용량을 나타냅니다.
 
-예를 들어 `SELECT count(*) from input group by clustered, tumblingwindow (minutes, 5)`에서 **클러스터**와 연관된 번호는 쿼리의 카디널리티입니다.
+예를 들어, `SELECT count(*) from input group by clustered, tumblingwindow (minutes, 5)`, 연결 된 번호 hello **클러스터형** hello 쿼리의 hello 카디널리티는 합니다.
 
-높은 카디널리티에 의해 발생한 문제를 완화하려면 **파티션 기준**을 사용하여 파티션을 늘림으로써 쿼리의 규모를 확장합니다.
+카디널리티가 높은으로 인해 toomitigate 문제 사용 하 여 파티션을 증가 하 여 hello 쿼리 확장 **PARTITION BY**합니다.
 
 ```
 Select count(*) from input
@@ -52,35 +52,35 @@ Partition By clusterid
 GROUP BY clustered tumblingwindow (minutes, 5)
 ```
 
-*클러스터*의 수는 이 그룹화 기준의 카디널리티입니다.
+수가 hello *클러스터 된* hello의 카디널리티는 GROUP BY 여기 됩니다.
 
-쿼리가 분할되면 여러 노드에 걸쳐 분산됩니다. 결과적으로, 각 노드로 들어오는 이벤트 수가 감소하여 다시 정렬 버퍼의 크기가 줄어듭니다. 또한 partitionid에 따라 이벤트 허브 파티션을 분할해야 합니다.
+Hello 쿼리를 분한 후 여러 노드를 분산 시키는 됩니다. 결과적으로, 각 노드에으로 들어오는 이벤트 hello 수가 줄어듭니다 차례로 hello hello 다시 정렬 버퍼 크기를 줄여주는. 또한 partitionid에 따라 이벤트 허브 파티션을 분할해야 합니다.
 
 ### <a name="high-unmatched-event-count-for-join"></a>JOIN에 대해 일치하지 않는 이벤트 개수가 많음
 
-JOIN에서 일치하지 않는 이벤트 수는 쿼리에 대한 메모리 사용률에 영향을 줍니다. 예를 들어 클릭을 유도하는 광고 노출 수를 찾는 쿼리를 수행합니다.
+조인에 일치 하지 않는 이벤트의 hello 수가 hello 메모리 사용률이 hello 쿼리의 영향을 줍니다. 예를 들어 toofind hello 광고 노출 수 번의 클릭을 생성 하는 검색 하는 쿼리를 수행 합니다.
 
 ```
 SELECT id from clicks INNER JOIN,
 impressions on impressions.id = clicks.id AND DATEDIFF(hour, impressions, clicks) between 0 AND 10
 ```
 
-이 시나리오에서 많은 광고가 표시되고 몇 번의 클릭이 생성될 수 있습니다. 작업이 시간 창 내에서 모든 이벤트를 유지해야 그러한 결과가 도출됩니다. 사용된 메모리의 양은 창 크기 및 이벤트 속도에 비례합니다. 
+이 시나리오에서 많은 광고가 표시되고 몇 번의 클릭이 생성될 수 있습니다. 이러한 결과 hello 시간 창 내의 모든 hello 이벤트 hello 작업 tookeep 필요 합니다. 사용 되는 메모리 양은 hello 비례 toohello 창 크기와 이벤트 속도입니다. 
 
-이 상황을 완화하려면 파티션 기준을 사용하여 파티션을 늘려서 쿼리의 규모를 확장합니다. 
+toomitigate PARTITION BY를 사용 하 여 이러한 상황을 늘려 hello 쿼리 확장 분할 합니다. 
 
-쿼리가 분할되면 여러 처리 노드에 걸쳐 분산됩니다. 결과적으로, 각 노드로 들어오는 이벤트 수가 감소하여 다시 정렬 버퍼의 크기가 줄어듭니다.
+Hello 쿼리를 분한 후 여러 처리 노드를 분산 시키는 됩니다. 결과적으로, 각 노드에으로 들어오는 이벤트 hello 수가 줄어듭니다 차례로 hello hello 다시 정렬 버퍼 크기를 줄여주는.
 
 ### <a name="large-number-of-out-of-order-events"></a>순서가 잘못된 이벤트 수가 많음 
 
-큰 시간 창에 순서가 잘못된 이벤트가 많으면 “다시 정렬 버퍼”의 크기가 커집니다. 이 상황을 완화하려면 파티션 기준을 사용하여 파티션을 늘려서 쿼리의 규모를 조정합니다. 쿼리가 분할되면 여러 노드에 걸쳐 분산됩니다. 결과적으로, 각 노드로 들어오는 이벤트 수가 감소하여 다시 정렬 버퍼의 크기가 줄어듭니다. 
+큰 시간 창 내의 순서가 틀린 이벤트 수가 많은 hello hello "버퍼 순서" toobe 더 큰 크기를 하면 됩니다. PARTITION BY를 사용 하 여 toomitigate 배율 hello 쿼리를 늘려 이러한 상황을 분할 합니다. Hello 쿼리를 분한 후 여러 노드를 분산 시키는 됩니다. 결과적으로, 각 노드에으로 들어오는 이벤트 hello 수가 줄어듭니다 차례로 hello hello 다시 정렬 버퍼 크기를 줄여주는. 
 
 
 ## <a name="get-help"></a>도움말 보기
 추가 지원이 필요한 경우 [Azure Stream Analytics 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)을 참조하세요.
 
 ## <a name="next-steps"></a>다음 단계
-* [Azure Stream Analytics 소개](stream-analytics-introduction.md)
+* [스트림 분석 소개 tooAzure](stream-analytics-introduction.md)
 * [Azure Stream Analytics 사용 시작](stream-analytics-real-time-fraud-detection.md)
 * [Azure 스트림 분석 작업 규모 지정](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 쿼리 언어 참조](https://msdn.microsoft.com/library/azure/dn834998.aspx)

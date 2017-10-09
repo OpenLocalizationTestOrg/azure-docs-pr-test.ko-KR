@@ -1,6 +1,6 @@
 ---
-title: "Azure Portal 대시보드 만들기 및 공유 | Microsoft Docs"
-description: "이 문서에서는 Azure Portal에서 대시보드를 만들고 편집하는 방법을 설명합니다."
+title: "aaaCreate 및 Azure 포털 대시보드를 공유 | Microsoft Docs"
+description: "이 문서에서 toocreate 및 편집 대시보드 Azure 포털 hello 하는 방법을 설명 합니다."
 services: azure-portal
 documentationcenter: 
 author: sewatson
@@ -14,84 +14,84 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 09/06/2016
 ms.author: sewatson
-ms.openlocfilehash: 5429e68723448ff5db6ef0ed8da1b927e97e6dd9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0facd10fe3284d7ad9a9e29791e5af5b5b95c97f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-share-dashboards-in-the-azure-portal"></a>Azure Portal에서 대시보드 만들기 및 공유
-여러 개의 대시보드를 만들고 Azure 구독에 액세스할 수 있는 다른 사용자와 공유할 수 있습니다.  이 문서에서는 대시보드 만들기, 편집, 게시 및 액세스 관리의 기본 사항을 알아봅니다.
+# <a name="create-and-share-dashboards-in-hello-azure-portal"></a>만들고 hello Azure 포털의에서 대시보드 공유
+여러 개의 대시보드를 만들고 액세스 tooyour Azure 권한이 있는 다른 사용자와 공유할 수 있습니다 구독 합니다.  이 문서 작성, 편집, 게시, 및 액세스 toodashboards 관리의 기본 사항 hello 거칩니다.
 
 ## <a name="create-a-dashboard"></a>대시보드 만들기
-대시보드를 만들려면 현재 대시보드 이름 옆에 있는 **새 대시보드** 단추를 선택합니다.  
+toocreate 대시보드를 선택 하는 hello **새 대시보드** 단추 다음 toohello 현재 대시보드의 이름입니다.  
 
 ![대시보드 만들기](./media/azure-portal-dashboards/new-dashboard.png)
 
-이 작업은 새 비어 있는 개인 대시보드를 만들고 대시보드의 이름을 지정하고 타일을 추가하거나 다시 정렬할 수 있는 사용자 지정 모드를 설정합니다.  이 모드에서는 축소 가능한 타일 갤러리가 왼쪽 탐색 메뉴보다 우선합니다.  타일 갤러리를 사용하면 다양한 방법으로 Azure 리소스에 대한 타일을 찾을 수 있습니다. [리소스 그룹](../azure-resource-manager/resource-group-overview.md#resource-groups), 리소스 형식, [태그](../azure-resource-manager/resource-group-using-tags.md) 또는 이름별로 리소스의 이름을 검색하여 찾을 수 있습니다.  
+이 작업은 새 비어 있는 개인 대시보드를 만들고 대시보드의 이름을 지정하고 타일을 추가하거나 다시 정렬할 수 있는 사용자 지정 모드를 설정합니다.  이 모드에서는 축소 가능한 hello 갤러리 사용 hello 왼쪽된 탐색 메뉴를 통해 바둑판식 배열 합니다.  hello 타일 갤러리 사용 하면 다양 한 방법으로 Azure 리소스에 대 한 타일을 찾을: 여 찾아볼 수 있습니다 [리소스 그룹](../azure-resource-manager/resource-group-overview.md#resource-groups), 만든 사람으로 리소스 종류가 [태그](../azure-resource-manager/resource-group-using-tags.md), 또는 리소스에 대 한 이름으로 검색 하 여 합니다.  
 
 ![대시보드 사용자 지정](./media/azure-portal-dashboards/customize-dashboard.png)
 
-타일을 원하는 대시보드 화면에 끌어서 놓아 추가합니다.
+끌어서 원하는 위치로 hello 대시보드 화면에 놓으면 하 여 타일을 추가 합니다.
 
-특정 리소스에 연결되지 않은 타일에 대한 **일반** 이라는 새 범주가 있습니다.  이 예제에서는 Markdown 타일을 고정합니다.  이 타일을 사용하여 대시보드에 사용자 지정 콘텐츠를 추가합니다.  타일은 일반 텍스트인 [Markdown 구문](https://daringfireball.net/projects/markdown/syntax)및 제한된 일련의 HTML을 지원합니다.  (안전을 위해 `<script>` 태그를 삽입하거나 포털을 방해할 수 있는 CSS의 특정 스타일 요소를 사용하는 등의 작업을 수행할 수 없습니다.) 
+특정 리소스에 연결되지 않은 타일에 대한 **일반** 이라는 새 범주가 있습니다.  이 예제에서는 hello Markdown 타일을 고정 했습니다.  이 타일 tooadd 사용자 지정 콘텐츠 tooyour 대시보드를 사용 합니다.  hello 타일 지원 일반 텍스트 [마크 다운 구문](https://daringfireball.net/projects/markdown/syntax), 및 HTML의 제한 된 집합입니다.  (삽입 하는 등의 작업을 수행할 수 없습니다 안전을 `<script>` 태그를 삽입 하거나 hello 포털을 방해할 수 있는 CSS의 특정 스타일 요소를 사용 하 여.) 
 
 ![Markdown 추가](./media/azure-portal-dashboards/add-markdown.png)
 
 ## <a name="edit-a-dashboard"></a>대시보드 편집
-대시보드를 만든 후에 타일 갤러리 또는 블레이드의 타일 표현에서 타일을 고정할 수 있습니다. 리소스 그룹의 표현을 고정해 보겠습니다. 해당 항목을 검색할 때 또는 리소스 그룹 블레이드에서 고정할 수 있습니다. 두 가지 방법은 리소스 그룹의 타일 표시를 고정합니다.
+대시보드를 만든 후 hello 타일 갤러리 또는 블레이드 hello 타일 표현에서 타일을 고정할 수 있습니다. 리소스 그룹의 hello 표현을 고정 보겠습니다. 항목, 또는 hello 리소스 그룹 블레이드에서 hello를 검색할 때를 고정할 수 있습니다. 두 방법 모두 결과적 hello 리소스 그룹의 타일 표현 hello를 고정 합니다.
 
-![대시보드에 고정](./media/azure-portal-dashboards/pin-to-dashboard.png)
+![Pin toodashboard](./media/azure-portal-dashboards/pin-to-dashboard.png)
 
-항목을 고정한 후에 대시보드에 나타납니다.
+Hello 항목을 고정 대시보드에 나타납니다.
 
 ![대시보드 보기](./media/azure-portal-dashboards/view-dashboard.png)
 
-Markdown 타일 및 대시보드에 고정된 리소스 그룹이 있으므로 타일의 크기를 조정하고 적합한 레이아웃으로 다시 정렬할 수 있습니다.
+Markdown 타일 및 리소스 그룹 toohello 고정 된 대시보드를 만들었으므로 이제 해당 크기를 조정 하거나 다시 hello 타일 적합 한 레이아웃으로 정렬할 수 म 합니다.
 
-"..."에 마우스를 가져가고 선택하거나 타일을 마우스 오른쪽 단추로 클릭하여 해당 타일에 대한 상황에 맞는 모든 명령을 볼 수 있습니다. 기본적으로 두 가지 항목이 있습니다.
+포인터를 두면 및 "..." 선택 하거나 타일을 마우스 오른쪽 단추로 클릭 하 여 해당 타일에 대 한 모든 hello 상황에 맞는 명령을 볼 수 있습니다. 기본적으로 두 가지 항목이 있습니다.
 
-1. **대시보드에서 고정 해제** – 대시보드에서 타일을 제거합니다.
+1. **대시보드에서 고정 해제** – hello 대시보드에서 hello 타일 제거
 2. **사용자 지정** – 사용자 지정 모드로 실행됩니다.
 
 ![타일 사용자 지정](./media/azure-portal-dashboards/customize-tile.png)
 
-사용자 지정을 선택하여 타일의 크기를 조정하고 순서를 변경합니다. 타일 크기를 조정하려면 다음 이미지에 나와 있는 것처럼 상황에 맞는 메뉴에서 새 크기를 선택합니다.
+사용자 지정을 선택하여 타일의 크기를 조정하고 순서를 변경합니다. hello 다음 이미지와 같이 hello 상황에 맞는 메뉴에서 새 크기를 hello 하는 tooresize 타일을 선택 합니다.
 
 ![타일 크기 조정](./media/azure-portal-dashboards/resize-tile.png)
 
-또는 타일이 모든 크기를 지원하는 경우 하단 오른쪽 모서리를 원하는 크기로 끌어올 수 있습니다.
+하거나 hello 타일 모든 크기를 지 원하는 경우 hello 맨 아래 오른쪽 모서리 toohello 원하는 크기를 끌 수 있습니다.
 
 ![타일 크기 조정](./media/azure-portal-dashboards/resize-corner.png)
 
-타일의 크기를 조정한 후에 대시보드를 봅니다.
+타일의 크기를 조정한 후 hello 대시보드를 확인 합니다.
 
 ![타일 보기](./media/azure-portal-dashboards/view-tile.png)
 
-대시보드의 사용자 지정을 완료한 후에 사용자 지정 모드를 종료하려면 **사용자 지정 완료**를 선택하거나 상황에 맞는 메뉴에서 **사용자 지정 완료**를 마우스 오른쪽 단추로 클릭하고 선택합니다.
+대시보드를 사용자 지정 작업을 완료 되 면 hello를 선택 하기만 하면 **사용자 지정 작업은 수행** tooexit 사용자 지정 모드로 마우스 오른쪽 단추로 클릭 하 고 선택 **사용자 지정 작업은 수행** hello 상황에 맞는 메뉴에서 합니다.
 
 ## <a name="publish-a-dashboard-and-manage-access-control"></a>대시보드 게시 및 액세스 제어 관리
-대시보드를 만들 때 기본적으로 비공개입니다. 즉, 볼 수 있는 유일한 사람은 사용자입니다.  다른 사람이 볼 수 있도록 하려면 다른 대시보드 명령 옆에 나타나는 **공유** 단추를 사용합니다.
+대시보드를 만들 때에 것을 볼 수 있는 유일한 사용자 hello 즉 기본적으로 전용입니다.  toomake 것 표시 tooothers hello를 사용 하 여 **공유** 단추 옆에 나타나는 hello 다른 대시보드 명령입니다.
 
 ![대시보드 공유](./media/azure-portal-dashboards/share-dashboard.png)
 
-게시하려는 대시보드에 대한 구독 및 리소스 그룹을 선택하라는 메시지가 표시됩니다. 에코시스템에 대시보드를 매끄럽게 통합하기 위해 공유 대시보드를 Azure 리소스로 구현했습니다(따라서 전자 메일 주소를 입력하여 공유할 수 없습니다).  포털에서 대부분 타일에 표시되는 정보에 대한 액세스는 [Azure 역할 기반 액세스 제어](../active-directory/role-based-access-control-configure.md)로 제어됩니다. 액세스 제어 관점에서 공유 대시보드는 가상 컴퓨터 또는 저장소 계정과 차이가 없습니다.  
+Toochoose 대시보드 toobe에 대 한 구독 및 리소스 그룹에 게시는 단계가 있습니다. tooseamlessly hello 에코 시스템에 대시보드를 통합, (전자 메일 주소를 입력 하 여 공유할 수 없습니다) 하므로 공유 대시보드 Azure 리소스 그룹으로 구현 했습니다.  대부분의 hello 타일 hello 포털에 표시 되는 액세스 toohello 정보에 따라 관리 됩니다 [Azure 역할 기반 액세스 제어](../active-directory/role-based-access-control-configure.md)합니다. 액세스 제어 관점에서 공유 대시보드는 가상 컴퓨터 또는 저장소 계정과 차이가 없습니다.  
 
-Azure 구독을 보유하고 구독의 **소유자**, **참여자** 또는 **읽기 권한자** 역할에 할당된 팀의 구성원이 있다고 가정해 보겠습니다.  소유자 또는 참여자인 사용자는 해당 구독 내에서 대시보드를 나열, 보기, 만들기, 수정 또는 삭제할 수 있습니다.  읽기 권한자인 사용자는 대시보드를 나열 및 볼 수 있지만 수정 또는 삭제할 수 없습니다.  읽기 권한자 액세스를 보유한 사용자는 공유 대시보드에 대한 로컬 편집을 만들 수 있지만 해당 변경 내용을 서버로 다시 게시할 수 없습니다.  그러나 사용하기 위해 대시보드의 개인 복사본을 만들 수 있습니다.  늘 그렇듯이 대시보드의 개별 타일은 해당하는 리소스에 따라 고유한 액세스 제어 규칙을 적용합니다.  
+Azure 구독이 있어야 하 고 팀 멤버의 hello 역할 할당 된 가정해 **소유자**, **참가자**, 또는 **판독기** hello 구독 합니다.  소유자 또는 참가자 인 사용자는 수 toolist, 보기, 만들기, 수정 또는 해당 구독 내에서 대시보드를 삭제 합니다.  판독기 인 사용자 수 toolist 및 view 대시보드는 있지만 수정 또는 삭제할 수 없습니다.  판독기 액세스 권한이 있는 사용자 수 toomake 로컬 편집 내용을 tooa 공유 대시보드, 있지만 이러한 변경 내용을 다시 toohello 서버 수 없습니다. toopublish 않습니다.  그러나 자신의 용도 대 한 hello 대시보드의 전용 복사본을 내릴 수 있습니다.  늘 그렇듯이 hello 대시보드에서 각 타일에 해당 하는 hello 리소스에 따라 자신의 액세스 제어 규칙을 적용 합니다.  
 
-편의를 위해 포털의 게시 환경에서는 **대시보드**라는 리소스 그룹에 대시보드를 배치한 위치의 패턴을 안내합니다.  
+Hello 포털의 대시보드 리소스 그룹에 배치 하는 위치 패턴이 쪽으로 호출한 환경 가이드 편의 위해 게시 **대시보드**합니다.  
 
 ![대시보드 게시](./media/azure-portal-dashboards/publish-dashboard.png)
 
-또한 특정 리소스 그룹에 대시보드를 게시할 수 있습니다.  해당 대시보드에 대한 액세스 제어는 리소스 그룹에 대한 액세스 제어와 일치합니다.  해당 리소스 그룹에서 리소스를 관리할 수 있는 사용자는 대시보드에도 액세스 권한이 있습니다.
+또한 대시보드 tooa 특정 리소스 그룹 toopublish를 선택할 수 있습니다.  해당 대시보드에 대 한 액세스 제어 hello hello 리소스 그룹에 대 한 액세스 제어 hello와 일치합니다.  해당 리소스 그룹의 hello 리소스를 관리할 수 있는 사용자가 액세스 toohello 대시보드를 갖게 됩니다.
 
-![리소스 그룹에 대시보드 게시](./media/azure-portal-dashboards/publish-to-resource-group.png)
+![대시보드 tooresource 그룹 게시](./media/azure-portal-dashboards/publish-to-resource-group.png)
 
-대시보드를 게시한 후에 **공유 + 액세스** 제어 창이 새로 고쳐지고 대시보드에 대한 사용자 액세스를 관리하는 링크를 포함하여 게시된 대시보드에 대한 정보를 보여 줍니다.  이 링크는 Azure 리소스에 대한 액세스를 관리하는 데 사용되는 표준 역할 기반 액세스 제어 블레이드를 시작합니다.  언제든지 **공유**를 선택하여 이 보기로 돌아올 수 있습니다.
+대시보드를 게시 한 후 hello **공유 + 액세스** 제어 창 새로 고침 되며 hello 게시 된 대시보드를 링크 toomanage 사용자 액세스 toohello 대시보드 포함 하는 방법에 대 한 정보를 보여 줍니다.  이 링크는 hello 표준 역할 기반 액세스 제어 사용 블레이드 toomanage에 대 한 액세스 모든 Azure 리소스를 시작합니다.  돌아갈 수 있습니다 항상 toothis 보기를 선택 하 여 **공유**합니다.
 
 ![액세스 제어 관리](./media/azure-portal-dashboards/manage-access.png)
 
 ## <a name="next-steps"></a>다음 단계
-* 리소스를 관리하려면 [포털을 통한 Azure 리소스 관리](../azure-resource-manager/resource-group-portal.md)를 참조하세요.
-* 리소스를 배포하려면 [Resource Manager 템플릿 및 Azure Portal을 사용하여 리소스 배포](../azure-resource-manager/resource-group-template-deploy-portal.md)를 참조하세요.
+* toomanage 리소스 참조 [포털을 통해 관리 하는 Azure 리소스](../azure-resource-manager/resource-group-portal.md)합니다.
+* toodeploy 리소스 참조 [리소스 관리자 템플릿 및 Azure 포털을 사용 하 여 리소스를 배포](../azure-resource-manager/resource-group-template-deploy-portal.md)합니다.
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure 앱 서비스에서 웹 앱 구성"
-description: "Azure 앱 서비스에서 웹 앱을 구성 하는 방법"
+title: "Azure 앱 서비스의 aaaConfigure 웹 응용 프로그램"
+description: "어떻게 tooconfigure Azure 앱 서비스의 웹 앱"
 services: app-service\web
 documentationcenter: 
 author: rmcmurray
@@ -14,114 +14,114 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: cacbcf879555907f81d824dc1069b05579dca010
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8697ab6f21cfeb470e11f0d82c68692d43142fc5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-web-apps-in-azure-app-service"></a>Azure 앱 서비스에서 웹 앱 구성
-이 항목에서는 [Azure Portal]을 사용하여 웹앱을 구성하는 방법을 설명합니다.
+이 항목에서는 방법을 사용 하 여 웹 응용 프로그램 tooconfigure hello 설명 [Azure 포털]합니다.
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="application-settings"></a>응용 프로그램 설정
-1. [Azure Portal]에서, 웹 앱에 대한 블레이드를 엽니다.
+1. Hello에 [Azure 포털]열고 hello 웹 앱에 대 한 hello 블레이드입니다.
 2. **모든 설정**을 클릭합니다
 3. **응용 프로그램 설정**을 클릭합니다.
 
 ![응용 프로그램 설정][configure01]
 
-**응용 프로그램 설정** 블레이드 설정이 여러 범주 아래에 그룹화됩니다.
+hello **응용 프로그램 설정** 블레이드는 여러 범주로 그룹화 된 설정 합니다.
 
 ### <a name="general-settings"></a>일반 설정
 **프레임워크 버전**. 앱에서 다음 프레임워크를 사용하는 경우 이러한 옵션을 설정합니다. 
 
-* **.NET Framework**: .NET Framework 버전을 설정합니다. 
-* **PHP**: PHP 버전을 설정하거나 PHP를 사용하지 않으려면 **끄기**를 선택합니다. 
-* **Java**: Java 버전을 선택하거나 Java를 사용하지 않도록 **끄기**를 선택합니다. **웹 컨테이너** 옵션을 사용하여 Tomcat 및 Jetty 버전 사이에서 선택합니다.
-* **Python**: Python 버전을 설정하거나, Python을 사용하지 않도록 설정하려면 **끄기**를 선택합니다.
+* **.NET framework**: 집합 hello.NET framework 버전입니다. 
+* **PHP**: 집합 hello PHP 버전 또는 **OFF** toodisable PHP 합니다. 
+* **Java**: 선택 hello Java 버전 또는 **OFF** toodisable Java 합니다. 사용 하 여 hello **웹 컨테이너** Tomcat 및 Jetty 버전 간의 toochoose 옵션입니다.
+* **Python**: 선택 hello Python 버전 또는 **OFF** toodisable Python 합니다.
 
-기술적인 이유로, 앱에 Java를 사용하도록 설정하면 .NET, PHP 및 Python 옵션은 사용하지 않도록 설정됩니다.
+기술적인 이유로 Java 앱에 대 한 사용할 hello.NET, PHP 및 Python 옵션이 없습니다.
 
 <a name="platform"></a>
-**플랫폼**. 응용 프로그램이 32비트 또는 64비트 환경에서 실행되는지 선택합니다. 64비트 환경에는 기본 또는 표준 모드가 필요합니다. 무료 및 공유 모드는 항상 32비트 환경에서 실행됩니다.
+**플랫폼**. 응용 프로그램이 32비트 또는 64비트 환경에서 실행되는지 선택합니다. hello 64 비트 환경에 기본 또는 표준 모드가 필요합니다. 무료 및 공유 모드는 항상 32비트 환경에서 실행됩니다.
 
-**웹 소켓**. WebSocket 프로토콜을 사용하도록 설정하려면 **켜기**를 설정합니다. 예를 들어 [ASP.NET SignalR] 또는 [socket.io]를 사용하는 경우가 여기에 해당합니다.
+**웹 소켓**. 설정 **ON** tooenable hello WebSocket 프로토콜 예: 웹 앱을 사용 하는 경우 [ASP.NET SignalR] 또는 [socket.io]합니다.
 
 <a name="alwayson"></a>
-**Always On**. 기본적으로 웹 앱은 일정 기간 동안 유휴 상태인 경우 언로드됩니다. 이를 통해 시스템 리소스가 절약됩니다. 기본 또는 표준 모드에서는 **Always On**을 사용하도록 설정하여 앱을 항상 로드된 상태로 유지할 수 있습니다. 앱에서 연속 WebJobs를 실행하거나 CRON 식을 사용하여 트리거되는 WebJobs를 실행하는 경우 **Always On**을 사용하도록 설정해야 합니다. 그러지 않으면 웹 작업이 안정적으로 실행되지 않을 수 있습니다.
+**Always On**. 기본적으로 웹 앱은 일정 기간 동안 유휴 상태인 경우 언로드됩니다. Hello 시스템을 리소스를 절약할 수 있습니다. 기본 또는 표준 모드에서는 사용할 수 있습니다 **Always On** tookeep hello 응용 프로그램이 항상 hello를 로드 합니다. 연속 Webjob을 실행 하는 응용 프로그램 또는 CRON 식을 사용 하 여 WebJobs 실행 발생, 설정 해야 하는 경우 **Always On**, 또는 hello 웹 작업이 안정적으로 실행 되지 않을 수 있습니다.
 
-**관리되는 파이프라인 버전**. IIS [파이프라인 모드]를 설정합니다. 이전 버전의 IIS가 필요한 레거시 앱이 없으면 통합(기본값)으로 설정된 상태로 그대로 둡니다.
+**관리되는 파이프라인 버전**. 집합 hello IIS [파이프라인 모드]합니다. 둡니다 이전 버전의 IIS 필요로 하는 레거시 앱이 있는 경우가 아니면이 tooIntegrated (hello 기본값)를 설정 합니다.
 
-**자동 교체**. 배포 슬롯에 대한 자동 교체를 사용 하는 경우, 업데이트를 해당 슬롯에 푸시하면 앱 서비스는 자동으로 웹 앱을 프로덕션으로 교체합니다. 자세한 내용은 [Azure 앱 서비스에서 웹 앱에 대한 스테이징 슬롯에 배포](web-sites-staged-publishing.md)를 참조하세요.
+**자동 교체**. 배포 슬롯에 대 한 자동 전환을 사용 하도록 설정 하면 앱 서비스를 자동으로 바꾸어 hello 웹 응용 프로그램 프로덕션 환경으로 업데이트 toothat 슬롯을 푸시할 때 합니다. 자세한 내용은 참조 [toostaging 슬롯 Azure 앱 서비스의 웹 앱에 대 한 배포](web-sites-staged-publishing.md)합니다.
 
 ### <a name="debugging"></a>디버그
-**원격 디버깅**. 원격 디버깅을 사용하도록 설정합니다. 사용하도록 설정되면 Visual Studio에서 원격 디버거를 사용하여 웹 앱에 바로 연결할 수 있습니다. 원격 디버깅은 48시간 동안 사용 가능한 상태로 유지됩니다. 
+**원격 디버깅**. 원격 디버깅을 사용하도록 설정합니다. Hello 원격 디버거 tooyour 웹 앱을 직접 사용 하도록 설정 하면 Visual Studio tooconnect에서 사용할 수 있습니다. 원격 디버깅은 48시간 동안 사용 가능한 상태로 유지됩니다. 
 
 ### <a name="app-settings"></a>앱 설정
 이 섹션에는 시작 시 웹 앱이 로드하는 이름/값 쌍을 포함합니다. 
 
 * .NET 앱의 경우, 이 설정은 런타임 시 .NET 구성 `AppSettings`으로 주입되어 기존 설정을 재정의합니다. 
-* PHP, Python, Java 및 Node 응용 프로그램에서는 런타임에 환경 변수로 이러한 설정에 액세스할 수 있습니다. 각 앱 설정에 대해 두 개의 환경 변수가 만들어집니다. 하나는 앱 설정 항목에 의해 이름이 지정되고, 다른 하나는 이름에 APPSETTING_ 접두사가 붙습니다. 둘 다 같은 값을 포함합니다.
+* PHP, Python, Java 및 Node 응용 프로그램에서는 런타임에 환경 변수로 이러한 설정에 액세스할 수 있습니다. 각 응용 프로그램 설정에 대해 두 개의 환경 변수 만들어집니다. hello 지정 된 이름의 hello 응용 프로그램 설정 항목 및 APPSETTING_의 접두사와 함께 다른 하나입니다. 둘 다 포함 hello 동일한 값입니다.
 
 ### <a name="connection-strings"></a>연결 문자열
 연결된 리소스의 연결 문자열입니다. 
 
-.NET 앱의 경우, 이 연결 문자열이 런타임 시 .NET 구성 `connectionStrings` 설정에 주입되어 키가 연결된 데이터베이스 이름과 같은 기존 항목을 재정의합니다. 
+.NET 응용 프로그램에 대 한이 연결 문자열은.NET 구성에 삽입 `connectionStrings` hello 키가 동일한 기존 항목을 재정의 하는 런타임 시 설정 hello 연결 된 데이터베이스 이름입니다. 
 
-PHP, Python, Java 및 Node 응용 프로그램에서는 런타임에 이러한 설정을 환경 변수로 사용할 수 있으며, 환경 변수 앞에는 연결 형식이 옵니다. 환경 변수 접두사는 다음과 같습니다. 
+PHP, Python, Java 및 노드 응용 프로그램의 경우 이러한 설정이 hello 연결 유형 접두사로 런타임 시 환경 변수로 사용 됩니다. hello 환경 변수 접두사는 다음과 같습니다. 
 
 * SQL Server: `SQLCONNSTR_`
 * MySQL: `MYSQLCONNSTR_`
 * SQL 데이터베이스: `SQLAZURECONNSTR_`
 * 사용자 지정: `CUSTOMCONNSTR_`
 
-예를 들어 MySql 연결 문자열 이름이 `connectionstring1`로 지정된 경우 환경 변수 `MYSQLCONNSTR_connectionString1`을 통해 액세스될 수 있습니다.
+MySql 연결 문자열 이름이 지정 된 경우 등 `connectionstring1`, hello 환경 변수를 통해 액세스 됩니다 `MYSQLCONNSTR_connectionString1`합니다.
 
 ### <a name="default-documents"></a>기본 문서
-기본 문서는 웹 사이트의 루트 URL에 표시되는 웹 페이지입니다.  목록에서 첫 번째로 일치되는 파일이 사용됩니다. 
+hello 기본 문서는 웹 사이트에 대 한 hello 루트 URL에 표시 되는 hello 웹 페이지입니다.  hello hello 목록에서 첫 번째 일치 하는 파일 사용 됩니다. 
 
 웹 앱에서는 정적 콘텐츠를 제공하는 대신 URL을 기반으로 라우팅되는 모듈을 사용할 수 있으며, 이 경우에도 기본 문서는 없습니다.    
 
 ### <a name="handler-mappings"></a>처리기 매핑
-이 영역을 사용하여 사용자 지정 스크립트 프로세서를 추가해 특정 파일 확장명에 대한 요청을 처리할 수 있습니다. 
+이 영역 tooadd 사용자 지정 스크립트 프로세서 toohandle 요청을 사용 하 여 특정 파일 확장명에 대 한 합니다. 
 
-* **확장명**. 처리할 파일 확장명입니다(예: *.php 또는 handler.fcgi). 
-* **스크립트 프로세서 경로**. 스크립트 프로세서의 절대 경로입니다. 파일 확장명과 일치하는 파일에 대한 요청이 스크립트 프로세서에서 처리됩니다. 경로 `D:\home\site\wwwroot` 를 사용하여 앱의 루트 디렉터리를 참조합니다.
-* **추가 인수**. 스크립트 프로세서에 대한 선택적 명령줄 인수입니다. 
+* **확장명**. 예: *.php 또는 handler.fcgi hello 파일 확장명 toobe 처리합니다. 
+* **스크립트 프로세서 경로**. hello hello 스크립트 프로세서의 절대 경로입니다. Hello 파일 확장명과 일치 하는 요청 toofiles hello 스크립트 프로세서에 의해 처리 됩니다. Hello 경로 사용 `D:\home\site\wwwroot` toorefer tooyour 응용 프로그램의 루트 디렉터리입니다.
+* **추가 인수**. Hello 스크립트 프로세서에 대 한 선택적인 명령줄 인수 
 
 ### <a name="virtual-applications-and-directories"></a>가상 응용 프로그램 및 디렉터리
-가상 응용 프로그램 및 디렉터리를 구성하려면 각 가상 디렉터리 및 웹 사이트 루트에 상대적인 실제 경로를 지정합니다. 경우에 따라 **응용 프로그램** 확인란을 선택하여 가상 디렉터리를 응용 프로그램으로 표시할 수 있습니다.
+tooconfigure 가상 응용 프로그램 및 디렉터리의 경우 각 가상 디렉터리와 그에 해당 하는 실제 경로 상대 toohello 웹 사이트 루트를 지정 합니다. 필요에 따라 hello를 선택할 수 있습니다 **응용 프로그램** 확인란 toomark 응용 프로그램으로 가상 디렉터리입니다.
 
 ## <a name="enabling-diagnostic-logs"></a>진단 로그를 사용하도록 설정
-진단 로그를 사용하도록 설정하려면:
+tooenable 진단 로그:
 
-1. 웹 앱의 블레이드에서 **모든 설정**을 클릭합니다.
+1. 웹 앱에 대 한 hello 블레이드에서 클릭 **모든 설정을**합니다.
 2. **진단 로그**를 클릭합니다. 
 
 로깅을 지원하는 웹 응용 프로그램의 진단 정보를 기록하는 옵션입니다. 
 
-* **응용 프로그램 로깅**. 파일 시스템에 응용 프로그램 로그를 기록합니다. 로깅은 12시간 동안 유지됩니다. 
+* **응용 프로그램 로깅**. Toohello 파일 시스템 응용 프로그램 로그를 기록합니다. 로깅은 12시간 동안 유지됩니다. 
 
-**수준**. 응용 프로그램 로깅을 사용하도록 설정하면 이 옵션은 기록될 정보의 양(오류, 경고, 정보 또는 세부 정보 표시)을 지정합니다.
+**수준**. 응용 프로그램 로깅을 사용 하는 경우이 옵션 hello 기록 된 (오류, 경고, 정보 또는 Verbose) 되는 정보의 양을 지정 합니다.
 
-**웹 서버 로깅**. 로그는 W3C 확장 로그 파일 형식으로 저장됩니다. 
+**웹 서버 로깅**. 로그는 hello W3C 확장된 로그 파일 형식에 저장 됩니다. 
 
-**자세한 오류 메시지**. 자세한 오류 메시지는.htm 파일로 저장됩니다. 이 파일은 /LogFiles/DetailedErrors 아래 저장됩니다. 
+**자세한 오류 메시지**. 자세한 오류 메시지는.htm 파일로 저장됩니다. hello 파일 /LogFiles/DetailedErrors 아래 저장 됩니다. 
 
-**실패한 요청 추적**. 로그는 XML 파일에 대해 요청하지 못했습니다. 파일은 /LogFiles/W3SVC*xxx*(여기서 xxx는 고유 식별자) 아래에 저장됩니다. 이 폴더에는 하나의 XSL 파일 및 하나 이상의 XML 파일이 포함되어 있습니다. XSL 파일은 XML 파일 내용의 서식을 지정하고 필터링하는 기능을 제공하므로 XSL 파일을 다운로드해야 합니다.
+**실패한 요청 추적**. 로그 요청 tooXML 파일에 실패 했습니다. hello 파일 저장 된/로그 파일이/W3SVC*xxx*여기서 xxx는 고유 식별자입니다. 이 폴더에는 하나의 XSL 파일 및 하나 이상의 XML 파일이 포함되어 있습니다. 서식을 지정 하 고 hello XML 파일의 내용을 hello 필터링 기능을 제공 하기 때문에 있는지 toodownload hello XSL 파일을 확인 합니다.
 
-로그 파일을 보려면 다음과 같이 FTP 자격 증명을 만들어야 합니다.
+tooview hello 로그 파일을 만들어야 합니다 FTP 자격 증명 다음과 같습니다.
 
-1. 웹 앱의 블레이드에서 **모든 설정**을 클릭합니다.
+1. 웹 앱에 대 한 hello 블레이드에서 클릭 **모든 설정을**합니다.
 2. **배포 자격 증명**을 클릭합니다.
 3. 사용자 이름 및 암호를 입력합니다.
 4. **Save**를 클릭합니다.
 
 ![배포 자격 증명 설정][configure03]
 
-전체 FTP 사용자 이름은 “app\username”이며, 여기서 *app*은 사용자의 웹앱 이름입니다. 사용자 이름은 **필수 항목**아래 웹 앱 블레이드에 나열되어 있습니다.  
+hello 전체 FTP 사용자 이름이 "app\username" 여기서 *앱* hello 웹 응용 프로그램 이름입니다. hello 사용자 이름에에서 나열 된 hello 웹 앱 블레이드 아래 **Essentials**합니다.  
 
 ![FTP 배포 자격 증명][configure02]
 
@@ -129,26 +129,26 @@ PHP, Python, Java 및 Node 응용 프로그램에서는 런타임에 이러한 �
 ### <a name="ssl"></a>SSL
 기본 또는 표준 모드에서는 사용자 지정 도메인에 대해 SSL 인증서를 업로드할 수 있습니다. 자세한 내용은 [웹 앱에 대한 HTTPS 사용]을 참조하세요. 
 
-업로드된 인증서를 보려면 **모든 설정** > **사용자 지정 도메인 및 SSL**을 사용하여 웹앱을 구성하는 방법을 설명합니다.
+tooview 업로드 된 인증서를 클릭 하 여 **모든 설정을** > **사용자 지정 도메인 및 SSL**합니다.
 
 ### <a name="domain-names"></a>도메인 이름
 웹 앱에 대한 사용자 지정 도메인 이름을 추가합니다. 자세한 내용은 [Azure 앱 서비스에서 웹 앱에 대한 사용자 지정 도메인 이름 구성]을 참조하세요.
 
-도메인 이름을 보려면 **모든 설정** > **사용자 지정 도메인 및 SSL**을 사용하여 웹앱을 구성하는 방법을 설명합니다.
+tooview 도메인 이름, 클릭 **모든 설정을** > **사용자 지정 도메인 및 SSL**합니다.
 
 ### <a name="deployments"></a>배포
-* 연속 배포를 설정합니다. [Azure App Service에서 Web Apps 배포를 위해 Git 사용](web-sites-deploy.md)을 참조하세요.
-* 배포 슬롯입니다. [Azure 앱 서비스에서 웹앱에 대한 스테이징 환경으로 배포]를 참조하세요.
+* 연속 배포를 설정합니다. 참조 [Git를 사용 하 여 toodeploy Azure 앱 서비스에서 웹 앱](web-sites-deploy.md)합니다.
+* 배포 슬롯입니다. 참조 [tooStaging 환경을 Azure 앱 서비스의 웹 앱에 대 한 배포]합니다.
 
-배포 슬롯을 보려면 **모든 설정** > **배포 슬롯**을 사용하여 웹앱을 구성하는 방법을 설명합니다.
+tooview 배포 슬롯을 클릭 하 여 **모든 설정을** > **배포 슬롯**합니다.
 
 ### <a name="monitoring"></a>모니터링
-기본 또는 표준 모드에서는 지리적으로 분산된 최대 세 곳의 HTTP 또는 HTTPS 끝점에 대한 가용성을 테스트할 수 있습니다. HTTP 응답 코드가 오류(4xx 또는 5xx)이거나 응답에 30초 넘게 걸리는 경우 모니터링 테스트가 실패합니다. 지정된 모든 위치에서 모니터링 테스트가 성공하는 경우 끝점은 사용 가능한 것으로 간주됩니다. 
+기본 또는 표준 모드에서 HTTP 또는 HTTPS 끝점의 가용성을 hello toothree 지리적으로 분산 된 위치를 테스트할 수 있습니다. Hello HTTP 응답 코드는 오류 (4xx 또는 5xx) 이거나 hello 응답 하는 데 30 초 이상 모니터링 테스트가 실패 합니다. 끝점에서 모든 hello 모니터링 테스트가 성공 하는 경우 사용할 수 있는 것으로 간주 됩니다 hello 위치를 지정 합니다. 
 
 자세한 내용은 [방법: 웹 끝점 모니터링]을 참조하세요.
 
 > [!NOTE]
-> Azure 계정을 등록하기 전에 Azure App Service를 시작하려면 [App Service 체험]으로 이동합니다. App Service에서 단기 스타터 웹앱을 즉시 만들 수 있습니다. 신용 카드는 필요하지 않으며 약정도 필요하지 않습니다.
+> Tooget Azure 계정에 등록 하기 전에 Azure 앱 서비스를 시작 하려는 경우 너무 이동[앱 서비스 시도]앱 서비스의 수명이 짧은 스타터 웹 응용 프로그램 즉시 만들 수 있는, 합니다. 신용 카드는 필요하지 않으며 약정도 필요하지 않습니다.
 > 
 > 
 
@@ -161,16 +161,16 @@ PHP, Python, Java 및 Node 응용 프로그램에서는 런타임에 이러한 �
 <!-- URL List -->
 
 [ASP.NET SignalR]: http://www.asp.net/signalr
-[Azure Portal]: https://portal.azure.com/
+[Azure 포털]: https://portal.azure.com/
 [Azure 앱 서비스에서 사용자 지정 도메인 이름 구성]: ./app-service-web-tutorial-custom-domain.md
-[Azure 앱 서비스에서 웹앱에 대한 스테이징 환경으로 배포]: ./web-sites-staged-publishing.md
+[tooStaging 환경을 Azure 앱 서비스의 웹 앱에 대 한 배포]: ./web-sites-staged-publishing.md
 [Azure 앱 서비스에서 앱에 대한 HTTPS를 사용하도록 설정]: ./app-service-web-tutorial-custom-ssl.md
 [방법: 웹 끝점 모니터링]: http://go.microsoft.com/fwLink/?LinkID=279906
 [Azure 앱 서비스에서 웹 앱에 대한 기본 사항 모니터링]: ./web-sites-monitor.md
 [파이프라인 모드]: http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture#Application
 [Azure 앱 서비스에서 웹 앱 크기 조정]: ./web-sites-scale.md
 [socket.io]: ./web-sites-nodejs-chat-app-socketio.md
-[App Service 체험]: https://azure.microsoft.com/try/app-service/
+[앱 서비스 시도]: https://azure.microsoft.com/try/app-service/
 
 <!-- IMG List -->
 

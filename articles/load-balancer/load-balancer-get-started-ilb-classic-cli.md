@@ -1,6 +1,6 @@
 ---
-title: "내부 부하 분산 장치 만들기 - Azure CLI 클래식 | Microsoft Docs"
-description: "Azure CLI를 사용하여 클래식 배포 모델에서 내부 부하 분산 장치를 만드는 방법에 대해 알아봅니다."
+title: "클래식 Azure CLI aaaCreate는 내부 부하 분산 장치-| Microsoft Docs"
+description: "Hello 클래식 배포 모델에서 사용 하 여 내부 부하 분산 장치 toocreate Azure CLI hello 하는 방법을 알아봅니다"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: d24b95f75b5ffd1116b07cf9f8bac33767a9c835
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ef29dfda5f7a75a411bbabe8b688a31c6bf81113
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-creating-an-internal-load-balancer-classic-using-the-azure-cli"></a>Azure CLI를 사용하여 내부 부하 분산 장치(클래식) 만들기 시작
+# <a name="get-started-creating-an-internal-load-balancer-classic-using-hello-azure-cli"></a>내부 부하 분산 장치 (클래식) hello Azure CLI를 사용 하 여 만들기 시작
 
 > [!div class="op_single_selector"]
 > * [PowerShell](../load-balancer/load-balancer-get-started-ilb-classic-ps.md)
@@ -31,24 +31,24 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!IMPORTANT]
-> Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../azure-resource-manager/resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다.  이 문서에서는 클래식 배포 모델 사용에 대해 설명합니다. 새로운 배포는 대부분 리소스 관리자 모델을 사용하는 것이 좋습니다. [Resource Manager 모델을 사용하여 이러한 단계를 수행하는](load-balancer-get-started-ilb-arm-cli.md) 방법을 알아봅니다.
+> Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../azure-resource-manager/resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다.  이 문서에서는 hello 클래식 배포 모델을 사용 하 여 설명 합니다. 대부분의 새로운 배포 hello 리소스 관리자 모델을 사용 하는 것이 좋습니다. 너무 방법에 대해 알아봅니다[hello 리소스 관리자 모델을 사용 하 여 이러한 단계를 수행](load-balancer-get-started-ilb-arm-cli.md)합니다.
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
-## <a name="to-create-an-internal-load-balancer-set-for-virtual-machines"></a>가상 컴퓨터에 대한 내부 부하 분산 장치 집합 만들기
+## <a name="toocreate-an-internal-load-balancer-set-for-virtual-machines"></a>toocreate는 내부 부하 분산 장치 가상 컴퓨터에 대 한 설정
 
-내부 부하 분산 장치 집합과 이 집합으로 해당 트래픽을 전송할 서버를 만들려면 다음을 수행해야 합니다.
+수행 해야 합니다는 내부 부하 분산 장치 설정 하 고 해당 트래픽 tooit 보낼 서버 hello toocreate, hello 다음:
 
-1. 부하 분산 집합의 서버 간에 부하가 분산될 들어오는 트래픽의 끝점이 되는 내부 부하 분산의 인스턴스를 만듭니다.
-2. 들어오는 트래픽을 수신할 가상 컴퓨터에 해당하는 끝점을 추가합니다.
-3. 부하가 분산될 트래픽을 전송하는 서버가 해당 트래픽을 내부 부하 분산 인스턴스의 VIP(가상 IP) 주소로 전송하도록 구성합니다.
+1. 내부 부하 분산의 부하 분산 된 집합의 hello 서버에 걸쳐 분산 된 들어오는 트래픽 toobe 부하의 hello 끝점 수 있는 인스턴스를 만듭니다.
+2. Hello 들어오는 트래픽을 받게 되 toohello 가상 컴퓨터를 해당 끝점을 추가 합니다.
+3. 송신할 hello 트래픽 toobe 부하 분산 된 toosend 해당 트래픽을 toohello 가상 IP (VIP) 인스턴스의 주소 hello 내부 부하 분산 하는 hello 서버를 구성 합니다.
 
 ## <a name="step-by-step-creating-an-internal-load-balancer-using-cli"></a>CLI를 사용하여 내부 부하 분산 장치 만들기 단계별 지침
 
-이 가이드에서는 위의 시나리오에 따라 내부 부하 분산 장치를 만드는 방법을 보여 줍니다.
+이 가이드에서는 toocreate는 내부 부하 분산 장치에 따라 방법 위의 hello 시나리오를 보여 줍니다.
 
-1. Azure CLI를 처음 사용하는 경우 [Azure CLI 설치 및 구성](../cli-install-nodejs.md) 을 참조하고 Azure 계정 및 구독을 선택하는 부분까지 관련 지침을 따릅니다.
-2. 아래와 같이 **azure config mode** 명령을 실행하여 클래식 모드로 전환합니다.
+1. Azure CLI 처음 사용 하는 경우 참조 [설치 및 구성 hello Azure CLI](../cli-install-nodejs.md) Azure 계정 및 구독을 선택 하면 toohello 포인트 hello 지침을 따릅니다.
+2. Hello 실행 **azure 구성 모드** 아래와 같이 명령 tooswitch tooclassic 모드입니다.
 
     ```azurecli
     azure config mode asm
@@ -60,11 +60,11 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="create-endpoint-and-load-balancer-set"></a>끝점과 부하 분산 장치 집합 만들기
 
-시나리오는 "mytestcloud"라는 클라우드 서비스에 가상 컴퓨터 "DB1" 및 "DB2"가 있다고 가정합니다. 두 가상 컴퓨터는 서브넷 "subnet-1"과 함께 내 "testvnet"이라는 가상 네트워크를 사용합니다.
+hello 시나리오 hello에서에서 가상 컴퓨터 "DB1" 및 "DB2" "mytestcloud" 이라는 클라우드 서비스를 가정 합니다. 두 가상 컴퓨터는 서브넷 "subnet-1"과 함께 내 "testvnet"이라는 가상 네트워크를 사용합니다.
 
 이 가이드를 통해 개인 포트로 포트 1433과 로컬 포트로 포트 1433을 사용하여 내부 부하 분산 장치 집합을 만듭니다.
 
-이는 일반적인 시나리오로, 백 엔드의 SQL 가상 컴퓨터는 데이터베이스 서버가 공용 IP 주소를 사용하여 직접 노출되지 않는다는 것을 보장하기 위해 내부 부하 분산 장치를 사용합니다.
+SQL 가상 컴퓨터는 내부 부하 분산 장치 tooguarantee hello 데이터베이스 서버 공용 IP 주소를 사용 하 여 직접 노출 되지 않습니다 hello 백 엔드 사용에 있는 일반적인 시나리오입니다.
 
 ### <a name="step-1"></a>1단계
 
@@ -76,9 +76,9 @@ azure service internal-load-balancer add --serviceName mytestcloud --internalLBN
 
 자세한 내용은 `azure service internal-load-balancer --help` 를 확인하세요.
 
-`azure service internal-load-balancer list` *클라우드 서비스 이름*명령을 사용하여 내부 부하 분산 장치 속성을 확인할 수 있습니다.
+Hello 명령을 사용 하 여 hello 내부 부하 분산 장치 속성을 확인할 수 있습니다 `azure service internal-load-balancer list` *클라우드 서비스 이름*합니다.
 
-다음은 출력의 예입니다.
+여기 hello 출력의 예는 다음과 같습니다.
 
     azure service internal-load-balancer list my-testcloud
     info:    Executing command service internal-load-balancer list
@@ -91,7 +91,7 @@ azure service internal-load-balancer add --serviceName mytestcloud --internalLBN
 
 ### <a name="step-2"></a>2단계
 
-첫 번째 끝점을 추가할 때 내부 부하 분산 장치 집합을 구성합니다. 이 단계에서 끝점, 가상 컴퓨터 및 프로브 포트를 내부 부하 분산 장치 집합에 연결합니다.
+Hello 첫 번째 끝점을 추가할 때 설정 하는 hello 내부 부하 분산 장치를 구성 합니다. Hello 끝점, 가상 컴퓨터 및 프로브 포트 toohello 내부 부하 분산 집합에이 단계를 연결 합니다.
 
 ```azurecli
 azure vm endpoint create db1 1433 --local-port 1433 --protocol tcp --probe-port 1433 --probe-protocol tcp --probe-interval 300 --probe-timeout 600 --internal-load-balancer-name ilbset
@@ -99,13 +99,13 @@ azure vm endpoint create db1 1433 --local-port 1433 --protocol tcp --probe-port 
 
 ### <a name="step-3"></a>3단계
 
-`azure vm show` *가상 컴퓨터 이름*
+Hello 부하 분산 장치 사용 하 여 구성 확인 `azure vm show` *가상 컴퓨터 이름*
 
 ```azurecli
 azure vm show DB1
 ```
 
-다음과 같이 출력됩니다.
+hello 출력이 됩니다.
 
     azure vm show DB1
     info:    Executing command vm show
@@ -156,7 +156,7 @@ azure vm show DB1
 
 ## <a name="create-a-remote-desktop-endpoint-for-a-virtual-machine"></a>가상 컴퓨터를 위한 원격 데스크톱 끝점 만들기
 
-`azure vm endpoint create`을 사용하여 특정 가상 컴퓨터의 공용 포트에서 로컬 포트로 네트워크 트래픽을 전달하는 원격 데스크톱 끝점을 만들 수 있습니다.
+원격 데스크톱 끝점 tooforward 네트워크 트래픽을 사용 하 여 특정 가상 컴퓨터에 대 한 공용 포트 tooa 로컬 포트를 만들 수 있습니다 `azure vm endpoint create`합니다.
 
 ```azurecli
 azure vm endpoint create web1 54580 -k 3389
@@ -164,9 +164,9 @@ azure vm endpoint create web1 54580 -k 3389
 
 ## <a name="remove-virtual-machine-from-load-balancer"></a>부하 분산 장치에서 가상 컴퓨터 제거
 
-연결된 된 끝점을 삭제하여 내부 부하 분산 장치 집합에서 가상 컴퓨터를 제거할 수 있습니다. 끝점이 제거되면 가상 컴퓨터는 더 이상 부하 분산 장치 집합에 속하지 않습니다.
+연결 된 hello 끝점을 삭제 하 여 설정 하는 내부 부하 분산 장치에서 가상 컴퓨터를 제거할 수 있습니다. Hello 끝점 기능이 제거 되 면 hello 가상 컴퓨터가 부하 분산 집합을 더 이상을 toohello 속해 하지 않습니다.
 
-위의 예제를 통해 명령 `azure vm endpoint delete`를 사용하여 내부 부하 분산 장치 "lbset"에서 가상 컴퓨터 "DB1"을 위해 만들어진 끝점을 제거할 수 있습니다.
+위의 hello 예제를 사용 하 여에서 제거할 수 있습니다 "DB1" 가상 컴퓨터에 대해 만든 hello 끝점 내부 부하 분산 장치 "ilbset" hello 명령을 사용 하 여 `azure vm endpoint delete`합니다.
 
 ```azurecli
 azure vm endpoint delete DB1 tcp-1433-1433

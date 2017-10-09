@@ -1,6 +1,6 @@
 ---
-title: ".NET 백엔드를 통한 Azure 알림 허브의 사용자 알림"
-description: "Azure에서 보안 푸시 알림을 보내는 방법에 대해 알아봅니다. 코드 샘플은 .NET API를 사용하여 C#으로 작성되었습니다."
+title: ".NET 백 엔드와 aaaAzure 알림 허브 사용자에 게 알림"
+description: "어떻게 toosend 보안의 푸시 알림 Azure에 알아봅니다. Hello.NET API를 사용 하 여 C#으로 작성 된 코드 샘플입니다."
 documentationcenter: windows
 author: ysxu
 manager: erikre
@@ -14,32 +14,32 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: c0b963ef661612b1a176dd8e5f01d56e61eb5acb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a366181faa81e78adf4de61435ef2790c3aa29d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-notification-hubs-notify-users-with-net-backend"></a>.NET 백엔드를 통한 Azure 알림 허브의 사용자 알림
 [!INCLUDE [notification-hubs-selector-aspnet-backend-notify-users](../../includes/notification-hubs-selector-aspnet-backend-notify-users.md)]
 
 ## <a name="overview"></a>개요
-Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및 규모 확장 푸시 인프라에 액세스할 수 있어, 모바일 플랫폼용 소비자 응용 프로그램 및 엔터프라이즈 응용 프로그램 모두에 대한 푸시 알림을 매우 간단하게 구현할 수 있습니다. 이 자습서에서는 Azure 알림 허브를 사용하여 특정 장치에서 특정 앱 사용자에게 푸시 알림을 보내는 방법을 보여 줍니다. ASP.NET WebAPI 백 엔드는 클라이언트를 인증하는 데 사용 됩니다. 인증된 클라이언트 사용자를 사용하면 백 엔드에 의해 태그가 자동으로 알림 등록에 추가됩니다. 이 태그는 백 엔드에서 특정 사용자에 대해 알림을 생성하고 보내는 데 사용됩니다. 앱 백 엔드를 사용하여 알림에 등록하는 방법에 대한 자세한 내용은 지침 항목 [앱 백 엔드에서 등록](http://msdn.microsoft.com/library/dn743807.aspx)을 참조하세요. 이 자습서는 [알림 허브 시작] 자습서에서 만든 알림 허브 및 프로젝트를 기반으로 합니다.
+Azure의 푸시 알림 지원을 사용 하면 tooaccess는 사용 하기 쉬운, 다중 플랫폼, 및 수평 확장형 푸시 인프라를 모바일 앱을 위해 소비자 및 엔터프라이즈 응용 프로그램에 대 한 푸시 알림 hello 구현이 크게 간소화 플랫폼입니다. 이 자습서에서는 toouse Azure 알림 허브 toosend 특정 장치에서 알림을 tooa 특정 응용 프로그램 사용자를 강제 하는 방법을 보여 줍니다. ASP.NET WebAPI 백엔드 tooauthenticate 사용 되는 클라이언트입니다. Hello를 사용 하 여 클라이언트 사용자를 인증 하 고 hello 백 엔드 toonotification 등록 하 여 태그를 자동으로 추가 됩니다. 이 태그는 특정 사용자에 대 한 hello 백 엔드 toogenerate 알림에 의해 사용 되는 toosend 됩니다. Hello 지침 항목을 참조 하는 앱 백 엔드를 사용 하 여 알림에 등록 하는 방법에 대 한 자세한 내용은 [앱 백 엔드에서 등록](http://msdn.microsoft.com/library/dn743807.aspx)합니다. 이 자습서는 hello 알림 허브와 hello에서 만든 프로젝트에 빌드 [알림 허브 시작] 자습서입니다.
 
-이 자습서는 [보안 푸시] 자습서의 필수 조건이기도 합니다. 이 자습서의 단계를 완료해야 푸시 알림을 안전하게 보내도록 이 자습서의 코드를 수정하는 방법을 보여주는 [보안 푸시] 자습서를 진행할 수 있습니다.
+이 자습서는 또한 hello 필수 toohello [푸시 Secure] 자습서입니다. 이 자습서에서는 hello 단계를 완료 한 후 toohello 진행할 수 있습니다 [푸시 Secure] toomodify hello 코드가 방식이 자습서 toosend에 푸시 알림을 안전 하 게 보여 주는 자습서입니다.
 
 ## <a name="before-you-begin"></a>시작하기 전에
-사용자 의견을 진지하게 고려합니다. 이 항목을 완료하기가 어렵거나 이 콘텐츠를 개선할 사항이 있는 경우 페이지의 맨 아래에 의견을 보내주시면 감사하겠습니다.
+사용자 의견을 진지하게 고려합니다. 이 항목 또는이 콘텐츠를 개선 하기 위한 권장 사항을 완료 하는 데 문제가 있는 경우 hello hello 페이지 맨 아래에 사용자 의견 보내 주셔서 감사 합니다.
 
-이 자습서에 대해 완료된 코드는 GitHub의 [여기](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/NotifyUsers)서 찾을 수 있습니다. 
+이 자습서를 완료 하는 hello 코드 GitHub에서 확인할 수 있습니다 [여기](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/NotifyUsers)합니다. 
 
 ## <a name="prerequisites"></a>필수 조건
 이 자습서를 시작하려면 먼저 다음 모바일 서비스 자습서를 완료해야 합니다.
 
-* [알림 허브 시작]<br/>알림 허브를 만들고 앱 이름을 예약하고 이 자습서의 알림을 받도록 등록합니다. 이 자습서에서는 다음 단계를 이미 완료했다고 가정합니다. 그렇지 않은 경우 [Notification Hubs 시작(Windows 스토어)](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md), 특히 [Windows 스토어에 앱 등록](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md#register-your-app-for-the-windows-store) 및 [Notification Hub 구성](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md#configure-your-notification-hub) 섹션의 단계를 수행하세요. 특히 알림 허브의 **구성** 탭에서 포털의 **패키지 SID** 및 **클라이언트 암호** 값을 입력했어야 합니다. 이 구성 절차는 [Notification Hub 구성](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md#configure-your-notification-hub) 섹션에서 설명합니다. 이는 중요한 단계입니다. 포털의 자격 증명이 선택한 앱 이름에 대해 지정된 자격 증명과 일치하지 않으면 푸시 알림이 실패합니다.
+* [알림 허브 시작]<br/>알림 허브와 만들고 hello 응용 프로그램 이름 예약,이 자습서에서는 tooreceive 알림을 등록 합니다. 이 자습서에서는 다음 단계를 이미 완료했다고 가정합니다. 그렇지 않은 경우의 hello 단계를 수행 하십시오 [(Windows 스토어) 알림 허브 시작](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md), 특히 섹션 hello [hello Windows 스토어에 대 한 앱을 등록](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md#register-your-app-for-the-windows-store) 및 [구성 알림 허브](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md#configure-your-notification-hub)합니다. 특히 hello를 입력 했는지 확인 **패키지 SID** 및 **클라이언트 암호** hello 포털 hello에 대 한 값 **구성** 알림 허브에 대 한 탭 합니다. 이 구성 절차 hello 섹션에 설명 되어 [알림 허브 구성](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md#configure-your-notification-hub)합니다. 이 중요 한 단계: hello 포털에서 자격 증명 hello 일치 하지 않으면 지정 된 hello 앱 이름을 선택 하면에 대 한 푸시 알림 hello에 실패 합니다.
 
 > [!NOTE]
-> Azure App Service의 Mobile Apps를 백 엔드 서비스로 사용 중인 경우 이 자습서의 [Mobile Apps 버전](../app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md)을 참조하세요.
+> 백 엔드 서비스로 Azure 앱 서비스에서 모바일 앱을 사용 하는 경우 참조 hello [모바일 앱 버전](../app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md) 이 자습서의 합니다.
 > 
 > 
 
@@ -47,18 +47,18 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
 
 [!INCLUDE [notification-hubs-aspnet-backend-notifyusers](../../includes/notification-hubs-aspnet-backend-notifyusers.md)]
 
-## <a name="update-the-code-for-the-client-project"></a>클라이언트 프로젝트에 대한 코드 업데이트
-이 섹션에서는 [알림 허브 시작] 자습서에 대해 완료한 프로젝트의 코드를 업데이트합니다. 이미 저장소와 연결되어 알림 허브에 대해 구성되어 있어야 합니다. 이 섹션에서는 새 WebAPI 백 엔드를 호출할 코드를 추가하고, 알림을 등록하고 보내는 데 이 코드를 사용합니다.
+## <a name="update-hello-code-for-hello-client-project"></a>Hello 클라이언트 프로젝트에 대 한 hello 코드 업데이트
+Hello에 대 한 완료 하는 hello 프로젝트에서 hello 코드를 업데이트 하면이 섹션에서는 [알림 허브 시작] 자습서입니다. 이미 hello hello 저장소와 연결 된 고 알림 허브에 대해 구성 해야 합니다. 이 섹션에서는 코드 toocall hello 새 WebAPI 백 엔드를 추가 하 고 등록 하 고 알림을 보낼에 대 한 사용.
 
-1. Visual Studio에서 [알림 허브 시작] 자습서에 대해 만든 솔루션을 엽니다.
-2. 솔루션 탐색기에서 **(Windows 8.1)** 프로젝트를 마우스 오른쪽 단추로 클릭한 다음 **NuGet 패키지 관리**를 클릭합니다.
-3. 왼쪽에서 **온라인**을 클릭합니다.
-4. **검색** 상자에 **Http 클라이언트**를 입력합니다.
-5. 결과 목록에서 **Microsoft HTTP 클라이언트 라이브러리**를 클릭하고 **설치**를 클릭합니다. 설치를 완료합니다.
-6. 다시 NuGet **검색** 상자에 **Json.net**을 입력합니다. **Json.NET** 패키지를 설치하고 NuGet 패키지 관리자 창을 닫습니다.
-7. **(Windows Phone 8.1)** 프로젝트에 대해 위의 단계를 반복하여 Windows Phone 프로젝트에 대해 **JSON.NET** NuGet 패키지를 설치합니다.
-8. 솔루션 탐색기의 **(Windows 8.1)** 프로젝트에서 **MainPage.xaml**을 두 번 클릭하여 Visual Studio 편집기에서 엽니다.
-9. **MainPage.xaml** XML 코드에서 `<Grid>` 섹션을 다음 코드로 바꿉니다. 이 코드는 사용자가 인증하는 데 사용할 사용자 이름 및 암호 텍스트 상자를 추가합니다. 또한 알림 메시지 및 알림을 받을 사용자 이름 태그용 텍스트 상자도 추가합니다.
+1. Visual Studio에서 만든 hello에 대 한 hello hello 솔루션을 엽니다 [알림 허브 시작] 자습서입니다.
+2. 솔루션 탐색기에서 마우스 오른쪽 단추로 클릭 hello **(Windows 8.1)** 프로젝트를 마우스 클릭 **NuGet 패키지 관리**합니다.
+3. Hello 왼쪽에 클릭 **온라인**합니다.
+4. Hello에 **검색** 상자에서 입력 **Http 클라이언트**합니다.
+5. Hello 결과 목록에서 클릭 **Microsoft HTTP 클라이언트 라이브러리**, 클릭 하 고 **설치**합니다. Hello 설치를 완료 합니다.
+6. NuGet hello에 다시 **검색** 상자에서 입력 **Json.net**합니다. Hello 설치 **Json.NET** 패키지 및 종가 hello NuGet 패키지 관리자 창.
+7. Hello에 대 한 위의 hello 단계를 반복 **(Windows Phone 8.1)** 프로젝트 tooinstall hello **JSON.NET** hello Windows Phone 프로젝트에 대 한 NuGet 패키지 합니다.
+8. Hello의 솔루션 탐색기에서 **(Windows 8.1)** 두 번 클릭 **MainPage.xaml** tooopen hello Visual Studio 편집기에서.
+9. Hello에 **MainPage.xaml** XML 코드를 바꾸기 hello `<Grid>` 코드 다음 hello로 섹션. 이 코드를 추가 hello 사용자는 사용자 이름 및 암호 텍스트 상자에 인증 됩니다. 또한 hello 알림 메시지 및 hello 알림을 받아야 하는 hello username 태그에 대 한 입력란을 추가 합니다.
    
         <Grid>
             <Grid.RowDefinitions>
@@ -100,7 +100,7 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
                     <ToggleButton Name="toggleGCM" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" Content="GCM" />
                     <ToggleButton Name="toggleAPNS" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" Content="APNS" />
    
-                    <TextBlock Grid.Row="6" Grid.ColumnSpan="3" Text="Username Tag To Send To" FontSize="24" Margin="20,0,20,0"/>
+                    <TextBlock Grid.Row="6" Grid.ColumnSpan="3" Text="Username Tag tooSend To" FontSize="24" Margin="20,0,20,0"/>
                     <TextBox Name="ToUserTagTextBox" Grid.Row="7" Grid.ColumnSpan="3" Margin="20,0,20,0" TextWrapping="Wrap" />
                     <TextBlock Grid.Row="8" Grid.ColumnSpan="3" Text="Enter Notification Message" FontSize="24" Margin="20,0,20,0"/>
                     <TextBox Name="NotificationMessageTextBox" Grid.Row="9" Grid.ColumnSpan="3" Margin="20,0,20,0" TextWrapping="Wrap" />
@@ -108,10 +108,10 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
                 </Grid>
             </StackPanel>
         </Grid>
-10. 솔루션 탐색기의 **(Windows Phone 8.1)** 프로젝트에서 **MainPage.xaml**을 열고 Windows Phone 8.1 `<Grid>` 바꾸기 섹션을 위와 동일한 코드로 바꿉니다. 인터페이스는 아래 표시된 것과 유사합니다.
+10. Hello의 솔루션 탐색기에서 **(Windows Phone 8.1)** 프로젝트, 열기 **MainPage.xaml** 및 Windows Phone 8.1 hello 바꾸기 `<Grid>` 위의 같은 코드를 사용 하 여 섹션. hello 인터페이스 아래에 표시 된 유사한 toowhats 찾아야 합니다.
     
     ![][13]
-11. 솔루션 탐색기에서 **(Windows 8.1)** 및 **(Windows Phone 8.1)** 프로젝트의 **MainPage.xaml.cs** 파일을 엽니다. 두 파일의 맨 위에 다음 `using` 문을 추가합니다.
+11. 솔루션 탐색기에서 엽니다 hello **MainPage.xaml.cs** hello에 대 한 파일 **(Windows 8.1)** 및 **(Windows Phone 8.1)** 프로젝트. Hello 다음 추가 `using` hello 위쪽 두 파일의 문:
     
         using System.Net.Http;
         using Windows.Storage;
@@ -119,14 +119,14 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
         using Windows.Networking.PushNotifications;
         using Windows.UI.Popups;
         using System.Threading.Tasks;
-12. **(Windows 8.1)** 및 **(Windows Phone 8.1)** 프로젝트의 **MainPage.xaml.cs**에서 다음 멤버를 `MainPage` 클래스에 추가합니다. `<Enter Your Backend Endpoint>` 을 이전에 얻은 실제 백 엔드 끝점으로 바꿔야 합니다. 예: `http://mybackend.azurewebsites.net`
+12. **MainPage.xaml.cs** hello에 대 한 **(Windows 8.1)** 및 **(Windows Phone 8.1)** 프로젝트, 추가 멤버 toohello 다음 hello `MainPage` 클래스입니다. 수 있는지 tooreplace `<Enter Your Backend Endpoint>` hello로 실제 백 엔드 끝점 이전에 얻은 합니다. 예: `http://mybackend.azurewebsites.net`.
     
         private static string BACKEND_ENDPOINT = "<Enter Your Backend Endpoint>";
-13. **(Windows 8.1)** 및 **(Windows Phone 8.1)** 프로젝트의 **MainPage.xaml.cs**에서 아래 코드를 MainPage 클래스에 추가합니다.
+13. Hello에 toohello MainPage 클래스 아래에 코드 추가 **MainPage.xaml.cs** hello에 대 한 **(Windows 8.1)** 및 **(Windows Phone 8.1)** 프로젝트.
     
-    `PushClick` 메서드는 **Send Push(푸시 전송)** 단추의 클릭 처리기입니다. `to_tag` 매개 변수와 일치하는 사용자 이름 태그가 있는 모든 장치로 알림을 트리거하도록 백 엔드를 호출합니다. 알림 메시지는 요청 본문의 JSON 콘텐츠로 전송됩니다.
+    hello `PushClick` 메서드는 hello 클릭 hello에 대 한 처리기 **푸시 보낼** 단추입니다. Hello 백 엔드 tootrigger 알림 tooall hello와 일치 하는 사용자 이름 태그를 사용 하 여 장치 호출 `to_tag` 매개 변수입니다. hello 알림 메시지가 hello 요청 본문의 JSON 내용으로 전달 됩니다.
     
-    `LoginAndRegisterClick` 메서드는 **Log in and register(로그인 및 등록)** 단추의 클릭 처리기입니다. 기본 인증 토큰(이는 인증 체계에서 사용하는 모든 토큰을 나타냄)을 로컬 저장소에 저장하고 `RegisterClient` 를 사용하여 백 엔드가 사용되는 알림에 등록합니다.
+    hello `LoginAndRegisterClick` 메서드는 hello 클릭 hello에 대 한 처리기 **에 로그인 하 고 등록** 단추입니다. Hello basic 저장 로컬 저장소 (이 인증 체계를 사용 하는 모든 토큰 참고)에서 인증 토큰을 사용 하 여 `RegisterClient` tooregister hello 백 엔드를 사용 하 여 알림에 대 한 합니다.
 
         private async void PushClick(object sender, RoutedEventArgs e)
         {
@@ -162,7 +162,7 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
                 }
                 catch (Exception ex)
                 {
-                    MessageDialog alert = new MessageDialog(ex.Message, "Failed to send " + pns + " message");
+                    MessageDialog alert = new MessageDialog(ex.Message, "Failed toosend " + pns + " message");
                     alert.ShowAsync();
                 }
             }
@@ -174,12 +174,12 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
 
             var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
 
-            // The "username:<user name>" tag gets automatically added by the message handler in the backend.
-            // The tag passed here can be whatever other tags you may want to use.
+            // hello "username:<user name>" tag gets automatically added by hello message handler in hello backend.
+            // hello tag passed here can be whatever other tags you may want toouse.
             try
             {
-                // The device handle used will be different depending on the device and PNS. 
-                // Windows devices use the channel uri as the PNS handle.
+                // hello device handle used will be different depending on hello device and PNS. 
+                // Windows devices use hello channel uri as hello PNS handle.
                 await new RegisterClient(BACKEND_ENDPOINT).RegisterAsync(channel.Uri, new string[] { "myTag" });
 
                 var dialog = new MessageDialog("Registered as: " + UsernameTextBox.Text);
@@ -189,7 +189,7 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
             }
             catch (Exception ex)
             {
-                MessageDialog alert = new MessageDialog(ex.Message, "Failed to register with RegisterClient");
+                MessageDialog alert = new MessageDialog(ex.Message, "Failed tooregister with RegisterClient");
                 alert.ShowAsync();
             }
         }
@@ -205,17 +205,17 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
 
 
 
-1. 솔루션 탐색기의 **공유** 프로젝트 아래에서 **App.xaml.cs** 파일을 엽니다. `InitNotificationsAsync()` in the `OnLaunched()` 에 대한 호출을 찾습니다. `InitNotificationsAsync()`에 대한 호출을 주석으로 처리하거나 삭제합니다. 위에서 추가한 단추 처리기는 알림 등록을 초기화합니다.
+1. 솔루션 탐색기에서 hello **Shared** 프로젝트, 열기 hello **App.xaml.cs** 파일입니다. 너무 hello 호출을 찾으려면`InitNotificationsAsync()` hello에 `OnLaunched()` 이벤트 처리기입니다. 주석으로 처리 하거나 너무 hello 호출 삭제`InitNotificationsAsync()`합니다. hello 단추 처리기 위에 추가 알림 등록을 초기화 합니다.
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             //InitNotificationsAsync();
 
 
-1. 솔루션 탐색기에서 **공유** 프로젝트를 마우스 오른쪽 단추로 클릭하고 **추가**, **클래스**를 차례로 클릭합니다. 클래스 이름을 **RegisterClient.cs**로 지정하고 **확인**을 클릭하여 클래스를 생성합니다.
+1. 솔루션 탐색기에서 마우스 오른쪽 단추로 클릭 hello **Shared** 프로젝트를 선택한 다음 클릭 **추가**, 클릭 하 고 **클래스**합니다. Hello 클래스 이름을 **RegisterClient.cs**, 클릭 **확인** toogenerate hello 클래스입니다.
    
-   이 클래스는 푸시 알림에 등록하기 위해 앱 백 엔드에 접속하는 데 필요한 REST 호출을 래핑합니다. 또한 *앱 백 엔드에서 등록* 에 설명된 대로 알림 허브에서 생성된 [registrationId](http://msdn.microsoft.com/library/dn743807.aspx)를 로컬로 저장합니다. 이 구성 요소는 **로그인 및 등록** 단추를 클릭할 때 로컬 저장소에 저장된 인증 토큰을 사용합니다.
-2. RegisterClient.cs 파일의 맨 위에 다음 `using` 문을 추가합니다.
+   이 클래스에 푸시 알림을 순서 tooregister hello REST 호출 필요한 toocontact hello 앱 백 엔드를, 줄 바꿈됩니다. 또한 로컬로 hello 저장 *registrationIds* 알림 허브에 설명 된 대로 hello에서 만든 [앱 백 엔드에서 등록](http://msdn.microsoft.com/library/dn743807.aspx)합니다. Hello를 클릭할 때 로컬 저장소에 저장 하는 권한 부여 토큰을 사용 하 여 참고 **에 로그인 하 고 등록** 단추입니다.
+2. Hello 다음 추가 `using` hello RegisterClient.cs 파일의 맨 위에 hello에 문을:
    
        using Windows.Storage;
        using System.Net;
@@ -224,7 +224,7 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
        using Newtonsoft.Json;
        using System.Threading.Tasks;
        using System.Linq;
-3. 다음 코드를 `RegisterClient` 클래스 정의 내에 추가합니다.
+3. Hello hello 내부에서 코드를 다음 추가 `RegisterClient` 클래스 정의 합니다.
    
        private string POST_URL;
    
@@ -311,23 +311,23 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
        }
 4. 변경 내용을 모두 저장합니다.
 
-## <a name="testing-the-application"></a>응용 프로그램 테스트
-1. Windows 8.1 및 Windows Phone 8.1 모두에서 응용 프로그램을 시작합니다. Windows Phone 8.1의 경우 에뮬레이터 또는 실제 장치에서 인스턴스를 실행할 수 있습니다.
-2. 앱의 Windows 8.1 인스턴스에서 아래 화면에 표시된 것처럼 **사용자 이름** 및 **암호**를 입력합니다. Windows Phone에서 입력하는 사용자 이름 및 암호와 달라야 합니다.
-3. **Log in and register(로그인 및 등록)** 를 클릭하고 대화 상자에 로그인되었다고 표시되는지 확인합니다. 이렇게 하면 **Send Push(푸시 전송)** 단추도 사용하도록 설정됩니다.
+## <a name="testing-hello-application"></a>Hello 응용 프로그램 테스트
+1. Windows 8.1 및 Windows Phone 8.1 모두에 hello 응용 프로그램을 시작 합니다. Windows Phone 8.1에 대 한 hello 인스턴스 hello 에뮬레이터 나 실제 장치에서 실행할 수 있습니다.
+2. Hello 앱의 Windows 8.1 hello 인스턴스를 입력 한 **Username** 및 **암호** hello 화면 아래에 표시 된 대로 합니다. Hello 사용자 이름 및 Windows Phone 입력 한 암호가에서 다를 수는 것입니다.
+3. **Log in and register(로그인 및 등록)** 를 클릭하고 대화 상자에 로그인되었다고 표시되는지 확인합니다. 이렇게 하면 hello 사용도 **푸시 보낼** 단추입니다.
    
     ![][14]
-4. Windows Phone 8.1 인스턴스에서 **사용자 이름** 및 **암호** 필드 모두에 사용자 이름 문자열을 입력하고 **Log in and register(로그인 및 등록)**를 클릭합니다.
-5. 그런 다음 **받는 사람 사용자 이름 태그** 필드에 Windows 8.1에서 등록한 사용자 이름을 입력합니다. 알림 메시지를 입력하고 **Send Push(푸시 전송)**를 클릭합니다.
+4. Windows Phone 8.1 hello 인스턴스 두 hello에 사용자 이름 문자열로 입력 **Username** 및 **암호** 필드를 클릭 한 다음 **로그인 및 등록**합니다.
+5. Hello 그런 다음 **받는 사용자 이름 태그** 필드에, Windows 8.1 등록 하는 hello 사용자 이름을 입력 합니다. 알림 메시지를 입력하고 **Send Push(푸시 전송)**를 클릭합니다.
    
     ![][16]
-6. 일치하는 사용자 이름 태그로 등록된 장치만 이 알림 메시지를 받습니다.
+6. 일치 하는 사용자 이름 태그 hello 등록 hello 장치만 hello 알림 메시지가 표시 됩니다.
    
     ![][15]
 
 ## <a name="next-steps"></a>다음 단계
-* 사용자를 관심 그룹별로 분할하려면 [알림 허브를 사용하여 뉴스 속보 보내기](영문)를 참조하십시오.
-* 알림 허브에 대한 자세한 내용은 [알림 허브 지침]을 참조하십시오.
+* Toosegment 관심 그룹으로 사용자, 참조 [최신 뉴스 사용 하 여 알림 허브 toosend]합니다.
+* toouse 알림 허브 참조 하는 방법에 대 한 자세한 toolearn [알림 허브 지침]합니다.
 
 [9]: ./media/notification-hubs-aspnet-backend-windows-dotnet-notify-users/notification-hubs-secure-push9.png
 [10]: ./media/notification-hubs-aspnet-backend-windows-dotnet-notify-users/notification-hubs-secure-push10.png
@@ -342,6 +342,6 @@ Azure의 푸시 알림 지원을 통해 사용하기 쉬운 다중 플랫폼 및
 
 <!-- URLs. -->
 [알림 허브 시작]: notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
-[보안 푸시]: notification-hubs-aspnet-backend-windows-dotnet-wns-secure-push-notification.md
-[알림 허브를 사용하여 뉴스 속보 보내기]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
+[푸시 Secure]: notification-hubs-aspnet-backend-windows-dotnet-wns-secure-push-notification.md
+[최신 뉴스 사용 하 여 알림 허브 toosend]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
 [알림 허브 지침]: http://msdn.microsoft.com/library/jj927170.aspx

@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 스크립트 샘플 - Cosmos DB에 웹앱 연결 | Microsoft Docs"
-description: "Azure CLI 스크립트 샘플 - Cosmos DB에 웹앱 연결"
+title: "CLI 스크립트 샘플-aaaAzure 연결 웹 응용 프로그램 tooCosmos DB | Microsoft Docs"
+description: "Azure CLI 스크립트 예제-웹 응용 프로그램 tooCosmos DB 연결"
 services: appservice
 documentationcenter: appservice
 author: syntaxc4
@@ -16,15 +16,15 @@ ms.workload: web
 ms.date: 06/19/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: ff5e7a794033cc51120831e09b055a86affb28a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1f2123378b9d5812fa793730f7fa5a5bc9ab63c1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-a-web-app-to-cosmos-db"></a>웹앱을 Cosmos DB에 연결
+# <a name="connect-a-web-app-toocosmos-db"></a>웹 앱 tooCosmos DB에 연결
 
-이 시나리오에서는 Azure Cosmos DB 계정 및 Azure Web App을 만드는 방법을 알아봅니다. 그런 다음 앱 설정을 사용하여 Cosmos DB를 웹앱에 연결합니다.
+이 시나리오에서는 toocreate Azure Cosmos DB 계정 및 Azure 웹 앱에 방법을 배웁니다. 그런 다음 응용 프로그램 설정을 사용 하 여 hello Cosmos DB toohello 웹 앱을 연결할 됩니다.
 
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
@@ -32,7 +32,7 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 항목에서 Azure CLI 버전 2.0 이상을 실행해야 합니다. `az --version`을 실행하여 버전을 찾습니다. 설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요. 
+Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 항목 2.0 이상에 hello Azure CLI 버전을 실행 중인 필요 합니다. 실행 `az --version` toofind hello 버전입니다. Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다. 
 
 ## <a name="sample-script"></a>샘플 스크립트
 
@@ -42,19 +42,19 @@ CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 항목에서 
 
 ## <a name="script-explanation"></a>스크립트 설명
 
-이 스크립트는 다음 명령을 사용하여 리소스 그룹, 웹앱, Cosmos DB 및 모든 관련된 리소스를 만듭니다. 테이블에 있는 각 명령은 명령에 해당하는 문서에 연결됩니다.
+이 스크립트 명령 toocreate 리소스 그룹, 웹 응용 프로그램, Cosmos DB 및 관련 된 모든 리소스를 수행 하는 hello를 사용 합니다. Hello 테이블의 각 명령이 toocommand 특정 문서를 연결합니다.
 
 | 명령 | 참고 사항 |
 |---|---|
 | [az group create](https://docs.microsoft.com/cli/azure/group#create) | 모든 리소스가 저장되는 리소스 그룹을 만듭니다. |
 | [az appservice plan create](https://docs.microsoft.com/cli/azure/appservice/plan#create) | App Service 계획을 만듭니다. Azure 웹앱에 대한 서버 팜과 비슷합니다. |
 | [az webapp create](https://docs.microsoft.com/cli/azure/webapp#create) | Azure 웹앱을 만듭니다. |
-| [az cosmosdb create](https://docs.microsoft.com/en-us/cli/azure/cosmosdb#create) | Cosmos DB 계정을 만듭니다. 데이터가 저장될 위치입니다. |
-| [az cosmosdb list-keys](https://docs.microsoft.com/en-us/cli/azure/cosmosdb#list-keys) | 지정된 Cosmos DB 계정에 대한 선택키를 나열합니다. |
+| [az cosmosdb create](https://docs.microsoft.com/en-us/cli/azure/cosmosdb#create) | Cosmos DB 계정을 만듭니다. 이 hello 데이터가 저장 됩니다. |
+| [az cosmosdb list-keys](https://docs.microsoft.com/en-us/cli/azure/cosmosdb#list-keys) | Hello에 대 한 목록 hello 선택 키 Cosmos DB 계정을 지정 합니다. |
 | [az webapp config appsettings set](https://docs.microsoft.com/cli/azure/webapp/config/appsettings#set) | Azure 웹앱에 대한 앱 설정을 만들거나 업데이트합니다. 앱 설정은 앱에 대한 환경 변수로 노출됩니다. |
 
 ## <a name="next-steps"></a>다음 단계
 
-Azure CLI에 대한 자세한 내용은 [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)를 참조하세요.
+Azure CLI hello에 대 한 자세한 내용은 참조 하십시오. [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)합니다.
 
-추가 App Service CLI 스크립트 샘플은 [Azure App Service 설명서](../app-service-cli-samples.md)에서 확인할 수 있습니다.
+추가 응용 프로그램 서비스 CLI 스크립트 예제는 hello에서 확인할 수 있습니다 [Azure 앱 서비스 설명서](../app-service-cli-samples.md)합니다.

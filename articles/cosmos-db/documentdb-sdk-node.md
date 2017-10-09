@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB Node.js API, SDK 및 리소스 | Microsoft Docs"
-description: "릴리스 날짜, 사용 중지 날짜 및 Azure Cosmos DB Node.js SDK의 각 버전 간의 변경 내용을 포함한 Node.js API 및 SDK에 대해 모두 알아봅니다."
+title: "aaaAzure Cosmos DB Node.js API SDK 및 리소스 | Microsoft Docs"
+description: "Node.js API와 SDK 릴리스 날짜, 사용 중지 날짜 및 hello Azure Cosmos DB Node.js SDK의 각 버전 간의 변경 내용을 포함 하 여 hello에 대 한 모든에 대해 알아봅니다."
 services: cosmos-db
 documentationcenter: nodejs
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 08/14/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 4376a5c07b5f00311ce0fe3c0056efdf79c273f9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d450b9a9ea7b0f4717ddae8940121fc458ea3744
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-nodejs-sdk-release-notes-and-resources"></a>Azure Cosmos DB Node.js SDK: 릴리스 정보 및 리소스
 > [!div class="op_single_selector"]
@@ -43,11 +43,11 @@ ms.lasthandoff: 08/18/2017
 
 <tr><td>**SDK 설치 지침**</td><td>[설치 지침](http://azure.github.io/azure-documentdb-node/)</td></tr>
 
-<tr><td>**SDK에 참여**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-node/tree/master/source)</td></tr>
+<tr><td>**TooSDK 영향**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-node/tree/master/source)</td></tr>
 
 <tr><td>**샘플**</td><td>[Node.js 코드 샘플](documentdb-nodejs-samples.md)</td></tr>
 
-<tr><td>**시작 자습서**</td><td>[Node.js SDK 시작](documentdb-nodejs-get-started.md)</td></tr>
+<tr><td>**시작 자습서**</td><td>[Node.js SDK hello로 시작](documentdb-nodejs-get-started.md)</td></tr>
 
 <tr><td>**웹앱 자습서**</td><td>[Azure Cosmos DB를 사용하여 Node.js 웹 응용 프로그램 빌드](documentdb-nodejs-application.md)</td></tr>
 
@@ -66,8 +66,8 @@ ms.lasthandoff: 08/18/2017
 
 ### <a name="1.12.1"/>1.12.1</a>
 * 관련된 문서에 특수 유니코드 문자(LS, PS)가 있는 executeStoredProcedure의 버그를 수정했습니다.
-* 파티션 키의 유니코드 문자를 사용하여 문서를 처리할 때 버그를 수정했습니다.
-* 이름 미디어를 사용하여 컬렉션을 만들기 위한 지원을 수정했습니다. Github 문제 #114.
+* Hello 파티션 키의 유니코드 문자를 사용 하 여 문서를 처리 하는 버그를 수정 합니다.
+* Hello 이름 미디어를 사용 하 여 컬렉션을 만들기에 대 한 고정된 지원 합니다. Github 문제 #114.
 * 권한 부여 토큰에 대한 지원을 수정했습니다. Github 문제 #178.
 
 ### <a name="1.12.0"/>1.12.0</a>
@@ -76,19 +76,19 @@ ms.lasthandoff: 08/18/2017
 * 유니코드 지원 버그를 수정했습니다. GitHub 문제 #171.
 
 ### <a name="1.11.0"/>1.11.0</a>
-* 집계 쿼리(COUNT, MIN, MAX, SUM 및 AVG)에 대한 지원이 추가되었습니다.
-* 파티션 간 쿼리에 대한 병렬 처리 수준을 제어하기 위한 옵션을 추가했습니다.
-* Azure Cosmos DB 에뮬레이터에 대해 실행하는 경우 SSL 유효성 검사를 비활성화하기 위한 옵션을 추가했습니다.
-* 분할된 컬렉션에 대한 최소 처리량이 10,100RU/s에서 2500RU/s로 감소됩니다.
-* 단일 파티션 컬렉션에 대한 연속 토큰 버그를 수정했습니다. Github 문제 #107.
-* 단일 매개 변수인 0을 처리하는 도중 executeStoredProcedure 버그를 수정했습니다. Github 문제 #155.
+* 집계 쿼리 (COUNT, MIN, MAX, SUM 및 AVG)에 대 한 추가 된 hello 지원 합니다.
+* 에 대 한 병렬 처리 수준 크로스 파티션 쿼리를 제어 하기 위한 추가 된 hello 옵션입니다.
+* Cosmos DB Azure 에뮬레이터에 대해 실행할 때 SSL 유효성 검사를 비활성화 하기 위한 추가 된 hello 옵션입니다.
+* 10,100 000RU/s too2500 000RU/s에서 분할 된 컬렉션에 대해 최소 처리량을 적어집니다.
+* 단일 파티션 컬렉션에 대 한 고정된 hello 연속 작업의 토큰 버그입니다. Github 문제 #107.
+* 단일 매개 변수 형태로 0 처리 고정된 hello executeStoredProcedure 버그입니다. Github 문제 #155.
 
 ### <a name="1.10.2"/>1.10.2</a>
-* SDK 버전을 포함하도록 수정된 사용자 에이전트 헤더입니다.
+* 고정 된 사용자 에이전트 헤더 tooinclude hello SDK 버전입니다.
 * 사소한 코드 정리입니다.
 
 ### <a name="1.10.1"/>1.10.1</a>
-* SDK를 사용하여 에뮬레이터를 대상으로 지정할 때(hostname=localhost) SSL 유효성 검사를 사용하지 않도록 설정됩니다.
+* SDK tootarget hello emulator(hostname=localhost) hello를 사용 하는 경우 SSL 유효성 검사를 사용 하지 않도록 설정 합니다.
 * 저장된 프로시저가 실행되는 동안 스크립트 로깅을 사용할 수 있도록 지원이 추가되었습니다.
 
 ### <a name="1.10.0"/>1.10.0</a>
@@ -96,27 +96,27 @@ ms.lasthandoff: 08/18/2017
 * 분할된 컬렉션의 TOP/ORDER BY 쿼리에 대한 지원이 추가되었습니다.
 
 ### <a name="1.9.0"/>1.9.0</a>
-* 제한된 요청에 대한 재시도 정책 지원이 추가되었습니다. (제한된 요청은 오류 코드 429, 요청 속도가 너무 크다는 예외를 수신합니다.) 기본적으로 오류 코드 429가 발생하면 Azure Cosmos DB는 각 요청을 9번 다시 시도하며 응답 헤더에서 retryAfter 시간을 적용합니다. 이제 다시 시도 간의 서버에서 반환한 retryAfter 시간을 무시하려는 경우 고정된 다시 시도 간격 시간은 ConnectionPolicy 개체에서 RetryOptions 속성의 일부로 설정될 수 있습니다. Azure Cosmos DB는 제한된 요청 각각에 대해 30초 동안 대기하고(다시 시도 횟수와 관계 없이) 오류 코드 429를 포함하는 응답을 반환합니다. 이 시간도 ConnectionPolicy 개체에 있는 RetryOptions 속성에서 재정의할 수 있습니다.
-* 이제 Cosmos DB는 x-ms-throttle-retry-count 및 x-ms-throttle-retry-wait-time-ms를 다시 시도 사이에 요청이 대기한 제한 다시 시도 수 및 누적 시간을 표시하는 모든 요청의 응답 헤더로 반환합니다.
-* 기본 다시 시도 옵션의 일부를 재정의하는 데 사용할 수 있는 ConnectionPolicy 클래스에 RetryOptions 속성을 노출하여 RetryOptions 클래스를 추가했습니다.
+* 제한된 요청에 대한 재시도 정책 지원이 추가되었습니다. (제한된 요청은 오류 코드 429, 요청 속도가 너무 크다는 예외를 수신합니다.) 기본적으로 Azure Cosmos DB 다시 시도 9 번 각 요청에 대 한 오류 코드 429 오류가 발생 하면 hello retryAfter 시간 hello 응답 헤더에 적용 합니다. 고정 된 다시 시도 간격 시간 수 이제 hello RetryOptions 속성의 일부로 개체에 설정 될 hello ConnectionPolicy hello 다시 시도 대기 중 서버에서 반환 된 tooignore hello retryAfter 시간이 필요한 경우. 이제 azure Cosmos DB 최대 (관계 없이 다시 시도 횟수)가 제한 및 오류 코드: 429 hello 응답을 반환 하는 각 요청에 대 한 30 초까지 기다립니다. 이 시간 hello RetryOptions ConnectionPolicy 개체 속성에서에서 재정의할 수도 있습니다.
+* Cosmos DB 이제 x-ms-스로틀-다시 시도-횟수 및 반환 x-ms-throttle-retry-wait-time-ms hello 응답 헤더의 모든 요청 toodenote hello 스로틀 수 및 hello 누적 hello 요청 대기 시간 hello 재시도 간격을 다시 시도 하십시오.
+* hello RetryOptions 속성 노출 hello RetryOptions 클래스 추가 된 hello ConnectionPolicy 클래스 toooverride 사용된 될 수 있는 일부 hello 기본 다시 시도 옵션입니다.
 
 ### <a name="1.8.0"/>1.8.0</a>
-* 다중 지역 데이터베이스 계정에 대한 지원이 추가되었습니다.
+* 다중 영역 데이터베이스 계정에 대 한 추가 된 hello 지원 합니다.
 
 ### <a name="1.7.0"/>1.7.0</a>
-* 문서의 TTL(Time to Live) 기능에 대한 지원이 추가되었습니다.
+* 추가 된 hello 문서에 대 한 시간 tooLive(TTL) 기능에 대 한 지원.
 
 ### <a name="1.6.0"/>1.6.0</a>
 * [분할된 컬렉션](partition-data.md) 및 [사용자 정의 성능 수준](performance-levels.md)이 구현되었습니다.
 
 ### <a name="1.5.6"/>1.5.6</a>
-* 잘못된 concat 결과로 인해 링크를 반환하지 못했던 RangePartitionResolver.resolveForRead 버그가 수정되었습니다.
+* RangePartitionResolver.resolveForRead 버그 여기서 결과의 잘못 된 concat tooa 인해 링크를 반환 하지 했습니다.
 
 ### <a name="1.5.5"/>1.5.5</a>
 * hashParitionResolver resolveForRead() 해결: 예외를 throw하는 제공된 파티션 키가 없는 경우 모든 등록된 링크의 목록을 대신 반환합니다.
 
 ### <a name="1.5.4"/>1.5.4</a>
-* 문제 해결 [#100](https://github.com/Azure/azure-documentdb-node/issues/100) - 전용 HTTPS 에이전트: Azure Cosmos DB 목적으로 전역 에이전트를 수정하지 않도록 합니다. 모든 lib의 요청에 대해 전용 에이전트를 사용 합니다.
+* 문제를 해결 [#100](https://github.com/Azure/azure-documentdb-node/issues/100) -HTTPS 에이전트 전용: hello Azure Cosmos DB 목적에 대 한 전역 에이전트 수정 되지 않도록 합니다. 모든 hello lib 요청에 대 한 전용된 에이전트를 사용 합니다.
 
 ### <a name="1.5.3"/>1.5.3</a>
 * 문제 해결 [#81](https://github.com/Azure/azure-documentdb-node/issues/81) - 미디어 ID에서 대시를 올바르게 처리합니다.
@@ -125,7 +125,7 @@ ms.lasthandoff: 08/18/2017
 * 문제 해결 [#95](https://github.com/Azure/azure-documentdb-node/issues/95) - EventEmitter 수신기 누수 경고
 
 ### <a name="1.5.1"/>1.5.1</a>
-* 문제 [#92](https://github.com/Azure/azure-documentdb-node/issues/90) 해결 - 대/소문자 구분 시스템으로 인해 Hash 폴더의 이름을 hash로 바꿉니다.
+* 문제를 해결 [#92](https://github.com/Azure/azure-documentdb-node/issues/90) -대/소문자 구분 시스템에 대 한 해시 toohash 폴더 이름을 바꿉니다.
 
 ### <a name="1.5.0"/>1.5.0</a>
 * 해시 및 범위 파티션 해결 프로그램을 추가하여 분할 지원 구현
@@ -134,11 +134,11 @@ ms.lasthandoff: 08/18/2017
 * Upsert를 구현합니다. DocumentClient의 새로운 upsertXXX 메서드입니다.
 
 ### <a name="1.3.0"/>1.3.0</a>
-* 다른 SDK와 정렬된 버전 번호를 가져오기 위해 건너뛰었습니다.
+* 다른 Sdk에 맞게 정렬에서 toobring 버전 번호를 건너뜁니다.
 
 ### <a name="1.2.2"/>1.2.2</a>
-* 프라미스 래퍼를 새 리포지토리로 분할합니다.
-* npm 레지스트리에 대한 패키지 파일로 업데이트합니다.
+* 분할 Q 래퍼 toonew 리포지토리를 약속 합니다.
+* Npm 레지스트리에 대 한 toopackage 파일을 업데이트 합니다.
 
 ### <a name="1.2.1"/>1.2.1</a>
 * ID 기반 라우팅을 구현합니다.
@@ -147,19 +147,19 @@ ms.lasthandoff: 08/18/2017
 ### <a name="1.2.0"/>1.2.0</a>
 * 지리 공간 인덱스에 대한 지원이 추가되었습니다.
 * 모든 리소스에 대한 ID 속성의 유효성을 검사합니다. 리소스의 ID는 ?, /, #, &#47;&#47; 문자를 포함할 수 없으며 공백으로 끝날 수도 없습니다.
-* 새 헤더 "인덱스 변환 진행률"을 ResourceResponse에 추가합니다.
+* 새 헤더 "인덱스 변환 진행 중" tooResourceResponse를 추가합니다.
 
 ### <a name="1.1.0"/>1.1.0</a>
 * V2 인덱싱 정책을 구현합니다.
 
 ### <a name="1.0.3"/>1.0.3</a>
-* 문제 [#40](https://github.com/Azure/azure-documentdb-node/issues/40) - 핵심 및 프라미스 SDK에서 eslint 및 grunt 구성을 구현했습니다.
+* 문제 [#40](https://github.com/Azure/azure-documentdb-node/issues/40) -eslint 구현 및 grunt hello 코어에서 구성 하 고 SDK를 약속 합니다.
 
 ### <a name="1.0.2"/>1.0.2</a>
 * 문제 [#45](https://github.com/Azure/azure-documentdb-node/issues/45) - 프라미스 래퍼에 오류가 있는 헤더가 포함되지 않습니다.
 
 ### <a name="1.0.1"/>1.0.1</a>
-* readConflicts, readConflictAsync 및 queryConflicts를 추가하여 충돌을 쿼리하는 기능을 구현했습니다.
+* ReadConflicts, readConflictAsync, 및 queryConflicts 추가 하 여 충돌에 대 한 기능 tooquery를 구현 합니다.
 * API 설명서가 업데이트되었습니다.
 * 문제 [#41](https://github.com/Azure/azure-documentdb-node/issues/41) - client.createDocumentAsync 오류
 
@@ -167,11 +167,11 @@ ms.lasthandoff: 08/18/2017
 * GA SDK.
 
 ## <a name="release--retirement-dates"></a>릴리스 및 사용 중지 날짜
-Microsoft는 최신/지원 버전으로 원활히 전환할 수 있도록 SDK 사용 중지 최소 **12개월** 전에 알림을 제공합니다.
+Microsoft는 알림 최소 **12 개월** 순서 toosmooth hello 전환 tooa 지원/최신 버전의 SDK를 사용 중지 전에 합니다.
 
-새로운 기능 및 최적화는 현재 SDK에만 추가되어 있으며, 따라서 항상 최신 SDK 버전으로 가능한 한 빨리 업그레이드할 것을 권장합니다.
+새로운 기능 및 기능 및 최적화는 toohello 현재만 추가 SDK, 따라서 것이 좋습니다 하면 항상 업그레이드 toohello 최신 SDK 버전 가능한 한 빨리 합니다.
 
-사용 중지된 SDK를 사용하는 Cosmos DB에 대한 요청은 서비스에서 거부됩니다.
+TooCosmos 사용 중지 된 SDK를 사용 하 여 DB에는 모든 요청은 hello 서비스에서 거부 됩니다.
 
 <br/>
 
@@ -210,5 +210,5 @@ Microsoft는 최신/지원 버전으로 원활히 전환할 수 있도록 SDK �
 [!INCLUDE [cosmos-db-sdk-faq](../../includes/cosmos-db-sdk-faq.md)]
 
 ## <a name="see-also"></a>참고 항목
-Cosmos DB에 대한 자세한 내용은 [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 서비스 페이지를 참조하세요.
+Cosmos DB에 대해 자세히 toolearn 참조 [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 서비스 페이지.
 

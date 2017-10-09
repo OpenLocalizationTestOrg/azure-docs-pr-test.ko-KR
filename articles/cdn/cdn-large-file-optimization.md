@@ -1,5 +1,5 @@
 ---
-title: "Azure Content Delivery Network를 통한 대용량 파일 다운로드 최적화"
+title: "hello Azure 콘텐츠 배달 네트워크를 통해 aaaLarge 파일 다운로드 최적화"
 description: "대용량 파일 다운로드 최적화에 대해 자세히 설명합니다."
 services: cdn
 documentationcenter: 
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2017
 ms.author: v-semcev
-ms.openlocfilehash: 7a5d5d1d0de24ebb0a5115ede1e572f38454bd78
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2646979bfb38e997037bcff5b1cdda34e22c394a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="large-file-download-optimization-via-the-azure-content-delivery-network"></a>Azure Content Delivery Network를 통한 대용량 파일 다운로드 최적화
+# <a name="large-file-download-optimization-via-hello-azure-content-delivery-network"></a>Hello Azure 콘텐츠 배달 네트워크를 통해 큰 파일 다운로드 최적화
 
-인터넷을 통해 배달되는 콘텐츠의 파일 크기는 향상된 기능, 향상된 그래픽, 풍부한 미디어 콘텐츠 등으로 인해 계속 커지고 있습니다. 이러한 확장은 광대역 보급, 더 크고 저렴한 저장 장치, 고화질 비디오 확산, 인터넷 연결 장치(IoT) 등 여러 가지 요인으로 추진되고 있습니다. 원활하고 즐거운 소비자 환경을 보장하려면 대용량 파일에 대한 빠르고 효율적인 배달 메커니즘이 중요합니다.
+파일 크기 hello 인터넷을 통해 제공 되는 콘텐츠의 toogrow 기한 tooenhanced 기능, 향상 된 그래픽 및 리치 미디어 콘텐츠를 계속 합니다. 이러한 확장은 광대역 보급, 더 크고 저렴한 저장 장치, 고화질 비디오 확산, 인터넷 연결 장치(IoT) 등 여러 가지 요인으로 추진되고 있습니다. 큰 파일에 대 한 빠르고 효율적인 전달 메커니즘에는 중요 한 tooensure 원활 하 고 즐거운 소비자 환경입니다.
 
-대용량 파일을 배달하는 데 있어 몇 가지 과제가 있습니다. 첫째, 응용 프로그램에서 모든 데이터를 순차적으로 다운로드하지 않을 수 있기 때문에 대용량 파일을 다운로드하는 평균 시간이 중요할 수 있습니다. 경우에 따라 응용 프로그램에서 파일의 처음 부분보다 마지막 부분을 먼저 다운로드할 수 있습니다. 소량의 파일만 요청하거나 사용자가 다운로드를 일시 중지하면 다운로드가 실패할 수 있습니다. 또한 CDN(Content Delivery Network)이 원본 서버에서 전체 파일을 검색할 때까지 다운로드가 지연될 수도 있습니다. 
+대용량 파일을 배달하는 데 있어 몇 가지 과제가 있습니다. 첫째, 응용 프로그램 데이터를 모두 순차적으로 다운로드할 수 있습니다. 때문에 hello 평균 시간 toodownload 큰 파일 중요할 수 있습니다. 경우에 따라 응용 프로그램 hello hello 첫 번째 부분 대기 시키기 전에 파일의 마지막 부분을 다운로드할 수 있습니다. 를 소량의 파일을 요청 하거나 다운로드를 놓을 때 hello 다운로드 실패할 수 있습니다. 또한 hello 다운로드는 hello 후 (CDN) 콘텐츠 배달 네트워크에서 원본 서버 hello hello 전체 파일을 검색 될 때까지으로 지연 될 수 있습니다. 
 
-둘째, 사용자 컴퓨터와 파일 간의 대기 시간이 콘텐츠를 볼 수 있는 속도를 결정합니다. 또한 네트워크 정체 및 용량 문제도 처리량에 영향을 줍니다. 서버와 사용자 간의 거리가 늘어나면 패킷 손실이 발생하여 품질이 저하될 수 있습니다. 제한된 처리량으로 인한 품질 저하와 패킷 손실 증가는 파일 다운로드가 완료될 때까지 기다리는 대기 시간을 늘릴 수 있습니다. 
+둘째, 사용자의 컴퓨터 및 hello 파일 간의 hello 대기 시간 결정 hello 속도는 콘텐츠를 볼 수 있습니다. 또한 네트워크 정체 및 용량 문제도 처리량에 영향을 줍니다. 사용자와 서버 간의 거리 패킷 손실 toooccur 품질 감소에 대 한 추가 기회를 창출 합니다. 품질의 hello 감소 처리량을 제한 하 여 발생 하 여 증가 된 패킷 손실이 파일 다운로드 toofinish에 대 한 hello 대기 시간이 늘어날 수 있습니다. 
 
-셋째, 많은 대용량 파일이 전체적으로 배달되지 않습니다. 사용자가 중간에 다운로드를 취소하거나 긴 MP4 비디오의 처음 몇 분만 시청할 수 있습니다. 따라서 소프트웨어 및 미디어 배달 회사는 파일에서 요청된 파일의 일부만 제공하려고 합니다. 요청된 부분을 효율적으로 배포하면 원본 서버에서 송신 트래픽을 줄여줍니다. 또한 효율적인 배포는 원본 서버의 메모리 및 I/O 부담도 줄여줍니다. 
+셋째, 많은 대용량 파일이 전체적으로 배달되지 않습니다. 사용자는 중간 부분 다운로드를 취소할 수 있습니다 또는 hello 몇 분이 지나면 긴 MP4 비디오를 시청 합니다. 따라서 소프트웨어와 미디어 배달 회사 요청 되는 파일의 유일한 hello 부분을 toodeliver 합니다. Hello 효율적으로 배포할 요청 부분 hello 원본 서버에서 hello 들어오고 나가는 트래픽이 감소 했습니다. 효율적인 배포 hello 메모리와 I/O 압력 hello 원본 서버에서 줄어듭니다. 
 
-Akamai의 Azure Content Delivery Network는 현재 전세계 사용자에게 대용량 파일을 효율적으로 배달하는 기능을 제공합니다. 이 기능은 원본 서버의 부하를 줄이므로 대기 시간을 줄여주며, 표준 Akamai 가격 책정 계층으로 사용할 수 있습니다.
+이제 hello Azure 콘텐츠 배달 네트워크 Akamai에서 전달 하는 큰 파일 효율적으로 toousers 배율로 hello 전세계 기능을 제공 합니다. hello 기능은 hello 원본 서버의 hello 로드가 감소 하므로 대기 시간을 줄여 줍니다. 이 기능은 hello Akamai 표준 가격 책정 계층을 사용할 수 있습니다.
 
-## <a name="configure-a-cdn-endpoint-to-optimize-delivery-of-large-files"></a>대용량 파일 배달을 최적화하기 위한 CDN 끝점 구성
+## <a name="configure-a-cdn-endpoint-toooptimize-delivery-of-large-files"></a>큰 파일의 CDN 끝점 toooptimize 배달을 구성합니다
 
-Azure Portal을 통해 대용량 파일 배달을 최적화하도록 CDN 끝점을 구성할 수 있습니다. REST API나 클라이언트 SDK를 사용할 수도 있습니다. 다음 단계에서는 Azure Portal을 통한 프로세스를 보여 줍니다.
+CDN 끝점 toooptimize 배송 hello Azure 포털을 통해 큰 파일을 구성할 수 있습니다. 또한 REST Api를 사용할 수 있습니다 또는이 클라이언트 Sdk toodo 환영 중 하나입니다. hello 다음 단계 프로세스를 보여 hello hello Azure 포털을 통해.
 
-1. 새 끝점을 추가하려면 **CDN 프로필** 페이지에서 **끝점**을 선택합니다.
+1. hello에 새 끝점의 경우 tooadd **CDN 프로필** 페이지에서 **끝점**합니다.
 
     ![새 끝점](./media/cdn-large-file-optimization/01_Adding.png)  
  
-2. **Optimized for**(최적화 대상) 드롭다운 목록에서 **대용량 파일 다운로드**를 선택합니다.
+2. Hello에 **에 대 한 액세스에 최적화 된** 드롭 다운 목록 **큰 파일을 다운로드**합니다.
 
     ![대용량 파일 최적화 선택](./media/cdn-large-file-optimization/02_Creating.png)
 
 
-CDN 끝점을 만든 후에 특정 기준과 일치하는 모든 파일에 대해 대용량 파일 최적화를 적용합니다. 다음 섹션에서는 이 프로세스에 대해 자세히 설명합니다.
+Hello CDN 끝점을 만든 후에 특정 기준에 일치 하는 모든 파일에 대 한 hello 큰 파일을 최적화 적용 됩니다. hello 다음 섹션에서는이 프로세스를 설명 합니다.
 
-## <a name="optimize-for-delivery-of-large-files-with-the-azure-content-delivery-network-from-akamai"></a>Akamai의 Azure Content Delivery Network를 사용하여 대용량 파일 배달 최적화
+## <a name="optimize-for-delivery-of-large-files-with-hello-azure-content-delivery-network-from-akamai"></a>Akamai hello Azure 콘텐츠 배달 네트워크를 사용 하 여 큰 파일의 배달을 위해 최적화
 
-대용량 파일 최적화 형식 기능은 네트워크 최적화 및 구성을 설정하여 대용량 파일을 즉각적으로 반응하며 더 빠르게 배달합니다. Akamai를 통한 일반 웹 배달에서는 파일을 1.8GB 미만으로만 캐시하고, 파일을 최대 150GB까지 터널링(캐시 아님)할 수 있습니다. 대용량 파일 최적화는 파일을 최대 150GB까지 캐시합니다.
+hello 큰 파일을 최적화 형식 기능 빠르고 반응성 네트워크 최적화 및 구성 toodeliver 큰 파일을 설정합니다. Akamai와 일반 웹 배달 1.8 g B 아래에 파일을 캐시 및 터널 (캐시) 수를 too150 GB 파일입니다. 큰 파일을 최적화 too150 GB 파일을 캐시 합니다.
 
-대용량 파일 최적화는 특정 조건이 충족될 때 효과적입니다. 조건에는 원본 서버가 작동하는 방법 및 요청되는 파일의 크기와 형식이 포함됩니다. 이러한 주제에 대해 자세히 들어가기 전에 최적화가 작동하는 방식을 이해해야 합니다. 
+대용량 파일 최적화는 특정 조건이 충족될 때 효과적입니다. 조건에는 원본 서버 hello 작동 하는 방법 및 hello 크기와 요청 된 hello 파일 형식을 포함 됩니다. 이 주제에 대 한 세부 정보에 들어가기 전에 hello 최적화의 작동 원리를 이해 해야 합니다. 
 
 ### <a name="object-chunking"></a>개체 청크 
 
-Akamai의 Azure Content Delivery Network에서는 개체 청크라는 기술을 사용합니다. 대용량 파일이 요청되면 CDN은 원본에서 파일의 더 작은 부분을 검색합니다. CDN 에지/POP 서버에서 전체 또는 바이트 범위의 파일 요청을 받으면 이 최적화에 지원되는 파일 형식인지 여부를 확인합니다. 또한 파일 형식이 파일 크기 요구 사항을 충족하는지도 확인합니다. 파일 크기가 10MB보다 큰 경우 CDN 에지 서버는 원본 서버에서 2MB 청크로 파일을 요청합니다. 
+Akamai에서 Azure 콘텐츠 배달 네트워크 hello 개체 청크 이라는 기술을 사용 합니다. 큰 파일 요청 되 면 hello CDN hello 원점에서 hello 파일의 더 작은 부분을 검색 합니다. Hello CDN POP 지/서버는 full 또는 바이트 범위 파일 요청을 받은 후이 최적화에 대 한 hello 파일 형식이 지원 되는지 여부를 확인 합니다. 또한 hello 파일 형식을 hello 파일 크기 요구 사항을 충족 하는지 확인 합니다. Hello 파일 크기가 10 MB 보다 큰 경우 hello CDN에 지 서버 hello 파일 hello 출처 2MB의 청크에서를 요청 합니다. 
 
-청크가 CDN 에지에 도착하면 캐시되고 사용자에게 즉시 제공됩니다. 그런 다음 CDN은 다음 청크를 병렬로 프리페치합니다. 이 프리페치를 사용하면 콘텐츠가 사용자보다 먼저 하나의 청크로 유지되도록 하여 대기 시간을 줄일 수 있습니다. 이 프로세스는 전체 파일을 다운로드하거나(요청된 경우), 모든 바이트 범위를 사용할 수 있거나(요청된 경우), 클라이언트에서 연결을 종료할 때까지 계속됩니다. 
+Hello 청크 hello CDN 가장자리에 도착 하면 캐시 된이 있으며 즉시 toohello 사용자를 제공 합니다. CDN hello 다음 병렬로 hello 다음 청크 사전 인출 합니다. 이 사전 인출 된 hello 콘텐츠 대기 시간이 단축 하는 hello 사용자 미리 하나의 청크를 유지 하는 것을 보장 합니다. 이 프로세스 전체 hello 될 때까지 계속 됩니다 (요청 된 경우) 파일을 다운로드할 바이트 범위를 모든 요청할 경우에 사용할 수 있는, 또는 hello 클라이언트 hello 연결을 종료 합니다. 
 
-바이트 범위 요청에 대한 자세한 내용은 [RFC 7233](https://tools.ietf.org/html/rfc7233)을 참조하세요.
+Hello 바이트 범위 요청에 대 한 자세한 내용은 참조 하십시오. [RFC 7233](https://tools.ietf.org/html/rfc7233)합니다.
 
-CDN은 받은 청크를 모두 캐시합니다. CDN 캐시에서 전체 파일을 캐시할 필요는 없습니다. 파일 또는 바이트 범위에 대한 후속 요청은 CDN 캐시에서 제공됩니다. 모든 청크가 CDN에 캐시되지 않으면 프리페치를 사용하여 원본에서 청크를 요청합니다. 이 최적화는 원본 서버에서 바이트 범위 요청을 지원하는 기능을 사용합니다. _원본 서버에서 바이트 범위 요청을 지원하지 않으면 이 최적화가 적용되지 않습니다._ 
+CDN hello 받을 때 처럼 모든 청크를 캐시 합니다. 전체 파일 hello toobe hello CDN에 캐시에 캐시 되어 있지 않습니다. Hello 파일 또는 바이트 범위에 대 한 후속 요청은 hello CDN 캐시에서에서 제공 됩니다. 일부 hello 청크 hello CDN에 캐시 되는 경우 프리페치는 hello 원점에서 사용 되는 toorequest 청크 합니다. 이 최적화는 hello 증명 hello 원본 서버 toosupport 바이트 범위 요청을 사용합니다. _원본 서버 hello 바이트 범위 요청을 지원 하지 않으면이 최적화 효과적이 지 않습니다._ 
 
 ### <a name="caching"></a>구성
-대용량 파일 최적화는 일반 웹 배달과 다른 기본 caching-expiration(캐싱 만료) 시간을 사용합니다. HTTP 응답 코드에 따라 양수 캐싱과 음수 캐싱을 구분합니다. 원본 서버에서 응답의 cache-control 또는 expires 헤더를 통해 만료 시간을 지정하면 CDN에서 해당 값을 사용합니다. 원본 서버에서 지정하지 않고 파일이 이 최적화 형식에 대한 파일 형식 및 파일 크기 조건과 일치하면 CDN에서 대용량 파일 최적화에 대한 기본값을 사용합니다. 그러지 않으면 CDN에서 일반 웹 배달에 대한 기본값을 사용합니다.
+대용량 파일 최적화는 일반 웹 배달과 다른 기본 caching-expiration(캐싱 만료) 시간을 사용합니다. HTTP 응답 코드에 따라 양수 캐싱과 음수 캐싱을 구분합니다. 원본 서버 hello 캐시 제어를 통해 만료 시간을 지정 하거나 hello에 대 한 응답 헤더를 만료, hello CDN 해당 값을 준수 합니다. Hello 원본 지정 하지 않으면 hello 파일에는 이와 같은 최적화에 대 한 hello 유형 및 크기 조건과 일치 하는 경우 CDN hello 큰 파일을 최적화에 대 한 hello 기본값을 사용 합니다. 그렇지 않으면 hello CDN는 일반 웹 배달에 대 한 기본값을 사용 합니다.
 
 
 |    | 일반 웹 | 대용량 파일 최적화 
@@ -74,13 +74,13 @@ CDN은 받은 청크를 모두 캐시합니다. CDN 캐시에서 전체 파일�
 
 ### <a name="deal-with-origin-failure"></a>원본 오류 처리
 
-원본 읽기 시간 제한 길이는 일반 웹 배달에 대한 2초에서 대용량 파일 최적화 형식에 대한 2분으로 증가합니다. 이렇게 증가하면 파일 크기가 커지므로 시간 제한 연결이 너무 빠르지 않도록 방지합니다.
+hello 원본 읽기 제한 길이 hello 큰 파일을 최적화 형식에 대 한 일반 웹 배달 tootwo 분 동안 2 초에서 증가합니다. 이 처럼 증가 hello 더 큰 파일 크기 tooavoid 시기 상 조일 시간 초과 연결을 차지합니다.
 
-연결 시간이 초과되면 CDN에서 "504 - 게이트웨이 시간 초과" 오류를 클라이언트로 보내기 전에 여러 번 다시 시도합니다. 
+연결 시간 초과 되 면 hello CDN에는 "-504 게이트웨이 시간 초과" 오류 toohello 클라이언트를 보내기 전에 횟수 만큼 다시 시도 합니다. 
 
 ### <a name="conditions-for-large-file-optimization"></a>대용량 파일 최적화에 대한 조건
 
-다음 표에서는 대용량 파일 최적화를 위해 충족되어야 하는 조건 집합을 보여 줍니다.
+다음 표에서 hello hello 집합이 조건 toobe 큰 파일을 최적화를 위해 만족된 보여 줍니다.
 
 조건 | 값 
 --- | --- 
@@ -89,40 +89,40 @@ CDN은 받은 청크를 모두 캐시합니다. CDN 캐시에서 전체 파일�
 최대 파일 크기 | 150GB 
 원본 서버 특성 | 바이트 범위 요청을 지원해야 함 
 
-## <a name="optimize-for-delivery-of-large-files-with-the-azure-content-delivery-network-from-verizon"></a>Verizon의 Azure Content Delivery Network를 사용하여 대용량 파일 배달 최적화
+## <a name="optimize-for-delivery-of-large-files-with-hello-azure-content-delivery-network-from-verizon"></a>Verizon hello Azure 콘텐츠 배달 네트워크를 사용 하 여 큰 파일의 배달을 위해 최적화
 
-Verizon의 Azure Content Delivery Network는 파일 크기에 대한 제한이 없는 대용량 파일을 배달합니다. 추가 기능은 기본적으로 대용량 파일의 전송 속도를 높이도록 설정됩니다.
+hello Verizon에서 Azure 콘텐츠 배달 네트워크 파일 크기에 대 한 한도가 하지 않고 큰 파일을 제공합니다. 추가 기능으로 켜져 있습니다 큰 파일의 기본 toomake 배달 속도가 빨라집니다.
 
 ### <a name="complete-cache-fill"></a>전체 캐시 채우기
 
-기본 전체 캐시 채우기 기능을 사용하면 초기 요청이 중단되거나 손실되었을 때 CDN에서 파일을 캐시로 가져올 수 있습니다. 
+hello 기본 전체 캐시 채우기 기능 hello 캐시로 hello CDN toopull 파일을 통해 초기 요청은 중단 되거나 손실 되는 경우. 
 
-전체 캐시 채우기는 대규모 자산에 가장 유용합니다. 일반적으로 사용자는 처음부터 끝까지 다운로드하지 않고, 점진적 다운로드를 사용합니다. 기본 동작은 에지 서버에서 원본 서버에 있는 자산의 백그라운드 가져오기를 시작하도록 하는 것입니다. 그런 후에 에지 서버의 로컬 캐시에 자산이 있습니다. 전체 개체가 캐시에 있으면 에지 서버에서 캐시된 개체에 대해 CDN에 대한 바이트 범위 요청을 수행합니다.
+전체 캐시 채우기는 대규모 자산에 가장 유용합니다. 일반적으로 사용자가 시작 toofinish에서 다운로드 하지 않습니다. 점진적 다운로드를 사용합니다. hello 기본 동작 hello edge 서버 tooinitiate hello 원본 서버에서의 hello 자산의 배경 페치를 강제로 수행합니다. 나중에 hello 자산 hello 지 서버 로컬 캐시에서 이합니다. Hello 전체 개체에 hello 캐시 되 면 hello에 지 서버 hello 캐시 된 개체에 대 한 바이트 범위 요청 toohello CDN을 충족 합니다.
 
-기본 동작은 Verizon Premium 계층의 규칙 엔진을 통해 사용하지 않도록 설정할 수 있습니다.
+hello Verizon Premium 계층에에서 hello 규칙 엔진을 통해 hello 기본 동작을 비활성화할 수 있습니다.
 
 ### <a name="peer-cache-fill-hot-filing"></a>피어 캐시 채우기 핫파일링(hot-filing)
 
-기본 피어 캐시 채우기 핫파일링 기능은 정교한 소유 알고리즘을 사용합니다. 대역폭 및 집계 요청 메트릭에 따라 추가 에지 캐싱 서버를 사용하여 널리 사용되는 큰 개체에 대한 클라이언트 요청을 수행합니다. 이 기능은 많은 수의 추가 요청을 사용자의 원본 서버로 보내는 상황을 방지합니다. 
+hello 기본 피어 캐시 채우기 핫 정리 기능은 정교한 소유 알고리즘을 사용합니다. 캐시 서버 대역폭에 따라 추가 가장자리를 사용 하 여 및 집계는 매우 인기, 큰 개체에 대 한 메트릭을 toofulfill 클라이언트 요청을 요청 합니다. 이 기능은 추가 상당히 많은 수의 tooa 사용자의 원본 서버 전송 되는 상황을 방지 합니다. 
 
 ### <a name="conditions-for-large-file-optimization"></a>대용량 파일 최적화에 대한 조건
 
-Verizon에 대한 최적화 기능은 기본적으로 사용하도록 설정되며, 최대 파일 크기에는 제한이 없습니다. 
+Verizon에 대 한 hello 최적화 기능은 기본적으로 켜 집니다. 최대 파일 크기에는 제한이 없습니다. 
 
 ## <a name="additional-considerations"></a>추가 고려 사항
 
-이 최적화 형식을 사용할 때 추가로 고려해야 할 다음 몇 가지 측면이 있습니다.
+Hello를 이와 같은 최적화에 대 한 추가 측면을 따르는 것이 좋습니다.
  
 ### <a name="azure-content-delivery-network-from-akamai"></a>Akamai의 Content Delivery Network
 
-- 청크 프로세스는 원본 서버에 추가 요청을 생성하지만, 원본 서버에서 배달되는 전체 데이터 양은 훨씬 적습니다. 따라서 청크는 CDN의 캐싱 특성을 향상시킵니다.
+- 프로세스를 청크 hello toohello 원본 서버에 추가 요청을 생성 합니다. 그러나 hello 전반적인 hello 원본에서 제공 하는 데이터 양이 훨씬 작습니다. 청크 결과 hello CDN에서 캐싱 특성 정보가 개선 되었습니다.
 
-- 파일의 더 작은 부분을 배달하므로 원본 서버의 메모리 및 I/O 부담이 줄어듭니다.
+- Hello 파일의 더 작은 부분 배달 하기 때문에 메모리 및 I/O 압력 hello 원점에 감소 됩니다.
 
-- CDN에 캐시되는 청크의 경우 콘텐츠가 만료되거나 캐시에서 제거될 때까지 원본 서버에 대한 추가 요청이 없습니다.
+- Hello CDN에 캐시 된 청크로 구성에 대 한 추가 요청이 없는 toohello 원점 hello 콘텐츠 만료 되거나 hello 캐시에서 제거 될 때까지 합니다.
 
-- 사용자는 CDN에 범위 요청을 할 수 있으며, 이러한 요청은 일반 파일처럼 처리됩니다. 최적화는 파일 형식이 유효하고 바이트 범위가 10MB ~ 150GB인 경우에만 적용됩니다. 요청된 평균 파일 크기가 10MB보다 작은 경우 일반 웹 배달을 대신 사용할 수 있습니다.
+- 사용자가 범위를 만들 수 toohello CDN에서 요청 하 고 일반 파일 처럼 처리 하는 합니다. 최적화는 올바른 파일 형식 이므로 hello 바이트 범위는 10MB-150GB 경우에 적용 됩니다. 요청 된 hello 평균 파일 크기 10 MB 보다 작은 경우 toouse 일반 웹 배달 대신 할 수 있습니다.
 
 ### <a name="azure-content-delivery-network-from-verizon"></a>Verizon의 Azure Content Delivery Network
 
-일반 웹 배달 최적화 형식은 대용량 파일을 배달할 수 있습니다.
+hello 일반 웹 배달 최적화 종류는 큰 파일을 제공할 수 있습니다.

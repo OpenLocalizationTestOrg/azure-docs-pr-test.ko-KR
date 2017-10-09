@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions HTTP 및 webhook 바인딩 | Microsoft 문서"
-description: "Azure Functions에서 HTTP와 WebHook 트리거 및 바인딩을 사용하는 방법을 파악합니다."
+title: "aaaAzure 함수 HTTP 및 webhook 바인딩을 | Microsoft Docs"
+description: "Toouse HTTP 및 webhook 트리거 하는 방법을 이해 및 Azure 함수에서 바인딩."
 services: functions
 documentationcenter: na
 author: mattchenderson
@@ -16,21 +16,21 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 11/18/2016
 ms.author: mahender
-ms.openlocfilehash: 71c0d22c4b1824078982b9d1cc76645f947ae603
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c23b7a1443d492ed78c595e97d1d778a7ab12416
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-http-and-webhook-bindings"></a>Azure Functions HTTP 및 WebHook 바인딩
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-이 문서에서는 Azure Functions에서 HTTP 트리거 및 바인딩을 구성하고 사용하는 방법에 대해 설명합니다.
-이러한 트리거와 바인딩을 사용하면 Azure Functions에서 서버가 없는 API를 만들고 webhook에 응답할 수 있습니다.
+이 문서에서는 tooconfigure 및 http 작업의 트리거 방법을 설명 및 Azure 함수에서 바인딩.
+이러한 Azure 함수 toobuild 서버가 없는 Api 및 응답 toowebhooks를 사용할 수 있습니다.
 
-Azure Functions에서 제공하는 바인딩은 다음과 같습니다.
-- [HTTP 트리거](#httptrigger)를 사용하면 HTTP 요청으로 함수를 호출할 수 있습니다. 이 트리거는 [webhook](#hooktrigger)에 응답하도록 사용자 지정할 수 있습니다.
-- [HTTP 출력 바인딩](#output)을 사용하면 요청에 응답할 수 있습니다.
+Azure 함수 hello를 바인딩은 다음을 제공 합니다.
+- [HTTP 트리거](#httptrigger)를 사용하면 HTTP 요청으로 함수를 호출할 수 있습니다. 사용자 지정 된 toorespond 너무 일 수 있습니다[webhook](#hooktrigger)합니다.
+- [HTTP 출력 바인딩이](#output) toorespond toohello 요청을 허용 합니다.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
@@ -39,14 +39,14 @@ Azure Functions에서 제공하는 바인딩은 다음과 같습니다.
 <a name="httptrigger"></a>
 
 ## <a name="http-trigger"></a>HTTP 트리거
-HTTP 트리거는 HTTP 요청에 대한 응답으로 함수를 실행합니다. 특정 URL 또는 HTTP 메서드 집합에 응답하도록 사용자 지정할 수 있습니다. 또한 HTTP 트리거는 webhook에도 응답하도록 구성할 수 있습니다. 
+hello HTTP 트리거 응답 tooan HTTP 요청에서 함수를 실행 됩니다. Toorespond tooa 특정 URL 또는 HTTP 메서드 집합을 지정할 수 있습니다. HTTP 트리거를 사용 하는 구성 된 toorespond toowebhooks 될 수도 있습니다. 
 
-Functions 포털을 사용하는 경우 미리 만든 템플릿을 사용하여 바로 시작할 수도 있습니다. **새 함수**를 선택하고 **시나리오** 드롭다운에서 [API & Webhooks]를 선택합니다. 템플릿 중 하나를 선택하고 **만들기**를 클릭합니다.
+Hello 함수 포털을 사용 하는 경우 시작할 수 있습니다도 미리 만든된 서식 파일을 사용 하 여 바로 합니다. 선택 **새 함수** hello에서 "API 및 Webhook"를 선택 하 고 **시나리오** 드롭다운입니다. Hello 템플릿 중 하나를 선택 하 고 클릭 **만들기**합니다.
 
-기본적으로 HTTP 트리거는 HTTP 200 OK 상태 코드와 비어 있는 본문을 포함한 요청에 응답합니다. 응답을 수정하려면 [HTTP 바인딩 출력](#output)을 구성합니다.
+기본적으로 HTTP 트리거는 HTTP 200 OK 상태 코드 및 빈 본문이 toohello 요청을 응답 합니다. toomodify 응답 hello, 구성 프로그램 [HTTP 출력 바인딩](#output)
 
 ### <a name="configuring-an-http-trigger"></a>HTTP 트리거 구성
-HTTP 트리거는 function.json의 `bindings` 배열에 다음과 유사한 JSON 개체를 포함하여 정의됩니다.
+Hello에서 다음 JSON 개체와 유사한 toohello를 포함 하 여 HTTP 트리거는 정의 된 `bindings` 배열 function.json입니다.
 
 ```json
 {
@@ -58,37 +58,37 @@ HTTP 트리거는 function.json의 `bindings` 배열에 다음과 유사한 JSON
     "route": "values/{id}"
 },
 ```
-바인딩에서 지원하는 속성은 다음과 같습니다.
+hello 바인딩은 hello를 다음과 같은 속성을 지원 합니다.
 
-* **name**: 필수 - 요청 또는 요청 본문의 함수 코드에 사용되는 변수 이름입니다. [코드에서 HTTP 트리거 사용](#httptriggerusage)을 참조하세요.
-* **type**: 필수 - "httpTrigger"로 설정해야 합니다.
-* **direction**: 필수 - "in"으로 설정해야 합니다.
-* _authLevel_: 키가 있는 경우 함수를 호출하기 위해 요청에 포함되어야 하는 키를 결정합니다. 아래의 [키 사용](#keys)을 참조하세요. 값은 다음 중 하나일 수 있습니다.
+* **이름** : 필요-hello 요청 또는 요청 본문에 대 한 함수 코드에서 사용 하는 hello 변수 이름입니다. [코드에서 HTTP 트리거 사용](#httptriggerusage)을 참조하세요.
+* **형식** : 필요-설정 해야 너무 "httpTrigger"입니다.
+* **방향** : 필요-"의 in" 너무 설정 해야 합니다.
+* _authLevel_ : toobe 순서 tooinvoke hello 함수에서 hello 요청에 있는 할 수 있는 경우 어떤 키를 결정 합니다. 아래의 [키 사용](#keys)을 참조하세요. hello 값 hello 다음 중 하나일 수 있습니다.
     * _anonymous_: API 키가 필요하지 않습니다.
-    * _function_: 함수 전용 API 키가 필요합니다. authLevel 속성 값을 제공하지 않을 경우 기본값입니다.
-    * _admin_: 마스터 키가 필요합니다.
-* **methods**: 함수에서 응답할 HTTP 메서드의 배열입니다. 이 속성을 지정하지 않으면 함수에서 모든 HTTP 메서드에 응답합니다. [HTTP 끝점 사용자 지정](#url)을 참조하세요.
-* **route**: 경로 템플릿을 정의하여 함수에서 응답할 요청 URL을 제어합니다. 값을 제공하지 않을 경우 기본값은 `<functionname>`입니다. [HTTP 끝점 사용자 지정](#url)을 참조하세요.
-* **webHookType**: HTTP 트리거가 지정된 공급자의 webhook 수신기(receiver)로 작동하도록 구성합니다. 이 속성을 선택하는 경우 _methods_ 속성을 설정하면 안됩니다. [webhook에 응답](#hooktrigger)을 참조하세요. 값은 다음 중 하나일 수 있습니다.
+    * _function_: 함수 전용 API 키가 필요합니다. 아무 것도 제공 하는 경우 hello 기본값입니다.
+    * _관리자_ : hello 마스터 키가 필요 합니다.
+* **메서드** : hello HTTP 메서드 toowhich hello 함수는 응답의 배열입니다. 지정 하지 않으면 hello 함수 tooall HTTP 메서드에 응답 합니다. 참조 [hello HTTP 끝점을 사용자 지정](#url)합니다.
+* **경로** : toowhich 제어 되는 hello 경로 템플릿을 정의 합니다. 요청 Url 함수 응답 합니다. hello 제공 하지 않으면 기본값은 `<functionname>`합니다. 참조 [hello HTTP 끝점을 사용자 지정](#url)합니다.
+* **webHookType** : 그러면 HTTP hello 트리거 tooact hello 지정 된 공급자에 대 한 webhook 수신기로 구성 합니다. hello _메서드_ 선택이 속성을 설정 하지 않아야 합니다. 참조 [응답 중 toowebhooks](#hooktrigger)합니다. hello 값 hello 다음 중 하나일 수 있습니다.
     * _genericJson_: 특정 공급자를 위한 논리가 없는 범용 webhook 끝점입니다.
-    * _github_: GitHub webhook에 응답하는 함수입니다. 이 값을 선택하는 경우 _authLevel_ 속성을 설정하면 안됩니다.
-    * _slack_: Slack webhook에 응답하는 함수입니다. 이 값을 선택하는 경우 _authLevel_ 속성을 설정하면 안됩니다.
+    * _github_ : hello 함수 tooGitHub webhook 응답 합니다. hello _authLevel_ 선택이 속성을 설정 하지 않아야 합니다.
+    * _slack_ : hello 함수 tooSlack webhook 응답 합니다. hello _authLevel_ 선택이 속성을 설정 하지 않아야 합니다.
 
 <a name="httptriggerusage"></a>
 ### <a name="working-with-an-http-trigger-from-code"></a>코드에서 HTTP 트리거 사용
-C# 및 F# 함수의 경우 트리거 입력 형식을 `HttpRequestMessage` 또는 사용자 지정 형식으로 선언할 수 있습니다. `HttpRequestMessage`를 선택하면 요청 개체에 대한 모든 권한을 갖게 됩니다. 사용자 지정 형식(예: POCO)의 경우 함수는 요청 본문을 JSON으로 구문 분석하여 개체 속성을 채웁니다.
+C# 및 F # 함수에 대 한 형식을 선언할 수 있습니다 hello 트리거 입력된 toobe의 하거나 `HttpRequestMessage` 또는 사용자 지정 형식입니다. 선택 하면 `HttpRequestMessage`, 모든 액세스 toohello 요청 개체를 발생 합니다. 사용자 지정 형식 (예: POCO)에 대 한 함수는 JSON toopopulate hello 개체 속성으로 tooparse hello 요청 본문을 시도 합니다.
 
-Node.js 함수의 경우 함수 런타임은 요청 개체 대신 요청 본문을 제공합니다.
+Node.js 함수에 대 한 hello 함수 런타임은 hello 요청 개체 대신 hello 요청 본문을 제공합니다.
 
 사용 예제는 [HTTP 트리거 샘플](#httptriggersample)을 참조하세요.
 
 
 <a name="output"></a>
 ## <a name="http-response-output-binding"></a>HTTP 응답 출력 바인딩
-HTTP 요청 발신기(sender)에 응답하려면 HTTP 출력 바인딩을 사용합니다. 이 바인딩에는 HTTP 트리거가 필요하며 트리거 요청과 관련된 응답을 사용자 지정할 수 있습니다. HTTP 출력 바인딩이 제공되지 않으면 HTTP 트리거는 빈 본문과 함께 HTTP 200 OK를 반환합니다. 
+Hello HTTP 출력 바인딩 toorespond toohello HTTP 요청 발신자를 사용 합니다. 이 바인딩은 HTTP 트리거는 걸리며 hello 트리거 요청과 연결 된 toocustomize hello 응답 있습니다. HTTP 출력 바인딩이 제공되지 않으면 HTTP 트리거는 빈 본문과 함께 HTTP 200 OK를 반환합니다. 
 
 ### <a name="configuring-an-http-output-binding"></a>HTTP 출력 바인딩 구성
-HTTP 출력 바인딩은 function.json의 `bindings` 배열에 다음과 유사한 JSON 개체를 포함하여 정의됩니다.
+hello HTTP 바인딩이 hello에서 다음 JSON 개체와 유사한 toohello를 포함 하 여 정의 된 출력 `bindings` function.json의 배열:
 
 ```json
 {
@@ -97,38 +97,38 @@ HTTP 출력 바인딩은 function.json의 `bindings` 배열에 다음과 유사�
     "direction": "out"
 }
 ```
-바인딩에서 포함하는 속성은 다음과 같습니다.
+hello 바인딩에 hello 다음 속성이 포함 됩니다.
 
-* **name**: 필수 - 응답의 함수 코드에 사용되는 변수 이름입니다. [코드에서 HTTP 출력 바인딩 사용](#outputusage)을 참조하세요.
-* **type**: 필수 - "http"로 설정해야 합니다.
-* **direction**: 필수 - "out"으로 설정해야 합니다.
+* **이름** : hello 응답에 대 한 함수 코드에서 사용 되는 변수 이름 hello 필요-합니다. [코드에서 HTTP 출력 바인딩 사용](#outputusage)을 참조하세요.
+* **형식** : 필요-설정 해야 너무 "http"입니다.
+* **방향** : 필요-"out" 너무 설정 해야 합니다.
 
 <a name="outputusage"></a>
 ### <a name="working-with-an-http-output-binding-from-code"></a>코드에서 HTTP 출력 바인딩 사용
-출력 매개 변수(예: "res")를 사용하여 http 또는 webhook 호출기(caller)에 응답할 수 있습니다. 또는 표준 `Request.CreateResponse()`(C#) 또는 `context.res`(Node.JS) 패턴을 사용하여 응답을 반환할 수 있습니다. 후자의 메서드를 사용하는 방법에 대한 예제는 [HTTP 트리거 샘플](#httptriggersample) 및 [Webhook 트리거 샘플](#hooktriggersample)을 참조하세요.
+Hello 출력 매개 변수 (예: "res") toorespond toohello http 또는 webhook 호출자를 사용할 수 있습니다. 또는 표준을 사용할 수 있습니다 `Request.CreateResponse()` (C#) 또는 `context.res` (Node.JS) 패턴 tooreturn 응답 합니다. Toouse 두 번째 방법을 hello 하는 방법에 대 한 예제를 보려면 [HTTP 트리거 샘플](#httptriggersample) 및 [Webhook 트리거 샘플](#hooktriggersample)합니다.
 
 
 <a name="hooktrigger"></a>
-## <a name="responding-to-webhooks"></a>webhook에 응답
-_webHookType_ 속성이 있는 HTTP 트리거에서 [webhook](https://en.wikipedia.org/wiki/Webhook)에 응답하도록 구성됩니다. 기본 구성에서는 "genericJson" 설정을 사용합니다. 이렇게 하면 HTTP POST 및 `application/json` 콘텐츠 형식을 사용하는 요청으로만 제한됩니다.
+## <a name="responding-toowebhooks"></a>Toowebhooks 응답
+Hello로 HTTP 트리거는 _webHookType_ 속성이 되 구성된 toorespond 너무[webhook](https://en.wikipedia.org/wiki/Webhook)합니다. hello 기본 구성에는 hello "genericJson" 설정이 사용 됩니다. 이 경우 제한 요청 tooonly hello로 POST 및 HTTP를 사용 하 여 `application/json` 콘텐츠 형식입니다.
 
-또한 트리거는 특정 webhook 공급자(예: [GitHub](https://developer.github.com/webhooks/) 및 [Slack](https://api.slack.com/outgoing-webhooks))에 맞춰 지정할 수 있습니다. 공급자를 지정하면 Functions 런타임에서 공급자의 유효성 검사 논리를 처리할 수 있습니다.  
+hello 트리거 일 수 있습니다 또한 맞춤형된 tooa 특정 webhook 공급자 (예: [GitHub](https://developer.github.com/webhooks/) 및 [Slack](https://api.slack.com/outgoing-webhooks)). 공급자를 지정 하는 경우를 hello 함수 런타임 hello 공급자의 유효성 검사 논리를 처리할 수 있습니다.  
 
 ### <a name="configuring-github-as-a-webhook-provider"></a>GitHub를 웹후크 공급자로 구성
-GitHub webhook에 응답하려면 먼저 HTTP 트리거를 사용하여 함수를 만들고 _webHookType_ 속성을 "github"로 설정합니다. 그런 다음 [URL](#url) 및 [API 키](#keys)를 GitHub 리포지토리의 **webhook 추가** 페이지에 복사합니다. 자세한 내용은 GitHub의 [Webhook 만들기](http://go.microsoft.com/fwlink/?LinkID=761099&clcid=0x409) 설명서를 참조하세요.
+toorespond tooGitHub webhook을 먼저 함수는 HTTP 트리거를 만들고 설정 hello _webHookType_ 속성 너무 "github"입니다. 그런 다음 [URL](#url) 및 [API 키](#keys)를 GitHub 리포지토리의 **webhook 추가** 페이지에 복사합니다. 자세한 내용은 GitHub의 [Webhook 만들기](http://go.microsoft.com/fwlink/?LinkID=761099&clcid=0x409) 설명서를 참조하세요.
 
 ![](./media/functions-bindings-http-webhook/github-add-webhook.png)
 
 ### <a name="configuring-slack-as-a-webhook-provider"></a>Slack을 webhook 공급자로 구성
-Slack webhook은 함수 전용 키를 지정하는 대신 사용자를 위한 토큰을 생성하므로 Slack의 토큰을 사용하여 함수 전용 키를 구성해야 합니다. [키 사용](#keys)을 참조하세요.
+hello Slack webhook 대신 Slack hello 토큰으로 함수 전용 키를 구성 해야 하므로, 지정할 수 있습니다에 대 한 토큰을 생성 합니다. [키 사용](#keys)을 참조하세요.
 
 <a name="url"></a>
-## <a name="customizing-the-http-endpoint"></a>HTTP 끝점 사용자 지정
-기본적으로 HTTP 트리거 또는 WebHook용 함수를 만드는 경우 폼의 경로를 사용하여 이 함수의 주소를 지정할 수 있습니다.
+## <a name="customizing-hello-http-endpoint"></a>Hello HTTP 끝점을 사용자 지정
+기본적으로 HTTP 트리거나, WebHook에 대 한 함수를 만들 때 hello 함수는 hello 폼의 경로와 주소 지정 가능.
 
     http://<yourapp>.azurewebsites.net/api/<funcname> 
 
-HTTP 트리거의 입력 바인딩에서 선택적 `route` 속성을 사용하여 이 경로를 사용자 지정할 수 있습니다. 예를 들어 다음 *function.json* 파일은 HTTP 트리거에 대한 `route` 속성을 정의합니다.
+선택적 hello를 사용 하 여이 경로 사용자 지정할 수 있습니다 `route` hello HTTP 트리거에 대 한 속성이 바인딩을 입력 합니다. 예를 들어, 다음 hello *function.json* 파일 정의 `route` HTTP 트리거는에 대 한 속성:
 
 ```json
     {
@@ -149,11 +149,11 @@ HTTP 트리거의 입력 바인딩에서 선택적 `route` 속성을 사용하�
     }
 ```
 
-이 구성을 사용하면 원래 경로 대신 다음 경로를 사용하여 함수의 주소를 지정할 수 있습니다.
+이 구성을 사용 하 여, hello 함수는 현재 주소 지정 가능 경로 hello 원래 경로 대신 다음 hello로 합니다.
 
     http://<yourapp>.azurewebsites.net/api/products/electronics/357
 
-이렇게 하면 함수 코드에서 주소의 두 매개 변수, "category" 및 "id"를 지원할 수 있습니다. 매개 변수에서 [웹 API 경로 제약 조건](https://www.asp.net/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2#constraints)을 사용할 수 있습니다. 다음 C# 함수 코드는 두 매개 변수를 모두 사용합니다.
+이렇게 하면 hello 함수 코드 hello 주소, "범주" 및 "id" toosupport 두 매개 변수입니다. 매개 변수에서 [웹 API 경로 제약 조건](https://www.asp.net/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2#constraints)을 사용할 수 있습니다. C# 함수 코드 다음 hello에서는 두 매개 변수를 활용 합니다.
 
 ```csharp
     public static Task<HttpResponseMessage> Run(HttpRequestMessage req, string category, int? id, 
@@ -166,7 +166,7 @@ HTTP 트리거의 입력 바인딩에서 선택적 `route` 속성을 사용하�
     }
 ```
 
-다음은 동일한 경로 매개 변수를 사용하는 Node.js 함수 코드입니다.
+여기서는 Node.js 함수 코드 toouse hello 동일한 경로 매개 변수입니다.
 
 ```javascript
     module.exports = function (context, req) {
@@ -176,13 +176,13 @@ HTTP 트리거의 입력 바인딩에서 선택적 `route` 속성을 사용하�
 
         if (!id) {
             context.res = {
-                // status: 200, /* Defaults to 200 */
+                // status: 200, /* Defaults too200 */
                 body: "All " + category + " items were requested."
             };
         }
         else {
             context.res = {
-                // status: 200, /* Defaults to 200 */
+                // status: 200, /* Defaults too200 */
                 body: category + " item with id = " + id + " was requested."
             };
         }
@@ -191,7 +191,7 @@ HTTP 트리거의 입력 바인딩에서 선택적 `route` 속성을 사용하�
     } 
 ```
 
-기본적으로 모든 함수 경로에는 *api* 접두사가 붙습니다. *host.json* 파일에서 `http.routePrefix` 속성을 사용하여 접두사를 사용자 지정하거나 제거할 수도 있습니다. 다음 예제에서는 *host.json* 파일에서 빈 문자열을 접두사로 사용하여 *api* 경로 접두사를 제거합니다.
+기본적으로 모든 함수 경로에는 *api* 접두사가 붙습니다. 또한 사용자 지정 하거나 hello를 사용 하 여 hello 접두사를 제거할 수 `http.routePrefix` 속성에 프로그램 *host.json* 파일입니다. hello 다음 예제에서는 제거 hello *api* hello에 hello 접두사에 대 한 빈 문자열을 사용 하 여 경로 접두사 *host.json* 파일입니다.
 
 ```json
     {
@@ -201,52 +201,52 @@ HTTP 트리거의 입력 바인딩에서 선택적 `route` 속성을 사용하�
     }
 ```
 
-함수의 *host.json* 파일을 업데이트하는 방법에 대한 자세한 내용은 [함수 앱 파일을 업데이트하는 방법](functions-reference.md#fileupdate)을 참조하세요. 
+에 대 한 자세한 내용은 방법 tooupdate hello *host.json* 참조, 함수에 대 한 파일 [tooupdate 앱 파일을 어떻게 작동 하는지](functions-reference.md#fileupdate)합니다. 
 
 *host.json* 파일에서 구성할 수 있는 다른 속성에 대한 자세한 내용은 [host.json 참조](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)를 참조하세요.
 
 
 <a name="keys"></a>
 ## <a name="working-with-keys"></a>키 사용
-HttpTriggers는 보안 강화를 위해 키를 활용할 수 있습니다. 표준 HttpTrigger에서 이러한 키는 API 키로 사용될 수 있으므로 요청 시에 필요합니다. Webhooks에서는 공급자가 지원하는 항목에 따라 다양한 방식으로 요청을 인증하는 데 키를 사용할 수 있습니다.
+HttpTriggers는 보안 강화를 위해 키를 활용할 수 있습니다. 표준 HttpTrigger צ ְ ײ API 키로 이러한 hello 요청에 있는 키 toobe hello 요구 합니다. 또한 Webhook 키 tooauthorize 요청에서 다양 한 방법으로 어떤 hello 공급자 지원에 따라 사용할 수 있습니다.
 
-키는 Azure에 함수 앱의 일부로 저장되며 나머지는 암호화되어 있습니다. 키를 보거나, 새 키를 만들거나, 키를 새 값으로 전환하려면 포털에 있는 함수 중 하나를 탐색하여 [관리]를 선택합니다. 
+키는 Azure에 함수 앱의 일부로 저장되며 나머지는 암호화되어 있습니다. tooview 키를 새 데이터베이스를 만들고 또는 롤 toonew 값 키 hello 포털 내에서 함수 tooone 이동한 "Manage"를 선택 합니다. 
 
 다음과 같이 두 가지 유형의 키가 있습니다.
-- **호스트 키**: 함수 앱 내의 모든 함수에서 공유합니다. API 키로 사용되면 이 키를 통해 함수 앱 내의 모든 함수에 액세스할 수 있습니다.
-- **function 키**: 정의된 특정 함수에만 적용됩니다. API 키로 사용되면 이 키를 통해 해당 함수에만 액세스할 수 있습니다.
+- **호스트에서 호스트 키**: hello 함수 앱 내에서 모든 기능에서 이러한 키를 공유 합니다. API 키로 사용할 경우 hello 함수 앱 내에서 access tooany 함수를 수 있습니다.
+- **기능 키**: 이러한 키 toohello 특정 함수만는 정의 적용 합니다. API 키로 사용할 경우 액세스 toothat 함수 이러한만 허용 합니다.
 
-각 키의 이름은 참조될 수 있도록 지정되며 함수 및 호스트 수준에서는 "default"라는 기본 키가 있습니다. **master 키**는 각 함수 앱에 대해 정의하고 취소할 수 없는 "_master"라는 기본 호스트 키입니다. 런타임 API에 대한 관리 액세스를 제공합니다. 바인딩 JSON에서 `"authLevel": "admin"`을 사용하면 요청 시 이 키가 필요합니다. 다른 키는 권한 부여 오류가 발생합니다.
+참조를 위해 각 키의 이름을 지정 하 고 hello 함수 및 호스트 수준에서 기본 키 (이름: "default")가 있습니다. hello **마스터 키** 기본 호스트 키를 각각 함수 앱에 대해 정의 되 고 해지할 수 없습니다 "_master" 라고 합니다. 관리 액세스 toohello 런타임 Api를 제공합니다. 사용 하 여 `"authLevel": "admin"` hello JSON 바인딩 필요 합니다 hello 요청에 표시 된이 키 toobe; 다른 키 권한 부여 오류가 발생 합니다.
 
 > [!NOTE]
-> master 키에서 부여하는 승격된 권한으로 인해 이 키를 타사와 공유하거나 네이티브 클라이언트 응용 프로그램에 배포해서는 안됩니다. 따라서 관리자 권한 부여 수준을 선택할 때는 주의해야 합니다.
+> 기한 toohello 높은 권한을 hello 마스터 키로 부여 제 3 자와이 키를 공유 하거나 네이티브 클라이언트 응용 프로그램에 배포 해야 합니다. Hello 관리자 권한 수준을 선택할 때는 주의 해야 합니다.
 > 
 > 
 
 ### <a name="api-key-authorization"></a>API 키 권한 부여
-기본적으로 HttpTrigger는 HTTP 요청에서 API 키가 필요합니다. 따라서 HTTP 요청은 일반적으로 다음과 같습니다.
+기본적으로는 HttpTrigger hello HTTP 요청에 있는 API 키를 사용합니다. 따라서 HTTP 요청은 일반적으로 다음과 같습니다.
 
     https://<yourapp>.azurewebsites.net/api/<function>?code=<ApiKey>
 
-키는 위와 같이 `code`라는 쿼리 문자열 변수에 포함되거나 `x-functions-key` HTTP 헤더에 포함될 수 있습니다. 키 값은 함수에 대해 정의된 모든 function 키 또는 모든 호스트 키일 수 있습니다.
+명명 된 쿼리 문자열 변수에 hello 키를 포함 될 수 있습니다 `code`, 위의 설명 참조 또는에 포함 될 수는 `x-functions-key` HTTP 헤더입니다. 기능 키 hello 함수에 대해 정의 된 또는 모든 호스트 키 hello hello 키 값 수 있습니다.
 
-키가 없는 요청을 허용하도록 선택하거나 바인딩 JSON([HTTP 트리거](#httptrigger) 참조)에서 `authLevel` 속성을 변경하여 master 키를 사용해야 한다고 지정할 수 있습니다.
+키가 없는 tooallow 요청에서 선택 하거나 hello를 변경 하 여 hello 마스터 키를 사용 해야 지정할 수 있습니다 `authLevel` JSON 바인딩 hello에 대 한 속성 (참조 [HTTP 트리거](#httptrigger)).
 
 ### <a name="keys-and-webhooks"></a>키 및 webhook
-Webhook 인증은 HttpTrigger의 일부로 Webhook 수신기 구성 요소에서 처리하며 메커니즘은 Webhook 유형에 따라 다릅니다. 그러나 각 메커니즘마다 키를 사용합니다. 기본적으로 "default"라는 function 키가 사용됩니다. 다른 키를 사용하려면 다음 중 한 가지 방법으로 요청과 함께 키 이름을 보내도록 webhook 공급자를 구성해야 합니다.
+Hello webhook 수신기 구성 요소에 의해 Webhook 권한 부여를 처리, HttpTrigger, hello 및 hello 메커니즘의 일부는 hello webhook 형식에 따라 달라 집니다. 그러나 각 메커니즘마다 키를 사용합니다. 기본적으로 "default" 라는 hello 기능 키 사용 됩니다. 다른 키 toouse을 원할 경우 tooconfigure hello webhook 공급자 toosend hello 키 이름을 hello 같은 방법으로 다음 중 하나에 hello 요청 해야 합니다.
 
-- **쿼리 문자열**: 공급자에서 `clientid` 쿼리 문자열 매개 변수에 키 이름을 전달합니다(예제: `https://<yourapp>.azurewebsites.net/api/<funcname>?clientid=<keyname>`).
-- **요청 헤더**: 공급자에서 `x-functions-clientid` 헤더에 키 이름을 전달합니다.
+- **쿼리 문자열**: hello 공급자 hello hello 키 이름 전달 `clientid` 쿼리 문자열 매개 변수 (예: `https://<yourapp>.azurewebsites.net/api/<funcname>?clientid=<keyname>`).
+- **요청 헤더**: hello 공급자 hello hello 키 이름 전달 `x-functions-clientid` 헤더입니다.
 
 > [!NOTE]
-> function 키는 호스트 키보다 우선합니다. 두 키가 동일한 이름으로 정의되면 function 키가 사용됩니다.
+> function 키는 호스트 키보다 우선합니다. 동일한 이름, hello hello로 두 키가 정의 하는 경우 기능 키를 사용 됩니다.
 > 
 > 
 
 
 <a name="httptriggersample"></a>
 ## <a name="http-trigger-samples"></a>HTTP 트리거 샘플
-function.json의 `bindings` 배열에 다음과 같은 HTTP 트리거가 있다고 가정합니다.
+있다고 가정 하면 다음 hello에서 HTTP 트리거 hello `bindings` function.json의 배열:
 
 ```json
 {
@@ -257,7 +257,7 @@ function.json의 `bindings` 배열에 다음과 같은 HTTP 트리거가 있다�
 },
 ```
 
-쿼리 문자열 또는 HTTP 요청 본문에서 `name` 매개 변수를 찾는 언어 특정 샘플을 참조하세요.
+검색 하는 hello 언어 관련 샘플을 참조 한 `name` hello 쿼리 문자열 또는 hello hello HTTP 요청 본문에서 매개 변수입니다.
 
 * [C#](#httptriggercsharp)
 * [F#](#httptriggerfsharp)
@@ -282,16 +282,16 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     // Get request body
     dynamic data = await req.Content.ReadAsAsync<object>();
 
-    // Set name to query string or body data
+    // Set name tooquery string or body data
     name = name ?? data?.name;
 
     return name == null
-        ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body")
+        ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on hello query string or in hello request body")
         : req.CreateResponse(HttpStatusCode.OK, "Hello " + name);
 }
 ```
 
-`HttpRequestMessage` 대신 POCO에 바인딩할 수도 있습니다. 이 샘플은 요청 본문에서 하이드레이션되고 JSON으로 구문 분석됩니다. 마찬가지로, 형식을 HTTP 응답 출력 바인딩으로 전달할 수도 있습니다. 그러면 200 상태 코드를 갖는 응답 본문으로 반환됩니다.
+POCO tooa 바인딩할 수도 있습니다 대신 `HttpRequestMessage`합니다. 이 hello 요청을 JSON으로 구문 분석의 hello 본문에서 하이드레이션 합니다. 마찬가지로, 형식, 바인딩 toohello HTTP 응답 출력을 전달할 수 있습니다 및 200 상태 코드와 함께 hello 응답 본문으로 반환 됩니다.
 ```csharp
 using System.Net;
 using System.Threading.Tasks;
@@ -327,11 +327,11 @@ let Run(req: HttpRequestMessage) =
             try
                 return req.CreateResponse(HttpStatusCode.OK, "Hello " + data?name)
             with e ->
-                return req.CreateErrorResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body")
+                return req.CreateErrorResponse(HttpStatusCode.BadRequest, "Please pass a name on hello query string or in hello request body")
     } |> Async.StartAsTask
 ```
 
-다음과 같이 NuGet을 사용하여 `FSharp.Interop.Dynamic` 및 `Dynamitey` 어셈블리를 참조하는 `project.json` 파일이 필요합니다.
+필요한는 `project.json` NuGet tooreference hello를 사용 하는 파일 `FSharp.Interop.Dynamic` 및 `Dynamitey` 다음과 같이 어셈블리:
 
 ```json
 {
@@ -346,7 +346,7 @@ let Run(req: HttpRequestMessage) =
 }
 ```
 
-그러면 NuGet을 사용하여 종속성을 가져오고 스크립트에서 해당 항목을 참조하게 됩니다.
+사용 NuGet toofetch 종속성 하 고 스크립트에서 개체를 참조 합니다.
 
 <a name="httptriggernodejs"></a>
 ### <a name="http-trigger-sample-in-nodejs"></a>Node.js의 트리거 샘플
@@ -356,14 +356,14 @@ module.exports = function(context, req) {
 
     if (req.query.name || (req.body && req.body.name)) {
         context.res = {
-            // status: 200, /* Defaults to 200 */
+            // status: 200, /* Defaults too200 */
             body: "Hello " + (req.query.name || req.body.name)
         };
     }
     else {
         context.res = {
             status: 400,
-            body: "Please pass a name on the query string or in the request body"
+            body: "Please pass a name on hello query string or in hello request body"
         };
     }
     context.done();
@@ -374,7 +374,7 @@ module.exports = function(context, req) {
 
 <a name="hooktriggersample"></a>
 ## <a name="webhook-samples"></a>Webhook 샘플
-function.json의 `bindings` 배열에 다음과 같은 webhook 트리거가 있다고 가정합니다.
+있다고 가정 하면 다음 hello에 대 한 webhook 트리거 hello `bindings` function.json의 배열:
 
 ```json
 {
@@ -385,7 +385,7 @@ function.json의 `bindings` 배열에 다음과 같은 webhook 트리거가 있�
 },
 ```
 
-GitHub 문제 설명을 기록하는 언어 특정 샘플을 참조하세요.
+GitHub 문제 설명을 기록 하는 hello 언어 관련 샘플을 참조 하십시오.
 
 * [C#](#hooktriggercsharp)
 * [F#](#hooktriggerfsharp)

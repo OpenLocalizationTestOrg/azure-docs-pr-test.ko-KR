@@ -1,6 +1,6 @@
 ---
-title: "Azure Portal을 사용하여 IoT Hub 만들기 | Microsoft 문서"
-description: "Azure Portal을 통해 Azure IoT Hub를 만들고 관리하고 삭제하는 방법입니다. 가격 책정 계층, 보안, 배율 및 메시징 구성에 대한 정보가 포함됩니다."
+title: "aaaUse hello Azure 포털 toocreate IoT Hub | Microsoft Docs"
+description: "어떻게 toocreate, 관리 및 hello Azure 포털을 통해 Azure IoT 허브를 삭제 합니다. 가격 책정 계층, 보안, 배율 및 메시징 구성에 대한 정보가 포함됩니다."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,52 +14,52 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/26/2017
 ms.author: dobett
-ms.openlocfilehash: bca7eea5f44bbed3b784b56edaac235161b43e5e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 383968c90ee7ef3bff85a6c90efbf5f0e8fbb208
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-iot-hub-using-the-azure-portal"></a>Azure Portal을 사용하여 IoT Hub 만들기
+# <a name="create-an-iot-hub-using-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여 IoT 허브를 만듭니다.
 
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
 이 문서에서는 다음을 설명합니다.
 
-* Azure Portal에서 IoT Hub 서비스를 찾는 방법.
-* IoT Hub 만들기 및 관리 방법.
+* 어떻게 toofind hello hello Azure 포털에서에서 IoT Hub 서비스입니다.
+* 어떻게 toocreate IoT 허브 및 관리 합니다.
 
-## <a name="where-to-find-the-iot-hub-service"></a>IoT Hub 서비스를 찾을 위치.
+## <a name="where-toofind-hello-iot-hub-service"></a>여기서 toofind hello IoT 허브 서비스
 
-IoT Hub 서비스를 포털의 다음 위치에서 찾을 수 있습니다.
+다음 위치 hello 포털에서 hello에 hello IoT 허브 서비스를 찾을 수 있습니다.
 
 * **+새로 만들기**를 선택한 다음, **사물 인터넷**을 선택합니다.
-* Marketplace에서 **사물 인터넷**을 선택합니다.
+* 마켓플레이스 hello 선택 **사물 인터넷**합니다.
 
 ## <a name="create-an-iot-hub"></a>IoT Hub 만들기
 
-다음 메서드를 통해 IoT Hub를 만들 수 있습니다.
+메서드를 다음 hello를 사용 하 여 IoT hub를 만들 수 있습니다.
 
-* **+ 새로 만들기** 옵션에서 다음 스크린 샷에 표시된 블레이드가 열립니다. 이 메서드는 Marketplace를 통해 IoT Hub를 만드는 단계와 동일합니다.
-* Marketplace에서 **만들기**를 선택하여 다음 스크린 샷에 표시된 블레이드를 엽니다.
+* hello **+ 새로 만들기** 옵션 hello 스크린 샷 뒤에 표시 된 hello 블레이드를 엽니다. 이 메서드를 통해 및 hello marketplace를 통해 hello IoT 허브를 만드는 hello 단계는 동일 합니다.
+* 마켓플레이스 hello 선택 **만들기** tooopen hello 블레이드 hello 스크린 샷 뒤에 표시 된 것입니다.
 
-다음 섹션에서는 IoT Hub를 만드는 몇 가지 단계를 설명합니다.
+hello 다음 섹션에서는 설명 hello 몇 가지 단계 toocreate IoT hub:
 
-### <a name="choose-the-name-of-the-iot-hub"></a>IoT Hub 이름 선택
+### <a name="choose-hello-name-of-hello-iot-hub"></a>Hello IoT 허브의 hello 이름 선택
 
-IoT Hub를 만들려면 IoT Hub의 이름을 지정해야 합니다. 이 이름은 모든 IoT Hub에서 고유해야 합니다.
+IoT hub toocreate hello IoT 허브를 이름을 지정 해야 합니다. 이 이름은 모든 IoT Hub에서 고유해야 합니다.
 
 [!INCLUDE [iot-hub-pii-note-naming-hub](../../includes/iot-hub-pii-note-naming-hub.md)]
 
-### <a name="choose-the-pricing-tier"></a>가격 책정 계층 선택
+### <a name="choose-hello-pricing-tier"></a>Hello 가격 책정 계층 선택
 
-**무료**, **표준 1**, **표준 2**, **표준 S3**라는 네 개의 계층 중에서 선택할 수 있습니다. 무료 계층에서는 IoT Hub에 500개 장치만 연결할 수 있으며 하루에 8,000개 메시지까지 허용합니다.
+**무료**, **표준 1**, **표준 2**, **표준 S3**라는 네 개의 계층 중에서 선택할 수 있습니다. hello 무료 계층에는 500 장치 toobe toohello IoT 허브 연결에 및 too8, 하루 000 메시지를 허용 합니다.
 
-**표준 S1**: 각각 적은 양의 데이터를 생성하는 많은 장치의 IoT 솔루션을 위한 S1 버전을 사용합니다. S1 버전의 각 단위는 연결된 모든 장치에서 하루에 최대 400,000개의 메시지를 전송할 수 있습니다.
+**표준 S1**: 다 수의 각기 적은 양의 데이터를 생성 하는 장치를 사용 하 여 IoT 솔루션에 대 한 hello S1 버전을 사용 합니다. 각 단위 hello S1 버전의 too400, 연결 된 모든 장치에서 하루 000 메시지를 허용합니다.
 
-**표준 S2**: 장치가 대량의 데이터를 생성하는 IoT 솔루션을 위한 S2 버전을 사용합니다. S2 버전의 각 단위를 통해 연결된 모든 장치 간에 하루에 최대 600만 개의 메시지를 전송할 수 있습니다.
+**표준 S2**: IoT 솔루션에서 장치 생성 하는 많은 양의 데이터에 대 한 hello S2 버전을 사용 합니다. 각 단위 hello S2 버전에 연결 된 모든 장치 간의 하루 백만 메시지를 too6를 수 있습니다.
 
-**표준 S3**: 대량의 데이터를 생성하는 IoT 솔루션을 위한 S3 버전을 사용합니다. S3 버전의 각 단위를 통해 연결된 모든 장치 간에 하루에 최대 300만 개의 메시지를 전송할 수 있습니다.
+**표준 S3**: 많은 양의 데이터를 생성 하는 IoT 솔루션에 대 한 hello S3 버전을 사용 합니다. 각 단위 hello S3 버전에 연결 된 모든 장치 간의 하루 백만 메시지를 too300를 수 있습니다.
 
 ![][4]
 
@@ -68,77 +68,77 @@ IoT Hub를 만들려면 IoT Hub의 이름을 지정해야 합니다. 이 이름�
 
 ### <a name="iot-hub-units"></a>IoT Hub 단위
 
-하루 단위당 허용되는 메시지의 수는 허브의 가격 책정 계층에 따라 다릅니다. 예를 들어 IoT Hub가 700,000개의 메시지 수신을 지원하려면 S1 계층 단위 2개를 선택합니다.
+hello 하루 단위 당 허용 되는 메시지 수가 허브의 가격 책정 계층에 따라 달라 집니다. 예를 들어 hello 700, 000 메시지 IoT 허브 toosupport 수신 하려는 경우에 두 명의 S1 계층 단위 선택 합니다.
 
-### <a name="device-to-cloud-partitions-and-resource-group"></a>클라우드 파티션 및 리소스 그룹에 대한 장치
+### <a name="device-toocloud-partitions-and-resource-group"></a>장치 toocloud 파티션 및 리소스 그룹
 
-IoT Hub에 대한 파티션 수를 변경할 수 있습니다. 기본 파티션 수는 4개로, 드롭다운 목록에서 다른 숫자를 선택할 수 있습니다.
+Hello IoT 허브에 대 한 파티션 수를 변경할 수 있습니다. hello 기본 파티션 수는 4, hello 드롭 다운 목록에서 다른 숫자를 선택할 수 있습니다.
 
-빈 리소스 그룹을 명시적으로 만들지 않아도 됩니다. 리소스를 만들 때 기존 리소스 그룹을 사용하거나 새로 만들도록 선택할 수 있습니다.
+않아도 tooexplicitly 빈 리소스 그룹을 만듭니다. 리소스를 만들 때 기존 리소스 그룹을 사용 하 하거나 새 toocreate 중 하나를 선택할 수 있습니다.
 
 ![][5]
 
 ### <a name="choose-subscription"></a>구독 선택
 
-Azure IoT Hub에 사용자 계정을 연결할 Azure 구독 목록이 자동으로 표시됩니다. Azure 구독을 선택하여 IoT Hub를 연결할 수 있습니다.
+Azure IoT Hub 자동으로 목록 hello hello 사용자 계정이 Azure 구독 연결 되어 있습니다. Hello Azure 구독 tooassociate hello IoT 허브를 선택할 수 있습니다.
 
-### <a name="choose-the-location"></a>위치 선택
+### <a name="choose-hello-location"></a>Hello 위치 선택
 
-위치 옵션은 IoT Hub가 제공되는 지역 목록을 제공합니다.
+hello 위치 옵션 IoT 허브를 사용할 수 있는 hello 지역 목록을 제공 합니다.
 
-### <a name="create-the-iot-hub"></a>IoT Hub 만들기
+### <a name="create-hello-iot-hub"></a>Hello IoT 허브를 만듭니다.
 
-이전 단계를 모두 완료하면 IoT Hub를 만들 수 있습니다. 백 엔드 프로세스를 시작하도록 **만들기**를 클릭하여 선택한 옵션으로 IoT Hub를 만들고 배포합니다.
+위의 모든 단계 완료 되 면 hello IoT hub를 만들 수 있습니다. 클릭 **만들기** toostart 백 엔드 프로세스 toocreate hello 및 선택한 hello 옵션으로 hello IoT 허브를 배포 합니다.
 
-적절한 위치 서버에서 백 엔드 배포가 실행되는 데 시간이 소요되므로 IoT Hub를 만드는 데 몇 분이 소요될 수 있습니다.
+백 엔드 배포 toorun hello에 대 한 시간 hello 적절 한 위치 서버에는 몇 분 toocreate hello IoT hub을 걸릴 수 있습니다.
 
-## <a name="change-the-settings-of-the-iot-hub"></a>IoT Hub의 설정 변경
+## <a name="change-hello-settings-of-hello-iot-hub"></a>Hello IoT 허브의 hello 설정 변경
 
-IoT Hub 블레이드에서 IoT Hub를 만든 후에 기존 IoT Hub의 설정을 변경할 수 있습니다.
+IoT Hub 블레이드 hello에서 만들어진 후 기존 IoT hub의 hello 설정을 변경할 수 있습니다.
 
 ![][8]
 
-**공유 액세스 정책**: IoT Hub에 연결할 장치 및 서비스에 대한 권한을 정의합니다. **일반**에서 **공유 액세스 정책**을 클릭하여 이러한 정책에 액세스할 수 있습니다. 이 블레이드에서 기존 정책을 수정하거나 새 정책을 추가할 수 있습니다.
+**공유 액세스 정책의**:이 정책은 장치 및 서비스 tooconnect tooIoT 허브에 대 한 hello 권한을 정의 합니다. **일반**에서 **공유 액세스 정책**을 클릭하여 이러한 정책에 액세스할 수 있습니다. 이 블레이드에서 기존 정책을 수정하거나 새 정책을 추가할 수 있습니다.
 
 ### <a name="create-a-policy"></a>정책 만들기
 
-* **추가**를 클릭하여 블레이드를 엽니다. 여기에서 다음 그림에 표시된 것처럼 새 정책 이름과 이 정책과 연결할 권한을 입력할 수 있습니다.
+* 클릭 **추가** tooopen 블레이드입니다. 여기서 hello 새 정책 이름을 입력할 수 있습니다 및 hello 다음과 같이 되도록이 정책 사용 하 여 tooassociate hello 권한을 그림:
 
-    이러한 공유 정책과 연결할 수 있는 몇 개의 권한이 있습니다. **레지스트리 읽기** 및 **레지스트리 쓰기** 정책은 ID 레지스트리에 대한 읽기 및 쓰기 액세스 권한을 부여합니다. 쓰기 옵션을 선택하면 읽기 옵션도 자동으로 선택됩니다.
+    이러한 공유 정책과 연결할 수 있는 몇 개의 권한이 있습니다. hello **읽을 레지스트리** 및 **레지스트리 쓰기** 정책 읽기 및 쓰기 액세스 권한 toohello id 레지스트리에 부여 합니다. Hello 쓰기 옵션을 자동으로 선택 hello 읽을 옵션을 선택 합니다.
 
-    **서비스 연결** 정책은 **장치-클라우드 수신**과 같은 서비스 끝점에 액세스할 수 있는 권한을 부여합니다. **장치 연결** 정책은 IoT Hub 장치 쪽 끝점을 사용하여 메시지를 주고받기 위한 권한을 부여합니다.
+    hello **서비스 연결** 정책이 부여 권한을 tooaccess 서비스 끝점 등 **장치-클라우드 수신**합니다. hello **장치 연결** 정책이 hello 장치 측 IoT Hub 끝점을 사용 하 여 메시지 송수신에 대 한 권한을 부여 합니다.
 
-* **만들기** 를 클릭하여 새로 만들어진 이 정책을 기존 목록에 추가합니다.
+* 클릭 **만들기** tooadd이 새로 생성 된 정책 toohello 기존 목록입니다.
 
 ![][10]
 
 ## <a name="endpoints"></a>끝점
 
-**끝점**을 클릭하여 수정하는 IoT Hub에 대한 끝점 목록을 표시합니다. 끝점의 두 가지 유형은 IoT Hub에 기본 제공된 끝점 및 IoT Hub를 만든 후 여기에 추가된 끝점입니다.
+클릭 **끝점** toodisplay 수정 하는 hello IoT 허브에 대 한 끝점의 목록입니다. 두 가지 방법으로 끝점의: hello IoT hub에 내장 된 끝점 및 끝점을 만든 후 toohello IoT 허브를 추가 합니다.
 
 ![][11]
 
 ### <a name="built-in-endpoints"></a>기본 제공 끝점
 
-두 가지 기본 제공 끝점인 **클라우드-장치 피드백** 및 **이벤트**가 있습니다.
+두 개의 기본 제공 끝점이: **toodevice 피드백 클라우드** 및 **이벤트**합니다.
 
-* **클라우드-장치 피드백** 설정: 이 설정에는 메시지에 대한 **클라우드-장치 TTL**(time-to-live) 및 **보존 시간**(시간 단위)의 두 가지 하위 설정이 포함됩니다. IoT Hub를 처음 만들 때 이 두 가지 설정 모두 1시간이 기본값 입니다. 이러한 설정을 조정하려면 슬라이더를 사용하거나 값을 입력합니다.
-* **이벤트** 설정: 이 설정에는 몇 가지 하위 설정이 있고 일부는 읽기 전용입니다. 다음 목록은 이러한 설정에 대해 설명합니다.
+* **Toodevice 피드백 클라우드** 설정:이 설정은 아무런 두 하위 설정: **tooDevice TTL 클라우드** (-time-to-live) 및 **보존 시간** 시간에서 hello 메시지에 대 한 합니다. 첫 번째 IoT 허브를 만들 때 이러한 두 설정 기본값이 hello 1 시간입니다. tooadjust 이러한 설정을 hello 슬라이더를 사용 하거나 hello 값을 입력 합니다.
+* **이벤트** 설정: 이 설정에는 몇 가지 하위 설정이 있고 일부는 읽기 전용입니다. hello 다음 목록에서는 이러한 설정을 설명 합니다.
 
-  * **파티션**: IoT Hub가 만들어질 때 기본 값이 설정됩니다. 이 설정을 통해 파티션 수를 변경할 수 있습니다.
+  * **파티션**: hello IoT hub를 만들 때 기본값이 설정 됩니다. 이 설정을 통해 파티션의 hello 수를 변경할 수 있습니다.
 
-  * **이벤트 허브 호환 이름 및 끝점**: IoT Hub가 만들어질 때 특정 상황에서 사용자가 액세스해야 하는 이벤트 허브가 내부적으로 만들어집니다. Event Hub 호환 이름 및 끝점 값을 사용자 지정할 수는 없지만 **복사**를 클릭하여 복사할 수 있습니다.
+  * **이벤트 허브 호환 이름 및 끝점**: hello IoT hub를 만들면 이벤트 허브 만들어집니다 내부적으로 액세스할 수 있습니다 필요한 toounder 특정 상황입니다. 이벤트 허브 호환 hello 이름 및 끝점 값을 사용자 지정할 수 있지만 클릭 하 여 복사할 수 있습니다 **복사**합니다.
 
-  * **보존 시간**: 기본적으로 1일로 설정되지만 드롭다운 목록을 사용하여 변경할 수 있습니다. 이 값은 장치-클라우드 설정에 대한 일 단위입니다.
+  * **보존 시간**: tooone 일은 기본적으로 설정 되지만 hello 드롭 다운 목록을 사용 하 여 변경할 수 있습니다. 이 값은 hello 장치-클라우드 설정에 대 한 일입니다.
 
-  * **소비자 그룹**: 소비자 그룹은 여러 판독기에서 IoT Hub의 메시지를 독립적으로 읽을 수 있도록 합니다. 모든 IoT Hub가 기본 소비자 그룹으로 만들어집니다. 그러나 이 설정을 사용하여 소비자 그룹을 IoT Hub에 추가 또는 삭제할 수 있습니다.
+  * **소비자 그룹**: 소비자 그룹을 여러 판독기 tooread 메시지 hello IoT 허브에서 독립적으로 사용 합니다. 모든 IoT Hub가 기본 소비자 그룹으로 만들어집니다. 그러나 추가 하거나이 설정을 사용 하는 소비자 그룹 tooyour IoT 허브를 삭제할 수 있습니다.
 
   > [!NOTE]
-  > 기본 소비자 그룹을 편집하거나 삭제할 수 없습니다.
+  > hello 기본 소비자 그룹을 편집 하거나 삭제할 수 없습니다.
 
 ### <a name="custom-endpoints"></a>사용자 지정 끝점
 
-포털을 사용하여 IoT Hub에 사용자 지정 끝점을 추가할 수 있습니다. **끝점** 블레이드에서 맨 위의 **추가**를 클릭하여 **끝점 추가** 블레이드를 엽니다. 필요한 정보를 입력한 다음 **확인**을 클릭합니다. 사용자 지정 끝점이 기본 **끝점** 블레이드에 표시됩니다.
+Hello 포털을 사용 하 여 IoT 허브에서 사용자 지정 끝점을 추가할 수 있습니다. Hello에서 **끝점** 블레이드에서 클릭 **추가** hello 상위 tooopen hello에 **끝점 추가** 블레이드입니다. Hello 필요한 정보를 입력 한 다음 클릭 **확인**합니다. 사용자 지정 끝점은 주 hello에 나열 된 이제 **끝점** 블레이드입니다.
 
 ![][13]
 
@@ -146,42 +146,42 @@ IoT Hub 블레이드에서 IoT Hub를 만든 후에 기존 IoT Hub의 설정을 
 
 ## <a name="routes"></a>경로
 
-**경로**를 클릭하여 IoT Hub가 장치-클라우드 메시지를 발송하는 방법을 관리합니다.
+클릭 **경로** toomanage IoT Hub에서 장치-클라우드 메시지를 디스패치 하는 방법입니다.
 
 ![][14]
 
-**경로** * 블레이드에서 맨 위의 **추가**를 클릭하여 필요한 정보를 입력하고 **확인** 을 클릭하여 IoT Hub에 경로를 추가할 수 있습니다. 그러면 기본 **경로** 블레이드에 경로가 나열됩니다. 경로 목록에서 경로를 클릭하면 편집할 수 있습니다. 경로를 사용하려면 경로 목록에서 경로를 클릭하고 **사용** 토글을 **해제**로 설정합니다. 변경 내용을 저장하려면 블레이드의 맨 아래에서 **확인**을 클릭합니다.
+클릭 하 여 경로 tooyour IoT hub를 추가할 수 있습니다 **추가** hello의 hello 위쪽 **경로*** hello 필요한 정보를 입력 하 고 클릭 하 **확인**합니다. 경로 주 hello에 나열 된 다음 **경로** 블레이드입니다. 경로의 hello 목록에서 클릭 하 여 경로 편집할 수 있습니다. tooenable 경로 경로의 hello 목록에서 클릭 하 고 hello 설정 **Enabled** 너무 설정/해제**오프**합니다. toosave hello 변경 클릭 **확인** hello hello 블레이드 맨 아래에 있습니다.
 
 ![][15]
 
 ## <a name="pricing-and-scale"></a>가격 및 크기 조정
 
-기존 IoT Hub의 가격 책정을 **가격 책정** 설정을 통해 변경할 수 있으며 단, 다음과 같은 예외가 적용됩니다.
+기존 IoT 허브의 가격 책정 hello hello 통해 변경할 수 있습니다 **가격 책정** 예외 다음 hello로 설정 합니다.
 
-* 현재 구현에서는, 무료 SKU를 포함하는 IoT Hub는 계층을 유료 SKU 중 하나로 변경할 수 없으며 또는 그 반대도 불가능합니다.
-* Azure 구독에는 하나의 무료 계층 IoT Hub만 포함될 수 있습니다.
+* IoT hub는 무료 SKU와의 유료 Sku를 hello 계층 tooone hello 현재 구현에서 변경할 수 없습니다 또는 그 반대의 경우도 마찬가지입니다.
+* 만에 있을 수 있습니다 하나 무료 계층 IoT hub hello Azure 구독.
 
 ![][12]
 
-그 날 보낸 메시지 수가 하위 계층에 대한 할당량을 초과하는 경우에만 상위 계층에서 하위 계층으로 이동할 수 있습니다. 예를 들어 하루당 메시지 수가 400,000개를 초과하면 IoT Hub에 대한 계층을 변경할 수 있습니다. 그러나 S1 계층으로 변경하면 해당 일에 IoT Hub가 제한됩니다.
+Hello 보낸 메시지 수 그 날 수행 hello 하위 계층에 대 한 hello 할당량을 초과 하는 경우에 높은 toolower 계층에서 이동할 수 있습니다. 예를 들어 hello 하루 메시지 수가 400, 000을 초과 하면 hello IoT 허브를 변경할 수 있습니다에 대 한 계층 다음 hello 합니다. 그러나 toohello S1 계층을 변경 하는 경우 hello IoT hub 그 날에 대 한 제한 되었습니다.
 
-## <a name="delete-the-iot-hub"></a>IoT Hub 삭제
+## <a name="delete-hello-iot-hub"></a>Hello IoT 허브 삭제
 
-**찾아보기**를 클릭한 후 삭제할 해당 허브를 선택하여 삭제할 IoT Hub를 찾아볼 수 있습니다. IoT Hub를 삭제하려면 IoT Hub 이름 아래의 **삭제** 단추를 클릭합니다.
+Toodelete 클릭 하 여 원하는 toohello IoT hub를 찾아볼 수 **찾아보기**, 적절 한 허브 toodelete hello 다음을 선택 하 고 있습니다. toodelete IoT hub hello, hello 클릭 **삭제** hello IoT 허브 이름 아래에 단추입니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-Azure IoT Hub를 관리하는 방법에 대한 자세한 내용을 알아보려면 다음 링크를 따라가세요.
+이러한 링크 toolearn Azure IoT Hub를 관리 하는 방법에 대 한 자세한를 수행 합니다.
 
 * [IoT 장치 대량 관리][lnk-bulk]
 * [IoT Hub 메트릭][lnk-metrics]
 * [작업 모니터링][lnk-monitor]
 
-IoT Hub의 기능을 추가로 탐색하려면 다음을 참조하세요.
+toofurther는 IoT Hub의 hello 기능을 참조 하십시오.
 
 * [IoT Hub 개발자 가이드][lnk-devguide]
 * [IoT Edge에서 장치 시뮬레이션][lnk-iotedge]
-* [처음부터 IoT 솔루션 보안 유지][lnk-securing]
+* [Hello 접지에서 IoT 솔루션 보안][lnk-securing]
 
 [4]: ./media/iot-hub-create-through-portal/create-iothub.png
 [5]: ./media/iot-hub-create-through-portal/location1.png

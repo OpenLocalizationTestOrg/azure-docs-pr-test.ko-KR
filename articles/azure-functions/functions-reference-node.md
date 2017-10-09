@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions에 대한 JavaScript 개발자 참조 | Microsoft Docs"
-description: "JavaScript를 사용하여 함수를 개발하는 방법을 알아봅니다."
+title: "Azure 함수에 대 한 aaaJavaScript 개발자 참조 | Microsoft Docs"
+description: "JavaScript를 사용 하 여 toodevelop 작동 하는 방식을 이해 합니다."
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,11 +16,11 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: glenga
-ms.openlocfilehash: 7ea81ed47f391fbce1432c2b11ac176ab6c04ae0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6220b42f965b6ee2463341aaf270836623fdf7fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-javascript-developer-guide"></a>Azure Functions JavaScript 개발자 가이드
 > [!div class="op_single_selector"]
@@ -30,17 +30,17 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-Azure Functions의 JavaScript 환경은 런타임과 통신하고 바인딩을 통해 데이터를 보내고 받는 `context` 개체를 전달하는 함수를 쉽게 내보낼 수 있도록 합니다.
+Azure 함수 쉽게 tooexport 변수로 전달 되는 함수를 사용 하면에 대 한 JavaScript 경험 hello는 `context` hello 런타임와의 통신에 대 한 데이터 바인딩을 통해 전송 및 수신 하는 개체입니다.
 
-이 문서에서는 [Azure Functions 개발자 참조](functions-reference.md)를 이미 읽었다고 가정합니다.
+이 문서에서는 hello 이미 읽어본 가정 [Azure 함수 개발자 참조](functions-reference.md)합니다.
 
 ## <a name="exporting-a-function"></a>함수 내보내기
-모든 JavaScript 함수는 런타임에 대한 `module.exports`를 통해 단일 `function`을 내보내 함수를 찾고 실행해야 합니다. 이 함수에는 `context` 개체가 항상 포함되어야 합니다.
+모든 JavaScript 함수는 단일 내보내야 `function` 통해 `module.exports` hello 런타임용 toofind 함수 hello 하 고 실행 합니다. 이 함수에는 `context` 개체가 항상 포함되어야 합니다.
 
 ```javascript
 // You must include a context, but other arguments are optional
 module.exports = function(context) {
-    // Additional inputs can be accessed by the arguments property
+    // Additional inputs can be accessed by hello arguments property
     if(arguments.length === 4) {
         context.log('This function has 4 inputs');
     }
@@ -51,16 +51,16 @@ module.exports = function(context, myTrigger, myInput, myOtherInput) {
 };
 ```
 
-`direction === "in"`의 바인딩은 함수 인수로 전달됩니다. 즉, [`arguments`](https://msdn.microsoft.com/library/87dw3w1k.aspx)를 사용하여 동적으로 새 입력을 처리할 수 있습니다(예: 모든 입력에 대해 반복되는 `arguments.length` 사용). 이 기능은 `context` 개체를 참조하지 않고 트리거 데이터에 예측 가능한 방식으로 액세스할 수 있으므로 트리거만 있고 추가 입력이 없는 경우에 편리합니다.
+바인딩 `direction === "in"` 있습니다 사용할 수 있다는 의미 이므로 함수 인수로 전달 됩니다 [ `arguments` ](https://msdn.microsoft.com/library/87dw3w1k.aspx) toodynamically 새로운 입력 처리 (사용 하 여 예를 들어 `arguments.length` tooiterate 모든 입력을 통해). 이 기능은 `context` 개체를 참조하지 않고 트리거 데이터에 예측 가능한 방식으로 액세스할 수 있으므로 트리거만 있고 추가 입력이 없는 경우에 편리합니다.
 
-내보내기 문에 인수를 지정하지 않은 경우에도 *function.json*에서 발생하는 순서에 따라 인수가 항상 함수에 전달됩니다. 예를 들어 `function(context, a, b)`을 `function(context, a)`으로 변경하는 경우 `arguments[3]`를 참조하여 여전히 함수 코드의 `b` 값을 가져올 수 있습니다.
+hello 인수는 항상 toohello 함수에서 발생 하는 hello 순서에 따라 전달 *function.json*내보내기 문에 지정 하지 않으면 경우에 합니다. 예를 들어 `function(context, a, b)` 너무 변경`function(context, a)`, hello 값을 가져올 수 있습니다 `b` 너무 참조 하 여 함수 코드에서`arguments[3]`합니다.
 
-또한 방향에 관계없이 모든 바인딩은 `context` 개체로 전달됩니다(다음 스크립트 참조). 
+방향에 관계 없이 모든 바인딩은 hello에 따라 전송 되도 `context` 개체 (hello 다음 스크립트 참조). 
 
 ## <a name="context-object"></a>context 개체
-런타임은 함수로 데이터를 전달하거나 전달받으며 사용자가 런타임과 통신할 수 있도록 하는 `context` 개체를 사용합니다.
+hello 런타임에서 사용 하 여 한 `context` 개체 toopass 데이터 tooand 함수 및 toolet hello 런타임과 통신 합니다.
 
-context 개체는 항상 함수의 첫 번째 매개 변수이며 런타임을 올바르게 사용하는 데 필요한 `context.done` 및 `context.log`와 같은 메서드를 가지고 있으므로 포함되어야 합니다. 원하는 개체 이름(예: `ctx` 또는 `c`)을 지정할 수 있습니다.
+hello 컨텍스트 개체는 항상 첫 번째 매개 변수 tooa 함수 hello 및 메서드를 같은 있기 때문에 포함 되어야 합니다 `context.done` 및 `context.log`, 필요한 toouse hello 런타임을 올바르게 않는 합니다. 원하는 대로 지정 hello 개체 이름을 지정할 수 있습니다 (예를 들어 `ctx` 또는 `c`).
 
 ```javascript
 // You must include a context, but other arguments are optional
@@ -74,7 +74,7 @@ module.exports = function(context) {
 ```
 context.bindings
 ```
-모든 입력 및 출력 데이터를 포함하는 명명된 개체를 반환합니다. 예를 들어 *function.json*의 다음 바인딩 정의를 사용하면 `context.bindings.myInput` 개체에서 큐의 콘텐츠에 액세스할 수 있습니다. 
+모든 입력 및 출력 데이터를 포함하는 명명된 개체를 반환합니다. 예를 들어 다음 바인딩 정의 hello 프로그램 *function.json* 액세스할 수 있습니다 hello hello에서 hello 큐의 내용을 `context.bindings.myInput` 개체입니다. 
 
 ```json
 {
@@ -86,7 +86,7 @@ context.bindings
 ```
 
 ```javascript
-// myInput contains the input data, which may have properties such as "name"
+// myInput contains hello input data, which may have properties such as "name"
 var author = context.bindings.myInput.name;
 // Similarly, you can set your output data
 context.bindings.myOutput = { 
@@ -99,17 +99,17 @@ context.bindings.myOutput = {
 context.done([err],[propertyBag])
 ```
 
-코드가 완료되었음을 런타임에 알립니다. `context.done`을 호출해야 하나 그렇지 않으면 런타임에서 함수가 완료되었음을 알 수 없으므로 실행 시간이 초과됩니다. 
+Hello 런타임을 코드 완료 되었음을 알립니다. 호출 해야 `context.done`, 또는 다른 hello 런타임 모릅니다 함수가 완료 되 고 hello 실행 시간이 초과 됩니다. 
 
-`context.done` 메서드를 사용하면 `context.bindings` 개체의 속성을 덮어쓸 속성의 속성 모음뿐만 아니라 사용자 정의 오류도 런타임에 다시 전달할 수 있습니다.
+hello `context.done` 메서드를 사용 하면 toopass 백업 하는 사용자 정의 오류 toohello 런타임과 hello에 hello 속성을 덮어쓸 수 있는 속성의 속성 모음은 `context.bindings` 개체입니다.
 
 ```javascript
-// Even though we set myOutput to have:
+// Even though we set myOutput toohave:
 //  -> text: hello world, number: 123
 context.bindings.myOutput = { text: 'hello world', number: 123 };
-// If we pass an object to the done function...
+// If we pass an object toohello done function...
 context.done(null, { myOutput: { text: 'hello there, world', noNumber: true }});
-// the done method will overwrite the myOutput binding to be: 
+// hello done method will overwrite hello myOutput binding toobe: 
 //  -> text: hello there, world, noNumber: true
 ```
 
@@ -118,26 +118,26 @@ context.done(null, { myOutput: { text: 'hello there, world', noNumber: true }});
 ```
 context.log(message)
 ```
-기본 추적 수준에서 스트리밍 콘솔 로그에 기록할 수 있습니다. `context.log`에서 다른 추적 수준에서 콘솔 로그에 쓸 수 있는 추가 로깅 메서드가 제공됩니다.
+Hello 기본 추적 수준의 toowrite toohello 스트리밍 콘솔 로그 수 있습니다. `context.log`추가 로깅이 메서드, 다른 추적 수준 toohello 콘솔 로그를 작성할 수 있는 사용할 수 없습니다.
 
 
 | 메서드                 | 설명                                |
 | ---------------------- | ------------------------------------------ |
-| **error(_message_)**   | 오류 수준 로깅 또는 더 낮은 수준의 로깅에 씁니다.   |
-| **warn(_message_)**    | 경고 수준 로깅 또는 더 낮은 수준의 로깅에 씁니다. |
-| **info(_message_)**    | 정보 수준 로깅 또는 더 낮은 수준의 로깅에 씁니다.    |
-| **verbose(_message_)** | 자세한 정보 표시 수준 로깅에 씁니다.           |
+| **error(_message_)**   | Tooerror 수준을 로깅, 또는 더 낮은 씁니다.   |
+| **warn(_message_)**    | Toowarning 수준을 로깅, 또는 더 낮은 씁니다. |
+| **info(_message_)**    | Tooinfo 수준을 로깅, 또는 더 낮은 씁니다.    |
+| **verbose(_message_)** | Tooverbose 수준 로깅을 씁니다.           |
 
-다음 예제는 경고 추적 수준에서 콘솔에 씁니다.
+hello 다음 예제에서는 기록 hello 경고 추적 수준에서 toohello 콘솔:
 
 ```javascript
 context.log.warn("Something has happened."); 
 ```
-host.json 파일에 로그인하기 위한 추적 수준 임계값을 설정하거나 해제할 수 있습니다.  로그에 쓰는 방법에 대한 자세한 내용은 다음 섹션을 참조하세요.
+Hello host.json 파일에서 로그인을 위한 hello 추적 수준이 임계값을 설정 하거나 해제할 수 있습니다.  Toowrite toohello 기록 하는 방법에 대 한 자세한 내용은 hello 다음 섹션을 참조 하세요.
 
 ## <a name="binding-data-type"></a>바인딩 데이터 형식
 
-입력 바인딩에 대한 데이터 형식을 정의하려면 바인딩 정의에서 `dataType` 속성을 사용합니다. 예를 들어 이진 형식의 HTTP 요청 내용을 읽으려면 `binary` 형식을 사용합니다.
+toodefine hello 데이터 형식 입력 바인딩의 경우 hello를 사용 하 여 `dataType` hello 바인딩 정의에 속성입니다. 예를 들어 tooread hello 이진 형식으로 HTTP 요청 콘텐츠 형식을 사용 하십시오 hello `binary`:
 
 ```json
 {
@@ -150,48 +150,48 @@ host.json 파일에 로그인하기 위한 추적 수준 임계값을 설정하�
 
 `dataType`에 대한 다른 옵션은 `stream` 및 `string`입니다.
 
-## <a name="writing-trace-output-to-the-console"></a>콘솔에 추적 출력 작성 
+## <a name="writing-trace-output-toohello-console"></a>쓰기 추적 출력 toohello 콘솔 
 
-Functions에서 `context.log` 메서드를 사용하여 추적 출력을 콘솔에 씁니다. 이 시점에서는 `console.log`를 사용하여 콘솔에 쓸 수 없습니다.
+함수를 사용 하 여 hello `context.log` 메서드 toowrite 추적 출력 toohello 콘솔. 이 시점에서 사용할 수 없습니다 `console.log` toowrite toohello 콘솔.
 
-`context.log()`를 호출하면 메시지를 _정보_ 추적 수준인 기본 추적 수준에서 콘솔에 씁니다. 다음 코드는 정보 추적 수준에서 콘솔에 씁니다.
+호출 하는 경우 `context.log()`, 메시지는 hello는 hello 기본 추적 수준 toohello 콘솔 쓰여집니다 _정보_ 추적 수준입니다. hello 다음 코드를 작성 hello 정보 추적 수준에서 toohello 콘솔 합니다.
 
 ```javascript
 context.log({hello: 'world'});  
 ```
 
-이전 코드는 다음 코드와 동일합니다.
+hello 위 코드는 해당 toohello 코드 다음:
 
 ```javascript
 context.log.info({hello: 'world'});  
 ```
 
-다음 코드는 오류 수준에서 콘솔에 씁니다.
+hello 다음 코드를 작성 hello 오류 수준에서 toohello 콘솔 합니다.
 
 ```javascript
 context.log.error("An error has occurred.");  
 ```
 
-_error_(오류)가 가장 높은 추적 수준이므로 로깅이 활성화되어 있는 한 이 추적은 모든 추적 수준에서 출력에 씁니다.  
+때문에 _오류_ 은 hello 가장 높은 추적 수준에서이 추적이 기록 됩니다 모든 추적 수준에서 toohello 출력으로 로깅은 사용 됩니다.  
 
 
-모든 `context.log` 메서드는 Node.js [util.format 메서드](https://nodejs.org/api/util.html#util_util_format_format)에서 지원하는 것과 동일한 매개 변수 형식을 지원합니다. 기본 추적 수준을 사용하여 콘솔에 쓰는 다음 코드를 살펴보세요.
+모든 `context.log` 메서드 지원 hello hello Node.js에서 지원 되는 동일한 매개 변수 형식이 [util.format 메서드](https://nodejs.org/api/util.html#util_util_format_format)합니다. Hello toohello 콘솔 hello 기본 추적 수준을 사용 하 여 작성 하는 코드를 다음을 고려 합니다.
 
 ```javascript
 context.log('Node.js HTTP trigger function processed a request. RequestUri=' + req.originalUrl);
 context.log('Request Headers = ' + JSON.stringify(req.headers));
 ```
 
-또한 동일한 코드를 다음과 같은 형식으로 작성할 수도 있습니다.
+또한 쓰기 hello 동일의 코드 형식에 따라 hello에서 수행할 수 있습니다.
 
 ```javascript
 context.log('Node.js HTTP trigger function processed a request. RequestUri=%s', req.originalUrl);
 context.log('Request Headers = ', JSON.stringify(req.headers));
 ```
 
-### <a name="configure-the-trace-level-for-console-logging"></a>콘솔 로깅에 대한 추적 수준 구성
+### <a name="configure-hello-trace-level-for-console-logging"></a>콘솔 로깅에 대 한 추적 수준을 hello 구성
 
-Functions를 통해 콘솔에 쓸 임계값 추적 수준을 정의할 수 있으므로 추적을 함수에서 콘솔로 쓰는 방식을 쉽게 제어할 수 있습니다. 콘솔에 기록되는 모든 추적에 대한 임계값을 설정하려면 host.json 파일의 `tracing.consoleLevel` 속성을 사용합니다. 이 설정은 함수 앱의 모든 함수에 적용됩니다. 다음 예제에서는 추적 임계값을 설정하여 자세한 정보 표시 로깅을 사용하도록 설정합니다.
+함수에는 쉽게 toocontrol hello 방식으로 추적 toohello 콘솔 함수에서 작성 하므로 toohello 콘솔 작성 하기 위한 hello 임계값 추적 수준을 정의할 수 있습니다. toohello 콘솔을 사용 하 여 hello를 작성 하는 모든 추적에 대 한 tooset hello 임계값 `tracing.consoleLevel` hello host.json 파일의 속성입니다. 이 설정은 tooall 앱에서 함수에 함수를 적용합니다. hello 다음 예제에서는 설정 hello 추적 임계값 tooenable 자세한 정보 로깅:
 
 ```json
 { 
@@ -201,58 +201,58 @@ Functions를 통해 콘솔에 쓸 임계값 추적 수준을 정의할 수 있�
 }  
 ```
 
-**consoleLevel**의 값은 `context.log` 메서드의 이름에 해당합니다. 콘솔에 대한 모든 추적 로깅을 사용하지 않으려면 **consoleLevel**을 _off_로 설정합니다. host.json 파일에 대한 자세한 내용은 [host.json 참조 항목](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)(영문)을 참조하세요.
+값 **consoleLevel** hello toohello 이름을 해당 `context.log` 메서드. toodisable 모든 추적 toohello 콘솔 로깅이 설정 **consoleLevel** too_off_ 합니다. Hello host.json 파일에 대 한 자세한 내용은 참조 hello [host.json 참조 항목](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)합니다.
 
 ## <a name="http-triggers-and-bindings"></a>HTTP 트리거 및 바인딩
 
-HTTP, 웹후크 트리거 및 HTTP 출력 바인딩은 요청 및 응답 개체를 사용하여 HTTP 메시지를 나타냅니다.  
+HTTP 및 webhook 트리거 및 HTTP 요청 및 응답 개체 toorepresent hello HTTP 메시징 바인딩을 사용 하 여 출력 합니다.  
 
 ### <a name="request-object"></a>요청 개체
 
-`request` 개체의 속성은 다음과 같습니다.
+hello `request` 개체에 hello 다음과 같은 속성:
 
 | 속성      | 설명                                                    |
 | ------------- | -------------------------------------------------------------- |
-| _body_        | 요청의 본문을 포함하는 개체입니다.               |
-| _headers_     | 요청 헤더를 포함하는 개체입니다.                   |
-| _method_      | 요청의 HTTP 메서드입니다.                                |
-| _originalUrl_ | 요청의 URL입니다.                                        |
-| _params_      | 요청의 라우팅 매개 변수를 포함하는 개체입니다. |
-| _query_       | 쿼리 매개 변수를 포함하는 개체입니다.                  |
-| _rawBody_     | 문자열 형식의 메시지 본문입니다.                           |
+| _body_        | Hello hello 요청 본문을 포함 하는 개체입니다.               |
+| _headers_     | Hello 요청 헤더를 포함 하는 개체입니다.                   |
+| _method_      | hello hello 요청의 HTTP 메서드입니다.                                |
+| _originalUrl_ | hello 요청의 hello URL입니다.                                        |
+| _params_      | Hello 요청의 hello 라우팅 매개 변수를 포함 하는 개체입니다. |
+| _query_       | Hello 쿼리 매개 변수를 포함 하는 개체입니다.                  |
+| _rawBody_     | hello 본문을 문자열로 hello 메시지입니다.                           |
 
 
 ### <a name="response-object"></a>응답 개체
 
-`response` 개체의 속성은 다음과 같습니다.
+hello `response` 개체에 hello 다음과 같은 속성:
 
 | 속성  | 설명                                               |
 | --------- | --------------------------------------------------------- |
-| _body_    | 응답의 본문을 포함하는 개체입니다.         |
-| _headers_ | 응답 헤더를 포함하는 개체입니다.             |
-| _isRaw_   | 응답에 대한 서식 지정을 건너뜀을 나타냅니다.    |
-| _상태_  | 응답의 HTTP 상태 코드입니다.                     |
+| _body_    | Hello hello 응답 본문을 포함 하는 개체입니다.         |
+| _headers_ | Hello 응답 헤더를 포함 하는 개체입니다.             |
+| _isRaw_   | Hello 응답에 대 한 서식 지정을 건너뜀을 나타냅니다.    |
+| _상태_  | hello hello 응답의 HTTP 상태 코드입니다.                     |
 
-### <a name="accessing-the-request-and-response"></a>요청 및 응답 액세스 
+### <a name="accessing-hello-request-and-response"></a>Hello 요청 및 응답에 액세스 
 
-HTTP 트리거로 작업할 때 세 가지 방법으로 HTTP 요청 및 응답 개체에 액세스할 수 있습니다.
+HTTP 트리거와 함께 작업할 때 세 가지 방법 중 하나로 hello HTTP 요청 및 응답 개체를 액세스할 수 있습니다.
 
-+ 명명된 입출력 바인딩에서. 이러한 방식으로 HTTP 트리거와 바인딩은 다른 바인딩과 동일하게 작동합니다. 다음 예제에서는 명명된 `response` 바인딩을 사용하여 응답 개체를 설정합니다. 
++ Hello 명명 된 입력 및 출력 바인딩 합니다. 이러한 방식으로 hello HTTP 트리거와 바인딩 작업 hello 동일 다른 바인딩으로 합니다. hello 다음 예제에서는 설정 hello 응답 개체 명명 된를 사용 하 여 `response` 바인딩: 
 
     ```javascript
     context.bindings.response = { status: 201, body: "Insert succeeded." };
     ```
 
-+ `context` 개체의 `req` 및 `res` 속성에서. 이러한 방식으로 전체 `context.bindings.name` 패턴을 사용하지 않고 대신 기존 패턴을 사용하여 context 개체에서 HTTP 데이터에 액세스할 수 있습니다. 다음 예제에서는 `context`의 `req` 및 `res` 개체에 액세스하는 방법을 보여 줍니다.
++ `req` 및 `res` hello에 대 한 속성 `context` 개체입니다. 이러한 방식으로 전체 toouse hello 대신 hello 컨텍스트 개체에서 hello 규칙에 따른 패턴 tooaccess HTTP 데이터를 사용할 수 있습니다 `context.bindings.name` 패턴입니다. hello 방법을 예제와 다음 tooaccess hello `req` 및 `res` 개체에 hello `context`:
 
     ```javascript
-    // You can access your http request off the context ...
+    // You can access your http request off hello context ...
     if(context.req.body.emoji === ':pizza:') context.log('Yay!');
     // and also set your http response
     context.res = { status: 202, body: 'You successfully ordered more coffee!' }; 
     ```
 
-+ `context.done()`을 호출합니다. `context.done()` 메서드에 전달되는 응답을 반환하는 특별한 종류의 HTTP 바인딩이 있습니다. 다음 HTTP 출력 바인딩은 `$return` 출력 매개 변수를 정의합니다.
++ `context.done()`을 호출합니다. Toohello 전달 되는 hello 응답을 반환 하는 특수 한 유형의 HTTP 바인딩 `context.done()` 메서드. 다음 HTTP hello 출력 바인딩이 정의 하는 `$return` 출력 매개 변수:
 
     ```json
     {
@@ -261,7 +261,7 @@ HTTP 트리거로 작업할 때 세 가지 방법으로 HTTP 요청 및 응답 �
       "name": "$return"
     }
     ``` 
-    이 출력 바인딩은 다음과 같이 `done()`을 호출할 때 응답을 제공할 수 있어야 합니다.
+    이 출력 바인딩의 프로시저 해야 toosupply hello 응답을 호출할 때 `done()`, 다음과 같습니다.
 
     ```javascript
      // Define a valid response object.
@@ -270,24 +270,24 @@ HTTP 트리거로 작업할 때 세 가지 방법으로 HTTP 요청 및 응답 �
     ```  
 
 ## <a name="node-version-and-package-management"></a>노드 버전 및 패키지 관리
-노드 버전이 현재 `6.5.0`에서 잠겨 있습니다. 더 많은 버전에 대한 지원을 추가하고 구성할 수 있도록 연구 중입니다.
+hello 노드 버전에서 현재 잠겨 `6.5.0`합니다. 더 많은 버전에 대한 지원을 추가하고 구성할 수 있도록 연구 중입니다.
 
-다음 단계를 사용하면 함수 앱에 패키지를 포함할 수 있습니다. 
+단계를 수행 하는 hello 함수 응용 프로그램에 패키지를 포함할 수 있습니다. 
 
-1. `https://<function_app_name>.scm.azurewebsites.net`로 이동합니다.
+1. 너무 이동`https://<function_app_name>.scm.azurewebsites.net`합니다.
 
 2. **디버그 콘솔** > **CMD**를 클릭합니다.
 
-3. `D:\home\site\wwwroot`로 이동한 다음 package.json 파일을 페이지 위쪽의 **wwwroot** 폴더로 끌어갑니다.  
-    다른 방법으로 함수 앱에 파일을 업로드할 수도 있습니다. 자세한 내용은 [함수 앱 파일을 업데이트하는 방법](functions-reference.md#fileupdate)을 참조하세요. 
+3. 너무 이동`D:\home\site\wwwroot`, package.json 파일 toohello 끌어와서 **wwwroot** hello 페이지의 위쪽 절반 hello 폴더입니다.  
+    또한 다른 방법으로 tooyour 함수 응용 프로그램 파일을 업로드할 수 있습니다. 자세한 내용은 참조 [tooupdate 앱 파일을 어떻게 작동 하는지](functions-reference.md#fileupdate)합니다. 
 
-4. package.json 파일을 업로드한 후 **Kudu 원격 실행 콘솔**에서 `npm install` 명령을 실행합니다.  
-    이 작업은 package.json 파일에 표시된 패키지를 다운로드하고 함수 앱을 다시 시작합니다.
+4. Hello package.json 파일을 업로드 한 후 실행 hello `npm install` hello 명령을 **Kudu 원격 실행 콘솔**합니다.  
+    이 작업 hello package.json 파일에 표시 된 hello 패키지를 다운로드 하 고 hello 함수 응용 프로그램을 다시 시작 합니다.
 
-필요한 패키지가 설치되면 다음 예제와 같이 `require('packagename')`을 호출하여 함수로 가져옵니다.
+Hello 필요한 패키지를 설치한 후 가져올 tooyour 함수를 호출 하 여 `require('packagename')`와 같이, 다음 예제는 hello:
 
 ```javascript
-// Import the underscore.js library
+// Import hello underscore.js library
 var _ = require('underscore');
 var version = process.version; // version === 'v6.5.0'
 
@@ -297,10 +297,10 @@ module.exports = function(context) {
         .where(context.bindings.myInput.names, {first: 'Carla'});
 ```
 
-함수 앱의 루트에 `package.json` 파일을 정의해야 합니다. 파일을 정의하면 앱의 모든 함수에서 동일한 캐시된 패키지를 공유할 수 있으므로 최상의 성능을 제공합니다. 버전 충돌이 발생하는 경우 특정 함수의 폴더에 `package.json` 파일을 추가하여 이 충돌을 해결할 수 있습니다.  
+정의 해야는 `package.json` 함수 응용 프로그램의 hello 루트에 파일입니다. 정의 hello 파일 hello 최상의 성능을 제공 하는 동일한 캐시 된 패키지를 hello hello 앱 공유의 모든 기능을 사용 합니다. 버전 충돌이 발생할 경우 추가 하 여 해결할 수 있습니다는 `package.json` 특정 함수 hello 폴더의 파일입니다.  
 
 ## <a name="environment-variables"></a>환경 변수
-환경 변수 또는 앱 설정 값을 가져오려면 다음 코드 예제와 같이 `process.env`를 사용합니다.
+tooget 환경 변수 또는 응용 프로그램 설정 값을 사용 하 여 `process.env`hello 다음 코드 예제에에서 나온 것 처럼:
 
 ```javascript
 module.exports = function (context, myTimer) {
@@ -320,17 +320,17 @@ function GetEnvironmentVariable(name)
 ```
 ## <a name="considerations-for-javascript-functions"></a>JavaScript 함수에 대한 고려 사항
 
-JavaScript 함수로 작업하는 경우 다음 두 섹션에서 고려 사항을 알아야 합니다.
+JavaScript 함수를 사용 하는 경우에 다음 두 섹션 hello에 hello 고려 사항에 주의 합니다.
 
 ### <a name="choose-single-core-app-service-plans"></a>단일 코어 App Service 계획 선택
 
-App Service 계획을 사용하는 함수 앱을 만들 때 여러 코어가 있는 계획보다는 단일 코어 계획을 선택하는 것이 좋습니다. 현재 Functions는 단일 코어 VM에서 JavaScript 함수를 더 효율적으로 실행합니다. 더 큰 VM을 사용하면 예상된 성능 향상을 보여 주지 않습니다. 필요한 경우 더 많은 단일 코어 VM 인스턴스를 추가하여 수동으로 확장하거나 자동 크기 조정을 사용하도록 설정할 수 있습니다. 자세한 내용은 [수동 또는 자동으로 인스턴스 개수 조정](../monitoring-and-diagnostics/insights-how-to-scale.md?toc=%2fazure%2fapp-service-web%2ftoc.json)을 참조하세요.    
+앱 서비스 계획 hello를 사용 하는 함수 앱을 만들 때 여러 코어를 사용 하 여 계획 보다는 단일 코어 계획을 선택 하는 것이 좋습니다. 오늘날 함수 실행 JavaScript 함수가 더 효율적으로 단일 코어 Vm에서 되며 더 큰 Vm을 사용 하 여 hello 예상 성능 향상을 생성 하지 않습니다. 필요한 경우 더 많은 단일 코어 VM 인스턴스를 추가하여 수동으로 확장하거나 자동 크기 조정을 사용하도록 설정할 수 있습니다. 자세한 내용은 [수동 또는 자동으로 인스턴스 개수 조정](../monitoring-and-diagnostics/insights-how-to-scale.md?toc=%2fazure%2fapp-service-web%2ftoc.json)을 참조하세요.    
 
 ### <a name="typescript-and-coffeescript-support"></a>TypeScript 및 CoffeeScript 지원
-아직 런타임을 통해 TypeScript 또는 CoffeeScript 자동 컴파일에 대한 직접 지원이 없으므로 배포 시 런타임 외부에서 이러한 지원이 처리되어야 합니다. 
+직접적으로 지원 아직 존재 하지 않는 자동 컴파일 TypeScript 또는 CoffeeScript에 대 한 hello 런타임을 통해, 때문에 이러한 지원이 toobe 배포 시 hello 런타임 외부 처리 해야 합니다. 
 
 ## <a name="next-steps"></a>다음 단계
-자세한 내용은 다음 리소스를 참조하세요.
+자세한 내용은 다음 리소스는 hello 참조:
 
 * [Azure Functions에 대한 모범 사례](functions-best-practices.md)
 * [Azure Functions 개발자 참조](functions-reference.md)

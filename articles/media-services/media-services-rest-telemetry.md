@@ -1,6 +1,6 @@
 ---
-title: "REST를 사용하여 Azure Media Services 원격 분석 구성 | Microsoft Docs"
-description: "이 문서는 REST API를 사용하여 Azure Media Services 원격 분석을 사용하는 방법을 보여 줍니다."
+title: "Azure 미디어 서비스 원격 분석 rest aaaConfiguring | Microsoft Docs"
+description: "이 문서에서는 toouse REST API를 사용 하 여 Azure 미디어 서비스 원격 분석을 hello 하는 방법을 보여 줍니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: 7d785c6eb9a9e16ae4853cded3c7c142080c7a09
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d0b6798c49be756fcebecf2e1e6ea497edd27cf0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-azure-media-services-telemetry-with-rest"></a>REST를 사용하여 Azure Media Services 원격 분석 구성
 
-이 항목은 REST API를 사용하여 AMS(Azure Media Services) 원격 분석을 구성할 때 수행할 수 있는 일반적인 단계를 설명합니다. 
+이 항목에서는 REST API를 사용 하 여 hello Azure 미디어 서비스 (AMS) 원격 분석을 구성할 때 사용할 수 있는 일반적인 단계를 설명 합니다. 
 
 >[!NOTE]
->AMS 원격 분석이 무엇인지, 어떻게 사용하는지에 대한 자세한 설명을 보려면 [개요](media-services-telemetry-overview.md) 항목을 참조하세요.
+>방식에 대 한 hello 기능에 대해 상세히 AMS 원격 분석 및 tooconsume, hello 참조 [개요](media-services-telemetry-overview.md) 항목입니다.
 
-이 항목에서 설명하는 단계는 다음과 같습니다.
+이 항목에서 설명 하는 hello 단계는 같습니다.
 
-- 저장소 계정을 Media Services 계정에 연결
-- 알림 끝점 가져오기
+- 미디어 서비스 계정에 연결 된 hello 저장소 계정 가져오기
+- Hello 알림 끝점을 가져오기
 - 모니터링을 위한 알림 끝점 만들기 
 
-    알림 끝점을 만들려면 EndPointType을 AzureTable(2)로 설정하고 endPontAddress를 저장소 테이블(예: https://telemetryvalidationstore.table.core.windows.net/)로 설정합니다.
+    toocreate hello이 나와 tooAzureTable (2) 및 endPontAddress toohello 저장소 테이블 설정 (예를 들어 https://telemetryvalidationstore.table.core.windows.net/) 알림 끝점을 설정 합니다.
   
-- 모니터링 구성 가져오기
+- Hello 모니터링 구성 가져오기
 
-    모니터링할 서비스에 대한 모니터링 구성 설정을 만듭니다. 한 개 이하의 모니터링 구성 설정이 허용됩니다. 
+    Hello 서비스에 대 한 모니터링 구성 설정 만들기 toomonitor 원하는 합니다. 한 개 이하의 모니터링 구성 설정이 허용됩니다. 
 
 - 모니터링 구성 추가
 
 
  
-## <a name="get-the-storage-account-associated-with-a-media-services-account"></a>저장소 계정을 Media Services 계정에 연결
+## <a name="get-hello-storage-account-associated-with-a-media-services-account"></a>미디어 서비스 계정에 연결 된 hello 저장소 계정 가져오기
 
 ###<a name="request"></a>요청
 
@@ -71,7 +71,7 @@ ms.lasthandoff: 08/29/2017
     
     {"d":{"results":[{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/StorageAccounts('telemetryvalidationstore')","uri":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/StorageAccounts('telemetryvalidationstore')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.StorageAccount"},"Name":"telemetryvalidationstore","IsDefault":true,"BytesUsed":null}]}}
 
-## <a name="get-the-notification-endpoints"></a>알림 끝점 가져오기
+## <a name="get-hello-notification-endpoints"></a>Hello 알림 끝점 가져오기
 
 ###<a name="request"></a>요청
 
@@ -125,7 +125,7 @@ ms.lasthandoff: 08/29/2017
     }
 
 >[!NOTE]
->"https://telemetryvalidationstore.table.core.windows.net" 값을 반드시 저장소 계정으로 변경해야 합니다.
+>Toochange hello "https://telemetryvalidationstore.table.core.windows.net" 값 tooyour 저장소 계정을 잊지 마십시오.
 
 ###<a name="response"></a>응답
 
@@ -146,7 +146,7 @@ ms.lasthandoff: 08/29/2017
     
     {"d":{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","uri":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.NotificationEndPoint"},"Id":"nb:nepid:UUID:76bb4faf-ea29-4815-840a-9a8e20102fc4","Name":"monitoring","Created":"\/Date(1449033042667)\/","EndPointAddress":"https://telemetryvalidationstore.table.core.windows.net/","EndPointType":2}}
  
-## <a name="get-the-monitoring-configurations"></a>모니터링 구성 가져오기
+## <a name="get-hello-monitoring-configurations"></a>Hello 모니터링 구성 가져오기
 
 ### <a name="request"></a>요청
 

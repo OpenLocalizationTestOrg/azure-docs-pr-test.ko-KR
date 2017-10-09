@@ -1,5 +1,5 @@
 ---
-title: "Reliable Actors 상태 관리 | Microsoft Docs"
+title: "상태 관리를 aaaReliable 행위자 | Microsoft Docs"
 description: "고가용성을 위해 Reliable Actors 상태를 관리, 유지 및 복제하는 방법을 설명합니다."
 services: service-fabric
 documentationcenter: .net
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: aca8cf2b94e8b746a5cac6af021c7221a29b7345
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 346d92426b1890617d108a9504afb179e463bded
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reliable-actors-state-management"></a>Reliable Actors 상태 관리
-Reliable Actors는 논리와 상태를 모두 캡슐화할 수 있는 단일 스레드 개체입니다. 행위자가 Reliable Services에서 실행되므로 Reliable Services에서 사용하는 동일한 지속성 및 복제 메커니즘을 사용하여 안전하게 상태를 유지할 수 있습니다. 이러한 방식으로 행위자는 실패한 후에 해당 상태를 손실하지 않고 가비지 수집 후 다시 활성화합니다. 또한 리소스 균형 조정 또는 업그레이드로 인해 클러스터의 노드 간에 이동하는 경우에도 그렇습니다.
+Reliable Actors는 논리와 상태를 모두 캡슐화할 수 있는 단일 스레드 개체입니다. 행위자 신뢰할 수 있는 서비스를 실행 하기 때문에 유지할 수 있습니다 상태 안정적으로 사용 하 여 hello 신뢰할 수 있는 서비스를 사용 하는 동일한 지 속성 및 복제 메커니즘입니다. 이러한 방식으로 행위자 tooresource 분산 또는 업그레이드 인해 클러스터 노드 간에 이동 하는 경우 또는 가비지 수집 후 다시 활성화 되 면 실패 후의 상태를 손실 되지 않습니다.
 
 ## <a name="state-persistence-and-replication"></a>상태 지속성 및 복제
-각 행위자 인스턴스가 고유 ID에 매핑되기 때문에 모든 Reliable Actors는 *상태 저장* 이라고 여겨집니다. 즉, 동일한 행위자 ID에 대한 반복된 호출이 동일한 행위자 인스턴스에 라우트됩니다. 상태 비저장 시스템에서 대조적으로 클라이언트 호출이 매번 동일한 서버에 라우트되도록 보장되지는 않습니다. 따라서 행위자 서비스는 항상 상태 저장 서비스입니다.
+모든 Reliable Actors를 사용 하는 것으로 간주 *stateful* 행위자 인스턴스마다 tooa 고유한 id입니다. 매핑되기 때문에 즉, 동일한 행위자 ID는 해당 반복된 하 여 호출 toohello 라우팅된 toohello 행위자 동일 합니다. 상태 비저장 시스템에서 반면 클라이언트 호출 되지 않을 수도 라우팅된 toobe toohello 될 때마다 동일한 서버입니다. 따라서 행위자 서비스는 항상 상태 저장 서비스입니다.
 
-행위자가 상태 저장을 고려하더라도 상태를 안정적으로 저장해야 하는 것은 아닙니다. 행위자는 해당 데이터 저장소 요구 사항에 따라 상태 지속성 및 복제의 수준을 선택할 수 있습니다.
+행위자가 상태 저장을 고려하더라도 상태를 안정적으로 저장해야 하는 것은 아닙니다. 행위자 상태 지 속성의 hello 수준을 선택할 수 및 해당 데이터에 따라 복제 저장소 요구 사항:
 
-* **지속된 상태:** 상태가 디스크에 유지되고 3개 이상의 복제본에 복제됩니다. 상태가 전체 클러스터 가동 중단을 통해 유지할 수 있는 가장 지속적인 상태 저장 옵션입니다.
-* **일시적 상태:** 상태는 3개 이상의 복제본에 복제되고 메모리에만 보관됩니다. 업그레이드 및 리소스 균형을 조정하는 동안 노드 실패 및 행위자 실패에 대한 복원력을 제공합니다. 그러나 상태는 디스크에 유지되지 않으므로 한 번에 모든 복제본이 손실되면 상태도 손실됩니다.
-* **지속된 상태 없음:** 상태가 복제되거나 디스크에 기록되지 않습니다. 이 수준은 단순히 상태를 안정적으로 유지할 필요가 없는 행위자의 경우입니다.
+* **영구적인 상태가**: 상태 지속형된 toodisk 이며 복제 too3 또는 이상의 복제본입니다. 전체 클러스터 가동 중단을 통해 상태 유지할 수 있는 hello 가장 안정적인 상태 저장소 옵션입니다.
+* **일시적 상태**: 상태는 복제 된 too3 또는 이상의 복제본 및 메모리에만 유지 합니다. 업그레이드 및 리소스 균형을 조정하는 동안 노드 실패 및 행위자 실패에 대한 복원력을 제공합니다. 그러나 상태가 지속 된 toodisk 않습니다. 따라서 모든 복제 데이터베이스를 한 번에 손실 되 면 hello 상태가 손실 뿐입니다.
+* **지속 된 상태가 없는**: 상태는 복제 또는 toodisk 기록 되지 않습니다. 이 수준은 단순히 toomaintain 상태를 안정적으로 필요 하지 않습니다는 행위자를 위한 합니다.
 
-지속성의 수준은 각각 단순히 *상태 제공자* 및 서비스의 *복제* 구성에 따라 다릅니다. 상태가 디스크에 기록되는지 여부는 상태를 저장하는 Reliable Service의 구성 요소인 상태 제공자에 따라 달라지며 복제는 서비스를 배포한 복제본 수에 따라 달라집니다. Reliable Services와 마찬가지로 상태 제공자와 복제본 수는 모두 쉽게 수동으로 설정될 수 있습니다. 행위자 프레임워크는 특성을 제공합니다. 이 특성은 행위자에 사용될 경우 자동으로 기본 상태 제공자를 선택하고 이러한 세 가지 지속성 설정 중 하나를 달성하기 위해 복제본 수에 대한 설정을 자동으로 생성합니다. StatePersistence 특성은 파생 클래스에서 상속되지 않으며 각 행위자 형식은 해당 StatePersistence 수준을 제공해야 합니다.
+지속성의 수준은 각각 단순히 *상태 제공자* 및 서비스의 *복제* 구성에 따라 다릅니다. 상태 기록 여부 toodisk hello 상태 공급자--상태를 저장 하는 신뢰할 수 있는 서비스의 hello 구성 요소에 따라 달라 집니다. 복제는 서비스를 배포한 복제본 수에 따라 달라집니다. 신뢰할 수 있는 서비스와 마찬가지로 상태 공급자 둘 다 hello 및 복제본 수 수동으로 설정할 수 있습니다. hello 행위자 프레임 워크에서 사용할 때 행위자를 자동으로 선택 하는 기본 상태 공급자를 복제본 개수 tooachieve 이러한 세 개의 지 속성 설정 중 하나에 대 한 설정을 자동으로 생성 하는 특성을 제공 합니다. 파생된 클래스에서 hello StatePersistence 특성을 상속 하지, 각 행위자 형식이 해당 StatePersistence 수준을 제공 해야 합니다.
 
 ### <a name="persisted-state"></a>지속된 상태
 ```csharp
@@ -47,7 +47,7 @@ class MyActorImpl  extends FabricActor implements MyActor
 {
 }
 ```  
-이 설정은 디스크에 데이터를 저장하는 상태 제공자를 사용하고 자동으로 서비스 복제본 수를 3으로 설정합니다.
+이 설정은 디스크에 데이터를 저장 하 고 hello 서비스 복제본 개수 too3를 자동으로 설정 하는 상태 공급자를 사용 합니다.
 
 ### <a name="volatile-state"></a>일시적 상태
 ```csharp
@@ -62,7 +62,7 @@ class MyActorImpl extends FabricActor implements MyActor
 {
 }
 ```
-이 설정은 메모리내 전용 상태 제공자를 사용하고 복제본 수를 3으로 설정합니다.
+이 설정에서는에서 메모리-전용 상태 공급자를 사용 하 고 집합 hello 복제본 개수 too3.
 
 ### <a name="no-persisted-state"></a>지속된 상태 없음
 ```csharp
@@ -77,12 +77,12 @@ class MyActorImpl extends FabricActor implements MyActor
 {
 }
 ```
-이 설정은 메모리내 전용 상태 제공자를 사용하고 복제본 수를 1로 설정합니다.
+이 설정에서는에서 메모리-전용 상태 공급자를 사용 하 고 집합 hello 복제본 개수 too1.
 
 ### <a name="defaults-and-generated-settings"></a>기본값 및 생성된 설정
-`StatePersistence` 특성을 사용하는 경우 행위자 서비스를 시작할 때 런타임 시 상태 제공자가 자동으로 선택됩니다. 그러나 복제본 수는 Visual Studio 행위자 빌드 도구에 의해 컴파일 시점에 설정됩니다. 빌드 도구는 ApplicationManifest.xml의 행위자 서비스에 대한 *기본 서비스* 를 자동으로 생성합니다. **최소 복제본 세트 크기** 및 **대상 복제본 세트 크기**에 대한 매개 변수를 만듭니다.
+Hello를 사용 하는 경우 `StatePersistence` 특성 상태 공급자를 자동으로 선택 됩니다 런타임 시 hello 행위자 서비스가 시작 될 때입니다. 그러나 hello 복제본 수 설정한 컴파일 타임에 Visual Studio 행위자 hello 빌드 도구. hello 빌드 도구를 자동으로 생성 한 *기본 서비스* applicationmanifest.xml에서 hello 행위자 서비스에 대 한 합니다. **최소 복제본 세트 크기** 및 **대상 복제본 세트 크기**에 대한 매개 변수를 만듭니다.
 
-이러한 매개 변수를 수동으로 변경할 수 있지만 `StatePersistence` 특성을 변경할 때마다 매개 변수는 이전 값을 재정의하여 선택된 `StatePersistence` 특성에 대한 기본 복제본 세트 크기 값으로 설정됩니다. 즉, ServiceManifest.xml에서 설정한 값은 `StatePersistence` 특성 값을 변경하는 경우 빌드 시에*만* 재정의됩니다.
+이러한 매개 변수를 수동으로 변경할 수 있지만 하지만 각 시간 hello `StatePersistence` 특성이 변경 되거나, hello 매개 변수가 toohello 복제본 집합 크기에 대 한 기본값 선택 hello 설정 `StatePersistence` 특성을 이전 값을 재정의 합니다. 즉, ServiceManifest.xml에 설정한 hello 값은 *만* hello를 변경할 때 빌드 시 재정의 `StatePersistence` 특성 값입니다.
 
 ```xml
 <ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="Application12Type" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
@@ -105,20 +105,20 @@ class MyActorImpl extends FabricActor implements MyActor
 ```
 
 ## <a name="state-manager"></a>상태 관리자
-모든 행위자 인스턴스에는 안정적으로 키/값 쌍을 저장하는 사전 형식의 데이터 구조인 고유한 상태 관리자가 있습니다. 상태 관리자는 상태 제공자에 대한 래퍼입니다. 사용되는 지속성 설정에 상관없이 데이터를 저장하는 데 사용할 수 있습니다. 실행 중인 행위자 서비스가 데이터를 유지하는 동안 롤링 업그레이드를 통해 지속된 상태로 설정된 일시적인(메모리 내 전용) 상태에서 변경될 수 있음을 보증하지 않습니다. 그러나 실행 중인 서비스에 대한 복제본 수를 변경할 수 있습니다.
+모든 행위자 인스턴스에는 안정적으로 키/값 쌍을 저장하는 사전 형식의 데이터 구조인 고유한 상태 관리자가 있습니다. hello 상태 관리자는 상태 공급자 주변 래퍼입니다. 사용할 수 있습니다 toostore 데이터에 관계 없이 어떤 지 속성 설정이 사용 됩니다. 휘발성 (에서 메모리-전용) 상태로 설정 tooa에서 실행 중인 행위자 서비스를 변경할 수 있습니다 보장은 데이터를 유지 하면서 롤링 업그레이드를 통해 상태 설정을 유지는 제공 하지 않습니다. 그러나 것이 실행 중인 서비스에 대 한 가능한 toochange 복제본 수입니다.
 
-상태 관리자 키는 문자열이어야 합니다. 값은 제네릭 및 사용자 지정 형식을 포함한 모든 형식일 수 있습니다. 복제하는 동안 네트워크를 통해 다른 노드로 전송될 수 있기 때문에 상태 관리자에 저장된 값은 데이터 계약을 직렬화 가능해야 하며 행위자의 상태 지속성 설정에 따라 디스크에 기록할 수 있습니다.
+상태 관리자 키는 문자열이어야 합니다. 값은 제네릭 및 사용자 지정 형식을 포함한 모든 형식일 수 있습니다. Hello 상태 관리자에 저장 된 값 복제 하는 동안 hello 네트워크 tooother 노드를 통해 전송 될 수 있습니다 toodisk 행위자의 상태 지 속성 설정에 따라 작성 될 수도 있기 때문에 데이터 계약 직렬화 가능 이어야 합니다.
 
-상태 관리자는 신뢰할 수 있는 사전에 있는 것과 비슷한 상태를 관리하기 위한 일반적인 사전 메서드를 제공합니다.
+hello 상태 관리자는 신뢰할 수 있는 사전에서 찾을 수 유사한 toothose, 상태 관리에 대 한 일반적인 사전 메서드를 노출 합니다.
 
 ### <a name="accessing-state"></a>상태 액세스
-상태 관리자를 통해 키로 상태에 액세스할 수 있습니다. 상태 관리자 메서드는 행위자가 지속된 상태인 경우 디스크 I/O가 필요할 수 있기에 모두 비동기적입니다. 첫 번째 액세스에서 상태 개체는 메모리에 캐시됩니다. 반복 액세스 작업은 메모리에서 직접 개체에 액세스하고 오버헤드를 전환하는 디스크 I/O 또는 비동기 컨텍스트를 발생시키지 않고 동기적으로 반환합니다. 상태 개체는 다음과 같은 경우에 캐시에서 제거됩니다.
+상태 키로 hello 상태 관리자를 통해 액세스할 수 있습니다. 상태 관리자 메서드는 행위자가 지속된 상태인 경우 디스크 I/O가 필요할 수 있기에 모두 비동기적입니다. 첫 번째 액세스에서 상태 개체는 메모리에 캐시됩니다. 반복 액세스 작업은 메모리에서 직접 개체에 액세스하고 오버헤드를 전환하는 디스크 I/O 또는 비동기 컨텍스트를 발생시키지 않고 동기적으로 반환합니다. 상태 개체 hello 비활성화의 hello 캐시에서 제거 됩니다.
 
-* 행위자 메서드는 상태 관리자에서 개체를 검색한 후에 처리되지 않은 예외를 throw합니다.
+* Hello 상태 관리자에서 개체를 검색 한 후에 처리 되지 않은 예외를 throw 하는 행위자 메서드.
 * 비활성화되거나 오류 발생 후에 행위자가 다시 활성화됩니다.
-* 상태 제공자가 디스크에 상태를 페이징합니다. 이 동작은 상태 제공자 구현에 따라 다릅니다. `Persisted` 설정에 대한 기본 상태 제공자는 이 동작을 포함합니다.
+* hello 상태 공급자 페이지 toodisk을 사항을 기술 합니다. 이 동작은 hello 상태 공급자 구현에 따라 다릅니다. hello에 대 한 기본 상태 공급자 hello `Persisted` 이 동작을 포함 하는 설정입니다.
 
-키에 대한 항목이 없는 경우 `KeyNotFoundException`(C#) 또는 `NoSuchElementException`(Java)를 throw하는 표준 *Get* 작업을 사용하여 상태를 검색할 수 있습니다.
+표준을 사용 하 여 상태를 검색할 수 있습니다 *가져오기* throw 하는 작업 `KeyNotFoundException`(C#) 또는 `NoSuchElementException`hello 키에 대 한 항목이 없는 경우 (Java):
 
 ```csharp
 [StatePersistence(StatePersistence.Persisted)]
@@ -194,9 +194,9 @@ class MyActorImpl extends FabricActor implements  MyActor
 ```
 
 ### <a name="saving-state"></a>상태 저장
-상태 관리자 검색 메서드는 로컬 메모리에 개체에 대한 참조를 반환합니다. 로컬 메모리에서 이 개체를 수정하는 것만으로는 지속적으로 저장하지 못합니다. 개체를 상태 관리자에서 검색하고 수정하는 경우 지속적으로 저장되도록 상태 관리자에 다시 삽입해야 합니다.
+hello 상태 관리자 검색 메서드는 로컬 메모리에 참조 방식 tooan 개체를 반환합니다. 만 로컬 메모리에이 개체를 수정 않을 것 toobe 영구적으로 저장 합니다. 개체가, hello 상태 관리자에서 검색 및 수정 하는 경우 영구적으로 저장 하는 hello 상태 관리자 toobe에 다시 삽입할 수 해야 합니다.
 
-`dictionary["key"] = value` 구문과 동등한 무조건 *설정*을 사용하여 상태를 삽입할 수 있습니다.
+프로그램 무조건를 사용 하 여 상태를 삽입할 수 있습니다 *설정*는 hello의 해당 하는 hello은 `dictionary["key"] = value` 구문:
 
 ```csharp
 [StatePersistence(StatePersistence.Persisted)]
@@ -229,7 +229,7 @@ class MyActorImpl extends FabricActor implements  MyActor
 }
 ```
 
-*Add* 메서드를 사용하여 상태를 추가할 수 있습니다. 이미 존재하는 키를 추가하려고 하면 이 메서드가 `InvalidOperationException`(C#) 또는 `IllegalStateException`(Java)을 throw합니다.
+*Add* 메서드를 사용하여 상태를 추가할 수 있습니다. 이 메서드에서 throw `InvalidOperationException`(C#) 또는 `IllegalStateException`tooadd 이미 존재 하는 키를 읽으려고 할 때 (Java).
 
 ```csharp
 [StatePersistence(StatePersistence.Persisted)]
@@ -262,7 +262,7 @@ class MyActorImpl extends FabricActor implements  MyActor
 }
 ```
 
-*TryAdd* 메서드를 사용하여 상태를 추가할 수도 있습니다. 이미 존재하는 키를 추가하려고 하면 이 메서드가 throw하지 않습니다.
+*TryAdd* 메서드를 사용하여 상태를 추가할 수도 있습니다. 이 메서드는 tooadd 이미 존재 하는 키를 읽으려고 할 때 throw 하지 않습니다.
 
 ```csharp
 [StatePersistence(StatePersistence.Persisted)]
@@ -305,9 +305,9 @@ class MyActorImpl extends FabricActor implements  MyActor
 }
 ```
 
-행위자 메서드가 끝날 때 상태 관리자는 삽입 또는 업데이트 작업에 의해 추가되거나 수정된 모든 값을 자동으로 저장합니다. "저장"은 사용된 설정에 따라 디스크와 복제를 지속하도록 포함할 수 있습니다. 수정되지 않은 값은 지속되거나 복제되지 않습니다. 수정된 값이 없는 경우 저장 작업은 아무 것도 수행하지 않습니다. 실패를 저장하는 경우 수정된 상태는 삭제되고 원래 상태를 다시 로드합니다.
+행위자 메서드의 hello 끝 hello 상태 관리자 삽입 또는 업데이트 작업에 의해 수정 되거나 추가 된 모든 값을 자동으로 저장 합니다. "저장" 유지 toodisk 및 복제에 사용 되는 hello 설정에 따라 포함할 수 있습니다. 수정되지 않은 값은 지속되거나 복제되지 않습니다. 값이 없으면이 수정 된 경우 저장 작업이 hello는 아무 작업도 수행 하지 않습니다. 저장이 실패할 경우 hello 수정된 상태를 삭제 하 고 hello 원래 상태를 다시 로드 합니다.
 
-또한 행위자 기반의 `SaveStateAsync` 메서드를 호출하여 상태를 수동으로 저장할 수 있습니다.
+Hello를 호출 하 여 상태를 수동으로 저장할 수도 있습니다 `SaveStateAsync` 기본 hello 행위자 메서드:
 
 ```csharp
 async Task IMyActor.SetCountAsync(int count)
@@ -329,7 +329,7 @@ interface MyActor {
 ```
 
 ### <a name="removing-state"></a>상태 제거
-*제거* 메서드 호출하여 행위자의 상태 관리자에서 상태를 영구적으로 상태를 제거할 수 있습니다. 존재하지 않는 키를 제거하려고 하면 이 메서드가 `KeyNotFoundException`(C#) 또는 `NoSuchElementException`(Java)을 throw합니다.
+Hello를 호출 하 여 위에 행위자의 상태 관리자에서 상태를 영구적으로 제거할 수 있습니다 *제거* 메서드. 이 메서드에서 throw `KeyNotFoundException`(C#) 또는 `NoSuchElementException`tooremove 존재 하지 않는 키를 읽으려고 할 때 (Java).
 
 ```csharp
 [StatePersistence(StatePersistence.Persisted)]
@@ -362,7 +362,7 @@ class MyActorImpl extends FabricActor implements  MyActor
 }
 ```
 
-*TryRemove* 메서드를 사용하여 상태를 영구적으로 제거할 수도 있습니다. 존재하지 않는 키를 제거하려고 하면 이 메서드가 throw하지 않습니다.
+Hello를 사용 하 여 상태를 영구적으로 제거할 수도 있습니다 *TryRemove* 메서드. 이 메서드는 tooremove 존재 하지 않는 키를 읽으려고 할 때 throw 하지 않습니다.
 
 ```csharp
 [StatePersistence(StatePersistence.Persisted)]
@@ -407,6 +407,6 @@ class MyActorImpl extends FabricActor implements  MyActor
 
 ## <a name="next-steps"></a>다음 단계
 
-Reliable Actors에 저장된 상태를 디스크에 기록하고 고가용성을 위해 복제하기 전에 직렬화해야 합니다. [행위자 형식 직렬화](service-fabric-reliable-actors-notes-on-actor-type-serialization.md)에 대해 자세히 알아봅니다.
+Reliable Actors에 저장 된 상태는 작성 된 toodisk 전에 직렬화 하 고 고가용성을 위해 복제 해야 합니다. [행위자 형식 직렬화](service-fabric-reliable-actors-notes-on-actor-type-serialization.md)에 대해 자세히 알아봅니다.
 
 다음으로 [행위자 진단 및 성능 모니터링](service-fabric-reliable-actors-diagnostics.md)에 대해 자세히 알아봅니다.

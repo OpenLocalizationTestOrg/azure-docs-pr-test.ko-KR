@@ -1,6 +1,6 @@
 ---
-title: "StorSimple 백업 정책 관리 | Microsoft Docs"
-description: "StorSimple Manager 서비스를 사용하여 수동 백업, 백업 일정 및 백업 보존을 만들고 관리하는 방법을 설명합니다."
+title: "aaaManage StorSimple 백업 정책 | Microsoft Docs"
+description: "StorSimple Manager 서비스 toocreate hello를 사용 하 여 수동 백업, 백업 일정 및 백업 보유 관리 하는 방법에 대해 설명 합니다."
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,38 +14,38 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 05/10/2016
 ms.author: v-sharos
-ms.openlocfilehash: 5448247428ab96887470c6b53f7a9b3dcd9238f0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7b01f29a8d8a096d9890c8406557021317b9baff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-manager-service-to-manage-backup-policies-update-2"></a>StorSimple 관리자 서비스를 사용하여 백업 정책 관리(업데이트 2)
+# <a name="use-hello-storsimple-manager-service-toomanage-backup-policies-update-2"></a>Hello StorSimple 관리자 서비스 toomanage 백업 정책 (업데이트 2)를 사용 하 여
 [!INCLUDE [storsimple-version-selector-manage-backup-policies](../../includes/storsimple-version-selector-manage-backup-policies.md)]
 
 ## <a name="overview"></a>개요
-이 자습서에서는 StorSimple Manager 서비스 **백업 정책** 페이지를 사용하여 StorSimple 볼륨에 대한 백업 프로세스 및 백업 보존을 제어하는 방법을 설명합니다. 수동 백업을 완료하는 방법도 설명합니다.
+이 자습서에서는 어떻게 toouse hello StorSimple Manager 서비스에 설명 **백업 정책** 페이지 toocontrol 백업 프로세스 및 StorSimple 볼륨에 대 한 백업 보존 합니다. 에 대해서도 설명 방법을 toocomplete 수동 백업 합니다.
 
-볼륨을 백업할 때 로컬 스냅숏 또는 클라우드 스냅숏을 만들도록 선택할 수 있습니다. 로컬로 고정된 볼륨을 백업하는 경우 클라우드 스냅숏을 지정하는 것이 좋습니다. 이탈 수가 많은 데이터 집합과 결합하여 로컬로 고정된 볼륨의 로컬 스냅숏을 많이 만들면 로컬 공간이 빨리 소진될 수 있습니다. 로컬 스냅숏을 만들기로 선택한 경우 가장 최근 상태를 백업하는 일일 스냅숏을 더 적게 만들어 하루 동안 유지한 다음 삭제하는 것이 좋습니다.
+볼륨을 백업 하는 경우에 로컬 스냅숏 또는 클라우드 스냅숏을 toocreate를 선택할 수 있습니다. 로컬로 고정된 볼륨을 백업하는 경우 클라우드 스냅숏을 지정하는 것이 좋습니다. 이탈 수가 많은 데이터 집합과 결합하여 로컬로 고정된 볼륨의 로컬 스냅숏을 많이 만들면 로컬 공간이 빨리 소진될 수 있습니다. 로컬 스냅숏 tootake를 선택 하면 더 적은 일일 스냅숏을 tooback hello 가장 최근 상태를 수행 하는 날에 대 한 유지 한 다음 삭제 하는 것이 좋습니다.
 
-로컬로 고정된 볼륨의 클라우드 스냅숏을 만드는 경우 중복 제거 및 압축된 클라우드로 변경된 데이터만 복사합니다. 
+로컬로 고정 된 볼륨의 클라우드 스냅숏을 만들 때만 변경 하는 hello 데이터 toohello 클라우드, 중복 제거 및 압축 된 위치를 복사 합니다. 
 
-## <a name="the-backup-policies-page"></a>백업 정책 페이지
-**백업 정책** 페이지에서는 백업 정책을 관리하고 로컬과 클라우드 스냅숏을 예약할 수 있습니다. (백업 정책이 볼륨의 컬렉션에 대한 백업 보존 및 백업 일정을 구성하는데 사용됩니다.) 백업 정책을 통해 동시에 여러 볼륨의 스냅숏을 사용할 수 있습니다. 이 백업 정책에서 생성된 백업은 크래시 일관성이 있는 복사본임을 의미합니다. **백업 정책** 페이지는 백업 정책, 해당 형식, 연결된 볼륨, 보존된 백업의 수 및 이 정책을 사용하도록 설정하는 옵션을 나열합니다.
+## <a name="hello-backup-policies-page"></a>hello 백업 정책 페이지
+hello **백업 정책** toomanage 백업 정책과 일정 로컬 및 클라우드 스냅숏 페이지에서는 있습니다. (백업 정책이 사용 되는 tooconfigure 백업 일정 및 백업 보존 볼륨의 컬렉션에 대 한 않습니다.) 백업 정책을 사용 하면 여러 볼륨의 스냅숏을 tootake 동시에 있습니다. 이 백업 정책에 의해 생성 된 hello 백업을 크래시 일관성이 있는 복사본 된다는 것을 의미 합니다. hello **백업 정책** 페이지 hello 백업 정책, 유형, 연결 된 hello 볼륨, 보존 된 백업 hello 수를 나열 하 고 hello 옵션 tooenable 이러한 정책입니다.
 
-**백업 정책** 페이지에서 다음 필드 중 하나 이상의 기존 백업 정책을 필터링 할 수도 있습니다.
+hello **백업 정책** 페이지도 있습니다 toofilter hello 기존 백업 정책을 하나 이상의 필드를 다음 hello:
 
-* **정책 이름** – 정책과 연결된 이름입니다. 다음과 같은 다양한 유형의 정책이 포함됩니다.
+* **정책 이름** – hello hello 정책과 연결 된 이름입니다. hello 여러 가지 유형의 정책 다음과 같습니다.
   
-  * 사용자가 명시적으로 만든 예약된 정책입니다.
-  * 볼륨 생성 시 이 볼륨 옵션에 대한 기본 백업이 활성화되면 만들어지는 자동 정책입니다. 이러한 정책은 *VolumeName*_Default로 이름이 지정됩니다. 여기서 *VolumeName*은 이 정책은 사용자가 Azure 클래식 포털에서 구성한 StorSimple 볼륨의 이름을 참조합니다. 자동 정책을 사용하면 22시 30분 장치 시간에서 시작하는 일일 클라우드 스냅숏이 발생됩니다.
-  * 원래 StorSimple 스냅숏 관리자에서 만든 가져온 정책입니다. 이 정책에서 가져온 StorSimple 스냅숏 관리자 호스트를 설명하는 태그가 포함됩니다.
-* **볼륨** – 정책과 연결된 볼륨입니다. 백업을 만들 때 백업 정책과 연관된 모든 볼륨이 함께 그룹화됩니다.
-* **마지막으로 성공한 백업** –이 정책을 사용하여 수행된 마지막으로 성공한 백업 시간과 날짜입니다.
-* **다음 백업** –이 정책에서 시작될 다음 예약 백업의 시간과 날짜입니다.
-* **일정** – 백업 정책과 연관된 일정의 수입니다.
+  * 예약 된 정책을 hello 사용자가 명시적으로 생성 합니다.
+  * 볼륨 만들기의 hello 시간에서이 볼륨 옵션에 대 한 기본 백업 hello를 설정할 때 만들어지는 자동 정책. 이러한 정책은 관계로 명명 됩니다 *VolumeName*_Default 여기서 *VolumeName* hello hello Azure 클래식 포털에서에서 hello 사용자가 구성 된 StorSimple 볼륨의 toohello 이름을 참조 합니다. hello 자동 정책 22 시 30 장치 시간부터 시작 하는 일별 클라우드 스냅숏이 발생 합니다.
+  * StorSimple 스냅숏 관리자 hello에서 원래 만든 하는 정책을 가져옵니다. 이러한 hello 정책에서 가져온 hello StorSimple 스냅숏 관리자 호스트를 설명 하는 태그가 포함 됩니다.
+* **볼륨** – hello hello 정책과 연결 된 볼륨입니다. 백업 정책과 연관 된 모든 hello 볼륨은 백업을 만들 때 함께 그룹화 됩니다.
+* **마지막으로 성공한 백업** – hello 날짜 및 시간 hello 마지막으로 성공한 백업에이 정책을 사용 하 여 만든입니다.
+* **다음 백업** – hello의 날짜 및 시간 hello 예약 된 다음 백업이이 정책에 의해 시작 됩니다.
+* **일정** – hello hello 백업 정책과 연관 된 일정의 수입니다.
 
-이 페이지에서 수행할 수 있는 자주 사용 되는 작업은 다음과 같습니다.
+이 페이지에서 수행할 수 있는 hello 자주 사용 되는 연산은 다음과 같습니다.
 
 * 백업 정책 추가 
 * 일정 추가 또는 수정 
@@ -54,34 +54,34 @@ ms.lasthandoff: 07/11/2017
 * 여러 볼륨과 일정의 사용자 지정 백업 정책 만들기 
 
 ## <a name="add-a-backup-policy"></a>백업 정책 추가
-자동 백업을 예약하려면 백업 정책을 추가합니다. StorSimple 장치에 대한 백업 정책을 추가할뎌면 Azure 클래식 포털에서 아래 단계를 수행합니다. 정책을 추가한 후 일정을 정의할 수 있습니다( [일정 추가 또는 수정](#add-or-modify-a-schedule)참조).
+백업 정책 tooautomatically 일정 백업을 추가 합니다. Azure 클래식 포털 tooadd StorSimple 장치에 대 한 백업 정책 hello 단계를 수행 하는 hello를 수행 합니다. Hello 정책에 추가한 후에 일정을 정의할 수 있습니다 (참조 [추가 일정을 수정 하거나](#add-or-modify-a-schedule)).
 
 [!INCLUDE [storsimple-add-backup-policy-u2](../../includes/storsimple-add-backup-policy-u2.md)]
 
 ![동영상 사용 가능](./media/storsimple-manage-backup-policies-u2/Video_icon.png) **동영상 사용 가능**
 
-로컬 또는 클라우드 백업 정책을 만드는 방법을 보여 주는 동영상을 시청하려면 [여기](https://azure.microsoft.com/documentation/videos/create-storsimple-backup-policies/)를 클릭하세요.
+toowatch toocreate 로컬 또는 클라우드 백업 정책에 방법을 보여 주는 비디오에서 클릭 [여기](https://azure.microsoft.com/documentation/videos/create-storsimple-backup-policies/)합니다.
 
 ## <a name="add-or-modify-a-schedule"></a>일정 추가 또는 수정
-StorSimple 장치의 기존 백업 정책에 첨부된 일정을 추가하거나 수정할 수 있습니다. 일정을 추가하거나 수정하려면 Azure 클래식 포털에서 다음 단계를 수행합니다.
+추가 하거나 StorSimple 장치에 연결 된 tooan 기존 백업 정책이 있는 수정할 수 있습니다. Hello hello Azure 클래식 포털 tooadd의에서 단계를 실행 하거나 일정을 수정 합니다.
 
 [!INCLUDE [storsimple-add-modify-backup-schedule](../../includes/storsimple-add-modify-backup-schedule-u2.md)]
 
 ## <a name="delete-a-backup-policy"></a>백업 정책 삭제
-StorSimple 장치에서 백업 정책을 삭제하려면 Azure 클래식 포털에서 다음 단계를 수행합니다.
+StorSimple 장치에서 Azure 클래식 포털 toodelete 백업 정책 hello 단계를 수행 하는 hello를 수행 합니다.
 
 [!INCLUDE [storsimple-delete-backup-policy](../../includes/storsimple-delete-backup-policy.md)]
 
 ## <a name="take-a-manual-backup"></a>수동 백업 수행
-단일 볼륨에 대한 주문형(수동) 백업을 만들려면 Azure 클래식 포털에서 다음 단계를 수행합니다.
+단일 볼륨에 대 한 hello Azure 클래식 포털 toocreate 주문형 (수동) 백업 단계를 수행 하는 hello를 수행 합니다.
 
 [!INCLUDE [storsimple-create-manual-backup](../../includes/storsimple-create-manual-backup.md)]
 
 ## <a name="create-a-custom-backup-policy-with-multiple-volumes-and-schedules"></a>여러 볼륨과 일정의 사용자 지정 백업 정책 만들기
-다중 볼륨 및 일정이 포함된 사용자 백업 정책을 만들려면 Azure 클래식 포털에서 다음 단계를 수행합니다.
+Hello hello Azure 클래식 포털 toocreate 여러 볼륨과 일정이 있는 사용자 지정 백업 정책에에서는 단계를 수행 합니다.
 
 [!INCLUDE [storsimple-create-custom-backup-policy](../../includes/storsimple-create-custom-backup-policy-u2.md)]
 
 ## <a name="next-steps"></a>다음 단계
-[StorSimple Manager 서비스를 사용하여 StorSimple 장치를 관리](storsimple-manager-service-administration.md)하는 방법을 자세히 알아봅니다.
+에 대 한 자세한 내용은 [StorSimple 장치의 StorSimple Manager 서비스 tooadminister를 hello를 사용 하 여](storsimple-manager-service-administration.md)합니다.
 

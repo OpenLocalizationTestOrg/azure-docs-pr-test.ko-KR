@@ -1,6 +1,6 @@
 ---
-title: "Apache Storm에서 Storage/Data Lake Store에 쓰기 - Azure HDInsight | Microsoft Docs"
-description: "Apache Storm을 사용하여 HDInsight용 HDFS 호환 저장소에 쓰는 방법을 알아봅니다. Azure Storage 또는 Azure Data Lake Store는 HDInsight용 HDFS 호환 저장소를 제공합니다. 이 문서 및 관련 예제에서는 HdfsBolt 구성 요소를 사용하여 HDInsight 클러스터에서 Storm의 기본 저장소에 쓰는 방법을 보여 줍니다."
+title: "aaaApache 스톰 쓰기 tooStorage/데이터 레이크 저장소-Azure HDInsight | Microsoft Docs"
+description: "HDInsight에 대 한 toouse Apache Storm toowrite toohello HDFS 호환 저장소 hello 하는 방법에 대해 알아봅니다. Azure 저장소 또는 Azure 데이터 레이크 저장소 HDInsight에 대 한 hello HDFS comptabile 저장소를 제공 합니다. 이 문서 및 hello 관련된 예제 hello HdfsBolt 구성 요소 사용된 toowrite toohello 기본 저장소의 HDInsight 클러스터에서 Storm 수 있는 방법을 보여 줍니다."
 services: hdinsight
 documentationcenter: na
 author: Blackmist
@@ -15,62 +15,62 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/19/2017
 ms.author: larryfr
-ms.openlocfilehash: 10dc8789e8f4a2b27fd3a4c6fec2ab28c674170a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d76159a9ecd1be18e519511cfdb3bcfd18ae4d33
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="write-to-hdfs-from-apache-storm-on-hdinsight"></a>HDInsight의 Apache Storm에서 HDFS에 쓰기
+# <a name="write-toohdfs-from-apache-storm-on-hdinsight"></a>HDInsight의 Apache Storm에서 tooHDFS 작성
 
-Storm을 사용하여 HDInsight의 Apache Storm에서 사용하는 HDFS 호환 저장소에 데이터를 쓰는 방법에 대해 알아봅니다. HDInsight는 Azure Storage 및 Azure Data Lake Store를 모두 HDFS 호환 저장소로 사용할 수 있습니다. Storm은 HDFS에 데이터를 쓰는 [HdfsBolt](http://storm.apache.org/releases/1.1.0/javadocs/org/apache/storm/hdfs/bolt/HdfsBolt.html) 구성 요소를 제공합니다. 이 문서는 HdfsBolt에서 두 가지 유형의 저장소에 쓰는 방법에 대한 정보를 제공합니다. 
+HDInsight의 Apache Storm 프로그램 toouse 스톰 toowrite 데이터 toohello HDFS 호환 저장소의 사용 방법에 대해 알아봅니다. HDInsight는 Azure Storage 및 Azure Data Lake Store를 모두 HDFS 호환 저장소로 사용할 수 있습니다. Storm 제공는 [HdfsBolt](http://storm.apache.org/releases/1.1.0/javadocs/org/apache/storm/hdfs/bolt/HdfsBolt.html) 데이터 tooHDFS를 작성 하는 구성 요소입니다. 이 문서에서는 저장소 tooeither 유형의 hello HdfsBolt에서에서 작성 설명 합니다. 
 
 > [!IMPORTANT]
-> 이 문서에서 사용되는 예제 토폴로지는 HDInsight의 Storm에 포함된 구성 요소를 사용합니다. 다른 Apache Storm 클러스터와 함께 Azure Data Lake Store를 사용하려면 수정해야 할 수도 있습니다.
+> 이 문서에 사용 된 토폴로지 hello 예제 HDInsight의 Storm에 포함 된 구성 요소를 사용 합니다. Azure 데이터 레이크 저장소 다른 Apache Storm 클러스터와 함께 사용할 때와 수정 toowork가 필요할 수 있습니다.
 
-## <a name="get-the-code"></a>코드 가져오기
+## <a name="get-hello-code"></a>Hello 코드 가져오기
 
-이 토폴로지를 포함하는 프로젝트는 [https://github.com/Azure-Samples/hdinsight-storm-azure-data-lake-store](https://github.com/Azure-Samples/hdinsight-storm-azure-data-lake-store)에서 다운로드로 제공됩니다.
+이 토폴로지를 포함 하는 hello 프로젝트에서 다운로드할 수는 [https://github.com/Azure-Samples/hdinsight-storm-azure-data-lake-store](https://github.com/Azure-Samples/hdinsight-storm-azure-data-lake-store)합니다.
 
-이 프로젝트를 컴파일하기 위해 개발 환경에 필요한 구성 요소는 다음과 같습니다.
+toocompile이이 프로젝트를 hello 같은 개발 환경에 대 한 구성이 필요 합니다.
 
 * [Java JDK 1.8](https://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) 이상 - HDInsight 3.5 이상에는 Java 8이 필요합니다.
 
 * [Maven 3.x](https://maven.apache.org/download.cgi)
 
-Java 및 JDK를 설치할 때 사용자의 개발 워크스테이션에 다음 환경 변수를 설정할 수 있습니다. 하지만 변수가 존재하며 시스템에 대한 올바른 값을 포함하는지 확인해야 합니다.
+hello 다음과 같은 환경 변수 설정 되어 있습니다 Java와 hello JDK 개발용 워크스테이션에 설치 하는 경우. 그러나 시스템에 대 한 올바른 값 hello를 포함 하 고 있는 것을 확인 해야 합니다.
 
-* `JAVA_HOME` - JDK가 설치된 디렉터리를 가리켜야 합니다.
-* `PATH` - 다음 경로를 포함해야 합니다.
+* `JAVA_HOME`-toohello hello JDK가 설치 디렉터리를 가리켜야 합니다.
+* `PATH`-경로 따라 hello를 포함 해야 합니다.
   
-    * `JAVA_HOME`(또는 이와 동등한 경로)
-    * `JAVA_HOME\bin`(또는 이와 동등한 경로)
-    * Maven이 설치된 디렉터리
+    * `JAVA_HOME`(또는 hello 해당 하는 경로)입니다.
+    * `JAVA_HOME\bin`(또는 hello 해당 하는 경로)입니다.
+    * Maven 설치 되어 있는 hello 디렉터리입니다.
 
-## <a name="how-to-use-the-hdfsbolt-with-hdinsight"></a>HDInsight에서 HdfsBolt를 사용하는 방법
+## <a name="how-toouse-hello-hdfsbolt-with-hdinsight"></a>Toouse는 HDInsight와 HdfsBolt hello 하는 방법
 
 > [!IMPORTANT]
-> HDInsight의 Storm에서 HdfsBolt를 사용하려면 먼저 스크립트 동작을 사용하여 필요한 jar 파일에 Storm에 대한 `extpath`를 복사해야 합니다. 자세한 내용은 [클러스터 구성](#configure)을 참조하세요.
+> Hello HdfsBolt HDInsight의 Storm를 사용 하기 전에 먼저 사용 해야 스크립트 동작 필요한 toocopy jar 파일 hello에 `extpath` Storm의 합니다. 자세한 내용은 참조 hello [구성 hello 클러스터](#configure) 섹션.
 
-HdfsBolt는 사용자가 제공하는 파일 구성표를 사용하여 HDFS에 쓰는 방법을 인식합니다. HDInsight를 사용하는 경우 다음 구성표 중 하나를 사용합니다.
+toounderstand을 어떻게 제공 하는 hello 파일 체계를 사용 하는 hello HdfsBolt toowrite tooHDFS 합니다. HDInsight를와 hello 구성표를 다음 중 하나를 사용 합니다.
 
 * `wasb://`: Azure Storage 계정과 함께 사용
 * `adl://`: Azure Data Lake Store와 함께 사용
 
-다음 표에서는 여러 시나리오에 대한 파일 구성표를 사용하는 경우의 예를 제공합니다.
+hello 다음 표에서 hello 파일 체계를 사용 하 여 다양 한 시나리오에 대 한 예:
 
 | 구성표 | 참고 사항 |
 | ----- | ----- |
-| `wasb:///` | 기본 저장소 계정은 Azure Storage 계정의 Blob 컨테이너입니다. |
-| `adl:///` | 기본 저장소 계정은 Azure Data Lake Store의 디렉터리입니다. 클러스터를 만드는 동안 클러스터의 HDFS 루트인 Data Lake Store의 디렉터리를 지정합니다. 예를 들어 `/clusters/myclustername/` 디렉터리가 있습니다. |
-| `wasb://CONTAINER@ACCOUNT.blob.core.windows.net/` | 클러스터와 연결된 기본이 아닌 추가 Azure Storage 계정입니다. |
-| `adl://STORENAME/` | 클러스터에서 사용하는 Data Lake Store의 루트입니다. 이 구성표를 사용하면 클러스터 파일 시스템이 포함된 디렉터리 외부에 있는 데이터에 액세스할 수 있습니다. |
+| `wasb:///` | hello 기본 저장소 계정 blob 컨테이너는 Azure 저장소 계정에는 |
+| `adl:///` | hello 기본 저장소 계정에는 Azure 데이터 레이크 저장소의 디렉터리입니다. 클러스터를 만드는 동안 hello 루트 hello 클러스터의 HDFS에 있는 데이터 레이크 저장소의 hello 디렉터리를 지정 합니다. 예를 들어 hello `/clusters/myclustername/` 디렉터리입니다. |
+| `wasb://CONTAINER@ACCOUNT.blob.core.windows.net/` | Hello 클러스터와 연결 된 기본이 아닌 (추가) Azure 저장소 계정입니다. |
+| `adl://STORENAME/` | hello hello 클러스터에서 사용 하는 데이터 레이크 저장소의 hello 루트입니다. 이 체계 hello 클러스터 파일 시스템을 포함 하는 hello 디렉터리 외부에 있는 tooaccess 데이터가 있습니다. |
 
-자세한 내용은 Apache.org의 [HdfsBolt](http://storm.apache.org/releases/1.1.0/javadocs/org/apache/storm/hdfs/bolt/HdfsBolt.html) 참조를 참조하세요.
+자세한 내용은 참조 hello [HdfsBolt](http://storm.apache.org/releases/1.1.0/javadocs/org/apache/storm/hdfs/bolt/HdfsBolt.html) Apache.org에서 참조 합니다.
 
 ### <a name="example-configuration"></a>예제 구성
 
-다음 YAML은 예제에 포함된 `resources/writetohdfs.yaml` 파일에서 인용한 부분입니다. 이 파일에서는 Apache Storm의 [Flux](https://storm.apache.org/releases/1.1.0/flux.html) 프레임워크를 사용하여 Storm 토폴로지를 정의합니다.
+hello 다음 YAML는 hello 발췌 `resources/writetohdfs.yaml` hello 예제에 포함 된 파일입니다. 이 파일은 hello를 사용 하 여 hello 스톰 토폴로지 정의 [표적이](https://storm.apache.org/releases/1.1.0/flux.html) Apache Storm의 프레임 워크입니다.
 
 ```yaml
 components:
@@ -122,82 +122,82 @@ bolts:
         args: [ref: "syncPolicy"]
 ```
 
-이 YAML에서 정의하는 항목은 다음과 같습니다.
+이 YAML hello 다음 항목을 정의 합니다.
 
-* `syncPolicy`: 파일 시스템에 파일이 동기화/플러시되는 시기를 정의합니다. 이 예제에서는 1,000개 튜플마다 동기화/플러시되도록 정의했습니다.
-* `fileNameFormat`: 파일을 쓸 때 사용할 경로 및 파일 이름 패턴을 정의합니다. 이 예제에서 경로는 필터를 사용하여 런타임에 제공되며 파일 확장명은 `.txt`입니다.
-* `recordFormat`: 기록된 파일의 내부 형식을 정의합니다. 이 예제에서 필드는 `|` 문자로 구분되었습니다.
-* `rotationPolicy`: 파일을 회전하는 시기를 정의합니다. 이 예제에서는 회전이 수행되지 않습니다.
-* `hdfs-bolt`: 이전 구성 요소를 `HdfsBolt` 클래스의 구성 매개 변수로 사용합니다.
+* `syncPolicy`: 경우 파일은 동기화/플러시 toohello 파일 시스템을 정의 합니다. 이 예제에서는 1,000개 튜플마다 동기화/플러시되도록 정의했습니다.
+* `fileNameFormat`: 파일을 작성할 때 hello 경로 파일 이름 패턴 toouse를 정의 합니다. 이 예제에서는 hello 경로 필터를 사용 하 여 런타임에 제공 되 고 hello 파일 확장명은 `.txt`합니다.
+* `recordFormat`: Hello 기록 된 hello 파일의 내부 형식을 정의 합니다. 이 예제에서는 필드 hello로 구분 된 `|` 문자입니다.
+* `rotationPolicy`: 시기를 정의 toorotate 파일입니다. 이 예제에서는 회전이 수행되지 않습니다.
+* `hdfs-bolt`: 사용 하 여 hello에 대 한 구성 매개 변수로 이전 구성 요소를 hello `HdfsBolt` 클래스입니다.
 
-Flux 프레임워크에 대한 자세한 내용은 [https://storm.apache.org/releases/1.1.0/flux.html](https://storm.apache.org/releases/1.1.0/flux.html)을 참조하세요.
+Hello 표적이 프레임 워크에 대 한 자세한 내용은 참조 하십시오. [https://storm.apache.org/releases/1.1.0/flux.html](https://storm.apache.org/releases/1.1.0/flux.html)합니다.
 
-## <a name="configure-the-cluster"></a>클러스터 구성
+## <a name="configure-hello-cluster"></a>Hello 클러스터 구성
 
-기본적으로 HDInsight의 Storm에는 HdfsBolt에서 Storm의 클래스 경로에 있는 Azure Storage 또는 Data Lake Store와 통신하는 데 사용하는 구성 요소가 포함되지 않습니다. 다음 스크립트 동작을 사용하여 클러스터의 Storm에 대한 `extlib` 디렉터리에 이러한 구성 요소를 추가합니다.
+기본적으로 HDInsight의 Storm HdfsBolt 사용 된 Azure 저장소 서비스 또는 데이터 레이크 저장소 toocommunicate Storm의 클래스 경로에서 하는 hello 구성 요소를 포함 되지 않습니다. 사용 하 여 hello 다음 스크립트 동작 tooadd 이러한 구성 요소 toohello `extlib` 디렉터리 Storm의 클러스터에:
 
-| 스크립트 URI | 이를 적용하는 노드 | 매개 변수 | | `https://000aarperiscus.blob.core.windows.net/certs/stormextlib.sh` | Nimbus, 감독자 | None |
+| 스크립트 URI | 노드 tooapply 하도록 | 매개 변수 | | `https://000aarperiscus.blob.core.windows.net/certs/stormextlib.sh` | Nimbus, 감독자 | None |
 
-HDInsight에서 이 스크립트를 사용하는 방법에 대한 자세한 내용은 [스크립트 작업을 사용하여 Linux 기반 HDInsight 클러스터 사용자 지정](./hdinsight-hadoop-customize-cluster-linux.md) 문서를 참조하세요.
+이 스크립트를 사용 하 여 클러스터 사용에 대 한 내용은 hello 참조 [HDInsight 사용자 지정 스크립트 동작을 사용 하는 클러스터](./hdinsight-hadoop-customize-cluster-linux.md) 문서.
 
-## <a name="build-and-package-the-topology"></a>토폴로지 빌드 및 패키지
+## <a name="build-and-package-hello-topology"></a>빌드 및 패키징합니다 hello 토폴로지
 
-1. [https://github.com/Azure-Samples/hdinsight-storm-azure-data-lake-store ](https://github.com/Azure-Samples/hdinsight-storm-azure-data-lake-store) 에서 개발 환경에 예제 프로젝트를 다운로드합니다.
+1. hello 예제 프로젝트를 다운로드 [https://github.com/Azure-Samples/hdinsight-storm-azure-data-lake-store ](https://github.com/Azure-Samples/hdinsight-storm-azure-data-lake-store) tooyour 개발 환경입니다.
 
-2. 명령 프롬프트, 터미널 또는 셸 세션에서 다운로드한 디렉터리를 변경합니다. 토폴로지를 빌드하고 패키지하려면 다음 명령을 사용합니다.
+2. 명령 프롬프트에서 터미널 또는 셸 세션 디렉터리 toohello 루트 변경 hello의 프로젝트를 다운로드 합니다. 토폴로지 hello toobuild 및 패키지 다음 명령을 hello를 사용 합니다.
    
         mvn compile package
    
-    빌드 및 패키징이 완료되면 `StormToHdfs-1.0-SNAPSHOT.jar`이라는 파일이 포함된 `target`이라는 새 디렉터리가 있습니다. 이 파일에는 컴파일된 토폴로지가 포함되어 있습니다.
+    라는 새 디렉터리 없는 hello 빌드 및 패키징 완료 되 면 `target`, 라는 파일을 포함 하는 `StormToHdfs-1.0-SNAPSHOT.jar`합니다. 이 파일에 컴파일된 hello 토폴로지 포함 되어 있습니다.
 
-## <a name="deploy-and-run-the-topology"></a>토폴로지 배포 및 실행
+## <a name="deploy-and-run-hello-topology"></a>배포 하 고 hello 토폴로지를 실행 합니다.
 
-1. 다음 명령을 사용하여 HDInsight 클러스터에 토폴로지를 복사합니다. **USER** 를 클러스터를 만들 때 사용한 SSH 사용자 이름으로 대체합니다. **CLUSTERNAME**은 클러스터 이름으로 바꿉니다.
+1. Hello 다음 명령 toocopy hello 토폴로지 toohello HDInsight 클러스터를 사용 합니다. 대체 **사용자** hello 클러스터를 만들 때 사용한 hello SSH 사용자 이름이 사용 됩니다. 대체 **CLUSTERNAME** hello 클러스터의 hello 이름을 가진 합니다.
    
         scp target\StormToHdfs-1.0-SNAPSHOT.jar USER@CLUSTERNAME-ssh.azurehdinsight.net:StormToHdfs1.0-SNAPSHOT.jar
    
-    메시지가 표시되면 클러스터에 대한 SSH 사용자를 만들 때 사용한 암호를 입력합니다. 암호 대신 공용 키를 사용하는 경우 `-i` 매개 변수를 사용하여 개인 키와 일치하는 경로를 지정합니다.
+    메시지가 표시 되 면 hello 클러스터에 대 한 hello SSH 사용자를 만들 때 사용 하는 hello 암호를 입력 합니다. 공개 키 대신 암호를 사용 하는 경우 toouse hello 할 수 있습니다 `-i` 개인 키와 일치 하는 매개 변수 toospecify hello 경로 toohello 합니다.
    
    > [!NOTE]
    > HDInsight에서의 `scp` 사용에 대한 자세한 내용은 [HDInsight에서 SSH 사용](./hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
 
-2. 업로드가 완료되면 SSH를 사용하여 HDInsight 클러스터에 연결하도록 다음을 사용합니다. **USER** 를 클러스터를 만들 때 사용한 SSH 사용자 이름으로 대체합니다. **CLUSTERNAME**은 클러스터 이름으로 바꿉니다.
+2. Hello 업로드가 완료 되 면 hello tooconnect toohello HDInsight 클러스터 SSH를 사용 하 여 다음을 사용 합니다. 대체 **사용자** hello 클러스터를 만들 때 사용한 hello SSH 사용자 이름이 사용 됩니다. 대체 **CLUSTERNAME** hello 클러스터의 hello 이름을 가진 합니다.
    
         ssh USER@CLUSTERNAME-ssh.azurehdinsight.net
    
-    메시지가 표시되면 클러스터에 대한 SSH 사용자를 만들 때 사용한 암호를 입력합니다. 암호 대신 공용 키를 사용하는 경우 `-i` 매개 변수를 사용하여 개인 키와 일치하는 경로를 지정합니다.
+    메시지가 표시 되 면 hello 클러스터에 대 한 hello SSH 사용자를 만들 때 사용 하는 hello 암호를 입력 합니다. 공개 키 대신 암호를 사용 하는 경우 toouse hello 할 수 있습니다 `-i` 개인 키와 일치 하는 매개 변수 toospecify hello 경로 toohello 합니다.
    
    자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
 
-3. 연결되면 다음 명령을 사용하여 `dev.properties`라는 파일을 만듭니다.
+3. 사용 하 여 hello 다음 명령은 이라는 파일로 내보내집니다 toocreate 연결 되 면 `dev.properties`:
 
         nano dev.properties
 
-4. `dev.properties` 파일의 내용으로 다음 텍스트를 사용합니다.
+4. 콘텐츠로 사용 hello hello 텍스트를 다음으로 사용 하 여 hello `dev.properties` 파일:
 
         hdfs.write.dir: /stormdata/
         hdfs.url: wasb:///
 
     > [!IMPORTANT]
-    > 이 예제에서는 클러스터에서 Azure Storage 계정을 기본 저장소로 사용한다고 가정합니다. 클러스터에서 Azure Data Lake Store를 사용하는 경우 `hdfs.url: adl:///`을 대신 사용합니다.
+    > 이 예제에서는 클러스터에 Azure 저장소 계정을 사용 하 여 hello 기본 저장소로 가정 합니다. 클러스터에서 Azure Data Lake Store를 사용하는 경우 `hdfs.url: adl:///`을 대신 사용합니다.
     
-    파일을 저장하려면 __Ctrl + X__를 사용한 다음 __Y__를 입력하고 마지막으로 __Enter__ 키를 누릅니다. 이 파일의 값은 데이터가 기록되는 Data Lake store URL 및 디렉터리 이름을 설정합니다.
+    toosave hello 파일을 사용 하 여 __Ctrl + X__, 다음 __Y__, 마지막으로 __Enter__합니다. 이 파일에 hello 값 hello 데이터 레이크 저장소 URL 및 데이터에 기록 되는 hello 디렉터리 이름을 설정 합니다.
 
-3. 다음 명령을 사용하여 토폴로지를 시작합니다.
+3. 다음 명령 toostart hello 토폴로지 hello를 사용 합니다.
    
         storm jar StormToHdfs-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --remote -R /writetohdfs.yaml --filter dev.properties
 
-    이 명령은 클러스터의 Nimbus 노드에 제출하여 Flux 프레임워크를 사용하는 토폴로지를 시작합니다. 토폴로지를 jar에 포함된 `writetohdfs.yaml` 파일에 의해 정의됩니다. `dev.properties` 파일은 필터로 전달되고 파일에 포함된 값은 토폴로지에서 읽힙니다.
+    이 명령은 hello 표적이 프레임 워크를 사용 하 여 hello 클러스터의 toohello Nimbus 노드에 전송 하 여 hello 토폴로지를 시작 합니다. hello hello 토폴로지를 정의 `writetohdfs.yaml` hello jar에 포함 된 파일입니다. hello `dev.properties` 파일 필터를 변수로 전달 되 고 hello 토폴로지 hello 파일에 포함 된 hello 값을 읽습니다.
 
 ## <a name="view-output-data"></a>출력 데이터 보기
 
-데이터를 보려면 다음 명령을 사용합니다.
+다음 명령을 사용 하 여 hello tooview hello 데이터:
 
     hdfs dfs -ls /stormdata/
 
-이 토폴로지로 만든 파일 목록이 표시됩니다.
+이 토폴로지에서 만든 hello 파일의 목록이 표시 됩니다.
 
-다음 목록은 이전 명령에서 반환된 데이터 예제입니다.
+hello 다음 목록은 hello 이전 명령에서 반환 하는 hello 데이터의 예입니다.
 
     Found 30 items
     -rw-r-----+  1 sshuser sshuser       5120 2017-03-03 19:13 /stormdata/hdfs-bolt-3-0-1488568403092.txt
@@ -208,9 +208,9 @@ HDInsight에서 이 스크립트를 사용하는 방법에 대한 자세한 내�
     -rw-r-----+  1 sshuser sshuser       5120 2017-03-03 19:13 /stormdata/hdfs-bolt-3-13-1488568412603.txt
     -rw-r-----+  1 sshuser sshuser       5120 2017-03-03 19:13 /stormdata/hdfs-bolt-3-14-1488568415055.txt
 
-## <a name="stop-the-topology"></a>토폴로지 중지
+## <a name="stop-hello-topology"></a>Hello 토폴로지를 중지 합니다.
 
-Storm 토폴로지가 중지될 때까지 실행되거나 클러스터가 삭제됩니다. 토폴로지를 중지하려면 다음 명령을 사용합니다.
+Storm 토폴로지 중지 될 때까지 실행 또는 hello 클러스터가 삭제 됩니다. 다음 명령을 사용 하 여 hello toostop hello 토폴로지:
 
     storm kill hdfswriter
 
@@ -220,5 +220,5 @@ Storm 토폴로지가 중지될 때까지 실행되거나 클러스터가 삭제
 
 ## <a name="next-steps"></a>다음 단계
 
-이제 Storm을 사용하여 Azure Data Lake Store에 쓰는 방법을 알아보았으므로 다른 [HDInsight에 대한 Storm 예제](hdinsight-storm-example-topology.md)를 검색합니다.
+Toouse 스톰 toowrite tooAzure 저장소 및 Azure 데이터 레이크 저장소 검색 방법을 다른 배웠습니다 했으므로 [HDInsight에 대 한 예제 스톰](hdinsight-storm-example-topology.md)합니다.
 

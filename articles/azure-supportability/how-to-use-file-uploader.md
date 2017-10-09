@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Azure 새 지원 요청 파일 업로드 유틸리티 지침 | Microsoft Docs"
-description: "Microsoft Azure 새 지원 요청 파일 업로드 유틸리티를 사용할 경우의 지침을 설명합니다."
+title: "aaaMicrosoft Azure 새로운 지원 요청 파일 업로드 유틸리티 지침 | Microsoft Docs"
+description: "Microsoft Azure 새로운 지원 요청 파일 업로드 유틸리티를 사용 하는 경우 hello 지침을 설명 합니다."
 services: 
 documentationcenter: 
 author: genlin
@@ -15,28 +15,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: genli
-ms.openlocfilehash: ba6dafd8d890d88478a5e3213dd023921908f4bf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 19e51b40b82a71454b4b04752ebeefd5d26c2db5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoft-azure-new-support-request-file-upload-utility-guidelines"></a>Microsoft Azure 새 지원 요청 파일 업로드 유틸리티 지침
-[지원 요청을 만들 때](https://portal.azure.com/#create/Microsoft.Support)파일 업로드 유틸리티를 사용하면 진단 파일이나 인시던트에 관련된 다른 파일을 쉽게 업로드할 수 있습니다.  
+때 있습니다 [지원 요청](https://portal.azure.com/#create/Microsoft.Support), 파일 업로드 유틸리티 hello 수 쉽게 관련 toohello 인시던트가 되는 다른 파일이 나 진단 파일을 업로드 합니다.  
 
 > [!NOTE]
-> 개인 정보를 보호하려면 업로드 시 개인 정보를 포함시키기 마세요.
+> tooprotect 개인 정보를 업로드할 수에 개인 정보를 포함 하지 마십시오.
 >
 >
 
-파일 업로드 유틸리티를 사용할 때 다음 지침을 따르세요.
+Hello 파일 업로드 유틸리티를 사용 하는 경우 다음이 지침을 따릅니다.
 
-* 모든 파일에는 .docx 또는 .xlsx와 같은 파일 이름 확장명이 있어야 합니다. 허용되는 파일 이름 확장명 목록에 대한 표를 참조하세요.
-* 파일 이름은 110자 이하여야 합니다.
+* 모든 파일에는 .docx 또는 .xlsx와 같은 파일 이름 확장명이 있어야 합니다. 허용 되는 파일 이름 확장명 목록은 hello hello 표를 참조 하십시오.
+* hello 파일 이름은 110 자를 넘지 해야 합니다.
 * 둘 이상의 파일을 업로드할 수 없습니다.
 * 파일은 4MB 이하여야 합니다.
 
-## <a name="table-of-the-allowed-file-name-extensions"></a>허용되는 파일 이름 확장명 표
+## <a name="table-of-hello-allowed-file-name-extensions"></a>허용 된 파일 이름 확장명의 hello 테이블
 | 0-9, A-C    | D-G   | H-M         | N-P   | R-T      | U-W        | X-Z     |
 |-------------|-------|-------------|-------|----------|------------|---------|
 | .7z         | .dat  | .hwl        | .odx  | .rar     | .tdb       | .xlam   |

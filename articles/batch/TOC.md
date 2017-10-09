@@ -64,7 +64,7 @@
 # 관련 항목
 ## [배치 Shipyard](https://github.com/Azure/batch-shipyard)
 ## [배치 및 데이터 팩터리를 사용하여 데이터 처리](../data-factory/data-factory-data-processing-using-batch.md?toc=%2fazure%2fbatch%2ftoc.json)
-## [Azure 클라우드의 배치 및 HPC 솔루션](batch-hpc-solutions.md)
+## [Azure 클라우드 hello에서 일괄 처리 및 HPC 솔루션](batch-hpc-solutions.md)
 
 # 리소스
 ## [Azure 로드맵](https://azure.microsoft.com/roadmap/)

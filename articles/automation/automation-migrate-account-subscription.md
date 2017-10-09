@@ -1,6 +1,6 @@
 ---
-title: "자동화 계정 및 리소스 마이그레이션 | Microsoft Docs"
-description: "이 문서에서는 Azure 자동화의 자동화 계정 및 관련 리소스를 구독 간에 이동하는 방법을 설명합니다."
+title: "aaaMigrate 자동화 계정 및 리소스 | Microsoft Docs"
+description: "이 문서에서는 어떻게 toomove 자동화 계정에 Azure 자동화와 연결 된 리소스가 하나의 구독만 tooanother에서 설명 합니다."
 services: automation
 documentationcenter: 
 author: MGoedtel
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 11/21/2016
 ms.author: magoedte
-ms.openlocfilehash: 687da15bdaf854254321b59350f47549781676f5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 201c9091cd2d78d7ea407c1e5fb27f366bb4fa8c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="migrate-automation-account-and-resources"></a>자동화 계정 및 리소스 마이그레이션
-자동화 계정 및 연결된 된 리소스 (즉, 자산, runbook, 모듈 등)를 Azure 포털에서 만든 다른 또는 하나의 구독에서 다른 한 리소스 그룹에서 마이그레이션에 대해 손쉽게 수행할 수 있습니다 [리소스 이동](../azure-resource-manager/resource-group-move-resources.md) Azure Portal에서 사용할 수 있는 기능입니다. 그러나 이 작업을 계속하기 전에 다음 [리소스를 이동하기 전의 검사 목록](../azure-resource-manager/resource-group-move-resources.md#checklist-before-moving-resources)과 아래의 자동화 관련 목록을 검토해야 합니다.   
+자동화 계정 및 연결된 된 리소스 (즉, 자산, runbook, 모듈, 등)를 hello Azure 포털에서에서 만든 하나의 리소스에서 toomigrate tooanother 그룹 또는 하나의 구독 tooanother에서이를 쉽게 수행할 수 있습니다. hello [리소스 이동](../azure-resource-manager/resource-group-move-resources.md) hello Azure 포털에서에서 사용할 수 있는 기능입니다. 그러나이 작업을 계속 하기 전에 먼저 검토 해야 hello 다음 [리소스를 이동 하기 전에 검사 목록](../azure-resource-manager/resource-group-move-resources.md#checklist-before-moving-resources) 및 특정 tooAutomation 아래 또한 hello 목록입니다.   
 
-1. 대상 구독/리소스 그룹은 원본이 있는 동일한 지역에 있어야 합니다.  즉, 자동화 계정을 여러 지역 간에 이동할 수 없습니다.
-2. 리소스(예: Runbook, 작업 등)를 이동할 때 원본 그룹과 대상 그룹은 작업 기간 동안 잠겨 있습니다. 쓰기 및 삭제 작업은 이동이 완료될 때까지 그룹에서 차단됩니다.  
-3. 기존 구독의 리소스 또는 구독 ID를 참조하는 모든 Runbook 또는 변수는 마이그레이션이 완료된 후에 업데이트해야 합니다.   
+1. hello 대상 구독/리소스 그룹 hello 소스와 동일한 지역에 있어야 합니다.  즉, 자동화 계정을 여러 지역 간에 이동할 수 없습니다.
+2. 리소스 (예:: runbook, 작업, 등)를 이동할 때는 hello 소스 그룹과 hello 대상 그룹을 모두 hello hello 작업 동안 잠깁니다. 쓰기 및 삭제 작업 hello 이동이 완료 될 때까지 hello 그룹에서 차단 됩니다.  
+3. 모든 runbook 또는 hello 기존 구독에서 리소스 또는 구독 ID를 참조할 수 있는 변수 toobe 마이그레이션이 완료 된 후에 업데이트 해야 합니다.   
 
 > [!NOTE]
 > 이 기능은 클래식 자동화 리소스 이동을 지원하지 않습니다.
 >
 >
 
-## <a name="to-move-the-automation-account-using-the-portal"></a>포털을 사용하여 자동화 계정을 이동하려면
-1. 자동화 계정에서 블레이드 위쪽에 있는 **이동**을 클릭합니다.<br> ![이동 옵션](media/automation-migrate-account-subscription/automation-menu-move.png)<br>
-2. **리소스 이동** 블레이드에는 자동화 계정 및 리소스 그룹 둘 다에 관련된 리소스가 표시됩니다.  드롭다운 목록에서 **구독** 및 **리소스 그룹**을 선택하거나 **새 리소스 그룹 만들기** 옵션을 선택한 후 제공된 필드에 새 리소스 그룹 이름을 입력합니다.  
-3. 검토한 후 *리소스를 이동한 후 새 리소스 ID를 사용하려면 도구 및 스크립트를 업데이트해야 한다는 사실을 이해*했음을 확인하는 확인란을 선택한 후 **확인**을 클릭합니다.<br> ![리소스 이동 블레이드](media/automation-migrate-account-subscription/automation-move-resources-blade.png)<br>   
+## <a name="toomove-hello-automation-account-using-hello-portal"></a>toomove hello hello 포털을 사용 하는 자동화 계정
+1. 자동화 계정에서 클릭 **이동** hello hello 블레이드 위쪽에 있습니다.<br> ![이동 옵션](media/automation-migrate-account-subscription/automation-menu-move.png)<br>
+2. Hello에 **리소스 이동** 블레이드, 자동화 계정 및 리소스 그룹 리소스 관련된 tooboth 제공 참고 합니다.  선택 hello **구독** 및 **리소스 그룹** hello 드롭 다운 목록 또는 select hello 옵션에서 **새 리소스 그룹 만들기** 에 새 리소스 그룹 이름을 입력 하 고 hello 필드를 제공 합니다.  
+3. 검토 및 선택 hello 확인란 tooacknowledge 있습니다 *도구 및 스크립트는 이해 필요 업데이트 toobe toouse 새 리소스 Id는 리소스를 이동한 후* 클릭 하 고 **확인**합니다.<br> ![리소스 이동 블레이드](media/automation-migrate-account-subscription/automation-move-resources-blade.png)<br>   
 
-이 작업을 완료하는 데는 몇 분 정도 걸릴 수 있습니다.  **알림**에 유효성 검사 및 마이그레이션을 비롯한 각 작업의 상태와 최종 완료 시기가 표시됩니다.     
+이 작업은 몇 분 toocomplete를 소요 됩니다.  **알림**에 유효성 검사 및 마이그레이션을 비롯한 각 작업의 상태와 최종 완료 시기가 표시됩니다.     
 
-## <a name="to-move-the-automation-account-using-powershell"></a>PowerShell을 사용하여 자동화 계정을 이동하려면
-기존 자동화 리소스를 다른 리소스 그룹 또는 구독으로 이동하려면 **Get-AzureRmResource** cmdlet을 사용하여 특정 자동화 계정을 가져온 다음 **Move-AzureRmResource** cmdlet을 사용하여 이동을 수행합니다.
+## <a name="toomove-hello-automation-account-using-powershell"></a>toomove hello PowerShell을 사용 하는 자동화 계정
+toomove 기존 자동화 리소스 tooanother 리소스 그룹이 나 hello를 사용 하 여 구독 **Get AzureRmResource** cmdlet tooget hello 특정 자동화 계정 차례로 **Move-azurermresource** cmdlet tooperform hello 이동 합니다.
 
-첫 번째 예제는 자동화 계정을 새 리소스 그룹으로 이동하는 방법을 보여 줍니다.
+첫 번째 예에서는 hello toomove 자동화 tooa 새 리소스 그룹을 고려 하는 방법을 보여 줍니다.
 
    ```
     $resource = Get-AzureRmResource -ResourceName "TestAutomationAccount" -ResourceGroupName "ResourceGroup01"
     Move-AzureRmResource -ResourceId $resource.ResourceId -DestinationResourceGroupName "NewResourceGroup"
    ```
 
-위의 코드 예제를 실행하면 이 작업을 수행할지 묻는 메시지가 나타납니다.  **예** 를 클릭하고 스크립트가 진행되도록 허용하면 마이그레이션을 수행하는 동안 알림이 수신되지 않습니다.  
+위 코드 예제는 hello를 실행 한 다음 메시지 표시 tooverify tooperform이이 작업을 사용할 수 있습니다.  클릭 한 후 **예** 허용 스크립트 tooproceed hello, hello 마이그레이션을 수행 하는 동안 모든 알림이 표시 되지 것입니다.  
 
-새 구독으로 이동하려면 *DestinationSubscriptionId* 매개 변수 값을 포함합니다.
+toomove tooa 새 구독을 hello에 대 한 값이 포함 *DestinationSubscriptionId* 매개 변수입니다.
 
    ```
     $resource = Get-AzureRmResource -ResourceName "TestAutomationAccount" -ResourceGroupName "ResourceGroup01"
     Move-AzureRmResource -ResourceId $resource.ResourceId -DestinationResourceGroupName "NewResourceGroup" -DestinationSubscriptionId "SubscriptionId"
    ```
 
-앞의 예제에서와 마찬가지로 이동할지 묻는 메시지가 표시됩니다.  
+Hello 앞의 예제에서와 마찬가지로 증명된 tooconfirm hello 이동 됩니다.  
 
 ## <a name="next-steps"></a>다음 단계
-* 리소스를 새 리소스 그룹이나 구독으로 이동하는 방법에 대한 자세한 내용은 [새 리소스 그룹 또는 구독으로 리소스 이동](../azure-resource-manager/resource-group-move-resources.md)
-* Azure 자동화의 역할 기반 액세스 제어에 대한 자세한 내용은 [Azure 자동화에서 역할 기반 액세스 제어](automation-role-based-access-control.md)를 참조하세요.
-* 구독을 관리하기 위한 PowerShell cmdlet에 대한 자세한 내용은 [Resource Manager에서 Azure PowerShell 사용](../azure-resource-manager/powershell-azure-resource-manager.md)
-* 구독을 관리하기 위한 포털 기능에 대한 자세한 내용은 [Azure 포털을 사용하여 리소스 관리](../azure-resource-manager/resource-group-portal.md)를 참조하세요.
+* 이동 리소스 toonew 리소스 그룹이 나 구독에 대 한 자세한 내용은 참조 [리소스 toonew 리소스 그룹이 나 구독 이동](../azure-resource-manager/resource-group-move-resources.md)
+* Azure 자동화에서 역할 기반 액세스 제어에 대 한 자세한 내용은 참조 너무[Azure 자동화에서 역할 기반 액세스 제어](automation-role-based-access-control.md)합니다.
+* 구독을 관리 하기 위한 PowerShell cmdlet에 대 한 toolearn 참조 [Azure PowerShell 사용 하 여 리소스 관리자와](../azure-resource-manager/powershell-azure-resource-manager.md)
+* 구독을 관리 하기 위한 포털 기능에 대 한 toolearn 참조 [hello Azure 포털 toomanage 리소스를 사용 하 여](../azure-resource-manager/resource-group-portal.md)합니다.

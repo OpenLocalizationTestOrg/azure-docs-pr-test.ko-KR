@@ -1,5 +1,5 @@
 ---
-title: "SQL Data Warehouse의 임시 테이블 | Microsoft Docs"
+title: "SQL 데이터 웨어하우스에 aaaTemporary 테이블 | Microsoft Docs"
 description: "Azure SQL 데이터 웨어하우스에서 임시 테이블로 시작"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: tables
 ms.date: 10/31/2016
 ms.author: shigu;barbkess
-ms.openlocfilehash: fd8c31a727dae3b011aa8294a81f005bad72a278
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2e8b122eb6d71d5bc0a99ce8a2ecab5dbe2d1b49
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="temporary-tables-in-sql-data-warehouse"></a>SQL 데이터 웨어하우스의 임시 테이블
 > [!div class="op_single_selector"]
@@ -33,9 +33,9 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-특히 중간 결과가 일시적인 변환 중 데이터를 처리할 때 임시 테이블은 매우 유용합니다. 임시 테이블은 SQL 데이터 웨어하우스의 세션 수준에서 존재합니다.  이러한 임시 테이블은 생성된 세션에서만 보이고, 해당 세션이 로그오프되면 자동으로 삭제됩니다.  임시 테이블은 결과가 원격 저장소 대신 로컬로 기록되기 때문에 성능상의 이점을 제공합니다.  Azure SQL 데이터 웨어하우스의 임시 테이블은 저장 프로시저의 내부 및 외부를 비롯하여 세션 내의 어디에서나 액세스할 수 있으므로 Azure SQL 데이터베이스의 임시 테이블과 약간 다릅니다.
+데이터 요금-hello 중간 결과 일시적인 변환 중 특히 처리할 때 임시 테이블은 매우 유용 합니다. SQL 데이터 웨어하우스 hello 세션 수준에서 임시 테이블 존재합니다.  이들은 표시 toohello 세션에만 생성 된 하 고 하 던 해당 세션을 로그 오프할 때 자동으로 삭제 됩니다.  임시 테이블의 결과 원격 저장소 보다는 toolocal 기록 되기 때문에 성능 이점을 제공 합니다.  임시 테이블은으로 액세스할 수에서 아무 곳 이나 hello 세션을 내부와 외부 저장된 프로시저를 포함 하 여 Azure SQL 데이터베이스 보다 Azure SQL 데이터 웨어하우스에 약간 다릅니다.
 
-이 문서에서는 임시 테이블을 사용하기 위한 필수 지침을 제공하고 세션 수준 임시 테이블의 원리를 강조해서 설명합니다. 이 문서의 정보를 사용하여 코드를 모듈화할 수 있으므로 코드의 재사용 가능성 및 유지 관리 용이성이 개선됩니다.
+이 문서는 임시 테이블 사용을 위한 필수 지침을 포함 하 고 세션 수준 임시 테이블의 hello 원칙을 강조 표시 합니다. 이 문서의 hello 정보를 사용 하 여 코드를 재사용 및 코드의 유지 관리의 편의성을 둘 다 향상 모듈화 수 있습니다.
 
 ## <a name="create-a-temporary-table"></a>임시 테이블 만들기
 임시 테이블은 간단히 테이블 이름 앞에 `#`을 붙여 만듭니다.  예:
@@ -58,7 +58,7 @@ WITH
 )
 ```
 
-정확히 동일한 접근 방식을 사용하여 `CTAS` 를 통해 임시 테이블을 만들 수도 있습니다.
+된 임시 테이블을 만들 수도 있습니다는 `CTAS` 같은 방법을 hello 정확 하 게 사용 하 여:
 
 ```sql
 CREATE TABLE #stats_ddl
@@ -112,12 +112,12 @@ FROM    t1
 ``` 
 
 > [!NOTE]
-> `CTAS` 는 매우 강력한 명령이며 트랜잭션 로그 공간을 사용한다는 점에서 매우 효율적이라는 추가적인 이점이 있습니다. 
+> `CTAS`매우 강력한 명령이 며이 hello 추가 되 고 트랜잭션 로그 공간 사용에 매우 효율적으로 활용 합니다. 
 > 
 > 
 
 ## <a name="dropping-temporary-tables"></a>임시 테이블 삭제
-새 세션이 만들어지면 임시 테이블이 존재하지 않습니다.  그러나 동일한 이름의 임시 테이블을 만드는 동일한 저장 프로시저를 호출하는 경우 `CREATE TABLE` 문이 정상적으로 수행되도록 하려면 아래 예제와 같이 `DROP`을 사용해서 단순한 사전 존재 여부 확인을 수행할 수 있습니다.
+새 세션이 만들어지면 임시 테이블이 존재하지 않습니다.  하지만 호출 하는 경우 hello 동일한 저장 프로시저를 임시 hello를 사용 하 여 만듭니다 동일한 이름, tooensure 하 여 `CREATE TABLE` 문이 성공적으로 수행 되와 함께 간단한 사전 존재 여부 확인은 `DROP` hello 아래 예제에서와 같이 사용할 수 있습니다:
 
 ```sql
 IF OBJECT_ID('tempdb..#stats_ddl') IS NOT NULL
@@ -126,14 +126,14 @@ BEGIN
 END
 ```
 
-코딩 일관성을 유지하려면 테이블 및 임시 테이블 모두에 대해 이 패턴을 사용하는 것이 좋습니다.  또한 코드에서 사용을 완료한 경우 `DROP TABLE` 을 사용하여 임시 테이블을 제거하는 것이 좋습니다.  저장 프로시저 개발에서는 프로시저 끝에 삭제 명령이 번들로 포함되어 있는지 확인하여 이러한 개체가 정리되는지 알 수 있습니다.
+일관성을 코딩, 테이블 및 임시 테이블 모두에 대해이 패턴을 좋은 toouse 연습입니다.  좋습니다 toouse 이기도 `DROP TABLE` tooremove 임시 테이블을 코드에서 완료 합니다.  저장된 프로시저 개발 것이 매우 일반적 toosee hello drop 명령이 프로시저 tooensure의 hello 끝에 번들로 묶으면 이러한 개체가 정리 됩니다.
 
 ```sql
 DROP TABLE #stats_ddl
 ```
 
 ## <a name="modularizing-code"></a>코드 모듈화
-임시 테이블을 사용자 세션의 어디에서나 볼 수 있으므로 응용 프로그램 코드를 모듈화하는 데 이용될 수 있습니다.  예를 들어 위의 권장 방법과 아래의 저장 프로시저를 함께 사용하여 데이터베이스의 모든 통계를 통계 이름으로 업데이트하는 DDL을 생성합니다.
+임시 테이블은 사용자 세션에서 아무 곳 이나 볼 수 있습니다, 때문이 응용 프로그램 코드 모듈화 악용 된 toohelp 수 있습니다.  예를 들어 hello 저장된 프로시저 아래 모여 통계 이름으로 권장 되는 사례 toogenerate DDL hello 데이터베이스의 모든 통계를 업데이트 하면 위쪽부터 hello 합니다.
 
 ```sql
 CREATE PROCEDURE    [dbo].[prc_sqldw_update_stats]
@@ -207,7 +207,7 @@ FROM    t1
 GO
 ```
 
-이 단계에서 발생하는 유일한 작업은 DDL 문으로 임시 테이블인 #stats_ddl을 생성하는 저장 프로시저를 만드는 것입니다.  이 저장 프로시저는 세션 내에서 두 번 이상 실행하는 경우 실패하지 않도록 #stats_ddl(이미 있는 경우)을 삭제합니다.  그러나 저장 프로시저 끝에는 `DROP TABLE` 이 없으므로 저장 프로시저가 완료되면 저장 프로시저 외부에서 읽을 수 있도록 만든 테이블이 그대로 남아 있습니다.  다른 SQL Server 데이터베이스와 달리, SQL 데이터 웨어하우스에서 임시 테이블을 만든 프로시저의 외부에서 임시 테이블을 사용할 수 있습니다.  세션 내의 **어디에서나** SQL 데이터 웨어하우스 임시 테이블을 사용할 수 있습니다. 아래 예제와 같이 모듈식 및 관리 가능 코드가 더 많아질 수 있습니다.
+이 단계에서 hello만 수행 된 동작은 hello 생성 한 저장된 프로시저는 단순히 #stats_ddl DDL 문에서 임시 테이블을 생성 합니다.  이 저장된 프로시저 세션 내에서 두 번 이상 실행 되는 경우 실패 하지 않는 tooensure 이미 있는 경우 # stats_ddl을 삭제 합니다.  그러나 없으므로 없습니다 `DROP TABLE` hello 저장 프로시저의 hello 끝 hello 저장된 프로시저가 완료 되 면 둡니다 hello 만든 테이블 hello 저장 프로시저 외부에서 읽을 수 있도록 합니다.  SQL 데이터 웨어하우스, 다른 SQL Server 데이터베이스와 달리 것이 가능한 toouse hello 임시 테이블을 만든 hello 프로시저 외부의 합니다.  SQL 데이터 웨어하우스 임시 테이블을 사용할 수 있습니다 **아무 곳 이나** hello 세션입니다. 아래 예제는 hello 처럼 toomore 하 고 관리할 수 있는 모듈식 코드를 않을 수 있습니다.
 
 ```sql
 EXEC [dbo].[prc_sqldw_update_stats] @update_type = 1, @sample_pct = NULL;
@@ -232,7 +232,7 @@ DROP TABLE #stats_ddl;
 임시 테이블을 구현하는 경우 SQL 데이터 웨어하우스는 두 가지 제한 사항을 적용합니다.  현재 세션 범위의 임시 테이블만 지원됩니다.  전역 임시 테이블은 지원되지 않습니다.  또한 임시 테이블에서 뷰를 만들 수 없습니다.
 
 ## <a name="next-steps"></a>다음 단계
-자세히 알아보려면 [테이블 개요][Overview], [테이블 데이터 형식][Data Types], [테이블 배포][Distribute],  [테이블 인덱싱][Index], [테이블 분할][Partition] 및 [테이블 통계 유지 관리][Statistics]에 대한 문서를 참조하세요.  모범 사례에 대한 자세한 내용은 [SQL Data Warehouse 모범 사례][SQL Data Warehouse Best Practices]를 참조하세요.
+toolearn에 hello 문서를 더 참조 [테이블 개요][Overview], [테이블 데이터 형식][Data Types], [테이블배포] [ Distribute], [테이블 인덱스를 만들][Index], [테이블 분할] [ Partition] 및 [ 테이블 통계를 유지 관리][Statistics]합니다.  모범 사례에 대한 자세한 내용은 [SQL Data Warehouse 모범 사례][SQL Data Warehouse Best Practices]를 참조하세요.
 
 <!--Image references-->
 

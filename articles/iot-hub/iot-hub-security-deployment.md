@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT 배포 보안 유지 | Microsoft Docs"
-description: "IoT 배포 보안 유지 방법 장치 프로비전, 연결 및 IoT Hub 서비스에 대 한 액세스를 보호하기 위한 지침을 포함합니다."
+title: "aaaSecure Azure IoT 배포 | Microsoft Docs"
+description: "어떻게 toosecure IoT 배포 합니다. 보안 장치 프로 비전, 연결 및 액세스 toohello IoT 허브 서비스에 대 한 지침이 포함 되어 있습니다."
 services: iot-hub
 documentationcenter: 
 author: YuriDio
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: yurid
-ms.openlocfilehash: 47a3a2973c2b2c7c104d6c404573801375723182
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0fc71f5ed2747531360eaebbbaab21b1ff268520
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 [!INCLUDE [iot-secure-your-deployment](../../includes/iot-secure-your-deployment.md)]
 
 ## <a name="see-also"></a>참고 항목
-IoT Hub의 기능을 추가로 탐색하려면 다음을 참조하세요.
+toofurther는 IoT Hub의 hello 기능을 참조 하십시오.
 
 * [Azure IoT Edge에서 장치 시뮬레이션][lnk-iotedge]
 

@@ -1,5 +1,5 @@
 ---
-title: "부하 분산 장치 TCP 유휴 시간 제한 구성 | Microsoft Docs"
+title: "aaaConfigure 부하 분산 장치 TCP 유휴 시간 제한 | Microsoft Docs"
 description: "분산 장치 TCP 유휴 시간 제한 구성"
 services: load-balancer
 documentationcenter: na
@@ -13,45 +13,45 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
-ms.openlocfilehash: d040fe6580b8ae777aecc9dd385ed33861530c38
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2bf0704b891f708e0a5bd7aa827441930f51cfaf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-tcp-idle-timeout-settings-for-azure-load-balancer"></a>Azure Load Balancer에 대한 TCP 유휴 시간 제한 설정 구성
 
-기본 구성에서 Azure 부하 분산 장치의 '유휴 시간 제한' 설정은 4분입니다. 비활성 기간이 시간 제한 값보다 긴 경우 클라이언트와 클라우드 서비스 간의 TCP 또는 HTTP 세션이 유지되지 않을 수 있습니다.
+기본 구성에서 Azure 부하 분산 장치의 '유휴 시간 제한' 설정은 4분입니다. 일정 시간 동안 hello 시간 제한 값 보다 긴 경우 TCP hello 되지는 또는 HTTP 세션 hello 클라이언트와 클라우드 서비스 간에 유지 됩니다.
 
-연결이 닫히면 클라이언트 응용 프로그램에 "기본 연결이 닫혔습니다. 활성 상태로 유지될 것으로 예상된 연결이 서버에서 닫혔습니다."와 같은 오류 메시지가 표시될 수 있습니다.
+클라이언트 응용 프로그램 hello 다음과 같은 오류 메시지가 나타날 수 hello 연결이 닫히면: "hello 기본 연결이 닫혔습니다: 연결을 활성 상태로 유지 toobe hello 서버에 의해 닫혔습니다."
 
-일반적인 방법은 TCP 연결 유지를 사용하는 것입니다. 이 방법은 더 오랜 기간 동안 연결을 활성 상태로 유지합니다. 자세한 내용은 이러한 [.NET 예제](https://msdn.microsoft.com/library/system.net.servicepoint.settcpkeepalive.aspx)를 참조하세요. 연결 유지를 사용하면 연결 비활성화 기간 동안 패킷이 전송됩니다. 이러한 연결 유지 패킷은 유휴 시간 제한 값에 도달하지 않도록 하고 연결이 장기간 유지되도록 합니다.
+일반적인 방법은 toouse TCP 연결 유지 합니다. 이 방법은 더 긴 기간에 대 한 hello 연결을 활성 상태로 유지 합니다. 자세한 내용은 이러한 [.NET 예제](https://msdn.microsoft.com/library/system.net.servicepoint.settcpkeepalive.aspx)를 참조하세요. 와 연결 유지 하 고 사용 하도록 설정, 사용 하지 않는 hello 연결 하는 동안 패킷이 전송 합니다. 이러한 연결 유지 패킷이 확인 hello 유휴 시간 제한 값에 도달 하지 않습니다 hello 연결은 긴 기간 동안 유지 됩니다.
 
-이 설정은 인바운드 연결에서만 작동합니다. 연결 끊김을 방지하려면 유휴 시간 제한 설정보다 낮은 간격으로 TCP 연결 유지를 구성하거나 유휴 시간 제한 값을 증가해야 합니다. 이러한 시나리오를 지원하기 위해 구성 가능한 유휴 시간 제한에 대한 지원이 추가되었습니다. 이제 4분에서 30분 사이의 기간으로 설정할 수 있습니다.
+이 설정은 인바운드 연결에서만 작동합니다. 무시 되 hello 연결 tooavoid hello 유휴 제한 시간 설정 또는 증가 hello 유휴 시간 제한 값 보다 작은 간격으로 hello TCP 연결 유지를 구성 해야 합니다. toosupport 이러한 시나리오에 대 한 구성 가능한 유휴 시간 제한 지원이 추가 되었습니다. 이제 4 too30 분 기간에 대해 설정할 수 있습니다.
 
-TCP 연결 유지는 배터리 수명에 대한 제약이 없는 시나리오에 적합합니다. 모바일 응용 프로그램에는 권장되지 않습니다. 모바일 응용 프로그램에서 TCP 연결 유지를 사용하면 장치 배터리가 더 빨리 방전될 수 있습니다.
+TCP 연결 유지는 배터리 수명에 대한 제약이 없는 시나리오에 적합합니다. 모바일 응용 프로그램에는 권장되지 않습니다. TCP 연결 유지 모바일 응용 프로그램에서을 사용 하 여 hello 장치 배터리를 더 빠르게 드레이닝 할 수 있습니다.
 
 ![TCP 시간 제한](./media/load-balancer-tcp-idle-timeout/image1.png)
 
-다음 섹션에서는 가상 컴퓨터 및 클라우드 서비스의 유휴 시간 제한 설정을 변경하는 방법을 설명합니다.
+다음 섹션 hello toochange이 유휴 가상 컴퓨터의 시간 제한 설정 하 고 클라우드 서비스 하는 방법을 설명 합니다.
 
-## <a name="configure-the-tcp-timeout-for-your-instance-level-public-ip-to-15-minutes"></a>인스턴스 수준 공용 IP의 TCP 시간 제한을 15분으로 구성
+## <a name="configure-hello-tcp-timeout-for-your-instance-level-public-ip-too15-minutes"></a>사용자 인스턴스 수준 공용 IP too15 분에 대 한 hello TCP 시간 제한 값 구성
 
 ```powershell
 Set-AzurePublicIP -PublicIPName webip -VM MyVM -IdleTimeoutInMinutes 15
 ```
 
-`IdleTimeoutInMinutes` 는 선택 사항입니다. 설정하지 않은 경우 기본 시간 제한은 4분입니다. 허용되는 시간 제한 범위는 4분에서 30분 사이입니다.
+`IdleTimeoutInMinutes` 는 선택 사항입니다. 설정 되지 않은 경우 기본 시간 제한을 hello 4 분입니다. hello 허용 가능한 제한 시간 범위는 4 too30 분입니다.
 
-## <a name="set-the-idle-timeout-when-creating-an-azure-endpoint-on-a-virtual-machine"></a>가상 컴퓨터에서 Azure 끝점을 만들 때 유휴 시간 제한 설정
+## <a name="set-hello-idle-timeout-when-creating-an-azure-endpoint-on-a-virtual-machine"></a>가상 컴퓨터에서 Azure 끝점을 만드는 경우 hello 유휴 제한 시간을 설정 합니다.
 
-끝점에 대한 시간 제한 설정을 변경하려면 다음을 사용합니다.
+toochange hello 끝점에 대해 설정 하는 시간 제한, hello 다음을 사용 하 여:
 
 ```powershell
 Get-AzureVM -ServiceName "mySvc" -Name "MyVM1" | Add-AzureEndpoint -Name "HttpIn" -Protocol "tcp" -PublicPort 80 -LocalPort 8080 -IdleTimeoutInMinutes 15| Update-AzureVM
 ```
 
-유휴 시간 제한 구성을 검색하려면 다음 명령을 사용합니다.
+tooretrieve 유휴 제한 시간 구성에 다음 명령을 사용 하 여 hello:
 
     PS C:\> Get-AzureVM -ServiceName "MyService" -Name "MyVM" | Get-AzureEndpoint
     VERBOSE: 6:43:50 PM - Completed Operation: Get Deployment
@@ -71,9 +71,9 @@ Get-AzureVM -ServiceName "mySvc" -Name "MyVM1" | Add-AzureEndpoint -Name "HttpIn
     InternalLoadBalancerName :
     IdleTimeoutInMinutes : 15
 
-## <a name="set-the-tcp-timeout-on-a-load-balanced-endpoint-set"></a>부하 분산된 끝점 집합에 대한 TCP 시간 제한 설정
+## <a name="set-hello-tcp-timeout-on-a-load-balanced-endpoint-set"></a>부하 분산 끝점 집합에 hello TCP 제한 시간을 설정 합니다.
 
-부하 분산된 끝점 집합에 끝점이 포함되어 있으면 부하 분산된 끝점 집합에 대해 TCP 시간 제한을 설정해야 합니다. 예:
+끝점에 부하 분산 끝점 집합에 속해 있다면 hello TCP 시간 제한 값 hello 부하 분산 끝점 집합에 대해 설정 되어야 합니다. 예:
 
 ```powershell
 Set-AzureLoadBalancedEndpoint -ServiceName "MyService" -LBSetName "LBSet1" -Protocol tcp -LocalPort 80 -ProbeProtocolTCP -ProbePort 8080 -IdleTimeoutInMinutes 15
@@ -81,9 +81,9 @@ Set-AzureLoadBalancedEndpoint -ServiceName "MyService" -LBSetName "LBSet1" -Prot
 
 ## <a name="change-timeout-settings-for-cloud-services"></a>클라우드 서비스에 대한 시간 제한 설정 변경
 
-Azure SDK를 사용하여 클라우드 서비스를 업데이트할 수 있습니다. .csdef 파일에서 클라우드 서비스용 끝점 설정을 지정합니다. 클라우드 서비스의 배포에 대한 TCP 시간 제한을 업데이트하려면 배포를 업그레이드해야 합니다. 단, 공용 IP에 대해서만 TCP 시간 제한을 지정하는 경우는 예외입니다. 공용 IP 설정은 .cscfg에 포함되어 있으므로 배포 업데이트 및 업그레이드를 통해 업데이트할 수 있습니다.
+Hello Azure SDK tooupdate 클라우드 서비스를 사용할 수 있습니다. Hello.csdef 파일에서 클라우드 서비스에 대 한 끝점 설정 하면 됩니다. 클라우드 서비스의 배포에 대 한 hello TCP 시간 제한 값을 업데이트 하려면 배포 업그레이드 합니다. 예외는 hello TCP 시간 제한 값 공용 IP에 대해서만 지정 됩니다. 공용 IP 설정을 hello.cscfg 파일에 있으며 배포 업데이트 및 업그레이드를 통해 업데이트할 수 있습니다.
 
-아래에 .csdef에서 끝점 설정을 변경하는 예제가 나와 있습니다.
+hello.csdef 끝점 설정에 대 한 변경이합니다.
 
 ```xml
 <WorkerRole name="worker-role-name" vmsize="worker-role-size" enableNativeCodeExecution="[true|false]">
@@ -93,7 +93,7 @@ Azure SDK를 사용하여 클라우드 서비스를 업데이트할 수 있습�
 </WorkerRole>
 ```
 
-공용 IP의 시간 제한 설정에 대한 .cscfg 변경 내용은 다음과 같습니다.
+공용 Ip에서 hello 제한 시간 설정에 대 한 hello.cscfg 변경은 다음과 같습니다.
 
 ```xml
 <NetworkConfiguration>
@@ -110,7 +110,7 @@ Azure SDK를 사용하여 클라우드 서비스를 업데이트할 수 있습�
 
 ## <a name="rest-api-example"></a>Rest API 예제
 
-Service Management API를 사용하여 TCP 유휴 시간 제한을 구성할 수 있습니다. `x-ms-version` 헤더가 `2014-06-01` 버전 이상으로 설정되어 있는지 확인합니다. 배포의 모든 가상 컴퓨터에서 지정한 부하 분산된 입력 끝점의 구성을 업데이트합니다.
+Hello 서비스 관리 API를 사용 하 여 hello TCP 유휴 시간 제한 값을 구성할 수 있습니다. 해당 hello 있는지 확인 `x-ms-version` 헤더가 tooversion 설정 되어 `2014-06-01` 이상. Hello의 hello 구성 업데이트는 배포의 모든 가상 컴퓨터에서 부하 분산 된 입력된 끝점을 지정합니다.
 
 ### <a name="request"></a>요청
 

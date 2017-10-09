@@ -1,6 +1,6 @@
 ---
-title: "HDInsight에서 REST와 Hadoop Pig 사용 - Azure | Microsoft Docs"
-description: "Azure HDInsight의 Hadoop 클러스터에서 REST를 사용하여 Pig Latin 작업을 실행하는 방법에 대해 배웁니다."
+title: "Hadoop Pig HDInsight-Azure의에서 남은 부분과 aaaUse | Microsoft Docs"
+description: "Azure HDInsight의 Hadoop에 대 한 toouse REST toorun Pig 라틴 작업 클러스터 되는 방법을 알아봅니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,27 +16,27 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: a86864a779b0de1c6d5669cfbba0f3e1a27f1ff1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 760139e3caad9103d8c9d34e7f548d476014b5ae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-pig-jobs-with-hadoop-on-hdinsight-by-using-rest"></a>REST를 사용하여 HDInsight에서 Hadoop과 Pig 작업 실행
 
 [!INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
-Azure HDInsight 클러스터에 대한 REST 요청을 만들어 Pig Latin 작업을 실행하는 방법에 대해 알아봅니다. Curl은 WebHCat REST API를 사용하여 HDInsight와 상호 작용하는 방법을 보여 주는 데 사용합니다.
+Pig 라틴 toorun REST 요청 tooan Azure HDInsight 클러스터를 늘려 작업 하는 방법에 대해 알아봅니다. Curl에 사용 되는 toodemonstrate hello WebHCat REST API를 사용 하 여 HDInsight의 상호 작용 수입니다.
 
 > [!NOTE]
-> 이미 익숙한 Linux 기반 Hadoop 서버를 사용하지만 HDInsight는 처음인 경우 [Linux 기반 HDInsight 팁](hdinsight-hadoop-linux-information.md)을 참조하세요.
+> Linux 기반 Hadoop 서버를 사용 하 여 사용 하 던 해도 새 tooHDInsight는 경우 참조 [Linux 기반 HDInsight 팁](hdinsight-hadoop-linux-information.md)합니다.
 
 ## <a id="prereq"></a>필수 조건
 
 * Azure HDInsight(HDInsight의 Hadoop) 클러스터(Linux 기반 또는 Windows 기반)
 
   > [!IMPORTANT]
-  > Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+  > Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 
 * [Curl](http://curl.haxx.se/)
 
@@ -45,74 +45,74 @@ Azure HDInsight 클러스터에 대한 REST 요청을 만들어 Pig Latin 작업
 ## <a id="curl"></a>Curl을 사용하여 Pig 작업 실행
 
 > [!NOTE]
-> REST API는 [기본 액세스 인증](http://en.wikipedia.org/wiki/Basic_access_authentication)을 통해 보안이 유지됩니다. 자격 증명이 안전하게 서버에 전송되도록 하려면 항상 Secure HTTP(HTTPS)를 사용하여 요청합니다.
+> hello REST API는을 통해 보안 [기본 액세스 인증](http://en.wikipedia.org/wiki/Basic_access_authentication)합니다. 항상 보안 HTTP (HTTPS) tooensure 사용자 자격 증명을 안전 하 게 보냄을 toohello 서버를 사용 하 여 요청을 확인 합니다.
 >
-> 이 섹션에서 명령을 사용하는 경우 `USERNAME`은 클러스터에 대해 인증할 사용자로 바꾸고 `PASSWORD`는 사용자 계정의 암호로 바꿉니다. `CLUSTERNAME`을 클러스터의 이름으로 바꿉니다.
+> 이 섹션의 hello 명령을 사용 하는 경우 대체 `USERNAME` 을 바꾸고 hello 사용자 tooauthenticate toohello 클러스터 `PASSWORD` hello hello 사용자 계정의 암호를 사용 합니다. 대체 `CLUSTERNAME` 클러스터의 hello 이름을 사용 합니다.
 >
 
 
-1. 명령줄에서 다음 명령을 사용하여 HDInsight 클러스터에 연결할 수 있는지 확인합니다.
+1. 명령줄에서 명령 tooverify tooyour HDInsight 클러스터를 연결할 수 있는지에 따라 hello를 사용 합니다.
 
     ```bash
     curl -u USERNAME:PASSWORD -G https://CLUSTERNAME.azurehdinsight.net/templeton/v1/status
     ```
 
-    다음 JSON 응답이 표시됩니다.
+    Hello 다음 JSON 응답을 받게 됩니다.
 
         {"status":"ok","version":"v1"}
 
-    이 명령에서 사용된 매개 변수는 다음과 같습니다.
+    이 명령에 사용 되는 hello 매개 변수는 다음과 같습니다.
 
-    * **-u**: 요청을 인증하는 데 사용되는 사용자 이름 및 암호입니다.
+    * **-u**: hello 사용자 이름 및 암호 사용 tooauthenticate hello 요청
     * **-G**: 이 요청이 GET 요청임을 나타냅니다.
 
-     URL 시작 부분인 **https://CLUSTERNAME.azurehdinsight.net/templeton/v1**은 모든 요청에서 동일합니다. **/status** 경로는 요청이 서버에 대한 WebHCat(Templeton라고도 함)의 상태를 반환하는 경우 나타납니다.
+     hello URL의 시작 hello **https://CLUSTERNAME.azurehdinsight.net/templeton/v1**, 모든 요청에 대해 동일 hello 됩니다. hello 경로 **/status**, hello 서버에 대 한 해당 hello 요청은 WebHCat (Templeton이 라고도 함)의 tooreturn hello 상태를 나타냅니다.
 
-2. 다음 코드를 사용하여 클러스터에 Pig Latin 작업을 제출합니다.
+2. 다음 코드 toosubmit Pig 라틴 작업 toohello 클러스터 hello를 사용 합니다.
 
     ```bash
     curl -u USERNAME:PASSWORD -d user.name=USERNAME -d execute="LOGS=LOAD+'/example/data/sample.log';LEVELS=foreach+LOGS+generate+REGEX_EXTRACT($0,'(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)',1)+as+LOGLEVEL;FILTEREDLEVELS=FILTER+LEVELS+by+LOGLEVEL+is+not+null;GROUPEDLEVELS=GROUP+FILTEREDLEVELS+by+LOGLEVEL;FREQUENCIES=foreach+GROUPEDLEVELS+generate+group+as+LOGLEVEL,COUNT(FILTEREDLEVELS.LOGLEVEL)+as+count;RESULT=order+FREQUENCIES+by+COUNT+desc;DUMP+RESULT;" -d statusdir="/example/pigcurl" https://CLUSTERNAME.azurehdinsight.net/templeton/v1/pig
     ```
 
-    이 명령에서 사용된 매개 변수는 다음과 같습니다.
+    이 명령에 사용 되는 hello 매개 변수는 다음과 같습니다.
 
-    * **-d**: `-G`가 사용되지 않으므로 요청은 POST 메서드로 기본 설정됩니다. `-d` 는 요청과 함께 전송되는 데이터 값을 지정합니다.
+    * **-d**: 때문에 `-G` 을 사용 하지 않으면 hello 요청 toohello POST 메서드를 기본값입니다. `-d`hello 요청과 함께 전송 되는 hello 데이터 값을 지정 합니다.
 
-    * **user.name**: 명령을 실행하는 사용자입니다.
-    * **execute**: 실행할 Pig Latin 문입니다.
-    * **statusdir**: 이 작업의 상태를 기록할 디렉터리입니다.
+    * **user.name**: hello 명령을 실행 하는 hello 사용자
+    * **실행**: Pig 라틴 문을 tooexecute hello
+    * **statusdir**:이 작업에 대 한 상태 hello hello 디렉터리에 쓰여집니다.
 
     > [!NOTE]
-    > Curl과 함께 사용할 경우 Pig Latin 문의 공백이 `+` 문자로 바뀝니다.
+    > Pig 라틴 문에서 hello 공간 hello로 대체 됩니다 `+` Curl 함께 사용 하는 경우 문자입니다.
 
-    이 명령은 작업 상태를 확인하는데 사용할 수 있는 작업 ID를 반환해야 합니다. 예를 들면 다음과 같습니다.
+    이 명령을 사용 하는 toocheck hello 상태 hello 작업의 예를 들어 일 수 있는 작업 ID를 반환 해야:
 
         {"id":"job_1415651640909_0026"}
 
-3. 작업 상태를 확인하려면 다음 명령을 사용합니다.
+3. 다음 명령을 사용 하 여 hello, hello 작업의 toocheck hello 상태
 
      ```bash
     curl -G -u USERNAME:PASSWORD -d user.name=USERNAME https://CLUSTERNAME.azurehdinsight.net/templeton/v1/jobs/JOBID | jq .status.state
     ```
 
-     `JOBID`를 이전 단계에서 반환된 값으로 바꿉니다. 예를 들어 반환 값이 `{"id":"job_1415651640909_0026"}`인 경우 `JOBID`는 `job_1415651640909_0026`입니다.
+     대체 `JOBID` hello 이전 단계에서 반환 된 hello 값을 사용 합니다. 예를 들어 hello 반환 값이 `{"id":"job_1415651640909_0026"}`, 다음 `JOBID` 은 `job_1415651640909_0026`합니다.
 
-    작업이 완료된 경우 상태는 **SUCCEEDED**입니다.
+    Hello 작업이 완료 되 면 hello 상태는 **SUCCEEDED**합니다.
 
     > [!NOTE]
-    > 이 Curl 요청은 작업에 관한 정보가 있는 JSON(JavaScript Object Notation) 문서를 반환합니다. jq는 상태 값을 검색하는 데만 사용됩니다.
+    > JavaScript 개체 Object Notation (JSON) hello 작업과 jq에 대 한 정보를 사용 하 여 문서 반환은 사용 되는 tooretrieve이 Curl 요청 상태 값을만 hello 합니다.
 
 ## <a id="results"></a>결과 보기
 
-작업 상태가 **SUCCEEDED**로 변경되면 작업 결과를 검색할 수 있습니다. 쿼리와 함께 전달된 `statusdir` 매개 변수에는 출력 파일의 위치(이 경우 `/example/pigcurl`)가 포함됩니다.
+Hello 작업의 상태 hello 너무 변경 될 때**SUCCEEDED**, hello 작업의 hello 결과 검색할 수 있습니다. hello `statusdir` hello 출력 파일의;이 경우 hello 위치를 포함 하는 hello 쿼리와 함께 전달 된 매개 변수 `/example/pigcurl`합니다.
 
-HDInsight는 Azure Storage 또는 Azure Data Lake Store를 기본 데이터 저장소로 사용할 수 있습니다. 여러 가지 방법으로 사용하는 것에 따라 데이터를 가져올 수 있습니다. 자세한 내용은 [Linux 기반 HDInsight 정보](hdinsight-hadoop-linux-information.md#hdfs-azure-storage-and-data-lake-store) 문서의 저장소 섹션을 참조하세요.
+HDInsight은 hello 기본 데이터 저장소로 Azure 저장소 서비스 또는 Azure 데이터 레이크 저장소 중 하나를 사용할 수 있습니다. 사용 하는 어떤 것에 따라 hello 데이터에는 다양 한 방법으로 tooget이 있습니다. 자세한 내용은 hello의 hello 저장소 섹션을 참조 하십시오. [Linux 기반 HDInsight 정보](hdinsight-hadoop-linux-information.md#hdfs-azure-storage-and-data-lake-store) 문서.
 
 ## <a id="summary"></a>요약
 
-이 문서에 설명된 대로 원시 HTTP 요청을 사용하여 HDInsight 클러스터에서 Pig 작업을 실행하고 모니터링하며 그 결과를 확인할 수 있습니다.
+이 문서에서 볼 수 있듯이, HDInsight 클러스터에 원시 HTTP 요청 toorun, 모니터 및 보기 hello 결과 Pig 작업을 사용할 수 있습니다.
 
-이 문서에 사용된 REST 인터페이스에 대한 자세한 내용은 [WebHCat 참조](https://cwiki.apache.org/confluence/display/Hive/WebHCat+Reference)를 참조하세요.
+이 문서에서 사용 하는 hello REST 인터페이스에 대 한 자세한 내용은 참조 hello [WebHCat 참조](https://cwiki.apache.org/confluence/display/Hive/WebHCat+Reference)합니다.
 
 ## <a id="nextsteps"></a>다음 단계
 

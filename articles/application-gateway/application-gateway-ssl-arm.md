@@ -1,6 +1,6 @@
 ---
-title: "SSL 오프로드 구성 - Azure Application Gateway - PowerShell | Microsoft Docs"
-description: "이 페이지에서는 Azure Resource Manager를 사용하여 SSL 오프로드와 함께 응용 프로그램 게이트웨이를 만드는 지침을 제공합니다."
+title: "-Azure 응용 프로그램 게이트웨이-PowerShell aaaConfigure SSL 오프 로드를 | Microsoft Docs"
+description: "이 페이지에서는 Azure 리소스 관리자를 사용 하 여 응용 프로그램 게이트웨이 ssl 오프 로드 하는 지침 toocreate 제공"
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/19/2017
 ms.author: gwallace
-ms.openlocfilehash: ededabc7c665d6bb05b91e4d21d01fb1379add32
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c2855d8d3caaa97ec05475c67ff0f8dce72ef2a7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-an-application-gateway-for-ssl-offload-by-using-azure-resource-manager"></a>Azure Resource Manager를 사용하여 SSL 오프로드에 대한 응용 프로그램 게이트웨이 구성
 
@@ -28,44 +28,44 @@ ms.lasthandoff: 08/18/2017
 > * [Azure 클래식 PowerShell](application-gateway-ssl.md)
 > * [Azure CLI 2.0](application-gateway-ssl-cli.md)
 
-Azure Application Gateway 구성을 사용하여 웹 팜에서 발생하는 비용이 많이 드는 SSL(Secure Sockets Layer) 암호 해독 작업을 방지하기 위한 게이트웨이에서 SSL 세션을 종료합니다. SSL 오프로드는 또한 프런트 엔드 서버 설치 및 웹 응용 프로그램의 관리를 간소화합니다.
+Azure 응용 프로그램 게이트웨이 hello 게이트웨이 tooavoid 비용이 많이 드는 SSL 암호 해독 작업 toohappen hello 웹 팜에서에 구성 된 tooterminate hello (SECURE Sockets Layer) 세션 수 있습니다. SSL 오프 로드 hello 프런트 엔드 서버 설치 및 hello 웹 응용 프로그램 관리를 단순화합니다.
 
 ## <a name="before-you-begin"></a>시작하기 전에
 
-1. 웹 플랫폼 설치 관리자를 사용하는 Azure PowerShell cmdlet의 최신 버전을 설치합니다. **다운로드 페이지** 의 [Windows PowerShell](https://azure.microsoft.com/downloads/)섹션에서 최신 버전을 다운로드하여 설치할 수 있습니다.
-2. 응용 프로그램 게이트웨이에 대한 가상 네트워크 및 서브넷을 만듭니다. 서브넷을 사용 중인 가상 컴퓨터 또는 클라우드 배포가 없는지 확인합니다. 응용 프로그램 게이트웨이는 가상 네트워크 서브넷에서 단독이어야 합니다.
-3. 응용 프로그램 게이트웨이를 사용하도록 구성된 서버가 존재하거나 가상 네트워크나 공용 IP/VIP가 할당된 해당 끝점이 만들어져야 합니다.
+1. Hello 웹 플랫폼 설치 관리자를 사용 하 여 hello 최신 버전의 hello Azure PowerShell cmdlet 설치 합니다. 다운로드 하 고 hello에서 hello 최신 버전을 설치할 수 **Windows PowerShell** hello 섹션 [다운로드 페이지](https://azure.microsoft.com/downloads/)합니다.
+2. 가상 네트워크 및 서브넷을 hello 응용 프로그램 게이트웨이 만듭니다. 가상 컴퓨터 또는 클라우드 배포 없습니다 hello 서브넷 사용 하 고 있는지 확인 합니다. 응용 프로그램 게이트웨이는 가상 네트워크 서브넷에서 단독이어야 합니다.
+3. toouse hello 응용 프로그램 게이트웨이 구성 하는 hello 서버 있어야 하거나 끝점 만든 hello 가상 네트워크 또는 할당 된 공용 IP/VIP와 합니다.
 
-## <a name="what-is-required-to-create-an-application-gateway"></a>응용 프로그램 게이트웨이를 만드는 데 필요한 것은 무엇입니까?
+## <a name="what-is-required-toocreate-an-application-gateway"></a>필요한 toocreate 응용 프로그램 게이트웨이 란?
 
-* **백 엔드 서버 풀:** 백 엔드 서버의 IP 주소 목록입니다. 나열된 IP 주소는 가상 네트워크 서브넷에 속하거나 공용 IP/VIP이어야 합니다.
-* **백 엔드 서버 풀 설정:** 모든 풀에는 포트, 프로토콜 및 쿠키 기반의 선호도와 같은 설정이 있습니다. 이러한 설정은 풀에 연결 및 풀 내의 모든 서버에 적용 됩니다.
-* **프런트 엔드 포트:** 이 포트는 응용 프로그램 게이트웨이에 열려 있는 공용 포트입니다. 트래픽이 이 포트에 도달하면, 백 엔드 서버 중의 하나로 리디렉트됩니다.
-* **수신기:** 수신기에는 프런트 엔드 포트, 프로토콜(Http 또는 Https, 대/소문자 구분) 및 SSL 인증서 이름(SSL 오프로드를 구성하는 경우)이 있습니다.
-* **규칙:** 규칙은 수신기와 백 엔드 서버 풀을 바인딩하고 특정 수신기에 도달했을 때 트래픽이 이동되는 백 엔드 서버 풀을 정의합니다. 현재는 *기본* 규칙만 지원 됩니다. *기본* 규칙은 라운드 로빈 부하 분산입니다.
+* **백 엔드 서버 풀:** hello hello 백 엔드 서버의 IP 주소 목록입니다. 나열 된 hello IP 주소 하거나 toohello 가상 네트워크 서브넷에 속해야 하거나 공용 IP/VIP가 있어야 합니다.
+* **백 엔드 서버 풀 설정:** 모든 풀에는 포트, 프로토콜 및 쿠키 기반의 선호도와 같은 설정이 있습니다. 이러한 설정은 동률된 tooa 풀 및 hello 풀 내에서 적용 된 tooall 서버입니다.
+* **프런트 엔드 포트:** 이 포트는 hello 응용 프로그램 게이트웨이에 열려 있는 hello 공용 포트입니다. 트래픽이이 포트에 도달 하 고 가져옵니다 hello 백 엔드 서버의 tooone 리디렉션됩니다.
+* **수신기:** hello 수신기에는 프런트 엔드 포트 프로토콜 (Http 또는 Https의 경우, 이러한 설정은 대/소문자 구분) 및 hello SSL 인증서 이름 (오프 로드 SSL 구성) 하는 경우.
+* **규칙:** hello 규칙 hello 수신기 및 hello 백 엔드 서버 풀 바인딩하고 정의 백 엔드 서버 풀 hello 트래픽을 특정 수신기 페이로드만 directed toowhen 이어야 합니다. 현재만 hello *기본* 규칙 지원 됩니다. hello *기본* 규칙은 라운드 로빈 부하 분산 합니다.
 
 **추가 구성 정보**
 
-SSL 인증서 구성에서 **HttpListener** 의 프로토콜은 *Https* (대/소문자 구분)로 바꿔야 합니다. **SslCertificate** 요소는 SSL 인증서에 대해 구성된 변수 값과 함께 **HttpListener**에 추가됩니다. 프런트 엔드 포트는 443으로 업데이트되어야 합니다.
+SSL 인증서 구성에 대 한 프로토콜에서 hello **HttpListener** 도 변경 해야*Https* (대/소문자 구분). hello **SslCertificate** 요소가 너무 추가**HttpListener** hello SSL 인증서에 대해 구성 하는 hello 변수 값으로. hello 프런트 엔드 포트에는 업데이트 된 too443 해야 합니다.
 
-**쿠키 기반 선호도를 사용하도록 설정**: 응용 프로그램 게이트웨이는 클라이언트 세션의 요청이 항상 웹 팜에 있는 동일한 VM으로 전송되도록 구성될 수 있습니다. 게이트웨이에서 트래픽을 적절하게 지시할 수 있는 세션 쿠키를 삽입하면 이 시나리오가 완료됩니다. 쿠키 기반 선호도를 사용하려면 **BackendHttpSettings** 요소에서 **CookieBasedAffinity**를 *Enabled*로 설정합니다.
+**tooenable 쿠키 기반 선호도**: 응용 프로그램 게이트웨이 클라이언트 세션에서 요청은 항상 방향이 지정 된 toohello 구성된 tooensure 수 hello 웹 팜의 동일한 VM입니다. 이 시나리오는 hello 게이트웨이 toodirect 트래픽을 적절 하 게 허용 하는 세션 쿠키의 삽입으로 수행 됩니다. tooenable 쿠키 기반 선호도 설정 **CookieBasedAffinity** 너무*Enabled* hello에 **BackendHttpSettings** 요소입니다.
 
 ## <a name="create-an-application-gateway"></a>응용 프로그램 게이트웨이 만들기
 
-Azure 클래식 배포 모델 및 Azure Resource Manager 간의 차이점은 응용 프로그램 게이트웨이를 만드는 순서와 구성할 항목입니다.
+hello hello Azure 클래식 배포 모델 및 Azure 리소스 관리자를 사용 하는 차이점은 toobe 구성 해야 하는 응용 프로그램 게이트웨이와 hello 항목이 만드는 hello 순서입니다.
 
-Resource Manager를 사용하면 응용 프로그램 게이트웨이의 모든 구성 요소가 개별적으로 구성된 후 응용 프로그램 게이트웨이 리소스를 만드는 데 사용됩니다.
+리소스 관리자와 응용 프로그램 게이트웨이의 모든 구성 요소는 개별적으로 구성 하 고 다음 관리 함께 toocreate 응용 프로그램 게이트웨이 리소스입니다.
 
-다음은 응용 프로그램 게이트웨이를 만드는 데 필요한 단계입니다.
+응용 프로그램 게이트웨이 hello 필요한 단계 toocreate 키를 같습니다.
 
 1. 리소스 관리자에 대한 리소스 그룹 만들기
-2. 응용 프로그램 게이트웨이에 대한 가상 네트워크, 서브넷 및 공용 IP 만들기
+2. 가상 네트워크, 서브넷 및 응용 프로그램 게이트웨이 hello에 대 한 공용 IP 만들기
 3. 응용 프로그램 게이트웨이 구성 개체 만들기
 4. 응용 프로그램 게이트웨이 리소스 만들기
 
 ## <a name="create-a-resource-group-for-resource-manager"></a>리소스 관리자에 대한 리소스 그룹 만들기
 
-Azure 리소스 관리자 cmdlet을 사용하려면 PowerShell 모드로 전환해야 합니다. 자세한 내용은 [Resource Manager에서 Windows PowerShell](../powershell-azure-resource-manager.md)사용을 참조하세요.
+PowerShell 모드 toouse hello Azure 리소스 관리자 cmdlet을 전환 하면 있는지 확인 합니다. 자세한 내용은 [Resource Manager에서 Windows PowerShell 사용](../powershell-azure-resource-manager.md)을 참조하세요.
 
 ### <a name="step-1"></a>1단계
 
@@ -75,23 +75,23 @@ Login-AzureRmAccount
 
 ### <a name="step-2"></a>2단계
 
-계정에 대한 구독을 확인합니다.
+Hello 계정에 대 한 hello 구독을 확인 합니다.
 
 ```powershell
 Get-AzureRmSubscription
 ```
 
-자격 증명을 사용하여 인증하라는 메시지가 표시됩니다.
+사용자가 입력 정보 요청된 tooauthenticate 자격 증명입니다.
 
 ### <a name="step-3"></a>3단계
 
-사용할 Azure 구독을 선택합니다.
+Azure 구독 toouse 선택 합니다.
 
 ```powershell
 Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
 ```
 
-### <a name="step-4"></a>4단계:
+### <a name="step-4"></a>4단계
 
 리소스 그룹을 만듭니다. 기존 리소스 그룹을 사용하는 경우에는 이 단계를 건너뛰세요.
 
@@ -99,13 +99,13 @@ Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
 New-AzureRmResourceGroup -Name appgw-rg -Location "West US"
 ```
 
-Azure 리소스 관리자를 사용하려면 모든 리소스 그룹이 위치를 지정해야 합니다. 이 설정은 해당 리소스 그룹에서 리소스의 기본 위치로 사용됩니다. 응용 프로그램 게이트웨이를 만들기 위한 모든 명령이 동일한 리소스 그룹을 사용하는지 확인합니다.
+Azure 리소스 관리자를 사용하려면 모든 리소스 그룹이 위치를 지정해야 합니다. 이 설정은 해당 리소스 그룹의 리소스에 대 한 hello 기본 위치로 사용 됩니다. 응용 프로그램 게이트웨이 사용 하 여 모든 명령을 toocreate hello 동일 하 고 있는지 확인 리소스 그룹입니다.
 
-위 예제에서는 **appgw-RG**라는 리소스 그룹과 **미국 서부**라는 위치를 만들었습니다.
+리소스 그룹이 위의 hello 예제에서 만든 **appgw RG** 및 위치 **West US**합니다.
 
-## <a name="create-a-virtual-network-and-a-subnet-for-the-application-gateway"></a>응용 프로그램 게이트웨이에 대한 가상 네트워크 및 서브넷 만들기
+## <a name="create-a-virtual-network-and-a-subnet-for-hello-application-gateway"></a>가상 네트워크 및 서브넷을 hello 응용 프로그램 게이트웨이 만들기
 
-다음 예제에서는 Resource Manager를 사용하여 가상 네트워크를 만드는 방법을 보여 줍니다.
+hello 방법을 예제와 다음 toocreate 리소스 관리자를 사용 하 여 가상 네트워크:
 
 ### <a name="step-1"></a>1단계
 
@@ -113,7 +113,7 @@ Azure 리소스 관리자를 사용하려면 모든 리소스 그룹이 위치�
 $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10.0.0.0/24
 ```
 
-이 샘플은 주소 범위 10.0.0.0/24를 가상 네트워크를 만드는 데 사용할 서브넷 변수에 할당합니다.
+이 샘플 hello 주소 범위 10.0.0.0/24 tooa 서브넷 사용 되는 변수 toobe toocreate 가상 네트워크를 할당합니다.
 
 ### <a name="step-2"></a>2단계
 
@@ -121,7 +121,7 @@ $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10
 $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-rg -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $subnet
 ```
 
-이 샘플은 접두사 10.0.0.0/16과 서브넷 10.0.0.0/24를 사용하여 미국 서부 지역에 리소스 그룹 **appgw-rg**에서 **appgwvnet**이라는 가상 네트워크를 만듭니다.
+이 샘플 이라는 가상 네트워크를 만들어 **appgwvnet** 리소스 그룹에 **appgw rg** hello 미국 서 부 지역 서브넷 10.0.0.0/24 hello 접두사 10.0.0.0/16 사용에 대 한 합니다.
 
 ### <a name="step-3"></a>3단계
 
@@ -129,15 +129,15 @@ $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-rg -L
 $subnet = $vnet.Subnets[0]
 ```
 
-이 샘플은 다음 단계를 위해 $subnet 변수에 서브넷 개체를 할당합니다.
+이 샘플에는 hello 서브넷 개체 toovariable $subnet hello 다음 단계에 대 한 할당합니다.
 
-## <a name="create-a-public-ip-address-for-the-front-end-configuration"></a>프런트 엔드 구성에 대한 공용 IP 주소 만들기
+## <a name="create-a-public-ip-address-for-hello-front-end-configuration"></a>Hello 프런트 엔드 구성에 대 한 공용 IP 주소 만들기
 
 ```powershell
 $publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-rg -name publicIP01 -location "West US" -AllocationMethod Dynamic
 ```
 
-이 샘플은 미국 서부 지역에 리소스 그룹 **appgw-rg**에서 공용 IP 리소스 **publicIP01**을 만듭니다.
+이 샘플에서는 공용 IP 리소스 **publicIP01** 리소스 그룹에 **appgw rg** hello 미국 서 부 지역에 대 한 합니다.
 
 ## <a name="create-an-application-gateway-configuration-object"></a>응용 프로그램 게이트웨이 구성 개체 만들기
 
@@ -147,7 +147,7 @@ $publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-rg -name publicI
 $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Subnet $subnet
 ```
 
-이 샘플은 **gatewayIP01**이라는 Application Gateway IP 구성을 만듭니다. 응용 프로그램 게이트웨이는 시작되면 구성된 서브넷에서 IP 주소를 선택하고 백 엔드 IP 풀의 IP 주소로 네트워크 트래픽을 라우팅합니다. 인스턴스마다 하나의 IP 주소를 사용합니다.
+이 샘플은 **gatewayIP01**이라는 Application Gateway IP 구성을 만듭니다. 응용 프로그램 게이트웨이 시작할 때 구성 hello 서브넷에서 IP 주소를 선택 하 고 hello 백 엔드 IP 풀의 네트워크 트래픽을 toohello IP 주소를 라우팅합니다. 인스턴스마다 하나의 IP 주소를 사용합니다.
 
 ### <a name="step-2"></a>2단계
 
@@ -155,7 +155,7 @@ $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Sub
 $pool = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221,134.170.185.50
 ```
 
-이 샘플은 IP 주소가 **134.170.185.46**, **134.170.188.221**, **134.170.185.50**인 **pool01**이라는 백 엔드 IP 주소 풀을 구성합니다. 이러한 값은 프런트 엔드 IP 끝점에서 들어오는 네트워크 트래픽을 수신하는 IP 주소입니다. 앞의 예제에서 IP 주소를 웹 응용 프로그램 끝점의 IP 주소로 대체합니다.
+이 샘플에서는 이라는 hello 백 엔드 IP 주소 풀을 구성 **pool01** IP 주소와 **134.170.185.46**, **134.170.188.221**, **134.170.185.50** . 이러한 값은 hello 프런트 엔드 IP 끝점에서 제공 되는 hello 네트워크 트래픽을 수신 하는 hello IP 주소입니다. Hello hello IP 주소와 웹 응용 프로그램 끝점의 예를 앞에서 hello IP 주소를 대체 합니다.
 
 ### <a name="step-3"></a>3단계
 
@@ -163,7 +163,7 @@ $pool = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPA
 $poolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name poolsetting01 -Port 80 -Protocol Http -CookieBasedAffinity Enabled
 ```
 
-이 샘플은 백 엔드 풀에서 부하가 분산된 네트워크 트래픽에 대해 Application Gateway 설정 **poolsetting01**을 구성합니다.
+이 샘플에서는 응용 프로그램 게이트웨이 설정 구성 **poolsetting01** hello 백 엔드 풀에서 네트워크 트래픽을 tooload 분산 합니다.
 
 ### <a name="step-4"></a>4단계
 
@@ -171,7 +171,7 @@ $poolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name poolsettin
 $fp = New-AzureRmApplicationGatewayFrontendPort -Name frontendport01  -Port 443
 ```
 
-이 샘플은 공용 IP 끝점에 대해 **frontendport01**이라는 프런트 엔드 IP 포트를 구성합니다.
+이 샘플에서는 명명 된 hello 프런트 엔드 IP 포트 구성 **frontendport01** hello 공용 IP 끝점에 대 한 합니다.
 
 ### <a name="step-5"></a>5단계
 
@@ -179,7 +179,7 @@ $fp = New-AzureRmApplicationGatewayFrontendPort -Name frontendport01  -Port 443
 $cert = New-AzureRmApplicationGatewaySslCertificate -Name cert01 -CertificateFile <full path for certificate file> -Password "<password>"
 ```
 
-이 샘플은 SSL 연결에 사용된 인증서를 구성합니다. 인증서는 .pfx 형식으로 4~12자 사이의 암호이어야 합니다.
+이 샘플에서는 SSL 연결에 사용 되는 hello 인증서를 구성 합니다. hello 인증서.pfx 형식에서 toobe 하며 hello 암호 4 too12 자 사이 여야 합니다.
 
 ### <a name="step-6"></a>6단계
 
@@ -187,7 +187,7 @@ $cert = New-AzureRmApplicationGatewaySslCertificate -Name cert01 -CertificateFil
 $fipconfig = New-AzureRmApplicationGatewayFrontendIPConfig -Name fipconfig01 -PublicIPAddress $publicip
 ```
 
-이 샘플은 **fipconfig01**이라는 프런트 엔드 IP 구성을 만들고 프런트 엔드 IP 구성에 공용 IP 주소를 연결합니다.
+이 샘플에서는 라는 hello 프런트 엔드 IP 구성을 만듭니다. **fipconfig01** associates hello hello 프런트 엔드 IP 구성 사용 하 여 공용 IP 주소 및 합니다.
 
 ### <a name="step-7"></a>7단계
 
@@ -195,7 +195,7 @@ $fipconfig = New-AzureRmApplicationGatewayFrontendIPConfig -Name fipconfig01 -Pu
 $listener = New-AzureRmApplicationGatewayHttpListener -Name listener01  -Protocol Https -FrontendIPConfiguration $fipconfig -FrontendPort $fp -SslCertificate $cert
 ```
 
-이 샘플은 **listener01**이라는 수신기를 만들고 프런트 엔드 IP 구성 및 인증서에 프런트 엔드 포트를 연결합니다.
+이 샘플에서는 수신기 이름을 hello 만듭니다 **listener01** 프런트 엔드 포트 toohello 프런트 엔드 IP 구성 및 인증서 associates hello 및 합니다.
 
 ### <a name="step-8"></a>8단계
 
@@ -203,7 +203,7 @@ $listener = New-AzureRmApplicationGatewayHttpListener -Name listener01  -Protoco
 $rule = New-AzureRmApplicationGatewayRequestRoutingRule -Name rule01 -RuleType Basic -BackendHttpSettings $poolSetting -HttpListener $listener -BackendAddressPool $pool
 ```
 
-이 샘플은 **rule01**이라는 부하 분산 장치 라우팅 규칙을 만들고 부하 분산 장치 동작을 구성합니다.
+이 샘플에서는 hello 부하 분산 장치 라우팅 규칙 이라는 만듭니다 **rule01** hello 부하 분산 장치 동작을 구성 하는 합니다.
 
 ### <a name="step-9"></a>9단계
 
@@ -211,10 +211,10 @@ $rule = New-AzureRmApplicationGatewayRequestRoutingRule -Name rule01 -RuleType B
 $sku = New-AzureRmApplicationGatewaySku -Name Standard_Small -Tier Standard -Capacity 2
 ```
 
-이 샘플은 응용 프로그램 게이트웨이의 인스턴스 크기를 구성합니다.
+이 샘플에서는 hello 인스턴스 크기의 hello 응용 프로그램 게이트웨이 구성 합니다.
 
 > [!NOTE]
-> *InstanceCount* 의 기본값은 2이고, 최대값은 10입니다. *GatewaySize* 에 대한 기본값은 보통입니다. Standard_Small, Standard_Medium 및 Standard_Large 간에 선택할 수 있습니다.
+> 기본값에 대 한 hello *InstanceCount* 최대 값이 10 인 2입니다. 에 대 한 기본값을 hello *GatewaySize* 보통입니다. Standard_Small, Standard_Medium 및 Standard_Large 간에 선택할 수 있습니다.
 
 ### <a name="step-10"></a>10단계
 
@@ -222,7 +222,7 @@ $sku = New-AzureRmApplicationGatewaySku -Name Standard_Small -Tier Standard -Cap
 $policy = New-AzureRmApplicationGatewaySslPolicy -PolicyType Predefined -PolicyName AppGwSslPolicy20170401S
 ```
 
-이 단계는 Application Gateway에서 사용할 SSL 정책을 정의합니다. [Application Gateway에서 SSL 정책 버전 및 암호 그룹 구성](application-gateway-configure-ssl-policy-powershell.md)을 방문하여 알아봅니다.
+이 단계는 hello 응용 프로그램 게이트웨이에 hello SSL 정책 toouse를 정의합니다. 방문 [SSL 구성 정책 버전 및 응용 프로그램 게이트웨이에 암호 그룹](application-gateway-configure-ssl-policy-powershell.md) toolearn 더 합니다.
 
 ## <a name="create-an-application-gateway-by-using-new-azureapplicationgateway"></a>New-AzureApplicationGateway를 사용하여 응용 프로그램 게이트웨이 만들기
 
@@ -230,11 +230,11 @@ $policy = New-AzureRmApplicationGatewaySslPolicy -PolicyType Predefined -PolicyN
 $appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg -Location "West US" -BackendAddressPools $pool -BackendHttpSettingsCollection $poolSetting -FrontendIpConfigurations $fipconfig  -GatewayIpConfigurations $gipconfig -FrontendPorts $fp -HttpListeners $listener -RequestRoutingRules $rule -Sku $sku -SslCertificates $cert -SslPolicy $policy
 ```
 
-이 샘플은 이전 단계의 모든 구성 항목을 가진 응용 프로그램 게이트웨이를 만듭니다. 이 예제에서는 Application Gateway를 **appgwtest**라고 합니다.
+이 샘플에서는 hello 이전 단계에서에서 모든 구성 항목을 포함 한 응용 프로그램 게이트웨이 만듭니다. Hello 예제에서는 응용 프로그램 게이트웨이 hello 라고 **appgwtest**합니다.
 
 ## <a name="get-application-gateway-dns-name"></a>응용 프로그램 게이트웨이 DNS 이름 가져오기
 
-게이트웨이가 생성되면 다음 단계는 통신에 대한 프런트 엔드를 구성하는 것입니다. 공용 IP를 사용할 때 Application Gateway는 식별 이름이 아닌 동적으로 할당된 DNS 이름이 필요합니다. 최종 사용자가 Application Gateway를 누를 수 있도록 하려면 CNAME 레코드를 사용하여 Application Gateway의 공용 끝점을 가리키도록 합니다. [Azure에서 사용자 지정 도메인 이름 구성](../cloud-services/cloud-services-custom-domain-name-portal.md). 이 작업을 수행하려면 Application Gateway에 연결된 PublicIPAddress 요소를 사용하여 Application Gateway 및 관련 IP/DNS 이름에 대한 세부 정보를 검색합니다. 응용 프로그램 게이트웨이의 DNS 이름은 두 개의 웹 응용 프로그램을 이 DNS 이름으로 가리키는 CNAME 레코드를 만드는 데 사용됩니다. A 레코드를 사용할 경우 응용 프로그램 게이트웨이 다시 시작 시 VIP가 변경될 수 있으므로 이는 권장되지 않습니다.
+Hello 게이트웨이가 생성 된 hello 다음 단계는 통신을 위해 tooconfigure hello 프런트 엔드입니다. 공용 IP를 사용할 때 Application Gateway는 식별 이름이 아닌 동적으로 할당된 DNS 이름이 필요합니다. tooensure 최종 사용자가 hello 응용 프로그램 게이트웨이 적중할 수, CNAME 레코드를 사용 하는 toopoint toohello hello 응용 프로그램 게이트웨이의 공용 끝점 수 있습니다. [Azure에서 사용자 지정 도메인 이름 구성](../cloud-services/cloud-services-custom-domain-name-portal.md). toodo hello 응용 프로그램 게이트웨이 및 연결 된 해당 IP/DNS 이름 hello PublicIPAddress 요소 toohello 연결 된 응용 프로그램 게이트웨이 사용 하 여이 검색 세부 정보입니다. hello 응용 프로그램 게이트웨이 DNS 이름이 사용 되는 toocreate CNAME 레코드는 포인트 hello 두 웹 응용 프로그램 toothis DNS 이름 이어야 합니다. A 레코드의 hello 사용 hello VIP는 응용 프로그램 게이트웨이 다시 시작으로 변동 될 수 있으므로 권장 되지 않습니다.
 
 
 ```powershell
@@ -265,7 +265,7 @@ DnsSettings              : {
 
 ## <a name="next-steps"></a>다음 단계
 
-ILB(내부 부하 분산 장치)에서 사용되도록 응용 프로그램 게이트웨이를 구성하려면 [ILB(내부 부하 분산 장치)를 사용하여 응용 프로그램 게이트웨이 만들기](application-gateway-ilb.md)를 참조하세요.
+내부 부하 분산 장치 ILB ()는 응용 프로그램 게이트웨이 toouse tooconfigure 참조 [내부 부하 분산 장치 (ILB) 응용 프로그램 게이트웨이 만들](application-gateway-ilb.md)합니다.
 
 보다 자세한 내용을 원한다면 일반적 부하 분산 옵션을 참조:
 

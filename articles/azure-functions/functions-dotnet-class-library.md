@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions에서 .NET 클래스 라이브러리 사용 | Microsoft Docs"
-description: "Azure Functions와 함께 사용할 .NET 클래스 라이브러리를 작성하는 방법을 알아봅니다."
+title: "aaaUsing.NET 클래스 라이브러리 Azure 함수로 | Microsoft Docs"
+description: "Tooauthor.NET 클래스 라이브러리에 대 한 Azure 함수와 함께 사용 하는 방법을 알아봅니다"
 services: functions
 documentationcenter: na
 author: lindydonna
@@ -16,42 +16,42 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 06/09/2017
 ms.author: donnam
-ms.openlocfilehash: 0613bb96d3afb85ff7e684246b128e4eef518d23
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4e0fd954b554006ba1d8ecc47403a9fb1c67c3b1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-net-class-libraries-with-azure-functions"></a>Azure Functions에서 .NET 클래스 라이브러리 사용
 
-Azure Functions는 스크립트 파일 외에도 하나 이상의 함수 구현으로서 클래스 라이브러리를 게시하는 것을 지원합니다. [Azure Function Tools for Visual Studio 2017](https://blogs.msdn.microsoft.com/webdev/2017/05/10/azure-function-tools-for-visual-studio-2017/)를 사용하는 것이 좋습니다.
+또한 tooscript 파일을 Azure 함수는 하나 이상의 함수에 대 한 hello 구현으로 클래스 라이브러리에 게시를 지원 합니다. Hello를 사용 하는 것이 좋습니다 [Azure 함수 Visual Studio 2017 도구](https://blogs.msdn.microsoft.com/webdev/2017/05/10/azure-function-tools-for-visual-studio-2017/)합니다.
 
 ## <a name="prerequisites"></a>필수 조건 
 
-이 문서에는 다음과 같은 필수 조건이 있습니다.
+이 문서에는 hello 다음 필수 구성 요소에 있습니다.
 
-- [Visual Studio 2017 15.3 미리 보기](https://www.visualstudio.com/vs/preview/) - **ASP.NET 및 웹 개발** 및 **Azure 개발** 워크로드를 설치합니다.
+- [Visual Studio 2017 15.3 미리 보기](https://www.visualstudio.com/vs/preview/) - Hello 작업 설치 **ASP.NET 및 웹 개발** 및 **Azure 개발**합니다.
 - [Azure Function Tools for Visual Studio 2017](https://marketplace.visualstudio.com/items?itemName=AndrewBHall-MSFT.AzureFunctionToolsforVisualStudio2017)
 
 ## <a name="functions-class-library-project"></a>Functions 클래스 라이브러리 프로젝트
 
-Visual Studio에서 새 Azure Functions 프로젝트를 만듭니다. 새 프로젝트 템플릿은 *host.json* 및 *local.settings.json* 파일을 만듭니다. [host.json에서 Azure Functions 런타임 설정을 사용자 지정](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)할 수 있습니다. 
+Visual Studio에서 새 Azure Functions 프로젝트를 만듭니다. 새 프로젝트 템플릿이 hello hello 파일을 만듭니다 *host.json* 및 *local.settings.json*합니다. [host.json에서 Azure Functions 런타임 설정을 사용자 지정](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)할 수 있습니다. 
 
-*local.settings.json* 파일은 Azure Functions Core Tools에 대한 앱 설정, 연결 문자열 및 설정을 저장합니다. 구조에 대한 자세한 내용은 [로컬로 Azure Functions 코딩 및 테스트](functions-run-local.md#local-settings)를 참조하세요.
+hello 파일 *local.settings.json* 응용 프로그램 설정, 연결 문자열 및 Azure 함수 핵심 도구에 대 한 설정을 저장 합니다. 해당 구조에 대해 자세히 toolearn 참조 [코드 및 Azure 함수 로컬로 테스트](functions-run-local.md#local-settings)합니다.
 
 ### <a name="functionname-attribute"></a>FunctionName 특성
 
-[`FunctionNameAttribute`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/FunctionNameAttribute.cs) 특성은 메서드를 함수 진입점으로 표시합니다. 정확히 하나의 트리거와 0개 이상의 입력 및 출력 바인딩을 포함하여 사용해야 합니다.
+hello 특성 [ `FunctionNameAttribute` ](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/FunctionNameAttribute.cs) 함수 진입점으로 메서드를 표시 합니다. 정확히 하나의 트리거와 0개 이상의 입력 및 출력 바인딩을 포함하여 사용해야 합니다.
 
-### <a name="conversion-to-functionjson"></a>Function.json으로 변환
+### <a name="conversion-toofunctionjson"></a>변환 toofunction.json
 
-Azure Functions 프로젝트를 빌드하면 `[FunctionName]`에 정의된 함수 이름과 일치하는 디렉터리에 `function.json` 파일이 생성됩니다. 트리거 및 바인딩을 지정하고 프로젝트 어셈블리 파일을 가리킵니다.
+파일을 생성 한 Azure 기능 프로젝트를 빌드할 때 `function.json` hello 디렉터리에 의해 정의 hello 함수 이름과 일치 하는 `[FunctionName]`합니다. 바인딩과 포인트 toohello 프로젝트 어셈블리 파일 및 트리거를 지정합니다.
 
-이 변환은 [Microsoft\.NET\.Sdk\.Functions](http://www.nuget.org/packages/Microsoft.NET.Sdk.Functions) NuGet 패키지에서 수행됩니다. 원본은 [azure\-functions\-vs\-build\-sdk](https://github.com/Azure/azure-functions-vs-build-sdk) GitHub 리포지토리에서 사용할 수 있습니다.
+이 변환은 hello NuGet 패키지에 의해 수행 됩니다 [Microsoft\.NET\.Sdk\.함수](http://www.nuget.org/packages/Microsoft.NET.Sdk.Functions)합니다. hello 소스가 나타나므로 hello GitHub 리포지토리 [azure\-함수\-vs\-빌드\-sdk](https://github.com/Azure/azure-functions-vs-build-sdk)합니다.
 
 ## <a name="triggers-and-bindings"></a>트리거 및 바인딩
 
-다음 표에서는 Azure Functions 클래스 라이브러리 프로젝트에서 사용할 수 있는 트리거와 바인딩을 나열합니다. 모든 특성은 `Microsoft.Azure.WebJobs` 네임스페이스에 있습니다.
+hello 다음 표에 hello 트리거 및 Azure 함수 클래스 라이브러리 프로젝트에서 사용할 수 있는 바인딩이 있습니다. 모든 특성은 hello 네임 스페이스 `Microsoft.Azure.WebJobs`합니다.
 
 | 바인딩 | 특성 | NuGet 패키지 |
 |------   | ------    | ------        |
@@ -75,7 +75,7 @@ Azure Functions 프로젝트를 빌드하면 `[FunctionName]`에 정의된 함�
 
 Azure Functions는 Azure Blob Storage에 대한 트리거, 입력 및 출력 바인딩을 지원합니다. 식 및 메타데이터 바인딩에 대한 자세한 내용은 [Azure Functions Blob Storage 바인딩](functions-bindings-storage-blob.md)을 참조하세요.
 
-Blob 트리거는 `[BlobTrigger]` 특성으로 정의됩니다. `[StorageAccount]` 특성을 사용하여 전체 함수 또는 클래스에서 사용되는 저장소 계정을 정의할 수 있습니다.
+Blob 트리거가 hello로 정의 된 `[BlobTrigger]` 특성입니다. Hello 특성을 사용할 수 `[StorageAccount]` 전체 함수 또는 클래스에서 사용 되는 toodefine hello 저장소 계정입니다.
 
 ```csharp
 [StorageAccount("AzureWebJobsStorage")]
@@ -86,7 +86,7 @@ public static void Run([BlobTrigger("samples-workitems/{name}")] Stream myBlob, 
 }
 ```
 
-Blob 입력 및 출력은 읽기 또는 쓰기를 나타내는 `FileAccess` 매개 변수와 함께 `[Blob]` 특성을 사용하여 정의됩니다. 다음 예제에서는 Blob 트리거와 Blob 출력 바인딩을 사용합니다.
+Blob 입력 및 출력 hello를 사용 하 여 정의 된 `[Blob]` 방향으로 표시 된 특성을 `FileAccess` 읽기 또는 쓰기 매개 변수를 나타내는입니다. 다음 예제에서는 blob 트리거 hello 및 출력 바인딩 blob입니다.
 
 ```csharp
 [FunctionName("ResizeImage")]
@@ -122,9 +122,9 @@ private static Dictionary<ImageSize, (int, int)> imageDimensionsTable = new Dict
 
 ### <a name="cosmos-db-input-and-output-bindings"></a>Cosmos DB 입력 및 출력 바인딩
 
-Azure Functions는 Cosmos DB에 대한 입력 및 출력 바인딩을 지원합니다. Cosmos DB 바인딩의 기능에 대한 자세한 내용은 [Azure Functions Cosmos DB 바인딩](functions-bindings-documentdb.md)를 참조하세요.
+Azure Functions는 Cosmos DB에 대한 입력 및 출력 바인딩을 지원합니다. hello Cosmos DB 바인딩의 hello 기능에 대해 자세히 toolearn 참조 [Azure 함수 Cosmos DB 바인딩](functions-bindings-documentdb.md)합니다.
 
-Cosmos DB 문서에 바인딩하려면 [Microsoft.Azure.WebJobs.Extensions.DocumentDB] NuGet 패키지에서 `[DocumentDB]` 특성을 사용합니다. 다음 예제에는 큐 트리거와 DocumentDB API 출력 바인딩이 있습니다.
+hello 특성을 사용 하 여 toobind tooa Cosmos DB 문서 `[DocumentDB]` hello NuGet 패키지에 [Microsoft.Azure.WebJobs.Extensions.DocumentDB]합니다. 다음 예제는 hello에 큐 트리거 및 출력 바인딩이 DocumentDB API.
 
 ```csharp
 [FunctionName("QueueToDocDB")]        
@@ -143,9 +143,9 @@ public static void Run(
 
 Azure Functions는 이벤트 허브에 대한 트리거 및 출력 바인딩을 지원합니다. 자세한 내용은 [Azure Functions Event Hub 바인딩](functions-bindings-event-hubs.md)를 참조하세요.
 
-`[Microsoft.Azure.WebJobs.ServiceBus.EventHubTriggerAttribute]` 및 `[Microsoft.Azure.WebJobs.ServiceBus.EventHubAttribute]`형식은 [Microsoft.Azure.WebJobs.ServiceBus] NuGet 패키지에 정의되어 있습니다. 
+형식 hello `[Microsoft.Azure.WebJobs.ServiceBus.EventHubTriggerAttribute]` 및 `[Microsoft.Azure.WebJobs.ServiceBus.EventHubAttribute]` hello NuGet 패키지에 정의 된 [Microsoft.Azure.WebJobs.ServiceBus]합니다. 
 
-다음 예제에서는 Event Hub 트리거를 사용합니다.
+hello 다음 예제에서는 이벤트 허브 트리거:
 
 ```csharp
 [FunctionName("EventHubTriggerCSharp")]
@@ -155,7 +155,7 @@ public static void Run([EventHubTrigger("samples-workitems", Connection = "Event
 }
 ```
 
-다음 예제에는 메서드 반환 값을 출력으로 사용하는 Event Hub 출력이 있습니다.
+hello 다음 예제는 hello 메서드 반환 값을 사용 하 여 hello 출력으로 출력을 이벤트 허브 있습니다.
 
 ```csharp
 [FunctionName("EventHubOutput")]
@@ -171,9 +171,9 @@ public static string Run([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer, Trac
 
 ### <a name="external-file-input-and-output"></a>외부 파일 입력 및 출력
 
-Azure Functions는 외부 파일(예: Google Drive, Dropbox 및 OneDrive)에 대한 트리거, 입력 및 출력 바인딩을 지원합니다. 자세한 내용은 [Azure Functions 외부 파일 바인딩](functions-bindings-external-file.md)을 참조하세요. `[ExternalFileTrigger]` 및 `[ExternalFile]` 특성은 [Microsoft.Azure.WebJobs.Extensions.ApiHub] NuGet 패키지에 정의되어 있습니다.
+Azure Functions는 외부 파일(예: Google Drive, Dropbox 및 OneDrive)에 대한 트리거, 입력 및 출력 바인딩을 지원합니다. toolearn 더 참조 [Azure 함수 외부 파일 바인딩을](functions-bindings-external-file.md)합니다. 특성 hello `[ExternalFileTrigger]` 및 `[ExternalFile]` hello NuGet 패키지에 정의 된 [Microsoft.Azure.WebJobs.Extensions.ApiHub]합니다.
 
-다음 C# 예제에서는 외부 파일 입력 및 출력 바인딩을 보여 줍니다. 이 코드는 입력 파일을 출력 파일에 복사합니다.
+다음 C# 예제는 hello에 외부 파일 입력 및 출력 바인딩이 보여 줍니다. hello 코드 복사본 hello 입력된 파일 toohello 출력 파일입니다.
 
 ```csharp
 [StorageAccount("MyStorageConnection")]
@@ -192,7 +192,7 @@ public static string Run([QueueTrigger("myqueue-items")] string myQueueItem,
 
 ### <a name="http-and-webhooks"></a>HTTP 및 웹후크
 
-`HttpTrigger` 특성을 사용하여 HTTP 트리거 또는 웹후크를 정의합니다. 이 특성은 [Microsoft.Azure.WebJobs.Extensions.Http] NuGet 패키지에 정의되어 있습니다. 권한 부여 수준, 웹후크 유형, 경로 및 메서드를 사용자 지정할 수 있습니다. 다음 예제에서는 익명 인증 및 _genericJson_ 웹후크 유형으로 HTTP 트리거를 정의합니다.
+사용 하 여 hello `HttpTrigger` 특성 toodefine HTTP 트리거나 webhook 합니다. 이 특성은 hello NuGet 패키지에 정의 된 [Microsoft.Azure.WebJobs.Extensions.Http]합니다. Hello 인증 단계로, webhook 유형, 경로 및 메서드를 사용자 지정할 수 있습니다. hello 다음 예제에서는 트리거를 정의 HTTP 익명 인증을 사용 하 고 _genericJson_ webhook 유형입니다.
 
 ```csharp
 [FunctionName("HttpTriggerCSharp")]
@@ -206,9 +206,9 @@ public static HttpResponseMessage Run([HttpTrigger(AuthorizationLevel.Anonymous,
 
 ### <a name="mobile-apps-input-and-output"></a>Mobile Apps 입력 및 출력
 
-Azure Functions는 Mobile Apps에 대한 입력 및 출력 바인딩을 지원합니다. 자세한 내용은 [Azure Functions Mobile Apps 바인딩 ](functions-bindings-mobile-apps.md)을 참조하세요. `[MobileTable]` 특성은 [Microsoft.Azure.WebJobs.Extensions.MobileApps]NuGet 패키지에 정의되어 있습니다.
+Azure Functions는 Mobile Apps에 대한 입력 및 출력 바인딩을 지원합니다. toolearn 더 참조 [Azure 함수 모바일 앱 바인딩](functions-bindings-mobile-apps.md)합니다. hello 특성 `[MobileTable]` hello NuGet 패키지에 정의 된 [Microsoft.Azure.WebJobs.Extensions.MobileApps]합니다.
 
-다음 예제에서는 Mobile Apps 출력 바인딩을 보여 줍니다.
+hello 다음 예제에서는 모바일 앱 바인딩 출력:
 
 ```csharp
 [FunctionName("MobileAppsOutput")]        
@@ -223,7 +223,7 @@ public static object Run([QueueTrigger("myqueue-items", Connection = "AzureWebJo
 
 ### <a name="notification-hubs-output"></a>Notification Hubs 출력
 
-Azure Functions는 Notification Hubs에 대한 출력 바인딩을 지원합니다. 자세한 내용은 [Azure Functions Notification Hub 출력 바인딩](functions-bindings-notification-hubs.md)을 참조하세요. `[NotificationHub]` 특성은 [Microsoft.Azure.WebJobs.Extensions.NotificationHubs] NuGet 패키지에 정의되어 있습니다.
+Azure Functions는 Notification Hubs에 대한 출력 바인딩을 지원합니다. toolearn 더 참조 [Azure 함수 알림 허브 출력 바인딩이](functions-bindings-notification-hubs.md)합니다. hello 특성 `[NotificationHub]` hello NuGet 패키지에 정의 된 [Microsoft.Azure.WebJobs.Extensions.NotificationHubs]합니다.
 
 <a name="queue"></a>
 
@@ -231,7 +231,7 @@ Azure Functions는 Notification Hubs에 대한 출력 바인딩을 지원합니�
 
 Azure Functions는 Azure 큐에 대한 트리거 및 출력 바인딩을 지원합니다. 자세한 내용은 [Azure Functions Queue Storage 바인딩](functions-bindings-storage-queue.md)을 참조하세요.
 
-다음 예제에서는 `[Queue]` 특성을 사용하여 큐 출력 바인딩이 포함된 함수 반환 형식을 사용하는 방법을 보여 줍니다. 큐 트리거를 정의하려면 `[QueueTrigger]` 특성을 사용합니다.
+hello 다음 보여 주는 예제 toouse hello 함수 형식을 바인딩, hello를 사용 하 여 큐 출력으로 반환 하는 방법을 `[Queue]` 특성입니다. toodefine 큐 트리거를 사용 하 여 hello `[QueueTrigger]` 특성입니다.
 
 ```csharp
 [StorageAccount("AzureWebJobsStorage")]
@@ -261,11 +261,11 @@ public static class QueueFunctions
 
 ### <a name="sendgrid-output"></a>SendGrid 출력
 
-Azure Functions는 프로그래밍 방식으로 전자 메일을 보내기 위한 SendGrid 출력 바인딩을 지원합니다. 자세한 내용은 [Azure Functions SendGrid 바인딩](functions-bindings-sendgrid.md)을 참조하세요.
+Azure Functions는 프로그래밍 방식으로 전자 메일을 보내기 위한 SendGrid 출력 바인딩을 지원합니다. toolearn 더 참조 [Azure 함수 SendGrid 바인딩](functions-bindings-sendgrid.md)합니다.
 
-`[SendGrid]` 특성은 [Microsoft.Azure.WebJobs.Extensions.SendGrid] NuGet 패키지에 정의되어 있습니다.
+hello 특성 `[SendGrid]` hello NuGet 패키지에 정의 된 [Microsoft.Azure.WebJobs.Extensions.SendGrid]합니다.
 
-다음은 `SendGridMessage`를 사용하여 Service Bus 큐 트리거 및 SendGrid 출력 바인딩을 사용하는 예입니다.
+hello 다음은 예제 서비스 버스 큐 트리거 사용 및 사용 하 여 SendGrid 출력 바인딩 `SendGridMessage`:
 
 ```csharp
 [FunctionName("SendEmail")]
@@ -282,7 +282,7 @@ public static void Run(
 
 public class OutgoingEmail
 {
-    public string To { get; set; }
+    public string too{ get; set; }
     public string From { get; set; }
     public string Subject { get; set; }
     public string Body { get; set; }
@@ -295,9 +295,9 @@ public class OutgoingEmail
 
 Azure Functions는 Service Bus 큐 및 토픽에 대한 트리거 및 출력 바인딩을 지원합니다. 바인딩 구성에 대한 자세한 내용은 [Azure Functions Service Bus 바인딩](functions-bindings-service-bus.md)을 참조하세요.
 
-`[ServiceBusTrigger]` 및 `[ServiceBus]` 특성은 [Microsoft.Azure.WebJobs.ServiceBus] NuGet 패키지에 정의되어 있습니다. 
+특성 hello `[ServiceBusTrigger]` 및 `[ServiceBus]` hello NuGet 패키지에 정의 된 [Microsoft.Azure.WebJobs.ServiceBus]합니다. 
 
-다음은 Service Bus 큐 트리거의 예제입니다.
+hello 다음은 서비스 버스 큐 트리거의 예:
 
 ```csharp
 [FunctionName("ServiceBusQueueTriggerCSharp")]                    
@@ -307,7 +307,7 @@ public static void Run([ServiceBusTrigger("myqueue", AccessRights.Manage, Connec
 }
 ```
 
-다음은 메서드 반환 형식을 출력으로 사용하는 Service Bus 출력 바인딩의 예제입니다.
+hello 다음은 바인딩, hello 메서드 반환 형식 hello 출력으로 사용 하 여 서비스 버스 출력의 예입니다.
 
 ```csharp
 [FunctionName("ServiceBusOutput")]
@@ -323,9 +323,9 @@ public static string ServiceBusOutput([HttpTrigger] dynamic input, TraceWriter l
 
 ### <a name="table-storage-input-and-output"></a>테이블 저장소 입력 및 출력
 
-Azure Functions는 Azure Table 저장소에 대한 입력 및 출력 바인딩을 지원합니다. 자세한 내용은 [Azure Functions 테이블 저장소 바인딩 ](functions-bindings-storage-table.md)을 참조하세요.
+Azure Functions는 Azure Table 저장소에 대한 입력 및 출력 바인딩을 지원합니다. toolearn 더 참조 [Azure 함수 테이블 저장소 바인딩](functions-bindings-storage-table.md)합니다.
 
-다음 예제에서는 테이블 저장소 출력 및 입력 바인딩을 보여 주는 두 개의 함수가 포함된 클래스입니다. 
+hello 다음 예제는 테이블 저장소 출력 및 입력된 바인딩을 보여 주는 두 개의 함수를 사용 하는 클래스입니다. 
 
 ```csharp
 [StorageAccount("AzureWebJobsStorage")]
@@ -346,7 +346,7 @@ public class TableStorage
         return new MyPoco { PartitionKey = "Http", RowKey = Guid.NewGuid().ToString(), Text = input.Text };
     }
 
-    // use the metadata parameter "queueTrigger" to bind the queue payload
+    // use hello metadata parameter "queueTrigger" toobind hello queue payload
     [FunctionName("TableInput")]
     public static void TableInput([QueueTrigger("table-items")] string input, [Table("MyTable", "Http", "{queueTrigger}")] MyPoco poco, TraceWriter log)
     {
@@ -360,11 +360,11 @@ public class TableStorage
 
 ### <a name="timer-trigger"></a>타이머 트리거
 
-Azure Functions에는 정의된 일정에 따라 함수 코드를 실행할 수 있는 타이머 트리거 바인딩이 있습니다. 바인딩 기능에 대한 자세한 내용은 [Azure Functions를 사용하여 코드 실행 예약](functions-bindings-timer.md)을 참조하세요.
+Azure Functions에는 정의된 일정에 따라 함수 코드를 실행할 수 있는 타이머 트리거 바인딩이 있습니다. hello 바인딩의 hello 기능에 대해 자세히 toolearn 참조 [Azure 함수를 사용 하 여 코드 실행을 예약](functions-bindings-timer.md)합니다.
 
-사용 계획에서 [CRON 식](http://en.wikipedia.org/wiki/Cron#CRON_expression)을 사용하여 일정을 정의할 수 있습니다. App Service 계획을 사용하는 경우 TimeSpan 문자열을 사용할 수도 있습니다. 
+Hello 소비 계획을 사용 하 여 일정을 정의할 수 있습니다는 [CRON 식](http://en.wikipedia.org/wiki/Cron#CRON_expression)합니다. App Service 계획을 사용하는 경우 TimeSpan 문자열을 사용할 수도 있습니다. 
 
-다음 예제에서는 5분마다 실행되는 타이머 트리거를 정의합니다.
+다음 예제는 hello 5 분 마다 실행 하는 타이머 트리거를 정의 합니다.
 
 ```csharp
 [FunctionName("TimerTriggerCSharp")]
@@ -378,11 +378,11 @@ public static void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, TraceWr
 
 ### <a name="twilio-output"></a>Twilio 출력
 
-Azure Functions는 함수에서 SMS 문자 메시지를 보낼 수 있도록 Twilio 출력 바인딩을 지원합니다. 자세한 내용은 [Twilio 출력 바인딩을 사용하여 Azure Functions에서 SMS 메시지 전송](functions-bindings-twilio.md)을 참조하세요. 
+Azure 기능 지원 Twilio 바인딩 tooenable 함수 toosend SMS 텍스트 메시지를 출력합니다. toolearn 더 참조 [hello Twilio를 사용 하 여 Azure 함수에서 보낼 SMS 메시지 출력 바인딩이](functions-bindings-twilio.md)합니다. 
 
-`[TwilioSms]` 특성은 [Microsoft.Azure.WebJobs.Extensions.Twilio] 패키지에 정의되어 있습니다.
+hello 특성 `[TwilioSms]` hello 패키지에 정의 된 [Microsoft.Azure.WebJobs.Extensions.Twilio]합니다.
 
-다음 C# 예제에서는 큐 트리거와 Twilio 출력 바인딩을 사용합니다.
+hello 다음 C# 예제에서는 큐 트리거와 Twilio 출력 바인딩:
 
 ```csharp
 [FunctionName("QueueTwilio")]
@@ -394,7 +394,7 @@ public static SMSMessage Run([QueueTrigger("myqueue-items", Connection = "AzureW
     var message = new SMSMessage()
     {
         Body = $"Hello {order["name"]}, thanks for your order!",
-        To = order["mobileNumber"].ToString()
+        too= order["mobileNumber"].ToString()
     };
 
     return message;
@@ -423,7 +423,7 @@ C# 스크립팅에서 Azure Functions 사용에 대한 자세한 내용은 [Azur
 [Microsoft.Azure.WebJobs.Extensions]: http://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions/2.1.0-beta1
 
 
-<!-- Links to source --> 
+<!-- Links toosource --> 
 [DocumentDBAttribute]: https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions.DocumentDB/DocumentDBAttribute.cs
 [EventHubAttribute]: https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.ServiceBus/EventHubs/EventHubAttribute.cs
 [EventHubTriggerAttribute]: https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.ServiceBus/EventHubs/EventHubTriggerAttribute.cs

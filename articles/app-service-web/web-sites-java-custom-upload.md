@@ -1,6 +1,6 @@
 ---
-title: "Azure에 사용자 지정 Java 웹 앱 업로드"
-description: "이 자습서에서는 Azure 앱 서비스 웹 앱에 사용자 지정 Java 웹 앱을 업로드하는 방법을 보여줍니다."
+title: "사용자 지정 Java 웹 응용 프로그램 tooAzure aaaUpload"
+description: "이 자습서에서는 어떻게 tooupload 사용자 지정 Java 웹 응용 프로그램 tooAzure 앱 서비스 웹 앱입니다."
 services: app-service\web
 documentationcenter: java
 author: rmcmurray
@@ -14,32 +14,32 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: 9c8f9ee7780859f7640ac82d6ebce85082170ad7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0cb4a682bb25d86ff08bfd03628c89795c58451e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upload-a-custom-java-web-app-to-azure"></a>Azure에 사용자 지정 Java 웹 앱 업로드
-이 항목에서는 [Azure 앱 서비스] 웹앱에 사용자 지정 Java 웹앱을 업로드하는 방법을 설명합니다. 이 항목에는 모든 Java 웹 사이트이나 웹 앱에 적용되는 정보와 특정 응용 프로그램의 일부 예제도 포함되어 있습니다.
+# <a name="upload-a-custom-java-web-app-tooazure"></a>사용자 지정 Java 웹 응용 프로그램 tooAzure 업로드
+이 항목에서는 방법을 tooupload 사용자 지정 Java 웹 앱 너무 설명[Azure 앱 서비스] 웹 앱입니다. Tooany Java 웹 사이트 또는 웹 응용 프로그램 및 특정 응용 프로그램에 대 한 몇 가지 예제에도 적용 되는 정보는 포함 되어 있습니다.
 
-[Azure 앱 서비스에서 자바 웹앱 만들기](web-sites-java-get-started.md)에서 설명한 대로 Azure는 Azure 포털의 구성 UI, Azure 마켓플레이스를 사용하여 Java 웹앱을 만드는 방법을 제공합니다. 이 자습서는 Azure 포털 구성 UI 또는 Azure 마켓플레이스를 사용하지 않으려는 경우의 시나리오입니다.  
+Azure에서는 hello Azure 포털의 구성 UI를 사용 하 여 Java 웹 앱을 만들기 위한 수단을 제공 하 고 설명에 따라 Azure 마켓플레이스 hello [Azure 앱 서비스에서 Java 웹 앱을 만들](web-sites-java-get-started.md)합니다. 시나리오를 또는 하지 않는 toouse hello Azure 포털 구성 UI를 원하는 Azure 마켓플레이스 hello에 대 한이 자습서가입니다.  
 
 ## <a name="configuration-guidelines"></a>구성 지침
-다음에서는 Azure의 사용자 지정 Java 웹 앱에 필요한 설정을 설명합니다.
+hello 다음에는 Azure에서 사용자 지정 Java 웹 앱에 대 한 예상 하는 hello 설정을 설명 합니다.
 
-* Java 프로세스에서 사용하는 HTTP 포트는 동적으로 할당됩니다.  이 프로세스에서는 환경 변수 `HTTP_PLATFORM_PORT`의 포트를 사용해야 합니다.
-* 단일 HTTP 수신기 이외의 모든 수신 포트는 사용하지 않도록 설정해야 합니다.  Tomcat에서는 종료, HTTPS 및 AJP 포트가 포함됩니다.
-* 컨테이너는 IPv4 트래픽에 대해서만 구성해야 합니다.
-* 응용 프로그램의 **startup** 명령은 구성에서 설정해야 합니다.
-* 쓰기 권한이 있는 디렉터리가 필요한 응용 프로그램은 Azure 웹앱의 콘텐츠 디렉터리(**D:\home**)에 있어야 합니다.  환경 변수 `HOME`은 D:\home을 참조합니다.  
+* hello Java 프로세스에서 사용 하는 hello HTTP 포트를 동적으로 할당 됩니다.  hello 프로세스 hello 환경 변수에서 hello 포트를 사용 해야 `HTTP_PLATFORM_PORT`합니다.
+* 모든 단일 HTTP 수신기 hello 않도록 것과 다른 포트를 수신 합니다.  Tomcat에서 포함 된 hello 종료, HTTPS 및 AJP 포트입니다.
+* hello 컨테이너 toobe IPv4 트래픽에 대해서만 구성 해야 합니다.
+* hello **시작** hello 응용 프로그램 요구 toobe에 명령 hello 구성에서 설정 합니다.
+* 사용 하 여 디렉터리 쓰기 권한이 필요한 응용 프로그램에 필요한 toobe는 hello Azure 웹 앱의 콘텐츠 디렉터리에 **D:\home**합니다.  환경 변수 hello `HOME` tooD:\home 참조 합니다.  
 
-필요에 따라 환경 변수를 web.config 파일에서 설정할 수 있습니다.
+필요에 따라 hello web.config 파일에서 환경 변수를 설정할 수 있습니다.
 
 ## <a name="webconfig-httpplatform-configuration"></a>web.config httpPlatform 구성
-다음에서는 web.config 내의 **httpPlatform** 형식을 설명합니다.
+hello 다음 설명 hello **httpPlatform** web.config 내의 형식입니다.
 
-**arguments** (기본값 = ""). **processPath** 설정에서 지정한 실행 파일 또는 스크립트의 인수입니다.
+**arguments** (기본값 = ""). Hello에 지정 된 스크립트 또는 실행 가능한 인수 toohello **processPath** 설정 합니다.
 
 예제( **processPath** 도 함께 표시):
 
@@ -50,7 +50,7 @@ ms.lasthandoff: 08/29/2017
     arguments="-Djava.net.preferIPv4Stack=true -Djetty.port=%HTTP\_PLATFORM\_PORT% -Djetty.base=&quot;%HOME%\site\wwwroot\bin\jetty-distribution-9.1.0.v20131115&quot; -jar &quot;%HOME%\site\wwwroot\bin\jetty-distribution-9.1.0.v20131115\start.jar&quot;"
 
 
-**processPath** - HTTP 요청을 수신 대기하는 프로세스를 시작할 실행 파일 또는 스크립트의 경로입니다.
+**processPath** -실행 파일 경로 toohello 또는 HTTP 요청을 수신 하는 프로세스를 시작 하는 스크립트입니다.
 
 예제:
 
@@ -60,31 +60,31 @@ ms.lasthandoff: 08/29/2017
 
     processPath="%HOME%\site\wwwroot\bin\tomcat\bin\catalina.bat"
 
-**rapidFailsPerMinute**(기본값 = 10). **processPath**에 지정된 프로세스에 대해 허용되는 분당 작동 중단 횟수입니다. 이 제한을 초과한 경우 **HttpPlatformHandler** 에서 남은 시간(분) 동안 프로세스 시작을 중지합니다.
+**rapidFailsPerMinute**(기본값 = 10). 시간에 지정 된 hello 프로세스 **processPath** 분당 toocrash ï ´ ù. 이 제한을 초과 하는 경우 **HttpPlatformHandler** 는 hello 분의 나머지 부분에서는 hello에 대 한 hello 프로세스 시작을 중지 합니다.
 
-**requestTimeout**(기본값 = "00:02:00"). **HttpPlatformHandler**가 `%HTTP_PLATFORM_PORT%`에서 수신 대기하는 프로세스의 응답을 대기하는 기간입니다.
+**requestTimeout**(기본값 = "00:02:00"). 기간 **HttpPlatformHandler** 수신 hello 프로세스에서 응답을 받기 위해 대기 `%HTTP_PLATFORM_PORT%`합니다.
 
-**startupRetryCount**(기본값 = 10). **HttpPlatformHandler**가 **processPath**에 지정된 프로세스 시작을 시도하는 횟수입니다. 자세한 내용은 **startupTimeLimit** 를 참조하세요.
+**startupRetryCount**(기본값 = 10). 횟수 **HttpPlatformHandler** toolaunch hello 프로세스에 지정 된 시도 **processPath**합니다. 자세한 내용은 **startupTimeLimit** 를 참조하세요.
 
-**startupTimeLimit**(기본값 = 10초). 실행 파일/스크립트가 포트에서 수신 대기하는 프로세스를 시작할 때까지 **HttpPlatformHandler**가 대기하는 기간입니다.  이 시간 제한을 초과하는 경우 **HttpPlatformHandler**가 프로세스를 중단하고 프로세스의 시작을 **startupRetryCount**번 다시 시도합니다.
+**startupTimeLimit**(기본값 = 10초). 기간 **HttpPlatformHandler** hello 포트에서 수신 하는 프로세스가 실행/스크립팅 toostart hello에 대 한 대기 합니다.  이 시간 제한을 초과 하는 경우 **HttpPlatformHandler** hello 프로세스 종료 되며 toolaunch 시도 다시 **startupRetryCount** 시간입니다.
 
-**stdoutLogEnabled**(기본값 = "true"). true인 경우 **processPath** 설정에 지정된 프로세스의 **stdout** 및 **stderr**가 **stdoutLogFile**(**stdoutLogFile** 섹션 참조)에 지정된 파일로 리디렉션됩니다.
+**stdoutLogEnabled**(기본값 = "true"). True 이면 **stdout** 및 **stderr** hello에 지정 된 hello 프로세스에 대 한 **processPath** 설정에 지정 된 리디렉션된 toohello 파일 됩니다  **가 stdoutLogFile** (참조 **가 stdoutLogFile** 섹션).
 
-**stdoutLogFile**(기본값 = "d:\home\LogFiles\httpPlatformStdout.log"). **processPath**에 지정된 프로세스의 **stdout** 및 **stderr**가 로깅될 절대 파일 경로입니다.
+**stdoutLogFile**(기본값 = "d:\home\LogFiles\httpPlatformStdout.log"). 절대 파일 경로 **stdout** 및 **stderr** 에 지정 된 hello 프로세스에서 **processPath** 기록 됩니다.
 
 > [!NOTE]
-> `%HTTP_PLATFORM_PORT%`는 **arguments**의 일부 또는 **httpPlatform** **environmentVariables** 목록의 일부로 지정해야 하는 특수 자리 표시자입니다. 이 자리 표시자는 **HttpPlatformHandler**에서 내부적으로 생성한 포트로 대체되므로 **processPath**에서 지정한 프로세스가 이 포트에서 수신 대기할 수 있습니다.
+> `%HTTP_PLATFORM_PORT%`일부로 toospecified는 특수 한 자리 표시자 **인수** 또는 hello의 일부로 **httpPlatform** **environmentVariables** 목록입니다. 여는 내부적으로 생성 된 포트에 의해 대체 됩니다 **HttpPlatformHandler** hello 프로세스에서 지정 하는 **processPath** 이 포트에서 수신할 수 있습니다.
 > 
 > 
 
 ## <a name="deployment"></a>배포
-Java 기반 웹 앱은 IIS(인터넷 정보 서비스) 기반 웹 응용 프로그램에서 사용하는 것과 대부분 동일한 방법을 통해 쉽게 배포할 수 있습니다.  FTP, Git 및 Kudu는 모두 배포 메커니즘으로 지원되며, 웹 앱의 통합 SCM 기능입니다. WebDeploy는 프로토콜로 작동하지만 Visual Studio에서 Java를 개발하지 않으므로 WebDeploy는 Java 웹 앱 배포 사용 사례로 적합하지 않습니다.
+Hello 인터넷 정보 서비스 (IIS) 기반 웹 응용 프로그램에 사용 되는 대부분의 동일한 것을 의미 하는 hello 통해 Java 기반 웹 응용 프로그램을 쉽게 배포할 수 있습니다.  FTP, Git 및 Kudu는 모든 지원 배포 메커니즘으로 웹 앱에 대 한 통합 된 SCM 기능 hello 됩니다. WebDeploy는 프로토콜로 작동하지만 Visual Studio에서 Java를 개발하지 않으므로 WebDeploy는 Java 웹 앱 배포 사용 사례로 적합하지 않습니다.
 
 ## <a name="application-configuration-examples"></a>응용 프로그램 구성 예제
-다음 응용 프로그램에 대해 앱 서비스 웹 앱에서 Java 응용 프로그램을 사용하도록 설정하는 방법을 보여 주는 예제로 web.config 파일 및 응용 프로그램 구성을 제공합니다.
+다음 응용 프로그램, web.config 파일 및 hello hello에 대 한 응용 프로그램 구성으로 제공 되 예제 tooshow 어떻게 tooenable 앱 서비스 웹 앱에서 Java 응용 프로그램입니다.
 
 ### <a name="tomcat"></a>Tomcat
-앱 서비스 웹 앱과 함께 제공되는 Tomcat에는 두 가지 변형이 있지만 Tomcat에서는 계속 고객별 인스턴스를 업로드할 수 있습니다. 다음은 다른 JVM(Java Virtual Machine)으로 Tomcat을 설치한 예제입니다.
+앱 서비스 웹 앱에 제공 되는 Tomcat에 두 가지 변형이 인 것은 여전히 가능성이 높으며 tooupload 고객 특정 인스턴스 합니다. 다음은 다른 JVM(Java Virtual Machine)으로 Tomcat을 설치한 예제입니다.
 
     <?xml version="1.0" encoding="UTF-8"?>
     <configuration>
@@ -97,25 +97,25 @@ Java 기반 웹 앱은 IIS(인터넷 정보 서비스) 기반 웹 응용 프로�
           <environmentVariables>
             <environmentVariable name="CATALINA_OPTS" value="-Dport.http=%HTTP_PLATFORM_PORT%" />
             <environmentVariable name="CATALINA_HOME" value="%HOME%\site\wwwroot\bin\tomcat" />
-            <environmentVariable name="JRE_HOME" value="%HOME%\site\wwwroot\bin\java" /> <!-- optional, if not specified, this will default to %programfiles%\Java -->
+            <environmentVariable name="JRE_HOME" value="%HOME%\site\wwwroot\bin\java" /> <!-- optional, if not specified, this will default too%programfiles%\Java -->
             <environmentVariable name="JAVA_OPTS" value="-Djava.net.preferIPv4Stack=true" />
           </environmentVariables>
         </httpPlatform>
       </system.webServer>
     </configuration>
 
-Tomcat 쪽에서 변경해야 할 몇 가지 구성이 있습니다. 다음을 설정하도록 server.xml을 편집해야 합니다.
+Tomcat 쪽 hello에 몇 가지 구성 변경 내용을 toobe 내용이 나와 있습니다. hello server.xml 편집할 toobe tooset 항목이 필요합니다.
 
 * 종료 포트 = -1
 * HTTP 커넥터 포트 = ${port.http}
 * HTTP 커넥터 주소 = "127.0.0.1"
 * HTTPS 및 AJP 커넥터를 주석으로 처리
-* 또한 `java.net.preferIPv4Stack=true`를 추가할 수 있는 catalina.properties 파일에서 IPv4 설정도 지정할 수 있음
+* hello IPv4 설정은 추가할 수 있는 hello catalina.properties 파일에서 설정할 수도 있습니다.`java.net.preferIPv4Stack=true`
 
-Direct3d 호출은 앱 서비스 웹 앱에서 지원되지 않습니다. 이러한 호출을 사용하지 않도록 설정하려면 응용 프로그램에서 해당 호출을 수행하는 다음 Java 옵션을 추가합니다. `-Dsun.java2d.d3d=false`
+Direct3d 호출은 앱 서비스 웹 앱에서 지원되지 않습니다. 다음 Java 옵션 응용 프로그램이 이러한 호출을 수행 해야 하는 hello를 추가, toodisable 합니다.`-Dsun.java2d.d3d=false`
 
 ### <a name="jetty"></a>Jetty
-Tomcat의 경우와 마찬가지로 고객이 고유한 Jetty 인스턴스를 업로드할 수 있습니다. Jetty의 전체 설치를 실행하는 경우 구성은 다음과 유사합니다.
+Tomcat 용 hello 경우, 마찬가지로 고객 Jetty에 대 한 자신의 인스턴스를 업로드할 수 있습니다. 실행 중인 hello는 Jetty의 전체 설치의 경우 hello hello 구성은 다음과 같습니다.
 
     <?xml version="1.0" encoding="UTF-8"?>
     <configuration>
@@ -132,10 +132,10 @@ Tomcat의 경우와 마찬가지로 고객이 고유한 Jetty 인스턴스를 �
       </system.webServer>
     </configuration>
 
-start.ini에서 `java.net.preferIPv4Stack=true`를 설정하도록 Jetty 구성을 변경해야 합니다.
+hello Jetty 구성이 필요한 hello start.ini tooset에서 변경 toobe `java.net.preferIPv4Stack=true`합니다.
 
 ### <a name="springboot"></a>Springboot
-Springboot 응용 프로그램을 실행하려면 JAR 또는 WAR 파일을 업로드하고 다음 web.config 파일을 추가해야 합니다. web.config 파일은 wwwroot 폴더에 저장됩니다. web.config에서 인수가 JAR 파일을 가리키도록 조정합니다. 다음 예제에서 JAR 파일은 wwwroot 폴더에도 있습니다.  
+순서 tooget 실행 중인 Springboot 응용 프로그램에서에서 JAR 또는 WAR 파일 tooupload 필요 하 고 hello 다음 web.config 파일을 추가 합니다. hello web.config 파일의 hello wwwroot 폴더로 이동 합니다. Hello에도 hello wwwroot 폴더에 있는 다음 예제에서는 hello JAR 파일을 hello web.config에서 hello 인수 toopoint tooyour JAR 파일을 조정 합니다.  
 
     <?xml version="1.0" encoding="UTF-8"?>
     <configuration>
@@ -151,11 +151,11 @@ Springboot 응용 프로그램을 실행하려면 JAR 또는 WAR 파일을 업�
 
 
 ### <a name="hudson"></a>Hudson
-이 테스트에서는 구성을 설정하는 데 Hudson 3.1.2 war 및 기본 Tomcat 7.0.50 인스턴스를 사용하지만 UI는 사용하지 않습니다.  Hudson이 소프트웨어 빌드 도구이므로 웹 앱에서 **AlwaysOn** 플래그를 설정할 수 있는 전용 인스턴스에 Hudson을 설치하는 것이 좋습니다.
+테스트를 사용 하 여 Hudson 3.1.2 전쟁 hello 및 기본 Tomcat 7.0.50 인스턴스 hello hello UI tooset 작업 사용 하지 않은 상태입니다.  이 권장된 tooinstall 변수가 Hudson 소프트웨어 빌드 도구 이므로 여기서 hello 인스턴스 전용에 **AlwaysOn** hello 웹 앱에 플래그를 설정할 수 있습니다.
 
 1. **d:\home\site\wwwroot**와 같이 웹앱의 루트 디렉토리에서 **webapps** 디렉토리를 만들고(디렉토리가 없는 경우), Hudson.war을 **d:\home\site\wwwroot\webapps**에 저장합니다.
 2. Apache Maven 3.0.5(Hudson과 호환됨)를 다운로드하여 **d:\home\site\wwwroot**에 저장합니다.
-3. **d:\home\site\wwwroot**에서 web.config를 만들어 다음 내용을 붙여넣습니다.
+3. Web.config에서 만들 **d:\home\site\wwwroot** 붙여넣기 hello 내용을 따라:
    
         <?xml version="1.0" encoding="UTF-8"?>
         <configuration>
@@ -177,37 +177,37 @@ Springboot 응용 프로그램을 실행하려면 JAR 또는 WAR 파일을 업�
           </system.webServer>
         </configuration>
    
-    이제 웹 앱을 다시 시작하여 변경 내용을 적용할 수 있습니다.  http://yourwebapp/hudson에 연결하여 Hudson을 시작합니다.
-4. Hudson에서 자체 구성을 완료하면 다음 화면이 표시됩니다.
+    이 시점에서 hello 웹 응용 프로그램 다시 시작된 tootake hello 변경 될 수 있습니다.  Toohttp://yourwebapp/hudson toostart Hudson을 연결 합니다.
+4. Hudson 자체 구성 후 다음 화면 hello를 표시 되어야 합니다.
    
     ![Hudson](./media/web-sites-java-custom-upload/hudson1.png)
-5. Hudson 구성 페이지에 액세스합니다. **Manage Hudson**을 클릭한 다음 **시스템 구성**을 클릭합니다.
-6. 아래와 같이 JDK를 구성합니다.
+5. 액세스 hello Hudson 구성 페이지: 클릭 **관리 Hudson**, 클릭 하 고 **시스템 구성**합니다.
+6. Hello JDK 아래와 같이 구성 합니다.
    
     ![Hudson 구성](./media/web-sites-java-custom-upload/hudson2.png)
 7. 아래와 같이 Maven을 구성합니다.
    
     ![Maven 구성](./media/web-sites-java-custom-upload/maven.png)
-8. 설정을 저장합니다. Hudson을 구성하였으므로 이제 사용할 준비가 되었습니다.
+8. Hello 설정을 저장 합니다. Hudson을 구성하였으므로 이제 사용할 준비가 되었습니다.
 
 Hudson에 대한 자세한 내용은 [http://hudson-ci.org](http://hudson-ci.org)를 참조하십시오.
 
 ### <a name="liferay"></a>Liferay
-Liferay는 앱 서비스 웹 앱에서 지원됩니다. Liferay에 상당한 메모리가 필요할 수 있으므로, 충분한 메모리를 제공할 수 있는 중대형 전용 작업자에서 웹 앱을 실행해야 합니다. 또한 Liferay는 시작하는 데 몇 분 정도 걸릴 수 있습니다. 이런 이유로 웹 앱을 **Always On**으로 설정하는 것이 좋습니다.  
+Liferay는 앱 서비스 웹 앱에서 지원됩니다. Liferay 중요 한 메모리를 요구할 수, 중형 또는 대형 전용된 작업자에 충분 한 메모리를 제공할 수 있는에 toorun hello 웹 앱 필요 합니다. 또한 Liferay 몇 분 toostart를 사용합니다. 따라서 것이 좋습니다 너무 hello 웹 앱 설정**Always On**합니다.  
 
-Liferay를 다운로드한 후에 Tomcat과 함께 제공되는 Liferay 6.1.2 Community Edition GA3을 사용하여 다음 파일을 편집합니다.
+Tomcat으로 Liferay Community Edition GA3 bundled 6.1.2를 사용 하 여, hello 다음 파일 편집 되었습니다 Liferay 다운로드 한 후:
 
 **Server.xml**
 
-* 종료 포트를 -1로 변경합니다.
-* HTTP 커넥터를 `<Connector port="${port.http}" protocol="HTTP/1.1" connectionTimeout="600000" address="127.0.0.1" URIEncoding="UTF-8" />`로 변경합니다.
-* AJP 커넥터를 주석으로 처리합니다.
+* 종료 포트 너무-1을 변경 합니다.
+* HTTP 커넥터에도 변경`<Connector port="${port.http}" protocol="HTTP/1.1" connectionTimeout="600000" address="127.0.0.1" URIEncoding="UTF-8" />`
+* 주석 hello AJP 커넥터 처리 합니다.
 
-**liferay\tomcat-7.0.40\webapps\ROOT\WEB-INF\classes** 폴더에서 이름이 **portal-ext.properties**인 파일을 만듭니다. 이 파일에 다음과 같은 줄을 포함해야 합니다.
+Hello에 **liferay\tomcat-7.0.40\webapps\ROOT\WEB-INF\classes** 폴더 라는 파일을 만들어 **포털 ext.properties**합니다. 다음과 같이이 파일 toocontain 한 줄을 해야 합니다.
 
     liferay.home=%HOME%/site/wwwroot/liferay
 
-tomcat-7.0.40 폴더와 동일한 디렉터리 수준에서 다음 내용을 포함한 **web.config** 파일을 만듭니다.
+Hello tomcat 7.0.40 폴더와 같은 디렉터리 수준에서 hello 라는 파일을 만들어 **web.config** 콘텐츠를 다음 hello로:
 
     <?xml version="1.0" encoding="UTF-8"?>
     <configuration>
@@ -231,11 +231,11 @@ tomcat-7.0.40 폴더와 동일한 디렉터리 수준에서 다음 내용을 포
       </system.webServer>
     </configuration>
 
-**httpPlatform** 블록 아래에 **requestTimeout**이 “00:10:00”으로 설정되어 있습니다.  해당 시간을 줄일 수 있지만 그러면 Liferay가 부트스트랩하는 동안 시간 제한 오류가 발생할 수 있습니다.  이 값을 변경하면 Tomcat server.xml의 **connectionTimeout** 도 수정해야 합니다.  
+Hello에서 **httpPlatform** 차단 hello **requestTimeout** 너무 설정 된 "00: 10:00"입니다.  줄일 수 있습니다 하지만 다음 가능성이 toosee 하는 동안 시간 초과 오류 일부 Liferay 부트스트래핑 됩니다.  이 값을 변경 하는 경우 다음 hello **connectionTimeout** hello tomcat에서 server.xml 스페이스도 수정 해야 합니다.  
 
-위의 web.config에서는 JRE_HOME 환경 변수가 64비트 JDK를 가리키도록 지정했습니다. 기본값은 32비트지만 Liferay에 상당한 수준의 메모리가 필요할 수 있으므로 64비트 JDK를 사용하는 것이 좋습니다.
+해당 hello JRE_HOME 환경 varariable web.config toopoint toohello 위에 hello에 지정 된 주목할 64 비트 JDK. hello 기본값은 32 비트 이지만 toouse 좋습니다 Liferay 높은 수준의 메모리 필요할 수 있습니다, 때문 hello 64 비트 JDK.
 
-이러한 내용을 변경하면 Liferay를 실행하는 웹앱을 다시 시작한 후 http://yourwebapp을 엽니다. Liferay 포털은 웹 앱 루트에서 사용할 수 있습니다. 
+이러한 내용을 변경하면 Liferay를 실행하는 웹앱을 다시 시작한 후 http://yourwebapp을 엽니다. hello Liferay 포털을 hello 웹 응용 프로그램 루트에서 사용할 수 있습니다. 
 
 ## <a name="next-steps"></a>다음 단계
 Liferay에 대한 자세한 내용은 [http://www.liferay.com](http://www.liferay.com)을 참조하세요.
