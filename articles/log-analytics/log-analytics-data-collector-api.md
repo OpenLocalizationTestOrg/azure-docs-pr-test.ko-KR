@@ -1,6 +1,6 @@
 ---
-title: "Log Analytics HTTP 데이터 수집기 API | Microsoft Docs"
-description: "REST API를 호출할 수 있는 모든 클라이언트에서 Log Analytics HTTP 데이터 수집기 API를 사용하여 POST JSON 데이터를 Log Analytics 저장소에 추가할 수 있습니다. 이 문서는 API를 사용하는 방법을 설명하며, 다양한 프로그래밍 언어를 사용하여 데이터를 게시하는 방법을 예제로 제시합니다."
+title: "분석 HTTP 데이터 수집기 API aaaLog | Microsoft Docs"
+description: "Hello 로그 분석 HTTP 데이터 수집기 API tooadd POST JSON 데이터 toohello 로그 분석 저장소 hello REST API를 호출할 수 있는 모든 클라이언트에서 사용할 수 있습니다. 이 문서에서는 설명 방법을 toouse API hello 방법의 예제는 다양 한 프로그래밍 언어를 사용 하 여 toopublish 데이터입니다."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,62 +14,62 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: bwren
-ms.openlocfilehash: b0c45ff8c1d4c9d35fbb3c8839b38a20df277055
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c2921082831c49da764d946ac9c4fab975a38185
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="send-data-to-log-analytics-with-the-http-data-collector-api"></a><span data-ttu-id="9284c-104">HTTP 데이터 수집기 API로 Log Analytics에 데이터 전송</span><span class="sxs-lookup"><span data-stu-id="9284c-104">Send data to Log Analytics with the HTTP Data Collector API</span></span>
-<span data-ttu-id="9284c-105">이 문서에서는 HTTP 데이터 수집기 API를 사용하여 REST API 클라이언트에서 Log Analytics로 데이터를 전송하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-105">This article shows you how to use the HTTP Data Collector API to send data to Log Analytics from a REST API client.</span></span>  <span data-ttu-id="9284c-106">스크립트 또는 응용 프로그램에서 수집하는 데이터를 포맷하고 요청에 포함하며 해당 요청을 Log Analytics에서 승인하게 하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-106">It describes how to format data collected by your script or application, include it in a request, and have that request authorized by Log Analytics.</span></span>  <span data-ttu-id="9284c-107">PowerShell, C# 및 Python에 예가 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-107">Examples are provided for PowerShell, C#, and Python.</span></span>
+# <a name="send-data-toolog-analytics-with-hello-http-data-collector-api"></a><span data-ttu-id="3956e-104">데이터 수집기 API HTTP hello로 데이터 tooLog 분석 보내기</span><span class="sxs-lookup"><span data-stu-id="3956e-104">Send data tooLog Analytics with hello HTTP Data Collector API</span></span>
+<span data-ttu-id="3956e-105">이 문서에서는 toouse REST API 클라이언트에서 HTTP 데이터 수집기 API toosend 데이터 tooLog 분석 hello 하는 방법을 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-105">This article shows you how toouse hello HTTP Data Collector API toosend data tooLog Analytics from a REST API client.</span></span>  <span data-ttu-id="3956e-106">스크립트나 응용 프로그램에 의해 수집 된 tooformat 데이터는 요청에 포함 하 고 로그 분석의 승인을 요청 하는 방법을 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-106">It describes how tooformat data collected by your script or application, include it in a request, and have that request authorized by Log Analytics.</span></span>  <span data-ttu-id="3956e-107">PowerShell, C# 및 Python에 예가 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-107">Examples are provided for PowerShell, C#, and Python.</span></span>
 
-## <a name="concepts"></a><span data-ttu-id="9284c-108">개념</span><span class="sxs-lookup"><span data-stu-id="9284c-108">Concepts</span></span>
-<span data-ttu-id="9284c-109">HTTP 데이터 수집기 API를 사용하여 REST API를 수집할 수 있는 클라이언트에서 Log Analytics로 데이터를 전송하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-109">You can use the HTTP Data Collector API to send data to Log Analytics from any client that can call a REST API.</span></span>  <span data-ttu-id="9284c-110">Azure 또는 다른 클라우드에서 관리 데이터를 수집하는 Azure Automation의 Runbook, 또는 Log Analytics를 사용하여 데이터를 통합하고 분석하는 대체 관리 시스템일 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-110">This might be a runbook in Azure Automation that collects management data from Azure or another cloud, or it might be an alternate management system that uses Log Analytics to consolidate and analyze data.</span></span>
+## <a name="concepts"></a><span data-ttu-id="3956e-108">개념</span><span class="sxs-lookup"><span data-stu-id="3956e-108">Concepts</span></span>
+<span data-ttu-id="3956e-109">REST API를 호출할 수 있는 모든 클라이언트에서 hello HTTP 데이터 수집기 API toosend 데이터 tooLog 분석을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-109">You can use hello HTTP Data Collector API toosend data tooLog Analytics from any client that can call a REST API.</span></span>  <span data-ttu-id="3956e-110">이 runbook을 수 있습니다 관리에서 수집 하는 Azure 자동화에서 데이터에서 Azure 또는 다른 클라우드 또는 것 수 tooconsolidate 로그 분석을 사용 하는 다른 관리 시스템 하며 데이터를 분석 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-110">This might be a runbook in Azure Automation that collects management data from Azure or another cloud, or it might be an alternate management system that uses Log Analytics tooconsolidate and analyze data.</span></span>
 
-<span data-ttu-id="9284c-111">Log Analytics 저장소의 모든 데이터는 특정 레코드 형식의 레코드로 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-111">All data in the Log Analytics repository is stored as a record with a particular record type.</span></span>  <span data-ttu-id="9284c-112">JSON에서 여러 레코드로 HTTP 데이터 수집기 API에 보낼 데이터의 서식을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-112">You format your data to send to the HTTP Data Collector API as multiple records in JSON.</span></span>  <span data-ttu-id="9284c-113">데이터를 제출하면 개별 레코드가 요청 페이로드의 각 레코드에 대한 저장소에 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-113">When you submit the data, an individual record is created in the repository for each record in the request payload.</span></span>
+<span data-ttu-id="3956e-111">Hello 로그 분석 저장소의 모든 데이터는 특정 레코드 종류를 사용 하 여 레코드로 저장 됩니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-111">All data in hello Log Analytics repository is stored as a record with a particular record type.</span></span>  <span data-ttu-id="3956e-112">JSON의 여러 레코드도 데이터 toosend toohello HTTP 데이터 수집기 API를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-112">You format your data toosend toohello HTTP Data Collector API as multiple records in JSON.</span></span>  <span data-ttu-id="3956e-113">Hello 데이터를 전송할 때 개별 레코드 hello 요청 페이로드의 각 레코드에 대 한 hello 리포지토리에 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-113">When you submit hello data, an individual record is created in hello repository for each record in hello request payload.</span></span>
 
 
 ![HTTP 데이터 수집기 개요](media/log-analytics-data-collector-api/overview.png)
 
 
 
-## <a name="create-a-request"></a><span data-ttu-id="9284c-115">요청 만들기</span><span class="sxs-lookup"><span data-stu-id="9284c-115">Create a request</span></span>
-<span data-ttu-id="9284c-116">HTTP 데이터 수집기 API를 사용하려면 JSON(JavaScript Object Notation)에서 전송할 데이터가 포함된 POST 요청을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-116">To use the HTTP Data Collector API, you create a POST request that includes the data to send in JavaScript Object Notation (JSON).</span></span>  <span data-ttu-id="9284c-117">다음 세 개 표에는 각 요청에 필요한 속성이 나와 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-117">The next three tables list the attributes that are required for each request.</span></span> <span data-ttu-id="9284c-118">이 문서의 뒷부분에서 각각의 속성에 대해 자세히 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-118">We describe each attribute in more detail later in the article.</span></span>
+## <a name="create-a-request"></a><span data-ttu-id="3956e-115">요청 만들기</span><span class="sxs-lookup"><span data-stu-id="3956e-115">Create a request</span></span>
+<span data-ttu-id="3956e-116">toouse hello HTTP 데이터 수집기 API hello 데이터 toosend에서 개체 JSON (JavaScript Notation)을 포함 하는 POST 요청을 만들 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-116">toouse hello HTTP Data Collector API, you create a POST request that includes hello data toosend in JavaScript Object Notation (JSON).</span></span>  <span data-ttu-id="3956e-117">각 요청에 필요한 다음 세 개의 테이블 목록 hello 특성 hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-117">hello next three tables list hello attributes that are required for each request.</span></span> <span data-ttu-id="3956e-118">각 특성 hello 문서의 뒷부분에 자세히 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-118">We describe each attribute in more detail later in hello article.</span></span>
 
-### <a name="request-uri"></a><span data-ttu-id="9284c-119">요청 URI</span><span class="sxs-lookup"><span data-stu-id="9284c-119">Request URI</span></span>
-| <span data-ttu-id="9284c-120">특성</span><span class="sxs-lookup"><span data-stu-id="9284c-120">Attribute</span></span> | <span data-ttu-id="9284c-121">속성</span><span class="sxs-lookup"><span data-stu-id="9284c-121">Property</span></span> |
+### <a name="request-uri"></a><span data-ttu-id="3956e-119">요청 URI</span><span class="sxs-lookup"><span data-stu-id="3956e-119">Request URI</span></span>
+| <span data-ttu-id="3956e-120">특성</span><span class="sxs-lookup"><span data-stu-id="3956e-120">Attribute</span></span> | <span data-ttu-id="3956e-121">속성</span><span class="sxs-lookup"><span data-stu-id="3956e-121">Property</span></span> |
 |:--- |:--- |
-| <span data-ttu-id="9284c-122">메서드</span><span class="sxs-lookup"><span data-stu-id="9284c-122">Method</span></span> |<span data-ttu-id="9284c-123">POST</span><span class="sxs-lookup"><span data-stu-id="9284c-123">POST</span></span> |
-| <span data-ttu-id="9284c-124">URI</span><span class="sxs-lookup"><span data-stu-id="9284c-124">URI</span></span> |<span data-ttu-id="9284c-125">https://\<CustomerId\>.ods.opinsights.azure.com/api/logs?api-version=2016-04-01</span><span class="sxs-lookup"><span data-stu-id="9284c-125">https://\<CustomerId\>.ods.opinsights.azure.com/api/logs?api-version=2016-04-01</span></span> |
-| <span data-ttu-id="9284c-126">콘텐츠 형식</span><span class="sxs-lookup"><span data-stu-id="9284c-126">Content type</span></span> |<span data-ttu-id="9284c-127">application/json</span><span class="sxs-lookup"><span data-stu-id="9284c-127">application/json</span></span> |
+| <span data-ttu-id="3956e-122">메서드</span><span class="sxs-lookup"><span data-stu-id="3956e-122">Method</span></span> |<span data-ttu-id="3956e-123">POST</span><span class="sxs-lookup"><span data-stu-id="3956e-123">POST</span></span> |
+| <span data-ttu-id="3956e-124">URI</span><span class="sxs-lookup"><span data-stu-id="3956e-124">URI</span></span> |<span data-ttu-id="3956e-125">https://\<CustomerId\>.ods.opinsights.azure.com/api/logs?api-version=2016-04-01</span><span class="sxs-lookup"><span data-stu-id="3956e-125">https://\<CustomerId\>.ods.opinsights.azure.com/api/logs?api-version=2016-04-01</span></span> |
+| <span data-ttu-id="3956e-126">콘텐츠 형식</span><span class="sxs-lookup"><span data-stu-id="3956e-126">Content type</span></span> |<span data-ttu-id="3956e-127">application/json</span><span class="sxs-lookup"><span data-stu-id="3956e-127">application/json</span></span> |
 
-### <a name="request-uri-parameters"></a><span data-ttu-id="9284c-128">URI 매개 변수 요청</span><span class="sxs-lookup"><span data-stu-id="9284c-128">Request URI parameters</span></span>
-| <span data-ttu-id="9284c-129">매개 변수</span><span class="sxs-lookup"><span data-stu-id="9284c-129">Parameter</span></span> | <span data-ttu-id="9284c-130">설명</span><span class="sxs-lookup"><span data-stu-id="9284c-130">Description</span></span> |
+### <a name="request-uri-parameters"></a><span data-ttu-id="3956e-128">URI 매개 변수 요청</span><span class="sxs-lookup"><span data-stu-id="3956e-128">Request URI parameters</span></span>
+| <span data-ttu-id="3956e-129">매개 변수</span><span class="sxs-lookup"><span data-stu-id="3956e-129">Parameter</span></span> | <span data-ttu-id="3956e-130">설명</span><span class="sxs-lookup"><span data-stu-id="3956e-130">Description</span></span> |
 |:--- |:--- |
-| <span data-ttu-id="9284c-131">CustomerID</span><span class="sxs-lookup"><span data-stu-id="9284c-131">CustomerID</span></span> |<span data-ttu-id="9284c-132">Microsoft Operations Management Suite 작업 영역에 대한 고유 식별자입니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-132">The unique identifier for the Microsoft Operations Management Suite workspace.</span></span> |
-| <span data-ttu-id="9284c-133">리소스</span><span class="sxs-lookup"><span data-stu-id="9284c-133">Resource</span></span> |<span data-ttu-id="9284c-134">API 리소스 이름: /api/logs</span><span class="sxs-lookup"><span data-stu-id="9284c-134">The API resource name: /api/logs.</span></span> |
-| <span data-ttu-id="9284c-135">API 버전</span><span class="sxs-lookup"><span data-stu-id="9284c-135">API Version</span></span> |<span data-ttu-id="9284c-136">이 요청에 사용하는 API의 버전입니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-136">The version of the API to use with this request.</span></span> <span data-ttu-id="9284c-137">현재 2016-04-01입니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-137">Currently, it's 2016-04-01.</span></span> |
+| <span data-ttu-id="3956e-131">CustomerID</span><span class="sxs-lookup"><span data-stu-id="3956e-131">CustomerID</span></span> |<span data-ttu-id="3956e-132">hello hello Microsoft Operations Management Suite 작업 영역에 대 한 고유 식별자입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-132">hello unique identifier for hello Microsoft Operations Management Suite workspace.</span></span> |
+| <span data-ttu-id="3956e-133">리소스</span><span class="sxs-lookup"><span data-stu-id="3956e-133">Resource</span></span> |<span data-ttu-id="3956e-134">hello API 리소스 이름: / api/로그입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-134">hello API resource name: /api/logs.</span></span> |
+| <span data-ttu-id="3956e-135">API 버전</span><span class="sxs-lookup"><span data-stu-id="3956e-135">API Version</span></span> |<span data-ttu-id="3956e-136">이 요청으로 hello API toouse의 hello 버전입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-136">hello version of hello API toouse with this request.</span></span> <span data-ttu-id="3956e-137">현재 2016-04-01입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-137">Currently, it's 2016-04-01.</span></span> |
 
-### <a name="request-headers"></a><span data-ttu-id="9284c-138">헤더 요청</span><span class="sxs-lookup"><span data-stu-id="9284c-138">Request headers</span></span>
-| <span data-ttu-id="9284c-139">헤더</span><span class="sxs-lookup"><span data-stu-id="9284c-139">Header</span></span> | <span data-ttu-id="9284c-140">설명</span><span class="sxs-lookup"><span data-stu-id="9284c-140">Description</span></span> |
+### <a name="request-headers"></a><span data-ttu-id="3956e-138">헤더 요청</span><span class="sxs-lookup"><span data-stu-id="3956e-138">Request headers</span></span>
+| <span data-ttu-id="3956e-139">헤더</span><span class="sxs-lookup"><span data-stu-id="3956e-139">Header</span></span> | <span data-ttu-id="3956e-140">설명</span><span class="sxs-lookup"><span data-stu-id="3956e-140">Description</span></span> |
 |:--- |:--- |
-| <span data-ttu-id="9284c-141">권한 부여</span><span class="sxs-lookup"><span data-stu-id="9284c-141">Authorization</span></span> |<span data-ttu-id="9284c-142">권한 부여 서명입니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-142">The authorization signature.</span></span> <span data-ttu-id="9284c-143">문서의 뒷부분에 HMAC-SHA256 헤더를 만드는 방법이 나와 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-143">Later in the article, you can read about how to create an HMAC-SHA256 header.</span></span> |
-| <span data-ttu-id="9284c-144">Log-Type</span><span class="sxs-lookup"><span data-stu-id="9284c-144">Log-Type</span></span> |<span data-ttu-id="9284c-145">제출 중인 데이터의 레코드 종류를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-145">Specify the record type of the data that is being submitted.</span></span> <span data-ttu-id="9284c-146">현재는 로그 형식에서 영문자만 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-146">Currently, the log type supports only alpha characters.</span></span> <span data-ttu-id="9284c-147">숫자 또는 특수 문자는 지원되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-147">It does not support numerics or special characters.</span></span> |
-| <span data-ttu-id="9284c-148">x-ms-date</span><span class="sxs-lookup"><span data-stu-id="9284c-148">x-ms-date</span></span> |<span data-ttu-id="9284c-149">RFC 1123 형식의 요청이 처리된 날짜입니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-149">The date that the request was processed, in RFC 1123 format.</span></span> |
-| <span data-ttu-id="9284c-150">time-generated-field</span><span class="sxs-lookup"><span data-stu-id="9284c-150">time-generated-field</span></span> |<span data-ttu-id="9284c-151">데이터 항목의 타임스탬프가 포함된 데이터의 필드 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-151">The name of a field in the data that contains the timestamp of the data item.</span></span> <span data-ttu-id="9284c-152">필드를 지정하면 그 내용이 **TimeGenerated**에 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-152">If you specify a field then its contents are used for **TimeGenerated**.</span></span> <span data-ttu-id="9284c-153">이 필드를 지정하지 않으면 **TimeGenerated**의 기본값은 메시지가 수집된 시간입니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-153">If this field isn’t specified, the default for **TimeGenerated** is the time that the message is ingested.</span></span> <span data-ttu-id="9284c-154">메시지 필드의 내용은 ISO 8601 형식 YYYY-MM-DDThh:mm:ssZ를 따라야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-154">The contents of the message field should follow the ISO 8601 format YYYY-MM-DDThh:mm:ssZ.</span></span> |
+| <span data-ttu-id="3956e-141">권한 부여</span><span class="sxs-lookup"><span data-stu-id="3956e-141">Authorization</span></span> |<span data-ttu-id="3956e-142">hello 권한 부여 서명입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-142">hello authorization signature.</span></span> <span data-ttu-id="3956e-143">Hello 문서의 뒷부분에 나오는 방법에 대 한 읽을 수 있습니다는 hmac-sha256 toocreate 헤더입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-143">Later in hello article, you can read about how toocreate an HMAC-SHA256 header.</span></span> |
+| <span data-ttu-id="3956e-144">Log-Type</span><span class="sxs-lookup"><span data-stu-id="3956e-144">Log-Type</span></span> |<span data-ttu-id="3956e-145">전송 하는 hello 데이터의 hello 레코드 종류를 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-145">Specify hello record type of hello data that is being submitted.</span></span> <span data-ttu-id="3956e-146">현재 hello 로그 형식은 영숫자 문자로 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-146">Currently, hello log type supports only alpha characters.</span></span> <span data-ttu-id="3956e-147">숫자 또는 특수 문자는 지원되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-147">It does not support numerics or special characters.</span></span> |
+| <span data-ttu-id="3956e-148">x-ms-date</span><span class="sxs-lookup"><span data-stu-id="3956e-148">x-ms-date</span></span> |<span data-ttu-id="3956e-149">hello 날짜 RFC 1123 형식으로 해당 hello 요청이 처리 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-149">hello date that hello request was processed, in RFC 1123 format.</span></span> |
+| <span data-ttu-id="3956e-150">time-generated-field</span><span class="sxs-lookup"><span data-stu-id="3956e-150">time-generated-field</span></span> |<span data-ttu-id="3956e-151">hello 데이터 항목의 hello 타임 스탬프를 포함 하는 hello 데이터에 있는 필드의 hello 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-151">hello name of a field in hello data that contains hello timestamp of hello data item.</span></span> <span data-ttu-id="3956e-152">필드를 지정하면 그 내용이 **TimeGenerated**에 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-152">If you specify a field then its contents are used for **TimeGenerated**.</span></span> <span data-ttu-id="3956e-153">이 필드를 지정 하지 않으면 hello에 대 한 기본 **TimeGenerated** hello 시간에는 해당 hello 메시지는 수집 된 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-153">If this field isn’t specified, hello default for **TimeGenerated** is hello time that hello message is ingested.</span></span> <span data-ttu-id="3956e-154">hello 메시지 필드의 내용을 hello hello ISO 8601 형식 따라야 합니다.-m M-DDThh:mm:ssZ 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-154">hello contents of hello message field should follow hello ISO 8601 format YYYY-MM-DDThh:mm:ssZ.</span></span> |
 
-## <a name="authorization"></a><span data-ttu-id="9284c-155">권한 부여</span><span class="sxs-lookup"><span data-stu-id="9284c-155">Authorization</span></span>
-<span data-ttu-id="9284c-156">Log Analytics HTTP 데이터 수집기 API에 대한 모든 요청에는 권한 부여 헤더가 포함되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-156">Any request to the Log Analytics HTTP Data Collector API must include an authorization header.</span></span> <span data-ttu-id="9284c-157">요청을 인증하려면 요청을 수행하는 작업 영역에 대한 기본 키 또는 보조 키를 통해 요청을 서명해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-157">To authenticate a request, you must sign the request with either the primary or the secondary key for the workspace that is making the request.</span></span> <span data-ttu-id="9284c-158">그런 다음 요청의 일부로 해당 서명을 전달합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-158">Then, pass that signature as part of the request.</span></span>   
+## <a name="authorization"></a><span data-ttu-id="3956e-155">권한 부여</span><span class="sxs-lookup"><span data-stu-id="3956e-155">Authorization</span></span>
+<span data-ttu-id="3956e-156">모든 요청 toohello 로그 분석 데이터 수집기 API HTTP 권한 부여 헤더를 포함 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-156">Any request toohello Log Analytics HTTP Data Collector API must include an authorization header.</span></span> <span data-ttu-id="3956e-157">요청을 tooauthenticate 주 hello 또는 hello hello 요청을 수행 하는 hello 작업 영역에 대 한 보조 키 중 하나를 사용 하 여 hello 요청에 서명 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-157">tooauthenticate a request, you must sign hello request with either hello primary or hello secondary key for hello workspace that is making hello request.</span></span> <span data-ttu-id="3956e-158">그런 다음 해당 서명 hello 요청의 일부분으로 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-158">Then, pass that signature as part of hello request.</span></span>   
 
-<span data-ttu-id="9284c-159">권한 부여 헤더의 형식은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-159">Here's the format for the authorization header:</span></span>
+<span data-ttu-id="3956e-159">다음은 hello 권한 부여 헤더에 대 한 hello 형식이입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-159">Here's hello format for hello authorization header:</span></span>
 
 ```
 Authorization: SharedKey <WorkspaceID>:<Signature>
 ```
 
-<span data-ttu-id="9284c-160">*WorkspaceID*는 Operations Management Suite 작업 영역에 대한 고유 식별자입니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-160">*WorkspaceID* is the unique identifier for the Operations Management Suite workspace.</span></span> <span data-ttu-id="9284c-161">*서명*은 요청에서 구성되고 [SHA256 알고리즘](https://msdn.microsoft.com/library/system.security.cryptography.sha256.aspx)을 사용하여 계산된 [해시 기반 메시지 인증 코드(HMAC)](https://msdn.microsoft.com/library/system.security.cryptography.hmacsha256.aspx)입니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-161">*Signature* is a [Hash-based Message Authentication Code (HMAC)](https://msdn.microsoft.com/library/system.security.cryptography.hmacsha256.aspx) that is constructed from the request and then computed by using the [SHA256 algorithm](https://msdn.microsoft.com/library/system.security.cryptography.sha256.aspx).</span></span> <span data-ttu-id="9284c-162">그런 다음 Base64 인코딩을 사용하여 인코딩합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-162">Then, you encode it by using Base64 encoding.</span></span>
+<span data-ttu-id="3956e-160">*WorkspaceID* hello hello Operations Management Suite 작업 영역에 대 한 고유 식별자입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-160">*WorkspaceID* is hello unique identifier for hello Operations Management Suite workspace.</span></span> <span data-ttu-id="3956e-161">*서명* 는 [HMAC 해시 기반 메시지 인증 코드 ()](https://msdn.microsoft.com/library/system.security.cryptography.hmacsha256.aspx) 있는 hello 요청에서 구현 되 고 다음 hello를 사용 하 여 계산 [SHA256 알고리즘](https://msdn.microsoft.com/library/system.security.cryptography.sha256.aspx)합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-161">*Signature* is a [Hash-based Message Authentication Code (HMAC)](https://msdn.microsoft.com/library/system.security.cryptography.hmacsha256.aspx) that is constructed from hello request and then computed by using hello [SHA256 algorithm](https://msdn.microsoft.com/library/system.security.cryptography.sha256.aspx).</span></span> <span data-ttu-id="3956e-162">그런 다음 Base64 인코딩을 사용하여 인코딩합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-162">Then, you encode it by using Base64 encoding.</span></span>
 
-<span data-ttu-id="9284c-163">이 형식을 사용하여 **SharedKey** 서명 문자열을 인코딩합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-163">Use this format to encode the **SharedKey** signature string:</span></span>
+<span data-ttu-id="3956e-163">이 형식 tooencode hello를 사용 하 여 **에서 SharedKey** 서명 문자열:</span><span class="sxs-lookup"><span data-stu-id="3956e-163">Use this format tooencode hello **SharedKey** signature string:</span></span>
 
 ```
 StringToSign = VERB + "\n" +
@@ -79,22 +79,22 @@ StringToSign = VERB + "\n" +
                   "/api/logs";
 ```
 
-<span data-ttu-id="9284c-164">서명 문자열의 예는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-164">Here's an example of a signature string:</span></span>
+<span data-ttu-id="3956e-164">서명 문자열의 예는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-164">Here's an example of a signature string:</span></span>
 
 ```
 POST\n1024\napplication/json\nx-ms-date:Mon, 04 Apr 2016 08:00:00 GMT\n/api/logs
 ```
 
-<span data-ttu-id="9284c-165">서명 문자열이 있을 때는 UTF-8 문자열에서 HMAC-SHA256 알고리즘을 사용하여 인코딩한 다음 결과를 Base64로 인코딩합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-165">When you have the signature string, encode it by using the HMAC-SHA256 algorithm on the UTF-8-encoded string, and then encode the result as Base64.</span></span> <span data-ttu-id="9284c-166">이 형식을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-166">Use this format:</span></span>
+<span data-ttu-id="3956e-165">Hello 서명 문자열을 사용 하 여 인코딩할를 보유 하는 경우 hello u t F-8로 인코딩된 문자열에서 hmac-sha256 알고리즘 hello 하 고 Base64 hello 결과 인코딩하십시오.</span><span class="sxs-lookup"><span data-stu-id="3956e-165">When you have hello signature string, encode it by using hello HMAC-SHA256 algorithm on hello UTF-8-encoded string, and then encode hello result as Base64.</span></span> <span data-ttu-id="3956e-166">이 형식을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-166">Use this format:</span></span>
 
 ```
 Signature=Base64(HMAC-SHA256(UTF8(StringToSign)))
 ```
 
-<span data-ttu-id="9284c-167">다음 섹션의 샘플은 권한 부여 헤더를 만드는 데 도움이 되는 예제 코드입니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-167">The samples in the next sections have sample code to help you create an authorization header.</span></span>
+<span data-ttu-id="3956e-167">hello 샘플 hello 다음 섹션의 샘플 코드 toohelp 권한 부여 헤더를 만들 수 있으며</span><span class="sxs-lookup"><span data-stu-id="3956e-167">hello samples in hello next sections have sample code toohelp you create an authorization header.</span></span>
 
-## <a name="request-body"></a><span data-ttu-id="9284c-168">요청 본문</span><span class="sxs-lookup"><span data-stu-id="9284c-168">Request body</span></span>
-<span data-ttu-id="9284c-169">메시지의 본문은 JSON에 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-169">The body of the message must be in JSON.</span></span> <span data-ttu-id="9284c-170">다음 형식으로 속성 이름과 값 쌍을 갖는 하나 이상의 레코드를 포함해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-170">It must include one or more records with the property name and value pairs in this format:</span></span>
+## <a name="request-body"></a><span data-ttu-id="3956e-168">요청 본문</span><span class="sxs-lookup"><span data-stu-id="3956e-168">Request body</span></span>
+<span data-ttu-id="3956e-169">hello hello 메시지 본문은 JSON에 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-169">hello body of hello message must be in JSON.</span></span> <span data-ttu-id="3956e-170">이 형식으로 hello 속성 이름 및 값 쌍이 있는 레코드를 하나 이상 포함 되어야.</span><span class="sxs-lookup"><span data-stu-id="3956e-170">It must include one or more records with hello property name and value pairs in this format:</span></span>
 
 ```
 {
@@ -105,7 +105,7 @@ Signature=Base64(HMAC-SHA256(UTF8(StringToSign)))
 }
 ```
 
-<span data-ttu-id="9284c-171">다음 형식을 사용하여 단일 요청에서 여러 레코드를 일괄 처리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-171">You can batch multiple records together in a single request by using the following format.</span></span> <span data-ttu-id="9284c-172">모든 레코드는 동일한 레코드 형식 이어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-172">All the records must be the same record type.</span></span>
+<span data-ttu-id="3956e-171">형식에 따라 hello를 사용 하 여 단일 요청에서 함께 여러 레코드를 일괄 처리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-171">You can batch multiple records together in a single request by using hello following format.</span></span> <span data-ttu-id="3956e-172">모든 hello 레코드 hello 여야 합니다. 동일한 레코드 종류입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-172">All hello records must be hello same record type.</span></span>
 
 ```
 {
@@ -122,92 +122,92 @@ Signature=Base64(HMAC-SHA256(UTF8(StringToSign)))
 }
 ```
 
-## <a name="record-type-and-properties"></a><span data-ttu-id="9284c-173">레코드 유형 및 속성</span><span class="sxs-lookup"><span data-stu-id="9284c-173">Record type and properties</span></span>
-<span data-ttu-id="9284c-174">Log Analytics HTTP 데이터 수집기 API를 통해 데이터를 제출할 때 사용자 지정 레코드 유형을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-174">You define a custom record type when you submit data through the Log Analytics HTTP Data Collector API.</span></span> <span data-ttu-id="9284c-175">현재는 다른 데이터 형식과 솔루션으로 만든 기존 레코드 형식에 데이터를 쓸 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-175">Currently, you can't write data to existing record types that were created by other data types and solutions.</span></span> <span data-ttu-id="9284c-176">Log Analytics가 드러오는 데이터를 읽은 다음 입력한 값의 데이터 형식과 일치하는 속성을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-176">Log Analytics reads the incoming data and then creates properties that match the data types of the values that you enter.</span></span>
+## <a name="record-type-and-properties"></a><span data-ttu-id="3956e-173">레코드 유형 및 속성</span><span class="sxs-lookup"><span data-stu-id="3956e-173">Record type and properties</span></span>
+<span data-ttu-id="3956e-174">Hello 로그 분석 HTTP 데이터 수집기 API를 통해 데이터를 전송할 때에 사용자 지정 레코드 종류를 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-174">You define a custom record type when you submit data through hello Log Analytics HTTP Data Collector API.</span></span> <span data-ttu-id="3956e-175">현재, 다른 데이터 형식 및 솔루션에 의해 생성 된 레코드 종류 tooexisting 데이터를 쓸 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-175">Currently, you can't write data tooexisting record types that were created by other data types and solutions.</span></span> <span data-ttu-id="3956e-176">로그 분석 hello 들어오는 데이터를 읽고 하 한 다음 입력 한 hello 값의 hello 데이터 형식과 일치 하는 속성을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-176">Log Analytics reads hello incoming data and then creates properties that match hello data types of hello values that you enter.</span></span>
 
-<span data-ttu-id="9284c-177">Log Analytics API에 대한 각각의 요청은 레코드 형식의 이름과 함께 **Log-Type** 헤더를 포함해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-177">Each request to the Log Analytics API must include a **Log-Type** header with the name for the record type.</span></span> <span data-ttu-id="9284c-178">이 사용자 지정 로그를 다른 로그 형식과 구분하기 위해 입력한 이름에는 접미사 **_CL**이 자동으로 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-178">The suffix **_CL** is automatically appended to the name you enter to distinguish it from other log types as a custom log.</span></span> <span data-ttu-id="9284c-179">예를 들어 **MyNewRecordType**을 입력하면 Log Analytics가 **MyNewRecordType_CL** 형식의 레코드를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-179">For example, if you enter the name **MyNewRecordType**, Log Analytics creates a record with the type **MyNewRecordType_CL**.</span></span> <span data-ttu-id="9284c-180">이렇게 하면 사용자가 만든 형식 이름과 Microsoft가 현재 또는 향후에 포함한 이름 사이의 충돌을 방지할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-180">This helps ensure that there are no conflicts between user-created type names and those shipped in current or future Microsoft solutions.</span></span>
+<span data-ttu-id="3956e-177">로그 분석 API를 포함 해야 하는 각 요청 toohello는 **로그 유형** hello 레코드 종류에 대 한 hello 이름 가진 헤더가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-177">Each request toohello Log Analytics API must include a **Log-Type** header with hello name for hello record type.</span></span> <span data-ttu-id="3956e-178">hello 접미사 **_CL** toodistinguish 다른 로그에서 사용자 지정 로그도 형식을 입력 하면 자동으로 추가 된 toohello 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-178">hello suffix **_CL** is automatically appended toohello name you enter toodistinguish it from other log types as a custom log.</span></span> <span data-ttu-id="3956e-179">예를 들어, hello 이름을 입력 하면 **MyNewRecordType**, 로그 분석 hello 형식을 가진 레코드를 만듭니다. **MyNewRecordType_CL**합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-179">For example, if you enter hello name **MyNewRecordType**, Log Analytics creates a record with hello type **MyNewRecordType_CL**.</span></span> <span data-ttu-id="3956e-180">이렇게 하면 사용자가 만든 형식 이름과 Microsoft가 현재 또는 향후에 포함한 이름 사이의 충돌을 방지할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-180">This helps ensure that there are no conflicts between user-created type names and those shipped in current or future Microsoft solutions.</span></span>
 
-<span data-ttu-id="9284c-181">속성의 데이터 형식을 식별하기 위해 Log Analytics가 속성 이름에 접미사를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-181">To identify a property's data type, Log Analytics adds a suffix to the property name.</span></span> <span data-ttu-id="9284c-182">속성에 null 값이 있으면 속성이 해당 레코드에 포함되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-182">If a property contains a null value, the property is not included in that record.</span></span> <span data-ttu-id="9284c-183">이 표는 속성 데이터 형식과 해당하는 접미사를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-183">This table lists the property data type and corresponding suffix:</span></span>
+<span data-ttu-id="3956e-181">tooidentify 속성의 데이터 형식, 로그 분석 접미사 toohello 속성 이름을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-181">tooidentify a property's data type, Log Analytics adds a suffix toohello property name.</span></span> <span data-ttu-id="3956e-182">속성에 null 값이 있으면 hello 속성 해당 레코드에 포함 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-182">If a property contains a null value, hello property is not included in that record.</span></span> <span data-ttu-id="3956e-183">이 표에서 hello 속성 데이터 형식 및 해당 접미사를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-183">This table lists hello property data type and corresponding suffix:</span></span>
 
-| <span data-ttu-id="9284c-184">속성 데이터 형식</span><span class="sxs-lookup"><span data-stu-id="9284c-184">Property data type</span></span> | <span data-ttu-id="9284c-185">접미사</span><span class="sxs-lookup"><span data-stu-id="9284c-185">Suffix</span></span> |
+| <span data-ttu-id="3956e-184">속성 데이터 형식</span><span class="sxs-lookup"><span data-stu-id="3956e-184">Property data type</span></span> | <span data-ttu-id="3956e-185">접미사</span><span class="sxs-lookup"><span data-stu-id="3956e-185">Suffix</span></span> |
 |:--- |:--- |
-| <span data-ttu-id="9284c-186">문자열</span><span class="sxs-lookup"><span data-stu-id="9284c-186">String</span></span> |<span data-ttu-id="9284c-187">_s</span><span class="sxs-lookup"><span data-stu-id="9284c-187">_s</span></span> |
-| <span data-ttu-id="9284c-188">Boolean</span><span class="sxs-lookup"><span data-stu-id="9284c-188">Boolean</span></span> |<span data-ttu-id="9284c-189">_b</span><span class="sxs-lookup"><span data-stu-id="9284c-189">_b</span></span> |
-| <span data-ttu-id="9284c-190">Double</span><span class="sxs-lookup"><span data-stu-id="9284c-190">Double</span></span> |<span data-ttu-id="9284c-191">_d</span><span class="sxs-lookup"><span data-stu-id="9284c-191">_d</span></span> |
-| <span data-ttu-id="9284c-192">날짜/시간</span><span class="sxs-lookup"><span data-stu-id="9284c-192">Date/time</span></span> |<span data-ttu-id="9284c-193">_t</span><span class="sxs-lookup"><span data-stu-id="9284c-193">_t</span></span> |
-| <span data-ttu-id="9284c-194">GUID</span><span class="sxs-lookup"><span data-stu-id="9284c-194">GUID</span></span> |<span data-ttu-id="9284c-195">_g</span><span class="sxs-lookup"><span data-stu-id="9284c-195">_g</span></span> |
+| <span data-ttu-id="3956e-186">문자열</span><span class="sxs-lookup"><span data-stu-id="3956e-186">String</span></span> |<span data-ttu-id="3956e-187">_s</span><span class="sxs-lookup"><span data-stu-id="3956e-187">_s</span></span> |
+| <span data-ttu-id="3956e-188">Boolean</span><span class="sxs-lookup"><span data-stu-id="3956e-188">Boolean</span></span> |<span data-ttu-id="3956e-189">_b</span><span class="sxs-lookup"><span data-stu-id="3956e-189">_b</span></span> |
+| <span data-ttu-id="3956e-190">Double</span><span class="sxs-lookup"><span data-stu-id="3956e-190">Double</span></span> |<span data-ttu-id="3956e-191">_d</span><span class="sxs-lookup"><span data-stu-id="3956e-191">_d</span></span> |
+| <span data-ttu-id="3956e-192">날짜/시간</span><span class="sxs-lookup"><span data-stu-id="3956e-192">Date/time</span></span> |<span data-ttu-id="3956e-193">_t</span><span class="sxs-lookup"><span data-stu-id="3956e-193">_t</span></span> |
+| <span data-ttu-id="3956e-194">GUID</span><span class="sxs-lookup"><span data-stu-id="3956e-194">GUID</span></span> |<span data-ttu-id="3956e-195">_g</span><span class="sxs-lookup"><span data-stu-id="3956e-195">_g</span></span> |
 
-<span data-ttu-id="9284c-196">Log Analytics가 각 속성에 사용하는 데이터 형식은 새 레코드에 대한 레코드 형식이 이미 존재하는지 여부에 따라 달라집니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-196">The data type that Log Analytics uses for each property depends on whether the record type for the new record already exists.</span></span>
+<span data-ttu-id="3956e-196">각 속성에 대 한 로그 분석을 사용 하는 hello 데이터 형식을 hello 레코드 종류 hello 새 레코드에 대해 이미 존재 하는지 여부에 따라 달라 집니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-196">hello data type that Log Analytics uses for each property depends on whether hello record type for hello new record already exists.</span></span>
 
-* <span data-ttu-id="9284c-197">레코드 형식이 없으면 Log Analytics가 새로 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-197">If the record type does not exist, Log Analytics creates a new one.</span></span> <span data-ttu-id="9284c-198">Log Analytics는 JSON 형식을 사용하여 새 레코드에 대한 각 속성의 데이터 형식을 결정합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-198">Log Analytics uses the JSON type inference to determine the data type for each property for the new record.</span></span>
-* <span data-ttu-id="9284c-199">레코드 형식이 없으면 Log Analytics가 기존 속성에 따라 새 레코드를 만들려 합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-199">If the record type does exist, Log Analytics attempts to create a new record based on existing properties.</span></span> <span data-ttu-id="9284c-200">새 레코드에서 속성에 대한 데이터 형식이 일치하지 않고 기존 형식으로 변환할 수 없거나, 레코드가 존재하지 않는 속성을 포함하는 경우 Log Analytics는 관련 접미사가 있는 새 속성을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-200">If the data type for a property in the new record doesn’t match and can’t be converted to the existing type, or if the record includes a property that doesn’t exist, Log Analytics creates a new property that has the relevant suffix.</span></span>
+* <span data-ttu-id="3956e-197">로그 분석 hello 레코드 종류가 없는 경우 새 브러시를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-197">If hello record type does not exist, Log Analytics creates a new one.</span></span> <span data-ttu-id="3956e-198">로그 분석 hello 새 레코드에 대 한 각 속성에 대 한 hello JSON 형식 유추 toodetermine hello 데이터 형식을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-198">Log Analytics uses hello JSON type inference toodetermine hello data type for each property for hello new record.</span></span>
+* <span data-ttu-id="3956e-199">Hello 레코드 종류가 있으면 로그 분석 toocreate 기존 속성에 따라 새 레코드를 시도 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-199">If hello record type does exist, Log Analytics attempts toocreate a new record based on existing properties.</span></span> <span data-ttu-id="3956e-200">Hello hello 새 레코드의 속성에 대 한 데이터 형식 및 하지 않는 경우 일치 하 고 없습니다 기존 형식, 변환 된 toohello 수 경우 hello 존재 하지 않는 속성을 포함 하는 레코드, 로그 분석의 새 속성을 만들고 hello 관련 접미사를 포함 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-200">If hello data type for a property in hello new record doesn’t match and can’t be converted toohello existing type, or if hello record includes a property that doesn’t exist, Log Analytics creates a new property that has hello relevant suffix.</span></span>
 
-<span data-ttu-id="9284c-201">예를 들어, 이 제출 항목은 **number_d**, **boolean_b**, **string_s** 등의 세 가지 속성이 있는 레코드를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-201">For example, this submission entry would create a record with three properties, **number_d**, **boolean_b**, and **string_s**:</span></span>
+<span data-ttu-id="3956e-201">예를 들어, 이 제출 항목은 **number_d**, **boolean_b**, **string_s** 등의 세 가지 속성이 있는 레코드를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-201">For example, this submission entry would create a record with three properties, **number_d**, **boolean_b**, and **string_s**:</span></span>
 
 ![샘플 레코드 1](media/log-analytics-data-collector-api/record-01.png)
 
-<span data-ttu-id="9284c-203">이후 모든 값을 문자열 형식으로 지정하여 다음 항목을 제출하면 속성이 변경되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-203">If you then submitted this next entry, with all values formatted as strings, the properties would not change.</span></span> <span data-ttu-id="9284c-204">이러한 값은 기존 데이터 형식으로 변환할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-204">These values can be converted to existing data types:</span></span>
+<span data-ttu-id="3956e-203">다음 문자열 형식으로 지정 하는 모든 값이 다음 항목을 제출 하는 경우에 hello 속성 변경 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-203">If you then submitted this next entry, with all values formatted as strings, hello properties would not change.</span></span> <span data-ttu-id="3956e-204">이러한 값에 변환 된 tooexisting 데이터 형식이 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-204">These values can be converted tooexisting data types:</span></span>
 
 ![샘플 레코드 2](media/log-analytics-data-collector-api/record-02.png)
 
-<span data-ttu-id="9284c-206">그러나 이 다음 제출을 실행하면 Log Analytics가 새 속성 **boolean_d** 및 **string_d**를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-206">But, if you then made this next submission, Log Analytics would create the new properties **boolean_d** and **string_d**.</span></span> <span data-ttu-id="9284c-207">이 값은 변환할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-207">These values can't be converted:</span></span>
+<span data-ttu-id="3956e-206">하지만 그런 다음이 다음 전송을 수행한 경우 로그 분석은 hello 새 속성을 만들 **boolean_d** 및 **string_d**합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-206">But, if you then made this next submission, Log Analytics would create hello new properties **boolean_d** and **string_d**.</span></span> <span data-ttu-id="3956e-207">이 값은 변환할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-207">These values can't be converted:</span></span>
 
 ![샘플 레코드 3](media/log-analytics-data-collector-api/record-03.png)
 
-<span data-ttu-id="9284c-209">이후 다음 항목을 제출하면 레코드 형식을 만들기 전에 Log Analytics가 **number_s**, **boolean_s** 및 **string_s** 등의 세 가지 속성으로 레코드를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-209">If you then submitted the following entry, before the record type was created, Log Analytics would create a record with three properties, **number_s**, **boolean_s**, and **string_s**.</span></span> <span data-ttu-id="9284c-210">이 항목에서 각각의 초기 값은 문자열 형식이 됩니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-210">In this entry, each of the initial values is formatted as a string:</span></span>
+<span data-ttu-id="3956e-209">로그 분석은 세 가지 속성 사용 레코드를 만듭니다 hello hello 레코드 종류를 만들기 전에 항목을 다음에 다음 제출 **number_s**, **boolean_s**, 및 **string_s**.</span><span class="sxs-lookup"><span data-stu-id="3956e-209">If you then submitted hello following entry, before hello record type was created, Log Analytics would create a record with three properties, **number_s**, **boolean_s**, and **string_s**.</span></span> <span data-ttu-id="3956e-210">이 항목에서 문자열로 형식이 각 hello 초기 값:</span><span class="sxs-lookup"><span data-stu-id="3956e-210">In this entry, each of hello initial values is formatted as a string:</span></span>
 
 ![샘플 레코드 4](media/log-analytics-data-collector-api/record-04.png)
 
-## <a name="data-limits"></a><span data-ttu-id="9284c-212">데이터 제한</span><span class="sxs-lookup"><span data-stu-id="9284c-212">Data limits</span></span>
-<span data-ttu-id="9284c-213">Log Analytics 데이터 수집 API에 게시된 데이터에 대한 몇 가지 제약 조건이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-213">There are some constraints around the data posted to the Log Analytics Data collection API.</span></span>
+## <a name="data-limits"></a><span data-ttu-id="3956e-212">데이터 제한</span><span class="sxs-lookup"><span data-stu-id="3956e-212">Data limits</span></span>
+<span data-ttu-id="3956e-213">로그 분석 데이터 컬렉션 API toohello 게시 hello 데이터에 대 한 몇 가지 제약 조건이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-213">There are some constraints around hello data posted toohello Log Analytics Data collection API.</span></span>
 
-* <span data-ttu-id="9284c-214">Log Analytics 데이터 수집기 API의 게시물당 최대 30MB.</span><span class="sxs-lookup"><span data-stu-id="9284c-214">Maximum of 30 MB per post to Log Analytics Data Collector API.</span></span> <span data-ttu-id="9284c-215">이는 단일 게시물에 대한 크기 제한입니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-215">This is a size limit for a single post.</span></span> <span data-ttu-id="9284c-216">단일 게시물의 데이터가 30MB를 초과하는 경우 보다 작은 크기의 청크로 분할하여 동시에 보내야 합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-216">If the data from a single post that exceeds 30 MB, you should split the data up to smaller sized chunks and send them concurrently.</span></span>
-* <span data-ttu-id="9284c-217">최대 32KB의 필드 값 제한.</span><span class="sxs-lookup"><span data-stu-id="9284c-217">Maximum of 32 KB limit for field values.</span></span> <span data-ttu-id="9284c-218">필드 값이 32KB보다 크면 데이터가 잘립니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-218">If the field value is greater than 32 KB, the data will be truncated.</span></span>
-* <span data-ttu-id="9284c-219">지정된 형식의 권장되는 최대 필드 수는 50개입니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-219">Recommended maximum number of fields for a given type is 50.</span></span> <span data-ttu-id="9284c-220">이는 사용 편의성 및 검색 환경 관점에서의 실용적인 제한입니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-220">This is a practical limit from a usability and search experience perspective.</span></span>  
+* <span data-ttu-id="3956e-214">30MB post tooLog 분석 데이터 수집기 API 당 최대입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-214">Maximum of 30 MB per post tooLog Analytics Data Collector API.</span></span> <span data-ttu-id="3956e-215">이는 단일 게시물에 대한 크기 제한입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-215">This is a size limit for a single post.</span></span> <span data-ttu-id="3956e-216">경우 30 MB를 초과 하는 단일 게시에서 hello 데이터를 분할 해야 hello 데이터 크기의 toosmaller 분할 하 고 동시에 보내야 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-216">If hello data from a single post that exceeds 30 MB, you should split hello data up toosmaller sized chunks and send them concurrently.</span></span>
+* <span data-ttu-id="3956e-217">최대 32KB의 필드 값 제한.</span><span class="sxs-lookup"><span data-stu-id="3956e-217">Maximum of 32 KB limit for field values.</span></span> <span data-ttu-id="3956e-218">Hello 필드 값 32KB 보다 클 경우 hello 데이터가 잘립니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-218">If hello field value is greater than 32 KB, hello data will be truncated.</span></span>
+* <span data-ttu-id="3956e-219">지정된 형식의 권장되는 최대 필드 수는 50개입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-219">Recommended maximum number of fields for a given type is 50.</span></span> <span data-ttu-id="3956e-220">이는 사용 편의성 및 검색 환경 관점에서의 실용적인 제한입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-220">This is a practical limit from a usability and search experience perspective.</span></span>  
 
-## <a name="return-codes"></a><span data-ttu-id="9284c-221">반환 코드</span><span class="sxs-lookup"><span data-stu-id="9284c-221">Return codes</span></span>
-<span data-ttu-id="9284c-222">HTTP 상태 코드 200는 처리를 위한 요청을 받았다는 것을 의미합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-222">The HTTP status code 200 means that the request has been received for processing.</span></span> <span data-ttu-id="9284c-223">이 항목은 작업이 성공적으로 완료되었음을 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-223">This indicates that the operation completed successfully.</span></span>
+## <a name="return-codes"></a><span data-ttu-id="3956e-221">반환 코드</span><span class="sxs-lookup"><span data-stu-id="3956e-221">Return codes</span></span>
+<span data-ttu-id="3956e-222">HTTP 상태 코드 200 hello 처리를 위해 해당 hello 요청을 수신 했음을 의미 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-222">hello HTTP status code 200 means that hello request has been received for processing.</span></span> <span data-ttu-id="3956e-223">이 hello 작업이 성공적으로 완료를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-223">This indicates that hello operation completed successfully.</span></span>
 
-<span data-ttu-id="9284c-224">이 표는 서비스에서 반환할 수 있는 전체 상태 코드 집합을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-224">This table lists the complete set of status codes that the service might return:</span></span>
+<span data-ttu-id="3956e-224">이 표에서 hello hello 서비스를 반환할 수 있는 상태 코드의 전체 집합을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-224">This table lists hello complete set of status codes that hello service might return:</span></span>
 
-| <span data-ttu-id="9284c-225">코드</span><span class="sxs-lookup"><span data-stu-id="9284c-225">Code</span></span> | <span data-ttu-id="9284c-226">가동 상태</span><span class="sxs-lookup"><span data-stu-id="9284c-226">Status</span></span> | <span data-ttu-id="9284c-227">오류 코드</span><span class="sxs-lookup"><span data-stu-id="9284c-227">Error code</span></span> | <span data-ttu-id="9284c-228">설명</span><span class="sxs-lookup"><span data-stu-id="9284c-228">Description</span></span> |
+| <span data-ttu-id="3956e-225">코드</span><span class="sxs-lookup"><span data-stu-id="3956e-225">Code</span></span> | <span data-ttu-id="3956e-226">가동 상태</span><span class="sxs-lookup"><span data-stu-id="3956e-226">Status</span></span> | <span data-ttu-id="3956e-227">오류 코드</span><span class="sxs-lookup"><span data-stu-id="3956e-227">Error code</span></span> | <span data-ttu-id="3956e-228">설명</span><span class="sxs-lookup"><span data-stu-id="3956e-228">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="9284c-229">200</span><span class="sxs-lookup"><span data-stu-id="9284c-229">200</span></span> |<span data-ttu-id="9284c-230">확인</span><span class="sxs-lookup"><span data-stu-id="9284c-230">OK</span></span> | |<span data-ttu-id="9284c-231">요청이 성공적으로 수락되었습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-231">The request was successfully accepted.</span></span> |
-| <span data-ttu-id="9284c-232">400</span><span class="sxs-lookup"><span data-stu-id="9284c-232">400</span></span> |<span data-ttu-id="9284c-233">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="9284c-233">Bad request</span></span> |<span data-ttu-id="9284c-234">InactiveCustomer</span><span class="sxs-lookup"><span data-stu-id="9284c-234">InactiveCustomer</span></span> |<span data-ttu-id="9284c-235">작업 영역이 닫혔습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-235">The workspace has been closed.</span></span> |
-| <span data-ttu-id="9284c-236">400</span><span class="sxs-lookup"><span data-stu-id="9284c-236">400</span></span> |<span data-ttu-id="9284c-237">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="9284c-237">Bad request</span></span> |<span data-ttu-id="9284c-238">InvalidApiVersion</span><span class="sxs-lookup"><span data-stu-id="9284c-238">InvalidApiVersion</span></span> |<span data-ttu-id="9284c-239">지정한 API 버전이 서비스에서 인식되지 않았습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-239">The API version that you specified was not recognized by the service.</span></span> |
-| <span data-ttu-id="9284c-240">400</span><span class="sxs-lookup"><span data-stu-id="9284c-240">400</span></span> |<span data-ttu-id="9284c-241">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="9284c-241">Bad request</span></span> |<span data-ttu-id="9284c-242">InvalidCustomerId</span><span class="sxs-lookup"><span data-stu-id="9284c-242">InvalidCustomerId</span></span> |<span data-ttu-id="9284c-243">지정된 작업 영역 ID가 올바르지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-243">The workspace ID specified is invalid.</span></span> |
-| <span data-ttu-id="9284c-244">400</span><span class="sxs-lookup"><span data-stu-id="9284c-244">400</span></span> |<span data-ttu-id="9284c-245">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="9284c-245">Bad request</span></span> |<span data-ttu-id="9284c-246">InvalidDataFormat</span><span class="sxs-lookup"><span data-stu-id="9284c-246">InvalidDataFormat</span></span> |<span data-ttu-id="9284c-247">잘못된 JSON이 제출되었습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-247">Invalid JSON was submitted.</span></span> <span data-ttu-id="9284c-248">응답 본문에 오류 해결 방법에 관한 추가 정보가 포함될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-248">The response body might contain more information about how to resolve the error.</span></span> |
-| <span data-ttu-id="9284c-249">400</span><span class="sxs-lookup"><span data-stu-id="9284c-249">400</span></span> |<span data-ttu-id="9284c-250">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="9284c-250">Bad request</span></span> |<span data-ttu-id="9284c-251">InvalidLogType</span><span class="sxs-lookup"><span data-stu-id="9284c-251">InvalidLogType</span></span> |<span data-ttu-id="9284c-252">지정한 로그 형식이 특수 문자나 숫자를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-252">The log type specified contained special characters or numerics.</span></span> |
-| <span data-ttu-id="9284c-253">400</span><span class="sxs-lookup"><span data-stu-id="9284c-253">400</span></span> |<span data-ttu-id="9284c-254">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="9284c-254">Bad request</span></span> |<span data-ttu-id="9284c-255">MissingApiVersion</span><span class="sxs-lookup"><span data-stu-id="9284c-255">MissingApiVersion</span></span> |<span data-ttu-id="9284c-256">API 버전을 지정하지 않았습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-256">The API version wasn’t specified.</span></span> |
-| <span data-ttu-id="9284c-257">400</span><span class="sxs-lookup"><span data-stu-id="9284c-257">400</span></span> |<span data-ttu-id="9284c-258">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="9284c-258">Bad request</span></span> |<span data-ttu-id="9284c-259">MissingContentType</span><span class="sxs-lookup"><span data-stu-id="9284c-259">MissingContentType</span></span> |<span data-ttu-id="9284c-260">콘텐츠 형식을 지정하지 않았습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-260">The content type wasn’t specified.</span></span> |
-| <span data-ttu-id="9284c-261">400</span><span class="sxs-lookup"><span data-stu-id="9284c-261">400</span></span> |<span data-ttu-id="9284c-262">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="9284c-262">Bad request</span></span> |<span data-ttu-id="9284c-263">MissingLogType</span><span class="sxs-lookup"><span data-stu-id="9284c-263">MissingLogType</span></span> |<span data-ttu-id="9284c-264">필요한 값 로그 형식을 지정하지 않았습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-264">The required value log type wasn’t specified.</span></span> |
-| <span data-ttu-id="9284c-265">400</span><span class="sxs-lookup"><span data-stu-id="9284c-265">400</span></span> |<span data-ttu-id="9284c-266">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="9284c-266">Bad request</span></span> |<span data-ttu-id="9284c-267">UnsupportedContentType</span><span class="sxs-lookup"><span data-stu-id="9284c-267">UnsupportedContentType</span></span> |<span data-ttu-id="9284c-268">콘텐츠 형식이 **application/json**으로 설정되지 않았습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-268">The content type was not set to **application/json**.</span></span> |
-| <span data-ttu-id="9284c-269">403</span><span class="sxs-lookup"><span data-stu-id="9284c-269">403</span></span> |<span data-ttu-id="9284c-270">사용할 수 없음</span><span class="sxs-lookup"><span data-stu-id="9284c-270">Forbidden</span></span> |<span data-ttu-id="9284c-271">InvalidAuthorization</span><span class="sxs-lookup"><span data-stu-id="9284c-271">InvalidAuthorization</span></span> |<span data-ttu-id="9284c-272">서비스가 요청을 인증하지 못했습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-272">The service failed to authenticate the request.</span></span> <span data-ttu-id="9284c-273">작업 영역 ID 및 연결 키가 올바른지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-273">Verify that the workspace ID and connection key are valid.</span></span> |
-| <span data-ttu-id="9284c-274">404</span><span class="sxs-lookup"><span data-stu-id="9284c-274">404</span></span> |<span data-ttu-id="9284c-275">찾을 수 없음</span><span class="sxs-lookup"><span data-stu-id="9284c-275">Not Found</span></span> | | <span data-ttu-id="9284c-276">제공된 URL이 잘못되었거나 요청이 너무 큽니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-276">Either the URL provided is incorrect, or the request is too large.</span></span> |
-| <span data-ttu-id="9284c-277">429</span><span class="sxs-lookup"><span data-stu-id="9284c-277">429</span></span> |<span data-ttu-id="9284c-278">너무 많은 요청</span><span class="sxs-lookup"><span data-stu-id="9284c-278">Too Many Requests</span></span> | | <span data-ttu-id="9284c-279">서비스 계정에서 많은 양의 데이터가 발생했습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-279">The service is experiencing a high volume of data from your account.</span></span> <span data-ttu-id="9284c-280">요청을 나중에 다시 시도하세요.</span><span class="sxs-lookup"><span data-stu-id="9284c-280">Please retry the request later.</span></span> |
-| <span data-ttu-id="9284c-281">500</span><span class="sxs-lookup"><span data-stu-id="9284c-281">500</span></span> |<span data-ttu-id="9284c-282">내부 서버 오류</span><span class="sxs-lookup"><span data-stu-id="9284c-282">Internal Server Error</span></span> |<span data-ttu-id="9284c-283">UnspecifiedError</span><span class="sxs-lookup"><span data-stu-id="9284c-283">UnspecifiedError</span></span> |<span data-ttu-id="9284c-284">서비스에 내부 오류가 발생했습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-284">The service encountered an internal error.</span></span> <span data-ttu-id="9284c-285">요청을 다시 시도하세요.</span><span class="sxs-lookup"><span data-stu-id="9284c-285">Please retry the request.</span></span> |
-| <span data-ttu-id="9284c-286">503</span><span class="sxs-lookup"><span data-stu-id="9284c-286">503</span></span> |<span data-ttu-id="9284c-287">서비스를 사용할 수 없음</span><span class="sxs-lookup"><span data-stu-id="9284c-287">Service Unavailable</span></span> |<span data-ttu-id="9284c-288">ServiceUnavailable</span><span class="sxs-lookup"><span data-stu-id="9284c-288">ServiceUnavailable</span></span> |<span data-ttu-id="9284c-289">현재 서비스가 요청을 받을 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-289">The service currently is unavailable to receive requests.</span></span> <span data-ttu-id="9284c-290">요청을 다시 시도하세요.</span><span class="sxs-lookup"><span data-stu-id="9284c-290">Please retry your request.</span></span> |
+| <span data-ttu-id="3956e-229">200</span><span class="sxs-lookup"><span data-stu-id="3956e-229">200</span></span> |<span data-ttu-id="3956e-230">확인</span><span class="sxs-lookup"><span data-stu-id="3956e-230">OK</span></span> | |<span data-ttu-id="3956e-231">hello 요청이 성공적으로 수락 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-231">hello request was successfully accepted.</span></span> |
+| <span data-ttu-id="3956e-232">400</span><span class="sxs-lookup"><span data-stu-id="3956e-232">400</span></span> |<span data-ttu-id="3956e-233">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="3956e-233">Bad request</span></span> |<span data-ttu-id="3956e-234">InactiveCustomer</span><span class="sxs-lookup"><span data-stu-id="3956e-234">InactiveCustomer</span></span> |<span data-ttu-id="3956e-235">작업 영역 hello 종료 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-235">hello workspace has been closed.</span></span> |
+| <span data-ttu-id="3956e-236">400</span><span class="sxs-lookup"><span data-stu-id="3956e-236">400</span></span> |<span data-ttu-id="3956e-237">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="3956e-237">Bad request</span></span> |<span data-ttu-id="3956e-238">InvalidApiVersion</span><span class="sxs-lookup"><span data-stu-id="3956e-238">InvalidApiVersion</span></span> |<span data-ttu-id="3956e-239">지정한 hello API 버전 hello 서비스에서 인식할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-239">hello API version that you specified was not recognized by hello service.</span></span> |
+| <span data-ttu-id="3956e-240">400</span><span class="sxs-lookup"><span data-stu-id="3956e-240">400</span></span> |<span data-ttu-id="3956e-241">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="3956e-241">Bad request</span></span> |<span data-ttu-id="3956e-242">InvalidCustomerId</span><span class="sxs-lookup"><span data-stu-id="3956e-242">InvalidCustomerId</span></span> |<span data-ttu-id="3956e-243">지정 된 hello 작업 영역 ID 올바르지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-243">hello workspace ID specified is invalid.</span></span> |
+| <span data-ttu-id="3956e-244">400</span><span class="sxs-lookup"><span data-stu-id="3956e-244">400</span></span> |<span data-ttu-id="3956e-245">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="3956e-245">Bad request</span></span> |<span data-ttu-id="3956e-246">InvalidDataFormat</span><span class="sxs-lookup"><span data-stu-id="3956e-246">InvalidDataFormat</span></span> |<span data-ttu-id="3956e-247">잘못된 JSON이 제출되었습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-247">Invalid JSON was submitted.</span></span> <span data-ttu-id="3956e-248">hello 응답 본문 tooresolve 오류 hello 하는 방법에 대 한 자세한 내용은 포함 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-248">hello response body might contain more information about how tooresolve hello error.</span></span> |
+| <span data-ttu-id="3956e-249">400</span><span class="sxs-lookup"><span data-stu-id="3956e-249">400</span></span> |<span data-ttu-id="3956e-250">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="3956e-250">Bad request</span></span> |<span data-ttu-id="3956e-251">InvalidLogType</span><span class="sxs-lookup"><span data-stu-id="3956e-251">InvalidLogType</span></span> |<span data-ttu-id="3956e-252">hello 로그 형식이 포함 된 특수 문자 또는 숫자를 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-252">hello log type specified contained special characters or numerics.</span></span> |
+| <span data-ttu-id="3956e-253">400</span><span class="sxs-lookup"><span data-stu-id="3956e-253">400</span></span> |<span data-ttu-id="3956e-254">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="3956e-254">Bad request</span></span> |<span data-ttu-id="3956e-255">MissingApiVersion</span><span class="sxs-lookup"><span data-stu-id="3956e-255">MissingApiVersion</span></span> |<span data-ttu-id="3956e-256">hello API 버전이 지정 되지 않았습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-256">hello API version wasn’t specified.</span></span> |
+| <span data-ttu-id="3956e-257">400</span><span class="sxs-lookup"><span data-stu-id="3956e-257">400</span></span> |<span data-ttu-id="3956e-258">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="3956e-258">Bad request</span></span> |<span data-ttu-id="3956e-259">MissingContentType</span><span class="sxs-lookup"><span data-stu-id="3956e-259">MissingContentType</span></span> |<span data-ttu-id="3956e-260">hello 콘텐츠 형식이 지정 되지 않았습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-260">hello content type wasn’t specified.</span></span> |
+| <span data-ttu-id="3956e-261">400</span><span class="sxs-lookup"><span data-stu-id="3956e-261">400</span></span> |<span data-ttu-id="3956e-262">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="3956e-262">Bad request</span></span> |<span data-ttu-id="3956e-263">MissingLogType</span><span class="sxs-lookup"><span data-stu-id="3956e-263">MissingLogType</span></span> |<span data-ttu-id="3956e-264">hello 값 로그 형식이 지정 되지 않은 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-264">hello required value log type wasn’t specified.</span></span> |
+| <span data-ttu-id="3956e-265">400</span><span class="sxs-lookup"><span data-stu-id="3956e-265">400</span></span> |<span data-ttu-id="3956e-266">잘못된 요청</span><span class="sxs-lookup"><span data-stu-id="3956e-266">Bad request</span></span> |<span data-ttu-id="3956e-267">UnsupportedContentType</span><span class="sxs-lookup"><span data-stu-id="3956e-267">UnsupportedContentType</span></span> |<span data-ttu-id="3956e-268">hello 콘텐츠 형식이 너무 설정 되지 않았습니다.**응용 프로그램/json**합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-268">hello content type was not set too**application/json**.</span></span> |
+| <span data-ttu-id="3956e-269">403</span><span class="sxs-lookup"><span data-stu-id="3956e-269">403</span></span> |<span data-ttu-id="3956e-270">사용할 수 없음</span><span class="sxs-lookup"><span data-stu-id="3956e-270">Forbidden</span></span> |<span data-ttu-id="3956e-271">InvalidAuthorization</span><span class="sxs-lookup"><span data-stu-id="3956e-271">InvalidAuthorization</span></span> |<span data-ttu-id="3956e-272">hello 서비스 tooauthenticate hello 요청을 하지 못했습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-272">hello service failed tooauthenticate hello request.</span></span> <span data-ttu-id="3956e-273">해당 hello 작업 영역 ID 및 연결 키 올바른지 확인 하십시오.</span><span class="sxs-lookup"><span data-stu-id="3956e-273">Verify that hello workspace ID and connection key are valid.</span></span> |
+| <span data-ttu-id="3956e-274">404</span><span class="sxs-lookup"><span data-stu-id="3956e-274">404</span></span> |<span data-ttu-id="3956e-275">찾을 수 없음</span><span class="sxs-lookup"><span data-stu-id="3956e-275">Not Found</span></span> | | <span data-ttu-id="3956e-276">제공 된 hello URL 잘못 되었거나 hello 요청이 너무 많습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-276">Either hello URL provided is incorrect, or hello request is too large.</span></span> |
+| <span data-ttu-id="3956e-277">429</span><span class="sxs-lookup"><span data-stu-id="3956e-277">429</span></span> |<span data-ttu-id="3956e-278">너무 많은 요청</span><span class="sxs-lookup"><span data-stu-id="3956e-278">Too Many Requests</span></span> | | <span data-ttu-id="3956e-279">hello 서비스 계정에서 데이터 양이 많기 발생 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-279">hello service is experiencing a high volume of data from your account.</span></span> <span data-ttu-id="3956e-280">Hello 요청을 나중에 다시 시도 하십시오.</span><span class="sxs-lookup"><span data-stu-id="3956e-280">Please retry hello request later.</span></span> |
+| <span data-ttu-id="3956e-281">500</span><span class="sxs-lookup"><span data-stu-id="3956e-281">500</span></span> |<span data-ttu-id="3956e-282">내부 서버 오류</span><span class="sxs-lookup"><span data-stu-id="3956e-282">Internal Server Error</span></span> |<span data-ttu-id="3956e-283">UnspecifiedError</span><span class="sxs-lookup"><span data-stu-id="3956e-283">UnspecifiedError</span></span> |<span data-ttu-id="3956e-284">hello 서비스 내부 오류가 발생 했습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-284">hello service encountered an internal error.</span></span> <span data-ttu-id="3956e-285">Hello 요청을 다시 시도 하십시오.</span><span class="sxs-lookup"><span data-stu-id="3956e-285">Please retry hello request.</span></span> |
+| <span data-ttu-id="3956e-286">503</span><span class="sxs-lookup"><span data-stu-id="3956e-286">503</span></span> |<span data-ttu-id="3956e-287">서비스를 사용할 수 없음</span><span class="sxs-lookup"><span data-stu-id="3956e-287">Service Unavailable</span></span> |<span data-ttu-id="3956e-288">ServiceUnavailable</span><span class="sxs-lookup"><span data-stu-id="3956e-288">ServiceUnavailable</span></span> |<span data-ttu-id="3956e-289">hello 서비스는 현재 사용할 수 없는 tooreceive 요청입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-289">hello service currently is unavailable tooreceive requests.</span></span> <span data-ttu-id="3956e-290">요청을 다시 시도하세요.</span><span class="sxs-lookup"><span data-stu-id="3956e-290">Please retry your request.</span></span> |
 
-## <a name="query-data"></a><span data-ttu-id="9284c-291">쿼리 데이터</span><span class="sxs-lookup"><span data-stu-id="9284c-291">Query data</span></span>
-<span data-ttu-id="9284c-292">Log Analytics HTTP 데이터 수집기 API에서 제출한 데이터를 쿼리하려면 지정한 **LogType** 값에 **_CL**을 첨부한 것과 같은 **형식**의 레코드를 검색하십시오.</span><span class="sxs-lookup"><span data-stu-id="9284c-292">To query data submitted by the Log Analytics HTTP Data Collector API, search for records with **Type** that is equal to the **LogType** value that you specified, appended with **_CL**.</span></span> <span data-ttu-id="9284c-293">예를 들어, **MyCustomLog**를 사용한 경우**Type=MyCustomLog_CL**을 갖는 모든 레코드를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-293">For example, if you used **MyCustomLog**, then you'd return all records with **Type=MyCustomLog_CL**.</span></span>
+## <a name="query-data"></a><span data-ttu-id="3956e-291">쿼리 데이터</span><span class="sxs-lookup"><span data-stu-id="3956e-291">Query data</span></span>
+<span data-ttu-id="3956e-292">로그 분석 HTTP 데이터 수집기 API, 검색 된 레코드에 대 한 hello 제출한 tooquery 데이터 **형식** 같은 toohello 즉 **LogType** 추가 되므로 사용자가 지정한 값 **_CL**.</span><span class="sxs-lookup"><span data-stu-id="3956e-292">tooquery data submitted by hello Log Analytics HTTP Data Collector API, search for records with **Type** that is equal toohello **LogType** value that you specified, appended with **_CL**.</span></span> <span data-ttu-id="3956e-293">예를 들어, **MyCustomLog**를 사용한 경우**Type=MyCustomLog_CL**을 갖는 모든 레코드를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-293">For example, if you used **MyCustomLog**, then you'd return all records with **Type=MyCustomLog_CL**.</span></span>
 
 >[!NOTE]
-> <span data-ttu-id="9284c-294">작업 영역을 [새 Log Analytics 쿼리 언어](log-analytics-log-search-upgrade.md)로 업그레이드한 경우에는 위 쿼리가 다음과 같이 변경됩니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-294">If your workspace has been upgraded to the [new Log Analytics query language](log-analytics-log-search-upgrade.md), then the above query would change to the following.</span></span>
+> <span data-ttu-id="3956e-294">작업 영역에는 업그레이드 된 toohello 되었으면 [새 로그 분석 쿼리 언어](log-analytics-log-search-upgrade.md), 쿼리 위에 hello toohello 다음 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-294">If your workspace has been upgraded toohello [new Log Analytics query language](log-analytics-log-search-upgrade.md), then hello above query would change toohello following.</span></span>
 
 > `MyCustomLog_CL`
 
-## <a name="sample-requests"></a><span data-ttu-id="9284c-295">샘플 요청</span><span class="sxs-lookup"><span data-stu-id="9284c-295">Sample requests</span></span>
-<span data-ttu-id="9284c-296">다음 섹션에서는 다양한 프로그래밍 언어를 사용하여 Log Analytics HTTP 데이터 수집기에 데이터를 제출하는 방법의 샘플을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-296">In the next sections, you'll find samples of how to submit data to the Log Analytics HTTP Data Collector API by using different programming languages.</span></span>
+## <a name="sample-requests"></a><span data-ttu-id="3956e-295">샘플 요청</span><span class="sxs-lookup"><span data-stu-id="3956e-295">Sample requests</span></span>
+<span data-ttu-id="3956e-296">Hello의 다음 섹션에서 방법 보여 주는 예제를 찾을 수 있습니다 다른 프로그래밍 언어를 사용 하 여 toosubmit 데이터 toohello 로그 분석 HTTP 데이터 수집기 API입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-296">In hello next sections, you'll find samples of how toosubmit data toohello Log Analytics HTTP Data Collector API by using different programming languages.</span></span>
 
-<span data-ttu-id="9284c-297">각각의 샘플에서 다음 절차를 통해 권한 부여 헤더에 대한 변수를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-297">For each sample, do these steps to set the variables for the authorization header:</span></span>
+<span data-ttu-id="3956e-297">각 샘플에 대해 다음이 단계를 수행 hello 권한 부여 헤더에 대 한 tooset hello 변수:</span><span class="sxs-lookup"><span data-stu-id="3956e-297">For each sample, do these steps tooset hello variables for hello authorization header:</span></span>
 
-1. <span data-ttu-id="9284c-298">Operations Management Suite 포털에서 **설정** 타일을 선택하고 **연결 원본** 탭을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-298">In the Operations Management Suite portal, select the **Settings** tile, and then select the **Connected Sources** tab.</span></span>
-2. <span data-ttu-id="9284c-299">**작업 영역 ID** 오른쪽에서 복사 아이콘을 선택한 다음 이 ID를 **고객 ID** 변수의 값으로 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-299">To the right of **Workspace ID**, select the copy icon, and then paste the ID as the value of the **Customer ID** variable.</span></span>
-3. <span data-ttu-id="9284c-300">**기본 키** 오른쪽에서 복사 아이콘을 선택한 다음 이 ID를 **공유 키** 변수의 값으로 붙여넣습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-300">To the right of **Primary Key**, select the copy icon, and then paste the ID as the value of the **Shared Key** variable.</span></span>
+1. <span data-ttu-id="3956e-298">Hello Operations Management Suite 포털에서 선택 hello **설정** 타일을 선택한 후 hello **연결 된 원본** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-298">In hello Operations Management Suite portal, select hello **Settings** tile, and then select hello **Connected Sources** tab.</span></span>
+2. <span data-ttu-id="3956e-299">오른쪽 toohello **작업 영역 ID**hello 복사 아이콘을 선택한 다음 hello ID hello의 hello 값으로 붙여 **고객 ID** 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-299">toohello right of **Workspace ID**, select hello copy icon, and then paste hello ID as hello value of hello **Customer ID** variable.</span></span>
+3. <span data-ttu-id="3956e-300">오른쪽 toohello **기본 키**hello 복사 아이콘을 선택한 다음 hello ID hello의 hello 값으로 붙여 **공유 키** 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-300">toohello right of **Primary Key**, select hello copy icon, and then paste hello ID as hello value of hello **Shared Key** variable.</span></span>
 
-<span data-ttu-id="9284c-301">또는 로그 형식 및 JSON 데이터에 대한 변수를 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-301">Alternatively, you can change the variables for the log type and JSON data.</span></span>
+<span data-ttu-id="3956e-301">또는 hello 로그 유형 및 JSON 데이터에 대 한 hello 변수를 변경할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-301">Alternatively, you can change hello variables for hello log type and JSON data.</span></span>
 
-### <a name="powershell-sample"></a><span data-ttu-id="9284c-302">PowerShell 샘플</span><span class="sxs-lookup"><span data-stu-id="9284c-302">PowerShell sample</span></span>
+### <a name="powershell-sample"></a><span data-ttu-id="3956e-302">PowerShell 샘플</span><span class="sxs-lookup"><span data-stu-id="3956e-302">PowerShell sample</span></span>
 ```
 # Replace with your Workspace ID
 $CustomerId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"  
@@ -215,14 +215,14 @@ $CustomerId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 # Replace with your Primary Key
 $SharedKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
-# Specify the name of the record type that you'll be creating
+# Specify hello name of hello record type that you'll be creating
 $LogType = "MyRecordType"
 
-# Specify a field with the created time for the records
+# Specify a field with hello created time for hello records
 $TimeStampField = "DateValue"
 
 
-# Create two records with the same set of properties to create
+# Create two records with hello same set of properties toocreate
 $json = @"
 [{  "StringValue": "MyString1",
     "NumberValue": 42,
@@ -238,7 +238,7 @@ $json = @"
 }]
 "@
 
-# Create the function to create the authorization signature
+# Create hello function toocreate hello authorization signature
 Function Build-Signature ($customerId, $sharedKey, $date, $contentLength, $method, $contentType, $resource)
 {
     $xHeaders = "x-ms-date:" + $date
@@ -256,7 +256,7 @@ Function Build-Signature ($customerId, $sharedKey, $date, $contentLength, $metho
 }
 
 
-# Create the function to create and post the request
+# Create hello function toocreate and post hello request
 Function Post-OMSData($customerId, $sharedKey, $body, $logType)
 {
     $method = "POST"
@@ -287,11 +287,11 @@ Function Post-OMSData($customerId, $sharedKey, $body, $logType)
 
 }
 
-# Submit the data to the API endpoint
+# Submit hello data toohello API endpoint
 Post-OMSData -customerId $customerId -sharedKey $sharedKey -body ([System.Text.Encoding]::UTF8.GetBytes($json)) -logType $logType  
 ```
 
-### <a name="c-sample"></a><span data-ttu-id="9284c-303">C# 샘플</span><span class="sxs-lookup"><span data-stu-id="9284c-303">C# sample</span></span>
+### <a name="c-sample"></a><span data-ttu-id="3956e-303">C# 샘플</span><span class="sxs-lookup"><span data-stu-id="3956e-303">C# sample</span></span>
 ```
 using System;
 using System.Net;
@@ -308,21 +308,21 @@ namespace OIAPIExample
         // An example JSON object, with key/value pairs
         static string json = @"[{""DemoField1"":""DemoValue1"",""DemoField2"":""DemoValue2""},{""DemoField3"":""DemoValue3"",""DemoField4"":""DemoValue4""}]";
 
-        // Update customerId to your Operations Management Suite workspace ID
+        // Update customerId tooyour Operations Management Suite workspace ID
         static string customerId = "xxxxxxxx-xxx-xxx-xxx-xxxxxxxxxxxx";
 
-        // For sharedKey, use either the primary or the secondary Connected Sources client authentication key   
+        // For sharedKey, use either hello primary or hello secondary Connected Sources client authentication key   
         static string sharedKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
-        // LogName is name of the event type that is being submitted to Log Analytics
+        // LogName is name of hello event type that is being submitted tooLog Analytics
         static string LogName = "DemoExample";
 
-        // You can use an optional field to specify the timestamp from the data. If the time field is not specified, Log Analytics assumes the time is the message ingestion time
+        // You can use an optional field toospecify hello timestamp from hello data. If hello time field is not specified, Log Analytics assumes hello time is hello message ingestion time
         static string TimeStampField = "";
 
         static void Main()
         {
-            // Create a hash for the API signature
+            // Create a hash for hello API signature
             var datestring = DateTime.UtcNow.ToString("r");
             string stringToHash = "POST\n" + json.Length + "\napplication/json\n" + "x-ms-date:" + datestring + "\n/api/logs";
             string hashedString = BuildSignature(stringToHash, sharedKey);
@@ -331,7 +331,7 @@ namespace OIAPIExample
             PostData(signature, datestring, json);
         }
 
-        // Build the API signature
+        // Build hello API signature
         public static string BuildSignature(string message, string secret)
         {
             var encoding = new System.Text.ASCIIEncoding();
@@ -344,7 +344,7 @@ namespace OIAPIExample
             }
         }
 
-        // Send a request to the POST API endpoint
+        // Send a request toohello POST API endpoint
         public static void PostData(string signature, string date, string json)
         {
             try
@@ -376,7 +376,7 @@ namespace OIAPIExample
 
 ```
 
-### <a name="python-sample"></a><span data-ttu-id="9284c-304">Python 샘플</span><span class="sxs-lookup"><span data-stu-id="9284c-304">Python sample</span></span>
+### <a name="python-sample"></a><span data-ttu-id="3956e-304">Python 샘플</span><span class="sxs-lookup"><span data-stu-id="3956e-304">Python sample</span></span>
 ```
 import json
 import requests
@@ -385,13 +385,13 @@ import hashlib
 import hmac
 import base64
 
-# Update the customer ID to your Operations Management Suite workspace ID
+# Update hello customer ID tooyour Operations Management Suite workspace ID
 customer_id = 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
 
-# For the shared key, use either the primary or the secondary Connected Sources client authentication key   
+# For hello shared key, use either hello primary or hello secondary Connected Sources client authentication key   
 shared_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
-# The log type is the name of the event that is being submitted
+# hello log type is hello name of hello event that is being submitted
 log_type = 'WebMonitorTest'
 
 # An example JSON web monitor object
@@ -423,7 +423,7 @@ body = json.dumps(json_data)
 ######Functions######  
 #####################
 
-# Build the API signature
+# Build hello API signature
 def build_signature(customer_id, shared_key, date, content_length, method, content_type, resource):
     x_headers = 'x-ms-date:' + date
     string_to_hash = method + "\n" + str(content_length) + "\n" + content_type + "\n" + x_headers + "\n" + resource
@@ -433,7 +433,7 @@ def build_signature(customer_id, shared_key, date, content_length, method, conte
     authorization = "SharedKey {}:{}".format(customer_id,encoded_hash)
     return authorization
 
-# Build and send a request to the POST API
+# Build and send a request toohello POST API
 def post_data(customer_id, shared_key, body, log_type):
     method = 'POST'
     content_type = 'application/json'
@@ -459,5 +459,5 @@ def post_data(customer_id, shared_key, body, log_type):
 post_data(customer_id, shared_key, body, log_type)
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="9284c-305">다음 단계</span><span class="sxs-lookup"><span data-stu-id="9284c-305">Next steps</span></span>
-- <span data-ttu-id="9284c-306">Log Analytics 저장소에서 데이터를 검색하려면 [Log Search API](log-analytics-log-search-api.md)를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="9284c-306">Use the [Log Search API](log-analytics-log-search-api.md) to retrieve data from the Log Analytics repository.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="3956e-305">다음 단계</span><span class="sxs-lookup"><span data-stu-id="3956e-305">Next steps</span></span>
+- <span data-ttu-id="3956e-306">사용 하 여 hello [로그 검색 API](log-analytics-log-search-api.md) hello 로그 분석 저장소에서 tooretrieve 데이터입니다.</span><span class="sxs-lookup"><span data-stu-id="3956e-306">Use hello [Log Search API](log-analytics-log-search-api.md) tooretrieve data from hello Log Analytics repository.</span></span>

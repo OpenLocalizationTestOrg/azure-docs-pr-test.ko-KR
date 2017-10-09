@@ -1,6 +1,6 @@
 ---
-title: "제출 예정 | Microsoft Azure"
-description: "제출 예정입니다."
+title: "aaaTo 전송할 | Microsoft Azure"
+description: "toobe 제출 합니다."
 services: 
 documentationcenter: 
 author: squillace
@@ -15,10 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/21/2016
 ms.author: tysonn
-ms.openlocfilehash: ef11f8d93149057cbd5af212361bc2219cd247da
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b450307ed0e23a61e54bd751289480bce9d72d09
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="to-be-submitted"></a>제출 예정입니다.
+# <a name="toobe-submitted"></a>toobe 제출 합니다.

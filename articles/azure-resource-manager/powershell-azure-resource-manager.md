@@ -1,6 +1,6 @@
 ---
-title: "PowerShell을 사용한 Azure 솔루션 관리 | Microsoft Docs"
-description: "Azure PowerShell 및 Resource Manager를 사용하여 리소스를 관리합니다."
+title: "aaaManage Azure PowerShell 사용 하 여 솔루션 | Microsoft Docs"
+description: "Azure PowerShell 및 리소스 관리자 toomanage 리소스를 사용 합니다."
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,58 +14,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: tomfitz
-ms.openlocfilehash: ff42e5cb29005c5f4b97babdae58bef9382071f0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 47a91af8d7eb59585bcfd43571ce76b90a0d7971
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-resources-with-azure-powershell-and-resource-manager"></a><span data-ttu-id="8dad9-103">Azure PowerShell 및 Resource Manager를 사용하여 리소스 관리</span><span class="sxs-lookup"><span data-stu-id="8dad9-103">Manage resources with Azure PowerShell and Resource Manager</span></span>
+# <a name="manage-resources-with-azure-powershell-and-resource-manager"></a><span data-ttu-id="89304-103">Azure PowerShell 및 Resource Manager를 사용하여 리소스 관리</span><span class="sxs-lookup"><span data-stu-id="89304-103">Manage resources with Azure PowerShell and Resource Manager</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="8dad9-104">포털</span><span class="sxs-lookup"><span data-stu-id="8dad9-104">Portal</span></span>](resource-group-portal.md)
-> * [<span data-ttu-id="8dad9-105">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="8dad9-105">Azure CLI</span></span>](xplat-cli-azure-resource-manager.md)
-> * [<span data-ttu-id="8dad9-106">Azure PowerShell</span><span class="sxs-lookup"><span data-stu-id="8dad9-106">Azure PowerShell</span></span>](powershell-azure-resource-manager.md)
-> * [<span data-ttu-id="8dad9-107">REST API</span><span class="sxs-lookup"><span data-stu-id="8dad9-107">REST API</span></span>](resource-manager-rest-api.md)
+> * [<span data-ttu-id="89304-104">포털</span><span class="sxs-lookup"><span data-stu-id="89304-104">Portal</span></span>](resource-group-portal.md)
+> * [<span data-ttu-id="89304-105">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="89304-105">Azure CLI</span></span>](xplat-cli-azure-resource-manager.md)
+> * [<span data-ttu-id="89304-106">Azure PowerShell</span><span class="sxs-lookup"><span data-stu-id="89304-106">Azure PowerShell</span></span>](powershell-azure-resource-manager.md)
+> * [<span data-ttu-id="89304-107">REST API</span><span class="sxs-lookup"><span data-stu-id="89304-107">REST API</span></span>](resource-manager-rest-api.md)
 >
 >
 
-<span data-ttu-id="8dad9-108">이 문서에서는 Azure PowerShell 및 Azure Resource Manager를 사용하여 솔루션을 관리하는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-108">In this article, you learn how to manage your solutions with Azure PowerShell and Azure Resource Manager.</span></span> <span data-ttu-id="8dad9-109">Resource Manager에 익숙하지 않은 경우에는 [Resource Manager 개요](resource-group-overview.md) 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8dad9-109">If you are not familiar with Resource Manager, see [Resource Manager Overview](resource-group-overview.md).</span></span> <span data-ttu-id="8dad9-110">이 항목에서는 관리 작업에 중점을 둡니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-110">This topic focuses on management tasks.</span></span> <span data-ttu-id="8dad9-111">다음을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-111">You will:</span></span>
+<span data-ttu-id="89304-108">이 문서에서는 설명 어떻게 toomanage Azure PowerShell 및 Azure 리소스 관리자를 사용 하 여 솔루션입니다.</span><span class="sxs-lookup"><span data-stu-id="89304-108">In this article, you learn how toomanage your solutions with Azure PowerShell and Azure Resource Manager.</span></span> <span data-ttu-id="89304-109">Resource Manager에 익숙하지 않은 경우에는 [Resource Manager 개요](resource-group-overview.md) 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="89304-109">If you are not familiar with Resource Manager, see [Resource Manager Overview](resource-group-overview.md).</span></span> <span data-ttu-id="89304-110">이 항목에서는 관리 작업에 중점을 둡니다.</span><span class="sxs-lookup"><span data-stu-id="89304-110">This topic focuses on management tasks.</span></span> <span data-ttu-id="89304-111">다음을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-111">You will:</span></span>
 
-1. <span data-ttu-id="8dad9-112">리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="8dad9-112">Create a resource group</span></span>
-2. <span data-ttu-id="8dad9-113">리소스 그룹에 리소스 추가</span><span class="sxs-lookup"><span data-stu-id="8dad9-113">Add a resource to the resource group</span></span>
-3. <span data-ttu-id="8dad9-114">리소스에 태그 추가</span><span class="sxs-lookup"><span data-stu-id="8dad9-114">Add a tag to the resource</span></span>
-4. <span data-ttu-id="8dad9-115">이름 또는 태그 값을 기반으로 리소스 쿼리</span><span class="sxs-lookup"><span data-stu-id="8dad9-115">Query resources based on names or tag values</span></span>
-5. <span data-ttu-id="8dad9-116">리소스에 대하 잠금 적용 및 제거</span><span class="sxs-lookup"><span data-stu-id="8dad9-116">Apply and remove a lock on the resource</span></span>
-6. <span data-ttu-id="8dad9-117">리소스 그룹 삭제</span><span class="sxs-lookup"><span data-stu-id="8dad9-117">Delete a resource group</span></span>
+1. <span data-ttu-id="89304-112">리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="89304-112">Create a resource group</span></span>
+2. <span data-ttu-id="89304-113">리소스 toohello 리소스 그룹 추가</span><span class="sxs-lookup"><span data-stu-id="89304-113">Add a resource toohello resource group</span></span>
+3. <span data-ttu-id="89304-114">태그 toohello 리소스 추가</span><span class="sxs-lookup"><span data-stu-id="89304-114">Add a tag toohello resource</span></span>
+4. <span data-ttu-id="89304-115">이름 또는 태그 값을 기반으로 리소스 쿼리</span><span class="sxs-lookup"><span data-stu-id="89304-115">Query resources based on names or tag values</span></span>
+5. <span data-ttu-id="89304-116">적용 및 hello 리소스에 대 한 잠금을 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-116">Apply and remove a lock on hello resource</span></span>
+6. <span data-ttu-id="89304-117">리소스 그룹 삭제</span><span class="sxs-lookup"><span data-stu-id="89304-117">Delete a resource group</span></span>
 
-<span data-ttu-id="8dad9-118">이 문서에서는 Resource Manager 템플릿을 구독에 배포하는 방법을 보여 주지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-118">This article does not show how to deploy a Resource Manager template to your subscription.</span></span> <span data-ttu-id="8dad9-119">해당 정보는 [Resource Manager 템플릿과 Azure PowerShell로 리소스 배포](resource-group-template-deploy.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8dad9-119">For that information, see [Deploy resources with Resource Manager templates and Azure PowerShell](resource-group-template-deploy.md).</span></span>
+<span data-ttu-id="89304-118">이 문서는 표시 되지 않습니다 어떻게 toodeploy 리소스 관리자 템플릿 tooyour 구독 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-118">This article does not show how toodeploy a Resource Manager template tooyour subscription.</span></span> <span data-ttu-id="89304-119">해당 정보는 [Resource Manager 템플릿과 Azure PowerShell로 리소스 배포](resource-group-template-deploy.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="89304-119">For that information, see [Deploy resources with Resource Manager templates and Azure PowerShell](resource-group-template-deploy.md).</span></span>
 
-## <a name="get-started-with-azure-powershell"></a><span data-ttu-id="8dad9-120">Azure PowerShell 시작</span><span class="sxs-lookup"><span data-stu-id="8dad9-120">Get started with Azure PowerShell</span></span>
+## <a name="get-started-with-azure-powershell"></a><span data-ttu-id="89304-120">Azure PowerShell 시작</span><span class="sxs-lookup"><span data-stu-id="89304-120">Get started with Azure PowerShell</span></span>
 
-<span data-ttu-id="8dad9-121">Azure PowerShell을 설치하지 않은 경우 [Azure PowerShell을 설치 및 구성하는 방법](/powershell/azure/overview)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8dad9-121">If you have not installed Azure PowerShell, see [How to install and configure Azure PowerShell](/powershell/azure/overview).</span></span>
+<span data-ttu-id="89304-121">Azure PowerShell을 설치 하지 않은 경우 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview)합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-121">If you have not installed Azure PowerShell, see [How tooinstall and configure Azure PowerShell](/powershell/azure/overview).</span></span>
 
-<span data-ttu-id="8dad9-122">Azure PowerShell을 전에 설치했지만 최근에 업데이트하지 않은 경우에는 최신 버전을 설치하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-122">If you have installed Azure PowerShell in the past but have not updated it recently, consider installing the latest version.</span></span> <span data-ttu-id="8dad9-123">설치하는 방법과 동일한 방법을 통해 버전을 업데이트할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-123">You can update the version through the same method you used to install it.</span></span> <span data-ttu-id="8dad9-124">예를 들어 웹 플랫폼 설치 관리자를 사용한 경우에는 관리자를 다시 시작하고 업데이트를 찾아봅니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-124">For example, if you used the Web Platform Installer, launch it again and look for an update.</span></span>
+<span data-ttu-id="89304-122">지난 hello에서 Azure PowerShell 설치 해도 최근 업데이트 하지 않은 경우에 hello 최신 버전을 설치 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-122">If you have installed Azure PowerShell in hello past but have not updated it recently, consider installing hello latest version.</span></span> <span data-ttu-id="89304-123">Hello 통해 hello 버전을 업데이트할 수 있습니다 tooinstall 사용한 동일한 방법을 것입니다.</span><span class="sxs-lookup"><span data-stu-id="89304-123">You can update hello version through hello same method you used tooinstall it.</span></span> <span data-ttu-id="89304-124">예를 들어 hello 웹 플랫폼 설치 관리자를 사용 하는 경우 다시 시작 하 고 업데이트에 대 한 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-124">For example, if you used hello Web Platform Installer, launch it again and look for an update.</span></span>
 
-<span data-ttu-id="8dad9-125">Azure 리소스 모듈의 버전을 확인하려면 다음 cmdlet을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-125">To check your version of the Azure Resources module, use the following cmdlet:</span></span>
+<span data-ttu-id="89304-125">toocheck 프로그램 버전의 hello Azure 리소스 모듈을 사용 하 여 다음 cmdlet hello:</span><span class="sxs-lookup"><span data-stu-id="89304-125">toocheck your version of hello Azure Resources module, use hello following cmdlet:</span></span>
 
 ```powershell
 Get-Module -ListAvailable -Name AzureRm.Resources | Select Version
 ```
 
-<span data-ttu-id="8dad9-126">이 항목은 버전 3.3.0에 대해 업데이트되었습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-126">This topic was updated for version 3.3.0.</span></span> <span data-ttu-id="8dad9-127">이보다 오래된 버전이 설치되어 있는 경우에는 사용자의 환경이 이 항목에 표시되는 단계와 일치하지 않을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-127">If you have an earlier version, your experience might not match the steps shown in this topic.</span></span> <span data-ttu-id="8dad9-128">이 버전의 cmdlet에 대한 설명서는 [AzureRM.Resources Module](/powershell/module/azurerm.resources)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8dad9-128">For documentation about the cmdlets in this version, see [AzureRM.Resources Module](/powershell/module/azurerm.resources).</span></span>
+<span data-ttu-id="89304-126">이 항목은 버전 3.3.0에 대해 업데이트되었습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-126">This topic was updated for version 3.3.0.</span></span> <span data-ttu-id="89304-127">이전 버전을 설치 환경이이 항목에 설명 된 hello 단계와 일치 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-127">If you have an earlier version, your experience might not match hello steps shown in this topic.</span></span> <span data-ttu-id="89304-128">이 버전의 hello cmdlet에 대 한 설명서를 참조 하십시오. [AzureRM.Resources 모듈](/powershell/module/azurerm.resources)합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-128">For documentation about hello cmdlets in this version, see [AzureRM.Resources Module](/powershell/module/azurerm.resources).</span></span>
 
-## <a name="log-in-to-your-azure-account"></a><span data-ttu-id="8dad9-129">Azure 계정에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-129">Log in to your Azure account</span></span>
-<span data-ttu-id="8dad9-130">솔루션에서 작업하기 전에 자신의 계정으로 로그인해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-130">Before working on your solution, you must log in to your account.</span></span>
+## <a name="log-in-tooyour-azure-account"></a><span data-ttu-id="89304-129">Azure 계정 tooyour에 로그인</span><span class="sxs-lookup"><span data-stu-id="89304-129">Log in tooyour Azure account</span></span>
+<span data-ttu-id="89304-130">솔루션 작업을 하기 전에 tooyour 계정에 로그인 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-130">Before working on your solution, you must log in tooyour account.</span></span>
 
-<span data-ttu-id="8dad9-131">Azure 계정에 로그인하려면 **Login-AzureRmAccount** Cmdlet을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-131">To log in to your Azure account, use the **Login-AzureRmAccount** cmdlet.</span></span>
+<span data-ttu-id="89304-131">toolog tooyour Azure 계정에서에서 사용 하 여 hello **로그인 AzureRmAccount** cmdlet.</span><span class="sxs-lookup"><span data-stu-id="89304-131">toolog in tooyour Azure account, use hello **Login-AzureRmAccount** cmdlet.</span></span>
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-<span data-ttu-id="8dad9-132">Cmdlet가 Azure 계정에 대한 로그인 자격 증명을 유도합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-132">The cmdlet prompts you for the login credentials for your Azure account.</span></span> <span data-ttu-id="8dad9-133">로그인한 다음 Azure PowerShell에 사용할 수 있도록 계정 설정을 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-133">After logging in, it downloads your account settings so they are available to Azure PowerShell.</span></span>
+<span data-ttu-id="89304-132">hello cmdlet Azure 계정에 대 한 hello 로그인 자격 증명을 묻습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-132">hello cmdlet prompts you for hello login credentials for your Azure account.</span></span> <span data-ttu-id="89304-133">로그인 한 후 PowerShell tooAzure를 사용할 수 있도록 계정 설정을 다운로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-133">After logging in, it downloads your account settings so they are available tooAzure PowerShell.</span></span>
 
-<span data-ttu-id="8dad9-134">이 cmdlet은 작업에 사용할 구독과 계정에 대한 정보를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-134">The cmdlet returns information about your account and the subscription to use for the tasks.</span></span>
+<span data-ttu-id="89304-134">hello cmdlet hello 작업에 대 한 사용자 계정 및 hello 구독 toouse에 대 한 정보를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-134">hello cmdlet returns information about your account and hello subscription toouse for hello tasks.</span></span>
 
 ```powershell
 Environment           : AzureCloud
@@ -77,13 +77,13 @@ CurrentStorageAccount :
 
 ```
 
-<span data-ttu-id="8dad9-135">구독이 둘 이상인 경우에는 다른 구독으로 전환할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-135">If you have more than one subscription, you can switch to a different subscription.</span></span> <span data-ttu-id="8dad9-136">우선 계정에 대한 모든 구독을 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-136">First, let's see all the subscriptions for your account.</span></span>
+<span data-ttu-id="89304-135">둘 이상의 구독을 보유 하는 경우 다른 구독 tooa 전환할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-135">If you have more than one subscription, you can switch tooa different subscription.</span></span> <span data-ttu-id="89304-136">첫째, 모든 hello 구독 계정에 대해 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-136">First, let's see all hello subscriptions for your account.</span></span>
 
 ```powershell
 Get-AzureRmSubscription
 ```
 
-<span data-ttu-id="8dad9-137">사용되는 구독 및 사용이 해제된 구독을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-137">It returns enabled and disabled subscriptions.</span></span>
+<span data-ttu-id="89304-137">사용되는 구독 및 사용이 해제된 구독을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-137">It returns enabled and disabled subscriptions.</span></span>
 
 ```powershell
 SubscriptionName : Example Subscription One
@@ -102,22 +102,22 @@ TenantId         : {guid}
 State            : Disabled
 ```
 
-<span data-ttu-id="8dad9-138">다른 구독으로 전환하려면 **Set-AzureRmContext** cmdlet에 구독 이름을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-138">To switch to a different subscription, provide the subscription name with the **Set-AzureRmContext** cmdlet.</span></span>
+<span data-ttu-id="89304-138">tooswitch tooa 다른 구독 hello로 hello 구독 이름 제공 **집합 AzureRmContext** cmdlet.</span><span class="sxs-lookup"><span data-stu-id="89304-138">tooswitch tooa different subscription, provide hello subscription name with hello **Set-AzureRmContext** cmdlet.</span></span>
 
 ```powershell
 Set-AzureRmContext -SubscriptionName "Example Subscription Two"
 ```
 
-## <a name="create-a-resource-group"></a><span data-ttu-id="8dad9-139">리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="8dad9-139">Create a resource group</span></span>
-<span data-ttu-id="8dad9-140">구독에 리소스를 배포하려면 리소스를 포함하는 리소스 그룹을 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-140">Before deploying any resources to your subscription, you must create a resource group that will contain the resources.</span></span>
+## <a name="create-a-resource-group"></a><span data-ttu-id="89304-139">리소스 그룹 만들기</span><span class="sxs-lookup"><span data-stu-id="89304-139">Create a resource group</span></span>
+<span data-ttu-id="89304-140">모든 리소스 tooyour 구독을 배포 하기 전에 hello 리소스 포함 될 리소스 그룹을 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-140">Before deploying any resources tooyour subscription, you must create a resource group that will contain hello resources.</span></span>
 
-<span data-ttu-id="8dad9-141">리소스 그룹을 만들려면 **New-AzureRmResourceGroup** Cmdlet을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-141">To create a resource group, use the **New-AzureRmResourceGroup** cmdlet.</span></span> <span data-ttu-id="8dad9-142">이 명령은 **Name** 매개 변수를 사용하여 리소스 그룹에 대한 이름을 지정하고 **Location** 매개 변수를 사용하여 위치를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-142">The command uses the **Name** parameter to specify a name for the resource group and the **Location** parameter to specify its location.</span></span>
+<span data-ttu-id="89304-141">리소스 그룹 toocreate hello를 사용 하 여 **새로 AzureRmResourceGroup** cmdlet.</span><span class="sxs-lookup"><span data-stu-id="89304-141">toocreate a resource group, use hello **New-AzureRmResourceGroup** cmdlet.</span></span> <span data-ttu-id="89304-142">hello 명령은 hello를 사용 하 여 **이름** 매개 변수 toospecify hello 리소스 그룹 및 hello에 대 한 이름 **위치** 매개 변수 toospecify의 위치입니다.</span><span class="sxs-lookup"><span data-stu-id="89304-142">hello command uses hello **Name** parameter toospecify a name for hello resource group and hello **Location** parameter toospecify its location.</span></span>
 
 ```powershell
 New-AzureRmResourceGroup -Name TestRG1 -Location "South Central US"
 ```
 
-<span data-ttu-id="8dad9-143">다음 형식으로 출력됩니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-143">The output is in the following format:</span></span>
+<span data-ttu-id="89304-143">hello 출력 형식에 따라 hello 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-143">hello output is in hello following format:</span></span>
 
 ```powershell
 ResourceGroupName : TestRG1
@@ -127,46 +127,46 @@ Tags              :
 ResourceId        : /subscriptions/{guid}/resourceGroups/TestRG1
 ```
 
-<span data-ttu-id="8dad9-144">나중에 리소스 그룹을 검색해야 하는 경우 다음 cmdlet을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-144">If you need to retrieve the resource group later, use the following cmdlet:</span></span>
+<span data-ttu-id="89304-144">Tooretrieve hello 리소스 그룹을 나중에 필요한 경우 hello 다음 cmdlet을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-144">If you need tooretrieve hello resource group later, use hello following cmdlet:</span></span>
 
 ```powershell
 Get-AzureRmResourceGroup -ResourceGroupName TestRG1
 ```
 
-<span data-ttu-id="8dad9-145">구독에서 리소스 그룹을 모두 가져오려면 이름을 지정하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-145">To get all the resource groups in your subscription, do not specify a name:</span></span>
+<span data-ttu-id="89304-145">tooget 모든 hello 구독에서 리소스 그룹, 이름을 지정 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-145">tooget all hello resource groups in your subscription, do not specify a name:</span></span>
 
 ```powershell
 Get-AzureRmResourceGroup
 ```
 
-## <a name="add-resources-to-a-resource-group"></a><span data-ttu-id="8dad9-146">리소스 그룹에 리소스 추가</span><span class="sxs-lookup"><span data-stu-id="8dad9-146">Add resources to a resource group</span></span>
-<span data-ttu-id="8dad9-147">리소스를 리소스 그룹에 추가하려면 **New-AzureRmResource** cmdlet을 사용하거나 만드는 리소스의 종류에 해당하는 cmdlet(예: **New-AzureRmStorageAccount**)을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-147">To add a resource to the resource group, you can use the **New-AzureRmResource** cmdlet or a cmdlet that is specific to the type of resource you are creating (like **New-AzureRmStorageAccount**).</span></span> <span data-ttu-id="8dad9-148">리소스의 종류에 해당하는 cmdlet에는 새 리소스에 필요한 속성의 매개 변수가 포함되기 때문에 이 cmdlet을 사용하는 것이 간편합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-148">You might find it easier to use a cmdlet that is specific to a resource type because it includes parameters for the properties that are needed for the new resource.</span></span> <span data-ttu-id="8dad9-149">**New-AzureRmResource**를 사용하는 경우 속성을 설정하라는 메시지를 표시하지 않으려면 설정할 속성을 모두 알아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-149">To use **New-AzureRmResource**, you must know all the properties to set without being prompted for them.</span></span>
+## <a name="add-resources-tooa-resource-group"></a><span data-ttu-id="89304-146">리소스 tooa 리소스 그룹 추가</span><span class="sxs-lookup"><span data-stu-id="89304-146">Add resources tooa resource group</span></span>
+<span data-ttu-id="89304-147">리소스 toohello 리소스 그룹 tooadd hello를 사용할 수 있습니다 **새로 AzureRmResource** 만드는 cmdlet 또는 리소스의 특정 toohello 형식인 cmdlet (같은 **새로 AzureRmStorageAccount**).</span><span class="sxs-lookup"><span data-stu-id="89304-147">tooadd a resource toohello resource group, you can use hello **New-AzureRmResource** cmdlet or a cmdlet that is specific toohello type of resource you are creating (like **New-AzureRmStorageAccount**).</span></span> <span data-ttu-id="89304-148">보다 쉽게 toouse hello 새 리소스에 필요한 hello 속성에 대 한 매개 변수를 포함 하기 때문에 특정 tooa 리소스 종류를 된 cmdlet을 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-148">You might find it easier toouse a cmdlet that is specific tooa resource type because it includes parameters for hello properties that are needed for hello new resource.</span></span> <span data-ttu-id="89304-149">toouse **새로 AzureRmResource**, 해당 입력 하지 않고도 모든 hello 속성 tooset를 알고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-149">toouse **New-AzureRmResource**, you must know all hello properties tooset without being prompted for them.</span></span>
 
-<span data-ttu-id="8dad9-150">하지만 cmdlet을 통해 리소스를 추가하면 새 리소스가 Resource Manager 템플릿에 존재하지 않기 때문에 나중에 혼동을 일으킬 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-150">However, adding a resource through cmdlets might cause future confusion because the new resource does not exist in a Resource Manager template.</span></span> <span data-ttu-id="8dad9-151">Azure 솔루션에 대한 인프라는 Resource Manager 템플릿에서 구성하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-151">Microsoft recommends defining the infrastructure for your Azure solution in a Resource Manager template.</span></span> <span data-ttu-id="8dad9-152">템플릿을 사용하면 솔루션을 안정적이고 반복적으로 배포할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-152">Templates enable you to reliably and repeatedly deploy your solution.</span></span> <span data-ttu-id="8dad9-153">이 항목에서는 PowerShell cmdlet을 사용하여 저장소 계정을 만들지만 나중에 리소스 그룹에서 템플릿을 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-153">For this topic, you create a storage account with a PowerShell cmdlet, but later you generate a template from your resource group.</span></span>
+<span data-ttu-id="89304-150">그러나 cmdlet 통해 리소스 추가 hello 새 리소스는 리소스 관리자 템플릿을에 없기 때문에 이후 혼란이 발생할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-150">However, adding a resource through cmdlets might cause future confusion because hello new resource does not exist in a Resource Manager template.</span></span> <span data-ttu-id="89304-151">리소스 관리자 템플릿을에서 Azure 솔루션에 대 한 hello 인프라를 정의 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-151">Microsoft recommends defining hello infrastructure for your Azure solution in a Resource Manager template.</span></span> <span data-ttu-id="89304-152">템플릿과 tooreliably를 사용 하면 반복적으로 솔루션을 배포 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-152">Templates enable you tooreliably and repeatedly deploy your solution.</span></span> <span data-ttu-id="89304-153">이 항목에서는 PowerShell cmdlet을 사용하여 저장소 계정을 만들지만 나중에 리소스 그룹에서 템플릿을 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-153">For this topic, you create a storage account with a PowerShell cmdlet, but later you generate a template from your resource group.</span></span>
 
-<span data-ttu-id="8dad9-154">다음 cmdlet은 저장소 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-154">The following cmdlet creates a storage account.</span></span> <span data-ttu-id="8dad9-155">예제에 표시된 이름을 사용하는 대신 저장소 계정에 대한 고유 이름을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-155">Instead of using the name shown in the example, provide a unique name for the storage account.</span></span> <span data-ttu-id="8dad9-156">이름은 길이가 3자에서 24자 사이여야 하고 숫자 및 소문자만 사용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-156">The name must be between 3 and 24 characters in length, and use only numbers and lower-case letters.</span></span> <span data-ttu-id="8dad9-157">예제에 표시된 이름을 사용하면 해당 이름을 이미 사용 중이기 때문에 오류가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-157">If you use the name shown in the example, you receive an error because that name is already in use.</span></span>
+<span data-ttu-id="89304-154">cmdlet을 다음 hello 저장소 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="89304-154">hello following cmdlet creates a storage account.</span></span> <span data-ttu-id="89304-155">Hello 예제에 표시 된 hello 이름을 사용 하는 대신 hello 저장소 계정에 대 한 고유 이름을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-155">Instead of using hello name shown in hello example, provide a unique name for hello storage account.</span></span> <span data-ttu-id="89304-156">hello 이름은 길이가 3 ~ 24 자 사이 여야 하 고 숫자 및 소문자만 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-156">hello name must be between 3 and 24 characters in length, and use only numbers and lower-case letters.</span></span> <span data-ttu-id="89304-157">Hello 예제에 표시 된 hello 이름을 사용 하는 경우 해당 이름을 이미 사용 중이기 때문에 오류가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="89304-157">If you use hello name shown in hello example, you receive an error because that name is already in use.</span></span>
 
 ```powershell
 New-AzureRmStorageAccount -ResourceGroupName TestRG1 -AccountName mystoragename -Type "Standard_LRS" -Location "South Central US"
 ```
 
-<span data-ttu-id="8dad9-158">나중에 이 리소스를 검색해야 하는 경우 다음 cmdlet을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-158">If you need to retrieve this resource later, use the following cmdlet:</span></span>
+<span data-ttu-id="89304-158">필요한 경우 tooretrieve이이 리소스 나중, 사용 cmdlet을 다음 hello:</span><span class="sxs-lookup"><span data-stu-id="89304-158">If you need tooretrieve this resource later, use hello following cmdlet:</span></span>
 
 ```powershell
 Get-AzureRmResource -ResourceName mystoragename -ResourceGroupName TestRG1
 ```
 
-## <a name="add-a-tag"></a><span data-ttu-id="8dad9-159">태그 추가</span><span class="sxs-lookup"><span data-stu-id="8dad9-159">Add a tag</span></span>
+## <a name="add-a-tag"></a><span data-ttu-id="89304-159">태그 추가</span><span class="sxs-lookup"><span data-stu-id="89304-159">Add a tag</span></span>
 
-<span data-ttu-id="8dad9-160">태그를 사용하면 다양한 속성에 따라 리소스를 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-160">Tags enable you to organize your resources according to different properties.</span></span> <span data-ttu-id="8dad9-161">예를 들어 동일한 부서에 속하는 여러 리소스 그룹에 몇 가지 리소스를 둘 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-161">For example, you may have several resources in different resource groups that belong to the same department.</span></span> <span data-ttu-id="8dad9-162">리소스에 부서 태그 및 값을 적용하여 동일한 범주에 속하는 것으로 표시할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-162">You can apply a department tag and value to those resources to mark them as belonging to the same category.</span></span> <span data-ttu-id="8dad9-163">또는 리소스가 프로덕션 환경에서 사용되는지 또는 테스트 환경에서 사용되는지를 표시할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-163">Or, you can mark whether a resource is used in a production or test environment.</span></span> <span data-ttu-id="8dad9-164">이 항목에서는 하나의 리소스에만 태그를 적용하지만 사용자 환경에서는 모든 리소스에 태그를 적용하는 것이 대부분 타당합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-164">In this topic, you apply tags to only one resource, but in your environment it most likely makes sense to apply tags to all your resources.</span></span>
+<span data-ttu-id="89304-160">태그 사용 하면 tooorganize toodifferent 속성에 따라 리소스 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-160">Tags enable you tooorganize your resources according toodifferent properties.</span></span> <span data-ttu-id="89304-161">예를 들어 여러 리소스 toohello 속하는 다른 리소스 그룹에 있을 수 있습니다 같은 동일 부서입니다.</span><span class="sxs-lookup"><span data-stu-id="89304-161">For example, you may have several resources in different resource groups that belong toohello same department.</span></span> <span data-ttu-id="89304-162">부서 태그 및 값 toothose 리소스 toomark를 적용할 수 속하는 toohello 것 같은 범주입니다.</span><span class="sxs-lookup"><span data-stu-id="89304-162">You can apply a department tag and value toothose resources toomark them as belonging toohello same category.</span></span> <span data-ttu-id="89304-163">또는 리소스가 프로덕션 환경에서 사용되는지 또는 테스트 환경에서 사용되는지를 표시할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-163">Or, you can mark whether a resource is used in a production or test environment.</span></span> <span data-ttu-id="89304-164">이 항목에서는 태그 tooonly, 리소스가 두 개를 적용 하지만 사용자 환경에서 가장 가능성이 높은 의미가 tooapply 태그 tooall 리소스.</span><span class="sxs-lookup"><span data-stu-id="89304-164">In this topic, you apply tags tooonly one resource, but in your environment it most likely makes sense tooapply tags tooall your resources.</span></span>
 
-<span data-ttu-id="8dad9-165">다음 cmdlet은 저장소 계정에 두 개의 태그를 적용합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-165">The following cmdlet applies two tags to your storage account:</span></span>
+<span data-ttu-id="89304-165">hello 다음 cmdlet은 두 태그 tooyour 저장소 계정에 적용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="89304-165">hello following cmdlet applies two tags tooyour storage account:</span></span>
 
 ```powershell
 Set-AzureRmResource -Tag @{ Dept="IT"; Environment="Test" } -ResourceName mystoragename -ResourceGroupName TestRG1 -ResourceType Microsoft.Storage/storageAccounts
  ```
 
-<span data-ttu-id="8dad9-166">태그는 단일 개체로 업데이트됩니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-166">Tags are updated as a single object.</span></span> <span data-ttu-id="8dad9-167">이미 태그가 포함된 리소스에 태그를 추가하려면 우선 기존 태그를 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-167">To add a tag to a resource that already includes tags, first retrieve the existing tags.</span></span> <span data-ttu-id="8dad9-168">기존 태그가 포함된 개체에 새 태그를 추가하고 리소스에 모든 태그를 다시 적용합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-168">Add the new tag to the object that contains the existing tags, and reapply all the tags to the resource.</span></span>
+<span data-ttu-id="89304-166">태그는 단일 개체로 업데이트됩니다.</span><span class="sxs-lookup"><span data-stu-id="89304-166">Tags are updated as a single object.</span></span> <span data-ttu-id="89304-167">먼저 tooadd 태그에 이미 포함 되어 있는 태그 tooa 리소스 hello 기존 태그를 검색 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-167">tooadd a tag tooa resource that already includes tags, first retrieve hello existing tags.</span></span> <span data-ttu-id="89304-168">Hello 새 태그 toohello 개체가 있는 hello 기존 태그를 추가 하 고 모든 hello 태그 toohello 리소스를 다시 적용 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-168">Add hello new tag toohello object that contains hello existing tags, and reapply all hello tags toohello resource.</span></span>
 
 ```powershell
 $tags = (Get-AzureRmResource -ResourceName mystoragename -ResourceGroupName TestRG1).Tags
@@ -174,85 +174,85 @@ $tags += @{Status="Approved"}
 Set-AzureRmResource -Tag $tags -ResourceName mystoragename -ResourceGroupName TestRG1 -ResourceType Microsoft.Storage/storageAccounts
 ```
 
-## <a name="search-for-resources"></a><span data-ttu-id="8dad9-169">리소스 검색</span><span class="sxs-lookup"><span data-stu-id="8dad9-169">Search for resources</span></span>
+## <a name="search-for-resources"></a><span data-ttu-id="89304-169">리소스 검색</span><span class="sxs-lookup"><span data-stu-id="89304-169">Search for resources</span></span>
 
-<span data-ttu-id="8dad9-170">다른 검색 조건에 대해 리소스를 검색하려면 **Find-AzureRmResource** cmdlet을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-170">Use the **Find-AzureRmResource** cmdlet to retrieve resources for different search conditions.</span></span>
+<span data-ttu-id="89304-170">사용 하 여 hello **찾기 AzureRmResource** 다른 검색 조건에 대 한 cmdlet tooretrieve 리소스입니다.</span><span class="sxs-lookup"><span data-stu-id="89304-170">Use hello **Find-AzureRmResource** cmdlet tooretrieve resources for different search conditions.</span></span>
 
-* <span data-ttu-id="8dad9-171">이름으로 리소스를 가져오려면 **ResourceNameContains** 매개 변수를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-171">To get a resource by name, provide the **ResourceNameContains** parameter:</span></span>
+* <span data-ttu-id="89304-171">이름으로 리소스 tooget 제공 hello **ResourceNameContains** 매개 변수:</span><span class="sxs-lookup"><span data-stu-id="89304-171">tooget a resource by name, provide hello **ResourceNameContains** parameter:</span></span>
 
   ```powershell
   Find-AzureRmResource -ResourceNameContains mystoragename
   ```
 
-* <span data-ttu-id="8dad9-172">리소스 그룹의 리소스를 모두 가져오려면 **ResourceGroupNameContains** 매개 변수를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-172">To get all the resources in a resource group, provide the **ResourceGroupNameContains** parameter:</span></span>
+* <span data-ttu-id="89304-172">tooget 리소스 그룹의 모든 hello 리소스 제공 hello **ResourceGroupNameContains** 매개 변수:</span><span class="sxs-lookup"><span data-stu-id="89304-172">tooget all hello resources in a resource group, provide hello **ResourceGroupNameContains** parameter:</span></span>
 
   ```powershell
   Find-AzureRmResource -ResourceGroupNameContains TestRG1
   ```
 
-* <span data-ttu-id="8dad9-173">태그 이름 및 값을 사용하여 리소스를 모두 가져오려면 **TagName** 및 **TagValue** 매개 변수를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-173">To get all the resources with a tag name and value, provide the **TagName** and **TagValue** parameters:</span></span>
+* <span data-ttu-id="89304-173">tooget 태그 이름 및 값을 가진 모든 hello 리소스 제공 hello **TagName** 및 **TagValue** 매개 변수:</span><span class="sxs-lookup"><span data-stu-id="89304-173">tooget all hello resources with a tag name and value, provide hello **TagName** and **TagValue** parameters:</span></span>
 
   ```powershell
   Find-AzureRmResource -TagName Dept -TagValue IT
   ```
 
-* <span data-ttu-id="8dad9-174">특정 리소스 종류에 해당하는 리소스를 모두 가져오려면 **ResourceType** 매개 변수를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-174">To all the resources with a particular resource type, provide the **ResourceType** parameter:</span></span>
+* <span data-ttu-id="89304-174">특정 리소스 종류를 사용 하 여 tooall hello 리소스 제공 hello **ResourceType** 매개 변수:</span><span class="sxs-lookup"><span data-stu-id="89304-174">tooall hello resources with a particular resource type, provide hello **ResourceType** parameter:</span></span>
 
   ```powershell
   Find-AzureRmResource -ResourceType Microsoft.Storage/storageAccounts
   ```
 
-## <a name="lock-a-resource"></a><span data-ttu-id="8dad9-175">리소스 잠금</span><span class="sxs-lookup"><span data-stu-id="8dad9-175">Lock a resource</span></span>
+## <a name="lock-a-resource"></a><span data-ttu-id="89304-175">리소스 잠금</span><span class="sxs-lookup"><span data-stu-id="89304-175">Lock a resource</span></span>
 
-<span data-ttu-id="8dad9-176">중요한 리소스가 실수로 삭제되거나 수정되지 않도록 해야 하는 경우에는 리소스에 잠금을 적용합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-176">When you need to make sure a critical resource is not accidentally deleted or modified, apply a lock to the resource.</span></span> <span data-ttu-id="8dad9-177">**CanNotDelete** 또는 **ReadOnly**를 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-177">You can specify either a **CanNotDelete** or **ReadOnly**.</span></span>
+<span data-ttu-id="89304-176">Toomake 중요 한 리소스를 실수로 삭제 하거나 수정 해야 하는 경우에 잠금 toohello 리소스를 적용 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-176">When you need toomake sure a critical resource is not accidentally deleted or modified, apply a lock toohello resource.</span></span> <span data-ttu-id="89304-177">**CanNotDelete** 또는 **ReadOnly**를 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-177">You can specify either a **CanNotDelete** or **ReadOnly**.</span></span>
 
-<span data-ttu-id="8dad9-178">관리 잠금을 만들거나 삭제하려면 `Microsoft.Authorization/*` 또는 `Microsoft.Authorization/locks/*` 작업에 대한 액세스 권한이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-178">To create or delete management locks, you must have access to `Microsoft.Authorization/*` or `Microsoft.Authorization/locks/*` actions.</span></span> <span data-ttu-id="8dad9-179">기본 제공 역할의 경우 소유자 및 사용자 액세스 관리자에게만 이러한 작업의 권한이 부여됩니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-179">Of the built-in roles, only Owner and User Access Administrator are granted those actions.</span></span>
+<span data-ttu-id="89304-178">관리 잠금 toocreate 또는 delete 권한이 너무`Microsoft.Authorization/*` 또는 `Microsoft.Authorization/locks/*` 동작 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-178">toocreate or delete management locks, you must have access too`Microsoft.Authorization/*` or `Microsoft.Authorization/locks/*` actions.</span></span> <span data-ttu-id="89304-179">Hello 기본 제공 역할의 소유자 및 사용자 액세스 관리자에 게 이러한 작업을 부여 됩니다.</span><span class="sxs-lookup"><span data-stu-id="89304-179">Of hello built-in roles, only Owner and User Access Administrator are granted those actions.</span></span>
 
-<span data-ttu-id="8dad9-180">잠금을 적용하려면 다음 cmdlet을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-180">To apply a lock, use the following cmdlet:</span></span>
+<span data-ttu-id="89304-180">잠금을 tooapply hello 다음 cmdlet을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-180">tooapply a lock, use hello following cmdlet:</span></span>
 
 ```powershell
 New-AzureRmResourceLock -LockLevel CanNotDelete -LockName LockStorage -ResourceName mystoragename -ResourceType Microsoft.Storage/storageAccounts -ResourceGroupName TestRG1
 ```
 
-<span data-ttu-id="8dad9-181">앞의 예제에서 잠긴 리소스는 잠금이 제거될 때까지 삭제될 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-181">The locked resource in the preceding example cannot be deleted until the lock is removed.</span></span> <span data-ttu-id="8dad9-182">잠금을 제거하려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-182">To remove a lock, use:</span></span>
+<span data-ttu-id="89304-181">hello hello 예제에서는 이전에 잠긴된 리소스 삭제할 수 없습니다 hello 잠금을 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-181">hello locked resource in hello preceding example cannot be deleted until hello lock is removed.</span></span> <span data-ttu-id="89304-182">tooremove 잠금을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-182">tooremove a lock, use:</span></span>
 
 ```powershell
 Remove-AzureRmResourceLock -LockName LockStorage -ResourceName mystoragename -ResourceType Microsoft.Storage/storageAccounts -ResourceGroupName TestRG1
 ```
 
-<span data-ttu-id="8dad9-183">잠금 설정에 대한 자세한 내용은 [Azure Resource Manager를 사용하여 리소스 잠그기](resource-group-lock-resources.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8dad9-183">For more information about setting locks, see [Lock resources with Azure Resource Manager](resource-group-lock-resources.md).</span></span>
+<span data-ttu-id="89304-183">잠금 설정에 대한 자세한 내용은 [Azure Resource Manager를 사용하여 리소스 잠그기](resource-group-lock-resources.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="89304-183">For more information about setting locks, see [Lock resources with Azure Resource Manager](resource-group-lock-resources.md).</span></span>
 
-## <a name="remove-resources-or-resource-group"></a><span data-ttu-id="8dad9-184">리소스 또는 리소스 그룹 제거</span><span class="sxs-lookup"><span data-stu-id="8dad9-184">Remove resources or resource group</span></span>
-<span data-ttu-id="8dad9-185">리소스 또는 리소스 그룹을 제거할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-185">You can remove a resource or resource group.</span></span> <span data-ttu-id="8dad9-186">리소스 그룹을 제거하면 리소스 그룹에 포함된 리소스도 모두 제거됩니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-186">When you remove a resource group, you also remove all the resources within that resource group.</span></span>
+## <a name="remove-resources-or-resource-group"></a><span data-ttu-id="89304-184">리소스 또는 리소스 그룹 제거</span><span class="sxs-lookup"><span data-stu-id="89304-184">Remove resources or resource group</span></span>
+<span data-ttu-id="89304-185">리소스 또는 리소스 그룹을 제거할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-185">You can remove a resource or resource group.</span></span> <span data-ttu-id="89304-186">리소스 그룹을 제거 하면 해당 리소스 그룹 내의 모든 hello 리소스 제거할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-186">When you remove a resource group, you also remove all hello resources within that resource group.</span></span>
 
-* <span data-ttu-id="8dad9-187">리소스 그룹에서 리소스를 삭제하려면 **Remove-AzureRmResource** cmdlet를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-187">To delete a resource from the resource group, use the **Remove-AzureRmResource** cmdlet.</span></span> <span data-ttu-id="8dad9-188">이 cmdlet은 리소스를 삭제하지만 리소스 그룹은 삭제하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-188">This cmdlet deletes the resource, but does not delete the resource group.</span></span>
+* <span data-ttu-id="89304-187">toodelete hello 리소스 그룹을 사용 하 여 hello에서 리소스 **제거 AzureRmResource** cmdlet.</span><span class="sxs-lookup"><span data-stu-id="89304-187">toodelete a resource from hello resource group, use hello **Remove-AzureRmResource** cmdlet.</span></span> <span data-ttu-id="89304-188">이 cmdlet은 hello 리소스를 삭제 하지만 hello 리소스 그룹을 삭제 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-188">This cmdlet deletes hello resource, but does not delete hello resource group.</span></span>
 
   ```powershell
   Remove-AzureRmResource -ResourceName mystoragename -ResourceType Microsoft.Storage/storageAccounts -ResourceGroupName TestRG1
   ```
 
-* <span data-ttu-id="8dad9-189">리소스 그룹과 거기에 포함된 리소스를 모두 삭제하려면 **Remove-AzureRmResourceGroup** cmdlet을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-189">To delete a resource group and all its resources, use the **Remove-AzureRmResourceGroup** cmdlet.</span></span>
+* <span data-ttu-id="89304-189">toodelete 리소스 그룹 및 모든 리소스를 사용 하 여 hello **제거 AzureRmResourceGroup** cmdlet.</span><span class="sxs-lookup"><span data-stu-id="89304-189">toodelete a resource group and all its resources, use hello **Remove-AzureRmResourceGroup** cmdlet.</span></span>
 
   ```powershell
   Remove-AzureRmResourceGroup -Name TestRG1
   ```
 
-<span data-ttu-id="8dad9-190">두 cmdlet 모두, 리소스 또는 리소스 그룹을 제거할지를 묻는 메시지가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-190">For both cmdlets, you are asked to confirm that you wish to remove the resource or resource group.</span></span> <span data-ttu-id="8dad9-191">작업에서 리소스 또는 리소스 그룹이 성공적으로 삭제되면 **True**가 반환됩니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-191">If the operation successfully deletes the resource or resource group, it returns **True**.</span></span>
+<span data-ttu-id="89304-190">두 cmdlet 모두에 대 한 tooconfirm 묻는 tooremove hello 리소스 또는 리소스 그룹 한다고 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-190">For both cmdlets, you are asked tooconfirm that you wish tooremove hello resource or resource group.</span></span> <span data-ttu-id="89304-191">반환 하는 경우 hello 작업 hello 리소스 또는 리소스 그룹이 성공적으로 삭제, **True**합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-191">If hello operation successfully deletes hello resource or resource group, it returns **True**.</span></span>
 
-## <a name="run-resource-manager-scripts-with-azure-automation"></a><span data-ttu-id="8dad9-192">Azure Automation을 사용하여 Resource Manager 스크립트 실행</span><span class="sxs-lookup"><span data-stu-id="8dad9-192">Run Resource Manager scripts with Azure Automation</span></span>
+## <a name="run-resource-manager-scripts-with-azure-automation"></a><span data-ttu-id="89304-192">Azure Automation을 사용하여 Resource Manager 스크립트 실행</span><span class="sxs-lookup"><span data-stu-id="89304-192">Run Resource Manager scripts with Azure Automation</span></span>
 
-<span data-ttu-id="8dad9-193">이 항목은 Azure PowerShell을 사용하여 리소스에 기본적인 작업을 수행하는 방법을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-193">This topic shows you how to perform basic operations on your resources with Azure PowerShell.</span></span> <span data-ttu-id="8dad9-194">고급 관리 시나리오의 경우 일반적으로 스크립트를 만들고 필요에 따라 또는 일정에 따라 스크립트를 다시 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-194">For more advanced management scenarios, you typically want to create a script, and reuse that script as needed or on a schedule.</span></span> <span data-ttu-id="8dad9-195">[Azure Automation](../automation/automation-intro.md)은 Azure 솔루션을 관리하는 자주 사용되는 스크립트를 자동화하는 방법을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-195">[Azure Automation](../automation/automation-intro.md) provides a way for you to automate frequently used scripts that manage your Azure solutions.</span></span>
+<span data-ttu-id="89304-193">이 항목에서는 tooperform Azure PowerShell을 사용한 리소스에 대 한 기본 작업입니다.</span><span class="sxs-lookup"><span data-stu-id="89304-193">This topic shows you how tooperform basic operations on your resources with Azure PowerShell.</span></span> <span data-ttu-id="89304-194">고급 관리 시나리오에 대 한 일반적으로 스크립트를 toocreate을 필요에 따라 또는 일정에 따라 해당 스크립트를 다시 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-194">For more advanced management scenarios, you typically want toocreate a script, and reuse that script as needed or on a schedule.</span></span> <span data-ttu-id="89304-195">[Azure 자동화](../automation/automation-intro.md) Azure 솔루션을 관리 하는 tooautomate 자주 사용 되는 스크립트를 한 방법을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-195">[Azure Automation](../automation/automation-intro.md) provides a way for you tooautomate frequently used scripts that manage your Azure solutions.</span></span>
 
-<span data-ttu-id="8dad9-196">다음 항목은 Azure Automation, Resource Manager 및 PowerShell을 사용하여 관리 작업을 효과적으로 수행하는 방법을 보여줍니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-196">The following topics show you how to use Azure Automation, Resource Manager, and PowerShell to effectively perform management tasks:</span></span>
+<span data-ttu-id="89304-196">hello 다음 항목 보여 toouse Azure 자동화, 리소스 관리자 및 PowerShell tooeffectively 관리 작업을 수행 방법:</span><span class="sxs-lookup"><span data-stu-id="89304-196">hello following topics show you how toouse Azure Automation, Resource Manager, and PowerShell tooeffectively perform management tasks:</span></span>
 
-- <span data-ttu-id="8dad9-197">Runbook 만들기에 대한 내용은 [내 첫 번째 PowerShell Runbook](../automation/automation-first-runbook-textual-powershell.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8dad9-197">For information about creating a runbook, see [My first PowerShell runbook](../automation/automation-first-runbook-textual-powershell.md).</span></span>
-- <span data-ttu-id="8dad9-198">스크립트 갤러리 작업에 대한 내용은 [Azure Automation용 Runbook 및 모듈 갤러리](../automation/automation-runbook-gallery.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8dad9-198">For information about working with galleries of scripts, see [Runbook and module galleries for Azure Automation](../automation/automation-runbook-gallery.md).</span></span>
-- <span data-ttu-id="8dad9-199">가상 컴퓨터를 시작하고 중지하는 Runbook에 대한 내용은 [Azure Automation 시나리오: JSON 형식 태그를 사용하여 Azure VM 시작 및 종료 일정 만들기](../automation/automation-scenario-start-stop-vm-wjson-tags.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8dad9-199">For runbooks that start and stop virtual machines, see [Azure Automation scenario: Using JSON-formatted tags to create a schedule for Azure VM startup and shutdown](../automation/automation-scenario-start-stop-vm-wjson-tags.md).</span></span>
-- <span data-ttu-id="8dad9-200">가상 컴퓨터 업무 외 시간을 시작하고 중지하는 Runbook에 대한 내용은 [Automation의 업무 시간 외 VM 시작/중지 솔루션](../automation/automation-solution-vm-management.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8dad9-200">For runbooks that start and stop virtual machines off-hours, see [Start/Stop VMs during off-hours solution in Automation](../automation/automation-solution-vm-management.md).</span></span>
+- <span data-ttu-id="89304-197">Runbook 만들기에 대한 내용은 [내 첫 번째 PowerShell Runbook](../automation/automation-first-runbook-textual-powershell.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="89304-197">For information about creating a runbook, see [My first PowerShell runbook](../automation/automation-first-runbook-textual-powershell.md).</span></span>
+- <span data-ttu-id="89304-198">스크립트 갤러리 작업에 대한 내용은 [Azure Automation용 Runbook 및 모듈 갤러리](../automation/automation-runbook-gallery.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="89304-198">For information about working with galleries of scripts, see [Runbook and module galleries for Azure Automation](../automation/automation-runbook-gallery.md).</span></span>
+- <span data-ttu-id="89304-199">시작 하 고 가상 컴퓨터를 중지 하는 runbook에 대 한 참조 [Azure 자동화 시나리오: 태그를 사용 하 여 JSON 형식 toocreate Azure VM 시작 및 종료에 대 한 일정](../automation/automation-scenario-start-stop-vm-wjson-tags.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-199">For runbooks that start and stop virtual machines, see [Azure Automation scenario: Using JSON-formatted tags toocreate a schedule for Azure VM startup and shutdown](../automation/automation-scenario-start-stop-vm-wjson-tags.md).</span></span>
+- <span data-ttu-id="89304-200">가상 컴퓨터 업무 외 시간을 시작하고 중지하는 Runbook에 대한 내용은 [Automation의 업무 시간 외 VM 시작/중지 솔루션](../automation/automation-solution-vm-management.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="89304-200">For runbooks that start and stop virtual machines off-hours, see [Start/Stop VMs during off-hours solution in Automation](../automation/automation-solution-vm-management.md).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="8dad9-201">다음 단계</span><span class="sxs-lookup"><span data-stu-id="8dad9-201">Next steps</span></span>
-* <span data-ttu-id="8dad9-202">Resource Manager 템플릿을 만드는 방법에 대한 자세한 내용은 [Azure Resource Manager 템플릿 작성](resource-group-authoring-templates.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8dad9-202">To learn about creating Resource Manager templates, see [Authoring Azure Resource Manager Templates](resource-group-authoring-templates.md).</span></span>
-* <span data-ttu-id="8dad9-203">템플릿 배포에 대한 자세한 내용은 [Azure Resource Manager 템플릿을 사용하여 응용 프로그램 배포](resource-group-template-deploy.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8dad9-203">To learn about deploying templates, see [Deploy an application with Azure Resource Manager Template](resource-group-template-deploy.md).</span></span>
-* <span data-ttu-id="8dad9-204">기존 리소스를 새 리소스 그룹으로 이동할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="8dad9-204">You can move existing resources to a new resource group.</span></span> <span data-ttu-id="8dad9-205">예제를 보려면 [새 리소스 그룹 또는 구독으로 리소스 이동](resource-group-move-resources.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8dad9-205">For examples, see [Move Resources to New Resource Group or Subscription](resource-group-move-resources.md).</span></span>
-* <span data-ttu-id="8dad9-206">엔터프라이즈에서 리소스 관리자를 사용하여 구독을 효과적으로 관리할 수 있는 방법에 대한 지침은 [Azure 엔터프라이즈 스캐폴드 - 규범적 구독 거버넌스](resource-manager-subscription-governance.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="8dad9-206">For guidance on how enterprises can use Resource Manager to effectively manage subscriptions, see [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="89304-201">다음 단계</span><span class="sxs-lookup"><span data-stu-id="89304-201">Next steps</span></span>
+* <span data-ttu-id="89304-202">리소스 관리자 템플릿을 만드는 방법에 대해 toolearn 참조 [Azure 리소스 관리자 템플릿 제작](resource-group-authoring-templates.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-202">toolearn about creating Resource Manager templates, see [Authoring Azure Resource Manager Templates](resource-group-authoring-templates.md).</span></span>
+* <span data-ttu-id="89304-203">템플릿 배포에 대 한 toolearn 참조 [Azure 리소스 관리자 템플릿을 사용 하 여 응용 프로그램 배포](resource-group-template-deploy.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-203">toolearn about deploying templates, see [Deploy an application with Azure Resource Manager Template](resource-group-template-deploy.md).</span></span>
+* <span data-ttu-id="89304-204">기존 리소스 tooa 새 리소스 그룹을 이동할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="89304-204">You can move existing resources tooa new resource group.</span></span> <span data-ttu-id="89304-205">예제를 보려면 [구독 또는 리소스 그룹 리소스 이동 tooNew](resource-group-move-resources.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-205">For examples, see [Move Resources tooNew Resource Group or Subscription](resource-group-move-resources.md).</span></span>
+* <span data-ttu-id="89304-206">기업에서는 리소스 관리자 tooeffectively 사용 방법에 대 한 지침에 대 한 구독을 관리, 참조 [Azure enterprise 스 캐 폴드-규범적인 구독 거 버 넌 스](resource-manager-subscription-governance.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="89304-206">For guidance on how enterprises can use Resource Manager tooeffectively manage subscriptions, see [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md).</span></span>
 

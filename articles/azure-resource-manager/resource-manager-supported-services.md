@@ -1,6 +1,6 @@
 ---
-title: "Azure 리소스 공급자 및 리소스 종류 | Microsoft Docs"
-description: "리소스 관리자, 스키마, 제공되는 API 버전 및 리소스를 호스팅할 수 있는 지역을 지원하는 리소스 공급자에 대해 설명합니다."
+title: "aaaAzure 리소스 공급자 및 리소스 종류 | Microsoft Docs"
+description: "리소스 관리자, 스키마 및 사용 가능한 API 버전을 지 원하는 hello 리소스 공급자 및 hello 리소스를 호스팅할 수 있는 hello 영역에 설명 합니다."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: tomfitz
-ms.openlocfilehash: 6a9128f45d4199404019cee594842d59c7f1aaf3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 23db1d3808a20166f3b44ec801e1bcc46fbb9bd3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="resource-providers-and-types"></a><span data-ttu-id="c8dff-103">리소스 공급자 및 형식</span><span class="sxs-lookup"><span data-stu-id="c8dff-103">Resource providers and types</span></span>
+# <a name="resource-providers-and-types"></a><span data-ttu-id="e1a14-103">리소스 공급자 및 형식</span><span class="sxs-lookup"><span data-stu-id="e1a14-103">Resource providers and types</span></span>
 
-<span data-ttu-id="c8dff-104">리소스를 배포할 때는 리소스 공급자 및 형식에 대한 정보를 자주 검색하게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-104">When deploying resources, you frequently need to retrieve information about the resource providers and types.</span></span> <span data-ttu-id="c8dff-105">이 문서에서는 다음을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-105">In this article, you learn to:</span></span>
+<span data-ttu-id="e1a14-104">리소스를 배포할 때는 hello 리소스 공급자 및 형식에 대 한 tooretrieve 정보가 자주 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-104">When deploying resources, you frequently need tooretrieve information about hello resource providers and types.</span></span> <span data-ttu-id="e1a14-105">이 문서에서는 다음을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-105">In this article, you learn to:</span></span>
 
-* <span data-ttu-id="c8dff-106">Azure의 모든 리소스 공급자 보기</span><span class="sxs-lookup"><span data-stu-id="c8dff-106">View all resource providers in Azure</span></span>
-* <span data-ttu-id="c8dff-107">리소스 공급자의 등록 상태 확인</span><span class="sxs-lookup"><span data-stu-id="c8dff-107">Check registration status of a resource provider</span></span>
-* <span data-ttu-id="c8dff-108">리소스 공급자 등록</span><span class="sxs-lookup"><span data-stu-id="c8dff-108">Register a resource provider</span></span>
-* <span data-ttu-id="c8dff-109">리소스 공급자에 대한 리소스 종류 보기</span><span class="sxs-lookup"><span data-stu-id="c8dff-109">View resource types for a resource provider</span></span>
-* <span data-ttu-id="c8dff-110">리소스 종류에 대한 유효한 위치 보기</span><span class="sxs-lookup"><span data-stu-id="c8dff-110">View valid locations for a resource type</span></span>
-* <span data-ttu-id="c8dff-111">리소스 종류에 대한 유효한 API 버전 보기</span><span class="sxs-lookup"><span data-stu-id="c8dff-111">View valid API versions for a resource type</span></span>
+* <span data-ttu-id="e1a14-106">Azure의 모든 리소스 공급자 보기</span><span class="sxs-lookup"><span data-stu-id="e1a14-106">View all resource providers in Azure</span></span>
+* <span data-ttu-id="e1a14-107">리소스 공급자의 등록 상태 확인</span><span class="sxs-lookup"><span data-stu-id="e1a14-107">Check registration status of a resource provider</span></span>
+* <span data-ttu-id="e1a14-108">리소스 공급자 등록</span><span class="sxs-lookup"><span data-stu-id="e1a14-108">Register a resource provider</span></span>
+* <span data-ttu-id="e1a14-109">리소스 공급자에 대한 리소스 종류 보기</span><span class="sxs-lookup"><span data-stu-id="e1a14-109">View resource types for a resource provider</span></span>
+* <span data-ttu-id="e1a14-110">리소스 종류에 대한 유효한 위치 보기</span><span class="sxs-lookup"><span data-stu-id="e1a14-110">View valid locations for a resource type</span></span>
+* <span data-ttu-id="e1a14-111">리소스 종류에 대한 유효한 API 버전 보기</span><span class="sxs-lookup"><span data-stu-id="e1a14-111">View valid API versions for a resource type</span></span>
 
-<span data-ttu-id="c8dff-112">이러한 단계는 포털, PowerShell 또는 Azure CLI를 통해 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-112">You can perform these steps through the portal, PowerShell, or Azure CLI.</span></span>
+<span data-ttu-id="e1a14-112">Hello 포털, PowerShell 또는 Azure CLI를 통해 이러한 단계를 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-112">You can perform these steps through hello portal, PowerShell, or Azure CLI.</span></span>
 
-## <a name="powershell"></a><span data-ttu-id="c8dff-113">PowerShell</span><span class="sxs-lookup"><span data-stu-id="c8dff-113">PowerShell</span></span>
+## <a name="powershell"></a><span data-ttu-id="e1a14-113">PowerShell</span><span class="sxs-lookup"><span data-stu-id="e1a14-113">PowerShell</span></span>
 
-<span data-ttu-id="c8dff-114">Azure의 모든 리소스 공급자와 구독에 대한 등록 상태를 보려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-114">To see all resource providers in Azure, and the registration status for your subscription, use:</span></span>
+<span data-ttu-id="e1a14-114">toosee Azure 및 구독에 대 한 hello 등록 상태에서 모든 리소스 공급자를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-114">toosee all resource providers in Azure, and hello registration status for your subscription, use:</span></span>
 
 ```powershell
 Get-AzureRmResourceProvider -ListAvailable | Select-Object ProviderNamespace, RegistrationState
 ```
 
-<span data-ttu-id="c8dff-115">반환 결과는 다음과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-115">Which returns results similar to:</span></span>
+<span data-ttu-id="e1a14-115">반환 결과는 다음과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-115">Which returns results similar to:</span></span>
 
 ```powershell
 ProviderNamespace                RegistrationState
@@ -53,13 +53,13 @@ Microsoft.CognitiveServices      Registered
 ...
 ```
 
-<span data-ttu-id="c8dff-116">리소스 공급자를 등록하면 구독이 리소스 공급자에서 작동하도록 구성됩니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-116">Registering a resource provider configures your subscription to work with the resource provider.</span></span> <span data-ttu-id="c8dff-117">등록 범위는 항상 해당 구독입니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-117">The scope for registration is always the subscription.</span></span> <span data-ttu-id="c8dff-118">기본적으로 대부분의 리소스 공급자는 자동으로 등록됩니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-118">By default, many resource providers are automatically registered.</span></span> <span data-ttu-id="c8dff-119">그러나 일부 리소스 공급자는 수동으로 등록해야 할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-119">However, you may need to manually register some resource providers.</span></span> <span data-ttu-id="c8dff-120">리소스 공급자를 등록하려면 리소스 공급자에 대해 `/register/action` 작업을 수행할 권한이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-120">To register a resource provider, you must have permission to perform the `/register/action` operation for the resource provider.</span></span> <span data-ttu-id="c8dff-121">이 작업은 참가자 및 소유자 역할에 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-121">This operation is included in the Contributor and Owner roles.</span></span>
+<span data-ttu-id="e1a14-116">리소스 공급자 등록 중 hello 리소스 공급자에 구독 toowork을 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-116">Registering a resource provider configures your subscription toowork with hello resource provider.</span></span> <span data-ttu-id="e1a14-117">등록에 대 한 hello 범위 항상 hello 구독입니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-117">hello scope for registration is always hello subscription.</span></span> <span data-ttu-id="e1a14-118">기본적으로 대부분의 리소스 공급자는 자동으로 등록됩니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-118">By default, many resource providers are automatically registered.</span></span> <span data-ttu-id="e1a14-119">할 수 있습니다 toomanually 일부 리소스 공급자를 등록 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-119">However, you may need toomanually register some resource providers.</span></span> <span data-ttu-id="e1a14-120">리소스 공급자 tooregister 있어야 권한 tooperform hello `/register/action` hello 리소스 공급자에 대 한 작업입니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-120">tooregister a resource provider, you must have permission tooperform hello `/register/action` operation for hello resource provider.</span></span> <span data-ttu-id="e1a14-121">이 작업은 참가자 hello 및 소유자 역할에 포함 됩니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-121">This operation is included in hello Contributor and Owner roles.</span></span>
 
 ```powershell
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch
 ```
 
-<span data-ttu-id="c8dff-122">반환 결과는 다음과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-122">Which returns results similar to:</span></span>
+<span data-ttu-id="e1a14-122">반환 결과는 다음과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-122">Which returns results similar to:</span></span>
 
 ```powershell
 ProviderNamespace : Microsoft.Batch
@@ -68,15 +68,15 @@ ResourceTypes     : {batchAccounts, operations, locations, locations/quotas}
 Locations         : {West Europe, East US, East US 2, West US...}
 ```
 
-<span data-ttu-id="c8dff-123">구독에 리소스 공급자의 리소스 종류가 아직 포함되어 있으면 해당 리소스 공급자를 등록 취소할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-123">You cannot unregister a resource provider when you still have resource types from that resource provider in your subscription.</span></span>
+<span data-ttu-id="e1a14-123">구독에 리소스 공급자의 리소스 종류가 아직 포함되어 있으면 해당 리소스 공급자를 등록 취소할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-123">You cannot unregister a resource provider when you still have resource types from that resource provider in your subscription.</span></span>
 
-<span data-ttu-id="c8dff-124">특정 리소스 공급자에 대한 정보를 보려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-124">To see information for a particular resource provider, use:</span></span>
+<span data-ttu-id="e1a14-124">특정 리소스 공급자를 사용 하 여 toosee 정보:</span><span class="sxs-lookup"><span data-stu-id="e1a14-124">toosee information for a particular resource provider, use:</span></span>
 
 ```powershell
 Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch
 ```
 
-<span data-ttu-id="c8dff-125">반환 결과는 다음과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-125">Which returns results similar to:</span></span>
+<span data-ttu-id="e1a14-125">반환 결과는 다음과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-125">Which returns results similar to:</span></span>
 
 ```powershell
 {ProviderNamespace : Microsoft.Batch
@@ -87,13 +87,13 @@ Locations         : {West Europe, East US, East US 2, West US...}
 ...
 ```
 
-<span data-ttu-id="c8dff-126">리소스 공급자에 대한 리소스 종류를 보려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-126">To see the resource types for a resource provider, use:</span></span>
+<span data-ttu-id="e1a14-126">리소스 공급자에 대 한 toosee hello 리소스 형식을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-126">toosee hello resource types for a resource provider, use:</span></span>
 
 ```powershell
 (Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch).ResourceTypes.ResourceTypeName
 ```
 
-<span data-ttu-id="c8dff-127">반환하는 내용은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-127">Which returns:</span></span>
+<span data-ttu-id="e1a14-127">반환하는 내용은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-127">Which returns:</span></span>
 
 ```powershell
 batchAccounts
@@ -102,15 +102,15 @@ locations
 locations/quotas
 ```
 
-<span data-ttu-id="c8dff-128">API 버전은 리소스 공급자가 릴리스하는 REST API 작업의 버전에 해당합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-128">The API version corresponds to a version of REST API operations that are released by the resource provider.</span></span> <span data-ttu-id="c8dff-129">리소스 공급자는 새 기능을 사용하도록 설정할 때 새 버전의 REST API를 릴리스합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-129">As a resource provider enables new features, it releases a new version of the REST API.</span></span> 
+<span data-ttu-id="e1a14-128">hello API 버전 tooa 버전의 hello 리소스 공급자가 릴리스되는 REST API 작업은 해당 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-128">hello API version corresponds tooa version of REST API operations that are released by hello resource provider.</span></span> <span data-ttu-id="e1a14-129">리소스 공급자를 통해 새로운 기능, 새 버전의 hello REST API를 해제 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-129">As a resource provider enables new features, it releases a new version of hello REST API.</span></span> 
 
-<span data-ttu-id="c8dff-130">리소스 종류의 사용 가능한 API 버전을 가져오려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-130">To get the available API versions for a resource type, use:</span></span>
+<span data-ttu-id="e1a14-130">리소스 유형에 대 한 tooget hello 사용 가능한 API 버전을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-130">tooget hello available API versions for a resource type, use:</span></span>
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch).ResourceTypes | Where-Object ResourceTypeName -eq batchAccounts).ApiVersions
 ```
 
-<span data-ttu-id="c8dff-131">반환하는 내용은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-131">Which returns:</span></span>
+<span data-ttu-id="e1a14-131">반환하는 내용은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-131">Which returns:</span></span>
 
 ```powershell
 2017-05-01
@@ -120,15 +120,15 @@ locations/quotas
 2015-07-01
 ```
 
-<span data-ttu-id="c8dff-132">리소스 관리자는 모든 지역에서 지원되지만 배포한 리소스는 모든 지역에서 지원되지 않을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-132">Resource Manager is supported in all regions, but the resources you deploy might not be supported in all regions.</span></span> <span data-ttu-id="c8dff-133">또한 해당 리소스를 지원하는 일부 지역을 사용하지 못하도록 구독에 대한 제한 사항이 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-133">In addition, there may be limitations on your subscription that prevent you from using some regions that support the resource.</span></span> 
+<span data-ttu-id="e1a14-132">모든 지역에서 리소스 관리자가 지원 되지만 hello 리소스 배포한 모든 지역에서 지원 되지 않는 경우.</span><span class="sxs-lookup"><span data-stu-id="e1a14-132">Resource Manager is supported in all regions, but hello resources you deploy might not be supported in all regions.</span></span> <span data-ttu-id="e1a14-133">또한 hello 리소스를 지 원하는 일부 영역을 사용 하지 못하게 하는 구독에 제한 사항이 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-133">In addition, there may be limitations on your subscription that prevent you from using some regions that support hello resource.</span></span> 
 
-<span data-ttu-id="c8dff-134">리소스 종류의 지원되는 위치를 가져오려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-134">To get the supported locations for a resource type, use.</span></span>
+<span data-ttu-id="e1a14-134">리소스 종류에 대 한 tooget hello 지원 위치를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-134">tooget hello supported locations for a resource type, use.</span></span>
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch).ResourceTypes | Where-Object ResourceTypeName -eq batchAccounts).Locations
 ```
 
-<span data-ttu-id="c8dff-135">반환하는 내용은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-135">Which returns:</span></span>
+<span data-ttu-id="e1a14-135">반환하는 내용은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-135">Which returns:</span></span>
 
 ```powershell
 West Europe
@@ -138,14 +138,14 @@ West US
 ...
 ```
 
-## <a name="azure-cli"></a><span data-ttu-id="c8dff-136">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="c8dff-136">Azure CLI</span></span>
-<span data-ttu-id="c8dff-137">Azure의 모든 리소스 공급자와 구독에 대한 등록 상태를 보려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-137">To see all resource providers in Azure, and the registration status for your subscription, use:</span></span>
+## <a name="azure-cli"></a><span data-ttu-id="e1a14-136">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="e1a14-136">Azure CLI</span></span>
+<span data-ttu-id="e1a14-137">toosee Azure 및 구독에 대 한 hello 등록 상태에서 모든 리소스 공급자를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-137">toosee all resource providers in Azure, and hello registration status for your subscription, use:</span></span>
 
 ```azurecli
 az provider list --query "[].{Provider:namespace, Status:registrationState}" --out table
 ```
 
-<span data-ttu-id="c8dff-138">반환 결과는 다음과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-138">Which returns results similar to:</span></span>
+<span data-ttu-id="e1a14-138">반환 결과는 다음과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-138">Which returns results similar to:</span></span>
 
 ```azurecli
 Provider                         Status
@@ -157,23 +157,23 @@ Microsoft.CognitiveServices      Registered
 ...
 ```
 
-<span data-ttu-id="c8dff-139">리소스 공급자를 등록하면 구독이 리소스 공급자에서 작동하도록 구성됩니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-139">Registering a resource provider configures your subscription to work with the resource provider.</span></span> <span data-ttu-id="c8dff-140">등록 범위는 항상 해당 구독입니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-140">The scope for registration is always the subscription.</span></span> <span data-ttu-id="c8dff-141">기본적으로 대부분의 리소스 공급자는 자동으로 등록됩니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-141">By default, many resource providers are automatically registered.</span></span> <span data-ttu-id="c8dff-142">그러나 일부 리소스 공급자는 수동으로 등록해야 할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-142">However, you may need to manually register some resource providers.</span></span> <span data-ttu-id="c8dff-143">리소스 공급자를 등록하려면 리소스 공급자에 대해 `/register/action` 작업을 수행할 권한이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-143">To register a resource provider, you must have permission to perform the `/register/action` operation for the resource provider.</span></span> <span data-ttu-id="c8dff-144">이 작업은 참가자 및 소유자 역할에 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-144">This operation is included in the Contributor and Owner roles.</span></span>
+<span data-ttu-id="e1a14-139">리소스 공급자 등록 중 hello 리소스 공급자에 구독 toowork을 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-139">Registering a resource provider configures your subscription toowork with hello resource provider.</span></span> <span data-ttu-id="e1a14-140">등록에 대 한 hello 범위 항상 hello 구독입니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-140">hello scope for registration is always hello subscription.</span></span> <span data-ttu-id="e1a14-141">기본적으로 대부분의 리소스 공급자는 자동으로 등록됩니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-141">By default, many resource providers are automatically registered.</span></span> <span data-ttu-id="e1a14-142">할 수 있습니다 toomanually 일부 리소스 공급자를 등록 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-142">However, you may need toomanually register some resource providers.</span></span> <span data-ttu-id="e1a14-143">리소스 공급자 tooregister 있어야 권한 tooperform hello `/register/action` hello 리소스 공급자에 대 한 작업입니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-143">tooregister a resource provider, you must have permission tooperform hello `/register/action` operation for hello resource provider.</span></span> <span data-ttu-id="e1a14-144">이 작업은 참가자 hello 및 소유자 역할에 포함 됩니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-144">This operation is included in hello Contributor and Owner roles.</span></span>
 
 ```azurecli
 az provider register --namespace Microsoft.Batch
 ```
 
-<span data-ttu-id="c8dff-145">등록이 진행 중인 메시지를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-145">Which returns a message that registration is on-going.</span></span>
+<span data-ttu-id="e1a14-145">등록이 진행 중인 메시지를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-145">Which returns a message that registration is on-going.</span></span>
 
-<span data-ttu-id="c8dff-146">구독에 리소스 공급자의 리소스 종류가 아직 포함되어 있으면 해당 리소스 공급자를 등록 취소할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-146">You cannot unregister a resource provider when you still have resource types from that resource provider in your subscription.</span></span>
+<span data-ttu-id="e1a14-146">구독에 리소스 공급자의 리소스 종류가 아직 포함되어 있으면 해당 리소스 공급자를 등록 취소할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-146">You cannot unregister a resource provider when you still have resource types from that resource provider in your subscription.</span></span>
 
-<span data-ttu-id="c8dff-147">특정 리소스 공급자에 대한 정보를 보려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-147">To see information for a particular resource provider, use:</span></span>
+<span data-ttu-id="e1a14-147">특정 리소스 공급자를 사용 하 여 toosee 정보:</span><span class="sxs-lookup"><span data-stu-id="e1a14-147">toosee information for a particular resource provider, use:</span></span>
 
 ```azurecli
 az provider show --namespace Microsoft.Batch
 ```
 
-<span data-ttu-id="c8dff-148">반환 결과는 다음과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-148">Which returns results similar to:</span></span>
+<span data-ttu-id="e1a14-148">반환 결과는 다음과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-148">Which returns results similar to:</span></span>
 
 ```azurecli
 {
@@ -186,13 +186,13 @@ az provider show --namespace Microsoft.Batch
 }
 ```
 
-<span data-ttu-id="c8dff-149">리소스 공급자에 대한 리소스 종류를 보려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-149">To see the resource types for a resource provider, use:</span></span>
+<span data-ttu-id="e1a14-149">리소스 공급자에 대 한 toosee hello 리소스 형식을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-149">toosee hello resource types for a resource provider, use:</span></span>
 
 ```azurecli
 az provider show --namespace Microsoft.Batch --query "resourceTypes[*].resourceType" --out table
 ```
 
-<span data-ttu-id="c8dff-150">반환하는 내용은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-150">Which returns:</span></span>
+<span data-ttu-id="e1a14-150">반환하는 내용은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-150">Which returns:</span></span>
 
 ```azurecli
 Result
@@ -203,15 +203,15 @@ locations
 locations/quotas
 ```
 
-<span data-ttu-id="c8dff-151">API 버전은 리소스 공급자가 릴리스하는 REST API 작업의 버전에 해당합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-151">The API version corresponds to a version of REST API operations that are released by the resource provider.</span></span> <span data-ttu-id="c8dff-152">리소스 공급자는 새 기능을 사용하도록 설정할 때 새 버전의 REST API를 릴리스합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-152">As a resource provider enables new features, it releases a new version of the REST API.</span></span> 
+<span data-ttu-id="e1a14-151">hello API 버전 tooa 버전의 hello 리소스 공급자가 릴리스되는 REST API 작업은 해당 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-151">hello API version corresponds tooa version of REST API operations that are released by hello resource provider.</span></span> <span data-ttu-id="e1a14-152">리소스 공급자를 통해 새로운 기능, 새 버전의 hello REST API를 해제 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-152">As a resource provider enables new features, it releases a new version of hello REST API.</span></span> 
 
-<span data-ttu-id="c8dff-153">리소스 종류의 사용 가능한 API 버전을 가져오려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-153">To get the available API versions for a resource type, use:</span></span>
+<span data-ttu-id="e1a14-153">리소스 유형에 대 한 tooget hello 사용 가능한 API 버전을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-153">tooget hello available API versions for a resource type, use:</span></span>
 
 ```azurecli
 az provider show --namespace Microsoft.Batch --query "resourceTypes[?resourceType=='batchAccounts'].apiVersions | [0]" --out table
 ```
 
-<span data-ttu-id="c8dff-154">반환하는 내용은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-154">Which returns:</span></span>
+<span data-ttu-id="e1a14-154">반환하는 내용은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-154">Which returns:</span></span>
 
 ```azurecli
 Result
@@ -223,15 +223,15 @@ Result
 2015-07-01
 ```
 
-<span data-ttu-id="c8dff-155">리소스 관리자는 모든 지역에서 지원되지만 배포한 리소스는 모든 지역에서 지원되지 않을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-155">Resource Manager is supported in all regions, but the resources you deploy might not be supported in all regions.</span></span> <span data-ttu-id="c8dff-156">또한 해당 리소스를 지원하는 일부 지역을 사용하지 못하도록 구독에 대한 제한 사항이 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-156">In addition, there may be limitations on your subscription that prevent you from using some regions that support the resource.</span></span> 
+<span data-ttu-id="e1a14-155">모든 지역에서 리소스 관리자가 지원 되지만 hello 리소스 배포한 모든 지역에서 지원 되지 않는 경우.</span><span class="sxs-lookup"><span data-stu-id="e1a14-155">Resource Manager is supported in all regions, but hello resources you deploy might not be supported in all regions.</span></span> <span data-ttu-id="e1a14-156">또한 hello 리소스를 지 원하는 일부 영역을 사용 하지 못하게 하는 구독에 제한 사항이 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-156">In addition, there may be limitations on your subscription that prevent you from using some regions that support hello resource.</span></span> 
 
-<span data-ttu-id="c8dff-157">리소스 종류의 지원되는 위치를 가져오려면 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-157">To get the supported locations for a resource type, use.</span></span>
+<span data-ttu-id="e1a14-157">리소스 종류에 대 한 tooget hello 지원 위치를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-157">tooget hello supported locations for a resource type, use.</span></span>
 
 ```azurecli
 az provider show --namespace Microsoft.Batch --query "resourceTypes[?resourceType=='batchAccounts'].locations | [0]" --out table
 ```
 
-<span data-ttu-id="c8dff-158">반환하는 내용은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-158">Which returns:</span></span>
+<span data-ttu-id="e1a14-158">반환하는 내용은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-158">Which returns:</span></span>
 
 ```azurecli
 Result
@@ -243,52 +243,52 @@ West US
 ...
 ```
 
-## <a name="portal"></a><span data-ttu-id="c8dff-159">포털</span><span class="sxs-lookup"><span data-stu-id="c8dff-159">Portal</span></span>
+## <a name="portal"></a><span data-ttu-id="e1a14-159">포털</span><span class="sxs-lookup"><span data-stu-id="e1a14-159">Portal</span></span>
 
-<span data-ttu-id="c8dff-160">Azure의 모든 리소스 공급자 및 구독에 대한 등록 상태를 보려면 **구독**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-160">To see all resource providers in Azure, and the registration status for your subscription, select **Subscriptions**.</span></span>
+<span data-ttu-id="e1a14-160">Azure 및 구독에 대 한 hello 등록 상태에서 모든 리소스 공급자 선택 toosee **구독**합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-160">toosee all resource providers in Azure, and hello registration status for your subscription, select **Subscriptions**.</span></span>
 
 ![구독 선택](./media/resource-manager-supported-services/select-subscriptions.png)
 
-<span data-ttu-id="c8dff-162">보려는 구독을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-162">Choose the subscription to view.</span></span>
+<span data-ttu-id="e1a14-162">Hello 구독 tooview를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-162">Choose hello subscription tooview.</span></span>
 
 ![구독 지정](./media/resource-manager-supported-services/subscription.png)
 
-<span data-ttu-id="c8dff-164">**리소스 공급자**를 선택하고 사용 가능한 리소스 공급자의 목록을 봅니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-164">Select **Resource providers** and view the list of available resource providers.</span></span>
+<span data-ttu-id="e1a14-164">선택 **리소스 공급자** 및 사용 가능한 리소스 공급자의 뷰 hello 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-164">Select **Resource providers** and view hello list of available resource providers.</span></span>
 
 ![리소스 공급자 보기](./media/resource-manager-supported-services/show-resource-providers.png)
 
-<span data-ttu-id="c8dff-166">리소스 공급자를 등록하면 구독이 리소스 공급자에서 작동하도록 구성됩니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-166">Registering a resource provider configures your subscription to work with the resource provider.</span></span> <span data-ttu-id="c8dff-167">등록 범위는 항상 해당 구독입니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-167">The scope for registration is always the subscription.</span></span> <span data-ttu-id="c8dff-168">기본적으로 대부분의 리소스 공급자는 자동으로 등록됩니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-168">By default, many resource providers are automatically registered.</span></span> <span data-ttu-id="c8dff-169">그러나 일부 리소스 공급자는 수동으로 등록해야 할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-169">However, you may need to manually register some resource providers.</span></span> <span data-ttu-id="c8dff-170">리소스 공급자를 등록하려면 리소스 공급자에 대해 `/register/action` 작업을 수행할 권한이 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-170">To register a resource provider, you must have permission to perform the `/register/action` operation for the resource provider.</span></span> <span data-ttu-id="c8dff-171">이 작업은 참가자 및 소유자 역할에 포함되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-171">This operation is included in the Contributor and Owner roles.</span></span> <span data-ttu-id="c8dff-172">리소스 공급자를 등록하려면 **등록**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-172">To register a resource provider, select **Register**.</span></span>
+<span data-ttu-id="e1a14-166">리소스 공급자 등록 중 hello 리소스 공급자에 구독 toowork을 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-166">Registering a resource provider configures your subscription toowork with hello resource provider.</span></span> <span data-ttu-id="e1a14-167">등록에 대 한 hello 범위 항상 hello 구독입니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-167">hello scope for registration is always hello subscription.</span></span> <span data-ttu-id="e1a14-168">기본적으로 대부분의 리소스 공급자는 자동으로 등록됩니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-168">By default, many resource providers are automatically registered.</span></span> <span data-ttu-id="e1a14-169">할 수 있습니다 toomanually 일부 리소스 공급자를 등록 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-169">However, you may need toomanually register some resource providers.</span></span> <span data-ttu-id="e1a14-170">리소스 공급자 tooregister 있어야 권한 tooperform hello `/register/action` hello 리소스 공급자에 대 한 작업입니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-170">tooregister a resource provider, you must have permission tooperform hello `/register/action` operation for hello resource provider.</span></span> <span data-ttu-id="e1a14-171">이 작업은 참가자 hello 및 소유자 역할에 포함 됩니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-171">This operation is included in hello Contributor and Owner roles.</span></span> <span data-ttu-id="e1a14-172">리소스 공급자 tooregister 선택 **등록**합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-172">tooregister a resource provider, select **Register**.</span></span>
 
 ![리소스 공급자 등록](./media/resource-manager-supported-services/register-provider.png)
 
-<span data-ttu-id="c8dff-174">구독에 리소스 공급자의 리소스 종류가 아직 포함되어 있으면 해당 리소스 공급자를 등록 취소할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-174">You cannot unregister a resource provider when you still have resource types from that resource provider in your subscription.</span></span>
+<span data-ttu-id="e1a14-174">구독에 리소스 공급자의 리소스 종류가 아직 포함되어 있으면 해당 리소스 공급자를 등록 취소할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-174">You cannot unregister a resource provider when you still have resource types from that resource provider in your subscription.</span></span>
 
-<span data-ttu-id="c8dff-175">특정 리소스 공급자에 대한 정보를 보려면 **추가 서비스**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-175">To see information for a particular resource provider, select **More services**.</span></span>
+<span data-ttu-id="e1a14-175">특정 리소스 공급자에 대 한 정보 toosee 선택 **더 많은 서비스**합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-175">toosee information for a particular resource provider, select **More services**.</span></span>
 
 ![추가 서비스 선택](./media/resource-manager-supported-services/more-services.png)
 
-<span data-ttu-id="c8dff-177">**리소스 탐색기**를 검색하고 사용 가능한 옵션 중에서 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-177">Search for **Resource Explorer** and select it from the available options.</span></span>
+<span data-ttu-id="e1a14-177">검색할 **리소스 탐색기** hello 사용 가능한 옵션에서 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-177">Search for **Resource Explorer** and select it from hello available options.</span></span>
 
 ![리소스 탐색기 선택](./media/resource-manager-supported-services/select-resource-explorer.png)
 
-<span data-ttu-id="c8dff-179">**공급자**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-179">Select **Providers**.</span></span>
+<span data-ttu-id="e1a14-179">**공급자**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-179">Select **Providers**.</span></span>
 
 ![공급자 선택](./media/resource-manager-supported-services/select-providers.png)
 
-<span data-ttu-id="c8dff-181">보려는 리소스 공급자 및 리소스 종류를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-181">Select the resource provider and resource type that you want to view.</span></span>
+<span data-ttu-id="e1a14-181">리소스 공급자 선택 hello 및 리소스 tooview 한다는 것을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-181">Select hello resource provider and resource type that you want tooview.</span></span>
 
 ![리소스 종류 선택](./media/resource-manager-supported-services/select-resource-type.png)
 
-<span data-ttu-id="c8dff-183">리소스 관리자는 모든 지역에서 지원되지만 배포한 리소스는 모든 지역에서 지원되지 않을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-183">Resource Manager is supported in all regions, but the resources you deploy might not be supported in all regions.</span></span> <span data-ttu-id="c8dff-184">또한 해당 리소스를 지원하는 일부 지역을 사용하지 못하도록 구독에 대한 제한 사항이 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-184">In addition, there may be limitations on your subscription that prevent you from using some regions that support the resource.</span></span> <span data-ttu-id="c8dff-185">리소스 탐색기에는 리소스 종류에 대한 유효한 위치가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-185">The resource explorer displays valid locations for the resource type.</span></span>
+<span data-ttu-id="e1a14-183">모든 지역에서 리소스 관리자가 지원 되지만 hello 리소스 배포한 모든 지역에서 지원 되지 않는 경우.</span><span class="sxs-lookup"><span data-stu-id="e1a14-183">Resource Manager is supported in all regions, but hello resources you deploy might not be supported in all regions.</span></span> <span data-ttu-id="e1a14-184">또한 hello 리소스를 지 원하는 일부 영역을 사용 하지 못하게 하는 구독에 제한 사항이 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-184">In addition, there may be limitations on your subscription that prevent you from using some regions that support hello resource.</span></span> <span data-ttu-id="e1a14-185">hello 리소스 탐색기 hello 리소스 유형에 대 한 유효한 위치가 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-185">hello resource explorer displays valid locations for hello resource type.</span></span>
 
 ![위치 표시](./media/resource-manager-supported-services/show-locations.png)
 
-<span data-ttu-id="c8dff-187">API 버전은 리소스 공급자가 릴리스하는 REST API 작업의 버전에 해당합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-187">The API version corresponds to a version of REST API operations that are released by the resource provider.</span></span> <span data-ttu-id="c8dff-188">리소스 공급자는 새 기능을 사용하도록 설정할 때 새 버전의 REST API를 릴리스합니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-188">As a resource provider enables new features, it releases a new version of the REST API.</span></span> <span data-ttu-id="c8dff-189">리소스 탐색기에는 리소스 종류에 대한 유효한 API 버전이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="c8dff-189">The resource explorer displays valid API versions for the resource type.</span></span>
+<span data-ttu-id="e1a14-187">hello API 버전 tooa 버전의 hello 리소스 공급자가 릴리스되는 REST API 작업은 해당 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-187">hello API version corresponds tooa version of REST API operations that are released by hello resource provider.</span></span> <span data-ttu-id="e1a14-188">리소스 공급자를 통해 새로운 기능, 새 버전의 hello REST API를 해제 합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-188">As a resource provider enables new features, it releases a new version of hello REST API.</span></span> <span data-ttu-id="e1a14-189">리소스 탐색기 hello hello 리소스 종류에 대해 유효한 API 버전을 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-189">hello resource explorer displays valid API versions for hello resource type.</span></span>
 
 ![API 버전 표시](./media/resource-manager-supported-services/show-api-versions.png)
 
-## <a name="next-steps"></a><span data-ttu-id="c8dff-191">다음 단계</span><span class="sxs-lookup"><span data-stu-id="c8dff-191">Next steps</span></span>
-* <span data-ttu-id="c8dff-192">리소스 관리자 템플릿을 만드는 방법에 대한 자세한 내용은 [Azure 리소스 관리자 템플릿 작성](resource-group-authoring-templates.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c8dff-192">To learn about creating Resource Manager templates, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).</span></span>
-* <span data-ttu-id="c8dff-193">리소스 배포에 대한 자세한 내용은 [Azure 리소스 관리자 템플릿을 사용하여 응용 프로그램 배포](resource-group-template-deploy.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c8dff-193">To learn about deploying resources, see [Deploy an application with Azure Resource Manager template](resource-group-template-deploy.md).</span></span>
-* <span data-ttu-id="c8dff-194">리소스 공급자에 대한 작업을 보려면 [Azure REST API](/rest/api/)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c8dff-194">To view the operations for a resource provider, see [Azure REST API](/rest/api/).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e1a14-191">다음 단계</span><span class="sxs-lookup"><span data-stu-id="e1a14-191">Next steps</span></span>
+* <span data-ttu-id="e1a14-192">리소스 관리자 템플릿을 만드는 방법에 대해 toolearn 참조 [제작 Azure 리소스 관리자 템플릿을](resource-group-authoring-templates.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-192">toolearn about creating Resource Manager templates, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).</span></span>
+* <span data-ttu-id="e1a14-193">리소스를 배포 하는 방법에 대 한 toolearn 참조 [Azure 리소스 관리자 템플릿 사용 하 여 응용 프로그램 배포](resource-group-template-deploy.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-193">toolearn about deploying resources, see [Deploy an application with Azure Resource Manager template](resource-group-template-deploy.md).</span></span>
+* <span data-ttu-id="e1a14-194">리소스 공급자에 대 한 tooview hello 작업 참조 [Azure REST API](/rest/api/)합니다.</span><span class="sxs-lookup"><span data-stu-id="e1a14-194">tooview hello operations for a resource provider, see [Azure REST API](/rest/api/).</span></span>
 

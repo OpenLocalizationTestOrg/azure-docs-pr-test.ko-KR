@@ -1,6 +1,6 @@
 ---
-title: "HL7 FHIR 리소스에 대한 변경 사항 피드 - Azure Cosmos DB | Microsoft Docs"
-description: "Azure Logic Apps, Azure Cosmos DB 및 Service Bus를 사용하여 HL7 FHIR 환자 의료 기록에 대한 변경 알림 설정 방법을 알아보세요."
+title: "HL7 FHIR 리소스-Azure Cosmos DB에 대 한 피드 aaaChange | Microsoft Docs"
+description: "Azure 논리 앱, Azure Cosmos DB 및 서비스 버스를 사용 하 여 HL7 FHIR 환자 의료 레코드에 대 한 알림을 tooset를 변경 하는 방법에 대해 알아봅니다."
 keywords: hl7 fhir
 services: cosmos-db
 author: hedidin
@@ -15,95 +15,95 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/08/2017
 ms.author: b-hoedid
-ms.openlocfilehash: d2b50c0b6864af41fb9cfa051721c432772b228d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d2809bf5c6d8c193c49438d20684c56caea646bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="notifying-patients-of-hl7-fhir-health-care-record-changes-using-logic-apps-and-azure-cosmos-db"></a><span data-ttu-id="7eaf3-104">Logic Apps 및 Azure Cosmos DB를 사용하여 환자에게 HL7 FHIR 의료 기록 변경 통지</span><span class="sxs-lookup"><span data-stu-id="7eaf3-104">Notifying patients of HL7 FHIR health care record changes using Logic Apps and Azure Cosmos DB</span></span>
+# <a name="notifying-patients-of-hl7-fhir-health-care-record-changes-using-logic-apps-and-azure-cosmos-db"></a><span data-ttu-id="e0318-104">Logic Apps 및 Azure Cosmos DB를 사용하여 환자에게 HL7 FHIR 의료 기록 변경 통지</span><span class="sxs-lookup"><span data-stu-id="e0318-104">Notifying patients of HL7 FHIR health care record changes using Logic Apps and Azure Cosmos DB</span></span>
 
-<span data-ttu-id="7eaf3-105">Azure MVP Howard Edidin은 최근에 환자 포털에 새 기능을 추가하길 원하는 한 의료 기관으로부터 문의를 받았습니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-105">Azure MVP Howard Edidin was recently contacted by a healthcare organization that wanted to add new functionality to their patient portal.</span></span> <span data-ttu-id="7eaf3-106">의료 기록이 업데이트되면 환자에게 알림을 보내고 환자가 이러한 업데이트를 구독할 수 있는 기능이 필요했습니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-106">They needed to send notifications to patients when their health record was updated, and they needed patients to be able to subscribe to these updates.</span></span> 
+<span data-ttu-id="e0318-105">Azure MVP Howard Edidin tooadd 새 기능 tootheir 환자 포털 지정 하려는 의료 조직에서 최근에 연결 않았습니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-105">Azure MVP Howard Edidin was recently contacted by a healthcare organization that wanted tooadd new functionality tootheir patient portal.</span></span> <span data-ttu-id="e0318-106">해당 상태 레코드가 업데이트 되었는지 환자 toobe 수 toosubscribe toothese 업데이트 필요할 때 필요할 toosend 알림 toopatients 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-106">They needed toosend notifications toopatients when their health record was updated, and they needed patients toobe able toosubscribe toothese updates.</span></span> 
 
-<span data-ttu-id="7eaf3-107">이 문서는 Azure Cosmos DB, Logic Apps 및 Service Bus를 사용하여 이 의료 기관용으로 만든 변경 사항 피드 알림 솔루션을 안내합니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-107">This article walks through the change feed notification solution created for this healthcare organization using Azure Cosmos DB, Logic Apps, and Service Bus.</span></span> 
+<span data-ttu-id="e0318-107">이 문서에서는 Azure Cosmos DB, 논리 앱 및 서비스 버스를 사용 하 여이 의료 조직에 대해 생성 하는 hello 변경 피드 알림 솔루션을 통해 안내 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-107">This article walks through hello change feed notification solution created for this healthcare organization using Azure Cosmos DB, Logic Apps, and Service Bus.</span></span> 
 
-## <a name="project-requirements"></a><span data-ttu-id="7eaf3-108">프로젝트 요구 사항</span><span class="sxs-lookup"><span data-stu-id="7eaf3-108">Project requirements</span></span>
-- <span data-ttu-id="7eaf3-109">공급자는 XML 형식으로 HL7 통합-임상 문서 아키텍처(C-CDA) 문서를 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-109">Providers send HL7 Consolidated-Clinical Document Architecture (C-CDA) documents in XML format.</span></span> <span data-ttu-id="7eaf3-110">C-CDA 문서는 가족 이력, 예방접종 기록 등의 임상 문서는 물론 관리, 워크플로 및 재무 서류를 포함한 모든 유형의 임상 문서를 포괄하고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-110">C-CDA documents encompass just about every type of clinical document, including clinical documents such as family histories and immunization records, as well as administrative, workflow, and financial documents.</span></span> 
-- <span data-ttu-id="7eaf3-111">C-CDA 문서는 JSON 형식으로 [HL7 FHIR 리소스](http://hl7.org/fhir/2017Jan/resourcelist.html)로 변환됩니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-111">C-CDA documents are converted to [HL7 FHIR Resources](http://hl7.org/fhir/2017Jan/resourcelist.html) in JSON format.</span></span>
-- <span data-ttu-id="7eaf3-112">수정된 FHIR 리소스 문서는 JSON 형식으로 전자 메일을 통해 전송됩니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-112">Modified FHIR resource documents are sent by email in JSON format.</span></span>
+## <a name="project-requirements"></a><span data-ttu-id="e0318-108">프로젝트 요구 사항</span><span class="sxs-lookup"><span data-stu-id="e0318-108">Project requirements</span></span>
+- <span data-ttu-id="e0318-109">공급자는 XML 형식으로 HL7 통합-임상 문서 아키텍처(C-CDA) 문서를 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-109">Providers send HL7 Consolidated-Clinical Document Architecture (C-CDA) documents in XML format.</span></span> <span data-ttu-id="e0318-110">C-CDA 문서는 가족 이력, 예방접종 기록 등의 임상 문서는 물론 관리, 워크플로 및 재무 서류를 포함한 모든 유형의 임상 문서를 포괄하고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-110">C-CDA documents encompass just about every type of clinical document, including clinical documents such as family histories and immunization records, as well as administrative, workflow, and financial documents.</span></span> 
+- <span data-ttu-id="e0318-111">C CDA 문서 너무 변환할지[HL7 FHIR 리소스](http://hl7.org/fhir/2017Jan/resourcelist.html) JSON 형식에서입니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-111">C-CDA documents are converted too[HL7 FHIR Resources](http://hl7.org/fhir/2017Jan/resourcelist.html) in JSON format.</span></span>
+- <span data-ttu-id="e0318-112">수정된 FHIR 리소스 문서는 JSON 형식으로 전자 메일을 통해 전송됩니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-112">Modified FHIR resource documents are sent by email in JSON format.</span></span>
 
-## <a name="solution-workflow"></a><span data-ttu-id="7eaf3-113">솔루션 워크플로</span><span class="sxs-lookup"><span data-stu-id="7eaf3-113">Solution workflow</span></span> 
+## <a name="solution-workflow"></a><span data-ttu-id="e0318-113">솔루션 워크플로</span><span class="sxs-lookup"><span data-stu-id="e0318-113">Solution workflow</span></span> 
 
-<span data-ttu-id="7eaf3-114">높은 수준에서 프로젝트에 다음 워크플로 단계가 필요했습니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-114">At a high level, the project required the following workflow steps:</span></span> 
-1. <span data-ttu-id="7eaf3-115">C-CDA 문서를 FHIR 리소스로 변환합니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-115">Convert C-CDA documents to FHIR resources.</span></span>
-2. <span data-ttu-id="7eaf3-116">수정된 FHIR 리소스에 대한 반복 트리거 폴링을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-116">Perform recurring trigger polling for modified FHIR resources.</span></span> 
-2. <span data-ttu-id="7eaf3-117">사용자 지정 앱인 FhirNotificationApi를 호출하여 Azure Cosmos DB에 연결하고 새롭거나 수정된 문서를 쿼리합니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-117">Call a custom app, FhirNotificationApi, to connect to Azure Cosmos DB and query for new or modified documents.</span></span>
-3. <span data-ttu-id="7eaf3-118">해당 응답을 Service Bus 큐에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-118">Save the response to to the Service Bus queue.</span></span>
-4. <span data-ttu-id="7eaf3-119">Service Bus 큐에서 새 메시지를 폴링합니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-119">Poll for new messages in the Service Bus queue.</span></span>
-5. <span data-ttu-id="7eaf3-120">환자에게 전자 메일 알림을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-120">Send email notifications to patients.</span></span>
+<span data-ttu-id="e0318-114">상위 수준 hello 프로젝트 hello 워크플로 단계를 수행 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-114">At a high level, hello project required hello following workflow steps:</span></span> 
+1. <span data-ttu-id="e0318-115">C CDA 문서 tooFHIR 리소스를 변환 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-115">Convert C-CDA documents tooFHIR resources.</span></span>
+2. <span data-ttu-id="e0318-116">수정된 FHIR 리소스에 대한 반복 트리거 폴링을 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-116">Perform recurring trigger polling for modified FHIR resources.</span></span> 
+2. <span data-ttu-id="e0318-117">새롭거나 수정 된 문서에 대 한 사용자 지정 응용 프로그램, FhirNotificationApi, tooconnect tooAzure Cosmos DB 및 쿼리를 호출 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-117">Call a custom app, FhirNotificationApi, tooconnect tooAzure Cosmos DB and query for new or modified documents.</span></span>
+3. <span data-ttu-id="e0318-118">Hello 응답 tootoohello 서비스 버스 큐를 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-118">Save hello response tootoohello Service Bus queue.</span></span>
+4. <span data-ttu-id="e0318-119">Hello 서비스 버스 큐에서 새 메시지에 대 한 설문 조사 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-119">Poll for new messages in hello Service Bus queue.</span></span>
+5. <span data-ttu-id="e0318-120">전자 메일 알림을 toopatients를 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-120">Send email notifications toopatients.</span></span>
 
-## <a name="solution-architecture"></a><span data-ttu-id="7eaf3-121">솔루션 아키텍처</span><span class="sxs-lookup"><span data-stu-id="7eaf3-121">Solution architecture</span></span>
-<span data-ttu-id="7eaf3-122">이 솔루션에는 위의 요구 사항을 충족하고 솔루션 워크플로를 완성하기 위해 세 개의 Logic Apps가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-122">This solution requires three Logic Apps to meet the above requirements and complete the solution workflow.</span></span> <span data-ttu-id="7eaf3-123">세 가지 논리 앱은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-123">The three logic apps are:</span></span>
-1. <span data-ttu-id="7eaf3-124">**HL7-FHIR-매핑 앱**: HL7 C-CDA 문서를 수신하여 FHIR 리소스로 변환한 다음 Azure Cosmos DB에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-124">**HL7-FHIR-Mapping app**: Receives the HL7 C-CDA document, transforms it to the FHIR Resource, then saves it to Azure Cosmos DB.</span></span>
-2. <span data-ttu-id="7eaf3-125">**EHR 앱**: Azure Cosmos DB FHIR 리포지토리를 쿼리하고 해당 응답을 Service Bus 큐에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-125">**EHR app**: Queries the Azure Cosmos DB FHIR repository and saves the response to a Service Bus queue.</span></span> <span data-ttu-id="7eaf3-126">이 논리 앱에서는 [API 앱](#api-app)을 사용하여 새롭고 변경된 문서를 검색합니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-126">This logic app uses an [API app](#api-app) to retrieve new and changed documents.</span></span>
-3. <span data-ttu-id="7eaf3-127">**프로세스 알림 앱**: 본문에 FHIR 리소스 문서가 포함된 전자 메일 알림을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-127">**Process notification app**: Sends an email notification with the FHIR resource documents in the body.</span></span>
+## <a name="solution-architecture"></a><span data-ttu-id="e0318-121">솔루션 아키텍처</span><span class="sxs-lookup"><span data-stu-id="e0318-121">Solution architecture</span></span>
+<span data-ttu-id="e0318-122">이 솔루션에는 세 가지 논리 앱 toomeet hello 요구 사항 및 전체 hello 솔루션 워크플로 위에 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-122">This solution requires three Logic Apps toomeet hello above requirements and complete hello solution workflow.</span></span> <span data-ttu-id="e0318-123">세 개의 논리 앱 hello 됩니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-123">hello three logic apps are:</span></span>
+1. <span data-ttu-id="e0318-124">**HL7 FHIR 매핑 앱**: hello HL7 C CDA 문서를 수신한를 toohello FHIR 리소스 변환 다음 tooAzure Cosmos DB 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-124">**HL7-FHIR-Mapping app**: Receives hello HL7 C-CDA document, transforms it toohello FHIR Resource, then saves it tooAzure Cosmos DB.</span></span>
+2. <span data-ttu-id="e0318-125">**EHR 앱**: hello Azure Cosmos DB FHIR 저장소를 쿼리하고 hello 응답 tooa 서비스 버스 큐를 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-125">**EHR app**: Queries hello Azure Cosmos DB FHIR repository and saves hello response tooa Service Bus queue.</span></span> <span data-ttu-id="e0318-126">이 논리 앱에서 사용 하는 [API 앱](#api-app) tooretrieve 새로운 기능과 변경 된 문서입니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-126">This logic app uses an [API app](#api-app) tooretrieve new and changed documents.</span></span>
+3. <span data-ttu-id="e0318-127">**알림 응용 프로그램 프로세스**: hello 본문에 hello FHIR 리소스 문서와 전자 메일 알림을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-127">**Process notification app**: Sends an email notification with hello FHIR resource documents in hello body.</span></span>
 
-![이 HL7 FHIR 의료 솔루션에 사용된 세 가지 Logic Apps](./media/change-feed-hl7-fhir-logic-apps/health-care-solution-hl7-fhir.png)
-
-
-
-### <a name="azure-services-used-in-the-solution"></a><span data-ttu-id="7eaf3-129">솔루션에 사용된 Azure 서비스</span><span class="sxs-lookup"><span data-stu-id="7eaf3-129">Azure services used in the solution</span></span>
-
-#### <a name="azure-cosmos-db-documentdb-api"></a><span data-ttu-id="7eaf3-130">Azure Cosmos DB DocumentDB API</span><span class="sxs-lookup"><span data-stu-id="7eaf3-130">Azure Cosmos DB DocumentDB API</span></span>
-<span data-ttu-id="7eaf3-131">Azure Cosmos DB는 다음 그림과 같이 FHIR 리소스에 대한 리포지토리입니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-131">Azure Cosmos DB is the repository for the FHIR resources as shown in the following figure.</span></span>
-
-![이 HL7 FHIR 의료 자습서에서 사용된 Azure Cosmos DB 계정](./media/change-feed-hl7-fhir-logic-apps/account.png)
-
-#### <a name="logic-apps"></a><span data-ttu-id="7eaf3-133">Logic Apps</span><span class="sxs-lookup"><span data-stu-id="7eaf3-133">Logic Apps</span></span>
-<span data-ttu-id="7eaf3-134">Logic Apps는 워크플로 프로세스를 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-134">Logic Apps handle the workflow process.</span></span> <span data-ttu-id="7eaf3-135">다음 스크린샷은 이 솔루션용으로 만든 Logic Apps를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-135">The following screenshots show the Logic apps created for this solution.</span></span> 
+![이 HL7 FHIR 의료 솔루션에서 사용 하는 hello 3 논리 앱](./media/change-feed-hl7-fhir-logic-apps/health-care-solution-hl7-fhir.png)
 
 
-1. <span data-ttu-id="7eaf3-136">**HL7-FHIR-매핑 앱**: Logic Apps용 엔터프라이즈 통합 팩을 사용하여 HL7 C-CDA 문서를 수신하고 FHIR 리소스로 변환합니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-136">**HL7-FHIR-Mapping app**: Receive the HL7 C-CDA document and transform it to an FHIR resource using the Enterprise Integration Pack for Logic Apps.</span></span> <span data-ttu-id="7eaf3-137">엔터프라이즈 통합 팩은 C-CDA에서 FHIR 리소스로의 매핑을 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-137">The Enterprise Integration Pack handles the mapping from the C-CDA to FHIR resources.</span></span>
 
-    ![HL7 FHIR 의료 레코드를 수신하는 데 사용한 논리 앱](./media/change-feed-hl7-fhir-logic-apps/hl7-fhir-logic-apps-json-transform.png)
+### <a name="azure-services-used-in-hello-solution"></a><span data-ttu-id="e0318-129">Hello 솔루션에서 사용 되는 azure 서비스</span><span class="sxs-lookup"><span data-stu-id="e0318-129">Azure services used in hello solution</span></span>
+
+#### <a name="azure-cosmos-db-documentdb-api"></a><span data-ttu-id="e0318-130">Azure Cosmos DB DocumentDB API</span><span class="sxs-lookup"><span data-stu-id="e0318-130">Azure Cosmos DB DocumentDB API</span></span>
+<span data-ttu-id="e0318-131">Hello 다음 그림에에서 나와 있는 것 처럼 azure Cosmos DB는 hello FHIR 리소스에 대 한 hello 리포지토리입니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-131">Azure Cosmos DB is hello repository for hello FHIR resources as shown in hello following figure.</span></span>
+
+![이 HL7 FHIR 의료 자습서에 사용 되는 hello Azure Cosmos DB 계정](./media/change-feed-hl7-fhir-logic-apps/account.png)
+
+#### <a name="logic-apps"></a><span data-ttu-id="e0318-133">Logic Apps</span><span class="sxs-lookup"><span data-stu-id="e0318-133">Logic Apps</span></span>
+<span data-ttu-id="e0318-134">논리 앱 hello 워크플로 프로세스를 처리 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-134">Logic Apps handle hello workflow process.</span></span> <span data-ttu-id="e0318-135">hello 다음 스크린샷에서 보여 hello 논리 앱이이 솔루션에 대해 생성 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-135">hello following screenshots show hello Logic apps created for this solution.</span></span> 
 
 
-2. <span data-ttu-id="7eaf3-139">**EHR 앱**: Azure Cosmos DB FHIR 리포지토리를 쿼리하고 해당 응답을 Service Bus 큐에 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-139">**EHR app**: Query the Azure Cosmos DB FHIR repository and save the response to a Service Bus queue.</span></span> <span data-ttu-id="7eaf3-140">GetNewOrModifiedFHIRDocuments 앱에 대한 코드는 아래와 같습니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-140">The code for the GetNewOrModifiedFHIRDocuments app is below.</span></span>
+1. <span data-ttu-id="e0318-136">**HL7 FHIR 매핑 앱**: hello HL7 C CDA 문서를 수신 하 고 엔터프라이즈 통합 팩 hello를 사용 하 여 논리 앱에 대 한 tooan FHIR 리소스를 변환 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-136">**HL7-FHIR-Mapping app**: Receive hello HL7 C-CDA document and transform it tooan FHIR resource using hello Enterprise Integration Pack for Logic Apps.</span></span> <span data-ttu-id="e0318-137">엔터프라이즈 통합 팩 hello C CDA tooFHIR 리소스 hello에서 매핑 hello를 처리 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-137">hello Enterprise Integration Pack handles hello mapping from hello C-CDA tooFHIR resources.</span></span>
 
-    ![Azure Cosmos DB를 쿼리하는 데 사용한 논리 앱](./media/change-feed-hl7-fhir-logic-apps/hl7-fhir-logic-apps-api-app.png)
+    ![tooreceive HL7 FHIR 의료 레코드를 사용 하는 hello 논리 앱](./media/change-feed-hl7-fhir-logic-apps/hl7-fhir-logic-apps-json-transform.png)
 
-3. <span data-ttu-id="7eaf3-142">**프로세스 알림 앱**: 본문에 FHIR 리소스 문서가 포함된 전자 메일 알림을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-142">**Process notification app**: Send an email notification with the FHIR resource documents in the body.</span></span>
 
-    ![본문에 HL7 FHIR 리소스가 포함된 환자 전자 메일을 보내는 논리 앱](./media/change-feed-hl7-fhir-logic-apps/hl7-fhir-logic-apps-send-email.png)
+2. <span data-ttu-id="e0318-139">**EHR 앱**: hello Azure Cosmos DB FHIR 저장소를 쿼리하고 저장 hello 응답 tooa 서비스 버스 큐에 대기 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-139">**EHR app**: Query hello Azure Cosmos DB FHIR repository and save hello response tooa Service Bus queue.</span></span> <span data-ttu-id="e0318-140">hello GetNewOrModifiedFHIRDocuments 앱에 대 한 hello 코드 보다 작습니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-140">hello code for hello GetNewOrModifiedFHIRDocuments app is below.</span></span>
 
-#### <a name="service-bus"></a><span data-ttu-id="7eaf3-144">서비스 버스</span><span class="sxs-lookup"><span data-stu-id="7eaf3-144">Service Bus</span></span>
-<span data-ttu-id="7eaf3-145">다음 그림에서는 환자 큐를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-145">The following figure shows the patients queue.</span></span> <span data-ttu-id="7eaf3-146">태그 속성 값은 전자 메일 제목에 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-146">The Tag property value is used for the email subject.</span></span>
+    ![tooquery Azure Cosmos DB를 사용 하는 hello 논리 앱](./media/change-feed-hl7-fhir-logic-apps/hl7-fhir-logic-apps-api-app.png)
 
-![이 HL7 FHIR 자습서에서 사용한 Service Bus 큐](./media/change-feed-hl7-fhir-logic-apps/hl7-fhir-service-bus-queue.png)
+3. <span data-ttu-id="e0318-142">**알림 응용 프로그램 프로세스**: hello 본문에 hello FHIR 리소스 문서와 전자 메일 알림을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-142">**Process notification app**: Send an email notification with hello FHIR resource documents in hello body.</span></span>
+
+    ![hello hello 본문에 hello HL7 FHIR 리소스와 환자 전자 메일을 보내면 논리 앱](./media/change-feed-hl7-fhir-logic-apps/hl7-fhir-logic-apps-send-email.png)
+
+#### <a name="service-bus"></a><span data-ttu-id="e0318-144">서비스 버스</span><span class="sxs-lookup"><span data-stu-id="e0318-144">Service Bus</span></span>
+<span data-ttu-id="e0318-145">다음 그림에서는 hello 환자 큐 번호입니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-145">hello following figure shows hello patients queue.</span></span> <span data-ttu-id="e0318-146">Tag 속성 값 hello hello 메일 제목에 사용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-146">hello Tag property value is used for hello email subject.</span></span>
+
+![hello이 HL7 FHIR 자습서에 사용 되는 서비스 버스 큐](./media/change-feed-hl7-fhir-logic-apps/hl7-fhir-service-bus-queue.png)
 
 <a id="api-app"></a>
 
-#### <a name="api-app"></a><span data-ttu-id="7eaf3-148">API 앱</span><span class="sxs-lookup"><span data-stu-id="7eaf3-148">API app</span></span>
-<span data-ttu-id="7eaf3-149">API 앱은 Azure Cosmos DB에 연결해서 리소스 유형별로 새롭거나 수정된 FHIR 문서를 쿼리합니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-149">An API app connects to Azure Cosmos DB and queries for new or modified FHIR documents By resource type.</span></span> <span data-ttu-id="7eaf3-150">이 앱에는 하나의 작업 **GetNewOrModifiedFhirDocuments**가 있는 하나의 컨트롤러 **FhirNotificationApi**가 있습니다. [API 앱의 소스](#api-app-source)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-150">This app has one controller, **FhirNotificationApi** with a one operation **GetNewOrModifiedFhirDocuments**, see [source for API app](#api-app-source).</span></span>
+#### <a name="api-app"></a><span data-ttu-id="e0318-148">API 앱</span><span class="sxs-lookup"><span data-stu-id="e0318-148">API app</span></span>
+<span data-ttu-id="e0318-149">API 앱 tooAzure Cosmos DB 및 리소스 유형에 따라 새 또는 수정 된 FHIR 문서에 대 한 쿼리를 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-149">An API app connects tooAzure Cosmos DB and queries for new or modified FHIR documents By resource type.</span></span> <span data-ttu-id="e0318-150">이 앱에는 하나의 작업 **GetNewOrModifiedFhirDocuments**가 있는 하나의 컨트롤러 **FhirNotificationApi**가 있습니다. [API 앱의 소스](#api-app-source)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e0318-150">This app has one controller, **FhirNotificationApi** with a one operation **GetNewOrModifiedFhirDocuments**, see [source for API app](#api-app-source).</span></span>
 
-<span data-ttu-id="7eaf3-151">Azure Cosmos DB DocumentDB .NET API에서 [`CreateDocumentChangeFeedQuery`](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdocumentchangefeedquery.aspx) 클래스를 사용하고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-151">We are using the [`CreateDocumentChangeFeedQuery`](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdocumentchangefeedquery.aspx) class from the Azure Cosmos DB DocumentDB .NET API.</span></span> <span data-ttu-id="7eaf3-152">자세한 내용은 [변경 사항 피드 문서](change-feed.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-152">For more information, see the [change feed article](change-feed.md).</span></span> 
+<span data-ttu-id="e0318-151">Hello 사용 하 여 [ `CreateDocumentChangeFeedQuery` ](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdocumentchangefeedquery.aspx) hello Azure Cosmos DB DocumentDB.NET API에서에서 클래스입니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-151">We are using hello [`CreateDocumentChangeFeedQuery`](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdocumentchangefeedquery.aspx) class from hello Azure Cosmos DB DocumentDB .NET API.</span></span> <span data-ttu-id="e0318-152">자세한 내용은 참조 hello [변경 피드 문서](change-feed.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-152">For more information, see hello [change feed article](change-feed.md).</span></span> 
 
-##### <a name="getnewormodifiedfhirdocuments-operation"></a><span data-ttu-id="7eaf3-153">GetNewOrModifiedFhirDocuments 작업</span><span class="sxs-lookup"><span data-stu-id="7eaf3-153">GetNewOrModifiedFhirDocuments operation</span></span>
+##### <a name="getnewormodifiedfhirdocuments-operation"></a><span data-ttu-id="e0318-153">GetNewOrModifiedFhirDocuments 작업</span><span class="sxs-lookup"><span data-stu-id="e0318-153">GetNewOrModifiedFhirDocuments operation</span></span>
 
-<span data-ttu-id="7eaf3-154">**입력**</span><span class="sxs-lookup"><span data-stu-id="7eaf3-154">**Inputs**</span></span>
-- <span data-ttu-id="7eaf3-155">DatabaseId</span><span class="sxs-lookup"><span data-stu-id="7eaf3-155">DatabaseId</span></span>
-- <span data-ttu-id="7eaf3-156">CollectionId</span><span class="sxs-lookup"><span data-stu-id="7eaf3-156">CollectionId</span></span>
-- <span data-ttu-id="7eaf3-157">HL7 FHIR 리소스 종류 이름</span><span class="sxs-lookup"><span data-stu-id="7eaf3-157">HL7 FHIR Resource Type name</span></span>
-- <span data-ttu-id="7eaf3-158">부울: 처음부터 시작</span><span class="sxs-lookup"><span data-stu-id="7eaf3-158">Boolean: Start from Beginning</span></span>
-- <span data-ttu-id="7eaf3-159">Int: 반환된 문서 수</span><span class="sxs-lookup"><span data-stu-id="7eaf3-159">Int: Number of documents returned</span></span>
+<span data-ttu-id="e0318-154">**입력**</span><span class="sxs-lookup"><span data-stu-id="e0318-154">**Inputs**</span></span>
+- <span data-ttu-id="e0318-155">DatabaseId</span><span class="sxs-lookup"><span data-stu-id="e0318-155">DatabaseId</span></span>
+- <span data-ttu-id="e0318-156">CollectionId</span><span class="sxs-lookup"><span data-stu-id="e0318-156">CollectionId</span></span>
+- <span data-ttu-id="e0318-157">HL7 FHIR 리소스 종류 이름</span><span class="sxs-lookup"><span data-stu-id="e0318-157">HL7 FHIR Resource Type name</span></span>
+- <span data-ttu-id="e0318-158">부울: 처음부터 시작</span><span class="sxs-lookup"><span data-stu-id="e0318-158">Boolean: Start from Beginning</span></span>
+- <span data-ttu-id="e0318-159">Int: 반환된 문서 수</span><span class="sxs-lookup"><span data-stu-id="e0318-159">Int: Number of documents returned</span></span>
 
-<span data-ttu-id="7eaf3-160">**Outputs**</span><span class="sxs-lookup"><span data-stu-id="7eaf3-160">**Outputs**</span></span>
-- <span data-ttu-id="7eaf3-161">성공: 상태 코드: 200, 응답: 문서 목록(JSON 배열)</span><span class="sxs-lookup"><span data-stu-id="7eaf3-161">Success: Status Code: 200, Response: List of Documents (JSON Array)</span></span>
-- <span data-ttu-id="7eaf3-162">실패: 상태 코드: 404, 응답: "'*resource name'* 리소스 유형에 대한 문서를 찾을 수 없음"</span><span class="sxs-lookup"><span data-stu-id="7eaf3-162">Failure: Status Code: 404, Response: "No Documents found for '*resource name'* Resource Type"</span></span>
+<span data-ttu-id="e0318-160">**Outputs**</span><span class="sxs-lookup"><span data-stu-id="e0318-160">**Outputs**</span></span>
+- <span data-ttu-id="e0318-161">성공: 상태 코드: 200, 응답: 문서 목록(JSON 배열)</span><span class="sxs-lookup"><span data-stu-id="e0318-161">Success: Status Code: 200, Response: List of Documents (JSON Array)</span></span>
+- <span data-ttu-id="e0318-162">실패: 상태 코드: 404, 응답: "'*resource name'* 리소스 유형에 대한 문서를 찾을 수 없음"</span><span class="sxs-lookup"><span data-stu-id="e0318-162">Failure: Status Code: 404, Response: "No Documents found for '*resource name'* Resource Type"</span></span>
 
 <a id="api-app-source"></a>
 
-<span data-ttu-id="7eaf3-163">**API 앱에 대한 원본**</span><span class="sxs-lookup"><span data-stu-id="7eaf3-163">**Source for the API app**</span></span>
+<span data-ttu-id="e0318-163">**Hello API 앱에 대 한 소스**</span><span class="sxs-lookup"><span data-stu-id="e0318-163">**Source for hello API app**</span></span>
 
 ```C#
 
@@ -127,8 +127,8 @@ ms.lasthandoff: 07/11/2017
         public class FhirResourceTypeController : ApiController
         {
             /// <summary>
-            ///     Gets the new or modified FHIR documents from Last Run Date 
-            ///     or create date of the collection
+            ///     Gets hello new or modified FHIR documents from Last Run Date 
+            ///     or create date of hello collection
             /// </summary>
             /// <param name="databaseId"></param>
             /// <param name="collectionId"></param>
@@ -208,27 +208,27 @@ ms.lasthandoff: 07/11/2017
     
 ```
 
-### <a name="testing-the-fhirnotificationapi"></a><span data-ttu-id="7eaf3-164">FhirNotificationApi 테스트</span><span class="sxs-lookup"><span data-stu-id="7eaf3-164">Testing the FhirNotificationApi</span></span> 
+### <a name="testing-hello-fhirnotificationapi"></a><span data-ttu-id="e0318-164">테스트 FhirNotificationApi 문자열</span><span class="sxs-lookup"><span data-stu-id="e0318-164">Testing hello FhirNotificationApi</span></span> 
 
-<span data-ttu-id="7eaf3-165">다음 이미지는 [FhirNotificationApi](#api-app-source)를 테스트하기 위해 Swagger가 사용되는 방식을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-165">The following image demonstrates how swagger was used to to test the [FhirNotificationApi](#api-app-source).</span></span>
+<span data-ttu-id="e0318-165">hello 다음 이미지에서는 swagger 사용된 tootootest hello 어 떠 [FhirNotificationApi](#api-app-source)합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-165">hello following image demonstrates how swagger was used tootootest hello [FhirNotificationApi](#api-app-source).</span></span>
 
-![API 앱을 테스트하는 데 사용한 Swagger 파일](./media/change-feed-hl7-fhir-logic-apps/hl7-fhir-testing-app.png)
-
-
-### <a name="azure-portal-dashboard"></a><span data-ttu-id="7eaf3-167">Azure 포털 대시보드</span><span class="sxs-lookup"><span data-stu-id="7eaf3-167">Azure portal dashboard</span></span>
-
-<span data-ttu-id="7eaf3-168">다음 이미지는 Azure Portal에서 실행되는 이 솔루션에 대한 모든 Azure 서비스를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-168">The following image shows all of the Azure services for this solution running in the Azure portal.</span></span>
-
-![이 HL7 FHIR 자습서에서 사용한 모든 서비스를 보여 주는 Azure Portal](./media/change-feed-hl7-fhir-logic-apps/hl7-fhir-portal.png)
+![tootest hello API 앱을 사용 하는 hello Swagger 파일](./media/change-feed-hl7-fhir-logic-apps/hl7-fhir-testing-app.png)
 
 
-## <a name="summary"></a><span data-ttu-id="7eaf3-170">요약</span><span class="sxs-lookup"><span data-stu-id="7eaf3-170">Summary</span></span>
+### <a name="azure-portal-dashboard"></a><span data-ttu-id="e0318-167">Azure 포털 대시보드</span><span class="sxs-lookup"><span data-stu-id="e0318-167">Azure portal dashboard</span></span>
 
-- <span data-ttu-id="7eaf3-171">Azure Cosmos DB에서 새롭거나 수정된 문서에 대한 알림이 기본 지원되고 이 기능이 얼마나 사용하기 쉬운지 알게 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-171">You have learned that Azure Cosmos DB has native suppport for notifications for new or modifed documents and how easy it is to use.</span></span> 
-- <span data-ttu-id="7eaf3-172">Logic Apps를 활용하여 코드를 쓰지 않아도 워크플로를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-172">By leveraging Logic Apps, you can create workflows without writing any code.</span></span>
-- <span data-ttu-id="7eaf3-173">Azure Service Bus 큐를 사용하여 HL7 FHIR 문서 배포 처리</span><span class="sxs-lookup"><span data-stu-id="7eaf3-173">Using Azure Service Bus Queues to handle the distribution for the HL7 FHIR documents.</span></span>
+<span data-ttu-id="e0318-168">다음 이미지는 hello hello Azure 포털에서에서 실행 되는이 솔루션에 대 한 Azure 서비스에 모든 hello 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-168">hello following image shows all of hello Azure services for this solution running in hello Azure portal.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="7eaf3-174">다음 단계</span><span class="sxs-lookup"><span data-stu-id="7eaf3-174">Next steps</span></span>
-<span data-ttu-id="7eaf3-175">Azure Cosmos DB에 대한 자세한 내용은 [Azure Cosmos DB 홈페이지](https://azure.microsoft.com/services/cosmos-db/)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-175">For more information about Azure Cosmos DB, see the [Azure Cosmos DB home page](https://azure.microsoft.com/services/cosmos-db/).</span></span> <span data-ttu-id="7eaf3-176">Logic Apps에 대한 자세한 내용은 [Logic Apps](https://azure.microsoft.com/services/logic-apps/)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="7eaf3-176">For more informaiton about Logic Apps, see [Logic Apps](https://azure.microsoft.com/services/logic-apps/).</span></span>
+![hello이 HL7 FHIR 자습서에 사용 되는 모든 hello 서비스를 표시 하는 Azure 포털](./media/change-feed-hl7-fhir-logic-apps/hl7-fhir-portal.png)
+
+
+## <a name="summary"></a><span data-ttu-id="e0318-170">요약</span><span class="sxs-lookup"><span data-stu-id="e0318-170">Summary</span></span>
+
+- <span data-ttu-id="e0318-171">Azure Cosmos DB에는 새 알림에 대 한 기본 지원 또는 수정 된 문서와 얼마나 쉬운지 toouse 방법을 배웠습니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-171">You have learned that Azure Cosmos DB has native suppport for notifications for new or modifed documents and how easy it is toouse.</span></span> 
+- <span data-ttu-id="e0318-172">Logic Apps를 활용하여 코드를 쓰지 않아도 워크플로를 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-172">By leveraging Logic Apps, you can create workflows without writing any code.</span></span>
+- <span data-ttu-id="e0318-173">Azure 서비스 버스 큐 toohandle hello 분포를 사용 하 여 hello HL7 FHIR 문서에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-173">Using Azure Service Bus Queues toohandle hello distribution for hello HL7 FHIR documents.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="e0318-174">다음 단계</span><span class="sxs-lookup"><span data-stu-id="e0318-174">Next steps</span></span>
+<span data-ttu-id="e0318-175">Azure Cosmos DB에 대 한 자세한 내용은 참조 hello [Azure Cosmos DB 홈 페이지](https://azure.microsoft.com/services/cosmos-db/)합니다.</span><span class="sxs-lookup"><span data-stu-id="e0318-175">For more information about Azure Cosmos DB, see hello [Azure Cosmos DB home page](https://azure.microsoft.com/services/cosmos-db/).</span></span> <span data-ttu-id="e0318-176">Logic Apps에 대한 자세한 내용은 [Logic Apps](https://azure.microsoft.com/services/logic-apps/)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e0318-176">For more informaiton about Logic Apps, see [Logic Apps](https://azure.microsoft.com/services/logic-apps/).</span></span>
 
 

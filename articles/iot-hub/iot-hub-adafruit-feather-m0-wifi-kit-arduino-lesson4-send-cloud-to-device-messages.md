@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT에 Arduino(C) 연결 - 단원 4: 클라우드-장치 | Microsoft Docs"
-description: "샘플 응용 프로그램은 Adafruit Feather M0 WiFi에서 실행되며 IoT Hub에서 들어오는 메시지를 모니터링합니다. 새로운 gulp 작업은 IoT Hub에서 Adafruit Feather M0 WiFi로 메시지를 보내여 LED를 깜빡입니다."
+title: "Connect Arduino (C) tooAzure IoT-4 단원: 클라우드-장치 | Microsoft Docs"
+description: "샘플 응용 프로그램은 Adafruit Feather M0 WiFi에서 실행되며 IoT Hub에서 들어오는 메시지를 모니터링합니다. 새 gulp 작업 IoT 허브 tooblink hello LED에서에서 메시지 tooAdafruit 페더 M0 WiFi를 보냅니다."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,57 +17,57 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: b4f4c1d86b10b64c104ac812d1f650d723322be8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: dcddd61ff684f49436103675938d719cb227c409
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="run-a-sample-application-to-receive-cloud-to-device-messages"></a><span data-ttu-id="04649-105">샘플 응용 프로그램을 실행하여 클라우드-장치 메시지 받기</span><span class="sxs-lookup"><span data-stu-id="04649-105">Run a sample application to receive cloud-to-device messages</span></span>
-<span data-ttu-id="04649-106">이 문서에서는 Adafruit Feather M0 WiFi Arduino 보드에 샘플 응용 프로그램을 배포합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-106">In this article, you deploy a sample application on your Adafruit Feather M0 WiFi Arduino board.</span></span>
+# <a name="run-a-sample-application-tooreceive-cloud-to-device-messages"></a><span data-ttu-id="780e5-105">클라우드-장치 메시지 샘플 응용 프로그램 tooreceive 실행</span><span class="sxs-lookup"><span data-stu-id="780e5-105">Run a sample application tooreceive cloud-to-device messages</span></span>
+<span data-ttu-id="780e5-106">이 문서에서는 Adafruit Feather M0 WiFi Arduino 보드에 샘플 응용 프로그램을 배포합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-106">In this article, you deploy a sample application on your Adafruit Feather M0 WiFi Arduino board.</span></span>
 
-<span data-ttu-id="04649-107">샘플 응용 프로그램은 IoT Hub에서 들어오는 메시지를 모니터링합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-107">The sample application monitors incoming messages from your IoT hub.</span></span> <span data-ttu-id="04649-108">컴퓨터에서 gulp 작업을 실행하여 IoT Hub에서 Arduino 보드로 메시지를 보내기도 합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-108">You also run a gulp task on your computer to send messages to your Arduino board from your IoT hub.</span></span> <span data-ttu-id="04649-109">샘플 응용 프로그램이 메시지를 수신하면 LED를 깜박입니다.</span><span class="sxs-lookup"><span data-stu-id="04649-109">When the sample application receives the messages, it blinks the LED.</span></span> <span data-ttu-id="04649-110">문제가 있으면 [문제 해결 페이지][troubleshooting]에서 솔루션을 검색하세요.</span><span class="sxs-lookup"><span data-stu-id="04649-110">If you have any problems, look for solutions on the [troubleshooting page][troubleshooting].</span></span>
+<span data-ttu-id="780e5-107">샘플 응용 프로그램 hello IoT 허브에서 들어오는 메시지를 모니터링합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-107">hello sample application monitors incoming messages from your IoT hub.</span></span> <span data-ttu-id="780e5-108">실행할 수도 있습니다 gulp 작업 컴퓨터 toosend 메시지 tooyour Arduino 보드 IoT 허브에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-108">You also run a gulp task on your computer toosend messages tooyour Arduino board from your IoT hub.</span></span> <span data-ttu-id="780e5-109">샘플 응용 프로그램 hello hello 메시지를 받으면 hello led가 깜박입니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-109">When hello sample application receives hello messages, it blinks hello LED.</span></span> <span data-ttu-id="780e5-110">문제가 있는 경우 hello에 솔루션을 찾는 [문제 해결 페이지][troubleshooting]합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-110">If you have any problems, look for solutions on hello [troubleshooting page][troubleshooting].</span></span>
 
-## <a name="what-you-will-do"></a><span data-ttu-id="04649-111">수행할 사항</span><span class="sxs-lookup"><span data-stu-id="04649-111">What you will do</span></span>
-* <span data-ttu-id="04649-112">샘플 응용 프로그램을 IoT Hub에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-112">Connect the sample application to your IoT hub.</span></span>
-* <span data-ttu-id="04649-113">샘플 응용 프로그램을 배포 및 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-113">Deploy and run the sample application.</span></span>
-* <span data-ttu-id="04649-114">IoT Hub에서 Arduino 보드로 메시지를 보내고 LED를 깜빡입니다.</span><span class="sxs-lookup"><span data-stu-id="04649-114">Send messages from your IoT hub to your Arduino board to blink the LED.</span></span>
+## <a name="what-you-will-do"></a><span data-ttu-id="780e5-111">수행할 사항</span><span class="sxs-lookup"><span data-stu-id="780e5-111">What you will do</span></span>
+* <span data-ttu-id="780e5-112">Hello 샘플 응용 프로그램 tooyour IoT 허브를 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-112">Connect hello sample application tooyour IoT hub.</span></span>
+* <span data-ttu-id="780e5-113">배포 하 고 hello 샘플 응용 프로그램을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-113">Deploy and run hello sample application.</span></span>
+* <span data-ttu-id="780e5-114">프로그램 IoT 허브 tooyour Arduino 보드 tooblink hello LED에서에서 메시지를 전송 합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-114">Send messages from your IoT hub tooyour Arduino board tooblink hello LED.</span></span>
 
-## <a name="what-you-will-learn"></a><span data-ttu-id="04649-115">알아볼 내용</span><span class="sxs-lookup"><span data-stu-id="04649-115">What you will learn</span></span>
-<span data-ttu-id="04649-116">이 문서에서는 다음에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="04649-116">In this article, you will learn:</span></span>
-* <span data-ttu-id="04649-117">IoT Hub에서 들어오는 메시지를 모니터링하는 방법.</span><span class="sxs-lookup"><span data-stu-id="04649-117">How to monitor incoming messages from your IoT hub.</span></span>
-* <span data-ttu-id="04649-118">IoT Hub에서 Arduino 보드로 클라우드-장치 메시지를 보내는 방법.</span><span class="sxs-lookup"><span data-stu-id="04649-118">How to send cloud-to-device messages from your IoT hub to your Arduino board.</span></span>
+## <a name="what-you-will-learn"></a><span data-ttu-id="780e5-115">알아볼 내용</span><span class="sxs-lookup"><span data-stu-id="780e5-115">What you will learn</span></span>
+<span data-ttu-id="780e5-116">이 문서에서는 다음에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-116">In this article, you will learn:</span></span>
+* <span data-ttu-id="780e5-117">어떻게 IoT 허브에서 toomonitor 들어오는 메시지입니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-117">How toomonitor incoming messages from your IoT hub.</span></span>
+* <span data-ttu-id="780e5-118">IoT 허브 tooyour Arduino 보드에서에서 toosend 클라우드-장치 메시지 방법을</span><span class="sxs-lookup"><span data-stu-id="780e5-118">How toosend cloud-to-device messages from your IoT hub tooyour Arduino board.</span></span>
 
-## <a name="what-you-need"></a><span data-ttu-id="04649-119">필요한 항목</span><span class="sxs-lookup"><span data-stu-id="04649-119">What you need</span></span>
-* <span data-ttu-id="04649-120">Arduino 보드를 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-120">Your Arduino board, set up for use.</span></span> <span data-ttu-id="04649-121">Arduino 보드를 설정하는 방법을 알아보려면 [장치 구성][configure-your-device]을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="04649-121">To learn how to set up your Arduino board, see [Configure your device][configure-your-device].</span></span>
-* <span data-ttu-id="04649-122">Azure 구독에서 만든 IoT Hub.</span><span class="sxs-lookup"><span data-stu-id="04649-122">An IoT hub that is created in your Azure subscription.</span></span> <span data-ttu-id="04649-123">IoT Hub를 만드는 방법을 알아보려면 [Azure IoT Hub 만들기][create-your-azure-iot-hub]를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="04649-123">To learn how to create your IoT hub, see [Create your Azure IoT Hub][create-your-azure-iot-hub].</span></span>
+## <a name="what-you-need"></a><span data-ttu-id="780e5-119">필요한 항목</span><span class="sxs-lookup"><span data-stu-id="780e5-119">What you need</span></span>
+* <span data-ttu-id="780e5-120">Arduino 보드를 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-120">Your Arduino board, set up for use.</span></span> <span data-ttu-id="780e5-121">tooset Arduino 보드를 확인 하려면 어떻게 해야 toolearn [장치 구성][configure-your-device]합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-121">toolearn how tooset up your Arduino board, see [Configure your device][configure-your-device].</span></span>
+* <span data-ttu-id="780e5-122">Azure 구독에서 만든 IoT Hub.</span><span class="sxs-lookup"><span data-stu-id="780e5-122">An IoT hub that is created in your Azure subscription.</span></span> <span data-ttu-id="780e5-123">toolearn 어떻게 toocreate IoT 허브 참조 [Azure IoT Hub를 만들][create-your-azure-iot-hub]합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-123">toolearn how toocreate your IoT hub, see [Create your Azure IoT Hub][create-your-azure-iot-hub].</span></span>
 
-## <a name="connect-the-sample-application-to-your-iot-hub"></a><span data-ttu-id="04649-124">샘플 응용 프로그램을 IoT Hub에 연결</span><span class="sxs-lookup"><span data-stu-id="04649-124">Connect the sample application to your IoT hub</span></span>
+## <a name="connect-hello-sample-application-tooyour-iot-hub"></a><span data-ttu-id="780e5-124">Hello 샘플 응용 프로그램 tooyour IoT 허브 연결</span><span class="sxs-lookup"><span data-stu-id="780e5-124">Connect hello sample application tooyour IoT hub</span></span>
 
-1. <span data-ttu-id="04649-125">repo 폴더 `iot-hub-c-feather-m0-getting-started`에 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-125">Make sure that you're in the repo folder `iot-hub-c-feather-m0-getting-started`.</span></span>
+1. <span data-ttu-id="780e5-125">Hello 리포지토리 폴더에 본인 `iot-hub-c-feather-m0-getting-started`합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-125">Make sure that you're in hello repo folder `iot-hub-c-feather-m0-getting-started`.</span></span>
 
-   <span data-ttu-id="04649-126">다음 명령을 실행하여 Visual Studio Code에서 샘플 응용 프로그램을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="04649-126">Open the sample application in Visual Studio Code by running the following commands:</span></span>
+   <span data-ttu-id="780e5-126">Hello 다음 명령을 실행 하 여 Visual Studio Code에서 hello 샘플 응용 프로그램을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-126">Open hello sample application in Visual Studio Code by running hello following commands:</span></span>
 
    ```bash
    cd Lesson4
    code .
    ```
 
-   <span data-ttu-id="04649-127">`app` 하위 폴더에서 `app.ino` 파일에 주목합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-127">Notice the `app.ino` file in the `app` subfolder.</span></span> <span data-ttu-id="04649-128">`app.ino` 파일은 IoT Hub에서 들어오는 메시지를 모니터링할 코드를 포함하는 주요 소스 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="04649-128">The `app.ino` file is the key source file that contains the code to monitor incoming messages from the IoT hub.</span></span> <span data-ttu-id="04649-129">`blinkLED` 함수는 LED를 깜빡입니다.</span><span class="sxs-lookup"><span data-stu-id="04649-129">The `blinkLED` function blinks the LED.</span></span>
+   <span data-ttu-id="780e5-127">공지 hello `app.ino` hello에 대 한 파일 `app` 하위 폴더입니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-127">Notice hello `app.ino` file in hello `app` subfolder.</span></span> <span data-ttu-id="780e5-128">hello `app.ino` 파일은 hello 코드 toomonitor hello IoT 허브에서 들어오는 메시지를 포함 하는 hello 키 원본 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-128">hello `app.ino` file is hello key source file that contains hello code toomonitor incoming messages from hello IoT hub.</span></span> <span data-ttu-id="780e5-129">hello `blinkLED` 함수 hello led가 깜박입니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-129">hello `blinkLED` function blinks hello LED.</span></span>
 
-   ![샘플 응용 프로그램의 Repo 구조][repo-structure]
+   ![Hello 샘플 응용 프로그램의 리 포 구조][repo-structure]
 
-2. <span data-ttu-id="04649-131">장치 검색 CLI를 사용하여 장치의 직렬 포트를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="04649-131">Obtain the serial port of the device with the device discovery cli:</span></span>
+2. <span data-ttu-id="780e5-131">Hello hello 장치 검색 cli 사용 하 여 hello 장치의 직렬 포트를 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-131">Obtain hello serial port of hello device with hello device discovery cli:</span></span>
 
    ```bash
    devdisco list --usb
    ```
 
-   <span data-ttu-id="04649-132">다음과 유사한 출력이 표시되면 Arduino 보드에 대한 usb COM 포트를 찾아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-132">You should see an output that is similar to the following and find the usb COM port for your Arduino board:</span></span>
+   <span data-ttu-id="780e5-132">Toohello 다음과 유사한 출력을 확인 및 Arduino 보드에 대 한 hello usb COM 포트를 찾을 해야 하면:</span><span class="sxs-lookup"><span data-stu-id="780e5-132">You should see an output that is similar toohello following and find hello usb COM port for your Arduino board:</span></span>
 
    ![장치 검색][device-discovery]
 
-3. <span data-ttu-id="04649-134">단원 폴더에서 `config.json` 파일을 열고 검색한 COM 포트 번호의 값을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-134">Open the file `config.json` in the lesson folder and input the value of the found COM port number:</span></span>
+3. <span data-ttu-id="780e5-134">파일 열기 hello `config.json` hello 단원 폴더 및 폴더의 COM 포트 번호를 발견 하는 hello 입력된 hello 값에서:</span><span class="sxs-lookup"><span data-stu-id="780e5-134">Open hello file `config.json` in hello lesson folder and input hello value of hello found COM port number:</span></span>
 
    ```json
    {
@@ -78,9 +78,9 @@ ms.lasthandoff: 08/03/2017
    ![config.json][config-json]
 
    > [!NOTE]
-   > <span data-ttu-id="04649-136">Windows 플랫폼에서 COM 포트는 `COM1, COM2, ...` 형식입니다.</span><span class="sxs-lookup"><span data-stu-id="04649-136">For the COM port, on Windows platform, it has the format of `COM1, COM2, ...`.</span></span> <span data-ttu-id="04649-137">macOS 또는 Ubuntu에서는 `/dev/`로 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-137">On macOS or Ubuntu, it will start with `/dev/`.</span></span>
+   > <span data-ttu-id="780e5-136">Windows 플랫폼에서 hello COM 포트에 대 한 형식이 지므로 hello의 `COM1, COM2, ...`합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-136">For hello COM port, on Windows platform, it has hello format of `COM1, COM2, ...`.</span></span> <span data-ttu-id="780e5-137">macOS 또는 Ubuntu에서는 `/dev/`로 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-137">On macOS or Ubuntu, it will start with `/dev/`.</span></span>
 
-4. <span data-ttu-id="04649-138">다음 명령을 실행하여 구성 파일을 초기화합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-138">Initialize the configuration file by running the following commands:</span></span>
+4. <span data-ttu-id="780e5-138">Hello 다음 명령을 실행 하 여 hello 구성 파일을 초기화 합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-138">Initialize hello configuration file by running hello following commands:</span></span>
 
    ```bash
    # For Windows command prompt
@@ -89,42 +89,42 @@ ms.lasthandoff: 08/03/2017
    gulp install-tools
    ```
 
-5. <span data-ttu-id="04649-139">`config-arduino.json` 파일에서 다음 내용을 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="04649-139">Make the following replacements in the `config-arduino.json` file:</span></span>
+5. <span data-ttu-id="780e5-139">Hello 바꾸기 작업을 수행 하는 hello 확인 `config-arduino.json` 파일:</span><span class="sxs-lookup"><span data-stu-id="780e5-139">Make hello following replacements in hello `config-arduino.json` file:</span></span>
 
-   <span data-ttu-id="04649-140">이 컴퓨터에서 [Azure 함수 앱 및 저장소 계정 만들기][create-an-azure-function-app-and-storage-account] 단계를 완료했다면 모든 구성이 상속되므로, 샘플 응용 프로그램 배포 및 실행 작업으로 단계를 건너뛸 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="04649-140">If you completed the steps in [Create an Azure function app and storage account][create-an-azure-function-app-and-storage-account] on this computer, all the configurations are inherited, so you can skip the step to the task of deploying and running the sample application.</span></span> <span data-ttu-id="04649-141">다른 컴퓨터에서 [Azure 함수 앱 및 저장소 계정 만들기][create-an-azure-function-app-and-storage-account] 단계를 완료했다면 `config-arduino.json` 파일에서 자리 표시자를 바꿔야 합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-141">If you completed the steps in [Create an Azure function app and storage account][create-an-azure-function-app-and-storage-account] on a different computer, you need to replace the placeholders in the `config-arduino.json` file.</span></span> <span data-ttu-id="04649-142">`config-arduino.json` 파일은 홈 폴더의 하위 폴더에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="04649-142">The `config-arduino.json` file is in the subfolder of your home folder.</span></span>
+   <span data-ttu-id="780e5-140">Hello 단계를 완료 하는 경우 [Azure 함수 응용 프로그램 및 저장소 계정 만들기] [ create-an-azure-function-app-and-storage-account] 이 컴퓨터에 모든 hello 구성 상속 되므로 hello 단계 toohello 배포 작업을 건너뛸 수 있습니다 및 hello 샘플 응용 프로그램을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-140">If you completed hello steps in [Create an Azure function app and storage account][create-an-azure-function-app-and-storage-account] on this computer, all hello configurations are inherited, so you can skip hello step toohello task of deploying and running hello sample application.</span></span> <span data-ttu-id="780e5-141">Hello 단계를 완료 하는 경우 [Azure 함수 응용 프로그램 및 저장소 계정 만들기] [ create-an-azure-function-app-and-storage-account] tooreplace hello 자리 표시자 hello에 다른 컴퓨터에 필요한 `config-arduino.json` 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-141">If you completed hello steps in [Create an Azure function app and storage account][create-an-azure-function-app-and-storage-account] on a different computer, you need tooreplace hello placeholders in hello `config-arduino.json` file.</span></span> <span data-ttu-id="780e5-142">hello `config-arduino.json` 파일은 홈 폴더의 hello 하위 폴더에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-142">hello `config-arduino.json` file is in hello subfolder of your home folder.</span></span>
 
-   ![config-arduino.json 파일의 내용][config-arduino-json]
+   ![Hello arduino.json 구성 파일의 내용][config-arduino-json]
 
-   * <span data-ttu-id="04649-144">**[Wi-Fi SSID]**를 인터넷에 연결된 Wi-Fi SSID로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="04649-144">Replace **[Wi-Fi SSID]** with your Wi-Fi SSID that connected to the Internet.</span></span>
-   * <span data-ttu-id="04649-145">**[Wi-Fi password]**를 사용자의 Wi-Fi 암호로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="04649-145">Replace **[Wi-Fi password]** with your Wi-Fi password.</span></span> <span data-ttu-id="04649-146">Wi-Fi에 암호가 필요하지 않은 경우 문자열을 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-146">Remove the string if your Wi-Fi doesn't require password.</span></span>
-   * <span data-ttu-id="04649-147">**[IoT device connection string]**을 `az iot device show-connection-string --hub-name {my hub name} --device-id {device id}` 명령을 실행하여 가져온 장치 연결 문자열로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="04649-147">Replace **[IoT device connection string]** with the device connection string that you get by running the `az iot device show-connection-string --hub-name {my hub name} --device-id {device id}` command.</span></span>
-   * <span data-ttu-id="04649-148">**[IoT hub connection string]**을 `az iot hub show-connection-string --name {my hub name}` 명령을 실행하여 가져온 IoT Hub 연결 문자열로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="04649-148">Replace **[IoT hub connection string]** with the IoT hub connection string that you get by running the `az iot hub show-connection-string --name {my hub name}` command.</span></span>
+   * <span data-ttu-id="780e5-144">대체 **[Wi-fi SSID]** toohello 인터넷 연결에 Wi-fi SSID로 합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-144">Replace **[Wi-Fi SSID]** with your Wi-Fi SSID that connected toohello Internet.</span></span>
+   * <span data-ttu-id="780e5-145">**[Wi-Fi password]**를 사용자의 Wi-Fi 암호로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-145">Replace **[Wi-Fi password]** with your Wi-Fi password.</span></span> <span data-ttu-id="780e5-146">Wi-fi 암호 필요 하지 않은 경우 hello 문자열을 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-146">Remove hello string if your Wi-Fi doesn't require password.</span></span>
+   * <span data-ttu-id="780e5-147">대체 **[IoT 장치 연결 문자열]** hello를 실행 하 여 얻을 수 있는 hello 장치 연결 문자열과 함께 `az iot device show-connection-string --hub-name {my hub name} --device-id {device id}` 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-147">Replace **[IoT device connection string]** with hello device connection string that you get by running hello `az iot device show-connection-string --hub-name {my hub name} --device-id {device id}` command.</span></span>
+   * <span data-ttu-id="780e5-148">대체 **[IoT 허브 연결 문자열]** hello를 실행 하 여 얻을 수 있는 IoT 허브 연결 문자열 hello로 `az iot hub show-connection-string --name {my hub name}` 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-148">Replace **[IoT hub connection string]** with hello IoT hub connection string that you get by running hello `az iot hub show-connection-string --name {my hub name}` command.</span></span>
 
-## <a name="deploy-and-run-the-sample-application"></a><span data-ttu-id="04649-149">샘플 응용 프로그램 배포 및 실행</span><span class="sxs-lookup"><span data-stu-id="04649-149">Deploy and run the sample application</span></span>
-<span data-ttu-id="04649-150">다음 명령을 실행하여 Arduino 보드에서 샘플 응용 프로그램을 배포하고 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-150">Deploy and run the sample application on your Arduino board by running the following commands:</span></span>
+## <a name="deploy-and-run-hello-sample-application"></a><span data-ttu-id="780e5-149">배포 하 고 hello 샘플 응용 프로그램 실행</span><span class="sxs-lookup"><span data-stu-id="780e5-149">Deploy and run hello sample application</span></span>
+<span data-ttu-id="780e5-150">배포 하 고 hello 다음 명령을 실행 하 여 Arduino 보드에 hello 샘플 응용 프로그램을 실행:</span><span class="sxs-lookup"><span data-stu-id="780e5-150">Deploy and run hello sample application on your Arduino board by running hello following commands:</span></span>
 
 ```bash
 gulp run
-# You can monitor the serial port by running listen task:
+# You can monitor hello serial port by running listen task:
 gulp listen
 
 # Or you can combine above two gulp tasks into one:
 gulp run --listen
 ```
 
-<span data-ttu-id="04649-151">이 gulp 명령은 Arduino 보드에 샘플 응용 프로그램을 배포합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-151">The gulp command deploys the sample application to your Arduino board.</span></span> <span data-ttu-id="04649-152">그런 다음 Arduino 보드에서 응용 프로그램을 실행하고 호스트에서 별도의 작업을 실행하여 20개의 blink 메시지를 IoT Hub에서 Arduino 보드로 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="04649-152">Then, it runs the application on your Arduino board and a separate task on your host computer to send 20 blink messages to your Arduino board from your IoT hub.</span></span>
+<span data-ttu-id="780e5-151">hello gulp 명령은 hello 샘플 응용 프로그램 tooyour Arduino 보드를 배포 합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-151">hello gulp command deploys hello sample application tooyour Arduino board.</span></span> <span data-ttu-id="780e5-152">그런 다음 실행 hello 응용 프로그램 Arduino 보드 및 호스트에 별도 작업 컴퓨터 toosend 20 깜박임 메시지 tooyour Arduino 보드 IoT 허브에서 됩니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-152">Then, it runs hello application on your Arduino board and a separate task on your host computer toosend 20 blink messages tooyour Arduino board from your IoT hub.</span></span>
 
-<span data-ttu-id="04649-153">샘플 응용 프로그램이 실행된 후 IoT Hub의 메시지를 수신 대기하기 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="04649-153">After the sample application runs, it starts listening to messages from your IoT hub.</span></span> <span data-ttu-id="04649-154">그 동안 gulp 작업은 IoT Hub에서 Arduino 보드로 여러 개의 "blink" 메시지를 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="04649-154">Meanwhile, the gulp task sends several "blink" messages from your IoT hub to your Arduino board.</span></span> <span data-ttu-id="04649-155">보드에서 blink 메시지를 수신할 때마다 샘플 응용 프로그램이 `blinkLED` 함수를 호출하여 LED를 깜빡입니다.</span><span class="sxs-lookup"><span data-stu-id="04649-155">For each blink message that the board receives, the sample application calls the `blinkLED` function to blink the LED.</span></span>
+<span data-ttu-id="780e5-153">Hello 샘플 응용 프로그램을 실행 한 후 toomessages IoT 허브에서 수신 대기를 시작 합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-153">After hello sample application runs, it starts listening toomessages from your IoT hub.</span></span> <span data-ttu-id="780e5-154">한편, hello gulp 작업 IoT 허브 tooyour Arduino 보드에서에서 여러 개의 "blink" 메시지를 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-154">Meanwhile, hello gulp task sends several "blink" messages from your IoT hub tooyour Arduino board.</span></span> <span data-ttu-id="780e5-155">Hello 샘플 응용 프로그램에서는 hello 호출 보드 hello 각 깜박임 메시지 수신에 대 한 `blinkLED` 함수 tooblink hello LED.</span><span class="sxs-lookup"><span data-stu-id="780e5-155">For each blink message that hello board receives, hello sample application calls hello `blinkLED` function tooblink hello LED.</span></span>
 
-<span data-ttu-id="04649-156">gulp 작업이 IoT Hub에서 Arduino 보드에 20개의 메시지를 보내기 때문에 2초마다 LED가 깜박이는 것을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="04649-156">You should see the LED blink every two seconds as the gulp task sends 20 messages from your IoT hub to your Arduino board.</span></span> <span data-ttu-id="04649-157">마지막 깜빡임은 응용 프로그램 실행을 중지하는 "stop" 메시지입니다.</span><span class="sxs-lookup"><span data-stu-id="04649-157">The last one is a "stop" message that stops the application from running.</span></span>
+<span data-ttu-id="780e5-156">Hello LED 표시 되어야 hello gulp 작업 IoT 허브 tooyour Arduino 보드에서에서 20 개의 메시지를 보내는 2 초 마다 깜박이게 합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-156">You should see hello LED blink every two seconds as hello gulp task sends 20 messages from your IoT hub tooyour Arduino board.</span></span> <span data-ttu-id="780e5-157">hello 마지막 하나는 "중지" 메시지 hello 응용 프로그램이 실행을 중지 합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-157">hello last one is a "stop" message that stops hello application from running.</span></span>
 
 ![gulp 명령 및 blink 메시지가 있는 샘플 응용 프로그램][sample-application]
 
-## <a name="summary"></a><span data-ttu-id="04649-159">요약</span><span class="sxs-lookup"><span data-stu-id="04649-159">Summary</span></span>
-<span data-ttu-id="04649-160">IoT Hub에서 Arduino 보드로 메시지를 보내어 LED를 깜빡이는 데 성공했습니다.</span><span class="sxs-lookup"><span data-stu-id="04649-160">You’ve successfully sent messages from your IoT hub to your Arduino board to blink the LED.</span></span> <span data-ttu-id="04649-161">다음 작업인 LED 켜기 및 끄기 동작 변경은 옵션입니다.</span><span class="sxs-lookup"><span data-stu-id="04649-161">The next task is optional: change the on and off behavior of the LED.</span></span>
+## <a name="summary"></a><span data-ttu-id="780e5-159">요약</span><span class="sxs-lookup"><span data-stu-id="780e5-159">Summary</span></span>
+<span data-ttu-id="780e5-160">프로그램 IoT 허브 tooyour Arduino 보드 tooblink hello LED에서에서 성공적으로 메시지를 보냈습니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-160">You’ve successfully sent messages from your IoT hub tooyour Arduino board tooblink hello LED.</span></span> <span data-ttu-id="780e5-161">hello 다음 작업은 선택 사항: hello 켜고 hello LED의 동작을 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="780e5-161">hello next task is optional: change hello on and off behavior of hello LED.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="04649-162">다음 단계</span><span class="sxs-lookup"><span data-stu-id="04649-162">Next steps</span></span>
-<span data-ttu-id="04649-163">[LED 켜기 및 끄기 동작 변경][change-the-on-and-off-led-behavior]</span><span class="sxs-lookup"><span data-stu-id="04649-163">[Change the on and off behavior of the LED][change-the-on-and-off-led-behavior]</span></span>
+## <a name="next-steps"></a><span data-ttu-id="780e5-162">다음 단계</span><span class="sxs-lookup"><span data-stu-id="780e5-162">Next steps</span></span>
+<span data-ttu-id="780e5-163">[Hello 켜고 hello LED의 동작 변경][change-the-on-and-off-led-behavior]</span><span class="sxs-lookup"><span data-stu-id="780e5-163">[Change hello on and off behavior of hello LED][change-the-on-and-off-led-behavior]</span></span>
 
 
 <!-- Images and links -->

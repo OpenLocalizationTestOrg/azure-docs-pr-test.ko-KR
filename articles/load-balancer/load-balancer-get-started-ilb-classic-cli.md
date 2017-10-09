@@ -1,6 +1,6 @@
 ---
-title: "내부 부하 분산 장치 만들기 - Azure CLI 클래식 | Microsoft Docs"
-description: "Azure CLI를 사용하여 클래식 배포 모델에서 내부 부하 분산 장치를 만드는 방법에 대해 알아봅니다."
+title: "클래식 Azure CLI aaaCreate는 내부 부하 분산 장치-| Microsoft Docs"
+description: "Hello 클래식 배포 모델에서 사용 하 여 내부 부하 분산 장치 toocreate Azure CLI hello 하는 방법을 알아봅니다"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -15,70 +15,70 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: d24b95f75b5ffd1116b07cf9f8bac33767a9c835
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ef29dfda5f7a75a411bbabe8b688a31c6bf81113
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-creating-an-internal-load-balancer-classic-using-the-azure-cli"></a><span data-ttu-id="c0b8f-103">Azure CLI를 사용하여 내부 부하 분산 장치(클래식) 만들기 시작</span><span class="sxs-lookup"><span data-stu-id="c0b8f-103">Get started creating an internal load balancer (classic) using the Azure CLI</span></span>
+# <a name="get-started-creating-an-internal-load-balancer-classic-using-hello-azure-cli"></a><span data-ttu-id="da9ba-103">내부 부하 분산 장치 (클래식) hello Azure CLI를 사용 하 여 만들기 시작</span><span class="sxs-lookup"><span data-stu-id="da9ba-103">Get started creating an internal load balancer (classic) using hello Azure CLI</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="c0b8f-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="c0b8f-104">PowerShell</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-ps.md)
-> * [<span data-ttu-id="c0b8f-105">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="c0b8f-105">Azure CLI</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-cli.md)
-> * [<span data-ttu-id="c0b8f-106">Cloud services</span><span class="sxs-lookup"><span data-stu-id="c0b8f-106">Cloud services</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-cloud.md)
+> * [<span data-ttu-id="da9ba-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="da9ba-104">PowerShell</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-ps.md)
+> * [<span data-ttu-id="da9ba-105">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="da9ba-105">Azure CLI</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-cli.md)
+> * [<span data-ttu-id="da9ba-106">Cloud services</span><span class="sxs-lookup"><span data-stu-id="da9ba-106">Cloud services</span></span>](../load-balancer/load-balancer-get-started-ilb-classic-cloud.md)
 
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!IMPORTANT]
-> <span data-ttu-id="c0b8f-107">Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../azure-resource-manager/resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-107">Azure has two different deployment models for creating and working with resources:  [Resource Manager and classic](../azure-resource-manager/resource-manager-deployment-model.md).</span></span>  <span data-ttu-id="c0b8f-108">이 문서에서는 클래식 배포 모델 사용에 대해 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-108">This article covers using the classic deployment model.</span></span> <span data-ttu-id="c0b8f-109">새로운 배포는 대부분 리소스 관리자 모델을 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-109">Microsoft recommends that most new deployments use the Resource Manager model.</span></span> <span data-ttu-id="c0b8f-110">[Resource Manager 모델을 사용하여 이러한 단계를 수행하는](load-balancer-get-started-ilb-arm-cli.md) 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-110">Learn how to [perform these steps using the Resource Manager model](load-balancer-get-started-ilb-arm-cli.md).</span></span>
+> <span data-ttu-id="da9ba-107">Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../azure-resource-manager/resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-107">Azure has two different deployment models for creating and working with resources:  [Resource Manager and classic](../azure-resource-manager/resource-manager-deployment-model.md).</span></span>  <span data-ttu-id="da9ba-108">이 문서에서는 hello 클래식 배포 모델을 사용 하 여 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-108">This article covers using hello classic deployment model.</span></span> <span data-ttu-id="da9ba-109">대부분의 새로운 배포 hello 리소스 관리자 모델을 사용 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-109">Microsoft recommends that most new deployments use hello Resource Manager model.</span></span> <span data-ttu-id="da9ba-110">너무 방법에 대해 알아봅니다[hello 리소스 관리자 모델을 사용 하 여 이러한 단계를 수행](load-balancer-get-started-ilb-arm-cli.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-110">Learn how too[perform these steps using hello Resource Manager model](load-balancer-get-started-ilb-arm-cli.md).</span></span>
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
-## <a name="to-create-an-internal-load-balancer-set-for-virtual-machines"></a><span data-ttu-id="c0b8f-111">가상 컴퓨터에 대한 내부 부하 분산 장치 집합 만들기</span><span class="sxs-lookup"><span data-stu-id="c0b8f-111">To create an internal load balancer set for virtual machines</span></span>
+## <a name="toocreate-an-internal-load-balancer-set-for-virtual-machines"></a><span data-ttu-id="da9ba-111">toocreate는 내부 부하 분산 장치 가상 컴퓨터에 대 한 설정</span><span class="sxs-lookup"><span data-stu-id="da9ba-111">toocreate an internal load balancer set for virtual machines</span></span>
 
-<span data-ttu-id="c0b8f-112">내부 부하 분산 장치 집합과 이 집합으로 해당 트래픽을 전송할 서버를 만들려면 다음을 수행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-112">To create an internal load balancer set and the servers that will send their traffic to it, you must do the following:</span></span>
+<span data-ttu-id="da9ba-112">수행 해야 합니다는 내부 부하 분산 장치 설정 하 고 해당 트래픽 tooit 보낼 서버 hello toocreate, hello 다음:</span><span class="sxs-lookup"><span data-stu-id="da9ba-112">toocreate an internal load balancer set and hello servers that will send their traffic tooit, you must do hello following:</span></span>
 
-1. <span data-ttu-id="c0b8f-113">부하 분산 집합의 서버 간에 부하가 분산될 들어오는 트래픽의 끝점이 되는 내부 부하 분산의 인스턴스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-113">Create an instance of Internal Load Balancing that will be the endpoint of incoming traffic to be load balanced across the servers of a load-balanced set.</span></span>
-2. <span data-ttu-id="c0b8f-114">들어오는 트래픽을 수신할 가상 컴퓨터에 해당하는 끝점을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-114">Add endpoints corresponding to the virtual machines that will be receiving the incoming traffic.</span></span>
-3. <span data-ttu-id="c0b8f-115">부하가 분산될 트래픽을 전송하는 서버가 해당 트래픽을 내부 부하 분산 인스턴스의 VIP(가상 IP) 주소로 전송하도록 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-115">Configure the servers that will be sending the traffic to be load balanced to send their traffic to the virtual IP (VIP) address of the Internal Load Balancing instance.</span></span>
+1. <span data-ttu-id="da9ba-113">내부 부하 분산의 부하 분산 된 집합의 hello 서버에 걸쳐 분산 된 들어오는 트래픽 toobe 부하의 hello 끝점 수 있는 인스턴스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-113">Create an instance of Internal Load Balancing that will be hello endpoint of incoming traffic toobe load balanced across hello servers of a load-balanced set.</span></span>
+2. <span data-ttu-id="da9ba-114">Hello 들어오는 트래픽을 받게 되 toohello 가상 컴퓨터를 해당 끝점을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-114">Add endpoints corresponding toohello virtual machines that will be receiving hello incoming traffic.</span></span>
+3. <span data-ttu-id="da9ba-115">송신할 hello 트래픽 toobe 부하 분산 된 toosend 해당 트래픽을 toohello 가상 IP (VIP) 인스턴스의 주소 hello 내부 부하 분산 하는 hello 서버를 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-115">Configure hello servers that will be sending hello traffic toobe load balanced toosend their traffic toohello virtual IP (VIP) address of hello Internal Load Balancing instance.</span></span>
 
-## <a name="step-by-step-creating-an-internal-load-balancer-using-cli"></a><span data-ttu-id="c0b8f-116">CLI를 사용하여 내부 부하 분산 장치 만들기 단계별 지침</span><span class="sxs-lookup"><span data-stu-id="c0b8f-116">Step by step creating an internal load balancer using CLI</span></span>
+## <a name="step-by-step-creating-an-internal-load-balancer-using-cli"></a><span data-ttu-id="da9ba-116">CLI를 사용하여 내부 부하 분산 장치 만들기 단계별 지침</span><span class="sxs-lookup"><span data-stu-id="da9ba-116">Step by step creating an internal load balancer using CLI</span></span>
 
-<span data-ttu-id="c0b8f-117">이 가이드에서는 위의 시나리오에 따라 내부 부하 분산 장치를 만드는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-117">This guide shows how to create an internal load balancer based on the scenario above.</span></span>
+<span data-ttu-id="da9ba-117">이 가이드에서는 toocreate는 내부 부하 분산 장치에 따라 방법 위의 hello 시나리오를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-117">This guide shows how toocreate an internal load balancer based on hello scenario above.</span></span>
 
-1. <span data-ttu-id="c0b8f-118">Azure CLI를 처음 사용하는 경우 [Azure CLI 설치 및 구성](../cli-install-nodejs.md) 을 참조하고 Azure 계정 및 구독을 선택하는 부분까지 관련 지침을 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-118">If you have never used Azure CLI, see [Install and Configure the Azure CLI](../cli-install-nodejs.md) and follow the instructions up to the point where you select your Azure account and subscription.</span></span>
-2. <span data-ttu-id="c0b8f-119">아래와 같이 **azure config mode** 명령을 실행하여 클래식 모드로 전환합니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-119">Run the **azure config mode** command to switch to classic mode, as shown below.</span></span>
+1. <span data-ttu-id="da9ba-118">Azure CLI 처음 사용 하는 경우 참조 [설치 및 구성 hello Azure CLI](../cli-install-nodejs.md) Azure 계정 및 구독을 선택 하면 toohello 포인트 hello 지침을 따릅니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-118">If you have never used Azure CLI, see [Install and Configure hello Azure CLI](../cli-install-nodejs.md) and follow hello instructions up toohello point where you select your Azure account and subscription.</span></span>
+2. <span data-ttu-id="da9ba-119">Hello 실행 **azure 구성 모드** 아래와 같이 명령 tooswitch tooclassic 모드입니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-119">Run hello **azure config mode** command tooswitch tooclassic mode, as shown below.</span></span>
 
     ```azurecli
     azure config mode asm
     ```
 
-    <span data-ttu-id="c0b8f-120">예상 출력:</span><span class="sxs-lookup"><span data-stu-id="c0b8f-120">Expected output:</span></span>
+    <span data-ttu-id="da9ba-120">예상 출력:</span><span class="sxs-lookup"><span data-stu-id="da9ba-120">Expected output:</span></span>
 
         info:    New mode is asm
 
-## <a name="create-endpoint-and-load-balancer-set"></a><span data-ttu-id="c0b8f-121">끝점과 부하 분산 장치 집합 만들기</span><span class="sxs-lookup"><span data-stu-id="c0b8f-121">Create endpoint and load balancer set</span></span>
+## <a name="create-endpoint-and-load-balancer-set"></a><span data-ttu-id="da9ba-121">끝점과 부하 분산 장치 집합 만들기</span><span class="sxs-lookup"><span data-stu-id="da9ba-121">Create endpoint and load balancer set</span></span>
 
-<span data-ttu-id="c0b8f-122">시나리오는 "mytestcloud"라는 클라우드 서비스에 가상 컴퓨터 "DB1" 및 "DB2"가 있다고 가정합니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-122">The scenario assumes the virtual machines "DB1" and "DB2" in a cloud service called "mytestcloud".</span></span> <span data-ttu-id="c0b8f-123">두 가상 컴퓨터는 서브넷 "subnet-1"과 함께 내 "testvnet"이라는 가상 네트워크를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-123">Both virtual machines are using a virtual network called my "testvnet" with subnet "subnet-1".</span></span>
+<span data-ttu-id="da9ba-122">hello 시나리오 hello에서에서 가상 컴퓨터 "DB1" 및 "DB2" "mytestcloud" 이라는 클라우드 서비스를 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-122">hello scenario assumes hello virtual machines "DB1" and "DB2" in a cloud service called "mytestcloud".</span></span> <span data-ttu-id="da9ba-123">두 가상 컴퓨터는 서브넷 "subnet-1"과 함께 내 "testvnet"이라는 가상 네트워크를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-123">Both virtual machines are using a virtual network called my "testvnet" with subnet "subnet-1".</span></span>
 
-<span data-ttu-id="c0b8f-124">이 가이드를 통해 개인 포트로 포트 1433과 로컬 포트로 포트 1433을 사용하여 내부 부하 분산 장치 집합을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-124">This guide will create an internal load balancer set using port 1433 as private port and 1433 as local port.</span></span>
+<span data-ttu-id="da9ba-124">이 가이드를 통해 개인 포트로 포트 1433과 로컬 포트로 포트 1433을 사용하여 내부 부하 분산 장치 집합을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-124">This guide will create an internal load balancer set using port 1433 as private port and 1433 as local port.</span></span>
 
-<span data-ttu-id="c0b8f-125">이는 일반적인 시나리오로, 백 엔드의 SQL 가상 컴퓨터는 데이터베이스 서버가 공용 IP 주소를 사용하여 직접 노출되지 않는다는 것을 보장하기 위해 내부 부하 분산 장치를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-125">This is a common scenario where you have SQL virtual machines on the back end using an internal load balancer to guarantee the database servers won't be exposed directly using a public IP address.</span></span>
+<span data-ttu-id="da9ba-125">SQL 가상 컴퓨터는 내부 부하 분산 장치 tooguarantee hello 데이터베이스 서버 공용 IP 주소를 사용 하 여 직접 노출 되지 않습니다 hello 백 엔드 사용에 있는 일반적인 시나리오입니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-125">This is a common scenario where you have SQL virtual machines on hello back end using an internal load balancer tooguarantee hello database servers won't be exposed directly using a public IP address.</span></span>
 
-### <a name="step-1"></a><span data-ttu-id="c0b8f-126">1단계</span><span class="sxs-lookup"><span data-stu-id="c0b8f-126">Step 1</span></span>
+### <a name="step-1"></a><span data-ttu-id="da9ba-126">1단계</span><span class="sxs-lookup"><span data-stu-id="da9ba-126">Step 1</span></span>
 
-<span data-ttu-id="c0b8f-127">`azure network service internal-load-balancer add`를 사용하여 내부 부하 분산 장치 집합을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-127">Create an internal load balancer set using `azure network service internal-load-balancer add`.</span></span>
+<span data-ttu-id="da9ba-127">`azure network service internal-load-balancer add`를 사용하여 내부 부하 분산 장치 집합을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-127">Create an internal load balancer set using `azure network service internal-load-balancer add`.</span></span>
 
 ```azurecli
 azure service internal-load-balancer add --serviceName mytestcloud --internalLBName ilbset --subnet-name subnet-1 --static-virtualnetwork-ipaddress 192.168.2.7
 ```
 
-<span data-ttu-id="c0b8f-128">자세한 내용은 `azure service internal-load-balancer --help` 를 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-128">Check out `azure service internal-load-balancer --help` for more information.</span></span>
+<span data-ttu-id="da9ba-128">자세한 내용은 `azure service internal-load-balancer --help` 를 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="da9ba-128">Check out `azure service internal-load-balancer --help` for more information.</span></span>
 
-<span data-ttu-id="c0b8f-129">`azure service internal-load-balancer list` *클라우드 서비스 이름*명령을 사용하여 내부 부하 분산 장치 속성을 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-129">You can check the internal load balancer properties using the command `azure service internal-load-balancer list` *cloud service name*.</span></span>
+<span data-ttu-id="da9ba-129">Hello 명령을 사용 하 여 hello 내부 부하 분산 장치 속성을 확인할 수 있습니다 `azure service internal-load-balancer list` *클라우드 서비스 이름*합니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-129">You can check hello internal load balancer properties using hello command `azure service internal-load-balancer list` *cloud service name*.</span></span>
 
-<span data-ttu-id="c0b8f-130">다음은 출력의 예입니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-130">Here follows an example of the output:</span></span>
+<span data-ttu-id="da9ba-130">여기 hello 출력의 예는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-130">Here follows an example of hello output:</span></span>
 
     azure service internal-load-balancer list my-testcloud
     info:    Executing command service internal-load-balancer list
@@ -89,23 +89,23 @@ azure service internal-load-balancer add --serviceName mytestcloud --internalLBN
     info:    service internal-load-balancer list command OK
 
 
-### <a name="step-2"></a><span data-ttu-id="c0b8f-131">2단계</span><span class="sxs-lookup"><span data-stu-id="c0b8f-131">Step 2</span></span>
+### <a name="step-2"></a><span data-ttu-id="da9ba-131">2단계</span><span class="sxs-lookup"><span data-stu-id="da9ba-131">Step 2</span></span>
 
-<span data-ttu-id="c0b8f-132">첫 번째 끝점을 추가할 때 내부 부하 분산 장치 집합을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-132">You configure the internal load balancer set when you add the first endpoint.</span></span> <span data-ttu-id="c0b8f-133">이 단계에서 끝점, 가상 컴퓨터 및 프로브 포트를 내부 부하 분산 장치 집합에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-133">You will associate the endpoint, virtual machine and probe port to the internal load balancer set in this step.</span></span>
+<span data-ttu-id="da9ba-132">Hello 첫 번째 끝점을 추가할 때 설정 하는 hello 내부 부하 분산 장치를 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-132">You configure hello internal load balancer set when you add hello first endpoint.</span></span> <span data-ttu-id="da9ba-133">Hello 끝점, 가상 컴퓨터 및 프로브 포트 toohello 내부 부하 분산 집합에이 단계를 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-133">You will associate hello endpoint, virtual machine and probe port toohello internal load balancer set in this step.</span></span>
 
 ```azurecli
 azure vm endpoint create db1 1433 --local-port 1433 --protocol tcp --probe-port 1433 --probe-protocol tcp --probe-interval 300 --probe-timeout 600 --internal-load-balancer-name ilbset
 ```
 
-### <a name="step-3"></a><span data-ttu-id="c0b8f-134">3단계</span><span class="sxs-lookup"><span data-stu-id="c0b8f-134">Step 3</span></span>
+### <a name="step-3"></a><span data-ttu-id="da9ba-134">3단계</span><span class="sxs-lookup"><span data-stu-id="da9ba-134">Step 3</span></span>
 
-<span data-ttu-id="c0b8f-135">`azure vm show` *가상 컴퓨터 이름*</span><span class="sxs-lookup"><span data-stu-id="c0b8f-135">Verify the load balancer configuration using `azure vm show` *virtual machine name*</span></span>
+<span data-ttu-id="da9ba-135">Hello 부하 분산 장치 사용 하 여 구성 확인 `azure vm show` *가상 컴퓨터 이름*</span><span class="sxs-lookup"><span data-stu-id="da9ba-135">Verify hello load balancer configuration using `azure vm show` *virtual machine name*</span></span>
 
 ```azurecli
 azure vm show DB1
 ```
 
-<span data-ttu-id="c0b8f-136">다음과 같이 출력됩니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-136">The output will be:</span></span>
+<span data-ttu-id="da9ba-136">hello 출력이 됩니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-136">hello output will be:</span></span>
 
     azure vm show DB1
     info:    Executing command vm show
@@ -154,28 +154,28 @@ azure vm show DB1
     data:    Network Endpoints 2 loadBalancerName "ilbset"
     info:    vm show command OK
 
-## <a name="create-a-remote-desktop-endpoint-for-a-virtual-machine"></a><span data-ttu-id="c0b8f-137">가상 컴퓨터를 위한 원격 데스크톱 끝점 만들기</span><span class="sxs-lookup"><span data-stu-id="c0b8f-137">Create a remote desktop endpoint for a virtual machine</span></span>
+## <a name="create-a-remote-desktop-endpoint-for-a-virtual-machine"></a><span data-ttu-id="da9ba-137">가상 컴퓨터를 위한 원격 데스크톱 끝점 만들기</span><span class="sxs-lookup"><span data-stu-id="da9ba-137">Create a remote desktop endpoint for a virtual machine</span></span>
 
-<span data-ttu-id="c0b8f-138">`azure vm endpoint create`을 사용하여 특정 가상 컴퓨터의 공용 포트에서 로컬 포트로 네트워크 트래픽을 전달하는 원격 데스크톱 끝점을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-138">You can create a remote desktop endpoint to forward network traffic from a public port to a local port for a specific virtual machine using `azure vm endpoint create`.</span></span>
+<span data-ttu-id="da9ba-138">원격 데스크톱 끝점 tooforward 네트워크 트래픽을 사용 하 여 특정 가상 컴퓨터에 대 한 공용 포트 tooa 로컬 포트를 만들 수 있습니다 `azure vm endpoint create`합니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-138">You can create a remote desktop endpoint tooforward network traffic from a public port tooa local port for a specific virtual machine using `azure vm endpoint create`.</span></span>
 
 ```azurecli
 azure vm endpoint create web1 54580 -k 3389
 ```
 
-## <a name="remove-virtual-machine-from-load-balancer"></a><span data-ttu-id="c0b8f-139">부하 분산 장치에서 가상 컴퓨터 제거</span><span class="sxs-lookup"><span data-stu-id="c0b8f-139">Remove virtual machine from load balancer</span></span>
+## <a name="remove-virtual-machine-from-load-balancer"></a><span data-ttu-id="da9ba-139">부하 분산 장치에서 가상 컴퓨터 제거</span><span class="sxs-lookup"><span data-stu-id="da9ba-139">Remove virtual machine from load balancer</span></span>
 
-<span data-ttu-id="c0b8f-140">연결된 된 끝점을 삭제하여 내부 부하 분산 장치 집합에서 가상 컴퓨터를 제거할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-140">You can remove a virtual machine from an internal load balancer set by deleting the associated endpoint.</span></span> <span data-ttu-id="c0b8f-141">끝점이 제거되면 가상 컴퓨터는 더 이상 부하 분산 장치 집합에 속하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-141">Once the endpoint is removed, the virtual machine won't belong to the load balancer set anymore.</span></span>
+<span data-ttu-id="da9ba-140">연결 된 hello 끝점을 삭제 하 여 설정 하는 내부 부하 분산 장치에서 가상 컴퓨터를 제거할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-140">You can remove a virtual machine from an internal load balancer set by deleting hello associated endpoint.</span></span> <span data-ttu-id="da9ba-141">Hello 끝점 기능이 제거 되 면 hello 가상 컴퓨터가 부하 분산 집합을 더 이상을 toohello 속해 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-141">Once hello endpoint is removed, hello virtual machine won't belong toohello load balancer set anymore.</span></span>
 
-<span data-ttu-id="c0b8f-142">위의 예제를 통해 명령 `azure vm endpoint delete`를 사용하여 내부 부하 분산 장치 "lbset"에서 가상 컴퓨터 "DB1"을 위해 만들어진 끝점을 제거할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-142">Using the example above, you can remove the endpoint created for virtual machine "DB1" from internal load balancer "ilbset" by using the command `azure vm endpoint delete`.</span></span>
+<span data-ttu-id="da9ba-142">위의 hello 예제를 사용 하 여에서 제거할 수 있습니다 "DB1" 가상 컴퓨터에 대해 만든 hello 끝점 내부 부하 분산 장치 "ilbset" hello 명령을 사용 하 여 `azure vm endpoint delete`합니다.</span><span class="sxs-lookup"><span data-stu-id="da9ba-142">Using hello example above, you can remove hello endpoint created for virtual machine "DB1" from internal load balancer "ilbset" by using hello command `azure vm endpoint delete`.</span></span>
 
 ```azurecli
 azure vm endpoint delete DB1 tcp-1433-1433
 ```
 
-<span data-ttu-id="c0b8f-143">자세한 내용은 `azure vm endpoint --help` 를 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="c0b8f-143">Check out `azure vm endpoint --help` for more information.</span></span>
+<span data-ttu-id="da9ba-143">자세한 내용은 `azure vm endpoint --help` 를 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="da9ba-143">Check out `azure vm endpoint --help` for more information.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="c0b8f-144">다음 단계</span><span class="sxs-lookup"><span data-stu-id="c0b8f-144">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="da9ba-144">다음 단계</span><span class="sxs-lookup"><span data-stu-id="da9ba-144">Next steps</span></span>
 
-[<span data-ttu-id="c0b8f-145">원본 IP 선호도를 사용하여 부하 분산 장치 배포 모드 구성</span><span class="sxs-lookup"><span data-stu-id="c0b8f-145">Configure a load balancer distribution mode using source IP affinity</span></span>](load-balancer-distribution-mode.md)
+[<span data-ttu-id="da9ba-145">원본 IP 선호도를 사용하여 부하 분산 장치 배포 모드 구성</span><span class="sxs-lookup"><span data-stu-id="da9ba-145">Configure a load balancer distribution mode using source IP affinity</span></span>](load-balancer-distribution-mode.md)
 
-[<span data-ttu-id="c0b8f-146">부하 분산 장치에 대한 유휴 TCP 시간 제한 설정 구성</span><span class="sxs-lookup"><span data-stu-id="c0b8f-146">Configure idle TCP timeout settings for your load balancer</span></span>](load-balancer-tcp-idle-timeout.md)
+[<span data-ttu-id="da9ba-146">부하 분산 장치에 대한 유휴 TCP 시간 제한 설정 구성</span><span class="sxs-lookup"><span data-stu-id="da9ba-146">Configure idle TCP timeout settings for your load balancer</span></span>](load-balancer-tcp-idle-timeout.md)

@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 스크립트 샘플 - Cosmos DB에 웹앱 연결 | Microsoft Docs"
-description: "Azure CLI 스크립트 샘플 - Cosmos DB에 웹앱 연결"
+title: "CLI 스크립트 샘플-aaaAzure 연결 웹 응용 프로그램 tooCosmos DB | Microsoft Docs"
+description: "Azure CLI 스크립트 예제-웹 응용 프로그램 tooCosmos DB 연결"
 services: appservice
 documentationcenter: appservice
 author: syntaxc4
@@ -16,15 +16,15 @@ ms.workload: web
 ms.date: 06/19/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: ff5e7a794033cc51120831e09b055a86affb28a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1f2123378b9d5812fa793730f7fa5a5bc9ab63c1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-a-web-app-to-cosmos-db"></a><span data-ttu-id="757dc-103">웹앱을 Cosmos DB에 연결</span><span class="sxs-lookup"><span data-stu-id="757dc-103">Connect a web app to Cosmos DB</span></span>
+# <a name="connect-a-web-app-toocosmos-db"></a><span data-ttu-id="8fadf-103">웹 앱 tooCosmos DB에 연결</span><span class="sxs-lookup"><span data-stu-id="8fadf-103">Connect a web app tooCosmos DB</span></span>
 
-<span data-ttu-id="757dc-104">이 시나리오에서는 Azure Cosmos DB 계정 및 Azure Web App을 만드는 방법을 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-104">In this scenario you will learn how to create an Azure Cosmos DB account and an Azure web app.</span></span> <span data-ttu-id="757dc-105">그런 다음 앱 설정을 사용하여 Cosmos DB를 웹앱에 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-105">Then you will link the Cosmos DB to the web app using app settings.</span></span>
+<span data-ttu-id="8fadf-104">이 시나리오에서는 toocreate Azure Cosmos DB 계정 및 Azure 웹 앱에 방법을 배웁니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-104">In this scenario you will learn how toocreate an Azure Cosmos DB account and an Azure web app.</span></span> <span data-ttu-id="8fadf-105">그런 다음 응용 프로그램 설정을 사용 하 여 hello Cosmos DB toohello 웹 앱을 연결할 됩니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-105">Then you will link hello Cosmos DB toohello web app using app settings.</span></span>
 
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
@@ -32,29 +32,29 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-<span data-ttu-id="757dc-106">CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 항목에서 Azure CLI 버전 2.0 이상을 실행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-106">If you choose to install and use the CLI locally, this topic requires that you are running the Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="757dc-107">`az --version`을 실행하여 버전을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-107">Run `az --version` to find the version.</span></span> <span data-ttu-id="757dc-108">설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="757dc-108">If you need to install or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
+<span data-ttu-id="8fadf-106">Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 항목 2.0 이상에 hello Azure CLI 버전을 실행 중인 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-106">If you choose tooinstall and use hello CLI locally, this topic requires that you are running hello Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="8fadf-107">실행 `az --version` toofind hello 버전입니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-107">Run `az --version` toofind hello version.</span></span> <span data-ttu-id="8fadf-108">Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-108">If you need tooinstall or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
 
-## <a name="sample-script"></a><span data-ttu-id="757dc-109">샘플 스크립트</span><span class="sxs-lookup"><span data-stu-id="757dc-109">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="8fadf-109">샘플 스크립트</span><span class="sxs-lookup"><span data-stu-id="8fadf-109">Sample script</span></span>
 
-<span data-ttu-id="757dc-110">[!code-azurecli-interactive[main](../../../cli_scripts/app-service/connect-to-documentdb/connect-to-documentdb.sh "Azure Cosmos DB")]</span><span class="sxs-lookup"><span data-stu-id="757dc-110">[!code-azurecli-interactive[main](../../../cli_scripts/app-service/connect-to-documentdb/connect-to-documentdb.sh "Azure Cosmos DB")]</span></span>
+[!code-azurecli-interactive[main](../../../cli_scripts/app-service/connect-to-documentdb/connect-to-documentdb.sh "Azure Cosmos DB")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
-## <a name="script-explanation"></a><span data-ttu-id="757dc-111">스크립트 설명</span><span class="sxs-lookup"><span data-stu-id="757dc-111">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="8fadf-110">스크립트 설명</span><span class="sxs-lookup"><span data-stu-id="8fadf-110">Script explanation</span></span>
 
-<span data-ttu-id="757dc-112">이 스크립트는 다음 명령을 사용하여 리소스 그룹, 웹앱, Cosmos DB 및 모든 관련된 리소스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-112">This script uses the following commands to create a resource group, web app, Cosmos DB and all related resources.</span></span> <span data-ttu-id="757dc-113">테이블에 있는 각 명령은 명령에 해당하는 문서에 연결됩니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-113">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="8fadf-111">이 스크립트 명령 toocreate 리소스 그룹, 웹 응용 프로그램, Cosmos DB 및 관련 된 모든 리소스를 수행 하는 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-111">This script uses hello following commands toocreate a resource group, web app, Cosmos DB and all related resources.</span></span> <span data-ttu-id="8fadf-112">Hello 테이블의 각 명령이 toocommand 특정 문서를 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-112">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="757dc-114">명령</span><span class="sxs-lookup"><span data-stu-id="757dc-114">Command</span></span> | <span data-ttu-id="757dc-115">참고 사항</span><span class="sxs-lookup"><span data-stu-id="757dc-115">Notes</span></span> |
+| <span data-ttu-id="8fadf-113">명령</span><span class="sxs-lookup"><span data-stu-id="8fadf-113">Command</span></span> | <span data-ttu-id="8fadf-114">참고 사항</span><span class="sxs-lookup"><span data-stu-id="8fadf-114">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="757dc-116">az group create</span><span class="sxs-lookup"><span data-stu-id="757dc-116">az group create</span></span>](https://docs.microsoft.com/cli/azure/group#create) | <span data-ttu-id="757dc-117">모든 리소스가 저장되는 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-117">Creates a resource group in which all resources are stored.</span></span> |
-| [<span data-ttu-id="757dc-118">az appservice plan create</span><span class="sxs-lookup"><span data-stu-id="757dc-118">az appservice plan create</span></span>](https://docs.microsoft.com/cli/azure/appservice/plan#create) | <span data-ttu-id="757dc-119">App Service 계획을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-119">Creates an App Service plan.</span></span> <span data-ttu-id="757dc-120">Azure 웹앱에 대한 서버 팜과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-120">This is like a server farm for your Azure web app.</span></span> |
-| [<span data-ttu-id="757dc-121">az webapp create</span><span class="sxs-lookup"><span data-stu-id="757dc-121">az webapp create</span></span>](https://docs.microsoft.com/cli/azure/webapp#create) | <span data-ttu-id="757dc-122">Azure 웹앱을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-122">Creates an Azure web app.</span></span> |
-| [<span data-ttu-id="757dc-123">az cosmosdb create</span><span class="sxs-lookup"><span data-stu-id="757dc-123">az cosmosdb create</span></span>](https://docs.microsoft.com/en-us/cli/azure/cosmosdb#create) | <span data-ttu-id="757dc-124">Cosmos DB 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-124">Creates a Cosmos DB account.</span></span> <span data-ttu-id="757dc-125">데이터가 저장될 위치입니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-125">This is where the data will be stored.</span></span> |
-| [<span data-ttu-id="757dc-126">az cosmosdb list-keys</span><span class="sxs-lookup"><span data-stu-id="757dc-126">az cosmosdb list-keys</span></span>](https://docs.microsoft.com/en-us/cli/azure/cosmosdb#list-keys) | <span data-ttu-id="757dc-127">지정된 Cosmos DB 계정에 대한 선택키를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-127">Lists the access keys for the specified Cosmos DB account.</span></span> |
-| [<span data-ttu-id="757dc-128">az webapp config appsettings set</span><span class="sxs-lookup"><span data-stu-id="757dc-128">az webapp config appsettings set</span></span>](https://docs.microsoft.com/cli/azure/webapp/config/appsettings#set) | <span data-ttu-id="757dc-129">Azure 웹앱에 대한 앱 설정을 만들거나 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-129">Creates or updates an app setting for an Azure web app.</span></span> <span data-ttu-id="757dc-130">앱 설정은 앱에 대한 환경 변수로 노출됩니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-130">App settings are exposed as environment variables for your app.</span></span> |
+| [<span data-ttu-id="8fadf-115">az group create</span><span class="sxs-lookup"><span data-stu-id="8fadf-115">az group create</span></span>](https://docs.microsoft.com/cli/azure/group#create) | <span data-ttu-id="8fadf-116">모든 리소스가 저장되는 리소스 그룹을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-116">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="8fadf-117">az appservice plan create</span><span class="sxs-lookup"><span data-stu-id="8fadf-117">az appservice plan create</span></span>](https://docs.microsoft.com/cli/azure/appservice/plan#create) | <span data-ttu-id="8fadf-118">App Service 계획을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-118">Creates an App Service plan.</span></span> <span data-ttu-id="8fadf-119">Azure 웹앱에 대한 서버 팜과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-119">This is like a server farm for your Azure web app.</span></span> |
+| [<span data-ttu-id="8fadf-120">az webapp create</span><span class="sxs-lookup"><span data-stu-id="8fadf-120">az webapp create</span></span>](https://docs.microsoft.com/cli/azure/webapp#create) | <span data-ttu-id="8fadf-121">Azure 웹앱을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-121">Creates an Azure web app.</span></span> |
+| [<span data-ttu-id="8fadf-122">az cosmosdb create</span><span class="sxs-lookup"><span data-stu-id="8fadf-122">az cosmosdb create</span></span>](https://docs.microsoft.com/en-us/cli/azure/cosmosdb#create) | <span data-ttu-id="8fadf-123">Cosmos DB 계정을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-123">Creates a Cosmos DB account.</span></span> <span data-ttu-id="8fadf-124">이 hello 데이터가 저장 됩니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-124">This is where hello data will be stored.</span></span> |
+| [<span data-ttu-id="8fadf-125">az cosmosdb list-keys</span><span class="sxs-lookup"><span data-stu-id="8fadf-125">az cosmosdb list-keys</span></span>](https://docs.microsoft.com/en-us/cli/azure/cosmosdb#list-keys) | <span data-ttu-id="8fadf-126">Hello에 대 한 목록 hello 선택 키 Cosmos DB 계정을 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-126">Lists hello access keys for hello specified Cosmos DB account.</span></span> |
+| [<span data-ttu-id="8fadf-127">az webapp config appsettings set</span><span class="sxs-lookup"><span data-stu-id="8fadf-127">az webapp config appsettings set</span></span>](https://docs.microsoft.com/cli/azure/webapp/config/appsettings#set) | <span data-ttu-id="8fadf-128">Azure 웹앱에 대한 앱 설정을 만들거나 업데이트합니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-128">Creates or updates an app setting for an Azure web app.</span></span> <span data-ttu-id="8fadf-129">앱 설정은 앱에 대한 환경 변수로 노출됩니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-129">App settings are exposed as environment variables for your app.</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="757dc-131">다음 단계</span><span class="sxs-lookup"><span data-stu-id="757dc-131">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="8fadf-130">다음 단계</span><span class="sxs-lookup"><span data-stu-id="8fadf-130">Next steps</span></span>
 
-<span data-ttu-id="757dc-132">Azure CLI에 대한 자세한 내용은 [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="757dc-132">For more information on the Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
+<span data-ttu-id="8fadf-131">Azure CLI hello에 대 한 자세한 내용은 참조 하십시오. [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)합니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-131">For more information on hello Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
 
-<span data-ttu-id="757dc-133">추가 App Service CLI 스크립트 샘플은 [Azure App Service 설명서](../app-service-cli-samples.md)에서 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="757dc-133">Additional App Service CLI script samples can be found in the [Azure App Service documentation](../app-service-cli-samples.md).</span></span>
+<span data-ttu-id="8fadf-132">추가 응용 프로그램 서비스 CLI 스크립트 예제는 hello에서 확인할 수 있습니다 [Azure 앱 서비스 설명서](../app-service-cli-samples.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="8fadf-132">Additional App Service CLI script samples can be found in hello [Azure App Service documentation](../app-service-cli-samples.md).</span></span>

@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning에서 웹 서비스 끝점 만들기 | Microsoft Docs"
+title: "기계 학습에서 웹 서비스 끝점 aaaCreating | Microsoft Docs"
 description: "Azure Machine Learning에서 웹 서비스 끝점 만들기"
 services: machine-learning
 documentationcenter: 
@@ -14,61 +14,61 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 10/04/2016
 ms.author: himad
-ms.openlocfilehash: 9f83ffc9cf7dbe37c1ce9980fd7f5b9133fe78f6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 10a2bc586c6fe35e28d8bf0293854c578827c453
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="creating-endpoints"></a><span data-ttu-id="e4506-103">끝점 만들기</span><span class="sxs-lookup"><span data-stu-id="e4506-103">Creating Endpoints</span></span>
+# <a name="creating-endpoints"></a><span data-ttu-id="83a5a-103">끝점 만들기</span><span class="sxs-lookup"><span data-stu-id="83a5a-103">Creating Endpoints</span></span>
 > [!NOTE]
->  <span data-ttu-id="e4506-104">이 항목에서는 **기존** Machine Learning 웹 서비스에 적용되는 기술을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-104">This topic describes techniques applicable to a **Classic** Machine Learning Web service.</span></span>
+>  <span data-ttu-id="83a5a-104">이 항목에서는 기술을 적용 가능한 tooa 설명 **클래식** 컴퓨터 학습 웹 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-104">This topic describes techniques applicable tooa **Classic** Machine Learning Web service.</span></span>
 > 
 > 
 
-<span data-ttu-id="e4506-105">고객에게 판매할 웹 서비스를 만들 때는 웹 서비스를 만든 실험에 아직 연결되어 있는 각 고객에게 학습된 모델을 제공해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-105">When you create Web services that you sell forward to your customers, you need to provide trained models to each customer that are still linked to the experiment from which the Web service was created.</span></span> <span data-ttu-id="e4506-106">또한 사용자 지정을 덮어쓰지 않고 실험의 모든 업데이트를 끝점에 선택적으로 적용해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-106">In addition, any updates to the experiment should be applied selectively to an endpoint without overwriting the customizations.</span></span>
+<span data-ttu-id="83a5a-105">정방향 tooyour 고객을 판매 하는 웹 서비스를 만들 서비스를 만들 때 어떤 hello 웹에서에서 여전히 연결 된 toohello 실험은 tooprovide 학습 된 모델 tooeach 고객이 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-105">When you create Web services that you sell forward tooyour customers, you need tooprovide trained models tooeach customer that are still linked toohello experiment from which hello Web service was created.</span></span> <span data-ttu-id="83a5a-106">또한 toohello 실험 해야 업데이트 선택적 적용 tooan 끝점 hello 사용자 지정 항목을 덮어쓰지 않고 합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-106">In addition, any updates toohello experiment should be applied selectively tooan endpoint without overwriting hello customizations.</span></span>
 
-<span data-ttu-id="e4506-107">이를 위해 Azure Machine Learning을 사용하면 배포된 웹 서비스에 대한 여러 끝점을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-107">To accomplish this, Azure Machine Learning allows you to create multiple endpoints for a deployed Web service.</span></span> <span data-ttu-id="e4506-108">웹 서비스의 각 끝점은 독립적으로 처리, 제한 및 관리됩니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-108">Each endpoint in the Web service is independently addressed, throttled, and managed.</span></span> <span data-ttu-id="e4506-109">각 끝점에는 고객에게 배포할 수 있는 고유한 URL 및 권한 부여 키가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-109">Each endpoint is a unique URL and authorization key that you can distribute to your customers.</span></span>
+<span data-ttu-id="83a5a-107">tooaccomplish이를 Azure 기계 학습 toocreate을 사용 하면 배포 된 웹 서비스에 대 한 여러 끝점입니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-107">tooaccomplish this, Azure Machine Learning allows you toocreate multiple endpoints for a deployed Web service.</span></span> <span data-ttu-id="83a5a-108">각 끝점 hello 웹 서비스에에서 독립적으로 주소가 지정 된 제한 하 여 있고, 관리 합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-108">Each endpoint in hello Web service is independently addressed, throttled, and managed.</span></span> <span data-ttu-id="83a5a-109">각 끝점은 고유한 URL 및 권한 부여 키 tooyour 고객을 배포할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-109">Each endpoint is a unique URL and authorization key that you can distribute tooyour customers.</span></span>
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="adding-endpoints-to-a-web-service"></a><span data-ttu-id="e4506-110">웹 서비스에 끝점 추가</span><span class="sxs-lookup"><span data-stu-id="e4506-110">Adding endpoints to a Web service</span></span>
-<span data-ttu-id="e4506-111">웹 서비스에 끝점을 추가하는 방법은 세 가지가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-111">There are three ways to add an endpoint to a Web service.</span></span>
+## <a name="adding-endpoints-tooa-web-service"></a><span data-ttu-id="83a5a-110">끝점 tooa 웹 서비스 추가</span><span class="sxs-lookup"><span data-stu-id="83a5a-110">Adding endpoints tooa Web service</span></span>
+<span data-ttu-id="83a5a-111">끝점 tooa 웹 서비스는 세 가지 방법으로 tooadd 합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-111">There are three ways tooadd an endpoint tooa Web service.</span></span>
 
-* <span data-ttu-id="e4506-112">프로그래밍 방식</span><span class="sxs-lookup"><span data-stu-id="e4506-112">Programmatically</span></span>
-* <span data-ttu-id="e4506-113">Azure Machine Learning 웹 서비스 포털을 통해</span><span class="sxs-lookup"><span data-stu-id="e4506-113">Through the Azure Machine Learning Web Services portal</span></span>
-* <span data-ttu-id="e4506-114">Azure 클래식 포털을 통해</span><span class="sxs-lookup"><span data-stu-id="e4506-114">Though the Azure classic portal</span></span>
+* <span data-ttu-id="83a5a-112">프로그래밍 방식</span><span class="sxs-lookup"><span data-stu-id="83a5a-112">Programmatically</span></span>
+* <span data-ttu-id="83a5a-113">Hello Azure 컴퓨터 학습 웹 서비스 포털을 통해</span><span class="sxs-lookup"><span data-stu-id="83a5a-113">Through hello Azure Machine Learning Web Services portal</span></span>
+* <span data-ttu-id="83a5a-114">그러나 Azure 클래식 포털을 hello</span><span class="sxs-lookup"><span data-stu-id="83a5a-114">Though hello Azure classic portal</span></span>
 
-<span data-ttu-id="e4506-115">끝점이 만들어지면 동기 API, 일괄 처리 API 및 Excel 워크시트를 통해 끝점을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-115">Once the endpoint is created, you can consume it through synchronous APIs, batch APIs, and excel worksheets.</span></span> <span data-ttu-id="e4506-116">또한 이 UI 통해 끝점을 추가하는 것 외에도 끝점 관리 API를 사용하여 프로그래밍 방식으로 끝점을 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-116">In addition to adding endpoints through this UI, you can also use the Endpoint Management APIs to programmatically add endpoints.</span></span>
+<span data-ttu-id="83a5a-115">Hello 끝점을 만든 후에 동기 Api 일괄 처리, Api 통해 사용할 수 있으며 excel 워크시트 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-115">Once hello endpoint is created, you can consume it through synchronous APIs, batch APIs, and excel worksheets.</span></span> <span data-ttu-id="83a5a-116">또한이 UI 통해 tooadding 끝점을 사용할 수도 있습니다 hello 끝점 관리 Api tooprogrammatically 끝점을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-116">In addition tooadding endpoints through this UI, you can also use hello Endpoint Management APIs tooprogrammatically add endpoints.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="e4506-117">웹 서비스에 끝점을 더 추가한 경우 기본 끝점은 삭제할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-117">If you have added additional endpoints to the Web service, you cannot delete the default endpoint.</span></span>
+> <span data-ttu-id="83a5a-117">추가 끝점 toohello 웹 서비스를 추가한 경우 hello 기본 끝점을 삭제할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-117">If you have added additional endpoints toohello Web service, you cannot delete hello default endpoint.</span></span>
 > 
 > 
 
-## <a name="adding-an-endpoint-programmatically"></a><span data-ttu-id="e4506-118">프로그래밍 방식으로 끝점 추가</span><span class="sxs-lookup"><span data-stu-id="e4506-118">Adding an endpoint programmatically</span></span>
-<span data-ttu-id="e4506-119">[AddEndpoint](https://github.com/raymondlaghaeian/AML_EndpointMgmt/blob/master/Program.cs) 샘플 코드를 사용하여 프로그래밍 방식으로 웹 서비스에 끝점을 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-119">You can add an endpoint to your Web service programmatically using the [AddEndpoint](https://github.com/raymondlaghaeian/AML_EndpointMgmt/blob/master/Program.cs) sample code.</span></span>
+## <a name="adding-an-endpoint-programmatically"></a><span data-ttu-id="83a5a-118">프로그래밍 방식으로 끝점 추가</span><span class="sxs-lookup"><span data-stu-id="83a5a-118">Adding an endpoint programmatically</span></span>
+<span data-ttu-id="83a5a-119">프로그래밍 방식으로 hello를 사용 하는 끝점 tooyour 웹 서비스를 추가할 수 있습니다 [AddEndpoint](https://github.com/raymondlaghaeian/AML_EndpointMgmt/blob/master/Program.cs) 샘플 코드입니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-119">You can add an endpoint tooyour Web service programmatically using hello [AddEndpoint](https://github.com/raymondlaghaeian/AML_EndpointMgmt/blob/master/Program.cs) sample code.</span></span>
 
-## <a name="adding-an-endpoint-using-the-azure-machine-learning-web-services-portal"></a><span data-ttu-id="e4506-120">Azure Machine Learning 웹 서비스 포털을 사용하여 끝점 추가</span><span class="sxs-lookup"><span data-stu-id="e4506-120">Adding an endpoint using the Azure Machine Learning Web Services portal</span></span>
-1. <span data-ttu-id="e4506-121">Machine Learning Studio의 왼쪽 탐색 열에서 Web Services를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-121">In Machine Learning Studio, on the left navigation column, click Web Services.</span></span>
-2. <span data-ttu-id="e4506-122">웹 서비스 대시보드 아래쪽에서 **끝점 관리**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-122">At the bottom of the Web service dashboard, click **Manage endpoints**.</span></span> <span data-ttu-id="e4506-123">Azure Machine Learning 웹 서비스 포털에 웹 서비스 끝점 페이지가 열립니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-123">The Azure Machine Learning Web Services portal opens to the endpoints page for the Web service.</span></span>
-3. <span data-ttu-id="e4506-124">**새로 만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-124">Click **New**.</span></span>
-4. <span data-ttu-id="e4506-125">새 끝점에 대한 이름 및 설명을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-125">Type a name and description for the new endpoint.</span></span> <span data-ttu-id="e4506-126">끝점 이름은 길이가 24자 이하이고 알파벳 소문자 또는 숫자로 구성되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-126">Endpoint names must be 24 character or less in length, and must be made up of lower-case alphabets or numbers.</span></span> <span data-ttu-id="e4506-127">로깅 수준 및 예제 데이터 사용 여부를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-127">Select the logging level and whether sample data is enabled.</span></span> <span data-ttu-id="e4506-128">로깅에 대한 자세한 내용은 [Machine Learning 웹 서비스에 대한 로깅 사용](machine-learning-web-services-logging.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e4506-128">For more information on logging, see [Enable logging for Machine Learning Web services](machine-learning-web-services-logging.md).</span></span>
+## <a name="adding-an-endpoint-using-hello-azure-machine-learning-web-services-portal"></a><span data-ttu-id="83a5a-120">Hello Azure 컴퓨터 학습 웹 서비스 포털을 사용 하 여 끝점 추가</span><span class="sxs-lookup"><span data-stu-id="83a5a-120">Adding an endpoint using hello Azure Machine Learning Web Services portal</span></span>
+1. <span data-ttu-id="83a5a-121">기계 학습 스튜디오에서는 hello 왼쪽된 탐색 열 웹 서비스를 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-121">In Machine Learning Studio, on hello left navigation column, click Web Services.</span></span>
+2. <span data-ttu-id="83a5a-122">Hello 웹 서비스 대시보드 hello 아래쪽 클릭 **끝점을 관리**합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-122">At hello bottom of hello Web service dashboard, click **Manage endpoints**.</span></span> <span data-ttu-id="83a5a-123">hello Azure 컴퓨터 학습 웹 서비스 포털 hello 웹 서비스에 대 한 toohello 끝점 페이지를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-123">hello Azure Machine Learning Web Services portal opens toohello endpoints page for hello Web service.</span></span>
+3. <span data-ttu-id="83a5a-124">**새로 만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-124">Click **New**.</span></span>
+4. <span data-ttu-id="83a5a-125">이름 및 hello 새 끝점에 대 한 설명을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-125">Type a name and description for hello new endpoint.</span></span> <span data-ttu-id="83a5a-126">끝점 이름은 길이가 24자 이하이고 알파벳 소문자 또는 숫자로 구성되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-126">Endpoint names must be 24 character or less in length, and must be made up of lower-case alphabets or numbers.</span></span> <span data-ttu-id="83a5a-127">Hello 로깅 수준 및 예제 데이터가 활성화 되어 있는지 여부를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-127">Select hello logging level and whether sample data is enabled.</span></span> <span data-ttu-id="83a5a-128">로깅에 대한 자세한 내용은 [Machine Learning 웹 서비스에 대한 로깅 사용](machine-learning-web-services-logging.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="83a5a-128">For more information on logging, see [Enable logging for Machine Learning Web services](machine-learning-web-services-logging.md).</span></span>
 
-## <a name="adding-an-endpoint-using-the-azure-classic-portal"></a><span data-ttu-id="e4506-129">Azure 클래식 포털을 사용하여 끝점 추가</span><span class="sxs-lookup"><span data-stu-id="e4506-129">Adding an endpoint using the Azure classic portal</span></span>
-1. <span data-ttu-id="e4506-130">[Azure 클래식 포털](http://manage.windowsazure.com)에 로그인한 후 왼쪽 열에서 **Machine Learning**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-130">Sign in to the [Azure classic portal](http://manage.windowsazure.com), click **Machine Learning** in the left column.</span></span> <span data-ttu-id="e4506-131">관심 있는 웹 서비스가 포함되어 있는 작업 영역을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-131">Click the workspace which contains the Web service in which you are interested.</span></span>
+## <a name="adding-an-endpoint-using-hello-azure-classic-portal"></a><span data-ttu-id="83a5a-129">Hello Azure 클래식 포털을 사용 하 여 끝점 추가</span><span class="sxs-lookup"><span data-stu-id="83a5a-129">Adding an endpoint using hello Azure classic portal</span></span>
+1. <span data-ttu-id="83a5a-130">Toohello 로그인 [Azure 클래식 포털](http://manage.windowsazure.com), 클릭 **기계 학습** hello 왼쪽된 열에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-130">Sign in toohello [Azure classic portal](http://manage.windowsazure.com), click **Machine Learning** in hello left column.</span></span> <span data-ttu-id="83a5a-131">관심이 있는 hello 웹 서비스를 포함 하는 hello 작업 영역을 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-131">Click hello workspace which contains hello Web service in which you are interested.</span></span>
    
-    ![작업 영역으로 이동](./media/machine-learning-create-endpoint/figure-1.png)
-2. <span data-ttu-id="e4506-133">**웹 서비스**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-133">Click **Web Services**.</span></span>
+    ![Tooworkspace 이동](./media/machine-learning-create-endpoint/figure-1.png)
+2. <span data-ttu-id="83a5a-133">**웹 서비스**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-133">Click **Web Services**.</span></span>
    
-    ![웹 서비스로 이동](./media/machine-learning-create-endpoint/figure-2.png)
-3. <span data-ttu-id="e4506-135">사용 가능한 끝점 목록을 확인할 웹 서비스를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-135">Click the Web service you're interested in to see the list of available endpoints.</span></span>
+    ![TooWeb 서비스 탐색](./media/machine-learning-create-endpoint/figure-2.png)
+3. <span data-ttu-id="83a5a-135">사용 가능한 끝점의 toosee hello 목록에 관심이 hello 웹 서비스를 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-135">Click hello Web service you're interested in toosee hello list of available endpoints.</span></span>
    
-    ![끝점으로 이동](./media/machine-learning-create-endpoint/figure-3.png)
-4. <span data-ttu-id="e4506-137">페이지 맨 아래에 있는 **끝점 추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-137">At the bottom of the page, click **Add Endpoint**.</span></span> <span data-ttu-id="e4506-138">이름 및 설명을 입력하고 이 웹 서비스에 같은 이름의 다른 끝점이 없는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-138">Type a name and description, ensure there are no other endpoints with the same name in this Web service.</span></span> <span data-ttu-id="e4506-139">특별한 요구 사항이 없는 경우 제한 수준을 해당 기본값으로 그대로 둡니다.</span><span class="sxs-lookup"><span data-stu-id="e4506-139">Leave the throttle level with its default value unless you have special requirements.</span></span> <span data-ttu-id="e4506-140">제한에 대해 자세히 알아보려면 [API 끝점 확장](machine-learning-scaling-webservice.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e4506-140">To learn more about throttling, see [Scaling API Endpoints](machine-learning-scaling-webservice.md).</span></span>
+    ![Tooendpoint 이동](./media/machine-learning-create-endpoint/figure-3.png)
+4. <span data-ttu-id="83a5a-137">Hello hello 페이지의 아래쪽에 있는 클릭 **끝점 추가**합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-137">At hello bottom of hello page, click **Add Endpoint**.</span></span> <span data-ttu-id="83a5a-138">이름 및 설명을 입력 하을이 웹 서비스의 이름과 같은 이름을 hello로 다른 끝점이 있는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-138">Type a name and description, ensure there are no other endpoints with hello same name in this Web service.</span></span> <span data-ttu-id="83a5a-139">특별 한 요구 사항이 없다면 hello 제한 수준을 값이 기본값으로 둡니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-139">Leave hello throttle level with its default value unless you have special requirements.</span></span> <span data-ttu-id="83a5a-140">제한에 대해 자세히 toolearn 참조 [API 끝점 확장](machine-learning-scaling-webservice.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-140">toolearn more about throttling, see [Scaling API Endpoints](machine-learning-scaling-webservice.md).</span></span>
    
     ![끝점 만들기](./media/machine-learning-create-endpoint/figure-4.png)
 
-## <a name="next-steps"></a><span data-ttu-id="e4506-142">다음 단계</span><span class="sxs-lookup"><span data-stu-id="e4506-142">Next Steps</span></span>
-<span data-ttu-id="e4506-143">[Azure Machine Learning 웹 서비스 사용 방법](machine-learning-consume-web-services.md).</span><span class="sxs-lookup"><span data-stu-id="e4506-143">[How to consume an Azure Machine Learning Web service](machine-learning-consume-web-services.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="83a5a-142">다음 단계</span><span class="sxs-lookup"><span data-stu-id="83a5a-142">Next Steps</span></span>
+<span data-ttu-id="83a5a-143">[어떻게 tooconsume Azure 컴퓨터 학습 웹 서비스](machine-learning-consume-web-services.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="83a5a-143">[How tooconsume an Azure Machine Learning Web service](machine-learning-consume-web-services.md).</span></span>
 

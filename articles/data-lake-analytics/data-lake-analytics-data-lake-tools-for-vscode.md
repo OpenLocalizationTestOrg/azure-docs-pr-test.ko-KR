@@ -1,7 +1,7 @@
 ---
 title: "Azure Data Lake Tools: Azure Data Lake Tools for Visual Studio Code 사용 | Microsoft Docs"
-description: "Azure Data Lake Tools for Visual Studio Code를 사용하여 U-SQL 스크립트를 만들고, 테스트하고, 실행하는 방법에 대해 알아봅니다. "
-Keywords: "VScode,Azure Data Lake Tools,로컬 실행,로컬 디버그,로컬 디버그,저장소 파일 미리 보기,저장소 경로로 업로드"
+description: "Toouse Azure 데이터 레이크 Tools for Visual Studio Code toocreate 테스트 및 U-SQL 스크립트 실행 방법에 대해 알아봅니다. "
+Keywords: "VScode, Azure 데이터 레이크 도구, 로컬 실행 로컬 디버그, 디버깅, 로컬 미리 보기 저장소 파일 업로드 toostorage 경로"
 services: data-lake-analytics
 documentationcenter: 
 author: jejiang
@@ -16,123 +16,123 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/14/2017
 ms.author: jejiang
-ms.openlocfilehash: 833d14af47454a01fa3c97ffa854d688dd35871f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 77771c5d5dae3bfce4ad2df240ea6c6ef848f288
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-data-lake-tools-for-visual-studio-code"></a><span data-ttu-id="5aca7-104">Azure Data Lake Tools for Visual Studio Code 사용</span><span class="sxs-lookup"><span data-stu-id="5aca7-104">Use Azure Data Lake Tools for Visual Studio Code</span></span>
+# <a name="use-azure-data-lake-tools-for-visual-studio-code"></a><span data-ttu-id="efe33-104">Azure Data Lake Tools for Visual Studio Code 사용</span><span class="sxs-lookup"><span data-stu-id="efe33-104">Use Azure Data Lake Tools for Visual Studio Code</span></span>
 
-<span data-ttu-id="5aca7-105">Azure Data Lake Tools for Visual Studio Code(VS Code)를 사용하여 U-SQL 스크립트를 만들고, 테스트하고, 실행하는 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-105">Learn how to use Azure Data Lake Tools for Visual Studio Code (VS Code) to create, test, and run U-SQL scripts.</span></span> <span data-ttu-id="5aca7-106">정보는 또한 다음 비디오에서 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-106">The information is also covered in the following video:</span></span>
+<span data-ttu-id="efe33-105">Toouse Azure 데이터 레이크 Tools for Visual Studio Code (VS Code) toocreate 테스트 및 U-SQL 스크립트 실행 방법에 대해 알아봅니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-105">Learn how toouse Azure Data Lake Tools for Visual Studio Code (VS Code) toocreate, test, and run U-SQL scripts.</span></span> <span data-ttu-id="efe33-106">hello 정보 비디오를 따라 hello에 대해서는:</span><span class="sxs-lookup"><span data-stu-id="efe33-106">hello information is also covered in hello following video:</span></span>
 
 <a href="https://www.youtube.com/watch?v=J_gWuyFnaGA&feature=youtu.be"><img src="./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-video.png"></a>
 
-## <a name="prerequisites"></a><span data-ttu-id="5aca7-107">필수 조건</span><span class="sxs-lookup"><span data-stu-id="5aca7-107">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="efe33-107">필수 조건</span><span class="sxs-lookup"><span data-stu-id="efe33-107">Prerequisites</span></span>
 
-<span data-ttu-id="5aca7-108">Data Lake Tools는 VS Code에서 지원하는 플랫폼에 설치할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-108">Data Lake Tools can be installed on the platforms supported by VS Code.</span></span> <span data-ttu-id="5aca7-109">지원되는 플랫폼에는 Windows, Linux 및 MacOS가 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-109">The supported platforms include Windows, Linux, and MacOS.</span></span> <span data-ttu-id="5aca7-110">다른 플랫폼에는 다음 필수 구성 요소가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-110">The different platforms have the following prerequisites:</span></span>
+<span data-ttu-id="efe33-108">데이터 레이크 도구는 VS Code에서 지 원하는 hello 플랫폼에 설치할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-108">Data Lake Tools can be installed on hello platforms supported by VS Code.</span></span> <span data-ttu-id="efe33-109">Windows, Linux 및 MacOS hello 지원 플랫폼에는 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-109">hello supported platforms include Windows, Linux, and MacOS.</span></span> <span data-ttu-id="efe33-110">hello 다른 플랫폼에는 다음 필수 구성 요소는 hello:</span><span class="sxs-lookup"><span data-stu-id="efe33-110">hello different platforms have hello following prerequisites:</span></span>
 
-- <span data-ttu-id="5aca7-111">Windows</span><span class="sxs-lookup"><span data-stu-id="5aca7-111">Windows</span></span>
+- <span data-ttu-id="efe33-111">Windows</span><span class="sxs-lookup"><span data-stu-id="efe33-111">Windows</span></span>
 
-    - <span data-ttu-id="5aca7-112">[Visual Studio Code]( https://www.visualstudio.com/products/code-vs.aspx)</span><span class="sxs-lookup"><span data-stu-id="5aca7-112">[Visual Studio Code]( https://www.visualstudio.com/products/code-vs.aspx).</span></span>
-    - <span data-ttu-id="5aca7-113">[Java SE Runtime Environment 버전 8 업데이트 77 이상](https://java.com/download/manual.jsp) -</span><span class="sxs-lookup"><span data-stu-id="5aca7-113">[Java SE Runtime Environment version 8 update 77 or later](https://java.com/download/manual.jsp).</span></span> <span data-ttu-id="5aca7-114">java.exe 경로를 시스템 환경 변수 경로에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-114">Add the java.exe path to the system environment variable path.</span></span> <span data-ttu-id="5aca7-115">구성 지침에 대해서는 [Path 시스템 변수를 설정 또는 변경하는 방법]( https://www.java.com/download/help/path.xml)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5aca7-115">For configuration instructions, see [How do I set or change the Path system variable?]( https://www.java.com/download/help/path.xml).</span></span> <span data-ttu-id="5aca7-116">경로는 C:\Program Files\Java\jdk1.8.0_77\jre\bin과 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-116">The path is similar to C:\Program Files\Java\jdk1.8.0_77\jre\bin.</span></span>
-    - <span data-ttu-id="5aca7-117">[.NET Core SDK 1.0.3 또는 .NET Core 1.1 런타임](https://www.microsoft.com/net/download).</span><span class="sxs-lookup"><span data-stu-id="5aca7-117">[.NET Core SDK 1.0.3 or .NET Core 1.1 runtime](https://www.microsoft.com/net/download).</span></span>
+    - <span data-ttu-id="efe33-112">[Visual Studio Code]( https://www.visualstudio.com/products/code-vs.aspx)</span><span class="sxs-lookup"><span data-stu-id="efe33-112">[Visual Studio Code]( https://www.visualstudio.com/products/code-vs.aspx).</span></span>
+    - <span data-ttu-id="efe33-113">[Java SE Runtime Environment 버전 8 업데이트 77 이상](https://java.com/download/manual.jsp) -</span><span class="sxs-lookup"><span data-stu-id="efe33-113">[Java SE Runtime Environment version 8 update 77 or later](https://java.com/download/manual.jsp).</span></span> <span data-ttu-id="efe33-114">Hello java.exe 경로 toohello 시스템 환경 변수 경로 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-114">Add hello java.exe path toohello system environment variable path.</span></span> <span data-ttu-id="efe33-115">구성 지침은 [또는 하는 방법 설정 hello 경로 시스템 변수를 변경?]( https://www.java.com/download/help/path.xml)합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-115">For configuration instructions, see [How do I set or change hello Path system variable?]( https://www.java.com/download/help/path.xml).</span></span> <span data-ttu-id="efe33-116">hello 경로가 tooC:\Program Files\Java\jdk1.8.0_77\jre\bin 유사 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-116">hello path is similar tooC:\Program Files\Java\jdk1.8.0_77\jre\bin.</span></span>
+    - <span data-ttu-id="efe33-117">[.NET Core SDK 1.0.3 또는 .NET Core 1.1 런타임](https://www.microsoft.com/net/download).</span><span class="sxs-lookup"><span data-stu-id="efe33-117">[.NET Core SDK 1.0.3 or .NET Core 1.1 runtime](https://www.microsoft.com/net/download).</span></span>
     
-- <span data-ttu-id="5aca7-118">Linux(Ubuntu 14.04 LTS 권장)</span><span class="sxs-lookup"><span data-stu-id="5aca7-118">Linux (We recommend Ubuntu 14.04 LTS)</span></span>
+- <span data-ttu-id="efe33-118">Linux(Ubuntu 14.04 LTS 권장)</span><span class="sxs-lookup"><span data-stu-id="efe33-118">Linux (We recommend Ubuntu 14.04 LTS)</span></span>
 
-    - <span data-ttu-id="5aca7-119">[Visual Studio Code]( https://www.visualstudio.com/products/code-vs.aspx)</span><span class="sxs-lookup"><span data-stu-id="5aca7-119">[Visual Studio Code]( https://www.visualstudio.com/products/code-vs.aspx).</span></span> <span data-ttu-id="5aca7-120">코드를 설치하려면 다음 명령을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-120">To install the code, enter the following command:</span></span>
+    - <span data-ttu-id="efe33-119">[Visual Studio Code]( https://www.visualstudio.com/products/code-vs.aspx)</span><span class="sxs-lookup"><span data-stu-id="efe33-119">[Visual Studio Code]( https://www.visualstudio.com/products/code-vs.aspx).</span></span> <span data-ttu-id="efe33-120">tooinstall 코드 hello를 hello 다음 명령을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-120">tooinstall hello code, enter hello following command:</span></span>
 
               sudo dpkg -i code_<version_number>_amd64.deb
 
-    - <span data-ttu-id="5aca7-121">[Mono 4.2.x](http://www.mono-project.com/docs/getting-started/install/linux/)</span><span class="sxs-lookup"><span data-stu-id="5aca7-121">[Mono 4.2.x](http://www.mono-project.com/docs/getting-started/install/linux/).</span></span> 
+    - <span data-ttu-id="efe33-121">[Mono 4.2.x](http://www.mono-project.com/docs/getting-started/install/linux/)</span><span class="sxs-lookup"><span data-stu-id="efe33-121">[Mono 4.2.x](http://www.mono-project.com/docs/getting-started/install/linux/).</span></span> 
 
-        - <span data-ttu-id="5aca7-122">deb 패키지 원본을 업데이트하려면 다음 명령을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-122">To update the deb package source, enter the following commands:</span></span>
+        - <span data-ttu-id="efe33-122">tooupdate hello deb 패키지 원본 hello 다음 명령을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-122">tooupdate hello deb package source, enter hello following commands:</span></span>
 
                 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
                 echo "deb http://download.mono-project.com/repo/debian wheezy/snapshots 4.2.4.4/main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
                 sudo apt-get update
 
-        - <span data-ttu-id="5aca7-123">Mono를 설치하려면 다음 명령을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-123">To install Mono, enter the following command:</span></span>
+        - <span data-ttu-id="efe33-123">모노, tooinstall hello 다음 명령을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-123">tooinstall Mono, enter hello following command:</span></span>
 
                 sudo apt-get install mono-complete
 
             > [!NOTE] 
-            > <span data-ttu-id="5aca7-124">Mono 4.6은 지원되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-124">Mono 4.6 is not supported.</span></span> <span data-ttu-id="5aca7-125">4.2.x 버전을 설치하기 전에 먼저 4.6 버전을 완전히 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-125">Uninstall version 4.6 entirely before you install 4.2.x.</span></span>  
+            > <span data-ttu-id="efe33-124">Mono 4.6은 지원되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-124">Mono 4.6 is not supported.</span></span> <span data-ttu-id="efe33-125">4.2.x 버전을 설치하기 전에 먼저 4.6 버전을 완전히 제거합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-125">Uninstall version 4.6 entirely before you install 4.2.x.</span></span>  
 
-        - <span data-ttu-id="5aca7-126">[Java SE Runtime Environment 버전 8 업데이트 77 이상](https://java.com/download/manual.jsp) -</span><span class="sxs-lookup"><span data-stu-id="5aca7-126">[Java SE Runtime Environment version 8 update 77 or later](https://java.com/download/manual.jsp).</span></span> <span data-ttu-id="5aca7-127">설치에 대한 지침은 [Java에 대한 Linux 64비트 설치 지침]( https://java.com/en/download/help/linux_x64_install.xml) 페이지를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5aca7-127">For instructions on installation, see the [Linux 64-bit installation instructions for Java]( https://java.com/en/download/help/linux_x64_install.xml) page.</span></span>
-        - <span data-ttu-id="5aca7-128">[.NET Core SDK 1.0.3 또는 .NET Core 1.1 런타임](https://www.microsoft.com/net/download).</span><span class="sxs-lookup"><span data-stu-id="5aca7-128">[.NET Core SDK 1.0.3 or .NET Core 1.1 runtime](https://www.microsoft.com/net/download).</span></span>
-- <span data-ttu-id="5aca7-129">MacOS</span><span class="sxs-lookup"><span data-stu-id="5aca7-129">MacOS</span></span>
+        - <span data-ttu-id="efe33-126">[Java SE Runtime Environment 버전 8 업데이트 77 이상](https://java.com/download/manual.jsp) -</span><span class="sxs-lookup"><span data-stu-id="efe33-126">[Java SE Runtime Environment version 8 update 77 or later](https://java.com/download/manual.jsp).</span></span> <span data-ttu-id="efe33-127">설치 지침은 hello [Java에 대 한 Linux 64 비트 설치 지침]( https://java.com/en/download/help/linux_x64_install.xml) 페이지.</span><span class="sxs-lookup"><span data-stu-id="efe33-127">For instructions on installation, see hello [Linux 64-bit installation instructions for Java]( https://java.com/en/download/help/linux_x64_install.xml) page.</span></span>
+        - <span data-ttu-id="efe33-128">[.NET Core SDK 1.0.3 또는 .NET Core 1.1 런타임](https://www.microsoft.com/net/download).</span><span class="sxs-lookup"><span data-stu-id="efe33-128">[.NET Core SDK 1.0.3 or .NET Core 1.1 runtime](https://www.microsoft.com/net/download).</span></span>
+- <span data-ttu-id="efe33-129">MacOS</span><span class="sxs-lookup"><span data-stu-id="efe33-129">MacOS</span></span>
 
-    - <span data-ttu-id="5aca7-130">[Visual Studio Code]( https://www.visualstudio.com/products/code-vs.aspx)</span><span class="sxs-lookup"><span data-stu-id="5aca7-130">[Visual Studio Code]( https://www.visualstudio.com/products/code-vs.aspx).</span></span>
-    - <span data-ttu-id="5aca7-131">[Mono 4.2.4.x](http://download.mono-project.com/archive/4.2.4/macos-10-x86/)</span><span class="sxs-lookup"><span data-stu-id="5aca7-131">[Mono 4.2.4](http://download.mono-project.com/archive/4.2.4/macos-10-x86/).</span></span> 
-    - <span data-ttu-id="5aca7-132">[Java SE Runtime Environment 버전 8 업데이트 77 이상](https://java.com/download/manual.jsp) -</span><span class="sxs-lookup"><span data-stu-id="5aca7-132">[Java SE Runtime Environment version 8 update 77 or later](https://java.com/download/manual.jsp).</span></span> <span data-ttu-id="5aca7-133">설치에 대한 지침은 [Java에 대한 Linux 64비트 설치 지침](https://java.com/en/download/help/mac_install.xml) 페이지를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5aca7-133">For instructions on installation, see the [Linux 64-bit installation instructions for Java](https://java.com/en/download/help/mac_install.xml) page.</span></span>
-    - <span data-ttu-id="5aca7-134">[.NET Core SDK 1.0.3 또는 .NET Core 1.1 런타임](https://www.microsoft.com/net/download).</span><span class="sxs-lookup"><span data-stu-id="5aca7-134">[.NET Core SDK 1.0.3 or .NET Core 1.1 runtime](https://www.microsoft.com/net/download).</span></span>
+    - <span data-ttu-id="efe33-130">[Visual Studio Code]( https://www.visualstudio.com/products/code-vs.aspx)</span><span class="sxs-lookup"><span data-stu-id="efe33-130">[Visual Studio Code]( https://www.visualstudio.com/products/code-vs.aspx).</span></span>
+    - <span data-ttu-id="efe33-131">[Mono 4.2.4.x](http://download.mono-project.com/archive/4.2.4/macos-10-x86/)</span><span class="sxs-lookup"><span data-stu-id="efe33-131">[Mono 4.2.4](http://download.mono-project.com/archive/4.2.4/macos-10-x86/).</span></span> 
+    - <span data-ttu-id="efe33-132">[Java SE Runtime Environment 버전 8 업데이트 77 이상](https://java.com/download/manual.jsp) -</span><span class="sxs-lookup"><span data-stu-id="efe33-132">[Java SE Runtime Environment version 8 update 77 or later](https://java.com/download/manual.jsp).</span></span> <span data-ttu-id="efe33-133">설치 지침은 hello [Java에 대 한 Linux 64 비트 설치 지침](https://java.com/en/download/help/mac_install.xml) 페이지.</span><span class="sxs-lookup"><span data-stu-id="efe33-133">For instructions on installation, see hello [Linux 64-bit installation instructions for Java](https://java.com/en/download/help/mac_install.xml) page.</span></span>
+    - <span data-ttu-id="efe33-134">[.NET Core SDK 1.0.3 또는 .NET Core 1.1 런타임](https://www.microsoft.com/net/download).</span><span class="sxs-lookup"><span data-stu-id="efe33-134">[.NET Core SDK 1.0.3 or .NET Core 1.1 runtime](https://www.microsoft.com/net/download).</span></span>
 
-## <a name="install-data-lake-tools"></a><span data-ttu-id="5aca7-135">Data Lake Tools 설치</span><span class="sxs-lookup"><span data-stu-id="5aca7-135">Install Data Lake Tools</span></span>
+## <a name="install-data-lake-tools"></a><span data-ttu-id="efe33-135">Data Lake Tools 설치</span><span class="sxs-lookup"><span data-stu-id="efe33-135">Install Data Lake Tools</span></span>
 
-<span data-ttu-id="5aca7-136">필수 구성 요소를 설치한 후에 Data Lake Tools for VS Code를 설치할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-136">After you install the prerequisites, you can install Data Lake Tools for VS Code.</span></span>
+<span data-ttu-id="efe33-136">Hello 필수 구성 요소를 설치한 후에 VS Code에 대 한 데이터 레이크 도구를 설치할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-136">After you install hello prerequisites, you can install Data Lake Tools for VS Code.</span></span>
 
-<span data-ttu-id="5aca7-137">**Data Lake Tools를 설치하려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-137">**To install Data Lake Tools**</span></span>
+<span data-ttu-id="efe33-137">**데이터 레이크 도구 tooinstall**</span><span class="sxs-lookup"><span data-stu-id="efe33-137">**tooinstall Data Lake Tools**</span></span>
 
-1. <span data-ttu-id="5aca7-138">Visual Studio Code를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-138">Open Visual Studio Code.</span></span>
-2. <span data-ttu-id="5aca7-139">Ctrl+P를 선택한 후 다음 명령을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-139">Select Ctrl+P, and then enter the following command:</span></span>
+1. <span data-ttu-id="efe33-138">Visual Studio Code를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-138">Open Visual Studio Code.</span></span>
+2. <span data-ttu-id="efe33-139">Ctrl + P를 선택 하 고 다음 명령을 hello를 입력 하십시오.</span><span class="sxs-lookup"><span data-stu-id="efe33-139">Select Ctrl+P, and then enter hello following command:</span></span>
 ```
 ext install usql-vscode-ext
 ```
-<span data-ttu-id="5aca7-140">Visual Studio 코드 확장 목록을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-140">You can see a list of Visual Studio code extensions.</span></span> <span data-ttu-id="5aca7-141">그 중 하나는 **Azure Data Lake Tools**입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-141">One of them is **Azure Data Lake Tools**.</span></span>
+<span data-ttu-id="efe33-140">Visual Studio 코드 확장 목록을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-140">You can see a list of Visual Studio code extensions.</span></span> <span data-ttu-id="efe33-141">그 중 하나는 **Azure Data Lake Tools**입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-141">One of them is **Azure Data Lake Tools**.</span></span>
 
-3. <span data-ttu-id="5aca7-142">**Azure Data Lake Tools** 옆에 있는 **설치**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-142">Select **Install** next to **Azure Data Lake Tools**.</span></span> <span data-ttu-id="5aca7-143">몇 초 후에 **설치** 단추가 **다시 로드**로 변경됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-143">After a few seconds, the **Install** button changes to **Reload**.</span></span>
-4. <span data-ttu-id="5aca7-144">**다시 로드**를 선택하여 확장을 활성화합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-144">Select **Reload** to activate the extension.</span></span>
-5. <span data-ttu-id="5aca7-145">**확인**을 선택하여 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-145">Select **OK** to confirm.</span></span> <span data-ttu-id="5aca7-146">**확장** 창에서 Azure Data Lake Tools를 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-146">You can see Azure Data Lake Tools in the **Extensions** pane.</span></span>
-    <span data-ttu-id="5aca7-147">![Data Lake Tools for Visual Studio Code 확장 창](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-extensions.png)</span><span class="sxs-lookup"><span data-stu-id="5aca7-147">![Data Lake Tools for Visual Studio Code Extensions pane](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-extensions.png)</span></span>
+3. <span data-ttu-id="efe33-142">선택 **설치** 다음 너무**Azure 데이터 레이크 도구**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-142">Select **Install** next too**Azure Data Lake Tools**.</span></span> <span data-ttu-id="efe33-143">몇 초 후 hello **설치** 너무 변경 단추**다시 로드**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-143">After a few seconds, hello **Install** button changes too**Reload**.</span></span>
+4. <span data-ttu-id="efe33-144">선택 **다시 로드** tooactivate hello 확장 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-144">Select **Reload** tooactivate hello extension.</span></span>
+5. <span data-ttu-id="efe33-145">선택 **확인** tooconfirm 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-145">Select **OK** tooconfirm.</span></span> <span data-ttu-id="efe33-146">Hello에서 Azure 데이터 레이크 도구를 볼 수 있듯이 **확장** 창.</span><span class="sxs-lookup"><span data-stu-id="efe33-146">You can see Azure Data Lake Tools in hello **Extensions** pane.</span></span>
+    <span data-ttu-id="efe33-147">![Data Lake Tools for Visual Studio Code 확장 창](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-extensions.png)</span><span class="sxs-lookup"><span data-stu-id="efe33-147">![Data Lake Tools for Visual Studio Code Extensions pane](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-extensions.png)</span></span>
 
-## <a name="activate-azure-data-lake-tools"></a><span data-ttu-id="5aca7-148">Azure Data Lake 도구 활성화</span><span class="sxs-lookup"><span data-stu-id="5aca7-148">Activate Azure Data Lake Tools</span></span>
-<span data-ttu-id="5aca7-149">새 .usql 파일을 만들거나 기존 .usql 파일을 열어 확장을 활성화합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-149">Create a new .usql file or open an existing .usql file to activate the extension.</span></span> 
+## <a name="activate-azure-data-lake-tools"></a><span data-ttu-id="efe33-148">Azure Data Lake 도구 활성화</span><span class="sxs-lookup"><span data-stu-id="efe33-148">Activate Azure Data Lake Tools</span></span>
+<span data-ttu-id="efe33-149">새.usql 파일을 만들거나 기존.usql 파일 tooactivate hello 확장을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-149">Create a new .usql file or open an existing .usql file tooactivate hello extension.</span></span> 
 
-## <a name="connect-to-azure"></a><span data-ttu-id="5aca7-150">Azure에 연결</span><span class="sxs-lookup"><span data-stu-id="5aca7-150">Connect to Azure</span></span>
+## <a name="connect-tooazure"></a><span data-ttu-id="efe33-150">TooAzure 연결</span><span class="sxs-lookup"><span data-stu-id="efe33-150">Connect tooAzure</span></span>
 
-<span data-ttu-id="5aca7-151">Data Lake Analytics에서 U-SQL 스크립트를 컴파일하고 실행하기 전에 먼저 Azure 계정에 연결해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-151">Before you can compile and run U-SQL scripts in Data Lake Analytics, you must connect to your Azure account.</span></span>
+<span data-ttu-id="efe33-151">컴파일 및 Data Lake 분석 U-SQL 스크립트를 실행할 수 있습니다, 전에 tooyour Azure 계정을 연결 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-151">Before you can compile and run U-SQL scripts in Data Lake Analytics, you must connect tooyour Azure account.</span></span>
 
-<span data-ttu-id="5aca7-152">**Azure에 연결하려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-152">**To connect to Azure**</span></span>
+<span data-ttu-id="efe33-152">**tooconnect tooAzure**</span><span class="sxs-lookup"><span data-stu-id="efe33-152">**tooconnect tooAzure**</span></span>
 
-1.  <span data-ttu-id="5aca7-153">Ctrl+Shift+P를 선택하여 명령 팔레트를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-153">Select Ctrl+Shift+P to open the command palette.</span></span> 
-2.  <span data-ttu-id="5aca7-154">**ADL: Login**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-154">Enter **ADL: Login**.</span></span> <span data-ttu-id="5aca7-155">로그인 정보가 **출력** 창에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-155">The login information appears in the **Output** pane.</span></span>
+1.  <span data-ttu-id="efe33-153">Ctrl + Shift + P tooopen hello 명령 팔레트를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-153">Select Ctrl+Shift+P tooopen hello command palette.</span></span> 
+2.  <span data-ttu-id="efe33-154">**ADL: Login**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-154">Enter **ADL: Login**.</span></span> <span data-ttu-id="efe33-155">hello에 hello 로그인 정보가 표시 **출력** 창.</span><span class="sxs-lookup"><span data-stu-id="efe33-155">hello login information appears in hello **Output** pane.</span></span>
 
-    <span data-ttu-id="5aca7-156">![Data Lake Tools for Visual Studio Code 명령 팔레트](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-extension-login.png)
-    ![Data Lake Tools for Visual Studio Code 장치 로그인 정보](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-login-info.png)</span><span class="sxs-lookup"><span data-stu-id="5aca7-156">![Data Lake Tools for Visual Studio Code command palette](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-extension-login.png)
+    <span data-ttu-id="efe33-156">![Data Lake Tools for Visual Studio Code 명령 팔레트](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-extension-login.png)
+    ![Data Lake Tools for Visual Studio Code 장치 로그인 정보](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-login-info.png)</span><span class="sxs-lookup"><span data-stu-id="efe33-156">![Data Lake Tools for Visual Studio Code command palette](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-extension-login.png)
 ![Data Lake Tools for Visual Studio Code device login information](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-login-info.png)</span></span>
-3. <span data-ttu-id="5aca7-157">Ctrl 키를 누른 채 로그인 URL: https://aka.ms/devicelogin을 클릭하여 선택하여 로그인 웹 페이지를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-157">Select Ctrl+click on the login URL: https://aka.ms/devicelogin to open the login webpage.</span></span> <span data-ttu-id="5aca7-158">텍스트 상자에 코드 **G567LX42V**를 입력한 다음 **계속**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-158">Enter the code **G567LX42V** into the text box, and then select **Continue**.</span></span>
+3. <span data-ttu-id="efe33-157">선택 Ctrl + 클릭 hello 로그인 URL: https://aka.ms/devicelogin tooopen hello 로그인 웹 페이지입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-157">Select Ctrl+click on hello login URL: https://aka.ms/devicelogin tooopen hello login webpage.</span></span> <span data-ttu-id="efe33-158">Hello 코드를 입력 **G567LX42V** hello 텍스트 상자를 선택한 후에 **계속**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-158">Enter hello code **G567LX42V** into hello text box, and then select **Continue**.</span></span>
 
    ![Data Lake Tools for Visual Studio Code 로그인 코드 붙여넣기](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-extension-login-paste-code.png )   
-4.  <span data-ttu-id="5aca7-160">지침에 따라 웹 페이지에서 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-160">Follow the instructions to sign in from the webpage.</span></span> <span data-ttu-id="5aca7-161">연결되면 Azure 계정 이름이 **VS Code** 창의 왼쪽 아래 모서리에 있는 상태 표시줄에 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-161">When you're connected, your Azure account name appears on the status bar in the lower-left corner of the **VS Code** window.</span></span> 
+4.  <span data-ttu-id="efe33-160">지침 toosign hello hello 웹 페이지에서 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-160">Follow hello instructions toosign in from hello webpage.</span></span> <span data-ttu-id="efe33-161">Azure 계정 이름은 hello의 hello 왼쪽 아래 모서리에 hello 상태 표시줄에 표시 연결 되었을 때 **VS Code** 창.</span><span class="sxs-lookup"><span data-stu-id="efe33-161">When you're connected, your Azure account name appears on hello status bar in hello lower-left corner of hello **VS Code** window.</span></span> 
 
     > [!NOTE] 
-    > <span data-ttu-id="5aca7-162">계정에 활성화된 두 가지 요인이 있는 경우 PIN을 사용하는 것보다 전화 인증을 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-162">If your account has two factors enabled, we recommend that you use phone authentication rather than using a PIN.</span></span>
+    > <span data-ttu-id="efe33-162">계정에 활성화된 두 가지 요인이 있는 경우 PIN을 사용하는 것보다 전화 인증을 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-162">If your account has two factors enabled, we recommend that you use phone authentication rather than using a PIN.</span></span>
 
-<span data-ttu-id="5aca7-163">로그아웃하려면 **ADL: Logout** 명령을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-163">To sign out, enter the command **ADL: Logout**.</span></span>
+<span data-ttu-id="efe33-163">hello 명령을 입력 하는 아웃 toosign **ADL: 로그 아웃**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-163">toosign out, enter hello command **ADL: Logout**.</span></span>
 
-## <a name="list-your-data-lake-analytics-accounts"></a><span data-ttu-id="5aca7-164">Data Lake Analytics 계정 나열</span><span class="sxs-lookup"><span data-stu-id="5aca7-164">List your Data Lake Analytics accounts</span></span>
+## <a name="list-your-data-lake-analytics-accounts"></a><span data-ttu-id="efe33-164">Data Lake Analytics 계정 나열</span><span class="sxs-lookup"><span data-stu-id="efe33-164">List your Data Lake Analytics accounts</span></span>
 
-<span data-ttu-id="5aca7-165">연결을 테스트하려면 Data Lake Analytics 계정의 목록을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-165">To test the connection, get a list of your Data Lake Analytics accounts.</span></span>
+<span data-ttu-id="efe33-165">Data Lake 분석 계정 목록이 가져오기 tootest hello 연결입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-165">tootest hello connection, get a list of your Data Lake Analytics accounts.</span></span>
 
-<span data-ttu-id="5aca7-166">**Azure 구독**에서 Data Lake Analytics 계정을 나열하려면</span><span class="sxs-lookup"><span data-stu-id="5aca7-166">**To list the Data Lake Analytics accounts under your Azure subscription**</span></span>
+<span data-ttu-id="efe33-166">**Azure 구독에서 toolist hello Data Lake 분석 계정**</span><span class="sxs-lookup"><span data-stu-id="efe33-166">**toolist hello Data Lake Analytics accounts under your Azure subscription**</span></span>
 
-1. <span data-ttu-id="5aca7-167">Ctrl+Shift+P를 선택하여 명령 팔레트를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-167">Select Ctrl+Shift+P to open the command palette.</span></span>
-2. <span data-ttu-id="5aca7-168">**ADL: List Accounts**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-168">Enter **ADL: List Accounts**.</span></span> <span data-ttu-id="5aca7-169">계정이 **출력** 창에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-169">The accounts appear in the **Output** pane.</span></span>
+1. <span data-ttu-id="efe33-167">Ctrl + Shift + P tooopen hello 명령 팔레트를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-167">Select Ctrl+Shift+P tooopen hello command palette.</span></span>
+2. <span data-ttu-id="efe33-168">**ADL: List Accounts**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-168">Enter **ADL: List Accounts**.</span></span> <span data-ttu-id="efe33-169">hello에 hello 계정 표시 **출력** 창.</span><span class="sxs-lookup"><span data-stu-id="efe33-169">hello accounts appear in hello **Output** pane.</span></span>
 
-## <a name="open-the-sample-script"></a><span data-ttu-id="5aca7-170">샘플 스크립트 열기</span><span class="sxs-lookup"><span data-stu-id="5aca7-170">Open the sample script</span></span>
-<span data-ttu-id="5aca7-171">명령 팔레트(Ctrl+Shift+P)를 열고 **ADL: Open Sample Script**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-171">Open the command palette (Ctrl+Shift+P) and enter **ADL: Open Sample Script**.</span></span> <span data-ttu-id="5aca7-172">그러면 이 샘플의 다른 인스턴스가 열립니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-172">This opens another instance of this sample.</span></span> <span data-ttu-id="5aca7-173">이 인스턴스에서 스크립트를 편집, 구성, 제출할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-173">You can also edit, configure, and submit script on this instance.</span></span>
+## <a name="open-hello-sample-script"></a><span data-ttu-id="efe33-170">열기 hello 샘플 스크립트</span><span class="sxs-lookup"><span data-stu-id="efe33-170">Open hello sample script</span></span>
+<span data-ttu-id="efe33-171">명령 팔레트 hello (Ctrl + Shift + P)를 열고 다음을 입력 **ADL: 열기 예제 스크립트**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-171">Open hello command palette (Ctrl+Shift+P) and enter **ADL: Open Sample Script**.</span></span> <span data-ttu-id="efe33-172">그러면 이 샘플의 다른 인스턴스가 열립니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-172">This opens another instance of this sample.</span></span> <span data-ttu-id="efe33-173">이 인스턴스에서 스크립트를 편집, 구성, 제출할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-173">You can also edit, configure, and submit script on this instance.</span></span>
 
-## <a name="work-with-u-sql"></a><span data-ttu-id="5aca7-174">U-SQL 사용</span><span class="sxs-lookup"><span data-stu-id="5aca7-174">Work with U-SQL</span></span>
+## <a name="work-with-u-sql"></a><span data-ttu-id="efe33-174">U-SQL 사용</span><span class="sxs-lookup"><span data-stu-id="efe33-174">Work with U-SQL</span></span>
 
-<span data-ttu-id="5aca7-175">U-SQL을 사용하려면 U-SQL 파일이나 폴더를 열어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-175">You need open either a U-SQL file or a folder to work with U-SQL.</span></span>
+<span data-ttu-id="efe33-175">U-SQL 파일 또는 폴더 toowork U-SQL으로 열 필요 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-175">You need open either a U-SQL file or a folder toowork with U-SQL.</span></span>
 
-<span data-ttu-id="5aca7-176">**U-SQL 프로젝트 폴더를 열려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-176">**To open a folder for your U-SQL project**</span></span>
+<span data-ttu-id="efe33-176">**tooopen U-SQL 프로젝트에 대 한 폴더**</span><span class="sxs-lookup"><span data-stu-id="efe33-176">**tooopen a folder for your U-SQL project**</span></span>
 
-1. <span data-ttu-id="5aca7-177">Visual Studio Code에서 **파일** 메뉴를 선택한 다음 **폴더 열기**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-177">From Visual Studio Code, select the **File** menu, and then select **Open Folder**.</span></span>
-2. <span data-ttu-id="5aca7-178">폴더를 지정한 다음 **폴더 선택**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-178">Specify a folder, and then select **Select Folder**.</span></span>
-3. <span data-ttu-id="5aca7-179">**파일** 메뉴를 선택한 다음 **새 파일**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-179">Select the **File** menu, and then select **New**.</span></span> <span data-ttu-id="5aca7-180">제목 없음-1 파일이 프로젝트에 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-180">An Untitled-1 file is added to the project.</span></span>
-4. <span data-ttu-id="5aca7-181">다음 코드를 제목 없음-1 파일에 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-181">Enter the following code into the Untitled-1 file:</span></span>
+1. <span data-ttu-id="efe33-177">Visual Studio Code에서 선택 hello **파일** 메뉴를 선택한 후 **폴더 열기**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-177">From Visual Studio Code, select hello **File** menu, and then select **Open Folder**.</span></span>
+2. <span data-ttu-id="efe33-178">폴더를 지정한 다음 **폴더 선택**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-178">Specify a folder, and then select **Select Folder**.</span></span>
+3. <span data-ttu-id="efe33-179">선택 hello **파일** 메뉴를 선택한 후 **새로**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-179">Select hello **File** menu, and then select **New**.</span></span> <span data-ttu-id="efe33-180">제목 없음 1 파일 toohello 프로젝트에 추가 됩니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-180">An Untitled-1 file is added toohello project.</span></span>
+4. <span data-ttu-id="efe33-181">Hello hello 제목 없음 1 파일에 코드를 다음을 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-181">Enter hello following code into hello Untitled-1 file:</span></span>
 
         @departments  = 
             SELECT * FROM 
@@ -147,108 +147,108 @@ ext install usql-vscode-ext
         OUTPUT @departments
             TO “/Output/departments.csv”
 
-    <span data-ttu-id="5aca7-182">스크립트는 /output 폴더에 일부 데이터가 포함된 departments.csv 파일을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-182">The script creates a departments.csv file with some data included in the /output folder.</span></span>
+    <span data-ttu-id="efe33-182">hello 스크립트 hello /output 폴더에 포함 된 일부 데이터 departments.csv 파일을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-182">hello script creates a departments.csv file with some data included in hello /output folder.</span></span>
 
-5. <span data-ttu-id="5aca7-183">열린 폴더에서 파일을 **myUSQL.usql**로 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-183">Save the file as **myUSQL.usql** in the opened folder.</span></span> <span data-ttu-id="5aca7-184">adltools_settings.json 구성 파일도 프로젝트에 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-184">A adltools_settings.json configuration file is also added to the project.</span></span>
-4. <span data-ttu-id="5aca7-185">adltools_settings.json을 열고 다음 속성을 사용하여 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-185">Open and configure adltools_settings.json with the following properties:</span></span>
+5. <span data-ttu-id="efe33-183">Hello 파일으로 저장 **myUSQL.usql** hello 폴더 열렸습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-183">Save hello file as **myUSQL.usql** in hello opened folder.</span></span> <span data-ttu-id="efe33-184">Adltools_settings.json 구성 파일에는 toohello 프로젝트도 추가 됩니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-184">A adltools_settings.json configuration file is also added toohello project.</span></span>
+4. <span data-ttu-id="efe33-185">페이지를 열고 다음과 같은 속성 hello를 사용 하 여 adltools_settings.json를 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-185">Open and configure adltools_settings.json with hello following properties:</span></span>
 
-    - <span data-ttu-id="5aca7-186">Account: Azure 구독에 있는 Data Lake Analytics 계정입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-186">Account:  A Data Lake Analytics account under your Azure subscription.</span></span>
-    - <span data-ttu-id="5aca7-187">Database: 사용자 계정의 데이터베이스입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-187">Database: A database under your account.</span></span> <span data-ttu-id="5aca7-188">기본은 **master**입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-188">The default is **master**.</span></span>
-    - <span data-ttu-id="5aca7-189">Schema: 데이터베이스의 스키마입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-189">Schema: A schema under your database.</span></span> <span data-ttu-id="5aca7-190">기본은 **dbo**입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-190">The default is **dbo**.</span></span>
-    - <span data-ttu-id="5aca7-191">선택적 설정</span><span class="sxs-lookup"><span data-stu-id="5aca7-191">Optional settings:</span></span>
-        - <span data-ttu-id="5aca7-192">Priority: 우선 순위의 범위는 1-1000이며, 가장 높은 우선 순위는 1입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-192">Priority: The priority range is from 1 to 1000 with 1 as the highest priority.</span></span> <span data-ttu-id="5aca7-193">기본값은 **1000**입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-193">The default value is **1000**.</span></span>
-        - <span data-ttu-id="5aca7-194">Parallelism: 병렬 처리의 범위는 1-150입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-194">Parallelism: The parallelism range is from 1 to 150.</span></span> <span data-ttu-id="5aca7-195">기본값은 Azure Data Lake Analytics 계정에 허용되는 최대 병렬 처리입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-195">The default value is the maximum parallelism allowed in your Azure Data Lake Analytics account.</span></span> 
+    - <span data-ttu-id="efe33-186">Account: Azure 구독에 있는 Data Lake Analytics 계정입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-186">Account:  A Data Lake Analytics account under your Azure subscription.</span></span>
+    - <span data-ttu-id="efe33-187">Database: 사용자 계정의 데이터베이스입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-187">Database: A database under your account.</span></span> <span data-ttu-id="efe33-188">hello 기본값은 **마스터**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-188">hello default is **master**.</span></span>
+    - <span data-ttu-id="efe33-189">Schema: 데이터베이스의 스키마입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-189">Schema: A schema under your database.</span></span> <span data-ttu-id="efe33-190">hello 기본값은 **dbo**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-190">hello default is **dbo**.</span></span>
+    - <span data-ttu-id="efe33-191">선택적 설정</span><span class="sxs-lookup"><span data-stu-id="efe33-191">Optional settings:</span></span>
+        - <span data-ttu-id="efe33-192">우선 순위: hello 우선 순위 범위는 1부터 1 too1000에서 hello 가장 높은 우선 순위입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-192">Priority: hello priority range is from 1 too1000 with 1 as hello highest priority.</span></span> <span data-ttu-id="efe33-193">hello 기본값은 **1000**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-193">hello default value is **1000**.</span></span>
+        - <span data-ttu-id="efe33-194">병렬 처리: 1 too150에서 hello 병렬 처리 수준 범위가입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-194">Parallelism: hello parallelism range is from 1 too150.</span></span> <span data-ttu-id="efe33-195">hello 기본값은 hello 최대 병렬 처리 Azure Data Lake 분석 계정에 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-195">hello default value is hello maximum parallelism allowed in your Azure Data Lake Analytics account.</span></span> 
         
         > [!NOTE] 
-        > <span data-ttu-id="5aca7-196">설정이 유효하지 않으면 기본값이 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-196">If the settings are invalid, the default values are used.</span></span>
+        > <span data-ttu-id="efe33-196">Hello 설정이 유효 하지 않은 경우 hello 기본값이 사용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-196">If hello settings are invalid, hello default values are used.</span></span>
 
     ![Data Lake Tools for Visual Studio Code 구성 파일](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-configuration-file.png)
 
-    <span data-ttu-id="5aca7-198">Data Lake Analytics 계산 계정은 U-SQL 작업을 컴파일하고 실행하는 데 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-198">A compute Data Lake Analytics account is needed to compile and run U-SQL jobs.</span></span> <span data-ttu-id="5aca7-199">U-SQL 작업을 컴파일하고 실행하려면 먼저 컴퓨터 계정을 구성해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-199">You must configure the computer account before you can compile and run U-SQL jobs.</span></span>
+    <span data-ttu-id="efe33-198">Data Lake 분석 계정이 계산 필요 toocompile U-SQL 작업을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-198">A compute Data Lake Analytics account is needed toocompile and run U-SQL jobs.</span></span> <span data-ttu-id="efe33-199">컴파일 및 U-SQL 작업을 실행 하기 전에 hello 컴퓨터 계정을 구성 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-199">You must configure hello computer account before you can compile and run U-SQL jobs.</span></span>
     
-<span data-ttu-id="5aca7-200">구성이 저장되면 계정, 데이터베이스 및 스키마 정보가 해당 .usql 파일의 왼쪽 아래 모서리에 있는 상태 표시줄에 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-200">After the configuration is saved, the account, database, and schema information appears on the status bar at the bottom-left corner of the corresponding .usql file.</span></span> 
+<span data-ttu-id="efe33-200">Hello 구성 저장 된 후 hello 계정, 데이터베이스 및 스키마 정보 hello 해당.usql 파일의 hello 왼쪽 아래 모퉁이에 hello 상태 표시줄에 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-200">After hello configuration is saved, hello account, database, and schema information appears on hello status bar at hello bottom-left corner of hello corresponding .usql file.</span></span> 
  
  
-<span data-ttu-id="5aca7-201">파일 열기와 비교하여 폴더를 열 때 다음이 가능합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-201">Compared to opening a file, when you open a folder you can:</span></span>
+<span data-ttu-id="efe33-201">비교 tooopening 하면 폴더를 열 때 파일:</span><span class="sxs-lookup"><span data-stu-id="efe33-201">Compared tooopening a file, when you open a folder you can:</span></span>
 
-- <span data-ttu-id="5aca7-202">코드 숨김 파일 사용</span><span class="sxs-lookup"><span data-stu-id="5aca7-202">Use a code-behind file.</span></span> <span data-ttu-id="5aca7-203">단일 파일 모드에서는 코드 숨김이 지원되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-203">In the single-file mode, code-behind is not supported.</span></span>
-- <span data-ttu-id="5aca7-204">구성 파일 사용</span><span class="sxs-lookup"><span data-stu-id="5aca7-204">Use a configuration file.</span></span> <span data-ttu-id="5aca7-205">폴더를 열면 작업 폴더의 스크립트에서 단일 구성 파일을 공유합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-205">When you open a folder, the scripts in the working folder share a single configuration file.</span></span>
+- <span data-ttu-id="efe33-202">코드 숨김 파일 사용</span><span class="sxs-lookup"><span data-stu-id="efe33-202">Use a code-behind file.</span></span> <span data-ttu-id="efe33-203">코드 숨김은 hello 단일 파일 모드에서 지원 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-203">In hello single-file mode, code-behind is not supported.</span></span>
+- <span data-ttu-id="efe33-204">구성 파일 사용</span><span class="sxs-lookup"><span data-stu-id="efe33-204">Use a configuration file.</span></span> <span data-ttu-id="efe33-205">폴더를 열 때 hello 작업 폴더의에서 hello 스크립트는 단일 구성 파일을 공유 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-205">When you open a folder, hello scripts in hello working folder share a single configuration file.</span></span>
 
 
-<span data-ttu-id="5aca7-206">U-SQL 스크립트는 Data Lake Analytics 서비스를 통해 원격으로 컴파일합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-206">The U-SQL script compiles remotely through the Data Lake Analytics service.</span></span> <span data-ttu-id="5aca7-207">**컴파일** 명령을 실행하면 U-SQL 스크립트를 Data Lake Analytics 계정으로 전송하며,</span><span class="sxs-lookup"><span data-stu-id="5aca7-207">When you issue the **compile** command, the U-SQL script is sent to your Data Lake Analytics account.</span></span> <span data-ttu-id="5aca7-208">Visual Studio Code에서는 컴파일 결과를 늦게 수신합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-208">Later, Visual Studio Code receives the compilation result.</span></span> <span data-ttu-id="5aca7-209">원격 컴파일로 인해 Visual Studio Code에는 구성 파일의 Data Lake Analytics 계정에 연결되는 정보를 나열해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-209">Due to the remote compilation, Visual Studio Code requires that you list the information to connect to your Data Lake Analytics account in the configuration file.</span></span>
+<span data-ttu-id="efe33-206">U-SQL 스크립트 hello hello Data Lake 분석 서비스를 통해 원격으로 컴파일합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-206">hello U-SQL script compiles remotely through hello Data Lake Analytics service.</span></span> <span data-ttu-id="efe33-207">Hello를 실행 하면 **컴파일** 명령, hello U-SQL 스크립트 tooyour Data Lake 분석 계정에 전송 됩니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-207">When you issue hello **compile** command, hello U-SQL script is sent tooyour Data Lake Analytics account.</span></span> <span data-ttu-id="efe33-208">이상 버전에서는 Visual Studio Code hello 컴파일 결과를 받습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-208">Later, Visual Studio Code receives hello compilation result.</span></span> <span data-ttu-id="efe33-209">Toohello 원격 컴파일 인해 Visual Studio Code hello 구성 파일에 tooconnect tooyour Data Lake 분석 계정 hello 정보를 표시 하는 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-209">Due toohello remote compilation, Visual Studio Code requires that you list hello information tooconnect tooyour Data Lake Analytics account in hello configuration file.</span></span>
 
-<span data-ttu-id="5aca7-210">**U-SQL 스크립트를 컴파일하려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-210">**To compile a U-SQL script**</span></span>
+<span data-ttu-id="efe33-210">**toocompile는 U-SQL 스크립트**</span><span class="sxs-lookup"><span data-stu-id="efe33-210">**toocompile a U-SQL script**</span></span>
 
-1. <span data-ttu-id="5aca7-211">Ctrl+Shift+P를 선택하여 명령 팔레트를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-211">Select Ctrl+Shift+P to open the command palette.</span></span> 
-2. <span data-ttu-id="5aca7-212">**ADL:Compile Script**를 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-212">Enter **ADL: Compile Script**.</span></span> <span data-ttu-id="5aca7-213">컴파일 결과는 **출력** 창에 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-213">The compile results appear in the **Output** window.</span></span> <span data-ttu-id="5aca7-214">또한 스크립트 파일을 마우스 오른쪽 단추로 클릭한 다음 **ADL: Compile Script**를 선택하여 U-SQL 작업을 컴파일할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-214">You can also right-click a script file, and then select **ADL: Compile Script** to compile a U-SQL job.</span></span> <span data-ttu-id="5aca7-215">컴파일 결과가 **출력** 창에 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-215">The compilation result appears in the **Output** pane.</span></span>
+1. <span data-ttu-id="efe33-211">Ctrl + Shift + P tooopen hello 명령 팔레트를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-211">Select Ctrl+Shift+P tooopen hello command palette.</span></span> 
+2. <span data-ttu-id="efe33-212">**ADL:Compile Script**를 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-212">Enter **ADL: Compile Script**.</span></span> <span data-ttu-id="efe33-213">hello 컴파일 결과에 표시 hello **출력** 창.</span><span class="sxs-lookup"><span data-stu-id="efe33-213">hello compile results appear in hello **Output** window.</span></span> <span data-ttu-id="efe33-214">또한 스크립트 파일을 마우스 오른쪽 단추로 클릭 하 고 다음 선택 **ADL: 컴파일 스크립트** toocompile는 U-SQL 작업 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-214">You can also right-click a script file, and then select **ADL: Compile Script** toocompile a U-SQL job.</span></span> <span data-ttu-id="efe33-215">hello에 hello 컴파일 결과 표시 **출력** 창.</span><span class="sxs-lookup"><span data-stu-id="efe33-215">hello compilation result appears in hello **Output** pane.</span></span>
  
 
-<span data-ttu-id="5aca7-216">**U-SQL 스크립트를 제출하려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-216">**To submit a U-SQL script**</span></span>
+<span data-ttu-id="efe33-216">**toosubmit는 U-SQL 스크립트**</span><span class="sxs-lookup"><span data-stu-id="efe33-216">**toosubmit a U-SQL script**</span></span>
 
-1. <span data-ttu-id="5aca7-217">Ctrl+Shift+P를 선택하여 명령 팔레트를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-217">Select Ctrl+Shift+P to open the command palette.</span></span> 
-2. <span data-ttu-id="5aca7-218">**ADL:Submit Job**을 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-218">Enter **ADL: Submit Job**.</span></span>  <span data-ttu-id="5aca7-219">또한 스크립트 파일을 마우스 오른쪽 단추로 클릭한 다음 **ADL: Submit Job**을 선택할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-219">You can also right-click a script file, and then select **ADL: Submit Job**.</span></span> 
+1. <span data-ttu-id="efe33-217">Ctrl + Shift + P tooopen hello 명령 팔레트를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-217">Select Ctrl+Shift+P tooopen hello command palette.</span></span> 
+2. <span data-ttu-id="efe33-218">**ADL:Submit Job**을 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-218">Enter **ADL: Submit Job**.</span></span>  <span data-ttu-id="efe33-219">또한 스크립트 파일을 마우스 오른쪽 단추로 클릭한 다음 **ADL: Submit Job**을 선택할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-219">You can also right-click a script file, and then select **ADL: Submit Job**.</span></span> 
 
-<span data-ttu-id="5aca7-220">U-SQL 작업을 제출한 후 전송 로그가 VS Code의 **출력** 창에 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-220">After you submit a U-SQL job, the submission logs appear in the **Output** window in VS Code.</span></span> <span data-ttu-id="5aca7-221">성공적으로 제출되면 작업 URL도 함께 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-221">If the submission is successful, the job URL appears as well.</span></span> <span data-ttu-id="5aca7-222">웹 브라우저에서 작업 URL을 열어 실시간 작업 상태를 추적할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-222">You can open the job URL in a web browser to track the real-time job status.</span></span>
+<span data-ttu-id="efe33-220">Hello에 hello 전송 로그 표시 U-SQL 작업을 제출 하면 **출력** VS Code의 창.</span><span class="sxs-lookup"><span data-stu-id="efe33-220">After you submit a U-SQL job, hello submission logs appear in hello **Output** window in VS Code.</span></span> <span data-ttu-id="efe33-221">Hello 제출 되 면 hello 작업 URL이도 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-221">If hello submission is successful, hello job URL appears as well.</span></span> <span data-ttu-id="efe33-222">웹 브라우저 tootrack hello 실시간 작업 상태에 hello 작업 URL을 열 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-222">You can open hello job URL in a web browser tootrack hello real-time job status.</span></span>
 
-<span data-ttu-id="5aca7-223">작업 세부 정보의 출력을 활성화하려면 **vs code for u-sql_settings.json** 파일에서 **jobInformationOutputPath**를 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-223">To enable the output of the job details, set **jobInformationOutputPath** in the **vs code for the u-sql_settings.json** file.</span></span>
+<span data-ttu-id="efe33-223">hello 작업 세부 정보의 tooenable hello 출력 설정 **jobInformationOutputPath** hello에 **vs hello u sql_settings.json에 대 한 코드** 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-223">tooenable hello output of hello job details, set **jobInformationOutputPath** in hello **vs code for hello u-sql_settings.json** file.</span></span>
  
-## <a name="use-a-code-behind-file"></a><span data-ttu-id="5aca7-224">코드 숨김 파일 사용</span><span class="sxs-lookup"><span data-stu-id="5aca7-224">Use a code-behind file</span></span>
+## <a name="use-a-code-behind-file"></a><span data-ttu-id="efe33-224">코드 숨김 파일 사용</span><span class="sxs-lookup"><span data-stu-id="efe33-224">Use a code-behind file</span></span>
 
-<span data-ttu-id="5aca7-225">코드 숨김 파일은 단일 U-SQL 스크립트와 연결되는 C# 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-225">A code-behind file is a C# file associated with a single U-SQL script.</span></span> <span data-ttu-id="5aca7-226">코드 숨김 파일에서는 UDO, UDA, UDT 및 UDF 전용 스크립트를 정의할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-226">You can define a script dedicated to UDO, UDA, UDT, and UDF in the code-behind file.</span></span> <span data-ttu-id="5aca7-227">먼저 어셈블리를 등록하지 않고도 스크립트에서 UDO, UDA, UDT 및 UDF를 직접 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-227">The UDO, UDA, UDT, and UDF can be used directly in the script without registering the assembly first.</span></span> <span data-ttu-id="5aca7-228">코드 숨김 파일은 피어링 U-SQL 스크립트 파일과 동일한 폴더에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-228">The code-behind file is put in the same folder as its peering U-SQL script file.</span></span> <span data-ttu-id="5aca7-229">스크립트 파일 이름이 xxx.usql이면 코드 숨김 파일 이름은 xxx.usql.cs가 됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-229">If the script is named xxx.usql, the code-behind is named as xxx.usql.cs.</span></span> <span data-ttu-id="5aca7-230">코드 숨김 파일을 수동으로 삭제하면 연결된 U-SQL 스크립트의 코드 숨김 기능을 사용할 수 없게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-230">If you manually delete the code-behind file, the code-behind feature is disabled for its associated U-SQL script.</span></span> <span data-ttu-id="5aca7-231">U-SQL 스크립트의 고객 코드 만들기에 대한 자세한 내용은 [U-SQL에서 사용자 지정 코드 만들기 및 사용: 사용자 정의 함수]( https://blogs.msdn.microsoft.com/visualstudio/2015/10/28/writing-and-using-custom-code-in-u-sql-user-defined-functions/)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5aca7-231">For more information about writing customer code for U-SQL script, see [Writing and Using Custom Code in U-SQL: User-Defined Functions]( https://blogs.msdn.microsoft.com/visualstudio/2015/10/28/writing-and-using-custom-code-in-u-sql-user-defined-functions/).</span></span>
+<span data-ttu-id="efe33-225">코드 숨김 파일은 단일 U-SQL 스크립트와 연결되는 C# 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-225">A code-behind file is a C# file associated with a single U-SQL script.</span></span> <span data-ttu-id="efe33-226">스크립트 전용 tooUDO, UDA, UDT 및 UDF hello 코드 숨김 파일에서 정의할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-226">You can define a script dedicated tooUDO, UDA, UDT, and UDF in hello code-behind file.</span></span> <span data-ttu-id="efe33-227">hello UDO, UDA, UDT 및 UDF 용도 hello 스크립트에서 직접 hello 어셈블리를 먼저 등록 하지 않고 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-227">hello UDO, UDA, UDT, and UDF can be used directly in hello script without registering hello assembly first.</span></span> <span data-ttu-id="efe33-228">hello 코드 숨김 파일에에서 저장 됩니다 hello 동일 피어 링 U-SQL 스크립트 파일과 해당 폴더입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-228">hello code-behind file is put in hello same folder as its peering U-SQL script file.</span></span> <span data-ttu-id="efe33-229">Hello 스크립트 xxx.usql 이름이 이면 hello 코드 숨김 xxx.usql.cs로 지정 됩니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-229">If hello script is named xxx.usql, hello code-behind is named as xxx.usql.cs.</span></span> <span data-ttu-id="efe33-230">Hello 코드 숨김 파일을 수동으로 삭제 하면 관련된 U-SQL 스크립트에 대 한 코드 숨김 기능 hello 비활성화 됩니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-230">If you manually delete hello code-behind file, hello code-behind feature is disabled for its associated U-SQL script.</span></span> <span data-ttu-id="efe33-231">U-SQL 스크립트의 고객 코드 만들기에 대한 자세한 내용은 [U-SQL에서 사용자 지정 코드 만들기 및 사용: 사용자 정의 함수]( https://blogs.msdn.microsoft.com/visualstudio/2015/10/28/writing-and-using-custom-code-in-u-sql-user-defined-functions/)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="efe33-231">For more information about writing customer code for U-SQL script, see [Writing and Using Custom Code in U-SQL: User-Defined Functions]( https://blogs.msdn.microsoft.com/visualstudio/2015/10/28/writing-and-using-custom-code-in-u-sql-user-defined-functions/).</span></span>
 
-<span data-ttu-id="5aca7-232">코드 숨김을 지원하려면 작업 폴더를 열어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-232">To support code-behind, you must open a working folder.</span></span> 
+<span data-ttu-id="efe33-232">toosupport 코드 숨김을 작업 폴더를 열어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-232">toosupport code-behind, you must open a working folder.</span></span> 
 
-<span data-ttu-id="5aca7-233">**코드 숨김 파일을 생성하려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-233">**To generate a code-behind file**</span></span>
+<span data-ttu-id="efe33-233">**toogenerate 코드 숨김 파일**</span><span class="sxs-lookup"><span data-stu-id="efe33-233">**toogenerate a code-behind file**</span></span>
 
-1. <span data-ttu-id="5aca7-234">원본 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-234">Open a source file.</span></span> 
-2. <span data-ttu-id="5aca7-235">Ctrl+Shift+P를 선택하여 명령 팔레트를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-235">Select Ctrl+Shift+P to open the command palette.</span></span>
-3. <span data-ttu-id="5aca7-236">**ADL:Generate Code Behind**를 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-236">Enter **ADL: Generate Code Behind**.</span></span> <span data-ttu-id="5aca7-237">코드 숨김 파일이 동일한 폴더에 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-237">A code-behind file is created in the same folder.</span></span> 
+1. <span data-ttu-id="efe33-234">원본 파일을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-234">Open a source file.</span></span> 
+2. <span data-ttu-id="efe33-235">Ctrl + Shift + P tooopen hello 명령 팔레트를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-235">Select Ctrl+Shift+P tooopen hello command palette.</span></span>
+3. <span data-ttu-id="efe33-236">**ADL:Generate Code Behind**를 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-236">Enter **ADL: Generate Code Behind**.</span></span> <span data-ttu-id="efe33-237">코드 숨김 파일을 만들 hello에 동일한 폴더입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-237">A code-behind file is created in hello same folder.</span></span> 
 
-<span data-ttu-id="5aca7-238">또한 스크립트 파일을 마우스 오른쪽 단추로 클릭한 다음 **ADL: Generate Code Behind**를 선택할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-238">You can also right-click a script file, and then select **ADL: Generate Code Behind**.</span></span> 
+<span data-ttu-id="efe33-238">또한 스크립트 파일을 마우스 오른쪽 단추로 클릭한 다음 **ADL: Generate Code Behind**를 선택할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-238">You can also right-click a script file, and then select **ADL: Generate Code Behind**.</span></span> 
 
-<span data-ttu-id="5aca7-239">코드 숨김을 사용하여 U-SQL 스크립트를 컴파일하고 제출하는 것은 독립 실행형 U-SQL 스크립트 파일과 동일합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-239">To compile and submit a U-SQL script with a code-behind file is the same as with the standalone U-SQL script file.</span></span>
+<span data-ttu-id="efe33-239">toocompile 및 코드 숨김 파일과 함께 U-SQL 스크립트 hello 독립 실행형 U-SQL 스크립트 파일 같은 hello은 제출 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-239">toocompile and submit a U-SQL script with a code-behind file is hello same as with hello standalone U-SQL script file.</span></span>
 
-<span data-ttu-id="5aca7-240">다음 두 스크린샷에서는 코드 숨김 파일 및 연결된 U-SQL 스크립트 파일을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-240">The following two screenshots show a code-behind file and its associated U-SQL script file:</span></span>
+<span data-ttu-id="efe33-240">다음 두 가지 스크린샷입니다 hello 코드 숨김 파일 및 관련된 U-SQL 스크립트 파일을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-240">hello following two screenshots show a code-behind file and its associated U-SQL script file:</span></span>
  
 ![Data Lake Tools for Visual Studio Code 코드 숨김](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-code-behind.png)
 
 ![Data Lake Tools for Visual Studio Code 코드 숨김 스크립트 파일](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-code-behind-call.png) 
 
-## <a name="use-assemblies"></a><span data-ttu-id="5aca7-243">어셈블리 사용</span><span class="sxs-lookup"><span data-stu-id="5aca7-243">Use assemblies</span></span>
+## <a name="use-assemblies"></a><span data-ttu-id="efe33-243">어셈블리 사용</span><span class="sxs-lookup"><span data-stu-id="efe33-243">Use assemblies</span></span>
 
-<span data-ttu-id="5aca7-244">어셈블리를 개발에 대한 정보는 [Azure Data Lake Analytics 작업에 U-SQL 어셈블리 개발](data-lake-analytics-u-sql-develop-assemblies.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5aca7-244">For information on developing assemblies, see [Develop U-SQL assemblies for Azure Data Lake Analytics jobs](data-lake-analytics-u-sql-develop-assemblies.md).</span></span>
+<span data-ttu-id="efe33-244">어셈블리를 개발에 대한 정보는 [Azure Data Lake Analytics 작업에 U-SQL 어셈블리 개발](data-lake-analytics-u-sql-develop-assemblies.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="efe33-244">For information on developing assemblies, see [Develop U-SQL assemblies for Azure Data Lake Analytics jobs](data-lake-analytics-u-sql-develop-assemblies.md).</span></span>
 
-<span data-ttu-id="5aca7-245">Data Lake Tools를 사용하여 사용자 지정 코드 어셈블리를 Data Lake Analytics 카탈로그에 등록할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-245">You can use Data Lake Tools to register custom code assemblies in the Data Lake Analytics catalog.</span></span>
+<span data-ttu-id="efe33-245">Hello Data Lake 분석 카탈로그에 데이터 레이크 도구 tooregister 사용자 지정 코드 어셈블리를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-245">You can use Data Lake Tools tooregister custom code assemblies in hello Data Lake Analytics catalog.</span></span>
 
-<span data-ttu-id="5aca7-246">**어셈블리를 등록하려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-246">**To register an assembly**</span></span>
+<span data-ttu-id="efe33-246">**tooregister 어셈블리**</span><span class="sxs-lookup"><span data-stu-id="efe33-246">**tooregister an assembly**</span></span>
 
-<span data-ttu-id="5aca7-247">**ADL: Register Assembly** 또는 **ADL: Register Assembly through Configuration** 명령을 통해 어셈블리를 등록할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-247">You can register the assembly through the **ADL: Register Assembly** or **ADL: Register Assembly through Configuration** commands.</span></span>
+<span data-ttu-id="efe33-247">Hello 통해 hello 어셈블리를 등록할 수 **ADL: 어셈블리 등록** 또는 **ADL: 구성을 통해 어셈블리 등록** 명령입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-247">You can register hello assembly through hello **ADL: Register Assembly** or **ADL: Register Assembly through Configuration** commands.</span></span>
 
-<span data-ttu-id="5aca7-248">**ADL: Register Assembly 명령을 통해 등록하려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-248">**To register through the ADL: Register Assembly command**</span></span>
-1.  <span data-ttu-id="5aca7-249">Ctrl+Shift+P를 선택하여 명령 팔레트를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-249">Select Ctrl+Shift+P to open the command palette.</span></span>
-2.  <span data-ttu-id="5aca7-250">**ADL:Register Assembly**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-250">Enter **ADL: Register Assembly**.</span></span> 
-3.  <span data-ttu-id="5aca7-251">로컬 어셈블리 경로를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-251">Specify the local assembly path.</span></span> 
-4.  <span data-ttu-id="5aca7-252">Data Lake Analytics 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-252">Select a Data Lake Analytics account.</span></span>
-5.  <span data-ttu-id="5aca7-253">데이터베이스를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-253">Select a database.</span></span>
+<span data-ttu-id="efe33-248">**hello ADL 통해 tooregister: 어셈블리 등록 명령**</span><span class="sxs-lookup"><span data-stu-id="efe33-248">**tooregister through hello ADL: Register Assembly command**</span></span>
+1.  <span data-ttu-id="efe33-249">Ctrl + Shift + P tooopen hello 명령 팔레트를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-249">Select Ctrl+Shift+P tooopen hello command palette.</span></span>
+2.  <span data-ttu-id="efe33-250">**ADL:Register Assembly**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-250">Enter **ADL: Register Assembly**.</span></span> 
+3.  <span data-ttu-id="efe33-251">Hello 로컬 어셈블리 경로 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-251">Specify hello local assembly path.</span></span> 
+4.  <span data-ttu-id="efe33-252">Data Lake Analytics 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-252">Select a Data Lake Analytics account.</span></span>
+5.  <span data-ttu-id="efe33-253">데이터베이스를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-253">Select a database.</span></span>
 
-<span data-ttu-id="5aca7-254">결과: 포털이 브라우저에서 열리고 어셈블리 등록 프로세스가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-254">Results: The portal is opened in a browser and displays the assembly registration process.</span></span>  
+<span data-ttu-id="efe33-254">결과: hello 포털 브라우저에서 열 및 hello 어셈블리 등록 프로세스를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-254">Results: hello portal is opened in a browser and displays hello assembly registration process.</span></span>  
 
-<span data-ttu-id="5aca7-255">**ADL: Register Assembly** 명령을 트리거하는 다른 편리한 방법은 파일 탐색기에서 .dll 파일을 마우스 오른쪽 단추로 클릭하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-255">Another convenient way to trigger the **ADL: Register Assembly** command is to right-click the .dll file in File Explorer.</span></span> 
+<span data-ttu-id="efe33-255">다른 편리 tootrigger hello **ADL: 어셈블리 등록** 명령 파일 탐색기에서 tooright 클릭 hello.dll 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-255">Another convenient way tootrigger hello **ADL: Register Assembly** command is tooright-click hello .dll file in File Explorer.</span></span> 
 
-<span data-ttu-id="5aca7-256">**ADL: Register Assembly through Configuration 명령을 통해 등록하려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-256">**To register though the ADL: Register Assembly through Configuration command**</span></span>
-1.  <span data-ttu-id="5aca7-257">Ctrl+Shift+P를 선택하여 명령 팔레트를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-257">Select Ctrl+Shift+P to open the command palette.</span></span>
-2.  <span data-ttu-id="5aca7-258">**ADL: Register Assembly through Configuration**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-258">Enter **ADL: Register Assembly through Configuration**.</span></span> 
-3.  <span data-ttu-id="5aca7-259">로컬 어셈블리 경로를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-259">Specify the local assembly path.</span></span> 
-4.  <span data-ttu-id="5aca7-260">JSON 파일이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-260">The JSON file is displayed.</span></span> <span data-ttu-id="5aca7-261">필요한 경우 어셈블리 종속성 및 리소스 매개 변수를 검토하고 편집합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-261">Review and edit the assembly dependencies and resource parameters, if needed.</span></span> <span data-ttu-id="5aca7-262">지침이 **출력** 창에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-262">Instructions are displayed in the **Output** window.</span></span> <span data-ttu-id="5aca7-263">어셈블리 등록을 계속하려면 JSON 파일을 저장(Ctrl+S)합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-263">To proceed to the assembly registration, save (Ctrl+S) the JSON file.</span></span>
+<span data-ttu-id="efe33-256">**tooregister에 있지만 ADL hello: 구성 명령을 통해 어셈블리 등록**</span><span class="sxs-lookup"><span data-stu-id="efe33-256">**tooregister though hello ADL: Register Assembly through Configuration command**</span></span>
+1.  <span data-ttu-id="efe33-257">Ctrl + Shift + P tooopen hello 명령 팔레트를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-257">Select Ctrl+Shift+P tooopen hello command palette.</span></span>
+2.  <span data-ttu-id="efe33-258">**ADL: Register Assembly through Configuration**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-258">Enter **ADL: Register Assembly through Configuration**.</span></span> 
+3.  <span data-ttu-id="efe33-259">Hello 로컬 어셈블리 경로 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-259">Specify hello local assembly path.</span></span> 
+4.  <span data-ttu-id="efe33-260">hello JSON 파일이 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-260">hello JSON file is displayed.</span></span> <span data-ttu-id="efe33-261">검토 하 고 필요한 경우 hello 어셈블리 종속성 및 리소스 매개 변수를 편집 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-261">Review and edit hello assembly dependencies and resource parameters, if needed.</span></span> <span data-ttu-id="efe33-262">지침은 hello에 표시 됩니다 **출력** 창.</span><span class="sxs-lookup"><span data-stu-id="efe33-262">Instructions are displayed in hello **Output** window.</span></span> <span data-ttu-id="efe33-263">tooproceed toohello 어셈블리 등록 (Ctrl + S) hello JSON 파일을 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-263">tooproceed toohello assembly registration, save (Ctrl+S) hello JSON file.</span></span>
 
 ![Data Lake Tools for Visual Studio Code 코드 숨김](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-register-assembly-advance.png)
 >[!NOTE]
->- <span data-ttu-id="5aca7-265">어셈블리 종속성: Azure Data Lake Tools는 DLL에 종속성이 있는지 여부를 자동으로 감지합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-265">Assembly dependencies: Azure Data Lake Tools autodetects whether the DLL has any dependencies.</span></span> <span data-ttu-id="5aca7-266">종속성이 감지되면 JSON 파일에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-266">The dependencies are displayed in the JSON file after they are detected.</span></span> 
->- <span data-ttu-id="5aca7-267">리소스: 어셈블리 등록의 일환으로 DLL 리소스(예: txt, .png 및 .csv)를 업로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-267">Resources: You can upload your DLL resources (for example, .txt, .png, and .csv) as part of the assembly registration.</span></span> 
+>- <span data-ttu-id="efe33-265">어셈블리 종속성: Azure 데이터 레이크 도구 autodetects hello DLL의 모든 종속 관계에 있는지 여부.</span><span class="sxs-lookup"><span data-stu-id="efe33-265">Assembly dependencies: Azure Data Lake Tools autodetects whether hello DLL has any dependencies.</span></span> <span data-ttu-id="efe33-266">감지 된 hello 종속성 hello JSON 파일에 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-266">hello dependencies are displayed in hello JSON file after they are detected.</span></span> 
+>- <span data-ttu-id="efe33-267">리소스: hello 어셈블리 등록의 일부로 DLL 리소스 (예:.txt,.png, 및.csv)을 업로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-267">Resources: You can upload your DLL resources (for example, .txt, .png, and .csv) as part of hello assembly registration.</span></span> 
 
-<span data-ttu-id="5aca7-268">**ADL: Register Assembly through Configuration** 명령을 트리거하는 다른 방법은 파일 탐색기에서 .dll 파일을 마우스 오른쪽 단추로 클릭하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-268">Another way to trigger the **ADL: Register Assembly through Configuration** command is to right-click the .dll file in File Explorer.</span></span> 
+<span data-ttu-id="efe33-268">또 다른 방법은 tootrigger hello **ADL: 구성을 통해 어셈블리 등록** 명령 파일 탐색기에서 tooright 클릭 hello.dll 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-268">Another way tootrigger hello **ADL: Register Assembly through Configuration** command is tooright-click hello .dll file in File Explorer.</span></span> 
 
-<span data-ttu-id="5aca7-269">다음 U-SQL 코드는 어셈블리를 호출하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-269">The following U-SQL code demonstrates how to call an assembly.</span></span> <span data-ttu-id="5aca7-270">이 샘플에서 어셈블리 이름은 *test*입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-270">In the sample, the assembly name is *test*.</span></span>
+<span data-ttu-id="efe33-269">hello U-SQL 코드 다음 방법을 보여 줍니다. 방법을 toocall 어셈블리입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-269">hello following U-SQL code demonstrates how toocall an assembly.</span></span> <span data-ttu-id="efe33-270">Hello 샘플 hello 어셈블리 이름은 *테스트*합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-270">In hello sample, hello assembly name is *test*.</span></span>
 
 ```
 REFERENCE ASSEMBLY [test];
@@ -277,229 +277,229 @@ REFERENCE ASSEMBLY [test];
     USING new USQLApplication_codebehind.MyProcessor();
 
 OUTPUT @d1 
-    TO @"Sample/SearchLogtest.txt" 
+    too@"Sample/SearchLogtest.txt" 
     USING Outputters.Tsv();
 ```
 
 
-## <a name="access-the-data-lake-analytics-catalog"></a><span data-ttu-id="5aca7-271">Data Lake Analytics 카탈로그 액세스</span><span class="sxs-lookup"><span data-stu-id="5aca7-271">Access the Data Lake Analytics catalog</span></span>
+## <a name="access-hello-data-lake-analytics-catalog"></a><span data-ttu-id="efe33-271">액세스 hello Data Lake 분석 카탈로그</span><span class="sxs-lookup"><span data-stu-id="efe33-271">Access hello Data Lake Analytics catalog</span></span>
 
-<span data-ttu-id="5aca7-272">Azure에 연결한 후에는 다음 단계를 사용하여 U-SQL 카탈로그에 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-272">After you have connected to Azure, you can use the following steps to access the U-SQL catalog.</span></span>
+<span data-ttu-id="efe33-272">TooAzure에 연결한 후 다음 단계 tooaccess hello U-SQL 카탈로그 hello를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-272">After you have connected tooAzure, you can use hello following steps tooaccess hello U-SQL catalog.</span></span>
 
-<span data-ttu-id="5aca7-273">**Azure Data Lake Analytics 메타데이터에 액세스하려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-273">**To access the Azure Data Lake Analytics metadata**</span></span>
+<span data-ttu-id="efe33-273">**tooaccess hello Azure Data Lake 분석 메타 데이터**</span><span class="sxs-lookup"><span data-stu-id="efe33-273">**tooaccess hello Azure Data Lake Analytics metadata**</span></span>
 
-1.  <span data-ttu-id="5aca7-274">Ctrl+Shift+P를 선택한 다음 **ADL: List Tables**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-274">Select Ctrl+Shift+P, and then enter **ADL: List Tables**.</span></span>
-2.  <span data-ttu-id="5aca7-275">Data Lake Analytics 계정 중 하나를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-275">Select one of the Data Lake Analytics accounts.</span></span>
-3.  <span data-ttu-id="5aca7-276">Data Lake Analytics 데이터베이스 중 하나를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-276">Select one of the Data Lake Analytics databases.</span></span>
-4.  <span data-ttu-id="5aca7-277">스키마 중 하나를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-277">Select one of the schemas.</span></span> <span data-ttu-id="5aca7-278">테이블의 목록을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-278">You can see the list of tables.</span></span>
+1.  <span data-ttu-id="efe33-274">Ctrl+Shift+P를 선택한 다음 **ADL: List Tables**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-274">Select Ctrl+Shift+P, and then enter **ADL: List Tables**.</span></span>
+2.  <span data-ttu-id="efe33-275">Hello Data Lake 분석 계정 중 하나를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-275">Select one of hello Data Lake Analytics accounts.</span></span>
+3.  <span data-ttu-id="efe33-276">Hello Data Lake 분석 데이터베이스 중 하나를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-276">Select one of hello Data Lake Analytics databases.</span></span>
+4.  <span data-ttu-id="efe33-277">Hello 스키마 중 하나를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-277">Select one of hello schemas.</span></span> <span data-ttu-id="efe33-278">테이블의 hello 목록을 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-278">You can see hello list of tables.</span></span>
 
-## <a name="view-data-lake-analytics-jobs"></a><span data-ttu-id="5aca7-279">Data Lake Analytics 작업 보기</span><span class="sxs-lookup"><span data-stu-id="5aca7-279">View Data Lake Analytics jobs</span></span>
+## <a name="view-data-lake-analytics-jobs"></a><span data-ttu-id="efe33-279">Data Lake Analytics 작업 보기</span><span class="sxs-lookup"><span data-stu-id="efe33-279">View Data Lake Analytics jobs</span></span>
 
-<span data-ttu-id="5aca7-280">**Data Lake Analytics 작업을 보려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-280">**To view Data Lake Analytics jobs**</span></span>
-1.  <span data-ttu-id="5aca7-281">명령 팔레트(Ctrl+Shift+P)를 열고 **ADL: Show Job**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-281">Open the command palette (Ctrl+Shift+P) and select **ADL: Show Job**.</span></span> 
-2.  <span data-ttu-id="5aca7-282">Data Lake Analytics 또는 로컬 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-282">Select a Data Lake Analytics or local account.</span></span> 
-3.  <span data-ttu-id="5aca7-283">계정의 작업 목록이 표시되기를 기다립니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-283">Wait for the jobs list for the account to appear.</span></span>
-4.  <span data-ttu-id="5aca7-284">작업 목록에서 작업을 선택하고 Data Lake Tools는 Azure Portal에서 작업 세부 정보를 열고 VS Code에서 JobInfo 파일을 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-284">Select a job from job list, Data Lake Tools opens the job details in the Azure portal and displays the JobInfo file in VS Code.</span></span>
+<span data-ttu-id="efe33-280">**tooview Data Lake 분석 작업**</span><span class="sxs-lookup"><span data-stu-id="efe33-280">**tooview Data Lake Analytics jobs**</span></span>
+1.  <span data-ttu-id="efe33-281">명령 팔레트 hello (Ctrl + Shift + P)를 열고 선택 **ADL: 표시할 작업**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-281">Open hello command palette (Ctrl+Shift+P) and select **ADL: Show Job**.</span></span> 
+2.  <span data-ttu-id="efe33-282">Data Lake Analytics 또는 로컬 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-282">Select a Data Lake Analytics or local account.</span></span> 
+3.  <span data-ttu-id="efe33-283">계정 tooappear hello에 대 한 hello 작업 목록에 대 한 대기입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-283">Wait for hello jobs list for hello account tooappear.</span></span>
+4.  <span data-ttu-id="efe33-284">작업 목록에서 작업을 선택, 데이터 레이크 도구 hello Azure 포털에서에서 작업 세부 정보를 hello 열리고 VS Code의 hello JobInfo 파일이 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-284">Select a job from job list, Data Lake Tools opens hello job details in hello Azure portal and displays hello JobInfo file in VS Code.</span></span>
 
 ![Data Lake Tools for Visual Studio Code IntelliSense 개체 형식](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-show-job.png)
 
-## <a name="azure-data-lake-storage-integration"></a><span data-ttu-id="5aca7-286">Azure Data Lake Storage 통합</span><span class="sxs-lookup"><span data-stu-id="5aca7-286">Azure Data Lake Storage integration</span></span>
+## <a name="azure-data-lake-storage-integration"></a><span data-ttu-id="efe33-286">Azure Data Lake Storage 통합</span><span class="sxs-lookup"><span data-stu-id="efe33-286">Azure Data Lake Storage integration</span></span>
 
-<span data-ttu-id="5aca7-287">다음 작업에 Azure Data Lake Storage 관련 명령을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-287">You can use Azure Data Lake Storage-related commands to:</span></span>
- - <span data-ttu-id="5aca7-288">Azure Data Lake Storage 리소스 찾기</span><span class="sxs-lookup"><span data-stu-id="5aca7-288">Browse through the Azure Data Lake Storage resources.</span></span> 
- - <span data-ttu-id="5aca7-289">Azure Data Lake Storage 파일 미리 보기</span><span class="sxs-lookup"><span data-stu-id="5aca7-289">Preview the Azure Data Lake Storage file.</span></span>  
- - <span data-ttu-id="5aca7-290">VS Code의 Azure Data Lake Storage에 직접 파일 업로드</span><span class="sxs-lookup"><span data-stu-id="5aca7-290">Upload the file directly to Azure Data Lake Storage in VS Code.</span></span> 
+<span data-ttu-id="efe33-287">다음 작업에 Azure Data Lake Storage 관련 명령을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-287">You can use Azure Data Lake Storage-related commands to:</span></span>
+ - <span data-ttu-id="efe33-288">Hello Azure 데이터 레이크 저장소 리소스를 찾아봅니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-288">Browse through hello Azure Data Lake Storage resources.</span></span> 
+ - <span data-ttu-id="efe33-289">미리 보기 hello Azure 데이터 레이크 저장소 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-289">Preview hello Azure Data Lake Storage file.</span></span>  
+ - <span data-ttu-id="efe33-290">Hello 업로드 VS 코드에서 직접 tooAzure 데이터 레이크 저장소 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-290">Upload hello file directly tooAzure Data Lake Storage in VS Code.</span></span> 
 
-### <a name="list-the-storage-path"></a><span data-ttu-id="5aca7-291">저장소 경로 나열</span><span class="sxs-lookup"><span data-stu-id="5aca7-291">List the storage path</span></span> 
-<span data-ttu-id="5aca7-292">명령 팔레트 또는 마우스 오른쪽 단추 클릭을 통해 저장소 경로를 나열할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-292">You can list the storage path through the command palette or through right-click.</span></span>
+### <a name="list-hello-storage-path"></a><span data-ttu-id="efe33-291">목록 hello 저장소 경로</span><span class="sxs-lookup"><span data-stu-id="efe33-291">List hello storage path</span></span> 
+<span data-ttu-id="efe33-292">마우스 오른쪽 단추 클릭 또는 hello 명령 팔레트 통해 hello 저장소 경로 나열할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-292">You can list hello storage path through hello command palette or through right-click.</span></span>
 
-<span data-ttu-id="5aca7-293">**명령 팔레트를 통해 저장소 경로를 나열하려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-293">**To list the storage path through the command palette**</span></span>
+<span data-ttu-id="efe33-293">**hello 명령 팔레트를 통한 toolist hello 저장소 경로**</span><span class="sxs-lookup"><span data-stu-id="efe33-293">**toolist hello storage path through hello command palette**</span></span>
 
-1.  <span data-ttu-id="5aca7-294">명령 팔레트(Ctrl+Shift+P)를 열고 **ADL: List Storage Path**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-294">Open the command palette (Ctrl+Shift+P) and enter **ADL: List Storage Path**.</span></span>
+1.  <span data-ttu-id="efe33-294">명령 팔레트 hello (Ctrl + Shift + P)를 열고 다음을 입력 **ADL: 목록 저장소 경로**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-294">Open hello command palette (Ctrl+Shift+P) and enter **ADL: List Storage Path**.</span></span>
 
     ![Data Lake Tools for Visual Studio Code에서 저장소 경로 나열](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-list-storage.png)
 
-2.  <span data-ttu-id="5aca7-296">저장소 경로를 나열하는 방법을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-296">Select your preferred way for listing the storage path.</span></span> <span data-ttu-id="5aca7-297">이 구절에서는 **Enter a path**를 예로 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-297">This passage uses **Enter a path** as an example.</span></span>
+2.  <span data-ttu-id="efe33-296">Hello 저장소 경로 나열 하기 위한 기본적인된 방법 프로그램을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-296">Select your preferred way for listing hello storage path.</span></span> <span data-ttu-id="efe33-297">이 구절에서는 **Enter a path**를 예로 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-297">This passage uses **Enter a path** as an example.</span></span>
 
-    ![Data Lake Tools for Visual Studio Code에서 저장소 경로를 나열하는 한 가지 방법](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-list-account-selectoneway.png)
+    ![Visual Studio 코드는 한 가지 방법은 toolist hello 저장 경로 대 한 데이터 레이크 도구](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-list-account-selectoneway.png)
 
     > [!NOTE]
-    >- <span data-ttu-id="5aca7-299">VS Code는 모든 Data Lake Analytics 계정에 마지막으로 방문한 경로를 유지합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-299">VS Code keeps the last-visited path in every Data Lake Analytics account.</span></span> <span data-ttu-id="5aca7-300">예: /tt/ss</span><span class="sxs-lookup"><span data-stu-id="5aca7-300">For example: /tt/ss.</span></span>
-    >- <span data-ttu-id="5aca7-301">루트 경로의 브라우저: 선택한 Data Lake Analytics 계정 또는 로컬 경로의 루트 경로 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-301">Browser from root path: The list root path from your selected Data Lake Analytics account or a local path.</span></span>
-    >- <span data-ttu-id="5aca7-302">경로 입력: 선택한 Data Lake Analytics 계정 또는 로컬 경로의 지정된 경로를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-302">Enter a path: List a specified path from your selected Data Lake Analytics account or a local path.</span></span>
+    >- <span data-ttu-id="efe33-299">VS Code 모든 Data Lake 분석 계정에 마지막으로 방문한 경로 hello를 유지합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-299">VS Code keeps hello last-visited path in every Data Lake Analytics account.</span></span> <span data-ttu-id="efe33-300">예: /tt/ss</span><span class="sxs-lookup"><span data-stu-id="efe33-300">For example: /tt/ss.</span></span>
+    >- <span data-ttu-id="efe33-301">브라우저에서 루트 경로: 선택한 Data Lake 분석 계정 또는 로컬 경로에서 hello 목록 루트 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-301">Browser from root path: hello list root path from your selected Data Lake Analytics account or a local path.</span></span>
+    >- <span data-ttu-id="efe33-302">경로 입력: 선택한 Data Lake Analytics 계정 또는 로컬 경로의 지정된 경로를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-302">Enter a path: List a specified path from your selected Data Lake Analytics account or a local path.</span></span>
     
-3. <span data-ttu-id="5aca7-303">로컬 경로 또는 Data Lake Analytics 계정에서 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-303">Select an account from the local path or a Data Lake Analytics account.</span></span>
+3. <span data-ttu-id="efe33-303">Hello 로컬 경로 또는 Data Lake 분석 계정에서 계정을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-303">Select an account from hello local path or a Data Lake Analytics account.</span></span>
 
     ![Data Lake Tools for Visual Studio Code more 선택](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-list-account.png)
 
-4. <span data-ttu-id="5aca7-305">**자세히**를 선택하여 더 많은 Data Lake Analytics 계정을 나열한 다음 Data Lake Analytics 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-305">Select **more** to list more Data Lake Analytics accounts, and then select a Data Lake Analytics account.</span></span>
+4. <span data-ttu-id="efe33-305">선택 **자세한** toolist 자세한 Data Lake 분석 계정 및 Data Lake 분석 계정 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-305">Select **more** toolist more Data Lake Analytics accounts, and then select a Data Lake Analytics account.</span></span>
 
     ![Data Lake Tools for Visual Studio Code 계정 선택](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-select-adla-account.png)
 
-5.  <span data-ttu-id="5aca7-307">Azure 저장소 경로를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-307">Enter an Azure storage path.</span></span> <span data-ttu-id="5aca7-308">예: /output</span><span class="sxs-lookup"><span data-stu-id="5aca7-308">For example, /output.</span></span>
+5.  <span data-ttu-id="efe33-307">Azure 저장소 경로를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-307">Enter an Azure storage path.</span></span> <span data-ttu-id="efe33-308">예: /output</span><span class="sxs-lookup"><span data-stu-id="efe33-308">For example, /output.</span></span>
 
     ![Data Lake Tools for Visual Studio Code에서 저장소 경로 입력](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-input-path.png)
 
-6.  <span data-ttu-id="5aca7-310">결과: 명령 팔레트는 항목에 따라 경로 정보를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-310">Results: The command palette lists the path information based on your entries.</span></span>
+6.  <span data-ttu-id="efe33-310">결과: hello 명령 팔레트에서 hello 경로 정보를 나열 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-310">Results: hello command palette lists hello path information based on your entries.</span></span>
 
     ![Data Lake Tools for Visual Studio Code에서 저장소 경로 결과 나열](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-list-path.png)
 
-<span data-ttu-id="5aca7-312">상대 경로를 나열하는 더 편리한 다른 방법은 바로 가기 메뉴를 마우스 오른쪽 단추로 클릭하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-312">A more convenient way to list the relative path is through the right-click context menu.</span></span>
+<span data-ttu-id="efe33-312">Hello를 통해 toolist hello에 대 한 상대 경로 보다 쉽게 단추로 상황에 맞는 메뉴를 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-312">A more convenient way toolist hello relative path is through hello right-click context menu.</span></span>
 
-<span data-ttu-id="5aca7-313">**마우스 오른쪽 단추 클릭을 통해 저장소 경로를 나열하려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-313">**To list the storage path through right-click**</span></span>
+<span data-ttu-id="efe33-313">**toolist hello 저장 경로 통해 마우스 오른쪽 단추로 클릭**</span><span class="sxs-lookup"><span data-stu-id="efe33-313">**toolist hello storage path through right-click**</span></span>
 
-1.  <span data-ttu-id="5aca7-314">경로 문자열을 마우스 오른쪽 단추로 클릭하여 **저장소 경로 나열**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-314">Right-click the path string to select **List Storage Path**.</span></span>
+1.  <span data-ttu-id="efe33-314">경로 문자열 tooselect hello를 마우스 오른쪽 단추로 클릭 **목록 저장소 경로**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-314">Right-click hello path string tooselect **List Storage Path**.</span></span>
 
        ![Data Lake Tools for Visual Studio Code에서 바로 가기 메뉴를 마우스 오른쪽 단추로 클릭](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-right-click-path.png)
 
-2. <span data-ttu-id="5aca7-316">명령 팔레트에 선택한 상대 경로가 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-316">The selected relative path appears in the command palette.</span></span>
+2. <span data-ttu-id="efe33-316">상대 경로 선택된 하는 hello hello 명령 팔레트에 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-316">hello selected relative path appears in hello command palette.</span></span>
 
    ![Data Lake Tools for Visual Studio Code에서 선택한 상대 경로](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-list-relative-path.png)
 
-3.  <span data-ttu-id="5aca7-318">로컬 경로 또는 Data Lake Analytics 계정에서 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-318">Select an account from the local path or a Data Lake Analytics account.</span></span>
+3.  <span data-ttu-id="efe33-318">Hello 로컬 경로 또는 Data Lake 분석 계정에서 계정을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-318">Select an account from hello local path or a Data Lake Analytics account.</span></span>
 
        ![Data Lake Tools for Visual Studio Code 계정 선택](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-list-account.png)
 
-4.  <span data-ttu-id="5aca7-320">결과: 명령 팔레트는 현재 경로에 대한 폴더 및 파일을 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-320">Results: The command palette lists the folders and files for the current path.</span></span>
+4.  <span data-ttu-id="efe33-320">결과: hello 명령 팔레트 hello 폴더와 hello 현재 경로 대 한 파일을 나열 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-320">Results: hello command palette lists hello folders and files for hello current path.</span></span>
 
-       ![Data Lake Tools for Visual Studio Code에서 현재 경로 나열](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-list-current.png)
+       ![Hello 현재 경로에서 Visual Studio 코드 목록에 대 한 데이터 레이크 도구](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-list-current.png)
 
-### <a name="preview-the-storage-file"></a><span data-ttu-id="5aca7-322">저장소 파일 미리 보기</span><span class="sxs-lookup"><span data-stu-id="5aca7-322">Preview the storage file</span></span>
-<span data-ttu-id="5aca7-323">명령 팔레트 또는 마우스 오른쪽 단추 클릭을 통해 저장소 파일을 미리 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-323">You can preview the storage file through the command palette or through right-click.</span></span>
+### <a name="preview-hello-storage-file"></a><span data-ttu-id="efe33-322">미리 보기 hello 저장소 파일</span><span class="sxs-lookup"><span data-stu-id="efe33-322">Preview hello storage file</span></span>
+<span data-ttu-id="efe33-323">마우스 오른쪽 단추 클릭 또는 hello 명령 팔레트 통해 hello 저장소 파일을 미리 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-323">You can preview hello storage file through hello command palette or through right-click.</span></span>
 
-<span data-ttu-id="5aca7-324">**명령 팔레트를 통해 저장소 파일을 미리 보려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-324">**To preview the storage file through the command palette**</span></span>
+<span data-ttu-id="efe33-324">**명령 팔레트 hello 통해 toopreview hello 저장소 파일**</span><span class="sxs-lookup"><span data-stu-id="efe33-324">**toopreview hello storage file through hello command palette**</span></span>
 
-1.  <span data-ttu-id="5aca7-325">명령 팔레트(Ctrl+Shift+P)를 열고 **ADL: Preview Storage File**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-325">Open the command palette (Ctrl+Shift+P) and enter **ADL: Preview Storage File**.</span></span>
+1.  <span data-ttu-id="efe33-325">명령 팔레트 hello (Ctrl + Shift + P)를 열고 다음을 입력 **ADL: 미리 보기 저장소 파일**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-325">Open hello command palette (Ctrl+Shift+P) and enter **ADL: Preview Storage File**.</span></span>
 
        ![Data Lake Tools for Visual Studio Code에서 저장소 파일 미리 보기](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-list-preview.png)
 
-2.  <span data-ttu-id="5aca7-327">로컬 경로 또는 Data Lake Analytics 계정에서 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-327">Select an account from the local path or a Data Lake Analytics account.</span></span>
+2.  <span data-ttu-id="efe33-327">Hello 로컬 경로 또는 Data Lake 분석 계정에서 계정을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-327">Select an account from hello local path or a Data Lake Analytics account.</span></span>
 
        ![Data Lake Tools for Visual Studio Code에서 계정 나열](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-list-account.png)
 
-3.  <span data-ttu-id="5aca7-329">**자세히**를 선택하여 더 많은 Data Lake Analytics 계정을 나열한 다음 Data Lake Analytics 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-329">Select **more** to list more Data Lake Analytics accounts, and then select a Data Lake Analytics account.</span></span>
+3.  <span data-ttu-id="efe33-329">선택 **자세한** toolist 자세한 Data Lake 분석 계정 및 Data Lake 분석 계정 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-329">Select **more** toolist more Data Lake Analytics accounts, and then select a Data Lake Analytics account.</span></span>
 
        ![Data Lake Tools for Visual Studio Code 계정 선택](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-select-adla-account.png)
 
-4.  <span data-ttu-id="5aca7-331">Azure 저장소 경로 또는 파일을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-331">Enter an Azure storage path or file.</span></span> <span data-ttu-id="5aca7-332">예: /output/SearchLog.txt</span><span class="sxs-lookup"><span data-stu-id="5aca7-332">For example, /output/SearchLog.txt.</span></span>
+4.  <span data-ttu-id="efe33-331">Azure 저장소 경로 또는 파일을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-331">Enter an Azure storage path or file.</span></span> <span data-ttu-id="efe33-332">예: /output/SearchLog.txt</span><span class="sxs-lookup"><span data-stu-id="efe33-332">For example, /output/SearchLog.txt.</span></span>
 
        ![Data Lake Tools for Visual Studio Code에서 저장소 경로 및 파일 입력](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-input-preview-file.png)
 
-5.  <span data-ttu-id="5aca7-334">결과: 명령 팔레트는 항목에 따라 경로 정보를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-334">Results: The command palette lists the path information based on your entries.</span></span>
+5.  <span data-ttu-id="efe33-334">결과: hello 명령 팔레트에서 hello 경로 정보를 나열 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-334">Results: hello command palette lists hello path information based on your entries.</span></span>
 
        ![Data Lake Tools for Visual Studio Code 파일 미리 보기 결과](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-preview-results.png)
 
-<span data-ttu-id="5aca7-336">**마우스 오른쪽 단추 클릭을 통해 저장소 경로를 나열하려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-336">**To list the storage path through right-click**</span></span>
+<span data-ttu-id="efe33-336">**toolist hello 저장 경로 통해 마우스 오른쪽 단추로 클릭**</span><span class="sxs-lookup"><span data-stu-id="efe33-336">**toolist hello storage path through right-click**</span></span>
 
-1.  <span data-ttu-id="5aca7-337">파일을 미리 보려면 파일 경로를 마우스 오른쪽 단추로 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-337">To preview a file, right-click the file path.</span></span>
+1.  <span data-ttu-id="efe33-337">파일을 toopreview 단추로 hello 파일 경로 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-337">toopreview a file, right-click hello file path.</span></span>
 
    ![Data Lake Tools for Visual Studio Code에서 바로 가기 메뉴를 마우스 오른쪽 단추로 클릭](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-right-click-preview.png) 
 
-2.  <span data-ttu-id="5aca7-339">로컬 경로 또는 Data Lake Analytics 계정에서 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-339">Select an account from the local path or a Data Lake Analytics account.</span></span>
+2.  <span data-ttu-id="efe33-339">Hello 로컬 경로 또는 Data Lake 분석 계정에서 계정을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-339">Select an account from hello local path or a Data Lake Analytics account.</span></span>
 
        ![Data Lake Tools for Visual Studio Code 계정 선택](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-list-account.png)
 
-3.  <span data-ttu-id="5aca7-341">결과: VS Code는 파일의 미리 보기 결과를 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-341">Results: VS Code displays the preview results of the file.</span></span>
+3.  <span data-ttu-id="efe33-341">결과: VS Code hello hello 파일의 결과 미리 보기를 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-341">Results: VS Code displays hello preview results of hello file.</span></span>
 
        ![Data Lake Tools for Visual Studio Code 파일 미리 보기 결과](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-preview-results.png)
 
-### <a name="upload-a-file"></a><span data-ttu-id="5aca7-343">파일 업로드</span><span class="sxs-lookup"><span data-stu-id="5aca7-343">Upload a file</span></span> 
+### <a name="upload-a-file"></a><span data-ttu-id="efe33-343">파일 업로드</span><span class="sxs-lookup"><span data-stu-id="efe33-343">Upload a file</span></span> 
 
-<span data-ttu-id="5aca7-344">**ADL: Upload File** 또는 **ADL: Upload File through Configuration** 명령을 입력하여 파일을 업로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-344">You can upload files by entering the commands **ADL: Upload File** or **ADL: Upload File through Configuration**.</span></span>
+<span data-ttu-id="efe33-344">Hello 명령을 입력 하 여 파일을 업로드할 수 **ADL: 파일 업로드** 또는 **ADL: 구성을 통해 파일 업로드**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-344">You can upload files by entering hello commands **ADL: Upload File** or **ADL: Upload File through Configuration**.</span></span>
 
-<span data-ttu-id="5aca7-345">**ADL: Upload File 명령을 통해 파일을 업로드하려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-345">**To upload files though the ADL: Upload File command**</span></span>
-1. <span data-ttu-id="5aca7-346">Ctrl+Shift+P를 선택하여 명령 팔레트를 열거나 스크립트 편집기를 마우스 오른쪽 단추로 클릭한 다음 **Upload File**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-346">Select Ctrl+Shift+P to open the command palette or right-click the script editor, and then enter **Upload File**.</span></span>
-2.  <span data-ttu-id="5aca7-347">파일을 업로드하려면 로컬 경로를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-347">To upload the file, enter a local path.</span></span>
+<span data-ttu-id="efe33-345">**tooupload 파일은 있지만 ADL hello: 파일 업로드 명령**</span><span class="sxs-lookup"><span data-stu-id="efe33-345">**tooupload files though hello ADL: Upload File command**</span></span>
+1. <span data-ttu-id="efe33-346">Ctrl + Shift + P tooopen hello 명령 팔레트를 선택 하거나 hello 스크립트 편집기를 마우스 오른쪽 단추로 클릭 하 고 다음을 입력 **파일 업로드**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-346">Select Ctrl+Shift+P tooopen hello command palette or right-click hello script editor, and then enter **Upload File**.</span></span>
+2.  <span data-ttu-id="efe33-347">tooupload hello 파일에서 로컬 경로 입력 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-347">tooupload hello file, enter a local path.</span></span>
 
     ![Data Lake Tools for Visual Studio Code에서 로컬 경로 입력](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-auto-input-local-path.png)
 
-3. <span data-ttu-id="5aca7-349">저장소 경로를 나열하는 방법 중 하나를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-349">Select one of the ways of listing the storage path.</span></span> <span data-ttu-id="5aca7-350">이 구절에서는 **Enter a path**를 예로 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-350">This passage uses **Enter a path** as an example.</span></span>
+3. <span data-ttu-id="efe33-349">목록 hello 저장소 경로 hello 방법 중 하나를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-349">Select one of hello ways of listing hello storage path.</span></span> <span data-ttu-id="efe33-350">이 구절에서는 **Enter a path**를 예로 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-350">This passage uses **Enter a path** as an example.</span></span>
 
     ![Data Lake Tools for Visual Studio Code에서 저장소 경로 나열](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-list-account-selectoneway.png)
     >[!NOTE]
-    >- <span data-ttu-id="5aca7-352">VS Code는 모든 Data Lake Analytics 계정에 마지막으로 방문한 경로를 유지합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-352">VS Code keeps the last-visited path in every Data Lake Analytics account.</span></span> <span data-ttu-id="5aca7-353">예: /tt/ss</span><span class="sxs-lookup"><span data-stu-id="5aca7-353">For example: /tt/ss.</span></span>
-    >- <span data-ttu-id="5aca7-354">루트 경로의 브라우저: 선택한 Data Lake Analytics 계정 또는 로컬 경로의 루트 경로 목록입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-354">Browser from root path: The list root path from your selected Data Lake Analytics account or a local path.</span></span>
-    >- <span data-ttu-id="5aca7-355">경로 입력: 선택한 Data Lake Analytics 계정 또는 로컬 경로의 지정된 경로를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-355">Enter a path: List a specified path from your selected Data Lake Analytics account or a local path.</span></span>
+    >- <span data-ttu-id="efe33-352">VS Code 모든 Data Lake 분석 계정에 마지막으로 방문한 경로 hello를 유지합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-352">VS Code keeps hello last-visited path in every Data Lake Analytics account.</span></span> <span data-ttu-id="efe33-353">예: /tt/ss</span><span class="sxs-lookup"><span data-stu-id="efe33-353">For example: /tt/ss.</span></span>
+    >- <span data-ttu-id="efe33-354">브라우저에서 루트 경로: 선택한 Data Lake 분석 계정 또는 로컬 경로에서 hello 목록 루트 경로입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-354">Browser from root path: hello list root path from your selected Data Lake Analytics account or a local path.</span></span>
+    >- <span data-ttu-id="efe33-355">경로 입력: 선택한 Data Lake Analytics 계정 또는 로컬 경로의 지정된 경로를 나열합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-355">Enter a path: List a specified path from your selected Data Lake Analytics account or a local path.</span></span>
 
-4. <span data-ttu-id="5aca7-356">로컬 경로 또는 Data Lake Analytics 계정에서 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-356">Select an account from the local path or a Data Lake Analytics account.</span></span>
+4. <span data-ttu-id="efe33-356">Hello 로컬 경로 또는 Data Lake 분석 계정에서 계정을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-356">Select an account from hello local path or a Data Lake Analytics account.</span></span>
 
     ![Data Lake Tools for Visual Studio Code에서 저장소를 마우스 오른쪽 단추로 클릭](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-list-account.png)
 
-5. <span data-ttu-id="5aca7-358">Azure 저장소 경로를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-358">Enter an Azure storage path.</span></span> <span data-ttu-id="5aca7-359">예: /output</span><span class="sxs-lookup"><span data-stu-id="5aca7-359">For example: /output.</span></span>
+5. <span data-ttu-id="efe33-358">Azure 저장소 경로를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-358">Enter an Azure storage path.</span></span> <span data-ttu-id="efe33-359">예: /output</span><span class="sxs-lookup"><span data-stu-id="efe33-359">For example: /output.</span></span>
 
        ![Data Lake Tools for Visual Studio Code enter storage path](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-input-preview-file.png)
 
-6. <span data-ttu-id="5aca7-360">Azure 저장소 경로를 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-360">Find your Azure storage path.</span></span> <span data-ttu-id="5aca7-361">**Choose current folder**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-361">Select **Choose current folder**.</span></span>
+6. <span data-ttu-id="efe33-360">Azure 저장소 경로를 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-360">Find your Azure storage path.</span></span> <span data-ttu-id="efe33-361">**Choose current folder**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-361">Select **Choose current folder**.</span></span>
 
     ![Data Lake Tools for Visual Studio Code에서 폴더 선택](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-choose-current-folder.png)
 
-7.  <span data-ttu-id="5aca7-363">결과: **출력** 창은 파일 업로드 상태를 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-363">Results: The **Output** window displays the file upload status.</span></span>
+7.  <span data-ttu-id="efe33-363">결과: hello **출력** hello 파일 업로드 상태 창에 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-363">Results: hello **Output** window displays hello file upload status.</span></span>
 
        ![Data Lake Tools for Visual Studio Code에서 상태 업로드](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-upload-status.png)    
 
-<span data-ttu-id="5aca7-365">**ADL: Upload File through Configuration 명령을 통해 파일을 업로드하려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-365">**To upload files though the ADL: Upload File through Configuration command**</span></span>
-1.  <span data-ttu-id="5aca7-366">Ctrl+Shift+P를 선택하여 명령 팔레트는 열거나 스크립트 편집기를 마우스 오른쪽 단추로 클릭한 다음 **Upload File through Configuration**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-366">Select Ctrl+Shift+P to open the command palette or right-click the script editor, and then enter **Upload File through Configuration**.</span></span>
-2.  <span data-ttu-id="5aca7-367">VS Code에서 JSON 파일을 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-367">VS Code displays a JSON file.</span></span> <span data-ttu-id="5aca7-368">파일 경로를 입력하고 여러 파일을 동시에 업로드할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-368">You can enter file paths and upload multiple files at the same time.</span></span> <span data-ttu-id="5aca7-369">지침이 **출력** 창에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-369">Instructions are displayed in the **Output** window.</span></span> <span data-ttu-id="5aca7-370">파일 업로드를 계속하려면 JSON 파일을 저장(Ctrl+S)합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-370">To proceed to upload the file, save (Ctrl+S) the JSON file.</span></span>
+<span data-ttu-id="efe33-365">**tooupload 파일은 있지만 ADL hello: 구성 명령을 통해 파일 업로드**</span><span class="sxs-lookup"><span data-stu-id="efe33-365">**tooupload files though hello ADL: Upload File through Configuration command**</span></span>
+1.  <span data-ttu-id="efe33-366">Ctrl + Shift + P tooopen hello 명령 팔레트를 선택 하거나 hello 스크립트 편집기를 마우스 오른쪽 단추로 클릭 하 고 다음을 입력 **구성을 통해 파일 업로드**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-366">Select Ctrl+Shift+P tooopen hello command palette or right-click hello script editor, and then enter **Upload File through Configuration**.</span></span>
+2.  <span data-ttu-id="efe33-367">VS Code에서 JSON 파일을 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-367">VS Code displays a JSON file.</span></span> <span data-ttu-id="efe33-368">파일 경로 입력 하 고 hello에 여러 파일을 업로드할 수 있습니다 동시 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-368">You can enter file paths and upload multiple files at hello same time.</span></span> <span data-ttu-id="efe33-369">지침은 hello에 표시 됩니다 **출력** 창.</span><span class="sxs-lookup"><span data-stu-id="efe33-369">Instructions are displayed in hello **Output** window.</span></span> <span data-ttu-id="efe33-370">tooproceed tooupload hello 파일 (Ctrl + S) hello JSON 파일을 저장 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-370">tooproceed tooupload hello file, save (Ctrl+S) hello JSON file.</span></span>
 
        ![Data Lake Tools for Visual Studio Code 파일 경로](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-upload-file.png)
 
-3.  <span data-ttu-id="5aca7-372">결과: **출력** 창은 파일 업로드 상태를 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-372">Results: The **Output** window displays the file upload status.</span></span>
+3.  <span data-ttu-id="efe33-372">결과: hello **출력** hello 파일 업로드 상태 창에 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-372">Results: hello **Output** window displays hello file upload status.</span></span>
 
        ![Data Lake Tools for Visual Studio Code에서 상태 업로드](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-upload-status.png)     
 
-<span data-ttu-id="5aca7-374">저장소에 파일을 업로드하는 다른 방법은 스크립트 편집기에서 파일의 전체 경로 또는 파일의 상대 경로의 오른쪽 클릭 메뉴를 사용하는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-374">Another way to upload a file to storage is through the right-click menu on the file's full path or the file's relative path in the script editor.</span></span> <span data-ttu-id="5aca7-375">로컬 파일 경로를 입력한 다음 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-375">Enter the local file path, and then select the account.</span></span> <span data-ttu-id="5aca7-376">**출력** 창은 업로드 상태를 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-376">The **Output** window displays the upload status.</span></span> 
+<span data-ttu-id="efe33-374">또 다른 방법은 tooupload 파일 toostorage hello 방식은 단추로 hello 파일의 전체 경로 또는 hello 파일의 상대 경로 hello 스크립트 편집기에 대 한 메뉴를 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-374">Another way tooupload a file toostorage is through hello right-click menu on hello file's full path or hello file's relative path in hello script editor.</span></span> <span data-ttu-id="efe33-375">Hello 로컬 파일 경로 입력 한 다음 hello 계정을 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-375">Enter hello local file path, and then select hello account.</span></span> <span data-ttu-id="efe33-376">hello **출력** hello 업로드 상태 창에 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-376">hello **Output** window displays hello upload status.</span></span> 
 
-### <a name="open-azure-storage-explorer"></a><span data-ttu-id="5aca7-377">Azure Storage Explorer 열기</span><span class="sxs-lookup"><span data-stu-id="5aca7-377">Open Azure Storage Explorer</span></span>
-<span data-ttu-id="5aca7-378">**ADL: Open Web Azure Storage Explorer** 명령을 입력하거나 마우스 오른쪽 단추 클릭 바로 가기 메뉴에서 선택하여 **Azure Storage Explorer**를 열 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-378">You can open **Azure Storage Explorer** by entering the command **ADL: Open Web Azure Storage Explorer** or by selecting it from the right-click context menu.</span></span>
+### <a name="open-azure-storage-explorer"></a><span data-ttu-id="efe33-377">Azure Storage Explorer 열기</span><span class="sxs-lookup"><span data-stu-id="efe33-377">Open Azure Storage Explorer</span></span>
+<span data-ttu-id="efe33-378">열 수 **Azure 저장소 탐색기** hello 명령을 입력 하 여 **ADL: 웹 Azure 저장소 탐색기 열기** hello 오른쪽 클릭 상황에 맞는 메뉴에서 선택 하 여 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-378">You can open **Azure Storage Explorer** by entering hello command **ADL: Open Web Azure Storage Explorer** or by selecting it from hello right-click context menu.</span></span>
 
-<span data-ttu-id="5aca7-379">**Azure Storage Explorer를 열려면**</span><span class="sxs-lookup"><span data-stu-id="5aca7-379">**To open Azure Storage Explorer**</span></span>
+<span data-ttu-id="efe33-379">**Azure 저장소 탐색기 tooopen**</span><span class="sxs-lookup"><span data-stu-id="efe33-379">**tooopen Azure Storage Explorer**</span></span>
 
-1. <span data-ttu-id="5aca7-380">Ctrl+Shift+P를 선택하여 명령 팔레트를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-380">Select Ctrl+Shift+P to open the command palette.</span></span>
-2. <span data-ttu-id="5aca7-381">**Open Web Azure Storage Explorer**를 입력하거나 스크립트 편집기에서 상대 경로 또는 전체 경로를 마우스 오른쪽 단추로 클릭한 다음 **Open Web Azure Storage Explorer**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-381">Enter **Open Web Azure Storage Explorer** or right-click on a relative path or the full path in the script editor, and then select **Open Web Azure Storage Explorer**.</span></span>
-3. <span data-ttu-id="5aca7-382">Data Lake Analytics 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-382">Select a Data Lake Analytics account.</span></span>
+1. <span data-ttu-id="efe33-380">Ctrl + Shift + P tooopen hello 명령 팔레트를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-380">Select Ctrl+Shift+P tooopen hello command palette.</span></span>
+2. <span data-ttu-id="efe33-381">입력 **열려 있는 웹 Azure 저장소 탐색기** 또는 상대 경로 또는 hello hello 스크립트 편집기에서 전체 경로 마우스 오른쪽 단추로 클릭 한 다음 선택 **열려 있는 웹 Azure 저장소 탐색기**합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-381">Enter **Open Web Azure Storage Explorer** or right-click on a relative path or hello full path in hello script editor, and then select **Open Web Azure Storage Explorer**.</span></span>
+3. <span data-ttu-id="efe33-382">Data Lake Analytics 계정을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-382">Select a Data Lake Analytics account.</span></span>
 
-<span data-ttu-id="5aca7-383">Data Lake Tools가 Azure Portal에서 Azure 저장소 경로를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-383">Data Lake Tools opens the Azure storage path in the Azure portal.</span></span> <span data-ttu-id="5aca7-384">경로를 찾고 웹에서 파일을 미리 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-384">You can find the path and preview the file from the web.</span></span>
+<span data-ttu-id="efe33-383">데이터 레이크 도구 hello Azure 포털에서에서 hello Azure 저장소 경로를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-383">Data Lake Tools opens hello Azure storage path in hello Azure portal.</span></span> <span data-ttu-id="efe33-384">Hello 경로 미리 보기 hello hello 웹 파일을 찾을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-384">You can find hello path and preview hello file from hello web.</span></span>
 
-### <a name="local-run-and-local-debug-for-windows-users"></a><span data-ttu-id="5aca7-385">Windows 사용자에 대한 로컬 실행 및 로컬 디버그</span><span class="sxs-lookup"><span data-stu-id="5aca7-385">Local run and local debug for Windows users</span></span>
-<span data-ttu-id="5aca7-386">U-SQL 로컬 실행은 Data Lake Analytics에 코드가 게시되기 전에 로컬 데이터를 테스트하고 로컬에서 스크립트의 유효성을 검사합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-386">U-SQL local run tests your local data and validates your script locally, before your code is published to Data Lake Analytics.</span></span> <span data-ttu-id="5aca7-387">로컬 디버그 기능을 사용하면 Data Lake Analytics에 코드를 전송하기 전에 다음 작업을 완료할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-387">The local debug feature enables you to complete the following tasks before your code is submitted to Data Lake Analytics:</span></span> 
-- <span data-ttu-id="5aca7-388">C# 코드 숨김을 디버그합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-388">Debug your C# code-behind.</span></span> 
-- <span data-ttu-id="5aca7-389">코드를 단계별로 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-389">Step through the code.</span></span> 
-- <span data-ttu-id="5aca7-390">로컬에서 스크립트의 유효성을 검사합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-390">Validate your script locally.</span></span>
+### <a name="local-run-and-local-debug-for-windows-users"></a><span data-ttu-id="efe33-385">Windows 사용자에 대한 로컬 실행 및 로컬 디버그</span><span class="sxs-lookup"><span data-stu-id="efe33-385">Local run and local debug for Windows users</span></span>
+<span data-ttu-id="efe33-386">로컬 데이터를 테스트 하 고 코드를 게시 된 tooData Lake 분석 하기 전에 로컬에서 스크립트의 유효성을 검사 하는 U-SQL 로컬 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-386">U-SQL local run tests your local data and validates your script locally, before your code is published tooData Lake Analytics.</span></span> <span data-ttu-id="efe33-387">hello 로컬 디버그 기능을 사용 하면 있습니다 toocomplete hello 코드 되기 전에 작업을 다음 tooData Lake 분석을 전송 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-387">hello local debug feature enables you toocomplete hello following tasks before your code is submitted tooData Lake Analytics:</span></span> 
+- <span data-ttu-id="efe33-388">C# 코드 숨김을 디버그합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-388">Debug your C# code-behind.</span></span> 
+- <span data-ttu-id="efe33-389">Hello 코드를 단계별로 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-389">Step through hello code.</span></span> 
+- <span data-ttu-id="efe33-390">로컬에서 스크립트의 유효성을 검사합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-390">Validate your script locally.</span></span>
 
-<span data-ttu-id="5aca7-391">로컬 실행 및 로컬 디버그에 대한 지침은 [Visual Studio Code로 U-SQL 로컬 실행 및 로컬 디버그](data-lake-tools-for-vscode-local-run-and-debug.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5aca7-391">For instructions on local run and local debug, see [U-SQL local run and local debug with Visual Studio Code](data-lake-tools-for-vscode-local-run-and-debug.md).</span></span>
+<span data-ttu-id="efe33-391">로컬 실행 및 로컬 디버그에 대한 지침은 [Visual Studio Code로 U-SQL 로컬 실행 및 로컬 디버그](data-lake-tools-for-vscode-local-run-and-debug.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="efe33-391">For instructions on local run and local debug, see [U-SQL local run and local debug with Visual Studio Code](data-lake-tools-for-vscode-local-run-and-debug.md).</span></span>
 
-## <a name="additional-features"></a><span data-ttu-id="5aca7-392">추가 기능</span><span class="sxs-lookup"><span data-stu-id="5aca7-392">Additional features</span></span>
+## <a name="additional-features"></a><span data-ttu-id="efe33-392">추가 기능</span><span class="sxs-lookup"><span data-stu-id="efe33-392">Additional features</span></span>
 
-<span data-ttu-id="5aca7-393">Data Lake Tools for VSCode에서 지원하는 기능은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-393">Data Lake Tools for VS Code supports the following features:</span></span>
+<span data-ttu-id="efe33-393">VS Code에 대 한 데이터 레이크 도구 hello 같은 기능을 지원 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-393">Data Lake Tools for VS Code supports hello following features:</span></span>
 
--   <span data-ttu-id="5aca7-394">IntelliSense 자동 완성: 키워드, 메서드 및 변수와 같은 제안이 항목 주위의 팝업 창에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-394">IntelliSense auto-complete: Suggestions appear in pop-up windows around items, such as keywords, methods, and variables.</span></span> <span data-ttu-id="5aca7-395">다음과 같이 다양한 아이콘이 여러 형식의 개체를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-395">Different icons represent different types of the objects:</span></span>
+-   <span data-ttu-id="efe33-394">IntelliSense 자동 완성: 키워드, 메서드 및 변수와 같은 제안이 항목 주위의 팝업 창에 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-394">IntelliSense auto-complete: Suggestions appear in pop-up windows around items, such as keywords, methods, and variables.</span></span> <span data-ttu-id="efe33-395">서로 다른 아이콘이 다양 한 유형의 hello 개체를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-395">Different icons represent different types of hello objects:</span></span>
 
-    - <span data-ttu-id="5aca7-396">Scala 데이터 형식</span><span class="sxs-lookup"><span data-stu-id="5aca7-396">Scala data type</span></span>
-    - <span data-ttu-id="5aca7-397">복합 데이터 형식</span><span class="sxs-lookup"><span data-stu-id="5aca7-397">Complex data type</span></span>
-    - <span data-ttu-id="5aca7-398">기본 제공 UDT</span><span class="sxs-lookup"><span data-stu-id="5aca7-398">Built-in UDTs</span></span>
-    - <span data-ttu-id="5aca7-399">.NET 컬렉션 및 클래스</span><span class="sxs-lookup"><span data-stu-id="5aca7-399">.NET collection and classes</span></span>
-    - <span data-ttu-id="5aca7-400">C# 식</span><span class="sxs-lookup"><span data-stu-id="5aca7-400">C# expressions</span></span>
-    - <span data-ttu-id="5aca7-401">기본 제공 C# UDF, UDO 및 UDAAG</span><span class="sxs-lookup"><span data-stu-id="5aca7-401">Built-in C# UDFs, UDOs, and UDAAGs</span></span> 
-    - <span data-ttu-id="5aca7-402">U-SQL 함수</span><span class="sxs-lookup"><span data-stu-id="5aca7-402">U-SQL functions</span></span>
-    - <span data-ttu-id="5aca7-403">U-SQL 창 작업 함수</span><span class="sxs-lookup"><span data-stu-id="5aca7-403">U-SQL windowing function</span></span>
+    - <span data-ttu-id="efe33-396">Scala 데이터 형식</span><span class="sxs-lookup"><span data-stu-id="efe33-396">Scala data type</span></span>
+    - <span data-ttu-id="efe33-397">복합 데이터 형식</span><span class="sxs-lookup"><span data-stu-id="efe33-397">Complex data type</span></span>
+    - <span data-ttu-id="efe33-398">기본 제공 UDT</span><span class="sxs-lookup"><span data-stu-id="efe33-398">Built-in UDTs</span></span>
+    - <span data-ttu-id="efe33-399">.NET 컬렉션 및 클래스</span><span class="sxs-lookup"><span data-stu-id="efe33-399">.NET collection and classes</span></span>
+    - <span data-ttu-id="efe33-400">C# 식</span><span class="sxs-lookup"><span data-stu-id="efe33-400">C# expressions</span></span>
+    - <span data-ttu-id="efe33-401">기본 제공 C# UDF, UDO 및 UDAAG</span><span class="sxs-lookup"><span data-stu-id="efe33-401">Built-in C# UDFs, UDOs, and UDAAGs</span></span> 
+    - <span data-ttu-id="efe33-402">U-SQL 함수</span><span class="sxs-lookup"><span data-stu-id="efe33-402">U-SQL functions</span></span>
+    - <span data-ttu-id="efe33-403">U-SQL 창 작업 함수</span><span class="sxs-lookup"><span data-stu-id="efe33-403">U-SQL windowing function</span></span>
  
     ![Data Lake Tools for Visual Studio Code IntelliSense 개체 형식](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-auto-complete-objects.png)
  
--   <span data-ttu-id="5aca7-405">Data Lake Analytics 메타데이터의 IntelliSense 자동 완성: Data Lake Tools는 Data Lake Analytics 메타데이터 정보를 로컬로 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-405">IntelliSense auto-complete on Data Lake Analytics metadata: Data Lake Tools downloads the Data Lake Analytics metadata information locally.</span></span> <span data-ttu-id="5aca7-406">IntelliSense 기능은 Data Lake Analytics 메타데이터에서 데이터베이스, 스키마, 테이블, 보기, 테이블 반환 함수, 프로시저 및 C# 어셈블리 등의 개체를 자동으로 채웁니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-406">The IntelliSense feature automatically populates objects, including the database, schema, table, view, table-valued function, procedures, and C# assemblies, from the Data Lake Analytics metadata.</span></span>
+-   <span data-ttu-id="efe33-405">데이터 레이크 분석 메타 데이터에 자동 완성 IntelliSense: 데이터 레이크 도구 hello Data Lake 분석 메타 데이터 정보를 로컬로 다운로드 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-405">IntelliSense auto-complete on Data Lake Analytics metadata: Data Lake Tools downloads hello Data Lake Analytics metadata information locally.</span></span> <span data-ttu-id="efe33-406">hello IntelliSense 기능은 자동으로 hello 데이터베이스, 스키마, 테이블, 뷰, 테이블 반환 함수, 프로시저 및 hello Data Lake 분석 메타 데이터에서 C# 어셈블리를 포함 하 여 개체를 채웁니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-406">hello IntelliSense feature automatically populates objects, including hello database, schema, table, view, table-valued function, procedures, and C# assemblies, from hello Data Lake Analytics metadata.</span></span>
  
     ![Data Lake Tools for Visual Studio Code IntelliSense 메타데이터](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-auto-complete-metastore.png)
 
--   <span data-ttu-id="5aca7-408">IntelliSense 오류 마커: Data Lake Tools는 U-SQL 및 C#의 편집 오류에 밑줄을 표시합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-408">IntelliSense error marker: Data Lake Tools underlines the editing errors for U-SQL and C#.</span></span> 
--   <span data-ttu-id="5aca7-409">구문 강조 표시: Data Lake Tools는 변수, 키워드, 데이터 형식 및 함수 등의 항목을 구분하기 위해 서로 다른 색을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="5aca7-409">Syntax highlights: Data Lake Tools uses different colors to differentiate items, such as variables, keywords, data type, and functions.</span></span> 
+-   <span data-ttu-id="efe33-408">IntelliSense 오류 표식: 데이터 레이크 도구 U-SQL 및 C#에 대 한 오류를 편집 하는 hello에 밑줄을 표시 합니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-408">IntelliSense error marker: Data Lake Tools underlines hello editing errors for U-SQL and C#.</span></span> 
+-   <span data-ttu-id="efe33-409">구문 강조 표시: 변수, 키워드, 데이터 형식 및 함수 등의 서로 다른 색 toodifferentiate 항목을 사용 하 여 데이터 레이크 도구입니다.</span><span class="sxs-lookup"><span data-stu-id="efe33-409">Syntax highlights: Data Lake Tools uses different colors toodifferentiate items, such as variables, keywords, data type, and functions.</span></span> 
 
     ![Data Lake Tools for Visual Studio Code 구문 강조 표시](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-syntax-highlights.png)
 
-## <a name="next-steps"></a><span data-ttu-id="5aca7-411">다음 단계</span><span class="sxs-lookup"><span data-stu-id="5aca7-411">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="efe33-411">다음 단계</span><span class="sxs-lookup"><span data-stu-id="efe33-411">Next steps</span></span>
 
-- <span data-ttu-id="5aca7-412">Visual Studio Code로 U-SQL 로컬 실행 및 로컬 디버그는 [Visual Studio Code로 U-SQL 로컬 실행 및 로컬 디버그](data-lake-tools-for-vscode-local-run-and-debug.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5aca7-412">For U-SQL local run and local debug with Visual Studio Code, see [U-SQL local run and local debug with Visual Studio Code](data-lake-tools-for-vscode-local-run-and-debug.md).</span></span>
-- <span data-ttu-id="5aca7-413">Data Lake Analytics 시작 정보는 [자습서: Azure Data Lake Analytics 시작](data-lake-analytics-get-started-portal.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5aca7-413">For getting-started information on Data Lake Analytics, see [Tutorial: Get started with Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md).</span></span>
-- <span data-ttu-id="5aca7-414">Data Lake Tools for Visual Studio에 대한 자세한 내용은 [자습서: Data Lake Tools for Visual Studio를 사용하여 U-SQL 스크립트 개발](data-lake-analytics-data-lake-tools-get-started.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5aca7-414">For information about Data Lake Tools for Visual Studio, see [Tutorial: Develop U-SQL scripts by using Data Lake Tools for Visual Studio](data-lake-analytics-data-lake-tools-get-started.md).</span></span>
-- <span data-ttu-id="5aca7-415">어셈블리를 개발에 대한 정보는 [Azure Data Lake Analytics 작업에 U-SQL 어셈블리 개발](data-lake-analytics-u-sql-develop-assemblies.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="5aca7-415">For information on developing assemblies, see [Develop U-SQL assemblies for Azure Data Lake Analytics jobs](data-lake-analytics-u-sql-develop-assemblies.md).</span></span>
+- <span data-ttu-id="efe33-412">Visual Studio Code로 U-SQL 로컬 실행 및 로컬 디버그는 [Visual Studio Code로 U-SQL 로컬 실행 및 로컬 디버그](data-lake-tools-for-vscode-local-run-and-debug.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="efe33-412">For U-SQL local run and local debug with Visual Studio Code, see [U-SQL local run and local debug with Visual Studio Code](data-lake-tools-for-vscode-local-run-and-debug.md).</span></span>
+- <span data-ttu-id="efe33-413">Data Lake Analytics 시작 정보는 [자습서: Azure Data Lake Analytics 시작](data-lake-analytics-get-started-portal.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="efe33-413">For getting-started information on Data Lake Analytics, see [Tutorial: Get started with Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md).</span></span>
+- <span data-ttu-id="efe33-414">Data Lake Tools for Visual Studio에 대한 자세한 내용은 [자습서: Data Lake Tools for Visual Studio를 사용하여 U-SQL 스크립트 개발](data-lake-analytics-data-lake-tools-get-started.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="efe33-414">For information about Data Lake Tools for Visual Studio, see [Tutorial: Develop U-SQL scripts by using Data Lake Tools for Visual Studio](data-lake-analytics-data-lake-tools-get-started.md).</span></span>
+- <span data-ttu-id="efe33-415">어셈블리를 개발에 대한 정보는 [Azure Data Lake Analytics 작업에 U-SQL 어셈블리 개발](data-lake-analytics-u-sql-develop-assemblies.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="efe33-415">For information on developing assemblies, see [Develop U-SQL assemblies for Azure Data Lake Analytics jobs](data-lake-analytics-u-sql-develop-assemblies.md).</span></span>
 
 
 
