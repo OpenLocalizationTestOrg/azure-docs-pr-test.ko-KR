@@ -1,6 +1,6 @@
 ---
-title: "Azure Linux VM 에이전트 개요 | Microsoft Docs"
-description: "Linux 에이전트(waagent)를 설치 및 구성하여 가상 컴퓨터와 Azure 패브릭 컨트롤러의 상호 작용을 관리하는 방법에 대해 알아봅니다."
+title: "Linux VM 에이전트 개요 aaaAzure | Microsoft Docs"
+description: "자세한 내용은 방법 tooinstall 및 Linux 에이전트 (waagent) toomanage Azure 패브릭 컨트롤러와 가상 컴퓨터의 상호 작용을 구성 합니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -16,20 +16,20 @@ ms.topic: article
 ms.date: 10/17/2016
 ms.author: szark
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 486ad6bb148583a957fb82b7954ff94f853b12cc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4e08c84d9205f4db7aae6fd1568ec1f15fba395c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="understanding-and-using-the-azure-linux-agent"></a>Azure Linux 에이전트 이해 및 사용
+# <a name="understanding-and-using-hello-azure-linux-agent"></a>이해 및 hello Azure Linux 에이전트를 사용 합니다.
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
 ## <a name="introduction"></a>소개
-Microsoft Azure Linux 에이전트(waagent)는 Linux 및 FreeBSD 프로비저닝, Azure 패브릭 컨트롤러와 VM의 상호 작용을 관리합니다. 이 에이전트는 다음과 같은 Linux 및 FreeBSD laaS 배포 기능을 제공합니다.
+hello Microsoft Azure Linux 에이전트 (waagent) Linux 및 FreeBSD 프로비저닝, 및 hello Azure 패브릭 컨트롤러와 VM의 상호 작용을 관리 합니다. Linux 및 FreeBSD IaaS 배포에 대 한 기능을 수행 하는 hello를 제공 합니다.
 
 > [!NOTE]
-> 자세한 내용은 Azure Linux 에이전트 [추가 정보](https://github.com/Azure/WALinuxAgent/blob/master/README.md)를 참조하세요.
+> Hello Azure Linux 에이전트 참조 [README](https://github.com/Azure/WALinuxAgent/blob/master/README.md) 추가 세부 정보에 대 한 합니다.
 > 
 > 
 
@@ -38,43 +38,43 @@ Microsoft Azure Linux 에이전트(waagent)는 Linux 및 FreeBSD 프로비저닝
   * 사용자 계정 만들기
   * SSH 인증 유형 구성
   * SSH 공개 키 및 키 쌍 배포
-  * 호스트 이름 설정
-  * 플랫폼 DNS에 호스트 이름 게시
-  * 플랫폼에 SSH 호스트 키 지문 보고
+  * 설정 hello 호스트 이름
+  * 게시 hello 호스트 이름 toohello 플랫폼 DNS
+  * 보고 SSH 호스트 키 지문 toohello 플랫폼
   * 리소스 디스크 관리
-  * 리소스 디스크 포맷 및 탑재
+  * 서식 지정 및 hello 리소스 디스크를 탑재 합니다.
   * 스왑 공간 구성
 * **네트워킹**
   
-  * 플랫폼 DHCP 서버와의 호환성을 개선하기 위한 경로 관리
-  * 네트워크 인터페이스 이름의 안정성 확인
+  * 경로 tooimprove 호환 플랫폼 DHCP 서버 관리
+  * Hello 네트워크 인터페이스 이름의 hello 안정성 보장
 * **커널**
   
   * 가상 NUMA 구성(커널에 대해 사용 안 함 <2.6.37)
   * /dev/random의 Hyper-V 엔트로피 이용
-  * 루트 장치(원격일 수 있음)에 대한 SCSI 시간 제한 구성
+  * Hello 루트 장치 (원격 일 수도 있음)에 대 한 SCSI 제한 구성
 * **진단**
   
-  * 직렬 포트로 콘솔 리디렉션
+  * 콘솔 리디렉션 toohello 직렬 포트
 * **SCVMM 배포**
   
-  * System Center Virtual Machine Manager 2012 R2 환경에서 실행되는 경우 Linux용 VMM 에이전트 검색 및 부트스트랩
+  * 검색 하 고 System Center Virtual Machine Manager 2012 R2 환경에서 실행 하는 경우 Linux 용 hello VMM 에이전트를 시작 되도록
 * **VM 확장**
   
-  * 소프트웨어 및 구성 자동화를 사용하도록 Microsoft 및 Partner에서 작성된 구성 요소를 Linux VM(IaaS)에 삽입
+  * Linux VM (IaaS) tooenable 소프트웨어 및 구성 자동화로 Microsoft 및 협력 업체에서 작성 된 구성 요소를 삽입 합니다.
   * [https://github.com/Azure/azure-linux-extensions](https://github.com/Azure/azure-linux-extensions)
 
 ## <a name="communication"></a>통신
-플랫폼에서 에이전트로의 정보 흐름은 다음 두 채널을 통해 진행됩니다.
+두 개의 채널을 통해 hello 정보 흐름 hello 플랫폼 toohello 에이전트에서 발생합니다.
 
-* IaaS 배포를 위해 부팅 시 연결된 DVD. 이 DVD에는 실제 SSH 키 쌍이 아닌 모든 프로비전 정보가 포함된 OVF 규격 구성 파일이 포함되어 있습니다.
-* 배포 및 토폴로지 구성을 가져오는 데 사용된 REST API를 공개하는 TCP 끝점
+* IaaS 배포를 위해 부팅 시 연결된 DVD. 이 DVD hello 실제 SSH 키 쌍 이외의 모든 프로 비전 정보를 포함 하는 규격 OVF 구성 파일을 포함 합니다.
+* REST API를 노출 하는 TCP 끝점 tooobtain 배포 및 토폴로지 구성을 사용 합니다.
 
 ## <a name="requirements"></a>요구 사항
-다음 시스템은 테스트를 거쳐 Azure Linux 에이전트와 동작하는 것으로 알려져 있습니다.
+hello 다음과 같은 시스템 테스트를 거쳐 Azure Linux 에이전트 hello로 toowork 알려진:
 
 > [!NOTE]
-> [http://support.microsoft.com/kb/2805216](http://support.microsoft.com/kb/2805216)에서 설명한 대로 Microsoft Azure 플랫폼에서 지원되는 시스템의 공식 목록에서 이 목록은 달라질 수 있습니다.
+> 이 목록은 여기에서 설명한 대로 hello 공식 목록 hello Microsoft Azure 플랫폼에서 지원 되는 시스템에서 달라질 수 있습니다: [http://support.microsoft.com/kb/2805216](http://support.microsoft.com/kb/2805216)
 > 
 > 
 
@@ -91,7 +91,7 @@ Microsoft Azure Linux 에이전트(waagent)는 Linux 및 FreeBSD 프로비저닝
 
 * FreeBSD 10 이상(Azure Linux 에이전트 v2.0.10 이상)
 
-Linux 에이전트는 다음과 같은 일부 시스템 패키지가 있어야 제대로 기능을 수행합니다.
+hello Linux 에이전트 제대로 순서 toofunction에 일부 시스템 패키지에 따라 다릅니다.:
 
 * Python 2.6 이상
 * OpenSSL 1.0 이상
@@ -103,9 +103,9 @@ Linux 에이전트는 다음과 같은 일부 시스템 패키지가 있어야 �
 * UDF 파일 시스템 탑재에 대한 커널 지원
 
 ## <a name="installation"></a>설치
-배포 패키지에서 리포지토리의 RPM 또는 DEB 패키지를 사용한 설치는 선호하는 Azure Linux Azure 설치 및 업그레이드 방법입니다. 모든 [인증 배포 공급자](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)는 이미지 및 리포지토리에 Azure Linux 에이전트 패키지를 통합합니다.
+분포의 패키지 저장소는 RPM 또는 DEB 패키지를 사용 하 여 설치는 설치 및 hello Azure Linux 에이전트 업그레이드의 기본 설정 하는 hello 메서드입니다. 모든 hello [배포 공급자 보증](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) hello Azure Linux 에이전트 패키지를 해당 이미지 및 저장소에 통합 합니다.
 
-원본에서 설치 또는 사용자 지정 위치 또는 접두사로의 설치와 같은 고급 설치 옵션에 대한 자세한 내용은 [GitHub의 Azure Linux 에이전트 리포지토리](https://github.com/Azure/WALinuxAgent)를 참조하세요.
+Hello에 toohello 문서를 참조 하십시오 [GitHub의 Azure Linux 에이전트 리포지토리](https://github.com/Azure/WALinuxAgent) 소스 또는 toocustom 위치나 접두사에서 설치 하는 등의 고급 설치 옵션에 대 한 합니다.
 
 ## <a name="command-line-options"></a>명령줄 옵션
 ### <a name="flags"></a>플래그
@@ -113,28 +113,28 @@ Linux 에이전트는 다음과 같은 일부 시스템 패키지가 있어야 �
 * force: 일부 명령의 대화형 확인을 건너뜁니다.
 
 ### <a name="commands"></a>명령
-* help: 지원되는 명령 및 플래그를 나열합니다.
-* deprovision: 시스템을 정리하여 다시 프로비전하기에 적합하도록 만듭니다. 이 작업은 다음을 삭제합니다.
+* 도움말: hello 지원 명령 및 플래그를 나열 합니다.
+* 프로 비전 해제: tooclean hello 시스템을 시도 하 고 다시 프로 비전에 맞게 사용할 수 있습니다. 이 작업 hello 다음을 삭제 합니다.
   
-  * 모든 SSH 호스트 키(구성 파일에서 Provisioning.RegenerateSshHostKeyPair가 'y'인 경우)
+  * 모든 SSH 호스트 키 (Provisioning.RegenerateSshHostKeyPair 'y' hello 구성 파일의 경우)
   * /etc/resolv.conf의 Nameserver 구성
-  * /etc/shadow의 루트 암호(구성 파일에서 Provisioning.DeleteRootPassword가 'y'인 경우)
+  * /Etc/shadow (Provisioning.DeleteRootPassword 'y' hello 구성 파일의 경우)의 루트 암호
   * 캐시된 DHCP 클라이언트 임대
-  * 호스트 이름을 localhost.localdomain으로 다시 설정
+  * 다시 설정 합니다. 호스트 이름 toolocalhost.localdomain
 
 > [!WARNING]
-> Deprovision 명령을 사용한다고 해서 이미지에서 중요한 정보를 모두 지우고 다시 배포하기에 적합하게 만든다고 보증할 수는 없습니다.
+> 프로 비전 해제 해당 hello 이미지는 중요 한 정보를 모두 선택 취소 하 고 재배포를 위해 적합 한 보장 하지 않습니다.
 > 
 > 
 
-* deprovision+user: -deprovision(위 참조) 명령의 모든 작업을 수행하고 마지막으로 프로비전한 사용자 계정(/var/lib/waagent에서 가져온 계정) 및 연결된 데이터를 삭제합니다. Azure에서 이전에 프로비전한 이미지의 프로비전을 해제하여 이미지를 캡처하고 다시 사용할 수 있도록 하는 경우에 이 매개 변수를 사용합니다.
-* version: waagent의 버전을 표시합니다.
-* serialconsole: ttyS0(첫 번째 직렬 포트)을 부팅 콘솔로 표시하도록 GRUB를 구성합니다. 이 매개 변수는 커널 부팅 로그를 직렬 포트로 보내고 디버깅에 사용할 수 있도록 설정합니다.
-* daemon: waagent를 디먼으로 실행하여 플랫폼 조작을 관리합니다. 이 인수는 waagent init 스크립트에서 waagent에 지정됩니다.
+* 프로 비전 해제 + 사용자:-프로 비전 해제 (위) 아래에 있는 모든 수행 하 고도 (/var/lib/waagent에서 가져온) hello 마지막 프로 비전 된 사용자 계정을 삭제 하 고 연결 된 데이터입니다. Azure에서 이전에 프로비전한 이미지의 프로비전을 해제하여 이미지를 캡처하고 다시 사용할 수 있도록 하는 경우에 이 매개 변수를 사용합니다.
+* 버전: waagent의 hello 버전을 표시 합니다
+* serialconsole: GRUB toomark ttyS0 구성 (첫 번째 직렬 포트 hello) hello 부팅 콘솔로 합니다. 이렇게 하면 커널 부팅 로그 디버깅에 사용할 수 있는 전송 toothe 직렬 포트를 합니다.
+* 디먼: waagent hello 플랫폼과 상호 작용을 데몬 toomanage로 실행 합니다. 이 인수는 hello waagent init 스크립트에 지정 된 toowaagent입니다.
 * start: waagent를 백그라운드 프로세스로 실행
 
 ## <a name="configuration"></a>구성
-구성 파일(/etc/waagent.conf)은 waagent의 동작을 제어합니다. 다음은 샘플 구성 파일입니다.
+구성 파일 (/ etc/waagent.conf) 컨트롤 hello waagent의 동작입니다. 다음은 샘플 구성 파일입니다.
 
     Provisioning.Enabled=y
     Provisioning.DeleteRootPassword=n
@@ -158,16 +158,16 @@ Linux 에이전트는 다음과 같은 일부 시스템 패키지가 있어야 �
     HttpProxy.Host=None
     HttpProxy.Port=None
 
-다양한 구성 옵션이 아래에 자세히 설명되어 있습니다. 구성 옵션으로 부울, 문자열 또는 정수의 세 가지 형식이 있습니다. 부울 구성 옵션은 "y" 또는 "n"으로 지정할 수 있습니다. 특수 키워드 "None"은 아래에 자세히 설명된 대로 일부 문자열 형식 구성 항목에 사용할 수 있습니다.
+hello 다양 한 구성 옵션은 아래에서 자세히 설명 합니다. 구성 옵션으로 부울, 문자열 또는 정수의 세 가지 형식이 있습니다. "y" 또는 "n"으로 hello 부울 구성 옵션을 지정할 수 있습니다. 안녕 특별 한 키워드 "None" 일부 문자열 형식 구성 항목에 설명 된 대로 아래에 사용할 수 있습니다.
 
 **Provisioning.Enabled:**  
 형식: Boolean  
 기본값: y
 
-이 옵션을 통해 사용자가 에이전트의 프로비전 기능을 사용하거나 사용하지 않도록 설정할 수 있습니다. 유효한 값은 "y" 또는 "n"입니다. 프로비전을 사용하지 않도록 설정한 경우 이미지의 SSH 호스트 및 사용자 키는 유지되며 Azure 프로비전 API에서 지정한 모든 구성은 무시됩니다.
+이 사용자 tooenable hello를 허용 하거나 hello hello 에이전트의 기능을 프로 비전을 사용 하지 않도록 설정 합니다. 유효한 값은 "y" 또는 "n"입니다. 프로 비전을 해제 하면 SSH 호스트 및 사용자 키 hello 이미지에는 유지 하 고 hello Azure 프로 비전 API에에서 지정 된 모든 구성 무시 됩니다.
 
 > [!NOTE]
-> 프로비전에 cloud-init를 사용하는 Ubuntu 클라우드 이미지에서 `Provisioning.Enabled` 매개 변수의 기본값은 "n"입니다.
+> hello `Provisioning.Enabled` 프로 비전에 대 한 클라우드 초기화를 사용 하는 클라우드 이미지와 Ubuntu 너무 "n" 매개 변수 기본값입니다.
 > 
 > 
 
@@ -175,27 +175,27 @@ Linux 에이전트는 다음과 같은 일부 시스템 패키지가 있어야 �
 형식: Boolean  
 기본값: n
 
-설정한 경우 /etc/shadow 파일의 루트 암호가 프로비전 프로세스 중 삭제됩니다.
+Hello/등/섀도 파일에 hello 루트 암호를 설정 하는 동안 지워진 경우 hello 프로 비전 프로세스입니다.
 
 **Provisioning.RegenerateSshHostKeyPair:**  
 형식: Boolean  
 기본값: y
 
-설정한 경우 모든 SSH 호스트 키 쌍(ecdsa, dsa 및 rsa)이 프로비전 프로세스 중 /etc/ssh/에서 삭제됩니다. 그리고 새로운 단일 키 쌍이 생성됩니다.
+집합에 모든 SSH 호스트 키 쌍 (예: ecdsa, dsa 및 rsa) 하는 동안 삭제 되 면 hello /etc/ssh/에서 프로 비전 프로세스입니다. 그리고 새로운 단일 키 쌍이 생성됩니다.
 
-새로운 키 쌍의 암호화 종류는 Provisioning.SshHostKeyPairType 항목으로 구성할 수 있습니다. 일부 배포에서는 SSH 디먼이 다시 시작될 때(예: 다시 부팅될 때) 누락된 모든 암호화 종류에 대해 SSH 키 쌍을 다시 만듭니다.
+hello 새로운 키 쌍에 대 한 암호화 유형 적용 hello가 hello Provisioning.SshHostKeyPairType 항목 구성할 수 있습니다. 일부 배포를 다시 만듭니다 누락 된 모든 암호화 종류에 대 한 SSH 키 쌍 (예: 다시 부팅) 시 hello SSH 디먼이 다시 시작 되 면 note 하십시오.
 
 **Provisioning.SshHostKeyPairType:**  
 형식: String  
 기본값: rsa
 
-이 옵션은 가상 컴퓨터의 SSH 디먼에서 지원하는 암호화 알고리즘 형식으로 설정할 수 있습니다. 일반적으로 지원되는 값은 "rsa", "dsa" 및 "ecdsa"입니다. Windows의 "putty.exe"는 "ecdsa"를 지원하지 않습니다. 따라서 Windows에서 putty.exe를 사용하여 Linux 배포에 연결하려는 경우 "rsa" 또는 "dsa"를 사용하세요.
+Tooan hello SSH 디먼이 hello 가상 컴퓨터에서 지원 되는 암호화 알고리즘 유형을 설정할 수 있습니다. 일반적으로 지원 되는 hello 값은 "rsa", "dsa" 및 "ecdsa"입니다. Windows의 "putty.exe"는 "ecdsa"를 지원하지 않습니다. 따라서 Windows tooconnect tooa Linux 배포에서 toouse putty.exe 하려는 경우에 사용 하십시오 "rsa" 또는 "dsa".
 
 **Provisioning.MonitorHostName:**  
 형식: Boolean  
 기본값: y
 
-설정한 경우 waagent가 Linux 가상 컴퓨터에서 호스트 이름("hostname" 명령에서 반환하는 이름)의 변경 여부를 모니터링하고, 이미지의 네트워킹 구성을 자동으로 업데이트하여 변경 내용을 반영합니다. DNS 서버로 이름 변경을 푸시하기 위해 가상 컴퓨터에서 네트워킹이 다시 시작됩니다. 이 때문에 인터넷 연결이 잠시 끊어집니다.
+집합 경우 waagent 됩니다 (hello "hostname" 명령에서 반환 된)을 호스트 이름 변경에 대 한 hello Linux 가상 컴퓨터를 모니터링할 고 hello 이미지 tooreflect hello 변경에서 네트워킹 구성 hello를 자동으로 업데이트 합니다. 순서 toopush hello 이름에서 toohello DNS 서버를 변경, 네트워킹 hello 가상 컴퓨터 다시 시작 됩니다. 이 때문에 인터넷 연결이 잠시 끊어집니다.
 
 **Provisioning.DecodeCustomData**  
 형식: Boolean  
@@ -229,80 +229,80 @@ Linux 에이전트는 다음과 같은 일부 시스템 패키지가 있어야 �
 형식: Boolean  
 기본값: y
 
-설정한 경우 "ResourceDisk.Filesystem"에서 사용자가 요청한 파일 시스템 유형이 "ntfs" 이외의 유형이면 플랫폼에서 제공한 리소스 디스크가 waagent로 포맷되어 탑재됩니다. 단일 Linux 파티션 유형(83)을 디스크에서 사용할 수 있습니다. 이 파티션이 탑재될 수 있는 경우에는 포맷되지 않습니다.
+설정, hello 플랫폼에서 제공 하는 hello 리소스 디스크 포맷 하 고 됩니다 "ResourceDisk.Filesystem"에서 hello 사용자가 요청한 hello 파일 시스템 형식 "ntfs" 이외의 값 이면 waagent을 통해 탑재 된 합니다. Linux (83) 형식의 단일 파티션은 사용 가능 하 게 hello 디스크에 있습니다. 이 파티션이 탑재될 수 있는 경우에는 포맷되지 않습니다.
 
 **ResourceDisk.Filesystem:**  
 형식: String  
 기본값: ext4
 
-이 옵션은 리소스 디스크의 파일 시스템 유형을 지정합니다. 지원되는 값은 Linux 배포에 따라 달라집니다. 문자열이 X이면 mkfs.X가 Linux 이미지에 표시됩니다. 일반적으로 SLES 11 이미지는 'ext3'을 사용해야 합니다. 여기에서 FreeBSD 이미지는 'ufs2'를 사용해야 합니다.
+Hello 리소스 디스크에 대 한 hello 파일 시스템 형식을 지정합니다. 지원되는 값은 Linux 배포에 따라 달라집니다. Hello 문자열 X, 다음 mkfs 경우. X는 hello Linux 이미지에 존재 해야 합니다. 일반적으로 SLES 11 이미지는 'ext3'을 사용해야 합니다. 여기에서 FreeBSD 이미지는 'ufs2'를 사용해야 합니다.
 
 **ResourceDisk.MountPoint:**  
 형식: String  
 기본값: /mnt/resource 
 
-이 옵션은 리소스 디스크가 탑재되는 경로를 지정합니다. 리소스 디스크는 *임시* 디스크이며 VM의 프로비전을 해제할 때 비워질 수 있습니다.
+Hello 리소스 디스크 탑재 hello 경로 지정 합니다. 해당 하는 hello 리소스 디스크는 한 *임시* , 디스크 및 hello VM 프로 비전 해제 된 경우 비울 수 있습니다.
 
 **ResourceDisk.MountOptions**  
 형식: String  
 기본값: 없음
 
-mount -o 명령에 전달될 디스크 탑재 옵션을 지정합니다. 쉼표로 구분된 값 목록입니다(예: 'nodev,nosuid'). 자세한 내용은 mount(8)를 참조하세요.
+디스크 탑재 옵션 전달 toobe toohello 탑재-o 명령을 지정합니다. 쉼표로 구분된 값 목록입니다(예: 'nodev,nosuid'). 자세한 내용은 mount(8)를 참조하세요.
 
 **ResourceDisk.EnableSwap:**  
 형식: Boolean  
 기본값: n
 
-설정한 경우 스왑 파일(/swapfile)이 리소스 디스크에 만들어져서 시스템 스왑 공간에 추가됩니다.
+경우 설정, 스왑 파일 (/ 스왑 파일) hello 리소스 디스크에 생성 되 고 toohello 시스템 스왑 공간을 추가 합니다.
 
 **ResourceDisk.SwapSizeMB:**  
 형식: Integer  
 기본값: 0
 
-스왑 파일의 크기(MB)입니다.
+hello 크기 (메가바이트)에서 hello 스왑 파일입니다.
 
 **Logs.Verbose:**  
 형식: Boolean  
 기본값: n
 
-설정한 경우 로그에 대한 세부 정보 표시가 향상됩니다. Waagent가 /var/log/waagent.log에 로깅하고 시스템 logrotate 기능을 활용하여 로그를 순환시킵니다.
+설정한 경우 로그에 대한 세부 정보 표시가 향상됩니다. Waagent은 too/var/log/waagent.log를 로그 및 hello 시스템 logrotate 기능 toorotate 로그를 활용 합니다.
 
 **OS.EnableRDMA**  
 형식: Boolean  
 기본값: n
 
-설정되면 에이전트는 기본 하드웨어의 펌웨어 버전과 일치하는 RDMA 커널 드라이버를 로드한 후 설치하려고 합니다.
+설정, hello 에이전트는 시도 tooinstall 하 고 다음 기반 하드웨어 hello hello 펌웨어 hello 버전과 일치 하는 RDMA 커널 드라이버를 로드 합니다.
 
 **OS.RootDeviceScsiTimeout:**  
 형식: Integer  
 기본값: 300
 
-이 옵션은 OS 디스크 및 데이터 드라이브에서 SCSI 시간 제한을 초 단위로 구성합니다. 설정하지 않은 경우 시스템 기본값이 사용됩니다.
+Hello SCSI 제한 시간 (초) hello OS 디스크 및 데이터 드라이브에서 구성 됩니다. 설정 하지 않으면 hello 시스템 기본값이 사용 됩니다.
 
 **OS.OpensslPath:**  
 형식: String  
 기본값: 없음
 
-이 옵션은 openssl 이진의 대체 경로를 지정하는 데 사용하여 암호화 작업에 사용할 수 있습니다.
+이 사용 되는 toospecify 암호화 작업에 대 한 openssl 이진 toouse hello에 대 한 대체 경로 수 있습니다.
 
 **HttpProxy.Host, HttpProxy.Port**  
 형식: String  
 기본값: 없음
 
-설정되면 에이전트는 이 프록시 서버를 사용하여 인터넷에 액세스합니다. 
+설정 하면, hello 에이전트는 사용이 프록시 서버 tooaccess hello 인터넷 합니다. 
 
 ## <a name="ubuntu-cloud-images"></a>Ubuntu 클라우드 이미지
-Ubuntu 클라우드 이미지는 [cloud-init](https://launchpad.net/ubuntu/+source/cloud-init) 을 사용하여 Azure Linux 에이전트에 서 관리되는 여러 구성 작업을 수행할 수 있습니다.  다음과 같은 차이점에 유의하세요.
+Ubuntu 클라우드 이미지를 활용 하는 참고 [클라우드 init](https://launchpad.net/ubuntu/+source/cloud-init) tooperform 그렇지 않으면으로 하 여 관리할 수 있는 많은 구성 작업 hello Azure Linux 에이전트입니다.  다음 차이점 hello를 note 하십시오.
 
-* **Provisioning.Enabled** 프로비전 작업을 수행하기 위해 cloud-init을 사용하는 Ubuntu 클라우드 이미지에서 기본값은 "n"입니다.
-* 다음 구성 매개 변수는 cloud-init을 사용하여 리소스 디스크와 swap 공간을 관리하는 Ubuntu 클라우드 이미지에 적용되지 않습니다.
+* **Provisioning.Enabled** Ubuntu 클라우드 이미지와 클라우드 init tooperform 작업 프로 비전을 사용 하는 "n" 너무 기본값입니다.
+* 구성 매개 변수 뒤 hello 클라우드 init는 toomanage hello 리소스 디스크 및 스왑 공간을 사용 하는 Ubuntu 클라우드 이미지에 영향을 미치지:
   
   * **ResourceDisk.Format**
   * **ResourceDisk.Filesystem**
   * **ResourceDisk.MountPoint**
   * **ResourceDisk.EnableSwap**
   * **ResourceDisk.SwapSizeMB**
-* 프로비전 중 Ubuntu 클라우드 이미지에서 리소스 디스크 탑재 지점 및 swap 공간을 구성하려면 다음 리소스를 참조하세요.
+* 프로 비전 시 스왑 Ubuntu 클라우드 이미지에는 공간 및 hello 리소스 tooconfigure hello 리소스 디스크 탑재 지점를 참조 하십시오.
   
   * [Ubuntu Wiki: Swap 파티션 구성](http://go.microsoft.com/fwlink/?LinkID=532955&clcid=0x409)
   * [Azure 가상 컴퓨터에 사용자 지정 데이터 삽입](../windows/classic/inject-custom-data.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)

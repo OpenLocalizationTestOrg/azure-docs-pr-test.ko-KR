@@ -1,6 +1,6 @@
 ---
-title: "Windows Azure VM에 대한 네트워크 인터페이스를 다시 설정하는 방법 | Microsoft Docs"
-description: "Windows Azure VM에 대한 네트워크 인터페이스를 다시 설정하는 방법을 보여 줍니다."
+title: "Windows Azure VM에 대 한 aaaHow tooreset 네트워크 인터페이스 | Microsoft Docs"
+description: "Tooreset Azure Windows VM에 대 한 인터페이스에 네트워크 하는 방법을 보여 줍니다."
 services: virtual-machines-windows, azure-resource-manager
 documentationcenter: 
 author: genlin
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/26/2017
 ms.author: genli
-ms.openlocfilehash: 220e426be20086841854d89831f6c9d67529867f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1b653820927ef4c3bb8f384a7e752846a8be3da9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-reset-network-interface-for-azure-windows-vm"></a>Windows Azure VM에 대한 네트워크 인터페이스를 다시 설정하는 방법 
+# <a name="how-tooreset-network-interface-for-azure-windows-vm"></a>Tooreset은 Azure Windows VM에 대 한 인터페이스에 네트워크 하는 방법 
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-기본 NIC(네트워크 인터페이스)를 사용하지 않도록 설정하거나 NIC에 대한 고정 IP를 수동으로 설정한 후에는 Microsoft Azure Windows VM(Virtual Machine)에 연결할 수 없습니다. 이 문서에서는 원격 연결 문제를 해결하기 위해 Azure Windows VM에 대한 네트워크 인터페이스를 다시 설정하는 방법을 보여 줍니다.
+Hello 기본 NIC (네트워크 인터페이스)를 사용 하지 않도록 설정한 후에 tooMicrosoft Azure Windows 가상 컴퓨터 (VM)를 연결할 수 없거나 수동으로 NIC. hello에 대 한 고정 IP 설정 이 문서에서는 tooreset hello 원격 연결 문제를 해결할 수 있는 Azure Windows VM에 대 한 네트워크 인터페이스에 hello 하는 방법을 보여 줍니다.
 
 [!INCLUDE [support-disclaimer](../../../includes/support-disclaimer.md)]
 ## <a name="reset-network-interface"></a>네트워크 인터페이스 다시 설정
 
 ### <a name="for-classic-vms"></a>클래식 VM
 
-네트워크 인터페이스를 다시 설정하려면 다음 단계를 따르세요.
+tooreset 네트워크 인터페이스를 다음이 단계를 수행 합니다.
 
-1.  [Azure 포털]( https://ms.portal.azure.com)로 이동합니다.
+1.  Toohello 이동 [Azure 포털]( https://ms.portal.azure.com)합니다.
 2.  **Virtual Machines(클래식)**를 선택합니다.
-3.  영향을 받는 가상 컴퓨터를 선택합니다.
+3.  가상 컴퓨터 선택 hello에 영향이 있습니다.
 4.  **IP 주소**를 선택합니다.
-5.  **개인 IP 할당**이 **정적**이 아닌 경우 **정적**으로 변경합니다.
-6.  **IP 주소**를 서브넷에서 사용할 수 있는 다른 IP 주소로 변경합니다.
+5.  경우 hello **개인 IP 할당** 않습니다 **정적**도 변경**정적**합니다.
+6.  변경 hello **IP 주소** hello 서브넷에서에서 사용할 수 있는 tooanother IP 주소입니다.
 7.  [저장]을 선택합니다.
-8.  가상 컴퓨터를 다시 시작하여 시스템에 대한 새 NIC를 초기화합니다.
-9.  컴퓨터에 RDP를 시도합니다. 성공할 경우 개인 IP 주소를 원래대로 변경할 수 있습니다(원하는 경우). 그렇지 않은 경우 현재 상태를 유지할 수 있습니다. 
+8.  가상 컴퓨터 hello tooinitialize hello 새 NIC toohello 시스템 다시 시작 됩니다.
+9.  TooRDP tooyour 컴퓨터를 시도 하십시오. 성공 하면 원하는 경우 개인 IP 주소 다시 toohello 원래 hello를 변경할 수 있습니다. 그렇지 않은 경우 현재 상태를 유지할 수 있습니다. 
 
 ### <a name="for-vms-deployed-in-resource-group-model"></a>리소스 그룹 모델에서 배포된 VM의 경우
 
-1.  [Azure 포털]( https://ms.portal.azure.com)로 이동합니다.
-2.  영향을 받는 가상 컴퓨터를 선택합니다.
+1.  Toohello 이동 [Azure 포털]( https://ms.portal.azure.com)합니다.
+2.  가상 컴퓨터 선택 hello에 영향이 있습니다.
 3.  **네트워크 인터페이스**를 선택합니다.
-4.  컴퓨터와 연결된 네트워크 인터페이스를 선택합니다.
+4.  Hello 컴퓨터와 연결 된 네트워크 인터페이스를 선택 합니다.
 5.  **IP 구성**을 선택합니다.
-6.  IP를 선택 합니다. 
-7.  **개인 IP 할당**이 **정적**이 아닌 경우 **정적**으로 변경합니다.
-8.  **IP 주소**를 서브넷에서 사용할 수 있는 다른 IP 주소로 변경합니다.
-9. 가상 컴퓨터를 다시 시작하여 시스템에 대한 새 NIC를 초기화합니다.
-10. 컴퓨터에 RDP를 시도합니다. 성공할 경우 개인 IP 주소를 원래대로 변경할 수 있습니다(원하는 경우). 그렇지 않은 경우 현재 상태를 유지할 수 있습니다. 
+6.  Hello IP를 선택 합니다. 
+7.  경우 hello **개인 IP 할당** 않습니다 **정적**도 변경**정적**합니다.
+8.  변경 hello **IP 주소** hello 서브넷에서에서 사용할 수 있는 tooanother IP 주소입니다.
+9. 가상 컴퓨터 hello tooinitialize hello 새 NIC toohello 시스템 다시 시작 됩니다.
+10. TooRDP tooyour 컴퓨터를 시도 하십시오. 성공 하면 원하는 경우 개인 IP 주소 다시 toohello 원래 hello를 변경할 수 있습니다. 그렇지 않은 경우 현재 상태를 유지할 수 있습니다. 
 
-## <a name="delete-the-unavailable-nics"></a>사용할 수 없는 NIC를 삭제합니다.
-컴퓨터에 원격 데스크톱을 수행한 후 잠재적인 문제를 방지하기 위해 이전 NIC를 삭제해야 합니다.
+## <a name="delete-hello-unavailable-nics"></a>삭제 hello 사용할 수 없는 Nic
+원격 데스크톱 toohello 컴퓨터 수 후에 hello 이전 Nic tooavoid hello 잠재적인 문제를 삭제 해야 합니다.
 
 1.  장치 관리자를 엽니다.
 2.  **보기** > **숨겨진 장치 표시**를 선택합니다.
 3.  **네트워크 어댑터**를 선택합니다. 
-4.  “Microsoft Hyper-V 네트워크 어댑터”로 명명된 어댑터를 확인합니다.
-5.  사용할 수 없는 어댑터는 회색으로 표시된 것을 볼 수 있습니다. 어댑터를 마우스 오른쪽 단추로 클릭하고 [제거]를 선택합니다.
+4.  "Microsoft Hyper-v 네트워크 어댑터"로 지정 하는 hello 어댑터를 확인 합니다.
+5.  사용할 수 없는 어댑터는 회색으로 표시된 것을 볼 수 있습니다. Hello 어댑터를 마우스 오른쪽 단추로 클릭 하 고 제거를 선택 합니다.
 
-    ![NIC 이미지](media/reset-network-interface/nicpage.png)
+    ![hello NIC의 hello 이미지](media/reset-network-interface/nicpage.png)
 
     > [!NOTE]
-    > 이름이 “Microsoft Hyper-V 네트워크 어댑터”이고 사용할 수 없는 어댑터만 제거합니다. 다른 숨겨진 어댑터를 제거하는 경우 추가 문제를 일으킬 수 있습니다.
+    > 만 hello 이름이 "Microsoft Hyper-v 네트워크 어댑터" hello 사용할 수 없는 어댑터를 제거 합니다. Hello의 숨겨진된 그 밖의 어댑터를 제거 하는 경우 추가 문제를 일으킬 수 있습니다.
     >
     >
 

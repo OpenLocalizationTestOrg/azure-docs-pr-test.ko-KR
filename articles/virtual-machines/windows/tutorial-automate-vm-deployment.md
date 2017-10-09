@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Windows VM 사용자 지정 | Microsoft Docs"
-description: "사용자 지정 스크립트 확장 및 Key Vault를 사용하여 Azure에서 Windows VM을 사용자 지정하는 방법에 대해 알아봅니다."
+title: "Azure에서 Windows VM aaaCustomize | Microsoft Docs"
+description: "사용자 지정 스크립트 확장 하 고 Windows Vm에 Azure 키 자격 증명 모음 toocustomize toouse hello 하는 방법에 대해 알아봅니다"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -16,45 +16,45 @@ ms.workload: infrastructure
 ms.date: 08/11/2017
 ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 3be58bf8afbcff018b2b0d69a0e08c2c9ab1fca7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c03b2bb6d70875134c63ea2fe4c2e2c1777c2188
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-customize-a-windows-virtual-machine-in-azure"></a>Azure에서 Windows 가상 컴퓨터를 사용자 지정하는 방법
-신속하고 일관된 방식으로 VM(Virtual Machines)을 구성하려면 일반적으로 자동화 양식이 필요합니다. Windows VM을 사용자 지정하는 일반적인 방법은 [Windows용 사용자 지정 스크립트 확장](extensions-customscript.md)을 사용하는 것입니다. 이 자습서에서는 다음 방법에 대해 알아봅니다.
+# <a name="how-toocustomize-a-windows-virtual-machine-in-azure"></a>어떻게 toocustomize Azure에서 Windows 가상 컴퓨터
+가상 컴퓨터 (Vm)는 신속 하 고 일관 된 방식으로 자동화 tooconfigure 방법이 일반적으로 필요 합니다. 일반적인 접근 방식을 toocustomize Windows VM은 toouse [Windows에 대 한 사용자 지정 스크립트 확장](extensions-customscript.md)합니다. 이 자습서에서는 다음 방법에 대해 알아봅니다.
 
 > [!div class="checklist"]
-> * 사용자 지정 스크립트 확장을 사용하여 IIS 설치
-> * 사용자 지정 스크립트 확장을 사용하는 VM 만들기
-> * 확장이 적용된 후 실행 중인 IIS 사이트 보기
+> * Hello 사용자 지정 스크립트 확장 tooinstall IIS를 사용 하 여
+> * Hello 사용자 지정 스크립트 확장을 사용 하는 VM 만들기
+> * Hello 확장이 적용 된 후 실행 중인 IIS 사이트를 보려면
 
-이 자습서에는 Azure PowerShell 모듈 버전 3.6 이상이 필요합니다. ` Get-Module -ListAvailable AzureRM`을 실행하여 버전을 찾습니다. 업그레이드해야 하는 경우 [Azure PowerShell 모듈 설치](/powershell/azure/install-azurerm-ps)를 참조하세요.
+이 자습서는 Azure PowerShell 모듈 버전 3.6 이상 hello가 필요합니다. 실행 ` Get-Module -ListAvailable AzureRM` toofind hello 버전입니다. Tooupgrade 필요한 경우 참조 [Azure PowerShell 설치 모듈](/powershell/azure/install-azurerm-ps)합니다.
 
 
 ## <a name="custom-script-extension-overview"></a>사용자 지정 스크립트 확장 개요
-사용자 지정 스크립트 확장은 Azure VM에서 스크립트를 다운로드하고 실행합니다. 이 확장은 배포 후 구성, 소프트웨어 설치 또는 기타 구성/관리 작업에 유용합니다. 스크립트를 Azure Storage 또는 GitHub에서 다운로드하거나 확장 런타임에서 Azure Portal에 제공할 수 있습니다.
+사용자 지정 스크립트 확장 hello 다운로드 하 고 Azure Vm에서 스크립트를 실행 합니다. 이 확장은 배포 후 구성, 소프트웨어 설치 또는 기타 구성/관리 작업에 유용합니다. 스크립트는 Azure 저장소 또는 GitHub에서 다운로드 또는 toohello Azure 포털 확장 실행 시간에 제공 수 있습니다.
 
-사용자 지정 스크립트 확장은 Azure Resource Manager 템플릿과 통합되고, Azure CLI, PowerShell, Azure Portal 또는 Azure 가상 컴퓨터 REST API를 사용하여 실행할 수도 있습니다.
+사용자 지정 스크립트 확장 hello Azure 리소스 관리자 템플릿 뿐 아니라 통합 하 고 hello Azure CLI, PowerShell, Azure 포털 또는 hello Azure 가상 컴퓨터 REST API를 사용 하 여 실행할 수도 있습니다.
 
-Windows VM 및 Linux VM 둘 다에 사용자 지정 스크립트 확장을 사용할 수 있습니다.
+Windows와 Linux Vm의 경우와 hello 사용자 지정 스크립트 확장을 사용할 수 있습니다.
 
 
 ## <a name="create-virtual-machine"></a>가상 컴퓨터 만들기
-VM을 만들려면 먼저 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup)을 사용하여 리소스 그룹을 만듭니다. 다음 예제에서는 *EastUS* 위치에 *myResourceGroupAutomate*라는 리소스 그룹을 만듭니다.
+VM을 만들려면 먼저 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup)을 사용하여 리소스 그룹을 만듭니다. hello 다음 예제에서는 명명 된 리소스 그룹 *myResourceGroupAutomate* hello에 *EastUS* 위치:
 
 ```powershell
 New-AzureRmResourceGroup -ResourceGroupName myResourceGroupAutomate -Location EastUS
 ```
 
-[Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential)을 사용하여 VM의 관리자 사용자 이름과 암호를 설정합니다.
+된 hello Vm에 대 한 관리자 사용자 이름 및 암호 설정 [Get-credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential):
 
 ```powershell
 $cred = Get-Credential
 ```
 
-이제 [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm)을 사용하여 VM을 만들 수 있습니다. 다음 예제에서는 필요한 가상 네트워크 구성 요소, OS 구성을 만든 다음 *myVM*이라는 VM을 만듭니다.
+이제 만들 수 있는 VM hello [새로 AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm)합니다. hello 다음 예제에서는 운영 체제 hello 구성 hello 필요한 가상 네트워크 구성 요소를 만든 다음 만듭니다 라는 VM *myVM*:
 
 ```powershell
 # Create a subnet configuration
@@ -128,11 +128,11 @@ Add-AzureRmVMNetworkInterface -Id $nic.Id
 New-AzureRmVM -ResourceGroupName myResourceGroupAutomate -Location EastUS -VM $vmConfig
 ```
 
-리소스 및 VM을 만드는 데 몇 분 정도 걸립니다.
+Hello 리소스와 VM toobe 생성에 대 한 몇 가지 분 걸립니다.
 
 
 ## <a name="automate-iis-install"></a>IIS 설치 자동화
-[Set-AzureRmVMExtension](/powershell/module/azurerm.compute/set-azurermvmextension)을 사용하여 사용자 지정 스크립트 확장을 설치합니다. 확장은 `powershell Add-WindowsFeature Web-Server`를 실행하여 IIS 웹 서버를 설치한 다음 *Default.htm* 페이지를 업데이트하여 VM의 호스트 이름을 표시합니다.
+사용 하 여 [집합 AzureRmVMExtension](/powershell/module/azurerm.compute/set-azurermvmextension) tooinstall hello 사용자 지정 스크립트 확장 합니다. 확장 실행 hello `powershell Add-WindowsFeature Web-Server` IIS 웹 서버 및 업데이트 hello tooinstall hello *Default.htm* hello VM의 페이지 tooshow hello 호스트 이름:
 
 ```powershell
 Set-AzureRmVMExtension -ResourceGroupName myResourceGroupAutomate `
@@ -147,7 +147,7 @@ Set-AzureRmVMExtension -ResourceGroupName myResourceGroupAutomate `
 
 
 ## <a name="test-web-site"></a>웹 사이트 테스트
-[Get-AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress)를 사용하여 부하 분산 장치의 공용 IP 주소를 가져옵니다. 다음 예제에서는 앞서 만든 *myPublicIP*의 IP 주소를 가져옵니다.
+Hello 있는 부하 분산 장치 프로그램의 공용 IP 주소 가져오기 [Get AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress)합니다. hello 다음 예제에서는 가져옵니다 hello IP 주소를 *myPublicIP* 앞에서 만든:
 
 ```powershell
 Get-AzureRmPublicIPAddress `
@@ -155,21 +155,21 @@ Get-AzureRmPublicIPAddress `
     -Name myPublicIP | select IpAddress
 ```
 
-그런 다음 웹 브라우저에 공용 IP 주소를 입력할 수 있습니다. 다음 예제와 같이 부하 분산 장치가 트래픽을 분산한 VM의 호스트 이름을 포함하여 웹 사이트가 표시됩니다.
+그런 다음 tooa 웹 브라우저에서 hello 공용 IP 주소를 입력할 수 있습니다. hello 웹 사이트가 표시 되어, hello VM의 hello 호스트 이름을 포함 하 여 해당 hello 부하 분산 장치는 hello 다음 예제에서에서 트래픽 tooas 분산:
 
 ![실행 중인 IIS 웹 사이트](./media/tutorial-automate-vm-deployment/running-iis-website.png)
 
 
 ## <a name="next-steps"></a>다음 단계
 
-이 자습서에서는 VM에서 IIS 설치를 자동화합니다. 다음 방법에 대해 알아보았습니다.
+이 자습서에서는 VM에 IIS를 설치 하는 hello를 자동화 있습니다. 다음 방법에 대해 알아보았습니다.
 
 > [!div class="checklist"]
-> * 사용자 지정 스크립트 확장을 사용하여 IIS 설치
-> * 사용자 지정 스크립트 확장을 사용하는 VM 만들기
-> * 확장이 적용된 후 실행 중인 IIS 사이트 보기
+> * Hello 사용자 지정 스크립트 확장 tooinstall IIS를 사용 하 여
+> * Hello 사용자 지정 스크립트 확장을 사용 하는 VM 만들기
+> * Hello 확장이 적용 된 후 실행 중인 IIS 사이트를 보려면
 
-사용자 지정 VM 이미지를 만드는 방법에 대해 알아보려면 다음 자습서로 이동합니다.
+다음 자습서 toolearn toohello 어떻게 발전 toocreate 사용자 지정 VM 이미지입니다.
 
 > [!div class="nextstepaction"]
 > [사용자 지정 VM 이미지 만들기](./tutorial-custom-images.md)

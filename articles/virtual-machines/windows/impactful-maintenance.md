@@ -1,5 +1,5 @@
 ---
-title: "Azure에서 강력한 Windows VM 유지 관리 | Microsoft Docs"
+title: "Azure의 Windows Vm에 대 한 유지 관리 aaaImpactful | Microsoft Docs"
 description: "Windows 가상 컴퓨터를 강력하게 유지 관리합니다."
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,101 +15,101 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/27/2017
 ms.author: zivr
-ms.openlocfilehash: 75cd4d567deb98e5d2498dc607b43dae483f1c94
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 98afaea0fdca796177e075b33615b03f1e7a0fdc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="impactful-maintenance-for-virtual-machines"></a>강력한 가상 컴퓨터 유지 관리
 
-기본 인프라에 대한 계획된 유지 관리로 인해 VM이 다시 부팅되는 경우는 거의 없습니다. Azure에서 호스팅되는 VM의 가용성에 큰 영향을 미치기 때문에 다음 방법을 사용할 수 있습니다.
+Vm에 기본 인프라 tooplanned 유지 관리 toohello 인해 다시 부팅 되는 몇 가지 경우가 있습니다. Azure에서 호스트 Vm의 가용성을 주의깊게 toothe 되 고, hello 다음 toouse 있습니다 수 이제 있습니다.
 
--   영향을 미치기 최소 30일 전에 전송되는 알림.
+-   알림이는 hello 영향 전에 30 일 이내에 전송 합니다.
 
--   VM당 유지 관리 기간에 대한 정보.
+-   각 VM 당 가시성 toohello 유지 관리 기간입니다.
 
--   유지 관리가 VM에 영향을 미치는 정확한 시간을 유연하게 설정 및 제어.
+-   유연성 및 hello 정확한 시간에 Vm에 영향을 주는 유지 관리에 대 한 설정에서 제어 합니다.
 
-Microsoft Azure의 유지 관리는 반복적으로 예약됩니다. 초기 반복에서는 새로운 픽스와 기능을 롤아웃하는 데 관련된 위험을 줄이기 위해 범위가 더 작습니다. 이후 반복은 여러 지역으로 확장될 수 있습니다(결코 동일한 지역 쌍에서 확장되지 않음). VM은 단일 유지 관리 반복에 포함됩니다. 반복이 중단되면 나머지 VM은 미래의 다른 반복에 포함됩니다.
+Microsoft Azure의 유지 관리는 반복적으로 예약됩니다. 초기 반복 순서 tooreduce hello 위험 출시 된 새로운 수정 및 기능에 관련 된 작은 범위가 있습니다. 후기 반복에서 구현 여러 영역에 걸쳐 있을 수 있습니다 (되지 hello에서에서 동일한 지역 쌍). VM은 단일 유지 관리 반복에 포함됩니다. 반복이 중단되면 나머지 VM은 미래의 다른 반복에 포함됩니다.
 
-계획된 유지 관리 반복에는 두 단계, 즉 선점형 유지 관리 기간과 예약된 유지 관리 기간이 있습니다.
+hello 계획 된 유지 관리 반복은 두 단계: Pre-emptive 유지 관리 기간 및 예약 된 유지 관리 기간.
 
-**선점형 유지 관리 기간**은 VM에서 유지 관리를 시작할 수 있는 유연성을 제공합니다. 이렇게 하면 VM에 영향을 미치는 시기, 업데이트 순서 및 각 VM을 유지 관리하는 간격을 결정할 수 있습니다. 각 VM을 쿼리하여 유지 관리하도록 계획되어 있는지 확인하고 마지막으로 시작한 유지 관리 요청의 결과를 확인할 수 있습니다.
+hello **Pre-emptive 유지 관리 기간** Vm에 대 한 hello 유연성 tooinitiate hello 관리를 제공 합니다. 이러한 작업을 통해 Vm에는 영향을 확인, 시퀀스 hello 업데이트와 유지 되 고 각 VM 간의 hello 시간 hello 수 있습니다. 각 VM toosee 유지 관리에 대 한 계획 되어 있는지 여부를 쿼리하고 수 마지막 요청이 시작 된 유지 관리의 hello 결과 확인 합니다.
 
-**예약된 유지 관리 기간**은 Azure에서 VM을 유지 관리하도록 예약한 시간입니다. 선점형 유지 관리 기간 뒤에 오는 이 기간 동안 유지 관리 기간을 계속 쿼리할 수 있지만, 더 이상 유지 관리를 오케스트레이션할 수 없습니다.
+hello **예약 된 유지 관리 기간** 때 Azure hello 유지 관리를 위해 Vm에 예약 했습니다. 다음에 나오는 선점형 유지 관리 기간을이 기간 동안 hello 유지 관리 기간을 쿼리할 수 있지만 더 이상 수 tooorchestrate hello 유지 관리 될 키를 누릅니다.
 
 ## <a name="availability-considerations-during-planned-maintenance"></a>계획된 유지 관리 동안의 가용성 고려 사항 
 
 ### <a name="paired-regions"></a>쌍을 이루는 지역
 
-각 Azure 지역은 동일한 지리적 위치 내의 다른 지역과 쌍을 이루어 함께 지역 쌍을 만듭니다. 유지 관리를 실행할 때 Azure는 단일 지역의 해당 쌍이 되는 가상 컴퓨터 인스턴스만 업데이트합니다. 예를 들어 미국 중북부에 있는 가상 컴퓨터를 업데이트할 때 Azure는 미국 중남부의 가상 컴퓨터를 동시에 업데이트하지 않습니다. 이는 별도의 다른 시간에 예약하여 지역 간의 장애 조치(failover) 또는 부하 분산을 사용하도록 설정합니다. 그러나 북유럽 등의 다른 지역은 미국 동부와 동시에 유지 관리될 수 있습니다.
+각 Azure 영역의 다른 영역 hello 내와 쌍을 이루는 동일한 지역, 지역 쌍을 함께 수행 합니다. 유지 관리를 실행할 때 Azure는 해당 쌍의 단일 영역에 가상 컴퓨터 인스턴스 hello만 업데이트 됩니다. 예를 들어 hello 북 중미의 가상 컴퓨터를 업데이트할 때 Azure 업데이트 되지 것입니다: 미국 중남부에서 모든 가상 컴퓨터 hello에서 같은 시간입니다. 이는 별도의 다른 시간에 예약하여 지역 간의 장애 조치(failover) 또는 부하 분산을 사용하도록 설정합니다. 그러나 다른 영역에서 유지 관리 유럽 북부 수와 같은 hello 동일 미국 동부로 시간입니다.
 [Azure 지역 쌍](https://docs.microsoft.com/azure/best-practices-availability-paired-regions)에 대해 자세히 알아보세요.
 
 ### <a name="single-instance-vms-vs-availability-set-or-vm-scale-set"></a>단일 인스턴스 Vm vs입니다. 가용성 집합 또는 VM 크기 집합
 
-Azure에서 가상 컴퓨터를 사용하여 워크로드를 배포할 때 응용 프로그램에 고가용성을 제공하기 위해 가용성 집합 내에 VM을 만들 수 있습니다. 이 구성을 통해 가동 중단 또는 유지 관리 이벤트 중에도 하나 이상의 가상 컴퓨터를 사용할 수 있습니다.
+Azure에서 가상 컴퓨터를 사용 하 여 작업을 배포할 때는 Vm hello 가용성 집합 순서 tooprovide 고가용성 tooyour 응용 프로그램 내에서 만들 수 있습니다. 이 구성을 통해 가동 중단 또는 유지 관리 이벤트 중에도 하나 이상의 가상 컴퓨터를 사용할 수 있습니다.
 
-가용성 집합 내에서 개별 VM은 최대 20개의 업데이트 도메인에 걸쳐 분산됩니다. 계획된 유지 관리 동안에는 단일 업데이트 도메인만 지정된 시간에 영향을 받습니다. 영향을 받는 업데이트 도메인의 순서는 계획된 유지 관리 동안 순차적으로 진행되지 않을 수 있습니다. 단일 인스턴스 VM(가용성 집합의 일부가 아님)의 경우 얼마나 많은 VM이 함께 영향을 받는지 예측하거나 결정할 수 있는 방법이 없습니다.
+가용성 집합 내에서 개별 Vm too20 업데이트 도메인을 분산 됩니다. 계획된 유지 관리 동안에는 단일 업데이트 도메인만 지정된 시간에 영향을 받습니다. 계획 된 유지 관리 하는 동안 영향 받고 업데이트 도메인의 hello 순서 순차적으로 진행 되지 않을 수 있습니다. 단일 인스턴스 Vm (가용성 집합의 일부가 아님), 즉 다음 없는 방식으로 toopredict 하거나와 함께 Vm 수는 영향을 확인 합니다.
 
-가상 컴퓨터 확장 집합은 동일한 VM 집합을 단일 리소스로 배포하고 관리할 수 있게 하는 Azure 계산 리소스입니다.
-확장 집합은 업데이트 도메인의 형태로 가용성 집합에 유사한 보증을 제공합니다. 
+가상 컴퓨터 크기 집합 toodeploy 하는 Azure 계산 리소스를 사용 하면 되 고 단일 리소스로 동일한 Vm 집합이 관리 합니다.
+hello 크기 집합 비슷한 보장 tooan 가용성 업데이트 도메인의 형태로 집합을 제공 합니다. 
 
-고가용성을 위해 가상 컴퓨터를 구성하는 방법에 대한 자세한 내용은 [*Windows 가상 컴퓨터의 가용성 관리*](../linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 참조하세요.
+고가용성을 위해 가상 컴퓨터를 구성 하는 방법에 대 한 자세한 내용은 참조 [ *Windows 가상 컴퓨터의 가용성을 hello 관리*](../linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.
 
 ### <a name="scheduled-events"></a>예약된 이벤트
 
-Azure Metadata Service를 사용하면 Azure에서 호스팅되는 Virtual Machine에 대한 정보를 검색할 수 있습니다. 공개된 범주 중 하나인 Scheduled Events는 예정된 이벤트(예: 다시 부팅)에 대한 정보를 나타내므로 응용 프로그램에서 이벤트를 준비하고 중단을 제한할 수 있습니다.
+메타 데이터 서비스를 azure 가상 컴퓨터가 Azure에서 호스트에 대 한 정보를 toodiscover 있습니다. 예약 된 이벤트가 예정 된 이벤트에 대 한 화면 정보 노출 hello 범주 중 하나 (예를 들어 다시 부팅) 응용 프로그램을 준비 하 고 제한할 수 있도록 중단 합니다.
 
-예약된 이벤트에 대한 자세한 내용은 [Azure 메타데이터 서비스 - 예약된 이벤트](../virtual-machines-scheduled-events.md)를 참조하세요.
+예약 된 이벤트에 대 한 자세한 내용은 참조 너무[Azure 메타 데이터 서비스-예약 된 이벤트](../virtual-machines-scheduled-events.md)합니다.
 
 ## <a name="maintenance-discovery-and-notifications"></a>유지 관리 검색 및 알림
 
-유지 관리 일정은 개별 VM 수준에서 고객에게 표시됩니다. Azure Portal, API, PowerShell 또는 CLI를 사용하여 선점형 및 예약된 유지 관리 기간을 쿼리할 수 있습니다. 또한 프로세스 중에 하나 이상의 VM에 영향을 줄 경우 알림(전자 메일)을 받을 수 있어야 합니다.
+유지 관리 일정이 표시 toocustomers 개별 Vm의 hello 수준에서 적용 됩니다. Azure를 사용 하면 포털, API, PowerShell 또는 CLI tooquery 선점형 및 예약 된 유지 관리 기간에 대 한 합니다. 또한 hello 경우에서 알림 (전자 메일)을 받을 가능성이 있는 hello 프로세스 중 하나 (이상)의 Vm에는 영향을 합니다.
 
-선점형 유지 관리 및 예약된 유지 관리 단계는 모두 알림으로 시작합니다. Azure 구독당 하나의 알림을 받을 수 있어야 합니다. 알림은 기본적으로 구독의 관리자 및 공동 관리자에게 전송됩니다. 또한 유지 관리 알림의 대상을 구성할 수도 있습니다.
+선점형 유지 관리 및 예약된 유지 관리 단계는 모두 알림으로 시작합니다. Azure 구독 당 단일 알림 tooreceive가 있기만 하면 됩니다. 기본적으로 toohello 구독의 관리자 및 공동 관리자 hello 알림이 보내집니다. 또한 유지 관리 알림을 hello 대상 그룹을 구성할 수 있습니다.
 
-### <a name="view-the-maintenance-window-in-the-portal"></a>포털에서 유지 관리 기간 보기 
+### <a name="view-hello-maintenance-window-in-hello-portal"></a>Hello 포털에서 보기 hello 유지 관리 기간 
 
-Azure Portal을 사용하여 유지 관리하도록 예약된 VM을 찾아볼 수 있습니다.
+Hello Azure 포털을 사용할 수 있으며 유지 관리를 위해 예약 된 Vm을 찾아보십시오.
 
-1.  Azure 포털에 로그인합니다.
+1.  Azure 포털 toohello에 로그인 합니다.
 
-2.  **Virtual Machines** 블레이드를 클릭하여 엽니다.
+2.  클릭 하 고 hello 엽니다 **가상 컴퓨터** 블레이드입니다.
 
-3.  **열** 단추를 클릭하여 선택할 수 있는 사용 가능한 열 목록을 엽니다.
+3.  Hello 클릭 **열** 에서 사용 가능한 열 toochoose 목록이 tooopen hello 단추
 
-4.  **유지 관리 기간** 열을 선택하고 추가합니다. 유지 관리하도록 예약된 VM에는 유지 관리 기간이 표시됩니다. a에 대한 유지 관리가 완료되거나 중단되면 유지 관리 기간이 더 이상 표시되지 않습니다.
+4.  선택 하 고 hello 추가 **유지 관리 기간** 열입니다. 유지 관리에 대 한 예정 된 Vm가 hello 유지 관리 기간을 표시 합니다. a에 대한 유지 관리가 완료되거나 중단되면 유지 관리 기간이 더 이상 표시되지 않습니다.
 
-### <a name="query-maintenance-details-using-the-azure-api"></a>Azure API를 사용하여 유지 관리 세부 정보 쿼리
+### <a name="query-maintenance-details-using-hello-azure-api"></a>Hello Azure API를 사용 하 여 유지 관리 정보를 쿼리 합니다.
 
-[VM 정보 가져오기 API](https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-get)를 사용하여 인스턴스 보기를 찾아 개별 VM의 유지 관리 세부 사항을 검색합니다. 응답에는 다음과 같은 요소가 포함되어 있습니다.
+사용 하 여 hello [VM API 정보를 가져올](https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-get) hello 인스턴스 toodiscover hello 유지 관리 세부 정보 보기에는 개별 VM 찾습니다. hello 응답 hello 요소 다음에 포함 됩니다.
 
-  - isCustomerInitiatedMaintenanceAllowed: 이제 VM에서 선점형 다시 배포를 시작할 수 있는지 여부를 나타냅니다.
+  - isCustomerInitiatedMaintenanceAllowed: 이제 hello VM에서 선점형 재배포를 시작할 수 있는지 여부를 나타냅니다.
 
-  - preMaintenanceWindowStartTime: 선점형 유지 관리 기간의 시작 시간입니다.
+  - preMaintenanceWindowStartTime: hello hello 선점형 유지 관리 기간의 시작 시간입니다.
 
-  - preMaintenanceWindowEndTime: 선점형 유지 관리 기간의 종료 시간입니다. 이 시간 이후에는 이 VM에 대한 유지 관리를 더 이상 시작할 수 없습니다.
+  - preMaintenanceWindowEndTime: hello hello 선점형 유지 관리 기간의 종료 시간입니다. 이 시간 이후이 VM으로 수 tooinitiate 유지 관리할 수 없습니다.
     
-  - maintenanceWindowStartTime: VM에 영향을 미칠 때 예약된 유지 관리 기간의 시작 시간입니다.
+  - maintenanceWindowStartTime: hello VM 영향을 받을 때 hello 예약 된 유지 관리 기간의 시간을 시작 합니다.
 
-  - maintenanceWindowEndTime: 예약된 유지 관리 기간의 종료 시간입니다.
+  - maintenanceWindowEndTime: hello hello 예약 된 유지 관리 기간의 종료 시간입니다.
   
-  - lastOperationResultCode: 마지막 유지 관리 - 다시 배포 작업의 결과입니다.
+  - lastOperationResultCode: hello 마지막 재배포 유지 관리 작업의 결과입니다.
  
-  - lastOperationMessage: 마지막 유지 관리 - 다시 배포 작업의 결과를 설명하는 메시지입니다.
+  - lastOperationMessage: 마지막 재배포 유지 관리 작업의 hello 결과 설명 하는 메시지입니다.
 
 ## <a name="pre-emptive-redeploy"></a>선점형 다시 배포
 
-선점형 다시 배포 작업은 Azure에서 VM에 유지 관리가 적용되는 시간을 제어할 수 있는 유연성을 제공합니다. 계획된 유지 관리는 각 VM을 재부팅하는 정확한 시간을 결정할 수 있는 선점형 유지 관리 기간에서 시작합니다. 이러한 기능이 유용한 사용 사례는 다음과 같습니다.
+선점형 재배포 작업이 Azure에서 적용 된 tooyour Vm을 유지 관리 하는 hello 유연성 toocontrol hello 시간을 제공 합니다. 계획 된 유지 관리를 다시 부팅 하 여 Vm toobe 각각에 대 한 정확한 시간 hello 결정할 수 있습니다 선점형 유지 관리 기간으로 시작 합니다. 이러한 기능이 유용한 사용 사례는 다음과 같습니다.
 
--   유지 관리를 최종 고객과 함께 조정해야 합니다.
+-   유지 관리 요구 toobe hello 최종 사용자와 조정합니다.
 
--   Azure에서 제공하는 예약된 유지 관리 기간이 충분하지 않습니다.
-    유지 관리 기간이 일주일 중 가장 바쁜 시간과 겹치거나 너무 길 수도 있습니다.
+-   Azure에서 제공 하는 hello 예약 된 유지 관리 기간이 충분 하지 않습니다.
+    Toobe 요일 hello 가장 바쁜 시간에 발생 하는 hello 창 또는 너무 길어서 수 있습니다.
 
--   다중 인스턴스 또는 다중 계층 응용 프로그램의 경우 두 VM 간에 충분한 시간이 필요하거나 특정 시퀀스를 따라야 합니다.
+-   다중 인스턴스 또는 다중 계층 응용 프로그램에 대 한 두 개의 Vm 또는 특정 순서 toofollow 사이의 시간이 충분 해야합니다.
 
-VM에 대한 선점형 다시 배포를 요청하는 경우 VM을 이미 업데이트된 노드로 이동한 다음 전원을 다시 켜서 모든 구성 옵션과 관련 리소스를 그대로 유지합니다. 이렇게 하면 임시 디스크가 손실되고 가상 네트워크 인터페이스와 연결된 동적 IP 주소가 업데이트됩니다.
+VM에서 선점형 재배포에 대 한 호출 hello VM tooan 이미 노드를 업데이트 하 고 다음 공급 다시에 모든 구성 옵션 및 관련된 리소스 그대로 유지 하 고 이동 합니다. 이렇게 하면 임시 디스크 hello 손실 되며 동적 IP 주소와 연결 된 동안에 가상 네트워크 인터페이스 업데이트 됩니다.
 
-선점형 다시 배포는 VM당 한 번만 활성화됩니다. 프로세스 중에 오류가 발생하면 작업이 중단되고 VM은 영향을 받지 않으며 계획된 유지 관리 반복에서 제외됩니다. 이후에 사용자에게 연락하여 새로운 일정을 알려주고 VM에 대한 영향을 예약하고 순서를 지정할 수 있는 새로운 기회를 제공합니다.
+선점형 다시 배포는 VM당 한 번만 활성화됩니다. Hello 프로세스 중 오류가 발생 하는 hello 작업이 중단 되 면 VM은 영향을 받지 hello 이므로 hello 계획 된 유지 관리 반복에서 제외 됩니다. 새 일정에 나중에 접속 선택한 새 기회 tooschedule 및 시퀀스 hello 영향을 Vm에 제공 합니다.

@@ -1,6 +1,6 @@
 ---
-title: "비관리 디스크에서 관리 디스크로 Windows 가상 컴퓨터 변환 - Azure Managed Disks | Microsoft Docs"
-description: "Resource Manager 배포 모델에서 PowerShell을 사용하여 비관리 디스크에서 관리 디스크로 Windows VM을 변환하는 방법"
+title: "Windows 가상 컴퓨터에서 관리 되지 않는 aaaConvert toomanaged 디스크-Azure 관리 되는 디스크의 디스크 | Microsoft Docs"
+description: "Windows VM에서 관리 되지 않는 디스크 toomanaged tooconvert hello 리소스 관리자 배포 모델에서 PowerShell을 사용 하 여 디스크 방법"
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,22 +15,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/23/2017
 ms.author: cynthn
-ms.openlocfilehash: 54afcf1e37f696979bfe270a473c72aedf20dc43
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e8ed8694b0e776d22df26261e2fc8340bfe5cafa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="convert-a-windows-virtual-machine-from-unmanaged-disks-to-managed-disks"></a>비관리 디스크에서 관리 디스크로 Windows 가상 컴퓨터 변환
+# <a name="convert-a-windows-virtual-machine-from-unmanaged-disks-toomanaged-disks"></a>관리 되지 않는 디스크 toomanaged 디스크에서 Windows 가상 컴퓨터 변환
 
-비관리 디스크를 사용하는 기존 Windows VM(가상 컴퓨터)이 있는 경우 [Azure Managed Disks](managed-disks-overview.md) 서비스를 통해 관리 디스크를 사용하도록 VM을 변환할 수 있습니다. 이 프로세스는 OS 디스크와 연결된 데이터 디스크를 변환합니다.
+기존 Windows 가상 컴퓨터 (Vm) 관리 되지 않는 디스크를 사용 하는 경우 hello 통해 hello Vm toouse 관리 되는 디스크를 변환할 수 있습니다 [Azure 관리 되는 디스크](managed-disks-overview.md) 서비스입니다. 이 프로세스는 hello OS 디스크 및 연결 된 데이터 디스크를 모두 변환합니다.
 
-이 문서에서는 Azure PowerShell을 사용하여 VM을 변환하는 방법을 보여 줍니다. 설치 또는 업그레이드가 필요한 경우 [Azure PowerShell 설치 및 구성](/powershell/azure/install-azurerm-ps.md)을 참조하세요.
+이 문서에서는 Azure PowerShell을 사용 하 여 Vm tooconvert 합니다. Tooinstall 필요 하거나 업그레이드할 참조 [설치 Azure PowerShell을 구성 하 고](/powershell/azure/install-azurerm-ps.md)합니다.
 
 ## <a name="before-you-begin"></a>시작하기 전에
 
 
-* [Managed Disks로 마이그레이션 계획 수립](on-prem-to-azure.md#plan-for-the-migration-to-managed-disks)을 검토합니다.
+* 검토 [hello 마이그레이션 계획 tooManaged 디스크](on-prem-to-azure.md#plan-for-the-migration-to-managed-disks)합니다.
 
 [!INCLUDE [virtual-machines-common-convert-disks-considerations](../../../includes/virtual-machines-common-convert-disks-considerations.md)]
 
@@ -38,9 +38,9 @@ ms.lasthandoff: 08/29/2017
 
 
 ## <a name="convert-single-instance-vms"></a>단일 인스턴스 VM 변환
-이 섹션에서는 단일 인스턴스 Azure VM을 비관리 디스크에서 Managed Disks로 변환하는 방법을 설명합니다. VM이 가용성 집합에 있는 경우 다음 섹션을 참조하세요. 
+이 섹션에서는 tooconvert 단일 인스턴스 Azure Vm에서 관리 되지 않는 toomanaged 디스크 디스크 하는 방법을 설명 합니다. (Vm 가용성 집합에 있는 경우 hello 다음 섹션 참조 합니다.) 
 
-1. [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm) cmdlet을 사용하여 VM의 할당을 취소합니다. 다음 예제에서는 리소스 그룹 `myResourceGroup`에서 `myVM`이라는 VM의 할당을 취소합니다. 
+1. Hello를 사용 하 여 hello VM 할당을 취소 [중지 AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm) cmdlet. hello 다음 예제에서는 할당 취소 hello 라는 VM `myVM` 이라는 hello 리소스 그룹에 `myResourceGroup`: 
 
   ```powershell
   $rgName = "myResourceGroup"
@@ -48,13 +48,13 @@ ms.lasthandoff: 08/29/2017
   Stop-AzureRmVM -ResourceGroupName $rgName -Name $vmName -Force
   ```
 
-2. [ConvertTo-AzureRmVMManagedDisk](/powershell/module/azurerm.compute/convertto-azurermvmmanageddisk) cmdlet을 사용하여 VM을 관리 디스크로 변환합니다. 다음 프로세스는 OS 디스크 및 데이터 디스크를 포함하여 이전 VM을 변환합니다.
+2. Hello를 사용 하 여 hello VM toomanaged 디스크 변환 [ConvertTo AzureRmVMManagedDisk](/powershell/module/azurerm.compute/convertto-azurermvmmanageddisk) cmdlet. 변환 프로세스를 수행 하는 hello hello OS 디스크 및 데이터 디스크를 포함 하 여 이전 VM을 hello:
 
   ```powershell
   ConvertTo-AzureRmVMManagedDisk -ResourceGroupName $rgName -VMName $vmName
   ```
 
-3. [Start-AzureRmVM](/powershell/module/azurerm.compute/start-azurermvm)을 사용하여 관리 디스크로 변환한 후 VM을 시작합니다. 다음 예제에서는 이전 VM을 다시 시작합니다.
+3. 사용 하 여 hello 변환 toomanaged 디스크 후 hello VM 시작 [시작 AzureRmVM](/powershell/module/azurerm.compute/start-azurermvm)합니다. 다음 예제에서는 다시 시작 하는 hello hello 이전 VM:
 
   ```powershell
   Start-AzureRmVM -ResourceGroupName $rgName -Name $vmName
@@ -63,9 +63,9 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="convert-vms-in-an-availability-set"></a>가용성 집합의 VM 변환
 
-관리되는 디스크로 변환하려는 VM이 가용성 집합에 있는 경우 먼저 가용성 집합을 관리되는 가용성 집합으로 변환해야 합니다.
+경우 tooconvert toomanaged 디스크 가용성 집합에는 원하는 hello Vm을 먼저 tooconvert hello 가용성 집합 tooa 관리 되는 가용성 집합입니다.
 
-1. [Update-AzureRmAvailabilitySet](/powershell/module/azurerm.compute/update-azurermavailabilityset) cmdlet을 사용하여 가용성 집합을 변환합니다. 다음 예제에서는 리소스 그룹 `myResourceGroup`의 가용성 집합 `myAvailabilitySet`을 업데이트합니다.
+1. Hello를 사용 하 여 설정 하는 hello 가용성 변환 [업데이트 AzureRmAvailabilitySet](/powershell/module/azurerm.compute/update-azurermavailabilityset) cmdlet. 다음 예에서는 업데이트 hello 가용성 명명 된 집합 hello `myAvailabilitySet` 이라는 hello 리소스 그룹에 `myResourceGroup`:
 
   ```powershell
   $rgName = 'myResourceGroup'
@@ -75,14 +75,14 @@ ms.lasthandoff: 08/29/2017
   Update-AzureRmAvailabilitySet -AvailabilitySet $avSet -Sku Aligned 
   ```
 
-  가용성 집합이 있는 지역에 관리되는 장애 도메인은 2개뿐이고 관리되지 않는 장애 도메인은 3개인 경우 이 명령은 "지정된 장애 도메인 수 3은 1~2 범위에 있어야 합니다."와 유사한 오류를 표시합니다. 오류를 해결하려면 다음과 같이 장애 도메인을 2로 업데이트하고 `Sku`를 `Aligned`로 업데이트합니다.
+  가용성 집합은 있는 hello 영역에는 관리 되는 장애 도메인 2 하지만 hello 관리 되지 않는 장애 도메인 수는 3이이 명령은 유사한 오류가 표시 너무 "hello" 지정 된 장애 도메인 수 3 hello 범위는 1 too2에 포함 되어야 합니다. 오류, 업데이트 hello 오류 도메인 too2 및 update tooresolve hello `Sku` 너무`Aligned` 다음과 같습니다.
 
   ```powershell
   $avSet.PlatformFaultDomainCount = 2
   Update-AzureRmAvailabilitySet -AvailabilitySet $avSet -Sku Aligned
   ```
 
-2. 가용성 집합의 VM을 할당 취소하고 변환합니다. 다음 스크립트는 [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm) cmdlet을 사용하여 각 VM의 할당을 취소하고, [ConvertTo-AzureRmVMManagedDisk](/powershell/module/azurerm.compute/convertto-azurermvmmanageddisk)를 사용하여 변환하고, [Start-AzureRmVM](/powershell/module/azurerm.compute/start-azurermvm)을 사용하여 다시 시작합니다.
+2. Hello 가용성 집합의 hello Vm 변환 및 할당을 취소 합니다. hello 다음 스크립트의 할당을 취소할 각 VM hello를 사용 하 여 [중지 AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm) cmdlet을 사용 하 여 변환 [ConvertTo AzureRmVMManagedDisk](/powershell/module/azurerm.compute/convertto-azurermvmmanageddisk)를 사용 하 여 다시 시작 하 고 [AzureRmVM 시작 ](/powershell/module/azurerm.compute/start-azurermvm):
 
   ```powershell
   $avSet = Get-AzureRmAvailabilitySet -ResourceGroupName $rgName -Name $avSetName
@@ -99,12 +99,12 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="troubleshooting"></a>문제 해결
 
-변환하는 동안 오류가 발생한 경우 또는 이전 변환에서의 문제로 인해 VM 상태가 실패인 경우 `ConvertTo-AzureRmVMManagedDisk` cmdlet을 다시 실행합니다. 다시 시도만으로 상황이 해결되는 경우가 많습니다.
+변환 하는 동안 오류가 발생 하는 경우 또는 이전 변환에서 문제로 인해 오류 상태에 있는 VM이 실행 hello `ConvertTo-AzureRmVMManagedDisk` 다시 cmdlet. 간단한 재시도는 일반적으로 hello 상황 차단 해제합니다.
 
 
 ## <a name="next-steps"></a>다음 단계
 
-[표준 관리 디스크를 프리미엄으로 변환](convert-disk-storage.md)
+[표준 관리 디스크 toopremium 변환](convert-disk-storage.md)
 
 [스냅숏](snapshot-copy-managed-disk.md)을 사용하여 VM의 읽기 전용 복사본을 만듭니다.
 

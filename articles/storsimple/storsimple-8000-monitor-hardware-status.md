@@ -1,6 +1,6 @@
 ---
-title: "StorSimple 8000 시리즈 하드웨어 구성 요소 및 상태 | Microsoft Docs"
-description: "StorSimple 장치 관리자 서비스를 통해 StorSimple 장치의 하드웨어 구성 요소를 모니터링하는 방법에 대해 알아봅니다."
+title: "aaaStorSimple 8000 시리즈 하드웨어 구성 요소 및 상태 | Microsoft Docs"
+description: "Toomonitor hello StorSimple 장치 관리자 서비스를 통해 StorSimple 장치의 하드웨어 구성 요소를 hello 하는 방법에 대해 알아봅니다."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,136 +14,136 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/04/2017
 ms.author: alkohli
-ms.openlocfilehash: 90724099842eac513c39dccf113ad1c0a63983f2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 85b398e4b1a6b8921792b8945331325940082eb2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-device-manager-service-to-monitor-hardware-components-and-status"></a>StorSimple 장치 관리자 서비스를 사용하여 하드웨어 구성 요소 및 상태 모니터링
+# <a name="use-hello-storsimple-device-manager-service-toomonitor-hardware-components-and-status"></a>Hello StorSimple 장치 관리자 서비스 toomonitor 하드웨어 구성 요소 및 상태를 사용 하 여
 ## <a name="overview"></a>개요
-이 문서에서는 온-프레미스 StorSimple 8000 시리즈 장치에서 다양한 물리적 및 논리적 구성 요소를 설명합니다. StorSimple 장치 관리자 서비스의 **상태 및 하드웨어 상태** 블레이드를 사용하여 장치 구성 요소 상태를 모니터링하는 방법도 설명합니다.
+이 문서에서는 hello 설명 온-프레미스 StorSimple 8000 시리즈 장치에 다양 한 물리적 및 논리적 구성 요소입니다. 또한 toomonitor hello를 사용 하 여 장치 구성 요소 상태를 hello 하는 방법을 설명 **상태 및 하드웨어 상태** 블레이드 hello StorSimple 장치 관리자 서비스에에서 있습니다.
 
-**상태 및 하드웨어 상태** 블레이드는 모든 StorSimple 장치 구성 요소의 하드웨어 상태를 보여 줍니다.
+hello **상태 및 하드웨어 상태** 블레이드 모든 hello StorSimple 장치 구성 요소의 hello 하드웨어 상태를 보여 줍니다.
 
-8100에 대한 구성 요소 목록 아래에는 다음을 설명하는 세 섹션이 있습니다.
+Hello 8100의 구성 요소 목록 아래에서 설명 하는 세 가지 섹션이 있습니다.
 
-* **공유 구성 요소** – 디스크 드라이브, 엔클로저, PCM 구성 요소와 PCM 온도, 정격 전압 및 전류 센서와 같은 컨트롤러의 일부가 아닙니다.
-* **컨트롤러 0 구성 요소** – 컨트롤러, SAS 확장기 및 커넥터, 컨트롤러 온도 센서, 다양 한 네트워크 인터페이스와 같은 컨트롤러 0에 상주하는 구성 요소입니다.
-* **컨트롤러 1 구성 요소** – 컨트롤러 0에 대한 설명과 유사한 컨트롤러 1을 구성하는 구성 요소입니다.
+* **공유 구성 요소** -이러한의 일부분이 아닌 hello 컨트롤러와 같은 디스크 드라이브, 인클로저, PCM 구성 요소와 PCM 온도, 정격 전압, 선 전류 센서 합니다.
+* **컨트롤러 0 구성 요소** – 네트워크 인터페이스 컨트롤러 온도 센서 등 컨트롤러, SAS 확장기 및 커넥터, 컨트롤러 0에 있는 다양 한 hello 하는 hello 구성 합니다.
+* **컨트롤러 1 구성 요소** – hello 컨트롤러 1, 컨트롤러 0에 설명 하는 유사한 toothose를 구성 하는 구성 요소입니다.
 
-8600 장치에는 EBOD(Extended Bunch of Disks) 인클로저에 해당하는 추가 구성 요소가 있습니다. 구성 요소 목록에는 5개의 섹션이 있습니다. 이 중, 8100에 대해 설명된 내용과 동일하며 기본 인클로저의 구성 요소를 포함하는 3개의 섹션이 있습니다. 다음을 설명하는 EBOD 인클로저의 2개의 추가 섹션이 있습니다.
+8600 장치의 toohello의 디스크 EBOD (Extended Bunch) 인클로저에 해당 하는 추가 구성 요소에 있습니다. Hello 구성 요소 목록 아래에 5 개 섹션이 있습니다. 이 중에 hello hello 기본 인클로저의 구성 요소를 포함 하는 동일한 toohello 8100에 대 한 설명 된 것과 3 개 섹션이 있습니다. EBOD 인클로저 hello에 대 한 설명 하는 두 개의 추가 섹션이 있습니다.
 
-* **EBOD 컨트롤러 0 구성 요소** – EBOD 컨트롤러, SAS 확장기 및 커넥터, 컨트롤러 온도 센서와 같은 EBOD 인클로저 0에 상주하는 구성 요소입니다.
-* **EBOD 컨트롤러 1 구성 요소** – EBOD 0에 대한 설명과 유사한 EBOD 인클로저 1을 구성하는 구성 요소입니다.
-* **EBOD 인클로저 공유 구성 요소** – EBOD 인클로저 및 EBOD 컨트롤러의 일부가 아닌 PCM에 구성 요소가 표시됩니다.
+* **EBOD 컨트롤러 0 구성 요소** – hello SAS 확장기 및 커넥터, 컨트롤러 온도 센서 hello EBOD 컨트롤러와 같이 EBOD 인클로저 0에 있는 구성 요소입니다.
+* **EBOD 컨트롤러 1 구성 요소** – hello EBOD 인클로저 1을 구성 하는 구성 요소 유사한 toothose EBOD 인클로저 0에 대해 자세히 설명 합니다.
+* **EBOD 인클로저 공유 구성 요소** – hello EBOD 인클로저 및 PCM hello EBOD 컨트롤러의 일부분이 아닌에 hello 구성 요소를 표시 합니다.
 
 > [!NOTE]
-> **StorSimple Cloud Appliance(8010/8020)에 대해서는 하드웨어 상태를 사용할 수 없습니다.**
+> **hello 하드웨어 상태를 StorSimple 클라우드 어플라이언스에 (8010/8020)에 대해 사용할 수 없는 경우**
 
 
-## <a name="monitor-the-hardware-status"></a>하드웨어 상태 모니터링
-장치 구성 요소의 하드웨어 상태를 보려면 다음 단계를 수행합니다.
+## <a name="monitor-hello-hardware-status"></a>Hello 하드웨어 상태 모니터링
+Hello 장치 구성 요소 단계 tooview hello 하드웨어 상태를 다음을 수행 합니다.
 
-1. **장치**로 이동하여 특정 StorSimple 장치를 선택합니다. **모니터 > 하드웨어 상태**로 이동합니다.
+1. 너무 이동**장치**, 특정 StorSimple 장치를 선택 합니다. 너무 이동**모니터 > 하드웨어 상태가**합니다.
 
     ![](./media/storsimple-8000-monitor-hardware-status/hw-health1.png)
 
-2. **하드웨어 구성 요소** 섹션을 찾고 사용 가능한 구성 요소를 선택합니다. 구성 요소 레이블을 클릭하여 목록을 확장하고 다양한 장치 구성 요소의 상태를 봅니다. [기본 엔클로저에 대한 자세한 구성 요소 목록](#component-list-for-primary-enclosure-of-storsimple-device) 및 [EBOD 엔클로저에 대한 자세한 구성 요소](#component-list-for-ebod-enclosure-of-storsimple-device)를 참조하세요.
+2. Hello 찾을 **하드웨어 구성 요소** 섹션 고 hello 사용 가능한 구성 요소에서 선택 합니다. 단순히 hello 구성 요소 레이블 tooexpand hello 목록을 클릭 하 고 다양 한 장치 구성 요소 hello의 hello 상태를 봅니다. Hello 참조 [기본 인클로저 hello에 대 한 자세한 구성 요소 목록](#component-list-for-primary-enclosure-of-storsimple-device) 및 hello [EBOD 인클로저 hello에 대 한 자세한 구성 요소 목록](#component-list-for-ebod-enclosure-of-storsimple-device)합니다.
 
     ![](./media/storsimple-8000-monitor-hardware-status/hw-health2.png)
 
-3. 다음 색 코딩 구성표를 사용하여 구성 요소 상태를 해석합니다.
+3. 색 구성표 toointerpret 구분 hello 구성 요소 상태에 따라 hello를 사용 합니다.
    
    * **녹색 확인 표시** – **정상** 상태의 상태 구성 요소를 나타냅니다.
    * **노란색** – **경고** 상태의 성능이 저하된 구성 요소를 표시합니다.
    * **빨간색 느낌표** – **오류** 상태의 실패한 구성 요소를 나타냅니다.
    * **검정 텍스트에 흰색** – 존재하지 않는 구성 요소를 표시합니다.
    
-   다음 스크린샷은 **정상**, **경고** 및 **오류** 상태의 구성 요소가 있는 장치를 보여 줍니다.
+   hello 다음 스크린샷은 한 장치에서 구성 요소를 **확인**, **경고**, 및 **오류** 상태입니다.
        
    ![](./media/storsimple-8000-monitor-hardware-status/hw-health3.png)
 
-   **공유 구성 요소 목록**을 확장하면 성능이 저하된 NVRAM 및 클러스터를 볼 수 있습니다.
+   확장 hello **공유 구성 요소 목록**, 해당 hello NVRAM 및 hello 클러스터 저하 된 볼 수 있습니다.
 
    ![](./media/storsimple-8000-monitor-hardware-status/hw-health5.png)
 
-   **컨트롤러 1 구성 요소** 목록을 확장하면 클러스터 노드가 실패했음을 알 수 있습니다.  
+   확장 hello **컨트롤러 1 구성 요소** 목록에서 볼 수 있습니다는 hello 클러스터 노드 실패 했습니다.  
 
    ![](./media/storsimple-8000-monitor-hardware-status/hw-health4.png)  
 
-4. **정상** 상태가 아닌 구성 요소가 있는 경우 Microsoft 지원에 문의하세요. 장치에서 경고를 설정한 경우, 메일 경고를 받게 됩니다. 실패한 하드웨어 구성 요소를 교체해야 하는 경우 [StorSimple 하드웨어 구성 요소 교체](storsimple-hardware-component-replacement.md)를 참조하세요.
+4. **정상** 상태가 아닌 구성 요소가 있는 경우 Microsoft 지원에 문의하세요. 장치에서 경고를 설정한 경우, 메일 경고를 받게 됩니다. Tooreplace 장애가 발생 한 하드웨어 구성 요소를 보려면 참고 [StorSimple 하드웨어 구성 요소 교체](storsimple-hardware-component-replacement.md)합니다.
 
 ## <a name="component-list-for-primary-enclosure-of-storsimple-device"></a>StorSimple 장치의 기본 인클로저에 대한 구성 요소 목록
-다음 표에서 온-프레미스 StorSimple 장치의 기본 인클로저(8100 및 8600 둘 다에 있음)에 포함된 물리적 및 논리적 구성 요소를 간략하게 설명합니다.
+hello 다음 표에 정리 되어 hello hello 기본 인클로저 (8100 및 8600 둘 다에서 있음)의 온-프레미스 StorSimple 장치에에서 포함 된 물리적 및 논리적 구성 요소입니다.
 
 | 구성 요소 | 모듈 | 형식 | 위치 | FRU(Field replaceable unit)? | 설명 |
 | --- | --- | --- | --- | --- | --- |
-| 슬롯 [0-11]의 드라이브 |디스크 드라이브 |물리적 |공유됨 |예 |기본 인클로저의 SSD 또는 HDD 드라이브의 각각에 대해 한 줄이 표시됩니다. |
-| 주변 온도 센서 |엔클로저 |물리적 |공유됨 |아니요 |섀시 내에서 온도를 측정합니다. |
-| 중간 평면 온도 센서 |엔클로저 |물리적 |공유됨 |아니요 |중간 평면 온도를 측정합니다. |
-| 청각적 경고 |엔클로저 |물리적 |공유됨 |아니요 |섀시 내 청각적 경고 하위 시스템의 작동 여부를 나타냅니다. |
-| 엔클로저 |엔클로저 |물리적 |공유됨 |예 |섀시의 존재를 표시합니다. |
-| 인클로저 설정 |엔클로저 |물리적 |공유됨 |아니요 |섀시 전면 패널을 가리킵니다. |
-| 정격 전압 센서 |PCM |물리적 |공유됨 |아니요 |다양한 정격 전압 센서는 허용 오차 내에서 측정된 전압인지 여부를 나타내는 상태를 표시합니다. |
-| 정격 전류 센서 |PCM |물리적 |공유됨 |아니요 |다양한 정격 전류 센서는 허용 오차 내에서 측정된 전류인지 여부를 나타내는 상태를 표시합니다. |
-| PCM의 온도 센서 |PCM |물리적 |공유됨 |아니요 |입구 온도 센서 및 핫스팟 센서와 같은 여러 온도 센서는 허용 오차 내에서 측정된 온도인지를 나타내는 상태를 표시합니다. |
-| 전원 공급 장치 [0-1] |PCM |물리적 |공유됨 |예 |각 장치 뒷면에 두 PCM의 전원 공급 장치에 대한 한 줄이 표시됩니다. |
-| 냉각 장치 [0-1] |PCM |물리적 |공유됨 |예 |두 PCM에 있는 4개의 냉각팬 각각에 대해 한 줄이 표시됩니다. |
-| 배터리 [0-1] |PCM |물리적 |공유됨 |예 |PCM에 장착된 백업 배터리 모듈 각각에 대한 한 줄이 표시됩니다. |
-| Metis |해당 없음 |논리 |공유됨 |해당 없음 |충전이 필요한 지 및 수명 종료에 도달했는지의 배터리 상태를 표시합니다. |
-| 프로비전 |해당 없음 |논리 |공유됨 |해당 없음 |두 통합된 컨트롤러 모듈 간에 만들어진 클러스터의 상태를 표시합니다. |
-| 클러스터 노드 |해당 없음 |논리 |공유됨 |해당 없음 |클러스터의 일부로 컨트롤러의 상태를 나타냅니다. |
-| 클러스터 쿼럼 |해당 없음 |논리 | |해당 없음 |HDD 저장소 풀의 대부분 디스크 멤버 자격이 있는지 여부를 나타냅니다. |
-| HDD 데이터 공간 |해당 없음 |논리 |공유됨 |해당 없음 |하드 디스크 드라이브(HDD) 저장소 풀의 데이터에 사용되는 저장소 공간입니다. |
-| HDD 관리 공간 |해당 없음 |논리 |공유됨 |해당 없음 |관리 작업에 대한 HDD 저장소 풀에 예약된 공간입니다. |
-| HDD 쿼럼 공간 |해당 없음 |논리 |공유됨 |해당 없음 |클러스터 쿼럼을 위해 HDD 저장소 풀에 예약된 공간입니다. |
-| HDD 교체 공간 |해당 없음 |논리 |공유됨 |해당 없음 |컨트롤러 교체를 위해 HDD 저장소 풀에 예약된 공간입니다. |
-| SSD 데이터 공간 |해당 없음 |논리 |공유됨 |해당 없음 |솔리드 스테이트 드라이브(SSD) 저장소 풀의 데이터에 사용되는 저장소 공간입니다. |
-| SSD NVRAM 공간 |해당 없음 |논리 |공유됨 |해당 없음 |NVRAM 논리에 전용인 SSD 저장소 풀의 저장소 공간입니다. |
-| HDD 저장소 풀 |해당 없음 |논리 |공유됨 |해당 없음 |HDD 장치에서 생성되는 논리 저장소 풀의 상태가 표시됩니다. |
-| SSD 저장소 풀 |해당 없음 |논리 |공유됨 |해당 없음 |SSD 장치에서 생성되는 논리 저장소 풀의 상태가 표시됩니다. |
-| 컨트롤러 [0-1] [state] |I/O |물리적 |Controller |예 |컨트롤러의 상태 및 섀시 내에서 활성 모드인지 또는 대기 모드인지를 표시합니다. |
-| 컨트롤러의 온도 센서 |I/O |물리적 |Controller |아니요 |I/O 모듈, CPU 온도, DIMM 및 PCIe 센서와 같은 다양한 온도 센서는 허용 오차 내에서 발생하는 온도인지 여부를 나타내는 상태를 표시합니다. |
-| SAS 확장기 |I/O |물리적 |Controller |아니요 |직렬 연결된 SCSI(SAS) 확장기의 상태를 표시하며, 통합된 저장소를 컨트롤러에 연결하는 데 사용됩니다. |
-| SAS 커넥터 [0-1] |I/O |물리적 |Controller |아니요 |SAS 확장기에 통합된 저장소를 연결하는데 사용되는 각 SAS 커넥터의 상태를 나타냅니다. |
-| SBB 중간 평면 상호 연결 |I/O |물리적 |Controller |아니요 |각 컨트롤러에서 중간 평면에 연결하는데 사용되는 중간 평면 커넥터의 상태를 나타냅니다. |
-| 프로세서 코어 |I/O |물리적 |Controller |아니요 |각 컨트롤러 내에서 프로세서 코어의 상태를 나타냅니다. |
-| 인클로저 전자 기기 전원 |I/O |물리적 |Controller |아니요 |인클로저에에서 사용된 전원 시스템의 상태를 나타냅니다. |
-| 인클로저 전자 기기 진단 |I/O |물리적 |Controller |아니요 |컨트롤러에서 제공된 진단 하위 시스템의 상태를 나타냅니다. |
-| 베이스 보드 관리 컨트롤러(BMC) |I/O |물리적 |Controller |아니요 |독립적인 연결을 통해 시스템 관리자와 통신하고 센서를 통해 하드웨어 장비를 모니터링하는 전문 서비스 프로세서인 BMC(베이스 보드 관리 컨트롤러)의 상태를 나타냅니다. |
-| 이더넷 |I/O |물리적 |Controller |아니요 |각 네트워크 인터페이스, 즉, 컨트롤러에서 제공하는 관리 및 데이터 포트의 상태를 나타냅니다. |
-| NVRAM |I/O |물리적 |Controller |아니요 |전원 오류가 발생할 경우 응용 프로그램에 중요한 정보를 유지하기 위해 사용되는 배터리에서 백업된 비휘발성 임의 액세스 메모리, NVRAM의 상태를 나타냅니다. |
+| 슬롯 [0-11]의 드라이브 |디스크 드라이브 |물리적 |공유됨 |예 |Hello 기본 인클로저 내의 hello HDD 드라이브에 있거나 각 SSD hello에 대 한 한 줄이 표시 됩니다. |
+| 주변 온도 센서 |엔클로저 |물리적 |공유됨 |아니요 |측정값 hello hello 섀시 내의 온도 합니다. |
+| 중간 평면 온도 센서 |엔클로저 |물리적 |공유됨 |아니요 |측정값의 hello 중간 평면 온도 hello 합니다. |
+| 청각적 경고 |엔클로저 |물리적 |공유됨 |아니요 |Hello 섀시 내의 hello 청각적 경보 하위 시스템 작동 여부를 나타냅니다. |
+| 인클로저 |엔클로저 |물리적 |공유됨 |예 |Hello 섀시 유무를 나타냅니다. |
+| 인클로저 설정 |엔클로저 |물리적 |공유됨 |아니요 |Toohello hello 섀시 전면 패널을 나타냅니다. |
+| 정격 전압 센서 |PCM |물리적 |공유됨 |아니요 |다양 한 정격 전압 센서가 허용 오차 이내 인지 hello 측정 하는지 여부를 나타내는 상태를 표시 합니다. |
+| 정격 전류 센서 |PCM |물리적 |공유됨 |아니요 |다양 한 선 전류 센서 있는 인지 여부를 나타내는 hello 측정 허용 오차 이내 상태를 표시 합니다. |
+| PCM의 온도 센서 |PCM |물리적 |공유됨 |아니요 |다양 한 온도 센서 유입 및 핫스폿 센서는 hello 온도 측정 하는지 여부를 나타내는 상태를 표시와 같은 허용 오차 이내 인지 합니다. |
+| 전원 공급 장치 [0-1] |PCM |물리적 |공유됨 |예 |한 줄 hello hello 장치의 후면에 있는 두 개의 Pcm 각각 hello에 hello 전원 공급 장치에 대해 표시 됩니다. |
+| 냉각 장치 [0-1] |PCM |물리적 |공유됨 |예 |한 줄 두 Pcm hello에 있는 4 개 냉각 팬 각각 hello에 대 한 표시 됩니다. |
+| 배터리 [0-1] |PCM |물리적 |공유됨 |예 |한 줄 각 hello PCM에에서 장착 된 hello 백업 배터리 모듈에 대해 표시 됩니다. |
+| Metis |해당 없음 |논리 |공유됨 |해당 없음 |Hello 배터리 hello 상태가 표시 됩니다: 다했는지 및 수명 끝에 도달 하 고 있는지 여부. |
+| 프로비전 |해당 없음 |논리 |공유됨 |해당 없음 |표시 hello hello 두 통합된 컨트롤러 모듈 간에 만들어지는 hello 클러스터의 상태입니다. |
+| 클러스터 노드 |해당 없음 |논리 |공유됨 |해당 없음 |Hello 클러스터의 일부로 hello 컨트롤러의 hello 상태를 나타냅니다. |
+| 클러스터 쿼럼 |해당 없음 |논리 | |해당 없음 |Hello로 HDD 저장소 풀의 과반수 디스크 멤버 자격 hello의 hello 존재 여부를 나타냅니다. |
+| HDD 데이터 공간 |해당 없음 |논리 |공유됨 |해당 없음 |hello 하드 디스크 드라이브 (HDD) 저장소 풀의 데이터에 사용 되는 hello 저장소 공간입니다. |
+| HDD 관리 공간 |해당 없음 |논리 |공유됨 |해당 없음 |hello 공간 hello 관리 작업용으로 HDD 저장소 풀에에서 예약 되어 있습니다. |
+| HDD 쿼럼 공간 |해당 없음 |논리 |공유됨 |해당 없음 |클러스터 쿼럼에 대 한 HDD 저장소 풀에 hello hello 공간이 예약 합니다. |
+| HDD 교체 공간 |해당 없음 |논리 |공유됨 |해당 없음 |hello 공간 hello 컨트롤러 교체용으로 HDD 저장소 풀에에서 예약 되어 있습니다. |
+| SSD 데이터 공간 |해당 없음 |논리 |공유됨 |해당 없음 |hello 저장 공간이 hello 반도체 드라이브 (SSD) 저장소 풀의 데이터에 사용 합니다. |
+| SSD NVRAM 공간 |해당 없음 |논리 |공유됨 |해당 없음 |hello hello NVRAM 논리 전용 SSD 저장소 풀에서에서 저장소 공간입니다. |
+| HDD 저장소 풀 |해당 없음 |논리 |공유됨 |해당 없음 |표시 hello 장치 Hdd에서에서 작성 하는 hello 논리적 저장소 풀의 상태입니다. |
+| SSD 저장소 풀 |해당 없음 |논리 |공유됨 |해당 없음 |표시 hello 장치 Ssd에서에서 작성 하는 hello 논리적 저장소 풀의 상태입니다. |
+| 컨트롤러 [0-1] [state] |I/O |물리적 |Controller |예 |Hello 컨트롤러의 hello 상태를 표시 및 hello 섀시 내에서 활성 또는 대기 모드 인지 합니다. |
+| 컨트롤러의 온도 센서 |I/O |물리적 |Controller |아니요 |I/O 모듈, CPU 온도, DIMM 및 PCIe 센서와 같은 다양 한 온도 센서 있는 hello 확인 된 온도가 허용 오차 이내 인지 여부를 나타내는 상태를 표시 합니다. |
+| SAS 확장기 |I/O |물리적 |Controller |아니요 |Hello 직렬 연결 된 SAS (SCSI) 확장기의 사용 되는 tooconnect hello 통합된 저장소 toohello 컨트롤러는 hello 상태를 나타냅니다. |
+| SAS 커넥터 [0-1] |I/O |물리적 |Controller |아니요 |각 SAS 커넥터를 사용 하는 tooconnect 통합 저장소 toohello SAS 확장기의 hello 상태를 나타냅니다. |
+| SBB 중간 평면 상호 연결 |I/O |물리적 |Controller |아니요 |각 컨트롤러 toohello 중간 평면 tooconnect 사용된 되는 hello 중간 평면 커넥터의 hello 상태를 나타냅니다. |
+| 프로세서 코어 |I/O |물리적 |Controller |아니요 |각 컨트롤러 내의 hello 프로세서 코어의 hello 상태를 나타냅니다. |
+| 인클로저 전자 기기 전원 |I/O |물리적 |Controller |아니요 |Hello 인클로저에서 사용 하는 hello 전원 시스템의 hello 상태를 나타냅니다. |
+| 인클로저 전자 기기 진단 |I/O |물리적 |Controller |아니요 |Hello 컨트롤러에서 제공 하는 hello 진단 하위 시스템의 hello 상태를 나타냅니다. |
+| 베이스 보드 관리 컨트롤러(BMC) |I/O |물리적 |Controller |아니요 |Hello 베이스 보드 관리 컨트롤러의 (BMC) 센서를 통해 hello 하드웨어 장치를 모니터링 하 고 독립 연결을 통해 시스템 관리자에 게와 통신 하는 특수 서비스 프로세서인은 hello 상태를 나타냅니다. |
+| 이더넷 |I/O |물리적 |Controller |아니요 |각 hello 네트워크 인터페이스, 즉, hello 관리 및 hello 컨트롤러에서 제공 하는 데이터 포트의 hello 상태를 나타냅니다. |
+| NVRAM |I/O |물리적 |Controller |아니요 |Hello 상태를 NVRAM hello 배터리 전원 오류의 hello 이벤트에 tooretain 응용 프로그램에 중요 한 정보를 제공 하 여 백업 비휘발성 임의 액세스 메모리를 나타냅니다. |
 
 ## <a name="component-list-for-ebod-enclosure-of-storsimple-device"></a>StorSimple 장치의 EBOD 인클로저에 대한 구성 요소 목록
-다음 표에서 온-프레미스 StorSimple 장치의 EBOD 인클로저(8600 모델에만 있음)에 포함된 물리적 및 논리적 구성 요소를 간략하게 설명합니다.
+hello 다음 표에 정리 되어 hello hello 온-프레미스 StorSimple 장치의 EBOD 인클로저 (만, 8600 모델에 있는)에 포함 된 물리적 및 논리적 구성 요소입니다.
 
 | 구성 요소 | 모듈 | 형식 | 위치 | FRU? | 설명 |
 | --- | --- | --- | --- | --- | --- |
-| 슬롯 [0-11]의 드라이브 |디스크 드라이브 |물리적 |공유됨 |예 |EBOD 인클로저 전면의 HDD 드라이브의 각각에 대해 한 줄이 표시됩니다. |
-| 주변 온도 센서 |엔클로저 |물리적 |공유됨 |아니요 |섀시 내에서 온도를 측정합니다. |
-| 중간 평면 온도 센서 |엔클로저 |물리적 |공유됨 |아니요 |중간 평면 온도를 측정합니다. |
-| 청각적 경고 |엔클로저 |물리적 |공유됨 |아니요 |섀시 내 청각적 경고 하위 시스템의 작동 여부를 나타냅니다. |
-| 엔클로저 |엔클로저 |물리적 |공유됨 |예 |섀시의 존재를 표시합니다. |
-| 인클로저 설정 |엔클로저 |물리적 |공유됨 |아니요 |섀시 전면 패널 또는 OPS를 가리킵니다. |
-| 정격 전압 센서 |PCM |물리적 |공유됨 |아니요 |다양한 정격 전압 센서는 허용 오차 내에서 측정된 전압인지 여부를 나타내는 상태를 표시합니다. |
-| 정격 전류 센서 |PCM |물리적 |공유됨 |아니요 |다양한 정격 전류 센서는 허용 오차 내에서 측정된 전류인지 여부를 나타내는 상태를 표시합니다. |
-| PCM의 온도 센서 |PCM |물리적 |공유됨 |아니요 |입구 온도 센서 및 핫스팟 센서와 같은 여러 온도 센서는 허용 오차 내에서 측정된 온도인지를 나타내는 상태를 표시합니다. |
-| 전원 공급 장치 [0-1] |PCM |물리적 |공유됨 |예 |각 장치 뒷면에 두 PCM의 전원 공급 장치에 대한 한 줄이 표시됩니다. |
-| 냉각 장치 [0-1] |PCM |물리적 |공유됨 |예 |두 PCM에 있는 4개의 냉각팬 각각에 대해 한 줄이 표시됩니다. |
-| 로컬 저장소 [HDD] |해당 없음 |논리 |공유됨 |해당 없음 |HDD 장치에서 생성되는 논리 저장소 풀의 상태가 표시됩니다. |
-| 컨트롤러 [0-1] [state] |I/O |물리적 |Controller |예 |EBOD 모듈의 컨트롤러 상태를 표시합니다. |
-| EBOD의 온도 센서 |I/O |물리적 |Controller |아니요 |각 컨트롤러의 여러 온도 센서는 허용 오차 내에서 측정된 온도인지를 나타내는 상태를 표시합니다. |
-| SAS 확장기 |I/O |물리적 |Controller |아니요 |SAS 확장기의 상태를 표시하며, 통합된 저장소를 컨트롤러에 연결하는 데 사용됩니다. |
-| SAS 커넥터 [0-2] |I/O |물리적 |Controller |아니요 |SAS 확장기에 통합된 저장소를 연결하는데 사용되는 각 SAS 커넥터의 상태를 나타냅니다. |
-| SBB 중간 평면 상호 연결 |I/O |물리적 |Controller |아니요 |각 컨트롤러에서 중간 평면에 연결하는데 사용되는 중간 평면 커넥터의 상태를 나타냅니다. |
-| 인클로저 전자 기기 전원 |I/O |물리적 |Controller |아니요 |인클로저에에서 사용된 전원 시스템의 상태를 나타냅니다. |
-| 인클로저 전자 기기 진단 |I/O |물리적 |Controller |아니요 |컨트롤러에서 제공된 진단 하위 시스템의 상태를 나타냅니다. |
-| 장치 컨트롤러에 연결 |I/O |물리적 |Controller |아니요 |EBOD I/O 모듈 및 장치 컨트롤러 간의 연결 상태를 나타냅니다. |
+| 슬롯 [0-11]의 드라이브 |디스크 드라이브 |물리적 |공유됨 |예 |한 줄 각 HDD 드라이브 hello hello EBOD 인클로저 앞면에 hello에 대 한 표시 됩니다. |
+| 주변 온도 센서 |엔클로저 |물리적 |공유됨 |아니요 |측정값 hello hello 섀시 내의 온도 합니다. |
+| 중간 평면 온도 센서 |엔클로저 |물리적 |공유됨 |아니요 |측정값의 hello 중간 평면 온도 hello 합니다. |
+| 청각적 경고 |엔클로저 |물리적 |공유됨 |아니요 |Hello 섀시 내의 hello 청각적 경보 하위 시스템 작동 여부를 나타냅니다. |
+| 인클로저 |엔클로저 |물리적 |공유됨 |예 |Hello 섀시 유무를 나타냅니다. |
+| 인클로저 설정 |엔클로저 |물리적 |공유됨 |아니요 |Hello hello 섀시 전면 패널 또는 OPS toohello 참조합니다. |
+| 정격 전압 센서 |PCM |물리적 |공유됨 |아니요 |다양 한 정격 전압 센서가 허용 오차 이내 인지 hello 측정 하는지 여부를 나타내는 상태를 표시 합니다. |
+| 정격 전류 센서 |PCM |물리적 |공유됨 |아니요 |다양 한 선 전류 센서 있는 인지 여부를 나타내는 hello 측정 허용 오차 이내 상태를 표시 합니다. |
+| PCM의 온도 센서 |PCM |물리적 |공유됨 |아니요 |다양 한 온도 센서 유입 및 핫스폿 센서는 hello 온도 측정 하는지 여부를 나타내는 상태를 표시와 같은 허용 오차 이내 인지 합니다. |
+| 전원 공급 장치 [0-1] |PCM |물리적 |공유됨 |예 |한 줄 hello hello 장치의 후면에 있는 두 개의 Pcm 각각 hello에 hello 전원 공급 장치에 대해 표시 됩니다. |
+| 냉각 장치 [0-1] |PCM |물리적 |공유됨 |예 |한 줄 두 Pcm hello에 있는 4 개 냉각 팬 각각 hello에 대 한 표시 됩니다. |
+| 로컬 저장소 [HDD] |해당 없음 |논리 |공유됨 |해당 없음 |표시 hello 장치 Hdd에서에서 작성 하는 hello 논리적 저장소 풀의 상태입니다. |
+| 컨트롤러 [0-1] [state] |I/O |물리적 |Controller |예 |표시 hello hello EBOD 모듈의 hello 컨트롤러 상태입니다. |
+| EBOD의 온도 센서 |I/O |물리적 |Controller |아니요 |각 컨트롤러에서 다양 한 온도 센서 있는 hello 확인 된 온도가 허용 오차 이내 인지 여부를 나타내는 상태를 표시 합니다. |
+| SAS 확장기 |I/O |물리적 |Controller |아니요 |사용 되는 tooconnect hello 통합된 저장소 toohello 컨트롤러는 hello SAS 확장기의 hello 상태를 나타냅니다. |
+| SAS 커넥터 [0-2] |I/O |물리적 |Controller |아니요 |각 SAS 커넥터를 사용 하는 tooconnect 통합 저장소 toohello SAS 확장기의 hello 상태를 나타냅니다. |
+| SBB 중간 평면 상호 연결 |I/O |물리적 |Controller |아니요 |각 컨트롤러 toohello 중간 평면 tooconnect 사용된 되는 hello 중간 평면 커넥터의 hello 상태를 나타냅니다. |
+| 인클로저 전자 기기 전원 |I/O |물리적 |Controller |아니요 |Hello 인클로저에서 사용 하는 hello 전원 시스템의 hello 상태를 나타냅니다. |
+| 인클로저 전자 기기 진단 |I/O |물리적 |Controller |아니요 |Hello 컨트롤러에서 제공 하는 hello 진단 하위 시스템의 hello 상태를 나타냅니다. |
+| 연결 toodevice 컨트롤러 |I/O |물리적 |Controller |아니요 |Hello EBOD I/O 모듈과 장치 컨트롤러 hello 간의 hello 연결의 hello 상태를 나타냅니다. |
 
 ## <a name="next-steps"></a>다음 단계
-* StorSimple 장치 관리자 서비스를 사용하여 장치를 관리하려면 [StorSimple 장치 관리자 서비스를 사용하여 StorSimple 장치 관리](storsimple-8000-manager-service-administration.md)로 이동하세요.
-* 성능 저하 또는 실패 상태의 장치 구성 요소 문제를 해결해야 하는 경우 [StorSimple 모니터링 표시기](storsimple-monitoring-indicators.md)를 참조하세요.
-* 오류가 발생한 하드웨어 구성 요소를 교체하려면 [StorSimple 하드웨어 구성 요소 교체](storsimple-hardware-component-replacement.md)를 참조하세요.
-* 장치 문제가 계속되면 [Microsoft 지원에 문의](storsimple-8000-contact-microsoft-support.md)하세요.
+* toouse hello StorSimple 장치 관리자 서비스 tooadminister 장치를 이동 너무[사용 하 여 StorSimple 장치를 StorSimple 장치 관리자 서비스 tooadminister hello](storsimple-8000-manager-service-administration.md)합니다.
+* Tootroubleshoot 저하 또는 실패 상태에 있는 장치 구성 요소, 필요한 경우 너무 참조[StorSimple 모니터링 표시기](storsimple-monitoring-indicators.md)합니다.
+* tooreplace 장애가 발생 한 하드웨어 구성 요소 참조 [StorSimple 하드웨어 구성 요소 교체](storsimple-hardware-component-replacement.md)합니다.
+* Tooexperience 장치 문제를 계속 하면 [Microsoft 지원에 문의](storsimple-8000-contact-microsoft-support.md)합니다.
 

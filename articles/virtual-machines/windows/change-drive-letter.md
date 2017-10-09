@@ -1,6 +1,6 @@
 ---
-title: "VM의 D: 드라이브를 데이터 디스크로 만들기 | Microsoft Docs"
-description: "Windows VM의 D: 드라이브를 데이터 드라이브로 사용할 수 있도록 드라이브 문자를 변경하는 방법을 설명합니다."
+title: "VM 데이터 디스크의 d: 드라이브 hello 확인 | Microsoft Docs"
+description: "데이터 드라이브로 hello d: 드라이브를 사용할 수 있도록 toochange 드라이브는 Windows VM에 대 한 문자가 방법을 설명 합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,53 +15,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2017
 ms.author: cynthn
-ms.openlocfilehash: 7667175c01be2421bfc3badd83b1d8aaeb29bfde
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 43939da1a890ac4049266487951e3889aa0ed9d7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-d-drive-as-a-data-drive-on-a-windows-vm"></a>D: 드라이브를 Windows VM의 데이터 드라이브로 사용
-응용 프로그램에서 D 드라이브를 사용하여 데이터를 저장해야 하는 경우 다음 지침에 따라 임시 디스크에 다른 드라이브 문자를 사용할 수 있습니다. 보관해야 하는 데이터를 저장하는 데 임시 디스크를 사용하지 마세요.
+# <a name="use-hello-d-drive-as-a-data-drive-on-a-windows-vm"></a>Windows VM에서 데이터 드라이브로 hello d: 드라이브를 사용 하 여
+응용 프로그램 toouse hello D 드라이브 toostore 데이터를 필요한 경우 이러한 지침 toouse hello 임시 디스크에 대 한 다른 드라이브 문자를 따릅니다. Tookeep 해야 하는 hello 임시 디스크 toostore 데이터를 사용 하지 마십시오.
 
-가상 컴퓨터의 크기를 조정하거나 **중지(할당 취소)** 하는 경우 새 하이퍼바이저로 가상 컴퓨터의 배치를 트리거할 수 있습니다. 계획되거나 계획되지 않은 유지 관리 이벤트로 이 배치가 트리거될 수도 있습니다. 이 시나리오에서는 임시 디스크가 첫 번째 사용 가능한 드라이브 문자에 다시 할당됩니다. 특히 D: 드라이브가 필요한 응용 프로그램의 경우 이러한 단계를 사용하여 pagefile.sys를 일시적으로 이동하고, 새 데이터 디스크를 연결한 후 문자 D를 할당한 다음, pagefile.sys를 임시 드라이브로 다시 이동해야 합니다. 완료된 후 VM이 다른 하이퍼바이저로 이동되어도 Azure는 D:를 다시 취소하지 않습니다.
+크기를 조정 하면 또는 **중지 (할당 취소)** 가상 컴퓨터이 hello 가상 컴퓨터 tooa 새 하이퍼바이저의 배치를 트리거할 수 있습니다. 계획되거나 계획되지 않은 유지 관리 이벤트로 이 배치가 트리거될 수도 있습니다. 이 시나리오에서는 hello 임시 디스크에 다시 할당 된 toohello 첫 번째 사용 가능한 드라이브 문자가 됩니다. 특히 hello d: 드라이브를 필요로 하는 응용 프로그램의 경우 이러한 단계 tootemporarily 이동 hello pagefile.sys, 새 데이터 디스크를 연결 하 고 D hello 문자를 할당 한 다음 toohello 임시 드라이브를 다시 이동 hello pagefile.sys toofollow 필요 합니다. 완료 되 면 Azure 사항을 다시 hello d: hello VM tooa 다른 하이퍼바이저를 이동 하는 경우.
 
-Azure에서 임시 디스크를 사용하는 방법에 대한 자세한 내용은 [Microsoft Azure 가상 컴퓨터에서의 임시 드라이브 이해](https://blogs.msdn.microsoft.com/mast/2013/12/06/understanding-the-temporary-drive-on-windows-azure-virtual-machines/)
+Azure hello 임시 디스크를 사용 하는 방법에 대 한 자세한 내용은 참조 [hello 임시 드라이브를 Microsoft Azure 가상 컴퓨터 이해](https://blogs.msdn.microsoft.com/mast/2013/12/06/understanding-the-temporary-drive-on-windows-azure-virtual-machines/)
 
-## <a name="attach-the-data-disk"></a>데이터 디스크 연결
-우선 가상 컴퓨터에 데이터 디스크를 연결해야 합니다. 포털을 사용하여 이를 수행하려면 [Azure Portal에서 관리되는 데이터 디스크를 연결하는 방법](attach-managed-disk-portal.md)을 참조하세요.
+## <a name="attach-hello-data-disk"></a>Hello 데이터 디스크 연결
+첫째, tooattach hello 데이터 디스크 toohello 가상 컴퓨터 필요 합니다. toodo이 hello 포털을 사용 하 여, 참조 [tooattach 관리 되는 데이터 디스크 hello Azure 포털에에서 어떻게](attach-managed-disk-portal.md)합니다.
 
-## <a name="temporarily-move-pagefilesys-to-c-drive"></a>pagefile.sys를 C 드라이브로 임시 이동
-1. 가상 컴퓨터에 연결합니다. 
-2. **시작** 메뉴를 마우스 오른쪽 단추로 클릭하고 **시스템**을 선택합니다.
-3. 왼쪽 메뉴에서 **고급 시스템 설정**을 선택합니다.
-4. **성능** 섹션에서 **설정**을 선택합니다.
-5. **고급** 탭을 선택합니다.
-6. **가상 메모리** 섹션에서 **변경**을 선택합니다.
-7. **C** 드라이브를 선택한 후 **시스템이 관리하는 크기**를 클릭하고 **설정**을 클릭합니다.
-8. **D** 드라이브를 선택하고 **페이징 파일 없음**을 클릭하고 **설정**을 클릭합니다.
-9. 적용을 클릭합니다. 변경 내용을 적용하려면 컴퓨터를 다시 시작해야 한다는 경고가 표시됩니다.
-10. 가상 컴퓨터를 다시 시작합니다.
+## <a name="temporarily-move-pagefilesys-tooc-drive"></a>Pagefile.sys tooC 드라이브를 일시적으로 이동
+1. Toohello 가상 컴퓨터를 연결 합니다. 
+2. 마우스 오른쪽 단추로 클릭 hello **시작** 메뉴와 선택 **시스템**합니다.
+3. Hello 왼쪽 메뉴에서 선택 **고급 시스템 설정**합니다.
+4. Hello에 **성능** 섹션에서 **설정을**합니다.
+5. 선택 hello **고급** 탭 합니다.
+6. Hello에 **가상 메모리** 섹션에서 **변경**합니다.
+7. 선택 hello **C** 드라이브 및 클릭 **시스템 관리 하는 크기** 클릭 하 고 **설정**합니다.
+8. 선택 hello **D** 드라이브 및 클릭 **페이징 파일 없음** 클릭 하 고 **설정**합니다.
+9. 적용을 클릭합니다. 해당 hello 컴퓨터 toobe hello 변경 tootake 영향에 대 한 다시 시작 필요 경고를 받아볼 수 있습니다.
+10. Hello 가상 컴퓨터를 다시 시작 합니다.
 
-## <a name="change-the-drive-letters"></a>드라이브 문자 변경
-1. VM이 다시 시작되면 VM에 다시 로그인합니다.
-2. **시작** 메뉴를 클릭하고 **diskmgmt.msc**를 입력한 후 Enter 키를 누릅니다. 디스크 관리가 시작됩니다.
-3. 임시 저장소 드라이브인 **D**를 마우스 오른쪽 단추로 클릭하고 **드라이브 문자 및 경로 변경**을 선택합니다.
+## <a name="change-hello-drive-letters"></a>Hello 드라이브 문자 변경
+1. 한 번 hello VM 다시 시작 하면 toohello VM에 다시 로그온 합니다.
+2. Hello 클릭 **시작** 메뉴 및 형식 **diskmgmt.msc** Enter 키를 누릅니다. 디스크 관리가 시작됩니다.
+3. 마우스 오른쪽 단추로 클릭 **D**, 임시 저장소 드라이브 hello 및 선택 **드라이브 문자 및 경로 변경**합니다.
 4. 드라이브 문자에서 **T**와 같은 새 드라이브를 선택한 후 **확인**을 클릭합니다. 
-5. 데이터 디스크를 마우스 오른쪽 단추로 클릭하고 **드라이브 문자 및 경로 변경**을 선택합니다.
+5. Hello 데이터 디스크를 마우스 오른쪽 단추로 클릭 하 고 선택 **드라이브 문자 및 경로 변경**합니다.
 6. 드라이브 문자에서 드라이브 **D**를 선택한 후 **확인**을 클릭합니다. 
 
-## <a name="move-pagefilesys-back-to-the-temporary-storage-drive"></a>pagefile.sys를 임시 저장소 드라이브로 다시 이동합니다.
-1. **시작** 메뉴를 마우스 오른쪽 단추로 클릭하고 **시스템**을 선택합니다.
-2. 왼쪽 메뉴에서 **고급 시스템 설정**을 선택합니다.
-3. **성능** 섹션에서 **설정**을 선택합니다.
-4. **고급** 탭을 선택합니다.
-5. **가상 메모리** 섹션에서 **변경**을 선택합니다.
-6. OS 드라이브 **C**를 선택하고 **페이징 파일 없음**을 클릭하고 **설정**을 클릭합니다.
-7. 임시 저장소 드라이브 **T**를 선택한 후 **시스템이 관리하는 크기**를 클릭하고 **설정**을 클릭합니다.
-8. **Apply**를 클릭합니다. 변경 내용을 적용하려면 컴퓨터를 다시 시작해야 한다는 경고가 표시됩니다.
-9. 가상 컴퓨터를 다시 시작합니다.
+## <a name="move-pagefilesys-back-toohello-temporary-storage-drive"></a>Pagefile.sys 백 toohello 임시 저장소 드라이브를 이동 합니다.
+1. 마우스 오른쪽 단추로 클릭 hello **시작** 메뉴와 선택 **시스템**
+2. Hello 왼쪽 메뉴에서 선택 **고급 시스템 설정**합니다.
+3. Hello에 **성능** 섹션에서 **설정을**합니다.
+4. 선택 hello **고급** 탭 합니다.
+5. Hello에 **가상 메모리** 섹션에서 **변경**합니다.
+6. Hello 운영 체제 드라이브를 선택 **C** 클릭 **페이징 파일 없음** 클릭 하 고 **설정**합니다.
+7. Hello 임시 저장소 드라이브를 선택 **T** 클릭 하 고 **시스템 관리 하는 크기** 클릭 하 고 **설정**합니다.
+8. **Apply**를 클릭합니다. 해당 hello 컴퓨터 toobe hello 변경 tootake 영향에 대 한 다시 시작 필요 경고를 받아볼 수 있습니다.
+9. Hello 가상 컴퓨터를 다시 시작 합니다.
 
 ## <a name="next-steps"></a>다음 단계
-* [추가 데이터 디스크를 연결](attach-managed-disk-portal.md)하여 가상 컴퓨터에서 사용할 수 있는 저장소를 늘릴 수 있습니다.
+* Hello 하 여 사용 가능한 tooyour 가상 컴퓨터 저장소를 늘릴 수 [추가 데이터 디스크 연결](attach-managed-disk-portal.md)합니다.
 

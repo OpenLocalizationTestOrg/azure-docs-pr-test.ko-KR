@@ -1,6 +1,6 @@
 ---
-title: "Windows VM 태스크에 대한 기본 CLI 명령 | Microsoft Docs"
-description: "Azure Resource Manager에서 Windows VM을 만들고 관리하는 기본 Azure CLI 명령"
+title: "Windows VM 작업에 대 한 aaaBasic CLI 명령을 | Microsoft Docs"
+description: "기본 Azure CLI toocreate 명령과 Windows Vm에 Azure 리소스 관리자 관리"
 services: virtual-machines-windows
 documentationcenter: 
 author: dlepow
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 08/23/2016
 ms.author: danlep
-ms.openlocfilehash: 1ec1e0d5499e0a4da02a26bfb71a1117d920e7f5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3b5db7ae0017cb4713785539c96f7550b5a9bdab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="common-azure-cli-commands-for-virtual-machine-tasks-in-the-resource-manager-deployment-model"></a>리소스 관리자 배포 모델에서 가상 컴퓨터 작업에 대한 일반적인 Azure CLI 명령
-이 문서에서는 리소스 관리자 배포 모델에서 Vm을 만들고 관리하는 일반적인 Azure 명령줄 인터페이스 (Azure CLI) 명령을 보여 줍니다. 
+# <a name="common-azure-cli-commands-for-virtual-machine-tasks-in-hello-resource-manager-deployment-model"></a>Hello 리소스 관리자 배포 모델에서 가상 컴퓨터 작업에 대 한 일반적인 Azure CLI 명령
+이 문서 일반적인 Azure CLI (명령줄 인터페이스 Azure) 명령을 toocreate 보여주며, hello 리소스 관리자 배포 모델에서 Vm을 관리 합니다. 
 
 [!INCLUDE [virtual-machines-common-cli-manage](../../../includes/virtual-machines-common-cli-manage.md)]
 

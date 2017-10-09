@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI를 사용하여 사용자 지정 VM 이미지 만들기 | Microsoft Docs"
-description: "자습서 - Azure CLI를 사용하여 사용자 지정 VM 이미지 만들기"
+title: "hello Azure CLI를 사용 하 여 사용자 지정 VM 이미지를 aaaCreate | Microsoft Docs"
+description: "자습서-hello Azure CLI를 사용 하 여 사용자 지정 VM 이미지를 만듭니다."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: cynthn
@@ -16,78 +16,78 @@ ms.workload: infrastructure
 ms.date: 05/21/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: d32980f05ad17a76793021d0a5355d597974a4e4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 217a993c0c1d48939b74108ac6c5f7a1a619416c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-custom-image-of-an-azure-vm-using-the-cli"></a>CLI를 사용하여 Azure VM의 사용자 지정 이미지 만들기
+# <a name="create-a-custom-image-of-an-azure-vm-using-hello-cli"></a>Hello CLI를 사용 하 여 Azure VM의 사용자 지정 이미지 만들기
 
-사용자 지정 이미지는 Marketplace 이미지와 같지만 직접 만듭니다. 응용 프로그램 사전 로드, 응용 프로그램 구성 및 기타 OS 구성과 같은 부트스트랩 구성에 사용자 지정 이미지를 사용할 수 있습니다. 이 자습서에서는 Azure Virtual Machines의 사용자 지정 이미지를 만듭니다. 다음 방법에 대해 알아봅니다.
+사용자 지정 이미지는 Marketplace 이미지와 같지만 직접 만듭니다. 사용자 지정 이미지에는 응용 프로그램, 응용 프로그램 구성 및 기타 운영 체제 구성을 미리 로드 하는 등 사용된 toobootstrap 구성 될 수 있습니다. 이 자습서에서는 Azure Virtual Machines의 사용자 지정 이미지를 만듭니다. 다음 방법에 대해 알아봅니다.
 
 > [!div class="checklist"]
 > * VM 프로비전 해제 및 일반화
 > * 사용자 지정 이미지 만들기
 > * 사용자 지정 이미지에서 VM 만들기
-> * 구독에 모든 이미지 나열
+> * 구독에서 모든 hello 이미지 나열
 > * 이미지 삭제
 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 자습서에서 Azure CLI 버전 2.0.4 이상을 실행해야 합니다. `az --version`을 실행하여 버전을 찾습니다. 설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요. 
+Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 자습서를 사용 하려면 2.0.4 hello Azure CLI 버전을 실행 되 고 있는지 이상. 실행 `az --version` toofind hello 버전입니다. Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다. 
 
 ## <a name="before-you-begin"></a>시작하기 전에
 
-아래 단계에서는 기존 VM을 가져와서 새 VM 인스턴스를 만드는 데 사용할 수 있는 재사용 가능 사용자 지정 이미지로 변환하는 방법을 설명합니다.
+다음 hello 단계 tootake 기존 VM 및 설정에 재사용 가능한 사용자 지정 이미지를 toocreate 새 VM 인스턴스 사용 방법을 자세히 설명 합니다.
 
-이 자습서의 예제를 완료하려면 기존 가상 컴퓨터가 있어야 합니다. 필요한 경우 이 [스크립트 샘플](../scripts/virtual-machines-linux-cli-sample-create-vm-nginx.md)을 사용하여 가상 컴퓨터를 만들 수 있습니다. 이 자습서를 진행할 때 필요한 경우 리소스 그룹 및 VM 이름을 바꿉니다.
+이 자습서에서는 toocomplete hello 예제에서는 기존 가상 컴퓨터 있어야 합니다. 필요한 경우 이 [스크립트 샘플](../scripts/virtual-machines-linux-cli-sample-create-vm-nginx.md)을 사용하여 가상 컴퓨터를 만들 수 있습니다. Hello 자습서를 통해 작업 대체 필요한 경우 hello 리소스 그룹 및 VM 이름 합니다.
 
 ## <a name="create-a-custom-image"></a>사용자 지정 이미지 만들기
 
-가상 컴퓨터의 이미지를 만들려면 프로비전을 해제하고 할당을 취소한 후 원본 VM을 일반화된 것으로 표시하여 VM을 준비해야 합니다. VM이 준비되면 이미지를 만들 수 있습니다.
+가상 컴퓨터의 이미지 toocreate tooprepare hello VM 프로 비전 해제, 할당 해제, 다음 hello 소스 일반화 된 것과 같이 VM을 표시 하 여 필요 합니다. 한 번 VM 준비 된 hello, 이미지를 만들 수 있습니다.
 
-### <a name="deprovision-the-vm"></a>VM 프로비전 해제 
+### <a name="deprovision-hello-vm"></a>Hello VM을 프로 비전 해제 
 
-프로비전을 해제하면 컴퓨터별 정보를 제거하여 VM을 일반화합니다. 이 일반화를 통해 단일 이미지에서 여러 VM을 배포할 수 있습니다. 프로비전을 해제하는 동안 호스트 이름이 *localhost.localdomain*으로 다시 설정됩니다. SSH 호스트 키, 이름 서버 구성, 루트 암호 및 캐시된 DHCP 임대도 삭제됩니다.
+컴퓨터 관련 정보를 제거 하 여 hello VM을 일반화 프로 비전 해제 합니다. 이 일반화 가능한 toodeploy를 사용 하면 단일 이미지에서 많은 Vm입니다. Hello 호스트 이름이 너무 재설정, 프로 비전 해제 하는 동안*localhost.localdomain*합니다. SSH 호스트 키, 이름 서버 구성, 루트 암호 및 캐시된 DHCP 임대도 삭제됩니다.
 
-VM 프로비전을 해제하려면 Azure VM 에이전트(waagent)를 사용합니다. Azure VM 에이전트는 VM에 설치되고 Azure 패브릭 컨트롤러와의 상호 작용과 프로비전을 관리합니다. 자세한 내용은 [Azure Linux 에이전트 사용자 가이드](agent-user-guide.md)를 참조하세요.
+VM을 toodeprovision hello hello Azure VM 에이전트 (waagent)를 사용 합니다. hello Azure VM 에이전트 hello VM에 설치 하 고 프로 비전 하 고 hello Azure 패브릭 컨트롤러와의 상호 작용을 관리 합니다. 자세한 내용은 참조 hello [Azure Linux 에이전트 사용자 가이드](agent-user-guide.md)합니다.
 
-SSH를 사용하여 VM에 연결하고 VM 프로비전 해제 명령을 실행합니다. `+user` 인수를 사용하면 마지막으로 프로비전된 사용자 계정 및 관련 데이터도 삭제됩니다. 예제 IP 주소를 VM의 공용 IP 주소로 바꿉니다.
+Tooyour VM 연결 SSH 및 실행된 hello 명령 toodeprovision hello VM 사용 하 여 합니다. Hello로 `+user` 인수, hello 마지막 프로 비전 된 사용자 계정 및 관련된 데이터도 삭제 됩니다. VM의 공용 IP 주소 hello와 hello 예제 IP 주소를 대체 합니다.
 
-VM에 SSH를 사용합니다.
+SSH toohello VM입니다.
 ```bash
 ssh azureuser@52.174.34.95
 ```
-VM의 프로비전을 해제합니다.
+Hello VM을 프로 비전 해제 합니다.
 
 ```bash
 sudo waagent -deprovision+user -force
 ```
-SSH 세션을 닫습니다.
+Hello SSH 세션을 닫습니다.
 
 ```bash
 exit
 ```
 
-### <a name="deallocate-and-mark-the-vm-as-generalized"></a>할당을 취소하고 VM을 일반화된 것으로 표시
+### <a name="deallocate-and-mark-hello-vm-as-generalized"></a>할당을 취소 하 고 hello VM 일반화 된 대로 표시
 
-이미지를 만들려면 VM을 할당 취소해야 합니다. [az vm deallocate](/cli//azure/vm#deallocate)를 사용하여 VM의 할당을 취소합니다. 
+이미지 toocreate hello VM toobe 할당 취소 해야 합니다. 사용 하 여 hello VM 할당을 취소 [az vm 할당을 취소](/cli//azure/vm#deallocate)합니다. 
    
 ```azurecli-interactive 
 az vm deallocate --resource-group myResourceGroup --name myVM
 ```
 
-마지막으로, VM이 일반화된 사실을 Azure 플랫폼이 알 수 있도록 [az vm generalize](/cli//azure/vm#generalize) 명령을 사용하여 VM 상태를 일반화됨으로 설정합니다. 일반화된 VM에서만 이미지를 만들 수 있습니다.
+마지막으로 사용 하 여 일반화할 대로 hello VM의 hello 상태를 설정 [az vm 일반화](/cli//azure/vm#generalize) hello Azure 플랫폼에서 VM 일반화 된 hello 알 수 있도록 합니다. 일반화된 VM에서만 이미지를 만들 수 있습니다.
    
 ```azurecli-interactive 
 az vm generalize --resource-group myResourceGroup --name myVM
 ```
 
-### <a name="create-the-image"></a>이미지 만들기
+### <a name="create-hello-image"></a>Hello 이미지 만들기
 
-이제 [az image create](/cli//azure/image#create)를 사용하여 VM의 이미지를 만들 수 있습니다. 다음 예제에서는 *myVM*이라는 VM에서 *myImage*라는 이미지를 만듭니다.
+사용 하 여 hello VM의 이미지를 만들 수 이제 [az 이미지 만들기](/cli//azure/image#create)합니다. hello 다음 예제에서는 명명 된 이미지 *myImage* 라는 VM에서 *myVM*합니다.
    
 ```azurecli-interactive 
 az image create \
@@ -96,9 +96,9 @@ az image create \
     --source myVM
 ```
  
-## <a name="create-vms-from-the-image"></a>이미지에서 VM 만들기
+## <a name="create-vms-from-hello-image"></a>Hello 이미지에서 Vm 만들기
 
-이미지가 생겼으니, [az vm create](/cli/azure/vm#create) 명령을 사용하여 이 이미지에서 하나 이상의 새 VM을 만들 수 있습니다. 다음 예제에서는 *myImage*라는 이미지에서 *myVMfromImage*라는 VM을 만듭니다.
+이미지를가지고 사용 하 여 hello 이미지에서 하나 이상의 새 Vm을 만들 수 있습니다 [az vm 만들기](/cli/azure/vm#create)합니다. hello 다음 예제에서는 V *myVMfromImage* 라는 hello 이미지에서 *myImage*합니다.
 
 ```azurecli-interactive 
 az vm create \
@@ -111,7 +111,7 @@ az vm create \
 
 ## <a name="image-management"></a>이미지 관리 
 
-일반적인 이미지 관리 작업의 몇 가지 예제와 Azure CLI를 사용하여 완료하는 방법은 다음과 같습니다.
+다음은 일반 이미지 관리 작업의 몇 가지 예제와 방법을 toocomplete hello Azure CLI를 사용 하 여 합니다.
 
 모든 이미지를 테이블 형식으로 이름별로 나열합니다.
 
@@ -120,7 +120,7 @@ az image list \
   --resource-group myResourceGroup
 ```
 
-이미지 삭제를 삭제합니다. 이 예제에서는 *myResourceGroup*에서 *myOldImage*라는 이미지를 삭제합니다.
+이미지 삭제를 삭제합니다. 이 예에서는 삭제 hello 라는 이미지 *myOldImage* hello에서 *myResourceGroup*합니다.
 
 ```azurecli-interactive 
 az image delete \
@@ -136,10 +136,10 @@ az image delete \
 > * VM 프로비전 해제 및 일반화
 > * 사용자 지정 이미지 만들기
 > * 사용자 지정 이미지에서 VM 만들기
-> * 구독에 모든 이미지 나열
+> * 구독에서 모든 hello 이미지 나열
 > * 이미지 삭제
 
-고가용성 가상 컴퓨터에 대해 알아보려면 다음 자습서로 진행합니다.
+항상 사용 가능한 가상 컴퓨터에 대 한 다음 자습서 toolearn toohello를 진행 합니다.
 
 > [!div class="nextstepaction"]
 > [고가용성 VM 만들기](tutorial-availability-sets.md)

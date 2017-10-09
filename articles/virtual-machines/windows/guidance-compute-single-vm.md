@@ -1,5 +1,5 @@
 ---
-title: "Windows VM에 대한 모범 사례 | Microsoft Docs"
+title: "Windows Vm에 대 한 aaaBest 사례 | Microsoft Docs"
 description: "Azure에서 Windows 가상 컴퓨터를 실행하기 위한 모범 사례 정보를 제공합니다."
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 06/29/2016
 ms.author: mwasson
-ms.openlocfilehash: b8a3b51a4f886bb728af9dc3aeb0290245bb0efd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ad3ea441d0acb2fa3e135165b033806dba2db0db
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="best-practices-for-running-a-windows-vm-on-azure"></a>Azure에서 Windows VM 실행에 대한 모범 사례
 [!INCLUDE [pnp-header](../../../includes/guidance-pnp-header-include.md)]

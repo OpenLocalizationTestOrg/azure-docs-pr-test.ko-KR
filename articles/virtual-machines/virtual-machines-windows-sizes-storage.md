@@ -1,6 +1,6 @@
 ---
-title: "Azure Windows VM 크기 - 저장소 | Microsoft Docs"
-description: "Azure의 Windows 가상 컴퓨터에 사용할 수 있는 다양한 Storage에 최적화 크기를 나열합니다."
+title: "aaaAzure Windows VM 크기-저장소 | Microsoft Docs"
+description: "목록 hello 다른 저장소는 Azure에서 Windows 가상 컴퓨터에 사용 가능한 크기를 최적화합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 03/22/2017
 ms.author: cynthn
-ms.openlocfilehash: 586b77c357f64f853374a7ba59e766b015d572c2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 205207c28c6266cc4daa15cc190bfeb0c00821b1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="storage-optimized"></a>Storage에 최적화
 

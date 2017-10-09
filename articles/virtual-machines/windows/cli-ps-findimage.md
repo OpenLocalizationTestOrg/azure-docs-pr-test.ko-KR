@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Windows VM 이미지 선택 | Microsoft Docs"
-description: "Azure PowerSHell을 사용하여 Marketplace VM 이미지의 게시자, 제품, SKU 및 버전을 확인하는 방법을 알아봅니다."
+title: "Azure에서 이미지를 Windows VM aaaSelect | Microsoft Docs"
+description: "게시자, 제품, SKU 및 마켓플레이스 VM 이미지에 대 한 버전 toouse Azure PowerSHell toodetermine hello 하는 방법에 대해 알아봅니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: dlepow
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 07/12/2017
 ms.author: danlep
-ms.openlocfilehash: 814ae260123c045d4b6766bf4b312f874cd77068
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 752edcd0935f5141832e49503ae800ea0145e219
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-find-windows-vm-images-in-the-azure-marketplace-with-azure-powershell"></a>Azure PowerShell을 사용하여 Azure Marketplace에서 Windows VM 이미지를 찾는 방법
+# <a name="how-toofind-windows-vm-images-in-hello-azure-marketplace-with-azure-powershell"></a>Windows VM toofind hello Azure PowerShell을 사용한 Azure 마켓플레이스 이미지 방법
 
-이 항목에서는 Azure PowerShell을 사용하여 Azure Marketplace에서 VM 이미지를 찾는 방법을 설명합니다. 이 정보를 사용하여 Windows VM을 만들 때 Marketplace 이미지를 지정합니다.
+이 항목에서는 toouse Azure PowerShell toofind VM hello Azure 마켓플레이스 이미지 하는 방법을 설명 합니다. Windows VM을 만들 때이 정보 toospecify 마켓플레이스 이미지를 사용 합니다.
 
-최신 [Azure PowerShell 모듈](/powershell/azure/install-azurerm-ps)을 설치 및 구성했는지 확인합니다.
+설치 하 고 최신 hello 구성 되었는지 확인 [Azure PowerShell 모듈](/powershell/azure/install-azurerm-ps)합니다.
 
 
 
@@ -48,44 +48,44 @@ ms.lasthandoff: 08/03/2017
 ## <a name="find-specific-images"></a>특정 이미지 찾기
 
 
-Azure 리소스 관리자를 사용하여 새 가상 컴퓨터를 만들 때 다음 이미지 속성을 조합하여 이미지를 지정해야 하는 경우도 있습니다.
+새 가상 컴퓨터를 Azure 리소스 관리자를 만들 때 일부 경우에 필요 toospecify 이미지를 다음과 같은 이미지 속성 hello hello 결합 합니다.
 
 * 게시자
 * 제안
 * SKU
 
-예를 들어 [Set-AzureRMVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) PowerShell cmdlet 또는 만든 VM 유형을 지정해야 하는 리소스 그룹 템플릿에서 이러한 값을 사용합니다.
+예를 들어, 이러한 값을 사용 하 여 hello로 [집합 AzureRMVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) PowerShell cmdlet 또는 리소스 그룹 템플릿을 만든 VM toobe 유형의 hello를 지정 해야 합니다.
 
-이러한 값을 확인해야 할 경우 [Get-AzureRMVMImagePublisher](/powershell/module/azurerm.compute/get-azurermvmimagepublisher), [Get-AzureRMVMImageOffer](/powershell/module/azurerm.compute/get-azurermvmimageoffer) 및 [Get-AzureRMVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku)를 실행하여 이미지를 탐색할 수 있습니다. 다음 값을 확인합니다.
+이러한 값 toodetermine 해야 할 경우 hello를 실행할 수 있습니다 [Get AzureRMVMImagePublisher](/powershell/module/azurerm.compute/get-azurermvmimagepublisher), [Get AzureRMVMImageOffer](/powershell/module/azurerm.compute/get-azurermvmimageoffer), 및 [Get AzureRMVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku) cmdlet toonavigate hello 이미지입니다. 다음 값을 확인합니다.
 
-1. 이미지 게시자를 나열합니다.
+1. Hello 이미지 게시자 목록입니다.
 2. 지정된 게시자에 제안을 나열합니다.
 3. 지정된 제안에 SKU를 나열합니다.
 
-먼저 다음 명령을 사용하여 게시자를 나열합니다.
+다음 명령 hello로 hello 게시자를 먼저 나열:
 
 ```powershell
 $locName="<Azure location, such as West US>"
 Get-AzureRMVMImagePublisher -Location $locName | Select PublisherName
 ```
 
-선택한 게시자 이름을 입력하고 다음 명령을 실행합니다.
+선택한 게시자 이름을 입력 하 고 hello 다음 명령을 실행 합니다.
 
 ```powershell
 $pubName="<publisher>"
 Get-AzureRMVMImageOffer -Location $locName -Publisher $pubName | Select Offer
 ```
 
-선택한 제품 이름을 입력하고 다음 명령을 실행합니다.
+선택한 제품 이름에 입력 하 고 hello 다음 명령을 실행 합니다.
 
 ```powershell
 $offerName="<offer>"
 Get-AzureRMVMImageSku -Location $locName -Publisher $pubName -Offer $offerName | Select Skus
 ```
 
-`Get-AzureRMVMImageSku` 명령 출력에 새 가상 컴퓨터에 대한 이미지를 지정하는 데 필요한 모든 정보가 있습니다.
+Hello의 hello 출력에서 `Get-AzureRMVMImageSku` 명령, toospecify hello 이미지는 새 가상 컴퓨터에 필요한 모든 hello 정보입니다.
 
-전체 예제는 다음과 같습니다.
+hello 다음 전체 예제를 보여 줍니다.
 
 ```powershell
 $locName="West US"
@@ -111,7 +111,7 @@ Canonical
 ...
 ```
 
-게시자가 "MicrosoftWindowsServer"인 경우:
+Hello "MicrosoftWindowsServer" 게시자:
 
 ```powershell
 $pubName="MicrosoftWindowsServer"
@@ -128,7 +128,7 @@ WindowsServer
 WindowsServer-HUB
 ```
 
-"WindowsServer" 제품인 경우:
+"Windows Server" hello에 대 한 다음을 제공 합니다.
 
 ```powershell
 $offerName="WindowsServer"
@@ -154,7 +154,7 @@ Skus
 2016-Nano-Server
 ```
 
-이 목록에서 선택한 SKU 이름을 복사합니다. 그러면 `Set-AzureRMVMSourceImage` PowerShell cmdlet 또는 리소스 그룹 템플릿에 대한 모든 정보를 알 수 있습니다.
+SKU 이름을 선택 하는 hello 복사한 hello에 대 한 모든 hello 정보가 있으면이 목록에서 `Set-AzureRMVMSourceImage` PowerShell cmdlet 또는 리소스 그룹 템플릿에 대 한 합니다.
 
 ## <a name="next-steps"></a>다음 단계
-이제 사용할 이미지를 정밀하게 선택할 수 있습니다. 방금 찾은 이미지 정보를 사용하여 가상 컴퓨터를 빠르게 만들려면 [PowerShell을 사용하여 Windows 가상 컴퓨터 만들기](quick-create-powershell.md)를 참조하세요.
+정확 하 게 hello 이미지를 선택할 수 이제 toouse를 원하는 합니다. toocreate 가상 컴퓨터를 찾을 수 있는 hello 이미지 정보를 사용 하 여 신속 하 게 참조 [PowerShell을 사용한 Windows 가상 컴퓨터를 만들](quick-create-powershell.md)합니다.

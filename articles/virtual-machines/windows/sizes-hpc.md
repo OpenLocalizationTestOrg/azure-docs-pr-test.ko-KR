@@ -1,6 +1,6 @@
 ---
-title: "Azure Windows VM 크기 - HPC | Microsoft Docs"
-description: "Azure의 Windows 고성능 컴퓨팅 가상 컴퓨터에 사용할 수 있는 다양한 크기를 나열합니다."
+title: "aaaAzure Windows VM 크기-HPC | Microsoft Docs"
+description: "Windows 고성능 컴퓨팅 Azure의 가상 컴퓨터에 사용할 수 있는 hello 다른 크기를 나열 합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: jonbeck7
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 07/28/2017
 ms.author: jonbeck
-ms.openlocfilehash: a0596d134e9c26877848f93d72f35bfd2c957570
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 092bc32cfe048f439ad833911bef4ed17eda7977
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="high-performance-compute-vm-sizes"></a>고성능 계산 VM 크기
 
@@ -30,11 +30,11 @@ ms.lasthandoff: 08/03/2017
 [!INCLUDE [virtual-machines-common-a8-a9-a10-a11-specs](../../../includes/virtual-machines-common-a8-a9-a10-a11-specs.md)]
 
 ## <a name="rdma-capable-instances"></a>RDMA 지원 인스턴스
-계산 집약적 인스턴스(H16r, H16mr, A8 및 A9) 일부는 RDMA(원격 직접 메모리 액세스) 연결을 위한 네트워크 인터페이스로 사용됩니다. 이 인터페이스는 다른 VM 크기에서 사용할 수 있는 표준 Azure 네트워크 인터페이스 외에 추가로 사용됩니다. 
+Hello 계산 집약적인 인스턴스 (H16r, H16mr, A8 및 A9)의 하위 집합에는 원격 직접 메모리 액세스 (RDMA) 연결에 대 한 네트워크 인터페이스를 기능입니다. 이 인터페이스는 또한 toohello 표준 Azure 네트워크 인터페이스 tooother 사용 가능한 VM 크기입니다. 
   
-이 인터페이스를 사용하면 RDMA 지원 인스턴스가 InfiniBand 네트워크를 통해 통신할 수 있으며 H16r 및 H16mr 가상 컴퓨터에서는 FDR 속도로, A8 및 A9 가상 컴퓨터에서는 QDR 속도로 작동할 수 있습니다. 이러한 RDMA 기능은 MPI(Message Passing Interface) 응용 프로그램의 확장성 및 성능을 높일 수 있습니다.
+이 인터페이스는 H16r 및 H16mr 가상 컴퓨터에 대 한 FDR 속도 및 A8 및 A9 가상 컴퓨터에 대 한 QDR 속도에서 작동 하는 InfiniBand 네트워크를 통해 RDMA 가능 인스턴스 toocommunicate hello를 허용 합니다. 이러한 RDMA 기능 인터페이스 MPI (Message Passing) 응용 프로그램의 hello 확장성과 성능을 높일 수 있습니다.
 
-다음은 RDMA 지원 Windows VM이 Azure RDMA 네트워크에 액세스하기 위한 요구 사항입니다. 
+다음은 Windows Vm을 RDMA 가능 tooaccess hello Azure RDMA 네트워크에 대 한 요구 사항입니다. 
 
 * **운영 체제**
   
@@ -44,29 +44,29 @@ ms.lasthandoff: 08/03/2017
   > 현재 Windows Server 2016은 Azure에서 RDMA 연결을 지원하지 않습니다.
   >
 
-* **가용성 집합 또는 클라우드 서비스** – RDMA 지원 VM을 동일한 가용성 집합(Azure Resource Manager 배포 모델을 사용하는 경우) 또는 동일한 클라우드 서비스(클래식 배포 모델을 사용하는 경우)에서 배포합니다. Azure 배치를 사용하는 경우 RDMA 지원 VM이 동일한 풀에 있어야 합니다.
+* **가용성 설정 또는 클라우드 서비스** – 배포 hello RDMA 가능 Vm에 hello 동일한 가용성 집합 (hello Azure 리소스 관리자 배포 모델을 사용 하는 경우) 하는 경우 또는 (hello 클래식 배포 모델을 사용 하는 경우) 하는 경우 동일한 클라우드 서비스를 환영 합니다. RDMA 가능 Vm hello hello에 있어야 Azure 일괄 처리를 사용 하는 경우 동일한 풀입니다.
 
 * **MPI** - Microsoft MPI(MS-MPI) 2012 R2 이상, Intel MPI Library 5.x
 
-  지원되는 MPI 구현은 Microsoft Network Direct 인터페이스를 사용하여 인스턴스 간에 통신합니다. 
+  지원 되는 MPI 구현 인스턴스 간에 Microsoft Network Direct 인터페이스 toocommunicate hello를 사용합니다. 
 
-* **RDMA 네트워크 주소 공간** - Azure의 RDMA 네트워크는 주소 공간 172.16.0.0/16을 예약합니다. Azure 가상 네트워크에 배포된 인스턴스에서 MPI 응용 프로그램을 실행하려면 가상 네트워크 주소 공간이 RDMA 네트워크와 겹치지 않도록 해야 합니다.
+* **RDMA 네트워크 주소 공간** -Azure의 hello RDMA 네트워크 주소 공간 172.16.0.0/16 hello를 예약 합니다. Azure 가상 네트워크에 배포 된 인스턴스에서 MPI 응용 프로그램 toorun hello 가상 네트워크 주소 공간 hello RDMA 네트워크에 겹치지 않는 있는지 확인 합니다.
 
-* **HpcVmDrivers VM 확장** - RDMA 지원 VM에서는 RDMA 연결용 Windows 네트워크 장치 드라이버를 설치하는 HpcVmDrivers 확장을 추가해야 합니다. (특정 A8 및 A9 인스턴스 배포에서는 HpcVmDrivers 확장이 자동으로 추가됩니다.) VM에 VM 확장을 추가해야 하는 경우 [Azure PowerShell](/powershell/azure/overview) cmdlet을 사용할 수 있습니다. 
+* **HpcVmDrivers VM 확장** -RDMA 가능 Vm에서 hello HpcVmDrivers 확장 tooinstall Windows 네트워크 장치 드라이버 RDMA 연결에 추가 해야 합니다. (A8 및 A9 인스턴스의 특정 배포에서는 HpcVmDrivers 확장 hello 자동으로 추가 됩니다.) 사용할 수 있습니다 tooadd hello VM 확장 tooa VM [Azure PowerShell](/powershell/azure/overview) cmdlet. 
 
   
-  다음 명령은 *미국 서부* 영역의 *myResourceGroup* 리소스 그룹에 배포된 *myVM*이라는 기존 RDMA 지원 VM에 최신 버전의 1.1 HpcVMDrivers 확장을 설치합니다.
+  다음 명령을 설치 hello 라는 기존 RDMA 가능 VM에 최신 버전 1.1 HpcVMDrivers 확장 hello *myVM* 이라는 hello 리소스 그룹에 배포 된 *myResourceGroup* hello 에서 *미국 서 부* 영역:
 
   ```PowerShell
   Set-AzureRmVMExtension -ResourceGroupName "myResourceGroup" -Location "westus" -VMName "myVM" -ExtensionName "HpcVmDrivers" -Publisher "Microsoft.HpcCompute" -Type "HpcVmDrivers" -TypeHandlerVersion "1.1"
   ```
   
-  자세한 내용은 [가상 컴퓨터 확장 및 기능](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)을 참조하세요. 또한 [클래식 배포 모델](classic/manage-extensions.md)에서 배포된 VM의 확장으로 작업할 수 있습니다.
+  자세한 내용은 [가상 컴퓨터 확장 및 기능](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)을 참조하세요. Hello에 배포 된 Vm에 대 한 확장 작업할 수도 [클래식 배포 모델](classic/manage-extensions.md)합니다.
 
 
 ## <a name="using-hpc-pack"></a>HPC Pack 사용
 
-Microsoft의 무료 HPC 클러스터 및 작업 관리 솔루션인 [Microsoft HPC Pack](https://technet.microsoft.com/library/jj899572.aspx)은 Windows 기반 MPI 응용 프로그램 및 기타 HPC 워크로드를 실행하기 위해 Azure에서 계산 클러스터를 만들기 위한 한 가지 옵션입니다. HPC Pack 2012 R2 이상 버전에는 RDMA 지원 VM에 배포할 경우 Azure RDMA 네트워크를 사용하는 MS-MPI에 대한 런타임 환경이 포함되어 있습니다.
+[Microsoft HPC Pack](https://technet.microsoft.com/library/jj899572.aspx), Microsoft의 무료 HPC 클러스터 및 작업 관리 솔루션을 toocreate Azure toorun MPI Windows 기반 응용 프로그램 및 기타 HPC 작업에서 계산 클러스터에 하나의 옵션입니다. HPC Pack 2012 R2 및 이후 버전 MS-MPI RDMA 가능 Vm에 배포할 때 hello Azure RDMA 네트워크를 사용 하는 런타임 환경을 포함 합니다.
 
 
 
@@ -80,9 +80,9 @@ Microsoft의 무료 HPC 클러스터 및 작업 관리 솔루션인 [Microsoft H
 
 ## <a name="next-steps"></a>다음 단계
 
-- Windows Server에서 HPC 팩을 통해 계산 집약적 인스턴스를 사용할 때의 검사 목록은 [MPI 응용 프로그램을 실행하기 위해 HPC 팩을 사용하여 Windows RDMA 클러스터 설정](classic/hpcpack-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)을 참조하세요.
+- 검사 목록 toouse hello 계산 집약적인 인스턴스 Windows 서버에서 HPC Pack을 사용한 참조 [HPC Pack toorun MPI 응용 프로그램을 사용 하 여 Windows RDMA 클러스터를 설정](classic/hpcpack-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)합니다.
 
-- Azure Batch에서 MPI 응용 프로그램 실행할 때 계산 집약적 인스턴스를 사용하려면 [다중 인스턴스 작업을 사용하여 Azure Batch에서 MPI(메시지 전달 인터페이스) 응용 프로그램 실행](../../batch/batch-mpi.md)을 참조하세요.
+- toouse 계산 집약적인 인스턴스에서 MPI 응용 프로그램에서 Azure 일괄 처리 실행 될 때 참조 [toorun 인터페이스 MPI (Message Passing) 응용 프로그램을 Azure 일괄 처리의 작업을 사용 하 여 다중 인스턴스](../../batch/batch-mpi.md)합니다.
 
 - [ACU(Azure Compute 단위)](acu.md)가 Azure SKU 간의 Compute 성능을 비교하는 데 어떻게 도움을 줄 수 있는지 알아봅니다.
 

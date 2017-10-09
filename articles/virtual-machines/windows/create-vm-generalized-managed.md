@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 관리 VM 이미지로 VM 만들기 | Microsoft Docs"
-description: "Resource Manager 배포 모델에서 Azure PowerShell을 사용하여 일반화된 관리 VM 이미지로 Windows 가상 컴퓨터를 만듭니다."
+title: "Azure에서 관리 되는 VM 이미지에서 VM aaaCreate | Microsoft Docs"
+description: "Hello 리소스 관리자 배포 모델에서 Azure PowerShell을 사용 하는 일반화 된 관리 되는 VM 이미지에서 Windows 가상 컴퓨터를 만듭니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,22 +15,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/22/2017
 ms.author: cynthn
-ms.openlocfilehash: 2bb2d66271178a64ec0f4642e46b23f5618a56d9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5036ef1533c144a9a328e94599b359e0166f337d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-vm-from-a-managed-image"></a>관리되는 이미지에서 VM 만들기
 
-Azure에서 관리 VM 이미지로 여러 VM을 만들 수 있습니다. 관리 VM 이미지는 OS 및 데이터 디스크를 비롯하여 VM을 만드는 데 필요한 정보를 포함하고 있습니다. OS 디스크와 데이터 디스크를 포함하여 이미지를 구성하는 VHD는 관리 디스크로 저장됩니다. 
+Azure에서 관리 VM 이미지로 여러 VM을 만들 수 있습니다. 관리 되는 VM 이미지 hello 정보 필요한 toocreate hello OS 및 데이터 디스크를 포함 하 여 VM을 포함 합니다. hello Vhd hello 운영 체제 디스크와 모든 데이터 디스크를 포함 하는 hello 이미지를 구성 하는 관리 되는 디스크도 저장 됩니다. 
 
 
 ## <a name="prerequisites"></a>필수 조건
 
-새 VM을 만들려면 [만들어 놓은 관리 VM 이미지가 있어야 합니다](capture-image-resource.md). 
+이미 toohave 필요한 [관리 되는 VM 이미지를 만들어](capture-image-resource.md) 작성용 toouse hello 새 VM입니다. 
 
-최신 버전의 AzureRM.Compute 및 AzureRM.Network PowerShell 모듈을 사용하고 있는지 확인합니다. 관리자 권한으로 PowerShell 프롬프트를 열고 다음 명령을 실행하여 설치합니다.
+Hello hello AzureRM.Compute 및 AzureRM.Network PowerShell 모듈의 최신 버전이 있는지 확인 합니다. 관리자 권한으로 PowerShell 프롬프트를 열고 다음 명령 tooinstall hello를 실행 하 합니다.
 
 ```powershell
 Install-Module AzureRM.Compute,AzureRM.Network
@@ -39,9 +39,9 @@ Install-Module AzureRM.Compute,AzureRM.Network
 
 
 
-## <a name="collect-information-about-the-image"></a>이미지에 대한 정보 수집
+## <a name="collect-information-about-hello-image"></a>Hello 이미지에 대 한 정보를 수집 합니다.
 
-먼저 이미지에 대한 기본 정보를 수집하고 이미지의 변수를 만들어야 합니다. 이 예제에서는 **미국 중서부** 위치의 **myResourceGroup** 리소스 그룹에 있는 **myImage**라는 관리되는 VM 이미지를 사용합니다. 
+먼저 toogather hello 이미지에 대 한 기본 정보가 필요 하 고 hello 이미지에 대 한 변수를 만듭니다. 이 예에서는 이라는 관리 되는 VM 이미지를 사용 하 여 **myImage** 에 hello 즉 **myResourceGroup** hello의 리소스 그룹 **중앙 미국 서 부** 위치 합니다. 
 
 ```powershell
 $rgName = "myResourceGroup"
@@ -51,15 +51,15 @@ $image = Get-AzureRMImage -ImageName $imageName -ResourceGroupName $rgName
 ```
 
 ## <a name="create-a-virtual-network"></a>가상 네트워크 만들기
-[가상 네트워크](../../virtual-network/virtual-networks-overview.md)의 vNet 및 서브넷을 만듭니다.
+Hello vNet 및 hello의 서브넷을 만들 [가상 네트워크](../../virtual-network/virtual-networks-overview.md)합니다.
 
-1. 서브넷을 만듭니다. 이 예제에서는 주소 접두사로 **10.0.0.0/24**를 사용하는 **mySubnet**이라는 서브넷을 만듭니다.  
+1. Hello 서브넷을 만듭니다. 이 예에서는 이라는 서브넷을 만듭니다 **mySubnet** hello 주소 접두사와 **10.0.0.0/24**합니다.  
    
     ```powershell
     $subnetName = "mySubnet"
     $singleSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name $subnetName -AddressPrefix 10.0.0.0/24
     ```
-2. 가상 네트워크 만들기 이 예제에서는 주소 접두사로 **10.0.0.0/16**을 사용하는 **myVnet**이라는 가상 네트워크를 만듭니다.  
+2. Hello 가상 네트워크를 만듭니다. 이 예제에서는 명명 된 가상 네트워크를 만들어 **myVnet** hello 주소 접두사와 **10.0.0.0/16**합니다.  
    
     ```powershell
     $vnetName = "myVnet"
@@ -69,7 +69,7 @@ $image = Get-AzureRMImage -ImageName $imageName -ResourceGroupName $rgName
 
 ## <a name="create-a-public-ip-address-and-network-interface"></a>공용 IP 주소 및 네트워크 인터페이스 만들기
 
-가상 네트워크에서 가상 컴퓨터와 통신하려면 [공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) 및 네트워크 인터페이스가 필요합니다.
+필요한 tooenable hello 가상 네트워크의 hello 가상 컴퓨터와의 통신을는 [공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) 및 네트워크 인터페이스.
 
 1. 공용 IP 주소 만들기. 이 예에서는 **myPip**라는 공용 IP 주소를 만듭니다. 
    
@@ -78,7 +78,7 @@ $image = Get-AzureRMImage -ImageName $imageName -ResourceGroupName $rgName
     $pip = New-AzureRmPublicIpAddress -Name $ipName -ResourceGroupName $rgName -Location $location `
         -AllocationMethod Dynamic
     ```       
-2. NIC 만들기. 이 예에서는 **myNic**라는 NIC를 만듭니다. 
+2. Hello NIC. 만들기 이 예에서는 **myNic**라는 NIC를 만듭니다. 
    
     ```powershell
     $nicName = "myNic"
@@ -86,11 +86,11 @@ $image = Get-AzureRMImage -ImageName $imageName -ResourceGroupName $rgName
         -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
     ```
 
-## <a name="create-the-network-security-group-and-an-rdp-rule"></a>네트워크 보안 그룹 및 RDP 규칙 만들기
+## <a name="create-hello-network-security-group-and-an-rdp-rule"></a>Hello 네트워크 보안 그룹 및 RDP 규칙 만들기
 
-RDP를 사용하여 VM에 로그인할 수 있으려면 포트 3389에 대한 RDP 액세스를 허용하는 NSG(네트워크 보안 규칙)가 필요합니다. 
+toobe 수 toolog tooyour에서 RDP를 사용 하 여 VM을 toohave RDP 포트 3389에 대 한 액세스를 허용 하는 네트워크 보안 규칙 (NSG) 필요 합니다. 
 
-이 예에서는 포트 3389를 통한 RDP 트래픽을 허용하는 **myRdpRule**이라는 규칙을 포함하는 **myNsg**로 명명된 NSG를 만듭니다. NSG에 대한 자세한 내용은 [PowerShell을 사용하여 Azure에서 VM으로 포트 열기](nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)를 참조하세요.
+이 예에서는 포트 3389를 통한 RDP 트래픽을 허용하는 **myRdpRule**이라는 규칙을 포함하는 **myNsg**로 명명된 NSG를 만듭니다. Nsg에 대 한 자세한 내용은 참조 [PowerShell을 사용 하 여 Azure에서 VM 포트 tooa 여](nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다.
 
 ```powershell
 $nsgName = "myNsg"
@@ -105,54 +105,54 @@ $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $rgName -Location $loc
 ```
 
 
-## <a name="create-a-variable-for-the-virtual-network"></a>가상 네트워크에 대한 변수 만들기
+## <a name="create-a-variable-for-hello-virtual-network"></a>Hello 가상 네트워크에 대 한 변수 만들기
 
-완료된 가상 네트워크에 대한 변수를 만듭니다. 
+가상 네트워크를 완료 하는 hello에 대 한 변수를 만듭니다. 
 
 ```powershell
 $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $rgName -Name $vnetName
 
 ```
 
-## <a name="get-the-credentials-for-the-vm"></a>VM에 대한 자격 증명 가져오기
+## <a name="get-hello-credentials-for-hello-vm"></a>Hello VM에 대 한 hello 자격 증명 가져오기
 
-다음 cmdlet을 사용하면 VM에 원격으로 액세스하기 위해 로컬 관리자 계정으로 사용할 새 사용자 이름 및 암호를 입력할 수 있는 창이 열립니다. 
+hello 다음 cmdlet이 열립니다 입력할 수 있는 새 사용자 이름 및 암호 toouse hello 로컬 관리자 계정으로 원격으로 hello VM에 액세스 하기 위한 창. 
 
 ```powershell
 $cred = Get-Credential
 ```
 
-## <a name="set-variables-for-the-vm-name-computer-name-and-the-size-of-the-vm"></a>VM 이름, 컴퓨터 이름 및 VM 크기에 대한 변수 설정
+## <a name="set-variables-for-hello-vm-name-computer-name-and-hello-size-of-hello-vm"></a>Hello VM에 대 한 설정 변수 이름, 컴퓨터 이름 및 hello hello VM의 크기
 
-1. VM 이름 및 컴퓨터 이름에 대한 변수를 만듭니다. 이 예제에서는 VM 이름을 **myVM**으로 설정하고 컴퓨터 이름을 **myComputer**로 설정합니다.
+1. Hello VM 이름 및 컴퓨터 이름에 대 한 변수를 만듭니다. Hello VM 이름으로 설정 하는이 예제 **myVM** 및 컴퓨터 이름으로 hello **myComputer**합니다.
 
     ```powershell
     $vmName = "myVM"
     $computerName = "myComputer"
     ```
-2. 가상 컴퓨터의 크기를 설정합니다. 이 예제에서는 **Standard_DS1_v2** 크기의 VM을 만듭니다. 자세한 내용은 [VM 크기](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-sizes/) 설명서를 참조하세요.
+2. Hello 가상 컴퓨터의 hello 크기를 설정 합니다. 이 예제에서는 **Standard_DS1_v2** 크기의 VM을 만듭니다. Hello 참조 [VM 크기](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-sizes/) 자세한 정보에 대 한 설명서입니다.
 
     ```powershell
     $vmSize = "Standard_DS1_v2"
     ```
 
-3. VM 구성에 VM의 이름과 크기를 추가합니다.
+3. Hello VM 이름 및 크기 toohello VM 구성에 추가 합니다.
 
 ```powershell
 $vm = New-AzureRmVMConfig -VMName $vmName -VMSize $vmSize
 ```
 
-## <a name="set-the-vm-image-as-source-image-for-the-new-vm"></a>새 VM에 대한 원본 이미지로 VM 이미지 설정
+## <a name="set-hello-vm-image-as-source-image-for-hello-new-vm"></a>Hello에 대 한 원본 이미지로 집합 hello VM 이미지 새 VM
 
-관리되는 VM 이미지의 ID를 사용하여 원본 이미지를 설정합니다.
+관리 되는 hello VM 이미지의 hello ID를 사용 하 여 hello 소스 이미지를 설정 합니다.
 
 ```powershell
 $vm = Set-AzureRmVMSourceImage -VM $vm -Id $image.Id
 ```
 
-## <a name="set-the-os-configuration-and-add-the-nic"></a>OS 구성을 설정하고 NIC를 추가합니다.
+## <a name="set-hello-os-configuration-and-add-hello-nic"></a>운영 체제 구성 hello를 설정 하 고 hello NIC. 추가
 
-저장소 유형(PremiumLRS 또는 StandardLRS) 및 OS 디스크의 크기를 입력합니다. 이 예제에서는 계정 유형을 **PremiumLRS**로, 디스크 크기를 **128GB**로, 디스크 캐싱을 **ReadWrite**로 설정합니다.
+Hello 저장소 유형 (PremiumLRS 또는 StandardLRS)와 hello OS 디스크의 hello 크기를 입력 합니다. 이 예에서는 설정 hello 계정 유형 너무**PremiumLRS**, 디스크 크기를 너무 hello**128GB** 및 디스크 캐싱에 너무**ReadWrite**합니다.
 
 ```powershell
 $vm = Set-AzureRmVMOSDisk -VM $vm  -StorageAccountType PremiumLRS -DiskSizeInGB 128 `
@@ -164,16 +164,16 @@ $vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName $computerName 
 $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
 ```
 
-## <a name="create-the-vm"></a>VM 만들기
+## <a name="create-hello-vm"></a>Hello VM 만들기
 
-이전에 작성하여 **$vm** 변수에 저장한 구성을 사용하여 새 VM을 만듭니다.
+만들 작성 했으며 hello에 저장 하는 hello 구성을 사용 하 여 새 Vm hello **$vm** 변수입니다.
 
 ```powershell
 New-AzureRmVM -VM $vm -ResourceGroupName $rgName -Location $location
 ```
 
-## <a name="verify-that-the-vm-was-created"></a>VM이 만들어졌는지 확인
-완료되면 새로 만든 VM은 [Azure 포털](https://portal.azure.com)에서 **찾아보기** > **가상 컴퓨터**에 표시되며 다음 PowerShell 명령을 사용해도 표시할 수 있습니다.
+## <a name="verify-that-hello-vm-was-created"></a>VM이 생성 되었고 해당 hello를 확인 합니다.
+새로 만든 VM의 hello hello 나타나야 완료 되 면 [Azure 포털](https://portal.azure.com) 아래 **찾아보기** > **가상 컴퓨터**, 또는 hello 다음을 사용 하 여 PowerShell 명령:
 
 ```powershell
     $vmList = Get-AzureRmVM -ResourceGroupName $rgName
@@ -181,5 +181,5 @@ New-AzureRmVM -VM $vm -ResourceGroupName $rgName -Location $location
 ```
 
 ## <a name="next-steps"></a>다음 단계
-Azure PowerShell을 사용하여 새 가상 컴퓨터를 관리하려면 [Azure PowerShell 모듈을 사용하여 Windows VM 만들기 및 관리](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)를 참조하세요.
+Azure PowerShell을 사용한 새 가상 컴퓨터에 참조 toomanage [만들기 hello Azure PowerShell 모듈을 사용 하 여 Windows Vm을 관리 하 고](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다.
 

@@ -1,6 +1,6 @@
 ---
-title: "첫 번째 Windows VM에 IIS 설치 | Microsoft Docs"
-description: "Azure 포털을 사용하여 IIS를 설치하고 포트 80을 열어 첫 번째 Windows 가상 컴퓨터로 실험합니다."
+title: "첫 번째 Windows VM에는 IIS aaaInstall | Microsoft Docs"
+description: "첫 번째 시험해 IIS를 설치 하 고 포트 80을 사용 하 여 Windows 가상 컴퓨터는 Azure 포털 hello 합니다."
 keywords: 
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,94 +16,94 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/06/2016
 ms.author: cynthn
-ms.openlocfilehash: b11ce1eab0c26a802c31bc418cdf725cbc4fba30
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7cfed6197df058c4569d111ee88961da7c6fe0b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="experiment-with-installing-a-role-on-your-windows-vm"></a>Windows VM에서 역할을 설치하여 실험
-첫 번째 VM(가상 컴퓨터)이 작동 및 실행되는 경우 소프트웨어 및 서비스 설치를 계속 진행할 수 있습니다. 이 자습서에서는 Windows Server VM의 서버 관리자를 사용하여 IIS를 설치하려고 합니다. 그런 다음 Azure 포털을 사용하여 NSG(네트워크 보안 그룹)를 만들고 IIS 트래픽에 대해 포트 80을 엽니다. 
+첫 번째 가상 컴퓨터 (VM)를 구성 및 실행 되 고 있으면 tooinstalling 소프트웨어 및 서비스에서 이동할 수 있습니다. 이 자습서에서는 하겠습니다 toouse 서버 관리자에서 Windows Server VM tooinstall hello IIS 합니다. 그런 다음 네트워크 보안 그룹 (NSG) hello Azure 포털 tooopen 포트 80 tooIIS 트래픽을 사용 하 여 만듭니다. 
 
-첫 번째 VM을 아직 만들지 않은 경우 이 자습서를 계속 진행하기 전에 [Azure Portal에서 첫 번째 Windows 가상 컴퓨터 만들기](../virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)로 되돌아가야 합니다.
+첫 번째 VM을 아직 만들지 않은 경우 해야 다시가 서 너무[hello Azure 포털에서에서 첫 번째 Windows 가상 컴퓨터를 만들](../virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 이 자습서를 계속 합니다.
 
-## <a name="make-sure-the-vm-is-running"></a>VM이 실행되고 있는지 확인
-1. [Azure 포털](https://portal.azure.com)을 엽니다.
-2. 허브 메뉴에서 **가상 컴퓨터**를 클릭합니다. 목록에서 가상 컴퓨터를 선택합니다.
-3. 상태가 **중지됨(할당 취소됨)**이면 VM의 **Essentials** 블레이드에서 **시작** 단추를 클릭합니다. 상태가 **실행 중**이면 다음 단계로 이동할 수 있습니다.
+## <a name="make-sure-hello-vm-is-running"></a>VM이 실행 되 고 있는지 hello를 확인 합니다.
+1. 열기 hello [Azure 포털](https://portal.azure.com)합니다.
+2. Hello 허브 메뉴에서 클릭 **가상 컴퓨터**합니다. Hello 목록에서 hello 가상 컴퓨터를 선택 합니다.
+3. Hello 상태가 **중지 (할당 취소)**, hello 클릭 **시작** hello 단추 **Essentials** hello VM의 블레이드에서 합니다. Hello 상태가 **실행**, toohello 다음 단계로 이동할 수 있습니다.
 
-## <a name="connect-to-the-virtual-machine-and-sign-in"></a>가상 컴퓨터에 연결 및 로그인
-1. 허브 메뉴에서 **가상 컴퓨터**를 클릭합니다. 목록에서 가상 컴퓨터를 선택합니다.
-2. 가상 컴퓨터 블레이드에서 **연결**을 클릭합니다. 컴퓨터에 연결하는 바로 가기와 같은 원격 데스크톱 프로토콜 파일(.rdp 파일)을 만들고 다운로드합니다. 쉽게 액세스할 수 있도록 바탕 화면에 파일을 저장 수 있습니다. **열어서** VM에 연결합니다.
+## <a name="connect-toohello-virtual-machine-and-sign-in"></a>Toohello 가상 컴퓨터에 연결 하 고 로그인
+1. Hello 허브 메뉴에서 클릭 **가상 컴퓨터**합니다. Hello 목록에서 hello 가상 컴퓨터를 선택 합니다.
+2. Hello 가상 컴퓨터에 대 한 hello 블레이드에서 클릭 **연결**합니다. 그러면 만들어지고 바로 가기 tooconnect tooyour 컴퓨터과 같은 원격 데스크톱 프로토콜 파일 (.rdp 파일)을 다운로드 합니다. Toosave hello 파일 tooyour 데스크톱 편리 하 게 할 수 있습니다. **열기** 파일 tooconnect tooyour VM이 있습니다.
    
-    ![VM에 연결하는 방법을 보여 주는 Azure Portal의 스크린샷](./media/hero-role/connect.png)
-3. .rdp이 알 수 없는 게시자에게서 비롯되었다는 경고를 받게 됩니다. 이것은 정상입니다. 원격 데스크톱 창에서 **연결** 을 클릭하여 계속합니다.
+    ![Hello Azure 포털 보여 주는 스크린샷 어떻게 tooconnect tooyour VM](./media/hero-role/connect.png)
+3. 경고가 나타나면 해당 hello.rdp 알 수 없는 게시자에서 시작 됩니다. 이것은 정상입니다. Hello 원격 데스크톱 창에서 클릭 **연결** toocontinue 합니다.
    
     ![알 수 없는 게시자에 대한 경고 스크린샷](./media/hero-role/rdp-warn.png)
-4. Windows 보안 창에서 VM을 만들 때 생성한 로컬 계정에 대한 사용자 이름 및 암호를 입력합니다. 사용자 이름을 *vmname*&#92;*사용자 이름*으로 입력한 다음 **확인**을 클릭합니다.
+4. Hello Windows 보안 창 형식 hello 사용자 이름 및 암호를 만들 때 만든 hello 로컬 계정에 대 한 VM을 hello 합니다. hello 사용자 이름을으로 입력 됩니다 *vmname*&#92; *사용자 이름*, 클릭 **확인**합니다.
    
-    ![VM 이름, 사용자 이름 및 암호를 입력하는 스크린샷](./media/hero-role/credentials.png)
-5. 인증서를 확인할 수 없다는 경고를 받게 됩니다. 이것은 정상입니다. **예** 를 클릭하여 가상 컴퓨터의 ID를 확인하고 로그온을 완료합니다.
+    ![Hello VM 이름, 사용자 이름 및 암호를 입력 하는 스크린 샷](./media/hero-role/credentials.png)
+5. 경고가 나타나면 해당 hello 인증서를 확인할 수 없습니다. 이것은 정상입니다. 클릭 **예** tooverify hello 가상 컴퓨터의 id를 hello 및 로그온을 완료 합니다.
    
-   ![VM의 ID를 확인하라는 메시지를 보여 주는 스크린샷](./media/hero-role/cert-warning.png)
+   ![메시지를 보여 주는 스크린샷 hello VM의 hello id를 확인 한 섹션인](./media/hero-role/cert-warning.png)
 
-연결하려고 할 때 문제가 발생할 경우 [Windows 기반 Azure 가상 컴퓨터에 대한 원격 데스크톱 연결 문제 해결](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)을 참조하세요.
+Tooconnect 려 할 때 tootrouble에서 실행 하면 참조 [Windows 기반 Azure 가상 컴퓨터 문제를 해결 하는 원격 데스크톱 연결 tooa](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다.
 
 ## <a name="install-iis-on-your-vm"></a>VM에 IIS 설치
-VM에 로그인했으므로 더 실험할 수 있도록 서버 역할을 설치합니다.
+Toohello VM에에서 로그인 해야 했으므로 더 작업할 수 있도록 서버 역할을 설치 합니다.
 
-1. 아직 열려 있지 않은 경우 **서버 관리자** 를 엽니다. **시작** 메뉴를 클릭한 다음 **서버 관리자**를 클릭합니다.
-2. **서버 관리자**의 왼쪽 창에서 **로컬 서버**를 선택합니다. 
-3. 메뉴에서 **관리** > **역할 및 기능 추가**를 선택합니다.
-4. 역할 및 기능 추가 마법사의 **설치 유형** 페이지에서 **역할 기반 또는 기능 기반 설치**를 선택하고 **다음**을 클릭합니다.
+1. 아직 열려 있지 않은 경우 **서버 관리자** 를 엽니다. Hello 클릭 **시작** 메뉴를 차례로 클릭 **서버 관리자**합니다.
+2. **서버 관리자**선택, **로컬 서버** hello 왼쪽된 창에서. 
+3. Hello 메뉴에서 선택 **관리** > **역할 및 기능 추가**합니다.
+4. Hello 추가 역할 및 기능 마법사 hello **설치 유형을** 페이지에서 선택 **역할 기반 또는 기능 기반 설치**, 클릭 하 고 **다음**합니다.
    
-    ![설치 유형에 대한 역할 및 기능 마법사 추가 탭을 보여 주는 스크린샷](./media/hero-role/role-wizard.png)
-5. 서버 풀에서 VM을 선택하고 **다음**을 클릭합니다.
-6. **서버 역할** 페이지에서 **Web Server(IIS)**를 선택합니다.
+    ![스크린 샷 보여 주는 hello 추가 역할 및 기능 마법사에 대 한 탭 설치 유형](./media/hero-role/role-wizard.png)
+5. Hello 서버 풀의 hello VM을 선택 하 고 클릭 **다음**합니다.
+6. Hello에 **서버 역할** 페이지에서 **웹 서버 (IIS)**합니다.
    
-    ![서버 유형에 대한 역할 및 기능 마법사 추가 탭을 보여 주는 스크린샷](./media/hero-role/add-iis.png)
-7. IIS에 필요한 기능을 추가에 대한 팝업에서 **관리 도구 포함**을 선택했는 지 확인한 다음 **기능 추가**를 클릭합니다. 팝업을 닫을 때 마법사에서 **다음** 을 클릭합니다.
+    ![스크린 샷 보여 주는 hello 추가 역할 및 기능 마법사에 대 한 탭 서버 역할](./media/hero-role/add-iis.png)
+7. IIS에 필요한 기능을 추가 하는 방법에 대 한 팝업 hello, 되는지 확인 **관리 도구 포함** 을 선택 하 고 클릭 **기능 추가**합니다. 클릭 하 여 hello 팝업을 닫으면 **다음** hello 마법사에서 합니다.
    
-    ![IIS 역할을 추가하여 확인할 팝업을 보여 주는 스크린샷](./media/hero-role/confirm-add-feature.png)
-8. 기능 페이지에서 **다음**을 클릭합니다.
-9. **웹 서버 역할(IIS)** 페이지에서 **다음**을 클릭합니다. 
-10. **역할 서비스** 페이지에서 **다음**을 클릭합니다. 
-11. **확인** 페이지에서 **설치**를 클릭합니다. 
-12. 설치가 완료되면 마법사에서 **닫기** 를 클릭합니다.
+    ![Hello IIS 역할을 추가 하는 팝업 tooconfirm 보여 주는 스크린샷](./media/hero-role/confirm-add-feature.png)
+8. Hello 기능 페이지에서 클릭 **다음**합니다.
+9. Hello에 **웹 서버 역할 (IIS)** 페이지 **다음**합니다. 
+10. Hello에 **역할 서비스** 페이지 **다음**합니다. 
+11. Hello에 **확인** 페이지 **설치**합니다. 
+12. Hello 설치가 완료 되 면 클릭 **닫기** hello 마법사에 있습니다.
 
 ## <a name="open-port-80"></a>포트 80 열기
-VM이 포트 80을 통한 인바운드 트래픽을 허용하기 위해 네트워크 보안 그룹에 인바운드 규칙을 추가해야 합니다. 
+VM tooaccept 위해에서 포트 80 통한 트래픽 인바운드 tooadd는 인바운드 규칙 toohello 네트워크 보안 그룹을 사용 해야 합니다. 
 
-1. [Azure 포털](https://portal.azure.com)을 엽니다.
-2. **가상 컴퓨터** 에서 만든 VM을 선택합니다.
-3. 가상 컴퓨터 설정에서 **네트워크 인터페이스** 를 선택한 다음 기존 네트워크 인터페이스를 선택합니다.
+1. 열기 hello [Azure 포털](https://portal.azure.com)합니다.
+2. **가상 컴퓨터** 선택 hello 만든 VM입니다.
+3. Hello 가상 컴퓨터 설정에서 선택 **네트워크 인터페이스** 다음 선택 hello 기존 네트워크 인터페이스 하 고 있습니다.
    
-    ![네트워크 인터페이스에 대한 가상 컴퓨터 설정을 보여 주는 스크린샷](./media/hero-role/network-interface.png)
-4. 네트워크 인터페이스에 대한 **Essentials**에서 **네트워크 보안 그룹**을 클릭합니다.
+    ![Hello에 대 한 가상 컴퓨터 설정을 hello 네트워크 인터페이스를 보여 주는 스크린샷](./media/hero-role/network-interface.png)
+4. **Essentials** hello 네트워크 인터페이스에 대 한 클릭 hello **네트워크 보안 그룹**합니다.
    
-    ![네트워크 인터페이스에 대한 Essentials 섹션을 보여 주는 스크린샷](./media/hero-role/select-nsg.png)
-5. NSG에 대한 **Essentials** 블레이드에서 VM에 로그인할 수 있는 **default-allow-rdp**에 하나의 기존 기본 인바운드 규칙이 있어야 합니다. IIS 트래픽을 허용하도록 인바운드 규칙을 추가합니다. **인바운드 보안 규칙**을 클릭합니다.
+    ![Hello 네트워크 인터페이스에 대 한 hello Essentials 섹션을 보여 주는 스크린샷](./media/hero-role/select-nsg.png)
+5. Hello에 **Essentials** NSG hello에 대 한 블레이드에서 있어야 인바운드 규칙에 대 한 하나의 기존 기본 **기본 허용 rdp** 수 있는 toolog toohello VM에에서 있습니다. 다른 인바운드 규칙 tooallow IIS 트래픽을 추가 합니다. **인바운드 보안 규칙**을 클릭합니다.
    
-    ![NSG에 대한 Essentials 섹션을 보여 주는 스크린샷](./media/hero-role/inbound.png)
+    ![NSG hello에 대 한 hello Essentials 섹션을 보여 주는 스크린샷](./media/hero-role/inbound.png)
 6. **인바운드 보안 규칙**에서 **추가**를 클릭합니다.
    
-    ![보안 규칙을 추가하는 단추를 보여 주는 스크린샷](./media/hero-role/add-rule.png)
-7. **인바운드 보안 규칙**에서 **추가**를 클릭합니다. 포트 범위에 **80**을 입력하고 **허용**을 선택해야 합니다. 완료되면 **확인**을 클릭합니다.
+    ![Hello 단추 tooadd 보안 규칙을 보여 주는 스크린샷](./media/hero-role/add-rule.png)
+7. **인바운드 보안 규칙**에서 **추가**를 클릭합니다. 형식 **80** 에서 포트 범위 hello 하 고 있는지 확인 **허용** 을 선택 합니다. 완료되면 **확인**을 클릭합니다.
    
-    ![보안 규칙을 추가하는 단추를 보여 주는 스크린샷](./media/hero-role/port-80.png)
+    ![Hello 단추 tooadd 보안 규칙을 보여 주는 스크린샷](./media/hero-role/port-80.png)
 
-NSG, 인바운드 및 아웃바운드 규칙에 대한 자세한 내용은 [Azure Portal을 사용하여 VM에 대한 외부 액세스 허용](nsg-quickstart-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)을 참조하세요.
+Nsg 인바운드 및 아웃 바운드 규칙에 대 한 자세한 내용은 참조 하십시오. [Azure 포털 hello 허용 외부 tooyour VM 사용 하 여 액세스](nsg-quickstart-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-## <a name="connect-to-the-default-iis-website"></a>기본 IIS 웹 사이트에 연결
-1. Azure 포털에서 **가상 컴퓨터** 를 클릭한 다음 VM을 선택합니다.
-2. **Essentials** 블레이드에서 **공용 IP 주소**를 복사합니다.
+## <a name="connect-toohello-default-iis-website"></a>Toohello 기본 IIS 웹 사이트를 연결 합니다.
+1. Hello Azure 포털에서에서 클릭 **가상 컴퓨터** 한 다음 VM을 선택 합니다.
+2. Hello에 **Essentials** 블레이드에서 복사 하면 **공용 IP 주소**합니다.
    
-    ![VM의 공용 IP 주소를 찾을 수 있는 위치를 보여 주는 스크린샷](./media/hero-role/ipaddress.png)
-3. 브라우저를 열고 주소 표시줄에 http://<publicIPaddress>와 같은 공용 IP 주소를 입력하고 **입력**을 클릭하여 해당 주소로 이동합니다.
-4. 브라우저에서 기본 IIS 웹 페이지가 열립니다. 모양은 다음과 같습니다.
+    ![여기서 toofind hello VM의 공용 IP 주소를 보여 주는 스크린샷](./media/hero-role/ipaddress.png)
+3. 브라우저를 열고 hello 주소 표시줄에서 다음과 같은 공용 IP 주소 입력: http://<publicIPaddress> 클릭 **Enter** toogo toothat 주소입니다.
+4. 브라우저가는 hello 기본 IIS 웹 페이지를 열어야 합니다. 모양은 다음과 같습니다.
    
-    ![브라우저에서 기본 IIS 페이지 모양을 보여 주는 스크린샷](./media/hero-role/iis-default.png)
+    ![브라우저에서 다음과 같은 hello 기본 IIS 페이지에 관계를 보여 주는 스크린샷](./media/hero-role/iis-default.png)
 
 ## <a name="next-steps"></a>다음 단계
-* 또한 가상 컴퓨터에 대한 [데이터 디스크 연결](attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)을 실험할 수 있습니다. 데이터 디스크는 가상 컴퓨터에 대한 더 많은 저장소를 제공합니다.
+* 또한 실험할 수 [데이터 디스크 연결](attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) tooyour 가상 컴퓨터. 데이터 디스크는 가상 컴퓨터에 대한 더 많은 저장소를 제공합니다.
 

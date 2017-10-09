@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 1.0을 사용하여 Linux VM에 대한 Key Vault 설정 | Microsoft Docs"
-description: "Azure CLI 1.0을 사용하여 Azure Resource Manager에서 사용할 Key Vault를 설정하는 방법"
+title: "Linux Vm에 대 한 자격 증명 모음 키를 Azure CLI 1.0 hello로 aaaSet | Microsoft Docs"
+description: "어떻게 키 자격 증명 모음을 사용 하는 Azure 리소스 관리자 가상 컴퓨터와 함께 사용할 tooset hello Azure CLI 1.0입니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: singhkays
@@ -15,30 +15,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/24/2017
 ms.author: singhkay
-ms.openlocfilehash: fed612a354d45f34619f2a66bd40d78740c43ac7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 275022e4e7e26d7363784c289dd7512047c07bad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="set-up-key-vault-for-virtual-machines-in-azure-resource-manager-with-the-azure-cli-10"></a>Azure CLI 1.0을 사용하여 Azure Resource Manager에서 가상 컴퓨터에 대한 Key Vault 설정
-Azure Resource Manager 스택에서 암호/인증서는 Key Vault의 리소스 공급자가 제공하는 리소스로 모델링됩니다. Azure 주요 자격 증명 모음에 대한 자세한 내용을 보려면 [Azure 주요 자격 증명 모음이란?](../../key-vault/key-vault-whatis.md) 주요 자격 증명 모음을 Azure Resource Manager 가상 컴퓨터에서 사용하려면 주요 자격 증명에 대한 *EnabledForDeployment* 속성을 true로 설정해야 합니다. 다양한 클라이언트에서 이 작업을 수행할 수 있습니다. 이 문서에서는 Azure Virtual Machines에서 사용할 Key Vault를 설정하는 방법을 보여 줍니다.
+# <a name="set-up-key-vault-for-virtual-machines-in-azure-resource-manager-with-hello-azure-cli-10"></a>Azure CLI 1.0 hello로 Azure 리소스 관리자의 가상 컴퓨터에 대 한 키 자격 증명 모음 설정
+Hello Azure 리소스 관리자 스택의 비밀/인증서는 키 자격 증명 모음 hello 리소스 공급자가 제공 되는 리소스 그룹으로 모델링 됩니다. Azure 키 자격 증명 모음에 대 한 자세한 toolearn 참조 [Azure 키 자격 증명 모음 이란?](../../key-vault/key-vault-whatis.md) Azure 리소스 관리자 가상 컴퓨터와 함께 사용 되는 주요 자격 증명 모음 toobe에 대 한 순서로 hello *EnabledForDeployment* tootrue 속성 주요 자격 증명 모음을 설정 해야 합니다. 다양한 클라이언트에서 이 작업을 수행할 수 있습니다. 이 문서에서는 Azure 가상 컴퓨터와 함께 사용 하기 위해 키 자격 증명 모음을 tooset 합니다.
 
-## <a name="cli-versions-to-complete-the-task"></a>태스크를 완료하기 위한 CLI 버전
-다음 CLI 버전 중 하나를 사용하여 태스크를 완료할 수 있습니다.
+## <a name="cli-versions-toocomplete-hello-task"></a>CLI 버전 toocomplete hello 작업
+Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 완료할 수 있습니다.
 
-- [Azure CLI 1.0](#quick-commands) - 클래식 및 리소스 관리 배포 모델용 CLI(이 문서)
-- [Azure CLI 2.0](../windows/key-vault-setup.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 리소스 관리 배포 모델용 차세대 CLI
+- [Azure CLI 1.0](#quick-commands) – 우리의 CLI 모델에 대 한 hello 클래식 및 리소스 관리 배포 (이 문서)
+- [Azure CLI 2.0](../windows/key-vault-setup.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -우리의 차세대 CLI hello 리소스 관리 배포 모델에 대 한
 
-## <a name="use-cli-10-to-set-up-key-vault"></a>CLI 1.0을 사용하여 Key Vault 설정
-CLI(명령줄 인터페이스)를 사용하여 주요 자격 증명 모음을 만들려면 [CLI를 사용하여 주요 자격 증명 모음 관리](../../key-vault/key-vault-manage-with-cli2.md#create-a-key-vault)를 참조하세요.
+## <a name="use-cli-10-tooset-up-key-vault"></a>CLI 1.0 tooset 키 자격 증명 모음을 사용 하 여
+hello CLI (명령줄 인터페이스)를 사용 하 여 주요 자격 증명 모음 toocreate 참조 [관리 키 자격 증명 모음 CLI를 사용 하 여](../../key-vault/key-vault-manage-with-cli2.md#create-a-key-vault)합니다.
 
-CLI 1.0의 경우 먼저 Key Vault를 만든 다음 배포 정책을 할당해야 합니다. 다음 명령을 사용하여 정책을 할당할 수 있습니다.
+CLI 1.0에 대 한 hello 배포 정책을 지정 하기 전에 toocreate hello 키 자격 증명 모음이 있는지 합니다. 다음 명령을 hello를 사용 하 여 hello 정책 그런 다음 할당할 수 있습니다.
 
     azure keyvault set-policy ContosoKeyVault –enabled-for-deployment true
 
-## <a name="use-templates-to-set-up-key-vault"></a>템플릿을 사용하여 주요 자격 증명 모음 설정
-템플릿을 사용하는 경우 `enabledForDeployment` 속성을 주요 자격 증명 모음 리소스에 대한 `true`로 설정해야 합니다.
+## <a name="use-templates-tooset-up-key-vault"></a>키 자격 증명 모음을 사용 하 여 템플릿 tooset
+Tooset hello 템플릿을 사용 하는 경우 해야 `enabledForDeployment` 속성 너무`true` hello 키 자격 증명 모음 리소스에 대 한 합니다.
 
     {
       "type": "Microsoft.KeyVault/vaults",

@@ -1,6 +1,6 @@
 ---
-title: "백업용 Azure 관리 디스크 복사 | Microsoft Docs"
-description: "백업 또는 디스크 문제 해결에 사용할 수 있는 Azure 관리 디스크의 복사본을 만드는 방법을 알아봅니다."
+title: "백업에는 Azure 관리 되는 디스크 aaaCopy | Microsoft Docs"
+description: "위쪽 또는 문제 해결을 다시 디스크는 Azure 관리 되는 디스크 toouse의 복사본을 발급 하는 toocreate 방법에 대해 알아봅니다."
 documentationcenter: 
 author: squillace
 manager: timlt
@@ -13,33 +13,33 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 2/6/2017
 ms.author: rasquill
-ms.openlocfilehash: c91367ef11c9d531bebac7c069d2df586607ec29
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 41b91c2d68eb5be9c493a66be5f7d085a70450d0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-copy-of-a-vhd-stored-as-an-azure-managed-disk-by-using-managed-snapshots"></a>관리 스냅숏을 사용하여 Azure 관리 디스크로 저장된 VHD 복사본 만들기
-백업용 관리 디스크의 스냅숏을 만들거나 스냅숏으로 관리 디스크를 만들고 테스트 가상 컴퓨터에 연결하여 문제를 해결합니다. 관리 스냅숏은 VM 관리 디스크의 완전한 특정 시점 복사본입니다. VHD의 읽기 전용 복사본을 만들어서 기본적으로 표준 관리 디스크로 저장합니다. 
+# <a name="create-a-copy-of-a-vhd-stored-as-an-azure-managed-disk-by-using-managed-snapshots"></a>관리 스냅숏을 사용하여 Azure Managed Disk로 저장된 VHD 복사본 만들기
+백업에 대 한 관리 되는 디스크의 스냅숏을 또는 hello 스냅숏에서 관리 되는 디스크를 만들어 tooa 테스트 가상 컴퓨터 tootroubleshoot를 연결 합니다. 관리 스냅숏은 VM Managed Disk의 특정 시점 전체 복사본입니다. VHD의 읽기 전용 복사본을 만들어서 기본적으로 표준 관리 디스크로 저장합니다. 
 
-가격 책정에 대한 자세한 내용은 [Azure Storage 가격 책정](https://azure.microsoft.com/pricing/details/managed-disks/)을 참조하세요. <!--Add link to topic or blog post that explains managed disks. -->
+가격 책정에 대한 자세한 내용은 [Azure Storage 가격 책정](https://azure.microsoft.com/pricing/details/managed-disks/)을 참조하세요. <!--Add link tootopic or blog post that explains managed disks. -->
 
-Azure Portal 또는 Azure CLI 2.0을 사용하여 Managed Disk 스냅숏을 만듭니다.
+Azure 포털 또는 hello Azure CLI 2.0 tootake 어느 hello hello 관리 되는 디스크의 스냅숏을 사용 합니다.
 
-## <a name="use-azure-cli-20-to-take-a-snapshot"></a>Azure CLI 2.0을 사용하여 스냅숏 만들기
+## <a name="use-azure-cli-20-tootake-a-snapshot"></a>Azure CLI 2.0 tootake 스냅숏을 사용 하 여
 
 > [!NOTE] 
-> 다음 예제는 Azure CLI 2.0을 설치하고 Azure 계정에 로그인해야 합니다.
+> hello 다음 예제에서는 hello Azure CLI 2.0 설치 하 고 Azure 계정에 로그인 합니다.
 
-다음 단계에서는 `az snapshot create` 명령과 `--source-disk` 매개 변수를 사용하여 관리 OS 디스크의 스냅숏을 가져오고 만드는 방법을 보여줍니다. 다음 예제는 `myResourceGroup` 리소스 그룹의 관리 OS 디스크로 만든 `myVM`이라는 VM이 있는 것으로 가정합니다.
+hello 다음 단계 표시 방법을 tooobtain 및 관리 되는 운영 체제에 대 한 스냅숏을 사용 하 여 디스크로 hello `az snapshot create` hello로 명령을 `--source-disk` 매개 변수입니다. hello 다음 예제에서는 라고 가정 라는 VM `myVM` hello에서 관리 되는 운영 체제 디스크를 사용 하 여 만든 `myResourceGroup` 리소스 그룹입니다.
 
 ```azure-cli
-# take the disk id with which to create a snapshot
+# take hello disk id with which toocreate a snapshot
 osDiskId=$(az vm show -g myResourceGroup -n myVM --query "storageProfile.osDisk.managedDisk.id" -o tsv)
 az snapshot create -g myResourceGroup --source "$osDiskId" --name osDisk-backup
 ```
 
-다음과 비슷하게 출력됩니다.
+hello 출력에는 다음과 같이 표시 됩니다.
 
 ```json
 {
@@ -66,18 +66,18 @@ az snapshot create -g myResourceGroup --source "$osDiskId" --name osDisk-backup
 }
 ```
 
-## <a name="use-azure-portal-to-take-a-snapshot"></a>Azure Portal을 사용하여 스냅숏 만들기 
+## <a name="use-azure-portal-tootake-a-snapshot"></a>Azure 포털 tootake 스냅숏을 사용 하 여 
 
-1. [Azure 포털](https://portal.azure.com)에 로그인합니다.
-2. 왼쪽 위에서 **새로 만들기**를 클릭하고 **스냅숏**을 검색합니다.
-3. 스냅숏 블레이드에서 **만들기**를 클릭합니다.
-4. 스냅숏의 **이름**을 입력합니다.
-5. 기존 [리소스 그룹](../../azure-resource-manager/resource-group-overview.md#resource-groups)을 선택하거나 새 리소스 그룹의 이름을 입력합니다. 
+1. Toohello 로그인 [Azure 포털](https://portal.azure.com)합니다.
+2. 클릭 하 여 hello 왼쪽 위 년부터 **새로** 검색 한 **스냅숏**합니다.
+3. Hello 스냅숏 블레이드에서 클릭 **만들기**합니다.
+4. 입력 한 **이름** hello 스냅숏에 대 한 합니다.
+5. 기존 선택 [리소스 그룹](../../azure-resource-manager/resource-group-overview.md#resource-groups) 또는 새 유형 hello 이름입니다. 
 6. Azure 데이터 센터 위치를 선택합니다.  
-7. **원본 디스크**에서 스냅숏을 만들 Managed Disk를 선택합니다.
-8. 스냅숏 저장에 사용할 **계정 유형**을 선택합니다. 고성능 디스크에 저장할 필요가 없다면 **Standard_LRS**를 권장합니다.
+7. 에 대 한 **원본 디스크**, 선택 hello toosnapshot 디스크 관리.
+8. 선택 hello **계정 유형** toouse toostore hello 스냅숏 합니다. 고성능 디스크에 저장할 필요가 없다면 **Standard_LRS**를 권장합니다.
 9. **만들기**를 클릭합니다.
 
-스냅숏을 사용하여 관리 디스크를 만들고 고성능이 필요한 VM에 스냅숏을 연결하려는 경우 `--sku Premium_LRS` 매개 변수와 `az snapshot create` 명령을 사용합니다. 그러면 프리미엄 관리 디스크로 저장되는 스냅숏이 만들어집니다. 프리미엄 Managed Disks는 SSD(반도체 드라이브)이기 때문에 성능이 우수하지만 표준 디스크(HDD)보다 가격이 비쌉니다.
+Hello 매개 변수를 사용 하 여 관리 되는 디스크 toouse hello 스냅숏 toocreate를 계획 하 고 toobe 높은 수행 해야 하는 VM을 연결 하는 경우 `--sku Premium_LRS` hello로 `az snapshot create` 명령입니다. 그러면 프리미엄 관리 되는 디스크에 저장 되도록 hello 스냅숏이 만들어집니다. 프리미엄 Managed Disks는 SSD(반도체 드라이브)이기 때문에 성능이 우수하지만 표준 디스크(HDD)보다 가격이 비쌉니다.
 
 

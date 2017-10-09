@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Linux VM 장치 이름이 변경됨 | Microsoft Docs"
-description: "장치 이름이 변경된 이름을 설명하고 이 문제에 대한 솔루션을 제공합니다."
+title: "Azure에서 aaaLinux VM 장치 이름이 변경 된 | Microsoft Docs"
+description: "Hello 장치 이름이 변경 되 고이 문제에 대 한 솔루션을 제공 이유를 설명 합니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: genlin
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: vm-linux
 ms.devlang: azurecli
 ms.date: 07/12/2017
 ms.author: genli
-ms.openlocfilehash: 789f4580901a22dc3aaae9599c7205c76f268403
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 4d3a5853d61edd2c8e8b85ab69e5ed3b3bc00bb8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting-linux-vm-device-names-are-changed"></a>문제 해결: Linux VM 장치 이름이 변경됨
 
-문서는 Linux VM(가상 컴퓨터)을 다시 시작하거나 디스크를 다시 연결한 후 장치 이름이 변경되는 이유를 설명합니다. 또한 이 문제에 대한 솔루션을 제공합니다.
+hello 문서는 Linux 가상 컴퓨터 (VM)를 다시 시작 하거나 hello 디스크를 다시 연결 하면 장치 이름이 변경 하는 이유를 설명 합니다. 또한이 문제에 대 한 hello 솔루션을 제공합니다.
 
 ## <a name="symptom"></a>증상
 
-Microsoft Azure에서 Linux VM을 실행하는 경우 다음과 같은 문제가 발생할 수 있습니다.
+Hello Linux Vm의 경우 Microsoft Azure에서 실행 하는 경우 뒤에 문제가 발생할 수 있습니다.
 
-- VM에서 다시 시작한 후 부팅에 실패합니다.
+- hello VM 다시 시작 후 tooboot을 실패합니다.
 
-- 데이터 디스크가 분리되고 다시 연결되는 경우 디스크에 대한 장치 이름이 변경됩니다.
+- 데이터 디스크를 분리 및 다시 연결 하는 경우 디스크에 대 한 hello 장치 이름이 변경 됩니다.
 
-- 장치 이름을 사용하여 디스크를 참조하는 응용 프로그램 또는 스크립트가 실패합니다. 디스크의 장치 이름이 변경됩니다.
+- 장치 이름을 사용하여 디스크를 참조하는 응용 프로그램 또는 스크립트가 실패합니다. 해당 hello 찾을 hello 디스크의 장치 이름이 변경 됩니다.
 
 ## <a name="cause"></a>원인
 
-Linux의 장치 경로는 다시 시작에 대해 일관되도록 보장되지 않습니다. 장치 이름은 주(문자) 및 보조 번호로 구성됩니다.  Linux 저장소 장치 드라이버에서 새 장치를 검색하는 경우 주 및 보조 장치 번호를 사용할 수 있는 범위에서 할당합니다. 장치가 제거되는 경우 장치 번호는 나중에 다시 사용할 수 있습니다.
+Linux에서 장치 경로 않을 toobe 일관 된 컴퓨터를 다시 시작할. 장치 이름은 주(문자) 및 보조 번호로 구성됩니다.  Hello Linux 저장 장치 드라이버에서 새 장치를 검색 하는 경우 주 및 부 장치 번호 tooit hello 사용 가능한 범위를 할당 합니다. 장치를 제거 하는 경우 hello 장치 번호는 해제 된 toobe 나중에 다시 사용 합니다.
 
-SCSI 하위 시스템에서 예약된 Linux에서 검색하는 장치가 비동기적으로 발생하므로 문제가 발생합니다. 최종 장치 경로 이름 지정은 다시 시작에 따라 달라질 수 있습니다. 
+hello 문제 때문에 발생 hello hello SCSI 하위 시스템에서 예약 된 Linux에서 검색 하는 장치 발생 하는 비동기적으로 합니다. 컴퓨터를 다시 시작할 hello 최종 장치 경로 명명 달라질 수 있습니다. 
 
 ## <a name="solution"></a>해결 방법
 
-이 문제를 해결하려면 영구 이름 지정을 사용합니다. 영구적으로 이름을 지정하는 네 가지 메서드로, 파일 시스템 레이블별, uuid별, ID별 및 경로별이 있습니다. Azure Linux VM에 대해 파일 시스템 레이블 및 UUID 메서드를 권장합니다. 
+tooresolve이이 문제를 영구 이름을 사용 합니다. 네 개의 메서드에 toopersistent는 이름 지정-파일 시스템 레이블, uuid, id 및 경로 의해 합니다. Azure Linux Vm에 대해 hello 파일 시스템 레이블 및 UUID 메서드 권장 합니다. 
 
-또한 대부분의 배포판은 **nofail** 또는 **nobootwait** fstab 옵션을 제공합니다. 이러한 옵션을 사용하면 디스크가 시작 시 탑재되지 않더라도 시스템을 부팅할 수 있습니다. 이러한 매개 변수에 대한 자세한 내용은 배포 설명서를 참조하세요. 데이터 디스크를 추가할 때 UUID를 사용하도록 Linux VM을 구성하는 방법에 대한 자세한 내용은 [Linux VM에 연결하여 새 디스크 탑재](add-disk.md#connect-to-the-linux-vm-to-mount-the-new-disk)를 참조하세요. 
+대부분의 배포판 제공 하거나 hello **nofail** 또는 **nobootwait** fstab 옵션입니다. 이 옵션을 toomount 시작 시 hello 디스크에 오류가 발생 하는 경우에 시스템 tooboot을 사용 합니다. 이러한 매개 변수에 대 한 자세한 내용은 hello 분포의 설명서를 확인 합니다. Linux VM toouse UUID 데이터 디스크를 추가 하면 참조 하는 tooconfigure 방법에 대 한 자세한 내용은 [toohello Linux VM toomount hello에 대 한 새 디스크를 연결](add-disk.md#connect-to-the-linux-vm-to-mount-the-new-disk)합니다. 
 
-Azure Linux 에이전트가 VM에 설치될 때 Udev 규칙을 사용하여 **/dev/disk/azure** 아래에 기호 링크의 집합을 만듭니다. 이러한 Udev 규칙은 응용 프로그램 및 스크립트에서 디스크가 VM, 해당 유형 및 LUN에 연결되었는지 식별하는 데 사용될 수 있습니다.
+Hello Azure Linux 에이전트는 VM에 설치 될 때 사용 하 여 Udev 규칙 tooconstruct에서 바로 가기 링크 집합이 **/dev/disk/azure**합니다. 응용 프로그램에서 사용할 수 있습니다 이러한 Udev 규칙 및 스크립트 tooidentify 디스크 되는 VM을의 형식에 연결 된 toohello LUN hello 합니다.
 
 ## <a name="more-information"></a>자세한 정보
 
 ### <a name="identify-disk-luns"></a>디스크 LUN 식별
 
-응용 프로그램은 LUN을 사용하여 모든 연결된 디스크 및 기호 링크 생성을 찾을 수 있습니다. 이제 Azure Linux 에이전트는 다음과 같이 LUN에서 장치로 기호 링크를 설정하는 udev 규칙을 포함합니다.
+모든 hello 연결 된 디스크 및 기호화 된 링크를 구성할 응용 프로그램에서 Lun toofind를 사용할 수 있습니다. hello Azure Linux 에이전트에는 이제 다음과 같이 LUN toohello 장치에서 바로 가기 링크를 설정 하는 udev 규칙을 포함 되어 있습니다.
 
     $ tree /dev/disk/azure
 
@@ -70,7 +70,7 @@ Azure Linux 에이전트가 VM에 설치될 때 Udev 규칙을 사용하여 **/d
         └── lun1-part3 -> ../../../sdd3                                    
                                  
 
-Linux 게스트에서 다음과 같이 lsscsi 또는 유사한 도구를 사용하여 LUN 정보를 검색할 수도 있습니다.
+Lsscsi 또는 유사한 도구를 다음과 같이 사용 하 여 hello Linux 게스트에서 LUN 정보를 검색할 수도 있습니다.
 
        $ sudo lsscsi
 
@@ -84,7 +84,7 @@ Linux 게스트에서 다음과 같이 lsscsi 또는 유사한 도구를 사용�
 
       [5:0:0:1] disk Msft Virtual Disk 1.0 /dev/sdd
 
-이 게스트 LUN 정보를 파티션 데이터를 저장하는 VHD의 Azure 저장소의 위치를 식별하는 데 Azure 구독 메타데이터와 함께 사용할 수 있습니다. 예를 들어 az cli를 사용합니다.
+Azure 구독 메타 데이터 tooidentify hello에에서 위치와 Azure 저장소의 hello hello 파티션 데이터를 저장 하는 VHD의이 게스트 LUN 정보를 사용할 수 있습니다. 예를 들어 hello az cli를 사용 합니다.
 
     $ az vm show --resource-group testVM --name testVM | jq -r .storageProfile.dataDisks                                        
     [                                                                                                                                                                  
@@ -116,7 +116,7 @@ Linux 게스트에서 다음과 같이 lsscsi 또는 유사한 도구를 사용�
 
 ### <a name="discover-filesystem-uuids-by-using-blkid"></a>blkid를 사용하여 파일 시스템 UUID 검색
 
-스크립트 또는 응용 프로그램은 blkid의 출력 또는 유사한 원본의 정보를 읽고 사용하기 위해 **/dev**에서 기호 링크를 생성할 수 있습니다. 출력은 연결되어 있는 VM 및 장치 파일에 연결된 모든 디스크의 UUID를 표시합니다.
+스크립트 또는 응용 프로그램 blkid의 hello 출력 또는 유사한 리소스의 정보를 읽고 수에 대 한 바로 가기 링크를 생성 **/dev** 사용 합니다. hello 출력의 모든 디스크 Uuid hello 연결 toohello VM과 hello 장치 파일 toowhich 연결 되어 표시 됩니다.
 
     $ sudo blkid -s UUID
 
@@ -125,7 +125,7 @@ Linux 게스트에서 다음과 같이 lsscsi 또는 유사한 도구를 사용�
     /dev/sdb1: UUID="176250df-9c7c-436f-94e4-d13f9bdea744"
     /dev/sdc1: UUID="b0048738-4ecc-4837-9793-49ce296d2692"
 
-waagent udev 규칙은 **/dev/disk/azure** 아래에 기호 링크의 집합을 생성합니다.
+기호화 된 링크의 집합을 생성 하는 hello waagent udev 규칙 **/dev/disk/azure**:
 
 
     $ ls -l /dev/disk/azure
@@ -137,24 +137,24 @@ waagent udev 규칙은 **/dev/disk/azure** 아래에 기호 링크의 집합을 
     lrwxrwxrwx 1 root root 10 Jun  2 23:17 root-part1 -> ../../sda1
 
 
-응용 프로그램은 이 정보를 사용하여 부팅 디스크 장치 및 리소스(임시) 디스크를 식별할 수 있습니다. Azure에서 응용 프로그램은 **/dev/disk/azure/root-part1** 또는 **/dev/disk/azure-resource-part1**을 참조하여 이러한 파티션을 검색해야 합니다.
+hello 응용 프로그램에서이 정보를 사용할 수 hello 부팅 디스크 장치 및 hello 리소스 (임시) 디스크를 식별 합니다. Azure에서 응용 프로그램 참조 해야 너무**/dev/disk/azure/root-part1** 또는 **/dev/disk/azure-resource-part1** toodiscover 이러한 파티션을 합니다.
 
-blkid 목록에서 추가 파티션이 있는 경우 데이터 디스크에 상주합니다. 응용 프로그램에서 이러한 파티션에 대한 UUID를 유지 관리하고 아래와 같은 경로를 사용하여 런타임 시 장치 이름을 검색할 수 있습니다.
+Hello blkid 목록에서 추가 파티션을 없을 경우 데이터 디스크에 상주 합니다. 응용 프로그램 hello UUID 이러한 파티션에 대 한 유지 관리 및 hello toodiscover hello 장치 이름 아래와 같은 경로에서 런타임에 사용할 수 있습니다.
 
     $ ls -l /dev/disk/by-uuid/b0048738-4ecc-4837-9793-49ce296d2692
 
     lrwxrwxrwx 1 root root 10 Jun 19 15:57 /dev/disk/by-uuid/b0048738-4ecc-4837-9793-49ce296d2692 -> ../../sdc1
 
     
-### <a name="get-the-latest-azure-storage-rules"></a>최신 Azure 저장소 규칙 가져오기
+### <a name="get-hello-latest-azure-storage-rules"></a>Hello 최신 Azure 저장소 규칙 가져오기
 
-최신 Azure 저장소 규칙을 가져오려면 다음 명령을 실행합니다.
+최신 Azure 저장소 규칙 toohello 명령 다음과 같은 실행 합니다.
 
     # sudo curl -o /etc/udev/rules.d/66-azure-storage.rules https://raw.githubusercontent.com/Azure/WALinuxAgent/master/config/66-azure-storage.rules
     # sudo udevadm trigger --subsystem-match=block
 
 
-자세한 내용은 다음 문서를 참조하세요.
+자세한 내용은 다음 문서는 hello 참조:
 
 - [Ubuntu: UUID 사용](https://help.ubuntu.com/community/UsingUUID)
 
@@ -162,5 +162,5 @@ blkid 목록에서 추가 파티션이 있는 경우 데이터 디스크에 상�
 
 - [Linux: UUID에서 수행할 수 있는 작업](https://www.linux.com/news/what-uuids-can-do-you)
 
-- [Udev: 최신 Linux 시스템에서 장치 관리 소개](https://www.linux.com/news/udev-introduction-device-management-modern-linux-system)
+- [Udev: 소개 tooDevice 최신 Linux 시스템 관리](https://www.linux.com/news/udev-introduction-device-management-modern-linux-system)
 

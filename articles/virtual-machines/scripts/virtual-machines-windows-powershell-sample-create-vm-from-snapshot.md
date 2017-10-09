@@ -1,5 +1,5 @@
 ---
-title: "Azure PowerShell 스크립트 샘플 - 스냅숏에서 VM 만들기 | Microsoft Docs"
+title: "PowerShell 스크립트 샘플-aaaAzure 스냅숏에서 VM 만들기 | Microsoft Docs"
 description: "Azure PowerShell 스크립트 샘플 - 스냅숏에서 VM 만들기"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
@@ -16,11 +16,11 @@ ms.workload: infrastructure
 ms.date: 05/10/2017
 ms.author: ramankum
 ms.custom: mvc
-ms.openlocfilehash: 63d108bbfd0f58f8a40bf1c7c8649e3a1f7ed288
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 89c65171b55bff0582c4a26df0b0f29f556845fd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-virtual-machine-from-a-snapshot-with-powershell"></a>PowerShell를 사용하여 스냅숏에서 가상 컴퓨터 만들기
 
@@ -32,11 +32,11 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="sample-script"></a>샘플 스크립트
 
-[!code-powershell[기본](../../../powershell_scripts/virtual-machine/create-vm-from-snapshot/create-vm-from-snapshot.ps1 "관리 os 디스크에서 VM 만들기")]
+[!code-powershell[main](../../../powershell_scripts/virtual-machine/create-vm-from-snapshot/create-vm-from-snapshot.ps1 "Create VM from managed os disk")]
 
 ## <a name="clean-up-deployment"></a>배포 정리 
 
-다음 명령을 실행하여 리소스 그룹, VM 및 모든 관련된 리소스를 제거할 수 있습니다.
+Hello 명령 tooremove hello 리소스 그룹, VM 및 관련 된 모든 리소스를 다음을 실행 합니다.
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup
@@ -44,15 +44,15 @@ Remove-AzureRmResourceGroup -Name myResourceGroup
 
 ## <a name="script-explanation"></a>스크립트 설명
 
-이 스크립트는 다음 명령을 사용하여 스냅숏 속성을 가져오고 스냅숏에서 관리 디스크를 만들며 VM을 만듭니다. 테이블에 있는 각 항목은 명령에 해당하는 문서에 연결됩니다.
+이 스크립트 명령 tooget 스냅숏 속성 스냅숏에서 관리 되는 디스크를 만들 및 VM 만들기를 수행 하는 hello를 사용 합니다. Hello 테이블의 각 항목 toocommand 특정 문서를 연결합니다.
 
 | 명령 | 참고 사항 |
 |---|---|
 | [Get-AzureRmSnapshot](/powershell/module/azurerm.compute/get-azurermsnapshot) | 스냅숏 이름을 사용하여 스냅숏을 가져옵니다. |
-| [New-AzureRmDiskConfig](/powershell/module/azurerm.compute/new-azurermdiskconfig) | 디스크 구성을 만듭니다. 이 구성은 디스크 만들기 프로세스에서 사용됩니다. |
+| [New-AzureRmDiskConfig](/powershell/module/azurerm.compute/new-azurermdiskconfig) | 디스크 구성을 만듭니다. 이 구성은 hello 디스크 만들기 프로세스에 사용 됩니다. |
 | [New-AzureRmDisk](/powershell/module/azurerm.compute/new-azurermdisk) | 관리 디스크를 만듭니다. |
-| [New-AzureRmVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig) | VM 구성을 만듭니다. 이 구성은 VM 이름, 운영 체제 및 관리자 자격 증명 등의 정보를 포함합니다. 이 구성은 VM을 만드는 중에 사용됩니다. |
-| [Set-AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk) | 관리 디스크를 가상 컴퓨터에 OS 디스크로 연결합니다. |
+| [New-AzureRmVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig) | VM 구성을 만듭니다. 이 구성은 VM 이름, 운영 체제 및 관리자 자격 증명 등의 정보를 포함합니다. hello 구성은 VM 만드는 동안 사용 됩니다. |
+| [Set-AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk) | OS 디스크 toohello 가상 컴퓨터로 hello 관리 되는 디스크를 연결합니다. |
 | [New-AzureRmPublicIpAddress](/powershell/module/azurerm.network/new-azurermpublicipaddress) | 공용 IP 주소를 만듭니다. |
 | [새-AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface) | 네트워크 인터페이스를 만듭니다. |
 | [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm) | 가상 컴퓨터를 만듭니다. |
@@ -60,6 +60,6 @@ Remove-AzureRmResourceGroup -Name myResourceGroup
 
 ## <a name="next-steps"></a>다음 단계
 
-Azure PowerShell 모듈에 대한 자세한 내용은 [Azure PowerShell 설명서](/powershell/azure/overview)를 참조하세요.
+Hello Azure PowerShell 모듈에 대 한 자세한 내용은 참조 하십시오. [Azure PowerShell 설명서](/powershell/azure/overview)합니다.
 
-추가 가상 컴퓨터 PowerShell 스크립트 샘플은 [Azure Windows VM 설명서](../windows/powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)에서 확인할 수 있습니다.
+가상 컴퓨터가 추가 PowerShell 스크립트 예제는 hello에서 확인할 수 있습니다 [Azure Windows VM 설명서](../windows/powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다.

@@ -1,5 +1,5 @@
 ---
-title: "Linux VM에 대한 벤치마크 점수 계산 | Microsoft Docs"
+title: "Linux Vm에 대 한 점수 aaaCompute 벤치 마크 | Microsoft Docs"
 description: "Linux를 실행하는 Azure VM에 대한 CoreMark 계산 벤치마크 점수를 비교합니다."
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: cynthn
-ms.openlocfilehash: 382c21343f1a41438277dc288dcdf136e4e1437e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b2c1ca5fbd80cea030ac2cc22156c4e9444c6726
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="compute-benchmark-scores-for-linux-vms"></a>Linux VM에 대한 벤치마크 점수 계산
-다음 CoreMark 벤치마크 점수는 Ubuntu를 실행하는 Azure의 고성능 VM 라인업에 대한 계산 성능을 보여 줍니다. [Windows Vm](../windows/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)에 대해 계산 벤치마크 점수를 사용할 수도 있습니다.
+hello CoreMark 벤치 마크 점수 표시 다음 Azure의 Ubuntu 실행 되는 성능 우선 VM 목록에 대해 성능을 계산 합니다. [Windows Vm](../windows/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)에 대해 계산 벤치마크 점수를 사용할 수도 있습니다.
 
 ## <a name="a-series---compute-intensive"></a>A 시리즈-계산 집약적
 | 크기 | vCPU | NUMA 노드 | CPU | 실행 | 반복 수/초 | StdDev |
@@ -84,9 +84,9 @@ ms.lasthandoff: 07/11/2017
 | Standard_H16mr |16 |2 |Intel Xeon E5-2667 v3 @ 3.2 GHz |28 |274,523 |5,698 |
 
 ## <a name="about-coremark"></a>CoreMark 정보
-Linux 숫자는 Ubuntu에서 [CoreMark](http://www.eembc.org/coremark/faq.php) 를 실행하여 계산됩니다. CoreMark는 가상 CPU의 수에 설정된 스레드 수와 PThread에 설정된 동시성 수로 구성 되었습니다. 대상 반복 횟수는 20초 이상(일반적으로 훨씬 더 김)의 런타임을 제공하기 위해 예상되는 성능에 따라 조정되었습니다. 최종 점수는 완료된 반복 횟수를 테스트를 실행하는 데 걸린 시간(초)으로 나누어 나타냅니다. 각 테스트는 각 VM에서 적어도 7번 실행되었습니다. 테스트(H 시리즈 제외)는 2015년 10월에 실행 당일 VM이 지원되는 모든 Azure 공용 지역에서 여러 VM 상에서 실행되었습니다.
+Linux 숫자는 Ubuntu에서 [CoreMark](http://www.eembc.org/coremark/faq.php) 를 실행하여 계산됩니다. CoreMark hello 스레드 toohello 일정 개수의 가상 Cpu 수로 구성 된 하 고 동시성 tooPThreads를 설정 합니다. hello 대상 수의 반복 예상 되는 성능 tooprovide 20 초 이상 (일반적으로 훨씬 더 긴)의 런타임에 따라 조정 되었습니다. hello 최종 점수 hello 반복 횟수를 완료 toorun hello 테스트는 데 걸린 시간 (초) hello 수로 나눈 값을 나타냅니다. 각 테스트는 각 VM에서 적어도 7번 실행되었습니다. 테스트 (제외 하 고 여러 vm에서 VM을 실행 하는 hello 날짜에에 지원 된 모든 공용 Azure 지역 hello H series_ 2015 년 10 월에에서 실행 된 합니다.
 
 ## <a name="next-steps"></a>다음 단계
 * 저장 용량, 디스크 세부 정보 및 VM 크기 선택시 추가적인 고려 사항에 관한 자세한 내용은 [가상 컴퓨터의 크기](sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 참조하세요.
-* Linux VM에서 CoreMark 스크립트를 실행하려면 [CoreMark 스크립트 팩](http://download.microsoft.com/download/3/0/5/305A3707-4D3A-4599-9670-AAEB423B4663/AzureCoreMarkScriptPack.zip)을 다운로드합니다.
+* Linux Vm에서 toorun hello CoreMark 스크립트 다운로드 hello [스크립트 팩 CoreMark](http://download.microsoft.com/download/3/0/5/305A3707-4D3A-4599-9670-AAEB423B4663/AzureCoreMarkScriptPack.zip)합니다.
 

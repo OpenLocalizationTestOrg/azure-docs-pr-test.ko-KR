@@ -1,5 +1,5 @@
 ---
-title: "Azure Resource Manager 템플릿의 가용성 및 크기 조정 | Microsoft Docs"
+title: "aaaAvailability 및 Azure 리소스 관리자 템플릿을 배율이 | Microsoft Docs"
 description: "Azure 가상 컴퓨터 DotNet Core 자습서"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,22 +16,22 @@ ms.workload: infrastructure
 ms.date: 05/12/2017
 ms.author: nepeters
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 0c0250b8152ed31b9a5d8b42ae139c9b38da0984
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6f830ca0a64e6b65859312bdf31dc0af59e2b978
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="availability-and-scale-in-azure-resource-manager-templates-for-linux-vms"></a>Linux VM용 Azure Resource Manager 템플릿의 가용성 및 크기 조정
 
-가용성 및 크기 조정은 가동 시간 및 요구를 충족하는 능력을 나타냅니다. 응용 프로그램의 가동 시간이 99.9% 이상이어야 하면 여러 개의 동시 계산 리소스를 허용하는 아키텍처가 필요합니다. 예를 들어 단일 웹 사이트를 유지하지 않고, 가용성 수준이 좀 더 높은 구성에 동일한 사이트의 여러 인스턴스를 포함하고 부하 분산 기술을 사용합니다. 이 구성에서 응용 프로그램의 인스턴스 하나를 유지 관리에 사용하고 나머지는 계속 작동되도록 할 수 있습니다. 크기 조정은 요구를 처리하는 응용 프로그램의 능력을 나타냅니다. 부하 분산된 응용 프로그램을 사용하여 풀에서 인스턴스를 추가하거나 제거하면 수요에 맞게 크기를 응용 프로그램 규모를 조정할 수 있습니다.
+가용성과 규모 toouptime / hello 기능 toomeet 요구를 참조 하십시오. 응용 프로그램 hello 시간의 99.9%를 차지 수 있어야 할 경우 여러 개의 동시 계산 리소스를 허용 하는 아키텍처 toohave가 필요 합니다. 예를 들어, 단일 웹 사이트를 설치 하는 대신 가용성의 높은 수준의 구성 hello 앞에 기술 분산 동일 사이트의 여러 인스턴스를 포함 합니다. 이 구성에서는 hello 응용 프로그램의 한 인스턴스를 중지할 수 유지 관리를 위해 남은 hello toofunction를 계속 합니다. 눈금 hello에 다른 손 tooan 응용 프로그램에서 기능 tooserve 요구를 참조 합니다. 부하 분산 된 응용 프로그램을 추가 하거나 hello 풀에서 인스턴스를 제거 하더라도 응용 프로그램 tooscale toomeet 요구가 있습니다.
 
-이 문서에서는 가용성 및 크기 조정을 위해 Music Store 샘플 배포를 구성하는 방법을 자세히 설명합니다. 모든 종속성 및 고유한 구성이 강조 표시됩니다. 최상의 환경을 위해서는 솔루션 인스턴스를 Azure 구독에 미리 배포하고 Azure Resource Manager 템플릿을 따라 작업하는 것이 좋습니다. 전체 템플릿은 [Ubuntu의 Music Store 배포](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux)에서 확인할 수 있습니다.
+이 문서 가용성과 규모에 대 한 hello Music Store 샘플 배포는 구성 하는 방법에 대해 자세히 설명 합니다. 모든 종속성 및 고유한 구성이 강조 표시됩니다. Hello 최상의 경험에 대 한 미리 hello 솔루션 tooyour Azure 구독 및 Azure 리소스 관리자 템플릿 hello와 함께 작업의 인스턴스를 배포 합니다. hello 완전 한 템플릿 여기 – 있습니다 [ubuntu 음악 스토어 배포](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux)합니다.
 
 ## <a name="availability-set"></a>가용성 집합
-가용성 집합은 여러 물리적 호스트 및 기타 인프라 구성 요소(예: 전원 공급 장치 및 물리적 네트워킹 하드웨어)에 Azure 가상 컴퓨터를 논리적으로 분산합니다. 가용성 집합은 유지 관리, 장치 오류 또는 기타 가동 중단 시간 동안 모든 가상 컴퓨터가 영향을 받지는 않도록 합니다. Visual Studio 새 리소스 추가 마법사를 사용하거나 템플릿에 유효한 JSON을 삽입하여 Azure Resource Manager 템플릿에 가용성 집합을 추가할 수 있습니다.
+가용성 집합은 여러 물리적 호스트 및 기타 인프라 구성 요소(예: 전원 공급 장치 및 물리적 네트워킹 하드웨어)에 Azure 가상 컴퓨터를 논리적으로 분산합니다. 가용성 집합은 유지 관리, 장치 오류 또는 기타 가동 중단 시간 동안 모든 가상 컴퓨터가 영향을 받지는 않도록 합니다. 가용성 집합 tooan Azure 리소스 관리자 템플릿 hello Visual Studio 새 리소스 추가 마법사를 사용 하 여 서식 파일에 유효한 JSON을 삽입 또는 추가할 수 있습니다.
 
-[가용성 집합](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L387)링크를 따라 Resource Manager 템플릿 내의 JSON 샘플을 볼 수 있습니다.
+Hello 리소스 관리자 템플릿-내에서이 링크 toosee hello JSON 샘플을 따라 [가용성 집합](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L387)합니다.
 
 ```json
 {
@@ -52,7 +52,7 @@ ms.lasthandoff: 07/11/2017
 
 가용성 집합은 가상 컴퓨터 리소스의 속성으로 선언됩니다. 
 
-[가상 컴퓨터와 가용성 집합 연결](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L313)링크를 따라 Resource Manager 템플릿 내의 JSON 샘플을 볼 수 있습니다.
+Hello 리소스 관리자 템플릿-내에서이 링크 toosee hello JSON 샘플을 따라 [가상 컴퓨터와 연결 가용성 집합](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L313)합니다.
 
 ```json
 "properties": {
@@ -60,16 +60,16 @@ ms.lasthandoff: 07/11/2017
     "id": "[resourceId('Microsoft.Compute/availabilitySets', variables('availabilitySetName'))]"
   }
 ```
-Azure Portal의 가용성 집합. 각 가상 컴퓨터 및 구성 방법에 대한 세부 정보가 여기에 나와 있습니다.
+hello 가용성 hello Azure 포털에서에서와 같이 설정 합니다. 각 가상 컴퓨터 및 hello 구성에 대 한 세부 정보는 여기에서 자세히 설명 합니다.
 
 ![가용성 집합](./media/dotnet-core-4-availability-scale/aset.png)
 
 가용성 집합에 대한 자세한 내용은 [가상 컴퓨터의 가용성 관리](manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 참조하세요. 
 
 ## <a name="network-load-balancer"></a>네트워크 부하 분산 장치
-가용성 집합은 응용 프로그램 내결함성을 제공하지만 부하 분산 장치는 단일 네트워크 주소에서 응용 프로그램의 여러 인스턴스를 사용할 수 있게 합니다. 응용 프로그램의 여러 인스턴스를 각각 하나의 부하 분산 장치에 연결된 여러 가상 컴퓨터에서 호스트할 수 있습니다. 응용 프로그램에 액세스하면 부하 분산 장치는 들어오는 요청을 연결된 멤버 간에 라우팅합니다. Visual Studio 새 리소스 추가 마법사를 사용하거나 적절한 형식의 JSON 리소스를 삽입하여 Azure Resource Manager 템플릿에 부하 분산 장치를 추가할 수 있습니다.
+가용성 집합에는 응용 프로그램에 대 한 내결함성을 제공, 반면 부하 분산 장치 하면 hello 응용 프로그램의 여러 인스턴스에서 사용할 수는 단일 네트워크 주소입니다. 응용 프로그램의 여러 인스턴스를 호스팅할 수 있습니다 tooa 부하 분산 장치를 연결 된 각 많은 가상 컴퓨터에서 합니다. Hello 응용 프로그램에 액세스 하는 대로 hello 부하 분산 장치 경로 hello 연결 된 멤버에서 들어오는 요청을 hello 합니다. 부하 분산 장치 또는 hello Visual Studio 새 리소스 추가 마법사를 사용 하 여 추가할 수 올바르게 삽입 하 여 JSON 리소스 hello Azure 리소스 관리자 템플릿으로 서식이 지정 합니다.
 
-[네트워크 부하 분산 장치](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L208)링크를 따라 Resource Manager 템플릿 내의 JSON 샘플을 볼 수 있습니다.
+Hello 리소스 관리자 템플릿-내에서이 링크 toosee hello JSON 샘플을 따라 [네트워크 부하 분산 장치](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L208)합니다.
 
 ```json
 {
@@ -84,9 +84,9 @@ Azure Portal의 가용성 집합. 각 가상 컴퓨터 및 구성 방법에 대�
 }
 ```
 
-샘플 응용 프로그램이 공용 IP 주소를 사용하여 인터넷에 노출되므로 이 주소는 부하 분산 장치에 연결됩니다. 
+Hello 샘플 응용 프로그램에 노출 된 toohello 이므로 공용 IP 주소를 사용 하 여 인터넷을이 주소는 부하 분산 장치 hello와 연결 합니다. 
 
-[네트워크 부하 부산 장치와 공용 IP 주소 연결](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L221)링크를 따라 Resource Manager 템플릿 내의 JSON 샘플을 볼 수 있습니다.
+Hello 리소스 관리자 템플릿-내에서이 링크 toosee hello JSON 샘플을 따라 [공용 IP 주소와 네트워크 부하 분산 장치 연결](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L221)합니다.
 
 ```json
 "frontendIPConfigurations": [
@@ -101,14 +101,14 @@ Azure Portal의 가용성 집합. 각 가상 컴퓨터 및 구성 방법에 대�
 ]
 ```
 
-Azure Portal의 네트워크 부하 분산 장치 개요에 공용 IP 주소와의 연결 관계가 나와 있습니다.
+Hello Azure 포털에서에서 hello 네트워크 부하 분산 장치 개요 표시 hello 공용 IP 주소와 hello 연결 합니다.
 
 ![네트워크 부하 분산 장치](./media/dotnet-core-4-availability-scale/nlb.png)
 
 ## <a name="load-balancer-rule"></a>부하 분산 장치 규칙
-부하 분산 장치를 사용하면 계획된 리소스 간에 트래픽이 분산되는 방식을 제어하는 규칙이 구성됩니다. 샘플 Music Store 응용 프로그램을 사용할 경우 트래픽은 공용 IP 주소의 포트 80에 도착하고 모든 가상 컴퓨터의 포트 80에 분산됩니다. 
+부하 분산 장치를 사용 하 여 의도 한 hello 리소스 간에 트래픽 균형 방법을 제어 하는 규칙이 구성 됩니다. Hello 예제 음악 스토어 응용 프로그램으로 트래픽 hello 공용 IP 주소의 포트 80에서 도착 하 고 모든 가상 컴퓨터의 포트 80에 분산 됩니다. 
 
-[부하 분산 장치 규칙](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L270)링크를 따라 Resource Manager 템플릿 내의 JSON 샘플을 볼 수 있습니다.
+Hello 리소스 관리자 템플릿-내에서이 링크 toosee hello JSON 샘플을 따라 [부하 분산 장치 규칙](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L270)합니다.
 
 ```json
 "loadBalancingRules": [
@@ -134,14 +134,14 @@ Azure Portal의 네트워크 부하 분산 장치 개요에 공용 IP 주소와�
 ]
 ```
 
-포털의 네트워크 부하 분산 장치 규칙 보기.
+수준의 hello 네트워크 부하 분산 장치 규칙 hello 포털에서 사용 합니다.
 
 ![네트워크 부하 분산 장치 규칙](./media/dotnet-core-4-availability-scale/lbrule.png)
 
 ## <a name="load-balancer-probe"></a>부하 분산 장치 검색
-부하 분산 장치는 요청이 실행 중인 시스템에만 제공되도록 각 가상 컴퓨터를 모니터링해야 합니다. 이 모니터링은 미리 정의된 포트를 지속적으로 검색하여 진행됩니다. Music Store 배포는 포함된 모든 가상 컴퓨터에서 포트 80을 검색하도록 구성됩니다. 
+부하 분산 장치 hello도 필요 toomonitor 각 가상 컴퓨터 요청은 toorunning 시스템만을 제공 합니다. 이 모니터링은 미리 정의된 포트를 지속적으로 검색하여 진행됩니다. hello Music Store 배포가 구성 된 tooprobe 포트 80에 모든 포함 된 가상 컴퓨터입니다. 
 
-[부하 분산 장치 검색](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L257)링크를 따라 Resource Manager 템플릿 내의 JSON 샘플을 볼 수 있습니다.
+Hello 리소스 관리자 템플릿-내에서이 링크 toosee hello JSON 샘플을 따라 [부하 분산 장치 검색](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L257)합니다.
 
 ```json
 "probes": [
@@ -157,16 +157,16 @@ Azure Portal의 네트워크 부하 분산 장치 개요에 공용 IP 주소와�
 ]
 ```
 
-Azure Portal에서 살펴본 부하 분산 장치 검색.
+부하 분산 장치 프로브 hello hello Azure 포털에서에서 본 합니다.
 
 ![네트워크 부하 분산 장치 검색](./media/dotnet-core-4-availability-scale/lbprobe.png)
 
 ## <a name="inbound-nat-rules"></a>인바운드 NAT 규칙
-부하 분산 장치를 사용할 때 각 가상 컴퓨터에 부하가 분산되지 않은 액세스를 제공하는 규칙을 적용해야 합니다. 예를 들어 각 가상 컴퓨터에 대한 SSH 연결을 만들 때 이 트래픽의 부하가 분산되지 않아야 하며, 미리 결정된 경로가 구성되어야 합니다. 미리 결정된 경로는 인바운드 NAT 규칙 리소스를 사용하여 구성됩니다. 이 리소스를 사용하면 인바운드 통신을 개별 가상 컴퓨터에 매핑할 수 있습니다. 
+규칙 toobe 필요한 부하 분산 장치를 사용할 때 비 부하 분산 된 액세스 tooeach 가상 컴퓨터를 제공 하는 위치에 배치 합니다. 예를 들어 각 가상 컴퓨터에 대한 SSH 연결을 만들 때 이 트래픽의 부하가 분산되지 않아야 하며, 미리 결정된 경로가 구성되어야 합니다. 미리 결정된 경로는 인바운드 NAT 규칙 리소스를 사용하여 구성됩니다. 이 리소스를 사용 하 여 인바운드 통신 매핑된 tooindividual 가상 컴퓨터를 수 있습니다. 
 
-Music Store 응용 프로그램을 사용할 경우 5000에서 시작하는 포트가 SSH 액세스를 위해 각 가상 컴퓨터의 포트 22에 매핑됩니다. `copyindex()` 함수는 두 번째 가상 컴퓨터가 들어오는 포트 5001을 수신하고, 세 번째가 5002를 수신하는 방식으로 계속되도록 들어오는 포트를 증가시키는 데 사용됩니다. 
+음악 스토어 응용 프로그램 hello로 매핑된 tooport 22 각 가상 컴퓨터에 SSH 액세스를 위한가 5000에서 시작 포트입니다. hello `copyindex()` 함수는 사용 되는 tooincrement hello 수신 포트, 5001이 고 포트가 들어오는 받는 두 번째 가상 컴퓨터를 hello 등, 세 번째 5002 hello 및 등입니다. 
 
-[인바운드 NAT 규칙](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L270)링크를 따라 Resource Manager 템플릿 내의 JSON 샘플을 볼 수 있습니다. 
+Hello 리소스 관리자 템플릿-내에서이 링크 toosee hello JSON 샘플을 따라 [인바운드 NAT 규칙](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L270)합니다. 
 
 ```json
 {
@@ -196,16 +196,16 @@ Music Store 응용 프로그램을 사용할 경우 5000에서 시작하는 포�
 }
 ```
 
-Azure Portal의 예제 인바운드 NAT 규칙. 배포의 각 가상 컴퓨터에 대해 SSH NAT 규칙이 생성됩니다.
+Azure 포털에서 본 것된 hello로 인바운드 NAT 규칙을 한 가지 예입니다. SSH NAT 규칙 hello 배포의 각 가상 컴퓨터에 대해 만들어집니다.
 
 ![인바운드 NAT 규칙](./media/dotnet-core-4-availability-scale/natrule.png)
 
-Azure 네트워크 부하 분산 장치에 대한 자세한 내용은 [Azure 인프라 서비스를 위한 부하 분산](../virtual-machines-linux-load-balance.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)을 참조하세요.
+Hello Azure 네트워크 부하 분산 장치에 대 한 자세한 내용은 참조 하십시오. [부하 Azure 인프라 서비스에 대 한 분산](../virtual-machines-linux-load-balance.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.
 
 ## <a name="deploy-multiple-vms"></a>여러 VM 배포
-마지막으로 가용성 집합 또는 부하 분산 장치가 효과적으로 작동하려면 여러 개의 가상 컴퓨터가 필요합니다. Azure Resource Manager 템플릿 copy 함수를 사용하여 여러 VM을 배포할 수 있습니다. copy 함수를 사용할 때 정해진 수의 가상 컴퓨터를 정의할 필요는 없습니다. 배포 시에 이 값이 동적으로 제공될 수 있기 때문입니다. copy 함수는 만들 인스턴스 수를 사용하고, 적절한 수의 가상 컴퓨터 및 관련 리소스의 배포를 처리합니다.
+마지막으로,에서 가용성 집합 또는 부하 분산 장치 tooeffectively 함수를 여러 가상 컴퓨터가 필요 합니다. Hello Azure 리소스 관리자 템플릿 복사 기능을 사용 하 여 여러 Vm은 배포할 수 있습니다. Hello 복사 기능을 사용 하 여, 없습니다. 필요한 toodefine 한정 된 수의 가상 컴퓨터 대신이 값 수 동적으로 제공할 수 hello 시 배포 합니다. hello 복사 기능 인스턴스 toocreated 및 hello 적절 한 수의 가상 컴퓨터와 연결 된 리소스를 배포 하는 핸들의 hello 번호를 사용 합니다.
 
-Music Store 샘플 템플릿에서 인스턴스 수를 사용하는 매개 변수가 정의됩니다. 가상 컴퓨터 및 관련 리소스를 만들 때 템플릿 전체에서 이 수가 사용됩니다.
+Hello 음악 스토어 샘플 템플릿은 인스턴스 수는 수행 하는 매개 변수를 정의 합니다. 가상 컴퓨터 및 관련된 리소스를 만들 때이 수가 hello 템플릿 전체에서 사용 됩니다.
 
 ```json
 "numberOfInstances": {
@@ -213,14 +213,14 @@ Music Store 샘플 템플릿에서 인스턴스 수를 사용하는 매개 변�
   "minValue": 1,
   "defaultValue": 1,
   "metadata": {
-    "description": "Number of VM instances to be created behind load balancer."
+    "description": "Number of VM instances toobe created behind load balancer."
   }
 }
 ```
 
-가상 컴퓨터 리소스에서 복사 루프에 이름이 지정되며, 결과 사본 수를 제어하는 데 인스턴스 수 매개 변수가 사용됩니다.
+Hello 가상 컴퓨터 리소스, hello 복사 루프는 이름이 지정 되며 있으며 toocontrol hello 매수 결과 사용 하는 hello 수가 인스턴스 매개 변수입니다.
 
-[가상 컴퓨터 Copy 함수](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L300)링크를 따라 Resource Manager 템플릿 내의 JSON 샘플을 볼 수 있습니다. 
+Hello 리소스 관리자 템플릿-내에서이 링크 toosee hello JSON 샘플을 따라 [가상 컴퓨터 복사 기능](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L300)합니다. 
 
 ```json
 "apiVersion": "2015-06-15",
@@ -233,9 +233,9 @@ Music Store 샘플 템플릿에서 인스턴스 수를 사용하는 매개 변�
 }
 ```
 
-현재 반복되는 copy 함수 항목에는 `copyIndex()` 함수를 통해 액세스할 수 있습니다. copy index 함수 값은 가상 컴퓨터 및 기타 리소스를 명명하는 데 사용될 수 있습니다. 예를 들어 가상 컴퓨터의 두 인스턴스가 배포된 경우 둘 다 이름이 달라야 합니다. `copyIndex()` 함수는 고유한 이름을 만들기 위해 가상 컴퓨터 이름의 일부로 사용될 수 있습니다. 명명을 위해 사용되는 `copyindex()` 함수의 예제는 가상 컴퓨터 리소스에서 볼 수 있습니다. 여기서 컴퓨터 이름은 `vmName` 매개 변수와 `copyIndex()` 함수를 연결해서 만듭니다. 
+hello 복사 기능의 현재 반복 hello hello로 액세스할 수 `copyIndex()` 함수입니다. hello 복사 인덱스 함수 hello 값 tooname 사용 되는 가상 컴퓨터 및 기타 리소스를 수 있습니다. 예를 들어 가상 컴퓨터의 두 인스턴스가 배포된 경우 둘 다 이름이 달라야 합니다. hello `copyIndex()` hello 가상 컴퓨터의 부분 이름을 toocreate 고유 이름으로 함수를 사용할 수 있습니다. Hello의 예로 `copyindex()` hello 가상 컴퓨터 리소스에서에서 목적으로 이름 지정에 사용 되는 함수를 볼 수 있습니다. 여기서 hello 컴퓨터 이름은 hello의 연결을 `vmName` 매개 변수 및 hello `copyIndex()` 함수입니다. 
 
-[Copy Index 함수](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L319)링크를 따라 Resource Manager 템플릿 내의 JSON 샘플을 볼 수 있습니다. 
+Hello 리소스 관리자 템플릿-내에서이 링크 toosee hello JSON 샘플을 따라 [복사 인덱스 기능](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L319)합니다. 
 
 ```json
 "osProfile": {
@@ -255,9 +255,9 @@ Music Store 샘플 템플릿에서 인스턴스 수를 사용하는 매개 변�
 }
 ```
 
-`copyIndex` 함수는 Music Store 샘플 템플릿에서 여러 번 사용됩니다. `copyIndex`를 활용하는 리소스 및 함수에는 네트워크 인터페이스, 부하 분산 장치 규칙 등, 가상 컴퓨터의 단일 인스턴스에 국한되는 항목이 포함되며, 모두가 함수에 따라 좌우됩니다. 
+hello `copyIndex` 함수가 hello Music Store 예제 서식 파일에서 여러 번 사용 합니다. 리소스 및 함수를 사용 하 여 `copyIndex` 어느 것에 특정 tooa hello 가상 컴퓨터 네트워크 인터페이스, 부하 분산 장치 규칙 등의 단일 인스턴스를 포함 하 고 모든 기능에 따라 달라 집니다. 
 
-copy 함수에 대한 자세한 내용은 [Azure Resource Manager에서 리소스의 여러 인스턴스 만들기](../../resource-group-create-multiple.md)를 참조하세요.
+Hello 복사 기능에 대 한 자세한 내용은 참조 하십시오. [Azure 리소스 관리자 리소스의 여러 인스턴스를 만들](../../resource-group-create-multiple.md)합니다.
 
 ## <a name="next-step"></a>다음 단계
 <hr>

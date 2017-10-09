@@ -1,5 +1,5 @@
 ---
-title: "Windows VM에 대한 벤치마크 점수 계산 | Microsoft Docs"
+title: "Windows Vm에 대 한 점수 aaaCompute 벤치 마크 | Microsoft Docs"
 description: "Windows Server를 실행하는 Azure VM에 대한 SPECint 계산 벤치마크 점수를 비교합니다."
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: cynthn
-ms.openlocfilehash: dc715a9bf4e5366e1719de7c649feb06b0c4bee7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3037d69790cb193161122b902e85fb838285cf81
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="compute-benchmark-scores-for-windows-vms"></a>Windows VM에 대한 벤치마크 점수 계산
-다음 SPECInt 벤치마크 점수는 Windows Server를 실행하는 Azure의 고성능 VM 라인업에 대한 계산 성능을 보여 줍니다. [Linux VM](../linux/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)에 대해 계산 벤치마크 점수를 사용할 수도 있습니다.
+hello SPECInt 벤치 마크 점수 표시 뒤에 Windows Server를 실행 하는 Azure의 고성능 VM 목록에 대해 성능을 계산 합니다. [Linux VM](../linux/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)에 대해 계산 벤치마크 점수를 사용할 수도 있습니다.
 
 ## <a name="a-series---compute-intensive"></a>A 시리즈-계산 집약적
 | 크기 | vCPU | NUMA 노드 | CPU | 실행 | Avg 기본 요율 | StdDev |
@@ -65,7 +65,7 @@ ms.lasthandoff: 07/11/2017
 | Standard_H16mr |16 |2 |Intel Xeon E5-2667 v3 @ 3.2 GHz |7 |569.6 |2.8 |
 
 ## <a name="about-specint"></a>SPECint 정보
-Windows 번호는 Windows Server에서 [SPECint 2006](https://www.spec.org/cpu2006/results/rint2006.html) 을 실행하여 계산합니다. SPECint는 코어당 하나의 복사본과 함께 기본 요율 옵션(SPECint_rate2006)을 사용하여 실행합니다. SPECint은 12번의 별도 테스트로 각기 세 번 실행되도록 구성되며, 각 테스트에서 중간값을 취해 가중치를 주어 종합 점수를 형성합니다. 그런 다음 여러 VM에서 실행하여 평균값을 구합니다.
+Windows 번호는 Windows Server에서 [SPECint 2006](https://www.spec.org/cpu2006/results/rint2006.html) 을 실행하여 계산합니다. SPECint 코어당 한 복사본과 hello 기본 숙박료가 옵션 (SPECint_rate2006)를 사용 하 여 실행 합니다. 복합 점수를 세 번 실행 hello 중앙값 각 테스트에서 가져오고 해당 tooform 가중치 각각 12 별도 테스트의 SPECint 구성 됩니다. 그런 다음 여러 Vm tooprovide hello 평균 점수 표시에서 해당 테스트 실행 되지 않았습니다.
 
 ## <a name="next-steps"></a>다음 단계
 * 저장 용량, 디스크 세부 정보 및 VM 크기 선택시 추가적인 고려 사항에 관한 자세한 내용은 [가상 컴퓨터의 크기](sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)를 참조하세요.

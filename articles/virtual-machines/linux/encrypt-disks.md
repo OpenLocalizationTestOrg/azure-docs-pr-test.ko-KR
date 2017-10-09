@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Linux VM의 디스크 암호화 | Microsoft Docs"
-description: "Azure CLI 2.0을 사용하여 보안 강화를 위해 Linux VM에서 가상 디스크를 암호화하는 방법"
+title: "Azure에서 Linux VM의 디스크 aaaEncrypt | Microsoft Docs"
+description: "Tooencrypt 가상 디스크를 사용 하 여 향상 된 보안에 대 한 Linux VM에 Azure CLI 2.0 hello 하는 방법"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -15,28 +15,28 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 07/05/2017
 ms.author: iainfou
-ms.openlocfilehash: 172b4c8f5c098d776cb689543f5d8f163b8895b4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d6197742bc8562630e8395588c072093fc01d614
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-encrypt-virtual-disks-on-a-linux-vm"></a>Linux VM에서 가상 디스크를 암호화하는 방법
-VM(가상 컴퓨터)의 보안과 규정 준수 상태를 향상시키기 위해 Azure에서 가상 디스크를 암호화할 수 있습니다. 디스크는 Azure Key Vault에 안전하게 보관되는 암호화 키를 사용하여 암호화됩니다. 이러한 암호화 키를 제어하고 용도를 감사할 수 있습니다. 이 문서에서는 Azure CLI 2.0을 사용하여 Linux VM에서 가상 디스크를 암호화하는 방법을 자세히 설명합니다. [Azure CLI 1.0](encrypt-disks-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)에서 이러한 단계를 수행할 수도 있습니다.
+# <a name="how-tooencrypt-virtual-disks-on-a-linux-vm"></a>어떻게 tooencrypt Linux VM의 가상 디스크
+VM(가상 컴퓨터)의 보안과 규정 준수 상태를 향상시키기 위해 Azure에서 가상 디스크를 암호화할 수 있습니다. 디스크는 Azure Key Vault에 안전하게 보관되는 암호화 키를 사용하여 암호화됩니다. 이러한 암호화 키를 제어하고 용도를 감사할 수 있습니다. 이 문서 tooencrypt 가상 디스크를 사용 하 여 Linux VM에 Azure CLI 2.0 hello 하는 방법을 설명 합니다. Hello로 다음이 단계를 수행할 수도 있습니다 [Azure CLI 1.0](encrypt-disks-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.
 
 ## <a name="quick-commands"></a>빠른 명령
-작업을 빠르게 완료해야 하는 경우 다음 섹션에서 VM에서 가상 디스크를 암호화하는 기본 명령에 대해 자세히 알아보세요. 각 단계에 대한 보다 자세한 내용 및 상황 설명은 [여기서부터](#overview-of-disk-encryption) 문서 끝까지 참조하세요.
+Hello 작업을 수행 tooquickly 해야 할 경우에 다음 섹션의 세부 정보 hello 기본 hello tooencrypt 가상 디스크를 VM에 명령, 합니다. 각 단계를 찾을 수 있습니다 hello 나머지 hello 문서에 대 한 정보와 컨텍스트 상세 [여기 시작](#overview-of-disk-encryption)합니다.
 
-최신 [Azure CLI 2.0](/cli/azure/install-az-cli2)을 설치하고 [az login](/cli/azure/#login)을 사용하여 Azure 계정에 로그인해야 합니다. 다음 예제에서 매개 변수 이름을 고유한 값으로 바꿉니다. 예제 매개 변수 이름에는 *myResourceGroup*, *myKey*, *myVM*이 포함됩니다.
+최신 hello 필요한 [Azure CLI 2.0](/cli/azure/install-az-cli2) 설치 하 고 사용 하 여 Azure 계정 tooan [az 로그인](/cli/azure/#login)합니다. Hello 다음 예제에서는 고유한 값으로 매개 변수 이름 예를 대체 합니다. 예제 매개 변수 이름에는 *myResourceGroup*, *myKey*, *myVM*이 포함됩니다.
 
-먼저 Azure 구독 내에서 [az provider register](/cli/azure/provider#register)를 사용하여 Azure Key Vault 공급자를 사용하도록 설정하고 [az group create](/cli/azure/group#create)을 사용하여 리소스 그룹을 만듭니다. 다음 예제에서는 *eastus* 위치에 *myResourceGroup*이라는 리소스 그룹을 만듭니다.
+먼저, hello Azure 키 자격 증명 모음 공급자와 Azure 구독 내에서 사용할 수 있도록 [az 리소스 공급자 등록](/cli/azure/provider#register) 리소스 그룹을 만들고 [az 그룹 만들기](/cli/azure/group#create)합니다. hello 다음 예제에서는 리소스 그룹 이름을 만듭니다 *myResourceGroup* hello에 *eastus* 위치:
 
 ```azurecli
 az provider register -n Microsoft.KeyVault
 az group create --name myResourceGroup --location eastus
 ```
 
-[az keyvault create](/cli/azure/keyvault#create)를 사용하여 Azure Key Vault을 만들고 디스크 암호화에 사용할 Key Vault를 사용하도록 설정합니다. *keyvault_name*에 대한 고유한 Key Vault 이름을 다음과 같이 지정합니다.
+Azure 키 자격 증명 모음 만들기와 [az keyvault 만들](/cli/azure/keyvault#create) 디스크 암호화와 함께 사용 하기 위해 주요 자격 증명 모음 hello를 사용 하도록 설정 합니다. *keyvault_name*에 대한 고유한 Key Vault 이름을 다음과 같이 지정합니다.
 
 ```azurecli
 keyvault_name=mykeyvaultikf
@@ -47,21 +47,21 @@ az keyvault create \
     --enabled-for-disk-encryption True
 ```
 
-[az keyvault key create](/cli/azure/keyvault/key#create)를 사용하여 Key Vault에 암호화 키를 만듭니다. 다음 예제는 *myKey*라는 키를 만듭니다.
+[az keyvault key create](/cli/azure/keyvault/key#create)를 사용하여 Key Vault에 암호화 키를 만듭니다. hello 다음 예제에서는 라는 키 *myKey*:
 
 ```azurecli
 az keyvault key create --vault-name $keyvault_name --name myKey --protection software
 ```
 
-[az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac)에서 Azure Active Directory를 사용하여 서비스 사용자를 만듭니다. 서비스 사용자는 인증 및 Key Vault에서의 암호화 키 교환을 처리합니다. 다음 예제에서는 후속 명령에서 사용하기 위해 서비스 사용자 ID 및 암호 값을 읽습니다.
+[az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac)에서 Azure Active Directory를 사용하여 서비스 사용자를 만듭니다. hello 서비스 보안 주체 핸들에는 인증 및 자격 증명 모음 키에서에서 암호화 키의 교환을 hello 합니다. 다음 예제는 hello Id와 암호 이후 명령에서 사용 하도록 hello 서비스 사용자에 대 한 hello 값 읽습니다.
 
 ```azurecli
 read sp_id sp_password <<< $(az ad sp create-for-rbac --query [appId,password] -o tsv)
 ```
 
-암호는 서비스 사용자를 만들 때만 출력됩니다. 원할 경우 암호(`echo $sp_password`)를 보고 기록합니다. [az ad sp list](/cli/azure/ad/sp#list)를 사용하여 서비스 사용자를 나열하고 [az ad sp show](/cli/azure/ad/sp#show)를 사용하여 특정 서비스 사용자에 대한 추가 정보를 볼 수 있습니다.
+hello 암호 hello 서비스 주체를 만들 때에 출력 됩니다. 뷰와 레코드 hello 암호 필요 (`echo $sp_password`). [az ad sp list](/cli/azure/ad/sp#list)를 사용하여 서비스 사용자를 나열하고 [az ad sp show](/cli/azure/ad/sp#show)를 사용하여 특정 서비스 사용자에 대한 추가 정보를 볼 수 있습니다.
 
-[az keyvault set-policy](/cli/azure/keyvault#set-policy)를 사용하여 Key Vault에 대한 사용 권한을 설정합니다. 다음 예제에서는 이전 명령의 서비스 사용자 ID가 제공됩니다.
+[az keyvault set-policy](/cli/azure/keyvault#set-policy)를 사용하여 Key Vault에 대한 사용 권한을 설정합니다. 다음 예제는 hello에서 hello 서비스 보안 주체 ID에서에서 공급 되는 명령 앞 hello:
 
 ```azurecli
 az keyvault set-policy --name $keyvault_name --spn $sp_id \
@@ -69,7 +69,7 @@ az keyvault set-policy --name $keyvault_name --spn $sp_id \
     --secret-permissions set
 ```
 
-[az vm create](/cli/azure/vm#create)를 사용하여 VM을 만들고 5GB 데이터 디스크를 연결합니다. 특정 Marketplace 이미지만 디스크 암호화를 지원합니다. 다음 예제는 **CentOS 7.2n** 이미지를 사용하여 `myVM`이라는 VM을 만듭니다.
+[az vm create](/cli/azure/vm#create)를 사용하여 VM을 만들고 5GB 데이터 디스크를 연결합니다. 특정 Marketplace 이미지만 디스크 암호화를 지원합니다. hello 다음 예제에서는 V `myVM` 를 사용 하는 **CentOS 7.2n** 이미지:
 
 ```azurecli
 az vm create \
@@ -81,9 +81,9 @@ az vm create \
     --data-disk-sizes-gb 5
 ```
 
-위 명령의 출력에 표시된 `publicIpAddress`를 사용해서 VM에 대해 SSH를 수행합니다. 파티션 및 파일 시스템을 만든 후 데이터 디스크를 탑재합니다. 자세한 내용은 [Linux VM에 연결하여 새 디스크 탑재](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#connect-to-the-linux-vm-to-mount-the-new-disk)를 참조하세요. SSH 세션을 닫습니다.
+SSH tooyour VM를 사용 하 여 hello `publicIpAddress` hello 출력의 hello 명령 앞에 표시 합니다. 파티션 및 파일 시스템 만듭니다 다음 hello 데이터 디스크를 탑재 합니다. 자세한 내용은 참조 [tooa Linux VM toomount hello에 대 한 새 디스크를 연결](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#connect-to-the-linux-vm-to-mount-the-new-disk)합니다. SSH 세션을 닫습니다.
 
-[az vm encryption enable](/cli/azure/vm/encryption#enable)을 사용하여 VM을 암호화합니다. 다음 예제에서는 이전 `ad sp create-for-rbac` 명령의 `$sp_id` 및 `$sp_password` 변수를 사용합니다.
+[az vm encryption enable](/cli/azure/vm/encryption#enable)을 사용하여 VM을 암호화합니다. hello 다음 예제에서는 hello `$sp_id` 및 `$sp_password` hello 앞에서 변수 `ad sp create-for-rbac` 명령:
 
 ```azurecli
 az vm encryption enable \
@@ -96,75 +96,75 @@ az vm encryption enable \
     --volume-type all
 ```
 
-디스크 암호화 프로세스를 완료하는 데 약간의 시간이 걸립니다. [az vm encryption show](/cli/azure/vm/encryption#show)를 사용하여 프로세스의 상태를 모니터링합니다.
+디스크 암호화 프로세스 toocomplete hello에 대 한 몇 시간이 걸립니다. 사용 하 여 hello 프로세스의 hello 상태를 모니터링 [az vm 암호화 표시](/cli/azure/vm/encryption#show):
 
 ```azurecli
 az vm encryption show --resource-group myResourceGroup --name myVM
 ```
 
-상태에는 **EncryptionInProgress**가 표시됩니다. OS 디스크의 상태가 **VMRestartPending**을 보고할 때까지 기다린 후 [az vm restart](/cli/azure/vm#restart)를 사용하여 VM을 다시 시작합니다.
+상태 표시 hello **EncryptionInProgress**합니다. Hello OS 디스크 보고서에 대 한 hello 상태가 될 때까지 대기 **VMRestartPending**, 다시 시작 된 VM [az vm 다시 시작](/cli/azure/vm#restart):
 
 ```azurecli
 az vm restart --resource-group myResourceGroup --name myVM
 ```
 
-부팅 프로세스 동안 디스크 암호화 프로세스가 완료되므로, 몇 분 정도 기다렸다가 **az vm encryption show**를 사용하여 암호화 상태를 다시 확인하세요.
+hello 디스크 암호화 프로세스가 완료 된 hello 부팅 프로세스 중, 따라서 사용 하 여 다시 암호화의 hello 상태를 확인 하기 전에 잠시 기다린 후 **az vm 암호화 표시**:
 
 ```azurecli
 az vm encryption show --resource-group myResourceGroup --name myVM
 ```
 
-이제 상태는 OS 디스크와 데이터 디스크를 둘 다 **Encrypted**로 표시합니다.
+hello 운영 체제 디스크와 같은 데이터 디스크를 모두 hello 상태를 보고 이제 해야 **암호화**합니다.
 
 ## <a name="overview-of-disk-encryption"></a>디스크 암호화 개요
-Linux VM의 가상 디스크는 미사용 시 [dm-crypt](https://wikipedia.org/wiki/Dm-crypt)를 사용하여 암호화됩니다. Azure에서 가상 디스크 암호화는 무료입니다. 암호화 키는 소프트웨어 보호를 사용하여 Azure Key Vault에 저장되거나 FIPS 140-2 레벨 2 표준 인증 HSM(하드웨어 보안 모듈)에서 키를 가져오거나 생성할 수 있습니다. 이러한 암호화 키에 대한 제어를 유지하고 그 사용을 감사할 수 있습니다. 이러한 암호화 키는 VM에 연결된 가상 디스크를 암호화하고 암호를 해독하는 데 사용됩니다. Azure Active Directory 서비스 사용자는 VM이 켜지고 꺼지는 경우 이러한 암호화 키 발급을 위한 보안 메커니즘을 제공합니다.
+Linux VM의 가상 디스크는 미사용 시 [dm-crypt](https://wikipedia.org/wiki/Dm-crypt)를 사용하여 암호화됩니다. Azure에서 가상 디스크 암호화는 무료입니다. 암호화 키가 소프트웨어 보호를 사용 하 여 Azure 키 자격 증명 모음에 저장 하거나 가져오거나 140-2 수준 2 표준 tooFIPS 인증 된 하드웨어 보안 모듈 (Hsm)의 키를 생성할 수 있습니다. 이러한 암호화 키에 대한 제어를 유지하고 그 사용을 감사할 수 있습니다. 이러한 암호화 한 키를 사용 하는 tooencrypt 가상 디스크 연결 된 tooyour VM의 암호를 해독 합니다. Azure Active Directory 서비스 사용자는 VM이 켜지고 꺼지는 경우 이러한 암호화 키 발급을 위한 보안 메커니즘을 제공합니다.
 
-VM을 암호화하는 프로세스는 다음과 같습니다.
+VM을 암호화 하기 위한 hello 프로세스는 다음과 같습니다.
 
 1. Azure Key Vault에서 암호화 키를 만듭니다.
-2. 암호화하는 디스크에 사용될 수 있도록 암호화 키를 구성합니다.
-3. Azure Key Vault에서 암호화 키를 읽어오려면 적절한 사용 권한을 통해 Azure Active Directory 서비스 사용자를 만듭니다.
-4. 가상 디스크를 암호화하도록 명령을 실행하고 사용될 Azure Active Directory 서비스 사용자와 적절한 암호화 키를 지정합니다.
-5. Azure Active Directory 서비스 사용자는 Azure Key Vault에 필요한 암호화 키를 요청합니다.
-6. 가상 디스크는 제공된 암호화 키를 사용하여 암호화됩니다.
+2. 암호화 키 toobe hello 디스크를 암호화 하는 데 사용할 수 있는 구성 합니다.
+3. hello Azure 키 자격 증명 모음에서에서 tooread hello 암호화 키 hello 적절 한 권한이 있는 사용자는 Azure Active Directory 서비스를 만듭니다.
+4. Hello 명령 tooencrypt hello Azure Active Directory 서비스 사용자 및 사용 되는 적절 한 암호화 키 toobe 지정 하 여 가상 디스크를 실행 합니다.
+5. hello Azure Active Directory 서비스 보안 주체 요청 hello Azure 키 자격 증명 모음에서 필요한 암호화 키입니다.
+6. hello 가상 디스크는 암호화 키를 제공 하는 hello를 사용 하 여 암호화 됩니다.
 
 ## <a name="encryption-process"></a>암호화 프로세스
-디스크 암호화는 다음과 같은 추가 구성 요소에 의존합니다.
+다음과 같은 추가 구성 요소가 hello 디스크 암호화를 사용 합니다.
 
-* **Azure Key Vault** - 디스크 암호화/암호 해독 프로세스를 위한 암호화 키와 암호를 안전하게 보호하는 데 사용됩니다.
-  * 이미 존재하는 경우 기존 Azure Key Vault를 사용할 수 있습니다. Key Vault를 디스크 암호화에 전적으로 사용할 필요는 없습니다.
-  * 관리 범위 및 키 표시 여부를 분리하기 위해 전용 Key Vault를 만들 수 있습니다.
-* **Azure Active Directory** - 필요한 암호화 키의 안전한 교환과 요청된 작업에 대한 인증을 처리합니다.
+* **Azure 키 자격 증명 모음** -toosafeguard 암호화 키 및 hello 디스크 암호화/암호 해독 프로세스에 사용 되는 암호를 사용 합니다.
+  * 이미 존재하는 경우 기존 Azure Key Vault를 사용할 수 있습니다. 없는 toodedicate 주요 자격 증명 모음 tooencrypting 디스크.
+  * tooseparate 관리 범위 및 키 가시성 전용된 키 자격 증명 모음을 만들 수 있습니다.
+* **Azure Active Directory** -핸들 hello 필요한 암호화 키의 보안 교환 및 인증에 대 한 작업을 요청 합니다.
   * 일반적으로 응용 프로그램 보유를 위해 Azure Active Directory 인스턴스를 사용할 수 있습니다.
-  * 서비스 사용자는 해당 암호화 키를 요청하고 발급되도록 하는 보안 메커니즘을 제공합니다. Azure Active Directory와 통합되는 실제 응용 프로그램을 개발하지는 않습니다.
+  * hello 서비스 사용자는 보안 메커니즘 toorequest 제공 하 고 hello 적절 한 암호화 키를 실행할 수 있습니다. Azure Active Directory와 통합되는 실제 응용 프로그램을 개발하지는 않습니다.
 
 ## <a name="requirements-and-limitations"></a>요구 사항 및 제한 사항
 디스크 암호화에 대해 지원되는 시나리오 및 요구 사항은 다음과 같습니다.
 
-* 다음 Linux Server SKU - Ubuntu, CentOS, SUSE 및 SLES(SUSE Linux Enterprise Server)와 Red Hat Enterprise Linux.
-* 모든 리소스(예: Key Vault, 저장소 계정, VM)는 동일한 Azure 지역 및 구독 내에 있어야 합니다.
+* Linux 서버 Sku-Ubuntu, CentOS, SUSE 및 SUSE Linux Enterprise Server (SLES), 및 Red Hat Enterprise Linux 다음 번호입니다.
+* 모든 리소스 (예: 키 자격 증명 모음, 저장소 계정 및 VM) hello에 있어야 합니다. 같은 Azure 지역 및 구독 합니다.
 * 표준 A, D, DS, G 및 GS 시리즈 VM.
 
-다음 시나리오의 경우 디스크 암호화가 현재 지원되지 않습니다.
+디스크 암호화 hello 다음 시나리오에서에서 현재 지원 되지 않습니다.
 
 * 기본 계층 VM.
-* 클래식 배포 모델을 사용하여 만든 VM.
+* Hello 클래식 배포 모델을 사용 하 여 만든 Vm입니다.
 * Linux VM에서 OS 디스크 암호화 비활성화.
-* 이미 암호화된 Linux VM에서 암호화 키 업데이트.
+* Hello 이미 암호화 된 Linux VM에서 암호화 키를 업데이트합니다.
 
 ## <a name="create-azure-key-vault-and-keys"></a>Azure Key Vault 및 키 만들기
-최신 [Azure CLI 2.0](/cli/azure/install-az-cli2)을 설치하고 [az login](/cli/azure/#login)을 사용하여 Azure 계정에 로그인해야 합니다. 다음 예제에서 매개 변수 이름을 고유한 값으로 바꿉니다. 예제 매개 변수 이름에는 *myResourceGroup*, *myKey*, *myVM*이 포함됩니다.
+최신 hello 필요한 [Azure CLI 2.0](/cli/azure/install-az-cli2) 설치 하 고 사용 하 여 Azure 계정 tooan [az 로그인](/cli/azure/#login)합니다. Hello 다음 예제에서는 고유한 값으로 매개 변수 이름 예를 대체 합니다. 예제 매개 변수 이름에는 *myResourceGroup*, *myKey*, *myVM*이 포함됩니다.
 
-첫 번째 단계는 암호화 키를 저장할 Azure Key Vault를 만드는 것입니다. Azure Key Vault는 응용 프로그램 및 서비스에 안전하게 구현할 수 있는 키와 암호를 저장할 수 있습니다. 가상 디스크 암호화의 경우 Key Vault를 사용하여 가상 디스크 암호화 또는 암호 해독에 사용되는 암호화 키를 저장합니다.
+hello 첫 번째 단계는 Azure 키 자격 증명 모음 toostore toocreate 암호화 키입니다. Azure 주요 자격 증명, 비밀 키를 저장할 수 있습니다 또는 암호 toosecurely를 허용 하는 응용 프로그램 및 서비스에 구현 합니다. 가상 디스크 암호화에 대 한 주요 자격 증명 모음 toostore tooencrypt 사용된 되는 암호화 키를 사용 하거나 가상 디스크의 암호를 해독 합니다.
 
-Azure 구독 내에서 [az provider register](/cli/azure/provider#register)를 사용하여 Azure Key Vault 공급자를 사용하도록 설정하고 [az group create](/cli/azure/group#create)을 사용하여 리소스 그룹을 만듭니다. 다음 예제에서는 `eastus` 위치에 *myResourceGroup*이라는 리소스 그룹을 만듭니다.
+Hello Azure 키 자격 증명 모음 공급자와 Azure 구독 내에서 사용 하도록 설정 [az 리소스 공급자 등록](/cli/azure/provider#register) 리소스 그룹을 만들고 [az 그룹 만들기](/cli/azure/group#create)합니다. hello 다음 예제에서는 리소스 그룹 이름을 만듭니다 *myResourceGroup* hello에 `eastus` 위치:
 
 ```azurecli
 az provider register -n Microsoft.KeyVault
 az group create --name myResourceGroup --location eastus
 ```
 
-암호화 키를 포함하는 Azure Key Vault와 저장소 및 VM과 같은 연결된 계산 리소스는 동일한 지역에 상주해야 합니다. [az keyvault create](/cli/azure/keyvault#create)를 사용하여 Azure Key Vault을 만들고 디스크 암호화에 사용할 Key Vault를 사용하도록 설정합니다. *keyvault_name*에 대한 고유한 Key Vault 이름을 다음과 같이 지정합니다.
+hello Azure 키 자격 증명 모음 포함 hello 암호화 키와 연결 된 계산 hello VM 자체 저장소 같은 리소스에 있어야 합니다. 동일한 지역을 hello 합니다. Azure 키 자격 증명 모음 만들기와 [az keyvault 만들](/cli/azure/keyvault#create) 디스크 암호화와 함께 사용 하기 위해 주요 자격 증명 모음 hello를 사용 하도록 설정 합니다. *keyvault_name*에 대한 고유한 Key Vault 이름을 다음과 같이 지정합니다.
 
 ```azurecli
 keyvault_name=myUniqueKeyVaultName
@@ -175,27 +175,27 @@ az keyvault create \
     --enabled-for-disk-encryption True
 ```
 
-소프트웨어 또는 HSM(하드웨어 보안 모델) 보호를 사용하여 암호화 키를 저장할 수 있습니다. HSM을 사용하려면 프리미엄 Key Vault가 필요합니다. 소프트웨어 보호 키를 저장하는 표준 Key Vault가 아닌 프리미엄 Key Vault를 만들려면 추가 비용이 소요됩니다. 프리미엄 Key Vault를 만들려면 앞의 단계에서 `--sku Premium`을 명령에 추가합니다. 표준 Key Vault를 만들었기 때문에 다음 예제는 소프트웨어 보호 키를 사용합니다.
+소프트웨어 또는 HSM(하드웨어 보안 모델) 보호를 사용하여 암호화 키를 저장할 수 있습니다. HSM을 사용하려면 프리미엄 Key Vault가 필요합니다. 소프트웨어 보호 키를 저장 하는 표준 주요 자격 증명 모음 보다는 주요 자격 증명 모음 프리미엄은 추가 비용 toocreating 합니다. hello 앞 단계에서에서 프리미엄 주요 자격 증명 추가 toocreate `--sku Premium` toohello 명령입니다. hello 다음 예제에서는 소프트웨어 보호 키 이후 표준 주요 자격 증명 모음을 만들었습니다.
 
-두 가지 보호 모델 모두, 가상 디스크의 암호를 해독하기 위해 VM이 부팅될 때 암호화 키를 요청하려면 Azure 플랫폼에 액세스 권한이 허용되어야 합니다. [az keyvault key create](/cli/azure/keyvault/key#create)를 사용하여 Key Vault에 암호화 키를 만듭니다. 다음 예제는 *myKey*라는 키를 만듭니다.
+두 보호 모델에 대 한 hello Azure 플랫폼 toobe hello VM toodecrypt hello 가상 디스크를 부팅 될 때 액세스 toorequest hello에 대 한 암호화 키에 부여 해야 합니다. [az keyvault key create](/cli/azure/keyvault/key#create)를 사용하여 Key Vault에 암호화 키를 만듭니다. hello 다음 예제에서는 라는 키 *myKey*:
 
 ```azurecli
 az keyvault key create --vault-name $keyvault_name --name myKey --protection software
 ```
 
 
-## <a name="create-the-azure-active-directory-service-principal"></a>Azure Active Directory 서비스 사용자 만들기
-가상 디스크가 암호화되거나 암호가 해독될 때 계정을 지정하여 Key Vault의 암호화 키 교환 및 인증을 처리합니다. 이 계정 즉, Azure Active Directory 서비스 사용자는 Azure 플랫폼이 VM을 대신하여 적절한 암호화 키를 요청하도록 허용합니다. 기본 Azure Active Directory 인스턴스를 구독 내에서 사용할 수 있지만 많은 조직이 전용 Azure Active Directory 디렉터리를 두고 있습니다.
+## <a name="create-hello-azure-active-directory-service-principal"></a>Hello Azure Active Directory 서비스 사용자 만들기
+가상 디스크를 암호화 하거나 암호를 해독할 때 계정 toohandle hello 인증 및 자격 증명 모음 키에서에서 암호화 키의 교환 지정 합니다. 이 계정에는 Azure Active Directory 서비스 사용자 hello Azure 플랫폼 toorequest hello VM hello 대신 하 여 적절 한 암호화 키를 수 있습니다. 기본 Azure Active Directory 인스턴스를 구독 내에서 사용할 수 있지만 많은 조직이 전용 Azure Active Directory 디렉터리를 두고 있습니다.
 
-[az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac)에서 Azure Active Directory를 사용하여 서비스 사용자를 만듭니다. 다음 예제에서는 후속 명령에서 사용하기 위해 서비스 사용자 ID 및 암호 값을 읽습니다.
+[az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac)에서 Azure Active Directory를 사용하여 서비스 사용자를 만듭니다. 다음 예제는 hello Id와 암호 이후 명령에서 사용 하도록 hello 서비스 사용자에 대 한 hello 값 읽습니다.
 
 ```azurecli
 read sp_id sp_password <<< $(az ad sp create-for-rbac --query [appId,password] -o tsv)
 ```
 
-암호는 서비스 사용자를 만들 때만 표시됩니다. 원할 경우 암호(`echo $sp_password`)를 보고 기록합니다. [az ad sp list](/cli/azure/ad/sp#list)를 사용하여 서비스 사용자를 나열하고 [az ad sp show](/cli/azure/ad/sp#show)를 사용하여 특정 서비스 사용자에 대한 추가 정보를 볼 수 있습니다.
+hello 암호 hello 서비스 보안 주체를 만들 때에 표시 됩니다. 뷰와 레코드 hello 암호 필요 (`echo $sp_password`). [az ad sp list](/cli/azure/ad/sp#list)를 사용하여 서비스 사용자를 나열하고 [az ad sp show](/cli/azure/ad/sp#show)를 사용하여 특정 서비스 사용자에 대한 추가 정보를 볼 수 있습니다.
 
-가상 디스크를 암호화하거나 암호를 해독하려면, Key Vault에 저장되어 있는 암호화 키에 대한 권한이 Azure Active Directory 서비스 사용자가 키를 읽는 것을 허용하도록 설정되어야 합니다. [az keyvault set-policy](/cli/azure/keyvault#set-policy)를 사용하여 Key Vault에 대한 사용 권한을 설정합니다. 다음 예제에서는 이전 명령의 서비스 사용자 ID가 제공됩니다.
+toosuccessfully 암호화 또는 가상 디스크를 암호 해독, 키 자격 증명 모음에 저장 된 hello 암호화 키에 대 한 권한 집합 toopermit hello Azure Active Directory 서비스 보안 주체 tooread hello 키 여야 합니다. [az keyvault set-policy](/cli/azure/keyvault#set-policy)를 사용하여 Key Vault에 대한 사용 권한을 설정합니다. 다음 예제는 hello에서 hello 서비스 보안 주체 ID에서에서 공급 되는 명령 앞 hello:
 
 ```azurecli
 az keyvault set-policy --name $keyvault_name --spn $sp_id \
@@ -205,7 +205,7 @@ az keyvault set-policy --name $keyvault_name --spn $sp_id \
 
 
 ## <a name="create-virtual-machine"></a>가상 컴퓨터 만들기
-일부 가상 디스크를 실제로 암호화하기 위해 VM을 만들고 데이터 디스크를 추가해 보겠습니다. [az vm create](/cli/azure/vm#create)를 사용하여 암호화할 VM을 만들고 5GB 데이터 디스크를 연결합니다. 특정 Marketplace 이미지만 디스크 암호화를 지원합니다. 다음 예제는 **CentOS 7.2n** 이미지를 사용하여 *myVM*이라는 VM을 만듭니다.
+tooactually 일부 가상 디스크가 암호화, VM을 만들고 데이터 디스크를 추가할 수 있습니다. 만들기와 VM tooencrypt [az vm 만들기](/cli/azure/vm#create) 5gb 데이터 디스크를 연결 합니다. 특정 Marketplace 이미지만 디스크 암호화를 지원합니다. hello 다음 예제에서는 V *myVM* 를 사용 하는 **CentOS 7.2n** 이미지:
 
 ```azurecli
 az vm create \
@@ -217,18 +217,18 @@ az vm create \
     --data-disk-sizes-gb 5
 ```
 
-위 명령의 출력에 표시된 `publicIpAddress`를 사용해서 VM에 대해 SSH를 수행합니다. 파티션 및 파일 시스템을 만든 후 데이터 디스크를 탑재합니다. 자세한 내용은 [Linux VM에 연결하여 새 디스크 탑재](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#connect-to-the-linux-vm-to-mount-the-new-disk)를 참조하세요. SSH 세션을 닫습니다.
+SSH tooyour VM를 사용 하 여 hello `publicIpAddress` hello 출력의 hello 명령 앞에 표시 합니다. 파티션 및 파일 시스템 만듭니다 다음 hello 데이터 디스크를 탑재 합니다. 자세한 내용은 참조 [tooa Linux VM toomount hello에 대 한 새 디스크를 연결](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#connect-to-the-linux-vm-to-mount-the-new-disk)합니다. SSH 세션을 닫습니다.
 
 
 ## <a name="encrypt-virtual-machine"></a>가상 컴퓨터 암호화
-가상 디스크를 암호화하기 위해서 이전의 구성 요소를 모두 가져옵니다.
+tooencrypt hello 가상 디스크를 모아 놓은 모든 hello 이전 구성 요소:
 
-1. Azure Active Directory 서비스 사용자 및 암호를 지정합니다.
-2. 암호화된 디스크에 대한 메타데이터를 저장할 Key Vault를 지정합니다.
-3. 실제 암호화 및 암호 해독에 사용될 암호화 키를 지정합니다.
-4. OS 디스크, 데이터 디스크 또는 모든 디스크를 암호화할지 여부를 지정합니다.
+1. Hello Azure Active Directory 서비스 사용자 및 암호를 지정 합니다.
+2. Hello 주요 자격 증명 모음 toostore hello 메타 데이터에 대 한 암호화 된 디스크를 지정 합니다.
+3. Hello 실제 암호화 및 암호 해독에 대 한 암호화 키 toouse hello를 지정 합니다.
+4. Tooencrypt hello OS 디스크, hello 데이터 디스크 또는 모두 사용할지를 지정 합니다.
 
-[az vm encryption enable](/cli/azure/vm/encryption#enable)을 사용하여 VM을 암호화합니다. 다음 예제에서는 이전 `ad sp create-for-rbac` 명령의 `$sp_id` 및 `$sp_password` 변수를 사용합니다.
+[az vm encryption enable](/cli/azure/vm/encryption#enable)을 사용하여 VM을 암호화합니다. hello 다음 예제에서는 hello `$sp_id` 및 `$sp_password` hello 앞에서 변수 `ad sp create-for-rbac` 명령:
 
 ```azurecli
 az vm encryption enable \
@@ -241,13 +241,13 @@ az vm encryption enable \
     --volume-type all
 ```
 
-디스크 암호화 프로세스를 완료하는 데 약간의 시간이 걸립니다. [az vm encryption show](/cli/azure/vm/encryption#show)를 사용하여 프로세스의 상태를 모니터링합니다.
+디스크 암호화 프로세스 toocomplete hello에 대 한 몇 시간이 걸립니다. 사용 하 여 hello 프로세스의 hello 상태를 모니터링 [az vm 암호화 표시](/cli/azure/vm/encryption#show):
 
 ```azurecli
 az vm encryption show --resource-group myResourceGroup --name myVM
 ```
 
-다음의 잘린 예제와 유사하게 출력됩니다.
+hello는 비슷한 toohello 다음 잘린된 예제 출력:
 
 ```json
 [
@@ -256,29 +256,29 @@ az vm encryption show --resource-group myResourceGroup --name myVM
 ]
 ```
 
-OS 디스크의 상태가 **VMRestartPending**을 보고할 때까지 기다린 후 [az vm restart](/cli/azure/vm#restart)를 사용하여 VM을 다시 시작합니다.
+Hello OS 디스크 보고서에 대 한 hello 상태가 될 때까지 대기 **VMRestartPending**, 다시 시작 된 VM [az vm 다시 시작](/cli/azure/vm#restart):
 
 ```azurecli
 az vm restart --resource-group myResourceGroup --name myVM
 ```
 
-부팅 프로세스 동안 디스크 암호화 프로세스가 완료되므로, 몇 분 정도 기다렸다가 **az vm encryption show**를 사용하여 암호화 상태를 다시 확인하세요.
+hello 디스크 암호화 프로세스가 완료 된 hello 부팅 프로세스 중, 따라서 사용 하 여 다시 암호화의 hello 상태를 확인 하기 전에 잠시 기다린 후 **az vm 암호화 표시**:
 
 ```azurecli
 az vm encryption show --resource-group myResourceGroup --name myVM
 ```
 
-이제 상태는 OS 디스크와 데이터 디스크를 둘 다 **Encrypted**로 표시합니다.
+hello 운영 체제 디스크와 같은 데이터 디스크를 모두 hello 상태를 보고 이제 해야 **암호화**합니다.
 
 
 ## <a name="add-additional-data-disks"></a>데이터 디스크 더 추가하기
-데이터 디스크를 암호화하고 나면 나중에 VM에 가상 디스크를 더 추가하고 암호화할 수도 있습니다. 예를 들어 다음과 같이 VM에 두 번째 가상 디스크를 추가해보겠습니다.
+데이터 디스크를 암호화 한 후 나중에 추가로 가상 디스크 tooyour VM을 추가할 수 있으며도 암호화할 수 있습니다. 예를 들어 다음과 같이 두 번째 가상 디스크 tooyour VM을 추가할 수 있습니다.
 
 ```azurecli
 az vm disk attach-new --resource-group myResourceGroup --vm-name myVM --size-in-gb 5
 ```
 
-명령을 다시 실행하여 다음과 같이 가상 디스크를 암호화합니다.
+다시 hello 명령 tooencrypt hello 가상 디스크를 다음과 같이 실행:
 
 ```azurecli
 az vm encryption enable \
@@ -294,4 +294,4 @@ az vm encryption enable \
 
 ## <a name="next-steps"></a>다음 단계
 * 암호화 키 및 Key Vault 삭제를 비롯한 Azure Key Vault 관리에 대한 자세한 내용은 [CLI를 사용하여 Key Vault 관리](../../key-vault/key-vault-manage-with-cli2.md)를 참조하세요.
-* Azure에 업로드할 암호화된 사용자 지정 VM 준비와 같은 디스크 암호화에 대한 자세한 내용은 [Azure Disk Encryption](../../security/azure-security-disk-encryption.md)을 참조하세요.
+* 암호화 된 사용자 지정 VM tooupload tooAzure를 준비 하 고 같은 디스크 암호화에 대 한 자세한 내용은 참조 하십시오. [Azure 디스크 암호화](../../security/azure-security-disk-encryption.md)합니다.

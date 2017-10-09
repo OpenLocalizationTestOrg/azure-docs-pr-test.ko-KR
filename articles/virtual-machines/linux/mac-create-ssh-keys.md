@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Linux VM용 SSH 키 쌍 만들기 및 사용 | Microsoft Docs"
-description: "Azure에서 인증 프로세스의 보안을 개선하기 위해 Linux VM용 SSH 공용 및 개인 키를 만들고 사용하는 방법입니다."
+title: "Azure에서 Linux Vm에 대 한 aaaCreate 및 사용 된 SSH 키 쌍 | Microsoft Docs"
+description: "어떻게 toocreate 및 tooimprove Azure Linux Vm에 대 한 SSH 공용 및 개인 키 쌍 사용 hello hello 인증 프로세스의 보안 합니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -15,24 +15,24 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/14/2017
 ms.author: iainfou
-ms.openlocfilehash: 0fb71d2ffe533afba6e1e527b727a7b085e7da14
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7fb94841d34d5bc006f3134adf91102ddce5f174
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-and-use-an-ssh-public-and-private-key-pair-for-linux-vms-in-azure"></a>Azure에서 Linux VM용 SSH 공개 및 개인 키 쌍을 만들고 사용하는 방법
-SSH(보안 셸) 키 쌍을 사용하면 인증을 위해 SSH 키를 사용하는 VM(가상 컴퓨터)을 Azure에서 만들 수 있으며 로그인하기 위해 암호가 필요하지 않게 됩니다. 이 문서에서는 Linux VM용 SSH 프로토콜 버전 2 RSA 공개 및 개인 키 파일 쌍을 신속하게 생성하고 사용하는 방법을 보여줍니다. 자세한 단계 및 추가 예제는 [SSH 키 쌍 및 인증서를 만드는 자세한 단계](create-ssh-keys-detailed.md)를 참조하세요.
+# <a name="how-toocreate-and-use-an-ssh-public-and-private-key-pair-for-linux-vms-in-azure"></a>Azure에서 Linux Vm에 대 한 toocreate 및 SSH 공개 및 개인 키를 사용 하 여 쌍 연결 하는 방법
+보안 셸 SSH 키 쌍에서 암호 toolog hello 필요성을 제거 인증을 위해 SSH 키를 사용 하 여 Azure에서 가상 컴퓨터 (Vm)를 만들 수 있습니다. 이 문서 tooquickly 생성 하 고 Linux Vm에 대 한 SSH 프로토콜 버전 2 RSA 공개 및 개인 키 파일 쌍을 사용 하는 방법을 보여 줍니다. 자세한 단계 및 추가 예제를 참조 하세요. [단계 toocreate SSH 키 쌍과 인증서 세부](create-ssh-keys-detailed.md)합니다.
 
 ## <a name="create-an-ssh-key-pair"></a>SSH 키 쌍 만들기
-`ssh-keygen` 명령을 사용하여 기본적으로 `~/.ssh` 디렉터리에 생성되는 SSH 공개 및 개인 키 파일을 만들지만 메시지가 표시되면 다른 위치 및 추가 암호(개인 키 파일에 액세스하는 암호)를 지정할 수 있습니다. Bash 셸에서 다음 명령을 실행하여 사용자 고유의 정보로 프롬프트에 응답합니다.
+사용 하 여 hello `ssh-keygen` 명령 toocreate SSH 공용 및 개인 키 파일 hello에서 만든 기본적으로 되어 있는 `~/.ssh` 디렉터리 이지만 지정할 수도 있습니다를 다른 위치 및 공유 암호 (암호 tooaccess hello 개인 키 파일을)를 추가 하면 라는 메시지가 나타납니다. 사용자의 정보로 메시지 표시 hello 응답 hello Bash 셸의에서 다음 명령을 실행 합니다.
 
 ```bash
 ssh-keygen -t rsa -b 2048
 ```
 
-## <a name="use-the-ssh-key-pair"></a>SSH 키 쌍 사용
-Azure에서 Linux VM에 배치하는 공개 키는 만들 때 위치를 변경하지 않는다면, 기본적으로 `~/.ssh/id_rsa.pub`에 저장됩니다. [Azure CLI 2.0](/cli/azure)을 사용하여 사용자의 VM을 만드는 경우 [az vm create](/cli/azure/vm#create)와 `--ssh-key-path` 옵션을 사용할 때 이 공개 키의 위치를 지정합니다. Azure Portal 또는 Resource Manager 템플릿에서 사용할 공개 키 파일의 내용을 복사하여 붙여넣으려는 경우 추가 공백은 복사하지 않아야 합니다. 예를 들어, OS X을 사용하는 경우 공개 키 파일(기본적으로 **~/.ssh/id_rsa.pub**)을 **pbcopy**로 파이프하여 내용을 복사할 수 있습니다(`xclip`처럼 동일한 작업을 수행하는 다른 Linux 프로그램이 있음).
+## <a name="use-hello-ssh-key-pair"></a>Hello SSH 키 쌍을 사용 하 여
+Azure에서 Linux VM에 배치 하는 hello 공개 키가 기본적으로에 저장 `~/.ssh/id_rsa.pub`을 만들 때 hello 위치를 변경 하지 않는 한 합니다. Hello를 사용 하는 경우 [Azure CLI 2.0](/cli/azure) toocreate VM을 hello를 사용 하는 경우이 공개 키의 hello 위치를 지정 [az vm 만들기](/cli/azure/vm#create) hello로 `--ssh-key-path` 옵션입니다. 복사한 hello Azure 포털 또는 리소스 관리자 템플릿을 hello hello 공개 키 파일 toouse 내용의 압축을 붙여 넣는 경우 모든 추가 공백 복사 하지 않으면 있는지 확인 합니다. 예를 들어, OS X를 사용 하는 경우 공개 키 파일 hello 파이프할 수 (기본적으로 **~/.ssh/id_rsa.pub**) 너무**pbcopy** (에 없는 같은동일한작업을hello수행하는다른Linux프로그램toocopyhello내용`xclip`).
 
 SSH 공개 키를 잘 모르는 경우 다음과 같이 `cat`을 실행하여 공개 키를 확인할 수 있습니다. 이때 `~/.ssh/id_rsa.pub`를 사용자 고유의 공개 키 파일 위치로 대체합니다.
 
@@ -40,20 +40,20 @@ SSH 공개 키를 잘 모르는 경우 다음과 같이 `cat`을 실행하여 �
 cat ~/.ssh/id_rsa.pub
 ```
 
-Azure VM에서 공개 키를 통해 VM의 IP 주소 및 DNS 이름을 사용하여 VM에 SSH를 사용합니다(아래 `azureuser` 및 `myvm.westus.cloudapp.azure.com`을 관리자 사용자 이름 및 정규화된 도메인 이름 또는 IP 주소로 대체해야 함).
+IP 주소 또는 VM의 DNS 이름을 hello 사용 하 여 SSH tooyour VM hello Azure VM에서 공개 키를 (tooreplace 기억 `azureuser` 및 `myvm.westus.cloudapp.azure.com` 아래 주소에 hello 관리자 사용자 이름 및 hello 정규화 된 도메인 이름-or IP):
 
 ```bash
 ssh azureuser@myvm.westus.cloudapp.azure.com
 ```
 
-키 쌍을 만들 때 암호를 제공한 경우 로그인 프로세스 중에 메시지가 표시되면 암호를 입력합니다. (서버가 `~/.ssh/known_hosts` 폴더에 추가되고 Azure VM에서 공개 키가 변경되거나 서버 이름이 `~/.ssh/known_hosts`에서 제거될 까지 다시 연결할지 묻는 메시지가 표시되지 않습니다.)
+사용자 키 쌍을 만들 때 암호를 제공한 경우 hello 로그인 프로세스 동안 메시지가 표시 되 면 hello 암호를 입력 합니다. (hello 서버가 tooyour 추가 `~/.ssh/known_hosts` 을 묻는 메시지가 나타나지 않습니다 tooconnect hello 공개 키까지 다시 변경 내용을 Azure VM에서 또는 hello 서버 이름에서 제거 되 `~/.ssh/known_hosts`.)
 
 ## <a name="next-steps"></a>다음 단계
 
-SSH 키를 사용하여 만든 VM은 기본적으로 비활성화된 암호를 사용하여 구성되고 강제 무차별 암호 추측 시도를 더욱 비용이 많이 들고 결과적으로 어렵게 합니다. 이 항목에서는 빠른 사용을 위해 간단한 SSH 키 쌍을 만드는 방법에 대해 설명합니다. SSH 키 쌍 만들기에 도움이 필요하거나 추가 인증서가 필요한 경우 [SSH 키 쌍 및 인증서를 만드는 자세한 단계](create-ssh-keys-detailed.md)를 참조하세요.
+SSH 키를 사용 하 여 만든 Vm은 사용 하지 않도록 설정 하는 암호를 사용 하 여 구성 하는 기본적으로, 따라서 어렵고 훨씬 더 비쌉니다 시도 toomake 추측 무차별 암호 강제 합니다. 이 항목에서는 빠른 사용을 위해 간단한 SSH 키 쌍을 만드는 방법에 대해 설명합니다. SSH 키 쌍 만들기에 도움이 필요 하거나 추가 인증서가 필요한 경우 참조 [단계 toocreate SSH 키 쌍과 인증서 세부](create-ssh-keys-detailed.md)합니다.
 
-Azure Portal, CLI 및 템플릿을 사용하여 SSH 키 쌍을 사용하는 VM을 만들 수 있습니다.
+Hello Azure 포털, CLI 및 서식 파일을 사용 하 여 SSH 키 쌍을 사용 하는 Vm을 만들 수 있습니다.
 
-* [Azure Portal을 사용하여 보안 Linux VM 만들기](quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [Azure CLI 2.0를 사용하여 보안 Linux VM 만들기](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [Hello Azure 포털을 사용 하 여 보안 Linux VM 만들기](quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [Hello Azure CLI 2.0을 사용 하 여 보안 Linux VM 만들기)](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [Azure 템플릿을 사용하여 보안 Linux VM 만들기](create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

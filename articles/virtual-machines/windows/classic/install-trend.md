@@ -1,6 +1,6 @@
 ---
-title: "VM에 Trend Micro Deep Security 설치 | Microsoft Docs"
-description: "이 문서에서는 Azure에서 클래식 배포 모델을 사용하여 만든 VM에 Trend Micro 보안을 설치하고 구성하는 방법을 설명합니다."
+title: "VM에서 추세 Micro Deep Security aaaInstall | Microsoft Docs"
+description: "이 문서에서는 설명 방법을 tooinstall 및 Azure의 hello 클래식 배포 모델을 사용 하 여 만든 VM에서 Trend Micro 보안을 구성 합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: iainfoulds
@@ -15,76 +15,76 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/30/2017
 ms.author: iainfou
-ms.openlocfilehash: 911b8f12472dcbda3e6bfeb8c97bf1d04a63e1dd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc5492db07a37a2296df5da673183a14c6d5b1f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-install-and-configure-trend-micro-deep-security-as-a-service-on-a-windows-vm"></a>Windows VM에 Trend Micro Deep Security as a Service를 설치하고 구성하는 방법
+# <a name="how-tooinstall-and-configure-trend-micro-deep-security-as-a-service-on-a-windows-vm"></a>어떻게 tooinstall 및 서비스로 Windows VM에서 Trend Micro Deep Security 구성
 > [!IMPORTANT]
-> Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다. 이 문서에서는 클래식 배포 모델 사용에 대해 설명합니다. 새로운 배포는 대부분 리소스 관리자 모델을 사용하는 것이 좋습니다.
+> Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다. 이 문서에서는 hello 클래식 배포 모델을 사용 하 여 설명 합니다. 대부분의 새로운 배포 hello 리소스 관리자 모델을 사용 하는 것이 좋습니다.
 
-이 문서에서는 Windows Server가 실행되는 새 VM(가상 컴퓨터) 또는 기존 VM에서 Trend Micro Deep Security as a Service를 설치 및 구성하는 방법을 보여 줍니다. Deep Security as a Service는 맬웨어 방지 보호, 방화벽, 침입 방지 시스템 및 무결성 모니터링을 포함합니다.
+이 문서에서는 어떻게 tooinstall 및 Trend Micro Deep Security를 서비스로 실행 하는 새로운 또는 기존 가상 컴퓨터 (VM) Windows Server에서 구성 합니다. Deep Security as a Service는 맬웨어 방지 보호, 방화벽, 침입 방지 시스템 및 무결성 모니터링을 포함합니다.
 
-이 클라이언트는 VM 에이전트를 통해 보안 확장 프로그램으로 설치됩니다. VM 에이전트는 Azure Portal에서 자동으로 생성되므로 새 가상 컴퓨터에서 Deep Security Agent를 설치합니다.
+hello 클라이언트 hello VM 에이전트를 통해 보안 확장 프로그램으로 설치 됩니다. 새 가상 컴퓨터에 설치한 hello Deep Security Agent로 hello hello Azure 포털에서 VM 에이전트를 자동으로 생성 합니다.
 
-클래식 포털, Azure CLI 또는 PowerShell을 사용하여 만든 기존 VM에는 VM 에이전트가 없을 수 있습니다. VM 에이전트가 없는 기존 가상 컴퓨터에서는 이 에이전트를 먼저 다운로드하여 설치해야 합니다. 이 문서에서는 두 상황을 모두 다룹니다.
+Hello 클래식 포털, hello Azure CLI 또는 PowerShell을 사용 하 여 만든 기존 VM에 VM 에이전트가 없을 수도 있습니다. VM 에이전트 hello이 없는 기존 가상 컴퓨터에 대 한 toodownload 필요한 및 앱을 먼저 설치 합니다. 이 문서에서는 두 상황을 모두 다룹니다.
 
-온-프레미스 솔루션용 Trend Micro의 현재 구독이 있는 경우 Azure Virtual Machines를 보호하는 데 사용할 수 있습니다. 아직 구독 고객이 아닌 경우에는 평가판 구독에 등록할 수 있습니다. 이 솔루션에 대한 자세한 내용은 Trend Micro 블로그 게시물 [Deep Security에 대한 Microsoft Azure VM 에이전트 확장](http://go.microsoft.com/fwlink/p/?LinkId=403945)을 참조하세요.
+온-프레미스 솔루션에 대 한 Trend Micro에서 현재 구독을 보유 하는 경우 파일을 사용할 수 toohelp Azure 가상 컴퓨터를 보호 합니다. 아직 구독 고객이 아닌 경우에는 평가판 구독에 등록할 수 있습니다. 이 솔루션에 대 한 자세한 내용은 hello Trend Micro 블로그 게시물을 참조 하십시오. [Microsoft Azure VM 에이전트 확장에 대 한 전체 보안](http://go.microsoft.com/fwlink/p/?LinkId=403945)합니다.
 
-## <a name="install-the-deep-security-agent-on-a-new-vm"></a>새 VM에 Deep Security Agent 설치
+## <a name="install-hello-deep-security-agent-on-a-new-vm"></a>새 VM에 hello Deep Security Agent를 설치 합니다.
 
-**Marketplace**의 이미지를 사용하여 가상 컴퓨터를 만드는 경우 [Azure Portal](http://portal.azure.com)에서 Trend Micro 보안 확장을 설치할 수 있습니다. 포털을 사용하면 단일 가상 컴퓨터를 만들 때 Trend Micro의 보호 기능을 쉽게 추가할 수 있습니다.
+hello [Azure 포털](http://portal.azure.com) hello에서 이미지를 사용 하는 경우 hello Trend Micro 보안 확장 프로그램을 설치 하면 **마켓플레이스** toocreate hello 가상 컴퓨터. 단일 가상 컴퓨터를 만드는 경우 hello 포털을 사용 하 여은 Trend Micro에서 쉽게 tooadd 보호 기능입니다.
 
-**Marketplace**의 항목을 사용하면 가상 컴퓨터 설치에 도움이 되는 마법사가 열립니다. 마법사의 세 번째 패널인 **설정** 블레이드를 사용하여 Trend Micro 보안 확장을 설치합니다.  일반적인 지침은 [Azure Portal에서 Windows를 실행하는 가상 컴퓨터 만들기](tutorial.md)를 참조하세요.
+Hello에서 항목을 사용 하 여 **마켓플레이스** hello 가상 컴퓨터를 설정 하는 데 도움이 되는 마법사를 엽니다. Hello를 사용 하 여 **설정을** 블레이드, hello hello 마법사, tooinstall hello Trend Micro 보안 확장 프로그램의 세 번째 패널입니다.  일반 지침은 [hello Azure 포털에서에서 Windows를 실행 중인 가상 컴퓨터를 만드는](tutorial.md)합니다.
 
-마법사의 **설정** 블레이드로 이동한 후 다음 단계를 수행합니다.
+Toohello를 가져올 때 **설정을** 블레이드 hello 마법사의 다음 단계 hello지 않습니다.
 
-1. **확장**을 클릭한 후 다음 창에서 **확장 추가**를 클릭합니다.
+1. 클릭 **확장**, 클릭 **확장 추가** hello 다음 창에서.
 
-   ![확장 추가 시작][1]
+   ![Hello 확장을 추가 하기 시작][1]
 
-2. **새 리소스** 창에서 **Deep Security Agent**를 선택합니다. Deep Security Agent 창에서 **만들기**를 클릭합니다.
+2. 선택 **Deep Security Agent** hello에 **새 리소스** 창. Hello Deep Security Agent 창에서 클릭 **만들기**합니다.
 
    ![Deep Security Agent 식별][2]
 
-3. 확장에 대한 **테넌트 식별자** 및 **테넌트 활성화 암호**를 입력합니다. 선택적으로 **보안 정책 식별자**를 입력할 수도 있습니다. 그런 후 **확인**을 클릭하여 클라이언트를 추가합니다.
+3. Hello 입력 **테 넌 트 식별자** 및 **테 넌 트 활성화 암호** hello 확장에 대 한 합니다. 선택적으로 **보안 정책 식별자**를 입력할 수도 있습니다. 클릭 **확인** tooadd hello 클라이언트입니다.
 
    ![확장 세부 정보 제공][3]
 
-## <a name="install-the-deep-security-agent-on-an-existing-vm"></a>기존 VM에 Deep Security Agent 설치
-기존 VM에 에이전트를 설치하려면 다음 항목이 필요합니다.
+## <a name="install-hello-deep-security-agent-on-an-existing-vm"></a>기존 VM에 hello Deep Security Agent를 설치 합니다.
+기존 VM에 tooinstall hello 에이전트, 다음 항목 hello가 필요 합니다.
 
-* Azure PowerShell 모듈 버전 0.8.2 이상이 로컬 컴퓨터에 설치되어 있어야 합니다. **Get-Module azure | format-table version** 명령을 사용하여 설치한 Azure PowerShell 버전을 확인할 수 있습니다. 지침 및 최신 버전에 대한 링크를 보려면 [Azure PowerShell을 설치 및 구성하는 방법](/powershell/azure/overview)을 참조하세요. `Add-AzureAccount`를 사용하여 Azure 구독에 로그인합니다.
-* VM 에이전트가 대상 가상 컴퓨터에 설치되어 있어야 합니다.
+* hello Azure PowerShell 모듈, 0.8.2 버전 또는 최신, 로컬 컴퓨터에 설치 합니다. Hello hello를 사용 하 여 설치 된 Azure PowerShell 버전을 확인할 수 있습니다 **Get-module azure | format-table 버전** 명령입니다. 지침 및 링크 toohello 최신 버전에 대 한 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview)합니다. 사용 하 여 Azure 구독 tooyour `Add-AzureAccount`합니다.
+* hello VM 에이전트를 hello 대상 가상 컴퓨터에 설치 합니다.
 
-먼저 VM 에이전트가 이미 설치되어 있는지 확인합니다. 클라우드 서비스 이름과 가상 컴퓨터 이름을 입력하고 관리자 수준의 Azure PowerShell 명령 프롬프트에서 다음 명령을 실행합니다. < 및 > 문자를 포함하여 따옴표 안의 모든 항목을 바꿉니다.
+첫째, VM 에이전트가 이미 설치 되어 해당 hello를 확인 합니다. Hello 클라우드 서비스 이름 및 가상 컴퓨터 이름을 입력 한 후 hello 다음 관리자 권한 Azure PowerShell 명령 프롬프트에서 명령을 실행 합니다. Hello < 및 > 문자를 포함 하 여 hello 인용 부호 있는 모든 항목을 대체 합니다.
 
     $CSName = "<cloud service name>"
     $VMName = "<virtual machine name>"
     $vm = Get-AzureVM -ServiceName $CSName -Name $VMName
     write-host $vm.VM.ProvisionGuestAgent
 
-클라우드 서비스 및 가상 컴퓨터 이름을 모르는 경우 **Get-AzureVM** 을 실행하여 현재 구독의 모든 가상 컴퓨터에 대한 해당 정보를 표시합니다.
+Hello 클라우드 서비스 및 가상 컴퓨터 이름을 모르는 경우 실행 **Get-azurevm** hello 현재 구독에서 가상 컴퓨터를 모두에 대 한 정보는 toodisplay 합니다.
 
-**write-host** 명령에서 **True**가 반환되면 VM 에이전트가 설치되어 있는 것입니다. **False**가 반환되면 Azure 블로그 게시물 [VM 에이전트 및 확장 - 2부](http://go.microsoft.com/fwlink/p/?LinkId=403947)에서 지침 및 다운로드 링크를 참조합니다.
+경우 hello **쓰기 호스트** 명령에서 반환 **True**, hello VM 에이전트가 설치 되어 있습니다. 반환 하는 경우 **False**, hello 지침 및 다운로드 hello Azure 블로그 게시물에서에서 링크 toohello 참조 [VM 에이전트 및 확장-2 부](http://go.microsoft.com/fwlink/p/?LinkId=403947)합니다.
 
-VM 에이전트가 설치되어 있는 경우 다음 명령을 실행합니다.
+Hello VM 에이전트가 설치 된 경우 다음이 명령을 실행 합니다.
 
     $Agent = Get-AzureVMAvailableExtension TrendMicro.DeepSecurity -ExtensionName TrendMicroDSA
 
     Set-AzureVMExtension -Publisher TrendMicro.DeepSecurity –Version $Agent.Version -ExtensionName TrendMicroDSA -VM $vm | Update-AzureVM
 
 ## <a name="next-steps"></a>다음 단계
-에이전트가 설치되어 있는 경우 실행을 시작하는 데 몇 분 정도 걸립니다. 그 이후에는 Deep Security Manager를 통해 관리할 수 있도록 가상 컴퓨터에서 Deep Security를 정품 인증해야 합니다. 추가 지침은 다음 문서를 참조하세요.
+Hello 에이전트 toostart 설치 될 때 실행에 대 한 몇 가지 분 걸립니다. 그 후 전체 보안 관리자가 관리할 수 있도록 tooactivate Deep Security hello 가상 컴퓨터에 필요 합니다. 다음 추가 지침에 대 한 아티클을 hello 참조:
 
 * 이 솔루션과 관련된 Trend 문서, [Microsoft Azure에 대한 즉시 재생 가능한 클라우드 보안](http://go.microsoft.com/fwlink/?LinkId=404101)
-* 가상 컴퓨터 구성을 위한 [샘플 Windows PowerShell 스크립트](http://go.microsoft.com/fwlink/?LinkId=404100)
-* [지침](http://go.microsoft.com/fwlink/?LinkId=404099) 
+* A [샘플 Windows PowerShell 스크립트](http://go.microsoft.com/fwlink/?LinkId=404100) tooconfigure hello 가상 컴퓨터
+* [지침](http://go.microsoft.com/fwlink/?LinkId=404099) hello 샘플에 대 한
 
 ## <a name="additional-resources"></a>추가 리소스
-[Windows Server를 실행하는 가상 컴퓨터에 로그온하는 방법]
+[어떻게 toolog Windows Server를 실행 tooa 가상 컴퓨터]
 
 [Azure VM 확장 및 기능]
 
@@ -94,5 +94,5 @@ VM 에이전트가 설치되어 있는 경우 다음 명령을 실행합니다.
 [3]: ./media/install-trend/SecurityAgentDetails.png
 
 <!-- Link references -->
-[Windows Server를 실행하는 가상 컴퓨터에 로그온하는 방법]:connect-logon.md
+[어떻게 toolog Windows Server를 실행 tooa 가상 컴퓨터]:connect-logon.md
 [Azure VM 확장 및 기능]: http://go.microsoft.com/fwlink/p/?linkid=390493&clcid=0x409

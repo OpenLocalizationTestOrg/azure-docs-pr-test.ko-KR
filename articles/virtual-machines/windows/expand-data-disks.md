@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Windows VM에 연결된 데이터 디스크 확장 | Microsoft Docs"
-description: "PowerShell을 사용하여 Windows 가상 컴퓨터에 연결된 데이터 디스크의 크기를 확장합니다."
+title: "데이터 디스크 aaaExpand tooa Windows VM을 Azure에 연결 된 | Microsoft Docs"
+description: "PowerShell을 사용 하 여 연결 된 tooa Windows 가상 컴퓨터에 있는 데이터 디스크의 hello 크기를 확장 합니다."
 services: virtual-machines-windows
 documentationcenter: na
 author: cynthn
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/02/2017
 ms.author: cynthn
-ms.openlocfilehash: 5529856c2ffcd2942fe3fc2b438f7e3fd16a67b2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b16ad0da9cff9dfffc9dc9ec7dd72891e7ddd745
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="increase-the-size-of-a-data-disk-attached-to-a-windows-vm"></a>Windows VM에 연결된 데이터 디스크의 크기 늘리기
+# <a name="increase-hello-size-of-a-data-disk-attached-tooa-windows-vm"></a>데이터 디스크의 크기를 늘리십시오. hello tooa Windows VM 연결
 
-가상 컴퓨터에 연결된 데이터 디스크의 크기를 늘려야 할 경우 PowerShell을 사용하여 크기를 늘릴 수 있습니다. Azure VM 설정에서 데이터 디스크의 크기를 늘린 후에 VM 내에서 새 디스크 공간을 할당해야 합니다.
+Hello 데이터 연결 된 디스크 tooyour 가상 컴퓨터의 tooincrease hello 크기, 필요한 경우 PowerShell을 사용 하 여 hello 크기를 늘릴 수 있습니다. Hello Azure VM 설정에서 hello 데이터 디스크의 hello 크기를 늘린 후에 hello VM 내에서 tooallocate hello 새 디스크 공간이 필요 합니다.
 
 
-## <a name="use-powershell-to-increase-the-size-of-a-managed-data-disk"></a>Powershell을 사용하여 관리되는 데이터 디스크의 크기 늘리기
+## <a name="use-powershell-tooincrease-hello-size-of-a-managed-data-disk"></a>관리 되는 데이터 디스크의 Powershell tooincrease hello 크기를 사용 하 여
 
-관리되는 데이터 디스크의 크기를 늘리려면 다음 PowerShell cmdlet을 사용합니다.
+관리 되는 데이터 디스크를 사용 하 여 hello PowerShell cmdlet을 다음 tooincrease hello 크기:
 
 |                                                                    |                                                            |
 |--------------------------------------------------------------------|------------------------------------------------------------|
@@ -37,18 +37,18 @@ ms.lasthandoff: 08/03/2017
  | [Start-AzureRmVM](/powershell/module/azurerm.compute/start-azurermvm)             |
 <br>
 
-다음 스크립트는 VM 정보를 가져오고, 데이터 디스크를 선택하고, 새 크기를 지정하는 과정을 진행합니다.
+hello 다음 스크립트 과정을 안내 합니다 hello VM 정보를 가져오는 hello 데이터 디스크를 선택 하 고 hello 새 크기를 지정 합니다.
 
 ```powershell
 # Select resource group
 
     $rg = Get-AzureRMResourceGroup | Out-GridView `
-        -Title "Select the resource group" `
+        -Title "Select hello resource group" `
         -PassThru
 
     $rgName = $rg.ResourceGroupName
 
-# Select the VM
+# Select hello VM
 
     $vm = Get-AzureRMVM -ResourceGroupName $rgName `
         | Out-GridView `
@@ -61,32 +61,32 @@ ms.lasthandoff: 08/03/2017
         -Title "Select a data disk" `
         -PassThru
 
-# Specify a larger size for the data disk
+# Specify a larger size for hello data disk
 
     $size =  Read-Host `
         -Prompt "New size in GB"
 
-# Stop and Deallocate VM prior to resizing data disk
+# Stop and Deallocate VM prior tooresizing data disk
 
     $vm | Stop-AzureRMVM -Force
 
-# Set the new disk size
+# Set hello new disk size
 
     $diskUpdateConfig = New-AzureRmDiskUpdateConfig -DiskSizeGB $size
 
-# Update the configuration in Azure
+# Update hello configuration in Azure
 
     $managedDisk = Get-AzureRmResource -ResourceId $disk.ManagedDisk.Id
     Update-AzureRmDisk -DiskName $managedDisk.ResourceName -ResourceGroupName $managedDisk.ResourceGroupName -DiskUpdate $diskUpdateConfig
 
-# Start the VM
+# Start hello VM
 
     Start-AzureRmVM -ResourceGroupName $rgName -VMName $vm.name
 ```
 
-## <a name="use-powershell-to-increase-the-size-of-an-unmanaged-data-disk"></a>Powershell을 사용하여 관리되지 않는 데이터 디스크의 크기 늘리기
+## <a name="use-powershell-tooincrease-hello-size-of-an-unmanaged-data-disk"></a>관리 되지 않는 데이터 디스크의 PowerShell tooincrease hello 크기를 사용 하 여
 
-저장소 계정에서 관리되지 않는 데이터 디스크의 크기를 늘리려면 다음 PowerShell cmdlet을 사용합니다.
+다음 PowerShell cmdlet 사용 하 여 hello 저장소 계정에 관리 되지 않는 데이터 디스크의 tooincrease hello 크기:
 
 |                                                                    |                                                            |
 |--------------------------------------------------------------------|------------------------------------------------------------|
@@ -96,7 +96,7 @@ ms.lasthandoff: 08/03/2017
 
 <br>
 
-다음 스크립트는 VM 및 저장소 계정 정보를 가져오고, 데이터 디스크를 선택하고, 새 크기를 지정하는 과정을 진행합니다.
+hello 다음 스크립트 과정을 안내 합니다 hello VM 및 저장소 계정 정보를 얻는 hello 데이터 디스크를 선택 하 고 hello 새 크기를 지정 합니다.
 
 ```powershell
 
@@ -109,18 +109,18 @@ ms.lasthandoff: 08/03/2017
 
     $rgName = $storageAccount.ResourceGroupName
 
-# Select the VM
+# Select hello VM
 
     $vm = Get-AzureRMVM `
     -ResourceGroupName $rgName | Out-GridView `
             -Title "Select a VM …" `
             -PassThru
 
-# Select Data Disk to resize
+# Select Data Disk tooresize
 
     $disk =
         $vm.DataDiskNames | Out-GridView `
-            -Title "Select a data disk to resize" `
+            -Title "Select a data disk tooresize" `
             -PassThru
 
 
@@ -129,28 +129,28 @@ ms.lasthandoff: 08/03/2017
     $size =  Read-Host `
         -Prompt "New size in GB"
 
-# Stop and Deallocate VM prior to resizing data disk
+# Stop and Deallocate VM prior tooresizing data disk
 
     $vm | Stop-AzureRMVM -Force
 
-# Set the new disk size
+# Set hello new disk size
 
     Set-AzureRmVMDataDisk -VM $vm -Name "$disk" `
         -DiskSizeInGB $size
 
-# Update the configuration in Azure
+# Update hello configuration in Azure
 
     Update-AzureRmVM -VM $vm -ResourceGroupName $rgName
 
-# Start the VM
+# Start hello VM
     Start-AzureRmVM -ResourceGroupName $rgName `
     -VMName $vm.name
 
 ```
 
-## <a name="allocate-the-unallocated-disk-space"></a>할당되지 않은 디스크 공간 할당
+## <a name="allocate-hello-unallocated-disk-space"></a>Hello 할당 되지 않은 디스크 공간 할당
 
-드라이브를 더 크게 만든 후에는 VM 내에서 할당되지 않은 새 공간을 할당해야 합니다. 공간을 할당하려면 디스크 관리(diskmgmt.msc)를 사용하여 VM에 연결할 수 있습니다. 또는 VM을 만들 때 WinRM 및 인증서를 사용하도록 설정한 경우 원격 PowerShell을 사용하여 디스크를 초기화할 수 있습니다. 또한 사용자 지정 스크립트 확장을 사용할 수 있습니다.
+적용 하 고 나면 hello 드라이브 보다 큰, tooallocate hello 새 할당 되지 않은 공간 hello VM 내에서 필요 합니다. tooallocate hello 공간, 디스크 관리 (diskmgmt.msc)를 사용 하 여 toohello VM을 연결할 수 있습니다. 또는 원격 PowerShell tooinitialize hello 디스크를 활성화 한 경우 WinRM 및 hello VM에 인증서를 만들 때 사용할 수 있습니다. 또한 사용자 지정 스크립트 확장을 사용할 수 있습니다.
 
 ```powershell
     $location = "location-name"
@@ -159,7 +159,7 @@ ms.lasthandoff: 08/03/2017
     Set-AzureRmVMCustomScriptExtension -ResourceGroupName $rgName -Location $locName -VMName $vmName -Name $scriptName -TypeHandlerVersion "1.4" -StorageAccountName "mystore1" -StorageAccountKey "primary-key" -FileName $fileName -ContainerName "scripts"
 ```
 
-스크립트 파일에는 드라이브 할당을 최대 크기 및 디스크로 늘리는 다음과 같은 코드가 포함될 수 있습니다.
+hello 스크립트 파일에이 코드 tooincrease hello 드라이브 할당 toohello 최대 크기 hello 디스크와 같은 포함 될 수 있습니다.
 
 ```powershell
 $driveLetter= "F"

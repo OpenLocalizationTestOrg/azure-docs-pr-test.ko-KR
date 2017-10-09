@@ -1,6 +1,6 @@
 ---
-title: "Azure 관리 디스크 저장소를 표준에서 프리미엄으로, 또 그 반대로 변환 | Microsoft Docs"
-description: "Azure PowerShell을 사용하여 Azure 관리 디스크를 표준에서 프리미엄으로, 또 그 반대로 변환하는 방법"
+title: "aaaConvert Azure 디스크 저장소를 관리 되는 표준 toopremium에서 그 반대의 | Microsoft Docs"
+description: "어떻게 tooconvert Azure 표준 toopremium에서, 또는 그 반대로 Azure PowerShell을 사용 하 여 디스크를 관리 합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: ramankum
@@ -15,55 +15,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: ramankum
-ms.openlocfilehash: 9e5c73ceb0ff7d9c18c9cf7128b69e40b9796874
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 11f35cde216e91c0599d3619682686e8eb162fad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="convert-azure-managed-disks-storage-from-standard-to-premium-and-vice-versa"></a>Azure 관리 디스크 저장소를 표준에서 프리미엄으로, 또 그 반대로 변환
+# <a name="convert-azure-managed-disks-storage-from-standard-toopremium-and-vice-versa"></a>Azure 변환 디스크 저장소를 관리 되는 표준 toopremium에서 그 반대의
 
-Managed Disks는 [프리미엄](../../storage/storage-premium-storage.md)(SSD 기반) 및 [표준](../../storage/storage-standard-storage.md)(HDD 기반)이라는 두 가지 저장소 옵션을 제공합니다. 성능 요구 사항에 따라 최소한의 가동 중지 시간으로 두 가지 옵션 사이를 쉽게 전환할 수 있습니다. 이 기능은 관리되지 않는 디스크에 사용할 수 없습니다. 하지만 두 옵션 사이를 쉽게 전환하도록 [관리 디스크로 변환](convert-unmanaged-to-managed-disks.md)할 수 있습니다.
+Managed Disks는 [프리미엄](../../storage/storage-premium-storage.md)(SSD 기반) 및 [표준](../../storage/storage-standard-storage.md)(HDD 기반)이라는 두 가지 저장소 옵션을 제공합니다. 성능 요구 사항에 따라 최소한의 가동 중지 시간 hello 두 옵션 중 적합 한 tooeasily 스위치가 있습니다. 이 기능은 관리되지 않는 디스크에 사용할 수 없습니다. 에 쉽게 하지만 [toomanaged 디스크 변환](convert-unmanaged-to-managed-disks.md) tooeasily hello 두 옵션 사이 전환 합니다.
 
-이 문서는 Azure PowerShell을 사용하여 관리 디스크를 표준에서 프리미엄으로, 또 그 반대로 변환하는 방법을 설명합니다. 설치 또는 업그레이드가 필요한 경우 [Azure PowerShell 설치 및 구성](/powershell/azure/install-azurerm-ps.md)을 참조하세요.
+이 문서에서 표준 toopremium 그 반대의 Azure PowerShell을 사용 하 여 tooconvert 디스크를 관리 하는 방법을 보여 줍니다. Tooinstall 필요 하거나 업그레이드할 참조 [설치 Azure PowerShell을 구성 하 고](/powershell/azure/install-azurerm-ps.md)합니다.
 
 ## <a name="before-you-begin"></a>시작하기 전에
 
-* 변환은 기존 유지 관리 기간 동안 디스크 저장소의 마이그레이션을 예약하도록 VM의 재시작이 필요합니다. 
-* 관리되지 않는 디스크를 사용하는 경우 이 문서를 사용하여 두 가지 저장소 옵션 사이로 전환하려면 먼저 [관리 디스크로 변환](convert-unmanaged-to-managed-disks.md)해야 합니다. 
+* hello 변환 hello VM의 다시 시작이 필요한, 하므로 기존 유지 관리 기간 동안 디스크 저장소의 hello 마이그레이션을 예약 합니다. 
+* 먼저 관리 되지 않는 디스크를 사용 하는 경우 [toomanaged 디스크 변환](convert-unmanaged-to-managed-disks.md) toouse hello 두 저장소 옵션 중 적합 한이 문서 tooswitch 합니다. 
 
 
-## <a name="convert-all-the-managed-disks-of-a-vm-from-standard-to-premium-and-vice-versa"></a>VM의 모든 관리 디스크를 표준에서 프리미엄으로, 또 그 반대로 변환
+## <a name="convert-all-hello-managed-disks-of-a-vm-from-standard-toopremium-and-vice-versa"></a>모든 hello convert 관리 디스크 VM의 표준 toopremium에서 그 반대의
 
-다음 예제에서는 VM의 모든 디스크를 표준에서 프리미엄 저장소로 전환하는 방법을 보여 줍니다. 프리미엄 관리 디스크를 사용하려면 VM에서 프리미엄 저장소를 지원하는 [VM 크기](sizes.md)를 사용해야 합니다. 또한 이 예제에서는 프리미엄 저장소를 지원하는 크기로 전환합니다.
+다음 예제는 hello,에서는 보여줍니다 방법을 tooswitch 표준 toopremium 저장소에서 VM의 디스크 hello 모든 합니다. toouse 프리미엄 관리 디스크 VM 사용 해야 합니다는 [VM 크기](sizes.md) 프리미엄 저장소를 지 원하는 합니다. 이 예제에서는 프리미엄 저장소를 지 원하는 tooa 크기를 전환 하기도 합니다.
 
 ```powershell
-# Name of the resource group that contains the VM
+# Name of hello resource group that contains hello VM
 $rgName = 'yourResourceGroup'
 
-# Name of the your virtual machine
+# Name of hello your virtual machine
 $vmName = 'yourVM'
 
 # Choose between StandardLRS and PremiumLRS based on your scenario
 $storageType = 'PremiumLRS'
 
 # Premium capable size
-# Required only if converting storage from standard to premium
+# Required only if converting storage from standard toopremium
 $size = 'Standard_DS2_v2'
 $vm = Get-AzureRmVM -Name $vmName -resourceGroupName $rgName
 
-# Stop and deallocate the VM before changing the size
+# Stop and deallocate hello VM before changing hello size
 Stop-AzureRmVM -ResourceGroupName $rgName -Name $vmName -Force
 
-# Change the VM size to a size that supports premium storage
-# Skip this step if converting storage from premium to standard
+# Change hello VM size tooa size that supports premium storage
+# Skip this step if converting storage from premium toostandard
 $vm.HardwareProfile.VmSize = $size
 Update-AzureRmVM -VM $vm -ResourceGroupName $rgName
 
-# Get all disks in the resource group of the VM
+# Get all disks in hello resource group of hello VM
 $vmDisks = Get-AzureRmDisk -ResourceGroupName $rgName 
 
-# For disks that belong to the selected VM, convert to premium storage
+# For disks that belong toohello selected VM, convert toopremium storage
 foreach ($disk in $vmDisks)
 {
     if ($disk.OwnerId -eq $vm.Id)
@@ -76,14 +76,14 @@ foreach ($disk in $vmDisks)
 
 Start-AzureRmVM -ResourceGroupName $rgName -Name $vmName
 ```
-## <a name="convert-a-managed-disk-from-standard-to-premium-and-vice-versa"></a>관리 디스크를 표준에서 프리미엄으로, 또 그 반대로 변환
+## <a name="convert-a-managed-disk-from-standard-toopremium-and-vice-versa"></a>관리 되는 디스크 변환에서 표준 toopremium 그 반대의
 
-개발/테스트 워크로드의 경우 비용을 줄이기 위해 표준 및 프리미엄 디스크를 혼합할 수도 있습니다. 더 나은 성능을 요구하는 디스크만 프리미엄 저장소로 업그레이드하여 이를 수행할 수 있습니다. 다음 예제에서는 VM의 단일 디스크를 표준에서 프리미엄 저장소로, 또 그 반대로 전환하는 방법을 보여 줍니다. 프리미엄 관리 디스크를 사용하려면 VM에서 프리미엄 저장소를 지원하는 [VM 크기](sizes.md)를 사용해야 합니다. 또한 이 예제에서는 프리미엄 저장소를 지원하는 크기로 전환합니다.
+개발/테스트 워크 로드에 대 한 toohave 다양 한 표준 및 프리미엄 디스크 tooreduce 비용을 원하는 수 있습니다. 더 나은 성능을 요구 하는 hello 디스크만 toopremium 저장소를 업그레이드 하 여이 수행할 수 있습니다. 다음 예제는 hello,에서는 보여줍니다 어떻게 tooswitch VM의 단일 디스크 표준 toopremium 저장소에서 그 반대의 합니다. toouse 프리미엄 관리 디스크 VM 사용 해야 합니다는 [VM 크기](sizes.md) 프리미엄 저장소를 지 원하는 합니다. 이 예제에서는 프리미엄 저장소를 지 원하는 tooa 크기를 전환 하기도 합니다.
 
 ```powershell
 
 $diskName = 'yourDiskName'
-# resource group that contains the managed disk
+# resource group that contains hello managed disk
 $rgName = 'yourResourceGroupName'
 # Choose between StandardLRS and PremiumLRS based on your scenario
 $storageType = 'PremiumLRS'
@@ -92,19 +92,19 @@ $size = 'Standard_DS2_v2'
 
 $disk = Get-AzureRmDisk -DiskName $diskName -ResourceGroupName $rgName
 
-# Get the ARM resource to get name and resource group of the VM
+# Get hello ARM resource tooget name and resource group of hello VM
 $vmResource = Get-AzureRmResource -ResourceId $disk.OwnerId
 $vm = Get-AzureRmVM $vmResource.ResourceGroupName -Name $vmResource.ResourceName 
 
-# Stop and deallocate the VM before changing the storage type
+# Stop and deallocate hello VM before changing hello storage type
 Stop-AzureRmVM -ResourceGroupName $vm.ResourceGroupName -Name $vm.Name -Force
 
-# Change the VM size to a size that supports premium storage
-# Skip this step if converting storage from premium to standard
+# Change hello VM size tooa size that supports premium storage
+# Skip this step if converting storage from premium toostandard
 $vm.HardwareProfile.VmSize = $size
 Update-AzureRmVM -VM $vm -ResourceGroupName $rgName
 
-# Update the storage type
+# Update hello storage type
 $diskUpdateConfig = New-AzureRmDiskUpdateConfig –AccountType $storageType
 Update-AzureRmDisk -DiskUpdate $diskUpdateConfig -ResourceGroupName $rgName `
 -DiskName $disk.Name

@@ -1,6 +1,6 @@
 ---
-title: "HPC 팩 클러스터 노드 자동 크기 조정 | Microsoft Docs"
-description: "Azure에서 HPC 팩 클러스터 계산 노드 수를 자동으로 증가 및 축소"
+title: "HPC Pack 클러스터 노드 aaaAutoscale | Microsoft Docs"
+description: "자동으로 증가 하 고 hello Azure의 HPC Pack 클러스터 계산 노드 수를 축소 합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: dlepow
@@ -14,38 +14,38 @@ ms.tgt_pltfrm: vm-multiple
 ms.workload: big-compute
 ms.date: 12/08/2016
 ms.author: danlep
-ms.openlocfilehash: 0dc0d15c64d8951c3c457df73588c37418a3c8a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0bdf55625d337a2bbfe05677682d645a584798d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="automatically-grow-and-shrink-the-hpc-pack-cluster-resources-in-azure-according-to-the-cluster-workload"></a>클러스터 워크로드에 따라 Azure에서 HPC 팩 클러스터 리소스를 자동으로 증가 및 축소
-HPC 팩 클러스터에 Azure "버스트" 노드를 배포하거나 Azure VM에 HPC 팩 클러스터를 만드는 경우 클러스터의 현재 워크로드에 따라 노드 또는 코어 등과 같은 클러스터 리소스를 자동으로 증가 또는 축소하려는 방법이 필요합니다. 이렇게 클러스터 리소스의 크기를 조정하면 Azure 리소스를 더욱 효율적으로 사용하고 비용을 관리할 수 있습니다.
+# <a name="automatically-grow-and-shrink-hello-hpc-pack-cluster-resources-in-azure-according-toohello-cluster-workload"></a>자동으로 증가 하 고 toohello 클러스터 워크 로드에 따라 Azure의 hello HPC 팩 클러스터 리소스를 축소 합니다.
+HPC 팩 클러스터의 Azure "전환" 노드를 배포할 Azure Vm에서 HPC Pack 클러스터를 만드는 경우, 자동으로 확대 하거나 축소할 노드 또는 hello 클러스터에서 hello 작업 부하에 따라 코어와 같은 hello 클러스터 리소스를 방법이 필요할 수도 있습니다. 이러한 방식으로 hello 클러스터 리소스를 크기 조정 하면 toouse Azure 리소스 보다 효율적으로 하 고 해당 비용을 제어 합니다.
 
-이 문서에서는 HPC 팩에서 계산 리소스의 자동 크기 조정에 제공하는 두 가지 방법을 보여 줍니다.
+이 문서는 HPC Pack tooautoscale 계산 리소스를 제공 하는 두 가지 방법을 보여 줍니다.
 
-* HPC 팩 클러스터 속성 **AutoGrowShrink**
+* HPC 팩 클러스터 속성이 hello **AutoGrowShrink**
 
-* **AzureAutoGrowShrink.ps1** HPC PowerShell 스크립트
+* hello **AzureAutoGrowShrink.ps1** HPC PowerShell 스크립트
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-both-include.md)]
 
 현재 Windows Server 운영 체제를 실행하는 HPC 팩 계산 리소스만 자동으로 증가 및 축소할 수 있습니다.
 
 
-## <a name="set-the-autogrowshrink-cluster-property"></a>AutoGrowShrink 클러스터 속성 설정
+## <a name="set-hello-autogrowshrink-cluster-property"></a>Hello AutoGrowShrink 클러스터 속성 설정
 ### <a name="prerequisites"></a>필수 조건
 
-* **HPC 팩 2012 R2 업데이트 2 또는 이후 버전 클러스터** - 클러스터 헤드 노드는 온-프레미스 또는 Azure VM에 배포할 수 있습니다. 온-프레미스 헤드 노드 및 Azure "버스트" 노드로 시작하려면 [HPC 팩으로 하이브리드 클러스터 설정](../../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md) 을 참조하세요. Azure VM에 HPC 팩 클러스터를 빠르게 배포하려면 [HPC 팩 IaaS 배포 스크립트](hpcpack-cluster-powershell-script.md)를 참조하세요.
+* **HPC Pack 2012 R2 업데이트 2 또는 이상의 클러스터** -hello 클러스터 헤드 노드 수 온-프레미스 배포 나 Azure VM에서 합니다. 참조 [HPC Pack을 사용한 하이브리드 클러스터 설정](../../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md) tooget 온-프레미스 헤드 노드와 Azure "전환" 노드를 시작 합니다. Hello 참조 [HPC Pack IaaS 배포 스크립트](hpcpack-cluster-powershell-script.md) tooquickly Azure Vm에서 HPC Pack 클러스터를 배포 합니다.
 
 * **Azure Resource Manager 배포 모델에서 헤드 노드를 사용하는 클러스터의 경우** - HPC 팩 2016부터 Azure Active Directory 응용 프로그램의 인증서 인증은 Azure Resource Manager를 사용하여 배포된 클러스터 VM을 자동으로 증가 및 축소시키는 데 사용됩니다. 인증서를 다음과 같이 구성합니다.
 
-  1. 클러스터 배포 후에 원격 데스크톱에 의해 하나의 헤드 노드에 연결합니다.
+  1. 클러스터 배포 후 원격 데스크톱 tooone 헤드 노드에 연결 합니다.
 
-  2. 각 헤드 노드에 대한 인증서(개인 키를 포함한 PFX 형식)를 업로드하고 Cert:\LocalMachine\My and Cert:\LocalMachine\Root에 설치합니다.
+  2. 헤드 노드를 tooeach hello 인증서 (개인 키로 PFX 형식)를 업로드 하 고 tooCert:\LocalMachine\My 및 Cert: \LocalMachine\Root을 설치 합니다.
 
-  3. Azure PowerShell을 관리자로 시작하고 하나의 헤드 노드에서 다음 명령을 실행합니다.
+  3. 관리자 권한으로 Azure PowerShell을 시작 하 고 hello 명령을 헤드 노드 하나에서 다음을 실행 합니다.
 
     ```powershell
         cd $env:CCP_HOME\bin
@@ -53,19 +53,19 @@ HPC 팩 클러스터에 Azure "버스트" 노드를 배포하거나 Azure VM에 
         Login-AzureRmAccount
     ```
         
-    계정이 둘 이상의 Azure Active Directory 테넌트 또는 Azure 구독에 포함된 경우 다음 명령을 실행해 올바른 테넌트 및 구독을 선택할 수 있습니다.
+    계정이 둘 이상의 Azure Active Directory 테 넌 트 또는 Azure 구독에 포함 된 경우에 hello 다음을 실행할 수 있습니다 명령 tooselect hello 올바른 테 넌 트 구독:
   
     ```powershell
         Login-AzureRMAccount -TenantId <TenantId> -SubscriptionId <subscriptionId>
     ```     
        
-    현재 선택된 테넌트와 구독을 보려면 다음 명령을 실행합니다.
+    다음 명령은 tooview hello hello 현재 선택 항목 실행 테 넌 트 및 구독:
     
     ```powershell
         Get-AzureRMContext
     ```
 
-  4. 다음 스크립트를 실행합니다.
+  4. Hello 다음 스크립트를 실행 합니다.
 
     ```powershell
         .\ConfigARMAutoGrowShrinkCert.ps1 -DisplayName “YourHpcPackAppName” -HomePage "https://YourHpcPackAppHomePage" -IdentifierUri "https://YourHpcPackAppUri" -CertificateThumbprint "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" -TenantId xxxxxxxx-xxxxx-xxxxx-xxxxx-xxxxxxxxxxxx
@@ -73,63 +73,63 @@ HPC 팩 클러스터에 Azure "버스트" 노드를 배포하거나 Azure VM에 
 
     여기서,
 
-    **DisplayName** - Azure 활성 응용 프로그램 표시 이름입니다. 응용 프로그램이 없는 경우 Azure Active Directory에서 만들어집니다.
+    **DisplayName** - Azure 활성 응용 프로그램 표시 이름입니다. Hello 응용 프로그램이 없는 경우 Azure Active Directory에 생성 됩니다.
 
-    **HomePage** - 응용 프로그램의 홈 페이지입니다. 앞의 예제에서와 같이 더미 URL을 구성할 수 있습니다.
+    **홈 페이지** -hello 응용 프로그램의 hello 홈 페이지입니다. Hello 이전 예제와 같이 더미 URL을 구성할 수 있습니다.
 
-    **IdentifierUri** - 응용 프로그램의 식별자입니다. 앞의 예제에서와 같이 더미 URL을 구성할 수 있습니다.
+    **IdentifierUri** -hello 응용 프로그램의 식별자입니다. Hello 이전 예제와 같이 더미 URL을 구성할 수 있습니다.
 
-    **CertificateThumbprint** -1단계에서 헤드 노드에 설치한 인증서의 지문입니다.
+    **CertificateThumbprint** -1 단계에서에서 hello 헤드 노드에 설치 하는 hello 인증서의 지문입니다.
 
-    **TenantId** - Azure Active Directory의 테넌트 ID입니다. Azure Active Directory 포털 **속성** 페이지에서 테넌트 ID를 가져올 수 있습니다.
+    **TenantId** - Azure Active Directory의 테넌트 ID입니다. Hello Azure Active Directory 포털에서 hello 테 넌 트 ID를 가져올 수 **속성** 페이지.
 
     **ConfigARMAutoGrowShrinkCert.ps1**에 대한 자세한 내용은 `Get-Help .\ConfigARMAutoGrowShrinkCert.ps1 -Detailed`을 실행합니다.
 
 
-* **Azure 클래식 배포 모델에 헤드 노드를 가진 클러스터** - HPC 팩 IaaS 배포 스크립트를 사용하여 클러스터를 만드는 경우 클러스터 구성 파일의 AutoGrowShrink 옵션을 설정하여 **AutoGrowShrink** 클러스터 속성을 활성화합니다. 자세한 내용은 [스크립트 다운로드](https://www.microsoft.com/download/details.aspx?id=44949)와 함께 제공되는 문서를 참조하세요.
+* **(클래식 배포 모델) Azure에서 헤드 노드를 사용 하 여 클러스터에 대 한** hello 클래식 배포 모델에서 사용 하도록 설정 hello hello HPC Pack IaaS 배포 스크립트 toocreate hello 클러스터를 사용 하는 경우- **AutoGrowShrink** 클러스터 hello 클러스터 구성 파일에서 hello AutoGrowShrink 옵션을 설정 하 여 속성입니다. 자세한 내용은 hello와 함께 제공 되는 hello 설명서를 참조 하십시오. [스크립트 다운로드](https://www.microsoft.com/download/details.aspx?id=44949)합니다.
 
-    또는 다음 섹션에서 설명하는 HPC PowerShell 명령을 사용하여 클러스터를 배포한 후 **AutoGrowShrink** 클러스터 속성을 사용하도록 설정합니다. 이를 준비하려면 먼저 다음 단계를 완료합니다.
+    Hello 또는 활성화할 **AutoGrowShrink** HPC PowerShell을 사용 하 여 hello 클러스터를 배포한 후 클러스터의 속성 명령이 hello 다음 섹션에서에서 설명 합니다. 첫 번째 전체 hello 다음 단계를이 tooprepare, 합니다.
 
-  1. 헤드 노드 및 Azure 구독에서 Azure 관리 인증서를 구성합니다. 테스트 배포의 경우 HPC 팩이 헤드 노드에 설치하는 기본 Microsoft HPC Azure 자체 서명 인증서를 사용하고 이 인증서를 Azure 구독에 업로드할 수 있습니다. 옵션 및 단계는 [TechNet 라이브러리 지침](https://technet.microsoft.com/library/gg481759.aspx)을 참조하세요.
+  1. Hello Azure 구독 및 헤드 노드 hello에는 Azure 관리 인증서를 구성 합니다. 테스트 배포에 대 한 hello 헤드 노드에서 HPC Pack을 설치 하는 hello Microsoft 기본 HPC Azure 자체 서명 된 인증서를 사용 하 여 한 다음 해당 인증서 tooyour Azure 구독을 업로드할 수 있습니다. 옵션 및 단계에 대 한 참조 hello [TechNet 라이브러리 지침](https://technet.microsoft.com/library/gg481759.aspx)합니다.
 
-  2. 헤드 노드에서 **regedit**을 실행하고 HKLM\SOFTWARE\Micorsoft\HPC\IaasInfo로 이동한 다음 문자열 값을 추가합니다. 값 이름을 “ThumbPrint”로 설정하고 값 데이터를 1단계의 인증서 지문으로 설정합니다.
+  2. 실행 **regedit** hello 헤드 노드에서 tooHKLM\SOFTWARE\Micorsoft\HPC\IaasInfo를 이동 하 고 문자열 값을 추가 합니다. 너무 hello 값 이름 설정 "지문" 및 값 데이터 toohello 인증서 지 문으로 hello 1 단계.
 
-### <a name="hpc-powershell-commands-to-set-the-autogrowshrink-property"></a>AutoGrowShrink 속성을 설정하는 HPC PowerShell 명령
-다음은 **AutoGrowShrink** 를 설정하고 추가 매개 변수를 통해 해당 동작을 조정하는 샘플 HPC PowerShell 명령입니다. 전체 설정 목록은 이 문서의 뒷부분에 나오는 [AutoGrowShrink 매개 변수](#AutoGrowShrink-parameters) 를 참조하세요.
+### <a name="hpc-powershell-commands-tooset-hello-autogrowshrink-property"></a>HPC PowerShell 명령 tooset hello AutoGrowShrink 속성
+다음은 샘플 HPC PowerShell 명령을 tooset **AutoGrowShrink** 및 tootune 동작 추가 매개 변수를 사용 합니다. 참조 [AutoGrowShrink 매개 변수](#AutoGrowShrink-parameters) 이 문서의 뒷부분에 있는이 설정의 전체 목록은 hello에 대 한 합니다.
 
-이 명령을 시작하려면 관리자 권한으로 클러스터 헤드 노드에서 HPC PowerShell을 시작합니다.
+toorun 이러한의 명령을 관리자 권한으로 hello 클러스터 헤드 노드에 HPC PowerShell를 시작 합니다.
 
-**AutoGrowShrink 속성을 사용하도록 설정하려면**
+**tooenable hello AutoGrowShrink 속성**
 
 ```powershell
 Set-HpcClusterProperty –EnableGrowShrink 1
 ```
 
-**AutoGrowShrink 속성을 사용하지 않도록 설정하려면**
+**toodisable hello AutoGrowShrink 속성**
 
 ```powershell
 Set-HpcClusterProperty –EnableGrowShrink 0
 ```
 
-**분 단위로 증가 간격을 변경하려면**
+**toochange hello 분의 간격을 증가**
 
 ```powershell
 Set-HpcClusterProperty –GrowInterval <interval>
 ```
 
-**분 단위로 축소 간격을 변경하려면**
+**toochange hello 분 단위로 간격을 축소**
 
 ```powershell
 Set-HpcClusterProperty –ShrinkInterval <interval>
 ```
 
-**AutoGrowShrink의 현재 구성을 보려면**
+**tooview hello AutoGrowShrink의 현재 구성**
 
 ```powershell
 Get-HpcClusterProperty –AutoGrowShrink
 ```
 
-**AutoGrowShrink에서 노드 그룹을 제외하려면**
+**AutoGrowShrink에서 tooexclude 노드 그룹**
 
 ```powershell
 Set-HpcClusterProperty –ExcludeNodeGroups <group1,group2,group3>
@@ -140,53 +140,53 @@ Set-HpcClusterProperty –ExcludeNodeGroups <group1,group2,group3>
 >
 
 ### <a name="autogrowshrink-parameters"></a>AutoGrowShrink 매개 변수
-다음은 **Set-HpcClusterProperty** 명령을 사용하여 수정할 수 있는 AutoGrowShrink 매개 변수입니다.
+hello 다음 AutoGrowShrink 매개 변수는 hello를 사용 하 여 수정할 수 있는 **집합 HpcClusterProperty** 명령입니다.
 
-* **EnableGrowShrink** - **AutoGrowShrink** 속성을 사용하도록 또는 사용하지 않도록 설정하는 스위치입니다.
-* **ParamSweepTasksPerCore** - 한 코어를 확장하기 위한 매개 변수 스위프 태스크 수입니다. 기본값은 태스크당 코어 한 개를 증가시키는 것입니다.
-
-  > [!NOTE]
-  > HPC 팩 QFE KB3134307은 **ParamSweepTasksPerCore**를 **TasksPerResourceUnit**으로 변경합니다. 이는 작업 리소스 유형을 기반으로 하며 노드, 소켓 또는 코어일 수 있습니다.
-  >
-  >
-* **GrowThreshold** - 자동 증가를 트리거하도록 대기열에 저장된 태스크의 임계값입니다. 기본값은 1이며, 이는 태스크 1 개 이상이 대기열에 저장된 상태이면 자동으로 노드를 증가한다는 것을 의미합니다.
-* **GrowInterval** - 자동 증가를 트리거하는 분 단위의 간격입니다. 기본 간격은 5 분입니다.
-* **ShrinkInterval** - 자동 축소를 트리거하는 분 단위의 간격입니다. 기본 간격은 5 분입니다.|
-* **ShrinkIdleTimes** - 노드가 유휴 상태임을 나타내도록 축소하는 연속 검사 횟수입니다. 기본값은 3회입니다. 예를 들어 **ShrinkInterval** 이 5 분인 경우 HPC 팩은 매 5 분마다 노드가 유휴 상태인지 여부를 검사합니다. 노드가 연속 3회 검사(15 분) 후 유휴 상태에 있으면 HPC 팩이 해당 노드를 축소합니다.
-* **ExtraNodesGrowRatio** - 메시지 전달 인터페이스(MPI) 작업에 대해 증가할 노드의 추가 비율입니다. 기본값은 1이며, 이는 HPC 팩이 MPI 작업에 대해 노드 1%를 증가시킨다는 것을 의미합니다.
-* **GrowByMin** - 자동 증가 정책이 작업에 필요한 최소 리소스를 기반으로 하는지 여부를 나타내는 스위치입니다. 기본값은 False이며, 이는 HPC 팩이 작업에 필요한 최대 리소스를 기반으로 작업에 대한 노드를 증가시킨다는 것을 의미합니다.
-* **SoaJobGrowThreshold** - 자동 증가 프로세스를 트리거하는 수신 SQA 요청의 임계값입니다. 기본값은 50000입니다.
+* **EnableGrowShrink** tooenable 전환-hello를 사용 하지 않도록 설정 하거나 **AutoGrowShrink** 속성입니다.
+* **ParamSweepTasksPerCore** -파라메트릭 스윕 수가 toogrow 한 코어 작업 합니다. hello 기본값이 toogrow 작업당 한 코어입니다.
 
   > [!NOTE]
-  > 이 매개 변수는 HPC 팩 2012 R2 업데이트 3부터 지원됩니다.
+  > HPC 팩 QFE KB3134307 변경 **ParamSweepTasksPerCore** 너무**TasksPerResourceUnit**합니다. 노드, 소켓 또는 코어 수 있으며 hello 작업 리소스 형식을 기반으로 합니다.
   >
   >
-* **SoaRequestsPerCore** - 코어 한 개를 증가시키기 위한 수신 SOA 요청 수입니다. 기본값은 20000입니다.
+* **GrowThreshold** -큐에 대기 중인된 작업 tootrigger 자동 증가 임계값입니다. hello 기본값은 1 또는 더 많은 작업의 상태 큐에 대기 중인된 hello 됨을 의미 하는 1을, 노드를 자동으로 증가 합니다.
+* **GrowInterval** -tootrigger 자동 증가 값 분의 간격입니다. hello 기본 간격은 5 분입니다.
+* **ShrinkInterval** -간격 (분) tootrigger 자동 축소 합니다. hello 기본 간격은 5 분입니다. |
+* **ShrinkIdleTimes** -연속 검사 tooshrink tooindicate hello 노드 수는 유휴 상태입니다. hello 기본값은 3 회입니다. 예를 들어 경우 hello, **ShrinkInterval** 은 5 분, HPC 팩 hello 노드가 인지 유휴 5 분 마다 확인 합니다. Hello 노드가 연속 3 (15 분)을 확인 한 후 hello 유휴 상태에 있는, HPC Pack 해당 노드를 축소 합니다.
+* **ExtraNodesGrowRatio** -추가 노드 toogrow 인터페이스 MPI (Message Passing) 작업에 대 한 비율입니다. hello 기본값은 1 HPC Pack 증가 MPI 작업에 대 한 1% 노드 함을 의미 합니다.
+* **GrowByMin** -hello 자동 증가 정책이 hello 작업에 필요한 hello 최소 리소스 기반 여부 tooindicate를 전환 합니다. HPC Pack hello 작업에 필요한 hello 최대 리소스를 기준으로 작업에 대 한 노드를 증가 함을 의미 하는 hello 기본값은 false입니다.
+* **SoaJobGrowThreshold** -임계값의 들어오는 SOA tootrigger hello 요청 템플릿 자동 프로세스를 확장 합니다. hello 기본값은 50000입니다.
 
   > [!NOTE]
   > 이 매개 변수는 HPC 팩 2012 R2 업데이트 3부터 지원됩니다.
   >
-* **ExcludeNodeGroups** – 지정된 노드 그룹의 노드는 자동으로 확장 및 축소되지 않습니다.
+  >
+* **SoaRequestsPerCore** -toogrow 단일 코어를 요청 하는 들어오는 SOA 수 있습니다. hello 기본값은 20000입니다.
+
+  > [!NOTE]
+  > 이 매개 변수는 HPC 팩 2012 R2 업데이트 3부터 지원됩니다.
+  >
+* **ExcludeNodeGroups** – hello에 대 한 노드 노드 그룹 않는 자동으로 확장 및 축소를 지정 합니다.
   
   > [!NOTE]
   > 이 매개 변수는 HPC 팩 2016부터 지원됩니다.
   >
 
 ### <a name="mpi-example"></a>MPI 예제
-기본적으로 HPC 팩은 MPI 작업에 대한 추가 노드를 1% 증가시킵니다(**ExtraNodesGrowRatio** 가 1로 설정됨). 그 이유는 MPI 노드에 노드 여러 개가 필요할 수 있고 모든 노드가 준비되어야만 작업을 실행할 수 있기 때문입니다. Azure 노드를 시작할 때 경우에 따라 어떤 노드가 다른 노드보다 시작하기 위해 더 많은 시간이 필요하기 때문에 해당 노드가 준비가 될 때까지 다른 노드가 유휴 상태가 될 수 있습니다. HPC 팩은 추가 노드를 증가시켜 이 리소스 대기 시간을 줄이며 잠재적으로 비용을 절감합니다. MPI 작업에 대한 추가 노드의 비율을 증가시키려면(예를 들어 10%) 다음과 유사한 명령을 실행합니다.
+기본적으로 HPC Pack 증가 1 %MPI 작업에 대 한 추가 노드 (**ExtraNodesGrowRatio** too1 설정). hello 원인은 MPI 여러 노드에 필요할 수 있습니다 및 모든 노드 준비 되 면 hello 작업 에서만 실행할 수 있습니다. Azure 노드 시작 되 면 한 노드에 다른 노드가 toobe 해당 노드 tooget 준비 될 때까지 기다리는 동안 유휴 상태를 발생 시키는 다른 항목 보다 더 많은 시간 toostart 해야 할 수 가끔. HPC 팩은 추가 노드를 증가시켜 이 리소스 대기 시간을 줄이며 잠재적으로 비용을 절감합니다. 비슷한 명령을 실행 하는 MPI 작업 (예: too10%)에 대 한 추가 노드의 tooincrease hello 백분율
 
     Set-HpcClusterProperty -ExtraNodesGrowRatio 10
 
 ### <a name="soa-example"></a>SOA 예제
-기본적으로 **SoaJobGrowThreshold**는 50000으로 설정되며 **SoaRequestsPerCore**는 200000으로 설정됩니다. 70000개의 요청을 가진 하나의 SOA 작업을 제출하는 경우 대기열에 저장된 하나의 태스크가 있으며 수신 요청 수는 70000개입니다. 이 경우 HPC 팩은 대기열에 저장된 태스크에 대해 코어 1개를 증가시키며 수신 요청의 경우 (70000-50000)/20000 = 1개의 코어가 증가하므로 모두 합해서 이 SOA 작업에 대해 코어 2개가 증가합니다.
+기본적으로 **SoaJobGrowThreshold** too50000 설정 및 **SoaRequestsPerCore** too200000 설정 됩니다. 70000개의 요청을 가진 하나의 SOA 작업을 제출하는 경우 대기열에 저장된 하나의 태스크가 있으며 수신 요청 수는 70000개입니다. Hello 작업, 지연 되 고 들어오는 요청에 대 한 증가 (70000 50000)에 대 한 1 코어 HPC Pack 증가 하는 경우 / 20000 = 1 코어에 총 2 개 코어가 SOA 작업에 대해 증가 합니다.
 
-## <a name="run-the-azureautogrowshrinkps1-script"></a>AzureAutoGrowShrink.ps1 스크립트 실행
+## <a name="run-hello-azureautogrowshrinkps1-script"></a>Hello AzureAutoGrowShrink.ps1 스크립트 실행
 ### <a name="prerequisites"></a>필수 조건
 
-* **HPC 팩 2012 R2 업데이트 1 이상 클러스터** - **AzureAutoGrowShrink.ps1** 스크립트는 %CCP_HOME%bin 폴더에 설치됩니다. 클러스터 헤드 노드는 온-프레미스 또는 Azure VM에 배포할 수 있습니다. 온-프레미스 헤드 노드 및 Azure "버스트" 노드로 시작하려면 [HPC 팩으로 하이브리드 클러스터 설정](../../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md) 을 참조하세요. Azure VM에 HPC 팩 클러스터를 빠르게 배포하려면 [HPC 팩 IaaS 배포 스크립트](hpcpack-cluster-powershell-script.md)를 참조하세요. 또는 [Azure 빠른 시작 템플릿](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/)을 사용하세요.
-* **Azure PowerShell 1.4.0** - 현재 스크립트는 이 특정 버전의 Azure PowerShell에 따라 다릅니다.
-* **Azure 버스트 노드가 포함된 클러스터의 경우** - HPC 팩이 설치된 클라이언트 컴퓨터 또는 헤드 노드에서 스크립트를 실행합니다. 클라이언트 컴퓨터에서 실행할 경우 $env:CCP_SCHEDULER 변수가 헤드 노드를 가리키도록 설정합니다. Azure "버스트" 노드는 클러스터에 추가되어 있어야 하지만, 배포되지 않음 상태일 수 있습니다.
-* **Azure VM Resource Manager 배포 모델에서 배포된 클러스터의 경우** - Resource Manager 배포 모델에 배포된 Azure VM 클러스터의 경우 스크립트는 Azure 인증을 위한 두 가지 방법을 지원합니다. `Login-AzureRmAccount`을 실행하여 스크립트를 실행할 때마다 Azure 계정에 로그인하거나 서비스 주체가 인증서를 사용하여 인증하도록 구성합니다. HPC 팩은 **ConfigARMAutoGrowShrinkCert.ps** 스크립트를 제공하여 인증서를 가진 서비스 주체를 만듭니다. 스크립트는 Azure AD(Azure Active Directory) 응용 프로그램 및 서비스 주체를 만들고 서비스 주체에 참가자 역할을 할당합니다. 스크립트를 실행하려면 Azure PowerShell을 관리자로 시작하고 다음 명령을 실행합니다.
+* **HPC Pack 2012 R2 업데이트 1 또는 이후 클러스터** -hello **AzureAutoGrowShrink.ps1** 스크립트 hello % CCP_HOME %bin 폴더에 설치 됩니다. hello 클러스터 헤드 노드 수 온-프레미스 배포 나 Azure VM에서 합니다. 참조 [HPC Pack을 사용한 하이브리드 클러스터 설정](../../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md) tooget 온-프레미스 헤드 노드와 Azure "전환" 노드를 시작 합니다. Hello 참조 [HPC Pack IaaS 배포 스크립트](hpcpack-cluster-powershell-script.md) tooquickly Azure Vm에서 HPC Pack 클러스터를 배포 하거나 사용할는 [Azure 빠른 시작 템플릿](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/)합니다.
+* **Azure PowerShell 1.4.0** -hello 스크립트는 현재 특정 버전의 Azure PowerShell이에 따라 다릅니다.
+* **Azure 사용 하 여 클러스터에 대 한 버스트 노드** -또는 hello 헤드 노드에서 HPC Pack 설치 되어 있는 클라이언트 컴퓨터에서 hello 스크립트를 실행 합니다. 클라이언트 컴퓨터에서 실행 하는 경우 설정 확인 hello 변수 $env: CCP_SCHEDULER toopoint toohello 헤드 노드. hello Azure "전환" 노드 toohello 클러스터를 추가 해야 하지만 hello 된 상태에에서 있을 수 있습니다.
+* **Azure Vm (리소스 관리자 배포 모델)에 배포 된 클러스터에 대 한** -hello 리소스 관리자 배포 모델에서 배포 된 Azure Vm의 클러스터에 대 한 hello 스크립트에서는 Azure 인증을 위한 두 가지 방법: tooyour Azure 계정에에서 로그인 toorun hello 스크립트 될 때마다 (실행 하 여 `Login-AzureRmAccount`, 하거나 서비스 보안 주체 tooauthenticate 인증서로 구성 합니다. HPC Pack hello 스크립트를 제공 합니다. **ConfigARMAutoGrowShrinkCert.ps** toocreate 인증서로 서비스 사용자입니다. hello 스크립트는 Azure Active Directory (Azure AD) 응용 프로그램 및 서비스 사용자를 만들고 hello 참가자 역할 toohello 서비스 사용자를 할당 합니다. toorun hello 스크립트를 관리자 권한으로 Azure PowerShell을 시작 하 고 hello 다음 명령을 실행:
 
     ```powershell
     cd $env:CCP_HOME\bin
@@ -198,7 +198,7 @@ Set-HpcClusterProperty –ExcludeNodeGroups <group1,group2,group3>
 
     **ConfigARMAutoGrowShrinkCert.ps1**에 대한 자세한 내용은 `Get-Help .\ConfigARMAutoGrowShrinkCert.ps1 -Detailed`을 실행합니다.
 
-* **Azure VM 클래식 배포 모델에 배포된 클러스터의 경우** - 여기에 설치된 **Start-HpcIaaSNode.ps1** 및 **Stop-HpcIaaSNode.ps1** 스크립트에 따라 다라지므로 헤드 노드 VM에서 스크립트를 실행합니다. 이러한 스크립트는 추가적으로 Azure 관리 인증서 또는 게시 설정 파일이 필요합니다( [Azure의 HPC 팩 클러스터에서 계산 노드 관리](hpcpack-cluster-node-manage.md)참조). 필요한 모든 컴퓨터 노드 VM이 클러스터에 이미 추가되어 있는지 확인합니다. 중지된 상태에 있을 수 있습니다.
+* **Azure Vm (클래식 배포 모델)에 배포 된 클러스터에 대 한** -hello에 따라 달라 지므로 hello 헤드 노드 VM에서 hello 스크립트를 실행 **Start-hpciaasnode.ps1** 및 **중지-HpcIaaSNode.ps1**설치 되는 스크립트입니다. 이러한 스크립트는 추가적으로 Azure 관리 인증서 또는 게시 설정 파일이 필요합니다( [Azure의 HPC 팩 클러스터에서 계산 노드 관리](hpcpack-cluster-node-manage.md)참조). 모든 hello 계산 노드 Vm 필요한 toohello 클러스터에 이미 추가 되어 있는지 확인 하십시오. Hello 중지 됨 상태에에서 있을 수 있습니다.
 
 
 
@@ -218,27 +218,27 @@ AzureAutoGrowShrink.ps1 [-NodeTemplates <String[]>] [-JobTemplates <String[]>] [
 AzureAutoGrowShrink.ps1 -UseLastConfigurations [-ArgFile <String>] [-LogFilePrefix <String>] [<CommonParameters>]
 ```
 ### <a name="parameters"></a>매개 변수
-* **NodeTemplates** - 노드의 증가 및 축소 범위를 정의하는 노드 템플릿의 이름입니다. 이 매개 변수를 지정하지 않을 경우(기본값은 @()) **NodeType** 값이 AzureNodes이면 **AzureNodes** 노드 그룹의 모든 노드가 범위에 포함되고 **NodeType** 값이 ComputeNodes이면 **ComputeNodes** 노드 그룹의 모든 노드가 범위에 포함됩니다.
-* **JobTemplates** - 노드의 증가 범위를 정의하는 작업 템플릿의 이름입니다.
-* **NodeType** - 증가 및 축소할 노드의 유형입니다. 지원되는 값은 다음과 같습니다.
+* **NodeTemplates** -hello 노드 템플릿 toodefine 형태의 노드 toogrow hello에 대 한 범위 hello 및 축소 합니다. 지정 하지 않으면 (hello 기본값은 @()) hello의 모든 노드에서 **AzureNodes** 노드 그룹 범위에 포함 되 **NodeType** hello에 AzureNodes 이면와 모든 노드가 값 **ComputeNodes** 노드 그룹 범위에 포함 되 **NodeType** ComputeNodes 값입니다.
+* **Jobtemplate은** -hello 형태의 노드 toogrow hello에 대 한 템플릿 toodefine hello 범위 작업입니다.
+* **NodeType** -유형의 노드 toogrow hello 및 축소 합니다. 지원되는 값은 다음과 같습니다.
 
   * **AzureNodes** – 온-프레미스 또는 Azure IaaS 클러스터의 Azure PaaS(버스트) 노드에 사용합니다.
   * **ComputeNodes** - Azure IaaS 클러스터의 계산 노드 VM에만 사용합니다.
 
-* **NumOfQueuedJobsPerNodeToGrow** - 한 개 노드를 증가하는 데 필요한 큐 작업의 수입니다.
-* **NumOfQueuedJobsToGrowThreshold** - 증가 프로세스를 시작하기 위한 큐 작업 수의 임계치입니다.
-* **NumOfActiveQueuedTasksPerNodeToGrow** - 한 개 노드를 증가하는 데 필요한 활성 큐 작업의 수입니다. **NumOfQueuedJobsPerNodeToGrow** 가 0보다 큰 값으로 지정된 경우 이 매개 변수가 무시됩니다.
-* **NumOfActiveQueuedTasksToGrowThreshold** - 증가 프로세스를 시작하기 위한 활성 큐 작업 수의 임계치입니다.
-* **NumOfInitialNodesToGrow** - 범위 내 모든 노드가 **배포되지 않음** 또는 **중지(할당 해제)**일 경우 증가할 초기의 최소 노드 수입니다.
-* **GrowCheckIntervalMins** - 검사 간 증가할 간격(분)입니다.
-* **ShrinkCheckIntervalMins** - 검사 간 축소할 간격(분)입니다.
-* **ShrinkCheckIdleTimes** - 노드가 유휴 상태임을 나타낼 연속적 축소 검사의 수(**ShrinkCheckIntervalMins**로 구분)입니다.
-* **UseLastConfigurations** - 인수 파일에 저장된 이전 구성입니다.
-* **ArgFile**- 스크립트를 실행하기 위해 구성을 저장 및 업데이트하는 데 사용한 인수 파일의 이름입니다.
-* **LogFilePrefix** - 로그 파일의 접두사 이름입니다. 경로를 지정할 수 있습니다. 기본적으로 로그는 현재 작업 디렉터리에 기록됩니다.
+* **NumOfQueuedJobsPerNodeToGrow** -toogrow 한 노드에 데 필요한 대기 중인된 작업의 수입니다.
+* **NumOfQueuedJobsToGrowThreshold** -hello 임계값 수가 대기 중인된 작업 toostart hello 프로세스를 증가 합니다.
+* **NumOfActiveQueuedTasksPerNodeToGrow** -toogrow 한 노드에 데 필요한 hello 대기 중인된 활성 태스크 수입니다. **NumOfQueuedJobsPerNodeToGrow** 가 0보다 큰 값으로 지정된 경우 이 매개 변수가 무시됩니다.
+* **NumOfActiveQueuedTasksToGrowThreshold** -hello 임계값 수가 대기 중인된 활성 태스크 toostart hello 프로세스를 증가 합니다.
+* **NumOfInitialNodesToGrow** -hello 범위에 모든 hello 노드가 노드 toogrow의 최소 수를 초기 **된** 또는 **중지 (할당 취소)**합니다.
+* **GrowCheckIntervalMins** -hello 간격 (분) toogrow를 확인 합니다.
+* **ShrinkCheckIntervalMins** -hello 간격 (분) tooshrink를 확인 합니다.
+* **ShrinkCheckIdleTimes** -연속 축소 확인 횟수가 hello (구분 하 여 **ShrinkCheckIntervalMins**) tooindicate hello 노드는 유휴 상태입니다.
+* **UseLastConfigurations** -hello 인수 파일에 저장 된 이전 구성을 hello 합니다.
+* **ArgFile**-hello hello 인수 사용 되는 파일 toosave의 이름 및 hello 구성 toorun hello 스크립트를 업데이트 합니다.
+* **LogFilePrefix** -hello 로그 파일의 hello 접두사 이름입니다. 경로를 지정할 수 있습니다. 기본 hello 로그 toohello 작성 된 현재 작업 디렉터리입니다.
 
 ### <a name="example-1"></a>예 1
-다음 예제는 자동으로 증가 및 축소하는 기본 AzureNode 템플릿을 배포된 Azure 버스트 노드를 구성합니다. 모든 노드가 초기에 **배포되지 않음** 상태인 경우 최소 3개 노드가 시작됩니다. 큐 작업 수가 8개를 초과할 경우 노드 수가 큐 작업 수 대 **NumOfQueuedJobsPerNodeToGrow**의 비율을 초과할 때까지 스크립트에서 노드를 시작합니다. 노드가 연속 3회 이상 유휴 상태인 것으로 확인되면 중지됩니다.
+hello 다음 예제에서는 구성 hello Azure 버스트 노드 기본 AzureNode 템플릿을 toogrow와 함께 배포 하 고 자동으로 축소 합니다. 모든 노드는 처음 hello 경우 **된** 상태 이면 3 개 이상의 노드가 시작 됩니다. Hello 스크립트의 수에는 큐에 대기 중인된 작업의 hello 비율을 초과할 때까지 노드를 시작 hello 큐 작업 수 8 개를 초과 하는 경우 **NumOfQueuedJobsPerNodeToGrow**합니다. 노드 toobe 3 유휴 회 연속으로 유휴, 있으면 중지 됩니다.
 
 ```powershell
 .\AzureAutoGrowShrink.ps1 -NodeTemplates @('Default AzureNode
@@ -248,8 +248,8 @@ AzureAutoGrowShrink.ps1 -UseLastConfigurations [-ArgFile <String>] [-LogFilePref
 ```
 
 ### <a name="example-2"></a>예 2
-다음 예제는 자동으로 증가 및 축소하는 기본 ComputeNode 템플릿을 배포된 Azure 계산 노드를 구성합니다.
-기본 작업 템플릿으로 구성된 작업은 클러스터에 워크로드 범위를 정의합니다. 모든 노드가 초기에 중지되어 있으면 최소 5개 노드가 시작됩니다. 활성 큐 작업 수가 15개를 초과할 경우 노드 수가 활성 큐 작업 수 대 **NumOfActiveQueuedTasksPerNodeToGrow**의 비율을 초과할 때까지 스크립트에서 노드를 시작합니다. 노드가 연속 10회 이상 유휴 상태인 것으로 확인되면 중지됩니다.
+hello 다음 예제에서는 구성 hello Azure 계산 노드 Vm 기본 ComputeNode 템플릿을 toogrow hello 사용 하 여 배포와 자동으로 축소 합니다.
+hello 기본 작업 템플릿을 통해 구성 된 hello 작업이 hello 클러스터에서 작업 부하의 hello 범위를 정의 합니다. 모든 hello 노드가 초기에 중지 되어 최소 5 개의 노드가 시작 됩니다. Hello 스크립트의 수에는 너무 대기 중인된 활성 태스크의 hello 비율을 초과할 때까지 노드를 시작 대기 중인된 활성 태스크의 hello 수가 15 개를 초과 하는 경우**NumOfActiveQueuedTasksPerNodeToGrow**합니다. 노드 toobe 10 유휴 회 연속으로 유휴, 있으면 중지 됩니다.
 
 ```powershell
 .\AzureAutoGrowShrink.ps1 -NodeTemplates 'Default ComputeNode Template' -JobTemplates 'Default' -NodeType ComputeNodes -NumOfActiveQueuedTasksPerNodeToGrow 10 -NumOfActiveQueuedTasksToGrowThreshold 15 -NumOfInitialNodesToGrow 5 -GrowCheckIntervalMins 1 -ShrinkCheckIntervalMins 1 -ShrinkCheckIdleTimes 10 -ArgFile 'IaaSVMComputeNodes_Arg.xml' -LogFilePrefix 'IaaSVMComputeNodes_log'

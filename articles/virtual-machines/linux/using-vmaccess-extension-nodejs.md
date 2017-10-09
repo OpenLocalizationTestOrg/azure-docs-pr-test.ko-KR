@@ -1,6 +1,6 @@
 ---
-title: "VMAccess 확장을 사용하여 Azure Linux VM에 대한 액세스 권한 재설정 | Microsoft Docs"
-description: "VMAccess 확장을 사용하여 Azure Linux VM에 대한 액세스 권한 재설정"
+title: "aaaReset 액세스를 사용 하 여 Azure Linux Vm에서 VMAccess 확장을 hello | Microsoft Docs"
+description: "Hello VMAccess 확장을 사용 하 여 Azure Linux Vm에 대 한 액세스를 다시 설정 합니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: vlivech
@@ -15,34 +15,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/25/2016
 ms.author: v-livech
-ms.openlocfilehash: 278bf1785aac71068ab94cf9916af69a204c44be
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2636655f3f7d14ba30e1dc62c319e4e278521ead
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-users-ssh-and-check-or-repair-disks-on-azure-linux-vms-using-the-vmaccess-extension-with-the-azure-cli-10"></a>Azure CLI 1.0에서 VMAccess 확장을 사용하여 사용자, SSH 관리 및 Azure Linux VM의 디스크 검사 또는 복구
-이 문서는 VMAccess VM 확장을 사용하여 디스크를 검사 또는 복구하거나, 사용자 액세스를 다시 설정하거나, 사용자 계정을 관리하거나, Linux의 SSHD 구성을 다시 설정하는 방법을 설명합니다. 이 문서의 내용을 실행하기 위해 필요한 사항:
+# <a name="manage-users-ssh-and-check-or-repair-disks-on-azure-linux-vms-using-hello-vmaccess-extension-with-hello-azure-cli-10"></a>사용자, SSH, 및 확인 또는 복구 디스크를 사용 하 여 Azure Linux Vm에 Azure CLI 1.0 hello로 VMAccess 확장을 환영
+이 문서에서는 어떻게 toouse Azure VMAcesss 확장 toocheck hello 또는 디스크 복구, 사용자 액세스를 다시 설정, 사용자 계정 관리 또는 Linux에서 hello SSHD 구성을 다시 설정 합니다. hello 문서에는 다음 사항이 필요합니다.
 
 * Azure 계정([무료 평가판 받기](https://azure.microsoft.com/pricing/free-trial/))
-* `azure login`으로 로그인된 [Azure CLI](../../cli-install-nodejs.md)
-* Azure Resource Manager 모드 `azure config mode arm`으로 *있어야 하는* Azure CLI
+* hello [Azure CLI](../../cli-install-nodejs.md) 로그인 한 `azure login`합니다.
+* hello Azure CLI *에 있어야* Azure Resource Manager 모드 `azure config mode arm`합니다.
 
 
-## <a name="cli-versions-to-complete-the-task"></a>태스크를 완료하기 위한 CLI 버전
-다음 CLI 버전 중 하나를 사용하여 태스크를 완료할 수 있습니다.
+## <a name="cli-versions-toocomplete-hello-task"></a>CLI 버전 toocomplete hello 작업
+Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행할 수 있습니다.
 
-- [Azure CLI 1.0](#quick-commands) - 클래식 및 리소스 관리 배포 모델용 CLI(이 문서)
-- [Azure CLI 2.0](using-vmaccess-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 리소스 관리 배포 모델용 차세대 CLI
+- [Azure CLI 1.0](#quick-commands)– 우리의 CLI 모델에 대 한 hello 클래식 및 리소스 관리 배포 (이 문서)
+- [Azure CLI 2.0](using-vmaccess-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -우리의 차세대 CLI hello 리소스 관리 배포 모델에 대 한
 
 
 ## <a name="quick-commands"></a>빠른 명령
-Linux VM에서 VMAccess를 사용하는 방법에는 다음 두 가지가 있습니다.
+두 가지 방법으로 toouse Linux Vm에서 VMAccess 가지가 있습니다.
 
-* Azure CLI 1.0 및 필수 매개 변수 사용
+* Hello Azure CLI 1.0 및 hello를 사용 하 여 매개 변수가 필요 합니다.
 * VMAccess에서 처리한 후 관련 작업을 수행하는 원시 JSON 파일 사용
 
-빠른 명령 섹션에서는 Azure CLI 1.0 `azure vm reset-access` 메서드를 사용합니다. 다음 명령 예제에서 "example"이 포함된 값을 사용자 환경의 값으로 바꿉니다.
+Hello 빠른 명령 섹션에 대 한 하겠습니다 toouse hello Azure CLI 1.0 `azure vm reset-access` 메서드. Hello 다음 명령 예에서는 "예" hello 값을 가진 사용자가 자신의 환경에서 포함 하는 hello 값을 대체 합니다.
 
 ## <a name="create-a-resource-group-and-linux-vm"></a>리소스 그룹 및 Linux VM 만들기
 ```bash
@@ -62,7 +62,7 @@ azure vm quick-create \
 ```
 
 ## <a name="reset-root-password"></a>루트 암호 다시 설정
-루트 암호 재설정 방법:
+tooreset hello 루트 암호:
 
 ```azurecli
 azure vm reset-access \
@@ -73,7 +73,7 @@ azure vm reset-access \
 ```
 
 ## <a name="ssh-key-reset"></a>SSH 키 다시 설정
-루트가 아닌 사용자의 SSH 키를 다시 설정하는 방법:
+루트가 아닌 사용자의 tooreset hello SSH 키:
 
 ```azurecli
 azure vm reset-access \
@@ -84,7 +84,7 @@ azure vm reset-access \
 ```
 
 ## <a name="create-a-user"></a>사용자 만들기
-사용자를 만드는 방법:
+toocreate 사용자:
 
 ```azurecli
 azure vm reset-access \
@@ -103,7 +103,7 @@ azure vm reset-access \
 ```
 
 ## <a name="reset-sshd"></a>SSHD 재설정
-SSHD 구성 재설정 방법:
+tooreset hello SSHD 구성:
 
 ```azurecli
 azure vm reset-access \
@@ -115,14 +115,14 @@ azure vm reset-access \
 
 ## <a name="detailed-walkthrough"></a>자세한 연습
 ### <a name="vmaccess-defined"></a>VMAccess 정의:
-Linux VM의 디스크에 오류가 표시되어 있습니다. 사용자가 Linux VM의 루트 암호를 재설정했거나 SSH 개인 키를 실수로 삭제했습니다. 데이터 센터를 사용할 때는 이러한 경우 데이터 센터로 직접 가서 KVM을 열어 서버 콘솔에 액세스해야 했습니다. Azure VMAccess 확장을 콘솔에 액세스하여 Linux에 대한 액세스 권한을 재설정하거나 디스크 수준 유지 관리를 수행할 수 있는 이 KVM 스위치로 생각하세요.
+Linux VM의 디스크 hello이 오류가 표시 됩니다. 어떻게 하 든 Linux VM에 대 한 hello 루트 암호를 재설정 하거나 실수로 SSH 개인 키를 삭제 합니다. Hello 데이터 센터의 hello 일 후에 다시이 경우 toodrive 발생 해야 하는 다음 hello KVM tooget hello 서버 콘솔을 엽니다. Hello Azure VMAccess 확장 콘솔 tooreset 액세스 tooLinux hello 하면 tooaccess 하거나 디스크 수준 유지 관리를 수행할 수 있도록 KVM 스위치 라고 생각 됩니다.
 
-여기서는 자세한 연습을 위해 원시 JSON 파일을 사용하는 긴 형식의 VMAccess를 사용합니다.  이러한 VMAccess JSON 파일은 Azure 템플릿에서도 호출할 수 있습니다.
+Hello에 대 한 자세한 연습에서는 toouse hello 긴 형식의 원시 JSON 파일을 사용 하 여 VMAccess 하겠습니다.  이러한 VMAccess JSON 파일은 Azure 템플릿에서도 호출할 수 있습니다.
 
-### <a name="using-vmaccess-to-check-or-repair-the-disk-of-a-linux-vm"></a>VMAccess를 사용하여 Linux VM의 디스크 검사 또는 복구
-VMAccess를 사용하면 Linux VM에 있는 디스크에 fsck를 실행할 수 있습니다.  VMAccess를 사용하여 디스크 검사와 디스크 복구를 수행할 수도 있습니다.
+### <a name="using-vmaccess-toocheck-or-repair-hello-disk-of-a-linux-vm"></a>Linux VM의 VMAccess toocheck 또는 복구 hello 디스크를 사용 하 여
+VMAccess를 사용 하 여 할 수 있는 한 fsck Linux VM에서 hello 디스크에서 실행 합니다.  VMAccess를 사용하여 디스크 검사와 디스크 복구를 수행할 수도 있습니다.
 
-디스크를 검사한 후에 복구하려면 다음 VMAccess 스크립트를 사용합니다.
+toocheck, 및 복구 hello 디스크가 VMAccess 스크립트를 사용합니다.
 
 `disk_check_repair.json`
 
@@ -133,7 +133,7 @@ VMAccess를 사용하면 Linux VM에 있는 디스크에 fsck를 실행할 수 �
 }
 ```
 
-다음을 사용하여 VMAccess 스크립트를 실행합니다.
+Hello VMAccess 스크립트를 실행 합니다.
 
 ```azurecli
 azure vm extension set \
@@ -144,10 +144,10 @@ azure vm extension set \
   --private-config-path disk_check_repair.json
 ```
 
-### <a name="using-vmaccess-to-reset-user-access-to-linux"></a>VMAccess를 사용하여 Linux에 대한 사용자 액세스 권한 재설정
-Linux VM의 루트에 액세스할 수 없게 된 경우 VMAccess 스크립트를 시작하여 루트 암호를 다시 설정할 수 있습니다.
+### <a name="using-vmaccess-tooreset-user-access-toolinux"></a>VMAccess tooreset 사용자 액세스 tooLinux를 사용 하 여
+Linux VM에 대 한 액세스 tooroot를 잃어버린 경우 VMAccess 스크립트 tooreset hello 루트 암호를 시작할 수 있습니다.
 
-루트 암호를 다시 설정하려면 다음 VMAccess 스크립트를 사용합니다.
+tooreset hello 루트 암호를이 VMAccess 스크립트 사용:
 
 `reset_root_password.json`
 
@@ -158,7 +158,7 @@ Linux VM의 루트에 액세스할 수 없게 된 경우 VMAccess 스크립트�
 }
 ```
 
-다음을 사용하여 VMAccess 스크립트를 실행합니다.
+Hello VMAccess 스크립트를 실행 합니다.
 
 ```azurecli
 azure vm extension set \
@@ -169,7 +169,7 @@ azure vm extension set \
   --private-config-path reset_root_password.json
 ```
 
-루트가 아닌 사용자의 SSH 키를 다시 설정하려면 다음 VMAccess 스크립트를 사용합니다.
+루트가 아닌 사용자의 tooreset hello SSH 키에는이 VMAccess 스크립트 사용:
 
 `reset_ssh_key.json`
 
@@ -180,7 +180,7 @@ azure vm extension set \
 }
 ```
 
-다음을 사용하여 VMAccess 스크립트를 실행합니다.
+Hello VMAccess 스크립트를 실행 합니다.
 
 ```azurecli
 azure vm extension set \
@@ -191,10 +191,10 @@ azure vm extension set \
   --private-config-path reset_ssh_key.json
 ```
 
-### <a name="using-vmaccess-to-manage-user-accounts-on-linux"></a>VMAccess를 사용하여 Linux에서 사용자 계정 관리
-VMAccess는 로그인하고 sudo 또는 루트 계정을 사용하지 않고 Linux VM의 사용자를 관리하는 데 사용할 수 있는 Python 스크립트입니다.
+### <a name="using-vmaccess-toomanage-user-accounts-on-linux"></a>Linux에서 VMAccess toomanage 사용자 계정을 사용 하 여
+VMAccess 없이 로그인 하 고 sudo 또는 hello 루트 계정을 사용 하 여 Linux VM에 사용 되는 toomanage 사용자 일 수 있는 Python 스크립트입니다.
 
-사용자를 만들려면 다음 VMAccess 스크립트를 사용합니다.
+toocreate 사용자를이 VMAccess 스크립트를 사용 합니다.
 
 `create_new_user.json`
 
@@ -206,7 +206,7 @@ VMAccess는 로그인하고 sudo 또는 루트 계정을 사용하지 않고 Lin
 }
 ```
 
-다음을 사용하여 VMAccess 스크립트를 실행합니다.
+Hello VMAccess 스크립트를 실행 합니다.
 
 ```azurecli
 azure vm extension set \
@@ -217,7 +217,7 @@ azure vm extension set \
   --private-config-path create_new_user.json
 ```
 
-사용자를 삭제하려면 다음 VMAccess 스크립트를 사용합니다.
+toodelete 사용자를이 VMAccess 스크립트를 사용 합니다.
 
 `remove_user.json`
 
@@ -227,7 +227,7 @@ azure vm extension set \
 }
 ```
 
-다음을 사용하여 VMAccess 스크립트를 실행합니다.
+Hello VMAccess 스크립트를 실행 합니다.
 
 ```azurecli
 azure vm extension set \
@@ -238,10 +238,10 @@ azure vm extension set \
   --private-config-path remove_user.json
 ```
 
-### <a name="using-vmaccess-to-reset-the-sshd-configuration"></a>VMAccess를 사용하여 SSHD 구성 다시 설정
-Linux VM SSHD 구성을 변경하고 변경 내용을 확인하기 전에 SSH 연결을 닫을 경우 SSH에 다시 로그인하지 못할 수 있습니다.  VMAccess를 사용하면 SSH를 통해 로그인하지 않고도 SSHD 구성을 알려진 정상 구성으로 다시 설정할 수 있습니다.
+### <a name="using-vmaccess-tooreset-hello-sshd-configuration"></a>VMAccess tooreset hello SSHD 구성을 사용 하 여
+변경 내용 toohello Linux Vm SSHD 구성과 hello 변경 내용 확인 되기 전에 닫기 hello SSH 연결을 만들면 연결할 수 없을 수도 SSH'ing에서 다시 합니다.  VMAccess 사용된 tooreset hello SSHD 구성 뒤로 tooa로 성공한 구성 SSH를 통해 로그인 하지 않고 될 수 있습니다.
 
-SSHD 구성을 재설정하려면 이 VMAccess 스크립트를 사용합니다.
+이 VMAccess 스크립트를 사용 하는 tooreset hello SSHD 구성:
 
 `reset_sshd.json`
 
@@ -251,7 +251,7 @@ SSHD 구성을 재설정하려면 이 VMAccess 스크립트를 사용합니다.
 }
 ```
 
-다음을 사용하여 VMAccess 스크립트를 실행합니다.
+Hello VMAccess 스크립트를 실행 합니다.
 
 ```azurecli
 azure vm extension set \
@@ -263,11 +263,11 @@ azure vm extension set \
 ```
 
 ## <a name="next-steps"></a>다음 단계
-실행 중인 Linux VM에서 변경을 수행하는 한 가지 방법은 Azure VMAccess 확장을 사용하여 Linux를 업데이트하는 것입니다.  cloud-init 및 Azure 템플릿 등의 도구를 사용하여 부팅 시 Linux VM을 수정할 수도 있습니다.
+Linux 업데이트 되어 실행 중인 Linux VM에 하나의 메서드 toomake 변경 내용을 Azure VMAccess 확장을 사용 하 여 합니다.  작업을 부팅 시 Linux VM 클라우드 init 및 Azure 템플릿 toomodify와 같은 도구도 사용할 수도 있습니다.
 
 [가상 컴퓨터 확장 및 기능 정보](../windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 [Linux VM 확장을 사용하여 Azure Resource Manager 템플릿 작성](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-[cloud-init를 사용하여 생성 중인 Linux VM 사용자 지정](using-cloud-init.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+[클라우드 init toocustomize Linux VM을 만드는 동안 사용 하 여](using-cloud-init.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure VM에서 로컬 Linux 암호를 다시 설정하는 방법 | Microsoft Docs"
-description: "Azure VM에서 로컬 Linux 암호를 다시 설정하는 단계 소개"
+title: "Azure Vm에서 aaaHow tooreset 로컬 Linux 암호 | Microsoft Docs"
+description: "Hello 단계 tooreset hello 로컬 Linux 암호 Azure VM에서 소개"
 services: virtual-machines-linux
 documentationcenter: 
 author: Deland-Han
@@ -15,41 +15,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/3/2017
 ms.author: delhan
-ms.openlocfilehash: 084cdb26c7dfd8f46fb6ec7f8c48f7b4a327e2ab
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3827e32186c5f034d9bb6fc502dc26708b52a00a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-reset-local-linux-password-on-azure-vms"></a>Azure VM에서 로컬 Linux 암호를 다시 설정하는 방법
+# <a name="how-tooreset-local-linux-password-on-azure-vms"></a>어떻게 tooreset Azure Vm에서 로컬 Linux 암호
 
-이 문서에서는 로컬 Linux VM(가상 컴퓨터) 암호를 다시 설정하는 여러 가지 방법을 소개합니다. 사용자 계정이 만료되거나 새 계정을 만들려는 경우 다음 메서드를 사용하여 새 로컬 관리자 계정을 만들거나 VM에 대한 액세스를 다시 얻을 수 있습니다.
+이 문서에서는 여러 가지 방법을 tooreset 로컬 Linux 가상 컴퓨터 (VM) 암호를 소개 합니다. Hello 사용자 계정이 만료 하거나 새 계정을 toocreate 원하는 hello 다음 메서드 toocreate 새 로컬 관리자 계정을 사용 하 여 수 있으며 액세스 toohello VM을 다시 얻을 수 있습니다.
 
 ## <a name="symptoms"></a>증상
 
-VM에 로그인할 수 없다면 사용한 암호가 잘못되었음을 나타내는 메시지가 표시됩니다. 또한 VMAgent를 사용하여 Azure Portal에서 암호를 다시 설정할 수 없습니다. 
+Toohello VM에 로그인 할 수 없습니다 및 사용한 hello 암호가 올바르지 않습니다. 나타내는 메시지를 수신 합니다. 또한 사용할 수 없습니다 VMAgent tooreset 암호 hello Azure 포털에 있습니다. 
 
 ## <a name="manual-password-reset-procedure"></a>수동 암호 다시 설정 프로시저
 
-1.  VM을 삭제하고 연결된 디스크를 유지합니다.
+1.  Hello VM을 삭제 하 고 hello 연결 된 디스크 유지 합니다.
 
-2.  같은 위치에서 다른 임시 VM에 데이터 디스크로 OS 드라이브를 연결합니다.
+2.  데이터 디스크 tooanother와 운영 체제 드라이브 hello 연결 임시 VM hello에 동일한 위치입니다.
 
-3.  임시 VM에서 상위 사용자가 되는 다음과 같은 SSH 명령을 실행합니다.
+3.  다음 임시 VM toobecome hello에서 SSH 명령을 hello 슈퍼 사용자를 실행 합니다.
 
 
     ~~~~
     sudo su
     ~~~~
 
-4.  **fdisk -l**을 실행하거나 시스템 로그를 확인하여 새로 연결된 디스크를 찾습니다. 탑재할 드라이브 이름을 찾습니다. 그런 다음 임시 VM에서 관련 로그 파일에서 찾습니다.
+4.  실행 **fdisk l** 또는 시스템 로그 toofind hello에 새로 연결 된 디스크. Hello 드라이브 이름 toomount를 찾습니다. 그런 다음 hello에 임시 VM을 찾는 위치 hello 관련 로그 파일입니다.
 
     ~~~~
     grep SCSI /var/log/kern.log (ubuntu)
     grep SCSI /var/log/messages (centos, suse, oracle)
     ~~~~
 
-    다음은 grep 명령의 예제 출력입니다.
+    hello 다음은 hello grep 명령의 예제 출력입니다.
 
     ~~~~
     kernel: [ 9707.100572] sd 3:0:0:0: [sdc] Attached SCSI disk
@@ -61,7 +61,7 @@ VM에 로그인할 수 없다면 사용한 암호가 잘못되었음을 나타�
     mkdir /tempmount
     ~~~~
 
-6.  탑재 지점에 OS 디스크를 탑재합니다. 일반적으로 sdc1 또는 sdc2를 탑재해야 합니다. 손상된 컴퓨터 디스크의 /etc 디렉터리에 있는 호스팅 파티션에 따라 달라집니다.
+6.  Hello 탑재 지점에 hello OS 디스크를 탑재 합니다. 일반적으로 toomount sdc1 또는 sdc2 필요한 합니다. 이 hello 끊어진된 컴퓨터 디스크에서 /etc 디렉터리에 파티션을 호스팅하는 hello에 따라 달라 집니다.
 
     ~~~~
     mount /dev/sdc1 /tempmount
@@ -78,13 +78,13 @@ VM에 로그인할 수 없다면 사용한 암호가 잘못되었음을 나타�
     cp /tempmount/etc/shadow /tempmount/etc/shadow_orig
     ~~~~
 
-8.  필요한 사용자 암호를 다시 설정합니다.
+8.  필요한 hello 사용자의 암호를 다시 설정 하십시오.
 
     ~~~~
     passwd <<USER>> 
     ~~~~
 
-9.  손상된 컴퓨터의 디스크의 올바른 위치에 수정된 파일을 이동합니다.
+9.  이동 hello hello 컴퓨터의 디스크 손상 파일 toohello 올바른 위치를 수정 합니다.
 
     ~~~~
     cp /etc/passwd /tempmount/etc/passwd
@@ -92,18 +92,18 @@ VM에 로그인할 수 없다면 사용한 암호가 잘못되었음을 나타�
     cp /etc/passwd_orig /etc/passwd
     cp /etc/shadow_orig /etc/shadow
     
-10. Go back to the root and unmount the disk.
+10. Go back toohello root and unmount hello disk.
 
     ~~~~
     cd / umount /tempmount
     ~~~~
 
-11. Detach the disk from the management portal.
+11. Detach hello disk from hello management portal.
 
-12. Recreate the VM.
+12. Recreate hello VM.
 
 ## Next steps
 
-* [Troubleshoot Azure VM by attaching OS disk to another Azure VM](http://social.technet.microsoft.com/wiki/contents/articles/18710.troubleshoot-azure-vm-by-attaching-os-disk-to-another-azure-vm.aspx)
+* [Troubleshoot Azure VM by attaching OS disk tooanother Azure VM](http://social.technet.microsoft.com/wiki/contents/articles/18710.troubleshoot-azure-vm-by-attaching-os-disk-to-another-azure-vm.aspx)
 
-* [Azure CLI: How to delete and re-deploy a VM from VHD](https://blogs.msdn.microsoft.com/linuxonazure/2016/07/21/azure-cli-how-to-delete-and-re-deploy-a-vm-from-vhd/)
+* [Azure CLI: How toodelete and re-deploy a VM from VHD](https://blogs.msdn.microsoft.com/linuxonazure/2016/07/21/azure-cli-how-to-delete-and-re-deploy-a-vm-from-vhd/)
