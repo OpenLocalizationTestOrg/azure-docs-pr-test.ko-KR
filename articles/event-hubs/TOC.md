@@ -16,8 +16,8 @@
 ### [Java](event-hubs-java-get-started-receive-eph.md)
 ### [Apache Storm](event-hubs-storm-getstarted-receive.md)
 ## 이벤트 캡처
-### [이벤트 허브 캡처 Azure 포털 tooenable hello를 사용 하 여](event-hubs-capture-enable-through-portal.md)
-### [이벤트 허브 캡처 리소스 관리자 템플릿 tooenable를 사용 하 여](event-hubs-resource-manager-namespace-event-hub-enable-capture.md)
+### [Azure Portal을 사용하여 이벤트 허브 캡처를 사용하도록 설정](event-hubs-capture-enable-through-portal.md)
+### [Resource Manager 템플릿을 사용하여 이벤트 허브 캡처를 사용하도록 설정](event-hubs-resource-manager-namespace-event-hub-enable-capture.md)
 ## [프로그래밍 가이드](event-hubs-programming-guide.md)
 
 # 방법
@@ -37,7 +37,7 @@
 ### 캡처
 #### [이벤트 허브 캡처](event-hubs-capture-overview.md)
 #### [Python을 사용하여 이벤트 허브 데이터 캡처](event-hubs-capture-python.md)
-### [PowerShell tooprovision 엔터티를 사용 하 여](event-hubs-manage-with-ps.md) 
+### [PowerShell을 사용하여 엔터티 프로비전](event-hubs-manage-with-ps.md) 
 ### [Event Hubs를 사용하여 Azure 진단 데이터 스트림](event-hubs-streaming-azure-diags-data.md)
 ### [Resource Manager 템플릿을 사용하여 이벤트 허브 만들기 및 배포](event-hubs-resource-manager-namespace-event-hub.md)
 

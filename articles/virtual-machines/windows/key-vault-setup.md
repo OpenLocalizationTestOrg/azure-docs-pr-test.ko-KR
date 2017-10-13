@@ -1,6 +1,6 @@
 ---
-title: "키 자격 증명 모음에 대 한 Windows Vm이 Azure 리소스 관리자를 aaaSet | Microsoft Docs"
-description: "어떻게 Azure 리소스 관리자 가상 컴퓨터와 함께 사용 하기 위해 키 자격 증명 모음을 tooset 합니다."
+title: "Azure Resource Manager에서 Windows VM에 대한 Key Vault 설정 | Microsoft Docs"
+description: "Azure Resource Manager에서 사용할 주요 자격 증명 모음을 설정하는 방법"
 services: virtual-machines-windows
 documentationcenter: 
 author: singhkays
@@ -15,26 +15,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/24/2017
 ms.author: kasing
-ms.openlocfilehash: 53bbe90708202ecfdcf754822d04bf2469631f08
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a5083a5216efbfd76fd912ec48c2f0ec3b30c4a1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="set-up-key-vault-for-virtual-machines-in-azure-resource-manager"></a>Azure Resource Manager에서 가상 컴퓨터에 대한 주요 자격 증명 모음 설정
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-rm-include.md)]
 
-Azure 리소스 관리자 스택의 비밀/인증서는 키 자격 증명 모음 hello 리소스 공급자가 제공 되는 리소스 그룹으로 모델링 됩니다. 주요 자격 증명에 대 한 자세한 toolearn 참조 [Azure 키 자격 증명 모음 이란?](../../key-vault/key-vault-whatis.md)
+Azure Resource Manager 스택에서 비밀/인증서는 주요 자격 증명 모음 리소스 공급자가 제공하는 리소스로 모델링됩니다. 주요 자격 증명 모음에 대한 자세한 내용을 보려면 [Azure 주요 자격 증명 모음이란?](../../key-vault/key-vault-whatis.md)
 
 > [!NOTE]
-> 1. Azure 리소스 관리자 가상 컴퓨터와 함께 사용 되는 주요 자격 증명 모음 toobe에 대 한 순서로 hello **EnabledForDeployment** tootrue 속성 주요 자격 증명 모음을 설정 해야 합니다. 다양한 클라이언트에서 이 작업을 수행할 수 있습니다.
-> 2. 가상 컴퓨터를 hello 대로 toobe에서 만든 hello 주요 자격 증명 모음 요구 hello 동일한 구독 및 위치입니다.
+> 1. 주요 자격 증명 모음을 Azure Resource Manager 가상 컴퓨터에서 사용하려면 주요 자격 증명에 대한 **EnabledForDeployment** 속성을 true로 설정해야 합니다. 다양한 클라이언트에서 이 작업을 수행할 수 있습니다.
+> 2. 주요 자격 증명 모음은 가상 컴퓨터와 동일한 구독 및 위치에 만들어야 합니다.
 >
 >
 
-## <a name="use-powershell-tooset-up-key-vault"></a>키 자격 증명 모음을 사용 하 여 PowerShell tooset
-PowerShell을 사용 하 여 주요 자격 증명 모음 toocreate 참조 [Azure 키 자격 증명 모음 시작](../../key-vault/key-vault-get-started.md#vault)합니다.
+## <a name="use-powershell-to-set-up-key-vault"></a>PowerShell을 사용하여 주요 자격 증명 모음 설정
+PowerShell을 사용하여 주요 자격 증명 모음을 만들려면 [Azure 주요 자격 증명 모음 시작](../../key-vault/key-vault-get-started.md#vault)을 참조하세요.
 
 새 주요 자격 증명의 경우 다음 PowerShell cmdlet을 사용할 수 있습니다.
 
@@ -44,15 +44,15 @@ PowerShell을 사용 하 여 주요 자격 증명 모음 toocreate 참조 [Azure
 
     Set-AzureRmKeyVaultAccessPolicy -VaultName 'ContosoKeyVault' -EnabledForDeployment
 
-## <a name="us-cli-tooset-up-key-vault"></a>Us CLI tooset 키 자격 증명 모음을
-hello CLI (명령줄 인터페이스)를 사용 하 여 주요 자격 증명 모음 toocreate 참조 [관리 키 자격 증명 모음 CLI를 사용 하 여](../../key-vault/key-vault-manage-with-cli2.md#create-a-key-vault)합니다.
+## <a name="us-cli-to-set-up-key-vault"></a>CLI를 사용하여 주요 자격 증명 모음 설정
+CLI(명령줄 인터페이스)를 사용하여 주요 자격 증명 모음을 만들려면 [CLI를 사용하여 주요 자격 증명 모음 관리](../../key-vault/key-vault-manage-with-cli2.md#create-a-key-vault)를 참조하세요.
 
-CLI에 대 한 hello 배포 정책을 지정 하기 전에 toocreate hello 키 자격 증명 모음이 있는지 합니다. 다음 명령을 hello를 사용 하 여이 수행할 수 있습니다.
+CLI의 경우 먼저 주요 자격 증명 모음을 만든 다음 배포 정책을 할당해야 합니다. 다음 명령을 사용하여 이 작업을 수행할 수 있습니다.
 
     azure keyvault set-policy ContosoKeyVault –enabled-for-deployment true
 
-## <a name="use-templates-tooset-up-key-vault"></a>키 자격 증명 모음을 사용 하 여 템플릿 tooset
-Tooset hello 서식 파일을 사용 하는 동안 필요한 `enabledForDeployment` 속성 너무`true` hello 키 자격 증명 모음 리소스에 대 한 합니다.
+## <a name="use-templates-to-set-up-key-vault"></a>템플릿을 사용하여 주요 자격 증명 모음 설정
+템플릿을 사용하는 경우 `enabledForDeployment` 속성을 주요 자격 증명 모음 리소스에 대한 `true`로 설정해야 합니다.
 
     {
       "type": "Microsoft.KeyVault/vaults",

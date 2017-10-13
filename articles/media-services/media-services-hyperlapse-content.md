@@ -1,6 +1,6 @@
 ---
-title: "Azure Media Hyperlapse를 사용 하 여 미디어 파일 aaaHyperlapse | Microsoft Docs"
-description: "Azure 미디어 Hyperlapse는 1인칭 또는 액션 카메라 콘텐츠에서 부드러운 시간 경과 비디오를 만듭니다. 이 항목에서는 방법을 toouse Media Indexer 합니다."
+title: "Azure Media Hyperlapse에서의 Hyperlapse 미디어 파일 | Microsoft 문서"
+description: "Azure 미디어 Hyperlapse는 1인칭 또는 액션 카메라 콘텐츠에서 부드러운 시간 경과 비디오를 만듭니다. 이 항목에서는 미디어 인덱서를 사용하는 방법을 보여 줍니다."
 services: media-services
 documentationcenter: 
 author: asolanki
@@ -14,37 +14,37 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/02/2017
 ms.author: adsolank
-ms.openlocfilehash: 85bb07206d0ca2f5b2fd0767e6ed4904195d3ab6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 02f634c2af04b6b372642ab0e6a17a5d29f16450
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="hyperlapse-media-files-with-azure-media-hyperlapse"></a>Hyperlapse 미디어 파일 및 Azure 미디어 Hyperlapse
-Azure 미디어 Hyperlapse는 1인칭 또는 액션 카메라 콘텐츠에서 부드러운 시간 경과 비디오를 만드는 미디어 프로세서(MP)입니다.  클라우드 기반 형제 너무 hello[Microsoft Research 데스크톱 Hyperlapse Pro 및 전화 기반 Hyperlapse Mobile](http://aka.ms/hyperlapse), Azure 미디어 서비스에 대 한 Microsoft Hyperlapse hello 대규모의 hello Azure 미디어 서비스 미디어를 활용 합니다. 확장 및 병렬화 대량 플랫폼 toohorizontally 처리 Hyperlapse 처리 합니다.
+Azure 미디어 Hyperlapse는 1인칭 또는 액션 카메라 콘텐츠에서 부드러운 시간 경과 비디오를 만드는 미디어 프로세서(MP)입니다.  [Microsoft Research의 데스크톱 Hyperlapse Pro 및 전화 기반 Hyperlapse 모바일](http://aka.ms/hyperlapse)에 대한 클라우드 기반 형제 제품인 Azure 미디어 서비스용 Microsoft Hyperlapse는 Azure 미디어 서비스 미디어 처리 플랫폼의 상당 부분을 활용하여 대량의 Hyperlapse 처리를 수평적으로 확장하고 병렬 처리합니다.
 
 > [!IMPORTANT]
-> Microsoft Hyperlapse 이동 카메라와 함께 첫 번째 사람 내용에 가장 좋은 디자인 된 toowork입니다.  여전히 카메라 장면 작업 계속할 수 있지만 다른 콘텐츠 형식의 대 한 hello Azure Media Hyperlapse 미디어 프로세서의 hello 성능 및 품질을 보장할 수 없습니다.  Azure 미디어 서비스에 대 한 Microsoft Hyperlapse에 대 한 자세한 toolearn 몇 가지 예제 비디오를 참조 하 고 hello를 확인 하십시오 [소개 블로그 게시물](http://aka.ms/azurehyperlapseblog) hello 공개 미리 보기에서.
+> Microsoft Hyperlapse는 이동 카메라를 사용한 1인칭 콘텐츠에 최적으로 작동하도록 설계되었습니다.  스틸 카메라 영상에도 작동할 수 있지만 다른 형식의 콘텐츠에서는 Azure 미디어 Hyperlapse 미디어 프로세서의 성능 및 품질을 보장할 수 없습니다.  Azure 미디어 서비스용 Microsoft Hyperlapse에 대해 자세히 알아보고 예제 비디오를 보려면 공개 미리 보기 상태인 [소개 블로그 게시물](http://aka.ms/azurehyperlapseblog) 을 확인하세요.
 > 
 > 
 
-작업으로 사용 하는 Azure Media Hyperlapse 입력 된 경과 된 시간 프레임의 비디오 되어야 지정 하는 구성 파일 및 toowhat 속도 함께 MP4, MOV, 또는 WMV 자산 파일 (예: 첫 번째 10000 2 x에서 프레임).  hello 출력은 hello 입력된 비디오의 안정화 및 된 경과 된 시간 변환을입니다.
+Azure 미디어 Hyperlapse 작업은 MP4, MOV 또는 WMV 자산 파일 및 어떤 비디오 프레임을 어떤 속도로 시간 경과시킬지 지정(예: 2배속으로 처음 10,000프레임)하는 구성 파일을 입력으로 사용합니다.  출력은 입력 비디오의 안정화되고 시간 경과된 표현입니다.
 
-최신 Azure Media Hyperlapse 업데이트 hello에 대 한 참조 [미디어 서비스 블로그](https://azure.microsoft.com/blog/topics/media-services/)합니다.
+최신 Azure 미디어 Hyperlapse 업데이트는 [미디어 서비스 블로그](https://azure.microsoft.com/blog/topics/media-services/)(영문)를 참조하세요.
 
 ## <a name="hyperlapse-an-asset"></a>자산 Hyperlapse
-먼저 해야 tooupload 프로그램 원하는 입력된 파일 tooAzure 미디어 서비스.  hello 읽기에 대해 더 알아봅니다 toolearn hello 업로드, 콘텐츠 관리와 관련 된 개념 [콘텐츠 관리 문서](media-services-portal-vod-get-started.md)합니다.
+먼저 원하는 입력 파일을 Azure 미디어 서비스로 업로드해야 합니다.  콘텐츠 업로드 및 관리와 관련된 개념에 대해 자세히 알아보려면 [콘텐츠 관리 문서](media-services-portal-vod-get-started.md)를 읽어보세요.
 
 ### <a id="configuration"></a>Hyperlapse에 대한 구성 사전 설정
-미디어 서비스 계정에 콘텐츠를 tooconstruct 구성 사전 설정 해야 합니다.  다음 표에서 hello hello 사용자 지정 필드를 설명 합니다.
+콘텐츠가 미디어 서비스 계정에 있는 경우 구성 사전 설정을 생성해야 합니다.  다음 표에서는 사용자 지정 필드에 대해 설명합니다.
 
 | 필드 | 설명 |
 | --- | --- |
-| StartFrame |어떤 hello Microsoft Hyperlapse 처리를 시작 하는 hello 프레임입니다. |
-| NumFrames |프레임 tooprocess hello 수 |
-| 속도 |hello 비율 hello 입력된 비디오를 어떤 toospeed로 설정 합니다. |
+| StartFrame |Microsoft Hyperlapse 처리를 시작할 프레임입니다. |
+| NumFrames |처리할 프레임 수 |
+| 속도 |입력 비디오를 가속화하는 요소입니다. |
 
-hello 다음은 XML과 JSON와 호환 되 구성 파일의 예입니다.
+다음은 XML 및 JSON에서 규칙을 따르는 구성 파일의 예입니다.
 
 **XML 사전 설정:**
 
@@ -74,14 +74,14 @@ hello 다음은 XML과 JSON와 호환 되 구성 파일의 예입니다.
         }
     }
 
-### <a id="sample_code"></a>Hello AMS.NET SDK와 Microsoft Hyperlapse
-hello 다음 미디어 파일을 자산으로 업로드 메서드와 hello Azure Media Hyperlapse 미디어 프로세서를 사용 하 여 작업을 만듭니다.
+### <a id="sample_code"></a> Microsoft Hyperlapse 및 AMS .NET SDK
+다음 메서드는 미디어 파일을 자산으로 업로드하고 Azure 미디어 Hyperlapse 미디어 프로세서로 작업을 만듭니다.
 
 > [!NOTE]
-> 이 코드 toowork에 대 한 컨텍스트"hello 이름"을 사용 하 여 범위에는 CloudMediaContext 이미 있어야 합니다.  이 읽기 hello에 대 한 자세한 toolearn [콘텐츠 관리 문서](media-services-dotnet-get-started.md)합니다.
+> 이 코드가 작동하도록 하려면 "context" 이름의 범위에 CloudMediaContext가 이미 있어야 합니다.  이에 대한 자세히 알아보려면 [콘텐츠 관리 문서](media-services-dotnet-get-started.md)를 읽어보세요.
 > 
 > [!NOTE]
-> hello 문자열 인수 "hyperConfig" 예상된 toobe JSON 또는 위에 설명 된 대로 XML에 맞는 구성 사전 설정입니다.
+> 문자열 인수 "hyperConfig"가 위에 설명된 대로 JSON 또는 XML에서 규칙을 따르는 구성 사전 설정이어야 합니다.
 > 
 > 
 
@@ -148,7 +148,7 @@ hello 다음 미디어 파일을 자산으로 업로드 메서드와 hello Azure
                                                  CancellationToken.None);
             progressJobTask.Wait();
 
-            // If job state is Error, hello event handling
+            // If job state is Error, the event handling
             // method for job progress should log errors.  Here we check
             // for error state and exit if needed.
             if (job.State == JobState.Error)

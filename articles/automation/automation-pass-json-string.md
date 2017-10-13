@@ -1,6 +1,6 @@
 ---
-title: "aaaPass JSON 개체 tooan Azure 자동화 runbook | Microsoft Docs"
-description: "어떻게 JSON 개체로 toopass 매개 변수 tooa runbook"
+title: "Azure Automation Runbook에 JSON 개체 전달 | Microsoft Docs"
+description: "Runbook에 매개 변수를 JSON 개체로 전달하는 방법"
 services: automation
 documentationcenter: dev-center-name
 author: eslesar
@@ -13,32 +13,32 @@ ms.tgt_pltfrm: powershell
 ms.workload: TBD
 ms.date: 06/15/2017
 ms.author: eslesar
-ms.openlocfilehash: 8229a16015d549927ead5496c70e9fb391d35498
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: eac0e95a46731b9d396ea0590e629d61ca6a7d70
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="pass-a-json-object-tooan-azure-automation-runbook"></a>JSON 개체 tooan Azure 자동화 runbook을 전달 합니다.
+# <a name="pass-a-json-object-to-an-azure-automation-runbook"></a>Azure Automation Runbook에 JSON 개체 전달
 
-JSON 파일에 toopass tooa runbook 유용한 toostore 데이터 수 있습니다.
-예를 들어 모든 hello 매개 변수를 포함 하는 JSON 파일을 만들 수 있습니다 toopass tooa runbook을 선택 합니다.
-toodo이 tooconvert hello JSON tooa 문자열이 한 다음 해당 내용을 toohello runbook을 전달 하기 전에 hello 문자열 tooa PowerShell 개체를 변환 합니다.
+JSON 파일에서 Runbook에 전달하려는 데이터를 저장하는 것이 유용할 수 있습니다.
+예를 들어 Runbook에 전달하려는 모든 매개 변수가 포함된 JSON 파일을 만들 수 있습니다.
+이렇게 하려면 JSON을 문자열로 변환한 다음 해당 문자열을 PowerShell 개체로 변환한 후에 해당 내용을 Runbook에 전달해야 합니다.
 
-이 예제에서는 만들어 호출 하는 PowerShell 스크립트 [시작 AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx) toostart PowerShell runbook hello JSON toohello runbook의 내용을 hello를 전달 합니다.
-hello PowerShell runbook hello에서 전달 된 JSON에서 hello VM hello 매개 변수를 가져와 Azure VM을 시작 합니다.
+이 예제에서는 [Start-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx)을 호출하여 PowerShell Runbook을 시작하고 JSON의 내용을 Runbook에 전달하는 PowerShell 스크립트를 작성합니다.
+PowerShell Runbook은 Azure VM을 시작하고 전달된 JSON에서 VM에 대한 매개 변수를 가져옵니다.
 
 ## <a name="prerequisites"></a>필수 조건
-toocomplete이이 자습서에서는 다음 hello 필요:
+이 자습서를 완료하려면 다음이 필요합니다.
 
 * 동작합니다. 계정이 아직 없는 경우 [MSDN 구독자 혜택을 활성화](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)하거나 <a href="/pricing/free-account/" target="_blank">[무료 계정을 등록](https://azure.microsoft.com/free/)할 수 있습니다.
-* [자동화 계정](automation-sec-configure-azure-runas-account.md) toohold runbook hello 및 tooAzure 리소스를 인증 합니다.  이 계정은 권한 toostart 있고 hello 가상 컴퓨터를 중지 해야 합니다.
+* [자동화 계정](automation-sec-configure-azure-runas-account.md) .  이 계정은 가상 컴퓨터를 시작하고 중지할 수 있는 권한이 있어야 합니다.
 * Azure 가상 컴퓨터. 프로덕션 VM이 되지 않도록 이 가상 컴퓨터를 중지하고 시작합니다.
-* 로컬 컴퓨터에 설치된 Azure Powershell. 참조 [설치 Azure Powershell을 구성 하 고](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-4.1.0) 방법에 대 한 정보에 대 한 Azure PowerShell tooget 합니다.
+* 로컬 컴퓨터에 설치된 Azure Powershell. Azure PowerShell을 얻는 방법에 대한 자세한 내용은 [Install and configure Azure Powershell](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-4.1.0)(Azure Powershell 설치 및 구성)을 참조하세요.
 
-## <a name="create-hello-json-file"></a>Hello JSON 파일 만들기
+## <a name="create-the-json-file"></a>JSON 파일 만들기
 
-텍스트 파일에 테스트 하 고로 저장 하는 형식 hello 다음 `test.json` 로컬 컴퓨터에 있습니다.
+텍스트 파일에 다음 테스트를 입력하고 로컬 컴퓨터의 특정 위치에 `test.json`으로 저장합니다.
 
 ```json
 {
@@ -47,14 +47,14 @@ toocomplete이이 자습서에서는 다음 hello 필요:
 }
 ```
 
-## <a name="create-hello-runbook"></a>Hello runbook 만들기
+## <a name="create-the-runbook"></a>Runbook 만들기
 
 Azure Automation에서 "Test-Json"이라는 새 PowerShell Runbook을 만듭니다.
-toocreate 새 PowerShell runbook을 확인 하려면 어떻게 해야 toolearn [내 첫 번째 PowerShell runbook](automation-first-runbook-textual-powershell.md)합니다.
+새 PowerShell Runbook을 만드는 방법을 알아보려면 [내 첫 번째 PowerShell Runbook](automation-first-runbook-textual-powershell.md)을 참조하세요.
 
-tooaccept hello JSON 데이터를 hello runbook 입력된 매개 변수로 개체를 수행 해야 합니다.
+JSON 데이터를 허용하려면 Runbook에서 개체를 입력 매개 변수로 사용해야 합니다.
 
-hello runbook hello JSON에에서 정의 된 hello 속성을 유도할 수 있습니다.
+그러면 Runbook에서 JSON에 정의된 속성을 사용할 수 있습니다.
 
 ```powershell
 Param(
@@ -62,40 +62,40 @@ Param(
      [object]$json
 )
 
-# Connect tooAzure account   
+# Connect to Azure account   
 $Conn = Get-AutomationConnection -Name AzureRunAsConnection
 Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
     -ApplicationID $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
 
-# Convert object tooactual JSON
+# Convert object to actual JSON
 $json = $json | ConvertFrom-Json
 
-# Use hello values from hello JSON object as hello parameters for your command
+# Use the values from the JSON object as the parameters for your command
 Start-AzureRmVM -Name $json.VMName -ResourceGroupName $json.ResourceGroup
  ```
 
  이 Runbook을 Automation 계정에 저장하고 게시합니다.
 
-## <a name="call-hello-runbook-from-powershell"></a>PowerShell에서 hello runbook을 호출 합니다.
+## <a name="call-the-runbook-from-powershell"></a>PowerShell에서 Runbook 호출
 
-이제 Azure PowerShell을 사용 하 여 로컬 컴퓨터에서 hello runbook을 호출할 수 있습니다.
-Hello 다음 PowerShell 명령을 실행 합니다.
+이제 로컬 컴퓨터에서 Azure PowerShell을 사용하여 Runbook을 호출할 수 있습니다.
+다음 PowerShell 명령을 실행합니다.
 
-1. TooAzure 로그인:
+1. Azure에 로그인합니다.
    ```powershell
    Login-AzureRmAccount
    ```
-    하면 Azure 자격 증명 프롬프트 tooenter 됩니다.
-1. Hello JSON 파일의 내용을 hello 가져오고 tooa 문자열을 변환 합니다.
+    Azure 자격 증명을 입력하라는 메시지가 표시됩니다.
+1. JSON 파일의 내용을 가져와 문자열로 변환합니다.
     ```powershell
     $json =  (Get-content -path 'JsonPath\test.json' -Raw) | Out-string
     ```
-    `JsonPath`hello JSON 파일을 저장 하는 hello 경로가입니다.
-1. Hello 문자열 내용을 변환 `$json` tooa PowerShell 개체:
+    `JsonPath`는 JSON 파일을 저장한 경로입니다.
+1. `$json`의 문자열 내용을 PowerShell 개체로 변환합니다.
    ```powershell
    $JsonParams = @{"json"=$json}
    ```
-1. Hello 매개 변수에 대 한 hashtable을 만들 `Start-AzureRmAutomstionRunbook`:
+1. `Start-AzureRmAutomstionRunbook`의 매개 변수에 대한 해시 테이블을 만듭니다.
    ```powershell
    $RBParams = @{
         AutomationAccountName = 'AATest'
@@ -104,17 +104,17 @@ Hello 다음 PowerShell 명령을 실행 합니다.
         Parameters = $JsonParams
    }
    ```
-   Hello 값을 설정 하 고 있다는 것을 알 `Parameters` hello JSON 파일에서 hello 값이 포함 된 toohello PowerShell 개체입니다. 
-1. Hello runbook 시작
+   `Parameters`의 값을 JSON 파일의 값이 포함된 PowerShell 개체로 설정하고 있는 것입니다. 
+1. Runbook을 시작합니다.
    ```powershell
    $job = Start-AzureRmAutomationRunbook @RBParams
    ```
 
-hello runbook hello JSON 파일 toostart VM hello 값을 사용 합니다.
+Runbook에서 JSON 파일의 값을 사용하여 VM을 시작합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-* 텍스트 편집기를 사용 하 여 PowerShell 및 PowerShell 워크플로 runbook 편집에 대 한 더 toolearn 참조 [Azure 자동화의 텍스트 runbook 편집](automation-edit-textual-runbook.md) 
-* 만들기 및 가져오기 runbook에 대해 자세히 toolearn 참조 [만들기 또는 Azure 자동화에서 runbook 가져오기](automation-creating-importing-runbook.md)
+* 텍스트 편집기를 사용하여 PowerShell 및 PowerShell 워크플로 Runbook을 편집하는 방법을 알아보려면 [Azure 자동화에서 텍스트 Runbook 편집](automation-edit-textual-runbook.md) 
+* Runbook을 만들고 가져오는 방법을 알아보려면 [Azure Automation에서 Runbook 만들기 또는 가져오기](automation-creating-importing-runbook.md)를 참조하세요.
 
 

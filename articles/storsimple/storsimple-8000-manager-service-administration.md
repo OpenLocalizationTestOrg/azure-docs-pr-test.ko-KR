@@ -1,6 +1,6 @@
 ---
-title: "장치 관리자 서비스 관리 aaaStorSimple | Microsoft Docs"
-description: "방법을 사용 하 여 StorSimple 장치에서 StorSimple 장치 관리자 서비스 hello toomanage hello Azure 포털에 알아봅니다."
+title: "StorSimple 장치 관리자 서비스 관리 | Microsoft Docs"
+description: "Azure Portal에서 StorSimple 장치 관리자 서비스를 사용하여 StorSimple 장치를 관리하는 방법을 알아봅니다."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/12/2017
 ms.author: alkohli
-ms.openlocfilehash: d73dc32bd39b2c832d5c4a5edda32a2e7f55a503
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0e7d7f44a70278a7777ba6c32c8e546074953fdc
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="use-hello-storsimple-device-manager-service-tooadminister-your-storsimple-device"></a>StorSimple 장치의 StorSimple 장치 관리자 서비스 tooadminister hello를 사용 하 여
+# <a name="use-the-storsimple-device-manager-service-to-administer-your-storsimple-device"></a>StorSimple 장치 관리자 서비스를 사용하여 StorSimple 장치 관리
 
 ## <a name="overview"></a>개요
 
-이 문서에서는 tooconnect tooit hello, 사용 가능한 다양 한 옵션 및이 UI를 통해 수행할 수 있는 특정 워크플로에 toohello 아웃 연결 방법을 포함 하 여 hello StorSimple 장치 관리자 서비스 인터페이스를 설명 합니다. 이 설명서는 적용 가능한 tooboth; 클라우드 어플라이언스에 hello 및 hello StorSimple 물리적 장치입니다.
+이 문서에서는 연결 방법, 사용 가능한 여러 옵션 및 이 UI를 통해 수행될 수 있는 특정 워크로드에 대한 링크를 포함한 StorSimple 장치 관리자 서비스 인터페이스를 설명합니다. 이 지침은 StorSimple 실제 장치 및 클라우드 어플라이언스, 두 작업 모두에 적용됩니다.
 
 이 문서를 읽은 후 다음에 대해 알 수 있습니다.
 
-* TooStorSimple 장치 관리자 서비스 연결
-* Hello StorSimple 장치 관리자 서비스를 통해 StorSimple 장치를 관리 합니다.
+* StorSimple 장치 관리자 서비스에 연결
+* StorSimple 장치 관리자 서비스를 통한 StorSimple 장치 관리
 
-## <a name="connect-toostorsimple-device-manager-service"></a>TooStorSimple 장치 관리자 서비스 연결
+## <a name="connect-to-storsimple-device-manager-service"></a>StorSimple 장치 관리자 서비스에 연결
 
-hello StorSimple 장치 관리자 서비스는 Microsoft Azure에서 실행 하 고 toomultiple StorSimple 장치를 연결 합니다. 이러한 장치는 브라우저 toomanage에서 실행 되는 중앙 Microsoft Azure 포털을 사용 하는 경우. tooconnect toohello StorSimple 장치 관리자 서비스는 다음 hello지 않습니다.
+StorSimple Device Manager 서비스는 Microsoft Azure에서 실행되며 여러 StorSimple 장치에 연결됩니다. 이러한 장치를 관리하는 브라우저에서 실행되는 중앙 Microsoft Azure Portal을 사용합니다. StorSimple 장치 관리자 서비스에 연결하려면 다음을 수행합니다.
 
-#### <a name="tooconnect-toohello-service"></a>tooconnect toohello 서비스
-1. 너무 이동[https://portal.azure.com/](https://portal.azure.com/)합니다.
-2. Microsoft 계정 자격 증명을 사용 하는 (hello의 오른쪽 위에 hello 창에 있는) toohello Microsoft Azure 포털에 로그온 합니다.
-3. 왼쪽 탐색 창 tooaccess hello StorSimple 장치 관리자 서비스는 hello 아래로 스크롤하십시오.
+#### <a name="to-connect-to-the-service"></a>해당 서비스에 연결하려면
+1. [https://portal.azure.com](https://portal.azure.com/)으로 이동합니다.
+2. Microsoft 계정 자격 증명을 사용하여 Microsoft Azure Portal(해당 창의 상단 오른쪽에 있는)로 로그온합니다.
+3. StorSimple 장치 관리자 서비스에 액세스하려면 왼쪽 탐색 창으로 아래로 스크롤합니다.
 
 
 ## <a name="administer-storsimple-device-using-storsimple-device-manager-service"></a>StorSimple 장치 관리자 서비스를 사용한 StorSimple 장치 관리
 
-hello 다음 표에 모든 hello 일반 관리 작업 및 hello StorSimple 장치 관리자 서비스 UI 내에서 수행할 수 있는 복잡 한 워크플로에 대 한 요약입니다. 이러한 작업은 시작 되는 hello UI 블레이드에 따라 구성 됩니다.
+다음 표에서 모든 일반 관리 작업 및 StorSimple 장치 관리자 서비스 UI 내에서 수행할 수 있는 복잡한 워크플로의 요약을 보여줍니다. 이러한 작업은 시작되는 UI 블레이드 페이지에 따라 구성됩니다.
 
-각 워크플로에 대 한 자세한 내용은 hello hello 테이블에 적절 한 절차를 클릭 합니다.
+각 워크플로에 대한 자세한 내용은 표에서 적절한 절차를 클릭합니다.
 
 #### <a name="storsimple-device-manager-workflows"></a>StorSimple 장치 관리자 워크플로
 
-| 이 toodo 원하는 경우... | 이 절차를 사용합니다. |
+| 수행하려는 작업 ... | 이 절차를 사용합니다. |
 | --- | --- |
 | 서비스 만들기</br>서비스 삭제</br>서비스 등록 키 가져오기</br>서비스 등록 키 다시 생성 |[StorSimple 장치 관리자 서비스 배포](storsimple-8000-manage-service.md) |
-| Hello 활동 로그 보기 |[요약 hello StorSimple 장치 관리자 서비스를 사용 하 여](storsimple-8000-service-dashboard.md) |
-| Hello 서비스 데이터 암호화 키 변경</br>Hello 작업 로그 보기 |[Hello StorSimple 장치 관리자 서비스 대시보드 사용](storsimple-8000-service-dashboard.md) |
+| 작업 로그 보기 |[StorSimple 장치 관리자 서비스 요약 사용](storsimple-8000-service-dashboard.md) |
+| 서비스 데이터 암호화 키 변경</br>작업 로그 보기 |[StorSimple 장치 관리자 서비스 대시보드 사용](storsimple-8000-service-dashboard.md) |
 | 장치 비활성화</br>장치 삭제 |[장치 비활성화 또는 장치 삭제](storsimple-8000-deactivate-and-delete-device.md) |
-| 재해 복구 및 장치 장애 조치(Failover)</br>장애 조치 tooa 물리적 장치</br>장애 조치 tooa 가상 장치</br>비즈니스 연속성 재해 복구(BCDR) |[StorSimple 장치에 대한 장애 조치 및 재해 복구](storsimple-8000-device-failover-disaster-recovery.md) |
+| 재해 복구 및 장치 장애 조치(Failover)</br>실제 장치에 장애 조치(Failover)</br>가상 장치에 대한 장애 조치</br>비즈니스 연속성 재해 복구(BCDR) |[StorSimple 장치에 대한 장애 조치 및 재해 복구](storsimple-8000-device-failover-disaster-recovery.md) |
 | 볼륨에 대한 백업 목록</br>백업 세트를 선택합니다.</br>백업 세트 삭제 |[백업 관리](storsimple-8000-manage-backup-catalog.md) |
 | 볼륨 복제 |[볼륨 복제](storsimple-8000-clone-volume-u2.md) |
 | 백업 세트 복원 |[백업 세트 복원](storsimple-8000-restore-from-backup-set-u2.md) |
@@ -70,21 +70,21 @@ hello 다음 표에 모든 hello 일반 관리 작업 및 hello StorSimple 장�
 | 장치 설정 수정</br>시간 설정 수정</br>DNS.md 설정 수정</br>네트워크 인터페이스 구성 |[StorSimple 장치에 대한 장치 구성 수정](storsimple-8000-modify-device-config.md) |
 | 웹 프록시 설정 보기 |[장치에 대한 웹 프록시 구성](storsimple-8000-configure-web-proxy.md) |
 | 장치 관리자 암호 수정</br>StorSimple 스냅숏 관리자 암호 수정 |[StorSimple 암호 변경](storsimple-8000-change-passwords.md) |
-| 원격 관리 구성 |[Tooyour StorSimple 장치를 원격으로 연결](storsimple-8000-remote-connect.md) |
+| 원격 관리 구성 |[StorSimple 장치에 원격으로 연결](storsimple-8000-remote-connect.md) |
 | 경고 설정 구성 |[StorSimple 경고 보기 및 관리](storsimple-8000-manage-alerts.md) |
 | StorSimple 장치에 대한 CHAP 구성 |[StorSimple 장치에 대한 CHAP 구성](storsimple-configure-chap.md) |
 | 백업 정책 추가</br>일정 추가 또는 수정</br>백업 정책 삭제</br>수동 백업 수행</br>여러 볼륨과 일정의 사용자 지정 백업 정책 만들기 |[백업 정책 관리](storsimple-8000-manage-backup-policies-u2.md) |
-| 장치 컨트롤러 중지</br>장치 컨트롤러 다시 시작</br>장치 컨트롤러 종료</br>장치 toofactory 기본값 다시 설정</br>(위는 온-프레미스 장치용) |[StorSimple 장치 컨트롤러 관리](storsimple-8000-manage-device-controller.md) |
+| 장치 컨트롤러 중지</br>장치 컨트롤러 다시 시작</br>장치 컨트롤러 종료</br>장치를 공장 기본값으로 다시 설정</br>(위는 온-프레미스 장치용) |[StorSimple 장치 컨트롤러 관리](storsimple-8000-manage-device-controller.md) |
 | StorSimple 하드웨어 구성 요소</br>하드웨어 상태 모니터링</br>(위는 온-프레미스 장치용) |[하드웨어 구성 요소 모니터링](storsimple-8000-monitor-hardware-status.md) |
 | 지원 패키지 만들기 |[지원 패키지 만들기 및 관리](storsimple-8000-contact-microsoft-support.md#start-a-support-session-in-windows-powershell-for-storsimple) |
 | 소프트웨어 업데이트 설치 |[장치 업데이트](storsimple-update-device.md) |
 
 ## <a name="next-steps"></a>다음 단계
 
-StorSimple 장치의 hello 일상적인 작업이 나 해당 하드웨어 구성 요소를 사용 하 여 문제가 발생 하는 경우 참조 합니다.
+StorSimple 장치의 일상적인 작업 또는 해당 하드웨어 구성 요소 사용 시 발생하는 모든 문제는 다음을 참조하세요.
 
-* [Hello 진단 도구를 사용 하 여 문제 해결](storsimple-8000-diagnostics.md)
+* [진단 도구를 사용하여 문제 해결](storsimple-8000-diagnostics.md)
 * [StorSimple 모니터링 표시기 LED 사용](storsimple-monitoring-indicators.md)
 
-Hello 문제를 해결할 수 없는 toocreate 서비스 요청을 해야 하는 경우 너무 참조[Microsoft 지원에 문의](storsimple-8000-contact-microsoft-support.md)합니다.
+문제를 해결할 수 없고 서비스 요청을 만드는 데 필요한 경우 [Microsoft 지원에 문의](storsimple-8000-contact-microsoft-support.md)를 참조합니다.
 

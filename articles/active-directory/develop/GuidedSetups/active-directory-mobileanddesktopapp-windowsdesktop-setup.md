@@ -1,5 +1,5 @@
 ---
-title: "AD aaaAzure v2 Windows 데스크톱 시작-설치 | Microsoft Docs"
+title: "Azure AD v2 Windows 데스크톱 시작 - 설정 | Microsoft Docs"
 description: "Windows Desktop .NET(XAML) 응용 프로그램이 Azure Active Directory v2 끝점으로 보호되는 액세스 토큰을 필요로 하는 API를 호출하는 방식"
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,40 +15,40 @@ ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: 097ea99bef01e15edaa5ff914ff4e18392b77c5a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4065727aef04d7969d438c6ef79127bb44568be1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 ## <a name="set-up-your-project"></a>프로젝트 설정
 
-방법에 대 한 단계별 지침을 제공 하는이 섹션 toocreate 새 프로젝트 toodemonstrate 어떻게 toointegrate Windows 데스크톱.NET 응용 프로그램 (XAML)와 *Microsoft를 사용 하 여 로그인* 토큰 요구 하는 웹 Api를 쿼리할 수 있도록 합니다.
+이 섹션에서는 토큰이 필요한 Web API를 쿼리할 수 있도록 Windows Desktop .NET 응용 프로그램(XAML)을 *Microsoft에 로그인*과 통합하는 방식을 설명하기 위해 새 프로젝트를 만드는 방법에 대한 단계별 지침을 제공합니다.
 
-이 가이드에서 만든 hello 응용 프로그램 화면 및 로그 아웃 단추는 단추 toograph 및 표시 결과 표시 합니다.
+이 가이드에서 만든 응용 프로그램은 화면에 결과를 표시하기 위한 단추와 로그아웃 단추를 노출시킵니다.
 
-> Toodownload이이 샘플의 Visual Studio 프로젝트를 대신 선호? [프로젝트를 다운로드](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/archive/master.zip) toohello 건너뛸 [구성 단계](#create-an-application-express) tooconfigure hello 코드 샘플을 실행 하기 전에.
+> 이 샘플의 Visual Studio 프로젝트를 다운로드하고 싶으세요? [프로젝트를 다운로드](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/archive/master.zip)하면 실행 전 코드 샘플을 구성하는 [구성 단계](#create-an-application-express)로 건너뛸 수 있습니다.
 
 
 ### <a name="create-your-application"></a>응용 프로그램 만들기
 1. Visual Studio에서: `File` > `New` > `Project`<br/>
 2. [템플릿]에서 `Visual C#`을 선택합니다.
-3. 선택 `WPF App` (또는 *WPF 응용 프로그램* 에서 Visual Studio의 hello 버전에 따라)
+3. `WPF App`(또는 [WPF 응용 프로그램], Visual Studio 버전에 따라 다름)을 선택합니다.
 
-## <a name="add-hello-microsoft-authentication-library-msal-tooyour-project"></a>Hello Microsoft 인증 라이브러리 (MSAL) tooyour 프로젝트 추가
+## <a name="add-the-microsoft-authentication-library-msal-to-your-project"></a>프로젝트에 MSAL(Microsoft 인증 라이브러리) 추가
 1. Visual Studio에서: `Tools` > `Nuget Package Manager` > `Package Manager Console`
-2. Hello 패키지 관리자 콘솔 창에서에서 hello 다음 복사/붙여넣기:
+2. 패키지 관리자 콘솔 창에서 다음 내용을 복사/붙여넣습니다.
 
 ```powershell
 Install-Package Microsoft.Identity.Client -Pre
 ```
 
-> 위의 hello 패키지는 hello Microsoft 인증 라이브러리 (MSAL)를 설치합니다. MSAL 가져오는, 캐싱 및 사용자 사용 toskens tooaccess Azure Active Directory v 2에 의해 보호 되는 Api를 새로 고침을 처리 합니다.
+> 위의 패키지는 MSAL(Microsoft 인증 라이브러리)을 설치합니다. MSAL은 Azure Active Directory v2로 보호되는 API에 액세스하는 데 사용되는 사용자 토큰의 획득, 캐싱 및 새로 고침을 처리합니다.
 
-## <a name="add-hello-code-tooinitialize-msal"></a>Hello 코드 tooinitialize MSAL 추가
-이 단계를 사용 하면 토큰의 처리와 같은 MSAL 라이브러리와 클래스 toohandle 상호 작용을 만들 수 있습니다.
+## <a name="add-the-code-to-initialize-msal"></a>MSAL을 초기화하는 코드 추가
+이 단계를 수행하면 MSAL 라이브러리와의 상호 작용을 처리하는 클래스를 만들 수 있습니다(예: 토큰 처리).
 
-1. 열기 hello `App.xaml.cs` 파일을 MSAL 라이브러리 toohello 클래스에 대 한 hello 참조를 추가 합니다.
+1. `App.xaml.cs` 파일을 열고 클래스에 MSAL 라이브러리에 대한 참조를 추가합니다.
 
 ```csharp
 using Microsoft.Identity.Client;
@@ -56,15 +56,15 @@ using Microsoft.Identity.Client;
 <!-- Workaround for Docs conversion bug -->
 <ol start="2">
 <li>
-Hello, 클래스 toohello 다음 앱을 업데이트 합니다.
+앱 클래스를 다음으로 업데이트합니다.
 </li>
 </ol>
 
 ```csharp
 public partial class App : Application
 {
-    //Below is hello clientId of your app registration. 
-    //You have tooreplace hello below with hello Application Id for your app registration
+    //Below is the clientId of your app registration. 
+    //You have to replace the below with the Application Id for your app registration
     private static string ClientId = "your_client_id_here";
 
     public static PublicClientApplication PublicClientApp = new PublicClientApplication(ClientId);
@@ -73,9 +73,9 @@ public partial class App : Application
 ```
 
 ## <a name="create-your-applications-ui"></a>응용 프로그램 UI 만들기
-hello 섹션 아래의 응용 프로그램에서 Microsoft Graph와 같은 보호 된 백 엔드 서버를 쿼리할 수는 방법을 보여 줍니다. MainWindow.xaml 파일은 프로젝트 템플릿의 일부로 자동으로 생성되어야 합니다. 이 파일이이 파일을 열고 아래 hello 지침을 따릅니다.
+아래 섹션에서는 응용 프로그램에서 Microsoft Graph와 같은 보호되는 백 엔드 서버를 쿼리하는 방법을 보여 줍니다. MainWindow.xaml 파일은 프로젝트 템플릿의 일부로 자동으로 생성되어야 합니다. 이 파일을 열고 아래 지침을 따릅니다.
 
-응용 프로그램의 대체 `<Grid>` hello 다음 수:
+다음으로 응용 프로그램의 `<Grid>`를 바꿉니다.
 
 ```xml
 <Grid>

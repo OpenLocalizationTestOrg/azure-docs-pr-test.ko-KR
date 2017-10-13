@@ -1,6 +1,6 @@
 ---
-title: "역할 기반 액세스 제어 (RBAC)와 Azure CLI aaaManage | Microsoft Docs"
-description: "어떻게 toomanage 역할 기반 액세스 제어 (RBAC) hello Azure 명령줄로 인터페이스 목록 역할 및 역할 작업에 알아봅니다 toohello 구독 및 응용 프로그램 범위의 역할에 할당 하 여 합니다."
+title: "Azure CLI를 사용하여 RBAC(역할 기반 액세스 제어) 관리 | Microsoft Docs"
+description: "Azure 명령줄 인터페이스에서 역할 및 역할 작업을 나열하고, 구독 및 응용 프로그램 범위에 역할을 할당하여 RBAC(역할 기반 액세스 제어)를 관리하는 방법을 알아봅니다."
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -14,33 +14,33 @@ ms.workload: identity
 ms.date: 07/12/2017
 ms.author: andredm
 ms.reviewer: rqureshi
-ms.openlocfilehash: 438418e5f6ee9b98908c9c264d516eb722a4e26d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 77315171754304c965f296670fbba3a4751a3656
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="manage-role-based-access-control-with-hello-azure-command-line-interface"></a>Azure 명령줄 인터페이스 hello로 역할 기반 액세스 제어 관리
+# <a name="manage-role-based-access-control-with-the-azure-command-line-interface"></a>Azure 명령줄 인터페이스를 사용하여 역할 기반 액세스 제어 관리
 > [!div class="op_single_selector"]
 > * [PowerShell](role-based-access-control-manage-access-powershell.md)
 > * [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 > * [REST API](role-based-access-control-manage-access-rest.md)
 
 
-Hello Azure 포털 및 Azure 리소스 관리자 API toomanage 액세스 tooyour 구독 및 세분화 된 수준에서 리소스에서 역할 기반 액세스 제어 (RBAC)를 사용할 수 있습니다. 이 기능을 특정 범위에서 일부 역할 toothem 할당 하 여 Active Directory 사용자, 그룹 또는 서비스 사용자에 대 한 액세스를 부여할 수 있습니다.
+Azure 포털의 RBAC(역할 기반 액세스 제어) 및 Azure Resource Manager API를 사용하여 세밀한 수준에서 구독과 리소스에 대한 액세스를 관리할 수 있습니다. 이 기능을 통해 특정 범위에서 Active Directory 사용자, 그룹 또는 서비스 사용자에게 일부 역할을 할당하여 액세스 권한을 부여할 수 있습니다.
 
-Hello Azure CLI (명령줄 인터페이스) toomanage RBAC를 사용 하려면 먼저 다음 필수 구성 요소는 hello가 있어야 합니다.
+Azure CLI(명령줄 인터페이스)를 사용하여 RBAC를 관리하려면 다음 항목이 필요합니다.
 
-* Azure CLI 버전 0.8.8 이상을 사용하세요. Azure 구독으로 참조 tooinstall hello에 대 한 최신 정보 및 연결 [설치 및 구성 hello Azure CLI](../cli-install-nodejs.md)합니다.
-* Azure CLI에서 Azure Resource Manager입니다. 너무 이동[hello 리소스 관리자를 사용 하 여 hello Azure CLI](../xplat-cli-azure-resource-manager.md) 내용을 확인 합니다.
+* Azure CLI 버전 0.8.8 이상을 사용하세요. 최신 버전을 설치하고 Azure 구독에 연결하려면 [Azure CLI 설치 및 구성 방법](../cli-install-nodejs.md)을 참조하세요.
+* Azure CLI에서 Azure Resource Manager입니다. 자세한 내용을 보려면 [리소스 관리자에서 Azure CLI 사용](../xplat-cli-azure-resource-manager.md) 으로 이동합니다.
 
 ## <a name="list-roles"></a>역할 나열
 ### <a name="list-all-available-roles"></a>사용 가능한 모든 역할 나열
-toolist 모든 사용 가능한 역할을 사용 합니다.
+사용 가능한 역할을 모두 사용하려면 다음을 사용합니다.
 
         azure role list
 
-hello 다음 예제에서는 hello 목록이 표시 *모든 사용 가능한 역할*합니다.
+다음 예제에서는 *사용 가능한 모든 역할*의 목록을 보여 줍니다.
 
 ```
 azure role list --json | jq '.[] | {"roleName":.properties.roleName, "description":.properties.description}'
@@ -49,11 +49,11 @@ azure role list --json | jq '.[] | {"roleName":.properties.roleName, "descriptio
 ![RBAC Azure 명령줄 - azure role list - 스크린샷](./media/role-based-access-control-manage-access-azure-cli/1-azure-role-list.png)
 
 ### <a name="list-actions-of-a-role"></a>역할의 작업 나열
-역할을 사용 하 여 toolist hello 작업의 경우:
+역할의 작업을 나열하려면 다음을 사용합니다.
 
     azure role show "<role name>"
 
-hello 다음 예제에서는 작업을 보여 주는 hello의 hello *참가자* 및 *가상 컴퓨터 참가자* 역할입니다.
+다음 예제에서는 *참가자* 및 *가상 컴퓨터 참가자* 역할의 작업을 보여줍니다.
 
 ```
 azure role show "contributor" --json | jq '.[] | {"Actions":.properties.permissions[0].actions,"NotActions":properties.permissions[0].notActions}'
@@ -65,11 +65,11 @@ azure role show "virtual machine contributor" --json | jq '.[] | .properties.per
 
 ## <a name="list-access"></a>액세스 권한 나열
 ### <a name="list-role-assignments-effective-on-a-resource-group"></a>리소스 그룹에 적용되는 역할 할당 나열
-사용 하 여 리소스 그룹에 있는 toolist hello 역할 할당:
+리소스 그룹에 존재하는 역할 할당을 나열하려면 다음을 사용합니다.
 
     azure role assignment list --resource-group <resource group name>
 
-hello 다음 예제에서는 hello 역할 할당 hello *pharma-sales-projecforcast* 그룹입니다.
+다음 예제에서는 *pharma-sales-projecforcast* 그룹에 있는 역할 할당을 보여 줍니다.
 
 ```
 azure role assignment list --resource-group pharma-sales-projecforcast --json | jq '.[] | {"DisplayName":.properties.aADObject.displayName,"RoleDefinitionName":.properties.roleName,"Scope":.properties.scope}'
@@ -78,15 +78,15 @@ azure role assignment list --resource-group pharma-sales-projecforcast --json | 
 ![RBAC Azure 명령줄 - 그룹별 azure role assignment list - 스크린샷](./media/role-based-access-control-manage-access-azure-cli/4-azure-role-assignment-list-1.png)
 
 ### <a name="list-role-assignments-for-a-user"></a>사용자에 대한 역할 할당 목록
-특정 사용자에 대 한 toolist hello 역할 할당 및 tooa 사용자 그룹을 할당 하는 hello 할당 사용 합니다.
+특정 사용자에 대한 역할 할당 및 사용자 그룹에 할당된 할당을 나열하려면 다음을 사용합니다.
 
     azure role assignment list --signInName <user email>
 
-또한 hello 명령을 수정 하 여 그룹에서 상속 되는 역할 할당을 확인할 수 있습니다.
+또한 명령을 수정하여 그룹에서 상속하는 역할 할당을 확인할 수도 있습니다.
 
     azure role assignment list --expandPrincipalGroups --signInName <user email>
 
-hello 다음 보여 주는 예제 toohello 부여 된 hello 역할 할당  *sameert@aaddemo.com*  사용자입니다. 여기에 그룹에서 상속 된 역할과 toohello 사용자 직접 할당 된 역할을 합니다.
+다음 예제에서는 사용자 *sameert@aaddemo.com* 에 부여된 역할 할당을 보여 줍니다. 여기에는 사용자에게 직접 할당된 역할 및 그룹에서 상속된 역할이 포함됩니다.
 
 ```
 azure role assignment list --signInName sameert@aaddemo.com --json | jq '.[] | {"DisplayName":.properties.aADObject.DisplayName,"RoleDefinitionName":.properties.roleName,"Scope":.properties.scope}'
@@ -97,100 +97,100 @@ azure role assignment list --expandPrincipalGroups --signInName sameert@aaddemo.
 ![RBAC Azure 명령줄 - 사용자별 azure role assignment list - 스크린샷](./media/role-based-access-control-manage-access-azure-cli/4-azure-role-assignment-list-2.png)
 
 ## <a name="grant-access"></a>액세스 권한 부여
-toogrant 액세스 tooassign hello 역할을 식별 한 후 사용 하 여:
+할당할 역할을 식별한 후 액세스 권한을 부여하려면 다음을 사용합니다.
 
     azure role assignment create
 
-### <a name="assign-a-role-toogroup-at-hello-subscription-scope"></a>Hello 구독 범위에서 역할 toogroup 할당
-tooassign hello 구독 범위에서 사용 하 여 역할 tooa 그룹:
+### <a name="assign-a-role-to-group-at-the-subscription-scope"></a>구독 범위에서 그룹에 역할 할당
+구독 범위에서 그룹에 역할을 할당하려면 다음을 사용합니다.
 
     azure role assignment create --objectId  <group object id> --roleName <name of role> --subscription <subscription> --scope <subscription/subscription id>
 
-hello 다음 예제에서는 할당 hello *판독기* 역할 너무*Christine Koch 팀* hello에 *구독* 범위입니다.
+다음 예제에서는 *구독* 범위에서 *Christine Koch 팀*에 *독자* 역할을 할당합니다.
 
 ![RBAC Azure 명령줄 - 그룹별 azure role assignment create - 스크린샷](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-assignment-create-1.png)
 
-### <a name="assign-a-role-tooan-application-at-hello-subscription-scope"></a>Hello 구독 범위에서 역할 tooan 응용 프로그램 할당
-tooassign hello 구독 범위에서 사용 하 여 역할 tooan 응용 프로그램:
+### <a name="assign-a-role-to-an-application-at-the-subscription-scope"></a>구독 범위에서 응용 프로그램에 역할 할당
+구독 범위에서 응용 프로그램에 역할을 할당하려면 다음을 사용합니다.
 
     azure role assignment create --objectId  <applications object id> --roleName <name of role> --subscription <subscription> --scope <subscription/subscription id>
 
-hello 다음 예제에서는 부여 hello *참가자* 역할 tooan *Azure AD* hello에 대 한 응용 프로그램 구독을 선택 합니다.
+다음 예제에서는 선택한 구독에서 *Azure AD* 응용 프로그램에 *참가자* 역할을 부여합니다.
 
  ![RBAC Azure 명령줄 - 응용 프로그램별 azure role assignment create - 스크린샷](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-assignment-create-2.png)
 
-### <a name="assign-a-role-tooa-user-at-hello-resource-group-scope"></a>Hello 리소스 그룹 범위에서 역할 tooa 사용자 지정
-tooassign hello 리소스 그룹 범위에서 사용 하 여 역할 tooa 사용자:
+### <a name="assign-a-role-to-a-user-at-the-resource-group-scope"></a>리소스 그룹 범위에서 사용자에 역할 할당
+리소스 그룹 범위에서 사용자에 역할을 할당하려면 다음을 사용합니다.
 
     azure role assignment create --signInName  <user email address> --roleName "<name of role>" --resourceGroup <resource group name>
 
-hello 다음 예제에서는 부여 hello *가상 컴퓨터 참가자* 역할 너무 *samert@aaddemo.com*  hello에 사용자 *Pharma-Sales-ProjectForcast* 리소스 그룹 범위입니다.
+다음 예제에서는 *Pharma-Sales-ProjectForcast* 리소스 그룹 범위에서 사용자 *samert@aaddemo.com*에 *가상 컴퓨터 참가자* 역할을 부여합니다.
 
 ![RBAC Azure 명령줄 - 사용자별 azure role assignment create - 스크린샷](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-assignment-create-3.png)
 
-### <a name="assign-a-role-tooa-group-at-hello-resource-scope"></a>Hello 리소스 범위에서 역할 tooa 그룹 할당
-tooassign hello 리소스 범위에서 사용 하 여 역할 tooa 그룹:
+### <a name="assign-a-role-to-a-group-at-the-resource-scope"></a>리소스 범위에서 그룹에 역할 할당
+리소스 범위에서 그룹에 역할을 할당하려면 다음을 사용합니다.
 
     azure role assignment create --objectId <group id> --role "<name of role>" --resource-name <resource group name> --resource-type <resource group type> --parent <resource group parent> --resource-group <resource group>
 
-hello 다음 예제에서는 부여 hello *가상 컴퓨터 참가자* 역할 tooan *Azure AD* 그룹에 *서브넷*합니다.
+다음 예제에서는 *서브넷*에서 *Azure AD* 그룹에 *가상 컴퓨터 참가자* 역할을 부여합니다.
 
 ![RBAC Azure 명령줄 - 그룹별 azure role assignment create - 스크린샷](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-assignment-create-4.png)
 
 ## <a name="remove-access"></a>액세스 권한 제거
-tooremove 역할 할당을 사용 합니다.
+역할 할당을 제거하려면 다음을 사용합니다.
 
-    azure role assignment delete --objectId <object id toofrom which tooremove role> --roleName "<role name>"
+    azure role assignment delete --objectId <object id to from which to remove role> --roleName "<role name>"
 
-hello 다음 예제에서는 제거 hello *가상 컴퓨터 참가자* hello에서 역할 할당  *sammert@aaddemo.com*  hello에 대 한 사용자 *Pharma-Sales-ProjectForcast* 리소스 그룹입니다.
-hello 예제는 다음 hello 구독에 있는 그룹에서 hello 역할 할당을 제거합니다.
+다음 예제에서는 *Pharma-Sales-ProjectForcast* 리소스 그룹의 사용자 *sammert@aaddemo.com*에서 *가상 컴퓨터 참가자* 역할 할당을 제거합니다.
+그런 다음 구독의 그룹에서 역할 할당을 제거합니다.
 
 ![RBAC Azure 명령줄 - azure role assignment delete - 스크린샷](./media/role-based-access-control-manage-access-azure-cli/3-azure-role-assignment-delete.png)
 
 ## <a name="create-a-custom-role"></a>사용자 지정 역할 만들기
-사용자 지정 역할 toocreate 사용 합니다.
+사용자 지정 역할을 만들려면 다음을 사용합니다.
 
-    azure role create --inputfile <file path>
+    azure role definition create --role-definition <file path>
 
-hello 다음 예제에서는 라는 사용자 지정 역할 *가상 컴퓨터 연산자*합니다. 이 사용자 지정 역할 액세스 tooall 읽기 작업의 부여 *Microsoft.Compute*, *Microsoft.Storage*, 및 *Microsoft.Network* 리소스 공급자 및 부여 액세스 toostart, 다시 시작 하 고 가상 컴퓨터를 모니터링 합니다. 두 구독 모두에서 사용자 지정 역할을 사용할 수 있습니다. 이 예제에서는 입력으로 JSON 파일을 사용합니다.
+다음 예제에서는 *Virtual Machine Operator*라는 사용자 지정 역할을 만듭니다. 사용자 지정 역할은 *Microsoft.Compute*, *Microsoft.Storage* 및 *Microsoft.Network* 리소스 공급자의 모든 읽기 작업에 대한 액세스 권한을 부여하고 가상 컴퓨터를 시작, 다시 시작 및 모니터링할 수 있는 권한을 부여합니다. 두 구독 모두에서 사용자 지정 역할을 사용할 수 있습니다. 이 예제에서는 입력으로 JSON 파일을 사용합니다.
 
 ![JSON - 사용자 지정 역할 정의 - 스크린샷](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-create-1.png)
 
 ![RBAC Azure 명령줄 - azure role create - 스크린샷](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-create-2.png)
 
 ## <a name="modify-a-custom-role"></a>사용자 지정 역할 수정
-사용자 지정 역할 toomodify 먼저 사용 하 여 hello `azure role show` 명령 tooretrieve 역할 정의 합니다. 둘째, hello 원하는 변경 내용을 toohello 역할 정의 파일을 확인 합니다. 마지막으로 사용 하 여 `azure role set` toosave hello 역할 정의 수정 합니다.
+사용자 지정 역할을 수정하려면 먼저 `azure role definition list` 명령을 사용하여 역할 정의를 검색합니다. 그런 다음 역할 정의 파일을 원하는 대로 변경합니다. 마지막으로 `azure role definition update` 을 사용하여 수정한 역할 정의를 저장합니다.
 
-    azure role set --inputfile <file path>
+    azure role definition update --role-definition <file path>
 
-hello 다음 예제에서는 추가 hello *Microsoft.Insights/diagnosticSettings/* 작업 toohello **동작**, 및 Azure 구독 toohello **AssignableScopes**hello 가상 컴퓨터 운영자에 대 한 사용자 지정 역할을 합니다.
+다음 예제에서는 **작업**에 *Microsoft.Insights/diagnosticSettings/* 작업을 추가하고 Virtual Machine Operator 사용자 지정 역할의 **AssignableScopes**에 Azure 구독을 추가합니다.
 
 ![JSON - 사용자 지정 역할 수정 정의 - 스크린샷](./media/role-based-access-control-manage-access-azure-cli/3-azure-role-set-1.png)
 
 ![RBAC Azure 명령줄 - azure role set - 스크린샷](./media/role-based-access-control-manage-access-azure-cli/3-azure-role-set2.png)
 
 ## <a name="delete-a-custom-role"></a>사용자 지정 역할 삭제
-사용자 지정 역할 toodelete 먼저 사용 하 여 hello `azure role show` 명령 toodetermine hello **ID** hello 역할의 합니다. 그런 다음 사용 하는 hello `azure role delete` hello를 지정 하 여 명령 toodelete hello 역할 **ID**합니다.
+사용자 지정 역할을 삭제하려면 먼저 `azure role definition list` 명령을 사용하여 역할의 **ID** 를 확인합니다. 그런 다음 `azure role definition delete` 명령을 사용하여 **ID**를 지정하여 역할을 삭제합니다.
 
-hello 다음 예제에서는 제거 hello *가상 컴퓨터 연산자* 사용자 지정 역할입니다.
+다음 예제에서는 *Virtual Machine Operator* 사용자 지정 역할을 제거합니다.
 
 ![RBAC Azure 명령줄 - azure role delete - 스크린샷](./media/role-based-access-control-manage-access-azure-cli/4-azure-role-delete.png)
 
 ## <a name="list-custom-roles"></a>사용자 지정 역할 나열
-toolist hello 역할 할당에 범위를 사용할 수 있는 hello를 사용 하 여 `azure role list` 명령입니다.
+범위에서 할당할 수 있는 역할을 나열하려면 `azure role list` 명령을 사용합니다.
 
-다음 명령을 hello hello 선택한 구독에 할당에 사용할 수 있는 모든 역할을 나열 합니다.
+다음 명령에서는 선택한 구독에 할당할 수 있는 모든 역할을 나열합니다.
 
 ```
-azure role list --json | jq '.[] | {"name":.properties.roleName, type:.properties.type}'
+azure role definition list --json | jq '.[] | {"name":.properties.roleName, type:.properties.type}'
 ```
 
 ![RBAC Azure 명령줄 - azure role list - 스크린샷](./media/role-based-access-control-manage-access-azure-cli/5-azure-role-list1.png)
 
-다음 예제는 hello에서 hello *가상 컴퓨터 연산자* 사용자 지정 역할 hello에서는 사용할 수 없습니다. *Production4* 구독 hello에서 해당 구독에  **AssignableScopes** hello 역할의 합니다.
+다음 예제에서는 *Virtual Machine Operator* 사용자 지정 역할을 *Production4* 구독에서 사용할 수 없습니다. 이 구독이 해당 역할의 **AssignableScopes**에 없기 때문입니다.
 
 ```
-azure role list --json | jq '.[] | if .properties.type == "CustomRole" then .properties.roleName else empty end'
+azure role definition list --json | jq '.[] | if .properties.type == "CustomRole" then .properties.roleName else empty end'
 ```
 
 ![RBAC Azure 명령줄 - 사용자 지정 역할에 대한 azure role list - 스크린샷](./media/role-based-access-control-manage-access-azure-cli/5-azure-role-list2.png)

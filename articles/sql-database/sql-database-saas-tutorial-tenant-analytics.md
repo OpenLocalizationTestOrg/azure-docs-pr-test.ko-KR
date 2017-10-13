@@ -1,5 +1,5 @@
 ---
-title: "여러 Azure SQL 데이터베이스에 대 한 분석 쿼리 aaaRun | Microsoft Docs"
+title: "여러 Azure SQL 데이터베이스에 대해 분석 쿼리 실행 | Microsoft Docs"
 description: "오프라인 분석을 위해 테넌트 데이터베이스에서 분석 데이터베이스로 데이터 추출"
 keywords: "sql 데이터베이스 자습서"
 services: sql-database
@@ -16,83 +16,83 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2017
 ms.author: billgib; sstein
-ms.openlocfilehash: f2664e4aafd2fecc98d20d229342bca19b0b08c1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4e32407d5f321198358e07980907c3420aaf56c6
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="extract-data-from-tenant-databases-into-an-analytics-database-for-offline-analysis"></a>오프라인 분석을 위해 테넌트 데이터베이스에서 분석 데이터베이스로 데이터 추출
 
-이 자습서에서는 각 테 넌 트 데이터베이스에 대 한 탄력적 작업 toorun 쿼리는 사용할 수 있습니다. hello 작업 티켓 판매 데이터를 추출 및 분석을 위해 분석 데이터베이스 (또는 데이터 웨어하우스)에 로드 합니다. hello 분석 데이터베이스는 다음의 모든 테 넌 트가이 일상적인 운영 데이터 로부터 이해를 tooextract 쿼리 합니다.
+이 자습서에서는 탄력적 작업을 사용하여 각 테넌트 데이터베이스에 대해 쿼리를 실행합니다. 이 작업에서는 티켓 판매 데이터를 추출하여 분석을 위해 분석 데이터베이스(또는 데이터 웨어하우스)에 로드합니다. 그런 다음 이 분석 데이터베이스를 쿼리하면 모든 테넌트의 일상적인 운영 데이터로부터 유용한 정보를 추출할 수 있습니다.
 
 
 이 자습서에서는 다음 방법에 대해 알아봅니다.
 
 > [!div class="checklist"]
-> * Hello 테 넌 트 분석 데이터베이스 만들기
-> * 예약 된 작업 tooretrieve 데이터를 만들고 hello 분석 데이터베이스 채우기
+> * 테넌트 분석 데이터베이스 만들기
+> * 데이터를 검색하고 분석 데이터베이스를 채우는 예약된 작업 만들기
 
-이 자습서에서는 다음 필수 구성 요소 확인 되었는지 hello 만족할 toocomplete:
+이 자습서를 수행하려면 다음 필수 조건이 충족되었는지 확인합니다.
 
-* hello Wingtip SaaS 앱을 배포 합니다. 5 분 이내에 toodeploy 참조 [배포 하 고 hello Wingtip SaaS 응용 프로그램 탐색](sql-database-saas-tutorial.md)
+* Wingtip SaaS 앱이 배포되었습니다. 5분 내에 배포하려면 [Wingtip SaaS 응용 프로그램 배포 및 탐색](sql-database-saas-tutorial.md)을 참조하세요.
 * Azure PowerShell이 설치되었습니다. 자세한 내용은 [Azure PowerShell 시작](https://docs.microsoft.com/powershell/azure/get-started-azureps)을 참조하세요.
-* SQL Server Management Studio (SSMS) hello 최신 버전이 설치 됩니다. [SSMS 다운로드 및 설치](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)
+* 최신 버전의 SSMS(SQL Server Management Studio)가 설치되어 있습니다. [SSMS 다운로드 및 설치](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)
 
 ## <a name="tenant-operational-analytics-pattern"></a>테넌트 운영 분석 패턴
 
-Hello 좋은 기회 SaaS 응용 프로그램 중 하나에 hello 클라우드에 저장 되어 있는 toouse hello 효율적인 테 넌 트 데이터입니다. 이 데이터 toogain 이해력 hello 작업과 응용 프로그램 및 테 넌 트의 사용을 사용 합니다. 이 데이터는 기능 개발, 유용성 향상 및 기타 투자 hello 응용 프로그램 및 플랫폼에 도달할 수 있습니다. 단일 다중 테넌트 데이터베이스에 있을 때 이 데이터에 액세스하는 것은 쉽지만 잠재적인 수천 개의 데이터베이스 규모로 분산되는 경우는 그렇게 쉽지 않습니다. 한 접근 방식을 tooaccessing이이 데이터는 있도록 쿼리 결과 출력 데이터베이스 및 테이블에서 캡처된 작업 실행 toobe에서 결과 반환 하는 toouse 탄력적 작업.
+SaaS 응용 프로그램을 사용했을 때의 커다란 기회 중 하나는 클라우드에 저장되어 있는 풍부한 테넌트 데이터를 사용하는 것입니다. 이 데이터를 사용하여 응용 프로그램의 사용 및 작업, 그리고 테넌트에 대한 통찰력을 얻을 수 있습니다. 이 데이터는 기능 개발, 향상된 유용성, 앱 및 플랫폼의 기타 투자에 대한 지침을 제공할 수 있습니다. 단일 다중 테넌트 데이터베이스에 있을 때 이 데이터에 액세스하는 것은 쉽지만 잠재적인 수천 개의 데이터베이스 규모로 분산되는 경우는 그렇게 쉽지 않습니다. 이 데이터에 액세스하는 한 가지 방법은 작업 실행의 결과 반환 쿼리 결과가 출력 데이터베이스 및 테이블에 캡처되도록 할 수 있는 탄력적 작업을 사용하는 것입니다.
 
-## <a name="get-hello-wingtip-application-scripts"></a>Hello Wingtip 응용 프로그램 스크립트 가져오기
+## <a name="get-the-wingtip-application-scripts"></a>Wingtip 응용 프로그램 스크립트 가져오기
 
-hello Wingtip SaaS 스크립트 및 응용 프로그램 소스 코드에서에서 사용할 수 있는 hello [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) github 리포지토리 합니다. [Toodownload hello Wingtip SaaS 스크립트 단계](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts)합니다.
+Wingtip SaaS 스크립트 및 응용 프로그램 소스 코드는 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) github 리포지토리에서 사용할 수 있습니다. [Wingtip SaaS 스크립트를 다운로드하는 단계](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts).
 
 ## <a name="deploy-a-database-for-tenant-analytics-results"></a>테넌트 분석 결과에 대한 데이터베이스 배포
 
-이 자습서에서 작업 실행 결과 반환 하는 쿼리를 포함 하는 스크립트의 결과 데이터베이스 배포 toocapture hello toohave를 해야 합니다. 이 용도로 사용할 tenantanalytics라는 데이터베이스를 만들어 보겠습니다.
+이 자습서를 사용하려면 결과 반환 쿼리가 포함된 스크립트의 작업 실행 결과를 캡처할 데이터베이스가 있어야 합니다. 이 용도로 사용할 tenantanalytics라는 데이터베이스를 만들어 보겠습니다.
 
-1. 열기... \\학습 모듈\\운영 분석\\테 넌 트 분석\\*데모 TenantAnalyticsDB.ps1* hello에 *PowerShell ISE* 설정 다음 값 hello:
+1. *PowerShell ISE*에서 ...\\Learning Modules\\Operational Analytics\\Tenant Analytics\\*Demo-TenantAnalyticsDB.ps1*을 열고 다음 값을 설정합니다.
    * **$DemoScenario** = **2** *운영 분석 데이터베이스 배포*
-1. 키를 눌러 **F5** toorun hello 데모 스크립트 (해당 호출 hello *배포 TenantAnalyticsDB.ps1* 스크립트)는 hello 테 넌 트 분석 데이터베이스를 만듭니다.
+1. **F5**를 눌러 테넌트 분석 데이터베이스를 만드는 데모 스크립트(*Deploy-TenantAnalyticsDB.ps1* 스크립트 호출)를 실행합니다.
 
-## <a name="create-some-data-for-hello-demo"></a>Hello 데모에 대 한 일부 데이터 만들기
+## <a name="create-some-data-for-the-demo"></a>데모를 위한 몇 가지 데이터 만들기
 
-1. 열기... \\학습 모듈\\운영 분석\\테 넌 트 분석\\*데모 TenantAnalyticsDB.ps1* hello에 *PowerShell ISE* 설정 다음 값 hello:
+1. *PowerShell ISE*에서 ...\\Learning Modules\\Operational Analytics\\Tenant Analytics\\*Demo-TenantAnalyticsDB.ps1*을 열고 다음 값을 설정합니다.
    * **$DemoScenario** = **1** *모든 장소에서 이벤트 티켓 구입*
-1. 키를 눌러 **F5** toorun 스크립트 hello 및 구매 기록을 티켓을 만드세요.
+1. **F5**를 눌러 스크립트를 실행하고 티켓 구입 기록을 만듭니다.
 
 
-## <a name="create-a-scheduled-job-tooretrieve-tenant-analytics-about-ticket-purchases"></a>티켓 구매에 대 한 예약 된 작업 tooretrieve 테 넌 트 분석 만들기
+## <a name="create-a-scheduled-job-to-retrieve-tenant-analytics-about-ticket-purchases"></a>티켓 구입에 대한 테넌트 분석을 검색하는 예약된 작업 만들기
 
-이 스크립트는 모든 테 넌 트의 작업 tooretrieve 티켓 구매 정보를 만듭니다. 단일 테이블에 집계, 후 hello 테 넌 트 간에 패턴을 구매 하는 티켓에 대 한 풍부한 통찰력 메트릭을 얻을 수 있습니다.
+이 스크립트는 모든 테넌트에서 티켓 구입 정보를 검색하는 작업을 만듭니다. 단일 테이블에 집계한 후, 테넌트 간에 티켓 구입 패턴에 대한 많은 유용한 메트릭을 얻을 수 있습니다.
 
-1. SSMS를 열고 연결 toohello 카탈로그-&lt;사용자&gt;. database.windows.net 서버
+1. SSMS를 열고 catalog-&lt;user&gt;.database.windows.net 서버에 연결합니다.
 1. ...\\Learning Modules\\Operational Analytics\\Tenant Analytics\\*TicketPurchasesfromAllTenants.sql*을 엽니다.
-1. 수정 &lt;사용자&gt;, hello 스크립트의 hello 위쪽 hello Wingtip SaaS 앱을 배포할 때 사용 하는 사용 하 여 hello 사용자 이름 **sp\_추가\_대상\_그룹\_멤버** 및 **sp\_추가\_작업 단계**
-1. 마우스 오른쪽 단추로 클릭 하 여, 선택 **연결**, 연결 toohello 카탈로그-&lt;사용자&gt;. database.windows.net 서버에 아직 연결 되지
-1. 연결 된 toohello을 준수할 **jobaccount** 데이터베이스 및 키를 눌러 **F5** hello 스크립트를 실행 하려면
+1. &lt;User&gt;를 수정하고 스크립트 상단에 Wingtip SaaS 앱을 배포할 때 사용한 사용자 이름을 사용합니다(**sp\_add\_target\_group\_member** 및 **sp\_add\_jobstep**).
+1. 마우스 오른쪽 단추로 클릭하고 **연결**을 선택한 후 catalog-&lt;User&gt;.database.windows.net server 서버에 연결합니다(아직 연결하지 않은 경우).
+1. **jobaccount** 데이터베이스에 연결되어 있는지 확인하고 **F5**를 눌러 스크립트를 실행합니다.
 
-* **sp\_추가\_대상\_그룹** hello 대상 그룹 이름 만듭니다 *TenantGroup*, 이제 tooadd 대상 멤버가 필요 합니다.
-* **sp\_추가\_대상\_그룹\_멤버** 추가 *서버* 대상 내의 해당 서버 (이 hello customer1-모든 데이터베이스 하다 고 판단 되는 멤버 유형 &lt;사용자&gt; hello 테 넌 트 데이터베이스를 포함 하는 서버) 작업의 시간에 실행 hello 작업에 포함 해야 합니다.
+* **sp\_add\_target\_group**은 대상 그룹 이름 *TenantGroup*을 만듭니다. 이제 대상 멤버를 추가해야 합니다.
+* **sp\_add\_target\_group\_member**는 *server* 대상 멤버 유형을 추가하는데, 작업 실행 시 해당 서버(테넌트 데이터베이스를 포함하는 customer1-&lt;User&gt; 서버) 내의 모든 데이터베이스가 작업에 포함되어야 합니다.
 * **sp\_add\_job**은 "Ticket Purchases from all Tenants"라는 새로운 주별 예약 작업을 만듭니다.
-* **sp\_추가\_jobstep** 모든 테 넌 트 및 결과 집합 이라고 하는 테이블을 반환 하는 복사 hello hello 작업 단계 명령 텍스트 tooretrieve T-SQL 포함 된 모든 hello 티켓 구매 정보를 생성  *AllTicketsPurchasesfromAllTenants*
-* hello 스크립트에 hello 나머지 보기 hello 개체 및 모니터링 작업을 실행의 hello 존재 여부를 표시합니다. Hello에서 hello 상태 값을 검토 **수명 주기** 열 toomonitor hello 상태입니다. 한 번 hello 작업이 모든 테 넌 트 데이터베이스에서 성공적으로 완료 된 한 hello hello를 포함 하는 두 개의 추가 데이터베이스 테이블을 참조 합니다.
+* **sp\_add\_jobstep**은 모든 테넌트의 티켓 구입 정보를 검색하는 T-SQL 명령 텍스트를 포함하는 작업 단계를 만들고 *AllTicketsPurchasesfromAllTenants* 테이블에 반환 결과 집합을 복사합니다.
+* 스크립트의 남은 보기에서 개체의 존재 여부를 표시하고 작업 실행을 모니터링합니다. **lifecycle** 열에서 상태 값을 검토하여 상태를 모니터링합니다. 성공하고 나면, 모든 테넌트 데이터베이스 및 참조 테이블을 포함하는 두 개의 추가 데이터베이스에서 작업을 성공적으로 끝마친 것입니다.
 
-비슷한 결과에서 발생 해야 성공적으로 hello 스크립트를 실행 합니다.
+스크립트를 성공적으로 실행하면 다음과 비슷한 결과가 나옵니다.
 
 ![결과](media/sql-database-saas-tutorial-tenant-analytics/ticket-purchases-job.png)
 
-## <a name="create-a-job-tooretrieve-a-summary-count-of-ticket-purchases-from-all-tenants"></a>모든 테 넌 트에서 티켓의 요약 개수 구입 작업 tooretrieve 만들기
+## <a name="create-a-job-to-retrieve-a-summary-count-of-ticket-purchases-from-all-tenants"></a>모든 테넌트의 티켓 구입 요약 개수를 검색하는 작업 만들기
 
-이 스크립트에서 모든 테 넌 트의 모든 티켓 구입 작업 tooretrieve 합계를 만듭니다.
+이 스크립트는 모든 테넌트의 모든 티켓 구입 합계를 검색하는 작업을 만듭니다.
 
-1. SSMS를 열고 toohello 연결 *카탈로그-&lt;사용자&gt;. database.windows.net* 서버
-1. 파일 열기 hello 중... \\학습 모듈\\프로 비전 및 카탈로그\\운영 분석\\분석 테 넌 트\\*결과 TicketPurchasesfromAllTenants.sql*
-1. 수정 &lt;사용자&gt;, hello 스크립트 hello에 hello Wingtip SaaS 앱을 배포할 때 사용 하는 사용 하 여 hello 사용자 이름 **sp\_추가\_jobstep** 저장 프로시저
-1. 마우스 오른쪽 단추로 클릭 하 여, 선택 **연결**, 연결 toohello 카탈로그-&lt;사용자&gt;. database.windows.net 서버에 아직 연결 되지
-1. 연결 된 toohello을 준수할 **tenantanalytics** 데이터베이스 및 키를 눌러 **F5** hello 스크립트를 실행 하려면
+1. SSMS를 열고 *catalog-&lt;User&gt;.database.windows.net* 서버에 연결합니다.
+1. ...\\Learning Modules\\Provision and Catalog\\Operational Analytics\\Tenant Analytics\\*Results-TicketPurchasesfromAllTenants.sql* 파일을 엽니다.
+1. &lt;User&gt;를 수정합니다. 스크립트에서 Wingtip SaaS 앱을 배포할 때 **sp\_add\_jobstep** 저장 프로시저에서 사용한 사용자 이름을 사용합니다.
+1. 마우스 오른쪽 단추로 클릭하고 **연결**을 선택한 후 catalog-&lt;User&gt;.database.windows.net server 서버에 연결합니다(아직 연결하지 않은 경우).
+1. **tenantanalytics** 데이터베이스에 연결되어 있는지 확인하고 **F5**를 눌러 스크립트를 실행합니다.
 
-비슷한 결과에서 발생 해야 성공적으로 hello 스크립트를 실행 합니다.
+스크립트를 성공적으로 실행하면 다음과 비슷한 결과가 나옵니다.
 
 ![결과](media/sql-database-saas-tutorial-tenant-analytics/total-sales.png)
 
@@ -100,9 +100,9 @@ hello Wingtip SaaS 스크립트 및 응용 프로그램 소스 코드에서에�
 
 * **sp\_add\_job**은 "ResultsTicketsOrders"라는 새로운 주별 예약된 작업을 만듭니다.
 
-* **sp\_추가\_jobstep** 모든 테 넌 트 및 결과 집합에 CountofTicketOrders 라는 테이블을 반환 하는 복사 hello hello 작업 단계 명령 텍스트 tooretrieve T-SQL 포함 된 모든 hello 티켓 구매 정보를 만듭니다
+* **sp\_add\_jobstep**은 모든 테넌트의 티켓 구입 정보를 검색하는 T-SQL 명령 텍스트를 포함하는 작업 단계를 만들고 CountofTicketOrders 테이블에 반환 결과 집합을 복사합니다.
 
-* hello 스크립트에 hello 나머지 보기 hello 개체 및 모니터링 작업을 실행의 hello 존재 여부를 표시합니다. Hello에서 hello 상태 값을 검토 **수명 주기** 열 toomonitor hello 상태입니다. 한 번 hello 작업이 모든 테 넌 트 데이터베이스에서 성공적으로 완료 된 한 hello hello를 포함 하는 두 개의 추가 데이터베이스 테이블을 참조 합니다.
+* 스크립트의 남은 보기에서 개체의 존재 여부를 표시하고 작업 실행을 모니터링합니다. **lifecycle** 열에서 상태 값을 검토하여 상태를 모니터링합니다. 성공하고 나면, 모든 테넌트 데이터베이스 및 참조 테이블을 포함하는 두 개의 추가 데이터베이스에서 작업을 성공적으로 끝마친 것입니다.
 
 
 ## <a name="next-steps"></a>다음 단계
@@ -111,11 +111,11 @@ hello Wingtip SaaS 스크립트 및 응용 프로그램 소스 코드에서에�
 
 > [!div class="checklist"]
 > * 테넌트 분석 데이터베이스 배포
-> * 테 넌 트 간에 예약 된 작업 tooretrieve 분석 데이터 만들기
+> * 테넌트 간에 분석 데이터를 검색하는 예약된 작업 만들기
 
 축하합니다.
 
 ## <a name="additional-resources"></a>추가 리소스
 
-* 추가 [hello Wingtip SaaS 응용 프로그램을 구축 하는 자습서](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
+* [Wingtip SaaS 응용 프로그램을 기반으로 작성된](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials) 추가 자습서
 * [탄력적 작업](sql-database-elastic-jobs-overview.md)

@@ -1,6 +1,6 @@
 ---
-title: "스트리밍 끝점.NET SDK와 aaaManage 합니다. | Microsoft Docs"
-description: "이 항목에서는 toomanage 스트리밍 끝점이 Azure 포털 hello 하는 방법을 보여 줍니다."
+title: ".NET SDK를 사용하여 스트리밍 끝점을 관리합니다. | Microsoft Docs"
+description: "이 항목에서는 Azure 포털을 사용하여 스트리밍 끝점을 관리하는 방법을 설명합니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -15,45 +15,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 30c092a8ebf4e2b2902392f4cf98f46d812ccdbc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2f4f464f8604b6f453d6b50b736c6a3a889a3408
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="manage-streaming-endpoints-with-net-sdk"></a>.NET SDK를 사용하여 스트리밍 끝점 관리
 
 >[!NOTE]
->있는지 tooreview hello 확인 [개요](media-services-streaming-endpoints-overview.md) 항목입니다. 또한 [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint)도 살펴보세요.
+>[개요](media-services-streaming-endpoints-overview.md) 항목을 살펴보세요. 또한 [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint)도 살펴보세요.
 
-이 항목의 hello 코드 toodo hello를 사용 하 여 작업을 다음 Azure 미디어 서비스.NET SDK hello 하는 방법을 보여 줍니다.
+이 항목의 코드는 Azure Media Services .NET SDK를 사용하여 다음 작업을 수행하는 방법을 보여 줍니다.
 
-- Hello 기본 스트리밍 끝점을 검사 합니다.
+- 기본 스트리밍 끝점을 살펴봅니다.
 - 새 스트리밍 끝점을 만들거나 추가합니다.
 
-    할 수 있습니다 toohave 여러 개의 스트리밍 끝점이 toohave 하려는 경우 다른 Cdn 또는 CDN 및 직접 액세스 합니다.
+    다른 CDN 및 직접 액세스를 사용하려는 경우 여러 스트리밍 끝점을 배치하는 것이 좋습니다.
 
     > [!NOTE]
     > 스트리밍 끝점이 실행 중인 상태일 때만 요금이 청구됩니다.
     
-- Hello 스트리밍 끝점을 업데이트 합니다.
+- 스트리밍 끝점을 업데이트합니다.
     
-    있는지 toocall hello update () 함수를 확인 합니다.
+    Update() 함수를 호출해야 합니다.
 
-- Hello 스트리밍 끝점을 삭제 합니다.
+- 스트리밍 끝점을 삭제합니다.
 
     >[!NOTE]
-    >hello 기본 스트리밍 끝점을 삭제할 수 없습니다.
+    >기본 스트리밍 끝점은 삭제할 수 없습니다.
 
-어떻게 tooscale hello 스트리밍 끝점에 대 한 정보를 참조 하십시오. [이](media-services-portal-scale-streaming-endpoints.md) 항목입니다.
+스트리밍 끝점의 크기를 조정하는 방법에 대한 자세한 내용은 [이 항목](media-services-portal-scale-streaming-endpoints.md) 을 참조하세요.
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>Visual Studio 프로젝트 만들기 및 구성
 
-개발 환경을 설정 하 고에 설명 된 대로 연결 정보를 포함 하는 hello app.config 파일을 채울 [.net 미디어 서비스 개발](media-services-dotnet-how-to-use.md)합니다. 
+개발 환경을 설정하고 [.NET을 사용한 Media Services 환경](media-services-dotnet-how-to-use.md)에 설명된 대로 연결 정보를 사용하여 app.config 파일을 채웁니다. 
 
 ## <a name="add-code-that-manages-streaming-endpoints"></a>스트리밍 끝점을 관리하는 코드 추가
     
-코드 다음 hello hello Program.cs의에서 hello 코드를 바꿉니다.
+Program.cs의 코드를 다음 코드로 바꿉니다.
 
     using System;
     using System.Configuration;
@@ -65,7 +65,7 @@ ms.lasthandoff: 10/06/2017
     {
         class Program
         {
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =

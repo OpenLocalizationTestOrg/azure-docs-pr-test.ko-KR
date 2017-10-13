@@ -1,6 +1,6 @@
 ---
-title: "aaaUse hello StorSimple 관리자 장치 대시보드 | Microsoft Docs"
-description: "Hello StorSimple 관리자 서비스 장치 대시보드 설명 방법과 toouse 것 tooview 저장소 메트릭 및 연결 된 시작자 및 찾기 hello 일련 번호와 IQN 합니다."
+title: "StorSimple 관리자 장치 대시보드 사용 | Microsoft Docs"
+description: "StorSimple 관리자 서비스 장치 대시보드 및 이를 사용하여 저장소 메트릭 및 연결된 초기자를 보고 일련 번호 및 IQN을 찾는 방법을 설명합니다."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -15,72 +15,72 @@ ms.workload: TBD
 ms.date: 02/27/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e213fc0a081c21b9d6b408a3dd845cc93a31e250
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0d8035b9608ca3bac3d4822c7c755b81c96d481e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-device-dashboard-in-storsimple-manager-service"></a>StorSimple Manager 서비스에서 사용 하 여 hello 장치 대시보드  
+# <a name="use-the-device-dashboard-in-storsimple-manager-service"></a>StorSimple Manager 서비스에서 장치 대시보드 사용  
 
 ## <a name="overview"></a>개요
-hello StorSimple 관리자 장치 대시보드 특정 StorSimple 장치에 대 한 정보의 개요를 제공, 반대로 toohello 서비스 대시보드에서 모든 Microsoft Azure StorSimple 솔루션에 포함 된 hello 장치에 대 한 정보를 제공 합니다.
+StorSimple 관리자 장치 대시보드는 Microsoft Azure StorSimple 솔루션에 포함된 모든 장치에 대한 정보를 제공하는 서비스 대시보드에 대한 특정 StorSimple 장치에 대한 정보 개요를 제공합니다.
 
 ![장치 대시보드 페이지](./media/storsimple-device-dashboard/StorSimple_DeviceDashbaord1M.png)
 
-hello 대시보드는 다음 정보는 hello를 포함 되어 있습니다.
+대시보드에는 다음 정보가 포함됩니다.
 
-* **차트 영역** – hello hello 대시보드 위쪽에 hello 차트 영역에 hello 관련 저장소 메트릭을 볼 수 있습니다. 이 차트를 볼 hello 총 기본 저장소 (hello 호스트 tooyour 장치 기록한 데이터의 양)에 대 한 메트릭을 있고 hello 총 클라우드 저장소 시간 동안 장치가 차지 합니다.
+* **차트 영역** – 대시보드 상단 차트 영역에서 관련 저장소 메트릭을 볼 수 있습니다. 이 차트에서 총 기본 저장소(장치에 대한 호스트가 기록한 데이터의 양)와 일정 기간 동안 장치가 사용한 총 클라우드 저장소에 대한 메트릭을 볼 수 있습니다.
   
-     이 컨텍스트에서 *주 저장소* hello 호스트에 의해 기록 된 데이터의 총 toohello 참조 하 고 볼륨 유형으로 세분화 될 수 있습니다: *주 저장소 계층* 모두 포함 데이터와 데이터를 로컬로 저장 계층화 된 toohello 클라우드; *기본 저장소에 로컬로 고정* 로컬에 저장 된 데이터만 포함 합니다. *클라우드 저장소*, 다른 손 hello, hello 클라우드에 저장 된 데이터의 총 금액 hello 측정 한 값입니다. 여기에는 계층화된 데이터 및 백업이 포함됩니다. Hello 클라우드에 저장 된 데이터 중복 제거 및 압축 된 경우 기본 저장소 hello hello 데이터가 이전에 사용한 저장소 양을 나타냅니다는 중복 제거 및 압축 된 합니다. (이러한 두 숫자 tooget hello 압축 비율의 관념 비교할 수 있습니다.) 모두 기본에 대 한 및 클라우드 저장소, hello 표시 된 hello 추적 구성한 빈도에 따라 달라 집니다. 예를 들어 1 주일 빈도 선택 하면 hello 차트 hello에 지난 주의 각 날에 대 한 데이터가 표시 됩니다.
+     이 컨텍스트에서 *기본 저장소*는 호스트가 기록한 데이터의 총 크기를 참조하고 볼륨 유형으로 세분화될 수 있습니다. *계층화된 기본 저장소*는 로컬에 저장된 데이터 및 클라우드에 계층화된 데이터를 모두 포함합니다. *로컬로 고정된 기본 저장소*는 로컬로 저장된 데이터만을 포함합니다. 반면에 *클라우드 저장소*는 클라우드에 계층화된 총 데이터를 측정합니다. 여기에는 계층화된 데이터 및 백업이 포함됩니다. 클라우드에 저장된 데이터는 중복 제거되고 압축되는 반면 기본 저장소는 데이터가 중복 제거되고 압축되기 전에 사용된 저장소의 양을 나타냅니다. (압축 비율을 파악하도록 이러한 두 값을 비교할 수 있습니다.) 기본 및 클라우드 저장소의 경우 표시되는 양은 사용자가 구성하는 추적 빈도에 따라 달라집니다. 예를 들어, 1주일 빈도를 선택하면 이전 주의 각 날짜에 대한 데이터가 차트에 표시됩니다.
   
-     다음과 같이 hello 차트를 구성할 수 있습니다.
+     차트는 다음과 같이 구성할 수 있습니다.
   
-  * 시간, 선택 hello를 통해 사용한 클라우드 저장소의 toosee hello 양을 **클라우드 저장소 사용** 옵션입니다. 선택 hello hello 호스트에 의해 기록 된 toosee hello 총 저장소 **기본 계층으로 계층화 된 저장소 사용** 및 **기본 로컬로 고정 된 저장소 사용 됨** 옵션입니다. Hello 그림에 두 옵션이 선택 되어 있습니다. 따라서 hello 차트는 클라우드 및 기본 저장소의 저장소 용량이 표시 됩니다. 모든 기본 저장소 이전 tooinstalling 업데이트 2를 사용 하는 hello로 표시 됩니다 **기본 계층으로 계층화 된 저장소 사용** 선입니다.
-  * Hello 드롭다운 메뉴를 사용 하 여 hello 차트 toospecify 기간 1 주, 1 개월, 3 개월 또는 1 년의 hello 오른쪽 위 모퉁이에 있습니다. 최상위 차트 hello 일 마다 한 번만 새로 고쳐집니다 않으며 반영 됩니다 전날의 총계가 hello 합니다.
+  * 시간이 지남에 따라 사용되는 클라우드 저장소의 크기를 보려면 **CLOUD STORAGE USED(사용된 클라우드 저장소)** 옵션을 선택합니다. 호스트가 작성한 총 저장소를 보려면 **계층화되고 사용된 기본 저장소** 및 **로컬로 고정된 사용된 기본 저장소** 옵션을 선택합니다. 그림에서는 두 옵션이 모두 선택됩니다. 따라서 차트는 클라우드 및 기본 저장소에 대한 저장소 크기를 모두 보여줍니다. 업데이트 2를 설치하기 전에 사용된 기본 저장소는 **계층화되고 사용된 기본 저장소** 선에서 나타납니다.
+  * 1주, 1개월, 3개월 또는 1년 단위를 지정하려면 차트 오른쪽 상단의 드롭다운 메뉴를 사용하세요. 최상위 차트는 하루에 한번만 갱신되므로 전날의 합계를 반영합니다.
     
-    자세한 내용은 참조 [사용 하 여 StorSimple 장치를 StorSimple Manager 서비스 toomonitor hello](storsimple-monitor-device.md)합니다.
-* **사용 개요** – hello **사용 개요** 영역을 기본 저장소의 용량 hello 사용 되는 hello 크기의 프로 비전 된 저장소 및 장치에 대 한 hello 최대 저장소 용량을 볼 수 있습니다. 이러한 사용 숫자 toohello 최대 양을 사용 가능한 저장소를를 비교 하 여 tooobtain 추가 저장소가 필요한 경우 한 눈에 볼 수 있습니다. 이 개요 15 분 마다 업데이트 됩니다 하, hello 업데이트 빈도의 차이로 인해 나타날 수 있습니다 하는 것 보다 다른 숫자와 같이 hello 차트 영역에 위의 매일 업데이트 되는 note 합니다. 자세한 내용은 참조 [사용 하 여 StorSimple 장치를 StorSimple Manager 서비스 toomonitor hello](storsimple-monitor-device.md)합니다.
-* **경고** – hello **경고** 영역에는 장치에 대 한 hello 경고의 개요가 포함 되어 있습니다. 경고 심각도 별로 그룹화 됩니다 하 고 각 심각도 수준의 경고 수가 hello 수 제공 됩니다. 클릭 hello 경고 심각도 hello의 한정된 된 뷰가 열려이 장치에 대 한 해당 심각도 수준의 경고를만 hello 탭 tooshow 경고 합니다.
-* **작업** – hello **작업** 최근 작업의 결과 hello 영역 보여 줍니다. Hello 시스템이 예상 대로 작동 하거나 필요한 경우 수정 작업 tootake 있습니다 하도록 할 수 있습니다 확인할 수 있습니다. toosee 최근에 완료 된 작업에 대 한 자세한 내용을 보려면 클릭 **성공한 작업 hello 지난 24 시간 동안**합니다.
-* hello **눈에 보는** hello 대시보드 오른쪽의 hello에 영역 장치 모델, 일련 번호, 상태, 설명 및 볼륨 수 등 유용한 정보를 제공 합니다.
+    자세한 내용은 [StorSimple Manager 서비스를 사용하여 StorSimple 장치 모니터링](storsimple-monitor-device.md)을 참조하세요.
+* **사용 개요** – **사용량 개요** 영역에서 사용된 기본 저장소의 크기, 프로비전된 저장소의 크기 및 장치에 대한 최대 저장소 용량을 볼 수 있습니다. 이러한 사용량 수치와 사용할 수 있는 저장소의 최대 크기를 비교하여 추가 저장소가 필요한지 한 눈에 확인할 수 있습니다. 이 개요는 15분 마다 업데이트되며 업데이트 빈도의 차이로 인해 매일 업데이트되는 위의 차트 영역에 표시된 수치와 다를 수 있습니다. 자세한 내용은 [StorSimple Manager 서비스를 사용하여 StorSimple 장치 모니터링](storsimple-monitor-device.md)을 참조하세요.
+* **경고** – **경고** 영역은 장치에 대한 경고의 개요를 포함합니다. 경고는 심각도별로 그룹화되며 숫자는 각 심각도 수준에 따른 경고의 수입니다. 경고 심각도를 클릭하면 범위가 지정된 경고 탭이 열려 이 장치에서 해당 심각도 수준의 경고만 표시합니다.
+* **작업** – **작업** 영역은 최근 작업 활동의 결과를 보여 줍니다. 이를 통해 시스템이 예상대로 작동함을 알 수 있습니다. 또는 수정 작업을 취할 필요가 있는지 알 수 있습니다. 최근에 완료된 작업에 대한 자세한 내용은 **최근 24시간 동안 성공한 작업**을 클릭하세요.
+* 대시보드 오른쪽의 **간략 상태** 영역에서는 장치 모델, 일련 번호, 상태, 설명 및 볼륨과 같은 유용한 정보를 제공합니다.
 
-장애 조치를 구성 하 고 hello 장치 대시보드에서 연결 된 시작자를 볼 수도 있습니다.
+장치 대시보드에서 장애 조치를 구성하고 연결된 초기자를 볼 수도 있습니다.
 
-이 페이지에서 수행할 수 있는 일반적인 작업 hello 다음과 같습니다.
+이 페이지에서 수행할 수 있는 일반적인 작업은 다음과 같습니다.
 
 * 연결된 초기자 보기
-* Hello 장치 일련 번호 찾기
-* Hello 장치 대상 IQN 찾기
+* 장치 일련 번호 찾기
+* 장치 대상 IQN 찾기
 
-## <a name="view-connected-initiators"></a>연결된 초기자 보기
-Hello를 클릭 하 여 연결 된 tooyour 장치는 hello iSCSI 초기자를 볼 수 있습니다 **연결 된 시작자 보기** hello에 제공 된 링크 **눈에 보는** 장치 대시보드의 영역입니다. 이 페이지를 성공적으로 연결 된 tooyour 장치 hello 초기자의 테이블 형식 목록을 제공 합니다. 각 초기자에 대해 다음을 확인할 수 있습니다.
+## <a name="view-connected-initiators"></a>연결된 시작자 보기
+장치 대시보드의 **간략 보기** 영역에 있는 **연결된 초기자 보기** 링크를 클릭하여 장치에 연결된 iSCSI 초기자를 볼 수 있습니다. 이 페이지에서는 장치에 성공적으로 연결된 초기자 목록을 표 형식으로 제공합니다. 각 초기자에 대해 다음을 확인할 수 있습니다.
 
-* hello iSCSI 정규화 된 이름 (IQN) hello의 초기자를 연결 합니다.
-* hello 액세스 제어 레코드 (ACR)이 연결 된 시작자를 허용 하의 hello 이름입니다.
-* hello의 hello IP 주소는 시작자를 연결합니다.
-* hello 네트워크 인터페이스는 hello 초기자가 연결 된 tooon 저장 장치입니다. 이러한 0 tooDATA 5 데이터에서 범위 수 있습니다.
-* 연결 된 시작자 hello 모든 hello 볼륨 tooaccess toohello 현재 ACR 구성에 따라 허용 됩니다.
+* 연결된 초기자의 IQN(정규화된 iSCSI 이름)입니다.
+* 이 연결된 초기자를 허용하는 ACR(액세스 제어 레코드)의 이름입니다.
+* 연결된 초기자의 IP 주소입니다.
+* 초기자가 저장소 장치에 연결된 네트워크 인터페이스입니다. 이러한 범위는 DATA 0에서 DATA 5입니다.
+* 연결된 초기자가 현재 ACR 구성에 따라 액세스하도록 허용된 모든 볼륨입니다.
 
-이 목록에 예기치 않은 시작 자가 하거나 hello를 예상 하는 스토리 나타나지 않는 경우 해당 ACR 구성을 확인 합니다. 최대 512 개의 초기자 tooyour 장치를 연결할 수 있습니다.
+이 목록에서 예상치 못한 초기자가 보이는 경우 또는 예상한 초기자가 보이지 않는 경우, ACR 구성을 확인합니다. 최대 512개의 초기자를 장치에 연결할 수 있습니다.
 
-## <a name="find-hello-device-serial-number"></a>Hello 장치 일련 번호 찾기
-Hello 장치에서 Microsoft 다중 경로 I/O (MPIO)를 구성할 때 hello 장치 일련 번호를 할 수 있습니다. Hello 단계 toofind hello 장치 일련 번호를 다음을 수행 합니다.
+## <a name="find-the-device-serial-number"></a>장치 일련 번호 찾기
+장치에서 Microsoft MPIO(다중 경로 I/O)를 구성할 때 장치 일련 번호가 필요할 수 있습니다. 장치 일련 번호를 찾으려면 다음 단계를 수행합니다.
 
-#### <a name="toofind-hello-device-serial-number"></a>toofind hello 장치 일련 번호
-1. 너무 이동**장치** > **대시보드**합니다.
-2. Hello 대시보드의 hello 오른쪽 창에서 찾을 hello **눈에 보는** 영역입니다.
-3. 아래로 스크롤하여 hello 일련 번호를 찾습니다.
+#### <a name="to-find-the-device-serial-number"></a>장치 일련 번호 찾는 방법
+1. **장치** > **대시보드**로 이동합니다.
+2. 대시보드의 오른쪽 창에서 **간략 상태** 영역을 찾습니다.
+3. 아래로 스크롤하여 일련 번호를 찾습니다.
 
-## <a name="find-hello-device-target-iqn"></a>Hello 장치 대상 IQN 찾기
-StorSimple 장치에서 hello Challenge Handshake 인증 프로토콜 CHAP ()를 구성할 때 hello 장치 대상 IQN을 할 수 있습니다. Hello 단계 toofind hello 장치 대상 IQN 다음을 수행 합니다.
+## <a name="find-the-device-target-iqn"></a>장치 대상 IQN 찾기
+StorSimple 장치에는 CHAP(Challenge Handshake 인증 프로토콜)를 구성할 때 장치 대상 IQN이 필요할 수 있습니다. 장치 대상 IQN을 찾으려면 다음 단계를 수행합니다.
 
-### <a name="toofind-hello-device-target-iqn"></a>toofind hello 장치 대상 IQN
-1. 너무 이동**장치** > **대시보드**합니다.
-2. Hello 대시보드의 hello 오른쪽 창에서 찾을 hello **눈에 보는** 영역입니다.
-3. 아래로 스크롤하여 hello 대상 IQN을 찾습니다.
+### <a name="to-find-the-device-target-iqn"></a>장치 대상 IQN 찾는 방법
+1. **장치** > **대시보드**로 이동합니다.
+2. 대시보드의 오른쪽 창에서 **간략 상태** 영역을 찾습니다.
+3. 아래로 스크롤하여 대상 IQN을 찾습니다.
 
 ## <a name="next-steps"></a>다음 단계
-* Hello에 대 한 자세한 [StorSimple Manager 서비스 대시보드](storsimple-service-dashboard.md)합니다.
-* 에 대 한 자세한 내용은 [StorSimple 장치의 StorSimple Manager 서비스 tooadminister를 hello를 사용 하 여](storsimple-manager-service-administration.md)합니다.
+* [StorSimple Manager 서비스 대시보드](storsimple-service-dashboard.md)에 대해 자세히 알아봅니다.
+* [StorSimple Manager 서비스를 사용하여 StorSimple 장치를 관리](storsimple-manager-service-administration.md)하는 방법을 자세히 알아봅니다.
 

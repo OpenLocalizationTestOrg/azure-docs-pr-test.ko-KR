@@ -1,17 +1,17 @@
-## <a name="use-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여
-1. 선택 hello tooredeploy, 원하는 선택한 다음 하면 hello VM *재배포* hello 단추 *설정을* 블레이드 합니다. Toosee hello 아래로 tooscroll 해야 **지원 및 문제 해결** hello 다음 예제와 같이 hello '다시 배포' 단추가 포함 된 섹션:
+## <a name="use-the-azure-portal"></a>Azure Portal 사용
+1. 다시 배포하려는 VM을 선택하고 *설정* 블레이드에서 *다시 배포* 단추를 선택합니다. 다음 예제와 같이 '다시 배포' 단추가 포함된 **지원 및 문제 해결** 섹션을 보기 위해 아래로 스크롤해야 할 수 있습니다.
    
     ![Azure VM 블레이드](./media/virtual-machines-common-redeploy-to-new-node/vmoverview.png)
-2. tooconfirm hello 작업 선택 hello *재배포* 단추:
+2. 작업을 확인하려면 *다시 배포* 단추를 선택합니다.
    
     ![VM 다시 배포 블레이드](./media/virtual-machines-common-redeploy-to-new-node/redeployvm.png)
-3. hello **상태** hello의 VM 쪽 변경*업데이트* hello VM hello 다음 예제와 같이 tooredeploy를 준비 하는 대로:
+3. VM이 다시 배포 준비가 완료되면 다음 예제와 같이 VM의 **상태**가 *업데이트 중*으로 변경됩니다.
    
     ![VM 업데이트 중](./media/virtual-machines-common-redeploy-to-new-node/vmupdating.png)
-4. hello **상태** 너무 수정한 다음*시작* hello VM 가상 컴퓨터를 부팅에 새 Azure 호스트로 hello 다음 예제와 같이 대로:
+4. 그런 후 새 Azure 호스트에서 VM이 부팅되면 다음 예제와 같이 **상태**가 *시작 중*으로 변경됩니다.
    
     ![VM 시작 중](./media/virtual-machines-common-redeploy-to-new-node/vmstarting.png)
-5. Hello VM hello 부팅 프로세스를 완료 되 면 hello **상태** 다음 너무 반환*실행*, 나타내는 hello VM을 다시 배포한 성공적으로 è:
+5. VM이 부팅 프로세스를 완료하면 **상태** 가 *실행 중*으로 돌아가 VM이 정상적으로 다시 배포되었음을 나타냅니다.
    
     ![VM 실행 중](./media/virtual-machines-common-redeploy-to-new-node/vmrunning.png)
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure 검색의 aaaHow toopage 검색 결과 | Microsoft Docs"
+title: "Azure Search에서 검색 결과를 페이징하는 방법 | Microsoft Docs"
 description: "Microsoft Azure에서 호스팅되는 클라우드 검색 서비스인 Azure 검색에서의 페이징"
 services: search
 documentationcenter: 
@@ -14,36 +14,36 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 08/29/2016
 ms.author: heidist
-ms.openlocfilehash: e3abc1ca4d5994b0a77955379081a4fcfa5a7fa7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1054e15a2751c53aad5dbc8054c4cec41102dee9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toopage-search-results-in-azure-search"></a>Azure 검색의 toopage 검색 결과 하는 방법
-이 문서는 어떻게 toouse hello Azure 검색 서비스 REST API tooimplement 표준 요소 검색 결과 탐색 총 개수, 문서 검색, 정렬 순서 등의 페이지에 지침을 제공 합니다.
+# <a name="how-to-page-search-results-in-azure-search"></a>Azure 검색에서 검색 결과를 페이징하는 방법
+이 문서는 총 횟수, 문서 검색, 정렬 순서, 탐색과 같은 검색 결과 페이지의 표준 요소를 구현하기 위한 Azure 검색 서비스의 사용 방법에 대한 지침을 제공합니다.
 
-아래에서 설명한 모든 경우에 데이터 나 정보 tooyour 검색 결과 페이지를 제공 하는 페이지와 관련 된 옵션은 hello를 통해 지정 됩니다 [검색 문서](http://msdn.microsoft.com/library/azure/dn798927.aspx) 전송 된 요청 tooyour Azure 검색 서비스입니다. 요청은 GET 명령, 경로 및 알리는 hello 서비스 기능 요청 되는 쿼리 매개 변수 및 어떻게 tooformulate hello 응답에 포함 됩니다.
+아래에서 설명한 모든 경우에 데이터 또는 정보를 검색 결과 페이지에 적용하는 페이지 관련 옵션은 Azure 검색 서비스에 전송된 [문서 검색](http://msdn.microsoft.com/library/azure/dn798927.aspx) 요청을 통해 지정됩니다. 요청에는 GET 명령, 경로 및 서비스에 필요한 것과 응답을 작성하는 방법을 서비스에 알려주는 쿼리 매개 변수가 포함됩니다.
 
 > [!NOTE]
-> 유효한 요청에는 서비스 URL 및 경로, HTTP 동사, `api-version` 등과 같은 요소의 숫자가 포함됩니다. 간단한 설명을 위해 관련 toopagination 않은 hello 예제 toohighlight 정당한 hello 구문을 잘립니다 했습니다. Hello를 참조 하십시오 [Azure 검색 서비스 REST API](http://msdn.microsoft.com/library/azure/dn798935.aspx) 요청 구문에 대 한 세부 정보에 대 한 설명서입니다.
+> 유효한 요청에는 서비스 URL 및 경로, HTTP 동사, `api-version` 등과 같은 요소의 숫자가 포함됩니다. 요약하자면, 페이지 매김에 관련된 구문만 강조하기 위해 예제를 잘라냈습니다. 요청 구분에 대한 자세한 설명서는 [Azure 검색 서비스 REST API](http://msdn.microsoft.com/library/azure/dn798935.aspx) 를 참조하십시오.
 > 
 > 
 
 ## <a name="total-hits-and-page-counts"></a>총 적중 수 및 페이지 수
-기본 toovirtually 모든 검색 페이지는 hello 총 결과 수는 쿼리에서 반환 하 고 더 작은 청크에서 결과 반환 하는 것을 표시 합니다.
+쿼리에서 반환된 결과의 총 수를 표시한 후 해당 결과를 더 작은 청크로 반환하는 것은 모든 검색 페이지의 기반이 됩니다.
 
 ![][1]
 
-Azure 검색을 사용 하 여 hello `$count`, `$top`, 및 `$skip` 매개 변수 tooreturn 이러한 값입니다. hello 다음 보여 주는 예제는 예제 요청으로 반환 하는 총 방문 횟수에 대 한 `@OData.count`:
+Azure 검색에서는 `$count`, `$top` 및 `$skip` 매개 변수를 사용하여 이러한 값을 반환합니다. 다음 예제에서는 `@OData.count`(으)로 반환되는 총 적중 수에 대한 샘플 요청을 보여줍니다.
 
         GET /indexes/onlineCatalog/docs?$count=true
 
-15의 그룹에 대 한 문서를 검색 고도 hello 총 방문 횟수 hello 첫 페이지부터 표시 됩니다.
+첫 페이지에서 시작하여 15개 그룹에 대한 문서를 검색하고, 총 적중 수도 표시합니다.
 
         GET /indexes/onlineCatalog/docs?search=*$top=15&$skip=0&$count=true
 
-둘 다 필요 하며 결과 뿐 아니라 `$top` 및 `$skip`여기서 `$top` 개수 항목 tooreturn 일괄 처리를 지정 하 고 `$skip` 항목 tooskip 수를 지정 합니다. Hello 다음 예에서는, 각 페이지에 다음 15 개 항목이 hello 표시로 표시 됩니다 hello에 hello 증분 점프 `$skip` 매개 변수입니다.
+페이지 매김 결과에는 `$top`이(가) 일괄적으로 반환할 항목의 수를 지정하고 `$skip`은(는) 건너뛸 항목 수를 지정하는 `$top` 및 `$skip`이(가) 모두 필요합니다. 다음 예제에서는 각 페이지에서 `$skip` 매개 변수로 증분 점프하여 증가하는 다음 15개 항목을 보여줍니다.
 
         GET /indexes/onlineCatalog/docs?search=*$top=15&$skip=0&$count=true
 
@@ -52,51 +52,51 @@ Azure 검색을 사용 하 여 hello `$count`, `$top`, 및 `$skip` 매개 변수
         GET /indexes/onlineCatalog/docs?search=*$top=15&$skip=30&$count=true
 
 ## <a name="layout"></a>레이아웃
-검색 결과 페이지에 미리 보기 이미지, 필드의 하위 집합 및 링크 tooa 정식 제품 페이지 tooshow 할 수 있습니다.
+검색 결과 페이지에서 축소판 이미지, 필드의 하위 집합 및 전체 제품 페이지에 대한 링크를 표시할 수 있습니다.
 
  ![][2]
 
-Azure 검색에서는 사용 `$select` 조회 명령 tooimplement이이 경험 합니다.
+Azure 검색에서는 `$select` 및 조회 명령을 사용하여 이 환경을 구현합니다.
 
-타일 식된 레이아웃에 대 한 필드의 하위 집합 tooreturn:
+타일화된 레이아웃에 대한 필드의 하위 집합을 반환하는 방법:
 
         GET /indexes/ onlineCatalog/docs?search=*&$select=productName,imageFile,description,price,rating 
 
-이미지 및 미디어 파일은 직접 검색할 수 없습니다 및 Azure Blob 저장소 tooreduce 비용 등의 다른 저장소 플랫폼에 저장 해야 합니다. Hello 인덱스 및 문서에 외부 콘텐츠 hello의 hello URL 주소를 저장 하는 필드를 정의 합니다. 다음 이미지 참조로 hello 필드를 사용할 수 있습니다. hello URL toohello 이미지 hello 문서에 있어야 합니다.
+이미지 및 미디어 파일은 직접 검색할 수 없으며, 비용을 줄이기위해 Azure Blob 저장소와 같은 다른 저장소 플랫폼에 저장해야 합니다. 인덱스 및 문서에서 외부 콘텐츠의 URL 주소를 저장하는 필드를 정의합니다. 그러면 필드를 이미지 참조로 사용할 수 있습니다. 이미지에 대한 URL은 문서에 있어야 합니다.
 
-제품 설명에 대 한 페이지 tooretrieve는 **onClick** 이벤트를 사용 하 여 [문서 조회](http://msdn.microsoft.com/library/azure/dn798929.aspx) toopass hello 문서 tooretrieve의 hello 키에 있습니다. hello 키의 데이터 형식이 hello `Edm.String`합니다. 이 예제에서는 *246810*입니다. 
+**onClick** 이벤트에 대한 제품 설명 페이지를 검색하려면 [문서 조회](http://msdn.microsoft.com/library/azure/dn798929.aspx) 를 사용하여 검색할 문서의 키에 전달합니다. 키의 데이터 형식은 `Edm.String`입니다. 이 예제에서는 *246810*입니다. 
 
         GET /indexes/onlineCatalog/docs/246810
 
 ## <a name="sort-by-relevance-rating-or-price"></a>관련성, 등급, 또는 가격 기준으로 정렬
-정렬 순서 toorelevance, 기본 하지만 고객을 다른 순위 순서로 기존 결과 신속 하 게 나타나거나 수 있도록 쉽게 사용할 수 있는 일반적인 toomake 대체 정렬 순서는 경우가 많습니다.
+정렬 순서는 종종 기본적으로 관련도에 따르지만, 고객이 다른 순위 순서로 기존 결과를 신속하게 바꿀 수 있도록 대체 정렬 순서를 준비해 놓는 것이 일반적입니다.
 
  ![][3]
 
-Azure 검색, 정렬 기준으로 hello `$orderby` 으로 인덱싱된 모든 필드에 대 한 식`"Sortable": true.`
+Azure 검색에서는 `"Sortable": true.`(으)로 인덱싱되는 모든 필드에 대해 `$orderby` 식에 기반하여 정렬됩니다.
 
-관련성은 프로필 점수 매기기와 강력하게 연관됩니다. 사용할 수 있습니다 hello 기본 점수 매기기 사용 텍스트 분석 및 통계 toorank 순서에 모든 결과 더 높은 점수가 더 많거나 더 강력한 일치 toodocuments 검색어를 진행 합니다.
+관련성은 프로필 점수 매기기와 강력하게 연관됩니다. 검색 단어가 더 많이 또는 더 강력하게 일치되는 문서에 더 높은 점수를 매기는 텍스트 분석 및 통계에 따라 모든 결과의 순서를 정하는 기본 점수를 사용할 수 있습니다.
 
-대체 정렬 순서는 일반적으로 연관 **onClick** 다시 tooa 메서드 호출 하는 이벤트 hello 정렬 순서를 작성 합니다. 예를 들어 이 페이지 요소를 가정합니다.
+대체 정렬 순서는 일반적으로 정렬 순서를 작성하는 메서드를 다시 호출하는 **onClick** 이벤트에 관련이 있습니다. 예를 들어 이 페이지 요소를 가정합니다.
 
  ![][4]
 
-Hello 선택한 정렬 옵션을 입력으로 받아들이고 hello 조건에 연결 된 해당 옵션에 대 한 정렬된 된 목록을 반환 하는 메서드를 만들면 됩니다.
+선택한 정렬 옵션을 입력으로 받아 메서드를 생성하고 해당 옵션과 관련된 조건에 대한 정렬된 목록을 반환할 수 있습니다.
 
  ![][5]
 
 > [!NOTE]
-> Hello 기본 점수 매기기은 다양 한 시나리오에 대 한 충분 한, 대신 사용자 지정 점수 매기기 프로필의 관련성을으로 사용 하는 것이 좋습니다. 사용자 지정 점수 매기기 프로필 더 좋습니다 tooyour 비즈니스 있는 방식으로 tooboost 항목을 제공 합니다. 자세한 내용은 [점수 매기기 프로필 추가](http://msdn.microsoft.com/library/azure/dn798928.aspx) 를 참조하십시오. 
+> 기본 점수 매기기는 다양한 시나리오에 적용할 수 있으므로 대신 사용자 지정 점수 매기기 프로필의 관련성에 기반하는 것이 좋습니다. 사용자 지정 점수 매기기 프로필은 비즈니스에 더 많은 이점을 제공하는 항목 강화 방법을 제공합니다. 자세한 내용은 [점수 매기기 프로필 추가](http://msdn.microsoft.com/library/azure/dn798928.aspx) 를 참조하십시오. 
 > 
 > 
 
 ## <a name="faceted-navigation"></a>패싯 탐색
-검색 탐색이 대개 hello 쪽 또는 페이지의 위쪽에 위치 하는 결과 페이지에 일반적입니다. Azure 검색에서는 미리 정의된 필터에 따라 패싯 탐색이 자기 주도 탐색을 제공합니다. 자세한 내용은 [Azure 탐색의 패싯 탐색](search-faceted-navigation.md) 을 참조하십시오.
+종종 페이지의 옆쪽 또는 위쪽에 있는 검색 탐색은 결과 페이지에서 일반적입니다. Azure 검색에서는 미리 정의된 필터에 따라 패싯 탐색이 자기 주도 탐색을 제공합니다. 자세한 내용은 [Azure 탐색의 패싯 탐색](search-faceted-navigation.md) 을 참조하십시오.
 
-## <a name="filters-at-hello-page-level"></a>Hello 페이지 수준에서 필터
-와 함께 필터 식에 삽입할 수 솔루션 디자인 특정 유형의 콘텐츠 (예를 들어 온라인 소매상 응용 프로그램 hello hello 페이지 위쪽에 나열 된 부서 있는)에 대 한 전용된 검색 페이지를 포함 하는 경우는 **onClick** 이벤트 tooopen 대 상태에서 페이지입니다. 
+## <a name="filters-at-the-page-level"></a>페이지 수준의 필터
+솔루션 디자인이 특정 유형의 콘텐츠에 대한 전용 검색 페이지를 포함하는 경우(예를 들어 페이지 위쪽에 부서 목록이 있는 온라인 소매상 응용 프로그램), 필터식과 함께 미리 필터링된 상태로 페이지를 여는 **onClick** 이벤트를 삽입할 수 있습니다. 
 
-검색 식의 사용 여부에 관계 없이 필터를 보낼 수 있습니다. 예를 들어 hello 다음 요청은 필터링 할 브랜드 이름으로 일치 하는 문서에만 반환 합니다.
+검색 식의 사용 여부에 관계 없이 필터를 보낼 수 있습니다. 예를 들어 다음 요청은 브랜드 이름으로 필터링하고 일치하는 문서만 반환합니다.
 
         GET /indexes/onlineCatalog/docs?$filter=brandname eq ‘Microsoft’ and category eq ‘Games’
 

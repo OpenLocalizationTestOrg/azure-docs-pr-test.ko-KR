@@ -1,5 +1,5 @@
 ---
-title: "AD aaaAzure v2 Windows 데스크톱 시작-Config | Microsoft Docs"
+title: "Azure AD v2 Windows 데스크톱 시작 - 구성 | Microsoft Docs"
 description: "Windows Desktop .NET(XAML) 응용 프로그램이 액세스 토큰을 얻고 Azure Active Directory v2 끝점으로 보호되는 API를 호출하는 방식"
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,19 +15,19 @@ ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: d96d9eded200824a6f7ee234009dd0bb11b18b39
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5e83171846517496e221f0a84565cdf7b77514df
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-## <a name="add-hello-applications-registration-information-tooyour-app"></a>Hello 응용 프로그램의 등록 정보 tooyour 앱 추가
-이 단계에서는 tooadd hello 응용 프로그램 Id tooyour 프로젝트가 필요합니다.
+## <a name="add-the-applications-registration-information-to-your-app"></a>앱에 응용 프로그램의 등록 정보 추가
+이 단계에서는 프로젝트에 응용 프로그램 ID를 추가해야 합니다.
 
-1.  열기 `App.xaml.cs` hello를 포함 하는 hello 줄 바꾸고 `ClientId` 사용:
+1.  `App.xaml.cs`를 열고 다음으로 `ClientId`를 바꿉니다.
 
 ```csharp
-private static string ClientId = "[Enter hello application Id here]";
+private static string ClientId = "[Enter the application Id here]";
 ```
 
 ### <a name="what-is-next"></a>다음 내용

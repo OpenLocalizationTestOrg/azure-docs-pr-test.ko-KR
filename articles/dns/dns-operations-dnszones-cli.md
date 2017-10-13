@@ -1,6 +1,6 @@
 ---
-title: "Azure dns-Azure CLI 2.0 aaaManage DNS 영역 | Microsoft Docs"
-description: "Azure CLI 2.0을 사용하여 DNS 영역을 관리할 수 있습니다. 이 문서에서는 tooupdate, 삭제 하 고 dns를 Azure DNS 영역을 만드는 방법을 보여 줍니다."
+title: "Azure DNS에서 DNS 영역 관리 - Azure CLI 2.0 | Microsoft Docs"
+description: "Azure CLI 2.0을 사용하여 DNS 영역을 관리할 수 있습니다. 이 문서에서는 Azure DNS에서 DNS 영역을 업데이트, 삭제 및 만드는 방법을 설명합니다."
 services: dns
 documentationcenter: na
 author: georgewallace
@@ -13,13 +13,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/27/2017
 ms.author: gwallace
-ms.openlocfilehash: 3945a558b2db3490e50678d8395a47e55a85c8fc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1414baf9e51d648cc3a46c4f8635040b4d276910
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toomanage-dns-zones-in-azure-dns-using-hello-azure-cli-20"></a>Azure DNS를 사용 하 여 DNS 영역 toomanage Azure CLI 2.0 hello 하는 방법
+# <a name="how-to-manage-dns-zones-in-azure-dns-using-the-azure-cli-20"></a>Azure CLI 2.0을 사용하여 Azure DNS에서 DNS 영역을 관리하는 방법
 
 > [!div class="op_single_selector"]
 > * [포털](dns-operations-dnszones-portal.md)
@@ -28,14 +28,14 @@ ms.lasthandoff: 10/06/2017
 > * [Azure CLI 2.0](dns-operations-dnszones-cli.md)
 
 
-이 가이드에서는 어떻게 toomanage DNS 영역을 사용 가능한 Windows, Mac 및 Linux 용 플랫폼 간 Azure CLI hello를 사용 하 여 보여 줍니다. 사용 하 여 DNS 영역을 관리할 수 있습니다 [Azure PowerShell](dns-operations-dnszones.md) 또는 Azure 포털을 환영 합니다.
+이 가이드는 Windows, Mac 및 Linux에서 사용할 수 있는 플랫폼 간 Azure CLI를 사용하여 DNS 영역을 관리하는 방법을 보여 줍니다. [Azure PowerShell](dns-operations-dnszones.md) 또는 Azure Portal을 사용하여 DNS 영역을 관리할 수도 있습니다.
 
-## <a name="cli-versions-toocomplete-hello-task"></a>CLI 버전 toocomplete hello 작업
+## <a name="cli-versions-to-complete-the-task"></a>태스크를 완료하기 위한 CLI 버전
 
-Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행할 수 있습니다.
+다음 CLI 버전 중 하나를 사용하여 태스크를 완료할 수 있습니다.
 
-* [Azure CLI 1.0](dns-operations-dnszones-cli-nodejs.md) -hello 클래식 및 리소스 관리 배포 모델에 대 한 우리의 CLI 합니다.
-* [Azure CLI 2.0](dns-operations-dnszones-cli.md) -우리의 차세대 CLI hello 리소스 관리 배포 모델에 대 한 합니다.
+* [Azure CLI 1.0](dns-operations-dnszones-cli-nodejs.md) - 클래식 및 리소스 관리 배포 모델용 CLI.
+* [Azure CLI 2.0](dns-operations-dnszones-cli.md) - 리소스 관리 배포 모델용 차세대 CLI.
 
 ## <a name="introduction"></a>소개
 
@@ -45,29 +45,29 @@ Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행�
 
 ### <a name="before-you-begin"></a>시작하기 전에
 
-구성을 시작 하기 전에 다음 항목 hello 수 있는지 확인 하십시오.
+구성을 시작하기 전에 다음 항목이 있는지 확인합니다.
 
 * Azure 구독. Azure 구독이 아직 없는 경우 [MSDN 구독자 혜택](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)을 활성화하거나 [무료 계정](https://azure.microsoft.com/pricing/free-trial/)에 등록할 수 있습니다.
 
-* Hello hello Azure CLI 2.0, Windows, Linux 또는 MAC.에 사용할 수 있는의 최신 버전 설치 자세한 내용은 [설치 hello Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2)합니다.
+* Windows, Linux 또는 MAC용 최신 버전의 Azure CLI 2.0을 설정합니다. 자세한 내용은 [Azure CLI 2.0 설정](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2)을 참조하세요.
 
-### <a name="sign-in-tooyour-azure-account"></a>Azure 계정 tooyour에 로그인
+### <a name="sign-in-to-your-azure-account"></a>Azure 계정에 로그인
 
-콘솔 창을 열고 자격 증명을 사용하여 인증합니다. 자세한 내용은 로그를 참조 하십시오. hello Azure CLI에서에서 tooAzure에
+콘솔 창을 열고 자격 증명을 사용하여 인증합니다. 자세한 내용은 Azure CLI에서 Azure에 로그인을 참조하세요.
 
 ```
 az login
 ```
 
-### <a name="select-hello-subscription"></a>Hello 구독 선택
+### <a name="select-the-subscription"></a>구독 선택
 
-Hello 계정에 대 한 hello 구독을 확인 합니다.
+계정에 대한 구독을 확인합니다.
 
 ```
 az account list
 ```
 
-Azure 구독 toouse 선택 합니다.
+사용할 Azure 구독을 선택합니다.
 
 ```azurecli
 az account set --subscription "subscription name"
@@ -75,7 +75,7 @@ az account set --subscription "subscription name"
 
 ### <a name="create-a-resource-group"></a>리소스 그룹 만들기
 
-Azure 리소스 관리자를 사용하려면 모든 리소스 그룹이 위치를 지정해야 합니다. 이것은 해당 리소스 그룹의 리소스에 대 한 hello 기본 위치로 사용 됩니다. 그러나 모든 DNS 리소스가 하지 지역, 글로벌 되므로 hello 다양 한 리소스 그룹 위치에 어떠한 영향도 미치지 Azure DNS 합니다.
+Azure 리소스 관리자를 사용하려면 모든 리소스 그룹이 위치를 지정해야 합니다. 이 위치는 해당 리소스 그룹에서 리소스의 기본 위치로 사용됩니다. 그러나 모든 DNS 리소스는 국가별이 아니라 전역이므로 리소스 그룹의 위치 선택이 Azure DNS에 영향을 주지 않습니다.
 
 기존 리소스 그룹을 사용하는 경우에는 이 단계를 건너뛸 수 있습니다.
 
@@ -85,7 +85,7 @@ az group create --name myresourcegroup --location "West US"
 
 ## <a name="getting-help"></a>도움말 보기
 
-TooAzure DNS와 관련 된 모든 CLI 2.0 명령을 시작 `az network dns`합니다. Hello를 사용 하 여 각 명령에 대 한 도움말은 `--help` 옵션 (약식 `-h`).  예:
+Azure DNS에 관련된 모든 CLI 2.0 명령은 `az network dns`로 시작합니다. `--help` 옵션(약식 `-h`)을 사용하여 각 명령에 대한 도움말을 볼 수 있습니다.  예:
 
 ```azurecli
 az network dns --help
@@ -95,17 +95,17 @@ az network dns zone create --help
 
 ## <a name="create-a-dns-zone"></a>DNS 영역 만들기
 
-DNS 영역 hello를 사용 하 여 만들어집니다. `az network dns zone create` 명령입니다. 도움말을 보려면 `az network dns zone create -h`을 참조하세요.
+`az network dns zone create` 명령을 사용하여 DNS 영역을 만듭니다. 도움말을 보려면 `az network dns zone create -h`을 참조하세요.
 
-hello 다음 예제에서는 호출 하는 DNS 영역 *contoso.com* 호출 hello 리소스 그룹에 *MyResourceGroup*:
+다음 예제에서는 *MyResourceGroup*이라는 리소스 그룹에 *contoso.com*이라는 DNS 영역을 만듭니다.
 
 ```azurecli
 az network dns zone create --resource-group MyResourceGroup --name contoso.com
 ```
 
-### <a name="toocreate-a-dns-zone-with-tags"></a>toocreate 태그와 DNS 영역
+### <a name="to-create-a-dns-zone-with-tags"></a>태그를 사용하여 DNS 영역을 만들려면
 
-hello 다음 예제에서는 두 개의 toocreate DNS 영역 방법을 [Azure 리소스 관리자 태그](dns-zones-records.md#tags), *프로젝트 데모 =* 및 *env = 테스트*, hello를 사용 하 여 `--tags` 매개 변수 (약식 `-t`):
+다음 예제에서는 두 [Azure Resource Manager 태그](dns-zones-records.md#tags), *project = demo* 및 *env = test*와 함께 `--tags` 매개 변수(짧은 양식 `-t`)를 사용하여 DNS 영역을 만드는 방법을 보여 줍니다.
 
 ```azurecli
 az network dns zone create --resource-group MyResourceGroup --name contoso.com --tags "project=demo" "env=test"
@@ -113,15 +113,15 @@ az network dns zone create --resource-group MyResourceGroup --name contoso.com -
 
 ## <a name="get-a-dns-zone"></a>DNS 영역 가져오기
 
-tooretrieve DNS 영역을 사용 하 여 `az network dns zone show`합니다. 도움말을 보려면 `az network dns zone show --help`을 참조하세요.
+DNS 영역을 가져오려면 `az network dns zone show`를 사용합니다. 도움말을 보려면 `az network dns zone show --help`을 참조하세요.
 
-hello 다음 예제에서는 반환 hello DNS 영역 *contoso.com* 및 리소스 그룹에서 관련된 데이터 *MyResourceGroup*합니다. 
+다음 예제에서는 DNS 영역 *contoso.com* 및 해당 관련 데이터를 리소스 그룹 *MyResourceGroup*에서 반환합니다. 
 
 ```azurecli
 az network dns zone show --resource-group myresourcegroup --name contoso.com
 ```
 
-다음 예제는 hello hello 응답입니다.
+다음 예제는 응답입니다.
 
 ```json
 {
@@ -143,20 +143,20 @@ az network dns zone show --resource-group myresourcegroup --name contoso.com
 }
 ```
 
-DNS 레코드는 `az network dns zone show`에서 반환되지 않습니다. toolist DNS 레코드를 사용 하 여 `az network dns record-set list`합니다.
+DNS 레코드는 `az network dns zone show`에서 반환되지 않습니다. DNS 레코드를 나열하려면 `az network dns record-set list`를 사용합니다.
 
 
 ## <a name="list-dns-zones"></a>DNS 영역 나열
 
-tooenumerate DNS 영역을 사용 하 여 `az network dns zone list`합니다. 도움말을 보려면 `az network dns zone list --help`을 참조하세요.
+DNS 영역을 열거하려면 `az network dns zone list`를 사용합니다. 도움말을 보려면 `az network dns zone list --help`을 참조하세요.
 
-Hello 리소스 그룹을 지정 하 여 hello 리소스 그룹 내에서 해당 영역에만 나열합니다.
+리소스 그룹을 지정하면 리소스 그룹 내의 해당 영역만 나열합니다.
 
 ```azurecli
 az network dns zone list --resource-group MyResourceGroup
 ```
 
-Hello 리소스 그룹을 생략 hello 구독의 모든 영역을 나열합니다.
+리소스 그룹을 생략하면 구독의 모든 영역이 나열됩니다.
 
 ```azurecli
 az network dns zone list 
@@ -164,11 +164,11 @@ az network dns zone list
 
 ## <a name="update-a-dns-zone"></a>DNS 영역 업데이트
 
-사용 하 여 DNS 영역 리소스를 제공할 수는 변경 내용 tooa `az network dns zone update`합니다. 도움말을 보려면 `az network dns zone update --help`을 참조하세요.
+`az network dns zone update`를 사용하여 DNS 영역 리소스를 변경할 수 있습니다. 도움말을 보려면 `az network dns zone update --help`을 참조하세요.
 
-이 명령은 hello hello 영역 내에서 DNS 레코드 집합의 업데이트 되지 않는 (참조 [어떻게 tooManage DNS 레코드](dns-operations-recordsets-cli.md)). Hello 영역 리소스 자체의 속성을 사용 하는 유일한 tooupdate 것합니다. 이러한 속성은 현재 제한 toohello [Azure 리소스 관리자 '태그'](dns-zones-records.md#tags) hello 영역의 리소스에 대 한 합니다.
+이 명령은 영역 내의 DNS 레코드 집합을 업데이트하지 않습니다([DNS 레코드를 관리하는 방법](dns-operations-recordsets-cli.md) 참조). 영역 리소스 자체의 속성을 업데이트하는 데만 사용됩니다. 이러한 속성은 현재 영역 리소스에 대한 [Azure Resource Manager '태그'](dns-zones-records.md#tags)로 제한됩니다.
 
-hello 다음 예제에서는 tooupdate hello DNS 영역에 태그를 삽입 방법 hello 기존 태그는 지정 된 hello 값으로 대체 됩니다.
+다음 예제에서는 DNS 영역에서 태그를 업데이트하는 방법을 보여 줍니다. 기존 태그는 지정된 값으로 대체됩니다.
 
 ```azurecli
 az network dns zone update --resource-group myresourcegroup --name contoso.com --set tags.team=support
@@ -179,13 +179,13 @@ az network dns zone update --resource-group myresourcegroup --name contoso.com -
 `az network dns zone delete`를 사용하여 DNS 영역을 삭제할 수 있습니다. 도움말을 보려면 `az network dns zone delete --help`을 참조하세요.
 
 > [!NOTE]
-> DNS 영역을 삭제 하면 모든 DNS 레코드가 hello 영역 내에서 삭제 합니다. 이 작업은 취소할 수 없습니다. DNS 영역 hello를 사용 하는 경우 hello 영역이 삭제 되 면 hello 영역을 사용 하 여 서비스 실패 합니다.
+> DNS 영역을 삭제하면 영역 내의 모든 DNS 레코드도 삭제됩니다. 이 작업은 취소할 수 없습니다. DNS 영역을 사용 중인 경우 영역이 삭제되면 영역을 사용하는 서비스가 실패합니다.
 >
->실수로 영역 삭제 tooprotect 참조 [tooprotect DNS 영역 및 기록 방법을](dns-protect-zones-recordsets.md)합니다.
+>실수로 영역이 삭제되는 것을 방지하려면 [DNS 영역 및 레코드를 보호하는 방법](dns-protect-zones-recordsets.md)을 참조하세요.
 
-이 명령은 확인 메시지를 표시합니다. 선택적 hello `--yes` 스위치가이 프롬프트를 표시 하지 않습니다.
+이 명령은 확인 메시지를 표시합니다. 선택적 `--yes` 스위치는 이 프롬프트를 표시하지 않습니다.
 
-hello 다음 예제에서는 어떻게 toodelete hello 영역 *contoso.com* 리소스 그룹에서 *MyResourceGroup*합니다.
+다음 예제는 리소스 그룹 *MyResourceGroup*에서 *contoso.com* 영역을 삭제하는 방법을 보여 줍니다.
 
 ```azurecli
 az network dns zone delete --resource-group myresourcegroup --name contoso.com
@@ -193,7 +193,7 @@ az network dns zone delete --resource-group myresourcegroup --name contoso.com
 
 ## <a name="next-steps"></a>다음 단계
 
-너무 방법에 대해 알아봅니다[레코드 집합 및 레코드 관리](dns-getstarted-create-recordset-cli.md) DNS 영역에 있습니다.
+DNS 영역에서 [레코드 집합 및 레코드 관리](dns-getstarted-create-recordset-cli.md) 방법을 알아봅니다.
 
-너무 방법에 대해 알아봅니다[사용자 도메인 tooAzure DNS 위임](dns-domain-delegation.md)합니다.
+[Azure DNS에 도메인을 위임](dns-domain-delegation.md)하는 방법을 알아봅니다.
 

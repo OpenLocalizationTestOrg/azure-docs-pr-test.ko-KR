@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toouse hello Azure Cosmos DB DocumentDB API가 있는 스프링 부팅 시작"
-description: "어떻게 tooconfigure는 응용 프로그램을 만들 hello Azure Cosmos DB DocumentDB API로 hello 스프링 부팅 이니셜라이저에 알아봅니다."
+title: "Azure DB Cosmos DocumentDB API에서 Spring Boot Starter를 사용하는 방법"
+description: "Azure Cosmos DB DocumentDB API에서 Spring Boot Initializer를 사용하여 만든 응용 프로그램을 구성하는 방법에 대해 알아봅니다."
 services: cosmos-db
 documentationcenter: java
 author: rmcmurray
@@ -15,25 +15,25 @@ ms.devlang: java
 ms.topic: article
 ms.date: 08/08/2017
 ms.author: robmcm;yungez;kevinzha
-ms.openlocfilehash: a2c6de678f850676cb2887e224e5c12950db0e53
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 273cc750857c5e466882060a38ac0f3475811e98
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="how-toouse-hello-spring-boot-starter-with-azure-cosmos-db-documentdb-api"></a>어떻게 toouse hello Azure Cosmos DB DocumentDB api 스프링 부팅 시작
+# <a name="how-to-use-the-spring-boot-starter-with-azure-cosmos-db-documentdb-api"></a>Azure DB Cosmos DocumentDB API에서 Spring Boot Starter를 사용하는 방법
 
 ## <a name="overview"></a>개요
 
-hello  **[Spring Framework]**  은 오픈 소스 솔루션으로 Java 개발자가 엔터프라이즈 수준의 응용 프로그램을 만들 수 있도록 합니다. 만들어지는 hello 더 이상 인기 있는 프로젝트 중 하나의 플랫폼은 [스프링 부팅], 독립 실행형 Java 응용 프로그램을 만들기 위한 간단한 방법을 제공 하는 합니다. 스프링 부팅 toohelp 개발자 시작, 몇 가지 샘플 스프링 부팅 패키지에서 사용할 수 있는 <https://github.com/spring-guides/>합니다. 또한 toochoosing 기본 스프링 부팅 hello 목록에서 프로젝트, hello  **[스프링 Initializr]**  스프링 부팅의 사용자 지정 응용 프로그램을 만드는 것부터 시작 하는 개발자는 데 도움이 됩니다.
+**[Spring Framework]**는 Java 개발자가 엔터프라이즈 수준의 응용 프로그램을 만드는 데 도움이 되는 오픈 소스 솔루션입니다. 해당 플랫폼을 기반으로 하여 빌드되는 인기 있는 프로젝트 중 하나가 [Spring Boot]입니다. 이 프로젝트는 독립 실행형 Java 응용 프로그램을 만드는 간단한 방법을 제공합니다. Spring Boot을 시작하는 개발자를 도우려면 <https://github.com/spring-guides/>에서 몇 가지 샘플 Spring Boot 패키지를 사용할 있습니다. 기본 Spring Boot 프로젝트 목록에서 선택하는 것 외에도 **[Spring Initializr]**를 통해 사용자 지정 Spring Boot 응용 프로그램을 만들기 시작하는 개발자에게 도움을 줍니다.
 
-Azure Cosmos DB는 개발자가 사용할 수 있는 전역으로 분산 데이터베이스 서비스 toowork 다양 한 DocumentDB, MongoDB, 그래프 및 테이블 Api와 같은 표준 Api 사용 하 여 데이터를 사용 합니다. Microsoft의 스프링 부팅 시작 DocumentDB Api를 사용 하 여 Azure Cosmos DB와 쉽게 통합 하는 개발자가 toouse 스프링 부팅 응용 프로그램이 있습니다.
+Azure Cosmos DB는 개발자가 DocumentDB, MongoDB, Graph 및 Table API와 같은 표준 API를 사용하여 데이터를 사용할 수 있도록 하는 전역 분산 데이터베이스 서비스입니다. Microsoft의 Spring Boot Starter를 사용하면 개발자가 DocumentDB API를 사용하여 Azure Cosmos DB와 쉽게 통합하는 Spring Boot 응용 프로그램을 사용할 수 있습니다.
 
-이 문서는 Azure Cosmos DB hello Azure 포털을 사용 하 여 hello를 사용 하 여 다음을 만드는 방법을 보여 **스프링 Initializr** toocreate 사용자 지정 java 응용 프로그램을 다음 hello 스프링 부팅 시작 기능 tooyour 사용자 정의 추가 응용 프로그램 toostore 데이터와 데이터 hello DocumentDB API를 사용 하 여 Azure Cosmos DB를 검색 합니다.
+이 문서에서는 Azure Portal을 사용하여 Azure Cosmos DB를 만들고, **Spring Initializr**를 사용하여 사용자 지정 java 응용 프로그램을 만들고, Spring Boot Starter 기능을 사용자 지정 응용 프로그램에 추가하여 데이터를 저장하고 DocumentDB API를 사용하여 Azure Cosmos DB에서 데이터를 검색하는 방법을 보여줍니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-필수 구성 요소를 다음 hello 순서 toofollow hello이이 문서의 단계에 필요 합니다.
+이 문서의 단계를 수행하기 위해 다음 필수 구성 요소가 필요합니다.
 
 * Azure 구독. Azure 구독이 아직 없는 경우 [MSDN 구독자 혜택]을 활성화하거나 [무료 Azure 계정]에 등록할 수 있습니다.
 
@@ -41,9 +41,9 @@ Azure Cosmos DB는 개발자가 사용할 수 있는 전역으로 분산 데이�
 
 * [Apache Maven](http://maven.apache.org/), 버전 3.0 이상
 
-## <a name="create-an-azure-cosmos-db-by-using-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여 Azure Cosmos DB 만들기
+## <a name="create-an-azure-cosmos-db-by-using-the-azure-portal"></a>Azure Portal을 사용하여 Azure Cosmos DB 만들기
 
-1. 찾아보기 toohello Azure 포털에서 <https://portal.azure.com/> 클릭 **+ 새로 만들기**합니다.
+1. <https://portal.azure.com/>의 Azure Portal로 이동하고 **+새로 만들기**를 클릭합니다.
 
    ![Azure portal][AZ01]
 
@@ -51,50 +51,50 @@ Azure Cosmos DB는 개발자가 사용할 수 있는 전역으로 분산 데이�
 
    ![Azure portal][AZ02]
 
-1. Hello에 **Azure Cosmos DB** 페이지 hello 다음 정보를 입력 합니다.
+1. **Azure Cosmos DB** 페이지에서 다음 정보를 입력합니다.
 
-   * 고유한 입력 **ID**, 데이터베이스에 대 한 URI를 hello으로 사용 합니다. 예: *wingtiptoysdata.documents.azure.com*
-   * 선택 **SQL (문서 DB)** hello API에 대 한 합니다.
-   * Hello 선택 **구독** toouse 데이터베이스에 대 한 원하는 합니다.
-   * 지정 여부 새 toocreate **리소스 그룹** 프로그램 데이터베이스에 대 한 하거나 기존 리소스 그룹을 선택 합니다.
-   * Hello 지정 **위치** 데이터베이스에 대 한 합니다.
+   * 고유한 **ID**를 입력합니다. 이 항목은 데이터베이스의 URI로 사용합니다. 예: *wingtiptoysdata.documents.azure.com*
+   * API에 **SQL(Document DB)**을 선택합니다.
+   * 데이터베이스에 사용하려는 **구독**을 선택합니다.
+   * 데이터베이스에 새 **리소스 그룹**을 만들지 아니면 기존 리소스 그룹을 선택할지를 지정합니다.
+   * 데이터베이스의 **위치**를 지정합니다.
    
-   이러한 옵션을 지정한 경우 클릭 **만들기** toocreate 데이터베이스입니다.
+   이러한 옵션을 지정한 경우 **만들기**를 클릭하여 데이터베이스를 만듭니다.
 
    ![Azure portal][AZ03]
 
-1. 데이터베이스를 만든 경우 Azure에 나열 됩니다 **대시보드**뿐만 아니라 hello 아래에서 **모든 리소스** 및 **Azure Cosmos DB** 페이지입니다. 캐시에 대 한 해당 위치 tooopen hello 속성 페이지 중 하나에서 해당 데이터베이스를 클릭할 수 있습니다.
+1. 데이터베이스를 만든 경우 Azure **대시보드** 뿐 아니라 **모든 리소스** 및 **Azure Cosmos DB** 페이지에도 나열됩니다. 해당 위치 중 하나에서 데이터베이스를 클릭하여 캐시에 대한 속성 페이지를 열 수 있습니다.
 
    ![Azure portal][AZ04]
 
-1. 데이터베이스에 대 한 hello 속성 페이지를 표시할 때 클릭 **선택키가** 데이터베이스에 대 한 URI 및 액세스 키를 복사 하 고 스프링 부팅 응용 프로그램에서 이러한 값을 사용 합니다.
+1. 데이터베이스에 대한 속성 페이지가 표시되면 **액세스 키**를 클릭하고 데이터베이스에 대한 URI 및 액세스 키를 복사합니다. 이러한 값은 Spring Boot 응용 프로그램에서 사용하게 됩니다.
 
    ![Azure portal][AZ05]
 
-## <a name="create-a-simple-spring-boot-application-with-hello-spring-initializr"></a>스프링 Initializr hello로 간단한 스프링 부팅 응용 프로그램 만들기
+## <a name="create-a-simple-spring-boot-application-with-the-spring-initializr"></a>Spring Initializr를 사용하여 간단한 Spring Boot 응용 프로그램 만들기
 
-1. 너무 찾아보기<https://start.spring.io/>합니다.
+1. <https://start.spring.io/>로 이동합니다.
 
-1. Toogenerate 되도록 지정 된 **Maven** 프로젝트를 **Java**, hello 입력 **그룹** 및 **아티팩트** 응용 프로그램에 대 한 이름 및 클릭 한 다음 너무 hello 단추**프로젝트 생성**합니다.
+1. **Java**에서 **Maven** 프로젝트를 생성한다고 지정하고, 응용 프로그램에 대한 **그룹** 및 **아티팩트** 이름을 입력한 다음 **프로젝트를 생성**하는 단추를 클릭합니다.
 
    ![기본 Spring Initializr 옵션][SI01]
 
    > [!NOTE]
    >
-   > 스프링 Initializr hello hello를 사용 하 여 **그룹** 및 **아티팩트** 이름 toocreate hello 패키지 이름; 예를 들면: *com.example.wintiptoys*합니다.
+   > Spring Initializr는 **그룹** 및 **아티팩트** 이름을 사용하여 패키지 이름을 만듭니다(예: *com.example.wintiptoys*).
    >
 
-1. 메시지가 표시 되 면 hello 프로젝트 tooa 경로 로컬 컴퓨터에 다운로드 합니다.
+1. 메시지가 표시되면 로컬 컴퓨터의 경로에 프로젝트를 다운로드합니다.
 
    ![사용자 지정 Spring Boot 프로젝트 다운로드][SI02]
 
-1. 로컬 시스템에 hello 파일, 압축을 푼 후 간단한 스프링 부팅 응용 프로그램 편집을 위해 수 있습니다.
+1. 로컬 시스템에서 파일의 압축을 푼 후에 단순한 Spring Boot 응용 프로그램을 편집할 준비를 합니다.
 
    ![사용자 지정 Spring Boot 프로젝트 파일][SI03]
 
-## <a name="configure-your-spring-boot-app-toouse-hello-azure-spring-boot-starter"></a>스프링 부팅 앱 toouse hello Azure 스프링 부팅 시작 구성
+## <a name="configure-your-spring-boot-app-to-use-the-azure-spring-boot-starter"></a>Azure Spring Boot Starter를 사용하도록 Spring Boot 앱 구성
 
-1. Hello 찾을 *pom.xml* ; 응용 프로그램의 hello 디렉터리에에서 파일의 예:
+1. 앱의 디렉터리에서 *pom.xml* 파일을 찾습니다. 예:
 
    `C:\SpringBoot\wingtiptoys\pom.xml`
 
@@ -102,9 +102,9 @@ Azure Cosmos DB는 개발자가 사용할 수 있는 전역으로 분산 데이�
 
    `/users/example/home/wingtiptoys/pom.xml`
 
-   ![Hello pom.xml 파일 찾기][PM01]
+   ![pom.xml 파일 찾기][PM01]
 
-1. 열기 hello *pom.xml* 텍스트 편집기에서 파일을 추가 뒤의 줄 toolist hello `<dependencies>`:
+1. 텍스트 편집기에서 *pom.xml* 파일을 열고 다음 줄을 `<dependencies>` 목록에 추가합니다.
 
    ```xml
    <dependency>
@@ -114,13 +114,13 @@ Azure Cosmos DB는 개발자가 사용할 수 있는 전역으로 분산 데이�
    </dependency>
    ```
 
-   ![Hello pom.xml 파일 편집][PM02]
+   ![pom.xml 파일 편집][PM02]
 
-1. 저장 후 닫기 hello *pom.xml* 파일입니다.
+1. *pom.xml* 파일을 저장하고 닫습니다.
 
-## <a name="configure-your-spring-boot-app-toouse-your-azure-cosmos-db"></a>스프링 부팅 앱 toouse Azure Cosmos DB 구성
+## <a name="configure-your-spring-boot-app-to-use-your-azure-cosmos-db"></a>Azure Cosmos DB를 사용하도록 Spring Boot 앱 구성
 
-1. Hello 찾을 *application.properties* hello에 대 한 파일 *리소스* 응용 프로그램의 디렉터리 예:
+1. 앱의 *리소스* 디렉터리에서 *application.properties* 파일을 찾습니다.
 
    `C:\SpringBoot\wingtiptoys\src\main\resources\application.properties`
 
@@ -128,34 +128,34 @@ Azure Cosmos DB는 개발자가 사용할 수 있는 전역으로 분산 데이�
 
    `/users/example/home/wingtiptoys/src/main/resources/application.properties`
 
-   ![Hello application.properties 파일 찾기][RE01]
+   ![application.properties 파일 찾기][RE01]
 
-1. 열기 hello *application.properties* 파일 텍스트 편집기에서 다음 줄 toohello 파일 hello를 추가 하 고 데이터베이스에 대 한 적절 한 속성을 hello hello 샘플 값으로 바꾸십시오.
+1. 텍스트 편집기에서 *application.properties* 파일을 찾고 파일에 다음 줄을 추가하고 샘플 값을 데이터베이스의 적절한 속성으로 바꿉니다.
 
    ```yaml
-   # Specify hello DNS URI of your Azure Cosmos DB.
+   # Specify the DNS URI of your Azure Cosmos DB.
    azure.documentdb.uri=https://wingtiptoys.documents.azure.com:443/
 
-   # Specify hello access key for your database.
+   # Specify the access key for your database.
    azure.documentdb.key=57686f6120447564652c20426f6220526f636b73==
 
-   # Specify hello name of your database.
+   # Specify the name of your database.
    azure.documentdb.database=wingtiptoysdata
    ```
 
-   ![Hello application.properties 파일 편집][RE02]
+   ![application.properties 파일 편집][RE02]
 
-1. 저장 후 닫기 hello *application.properties* 파일입니다.
+1. *application.properties* 파일을 저장하고 닫습니다.
 
-## <a name="add-sample-code-tooimplement-basic-database-functionality"></a>샘플 코드 tooimplement 기본 데이터베이스 기능을 추가 합니다.
+## <a name="add-sample-code-to-implement-basic-database-functionality"></a>기본 데이터베이스 기능을 구현하는 샘플 코드 추가
 
-이 섹션의 사용자 데이터를 저장 하기 위한 두 개의 Java 클래스 만들고 주 응용 프로그램 클래스 toocreate hello 사용자 클래스의 인스턴스를 수정 하 고 tooyour 데이터베이스를 저장 하는 다음 합니다.
+이 섹션에서는 사용자 데이터 저장을 위해 두 가지 Java 클래스를 만든 다음, 기본 응용 프로그램 클래스를 수정하여 사용자 클래스의 인스턴스를 만들고 데이터베이스에 저장합니다.
 
 ### <a name="define-a-basic-class-for-storing-user-data"></a>사용자 데이터를 저장하기 위한 기본 클래스 정의
 
-1. 라는 새 파일을 만들어 *User.java* hello에 기본 응용 프로그램 Java 파일과 동일한 디렉터리입니다.
+1. 기본 응용 프로그램 Java 파일과 동일한 디렉터리에 *User.java*라는 새 파일을 만듭니다.
 
-1. 열기 hello *User.java* 텍스트 편집기에서 파일을 hello 다음 줄 toohello 파일 toodefine 저장 하 고 데이터베이스에서 값을 검색 하는 일반 사용자 클래스를 추가 합니다.
+1. 텍스트 편집기에서 *User.java* 파일을 다음 줄을 파일에 추가하여 데이터베이스에서 값을 저장하고 검색하는 일반 사용자 클래스를 정의합니다.
 
    ```java
    package com.example.wingtiptoys;
@@ -202,13 +202,13 @@ Azure Cosmos DB는 개발자가 사용할 수 있는 전역으로 분산 데이�
    }
    ```
 
-1. 저장 후 닫기 hello *User.java* 파일입니다.
+1. *User.java* 파일을 저장하고 닫습니다.
 
 ### <a name="define-a-data-repository-interface"></a>데이터 리포지토리 인터페이스 정의
 
-1. 라는 새 파일을 만들어 *UserRepository.java* hello에 기본 응용 프로그램 Java 파일과 동일한 디렉터리입니다.
+1. 기본 응용 프로그램 Java 파일과 동일한 디렉터리에 *UserRepository.java*라는 새 파일을 만듭니다.
 
-1. 열기 hello *UserRepository.java* 텍스트 편집기에서 파일을 hello 다음 줄 toohello 파일 toodefine hello 기본 DocumentDB 리포지토리 인터페이스를 확장 하는 사용자 리포지토리 인터페이스를 추가 합니다.
+1. 텍스트 편집기에서 *UserRepository.java* 파일을 열고 파일에 다음 줄을 추가하여 기본 DocumentDB 리포지토리 인터페이스를 확장하는 사용자 리포지토리 인터페이스를 정의합니다.
 
    ```java
    package com.example.wingtiptoys;
@@ -220,11 +220,11 @@ Azure Cosmos DB는 개발자가 사용할 수 있는 전역으로 분산 데이�
    public interface UserRepository extends DocumentDbRepository<User, String> {}   
    ```
 
-1. 저장 후 닫기 hello *UserRepository.java* 파일입니다.
+1. *UserRepository.java* 파일을 저장하고 닫습니다.
 
-### <a name="modify-hello-main-application-class"></a>Hello 주 응용 프로그램 클래스를 수정 합니다.
+### <a name="modify-the-main-application-class"></a>기본 응용 프로그램 클래스 수정
 
-1. 응용 프로그램;의 hello 패키지 디렉터리에서 hello 주 응용 프로그램 Java 파일 찾기 예를 들어:
+1. 앱의 패키지 디렉터리에서 기본 응용 프로그램 Java 파일을 찾습니다. 예:
 
    `C:\SpringBoot\wingtiptoys\src\main\java\com\example\wingtiptoys\WingtiptoysApplication.java`
 
@@ -232,9 +232,9 @@ Azure Cosmos DB는 개발자가 사용할 수 있는 전역으로 분산 데이�
 
    `/users/example/home/wingtiptoys/src/main/java/com/example/wingtiptoys/WingtiptoysApplication.java`
 
-   ![Hello 응용 프로그램이 Java 파일 찾기][JV01]
+   ![응용 프로그램 Java 파일 찾기][JV01]
 
-1. 텍스트 편집기에서 hello 기본 응용 프로그램 Java 파일을 열고 다음 줄 toohello 파일 hello를 추가 합니다.
+1. 텍스트 편집기에서 응용 프로그램 Java 파일을 열고 다음 줄을 파일에 추가합니다.
 
    ```java
    package com.example.wingtiptoys;
@@ -267,11 +267,11 @@ Azure Cosmos DB는 개발자가 사용할 수 있는 전역으로 분산 데이�
    }
    ```
 
-1. 저장 하 고 hello 기본 응용 프로그램 Java 파일을 닫습니다.
+1. 기본 응용 프로그램 Java 파일을 저장하고 닫습니다.
 
 ## <a name="build-and-test-your-app"></a>앱 빌드 및 테스트
 
-1. 명령 프롬프트를 열고 디렉터리 toohello 폴더 변경 위치 프로그램 *pom.xml* 파일은 예:
+1. 명령 프롬프트를 열고 디렉터리를 *pom.xml* 파일이 위치한 폴더로 변경합니다. 예:
 
    `cd C:\SpringBoot\wingtiptoys`
 
@@ -286,31 +286,31 @@ Azure Cosmos DB는 개발자가 사용할 수 있는 전역으로 분산 데이�
    java -jar target/wingtiptoys-0.0.1-SNAPSHOT.jar
    ```
 
-1. 응용 프로그램에 여러 런타임 메시지에 표시 되 고 hello 메시지를 확인 해야 `User: testFirstName testLastName` tooindicate 있는지 값 성공적으로 저장 되어 데이터베이스에서 검색을 표시 합니다.
+1. 응용 프로그램에 여러 런타임 메시지가 표시되고 `User: testFirstName testLastName` 메시지가 표시되어 값을 성공적으로 저장하고 데이터베이스에서 검색했음을 나타내야 합니다.
 
-   ![Hello 응용 프로그램에서 성공적으로 출력][JV02]
+   ![응용 프로그램에서 성공적인 출력][JV02]
 
-1. 선택 사항: 사용할 수 있습니다 프로그램 Azure Cosmos DB hello 속성 페이지에서의 hello Azure 포털 tooview hello 내용을 데이터베이스에 대 한 클릭 하 여 **Document Explorer**, 다음을 선택 하 고 항목을 표시 하는 hello 목록 tooview hello에서 내용입니다.
+1. 선택 사항: 콘텐츠를 보기 위해 **문서 탐색기**를 클릭하고 표시된 목록에서 항목을 선택하여 데이터베이스의 속성 페이지에서 Azure Cosmos DB의 콘텐츠를 보도록 Azure Portal을 사용할 수 있습니다.
 
-   ![사용 하 여 hello Document Explorer tooview 데이터][JV03]
+   ![문서 탐색기를 사용하여 데이터 보기][JV03]
 
 ## <a name="next-steps"></a>다음 단계
 
-Cosmos DB Azure 및 Java를 사용 하는 방법에 대 한 자세한 내용은 다음 문서는 hello 참조:
+Azure Cosmos DB 및 Java를 사용하는 방법에 대한 자세한 내용은 다음 문서를 참조하세요.
 
 * [Azure Cosmos DB 설명서]
 
-* [Azure Cosmos DB: Java 통해 DocumentDB API 앱을 빌드하고 hello Azure 포털][Build a DocumentDB API app with Java]
+* [Azure Cosmos DB: Java 및 Azure Portal에서 DocumentDB API 앱 빌드][Build a DocumentDB API app with Java]
 
-Azure에서 스프링 부팅 응용 프로그램을 사용 하는 방법에 대 한 자세한 내용은 다음 문서는 hello 참조:
+Azure에서 Spring Boot 응용 프로그램을 사용 하는 방법에 대한 자세한 내용은 다음 문서를 참조하세요.
 
 * [Azure의 Spring Boot DocumenDB Starter](https://github.com/Microsoft/azure-spring-boot-starters/tree/master/azure-documentdb-spring-boot-starter-sample)
 
-* [스프링 부팅 응용 프로그램 toohello Azure 앱 서비스 배포](../app-service/app-service-deploy-spring-boot-web-app-on-azure.md)
+* [Azure App Service에 Spring Boot 응용 프로그램 배포](../app-service/app-service-deploy-spring-boot-web-app-on-azure.md)
 
-* [Hello Azure 컨테이너 서비스의에서 Kubernetes 클러스터에서 스프링 부팅 응용 프로그램을 실행합니다.](../container-service/container-service-deploy-spring-boot-app-on-kubernetes.md)
+* [Azure Container Service의 Kubernetes 클러스터에 Spring Boot 응용 프로그램 실행](../container-service/container-service-deploy-spring-boot-app-on-kubernetes.md)
 
-Java와 함께 Azure 사용에 대 한 자세한 내용은 참조 hello [Azure Java 개발자 센터] 및 hello [Visual Studio Team Services에 대 한 Java 도구]합니다.
+Java와 함께 Azure를 사용하는 방법에 대한 자세한 내용은 [Azure Java 개발자 센터] 및 [Visual Studio Team Services용 Java 도구]를 참조하세요.
 
 <!-- URL List -->
 
@@ -318,10 +318,10 @@ Java와 함께 Azure 사용에 대 한 자세한 내용은 참조 hello [Azure J
 [Azure Java 개발자 센터]: https://azure.microsoft.com/develop/java/
 [Build a DocumentDB API app with Java]: https://docs.microsoft.com/azure/cosmos-db/create-documentdb-java
 [무료 Azure 계정]: https://azure.microsoft.com/pricing/free-trial/
-[Visual Studio Team Services에 대 한 Java 도구]: https://java.visualstudio.com/
+[Visual Studio Team Services용 Java 도구]: https://java.visualstudio.com/
 [MSDN 구독자 혜택]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
-[스프링 부팅]: http://projects.spring.io/spring-boot/
-[스프링 Initializr]: https://start.spring.io/
+[Spring Boot]: http://projects.spring.io/spring-boot/
+[Spring Initializr]: https://start.spring.io/
 [Spring Framework]: https://spring.io/
 
 <!-- IMG List -->

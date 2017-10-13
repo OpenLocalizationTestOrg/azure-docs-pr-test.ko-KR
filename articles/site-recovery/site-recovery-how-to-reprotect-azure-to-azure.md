@@ -1,6 +1,6 @@
 ---
-title: "Azure 가상 컴퓨터 백 tooprimary Azure 지역에서 aaaHow tooReprotect 실패할 | Microsoft Docs"
-description: "장애 조치 후 Vm의 한 Azure 지역 tooanother에서 Azure Site Recovery tooprotect hello 컴퓨터 반대 방향으로 사용할 수 있습니다. 어떻게 hello 단계에 알아봅니다 toodo 다시 장애 조치 하기 전에 다시 보호 합니다."
+title: "장애 조치된 Azure Virtual Machines에서 다시 기본 Azure 지역으로 다시 보호하는 방법 | Microsoft Docs"
+description: "Azure 지역 간의 VM 장애 조치 후 Azure Site Recovery를 사용하여 역방향으로 컴퓨터를 보호할 수 있습니다. 장애 조치 전에 다시 보호하는 방법에 대해 알아봅니다."
 services: site-recovery
 documentationcenter: 
 author: ruturaj
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 08/11/2017
 ms.author: ruturajd
-ms.openlocfilehash: 991c7ee8f489e84c250230bf73f3e99015c5f051
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 32f5d2d142940bc515849dcd0edb1bb1f152aa6d
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="reprotect-from-failed-over-azure-region-back-tooprimary-region"></a>뒤로 tooprimary 지역의 Azure 지역에서 다시 보호 하지 못했습니다.
+# <a name="reprotect-from-failed-over-azure-region-back-to-primary-region"></a>장애 조치된 Azure 지역에서 다시 주 지역으로 다시 보호
 
 
 
@@ -30,81 +30,81 @@ ms.lasthandoff: 10/06/2017
 
 
 ## <a name="overview"></a>개요
-때 있습니다 [장애 조치](site-recovery-failover.md) hello tooanother Azure 지역에서에서 가상 컴퓨터, hello 가상 컴퓨터는 비보호 상태가 됩니다. 경우에 원하는 toobring toohello 기본 지역 다시 toofirst hello 가상 컴퓨터 및 장애 조치를 다시 보호 합니다. 두 방향 간에 장애 조치 방법에는 차이점이 없습니다. 마찬가지로, hello 가상 컴퓨터의 보호를 활성화를 게시, hello 다시 보호 사후 장애 조치 또는 post 장애 복구 간의 차이가 없습니다.
-다시 보호, 및 tooavoid 혼동 tooexplain hello 워크플로, 아시아 동부 지역으로 hello 보호 된 컴퓨터의 hello 기본 사이트와 동남 아시아 영역으로 hello 컴퓨터의 복구 사이트 hello 사용 합니다. 장애 조치 중 장애 조치 hello 가상 컴퓨터 toohello 동남 아시아 지역이 됩니다. 장애 복구를 하기 전에 동남 아시아 백 tooEast 아시아에서에서 tooreprotect hello 가상 컴퓨터가 있어야 합니다. 이 문서는 방법에 hello 단계를 설명 tooreprotect 합니다.
+Azure 지역 간에 가상 컴퓨터를 [장애 조치](site-recovery-failover.md)한 경우 가상 컴퓨터는 보호되지 않는 상태가 됩니다. 이러한 가상 컴퓨터를 주 지역으로 다시 가져오려면 먼저 가상 컴퓨터를 보호한 다음 다시 장애 조치해야 합니다. 두 방향 간에 장애 조치 방법에는 차이점이 없습니다. 마찬가지로, 가상 컴퓨터의 보호를 활성화한 후 장애 조치 후 다시 보호와 장애 복구 후 다시 보호 간에도 차이점이 없습니다.
+다시 보호 워크플로를 설명하고 혼동을 피하기 위해 보호된 컴퓨터의 기본 사이트를 동아시아 지역으로 사용하고 컴퓨터의 복구 사이트를 동남 아시아 지역으로 사용해 보겠습니다. 장애 조치 중에는 가상 컴퓨터를 동남 아시아 지역으로 장애 조치합니다. 장애 복구 전에 가상 컴퓨터를 다시 동남 아시아에서 동아시아로 다시 보호해야 합니다. 이 문서에서는 다시 보호하는 방법을 설명합니다.
 
 > [!WARNING]
-> 있는 경우 [마이그레이션을 완료](site-recovery-migrate-to-azure.md#what-do-we-mean-by-migration), 그룹 또는 삭제 된 가상 컴퓨터 tooanother 리소스 이동된 hello hello Azure 가상 컴퓨터, 그 후 장애 복구를 수 없습니다.
+> 가상 컴퓨터를 또 다른 리소스 그룹으로 이동했거나 Azure 가상 컴퓨터를 삭제하여 [마이그레이션을 완료](site-recovery-migrate-to-azure.md#what-do-we-mean-by-migration)한 후에는 장애 복구(failback)를 수행할 수 없습니다.
 
-한 후 다시 보호를 완료 하 고 hello 보호 된 가상 컴퓨터 복제 하는 가상 컴퓨터 toobring hello에 장애 조치를 시작할 수 tooEast 아시아 지역을 다시 합니다.
+다시 보호가 완료되고 보호된 가상 컴퓨터에서 복제하는 경우 가상 컴퓨터에서 장애 조치를 시작하여 동아시아 지역으로 다시 가져올 수 있습니다.
 
-Hello 또는이 문서의 hello 끝에 메모 또는 질문을 게시 [Azure 복구 서비스 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)합니다.
+이 문서의 마지막 부분 또는 [Azure Recovery Services 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)에 의견이나 질문을 게시할 수 있습니다.
 
 ## <a name="prerequisites"></a>필수 조건
-1. 가상 컴퓨터 hello 커밋된 해야 합니다.
-2. hello 대상 사이트-이 경우 hello 동아시아 Azure 지역 사용 가능 해야 하며 해당 지역에서 새로운 리소스 tooaccess/만들 수 있어야 합니다.
+1. 가상 컴퓨터가 커밋되어 있어야 합니다.
+2. 대상 사이트(이 예의 경우 동아시아 Azure 지역)가 사용 가능하고 해당 지역에서 새 리소스를 액세스/생성할 수 있어야 합니다.
 
-## <a name="steps-tooreprotect"></a>단계 tooreprotect
+## <a name="steps-to-reprotect"></a>다시 보호 단계
 
-다음 단계 tooreprotect hello 기본값을 사용 하 여 가상 컴퓨터를 hello 됩니다.
+다음은 기본값을 사용하여 가상 컴퓨터를 다시 보호하는 단계입니다.
 
-1. **자격 증명 모음** > **복제 항목**를 장애 조치는 hello 가상 컴퓨터를 마우스 오른쪽 단추로 클릭 한 다음 선택 **다시 보호**합니다. 시스템 및 선택 hello를 클릭할 수도 있습니다 **다시 보호** hello 명령 단추에서입니다.
+1. **자격 증명 모음** > **복제된 항목**에서 장애 조치된 가상 컴퓨터를 마우스 오른쪽 단추로 클릭한 다음 **다시 보호**를 선택합니다. 컴퓨터를 클릭하고 명령 단추에서 **다시 보호**를 선택할 수도 있습니다.
 
-![Tooreprotect 마우스 오른쪽 단추로 클릭](./media/site-recovery-how-to-reprotect-azure-to-azure/reprotect.png)
+![마우스 오른쪽 단추를 클릭하여 다시 보호](./media/site-recovery-how-to-reprotect-azure-to-azure/reprotect.png)
 
-2. Hello 블레이드 보호, 해당 hello 방향 알 수 있듯이 **동남 아시아 tooEast 아시아**를 이미 선택 되어 있습니다.
+2. 블레이드에 **동남 아시아에서 동아시아로** 보호 방향이 이미 선택되어 있습니다.
 
 ![다시 보호 블레이드](./media/site-recovery-how-to-reprotect-azure-to-azure/reprotectblade.png)
 
-3. 검토 hello **리소스 그룹, 네트워크, 저장소 및 가용성 집합** 정보 확인을 클릭 합니다. (새로 만들기)에 표시 된 리소스가 있는, hello의 일부를 다시 보호 하는 대로 생성 됩니다.
+3. **리소스 그룹, 네트워크, 저장소 및 가용성 집합** 정보를 검토하고 확인을 클릭합니다. (신규)가 표시된 리소스가 있는 경우 이러한 리소스는 다시 보호의 일부로 생성됩니다.
 
-이 작업 트리거 hello 최신 데이터로 먼저 초기값으로 사용할 hello 대상 사이트 (이 경우 바다) 작업을 다시 보호 하 고 완료 되 면는 복제 하는 장애 조치 하기 전에 hello 델타 다시 tooSoutheast 아시아 됩니다.
+이는 먼저 최신 데이터로 대상 사이트(이 예의 경우 동남 아시아)를 시드하고, 완료되면 동남 아시아로 다시 장애 조치하기 전에 델타를 복제하는 다시 보호 작업을 트리거합니다.
 
 ### <a name="reprotect-customization"></a>다시 보호 사용자 지정
-Toochoose hello 추출 하는 동안 계정 또는 hello 네트워크 저장소를 다시 보호를 hello를 사용 하 여 hello 다시 보호 블레이드를 제공 하는 옵션을 사용자 지정을 수행할 수 있습니다.
+다시 보호하는 동안 추출 저장소 계정 또는 네트워크를 선택하려면 다시 보호 블레이드에 제공된 사용자 지정 옵션을 사용하여 수행할 수 있습니다.
 
 ![옵션 사용자 지정](./media/site-recovery-how-to-reprotect-azure-to-azure/customize.png)
 
-다시 보호 하는 동안 다음 그 대상 가상 컴퓨터의 속성이 hello를 사용자 지정할 수 있습니다.
+다시 보호하는 동안 대상 가상 컴퓨터의 다음 속성을 사용자 지정할 수 있습니다.
 
 ![사용자 지정 블레이드](./media/site-recovery-how-to-reprotect-azure-to-azure/customizeblade.png)
 
 |속성 |참고 사항  |
 |---------|---------|
-|대상 리소스 그룹     | 번째 가상 컴퓨터를 만들 수는 toochange hello 대상 리소스 그룹을 선택할 수 있습니다. 다시 보호의 hello 일부로 hello 대상 가상 컴퓨터가 삭제 됩니다, 그리고 따라서 hello VM 사후 장애 조치를 만들 수 있는 새 리소스 그룹을 선택할 수 있습니다.         |
-|대상 가상 네트워크     | Hello 다시 보호 하는 동안 네트워크를 변경할 수 없습니다. toochange hello 네트워크, 네트워크 매핑을 hello를 다시 실행 합니다.         |
-|대상 저장소     | Hello 저장소 계정이 만든된 후 장애 조치 toowhich hello 가상 컴퓨터 수를 변경할 수 있습니다.         |
-|캐시 저장소     | 복제하는 동안 사용할 캐시 저장소 계정을 지정할 수 있습니다. Hello 기본값으로 전환 되는 경우 새 캐시 저장소 계정을 만들어집니다, 아직 없는 경우.         |
-|가용성 집합     |아시아의 hello 가상 컴퓨터 가용성 집합의 일부 이면 가용성 동남 아시아 hello 대상 가상 컴퓨터에 대 한 집합을 선택할 수 있습니다. 기본값은 hello 기존 바다 가용성 집합을 찾 및 toouse 시도 것입니다. 사용자 지정하는 동안 완전히 새로운 AV 집합을 지정할 수 있습니다.         |
+|대상 리소스 그룹     | 가상 컴퓨터를 만들 대상 리소스 그룹을 변경할 수 있습니다. 다시 보호의 일부로 대상 가상 컴퓨터가 삭제됩니다. 따라서 장애 조치 후 VM을 만들 수 있는 새 리소스 그룹을 선택할 수 있습니다.         |
+|대상 가상 네트워크     | 다시 보호하는 동안 네트워크를 변경할 수 없습니다. 네트워크를 변경하려면 네트워크 매핑을 다시 실행합니다.         |
+|대상 저장소     | 장애 조치 후 가상 컴퓨터를 만들 저장소 계정을 변경할 수 있습니다.         |
+|캐시 저장소     | 복제하는 동안 사용할 캐시 저장소 계정을 지정할 수 있습니다. 기본값으로 계속 진행하는 경우 새 캐시 저장소 계정이 만들어집니다(아직 없는 경우).         |
+|가용성 집합     |동아시아의 가상 컴퓨터가 가용성 집합의 일부인 경우 동남 아시아의 대상 가상 컴퓨터에 대한 가용성 집합을 선택할 수 있습니다. 기본적으로 기존 동남 아시아 가용성 집합을 찾아서 사용하려고 합니다. 사용자 지정하는 동안 완전히 새로운 AV 집합을 지정할 수 있습니다.         |
 
 
 ### <a name="what-happens-during-reprotect"></a>다시 보호하는 동안 어떻게 되나요?
 
-방금 hello 후 먼저 보호를 사용 하는 같은 hello artefacts hello 기본값을 사용 하는 경우 작성 하는 다음과가 같습니다.
-1. 캐시 저장소 계정 hello 동아시아 지역에 생성을 가져옵니다.
-2. Hello 대상 저장소 계정 (hello 원래 저장소 계정 hello 동남 아시아 VM의)가 없는 경우 새로 생성 됩니다. hello 이름은 "asr" 접미사는 hello 동아시아 가상 컴퓨터의 저장소 계정입니다.
-3. Hello AV 대상 집합이 존재 하지 않으면 및 hello 기본값 hello의 일부로 생성 됩니다 toocreate 새 AV 설정 해야 함을 검색 하는 경우 작업을 다시 보호 하십시오. 사용자 지정한 hello 다시 보호 경우 선택한 hello AV 집합이 사용 됩니다.
+보호를 처음 활성화한 후와 마찬가지로 기본값을 사용하는 경우 다음 아티팩트가 생성됩니다.
+1. 동아시아 지역에 캐시 저장소 계정이 생성됩니다.
+2. 대상 저장소 계정(동남 아시아 VM의 원래 저장소 계정)이 없는 경우 새로 생성됩니다. 동아시아 가상 컴퓨터의 저장소 계정에 "asr"이 접미사로 붙은 이름이 지정됩니다.
+3. 대상 AV 집합이 없고 기본값이 새 AV 집합을 만들어야 함을 감지한 경우 다시 보호 작업의 일부로 대상 AV 집합이 생성됩니다. 다시 보호를 사용자 지정한 경우 선택한 AV 집합이 사용됩니다.
 4.
 
-hello 다음은 작업을 다시 보호를 트리거할 때 발생 하는 단계 hello 목록입니다. 가상 컴퓨터가 존재 하는 hello 사례 hello 대상 쪽에입니다.
+다시 보호 작업을 트리거할 때 발생하는 단계 목록은 다음과 같습니다. 이는 대상 쪽 가상 컴퓨터가 존재하는 경우에 해당합니다.
 
-1. hello는 artefacts 다시 보호의 일부로 만들어진 필요 합니다. 이미 있는 경우 다시 사용됩니다.
-2. hello 대상 쪽 (동남 아시아) 가상 컴퓨터가 먼저 꺼져 실행 되는 경우.
-3. hello 대상 쪽 가상 컴퓨터 디스크 시드 blob으로 Azure Site Recovery를 통해 컨테이너에 복사 됩니다.
-4. 그러면 hello 대상 쪽 가상 컴퓨터가 삭제 됩니다.
-5. hello 시드 blob hello 현재 소스 쪽 (아시아) 가상 컴퓨터 tooreplicate에서 사용 됩니다. 따라서 델타만 복제됩니다.
-6. hello hello 원본 디스크와 hello 시드 blob 간의 주요 변경 사항이 동기화 됩니다. 이 인해 일부 시간 toocomplete를 걸릴 수 있습니다.
-7. Hello를 다시 보호 되 면 작업 완료, hello 델타 복제를 시작 하는 hello 정책에 따라 복구 지점을 만듭니다.
+1. 필요한 아티팩트는 다시 보호의 일부로 생성됩니다. 이미 있는 경우 다시 사용됩니다.
+2. 대상 쪽(동남 아시아) 가상 컴퓨터가 먼저 꺼집니다(실행 중인 경우).
+3. 대상 쪽 가상 컴퓨터의 디스크가 Azure Site Recovery를 통해 컨테이너에 시드 Blob으로 복사됩니다.
+4. 그런 다음 대상 쪽 가상 컴퓨터가 삭제됩니다.
+5. 시드 Blob은 현재 원본 쪽(동아시아) 가상 컴퓨터에서 복제하는 데 사용됩니다. 따라서 델타만 복제됩니다.
+6. 원본 디스크와 시드 Blob 간의 주요 변경 내용이 동기화됩니다. 이 작업을 완료하는 데 약간의 시간이 걸릴 수 있습니다.
+7. 다시 보호 작업이 완료되면 정책에 따라 복구 지점을 만드는 델타 복제가 시작됩니다.
 
 > [!NOTE]
 > 복구 계획 수준에서 보호할 수 없습니다. 단위 VM 수준에서만 다시 보호할 수 있습니다.
 
-Hello를 다시 보호 한 후에 성공 하 고 hello 가상 컴퓨터에 보호 되는 상태로 전환 됩니다.
+다시 보호가 성공하면 가상 컴퓨터가 보호된 상태가 됩니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-Hello 가상 컴퓨터 보호 상태를 입력 한 후 장애 조치를 시작할 수 있습니다. hello 장애 조치 동아시아 Azure 지역에 hello 가상 컴퓨터를 종료 하 고 만들고 hello 동남 아시아 지역 가상 컴퓨터를 부팅 합니다. 따라서 hello 응용 프로그램에 대 한 짧은 가동 중지 시간이입니다. 응용 프로그램을 가동 중지 시간을 허용할 수 있는 경우에 따라서 장애 조치에 대 한 hello 시간을 선택 합니다. 장애 조치 hello 가상 컴퓨터 toomake 있는지 다시 시작 하는 올바르게 장애 조치를 시작 하기 전에 먼저 테스트 하는 것이 좋습니다.
+가상 컴퓨터가 보호된 상태가 되면 장애 조치를 시작할 수 있습니다. 장애 조치에서는 동아시아 Azure 지역의 가상 컴퓨터를 종료한 다음 동남 아시아 지역 가상 컴퓨터를 만들고 부팅합니다. 이로 인해 응용 프로그램의 가동 중지 시간이 짧습니다. 따라서 응용 프로그램에서 가동 중지 시간을 허용할 수 있는 경우 장애 조치 시간을 선택합니다. 장애 조치를 시작하기 전에 먼저 가상 컴퓨터에 대한 테스트 장애 조치를 수행하여 올바르게 작동하는지 확인하는 것이 좋습니다.
 
--   [단계 tooinitiate hello 가상 컴퓨터의 장애 조치를 테스트 합니다.](site-recovery-test-failover-to-azure.md)
+-   [가상 컴퓨터의 테스트 장애 조치를 시작하는 단계](site-recovery-test-failover-to-azure.md)
 
--   [단계 tooinitiate hello 가상 컴퓨터를 장애 조치](site-recovery-failover.md)
+-   [가상 컴퓨터의 장애 조치를 시작하는 단계](site-recovery-failover.md)

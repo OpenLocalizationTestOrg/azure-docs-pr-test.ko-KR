@@ -1,6 +1,6 @@
 ---
-title: "aaaReplicate 응용 프로그램 (Azure tooAzure) | Microsoft Docs"
-description: "이 문서에서는 가상의 복제를 tooset 실행 컴퓨터 하는 방법을 설명 Azure 지역에서 Azure의 다른 너무 영역입니다."
+title: "응용 프로그램 복제(Azure에서 Azure로) | Microsoft Docs"
+description: "이 문서에서는 하나의 Azure 지역에서 실행 중인 가상 컴퓨터의 복제를 Azure의 다른 지역으로 설정하는 방법을 설명합니다."
 services: site-recovery
 documentationcenter: 
 author: asgang
@@ -14,105 +14,105 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 5/22/2017
 ms.author: asgang
-ms.openlocfilehash: fb190dac14419f892a1c6b45a3d991d8005e4bd0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f9f97cf840b722c8cfee169dd1640e0682f287ff
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="replicate-azure-virtual-machines-tooanother-azure-region"></a>Azure 가상 컴퓨터 tooanother Azure 지역 복제
+# <a name="replicate-azure-virtual-machines-to-another-azure-region"></a>다른 Azure 지역으로 Azure 가상 컴퓨터 복제
 
 
 
 >[!NOTE]
 >
-> Azure Virtual Machines에 대한 Site Recovery 복제는 현재 미리 보기로 제공됩니다.
+> Azure 가상 컴퓨터에 대한 Site Recovery 복제는 현재 미리 보기로 제공됩니다.
 
-이 문서에서는 가상의 복제를 tooset 실행 컴퓨터 하는 방법을 설명 한 Azure 지역 tooanother Azure 지역에에서 있습니다.
+이 문서에서는 하나의 Azure 지역에서 실행 중인 가상 컴퓨터의 복제를 다른 Azure 지역으로 설정하는 방법을 설명합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
-* hello 문서 복구 서비스 자격 증명 모음 및 사이트 복구에 대 한 이미 알고 있다고 가정 합니다. Toohave 만든 '복구 서비스 자격 증명 모음' 이전 해야 합니다.
+* 이 문서에서는 Site Recovery 및 Recovery Services 자격 증명 모음에 대해 이미 알고 있다고 가정합니다. 사전에 만들어진 'Recovery Services 자격 증명 모음'이 있어야 합니다.
 
     >[!NOTE]
     >
-    > Hello '복구 서비스 자격 증명 모음'에서 만드는 Vm tooreplicate 저장할 hello 위치 하는 것이 좋습니다. 예를 들어 대상 위치가 '미국 중부'이면 '미국 중부'에 자격 증명 모음을 만듭니다.
+    > 'Recovery Services 자격 증명 모음'은 VM을 복제할 위치에 만드는 것이 좋습니다. 예를 들어 대상 위치가 '미국 중부'이면 '미국 중부'에 자격 증명 모음을 만듭니다.
 
-* Hello Azure Vm에서 NSG 네트워크 보안 그룹 () 규칙 또는 방화벽 프록시 toocontrol 액세스 toooutbound 인터넷 연결을 사용 하는, 경우에 해당 하면 허용 목록 hello 필요한 Url 또는 Ip를 확인 합니다. 너무 참조[네트워킹 지침 문서](./site-recovery-azure-to-azure-networking-guidance.md) 내용을 확인 합니다.
+* NSG(네트워크 보안 그룹) 규칙 또는 방화벽 프록시를 사용하여 Azure VM의 아웃바운드 인터넷 연결에 대한 액세스를 제어하는 경우 필요한 URL 또는 IP가 허용 목록에 있는지 확인합니다. 자세한 내용은 [네트워킹 지침 문서](./site-recovery-azure-to-azure-networking-guidance.md)를 참조하세요.
 
-* Express 경로 또는 온-프레미스 및 hello 간의 VPN 연결이 있는 경우에 따라, Azure의 위치를 소스 [Azure tooon 프레미스 ExpressRoute에 대 한 사이트 복구 고려 사항 / VPN 구성](site-recovery-azure-to-azure-networking-guidance.md#guidelines-for-existing-azure-to-on-premises-expressroutevpn-configuration) 문서.
+* Azure의 원본 위치와 온-프레미스 간에 ExpressRoute 또는 VPN 연결이 있는 경우 [온-프레미스 ExpressRoute/VPN 구성에 대한 Azure Site Recovery 고려 사항](site-recovery-azure-to-azure-networking-guidance.md#guidelines-for-existing-azure-to-on-premises-expressroutevpn-configuration) 문서에 따릅니다.
 
-* Azure 사용자 계정에 필요한 toohave 특정 [권한을](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines) tooenable Azure 가상 컴퓨터를 복제 합니다.
+* Azure 가상 컴퓨터 복제를 사용하려면 Azure 사용자 계정에 특정 [사용 권한](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines)이 있어야 합니다.
 
-* Azure 구독에 활성화 된 toocreate Vm 있어야 합니다. 원하는 DR 영역으로 toouse hello 대상 위치에 있습니다. 지원 tooenable hello 필요한 할당량을 요청할 수 있습니다.
+* DR 지역으로 사용할 대상 위치에서 VM을 만들려면 Azure 구독을 사용하도록 설정해야 합니다. 지원 팀에 문의하여 필요한 할당량을 사용할 수 있습니다.
 
 ## <a name="enable-replication-from-azure-site-recovery-vault"></a>Azure Site Recovery 자격 증명 모음에서 복제 사용
-이 그림에서는 hello ' 동아시아 '는 Azure 위치 toohello ' 동남 아시아 ' 위치에서에서 실행 중인 Vm 복제 됩니다. hello 단계는 다음과 같습니다.
+이 설명에서는 '동아시아' Azure 위치에서 실행 중인 VM을 '동남 아시아' 위치로 복제합니다. 단계는 다음과 같습니다.
 
- 클릭 **복제 +** hello 가상 컴퓨터에 대 한 자격 증명 모음 tooenable 복제 hello에에서 있습니다.
+ 자격 증명 모음에서 **+복제**를 클릭하여 가상 컴퓨터에 대해 복제를 사용하도록 설정합니다.
 
-1. **원본:** toohello의 시작 위치 hello 컴퓨터의이 경우에 참조 **Azure**합니다.
+1. **원본:** 이 경우 **Azure**인 컴퓨터의 원점을 가리킵니다.
 
-2. **원본 위치:** 저장할 tooprotect 가상 컴퓨터에서 Azure 지역 hello는 합니다. 이 그림에 대 한 hello 원본 위치 ' 동아시아 ' 됩니다.
+2. **원본 위치:** 가상 컴퓨터를 보호할 Azure 지역입니다. 이 설명에서는 원본 위치가 '동아시아'입니다.
 
-3. **배포 모델:** hello 원본 컴퓨터의 toohello Azure 배포 모델을 참조 합니다. 클래식 중 하나를 선택할 수 있습니다 또는 protection hello 다음 단계에 대 한 리소스 관리자 및 toohello 특정 모델에 속한 컴퓨터 나열 됩니다.
+3. **배포 모델:** 원본 컴퓨터의 Azure 배포 모델을 가리킵니다. 클래식 또는 리소스 관리자를 선택할 수 있으며 특정 모델에 속한 컴퓨터는 다음 단계에서 보호를 위해 나열됩니다.
 
       >[!NOTE]
       >
-      > 클래식 가상 컴퓨터는 복제한 후 클래식 가상 컴퓨터로 복구할 수만 있습니다. Resource Manager 가상 컴퓨터로는 복구할 수 없습니다.
+      > 클래식 가상 컴퓨터를 복제하면 클래식 가상 컴퓨터로만 복구할 수 있습니다. Resource Manager 가상 컴퓨터로 복구할 수 없습니다.
 
-4. **리소스 그룹:** hello 리소스 그룹 toowhich 속한 원본 가상 컴퓨터의 합니다. Hello 다음 단계에서 보호를 위해 hello 선택한 리소스 그룹 아래의 모든 hello Vm으로 표시 됩니다.
+4. **리소스 그룹:** 원본 가상 컴퓨터가 속해 있는 리소스 그룹입니다. 선택한 리소스 그룹 아래의 모든 VM은 다음 단계에서 보호를 위해 나열됩니다.
 
     ![복제 활성화](./media/site-recovery-replicate-azure-to-azure/enabledrwizard1.png)
 
-**가상 컴퓨터 > 가상 컴퓨터 선택**, 클릭 하 고 tooreplicate 사용할 각 컴퓨터를 선택 합니다. 복제를 활성화할 수 있는 컴퓨터만 선택할 수 있습니다. 그런 후 확인을 클릭합니다.
+**Virtual Machines > 가상 컴퓨터 선택**에서 복제하려는 각 컴퓨터를 클릭하여 선택합니다. 복제를 활성화할 수 있는 컴퓨터만 선택할 수 있습니다. 그런 후 확인을 클릭합니다.
     ![복제 활성화](./media/site-recovery-replicate-azure-to-azure/virtualmachine_selection.png)
 
 
 설정 섹션에서 대상 사이트 속성을 구성할 수 있습니다.
 
-1. **대상 위치:** 원본 가상 컴퓨터 데이터를 복제할 hello 위치입니다. 선택한 컴퓨터 위치에 따라, 사이트 복구 적절 한 대상 지역 목록 hello 제공 합니다.
+1. **대상 위치:** 원본 가상 컴퓨터 데이터가 복제될 위치입니다. 선택한 컴퓨터 위치에 따라 Site Recovery에서 적합한 대상 지역 목록을 제공합니다.
 
     > [!TIP]
-    > 대상 위치 tookeep 것이 좋습니다 서비스 자격 증명 모음 복구 주기와 동일 합니다.
+    > 대상 위치를 복구 서비스 자격 증명 모음과 동일하게 유지하는 것이 좋습니다.
 
-2. **대상 리소스 그룹:** 는 hello 리소스 그룹 toowhich 모든 복제 된 가상 컴퓨터에 속하게 됩니다. 기본적으로 ASR 새 리소스 그룹에에서 만들어집니다 hello 대상 지역 이름은 "asr" 접미사. ASR에서 이미 만든 리소스 그룹에 존재 하는 경우 재사용 됩니다. Toocustomize 선택할 수도 있습니다 hello 섹션 아래에서 설명 된 것입니다.    
-3. **대상 가상 네트워크:** 기본적으로 ASR 새 가상 네트워크에에서 만들어집니다 hello 대상 지역 이름은 "asr" 접미사입니다. 이렇게 매핑된 tooyour 원본 네트워크 되 고 이후의 모든 보호에 사용 됩니다.
+2. **대상 리소스 그룹:** 모든 복제된 가상 컴퓨터가 속하게 될 리소스 그룹입니다. 기본적으로 ASR은 이름에 "asr" 접미사가 있는 대상 지역에 새 리소스 그룹을 만듭니다. ASR에서 만든 리소스 그룹이 이미 있는 경우 해당 그룹이 재사용됩니다. 아래 섹션에 표시된 대로 사용자 지정하도록 선택할 수도 있습니다.    
+3. **대상 가상 네트워크:** 기본적으로 ASR은 이름에 "asr" 접미사가 있는 대상 지역에 새 가상 네트워크를 만듭니다. 이 가상 네트워크는 원본 네트워크에 매핑되고 이후의 모든 보호를 위해 사용됩니다.
 
     > [!NOTE]
-    > [네트워킹 정보를 확인](site-recovery-network-mapping-azure-to-azure.md) tooknow 네트워크 매핑에 대 한 자세한 합니다.
+    > 네트워크 매핑에 대해 더 자세히 알아보려면 [네트워킹 세부 정보를 확인](site-recovery-network-mapping-azure-to-azure.md)하세요.
 
-4. **대상 저장소 계정:** 기본적으로 ASR hello 새 대상 저장소 계정을 만듭니다 소스 VM 저장소 구성이 모방 합니다. ASR에서 만든 저장소 계정이 이미 있는 경우 해당 계정이 재사용됩니다.
+4. **대상 저장소 계정:** 기본적으로 ASR은 소스 VM 저장소 구성을 모방하는 새 대상 저장소 계정을 만듭니다. ASR에서 만든 저장소 계정이 이미 있는 경우 해당 계정이 재사용됩니다.
 
-5. **저장소 계정은 캐시:** ASR hello 소스 영역에 캐시 저장소를 호출 하는 추가 저장소 계정이 필요 합니다. 모든 hello 소스 Vm 추적 되 고 해당 toohello 대상 위치를 복제 하기 전에 toocache 저장소 계정 전송 hello의 상황을 변경 합니다.
+5. **캐시 저장소 계정:** ASR은 소스 지역에 캐시 저장소로 불리는 추가 저장소 계정이 있어야 합니다. 원본 VM에서 발생하는 모든 변경 내용이 대상 위치로 복제되기 전에 추적되고 캐시 저장소 계정으로 전송됩니다.
 
-6. **가용성 집합:** 기본적으로 ASR "asr" 접미사가 이름과 설정 hello 대상 지역에 새 가용성 만들어집니다. ASR에서 만든 가용성 집합이 이미 있는 경우 해당 집합이 재사용됩니다.
+6. **가용성 집합:** 기본적으로 ASR은 이름에 "asr" 접미사가 있는 대상 지역에 새 가용성 집합을 만듭니다. ASR에서 만든 가용성 집합이 이미 있는 경우 해당 집합이 재사용됩니다.
 
-7.  **복제 정책:** 복구 지점 보존 기록 및 응용 프로그램 일치 스냅숏 빈도 대 한 hello 설정을 정의 합니다. 기본적으로 ASR은 복구 지점 보존의 경우 기본'24시간' 설정으로, 앱 일치 스냅숏 빈도의 경우 '60분' 설정으로 새 복제 정책을 만듭니다.
+7.  **복제 정책:** 복구 지점 보존 기록 및 앱 일치 스냅숏 빈도 대한 설정을 정의합니다. 기본적으로 ASR은 복구 지점 보존의 경우 기본'24시간' 설정으로, 앱 일치 스냅숏 빈도의 경우 '60분' 설정으로 새 복제 정책을 만듭니다.
 
     ![복제 활성화](./media/site-recovery-replicate-azure-to-azure/enabledrwizard3.PNG)
 
 ## <a name="customize-target-resources"></a>대상 리소스 사용자 지정
 
-ASR에서 사용 하는 toochange hello 기본값을 원하는 경우에 필요에 따라 hello 설정을 변경할 수 있습니다.
+ASR에서 사용하는 기본값을 변경하려면 필요에 따라 설정을 변경할 수 있습니다.
 
-1. **사용자 지정:** toochange 클릭 hello ASR에서 사용 하는 기본값입니다.
+1. **사용자 지정:** ASR에서 사용하는 기본값을 변경하려면 클릭합니다.
 
-2. **대상 리소스 그룹:** hello 구독 내에서 hello 대상 위치에 있는 모든 hello 리소스 그룹의 hello 목록에서 hello 리소스 그룹을 선택할 수 있습니다.
+2. **대상 리소스 그룹:** 구독 내 대상 위치에 있는 모든 리소스 그룹의 목록에서 리소스 그룹을 선택할 수 있습니다.
 
-3. **대상 가상 네트워크:** hello 대상 위치에 hello 목록이 모든 hello 가상 네트워크를 찾을 수 있습니다.
+3. **대상 가상 네트워크:** 대상 위치에서 모든 가상 네트워크 목록을 찾을 수 있습니다.
 
-4. **가용성 집합:** 가용성 집합 설정 toohello 가상 컴퓨터 가용성 소스 지역에서의 일부인만 추가할 수 있습니다.
+4. **가용성 집합:** 가용성 집합 설정은 소스 영역에서 가용성의 일부인 가상 컴퓨터에만 추가할 수 있습니다.
 
 5. **대상 저장소 계정:**
 
 ![복제를 사용하도록 설정](./media/site-recovery-replicate-azure-to-azure/customize.PNG) **대상 리소스 만들기**를 클릭하고 복제를 사용하도록 설정합니다.
 
 
-가상 컴퓨터가 보호 되 면 아래에서 Vm 상태의 hello 상태를 확인할 수 있습니다 **복제 항목**
+가상 컴퓨터가 보호되면 **복제 항목** 아래 VM 상태의 상태를 확인할 수 있습니다.
 
 >[!NOTE]
->Hello 하는 동안 초기 복제 발생 가능성이 상태는 시간 toorefresh 및 일정 시간 동안 진행률을 표시 되지 않으면 수 있습니다. Hello 블레이드 tooget hello 최신 상태 hello 위에 hello 새로 고침 단추를 클릭 합니다.
+>초기 복제 기간 중 상태를 새로 고치는 데 시간이 걸릴 수도 있고 일정 시간 동안 진행률이 표시되지 않을 수도 있습니다. 최신 상태를 가져오려면 블레이드 맨 위에 있는 [새로 고침] 단추를 클릭합니다.
 >
 
 ![복제 활성화](./media/site-recovery-replicate-azure-to-azure/replicateditems.PNG)
@@ -120,6 +120,6 @@ ASR에서 사용 하는 toochange hello 기본값을 원하는 경우에 필요�
 
 ## <a name="next-steps"></a>다음 단계
 - 테스트 장애 조치(failover) 실행에 대해 [자세히 알아보세요](site-recovery-test-failover-to-azure.md).
-- [자세한 내용은](site-recovery-failover.md) 다양 한 유형의 장애 조치에 대 한 방법과 toorun 해당 합니다.
-- 에 대 한 자세한 내용은 [복구 계획을 사용 하 여](site-recovery-create-recovery-plans.md) tooreduce RTO 합니다.
+- 여러 장애 조치 유형 및 장애 조치 실행 방법에 대해 [자세히 알아보세요](site-recovery-failover.md).
+- [복구 계획을 사용](site-recovery-create-recovery-plans.md)하여 RTO를 줄이는 방법에 대해 자세히 알아보세요.
 - 장애 조치(failover) 후에 [Azure VM을 다시 보호](site-recovery-how-to-reprotect.md)하는 방법에 대해 자세히 알아보세요.

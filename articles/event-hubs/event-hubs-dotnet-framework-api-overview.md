@@ -1,6 +1,6 @@
 ---
-title: "hello Azure 이벤트 허브.NET Framework Api의 aaaOverview | Microsoft Docs"
-description: "요약 hello 주요 이벤트 허브.NET Framework 클라이언트 Api의 일부입니다."
+title: "Azure Event Hubs .NET Framework API 개요 | Microsoft Docs"
+description: "핵심 Event Hubs .NET Framework 클라이언트 API 일부를 요약한 것입니다."
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: b0e12e43f91b025d7aa4ca03e664b9ff31b04097
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bc525e7ca8b21e9e5f1e36b3152d71420b041700
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="event-hubs-net-framework-api-overview"></a>Event Hubs .NET Framework API 개요
-이 문서 hello 키 이벤트 허브.NET Framework 클라이언트 Api의 일부를 요약 합니다. 관리와 런타임 API 등 두 가지 범주가 있습니다. 런타임 Api에는 메시지를 수신 및 모든 필요한 작업 toosend 구성 됩니다. 관리 작업을 통해 toomanage 만들기, 업데이트 및 삭제 엔터티는 이벤트 허브 엔터티 상태입니다.
+이 문서에서는 핵심 Event Hubs .NET Framework 클라이언트 API 일부를 요약해서 설명합니다. 관리와 런타임 API 등 두 가지 범주가 있습니다. 런타임 API는 메시지를 주고받는 데 필요한 모든 작업으로 구성됩니다. 관리 작업을 사용하면 엔터티를 만들고 업데이트 및 삭제하여 이벤트 허브 엔터티 상태를 관리할 수 있습니다.
 
-모니터링 시나리오는 관리 및 런타임 모두에 사용됩니다. Hello.NET Api에서 자세한 참조 설명서를 참조 hello [서비스 버스.NET](/dotnet/api/microsoft.servicebus.messaging) 및 [EventProcessorHost API](/dotnet/api/microsoft.azure.eventhubs.processor) 참조 합니다.
+모니터링 시나리오는 관리 및 런타임 모두에 사용됩니다. .NET API에 대한 자세한 참조 설명서는 [Service Bus .NET](/dotnet/api/microsoft.servicebus.messaging) 및 [EventProcessorHost API](/dotnet/api/microsoft.azure.eventhubs.processor) 참조를 참조하세요.
 
 ## <a name="management-apis"></a>관리 API
-tooperform 있어야 합니다. 관리 작업을 다음 hello **관리** hello 이벤트 허브 네임 스페이스에 대 한 권한:
+다음 관리 작업을 수행하려면 이벤트 허브 네임스페이스에 대한 **관리** 권한이 있어야 합니다.
 
 ### <a name="create"></a>생성
 ```csharp
-// Create hello event hub
+// Create the event hub
 var ehd = new EventHubDescription(eventHubName);
 ehd.PartitionCount = SampleManager.numPartitions;
 await namespaceManager.CreateEventHubAsync(ehd);
@@ -62,7 +62,7 @@ var eventHubClient = EventHubClient.Create("Event Hub name");
 
 ### <a name="publish-message"></a>메시지 게시
 ```csharp
-// Create hello device/temperature metric
+// Create the device/temperature metric
 var info = new MetricEvent() { DeviceId = random.Next(SampleManager.NumDevices), Temperature = random.Next(100) };
 var data = new EventData(new byte[10]); // Byte array
 var data = new EventData(Stream); // Stream 
@@ -80,10 +80,10 @@ await client.SendAsync(data);
 
 ### <a name="create-consumer"></a>소비자 만들기
 ```csharp
-// Create hello Event Hubs client
+// Create the Event Hubs client
 var eventHubClient = EventHubClient.Create(EventHubName);
 
-// Get hello default consumer group
+// Get the default consumer group
 var defaultConsumerGroup = eventHubClient.GetDefaultConsumerGroup();
 
 // All messages
@@ -109,11 +109,11 @@ msg = UnicodeEncoding.UTF8.GetString(info);
 ```
 
 ## <a name="event-processor-host-apis"></a>이벤트 프로세서 호스트 API
-이러한 Api는 사용 가능한 작업자 파티션에 배포 하 여 사용할 수 없게 될 수 있는 복원 력 tooworker 프로세스를 제공 합니다.
+이러한 API는 사용 가능한 작업자에 걸쳐 파티션을 분산하여 사용할 수 없게 되는 작업자 프로세스에 복구 성능을 제공합니다.
 
 ```csharp
-// Checkpointing is done within hello SimpleEventProcessor and on a per-consumerGroup per-partition basis, workers resume from where they last left off.
-// Use hello EventData.Offset value for checkpointing yourself, this value is unique per partition.
+// Checkpointing is done within the SimpleEventProcessor and on a per-consumerGroup per-partition basis, workers resume from where they last left off.
+// Use the EventData.Offset value for checkpointing yourself, this value is unique per partition.
 
 var eventHubConnectionString = System.Configuration.ConfigurationManager.AppSettings["Microsoft.ServiceBus.ConnectionString"];
 var blobConnectionString = System.Configuration.ConfigurationManager.AppSettings["AzureStorageConnectionString"]; // Required for checkpoint/state
@@ -122,11 +122,11 @@ var eventHubDescription = new EventHubDescription(EventHubName);
 var host = new EventProcessorHost(WorkerName, EventHubName, defaultConsumerGroup.GroupName, eventHubConnectionString, blobConnectionString);
 await host.RegisterEventProcessorAsync<SimpleEventProcessor>();
 
-// tooclose
+// To close
 await host.UnregisterEventProcessorAsync();
 ```
 
-hello [IEventProcessor](/dotnet/api/microsoft.servicebus.messaging.ieventprocessor) 인터페이스는 다음과 같이 정의 됩니다.
+[IEventProcessor](/dotnet/api/microsoft.servicebus.messaging.ieventprocessor) 인터페이스는 다음과 같이 정의됩니다.
 
 ```csharp
 public class SimpleEventProcessor : IEventProcessor
@@ -169,12 +169,12 @@ public class SimpleEventProcessor : IEventProcessor
 ```
 
 ## <a name="next-steps"></a>다음 단계
-다음이 링크를 방문 하는 이벤트 허브 시나리오에 대해 자세히 toolearn:
+이벤트 허브 시나리오에 대한 자세한 내용은 다음 링크를 방문하십시오.
 
 * [Azure 이벤트 허브 정의](event-hubs-what-is-event-hubs.md)
 * [이벤트 허브 프로그래밍 가이드](event-hubs-programming-guide.md)
 
-hello.NET API 참조는 여기 있습니다.
+.NET API 참조는 다음과 같습니다.
 
 * [Microsoft.ServiceBus.Messaging](/dotnet/api/microsoft.servicebus.messaging)
 * [Microsoft.Azure.EventHubs.EventProcessorHost](/dotnet/api/microsoft.azure.eventhubs.processor.eventprocessorhost)

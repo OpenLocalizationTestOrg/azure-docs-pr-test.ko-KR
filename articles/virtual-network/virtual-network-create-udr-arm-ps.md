@@ -1,6 +1,6 @@
 ---
-title: "Azure-PowerShell에서에서 라우팅 및 가상 어플라이언스 aaaControl | Microsoft Docs"
-description: "자세한 방법을 PowerShell을 사용 하 여 toocontrol 라우팅 및 가상 기기입니다."
+title: "Azure에서 라우팅 및 가상 어플라이언스 제어 - PowerShell | Microsoft Docs"
+description: "PowerShell 사용하여 라우팅 및 가상 어플라이언스 제어 방법 알아보기"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
-ms.openlocfilehash: b7b8717529eb2cd8b1d28b8ab9c6e21159d14882
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3ab24f193c74449ae7414b4ea0675c0aae0211f4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-user-defined-routes-udr-using-powershell"></a>PowerShell 사용하여 사용자 정의 경로(UDR) 만들기
 
@@ -34,21 +34,21 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [virtual-network-create-udr-intro-include.md](../../includes/virtual-network-create-udr-intro-include.md)]
 
 > [!IMPORTANT]
-> Azure 리소스를 사용 하기 전에 Azure에 현재 두 가지 배포 모델에 중요 한 toounderstand: Azure 리소스 관리자 및 기본 합니다. Azure 리소스로 작업하기 전에 [배포 모델 및 도구](../azure-resource-manager/resource-manager-deployment-model.md) 를 이해해야 합니다. 이 문서의 hello 위쪽 hello 탭을 클릭 하 여 다양 한 도구에 대 한 hello 설명서를 볼 수 있습니다.
+> Azure 리소스로 작업하기 전에 Azure에는 현재 Azure Resource Manager와 클래식 모드의 두 가지 배포 모델이 있다는 것을 이해해야 합니다. Azure 리소스로 작업하기 전에 [배포 모델 및 도구](../azure-resource-manager/resource-manager-deployment-model.md) 를 이해해야 합니다. 이 문서의 윗부분에 있는 탭을 클릭하여 다양한 도구에 대한 설명서를 볼 수 있습니다.
 >
 
-이 문서에서는 hello 리소스 관리자 배포 모델에 설명 합니다. 수도 있습니다 [UDRs hello 클래식 배포 모델에서 만들](virtual-network-create-udr-classic-ps.md)합니다.
+이 문서에서는 Resource Manager 배포 모델에 대해 설명합니다. [클래식 배포 모델에서 UDR을 만들](virtual-network-create-udr-classic-ps.md)수도 있습니다.
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
-위의 hello 시나리오를 기반으로 hello 예제 PowerShell 명령 아래에 이미 만든 단순한 환경 필요 합니다. 이 문서에 표시 된 대로 toorun hello 명령을 원하는 경우 먼저 hello 테스트 환경을 구축 배포 하 여 [이 서식 파일](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before), 클릭 **tooAzure 배포**, 대체 hello 기본 매개 변수 값 필요한 경우, 및의 지침에 따라 hello hello 포털 하는 경우.
+아래 샘플 PowerShell 명령에는 위의 시나리오를 기반으로 이미 만들어져 있는 단순한 환경이 필요합니다. 이 문서에 표시된 대로 명령을 실행하려는 경우 먼저 [이 템플릿](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before)을 배포하여 테스트 환경을 구축하고 **Azure에 배포**를 클릭한 다음 필요한 경우 기본 매개 변수 값을 바꾸고 포털의 지침을 따릅니다.
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
-## <a name="create-hello-udr-for-hello-front-end-subnet"></a>Hello UDR hello 프런트 엔드 서브넷에 대 한 만들기
-toocreate hello 경로 테이블 및 hello 프런트 엔드 서브넷에 필요한 경로는 위의 단계를 수행 하는 전체 hello hello 시나리오에 따라:
+## <a name="create-the-udr-for-the-front-end-subnet"></a>프런트 엔드 서브넷에 대한 UDR 만들기
+위의 시나리오에 따라 프론트 엔드 서브넷에 필요한 경로 테이블 및 경로를 만들려면 다음 단계를 마칩니다.
 
-1. 사용 되는 경로 toosend 모든 트래픽이 toohello 백 엔드 서브넷 (192.168.2.0/24) 라우팅된 toobe toohello 만들기 **FW1** 가상 어플라이언스 (192.168.0.4).
+1. 백 엔드 서브넷(192.168.2.0/24)으로 보내진 모든 트래픽을 **FW1** 가상 어플라이언스(192.168.0.4)로 라우팅하는 데 사용된 경로를 만듭니다.
 
     ```powershell
     $route = New-AzureRmRouteConfig -Name RouteToBackEnd `
@@ -56,20 +56,20 @@ toocreate hello 경로 테이블 및 hello 프런트 엔드 서브넷에 필요�
     -NextHopIpAddress 192.168.0.4
     ```
 
-2. 명명 된 경로 테이블 만들기 **UDR 프런트 엔드** hello에 **westus** hello 경로 포함 하는 영역입니다.
+2. 경로가 포함된 **westus** 지역에 **UDR-FrontEnd**라는 이름의 경로 테이블을 만듭니다.
 
     ```powershell
     $routeTable = New-AzureRmRouteTable -ResourceGroupName TestRG -Location westus `
     -Name UDR-FrontEnd -Route $route
     ```
 
-3. Hello hello 서브넷이 있는 VNet을 포함 하는 변수를 만듭니다. 이 시나리오에서 hello VNet 라는 **TestVNet**합니다.
+3. 서브넷이 있는 VNet을 포함하는 변수를 만듭니다. 이 시나리오에서 VNet 이름은 **TestVNet**입니다.
 
     ```powershell
     $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName TestRG -Name TestVNet
     ```
 
-4. 연결 hello 경로 테이블 toohello 위에서 만든 **프런트 엔드** 서브넷입니다.
+4. 위에서 만든 경로 테이블을 **FrontEnd** 서브넷에 연결합니다.
 
     ```powershell
     Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name FrontEnd `
@@ -77,10 +77,10 @@ toocreate hello 경로 테이블 및 hello 프런트 엔드 서브넷에 필요�
     ```
 
     > [!WARNING]
-    > 위의 hello 명령에 대 한 hello 출력에는 PowerShell를 실행 하는 hello 컴퓨터에만 존재 하는 hello 가상 네트워크 구성 개체에 대 한 hello 콘텐츠를 보여 줍니다. Toorun hello 필요한 **집합 AzureVirtualNetwork** cmdlet toosave 이러한 설정 tooAzure 합니다.
+    > 위의 명령에 대한 출력에서는 PowerShell을 실행 중인 컴퓨터에만 존재하는 가상 네트워크 구성 개체에 대한 콘텐츠를 보여 줍니다. 이러한 설정을 Azure에 저장하려면 **Set-AzureVirtualNetwork** cmdlet을 실행해야 합니다.
     > 
 
-5. Azure의 hello 새 서브넷 configuration를 저장 합니다.
+5. Azure에서 새 서브넷 구성을 저장합니다.
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
@@ -134,11 +134,11 @@ toocreate hello 경로 테이블 및 hello 프런트 엔드 서브넷에 필요�
                                 ...
                             ]    
 
-## <a name="create-hello-udr-for-hello-back-end-subnet"></a>Hello UDR hello 백 엔드 서브넷에 대 한 만들기
+## <a name="create-the-udr-for-the-back-end-subnet"></a>백 엔드 서브넷에 대한 UDR 만들기
 
-toocreate hello 경로 테이블 및 위의 hello 시나리오에 따라 hello 백 엔드 서브넷에 필요한 경로 아래의 hello 단계를 수행 합니다.
+위의 시나리오에 따라 백 엔드 서브넷에 필요한 경로 테이블 및 경로를 만들려면 다음 단계를 수행합니다.
 
-1. 사용 되는 경로 toosend 모든 트래픽이 toohello 프런트 엔드 서브넷 (192.168.1.0/24) 라우팅된 toobe toohello 만들기 **FW1** 가상 어플라이언스 (192.168.0.4).
+1. 프런트 엔드 서브넷(192.168.1.0/24)으로 보내진 모든 트래픽을 **FW1** 가상 어플라이언스(192.168.0.4)로 라우팅하는 데 사용된 경로를 만듭니다.
 
     ```powershell
     $route = New-AzureRmRouteConfig -Name RouteToFrontEnd `
@@ -146,21 +146,21 @@ toocreate hello 경로 테이블 및 위의 hello 시나리오에 따라 hello �
     -NextHopIpAddress 192.168.0.4
     ```
 
-2. 명명 된 경로 테이블 만들기 **UDR 백 엔드** hello에 **uswest** 위에서 만든 hello 경로 포함 하는 영역입니다.
+2. 위에서 만든 경로가 포함된 **uswest** 지역에 **UDR-BackEnd**라는 이름의 경로 테이블을 만듭니다.
 
     ```
     $routeTable = New-AzureRmRouteTable -ResourceGroupName TestRG -Location westus `
     -Name UDR-BackEnd -Route $route
     ```
 
-3. 연결 hello 경로 테이블 toohello 위에서 만든 **백 엔드** 서브넷입니다.
+3. 위에서 만든 경로 테이블을 **BackEnd** 서브넷에 연결합니다.
 
     ```powershell
     Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name BackEnd `
     -AddressPrefix 192.168.2.0/24 -RouteTable $routeTable
     ```
 
-4. Azure의 hello 새 서브넷 configuration를 저장 합니다.
+4. Azure에서 새 서브넷 구성을 저장합니다.
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
@@ -214,15 +214,15 @@ toocreate hello 경로 테이블 및 위의 hello 시나리오에 따라 hello �
                             ]
 
 ## <a name="enable-ip-forwarding-on-fw1"></a>FW1에서 IP 전달을 사용하도록 설정
-hello에서 사용 하는 NIC에 IP 전달을 tooenable **FW1**, 아래의 hello 단계를 수행 합니다.
+**FW1**에 사용된 NIC에서 IP 전달을 사용하도록 설정하려면 다음 단계를 수행합니다.
 
-1. NIC FW1에서 사용 하는 hello에 대 한 hello 설정을 포함 하는 변수를 만듭니다. 이 시나리오에서 hello NIC 라는 **NICFW1**합니다.
+1. FW1에 사용된 NIC에 대한 설정을 포함하는 변수를 만듭니다. 이 시나리오에서 NIC 이름은 **NICFW1**입니다.
 
     ```powershell
     $nicfw1 = Get-AzureRmNetworkInterface -ResourceGroupName TestRG -Name NICFW1
     ```
 
-2. IP 전달을 사용 하도록 설정 하 고 hello NIC 설정을 저장 합니다.
+2. IP 전달을 사용하도록 설정하고 NIC 설정을 저장합니다.
 
     ```powershell
     $nicfw1.EnableIPForwarding = 1

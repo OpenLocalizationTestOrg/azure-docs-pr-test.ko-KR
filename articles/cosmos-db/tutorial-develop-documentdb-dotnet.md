@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB: hello.net에서 DocumentDB API로 개발 | Microsoft Docs"
-description: "자세한 방법을 toodevelop.NET을 사용 하 여 Azure Cosmos DB DocumentDB api"
+title: "Azure Cosmos DB: .NET의 DocumentDB API를 사용하여 개발 | Microsoft Docs"
+description: ".NET을 사용하는 Azure Cosmos DB의 DocumentDB API를 통해 개발하는 방법에 대해 알아봅니다."
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -10,25 +10,25 @@ tags:
 ms.assetid: 
 ms.service: cosmos-db
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: tutorial
 ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 05/10/2017
 ms.author: mimig
 ms.custom: mvc
-ms.openlocfilehash: 0d3d17afa782054c8fdf3cbac421e5a5d0a6800c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 871731adc849c575d97ed6735b87457811668ed5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="azure-cosmosdb-develop-with-hello-documentdb-api-in-net"></a>Azure CosmosDB: hello.net에서 DocumentDB API를 사용 하 여 개발
+# <a name="azure-cosmosdb-develop-with-the-documentdb-api-in-net"></a>Azure Cosmos DB: .NET의 DocumentDB API를 사용하여 개발
 
-Azure Cosmos DB는 전 세계에 배포된 Microsoft의 다중 모델 데이터베이스 서비스입니다. 신속 하 게 만들기 및 문서, 키/값 및 hello 글로벌 배포 및 수평 확장이 기능 Cosmos DB Azure의 hello 핵심에에서 활용 중 일부는 그래프 데이터베이스를 쿼리할 수 있습니다. 
+Azure Cosmos DB는 전 세계에 배포된 Microsoft의 다중 모델 데이터베이스 서비스입니다. Azure Cosmos DB의 핵심인 전역 배포 및 수평적 크기 조정 기능의 이점을 활용하여 문서, 키/값 및 그래프 데이터베이스를 빠르게 만들고 쿼리할 수 있습니다. 
 
-이 자습서는 방법을 보여 주는 사용 하 여 Azure Cosmos DB 계정을 toocreate hello Azure 포털에서 다음 문서 데이터베이스 및 컬렉션을 만듭니다는 [파티션 키](documentdb-partition-data.md#partition-keys) hello를 사용 하 여 [DocumentDB.NET API](documentdb-introduction.md)합니다. 컬렉션을 만들 때 파티션 키를 정의 하 여 응용 프로그램은 준비 tooscale 손쉽게 데이터 증가 합니다. 
+이 자습서에서는 Azure Portal을 사용하여 Azure Cosmos DB 계정을 만든 다음 [DocumentDB .NET API](documentdb-introduction.md)를 사용하여 [파티션 키](documentdb-partition-data.md#partition-keys)가 있는 문서 데이터베이스와 컬렉션을 만드는 방법을 보여 줍니다. 컬렉션을 만들 때 파티션 키를 정의하면 데이터가 증가함에 따라 응용 프로그램이 손쉽게 확장하도록 준비할 수 있습니다. 
 
-이 자습서에서는 hello 다음 hello를 사용 하 여 작업 [DocumentDB.NET API](documentdb-sdk-dotnet.md):
+이 자습서에서는 [DocumentDB .NET API](documentdb-sdk-dotnet.md)를 사용하여 다음 작업을 수행합니다.
 
 > [!div class="checklist"]
 > * Azure Cosmos DB 계정 만들기
@@ -41,20 +41,22 @@ Azure Cosmos DB는 전 세계에 배포된 Microsoft의 다중 모델 데이터�
 > * 데이터베이스 삭제
 
 ## <a name="prerequisites"></a>필수 조건
-Hello 다음 항목이 있는지 확인 하십시오.
+다음 항목이 있는지 확인합니다.
 
 * 활성 Azure 계정. 계정이 없는 경우 [무료 계정](https://azure.microsoft.com/free/)에 등록할 수 있습니다. 
-    * Hello 또는 사용할 수 있습니다 [Azure Cosmos DB 에뮬레이터](local-emulator.md) toouse hello Azure DocumentDB 서비스를 개발 목적으로 에뮬레이트하는 로컬 환경을 원하는 경우이 자습서에 대 한 합니다.
-* [Visual Studio](http://www.visualstudio.com/).
+
+  [!INCLUDE [cosmos-db-emulator-docdb-api](../../includes/cosmos-db-emulator-docdb-api.md)]
+
+* Visual Studio 2017이 아직 설치되지 않은 경우 **체험판** [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/)을 다운로드하고 사용할 수 있습니다. Visual Studio를 설정하는 동안 **Azure 개발**을 사용할 수 있는지 확인합니다.
 
 ## <a name="create-an-azure-cosmos-db-account"></a>Azure Cosmos DB 계정 만들기
 
-Hello Azure 포털에서에서 Azure Cosmos DB 계정을 만들어 보겠습니다.
+Azure Portal에서 Azure Cosmos DB 계정을 만들어 보겠습니다.
 
 > [!TIP]
-> * Azure Cosmos DB 계정이 이미 있나요? 이 경우 건너뛰고 너무[Visual Studio 솔루션 설정](#SetupVS)
-> * Azure DocumentDB 계정이 있나요? 따라서 사용자 계정이 Azure Cosmos DB 계정인 이제 하 고 건너뛰어도 너무[Visual Studio 솔루션 설정](#SetupVS)합니다.  
-> * Hello Azure Cosmos DB 에뮬레이터를 사용 하는 경우 hello 단계에 따르십시오 [Azure Cosmos DB 에뮬레이터](local-emulator.md) toosetup 에뮬레이터 hello 및 너무 건너 뛸[Visual Studio 솔루션 설정](#SetupVS)합니다. 
+> * Azure Cosmos DB 계정이 이미 있나요? 그렇다면 [Visual Studio 솔루션 설치](#SetupVS)로 건너뜁니다.
+> * Azure DocumentDB 계정이 있나요? 그렇다면 이 계정은 이제 Azure Cosmos DB 계정이 되며, [Visual Studio 솔루션 설치](#SetupVS)를 건너뛸 수 있습니다.  
+> * Azure Cosmos DB 에뮬레이터를 사용하는 경우 [Azure Cosmos DB 에뮬레이터](local-emulator.md)의 단계에 따라 에뮬레이터를 설치하고 [Visual Studio 솔루션 설치](#SetupVS)로 건너뜁니다. 
 >
 >
 
@@ -62,26 +64,26 @@ Hello Azure 포털에서에서 Azure Cosmos DB 계정을 만들어 보겠습니�
 
 ## <a id="SetupVS"></a>Visual Studio 솔루션 설치
 1. 컴퓨터에서 **Visual Studio**를 엽니다.
-2. Hello에 **파일** 메뉴 선택 **새로**를 선택한 후 **프로젝트**합니다.
-3. Hello에 **새 프로젝트** 대화 상자에서 **템플릿** / **Visual C#** / **콘솔 응용 프로그램 (.NET Framework)**프로젝트 이름을 지정 하 고 클릭 한 다음, **확인**합니다.
-   ![새 프로젝트 창 hello 스크린 샷](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-new-project-2.png)
+2. **파일** 메뉴에서 **새로 만들기**와 **프로젝트**를 차례로 선택합니다.
+3. **새 프로젝트** 대화 상자에서 **템플릿** / **Visual C#** / **콘솔 앱(.NET Framework)**을 선택하고, 프로젝트 이름을 지정한 다음, **확인**을 클릭합니다.
+   ![새 프로젝트 창의 스크린샷](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-new-project-2.png)
 
-4. Hello에 **솔루션 탐색기**을 Visual Studio 솔루션에서 사용 중인 새 콘솔 응용 프로그램을 마우스 오른쪽 단추로 클릭 하 고 클릭 **NuGet 패키지 관리...**
+4. **솔루션 탐색기**에서 Visual Studio 솔루션 아래에 있는 새 콘솔 응용 프로그램을 마우스 오른쪽 단추로 클릭한 다음 **NuGet 패키지 관리...**를 클릭합니다.
     
-    ![Hello 오른쪽 hello 프로젝트에 대 한 Clicked 메뉴를 스크린샷](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-manage-nuget-pacakges.png)
-5. Hello에 **NuGet** 탭을 클릭 **찾아보기**, 유형과 **documentdb** hello 검색 상자에 있습니다.
+    ![프로젝트의 마우스 오른쪽 단추 클릭 메뉴의 스크린샷](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-manage-nuget-pacakges.png)
+5. **NuGet** 탭에서 **찾아보기**를 클릭하고, 검색 상자에서 **documentdb**를 입력합니다.
 <!---stopped here--->
-6. Hello 결과 내 찾을 **Microsoft.Azure.DocumentDB** 클릭 **설치**합니다.
-   hello Azure Cosmos DB 클라이언트 라이브러리에 대 한 hello 패키지 ID가 [Microsoft.Azure.DocumentDB](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB)합니다.
-   ![Azure Cosmos DB 클라이언트 SDK를 찾기 위한 hello NuGet 메뉴의 스크린 샷](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-manage-nuget-pacakges-2.png)
+6. 결과 내에서 **Microsoft.Azure.DocumentDB**를 찾아 **설치l**를 클릭합니다.
+   Azure Cosmos DB 클라이언트 라이브러리의 패키지 ID는 [Microsoft.Azure.DocumentDB](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB)입니다.
+   ![Azure Cosmos DB 클라이언트 SDK를 찾기 위한 NuGet 메뉴의 스크린샷](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-manage-nuget-pacakges-2.png)
 
-    클릭 하 여 변경 내용을 toohello 솔루션을 검토 하는 방법에 대 한 메시지를 가져오면 **확인**합니다. 라이선스 승인에 관한 메시지가 표시되면 **동의합니다.**를 클릭합니다.
+    솔루션 변경 내용을 검토하는 메시지가 표시되면 **확인**을 클릭합니다. 라이선스 승인에 관한 메시지가 표시되면 **동의합니다.**를 클릭합니다.
 
-## <a id="Connect"></a>참조 tooyour 프로젝트 추가
-이 자습서를 제공 hello DocumentDB API 코드 조각 필요한 toocreate 및 update Azure Cosmos DB 프로젝트의 리소스에서 남은 hello 단계 합니다.
+## <a id="Connect"></a>프로젝트에 참조 추가
+이 자습서의 나머지 단계에서는 프로젝트에서 Azure Cosmos DB 리소스를 만들고 업데이트하는 데 필요한 DocumentDB API 코드 조각을 제공합니다.
 
-첫째, 이러한 참조 tooyour 응용 프로그램을 추가 합니다.
-<!---These aren't added by default when you install hello pkg?--->
+먼저 응용 프로그램에 이러한 참조를 추가합니다.
+<!---These aren't added by default when you install the pkg?--->
 
 ```csharp
 using System.Net;
@@ -100,51 +102,51 @@ private const string PrimaryKey = "<your primary key>";
 private DocumentClient client;
 ```
 
-다음, h e a d 다시 toohello [Azure 포털](https://portal.azure.com) tooretrieve 끝점 URL 및 기본 키입니다. hello 끝점 URL 및 기본 키가 응용 프로그램 toounderstand에 필요한 위치 tooconnect 되며, Azure Cosmos DB tootrust에 대 한 응용 프로그램의 연결 합니다.
+그런 다음 [Azure Portal](https://portal.azure.com)로 다시 이동하여 끝점 URL과 기본 키를 검색합니다. 끝점 URL과 기본 키는 응용 프로그램에서 연결할 위치를 식별하고 Azure Cosmos DB에서 응용 프로그램의 연결을 신뢰하는 데 필요합니다.
 
-에 Azure 포털 hello, tooyour Azure Cosmos DB 계정 탐색, 클릭 **키**, 클릭 하 고 **읽기-쓰기 키**합니다.
+Azure Portal에서 Azure Cosmos DB 계정으로 이동하고 **키**를 클릭한 다음 **읽기-쓰기 키**를 클릭합니다.
 
-Hello 포털에서 hello URI를 복사 하 고 붙여넣어 `<your endpoint URL>` hello program.cs 파일에 있습니다. 복사 hello 포털에서 기본 키를 hello 고 하 고 붙여넣어 `<your primary key>`합니다. 수 있는지 tooremove hello `<` 및 `>` 값에서 합니다.
+포털에서 URI를 복사하고 program.cs 파일의 `<your endpoint URL>`에 붙여넣습니다. 그런 다음 포털에서 기본 키를 복사하고 `<your primary key>`에 붙여넣습니다. 값에서 `<`과 `>`를 제거해야 합니다.
 
-![C# 콘솔 응용 프로그램 hello NoSQL 자습서 toocreate hello Azure 포털의 스크린 샷을 사용합니다. Azure Cosmos DB 계정을 hello hello Azure Cosmos DB 계정 블레이드에 강조 표시 된 키 및 hello URI와 hello 키 블레이드에서에 강조 표시 된 기본 키 값을 보여 줍니다.](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-keys.png)
+![C# 콘솔 응용 프로그램을 만들기 위해 NoSQL 자습서에서 사용하는 Azure Portal의 스크린샷 Azure Cosmos DB 계정 블레이드에서 강조 표시된 키 및 키 블레이드에서 강조 표시된 URI와 키 값이 있는 Azure Cosmos DB 계정을 보여 줍니다.](./media/tutorial-develop-documentdb-dotnet/nosql-tutorial-keys.png)
 
-## <a id="instantiate"></a>Hello DocumentClient 인스턴스화합니다
+## <a id="instantiate"></a>DocumentClient 인스턴스화
 
-이제 hello의 새 인스턴스를 만들 **DocumentClient**합니다.
+이제 **DocumentClient**의 새 인스턴스를 만듭니다.
 
 ```csharp
-DocumentClient client = new DocumentClient(new Uri(endpoint), authKey);
+DocumentClient client = new DocumentClient(new Uri(EndpointUrl), PrimaryKey);
 ```
 
 ## <a id="create-database"></a>데이터베이스 만들기
 
-다음으로 Azure Cosmos DB 만듭니다 [데이터베이스](documentdb-resources.md#databases) hello를 사용 하 여 [CreateDatabaseAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdatabaseasync.aspx) 메서드 또는 [CreateDatabaseIfNotExistsAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdatabaseifnotexistsasync.aspx) hello 방식의  **DocumentClient** hello에서 클래스 [DocumentDB.NET SDK](documentdb-sdk-dotnet.md)합니다. 데이터베이스는 컬렉션에 분할 된 JSON 문서 저장소의 hello 논리적 컨테이너입니다.
+다음으로 [DocumentDB .NET SDK](documentdb-sdk-dotnet.md)에서 **DocumentClient** 클래스의 [CreateDatabaseAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdatabaseasync.aspx) 메서드 또는 [CreateDatabaseIfNotExistsAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdatabaseifnotexistsasync.aspx) 메서드를 사용하여 Azure Cosmos DB [데이터베이스](documentdb-resources.md#databases)를 만듭니다. 데이터베이스는 여러 컬렉션으로 분할된 JSON 문서 저장소의 논리적 컨테이너입니다.
 
 ```csharp
 await client.CreateDatabaseAsync(new Database { Id = "db" });
 ```
 ## <a name="decide-on-a-partition-key"></a>파티션 키 결정 
 
-컬렉션은 문서를 저장하기 위한 컨테이너입니다. 논리적인 리소스이며 [하나 이상의 물리적 파티션](partition-data.md)에 걸쳐 있을 수 있습니다. A [파티션 키](documentdb-partition-data.md) 내인지 속성 (또는 경로) 프로그램은 문서에 사용 되는 toodistribute hello 서버 또는 파티션 간에 데이터입니다. Hello 동일한 파티션 키에 저장 되어 있는 모든 문서를 동일한 파티션에 hello 합니다. 
+컬렉션은 문서를 저장하기 위한 컨테이너입니다. 논리적인 리소스이며 [하나 이상의 물리적 파티션](partition-data.md)에 걸쳐 있을 수 있습니다. [파티션 키](documentdb-partition-data.md)는 서버 또는 파티션 간에 데이터를 배포하는 데 사용되는 문서 내의 속성(또는 경로)입니다. 동일한 파티션 키가 있는 문서는 모두 동일한 파티션에 저장됩니다. 
 
-컬렉션을 만들기 전에 중요 한 결정 사항 toomake를는 파티션 키를 결정 합니다. 파티션 키는 속성 (또는 경로) 될 수 있는 문서 내에서 여러 서버 또는 파티션 간에 데이터를 Azure Cosmos DB toodistribute에서 사용 합니다. Cosmos DB hello 파티션 키 값을 해시 하 고 toostore hello 문서에 해시 된 hello 결과 toodetermine hello 파티션을 사용 합니다. Hello 동일한 파티션 키에 저장 되어 있는 모든 문서를 동일한 파티션에 hello 및는 컬렉션을 만든 후에 파티션 키를 변경할 수 없습니다. 
+파티션 키를 결정하는 것은 컬렉션을 만들기 전에 수행해야 하는 중요한 결정입니다. 파티션 키는 Azure Cosmos DB에서 여러 서버 또는 파티션간에 데이터를 배포하는 데 사용할 수 있는 문서 내의 속성 (또는 경로)입니다. Cosmos DB는 파티션 키 값을 해시하고 해시된 결과를 사용하여 문서를 저장할 파티션을 결정합니다. 동일한 파티션 키가 있는 문서는 모두 동일한 파티션에 저장되며, 컬렉션이 생성되면 파티션 키를 변경할 수 없습니다. 
 
-이 자습서에서는 여기 tooset hello 파티션 키 너무`/deviceId` 단일 장치 단일 파티션에 저장에 대 한 모든 hello 데이터 hello 하는 하므로 합니다. 많은 수의 값을 각각 사용 되는 파티션 키 toochoose 원하는에 hello에 대 한 동일한 주파수 tooensure Cosmos DB 부하를 분산할 수 데이터 증가 하 고 hello hello 컬렉션의 전체 처리량을 달성 합니다. 
+이 자습서에서는 파티션 키를 `/deviceId`로 설정하여 단일 장치의 모든 데이터가 단일 파티션에 저장되도록 합니다. 값이 많은 파티션 키를 선택하려고 합니다. 각 키는 데이터가 증가함에 따라 Cosmos DB의 부하를 분산하고, 컬렉션의 전체 처리량을 달성할 수 있도록 거의 동일한 빈도로 사용됩니다. 
 
-분할에 대 한 자세한 내용은 참조 [어떻게 toopartition 및 Azure Cosmos DB에서 소수?](partition-data.md) 
+분할에 대한 자세한 내용은 [Azure Cosmos DB에서 분할 및 크기 조정하는 방법](partition-data.md)을 참조하세요. 
 
 ## <a id="CreateColl"></a>컬렉션 만들기 
 
-이 파티션 키를 알았으므로 `/deviceId`를 만들 수 있습니다. 한 [컬렉션](documentdb-resources.md#collections) hello를 사용 하 여 [CreateDocumentCollectionAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdocumentcollectionasync.aspx) 메서드 또는 [ CreateDocumentCollectionIfNotExistsAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentcollectionifnotexistsasync.aspx) hello 방식의 **DocumentClient** 클래스입니다. 컬렉션은 JSON 문서 및 관련된 모든 JavaScript 응용 프로그램 논리의 컨테이너입니다. 
+이제 `/deviceId` 파티션 키를 알고 있으므로 **DocumentClient** 클래스의 [CreateDocumentCollectionAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdocumentcollectionasync.aspx) 메서드 또는 [CreateDocumentCollectionIfNotExistsAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentcollectionifnotexistsasync.aspx) 메서드를 사용하여 [컬렉션](documentdb-resources.md#collections)을 만들어 보겠습니다. 컬렉션은 JSON 문서 및 관련된 모든 JavaScript 응용 프로그램 논리의 컨테이너입니다. 
 
 > [!WARNING]
-> 컬렉션을 만드는 영향을 줍니다 가격의 Azure Cosmos DB와 함께 응용 프로그램 toocommunicate hello에 대 한 처리량을 예약 하는. 자세한 내용은 [가격 페이지](https://azure.microsoft.com/pricing/details/cosmos-db/)를 참조하세요.
+> 응용 프로그램이 Azure Cosmos DB와 통신하기 위해 처리량을 예약할 때 컬렉션을 만드는 것은 가격에 영향을 미칩니다. 자세한 내용은 [가격 페이지](https://azure.microsoft.com/pricing/details/cosmos-db/)를 참조하세요.
 > 
 > 
 
 ```csharp
-// Collection for device telemetry. Here hello JSON property deviceId is used  
-// as hello partition key toospread across partitions. Configured for 2500 RU/s  
+// Collection for device telemetry. Here the JSON property deviceId is used  
+// as the partition key to spread across partitions. Configured for 2500 RU/s  
 // throughput and an indexing policy that supports sorting against any  
 // number or string property. .
 DocumentCollection myCollection = new DocumentCollection();
@@ -157,10 +159,10 @@ await client.CreateDocumentCollectionAsync(
     new RequestOptions { OfferThroughput = 2500 });
 ```
 
-이 메서드는 REST API tooAzure Cosmos DB 호출 및 hello 서비스 제공 hello 요청된 처리량에 기반 하는 파티션의 수입니다. 성능을 요구 사항이 발전 hello SDK 또는 hello를 사용 하 여 컬렉션의 hello 처리량을 변경할 수 있습니다 [Azure 포털](set-throughput.md)합니다.
+이 메서드에서 Azure Cosmos DB에 REST API 호출을 요청하고, 서비스는 요청된 처리량에 따라 파티션 수를 프로비전합니다. SDK 또는 [Azure Portal](set-throughput.md)을 사용하여 성능 요구 사항이 진화함에 따라 컬렉션의 처리량을 변경할 수 있습니다.
 
 ## <a id="CreateDoc"></a>JSON 문서 만들기
-Azure Cosmos DB에 일부 JSON 문서를 삽입해 보겠습니다. A [문서](documentdb-resources.md#documents) hello를 사용 하 여 만들 수 [CreateDocumentAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentasync.aspx) hello 방식의 **DocumentClient** 클래스입니다. 문서는 사용자 정의(임의) JSON 콘텐츠입니다. 이 샘플 클래스 컬렉션으로 읽어 새 장치는 장치 읽기 및 호출 tooCreateDocumentAsync tooinsert 포함 합니다.
+Azure Cosmos DB에 일부 JSON 문서를 삽입해 보겠습니다. **DocumentClient** 클래스의 [CreateDocumentAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentasync.aspx) 메서드를 사용하여 [문서](documentdb-resources.md#documents)를 만들 수 있습니다. 문서는 사용자 정의(임의) JSON 콘텐츠입니다. 이 샘플 클래스에는 장치 읽기와 컬렉션에 새 장치 읽기를 삽입하기 위한 CreateDocumentAsync 호출이 포함되어 있습니다.
 
 ```csharp
 public class DeviceReading
@@ -185,8 +187,8 @@ public class DeviceReading
     public double MetricValue;
   }
 
-// Create a document. Here hello partition key is extracted 
-// as "XMS-0001" based on hello collection definition
+// Create a document. Here the partition key is extracted 
+// as "XMS-0001" based on the collection definition
 await client.CreateDocumentAsync(
     UriFactory.CreateDocumentCollectionUri("db", "coll"),
     new DeviceReading
@@ -201,10 +203,10 @@ await client.CreateDocumentAsync(
 ```
 ## <a name="read-data"></a>데이터 읽기
 
-파티션 키 및 hello ReadDocumentAsync 메서드를 사용 하 여 Id 사용 하 여 hello 문서를 읽을 보겠습니다. Hello 읽기 PartitionKey 값에 포함 (해당 toohello `x-ms-documentdb-partitionkey` hello REST API에서에서 요청 헤더).
+ReadDocumentAsync 메서드를 사용하여 파티션 키와 ID별로 해당 문서를 읽어 보겠습니다. 읽기에 PartitionKey 값(REST API의 `x-ms-documentdb-partitionkey` 요청 헤더에 해당)이 포함됩니다.
 
 ```csharp
-// Read document. Needs hello partition key and hello Id toobe specified
+// Read document. Needs the partition key and the Id to be specified
 Document result = await client.ReadDocumentAsync(
   UriFactory.CreateDocumentUri("db", "coll", "XMS-001-FE24C"), 
   new RequestOptions { PartitionKey = new PartitionKey("XMS-0001") });
@@ -214,10 +216,10 @@ DeviceReading reading = (DeviceReading)(dynamic)result;
 
 ## <a name="update-data"></a>데이터 업데이트
 
-이제 hello ReplaceDocumentAsync 메서드를 사용 하 여 일부 데이터를 업데이트 해 보겠습니다.
+이제 ReplaceDocumentAsync 메서드를 사용하여 일부 데이터를 업데이트해 보겠습니다.
 
 ```csharp
-// Update hello document. Partition key is not required, again extracted from hello document
+// Update the document. Partition key is not required, again extracted from the document
 reading.MetricValue = 104;
 reading.ReadingTime = DateTime.UtcNow;
 
@@ -228,17 +230,17 @@ await client.ReplaceDocumentAsync(
 
 ## <a name="delete-data"></a>데이터 삭제
 
-이제 hello DeleteDocumentAsync 메서드를 사용 하 여 파티션 키로 문서 및 id를 삭제할 수 있습니다.
+이제 DeleteDocumentAsync 메서드를 사용하여 파티션 키와 ID별로 문서를 삭제해 보겠습니다.
 
 ```csharp
-// Delete a document. hello partition key is required.
+// Delete a document. The partition key is required.
 await client.DeleteDocumentAsync(
   UriFactory.CreateDocumentUri("db", "coll", "XMS-001-FE24C"), 
   new RequestOptions { PartitionKey = new PartitionKey("XMS-0001") });
 ```
 ## <a name="query-partitioned-collections"></a>분할된 컬렉션 쿼리
 
-Azure Cosmos DB 분할 된 컬렉션에서 데이터를 자동으로 쿼리할 때 경로 (있는 경우) hello 필터에 지정 된 toohello 파티션 키 값에 해당 하는 쿼리 toohello 파티션이 hello 합니다. 예를 들어이 쿼리는 라우트된 toojust hello 파티션 포함 hello 파티션 키 "x m S-0001"입니다.
+분할된 컬렉션에서 데이터를 쿼리하면 Azure Cosmos DB에서 필터에 지정된 파티션 키 값(있는 경우)에 해당하는 파티션으로 쿼리를 자동으로 라우팅합니다. 예를 들어 이 쿼리는 파티션 키 "XMS-0001"이 포함된 파티션으로만 라우팅됩니다.
 
 ```csharp
 // Query using partition key
@@ -247,7 +249,7 @@ IQueryable<DeviceReading> query = client.CreateDocumentQuery<DeviceReading>(
     .Where(m => m.MetricType == "Temperature" && m.DeviceId == "XMS-0001");
 ```
     
-hello 다음 쿼리는 필터 hello 파티션 키 (DeviceId)에 없으며 hello 파티션 인덱스에 대해 실행 되는 tooall 파티션 정렬 됩니다. Toospecify hello EnableCrossPartitionQuery가 (`x-ms-documentdb-query-enablecrosspartition` hello REST API에에서) toohave hello SDK tooexecute 파티션에서 쿼리 합니다.
+다음 쿼리는 파티션 키(DeviceId)에 대한 필터가 없으므로 파티션의 인덱스에 대해 실행되는 모든 파티션으로 팬아웃됩니다. SDK가 파티션에 걸쳐 쿼리를 실행하도록 EnableCrossPartitionQuery(REST API의`x-ms-documentdb-query-enablecrosspartition` )를 지정해야 합니다.
 
 ```csharp
 // Query across partition keys
@@ -258,7 +260,7 @@ IQueryable<DeviceReading> crossPartitionQuery = client.CreateDocumentQuery<Devic
 ```
 
 ## <a name="parallel-query-execution"></a>병렬 쿼리 실행
-hello Azure Cosmos DB DocumentDB Sdk 1.9.0 지원 위에 tooperform 짧은 대기 시간 수 있게 하는 병렬 쿼리 실행 옵션에 대해 쿼리를 분할 된 컬렉션 tootouch 필요한 경우에 많은 수의 파티션 및 합니다. 예를 들어 다음 쿼리는 hello 여러 파티션에 병렬로 구성된 toorun입니다.
+Azure Cosmos DB DocumentDB SDK 1.9.0 이상에서는 병렬 쿼리 실행 옵션을 지원합니다. 이 옵션을 사용하면 많은 수의 파티션을 연결해야 하는 경우에도 분할된 컬렉션에 대해 대기 시간이 짧은 쿼리를 수행 할 수 있습니다. 예를 들어 다음 쿼리는 파티션에 걸쳐 병렬로 실행되도록 구성되어 있습니다.
 
 ```csharp
 // Cross-partition Order By queries
@@ -269,15 +271,15 @@ IQueryable<DeviceReading> crossPartitionQuery = client.CreateDocumentQuery<Devic
     .OrderBy(m => m.MetricValue);
 ```
     
-Hello 매개 변수 뒤를 튜닝 하 여 병렬 쿼리 실행을 관리할 수 있습니다.
+다음 매개 변수를 조정하여 병렬 쿼리 실행을 관리할 수 있습니다.
 
-* 설정 하 여 `MaxDegreeOfParallelism`를 병렬 처리 수준, 즉 hello 최대 동시 네트워크 연결 toohello 컬렉션 파티션 수 정도 hello 제어할 수 있습니다. 로 설정 하면이-1 너무 hello 병렬 처리 수준은 hello SDK에서 관리 됩니다. 경우 hello `MaxDegreeOfParallelism` 지정 하지 않거나 too0는 hello 기본값을 설정 하지는 단일 네트워크 연결 toohello 컬렉션의 파티션이 있을 것입니다.
-* `MaxBufferedItemCount`를 설정하여 쿼리 대기 시간과 클라이언트 쪽 메모리 사용률 간에 균형을 유지할 수 있습니다. 이 매개 변수를 생략 하거나이-1 너무 설정 hello SDK hello 개수의 병렬 쿼리 실행 중에 버퍼링 하는 항목을 관리 합니다.
+* `MaxDegreeOfParallelism`을 설정하여 컬렉션의 파티션에 대한 최대 동시 네트워크 연결 수를 나타내는 병렬 처리 수준을 제어할 수 있습니다. 이 값을 -1로 설정하는 경우 병렬 처리 수준이 SDK에서 관리됩니다. `MaxDegreeOfParallelism` 값이 지정되지 않거나 기본값인 0으로 설정된 경우 컬렉션의 파티션에 단일 네트워크 연결이 생성됩니다.
+* `MaxBufferedItemCount`를 설정하여 쿼리 대기 시간과 클라이언트 쪽 메모리 사용률 간에 균형을 유지할 수 있습니다. 이 매개 변수를 생략하거나 -1로 설정하는 경우 병렬 쿼리 실행 중에 버퍼링되는 항목의 수가 SDK에서 관리됩니다.
 
-Hello 제공 hello 컬렉션의 동일한 상태 병렬 쿼리의 직렬 실행에서와 같이 주문 동일 hello에 결과 반환 합니다. 정렬 (ORDER BY 및 TOP)을 포함 하는 분할 간 쿼리를 수행할 때는 hello DocumentDB SDK는 여러 파티션에 병렬로 hello 쿼리를 발급 하 고 hello 클라이언트 쪽 tooproduce 전체적으로 순서가 지정 된 결과에서 부분적으로 저장 된 결과 병합 합니다.
+컬렉션에 동일한 상태를 지정할 경우, 병렬 쿼리는 직렬 실행의 경우와 동일한 순서로 결과를 반환합니다. 정렬(ORDER BY 및/또는 TOP)을 포함하는 파티션 간 쿼리를 수행할 경우 DocumentDB SDK는 파티션에 걸쳐 병렬로 쿼리를 실행하고, 클라이언트 쪽에서 부분적으로 정렬된 결과를 병합하여 전역으로 정렬된 결과를 생성합니다.
 
 ## <a name="execute-stored-procedures"></a>저장 프로시저 실행
-원자성 트랜잭션을 사용 하 여 문서에 대해 실행할 수 있습니다는 마지막으로, 동일한 장치 ID, 예를 들어 hello 집계를 관리 하 고 또는 hello tooyour 프로젝트 코드를 다음을 추가 하 여 단일 문서에서 장치의 최신 상태를 환영 하는 경우.
+마지막으로 장치 ID가 동일한 문서에 대해 원자성 트랜잭션을 실행할 수 있습니다(예: 프로젝트에 다음 코드를 추가하여 장치의 최신 상태 또는 집계를 단일 문서에서 유지 관리하는 경우).
 
 ```csharp
 await client.ExecuteStoredProcedureAsync<DeviceReading>(
@@ -286,18 +288,18 @@ await client.ExecuteStoredProcedureAsync<DeviceReading>(
     "XMS-001-FE24C");
 ```
 
-이것으로 끝입니다! hello 파티션에서 파티션 키 tooefficiently 배율 데이터 분포를 사용 하는 Azure Cosmos DB 응용 프로그램의 주요 구성 요소 모두입니다.  
+이것으로 끝입니다! 이러한 저장 프로시저는 파티션 키를 사용하여 파티션 간에 데이터 분포의 크기를 효율적으로 조정하는 Azure Cosmos DB 응용 프로그램의 주요 구성 요소입니다.  
 
 ## <a name="clean-up-resources"></a>리소스 정리
 
-것 toocontinue toouse이 응용이 프로그램, 경우에이 자습서에서 만든 hello Azure 포털 단계를 수행 하는 hello로 리소스를 모두 삭제 합니다.
+이 응용 프로그램을 계속 사용하지 않으려면 Azure Portal에서 다음 단계에 따라 이 자습서에서 만든 리소스를 모두 삭제합니다.
 
-1. Hello Azure 포털에서에서 왼쪽 메뉴 hello에서에서 클릭 **리소스 그룹** hello 만든 hello 리소스의 고유 이름을 클릭 하 고 있습니다. 
-2. 리소스 그룹 페이지에서 클릭 **삭제**hello 텍스트 상자에 hello 리소스 toodelete의 hello 이름을 입력 한 다음 클릭 **삭제**합니다.
+1. Azure Portal의 왼쪽 메뉴에서 **리소스 그룹**을 클릭한 다음 만든 리소스의 고유한 이름을 클릭합니다. 
+2. 리소스 그룹 페이지에서 **삭제**를 클릭하고 텍스트 상자에서 삭제할 리소스의 이름을 입력한 다음 **삭제**를 클릭합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-이 자습서에서는 hello 다음 작업을 수행 하면: 
+이 자습서에서는 다음을 수행했습니다. 
 
 > [!div class="checklist"]
 > * Azure Cosmos DB 계정 만들기
@@ -309,7 +311,7 @@ await client.ExecuteStoredProcedureAsync<DeviceReading>(
 > * 문서 삭제
 > * 데이터베이스 삭제
 
-이제 toohello 다음 자습서를 진행 한 tooyour Cosmos DB 계정 추가 데이터를 가져올 수 있습니다. 
+이제 다음 자습서로 진행하여 추가 데이터를 Cosmos DB 계정으로 가져올 수 있습니다. 
 
 > [!div class="nextstepaction"]
 > [Azure Cosmos DB로 데이터 가져오기](import-data.md)

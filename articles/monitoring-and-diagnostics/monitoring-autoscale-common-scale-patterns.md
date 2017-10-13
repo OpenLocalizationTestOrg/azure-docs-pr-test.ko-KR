@@ -1,6 +1,6 @@
 ---
-title: "자동 크기 조정의 일반 패턴의 aaaOverview | Microsoft Docs"
-description: "Azure의 리소스 크기를 조정 hello 일반적인 패턴 tooauto 중 일부에 대해 알아봅니다."
+title: "일반적인 자동 크기 조정 패턴 개요 | Microsoft Docs"
+description: "Azure에서 리소스의 크기를 자동으로 조정하는 일반적인 패턴 중 일부에 대해 알아봅니다."
 author: anirudhcavale
 manager: orenr
 editor: 
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/07/2017
 ms.author: ancav
-ms.openlocfilehash: fc5bd97852e0af01aa32940c99721ab8e21033ad
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fce51546e041c8989d813c3935e058c52b38ba77
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="overview-of-common-autoscale-patterns"></a>일반적인 자동 크기 조정 패턴 개요
-이 문서에서는 Azure의 리소스에 몇 가지 일반적인 패턴 tooscale hello 설명 합니다.
+이 문서에서는 Azure에서 리소스의 크기를 조정하는 몇 가지 일반적인 패턴에 대해 설명합니다.
 
-모니터 자동 크기 조정 azure tooVirtual 컴퓨터 눈금 집합 (VMSS), 클라우드 서비스, 앱 서비스 계획 및 앱 서비스 환경에 적용합니다. 
+Azure Monitor 자동 크기 조정은 VMSS(Virtual Machine Scale Sets), 클라우드 서비스 및 앱 서비스 계획 및 앱 서비스 환경에만 적용됩니다. 
 
 # <a name="lets-get-started"></a>시작
 
-이 문서에서는 사용자가 자동 크기 조정에 대해 잘 알고 있다고 가정합니다. 있습니다 수 [시작된 여기 tooscale 리소스 가져오기][1]합니다. 일반 배율 패턴 hello hello 다음과가 같습니다.
+이 문서에서는 사용자가 자동 크기 조정에 대해 잘 알고 있다고 가정합니다. [리소스 크기를 조정하려면 여기서 시작][1]할 수 있습니다. 다음은 몇 가지 일반적인 크기 조정 패턴입니다.
 
 ## <a name="scale-based-on-cpu"></a>CPU 기준 크기 조정
 
 웹앱(/VMSS/클라우드 서비스 역할)이 있습니다. 그리고 
 
-- 원하는 tooscale 아웃/배율에 따라 CPU에서 합니다.
-- 또한 tooensure 합니다 인스턴스의 최소 수 있습니다. 
-- 또한 원하는 tooensure 인스턴스를 확장할 수는 최대 한도 toohello 수를 설정 합니다.
+- CPU를 기준으로 규모를 확장/축소하려고 합니다.
+- 최소 개수의 인스턴스가 있는지 확인하려고도 합니다. 
+- 또한 확장할 수 있는 인스턴스 수의 최대 한도를 설정해야 합니다.
 
 ![CPU 기준 크기 조정][2]
 
@@ -44,7 +44,7 @@ ms.lasthandoff: 10/06/2017
 웹앱(/VMSS/클라우드 서비스 역할)이 있습니다. 그리고
 
 - 기본적으로 3개의 인스턴스를 원합니다(평일)
-- 트래픽 주말에 감염 되지 않은 고 따라서 too1 인스턴스 아래로 tooscale 주말에 합니다.
+- 주말에 트래픽이 걸리지 않을 것으로 예상하므로 주말에는 1개 인스턴스로 축소할 수 있습니다.
 
 ![평일과 주말에 대해 다르게 크기 조정][3]
 
@@ -52,16 +52,16 @@ ms.lasthandoff: 10/06/2017
 
 웹앱(/VMSS/클라우드 서비스 역할)이 있습니다. 그리고 
 
-- 위/아래로 기본적으로 CPU 사용량 기반 tooscale 원합니다
-- 그러나 휴일 기간 (또는 비즈니스에 대 한 중요 한 일) 동안 toooverride hello 기본값을 사용할 더 많은 용량을 확보 합니다.
+- 기본적으로 CPU 사용량을 기준으로 확장/축소하려고 합니다.
+- 그러나 연말 연시(또는 비즈니스에 중요한 특정 요일)에는 기본값을 무시하고 더 많은 용량을 원하는 경우가 있습니다.
 
 ![휴일에 대해 다르게 크기 조정][4]
 
 ## <a name="scale-based-on-custom-metric"></a>사용자 지정 메트릭 기준 크기 조정
 
-웹 프런트 엔드 및 백 엔드 hello와 통신 하는 API 계층 해야 합니다. 
+웹 프런트 엔드 및 백 엔드와 통신하는 API 계층이 있습니다. 
 
-- Hello 프런트 엔드에서는 사용자 지정 이벤트에 따라 tooscale hello API 계층을 원하는 (예: 쇼핑 카트 hello에 있는 항목의 hello 수에 따라 체크 아웃 프로세스 tooscale 원하는)
+- 프런트 엔드의 사용자 지정 이벤트에 따라 API 계층의 크기를 조정하려고 합니다(예: 장바구니의 항목 수에 따라 체크아웃 프로세스를 조정하려는 경우).
 
 ![사용자 지정 메트릭 기준 크기 조정][5]
 

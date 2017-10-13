@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate 및 Oracle Linux VHD 업로드 | Microsoft Docs"
-description: "Toocreate 알아보고 업로드는 Azure 가상 하드 디스크 (VHD)는 Oracle Linux 운영 체제를 포함 합니다."
+title: "Oracle Linux VHD 만들기 및 업로드 | Microsoft Docs"
+description: "Oracle Linux 운영 체제가 포함된 Azure VHD(가상 하드 디스크)를 만들고 업로드하는 방법에 대해 알아봅니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -15,44 +15,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/23/2017
 ms.author: szark
-ms.openlocfilehash: be9cf284d7f5e7122a106506a343e53e9f1ac56e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c631ddf3acf6df7364c03eb4691b78be0493e0d9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="prepare-an-oracle-linux-virtual-machine-for-azure"></a>Azure용 Oracle Linux 가상 컴퓨터 준비
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
 ## <a name="prerequisites"></a>필수 조건
-이 문서는 Oracle Linux 운영 체제 tooa 가상 하드 디스크로 이미 설치한 가정 합니다. 여러 도구 toocreate.vhd 파일을 예를 들어 Hyper-v와 같은 가상화 솔루션 존재합니다. 자세한 내용은 [hello Hyper-v 역할을 설치 하 고 가상 컴퓨터 구성](http://technet.microsoft.com/library/hh846766.aspx)합니다.
+이 문서에서는 가상 하드 디스크에 Oracle Linux 운영 체제를 이미 설치했다고 가정합니다. .vhd 파일을 만드는 여러 도구가 있습니다(예: Hyper-V와 같은 가상화 솔루션). 자세한 내용은 [Hyper-V 역할 설치 및 가상 시스템 구성](http://technet.microsoft.com/library/hh846766.aspx)을 참조하십시오.
 
 ### <a name="oracle-linux-installation-notes"></a>Oracle Linux 설치 참고 사항
 * Azure용 Linux를 준비하는 방법에 대한 추가 팁은 [일반 Linux 설치 참고 사항](create-upload-generic.md#general-linux-installation-notes) 을 참조하세요.
-* Oracle Red Hat 호환 커널 및 해당 UEK3(Unbreakable Enterprise Kernel)은 모두 Hyper-V 및 Azure에서 지원됩니다. 최상의 결과 있는지 tooupdate toohello 최신 커널 Oracle Linux VHD를 준비 하는 동안 모니터링할 하십시오.
-* Oracle의 UEK2 hello 필요한 드라이버를 포함 하지 않는 Hyper-v와 Azure에서 지원 되지 않습니다.
-* hello VHDX 형식은 지원 되지 않습니다 Azure에서만 **고정 VHD**합니다.  Hyper-v 관리자를 사용 하 여 hello 디스크 tooVHD 형식을 변환 하거나 convert vhd cmdlet hello 수 있습니다.
-* Hello Linux 시스템을 설치할 때 LVM (종종 대부분의 설치에 대 한 hello 기본값) 보다는 표준 파티션을 사용 하는 것이 좋습니다. OS 필요 없는 연결 toobe tooanother VM에 대 한 디스크 문제 해결 하는 경우에 특히 복제 된 Vm과 LVM 이름 충돌을 피해 야 할이. 원하는 경우에는 데이터 디스크에서 [LVM](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 또는 [RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 사용할 수 있습니다.
-* NUMA는 2.6.37 아래 Linux 커널 버전의 tooa 버그 때문에 더 큰 VM 크기에 대 한 지원 되지 않습니다. 이 문제를 주로 영향을 미치는 분포를 사용 하 여 hello 업스트림 Red Hat 2.6.32 커널 합니다. (Waagent) hello Azure Linux 에이전트를 수동으로 설치는 자동으로 Linux 커널 hello에 대 한 hello GRUB 구성에서 NUMA를 비활성화 합니다. 이 대 한 자세한 내용은 아래 hello 단계에서 찾을 수 있습니다.
-* 스왑 파티션을 hello OS 디스크에 구성 하지 마십시오. hello Linux 에이전트 구성된 toocreate hello 일시적인 리소스 디스크의 스왑 파일 일 수 있습니다.  이 대 한 자세한 내용은 아래 hello 단계에서 찾을 수 있습니다.
-* 모든 hello Vhd 크기를 1MB의 배수인가 있어야 합니다.
-* 해당 hello 있는지 확인 `Addons` 리포지토리를 사용할 수 있습니다. Hello 파일을 편집 `/etc/yum.repo.d/public-yum-ol6.repo`(Oracle Linux 6) 또는 `/etc/yum.repo.d/public-yum-ol7.repo`(Oracle Linux), hello 줄을 변경 하 고 `enabled=0` 너무`enabled=1` 아래 **[ol6_addons]** 또는 **[ol7_addons]** 이 파일입니다.
+* Oracle Red Hat 호환 커널 및 해당 UEK3(Unbreakable Enterprise Kernel)은 모두 Hyper-V 및 Azure에서 지원됩니다. 최상의 결과를 얻으려면 Oracle Linux VHD를 준비할 때 최신 커널로 업데이트하세요.
+* Oracle의 UEK2는 필수 드라이버를 포함하지 않으므로 Hyper-V 및 Azure에서 지원되지 않습니다.
+* VHDX 형식은 Azure에서 지원되지 않습니다. **고정된 VHD**만 지원됩니다.  Hyper-V 관리자 또는 convert-vhd cmdlet을 사용하여 디스크를 VHD 형식으로 변환할 수 있습니다.
+* Linux 시스템 설치 시에는 LVM(설치 기본값인 경우가 많음)이 아닌 표준 파티션을 사용하는 것이 좋습니다. 이렇게 하면 특히 문제 해결을 위해 OS 디스크를 다른 VM에 연결해야 하는 경우 복제된 VM과 LVM 이름이 충돌하지 않도록 방지합니다. 원하는 경우에는 데이터 디스크에서 [LVM](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 또는 [RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 사용할 수 있습니다.
+* 2.6.37보다 낮은 Linux 커널 버전의 버그 때문에 더 큰 VM 크기에서는 NUMA가 지원되지 않습니다. 이 문제는 주로 업스트림 Red Hat 2.6.32 커널을 사용하는 분산에 영향을 줍니다. Azure Linux 에이전트(waagent)를 수동으로 설치하면 Linux 커널의 GRUB 구성에서 NUMA가 자동으로 사용하지 않도록 설정됩니다. 여기에 대한 자세한 내용은 아래 단계에서 확인할 수 있습니다.
+* OS 디스크에 스왑 파티션을 구성하지 마세요. 임시 리소스 디스크에서 스왑 파일을 만들도록 Linux 에이전트를 구성할 수 있습니다.  여기에 대한 자세한 내용은 아래 단계에서 확인할 수 있습니다.
+* 모든 VHD 크기는 1MB의 배수여야 합니다.
+* `Addons` 리포지토리가 사용되도록 설정되었는지 확인합니다. 파일 `/etc/yum.repo.d/public-yum-ol6.repo`(Oracle Linux 6) 또는 `/etc/yum.repo.d/public-yum-ol7.repo`(Oracle Linux)를 편집하고 이 파일의 **[ol6_addons]** 또는 **[ol7_addons]** 아래에서 줄 `enabled=0`을 `enabled=1`로 변경합니다.
 
 ## <a name="oracle-linux-64"></a>Oracle Linux 6.4 이상
-Azure에서 가상 컴퓨터 toorun hello에 대 한 hello 운영 체제에서 특정 구성 단계를 완료 해야 합니다.
+가상 컴퓨터를 Azure에서 실행하려면 운영 체제에서 특정 구성 단계를 완료해야 합니다.
 
-1. Hyper-v 관리자의 가운데 창 hello hello 가상 컴퓨터를 선택 합니다.
-2. 클릭 **연결** hello 가상 컴퓨터에 대 한 tooopen hello 창.
-3. NetworkManager hello 다음 명령을 실행 하 여 제거 합니다.
+1. Hyper-V 관리자의 가운데 창에서 가상 컴퓨터를 선택합니다.
+2. **연결** 을 클릭하여 가상 컴퓨터 창을 엽니다.
+3. 다음 명령을 실행하여 NetworkManager를 제거합니다.
    
         # sudo rpm -e --nodeps NetworkManager
    
-    **참고:** hello 패키지 아직 설치 되지 않은 오류 메시지와 함께이 명령이 실패 합니다. 예상된 동작입니다.
-4. 라는 파일을 만들어 **네트워크** hello에 `/etc/sysconfig/` hello 텍스트 다음 포함 된 디렉터리:
+    **참고:** 패키지가 아직 설치되어 있지 않은 경우 이 명령이 실패하고 오류 메시지가 표시됩니다. 예상된 동작입니다.
+4. 다음 텍스트가 포함된 **network** in the `/etc/sysconfig/` 디렉터리에 만듭니다.
    
         NETWORKING=yes
         HOSTNAME=localhost.localdomain
-5. 라는 파일을 만들어 **ifcfg eth0** hello에 `/etc/sysconfig/network-scripts/` hello 텍스트 다음 포함 된 디렉터리:
+5. 다음 텍스트가 포함된 **ifcfg-eth0** in the `/etc/sysconfig/network-scripts/` 디렉터리에 만듭니다.
    
         DEVICE=eth0
         ONBOOT=yes
@@ -61,71 +61,71 @@ Azure에서 가상 컴퓨터 toorun hello에 대 한 hello 운영 체제에서 �
         USERCTL=no
         PEERDNS=yes
         IPV6INIT=no
-6. Udev 규칙 tooavoid hello 이더넷 인터페이스에 대 한 정적 규칙 생성을 수정 합니다. 이러한 규칙은 Microsoft Azure 또는 Hyper-V에서 가상 컴퓨터를 복제하는 경우 문제를 발생시킬 수 있습니다.
+6. 이더넷 인터페이스에 대한 정적 규칙을 생성하지 않도록 방지하는 udev 규칙을 수정합니다. 이러한 규칙은 Microsoft Azure 또는 Hyper-V에서 가상 컴퓨터를 복제하는 경우 문제를 발생시킬 수 있습니다.
    
         # sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
         # sudo rm -f /etc/udev/rules.d/70-persistent-net.rules
-7. 확인 hello 다음 명령을 실행 하 여 hello 네트워크 서비스 부팅 시간에 시작 됩니다.
+7. 다음 명령을 실행하여 부팅 시 네트워크 서비스가 시작되도록 합니다.
    
         # chkconfig network on
-8. Python pyasn1 hello 다음 명령을 실행 하 여 설치 합니다.
+8. 다음 명령을 실행하여 python-pyasn1을 설치합니다.
    
         # sudo yum install python-pyasn1
-9. Azure에 대 한 프로그램 grub 구성 tooinclude 추가 커널 매개 변수에서 hello 커널 부팅 줄을 수정 합니다. 이 열린 toodo "/ boot/grub/menu.lst" 텍스트 편집기에서 해당 hello 기본 커널 hello 매개 변수 뒤에 포함 되 게 및:
+9. Azure용 커널 매개 변수를 추가로 포함하려면 grub 구성에서 커널 부팅 줄을 수정합니다. 이 작업을 수행하려면 "/boot/grub/menu.lst"를 텍스트 편집기에서 열고 다음 매개 변수가 기본 커널에 포함되어 있는지 확인합니다.
    
         console=ttyS0 earlyprintk=ttyS0 rootdelay=300 numa=off
    
-   또한 이렇게 하면 모든 콘솔 메시지 toohello 첫 번째 직렬 포트, Azure를 지원할 수 있는 문제를 디버깅 지원 합니다. Oracle의 Red Hat 호환 커널에서 tooa 버그 인해 NUMA 해제 됩니다.
+   이렇게 하면 모든 콘솔 메시지가 첫 번째 직렬 포트로 전송되므로 Azure 지원에서 문제를 디버깅하는 데에도 도움이 될 수 있습니다. 이 경우 Oracle Red Hat 호환 커널의 버그로 인해 NUMA가 사용하지 않도록 설정됩니다.
    
-   또한 위의 toohello, 것이 좋습니다 너무*제거* 매개 변수 다음 hello:
+   위의 작업을 수행하는 동시에 다음 매개 변수도 *제거* 하는 것이 좋습니다.
    
         rhgb quiet crashkernel=auto
    
-   그래픽 도구 및 자동 부팅 toohello 직렬 포트에 보내 모든 hello 로그 toobe를 원하는 위치로 클라우드 환경에서 유용 합니다.
+   모든 로그를 직렬 포트로 보내려는 클라우드 환경에서는 그래픽 및 자동 부팅 기능이 효율적이지 않습니다.
    
-   hello `crashkernel` 옵션이 수 있습니다, 원하는 경우 구성 하는 왼쪽 이지만이 매개 변수 감소할 hello hello 128MB 이상의 VM에서에서 사용 가능한 메모리 크기는 hello 더 작은 VM 크기에 문제가 될 수 있습니다.
-10. 해당 hello SSH 서버를 설치 및 부팅 시 toostart을 구성을 확인 합니다.  일반적으로 hello 기본값입니다.
-11. Hello 다음 명령을 실행 하 여 hello Azure Linux 에이전트를 설치 합니다. hello 최신 버전은 2.0.15입니다.
+   원하는 경우에는 `crashkernel` 옵션을 구성한 상태로 유지할 수도 있지만 이 매개 변수를 사용하는 경우 VM에서 사용 가능한 메모리의 양이 128MB 이상 감소하므로 VM 크기가 작은 경우 문제가 될 수 있습니다.
+10. SSH 서버가 설치되어 부팅 시 시작되도록 구성되어 있는지 확인합니다.  보통 SSH 서버는 기본적으로 이와 같이 구성되어 있습니다.
+11. 다음 명령을 실행하여 Azure Linux 에이전트를 설치합니다. 최신 버전은 2.0.15입니다.
     
         # sudo yum install WALinuxAgent
     
-    설치 hello WALinuxAgent 패키지는 hello NetworkManager 제거 및 NetworkManager gnome 패키지는 제거 되지 않은 경우 이미 설명 된 대로 2 단계에서 note 합니다.
-12. Hello OS 디스크에 스왑 공간을 만들지 마십시오.
+    WALinuxAgent 패키지를 설치하면 NetworkManager 및 NetworkManager-gnome 패키지가 2단계에서 설명된 대로 아직 제거되지 않은 경우 이러한 패키지를 제거합니다.
+12. OS 디스크에 스왑 공간을 만들지 마십시오.
     
-    hello Azure Linux 에이전트 Azure에서 프로 비전 한 후 연결 된 toohello VM은 hello 로컬 리소스 디스크를 사용 하 여 스왑 공간을 자동으로 구성할 수 있습니다. 해당 하는 hello 로컬 리소스 디스크는 한 *임시* , 디스크 및 hello VM 프로 비전 해제 된 경우 비울 수 있습니다. Hello Azure Linux 에이전트를 설치한 후 (이전 단계 참조) hello /etc/waagent.conf에 매개 변수를 적절 하 게 뒤 수정:
+    Azure Linux 에이전트는 Azure에서 프로비전한 후 VM에 연결된 로컬 리소스 디스크를 사용하여 자동으로 스왑 공간을 구성할 수 있습니다. 로컬 리소스 디스크는 *임시* 디스크이며 VM의 프로비전을 해제할 때 비워질 수 있습니다. Azure Linux 에이전트를 설치한 후(이전 단계 참조) /etc/waagent.conf에서 다음 매개 변수를 적절하게 수정합니다.
     
         ResourceDisk.Format=y
         ResourceDisk.Filesystem=ext4
         ResourceDisk.MountPoint=/mnt/resource
         ResourceDisk.EnableSwap=y
-        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this toowhatever you need it toobe.
-13. Hello 명령을 toodeprovision hello 가상 컴퓨터를 다음을 실행 하 고 Azure에서 프로 비전 하기 위한 준비:
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
+13. 다음 명령을 실행하여 가상 컴퓨터의 프로비전을 해제하고 Azure에서 프로비전할 준비를 합니다.
     
         # sudo waagent -force -deprovision
         # export HISTSIZE=0
         # logout
-14. Hyper-V 관리자에서 **작업 -> 종료**를 클릭합니다. Linux VHD 준비 toobe 업로드 tooAzure 이제입니다.
+14. Hyper-V 관리자에서 **작업 -> 종료**를 클릭합니다. 이제 Linux VHD를 Azure에 업로드할 수 있습니다.
 
 - - -
 ## <a name="oracle-linux-70"></a>Oracle Linux 7.0
 **Oracle Linux 7의 변경 내용**
 
-하지만 Oracle Linux 7 가상 컴퓨터를 준비 하 고 Azure에 대 한 매우 유사 몇 가지 중요 한 차이점이 주목할 만한 Linux 6, tooOracle은입니다.
+Azure용으로 Oracle Linux 7 가상 컴퓨터를 준비하는 작업은 Oracle Linux 6과 매우 비슷하지만 다음과 같은 몇 가지 중요한 차이점이 있습니다.
 
-* Red Hat 호환 커널 hello 및 Oracle의 UEK3 모두 Azure에서 지원 됩니다.  hello UEK3 커널 것이 좋습니다.
-* hello NetworkManager 패키지 더 이상 hello Azure Linux 에이전트와 충돌 합니다. 이 패키지는 기본적으로 설치되며 제거하지 않는 것이 좋습니다.
-* 이제 커널 매개 변수를 편집 하기 위해 hello 절차 (아래 참조) 변경 된 하므로 기본 부팅 로더를 hello GRUB2 사용 됩니다.
-* XFS는 hello 기본 파일 시스템 되었습니다. 원하는 경우에 여전히 hello ext4 파일 시스템을 사용할 수 있습니다.
+* Red Hat 호환 커널과 Oracle의 UEK3은 모두 Azure에서 지원됩니다.  UEK3 커널을 사용하는 것이 좋습니다.
+* NetworkManager 패키지가 더 이상 Azure Linux 에이전트와 충돌하지 않습니다. 이 패키지는 기본적으로 설치되며 제거하지 않는 것이 좋습니다.
+* 이제 GRUB2가 기본 부팅 로더로 사용되므로 커널 매개 변수를 편집하는 절차가 변경되었습니다(아래 참조).
+* 이제 XFS가 기본 파일 시스템입니다. 원하는 경우에는 ext4 파일 시스템도 계속 사용할 수 있습니다.
 
 **구성 단계**
 
-1. Hyper-v 관리자에서 hello 가상 컴퓨터를 선택 합니다.
-2. 클릭 **연결** tooopen hello 가상 컴퓨터에 대 한 콘솔 창.
-3. 라는 파일을 만들어 **네트워크** hello에 `/etc/sysconfig/` hello 텍스트 다음 포함 된 디렉터리:
+1. Hyper-V 관리자에서 가상 컴퓨터를 선택합니다.
+2. **연결** 을 클릭하여 가상 컴퓨터의 콘솔 창을 엽니다.
+3. 다음 텍스트가 포함된 **network** in the `/etc/sysconfig/` 디렉터리에 만듭니다.
    
         NETWORKING=yes
         HOSTNAME=localhost.localdomain
-4. 라는 파일을 만들어 **ifcfg eth0** hello에 `/etc/sysconfig/network-scripts/` hello 텍스트 다음 포함 된 디렉터리:
+4. 다음 텍스트가 포함된 **ifcfg-eth0** in the `/etc/sysconfig/network-scripts/` 디렉터리에 만듭니다.
    
         DEVICE=eth0
         ONBOOT=yes
@@ -134,54 +134,54 @@ Azure에서 가상 컴퓨터 toorun hello에 대 한 hello 운영 체제에서 �
         USERCTL=no
         PEERDNS=yes
         IPV6INIT=no
-5. Udev 규칙 tooavoid hello 이더넷 인터페이스에 대 한 정적 규칙 생성을 수정 합니다. 이러한 규칙은 Microsoft Azure 또는 Hyper-V에서 가상 컴퓨터를 복제하는 경우 문제를 발생시킬 수 있습니다.
+5. 이더넷 인터페이스에 대한 정적 규칙을 생성하지 않도록 방지하는 udev 규칙을 수정합니다. 이러한 규칙은 Microsoft Azure 또는 Hyper-V에서 가상 컴퓨터를 복제하는 경우 문제를 발생시킬 수 있습니다.
    
         # sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
-6. 확인 hello 다음 명령을 실행 하 여 hello 네트워크 서비스 부팅 시간에 시작 됩니다.
+6. 다음 명령을 실행하여 부팅 시 네트워크 서비스가 시작되도록 합니다.
    
         # sudo chkconfig network on
-7. Hello 다음 명령을 실행 하 여 hello pyasn1 python 패키지를 설치 합니다.
+7. 다음 명령을 실행하여 python-pyasn1 패키지를 설치합니다.
    
         # sudo yum install python-pyasn1
-8. Hello 명령 tooclear hello 현재 yum 메타 데이터를 다음를 실행 하 고 모든 업데이트를 설치 합니다.
+8. 다음 명령을 실행하여 현재 yum 메타데이터를 지우고 모든 업데이트를 설치합니다.
    
         # sudo yum clean all
         # sudo yum -y update
-9. Azure에 대 한 프로그램 grub 구성 tooinclude 추가 커널 매개 변수에서 hello 커널 부팅 줄을 수정 합니다. 이 열려 "/ 등/기본/grub" toodo 텍스트 편집기 및 편집 hello에 `GRUB_CMDLINE_LINUX` 예를 들어 매개 변수:
+9. Azure용 커널 매개 변수를 추가로 포함하려면 grub 구성에서 커널 부팅 줄을 수정합니다. 이렇게 하려면 텍스트 편집기에서 "/etc/default/grub"를 열고 `GRUB_CMDLINE_LINUX` 매개 변수를 편집합니다. 예를 들면 다음과 같습니다.
    
         GRUB_CMDLINE_LINUX="rootdelay=300 console=ttyS0 earlyprintk=ttyS0 net.ifnames=0"
    
-   또한 이렇게 하면 모든 콘솔 메시지 toohello 첫 번째 직렬 포트, Azure를 지원할 수 있는 문제를 디버깅 지원 합니다. 또한 Nic 동안 OEL 7 명명 규칙을 새 hello 하지 않습니다. 또한 위의 toohello, 것이 좋습니다 너무*제거* 매개 변수 다음 hello:
+   이렇게 하면 모든 콘솔 메시지가 첫 번째 직렬 포트로 전송되므로 Azure 지원에서 문제를 디버깅하는 데에도 도움이 될 수 있습니다. NIC에 대한 새 OEL 7 명명 규칙도 해제합니다. 위의 작업을 수행하는 동시에 다음 매개 변수도 *제거* 하는 것이 좋습니다.
    
        rhgb quiet crashkernel=auto
    
-   그래픽 도구 및 자동 부팅 toohello 직렬 포트에 보내 모든 hello 로그 toobe를 원하는 위치로 클라우드 환경에서 유용 합니다.
+   모든 로그를 직렬 포트로 보내려는 클라우드 환경에서는 그래픽 및 자동 부팅 기능이 효율적이지 않습니다.
    
-   hello `crashkernel` 옵션이 수 있습니다, 원하는 경우 구성 하는 왼쪽 이지만이 매개 변수 감소할 hello hello 128MB 이상의 VM에서에서 사용 가능한 메모리 크기는 hello 더 작은 VM 크기에 문제가 될 수 있습니다.
-10. 편집 "/ 등/기본/grub" 완료 되 면 당 위에서 실행 같은 명령 toorebuild hello grub 구성이 hello:
+   원하는 경우에는 `crashkernel` 옵션을 구성한 상태로 유지할 수도 있지만 이 매개 변수를 사용하는 경우 VM에서 사용 가능한 메모리의 양이 128MB 이상 감소하므로 VM 크기가 작은 경우 문제가 될 수 있습니다.
+10. 위의 설명에 따라 "/etc/default/grub" 편집을 완료한 후에는 다음 명령을 실행하여 grub 구성을 다시 빌드합니다.
     
         # sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-11. 해당 hello SSH 서버를 설치 및 부팅 시 toostart을 구성을 확인 합니다.  일반적으로 hello 기본값입니다.
-12. Hello 다음 명령을 실행 하 여 hello Azure Linux 에이전트를 설치 합니다.
+11. SSH 서버가 설치되어 부팅 시 시작되도록 구성되어 있는지 확인합니다.  보통 SSH 서버는 기본적으로 이와 같이 구성되어 있습니다.
+12. 다음 명령을 실행하여 Azure Linux 에이전트를 설치합니다.
     
         # sudo yum install WALinuxAgent
         # sudo systemctl enable waagent
-13. Hello OS 디스크에 스왑 공간을 만들지 마십시오.
+13. OS 디스크에 스왑 공간을 만들지 마십시오.
     
-    hello Azure Linux 에이전트 Azure에서 프로 비전 한 후 연결 된 toohello VM은 hello 로컬 리소스 디스크를 사용 하 여 스왑 공간을 자동으로 구성할 수 있습니다. 해당 하는 hello 로컬 리소스 디스크는 한 *임시* , 디스크 및 hello VM 프로 비전 해제 된 경우 비울 수 있습니다. Hello Azure Linux 에이전트를 설치한 후 (hello 이전 단계 참조) hello /etc/waagent.conf에 매개 변수를 적절 하 게 뒤 수정:
+    Azure Linux 에이전트는 Azure에서 프로비전한 후 VM에 연결된 로컬 리소스 디스크를 사용하여 자동으로 스왑 공간을 구성할 수 있습니다. 로컬 리소스 디스크는 *임시* 디스크이며 VM의 프로비전을 해제할 때 비워질 수 있습니다. Azure Linux 에이전트를 설치한 후(이전 단계 참조) /etc/waagent.conf에서 다음 매개 변수를 적절하게 수정합니다.
     
         ResourceDisk.Format=y
         ResourceDisk.Filesystem=ext4
         ResourceDisk.MountPoint=/mnt/resource
         ResourceDisk.EnableSwap=y
-        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this toowhatever you need it toobe.
-14. Hello 명령을 toodeprovision hello 가상 컴퓨터를 다음을 실행 하 고 Azure에서 프로 비전 하기 위한 준비:
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
+14. 다음 명령을 실행하여 가상 컴퓨터의 프로비전을 해제하고 Azure에서 프로비전할 준비를 합니다.
     
         # sudo waagent -force -deprovision
         # export HISTSIZE=0
         # logout
-15. Hyper-V 관리자에서 **작업 -> 종료**를 클릭합니다. Linux VHD 준비 toobe 업로드 tooAzure 이제입니다.
+15. Hyper-V 관리자에서 **작업 -> 종료**를 클릭합니다. 이제 Linux VHD를 Azure에 업로드할 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
-사용자는 이제 준비 toouse Azure에서 Oracle Linux.vhd toocreate 새 가상 컴퓨터. 인 경우 hello hello.vhd 파일 tooAzure를 업로드 하는 처음 2와 3 단계 참조 [만들기 및 업로드 hello Linux 운영 체제를 포함 하는 가상 하드 디스크](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)합니다.
+이제 Oracle Linux .vhd를 사용하여 Azure에서 새 가상 컴퓨터를 만들 준비가 되었습니다. .vhd 파일을 Azure에 처음으로 업로드하는 경우 [Linux 운영 체제를 포함하는 가상 하드 디스크 만들기 및 업로드](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)에서 2단계 및 3단계를 참조하세요.
 

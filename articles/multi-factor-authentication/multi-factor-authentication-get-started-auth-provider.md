@@ -1,6 +1,6 @@
 ---
-title: "aaaGet Azure Multi-factor Auth 공급자를 시작 | Microsoft Docs"
-description: "자세한 내용은 방법 toocreate Azure 다단계 인증 공급자입니다."
+title: "Azure Multi-Factor Auth 공급자 시작 | Microsoft Docs"
+description: "Azure Multi-Factor Auth 공급자를 만드는 방법에 대해 알아봅니다."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -15,38 +15,38 @@ ms.date: 07/28/2017
 ms.author: kgremban
 ms.reviewer: yossib
 ms.custom: it-pro
-ms.openlocfilehash: 00ea967a80b43baff38c1de586c54d95c9abac2c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ed14a5a762bab20a1ccde699504dd21f25009b52
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="getting-started-with-an-azure-multi-factor-auth-provider"></a>Azure Multi-Factor Auth 공급자 시작
-두 단계 인증은 기본적으로 Azure Active Directory 및 Office 365 사용자가 있는 전역 관리자를 위해 사용할 수 있습니다. 그러나 tootake 활용 하려는 경우 [고급 기능](multi-factor-authentication-whats-next.md) hello 정식 버전의 Azure Multi-factor Authentication (MFA)을 구입 해야 합니다.
+두 단계 인증은 기본적으로 Azure Active Directory 및 Office 365 사용자가 있는 전역 관리자를 위해 사용할 수 있습니다. 그러나 [고급 기능](multi-factor-authentication-whats-next.md)을 활용하려는 경우 Azure MFA(Multi-Factor Authentication)의 전체 버전을 구입해야 합니다.
 
-Azure Multi-factor Auth 공급자가 사용 됩니다 tootake hello Azure MFA의 전체 버전에서 제공 하는 기능을 사용 합니다. **Azure MFA, Azure AD Premium 또는 EMS(Enterprise Mobility + Security)를 통해 라이선스를 갖고 있지 않은** 사용자를 위한 기능입니다.  Azure MFA, Azure AD Premium 및 EMS hello 정식 버전의 Azure MFA 기본적으로 포함 됩니다. 라이선스를 보유한 경우 Multi-Factor Auth 공급자가 필요하지 않습니다.
+Azure Multi-factor Authentication 공급자는 정식 버전의 Azure MFA에서 제공하는 기능을 활용하는 데 사용됩니다. **Azure MFA, Azure AD Premium 또는 EMS(Enterprise Mobility + Security)를 통해 라이선스를 갖고 있지 않은** 사용자를 위한 기능입니다.  Azure MFA, Azure AD Premium 및 EMS는 기본적으로 Azure MFA의 전체 버전을 포함합니다. 라이선스를 보유한 경우 Multi-Factor Auth 공급자가 필요하지 않습니다.
 
-Azure Multi-factor Auth 공급자는 필요한 toodownload hello SDK입니다.
+SDK를 다운로드하려면 Azure Multi-Factor Auth 공급자가 필요합니다.
 
 > [!IMPORTANT]
-> toodownload SDK hello Azure MFA, AAD Premium 또는 EMS 라이선스를 보유 하는 경우에 Azure Multi-factor Auth 공급자 toocreate 사용 해야 합니다.  이 목적을 위해 Azure Multi-factor Auth 공급자를 만들고 이미 라이선스가, 수 hello로 있는지 toocreate hello 공급자 **활성화 된 사용자별** 모델입니다. 그런 다음 연결할 hello Azure MFA, Azure AD Premium 또는 EMS 라이선스를 포함 하는 hello 공급자 toohello 디렉터리입니다. 이 구성을 통해만 고유 사용자 수가 hello 소유한 라이선스 개수 보다 2 단계 인증을 수행 하는 경우 청구 됩니다.
+> SDK를 다운로드하려면 Azure MFA, AAD Premium 또는 EMS 라이선스가 있더라도 Azure Multi-Factor Auth 공급자를 만들어야 합니다.  이를 위해 Azure Multi-Factor Auth 공급자를 만들고 이미 라이선스를 보유한 경우 공급자는 반드시 **활성화된 사용자당** 모델을 사용하도록 합니다. 그런 다음 Azure MFA, Azure AD Premium 또는 EMS 라이선스를 포함하는 디렉터리에 공급자를 연결합니다. 이 구성을 사용하면 사용자가 소유한 라이선스 수보다는 2단계 인증을 수행하는 고유 사용자가 더 많은 경우에만 요금이 청구됩니다.
 
 ## <a name="what-is-an-azure-multi-factor-auth-provider"></a>Azure Multi-Factor Auth 공급자란?
 
-Azure Multi-factor Authentication에 대 한 라이선스 없다면 사용자에 게는 인증 공급자 toorequire 2 단계 인증을 만들 수 있습니다. 사용자 지정 앱을 개발 하는 Azure MFA tooenable를 원하는 경우 인증 공급자 만들기 및 [hello SDK 다운로드](multi-factor-authentication-sdk.md)합니다.
+Azure Multi-Factor Authentication에 대한 라이선스가 없는 경우 사용자에 대해 2단계 인증을 요구하는 인증 공급자를 만들 수 있습니다. 사용자 지정 앱을 개발 중이고 Azure MFA를 사용하도록 설정하려는 경우 인증 공급자를 만들고 [SDK를 다운로드](multi-factor-authentication-sdk.md)합니다.
 
-두 가지 유형의 인증 공급자 있으며 Azure 구독 요금이 부과 됩니다 어떻게 주위 hello 차이. hello 인증 단위 옵션 hello 한 달에 테 넌 트에 대해 수행 하는 인증 수를 계산 합니다. 이 옵션은 사용자 지정 응용 프로그램에 대해 MFA를 요구하는 경우처럼 가끔씩만 인증하는 여러 사용자가 있는 경우 가장 적합합니다. hello 사용자별 옵션 한 달에 2 단계 인증을 수행 하는 테 넌 트에 대 한 개인 hello 수를 계산 합니다. 일부 사용자 라이선스를 갖고 있는 하지만 프로그램 라이선스 한도 넘어 tooextend MFA toomore 사용자가 할 경우이 옵션이 가장 좋습니다.
+두 가지 유형의 인증 공급자가 있으며 Azure 구독이 청구되는 방식에 따라 구분합니다. 인증 단위 옵션은 한 달에 테넌트에 대해 수행한 인증 수를 계산합니다. 이 옵션은 사용자 지정 응용 프로그램에 대해 MFA를 요구하는 경우처럼 가끔씩만 인증하는 여러 사용자가 있는 경우 가장 적합합니다. 사용자당 옵션은 테넌트에서 한 달 동안 2단계 인증을 수행하는 개인 수를 계산한 것입니다. 이 옵션은 라이선스를 갖고 있지만 라이선스 한도를 초과하여 더 많은 사용자까지 MFA를 확장해야 하는 사용자가 있는 경우 가장 적합합니다.
 
 ## <a name="create-a-multi-factor-auth-provider"></a>Multi-Factor Auth 공급자 만들기
-다음 단계는 Azure Multi-factor Auth 공급자 toocreate hello를 사용 합니다. Azure Multi-factor Auth 공급자 hello Azure 클래식 포털에에서만 만들 수 있습니다. Azure AD 테 넌 트 인지 toomake 확인 toohello Azure 클래식 포털에에서 로그인 할 수 없습니다, [Azure 구독과 연결 된](../active-directory/active-directory-how-subscriptions-associated-directory.md)합니다. 
+다음 단계를 따라 Azure Multi-Factor Auth 공급자를 만듭니다. Azure Multi-Factor Auth 공급자는 Azure 클래식 포털에서만 만들 수 있습니다. Azure 클래식 포털에 로그인할 수 없는 경우 Azure AD 테넌트가 [Azure 구독과 연결](../active-directory/active-directory-how-subscriptions-associated-directory.md)되어 있는지 확인합니다. 
 
-1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com) 관리자 권한으로 합니다.
-2. Hello 왼쪽에서 선택 **Active Directory**합니다.
-3. Hello 위쪽에, hello Active Directory 페이지에서 선택 **Multi-factor Authentication 공급자**합니다.
+1. 관리자 권한으로 [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인합니다.
+2. 왼쪽 창에서 **Active Directory**를 선택합니다.
+3. Active Directory 페이지 위쪽에서 **Multi-Factor Authentication 공급자**를 선택합니다.
    
    ![MFA 공급자 만들기](./media/multi-factor-authentication-get-started-auth-provider/authprovider1.png)
 
-4. Hello 맨 아래에 클릭 **새로**합니다.
+4. 아래쪽에서 **새로 만들기**를 클릭합니다.
    
    ![MFA 공급자 만들기](./media/multi-factor-authentication-get-started-auth-provider/authprovider2.png)
 
@@ -58,31 +58,31 @@ Azure Multi-factor Authentication에 대 한 라이선스 없다면 사용자에
    
    ![MFA 공급자 만들기](./media/multi-factor-authentication-get-started-auth-provider/authprovider4.png)
 
-7. Hello 다음 필드를 입력 하 고 선택 **만들기**합니다.
-   1. **이름** – hello hello Multi-factor Auth 공급자의 이름입니다.
+7. 다음 필드를 입력하고 **만들기**를 선택합니다.
+   1. **이름** – Multi-Factor Auth 공급자의 이름입니다.
    2. **사용 모델** – 두 가지 옵션 중 하나를 선택합니다.
       * 인증당 - 인증 단위로 요금이 청구되는 구매 모델입니다. 일반적으로 소비자 지향 응용 프로그램에서 Azure Multi-Factor Authentication을 사용하는 시나리오에 사용됩니다.
-      * 활성화된 사용자별 – 활성화된 사용자 단위로 요금이 청구되는 구매 모델입니다. Office 365와 같은 액세스 tooapplications 직원에 대 한 일반적으로 사용 합니다. 이미 Azure MFA에 대한 사용이 허가된 사용자가 있는 경우 이 옵션을 선택합니다.
-   3. **디렉터리** – hello Azure Active Directory에 Multi-factor Authentication 공급자가 연결 된 해당 hello 테 넌 트입니다. Hello 다음에 유의 해야 합니다.
-      * Azure AD 디렉터리 toocreate Multi-factor Auth 공급자를 사용할 필요가 없습니다. 이 상자 toodownload hello Azure Multi-factor Authentication 서버 또는 SDK만 계획이 있는 경우 비워 둡니다.
-      * hello Multi-factor Auth 공급자는 Azure AD 디렉터리 tootake 활용 고급 기능 hello와 연결 되어야 합니다.
+      * 활성화된 사용자별 – 활성화된 사용자 단위로 요금이 청구되는 구매 모델입니다. 일반적으로 Office 365와 같은 응용 프로그램에 대한 직원 액세스에 사용합니다. 이미 Azure MFA에 대한 사용이 허가된 사용자가 있는 경우 이 옵션을 선택합니다.
+   3. **디렉터리** – Multi-Factor Authentication 공급자와 연결된 Azure Active Directory 테넌트입니다. 다음에 주의하세요.
+      * Multi-Factor Auth 공급자를 만드는 데 Azure AD 디렉터리가 필요하지는 않습니다. Azure Multi-Factor Authentication 서버 또는 SDK를 다운로드만 하려는 경우 이 상자를 비워둡니다.
+      * Multi-Factor Authentication 공급자를 Azure AD 디렉터리와 연결하여 고급 기능을 활용해야 합니다.
       * 한 Multi-Factor Auth 공급자를 한 Azure AD 디렉터리에만 연결할 수 있습니다.  
       ![MFA 공급자 만들기](./media/multi-factor-authentication-get-started-auth-provider/authprovider5.png)
 
-8. 클릭 하면 만들기, Multi-factor Authentication 공급자가 생성 하는 hello 및 수 없다는 메시지가 표시 됩니다: **다단계 인증 공급자를 만들었습니다**합니다. **Ok**를 클릭합니다.  
+8. 만들기를 클릭하면 Multi-Factor Authentication 공급자가 생성되고 **Multi-Factor Authentication 공급자를 성공적으로 만들었습니다**라는 메시지가 표시됩니다. **Ok**를 클릭합니다.  
    
    ![MFA 공급자 만들기](./media/multi-factor-authentication-get-started-auth-provider/authprovider6.png)  
 
 ## <a name="manage-your-multi-factor-auth-provider"></a>Multi-Factor Auth 공급자 관리
 
-Hello 사용법을 변경할 수 없습니다 (활성화 된 사용자별 또는 인증 단위)는 MFA 공급자를 만든 후 모델입니다. 그러나 hello MFA 공급자를 삭제 하 고에 다른 사용 모델 하나를 만들 수 있습니다.
+MFA 공급자를 만든 후에는 사용 모델(활성화된 사용자별 또는 인증별)을 변경할 수 없습니다. 하지만 MFA 공급자를 삭제하고 다른 사용 모델로 새 공급자를 만들 수 있습니다.
 
-Hello 현재 Multi-factor Auth 공급자와 연결 된 경우 Azure AD 디렉터리 (Azure AD 테 넌 라고도 함)와 안전 하 게 hello MFA 공급자를 삭제 고 만들 수 있습니다 연결된 toohello 동일한 Azure AD 테 넌 트 되는 것입니다. 또는 모든 사용자가 MFA에 대해 사용할 수 있는 충분 한 MFA, Azure AD Premium 또는 Enterprise Mobility + 보안 (EMS) 라이선스 toocover를 구입, hello MFA 공급자를 완전히 삭제할 수 있습니다.
+현재 Multi-Factor Auth 공급자가 Azure AD 디렉터리(Azure AD 테넌트라고도 함)에 연결된 경우 MFA 공급자를 안전하게 삭제하고 동일한 Azure AD 테넌트에 연결된 새 공급자를 만들 수 있습니다. 또는 MFA로 설정된 모든 사용자를 처리할 만큼 충분한 MFA, Azure AD Premium 또는 Enterprise Mobility + Security(EMS) 라이선스를 구입한 경우 MFA 공급자를 모두 삭제할 수 있습니다.
 
-MFA 공급자, 연결 된 tooan Azure AD 테 넌 트 아니거나 hello 새 MFA 공급자 tooa 다른 Azure AD 테 넌 트를 연결 하면 사용자 설정 및 구성 옵션 전송 되지 않습니다. 또한 Azure MFA 서버를 기존 필요를 통해 생성 되는 정품 인증 자격 증명을 사용 하 여 다시 활성화 toobe hello 새 MFA 공급자입니다. MFA 서버 toolink hello를 다시 활성화 하 toohello 새 MFA 공급자에 영향을 주지 전화 통화 및 문자 메시지 인증 하지만 모바일 앱 알림을 hello 모바일 앱을 다시 활성화 될 때까지 모든 사용자에 대해 작동이 중지 됩니다.
+하지만 MFA 공급자가 Azure AD 테넌트에 연결되어 있지 않거나 새 MFA 공급자를 다른 Azure AD 테넌트에 연결한 경우 사용자 설정 및 구성 옵션이 전송되지 않습니다. 또한 새 MFA 공급자를 통해 생성된 활성화 자격 증명을 사용하여 기존 Azure MFA 서버를 다시 활성화해야 합니다. MFA 서버를 새 MFA 공급자에 연결하기 위해 다시 활성화해도 전화 및 문자 메시지 인증에는 영향을 미치지 않지만 모바일 앱을 다시 활성화할 때까지 모바일 앱 알림이 모든 사용자에 대해 작동 중지됩니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-[Hello Multi-factor Authentication SDK 다운로드](multi-factor-authentication-sdk.md)
+[Multi-Factor Authentication SDK 다운로드](multi-factor-authentication-sdk.md)
 
 [Multi-Factor Authentication 설정 구성](multi-factor-authentication-whats-next.md)

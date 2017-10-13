@@ -1,6 +1,6 @@
 ---
-title: "Azure Site Recovery에 대 한 복제 설정을 aaaSet | Microsoft Docs"
-description: "Toodeploy 사이트 복구 tooorchestrate 복제, 장애 조치 및 복구 VMM에서 Hyper-v Vm의 클라우드 tooAzure 방법을 설명 합니다."
+title: "Azure Site Recovery에 대한 복제 설정 | Microsoft Docs"
+description: "Site Recovery를 배포하여 VMM 클라우드의 Hyper-V VM을 Azure에 복제, 장애 조치 및 복구하는 작업을 조정하는 방법에 대해 설명합니다."
 services: site-recovery
 documentationcenter: 
 author: sujayt
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 06/05/2017
 ms.author: sutalasi
-ms.openlocfilehash: 618e92e42411732a2a1bb75c5e5ea8a433cd7d58
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 73a1f19177f23441f5f7165cf2bc92ba85e62aa5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="manage-replication-policy-for-vmware-tooazure"></a>VMware tooAzure에 대 한 복제 정책 관리
+# <a name="manage-replication-policy-for-vmware-to-azure"></a>Azure에 대한 VMware의 복제 정책 관리
 
 
 ## <a name="create-a-replication-policy"></a>복제 정책 만들기
@@ -31,58 +31,58 @@ ms.lasthandoff: 10/06/2017
 
     ![복제 정책 만들기](./media/site-recovery-setup-replication-settings-vmware/createpolicy.png)
 
-4. Hello 정책 이름을 입력 합니다.
+4. 정책 이름을 입력합니다.
 
-5. **RPO 임계값**, hello RPO 제한을 지정 합니다. 연속 복제가 이 제한을 초과하면 경고가 생성됩니다.
-6. **복구 지점 보존**, (시간) 지정 hello 각 복구 지점에 대 한 hello 보존 윈도의 기간입니다. 보호 된 컴퓨터 수 있는 보존 기간 내 tooany 데이터 요소를 복구 합니다.
+5. **RPO 임계값**에서 RPO 제한을 지정합니다. 연속 복제가 이 제한을 초과하면 경고가 생성됩니다.
+6. **복구 지점 보존**에서 각 복구 지점의 보존 기간을 시간 단위로 지정합니다. 보호된 컴퓨터는 보존 기간 내의 모든 지점으로 복구할 수 있습니다.
 
     > [!NOTE]
-    > 컴퓨터가 복제 된 toopremium 저장소에 대 한 too24 시간 보존을 모두 지원 합니다. 컴퓨터가 복제 된 toostandard 저장소에 대 한 too72 시간 보존을 모두 지원 합니다.
+    > 프리미엄 저장소에 복제된 컴퓨터의 경우 최대 24시간 동안 보존하도록 지원됩니다. 표준 저장소에 복제된 컴퓨터의 경우 최대 72시간 동안 보존하도록 지원됩니다.
 
     > [!NOTE]
     > 장애 복구에 대한 복제 정책은 자동으로 생성됩니다.
 
 7. **앱 일치 스냅숏 빈도**에서 응용 프로그램 일치 스냅숏이 포함된 복구 지점을 만드는 빈도(분)를 지정합니다.
 
-8. **확인**을 클릭합니다. hello 정책 30 too60 초 내에 만들어야 합니다.
+8. **확인**을 클릭합니다. 정책은 30~60초 내에 만들어야 합니다.
 
 ![복제 정책 생성](./media/site-recovery-setup-replication-settings-vmware/Creating-Policy.png)
 
 ## <a name="associate-a-configuration-server-with-a-replication-policy"></a>복제 정책과 구성 서버 연결
-1. Hello 복제 정책 toowhich 선택 tooassociate hello 구성 서버를 선택 합니다.
+1. 구성 서버를 연결하려는 복제 정책을 선택합니다.
 2. **연결**을 클릭합니다.
 ![구성 서버 연결](./media/site-recovery-setup-replication-settings-vmware/Associate-CS-1.PNG)
 
-3. 서버 hello 목록에서 hello 구성 서버를 선택 합니다.
-4. **확인**을 클릭합니다. 하나의 tootwo 분에서 hello 구성 서버를 연결 해야 합니다.
+3. 서버 목록에서 구성 서버를 선택합니다.
+4. **확인**을 클릭합니다. 구성 서버는 1~2분 내에 연결해야 합니다.
 
 ![구성 서버 연결](./media/site-recovery-setup-replication-settings-vmware/Associate-CS-2.png)
 
 ## <a name="edit-a-replication-policy"></a>복제 정책 편집
-1. Tooedit 복제 설정을 검색할 hello 복제 정책을 선택 합니다.
+1. 복제 설정을 편집하려는 복제 정책을 선택합니다.
 ![복제 정책 편집](./media/site-recovery-setup-replication-settings-vmware/Select-Policy.png)
 
 2. **설정 편집**을 클릭합니다.
 ![복제 정책 설정 편집](./media/site-recovery-setup-replication-settings-vmware/Edit-Policy.png)
 
-3. 필요에 따라 hello 설정을 변경 합니다.
-4. **Save**를 클릭합니다. hello 정책 2 toofive 분 저장 하도록, Vm 수에 따라는 해당 복제 정책을 사용 하는 합니다.
+3. 필요에 따라 설정을 변경합니다.
+4. **Save**를 클릭합니다. 정책은 해당 복제 정책을 사용하는 VM 개수에 따라 2~5분 내에 저장해야 합니다.
 
 ![복제 정책 저장](./media/site-recovery-setup-replication-settings-vmware/Save-Policy.png)
 
 ## <a name="dissociate-a-configuration-server-from-a-replication-policy"></a>복제 정책에서 구성 서버 분리
-1. Hello 복제 정책 toowhich 선택 tooassociate hello 구성 서버를 선택 합니다.
+1. 구성 서버를 연결하려는 복제 정책을 선택합니다.
 2. **분리**를 클릭합니다.
-3. 서버 hello 목록에서 hello 구성 서버를 선택 합니다.
-4. **확인**을 클릭합니다. 하나의 tootwo 분에서 hello 구성 서버를 분리 해야 합니다.
+3. 서버 목록에서 구성 서버를 선택합니다.
+4. **확인**을 클릭합니다. 구성 서버는 1~2분 내에 분리해야 합니다.
 
     > [!NOTE]
-    > Hello 정책을 사용 하 여 하나 이상의 복제 된 항목이 없는 경우 구성 서버를 분리할 수 없습니다. Hello 구성 서버를 분리 하기 전에 hello 정책을 사용 하 여 복제 된 항목이 없는 있는지 확인 합니다.
+    > 정책을 사용하는 복제된 항목이 하나 이상 있는 경우 구성 서버를 분리할 수 없습니다. 구성 서버를 분리하기 전에 정책을 사용하는 복제된 항목이 있는지 확인합니다.
 
 ## <a name="delete-a-replication-policy"></a>복제 정책 삭제
 
-1. Hello 복제 정책을 선택 toodelete 되도록 합니다.
-2. **삭제**를 클릭합니다. hello 정책 30 too60 초 내에 삭제 해야 합니다.
+1. 삭제하려는 복제 정책을 선택합니다.
+2. **삭제**를 클릭합니다. 정책은 30~60초 내에 삭제해야 합니다.
 
     > [!NOTE]
-    > 구성 서버가 연결 tooit 하나 이상 있는 경우에 복제 정책을 삭제할 수 없습니다. Hello 정책을 사용 하 여 복제 된 항목이 없습니다 및 hello 정책 삭제 하기 전에 구성 서버를 연결 된 모든 hello 삭제 있는지 확인 합니다.
+    > 구성 서버가 하나 이상 연결되어 있는 경우 복제 정책을 삭제할 수 없습니다. 정책을 사용하는 복제된 항목이 없는지 확인하고 정책을 삭제하기 전에 연결된 구성 서버를 모두 삭제합니다.

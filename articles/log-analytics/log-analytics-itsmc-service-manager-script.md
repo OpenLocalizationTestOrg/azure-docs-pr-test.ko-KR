@@ -1,6 +1,6 @@
 ---
-title: "OMS의 IT 서비스 관리 커넥터와 함께 Service Manager 웹 응용 프로그램 tooconnect aaaAutomated 스크립트 toocreate | Microsoft Docs"
-description: "자동화 된 스크립트 tooconnect OMS에서는 IT 서비스 관리 커넥터와 함께 사용 하 여 Service Manager 웹 앱 만들기 중앙에서 모니터링 하 고 hello ITSM 작업 항목을 관리 합니다."
+title: "OMS에서 IT Service Management Connector에 연결할 Service Manager 웹앱을 만드는 자동화 스크립트 | Microsoft Docs"
+description: "자동화 스크립트를 사용하여 OMS의 IT Service Management Connector에 연결하고 ITSM 작업 항목을 중앙에서 모니터링 및 관리하는 Service Manager 웹앱을 만듭니다."
 services: log-analytics
 documentationcenter: 
 author: JYOTHIRMAISURI
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/15/2017
 ms.author: v-jysur
-ms.openlocfilehash: cbe6a1f75548ac541fd428a977edf64eea959e4f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ad69d82e57be8bfd9ba40dd88cbc0a979c9e1722
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-service-manager-web-app-using-hello-automated-script-preview"></a>자동화 된 hello 스크립트 (미리 보기)를 사용 하 여 Service Manager 웹 앱 만들기
+# <a name="create-service-manager-web-app-using-the-automated-script-preview"></a>자동화 스크립트를 사용하여 Service Manager 웹앱 만들기(미리 보기)
 
-다음 스크립트 toocreate hello 웹 응용 프로그램 서비스 관리자 인스턴스에 대 한 hello를 사용 합니다. Service Manager 연결에 대한 자세한 내용은 [Service Manager 웹앱](log-analytics-itsmc-connections.md#create-and-deploy-service-manager-web-app-service)에 나와 있습니다.
+다음 스크립트를 사용하여 Service Manager 인스턴스에 대한 웹앱을 만듭니다. Service Manager 연결에 대한 자세한 내용은 [Service Manager 웹앱](log-analytics-itsmc-connections.md#create-and-deploy-service-manager-web-app-service)에 나와 있습니다.
 
-Hello 다음 필요한 세부 정보를 제공 하 여 hello 스크립트를 실행 합니다.
+다음 필수 정보를 제공하여 스크립트를 실행합니다.
 
 - Azure 구독 정보
 - 리소스 그룹 이름
@@ -33,16 +33,16 @@ Hello 다음 필요한 세부 정보를 제공 하 여 hello 스크립트를 실
 - 웹앱에 대한 사이트 이름 접두사
 - ServiceBus 네임스페이스.
 
-hello 만들어집니다 지정한 hello 이름을 사용 하 여 hello 웹 응용 프로그램 (몇 가지 추가 문자열 toomake와 함께 고유한 것). Hello 생성 **웹 앱 URL**, **클라이언트 ID** 및 **클라이언트 암호**합니다.
+이 스크립트는 사용자가 지정한 이름(및 웹앱을 고유하게 만드는 몇 가지 추가 설정)을 사용하여 웹앱을 만듭니다. **웹앱 URL**, **클라이언트 ID** 및 **클라이언트 암호**를 생성합니다.
 
 이러한 값을 저장합니다. IT Service Management Cconnector와의 연결을 만들 때 필요합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
  Windows Management Framework 5.0 이상
-Windows 10에는 기본적으로 5.1 버전이 있습니다. Hello 프레임 워크를 다운로드할 수 있습니다 [여기](https://www.microsoft.com/download/details.aspx?id=53347):
+Windows 10에는 기본적으로 5.1 버전이 있습니다. [여기](https://www.microsoft.com/download/details.aspx?id=53347)에서 이 Framework를 다운로드할 수도 있습니다.
 
-다음 스크립트는 hello를 사용 합니다.
+다음 스크립트를 사용합니다.
 
 ```
 ####################################
@@ -52,7 +52,7 @@ Windows 10에는 기본적으로 5.1 버전이 있습니다. Hello 프레임 워
 # Subscription name in Azure account. Check in Azure Portal.
 $azureSubscriptionName = ""
 
-# Resource group name for resource deployment. Could be an existing resource group or a new one toobe created.
+# Resource group name for resource deployment. Could be an existing resource group or a new one to be created.
 $resourceGroupName = ""
 
 # Location for existing resource group or new resource group deployment
@@ -70,7 +70,7 @@ $username = ""
 $password = ""
 
 
-# Azure site Name Prefix. Default is "smoc". It can be configured tooany desired value.
+# Azure site Name Prefix. Default is "smoc". It can be configured to any desired value.
 $siteNamePrefix = ""
 
 # Service Bus namespace. Please provide an already existing service bus namespace.
@@ -85,7 +85,7 @@ $serviceName = ""
 # Installations
 ################
 
-# Allowing hello execution of hello script for current user.  
+# Allowing the execution of the script for current user.  
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser -Force
 
 Write-Host "Checking for required modules..."
@@ -141,7 +141,7 @@ if(!$resourceProvider -or $resourceProvider[0].RegistrationState -ne "Registered
     }
     catch
     {
-        Write-Host "Failed tooRegister Microsoft.Web Resource Provider. Please register it in Azure Portal."
+        Write-Host "Failed to Register Microsoft.Web Resource Provider. Please register it in Azure Portal."
         exit
     }   
 }
@@ -203,7 +203,7 @@ try
 }
 catch
 {
-    # Delete hello deployed web app if Azure AD application fails
+    # Delete the deployed web app if Azure AD application fails
     Remove-AzureRmResource -ResourceGroupName $resourceGroupName -ResourceName $siteName -ResourceType Microsoft.Web/sites -Force
 
     Write-Host "Faiure occured in Azure AD application....Try again!!"
@@ -247,10 +247,10 @@ catch
 {
     Write-Host "Web App configuration failed. Please ensure all values are provided in Service Manager Authentication Settings in User Configuration Section"
 
-    # Delete hello AzureRm AD Application if confiuration fails
+    # Delete the AzureRm AD Application if confiuration fails
     Remove-AzureRmADApplication -ObjectId $adApp.ObjectId -Force
 
-    # Delete hello deployed web app if configuration fails
+    # Delete the deployed web app if configuration fails
     Remove-AzureRmResource -ResourceGroupName $resourceGroupName -ResourceName $siteName -ResourceType Microsoft.Web/sites -Force
 
     exit
@@ -276,7 +276,7 @@ if(!$resourceProvider -or $resourceProvider[0].RegistrationState -ne "Registered
     }
     catch
     {
-        Write-Host "Failed tooRegister Microsoft.Relay Resource Provider. Please register it in Azure Portal."
+        Write-Host "Failed to Register Microsoft.Relay Resource Provider. Please register it in Azure Portal."
     }   
 }
 
@@ -305,7 +305,7 @@ if(!$resource)
 
 }
 
-Write-Host "Note: Please Configure Hybrid connection in hello Networking section of hello web application in Azure Portal toolink toohello on-premises system.`n"
+Write-Host "Note: Please Configure Hybrid connection in the Networking section of the web application in Azure Portal to link to the on-premises system.`n"
 Write-Host "App Details"
 Write-Host "============"
 Write-Host "App Name:"  $siteName
@@ -319,4 +319,4 @@ if(!$err)
 
 ```
 ## <a name="next-steps"></a>다음 단계
-[Hello 하이브리드 연결을 구성](log-analytics-itsmc-connections.md#configure-the-hybrid-connection)합니다.
+[하이브리드 연결 구성](log-analytics-itsmc-connections.md#configure-the-hybrid-connection).

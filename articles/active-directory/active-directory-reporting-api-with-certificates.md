@@ -1,6 +1,6 @@
 ---
-title: "인증서를 사용 하 여 Azure AD Reporting API hello aaaGet 데이터를 사용 하 여 | Microsoft Docs"
-description: "Toouse 사용자 개입 없이 디렉터리에서 인증서 자격 증명 tooget 데이터를 사용 하 여 Azure AD Reporting API hello 하는 방법에 대해 설명 합니다."
+title: "인증서와 함께 Azure AD Reporting API를 사용하여 데이터 가져오기 | Microsoft Docs"
+description: "인증서 자격 증명과 함께 Azure AD Reporting API를 사용하여 사용자 개입 없이 디렉터리에서 데이터를 가져오는 방법에 대해 설명합니다."
 services: active-directory
 documentationcenter: 
 author: ramical
@@ -12,84 +12,84 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 03/24/2017
+ms.date: 09/08/2017
 ms.author: ramical
-ms.openlocfilehash: 00ddfaefe32ea6ae48f276c974a17ddcf84f7894
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 38c240ed1608b2e99bde78f3633e722f8e2fa30b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-data-using-hello-azure-ad-reporting-api-with-certificates"></a>인증서가 있는 hello Azure AD Reporting API를 사용 하 여 데이터 가져오기
-이 문서에서는 toouse 사용자 개입 없이 디렉터리에서 인증서 자격 증명 tooget 데이터를 사용 하 여 Azure AD Reporting API hello 하는 방법을 설명 합니다. 
+# <a name="get-data-using-the-azure-ad-reporting-api-with-certificates"></a>인증서와 함께 Azure AD Reporting API를 사용하여 데이터 가져오기
+이 문서에서는 인증서 자격 증명과 함께 Azure AD Reporting API를 사용하여 사용자 개입 없이 디렉터리에서 데이터를 가져오는 방법에 대해 설명합니다. 
 
-## <a name="use-hello-azure-ad-reporting-api"></a>사용 하 여 Azure AD Reporting API hello 
-Azure AD Reporting API 단계를 수행 하는 hello를 완료 해야 합니다.
+## <a name="use-the-azure-ad-reporting-api"></a>Azure AD Reporting API 사용 
+Azure AD Reporting API은 다음 단계를 완료해야 합니다.
  *  필수 구성 요소 설치
- *  응용 프로그램에서 hello 인증서를 설정 합니다.
+ *  앱에서 인증서 설정
  *  액세스 토큰 가져오기
- *  Hello 액세스 토큰 toocall hello Graph API를 사용 하 여
+ *  액세스 토큰을 사용하여 Graph API 호출
 
 원본 코드에 대한 정보는 [보고서 API 모듈 활용](https://github.com/AzureAD/azure-activedirectory-powershell/tree/gh-pages/Modules/AzureADUtils)을 참조하세요. 
 
 ### <a name="install-prerequisites"></a>필수 구성 요소 설치
-Azure AD PowerShell V2 toohave 및 AzureADUtils 모듈을 설치 해야 합니다.
+Azure AD PowerShell V2 및 AzureADUtils 모듈을 설치해야 합니다.
 
-1. 다운로드 하 여 Azure AD Powershell V2, hello 지침에 따라 설치 [Azure Active Directory PowerShell](https://github.com/Azure/azure-docs-powershell-azuread/blob/master/Azure AD Cmdlets/AzureAD/index.md)합니다.
-2. hello Azure AD 유틸리티 모듈 다운로드 [azure Ad/azure-active directory powershell](https://github.com/AzureAD/azure-activedirectory-powershell/blob/gh-pages/Modules/AzureADUtils/AzureADUtils.psm1)합니다. 
+1. [Azure Active Directory PowerShell](https://github.com/Azure/azure-docs-powershell-azuread/blob/master/Azure AD Cmdlets/AzureAD/index.md)의 지침에 따라 Azure AD Powershell V2를 다운로드하고 설치합니다.
+2. [AzureAD/azure-activedirectory-powershell](https://github.com/AzureAD/azure-activedirectory-powershell/blob/gh-pages/Modules/AzureADUtils/AzureADUtils.psm1)에서 Azure AD 유틸리티 모듈을 다운로드합니다. 
   이 모듈에서는 다음을 비롯한 몇 가지 유틸리티 cmdlet을 제공합니다.
-   * hello Nuget을 사용 하 여 ADAL의 최신 버전
+   * NuGet을 사용하는 최신 버전의 ADAL
    * ADAL을 사용하는 사용자, 응용 프로그램 키 및 인증서의 액세스 토큰
    * Graph API를 처리하는 페이지 단위의 결과
 
-**tooinstall hello Azure AD 유틸리티 모듈:**
+**Azure AD 유틸리티 모듈을 설치하려면:**
 
-1. 디렉터리 toosave hello 유틸리티 모듈 (예를 들어 c:\azureAD)을 만들고 GitHub에서 hello 모듈을 다운로드 합니다.
-2. PowerShell 세션을 열고 방금 만든 toohello 디렉터리를 이동 합니다. 
-3. Hello 모듈 가져오기 및 설치 AzureADUtilsModule hello cmdlet를 사용 하 여 hello PowerShell 모듈 경로에 설치 합니다. 
+1. 디렉터리를 만들어서 유틸리티 모듈(예: c:\azureAD)을 저장하고 GitHub에서 모듈을 다운로드합니다.
+2. PowerShell 세션을 열고 방금 만든 디렉터리로 이동합니다. 
+3. 모듈을 가져오고 Install-AzureADUtilsModule cmdlet을 사용하여 PowerShell 모듈 경로에 설치합니다. 
 
-hello 세션은 유사한 toothis 화면 표시 됩니다.
+세션은 이 화면과 유사하게 표시됩니다.
 
   ![Windows PowerShell](./media/active-directory-report-api-with-certificates/windows-powershell.png)
 
-### <a name="set-hello-certificate-in-your-app"></a>응용 프로그램에서 hello 인증서를 설정 합니다.
-1. 앱이 이미 있는 경우 hello Azure 포털에서에서 해당 개체 ID를 가져옵니다. 
+### <a name="set-the-certificate-in-your-app"></a>앱에서 인증서 설정
+1. 앱이 이미 있는 경우 Azure Portal에서 개체 ID를 가져옵니다. 
 
-  ![Azure portal](./media/active-directory-report-api-with-certificates/azure-portal.png)
+  ![Azure 포털](./media/active-directory-report-api-with-certificates/azure-portal.png)
 
-2. PowerShell 세션을 열고 tooAzure AD 연결 hello 연결-azure Ad cmdlet을 사용 합니다.
+2. PowerShell 세션을 열고 Connect-AzureAD cmdlet을 사용하여 Azure AD에 연결합니다.
 
-  ![Azure portal](./media/active-directory-report-api-with-certificates/connect-azuaread-cmdlet.png)
+  ![Azure 포털](./media/active-directory-report-api-with-certificates/connect-azuaread-cmdlet.png)
 
-3. AzureADUtils tooadd 인증서 자격 증명 tooit에서에서 hello 새로 AzureADApplicationCertificateCredential cmdlet을 사용 합니다. 
+3. AzureADUtils에서 New-AzureADApplicationCertificateCredential cmdlet을 사용하여 여기에 인증서 자격 증명을 추가합니다. 
 
 >[!Note]
->Tooprovide hello 응용 프로그램 개체 ID는 이전에 캡처한 필요한 것은 물론 있습니다 hello 인증서 개체 (이 사용 하 여 hello Cert: 드라이브).
+>인증서 개체뿐만 아니라 이전에 캡처한 응용 프로그램 개체 ID를 제공해야 합니다(Cert: 드라이브를 사용하여 가져옴).
 >
 
 
-  ![Azure portal](./media/active-directory-report-api-with-certificates/add-certificate-credential.png)
+  ![Azure 포털](./media/active-directory-report-api-with-certificates/add-certificate-credential.png)
   
 ### <a name="get-an-access-token"></a>액세스 토큰 가져오기
 
-액세스 토큰을 tooget AzureADUtils에서 hello Get AzureADGraphAPIAccessTokenFromCert cmdlet를 사용 합니다. 
+액세스 토큰을 가져오려면 AzureADUtils에서 Get-AzureADGraphAPIAccessTokenFromCert cmdlet을 사용합니다. 
 
 >[!NOTE]
->Hello hello 마지막 섹션에서 사용한 개체 ID 대신 toouse hello 응용 프로그램 ID가 필요 합니다.
+>마지막 섹션에서 사용한 개체 ID가 아닌 응용 프로그램 ID를 사용해야 합니다.
 >
 
- ![Azure portal](./media/active-directory-report-api-with-certificates/application-id.png)
+ ![Azure 포털](./media/active-directory-report-api-with-certificates/application-id.png)
 
-### <a name="use-hello-access-token-toocall-hello-graph-api"></a>Hello 액세스 토큰 toocall hello Graph API를 사용 하 여
+### <a name="use-the-access-token-to-call-the-graph-api"></a>액세스 토큰을 사용하여 Graph API 호출
 
-이제 hello 스크립트를 만들 수 있습니다. 다음은 hello AzureADUtils에서에서 Invoke AzureADGraphAPIQuery hello cmdlet을 사용 하는 예제입니다. 이 Cmdlet이 여러 페이지 단위 결과 처리 한 다음 해당 결과 toohello PowerShell 파이프라인을 보냅니다. 
+이제 스크립트를 만들 수 있습니다. 다음은 AzureADUtils에서 Invoke-AzureADGraphAPIQuery cmdlet을 사용하는 예제입니다. 이 cmdlet은 여러 페이지 단위의 결과를 처리한 다음 PowerShell 파이프라인에 해당 결과를 보냅니다. 
 
- ![Azure portal](./media/active-directory-report-api-with-certificates/script-completed.png)
+ ![Azure 포털](./media/active-directory-report-api-with-certificates/script-completed.png)
 
-이제 CSV 준비 tooexport tooa 및 tooa SIEM 시스템을 저장 합니다. 또한에 래핑할 수 있습니다 스크립트 예약 된 작업 tooget Azure AD 데이터 테 넌 트 로부터 주기적으로 hello 소스 코드에서 toostore 응용 프로그램 키 필요 없이 합니다. 
+이제 CSV로 내보내고 SIEM 시스템에 저장할 준비가 되었습니다. 예약된 태스크에서 스크립트를 래핑하여 원본 코드에서 응용 프로그램 키를 저장하지 않고 주기적으로 테넌트에서 Azure AD 데이터를 가져올 수도 있습니다. 
 
 ## <a name="next-steps"></a>다음 단계
-[hello Azure id 관리 기본 사항](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals-identity)<br>
+[Azure ID 관리의 기본 항목](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals-identity)<br>
 
 
 

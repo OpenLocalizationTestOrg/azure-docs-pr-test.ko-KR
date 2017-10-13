@@ -1,6 +1,6 @@
 ---
-title: "Azure Application Insights에서 맵 aaaApplication | Microsoft Docs"
-description: "응용 프로그램 구성 요소 간의 hello 종속성의 시각적 표현을 레이블이 Kpi 및 경고와 함께 표시 됩니다."
+title: "Azure Application Insights의 응용 프로그램 맵 | Microsoft Docs"
+description: "앱 구성 요소 간 종속성의 시각적 프레젠테이션은 KPI 및 경고로 레이블이 지정되었습니다."
 services: application-insights
 documentationcenter: 
 author: SoubhagyaDash
@@ -13,30 +13,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: bwren
-ms.openlocfilehash: 96ab753a100ea53ec7d367e3559b6622ab6fd182
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 207526b7a675f92134d045ebefb9a372749bce92
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="application-map-in-application-insights"></a>Application Insights의 응용 프로그램 맵
-[Azure Application Insights](app-insights-overview.md), 응용 프로그램 구조는 응용 프로그램 구성 요소의 hello 종속성 관계의 시각적 레이아웃 합니다. 각 구성 요소를 보여 줍니다 Kpi toohelp 부하, 성능, 오류 및 경고와 같은 성능 문제 또는 실패를 발생 시키는 구성 요소를 검색 합니다. 모든 구성 요소 toomore에서 하나씩 클릭 하면 진단, 예: Application Insights 이벤트를 자세히 설명 합니다. 앱에서 Azure 서비스를 사용 하는 경우 SQL 데이터베이스 관리자 권장 구성 같은 tooAzure 진단을 통해 클릭할 수도 있습니다.
+[ Application Insights](app-insights-overview.md)에서 응용 프로그램 맵은 응용 프로그램 구성 요소의 종속성 관계를 시각적으로 레이아웃합니다. 각 구성 요소는 부하, 성능, 오류 및 경고와 같은 KPI를 보여 주어 성능 문제 또는 실패를 유발하는 모든 구성 요소를 발견할 수 있도록 합니다. 구성 요소부터 Application Insights 이벤트와 같은 보다 자세한 진단까지 클릭하면서 살펴볼 수 있습니다. 앱에서 Azure 서비스를 사용하는 경우 SQL Database Advisor 권장 사항과 같은 Azure 진단도 살펴볼 수 있습니다.
 
-다른 차트와 마찬가지로 응용 프로그램 맵 toohello가 올바르게 작동 하는 Azure 대시보드를 고정할 수 있습니다. 
+다른 차트와 같이 Azure 대시보드에 응용 프로그램 맵을 고정할 수 있으며 이 때 완벽하게 작동됩니다. 
 
-## <a name="open-hello-application-map"></a>응용 프로그램 맵 열기 hello
-응용 프로그램에 대 한 hello 개요 블레이드에서 맵 열기 hello:
+## <a name="open-the-application-map"></a>응용 프로그램 맵을 엽니다.
+응용 프로그램에 대한 개요 블레이드에서 맵을 엽니다.
 
 ![앱 맵 열기](./media/app-insights-app-map/01.png)
 
 ![앱 맵](./media/app-insights-app-map/02.png)
 
-hello 맵은 보여 줍니다.
+지도에서는 다음을 보여 줍니다.
 
 * 가용성 테스트
-* 클라이언트 측 구성 요소 (hello JavaScript SDK로 모니터링)
+* 클라이언트 쪽 구성 요소(JavaScript SDK를 사용하여 모니터링됨)
 * 서버 쪽 구성 요소
-* Hello 클라이언트 및 서버 구성의 종속성
+* 클라이언트 및 서버 구성 요소의 종속성
 
 종속성 링크 그룹을 확장하고 축소할 수 있습니다.
 
@@ -47,9 +47,9 @@ SQL, HTTP 등 한 종류의 종속성이 많은 경우 그룹화되어 표시될
 ![그룹화된 종속성](./media/app-insights-app-map/03-2.png)
 
 ## <a name="spot-problems"></a>문제 발견
-각 노드에 해당 구성 요소에 대 한 hello 부하, 성능 및 실패 속도 같은 관련 된 성능 지표입니다. 
+각 노드에는 해당 구성 요소에 대한 부하, 성능 및 실패율과 같은 관련 성능 지표가 있습니다. 
 
-경고 아이콘은 발생 가능한 문제를 강조 표시합니다. 주황색 경고는 요청, 페이지 보기 또는 종속성 호출에서 오류가 발생했음을 의미합니다. 빨간색 경고는 5% 이상의 실패율을 의미합니다. 이러한 임계값 tooadjust을 원하는 경우 옵션을 엽니다.
+경고 아이콘은 발생 가능한 문제를 강조 표시합니다. 주황색 경고는 요청, 페이지 보기 또는 종속성 호출에서 오류가 발생했음을 의미합니다. 빨간색 경고는 5% 이상의 실패율을 의미합니다. 이러한 임계값을 조정하려는 경우 옵션을 엽니다.
 
 ![오류 아이콘](./media/app-insights-app-map/04.png)
 
@@ -61,66 +61,66 @@ SQL Azure를 사용하는 경우 성능을 향상시키는 방법에 대한 권�
 
 ![Azure 권장 사항](./media/app-insights-app-map/06.png)
 
-자세한 내용은 모든 아이콘 tooget를 클릭 합니다.
+자세한 내용을 보려면 아이콘을 클릭합니다.
 
 ![Azure 권장 사항](./media/app-insights-app-map/07.png)
 
 ## <a name="diagnostic-click-through"></a>진단 클릭
-각 hello 노드 hello 지도에 진단에 대 한 대상으로 지정 된 클릭 광고를 제공합니다. hello 옵션 hello hello 노드 유형에 따라 달라 집니다.
+맵의 각 노드에서 진단하기 위해 클릭할 대상을 지정합니다. 옵션은 노드 유형에 따라 다릅니다.
 
 ![서버 옵션](./media/app-insights-app-map/09.png)
 
-Azure에서 호스트 되는 구성 요소에 대 한 hello 옵션에 대 한 직접 링크 toothem을 포함 됩니다.
+Azure에서 호스팅되는 구성 요소의 경우 옵션은 직접 링크를 포함합니다.
 
 ## <a name="filters-and-time-range"></a>필터 및 시간 범위
-기본적으로 hello 맵 hello 시간 범위 선택에 사용할 수 있는 모든 hello 데이터를 요약 합니다. 하지만 tooinclude만 특정 작업 이름 또는 종속성 필터링 할 수 있습니다.
+기본적으로 맵은 선택한 시간 범위에 사용할 수 있는 모든 데이터를 요약합니다. 하지만 특정 작업 이름 또는 종속성을 포함하도록 필터링할 수 있습니다.
 
-* 작업 이름: 페이지 보기 및 서버 쪽 요청 형식을 모두 포함합니다. 이 옵션을 사용 hello 지도 표시만 hello 선택 작업에 대 한 hello 서버/클라이언트 쪽 노드에서 KPI를 hello 합니다. 이러한 특정 작업의 hello 컨텍스트에서 호출 hello 종속성을 표시 합니다.
-* 종속성 기본 이름: hello AJAX 브라우저 종속성과 서버 쪽 종속성이 포함 됩니다. 사용자 지정 종속성 원격 분석 hello TrackDependency API로 보고 하는 경우 또한 여기에 나와 있습니다. Hello 맵에 종속성 tooshow hello를 선택할 수 있습니다. 현재이 옵션을이 선택 hello 서버 쪽 요청 또는 hello 클라이언트 쪽 페이지 보기에는 필터링 하지 않습니다.
+* 작업 이름: 페이지 보기 및 서버 쪽 요청 형식을 모두 포함합니다. 이 옵션을 사용하면 맵은 선택한 작업에 대해서만 서버/클라이언트 쪽 노드의 KPI를 보여 줍니다. 특정 작업의 컨텍스트에서 호출될 종속성을 보여 줍니다.
+* 종속성 기본 이름: AJAX 브라우저 종속성 및 서버 쪽 종속성을 포함합니다. TrackDependency API를 사용하여 사용자 지정 종속성 원격 분석을 보고하는 경우 여기에도 표시됩니다. 지도에 표시되는 종속성을 선택할 수 있습니다. 현재 이 선택 항목은 서버 쪽 요청 또는 클라이언트 쪽 페이지 보기를 필터링하지 않습니다.
 
 ![필터 설정](./media/app-insights-app-map/11.png)
 
 ## <a name="save-filters"></a>필터 저장
-toosave hello 필터를 적용 한 pin hello 필터링 된 뷰는 [대시보드](app-insights-dashboards.md)합니다.
+적용한 필터를 저장하려면 필터링된 보기를 [대시보드](app-insights-dashboards.md)에 고정합니다.
 
-![Pin toodashboard](./media/app-insights-app-map/12.png)
+![대시보드에 고정](./media/app-insights-app-map/12.png)
 
 ## <a name="error-pane"></a>오류 창
-Hello 맵에서 노드를 클릭할 때 오류 창의 해당 노드에 대 한 오류 요약으로 hello 오른쪽에 표시 됩니다. 먼저 오류는 작업 ID별로 그룹화된 후 문제 ID별로 그룹화됩니다.
+맵에서 노드를 클릭하면 오른쪽에 해당 노드에 대한 오류를 요약해서 보여 주는 오류 창이 표시됩니다. 먼저 오류는 작업 ID별로 그룹화된 후 문제 ID별로 그룹화됩니다.
 
 ![오류 창](./media/app-insights-app-map/error-pane.png)
 
-실패에서을 클릭 하면 해당 오류 toohello 가장 최근 인스턴스를 이동 합니다.
+오류를 클릭하면 해당 오류의 가장 최근 인스턴스로 이동됩니다.
 
 ## <a name="resource-health"></a>리소스 상태
-일부 리소스 유형에 대 한 리소스 상태 hello 위쪽 hello 오류 창에 표시 됩니다. 예를 들어 SQL 노드를 클릭 하면 표시 됩니다 hello 데이터베이스 상태 및 경고가 발생 하지 않습니다.
+일부 리소스 형식의 경우 오류 창 상단에 리소스 상태가 표시됩니다. 예를 들어 SQL 노드를 클릭하면 데이터베이스 상태와 발생한 경고가 표시됩니다.
 
 ![리소스 상태](./media/app-insights-app-map/resource-health.png)
 
-해당 리소스에 대 한 hello 리소스 이름 tooview 표준 개요 메트릭을 클릭 수 있습니다.
+리소스 이름을 클릭하여 해당 리소스에 대한 표준 개요 메트릭을 볼 수 있습니다.
 
 ## <a name="end-to-end-system-app-maps"></a>종단 간 시스템 앱 맵
 
 *SDK 버전 2.3 이상 필요합니다.*
 
-응용 프로그램에 몇 가지 구성 요소로 구성 하는 경우 예를 들어 백 엔드 서비스 또한 toohello 웹 앱-합니다 표시 지도 하나의 통합 된 앱에서 모두 합니다.
+응용 프로그램에 여러 구성 요소(예: 백 엔드 서비스 및 웹앱)가 있는 경우 하나의 통합된 앱 맵에 모두 표시할 수 있습니다.
 
 ![필터 설정](./media/app-insights-app-map/multi-component-app-map.png)
 
-hello 응용 프로그램 맵 Application Insights SDK를 설치 하는 hello와 서버 간의 모든 HTTP 종속성 호출에 따라 서버 노드를 찾습니다. 각 Application Insights 리소스 toocontain 하나의 서버를 가정 합니다.
+앱은 Application Insights SDK가 설치된 서버 간에 수행된 HTTP 종속성 호출을 따라 서버 노드를 찾습니다. 각 Application Insights 리소스는 하나의 서버를 포함하는 것으로 간주됩니다.
 
 ### <a name="multi-role-app-map-preview"></a>다중 역할 앱 맵(미리 보기)
 
-hello 미리 보기 다중 역할 응용 프로그램 맵 기능은 toouse hello 앱 지도 데이터 toohello 보내는 여러 서버와 같은 Application Insights 리소스 / 계측 키입니다. 서버 hello 지도에 원격 분석 항목 hello cloud_RoleName 속성으로 분할 됩니다. 설정 *다중 역할 응용 프로그램 맵* 너무*에* 에서 hello 미리 보기 블레이드에서 tooenable이이 구성 합니다.
+미리 보기 다중 역할 앱 맵 기능을 사용하면 여러 서버가 같은 Application Insights 리소스/계측 키에 데이터를 전송하는 앱 맵을 사용할 수 있습니다. 맵의 서버는 원격 분석 항목에 대한 cloud_RoleName 속성별로 분할됩니다. 미리 보기 블레이드에서 *다중 역할 응용 프로그램 맵*을 *설정*으로 지정하여 이 구성을 사용하도록 설정합니다.
 
-이 방법은 마이크로 서비스 응용 프로그램 또는 단일 Application Insights 리소스 내의 여러 서버 toocorrelate 이벤트를 원하는 다른 시나리오에서 권장 될 수도 있습니다.
+이 접근 방법은 마이크로 서비스 응용 프로그램 또는 단일 Application Insights 리소스를 내에서 여러 서버 간에 이벤트의 상관 관계를 파악하려는 기타 시나리오에서 적절할 수 있습니다.
 
 ## <a name="video"></a>비디오
 
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player] 
 
 ## <a name="feedback"></a>사용자 의견
-Hello 포털 사용자 의견 옵션을 통해 피드백을 제공 하십시오.
+포털 사용자 의견 옵션을 통해 피드백을 제공해주세요.
 
 ![MapLink-1 이미지](./media/app-insights-app-map/13.png)
 

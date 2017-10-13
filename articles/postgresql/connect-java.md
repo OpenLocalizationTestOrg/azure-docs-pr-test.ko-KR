@@ -1,6 +1,6 @@
 ---
-title: "Java를 사용 하 여 PostgreSQL 데이터베이스 tooAzure 연결 | Microsoft Docs"
-description: "이 퀵 스타트의 tooconnect를 사용 하 고 PostgreSQL에 대 한 Azure 데이터베이스에서 데이터를 쿼리할 수는 Java 코드 예제를 제공 합니다."
+title: "Java를 사용하여 PostgreSQL용 Azure Database에 연결 | Microsoft Docs"
+description: "이 빠른 시작에서는 PostgreSQL용 Azure Database의 데이터를 연결하고 쿼리하는 데 사용할 수 있는 Java 코드 샘플을 제공합니다."
 services: postgresql
 author: jasonwhowell
 ms.author: jasonh
@@ -11,38 +11,38 @@ ms.custom: mvc
 ms.devlang: java
 ms.topic: quickstart
 ms.date: 06/23/2017
-ms.openlocfilehash: 8f6e0a47a0d6dfebf29eb56c31ccccabd7c2b670
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 730a3f464b4437c260d09abc026a186a0e26293c
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="azure-database-for-postgresql-use-java-tooconnect-and-query-data"></a>Azure 데이터베이스에 대 한 PostgreSQL: 사용 하 여 Java tooconnect 및 쿼리 데이터
-이 빠른 시작에서는 tooconnect tooan Azure 데이터베이스는 Java 응용 프로그램을 사용 하 여 PostgreSQL 방법입니다. Toouse SQL 문 tooquery를 삽입, 업데이트 및 hello 데이터베이스의 데이터를 삭제 방법을 보여 줍니다. hello이 문서의 단계 Java를 사용 하 여 개발 된 익숙한 고 가정 PostgreSQL에 대 한 Azure 데이터베이스와 새 tooworking 한다고 합니다.
+# <a name="azure-database-for-postgresql-use-java-to-connect-and-query-data"></a>PostgreSQL용 Azure Database: Java를 사용하여 데이터 연결 및 쿼리
+이 빠른 시작에서는 Java 응용 프로그램을 사용하여 PostgreSQL용 Azure Database에 연결하는 방법을 보여줍니다. SQL 문을 사용하여 데이터베이스의 데이터를 쿼리, 삽입, 업데이트 및 삭제하는 방법을 보여 줍니다. 이 문서의 단계에서는 개발자가 Java를 사용하여 개발하는 것에 익숙하고 PostgreSQL용 Azure Database 작업에 익숙하지 않다고 가정합니다.
 
 ## <a name="prerequisites"></a>필수 조건
-이 퀵 스타트의 시작 지점으로이 가이드의 중 하나에서 만든 hello 리소스를 사용 합니다.
+이 빠른 시작에서는 다음과 같은 가이드 중 하나에서 만들어진 리소스를 시작 지점으로 사용합니다.
 - [DB 만들기 - 포털](quickstart-create-server-database-portal.md)
 - [DB 만들기 - Azure CLI](quickstart-create-server-database-azure-cli.md)
 
 다음과 같은 작업도 필요합니다.
-- Hello 다운로드 [PostgreSQL JDBC 드라이버](https://jdbc.postgresql.org/download.html) Java 및 Java Development Kit hello 버전 일치 합니다.
-- 응용 프로그램 클래스 경로에 hello PostgreSQL JDBC jar 파일 (예를 들어 postgresql 42.1.1.jar)를 포함 합니다. 자세한 내용은 [클래스 경로 정보](https://jdbc.postgresql.org/documentation/head/classpath.html)를 참조하세요.
+- Java 및 Java 개발 키트 버전과 일치하는 [PostgreSQL JDBC 드라이버](https://jdbc.postgresql.org/download.html)를 다운로드합니다.
+- 응용 프로그램 클래스 경로에 PostgreSQL JDBC jar 파일(예: postgresql-42.1.1.jar)을 포함합니다. 자세한 내용은 [클래스 경로 정보](https://jdbc.postgresql.org/documentation/head/classpath.html)를 참조하세요.
 
 ## <a name="get-connection-information"></a>연결 정보 가져오기
-PostgreSQL를 hello 연결 필요한 정보 tooconnect toohello를 Azure 데이터베이스를 가져옵니다. 정규화 된 서버 이름 및 로그인 자격 증명 hello 필요 합니다.
+PostgreSQL용 Azure Database에 연결하는 데 필요한 연결 정보를 가져옵니다. 정규화된 서버 이름 및 로그인 자격 증명이 필요합니다.
 
-1. Toohello 로그인 [Azure 포털](https://portal.azure.com/)합니다.
-2. Azure 포털에서 왼쪽 메뉴 hello에서에서 클릭 **모든 리소스** 등 생성 한 hello 서버에 대 한 검색 **mypgserver 20170401**합니다.
-3. Hello 서버 이름을 클릭 **mypgserver 20170401**합니다.
-4. 선택 hello 서버 **개요** 페이지. Hello 메모 **서버 이름** 및 **서버 관리자 로그인 이름**합니다.
+1. [Azure Portal](https://portal.azure.com/)에 로그인합니다.
+2. Azure Portal의 왼쪽 메뉴에서 **모든 리소스**를 클릭하고 방금 만든 서버를 검색합니다(예: **mypgserver-20170401**).
+3. **mypgserver-20170401**서버 이름을 클릭합니다.
+4. 서버의 **개요** 페이지를 선택합니다. **서버 이름** 및 **서버 관리자 로그인 이름**을 기록해 둡니다.
  ![PostgreSQL용 Azure Database - 서버 관리자 로그인](./media/connect-java/1-connection-string.png)
-5. 서버 로그인 정보를 잊은 경우 탐색 toohello **개요** tooview hello 서버 관리자 로그인 이름 페이지 하 고 필요한 경우 다시 설정 hello 암호입니다.
+5. 서버 로그인 정보를 잊어버린 경우 **개요** 페이지로 이동하여 서버 관리자 로그인 이름을 확인하고 필요한 경우 암호를 다시 설정합니다.
 
 ## <a name="connect-create-table-and-insert-data"></a>테이블 연결, 생성 및 데이터 삽입
-다음 코드 tooconnect 및 부하 hello 데이터 hello 함수를 사용 하 여 사용 하 여 hello는 **삽입** SQL 문입니다. 메서드를 hello [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [createStatement()](https://jdbc.postgresql.org/documentation/head/query.html), 및 [executeQuery()](https://jdbc.postgresql.org/documentation/head/query.html) 사용된 tooconnect는 drop 및 hello 테이블을 만듭니다. hello [prepareStatement](https://jdbc.postgresql.org/documentation/head/query.html) 개체는 setString() 및 setInt() toobind hello 매개 변수 값으로 사용 되는 toobuild hello insert 명령입니다. 메서드 [executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html) 실행 hello 각 매개 변수 집합에 대 한 명령입니다. 
+**INSERT** SQL 문이 있는 함수를 사용하여 데이터를 연결하고 로드하려면 다음 코드를 사용하세요. [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [createStatement()](https://jdbc.postgresql.org/documentation/head/query.html), [executeQuery()](https://jdbc.postgresql.org/documentation/head/query.html) 메서드는 테이블을 연결하고, 삭제하고, 만드는 데 사용됩니다. [prepareStatement](https://jdbc.postgresql.org/documentation/head/query.html) 개체는 매개 변수 값을 바인딩하는 setString() 및 setInt()를 사용하여 insert 명령을 작성하는 데 사용됩니다. [executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html) 메서드는 각 매개 변수 집합에 대한 명령을 실행합니다. 
 
-서버 및 데이터베이스를 만들 때 지정 하는 hello 값으로 hello 호스트, 데이터베이스, 사용자 및 암호 매개 변수를 대체 합니다.
+host, database, user 및 password 매개 변수를 서버 및 데이터베이스를 만들 때 지정한 값으로 바꿉니다.
 
 ```java
 import java.sql.*;
@@ -59,7 +59,7 @@ public class CreateTableInsertRows {
         String user = "mylogin@mypgserver-20170401";
         String password = "<server_admin_password>";
 
-        // check that hello driver is installed
+        // check that the driver is installed
         try
         {
             Class.forName("org.postgresql.Driver");
@@ -78,7 +78,7 @@ public class CreateTableInsertRows {
         {
             String url = String.format("jdbc:postgresql://%s/%s", host, database);
             
-            // set up hello connection properties
+            // set up the connection properties
             Properties properties = new Properties();
             properties.setProperty("user", user);
             properties.setProperty("password", password);
@@ -89,13 +89,13 @@ public class CreateTableInsertRows {
         }
         catch (SQLException e)
         {
-            throw new SQLException("Failed toocreate connection toodatabase.", e);
+            throw new SQLException("Failed to create connection to database.", e);
         }
         if (connection != null) 
         { 
-            System.out.println("Successfully created connection toodatabase.");
+            System.out.println("Successfully created connection to database.");
         
-            // Perform some SQL queries over hello connection.
+            // Perform some SQL queries over the connection.
             try
             {
                 // Drop previous table of same name if one exists.
@@ -123,7 +123,7 @@ public class CreateTableInsertRows {
                 nRowsInserted += preparedStatement.executeUpdate();
                 System.out.println(String.format("Inserted %d row(s) of data.", nRowsInserted));
     
-                // NOTE No need toocommit all changes toodatabase, as auto-commit is enabled by default.
+                // NOTE No need to commit all changes to database, as auto-commit is enabled by default.
     
             }
             catch (SQLException e)
@@ -132,7 +132,7 @@ public class CreateTableInsertRows {
             }       
         }
         else {
-            System.out.println("Failed toocreate connection toodatabase.");
+            System.out.println("Failed to create connection to database.");
         }
         System.out.println("Execution finished.");
     }
@@ -140,9 +140,9 @@ public class CreateTableInsertRows {
 ```
 
 ## <a name="read-data"></a>데이터 읽기
-사용 하 여 hello 다음 코드와 tooread hello 데이터는 **선택** SQL 문입니다. 메서드를 hello [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [createStatement()](https://jdbc.postgresql.org/documentation/head/query.html), 및 [executeQuery()](https://jdbc.postgresql.org/documentation/head/query.html) 사용된 tooconnect는 만들고 hello select 문을 실행 합니다. 사용 하 여 hello 결과 처리 한 [ResultSet](https://www.postgresql.org/docs/7.4/static/jdbc-query.html) 개체입니다. 
+**SELECT** SQL 문을 사용하여 데이터를 읽으려면 다음 코드를 사용하세요. [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [createStatement()](https://jdbc.postgresql.org/documentation/head/query.html), [executeQuery()](https://jdbc.postgresql.org/documentation/head/query.html) 메서드는 select 문을 연결하고, 만들고, 실행하는 데 사용됩니다. 결과는 [ResultSet](https://www.postgresql.org/docs/7.4/static/jdbc-query.html) 개체를 사용하여 처리됩니다. 
 
-서버 및 데이터베이스를 만들 때 지정 하는 hello 값으로 hello 호스트, 데이터베이스, 사용자 및 암호 매개 변수를 대체 합니다.
+host, database, user 및 password 매개 변수를 서버 및 데이터베이스를 만들 때 지정한 값으로 바꿉니다.
 
 ```java
 import java.sql.*;
@@ -159,7 +159,7 @@ public class ReadTable {
         String user = "mylogin@mypgserver-20170401";
         String password = "<server_admin_password>";
 
-        // check that hello driver is installed
+        // check that the driver is installed
         try
         {
             Class.forName("org.postgresql.Driver");
@@ -178,7 +178,7 @@ public class ReadTable {
         {
             String url = String.format("jdbc:postgresql://%s/%s", host, database);
             
-            // set up hello connection properties
+            // set up the connection properties
             Properties properties = new Properties();
             properties.setProperty("user", user);
             properties.setProperty("password", password);
@@ -189,13 +189,13 @@ public class ReadTable {
         }
         catch (SQLException e)
         {
-            throw new SQLException("Failed toocreate connection toodatabase.", e);
+            throw new SQLException("Failed to create connection to database.", e);
         }
         if (connection != null) 
         { 
-            System.out.println("Successfully created connection toodatabase.");
+            System.out.println("Successfully created connection to database.");
         
-            // Perform some SQL queries over hello connection.
+            // Perform some SQL queries over the connection.
             try
             {
     
@@ -218,7 +218,7 @@ public class ReadTable {
             }       
         }
         else {
-            System.out.println("Failed toocreate connection toodatabase.");
+            System.out.println("Failed to create connection to database.");
         }
         System.out.println("Execution finished.");
     }
@@ -227,9 +227,9 @@ public class ReadTable {
 ```
 
 ## <a name="update-data"></a>데이터 업데이트
-사용 하 여 hello 다음 코드와 toochange hello 데이터는 **업데이트** SQL 문입니다. 메서드를 hello [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [prepareStatement()](https://jdbc.postgresql.org/documentation/head/query.html), 및 [executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html) 사용된 tooconnect는 준비를 하 고 hello update 문을 실행 합니다. 
+**UPDATE** SQL 문을 사용하여 데이터를 변경하려면 다음 코드를 사용하세요. [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [prepareStatement()](https://jdbc.postgresql.org/documentation/head/query.html), [executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html) 메서드는 update 문을 연결하고, 준비하고, 실행하는 데 사용됩니다. 
 
-서버 및 데이터베이스를 만들 때 지정 하는 hello 값으로 hello 호스트, 데이터베이스, 사용자 및 암호 매개 변수를 대체 합니다.
+host, database, user 및 password 매개 변수를 서버 및 데이터베이스를 만들 때 지정한 값으로 바꿉니다.
 
 ```java
 import java.sql.*;
@@ -245,7 +245,7 @@ public class UpdateTable {
         String user = "mylogin@mypgserver-20170401";
         String password = "<server_admin_password>";
 
-        // check that hello driver is installed
+        // check that the driver is installed
         try
         {
             Class.forName("org.postgresql.Driver");
@@ -264,7 +264,7 @@ public class UpdateTable {
         {
             String url = String.format("jdbc:postgresql://%s/%s", host, database);
             
-            // set up hello connection properties
+            // set up the connection properties
             Properties properties = new Properties();
             properties.setProperty("user", user);
             properties.setProperty("password", password);
@@ -275,13 +275,13 @@ public class UpdateTable {
         }
         catch (SQLException e)
         {
-            throw new SQLException("Failed toocreate connection toodatabase.", e);
+            throw new SQLException("Failed to create connection to database.", e);
         }
         if (connection != null) 
         { 
-            System.out.println("Successfully created connection toodatabase.");
+            System.out.println("Successfully created connection to database.");
         
-            // Perform some SQL queries over hello connection.
+            // Perform some SQL queries over the connection.
             try
             {
                 // Modify some data in table.
@@ -292,7 +292,7 @@ public class UpdateTable {
                 nRowsUpdated += preparedStatement.executeUpdate();
                 System.out.println(String.format("Updated %d row(s) of data.", nRowsUpdated));
     
-                // NOTE No need toocommit all changes toodatabase, as auto-commit is enabled by default.
+                // NOTE No need to commit all changes to database, as auto-commit is enabled by default.
             }
             catch (SQLException e)
             {
@@ -300,16 +300,16 @@ public class UpdateTable {
             }       
         }
         else {
-            System.out.println("Failed toocreate connection toodatabase.");
+            System.out.println("Failed to create connection to database.");
         }
         System.out.println("Execution finished.");
     }
 }
 ```
 ## <a name="delete-data"></a>데이터 삭제
-사용 하 여 hello 다음 코드와 tooremove 데이터는 **삭제** SQL 문입니다. 메서드를 hello [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [prepareStatement()](https://jdbc.postgresql.org/documentation/head/query.html), 및 [executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html) 사용된 tooconnect는 준비를 하 고 hello delete 문을 실행 합니다. 
+**DELETE** SQL 문을 사용하여 데이터를 제거하려면 다음 코드를 사용하세요. [getConnection()](https://www.postgresql.org/docs/7.4/static/jdbc-use.html), [prepareStatement()](https://jdbc.postgresql.org/documentation/head/query.html), [executeUpdate()](https://jdbc.postgresql.org/documentation/head/update.html) 메서드는 delete 문을 연결하고, 준비하고, 실행하는 데 사용됩니다. 
 
-서버 및 데이터베이스를 만들 때 지정 하는 hello 값으로 hello 호스트, 데이터베이스, 사용자 및 암호 매개 변수를 대체 합니다.
+host, database, user 및 password 매개 변수를 서버 및 데이터베이스를 만들 때 지정한 값으로 바꿉니다.
 
 ```java
 import java.sql.*;
@@ -325,7 +325,7 @@ public class DeleteTable {
         String user = "mylogin@mypgserver-20170401";
         String password = "<server_admin_password>";
 
-        // check that hello driver is installed
+        // check that the driver is installed
         try
         {
             Class.forName("org.postgresql.Driver");
@@ -344,7 +344,7 @@ public class DeleteTable {
         {
             String url = String.format("jdbc:postgresql://%s/%s", host, database);
             
-            // set up hello connection properties
+            // set up the connection properties
             Properties properties = new Properties();
             properties.setProperty("user", user);
             properties.setProperty("password", password);
@@ -355,13 +355,13 @@ public class DeleteTable {
         }
         catch (SQLException e)
         {
-            throw new SQLException("Failed toocreate connection toodatabase.", e);
+            throw new SQLException("Failed to create connection to database.", e);
         }
         if (connection != null) 
         { 
-            System.out.println("Successfully created connection toodatabase.");
+            System.out.println("Successfully created connection to database.");
         
-            // Perform some SQL queries over hello connection.
+            // Perform some SQL queries over the connection.
             try
             {
                 // Delete some data from table.
@@ -371,7 +371,7 @@ public class DeleteTable {
                 nRowsDeleted += preparedStatement.executeUpdate();
                 System.out.println(String.format("Deleted %d row(s) of data.", nRowsDeleted));
     
-                // NOTE No need toocommit all changes toodatabase, as auto-commit is enabled by default.
+                // NOTE No need to commit all changes to database, as auto-commit is enabled by default.
             }
             catch (SQLException e)
             {
@@ -379,7 +379,7 @@ public class DeleteTable {
             }       
         }
         else {
-            System.out.println("Failed toocreate connection toodatabase.");
+            System.out.println("Failed to create connection to database.");
         }
         System.out.println("Execution finished.");
     }

@@ -1,6 +1,6 @@
 ---
-title: "Azure API 관리에서 개발자 포털 hello의에서 페이지 콘텐츠를 aaaModify | Microsoft Docs"
-description: "Azure API 관리에서 개발자 포털 hello에 tooedit 페이지 목차 하는 방법에 대해 알아봅니다."
+title: "Azure API Management에서 개발자 포털의 페이지 콘텐츠 수정 | Microsoft Docs"
+description: "Azure API Management에서 개발자 포털의 페이지 콘텐츠를 편집하는 방법을 알아봅니다."
 services: api-management
 documentationcenter: 
 author: antonba
@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 02/09/2017
 ms.author: antonba
-ms.openlocfilehash: fd5a854e900d9512518643e593b1b59a0952621f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 708c803c36c182ed90e04731b12d4ade00ae7ffb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="modify-hello-content-and-layout-of-pages-on-hello-developer-portal-in-azure-api-management"></a>Hello 내용 및 Azure API 관리에서 hello 개발자 포털에 있는 페이지의 레이아웃을 수정 합니다.
-Azure API 관리에서 세 가지 기본 방법 toocustomize hello 개발자 포털이 있습니다.
+# <a name="modify-the-content-and-layout-of-pages-on-the-developer-portal-in-azure-api-management"></a>Azure API Management에서 개발자 포털의 페이지 콘텐츠 및 레이아웃 수정
+Azure API Management에는 개발자 포털을 사용자 지정하는 기본적인 방법이 세 가지 있습니다.
 
-* [정적 페이지 및 페이지 레이아웃 요소 hello 내용을 편집] [ modify-content-layout] (이 가이드에서 설명)
-* [페이지 요소에 대 한 hello 개발자 포털에서 사용 하는 hello 스타일 업데이트][customize-styles]
-* [Hello 포털에서 생성 된 페이지에 사용 되는 hello 템플릿을 수정] [ portal-templates] (예: API docs, 제품, 사용자 인증 등)
+* [페이지 레이아웃 요소 및 정적 페이지의 콘텐츠 편집][modify-content-layout](이 가이드에 설명되어 있음)
+* [개발자 포털 전반의 페이지 요소에 사용된 스타일 업데이트][customize-styles]
+* [포털에서 생성된 페이지에 사용된 템플릿 수정][portal-templates](예: API 문서, 제품, 사용자 인증 등)
 
 ## <a name="page-structure"> </a>개발자 포털 페이지의 구조
 
-hello 개발자 포털 콘텐츠 관리 시스템을 기반으로 합니다. 모든 페이지의 hello 레이아웃은 위젯 라고 하는 작은 페이지 요소의 집합을 기반으로 빌드됩니다.
+개발자 포털은 콘텐츠 관리 시스템을 기반으로 합니다. 모든 페이지의 레이아웃은 위젯이라는 작은 페이지 요소의 집합을 기반으로 작성됩니다.
 
 ![개발자 포털 페이지 구조][api-management-customization-widget-structure]
 
 모든 위젯은 편집이 가능합니다. 
-* hello 코어 내용 특정 tooeach 개별 페이지 hello "콘텐츠" 위젯에 있어야 합니다. 페이지 편집이 위젯의 hello 내용을 편집 하는 것을 의미 합니다.
-* 가 hello 나머지 위젯에 모든 페이지 레이아웃 요소가 포함 되어 있습니다. 변경 내용을 toothese 위젯 tooall 페이지에 적용 됩니다. 참조 된 tooas "레이아웃 위젯" 됩니다.
+* 각 페이지 고유의 핵심 콘텐츠는 "콘텐츠" 위젯에 있습니다. 페이지를 편집한다는 것은 이 위젯의 콘텐츠를 편집한다는 의미입니다.
+* 모든 페이지 레이아웃 요소는 나머지 위젯에 포함됩니다. 이러한 위젯에 변경한 내용은 모든 페이지에 적용됩니다. 이것을 "레이아웃 위젯"이라고 합니다.
 
-일상적인 페이지에서 각 개별 페이지에 대 한 다른 콘텐츠를 포함 하는 hello 콘텐츠 위젯을 수정만 일반적으로 하나를 편집 합니다.
+일상적인 페이지 편집에서 콘텐츠 위젯만 편집하면 각각의 개별적인 페이지에 콘텐츠가 달라집니다.
 
-## <a name="modify-layout-widget"></a>Hello 내용의 레이아웃 위젯 수정
+## <a name="modify-layout-widget"> </a>레이아웃 위젯의 콘텐츠 수정
 
-Hello Azure 포털에서에서 액세스할 수 있는 hello 게시자 포털을 통해 hello 개발자 포털 내에서 콘텐츠를 수정 합니다. tooreach, 클릭 **게시자 포털** API 관리 인스턴스 hello 서비스 도구 모음에서 합니다.
+개발자 포털 내의 콘텐츠는 Azure Portal을 통해 액세스할 수 있는 게시자 포털을 통해 수정됩니다. 여기에 도달하려면 API Management 인스턴스의 서비스 도구 모음에서 **게시자 포털**을 클릭하세요.
 
 ![게시자 포털][api-management-management-console]
 
-해당 위젯의 tooedit hello 내용을 클릭 **위젯** hello에서 **개발자 포털** hello 왼쪽 메뉴. 이 예제를 사용에 대 한 hello hello 헤더 widget 내용의 압축을 수정 합니다. 선택 hello **헤더** hello 목록에서 위젯입니다.
+이 위젯의 콘텐츠를 편집하려면 왼쪽의 **개발자 포털** 메뉴에서 **위젯**을 클릭합니다. 이 예제에서는 머리글 위젯의 콘텐츠를 수정하겠습니다. 목록에서 **머리글** 위젯을 선택합니다.
 
 ![위젯 머리글][api-management-widgets-header]
 
-hello 머리글의 내용 hello는 hello 내에서 편집할 수 **본문** 필드입니다. Hello 텍스트를 원하는 대로 변경한 다음 클릭 **저장** hello hello 페이지 맨 아래에 있습니다.
+머리글의 콘텐츠는 **본문** 필드 내에서 편집할 수 있습니다. 필요에 따라 텍스트를 변경한 다음 페이지 아래쪽에서 **저장**을 클릭합니다.
 
-이제 수 toosee hello 새 헤더 hello 개발자 포털 내에서 모든 페이지에 있어야 합니다.
+이제 개발자 포털 내의 모든 페이지에서 새 머리글을 볼 수 있습니다.
 
-> hello 게시자 포털에 있는 동안 tooopen hello 개발자 포털 클릭 **개발자 포털** hello 위쪽 막대에서 합니다.
+> 게시자 포털에 있는 동안 개발자 포털을 열려면 위쪽 막대에서 **개발자 포털** 을 클릭합니다.
 > 
 > 
 
-## <a name="edit-page-contents"></a>페이지의 hello 내용을 편집 합니다.
+## <a name="edit-page-contents"> </a>페이지의 콘텐츠 편집
 
-toosee hello 목록은 모든 기존 콘텐츠 페이지 클릭 **콘텐츠** hello에서 **개발자 포털** hello 게시자 포털 메뉴.
+모든 기존 콘텐츠 페이지 목록을 표시하려면 게시자 포털의 **개발자 포털** 메뉴에서 **콘텐츠**를 클릭합니다.
 
 ![콘텐츠 관리][api-management-customization-manage-content]
 
-Hello 클릭 **시작** 페이지 tooedit hello 개발자 포털의 hello 홈 페이지에 표시 되는 내용입니다. Hello 변경 하려면, 필요한 경우 미리 보기 하 고 클릭 **지금 게시** toomake 해당 tooeveryone 표시 합니다.
+개발자 포털의 홈페이지에 표시되는 내용을 편집하려면 **시작** 페이지를 클릭합니다. 원하는 대로 변경하고 필요하면 미리 본 다음, **지금 게시** 를 클릭하여 모든 사람이 볼 수 있도록 합니다.
 
-> hello 홈 페이지 배너 toodisplay hello 위쪽에 허용 하는 특별 한 레이아웃을 사용 합니다. 이 배너 hello에서 편집할 수는 없습니다 **콘텐츠** 섹션. 이 배너 tooedit 클릭 **위젯** hello에서 **개발자 포털** 메뉴 선택 **홈 페이지** hello에서 **현재 레이어** 드롭다운 목록을 열고 hello **배너** hello 아래 항목 **섹션을 갖춘**합니다. 이 위젯의의 hello 내용이 다른 페이지와 마찬가지로 편집할 수 있습니다.
+> 홈페이지에서는 맨 위에 배너를 표시할 수 있는 특별한 레이아웃이 사용됩니다. 이 배너는 **콘텐츠** 섹션에서 편집할 수 없습니다. 이 배너를 편집하려면 **개발자 포털** 메뉴에서 **위젯**을 클릭하고 **현재 레이어** 드롭다운 목록에서 **홈페이지**를 선택한 다음 **추천 섹션**에서 **배너** 항목을 엽니다. 이 위젯의 콘텐츠는 다른 페이지와 마찬가지로 편집할 수 있습니다.
 > 
 > 
 
 ## <a name="next-steps"> </a>다음 단계
-* [페이지 요소에 대 한 hello 개발자 포털에서 사용 하는 hello 스타일 업데이트][customize-styles]
-* [Hello 포털에서 생성 된 페이지에 사용 되는 hello 템플릿을 수정] [ portal-templates] (예: API docs, 제품, 사용자 인증 등)
+* [개발자 포털 전반의 페이지 요소에 사용된 스타일 업데이트][customize-styles]
+* [포털에서 생성된 페이지에 사용된 템플릿 수정][portal-templates](예: API 문서, 제품, 사용자 인증 등)
 
 [Structure of developer portal pages]: #page-structure
-[Modifying hello contents of a layout widget]: #modify-layout-widget
-[Edit hello contents of a page]: #edit-page-contents
+[Modifying the contents of a layout widget]: #modify-layout-widget
+[Edit the contents of a page]: #edit-page-contents
 [Next steps]: #next-steps
 
 [modify-content-layout]: api-management-modify-content-layout.md

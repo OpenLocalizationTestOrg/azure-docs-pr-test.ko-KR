@@ -1,6 +1,6 @@
 ---
-title: "PowerShell cmdlet을 사용 하 여 Azure IoT Hub aaaCreate | Microsoft Docs"
-description: "어떻게 toouse PowerShell cmdlet toocreate IoT hub 합니다."
+title: "PowerShell cmdlet을 사용하여 Azure IoT Hub 만들기 | Microsoft Docs"
+description: "PowerShell cmdlet을 사용하여 IoT Hub를 만드는 방법입니다."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -13,42 +13,42 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: 005cd8d48eb39d2e8b1bfb9ef84330d4aae4658f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 02227adeb8a9a7463506efa44ddc2977f8aae65a
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="create-an-iot-hub-using-hello-new-azurermiothub-cmdlet"></a>새로 만들기-AzureRmIotHub hello cmdlet을 사용 하 여 IoT 허브를 만듭니다.
+# <a name="create-an-iot-hub-using-the-new-azurermiothub-cmdlet"></a>New-AzureRmIotHub cmdlet을 사용하여 IoT Hub 만들기
 
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
 ## <a name="introduction"></a>소개
 
-Azure PowerShell cmdlet toocreate를 사용 하 고 Azure IoT hub를 관리할 수 있습니다. 이 자습서에서는 PowerShell과 함께 IoT hub toocreate 합니다.
+Azure PowerShell cmdlet을 사용하여 Azure IoT Hub를 만들고 관리할 수 있습니다. 이 자습서에서는 PowerShell로 IoT Hub를 만드는 방법을 보여 줍니다.
 
 > [!NOTE]
-> Azure에는 리소스를 만들고 작업하기 위한 두 가지 배포 모델, 즉 [Azure Resource Manager 및 클래식](../azure-resource-manager/resource-manager-deployment-model.md) 모델이 있습니다. 이 문서에서는 hello Azure 리소스 관리자 배포 모델을 사용 하 여 설명 합니다.
+> Azure에는 리소스를 만들고 작업하기 위한 두 가지 배포 모델, 즉 [Azure Resource Manager 및 클래식](../azure-resource-manager/resource-manager-deployment-model.md) 모델이 있습니다. 이 문서에서는 Azure Resource Manager 배포 모델 사용에 대해 설명합니다.
 
-toocomplete이이 자습서에서는 다음 hello 필요:
+이 자습서를 완료하려면 다음이 필요합니다.
 
 * 활성 Azure 계정. <br/>계정이 없는 경우 몇 분 내에 [계정][lnk-free-trial]을 만들 수 있습니다.
 * [Azure PowerShell cmdlet][lnk-powershell-install]
 
-## <a name="connect-tooyour-azure-subscription"></a>Tooyour Azure 구독 연결
-PowerShell 명령 프롬프트에 hello 명령 toosign tooyour Azure 구독에서에서 다음을 입력 합니다.
+## <a name="connect-to-your-azure-subscription"></a>Azure 구독에 연결
+PowerShell 명령 프롬프트에서 다음 명령을 입력하여 Azure 구독에 로그인합니다.
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-TooAzure 로그인 여러 Azure 구독이 있는 경우 tooall 액세스 부여 hello 자격 증명으로 연결 된 Azure 구독. 다음 명령을 toolist hello 있습니다 사용할 수 있는 Azure 구독 toouse hello를 사용 합니다.
+Azure 구독이 여러 개 있는 경우 Azure에 로그인하면 자격 증명과 연결된 모든 Azure 구독에 액세스할 수 있습니다. 다음 명령을 사용하여 사용할 수 있는 Azure 구독을 나열합니다.
 
 ```powershell
 Get-AzureRMSubscription
 ```
 
-다음 명령은 tooselect 구독 toouse toorun hello 명령을 toocreate IoT 허브를 지정 하는 hello를 사용 합니다. Hello 이전 명령의 hello 출력에서 hello 구독 이름 또는 ID를 사용할 수 있습니다.
+다음 명령을 사용하여 IoT Hub를 만드는 명령을 실행하는 데 사용할 구독을 선택합니다. 이전 명령의 출력에서 구독 이름 또는 ID를 사용할 수 있습니다.
 
 ```powershell
 Select-AzureRMSubscription `
@@ -57,9 +57,9 @@ Select-AzureRMSubscription `
 
 ## <a name="create-resource-group"></a>리소스 그룹 만들기
 
-리소스 그룹 toodeploy IoT hub 필요합니다. 기존 리소스 그룹을 사용하거나 리소스 그룹을 새로 만들 수 있습니다.
+IoT Hub를 배포할 리소스 그룹이 필요합니다. 기존 리소스 그룹을 사용하거나 리소스 그룹을 새로 만들 수 있습니다.
 
-다음 명령은 toodiscover hello 위치 IoT hub를 배포할 수 있는 hello를 사용할 수 있습니다.
+다음 명령을 사용하여 IoT Hub를 배포할 수 있는 위치를 검색할 수 있습니다.
 
 ```powershell
 ((Get-AzureRmResourceProvider `
@@ -67,7 +67,7 @@ Select-AzureRMSubscription `
   | Where-Object ResourceTypeName -eq IoTHubs).Locations
 ```
 
-IoT 허브를 hello 중 하나에 대 한 리소스 그룹 toocreate IoT 허브, 다음 명령을 사용 하 여 hello에 대 한 위치를 지원 합니다. 이 예에서는 라는 리소스 그룹을 만든 **MyIoTRG1** hello에 **미국 동부** 영역:
+IoT Hub가 지원되는 위치 중 하나에서 IoT Hub에 대한 리소스 그룹을 만들려면 다음 명령을 사용합니다. 이 예에서는 **미국 동부** 지역에 **MyIoTRG1**이라는 리소스 그룹을 만듭니다.
 
 ```powershell
 New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
@@ -75,7 +75,7 @@ New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 
 ## <a name="create-an-iot-hub"></a>IoT Hub 만들기
 
-다음 명령을 사용 하 여 hello hello 이전 단계에서 만든 hello 리소스 그룹에서 IoT hub toocreate 합니다. 이 예제에서는 만듭니다는 **S1** 호출할 허브 **MyTestIoTHub** hello에 **미국 동부** 영역:
+이전 단계에서 만든 리소스 그룹에 IoT Hub를 만들려면 다음 명령을 사용합니다. 이 예제에서는 **미국 동부** 지역에 **MyTestIoTHub**라는 **S1** 허브를 만듭니다.
 
 ```powershell
 New-AzureRmIotHub `
@@ -85,18 +85,18 @@ New-AzureRmIotHub `
     -Location "East US"
 ```
 
-hello IoT 허브의 hello 이름은 고유 해야 합니다.
+IoT Hub의 이름은 고유해야 합니다.
 
 [!INCLUDE [iot-hub-pii-note-naming-hub](../../includes/iot-hub-pii-note-naming-hub.md)]
 
 
-다음 명령을 hello를 사용 하 여 구독에서 모든 hello IoT 허브를 나열할 수 있습니다.
+다음 명령을 사용하여 구독에 있는 모든 IoT Hub를 나열할 수 있습니다.
 
 ```powershell
 Get-AzureRmIotHub
 ```
 
-청구는 S1 표준 IoT Hub를 추가 하는 hello 이전 예제입니다. 다음 명령을 hello를 사용 하 여 hello IoT 허브를 삭제할 수 있습니다.
+이전 예제에서는 대금이 청구되는 S1 표준 IoT Hub를 추가합니다. 다음 명령을 사용하여 IoT Hub를 삭제할 수 있습니다.
 
 ```powershell
 Remove-AzureRmIotHub `
@@ -104,7 +104,7 @@ Remove-AzureRmIotHub `
     -Name MyTestIoTHub
 ```
 
-또는, 리소스 그룹을 제거할 수 있습니다 하 고 모든 hello hello 다음 명령을 사용 하 여 포함 된 리소스:
+또는 다음 명령을 사용하여 리소스 그룹과 리소스 그룹이 포함된 모든 리소스를 제거할 수 있습니다.
 
 ```powershell
 Remove-AzureRmResourceGroup -Name MyIoTRG1
@@ -112,17 +112,17 @@ Remove-AzureRmResourceGroup -Name MyIoTRG1
 
 ## <a name="next-steps"></a>다음 단계
 
-이제 PowerShell cmdlet을 사용 하 여 IoT hub를 배포한 tooexplore 더 이상 사용할 수 있습니다.
+이제 PowerShell cmdlet을 사용하여 IoT Hub를 배포했으면 구체적인 내용을 알아볼 차례입니다.
 
 * [IoT Hub로 작업하기 위한 다른 PowerShell cmdlet][lnk-iothub-cmdlets]을 검색합니다.
-* Hello의 hello 기능에 대 한 읽기 [IoT 허브 리소스 공급자 REST API][lnk-rest-api]합니다.
+* [IoT Hub 리소스 공급자 REST API][lnk-rest-api]의 기능을 읽어보세요.
 
-IoT 허브에 대 한 개발에 대 한 더 toolearn hello 다음 문서를 참조 하십시오.
+IoT Hub를 개발하는 방법에 대한 자세한 내용은 다음 문서를 참조하세요.
 
-* [소개 tooC SDK][lnk-c-sdk]
+* [C SDK 소개][lnk-c-sdk]
 * [Azure IoT SDK][lnk-sdks]
 
-toofurther는 IoT Hub의 hello 기능을 참조 하십시오.
+IoT Hub의 기능을 추가로 탐색하려면 다음을 참조하세요.
 
 * [IoT Edge에서 장치 시뮬레이션][lnk-iotedge]
 

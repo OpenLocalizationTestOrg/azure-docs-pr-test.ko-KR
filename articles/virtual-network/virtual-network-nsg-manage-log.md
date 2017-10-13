@@ -1,6 +1,6 @@
 ---
-title: "aaaMonitor 작업, 이벤트 및 Nsg에 대 한 카운터 | Microsoft Docs"
-description: "자세한 내용은 방법 tooenable 카운터, 이벤트 및 Nsg에 대 한 작업 로깅"
+title: "NSG에 대한 작업, 이벤트 및 카운터 모니터링 | Microsoft Docs"
+description: "NSG에 대한 카운터, 이벤트 및 작업 로깅을 사용하도록 설정하는 방법에 대해 알아보기"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,59 +15,59 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/31/2017
 ms.author: jdial
-ms.openlocfilehash: f16f1a0ad693028ee7aba21574b5c8ddfcd27096
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 552f37dd704de25159bc0f0ad34fdae9ed8b73f5
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="log-analytics-for-network-security-groups-nsgs"></a>NSG(네트워크 보안 그룹)에 대한 로그 분석
 
-Nsg에 대 한 진단 로그 범주를 수행 하는 hello를 설정할 수 있습니다.
+NSG에 대한 다음 진단 로그 범주를 활성화할 수 있습니다.
 
-* **이벤트:** 어떤 NSG에 대 한 규칙은 적용 된 tooVMs 및 MAC 주소에 따라 인스턴스 역할 항목을 포함 합니다. 이러한 규칙에 대 한 hello 상태 60 초 마다 수집 됩니다.
-* **규칙 카운터:** Contains 항목 각 NSG 횟수에 대 한 규칙을 적용 된 toodeny 되었거나 트래픽을 허용 합니다.
+* **이벤트:** VM 및 MAC 주소 기반 인스턴스 역할에 적용된 NSG 규칙에 대한 항목을 포함합니다. 이러한 규칙에 대한 상태는 60초마다 수집됩니다.
+* **규칙 카운터:** 트래픽을 허용하거나 거부하기 위해 각 NSG 규칙이 적용된 횟수에 대한 항목을 포함합니다.
 
 > [!NOTE]
-> 진단 로그는 hello Azure 리소스 관리자 배포 모델을 통해 배포 된 Nsg 수만 있습니다. Nsg hello 클래식 배포 모델을 통해 배포에 대 한 진단 로깅을 활성화할 수 없습니다. 더 잘 이해 hello 두 모델의,에 대 한 참조 hello [이해 Azure 배포 모델](../resource-manager-deployment-model.md) 문서.
+> 진단 로그는 Azure Resource Manager 배포 모델을 통해 배포된 NSG에 대해서만 사용할 수 있습니다. 클래식 배포 모델을 통해 배포된 NSG에 대해 진단 로깅을 사용할 수 없습니다. 두 모델의 이해를 돕기 위해 [Azure 배포 모델 이해](../resource-manager-deployment-model.md) 문서를 참조하세요.
 
-활동 로깅(이전의 감사 또는 작업 로그)은 Azure 배포 모델 중 하나를 통해 만든 NSG에 대해 기본적으로 사용됩니다. 리소스 유형에 따라 hello를 포함 하는 항목에 대 한 모양 hello 활동 로그에 Nsg에 어떤 작업을 완료 된 toodetermine: 
+활동 로깅(이전의 감사 또는 작업 로그)은 Azure 배포 모델 중 하나를 통해 만든 NSG에 대해 기본적으로 사용됩니다. 활동 로그의 NSG 내에서 완료된 작업을 확인하려면 다음과 같은 리소스 유형을 포함하는 항목을 찾습니다. 
 
 - Microsoft.ClassicNetwork/networkSecurityGroups 
 - Microsoft.ClassicNetwork/networkSecurityGroups/securityRules
 - Microsoft.Network/networkSecurityGroups
 - Microsoft.Network/networkSecurityGroups/securityRules 
 
-읽기 hello [hello Azure 활동 로그 간략하게](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md) 활동 로그에 대 한 자세한 문서 toolearn 합니다. 
+활동 로그에 대한 자세한 내용을 보려면 [Azure 활동 로그 개요](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md) 문서를 확인합니다. 
 
 ## <a name="enable-diagnostic-logging"></a>진단 로깅 사용
 
-에 대 한 진단 로깅을 활성화 해야 *각* NSG 원하는 toocollect 데이터에 대 한 합니다. hello [개요의 Azure 진단 로그](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) 진단 로그를 보낼 수 있는 문서에 설명 합니다. 전체 hello hello의 단계를 기존 NSG가 없는 경우 [네트워크 보안 그룹 만들기](virtual-networks-create-nsg-arm-pportal.md) 문서 toocreate 하나입니다. NSG 진단 hello 메서드를 다음 중 하나를 사용 하 여 로깅을 설정할 수 있습니다.
+진단 로깅은 데이터를 수집하려는 *각* NSG에 대해 활성화되어야 합니다. [Azure 진단 로그 개요](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) 문서는 진단 로그를 보낼 수 있는 위치를 설명합니다. 기존 NSG가 없는 경우 [네트워크 보안 그룹 만들기](virtual-networks-create-nsg-arm-pportal.md) 문서의 단계를 완료하여 NSG를 만듭니다. 다음 방법 중 하나를 사용하여 NSG 진단 로깅을 활성화할 수 있습니다.
 
-### <a name="azure-portal"></a>Azure portal
+### <a name="azure-portal"></a>Azure 포털
 
-toouse hello 포털 tooenable 로깅, 로그인 toohello [포털](https://portal.azure.com)합니다. **더 많은 서비스**를 클릭한 다음 *네트워크 보안 그룹*을 입력합니다. Hello에 대 한 로깅을 tooenable 원하는 NSG를 선택 합니다. hello 비계산 리소스에 대 한 hello 지침에 따라 [hello 포털에서 진단 로그를 사용 하도록 설정](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#how-to-enable-collection-of-resource-diagnostic-logs) 문서. **NetworkSecurityGroupEvent**, **NetworkSecurityGroupRuleCounter** 또는 두 범주의 로그를 선택합니다.
+로깅을 활성화하는 데 포털을 사용하려면 [포털](https://portal.azure.com)에 로그인합니다. **더 많은 서비스**를 클릭한 다음 *네트워크 보안 그룹*을 입력합니다. 로깅을 활성화하려는 NSG를 선택합니다. [포털에서 진단 로그 사용](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#how-to-enable-collection-of-resource-diagnostic-logs) 문서의 비 계산 리소스에 대한 지침을 따릅니다. **NetworkSecurityGroupEvent**, **NetworkSecurityGroupRuleCounter** 또는 두 범주의 로그를 선택합니다.
 
 ### <a name="powershell"></a>PowerShell
 
-로깅, toouse PowerShell tooenable hello 지침 hello에 따라 [PowerShell 통해 진단 로그를 사용 하도록 설정](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#how-to-enable-collection-of-resource-diagnostic-logs) 문서. Hello 정보 hello 아티클에서 명령을 입력할 수 있도록 하기 전에 다음을 확인 합니다.
+PowerShell을 사용하여 로깅을 활성화하려면 [PowerShell을 통해 진단 로그 사용](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#how-to-enable-collection-of-resource-diagnostic-logs) 문서의 지침을 따릅니다. 문서에서 명령을 입력하기 전에 다음 정보를 평가합니다.
 
-- Hello에 대 한 hello 값 toouse를 확인할 수 있습니다 `-ResourceId` hello 다음 [텍스트]를 적절 하 게 다음 hello 명령 입력을 대체 하 여 매개 변수 `Get-AzureRmNetworkSecurityGroup -Name [nsg-name] -ResourceGroupName [resource-group-name]`합니다. hello 명령에서 hello ID 출력은 너무 유사*/subscriptions/ [구독 Id]/resourceGroups/[resource-group]/providers/Microsoft.Network/networkSecurityGroups/[NSG name]*합니다.
-- Toocollect 데이터 로그 범주를 원하는 경우 추가 `-Categories [category]` toohello 범주는 하나 hello 문서의 hello 명령 끝 *NetworkSecurityGroupEvent* 또는 *NetworkSecurityGroupRuleCounter*. Hello를 사용 하지 않으면 `-Categories` 범주 로그 둘 다에 대 한 데이터 컬렉션 매개 변수를 사용 하도록 설정 합니다.
+- 다음 [텍스트]를 적절하게 대체한 다음 명령 `Get-AzureRmNetworkSecurityGroup -Name [nsg-name] -ResourceGroupName [resource-group-name]`을 입력하여 `-ResourceId` 매개 변수에 사용할 값을 확인할 수 있습니다. 명령의 ID 출력은 */subscriptions/[Subscription Id]/resourceGroups/[resource-group]/providers/Microsoft.Network/networkSecurityGroups/[NSG name]*과 유사합니다.
+- 로그 범주에서 데이터를 수집하려는 경우 문서에서 명령의 끝에 `-Categories [category]`를 추가합니다. 범주는 *NetworkSecurityGroupEvent* 또는 *NetworkSecurityGroupRuleCounter*입니다. `-Categories` 매개 변수를 사용하지 않는 경우 데이터 컬렉션은 두 로그 범주에 대해 활성화됩니다.
 
 ### <a name="azure-command-line-interface-cli"></a>Azure CLI(명령줄 인터페이스)
 
-toouse CLI tooenable 로깅 hello, hello 지침 hello에 따라 [CLI 통해 진단 로그를 사용 하도록 설정](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#how-to-enable-collection-of-resource-diagnostic-logs) 문서. Hello 정보 hello 아티클에서 명령을 입력할 수 있도록 하기 전에 다음을 확인 합니다.
+CLI를 사용하여 로깅을 활성화하려면 [CLI를 통해 진단 로그 사용](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#how-to-enable-collection-of-resource-diagnostic-logs) 문서의 지침을 따릅니다. 문서에서 명령을 입력하기 전에 다음 정보를 평가합니다.
 
-- Hello에 대 한 hello 값 toouse를 확인할 수 있습니다 `-ResourceId` hello 다음 [텍스트]를 적절 하 게 다음 hello 명령 입력을 대체 하 여 매개 변수 `azure network nsg show [resource-group-name] [nsg-name]`합니다. hello 명령에서 hello ID 출력은 너무 유사*/subscriptions/ [구독 Id]/resourceGroups/[resource-group]/providers/Microsoft.Network/networkSecurityGroups/[NSG name]*합니다.
-- Toocollect 데이터 로그 범주를 원하는 경우 추가 `-Categories [category]` toohello 범주는 하나 hello 문서의 hello 명령 끝 *NetworkSecurityGroupEvent* 또는 *NetworkSecurityGroupRuleCounter*. Hello를 사용 하지 않으면 `-Categories` 범주 로그 둘 다에 대 한 데이터 컬렉션 매개 변수를 사용 하도록 설정 합니다.
+- 다음 [텍스트]를 적절하게 대체한 다음 명령 `azure network nsg show [resource-group-name] [nsg-name]`을 입력하여 `-ResourceId` 매개 변수에 사용할 값을 확인할 수 있습니다. 명령의 ID 출력은 */subscriptions/[Subscription Id]/resourceGroups/[resource-group]/providers/Microsoft.Network/networkSecurityGroups/[NSG name]*과 유사합니다.
+- 로그 범주에서 데이터를 수집하려는 경우 문서에서 명령의 끝에 `-Categories [category]`를 추가합니다. 범주는 *NetworkSecurityGroupEvent* 또는 *NetworkSecurityGroupRuleCounter*입니다. `-Categories` 매개 변수를 사용하지 않는 경우 데이터 컬렉션은 두 로그 범주에 대해 활성화됩니다.
 
 ## <a name="logged-data"></a>기록된 데이터
 
-JSON 형식 데이터는 두 로그에 기록됩니다. 각 로그 형식에 대해 작성 된 hello 특정 데이터 hello 다음 섹션에에서 나열 됩니다.
+JSON 형식 데이터는 두 로그에 기록됩니다. 각 로그 형식에 대해 기록된 특정 데이터는 다음 섹션에 나열됩니다.
 
 ### <a name="event-log"></a>이벤트 로그
-이 로그에는 어떤 NSG에 대 한 규칙은 적용 된 tooVMs과는 클라우드 서비스 역할 인스턴스를 기반으로 MAC 주소 정보가 포함 됩니다. 다음 예에서는 데이터 hello 각 이벤트에 대해 기록 됩니다.
+이 로그는 MAC 주소에 따라 VM 및 클라우드 서비스 역할 인스턴스에 적용될 NSG 규칙에 대한 정보를 포함합니다. 다음 예제 데이터는 각 이벤트에 대해 기록됩니다.
 
 ```json
 {
@@ -98,7 +98,7 @@ JSON 형식 데이터는 두 로그에 기록됩니다. 각 로그 형식에 대
 
 ### <a name="rule-counter-log"></a>규칙 카운터 로그
 
-이 로그는 각 규칙을 적용 tooresources에 대 한 정보를 포함합니다. hello 다음 예제에서는 데이터 때마다 기록 됩니다는 규칙이 적용 됩니다.
+이 로그는 리소스에 적용되는 각 규칙에 대한 정보를 포함합니다. 다음 예제 데이터는 규칙이 적용될 때마다 기록됩니다.
 
 ```json
 {
@@ -122,4 +122,4 @@ JSON 형식 데이터는 두 로그에 기록됩니다. 각 로그 형식에 대
 
 ## <a name="view-and-analyze-logs"></a>로그 보기 및 분석
 
-toolearn tooview 활동 데이터를 기록 하는 방법을 읽고 hello [hello Azure 활동 로그 간략하게](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) 문서. toolearn 방법 tooview 진단 로그 데이터를 읽을 hello [개요의 Azure 진단 로그](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) 문서. 진단 데이터 tooLog 분석을 보내면 hello를 사용할 수 있습니다 [Azure 네트워크 보안 그룹 분석](../log-analytics/log-analytics-azure-networking-analytics.md) 향상 된 insights (미리 보기) 관리 솔루션입니다. 
+활동 로그 데이터를 보는 방법을 알아보려면 [Azure 활동 로그 개요](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) 문서를 확인합니다. 진단 로그 데이터를 보는 방법을 알아보려면 [Azure 진단 로그 개요](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) 문서를 확인합니다. Log Analytics에 진단 데이터를 보내는 경우 향상된 통찰력을 위해 [Azure 네트워크 보안 그룹 분석](../log-analytics/log-analytics-azure-networking-analytics.md)(미리 보기) 관리 솔루션을 사용할 수 있습니다. 

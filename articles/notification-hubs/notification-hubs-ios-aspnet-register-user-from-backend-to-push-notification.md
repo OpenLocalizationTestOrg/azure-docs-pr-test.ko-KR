@@ -1,6 +1,6 @@
 ---
-title: "aaaRegister hello 현재 사용자에 게 웹 API를 사용 하 여 푸시 알림 | Microsoft Docs"
-description: "어떻게 toorequest 푸시 알림 등록에 Azure 알림 허브를 사용 하 여 iOS 앱에 ASP.NET Web API에서 등록을 수행할 때에 대해 알아봅니다."
+title: "Web API를 사용하여 푸시 알림에 현재 사용자 등록 | Microsoft Docs"
+description: "ASP.NET Web API에서 등록을 수행할 때 Azure 알림 허브를 사용하여 iOS 앱에서 푸시 알림 등록을 요청하는 방법에 대해 알아봅니다."
 services: notification-hubs
 documentationcenter: ios
 author: ysxu
@@ -14,25 +14,25 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: f859feb436093e703d7e1db38354dd356fff8efe
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fd56bb2dd627b31f00363851a4e76484aa382988
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="register-hello-current-user-for-push-notifications-by-using-aspnet"></a>ASP.NET을 사용 하 여 hello 현재 사용자에 게 푸시 알림 등록
+# <a name="register-the-current-user-for-push-notifications-by-using-aspnet"></a>ASP.NET을 사용하여 푸시 알림에 현재 사용자 등록
 > [!div class="op_single_selector"]
 > * [iOS](notification-hubs-ios-aspnet-register-user-from-backend-to-push-notification.md)
 > 
 > 
 
 ## <a name="overview"></a>개요
-이 항목에서는 방법을 toorequest 푸시 알림 등록에 Azure 알림 허브와 ASP.NET Web API에서 등록을 수행할 때를 보여 줍니다. 이 항목 확장 hello 자습서 [알림 허브와 사용자에 게 알림]합니다. 이미 완료 해야 해당 자습서 toocreate hello 인증 모바일 서비스에 필요한 hello 단계입니다. Hello에 대 한 자세한 내용은 알림 사용자 시나리오, 참조 [알림 허브와 사용자에 게 알림]합니다.
+이 항목에서는 ASP.NET Web API에서 등록을 수행할 때 Azure 알림 허브를 통해 푸시 알림 등록을 요청하는 방법을 보여 줍니다. 이 항목은 [알림 허브를 통해 사용자에게 알림]자습서를 확장합니다. 이미 해당 자습서의 필수 단계를 완료하여 인증된 모바일 서비스를 만든 상태여야 합니다. 사용자 알림 시나리오에 대한 자세한 내용은 [알림 허브를 통해 사용자에게 알림]을 참조하세요.
 
 ## <a name="update-your-app"></a>앱 업데이트
-1. 프로그램 MainStoryboard_iPhone.storyboard hello 개체 라이브러리에서 다음과 같은 구성 요소가 hello를 추가 합니다.
+1. MainStoryboard_iPhone.storyboard의 개체 라이브러리에서 다음 구성 요소를 추가합니다.
    
-   * **레이블**: "푸시 알림 허브와 tooUser"
+   * **레이블**: "Push to User with Notification Hubs"
    * **레이블**: "InstallationId"
    * **레이블**: "User"
    * **텍스트 필드**: "User"
@@ -40,25 +40,25 @@ ms.lasthandoff: 10/06/2017
    * **텍스트 필드**: "Password"
    * **단추**: "Login"
      
-     이 시점에서 스토리 보드 hello 다음과 같습니다.
+     이때 스토리보드가 다음과 같이 표시됩니다.
      
       ![][0]
-2. Hello 도우미 편집기에서 모든 전환 hello 컨트롤에 대 한 콘센트 및 전화할 hello 뷰-컨트롤러 (대리자)를 사용 하 여 hello 텍스트 필드를 연결 만들고 만들기는 **동작** hello에 대 한 **로그인** 단추입니다.
+2. 단말기 편집기에서 모든 전환된 컨트롤에 대한 콘센트를 만든 다음 호출하고, 텍스트 필드를 뷰 컨트롤러(대리자)에 연결하고, **로그인** 단추에 대한 **동작**을 만듭니다.
    
        ![][1]
    
-       Your BreakingNewsViewController.h file should now contain hello following code:
+       Your BreakingNewsViewController.h file should now contain the following code:
    
         @property (weak, nonatomic) IBOutlet UILabel *installationId;
         @property (weak, nonatomic) IBOutlet UITextField *User;
         @property (weak, nonatomic) IBOutlet UITextField *Password;
    
         - (IBAction)login:(id)sender;
-3. 이라는 클래스를 만들 **DeviceInfo**, 복사 hello hello 파일 DeviceInfo.h의 hello 인터페이스 섹션에 코드를 다음 및:
+3. **DeviceInfo**라는 클래스를 만들고 다음 코드를 DeviceInfo.h 파일의 인터페이스 섹션에 복사합니다.
    
         @property (readonly, nonatomic) NSString* installationId;
         @property (nonatomic) NSData* deviceToken;
-4. Hello 코드 hello DeviceInfo.m 파일의 hello 구현 섹션에서 다음을 복사 합니다.
+4. 다음 코드를 DeviceInfo.m 파일의 구현 섹션에 복사합니다.
    
             @synthesize installationId = _installationId;
    
@@ -73,7 +73,7 @@ ms.lasthandoff: 10/06/2017
                     _installationId = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, newUUID);
                     CFRelease(newUUID);
    
-                    //store hello install ID so we don't generate a new one next time
+                    //store the install ID so we don't generate a new one next time
                     [defaults setObject:_installationId forKey:@"PushToUserInstallationId"];
                     [defaults synchronize];
                 }
@@ -89,32 +89,32 @@ ms.lasthandoff: 10/06/2017
                                       ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
                 return hexToken;
             }
-5. PushToUserAppDelegate.h에서 다음 속성 singleton hello를 추가 합니다.
+5. PushToUserAppDelegate.h에서 다음 속성 단일 항목을 추가합니다.
    
         @property (strong, nonatomic) DeviceInfo* deviceInfo;
-6. Hello에 **didFinishLaunchingWithOptions** PushToUserAppDelegate.m에 메서드 추가 코드 다음 hello:
+6. PushToUserAppDelegate.m의 **didFinishLaunchingWithOptions** 메서드에 다음 코드를 추가합니다.
    
         self.deviceInfo = [[DeviceInfo alloc] init];
    
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
    
-    첫 번째 줄 hello를 hello 초기화 **DeviceInfo** singleton입니다. hello 두 번째 줄 시작 hello 등록 푸시 알림이 표시 되어 있는 hello를 이미 완료 했다고 [알림 허브 시작] 자습서입니다.
-7. PushToUserAppDelegate.m, hello 메서드를 구현 **didRegisterForRemoteNotificationsWithDeviceToken** 프로그램 AppDelegate에서 코드 다음 hello 추가:
+    첫 번째 행은 **DeviceInfo** 단일 항목을 초기화합니다. 두 번째 행은 푸시 알림 등록을 시작합니다. 이미 언급한 것처럼 [Notification Hubs 시작] 자습서를 이미 완료했습니다.
+7. PushToUserAppDelegate.m의 AppDelegate에서 **didRegisterForRemoteNotificationsWithDeviceToken** 메서드를 구현하고 다음 코드를 추가합니다.
    
         self.deviceInfo.deviceToken = deviceToken;
    
-    Hello 요청에 대 한 hello 장치 토큰을 설정합니다.
+    이 코드는 요청에 대한 장치 토큰을 설정합니다.
    
    > [!NOTE]
-   > 이때 이 메서드에 다른 코드가 있어서는 안 됩니다. 호출 toohello 이미 있는 경우 **registerNativeWithDeviceToken** hello 완료 되 면 추가 된 메서드가 [알림 허브 시작](/manage/services/notification-hubs/get-started-notification-hubs-ios/) 주석 아웃 하거나 제거 해야 하는 자습서 호출 합니다.
+   > 이때 이 메서드에 다른 코드가 있어서는 안 됩니다. **알림 허브 시작** 자습서를 완료할 때 추가된 [registerNativeWithDeviceToken](/manage/services/notification-hubs/get-started-notification-hubs-ios/) 메서드에 대한 호출이 이미 있는 경우 해당 호출을 주석으로 처리하거나 제거해야 합니다.
    > 
    > 
-8. Hello PushToUserAppDelegate.m 파일에서 처리기 메서드를 다음 hello를 추가 합니다.
+8. PushToUserAppDelegate.m 파일에서 다음 처리기 메서드를 추가합니다.
    
    * 응용 프로그램 (void):(UIApplication *) 응용 프로그램 didReceiveRemoteNotification:(NSDictionary *) 사용자 정보 {NSLog (@"% @", 사용자 정보);   UIAlertView * 경고 = [[UIAlertView alloc] initWithTitle:@"Notification" 메시지: [사용자 정보 objectForKey:@"inAppMessage"] 대리자: nil cancelButtonTitle: @"확인" otherButtonTitles:nil, nil];   [경고 표시]; }
    
-   이 메서드는 실행 중인 앱에서 알림을 수신 하는 경우 hello UI에서에서 경고를 표시 합니다.
-9. Hello 다음 구현에에서 hello PushToUserViewController.m 파일과 반환 hello 키보드를 엽니다.
+   이 메서드는 앱이 실행되고 있는 동안 알림을 받으면 UI에 경고를 표시합니다.
+9. PushToUserViewController.m 파일을 열고 다음 구현에 키보드를 반환합니다.
    
         - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
             if (theTextField == self.User || theTextField == self.Password) {
@@ -122,15 +122,15 @@ ms.lasthandoff: 10/06/2017
             }
             return YES;
         }
-10. Hello에 **viewDidLoad** 메서드 hello PushToUserViewController.m 파일에서 다음과 같이 hello installationId 레이블을 초기화 합니다.
+10. PushToUserViewController.m 파일의 **viewDidLoad** 메서드에서 다음과 같이 installationId 레이블을 초기화합니다.
     
          DeviceInfo* deviceInfo = [(PushToUserAppDelegate*)[[UIApplication sharedApplication]delegate] deviceInfo];
          Self.installationId.text = deviceInfo.installationId;
-11. Hello 다음과 같은 PushToUserViewController.m 인터페이스에서 속성을 추가 합니다.
+11. PushToUserViewController.m의 인터페이스에 다음 속성을 추가합니다.
     
         @property (readonly) NSOperationQueue* downloadQueue;
         - (NSString*)base64forData:(NSData*)theData;
-12. 그런 다음 구현에 따라 hello를 추가 합니다.
+12. 그 후에 다음 구현을 추가합니다.
     
             - (NSOperationQueue *)downloadQueue {
                 if (!_downloadQueue) {
@@ -173,7 +173,7 @@ ms.lasthandoff: 10/06/2017
     
                 return [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
             }
-13. 복사 hello 다음 hello에 코드 **로그인** XCode에서 만든 처리기 메서드:
+13. XCode로 만든 **login** 처리기 메서드에 다음 코드를 복사합니다.
     
             DeviceInfo* deviceInfo = [(PushToUserAppDelegate*)[[UIApplication sharedApplication]delegate] deviceInfo];
     
@@ -206,9 +206,9 @@ ms.lasthandoff: 10/06/2017
                 }
             }];
     
-    이 메서드는 설치 ID와 채널에 대 한 푸시 알림을 가져오고 hello 장치 유형 함께 보냅니다, 그리고 toohello 웹 API를 만드는 메서드를 등록 하는 알림 허브에 인증 합니다. 이 웹 API는 [알림 허브와 사용자에 게 알림]에서 정의했습니다.
+    이 메서드는 푸시 알림에 대한 설치 ID와 채널을 모두 가져온 다음, 알림 허브에서 등록을 만드는 인증된 웹 API 메서드에 장치 유형과 함께 보냅니다. 이 웹 API는 [알림 허브를 통해 사용자에게 알림]에서 정의했습니다.
 
-Hello 클라이언트 응용 프로그램 업데이트 했으므로 반환 toohello [알림 허브와 사용자에 게 알림] 알림 허브를 사용 하 여 hello 모바일 서비스 toosend 알림을 업데이트 합니다.
+클라이언트 앱이 업데이트되었으므로 [알림 허브를 통해 사용자에게 알림] 으로 돌아가서 알림 허브를 사용하여 알림을 보내도록 모바일 서비스를 업데이트합니다.
 
 <!-- Anchors. -->
 
@@ -217,6 +217,6 @@ Hello 클라이언트 응용 프로그램 업데이트 했으므로 반환 toohe
 [1]: ./media/notification-hubs-ios-aspnet-register-user-push-notifications/notification-hub-user-aspnet-ios2.png
 
 <!-- URLs. -->
-[알림 허브와 사용자에 게 알림]: /manage/services/notification-hubs/notify-users-aspnet
+[알림 허브를 통해 사용자에게 알림]: /manage/services/notification-hubs/notify-users-aspnet
 
-[알림 허브 시작]: /manage/services/notification-hubs/get-started-notification-hubs-ios
+[Notification Hubs 시작]: /manage/services/notification-hubs/get-started-notification-hubs-ios

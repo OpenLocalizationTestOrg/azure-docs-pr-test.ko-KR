@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate Azure 시간 계열 Insights 환경 | Microsoft Docs"
-description: "이 자습서에서는 toocreate 시계열 환경은 tooan 이벤트 소스 연결 하 고 분에서 tooanalyze 이벤트 데이터를 준비 하는 방법을 배웁니다."
+title: "Azure Time Series Insights 환경 만들기 | Microsoft Docs"
+description: "이 자습서에서는 몇 분 안에 Time Series 환경을 만들고, 이벤트 원본에 연결하고, 이벤트 데이터 분석을 준비하는 방법을 배웁니다."
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -8,49 +8,49 @@ author: op-ravi
 manager: santoshb
 editor: cgronlun
 ms.assetid: 
-ms.service: time-series-insights
+ms.service: tsi
 ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/21/2017
 ms.author: omravi
-ms.openlocfilehash: 7120fc9a6e4d4a4972f8cb37e4d9945cfb746fd2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5a159ed0ba38899b21212518d41ff995895904ef
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-a-new-time-series-insights-environment-in-hello-azure-portal"></a>Hello Azure 포털에서에서 새 시간 시계열 Insights 환경 만들기
+# <a name="create-a-new-time-series-insights-environment-in-the-azure-portal"></a>Azure Portal에서 Time Series Insights 환경 만들기
 
-Time Series Insights 환경은 수신 및 저장 기능이 있는 Azure 리소스입니다. 고객 환경 hello Azure 포털을 통해 필요한 hello 용량 프로 비전합니다.
+Time Series Insights 환경은 수신 및 저장 기능이 있는 Azure 리소스입니다. 고객은 Azure Portal을 통해 환경에 필요한 용량을 프로비전합니다.
 
-## <a name="steps-toocreate-hello-environment"></a>단계 toocreate hello 환경
+## <a name="steps-to-create-the-environment"></a>환경을 만드는 단계
 
-이러한 단계 toocreate 환경을 수행 합니다.
+다음 단계에 따라 환경을 만듭니다.
 
-1.  Toohello 로그인 [Azure 포털](https://portal.azure.com)합니다.
-2.  Hello 왼쪽 위 모서리의에서 hello 더하기 기호 ("+")를 클릭 합니다.
-3.  Hello 검색 상자에 "시간 시계열 Insights"를 검색 합니다.
+1.  [Azure 포털](https://portal.azure.com)에 로그인합니다.
+2.  왼쪽 위 모퉁이에서 더하기 기호(“+”)를 클릭합니다.
+3.  검색 상자에서 "Time Series Insights"를 검색합니다.
 
-  ![Hello 시간 계열 Insights 환경 만들기](media/get-started/getstarted-create-environment1.png)
+  ![Time Series Insights 환경 만들기](media/get-started/getstarted-create-environment1.png)
 
 4.  “Time Series Insights”를 선택하고 “만들기”를 클릭합니다.
 
-  ![Hello 시간 계열 Insights 리소스 그룹 만들기](media/get-started/getstarted-create-environment2.png)
+  ![Time Series Insights 리소스 그룹 만들기](media/get-started/getstarted-create-environment2.png)
 
-5.  환경 이름을 지정합니다. 이 이름은 hello 환경을 나타낼 [시간 시계열 탐색기](https://insights.timeseries.azure.com)합니다.
-6.  구독을 선택합니다. 이벤트 원본이 포함된 구독을 선택해야 합니다. 시간 시계열 Insights 수 자동 검색 Azure IoT Hub 및 이벤트 허브 리소스에 있는 hello 동일한 구독 합니다.
+5.  환경 이름을 지정합니다. 이 이름은 [time series 탐색기](https://insights.timeseries.azure.com)에서 환경을 나타냅니다.
+6.  구독을 선택합니다. 이벤트 원본이 포함된 구독을 선택해야 합니다. Time Series Insights는 같은 구독에 있는 Azure IoT Hub 및 Event Hub 리소스를 자동으로 검색할 수 있습니다.
 7.  리소스 그룹을 선택하거나 만듭니다. 리소스 그룹은 함께 사용되는 Azure 리소스 컬렉션입니다.
-8.  호스팅 위치를 선택합니다. 여러 데이터 tooavoid 이동 데이터 센터는 이벤트 소스를 포함 하는 위치를 선택 합니다.
+8.  호스팅 위치를 선택합니다. 데이터 센터 간에 데이터를 이동하지 못하게 하려면 이벤트 원본이 포함된 위치를 선택합니다.
 9.  가격 책정 계층을 선택합니다.
 10. 용량을 선택합니다. 환경을 만든 후 환경의 용량을 변경할 수 있습니다.
-11. 환경을 만듭니다. 또한에 로그인 할 때마다 쉬운 액세스를 위해 환경 toohello 대시보드를 고정할 수 있습니다.
+11. 환경을 만듭니다. 로그인할 때마다 손쉽게 액세스할 수 있도록 환경을 대시보드에 고정할 수도 있습니다.
 
-  ![Hello 시간 계열 Insights pin toodashboard 만들기](media/get-started/getstarted-create-environment3.png)
+  ![Time Series Insights를 만들고 대시보드에 고정](media/get-started/getstarted-create-environment3.png)
 
 ## <a name="next-steps"></a>다음 단계
 
-* [데이터 액세스 정책을 정의할](time-series-insights-data-access.md) tooaccess 사용자 환경에서 [시간 계열 Insights 포털](https://insights.timeseries.azure.com)
+* [Time Series Insights 포털](https://insights.timeseries.azure.com)에서 환경에 액세스하도록 [데이터 액세스 정책 정의](time-series-insights-data-access.md)
 * [이벤트 원본 만들기](time-series-insights-add-event-source.md)
-* [이벤트를 보내는](time-series-insights-send-events.md) toohello 이벤트 소스
+* 이벤트 원본으로 [이벤트 보내기](time-series-insights-send-events.md)

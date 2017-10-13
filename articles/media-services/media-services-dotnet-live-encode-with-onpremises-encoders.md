@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooperform를 통해 라이브 스트리밍 온-프레미스.NET을 사용 하 여 인코더 | Microsoft Docs"
-description: "이 항목에서는 방법을 toouse.NET tooperform 라이브 온-프레미스 인코더로 인코딩 합니다."
+title: ".NET을 사용하여 온-프레미스 인코더로 라이브 스트리밍을 수행하는 방법 | Microsoft Docs"
+description: "이 항목에서는 .NET을 사용하여 온-프레미스 인코더로 라이브 인코딩을 수행하는 방법을 보여 줍니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,13 +14,13 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: cenkdin;juliako
-ms.openlocfilehash: 332582c9f925f8b9270929b3fa8140fce010bbf9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3ef6065f5b9e05e0ea5716548699943a2c877bc4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooperform-live-streaming-with-on-premises-encoders-using-net"></a>.NET을 사용 하 여 온-프레미스 인코더로 tooperform 라이브 스트리밍 방식
+# <a name="how-to-perform-live-streaming-with-on-premises-encoders-using-net"></a>.NET을 사용하여 온-프레미스 인코더로 라이브 스트리밍을 수행하는 방법
 > [!div class="op_single_selector"]
 > * [포털](media-services-portal-live-passthrough-get-started.md)
 > * [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
@@ -28,46 +28,46 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-이 자습서에서는 Azure 미디어 서비스.NET SDK toocreate hello를 사용 하 여 hello 단계는 **채널** 하도록 구성 되어 있는 통과 배달 합니다. 
+이 자습서에서는 Azure Media Services .NET SDK를 사용하여 통과 배달을 위해 구성된 **채널** 을 만드는 단계를 안내합니다. 
 
 ## <a name="prerequisites"></a>필수 조건
-hello 다음은 필요한 toocomplete hello 자습서입니다.
+자습서를 완료하는 데 필요한 조건은 다음과 같습니다.
 
 * Azure 계정.
-* Media Services 계정.    미디어 서비스 계정 toocreate 참조 [어떻게 tooCreate Media Services 계정을](media-services-portal-create-account.md)합니다.
+* 미디어 서비스 계정.    Media Services 계정을 만들려면 [Media Services 계정을 만드는 방법](media-services-portal-create-account.md)을 참조하세요.
 * 개발 환경을 설정합니다. 자세한 내용은 [환경 설정](media-services-set-up-computer.md)을 참조하세요.
 * 웹캠. 예를 들어, [Telestream Wirecast encoder](http://www.telestream.net/wirecast/overview.htm)
 
-다음 문서 권장된 tooreview hello:
+다음 문서를 검토하는 것이 좋습니다.
 
 * [Azure 미디어 서비스 RTMP 지원 및 라이브 인코더](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)
 * [다중 비트 전송률 스트림을 만드는 온-프레미스 인코더를 사용한 라이브 스트리밍](media-services-live-streaming-with-onprem-encoders.md)
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>Visual Studio 프로젝트 만들기 및 구성
 
-개발 환경을 설정 하 고에 설명 된 대로 연결 정보를 포함 하는 hello app.config 파일을 채울 [.net 미디어 서비스 개발](media-services-dotnet-how-to-use.md)합니다. 
+개발 환경을 설정하고 [.NET을 사용한 Media Services 환경](media-services-dotnet-how-to-use.md)에 설명된 대로 연결 정보를 사용하여 app.config 파일을 채웁니다. 
 
 ## <a name="example"></a>예제
-다음 코드 예제는 hello tooachieve hello 다음 작업 방법을 보여 줍니다.
+다음 코드 예제는 다음 작업을 수행하는 방법을 보여 줍니다.
 
-* TooMedia 서비스 연결
+* 미디어 서비스에 연결
 * 채널 만들기
-* Hello 채널 업데이트
-* Hello 채널의 입력된 끝점을 검색 합니다. 입력된 끝점 hello toohello 온-프레미스 라이브 인코더를 제공 합니다. hello toohello 채널의 입력을 보내는 hello 카메라 toostreams에서 변환 신호를 라이브 인코더 (수집) 끝점입니다.
-* Hello 채널의 미리 보기 끝점 검색
+* 채널 업데이트
+* 채널의 입력 끝점 가져오기. 온-프레미스 라이브 인코더에 입력 끝점을 제공해야 합니다. 라이브 인코더가 카메라에서 채널의 입력(수집) 끝점으로 보내는 스트림까지 신호를 변환합니다.
+* 채널의 미리 보기 끝점 가져오기
 * 프로그램 만들기 및 시작
-* 필요한 tooaccess hello 프로그램 로케이터 만들기
+* 프로그램에 액세스하는 데 필요한 로케이터 만들기
 * StreamingEndpoint 만들기 및 시작
-* Hello 스트리밍 끝점 업데이트
+* 스트리밍 끝점 업데이트
 * 리소스 종료
 
 >[!IMPORTANT]
->스트리밍 끝점 toostream 콘텐츠 원하는 hello hello에 있는지 확인 **실행** 상태입니다. 
+>콘텐츠를 스트리밍하려는 스트리밍 끝점이 **실행** 상태에 있는지 확인합니다. 
     
 >[!NOTE]
->다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다. Hello를 사용 해야 항상 사용 하는 경우 동일한 정책 ID hello 동일 일 / 액세스 하는 로케이터가 있는 원위치에서 의도 한 tooremain 오랜 시간 동안 (비-업로드 정책)는에 대 한 예를 들어 정책을 사용 권한. 자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.
+>다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다. 항상 같은 날짜/액세스 권한을 사용하는 경우(예: 비 업로드 정책처럼 오랫동안 배치되는 로케이터에 대한 정책) 동일한 정책 ID를 사용해야 합니다. 자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.
 
-방법에 대 한 라이브 인코더 tooconfigure 참조 [Azure 미디어 서비스 RTMP 지원 및 라이브 인코더](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)합니다.
+라이브 인코더 구성 방법에 대한 자세한 내용은 [Azure 미디어 서비스 RTMP 지원 및 라이브 인코더](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)를 참조하세요.
 
     using System;
     using System.Collections.Generic;
@@ -86,7 +86,7 @@ hello 다음은 필요한 toocomplete hello 자습서입니다.
         private const string AssetlName = "asset001";
         private const string ProgramlName = "program001";
 
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -103,11 +103,11 @@ hello 다음은 필요한 toocomplete hello 자습서입니다.
 
             IChannel channel = CreateAndStartChannel();
 
-            // Set hello Live Encoder toopoint toohello channel's input endpoint:
+            // Set the Live Encoder to point to the channel's input endpoint:
             string ingestUrl = channel.Input.Endpoints.FirstOrDefault().Url.ToString();
 
-            // Use hello previewEndpoint toopreview and verify
-            // that hello input from hello encoder is actually reaching hello Channel.
+            // Use the previewEndpoint to preview and verify
+            // that the input from the encoder is actually reaching the Channel.
             string previewEndpoint = channel.Preview.Endpoints.FirstOrDefault().Url.ToString();
 
             IProgram program = CreateAndStartProgram(channel);
@@ -120,7 +120,7 @@ hello 다음은 필요한 toocomplete hello 자습서입니다.
 
         public static IChannel CreateAndStartChannel()
         {
-            //If you want toochange hello Smooth fragments tooHLS segment ratio, you would set hello ChannelCreationOptions’s Output property.
+            //If you want to change the Smooth fragments to HLS segment ratio, you would set the ChannelCreationOptions’s Output property.
 
             IChannel channel = _context.Channels.Create(
             new ChannelCreationOptions
@@ -130,7 +130,7 @@ hello 다음은 필요한 toocomplete hello 자습서입니다.
             Preview = CreateChannelPreview()
             });
 
-            //Starting and stopping Channels can take some time tooexecute. toodetermine hello state of operations after calling Start or Stop, query hello IChannel.State .
+            //Starting and stopping Channels can take some time to execute. To determine the state of operations after calling Start or Stop, query the IChannel.State .
 
             channel.Start();
 
@@ -150,7 +150,7 @@ hello 다음은 필요한 toocomplete hello 자습서입니다.
                     {
                     Name = "TestChannelInput001",
                     // Setting 0.0.0.0 for Address and 0 for SubnetPrefixLength
-                    // will allow access tooIP addresses.
+                    // will allow access to IP addresses.
                     Address = IPAddress.Parse("0.0.0.0"),
                     SubnetPrefixLength = 0
                     }
@@ -171,7 +171,7 @@ hello 다음은 필요한 toocomplete hello 자습서입니다.
                     {
                     Name = "TestChannelPreview001",
                     // Setting 0.0.0.0 for Address and 0 for SubnetPrefixLength
-                    // will allow access tooIP addresses.
+                    // will allow access to IP addresses.
                     Address = IPAddress.Parse("0.0.0.0"),
                     SubnetPrefixLength = 0
                     }
@@ -213,7 +213,7 @@ hello 다음은 필요한 toocomplete hello 자습서입니다.
         {
             IAsset asset = _context.Assets.Create(AssetlName, AssetCreationOptions.None);
 
-            // Create a Program on hello Channel. You can have multiple Programs that overlap or are sequential;
+            // Create a Program on the Channel. You can have multiple Programs that overlap or are sequential;
             // however each Program must have a unique name within your Media Services account.
             IProgram program = channel.Programs.Create(ProgramlName, TimeSpan.FromHours(3), asset.Id);
             program.Start();

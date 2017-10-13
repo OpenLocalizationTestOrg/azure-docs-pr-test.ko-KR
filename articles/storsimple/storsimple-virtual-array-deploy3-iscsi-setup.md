@@ -1,6 +1,6 @@
 ---
-title: "Azure StorSimple 가상 배열 iSCSI 서버 설치 프로그램 aaaMicrosoft | Microsoft Docs"
-description: "초기 설정 tooperform StorSimple iSCSI 서버를 등록 하 고 장치 설치를 완료 하는 방법을 설명 합니다."
+title: "Microsoft Azure StorSimple 가상 배열 iSCSI 서버 설정 | Microsoft Docs"
+description: "초기 설정을 수행하고, StorSimple iSCSI 서버를 등록하고, 장치 설정을 완료하는 방법을 설명합니다."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 02/27/2017
 ms.author: alkohli
-ms.openlocfilehash: b4ff6391cb2af69d4e83dcdac5e027f8498005b2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 076df176d7cd40c009aea27004fe0f4415999c80
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="deploy-storsimple-virtual-array--set-up-as-an-iscsi-server-via-azure-portal"></a>StorSimple 가상 배열 배포 – Azure Portal을 통해 iSCSI 서버로 설정
 
@@ -26,217 +26,217 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="overview"></a>개요
 
-이 배포 자습서에는 Microsoft Azure StorSimple 가상 배열 toohello 적용 됩니다. 이 자습서에서는 방법 tooperform hello 초기 설정 완료 hello 장치 설치 StorSimple iSCSI 서버를 등록 하 고 다음 만들기, 탑재, 초기화 및 포맷 iSCSI 서버로 구성 된 StorSimple 가상 배열에 있는 볼륨을 설명 합니다. 
+이 배포 자습서는 Microsoft Azure StorSimple 가상 배열에 적용됩니다. 이 자습서는 iSCSI 서버에서 구성된 StorSimple 가상 배열에서 초기 설정을 수행하고, StorSimple iSCSI 서버를 등록하고, 장치 설정을 완료하고, StorSimple 가상 장치 iSCSI 서버에서 볼륨을 만들고, 탑재하고, 초기화하고, 포맷하는 방법을 설명합니다. 
 
-여기 설명 된 hello 절차 too1 시간 toocomplete 약 30 분을 수행 합니다. 이 문서에서 게시 하는 hello 정보에는 가상 배열 tooStorSimple 적용 됩니다.
+여기서 설명된 프로시저를 완료하려면 30분에서 1시간 정도가 소요됩니다. 이 문서에 게시된 정보는 StorSimple 가상 배열에만 적용됩니다.
 
 ## <a name="setup-prerequisites"></a>설정 필수 조건
 
 StorSimple 가상 배열을 구성하고 설정하기 전에 다음 사항을 확인합니다.
 
-* 가상 배열 사용자를 프로 비전 하 고에 설명 된 대로 tooit 연결 [배포 StorSimple 가상 배열-프로 비전 Hyper-v에서 가상 배열](storsimple-ova-deploy2-provision-hyperv.md) 또는 [배포 StorSimple 가상 배열-VMware에 가상 배열 프로 비전 ](storsimple-virtual-array-deploy2-provision-vmware.md).
-* Hello 하 여 만든 toomanage StorSimple 가상 배열 StorSimple 장치 관리자 서비스에서에서 서비스 등록 키 hello 해야 합니다. 자세한 내용은 참조 **2 단계: Get hello 서비스 등록 키** 에 [배포 StorSimple 가상 배열-hello 포털 준비](storsimple-virtual-array-deploy1-portal-prep.md#step-2-get-the-service-registration-key)합니다.
-* Hello 두 번째 또는 그 가상 배열 기존 StorSimple 장치 관리자 서비스를 사용 하 여 등록 된 경우에 hello 서비스 데이터 암호화 키가 있어야 합니다. 첫 번째 장치 hello가이 서비스와 성공적으로 등록 될 때이 키가 생성 되었습니다. 이 키를 잃어버린 경우 참조 **Get hello 서비스 데이터 암호화 키** 에 [사용 하 여 hello 웹 UI tooadminister StorSimple 가상 배열](storsimple-ova-web-ui-admin.md#get-the-service-data-encryption-key)합니다.
+* [StorSimple 가상 배열 배포 - Hyper-V에서 가상 배열 프로비전](storsimple-ova-deploy2-provision-hyperv.md) 또는 [StorSimple 가상 배열 배포 - VMware에서 가상 배열 프로비전](storsimple-virtual-array-deploy2-provision-vmware.md)에 설명된 대로 가상 배열을 프로비전하고 연결했습니다.
+* StorSimple 가상 배열을 관리하려고 만든 StorSimple 장치 관리자 서비스의 서비스 등록 키가 있습니다. 자세한 내용은 **StorSimple 가상 배열 배포 – 포털 준비** 의 [2단계: 서비스 등록 키 받기](storsimple-virtual-array-deploy1-portal-prep.md#step-2-get-the-service-registration-key)를 참조하세요.
+* 기존 StorSimple 장치 관리자 서비스에 가상 배열을 두 번째 또는 후속으로 등록하는 경우에는 서비스 데이터 암호화 키가 있어야 합니다. 이 키는 서비스에 첫 번째 장치가 등록될 때 생성되었습니다. 이 키를 잃어버린 경우에는 **웹 UI를 사용하여 StorSimple 가상 배열 관리** 의 [서비스 데이터 암호화 키 가져오기](storsimple-ova-web-ui-admin.md#get-the-service-data-encryption-key)를 참조하세요.
 
 ## <a name="step-by-step-setup"></a>단계별 설정
 
-단계별 지침은 tooset 이후의 hello를 사용 하 고 StorSimple 가상 배열을 구성 합니다.
+다음 단계별 지침을 사용하여 StorSimple 가상 배열을 설정 및 구성합니다.
 
-* [1 단계: hello 로컬 웹 UI 설치를 완료 하 고 장치 등록](#step-1-complete-the-local-web-ui-setup-and-register-your-device)
-* [2 단계: 전체 hello 필요한 장치 설치](#step-2-complete-the-required-device-setup)
+* [1단계: 로컬 웹 UI 설정을 완료하고 장치를 등록](#step-1-complete-the-local-web-ui-setup-and-register-your-device)
+* [2단계: 필요한 장치 설정 완료](#step-2-complete-the-required-device-setup)
 * [3단계: 볼륨 추가](#step-3-add-a-volume)
 * [4단계: 볼륨 탑재, 초기화 및 포맷](#step-4-mount-initialize-and-format-a-volume)
 
-## <a name="step-1-complete-hello-local-web-ui-setup-and-register-your-device"></a>1 단계: hello 로컬 웹 UI 설치를 완료 하 고 장치 등록
+## <a name="step-1-complete-the-local-web-ui-setup-and-register-your-device"></a>1단계: 로컬 웹 UI 설정을 완료하고 장치를 등록
 
-#### <a name="toocomplete-hello-setup-and-register-hello-device"></a>toocomplete 설치 hello 및 hello 장치 등록
+#### <a name="to-complete-the-setup-and-register-the-device"></a>설정을 완료하고 장치를 등록하려면
 
-1. 브라우저 창을 엽니다. tooconnect toohello 웹 UI 형식:
+1. 브라우저 창을 엽니다. 웹 UI 유형에 연결하려면:
    
     `https://<ip-address of network interface>`
    
-    Hello 이전 단계에서 설명 하는 hello 연결 URL을 사용 합니다. Hello 웹 사이트의 보안 인증서에 문제가 있다는 것을 알리는 오류가 표시 됩니다. 클릭 **계속 toothis 웹 페이지**합니다.
+    이전 단계에서 언급한 연결 URL을 사용합니다. 웹 사이트의 보안 인증서에 문제가 있음을 알려주는 오류가 표시됩니다. **이 웹 페이지에서 계속 진행**을 클릭합니다.
    
     ![보안 인증서 오류](./media/storsimple-virtual-array-deploy3-iscsi-setup/image3.png)
-2. Toohello 로그인 웹 UI로 하려면 가상 장치의 **StorSimpleAdmin**합니다. 3 단계에서에서 사용자가 변경한 hello 장치 관리자 암호를 입력: 시작 hello 가상 장치에서 [배포 StorSimple 가상 배열-Hyper-v에서 가상 장치 프로 비전](storsimple-virtual-array-deploy2-provision-hyperv.md) 또는 [배포 StorSimple 가상 배열- VMware에 가상 장치를 프로 비전](storsimple-virtual-array-deploy2-provision-vmware.md)합니다.
+2. 가상 장치의 웹 UI에 **StorSimpleAdmin**으로 로그인합니다. [StorSimple 가상 배열 배포 - Hyper-V에서 가상 장치 프로비전](storsimple-virtual-array-deploy2-provision-hyperv.md) 또는 [StorSimple 가상 배열 배포 - VMware에서 가상 장치 프로비전](storsimple-virtual-array-deploy2-provision-vmware.md)의 3단계: 가상 장치 시작에서 변경한 장치 관리자 암호를 입력합니다.
    
     ![로그인 페이지](./media/storsimple-virtual-array-deploy3-iscsi-setup/image4.png)
-3. Toohello 수행할 **홈** 페이지. 이 페이지에서는 hello tooconfigure와 레지스터 hello hello StorSimple 장치 관리자 서비스를 사용 하 여 가상 장치 다양 한 설정이 필요 합니다. 해당 hello 참고 **네트워크 설정**, **웹 프록시 설정**, 및 **시간 설정** 는 선택 사항입니다. 필요한 설정은 hello **장치 설정** 및 **클라우드 설정**합니다.
+3. **홈** 페이지로 이동합니다. 이 페이지는 StorSimple 장치 관리자 서비스에 가상 장치를 구성하고 등록하는 데 필요한 다양한 설정을 설명합니다. **네트워크 설정**, **웹 프록시 설정**, **시간 설정**은 선택 사항입니다. 필요한 설정은 **장치 설정** 및 **클라우드 설정**입니다.
    
     ![홈 페이지](./media/storsimple-virtual-array-deploy3-iscsi-setup/image5.png)
-4. Hello에 **네트워크 설정** 페이지 **네트워크 인터페이스**, 데이터 0을 자동으로 구성 됩니다. 각 네트워크 인터페이스 기본 tooget으로 IP 주소는 자동으로 설정 됩니다 (DHCP). 따라서 IP 주소, 서브넷 및 게이트웨이가 자동으로 할당됩니다(IPv4 및 IPv6 모두에 대해).
+4. **네트워크 설정** 페이지의 **네트워크 인터페이스**에서 DATA 0이 자동으로 구성됩니다. 각 네트워크 인터페이스는 IP 주소를 자동으로 가져오도록(DHCP) 기본 설정됩니다. 따라서 IP 주소, 서브넷 및 게이트웨이가 자동으로 할당됩니다(IPv4 및 IPv6 모두에 대해).
    
-    ISCSI 서버 (tooprovision 블록 저장소)로 장치 toodeploy 계획할 때는 hello를 사용 하지 않도록 설정 하는 것이 좋습니다 **IP 주소를 자동으로 가져오기** 옵션 및 고정 IP 주소를 구성 합니다.
+    장치를 iSCSI 서버(블록 저장소를 프로비전하기 위해)로 배포할 계획이므로, **자동으로 IP 주소 받기** 옵션을 사용하지 않도록 설정하고 고정 IP 주소를 구성하는 것이 좋습니다.
    
     ![네트워크 설정 페이지](./media/storsimple-virtual-array-deploy3-iscsi-setup/image6.png)
    
-    Hello hello 장치의 프로 비전 중 둘 이상의 네트워크 인터페이스를 추가한 경우에 여기 구성할 수 있습니다. 네트워크 인터페이스를 IPv4로만 구성하거나 IPv4와 IPv6 둘 다로 구성할 수 있습니다. IPv6 전용 구성은 지원되지 않습니다.
-5. 에 사용 되므로 장치 시도 클라우드 저장소 서비스 공급자 또는 tooresolve toocommunicate 장치 이름으로 파일 서버로 구성 된 경우에 DNS 서버가 필요 합니다. Hello에 **네트워크 설정** hello 페이지 **DNS 서버**:
+    장치를 프로비전하는 동안 네트워크 인터페이스를 둘 이상 추가한 경우에는 여기에서 구성할 수 있습니다. 네트워크 인터페이스를 IPv4로만 구성하거나 IPv4와 IPv6 둘 다로 구성할 수 있습니다. IPv6 전용 구성은 지원되지 않습니다.
+5. 장치가 클라우드 저장소 서비스 공급자와 통신하려고 시도하거나 파일 서버로 구성된 경우 이름으로 장치를 확인하려고 시도하는 경우에 DNS 서버가 사용되기 때문에 DNS 서버가 필요합니다. **네트워크 설정** 페이지의 **DNS 서버** 아래에서:
    
-   1. 기본 및 보조 DNS 서버는 자동으로 구성됩니다. Tooconfigure 고정 IP 주소를 선택한 경우에 DNS 서버를 지정할 수 있습니다. 고가용성을 위해 기본 및 보조 DNS 서버를 구성하는 것이 좋습니다.
-   2. **Apply**를 클릭합니다. 적용 되 고 hello 네트워크 설정의 유효성을 검사 합니다.
-6. Hello에 **장치 설정** 페이지:
+   1. 기본 및 보조 DNS 서버는 자동으로 구성됩니다. 고정 IP 주소를 구성하도록 선택하면 DNS 서버를 지정할 수 있습니다. 고가용성을 위해 기본 및 보조 DNS 서버를 구성하는 것이 좋습니다.
+   2. **적용**을 클릭합니다. 네트워크 설정이 적용되고 유효성 검사가 수행됩니다.
+6. **장치 설정** 페이지에서:
    
-   1. 고유한 할당 **이름** tooyour 장치입니다. 이름에는 1-15자를 사용할 수 있으며 문자, 숫자 및 하이픈을 포함할 수 있습니다.
-   2. Hello 클릭 **iSCSI 서버** 아이콘 ![iSCSI 서버 아이콘](./media/storsimple-virtual-array-deploy3-iscsi-setup/image7.png) hello에 대 한 **형식** 만들고 있는 장치입니다. ISCSI 서버 tooprovision 한 블록 저장소를 수 있습니다.
-   3. 지정 하는 경우이 장치 toobe 도메인에 가입 합니다. 장치 iSCSI 서버를 사용 하는 경우에 다음 hello 도메인에 가입 하는 선택 사항입니다. Toonot 조인 iSCSI 서버 tooa 도메인을 결정 한 경우 클릭 **적용**, hello 설정 toobe 적용 될 때까지 기다리는 및 toohello 다음 단계를 건너 뛰 세요.
+   1. 장치에 고유한 **이름** 을 할당합니다. 이름에는 1-15자를 사용할 수 있으며 문자, 숫자 및 하이픈을 포함할 수 있습니다.
+   2. 만드는 장치의 **유형**에 대해 **iSCSI 서버** 아이콘 ![iSCSI 서버 아이콘](./media/storsimple-virtual-array-deploy3-iscsi-setup/image7.png)을 클릭합니다. iSCSI 서버에서 블록 저장소를 프로비전할 수 있습니다.
+   3. 이 장치를 도메인에 가입할지 지정합니다. 장치가 iSCSI 서버인 경우, 도메인 가입은 선택 사항입니다. iSCSI 서버를 도메인에 가입하지 않으려면, **적용**을 클릭하고 설정이 적용될 때까지 기다린 후에 다음 단계로 건너뜁니다.
       
-       Toojoin hello 장치 tooa 도메인을 선택 합니다. **도메인 이름**을 입력하고 **적용**을 클릭합니다.
+       장치를 도메인에 가입하려면 **도메인 이름**을 입력하고 **적용**을 클릭합니다.
       
       > [!NOTE]
-      > 가상 배열 자체 Microsoft Azure Active Directory 및 그룹 정책 개체 (GPO)에 대 한 조직 구성 단위 (OU) 인지 확인 iSCSI 서버 tooa 도메인에 가입 하는 경우에 적용 된 tooit이 됩니다.
+      > iSCSI 서버를 도메인에 연결하는 경우 가상 배열이 Microsoft Azure Active Directory용 자체 OU(조직 구성 단위)에 있으며 GPO(그룹 정책 개체)가 적용되지 않았는지 확인합니다.
       > 
       > 
-   4. 대화 상자가 표시됩니다. 지정 된 형식의 hello 도메인 자격 증명을 입력 합니다. Hello 확인 아이콘을 클릭 합니다. ![확인 아이콘](./media/storsimple-virtual-array-deploy3-iscsi-setup/image15.png)에서도 확인할 수 있습니다. hello 도메인 자격 증명 확인 됩니다. Hello 자격 증명이 올바르지 않을 경우 오류 메시지가 나타납니다.
+   4. 대화 상자가 표시됩니다. 지정된 형식으로 도메인 자격 증명을 입력합니다. 확인 아이콘 ![확인 아이콘](./media/storsimple-virtual-array-deploy3-iscsi-setup/image15.png)을 클릭합니다. 도메인 자격 증명이 확인됩니다. 자격 증명이 올바르지 않으면 오류 메시지가 표시됩니다.
       
        ![자격 증명](./media/storsimple-virtual-array-deploy3-iscsi-setup/image8.png)
-   5. **Apply**를 클릭합니다. 적용 되 고 hello 장치 설정의 유효성을 검사 합니다.
-7. 선택적으로 웹 프록시 서버를 구성합니다. 웹 프록시 구성은 선택 사항이지만 웹 프록시를 사용하면 여기서만 구성할 수 있습니다.
+   5. **적용**을 클릭합니다. 장치 설정이 적용되고 유효성 검사가 수행됩니다.
+7. (선택 사항) 웹 프록시 서버를 구성합니다. 웹 프록시 구성은 선택 사항이지만 웹 프록시를 사용하면 여기서만 구성할 수 있습니다.
    
     ![웹 프록시 구성](./media/storsimple-virtual-array-deploy3-iscsi-setup/image9.png)
    
-    Hello에 **웹 프록시** 페이지:
+    **웹 프록시** 페이지에서:
    
-   1. 공급 hello **웹 프록시 URL** 형식에서: *http://host-IP 주소* 또는 *FDQN:Port 번호*합니다. HTTPS URL은 지원되지 않습니다.
+   1. *http://host-IP 주소* 또는 *FDQN:포트 번호* 형식으로 **웹 프록시 URL**을 입력합니다. HTTPS URL은 지원되지 않습니다.
    2. **인증**은 **기본** 또는 **없음**으로 지정합니다.
-   3. 인증을 사용 하는 또한 경우 tooprovide는 **Username** 및 **암호**합니다.
-   4. **Apply**를 클릭합니다. 유효성 검사 되 고 구성 하는 hello 웹 프록시 설정을 적용 합니다.
-8. 표준 시간대 등 장치에 대 한 hello 시간 설정을 구성 하 고 기본 및 보조 NTP 서버 hello (선택 사항). 클라우드 서비스 공급자와 인증할 수 있도록 장치 시간을 동기화해야 하기 때문에 NTP 서버가 필요합니다.
+   3. 인증을 사용하는 경우에는 **사용자 이름** 및 **암호**도 제공해야 합니다.
+   4. **적용**을 클릭합니다. 구성된 웹 프록시 설정의 유효성을 검사하고 적용합니다.
+8. (선택 사항) 장치에 대한 시간 설정(예: 표준 시간대 및 기본 및 보조 NTP 서버)을 구성합니다. 클라우드 서비스 공급자와 인증할 수 있도록 장치 시간을 동기화해야 하기 때문에 NTP 서버가 필요합니다.
    
     ![시간 설정](./media/storsimple-virtual-array-deploy3-iscsi-setup/image10.png)
    
-    Hello에 **시간 설정** 페이지:
+    **시간 설정** 페이지에서:
    
-   1. Hello 드롭 다운 목록에서 선택 hello **시간대** hello 지리적 위치 장치 배포 되 고 있는 hello에 기반 합니다. 장치에 대 한 hello 기본 표준 시간대 PST입니다. 장치는 모든 예약된 작업에 대해 이 표준 시간대를 사용합니다.
-   2. 지정 된 **주 NTP 서버** 장치에 대 한 하거나 time.windows.com의 hello 기본값을 적용 합니다. 네트워크 사용자 데이터 센터 toohello 인터넷에서에서 NTP 트래픽이 toopass 허용 되는지 확인 합니다.
+   1. 드롭다운 목록에서 해당 장치가 배포되는 지리적 위치를 기반으로 **표준 시간대**를 선택합니다. 장치의 기본 표준 시간대는 PST입니다. 장치는 모든 예약된 작업에 대해 이 표준 시간대를 사용합니다.
+   2. 장치에 **기본 NTP 서버** 를 지정하거나 time.windows.com의 기본값을 적용합니다. 네트워크에서 NTP 트래픽이 데이터 센터에서 인터넷으로 전달되도록 허용하는지 확인합니다.
    3. 선택적으로 장치에 대한 **보조 NTP 서버**를 지정합니다.
-   4. **Apply**를 클릭합니다. 유효성 검사 되 고 구성 하는 hello 시간 설정을 적용 합니다.
-9. 장치에 대 한 hello 클라우드 설정을 구성 합니다. 이 단계에서는 hello 로컬 장치 구성을 완료 한 후 StorSimple 장치 관리자 서비스와 hello 장치를 등록 합니다.
+   4. **적용**을 클릭합니다. 구성된 시간 설정의 유효성을 검사하고 적용합니다.
+9. 장치에 대한 클라우드 설정을 구성합니다. 이 단계에서는 로컬 장치 구성을 완료한 다음 StorSimple 장치 관리자 서비스에 장치를 등록합니다.
    
-   1. Hello 입력 **서비스 등록 키** 가져온 **2 단계: Get hello 서비스 등록 키** 에 [배포 StorSimple 가상 배열-포털 hello 준비](storsimple-virtual-array-deploy1-portal-prep.md#step-2-get-the-service-registration-key)합니다.
-   2. Tooprovide hello 할 경우이 정보가이 서비스에 등록 하는 hello 첫 번째 장치를 **서비스 데이터 암호화 키**합니다. 이 키는 hello 서비스 등록 키 tooregister 추가 장치를 StorSimple 장치 관리자 서비스 hello 필요 합니다. 자세한 내용은 참조 너무[Get hello 서비스 데이터 암호화 키](storsimple-ova-web-ui-admin.md#get-the-service-data-encryption-key) 에 로컬 웹 UI입니다.
-   3. **Register**를 클릭합니다. Hello 장치 다시 시작 됩니다. Hello 장치를 등록 하기 전에 2-3 분 동안 toowait을 할 수 있습니다. Hello 장치를 다시 시작한 후 이동 됩니다 toohello 로그인 페이지에 있습니다.
+   1. [StorSimple 가상 배열 배포 - 포털 준비](storsimple-virtual-array-deploy1-portal-prep.md#step-2-get-the-service-registration-key)에서 **2단계:서비스 등록 키 얻기**에서 얻은 **서비스 등록 키**를 입력합니다.
+   2. 서비스에 장치를 처음으로 등록하는 경우가 아니라면 **서비스 데이터 암호화 키**를 제공해야 합니다. 이 키는 StorSimple 장치 관리자 서비스에 추가 장치를 등록하기 위한 서비스 등록 키에 필요합니다. 자세한 내용은 로컬 웹 UI의 [서비스 데이터 암호화 키 받기](storsimple-ova-web-ui-admin.md#get-the-service-data-encryption-key) 를 참조하세요.
+   3. **등록**을 클릭합니다. 장치가 다시 시작됩니다. 장치 등록이 완료되기까지 2-3분 정도 기다려야 할 수 있습니다. 장치가 다시 시작된 후 로그인 페이지가 열립니다.
       
       ![장치 등록](./media/storsimple-virtual-array-deploy3-iscsi-setup/image11.png)
-10. Azure 포털 toohello를 반환 합니다.
-11. Toohello 이동 **장치** 서비스의 블레이드입니다. 리소스가 많이 있는 경우 **모든 리소스**를 클릭하고 서비스 이름(필요한 경우 검색)을 클릭한 다음 **장치**를 클릭합니다.
-12. Hello에 **장치** 블레이드에서 hello 장치 성공적으로 hello 상태를 조회 하 여 toohello 서비스 연결을 확인 합니다. hello 장치 상태가 **를 tooset 준비**합니다.
+10. Azure Portal로 돌아갑니다.
+11. 서비스의 **장치** 블레이드를 탐색합니다. 리소스가 많이 있는 경우 **모든 리소스**를 클릭하고 서비스 이름(필요한 경우 검색)을 클릭한 다음 **장치**를 클릭합니다.
+12. **장치** 블레이드에서 상태를 조회하여 장치가 서비스에 성공적으로 연결되었는지 확인합니다. 장치 상태는 **설정할 준비 완료**여야 합니다.
     
     ![장치 등록](./media/storsimple-virtual-array-deploy3-iscsi-setup/deployis1m.png)
 
-## <a name="step-2-configure-hello-device-as-iscsi-server"></a>2 단계: iSCSI 서버로 hello 장치 구성
+## <a name="step-2-configure-the-device-as-iscsi-server"></a>2단계: iSCSI 서버로 장치 구성
 
-Hello Azure 포털 toocomplete hello 필요한 장치 설치 단계를 수행 하는 hello를 수행 합니다.
+필요한 장치 설정을 완료하려면 Azure Portal에서 다음 단계를 수행합니다.
 
-#### <a name="tooconfigure-hello-device-as-iscsi-server"></a>iSCSI 서버로 tooconfigure hello 장치
+#### <a name="to-configure-the-device-as-iscsi-server"></a>iSCSI 서버로 장치를 구성하려면
 
-1. Tooyour StorSimple 장치 관리자 서비스를 이동 하 고 이동 하 여 너무**관리 > 장치**합니다. Hello에 **장치** 블레이드, 방금 만든 선택 hello 장치입니다. 이 장치도 표시 됩니다 **를 tooset 준비**합니다.
+1. StorSimple 장치 관리자 서비스로 이동한 다음 **관리 > 장치**로 이동합니다. **장치** 블레이드에서 방금 만든 장치를 선택합니다. 이 장치는 **설정할 준비 완료**로 표시됩니다.
    
     ![iSCSI 서버로 장치 구성](./media/storsimple-virtual-array-deploy3-iscsi-setup/deployis1m.png) 
-2. 클릭 하 여 hello 장치의 hello 장치 준비 toosetup 인지 나타내는 배너 메시지가 표시 됩니다.
+2. 장치를 클릭하고 장치를 설치할 준비가 되었음을 나타내는 배너 메시지가 표시됩니다.
    
     ![iSCSI 서버로 장치 구성](./media/storsimple-virtual-array-deploy3-iscsi-setup/deployis2m.png)  
-3. 클릭 **구성** hello 장치 명령 모음에서 합니다. Hello를 열어서이 **구성** 블레이드입니다. Hello에 **구성** 블레이드에서 다음 hello지 않습니다.
+3. 장치 명령 모음에서 **구성**을 클릭합니다. 그러면 **구성** 블레이드가 열립니다. **구성** 블레이드에서 다음을 수행합니다.
    
-   * hello iSCSI 서버 이름이 자동으로 채워집니다.
-   * Hello 클라우드 저장소 암호화 너무 설정 되어 있는지 확인**Enabled**합니다. 이렇게 하면 hello 장치 toohello 클라우드에서 전송 된 hello 데이터 암호화 됩니다.
+   * iSCSI 서버 이름은 자동으로 채워집니다.
+   * 클라우드 저장소 암호화가 **사용**으로 설정되었는지 확인합니다. 이를 통해 이 장치에서 클라우드로 전송되는 데이터가 암호화되어 있는지 확인합니다.
    * 32자 암호화 키를 지정하고 나중에 참조할 수는 키 관리 앱에 기록합니다.
-   * 장치와 함께 사용 되는 저장소 계정 toobe를 선택 합니다. 이 구독에서 기존 저장소 계정을 선택 하거나 클릭할 수 있는 **추가** toochoose 다른 구독에서 계정 합니다.
+   * 장치에 사용할 저장소 계정을 선택합니다. 구독에서 기존 저장소 계정을 선택하거나 **추가**를 클릭하여 다른 구독에서 계정을 선택할 수 있습니다.
      
      ![iSCSI 서버로 장치 구성](./media/storsimple-virtual-array-deploy3-iscsi-setup/deployis4m.png)
-4. 클릭 **구성** toocomplete hello iSCSI 서버 설정 합니다.
+4. **구성**을 클릭하여 iSCSI 서버 설정을 완료합니다.
    
     ![iSCSI 서버로 장치 구성](./media/storsimple-virtual-array-deploy3-iscsi-setup/deployis5m.png) 
-5. 알려 hello iSCSI 서버 만들기 진행 중입니다. Hello iSCSI 서버를 성공적으로 만든 후 hello **장치** 블레이드 업데이트 되 고 해당 장치 상태가 hello **온라인**합니다.
+5. iSCSI 서버 만들기가 진행 중이라는 알림이 표시됩니다. iSCSI 서버를 성공적으로 만든 후에 **장치** 블레이드가 업데이트되고 해당 장치가 **온라인** 상태가 됩니다.
    
     ![iSCSI 서버로 장치 구성](./media/storsimple-virtual-array-deploy3-iscsi-setup/deployis9m.png)
 
 ## <a name="step-3-add-a-volume"></a>3단계: 볼륨 추가
 
-1. Hello에 **장치** 블레이드, 선택 hello 장치를 방금 iSCSI 서버로 구성 합니다. 클릭 **중...**  (이 행에 또는 마우스 오른쪽 단추로) hello 상황에 맞는 메뉴에서 선택 하 고 **볼륨 추가**합니다. 클릭할 수도 있습니다 **+ 볼륨 추가** hello 명령 모음에서 합니다. Hello를 열어서이 **볼륨 추가** 블레이드입니다.
+1. **장치** 블레이드에서 iSCSI 서버로 구성한 장치를 선택합니다. 또는 행에서 마우스 오른쪽 버튼으로 **...**을 클릭하고 상황에 맞는 메뉴에서 **볼륨 추가**를 선택합니다. 명령 모음에서 **+볼륨 추가**를 클릭할 수도 있습니다. 그려면 **볼륨 추가** 블레이드가 열립니다.
    
     ![볼륨 추가](./media/storsimple-virtual-array-deploy3-iscsi-setup/deployis10m.png)
-2. Hello에 **볼륨 추가** 블레이드에서 다음 hello지 않습니다:
+2. **볼륨 추가** 블레이드에서 다음을 수행합니다.
    
-   * Hello에 **볼륨 이름을** 필드에서 볼륨에 대 한 고유한 이름을 입력 합니다. hello 이름에는 3 too127 문자를 포함 하는 문자열 이어야 합니다.
-   * Hello에 **형식** 드롭다운 목록에서 지정 하는지 여부를 toocreate는 **계층화 됨** 또는 **로컬로 고정** 볼륨입니다. 로컬 보증, 낮은 대기 시간 및 높은 성능을 필요로 하는 워크로드의 경우 **로컬로 고정된** **볼륨**을 선택합니다. 다른 모든 데이터에 대해서는 **계층화된** **볼륨**을 선택합니다.
-   * Hello에 **용량** 필드 hello hello 볼륨 크기를 지정 합니다. 계층화된 볼륨은 500GB에서 5TB 사이여야 하고 로컬로 고정된 볼륨은 50GB에서 500GB 사이여야 합니다.
+   * **볼륨 이름** 필드에서 볼륨의 고유 이름을 입력합니다. 이름은 3~127개의 문자를 포함하는 문자열이어야 합니다.
+   * **형식** 드롭다운 목록에서 **계층** 또는 **로컬로 고정** 볼륨을 만들지 여부를 지정합니다. 로컬 보증, 낮은 대기 시간 및 높은 성능을 필요로 하는 워크로드의 경우 **로컬로 고정된** **볼륨**을 선택합니다. 다른 모든 데이터에 대해서는 **계층화된** **볼륨**을 선택합니다.
+   * **용량** 필드에서 볼륨의 크기를 지정합니다. 계층화된 볼륨은 500GB에서 5TB 사이여야 하고 로컬로 고정된 볼륨은 50GB에서 500GB 사이여야 합니다.
      
-     로컬 고정된 볼륨 씩 프로 비전 하 고 hello hello 볼륨의 기본 데이터를 hello 장치에 유지 되 고 toohello 클라우드를 분산 하지 않습니다.
+     로컬로 고정된 볼륨은 씩 프로비전되며, 볼륨의 기본 데이터가 장치에 유지되고 클라우드에 유출되지 않도록 합니다.
      
-     계층화 된 볼륨 hello에 다른 손 씬 프로 비전 합니다. 계층화 된 볼륨을 만들 때 hello 공간의 약 10 %hello 로컬 계층에서 프로 비전 하 고 hello 공간을 90 %hello 클라우드 프로 비전 됩니다. 예를 들어 1 t B 볼륨을 프로 비전, 100GB hello 로컬 공간에 있게 및 900GB hello 클라우드에서 사용할 수 있도록 하는 경우 데이터 계층이 때 hello 합니다. 이 차례로 것을 의미 하는 hello 장치에서 모든 hello 로컬 공간이 부족 하면 있습니다 (하기 때문에 hello 10%를 사용할 수 있습니다)를 계층화 된 공유에 제공할 수 없습니다.
+     반면에 계층화된 본륨은 씬 프로비전됩니다. 계층화된 볼륨을 만들 때 공간의 약 10%는 로컬 계층에 프로비전되고 공간의 90%는 클라우드에 프로비전됩니다. 예를 들어, 1TB 볼륨을 프로비전하는 경우 100GB는 로컬 공간에 상주하고 900GB는 데이터가 계층화될 때 클라우드에서 사용됩니다. 이것은 장치의 로컬 공간이 부족하면 계층화된 공유를 프로비전할 수 없다는 것을(10%를 사용할 수 없기 때문에) 의미합니다.
      
      ![볼륨 추가](./media/storsimple-virtual-array-deploy3-iscsi-setup/deployis12.png)
-   * 클릭 **호스트 연결**, 액세스 제어 레코드 (ACR) 해당 toohello iSCSI 초기자는 tooconnect toothis 볼륨을 클릭 한 다음 선택 **선택**합니다. <br><br> 
-3. tooadd 새 연결 된 호스트를 클릭 **새로 추가**, hello 호스트와 해당 iSCSI에 대 한 이름을 입력 하 고 클릭 한 다음 정규화 된 이름 (IQN) **추가**합니다. IQN hello를 설정 하지 않은 경우 너무 이동[부록 a: 가져오기 hello Windows Server 호스트의 IQN](#appendix-a-get-the-iqn-of-a-windows-server-host)합니다.
+   * **호스트 연결**을 클릭하고 이 볼륨에 연결하려는 iSCSI 초기자에 해당하는 ACR(액세스 제어 레코드)를 선택한 다음 **선택**을 클릭합니다. <br><br> 
+3. 새롭게 연결된 호스트를 추가하려면 **새로 추가**를 클릭하고 호스트의 이름 및 해당 IQN(iSCSI 정규화 이름)을 입력한 다음 **추가**를 클릭합니다. IQN이 없는 경우 [부록 A: Windows Server 호스트의 IQN 가져오기](#appendix-a-get-the-iqn-of-a-windows-server-host)로 이동합니다.
    
       ![볼륨 추가](./media/storsimple-virtual-array-deploy3-iscsi-setup/deployis15m.png)
-4. 볼륨 구성을 완료했다면 **확인**을 클릭합니다. 지정 된 hello로 볼륨을 만들 수는 설정 하 고 알림이 표시 됩니다. 기본적으로 모니터링 및 백업을 반드시 hello 볼륨에 대해 설정 됩니다.
+4. 볼륨 구성을 완료했다면 **확인**을 클릭합니다. 볼륨이 지정된 설정으로 만들어지면 알림이 표시됩니다. 기본적으로 볼륨에 대한 모니터링 및 백업을 사용하도록 설정됩니다.
    
      ![볼륨 추가](./media/storsimple-virtual-array-deploy3-iscsi-setup/deployis18m.png)
-5. 볼륨 hello tooconfirm를 만드는 방법, 이동 toohello **볼륨** 블레이드입니다. Hello 볼륨이 나열 되어 표시 됩니다.
+5. 볼륨이 성공적으로 만들어졌는지 확인하려면 **볼륨** 블레이드로 이동합니다. 볼륨이 목록으로 표시되어야 합니다.
    
    ![볼륨 추가](./media/storsimple-virtual-array-deploy3-iscsi-setup/deployis20m.png)
 
 ## <a name="step-4-mount-initialize-and-format-a-volume"></a>4단계: 볼륨 탑재, 초기화 및 포맷
 
-Hello 수행 단계 toomount 다음 초기화 및 Windows Server 호스트에 StorSimple 볼륨을 포맷 합니다.
+다음 단계를 수행하여 Windows Server 호스트에서 StorSimple 볼륨을 탑재, 초기화 및 포맷합니다.
 
-#### <a name="toomount-initialize-and-format-a-volume"></a>toomount, 초기화 및 볼륨 포맷
+#### <a name="to-mount-initialize-and-format-a-volume"></a>볼륨을 탑재, 초기화 및 포맷하려면
 
-1. 열기 hello **iSCSI 초기자** hello 적절 한 서버에 응용 프로그램입니다.
-2. Hello에 **iSCSI 초기자 속성** 창의 hello에 **검색** 탭을 클릭 **포털 검색**합니다.
+1. 적절한 서버에서 **iSCSI 초기자** 앱을 엽니다.
+2. **iSCSI 초기자 속성** 창의 **검색** 탭에서 **포털 검색**을 클릭합니다.
    
     ![포털 검색](./media/storsimple-virtual-array-deploy3-iscsi-setup/image22.png)
-3. Hello에 **대상 포털 검색** 대화 상자에서 사용할 수 있는 iSCSI 네트워크 인터페이스의 hello IP 주소를 제공 하 고 클릭 **확인**합니다.
+3. **대상 포털 검색** 대화 상자에서 iSCSI 사용 네트워크 인터페이스의 IP 주소를 입력하고 **확인**을 클릭합니다.
    
     ![IP 주소](./media/storsimple-virtual-array-deploy3-iscsi-setup/image23.png)
-4. Hello에 **iSCSI 초기자 속성** 창의 hello에 **대상** 탭, 찾기 hello **대상 검색**합니다. (각 볼륨이 검색 된 대상 됩니다.) hello 장치 상태에 표시 되어야 **비활성**합니다.
+4. **iSCSI 초기자 속성** 창의 **대상** 탭에서 **검색된 대상**을 찾습니다. (각 볼륨은 검색된 대상이 됩니다.) 장치 상태가 **비활성**으로 표시되어야 합니다.
    
     ![검색된 대상](./media/storsimple-virtual-array-deploy3-iscsi-setup/image24.png)
-5. 대상 장치를 선택하고 **연결**을 클릭합니다. Hello 상태도 변경 해야 hello 장치가 연결 된 후**연결 됨**합니다. (Hello Microsoft iSCSI 초기자를 사용 하는 방법에 대 한 자세한 내용은 참조 [iSCSI 초기자 설치 및 구성 하는 Microsoft][1]합니다.
+5. 대상 장치를 선택하고 **연결**을 클릭합니다. 장치가 연결되면 상태가 **연결됨**으로 변경됩니다. Microsoft iSCSI 초기자 사용에 대한 자세한 내용은 [Microsoft iSCSI 초기자 설치 및 구성][1]을 참조하세요.
    
     ![대상 장치 선택](./media/storsimple-virtual-array-deploy3-iscsi-setup/image25.png)
-6. Windows 호스트에서 hello Windows 로고 키 + X를 클릭 한 다음 **실행**합니다.
-7. Hello에 **실행** 대화 상자에서 **Diskmgmt.msc**합니다. 클릭 **확인**, 및 hello **디스크 관리** 대화 상자가 표시 됩니다. hello 오른쪽 창에는 호스트에서 hello 볼륨이 표시 됩니다.
-8. Hello에 **디스크 관리** 창의 hello 탑재 된 볼륨이 표시 됩니다 hello 다음 그림에에서 나와 있는 것 처럼 합니다. 발견 된 hello 볼륨을 마우스 오른쪽 단추로 클릭 (hello 디스크 이름 클릭)를 클릭 하 고 **온라인**합니다.
+6. Windows 호스트에서 Windows 로고 키 + X를 누르고 **실행**을 클릭합니다.
+7. **실행** 대화 상자에 **Diskmgmt.msc**를 입력합니다. **확인**을 클릭하면 **디스크 관리** 대화 상자가 나타납니다. 오른쪽 창에 호스트의 볼륨이 표시됩니다.
+8. **디스크 관리** 창에 탑재된 볼륨이 다음 그림과 같이 표시됩니다. 검색된 볼륨을 마우스 오른쪽 단추로 클릭(디스크 이름 클릭)한 다음 **온라인**을 클릭합니다.
    
     ![디스크 관리](./media/storsimple-virtual-array-deploy3-iscsi-setup/image26.png)
 9. 마우스 오른쪽 단추를 클릭한 다음 **디스크 초기화**를 선택합니다.
    
     ![디스크 1 초기화](./media/storsimple-virtual-array-deploy3-iscsi-setup/image27.png)
-10. Hello 대화 상자에서 디스크 tooinitialize hello를 선택한 다음 클릭 **확인**합니다.
+10. 대화 상자에서 초기화하려는 디스크를 선택한 다음 **확인**을 클릭합니다.
     
     ![디스크 2 초기화](./media/storsimple-virtual-array-deploy3-iscsi-setup/image28.png)
-11. hello 새 단순 볼륨 마법사를 시작합니다. 디스크 크기를 선택한 후 **다음**을 클릭합니다.
+11. 새 단순 볼륨 마법사가 시작됩니다. 디스크 크기를 선택한 후 **다음**을 클릭합니다.
     
     ![새 볼륨 마법사 1](./media/storsimple-virtual-array-deploy3-iscsi-setup/image29.png)
-12. 드라이브 문자 toohello 볼륨을 할당 한 후 클릭 **다음**합니다.
+12. 볼륨에 드라이브 문자를 할당한 후 **다음**을 클릭합니다.
     
     ![새 볼륨 마법사 2](./media/storsimple-virtual-array-deploy3-iscsi-setup/image30.png)
-13. Hello 매개 변수 tooformat hello 볼륨을 입력 합니다. **Windows Server에는 NTFS만 지원됩니다.** 할당 단위 크기 too64K hello를 설정 합니다. 볼륨의 레이블을 지정합니다. StorSimple 가상 배열에 제공 된이 이름 toobe 동일한 toohello 볼륨 이름에 대 한 권장된 모범 사례는 경우 **다음**을 누릅니다.
+13. 볼륨을 포맷하는 매개 변수를 입력합니다. **Windows Server에는 NTFS만 지원됩니다.** 할당 단위 크기를 64K로 설정합니다. 볼륨의 레이블을 지정합니다. 이 이름은 StorSimple 가상 배열에 지정한 볼륨 이름과 동일하게 지정하는 것이 좋습니다. **다음**을 누릅니다.
     
     ![새 볼륨 마법사 3](./media/storsimple-virtual-array-deploy3-iscsi-setup/image31.png)
-14. 서 볼륨에 대 한 hello 값을 확인 하 고 클릭 **마침**합니다.
+14. 볼륨에 대한 값을 확인한 후 **마침**을 클릭합니다.
     
     ![새 볼륨 마법사 4](./media/storsimple-virtual-array-deploy3-iscsi-setup/image32.png)
     
-    hello 볼륨으로 표시 됩니다 **온라인** hello에 **디스크 관리** 페이지.
+    이 볼륨은 **디스크 관리** 페이지에 **온라인**으로 표시됩니다.
     
     ![온라인 볼륨](./media/storsimple-virtual-array-deploy3-iscsi-setup/image33.png)
 
 ## <a name="next-steps"></a>다음 단계
 
-어떻게 toouse hello 로컬 웹 UI 너무 자세한[StorSimple 가상 배열 관리](storsimple-ova-web-ui-admin.md)합니다.
+로컬 웹 UI를 사용하여 [StorSimple 가상 배열을 관리](storsimple-ova-web-ui-admin.md)하는 방법을 알아봅니다.
 
-## <a name="appendix-a-get-hello-iqn-of-a-windows-server-host"></a>부록 a: Get hello Windows Server 호스트의 IQN
+## <a name="appendix-a-get-the-iqn-of-a-windows-server-host"></a>부록 A: Windows Server 호스트의 IQN 가져오기
 
-다음 단계 tooget hello iSCSI hello 수행 정규화 된 이름 (IQN) Windows Server 2012를 실행 중인 Windows 호스트의 합니다.
+Windows Server 2012를 실행하는 Windows 호스트의 iSCSI 정규화된 이름(IQN)을 가져오려면 다음 단계를 수행합니다.
 
-#### <a name="tooget-hello-iqn-of-a-windows-host"></a>tooget hello Windows 호스트의 IQN
+#### <a name="to-get-the-iqn-of-a-windows-host"></a>Windows 호스트의 IQN을 가져오려면
 
-1. Windows 호스트에 hello Microsoft iSCSI 초기자를 시작 합니다.
-2. Hello에 **iSCSI 초기자 속성** 창의 hello에 **구성** 탭 선택 하 고 hello에서 hello 문자열을 복사 **초기자 이름** 필드입니다.
+1. Windows 호스트에서 Microsoft iSCSI 초기자를 시작합니다.
+2. **iSCSI 초기자 속성** 창의 **구성** 탭에서 **초기자 이름** 필드의 문자열을 선택하고 복사합니다.
    
     ![iSCSI 초기자 속성](./media/storsimple-virtual-array-deploy3-iscsi-setup/image34.png)
 3. 이 문자열을 저장합니다.

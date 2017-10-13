@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub (노드)와 aaaGet 시작 | Microsoft Docs"
-description: "Toosend 장치-클라우드 tooAzure IoT Sdk를 사용 하 여 Node.js에 대 한 IoT Hub를 메시지 하는 방법을 알아봅니다. 시뮬레이션 된 장치 및 서비스 응용 프로그램 tooregister 장치, 메시지를 보낼 만들고 IoT 허브에서 메시지를 읽은 합니다."
+title: "Azure IoT Hub 시작(Node) | Microsoft Docs"
+description: "Node.js용 IoT SDK를 사용하여 Azure IoT Hub에 장치-클라우드 메시지를 보내는 방법을 알아봅니다. 시뮬레이션된 장치 및 서비스 앱을 만들어서 장치를 등록하고 메시지를 전송하고 IoT Hub의 메시지를 읽습니다."
 services: iot-hub
 documentationcenter: nodejs
 author: dominicbetts
@@ -12,69 +12,74 @@ ms.devlang: javascript
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/22/2017
+ms.date: 08/31/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: d0747895365f2359a9c38ea1e85a5881d6efec0b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f3398e38cf7d3d28d9ca4edef5a9bca96aeaf2ab
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="connect-your-simulated-device-tooyour-iot-hub-using-node"></a>노드를 사용 하 여 시뮬레이션 된 장치 tooyour IoT 허브를 연결 합니다.
+# <a name="connect-your-simulated-device-to-your-iot-hub-using-node"></a>Node를 사용하여 IoT Hub에 시뮬레이션된 장치 연결
+
 [!INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
 
-이 자습서의 hello 끝 세 개의 Node.js 콘솔 앱을 사용할 수 있습니다.
+이 자습서의 끝 부분에서 다음의 세 가지 Node.js 콘솔 앱이 만들어집니다.
 
-* **CreateDeviceIdentity.js**, 장치 id를 만듦 및 연결 된 보안 키 tooconnect 시뮬레이션 된 장치 앱.
-* **ReadDeviceToCloudMessages.js**, 시뮬레이션 된 장치 앱에서 보낸 hello 원격 분석을 표시 하는 합니다.
-* **SimulatedDevice.js**, 이전에 만든 hello 장치 id를 가진 tooyour IoT 허브를 연결 하 고 MQTT 프로토콜 hello 하 여 모든 두 번째 원격 분석 메시지를 보냅니다.
+* **CreateDeviceIdentity.js**는 장치 ID 및 시뮬레이션된 보안 키를 만들어 시뮬레이션된 장치 앱에 연결합니다.
+* **ReadDeviceToCloudMessages.js**는 시뮬레이션된 장치 앱에서 보낸 원격 분석을 표시합니다.
+* **SimulatedDevice.js**는 앞에서 만든 장치 ID로 IoT Hub에 연결하고 MQTT 프로토콜을 사용하여 매초마다 원격 분석 메시지를 보냅니다.
 
 > [!NOTE]
-> hello 문서 [Azure IoT Sdk] [ lnk-hub-sdks] 사용할 수 있는 toobuild 두 응용 프로그램 toorun 장치와 솔루션 백 엔드에, Azure IoT Sdk hello에 대 한 정보를 제공 합니다.
-> 
-> 
+> [Azure IoT SDKs][lnk-hub-sdks] 문서는 장치와 솔루션 백 엔드에서 실행하기 위해 두 응용 프로그램을 빌드하는 데 사용할 수 있는 Azure IoT SDK에 관한 정보를 제공합니다.
 
-toocomplete이이 자습서에서는 다음 hello 필요:
+이 자습서를 완료하려면 다음이 필요합니다.
 
-* Node.js 버전 0.10.x 이상
+* Node.js 버전 4.0.x 이상
 * 활성 Azure 계정. 계정이 없는 경우 몇 분 안에 [무료 계정][lnk-free-trial]을 만들 수 있습니다.
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
-IoT Hub를 만들었습니다. Hello IoT Hub 호스트 이름 및 hello IoT 허브 연결 문자열을이 자습서의 toocomplete hello 나머지 해야 하는 것이 해야 합니다.
+IoT Hub를 만들었습니다. 이 자습서 나머지 부분을 완료하는 데 필요한 IoT Hub 호스트 이름 및 IoT Hub 연결 문자열을 갖게 되었습니다.
 
 ## <a name="create-a-device-identity"></a>장치 ID 만들기
-이 섹션에서는 hello id 레지스트리에 IoT 허브에서에서 장치 id를 작성 하는 Node.js 콘솔 앱을 만듭니다. 장치는 hello identity 레지스트리에 항목을 설정한 경우에 tooIoT 허브를 연결할 수 있습니다. 자세한 내용은 참조 hello **Id 레지스트리에** hello 섹션 [IoT 허브 개발자 가이드][lnk-devguide-identity]합니다. 이 콘솔 응용 프로그램을 실행 하면 고유한 장치 ID를 생성 및 메시지 tooIoT 허브를 키 장치-클라우드 보낼 때 장치가 tooidentify 자체를 사용할 수 있습니다.
 
-1. **createdeviceidentity**라는 새 빈 폴더를 만듭니다. Hello에 **createdeviceidentity** 폴더를 다음 명령 프롬프트에서 명령을 hello를 사용 하 여 package.json 파일을 만듭니다. 모든 hello 기본값을 적용 합니다.
-   
-    ```
+이 섹션에서는 IoT Hub의 ID 레지스트리에서 장치 ID를 만드는 Node.js 콘솔 앱을 만듭니다. ID 레지스트리에 항목이 있는 경우에만 장치를 IoT Hub에 연결할 수 있습니다. 자세한 내용은 [IoT Hub 개발자 가이드][lnk-devguide-identity]의 **ID 레지스트리** 섹션을 참조하세요. 이 앱을 실행하여 장치에서 장치-클라우드 메시지를 보낼 때 장치 자체를 식별하기 위해 사용하는 고유한 장치 ID 및 키를 생성합니다.
+
+1. `createdeviceidentity`라는 빈 폴더를 새로 만듭니다. `createdeviceidentity` 폴더의 명령 프롬프트에서 다음 명령을 사용하여 package.json 파일을 만듭니다. 모든 기본값을 수락합니다.
+
+    ```cmd/sh
     npm init
     ```
-2. Hello에 명령 프롬프트에 **createdeviceidentity** hello 명령 tooinstall hello 다음를 실행 하는 폴더 **azure iothub** 서비스 SDK 패키지:
-   
-    ```
+
+2. `createdeviceidentity` 폴더의 명령 프롬프트에서 다음 명령을 실행하여 `azure-iothub` 서비스 SDK 패키지를 설치합니다.
+
+    ```cmd/sh
     npm install azure-iothub --save
     ```
-3. 텍스트 편집기를 사용 하 여 만들는 **CreateDeviceIdentity.js** hello에 대 한 파일 **createdeviceidentity** 폴더입니다.
-4. Hello 다음 추가 `require` hello 시작 시 hello 문이 **CreateDeviceIdentity.js** 파일:
-   
-    ```
+
+3. 텍스트 편집기를 사용하여 `createdeviceidentity` 폴더에서 **CreateDeviceIdentity.js** 파일을 만듭니다.
+
+4. **CreateDeviceIdentity.js** 파일 앞에 다음 `require` 문을 추가합니다.
+
+    ```nodejs
     'use strict';
-   
+
     var iothub = require('azure-iothub');
     ```
-5. 다음 코드 toohello hello 추가 **CreateDeviceIdentity.js** 파일 및 hello hello 이전 섹션에서 만든 hello 허브에 대 한 IoT 허브 연결 문자열 hello 자리 표시자 값을 바꿉니다. 
-   
-    ```
+
+5. **CreateDeviceIdentity.js** 파일에 다음 코드를 추가합니다. 자리 표시자 값을 이전 섹션에서 만든 허브의 IoT Hub 연결 문자열로 대체합니다.
+
+    ```nodejs
     var connectionString = '{iothub connection string}';
-   
+
     var registry = iothub.Registry.fromConnectionString(connectionString);
     ```
-6. 다음 코드 toocreate hello id 레지스트리에 IoT 허브에서에 장치 정의 hello를 추가 합니다. Hello 장치 ID hello id 레지스트리에 존재 하지 않는 경우이 코드에서는 장치, 그렇지 않으면 기존 장치 hello의 hello 키 반환:
-   
-    ```
+
+6. 다음 코드를 추가하여 IoT Hub의 ID 레지스트리에서 장치 정의를 만듭니다. 이 코드는 장치 ID가 ID 레지스트리에 없는 경우 장치를 만들고, 있으면 기존 장치의 키를 반환합니다.
+
+    ```nodejs
     var device = {
       deviceId: 'myFirstNodeDevice'
     }
@@ -86,7 +91,7 @@ IoT Hub를 만들었습니다. Hello IoT Hub 호스트 이름 및 hello IoT 허�
         printDeviceInfo(err, deviceInfo, res)
       }
     });
-   
+
     function printDeviceInfo(err, deviceInfo, res) {
       if (deviceInfo) {
         console.log('Device ID: ' + deviceInfo.deviceId);
@@ -94,69 +99,75 @@ IoT Hub를 만들었습니다. Hello IoT Hub 호스트 이름 및 hello IoT 허�
       }
     }
     ```
+
    [!INCLUDE [iot-hub-pii-note-naming-device](../../includes/iot-hub-pii-note-naming-device.md)]
 
 7. **CreateDeviceIdentity.js** 파일을 저장하고 닫습니다.
-8. toorun hello **createdeviceidentity** 응용 프로그램을 hello 다음 hello createdeviceidentity 폴더에 hello 명령 프롬프트에서 명령을 실행 합니다.
-   
-    ```
+
+8. `createdeviceidentity` 응용 프로그램을 실행하려면 `createdeviceidentity` 폴더의 명령 프롬프트에서 다음 명령을 실행합니다.
+
+    ```cmd/sh
     node CreateDeviceIdentity.js 
     ```
-9. Hello 메모 **장치 ID** 및 **장치 키**합니다. 이 값이 필요 하면 이러한 나중 tooIoT 장치로 허브를 연결 하는 응용 프로그램을 만들 때.
+
+9. **장치 ID**와 **장치 키**를 기록해 둡니다. 나중에 장치로 IoT Hub에 연결하는 응용 프로그램을 만들 때 이러한 값이 필요합니다.
 
 > [!NOTE]
-> IoT Hub id 레지스트리에 hello만 장치 identities tooenable 보안 액세스 toohello IoT 허브를 저장합니다. 장치 Id와 키 toouse 보안 자격 증명 및 개별 장치에 대 한 toodisable 액세스를 사용할 수 있는 사용/사용 안 함 플래그로 저장 합니다. 응용 프로그램는 toostore 다른 장치 관련 메타 데이터를 필요한 경우에 응용 프로그램별 저장소를 사용 해야 합니다. 자세한 내용은 참조 hello [IoT 허브 개발자 가이드][lnk-devguide-identity]합니다.
-> 
-> 
+> IoT Hub ID 레지스트리는 장치 ID만 저장하여 IoT Hub에 보안 액세스를 사용합니다. 보안 자격 증명으로 사용하기 위해 장치 ID 및 키와 개별 장치에 대해 액세스하지 못하도록 설정할 수 있는 사용/사용 안 함 플래그를 저장합니다. 응용 프로그램이 다른 장치별 메타데이터를 저장해야 할 경우 응용 프로그램별 저장소를 사용해야 합니다. 자세한 내용은 [IoT Hub 개발자 가이드][lnk-devguide-identity]를 참조하세요.
 
 <a id="D2C_node"></a>
 ## <a name="receive-device-to-cloud-messages"></a>장치-클라우드 메시지 받기
-이 섹션에서는 IoT Hub에서 장치-클라우드 메시지를 읽는 Node.js 콘솔 앱을 만듭니다. IoT hub를 노출 한 [이벤트 허브][lnk-event-hubs-overview]-호환 되는 끝점 tooenable tooread 장치-클라우드 메시지입니다. 단순 tookeep 항목을이 자습서에서는 처리량이 높은 배포에 적합 하지 않은 기본 판독기를 만듭니다. hello [장치-클라우드 메시지를 처리] [ lnk-process-d2c-tutorial] 자습서에서는 배율로 tooprocess 장치-클라우드 메시지 방법을 합니다. hello [이벤트 허브 시작] [ lnk-eventhubs-tutorial] 자습서 tooprocess 이벤트 허브에서 메시지를 하 고는 적용 가능한 toohello IoT 허브 이벤트 허브 호환 되지 않는 끝점 하는 방법에 자세한 정보를 제공 합니다.
+
+이 섹션에서는 IoT Hub에서 장치-클라우드 메시지를 읽는 Node.js 콘솔 앱을 만듭니다. IoT Hub가 [Event Hubs][lnk-event-hubs-overview]와 호환되는 끝점을 노출하여 장치-클라우드 메시지를 읽을 수 있습니다. 작업을 단순화하기 위해 이 자습서에서는 처리량이 높은 배포용이 아닌 기본적인 판독기를 만듭니다. [장치-클라우드 메시지 처리][lnk-process-d2c-tutorial] 자습서는 대량의 장치-클라우드 메시지를 처리하는 방법을 보여 줍니다. [Event Hubs 시작][lnk-eventhubs-tutorial] 자습서는 IoT Hub Event Hub 호환 끝점에 적용 가능한 추가 정보를 제공합니다.
 
 > [!NOTE]
-> hello 항상 장치-클라우드 메시지 도착 읽기에 대 한 이벤트 허브 호환 끝점 hello AMQP 프로토콜이 사용 됩니다.
-> 
-> 
+> 장치-클라우드 메시지를 읽는 Event Hub와 호환 가능한 끝점은 항상 AMQP 프로토콜을 사용합니다.
 
-1. **readdevicetocloudmessages**라는 빈 폴더를 만듭니다. Hello에 **readdevicetocloudmessages** 폴더를 다음 명령 프롬프트에서 명령을 hello를 사용 하 여 package.json 파일을 만듭니다. 모든 hello 기본값을 적용 합니다.
-   
-    ```
+1. `readdevicetocloudmessages`라는 빈 폴더를 만듭니다. `readdevicetocloudmessages` 폴더의 명령 프롬프트에서 다음 명령을 사용하여 package.json 파일을 만듭니다. 모든 기본값을 수락합니다.
+
+    ```cmd/sh
     npm init
     ```
-2. Hello에 명령 프롬프트에 **readdevicetocloudmessages** hello 명령 tooinstall hello 다음를 실행 하는 폴더 **azure-이벤트-허브** 패키지:
-   
-    ```
+
+2. `readdevicetocloudmessages` 폴더의 명령 프롬프트에서 다음 명령을 실행하여 **azure-event-hubs** 패키지를 설치합니다.
+
+    ```cmd/sh
     npm install azure-event-hubs --save
     ```
-3. 텍스트 편집기를 사용 하 여 만들는 **ReadDeviceToCloudMessages.js** hello에 대 한 파일 **readdevicetocloudmessages** 폴더입니다.
-4. Hello 다음 추가 `require` hello의 시작 부분에 hello 문을 **ReadDeviceToCloudMessages.js** 파일:
-   
-    ```
+
+3. 텍스트 편집기를 사용하여 `readdevicetocloudmessages` 폴더에 **ReadDeviceToCloudMessages.js** 파일을 만듭니다.
+
+4. **ReadDeviceToCloudMessages.js** 파일 앞에 다음 `require` 문을 추가합니다.
+
+    ```nodejs
     'use strict';
-   
+
     var EventHubClient = require('azure-event-hubs').Client;
     ```
-5. 변수 선언 뒤 hello를 추가 하 고 hello 허브에 대 한 IoT 허브 연결 문자열 hello 자리 표시자 값을 바꿉니다.
-   
-    ```
+
+5. 다음 변수 선언을 추가하고 자리 표시자 값을 허브의 IoT Hub 연결 문자열로 바꿉니다.
+
+    ```nodejs
     var connectionString = '{iothub connection string}';
     ```
-6. 다음 출력 toohello 콘솔에 인쇄 하는 두 함수 hello를 추가 합니다.
-   
-    ```
+
+6. 콘솔에 출력하는 다음 두 함수를 추가합니다.
+
+    ```nodejs
     var printError = function (err) {
       console.log(err.message);
     };
-   
+
     var printMessage = function (message) {
       console.log('Message received: ');
       console.log(JSON.stringify(message.body));
       console.log('');
     };
     ```
-7. 다음 코드 toocreate hello hello 추가 **EventHubClient**hello 연결 tooyour IoT 허브를 열고 각 파티션에 대 한 수신기 만들기. 이 응용 프로그램 읽을 수 있도록 hello 수신기만 보낸 메시지 tooIoT 허브를 실행 하는 hello 수신기가 시작 되 면 수신기를 만들 때 필터를 사용 합니다. 이 필터는 hello 현재 집합에만 메시지를 참조 하므로 테스트 환경에서 유용 합니다. 프로덕션 환경에서 코드를 모든 hello 메시지를 처리 하는지 않도록 해야 합니다. 자세한 내용은 참조 hello [어떻게 tooprocess IoT Hub 장치-클라우드 메시지] [ lnk-process-d2c-tutorial] 자습서:
-   
-    ```
+
+7. 다음 코드를 추가하여 **EventHubClient**를 만들고 IoT Hub에 대한 연결을 열고 각 파티션에 대한 수신기를 만듭니다. 이 응용 프로그램은 수신기를 만들 때 필터를 사용하여 수신기가 수신기 실행이 시작된 후 IoT Hub에 전송된 메시지만을 읽습니다. 이 필터는 테스트 환경에서 현재 메시지 집합을 볼 수 있어 유용합니다. 프로덕션 환경에서는 코드가 모든 메시지를 처리하는지 확인해야 합니다. 자세한 내용은 [IoT Hub 장치-클라우드 메시지를 처리하는 방법][lnk-process-d2c-tutorial] 자습서를 참조하세요.
+
+    ```nodejs
     var client = EventHubClient.fromConnectionString(connectionString);
     client.open()
         .then(client.getPartitionIds.bind(client))
@@ -171,40 +182,47 @@ IoT Hub를 만들었습니다. Hello IoT Hub 호스트 이름 및 hello IoT 허�
         })
         .catch(printError);
     ```
-8. 저장 후 닫기 hello **ReadDeviceToCloudMessages.js** 파일입니다.
+
+8. **ReadDeviceToCloudMessages.js** 파일을 저장한 후 닫습니다.
 
 ## <a name="create-a-simulated-device-app"></a>시뮬레이션된 장치 앱 만들기
-이 섹션에서는 tooan IoT hub 장치-클라우드 메시지를 전송 하는 장치를 시뮬레이션 하는 Node.js 콘솔 앱을 만듭니다.
 
-1. **simulateddevice**라는 빈 폴더를 만듭니다. Hello에 **simulateddevice** 폴더를 다음 명령 프롬프트에서 명령을 hello를 사용 하 여 package.json 파일을 만듭니다. 모든 hello 기본값을 적용 합니다.
-   
-    ```
+이 섹션에서는 IoT Hub로 장치-클라우드 메시지를 전송하는 장치를 시뮬레이션하는 Node.js 콘솔 앱을 작성합니다.
+
+1. `simulateddevice`라는 빈 폴더를 만듭니다. `simulateddevice` 폴더의 명령 프롬프트에서 다음 명령을 사용하여 package.json 파일을 만듭니다. 모든 기본값을 수락합니다.
+
+    ```cmd/sh
     npm init
     ```
-2. Hello에 명령 프롬프트에 **simulateddevice** hello 명령 tooinstall hello 다음를 실행 하는 폴더 **azure iot 장치** 장치 SDK 패키지 및 **azure-iot-장치-mqtt**패키지:
-   
-    ```
+
+2. `simulateddevice` 폴더의 명령 프롬프트에서 다음 명령을 실행하여 **azure-iot-device** 장치 SDK 패키지 및 **azure-iot-device-mqtt** 패키지를 설치합니다.
+
+    ```cmd/sh
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. 텍스트 편집기를 사용 하 여 만들는 **SimulatedDevice.js** hello에 대 한 파일 **simulateddevice** 폴더입니다.
-4. Hello 다음 추가 `require` hello의 시작 부분에 hello 문을 **SimulatedDevice.js** 파일:
-   
-    ```
+
+3. 텍스트 편집기를 사용하여 `simulateddevice` 폴더에 **SimulatedDevice.js** 파일을 만듭니다.
+
+4. **SimulatedDevice.js** 파일 앞에 다음 `require` 문을 추가합니다.
+
+    ```nodejs
     'use strict';
-   
+
     var clientFromConnectionString = require('azure-iot-device-mqtt').clientFromConnectionString;
     var Message = require('azure-iot-device').Message;
     ```
-5. 추가 **connectionString** 변수 toocreate를 사용 하는 **클라이언트** 인스턴스. 대체 **{youriothostname}** hello hello IoT 허브의 hello 이름으로 만든 *IoT 허브를 만듭니다.* 섹션. 대체 **{yourdevicekey}** hello에 생성 된 hello 장치 키 값을 가진 *장치 id를 만드는* 섹션:
-   
-    ```
+
+5. `connectionString` 변수를 추가하고 이 변수를 사용하여 **클라이언트** 인스턴스를 만듭니다. `{youriothostname}`을 *IoT Hub 만들기* 섹션에서 만든 IoT Hub의 이름으로 바꿉니다. `{yourdevicekey}`를 *장치 ID 만들기* 섹션에서 생성한 장치 키 값으로 바꿉니다.
+
+    ```nodejs
     var connectionString = 'HostName={youriothostname};DeviceId=myFirstNodeDevice;SharedAccessKey={yourdevicekey}';
-   
+
     var client = clientFromConnectionString(connectionString);
     ```
-6. Hello 함수 toodisplay 출력 hello 응용 프로그램에서 다음을 추가 합니다.
-   
-    ```
+
+6. 응용 프로그램에서 출력을 표시하도록 다음 함수를 추가합니다.
+
+    ```nodejs
     function printResultFor(op) {
       return function printResult(err, res) {
         if (err) console.log(op + ' error: ' + err.toString());
@@ -212,16 +230,17 @@ IoT Hub를 만들었습니다. Hello IoT Hub 호스트 이름 및 hello IoT 허�
       };
     }
     ```
-7. 콜백을 만들고 hello를 사용 하 여 **setInterval** toosend 메시지 tooyour IoT hub 1 초 마다 함수:
-   
-    ```
+
+7. 다음과 같이 콜백을 만들고 **setInterval** 함수를 사용하여 메시지를 초당 하나씩 IoT Hub로 전송합니다.
+
+    ```nodejs
     var connectCallback = function (err) {
       if (err) {
         console.log('Could not connect: ' + err);
       } else {
         console.log('Client connected');
-   
-        // Create a message and send it toohello IoT Hub every second
+
+        // Create a message and send it to the IoT Hub every second
         setInterval(function(){
             var temperature = 20 + (Math.random() * 15);
             var humidity = 60 + (Math.random() * 20);            
@@ -234,51 +253,54 @@ IoT Hub를 만들었습니다. Hello IoT Hub 호스트 이름 및 hello IoT 허�
       }
     };
     ```
-8. Hello 연결 tooyour IoT 허브를 열고 메시지를 보내기 시작 합니다.
-   
-    ```
+
+8. IoT Hub에 대한 연결을 열고 메시지를 보내기 시작합니다.
+
+    ```nodejs
     client.open(connectCallback);
     ```
-9. 저장 후 닫기 hello **SimulatedDevice.js** 파일입니다.
+
+9. **SimulatedDevice.js** 파일을 저장한 후 닫습니다.
 
 > [!NOTE]
-> 단순 tookeep 항목을이 자습서는 어떠한 재시도 정책도 구현 하지 않습니다. 프로덕션 코드에서는 hello MSDN 문서에 설명 된 대로 다시 시도 정책 (예: 지 수 백오프)를 구현 해야 [일시적인 오류 처리][lnk-transient-faults]합니다.
-> 
-> 
+> 간단히 하기 위해 이 자습서에서는 다시 시도 정책을 구현하지 않습니다. 프로덕션 코드에서는 MSDN 문서 [일시적인 오류 처리][lnk-transient-faults]에서 제시한 대로 다시 시도 정책(예: 지수 백오프)을 구현해야 합니다.
 
-## <a name="run-hello-apps"></a>Hello 앱 실행
-준비 toorun hello 앱입니다.
+## <a name="run-the-apps"></a>앱 실행
 
-1. Hello에 명령 프롬프트에서 **readdevicetocloudmessages** hello IoT 허브를 모니터링 하는 명령 toobegin 다음를 실행 하는 폴더:
-   
-    ```
+이제 앱을 실행할 준비가 되었습니다.
+
+1. `readdevicetocloudmessages` 폴더의 명령 프롬프트에서 다음 명령을 실행하여 IoT Hub 모니터링을 시작합니다.
+
+    ```cmd/sh
     node ReadDeviceToCloudMessages.js 
     ```
-   
-    ![Node.js IoT 허브 서비스 응용 프로그램 toomonitor 장치-클라우드 메시지][7]
-2. Hello에 명령 프롬프트에서 **simulateddevice** hello 명령 toobegin 보내는 원격 분석 데이터 tooyour IoT 허브를 따라를 실행 하는 폴더:
-   
-    ```
+
+    ![장치-클라우드 메시지를 모니터링하는 Node.js IoT Hub 서비스 앱][7]
+
+2. `simulateddevice` 폴더의 명령 프롬프트에서 다음 명령을 실행하여 원격 분석 데이터를 IoT Hub로 전송을 시작합니다.
+
+    ```cmd/sh
     node SimulatedDevice.js
     ```
-   
-    ![Node.js IoT Hub 장치 앱 toosend 장치-클라우드 메시지][8]
-3. hello **사용량** hello에 바둑판식으로 배열 [Azure 포털] [ lnk-portal] 표시 hello 보낸 메시지 toohello IoT 허브의 수:
-   
-    ![Azure 포털 사용량 타일 보여 주는 수가 전송 된 메시지 tooIoT 허브][43]
+
+    ![장치-클라우드 메시지를 보내는 Node.js IoT Hub 장치 앱][8]
+
+3. [Azure Portal][lnk-portal]의 **사용량** 타일에 IoT Hub로 전송된 메시지 수가 표시됩니다.
+
+    ![IoT Hub에 전송된 메시지의 수를 보여주는 Azure Portal 사용량 타일][43]
 
 ## <a name="next-steps"></a>다음 단계
-이 자습서에서는 hello Azure 포털에서에서 새 IoT 허브를 구성 하 고 id 레지스트리에 hello IoT hub에서 장치 id를 만든 다음 합니다. 이 장치 identity tooenable hello 시뮬레이션 된 장치 앱 toosend 장치-클라우드 메시지 toohello IoT 허브를 사용 했습니다. 또한 hello IoT 허브에서 수신 하는 hello 메시지를 표시 하는 응용 프로그램을 만들었습니다. 
 
-시작 toocontinue IoT 허브와 tooexplore 다른 IoT 시나리오를 참조 하세요.
+이 자습서에서는 Azure Portal에서 새 IoT Hub를 구성한 다음, IoT Hub의 ID 레지스트리에서 장치 ID를 만들었습니다. 장치-클라우드 메시지를 IoT Hub로 보내기 위해 시뮬레이션된 장치 앱을 사용하는 이 장치 ID를 사용했습니다. IoT Hub에서 받은 메시지를 표시하는 앱도 만들었습니다.
+
+계속해서 IoT Hub을 시작하고 다른 IoT 시나리오를 탐색하려면 다음을 참조하세요.
 
 * [장치 연결][lnk-connect-device]
 * [장치 관리 시작][lnk-device-management]
 * [Azure IoT Hub 시작][lnk-iot-edge]
 
-toolearn tooextend 배율 사용할 때 IoT 솔루션 및 프로세스 장치-클라우드 메시지를 확인 하려면 어떻게 hello [장치-클라우드 메시지를 처리] [ lnk-process-d2c-tutorial] 자습서입니다.
+IoT 솔루션을 확장하고 대량의 장치-클라우드 메시지를 처리하는 방법을 알아보려면 [장치-클라우드 메시지 처리][lnk-process-d2c-tutorial] 자습서를 참조하세요.
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
-
 
 <!-- Images. -->
 [7]: ./media/iot-hub-node-node-getstarted/runapp1.png

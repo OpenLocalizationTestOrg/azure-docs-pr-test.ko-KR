@@ -1,6 +1,6 @@
 ---
-title: "서비스 패브릭에서 Chaos 클러스터 aaaInduce | Microsoft Docs"
-description: "Hello 클러스터의 오류 삽입 및 클러스터 분석 서비스 Api toomanage Chaos를 사용합니다."
+title: "Service Fabric 클러스터에서 비정상 상황 유도 | Microsoft Docs"
+description: "오류 삽입 및 클러스터 분석 서비스 API를 사용하여 클러스터의 비정상 상황을 관리합니다."
 services: service-fabric
 documentationcenter: .net
 author: motanv
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/09/2017
 ms.author: motanv
-ms.openlocfilehash: 7e87cae22645fc4ba52e258471d8f3a4ffdb1cce
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3b3b93bc9ec5ecdcfc289e5b62e84de6aa4172ed
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="induce-controlled-chaos-in-service-fabric-clusters"></a>Service Fabric 클러스터에서 제어되는 비정상 상황 유도
-클라우드 인프라와 같은 대규모 분산 시스템은 기본적으로 안정적이지 않습니다. Azure 서비스 패브릭 개발자 toowrite 신뢰할 수 있는 배포 된 서비스를 신뢰할 수 없는 인프라를 기반으로 수 있습니다. toowrite 불안정 한 인프라를 기반으로 강력한 분산된 서비스, 개발자 들이 서비스의 toobe 수 tootest hello 안정성 해야 신뢰할 수 없는 인프라 내부 hello 복잡 한 상태 전환 통과 하는 동안 due toofaults 합니다.
+클라우드 인프라와 같은 대규모 분산 시스템은 기본적으로 안정적이지 않습니다. Azure Service Fabric을 사용하면 개발자들은 불안정한 인프라 위에 안정적인 분산 서비스를 작성할 수 있습니다. 불안정한 인프라 위에 강력한 분산 서비스를 작성하려는 경우 기반이 되는 불안정한 인프라가 결함으로 인해 복잡한 상태 전환을 겪을 때 개발자는 서비스의 안정성을 테스트할 수 있어야 합니다.
 
-hello [오류 삽입 및 클러스터 분석 서비스](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-testability-overview) (라고도 hello 오류 Analysis Service)에서는 개발자가 hello 기능 tooinduce 서비스 데 tootest 오류가 발생 합니다. 같은 오류를 시뮬레이션 된 대상으로 이러한 [파티션을 다시 시작](https://docs.microsoft.com/en-us/powershell/module/servicefabric/start-servicefabricpartitionrestart?view=azureservicefabricps), hello 가장 일반적인 상태 전환을 실행 하는 데 도움이 됩니다. 그러나 대상 시뮬레이트 오류는 기본적으로 편향되어 있으므로 예측하기 어렵고 오래 진행되는 복잡한 상태 전환 시퀀스로만 나타나는 버그는 놓칠 수 있습니다. 편향되지 않는 테스트를 위해서는 비정상 상황을 사용할 수 있습니다.
+[오류 삽입 및 클러스터 분석 서비스](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-testability-overview)(오류 분석 서비스라고도 함)는 개발자에게 서비스를 테스트할 수 있도록 오류를 유도하는 기능을 제공합니다. [파티션 다시 시작](https://docs.microsoft.com/en-us/powershell/module/servicefabric/start-servicefabricpartitionrestart?view=azureservicefabricps)과 같은 이러한 대상 시뮬레이트 오류는 가장 일반적인 상태 전환을 실행하는 데 도움이 됩니다. 그러나 대상 시뮬레이트 오류는 기본적으로 편향되어 있으므로 예측하기 어렵고 오래 진행되는 복잡한 상태 전환 시퀀스로만 나타나는 버그는 놓칠 수 있습니다. 편향되지 않는 테스트를 위해서는 비정상 상황을 사용할 수 있습니다.
 
-Chaos 시간의 오랜된 기간 동안 hello 클러스터 전체에서 정기적으로 인터리브 오류 (정상 및 비정상)을 시뮬레이션합니다. Hello 환율 및 hello 종류의 오류와 함께 Chaos를 구성한 후에 hello 클러스터에서 한 서비스에서 오류를 생성 하는 C# 또는 Powershell API toostart 통해 Chaos를 시작할 수 있습니다. Chaos toorun Chaos 자동으로 중지 되는 지정한 기간 동안 (예: 1 시간)에 대 한 구성 하거나 toostop StopChaos API (C# 또는 Powershell)을 호출할 수 있습니다 언제 든 지 것입니다.
+비정상 상황은 장기간에 걸쳐 클러스터 전체에서 정상적 및 비정상적인 주기적 인터리브 오류를 지속적으로 시뮬레이트합니다. 오류의 비율 및 종류로 비정상 상황을 구성하면 C# 또는 PowerShell API를 통해 비정상 상황을 시작함으로써 클러스터 및 서비스에서 오류를 생성할 수 있습니다. 지정된 시간(예: 1시간) 동안 실행된 다음 자동으로 중지되도록 비정상 상황을 구성하거나, 언제든지 StopChaos API(C# 또는 PowerShell)를 호출하여 중지할 수 있습니다.
 
 > [!NOTE]
-> 현재 형태의 Chaos 적용만 안전 오류 의미 하는 외부 오류 hello 없는 경우 쿼럼 손실, 또는 데이터 손실이 발생 하지 않습니다.
+> 현재 양식에서, 비정상 상황은 안전 오류만 유도합니다. 즉, 외부 오류가 없으면 쿼럼 손실 또는 데이터 손실이 발생하지 않습니다.
 >
 
-Chaos 실행 되는 동안 hello 순간에 실행 하는 hello의 hello 상태를 캡처하는 다양 한 이벤트를 생성 합니다. 예를 들어 한 ExecutingFaultsEvent Chaos가 해당 반복에서 tooexecute를 결정 하는 모든 hello 오류를 포함 합니다. ValidationFailedEvent hello hello 클러스터 유효성 검사 중 발견 된 유효성 검사 실패 (상태 또는 안정성 문제)의 hello 세부 정보를 포함 합니다. Hello Chaos 실행 tooget hello 보고서 GetChaosReport API (C# 또는 Powershell)을 호출할 수 있습니다. 이러한 이벤트는 두 가지 구성 **MaxStoredChaosEventCount**(기본값 25000) 및 **StoredActionCleanupIntervalInSeconds**(기본값 3600)에 따라 잘림 정책이 적용되는 [신뢰할 수 있는 사전](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections)에 유지됩니다. 모든 *StoredActionCleanupIntervalInSeconds* Chaos 검사 및 모든 하지만 hello 가장 최근의 *MaxStoredChaosEventCount* 이벤트 hello 신뢰할 수 있는 사전에서 제거 됩니다.
+비정상 상황이 실행되는 동안 현재 실행의 상태를 캡처하는 다양한 이벤트가 생성됩니다. 예를 들어 ExecutingFaultsEvent에는 비정상 상황이 해당 반복에서 실행하기로 결정한 모든 오류가 포함됩니다. ValidationFailedEvent에는 클러스터 유효성 검사 동안 발견된 유효성 검사 오류(상태 또는 안정성 문제)의 세부 정보가 포함됩니다. GetChaosReport API(C# 또는 PowerShell)를 호출하여 비정상 상황 실행 보고서를 가져올 수 있습니다. 이러한 이벤트는 두 가지 구성 **MaxStoredChaosEventCount**(기본값 25000) 및 **StoredActionCleanupIntervalInSeconds**(기본값 3600)에 따라 잘림 정책이 적용되는 [신뢰할 수 있는 사전](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections)에 유지됩니다. 가장 최근의 *MaxStoredChaosEventCount* 이벤트를 제외하고 비정상 상황이 확인하는 모든 *StoredActionCleanupIntervalInSeconds* 이벤트는 신뢰할 수 있는 사전에서 제거됩니다.
 
 ## <a name="faults-induced-in-chaos"></a>비정상 상황에서 유도되는 오류
-Chaos는 hello 전체 서비스 패브릭 클러스터 전체에서 오류를 생성 하 고 몇 시간에 월 또는 년 단위로 표시 되는 오류를 압축 합니다. hello 높은 오류 숙박료가 인터리브 오류의 hello 조합 그렇지 않으면 누락 될 수 있는 코너 케이스를 찾습니다. 이 연습 Chaos의 hello 서비스의 코드 품질 hello에에서 tooa 향상을 안내합니다.
+비정상 상황에서는 전체 Service Fabric 클러스터에서 오류가 생성되며 수개월 또는 수년에 걸쳐 확인된 오류가 몇 시간으로 압축됩니다. 인터리브 오류를 높은 오류 비율과 결합하면 놓치기 쉬운 특이한 사례를 발견할 수 있습니다. 이러한 비정상 상황에 대처하는 연습을 통해 서비스 코드 품질을 대폭 개선할 수 있습니다.
 
-Chaos는 hello 다음 범주에서에서 오류를 적용 합니다.
+비정상 상황은 다음 범주에서 오류를 유도합니다.
 
 * 노드 다시 시작
 * 배포된 코드 패키지 다시 시작
@@ -45,31 +45,31 @@ Chaos는 hello 다음 범주에서에서 오류를 적용 합니다.
 * 주 복제본 이동(구성 가능)
 * 보조 복제본 이동(구성 가능)
 
-비정상 상황에서는 각 반복 오류와 hello에 대 한 클러스터 유효성 검사 기간이 지정 됩니다. Hello 시간 toosucceed 유효성 검사 및 클러스터 toostabilize hello에 대 한 구성할 수 있습니다. 클러스터 유효성 검사에 오류가 있으면 Chaos를 생성 하 고는 ValidationFailedEvent hello UTC 타임 스탬프 및 hello 실패 세부 정보를 유지 합니다. 예를 들어 인스턴스의 Chaos toorun는 3 개의 동시 오류 최대 한 시간에 설정 된 것이 좋습니다. Chaos 세 개의 오류를 적용 한 다음 hello 클러스터 상태에 검증 합니다. 반복 하면서 이전 hello 명시적으로 중지 된 hello StopChaosAsync API 통해 또는 한 시간 될 때까지 단계를 통과 합니다. Hello 클러스터 반복에서 비정상 상태가 되는 경우 (즉, 해당 않습니다 하지 안정화 MaxClusterStabilizationTimeout 전달 기능에 hello 내), Chaos는 ValidationFailedEvent를 생성 합니다. 이 이벤트는 무언가 잘못되었으며 자세한 조사가 필요할 수 있음을 나타냅니다.
+비정상 상황에서는 지정된 기간 동안 오류 및 클러스터 유효성 검사가 여러 차례 반복해서 실행됩니다. 클러스터가 안정화되고 유효성 검사가 성공하는 데 걸리는 시간을 구성할 수 있습니다. 클러스터 유효성 검사에 오류가 있으면 비정상 상황이 생성되며 UTC 타임스탬프 및 오류 세부 정보로 ValidationFailedEvent가 유지됩니다. 예를 들어 비정상 상황 인스턴스가 1시간 동안 실행되고 최대 세 가지 오류가 동시에 발생하도록 설정되었다고 가정하겠습니다. 비정상 상황은 세 개의 오류를 유도한 다음 클러스터 상태의 유효성을 검사합니다. 또한 StopChaosAsync API를 통해 명시적으로 서비스가 중지되거나 1시간이 경과할 때까지 이전 단계를 반복합니다. 반복 과정 중에 클러스터가 비정상 상태가 되면(전달된 MaxClusterStabilizationTimeout 내에서 안정화되지 못함) 비정상 상황은 ValidationFailedEvent를 생성합니다. 이 이벤트는 무언가 잘못되었으며 자세한 조사가 필요할 수 있음을 나타냅니다.
 
-Chaos 인 한 오류를 처리 하는 tooget GetChaosReport API (powershell 또는 C#)를 사용할 수 있습니다. hello API hello hello 전달 된 연속 토큰 또는 hello 전달 된 시간 범위에 따라 hello Chaos 보고서의 다음 세그먼트를 가져옵니다. ContinuationToken tooget hello hello Chaos 보고서의 다음 세그먼트 hello 또는 StartTimeUtc 및 EndTimeUtc를 통해 hello 시간 범위를 지정할 수 있지만 hello에 ContinuationToken hello와 hello 시간 범위를 지정할 수 없습니다 지정 하거나 동일한 호출 합니다. 100 개가 넘는 Chaos 이벤트가 없는 hello Chaos 보고서 세그먼트 100 개 이하의 Chaos 이벤트에 포함 된 세그먼트에 반환 됩니다.
+비정상 상황이 유도한 오류를 가져오려면 GetChaosReport API(powershell 또는 C#)를 사용할 수 있습니다. 이 API는 전달된 연속 토큰 또는 전달된 시간 범위를 기준으로 비정상 상황 보고서의 다음 세그먼트를 가져옵니다. 비정상 상황 보고서의 다음 세그먼트를 가져오도록 ContinuationToken을 지정하거나, StartTimeUtc 및 EndTimeUtc를 통해 시간 범위를 지정할 수 있지만 ContinuationToken과 시간 범위를 같은 호출 내에서 지정할 수는 없습니다. 100개가 넘는 비정상 상황 이벤트가 있는 경우 비정상 상황 보고서는 세그먼트에 100개 이하의 비정상 상황 이벤트가 포함되어 있는 세그먼트로 반환됩니다.
 
 ## <a name="important-configuration-options"></a>중요 구성 옵션
-* **TimeToRun**: 성공적으로 완료될 때까지 비정상 상황이 실행되는 총 시간입니다. Hello TimeToRun 기간에 대 한 hello StopChaos API를 통해 실행 되기 전에 Chaos를 중지할 수 있습니다.
+* **TimeToRun**: 성공적으로 완료될 때까지 비정상 상황이 실행되는 총 시간입니다. StopChaos API를 통해 TimeToRun 기간 동안 실행되기 전에 비정상 상황을 중지할 수 있습니다.
 
-* **MaxClusterStabilizationTimeout**: hello 최대한의 정상는 ValidationFailedEvent 발생 하기 전에 hello 클러스터 toobecome에 대 한 시간 toowait 합니다. 이 대기는 복구 되는 동안 hello 클러스터에서 tooreduce hello load입니다. 수행 되는 hello 검사 됩니다.
-  * Hello 클러스터 상태가 양호함 하는 경우
-  * Hello 서비스 상태를 확인 하는 경우
-  * Hello 대상 복제본 집합 크기는 이루어졌는지 hello 서비스 파티션에 대 한
+* **MaxClusterStabilizationTimeout**: 클러스터가 정상 상태가 될 때까지 기다리는 최대 시간입니다. 그 이후에는 ValidationFailedEvent가 생성됩니다. 이를 통해 복구되는 동안 클러스터의 부하를 줄일 수는 있습니다. 수행되는 검사는 다음과 같습니다.
+  * 클러스터 상태가 정상인 경우
+  * 서비스 상태가 정상인 경우
+  * 서비스 파티션에 대해 목표 복제본 세트 크기가 달성된 경우
   * InBuild 복사본이 없음
-* **MaxConcurrentFaults**: hello 각 반복에서 발생 하는 동시 오류의 최대 수입니다. hello hello 크면, Chaos 이며 hello 장애 조치 및 hello 상태 전환 하는 조합 hello 클러스터 통과 하는 복잡 한도 보다 적극적으로 hello 합니다. 
+* **MaxConcurrentFaults**: 각 반복에서 유도되는 동시 오류의 최대 수입니다. 이 수가 높을수록 비정상 상황은 좀 더 공격적으로 나타나며, 클러스터에 나타나는 장애 조치 및 상태 전환 조합도 좀 더 복잡해집니다. 
 
 > [!NOTE]
-> 이와 상관 없이 어떻게 높은 값 *MaxConcurrentFaults* Chaos에 외부 오류-hello 없는 경우에서 쿼럼 손실 또는 데이터 손실 없습니다-보장 합니다.
+> *MaxConcurrentFaults* 값 크기에 관계 없이, 비정상 상황은 외부 오류가 없을 때 쿼럼 또는 데이터 손실이 없도록 보장합니다.
 >
 
-* **EnableMoveReplicaFaults**: hello 기본 또는 보조 복제본 toomove 유발 하는 hello 부재를 사용 하지 않도록 설정 하거나 사용 합니다. 이러한 오류는 기본적으로 해제됩니다.
-* **WaitTimeBetweenIterations**: 반복 간 시간 toowait hello 양입니다. 즉, hello Chaos 장애와 hello 클러스터의 hello 상태 hello 해당 유효성 검사를 완료 하지 테스트를 수행 함으로써 후 일시 중지 하는 시간입니다. hello hello 값이 높을수록 더 낮은 hello hello 평균 오류 삽입 속도입니다.
-* **WaitTimeBetweenFaults**: hello 양의 시간 toowait 단일 반복에서 두 개의 연속 된 오류 사이입니다. hello 값을 높게 hello의 더 낮은 hello 동시성 hello (또는 겹치지 hello) 오류입니다.
-* **ClusterHealthPolicy**: 클러스터 상태 정책이 사용 되는 toovalidate hello 클러스터 상태에 hello Chaos 반복 사이입니다. Hello 클러스터 상태는 오류가 발생 하거나 예기치 않은 예외가 발생 하면 오류 실행 하는 동안 Chaos hello 다음 상태 확인-일부 시간 toorecuperate tooprovide hello 클러스터 30 분 동안 기다립니다.
-* **Context**: (string, string) 형식의 키-값 쌍 컬렉션입니다. hello 맵은 실행 Chaos hello에 대 한 정보를 사용 하는 toorecord 될 수 있습니다. 이러한 쌍은 100개 이하로만 존재할 수 있으며 각 문자열(키 또는 값)은 4095자 이하로만 설정할 수 있습니다. 이 맵은 hello 특정 실행에 대 한 hello 실행 Chaos toooptionally 저장소 hello 컨텍스트 hello 시작으로 설정 됩니다.
+* **EnableMoveReplicaFaults**: 주 복제본 또는 보조 복제본을 이동하게 만드는 오류를 설정하거나 해제합니다. 이러한 오류는 기본적으로 해제됩니다.
+* **WaitTimeBetweenIterations**: 반복 사이의 대기 시간입니다. 즉, 일련의 오류를 실행하고 클러스터 상태에 대한 해당 유효성 검사를 완료한 후에 비정상 상황이 일시 중지되는 기간입니다. 이 값이 높을수록 평균 오류 삽입 속도는 높아집니다.
+* **WaitTimeBetweenFaults**: 단일 반복에서 두 개의 연속 오류 사이에 대기하는 시간입니다. 이 값이 높을수록 오류의 동시성(또는 오류 간 중복)이 낮아집니다.
+* **ClusterHealthPolicy**: 클러스터 상태 정책은 비정상 상황 반복 간에 클러스터의 상태를 확인하는 데 사용됩니다. 클러스터 상태에 오류가 있거나 오류 실행 중에 예기치 않은 예외가 발생하면 비정상 상황은 클러스터에 다시 복구할 시간을 제공하기 위해 30분 동안 대기했다가 다음 상태 검사를 수행합니다.
+* **Context**: (string, string) 형식의 키-값 쌍 컬렉션입니다. 비정상 상황 실행에 대한 정보를 기록하기 위해 맵이 사용될 수 있습니다. 이러한 쌍은 100개 이하로만 존재할 수 있으며 각 문자열(키 또는 값)은 4095자 이하로만 설정할 수 있습니다. 비정상 상황 실행 시작 기능이 특정 실행에 대한 컨텍스트를 선택적으로 저장할 수 있게 이러한 맵을 설정합니다.
 
-## <a name="how-toorun-chaos"></a>어떻게 toorun Chaos
+## <a name="how-to-run-chaos"></a>비정상 상황을 실행하는 방법
 
 ```csharp
 using System;
@@ -117,7 +117,7 @@ class Program
             }
             catch (FabricChaosAlreadyRunningException)
             {
-                Console.WriteLine("An instance of Chaos is already running in hello cluster.");
+                Console.WriteLine("An instance of Chaos is already running in the cluster.");
             }
 
             var filter = new ChaosReportFilter(startTimeUtc, DateTime.MaxValue);
@@ -137,7 +137,7 @@ class Program
                 }
 
                 // When Chaos stops, a StoppedEvent is created.
-                // If a StoppedEvent is found, exit hello loop.
+                // If a StoppedEvent is found, exit the loop.
                 var lastEvent = report.History.LastOrDefault();
 
                 if (lastEvent is StoppedEvent)

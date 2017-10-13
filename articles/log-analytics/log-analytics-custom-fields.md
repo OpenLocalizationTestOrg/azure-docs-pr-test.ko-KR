@@ -1,6 +1,6 @@
 ---
-title: "로그 분석의 aaaCustom 필드 | Microsoft Docs"
-description: "로그 분석의 hello 사용자 정의 필드 기능 toocreate 수 있습니다. 수집 된 레코드의 toohello 속성을 추가 하는 OMS 데이터에서 고유한 검색 가능 필드입니다.  이 문서는 hello 프로세스 toocreate 사용자 지정 필드에 설명 하 고 샘플 이벤트와 자세한 연습을 제공 합니다."
+title: "Log Analytics의 사용자 지정 필드 | Microsoft Docs"
+description: "Log Analytics의 사용자 지정 필드를 사용하면 수집된 레코드의 속성에 추가되는 OMS 데이터를 통해 자체 검색 가능한 필드를 만들 수 있습니다.  이 문서는 사용자 지정 필드를 만드는 프로세스를 설명하고 샘플 이벤트에 대한 자세한 연습을 제공합니다."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,75 +14,75 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/18/2016
 ms.author: bwren
-ms.openlocfilehash: 1aa0e497d5b1d7898b0da6a5ef40f568e63bc589
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9e02094f155eaade9bc5fb49c4fbb798e546e989
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="custom-fields-in-log-analytics"></a>Log Analytics의 사용자 지정 필드
-hello **사용자 정의 필드** 로그 분석의 기능은 hello OMS 리포지토리에 tooextend 기존 레코드 고유한 검색 가능 필드를 추가 하 여 합니다.  Hello 다른 속성에서 추출 된 데이터에서 자동으로 채워진 사용자 지정 필드를 같은 레코드입니다.
+Log Analytics의 **사용자 지정 필드** 기능을 사용하면 자체적으로 검색 가능한 필드를 추가하여 OMS 리포지토리의 기존 레코드를 확장할 수 있습니다.  사용자 지정 필드는 동일한 레코드의 다른 속성에서 추출한 데이터로 자동으로 채워집니다.
 
 ![사용자 지정 필드 개요](media/log-analytics-custom-fields/overview.png)
 
-예를 들어 hello 샘플 레코드 아래에 hello 이벤트 설명에 포함 된 유용한 데이터가 있습니다.  이러한 데이터를 별도의 속성으로 추출하면 정렬 및 필터링 같은 작업에 사용할 수 있습니다.
+예를 들어, 아래 샘플 레코드에는 이벤트 설명에 파묻혀 있는 유용한 데이터가 있습니다.  이러한 데이터를 별도의 속성으로 추출하면 정렬 및 필터링 같은 작업에 사용할 수 있습니다.
 
 ![로그 검색 단추](media/log-analytics-custom-fields/sample-extract.png)
 
 > [!NOTE]
-> Hello 미리 보기, 작업 영역에 사용자 지정 필드 too100 제한 됩니다.  이러한 제한은 이 기능이 일반 공급이 될 때 확장됩니다.
+> 미리 보기에서는 작업 영역 내 사용자 지정 필드가 100개로 제한됩니다.  이러한 제한은 이 기능이 일반 공급이 될 때 확장됩니다.
 > 
 > 
 
 ## <a name="creating-a-custom-field"></a>사용자 지정 필드 만들기
-사용자 지정 필드를 만들 값 로그 분석 데이터 toouse toopopulate 어떤을 이해 해야 합니다.  기술을 사용 tooquickly FlashExtract 라고 하는 Microsoft Research의이 데이터를 식별 합니다.  필요 tooprovide 명시적 지침 hello 데이터에 대 한 로그 분석은 알아냅니다 하는 대신 사용자가 제공한 예제에 나오는 tooextract을 할 수 있습니다.
+사용자 지정 필드를 만드는 경우, Log Analytics는 값을 채우는 데 사용할 데이터를 이해해야 합니다.  Microsoft Research의 FlashExtract라는 기술을 사용하여 이러한 데이터를 신속하게 식별합니다.  Log Analytics는 명시적인 지침을 제공하도록 요구하지 않고, 사용자가 제공하는 예제에서 추출할 데이터에 대해 알아냅니다.
 
-다음 섹션 hello 사용자 지정 필드를 만들기 위한 hello 절차를 제공 합니다.  이 문서의 맨 hello에 샘플 추출의 연습 표시 됩니다.
+다음 섹션은 사용자 지정 필드를 만드는 절차를 제공합니다.  이 문서의 맨 아래에 샘플 추출 연습이 있습니다.
 
 > [!NOTE]
-> hello 사용자 지정 필드는 일치 하는 hello 레코드 수집 hello 사용자 지정 필드를 만든 후에 나타납니다 조건을 toohello OMS 데이터 저장소에 추가 된 지정 된 레코드로 채워집니다.  hello 사용자 지정 필드를 만들 때 hello 데이터 저장소에 이미 있는 toorecords를 추가 되지 않습니다.
+> 사용자 지정 필드는 특정 조건에 일치하는 레코드가 OMS 데이터 저장소에 추가되면 채워지기 때문에, 사용자 지정 필드가 생성된 후에 수집된 레코드에만 나타납니다.  사용자 지정 필드는 생성 당시 데이터 저장소에 이미 있었던 레코드에는 추가되지 않습니다.
 > 
 > 
 
-### <a name="step-1--identify-records-that-will-have-hello-custom-field"></a>1 단계 – hello 사용자 지정 필드를 만들 확인 레코드
-hello 첫 번째 단계는 hello 사용자 지정 필드를 얻을 수 있는 tooidentify hello 레코드입니다.  로 시작 하는 [표준 로그 검색](log-analytics-log-searches.md) 한 후 로그 분석에서 배웁니다 hello 모델로 레코드 tooact를 선택 합니다.  사용자 지정 필드에 tooextract 데이터 것을 지정 하면 hello **필드 추출 마법사** 가 유효성을 검사 하 고 hello 조건을 구체화 열립니다.
+### <a name="step-1--identify-records-that-will-have-the-custom-field"></a>1단계 – 사용자 지정 필드를 갖게 될 레코드를 식별합니다.
+첫 번째 단계는 사용자 지정 필드를 갖게 될 레코드를 식별하는 것입니다.  [표준 로그 검색](log-analytics-log-searches.md) 부터 시작한 다음 Log Analytics가 학습하는 모델 역할을 할 레코드를 선택합니다.  사용자 지정 필드에 데이터를 추출할 것이라고 지정하면, **Field Extraction Wizard** (필드 추출 마법사)가 열리고 여기서 조건의 유효성을 검사하고 구체화합니다.
 
-1. 너무 이동**로그 검색** 사용 하는 [tooretrieve hello 레코드 쿼리](log-analytics-log-searches.md) hello 사용자 지정 필드를 갖습니다.
-2. 로그 분석으로 사용 하 여 tooact 모델 데이터 toopopulate hello에 대 한 사용자 지정 필드를 추출 하기 위한 레코드를 선택 합니다.  이 레코드에서 tooextract 원하는 및 비슷한 모든 레코드에 대 한 로그 분석에서이 정보 toodetermine hello 논리 toopopulate hello 사용자 지정 필드 사용할 hello 데이터를 식별 합니다.
-3. Hello 단추 toohello hello 레코드 및 선택의 텍스트 속성 왼쪽 클릭 **에서 필드 추출**합니다.
-4. hello **필드 추출 마법사가 열리고**, 선택한 hello 레코드 hello에 표시 되는 **기본 예제** 열입니다.  hello 사용자 지정 필드는 선택 된 hello 속성에 값을 동일한 hello로 해당 레코드에 대해 정의 됩니다.  
-5. Hello은 정확히 원하는 작업을 하는 경우 추가 필드 toonarrow hello 기준을 선택 합니다.  Toochange hello 필드 값 hello 조건에 대 한 주문 하 고, 취소 하 고 원하는 hello 조건과 일치 하는 다른 레코드를 선택 해야 합니다.
+1. **로그 검색** 으로 이동하고 사용자 지정 필드를 갖게 될 [레코드를 검색할 쿼리](log-analytics-log-searches.md) 를 사용합니다.
+2. Log Analytics가 사용자 지정 필드를 채울 데이터 추출을 위한 모델 역할을 하기 위해서 사용할 레코드를 선택합니다.  사용자는 이 레코드로부터 추출할 데이터를 식별하고, Log Analytics는 이 정보를 사용하여 유사한 모든 레코드의 사용자 지정 필드를 채울 논리를 결정합니다.
+3. 레코드 텍스트 속성 왼쪽의 단추를 클릭하고 **Extract fields from**(다음에서 필드 추출)을 선택합니다.
+4. **Field Extraction Wizard(필드 추출 마법사)가 열리고**, 선택한 레코드가 **Main Example**(기본 예제) 열에 표시됩니다.  사용자 지정 필드가, 선택한 속성에 동일한 값을 포함하는 레코드에 대해 정의됩니다.  
+5. 선택 내용이 정확히 원하는 내용이 아니면, 추가적인 필드를 선택하여 조건을 좁혀 나갑니다.  조건에 대한 필드 값을 변경하기 위해서, 취소하고 원하는 조건에 맞는 다른 레코드를 선택해야 합니다.
 
 ### <a name="step-2---perform-initial-extract"></a>2단계 - 초기 추출을 수행합니다.
-Hello 사용자 지정 필드를 만들 hello 레코드를 식별 했으면 tooextract hello 데이터 식별 합니다.  로그 분석 비슷한 레코드에서이 정보 tooidentify 비슷한 패턴을 사용 합니다.  이후 hello 단계에서 있습니다 수 toovalidate hello 결과 되며 로그 분석 toouse는 분석에 대 한 추가 세부 정보를 제공 합니다.
+사용자 지정 필드를 갖게 될 레코드를 식별하고 나면, 추출할 데이터를 식별합니다.  Log Analytics는 이 정보를 사용하여 비슷한 레코드에서 유사한 패턴을 식별합니다.  이 단계가 지나면 결과의 유효성을 검사하고 분석에 사용할 Log Analytics에 대한 자세한 정보를 제공할 수 있게 됩니다.
 
-1. Hello 텍스트 toopopulate hello에 대 한 사용자 지정 필드를 원하는 hello 예제 레코드를 강조 표시 합니다.  그런 다음 나타납니다 대화 상자 tooprovide와 hello 필드와 tooperform hello 초기 추출에 대 한 이름입니다.  문자 hello  **\_CF** 자동으로 추가 됩니다.
-2. 클릭 **추출** tooperform 수집 된 레코드의 분석 합니다.  
-3. hello **요약** 및 **검색 결과** 섹션에서는 정확성을 검사할 수 있도록 hello 추출의 hello 결과 표시 합니다.  **요약** hello 데이터 식별 된 각 값에 대 한 hello 사용 되는 조건 tooidentify 레코드 및 개수를 표시 합니다.  **검색 결과** hello 조건과 일치 하는 레코드의 세부 목록을 제공 합니다.
+1. 사용자 지정 필드를 채울 샘플 레코드에서 텍스트를 강조 표시합니다.  그러면 필드의 이름을 제공하고 초기 추출을 수행할 대화 상자가 표시됩니다.  **\_CF** 문자가 자동으로 추가됩니다.
+2. **추출** 을 클릭하여 수집된 레코드에 대한 분석을 수행합니다.  
+3. **요약** 및 **검색 결과** 섹션에 정확성을 검사할 수 있도록 추출 결과가 표시됩니다.  **요약** 에 식별된 각각의 데이터 값에 대한 개수 및 레코드를 식별하는 데 사용된 조건이 표시됩니다.  **검색 결과** 에 조건에 맞는 레코드의 자세한 목록이 제공됩니다.
 
-### <a name="step-3--verify-accuracy-of-hello-extract-and-create-custom-field"></a>3 단계 – hello 추출의 정확도 확인 하 고, 사용자 지정 필드 만들기
-Hello 초기 추출을 수행한 경우 로그 분석은 이미 수집 된 데이터를 기반으로 결과 표시 합니다.  Hello 결과가 정확한 것 같으면 hello 사용자 지정 필드 추가 작업 없이를 만들 수 있습니다.  그렇지 않은 경우 다음 로그 분석에서 논리를 향상할 수 있도록 hello 결과 구체화할 수 있습니다.
+### <a name="step-3--verify-accuracy-of-the-extract-and-create-custom-field"></a>3단계 – 사용자 지정 필드 만들기 및 추출의 정확성을 검사합니다.
+초기 추출을 수행하면, Log Analytics에 이미 수집된 데이터에 기반한 결과가 표시됩니다.  결과가 정확해 보이면 더 이상 작업을 수행하지 않고 사용자 지정 필드를 만들 수 있습니다.  그렇지 않으면, Log Analytics의 논리를 개선할 수 있도록 결과를 구체화합니다.
 
-1. Hello 클릭 hello 초기 추출의 값이 올바르지 않은 경우 **편집** 아이콘 다음 tooan 부정확 한 레코드 및 선택 **이 하이라이트 수정** 순서 toomodify hello 선택 항목의 합니다.
-2. hello 항목은 복사한 toohello **추가 예제** hello 아래 섹션 **기본 예제**합니다.  Hello 강조를 조정할 수 여기 toohelp 로그 분석 이해 hello 선택 했어야 합니다.
-3. 클릭 **추출** toouse 기존 hello 모두이 새 정보 tooevaluate를 기록 합니다.  이러한 새 인텔리전스에 따라 수정한 것 하나 hello 이외의 레코드에 대 한 hello 결과 수정할 수 있습니다.
-4. Hello 데이터 toopopulate hello 새 사용자 지정 필드를 식별 하는 tooadd 수정 hello에서 모든 레코드를 올바르게 추출 될 때까지 계속 합니다.
-5. 클릭 **추출 저장** hello 결과 만족 하는 경우.  사용자 지정 필드 hello 이제 정의 하지만 추가 되지 않았습니다 tooany 레코드 아직.
-6. 새 레코드를 일치 하는 hello 지정 조건 toobe 수집 하 고 다음 hello 로그 검색을 다시 실행 될 때까지 기다립니다. 새 레코드에는 hello 사용자 지정 필드가 있어야 합니다.
-7. 다른 레코드 속성 처럼 사용자 정의 필드 hello를 사용 합니다.  Tooaggregate 정보와 그룹 데이터를 사용할 수 있으며 새로운 통찰력 tooproduce 사용할 수 있습니다.
+1. 초기 추출에 정확하지 않은 값이 있으면, 정확하지 않은 레코드 옆의 **편집** 아이콘을 클릭하고 선택을 수정하기 위해서 **Modify this highlight**(이 강조 표시 수정)를 선택합니다.
+2. 해당 항목이 **Main Example**(기본 예제) 아래 **Additional examples**(추가 예제) 섹션으로 복사됩니다.  여기에서 Log Analytics가 만들어야 하는 섹션을 이해할 수 있도록 강조 표시를 조정합니다.
+3. **추출** 을 클릭하여 새로운 정보를 모든 기존 레코드를 평가하는 데 사용합니다.  결과는 새로운 인텔리전스를 기반으로 사용자가 수정한 레코드가 아닌 다른 레코드에 대해 수정될 수 있습니다.
+4. 추출 내 모든 레코드가 새 사용자 지정 필드를 채울 데이터를 제대로 식별할 때까지 수정을 계속 추가합니다.
+5. 결과에 만족하면 **Save Extract** (추출 저장)을 클릭합니다.  사용자 지정 필드가 정의되었지만 아직 레코드에는 추가되지 않았습니다.
+6. 지정된 수집 조건에 일치하는 새 레코드를 기다린 다음 로그 검색을 다시 실행합니다. 새 레코드에 사용자 지정 필드가 생깁니다.
+7. 사용자 지정 필드를 다른 레코드 속성처럼 사용합니다.  이것을 사용하여 데이터를 집계하고 그룹화하며 새로운 통찰을 생성하는 데도 사용할 수 있습니다.
 
 ## <a name="viewing-custom-fields"></a>사용자 지정 필드 보기
-Hello에서 관리 그룹의 모든 사용자 필드 목록을 볼 수 있습니다 **설정을** hello OMS 대시보드의 타일입니다.  **데이터**를 선택한 다음 **사용자 지정 필드**를 선택하여 작업 영역 내 모든 사용자 지정 필드의 목록을 표시합니다.  
+OMS 대시보드 **설정** 타일의 관리 그룹에서 모든 사용자 지정 필드 목록을 볼 수 있습니다.  **데이터**를 선택한 다음 **사용자 지정 필드**를 선택하여 작업 영역 내 모든 사용자 지정 필드의 목록을 표시합니다.  
 
 ![사용자 지정 필드](media/log-analytics-custom-fields/list.png)
 
 ## <a name="removing-a-custom-field"></a>사용자 지정 필드 제거
-사용자 지정 필드는 두 가지 방법으로 tooremove 합니다.  먼저는 hello hello **제거** 위에서 설명한 것 처럼 hello 전체 목록을 볼 때 각 필드에 대 한 옵션입니다.  hello 다른 메서드는 레코드 및 클릭 hello 단추 toohello hello 필드의 왼쪽 tooretrieve 있습니다.  hello 메뉴 옵션 tooremove hello 사용자 지정 필드를 포함 합니다.
+사용자 지정 필드를 제거하는 방법은 두 가지입니다.  첫 번째는 위의 설명대로 전체 목록을 볼 때 각 필드의 **제거** 옵션입니다.  다른 방법은 레코드를 검색하고 필드 왼쪽의 단추를 클릭하는 것입니다.  메뉴에 사용자 지정 필드를 제거하는 옵션이 표시됩니다.
 
 ## <a name="sample-walkthrough"></a>샘플 연습
-hello 다음 섹션 안내는 전체 예제는 사용자 지정 필드 만들기.  이 예제에서는 서비스 변경 상태를 나타내는 Windows 이벤트의 hello 서비스 이름을 추출 합니다.  이 예제에서는 서비스 제어 관리자에서 Windows 컴퓨터에서 hello 시스템 로그에 생성 된 이벤트에 사용 합니다.  이 예에서는 toofollow 원하는 상태 여야 [hello 시스템 로그에 대 한 정보 이벤트를 수집](log-analytics-data-sources-windows-events.md)합니다.
+다음 섹션은 사용자 지정 필드를 만드는 전체 예제를 안내합니다.  이 예제는 서비스 변경 상태를 나타내는 Windows 이벤트의 서비스 이름을 추출합니다.  이것은 Windows 컴퓨터의 시스템 로그에서 서비스 제어 관리자에 의해 생성되는 이벤트에 의존합니다.  이 예제를 계속하려면, [시스템 로그에 대한 정보 이벤트를 수집](log-analytics-data-sources-windows-events.md)해야 합니다.
 
-에서는 입력 쿼리 tooreturn 다음 hello 모든 이벤트 서비스 제어 관리자에서 이벤트 id 7036이 있는 hello 이벤트 서비스 시작 또는 중지를 나타내는입니다.
+서비스 시작 또는 중지를 나타내는 이벤트인, 이벤트 ID가 7036인 서비스 제어 관리자의 모든 이벤트를 반환하기 위해서 다음 쿼리를 입력합니다.
 
 ![쿼리](media/log-analytics-custom-fields/query.png)
 
@@ -90,55 +90,55 @@ hello 다음 섹션 안내는 전체 예제는 사용자 지정 필드 만들기
 
 ![소스 레코드](media/log-analytics-custom-fields/source-record.png)
 
-Hello에 표시 되는 hello 서비스 이름을 원하는 **RenderedDescription** 속성과 선택 hello 단추 다음 toothis 속성입니다.
+**RenderedDescription** 속성에 표시되는 서비스 이름이 필요하며, 이 속성 옆의 단추를 선택합니다.
 
 ![추출 필드](media/log-analytics-custom-fields/extract-fields.png)
 
-hello **필드 추출 마법사** 열리며 hello **EventLog** 및 **EventID** hello에서 필드가 선택 되어 **기본 예제** 열입니다.  이 해당 hello 사용자 지정 필드 hello 이벤트 ID 7036이 있는 시스템 로그의 이벤트에 대해 정의 됨을 나타냅니다.  이것으로 충분 하므로 다른 필드 tooselect 필요 하지 않습니다.
+**Field Extraction Wizard**(필드 추출 마법사)가 열리고 **EventLog** 및 **EventID** 필드가 **Main Example**(기본 예제) 열에서 선택됩니다.  이것은 사용자 지정 필드가 이벤트 ID가 7036인 시스템 로그의 이벤트에 대해 정의된다는 것을 나타냅니다.  이것으로 충분하므로 다른 필드를 선택할 필요가 없습니다.
 
 ![Main Example](media/log-analytics-custom-fields/main-example.png)
 
-Hello hello에 hello 서비스 이름을 강조 해 서 **RenderedDescription** 속성 및 사용 **서비스** tooidentify hello 서비스 이름입니다.  hello 사용자 지정 필드를 호출할지 **Service_CF**합니다.
+**RenderedDescription** 속성에서 서비스의 이름을 강조 표시하고 **Service**를 사용하여 서비스 이름을 식별합니다.  사용자 지정 필드가 **Service_CF**라고 지정됩니다.
 
 ![필드 제목](media/log-analytics-custom-fields/field-title.png)
 
-Hello 서비스 이름이 일부 레코드에 대 한 하지만만 적절 하 게 식별 되는 것이 보면 됩니다.   hello **검색 결과** hello에 대 한 hello 이름의 일부가 표시 **WMI Performance Adapter** 선택 되지 않았습니다.  hello **요약** 갖는 레코드 4 표시 **DPRMA** 서비스 잘못 포함 여분의 단어 및 식별 하는 두 개의 레코드 **모듈 설치 관리자** 대신**Windows 모듈 설치 관리자**합니다.  
+일부 레코드에 대해서는 서비스 이름이 적절하게 식별되었지만 나머지에 대해서는 그렇지 못합니다.   **검색 결과**에 **WMI Performance Adapter**의 이름 일부가 선택되지 않은 것이 표시됩니다.  **요약**에 **DPRMA** 서비스를 포함하는 네 개의 레코드에 추가적인 단어가 잘 못 포함되었고, 두 개의 레코드가 **Windows 모듈 설치 관리자**가 아닌 **모듈 설치 관리자**로 식별된 것이 표시됩니다.  
 
 ![검색 결과](media/log-analytics-custom-fields/search-results-01.png)
 
-Hello로 시작 **WMI Performance Adapter** 레코드입니다.  편집 아이콘을 클릭한 다음 **Modify this highlight**(이 강조 표시 수정)를 클릭합니다.  
+**WMI Performance Adapter** 레코드부터 시작합니다.  편집 아이콘을 클릭한 다음 **Modify this highlight**(이 강조 표시 수정)를 클릭합니다.  
 
 ![강조 표시 수정](media/log-analytics-custom-fields/modify-highlight.png)
 
-Hello 강조 tooinclude hello 단어 늘려 **WMI** 다음 hello 추출 다시 실행 하십시오.  
+**WMI**라는 단어를 포함하도록 강조 표시를 키운 다음 추출을 다시 실행합니다.  
 
 ![추가 예제](media/log-analytics-custom-fields/additional-example-01.png)
 
-해당 hello 볼 수 있습니다에 대 한 항목 **WMI Performance Adapter** 수정 되었으며, 로그 분석이 해당 정보 toocorrect hello 레코드에 대 한 사용 **Windows 모듈 설치 관리자**합니다.  Hello에서 볼 수 **요약** 섹션 하지만 **DPMRA** 가 아직 올바르게 식별 되지 합니다.
+**WMI Performance Adapter**에 대한 항목이 수정되었고, Log Analytics 역시 해당 정보를 사용하여 **Windows모듈 설치 관리자**에 대한 레코드를 수정한 것을 볼 수 있습니다.  **요약** 섹션에서 **DPMRA**가 여전히 제대로 식별되지 않고 있는 것을 볼 수 있습니다.
 
 ![검색 결과](media/log-analytics-custom-fields/search-results-02.png)
 
-DPMRA 서비스 hello로 tooa 레코드 스크롤하여 동일한 프로세스를 기록 하는 toocorrect hello를 사용 합니다.
+DPMRA 서비스를 포함하는 레코드로 스크롤하고 동일한 프로세스를 사용하여 해당 레코드를 수정합니다.
 
 ![추가 예제](media/log-analytics-custom-fields/additional-example-02.png)
 
- Hello 추출을 실행 하면 모든 결과가 내용이 올바르면 이제 았습니다.
+ 추출을 실행하면 이제 모든 결과가 정확한 것을 볼 수 있습니다.
 
 ![검색 결과](media/log-analytics-custom-fields/search-results-03.png)
 
-볼 수 있습니다 **Service_CF** 만들어지지만 tooany 레코드 아직 추가 되지 않습니다.
+**Service_CF**가 생성되었지만 아직 어느 레코드에도 추가되지 않은 것을 볼 수 있습니다.
 
 ![초기 개수](media/log-analytics-custom-fields/initial-count.png)
 
-New 약간의 시간이 지난 후 이벤트를 수집할지, hello를 볼 수 있습니다 **Service_CF** 필드가 toorecords 우리의 조건과 일치 하는 추가 이제 합니다.
+새 이벤트가 수집될 만큼 시간이 지나면, **Service_CF** 필드가 조건에 일치하는 레코드에 추가되는 것을 볼 수 있습니다.
 
 ![최종 결과](media/log-analytics-custom-fields/final-results.png)
 
-이제 다른 레코드 속성과 같이 hello 사용자 지정 필드를 사용할 수 있습니다.  tooillustrate이 새 hello 별로 그룹화 되는 쿼리를 작성 **Service_CF** 필드 tooinspect hello 가장 많이 실행 되는 서비스가 있습니다.
+이제 사용자 지정 필드를 다른 레코드 속성처럼 사용할 수 있습니다.  이것을 설명하기 위해, 가장 활동적인 서비스가 무엇인지를 검사하는 새로운 **Service_CF** 필드로 그룹화하는 쿼리를 만듭니다.
 
 ![쿼리로 그룹화](media/log-analytics-custom-fields/query-group.png)
 
 ## <a name="next-steps"></a>다음 단계
-* 에 대 한 자세한 내용은 [검색 로그](log-analytics-log-searches.md) toobuild 쿼리 조건에 대 한 사용자 지정 필드를 사용 합니다.
+* 조건에 대한 사용자 지정 필드를 사용하여 쿼리를 빌드하기 위해 [검색 로그](log-analytics-log-searches.md) 에 대해 알아봅니다.
 * 사용자 지정 필드를 사용하여 구문 분석하는 [사용자 지정 로그 파일](log-analytics-data-sources-custom-logs.md)을 모니터링합니다.
 

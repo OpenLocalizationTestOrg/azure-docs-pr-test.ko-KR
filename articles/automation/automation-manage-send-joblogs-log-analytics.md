@@ -1,9 +1,9 @@
 ---
-title: "Azure 자동화 작업 데이터 tooOMS 로그 분석 aaaForward | Microsoft Docs"
-description: "이 문서에서는 toosend 작업 상태 및 runbook 작업 tooMicrosoft Operations Management Suite 로그 분석 toodeliver 추가 정보 및 관리를 스트림 하는 방법을 보여줍니다."
+title: "OMS Log Analytics에 Azure Automation 작업 데이터 전달 | Microsoft Docs"
+description: "이 문서에서는 작업 상태 및 runbook 작업 스트림을 Microsoft Operations Management Suite Log Analytics로 보내 통찰력 및 관리를 강화하는 방법을 알아봅니다."
 services: automation
 documentationcenter: 
-author: MGoedtel
+author: eslesar
 manager: carmonm
 editor: tysonn
 ms.assetid: c12724c6-01a9-4b55-80ae-d8b7b99bd436
@@ -12,16 +12,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 06/02/2017
+ms.date: 08/31/2017
 ms.author: magoedte
-ms.openlocfilehash: e78b6c6677d6502711ce828e2d32b7a91922ae26
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 21923adaa8f8118995799319c1fd496a6e449faa
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="forward-job-status-and-job-streams-from-automation-toolog-analytics-oms"></a>자동화 tooLog 분석 (OMS)에서 작업 상태 및 작업 스트림 전달
-자동화는 runbook 작업 상태 및 작업 스트림을 tooyour Microsoft Operations Management Suite (OMS) 로그 분석 작업 영역을 보낼 수 있습니다.  작업 로그 및 작업 스트림 hello Azure 포털에에서 표시 되 나 powershell을 개별 작업 및이 대 한 사용 하면 tooperform 단순 조사를 수행 합니다. 이제 Log Anaytics를 사용하여 다음을 수행할 수 있습니다.
+# <a name="forward-job-status-and-job-streams-from-automation-to-log-analytics-oms"></a>자동화에서 Log Analytics로 작업 상태 및 작업 스트림 전달(OMS)
+자동화에서 Microsoft Operations Management Suite(OMS) Log Analytics 작업 영역으로 runbook 작업 상태 및 작업 스트림을 보낼 수 있습니다.  개별 작업에 대해 Azure Portal에서 또는 PowerShell을 사용하여 작업 로그 및 작업 스트림을 볼 수 있으며 이를 통해 보다 간단한 조사가 가능합니다. 이제 Log Anaytics를 사용하여 다음을 수행할 수 있습니다.
 
 * 자동화 작업에 대한 통찰력 확보
 * Runbook 작업 상태(예: 실패 또는 일시 중단)를 기반으로 전자 메일 또는 경고 트리거
@@ -30,29 +30,29 @@ ms.lasthandoff: 10/06/2017
 * 시간별 작업 기록 시각화     
 
 ## <a name="prerequisites-and-deployment-considerations"></a>필수 구성 요소 및 배포 고려 사항
-자동화를 보내는 toostart tooLog 분석 로그 사용 해야 합니다.
+Automation 로그를 Log Analytics로 보내려면 다음이 필요합니다.
 
-1. 2016 년 11 월 hello 또는 나중에 릴리스를 [Azure PowerShell](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) (v2.3.0).
+1. [Azure PowerShell](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/)의 2016년 11월(v2.3.0) 이후 릴리스
 2. Log Analytics 작업 영역. 자세한 내용은 [Log Analytics 시작](../log-analytics/log-analytics-get-started.md)을 참조하세요. 
-3. Azure 자동화 계정에 대 한 hello ResourceId
+3. Azure Automation 계정에 대한 ResourceId
 
-Azure 자동화 계정 및 로그 분석 작업 영역에서 다음 PowerShell hello 실행에 대 한 toofind hello ResourceId:
+Azure Automation 계정 및 Log Analytics 작업 영역에 대한 ResourceId를 찾으려면 다음 PowerShell을 실행합니다.
 
 ```powershell
-# Find hello ResourceId for hello Automation Account
+# Find the ResourceId for the Automation Account
 Find-AzureRmResource -ResourceType "Microsoft.Automation/automationAccounts"
 
-# Find hello ResourceId for hello Log Analytics workspace
+# Find the ResourceId for the Log Analytics workspace
 Find-AzureRmResource -ResourceType "Microsoft.OperationalInsights/workspaces"
 ```
 
-작업 영역, hello 명령, 앞의 hello 출력에서 찾을 hello 또는 여러 자동화 계정이 있는 경우 *이름* tooconfigure 필요 하 고 hello 값을 복사 *ResourceId*합니다.
+여러 Automation 계정 또는 작업 영역이 있는 경우 이전 명령의 출력에서 구성해야 하는 *Name*을 찾고 *ResourceId* 값을 복사합니다.
 
-Toofind hello 해야 할 경우 *이름* 자동화 계정의 hello Azure 포털 자동화 계정에서에서 선택 hello **자동화 계정** 블레이드에 대 한 선택 **모든설정**.  Hello에서 **모든 설정을** 블레이드 아래 **계정 설정** 선택 **속성**합니다.  Hello에 **속성** 블레이드에서 이러한 값을 기록할 수 있습니다.<br> ![자동화 계정 속성](media/automation-manage-send-joblogs-log-analytics/automation-account-properties.png)을 참조하세요.
+Automation 계정의 *Name*을 찾으려면 Azure Portal의 **Automation 계정** 블레이드에서 Automation 계정을 선택한 다음 **모든 설정**을 선택합니다.  **계정 설정** 아래에 있는 **모든 설정** 블레이드에서 **속성**을 선택합니다.  **속성** 블레이드에서 이들 값을 기록할 수 있습니다.<br> ![자동화 계정 속성](media/automation-manage-send-joblogs-log-analytics/automation-account-properties.png)을 참조하세요.
 
 ## <a name="set-up-integration-with-log-analytics"></a>Log Analytics와의 통합 설정
-1. 사용자 컴퓨터에서 시작 **Windows PowerShell** hello에서 **시작** 화면입니다.  
-2. 복사 하거나 hello PowerShell에서 다음을 붙여 넣고 hello에 대 한 hello 값 편집 `$workspaceId` 및 `$automationAccountId`합니다.  Hello에 대 한 `-Environment` 매개 변수에 유효한 값은 *azure 클라우드* 또는 *AzureUSGovernment* 에서 작업 하는 hello 클라우드 환경에 따라 합니다.     
+1. 컴퓨터의 **시작** 화면에서 **Windows PowerShell**을 시작합니다.  
+2. 다음 PowerShell을 복사하고, `$workspaceId` 및 `$automationAccountId` 값을 편집합니다.  `-Environment` 매개 변수에 유효한 값은 사용 중인 클라우드 환경에 따라 *AzureCloud* 또는 *AzureUSGovernment*입니다.     
 
 ```powershell
 [cmdletBinding()]
@@ -63,17 +63,17 @@ Toofind hello 해야 할 경우 *이름* 자동화 계정의 hello Azure 포털 
         [string]$Environment="AzureCloud"
     )
 
-#Check toosee which cloud environment toosign into.
+#Check to see which cloud environment to sign into.
 Switch ($Environment)
    {
        "AzureCloud" {Login-AzureRmAccount}
        "AzureUSGovernment" {Login-AzureRmAccount -EnvironmentName AzureUSGovernment} 
    }
 
-# if you have one Log Analytics workspace you can use hello following command tooget hello resource id of hello workspace
+# if you have one Log Analytics workspace you can use the following command to get the resource id of the workspace
 $workspaceId = (Get-AzureRmOperationalInsightsWorkspace).ResourceId
 
-$automationAccountId = "/SUBSCRIPTIONS/ec11ca60-1234-491e-5678-0ea07feae25c/RESOURCEGROUPS/DEMO/PROVIDERS/MICROSOFT.AUTOMATION/ACCOUNTS/DEMO" 
+$automationAccountId = "/SUBSCRIPTIONS/ec11ca67-1234-421e-5678-c25/RESOURCEGROUPS/DEMO/PROVIDERS/MICROSOFT.AUTOMATION/ACCOUNTS/DEMO" 
 
 Set-AzureRmDiagnosticSetting -ResourceId $automationAccountId -WorkspaceId $workspaceId -Enabled $true
 
@@ -81,10 +81,10 @@ Set-AzureRmDiagnosticSetting -ResourceId $automationAccountId -WorkspaceId $work
 
 이 스크립트를 실행한 후 새 JobLogs 또는 쓰고 있는 JobStreams의 10분 이내에 Log Analytics에 레코드가 표시됩니다.
 
-toosee hello 로그, hello 다음 로그 분석 로그 검색에 대 한 쿼리를 실행 합니다.`Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION"`
+로그를 보려면 Log Analytics 로그 검색에서 다음 쿼리를 실행합니다. `Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION"`
 
 ### <a name="verify-configuration"></a>구성 확인
-자동화 계정에서 보내는 tooconfirm tooyour 로그 분석 작업 영역을 로그, 진단 hello 다음 PowerShell을 사용 하 여 hello 자동화 계정에서 올바르게 설정 되어 있는지 확인:
+Automation 계정이 Log Analytics 작업 영역으로 로그를 보내는지 확인하려면 다음 PowerShell을 사용하여 Automation 계정에 대해 진단이 올바르게 설정되어 있는지 확인합니다.
 
 ```powershell
 [cmdletBinding()]
@@ -95,23 +95,23 @@ toosee hello 로그, hello 다음 로그 분석 로그 검색에 대 한 쿼리�
         [string]$Environment="AzureCloud"
     )
 
-#Check toosee which cloud environment toosign into.
+#Check to see which cloud environment to sign into.
 Switch ($Environment)
    {
        "AzureCloud" {Login-AzureRmAccount}
        "AzureUSGovernment" {Login-AzureRmAccount -EnvironmentName AzureUSGovernment} 
    }
-# if you have one Log Analytics workspace you can use hello following command tooget hello resource id of hello workspace
+# if you have one Log Analytics workspace you can use the following command to get the resource id of the workspace
 $workspaceId = (Get-AzureRmOperationalInsightsWorkspace).ResourceId
 
-$automationAccountId = "/SUBSCRIPTIONS/ec11ca60-1234-491e-5678-0ea07feae25c/RESOURCEGROUPS/DEMO/PROVIDERS/MICROSOFT.AUTOMATION/ACCOUNTS/DEMO" 
+$automationAccountId = "/SUBSCRIPTIONS/ec11ca67-1234-421e-5678-c25/RESOURCEGROUPS/DEMO/PROVIDERS/MICROSOFT.AUTOMATION/ACCOUNTS/DEMO" 
 
 Get-AzureRmDiagnosticSetting -ResourceId $automationAccountId
 ```
 
-Hello 출력을 확인.
-+ 아래 *로그*, 값에 대 한 hello *Enabled* 은 *True*
-+ 값을 hello *WorkspaceId* toohello ResourceId의 로그 분석 작업 영역 설정
+출력에서 다음을 확인합니다.
++ *로그*에서 *Enabled* 값이 *True*인지 여부
++ *WorkspaceId* 값이 Log Analytics 작업 공간의 ResourceId로 설정되어 있는지 여부
 
 
 ## <a name="log-analytics-records"></a>Log Analytics 레코드
@@ -120,21 +120,21 @@ Azure Automation의 진단은 Log Analytics에 두 가지 유형의 레코드를
 ### <a name="job-logs"></a>작업 로그
 | 속성 | 설명 |
 | --- | --- |
-| TimeGenerated |날짜 및 hello runbook 작업 실행 시간입니다. |
-| RunbookName_s |hello runbook의 hello 이름입니다. |
-| Caller_s |Hello 작업을 시작한 사람입니다.  가능한 값은 전자 메일 주소 또는 예약된 작업의 시스템입니다. |
-| Tenant_g | 호출자에 게 hello에 대 한 hello 테 넌 트를 식별 하는 GUID입니다. |
-| JobId_g |hello hello runbook 작업의 Id는 GUID입니다. |
-| ResultType |hello runbook 작업의 hello 상태입니다.  가능한 값은 다음과 같습니다.<br>- 시작됨<br>- 중지됨<br>- 일시 중단됨<br>- 실패<br>- 완료됨 |
-| Category | Hello 종류의 데이터 분류 합니다.  자동화를 위해 hello 값은 JobLogs입니다. |
-| OperationName | Azure에서 수행한 작업의 hello 유형을 지정 합니다.  자동화를 위해 hello 값은 작업입니다. |
-| 리소스 | hello 자동화 계정 이름 |
-| SourceSystem | 로그 분석 hello 데이터 수집 하는 방법입니다. Azure 진단의 경우 항상 *Azure*입니다. |
-| ResultDescription |Hello runbook 작업 결과 상태를 설명합니다.  가능한 값은 다음과 같습니다.<br>- 작업 시작<br>- 작업 실패<br>- Job Completed입니다. |
-| CorrelationId |hello hello runbook 작업의 상관 관계 Id는 GUID입니다. |
-| ResourceId |Hello runbook의 hello Azure 자동화 계정 리소스 id를 지정합니다. |
-| SubscriptionId | hello hello 자동화 계정에 대 한 Azure 구독 Id (GUID)입니다. |
-| ResourceGroup | Hello 자동화 계정에 대 한 hello 리소스 그룹의 이름입니다. |
+| TimeGenerated |runbook 작업이 실행된 날짜 및 시간입니다. |
+| RunbookName_s |runbook의 이름입니다. |
+| Caller_s |작업을 시작한 사람입니다.  가능한 값은 전자 메일 주소 또는 예약된 작업의 시스템입니다. |
+| Tenant_g | 호출자에 대한 테넌트를 식별하는 GUID입니다. |
+| JobId_g |runbook 작업의 ID인 GUID입니다. |
+| ResultType |runbook 작업의 상태입니다.  가능한 값은 다음과 같습니다.<br>- 신규<br>- 시작됨<br>- 중지됨<br>- 일시 중단됨<br>- 실패<br>- 완료됨 |
+| Category | 데이터 유형의 분류입니다.  Automation의 경우 값은 JobLogs입니다. |
+| OperationName | Azure에서 수행되는 작업 유형을 지정합니다.  Automation의 경우 이 값은 Job입니다. |
+| 리소스 | Automation 계정의 이름입니다. |
+| SourceSystem | Log Analytics가 데이터를 수집한 방법입니다. Azure 진단의 경우 항상 *Azure*입니다. |
+| ResultDescription |runbook 작업 결과 상태를 설명합니다.  가능한 값은 다음과 같습니다.<br>- 작업 시작<br>- 작업 실패<br>- Job Completed입니다. |
+| CorrelationId |runbook 작업의 상관 관계 ID인 GUID입니다. |
+| ResourceId |Runbook의 Azure Automation 계정 리소스 ID를 지정합니다. |
+| SubscriptionId | Automation 계정에 대한 Azure 구독 ID(GUID)입니다. |
+| ResourceGroup | Automation 계정에 대한 리소스 그룹의 이름입니다. |
 | ResourceProvider | MICROSOFT.AUTOMATION |
 | ResourceType | AUTOMATIONACCOUNTS |
 
@@ -142,67 +142,67 @@ Azure Automation의 진단은 Log Analytics에 두 가지 유형의 레코드를
 ### <a name="job-streams"></a>작업 스트림
 | 속성 | 설명 |
 | --- | --- |
-| TimeGenerated |날짜 및 hello runbook 작업 실행 시간입니다. |
-| RunbookName_s |hello runbook의 hello 이름입니다. |
-| Caller_s |Hello 작업을 시작한 사람입니다.  가능한 값은 전자 메일 주소 또는 예약된 작업의 시스템입니다. |
-| StreamType_s |작업 스트림의 hello 형식입니다. 가능한 값은 다음과 같습니다.<br>- 진행<br>- 출력<br>- 경고<br>- 오류<br>- 디버그<br>- Verbose입니다. |
-| Tenant_g | 호출자에 게 hello에 대 한 hello 테 넌 트를 식별 하는 GUID입니다. |
-| JobId_g |hello hello runbook 작업의 Id는 GUID입니다. |
-| ResultType |hello runbook 작업의 hello 상태입니다.  가능한 값은 다음과 같습니다.<br>- 진행 중 |
-| Category | Hello 종류의 데이터 분류 합니다.  자동화를 위해 hello 값은 JobStreams입니다. |
-| OperationName | Azure에서 수행한 작업의 hello 유형을 지정 합니다.  자동화를 위해 hello 값은 작업입니다. |
-| 리소스 | hello 자동화 계정 이름 |
-| SourceSystem | 로그 분석 hello 데이터 수집 하는 방법입니다. Azure 진단의 경우 항상 *Azure*입니다. |
-| ResultDescription |Hello runbook에서 출력 스트림에 hello 포함 되어 있습니다. |
-| CorrelationId |hello hello runbook 작업의 상관 관계 Id는 GUID입니다. |
-| ResourceId |Hello runbook의 hello Azure 자동화 계정 리소스 id를 지정합니다. |
-| SubscriptionId | hello hello 자동화 계정에 대 한 Azure 구독 Id (GUID)입니다. |
-| ResourceGroup | Hello 자동화 계정에 대 한 hello 리소스 그룹의 이름입니다. |
+| TimeGenerated |runbook 작업이 실행된 날짜 및 시간입니다. |
+| RunbookName_s |runbook의 이름입니다. |
+| Caller_s |작업을 시작한 사람입니다.  가능한 값은 전자 메일 주소 또는 예약된 작업의 시스템입니다. |
+| StreamType_s |작업 스트림의 유형입니다. 가능한 값은 다음과 같습니다.<br>- 진행<br>- 출력<br>- 경고<br>- 오류<br>- 디버그<br>- Verbose입니다. |
+| Tenant_g | 호출자에 대한 테넌트를 식별하는 GUID입니다. |
+| JobId_g |runbook 작업의 ID인 GUID입니다. |
+| ResultType |runbook 작업의 상태입니다.  가능한 값은 다음과 같습니다.<br>- 진행 중 |
+| Category | 데이터 유형의 분류입니다.  Automation의 경우 값은 JobStreams입니다. |
+| OperationName | Azure에서 수행되는 작업 유형을 지정합니다.  Automation의 경우 이 값은 Job입니다. |
+| 리소스 | Automation 계정의 이름입니다. |
+| SourceSystem | Log Analytics가 데이터를 수집한 방법입니다. Azure 진단의 경우 항상 *Azure*입니다. |
+| ResultDescription |runbook의 출력 스트림을 포함합니다. |
+| CorrelationId |runbook 작업의 상관 관계 ID인 GUID입니다. |
+| ResourceId |Runbook의 Azure Automation 계정 리소스 ID를 지정합니다. |
+| SubscriptionId | Automation 계정에 대한 Azure 구독 ID(GUID)입니다. |
+| ResourceGroup | Automation 계정에 대한 리소스 그룹의 이름입니다. |
 | ResourceProvider | MICROSOFT.AUTOMATION |
 | ResourceType | AUTOMATIONACCOUNTS |
 
 ## <a name="viewing-automation-logs-in-log-analytics"></a>Log Analytics에서 자동화 로그 보기
-보내는 자동화 작업 로그 tooLog 분석을 시작 했으므로 이러한 로그 내 로그 분석으로 수행할 수 있는 확인해 보겠습니다.
+Automation 작업 로그를 Log Analytics로 보내기 시작했으므로 이제 Log Analytics 내에서 이러한 로그로 수행할 수 있는 작업을 살펴보겠습니다.
 
-다음 쿼리에서 hello 실행 toosee hello 로그:`Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION"`
+로그를 보려면 다음 쿼리를 실행합니다. `Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION"`
 
 ### <a name="send-an-email-when-a-runbook-job-fails-or-suspends"></a>Runbook 작업이 실패하거나 일시 중단된 경우 전자 메일 보내기
-Runbook 작업에 문제가 발생 하는 경우 전자 메일 또는 텍스트 기능 toosend hello에 대 한가 묻습니다 상위 고객 중 하나입니다.   
+고객이 자주 묻는 질문 중 하나는 Runbook 작업에 문제가 발생한 경우 전자 메일 또는 텍스트를 보낼 수 있는지 여부입니다.   
 
-toocreate 경고 규칙 hello runbook에 대 한 로그 검색 hello 경고를 호출 해야 하는 작업 레코드를 만들어 시작 합니다.  Hello 클릭 **경고** toocreate 단추 및 hello 경고 규칙을 구성 합니다.
+경고 규칙을 만들려면 경고를 호출해야 하는 runbook 작업 레코드에 대한 로그 검색을 만드는 것으로 시작합니다.  **경고** 단추를 클릭하여 경고 규칙을 만들고 구성합니다.
 
-1. Hello 로그 분석 개요 페이지에서 클릭 **로그 검색**합니다.
-2. Hello 검색 hello 쿼리 필드에 다음을 입력 하 여 경고에 대 한 로그 검색 쿼리를 만들어: `Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category=JobLogs (ResultType=Failed OR ResultType=Suspended)` 를 사용 하 여 hello RunbookName 기준으로 그룹화 수도 있습니다.`Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category=JobLogs (ResultType=Failed OR ResultType=Suspended) | measure Count() by RunbookName_s`   
+1. Log Analytics 개요 페이지에서 **로그 검색**을 클릭합니다.
+2. 쿼리 필드에 다음 검색을 입력하여 경고에 대한 로그 검색 쿼리를 만듭니다. `Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category=JobLogs (ResultType=Failed OR ResultType=Suspended)`  다음을 사용하여 RunbookName별로 그룹화할 수도 있습니다.`Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category=JobLogs (ResultType=Failed OR ResultType=Suspended) | measure Count() by RunbookName_s`   
 
-   에 둘 이상의 자동화 계정 또는 구독 tooyour 작업 영역에서 로그를 설정 하는 경우 구독 및 자동화 계정에서 경고를 그룹화 할 수 있습니다.  자동화 계정 이름 JobLogs의 hello 검색에서 hello 리소스 필드에서 파생 될 수 있습니다.  
-3. tooopen hello **경고 규칙 추가** 화면 **경고** hello hello 페이지 위쪽에 있습니다. Hello 옵션 tooconfigure hello 경고에 자세한 내용은 참조 하십시오. [로그 분석에서 경고](../log-analytics/log-analytics-alerts.md#alert-rules)합니다.
+   둘 이상의 Automation 계정 또는 구독에서 작업 영역으로의 로그를 설정한 경우 구독 또는 Automation 계정별로 경고를 그룹화할 수 있습니다.  자동화 계정 이름은 JobLogs 검색의 리소스 필드에서 파생될 수 있습니다.  
+3. **경고 규칙 추가** 화면을 열려면 페이지 위쪽의 **경고**를 클릭합니다. 경고 구성 옵션에 자세한 내용은 [Log Analytics의 경고](../log-analytics/log-analytics-alerts.md#alert-rules)를 참조하세요.
 
 ### <a name="find-all-jobs-that-have-completed-with-errors"></a>오류와 함께 완료된 모든 작업 찾기
-또한 오류에 tooalerting, runbook 작업에 종료 되지 않는 오류가 있을 때을 찾을 수 있습니다. 이러한 경우 PowerShell 오류 스트림에 생성 합니다. 하지만 hello 종료 되지 않은 오류 작업 toosuspend 발생 하지 않거나 실패 합니다.    
+오류에 대한 경고 외에도, runbook 작업에 대해 비종료 오류가 발생하는 경우를 확인할 수 있습니다. 이러한 경우 PowerShell은 오류 스트림을 생성하지만 비종료 오류가 발생해도 작업이 일시 중단되거나 실패하지 않습니다.    
 
 1. Log Analytics 작업 영역에서 **로그 검색**을 클릭합니다.
-2. Hello 쿼리 필드에 입력 `Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category=JobStreams StreamType_s=Error | measure count() by JobId_g` 클릭 하 고 **검색**합니다.
+2. 쿼리 필드에서 `Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category=JobStreams StreamType_s=Error | measure count() by JobId_g` 을 입력하고 **검색**을 클릭합니다.
 
 ### <a name="view-job-streams-for-a-job"></a>작업에 대한 작업 스트림 보기
-작업을 디버깅 하는 경우 수도 있습니다 toolook hello 작업 스트림으로 합니다.  hello 다음 쿼리 표시 GUID 2ebd22ea e05e-4eb9-9 차원 76 d73cbd4356e0 인 단일 작업에 대 한 모든 hello 스트림을 합니다.   
+작업을 디버깅할 때 작업 스트림을 살펴볼 수도 있습니다.  다음 쿼리는 GUID가 2ebd22ea-e05e-4eb9-9d76-d73cbd4356e0인 단일 작업의 모든 스트림을 보여 줍니다.   
 
 `Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category=JobStreams JobId_g="2ebd22ea-e05e-4eb9-9d76-d73cbd4356e0" | sort TimeGenerated | select ResultDescription`
 
 ### <a name="view-historical-job-status"></a>기록 작업 상태 보기
-마지막으로 할 수 있습니다 toovisualize 작업 기록 시간에 따라.  작업의 hello 상태에 대 한 시간에 따라이 쿼리 toosearch를 사용할 수 있습니다.
+마지막으로 시간별 작업 기록을 시각화할 수 있습니다.  이 쿼리를 사용하여 시간이 지남에 따른 작업 상태를 검색할 수 있습니다.
 
 `Type=AzureDiagnostics ResourceProvider="MICROSOFT.AUTOMATION" Category=JobLogs NOT(ResultType="started") | measure Count() by ResultType interval 1hour`  
 <br> ![OMS 기록 작업 상태 차트](media/automation-manage-send-joblogs-log-analytics/historical-job-status-chart.png)<br>
 
 ## <a name="summary"></a>요약
-프로그램 자동화 작업 상태 및 스트림 데이터 tooLog 분석을 전송 하 여 자동화 작업 하 여 hello 상태에 대 한 더 나은 정보를 얻을 수 있습니다.
-+ 설정 경고 toonotify 있습니다에 문제가 있을 때
-+ 사용자 지정 보기 및 검색 쿼리 toovisualize를 사용 하 여 프로그램 runbook 결과, runbook 작업 상태 및 기타 관련 주요 표시기 또는 메트릭.  
+Automation 작업 상태 및 스트림 데이터를 Log Analytics로 전송하면 다음과 같은 작업을 통해 Automation 작업의 상태를 보다 정확히 파악할 수 있습니다.
++ 문제가 발생할 때 알리도록 경고 설정
++ 사용자 지정 보기와 검색 쿼리를 사용하여 runbook 결과, runbook 작업 상태 및 기타 관련된 핵심 지표 또는 메트릭 시각화.  
 
-로그 분석 operational 띄도록 tooyour 자동화 작업을 제공 및 보다 신속한 주소 인시던트 있습니다.  
+Log Analytics는 Automation 작업의 작동을 보다 정확히 이해하도록 하며 인시던트를 더 빠르게 해결하도록 도와줍니다.  
 
 ## <a name="next-steps"></a>다음 단계
-* toolearn 어떻게 tooconstruct 다른 검색 쿼리 및 검토 hello 자동화 작업 로그 분석을 사용 하 여 로그에 대 한 자세한 참조 [로그 분석 검색 로그인](../log-analytics/log-analytics-log-searches.md)
-* runbook에서 toocreate 및 검색 하 고 출력 및 오류 메시지를 확인 하려면 어떻게 toounderstand [Runbook 출력 및 메시지](automation-runbook-output-and-messages.md)
-* toolearn toomonitor runbook 작업 및 기타 기술 정보가 참조 하는 방법 runbook 실행에 대 한 자세한 [runbook 작업을 추적 합니다.](automation-runbook-execution.md)
-* OMS 로그 분석 및 데이터 컬렉션 원본에 대해 자세히 toolearn 참조 [로그 분석 개요에서 수집 하는 Azure 저장소 데이터](../log-analytics/log-analytics-azure-storage.md)
+* Log Analytics를 사용하여 여러 검색 쿼리를 작성하고 자동화 작업 로그를 검토하는 방법에 대한 자세한 내용은 [Log Analytics의 로그 검색](../log-analytics/log-analytics-log-searches.md)
+* Runbook에서 출력 및 오류 메시지를 만들고 검색하는 방법은 [Runbook 출력 및 메시지](automation-runbook-output-and-messages.md)
+* Runbook 실행, Runbook 작업 모니터링 방법 및 기타 기술 세부 정보를 알아보려면 [Runbook 작업 추적](automation-runbook-execution.md)
+* OMS Log Analytics 및 데이터 수집 소스에 대한 자세한 내용은 [Log Analytics에서 Azure Storage 데이터 수집 개요](../log-analytics/log-analytics-azure-storage.md)

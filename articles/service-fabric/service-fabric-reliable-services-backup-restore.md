@@ -1,5 +1,5 @@
 ---
-title: "aaaService 패브릭 백업 및 복원 | Microsoft Docs"
+title: "Service Fabric 백업 및 복원 | Microsoft Docs"
 description: "서비스 패브릭 백업 및 복원에 관한 개념 설명서"
 services: service-fabric
 documentationcenter: .net
@@ -14,57 +14,57 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2017
 ms.author: mcoskun
-ms.openlocfilehash: e502b59c84999c3fe825167383f00a5ebd70c9b5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4242962e7e03053ef25f198a0b2f6c8012e693eb
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="back-up-and-restore-reliable-services-and-reliable-actors"></a>Reliable Services 및 Reliable Actors 백업 및 복원
-Azure 서비스 패브릭은이 고가용성 여러 노드 toomaintain 걸쳐 hello 상태를 복제 하는 고가용성 플랫폼입니다.  따라서 hello 클러스터의 한 노드에서 오류가 발생 하더라도 hello 서비스 toobe 사용할 수 있는 계속 합니다. Hello 플랫폼에서 제공 하는 이러한 기본 제공 중복 일부에 대 한 충분 한 수 있지만, 일부 경우에는 것이 좋습니다 (tooan 외부 저장소) 데이터를 서비스 tooback hello 합니다.
+Azure 서비스 패브릭은 여러 노드에 걸쳐 상태를 복제하여 고가용성을 유지하는 고가용성 플랫폼입니다.  따라서 클러스터의 한 노드에서 오류가 발생해도 서비스를 지속적으로 사용할 수 있습니다. 많은 경우 플랫폼에서 제공하는 이러한 기본 제공 중복성으로 충분하지만 어떤 경우에는 서비스를 위해 (외부 저장소에) 데이터를 백업하는 것이 바람직합니다.
 
 > [!NOTE]
-> 중요 한 toobackup 이며 데이터 (및 예상 대로 작동 하는지 테스트) 복원 되므로 데이터 손실 시나리오에서 복구할 수 있습니다.
+> 데이터 손실 시나리오에서 복구할 수 있도록 데이터를 백업 및 복원(및 예상대로 작동하는지 테스트)하는 것이 중요합니다.
 > 
 > 
 
-예를 들어 서비스 tooback 순서 tooprotect hello 다음 시나리오에서에서의 데이터를 사용할 수 있습니다.
+예를 들어 서비스에서 다음과 같은 시나리오로부터 보호하기 위해 데이터를 백업하려고 할 수 있습니다.
 
-- 전체 서비스 패브릭 클러스터를 완전히 잃 hello의 hello 이벤트입니다.
-- 서비스 파티션 hello 복제본의 과반수가 영구 손실
-- 그에 따라 hello 상태 실수로 가져옵니다 삭제 되거나 손상 된 관리 오류입니다. 예를 들어 충분 한 권한 가진 관리자가 실수로 hello 서비스를 삭제 하는 경우 발생할 수 있습니다.
-- 데이터가 손상 된 hello 서비스 버그입니다. 예를 들어이 항목은 서비스 코드 업그레이드를 사용 하는 잘못 된 데이터 tooa 신뢰할 수 있는 컬렉션을 작성을 시작할 때 발생할 수 있습니다. 이 경우 코드 hello 둘 다 고 hello 데이터 toobe를 가질 수 tooan 되돌릴 이전 상태입니다.
-- 오프라인 데이터 처리. 별도로 hello 데이터를 생성 하는 hello 서비스에서 발생 하는 비즈니스 인텔리전스에 대 한 데이터의 오프 라인 처리 편리한 toohave 수도 있습니다.
+- Service Fabric 클러스터 전체가 영구적으로 손실되는 경우
+- 서비스 파티션의 복제본 대다수가 영구적으로 손실되는 경우
+- 상태가 우발적으로 삭제되거나 손상된 관리 오류. 예를 들어 충분한 권한이 있는 관리자가 실수로 서비스를 삭제한 경우에 발생합니다.
+- 데이터 손상을 초래하는 서비스 내 버그. 예를 들어 신뢰할 수 있는 컬렉션에 잘못된 데이터 작성을 시작하는 서비스 코드가 업그레이드되는 경우 발생할 수 있습니다. 이런 경우 코드와 데이터 모두 이전 상태로 되돌아가야 할 수도 있습니다.
+- 오프라인 데이터 처리. 데이터를 생성하는 서비스와는 별도로 비즈니스 인텔리전스를 위한 데이터를 오프라인 처리하는 것이 편리할 수 있습니다.
 
-hello 백업/복원 기능은 hello 신뢰할 수 있는 서비스 API toocreate 및 복원 백업에 기반 하는 서비스입니다. hello hello 플랫폼에서 제공 하는 백업 Api 허용 백업을 차단 읽기 또는 쓰기 작업 하지 않고 서비스 파티션의 상태입니다. hello 복원 Api에는 선택한 백업에서 복원 하는 서비스 파티션의 상태 toobe를 허용 합니다.
+백업/복원 기능을 사용하면 Reliable Services API에 구축된 서비스로 백업을 만들고 복원할 수 있습니다. 플랫폼에서 제공하는 백업 API를 사용하면 읽기 또는 쓰기 작업을 차단하지 않고 서비스 파티션 상태를 백업할 수 있습니다. 복원 API를 사용하면 선택한 백업에서 서비스 파티션의 상태를 복원할 수 있습니다.
 
 ## <a name="types-of-backup"></a>백업 유형
 백업 옵션에는 전체 및 증분이라는 두 가지가 있습니다.
-전체 백업을 hello 복제본의 모든 hello 필요한 데이터 toorecreate hello 상태를 포함 하는 백업: 검사점과 모든 로그 레코드입니다.
-Hello 검사점 및 로그 hello에 있기 때문에 전체 백업은 단독으로 복원할 수 있습니다.
+전체 백업은 검사점 및 모든 로그 레코드처럼 복제본의 상태를 다시 만드는 데 필요한 모든 데이터를 포함하는 백업입니다.
+전체 백업은 검사점 및 로그를 포함하므로 자체적으로 복원할 수 있습니다.
 
-전체 백업 사용 하 여 hello 문제는 hello 검사점에는 큰 경우에 발생 합니다.
-예를 들어에 16GB의 상태는 복제본은 too16 g B 정도 구성 하는 검사점을 갖습니다.
-5 분의 복구 지점 목표를 있는데 hello 복제본 toobe 5 분 마다 백업 해야 합니다.
-Toocopy 필요한 백업 될 때마다 또한 검사점의 경우 16GB too50 MB (구성 가능 하 고 사용 하 여 `CheckpointThresholdInMB`) 로그의 가치입니다.
+전체 백업에서는 검사점이 큰 경우에 문제가 발생합니다.
+예를 들어 16GB의 상태가 있는 복제본은 약 16GB까지 추가되는 검사점을 포함하게 됩니다.
+복구 지점 목표가 5분인 경우 복제본을 5분마다 백업해야 합니다.
+백업할 때마다 50MB(`CheckpointThresholdInMB`를 사용하여 구성 가능)의 로그 외에도 16GB의 검사점을 복사해야 합니다.
 
 ![전체 백업 예입니다.](media/service-fabric-reliable-services-backup-restore/FullBackupExample.PNG)
 
-hello 솔루션 toothis 문제는 백업만 포함 되어 있는 로그 레코드를 변경 하는 hello hello 마지막 백업 이후에 증분 백업입니다.
+이 문제에 대한 해결 방법은 증분 백업입니다. 여기서 백업에는 마지막 백업 이후에 변경된 로그 레코드만 포함됩니다.
 
 ![증분 백업 예입니다.](media/service-fabric-reliable-services-backup-restore/IncrementalBackupExample.PNG)
 
-증분 백업 (hello 검사점을 포함 하지 않습니다) hello 마지막 백업 이후 변경 된 내용만 않으므로 더 빠르게 toobe 광범위 하지만 자체적으로 복원할 수 없습니다.
-증분 백업을 toorestore hello 전체 백업 체인이 필요 합니다.
+증분 백업은 마지막 백업 이후 변경 사항만 백업(검사점은 포함하지 않음)하므로 속도는 더 빠르지만 자체적으로 복원할 수 없습니다.
+증분 백업을 복원하려면 전체 백업 체인이 필요합니다.
 백업 체인은 전체 백업으로 시작하여 이후 수많은 지속적인 증분 백업이 이어지는 백업의 체인입니다.
 
 ## <a name="backup-reliable-services"></a>Reliable Services 백업
-hello 서비스 작성자가는 경우에 대 한 모든 권한 toomake 백업 및 백업이 저장 될 위치입니다.
+서비스 작성자에는 백업 수행 시기와 백업 저장 위치에 대한 모든 권한이 있습니다.
 
-백업 toostart hello 서비스가 필요한 tooinvoke hello 상속 된 멤버 함수 `BackupAsync`합니다.  
-백업은 주 복제본 에서만에서 수행할 수 있습니다 및 쓰기 상태 toobe 부여 해야 합니다.
+백업을 시작하려면 서비스에서 상속된 `BackupAsync` 멤버 함수를 호출해야 합니다.  
+백업은 주 복제본에서만 수행되며 상태 쓰기 권한을 부여해야 합니다.
 
-아래와 같이 `BackupAsync` 에 `BackupDescription` 개체를 하나 지정할 수 있는 콜백 함수 뿐만 아니라 전체 또는 증분 백업을, `Func<< BackupInfo, CancellationToken, Task<bool>>>` hello 백업 폴더에 로컬로 만들어지고 준비 toobe 제외 되어 toosome 때 호출 되는 외부 저장 합니다.
+아래와 같이 `BackupAsync`는 `BackupDescription` 개체를 가져오며, 여기서는 `Func<< BackupInfo, CancellationToken, Task<bool>>>` 콜백 함수뿐만 아니라 전체 또는 증분 백업도 지정할 수 있습니다. 이 함수는 백업 폴더를 로컬로 만들 때 호출되고 일부 외부 저장소로 이동할 준비가 되어 있습니다.
 
 ```csharp
 
@@ -74,19 +74,19 @@ await this.BackupAsync(myBackupDescription);
 
 ```
 
-증분 백업이 실패할 수 요청 tootake `FabricMissingFullBackupException`합니다. 이 예외 수행 중인 작업을 수행 하는 hello 중 하나를 나타냅니다.
+증분 백업을 수행하도록 요구하는 요청은 `FabricMissingFullBackupException`으로 인해 실패할 수 있습니다. 이 예외는 다음 중 하나가 발생했음을 나타냅니다.
 
-- hello 복제본에 주 영역 바뀌었기 때문 전체 백업을 실행 되지 않음
-- 잘린 hello 마지막 백업 이후 hello의 일부 로그 레코드 또는
-- hello를 전달 하는 복제본 `MaxAccumulatedBackupLogSizeInMB` 제한 합니다.
+- 이는 복제본이 전체 백업을 아예 가져올 수 없거나
+- 마지막 백업 이후 일부 로그 레코드가 잘렸거나
+- 복제본이 `MaxAccumulatedBackupLogSizeInMB` 제한을 초과했습니다.
 
-사용자가 hello 가능성을 수 toodo 증분 백업을 구성 하 여 늘릴 수 `MinLogSizeInMB` 또는 `TruncationThresholdFactor`합니다.
-이러한 값을 늘리면 복제 디스크 사용량 당 hello 증가 한다는 참고 합니다.
+사용자는 `MinLogSizeInMB` 또는 `TruncationThresholdFactor`를 구성하여 증분 백업을 수행할 수 있는 가능성을 높일 수 있습니다.
+이러한 값을 늘리면 복제본당 디스크 사용량이 증가합니다.
 자세한 내용은 [Reliable Services 구성](service-fabric-reliable-services-configuration.md)을 참조하세요.
 
-`BackupInfo`hello 런타임 hello 백업을 저장 하는 hello 폴더의 hello 위치를 포함 하 여 hello 백업, 관련 정보를 제공 (`BackupInfo.Directory`). hello 콜백 함수 hello를 이동할 수 `BackupInfo.Directory` tooan 외부 저장소 또는 다른 위치입니다.  이 함수는 또한 수 toosuccessfully 이동 hello 백업 폴더 tooits 대상 위치를 했는지 여부를 나타내는 부울을 반환 합니다.
+`BackupInfo`는 런타임에서 백업을 저장한 폴더의 위치(`BackupInfo.Directory`)를 포함하여 백업과 관련된 정보를 제공합니다. 콜백 함수는 `BackupInfo.Directory`를 외부 저장소 또는 다른 위치로 이동할 수 있습니다.  이 함수는 백업 폴더를 대상 위치로 이동할 수 있는지 여부를 표시하는 부울 값도 반환합니다.
 
-hello 다음 코드에서는 방법을 hello `BackupCallbackAsync` 메서드 사용된 tooupload hello 백업 tooAzure 저장소 일 수 있습니다.
+다음 코드에서는 `BackupCallbackAsync` 메서드를 사용하여 Azure Storage에 백업을 업로드하는 방법을 보여 줍니다.
 
 ```csharp
 private async Task<bool> BackupCallbackAsync(BackupInfo backupInfo, CancellationToken cancellationToken)
@@ -99,34 +99,34 @@ private async Task<bool> BackupCallbackAsync(BackupInfo backupInfo, Cancellation
 }
 ```
 
-Hello 앞에 있는 예제에서 `ExternalBackupStore` 는 Azure Blob 저장소를 사용 하는 toointerface는 hello 샘플 클래스 및 `UploadBackupFolderAsync` hello 폴더를 압축 하 고 hello Azure Blob 저장소에 배치 하는 hello 메서드입니다.
+위의 예제에서 `ExternalBackupStore`는 Azure Blob 저장소와의 인터페이스에 사용되는 샘플 클래스이고, `UploadBackupFolderAsync`는 폴더를 압축하여 Azure Blob 저장소에 배치하는 메서드입니다.
 
 다음 사항에 유의하세요.
 
-  - 특정 시점에서 처리 중인 복제본 당 하나의 백업 작업만이 존재할 수 있습니다. 둘 이상의 `BackupAsync` 호출 한 번에 발생 합니다 `FabricBackupInProgressException` toolimit 처리 중 백업 tooone 합니다.
-  - 복제본 장애 조치 되 면 백업 진행 중인 동안, hello 백업 수 완료 되지 않은 합니다. 따라서 hello 장애 조치 완료 되 면 hello 서비스 책임 toorestart hello 백업을 호출 하 여 `BackupAsync` 필요에 따라 합니다.
+  - 특정 시점에서 처리 중인 복제본 당 하나의 백업 작업만이 존재할 수 있습니다. 한 번에 둘 이상의 `BackupAsync` 호출은 처리 중인 백업을 하나로 제한하기 위해 `FabricBackupInProgressException`이 발생됩니다(throw).
+  - 백업 진행 중에 복제본 장애 조치가 발생하면 백업이 완료되지 않을 수 있습니다. 따라서 장애 조치가 완료되면 서비스에서 필요에 따라 `BackupAsync`를 호출하여 백업을 다시 시작해야 합니다.
 
 ## <a name="restore-reliable-services"></a>Reliable Services 복원
-일반적으로 hello 경우 tooperform 복원 작업을 할 수 있습니다 때 이러한 범주 중 하나에 속합니다.
+일반적으로 복원 작업을 수행해야 하는 경우는 다음 범주 중 하나에 속합니다.
 
-  - 손실 된 데이터를 분할 하는 hello 서비스. 예를 들어 (hello 주 복제본 포함)는 파티션에 대 한 2의 3 개의 복제본에 대 한 hello 디스크 손상 되거나 초기화를 가져옵니다. hello 새로운 주 toorestore 데이터를 백업 해야 합니다.
-  - hello 전체 서비스는 손실 됩니다. 예를 들어 관리자 hello 전체 서비스를 제거 하 고 따라서 hello 서비스 및 hello 데이터 복원 toobe 필요 합니다.
-  - hello 서비스 (예: 응용 프로그램 버그)로 인해 손상 된 응용 프로그램 데이터를 복제 합니다. 이 경우 hello 서비스에 toobe 업그레이드 되었거나 되돌린된 tooremove hello 원인 hello 손상 및 데이터 손상 되지 않은 toobe 복원 합니다.
+  - 서비스 파티션에서 데이터가 손실되었습니다. 예를 들어, 파티션에 대한 세 복제본 중 두 복제본(주 복제본 포함)에 대한 디스크가 손상되거나 초기화되었습니다. 새 주 복제본이 백업에서 데이터를 복원해야 할 수도 있습니다.
+  - 전체 서비스가 손실되었습니다. 예를 들어, 관리자가 전체 서비스를 제거하여 서비스와 데이터를 복원해야 합니다.
+  - 서비스가 손상된 응용 프로그래 데이터를 복제했습니다.(예: 응용 프로그램 버그 때문에) 이 경우 손상 원인을 제거하기 위해 서비스를 업그레이드하거나 되돌려야 하며 손상되지 않은 데이터를 복원해야 합니다.
 
-사용 하 여 보여 주는 예 제공 여러 접근 방식을 가능한 상태인 `RestoreAsync` hello 위의 시나리오에서에서 toorecover 합니다.
+다양한 방법이 가능하지만, 위의 시나리오에서 `RestoreAsync`를 사용하여 복구하는 몇 가지 예제를 제공하겠습니다.
 
 ## <a name="partition-data-loss-in-reliable-services"></a>Reliable Services의 파티션 데이터 손실
-이 경우 hello 런타임은 자동으로 검색 hello 데이터 손실 및 hello 호출 `OnDataLossAsync` API입니다.
+이 경우 런타임에서 자동으로 데이터 손실을 검색하고 `OnDataLossAsync` API를 호출합니다.
 
-hello 서비스 작성자 tooperform hello toorecover 다음 항목이 필요 합니다.
+서비스 작성자는 복구하려면 다음을 수행해야 합니다.
 
-  - Hello 가상 기본 클래스 메서드를 재정의 `OnDataLossAsync`합니다.
-  - Hello 서비스의 백업이 포함 되어 있는 hello 외부 위치에 최신 백업 hello를 찾습니다.
-  - 최신 백업 hello 다운로드 (및 압축 된 경우 hello 백업 폴더로 hello 백업-압축 해제) 합니다.
-  - hello `OnDataLossAsync` 메서드는 제공 된 `RestoreContext`합니다. Hello 호출 `RestoreAsync` API를 제공 하는 hello `RestoreContext`합니다.
-  - Hello 복원에 성공 하면 true를 반환 합니다.
+  - `OnDataLossAsync` 가상 기본 클래스 메서드를 재정의합니다.
+  - 서비스의 백업을 포함하는 외부 위치에서 최신 백업을 찾습니다.
+  - 최신 백업을 다운로드(및 압축된 경우 백업에서 백업 폴더에 압축 해제)합니다.
+  - `OnDataLossAsync` 메서드에서 `RestoreContext`를 제공합니다. 제공된 `RestoreContext`에서 `RestoreAsync` API를 호출합니다.
+  - 복원이 성공하면 true를 반환합니다.
 
-다음은 hello의 예제 구현은 `OnDataLossAsync` 메서드:
+다음은 `OnDataLossAsync` 메서드의 구현 예제입니다.
 
 ```csharp
 protected override async Task<bool> OnDataLossAsync(RestoreContext restoreCtx, CancellationToken cancellationToken)
@@ -141,44 +141,44 @@ protected override async Task<bool> OnDataLossAsync(RestoreContext restoreCtx, C
 }
 ```
 
-`RestoreDescription`전달 된 toohello `RestoreContext.RestoreAsync` 호출 라는 멤버가 포함 되어 `BackupFolderPath`합니다.
-1 회 전체 백업, 복원 하는 경우이 `BackupFolderPath` toohello 전체 백업을 포함 하는 hello 폴더의 로컬 경로 설정 해야 합니다.
-전체 백업 및 증분 백업의 수를 복원할 때 `BackupFolderPath` toohello 뿐만 아니라가 포함 된 hello 전체 백업에도 모든 hello 증분 백업을 hello 폴더의 로컬 경로 설정 해야 합니다.
-`RestoreAsync`호출 발생 시킬 수 `FabricMissingFullBackupException` 경우 hello `BackupFolderPath` 제공 된 전체 백업을 포함 되어 있지 않습니다.
+`RestoreContext.RestoreAsync` 호출에 전달된 `RestoreDescription`에는 `BackupFolderPath`라고 하는 멤버가 포함되어 있습니다.
+단일 전체 백업을 복원하는 경우 이 `BackupFolderPath`는 전체 백업이 포함되어 있는 폴더의 로컬 경로로 설정해야 합니다.
+전체 백업과 여러 개의 증분 백업을 복원하는 경우 `BackupFolderPath`는 전체 백업뿐만 아니라 모든 증분 백업도 포함되어 있는 폴더의 로컬 경로로 설정해야 합니다.
+제공된 `BackupFolderPath`에 전체 백업이 포함되지 않은 경우 `RestoreAsync` 호출에서 `FabricMissingFullBackupException`이 발생(throw)될 수 있습니다.
 `BackupFolderPath`에서 증분 백업 체인이 끊겨 있으면 `ArgumentException`이 발생(throw)될 수도 있습니다.
-예를 들어 hello 전체 백업에 포함 된 경우 증분 먼저 hello 및 세 번째 증분 백업이 되었지만 hello 두 번째 증분 백업이 hello 합니다.
+예를 들어, 전체 백업을 포함하는 경우 두 번째 증분 백업을 제외하고, 첫 번째 증분과 세 번째 증분 백업을 포함하는 경우입니다.
 
 > [!NOTE]
-> hello RestorePolicy는 tooSafe 기본적으로 설정 됩니다.  즉, 해당 hello `RestoreAsync` 해당 hello 백업 폴더에 상태는이 복제본에 포함 된 보다 오래 된 크거나 toohello 상태를 검색 하는 경우 API ArgumentException 하면서 실패 합니다.  `RestorePolicy.Force`사용 되는 tooskip이 안전 검사 될 수 있습니다. 이는 `RestoreDescription`의 일부로 지정됩니다.
+> RestorePolicy는 기본적으로 Safe로 설정됩니다.  즉, 백업 폴더에 이 복제본에 포함된 상태와 같거나 그 이전의 상태가 포함되어 있음을 검색한 경우 `RestoreAsync` API가 ArgumentException으로 인해 실패합니다.  `RestorePolicy.Force`를 사용하여 이 안전 검사를 건너뛸 수 있습니다. 이는 `RestoreDescription`의 일부로 지정됩니다.
 > 
 
 ## <a name="deleted-or-lost-service"></a>서비스 삭제 또는 손상
-서비스 제거 되는 경우 먼저 다시 만들어야 hello 서비스 전에 hello 데이터를 복원할 수 있습니다.  그는 hello 구성이 동일한 예: 데이터는 hello 하므로 파티션 구성표를 원활 하 게 복원할 수 있는 중요 한 toocreate hello 서비스입니다.  Hello 서비스가 실행 중인지, 되 면 hello API toorestore 데이터 (`OnDataLossAsync` 위에) toobe이이 서비스의 모든 파티션에 호출 했습니다. 이를 달성하는 한 가지 방법은 모든 파티션에서 `[FabricClient.TestManagementClient.StartPartitionDataLossAsync](https://msdn.microsoft.com/library/mt693569.aspx)`를 사용하는 것입니다.  
+서비스가 제거된 경우 데이터 복원에 앞서 서비스를 다시 만들어야 합니다.  데이터의 원할한 복원을 위해 파티션 구성표 등과 같은 동일한 구성의 서비스를 만드는 것이 좋습니다.  서비스가 작동되면 이 서비스의 모든 파티션에서 데이터를 복원하는 API(위의`OnDataLossAsync`)를 호출해야 합니다. 이를 달성하는 한 가지 방법은 모든 파티션에서 `[FabricClient.TestManagementClient.StartPartitionDataLossAsync](https://msdn.microsoft.com/library/mt693569.aspx)`를 사용하는 것입니다.  
 
-이 시점부터 구현 시나리오 위에 hello와 동일 hello 됩니다. 각 파티션에 toorestore hello 최신 관련 백업 hello 외부 저장소에서 필요합니다. 한 가지 주의할 점은 ID 지금 변경 hello 런타임에서는 파티션 Id를 동적으로 생성 하므로 해당 hello 파티션입니다. 따라서 hello 서비스 각 파티션에 대해 toostore hello 적절 한 파티션 정보 및 서비스 이름 tooidentify hello 올바른 최신 백업 toorestore에서 필요합니다.
+이 시점부터는 앞의 시나리오와 같은 방식으로 구현됩니다. 각 파티션이 외부 저장소로부터 최신 관련 백업을 복원해야 합니다. 한 가지 주의할 점은 런타임이 동적으로 파티션 ID를 생성하기 대문에 파티션 ID가 변경될 수 있다는 사실입니다. 따라서 서비스가 각 파티션에서 복원할 정확한 최신 백업을 식별할 수 있게 적합한 파티션 정보 및 서비스 이름을 저장해야 합니다.
 
 > [!NOTE]
-> Toouse 좋습니다 `FabricClient.ServiceManager.InvokeDataLossAsync` 각 파티션 toorestore hello 전체 서비스에는 클러스터 상태가 손상 될 수 있으므로 이후입니다.
+> 전체 서비스를 복원하기 위해 각 파티션에서 `FabricClient.ServiceManager.InvokeDataLossAsync`를 사용하는 것은 클러스터 상태를 손상시킬 수 있으므로 권장되지 않습니다.
 > 
 
 ## <a name="replication-of-corrupt-application-data"></a>손상된 응용 프로그램 데이터의 복제
-새로 배포 된 hello 응용 프로그램 업그레이드 버그가 있는 데이터가 손상이 될 수 있습니다. 예를 들어 응용 프로그램 업그레이드에서에서 시작할 수 있습니다 tooupdate 모든 전화 번호 레코드가 잘못 된 지역 번호를 사용 하 여 신뢰할 수 있는 사전입니다.  이 경우 서비스 패브릭 저장 되는 hello 데이터의 hello 특성의 인식할 수 없기 때문에 hello 전화 번호가 잘못 복제 됩니다.
+새로 배포된 응용 프로그램 업그레이드에 버그가 있는 경우 데이터 손상을 초래할 수 있습니다. 응용 프로그램 업그레이드를 시작하여 잘못된 지역 번호로 신뢰할 수 있는 사전의 모든 전화번호 레코드를 업데이트하는 경우를 예로 들 수 있습니다.  이 경우 서비스 패브릭이 저장하는 데이터의 본질을 인지하지 못하므로 잘못된 전화 번호가 복제됩니다.
 
-hello 먼저 데이터를 손상 시키는 이러한 egregious 버그를 발견 하면 후 toodo toofreeze hello 서비스 hello 응용 프로그램 수준에서 이며, 가능 하면 toohello 버전의 hello 버그 없는 hello 응용 프로그램 코드를 업그레이드 합니다.  그러나 hello 서비스 코드를 해결 한 후에 hello 데이터 손상 되었을 수 있습니다 및 데이터 복원 toobe를 할 수 있으므로 합니다.  않을 이러한 경우 하지 수 있습니다 충분 한 toorestore hello 최신 백업, 이후 hello 최신 백업도 손상 되었을 수 있습니다.  따라서 hello 데이터 손상 (를) 가져왔습니다 전에 만든 toofind hello 마지막 백업을 해야 합니다.
+이렇게 데이터 손상을 초래할 수 있는 황당한 버그를 탐지한 후 가장 먼저 할 일은 응용 프로그램 수준에서 서비스를 고정하고, 가능하다면 버그가 없는 응용 프로그램 코드의 버전으로 업그레이드하는 것입니다.  그러나 서비스 코드가 고정된 후에도 데이터 손상이 지속되어 데이터 복원이 필요할 수 있습니다.  이 경우에는 최신 백업도 손상되었을 수 있기 때문에 최신 백업을 복원하는 것으로는 부족할 수 있습니다.  따라서 데이터 손상 이전에 만든 최신 백업을 찾아야 합니다.
 
-새 서비스 패브릭 클러스터를 배포 하 고 "삭제 됨 또는 손실된 서비스" 위에 hello와 동일 하 게 영향을 받는 파티션 hello 백업을 복원할 수 손상 된 백업을 확실 하지 않은 경우 시나리오입니다.  각 파티션에 대해 최소 hello 가장 최근의 toohello에서 hello 백업 복원을 시작 합니다. Hello 손상 하지 않은 백업을 찾으면 이동/삭제 된 백업) (보다 최신이 파티션의 모든 백업 합니다. 각 파티션에 대해 이 프로세스를 반복합니다. 이제, `OnDataLossAsync` 라고 hello 프로덕션 클러스터의 hello 파티션에 hello 마지막 백업 있는 hello 외부 저장소 프로세스 위에 hello 하 여 hello 하나 선택 됩니다.
+백업이 손상되었는지 확실하지 않은 경우 새 서비스 패브릭 클러스터를 배포하고 위의 "삭제되거나 손상된 서비스" 시나리오와 마찬가지로 영향을 받는 파티션의 백업을 복원할 수 있습니다.  각 파티션에 대해 가장 최근부터 가장 오래된 순으로 백업을 복원하기 시작합니다. 손상되지 않은 백업을 찾은 후 이 파티션에 있는 모든 백업(해당 백업보다 최신 버전)을 이동/삭제합니다. 각 파티션에 대해 이 프로세스를 반복합니다. 이제 프로덕션 클러스터의 파티션에서 `OnDataLossAsync`가 호출되면 외부 저장소에 있는 마지막 백업이 위의 프로세스로 선택된 백업이 됩니다.
 
-Hello hello "삭제 됨 또는 손실된 서비스"의 단계를 이제 섹션 수 hello 오류가 있는 코드가 손상 된 hello 상태 전에 hello 서비스 toohello 상태의 toorestore hello 상태를 사용 합니다.
+이제 "삭제되거나 손실된 서비스" 섹션의 단계를 사용하여 버그가 있는 코드로 손상되기 이전의 상태로 서비스 상태를 복원할 수 있습니다.
 
 다음 사항에 유의하세요.
 
-  - 를 복원 하면 hello 백업 하는 데 사용 되 고지 않습니다 복원가 hello 파티션의 hello 상태 보다 오래 전에 hello 데이터가 손실 되었습니다. 이 때문에 복원 해야 마지막 수단 toorecover로만 많은 데이터 최대한.
-  - hello 백업 폴더 경로 나타내는 문자열 hello hello hello 백업 폴더 내 파일의 경로 수 있으며 hello FabricDataRoot 경로 및 응용 프로그램 종류 이름 길이 따라 255 자를 초과 합니다. 따라서 일부.NET 메서드를 같은 발생할 수 있습니다 `Directory.Move`, toothrow hello `PathTooLongException` 예외입니다. 한 가지 해결 방법은 toodirectly kernel32 Api와 같은 호출 `CopyFile`합니다.
+  - 복원할 때 복원 중인 백업이 데이터 손실 이전의 파티션 상태보다 오래된 것일 가능성이 있습니다. 이 때문에 가능한 많은 데이터를 복구하기 위한 마지막 수단으로만 복원해야 합니다.
+  - 백업 폴더 경로와 백업 폴더 내 파일 경로를 나타내는 문자열은 FabricDataRoot 경로 및 응용 프로그램 형식 이름의 길이에 따라 255자보다 길 수 있습니다. 이로 인해 `Directory.Move`와 같은 일부 .NET 메서드에서 `PathTooLongException` 예외가 발생(throw)될 수 있습니다. 한 가지 해결 방법은 `CopyFile`과 같은 kernel32 API를 직접 호출하는 것입니다.
 
 ## <a name="backup-and-restore-reliable-actors"></a>Reliable Actors 백업 및 복원
 
 
-Reliable Actors 프레임워크는 Reliable Services를 기반으로 구축됩니다. hello ActorService hello actor(s)를 호스트 하는 상태 저장 신뢰할 수 있는 서비스입니다. 따라서 모든 hello 백업 및 복원 기능을 신뢰할 수 있는 서비스에서 사용할 수 있는 사용 가능한 tooReliable 행위자 (제외 동작에 특정 상태 공급자) 이기도 합니다. 백업이 파티션 단위로 수행되기 때문에 파티션에서 모든 행위자에 대한 상태는 백업됩니다(또한 복원은 비슷하고 파티션 기준으로 발생함). tooperform 백업/복원, hello 서비스 소유자 ActorService 클래스에서 파생 된 사용자 지정 행위자 서비스 클래스를 만들어야 및 다음 수행 백업/복원 비슷한 tooReliable 이전 섹션에서 설명한 것과 같이 서비스입니다.
+Reliable Actors 프레임워크는 Reliable Services를 기반으로 구축됩니다. 행위자를 호스팅하는 ActorService는 상태 저장 신뢰할 수 있는 서비스입니다. 따라서 Reliable Services에서 사용 가능한 모든 백업 및 복원 기능이 Reliable Actors에도 제공됩니다(상태 제공자와 관련된 동작은 제외). 백업이 파티션 단위로 수행되기 때문에 파티션에서 모든 행위자에 대한 상태는 백업됩니다(또한 복원은 비슷하고 파티션 기준으로 발생함). 백업/복원을 수행하려면 서비스 소유자는 ActorService에서 파생되는 사용자 지정 행위자 서비스 클래스를 만든 다음 이전 섹션에서 설명한 것과 같이 Reliable Services와 유사한 백업/복원을 수행해야 합니다.
 
 ```csharp
 class MyCustomActorService : ActorService
@@ -194,14 +194,14 @@ class MyCustomActorService : ActorService
 }
 ```
 
-사용자 지정 행위자 서비스 클래스를 만들면 hello 행위자를 등록할 때 tooregister도 즉가 필요 합니다.
+사용자 지정 행위자 서비스 클래스를 만들 경우 행위자를 등록할 때 사용자 지정 행위자 서비스도 등록해야 합니다.
 
 ```csharp
 ActorRuntime.RegisterActorAsync<MyActor>(
    (context, typeInfo) => new MyCustomActorService(context, typeInfo)).GetAwaiter().GetResult();
 ```
 
-Reliable Actors에 대 한 hello 기본 상태 공급자는 `KvsActorStateProvider`합니다. `KvsActorStateProvider`에 대한 증분 백업은 기본적으로 사용하지 않도록 설정됩니다. 증분 백업을 사용 하도록 설정할 만들어 수 `KvsActorStateProvider` 적절 한 생성자에서 설정 하 고 다음 코드 조각에 나와 있는 것 처럼 tooActorService 생성자 전달 hello로:
+Reliable Actors에 대한 기본 상태 제공자는 `KvsActorStateProvider`입니다. `KvsActorStateProvider`에 대한 증분 백업은 기본적으로 사용하지 않도록 설정됩니다. 다음 코드 조각과 같이 생성자에서 적절한 설정을 사용하여 `KvsActorStateProvider`를 만든 다음 ActorService 생성자에 전달하여 증분 백업을 사용하도록 설정할 수 있습니다.
 
 ```csharp
 class MyCustomActorService : ActorService
@@ -217,50 +217,50 @@ class MyCustomActorService : ActorService
 }
 ```
 
-증분 백업에 설정한 후 다음 이유 중 하나로 FabricMissingFullBackupException 실패할 수 증분 백업을 수행 및 증분 백업을 수행 하기 전에 전체 백업을 tootake 필요 합니다.
+증분 백업을 사용하도록 설정한 후 다음 이유 중 하나로 인한 FabricMissingFullBackupException 때문에 증분 백업이 실패할 수 있으며, 증분 백업을 수행하기 전에 전체 백업을 수행해야 합니다.
 
-  - 기본 된 이후의 hello 복제본에 전체 백업을 수행 하지 했습니다.
-  - Hello 로그 레코드의 일부를 마지막 백업 이후에 잘렸습니다.
+  - 복제본이 주가 된 이후로 전체 백업을 수행한 적이 없었습니다.
+  - 마지막 백업이 수행된 이후로 로그 레코드의 일부가 잘렸습니다.
 
-증분 백업을 사용 하는 경우 `KvsActorStateProvider` 순환 버퍼 toomanage 해당 로그를 기록 하 고 주기적으로 자동으로 잘립니다를 사용 하지 않습니다. 사용 된 경우 백업이 없는 사용자가 45 분 동안에 대 한 hello 시스템 hello 로그 레코드를 자동으로 자릅니다. 이 간격을 지정 하 여 구성할 수 있습니다 `logTrunctationIntervalInMinutes` 에 `KvsActorStateProvider` 생성자 (유사한 toowhen 증분 백업을 사용 하도록 설정). hello 로그 레코드가 주 복제본이 필요 toobuild 다른 복제본의 모든 데이터를 전송 하 여 잘릴 가져올 있습니다.
+증분 백업을 사용하도록 설정하면 `KvsActorStateProvider`에서 순환 버퍼를 사용하여 해당 로그 레코드를 관리하지 않으며 정기적으로 자릅니다. 사용자가 45분 동안 백업을 수행하지 않을 경우 시스템이 로그 레코드를 자동으로 자릅니다. 이 간격은 `KvsActorStateProvider` 생성자에서 `logTrunctationIntervalInMinutes`를 지정하여 구성할 수 있습니다(증분 백업을 사용하도록 설정하는 경우와 비슷함). 주 복제본이 모든 데이터를 전송하여 다른 복제본을 구축해야 하는 경우 로그 레코드가 잘릴 수도 있습니다.
 
-백업 체인, 비슷한 tooReliable 서비스에서 복원을 수행할 때 hello BackupFolderPath 전체 백업 및 기타 증분 백업을 포함 하는 하위 디렉터리를 포함 하는 하나의 하위 디렉터리의 하위 디렉터리를 포함 해야 합니다. hello 복원 API hello 백업 체인의 유효성 검사가 실패 하면 적절 한 오류 메시지와 함께 FabricException을 throw 합니다. 
+백업 체인에서 복원 작업을 수행할 때는 Reliable Services와 마찬가지로 BackupFolderPath에 전체 백업이 포함된 하위 디렉터리 하나와 증분 백업이 포함된 다른 하위 디렉터리가 포함되어 있어야 합니다. 백업 체인 유효성 검사에 실패할 경우 복원 API에서 적절한 오류 메시지와 함께 FabricException을 throw합니다. 
 
 > [!NOTE]
-> `KvsActorStateProvider`현재 RestorePolicy.Safe hello 옵션을 무시합니다. 이 기능은 이후 릴리스에서 지원될 예정입니다.
+> `KvsActorStateProvider`는 현재 RestorePolicy.Safe 옵션을 무시합니다. 이 기능은 이후 릴리스에서 지원될 예정입니다.
 > 
 
 ## <a name="testing-backup-and-restore"></a>테스트 백업 및 복원
-것이 중요 한 tooensure는 중요 한 데이터 백업 되 고, 및에서 복원할 수 있습니다. Hello를 호출 하 여이 작업을 수행할 수 있습니다 `Start-ServiceFabricPartitionDataLoss` 여부 hello 데이터 백업 및 복원 기능을 정상적으로 작동 하 여 서비스에 대 한 특정 파티션 tootest에 데이터 손실의 유도할 수 있는 PowerShell cmdlet.  가능한 tooprogrammatically 이기도 데이터 손실을 호출 하 고 해당 이벤트에도에서 복원 합니다.
+데이터가 백업되고 복원될 수 있도록 하는 것이 중요합니다. 이 작업은 특정 파티션에서 데이터 손실을 유도할 수 있는 PowerShell의 `Start-ServiceFabricPartitionDataLoss` cmdlet을 호출하여 서비스에 대한 데이터 백업 및 복원 기능이 예상대로 작동하는지 테스트함으로써 수행할 수 있습니다.  프로그래밍 방식으로 데이터 손실을 호출하고 해당 이벤트에서 복원하는 것도 가능합니다.
 
 > [!NOTE]
-> 백업의 샘플 구현의 찾 및 hello GitHub에 웹 참조 응용 프로그램의에서 기능을 복원할 수 있습니다. Hello 살펴본 `Inventory.Service` 자세한 세부 정보에 대 한 서비스입니다.
+> 백업의 샘플 구현을 찾고 GitHub의 웹 참조 앱에서 기능을 복원할 수 있습니다. 자세한 내용은 `Inventory.Service` 서비스를 참조하세요.
 > 
 > 
 
-## <a name="under-hello-hood-more-details-on-backup-and-restore"></a>Hello 내부적: 백업 및 복원에 대 한 자세한 내용은
+## <a name="under-the-hood-more-details-on-backup-and-restore"></a>내부 살펴보기: 백업 및 복원에 대한 자세한 내용 
 다음은 백업 및 복원에 대한 자세한 내용입니다.
 
 ### <a name="backup"></a>백업
-신뢰할 수 있는 상태 관리자 hello hello 기능 toocreate 차단 하지 않고 일관 된 백업을 읽기 또는 쓰기 작업을 제공 합니다. toodo, 검사점 및 로그 지 속성 메커니즘을 활용 합니다.  hello 신뢰할 수 있는 상태 관리자 hello 트랜잭션 로그에서 특정 지점 toorelieve 압력에 유사 항목 (경량) 검사점 걸리며 복구 시간을 향상 시킵니다.  때 `BackupAsync` hello 신뢰할 수 있는 상태 관리자의 최신 검사점 파일 tooa 로컬 백업 폴더에 모든 신뢰할 수 있는 개체 toocopy 지시 호출 됩니다.  그런 다음 신뢰할 수 있는 상태 관리자 hello hello 백업 폴더로 hello "포인터 시작" toohello 최신 로그 레코드부터 시작 하는 모든 로그 레코드를 복사 합니다.  Toohello 최신 로그 레코드를 모든 hello 로그 레코드는 hello 백업에 포함 되어 있으므로 hello 신뢰할 수 있는 상태 관리자 미리 쓰기 로깅을 유지 hello 신뢰할 수 있는 상태 관리자 내용이 취소 되도록 모든 트랜잭션이 있는 커밋된 (`CommitAsync` 를 반환 했습니다. 성공적으로) hello 백업에 포함 됩니다.
+Reliable State Manager는 읽기 및 쓰기 작업을 차단하지 않고 일관된 백업을 만드는 기능을 제공합니다. 이를 위해 검사점 및 로그 지속성 메커니즘을 활용합니다.  Reliable State Manager는 트랜잭션 로그로부터의 부담을 줄이고 복구 시간을 단축하기 위해 특정 지점에서 유사 항목(경량) 검사점을 사용합니다.  `BackupAsync`가 호출되면 신뢰할 수 있는 상태 관리자에서 모든 신뢰할 수 있는 개체에 최신 검사점 파일을 로컬 백업 폴더에 복사하도록 지시합니다.  그런 다음 Reliable State Manager가 "시작  포인터"에서부터 마지막 로그 레코드까지의 모든 로그 레코드를 백업 폴더에 복사합니다.  최신 로그 레코드까지의 모든 로그 레코드가 백업에 포함되고 신뢰할 수 있는 상태 관리자에서 미리 쓰기 로깅을 유지하므로 신뢰할 수 있는 상태 관리자는 커밋된 모든 트랜잭션(`CommitAsync`가 성공적으로 반환됨)이 백업에 포함되도록 보장합니다.
 
-후 커밋되는 모든 트랜잭션이 `BackupAsync` 년 5 월 호출한 또는 hello 백업에 사용할 수 없습니다.  로컬 백업 폴더 hello hello 플랫폼에 따라 채워진 후 (즉, 로컬 백업 완료 된 hello 런타임에서), 백업 hello 서비스 콜백이 호출 됩니다.  이 콜백은 hello 백업 폴더 tooan Azure 저장소와 같은 외부 위치를 이동 하는 일을 담당 합니다.
+`BackupAsync`가 호출된 후에 커밋되는 모든 트랜잭션은 백업에 포함되거나 포함되지 않을 수 있습니다.  로컬 백업 폴더를 플랫폼에서 입력합 후에는(즉, 런타임에서 로컬 백업 완료됨) 서비스의 백업 콜백이 호출됩니다.  이 콜백은 백업 폴더를 Azure 저장소 등의 외부 위치로 이동하는 것을 담당합니다.
 
 ### <a name="restore"></a>복원
-hello 신뢰할 수 있는 상태 관리자는 hello 기능 toorestore 백업에서 사용 하 여 hello `RestoreAsync` API입니다.  
-hello `RestoreAsync` 메서드를 `RestoreContext` hello 내부 에서만 호출할 수 `OnDataLossAsync` 메서드.
-반환 된 bool hello `OnDataLossAsync` hello 서비스 외부 소스에서 해당 상태를 복원 하는지 여부를 나타냅니다.
-경우 hello `OnDataLossAsync` 서비스 패브릭에서이 기본 다른 모든 복제본을 다시 작성 됩니다 true를 반환 합니다. 서비스 패브릭 되도록 복제를 수신할 `OnDataLossAsync` 첫 번째 전환 toohello 주 역할을 호출 하지만 부여 상태를 읽지 않습니다 또는 상태를 작성 합니다.
+신뢰할 수 있는 상태 관리자에서는 `RestoreAsync` API를 사용하여 백업에서 복원하는 기능을 제공합니다.  
+`RestoreContext`의 `RestoreAsync` 메서드는 `OnDataLossAsync` 메서드 내에서만 호출할 수 있습니다.
+`OnDataLossAsync`에서 반환한 부울 값은 서비스에서 외부 원본으로부터 상태를 복원했는지 여부를 나타냅니다.
+`OnDataLossAsync`에서 true를 반환하면 Service Fabric에서 이 주 복제본의 다른 모든 복제본을 다시 빌드합니다. Service Fabric은 `OnDataLossAsync` 호출을 받는 복제본이 먼저 주 역할로 전환되지만 읽기 상태 또는 쓰기 상태가 부여되지 않도록 합니다.
 즉 `OnDataLossAsync`가 성공적으로 완료될 때까지 StatefulService 구현자에 대해 `RunAsync`가 호출되지 않습니다.
-그런 다음 `OnDataLossAsync` hello 새 주 복제본에서 호출 됩니다.
-서비스를 성공적으로 (반환 하 여 true 또는 false)이이 API를 완료 hello 관련 재구성을 완료 될 때까지 hello API는 유지 되 고 호출 한 번에 하나씩.
+그런 다음 `OnDataLossAsync`가 새 주 복제본에서 호출됩니다.
+서비스가 이 API를 성공적으로 완료하고(True 또는 False 반환) 관련 재구성을 마치면 한 번에 하나씩 API가 계속 호출됩니다.
 
-`RestoreAsync`먼저 주 복제본에서 호출 된 hello에서 모든 기존 상태를 삭제 합니다.  
-그런 다음 hello 신뢰할 수 있는 상태 관리자는 hello 백업 폴더에 있는 모든 hello 신뢰할 수 있는 개체를 만듭니다.  
-다음으로 hello 신뢰할 수 있는 개체는 hello 백업 폴더에 해당 검사점에서 지시 toorestore입니다.  
-마지막으로, 신뢰할 수 있는 상태 관리자 hello hello 백업 폴더의 로그 레코드 hello에서 자체의 상태를 복구 하 고 복구를 수행 합니다.  
-Hello 복구 프로세스의 일환으로, 커밋 로그 레코드가 hello 백업 폴더에 있어야 하는 hello "시작점"에서 시작 하는 작업은 재생된 toohello 신뢰할 수 있는 개체입니다.  
-이 단계를 수행 하면 해당 hello 복구 된 상태가 일치 합니다.
+`RestoreAsync`는 먼저 호출된 주 복제본의 모든 기존 상태를 삭제합니다.  
+그런 다음 신뢰할 수 있는 상태 관리자가 백업 폴더에 존재하는 모든 신뢰 개체를 만듭니다.  
+다음으로 백업 폴더의 검사점으로부터 백업하도록 신뢰 개체에게 지시합니다.  
+마지막으로 Reliable State Manager가 백업 폴더의 로그 레코드에서 자체 상태를 복구하고 복구를 수행합니다.  
+복구 프로세스의 일환으로 백업 폴더에서 로그 레코드를 커밋한 "시작점"에서 시작하는 작업이 신뢰 개체에 재현됩니다.  
+이 단계를 통해 일관된 복구 상태를 유지합니다.
 
 ## <a name="next-steps"></a>다음 단계
   - [신뢰할 수 있는 컬렉션](service-fabric-work-with-reliable-collections.md)

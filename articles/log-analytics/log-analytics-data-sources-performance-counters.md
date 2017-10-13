@@ -1,6 +1,6 @@
 ---
-title: "aaaCollect Azure 로그 분석에서 성능 카운터를 분석 하 고 | Microsoft Docs"
-description: "성능 카운터는 Windows 및 Linux 에이전트에서 로그 분석 tooanalyze 성능으로 수집 됩니다.  이 문서에서는 성능 tooconfigure 컬렉션이 카운터 하는 방법 및 hello OMS 리포지토리에 저장 된 것의 세부 정보는 Windows 및 Linux 에이전트에 대 한 설명 tooanalyze hello OMS 포털에서 해당 합니다."
+title: "Azure Log Analytics의 성능 카운터 수집 및 분석 | Microsoft Docs"
+description: "성능 카운터는 Windows 및 Linux 에이전트에서 성능을 분석하기 위해 Log Analytics에 의해 수집됩니다.  이 문서는 Windows 및 Linux 에이전트에 대한 성능 카운터 컬렉션을 구성하는 방법과, OMS 리포지토리에 저장하는 방식에 대한 자세한 내용과, OMS 포털에서 분석하는 방법을 설명합니다."
 services: log-analytics
 documentationcenter: 
 author: mgoedtel
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/12/2017
 ms.author: magoedte
-ms.openlocfilehash: 30146fecf8db1d8851b89fdb970f757bbb24abf1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 953bb453b0a9635627fbbb6c3913d0cd757101c7
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="windows-and-linux-performance-data-sources-in-log-analytics"></a>Log Analytics의 Windows 및 Linux 성능 데이터 원본
-Windows 및 Linux에서 성능 카운터는 하드웨어 구성 요소, 운영 체제 및 응용 프로그램 성능 hello에 대 한 정보를 제공합니다.  로그 분석 긴 용어 분석 및 보고에 대 한 추가 tooaggregating 성능 데이터에 실시간으로 (NRT) 근처 분석을 위한 잦은 간격 성능 카운터를 수집할 수 있습니다.
+Windows와 Linux의 성능 카운터는 하드웨어 구성 요소, 운영 체제 및 응용 프로그램의 성능에 대한 정보를 자세히 제공합니다.  Log Analytics는 장기적인 분석 및 보고를 위한 성능 데이터 집계는 물론 거의 실시간에 가까운(NRT) 분석을 위해 빈번한 간격으로 성능 카운터를 수집할 수 있습니다.
 
 ![성능 카운터](media/log-analytics-data-sources-performance-counters/overview.png)
 
 ## <a name="configuring-performance-counters"></a>성능 카운터 구성
-Hello에서 hello OMS 포털의 성능 카운터 구성 [로그 분석 설정의 데이터 메뉴](log-analytics-data-sources.md#configuring-data-sources)합니다.
+OMS 포털에서 성능 카운터는 [Log Analytics 설정의 데이터 메뉴](log-analytics-data-sources.md#configuring-data-sources)에서 구성합니다.
 
-먼저 Windows를 구성 하거나 제공 되는 새로운 OMS 작업 영역에 대 한 Linux 성능 카운터 hello 옵션 tooquickly 몇 가지 일반적인 카운터를 만듭니다.  Checkbox 다음 tooeach로 나열 됩니다.  모든 카운터를 tooinitially 만들지 확인 되 고 클릭 **추가 hello 선택한 성능 카운터**합니다.
+새 OMS 작업 영역에 대한 Windows 또는 Linux 성능 카운터를 처음으로 구성하는 경우, 몇 가지 공용 카운터를 신속하게 만드는 옵션이 제공됩니다.  각 항목은 옆에 확인란과 함께 나열됩니다.  초기에 만들 카운터를 모두 선택한 후 **Add the selected performance counters**(선택한 성능 카운터 추가)를 클릭합니다.
 
-Windows 성능 카운터의 경우, 각 성능 카운터에 대해 특정 인스턴스를 선택할 수 있습니다. Linux 성능 카운터에 대 한 사용자가 선택한 각 카운터의 hello 인스턴스 hello 부모 카운터의 tooall 자식 카운터를 적용 합니다. hello 다음 표에서 hello 공용 인스턴스 사용 가능한 tooboth Linux 맟 Windows 성능 카운터입니다.
+Windows 성능 카운터의 경우, 각 성능 카운터에 대해 특정 인스턴스를 선택할 수 있습니다. Linux 성능 카운터의 경우, 선택하는 각 카운터의 인스턴스는 부모 카운터의 모든 자식 카운터에 적용됩니다. 다음 테이블은 Linux와 Windows 성능 카운터 모두에서 사용할 수 있는 공통 인스턴스를 보여줍니다.
 
 | 인스턴스 이름 | 설명 |
 | --- | --- |
-| \_합계 |모든 hello 인스턴스 |
+| \_합계 |모든 인스턴스의 총계 |
 | \* |모든 인스턴스 |
 | (/&#124;/var) |/ 또는 /var로 명명된 인스턴트와 일치 |
 
@@ -42,32 +42,32 @@ Windows 성능 카운터의 경우, 각 성능 카운터에 대해 특정 인스
 
 ![Windows 성능 카운터 구성](media/log-analytics-data-sources-performance-counters/configure-windows.png)
 
-이 절차 tooadd 새 Windows 성능 카운터 toocollect를 따릅니다.
+이 절차에 따라 수집할 새 Windows 성능 카운터를 추가합니다.
 
-1. Hello 형태로 표시 hello 텍스트 상자에 hello 카운터의 유형 hello 이름을 *개체 (인스턴스) \counter*합니다.  입력을 시작하면 일치하는 공용 카운터 목록이 나타납니다.  하거나 hello 목록 또는 형식 자체에서 카운터를 선택할 수 있습니다.  *object\counter*를 지정하면 특정 카운터에 대한 모든 인스턴스를 반환할 수도 있습니다.  
+1. 텍스트 상자에 *object(instance)\counter* 형식으로 카운트 이름을 입력합니다.  입력을 시작하면 일치하는 공용 카운터 목록이 나타납니다.  목록에서 카운터를 선택하거나 원하는 항목을 입력할 수 있습니다.  *object\counter*를 지정하면 특정 카운터에 대한 모든 인스턴스를 반환할 수도 있습니다.  
 
-    명명 된 인스턴스와에서 SQL Server 성능 카운터를 수집, 모든 명명 된 인스턴스 카운터 시작 *MSSQL$* hello hello 인스턴스 이름 뒤에 야 합니다.  예를 들어 toocollect hello 로그 Cache Hit Ratio 카운터에 대 한 명명 된 SQL 데이터베이스 성능 개체 hello에서에서 모든 데이터베이스 인스턴스 INST2, 한 지정 `MSSQL$INST2:Databases(*)\Log Cache Hit Ratio`합니다.
+    명명된 인스턴스에서 SQL Server 성능 카운터를 수집할 때 모든 명명된 인스턴스 카운터는 *MSSQL$*로 시작하며 인스턴스 이름이 이어집니다.  예를 들어 명명된 SQL 인스턴스 INST2의 경우 데이터베이스 성능 개체에서 모든 데이터베이스에 대한 로그 캐시 적중률 카운터를 수집하려면 `MSSQL$INST2:Databases(*)\Log Cache Hit Ratio`를 지정합니다.
 
-2. 클릭  **+**  하거나 키를 눌러 **Enter** tooadd hello 카운터 toohello 목록입니다.
-3. Hello 기본값은 10 초 동안 사용 하 여 카운터를 추가 하면 해당 **샘플 간격**합니다.  성능 데이터를 수집 하는 hello tooreduce hello 저장소 요구 사항을 하려는 경우이 tooa의 값이 높을수록 too1800 초 (30 분)을 변경할 수 있습니다.
-4. 추가 카운터를 마친 경우 클릭 hello **저장** hello 화면 toosave hello 구성의 hello 위쪽에 단추입니다.
+2. **+**를 클릭하거나 **Enter**를 눌러서 카운터를 목록에 추가합니다.
+3. 카운터를 추가할 때에는 해당 **샘플 간격**에 기본적으로 10초가 사용됩니다.  수집된 성능 데이터의 저장소 요구 사항을 줄이려면 높은 값으로, 최대 1800초(30분)까지 값을 변경할 수 있습니다.
+4. 카운터 추가를 완료했으면 화면 맨 위에서 **저장** 단추를 눌러서 구성을 저장합니다.
 
 ### <a name="linux-performance-counters"></a>Linux 성능 카운터
 
 ![Linux 성능 카운터 구성](media/log-analytics-data-sources-performance-counters/configure-linux.png)
 
-이 절차 tooadd 새 Linux 성능 카운터 toocollect를 따릅니다.
+이 절차에 따라 수집할 새 Linux 성능 카운터를 추가합니다.
 
-1. 기본적으로 모든 구성 변경 내용은 tooall 에이전트를 자동으로 이동 됩니다.  Linux 에이전트에 대 한 구성 파일에는 toohello Fluentd 데이터 수집기를 전송 됩니다.  각 Linux 에이전트에서 수동으로이 파일 toomodify 원하는 hello 확인란의 선택을 취소 한 다음 *구성 toomy Linux 컴퓨터 아래 적용* 아래 hello 지침을 따릅니다.
-2. Hello 형태로 표시 hello 텍스트 상자에 hello 카운터의 유형 hello 이름을 *개체 (인스턴스) \counter*합니다.  입력을 시작하면 일치하는 공용 카운터 목록이 나타납니다.  하거나 hello 목록 또는 형식 자체에서 카운터를 선택할 수 있습니다.  
-3. 클릭  **+**  하거나 키를 눌러 **Enter** tooadd hello 카운터 toohello hello 개체에 대 한 다른 카운터의 목록입니다.
-4. 개체 사용에 대 한 모든 카운터 hello 동일 **샘플 간격**합니다.  hello 기본값은 10 초입니다.  성능 데이터를 수집 하는 hello tooreduce hello 저장소 요구 사항을 하려는 경우 too1800 초 (30 분)을의이 tooa 더 높은 값을 변경 합니다.
-5. 추가 카운터를 마친 경우 클릭 hello **저장** hello 화면 toosave hello 구성의 hello 위쪽에 단추입니다.
+1. 기본적으로, 모든 구성 변경은 모든 에이전트로 자동 푸시됩니다.  Linux 에이전트에서, 구성 파일은 Fluentd 데이터 수집기로 전송됩니다.  각 Linux 에이전트에서 이 파일을 수동으로 수정하려면, *Apply below configuration to my Linux machines*(아래 구성을 내 Linux 컴퓨터에 적용) 확인란 선택을 해제하고 아래 지침을 따릅니다.
+2. 텍스트 상자에 *object(instance)\counter* 형식으로 카운트 이름을 입력합니다.  입력을 시작하면 일치하는 공용 카운터 목록이 나타납니다.  목록에서 카운터를 선택하거나 원하는 항목을 입력할 수 있습니다.  
+3. **+**를 클릭하거나 **Enter**를 눌러서 카운터를 개체의 다른 카운터 목록에 추가합니다.
+4. 개체에 대한 모든 카운터에는 동일한 **샘플 간격**이 사용됩니다.  기본값은 10초입니다.  수집된 성능 데이터의 저장소 요구 사항을 줄이려면 이 값을 최대 1800초(30분)까지 변경할 수 있습니다.
+5. 카운터 추가를 완료했으면 화면 맨 위에서 **저장** 단추를 눌러서 구성을 저장합니다.
 
 #### <a name="configure-linux-performance-counters-in-configuration-file"></a>구성 파일에서 Linux 성능 카운터 구성
-Hello OMS 포털을 사용 하 여 Linux 성능 카운터를 구성 하는 대신 hello Linux 에이전트에서 구성 파일 편집으로 인해 hello 선택할을 수 있습니다.  성능 메트릭 toocollect hello 구성에 의해 제어 됩니다 **/등/옵트인/microsoft/omsagent/\<작업 영역 id\>/conf/omsagent.conf**합니다.
+OMS 포털을 사용하여 Linux 성능 카운터를 구성하는 대신 Linux 에이전트의 구성 파일을 편집하는 옵션도 있습니다.  수집할 성능 메트릭은 **/etc/opt/microsoft/omsagent/\<workspace id\>/conf/omsagent.conf**의 구성으로 제어됩니다.
 
-각 개체 또는 성능 메트릭 toocollect의 범주는 단일 hello 구성 파일에 정의 되어야 합니다 `<source>` 요소입니다. hello 구문 아래 hello 패턴을 따릅니다.
+수집할 성능 메트릭의 각 개체나 범주는 구성 파일 내에 단일 `<source>` 요소로 정의되어야 합니다. 구문은 아래와 같은 패턴을 따릅니다.
 
     <source>
       type oms_omi  
@@ -78,17 +78,17 @@ Hello OMS 포털을 사용 하 여 Linux 성능 카운터를 구성 하는 대�
     </source>
 
 
-다음 표에 hello이 요소의 hello 매개 변수를 설명 합니다.
+이 요소의 매개 변수를 다음 테이블에서 설명합니다.
 
 | 매개 변수 | 설명 |
 |:--|:--|
-| object\_name | Hello 컬렉션에 대 한 개체 이름입니다. |
-| instance\_regex |  A *정규식* 어떤 인스턴스 toocollect를 정의 합니다. 값 hello: `.*` 모든 인스턴스를 지정 합니다. 만 hello에 대 한 프로세서 메트릭 toocollect \_지정 총 인스턴스 `_Total`합니다. 에 대 한 toocollect 프로세스 메트릭만 crond 또는 sshd 인스턴스에 hello, 지정할 수 있습니다: ' (crond\|sshd)`를 지정합니다. |
-| counter\_name\_regex | A *정규식* 어떤 (hello 개체)에 대 한 카운터 toocollect를 정의 합니다. toocollect hello 개체에 대 한 모든 카운터 지정: `.*`합니다. hello 메모리 개체에 대 한만 스왑 공간 카운터만 toocollect, 예를 들어 지정할 수 있습니다.`.+Swap.+` |
-| interval | 빈도 hello 개체의 카운터를 수집 합니다. |
+| object\_name | 수집하는 개체의 이름입니다. |
+| instance\_regex |  수집할 인스턴스를 정의하는 *정규식*입니다. `.*` 값은 모든 인스턴스를 지정합니다. \_Total 인스턴스에 대해서만 프로세서 메트릭을 수집하려면 `_Total`을 지정합니다. crond 또는 sshd 인스턴스에 대해서만 프로세스 메트릭을 수집하려면 `(crond\|sshd)`를 지정합니다. |
+| counter\_name\_regex | 수집할 (개체에 대한) 카운터를 정의하는 *정규식*입니다. 개체에 대한 모든 카운터를 수집하려면 `.*`를 지정합니다. 메모리 개체에 대한 스왑 공간 카운터만 수집하려면 예를 들어 다음을 지정할 수 있습니다. `.+Swap.+` |
+| interval | 개체의 카운터가 수집되는 빈도입니다. |
 
 
-hello 다음 표에 hello 개체 및 카운터를 hello 구성 파일에서 지정할 수 있습니다.  [Log Analytics에서 Linux 응용 프로그램에 대한 성능 카운터 수집](log-analytics-data-sources-linux-applications.md)에서 설명된 대로 특정 응용 프로그램에 사용할 수 있는 추가 카운터가 있습니다.
+다음 테이블은 구성 파일에서 지정할 수 있는 개체 및 카운터를 나열합니다.  [Log Analytics에서 Linux 응용 프로그램에 대한 성능 카운터 수집](log-analytics-data-sources-linux-applications.md)에서 설명된 대로 특정 응용 프로그램에 사용할 수 있는 추가 카운터가 있습니다.
 
 | 개체 이름 | 카운터 이름 |
 |:--|:--|
@@ -147,7 +147,7 @@ hello 다음 표에 hello 개체 및 카운터를 hello 구성 파일에서 지�
 | 시스템 | 사용자 |
 
 
-다음은 성능 메트릭에 대 한 hello 기본 구성입니다.
+다음은 성능 메트릭에 대한 기본 구성입니다.
 
     <source>
       type oms_omi
@@ -182,29 +182,29 @@ hello 다음 표에 hello 개체 및 카운터를 hello 구성 파일에서 지�
     </source>
 
 ## <a name="data-collection"></a>데이터 수집
-Log Analytics는 카운터가 설치된 모든 에이전트에서 지정된 모든 성능 카운터를 지정된 샘플 간격으로 수집합니다.  hello 데이터가 집계 되지 않아서 및 hello 원시 데이터를 OMS 구독에 지정 된 hello 기간에 대 한 모든 로그 검색 보기에서 사용할 수 있습니다.
+Log Analytics는 카운터가 설치된 모든 에이전트에서 지정된 모든 성능 카운터를 지정된 샘플 간격으로 수집합니다.  데이터는 집계되지 않으며 OMS 구독에서 지정한 기간 동안 모든 로그 검색 보기에서 원시 데이터를 사용할 수 있습니다.
 
 ## <a name="performance-record-properties"></a>성능 레코드 속성
-성능 기록에는 형식이 **성능** 한 hello 속성의 다음 표에 hello 합니다.
+성능 레코드에는 **Perf**라는 type과 다음 테이블의 속성이 포함됩니다.
 
 | 속성 | 설명 |
 |:--- |:--- |
-| 컴퓨터 |이벤트를 hello 하는 컴퓨터에서 수집 되었습니다. |
-| CounterName |Hello 성능 카운터의 이름 |
-| CounterPath |Hello 형태로 hello 카운터의 전체 경로 \\ \\ \<컴퓨터 >\\object(instance)\\카운터입니다. |
-| CounterValue |Hello 카운터의 숫자 값입니다. |
-| InstanceName |Hello 이벤트 인스턴스의 이름입니다.  인스턴스가 없으면 비어 있게 됩니다. |
-| ObjectName |Hello 성능 개체의 이름 |
-| SourceSystem |에이전트 hello 데이터의 형식에서 수집 되었습니다. <br><br>OpsManager – Windows 에이전트, 직접 연결 또는 SCOM <br> Linux – 모든 Linux 에이전트  <br> AzureStorage – Azure 진단 |
-| TimeGenerated |날짜 및 시간 hello 데이터 샘플링 합니다. |
+| 컴퓨터 |이벤트가 수집된 컴퓨터입니다. |
+| CounterName |성능 카운터의 이름입니다. |
+| CounterPath |카운터의 전체 경로이며 형식은 \\\\\<Computer>\\object(instance)\\counter입니다. |
+| CounterValue |카운터의 숫자 값입니다. |
+| InstanceName |이벤트 인스턴스의 이름입니다.  인스턴스가 없으면 비어 있게 됩니다. |
+| ObjectName |성능 개체의 이름입니다. |
+| SourceSystem |데이터가 수집된 에이전트의 유형입니다. <br><br>OpsManager – Windows 에이전트, 직접 연결 또는 SCOM <br> Linux – 모든 Linux 에이전트  <br> AzureStorage – Azure 진단 |
+| TimeGenerated |데이터가 샘플링된 날짜와 시간입니다. |
 
 ## <a name="sizing-estimates"></a>예상 크기 조정
- 10초 간격으로 특정 카운터가 수집되는 양은 인스턴스당 일별 약 1MB입니다.  다음 수식을 hello로 특정 카운터의 hello 저장소 요구 사항을 예측할 수 있습니다.
+ 10초 간격으로 특정 카운터가 수집되는 양은 인스턴스당 일별 약 1MB입니다.  다음 수식을 사용하여 특정 카운터의 저장소 요구 사항을 예측할 수 있습니다.
 
     1 MB x (number of counters) x (number of agents) x (number of instances)
 
 ## <a name="log-searches-with-performance-records"></a>성능 레코드를 통한 로그 검색
-hello 다음 표에서 다양 한 성능 레코드를 검색 하는 로그 검색 예.
+다음 테이블에서는 성능 레코드를 검색하는 로그 검색의 다양한 예제를 제공합니다.
 
 | 쿼리 | 설명 |
 |:--- |:--- |
@@ -213,15 +213,15 @@ hello 다음 표에서 다양 한 성능 레코드를 검색 하는 로그 검�
 | Type=Perf CounterName="Current Disk Queue Length" |특정 컴퓨터에 대한 모든 성능 데이터 |
 | Type=Perf (ObjectName=Processor) CounterName="% Processor Time" InstanceName=_Total &#124; measure Avg(Average) as AVGCPU by Computer |모든 컴퓨터의 평균 CPU 사용률 |
 | Type=Perf (CounterName="% Processor Time") &#124;  measure max(Max) by Computer |모든 컴퓨터의 최대 CPU 사용률 |
-| Type=Perf ObjectName=LogicalDisk CounterName="Current Disk Queue Length" Computer="MyComputerName" &#124; measure Avg(Average) by InstanceName |지정된 된 컴퓨터의 모든 hello 인스턴스에서 평균 현재 디스크 큐 길이 |
+| Type=Perf ObjectName=LogicalDisk CounterName="Current Disk Queue Length" Computer="MyComputerName" &#124; measure Avg(Average) by InstanceName |지정된 컴퓨터의 모든 인스턴스의 평균 현재 디스크 큐 길이 |
 | Type=Perf CounterName="DiskTransfers/sec" &#124; measure percentile95(Average) by Computer |모든 컴퓨터에 대한 디스크 전송/초의 95 백분위수 |
 | Type=Perf CounterName="% Processor Time" InstanceName="_Total"  &#124; measure avg(CounterValue) by Computer Interval 1HOUR |모든 컴퓨터에서 시간별 평균 CPU 사용량 |
 | Type=Perf Computer="MyComputer" CounterName=%* InstanceName=_Total &#124; measure percentile70(CounterValue) by CounterName Interval 1HOUR |특정 컴퓨터에 대한 % 백분율 카운터당 시간별 70백분위수 |
 | Type=Perf CounterName="% Processor Time" InstanceName="_Total"  (Computer="MyComputer") &#124; measure min(CounterValue), avg(CounterValue), percentile75(CounterValue), max(CounterValue) by Computer Interval 1HOUR |특정 컴퓨터의 시간별 평균, 최소, 최대, 75백분위수 CPU 사용량 |
-| Type=Perf ObjectName=“MSSQL$INST2:Databases” InstanceName=master | Hello 데이터베이스 성능에서 모든 성능 데이터 개체에서 명명 된 SQL Server 인스턴스 INST2 hello hello master 데이터베이스에 대 한 합니다.  
+| Type=Perf ObjectName=“MSSQL$INST2:Databases” InstanceName=master | 명명된 SQL Server 인스턴스 INST2에서 마스터 데이터베이스에 대한 데이터베이스 성능 개체의 모든 성능 데이터.  
 
 >[!NOTE]
-> 작업 영역에는 업그레이드 된 toohello 되었으면 [새 로그 분석 쿼리 언어](log-analytics-log-search-upgrade.md), 쿼리 위에 hello toohello 다음 변경 합니다.
+> 작업 영역을 [새 Log Analytics 쿼리 언어](log-analytics-log-search-upgrade.md)로 업그레이드한 경우에는 위의 쿼리가 다음과 같이 변경됩니다.
 
 > | 쿼리 | 설명 |
 |:--- |:--- |
@@ -230,22 +230,22 @@ hello 다음 표에서 다양 한 성능 레코드를 검색 하는 로그 검�
 | Perf &#124; where CounterName == "Current Disk Queue Length" |특정 컴퓨터에 대한 모든 성능 데이터 |
 | Perf &#124; where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total" &#124; summarize AVGCPU = avg(Average) by Computer |모든 컴퓨터의 평균 CPU 사용률 |
 | Perf &#124; where CounterName == "% Processor Time" &#124; summarize AggregatedValue = max(Max) by Computer |모든 컴퓨터의 최대 CPU 사용률 |
-| Perf &#124; where ObjectName == "LogicalDisk" and CounterName == "Current Disk Queue Length" and Computer == "MyComputerName" &#124; summarize AggregatedValue = avg(Average) by InstanceName |지정된 된 컴퓨터의 모든 hello 인스턴스에서 평균 현재 디스크 큐 길이 |
+| Perf &#124; where ObjectName == "LogicalDisk" and CounterName == "Current Disk Queue Length" and Computer == "MyComputerName" &#124; summarize AggregatedValue = avg(Average) by InstanceName |지정된 컴퓨터의 모든 인스턴스의 평균 현재 디스크 큐 길이 |
 | Perf &#124; where CounterName == "DiskTransfers/sec" &#124; summarize AggregatedValue = percentile(Average, 95) by Computer |모든 컴퓨터에 대한 디스크 전송/초의 95 백분위수 |
 | Perf &#124; where CounterName == "% Processor Time" and InstanceName == "_Total" &#124; summarize AggregatedValue = avg(CounterValue) by bin(TimeGenerated, 1h), Computer |모든 컴퓨터에서 시간별 평균 CPU 사용량 |
 | Perf &#124; where Computer == "MyComputer" and CounterName startswith_cs "%" and InstanceName == "_Total" &#124; summarize AggregatedValue = percentile(CounterValue, 70) by bin(TimeGenerated, 1h), CounterName | 특정 컴퓨터에 대한 % 백분율 카운터당 시간별 70백분위수 |
 | Perf &#124; where CounterName == "% Processor Time" and InstanceName == "_Total" and Computer == "MyComputer" &#124; summarize ["min(CounterValue)"] = min(CounterValue), ["avg(CounterValue)"] = avg(CounterValue), ["percentile75(CounterValue)"] = percentile(CounterValue, 75), ["max(CounterValue)"] = max(CounterValue) by bin(TimeGenerated, 1h), Computer |특정 컴퓨터의 시간별 평균, 최소, 최대, 75백분위수 CPU 사용량 |
-| Perf &#124; where ObjectName == "MSSQL$INST2:Databases" and InstanceName == "master" | Hello 데이터베이스 성능에서 모든 성능 데이터 개체에서 명명 된 SQL Server 인스턴스 INST2 hello hello master 데이터베이스에 대 한 합니다.  
+| Perf &#124; where ObjectName == "MSSQL$INST2:Databases" and InstanceName == "master" | 명명된 SQL Server 인스턴스 INST2에서 마스터 데이터베이스에 대한 데이터베이스 성능 개체의 모든 성능 데이터.  
 
 ## <a name="viewing-performance-data"></a>성능 데이터 보기
-성능 데이터에 대 한 로그 검색을 실행 하면 hello **목록** 뷰가 기본적으로 표시 됩니다.  tooview hello 데이터를 그래픽 형식 클릭 **메트릭**합니다.  그래픽 정보를 자세히 확인할 클릭 hello  **+**  다음 tooa 카운터입니다.  
+성능 데이터를 위해 로그 검색을 실행하면 **목록** 보기가 기본적으로 표시됩니다.  데이터를 그래픽 양식으로 보려면 **메트릭**을 클릭합니다.  자세한 그래픽 보기를 보려면 카운터 옆의 **+**을 클릭하십시오.  
 
 ![축소된 메트릭 보기](media/log-analytics-data-sources-performance-counters/metricscollapsed.png)
 
-로그 검색에 성능 데이터를 tooaggregate 참조 [주문형 메트릭 집계 및 OMS에서 시각화](http://blogs.technet.microsoft.com/msoms/2016/02/26/on-demand-metric-aggregation-and-visualization-in-oms/)합니다.
+로그 검색의 성능 데이터를 집계하려면 [OMS에서 온디맨드 메트릭 집계 및 가상화](http://blogs.technet.microsoft.com/msoms/2016/02/26/on-demand-metric-aggregation-and-visualization-in-oms/)를 참조하십시오.
 
 
 ## <a name="next-steps"></a>다음 단계
 * MySQL 및 Apache HTTP 서버를 포함하여 [Linux 응용 프로그램에서 성능 카운터를 수집](log-analytics-data-sources-linux-applications.md)합니다.
-* 에 대 한 자세한 내용은 [검색 로그](log-analytics-log-searches.md) tooanalyze hello 데이터가 데이터 원본 및 솔루션에서 수집 합니다.  
-* 수집 된 데이터를 너무 내보내기[Power BI](log-analytics-powerbi.md) 추가 시각화 및 분석에 대 한 합니다.
+* 데이터 원본 및 솔루션에서 수집한 데이터를 분석하기 위해 [로그 검색](log-analytics-log-searches.md) 에 대해 알아봅니다.  
+* 추가적인 시각화 및 분석을 위해, 수집된 데이터를 [Power BI](log-analytics-powerbi.md) 로 내보냅니다.

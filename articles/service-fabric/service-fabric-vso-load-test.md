@@ -1,6 +1,6 @@
 ---
-title: "Visual Studio Team Services를 사용 하 여 응용 프로그램을 테스트 하는 aaaLoad | Microsoft Docs"
-description: "Toostress Visual Studio Team Services를 사용 하 여 Azure 서비스 패브릭 응용 프로그램을 테스트 하는 방법에 대해 알아봅니다."
+title: "Visual Studio Team Services를 사용하여 응용 프로그램 부하 테스트 | Microsoft Docs"
+description: "Visual Studio Team Services를 사용하여 Azure 서비스 패브릭 응용 프로그램에 스트레스 테스트를 실행하는 방법을 알아봅니다."
 services: service-fabric
 documentationcenter: na
 author: cawams
@@ -14,103 +14,103 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 11/18/2016
 ms.author: cawa
-ms.openlocfilehash: 663cf8db5e8f0a4d0d7f27b585645d7f776392f9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e8e270ce865d4da3ee219958b308db2c1c89b11b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="load-test-your-application-by-using-visual-studio-team-services"></a>Visual Studio Team Services를 사용하여 응용 프로그램 부하 테스트
-이 문서에서는 Microsoft Visual Studio 부하 테스트 기능 toostress toouse 응용 프로그램을 테스트 하는 방법을 보여 줍니다. Azure 서비스 패브릭 상태 저장 서비스 백 엔드 및 상태 비저장 서비스 웹 프런트 엔드가 사용됩니다. hello 여기에 예제 응용 프로그램은 비행기 위치 시뮬레이터. 사용자는 항공기 ID, 출발 시간 및 도착 위치를 제공합니다. hello 백 엔드 응용 프로그램의 처리 hello 요청 하 고 hello 프런트 엔드 hello 조건과 일치 하는 지도 hello 비행기에 표시 됩니다.
+이 문서는 Microsoft Visual Studio 부하 테스트 기능을 사용하여 응용 프로그램에 스트레스 테스트를 실행하는 방법을 보여 줍니다. Azure 서비스 패브릭 상태 저장 서비스 백 엔드 및 상태 비저장 서비스 웹 프런트 엔드가 사용됩니다. 여기에 사용되는 예제 응용 프로그램은 항공기 위치 시뮬레이터입니다. 사용자는 항공기 ID, 출발 시간 및 도착 위치를 제공합니다. 응용 프로그램의 백 엔드는 요청을 처리하고 프런트 엔드는 지도에 조건에 일치하는 항공기를 표시합니다.
 
-hello 다음 다이어그램에서는 보여줍니다 hello 서비스 패브릭 응용 프로그램을 테스트 해야 합니다.
+다음 다이어그램은 테스트를 수행할 서비스 패브릭 응용 프로그램을 보여 줍니다.
 
-![Hello 예제 비행기 위치 응용 프로그램의 다이어그램][0]
+![예제 비행기 위치 응용 프로그램의 다이어그램][0]
 
 ## <a name="prerequisites"></a>필수 조건
-시작 하기 전에 toodo hello 다음이 필요 합니다.
+시작하기 전에 다음을 수행해야 합니다.
 
 * Visual Studio Team Services 계정을 가져옵니다. [Visual Studio Team Services](https://www.visualstudio.com)에서 무료로 계정을 등록할 수 있습니다.
 * Visual Studio 2013 또는 Visual Studio 2015를 확보하여 설치합니다. 이 문서는 Visual Studio 2015 Enterprise Edition을 사용하지만 Visual Studio 2013 및 기타 버전도 유사하게 작동합니다.
-* 스테이징 환경에 응용 프로그램 tooa를 배포 합니다. 참조 [toodeploy 응용 프로그램 tooa 원격 클러스터 Visual Studio를 사용 하는 방법을](service-fabric-publish-app-remote-cluster.md) 이 대 한 정보에 대 한 합니다.
-* 응용 프로그램 사용 패턴을 이해합니다. 이 정보는 사용 되는 toosimulate hello 부하 패턴입니다.
-* 부하 테스트에 대 한 hello 목표를 이해 합니다. 이 해석 하 고 hello 부하 테스트 결과 분석할 수 있습니다.
+* 스테이징 환경에 응용 프로그램을 배포합니다. 자세한 내용은 [Visual Studio를 사용하여 원격 클러스터에 응용 프로그램을 배포하는 방법(영문)](service-fabric-publish-app-remote-cluster.md) 을 참조하세요.
+* 응용 프로그램 사용 패턴을 이해합니다. 이 정보는 부하 패턴을 시뮬레이션하는 데 사용됩니다.
+* 부하 테스트의 목표를 이해합니다. 이것은 부하 테스트 결과를 해석하고 분석하는 데 도움이 됩니다.
 
-## <a name="create-and-run-hello-web-performance-and-load-test-project"></a>만들기 및 hello 웹 성능 및 부하 테스트 프로젝트를 실행 합니다.
+## <a name="create-and-run-the-web-performance-and-load-test-project"></a>웹 성능 및 부하 테스트 프로젝트 만들기 및 실행
 ### <a name="create-a-web-performance-and-load-test-project"></a>웹 성능 및 부하 테스트 만들기
-1. Visual Studio 2015를 엽니다. 선택 **파일** > **새로** > **프로젝트** hello 메뉴 모음 tooopen hello에 **새 프로젝트** 대화 상자.
-2. Hello 확장 **Visual C#** 노드 선택 **테스트** > **웹 성능 및 부하 테스트 프로젝트**합니다. Hello 프로젝트 이름을 지정 하 고 hello를 눌러 **확인** 단추입니다.
+1. Visual Studio 2015를 엽니다. 메뉴 모음에서 **파일** > **새로 만들기** > **프로젝트**를 선택하여 **새 프로젝트** 대화 상자를 엽니다.
+2. **Visual C#** 노드를 확장하고 **테스트** > **웹 성능 및 부하 테스트 프로젝트**를 선택합니다. 프로젝트 이름을 부여하고 **확인** 단추를 선택합니다.
 
-    ![Hello 새 프로젝트 대화 상자 스크린 샷][1]
+    ![새 프로젝트 대화 상자의 스크린샷][1]
 
     솔루션 탐색기에서 새로운 웹 성능 및 부하 테스트 프로젝트가 표시됩니다.
 
-    ![Hello 새 프로젝트를 나타내는 솔루션 탐색기의 스크린 샷][2]
+    ![새 프로젝트를 보여 주는 솔루션 탐색기의 스크린샷][2]
 
 ### <a name="record-a-web-performance-test"></a>웹 성능 테스트 기록
-1. 열기 hello.webtest 프로젝트입니다.
-2. Hello 선택 **기록 추가** 아이콘 toostart 브라우저에서 세션 기록 합니다.
+1. .webtest 프로젝트를 엽니다.
+2. **기록 추가** 아이콘을 선택하여 사용자 브라우저에서 기록 세션을 시작합니다.
 
-    ![브라우저에서 hello 기록 추가 아이콘의 스크린 샷][3]
+    ![브라우저에서 기록 추가 아이콘의 스크린샷][3]
 
-    ![브라우저에서 hello 레코드 단추 스크린 샷][4]
-3. Toohello 서비스 패브릭 응용 프로그램을 찾습니다. hello 기록 패널을 hello 웹 요청을 보여 줍니다.
+    ![브라우저에서 기록 단추의 스크린샷][4]
+3. 서비스 패브릭 응용 프로그램으로 이동합니다. 기록 패널에 웹 요청이 표시됩니다.
 
-    ![패널을 기록 하는 hello에서 웹 요청의 스크린 샷][5]
-4. 일련의 hello 사용자 tooperform 예상 하는 작업을 수행 합니다. 이러한 작업은 패턴 toogenerate hello 부하로 사용 됩니다.
-5. 완료 되 면 선택 hello **중지** 단추 toostop 기록 합니다.
+    ![기록 패널에서 웹 요청의 스크린샷][5]
+4. 사용자가 수행할 것으로 예상하는 작업 시퀀스를 수행합니다. 이 작업은 부하를 생성하는 패턴으로 사용됩니다.
+5. 완료되면 **중지** 단추를 선택하여 기록을 중지합니다.
 
-    ![Hello 중지 단추 스크린 샷][6]
+    ![중지 단추의 스크린샷][6]
 
-    Visual Studio에서 hello.webtest 프로젝트는 일련의 요청을 캡처해야 해야 합니다. 동적 매개 변수가 자동으로 대체됩니다. 이 때, 테스트 시나리오에 속하지 않는 중복된 종속 요청 또는 여분의 요청을 제거할 수 있습니다.
-6. Hello 프로젝트를 저장 하 고 hello를 눌러 **테스트 실행** 명령 toorun hello 웹 성능 테스트를 로컬로 및 모든 것이 올바르게 작동 하는지 확인 합니다.
+    Visual Studio의 .webtest 프로젝트가 일련의 요청으로 캡처되었습니다. 동적 매개 변수가 자동으로 대체됩니다. 이 때, 테스트 시나리오에 속하지 않는 중복된 종속 요청 또는 여분의 요청을 제거할 수 있습니다.
+6. 프로젝트를 저장한 후 **테스트 실행** 명령을 선택하여 로컬에서 웹 성능 테스트를 실행하고 모든 것이 올바르게 작동하는지 확인합니다.
 
-    ![테스트 실행 명령 hello 스크린 샷][7]
+    ![테스트 실행 명령의 스크린샷][7]
 
-### <a name="parameterize-hello-web-performance-test"></a>Hello 웹 성능 테스트를 매개 변수화
-Tooa 코딩 된 웹 성능 테스트를 변환 하 고 다음 hello 코드를 편집 하 여 hello 웹 성능 테스트 매개 변수화 할 수 있습니다. 대신 hello 테스트 반복 hello 데이터 있도록 hello 웹 성능 테스트 tooa 데이터 목록에 바인딩할 수 있습니다. 참조 [생성 및 코딩 된 웹 성능 테스트를 실행](https://msdn.microsoft.com/library/ms182552.aspx) tooconvert hello 웹 성능 테스트 tooa 테스트를 코딩 하는 방법에 대 한 세부 정보에 대 한 합니다. 참조 [데이터 소스 tooa 웹 성능 테스트 추가](https://msdn.microsoft.com/library/ms243142.aspx) toobind 데이터 tooa 웹 성능 방법에 대 한 정보에 대 한 테스트 합니다.
+### <a name="parameterize-the-web-performance-test"></a>웹 성능 테스트 매개 변수화
+웹 성능 테스트를 코딩된 웹 성능 테스트로 변환한 후 코드를 편집하여 웹 성능 테스트를 매개 변수화할 수 있습니다. 또는 테스트가 데이터를 통해 반복되도록 웹 성능 테스트를 데이터 목록에 바인딩할 수 있습니다. 웹 성능 테스트를 코딩된 테스트로 변환하는 방법에 대한 자세한 내용은 [코딩된 웹 성능 테스트 생성 및 실행](https://msdn.microsoft.com/library/ms182552.aspx) 을 참조하세요. 웹 성능 테스트에 데이터를 바인딩하는 방법에 대한 정보는 [웹 성능 테스트에 데이터 소스 추가](https://msdn.microsoft.com/library/ms243142.aspx) 를 참조하세요.
 
-예를 들어 hello 비행기 ID 생성 된 GUID로 바꿉니다 하 고 더 많은 요청 toosend 내리지 않는 항공편 toodifferent 위치를 추가할 수 있도록 hello 웹 성능 테스트 tooa 코딩 된 테스트를 변환 합니다.
+이 예제에서는 항공기 ID를 생성된 GUID로 대체하고 여러 지역에 항공편을 보내는 요청을 추가할 수 있도록 웹 성능 테스트를 코딩된 테스트로 변환합니다.
 
 ### <a name="create-a-load-test-project"></a>부하 테스트 프로젝트 만들기
-부하 테스트 프로젝트는 hello 웹 성능 테스트 및 단위 테스트를 추가로 지정 된 부하 테스트 설정에서 설명 하는 하나 이상의 시나리오가 구성 됩니다. 단계를 수행 하는 hello toocreate 부하 프로젝트를 테스트 하는 방법을 보여 줍니다.
+부하 테스트 프로젝트는 추가적으로 지정되는 부하 테스트 설정과 함께 웹 성능 테스트 및 단위 테스트로 설명되는 하나 이상의 시나리오로 구성됩니다. 다음 단계는 부하 테스트 프로젝트를 만드는 방법을 보여 줍니다.
 
-1. Hello 웹 성능 및 부하 테스트 프로젝트의 바로 가기 메뉴에서 선택 **추가** > **부하 테스트**합니다. Hello에 **부하 테스트** 마법사 hello 선택 **다음** tooconfigure hello 테스트 설정 단추입니다.
-2. Hello에 **부하 패턴** 섹션에서 원하는 상수 사용자 부하 또는 적은 수의 사용자로 시작 하는 단계 부하 및 증가 시간에 따라 사용자가 hello 여부를 선택 합니다.
+1. 웹 성능 및 부하 테스트 프로젝트의 바로 가기 메뉴에서 **추가** > **부하 테스트**에서 무료로 계정을 등록할 수 있습니다. **부하 테스트** 마법사에서 **다음** 단추를 선택하여 테스트 설정을 구성합니다.
+2. **부하 패턴** 섹션에서 일정 사용자 부하를 원하는지 사용자 몇 명으로 시작하여 시간이 지나면서 사용자를 늘리는 단계 부하를 원하는지 선택합니다.
 
-    좋은 예측 하는 사용자 부하의 양은 hello toosee hello 현재 시스템 수행 하는 방법을 사용할 경우 수도 **상수 로드**합니다. 여기서의 목표 toolearn hello 시스템 다양 한 로드 상태에서 일관성 있게 수행 하는지 여부를 선택 **단계 부하**합니다.
-3. Hello에 **테스트 조합** 섹션에서 hello **추가** tooinclude hello 부하 테스트에 원하는 단추를 선택한 후 hello 테스트 합니다. Hello를 사용할 수 있습니다 **배포** 각 테스트에 대해 실행 되는 총 테스트 백분율로 toospecify hello 열입니다.
-4. Hello에 **실행 설정** 섹션 hello 부하 테스트 지속 시간을 지정 합니다.
+    사용자 부하에 대한 예측이 믿을만하고 현재 시스템의 성능을 보려면 **일정 부하**를 선택합니다. 테스트의 목표가 다양한 부하에 대해 시스템 성능이 일관적으로 수행되는지를 파악하는 것이라면 **단계 부하**를 선택합니다.
+3. **테스트 조합** 섹션에서 **추가** 단추를 선택한 후 부하 테스트에 포함할 테스트를 선택합니다. **분포** 열을 사용하여 각 테스트에 실행할 총 테스트의 백분율을 지정할 수 있습니다.
+4. **실행 설정** 섹션에서 부하 테스트 지속 시간을 지정합니다.
 
    > [!NOTE]
-   > hello **테스트 반복** 옵션은 Visual Studio를 사용 하 여 로컬로 부하 테스트를 실행할 때에 사용할 수 있습니다.
+   > **테스트 반복** 옵션은 Visual Studio를 사용하여 로컬에서 부하 테스트를 실행하는 경우에만 사용할 수 있습니다.
    >
    >
-5. Hello에 **위치** 섹션 **실행 설정**, 부하 테스트 요청이 생성 되는 hello 위치를 지정 합니다. hello 마법사 tooyour Team Services 계정에에서 toolog을 경우도 있습니다. 로그인한 다음 지리적 위치를 선택합니다. 완료 되 면 선택 hello **마침** 단추입니다.
-6. Hello 부하 테스트를 만든 후 hello.loadtest 프로젝트를 열고 hello 같은 현재 실행 설정 선택 **실행 설정** > **설정 1 실행 [Active]**합니다. Hello에서 실행 하는 hello 설정을 열립니다 **속성** 창.
-7. Hello에 **결과** hello 섹션 **실행 설정** 속성 창, hello **타이밍 정보 저장소** 설정이 있어야 **None** 으로 기본값입니다. 이 값도 변경**모든 개인 정보** tooget hello 부하 테스트 결과에 대 한 자세한 내용은 합니다. 참조 [부하 테스트](https://www.visualstudio.com/load-testing.aspx) tooconnect tooVisual Studio Team Services 및 실행 부하를 테스트 하는 방법에 대 한 자세한 내용은 합니다.
+5. **실행 설정**의 **위치** 섹션에서 부하 테스트 요청이 생성되는 위치를 지정합니다. 마법사가 Team Services 계정에 로그인하라는 메시지를 표시할 수 있습니다. 로그인한 다음 지리적 위치를 선택합니다. 완료되면 **마침** 단추를 선택합니다.
+6. 부하 테스트를 만든 후에 에서 무료로 계정을 등록할 수 있습니다.loadtest 프로젝트를 열어서 현재 실행 설정을 선택합니다(예: **실행 설정** > **실행 설정1 [Active]**에서 무료로 계정을 등록할 수 있습니다. 그러면 **속성** 창에 실행 설정이 열립니다.
+7. **실행 설정** 속성 창의 **결과** 섹션에, **타이밍 정보 저장소** 설정의 기본 값이 **없음**으로 나타납니다. 부하 테스트 결과에 대해 자세한 정보를 보려면 이 값을 **모든 개인 정보** 로 변경합니다. Visual Studio Team Services에 연결하여 부하 테스트를 실행하는 방법을 자세히 보려면 [부하 테스트](https://www.visualstudio.com/load-testing.aspx) 를 참조하세요.
 
-### <a name="run-hello-load-test-by-using-visual-studio-team-services"></a>Visual Studio Team Services를 사용 하 여 hello 부하 테스트 실행
-Hello 선택 **부하 테스트 실행** 명령 toostart hello 테스트를 실행 합니다.
+### <a name="run-the-load-test-by-using-visual-studio-team-services"></a>Visual Studio Team Services를 사용하여 부하 테스트 실행
+**부하 테스트 실행** 명령을 선택하여 테스트 실행을 시작합니다.
 
-![부하 테스트 실행 명령 hello 스크린 샷][8]
+![부하 테스트 실행 명령의 스크린샷][8]
 
-## <a name="view-and-analyze-hello-load-test-results"></a>Hello 부하 테스트 결과 확인 및 분석
-부하 테스트 진행 됨에 따라 hello로, hello 성능 정보를 그래프로 표현 합니다. 다음 그래프는 다음과 유사한 toohello를 표시 되어야 합니다.
+## <a name="view-and-analyze-the-load-test-results"></a>부하 테스트 보기 및 분석
+부하 테스트가 진행됨에 따라서 성능 정보가 그래프로 표시됩니다. 다음과 유사한 그래프가 표시됩니다.
 
 ![부하 테스트 결과에 대한 성능 그래프의 스크린샷][9]
 
-1. Hello 선택 **보고서 다운로드** hello 페이지의 hello 위쪽에 링크 합니다. Hello 보고서를 다운로드 한 후 선택 hello **보고서를 볼** 단추입니다.
+1. 페이지 맨 위 근처에서 **보고서 다운로드** 링크를 선택합니다. 보고서를 다운로드한 후에 **보고서 보기** 단추를 선택합니다.
 
-    Hello에 **그래프** 탭 다양 한 성능 카운터에 대 한 그래프를 확인할 수 있습니다. Hello에 **요약** 탭 hello 전체 테스트 결과가 표시 됩니다. hello **테이블** 탭 hello 성공한 요청과 실패 한 부하 테스트의 총 수를 표시 합니다.
-2. Hello에 대 한 hello 숫자 링크 선택 **테스트** > **실패** 및 hello **오류** > **Count** 열 toosee 오류 세부 정보입니다.
+    **그래프** 탭에 다양한 성능 카운터의 그래프가 표시됩니다. **요약** 탭에 전반적인 테스트 결과가 표시됩니다. **테이블** 탭은 성공한 테스트와 실패한 테스트의 총 수를 보여 줍니다.
+2. **테스트** > **실패** 및 **오류** > **개수** 열에서 숫자 링크를 선택하여 오류 정보를 확인합니다.
 
-    hello **세부** 탭 실패 한 요청에 대 한 가상 사용자 및 테스트 시나리오 정보를 표시 합니다. 이 데이터는 hello 부하 테스트에 여러 시나리오에 포함 된 경우에 유용할 수 있습니다.
+    **세부 정보** 탭에 실패한 요청의 가상 사용자 및 테스트 시나리오 정보가 표시됩니다. 이 데이터는 가상 테스트에 여러 시나리오가 포함된 경우에 유용합니다.
 
-참조 [부하 테스트 결과 분석 hello hello 부하 테스트 분석기의 그래프 보기에서에서](https://www.visualstudio.com/load-testing.aspx) 부하 보기에 대 한 자세한 내용은 테스트 결과입니다.
+부하 테스트 결과를 보는 방법에 대한 자세한 내용은 [부하 테스트 분석기의 그래프 보기에서 부하 테스트 결과 분석(영문)](https://www.visualstudio.com/load-testing.aspx) 을 참조하세요.
 
 ## <a name="automate-your-load-test"></a>부하 테스트 자동화
-Visual Studio Team Services 부하 테스트 Api toohelp 부하 테스트를 관리 하는 Team Services 계정에는 결과 분석을 제공 합니다. 자세한 내용은 [클라우드 부하 테스트 REST API(영문)](http://blogs.msdn.com/b/visualstudioalm/archive/2014/11/03/cloud-load-testing-rest-apis-are-here.aspx) 를 참조하세요.
+Visual Studio Team Services 부하 테스트에는 Team Services 계정으로 부하 테스트를 관리하고 결과를 분석할 수 있도록 하는 API가 제공됩니다. 자세한 내용은 [클라우드 부하 테스트 REST API(영문)](http://blogs.msdn.com/b/visualstudioalm/archive/2014/11/03/cloud-load-testing-rest-apis-are-here.aspx) 를 참조하세요.
 
 ## <a name="next-steps"></a>다음 단계
 * [로컬 컴퓨터 개발 설정에서의 모니터링 및 진단 서비스](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)

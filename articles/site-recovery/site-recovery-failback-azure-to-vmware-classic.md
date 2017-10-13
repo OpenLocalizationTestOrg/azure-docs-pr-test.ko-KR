@@ -1,6 +1,6 @@
 ---
-title: "aaaFail hello 클래식 포털에서 Azure에서 VMware Vm을 백업 | Microsoft Docs"
-description: "VMware Vm 및 물리적 서버 tooAzure의 장애 조치 후 뒤로 toohello 온-프레미스 사이트 실패 하는 방법을 알아봅니다."
+title: "클래식 포털에서 Azure의 VMware VM 장애 복구 | Microsoft Docs"
+description: "VMware VM 및 물리적 서버를 Azure로 장애 조치한 후 온-프레미스 사이트로 장애 복구에 대해 알아봅니다."
 services: site-recovery
 documentationcenter: 
 author: ruturaj
@@ -14,13 +14,13 @@ ms.topic: article
 ms.workload: storage-backup-recovery
 ms.date: 06/05/2017
 ms.author: ruturajd
-ms.openlocfilehash: 80bc3ab2708a5df953c6532b353da19a4c44ac34
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 82d5eb7fd13b1e9700a3e9bc2d30775e9c129749
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="fail-back-vmware-virtual-machines-and-physical-servers-toohello-on-premises-site-classic-portal"></a>오류 백 VMware 가상 컴퓨터 및 물리적 서버 toohello 온-프레미스 사이트 (클래식 포털)
+# <a name="fail-back-vmware-virtual-machines-and-physical-servers-to-the-on-premises-site-classic-portal"></a>온-프레미스 사이트로 VMware 가상 컴퓨터 및 물리적 서버 장애 복구(클래식 포털)
 > [!div class="op_single_selector"]
 > * [Azure 포털](site-recovery-failback-azure-to-vmware.md)
 > * [Azure 클래식 포털](site-recovery-failback-azure-to-vmware-classic.md)
@@ -28,114 +28,114 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-이 문서에서는 toofail Azure toohello 온-프레미스 사이트에서 Azure 가상 컴퓨터를 백업 하는 방법을 설명 합니다. 이 사용 하 여 hello 온-프레미스 사이트 tooAzure에서 조치할 한 후 VMware 가상 컴퓨터 또는 물리적 Windows/Linux 서버 준비 toofail 중인 경우이 문서의 hello 지침에 따라 다시 [자습서](site-recovery-vmware-to-azure-classic.md)합니다.
+이 문서에서는 Azure의 Azure 가상 컴퓨터를 온-프레미스 사이트로 장애 복구하는 방법을 설명합니다. 이 [자습서](site-recovery-vmware-to-azure-classic.md)를 사용하여 온-프레미스 사이트에서 Azure로 장애 조치한 후 VMware 가상 컴퓨터 또는 Windows/Linux 물리적 서버 장애 복구가 준비된 경우 이 문서의 지침에 따릅니다.
 
 ## <a name="overview"></a>개요
-이 다이어그램이이 시나리오에 대 한 hello 장애 복구 아키텍처를 보여 줍니다.
+이 다이어그램은 이 시나리오에 대한 장애 복구 아키텍처를 보여 줍니다.
 
-Hello 프로세스 서버를 온-프레미스 및 express 경로 사용 하는 경우에이 아키텍처를 사용 합니다.
+프로세스 서버가 온-프레미스이고 Express 경로를 사용할 경우 이 아키텍처를 사용합니다.
 
 ![](./media/site-recovery-failback-azure-to-vmware-classic/architecture.png)
 
-Hello 프로세스 서버가 Azure에 연결 되어 있고 VPN 또는 express 경로 연결 하는 경우에이 아키텍처를 사용 합니다.
+프로세스 서버가 Azure에 있고 VPN 또는 Express 경로를 연결할 경우 이 아키텍처를 사용합니다.
 
 ![](./media/site-recovery-failback-azure-to-vmware-classic/architecture2.png)
 
-포트 및 hello 장애 복구 아키텍처 다이어그램의 toosee hello 전체 목록은 아래 toohello 이미지를 참조 하십시오.
+포트 및 장애 복구(failback) 아키텍처 다이어그램의 전체 목록을 보려면 아래 이미지를 참조하세요.
 
 ![](./media/site-recovery-failback-azure-to-vmware-classic/Failover-Failback.png)
 
 장애 복구의 작동 방식은 다음과 같습니다.
 
-* TooAzure를 통해 실패 한 후 몇 단계에서 뒤로 tooyour 온-프레미스 사이트 실패:
-  * **1 단계**: 온-프레미스 사이트에서 실행 하는 백 tooVMware Vm 복제 시작 되도록 hello Azure Vm을 다시 보호 합니다. 보호 그룹을 장애 조치 hello를 처음 만들 때 자동으로 만들어진 장애 복구 보호 그룹으로 hello VM 이동 다시 보호를 사용 하도록 설정 합니다. 장애 조치 보호 그룹 tooa 복구 계획을 추가한 경우 hello 장애 복구 보호 그룹에는 toohello 계획도 자동으로 추가 되었습니다.  다시 보호 하는 동안 tooplan toofail 백업 하는 방법을 지정 합니다.
-  * **2 단계**: Azure에서 다시 toofail 통해 실패가 실행 하 Azure Vm에 tooyour 온-프레미스 사이트를 복제 하는 후 합니다.
-  * **3 단계**: tooAzure 복제 시작 되도록 장애 온-프레미스 Vm 백업할 hello를 다시 보호 데이터에 실패 한 다시 합니다.
+* Azure로 장애 조치한 후 다음 몇 가지 단계에서 온-프레미스 사이트로 장애 복구합니다.
+  * **1단계**: 온-프레미스 사이트에서 실행 중인 VMware VM으로 다시 복제가 시작되도록 Azure VM을 다시 보호합니다. 다시 보호를 사용하면 장애 조치 보호 그룹을 처음 만들 때 자동으로 생성된 장애 복구 보호 그룹으로 VM을 이동합니다. 복구 계획에 장애 조치 보호 그룹을 추가한 경우 장애 복구 보호 그룹도 계획에 자동으로 추가됩니다.  다시 보호하는 동안 장애 복구를 계획하는 방법을 지정합니다.
+  * **2단계**: Azure VM이 온-프레미스 사이트에 복제된 후 Azure에서 장애 복구하도록 장애 조치를 실행합니다.
+  * **3단계**: 데이터가 장애 복구된 후 Azure로 복제가 시작하도록 장애 복구한 온-프레미스 VM을 다시 보호합니다.
 
 
   [!VIDEO https://channel9.msdn.com/Blogs/Azure/Enhanced-VMware-to-Azure-Failback/player]
 
-### <a name="failback-toohello-original-or-alternate-location"></a>장애 복구 toohello 원래 위치 또는 대체 위치로
-뒤로 toohello 못하는 장애 조치 VMware VM 한 경우 온-프레미스 아직 있는 경우 VM을 원본 동일 합니다. 이 시나리오에서는 hello 델타 변경만 다시 실패 합니다. 다음 사항에 유의하세요.
+### <a name="failback-to-the-original-or-alternate-location"></a>원래 또는 대체 위치로 장애 복구
+VMware VM을 장애 조치한 경우 온-프레미스에 아직 있는 경우 동일한 원본 VM으로 장애 복구할 수 있습니다. 이 시나리오에서 델타 변경 내용만 장애 복구됩니다. 다음 사항에 유의하세요.
 
-* 물리적 서버 조치할 경우 장애 복구는 tooa 항상 새 VMware VM입니다.
+* 실제 서버를 장애 조치한 경우 장애 복구는 항상 새 VMware VM으로 수행됩니다.
   * 물리적 컴퓨터를 장애 복구(failback)하기 전에 다음 사항에 유의하세요.
-  * 보호 하는 물리적 컴퓨터를 가상 컴퓨터로 Azure tooVMware에서 다시 장애 조치 다시 나올지
-  * 마스터 대상 서버 hello 필요한 ESX/ESXi 호스트 toowhich 함께 하나 이상 검색할 수 있는지 확인 하십시오. toofailback 필요 합니다.
-* 장애 복구 toohello 원래 VM hello 다음 필요한 경우:
+  * 보호된 물리적 컴퓨터는 Azure에서 VMware로 다시 장애 조치(failover)된 경우 가상 컴퓨터로 복구됩니다.
+  * 장애 복구(failback)해야 하는 필요한 ESX/ESXi 호스트와 함께 하나 이상의 마스터 대상 서버를 검색해야 합니다.
+* 원래 VM으로 장애 복구하는 경우 다음이 필요합니다.
 
-  * Hello VM 관리 되는 경우 vCenter 서버에 의해 액세스 toohello Vm 데이터 저장소 hello 마스터 대상 ESX 호스트에 있어야 합니다.
-  * Hello VM ESX 호스트에 있지만 vCenter가 관리 하지 않는 경우 다음 hello의 hello 하드 디스크 VM에에서 있어야 hello MT의 호스트에서 액세스할 수 있는 데이터 저장소 합니다.
-  * VM ESX 호스트에 있고 vCenter를 사용 하지 않는 경우 다시 보호 하기 전에 hello MT의 hello ESX 호스트의 검색을 완료 해야 합니다. 물리적 서버도 장애 복구하는 경우 적용됩니다.
-  * (경우 hello 온-프레미스 VM이 있는) 하는 또 다른 옵션은 toodelete는 장애 복구를 수행 하기 전에 것입니다. 그런 다음 장애 복구 hello hello 마스터 대상 ESX 호스트와 동일한 호스트에 새 VM을 만들 다음 됩니다.
-* 복구 된 toohello 수 장애 복구 tooan 대체 위치 hello 데이터가 있는 시점 동일한 데이터 저장소 및 hello hello 온-프레미스 마스터 대상 서버에서 사용 하는 것과 동일한 ESX 호스트입니다.
+  * VM이 vCenter 서버에 의해 관리되는 경우 마스터 대상의 ESX 호스트에서 VM 데이터 저장소에 액세스할 수 있어야 합니다.
+  * VM이 ESX 호스트에 있지만 vCenter에서 관리하지 않는 경우 VM의 하드 디스크는 MT의 호스트에서 액세스할 수 있는 데이터 저장소에 있어야 합니다.
+  * VM이 ESX 호스트에 있고 vCenter를 사용하지 않는 경우 다시 보호하기 전에 MT의 ESX 호스트 검색을 완료해야 합니다. 물리적 서버도 장애 복구하는 경우 적용됩니다.
+  * 다른 옵션(온-프레미스 VM이 있는 경우)은 장애 복구를 수행하기 전에 삭제하는 것입니다. 그런 다음 장애 복구는 마스터 대상 ESX 호스트와 동일한 호스트에 새 VM을 생성합니다.
+* 대체 위치로 장애 복구하는 경우 데이터는 온-프레미스 마스터 대상 서버에서 사용한 것과 동일한 데이터 저장소와 동일한 ESX 호스트로 복구됩니다.
 
 ## <a name="prerequisites"></a>필수 조건
-* 물리적 서버 및 순서 toofail 다시 VMware Vm에서 VMware 환경이 필요 합니다. 뒤로 tooa 실패 한 실제 서버 지원 되지 않습니다.
-* 순서 toofail에서 다시 해야 Azure 네트워크 때 만든 초기 보호를 설정 합니다. 장애 복구 hello Azure에서에서 VPN 또는 express 경로 연결이 필요한는 hello Azure Vm 네트워크는 온-프레미스 사이트 위치에 toohello 합니다.
-* VCenter 서버에서 관리 하는 toofail 백 tooare 원하는 hello Vm toomake vCenter 서버에 Vm의 검색에 대 한 hello 필요한 권한이 있는지 확인 해야 합니다. [자세히 알아보기](site-recovery-vmware-to-azure-classic.md).
-* 스냅숏이 VM에 있는 경우 다시 보호에 실패합니다. Hello 스냅숏 또는 hello 디스크를 삭제할 수 있습니다.
-* 장애 복구 전에 toocreate 많은 구성 요소가 필요 합니다.
-  * **Azure에 프로세스 서버를 만듭니다**. Toocreate 해야 장애 복구 동안 계속 실행 하는 Azure VM입니다. 장애 복구 완료 된 후 hello 컴퓨터를 삭제할 수 있습니다.
-  * **마스터 대상 서버 만들기**: hello 마스터 대상 서버 장애 복구 데이터를 송수신 합니다. 온-프레미스를 만든 hello 관리 서버에는 기본적으로 설치 하는 마스터 대상 서버를 있습니다. 그러나 실패 한 뒤로 트래픽의 hello 볼륨에 따라 toocreate 별도 마스터 대상 서버 장애 복구 할 수 있습니다.
-  * Linux에서 실행 하는 추가 마스터 대상 서버 toocreate 하려는 경우 아래 설명 된 대로 hello 마스터 대상 서버를 설치 하기 전에 hello Linux VM을 tooset을 해야 합니다.
-* 장애 복구(failback)를 수행할 때 구성 서버는 온-프레미스여야 합니다. 장애 복구 하는 동안 hello 가상 컴퓨터는 장애 복구 하지 않음 성공적으로 수행 되어야 실패 hello 구성 서버 데이터베이스에 존재 해야 합니다. 따라서 서버의 예정된 정기 백업을 수행해야 합니다. 재해의 toorestore 할 경우 hello와 동일한 IP 주소 장애 복구 작동할 수 있도록 합니다.
+* VMware VM 및 물리적 서버를 장애 복구하려면 VMware 환경이 필요합니다. 물리적 서버로 장애 복구는 지원되지 않습니다.
+* 장애 복구하려면 보호를 처음 설정할 때 Azure 네트워크를 만들어야 합니다. 장애 복구는 온-프레미스 사이트에 있는 Azure VM이 있는 Azure 네트워크에서 VPN 또는 Express 경로 연결이 필요합니다.
+* 장애 복구하려는 VM이 vCenter 서버를 통해 관리되는 경우 vCenter 서버의 VM 검색에 필요한 권한이 있는지 확인해야 합니다. [자세히 알아보기](site-recovery-vmware-to-azure-classic.md).
+* 스냅숏이 VM에 있는 경우 다시 보호에 실패합니다. 스냅숏 또는 디스크를 삭제할 수 있습니다.
+* 장애 복구하려면 여러 구성 요소를 만들어야 합니다.
+  * **Azure에 프로세스 서버를 만듭니다**. 장애 복구 중에 만들고 계속 실행해야 하는 Azure VM입니다. 장애 복구를 완료한 후 컴퓨터를 삭제할 수 있습니다.
+  * **마스터 대상 서버 만들기**: 마스터 대상 서버는 장애 복구 데이터를 송수신합니다. 온-프레미스를 만든 관리 서버에는 기본적으로 설치된 마스터 대상 서버가 있습니다. 그러나 장애 복구 트래픽 볼륨에 따라 장애 복구에 대한 별도 마스터 대상 서버를 만들어야 할 수도 있습니다.
+  * Linux에서 실행되는 추가 마스터 대상 서버를 만들려는 경우 아래에 설명된 대로 마스터 대상 서버를 설치하기 전에 Linux VM을 설정해야 합니다.
+* 장애 복구(failback)를 수행할 때 구성 서버는 온-프레미스여야 합니다. 장애 복구(failback)하는 동안 구성 서버 데이터베이스에 가상 컴퓨터가 존재해야 하며, 그러지 않으면 장애 복구(failback)가 실패하게 됩니다. 따라서 서버의 예정된 정기 백업을 수행해야 합니다. 재해가 발생할 경우 장애 복구(failback)가 작동할 수 있도록 동일한 IP 주소를 사용하여 복원해야 합니다.
 
-## <a name="set-up-hello-process-server-in-azure"></a>Azure의 hello 프로세스 서버를 설정
-Hello Azure Vm hello 데이터 백 tooon 온-프레미스 마스터 대상 서버에 보낼 수 있도록 Azure에 프로세스 서버 tooinstall을 해야 합니다.
+## <a name="set-up-the-process-server-in-azure"></a>Azure에 프로세스 서버 설정
+Azure에 프로세스 서버를 설치해야 Azure VM이 데이터를 온-프레미스 마스터 대상 서버에 다시 보낼 수 있습니다.
 
-1. Hello Site Recovery 포털에서 > **구성 서버** tooadd 새 프로세스 서버를 선택 합니다.
+1. Site Recovery 포털 > **구성 서버**에서 선택하여 새 프로세스 서버를 추가합니다.
 
    ![](./media/site-recovery-failback-azure-to-vmware-classic/ps1.png)
-2. 프로세스 서버 이름을 지정 하 고 이름 및 암호 관리자 권한으로 tooconnect toohello Azure VM을 사용 합니다를 입력 합니다. **구성 서버** hello 온-프레미스 관리 서버를 선택 하 고 Azure hello 지정 네트워크에 있는 hello에 프로세스 서버 배포 해야 합니다. 이 hello Azure Vm 있는 hello 네트워크 이어야 합니다. Hello 선택 서브넷에서 고유한 IP 주소를 지정 하 고 배포를 시작 합니다.
+2. 프로세스 서버 이름을 지정하고 관리자로 Azure VM에 연결하는 데 사용할 이름 및 암호를 입력합니다. **구성 서버** 에서 온-프레미스 관리 서버를 선택하고 프로세스 서버를 배포해야 하는 Azure 네트워크를 지정합니다. Azure VM이 있는 네트워크이어야 합니다. 선택한 서브넷에서 고유한 IP 주소를 지정하고 배포를 시작합니다.
 
    ![](./media/site-recovery-failback-azure-to-vmware-classic/ps2.png)
 
-   작업 toodeploy hello 프로세스 서버가 트리거됩니다.
+   프로세스 서버를 배포하기 위한 작업이 트리거됩니다.
 
    ![](./media/site-recovery-failback-azure-to-vmware-classic/ps3.png)
 
-   Hello 후 Azure에 지정한 hello 자격 증명을 사용 하 여 로그온 할 수 있습니다에 프로세스 서버를 배포 합니다. hello hello 프로세스 서버 대화 상자에 로그인 하는 처음으로 실행 됩니다. Hello에 hello 온-프레미스 관리 서버와 해당 암호의 IP 주소를 입력 합니다. Hello 기본 443 포트 설정을 그대로 둡니다. 또한 두면 hello 데이터 복제에 대 한 기본 9443 포트 hello 온-프레미스 관리 서버를 설정할 때 특히이 설정을 수정 하지 않으면 됩니다.
+   프로세스 서버가 Azure에 배포되면 지정한 자격 증명을 사용하여 로그인할 수 있습니다. 프로세스 서버에 처음으로 로그인할 때 대화 상자가 실행됩니다. 온-프레미스 관리 서버의 IP 주소 및 해당 암호를 입력합니다. 기본 포트 443 설정을 그대로 둡니다. 온-프레미스 관리 서버를 설정할 때 특별히 이 설정을 수정하지 않은 경우 데이터 복제에 대해 기본 9443 포트를 그대로 둘 수 있습니다.
 
    > [!NOTE]
-   > hello 서버에서 표시 되지 않습니다 **VM 속성**합니다. Hello 표시만 않으면 **서버** hello 등록 되는 관리 서버 toowhich 탭 합니다. 에 대 한이 지나야 프로세스 서버 tooappear hello에 대 한 10-15 분입니다.
+   > **VM 속성**아래에서 서버가 표시되지 않습니다. 등록되는 관리 서버의 **서버** 탭에서만 볼 수 있습니다. 프로세스 서버가 나타날 때까지 약 10-15분이 소요될 수 있습니다.
    >
    >
 
-## <a name="set-up-hello-master-target-server-on-premises"></a>Hello 마스터 대상 서버 온-프레미스 설정
-마스터 대상 서버 hello hello 장애 복구 데이터를 받습니다. 마스터 대상 서버는 hello 온-프레미스 관리 서버에 자동으로 설치 하지만 많은 양의 데이터가 다시 실패 하는 경우에 추가 마스터 대상 서버를 tooset을 할 수 있습니다. 다음과 같이 수행합니다.
+## <a name="set-up-the-master-target-server-on-premises"></a>마스터 대상 서버 온-프레미스 설정
+마스터 대상 서버는 장애 복구 데이터를 받습니다. 마스터 대상 서버는 온-프레미스 관리 서버에 자동으로 설치되지만 많은 데이터를 장애 복구하는 경우 추가 마스터 대상 서버를 설정해야 할 수도 있습니다. 다음과 같이 수행합니다.
 
 > [!NOTE]
-> Linux 마스터 대상 서버 tooinstall 원한다 면 hello 다음 절차에 hello 지침을 따르십시오.
+> Linux에 마스터 대상 서버를 설치하려는 경우 다음 절차의 지침을 따릅니다.
 >
 >
 
-1. Windows hello 마스터 대상 서버를 설치 하는 hello 마스터 대상 서버를 설치 하 고 hello Azure Site Recovery 통합 설치 마법사에 대 한 hello 설치 파일을 다운로드 하면 있는 hello VM에서 hello 빠른 시작 페이지를 엽니다.
-2. 설치 프로그램을 실행 및 **시작 하기 전에** 선택 **배포 아웃 추가 프로세스 서버 tooscale 추가**합니다.
-3. Hello에서 마법사를 완료 하는 hello 때 수행한 동일한 방식으로 있습니다 [hello 관리 서버 설정](site-recovery-vmware-to-azure-classic.md)합니다. Hello에 **구성 서버 세부 정보** 페이지에서이 마스터 대상 서버와 공유 암호 tooaccess hello VM의 hello IP 주소를 지정 합니다.
+1. Windows에 마스터 대상 서버를 설치하는 경우 마스터 대상 서버를 설치하는 VM에서 빠른 시작 페이지를 열고 Azure Site Recovery 통합 설치 마법사에 대한 설치 파일을 다운로드합니다.
+2. 설치를 실행하고 **시작하기 전에**에서 **배포 규모 확장을 위해 추가 프로세스 서버 추가**를 선택합니다.
+3. [관리 서버를 설정](site-recovery-vmware-to-azure-classic.md)했을 때 수행한 것과 동일한 방식으로 마법사를 완료합니다. **구성 서버 세부 정보** 페이지에서 이 마스터 대상 서버의 IP 주소와 VM에 액세스하기 위한 암호를 지정합니다.
 
-### <a name="set-up-a-linux-vm-as-hello-master-target-server"></a>Linux VM hello 마스터 대상 서버로 설정
-Linux VM tooinstall hello Cent 해야으로 hello 마스터 대상 서버를 실행 하는 hello 관리 서버를 tooset) S 6.6 최소 운영 체제 각 SCSI 하드 디스크에 대 한 hello SCSI Id를 검색할 몇 가지 추가 패키지를 설치 및 일부 사용자 지정 변경 내용을 적용 합니다.
+### <a name="set-up-a-linux-vm-as-the-master-target-server"></a>마스터 대상 서버로 Linux VM 설정
+Linux VM으로 마스터 대상 서버를 실행하는 관리 서버를 설정하려면 CentOS 6.6 최소 운영 체제를 설치하고 각 SCSI 하드 디스크에 대한 SCSI ID를 검색하고 몇 가지 추가 패키지를 설치하고 일부 사용자 지정 변경 내용을 적용해야 합니다.
 
 #### <a name="install-centos-66"></a>CentOS 6.6 설치
-1. Hello 관리 서버의 VM hello CentOS 6.6 최소 운영 체제를 설치 합니다. DVD 드라이브 및 부팅 hello 시스템에 hello ISO를 보관 합니다. Hello 언어에서 테스트를 건너뛰기 hello 미디어 선택 영어 (미국) **기본 저장 장치**, hello 하드 드라이브 확인 하지 않는 중요 한 데이터가 누른 **예**, 데이터는 모두 무시 합니다. 관리 서버 hello hello 호스트 이름을 입력 하 고 hello 서버 네트워크 어댑터를 선택 합니다.  Hello에 **편집 시스템** 대화 select * * 연결 자동으로 * * 하 고 고정 IP 주소, 네트워크 및 DNS 설정을 추가 합니다. 표준 시간대 및 루트 암호 tooaccess hello 관리 서버를 지정 합니다.
-2. 때 묻는 메시지가 표시 hello 설치 유형을 선택 원하는 **사용자 지정 레이아웃 만들기** hello 파티션으로 합니다. **다음** select **무료** 를 선택하고 만들기를 클릭합니다. **FS 유형:** **ext4**로 **/**, **/var/crash** 및 **/home partitions**을 만듭니다. 으로 hello 스왑 파티션 만들기 **FS 유형: 스왑**합니다.
-3. 기존 장치가 발견되는 경우 경고 메시지가 표시됩니다. 클릭 **형식** tooformat hello 드라이브로 hello 파티션 설정 합니다. 클릭 **쓰기 변경 toodisk** tooapply hello 파티션 변경 합니다.
-4. 선택 **부팅 로더가 설치** > **다음** hello 루트 파티션에 tooinstall hello 부트 로더 합니다.
+1. 관리 서버 VM에 CentOS 6.6 최소 운영 체제를 설치합니다. DVD 드라이브에 ISO를 유지하고 시스템을 부팅합니다. 미디어 테스트를 건너뛰고 언어에서 영어(미국)를 선택하고 **기본 저장소 장치**를 선택하고 하드 드라이브에 중요한 데이터가 없는지 확인하고 **예**를 클릭하고 모든 데이터를 삭제합니다. 관리 서버의 호스트 이름을 입력하고 서버 네트워크 어댑터를 선택합니다.  **편집 시스템** 대화 상자에서 **자동으로 연결**을 선택하고 고정 IP 주소, 네트워크 및 DNS 설정을 추가합니다. 표준 시간대 및 관리 서버에 액세스하기 위한 루트 암호를 지정합니다.
+2. 설치 형식을 묻는 경우 파티션으로 **사용자 지정 레이아웃 만들기** 를 선택합니다. **다음** select **무료** 를 선택하고 만들기를 클릭합니다. **FS 유형:** **ext4**로 **/**, **/var/crash** 및 **/home partitions**을 만듭니다. **FS 유형: 스왑**으로 스왑 파티션을 만듭니다.
+3. 기존 장치가 발견되는 경우 경고 메시지가 표시됩니다. **포맷** 을 클릭하여 파티션 설정으로 드라이브를 포맷합니다. **디스크에 변경 내용 쓰기** 를 클릭하여 파티션 변경 내용을 적용합니다.
+4. **부팅 로더 설치** > **다음**을 선택하여 루트 파티션에 부팅 로더를 설치합니다.
 5. 설치가 완료되면 **재부팅**을 클릭합니다.
 
-#### <a name="retrieve-hello-scsi-ids"></a>Hello SCSI Id 검색
-1. 설치 후 hello VM에서에서 각 SCSI 하드 디스크에 대 한 hello SCSI Id를 검색 합니다. toodo이 hello 관리 서버 VM, VM hello 속성 VMware에서 마우스 오른쪽 단추로 클릭 hello VM 항목 > **설정 편집** > **옵션**합니다.
-2. **고급** > **일반 항목**을 선택하고 **구성 매개 변수**를 클릭합니다. Hello 컴퓨터가 실행 중일 때이 옵션이 de-active 됩니다. toomake it 활성 hello 컴퓨터를 종료 해야 합니다.
-3. 행 경우 hello **디스크. EnableUUID** 존재 hello 값이 너무 설정 되어 있는지 확인**True** (대/소문자 구분). 이미 있으면 취소 하 고 부팅 된 후 게스트 운영 체제 내의 hello SCSI 명령을 테스트할 수 있습니다.
-4. Hello 행 기존 클릭 표시 되지 않으면 **행 추가** – hello를 사용 하 여 추가 하 고 **True** 값입니다. 큰따옴표를 사용하지 마십시오.
+#### <a name="retrieve-the-scsi-ids"></a>SCSI ID 검색
+1. 설치 후 VM에서 각 SCSI 하드 디스크에 대한 SCSI ID를 검색합니다. 이를 수행하려면 관리 서버 VM을 종료하고 VMware의 VM 속성에서 VM 항목 > **설정 편집** > **옵션**을 마우스 오른쪽 단추로 클릭합니다.
+2. **고급** > **일반 항목**을 선택하고 **구성 매개 변수**를 클릭합니다. 컴퓨터가 실행되는 경우 이 옵션은 비활성화됩니다. 활성화하려면 컴퓨터를 종료해야 합니다.
+3. **disk.EnableUUID** 행이 존재하는 경우 값이 **True**(대/소문자 구분)로 설정되었는지 확인합니다. 존재하는 경우 취소하고 부팅된 후 게스트 운영 체제 내에서 SCSI 명령을 테스트할 수 있습니다.
+4. 행이 존재하지 않는 경우 **행 추가**를 클릭하고 **True** 값으로 추가합니다. 큰따옴표를 사용하지 마십시오.
 
 #### <a name="install-additional-packages"></a>추가 패키지 설치
-Toodownload 필요 하 고 몇 가지 추가 패키지를 설치 합니다.
+몇 가지 추가 패키지를 다운로드 및 설치해야 합니다.
 
-1. Hello 마스터 대상 서버에 연결 된 toohello 인지 확인 인터넷 합니다.
-2. 이 명령은 toodownload를 실행 하 고 hello CentOS 리포지토리에서 15 패키지 설치: **-y xfsprogs perl lsscsi rsync wget kexec-도구를 설치 하는 # yum**합니다.
-3. 보호 하려는 hello 원본 컴퓨터가 실행 중인 경우 Linux wit Reiser 또는 XFS hello 루트에 대 한 시스템 파일 또는 다운로드 하 고 다음과 같이 추가 패키지를 설치 해야 하는 다음 장치를 부팅할:
+1. 마스터 대상 서버가 인터넷에 연결되어 있는지 확인합니다.
+2. **# yum install –y xfsprogs perl lsscsi rsync wget kexec-tools** 명령을 실행하여 다운로드하고 CentOS 리포지토리에서 15개의 패키지를 설치합니다.
+3. 보호하려는 원본 컴퓨터가 루트 또는 부팅 장치에 대해 Linux wit Reiser 또는 XFS 파일 시스템을 실행하는 경우 다음과 같이 추가 패키지를 다운로드하고 설치해야 합니다.
 
    * # <a name="cd-usrlocal"></a>cd /usr/local
    * # <a name="wget-httpelrepoorglinuxelrepoel6x8664rpmskmod-reiserfs-00-1el6elrepox8664rpmhttpelrepoorglinuxelrepoel6x8664rpmskmod-reiserfs-00-1el6elrepox8664rpm"></a>wget [http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm](http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm)
@@ -145,46 +145,46 @@ Toodownload 필요 하 고 몇 가지 추가 패키지를 설치 합니다.
    * # <a name="rpm-ivh-xfsprogs-311-16el6x8664rpm"></a>rpm –ivh xfsprogs-3.1.1-16.el6.x86_64.rpm
 
 #### <a name="apply-custom-changes"></a>사용자 지정 변경 내용 적용
-Hello 완료 hello 사후 설치 단계와 설치 된 hello 패키지 한 후 tooapply 사용자 지정 변경 내용을 다음을 수행 합니다.
+설치 후 단계를 완료하고 패키지를 설치한 후 다음을 수행하여 사용자 지정 변경 내용을 적용합니다.
 
-1. Hello RHEL 6 64 통합 에이전트 이진 toohello VM을 복사 합니다. 이 명령은 toountar hello 이진 실행: **tar – zxvf<file name>**
-2. 실행이 명령 toogive 권한을: **# chmod 755./ApplyCustomChanges.sh**
-3. Hello 스크립트 실행: **#./ApplyCustomChanges.sh**합니다. 만 hello 스크립트를 한 번 실행 해야 합니다. Hello 스크립트가 성공적으로 실행 한 후 hello 서버를 다시 부팅 합니다.
+1. RHEL 6-64 통합 에이전트 바이너리를 VM에 복사합니다. **tar –zxvf <file name>** 명령을 실행하여 바이너리를 untar합니다.
+2. **# chmod 755 ./ApplyCustomChanges.sh** 명령을 실행하여 사용 권한을 부여합니다.
+3. 스크립트: **# ./ApplyCustomChanges.sh**를 실행합니다. 스크립트를 한 번만 실행해야 합니다. 스크립트가 성공적으로 실행된 후 서버를 다시 부팅합니다.
 
-## <a name="run-hello-failback"></a>Hello 장애 복구를 실행 합니다.
-### <a name="reprotect-hello-azure-vms"></a>Hello Azure Vm을 다시 보호
-1. Hello Site Recovery 포털에서 > **컴퓨터** 탭 선택 VM 장애 조치 되는 hello 및 클릭 **다시 보호**합니다.
-2. **마스터 대상 서버** 및 **프로세스 서버** hello 온-프레미스 마스터 대상 서버 및 hello Azure VM 프로세스 서버를 선택 합니다.
-3. Toohello VM을 연결 하기 위한 구성 hello 계정을 선택 합니다.
-4. Hello 보호 그룹의 hello 장애 복구 버전을 선택 합니다. 예를 들어 hello VM p g 1에서 보호 tooselect PG1_Failback 해야 합니다.
-5. Toorecover tooan 대체 위치를 원하는 경우 hello 보존 드라이브 및 hello 마스터 대상 서버에 대해 구성 하는 데이터 저장소를 선택 합니다. Hello 장애 복구 보호 계획 백 toohello 온-프레미스 사이트 hello VMware Vm 실패할 경우 hello ´ ֲ hello 마스터 대상 서버와 동일한 데이터 저장소입니다. Toorecover hello 복제본 Azure VM toohello 동일한 온-프레미스 VM 이면 hello 온-프레미스 VM은 이미 원하는 수 hello에 마스터 hello 마찬가지로 동일한 데이터 저장소를 대상 서버. VM 온-프레미스가 없는 경우 다시 보호하는 동안 새 VM 온-프레미스가 만들어집니다.
+## <a name="run-the-failback"></a>장애 복구 실행
+### <a name="reprotect-the-azure-vms"></a>Azure VM 다시 보호
+1. Site Recovery 포털 > **컴퓨터** 탭에서 장애 조치(failover)된 VM을 선택하고 **다시 보호**를 클릭합니다.
+2. **마스터 대상 서버** 및 **프로세스 서버**에서 온-프레미스 마스터 대상 서버 및 Azure VM 프로세스 서버를 선택합니다.
+3. VM에 연결하기 위해 구성된 계정을 선택합니다.
+4. 보호 그룹의 장애 복구 버전을 선택합니다. 예를 들어 VM이 PG1에서 보호되는 경우 PG1_Failback을 선택해야 합니다.
+5. 대체 위치로 복구하려는 경우 마스터 대상 서버에 대해 구성된 보존 드라이브 및 데이터 저장소를 선택합니다. 온-프레미스 사이트로 장애 복구할 때 장애 복구 보호 계획의 VMware VM은 마스터 대상 서버와 동일한 데이터 저장소를 사용합니다. 동일한 온-프레미스 VM으로 복제본 Azure VM을 복구하려는 경우 온-프레미스 VM은 마스터 대상 서버와 동일한 데이터 저장소에 있어야 합니다. VM 온-프레미스가 없는 경우 다시 보호하는 동안 새 VM 온-프레미스가 만들어집니다.
 
    ![](./media/site-recovery-failback-azure-to-vmware-classic/failback1.png)
-6. 클릭 한 후 **확인** toobegin 다시 보호 작업 tooreplicate hello Azure toohello 온-프레미스 사이트에서 VM을 시작 합니다. Hello에 hello 진행률을 추적할 수 **작업** 탭 합니다.
+6. **확인** 을 클릭하여 시작하면 다시 보호 작업이 Azure의 VM을 온-프레미스 사이트로 복제하는 작업을 시작합니다. **작업** 탭에서 진행률을 추적할 수 있습니다.
 
    ![](./media/site-recovery-failback-azure-to-vmware-classic/failback2.png)
 
-### <a name="run-a-failover-toohello-on-premises-site"></a>장애 조치 toohello 온-프레미스 사이트를 실행 합니다.
-다시 보호 hello 후 VM 보호 그룹의 이동된 toohello 장애 복구 버전 이므로 toohello 복구 계획이 있는 경우 장애 조치 tooAzure hello에 대 한 사용을 자동으로 추가 됩니다.
+### <a name="run-a-failover-to-the-on-premises-site"></a>온-프레미스 사이트로 장애 조치 실행
+다시 보호한 후 VM은 해당 보호 그룹의 장애 복구 버전으로 이동되고 복구 계획이 있는 경우 Azure로 장애 조치에 대해 사용한 복구 계획에 자동으로 추가됩니다.
 
-1. Hello에 **복구 계획** hello 장애 복구 그룹과 클릭을 포함 하는 페이지 선택 hello 복구 계획 **장애 조치** > **계획 되지 않은 장애 조치**합니다.
-2. **확인 장애 조치** hello 장애 조치 방향 (tooAzure)를 확인 하 고 toouse hello 장애 조치 (최신 버전)에 대 한 원하는 hello 복구 지점을 선택 합니다. 사용 하도록 설정한 경우 **다중 VM** toohello 최신 응용 프로그램 또는 크래시 일관성 복구 지점 복제 속성을 구성 했을 때 복구할 수 있습니다. Hello 확인 표시가 toostart hello 장애 조치를 클릭 합니다.
-3. 장애 조치 중 사이트 복구는 hello Azure Vm을 종료 합니다. 해당 장애 복구 완료 하면 예상 대로 확인 한 후 수 확인할 수 있습니다 Azure Vm 종료 되었을 예상 대로 해당 hello.
+1. **복구 계획** 페이지에서 장애 복구 그룹을 포함하는 복구 계획을 선택하고 **장애 조치** > **계획되지 않은 장애 조치**를 클릭합니다.
+2. **장애 조치 확인** 에서 장애 조치 방향을 확인하고 장애 조치(최신)에 사용할 복구 지점을 선택합니다. 복제 속성을 구성할 때 **여러 VM** 을 설정한 경우 최신 앱 또는 크래시 일관성 복구 지점으로 복구할 수 있습니다. 확인 표시를 클릭하여 장애 조치를 시작합니다.
+3. 장애 조치 중 사이트 복구는 Azure VM을 종료합니다. 장애 복구가 예상대로 완료된 후 Azure VM이 예상대로 종료되었는지 확인할 수 있습니다.
 
-### <a name="reprotect-hello--on-premises-site"></a>Hello 온-프레미스 사이트를 다시 보호
-장애 복구 완료 된 후 데이터 hello 온-프레미스 사이트에 다시 있지만 보호할 수 없습니다. 다시 toostart 복제 tooAzure 다음 hello지 않습니다.
+### <a name="reprotect-the--on-premises-site"></a>온-프레미스 사이트 다시 보호
+장애 복구가 완료된 후 데이터는 온-프레미스 사이트로 다시 이동되지만 보호할 수 없습니다. Azure에 복제를 다시 시작하려면 다음을 수행합니다.
 
-1. Hello Site Recovery 포털에서 > **컴퓨터** 다시 실패 했으며 클릭 선택 hello Vm 탭 **다시 보호**합니다.
-2. 해당 복제 tooAzure 예상 대로 작동 하는지 확인 한 후 Azure에서 hello Azure Vm (현재 실행 되 고 있지) 다시를 삭제할 수 있습니다.
+1. 사이트 복구 포털 > **컴퓨터** 탭에서 장애 복구된 VM을 선택하고 **다시 보호**를 클릭합니다.
+2. Azure로 복제가 예상대로 작동하는지 확인한 후 Azure에서 장애 복구된 Azure VM(현재 실행되고 있지 않는)을 삭제할 수 있습니다.
 
 ### <a name="common-issues-in-failback"></a>장애 복구(failback)의 일반적인 문제
-1. 읽기 전용 사용자 vCenter 검색을 수행하고 가상 컴퓨터를 보호한 경우 작업에 성공하고 장애 조치(failover)가 작동합니다. 다시 보호의 hello 시 hello 데이터 저장소를 검색할 수 없으므로 하므로 실패 합니다. 증상으로 hello 데이터 저장소를 다시 보호 하는 동안 나열 표시 되지 않습니다. tooresolve이를 적절 한 계정 권한이 있는 hello vCenter 자격 증명을 업데이트 하 고 hello 작업을 다시 시도 하십시오. [자세히 알아보기](site-recovery-vmware-to-azure-classic.md)
-2. 때 Linux VM 장애 온-프레미스를 실행 하 고 해당 hello 네트워크 관리자 패키지는 hello 컴퓨터에서 제거 되었는지 표시 됩니다. 즉, hello VM은 Azure에서 복구 되 면 네트워크 관리자 패키지는 hello 제거 됩니다.
-3. VM 고정 IP 주소로 구성 된 장애 조치 tooAzure를 hello IP 주소는 DHCP를 통해 획득 됩니다. 장애 조치 하면 뒤로 tooOn 온-프레미스, VM hello toouse DHCP tooacquire hello IP 주소를 계속 합니다. Toomanually 로그인 hello 컴퓨터에 필요 합니다 및 필요한 경우 tooStatic 주소를 다시 hello IP 주소를 설정 합니다.
-4. ESXi 5.5 무료 버전 또는 vSphere 6 하이퍼바이저 무료 버전을 사용하는 경우 장애 조치(failover)에는 성공하지만 장애 복구(failback)에는 실패합니다. 부여 tooupgrade tooeither Evaluation 라이선스 tooenable 장애 복구가 됩니다.
+1. 읽기 전용 사용자 vCenter 검색을 수행하고 가상 컴퓨터를 보호한 경우 작업에 성공하고 장애 조치(failover)가 작동합니다. 다시 보호 시점에서는 데이터 저장소를 검색할 수 없으므로 작업에 실패합니다. 하나의 증상으로, 다시 보호하는 동안 나열된 데이터 저장소가 보이지 않습니다. 이 문제를 해결하려면 사용 권한이 있는 적절한 계정을 사용하여 vCenter 자격 증명을 업데이트하고 작업을 다시 시도하면 됩니다. [자세히 알아보기](site-recovery-vmware-to-azure-classic.md)
+2. Linux VM을 장애 복구(failback)하고 온-프레미스에서 실행하는 경우 네트워크 관리자 패키지가 컴퓨터에서 제거됩니다. 이는 Azure에서 VM이 복구된 경우 네트워크 관리자 패키지가 제거되기 때문입니다.
+3. VM이 고정 IP 주소로 구성되고 Azure로 장애 조치(failover)된 경우 IP 주소는 DHCP를 통해 가져옵니다. 온-프레미스로 다시 장애 조치(failover)하면 VM에서 계속 DHCP를 사용하여 IP 주소를 가져옵니다. 컴퓨터에 수동으로 로그인하고 필요한 경우 IP 주소를 고정 주소로 다시 설정해야 합니다.
+4. ESXi 5.5 무료 버전 또는 vSphere 6 하이퍼바이저 무료 버전을 사용하는 경우 장애 조치(failover)에는 성공하지만 장애 복구(failback)에는 실패합니다. 장애 복구(failback)를 사용하도록 설정하려면 평가판 라이선스로 업그레이드해야 합니다.
 
 ## <a name="failing-back-with-expressroute"></a>Express 경로로 장애 복구
-VPN 연결 또는 Azure Express 경로를 통해 장애 복구할 수 있습니다. Toouse ExpressRoute 참고 hello 다음 하려면:
+VPN 연결 또는 Azure Express 경로를 통해 장애 복구할 수 있습니다. Express 경로를 사용하려면 다음에 유의합니다.
 
-* ExpressRoute는 hello Azure 가상 네트워크 toowhich 원본 컴퓨터가 장애 조치 및에 Azure Vm이 있는 hello 장애 조치가 발생 한 후에 설정 해야 합니다.
-* 데이터는 복제 된 tooan 공용 끝점에 대 한 Azure 저장소 계정입니다. 사이트 복구 복제 toouse ExpressRoute에 대 한 hello 대상 데이터 센터와 ExpressRoute에서 공용 피어 링 설정 해야 합니다.
+* Express 경로는 원본 컴퓨터가 장애 조치되고 장애 조치가 발생한 후 Azure VM이 위치하는 Azure 가상 네트워크에 설치되어 있어야 합니다.
+* 데이터는 공용 끝점의 Azure 저장소 계정에 복제됩니다. Express 경로를 사용하려면 사이트 복구 복제에 대한 대상 데이터 센터로 Express 경로에 공용 피어링을 설정해야 합니다.

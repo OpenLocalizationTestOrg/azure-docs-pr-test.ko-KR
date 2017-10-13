@@ -1,6 +1,6 @@
 ---
-title: "Windows에 대 한 네트워크 감시자 에이전트가 가상 컴퓨터 확장 aaaAzure | Microsoft Docs"
-description: "가상 컴퓨터 확장을 사용 하 여 Windows 가상 컴퓨터에서 네트워크 감시자 에이전트 hello를 배포 합니다."
+title: "Windows용 Azure Network Watcher 에이전트 가상 컴퓨터 확장 | Microsoft Docs"
+description: "가상 컴퓨터 확장을 사용하여 Windows 가상 컴퓨터에 Network Watcher를 배포합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: dennisg
@@ -15,33 +15,33 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 02/14/2017
 ms.author: dennisg
-ms.openlocfilehash: 21298706e462ff32c4d314f9a1ad127074ddf481
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b8d6a998bc86337b286a3434f44f762cca9b7e68
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="network-watcher-agent-virtual-machine-extension-for-windows"></a>Windows용 Network Watcher 에이전트 가상 컴퓨터 확장
 
 ## <a name="overview"></a>개요
 
-[Azure Network Watcher](https://review.docs.microsoft.com/en-us/azure/network-watcher/)는 Azure 네트워크에 대한 모니터링을 허용하는 네트워크 성능 모니터링, 진단 및 분석 서비스입니다. 네트워크 감시자 에이전트가 가상 컴퓨터 확장 hello hello Azure 가상 컴퓨터 네트워크 감시자 기능 중 일부에 대 한 요구 사항입니다. 주문형 네트워크 트래픽을 캡처하는 기능 및 기타 고급 기능이 포함됩니다.
+[Azure Network Watcher](https://review.docs.microsoft.com/en-us/azure/network-watcher/)는 Azure 네트워크에 대한 모니터링을 허용하는 네트워크 성능 모니터링, 진단 및 분석 서비스입니다. Azure Virtual Machines의 Network Watcher 기능 중 일부에는 Azure Network Watcher 에이전트 가상 컴퓨터 확장이 필요합니다. 주문형 네트워크 트래픽을 캡처하는 기능 및 기타 고급 기능이 포함됩니다.
 
-이 문서 정보 hello windows hello 네트워크 감시자 에이전트가 가상 컴퓨터 확장에 대 한 플랫폼 및 배포 옵션을 지원 합니다.
+이 문서에서는 Windows용 Network Watcher 에이전트 가상 컴퓨터 확장에 대해 지원되는 플랫폼 및 배포 옵션을 설명합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
 ### <a name="operating-system"></a>운영 체제
 
-네트워크 감시자 Agent 확장 hello Windows Server 2008 r 2에 대해 Windows를 실행할 수에 대 한 2016, R2, 2012 및 2012를 해제 합니다. 이 이번에는 Nano Server hello는 지원 되지 않습니다.
+Windows용 Network Watcher 에이전트 확장은 Windows Server 2008 R2, 2012, 2012 R2 및 2016 릴리스에 대해 실행할 수 있습니다. Nano 서버는 현재 지원되지 않습니다.
 
 ### <a name="internet-connectivity"></a>인터넷 연결
 
-Hello 네트워크 감시자 에이전트 기능 중 일부에서는 해당 hello 대상 가상 컴퓨터 연결된 toohello 인터넷 이어야 합니다. Hello 기능 tooestablish 나가는 연결 되지 않은 오작동 하거나 사용할 수 없게 될 수 있습니다 hello 네트워크 감시자 에이전트 기능 중 일부입니다. 자세한 내용은 hello를 참조 하십시오 [네트워크 감시자 설명서](../../network-watcher/network-watcher-monitoring-overview.md)합니다.
+일부 Network Watcher 에이전트 기능에서는 대상 가상 컴퓨터를 인터넷에 연결해야 합니다. 일부 Network Watcher 에이전트 기능에 나가는 연결을 설정하는 기능이 없는 경우 오작동하거나 사용할 수 없게 됩니다. 자세한 내용은 [Network Watcher 설명서](../../network-watcher/network-watcher-monitoring-overview.md)를 참조하세요.
 
 ## <a name="extension-schema"></a>확장 스키마
 
-hello 다음 JSON 스키마를 보여 줍니다 hello hello 네트워크 감시자 Agent 확장에 대 한 합니다. hello 확장명 모두 필요 하거나 사용자가 제공한 설정을이 이번에는 지 원하는 기본 구성입니다.
+다음 JSON은 Network Watcher 에이전트 확장에 대한 스키마를 보여 줍니다. 현재 확장은 사용자 제공 설정을 필요로 하거나 지원하지 않고 기본 구성을 사용합니다.
 
 ```json
 {
@@ -73,11 +73,11 @@ hello 다음 JSON 스키마를 보여 줍니다 hello hello 네트워크 감시�
 
 ## <a name="template-deployment"></a>템플릿 배포
 
-Azure Resource Manager 템플릿을 사용하여 Azure VM 확장을 배포할 수 있습니다. Azure 리소스 관리자 템플릿 배포 중에 Azure 리소스 관리자 템플릿 toorun hello 네트워크 감시자 Agent 확장 hello 이전 섹션에서 자세히 설명 하는 hello JSON 스키마를 사용할 수 있습니다.
+Azure Resource Manager 템플릿을 사용하여 Azure VM 확장을 배포할 수 있습니다. 이전 섹션에서 자세히 설명한 JSON 스키마를 Azure Resource Manager 템플릿에서 사용하여 Azure Resource Manager 템플릿 배포 중 Network Watcher 에이전트 확장을 실행할 수 있습니다.
 
 ## <a name="powershell-deployment"></a>PowerShell 배포
 
-hello `Set-AzureRmVMExtension` 명령을 사용 하는 toodeploy hello 네트워크 감시자 에이전트가 가상 컴퓨터 확장 tooan 기존 가상 컴퓨터 수 있습니다.
+`Set-AzureRmVMExtension` 명령을 사용하여 Network Watcher 에이전트 가상 컴퓨터 확장을 기존 가상 컴퓨터에 배포할 수 있습니다.
 
 ```powershell
 Set-AzureRmVMExtension -ResourceGroupName "myResourceGroup1" `
@@ -93,13 +93,13 @@ Set-AzureRmVMExtension -ResourceGroupName "myResourceGroup1" `
 
 ### <a name="troubleshooting"></a>문제 해결
 
-Hello Azure 포털에서에서 하 고 hello Azure PowerShell 모듈을 사용 하 여 확장 배포의 hello 상태에 대 한 데이터를 검색할 수 있습니다. 지정 된 VM 사용 하 여 명령을 다음 실행된 hello에 대 한 확장의 toosee hello 배포 상태 hello Azure PowerShell 모듈입니다.
+확장 배포 상태에 대한 데이터는 Azure PowerShell 모듈을 사용하여 Azure Portal에서 검색할 수 있습니다. 지정된 VM에 대한 확장의 배포 상태를 보려면 Azure PowerShell 모듈을 사용하여 다음 명령을 실행합니다.
 
 ```powershell
 Get-AzureRmVMExtension -ResourceGroupName myResourceGroup1 -VMName myVM1 -Name networkWatcherAgent
 ```
 
-확장 실행은 hello에 기록 된 toofiles 다음 디렉터리를 출력 합니다.
+확장 실행 출력은 다음 디렉터리에 있는 파일에 기록됩니다.
 
 ```cmd
 C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.NetworkWatcher.NetworkWatcherAgentWindows\
@@ -107,4 +107,4 @@ C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.NetworkWatcher.NetworkWatcherAgentW
 
 ### <a name="support"></a>지원
 
-Toohello 네트워크 감시자 사용자 가이드 문서를 참조 하십시오 하거나 Azure hello 문의 수를 언제 든 지가이 문서에서 자세한 도움이 필요 하면 경우 전문가의 hello [MSDN Azure 및 스택 오버플로 포럼](https://azure.microsoft.com/en-us/support/forums/)합니다. 또는 Azure 기술 지원 인시던트를 제출할 수 있습니다. Toohello 이동 [Azure 지원 사이트](https://azure.microsoft.com/en-us/support/options/) 지원 받기를 선택 합니다. Azure 지원을 사용 하는 방법에 대 한 내용은 하세요 hello [Microsoft Azure 지원 FAQ](https://azure.microsoft.com/en-us/support/faq/)합니다.
+이 문서의 어디에서든 도움이 필요한 경우 Network Watcher 사용자 가이드 설명서를 참조하거나 [MSDN Azure 및 Stack Overflow 포럼](https://azure.microsoft.com/en-us/support/forums/)에서 Azure 전문가에게 문의할 수 있습니다. 또는 Azure 기술 지원 인시던트를 제출할 수 있습니다. [Azure 지원 사이트](https://azure.microsoft.com/en-us/support/options/)로 가서 지원 받기를 선택합니다. Azure 지원을 사용하는 방법에 대한 자세한 내용은 [Microsoft Azure 지원 FAQ](https://azure.microsoft.com/en-us/support/faq/)를 참조하세요.

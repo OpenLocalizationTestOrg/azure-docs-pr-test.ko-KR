@@ -1,6 +1,6 @@
 ---
-title: "AD aaaAzure 페더레이션 메타 데이터 | Microsoft Docs"
-description: "이 문서에서는 Azure Active Directory 토큰을 수락 하는 서비스에 대 한 Azure Active Directory에서 게시 하는 hello 페더레이션 메타 데이터 문서를 설명 합니다."
+title: "Azure AD 페더레이션 메타데이터 | Microsoft Docs"
+description: "이 문서에서는 Azure Active Directory가 Azure Active Directory 토큰을 수락하는 서비스에 대해 게시하는 페더레이션 메타데이터 문서를 설명합니다."
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,41 +15,41 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 23535bcd5eeb3e9b2e17d89a9b0420fc98bd3895
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ecafb02a6ac13d1c3cd1fe77ef710cd8525e32b0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="federation-metadata"></a>페더레이션 메타데이터
-Azure Active Directory (Azure AD) 서비스를 구성할 Azure AD에서 발행 하는 tooaccept hello 보안 토큰에 대 한 페더레이션 메타 데이터 문서를 게시 합니다. hello 페더레이션 메타 데이터 문서 형식에 명시 된 hello [웹 서비스 페더레이션 언어 (Ws-federation) 버전 1.2](http://docs.oasis-open.org/wsfed/federation/v1.2/os/ws-federation-1.2-spec-os.html)를 확장 하는 [hello OASIS SAML Security Assertion Markup Language ()에 대 한 메타 데이터 v2.0](http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf)합니다.
+Azure Active Directory(Azure AD)는 Azure AD가 발급하는 보안 토큰을 수락하도록 구성된 서비스에 대한 페더레이션 메타데이터 문서를 게시합니다. 페더레이션 메타데이터 문서 형식은 [Web Services Federation Language(WS-Federation) 버전 1.2](http://docs.oasis-open.org/wsfed/federation/v1.2/os/ws-federation-1.2-spec-os.html)에서 설명하며, [OASIS SAML(Security Assertion Markup Language) v2.0의 메타데이터](http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf)를 확장합니다.
 
 ## <a name="tenant-specific-and-tenant-independent-metadata-endpoints"></a>테넌트별 및 테넌트에 독립적인 메타데이터 끝점
 Azure AD 테넌트별 및 테넌트 독립적 끝점을 게시합니다.
 
-테넌트별 끝점은 특정 테넌트에 대해 설계되었습니다. hello 테 넌 트 별 페더레이션 메타 데이터에는 hello 테 넌 트, 테 넌 트 별 발급자 및 끝점 정보를 포함 하는 방법에 대 한 정보가 포함 됩니다. 응용 프로그램 액세스 tooa 단일 테 넌 트를 제한 하는 테 넌 트 별 끝점을 사용 합니다.
+테넌트별 끝점은 특정 테넌트에 대해 설계되었습니다. 테넌트별 페더레이션 메타데이터에는 테넌트별 발급자 및 끝점 정보를 포함하는 테넌트에 관한 정보가 포함됩니다. 테넌트별 끝점을 사용하는 단일 테넌트에 대한 액세스를 제한하는 응용 프로그램입니다.
 
-테 넌 트 독립적 끝점은 일반적인 tooall Azure AD 테 넌 트 정보를 제공 합니다. 이 정보에는에서 호스팅되는 tootenants 적용 됩니다. *login.microsoftonline.com* 되며 테 넌 트 간에 공유 됩니다. 테넌트 독립적 끝점은 특정 테넌트와 연결되어있지 않으므로 다중 테넌트 응용 프로그램에 좋습니다.
+테넌트 독립적 끝점은 모든 Azure AD 테넌트에 공통된 정보를 제공합니다. 이 정보는 *login.microsoftonline.com* 에서 호스트되는 테넌트에 적용되며 테넌트 간에 공유됩니다. 테넌트 독립적 끝점은 특정 테넌트와 연결되어있지 않으므로 다중 테넌트 응용 프로그램에 좋습니다.
 
 ## <a name="federation-metadata-endpoints"></a>페더레이션 메타데이터 끝점
 Azure AD는 페더레이션 메타데이터를 `https://login.microsoftonline.com/<TenantDomainName>/FederationMetadata/2007-06/FederationMetadata.xml`에 게시합니다.
 
-에 대 한 **테 넌 트 별 끝점**, hello `TenantDomainName` 유형만 hello 중 하나일 수 있습니다.
+**테넌트별 끝점**의 경우, `TenantDomainName`은(는) 다음 유형 중 하나가 될 수 있습니다.
 
 * Azure AD 테넌트의 등록된 도메인 이름, 예: `contoso.onmicrosoft.com`.
-* 변경할 수 없는 hello hello 도메인의 ID 같은 테 넌 `72f988bf-86f1-41af-91ab-2d7cd011db45`합니다.
+* 도메인의 변경할 수 없는 ID, 예: `72f988bf-86f1-41af-91ab-2d7cd011db45`.
 
-에 대 한 **테 넌 트 독립적 끝점**, hello `TenantDomainName` 은 `common`합니다. 이 문서는 있는 일반적인 tooall Azure AD 테 넌 트 login.microsoftonline.com에서 호스트 되는 페더레이션 메타 데이터 요소만 hello를 나열 합니다.
+**테넌트에 독립적인 끝점**의 경우 `TenantDomainName`은(는) `common`입니다. 이 문서는 login.microsoftonline.com에서 호스트되는 모든 Azure AD 테넌트에 공통된 페더레이션 메타데이터 요소만을 나열합니다.
 
-예를 들어, 테넌트별 끝점은 `https://login.microsoftonline.com/contoso.onmicrosoft.com/FederationMetadata/2007-06/FederationMetadata.xml`일 수 있습니다. hello 테 넌 트 독립적 끝점은 [https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml](https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml)합니다. 브라우저에서이 URL을 입력 하 여 hello 페더레이션 메타 데이터 문서를 볼 수 있습니다.
+예를 들어, 테넌트별 끝점은 `https://login.microsoftonline.com/contoso.onmicrosoft.com/FederationMetadata/2007-06/FederationMetadata.xml`일 수 있습니다. 테넌트 독립적 끝점은 [https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml](https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml)입니다. 브라우저에서 이 URL을 입력하여 페더레이션 메타데이터 문서를 볼 수 있습니다.
 
 ## <a name="contents-of-federation-metadata"></a>페더레이션 메타데이터의 내용
-hello 다음 섹션에서는 Azure AD에서 발급 한 hello 토큰을 사용 하는 서비스에 필요한 정보.
+다음 섹션에는 Azure AD에서 발급한 토큰을 사용하는 서비스에 필요한 정보를 제공합니다.
 
 ### <a name="entity-id"></a>엔터티 ID
-hello `EntityDescriptor` 요소를 포함 한 `EntityID` 특성입니다. 값의 hello hello `EntityID` hello 발급자를 나타내는 특성, 즉, hello 보안 토큰 서비스 (STS) hello 발급 된 토큰입니다. 토큰을 받을 때의 중요 한 toovalidate hello 발급자입니다.
+`EntityDescriptor` 요소는 `EntityID` 특성을 포함하고 있습니다. `EntityID` 특성의 값은 발급자, 즉, 토큰을 발행한 보안 토큰 서비스(STS)를 나타냅니다. 토큰을 받을 때 발급자 유효성을 검사해야 합니다.
 
-hello 다음과 같은 메타 데이터를 보여줍니다. 테 넌 트 별 `EntityDescriptor` 인 요소는 `EntityID` 요소입니다.
+다음 메타데이터는 `EntityID` 요소가 있는 샘플 테넌트별 `EntityDescriptor` 요소를 보여줍니다.
 
 ```
 <EntityDescriptor
@@ -57,9 +57,9 @@ xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
 ID="_b827a749-cfcb-46b3-ab8b-9f6d14a1294b"
 entityID="https://sts.windows.net/72f988bf-86f1-41af-91ab-2d7cd011db45/">
 ```
-테 넌 트 특정 테 넌 트 ID toocreate로 hello 테 넌 트 독립적 끝점의 hello 테 넌 트 ID를 바꿀 수 있습니다 `EntityID` 값입니다. hello 결과 값 토큰 발급자 hello와 동일를 hello 됩니다. hello 전략 지정된 테 넌 트에 대 한 다중 테 넌 트 응용 프로그램 toovalidate hello 발급자를 허용 합니다.
+테넌트 독립적 끝점의 테넌트 ID를 사용자의 테넌트 ID로 바꾸어 테넌트별 `EntityID` 값을 만들 수 있습니다. 결과 값은 토큰 발급자와 동일합니다. 이 전략을 통해 다중 테넌트 응용 프로그램이 지정된 테넌트에 대한 발급자의 유효성을 검사할 수 있습니다.
 
-hello 다음과 같은 메타 데이터를 보여줍니다. 테 넌 트 독립적 `EntityID` 요소입니다. 유의 하십시오 해당 hello `{tenant}` 는 리터럴, 자리 표시자에 없습니다.
+다음 메타데이터는 샘플 테넌트 독립적 `EntityID` 요소를 보여줍니다. `{tenant}` 는 자리 표시자가 아니라 문자 그대로의 의미를 나타냅니다.
 
 ```
 <EntityDescriptor
@@ -69,11 +69,11 @@ entityID="https://sts.windows.net/{tenant}/">
 ```
 
 ### <a name="token-signing-certificates"></a>토큰 서명 인증서
-서비스가 Azure AD 테 넌 트에서 발급 된 토큰을 받으면 hello hello 토큰의 서명은 유효성을 검사 해야 hello 페더레이션 메타 데이터 문서에 게시 된 서명 키를 사용 합니다. hello 페더레이션 메타 데이터는 hello hello 테 넌 트가 토큰 서명에 사용 하는 hello 인증서의 공개 부분을 포함 합니다. hello에 hello 인증서 원시 바이트 표시 `KeyDescriptor` 요소입니다. hello 값 때 hello만 서명에 대 한 hello 토큰 서명 인증서가 유효한 `use` 특성은 `signing`합니다.
+서비스는 Azure AD 테넌트에서 발급한 토큰을 받으면, 페더레이션 메타데이터 문서에 게시된 서명 키로 토큰의 서명  유효성을 검사해야 합니다. 페더레이션 메타데이터는 테넌트를 토큰 서명에 사용하는 인증서의 공개 부분을 포함합니다. 인증서 원시 바이트는 `KeyDescriptor` 요소에 표시됩니다. 토큰 서명 인증서는 `use` 특성의 값이 `signing`인 경우의 서명에만 유효합니다.
 
-Azure AD에서 게시 한 페더레이션 메타 데이터 문서는 Azure AD는 tooupdate hello 서명 인증서를 준비 하는 경우 등의 여러 서명 키를 있을 수 있습니다. 페더레이션 메타 데이터 문서에서 둘 이상의 인증서를 포함 하는 경우 hello 토큰의 유효성 검사 하는 서비스는 hello 문서에서 모든 인증서를 지원 해야 합니다.
+Azure AD를 통해 게시된 페더레이션 메타데이터 문서에는 Azure AD가 서명 인증서 업데이트를 준비하는 경우와 같은 여러 서명 키가 있을 수 있습니다. 페더레이션 메타데이터 문서가 둘 이상의 인증서를 포함하는 경우, 토큰의 유효성을 검사하는 서비스는 문서에서 모든 인증서를 지원해야 합니다.
 
-hello 다음과 같은 메타 데이터를 보여줍니다. `KeyDescriptor` 서명 키가 있는 요소입니다.
+다음 메타데이터는 서명 키가 있는 샘플 `KeyDescriptor` 요소를 보여줍니다.
 
 ```
 <KeyDescriptor use="signing">
@@ -87,29 +87,29 @@ MIIDPjCCAiqgAwIBAgIQVWmXY/+9RqFA/OG9kFulHDAJBgUrDgMCHQUAMC0xKzApBgNVBAMTImFjY291
 </KeyDescriptor>
   ```
 
-hello `KeyDescriptor` 요소 hello 페더레이션 메타 데이터 문서; hello WS-페더레이션 관련 섹션과 SAML 관련 hello 섹션에 있는 두 위치에 나타납니다. 두 섹션 모두에서 게시 된 hello 인증서는 동일한 hello 됩니다.
+`KeyDescriptor` 요소는 페더레이션 메타데이터 문서에서 WS-Federation 관련 섹션 및 SAML 관련 섹션의 두 곳에 표시됩니다. 두 섹션 모두에서 게시된 인증서는 동일해야 합니다.
 
-Hello WS-페더레이션 관련 섹션에서 Ws-federation 메타 데이터 판독기 hello 인증서를 읽을 것을 `RoleDescriptor` hello로 요소 `SecurityTokenServiceType` 유형입니다.
+WS-Federation 관련 섹션에서 WS-Federation 메타데이터 판독기는 `SecurityTokenServiceType` 형식을 가진 `RoleDescriptor` 요소에서 인증서를 읽습니다.
 
-hello 다음과 같은 메타 데이터를 보여줍니다. `RoleDescriptor` 요소입니다.
+다음 메타데이터는 샘플 `RoleDescriptor` 요소를 보여줍니다.
 
 ```
 <RoleDescriptor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xsi:type="fed:SecurityTokenServiceType"protocolSupportEnumeration="http://docs.oasis-open.org/wsfed/federation/200706">
 ```
 
-Hello SAML 관련 섹션에서 Ws-federation 메타 데이터 판독기 hello 인증서를 읽을 것을 `IDPSSODescriptor` 요소입니다.
+SAML 관련 섹션에서 WS-Federation 메타데이터 판독기는 `IDPSSODescriptor` 요소에서 인증서를 읽습니다.
 
-hello 다음과 같은 메타 데이터를 보여줍니다. `IDPSSODescriptor` 요소입니다.
+다음 메타데이터는 샘플 `IDPSSODescriptor` 요소를 보여줍니다.
 
 ```
 <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
 ```
-테 넌 트 별 끝점과 테 넌 트 독립적 인증서의 hello 형식에는 차이가 있습니다.
+테넌트 관련 및 테넌트 독립적 인증서의 형식에는 차이가 없습니다.
 
 ### <a name="ws-federation-endpoint-url"></a>WS-Federation 끝점 URL
-hello 페더레이션 메타 데이터 URL을 Azure AD single sign-in 및 single sign-out에 Ws-federation 프로토콜에 대 한 사용 하 여 hello 포함 됩니다. 이 끝점에서 hello 표시 `PassiveRequestorEndpoint` 요소입니다.
+페더레이션 메타데이터는 WS-Federation 프로토콜에서 단일 로그인 및 단일 로그 아웃에 Azure AD가 사용하는 URL을 포함합니다. 이 끝점이 `PassiveRequestorEndpoint` 요소에 나타납니다.
 
-hello 다음과 같은 메타 데이터를 보여줍니다. `PassiveRequestorEndpoint` 테 넌 트 별 끝점에 대 한 요소입니다.
+다음 메타데이터는 테넌트별 끝점에 대한 샘플 `PassiveRequestorEndpoint` 요소를 보여줍니다.
 
 ```
 <fed:PassiveRequestorEndpoint>
@@ -120,7 +120,7 @@ https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db45/wsfed
 </EndpointReference>
 </fed:PassiveRequestorEndpoint>
 ```
-Hello 테 넌 트 독립적 끝점에 대 한 hello Ws-federation URL hello 다음 예제와 같이 hello Ws-federation 끝점에 나타납니다.
+테넌트 독립적 끝점의 경우, 다음 예제와 같이 WS-Federation URL은 WS-Federation 끝점에 나타납니다.
 
 ```
 <fed:PassiveRequestorEndpoint>
@@ -133,11 +133,11 @@ https://login.microsoftonline.com/common/wsfed
 ```
 
 ### <a name="saml-protocol-endpoint-url"></a>SAML 프로토콜 끝점 URL
-페더레이션 메타 데이터 hello single sign-in 및 single sign-out SAML 2.0 프로토콜에 대 한 Azure AD를 사용 하는 hello URL을 포함 합니다. Hello에 이러한 끝점 표시 `IDPSSODescriptor` 요소입니다.
+페더레이션 메타데이터는 SAML 2.0 프로토콜에서 단일 로그인 및 단일 로그아웃에 Azure AD가 사용하는 URL을 포함합니다. 이 끝점은 `IDPSSODescriptor` 요소에 나타납니다.
 
-hello에 나타나는 hello 로그인 및 로그 아웃 `SingleSignOnService` 및 `SingleLogoutService` 요소입니다.
+로그인 및 로그아웃 URL은 `SingleSignOnService` 및 `SingleLogoutService` 요소에 나타납니다.
 
-hello 다음과 같은 메타 데이터를 보여줍니다. `PassiveResistorEndpoint` 테 넌 트 별 끝점에 대 한 합니다.
+다음 메타데이터는 테넌트별 끝점에 대한 샘플 `PassiveResistorEndpoint` 를 보여줍니다.
 
 ```
 <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
@@ -147,7 +147,7 @@ hello 다음과 같은 메타 데이터를 보여줍니다. `PassiveResistorEndp
   </IDPSSODescriptor>
 ```
 
-마찬가지로 공통 SAML 2.0 프로토콜 끝점 hello에 대 한 hello 끝점 hello 다음 예제와 같이 hello 테 넌 트 독립적 페더레이션 메타 데이터에 게시 됩니다.
+마찬가지로 다음 샘플과 같이 일반 SAML 2.0 프로토콜 끝점에 대한 끝점은 테넌트 독립적 페더레이션 메타데이터에 게시됩니다.
 
 ```
 <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">

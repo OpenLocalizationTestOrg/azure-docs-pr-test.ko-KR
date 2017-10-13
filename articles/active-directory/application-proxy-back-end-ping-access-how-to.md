@@ -1,6 +1,6 @@
 ---
-title: "응용 프로그램 프록시 응용 프로그램 toouse PingAccess aaaHow tooconfigure | Microsoft Docs"
-description: "어떻게 toouse PingAccess tooextend hello 헤더 기반 인증을 사용 하 여 응용 프로그램 프록시 tooapplications의 이점에 알아봅니다"
+title: "PingAccess를 사용하도록 응용 프로그램 프록시 응용 프로그램을 구성하는 방법 | Microsoft 문서"
+description: "PingAccess를 사용하여 응용 프로그램 프록시의 이점을 헤더 기반 인증을 사용하는 응용 프로그램으로 확장하는 방법에 대해 알아봅니다."
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,19 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: fa4c9747b7bf5a135425be270e4f7eadf95248fa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a9da67373465cebbdbecae5c8fb8bd0a0ee3c171
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooconfigure-an-application-proxy-application-toouse-pingaccess"></a>어떻게 응용 프로그램 프록시 응용 프로그램 toouse PingAccess tooconfigure
+# <a name="how-to-configure-an-application-proxy-application-to-use-pingaccess"></a>PingAccess를 사용하도록 응용 프로그램 프록시 응용 프로그램을 구성하는 방법
 
-이제 공동 PingAccess로 우리의 tooextend hello 활용을 헤더 기반 인증을 사용 하 여 응용 프로그램 프록시 tooapplications 있습니다. 헤더를 사용하지 않는 응용 프로그램의 경우 [Single Sign-on 설명서](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-sso-using-kcd)에서 다른 옵션을 참조하세요.
+이제 PingAccess를 사용하여 응용 프로그램 프록시의 이점을 헤더 기반 인증을 사용하는 응용 프로그램으로 확장할 수 있습니다. 헤더를 사용하지 않는 응용 프로그램의 경우 [Single Sign-on 설명서](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-sso-using-kcd)에서 다른 옵션을 참조하세요.
 
 ## <a name="overview-of-steps-and-recommended-documents"></a>단계 개요 및 권장되는 문서
 
-tooconfigure PingAccess와 응용 프로그램의 4 단계:
+PingAccess를 사용하도록 응용 프로그램을 구성하는 작업은 네 단계로 구성됩니다.
 
 1.  응용 프로그램 프록시 커넥터 구성
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaSend 이벤트 tooAzure 시간 계열 Insights 환경 | Microsoft Docs"
-description: "이 자습서에서는 hello 단계 toopush 이벤트 tooyour 시간 계열 Insights 환경"
+title: "Azure Time Series Insights 환경으로 이벤트 보내기 | Microsoft Docs"
+description: "이 자습서에서는 Time Series Insights 환경으로 이벤트를 푸시하는 단계를 다룹니다."
 keywords: 
 services: tsi
 documentationcenter: 
@@ -15,45 +15,45 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/21/2017
 ms.author: venkatja
-ms.openlocfilehash: dbccc23f61351a0033cd48c1a02fb3841b45d560
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b4ef96a045393f28b3cd750068fe82a5a8411afa
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="send-events-tooa-time-series-insights-environment-using-event-hub"></a>이벤트 허브를 사용 하 여 이벤트 tooa 시간 계열 Insights 환경 보내기
+# <a name="send-events-to-a-time-series-insights-environment-using-event-hub"></a>이벤트 허브를 사용하여 Time Series Insights 환경으로 이벤트 보내기
 
-이 자습서에 설명 어떻게 toocreate 이벤트 허브를 구성 하 고 샘플 응용 프로그램 toopush 이벤트를 실행 합니다. JSON 형식의 이벤트가 있는 기존 이벤트 허브가 있는 경우 이 자습서를 건너뛰고 [시계열 정보](https://insights.timeseries.azure.com)에서 환경을 봅니다.
+이 자습서에서는 이벤트 허브를 생성 및 구성하고 이벤트를 푸시하는 샘플 응용 프로그램을 실행하는 방법을 설명합니다. JSON 형식의 이벤트가 있는 기존 이벤트 허브가 있는 경우 이 자습서를 건너뛰고 [시계열 정보](https://insights.timeseries.azure.com)에서 환경을 봅니다.
 
 ## <a name="configure-an-event-hub"></a>이벤트 허브 구성
-1. 이벤트 허브 toocreate hello 이벤트 허브에서에서 지침에 따라 [설명서](https://docs.microsoft.com/azure/event-hubs/event-hubs-create)합니다.
+1. 이벤트 허브를 만들려면 이벤트 허브 [설명서](https://docs.microsoft.com/azure/event-hubs/event-hubs-create)의 지침을 따릅니다.
 
 2. Time Series Insights 이벤트 원본에서 단독으로 사용하는 소비자 그룹을 만들어야 합니다.
 
   > [!IMPORTANT]
-  > 이 소비자 그룹을 다른 서비스(예: Stream Analytics 작업 또는 다른 Time Series Insights 환경)에서 사용하지 못하게 합니다. 소비자 그룹은 다른 서비스에서 사용 되 면 작업은이 환경에 대 한 부정적인 영향을 읽고 다른 서비스 hello 합니다. "$Default" hello 소비자 그룹을 사용 하는 경우 toopotential 다시 사용할 수 있도록 다른 판독기에서 발생할 수 있습니다.
+  > 이 소비자 그룹을 다른 서비스(예: Stream Analytics 작업 또는 다른 Time Series Insights 환경)에서 사용하지 못하게 합니다. 소비자 그룹을 다른 서비스에서 사용하는 경우 읽기 작업이 이 환경 및 다른 서비스에 부정적인 영향을 미칩니다. 소비자 그룹으로 “$Default”를 사용할 경우 다른 읽기 권한자가 재사용할 수도 있습니다.
 
   ![이벤트 허브 소비자 그룹 선택](media/send-events/consumer-group.png)
 
-3. Hello 이벤트 허브에서 만들 "MySendPolicy" hello csharp 샘플에서 toosend 사용 되는 이벤트입니다.
+3. 이벤트 허브에서 csharp 샘플에서 이벤트를 보내는 데 사용되는 “MySendPolicy”를 만듭니다.
 
   ![공유 액세스 정책을 선택하고 추가 단추 클릭](media/send-events/shared-access-policy.png)  
 
   ![새 공유 액세스 정책 추가](media/send-events/shared-access-policy-2.png)  
 
 ## <a name="create-time-series-insights-event-source"></a>Time Series Insights 이벤트 원본 만들기
-1. 이벤트 소스를 만들지 않은 경우에 따라 [이러한 지침](time-series-insights-add-event-source.md) toocreate 이벤트 소스입니다.
+1. 아직 이벤트 원본을 만들지 않은 경우 [다음된 지침](time-series-insights-add-event-source.md)에 따라 이벤트 원본을 만듭니다.
 
-2. "DeviceTimestamp" hello 타임 스탬프 속성 이름으로 지정-hello csharp 샘플에서 실제 timestamp 안녕으로이 속성을 사용 합니다. hello 타임 스탬프 속성 이름은 대/소문자 구분이 고 값 hello 형식을 따라야 합니다. __yyyy-m M-ddTHH:mm:ss 합니다. FFFFFFFK__ JSON tooevent 허브로 전송 합니다. Hello 속성이 hello 이벤트에 존재 하지 않을 경우 다음 hello 이벤트 허브 큐에 대기 된 시간이 사용 됩니다.
+2. 타임스탬프 속성 이름으로 “deviceTimestamp”를 지정합니다. 이 속성은 csharp 샘플에서 실제 타임스탬프로 사용됩니다. 타임스탬프 속성 이름은 대소문자를 구분하며 이벤트 허브에 JSON으로 보낼 때 값이 __yyyy-MM-ddTHH:mm:ss.FFFFFFFK__ 형식을 따라야 합니다. 해당 속성이 이벤트에 없는 경우 시간이 큐에 추가된 이벤트 허브가 사용됩니다.
 
   ![이벤트 원본 만들기](media/send-events/event-source-1.png)
 
-## <a name="sample-code-toopush-events"></a>샘플 코드 toopush 이벤트
-1. Toohello 이벤트 허브 정책 "MySendPolicy" 이동한 다음 hello 정책 키를 사용 하 여 hello 연결 문자열을 복사 합니다.
+## <a name="sample-code-to-push-events"></a>이벤트를 푸시하는 샘플 코드
+1. 이벤트 허브 정책 “MySendPolicy”로 이동하여 정책 키와 함께 연결 문자열을 복사합니다.
 
   ![MySendPolicy 연결 문자열 복사](media/send-events/sample-code-connection-string.png)
 
-2. Hello 코드 다음 각각의 세 hello 장치 당 해당 toosend 600 이벤트를 실행 합니다. 연결 문자열로 `eventHubConnectionString`을 업데이트합니다.
+2. 세 개의 각 장치마다 600개의 이벤트를 보내는 다음 코드를 실행합니다. 연결 문자열로 `eventHubConnectionString`을 업데이트합니다.
 
 ```csharp
 using System;
@@ -113,7 +113,7 @@ namespace Microsoft.Rdx.DataGenerator
                 sw.Flush();
                 ms.Position = 0;
 
-                // Send JSON tooevent hub.
+                // Send JSON to event hub.
                 EventData eventData = new EventData(ms);
                 eventHubClient.Send(eventData);
             }
@@ -144,7 +144,7 @@ namespace Microsoft.Rdx.DataGenerator
 ### <a name="sample-2"></a>샘플 2
 
 #### <a name="input"></a>입력
-두 JSON 개체가 포함된 JSON 배열입니다. 각 JSON 개체에는 변환 된 tooan 이벤트 수 있습니다.
+두 JSON 개체가 포함된 JSON 배열입니다. 각 JSON 개체는 이벤트로 변환됩니다.
 ```json
 [
     {
@@ -185,9 +185,9 @@ namespace Microsoft.Rdx.DataGenerator
 
 ```
 #### <a name="output---2-events"></a>출력 - 2개 이벤트
-참고 해당 hello 속성 "위치" hello 이벤트의 tooeach 복사 됩니다.
+"위치" 속성은 각 이벤트로 복사됩니다.
 
-|location|events.id|events.timestamp|
+|위치|events.id|events.timestamp|
 |--------|---------------|----------------------|
 |WestUs|device1|2016-01-08T01:08:00Z|
 |WestUs|device2|2016-01-08T01:17:00Z|
@@ -196,7 +196,7 @@ namespace Microsoft.Rdx.DataGenerator
 
 #### <a name="input"></a>입력
 
-두 JSON 개체가 들어 있는 중첩된 JSON 배열이 포함된 JSON 개체입니다. 이 입력 hello 전역 속성 hello 복합 JSON 개체에 의해 표시 될 수 있습니다 하는 방법을 보여 줍니다.
+두 JSON 개체가 들어 있는 중첩된 JSON 배열이 포함된 JSON 개체입니다. 이 입력은 복합 JSON 개체로 전역 속성을 표시할 수 있음을 보여줍니다.
 
 ```json
 {

@@ -1,6 +1,6 @@
 ---
-title: "-Azure 서비스에 대 한 경고 aaaCreate Azure 포털 | Microsoft Docs"
-description: "트리거 전자 메일 알림, 지정한 hello 조건에 해당할 때 자동화 또는 웹 사이트 Url (webhook)를 호출 합니다."
+title: "Azure 서비스에 대한 경고 만들기 - Azure portal | Microsoft Docs"
+description: "지정한 조건이 충족될 경우 전자 메일, 알림, 웹 사이트 URL 호출(webhook) 또는 자동화를 트리거합니다."
 author: rboucher
 manager: carmonm
 editor: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/23/2016
 ms.author: robb
-ms.openlocfilehash: 78d862d25255cda9fdfe347329e908a471c39846
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3e09c145d35665ec1c2467b60f06191ac51a5c16
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-metric-alerts-in-azure-monitor-for-azure-services---azure-portal"></a>Azure 서비스에 대한 Azure Monitor에서 메트릭 경고 만들기 - Azure Portal
 > [!div class="op_single_selector"]
@@ -29,19 +29,24 @@ ms.lasthandoff: 10/06/2017
 >
 
 ## <a name="overview"></a>개요
-이 문서를 사용 하 여 Azure 메트릭 경고를 tooset Azure 포털을 hello 하는 방법을 보여 줍니다.   
+이 문서에서는 Azure Portal을 사용하여 Azure 메트릭 경고를 설정하는 방법을 보여 줍니다. 
 
 Azure 서비스 또는 Azure 서비스의 이벤트에 대한 모니터링 메트릭을 기반으로 경고를 받을 수 있습니다.
 
-* **메트릭 값** -hello 트리거를 지정 된 메트릭 hello 값 두 방향에서 모두 할당 하는 임계값을 초과할 때 경고 합니다. 즉, 트리거합니다 둘 다 때 hello 조건이 충족 먼저 되 고 다음 나중에 조건 하는 더 이상 충족 합니다.    
-* **활동 로그 이벤트** - *모든* 이벤트에 대해 또는 특정 이벤트가 발생했을 때만 경고를 트리거할 수 있습니다 활동 로그 경고에 대 한 자세한 toolearn [여기를 클릭](monitoring-activity-log-alerts.md)
+* **메트릭 값** - 이 경고는 특정 메트릭의 값이 어느 방향으로든 사용자가 할당한 임계값을 초과했을 때 트리거됩니다. 즉 조건에 처음 부합했을 때와, 조건에 더 이상 부합하지 않게 되었을 때 모두 트리거됩니다.    
+* **활동 로그 이벤트** - *모든* 이벤트에 대해 또는 특정 이벤트가 발생했을 때만 경고를 트리거할 수 있습니다. [활동 로그 경고](monitoring-activity-log-alerts.md)에 대해 자세히 알아봅니다.
 
-메트릭 경고 toodo hello 다음 표시할 때 구성할 수 있습니다.
+트리거되면 다음을 수행하도록 메트릭 경고를 구성할 수 있습니다.
 
-* 보낼 전자 메일 알림 toohello 서비스 관리자 및 공동 관리자
-* 사용자가 지정한 tooadditional 메일 전자 메일을 보냅니다.
+* 서비스 관리자 및 공동 관리자에게 이메일 알림을 보냅니다.
+* 사용자가 지정한 추가 이메일 주소로 이메일을 보냅니다.
 * webhook 호출
-* (만 hello Azure 포털)에서 Azure runbook의 실행 시작
+* Azure runbook 실행 시작(현재는 Azure 포털에서만 가능)
+
+> [!NOTE]
+> 이제 Azure Monitor가 공개 미리 보기에서 근 실시간 메트릭 경고를 지원합니다. 작업 그룹을 사용합니다. [근 실시간 메트릭 경고](monitoring-near-real-time-metric-alerts.md)에 대해 자세히 알아봅니다.
+>
+>
 
 다음을 통해 메트릭 경고 규칙에 대한 정보를 구성하고 가져올 수 있습니다.
 
@@ -50,44 +55,45 @@ Azure 서비스 또는 Azure 서비스의 이벤트에 대한 모니터링 메�
 * [명령줄 인터페이스(CLI)](insights-alerts-command-line-interface.md)
 * [Azure Monitor REST API](https://msdn.microsoft.com/library/azure/dn931945.aspx)
 
-## <a name="create-an-alert-rule-on-a-metric-with-hello-azure-portal"></a>Azure 포털 hello로 메트릭을에서 경고 규칙 만들기
-1. Hello에 [포털](https://portal.azure.com/)hello 리소스 모니터링에 관심이 있는 찾아 선택 합니다.
+## <a name="create-an-alert-rule-on-a-metric-with-the-azure-portal"></a>Azure 포털에서 메트릭에 대한 경고 규칙 만들기
+1. [포털](https://portal.azure.com/)에서 모니터링하려는 리소스를 찾아 선택합니다.
 
-2. 선택 **경고** 또는 **규칙 경고** hello 모니터링 섹션에서. hello 텍스트 및 아이콘 다른 리소스에 대 한 약간 달라질 수 있습니다.  
+2. MONITORING 섹션에서 **경고** 또는 **경고 규칙**을 선택합니다. 텍스트와 아이콘은 리소스마다 약간씩 다를 수 있습니다.  
 
     ![모니터링](./media/insights-alerts-portal/AlertRulesButton.png)
 
-3. 선택 hello **추가 경고** 명령 및 hello 필드를 입력 합니다.
+3. **Add alert** 명령을 선택하고 필드에 입력합니다.
 
     ![Add alert](./media/insights-alerts-portal/AddAlertOnlyParamsPage.png)
 
 4. 경고 규칙의 **이름**을 지정하고 **설명**을 선택합니다. 알림 이메일에도 표시되는 항목입니다.
 
-5. 선택 hello **메트릭을** toomonitor, 원하는 다음 선택는 **조건** 및 **임계값** hello 메트릭에 대 한 값입니다. Hello 선택한 **기간** 메트릭을 hello 시간의 규칙 hello 경고 트리거 하기 전에 충족 해야 합니다. 예를 들어 hello 기간 "PT5M"를 사용 하는 경우 경고를 CPU 80% 이상 찾습니다 hello CPU 동안 일관 되 게 위의 80 %5 분 hello 알림을 트리거합니다. Hello 첫 번째 트리거가 발생 한 후 다시 hello CPU 5 분 동안 80% 미만으로 유지 되는 경우를 트리거합니다. CPU 측정 hello 매 1 분 마다 발생합니다.   
+5. 모니터링할 **메트릭**을 선택하고 해당 메트릭에 대한 **조건** 및 **임계값**을 선택합니다. 경고를 트리거하기 전에 메트릭 규칙을 만족해야 하는 **기간**도 선택합니다. 예를 들어 "지난 5분" 기간을 사용하고 경고가 80% 이상인 CPU를 찾는다면 이 경고는 CPU가 5분 동안 계속 80%를 넘으면 트리거됩니다. 첫 번째 트리거가 발생한 후 CPU가 5분 동안 80% 미만을 유지하면 다시 트리거됩니다. CPU 메트릭 측정은 1분마다 발생합니다.
 
-6. 확인 **소유자를 전자 메일로 보내기...**  hello 경고 발생 때 관리자와 공동 관리자 toobe 전자 메일로 전송 하려는 경우.
+6. 경고가 발생했을 때 관리자 및 공동 관리자에게 이메일을 보내려면 **소유자에게 이메일 보내기...** 를 선택합니다.
 
-7. 추가 전자 메일 tooreceive 때 hello 알림 경고 발생을 hello에서 추가 **추가 관리자 email(s)** 필드입니다. 여러 전자 메일은 세미콜론(*email@contoso.com;email2@contoso.com*)으로 구분됩니다.
+7. 경고가 발생했을 때 다른 이메일 주소에서 알림을 받으려면 해당 이메일을 **추가 관리자 이메일** 필드에 추가합니다. 여러 전자 메일은 세미콜론(*email@contoso.com;email2@contoso.com*)으로 구분됩니다.
 
-8. Hello 유효한 URI에 put **Webhook** 필드 호출 하려는 경우 경고 발생 hello 때.
+8. 경고가 발생했을 때 호출하려면 **Webhook** 필드에 유효한 URI를 입력합니다.
 
-9. Azure 자동화를 사용 하는 경우에 hello 경고가 발생할 때 실행할 Runbook toobe를 선택할 수 있습니다.
+9. Azure Automation을 사용하는 경우 경고가 발생할 때 실행할 Runbook을 선택할 수 있습니다.
 
-10. 선택 **확인** 하면 done toocreate hello 경고 합니다.   
+10. 경고 만들기가 완료되면 **확인** 을 선택합니다.   
 
-몇 분 안에 hello 경고가 활성 상태 이며 앞에서 설명한 대로 트리거합니다.
+앞서 설명한 대로 몇 분 안에 경고가 활성화 및 트리거됩니다.
 
 ## <a name="managing-your-alerts"></a>경고 관리
 경고를 만든 후 해당 경고를 선택하여 다음을 수행할 수 있습니다.
 
-* 이전 날짜 hello 메트릭 임계값과 hello hello의 실제 값을 보여 주는 그래프를 봅니다.
+* 전날의 메트릭 임계값 및 실제 값을 표시하는 그래프 확인
 * 편집 또는 삭제
-* **사용 안 함** 또는 **사용** tootemporarily 중지 하거나 재개 해당 경고에 대 한 알림을 수신 하는 경우.
+* 해당 경고에 대한 알림 수신을 일시 중지 또는 재개하려면 **사용 중지** 또는 **사용**하도록 설정합니다.
 
 ## <a name="next-steps"></a>다음 단계
-* [Azure 모니터링의 개요를 얻게](monitoring-overview.md) hello 형식의 정보를 수집 하 고 모니터링할 수 있습니다.
+* [Azure 모니터링 개요](monitoring-overview.md) 를 확인합니다.
+* 새 [근 실시간 메트릭 경고(미리 보기)](monitoring-near-real-time-metric-alerts.md)에 대해 자세히 알아봅니다.
 * [경고에서의 webhook 구성](insights-webhooks-alerts.md)에 대해 자세히 알아봅니다.
 * [활동 로그 이벤트에 대한 경고 구성](monitoring-activity-log-alerts.md)에 대해 자세히 알아봅니다.
 * [Azure Automation Runbook](../automation/automation-starting-a-runbook.md)에 대해 자세히 알아봅니다.
 * 서비스의 상세 고빈도 메트릭을 수집하기 위한 [진단 로그](monitoring-overview-of-diagnostic-logs.md) 의 개요를 살펴봅니다.
-* 가져오기는 [메트릭 컬렉션의 개요](insights-how-to-customize-monitoring.md) toomake 서비스를 사용 가능 하 고 응답 합니다.
+* 서비스를 사용 가능하며 응답할 수 있는 상태로 유지하기 위한 [메트릭 수집](insights-how-to-customize-monitoring.md) 의 개요를 살펴봅니다.

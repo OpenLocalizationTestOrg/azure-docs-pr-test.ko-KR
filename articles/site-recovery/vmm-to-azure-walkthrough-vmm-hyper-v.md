@@ -1,6 +1,6 @@
 ---
-title: "Hyper-v 복제 tooAzure에 대 한 System Center VMM aaaPrepare | Microsoft Docs"
-description: "설명 방법에 대 한 Azure Site Recovery를 사용 하 여 Hyper-v 복제 tooAzure, tooprepare System Center VMM 서버"
+title: "Azure로의 Hyper-V 호스트 복제용 System Center VMM 준비 | Microsoft 문서"
+description: "Azure Site Recovery를 사용하여 Azure로 Hyper-V를 복제하는 데 사용할 System Center VMM 서버를 준비하는 방법을 설명합니다."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 07/23/2017
 ms.author: raynew
-ms.openlocfilehash: 773b06afaf7d3eea1fe64f050bf3970943cf466a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ec118ed837dbf140083b3ae1e4ecd41c81562018
+ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/29/2017
 ---
-# <a name="step-6-prepare-vmm-servers-and-hyper-v-hosts-for-hyper-v-replication-tooazure"></a>Hyper-v 복제 tooAzure에 대 한 VMM 서버 및 Hyper-v 호스트를 준비 하는 6 단계:
+# <a name="step-6-prepare-vmm-servers-and-hyper-v-hosts-for-hyper-v-replication-to-azure"></a>6단계: Azure로의 Hyper-V 복제용으로 VMM 서버 및 Hyper-V 호스트 준비
 
-설정한 후 [Azure 구성 요소](vmm-to-azure-walkthrough-prepare-azure.md) hello 배포에 대 한 Azure Site Recovery와이 문서 tooprepare 온-프레미스 VMM 서버 및 Hyper-v 호스트 toointeract hello 지침을 사용 합니다.
+배포를 위한 [Azure 구성 요소](vmm-to-azure-walkthrough-prepare-azure.md)를 설정한 후 이 문서의 지침을 참조하여 Azure Site Recovery와 상호 작용하도록 온-프레미스 VMM 서버 및 Hyper-V 호스트를 준비할 수 있습니다.
 
-이 문서를 읽은 후 hello 맨 아래에 모든 메모를 게시 하거나 hello에 대 한 기술적 질문 [Azure 복구 서비스 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)합니다.
+이 문서를 읽은 후에는 하단에서 의견을 게시하거나 [Azure Recovery Services 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)에서 기술적인 질문을 합니다.
 
 
 ## <a name="prepare-vmm-servers"></a>VMM 서버 준비
 
-- 사이트 복구 복제 (site-recovery-support-matrix-to-azure.md#support-for-datacenter-management-servers)에 대 한 hello 지원 요구 사항이 충족 하는 VMM 서버를 하나 이상 해야 합니다.
-- 있는지 확인에 대 한 hello VMM 서버를 준비 했으므로 [네트워크 매핑을](vmm-to-azure-walkthrough-network.md#network-mapping-for-replication-to-azure)합니다.
-- 해당 hello VMM 서버는 이러한 Url을 액세스할 수 있는지 확인
+- Site Recovery 복제의 지원 요구 사항(site-recovery-support-matrix-to-azure.md#support-for-datacenter-management-servers)을 충족하는 VMM 서버가 하나 이상 필요합니다.
+- [네트워크 매핑](vmm-to-azure-walkthrough-network.md#network-mapping-for-replication-to-azure)용 VMM 서버를 준비했는지 확인합니다.
+- VMM 서버가 이러한 URL에 액세스할 수 있는지 확인합니다.
 
     [!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]
     
-- IP 주소를 기준으로 방화벽 규칙을 사용 하는 경우 통신 tooAzure를 허용 하는지 확인 합니다.
-- Hello 허용 [Azure 데이터 센터 IP 범위](https://www.microsoft.com/download/confirmation.aspx?id=41653), 및 hello HTTPS (443) 포트입니다.
-- West US (액세스 제어 및 Id 관리에 사용) 및 hello 구독의 Azure 지역에 대 한 IP 주소 범위를 허용 합니다.
+- IP 주소 기반 방화벽 규칙이 있는 경우 해당 규칙이 Azure와의 통신을 허용하는지 확인합니다.
+- [Azure 데이터 센터 IP 범위](https://www.microsoft.com/download/confirmation.aspx?id=41653) 및 HTTPS(443) 포트를 허용합니다.
+- 구독하는 Azure 지역과 미국 서부에 해당하는 IP 주소 범위를 허용하세요(Access Control 및 ID 관리에 사용됨).
 
-사이트 복구를 배포 하는 동안 hello Site Recovery Provider를 다운로드 및 각 VMM 서버에 설치 합니다. VMM 서버 hello hello 복구 서비스 자격 증명 모음에 등록 됩니다.
+Site Recovery 배포 중에 Site Recovery Provider를 다운로드하여 각 VMM 서버에 설치합니다. 그러면 VMM 서버가 Recovery Services 자격 증명 모음에 등록됩니다.
 
 
 
 
 ## <a name="next-steps"></a>다음 단계
 
-너무 이동[7 단계: 자격 증명 모음 만들기](vmm-to-azure-walkthrough-create-vault.md)
+[7단계: 자격 증명 모음 만들기](vmm-to-azure-walkthrough-create-vault.md)로 이동합니다.
 

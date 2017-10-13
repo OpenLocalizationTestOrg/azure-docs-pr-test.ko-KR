@@ -1,6 +1,6 @@
 ---
-title: "사이버 안보의 aaaMicrosoft 서비스 | Microsoft Docs"
-description: "hello 문서에서는 Microsoft 서비스 관련된 toocybersecurity에 대 한 소개 및 방법을 tooobtain 이러한 서비스에 대 한 자세한 정보."
+title: "사이버 보안에 대한 Microsoft 서비스 | Microsoft Docs"
+description: "이 문서는 사이버 보안과 관련된 Microsoft 서비스에 관한 소개와 이러한 서비스에 관해 더 많은 정보를 얻는 방법을 제공합니다."
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/09/2017
 ms.author: yurid
-ms.openlocfilehash: d29832f0ffa10020ab44ff69306971e55d393b97
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1560ea8b224be0f6bc723f64d8f154805b2771e5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="microsoft-services-in-cybersecurity"></a>사이버 보안에 대한 Microsoft 서비스
-Microsoft 서비스에는 포괄적인 접근 방식 toosecurity, id 및 사이버 안보 제공합니다. Microsoft 서비스는 기업 고객이 전략적 목표에 부합하는 전체적인 보안 솔루션을 구현할 수 있도록 돕는 전략, 계획, 구현 및 지속적인 지원 전반에 걸쳐 보안 및 ID 서비스를 제공합니다.
+Microsoft 서비스는 보안, ID 및 사이버 보안에 대한 포괄적인 접근 방법을 제공합니다. Microsoft 서비스는 기업 고객이 전략적 목표에 부합하는 전체적인 보안 솔루션을 구현할 수 있도록 돕는 전략, 계획, 구현 및 지속적인 지원 전반에 걸쳐 보안 및 ID 서비스를 제공합니다.
 
-직접 액세스 tooproduct 개발 팀과를 통합 하는 솔루션을 만들고 hello 최신 보안을 강화할 수 म 및 고객의 비즈니스 및 혁신을 추구 우리의 제품 toohelp의 id 기능을 보호 합니다.
+우리는 고객의 비즈니스를 보호하고 혁신을 주도하는 데 도움이 되도록 제품 개발 팀에 직접 액세스하여 우리 제품의 최신 보안 및 ID 기능을 통합하고 개선하는 솔루션을 만들 수 있습니다.
 
-보호 하 고 hello 세계에서 가장 큰 조직 데 얻게, 기술 전문가의 다양 한 그룹으로 이루어져 다양 한 보안 및 identity 경험을 제공 하는 고도로 숙련 된 전문가 있습니다.
+세계 최대의 조직을 보호하고 enable하도록 돕는 일을 맡아 우리 기술 전문가의 다양한 그룹은 풍부한 보안 및 신원 경험을 제공하는 고도로 훈련된 전문가로 구성되어 있습니다.
 
 Microsoft 서비스에서 제공하는 서비스에 대한 자세한 정보를 확인하십시오.
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate 및 Azure 가상 컴퓨터를 사용 하 여 Java 관리 | Microsoft Docs"
-description: "가상 컴퓨터와 해당 지원 리소스를 모두 toodeploy Java 및 Azure 리소스 관리자를 사용 합니다."
+title: "Java를 사용하여 Azure Virtual Machine 만들기 및 관리 | Microsoft Docs"
+description: "Java 및 Azure Resource Manager를 사용하여 가상 컴퓨터 및 모든 지원 리소스를 배포합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: davidmu
-ms.openlocfilehash: 31ac8d59f92ecff887e64906940933dd6fd50815
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b9e739a07c5863577285fb3a221b372b385c6762
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-and-manage-windows-vms-in-azure-using-java"></a>Java를 사용하여 Azure에서 Windows VM 만들기 및 관리
 
@@ -32,15 +32,15 @@ ms.lasthandoff: 10/06/2017
 > * 리소스 만들기
 > * 관리 작업 수행
 > * 리소스 삭제
-> * Hello 응용 프로그램 실행
+> * 응용 프로그램 실행
 
-다음이 단계 toodo 약 20 분이 필요합니다.
+이러한 단계를 수행하려면 약 20분이 걸립니다.
 
 ## <a name="create-a-maven-project"></a>Maven 프로젝트 만들기
 
 1. 아직 수행하지 않았다면 [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)를 설치합니다.
 2. [Maven](http://maven.apache.org/download.cgi)을 설치합니다.
-3. 새 폴더 및 hello 프로젝트를 만듭니다.
+3. 새 폴더와 프로젝트를 만듭니다.
     
     ```
     mkdir java-azure-test
@@ -51,7 +51,7 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="add-dependencies"></a>종속성 추가
 
-1. Hello에서 `testAzureApp` 폴더, 열기 hello `pom.xml` 파일을 너무 hello 빌드 구성을 추가&lt;프로젝트&gt; 응용 프로그램의 tooenable hello 빌딩:
+1. `testAzureApp` 폴더에서 `pom.xml` 파일을 열고 빌드 구성을 &lt;프로젝트&gt;에 추가하여 응용 프로그램의 빌드를 사용하도록 설정합니다.
 
     ```xml
     <build>
@@ -67,7 +67,7 @@ ms.lasthandoff: 10/06/2017
     </build>
     ```
 
-2. Hello 종속성 필요한 tooaccess hello Azure Java SDK에 추가 합니다.
+2. Azure Java SDK에 액세스하는 데 필요한 종속성을 추가합니다.
 
     ```xml
     <dependency>
@@ -112,15 +112,15 @@ ms.lasthandoff: 10/06/2017
     </dependency>
     ```
 
-3. Hello 파일을 저장 합니다.
+3. 파일을 저장합니다.
 
 ## <a name="create-credentials"></a>자격 증명 만들기
 
-이 단계를 시작 하기 전에 액세스 tooan 했는지 확인 [Active Directory 서비스 사용자](../../azure-resource-manager/resource-group-create-service-principal-portal.md)합니다. 이후 단계에서 또한 hello 응용 프로그램 ID, 인증 키 hello 및 필요한 hello 테 넌 트 ID을 기록해 야 합니다.
+이 단계를 시작하기 전에 [Active Directory 서비스 사용자](../../azure-resource-manager/resource-group-create-service-principal-portal.md)에 액세스할 수 있는지 확인합니다. 또한 이후 단계에서 필요한 응용 프로그램 ID, 인증 키 및 테넌트 ID를 기록해 두어야 합니다.
 
-### <a name="create-hello-authorization-file"></a>Hello 권한 부여 파일 만들기
+### <a name="create-the-authorization-file"></a>권한 부여 파일 만들기
 
-1. 라는 파일을 만들어 `azureauth.properties` 하 고 이러한 속성 tooit 추가:
+1. `azureauth.properties`라는 파일을 만들고 이러한 속성을 추가합니다.
 
     ```
     subscription=<subscription-id>
@@ -133,20 +133,20 @@ ms.lasthandoff: 10/06/2017
     graphURL=https://graph.windows.net/
     ```
 
-    대체  **&lt;-&gt;**  구독 식별자를 가진  **&lt;응용 프로그램 id&gt;**  Active Directory 응용 프로그램 hello로 식별자,  **&lt;인증 키&gt;**  hello 응용 프로그램 키를 포함 하 고  **&lt;테 넌 트 id&gt;**  hello 테 넌 트와 식별자입니다.
+    **&lt;subscription-id&gt;**를 구독 식별자, **&lt;application-id&gt;**를 Active Directory 응용 프로그램 식별자, **&lt;authentication-key&gt;**를 응용 프로그램 키, **&lt;tenant-id&gt;**를 테넌트 식별자로 바꿉니다.
 
-2. Hello 파일을 저장 합니다.
-3. Hello 전체 경로 toohello 인증 파일 프로그램 셸의 AZURE_AUTH_LOCATION 라는 환경 변수를 설정 합니다.
+2. 파일을 저장합니다.
+3. 인증 파일에 전체 경로로 프로그램 셸의 AZURE_AUTH_LOCATION이라는 환경 변수를 설정합니다.
 
-### <a name="create-hello-management-client"></a>Hello 관리 클라이언트 만들기
+### <a name="create-the-management-client"></a>관리 클라이언트 만들기
 
-1. 열기 hello `App.java` 아래 파일 `src\main\java\com\fabrikam` hello 위쪽에이 패키지 문을 인지 확인 합니다.
+1. `src\main\java\com\fabrikam`에 있는 `App.java` 파일을 열고 이 패키지 문이 위쪽에 있는지 확인합니다.
 
     ```java
     package com.fabrikam.testAzureApp;
     ```
 
-2. 이러한 추가 hello 패키지 문 아래 import 문의:
+2. 패키지 문에서 다음과 같은 import 문을 추가합니다.
    
     ```java
     import com.microsoft.azure.management.Azure;
@@ -168,7 +168,7 @@ ms.lasthandoff: 10/06/2017
     import java.util.Scanner;
     ```
 
-2. toocreate hello Active Directory 자격 증명 toomake 요청 해야 하는 hello App 클래스의이 코드 toohello main 메서드를 추가 합니다.
+2. 요청을 해야 하는 Active Directory 자격 증명을 만들려면 App 클래스의 Main 메서드에 이 코드를 추가합니다.
    
     ```java
     try {    
@@ -186,11 +186,11 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="create-resources"></a>리소스 만들기
 
-### <a name="create-hello-resource-group"></a>Hello 리소스 그룹 만들기
+### <a name="create-the-resource-group"></a>리소스 그룹 만들기
 
 모든 리소스는 [리소스 그룹](../../azure-resource-manager/resource-group-overview.md)에 포함되어야 합니다.
 
-toospecify 값에 대 한 응용 프로그램 hello 및 hello 리소스 그룹 만들기 hello 기본 방법에서이 코드 toohello try 블록을 추가 합니다.
+응용 프로그램의 값을 지정하고 리소스 그룹을 만들려면 Main 메서드의 try 블록에 이 코드를 추가합니다.
 
 ```java
 System.out.println("Creating resource group...");
@@ -200,11 +200,11 @@ ResourceGroup resourceGroup = azure.resourceGroups()
     .create();
 ```
 
-### <a name="create-hello-availability-set"></a>Hello 가용성 집합 만들기
+### <a name="create-the-availability-set"></a>가용성 집합 만들기
 
-[가용성 집합](tutorial-availability-sets.md) 쉽게 드립니다 toomaintain hello 가상 컴퓨터 응용 프로그램에서 사용 합니다.
+[가용성 집합](tutorial-availability-sets.md)은 응용 프로그램에서 사용되는 가상 컴퓨터를 쉽게 유지 관리할 수 있도록 합니다.
 
-toocreate hello 가용성 설정, hello main 메서드에이 코드 toohello try 블록을 추가 합니다.
+가용성 집합을 만들려면 Main 메서드의 try 블록에 이 코드를 추가합니다.
 
 ```java
 System.out.println("Creating availability set...");
@@ -215,11 +215,11 @@ AvailabilitySet availabilitySet = azure.availabilitySets()
     .withSku(AvailabilitySetSkuTypes.MANAGED)
     .create();
 ```
-### <a name="create-hello-public-ip-address"></a>Hello 공용 IP 주소 만들기
+### <a name="create-the-public-ip-address"></a>공용 IP 주소 만들기
 
-A [공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) hello 가상 컴퓨터와 필요한 toocommunicate 됩니다.
+[공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview-arm.md)는 가상 컴퓨터와 통신하는 데 필요합니다.
 
-hello 가상 컴퓨터용 toocreate hello 공용 IP 주소 hello main 메서드에이 코드 toohello try 블록을 추가 합니다.
+가상 컴퓨터의 공용 IP 주소를 만들려면 Main 메서드의 try 블록에 이 코드를 추가합니다.
 
 ```java
 System.out.println("Creating public IP address...");
@@ -231,11 +231,11 @@ PublicIPAddress publicIPAddress = azure.publicIPAddresses()
     .create();
 ```
 
-### <a name="create-hello-virtual-network"></a>Hello 가상 네트워크 만들기
+### <a name="create-the-virtual-network"></a>가상 네트워크 만들기
 
 가상 컴퓨터는 [가상 네트워크](../../virtual-network/virtual-networks-overview.md)의 서브넷에 있어야 합니다.
 
-toocreate는 서브넷과 가상 네트워크 hello main 메서드에이 코드 toohello try 블록을 추가 합니다.
+서브넷 및 가상 네트워크를 만들려면 Main 메서드의 try 블록에 이 코드를 추가합니다.
 
 ```java
 System.out.println("Creating virtual network...");
@@ -248,11 +248,11 @@ Network network = azure.networks()
     .create();
 ```
 
-### <a name="create-hello-network-interface"></a>Hello 네트워크 인터페이스 만들기
+### <a name="create-the-network-interface"></a>네트워크 인터페이스 만들기
 
-가상 컴퓨터에는 hello 가상 네트워크에서 네트워크 인터페이스 toocommunicate가 필요 합니다.
+가상 컴퓨터는 가상 네트워크에서 통신하기 위해 네트워크 인터페이스가 필요합니다.
 
-네트워크 인터페이스 toocreate hello main 메서드에이 코드 toohello try 블록을 추가 합니다.
+네트워크 인터페이스를 만들려면 Main 메서드의 try 블록에 이 코드를 추가합니다.
 
 ```java
 System.out.println("Creating network interface...");
@@ -267,11 +267,11 @@ NetworkInterface networkInterface = azure.networkInterfaces()
     .create();
 ```
 
-### <a name="create-hello-virtual-machine"></a>Hello 가상 컴퓨터 만들기
+### <a name="create-the-virtual-machine"></a>가상 컴퓨터 만들기
 
-리소스를 지 원하는 모든 hello, 만든 가상 컴퓨터를 만들 수 있습니다.
+모든 지원 리소스를 만들었으므로 가상 컴퓨터를 만들 수 있습니다.
 
-toocreate 가상 컴퓨터를 hello hello 기본 방법에서이 코드 toohello try 블록을 추가 합니다.
+가상 컴퓨터를 만들려면 Main 메서드의 try 블록에 이 코드를 추가합니다.
 
 ```java
 System.out.println("Creating virtual machine...");
@@ -288,16 +288,16 @@ VirtualMachine virtualMachine = azure.virtualMachines()
     .withSize("Standard_DS1")
     .create();
 Scanner input = new Scanner(System.in);
-System.out.println("Press enter tooget information about hello VM...");
+System.out.println("Press enter to get information about the VM...");
 input.nextLine();
 ```
 
 > [!NOTE]
-> 이 자습서는 hello Windows Server 운영 체제의 버전을 실행 하는 가상 컴퓨터를 만듭니다. 다른 이미지 선택에 대 한 더 toolearn 참조 [탐색 하 고 Windows PowerShell 및 Azure CLI hello를 사용 하 여 Azure 가상 컴퓨터 이미지 선택](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.
+> 이 자습서는 Windows Server 운영 체제의 버전을 실행하는 가상 컴퓨터를 만듭니다. 기타 이미지 선택에 대해 자세히 알아보려면 [Windows PowerShell 및 Azure CLI를 사용하여 Azure 가상 컴퓨터 탐색 및 선택](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)을 참조하세요.
 > 
 >
 
-Toouse 마켓플레이스 이미지 대신 기존 디스크를 사용 하도록 하려는 경우이 코드를 사용 하세요. 
+마켓플레이스 이미지 대신 기존 디스크를 사용하려면 다음 코드를 사용합니다. 
 
 ```java
 ManagedDisk managedDisk = azure.disks.define("myosdisk") 
@@ -320,17 +320,17 @@ azure.virtualMachines.define("myVM")
 
 ## <a name="perform-management-tasks"></a>관리 작업 수행
 
-가상 컴퓨터의 hello 수명 주기 동안 시작, 중지, 또는 가상 컴퓨터를 삭제 하는 등의 toorun 관리 작업을 할 수 있습니다. 또한 toocreate 코드 tooautomate 반복적 복잡 한 작업을 지정할 수 있습니다.
+가상 컴퓨터의 수명 주기 동안 가상 컴퓨터 시작, 중지 또는 삭제 등의 관리 작업을 실행하려고 할 수 있습니다. 또한 반복적이거나 복잡한 작업을 자동화하는 코드를 만들 수도 있습니다.
 
-필요한 toodo VM hello로 아무 것도 해당 형식의 인스턴스 tooget가 필요 합니다. 이 코드 toohello try 블록의 hello main 메서드를 추가 합니다.
+VM에서 작업을 수행해야 하는 경우 VM의 인스턴스를 가져와야 합니다. Main 메서드의 try 블록에 이 코드를 추가합니다.
 
 ```java
 VirtualMachine vm = azure.virtualMachines().getByResourceGroup("myResourceGroup", "myVM");
 ```
 
-### <a name="get-information-about-hello-vm"></a>Hello VM에 대 한 정보 가져오기
+### <a name="get-information-about-the-vm"></a>VM 관련 정보 가져오기
 
-hello 가상 컴퓨터에 대 한 tooget 정보 hello main 메서드에이 코드 toohello try 블록을 추가 합니다.
+가상 컴퓨터에 대한 정보를 가져오려면 Main 메서드의 try 블록에 이 코드를 추가합니다.
 
 ```java
 System.out.println("hardwareProfile");
@@ -382,94 +382,94 @@ for(InstanceViewStatus status : vm.instanceView().statuses()) {
     System.out.println("  code: " + status.code());
     System.out.println("  displayStatus: " + status.displayStatus());
 }
-System.out.println("Press enter toocontinue...");
+System.out.println("Press enter to continue...");
 input.nextLine();   
 ```
 
-### <a name="stop-hello-vm"></a>Hello VM 중지
+### <a name="stop-the-vm"></a>VM을 중지합니다.
 
-가상 컴퓨터를 중지 하 고 해당 설정을 모두 그대로 유지 하지만 계속 toobe 유료로 제공, 가상 컴퓨터를 중지 하 고 할당을 취소 하거나 수 있습니다. 가상 컴퓨터를 할당을 해제하면 연결된 모든 리소스의 할당이 취소되고 대금 청구가 끝납니다.
+가상 컴퓨터를 중지하고 해당 설정을 모두 그대로 유지하면 계속 요금이 청구될 수 있습니다. 그렇지 않으려면 가상 컴퓨터를 중지하고 할당을 해제합니다. 가상 컴퓨터를 할당을 해제하면 연결된 모든 리소스의 할당이 취소되고 대금 청구가 끝납니다.
 
-toostop hello 가상 컴퓨터를 할당 취소 하지 않고 hello main 메서드에이 코드 toohello try 블록을 추가 합니다.
+할당을 취소하지 않고 가상 컴퓨터를 중지하려면 Main 메서드의 try 블록에 이 코드를 추가합니다.
 
 ```java
 System.out.println("Stopping vm...");
 vm.powerOff();
-System.out.println("Press enter toocontinue...");
+System.out.println("Press enter to continue...");
 input.nextLine();
 ```
 
-Toodeallocate hello 가상 컴퓨터를 하려면 hello 전원 꺼짐 통화 toothis 코드를 변경 합니다.
+가상 컴퓨터의 할당을 취소하려는 경우 PowerOff 호출을 이 코드로 변경합니다.
 
 ```java
 vm.deallocate();
 ```
 
-### <a name="start-hello-vm"></a>Hello VM 시작
+### <a name="start-the-vm"></a>VM 시작
 
-toostart 가상 컴퓨터를 hello hello 기본 방법에서이 코드 toohello try 블록을 추가 합니다.
+가상 컴퓨터를 시작하려면 Main 메서드의 try 블록에 이 코드를 추가합니다.
 
 ```java
 System.out.println("Starting vm...");
 vm.start();
-System.out.println("Press enter toocontinue...");
+System.out.println("Press enter to continue...");
 input.nextLine();
 ```
 
-### <a name="resize-hello-vm"></a>Hello VM의 크기를 조정합니다
+### <a name="resize-the-vm"></a>VM 크기 조정
 
 가상 컴퓨터의 크기를 결정할 때 배포의 여러 측면을 고려해야 합니다. 자세한 내용은 [VM 크기](sizes.md)를 참조하세요.  
 
-hello 가상 컴퓨터의 toochange 크기 hello main 메서드에이 코드 toohello try 블록을 추가 합니다.
+가상 컴퓨터의 크기를 변경하려면 Main 메서드의 try 블록에 이 코드를 추가합니다.
 
 ```java
 System.out.println("Resizing vm...");
 vm.update()
     .withSize(VirtualMachineSizeTypes.STANDARD_DS2)
     .apply();
-System.out.println("Press enter toocontinue...");
+System.out.println("Press enter to continue...");
 input.nextLine();
 ```
 
-### <a name="add-a-data-disk-toohello-vm"></a>데이터 디스크 toohello VM 추가
+### <a name="add-a-data-disk-to-the-vm"></a>VM에 데이터 디스크 추가
 
-tooadd 크기가 2 GB 있는 데이터 디스크 toohello 가상 컴퓨터에 0이 고 캐싱 유형의 ReadWrite LUN hello 기본 방법에서이 코드 toohello try 블록을 추가 합니다.
+가상 컴퓨터에 크기가 2GB이고 LUN이 0이며 캐싱 형식이 읽기/쓰기인 데이터 디스크를 추가하려면 Main 메서드의 try 블록에 이 코드를 추가합니다.
 
 ```java
 System.out.println("Adding data disk...");
 vm.update()
     .withNewDataDisk(2, 0, CachingTypes.READ_WRITE)
     .apply();
-System.out.println("Press enter toodelete resources...");
+System.out.println("Press enter to delete resources...");
 input.nextLine();
 ```
 
 ## <a name="delete-resources"></a>리소스 삭제
 
-Azure에서 사용 되는 리소스에 대 한 요금이 청구 되므로 항상 것은 더 이상 필요 없는 것이 좋습니다 toodelete 리소스입니다. Toodelete hello 가상 컴퓨터 및 리소스를 지 원하는 모든 hello, 모든 있는 toodo hello 리소스 그룹 삭제 됩니다.
+Azure에서 사용되는 리소스에 대한 요금이 부과되기 때문에, 더 이상 필요하지 않은 리소스를 항상 삭제하는 것이 좋습니다. 가상 컴퓨터 및 모든 지원 리소스를 삭제하려는 경우, 리소스 그룹을 삭제해야 합니다.
 
-1. toodelete hello 리소스 그룹에서이 코드 toohello try 블록 hello main 메서드에 추가 합니다.
+1. 리소스 그룹을 삭제하려면 Main 메서드의 try 블록에 이 코드를 추가합니다.
    
 ```java
 System.out.println("Deleting resources...");
 azure.resourceGroups().deleteByName("myResourceGroup");
 ```
 
-2. Hello App.java 파일을 저장 합니다.
+2. App.java 파일을 저장합니다.
 
-## <a name="run-hello-application"></a>Hello 응용 프로그램 실행
+## <a name="run-the-application"></a>응용 프로그램 실행
 
-이 콘솔 응용 프로그램 toorun 시작 toofinish에서 완전히에 대 일 분 정도 취해야 합니다.
+이 콘솔 응용 프로그램을 처음부터 끝까지 완전히 실행하려면 약 5분이 필요합니다.
 
-1. toorun 응용 프로그램 hello이 Maven 명령을 사용 합니다.
+1. 응용 프로그램을 실행하려면 이 Maven 명령을 사용합니다.
 
     ```
     mvn compile exec:java
     ```
 
-2. 누르기 전에 **Enter** toostart 삭제 리소스를 가져올 수 있었습니다 몇 분 정도 hello 리소스 tooverify hello 만들기 hello Azure 포털의에서. Hello 배포 상태 toosee hello 배포에 대 한 정보를 클릭 합니다.
+2. **Enter** 키를 눌러 리소스를 삭제하기 전에 Azure Portal에서 리소스 만들기를 확인하는 데에 몇 분이 걸릴 수 있습니다. 배포에 대한 정보를 보려면 배포 상태를 클릭합니다.
 
 
 ## <a name="next-steps"></a>다음 단계
-* Hello를 사용 하는 방법에 대 한 자세한 정보 [Java 용 Azure 라이브러리](https://docs.microsoft.com/en-us/java/azure/java-sdk-azure-overview)합니다.
+* [Java용 Azure 라이브러리](https://docs.microsoft.com/en-us/java/azure/java-sdk-azure-overview) 사용에 대해 자세히 알아보세요.
 

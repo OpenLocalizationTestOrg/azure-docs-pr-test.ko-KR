@@ -1,6 +1,6 @@
 ---
-title: "StorSimple 가상 배열 aaaTroubleshoot | Microsoft Docs"
-description: "StorSimple 장치 관리자 기능을 진단 하 고 설명 하는 hello 설명 어떻게 toouse 것 tootroubleshoot StorSimple 가상 배열입니다."
+title: "StorSimple Virtual Array 문제 해결 | Microsoft Docs"
+description: "StorSimple 장치 관리자 진단 기능 및 이 기능을 사용하여 StorSimple 가상 배열 문제를 해결하는 방법을 설명합니다."
 services: storsimple
 documentationcenter: 
 author: manuaery
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/21/2016
 ms.author: manuaery
-ms.openlocfilehash: 5b8e05d5ce6000424830059db450a0e662d19238
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a75e68c84a50977b162ca4d3a4a02936ca78cb6b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-storsimple-device-manager-service-tootroubleshoot-hello-storsimple-virtual-array"></a>Hello StorSimple 장치 관리자 서비스 tootroubleshoot hello StorSimple 가상 배열 사용
+# <a name="use-the-storsimple-device-manager-service-to-troubleshoot-the-storsimple-virtual-array"></a>StorSimple 장치 관리자 서비스를 사용하여 StorSimple 가상 배열 문제 해결
 ## <a name="overview"></a>개요
 
-hello StorSimple 장치 관리자를 한 **진단 및 문제 해결** hello 서비스 요약 블레이드 내 설정, 강조 표시 가상 배열에서 발생할 수 있는 hello 빈도가 문제 중 일부와 방법을 toosolve 해당 합니다. 이 자습서에서는 hello 셀프 서비스 문제 해결 기능 hello StorSimple 장치 관리자 서비스 내에서 제공 된를 소개 합니다.
+StorSimple 장치 관리자는 서비스 요약 블레이드 내에서 **문제 진단 및 해결** 설정을 제공합니다. 여기서 가상 배열에 발생할 수 있는 자주 발생하는 문제 및 해결 방법을 강조합니다. 이 자습서에서는 StorSimple 장치 관리자 서비스 내에서 제공하는 셀프 서비스 문제 해결 기능을 소개합니다.
 
 ![문제 진단 및 해결](./media/storsimple-virtual-array-diagnose-problems/diagnose-problems-main.png)
 
 ## <a name="diagnose-and-solve-issues"></a>문제 진단 및 해결
 
-StorSimple 가상 배열 hello로 hello 일반적인 문제 중 일부를 볼 수 있으며 StorSimple 장치 관리자 서비스 요약 블레이드에서 바로 hello 솔루션 toothose 문제를 검토할 수 있습니다.
+StorSimple 가상 배열에 발생하는 일반적인 문제 중 일부를 확인하고 StorSimple 장치 관리자 서비스 요약 블레이드에 발생하는 해당 문제에 대한 솔루션을 검토할 수 있습니다.
 
-#### <a name="toodiagnose-an-issue-with-your-virtual-array"></a>toodiagnose 프로그램 가상 배열 문제
+#### <a name="to-diagnose-an-issue-with-your-virtual-array"></a>가상 배열 문제를 진단하려면
 
-1. 클릭 **진단 및 문제 해결** hello에서 설정을 왼쪽 창에 StorSimple 장치 관리자 서비스 요약 블레이드 tooview의 일반적인 문제 중 목록입니다.
+1. StorSimple 장치 관리자 서비스 요약 블레이드의 왼쪽 창에서 **문제 진단 및 해결** 설정을 클릭하여 일반적인 문제 목록을 확인합니다.
 
-2. **확장** hello 문제의 증상 hello에 도움이 될만한 tooreview **있는 권장 단계가** tooaid hello 문제를 해결 하면 합니다. 원하는 경우에 추가 참조에 대 한 제공 된 hello 자세한 설명서 링크를 검토할 수 있습니다.
+2. 발생하는 문제의 증상을 **확장**하여 문제 해결에 도움이 되는 **권장 단계**를 검토합니다. 원한다면 추가 참조를 위해 제공되는 자세한 설명서 링크를 검토할 수 있습니다.
    
     ![문제 해결](./media/storsimple-virtual-array-diagnose-problems/diagnose-problems-offline.png)
 
-3. 없습니다 toofind에서 참조 tooyour 발생 하거나 문제를 해결할 경우 추가 지원을 요청에 대 한 지원 tooMicrosoft 연락.
+3. 문제에 대한 참조를 찾을 수 없거나 문제를 해결할 수 없는 경우 추가 지원을 Microsoft 기술 지원 서비스에 문의합니다.
 
 ## <a name="next-steps"></a>다음 단계
-너무 방법에 대해 알아봅니다[지원 티켓을 로그](storsimple-virtual-array-log-support-ticket.md)
+[지원 티켓 사용](storsimple-virtual-array-log-support-ticket.md) 방법 알아보기
 

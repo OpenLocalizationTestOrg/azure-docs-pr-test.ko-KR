@@ -1,5 +1,5 @@
 ---
-title: "Azure 관리자와 함께 aaaGet 시작 | Microsoft Docs"
+title: "Azure Advisor 시작 | Microsoft Docs"
 description: "Azure Adviser를 시작합니다."
 services: advisor
 documentationcenter: NA
@@ -14,81 +14,81 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 02/10/2017
 ms.author: makohli
-ms.openlocfilehash: 30fc8b8f3823f6f047e46cb9000189f3ccb3d514
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a662841bebda460d4225e080f16705b3f16fdc46
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-azure-advisor"></a>Azure Adviser 시작
 
-Get 권장 사항 hello Azure 포털을 통해 tooaccess 관리자 권장 구성을 구현 하는 방법에 대해 알아봅니다 권장 사항 및 권장 사항 새로 고침에 대 한를 검색 합니다.
+Azure Portal을 통해 Advisor에 액세스하고, 권장 사항을 가져오고, 권장 사항을 검색하고, 권장 사항을 새로 고치는 방법을 알아봅니다.
 
 ## <a name="get-advisor-recommendations"></a>Advisor 권장 사항 가져오기
 
-1. Toohello 로그인 [Azure 포털](https://portal.azure.com)합니다.
+1. [Azure 포털](https://portal.azure.com)에 로그인합니다.
 
-2. Hello 왼쪽된 창에서 클릭 **더 많은 서비스**합니다.
+2. 왼쪽 창에서 **더 많은 서비스**를 클릭합니다.
 
-3. Hello 메뉴 창을 아래에서 서비스 **모니터링 및 관리**, 클릭 **Azure 관리자**합니다.  
- hello 관리자 대시보드 표시 됩니다.
+3. 서비스 메뉴 창의 **모니터링 및 관리** 아래에서 **Azure Advisor**를 클릭합니다.  
+ Advisor 대시보드가 표시됩니다.
 
-   ![Hello Azure 포털을 사용 하 여 Azure Advisor 액세스](./media/advisor-overview/advisor-azure-portal-menu.png) 
+   ![Azure Portal을 사용하여 Azure Advisor 액세스](./media/advisor-overview/advisor-azure-portal-menu.png) 
 
-4. Hello 관리자 대시보드에서 tooreceive 권장 사항을 보려는 hello 구독을 선택 합니다.  
-hello 관리자 대시보드에 선택한 구독에 대 한 개인 설정 된 권장 사항 표시 됩니다. 
+4. Advisor 대시보드에서 권장 사항을 받아보려는 구독을 선택합니다.  
+Advisor 대시보드에 선택한 구독에 대한 개인화된 권장 사항이 표시됩니다. 
 
-5. 특정 범주에 대 한 권장 사항을 tooget hello 탭 중 하나를 클릭 합니다.: **고가용성**, **보안**, **성능**, 또는 **비용**.
+5. 특정 범주에 대한 권장 사항을 얻으려면 **고가용성**, **보안**, **성능** 또는 **비용** 탭 중 하나를 클릭합니다.
  
 > [!NOTE]
-> 관리자의 권장 구성이 tooaccess 먼저 *구독 등록* 관리자와 함께 합니다. 구독을 등록 때는 *구독 소유자* 실행 하는 경우 관리자 대시보드 및 클릭 hello hello **위한 권장 사항 보기** 단추입니다. 이 작업은 *한 번만* 수행하면 됩니다. Hello 구독을 등록 하 고, Advisor 권장 사항을 사용할 수 있습니다 *소유자*, *참가자*, 또는 *판독기* 구독에 리소스 그룹 또는 특정 리소스입니다.
+> Advisor 권장 사항에 액세스하려면 먼저 Advisor에 *구독을 등록*해야 합니다. 구독은 *구독 소유자*가 Advisor 대시보드를 시작하고 **권장 사항 가져오기** 단추를 클릭할 때 등록됩니다. 이 작업은 *한 번만* 수행하면 됩니다. 구독이 등록된 후 구독, 리소스 그룹 또는 특정 리소스에 대한 *소유자*, *참여자* 또는 *리더*로 Advisor 권장 사항에 액세스할 수 있습니다.
 
   ![Azure Advisor 대시보드](./media/advisor-overview/advisor-all-tab.png)
 
 ## <a name="get-advisor-recommendation-details-and-implement-a-solution"></a>자세한 Advisor 권장 사항 가져오기 및 솔루션 구현
 
-hello **권장** Advisor에 블레이드 hello 권장 사항에 대 한 추가 정보를 제공 합니다. 
+Advisor의 **권장 사항** 블레이드에서는 권장 사항에 대한 추가 정보를 제공합니다. 
 
-1. Toohello 로그인 [Azure 포털](https://portal.azure.com), 한 다음 시작 [Azure 관리자](https://aka.ms/azureadvisordashboard)합니다.
+1. [Azure Portal](https://portal.azure.com)에 로그인하고 [Azure Advisor](https://aka.ms/azureadvisordashboard)를 시작합니다.
 
-2. Hello에 **관리자 권장 구성을** 대시보드를 클릭 하 여 **위한 권장 사항 보기**합니다.
+2. **Advisor 권장 사항** 대시보드에서 **권장 사항 가져오기**를 클릭합니다.
 
-3. Hello 권장 사항 목록에서 자세히 tooreview 원하는 권장을 클릭 합니다.  
-hello **권장** 블레이드가 표시 됩니다.
+3. 권장 사항 목록에서 자세하게 검토하려는 권장 사항을 클릭합니다.  
+**권장 사항** 블레이드가 표시됩니다.
 
-4. Hello에 **권장 사항을** 블레이드에서 수행할 tooresolve 잠재적인 문제 또는 비용 절감 영업 기회를 활용 하기 위해 수 있는 동작에 대 한 정보를 검토 합니다. 
+4. **권장 사항** 블레이드에서 잠재적 문제 해결을 위해 수행할 수 있는 작업에 대한 정보를 검토하거나 비용 절감 기회를 활용할 수 있습니다. 
   
-  ![hello 관리자 권장 구성 블레이드](./media/advisor-overview/advisor-recommendation-action-example.png)
+  ![Advisor 권장 사항 블레이드](./media/advisor-overview/advisor-recommendation-action-example.png)
 
 ## <a name="search-for-advisor-recommendations"></a>Advisor 권장 사항 검색
 
 특정 구독 또는 리소스 그룹에 대한 권장 사항을 검색할 수 있습니다. 또한 권장 사항을 상태별로 검색할 수도 있습니다.
 
-1. Toohello 로그인 [Azure 포털](https://portal.azure.com), 한 다음 시작 [Azure 관리자](https://aka.ms/azureadvisordashboard)합니다.
+1. [Azure Portal](https://portal.azure.com)에 로그인하고 [Azure Advisor](https://aka.ms/azureadvisordashboard)를 시작합니다.
 
 2. 구독, 리소스 그룹 및 권장 사항 상태(**활성** 또는 **다시 알림**)를 필터링하여 권장 사항을 검색합니다.
 
-3. toodisplay 관리자의 권장 구성 기반으로 하는 목록 검색 필터 조건을 클릭 **위한 권장 사항 보기**합니다.
+3. 검색 필터 조건에 따라 Advisor 권장 사항 목록을 표시하려면 **권장 사항 가져오기**를 클릭합니다.
 
   ![Advisor 검색 필터 조건](./media/advisor-get-started/advisor-search.png)
 
 ## <a name="snooze-or-dismiss-advisor-recommendations"></a>Advisor 권장 사항 다시 알림 또는 해제
 
-1. Toohello 로그인 [Azure 포털](https://portal.azure.com), 한 다음 시작 [Azure 관리자](https://aka.ms/azureadvisordashboard)합니다.
+1. [Azure Portal](https://portal.azure.com)에 로그인하고 [Azure Advisor](https://aka.ms/azureadvisordashboard)를 시작합니다.
 
-2. 클릭 **위한 권장 사항 보기**, 권장 사항 hello 목록에서 권장 구성을 클릭 하 고 있습니다.
+2. **권장 사항 가져오기**를 클릭하고 권장 사항 목록에서 권장 사항을 클릭합니다.
 
-3. Hello에 **권장** 블레이드에서 클릭 **다시 알림**합니다.  
+3. **권장 사항** 블레이드에서 **다시 알림**을 클릭합니다.  
 
    ![Advisor 권장 사항 작업 예제](./media/advisor-get-started/advisor-snooze.png)
 
-4. 알림을 기간을 지정 하거나 선택 **Never** toodismiss hello 권장 합니다.
+4. 다시 알림 기간을 지정하거나, 권장 사항을 해제하려면 **안 함**을 선택합니다.
 
 
 ## <a name="next-steps"></a>다음 단계
 
-toolearn 관리자에 대 한 자세한 정보를 참조 하세요.
-* [소개 tooAzure 관리자](advisor-overview.md)
+Advisor에 대해 자세히 알아보려면 다음을 참조하세요.
+* [Azure Advisor 소개](advisor-overview.md)
 * [Advisor 고가용성 권장 사항](advisor-high-availability-recommendations.md)
 * [Advisor 보안 권장 사항](advisor-security-recommendations.md)
 -  [Advisor 성능 권장 사항](advisor-performance-recommendations.md)

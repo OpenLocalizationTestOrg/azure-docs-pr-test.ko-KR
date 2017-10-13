@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate hello Azure 포털을 사용 하 여 PostgreSQL 방화벽 규칙에 대 한 Azure 데이터베이스 관리 및 | Microsoft Docs"
-description: "만들기 및 hello Azure 포털을 사용 하 여 PostgreSQL 방화벽 규칙에 대 한 Azure 데이터베이스 관리"
+title: "Azure Portal을 사용한 PostgreSQL용 Azure Database 방화벽 규칙 만들기 및 관리 | Microsoft Docs"
+description: "Azure Portal을 사용한 PostgreSQL용 Azure Database 방화벽 규칙 만들기 및 관리"
 services: postgresql
 author: jasonwhowell
 ms.author: jasonh
@@ -9,49 +9,49 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 05/10/2017
-ms.openlocfilehash: 6a41a077168657769e442401e9df9931aa809240
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 20ac1392949a6f604e68d984cb50273b61051037
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="create-and-manage-azure-database-for-postgresql-firewall-rules-using-hello-azure-portal"></a>만들기 및 hello Azure 포털을 사용 하 여 PostgreSQL 방화벽 규칙에 대 한 Azure 데이터베이스 관리
-서버 수준 방화벽 규칙에서 지정된 된 IP 주소 또는 IP 주소 범위 PostgreSQL 서버에 대 한 관리자 tooaccess Azure 데이터베이스를 사용 합니다. 
+# <a name="create-and-manage-azure-database-for-postgresql-firewall-rules-using-the-azure-portal"></a>Azure Portal을 사용한 PostgreSQL용 Azure Database 방화벽 규칙 만들기 및 관리
+관리자는 서버 수준 방화벽 규칙을 사용하여 특정 IP 주소 또는 IP 주소 범위에서 PostgreSQL용 Azure Database 서버에 액세스할 수 있습니다. 
 
 ## <a name="prerequisites"></a>필수 조건
-이 방법 tooguide 통해 toostep를 해야합니다.
+이 방법 가이드를 단계별로 실행하려면 다음이 필요합니다.
 - 서버 [PostgreSQL용 Azure Database 만들기](quickstart-create-server-database-portal.md)
 
-## <a name="create-a-server-level-firewall-rule-in-hello-azure-portal"></a>Hello Azure 포털에에서 서버 수준 방화벽 규칙을 만들려면
-1. Hello PostgreSQL 서버 블레이드의 설정에서 머리글을 클릭 하 여 **연결 보안** tooopen hello 연결 보안 블레이드 hello Azure PostgreSQL 데이터베이스에 대 한 합니다.
+## <a name="create-a-server-level-firewall-rule-in-the-azure-portal"></a>Azure Portal에서 서버 수준 방화벽 규칙 만들기
+1. PostgreSQL 서버 블레이드의 설정 머리글에서 **연결 보안**을 클릭하여 PostgreSQL용 Azure Database에 대한 연결 보안 블레이드를 엽니다.
 
   ![Azure Portal - 보안 연결 클릭](./media/howto-manage-firewall-using-portal/1-connection-security.png)
 
-2. 클릭 **내 IP 추가** hello 도구 모음입니다. 이 규칙을 자동으로 만듭니다 hello Azure 시스템에서 인식 한 대로 컴퓨터의 hello IP 주소를 사용 합니다.
+2. 도구 모음에서 **내 IP 추가**를 클릭합니다. 그러면 Azure 시스템에서 감지하여 사용자 컴퓨터의 IP 주소를 사용하는 규칙이 자동으로 만들어집니다.
 
   ![Azure Portal - 내 IP 추가 클릭](./media/howto-manage-firewall-using-portal/2-add-my-ip.png)
 
-3. Hello 구성 저장 하기 전에 IP 주소를 확인 합니다. 경우에 따라 Azure 포털을 살펴 hello IP 주소가 사용 된 hello IP 주소에서 다릅니다 때 인터넷 및 Azure 서버 hello에 액세스 합니다. 따라서 toochange hello IP 시작 및 끝 IP toomake hello 규칙 함수 예상 대로 할 수 있습니다.
-검색 엔진 또는 다른 온라인 도구 toocheck 사용자의 IP 주소 (예를 들어 Bing 검색 "란 내 IP")를 사용 합니다.
+3. 구성을 저장하기 전에 사용자의 IP 주소를 확인합니다. 상황에 따라 Azure Portal에서 관찰하는 IP 주소는 인터넷 및 Azure 서버에 액세스할 때 사용된 IP 주소와 다릅니다. 따라서, 규칙 함수를 예상대로 만들기 위해 시작 IP 및 끝 IP를 변경해야 할 수도 있습니다.
+검색 엔진 또는 기타 온라인 도구를 사용하여 사용자 고유의 IP 주소를 확인합니다(예를 들어, "내 IP 주소는 무엇입니까" Bing 검색).
 
   ![내 IP 주소는 무엇입니까에 대한 Bing 검색](./media/howto-manage-firewall-using-portal/3-what-is-my-ip.png)
 
-4. 추가 주소 범위를 추가합니다. PostgreSQL 방화벽에 대 한 hello Azure 데이터베이스에 대 한 hello 규칙에서 단일 IP 주소 또는 주소 범위를 지정할 수 있습니다. Toolimit hello 규칙 tooone 단일 IP 주소, 시작 IP 및 끝 IP 주소 hello 필드에 같게 형식 hello 하려면. Hello 방화벽을 열고 hello PostgreSQL 서버 toowhich 유효한 자격 증명을 서로에 toologin tooany 데이터베이스를 관리자와 사용자가 수 있습니다.
+4. 추가 주소 범위를 추가합니다. PostgreSQL용 Azure Database 방화벽에 대한 규칙에서 단일 IP 주소 또는 주소 범위를 지정할 수 있습니다. 하나의 단일 IP 주소에 규칙을 제한하려는 경우 시작 IP 및 끝 IP에 대한 필드에 동일한 주소를 입력합니다. 방화벽을 열면 관리자와 사용자가 유효한 자격 증명이 있는 PostgreSQL 서버의 데이터베이스에 로그인할 수 있습니다.
 
   ![Azure Portal - 방화벽 규칙 ](./media/howto-manage-firewall-using-portal/4-specify-addresses.png)
 
-5. 클릭 **저장** 에 hello 도구 모음 toosave이 서버 수준 방화벽 규칙입니다. Hello toohello 방화벽 규칙 업데이트 성공 했음을 hello 확인 될 때까지 기다립니다.
+5. 도구 모음에서 **저장**을 클릭하여 이 서버 수준 방화벽 규칙을 저장합니다. 방화벽 규칙에 대한 업데이트가 성공적으로 수행되었는지 확인될 때까지 기다립니다.
 
   ![Azure Portal - 저장 클릭](./media/howto-manage-firewall-using-portal/5-save-firewall-rule.png)
 
 
-## <a name="manage-existing-server-level-firewall-rules-through-hello-azure-portal"></a>Hello Azure 포털을 통해 기존 서버 수준 방화벽 규칙 관리
-Hello 단계 toomanage hello 방화벽 규칙을 반복 합니다.
-* tooadd hello 현재 컴퓨터를 너무 hello 단추를 클릭 + **내 IP 추가**합니다. 클릭 **저장** toosave hello 변경 합니다.
-* 규칙 이름, 시작 IP 주소 및 끝 IP 주소에 hello tooadd 추가 IP 주소를 입력 합니다. 클릭 **저장** toosave hello 변경 합니다.
-* 기존 규칙을 toomodify hello 규칙의 hello 필드 중 하나를 클릭 하 고 수정 합니다. 클릭 **저장** toosave hello 변경 합니다.
-* toodelete 기존 규칙을 hello 줄임표 [...]를 클릭 하 고 제거 hello 규칙 삭제를 클릭 합니다. 클릭 **저장** toosave hello 변경 합니다.
+## <a name="manage-existing-server-level-firewall-rules-through-the-azure-portal"></a>Azure 포털을 통해 기존 서버 수준 방화벽 규칙 관리
+방화벽 규칙을 관리하는 단계를 반복합니다.
+* 현재 컴퓨터를 추가하려면 **+ 내 IP 추가** 단추를 클릭합니다. **저장** 을 클릭하여 변경 내용을 저장합니다.
+* 추가 IP 주소를 추가 하려면 규칙 이름, 시작 IP 주소 및 끝 IP 주소를 입력 합니다. **저장** 을 클릭하여 변경 내용을 저장합니다.
+* 기존 규칙을 수정 하려면 규칙의 필드 중 하나를 클릭 후 변경 합니다. **저장** 을 클릭하여 변경 내용을 저장합니다.
+* 기존 규칙을 삭제하려면 줄임표 [...]를 클릭하고 삭제를 클릭하여 규칙을 삭제합니다. **저장**을 클릭하여 변경 내용을 저장합니다.
 
 ## <a name="next-steps"></a>다음 단계
-- 마찬가지로, 스크립팅할 수 있습니다 너무[만들기 및 Azure CLI를 사용 하 여 PostgreSQL 방화벽 규칙에 대 한 Azure 데이터베이스 관리](howto-manage-firewall-using-cli.md)
-- PostgreSQL 서버에 대 한 tooan Azure 데이터베이스 연결에 대 한 도움말을 참조 하십시오. [PostgreSQL에 대 한 Azure 데이터베이스에 대 한 연결 라이브러리](concepts-connection-libraries.md)
+- 마찬가지로 [Azure CLI를 사용한 PostgreSQL용 Azure Database 방화벽 규칙 만들기 및 관리](howto-manage-firewall-using-cli.md)를 읽을 수 있습니다.
+- PostgreSQL용 Azure Database 서버 연결에 대한 도움말은 [PostgreSQL용 Azure Database에 대한 연결 라이브러리](concepts-connection-libraries.md)를 참조하세요.

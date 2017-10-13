@@ -1,6 +1,6 @@
 ---
-title: "Azure 보안 센터에서 유효성 검사 aaaAlerts | Microsoft Docs"
-description: "이 문서에서는 Azure 보안 센터에서 toovalidate hello 보안 경고 하면 있습니다."
+title: "Azure Security Center에서 경고 유효성 검사 | Microsoft Docs"
+description: "이 문서에서는 Azure Security Center에서 보안 경고를 유효성 검사하는 방법을 설명합니다."
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -12,42 +12,45 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/11/2017
+ms.date: 09/07/2017
 ms.author: yurid
-ms.openlocfilehash: 030e9e74303758192eedaf517f1cb0d2e4a7852e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d7aa8544f50b42bacfa1e1f16fdce468d8fc81ef
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="alerts-validation-in-azure-security-center"></a>Azure Security Center에서 경고 유효성 검사
-이 문서에서 이해할 수 있도록 도와 어떻게 tooverify Azure 보안 센터 경고에 대 한 시스템이 올바로 구성 합니다.
+이 문서에서는 시스템이 Azure Security Center 경고에 대해 제대로 구성되었는지 확인하는 방법을 알아봅니다.
 
 ## <a name="what-are-security-alerts"></a>보안 경고란?
-보안 센터 자동으로 수집, 분석 및 Azure 리소스, hello 네트워크 및 방화벽 및 endpoint protection 솔루션, toodetect 경고 있습니다 toothreats 같은 연결 된 파트너 솔루션에서 로그 데이터를 통합 합니다. 읽기 [Azure 보안 센터에서 경고를 관리 하 고 응답 toosecurity](https://docs.microsoft.com/azure/security-center/security-center-managing-and-responding-alerts) 보안 경고 보기 및 읽기에 대 한 자세한 내용은 [Azure 보안 센터에서 보안 경고 이해](https://docs.microsoft.com/azure/security-center/security-center-alerts-type) toolearn 자세한 에 대 한 hello 다른 유형의 경고 합니다.
+Security Center는 방화벽 및 끝점 보호 솔루션과 같은 Azure 리소스, 네트워크 및 연결된 파트너 솔루션의 로그 데이터를 자동으로 수집하고 분석하며 통합하여 위협을 감지하고 사용자에게 경고해 줍니다. 보안 경고에 대한 자세한 내용은 [Azure 보안 센터에서 보안 경고 관리 및 대응](https://docs.microsoft.com/azure/security-center/security-center-managing-and-responding-alerts)을 읽어보고 [Azure Security Center에서 보안 경고 관리 및 대응](https://docs.microsoft.com/azure/security-center/security-center-alerts-type)에서 다양한 경고 유형에 대해 알아봅니다.
 
 ## <a name="alert-validation"></a>경고 유효성 검사
-보안 센터 에이전트가 컴퓨터에 설치 된 후 다음과 같이 hello 아래 hello 컴퓨터에서 toobe 공격 hello 리소스 hello 경고의 원하는 위치.
+Security Center 에이전트가 컴퓨터에 설치된 경우 경고의 공격받은 리소스에 해당하는 컴퓨터에서 아래 단계를 따릅니다.
 
-1. 실행 파일 (예제 calc.exe) toohello 컴퓨터의 데스크톱 또는 사용자의 편의의 다른 디렉터리를 복사 합니다.
-2. 이 파일을 너무 이름을**ASC_AlertTest_662jfi039N.exe**합니다.
-3. Hello 명령 프롬프트를 열고 인수 (방금 가짜 인수 이름)으로이 파일을 같이 실행: *ASC_AlertTest_662jfi039N.exe foo*
-4. 5 too10 분 기다린 보안 센터 경고를 엽니다. 있습니다 하나는 경고와 비슷한 toofollowing를 찾아야 합니다.
+1. 실행 파일(예: calc.exe)을 컴퓨터의 바탕 화면 또는 사용자가 편리한 다른 디렉터리에 복사합니다.
+2. 이 파일을 이름 **ASC_AlertTest_662jfi039N.exe**로 변경합니다.
+3. 명령 프롬프트를 열고 이 파일을 인수(가짜 인수 이름)와 함께 실행합니다(예: *ASC_AlertTest_662jfi039N.exe -foo*).
+4. 5~10분 정도 기다렸다가 Security Center 경고를 엽니다. 다음과 유사한 경고를 확인하게 됩니다.
 
-    ![경고 유효성 검사](./media/security-center-alert-validation/security-center-alert-validation-fig1.png)
+    ![경고 유효성 검사](./media/security-center-alert-validation/security-center-alert-validation-fig2.png)
 
-이 경고를 검토할 때는 hello 필드 인수 감사가 설정 되어 완전 나타나는지 확인 합니다. False 나타나면 tooenable 명령줄 인수 감사 해야 합니다. 다음 명령줄 hello를 사용 하 여이 옵션을 설정할 수 있습니다.
+이 경고를 검토할 때는 [Arguments Auditing Enabled(인수 감사 사용됨)] 필드가 true로 나타나는지 확인합니다. False로 표시되는 경우 명령줄 인수 감사를 사용하도록 설정해야 합니다. 다음 명령줄을 사용하여 이 옵션을 설정할 수 있습니다.
 
 *reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system\Audit" /f /v "ProcessCreationIncludeCmdLine_Enabled"*
 
 
-## <a name="see-also"></a>참고 항목
-이 문서는 toohello 경고 유효성 검사 프로세스를 도입 했습니다. 이 유효성 검사에 익숙하다면 했으므로 hello 문서 다음을 시도해 보십시오.
+> [!NOTE]
+> 이 기능의 데모를 확인하려면 [Azure Security Center에서 경고 유효성 검사](https://channel9.msdn.com/Blogs/Azure-Security-Videos/Alert-Validation-in-Azure-Security-Center) 비디오를 보세요. 
 
-* [Azure 보안 센터에서 경고를 관리 하 고 응답 toosecurity](https://docs.microsoft.com/azure/security-center/security-center-managing-and-responding-alerts)합니다. 자세한 내용은 방법 toomanage 경고 및 보안 센터에서 toosecurity 인시던트 응답 합니다.
-* [Azure Security Center에서 보안 상태 모니터링](security-center-monitoring.md). Toomonitor Azure 리소스의 상태를 hello 하는 방법에 대해 알아봅니다.
-* [Azure Security Center에서 보안 경고 이해](https://docs.microsoft.com/azure/security-center/security-center-alerts-type). Hello 다양 한 유형의 보안 경고에 알아봅니다.
-* [Azure Security Center 문제 해결 가이드](https://docs.microsoft.com/azure/security-center/security-center-troubleshooting-guide). 보안 센터에서 tootroubleshoot 공통 발급 하는 방법에 대해 알아봅니다. 
-* [Azure Security Center FAQ](security-center-faq.md)로 설정합니다. Hello 서비스를 사용 하는 방법에 대 한 질문과 대답을 찾습니다.
+## <a name="see-also"></a>참고 항목
+이 문서에서는 경고 유효성 검사 프로세스에 대해 소개했습니다. 이제 유효성 검사에 익숙해졌으므로 다음 문서를 시도해 보세요.
+
+* [Azure Security Center에서 보안 경고 관리 및 대응](https://docs.microsoft.com/azure/security-center/security-center-managing-and-responding-alerts) Security Center에서 경고를 관리하고 보안 인시던트에 대응하는 방법을 알아봅니다.
+* [Azure Security Center에서 보안 상태 모니터링](security-center-monitoring.md). Azure 리소스의 상태를 모니터링하는 방법을 알아봅니다.
+* [Azure Security Center에서 보안 경고 이해](https://docs.microsoft.com/azure/security-center/security-center-alerts-type). 다양한 유형의 보안 경고에 대해 알아봅니다.
+* [Azure Security Center 문제 해결 가이드](https://docs.microsoft.com/azure/security-center/security-center-troubleshooting-guide). Security Center의 일반적인 문제를 해결하는 방법에 대해 알아봅니다. 
+* [Azure Security Center FAQ](security-center-faq.md)로 설정합니다. 서비스 사용에 관한 질문과 대답을 찾습니다.
 * [Azure 보안 블로그](http://blogs.msdn.com/b/azuresecurity/). Azure 보안 및 규정 준수에 관한 블로그 게시물을 찾습니다.
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Windows 클라이언트 이미지의 aaaUse | Microsoft Docs"
-description: "Visual Studio 구독 toouse 개발/테스트 시나리오에 대 한 toodeploy Windows 7, Windows 8 또는 Azure에서 Windows 10을 활용 방법"
+title: "Azure에서 Windows 클라이언트 이미지 사용 | Microsoft Docs"
+description: "Visual Studio 구독 혜택을 사용하여 개발/테스트 시나리오용으로 Azure에서 Windows 7, Windows 8 또는 Windows 10을 배포하는 방법"
 services: virtual-machines-windows
 documentationcenter: 
 author: iainfoulds
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 07/05/2017
 ms.author: iainfou
-ms.openlocfilehash: 4ac7c3d9872673030f4ea0f0ab38625dd9d9c1b5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 207a6562965b4913416bd4dbf3eb132b42938dc9
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="use-windows-client-in-azure-for-devtest-scenarios"></a>개발/테스트 시나리오용으로 Azure에서 Windows 클라이언트 사용
-적절한 Visual Studio(이전의 MSDN) 구독이 있으면 Azure에서 개발/테스트 시나리오에 Windows 7, Windows 8 또는 Windows 10을 사용할 수 있습니다. 이 문서에서는 Azure 갤러리 이미지 Azure를 사용 하 여 hello의 Windows 클라이언트를 실행 하기 위한 hello 자격 요건을 설명 합니다.
+적절한 Visual Studio(이전의 MSDN) 구독이 있으면 Azure에서 개발/테스트 시나리오에 Windows 7, Windows 8 또는 Windows 10을 사용할 수 있습니다. 이 문서에서는 Azure에서 Windows 클라이언트를 실행하고 Azure 갤러리 이미지를 사용하기 위한 적격성 요구 사항에 대해 대략적으로 설명합니다.
 
 ## <a name="subscription-eligibility"></a>구독 적격성
-활성 Visual Studio 구독자, 즉 Visual Studio 구독 라이선스를 받은 사용자는 개발 및 테스트용으로 Windows 클라이언트를 사용할 수 있습니다. Windows 클라이언트는 모든 유형의 Azure 구독에서 실행 중인 Azure 가상 컴퓨터와 사용자의 자체 하드웨어에서 사용 가능합니다. Windows 클라이언트에 Azure 일반 프로덕션 용도로 사용 되거나 사용 Visual Studio는 활성 구독자가 아닌 사용자가 배포 된 tooor 아닐 수 있습니다.
+활성 Visual Studio 구독자, 즉 Visual Studio 구독 라이선스를 받은 사용자는 개발 및 테스트용으로 Windows 클라이언트를 사용할 수 있습니다. Windows 클라이언트는 모든 유형의 Azure 구독에서 실행 중인 Azure 가상 컴퓨터와 사용자의 자체 하드웨어에서 사용 가능합니다. Windows 클라이언트는 일반적인 프로덕션용으로 배포하거나 Azure에서 사용할 수 없으며, 활성 Visual Studio 구독자가 아닌 사용자는 사용할 수 없습니다.
 
-사용자 편의 위해 기울였습니다 특정 Windows 10 이미지를 사용할 수 있는 내 hello Azure 갤러리에서 [적격 개발/테스트 제공](#eligible-offers)합니다. 제공 서비스의 모든 형식 내에서 visual Studio 구독자 수도 [적절 하 게 준비 하 고 만들](prepare-for-upload-vhd-image.md) 64 비트 Windows 7, Windows 8 또는 Windows 10 이미지를 차례로 [tooAzure 업로드](upload-generalized-managed.md)합니다. hello 사용 제한 toodev/테스트 활성 Visual Studio 구독자가 유지 됩니다.
+편의상 Azure 갤러리의 [적격 개발/테스트 제품](#eligible-offers)내에서 특정 Windows 10 이미지를 제공하고 있습니다. Visual Studio 구독자(사용 중인 제품 유형은 관계없음)는 64비트 Windows 7, Windows 8 또는 Windows 10 이미지를 [적절하게 준비하고 작성](prepare-for-upload-vhd-image.md)한 다음 [Azure에 업로드](upload-generalized-managed.md)할 수도 있습니다. 이렇게 업로드하는 이미지 역시 활성 Visual Studio 구독자가 개발/테스트용으로만 사용할 수 있습니다.
 
 ## <a name="eligible-offers"></a>적격 제품
-테이블 세부 정보 hello 다음 hello Id hello Azure 갤러리를 통해 적격 toodeploy Windows 10에 제공 합니다. Windows 10 hello 이미지는 다음 제안을 표시 toohello만입니다. Visual Studio 구독자가 필요한 toorun Windows 클라이언트에서 서로 다른 제안 유형 해야 너무[적절 하 게 준비 하 고 만들](prepare-for-upload-vhd-image.md) 64 비트 Windows 7, Windows 8 또는 Windows 10 이미지 및 [tooAzure업로드](upload-generalized-managed.md).
+아래 테이블에는 Azure 갤러리를 통해 Windows 10을 배포할 수 있는 제품 ID가 자세히 나와 있습니다. Windows 10 이미지는 다음 제품에 대해서만 표시됩니다. 다른 제품 유형에서 Windows 클라이언트를 실행해야 하는 Visual Studio 구독자는 64비트 Windows 7, Windows 8 또는 Windows 10 이미지를 [적절하게 준비하고 작성](prepare-for-upload-vhd-image.md)한 다음 [Azure에 업로드](upload-generalized-managed.md)해야 합니다.
 
 | 제품 이름 | 제품 번호 | 사용 가능한 클라이언트 이미지 |
 |:--- |:---:|:---:|
@@ -43,17 +43,17 @@ ms.lasthandoff: 10/06/2017
 | [Enterprise 개발/테스트](https://azure.microsoft.com/ofers/ms-azr-0148p/) |0148P |Windows 10 |
 
 ## <a name="check-your-azure-subscription"></a>Azure 구독 확인
-제안 ID을 알 수 없는 경우에 hello Azure 포털에서 이러한 두 가지 방법 중 하나를 통해 얻을 수 있습니다.  
+제품 ID를 모르는 경우 다음 두 방법 중 하나로 Azure Portal을 통해 얻을 수 있습니다.  
 
-- 구독 블레이드에서 hello:
+- ‘구독’ 블레이드에서
 
-  ![Hello Azure 포털에서에서 ID 세부 정보를 제공 합니다.](./media/client-images/offer-id-azure-portal.png) 
+  ![Azure 포털의 제품 ID 세부 정보](./media/client-images/offer-id-azure-portal.png) 
 
-- 또는 **청구**를 클릭하고 구독 ID를 클릭합니다. hello 제안 ID hello 결제 블레이드에 나타납니다.
+- 또는 **청구**를 클릭하고 구독 ID를 클릭합니다. 제품 ID가 청구 블레이드에 표시됩니다.
 
-Hello에서 hello 제안 ID를 볼 수도 있습니다 ['구독' 탭](http://account.windowsazure.com/Subscriptions) hello Azure 계정 포털:
+Azure 계정 포털의 ['구독' 탭](http://account.windowsazure.com/Subscriptions) 에서도 제품 ID를 확인할 수 있습니다.
 
-![Hello Azure 계정 포털에서 ID 세부 정보를 제공 합니다.](./media/client-images/offer-id-azure-account-portal.png) 
+![Azure 계정 포털의 제품 ID 세부 정보](./media/client-images/offer-id-azure-account-portal.png) 
 
 ## <a name="next-steps"></a>다음 단계
 이제 [PowerShell](quick-create-powershell.md), [Resource Manager 템플릿](ps-template.md) 또는 [Visual Studio](../../vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)를 사용하여 VM을 배포할 수 있습니다.

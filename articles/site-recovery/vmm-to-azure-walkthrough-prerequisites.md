@@ -1,6 +1,6 @@
 ---
-title: "Azure Site Recovery를 사용 하 여 (System Center VMM)을 사용한 Hyper-v tooAzure 복제에 대 한 aaaReview hello 필수 구성 요소 | Microsoft Docs"
-description: "복제, 장애 조치 및 Azure Site Recovery와 VMM 클라우드에 tooAzure의 온-프레미스 Hyper-v Vm의 복구를 설정 하기 위한 사전 요구 사항을 hello 설명"
+title: "Azure Site Recovery를 사용하여 Azure로 Hyper-V(System Center VMM 포함) 복제를 위한 필수 구성 요소 검토 | Microsoft Docs"
+description: "Azure Site Recovery를 사용하여 Azure에 VMM 클라우드의 온-프레미스 Hyper-V VM의 복제, 장애 조치(failover) 및 복구를 설정하기 위한 필수 구성 요소를 설명합니다."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/24/2017
 ms.author: raynew
-ms.openlocfilehash: de13a2d80b1a9a5d968a180d559f661ab11e70c7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 47c178c66ec98fe5d333edd725b64465026e73ed
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="step-2-review-hello-prerequisites-for-hyper-v-with-vmm-tooazure-replication"></a>2 단계: Hyper-v (VMM)과 tooAzure 복제에 대 한 hello 필수 구성 요소를 검토 합니다.
+# <a name="step-2-review-the-prerequisites-for-hyper-v-with-vmm-to-azure-replication"></a>2단계: Azure에 Hyper-V(VMM 포함) 복제를 위한 필수 구성 요소 검토
 
-검토 하 고 나 서 hello [시나리오 아키텍처](vmm-to-azure-walkthrough-architecture.md)를 읽고이 문서 toomake hello 배포 필수 구성 요소를 이해 해야 합니다. 
+[시나리오 아키텍처](vmm-to-azure-walkthrough-architecture.md)를 검토한 후에는 이 문서를 읽고 배포 필수 구성 요소를 이해해야 합니다. 
 
 ## <a name="prerequisites-and-limitations"></a>필수 구성 요소 및 제한 사항
 
 **요구 사항** | **세부 정보**
 --- | ---
 **Azure 계정** | [Microsoft Azure 계정](http://azure.microsoft.com/)이 있어야 합니다.
-**Azure 저장소** | Azure 저장소 계정 복제 toostore 데이터가 있어야합니다.<br/><br/> hello 저장소 계정은 hello에 있어야 hello와 같은 지역의 Azure 복구 서비스 자격 증명 모음입니다.<br/><br/>[지역 중복 저장소](../storage/common/storage-redundancy.md#geo-redundant-storage) 또는 로컬 중복 저장소를 사용할 수 있습니다. 지역 중복 저장소를 사용하는 것이 좋습니다. 지리적 중복 저장소와 데이터는 복원 력 있는 지역 가동 중단 발생 하는 경우 또는 기본 지역의 hello를 복구할 수 없는 경우입니다.<br/><br/> 표준 Azure Storage 계정을 사용하거나 Azure [Premium Storage](../storage/common/storage-premium-storage.md)를 사용할 수 있습니다. Premium Storage는 I/O를 많이 사용하는 워크로드를 호스트할 수 있으며 일관된 I/O 고성능과 짧은 대기 시간이 요구되는 VM에 일반적으로 사용됩니다. 복제된 데이터에 대해 프리미엄 저장소를 사용하는 경우 표준 저장소 계정도 필요합니다. 표준 저장소 계정이 가져갈 변화 들이 tooon 온-프레미스 데이터를 캡처하는 복제 로그를 저장 합니다.
-**Azure 네트워크** | 필요한는 [Azure 네트워크](../virtual-network/virtual-network-get-started-vnet-subnet.md), 장애 조치 후 toowhich Azure Vm에 연결 합니다. hello Azure 네트워크에에서 있어야 hello hello와 동일한 지역 복구 서비스 자격 증명 모음입니다.
-**온-프레미스 VMM 서버** | System Center 2012 R2 이상에서 실행되는 하나 이상의 VMM 서버가 필요합니다.<br/><br/> 각 VMM 서버에 하나 이상의 사설 클라우드가 포함되어 있어야 합니다. 각 클라우드에 하나 이상의 호스트 그룹이 필요합니다.<br/><br/> hello VMM 서버는 인터넷 액세스가 필요합니다.
-**온-프레미스 Hyper-V** | Hyper-v 호스트 서버가 이상 실행 해야 hello Hyper-v 역할이 활성화 되어, 또는 Microsoft Hyper-v Server 2012 r 2와 Windows Server 2012 r 2입니다. hello 최신 업데이트를 설치 해야 합니다.<br/><br/> hello Hyper-v 호스트 (VMM 클라우드에 있는) VMM 호스트 그룹에 있어야 합니다.<br/><br/> 호스트는 tooreplicated 지정 하는 Vm을 하나 이상 있어야 합니다.<br/><br/> Hyper-v 호스트에 연결 된 toohello 여야 합니다. 복제 tooAzure, 직접 또는 프록시와 인터넷 합니다. Hyper-v 서버에는 문서에서 설명 하는 hello 수정 있어야 합니다. [2961977](https://support.microsoft.com/kb/2961977)합니다.
-**온-프레미스 Hyper-V VM** | Vm tooreplicate를 실행 해야 하는 것이 원하는 [지원 되는 운영 체제](site-recovery-support-matrix-to-azure.md#support-for-replicated-machine-os-versions), 준수 및 [Azure 필수 구성 요소](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)합니다. 복제를 설정한 후에 hello VM 이름을 수정할 수 있습니다. 
+**Azure 저장소** | 복제된 데이터를 저장하려면 Azure 저장소 계정이 필요합니다.<br/><br/> 저장소 계정은 Azure Recovery Services 자격 증명 모음과 동일한 지역에 있어야 합니다.<br/><br/>[지역 중복 저장소](../storage/common/storage-redundancy.md#geo-redundant-storage) 또는 로컬 중복 저장소를 사용할 수 있습니다. 지역 중복 저장소를 사용하는 것이 좋습니다. 지역 중복 저장소를 통해 지역 정전이 발생하거나 주 지역을 복구할 수 없는 경우 데이터를 복원할 수 있습니다.<br/><br/> 표준 Azure Storage 계정을 사용하거나 Azure [Premium Storage](../storage/common/storage-premium-storage.md)를 사용할 수 있습니다. Premium Storage는 I/O를 많이 사용하는 워크로드를 호스트할 수 있으며 일관된 I/O 고성능과 짧은 대기 시간이 요구되는 VM에 일반적으로 사용됩니다. 복제된 데이터에 대해 Premium Storage를 사용하는 경우 표준 저장소 계정도 필요합니다. 표준 저장소 계정은 온-프레미스 데이터에 대한 지속적인 변화를 캡처하는 복제 로그를 저장합니다.
+**Azure 네트워크** | 장애 조치(Failover) 후 Azure VM이 연결될 수 있도록 [Azure 네트워크](../virtual-network/virtual-network-get-started-vnet-subnet.md)가 필요합니다. Azure 네트워크는 Recovery Services 자격 증명 모음과 동일한 지역에 있어야 합니다.
+**온-프레미스 VMM 서버** | System Center 2012 R2 이상에서 실행되는 하나 이상의 VMM 서버가 필요합니다.<br/><br/> 각 VMM 서버에 하나 이상의 사설 클라우드가 포함되어 있어야 합니다. 각 클라우드에 하나 이상의 호스트 그룹이 필요합니다.<br/><br/> VMM 서버는 인터넷 액세스가 필요합니다.
+**온-프레미스 Hyper-V** | Hyper-V 호스트 서버는 Windows Server 2012 R2 이상(Hyper-V 역할 수행) 또는 Microsoft Hyper-V Server 2012 R2를 실행해야 합니다. 최신 업데이트를 설치해야 합니다.<br/><br/> Hyper-V 호스트는 VMM 클라우드의 VMM 호스트 그룹에 있어야 합니다.<br/><br/> 호스트에는 복제하려는 VM이 하나 이상 있어야 합니다.<br/><br/> Hyper-V 호스트는 직접 또는 프록시를 통해 Azure에 복제를 위한 인터넷에 연결되어야 합니다. [2961977](https://support.microsoft.com/kb/2961977) 문서에서 설명한 수정 프로그램이 Hyper-V 서버에 있어야 합니다.
+**온-프레미스 Hyper-V VM** | 복제하려는 VM은 [지원되는 운영 체제](site-recovery-support-matrix-to-azure.md#support-for-replicated-machine-os-versions)를 실행하고 [Azure 필수 조건](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)을 준수해야 합니다. 복제가 사용되도록 설정한 후에 VM 이름을 수정할 수 있습니다. 
 
 
 
 
 ## <a name="next-steps"></a>다음 단계
 
-너무 이동[3 단계: 용량 계획](vmm-to-azure-walkthrough-capacity.md)
+[3단계: 용량 계획](vmm-to-azure-walkthrough-capacity.md)으로 이동합니다.

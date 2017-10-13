@@ -1,6 +1,6 @@
 ---
 title: "자습서: ScaleX Enterprise와 Azure Active Directory 통합 | Microsoft Docs"
-description: "Tooconfigure 단일 로그온 방법에 대해 알아봅니다 Azure Active Directory와 ScaleX 엔터프라이즈 사이입니다."
+description: "Azure Active Directory와 ScaleX Enterprise 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,229 +13,229 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/20/2017
 ms.author: jeedes
-ms.openlocfilehash: e398b98d9e0957b5f92c82359651c345d22c3a54
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0ebed0c2605862426384c0e219e52c9d626b6246
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-scalex-enterprise"></a>자습서: ScaleX Enterprise와 Azure Active Directory 통합
 
-이 자습서에 설명 어떻게 toointegrate ScaleX Enterprise와 Azure Active Directory (Azure AD).
+이 자습서에서는 Azure AD(Azure Active Directory)와 ScaleX Enterprise를 통합하는 방법에 대해 알아봅니다.
 
-Azure AD와 ScaleX 엔터프라이즈 통합 이점을 다음 hello 제공:
+ScaleX Enterprise를 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.
 
-- 액세스 tooScaleX Enterprise을 지닌 Azure AD에서 제어할 수 있습니다.
-- 에 사용자가 tooautomatically get 로그온 tooScaleX (Single Sign-on)는 엔터프라이즈 자신의 Azure AD 계정으로 사용 하도록 설정할 수 있습니다.
-- 하나의 중앙 위치-hello Azure 포털에서에서 사용자 계정을 관리할 수 있습니다.
+- Azure AD에서 사용자의 ScaleX Enterprise에 대한 액세스 권한을 제어할 수 있습니다.
+- 사용자의 Azure AD 계정으로 ScaleX Enterprise에 자동으로 로그온(Single Sign-on)되도록 설정할 수 있습니다.
+- 단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.
 
-Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 참조 tooknow 하려는 경우. [Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?](active-directory-appssoaccess-whatis.md)를 참조하세요.
+Azure AD와의 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?](active-directory-appssoaccess-whatis.md)를 참조하세요.
 
 ## <a name="prerequisites"></a>필수 조건
 
-다음 항목 hello가 필요 tooconfigure ScaleX Enterprise와 Azure AD 통합 합니다.
+ScaleX Enterprise와 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.
 
 - Azure AD 구독
 - ScaleX Enterprise Single Sign-On이 설정된 구독
 
 > [!NOTE]
-> 이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.
+> 이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.
 
-이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.
+이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.
 
 - 꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마십시오.
 - Azure AD 평가판 환경이 없으면 [여기](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.
 
 ## <a name="scenario-description"></a>시나리오 설명
-이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.
+이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.
 
-1. ScaleX 엔터프라이즈 hello 갤러리 추가
+1. 갤러리에서 ScaleX Enterprise 추가
 2. Azure AD Single Sign-on 구성 및 테스트
 
-## <a name="adding-scalex-enterprise-from-hello-gallery"></a>ScaleX 엔터프라이즈 hello 갤러리 추가
-tooconfigure hello와의 통합 ScaleX 엔터프라이즈 tooAzure AD에서에서 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 ScaleX 엔터프라이즈 tooadd가 필요합니다.
+## <a name="adding-scalex-enterprise-from-the-gallery"></a>갤러리에서 ScaleX Enterprise 추가
+ScaleX Enterprise가 Azure AD에 통합되도록 구성하려면 갤러리에서 ScaleX Enterprise를 관리되는 SaaS 앱 목록에 추가해야 합니다.
 
-**hello 갤러리에서 ScaleX 엔터프라이즈 tooadd hello 다음 단계를 수행 합니다.**
+**갤러리에서 ScaleX Enterprise를 추가하려면 다음 단계를 수행합니다.**
 
-1. Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다. 
+1. **[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다. 
 
     ![Active Directory][1]
 
-2. 너무 이동**엔터프라이즈 응용 프로그램**합니다. 이동 하 여 너무**모든 응용 프로그램**합니다.
+2. **엔터프라이즈 응용 프로그램**으로 이동합니다. 그런 후 **모든 응용 프로그램**으로 이동합니다.
 
     ![응용 프로그램][2]
     
-3. 클릭 **추가** hello 대화의 hello 위쪽에 단추입니다.
+3. 대화 상자 위쪽에 있는 **추가** 단추를 클릭합니다.
 
     ![응용 프로그램][3]
 
-4. Hello 검색 상자에 입력 **ScaleX 엔터프라이즈**합니다.
+4. 검색 상자에 **ScaleX Enterprise**를 입력합니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_search.png)
 
-5. Hello 결과 패널에서 선택 **ScaleX 엔터프라이즈**, 클릭 하 고 **추가** tooadd hello 응용 프로그램 단추입니다.
+5. 결과 창에서 **ScaleX Enterprise**를 선택하고 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Azure AD Single Sign-on 구성 및 테스트
 이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 ScaleX Enterprise에서 Azure AD Single Sign-On을 구성하고 테스트합니다.
 
-Single sign on toowork에 대 한 Azure AD는 tooknow ScaleX 기업에서 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다. 즉, Azure AD 사용자 및 ScaleX 기업의 hello 관련된 사용자 간 링크 관계를 설정 하는 toobe가 필요 합니다.
+Single Sign-On이 작동하려면 Azure AD에서 Azure AD 사용자에 해당하는 ScaleX Enterprise 사용자가 누구인지 알고 있어야 합니다. 즉, Azure AD 사용자와 ScaleX Enterprise의 관련 사용자 간에 연결 관계가 설정되어야 합니다.
 
-Hello hello 값을 할당 하 여이 링크 관계가 설정 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** ScaleX 기업에서 합니다.
+이 연결 관계는 Azure AD의 **사용자 이름** 값을 ScaleX Enterprise의 **Username** 값으로 할당하여 설정합니다.
 
-tooconfigure 및 ScaleX Enterprise를 사용 하 여 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.
+ScaleX Enterprise에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.
 
-1. **[Azure AD Single Sign-on 구성](#configuring-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.
-2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.
-3. **[ScaleX Enterprise 테스트 사용자 만들기](#creating-a-scalex-enterprise-test-user)**  -toohave 사용자의 연결 된 Azure AD toohello 표현인 ScaleX enterprise Britta Simon의 해당 하는 도구입니다.
-4. **[Azure AD hello 테스트 사용자를 할당](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.
-5. **[Single Sign-on 테스트](#testing-single-sign-on)**  -tooverify 구성 works를 hello 여부.
+1. **[Azure AD Single Sign-On 구성](#configuring-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.
+2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.
+3. **[ScaleX Enterprise 테스트 사용자 만들기](#creating-a-scalex-enterprise-test-user)** - Britta Simon의 Azure AD 표현과 연결되는 대응 사용자를 ScaleX Enterprise에 만듭니다.
+4. **[Azure AD 테스트 사용자 할당](#assigning-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - 구성이 작동하는지 확인합니다.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성
 
-이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 ScaleX 엔터프라이즈 응용 프로그램에서 single sign on 구성 합니다.
+이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 ScaleX Enterprise 응용 프로그램에서 Single Sign-On을 구성합니다.
 
-**Azure AD tooconfigure single sign on ScaleX 엔터프라이즈와 hello 다음 단계를 수행 합니다.**
+**ScaleX Enterprise에서 Azure AD Single Sign-on을 구성하려면 다음 단계를 수행합니다.**
 
-1. Hello hello에 Azure 포털에서에서 **ScaleX 엔터프라이즈** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.
+1. Azure Portal의 **ScaleX Enterprise** 응용 프로그램 통합 페이지에서 **Single Sign-On**을 클릭합니다.
 
     ![Single Sign-on 구성][4]
 
-2. Hello에 **Single sign on** 대화 상자에서으로 **모드** 선택 **SAML 기반 로그온** tooenable single sign on입니다.
+2. **Single Sign-On** 대화 상자에서 **모드**로 **SAML 기반 로그인**을 선택하여 Single Sign-On을 사용하도록 설정합니다.
  
     ![Single Sign-on 구성](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_samlbase.png)
 
-3. Hello에 **ScaleX 엔터프라이즈 도메인 및 Url** 섹션를 hello tooconfigure hello 응용 프로그램에 필요한 경우 다음 단계를 수행 **IDP** 시작 모드:
+3. **ScaleX Enterprise 도메인 및 URL** 섹션에서 **IDP** 시작 모드로 응용 프로그램을 구성하려는 경우 다음 단계를 수행합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_url1.png)
 
-    a. Hello에 **식별자** hello 패턴을 사용 하 여 형식 hello 값 텍스트 상자:`https://platform.rescale.com/saml2/<company id>/`
+    a. **식별자** 텍스트 상자에 `https://platform.rescale.com/saml2/<company id>/` 패턴으로 값을 입력합니다.
 
-    b. Hello에 **회신 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://platform.rescale.com/saml2/<company id>/acs/`
+    b. **회신 URL** 텍스트 상자에 다음 패턴으로 URL을 입력합니다.`https://platform.rescale.com/saml2/<company id>/acs/`
 
-4. 확인 **고급 URL 설정 표시**tooconfigure hello 응용 프로그램에 필요한 경우, **SP** 시작 모드:
+4. **SP** 시작 모드에서 응용 프로그램을 구성하려면 **고급 URL 설정 표시**를 선택하세요.
 
     ![Single Sign-on 구성](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_url2.png)
 
-    Hello에 **로그온 URL** hello 패턴을 사용 하 여 형식 hello 값 텍스트 상자:`https://platform.rescale.com/saml2/<company id>/sso/`
+    **로그온 URL** 텍스트 상자에 다음 패턴으로 값을 입력합니다. `https://platform.rescale.com/saml2/<company id>/sso/` 
      
     > [!NOTE] 
-    > 이들은 hello 실제 값입니다. 실제 식별자, 회신 URL 또는 로그온 URL hello로 이러한 값을 업데이트 합니다. 연락처 [ScaleX 엔터프라이즈 클라이언트 지원 팀](http://info.rescale.com/contact_sales) tooget 이러한 값입니다. 
+    > 이러한 값은 실제 값이 아닙니다. 실제 식별자, 회신 URL 또는 로그온 URL을 사용하여 값을 업데이트합니다. 이러한 값을 얻으려면 [ScaleX Enterprise 클라이언트 지원 팀](http://info.rescale.com/contact_sales)에 문의하세요. 
 
-5. ScaleX 응용 프로그램의 구성을 수행 해야 하면 toomodify 사용자 지정 특성 매핑을 tooyour SAML 토큰 특성을 특정 형식에서 hello SAML 어설션이 필요 합니다. 클릭 **보기 및 다른 모든 사용자 특성 편집** 확인란 tooopen hello 사용자 지정 특성을 설정 합니다.
+5. ScaleX 응용 프로그램에는 특정 형식의 SAML 어설션이 필요하기 때문에 SAML 토큰 특성 구성에 사용자 지정 특성 매핑을 수정해야 합니다. 사용자 지정 특성 설정을 열려면 **기타 모든 사용자 특성 보기 및 편집** 확인란을 클릭합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-scalexenterprise-tutorial/scalex_attributes.png)
     
-    a. Hello 특성을 마우스 오른쪽 단추로 클릭 **이름** 고 삭제를 클릭 합니다.
+    a. **name** 특성을 마우스 오른쪽 단추로 클릭하고 삭제를 클릭합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-scalexenterprise-tutorial/delete_attribute_name.png)
 
-    b. 클릭 **emailaddress** 특성 tooopen hello 특성 편집 창. 해당 값에서 변경 **user.mail** 너무**user.userprincipalname** 확인을 클릭 합니다.
+    b. **emailaddress** 특성을 클릭하여 특성 편집 창을 엽니다. **user.mail**에서 **user.userprincipalname**으로 값을 변경하고 확인을 클릭합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-scalexenterprise-tutorial/edit_email_attribute.png)   
     
-5. Hello에 **SAML 서명 인증서** 섹션에서 클릭 **인증서 (Base64)** hello 인증서 파일을 컴퓨터에 저장 합니다.
+5. **SAML 서명 인증서** 섹션에서 **인증서(Base64)**를 클릭한 후 컴퓨터에 인증서 파일을 저장합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_certificate.png) 
 
 6. **저장** 단추를 클릭합니다.
 
-    ![Single Sign-on 구성](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_general_400.png)
+    ![Single Sign-On 구성](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_general_400.png)
     
-7. Hello에 **ScaleX 엔터프라이즈 구성** 섹션에서 클릭 **ScaleX 엔터프라이즈 구성** tooopen **sign on 구성** 창. 복사 hello **SAML 엔터티 ID** 및 **SAML Single Sign-on 서비스 URL** hello에서 **빠른 참조 섹션.**
+7. **ScaleX Enterprise 구성** 섹션에서 **ScaleX Enterprise 구성**을 클릭하여 **로그온 구성** 창을 엽니다. **빠른 참조 섹션**에서 **SAML 엔터티 ID** 및 **SAML Single Sign-On 서비스 URL**을 복사합니다.
 
-    ![Single Sign-on 구성](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_configure.png) 
+    ![Single Sign-On 구성](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_configure.png) 
 
-8. tooconfigure single sign on에서 **ScaleX 엔터프라이즈** 쪽, 로그인 toohello ScaleX Enterprise 회사 웹 사이트를 관리자로 합니다.
+8. **ScaleX Enterprise** 쪽에서 Single Sign-On을 구성하려면 관리자 권한으로 ScaleX Enterprise 회사 웹 사이트에 로그인합니다.
 
-9. 오른쪽 위 hello에 hello 메뉴를 클릭 하 고 선택 **Contoso 관리**합니다.
+9. 오른쪽 위에 있는 메뉴를 클릭하고 **Contoso Administration(Contoso 관리)**를 선택합니다.
 
     > [!NOTE] 
     > Contoso는 예일뿐입니다. 이 값은 실제 회사 이름이어야 합니다. 
 
-    ![Single Sign-on 구성](./media/active-directory-saas-scalexenterprise-tutorial/Test_Admin.png) 
+    ![Single Sign-On 구성](./media/active-directory-saas-scalexenterprise-tutorial/Test_Admin.png) 
 
-10. 선택 **통합** hello 최상위 메뉴와 선택에서 **Single Sign On**합니다.
+10. 최상위 메뉴에서 **Integrations(통합)**을 선택하고 **Single Sign-On**을 선택합니다.
 
-    ![Single Sign-on 구성](./media/active-directory-saas-scalexenterprise-tutorial/admin_sso.png) 
+    ![Single Sign-On 구성](./media/active-directory-saas-scalexenterprise-tutorial/admin_sso.png) 
 
-11. 다음과 같이 hello 양식을 작성 하 여:
+11. 다음과 같이 양식을 완료합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-scalexenterprise-tutorial/scalex_admin_save.png) 
     
     a. **“Create any user who can authenticate with SSO.”(SSO로 인증할 수 있는 사용자 만들기)**를 선택합니다.
 
-    b. **서비스 공급자 saml**: hello 값을 붙여 ***urn: oasis: 이름: tc: SAML:2.0:nameid-형식: 영구***
+    b. **Service Provider saml(서비스 공급자 saml)**: ***urn:oasis:names:tc:SAML:2.0:nameid-format:persistent*** 값을 붙여 넣습니다.
 
-    c. **ACS 응답에 전자 메일 필드 Id 공급자의 이름**: hello 값을 붙여 넣습니다.`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`
+    c. **Name of Identity Provider email field in ACS response(ACS 응답의 ID 공급자 전자 메일 필드 이름)**: `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress` 값을 붙여 넣습니다.
 
-    d. **Id 공급자 EntityDescriptor 엔터티 ID:** 붙여넣기 hello **SAML 엔터티 ID** 값 hello Azure 포털에서에서 복사 합니다.
+    d. **Identity Provider EntityDescriptor Entity ID(ID 공급자 EntityDescriptor 엔터티 ID):** Azure Portal에서 복사한 **SAML 엔터티 ID** 값을 붙여 넣습니다.
 
-    e. **Id 공급자 SingleSignOnService URL:** 붙여넣기 hello **SAML Single Sign-on 서비스 URL** hello Azure 포털에서에서 합니다.
+    e. **Identity Provider SingleSignOnService URL(ID 공급자 Single Sign-On URL):** Azure Portal의 **SAML Single Sign-On 서비스 URL**을 붙여 넣습니다.
 
-    f. **Id 공급자 공용 X509 인증서:** 열려 hello X509 인증서가이 상자에서 메모장 및 붙여넣기 hello 내용에 hello Azure에서에서 다운로드 합니다. 없는에서 줄 바꿈 hello hello 인증서 내용의 중간 있는지 확인 하십시오.
+    f. **Identity Provider public X509 certificate(ID 공급자 공용 X509 인증서):** Azure에서 다운로드 한 X509 인증서를 메모장에서 열어서 이 상자에 내용을 붙여 넣습니다. 인증서 내용 중간에 줄 바꿈이 없어야 합니다.
     
-    g. 다음 확인란을 선택 하는 hello 확인: **Enabled, NameID 암호화 및 서명 AuthnRequests 합니다.**
+    g. 다음 확인란을 선택합니다: **Enabled(사용), Encrypt NameID(NameID 암호화) 및 Sign AuthnRequests(AuthnRequests 서명)**
 
-    h. 클릭 **업데이트 SSO 설정** toosave hello 설정 합니다.
+    h. **Update SSO Settings(SSO 설정 업데이트)**를 클릭하여 설정을 저장합니다.
 
 > [!TIP]
-> 이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!  Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션. 자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)
+> 이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.  **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다. 포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Azure AD 테스트 사용자 만들기
-이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.
+이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.
 
 ![Azure AD 사용자 만들기][100]
 
-**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**
+**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**
 
-1. Hello에 **Azure 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Azure Active Directory** 아이콘입니다.
+1. **Azure Portal**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-scalexenterprise-tutorial/create_aaduser_01.png) 
 
-2. 너무 이동**사용자 및 그룹** 클릭 **모든 사용자에 게** 사용자 toodisplay hello 목록입니다.
+2. **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭하여 사용자 목록을 표시합니다.
     
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-scalexenterprise-tutorial/create_aaduser_02.png) 
 
-3. Hello 대화의 hello 위쪽 클릭 **추가** tooopen hello **사용자** 대화 상자.
+3. 대화 상자 위쪽에서 **추가**를 클릭하여 **사용자** 대화 상자를 엽니다.
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-scalexenterprise-tutorial/create_aaduser_03.png) 
 
-4. Hello에 **사용자** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
+4. **사용자** 대화 상자 페이지에서 다음 단계를 수행합니다.
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-scalexenterprise-tutorial/create_aaduser_04.png) 
 
-    a. Hello에 **이름** 텍스트 상자에 **BrittaSimon**합니다.
+    a. **이름** 텍스트 상자에 **BrittaSimon**을 입력합니다.
 
-    b. Hello에 **사용자 이름** 텍스트 형식 hello **전자 메일 주소** BrittaSimon의 합니다.
+    b. **사용자 이름** 텍스트 상자에 BrittaSimon의 **전자 메일 주소**를 입력합니다.
 
-    c. 선택 **암호 표시** hello hello 값 기록 **암호**합니다.
+    c. **암호 표시**를 선택하고 **암호** 값을 적어둡니다.
 
     d. **만들기**를 클릭합니다.
  
 ### <a name="creating-a-scalex-enterprise-test-user"></a>ScaleX Enterprise 테스트 사용자 만들기
 
-tooenable Azure AD 사용자가 toolog tooScaleX Enterprise에서에서 제공 되어야은 tooScaleX 엔터프라이즈에서에서 합니다. Hello ScaleX Enterprise의 경우에서 프로 비전은 자동 작업 하 고 어떤 수동 단계도 필요 합니다. Hello ScaleX 측에서 SSO 자격 증명으로 인증할 수 있는 모든 사용자를 자동으로 프로 비전 됩니다.
+Azure AD 사용자가 ScaleX Enterprise에 로그인할 수 있도록 하려면 ScaleX Enterprise에 프로비전되어야 합니다. ScaleX Enterprise의 경우 프로비전이 자동 작업이며 수동 단계가 필요하지 않습니다. SSO 자격 증명으로 인증할 수 있는 사용자라면 누구든 ScaleX 쪽에서 자동으로 프로비전됩니다.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Azure AD hello 테스트 사용자를 할당합니다.
+### <a name="assigning-the-azure-ad-test-user"></a>Azure AD 테스트 사용자 할당
 
-이 섹션에서는 사용자 액세스 tooScaleX 엔터프라이즈를 부여 하 여 Britta Simon toouse Azure single sign on을 사용 합니다.
+이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 ScaleX Enterprise에 대한 액세스 권한을 부여합니다.
 
 ![사용자 할당][200] 
 
-**tooassign Britta Simon tooScaleX 엔터프라이즈 hello 다음 단계를 수행 합니다.**
+**ScaleX Enterprise에 Britta Simon을 할당하려면 다음 단계를 수행합니다.**
 
-1. Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.
+1. Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.
 
     ![사용자 할당][201] 
 
-2. Hello 응용 프로그램 목록에서 선택 **ScaleX 엔터프라이즈**합니다.
+2. 응용 프로그램 목록에서 **ScaleX Enterprise**를 선택합니다.
 
-    ![Single Sign-on 구성](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_app.png) 
+    ![Single Sign-On 구성](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_app.png) 
 
-3. Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.
+3. 왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.
 
     ![사용자 할당][202] 
 
@@ -243,7 +243,7 @@ tooenable Azure AD 사용자가 toolog tooScaleX Enterprise에서에서 제공 �
 
     ![사용자 할당][203]
 
-5. **사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.
+5. **사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.
 
 6. **사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.
 
@@ -251,14 +251,14 @@ tooenable Azure AD 사용자가 toolog tooScaleX Enterprise에서에서 제공 �
 
 ### <a name="testing-single-sign-on"></a>Single Sign-On 테스트
 
-이 섹션에서는 Azure AD single sign on 구성 hello 액세스 패널을 사용 하 여 테스트할 수 있습니다.
+이 섹션에서는 액세스 패널을 사용하여 Azure AD Single Sign-On 구성을 테스트합니다.
 
-Hello ScaleX 엔터프라이즈 hello 액세스 패널에서에서 타일을 클릭 합니다. 자동으로 로그온 tooyour ScaleX 엔터프라이즈 응용 프로그램을 얻게 됩니다. 액세스 패널 hello에 대 한 자세한 내용은 참조 [액세스 패널 소개 toohello](https://msdn.microsoft.com/library/dn308586)합니다.
+액세스 패널에서 ScaleX Enterprise 타일을 클릭하면 ScaleX Enterprise 응용 프로그램에 자동으로 로그온됩니다. 액세스 패널에 대한 자세한 내용은 [액세스 패널 소개](https://msdn.microsoft.com/library/dn308586)를 참조하세요.
 
 
 ## <a name="additional-resources"></a>추가 리소스
 
-* [방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와](active-directory-saas-tutorial-list.md)
+* [Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록](active-directory-saas-tutorial-list.md)
 * [Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?](active-directory-appssoaccess-whatis.md)
 
 

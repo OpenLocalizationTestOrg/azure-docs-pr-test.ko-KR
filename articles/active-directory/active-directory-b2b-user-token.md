@@ -1,5 +1,5 @@
 ---
-title: "Azure AD B2B 공동 작업의 사용자 토큰 aaaUnderstand | Microsoft Docs"
+title: "Azure AD B2B 공동 작업의 사용자 토큰 이해 | Microsoft Docs"
 description: "Azure Active Directory B2B 공동 작업에 대한 사용자 토큰 참조"
 services: active-directory
 documentationcenter: 
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 05/25/2017
 ms.author: sasubram
-ms.openlocfilehash: 968af1c8d1ab6f4b3f50a82f6c998da3955ac364
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 57b170539513953bd6a01ab4dd362a65cf905496
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="understand-user-tokens-in-azure-ad-b2b-collaboration"></a>Azure AD B2B 공동 작업의 사용자 토큰 이해
 
-원할 경우 tooknow B2B 공동 작업 사용자에 대 한 어떤 hello 토큰 같습니다 다음은 hello 전달자 토큰 세부 정보 및 Azure Active Directory (Azure AD) 게스트 및 (tenantid에 대 한 hello 리소스 테 넌 트의 Microsoft 계정 게스트에 대 한 토큰의 내용을 04dcc6ab-388a-4559-b527-fbec656300ea)입니다. toosee hello JSON 웹 토큰 (JWT) 콘텐츠를 사용 하 여 [https://jwt.io/](https://jwt.io/) 또는 [http://calebb.net](http://calebb.net/)합니다.
+B2B 공동 작업 사용자에 대해 표시되는 토큰 형태를 알고 싶은 경우 다음에 나와 있는 리소스 테넌트(tenantid:04dcc6ab-388a-4559-b527-fbec656300ea)에서 Azure AD(Azure Active Directory) 게스트 및 Microsoft 계정 게스트에 대한 전달자 토큰 세부 정보 및 토큰 내용을 확인하세요. JWT(JSON 웹 토큰) 내용을 보려면 [https://jwt.io/](https://jwt.io/) 또는 [http://calebb.net](http://calebb.net/)을 사용하세요.
 
 ## <a name="azure-ad-guest-token"></a>Azure AD 게스트 토큰
 ```
@@ -42,7 +42,7 @@ Azure AD B2B 공동 작업에 대한 다른 문서 찾아보기:
 
 * [Azure AD B2B 공동 작업이란?](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [B2B 공동 작업 사용자 속성](active-directory-b2b-user-properties.md)
-* [B2B 공동 작업 사용자 tooa 역할 추가](active-directory-b2b-add-guest-to-role.md)
+* [역할에 B2B 공동 작업 사용자 추가](active-directory-b2b-add-guest-to-role.md)
 * [B2B 공동 작업 초대 위임](active-directory-b2b-delegate-invitations.md)
 * [동적 그룹 및 B2B 공동 작업](active-directory-b2b-dynamic-groups.md)
 * [B2B 공동 작업 코드 및 PowerShell 샘플](active-directory-b2b-code-samples.md)

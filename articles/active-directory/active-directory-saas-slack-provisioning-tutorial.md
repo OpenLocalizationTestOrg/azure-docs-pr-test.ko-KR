@@ -1,6 +1,6 @@
 ---
 title: "자습서: Azure Active Directory를 사용한 자동 사용자 프로비전을 위한 Slack 구성 | Microsoft Docs"
-description: "Tooconfigure Azure Active Directory tooautomatically 프로 비전 및 프로 비전 해제 사용자 tooSlack를 계정 하는 방법에 대해 알아봅니다."
+description: "사용자 계정을 Slack으로 자동으로 프로비전 및 프로비전 해제하도록 Azure Active Directory를 구성하는 방법을 알아봅니다."
 services: active-directory
 documentationcenter: 
 author: asmalser-msft
@@ -15,99 +15,99 @@ ms.topic: article
 ms.date: 07/20/2017
 ms.author: asmalser-msft
 ms.reviewer: asmalser
-ms.openlocfilehash: d0a565bbe0bd7e229b9dd99b1ebbaf67d93a2206
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3cb49a4abb26c34a938c963c4cf326b5ccd490de
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-configuring-slack-for-automatic-user-provisioning"></a>자습서: 자동 사용자 프로비전에 대한 Slack 구성
 
 
-hello이 자습서는 tooperform 여유 시간 및 Azure에 필요한 단계를 hello tooshow tooSlack Azure AD에서에서 AD tooautomatically 프로 비전 및 프로 비전 해제 사용자 계정입니다. 
+이 자습서의 목적은 사용자 계정을 Azure AD에서 Slack으로 자동으로 프로비전 및 프로비전 해제하도록 Slack 및 Azure AD에서 수행해야 하는 단계를 설명하는 것입니다. 
 
 ## <a name="prerequisites"></a>필수 조건
 
-이 자습서에 설명 된 hello 시나리오 다음 항목 hello 이미 있다고 가정 합니다.
+이 자습서에 설명된 시나리오에서는 사용자에게 이미 다음 항목이 있다고 가정합니다.
 
 *   Azure Active Directory 테넌트
-*   Hello로는 Slack 테 넌 트 [계획 Plus](https://aadsyncfabric.slack.com/pricing) 또는 더 잘 사용 하도록 설정 
+*   사용 가능한 [추가 플랜](https://aadsyncfabric.slack.com/pricing) 또는 개선을 사용한 Slack 테넌트 
 *   팀 관리자 권한이 있는 Slack의 사용자 계정 
 
-참고: hello hello 의존 하는 Azure AD 통합 프로 비전 [Slack SCIM API](https://api.slack.com/scim) 계획 더하기 또는 더 나은 hello에 사용할 수 있는 tooSlack 팀은 합니다.
+참고: Azure AD 프로비전 통합은 추가 플랜 또는 개선에서 Slack 팀이 이용 가능한 [Slack SCIM API](https://api.slack.com/scim)에 의존합니다.
 
-## <a name="assigning-users-tooslack"></a>사용자가 tooSlack 할당
+## <a name="assigning-users-to-slack"></a>Slack에 사용자 할당
 
-Azure Active Directory는 사용자가 액세스 tooselected 앱 받아야 하는 "할당" toodetermine 이라는 개념을 사용 합니다. 자동 사용자 계정 프로 비전의 hello 컨텍스트에서 hello 사용자 및 그룹만 "할당 된" tooan 응용 프로그램이 Azure AD에서 동기화 됩니다. 
+Azure Active Directory는 "할당"이라는 개념을 사용하여 어떤 사용자가 선택한 앱에 대한 액세스를 받아야 하는지를 판단합니다. 자동 사용자 계정 프로비전의 컨텍스트에서는 Azure AD의 응용 프로그램에 "할당된" 사용자 및 그룹만 동기화됩니다. 
 
-구성 하 고 서비스를 프로 비전 하는 hello를 사용 하도록 설정 하기 전에 어떤 사용자 및/또는 tooyour Slack 응용 프로그램에 액세스 해야 하는 Azure AD 나타내는 hello 사용자의 그룹 toodecide 필요 합니다. 결정, 여기 hello 지침에 따라 이러한 사용자 tooyour Slack 앱을 할당할 수 있습니다.
+프로비전 서비스를 구성하고 사용하도록 설정하기 전에 Slack 앱에 대한 액세스가 필요한 사용자를 대표하는 Azure AD의 사용자 및/또는 그룹을 결정해야 합니다. 결정했으면 다음 지시에 따라 이러한 사용자를 Slack 앱에 할당할 수 있습니다.
 
-[사용자 또는 그룹 tooan 엔터프라이즈 응용 프로그램 할당](active-directory-coreapps-assign-user-azure-portal.md)
+[엔터프라이즈 앱에 사용자 또는 그룹 할당](active-directory-coreapps-assign-user-azure-portal.md)
 
-### <a name="important-tips-for-assigning-users-tooslack"></a>사용자가 tooSlack 할당 하는 데 중요 한 팁
+### <a name="important-tips-for-assigning-users-to-slack"></a>Slack에 사용자 할당을 위한 주요 팁
 
-*   것이 좋습니다는 단일 Azure AD 사용자 프로 비전 구성 tooSlack tootest hello를 할당할 수 있습니다. 추가 사용자 및/또는 그룹은 나중에 할당할 수도 있습니다.
+*   프로비전 구성을 테스트하기 위해 단일 Azure AD 사용자를 Slack에 할당하는 것이 좋습니다. 추가 사용자 및/또는 그룹은 나중에 할당할 수도 있습니다.
 
-*   Hello를 선택 해야 사용자 tooSlack에 할당할 때 **사용자** 또는 hello 할당 대화 상자에서 "그룹" 역할. hello "기본 액세스" 역할 프로 비전 하기 위한 작동 하지 않습니다.
-
-
-## <a name="configuring-user-provisioning-tooslack"></a>사용자 tooSlack 프로 비전 구성 
-
-이 섹션 API를 프로 비전 하는 Azure AD tooSlack의 사용자 계정을 연결 하는 방법을 안내 하 고 업데이트 서비스 toocreate 프로 비전 하는 hello 구성 및 Azure AD에서 사용자 및 그룹 할당을 기준으로 Slack에 할당 된 사용자 계정을 사용 하지 않도록 설정 합니다.
-
-**팁:** SAML 기반 Single Sign-on hello 지침 (Azure 포털)에 제공 된 Slack에 대 한 tooenabled을 선택할 수 있습니다 [https://portal.azure.com]. Single Sign-On은 자동 프로비전과 별개로 구성할 수 있습니다. 하지만 이 두 가지 기능은 서로 보완적입니다.
+*   사용자를 Slack에 할당할 때 할당 대화 상자에서 **사용자** 또는 "그룹" 역할을 선택해야 합니다. "기본 액세스" 역할은 프로비전에 작동하지 않습니다.
 
 
-### <a name="tooconfigure-automatic-user-account-provisioning-tooslack-in-azure-ad"></a>Azure AD에서 tooSlack 프로비저닝 tooconfigure 자동 사용자 계정:
+## <a name="configuring-user-provisioning-to-slack"></a>Slack에 사용자 프로비전 구성 
+
+이 섹션에서는 사용자의 Azure AD를 Slack의 사용자 계정 프로비전 API에 연결하고, Azure AD의 사용자 및 그룹 할당을 기반으로 Slack에서 할당된 사용자 계정을 만들고, 업데이트하고 비활성화하도록 프로비전 서비스를 구성하는 방법을 안내합니다.
+
+**팁:** (Azure Portal) [ https://portal.azure.com ] 에 제공된 지침에 따라 Slack에 대해 SAML 기반 Single Sign-On을 사용하도록 선택할 수도 있습니다. Single Sign-On은 자동 프로비전과 별개로 구성할 수 있습니다. 하지만 이 두 가지 기능은 서로 보완적입니다.
 
 
-1)  Hello에 [Azure 포털](https://portal.azure.com), toohello 찾아보기 **Azure Active Directory > 엔터프라이즈 앱 > 모든 응용 프로그램** 섹션.
+### <a name="to-configure-automatic-user-account-provisioning-to-slack-in-azure-ad"></a>Azure AD에서 Slack에 자동 사용자 계정 프로비전을 구성하려면 다음을 수행합니다.
 
-2) Single sign on에 대 한 여유를 이미 구성한 경우 Slack hello 검색 필드를 사용 하 여 인스턴스에 대 한 검색 합니다. 그렇지 않은 경우 선택 **추가** 검색 한 **Slack** hello 응용 프로그램 갤러리에서 합니다. Slack hello 검색 결과에서 선택한 tooyour 응용 프로그램 목록을 추가 합니다.
 
-3)  여유 시간 인스턴스를 선택 하 고 hello 선택 **프로 비전** 탭 합니다.
+1)  [Azure Portal](https://portal.azure.com)에서 **Azure Active Directory > 엔터프라이즈 앱 > 모든 응용 프로그램** 섹션으로 이동합니다.
 
-4)  집합 hello **프로 비전 모드** 너무**자동**합니다.
+2) Single Sign-On에 대한 Slack을 이미 구성한 경우 검색 필드를 사용하여 Slack의 인스턴스를 검색합니다. 그렇지 않은 경우 **추가**를 선택하고 응용 프로그램 갤러리에서 **Slack**을 검색합니다. 검색 결과에서 Slack을 선택하고 응용 프로그램의 목록에 추가합니다.
+
+3)  Slack의 인스턴스를 선택한 다음, **프로비전** 탭을 선택합니다.
+
+4)  **프로비전 모드**를 **자동**으로 설정합니다.
 
 ![Slack 프로비전](./media/active-directory-saas-slack-provisioning-tutorial/Slack1.PNG)
 
-5)  Hello에서 **관리자 자격 증명** 섹션에서 클릭 **Authorize**합니다. 그러면 새 브라우저 창에서 Slack 권한 부여 대화 상자가 열립니다. 
+5)  **관리자 자격 증명** 섹션에서 **권한 부여**를 클릭합니다. 그러면 새 브라우저 창에서 Slack 권한 부여 대화 상자가 열립니다. 
 
-6) Hello 새 창에서 팀 관리자 계정을 사용 하 여 Slack에 로그인 합니다. hello 결과 권한 부여 대화 상자에서 선택 hello tooenable에 대 한 프로 비전 한 다음 선택 하는 여유 팀 **Authorize**합니다. 완료 되 면, return toohello Azure 포털 toocomplete hello를 프로 비전 구성 합니다.
+6) 새 창에서 팀 관리자 계정을 사용하여 Slack에 로그인합니다. 표시된 권한 부여 대화 상자에서 프로비전을 사용하도록 설정하려는 Slack 팀을 선택한 다음, **권한 부여**를 선택합니다. 완료되면 Azure Portal로 돌아가서 프로비전 구성을 완료합니다.
 
 ![권한 부여 대화 상자](./media/active-directory-saas-slack-provisioning-tutorial/Slack3.PNG)
 
-7) Hello Azure 포털에서에서 클릭 **연결 테스트** tooensure Azure AD tooyour Slack 응용 프로그램을 연결할 수 있습니다. Hello 연결에 실패 하면 Slack 계정 팀 관리자 권한이 있는지 확인 하십시오 hello "권한 부여" 단계 다시 시도 하십시오.
+7) Azure Portal에서 **연결 테스트**를 클릭하여 Azure AD가 Slack 앱에 연결되었는지 확인합니다. 연결에 실패하면 Slack 계정에 팀 관리자 권한이 있는지 확인하고 "권한 부여" 단계를 다시 시도합니다.
 
-8) 개인 이나 hello에 프로 비전 오류 알림의 받을 그룹의 hello 전자 메일 주소를 입력 **알림 전자 메일** 필드 및 hello 확인란 아래를 확인 합니다.
+8) 프로비전 오류 알림을 받을 개인 또는 그룹의 전자 메일 주소를 **알림 전자 메일** 필드에 입력하고 아래 확인란을 선택합니다.
 
 9) **Save**를 클릭합니다. 
 
-10) Hello 매핑 섹션에서 선택 **동기화 Azure Active Directory 사용자 tooSlack**합니다.
+10) 매핑 섹션에서 **Azure Active Directory 사용자를 Slack에 동기화**를 선택합니다.
 
-11) Hello에 **특성 매핑을** 섹션에서 Azure AD tooSlack에서 동기화 되도록 hello 사용자 특성을 검토 합니다. 특성으로 선택 된 hello 참고 **일치** 속성이 업데이트 작업에 대 한 사용된 toomatch hello 사용자 계정 Slack에 있게 됩니다. 변경 내용을 저장 단추 toocommit hello를 선택 합니다.
+11) **특성 매핑** 섹션에서 Azure AD에서 Slack로 동기화할 사용자 특성을 검토합니다. **일치** 속성으로 선택한 특성은 업데이트 작업 시 Slack의 사용자 계정을 일치시키는 데 사용됩니다. 저장 단추를 선택하여 변경 내용을 커밋합니다.
 
-12) tooenable hello Slack, 변경 hello에 대 한 Azure AD 프로 비전 서비스 **프로 비전 상태** 너무**에** hello에 **설정을** 섹션
+12) Slack에 대한 Azure AD 프로비전 서비스를 사용하도록 설정하려면 **설정** 섹션에서 **프로비전 상태**를 **켜기**로 변경합니다.
 
 13) **Save**를 클릭합니다. 
 
-모든 사용자 및/또는 tooSlack에 hello 사용자 및 그룹 섹션에 할당 된 그룹의 hello 초기 동기화가 시작 됩니다. Hello 초기 동기화 상태로 hello 서비스가 실행 되 고 약 10 분 마다 발생 하는 후속 동기화 보다 더 긴 tooperform을 수행 하는 참고 합니다. Hello를 사용할 수 있습니다 **동기화 세부 정보와** toomonitor 진행률 섹션 및 Slack 응용 프로그램에서 서비스를 프로 비전 하는 hello에서 수행 하는 모든 작업을 설명 하는 링크 tooprovisioning 작업 보고서를 따릅니다.
+사용자 및 그룹 섹션에서 Slack에 할당된 모든 사용자 및/또는 그룹의 초기 동기화가 시작됩니다. 초기 동기화는 서비스가 실행되는 동안 약 10분마다 발생하는 차후 동기화보다 수행하는 데 더 오래 걸립니다. **동기화 세부 정보** 섹션을 사용하여 진행 상태를 모니터링하고 Slack 앱에서 프로비전 서비스에서 수행하는 모든 작업을 설명하는 프로비전 작업 보고서에 연결된 링크를 이용할 수 있습니다.
 
-## <a name="optional-configuring-group-object-provisioning-tooslack"></a>[선택 사항] 그룹 개체 tooSlack 프로 비전 구성 
+## <a name="optional-configuring-group-object-provisioning-to-slack"></a>[옵션] Slack에 그룹 개체 프로비전 구성 
 
-필요에 따라 hello tooSlack Azure AD에서에서 그룹 개체 프로 비전을 사용할 수 있습니다. "사용자 그룹에 할당" 다릅니다, 그리고 해당 hello 실제 그룹 개체에 또한 tooits 구성원에서에서 복제 됩니다 Azure AD tooSlack 합니다. 예를 들어, Azure AD에서 "내 그룹"이라는 그룹이 있는 경우 Slack 내에 "내 그룹"이라는 동일한 그룹이 만들어집니다.
+필요에 따라 Azure AD에서 Slack으로 그룹 개체의 프로비전을 사용하도록 설정할 수 있습니다. 이는 실제 멤버 외에도 실제 그룹 개체가 Azure AD에서 Slack으로 복제된다는 점에서 "사용자 그룹 할당"과는 다릅니다. 예를 들어, Azure AD에서 "내 그룹"이라는 그룹이 있는 경우 Slack 내에 "내 그룹"이라는 동일한 그룹이 만들어집니다.
 
-### <a name="tooenable-provisioning-of-group-objects"></a>tooenable 그룹 개체 프로 비전 합니다.
+### <a name="to-enable-provisioning-of-group-objects"></a>그룹 개체 프로비전을 사용하도록 설정하려면 다음을 수행합니다.
 
-1) Hello 매핑 섹션에서 선택 **동기화 Azure Active Directory 그룹 tooSlack**합니다.
+1) 매핑 섹션에서 **Azure Active Directory 그룹을 Slack에 동기화**를 선택합니다.
 
-2) 특성 매핑 hello 블레이드에서 Enabled tooYes를 설정 합니다.
+2) 특성 매핑 블레이드에서 사용을 예로 설정합니다.
 
-3) Hello에 **특성 매핑을** 섹션에서 Azure AD tooSlack에서 동기화 되도록 hello 그룹 특성을 검토 합니다. 특성으로 선택 된 hello 참고 **일치** 속성이 업데이트 작업에 대 한 여유 시간에 사용 되는 toomatch hello 그룹 됩니다. 
+3) **특성 매핑** 섹션에서 Azure AD에서 Slack으로 동기화할 그룹 특성을 검토합니다. **일치** 속성으로 선택한 특성은 업데이트 작업 시 Slack의 그룹을 일치시키는 데 사용됩니다. 
 
 4) **Save**를 클릭합니다.
 
-이 결과에 모든 그룹 할당 된 개체 tooSlack hello에 **사용자 및 그룹** 섹션에서 Azure AD tooSlack 완전 하 게 동기화 되 고 있습니다. Hello를 사용할 수 있습니다 **동기화 세부 정보와** toomonitor 진행률 섹션 및 Slack 응용 프로그램에서 서비스를 프로 비전 하는 hello에서 수행 하는 모든 작업을 설명 하는 링크 tooprovisioning 작업 보고서를 따릅니다.
+이제 **사용자 및 그룹** 섹션의 Slack에 할당된 모든 그룹 개체는 Azure AD에서 Slack으로 완전하게 동기화됩니다. **동기화 세부 정보** 섹션을 사용하여 진행 상태를 모니터링하고 Slack 앱에서 프로비전 서비스에서 수행하는 모든 작업을 설명하는 프로비전 작업 보고서에 연결된 링크를 이용할 수 있습니다.
 
 
 ## <a name="additional-resources"></a>추가 리소스

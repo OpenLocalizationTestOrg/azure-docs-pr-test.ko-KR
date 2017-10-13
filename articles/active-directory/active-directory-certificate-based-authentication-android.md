@@ -1,6 +1,6 @@
 ---
-title: "Android에서 aaaAzure Active Directory 인증서 기반 인증 | Microsoft Docs"
-description: "Hello 지원 시나리오와 솔루션에서 Android 장치를 사용 인증서 기반 인증을 구성 하기 위한 hello 요구 사항"
+title: "Android에서 Azure Active Directory 인증서 기반 인증 | Microsoft Docs"
+description: "Android 장치에서 솔루션의 인증서 기반 인증을 구성하는 데 지원되는 시나리오 및 요구 사항에 대한 자세한 정보"
 services: active-directory
 author: MarkusVi
 documentationcenter: na
@@ -14,23 +14,23 @@ ms.workload: identity
 ms.date: 08/28/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: 148275fa3da610530c278fcd57e02e907f735d9a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 239d2e1724f2759a52cccdac11fc781d57393125
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-certificate-based-authentication-on-android"></a>Android에서 Azure Active Directory 인증서 기반 인증
 
 
-인증서 기반 인증 (CBA)에 Exchange online 계정을 연결할 때 Windows, Android 또는 iOS 장치에 클라이언트 인증서와 함께 Azure Active Directory에 의해 인증 toobe가 있습니다. 
+CBA(인증서 기반 인증)를 사용하면 Exchange Online 계정을 다음에 연결할 때 Windows, Android 또는 iOS 장치의 클라이언트 인증서를 사용하여 Azure Active Directory에서 인증을 받을 수 있습니다. 
 
 * Microsoft Outlook 및 Microsoft Word와 같은 Office 모바일 응용 프로그램   
 * EAS(Exchange ActiveSync) 클라이언트 
 
-Hello 필요 tooenter 사용자 이름 및 암호 조합을 특정 메일 및 모바일 장치에서 Microsoft Office 응용 프로그램에이 기능을 구성을 제거 합니다. 
+이 기능을 구성하면 모바일 장치의 특정 메일 및 Microsoft Office 응용 프로그램에 사용자 이름 및 암호 조합을 입력해야 합니다. 
 
-이 항목에서는 hello 요구 사항 및 지원 hello 시나리오 CBA Office 365 Enterprise, Business, 교육, 미국 정부, 중국, 테 넌 트의 사용자에 대해 iOS(Android) 장치에서 구성 하기 위한 하 및 독일 계획 합니다.
+이 항목에서는 Office 365 Enterprise, Business, Education, 미국 정부, 중국 및 독일 계획의 테넌트 사용자를 위해 iOS(Android) 장치에서 CBA를 구성하기 위한 요구 사항 및 지원되는 시나리오를 설명합니다.
 
 
 
@@ -45,7 +45,7 @@ Hello 필요 tooenter 사용자 이름 및 암호 조합을 특정 메일 및 �
 | OneNote |![확인][1] |
 | OneDrive |![확인][1] |
 | Outlook |![확인][1] |
-| Power BI 모바일 앱 |![확인][1] |
+| Power BI |![확인][1] |
 | 비즈니스용 Skype |![확인][1] |
 | Word / Excel / PowerPoint |![확인][1] |
 | Yammer |![확인][1] |
@@ -53,35 +53,35 @@ Hello 필요 tooenter 사용자 이름 및 암호 조합을 특정 메일 및 �
 
 ### <a name="implementation-requirements"></a>구현 요구 사항
 
-hello 장치 OS 버전 이어야 합니다 (롤리팝) Android 5.0 이상. 
+장치 OS 버전은 Android 5.0(Lollipop) 이상이어야 합니다. 
 
 페더레이션 서버가 구성되어야 합니다.  
 
-Azure Active Directory toorevoke 클라이언트 인증서에 대 한 클레임을 따라 hello hello ADFS 토큰에 있어야 합니다.  
+Azure Active Directory에서 클라이언트 인증서를 해지하려면 ADFS 토큰에 다음 클레임이 있어야 합니다.  
 
 * `http://schemas.microsoft.com/ws/2008/06/identity/claims/<serialnumber>`  
-  (hello 클라이언트 인증서의 hello 일련 번호) 
+  (클라이언트 인증서의 일련 번호) 
 * `http://schemas.microsoft.com/2012/12/certificatecontext/field/<issuer>`  
-  (hello 클라이언트 인증서의 발급자 hello에 대 한 hello 문자열) 
+  (클라이언트 인증서 발급자에 대한 문자열) 
 
-Azure Active Directory hello ADFS 토큰 (또는 다른 SAML 토큰)에서 사용할 수 있는 경우 이러한 클레임 toohello 새로 고침 토큰을 추가 합니다. Hello 새로 고침 토큰 toobe 유효성을 검사 하면이 정보에 사용 되는 toocheck hello 해지 됩니다. 
+Azure Active Directory는 이러한 클레임이 ADFS 토큰(또는 다른 SAML 토큰)에서 사용 가능한 경우 새로 고침 토큰에 이러한 클레임을 추가합니다. 새로 고침 토큰의 유효성을 검사해야 하는 경우 이 정보가 해지를 확인하는 데 사용됩니다. 
 
-모범 사례로, 방법에 대 한 지침이 포함 된 hello ADFS 오류 페이지를 업데이트 해야 tooget 사용자 인증서입니다.  
-자세한 내용은 참조 하십시오. [hello AD FS 로그인 페이지 사용자 지정](https://technet.microsoft.com/library/dn280950.aspx)합니다.  
+ADFS 오류 페이지를 사용자 인증서를 가져오는 방법에 대한 지침으로 업데이트하는 것이 가장 좋습니다.  
+자세한 내용은 [AD FS 로그인 페이지 사용자 지정](https://technet.microsoft.com/library/dn280950.aspx)을 참조하세요.  
 
-일부 Office 앱 (최신 인증을 사용 하도록 설정)을 보낼 '*= 프롬프트 로그인*' 요청에 tooAzure AD 합니다. 기본적으로 Azure AD 만큼 변환 hello 요청 tooADFS에 너무 '*wauth usernamepassworduri =*' (ADFS toodo P U/auth 요청) 및 '*wfresh = 0*' (ADFS tooignore SSO 상태를 요청 및 새로운 인증 수행) . 이러한 앱에 대 한 tooenable 인증서 기반 인증을 사용 하도록 하려는 경우 toomodify hello 기본 Azure AD 동작을 해야 합니다. 방금 집합 hello '*PromptLoginBehavior*' 페더레이션된 도메인 설정에 너무 '*비활성화*'. Hello를 사용할 수 있습니다 [MSOLDomainFederationSettings](/powershell/module/msonline/set-msoldomainfederationsettings?view=azureadps-1.0) tooperform cmdlet이이 작업:
+일부 Office 앱(최신 인증 사용)은 요청 시 Azure AD에 '*prompt=login*'을 보냅니다. 기본적으로 Azure AD는 ADFS에 대한 요청 시 이를 '*wauth=usernamepassworduri*'(ADFS에 U/P 인증을 수행하도록 요청함) 및 '*wfresh=0*'(ADFS에 SSO 상태를 무시하고 새 인증을 수행하도록 요청함)으로 변환합니다. 이러한 앱에 인증서 기반 인증을 사용하려면 기본 Azure AD 동작을 수정해야 합니다. 페더레이션된 도메인 설정에서 '*PromptLoginBehavior*'를 '*Disabled*'로 설정만 하면 됩니다. 다음과 같은 [MSOLDomainFederationSettings](/powershell/module/msonline/set-msoldomainfederationsettings?view=azureadps-1.0) cmdlet을 사용하면 이 작업을 수행할 수 있습니다.
 
 `Set-MSOLDomainFederationSettings -domainname <domain> -PromptLoginBehavior Disabled`
 
 
 
 ## <a name="exchange-activesync-clients-support"></a>Exchange ActiveSync 클라이언트 지원
-Android 5.0(Lollipop) 이상의 특정 Exchange ActiveSync 응용 프로그램은 지원됩니다. toodetermine 사용자 전자 메일 응용 프로그램에서이 기능을 지원에 문의 하세요 응용 프로그램 개발자. 
+Android 5.0(Lollipop) 이상의 특정 Exchange ActiveSync 응용 프로그램은 지원됩니다. 전자 메일 응용 프로그램에서 이 기능을 지원하는지 확인하려면 응용 프로그램 개발자에게 문의하세요. 
 
 
 ## <a name="next-steps"></a>다음 단계
 
-사용자 환경에서 tooconfigure 인증서 기반 인증을 원하는 경우 참조 [Android에서 인증서 기반 인증 시작](active-directory-certificate-based-authentication-get-started.md) 지침에 대 한 합니다.
+사용자 환경에서 인증서 기반 인증을 구성하는 방법에 대한 자세한 내용은 [Android에서 인증서 기반 인증 시작](active-directory-certificate-based-authentication-get-started.md)을 참조하세요.
 
 <!--Image references-->
 [1]: ./media/active-directory-certificate-based-authentication-android/ic195031.png

@@ -1,6 +1,6 @@
 ---
-title: "StorSimple EBOD 컨트롤러 aaaReplace | Microsoft Docs"
-description: "에 대해 설명 방법을 tooremove StorSimple 8600 장치의 EBOD 컨트롤러를 하나 또는 둘 다를 바꿉니다."
+title: "StorSimple EBOD 컨트롤러 교체 | Microsoft Docs"
+description: "StorSimple 8600 장치에서 하나 또는 두 개의 EBOD 컨트롤러를 모두 꺼내고 교체하는 방법을 설명합니다."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.openlocfilehash: 5d29de2ee30bfdd70910050eee5cfa1d293d444f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 23d819ddc3bbcbaf2847cdcc9191407ead0ff43d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="replace-an-ebod-controller-on-your-storsimple-device"></a>StorSimple 장치의 EBOD 컨트롤러 교체
 ## <a name="overview"></a>개요
-이 자습서에 설명 방법을 tooreplace Microsoft Azure StorSimple 장치에서 결함이 있는 EBOD 컨트롤러 모듈입니다. EBOD 컨트롤러 모듈 tooreplace 해야합니다.
+이 자습서에서는 Microsoft Azure StorSimple 장치에서 결함이 있는 EBOD 컨트롤러 모듈을 교체하는 방법을 설명합니다. EBOD 컨트롤러 모듈을 교체하려면 다음을 수행해야 합니다.
 
-* Hello 결함이 있는 EBOD 컨트롤러 제거
+* 결함이 있는 EBOD 컨트롤러 꺼내기
 * 새 EBOD 컨트롤러 설치
 
-Hello를 시작 하기 전에 다음 정보를 고려 합니다.
+시작하기 전에 다음 정보를 고려하세요.
 
-* 사용하지 않은 모든 슬롯에 빈 EBOD 모듈을 삽입해야 합니다. 슬롯을 남겨 둘지 hello 인클로저가 제대로 식 지 않습니다.
-* hello EBOD 컨트롤러는 핫 스왑 가능한 제거 하거나 교체할 수 있습니다. 교체가 있을 때까지 오류가 발생한 모듈을 꺼내지 마세요. Hello 교체 프로세스를 시작 하면 10 분 내에 완료 해야 합니다.
+* 사용하지 않은 모든 슬롯에 빈 EBOD 모듈을 삽입해야 합니다. 슬롯이 열려 있으면 엔클로저가 제대로 냉각되지 않습니다.
+* EBOD 컨트롤러는 핫 스왑이 가능하며 꺼내거나 교체할 수 있습니다. 교체가 있을 때까지 오류가 발생한 모듈을 꺼내지 마세요. 교체 프로세스를 시작하는 경우 10분 내에 완료해야 합니다.
 
 > [!IMPORTANT]
-> Tooremove 시도 하기 전에 모든 StorSimple 구성 요소 교체, hello 검토 해야 또는 [안전 아이콘 규칙](storsimple-safety.md#safety-icon-conventions) 및 기타 [안전 조치](storsimple-safety.md)합니다.
+> StorSimple 구성 요소를 제거하거나 교체하기 전에 [안전성 아이콘 표시 규칙](storsimple-safety.md#safety-icon-conventions) 및 기타 [안전 주의 사항](storsimple-safety.md)을 검토해야 합니다.
 > 
 > 
 
 ## <a name="remove-an-ebod-controller"></a>EBOD 컨트롤러 꺼내기
-전에 hello을 바꾸지 못했으므로 StorSimple 장치에 EBOD 컨트롤러 모듈, 있어야 해당 hello 다른 EBOD 컨트롤러 모듈이 활성화 되어 실행 합니다. hello 다음 절차와 테이블에 설명 tooremove EBOD 컨트롤러 모듈을 hello 하는 방법입니다.
+StorSimple 장치에서 오류가 발생한 EBOD 컨트롤러 모듈을 교체하기 전에 다른 EBOD 컨트롤러 모듈이 활성화되어 실행되고 있는지 확인합니다. 다음 절차와 표에서는 EBOD 컨트롤러 모듈을 꺼내는 방법을 설명합니다.
 
-#### <a name="tooremove-an-ebod-module"></a>tooremove EBOD 모듈
-1. Azure 클래식 포털 hello를 엽니다.
-2. 너무 이동**장치** > **유지 관리** > **하드웨어 상태**, hello의 hello 상태에 대 한 원인이 있는지 확인 하 고 활성 EBOD hello 컨트롤러는 녹색 하 고 실패 hello EBOD 컨트롤러 모듈에 대 한 hello LED가 빨간색입니다.
-3. Hello hello 장치 뒷면에서 실패 하는 hello EBOD 컨트롤러 모듈을 찾습니다.
-4. Hello EBOD 모듈 hello 시스템 꺼내기 전에 EBOD 컨트롤러 모듈 toohello 컨트롤러 hello를 연결 하는 hello 케이블을 제거 합니다.
-5. 연결 된 toohello 컨트롤러 hello EBOD 컨트롤러 모듈의 hello 정확한 SAS 포트를 기록해 둡니다. Hello EBOD 모듈을 교체한 후 필요한 toorestore hello 시스템 toothis 구성 됩니다. 
+#### <a name="to-remove-an-ebod-module"></a>EBOD 모듈을 꺼내려면
+1. Azure 클래식 포털을 엽니다.
+2. **장치** > **유지 관리** > **하드웨어 상태**로 이동한 다음 활성 EBOD 컨트롤러 모듈의 LED 상태가 녹색이고 오류가 발생한 EBOD 컨트롤러 모듈의 LED가 빨간색인지 확인합니다.
+3. 장치 뒷면에서 오류가 발생한 EBOD 컨트롤러 모듈을 찾습니다.
+4. 시스템에서 EBOD 모듈을 꺼내기 전에 EBOD 컨트롤러 모듈을 컨트롤러에 연결하는 케이블을 뺍니다.
+5. 컨트롤러에 연결된 EBOD 컨트롤러 모듈의 SAS 포트를 정확하게 적어둡니다. EBOD 모듈을 교체한 후 시스템을 이 구성으로 복원해야 합니다. 
    
    > [!NOTE]
-   > 일반적으로 포트 A로 표시 된 됩니다 **에서 호스팅할** hello 다이어그램 뒤에 있습니다.
+   > 일반적으로 포트 A이며, 다음 다이어그램에서는 **호스트 인** 으로 레이블이 붙어 있습니다.
    > 
    > 
    
@@ -68,21 +68,21 @@ Hello를 시작 하기 전에 다음 정보를 고려 합니다.
    | 8 |포트 C(팩터리 전용) |
 
 ## <a name="install-a-new-ebod-controller"></a>새 EBOD 컨트롤러 설치
-hello 다음 절차와 테이블에 설명 방법을 tooinstall StorSimple 장치에 EBOD 컨트롤러 모듈입니다.
+다음 절차와 표에서는 StorSimple 장치에 EBOD 컨트롤러 모듈을 설치하는 방법을 설명합니다.
 
-#### <a name="tooinstall-an-ebod-controller"></a>EBOD 컨트롤러 tooinstall
-1. Hello EBOD 장치를 특히 toohello 인터페이스 커넥터 손상 되지 않았는지 확인 하십시오. 구부러진 핀 하는 경우에 hello 새 EBOD 컨트롤러를 설치 하지 마십시오.
-2. Hello에 hello 래치 위치, 슬라이드 hello 모듈 hello 인클로저 hello 맞물릴 때까지으로 엽니다.
+#### <a name="to-install-an-ebod-controller"></a>EBOD 컨트롤러를 설치하려면
+1. EBOD 장치에서 특히 인터페이스 커넥터에 손상된 부분이 있는지 확인합니다. 핀이 구부러진 경우 새 EBOD 컨트롤러를 설치하지 마세요.
+2. 래치를 열린 위치에 놓고 래치가 걸릴 때까지 모듈을 엔클로저에 밀어넣습니다.
    
     ![EBOD 컨트롤러 설치](./media/storsimple-ebod-controller-replacement/IC741050.png)
    
-    **그림 2** hello EBOD 컨트롤러 모듈 설치
-3. 래치 닫기 hello 합니다. Hello 래치가 맞물릴 때 처럼 한 번의 클릭을 들려야 합니다.
+    **그림 2** EBOD 컨트롤러 모듈 설치
+3. 래치를 닫습니다. 래치가 걸리면 딸깍하는 소리가 들립니다.
    
     ![EBOD 래치 해제](./media/storsimple-ebod-controller-replacement/IC741047.png)
    
-    **그림 3** hello EBOD 모듈 래치 닫기
-4. Hello 케이블 다시 연결 합니다. Hello hello 교체 하기 전에 있었던 정확한 구성을 사용 합니다. Hello 다이어그램을 다음 참조 및 방법에 대 한 세부 정보에 대 한 테이블 tooconnect hello 케이블 합니다.
+    **그림 3** EBOD 모듈 래치 닫기
+4. 케이블을 다시 연결합니다. 교체 전에 있던 구성을 정확하게 사용합니다. 케이블을 연결하는 방법에 대한 자세한 내용은 다음 다이어그램과 표를 참조하세요.
    
     ![전원에 4U 장치를 케이블로 연결](./media/storsimple-ebod-controller-replacement/IC770723.png)
    

@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Active Directory 서비스 제한 사항 및 제한 사항"
-description: "사용 제약 조건 및 hello Azure Active Directory 서비스에 대 한 기타 서비스 제한"
+title: "Azure Active Directory 서비스 제한 사항"
+description: "Azure Active Directory 서비스의 사용 제약 및 기타 서비스 제한 사항"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -12,17 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 05/08/2017
+ms.date: 08/28/2017
 ms.author: curtand
-ms.custom: aaddev
-ms.openlocfilehash: 3971cb40ed53d6e0c11f124f334d1dc6a2cdf769
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.custom: aaddev;it-pro
+ms.reviewer: jeffsta
+ms.openlocfilehash: c387467dfd91e2904e6c1f043506280fc08c92e7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-ad-service-limits-and-restrictions"></a>Azure AD 서비스 제한 및 제한 사항
-Hello 사용 제약 조건 및 기타 서비스 제한 hello Azure Active Directory (Azure AD) 서비스에 대 한이 문서에 포함 되어 있습니다. Microsoft Azure 서비스 제한의 전체 집합 hello에 대 한 찾고 있는 경우 참조 [Azure 구독 및 서비스 제한, 할당량 및 제약 조건](../azure-subscription-service-limits.md)합니다.
+이 문서에는 Azure AD(Azure Active Directory) 서비스에 대한 사용 제약 조건 및 기타 서비스 제한이 포함됩니다. Microsoft Azure 서비스 제한을 모두 보려면 [Azure 구독 및 서비스 제한, 할당량 및 제약 조건](../azure-subscription-service-limits.md)을 참조하세요.
 
 [!INCLUDE [AAD-service-limits](../../includes/active-directory-service-limits-include.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Site Recovery와 지역 간 repliction Azure VM에 대 한 자격 증명 모음을 aaaSet | Microsoft Docs"
-description: "Azure Site Recovery를 사용 하 여 Azure 지역 간 복제의 Azure 자격 증명 모음을 tooset 해야 하는 hello 단계 요약"
+title: "Azure Site Recovery를 사용하여 지역 간 Azure VM 복제를 위한 자격 증명 모음 설정 | Microsoft Docs"
+description: "Azure Site Recovery를 사용하여 Azure 지역 간 Azure 복제를 위한 자격 증명 모음을 설정하는 데 필요한 단계를 요약하고 있습니다."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/01/2017
 ms.author: raynew
-ms.openlocfilehash: 9959c59c7ea57114763f13bf060404ddd267ba80
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e03d17992ee0b12049636e40188950bcc4a6f31e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="step-4-set-up-a-vault-for-azure-tooazure-replication"></a>4 단계: Azure tooAzure 복제에 대 한 자격 증명 모음 설정
+# <a name="step-4-set-up-a-vault-for-azure-to-azure-replication"></a>4단계: Azure 간 복제를 위한 자격 증명 모음 설정
 
-후 [네트워크 계획](azure-to-azure-walkthrough-network.md), 복제 tooanother Azure 지역 hello를 사용 하 여 Azure 가상 컴퓨터 (Vm)는 자격 증명 모음을이 문서 tooset를 사용 하 여 [Azure Site Recovery](site-recovery-overview.md) hello Azure 포털의에서 서비스입니다.
+[네트워크 계획](azure-to-azure-walkthrough-network.md) 후에 이 문서를 사용하여 Azure Portal에서 [Azure Site Recovery](site-recovery-overview.md) 서비스를 통해 다른 Azure 지역에 복제하는 Azure VM(가상 컴퓨터)에 대한 자격 증명 모음을 설정합니다.
 
-- Hello 문서를 완료 하면 복구 서비스 자격 증명 모음 설정 있어야 합니다.
-- 이 문서에서는 hello 맨 아래에 대 한 설명을 게시 하거나 hello에서 질문 하기 [Azure 복구 서비스 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)합니다.
+- 이 문서를 완료하면 Recovery Services 자격 증명 모음을 설정해야 합니다.
+- 이 문서의 하단에서 의견을 게시하거나 [Azure Recovery Services 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)에서 질문하세요.
 
 
 
@@ -42,9 +42,9 @@ ms.lasthandoff: 10/06/2017
 
 >[!NOTE]
 >
-> Vm tooreplicate 저장할 hello 위치에서 hello 복구 서비스 자격 증명 모음을 만드는 것이 좋습니다. 예를 들어 대상 위치는 hello 중앙 미국, 만들에서 자격 증명 모음의 hello **중미**합니다.
+> VM을 복제할 위치에 Recovery Services 자격 증명 모음을 만드는 것이 좋습니다. 예를 들어 대상 위치가 미국 중부인 경우 **미국 중부**에 자격 증명 모음을 만듭니다.
 
 
 ## <a name="next-steps"></a>다음 단계
 
-너무 이동[5 단계: 복제 사용](azure-to-azure-walkthrough-enable-replication.md)
+[5단계: 복제 사용](azure-to-azure-walkthrough-enable-replication.md)으로 이동합니다.

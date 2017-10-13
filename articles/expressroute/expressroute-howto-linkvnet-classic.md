@@ -1,6 +1,6 @@
 ---
-title: "가상 네트워크 tooan ExpressRoute 회로 연결: PowerShell: 클래식: Azure | Microsoft Docs"
-description: "이 문서는 가상 toolink (Vnet) tooExpressRoute 회로 hello 클래식 배포 모델 및 PowerShell을 사용 하 여 네트워크 하는 방법의 개요를 제공 합니다."
+title: "ExpressRoute 회로에 가상 네트워크 연결: PowerShell: 클래식: Azure | Microsoft Docs"
+description: "이 문서는 클래식 배포 모델 및 PowerShell을 사용하여 VNet(가상 네트워크)을 Express 경로 회로에 연결하는 방법에 대한 개요를 제공합니다."
 services: expressroute
 documentationcenter: na
 author: ganesr
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/28/2017
 ms.author: ganesr
-ms.openlocfilehash: 6b8a01dcd4bbb9618ec3dd438cf0107538fb2a7a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8df8a4c6ff0897c821e13248e0494b17e1a4992d
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="connect-a-virtual-network-tooan-expressroute-circuit-using-powershell-classic"></a>PowerShell (클래식)를 사용 하 여 가상 네트워크 tooan ExpressRoute 회로 연결
+# <a name="connect-a-virtual-network-to-an-expressroute-circuit-using-powershell-classic"></a>PowerShell을 사용하여 ExpressRoute 회로에 가상 네트워크 연결(클래식)
 > [!div class="op_single_selector"]
 > * [Azure 포털](expressroute-howto-linkvnet-portal-resource-manager.md)
 > * [PowerShell](expressroute-howto-linkvnet-arm.md)
@@ -30,7 +30,7 @@ ms.lasthandoff: 10/06/2017
 > * [PowerShell(클래식)](expressroute-howto-linkvnet-classic.md)
 >
 
-이 문서는 hello 클래식 배포 모델 및 PowerShell을 사용 하 여 가상 네트워크 (Vnet) tooAzure ExpressRoute 회로 연결 하는 데 도움이 됩니다. 가상 네트워크에 동일한 구독 hello 이거나 수 다른 구독이 포함 될 수 있습니다.
+이 문서를 참조하면 클래식 배포 모델 및 PowerShell을 사용하여 VNet(가상 네트워크)을 Azure Express 경로 회로에 연결할 수 있습니다. 가상 네트워크는 같은 구독에 있을 수도 있고 다른 구독의 일부일 수도 있습니다.
 
 [!INCLUDE [expressroute-classic-end-include](../../includes/expressroute-classic-end-include.md)]
 
@@ -39,44 +39,44 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## <a name="configuration-prerequisites"></a>필수 구성 요소
-1. Hello hello Azure PowerShell 모듈의 최신 버전이 있어야합니다. Hello hello의 PowerShell 세션에서에서 hello 최신 PowerShell 모듈을 다운로드할 수 있습니다 [Azure 다운로드 페이지](https://azure.microsoft.com/downloads/)합니다. Hello 지침에 따라 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview) 방법에 대 한 단계별 지침에 대 한 tooconfigure 컴퓨터 toouse hello Azure PowerShell 모듈입니다.
-2. Tooreview hello 필요한 [필수 구성 요소](expressroute-prerequisites.md), [라우팅 요구 사항](expressroute-routing.md), 및 [워크플로](expressroute-workflows.md) 구성을 시작 하기 전에.
+1. Azure PowerShell 모듈의 최신 버전이 필요합니다. [Azure 다운로드 페이지](https://azure.microsoft.com/downloads/)의 PowerShell 섹션에서 최신 PowerShell 모듈을 다운로드할 수 있습니다. Azure PowerShell 모듈을 사용하도록 컴퓨터를 구성하는 방법에 대한 단계별 지침은 [Azure PowerShell 설치 및 구성 방법](/powershell/azure/overview) 의 지침을 따르세요.
+2. 구성을 시작하기 전에 [필수 조건](expressroute-prerequisites.md), [라우팅 요구 사항](expressroute-routing.md) 및 [워크플로](expressroute-workflows.md)를 검토해야 합니다.
 3. 활성화된 Express 경로 회로가 있어야 합니다.
-   * 너무 hello 지침에 따라[ExpressRoute 회로 만들기](expressroute-howto-circuit-classic.md) 있고 연결 공급자 hello 회로 사용 하도록 설정 합니다.
-   * 회로에 구성된 Azure 개인 피어링이 있는지 확인합니다. Hello 참조 [구성 라우팅](expressroute-howto-routing-classic.md) 라우팅 지침에 대 한 문서입니다.
-   * 구성 된 Azure 개인 피어 링 및 종단 간 연결을 사용 하도록 설정할 수 있도록 중일 hello 네트워크와 Microsoft 간에 BGP 피어 링을 확인 합니다.
-   * 가상 네트워크 및 가상 네트워크 게이트웨이를 만들고 완전히 프로비전해야 합니다. 너무 hello 지침에 따라[ExpressRoute에 대 한 가상 네트워크 구성](expressroute-howto-vnet-portal-classic.md)합니다.
+   * 지침에 따라 [Express 경로 회로를 만들고](expressroute-howto-circuit-classic.md) 연결 공급자가 회로를 사용하도록 설정합니다.
+   * 회로에 구성된 Azure 개인 피어링이 있는지 확인합니다. 라우팅 지침에 대한 문서는 [라우팅 구성](expressroute-howto-routing-classic.md)을 참조하세요.
+   * Azure 개인 피어링이 구성되어 있고 네트워크와 Microsoft 간의 BGP 피어링이 종단 간 연결을 사용하도록 작동 중이어야 합니다.
+   * 가상 네트워크 및 가상 네트워크 게이트웨이를 만들고 완전히 프로비전해야 합니다. 지침에 따라 [Express 경로에 대한 가상 네트워크를 구성합니다](expressroute-howto-vnet-portal-classic.md).
 
-가상 네트워크 tooan too10 ExpressRoute 회로를 연결할 수 있습니다. 모든 가상 네트워크 hello에 있어야 합니다. 동일한 지리적 지역입니다. 많은 수의 가상 네트워크 tooyour ExpressRoute 회로 연결 하거나 hello ExpressRoute premium 추가 기능을 사용 하는 경우 다른 지리적 지역에 있는 가상 네트워크를 연결할 수 있습니다. Hello 확인 [FAQ](expressroute-faqs.md) hello premium 추가 기능에 대 한 자세한 내용은 합니다.
+최대 10개의 가상 네트워크를 Express 경로 회로에 연결할 수 있습니다. 모든 가상 네트워크는 같은 지정학적 지역에 있어야 합니다. 프리미엄 추가 기능을 사용하도록 설정하면 Express 경로 회로에 많은 수의 가상 네트워크를 연결하거나 다른 지역에 있는 가상 네트워크를 연결할 수 있습니다. 프리미엄 추가 기능에 대한 자세한 내용은 [FAQ](expressroute-faqs.md) 에서 확인하세요.
 
-## <a name="connect-a-virtual-network-in-hello-same-subscription-tooa-circuit"></a>Hello의 가상 네트워크 연결 동일한 구독 tooa 회로
-Hello 다음 cmdlet을 사용 하 여 가상 네트워크 tooan ExpressRoute 회로 연결할 수 있습니다. 해당 hello 가상 네트워크 게이트웨이 만들어지고 hello cmdlet을 실행 하기 전에 연결을 위한 준비 되어 있는지 확인 합니다.
+## <a name="connect-a-virtual-network-in-the-same-subscription-to-a-circuit"></a>동일한 구독에 있는 가상 네트워크를 회로에 연결
+다음 cmdlet을 사용하여 Express 경로 회로에 가상 네트워크를 연결할 수 있습니다. cmdlet을 실행하기 전에 가상 네트워크 게이트웨이가 연결을 위해 생성되고 준비되었는지 확인합니다.
 
     New-AzureDedicatedCircuitLink -ServiceKey "*****************************" -VNetName "MyVNet"
     Provisioned
 
-## <a name="connect-a-virtual-network-in-a-different-subscription-tooa-circuit"></a>다른 구독 tooa 회로에 가상 네트워크에 연결
-여러 구독에서 Express 경로 회로를 공유할 수 있습니다. 다음 그림 hello 간단한 계통도 나와의 ExpressRoute 회로 대 한 일정 공유 works 여러 구독에서.
+## <a name="connect-a-virtual-network-in-a-different-subscription-to-a-circuit"></a>다른 구독에 있는 가상 네트워크를 회로에 연결
+여러 구독에서 Express 경로 회로를 공유할 수 있습니다. 아래 그림에는 여러 구독에서 Express 경로 회로에 대한 작업을 공유하는 방법의 간단한 계통도가 나와 있습니다.
 
-사용 되는 toorepresent 속하는 구독에 조직 내의 toodifferent 부서는 각각 hello 작은 구름 hello 큰 구름 안에 있습니다. 단일 express 경로 회로 tooconnect 백 tooyour 온-프레미스 네트워크를 공유할 수 자신의 서비스--하지만 hello 부서 배포에 대 한 자신의 구독을 사용할 수 각각 hello 조직 내의 hello 부서입니다. 단일 부서 (이 예제의: IT) hello ExpressRoute 회로 소유할 수 있습니다. Hello 조직 내에서 다른 구독 hello ExpressRoute 회로 사용할 수 있습니다.
+큰 구름 안에 있는 각각의 작은 구름은 한 조직 내의 여러 부서에 속하는 구독을 나타내는 데 사용됩니다. 조직 내의 각 부서는 자체 구독을 사용하여 서비스를 배포하되, 부서는 단일 Express 경로 회로를 공유하여 온-프레미스 네트워크로 다시 연결할 수 있습니다. 단일 부서(이 예제에서는 IT)가 Express 경로 회로를 소유할 수 있습니다. 조직 내의 기타 구독도 Express 경로 회로를 사용할 수 있습니다.
 
 > [!NOTE]
-> Hello 전용 회로 대 한 연결 및 대역폭 요금은 적용된 toohello ExpressRoute 회로 소유자 됩니다. Hello를 공유 하는 모든 가상 네트워크 대역폭이 동일 합니다.
+> 전용 회로에 대한 연결 및 대역폭 요금은 Express 경로 회로 소유자에게 적용됩니다. 모든 가상 네트워크는 동일한 대역폭을 공유합니다.
 > 
 > 
 
 ![구독 간 연결](./media/expressroute-howto-linkvnet-classic/cross-subscription.png)
 
 ### <a name="administration"></a>관리
-hello *회로 소유자* hello 관리자/는 hello ExpressRoute 회로 만드는 hello 구독 coadministrator 됩니다. hello 회로 소유자 권한을 부여할 수는 참조 된 tooas 다른 구독의 관리자/coadministrators *회로 사용자*, toouse hello 전용 소유 하는 회로입니다. 권한이 부여 된 후 hello 자신의 구독 toohello ExpressRoute 회로에 가상 네트워크를 연결 하는 회로 사용자는 권한 있는 toouse hello 조직의 ExpressRoute 회로 수 있습니다.
+*회로 소유자* 는 Express 경로 회로를 만드는 구독의 관리자/공동 관리자입니다. 회로 소유자는 자신이 소유한 전용 회로를 *회로 사용자*라고 지칭되는 다른 구독의 관리자/공동 관리자가 사용하도록 권한을 부여할 수 있습니다. 조직의 Express 경로 회로 사용 권한을 부여받은 회로 사용자는 권한이 부여된 후 구독의 가상 네트워크를 Express 경로 회로에 연결할 수 있습니다.
 
-hello 회로 소유자는 언제 든 지 hello 전원 toomodify 및 revoke 권한을 가집니다. 권한 부여를 해지 모든 링크가 액세스가 해지 된 hello 구독에서 삭제 됩니다.
+회로 소유자는 언제든지 부여된 권한을 수정하고 해지할 수 있습니다. 권한 부여를 해지하면 액세스가 해지된 구독에서 모든 링크가 삭제됩니다.
 
 ### <a name="circuit-owner-operations"></a>회로 소유자 작업
 
 **권한 부여 만들기**
 
-hello 회로 소유자에 게 권한을 부여 hello 다른 구독 관리자에 toouse hello 회로 지정 합니다. 다음 예제는 hello, hello 회로 (Contoso IT) 관리자에 게 tootwo 가상 네트워크 toohello 회로를 다른 구독 (개발-테스트) toolink의 관리자에 게를 사용 합니다. Contoso IT 관리자에 게 hello 개발 테스트 Microsoft ID를 지정 하 여 사용 하면 전자 메일 toohello Microsoft ID를 지정 된 hello cmdlet 보내지 않습니다. hello 회로 소유자 있어야 tooexplicitly 알리는 hello hello 권한 부여 하는 다른 구독 소유자 완료 되었습니다.
+회로 소유자는 다른 구독 관리자에게 지정한 회로를 사용할 수 있는 권한을 부여합니다. 아래 예제에서 회로 관리자는(Contoso IT) 다른 구독의 관리자가(Dev-Test) 회로에 대해 최대 2개의 가상 네트워크를 연결하도록 설정합니다. Contoso IT 관리자는 Dev-Test Microsoft ID를 지정하여 이것을 설정합니다. 다음 cmdlet은 지정된 Microsoft ID로 전자 메일을 보내지 않습니다. 회로 소유자는 권한 부여가 완료된 사실을 다른 구독 소유자에게 명시적으로 알려야 합니다.
 
     New-AzureDedicatedCircuitLinkAuthorization -ServiceKey "**************************" -Description "Dev-Test Links" -Limit 2 -MicrosoftIds 'devtest@contoso.com'
 
@@ -88,7 +88,7 @@ hello 회로 소유자에 게 권한을 부여 hello 다른 구독 관리자에 
 
 **권한 부여 검토**
 
-hello 회로 소유자는 hello 다음 cmdlet을 실행 하 여 특정 회로에 발급 한 모든 권한 부여를 검토할 수 있습니다.:
+회로 소유자는 다음 cmdlet을 실행하여 특정 회로에 발급한 모든 권한 부여를 검토할 수 있습니다.
 
     Get-AzureDedicatedCircuitLinkAuthorization -ServiceKey: "**************************"
 
@@ -113,7 +113,7 @@ hello 회로 소유자는 hello 다음 cmdlet을 실행 하 여 특정 회로에
 
 **권한 부여 업데이트**
 
-hello 회로 소유자는 hello 다음 cmdlet을 사용 하 여 권한 부여를 수정할 수 있습니다.
+회로 소유자는 다음 cmdlet을 사용하여 권한 부여를 수정할 수 있습니다.
 
     Set-AzureDedicatedCircuitLinkAuthorization -ServiceKey "**************************" -AuthorizationId "&&&&&&&&&&&&&&&&&&&&&&&&&&&&"-Limit 5
 
@@ -126,7 +126,7 @@ hello 회로 소유자는 hello 다음 cmdlet을 사용 하 여 권한 부여를
 
 **권한 부여 삭제**
 
-hello 회로 소유자 수 revoke/삭제 권한 부여 toohello 사용자 hello 다음 cmdlet을 실행 하 여:
+회로 소유자는 다음 cmdlet을 실행하여 권한 부여를 취소/삭제할 수 있습니다.
 
     Remove-AzureDedicatedCircuitLinkAuthorization -ServiceKey "*****************************" -AuthorizationId "###############################"
 
@@ -135,7 +135,7 @@ hello 회로 소유자 수 revoke/삭제 권한 부여 toohello 사용자 hello 
 
 **권한 부여 검토**
 
-hello 회로 사용자 hello 다음 cmdlet을 사용 하 여 권한 부여를 검토할 수 있습니다.
+회로 사용자는 다음 cmdlet을 사용하여 권한 부여를 검토할 수 있습니다.
 
     Get-AzureAuthorizedDedicatedCircuit
 
@@ -151,7 +151,7 @@ hello 회로 사용자 hello 다음 cmdlet을 사용 하 여 권한 부여를 �
 
 **링크 권한 부여 사용**
 
-hello 회로 사용자 cmdlet tooredeem 다음 hello 링크 권한 부여를 실행할 수 있습니다.
+회로 사용자는 다음 cmdlet을 실행하여 링크 권한 부여를 사용할 수 있습니다.
 
     New-AzureDedicatedCircuitLink –servicekey "&&&&&&&&&&&&&&&&&&&&&&&&&&" –VnetName 'SalesVNET1'
 
@@ -159,10 +159,10 @@ hello 회로 사용자 cmdlet tooredeem 다음 hello 링크 권한 부여를 실
     ----- --------
     Provisioned SalesVNET1
 
-Hello 가상 네트워크에 대 한 hello 새로 연결 된 구독에서이 명령을 실행 합니다.
+가상 네트워크에 대해 새로 연결된 구독에서 다음 명령을 실행합니다.
 
     New-AzureDedicatedCircuitLink -ServiceKey "*****************************" -VNetName "MyVNet"
 
 ## <a name="next-steps"></a>다음 단계
-ExpressRoute에 대 한 자세한 내용은 참조 hello [express 경로 FAQ](expressroute-faqs.md)합니다.
+ExpressRoute에 대한 자세한 내용은 [ExpressRoute FAQ](expressroute-faqs.md)를 참조하세요.
 

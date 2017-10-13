@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate 프로그램 첫 번째 Azure 가상 네트워크 | Microsoft Docs"
-description: "Toocreate Azure 가상 네트워크 (VNet) 두 가상 컴퓨터 (VM) toohello VNet을 연결 하 고 toohello Vm을 연결 하는 방법에 대해 알아봅니다."
+title: "첫 번째 Azure Virtual Network 만들기 | Microsoft Docs"
+description: "Azure Virtual Network(VNet)를 만들고, 두 개의 가상 컴퓨터(VM)를 VNet에 연결하고, VM에 연결하는 방법을 알아봅니다."
 services: virtual-network
 documentationcenter: 
 author: jimdial
@@ -15,79 +15,79 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/27/2016
 ms.author: jdial
-ms.openlocfilehash: 1981524cf706d5ebc83b1ff77735617550ff058a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e653764d7cb514d50b44fadd0cc5963dd404d99e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-your-first-virtual-network"></a>첫 가상 네트워크 만들기
 
-Hello 다음 그림에에서 나와 있는 것 처럼 어떻게 toocreate 두 서브넷을 사용 하 여 가상 네트워크 (VNet) 두 가상 컴퓨터 (VM)를 만들고 연결 hello 서브넷의 각 VM tooone에 알아봅니다.
+다음 그림과 같이 두 개의 서브넷이 있는 가상 네트워크(VNet)를 만들고, 두 개의 가상 컴퓨터(VM)를 만들어서 각 VM을 서브넷 중 하나에 연결하는 방법을 알아봅니다.
 
 ![가상 네트워크 다이어그램](./media/virtual-network-get-started-vnet-subnet/vnet-diagram.png)
 
-Azure 가상 네트워크 (VNet)는 hello 클라우드에서 사용자의 네트워크의 표현입니다. 사용자가 Azure 네트워크 설정을 제어하고 DHCP 주소 블록, DNS 설정, 보안 정책 및 라우팅을 정의할 수 있습니다. VNet 개념을 읽을 hello에 대 한 자세한 toolearn [가상 네트워크 개요](virtual-networks-overview.md) 문서. 다음 단계 toocreate hello 리소스 hello 그림에 표시 된 hello를 완료 합니다.
+Azure 가상 네트워크(VNet)는 클라우드의 사용자 네트워크를 나타내는 표현입니다. 사용자가 Azure 네트워크 설정을 제어하고 DHCP 주소 블록, DNS 설정, 보안 정책 및 라우팅을 정의할 수 있습니다. VNet 개념에 대해 자세히 알아보려면 [Virtual Network 개요](virtual-networks-overview.md) 문서를 참조하세요. 그림에 표시된 리소스를 만들려면 다음 단계를 완료합니다.
 
 1. [두 개의 서브넷이 있는 VNet을 만듭니다](#create-vnet).
-2. [네트워크 인터페이스 1 개 (NIC) 각각 두 개의 Vm을 만듭니다](#create-vms)를 네트워크 보안 그룹 (NSG) tooeach NIC 연결
-3. [Tooand hello Vm에서 연결](#connect-to-from-vms)
-4. [모든 리소스를 삭제합니다](#delete-resources). 이들 프로 비전 하는 동안이 연습에서 만든 hello 리소스 중 일부에 대 한 요금을 해야 합니다. toominimize hello 요금, hello 연습을 완료 한 후 toocomplete hello 만드는이 섹션 toodelete hello 리소스의 단계를 확인 해야 합니다.
+2. [각각 하나의 NIC(네트워크 인터페이스)가 있는 두 개의 VM을 만들고](#create-vms) 각 NIC에 NSG(네트워크 보안 그룹)를 연결합니다.
+3. [VM과 양방향으로 연결합니다](#connect-to-from-vms).
+4. [모든 리소스를 삭제합니다](#delete-resources). 이 연습에서 만든 일부 리소스가 프로비저닝되는 동안 요금이 발생합니다. 요금을 최소화하려면 연습을 완료한 후 만든 리소스를 이 섹션의 단계를 완료하여 삭제해야 합니다.
 
-기본적으로이 문서의 단계를 완료 하는 hello 후 VNet을 사용 하는 방법을 이해를 해야 합니다. 다음 단계 위해 제공 되는 방법에 대 한 자세히 알아볼 수 있습니다를 좀 더 깊게 Vnet toouse 합니다.
+이 문서의 단계를 완료하면 VNet을 사용하는 방법에 대한 기본적인 이해를 갖게 됩니다. 다음 단계는 더 깊은 수준으로 VNet을 사용하는 방법을 알아볼 수 있도록 제공됩니다.
 
 ## <a name="create-vnet"></a>두 개의 서브넷이 있는 가상 네트워크 만들기
 
-서브넷인은 단계를 완료 하는 hello 사용 하 여 가상 네트워크 toocreate 합니다. 서로 다른 서브넷은 일반적으로 toocontrol hello 서브넷 간의 트래픽 흐름을 사용 합니다.
+두 개의 서브넷이 있는 가상 네트워크를 만들려면 다음 단계를 완료합니다. 일반적으로 서브넷 간의 트래픽 흐름을 제어하기 위해 다른 서브넷이 사용됩니다.
 
-1. Toohello 로그인 [Azure 포털](<https://portal.azure.com>)합니다. 아직 계정이 없는 경우 [1개월 무료 평가판](https://azure.microsoft.com/free)을 등록할 수 있습니다. 
-2. Hello에 **즐겨찾기** 창의 hello 포털의 클릭 **새로**합니다.
-3. Hello에 **새로** 블레이드에서 클릭 **네트워킹**합니다. Hello에 **네트워킹** 블레이드에서 클릭 **가상 네트워크**hello 다음 그림에에서 나온 것 처럼:
+1. [Azure 포털](<https://portal.azure.com>)에 로그인합니다. 아직 계정이 없는 경우 [1개월 평가판](https://azure.microsoft.com/free)을 등록할 수 있습니다. 
+2. 포털의 **즐겨찾기** 창에서 **새로 만들기**를 클릭합니다.
+3. **새로 만들기** 블레이드에서 **네트워킹**을 클릭합니다. 다음 그림과 같이 **네트워킹** 블레이드에서 **Virtual Network**를 클릭합니다.
 
     ![가상 네트워크 다이어그램](./media/virtual-network-get-started-vnet-subnet/virtual-network.png)
 
-4.  Hello에 **가상 네트워크** 블레이드에서 leave *리소스 관리자* hello 배포 모델 및 클릭으로 선택한 **만들기**합니다.
-5.  Hello에 **만들기 가상 네트워크 블레이드** 나타나는 hello 다음 값을 입력 한 다음 클릭 **만들기**:
+4.  **가상 네트워크** 블레이드에서 배포 모델로 *Resource Manager*를 선택한 상태로 두고 **만들기**를 클릭합니다.
+5.  **가상 네트워크 만들기** 블레이드가 나타나면 다음 값을 입력한 다음 **만들기**를 클릭합니다.
 
     |**설정**|**값**|**세부 정보**|
     |---|---|---|
-    |**Name**|*MyVNet*|hello 이름은 hello 리소스 그룹 내에서 고유 해야 합니다.|
+    |**Name**|*MyVNet*|이름은 각 리소스 그룹 내에서 고유해야 합니다.|
     |**주소 공간**|*10.0.0.0/16*|CIDR 표기법으로 원하는 주소 공간을 지정할 수 있습니다.|
-    |**서브넷 이름**|*프런트 엔드*|hello 서브넷 이름이 hello 가상 네트워크 내에서 고유 해야 합니다.|
-    |**서브넷 주소 범위**|*10.0.0.0/24*| 지정 된 hello 범위 hello 가상 네트워크에 대해 정의 된 hello 주소 공간 내에 있어야 합니다.|
-    |**구독**|*[사용자의 구독]*|구독 toocreate hello VNet 선택에 있습니다. VNet은 단일 구독 내에 존재합니다.|
-    |**리소스 그룹**|**새로 만들기:** *MyRG*|리소스 그룹을 만듭니다. hello 리소스 그룹 이름은 선택한 hello 구독 내에서 고유 해야 합니다. 리소스 그룹을 읽기 hello에 대 한 자세한 toolearn [리소스 관리자](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#resource-groups) 개요 문서.|
-    |**위치**:|*미국 서부*| 일반적으로 hello 위치와 가장 가까운 tooyour 실제 위치를 선택 합니다.|
+    |**서브넷 이름**|*프런트 엔드*|서브넷 이름은 가상 네트워크 내에서 고유해야 합니다.|
+    |**서브넷 주소 범위**|*10.0.0.0/24*| 지정하는 범위가 가상 네트워크에 대해 정의한 주소 공간 내에 존재해야 합니다.|
+    |**구독**|*[사용자의 구독]*|VNet을 만들 구독을 선택합니다. VNet은 단일 구독 내에 존재합니다.|
+    |**리소스 그룹**|**새로 만들기:** *MyRG*|리소스 그룹을 만듭니다. 리소스 그룹 이름은 선택한 구독 내에서 고유해야 합니다. 리소스 그룹에 대해 자세히 알아보려면 [Resource Manager](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#resource-groups) 개요 문서를 참조하세요.|
+    |**위치**:|*미국 서부*| 일반적으로 물리적 위치에 가장 가까운 위치가 선택되어 있습니다.|
 
-    VNet은 몇 초 toocreate를 hello 합니다. Azure hello 참조을 만든 후 포털 대시보드에서.
+    VNet을 만드는 데 몇 초 정도 걸립니다. 만들어지면 Azure Portal 대시보드가 보입니다.
 
-6. Hello Azure 포털에서에서 만든 hello 가상 네트워크와 **즐겨찾기** 창에서 클릭 **모든 리소스**합니다. Hello 클릭 **MyVNet** hello에서 가상 네트워크 **모든 리소스** 블레이드입니다. 이미 선택한 hello 구독에 여러 자원이 인 경우 입력 하면 *MyVNet* hello에 **이름별으로 필터링...** 상자 tooeasily 액세스 hello VNet입니다.
-7. hello **MyVNet** 블레이드가 열리고 hello 다음 그림에에서 나와 있는 것 처럼 VNet hello에 대 한 정보를 표시 합니다.
+6. 가상 네트워크가 만들어진 상태에서 Azure Portal의 **즐겨찾기** 창에서 **모든 리소스**를 클릭합니다. **모든 리소스** 블레이드에서 **MyVNet** 가상 네트워크를 클릭합니다. 선택한 구독에 이미 여러 개의 리소스가 있는 경우 **이름을 기준으로 필터링...** 상자에 *MyVNet*을 입력하여 쉽게 VNet에 액세스할 수 있습니다.
+7. 다음 그림과 같이 **MyVNet** 블레이드가 열리고 VNet에 대한 정보가 표시됩니다.
 
     ![가상 네트워크 다이어그램](./media/virtual-network-get-started-vnet-subnet/myvnet.png)
 
-8. 클릭 하 여 hello 이전 그림에 나와 있는 것 처럼 **서브넷** toodisplay hello VNet 내의 hello 서브넷의 목록입니다. hello 존재 하는 서브넷에만 **프런트 엔드**, 5 단계에서 만든 서브넷 hello 합니다.
-9. Hello MyVNet-서브넷 블레이드 클릭 **+ 서브넷** toocreate hello 사용 하 여 서브넷 정보 및 클릭 **확인** toocreate hello 서브넷:
+8. 이전 그림과 같이 **서브넷**을 클릭하여 VNet에 포함된 서브넷 목록을 표시합니다. 유일하게 존재하는 서브넷은 5단계에서 만든 **프런트 엔드**입니다.
+9. MyVNet - 서브넷 블레이드에서 **+ 서브넷**을 클릭하고 다음 정보를 사용하여 서브넷을 만들고 **확인**을 클릭하여 서브넷을 만듭니다.
 
     |**설정**|**값**|**세부 정보**|
     |---|---|---|
-    |**Name**|*백 엔드*|hello 이름은 hello 가상 네트워크 내에서 고유 해야 합니다.|
-    |**주소 범위**|*10.0.1.0/24*|지정 된 hello 범위 hello 가상 네트워크에 대해 정의 된 hello 주소 공간 내에 있어야 합니다.|
-    |**네트워크 보안 그룹** 및 **경로 테이블**|*없음*(기본값)|네트워크 보안 그룹(NSG)은 이 문서의 뒷부분에서 다룹니다. hello 읽기 사용자 정의 경로 대 한 자세한 toolearn [사용자 정의 경로](virtual-networks-udr-overview.md) 문서.|
+    |**Name**|*백 엔드*|이름은 가상 네트워크 내에서 고유해야 합니다.|
+    |**주소 범위**|*10.0.1.0/24*|지정하는 범위가 가상 네트워크에 대해 정의한 주소 공간 내에 존재해야 합니다.|
+    |**네트워크 보안 그룹** 및 **경로 테이블**|*없음*(기본값)|네트워크 보안 그룹(NSG)은 이 문서의 뒷부분에서 다룹니다. 사용자 정의 경로에 대해 자세히 알아보려면 [사용자 정의 경로](virtual-networks-udr-overview.md) 문서를 참조하세요.|
 
-10. Hello를 닫을 수 hello 새 서브넷 toohello VNet를 추가한 후 **MyVNet – 서브넷** 블레이드에서 다음 닫기 hello **모든 리소스** 블레이드입니다.
+10. 새 서브넷이 VNet에 추가된 후 **MyVNet – 서브넷** 블레이드를 닫은 다음 **모든 리소스** 블레이드를 닫습니다.
 
 ## <a name="create-vms"></a>가상 컴퓨터 만들기
 
-VNet hello와 서브넷을 만든 hello Vm을 만들 수 있습니다. 그러나이 연습에서는 hello Windows Server 운영 체제를 실행 하는 두 Vm에 대 한 여러 다른 Linux 배포판을 포함 하 여 Azure에서 지원 되는 운영 체제 실행할 수 있습니다.
+VNet과 서브넷이 만들어진 상태에서 VM을 만듭니다. Azure에서 지원되는 몇 가지 Linux 배포를 비롯한 모든 운영 체제를 실행할 수 있지만 이 연습에서는 두 VM 모두에서 Windows Server 운영 체제를 실행합니다.
 
-### <a name="create-web-server-vm"></a>Hello 웹 서버 VM 만들기
+### <a name="create-web-server-vm"></a>웹 서버 VM 만들기
 
-toocreate hello 웹 서버 VM 단계를 수행 하는 전체 hello:
+웹 서버 VM을 만들려면 다음 단계를 완료합니다.
 
-1. Hello Azure 포털 즐겨찾기 창에서 클릭 **새로**, **계산**, 다음 **Windows Server 2016 Datacenter**합니다.
-2. Hello에 **Windows Server 2016 Datacenter** 블레이드에서 클릭 **만들기**합니다.
-3. Hello에 **기본 사항** 나타나는 블레이드 입력 하거나 다음 값에는 hello 선택한 클릭 **확인**:
+1. Azure Portal 즐겨찾기 창에서 **새로 만들기**, **Compute**를 클릭한 다음 **Windows Server 2016 Datacenter**를 클릭합니다.
+2. **Windows Server 2016 Datacenter** 블레이드에서 **만들기**를 클릭합니다.
+3. **기본 사항** 블레이드가 나타나면 다음 값을 입력하거나 선택하고 **확인**을 클릭합니다.
 
     |**설정**| **값**|**세부 정보**|
     |---|---|---|
@@ -95,156 +95,156 @@ toocreate hello 웹 서버 VM 단계를 수행 하는 전체 hello:
     |**VM 디스크 유형**|*SSD*|
     |**사용자 이름**|*사용자 선택*|
     |**암호 및 암호 확인**|*사용자 선택*|
-    | **구독**|*<Your subscription>*|hello 구독 해야 hello의 5 단계에서 선택한 동일한 구독 hello [두 서브넷과 가상 네트워크 만들기](#create-vnet) 이 문서의 섹션. hello에 hello VM toomust 연결 VNet 존재 동일한 VM hello 구독 합니다.|
-    |**리소스 그룹**|**기존 값 사용:** *MyRG* 선택|리소스 hello에 tooexist를 없는 경우에 동일한 리소스 그룹 VNet hello에 대 한 했던 것 처럼 hello hello에서는 동일한 리소스 그룹입니다.|
-    |**위치**:|*미국 서부*|hello 위치 여야 hello의 5 단계에서 지정 된 동일한 위치 hello [두 서브넷과 가상 네트워크 만들기](#create-vnet) 이 문서의 섹션. Vm 및 hello toomust 연결할 Vnet에에서 있는 hello 동일 위치 합니다.|
+    | **구독**|*<Your subscription>*|구독은 이 문서에서 [두 개의 서브넷이 있는 가상 네트워크 만들기](#create-vnet) 섹션의 5단계에서 선택한 구독과 동일해야 합니다. VM을 연결하는 VNet은 VM과 동일한 구독 내에 존재해야 합니다.|
+    |**리소스 그룹**|**기존 값 사용:** *MyRG* 선택|VNet에 사용했던 리소스 그룹과 동일한 리소스 그룹을 사용하지만 리소스가 동일한 리소스 그룹에 존재하지 않아도 됩니다.|
+    |**위치**:|*미국 서부*|위치는 이 문서에서 [두 개의 서브넷이 있는 가상 네트워크 만들기](#create-vnet) 섹션의 5단계에서 지정한 위치와 동일해야 합니다. VM 및 VM이 연결되는 VNet은 동일한 위치에 존재해야 합니다.|
 
-4. Hello에 **크기를 선택** 블레이드에서 클릭 *DS1_V2 표준*, 클릭 **선택**합니다. 읽기 hello [Windows VM 크기](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json) Azure에서 지 원하는 모든 Windows VM 크기의 목록에 대 한 문서입니다.
-5. Hello에 **설정** 블레이드를 입력 하거나 다음 값에는 hello 선택한 클릭 **확인**:
+4. **크기 선택** 블레이드에서 *DS1_V2 기본*, **선택**을 차례로 클릭합니다. Azure에서 지원되는 모든 Windows VM 크기 목록은 [Windows VM 크기](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 문서를 참조하세요.
+5. **설정** 블레이드에서 다음 값을 입력하거나 선택하고 **확인**을 클릭합니다.
 
     |**설정**|**값**|**세부 정보**|
     |---|---|---|
     |**저장소: Managed Disks 사용**|*예*||
-    |**가상 네트워크**| *MyVNet* 선택|동일한 hello에 존재 하는 모든 VNet을 선택할 수 있습니다 위치를 만드는 VM hello 합니다. Vnet 및 서브넷을 hello 읽기에 대 한 자세한 toolearn [가상 네트워크](virtual-networks-overview.md) 문서.|
-    |**서브넷**|*프런트 엔드* 선택|Hello VNet 내에 있는 모든 서브넷을 선택할 수 있습니다.|
-    |**공용 IP 주소**|Hello 기본값을 그대로|공용 IP 주소를 통해 있습니다 tooconnect toohello를 VM hello 인터넷에서에서 수 있습니다. hello를 읽고, 공용 IP 주소에 대 한 자세한 toolearn [IP 주소](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses) 문서.|
-    |**네트워크 보안 그룹(방화벽)**|Hello 기본값을 그대로|Hello 클릭 **(새) MyWebServer nsg** 기본 NSG hello 포털 설정을 tooview을 생성 합니다. Hello에 **네트워크 보안 그룹 만들기** 열리는 블레이드, 모든 원본 IP 주소에서의 TCP/3389 (RDP) 트래픽을 허용 하는 인바운드 규칙 하나에 있습니다.|
-    |**다른 모든 값**|Hello 기본값을 적용|읽을 hello 설정을 남은 hello에 대 한 자세한 toolearn [Vm에 대 한](../virtual-machines/windows/overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 문서.|
+    |**가상 네트워크**| *MyVNet* 선택|만드는 VM과 동일한 위치에 존재하는 VNet이면 무엇이든 선택할 수 있습니다. VNet 및 서브넷에 대해 자세히 알아보려면 [가상 네트워크](virtual-networks-overview.md) 문서를 참조하세요.|
+    |**서브넷**|*프런트 엔드* 선택|VNet 내에 존재하는 서브넷이면 무엇이든 선택할 수 있습니다.|
+    |**공용 IP 주소**|기본값 적용|공용 IP 주소를 사용하면 인터넷에서 VM에 연결할 수 있습니다. 공용 IP 주소에 대해 자세히 알아보려면 [IP 주소](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)를 참조하세요.|
+    |**네트워크 보안 그룹(방화벽)**|기본값 적용|포털에서 만들어진 **(새)MyWebServer-nsg** 기본 NSG를 클릭하여 해당 설정을 봅니다. **네트워크 보안 그룹 만들기** 블레이드가 열리면 원본 IP 주소에서 들어오는 TCP/3389(RDP) 트래픽을 허용하는 인바운드 규칙이 하나 있는 것을 확인합니다.|
+    |**다른 모든 값**|기본값 적용|나머지 설정에 대해 자세히 알아보려면 [VM 정보](../virtual-machines/windows/overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 문서를 참조하세요.|
 
-    네트워크 보안 그룹 NSG ()을 사용 하면 toocreate hello tooand hello VM에서에서 전달할 수 있는 네트워크 트래픽 종류에 대 한 인바운드/아웃 바운드 규칙입니다. 기본적으로 모든 인바운드 트래픽을 toohello VM 거부 되었습니다. 프로덕션 웹 서버에 대해 TCP/80(HTTP) 및 TCP/443(HTTPS)에 대한 추가 인바운드 규칙을 추가할 수 있습니다. 기본적으로 모든 아웃바운드 트래픽은 허용되기 때문에 아웃바운드 트래픽에 대한 규칙은 없습니다. 있습니다 수 추가/제거 규칙 toocontrol 트래픽 별 사용자 정책입니다. 읽기 hello [네트워크 보안 그룹](virtual-networks-nsg.md) Nsg에 대 한 자세한 문서 toolearn 합니다.
+    NSG(네트워크 보안 그룹)를 사용하면 VM에서 양방향으로 흐를 수 있는 네트워크 트래픽 유형에 대해 인바운드/아웃바운드 규칙을 만들 수 있습니다. 기본적으로 VM에 대한 모든 인바운드 트래픽은 거부됩니다. 프로덕션 웹 서버에 대해 TCP/80(HTTP) 및 TCP/443(HTTPS)에 대한 추가 인바운드 규칙을 추가할 수 있습니다. 기본적으로 모든 아웃바운드 트래픽은 허용되기 때문에 아웃바운드 트래픽에 대한 규칙은 없습니다. 규칙을 추가/제거하여 정책에 따라 트래픽을 제어할 수 있습니다. NSG에 대해 자세히 알아보려면 [네트워크 보안 그룹](virtual-networks-nsg.md)을 참조하세요.
 
-6.  Hello에 **요약** 블레이드에서 hello 설정을 검토 하 고 클릭 **확인** toocreate hello VM입니다. 상태 타일 VM 만듭니다 hello로 hello 포털 대시보드에 표시 됩니다. 몇 분 toocreate를 걸릴 수 있습니다. 않아도 toowait 것에 대 한 toocomplete 됩니다. Toohello hello VM이 생성 하는 동안 다음 단계를 계속할 수 있습니다.
+6.  **요약** 블레이드에서 설정을 검토하고 **확인**을 클릭하여 VM을 만듭니다. VM이 만들어지면서 상태 타일이 포털 대시보드에 표시됩니다. 만드는 데 몇 분이 걸릴 수 있습니다. 완료될 때가지 기다릴 필요는 없습니다. VM이 만들어지는 동안 다음 단계로 진행할 수 있습니다.
 
-### <a name="create-database-server-vm"></a>Hello 데이터베이스 서버 VM 만들기
+### <a name="create-database-server-vm"></a>데이터베이스 서버 VM 만들기
 
-toocreate hello 데이터베이스 서버 VM 단계를 수행 하는 전체 hello:
+데이터베이스 서버 VM을 만들려면 다음 단계를 완료합니다.
 
-1.  Hello 즐겨찾기 창에서 클릭 **새로**, **계산**, 다음 **Windows Server 2016 Datacenter**합니다.
-2.  Hello에 **Windows Server 2016 Datacenter** 블레이드에서 클릭 **만들기**합니다.
-3.  Hello에 **기본 사항 블레이드에서**를 입력 하거나 다음 값을 hello를 선택한 다음 클릭 **확인**:
+1.  즐겨찾기 창에서 **새로 만들기**, **Compute**를 클릭한 다음 **Windows Server 2016 Datacenter**를 클릭합니다.
+2.  **Windows Server 2016 Datacenter** 블레이드에서 **만들기**를 클릭합니다.
+3.  **기본 사항** 블레이드에서 다음 값을 입력하거나 선택한 다음 **확인**을 클릭합니다.
 
     |**설정**|**값**|**세부 정보**|
     |---|---|---|
-    |**Name**|*MyDBServer*|이 VM hello 웹 서버에 연결 하지만 해당 hello 인터넷에 연결할 수 없는 데이터베이스 서버로 사용 됩니다.|
+    |**Name**|*MyDBServer*|이 VM은 웹 서버를 연결할 수 있지만 인터넷은 연결할 수 없는 데이터베이스 역할을 합니다.|
     |**VM 디스크 유형**|*SSD*||
     |**사용자 이름**|사용자 선택||
     |**암호 및 암호 확인**|사용자 선택||
-    |**구독**|<Your subscription>|hello 구독 해야 hello의 5 단계에서에서 선택한 동일한 구독 hello [두 서브넷과 가상 네트워크 만들기](#create-vnet) 이 문서의 섹션.|
-    |**리소스 그룹**|**기존 값 사용:** *MyRG* 선택|리소스 hello에 tooexist를 없는 경우에 동일한 리소스 그룹 VNet hello에 대 한 했던 것 처럼 hello hello에서는 동일한 리소스 그룹입니다.|
-    |**위치**:|*미국 서부*|hello 위치 여야 hello의 5 단계에서 지정 된 동일한 위치 hello [두 서브넷과 가상 네트워크 만들기](#create-vnet) 이 문서의 섹션.|
+    |**구독**|<Your subscription>|구독은 이 문서에서 [두 개의 서브넷이 있는 가상 네트워크 만들기](#create-vnet) 섹션의 5단계에서 선택한 구독과 동일해야 합니다.|
+    |**리소스 그룹**|**기존 값 사용:** *MyRG* 선택|VNet에 사용했던 리소스 그룹과 동일한 리소스 그룹을 사용하지만 리소스가 동일한 리소스 그룹에 존재하지 않아도 됩니다.|
+    |**위치**:|*미국 서부*|위치는 이 문서에서 [두 개의 서브넷이 있는 가상 네트워크 만들기](#create-vnet) 섹션의 5단계에서 지정한 위치와 동일해야 합니다.|
 
-4.  Hello에 **크기를 선택** 블레이드에서 클릭 *DS1_V2 표준*, 클릭 **선택**합니다.
-5.  Hello에 **설정** 블레이드를 입력 하거나 다음 값에는 hello 선택한 클릭 **확인**:
+4.  **크기 선택** 블레이드에서 *DS1_V2 기본*, **선택**을 차례로 클릭합니다.
+5.  **설정** 블레이드에서 다음 값을 입력하거나 선택하고 **확인**을 클릭합니다.
 
     |**설정**|**값**|**세부 정보**|
     |----|----|---|
     |**저장소: Managed Disks 사용**|*예*||
-    |**가상 네트워크**|*MyVNet* 선택|동일한 hello에 존재 하는 모든 VNet을 선택할 수 있습니다 위치를 만드는 VM hello 합니다.|
-    |**서브넷**|선택 *백 엔드* hello를 클릭 하 여 **서브넷** 상자에서 다음을 선택 하면 **백 엔드** hello에서 **서브넷을 선택** 블레이드|Hello VNet 내에 있는 모든 서브넷을 선택할 수 있습니다.|
-    |**공용 IP 주소**|None – hello 기본 주소를 차례로 클릭 **None** hello에서 **공용 IP 주소 선택** 블레이드|공용 IP 주소가 없으면만 연결할 수 toohello VM에서 다른 연결 된 VM toohello 동일한 VNet입니다. Hello 인터넷에서 직접 tooit를 연결할 수 없습니다.|
-    |**네트워크 보안 그룹(방화벽)**|Hello 기본값을 그대로| 또한 hello MyWebServer VM이이 NSG에 대 한 작성 NSG hello 기본 hello 달리 동일 기본 인바운드 규칙입니다. 데이터베이스 서버에 대해 TCP/1433(MS SQL)에 대한 추가 인바운드 규칙을 추가할 수 있습니다. 기본적으로 모든 아웃바운드 트래픽은 허용되기 때문에 아웃바운드 트래픽에 대한 규칙은 없습니다. 있습니다 수 추가/제거 규칙 toocontrol 트래픽 별 사용자 정책입니다.|
-    |**다른 모든 값**|Hello 기본값을 적용||
+    |**가상 네트워크**|*MyVNet* 선택|만드는 VM과 동일한 위치에 존재하는 VNet이면 무엇이든 선택할 수 있습니다.|
+    |**서브넷**|**서브넷** 상자를 클릭한 다음 **서브넷 선택** 블레이드에서 **백 엔드**를 선택하여 *백 엔드*를 선택합니다.|VNet 내에 존재하는 서브넷이면 무엇이든 선택할 수 있습니다.|
+    |**공용 IP 주소**|없음 – 기본 주소를 클릭한 다음 **공용 IP 주소 선택** 블레이드에서 **없음**을 클릭합니다.|공용 IP 주소가 없으면 동일한 VNet에 연결된 다른 VM에서만 해당 VM에 연결할 수 있습니다. 인터넷에서 직접 연결할 수는 없습니다.|
+    |**네트워크 보안 그룹(방화벽)**|기본값 적용| MyWebServer VM에 대해 만들어진 기본 NSG와 같이 이 NSG 역시 동일한 기본 인바운드 규칙을 갖습니다. 데이터베이스 서버에 대해 TCP/1433(MS SQL)에 대한 추가 인바운드 규칙을 추가할 수 있습니다. 기본적으로 모든 아웃바운드 트래픽은 허용되기 때문에 아웃바운드 트래픽에 대한 규칙은 없습니다. 규칙을 추가/제거하여 정책에 따라 트래픽을 제어할 수 있습니다.|
+    |**다른 모든 값**|기본값 적용||
 
-6.  Hello에 **요약** 블레이드에서 hello 설정을 검토 하 고 클릭 **확인** toocreate hello VM입니다. 상태 타일 VM 만듭니다 hello로 hello 포털 대시보드에 표시 됩니다. 몇 분 toocreate를 걸릴 수 있습니다. 않아도 toowait 것에 대 한 toocomplete 됩니다. Toohello hello VM이 생성 하는 동안 다음 단계를 계속할 수 있습니다.
+6.  **요약** 블레이드에서 설정을 검토하고 **확인**을 클릭하여 VM을 만듭니다. VM이 만들어지면서 상태 타일이 포털 대시보드에 표시됩니다. 만드는 데 몇 분이 걸릴 수 있습니다. 완료될 때가지 기다릴 필요는 없습니다. VM이 만들어지는 동안 다음 단계로 진행할 수 있습니다.
 
 ## <a name="review"></a>리소스 검토
 
-그러나 하나의 VNet과 두 개의 Vm hello hello MyRG 리소스 그룹에 사용자에 대 한 몇 가지 추가 리소스를 만들어 Azure 포털을 만들었습니다. Hello 다음 단계를 완료 하 여 hello MyRG 리소스 그룹의 hello 내용을 검토 합니다.
+VNet 하나와 VM 둘을 만들었지만 Azure Portal은 MyRG 리소스 그룹에 몇 가지 추가 리소스를 만들었습니다. 다음 단계를 완료하여 MyRG 리소스 그룹의 콘텐츠를 검토합니다.
 
-1. Hello에 **즐겨찾기** 창에서 클릭 **더 많은 서비스**합니다.
-2. Hello에 **더 많은 서비스** 창, 형식 *리소스 그룹* hello 단어 hello 상자의 *필터* 에 있습니다. 클릭 **리소스 그룹** hello에 표시 될 때 필터링 된 목록입니다.
-3. Hello에 **리소스 그룹** 창의 hello 클릭 *MyRG* 리소스 그룹입니다. 많은 기존 리소스 그룹을 구독에 있을 경우 입력할 수 있습니다 *MyRG* hello 텍스트를 포함 하는 hello 상자에서 *이름별으로 필터링...* tooquickly 액세스 hello MyRG 리소스 그룹입니다.
-4.  Hello에 **MyRG** 블레이드에 표시 12 리소스를 포함 하는 해당 hello 리소스 그룹 hello 다음 그림에에서 나와 있는 것 처럼:
+1. **즐겨찾기** 창에서 **추가 서비스**를 클릭합니다.
+2. **추가 서비스** 창에서 *필터*라는 단어가 포함된 상자에 *리소스 그룹*을 입력합니다. 필터링된 목록에 **리소스 그룹**이 표시되면 클릭합니다.
+3. **리소스 그룹** 창에서 *MyRG* 리소스 그룹을 클릭합니다. 구독에 기존 리소스 그룹이 많이 있는 경우 *이름을 기준으로 필터링…* 텍스트가 포함된 상자에 *MyRG*를 입력하여 MyRG 리소스 그룹에 신속하게 액세스할 수 있습니다.
+4.  **MyRG** 블레이드에 다음 그림과 같이 12개의 리소스가 포함된 리소스 그룹이 표시됩니다.
 
     ![리소스 그룹 콘텐츠](./media/virtual-network-get-started-vnet-subnet/resource-group-contents.png)
 
-Vm, 디스크 및 저장소 계정, hello 읽기에 대 한 자세한 toolearn [가상 컴퓨터](../virtual-machines/windows/overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json), [디스크](../virtual-machines/windows/about-disks-and-vhds.md?toc=%2fazure%2fvirtual-network%2ftoc.json), 및 [저장소 계정](../storage/common/storage-introduction.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 개요 문서입니다. Hello 두 개의 기본 Nsg hello 포털 생성을 볼 수 있습니다. Hello 포털이 만든 두 개의 네트워크 인터페이스 (NIC) 리소스를 볼 수 있습니다. NIC는 hello VNet 통해 VM tooconnect tooother 리소스 수 있습니다. 읽기 hello [NIC](virtual-network-network-interface.md) Nic에 대 한 자세한 문서 toolearn 합니다. hello 포털에도 공용 IP 주소 리소스가 만들어집니다. 공용 IP 주소는 공용 IP 주소 리소스에 대한 한 가지 설정입니다. hello를 읽고, 공용 IP 주소에 대 한 자세한 toolearn [IP 주소](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses) 문서.
+VM, 디스크 및 저장소 계정에 대해 자세히 알아보려면 [가상 컴퓨터](../virtual-machines/windows/overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json), [디스크](../virtual-machines/windows/about-disks-and-vhds.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 및 [저장소 계정](../storage/common/storage-introduction.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 개요 문서를 참조하세요. 두 개의 기본 NSG가 포털에서 만들어진 것을 볼 수 있습니다. 포털에 두 개의 NIC(네트워크 인터페이스) 리소스가 만들어진 것도 볼 수 있습니다. NIC는 VM이 VNet을 통해 다른 리소스에 연결할 수 있도록 합니다. NIC에 대해 자세히 알아보려면 [NIC](virtual-network-network-interface.md) 문서를 참조하세요. 포털에 공용 IP 주소 리소스도 하나 생성되었습니다. 공용 IP 주소는 공용 IP 주소 리소스에 대한 한 가지 설정입니다. 공용 IP 주소에 대해 자세히 알아보려면 [IP 주소](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)를 참조하세요.
 
-## <a name="connect-to-from-vms"></a>Toohello Vm 연결
+## <a name="connect-to-from-vms"></a>VM에 연결
 
-VNet 및 만든 두 개의 Vm을 toohello Vm hello hello 다음 섹션에에서 나와 있는 단계를 완료 하 여 연결할 수 있습니다.
+VNet과 두 개의 VM이 만들어지면 이제 다음 섹션의 단계를 완료하여 VM에 연결할 수 있습니다.
 
-### <a name="connect-from-internet"></a>Hello 인터넷에서에서 toohello 웹 서버 VM 연결
+### <a name="connect-from-internet"></a>인터넷에서 웹 서버 VM에 연결
 
-tooconnect toohello 웹 서버 VM에서 인터넷을 단계를 수행 하는 전체 hello hello:
+인터넷에서 웹 서버 VM에 연결하려면 다음 단계를 완료합니다.
 
-1. Hello 포털에서 열기 hello MyRG 리소스 그룹 hello를 완료 하 여 hello에서 단계 [리소스를 검토](#review) 이 문서의 섹션.
-2. Hello에 **MyRG** 블레이드에서 hello 클릭 **MyWebServer** VM입니다.
-3. Hello에 **MyWebServer** 블레이드에서 클릭 **연결**hello 다음 그림에에서 나온 것 처럼:
+1. 포털에서 이 문서의 [리소스 검토](#review) 섹션에 있는 단계를 완료하여 MyRG 리소스 그룹을 엽니다.
+2. **MyRG** 블레이드에서 **MyWebServer** VM을 엽니다.
+3. 다음 그림과 같이 **MyWebServer** 블레이드에서 **연결**을 클릭합니다.
 
-    ![Tooweb 서버 VM 연결](./media/virtual-network-get-started-vnet-subnet/webserver.png)
+    ![웹 서버 VM에 연결](./media/virtual-network-get-started-vnet-subnet/webserver.png)
 
-4. 브라우저 toodownload hello 허용 *MyWebServer.rdp* 파일을 다음 엽니다.
-5. 클릭 하면 해당 hello 게시자의 hello 원격 연결을 확인할 수 없는 알리는 대화 상자가 표시 되 면 **연결**합니다.
-6. 자격 증명을 입력할 때는 hello 사용자 이름 및 암호로 hello의 3 단계에서 지정한 로그인 확인 [만들기 hello 웹 서버 VM](#create-web-server-vm) 이 문서의 섹션. 경우 hello **Windows 보안** 나타나는 상자 hello 올바른 자격 증명을 나열 하지 않는, tooclick 할 수 있습니다 **추가 선택 사항을**, 다음 **다른 계정을 사용 하 여**할 수 있도록, hello 올바른 사용자 이름 및 암호 지정). 클릭 **확인** tooconnect toohello VM입니다.
-7. 표시 되 면 한 **원격 데스크톱 연결** 클릭 하면 hello hello 원격 컴퓨터의 id를 확인할 수 없어서 상자 알리는 **예**합니다.
-8. Hello 인터넷에서에서 연결 된 toohello MyWebServer VM가 나타납니다. Hello 다음 섹션의 hello 원격 데스크톱 연결 열기 toocomplete hello 단계를 둡니다.
+4. 브라우저에서 *MyWebServer.rdp* 파일을 다운로드하도록 허용한 다음 파일을 엽니다.
+5. 원격 연결의 게시자를 확인할 수 없다고 알려주는 대화 상자가 표시되면 **연결**을 클릭합니다.
+6. 자격 증명을 입력할 때 이 문서에서 [웹 서버 VM 만들기](#create-web-server-vm) 섹션의 3단계에서 지정한 사용자 이름과 암호로 로그인해야 합니다. 나타나는 **Windows 보안** 상자에 올바른 자격 증명이 나열되지 않는 경우에는 **다른 옵션 선택**을 클릭하고 **다른 계정 사용**을 클릭하여 올바른 사용자 이름과 암호를 지정할 수 있습니다. **확인**을 클릭하여 VM에 연결합니다.
+7. 원격 컴퓨터의 ID를 확인할 수 없다고 알려주는 **원격 데스크톱 연결** 상자가 표시되면 **예**를 클릭합니다.
+8. 이제 인터넷에서 MyWebServer VM에 연결되었습니다. 원격 데스크톱 연결을 열어 두고 다음 섹션의 단계를 완료합니다.
 
-hello 원격 연결은 toohello toohello 공용 IP 주소 리소스 hello 포털 hello의 5 단계에서 만든 할당 한 공용 IP 주소는 [두 서브넷과 가상 네트워크 만들기](#create-vnet) 이 문서의 섹션. hello 기본 규칙 hello에 만들어지므로 hello 연결이 허용 됩니다 **MyWebServer nsg** TCP/3389 (RDP) 허용 된 NSG 인바운드 toohello VM에서 모든 원본 IP 주소입니다. 다른 포트를 통해 tooconnect toohello VM에서 하면 hello 연결이 실패 하면 추가 인바운드 규칙 toohello NSG 허용 hello 추가 포트를 추가 하지 않는 한 합니다.
+원격 연결은 이 문서에서 [두 개의 서브넷이 있는 가상 네트워크 만들기](#create-vnet) 섹션의 5단계에서 만들어진 공용 IP 주소 리소스에 할당된 공용 IP 주소에 연결됩니다. 연결이 허용되는 이유는 **MyWebServer-nsg** NSG에 만들어진 기본 규칙이 모든 원본 IP 주소에서 VM에 대한 TCP/3389(RDP) 인바운드를 허용하기 때문입니다. 다른 포트를 통해 VM에 연결하려고 하면 NSG에 추가 포트를 허용하는 추가 인바운드 규칙을 추가하지 않는 한 연결이 실패합니다.
 
 >[!NOTE]
->인바운드 규칙을 추가 toohello NSG를 추가 하는 경우 동일한 포트 hello Windows 방화벽에 열려 있는 또는 연결 실패 hello 해당 hello를 확인 합니다.
+>NSG에 추가 인바운드 규칙을 추가하는 경우 Windows 방화벽에 동일한 포트를 열어야 합니다. 그렇지 않으면 연결이 실패합니다.
 >
 
-### <a name="connect-to-internet"></a>Hello 웹 서버 VM에서에서 toohello 인터넷 연결
+### <a name="connect-to-internet"></a>웹 서버 VM에서 인터넷에 연결
 
-tooconnect hello 웹 서버 VM 단계를 수행 하는 전체 hello에서에서 아웃 바운드 인터넷 toohello:
+웹 서버 VM에서 인터넷으로 아웃바운드로 연결하려면 다음 단계를 완료합니다.
 
-1. MyWebServerVM 열고 원격 연결 toohello 모를 경우 hello의 hello 단계를 완료 하 여 원격 연결 toohello VM을 만들 [hello 인터넷에서에서 연결 toohello 웹 서버 VM](#connect-from-internet) 이 문서의 섹션.
-2. Hello Windows 바탕 화면에서 Internet Explorer를 엽니다. Hello에 **설치 Internet Explorer 11** 대화 상자를 클릭 **권장된 설정을 사용 하지 않는**, 클릭 **확인**합니다. 것이 권장된 tooaccept hello 권장 되는 프로덕션 서버에 대 한 설정 합니다.
-3. Hello Internet Explorer 주소 표시줄에 입력 [bing.com](http:www.bing.com)합니다. Internet Explorer 대화 상자에 표시 되 면 클릭 **추가**, 다음 **추가** hello에 **신뢰할 수 있는 사이트** 대화 상자와 클릭 **닫기**합니다. 다른 Internet Explorer 대화 상자에 대해 이 과정을 반복합니다.
-4. Hello Bing에서 검색 페이지, 입력 *whatsmyipaddress*, hello 돋보기 단추를 클릭 합니다. Bing은 hello 공용 IP 주소 할당 toohello 공용 IP 주소 리소스 hello VM을 만들 때 hello 포털에서 만든를 반환 합니다. Hello에 대 한 hello 설정을 검사 하는 경우 **MyWebServer ip** 참조 리소스를 뒤에 오는 hello 그림에 나와 있는 것 처럼 toohello 공용 IP 주소 리소스를 할당 하는 동일한 IP 주소를 hello 합니다. 그러나 hello IP 주소가 할당 tooyour VM이 다른 있습니다.
+1. MyWebServerVM에 대한 원격 연결이 아직 열려있지 않은 경우 이 문서에서 [인터넷에서 웹 서버 VM에 연결](#connect-from-internet) 섹션의 단계를 완료하여 VM에 원격 연결합니다.
+2. Windows 바탕 화면에서 Internet Explorer를 엽니다. **Internet Explorer 11 설정** 대화 상자에서 **권장 설정 사용 안 함**을 클릭한 다음 **확인**을 클릭합니다. 프로덕션 서버에 대해 권장 설정을 수락하는 것이 좋습니다.
+3. Internet Explorer 주소 표시줄에 [bing.com](http:www.bing.com)을 입력합니다. Internet Explorer 대화 상자가 표시되면 **추가**를 클릭한 다음 **신뢰할 수 있는 사이트** 대화 상자에서 **추가**를 클릭하고 **닫기**를 클릭합니다. 다른 Internet Explorer 대화 상자에 대해 이 과정을 반복합니다.
+4. Bing 검색 페이지에서 *whatsmyipaddress*를 입력한 다음 돋보기 단추를 클릭합니다. VM을 만들 때 포털에서 만들어진 공용 IP 주소 리소스에 할당된 공용 IP 주소가 Bing에서 반환됩니다. **MyWebServer-ip** 리소스에 대한 설정을 검토하는 경우, 다음 그림에 표시된 것처럼 동일한 IP 주소가 공용 IP 주소 리소스에 할당된 것을 볼 수 있습니다. 하지만 사용자의 VM에 할당된 IP 주소는 다릅니다.
 
-    ![Tooweb 서버 VM 연결](./media/virtual-network-get-started-vnet-subnet/webserver-pip.png)
+    ![웹 서버 VM에 연결](./media/virtual-network-get-started-vnet-subnet/webserver-pip.png)
 
-5.  Hello 다음 섹션의 hello 원격 데스크톱 연결 열기 toocomplete hello 단계를 둡니다.
+5.  원격 데스크톱 연결을 열어 두고 다음 섹션의 단계를 완료합니다.
 
-있습니다 수 tooconnect toohello 인터넷 hello VM에서에서는 기본적으로 VM hello에서 모든 아웃 바운드 연결이 허용 됩니다. 추가 규칙 toohello 적용할 NSG toohello toohello 서브넷 hello NIC에, 연결 된 NIC를 추가 하 여 아웃 바운드 연결을 제한할 수 있습니다 또는 둘 다 합니다.
+VM의 모든 아웃바운드 연결이 기본적으로 허용되기 때문에 VM에서 인터넷에 연결할 수 있습니다. NIC에 적용된 NSG, NIC가 연결되어 있는 서브넷 또는 양쪽 모두에 대해 추가 규칙을 추가하여 아웃바운드 연결을 제한할 수 있습니다.
 
-Hello VM에 보관 됩니다 hello 중지 (할당 취소) 상태 hello 포털을 사용 하 여 면 hello 공용 IP 주소를 변경할 수 있습니다. Hello 공용 IP 주소 변경이 하지 필요한 경우에 hello 동적 할당 방법 (즉, hello 기본값) 보다는 hello IP 주소에 대 한 hello 정적 할당 메서드를 사용할 수 있습니다. hello 읽기에 대해 더 알아봅니다 toolearn hello 할당 방법 간의 차이점이 [IP 주소 형식 및 할당 방법을](virtual-network-ip-addresses-overview-arm.md) 문서.
+포털을 사용하여 VM이 중지된(할당이 취소된) 상태가 되면 공용 IP 주소가 변경될 수 있습니다. 공용 IP 주소가 변경되지 않도록 하려면 IP 주소에 대해 동적 할당 방법(기본값)이 아닌 정적 할당 방법을 사용합니다. 할당 방법 간의 차이점에 대해 자세히 알아보려면 [IP 주소 유형 및 할당 방법](virtual-network-ip-addresses-overview-arm.md) 문서를 참조하세요.
 
-### <a name="webserver-to-dbserver"></a>Hello 웹 서버 VM에서에서 toohello 데이터베이스 서버 VM 연결
+### <a name="webserver-to-dbserver"></a>웹 서버 VM에서 데이터베이스 서버 VM에 연결
 
-tooconnect toohello 데이터베이스 서버 VM VM 단계를 수행 하는 전체 hello hello 웹 서버에서:
+웹 서버 VM에서 데이터베이스 서버 VM에 연결하려면 다음 단계를 완료합니다.
 
-1. 열 MyWebServer VM 원격 연결 toohello 모를 경우 hello의 hello 단계를 완료 하 여 원격 연결 toohello VM을 만들 [hello 인터넷에서에서 연결 toohello 웹 서버 VM](#connect-from-internet) 이 문서의 섹션.
-2. Hello Windows 데스크톱의 hello 왼쪽 아래 모서리에 hello 시작 단추를 클릭 한 다음 입력을 시작 *원격 데스크톱*합니다. Hello 시작 메뉴 목록 표시 될 때 **원격 데스크톱 연결**를 클릭 합니다.
-3. Hello에 **원격 데스크톱 연결** 대화 상자에 입력 *MyDBServer* hello 컴퓨터 이름과 클릭 **연결**합니다.
-4. Hello 사용자 이름 및 hello의 3 단계에서 입력 한 암호가 입력 [만들기 hello 데이터베이스 서버 VM](#create-database-server-vm) 섹션이 문서의 클릭 **확인**합니다.
-5. 클릭 하면 hello 원격 컴퓨터의 해당 hello id를 검증할 수 없다는 대화 상자에 표시 되 면 **예**합니다.
-6. Hello 다음 섹션의 단계를 열고 toocomplete hello tooboth 서버 hello 원격 데스크톱 연결을 유지 합니다.
+1. MyWebServer VM에 대한 원격 연결이 아직 열려있지 않은 경우 이 문서에서 [인터넷에서 웹 서버 VM에 연결](#connect-from-internet) 섹션의 단계를 완료하여 VM에 원격 연결합니다.
+2. Windows 바탕 화면 왼쪽 아래 모서리에서 시작 단추를 클릭한 다음 *원격 데스크톱*을 입력하기 시작합니다. 시작 메뉴 목록에 **원격 데스크톱 연결**이 표시되면 클릭합니다.
+3. **원격 데스크톱 연결** 대화 상자의 컴퓨터 이름에 *MyDBServer*를 입력하고 **연결**을 클릭합니다.
+4. 이 문서에서 [데이터베이스 서버 VM 만들기](#create-database-server-vm) 섹션의 3단계에서 입력한 사용자 이름과 암호를 입력한 다음 **확인**을 클릭합니다.
+5. 원격 컴퓨터의 ID를 확인할 수 없다고 알려주는 대화 상자가 표시되면 **예**를 클릭합니다.
+6. 양쪽 서버에 대한 원격 데스크톱 연결을 열어 두고 다음 섹션의 단계를 완료합니다.
 
-사용자는 hello 웹 서버에서 VM에 대해 다음 이유로 hello 수 toomake hello 연결 toohello 데이터베이스 서버 VM:
+웹 서버 VM에서 데이터베이스 서버 VM에 연결할 수 있는 이유는 다음과 같습니다.
 
-- Hello 기본 NSG hello의 5 단계에서 만든 모든 원본 IP에 대 한 TCP/3389 인바운드 연결이 설정 되어 [만들기 hello 데이터베이스 서버 VM](#create-database-server-vm) 이 문서의 섹션.
-- Hello 웹 서버는 연결 된 toohello VM에서 hello 연결을 시작한 hello 데이터베이스 서버 VM으로 동일한 VNet입니다. tooconnect tooa에는 공용 IP 주소 할당 tooit 없는 VM에서에서 연결 해야 다른 연결 된 VM toohello 동일한 VNet hello VM이 다른 서브넷에 연결 된 tooa 경우에 합니다.
-- Hello Vm은 연결 된 toodifferent 서브넷, 경우에 Azure 서브넷의 연결을 사용할 수 있는 기본 경로 만듭니다. 그러나 직접 만들어 hello 기본 경로 재정의할 수 있습니다. 읽기 hello [사용자 정의 경로](virtual-networks-udr-overview.md) Azure에서 라우팅에 대 한 자세한 문서 toolearn 합니다.
+- 이 문서에서 [데이터베이스 서버 VM 만들기](#create-database-server-vm) 섹션의 5단계에서 만든 기본 NSG의 원본 IP에 대해 TCP/3389 인바운드 연결을 사용하도록 설정되어 있습니다.
+- 웹 서버 VM에서 연결을 시작했으며 이것이 데이터베이스 서버 VM과 동일한 VNet에 연결되어 있습니다. 공용 IP 주소가 할당되어 있지 않은 VM에 연결하려면 VM이 다른 서브넷에 연결되어 있더라도 동일한 VNet에 연결된 다른 VM에서 연결해야 합니다.
+- VM이 다른 서브넷에 연결되어 있더라도 서브넷 간의 연결을 가능하게 하는 기본 경로가 Azure에서 만들어집니다. 하지만 직접 경로를 만들어서 기본 경로를 재정의할 수 있습니다. Azure에서의 라우팅에 대해 자세히 알아보려면 [사용자 정의 경로](virtual-networks-udr-overview.md) 문서를 참조하세요.
 
-Hello에서와 같이 tooinitiate hello 인터넷에서에서 원격 연결 toohello 데이터베이스 서버 VM 시도 하면 [hello 인터넷에서에서 연결 toohello 웹 서버 VM](#connect-from-internet) 섹션 해당 hello 표시,이 문서의 **연결** 옵션은 회색입니다. 연결 되므로 hello 인터넷에서에서 인바운드 연결 tooit 가능 하지 않습니다. 없는 공용 IP 주소 할당 toohello VM에 있기 때문에 비활성화 되어 있습니다.
+이 문서의 [인터넷에서 웹 서버 VM에 연결](#connect-from-internet) 섹션에서와 같이 인터넷에서 데이터베이스 서버 VM으로 원격 연결을 시작하려고 하면 **연결** 옵션이 회색으로 표시됩니다. 연결이 회색으로 표시되는 이유는 VM에 할당된 IP 주소가 없기 때문에 인터넷에서 VM으로 인바운드 연결이 가능하지 않기 때문입니다.
 
-### <a name="connect-toohello-internet-from-hello-database-server-vm"></a>Hello 데이터베이스 서버 VM에서에서 toohello 인터넷 연결
+### <a name="connect-to-the-internet-from-the-database-server-vm"></a>데이터베이스 서버 VM에서 인터넷에 연결
 
-Hello 다음 단계를 완료 하 여 hello 데이터베이스 서버 VM에서에서 인터넷 아웃 바운드 toohello를 연결 합니다.
+다음 단계를 완료하여 데이터베이스 서버 VM에서 인터넷으로 아웃바운드 연결합니다.
 
-1. Hello의 단계를 완료 hello hello MyWebServer VM에서에서 열 MyDBServer VM 원격 연결 toohello 모를 경우 [hello 웹 서버 VM에서에서 연결 toohello 데이터베이스 서버 VM](#webserver-to-dbserver) 이 문서의 섹션.
-2. Hello MyDBServer VM에 hello Windows 바탕 화면에서 Internet Explorer를 열고 2 단계와 3의 hello에서에서와 같이 toohello 대화 상자를 응답 [hello 웹 서버 VM에서에서 toohello 인터넷 연결](#connect-to-internet) 이 문서의 섹션.
-3. Hello 주소 표시줄에를 입력 [bing.com](http:www.bing.com)합니다.
-4. 클릭 **추가** hello Internet Explorer 대화 상자가 표시 되 면 다음에 **추가**, 다음 **닫기** hello에 **신뢰할 수 있는** 사이트 대화 상자. 대화 상자가 추가로 표시되면 이러한 단계를 완료합니다.
-5. Hello Bing에서 검색 페이지, 입력 *whatsmyipaddress*, hello 돋보기 단추를 클릭 합니다. Bing은 hello Azure 인프라 여 hello 공용 IP 주소를 현재 할당 된 toohello VM을 반환합니다. 6. Hello 원격 데스크톱 toohello MyDBServer VM hello MyWebServer VM에서에서 다음 hello 원격 연결 toohello MyWebServer VM을 닫습니다.
+1. MyWebServer VM에서 MyDBServer VM으로 원격 연결이 아직 열려 있지 않은 경우 이 문서에서 [웹 서버 VM에서 데이터베이스 서버 VM에 연결](#webserver-to-dbserver) 섹션의 단계를 완료합니다.
+2. MyDBServer VM의 Windows 바탕 화면에서 Internet Explorer를 열고 이 문서에서 [웹 서버 VM에서 인터넷에 연결](#connect-to-internet) 섹션의 2단계 및 3단계에서 응답한 것처럼 대화 상자에 응답합니다.
+3. 주소 표시줄에 [bing.com](http:www.bing.com)을 입력합니다.
+4. 표시되는 Internet Explorer 대화 상자에서 **추가**를 클릭한 다음 **신뢰할 수 있는 사이트** 대화 상자에서 **추가**를 클릭한 후 **닫기**를 클릭합니다. 대화 상자가 추가로 표시되면 이러한 단계를 완료합니다.
+5. Bing 검색 페이지에서 *whatsmyipaddress*를 입력한 다음 돋보기 단추를 클릭합니다. Azure 인프라에 의해 VM에 현재 할당되어 있는 공용 IP 주소가 반환됩니다. 6. MyWebServer VM에서 MyDBServer VM에 대한 원격 데스크톱을 닫은 다음 MyWebServer VM에 대한 원격 연결을 닫습니다.
 
-hello 아웃 바운드 연결 toohello 인터넷 공용 IP 주소 리소스 toohello MyDBServer VM 할당 되지 않은 경우에 기본적으로 모든 아웃 바운드 트래픽을 허용 하기 때문에 허용 됩니다. 기본적으로 모든 Vm 수 tooconnect 아웃 바운드 toohello 인터넷에 상관 없이 공용 IP 주소 할당 된 리소스 toohello VM 됩니다. 그러나 공용 IP 할당 하는 리소스 주소를 공용 IP가 있는 MyWebServer VM 수 toofor hello 있는 것과 hello 인터넷에서에서 주소 수 tooconnect toohello 되지는 않습니다.
+인터넷에 대한 아웃바운드 연결이 허용되는 이유는 MyDBServer VM에 공용 IP 주소가 할당되어 있지 않더라도 모든 아웃바운드 트래픽이 기본적으로 허용되기 때문입니다. 기본적으로 모든 VM은 VM에 할당된 공용 IP 주소 리소스가 있건 없건 인터넷에 아웃바운드로 연결할 수 있습니다. 하지만 공용 IP 주소 리소스가 할당되어 있는 MyWebServer VM에 대해 하듯이 인터넷에서 공용 IP 주소에 연결할 수 없습니다.
 
 ## <a name="delete-resources"></a>모든 리소스 삭제
 
-이 문서에서는 다음 단계 완료 hello에서에서 만든 모든 리소스를 toodelete:
+이 문서에서 만든 모든 리소스를 삭제하려면 다음 단계를 완료합니다.
 
-1. 이 문서 전체에서 만든 tooview hello MyRG 리소스 그룹 단계 1-3에 hello [리소스를 검토](#review) 이 문서의 섹션. 다시 한 번 hello 리소스 그룹의 hello 리소스를 검토 합니다. 이전 단계에 따라 hello MyRG 리소스 그룹을 만든 경우 4 단계에서 hello 그림에 표시 된 hello 12 개의 리소스를 참조 합니다.
-2. Hello MyRG 블레이드에서 hello 클릭 **삭제** 단추입니다.
-3. hello 포털 해야 tootype hello 이름의 hello 리소스 그룹 tooconfirm toodelete 원하는 것입니다. 표시 되 면 리소스 이외의 hello의 4 단계에서 표시 된 hello 리소스 [리소스를 검토](#review) 섹션 클릭이 문서의 **취소**합니다. 이 문서의 일부로 만들어진 hello 12 리소스에만 표시 되 면 입력 *MyRG* hello 리소스 그룹 이름에 대 한 클릭 **삭제**합니다. 리소스 그룹을 삭제 hello 리소스 그룹 내에서 모든 리소스에 있으므로 항상 있는지 tooconfirm 리소스 그룹의 hello 내용을 삭제 하기 전에 합니다. hello 포털 hello 리소스 그룹 내에 포함 된 모든 리소스를 삭제 한 다음 자체 hello 리소스 그룹을 삭제 합니다. 이 프로세스는 몇 분 정도 걸립니다.
+1. 이 문서에서 만든 MyRG 리소스 그룹을 보려면 이 문서에서 [리소스 검토](#review) 섹션의 1~3단계를 완료합니다. 다시 한번 리소스 그룹에서 리소스를 검토합니다. 이전 단계에 따라 MyRG 리소스 그룹을 만든 경우 4단계의 그림에 12개의 리소스가 표시됩니다.
+2. MyRG 블레이드에서 **삭제** 단추를 클릭합니다.
+3. 포털에서 삭제할 리소스 그룹의 이름을 입력하여 리소스 그룹 삭제를 확인해야 합니다. 이 문서에 있는 [리소스 검토](#review) 섹션의 4단계에 표시된 리소스가 아닌 다른 리소스가 표시되면 **취소**를 클릭합니다. 이 문서의 일부로 만들어진 12개의 리소스만 표시되면 리소스 그룹 이름에 *MyRG*를 입력한 다음 **삭제**를 클릭합니다. 리소스 그룹을 삭제하면 리소스 그룹 내 모든 리소스가 삭제되므로 리소스 그룹을 삭제하기 전에 리소스 그룹의 콘텐츠를 항상 확인해야 합니다. 포털에서 리소스 그룹 내 포함된 모든 리소스가 삭제된 다음 리소스 그룹 자체가 삭제됩니다. 이 프로세스는 몇 분 정도 걸립니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-이 연습에서 VNet 하나와 VM 둘을 만들었습니다. VM을 만드는 동안 사용자 지정 설정을 지정했고 몇 가지 기본 설정을 수락했습니다. Hello 기사, 프로덕션 Vnet 및 사용 가능한 모든 설정이 이해 tooensure Vm을 배포 하기 전에 다음을 확인 하는 것이 좋습니다.
+이 연습에서 VNet 하나와 VM 둘을 만들었습니다. VM을 만드는 동안 사용자 지정 설정을 지정했고 몇 가지 기본 설정을 수락했습니다. 프로덕션 VNet 및 VM을 배포하기 전에 다음 문서를 읽고 사용 가능한 설정을 모두 이해하는 것이 좋습니다.
 
 - [가상 네트워크](virtual-networks-overview.md)
 - [공용 IP 주소](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)

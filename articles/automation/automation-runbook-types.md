@@ -1,9 +1,9 @@
 ---
-title: "자동화 Runbook 형식 aaaAzure | Microsoft Docs"
-description: "Azure 자동화 및 어떤 유형 toouse 결정할 때 고려해 야 하면 고려 사항에서 사용할 수 있는 runbook의 hello 다른 형식에 설명 합니다. "
+title: "Azure Automation Runbook 형식 | Microsoft Docs"
+description: "Azure 자동화에서 사용할 수 있는 다양한 형식의 Runbook을 설명하고 사용할 형식을 결정할 때 고려해야 하는 사항을 설명합니다. "
 services: automation
 documentationcenter: 
-author: mgoedtel
+author: eslesar
 manager: jwhit
 editor: tysonn
 ms.assetid: 9265c975-4281-4819-a84f-d86641277f36
@@ -14,82 +14,88 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/01/2017
 ms.author: bwren
-ms.openlocfilehash: c28aa57c77025764b16784372308a4ff2f596914
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4bf4a3d755afeee9930204a2dbae9ff9fada3517
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-automation-runbook-types"></a>Azure 자동화 Runbook 형식
-Azure 자동화는 다음 표에 hello의 네 가지 유형의 간략하게 설명 하는 runbook 지원 합니다.  hello 아래 섹션에서는 추가 정보를 제공 될 때 고려 사항 포함 하 여 각 형식에 대 한 각 toouse 합니다.
+Azure Automation는 여러 가지 유형의 Runbook을 지원합니다. 아래 테이블에서는 각 유형에 대해 간략하게 설명합니다.  아래 섹션은 각각을 사용할 경우에 대한 고려 사항을 포함하여 각 형식에 대해 자세한 정보를 제공합니다.
 
 | 형식 | 설명 |
 |:--- |:--- |
 | [그래픽](#graphical-runbooks) |Windows PowerShell을 기반으로 하며 Azure 포털의 그래픽 편집기로 완전하게 생성 및 편집됩니다. |
-| [그래픽 PowerShell 워크플로](#graphical-runbooks) |Azure 포털에서 생성 되 고 완전 하 게 편집한 hello 그래픽 편집기 및 Windows PowerShell 워크플로 기반으로 합니다. |
+| [그래픽 PowerShell 워크플로](#graphical-runbooks) |Windows PowerShell 워크플로를 기반으로 하며 Azure 포털의 그래픽 편집기로 완전하게 생성 및 편집됩니다. |
 | [PowerShell](#powershell-runbooks) |Windows PowerShell 스크립트를 기반으로 하는 텍스트 Runbook |
 | [PowerShell 워크플로](#powershell-workflow-runbooks) |Windows PowerShell 워크플로를 기반으로 하는 텍스트 Runbook |
+| [Python](#python-runbooks) |Python을 기반으로 하는 텍스트 Runbook입니다. |
+| [Bash](#bash-runbooks) |Bash를 기반으로 하는 텍스트 Runbook입니다. |
 
 ## <a name="graphical-runbooks"></a>그래픽 Runbook
-[그래픽](automation-runbook-types.md#graphical-runbooks) 및 그래픽 PowerShell 워크플로 runbook에서 생성 되 고 hello hello Azure 포털의에서 그래픽 편집기로 편집 합니다.  Tooa 파일을 내보내야 하 고 다른 자동화 계정으로 가져올 수 있지만 만들거나 다른 도구로 편집할 수 없습니다.  그래픽 runbook에는 PowerShell 코드를 생성 하지만 직접 확인 하거나 hello 코드를 수정할 수 없습니다. 그래픽 runbook hello의 변환 된 tooone 안 [텍스트 형식](automation-runbook-types.md), 또는 텍스트 runbook 변환된 toographical 형식의 지정할 수 있습니다. 그래픽 runbook 가져오기 및 반대로 하는 동안 변환 된 tooGraphical PowerShell 워크플로 runbook 될 수 있습니다.
+[그래픽](automation-runbook-types.md#graphical-runbooks) 및 그래픽 PowerShell 워크플로 Runbook은 Azure 포털의 그래픽 편집기로 생성 및 편집됩니다.  파일로 내보내서 다른 자동화 계정으로 가져올 수 있지만 다른 도구에서 만들거나 편집할 수 없습니다.  그래픽 Runbook은 PowerShell 코드를 생성하지만 코드를 직접 보거나 수정할 수 없습니다. 그래픽 Runbook은 [텍스트 형식](automation-runbook-types.md)중 하나로 변환될 수 없고 텍스트 Runbook은 그래픽 형식으로 변환될 수 없습니다. 가져오는 동안 그래픽 Runbook을 그래픽 PowerShell 워크플로 Runbook으로 변환하거나 그 반대로 변환할 수 있습니다.
 
 ### <a name="advantages"></a>장점
 * 시각적 삽입-링크-구성 제작 모델  
-* Hello 프로세스를 통해 데이터 흐름에 집중  
+* 프로세스를 통해 데이터가 흐르는 방식에 집중  
 * 관리 프로세스를 시각적으로 표시  
-* 자식 runbook toocreate 높은 수준의 워크플로로 다른 runbook을 포함  
+* 다른 Runbook을 자식 Runbook으로 포함하여 높은 수준의 워크플로 만들기  
 * 모듈식 프로그래밍 장려  
 
 
 ### <a name="limitations"></a>제한 사항
 * Azure 포털 외부에서 Runbook을 편집할 수 없습니다.
-* PowerShell 코드 tooperform 복잡 한 논리를 포함 하는 코드 작업을 할 수 있습니다.
-* Hello 그래픽 워크플로 의해 만들어진 hello PowerShell 코드를 직접 편집 하거나 볼 수 없습니다. 참고 모든 코드 활동에서 생성 되는 hello 코드를 볼 수 있습니다.
+* 복잡한 논리를 수행기 위해 PowerShell 코드를 포함하는 코드 작업이 필요할 수 있습니다.
+* 그래픽 워크플로에 의해 만들어진 PowerShell 코드를 보거나 직접 편집할 수 없습니다. 코드 작업에서 만든 코드는 볼 수 있습니다.
 
 ## <a name="powershell-runbooks"></a>PowerShell Runbook
-PowerShell Runbook은 Windows PowerShell을 기반으로 합니다.  직접 hello 텍스트 편집기를 사용 하 여 hello Azure 포털에서에서 하는 hello runbook의 hello 코드를 편집 합니다.  또한 오프 라인 텍스트 편집기를 사용할 수 있습니다 및 [hello runbook 가져오기](http://msdn.microsoft.com/library/azure/dn643637.aspx) Azure 자동화로 합니다.
+PowerShell Runbook은 Windows PowerShell을 기반으로 합니다.  Azure 포털의 텍스트 편집기를 사용하여 Runbook을 직접 편집합니다.  오프라인 텍스트 편집기도 사용할 수 있고 Azure 자동화로 [Runbook 가져오기](http://msdn.microsoft.com/library/azure/dn643637.aspx) 가 가능합니다.
 
 ### <a name="advantages"></a>장점
-* PowerShell 워크플로 hello 추가 복잡성 없이 PowerShell 코드와 함께 모든 복잡 한 논리를 구현 합니다. 
-* Runbook 실행 하기 전에 컴파일된 toobe 필요 하지 않습니다 이후 PowerShell 워크플로 runbook 보다 더 빨리 시작 합니다.
+* PowerShell 워크플로의 부가적인 복잡성 없이 PowerShell 코드로 모든 복잡한 로직을 구현합니다. 
+* Runbook은 실행 전에 컴파일이 필요 없기 때문에 PowerShell 워크플로 Runbook보다 빨리 시작됩니다.
 
 ### <a name="limitations"></a>제한 사항
 * PowerShell 스크립팅에 대해 잘 알아야 합니다.
-* 사용할 수 없는 [병렬 처리](automation-powershell-workflow.md#parallel-processing) tooperform 병렬로 여러 동작 합니다.
-* 사용할 수 없는 [검사점](automation-powershell-workflow.md#checkpoints) 오류 시 runbook tooresume 합니다.
-* PowerShell 워크플로 runbook 및 그래픽 runbook만 포함할 수 자식 runbook으로 새 작업을 만듭니다는 hello Start-azureautomationrunbook cmdlet을 사용 하 여 합니다.
+* 여러 작업을 병렬 수행하도록 [병렬 처리](automation-powershell-workflow.md#parallel-processing) 를 사용할 수 없습니다.
+* 오류 발생 시 Runbook을 다시 시작하도록 [검사점](automation-powershell-workflow.md#checkpoints) 을 사용할 수 없습니다.
+* PowerShell 워크플로 Runbook 및 그래픽 Runbook은 새 작업을 만드는 Start-AzureAutomationRunbook cmdlet을 사용해서만 자식 Runbook으로 포함시킬 수 있습니다.
 
 ### <a name="known-issues"></a>알려진 문제
 PowerShell Runbook에 대해 현재 알려진 문제는 다음과 같습니다.
 
 * PowerShell Runbook은 null 값으로 암호화되지 않은 [변수 자산](automation-variables.md) 을 검색할 수 없습니다.
-* PowerShell runbook을 검색할 수 없습니다는 [변수 자산](automation-variables.md) 와  *~*  hello 이름에서입니다.
+* PowerShell Runbook은 이름에 [변수 자산](automation-variables.md) 을 사용하여 *~* 을 검색할 수 없습니다.
 * PowerShell Runbook의 반복적인 Get-Process는 80회 반복 후에 작동이 중단될 수 있습니다. 
-* PowerShell runbook은 한 번에 매우 많은 양의 데이터 toohello 출력 스트림에 toowrite 시도 하는 경우 실패할 수 있습니다.   일반적으로 큰 개체로 작업할 때 필요한 hello 정보만 출력 하 여이 문제를 해결할 수 있습니다.  예를 들어 다음과 같이 출력 대신 *Get-process*, 방금 hello 필수 필드를 출력할 수 *Get-process | ProcessName, CPU 선택*합니다.
+* PowerShell Runbook은 한 번에 스트림을 출력하기 위해 매우 큰 데이터를 쓰려는 시도를 하면 실패할 수 있습니다.   일반적으로 큰 개체로 작업하는 경우 필요한 정보만 출력하면 이 문제를 극복할 수 있습니다.  예를 들어 *Get-Process* 같은 출력 대신 *Get-Process | Select ProcessName, CPU*를 사용하여 필요한 필드만 출력할 수 있습니다.
 
 ## <a name="powershell-workflow-runbooks"></a>PowerShell 워크플로 Runbook
-PowerShell 워크플로 Runbook은 [Windows PowerShell 워크플로](automation-powershell-workflow.md)를 기반으로 하는 텍스트 Runbook입니다.  직접 hello 텍스트 편집기를 사용 하 여 hello Azure 포털에서에서 하는 hello runbook의 hello 코드를 편집 합니다.  또한 오프 라인 텍스트 편집기를 사용할 수 있습니다 및 [hello runbook 가져오기](http://msdn.microsoft.com/library/azure/dn643637.aspx) Azure 자동화로 합니다.
+PowerShell 워크플로 Runbook은 [Windows PowerShell 워크플로](automation-powershell-workflow.md)를 기반으로 하는 텍스트 Runbook입니다.  Azure 포털의 텍스트 편집기를 사용하여 Runbook을 직접 편집합니다.  오프라인 텍스트 편집기도 사용할 수 있고 Azure 자동화로 [Runbook 가져오기](http://msdn.microsoft.com/library/azure/dn643637.aspx) 가 가능합니다.
 
 ### <a name="advantages"></a>장점
 * PowerShell 워크플로 코드로 모든 복잡한 로직을 구현합니다.
-* 사용 하 여 [검사점](automation-powershell-workflow.md#checkpoints) 오류 시 runbook tooresume 합니다.
-* 사용 하 여 [병렬 처리](automation-powershell-workflow.md#parallel-processing) tooperform 병렬로 여러 동작 합니다.
-* 자식 runbook toocreate 높은 수준의 워크플로로 다른 그래픽 runbook 및 PowerShell 워크플로 runbook을 포함할 수 있습니다.
+* 오류가 발생하면 [검사점](automation-powershell-workflow.md#checkpoints) 을 사용하여 Runbook을 다시 시작합니다.
+* [병렬 처리](automation-powershell-workflow.md#parallel-processing) 를 사용하여 여러 작업을 병렬로 수행합니다.
+* 다른 그래픽 Runbook 및 PowerShell 워크플로 Runbook을 자식 Runbook으로 포함시켜 고급 워크플로를 만들 수 있습니다.
 
 ### <a name="limitations"></a>제한 사항
 * 작성자는 PowerShell 워크플로를 잘 알아야 합니다.
-* Runbook hello PowerShell 워크플로 복잡성이 추가 같은 처리 해야 [개체를 역직렬화 할](automation-powershell-workflow.md#code-changes)합니다.
-* Runbook 실행 하기 전에 컴파일된 toobe 해야 하므로 PowerShell runbook 보다 더 긴 toostart를 사용 합니다.
-* 새 작업을 만듭니다는 hello Start-azureautomationrunbook cmdlet을 사용 하 여 PowerShell runbook를 자식 runbook으로 포함할 수만 있습니다.
+* Runbook은 [역직렬화된 개체](automation-powershell-workflow.md#code-changes)와 같은 PowerShell 워크플로의 부가적인 복잡성을 다루어야 합니다.
+* Runbook은 실행 전에 컴파일이 필요하기 때문에 PowerShell Runbook보다 시작 시간이 깁니다.
+* PowerShell Runbook은 새 작업을 만드는 Start-AzureAutomationRunbook cmdlet을 사용해서만 자식 Runbook으로 포함시킬 수 있습니다.
+
+## <a name="python-runbooks"></a>Python Runbook
+
+## <a name="bash-runbooks"></a>Bash Runbook
 
 ## <a name="considerations"></a>고려 사항
-계정 hello 추가로 고려해 야 할 특정 runbook에 대 한 어떤 유형 toouse 결정할 때 다음을 고려해 야 합니다.
+특정한 Runbook에 사용할 형식을 결정할 때 다음과 같은 사항을 추가로 고려해야 합니다.
 
-* 그래픽 tootextual 형식 또는 그 반대로에서 runbook을 변환할 수 없습니다.
+* Runbook를 그래픽에서 텍스트 형식으로 또는 그 반대로 변환할 수는 없습니다.
 * 형식이 다른 Runbook을 자식 Runbook으로 사용하는 경우 제한 사항이 있습니다.  자세한 내용은 [Azure 자동화의 자식 Runbook](automation-child-runbooks.md) 을 참조하세요.
 
 ## <a name="next-steps"></a>다음 단계
-* 그래픽 runbook 제작에 대 한 더 toolearn 참조 [Azure 자동화의 그래픽 제작](automation-graphical-authoring-intro.md)
-* toounderstand hello 차이점 PowerShell 및 PowerShell 워크플로 runbook에 대 한 자세한 내용은 [학습 Windows PowerShell 워크플로](automation-powershell-workflow.md)
-* Toocreate 또는 가져오기 Runbook 참조 하는 방법에 대 한 자세한 내용은 [만들거나 Runbook 가져오기](automation-creating-importing-runbook.md)
+* 그래픽 Runbook 작성에 대해 자세히 알아보려면 [Azure 자동화에서 그래픽 작성](automation-graphical-authoring-intro.md)
+* Runbook용 PowerShell 및 PowerShell 워크플로 간의 차이점을 이해하려면 [Windows PowerShell 워크플로 학습](automation-powershell-workflow.md)
+* Runbook을 만들거나 가져오는 방법에 대한 자세한 내용은 [Runbook 만들기 또는 가져오기](automation-creating-importing-runbook.md)
 

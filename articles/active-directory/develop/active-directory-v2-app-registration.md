@@ -1,6 +1,6 @@
 ---
-title: "aaaRegister hello 포털을 사용 하 여 Azure AD hello v2.0 끝점으로 응용 프로그램 | Microsoft Docs"
-description: "Hello v2.0 끝점을 사용 하 여 tooregister Microsoft에서 로그인을 사용 하도록 설정 하 고 Microsoft에 액세스를 사용 하 여 앱을 서비스 하는 방법"
+title: "포털을 사용하는 Azure AD v2.0 끝점에 응용 프로그램 등록 | Microsoft Docs"
+description: "v2.0 끝점을 사용하여 Microsoft 서비스 로그인 및 액세스를 사용하도록 설정하기 위해 Microsoft에 앱을 등록하는 방법"
 services: active-directory
 documentationcenter: 
 author: lnalepa
@@ -15,38 +15,38 @@ ms.topic: article
 ms.date: 05/01/2017
 ms.author: lenalepa
 ms.custom: aaddev
-ms.openlocfilehash: c56c98906656062435516e820cb318a04c03149c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e6202aa8665c906382666fe08a561421e50e0a8d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooregister-an-app-with-hello-v20-endpoint"></a>어떻게 tooregister hello v2.0 끝점을 사용 하 여 앱
-toobuild MSA 및 Azure AD를 모두 허용 하는 응용 프로그램 로그인을 처음 해야 tooregister Microsoft와 응용 프로그램입니다.  지금은 없습니다 수 toouse Azure AD와 모든 기존 앱 수 또는 MSA-toocreate 브랜드 새 필요 합니다.
+# <a name="how-to-register-an-app-with-the-v20-endpoint"></a>v2.0 끝점을 사용하여 앱을 등록하는 방법
+MSA 와 Azure AD 로그인 모두를 허용하는 앱을 빌드하려면, 먼저 Microsoft에 앱을 등록해야 합니다.  지금은 Azure AD나 MSA를 사용하여 가지고 있는 기존의 앱은 사용할 수 없습니다. - 새 앱을 만들어야 합니다.
 
 > [!NOTE]
-> 모든 Azure Active Directory 시나리오 및 기능 hello v2.0 끝점에서 사용할 수 있습니다.  에 대해 알아보세요 hello v2.0 끝점을 사용 해야 하는 경우 toodetermine [v2.0 제한](active-directory-v2-limitations.md)합니다.
+> 일부 Azure Active Directory 시나리오 및 기능만 v2.0 끝점에서 지원합니다.  v2.0 끝점을 사용해야 하는지 확인하려면 [v2.0 제한 사항](active-directory-v2-limitations.md)을 참조하세요.
 > 
 > 
 
-## <a name="visit-hello-microsoft-app-registration-portal"></a>Hello Microsoft 응용 프로그램 등록 포털을 방문
-중요 한 정보는 처음-너무 이동[https://apps.dev.microsoft.com/?deeplink=/appList](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)합니다.  이곳은 Microsoft 앱을 관리할 수 있는 새로운 앱 등록 포털입니다.
+## <a name="visit-the-microsoft-app-registration-portal"></a>Microsoft 앱 등록 포털 방문
+가장 먼저 해야 할 일입니다. - [https://apps.dev.microsoft.com/?deeplink=/appList](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)로 이동합니다.  이곳은 Microsoft 앱을 관리할 수 있는 새로운 앱 등록 포털입니다.
 
 개인, 직장 또는 학교 Microsoft 계정 중 하나로 로그인 합니다.  계정이 하나라도 없다면, 새로운 개인 계정을 등록합니다. 그렇게 오래 걸리지 않으니 등록하세요 - 기다리겠습니다.
 
 등록했나요? 아마도 비어있을 Microsoft 앱의 목록을 보고 있을 것입니다.  변경을 시작해봅시다.
 
-**앱 추가**를 클릭하여 이름을 지정합니다.  hello 포털 앱 코드에서 사용할는 전역적으로 고유한 응용 프로그램 Id를 할당 합니다.  Api 호출에 대 한 액세스 토큰 해야 하는 응용 프로그램 서버 측 구성 요소를 포함 하는 경우 (생각: Office, Azure 또는 고유한 web API)를 toocreate 합니다는 **응용 프로그램 암호** 여기에도 합니다.
+**앱 추가**를 클릭하여 이름을 지정합니다.  포털은 코드에서 나중에 사용하는 전역적으로 고유한 응용 프로그램 ID를 앱에 할당합니다.  앱이 API(예: Office, Azure 또는 사용자의 고유한 웹 API)를 호출하는 액세스 토큰이 필요한 서버 측 구성 요소를 포함한 경우, **응용 프로그램 암호** 또한 만들어야 합니다.
 
-Hello 플랫폼 앱에서 사용할 다음을 추가 합니다.
+다음으로, 앱에서 사용할 플랫폼을 추가합니다.
 
 * 웹 기반 앱의 경우 로그인 메시지를 보낼 수 있는 **리디렉션 URI** 를 제공합니다.
-* 모바일 앱에 대 한 hello 기본 아래로 복사 리디렉션 자동으로 생성 하는 uri입니다.
+* 모바일 앱의 경우 자동으로 만들어진 기본 리디렉션 URI를 적어둡니다.
 
-필요에 따라 hello 프로필 섹션에서에서 로그인 페이지의 hello 모양과 느낌을 사용자 지정할 수 있습니다.  있는지 tooclick 확인 **저장** 넘어가기 전에 합니다.
+필요에 따라 프로필 섹션에서 로그인 페이지의 디자인을 사용자 할당할 수 있습니다.  다음 단계로 넘어가기 전에 **저장** 을 클릭하십시오.
 
 > [!NOTE]
-> 사용 하 여 응용 프로그램을 만들 때 [https://apps.dev.microsoft.com/?deeplink=/appList](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), toosign hello 포털을 사용 하는 hello 계정의 hello 홈 테 넌 트에서 hello 응용 프로그램 등록 됩니다.  즉, 개인 Microsoft 계정을 사용하여 Azure AD 테넌트에 응용 프로그램을 등록할 수 없습니다.  명시적으로 원할 경우 tooregister 응용 프로그램 특정 테 넌 트에 해당 테 넌 트에서 만든 원래 계정으로 로그인 합니다.
+> [https://apps.dev.microsoft.com/?deeplink=/appList](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)를 사용하여 응용 프로그램을 만드는 경우 응용 프로그램은 포털에 로그인하는 데 사용하는 계정의 홈 테넌트에 등록됩니다.  즉, 개인 Microsoft 계정을 사용하여 Azure AD 테넌트에 응용 프로그램을 등록할 수 없습니다.  응용 프로그램을 특정 테넌트에 명시적으로 등록하려면 해당 테넌트에 원래 만든 계정을 사용하여 로그인합니다.
 > 
 > 
 

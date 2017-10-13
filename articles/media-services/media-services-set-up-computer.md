@@ -1,5 +1,5 @@
 ---
-title: "Azure 미디어 서비스 개발 환경을 aaaSet | Microsoft Docs"
+title: "Azure Media Services 개발 환경 설정 | Microsoft Docs"
 description: "Azure 미디어 서비스를 사용한 개발 환경을 설정합니다."
 services: media-services
 documentationcenter: 
@@ -14,32 +14,32 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/10/2017
 ms.author: juliako
-ms.openlocfilehash: 5637b0c872a76490dcccde5466bfc91c2ba56f31
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9144407ed530921904458a7249473eaea26c66b3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="set-up-your-media-services-development-environment"></a>Media Services 개발 환경 설정
 
-hello 다음 단계에서는 Azure 미디어 서비스 개발을 위한 필요한 필수 구성 요소.
+다음 단계에서는 Azure 미디어 서비스를 사용하여 개발할 때 필요한 필수 조건에 대해 설명합니다.
 
 ## <a name="create-a-media-services-account"></a>미디어 서비스 계정 만들기
-Hello Azure 포털, hello.NET SDK 또는 REST API toocreate hello Azure 미디어 서비스 계정 사용 합니다.
+Azure 포털, .NET SDK 또는 REST API를 사용하여 Azure 미디어 서비스 계정을 만듭니다.
 
 <a id="setup_dev_env"></a>
 
-## <a name="set-up-hello-development-environment"></a>Hello 개발 환경 설정
+## <a name="set-up-the-development-environment"></a>개발 환경 설정
 
-.NET 개발자 환경을 tooset 참조 [이](media-services-dotnet-how-to-use.md) 항목입니다.  
+.NET 개발 환경을 설정하려면 [이](media-services-dotnet-how-to-use.md) 항목을 참조하세요.  
 
-REST 개발 환경을 tooset 참조 [이](media-services-rest-how-to-use.md) 항목입니다.  
+REST 개발 환경을 설정하려면 [이](media-services-rest-how-to-use.md) 항목을 참조하세요.  
 
 <a id="connect"></a>
 
 ## <a name="connect-programmatically"></a>프로그래밍 방식으로 연결
 
-tooconnect toohello Azure 미디어 서비스 API 참조 [Azure AD 인증 액세스 hello Azure 미디어 서비스 API](media-services-use-aad-auth-to-access-ams-api.md)합니다.  
+Azure Media Services API에 연결하려면 [Azure AD 인증을 사용하여 Azure Media Services API 액세스](media-services-use-aad-auth-to-access-ams-api.md)를 참조하세요.  
 
 ## <a name="next-steps-azure-media-services-learning-paths"></a>다음 단계: Azure 미디어 서비스 학습 경로
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

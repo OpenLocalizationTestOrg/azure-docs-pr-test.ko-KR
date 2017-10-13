@@ -1,6 +1,6 @@
 ---
-title: "가상 컴퓨터 크기에 대 한 aaaLearn 템플릿을 설정할 | Microsoft Docs"
-description: "최소 실행 가능한 소수 자릿수 toocreate 가상 컴퓨터 크기 집합에 대 한 템플릿을 설정에 대해 알아봅니다"
+title: "가상 컴퓨터 확장 집합 템플릿에 대해 알아보기 | Microsoft Docs"
+description: "가상 컴퓨터 확장 집합에 대한 실행 가능한 최소 확장 집합 템플릿을 만드는 방법 알아보기"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gatneil
@@ -15,27 +15,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: negat
-ms.openlocfilehash: b7a1cf6c03b22585e16db9c071d45795c8ae75df
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 65f02c4675eb752dcc82e9a1d1c7f6c2c193fc32
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="learn-about-virtual-machine-scale-set-templates"></a>Virtual Machine Scale Sets 템플릿에 대해 알아보기
-[Azure 리소스 관리자 템플릿](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment) 은 훌륭한 방법 toodeploy 관련된 리소스의 그룹입니다. 이 자습서 시리즈 표시 하 고 최소 실행 가능한 소수 자릿수 toocreate 템플릿을 설정 하는 방법 toomodify이 서식 파일 toosuit 다양 한 시나리오입니다. 모든 예제는 [GitHub 리포지토리](https://github.com/gatneil/mvss)에서 가져온 것입니다. 
+[Azure Resource Manager 템플릿](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment)은 관련된 리소스 그룹을 배포하는 유용한 방법입니다. 이 자습서 시리즈에서는 실행 가능한 최소 확장 집합 템플릿을 만드는 방법과 이러한 템플릿을 다양한 시나리오에 맞게 수정하는 방법을 보여 줍니다. 모든 예제는 [GitHub 리포지토리](https://github.com/gatneil/mvss)에서 가져온 것입니다. 
 
-이 서식 파일은 의도 한 toobe 단순 합니다. 눈금의 완전 한 예제에 대 한 템플릿 설정, hello 참조 [Azure 빠른 시작 템플릿 GitHub 리포지토리](https://github.com/Azure/azure-quickstart-templates) hello 문자열이 포함 된 폴더에 대 한 검색 `vmss`합니다.
+이 템플릿은 간단하게 제작되었습니다. 확장 집합 템플릿의 전체 예제를 보려면 [Azure 빠른 시작 템플릿 GitHub 리포지토리](https://github.com/Azure/azure-quickstart-templates)를 참조하고 문자열 `vmss`가 포함된 폴더를 검색하세요.
 
-"다음 단계" 섹션 toosee toohello을 어떻게 건너뛸 수 이미 템플릿 만들기에 대해 잘 알고 있다면 toomodify이 서식이 파일입니다.
+템플릿 생성에 익숙한 경우 "다음 단계" 섹션으로 건너뛰어 템플릿을 수정하는 방법을 볼 수 있습니다.
 
-## <a name="review-hello-template"></a>검토 hello 템플릿
+## <a name="review-the-template"></a>템플릿 검토
 
-GitHub를 사용 하 여 tooreview 우리의 최소 실행 가능한 크기 집합 템플릿을 [azuredeploy.json](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json)합니다.
+GitHub를 사용하여 실행 가능한 최소 확장 집합 템플릿 [azuredeploy.json](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json)을 검토합니다.
 
-이 자습서에서는 hello diff 살펴보겠습니다 (`git diff master minimum-viable-scale-set`) toocreate hello 최소 실행 가능한 크기 집합 템플릿 하나씩 있습니다.
+이 자습서에서는 diff(`git diff master minimum-viable-scale-set`)를 검토하여 실행 가능한 최소 확장 집합 템플릿을 하나씩 만듭니다.
 
 ## <a name="define-schema-and-contentversion"></a>$schema 및 contentVersion 정의
-첫째, 정의 `$schema` 및 `contentVersion` hello 서식 파일에 있습니다. hello `$schema` 요소 hello 버전의 hello 템플릿 언어를 정의 하 고 Visual Studio 구문 강조 표시와 비슷한 유효성 검사 기능에 사용 됩니다. hello `contentVersion` 요소가 Azure에서 사용 되지 않습니다. 대신, 수 hello 템플릿 버전을 추적할 수 있습니다.
+먼저 템플릿에서 `$schema` 및 `contentVersion`을 정의합니다. `$schema` 요소는 템플릿 언어의 버전을 정의하고 Visual Studio 구문 강조 표시 및 유사한 유효성 검사 기능에 사용됩니다. `contentVersion` 요소는 Azure에 사용되지 않습니다. 대신 템플릿 버전을 추적하는 데 도움이 됩니다.
 
 ```json
 {
@@ -43,7 +43,7 @@ GitHub를 사용 하 여 tooreview 우리의 최소 실행 가능한 크기 집�
   "contentVersion": "1.0.0.0",
 ```
 ## <a name="define-parameters"></a>매개 변수 정의
-다음으로 두 개의 매개 변수인 `adminUsername` 및 `adminPassword`를 정의합니다. 매개 변수는 배포의 hello 시 지정 하는 값입니다. hello `adminUsername` 매개 변수는 단순히는 `string` 형식 때문에 `adminPassword` 는 암호로 형식 지정에서는 `securestring`합니다. 이상에서는 이러한 매개 변수 hello 배율 구성 설정에 전달 됩니다.
+다음으로 두 개의 매개 변수인 `adminUsername` 및 `adminPassword`를 정의합니다. 매개 변수는 배포 시 사용자가 지정하는 값입니다. `adminUsername` 매개 변수는 단순히 `string` 형식이지만 `adminPassword`가 비밀이기 때문에 `securestring` 형식을 부여합니다. 이러한 매개 변수는 나중에 확장 집합 구성에 전달됩니다.
 
 ```json
   "parameters": {
@@ -56,20 +56,20 @@ GitHub를 사용 하 여 tooreview 우리의 최소 실행 가능한 크기 집�
   },
 ```
 ## <a name="define-variables"></a>변수 정의
-또한 리소스 관리자 템플릿을 사용 하 hello 서식 파일의 뒷부분에 나오는 사용 되는 변수 toobe 정의할 수 있습니다. 예에서 사용 하는 hello JSON 개체를 빈 두었으며 하므로 모든 변수를 사용 하지 않습니다.
+Resource Manager 템플릿을 사용하여 나중에 템플릿에 사용할 변수를 정의할 수도 있습니다. 여기 예제에서는 변수를 사용하지 않기 때문에 JSON 개체가 비어 있습니다.
 
 ```json
   "variables": {},
 ```
 
 ## <a name="define-resources"></a>리소스 정의
-다음은 hello 템플릿의 리소스 섹션 hello입니다. 실제로 수행할 동작을 정의 여기서 toodeploy 합니다. `parameters` 및 `variables`(JSON 개체)과 달리 `resources`는 JSON 개체의 JSON 목록입니다.
+다음은 템플릿의 리소스 섹션입니다. 여기에 실제 배포할 항목을 정의합니다. `parameters` 및 `variables`(JSON 개체)과 달리 `resources`는 JSON 개체의 JSON 목록입니다.
 
 ```json
    "resources": [
 ```
 
-모든 리소스에는 `type`, `name`, `apiVersion` 및 `location` 속성이 필요합니다. 이 예제의 첫 번째 리소스는 `Microsft.Network/virtualNetwork` 형식이고 이름은 `myVnet`이며 apiVersion은 `2016-03-30`입니다. (리소스 유형에 대 한 toofind hello 최신 API 버전 참조 hello [Azure REST API 설명서](https://docs.microsoft.com/rest/api/).)
+모든 리소스에는 `type`, `name`, `apiVersion` 및 `location` 속성이 필요합니다. 이 예제의 첫 번째 리소스는 `Microsft.Network/virtualNetwork` 형식이고 이름은 `myVnet`이며 apiVersion은 `2016-03-30`입니다. (리소스 형식에 대한 최신 API 버전을 찾으려면 [Azure REST API 설명서](https://docs.microsoft.com/rest/api/)를 참조하세요.)
 
 ```json
      {
@@ -79,14 +79,14 @@ GitHub를 사용 하 여 tooreview 우리의 최소 실행 가능한 크기 집�
 ```
 
 ## <a name="specify-location"></a>위치 지정
-hello 가상 네트워크에 대 한 toospecify hello 위치를 사용 하 여 한 [리소스 관리자 템플릿 함수](../azure-resource-manager/resource-group-template-functions.md)합니다. 이 함수는 `"[<template-function>]"`처럼 따옴표와 대괄호로 묶어야 합니다. 이 경우 hello 사용 `resourceGroup` 함수입니다. 인수를 사용 하 고이 배포를 배포 하 고 hello 리소스 그룹에 대 한 메타 데이터와 JSON 개체를 반환 합니다. hello 리소스 그룹 배포의 hello 시 hello 사용자에 의해 설정 됩니다. 에서는 다음이 JSON 개체의 인덱스 `.location` hello JSON 개체에서 tooget hello 위치입니다.
+가상 네트워크의 위치를 지정하려면 [Resource Manager 템플릿 함수](../azure-resource-manager/resource-group-template-functions.md)를 사용합니다. 이 함수는 `"[<template-function>]"`처럼 따옴표와 대괄호로 묶어야 합니다. 이 경우에는 `resourceGroup` 함수를 사용합니다. 인수는 취하지 않고 이 배포가 배포될 리소스 그룹에 대한 메타데이터를 포함하는 JSON 개체를 반환합니다. 리소스 그룹은 배포 시에 사용자가 설정합니다. 그런 후 `.location`으로 이 JSON 개체를 인덱싱하여 JSON 개체에서의 위치를 가져옵니다.
 
 ```json
        "location": "[resourceGroup().location]",
 ```
 
 ## <a name="specify-virtual-network-properties"></a>가상 네트워크 속성 지정
-각 리소스 관리자 리소스에는 자체 `properties` 구성 toohello 특정 리소스에 대 한 섹션. 이 경우 해당 hello 가상 네트워크 hello 개인 IP 주소 범위를 사용 하는 서브넷 1 개 있어야 합니다. 지정 म `10.0.0.0/16`합니다. 확장 집합은 항상 하나의 서브넷에 포함되며 여러 서브넷에 걸쳐 있을 수 없습니다.
+각 Resource Manager 리소스에는 해당 리소스 관련 구성에 대한 자체 `properties` 섹션이 있습니다. 이 경우에는 가상 네트워크에 개인 IP 주소 범위 `10.0.0.0/16`을 사용하는 하나의 서브넷만 있도록 지정합니다. 확장 집합은 항상 하나의 서브넷에 포함되며 여러 서브넷에 걸쳐 있을 수 없습니다.
 
 ```json
        "properties": {
@@ -108,9 +108,9 @@ hello 가상 네트워크에 대 한 toospecify hello 위치를 사용 하 여 �
 ```
 
 ## <a name="add-dependson-list"></a>dependsOn 목록 추가
-또한 toohello 필요한 `type`, `name`, `apiVersion`, 및 `location` 속성, 각 리소스를 선택적 가질 수 있습니다 `dependsOn` 문자열의 목록입니다. 이 목록은 이 리소스를 배포하기 전에 이 배포의 다른 리소스가 완료해야 하는 것을 지정합니다.
+필수 `type`, `name`, `apiVersion`, `location` 속성 외에도 각 리소스는 선택적인 `dependsOn` 목록 문자열을 가질 수 있습니다. 이 목록은 이 리소스를 배포하기 전에 이 배포의 다른 리소스가 완료해야 하는 것을 지정합니다.
 
-이 경우 hello 이전 예제에서 가상 네트워크의 hello hello 목록의 요소가 하나 뿐입니다. 이 종속성 hello 크기 집합 필요 hello 네트워크 tooexist Vm을 만들기 전에 때문에 지정 합니다. 이러한 방식으로 hello 크기 집합 hello 네트워크 속성에 지정 된 이전 hello IP 주소 범위에서 이러한 Vm 개인 IP 주소를 제공할 수 있습니다. hello hello dependsOn 목록의 각 문자열의 형식이 `<type>/<name>`합니다. 사용 하 여 hello 동일 `type` 및 `name` hello 가상 네트워크 리소스 정의에서 이전에 사용 합니다.
+이 경우 목록에 요소가 하나만 있으며 해당 요소는 이전 예제의 가상 네트워크입니다. VM을 만들려면 먼저 확장 집합에 네트워크가 있어야 하므로 이러한 종속성을 지정합니다. 이러한 방식으로 확장 집합은 네트워크 속성에 이전에 지정된 IP 주소 범위의 개인 IP 주소를 이러한 VM에 제공할 수 있습니다. dependsOn 목록에 있는 각 문자열의 형식은 `<type>/<name>`입니다. 가상 네트워크 리소스 정의에 이전에 사용된 것과 동일한 `type` 및 `name`을 사용합니다.
 
 ```json
      {
@@ -123,9 +123,9 @@ hello 가상 네트워크에 대 한 toospecify hello 위치를 사용 하 여 �
        ],
 ```
 ## <a name="specify-scale-set-properties"></a>확장 집합 속성 지정
-크기 집합은 hello Vm 크기 집합 hello에에서 사용자 지정 하기 위한 많은 속성이 있습니다. 이러한 속성 목록은 전체 참조 hello [크기 REST API 설명서 집합](https://docs.microsoft.com/en-us/rest/api/virtualmachinescalesets/create-or-update-a-set)합니다. 이 자습서에서는 일반적으로 사용되는 몇 가지 속성만 설정합니다.
+확장 집합에는 VM을 사용자 지정하기 위한 속성이 많이 있습니다. 이러한 속성의 전체 목록은 [확장 집합 REST API 설명서](https://docs.microsoft.com/en-us/rest/api/virtualmachinescalesets/create-or-update-a-set)를 참조하세요. 이 자습서에서는 일반적으로 사용되는 몇 가지 속성만 설정합니다.
 ### <a name="supply-vm-size-and-capacity"></a>VM 크기 및 용량 제공
-hello 눈금 VM toocreate ("sku 이름")의 크기 및 이러한 개수 Vm toocreate ("sku 용량") 요구 tooknow를 설정합니다. 어떤 VM 크기를 사용할 수 있는 toosee hello 참조 [VM 크기 설명서](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-sizes)합니다.
+확장 집합은 만들 VM의 크기("sku 이름") 및 이러한 크기로 만들려는 VM의 수("sku 용량")를 알아야 합니다. 사용 가능한 VM 크기를 확인하려면 [VM 크기 설명서](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-sizes)를 참조하세요.
 
 ```json
        "sku": {
@@ -135,7 +135,7 @@ hello 눈금 VM toocreate ("sku 이름")의 크기 및 이러한 개수 Vm toocr
 ```
 
 ### <a name="choose-type-of-updates"></a>업데이트 유형 선택
-hello 크기 집합에는 또한 toohandle hello 크기 집합에 업데이트 하는 방식 tooknow가 필요 합니다. 현재 `Manual` 및 `Automatic`의 두 가지 옵션이 있습니다. Hello 두 hello 차이에 대 한 자세한 내용은 hello 설명서를 참조 [배율 설정 하는 tooupgrade 방법을](./virtual-machine-scale-sets-upgrade-scale-set.md)합니다.
+또한 확장 집합은 확장 집합의 업데이트 처리 방법을 알아야 합니다. 현재 `Manual` 및 `Automatic`의 두 가지 옵션이 있습니다. 두 옵션 사이의 차이점에 대한 자세한 내용은 [확장 집합을 업그레이드하는 방법](./virtual-machine-scale-sets-upgrade-scale-set.md)에 대한 설명서를 참조하세요.
 
 ```json
        "properties": {
@@ -145,7 +145,7 @@ hello 크기 집합에는 또한 toohandle hello 크기 집합에 업데이트 �
 ```
 
 ### <a name="choose-vm-operating-system"></a>VM 운영 체제 선택
-hello 크기 조정 요구 tooknow 어떤 운영 체제 tooput hello Vm에서 설정합니다. 여기에서 완전히 패치 Ubuntu LTS 16.04 이미지로 hello Vm 만듭니다.
+확장 집합은 VM에 적용할 운영 체제도 알아야 합니다. 여기서는 완벽하게 패치된 Ubuntu 16.04 LTS 이미지를 사용하여 VM을 만듭니다.
 
 ```json
          "virtualMachineProfile": {
@@ -160,9 +160,9 @@ hello 크기 조정 요구 tooknow 어떤 운영 체제 tooput hello Vm에서 �
 ```
 
 ### <a name="specify-computernameprefix"></a>computerNamePrefix 지정
-hello 크기 집합 여러 Vm을 배포합니다. 각각의 VM 이름을 지정하는 대신 `computerNamePrefix`를 지정합니다. hello 크기 집합 추가 인덱스 toohello 접두사 각 VM에 대 한 VM 이름 hello 형식으로 되어 있으므로 `<computerNamePrefix>_<auto-generated-index>`합니다.
+확장 집합은 다수의 VM을 배포합니다. 각각의 VM 이름을 지정하는 대신 `computerNamePrefix`를 지정합니다. 확장 집합은 각 VM의 접두사에 인덱스를 추가하기 때문에 VM 이름은 `<computerNamePrefix>_<auto-generated-index>` 형식입니다.
 
-다음 코드 조각 hello, hello 크기 집합의 모든 Vm에 대 한 hello 매개 변수를 하기 전에 tooset hello 관리자 사용자 이름 및 암호 사용 합니다. Hello로 수행 `parameters` 템플릿 함수입니다. 이 함수는 매개 변수 toorefer tooand 해당 매개 변수에 대해 hello 값을 출력을 지정 하는 문자열에 사용 합니다.
+이 코드 조각에서는 이전 매개 변수를 사용하여 확장 집합의 모든 VM에 대한 관리자 사용자 이름 및 암호를 설정합니다. 이 작업은 `parameters` 템플릿 함수를 사용하여 수행합니다. 이 함수는 참조할 매개 변수를 지정하는 문자열을 취하여 해당 매개 변수의 값을 출력합니다.
 
 ```json
            "osProfile": {
@@ -173,11 +173,11 @@ hello 크기 집합 여러 Vm을 배포합니다. 각각의 VM 이름을 지정�
 ```
 
 ### <a name="specify-vm-network-configuration"></a>VM 네트워크 구성 지정
-마지막으로, hello 크기 집합의 hello Vm에 대 한 toospecify hello 네트워크 구성을 해야 합니다. 이 경우 앞에서 만든 hello 서브넷의 toospecify hello ID만 필요 합니다. 이 hello 크기 집합 tooput hello 네트워크 인터페이스가이 서브넷의 값을 알려줍니다.
+마지막으로 확장 집합의 VM에 대한 네트워크 구성을 지정해야 합니다. 이 경우 이전에 만든 서브넷의 ID만 지정하면 됩니다. 이렇게 하면 확장 집합이 이 서브넷의 네트워크 인터페이스를 넣습니다.
 
-Hello hello를 사용 하 여 hello 서브넷을 포함 하는 가상 네트워크의 hello ID를 얻을 수 `resourceId` 템플릿 함수입니다. 이 함수는 hello 유형 및 리소스의 이름을 사용 하 고 반환 hello 해당 리소스의 정규화 된 식별자입니다. 이 ID는 hello 형식은 같습니다.`/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/<resourceProviderNamespace>/<resourceType>/<resourceName>`
+`resourceId` 템플릿 함수를 사용하여 서브넷을 포함하는 가상 네트워크의 ID를 얻을 수 있습니다. 이 함수는 리소스의 형식 및 이름을 취한 후 해당 리소스의 정규화된 식별자를 반환합니다. 이 ID는 `/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/<resourceProviderNamespace>/<resourceType>/<resourceName>` 형식입니다.
 
-그러나 hello 가상 네트워크의 hello 식별자 충분 하지 않습니다. 크기 집합 Vm에 있어야 hello hello 특정 서브넷을 지정 해야 합니다. toodo이를 연결할 `/subnets/mySubnet` hello 가상 네트워크의 toohello ID입니다. hello 결과 hello 서브넷의 정규화 된 hello ID입니다. 이 연결은 hello로 수행 `concat` 일련의 문자열에서 사용 하 고 해당 연결을 반환 하는 함수입니다.
+그러나 가상 네트워크의 식별자로는 충분하지 않습니다. 확장 집합 VM이 위치할 구체적인 서브넷을 지정해야 합니다. 이 작업을 수행하려면 `/subnets/mySubnet`을 가상 네트워크의 ID에 연결합니다. 결과는 서브넷의 정규화된 ID입니다. 이 연결은 일련의 문자열을 취한 후 해당 연결을 반환하는 `concat` 함수를 사용하여 수행합니다.
 
 ```json
            "networkProfile": {

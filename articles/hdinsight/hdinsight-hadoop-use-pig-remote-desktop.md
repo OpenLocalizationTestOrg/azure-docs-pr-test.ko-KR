@@ -1,6 +1,6 @@
 ---
-title: "Hadoop Pig HDInsight-Azure의에서 원격 데스크톱 aaaUse | Microsoft Docs"
-description: "Toouse HDInsight의 원격 데스크톱 연결 tooa Windows 기반 Hadoop 클러스터에서 Pig 명령 toorun Pig 라틴 문 hello 하는 방법에 대해 알아봅니다."
+title: "HDInsight에서 원격 데스크톱과 Hadoop Hive 사용 - Azure | Microsoft Docs"
+description: "Windows 기반 HDInsight Hadoop 클러스터에 대한 원격 데스크톱 연결을 통해 Pig 명령을 사용하여 Pig Latin 문을 실행하는 방법에 대해 알아봅니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,86 +16,86 @@ ms.workload: big-data
 ms.date: 01/17/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 2a4565fa827cd45fdbe6194b0486df93a6561084
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5e8d4fbd8afc54c8bbc1a9a71c66d7022a7d5986
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="run-pig-jobs-from-a-remote-desktop-connection"></a>원격 데스크탑 연결에서 Pig 작업 실행
 [!INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
-이 문서는 원격 데스크톱 연결 tooa Windows 기반 HDInsight 클러스터에서 hello Pig 명령 toorun Pig 라틴 문 사용에 대 한 연습을 제공 합니다. Pig 라틴 toocreate MapReduce 응용 프로그램 데이터 변환을 기반으로 하지 않고 매핑할 수 있으며 함수 줄일 합니다.
+이 문서에서는 Windows 기반 HDInsight 클러스터에 대한 원격 데스크톱 연결을 통해 Pig 명령을 사용하여 Pig Latin 문을 실행하는 과정을 안내합니다. Pig Latin을 사용하면 매핑하고 함수를 줄이는 대신 데이터 변환을 설명하여 MapReduce 응용 프로그램을 만들 수 있습니다.
 
 > [!IMPORTANT]
-> 원격 데스크톱은만 hello 운영 체제로 Windows를 사용 하는 HDInsight 클러스터에 사용할 수 있습니다. Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+> 원격 데스크톱은 Windows를 운영 체제로 사용하는 HDInsight 클러스터에서만 사용할 수 있습니다. Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 >
-> HDInsight 3.4 또는 큰 참조 하십시오 [HDInsight 및 SSH와 Pig](hdinsight-hadoop-use-pig-ssh.md) Pig를 대화형으로 실행에 대 한 내용은 hello에 직접 작업 명령줄에서 클러스터입니다.
+> HDInsight 3.4 이상의 경우 명령줄에서 클러스터의 Pig 작업을 대화형으로 실행하는 방법에 대한 자세한 내용은 [HDInsight 및 SSH로 Pig 사용](hdinsight-hadoop-use-pig-ssh.md)을 참조하세요.
 
 ## <a id="prereq"></a>필수 조건
-이 문서의 toocomplete hello 단계 hello 다음이 필요 합니다.
+이 문서의 단계를 완료하려면 다음이 필요합니다.
 
 * Windows 기반 HDInsight(HDInsight의 Hadoop) 클러스터
 * Windows 10, Window 8 또는 Windows 7을 실행하는 클라이언트 컴퓨터
 
 ## <a id="connect"></a>원격 데스크톱을 사용하여 연결
-Hello HDInsight 클러스터에 대 한 원격 데스크톱을 사용 합니다. 다음 hello 지침에 따라 tooit 연결 [RDP를 사용 하 여 tooHDInsight 클러스터 연결](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp)합니다.
+HDInsight 클러스터에 대해 원격 데스크톱을 사용하도록 설정한 다음 [RDP를 사용하여 HDInsight 클러스터에 연결](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp)의 지침에 따라 연결합니다.
 
-## <a id="pig"></a>Hello Pig 명령을 사용 하 여
-1. 원격 데스크톱 연결을 설정한 후 시작 hello **Hadoop 명령줄** hello 바탕 화면에서 hello 아이콘을 사용 하 여 합니다.
-2. 다음 toostart hello Pig 명령을 hello를 사용 합니다.
+## <a id="pig"></a>Pig 명령 사용
+1. 원격 데스크톱 연결이 설정되면 바탕 화면의 아이콘을 사용하여 **Hadoop 명령줄** 을 시작합니다.
+2. 다음을 사용하여 Pig 명령을 시작합니다.
 
         %pig_home%\bin\pig
 
     `grunt>` 프롬프트가 나타납니다.
-3. Hello 문 다음을 입력 합니다.
+3. 다음 문을 입력합니다.
 
         LOGS = LOAD 'wasb:///example/data/sample.log';
 
-    이 명령은 hello 로그 파일에 hello sample.log 파일의 내용을 hello를 로드합니다. 다음 명령을 hello를 사용 하 여 hello 파일의 hello 내용을 볼 수 있습니다.
+    이 명령은 sample.log 파일의 내용을 LOGS 파일에 로드합니다. 다음 명령을 사용하여 파일의 내용을 볼 수 있습니다.
 
         DUMP LOGS;
-4. 각 레코드에서 정규식 tooextract 유일한 hello 로깅 수준을 적용 하 여 hello 데이터를 변환 합니다.
+4. 각 레코드에서 로깅 수준만 추출하는 정규식을 적용하여 데이터를 변환합니다.
 
         LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
 
-    사용할 수 있습니다 **덤프** hello 변환 후 tooview hello 데이터입니다. 이 예제의 경우 `DUMP LEVELS;`입니다.
-5. 다음 조건 hello를 사용 하 여 변환을 계속 합니다. 사용 하 여 `DUMP` tooview hello 결과의 각 단계를 수행한 후 hello 변환 합니다.
+    **DUMP** 를 사용하여 변환 후 데이터를 볼 수 있습니다. 이 예제의 경우 `DUMP LEVELS;`입니다.
+5. 다음 문을 사용하여 변환 적용을 계속합니다. `DUMP`를 사용하여 각 단계 후의 변환 결과를 확인합니다.
 
     <table>
     <tr>
     <th>문</th><th>기능</th>
     </tr>
     <tr>
-    <td>FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;</td><td>Hello 로그 수준에 대 한 null 값을 포함 하는 행을 제거 하 고 FILTEREDLEVELS에 hello 결과 저장 합니다.</td>
+    <td>FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;</td><td>로그 수준에 대한 null 값을 포함하는 행을 제거하고 FILTEREDLEVELS에 결과를 저장합니다.</td>
     </tr>
     <tr>
-    <td>GROUPEDLEVELS = GROUP FILTEREDLEVELS by LOGLEVEL;</td><td>그룹 hello 로그 수준에 따라 행 GROUPEDLEVELS에 hello 결과 저장 합니다.</td>
+    <td>GROUPEDLEVELS = GROUP FILTEREDLEVELS by LOGLEVEL;</td><td>로그 수준에 따라 행을 그룹화하고 GROUPEDLEVELS에 결과를 저장합니다.</td>
     </tr>
     <tr>
     <td>FREQUENCIES = foreach GROUPEDLEVELS generate group as LOGLEVEL, COUNT(FILTEREDLEVELS.LOGLEVEL) as COUNT;</td><td>고유한 각 로그 수준 값 및 발생 횟수를 포함하는 데이터의 새 집합을 만듭니다. FREQUENCIES에 저장됩니다.</td>
     </tr>
     <tr>
-    <td>RESULT = order FREQUENCIES by COUNT desc;</td><td>횟수 (내림차순)와 저장소 hello 로그 수준에 결과 정렬</td>
+    <td>RESULT = order FREQUENCIES by COUNT desc;</td><td>로그 수준을 개수(내림차순)를 기준으로 정렬하고 RESULT에 저장합니다.</td>
     </tr>
     </table>
-6.Hello를 사용 하 여 변환의 hello 결과 저장할 수도 있습니다 `STORE` 문. 예를 들어 다음 명령을 hello 저장 hello `RESULT` toohello **/example/data/pigout** 디렉터리에서 클러스터에 대 한 hello 기본 저장소 컨테이너:
+6. `STORE` 문을 사용하여 변환 결과를 저장할 수도 있습니다. 예를 들어 다음 명령은 클러스터의 기본 저장소 컨테이너에 있는 **/example/data/pigout** 디렉터리에 `RESULT`를 저장합니다.
 
         STORE RESULT into 'wasb:///example/data/pigout'
 
    > [!NOTE]
-   > hello 데이터 hello 이라는 파일에 지정 된 디렉터리에 저장 됩니다 **파트 nnnnn**합니다. Hello 디렉터리가 이미 있는 경우는 오류 메시지가 표시 됩니다.
+   > 데이터는 지정된 디렉터리에 **part-nnnnn**이라는 파일로 저장됩니다. 해당 디렉터리가 이미 존재하는 경우 오류 메시지가 발생합니다.
    >
    >
-7. tooexit hello grunt 프롬프트를 hello 문 다음을 입력 합니다.
+7. 성가신 프롬프트를 종료하려면 다음 문을 입력합니다.
 
         QUIT;
 
 ### <a name="pig-latin-batch-files"></a>Pig Latin 배치 파일
-또한 파일에 hello Pig 명령 toorun 포함 된 Pig 라틴 문자를 사용할 수 있습니다.
+Pig 명령을 사용하여 파일에 포함된 Pig Latin을 실행할 수도 있습니다.
 
-1. Hello grunt 프롬프트를 종료 한 후 엽니다 **메모장** 라는 새 파일을 만들고 **pigbatch.pig** hello에 **% PIG_HOME %** 디렉터리입니다.
-2. Hello에 형식 또는 붙여넣기 hello 다음 줄 **pigbatch.pig** 파일을 선택한 다음 저장 합니다.
+1. 성가신 프롬프트를 종료한 후 **메모장**을 열고 **%PIG_HOME%** 디렉터리에 **pigbatch.pig**라는 새 파일을 만듭니다.
+2. 다음 줄을 **pigbatch.pig** 파일에 입력하거나 붙여 넣은 다음 저장합니다.
 
         LOGS = LOAD 'wasb:///example/data/sample.log';
         LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
@@ -104,11 +104,11 @@ Hello HDInsight 클러스터에 대 한 원격 데스크톱을 사용 합니다.
         FREQUENCIES = foreach GROUPEDLEVELS generate group as LOGLEVEL, COUNT(FILTEREDLEVELS.LOGLEVEL) as COUNT;
         RESULT = order FREQUENCIES by COUNT desc;
         DUMP RESULT;
-3. 사용 하 여 hello toorun hello 다음 **pigbatch.pig** hello pig 명령을 사용 하는 파일입니다.
+3. pig 명령을 사용하여 **pigbatch.pig** 파일을 실행하려면 다음을 사용합니다.
 
         pig %PIG_HOME%\pigbatch.pig
 
-    Hello 일괄 처리 작업이 완료 되 면 hello 출력 해야 수 hello 동일로 사용 하는 경우 다음이 표시 됩니다 `DUMP RESULT;` hello 이전 단계에서:
+    일괄 처리 작업이 완료되면 다음과 같은 출력이 표시되며, 이 출력은 이전 단계에서 `DUMP RESULT;` 를 사용했을 때와 같습니다.
 
         (TRACE,816)
         (DEBUG,434)
@@ -118,7 +118,7 @@ Hello HDInsight 클러스터에 대 한 원격 데스크톱을 사용 합니다.
         (FATAL,2)
 
 ## <a id="summary"></a>요약
-볼 수 있듯이 hello Pig 명령 있습니다 toointeractively를 MapReduce 작업을 실행 하거나 배치 파일에 저장 된 Pig 라틴 문자 작업을 실행 합니다.
+이처럼 Pig 명령을 사용하면 MapReduce 작업 또는 배치 파일에 저장된 Pig Latin 작업을 대화형으로 실행할 수 있습니다.
 
 ## <a id="nextsteps"></a>다음 단계
 HDInsight의 Pig에 대한 일반적인 정보:

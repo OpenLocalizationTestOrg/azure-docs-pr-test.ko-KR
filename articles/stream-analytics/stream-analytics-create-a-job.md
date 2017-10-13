@@ -1,5 +1,5 @@
 ---
-title: "스트림 분석에 대 한 데이터 분석 처리 작업이 aaaHow toocreate | Microsoft Docs"
+title: "Stream Analytics을 위한 데이터 분석 처리 작업을 만드는 방법 | Microsoft Docs"
 description: "Stream Analytics을 위한 데이터 분석 처리 작업 만들기 | 학습 경로 세그먼트."
 keywords: "데이터 분석 처리"
 documentationcenter: 
@@ -15,35 +15,35 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: samacha
-ms.openlocfilehash: d4a3c89d8862d59688d06a1719b063efa2ab1c93
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 05fdf1e20efd129cdfc27e1d37bc9e124edf5dcd
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-toocreate-a-data-analytics-processing-job-for-stream-analytics"></a>어떻게 toocreate 데이터 분석 처리는 스트림 분석에 대 한을 작업합니다
-Azure 스트림 분석에서 hello 최상위 리소스는 스트림 분석 작업 합니다.  하나 이루어져 하거나 더 많은 데이터 원본과 데이터 변환 hello를 표현 하는 쿼리 결과에 기록 되며 하나 이상의 출력 대상을 입력 합니다. 스트리밍 데이터에 대 한 시나리오를 처리 하는 hello 사용자 tooperform 데이터 분석을 통해 이러한 있습니다.
+# <a name="how-to-create-a-data-analytics-processing-job-for-stream-analytics"></a>Stream Analytics을 위한 데이터 분석 처리 작업을 만드는 방법
+Azure Stream Analytics에서 최상위 리소스는 Stream Analytics 작업입니다.  하나 이상의 입력 데이터 원본, 데이터 변환을 표현하는 쿼리 및 결과가 기록되는 하나 이상의 출력 대상으로 이루어져 있습니다. 이러한 요소가 모여서 데이터 시나리오 스트리밍을 위한 데이터 분석 처리 작업을 수행할 수 있게 해줍니다.
 
-스트림 분석을 사용 하 여 toostart 먼저 새 스트림 분석 작업을 만듭니다.  Note hello 작업이 시작 될 때까지이 작업에 요금이 청구 될 없습니다.
+Stream Analytics 사용을 시작하려면 먼저 새 Stream Analytics 작업을 만듭니다.  이 작업에 대한 비용은 작업이 시작될 때까지 청구되지 않습니다.
 
-1. 온라인 hello에 로그인 [Azure 클래식 포털](http://manage.windowsazure.com) 또는 hello [Azure 포털](https://portal.azure.com/)합니다.
-2. Hello 포털에서: **새 클릭**, 클릭 **데이터 서비스** 또는 **데이터 분석** 포털을 클릭 한 다음에 따라 **Azure스트림분석** 또는 **Stream Analytics** 차례로 **빨리 만들기**합니다.
+1. [Azure 클래식 포털](http://manage.windowsazure.com) 또는 [Azure Portal](https://portal.azure.com/)에서 온라인으로 로그인합니다.
+2. 포털에서: **새로 만들기를 클릭**한 다음 사용자의 포털에 따라 **Data Services** 또는 **데이터 분석**을 클릭한 다음 **Azure Stream Analytics** 또는 **Stream Analytics**, **빨리 만들기**를 차례로 클릭합니다.
    
    ![데이터 분석 처리 작업 마법사](./media/stream-analytics-create-a-job/1-stream-analytics-create-a-job.png)  
    
    ![데이터 분석 처리 작업 만들기](./media/stream-analytics-create-a-job/4-stream-analytics-create-a-job.png)  
-3. Hello 스트림 분석 작업에 대 한 hello 원하는 구성을 지정 합니다.
+3. Stream Analytics 작업에 대한 원하는 구성을 지정합니다.
    
-   * Hello에 **작업 이름을** 상자에 이름 tooidentify hello 스트림 분석 작업을 입력 합니다. Hello 때 **작업 이름을** 의 유효성이 확인 되 hello 작업 이름 상자에 녹색 확인 표시가 나타납니다. hello **작업 이름을** 영숫자 문자와 hello 포함 될 수 있습니다 '-' 문자, 있으며 3 ~ 63 자 사이 여야 합니다.
-   * 사용 하 여 **지역** hello Azure 포털에서에서 또는 **위치** hello Azure에서에서 포털 toospecify hello toorun hello 작업 저장할 지리적 위치입니다.
-   * Azure 포털을 hello를 사용 하 여, 선택 하거나 hello로 저장소 계정 toouse 만들 **지역별 모니터링 저장소 계정**합니다. 이 저장소 계정은이 영역에서 실행 중인 모든 스트림 분석 작업에 대 한 데이터를 모니터링 하는 사용 되는 toostore입니다.
-   * Azure 포털을 hello를 사용 하 여, 지정 새 또는 기존 **리소스 그룹** toohold 관련 응용 프로그램에 대 한 리소스입니다.
-4. 새 스트림 분석 작업 옵션 hello 구성 되 면 클릭 **스트림 분석 작업 만들기**합니다. 만든 hello 스트림 분석 작업 toobe 몇 분 정도 걸릴 수 있습니다. toocheck hello 상태 hello 알림 허브에서 hello 진행률을 모니터링할 수 있습니다.
+   * **작업 이름** 상자에 Stream Analytics 작업을 식별하는 이름을 입력합니다. **작업 이름** 의 유효성이 검사되면 작업 이름 상자에 녹색 확인 표시가 나타납니다. **작업 이름** 에는 영숫자 문자와 '-' 문자만 포함될 수 있으며, 3자에서 63자 사이여야 합니다.
+   * Azure Portal에서 **지역** 또는 Azure 포털에서 **위치**를 사용하여 작업을 실행하려는 지리적 위치를 지정합니다.
+   * Azure 포털을 사용하는 경우 **지역별 모니터링 저장소 계정**으로 사용하려는 저장소 계정을 선택하거나 만듭니다. 이 저장소 계정은 이 지역에서 실행 중인 모든 Stream Analytics 작업에 대한 모니터링 데이터를 저장하는 데 사용됩니다.
+   * Azure 포털을 사용하는 경우, 응용 프로그램에 대한 관련된 리소스를 저장하는 신규 및 기존 **리소스 그룹** 을 지정해야 합니다.
+4. 새 Stream Analytics 작업 옵션이 구성되면 **Stream Analytics 작업 만들기**를 클릭합니다. Stream Analytics 작업을 만드는 데 몇 분 정도 걸릴 수 있습니다. 상태를 확인하려면 알림 허브에서 진행률을 모니터링할 수 있습니다.
    
    ![데이터 분석 처리 작업 알림 허브](./media/stream-analytics-create-a-job/2-stream-analytics-create-a-job.png)  
    
    ![Azure Portal 데이터 분석 처리 작업 만들기](./media/stream-analytics-create-a-job/5-stream-analytics-create-a-job.png)  
-5. hello 새 작업의 상태가 표시 됩니다 **Created**합니다. 해당 hello 확인 **시작** 단추가 비활성화 됩니다. Hello 작업을 시작 하기 전에 hello 작업 입력, 쿼리 및 출력을 구성 합니다.
+5. 새 작업이 **생성됨** 상태로 표시됩니다. **시작** 단추를 사용할 수 없습니다. 작업을 시작하기 전에 작업 입력, 쿼리 및 출력을 구성합니다.
    
    ![데이터 분석 처리 작업 상태](./media/stream-analytics-create-a-job/3-stream-analytics-create-a-job.png)  
    
@@ -53,7 +53,7 @@ Azure 스트림 분석에서 hello 최상위 리소스는 스트림 분석 작�
 추가 지원이 필요할 경우 [Azure 스트림 분석 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>다음 단계
-* [스트림 분석 소개 tooAzure](stream-analytics-introduction.md)
+* [Azure Stream Analytics 소개](stream-analytics-introduction.md)
 * [Azure Stream Analytics 사용 시작](stream-analytics-real-time-fraud-detection.md)
 * [Azure  Stream Analytics 작업 규모 지정](stream-analytics-scale-jobs.md)
 * [Azure  Stream Analytics 쿼리 언어 참조](https://msdn.microsoft.com/library/azure/dn834998.aspx)

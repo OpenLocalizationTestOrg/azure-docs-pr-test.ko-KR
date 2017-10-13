@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 5/06/2017
 ms.author: parakhj
-ms.openlocfilehash: 28a39f282488b81fc9e2ab7841b5f2cb4cd58715
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: cb7a9f01e43d41eb7315cb37a41e69f044ce5566
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-b2c-sign-up-and-sign-in-consumers-in-your-applications-using-custom-policies"></a>Azure Active Directory B2C: 사용자 지정 정책을 사용하여 응용 프로그램에 소비자 등록 및 로그인
-사용자 지정 정책은 Azure AD B2C 테 넌 트의 hello 동작을 정의 하는 구성 파일입니다. 될 수 있습니다 거의 무제한 작업 수가 identity 개발자 toocomplete가 완벽 하 게 편집 합니다.
+사용자 지정 정책은 Azure AD B2C 테넌트의 동작을 정의하는 구성 파일입니다. ID 개발자가 완전히 편집하여 거의 무제한의 작업을 완료할 수 있습니다.
 
-## <a name="how-tooarticles"></a>Tooarticles 방법
-자세한 내용은 방법 toouse 특정 Azure Active Directory B2C 기능:
+## <a name="how-to-articles"></a>방법 문서
+특정 Azure Active Directory B2C 기능을 사용하는 방법을 알아봅니다.
 
 * [시작](active-directory-b2c-overview-custom.md)
 * [Azure AD](active-directory-b2c-setup-aad-custom.md)와 같은 OIDC 공급자를 구성합니다.
@@ -39,7 +39,7 @@ ms.lasthandoff: 10/06/2017
 * [Application Insights를 사용하여 로그를 수집](active-directory-b2c-troubleshoot-custom.md)하여 문제 해결.
 
 ## <a name="whats-new"></a>새로운 기능
-나중에 변경 내용 toohello Azure Active Directory B2C에 대 한 toolearn 자주 다시 여기를 선택 합니다. 또한 @AzureAD를 사용하여 업데이트에 대해 트윗합니다.
+여기를 다시 종종 확인하여 Azure Active Directory B2C에 대한 이후 변경 내용을 알아봅니다. 또한 @AzureAD를 사용하여 업데이트에 대해 트윗합니다.
 
 
 

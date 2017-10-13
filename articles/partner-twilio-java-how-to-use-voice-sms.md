@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooUse Twilio 음성 및 SMS (Java) | Microsoft Docs"
-description: "Azure의 hello Twilio API 서비스와 메시지 toomake 전화 통화 및 SMS 송신에 알아봅니다. 코드 샘플은 Java로 작성되었습니다."
+title: "음성 및 SMS에 Twilio를 사용하는 방법(Java) | Microsoft Docs"
+description: "Azure에서 Twilio API 서비스를 사용하여 전화를 걸고 SMS 메시지를 보내는 방법에 대해 알아봅니다. 코드 샘플은 Java로 작성되었습니다."
 services: 
 documentationcenter: java
 author: devinrader
@@ -14,49 +14,49 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 11/25/2014
 ms.author: microsofthelp@twilio.com
-ms.openlocfilehash: a186e2c8e73ced928bd0dec348971034f10ba82c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5a1b2ffa160a31b639605242b651dc8d14e7a01b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-twilio-for-voice-and-sms-capabilities-in-java"></a>어떻게 tooUse 음성 및 SMS 기능 java에서 Twilio
-이 가이드에서는 Azure에서 tooperform hello Twilio API가 있는 일반적인 프로그래밍 작업을 서비스 하는 방법을 보여 줍니다. 포함 하는 hello 시나리오에는 전화를 걸어서를 Short Message Service (SMS) 메시지를 보내는 포함 됩니다. Twilio 및 음성 및 SMS를 사용 하 여 응용 프로그램에 대 한 자세한 내용은 참조 hello [다음 단계](#NextSteps) 섹션.
+# <a name="how-to-use-twilio-for-voice-and-sms-capabilities-in-java"></a>Java에서 음성 및 SMS 기능을 위해 Twilio를 사용하는 방법
+이 가이드에서는 Azure에서 Twilio API 서비스로 일반 프로그래밍 작업을 수행하는 방법을 보여 줍니다. 이 문서의 시나리오에서는 전화 통화를 걸고 SMS(Short Message Service) 메시지를 보냅니다. 응용 프로그램에서 음성 및 SMS 사용 방법과 Twilio에 대한 자세한 내용은 [다음 단계](#NextSteps) 섹션을 참조하십시오.
 
 ## <a id="WhatIs"></a>Twilio 정의
-Twilio는 기존 웹 언어와 기술 toobuild 음성 및 SMS 응용 프로그램을 사용 하는 전화 통신 웹 서비스 API입니다. Twilio는 타사 서비스입니다(Azure 기능 또는 Microsoft 제품 아님).
+Twilio는 기존 웹 언어와 기술을 사용하여 음성 및 SMS 응용 프로그램을 빌드할 수 있게 해주는 전화 통신 웹 서비스 API입니다. Twilio는 타사 서비스입니다(Azure 기능 또는 Microsoft 제품 아님).
 
-**Twilio 음성** 응용 프로그램 toomake 허용 및 전화 통화를 수신 합니다. **Twilio SMS** 응용 프로그램 toomake 있으며 SMS 메시지를 수신 합니다. **Twilio 클라이언트** 모바일 연결을 포함 하 여 기존 인터넷 연결을 사용 하 여 tooenable 음성 통신 응용 프로그램을 허용 합니다.
+**Twilio 음성** 을 통해 응용 프로그램에서 전화를 걸고 받을 수 있습니다. **Twilio SMS** 를 사용하면 응용 프로그램에서 SMS 메시지를 작성하고 받을 수 있습니다. **Twilio 클라이언트** 를 사용하면 응용 프로그램에서 모바일 연결을 비롯한 기존 인터넷 연결을 통해 음성 통신을 사용할 수 있습니다.
 
 ## <a id="Pricing"></a>Twilio 가격 책정 및 특별 제공
-Twilio 가격 책정 정보는 [Twilio 가격 책정][twilio_pricing]에서 확인할 수 있습니다. Azure 고객은 [특별 제공][special_offer](문자 1000통 또는 인바운드 통화 1000분의 무료 크레딧)을 받습니다. 이 대해 toosign 제공 또는 자세한 정보를 얻을, 방문 하십시오 [http://ahoy.twilio.com/azure][special_offer]합니다.
+Twilio 가격 책정 정보는 [Twilio 가격 책정][twilio_pricing]에서 확인할 수 있습니다. Azure 고객은 [특별 제공][special_offer](문자 1000통 또는 인바운드 통화 1000분의 무료 크레딧)을 받습니다. 이 제공에 등록하거나 추가 정보를 얻으려면 [http://ahoy.twilio.com/azure][special_offer]를 방문하세요.
 
 ## <a id="Concepts"></a>개념
-hello Twilio API는 응용 프로그램에 대 한 음성 및 SMS 기능을 제공 하는 RESTful API입니다. 클라이언트 라이브러리는 다양한 언어로 사용할 수 있습니다. 목록에 대해서는 [Twilio API 라이브러리][twilio_libraries](영문)를 참조하십시오.
+Twilio API는 응용 프로그램에 대한 음성 및 SMS 기능을 제공하는 RESTful API입니다. 클라이언트 라이브러리는 다양한 언어로 사용할 수 있습니다. 목록에 대해서는 [Twilio API 라이브러리][twilio_libraries](영문)를 참조하십시오.
 
-Hello Twilio API의 주요 측면은 Twilio 동사 및 Twilio Markup Language (TwiML)입니다.
+Twilio API의 핵심 요소는 Twilio 동사와 TwiML(Twilio Markup Language)입니다.
 
 ### <a id="Verbs"></a>Twilio 동사
-hello API에서 Twilio 활용 동사; 예를 들어 hello  **&lt;의견을 언급 해서도&gt;**  동사 Twilio tooaudibly 배달에 대 한 호출에서 메시지 지시 합니다.
+API는 Twilio 동사를 활용합니다. 예를 들어 **&lt;Say&gt;** 동사는 Twilio에 통화 메시지를 음성으로 전달하도록 지시합니다.
 
-hello 다음은 Twilio 동사 목록을입니다.
+다음은 Twilio 동사의 목록입니다.
 
-* **&lt;전화&gt;**: hello 호출자 tooanother 전화를 연결 합니다.
-* **&lt;수집&gt;**: hello 전화 키패드 입력 한 자리 숫자를 수집 합니다.
+* **&lt;Dial&gt;**: 발신자를 다른 전화에 연결합니다.
+* **&lt;Gather&gt;**: 전화 키패드에 입력된 숫자를 수집합니다.
 * **&lt;Hangup&gt;**: 통화를 끝냅니다.
 * **&lt;Play&gt;**: 오디오 파일을 재생합니다.
-* **&lt;큐&gt;**: 호출자의 hello tooa 큐를 추가 합니다.
+* **&lt;Queue&gt;**: 호출자 큐에 추가합니다.
 * **&lt;Pause&gt;**: 지정된 시간(초) 동안 무음으로 대기합니다.
-* **&lt;레코드&gt;**: hello 호출자의 음성 기록 하 고 hello 기록이 포함 된 파일의 URL을 반환 합니다.
-* **&lt;리디렉션&gt;**: 통화 또는 SMS toohello TwiML 다른 URL에 대 한 제어를 전송 합니다.
-* **&lt;거부&gt;**: 들어오는 거절 하면 청구 하지 않고 tooyour Twilio 번호를 호출 합니다.
-* **&lt;예를 들어&gt;**: 호출에서 만든 텍스트 toospeech를 변환 합니다.
+* **&lt;Record&gt;**: 발신자의 음성을 녹음하고 녹음이 포함된 파일의 URL을 반환합니다.
+* **&lt;Redirect&gt;**: 통화 또는 SMS에 대한 제어를 다른 URL의 TwiML로 전송합니다.
+* **&lt;Reject&gt;**: 요금을 청구하지 않고 Twilio 번호의 수신 전화를 거부합니다.
+* **&lt;Say&gt;**: 텍스트를 통화에 사용되는 음성으로 변환합니다.
 * **&lt;Sms&gt;**: SMS 메시지를 보냅니다.
 
 ### <a id="TwiML"></a>TwiML
-TwiML 방법의 Twilio를 알려주는 hello Twilio 동사에 따라 XML 기반 지침의 집합이 tooprocess 통화 나 SMS 합니다.
+TwiML은 Twilio에 통화 또는 SMS 처리 방법을 알려 주는 Twilio 동사를 사용하는 XML 기반 명령 집합입니다.
 
-예를 들어, 다음 TwiML hello hello 텍스트 변환 **Hello World!** toospeech 합니다.
+다음 예제 TwiML은 **Hello World!** 텍스트를 음성으로 변환합니다.
 
 ```xml
     <?xml version="1.0" encoding="UTF-8" ?>
@@ -65,23 +65,23 @@ TwiML 방법의 Twilio를 알려주는 hello Twilio 동사에 따라 XML 기반 
     </Response>
 ```
 
-응용 프로그램이 호출 hello Twilio API, hello API 매개 변수 중 하나 hello TwiML 응답을 반환 하는 hello URL입니다. 개발을 위해 응용 프로그램에서 사용 하는 Twilio 제공 Url tooprovide hello TwiML 응답을 사용할 수 있습니다. 직접 Url tooproduce hello TwiML 응답을 호스트할 수 있습니다 및 두 번째 방법은 toouse hello **TwiMLResponse** 개체입니다.
+응용 프로그램에서 Twilio API를 호출할 때 API 매개 변수 중 하나는 TwiML 응답을 반환하는 URL입니다. 개발을 위해서 Twilio 제공 URL을 사용하여 응용 프로그램에 사용되는 TwiML 응답을 제공할 수 있습니다. 또한 TwiML 응답을 생성하는 고유한 URL을 호스트할 수도 있고, **TwiMLResponse** 개체를 사용할 수도 있습니다.
 
-Twilio 동사, 특성 및 TwiML에 대한 자세한 내용은 [TwiML][twiml](영문)을 참조하십시오. Hello Twilio API에 대 한 자세한 내용은 참조 하십시오. [Twilio API][twilio_api]합니다.
+Twilio 동사, 특성 및 TwiML에 대한 자세한 내용은 [TwiML][twiml](영문)을 참조하십시오. Twilio API에 대한 자세한 내용은 [Twilio API][twilio_api](영문)를 참조하십시오.
 
 ## <a id="CreateAccount"></a>Twilio 계정 만들기
-준비 tooget Twilio 계정 되 면에서 등록 [시도 Twilio][try_twilio]합니다. 무료 계정으로 시작했다가 나중에 계정을 업그레이드할 수 있습니다.
+Twilio 계정을 사용할 준비가 되었다면 [Twilio 체험][try_twilio](영문)에서 등록하십시오. 무료 계정으로 시작했다가 나중에 계정을 업그레이드할 수 있습니다.
 
-Twilio 계정을 등록하면 계정 ID 및 인증 토큰을 받게 됩니다. 둘 다 필요한 toomake Twilio API 호출 됩니다. 권한이 없음 tooprevent tooyour 계정에 액세스, 인증 토큰이 안전 하 게 유지 합니다. 계정 ID 및 인증 토큰 hello에서 볼 수 있는 [Twilio 콘솔][twilio_console]에 레이블이 지정 된 필드를 hello **계정 SID** 및 **인증 토큰**각각.
+Twilio 계정을 등록하면 계정 ID 및 인증 토큰을 받게 됩니다. 둘 다 Twilio API 통화를 하는 데 필요합니다. 계정에 대한 무단 액세스를 방지하려면 인증 토큰을 안전하게 유지하십시오. 계정 ID 및 인증 토큰은 [Twilio 콘솔][twilio_console]의 **ACCOUNT SID** 및 **AUTH TOKEN** 필드에서 각각 확인할 수 있습니다.
 
 ## <a id="create_app"></a>Java 응용 프로그램 만들기
-1. Twilio JAR hello 받으며 tooyour Java 빌드 경로 WAR 배포 어셈블리를 추가 합니다. [https://github.com/twilio/twilio-java][twilio_java], hello GitHub 소스를 다운로드 하 고 사용자 고유의 JAR 작성 하거나 (종속성이 없는 또는) 미리 작성 된 JAR 다운로드 수 있습니다.
-2. JDK의 확인 **cacerts** MD5 지문 67:CB:9 D와 hello Equifax 보안 인증 기관 인증서를 포함 하는 키 저장소: C0:13:24:8A:82:9B:B2:17:1E:D1:1B:EC:D4 hello 일련 번호는 (35:DE:F4:CF 및 hello SHA1 D2:32:09:AD:23:D3:14:23:21:74:E4:0 D 지 문은: 7F:9 D: 62:13:97:86:63:3A). 이 hello에 대 한 인증 기관 (CA) 인증서 hello [https://api.twilio.com] [ twilio_api_service] Twilio Api를 사용 하는 경우 호출 되는 서비스입니다. JDK의 확인에 대 한 내용은 **cacerts** hello 올바른 CA 인증서를 포함 하는 키 저장소를 참조 하십시오. [인증서 toohello Java CA 인증서 저장소에 있는 추가][add_ca_cert]합니다.
+1. Twilio JAR을 다운로드하여 Java 빌드 경로 및 WAR 배포 어셈블리에 추가합니다. [https://github.com/twilio/twilio-java][twilio_java]에서 GitHub 원본을 다운로드한 후 고유한 JAR을 만들거나 종속성 포함 여부에 관계없이 미리 빌드된 JAR을 다운로드할 수 있습니다.
+2. JDK의 **cacerts** keystore에 MD5 지문이 67:CB:9D:C0:13:24:8A:82:9B:B2:17:1E:D1:1B:EC:D4인 Equifax Secure Certificate Authority 인증서가 포함되어 있는지 확인합니다(일련 번호는 35:DE:F4:CF이고 SHA1 지문은 D2:32:09:AD:23:D3:14:23:21:74:E4:0D:7F:9D:62:13:97:86:63:3A임). 이 인증서는 Twilio API를 사용할 때 호출되는 [https://api.twilio.com][twilio_api_service] 서비스에 대한 CA(인증 기관) 인증서입니다. JDK의 **cacerts** keystore에 올바른 CA 인증서가 포함되어 있는지 확인하는 방법에 대한 자세한 내용은 [Java CA 인증서 저장소에 인증서 추가][add_ca_cert]를 참조하세요.
 
-Java 용 hello Twilio 클라이언트 라이브러리를 사용 하기 위한 자세한 지침은 [어떻게 tooMake Azure에서 Java 응용 프로그램에서 전화 통화를 사용 하 여 Twilio][howto_phonecall_java]합니다.
+Java용 Twilio 클라이언트 라이브러리 사용에 대한 자세한 지침은 [Azure의 Java 응용 프로그램에서 Twilio를 사용하여 전화를 거는 방법][howto_phonecall_java]을 참조하세요.
 
-## <a id="configure_app"></a>응용 프로그램 tooUse Twilio 라이브러리 구성
-내 코드를 추가할 수 있습니다 **가져올** hello 위쪽 hello Twilio 패키지 또는 클래스에 대 한 소스 파일의 문 toouse 응용 프로그램에서 원하는 합니다.
+## <a id="configure_app"></a>Twilio 라이브러리를 사용하도록 응용 프로그램 구성
+코드 내에서 응용 프로그램에 사용할 Twilio 패키지 또는 클래스의 원본 파일 맨 위에 **import** 문을 추가할 수 있습니다.
 
 Java 원본 파일의 경우
 
@@ -101,67 +101,67 @@ JSP(Java Server Page) 원본 파일의 경우
     import="com.twilio.twiml.*"
  ```
  
-원하는 toouse, 어떤 Twilio 패키지 또는 클래스에 따라 프로그램 **가져올** 문을 다를 수 있습니다.
+사용할 Twilio 패키지 또는 클래스에 따라 **import** 문이 달라질 수 있습니다.
 
 ## <a id="howto_make_call"></a>방법: 발신 전화 걸기
-hello 다음 테이블에 나와 hello를 사용 하 여 나가는 toomake을 호출 하는 방법을 **호출** 클래스입니다. 이 코드는 또한 Twilio 제공 사이트 tooreturn hello Twilio Markup Language (TwiML) 응답을 사용합니다. Hello에 대 한 값을 대체 **에서** 및 **를** 전화 번호를 하 고 hello를 확인 하는 확인 **에서** Twilio 계정 이전 toorunning hello 코드의 전화 번호입니다.
+다음은 **Call** 클래스를 사용하여 발신 전화를 거는 방법을 보여 줍니다. 또한 이 코드는 Twilio 제공 사이트를 사용하여 TwiML(Twilio Markup Language) 응답을 반환합니다. **from** 및 **to** 전화 번호의 값을 바꾸고, 코드를 실행하기 전에 Twilio 계정의 **from** 번호를 확인하세요.
 
 ```java
     // Use your account SID and authentication token instead
-    // of hello placeholders shown here.
+    // of the placeholders shown here.
     String accountSID = "your_twilio_account_SID";
     String authToken = "your_twilio_authentication_token";
 
-    // Initialize hello Twilio client.
+    // Initialize the Twilio client.
     Twilio.init(accountSID, authToken);
 
-    // Use hello Twilio-provided site for hello TwiML response.
+    // Use the Twilio-provided site for the TwiML response.
     URI uri = new URI("http://twimlets.com/message" +
             "?Message%5B0%5D=Hello%20World%21");
 
-    // Declare tooand From numbers
-    PhoneNumber too= new PhoneNumber("NNNNNNNNNN");
+    // Declare To and From numbers
+    PhoneNumber to = new PhoneNumber("NNNNNNNNNN");
     PhoneNumber from = new PhoneNumber("NNNNNNNNNN");
 
-    // Create a Call creator passing From, tooand URL values
-    // then make hello call by executing hello create() method
+    // Create a Call creator passing From, To and URL values
+    // then make the call by executing the create() method
     Call.creator(to, from, uri).create();
 ```
 
-Hello 매개 변수 toohello를 전달 하는 방법에 대 한 자세한 내용은 **Call.creator** 메서드를 참조 [http://www.twilio.com/docs/api/rest/making-calls][twilio_rest_making_calls]합니다.
+**Call.creator** 메서드에 전달된 매개 변수에 대한 자세한 내용은 [http://www.twilio.com/docs/api/rest/making-calls][twilio_rest_making_calls]를 참조하세요.
 
-앞서 언급 했 듯이이 코드는 Twilio 제공 사이트 tooreturn hello TwiML 응답을 사용 합니다. 사용자 고유의 사이트 tooprovide hello TwiML 응답; 대신 사용할 수 있습니다. 자세한 내용은 참조 [어떻게 tooProvide Azure에서 Java 응용 프로그램에서 TwiML 응답](#howto_provide_twiml_responses)합니다.
+언급한 대로 이 코드는 Twilio 제공 사이트를 사용하여 TwiML 응답을 반환합니다. 고유한 사이트를 대신 사용하여 TwiML 응답을 제공할 수 있습니다. 자세한 내용은 [Azure의 Java 응용 프로그램에서 TwiML 응답을 제공하는 방법](#howto_provide_twiml_responses)을 참조하십시오.
 
 ## <a id="howto_send_sms"></a>방법: SMS 메시지 보내기
-hello 다음 테이블에 나와 방법을 사용 하 여 SMS 메시지 toosend hello **메시지** 클래스입니다. hello **에서** 번호, **4155992671**, 평가판 계정 toosend SMS 메시지에 대해 Twilio에서 제공 됩니다. hello **를** Twilio 계정 이전 toorunning hello 코드에 대 한 번호를 확인 해야 합니다.
+다음은 **Message** 클래스를 사용하여 SMS 메시지를 보내는 방법을 보여 줍니다. 체험 계정이 SMS 메시지를 보낼 **from** 번호 **4155992671**은 Twilio에서 자동으로 입력됩니다. 코드를 실행하기 전에 Twilio 계정에 대한 **to** 번호를 확인해야 합니다.
 
 ```java
     // Use your account SID and authentication token instead
-    // of hello placeholders shown here.
+    // of the placeholders shown here.
     String accountSID = "your_twilio_account_SID";
     String authToken = "your_twilio_authentication_token";
 
-    // Initialize hello Twilio client.
+    // Initialize the Twilio client.
     Twilio.init(accountSID, authToken);
 
-    // Declare tooand From numbers and hello Body of hello SMS message
-    PhoneNumber too= new PhoneNumber("+14159352345"); // Replace with a valid phone number for your account.
+    // Declare To and From numbers and the Body of the SMS message
+    PhoneNumber to = new PhoneNumber("+14159352345"); // Replace with a valid phone number for your account.
     PhoneNumber from = new PhoneNumber("+14158141829"); // Replace with a valid phone number for your account.
     String body = "Where's Wallace?";
 
-    // Create a Message creator passing From, tooand Body values
-    // then send hello SMS message by calling hello create() method
+    // Create a Message creator passing From, To and Body values
+    // then send the SMS message by calling the create() method
     Message sms = Message.creator(to, from, body).create();
 ```
 
-Hello 매개 변수 toohello를 전달 하는 방법에 대 한 자세한 내용은 **Message.creator** 메서드를 참조 [http://www.twilio.com/docs/api/rest/sending-sms][twilio_rest_sending_sms]합니다.
+**Message.creator** 메서드에 전달된 매개 변수에 대한 자세한 내용은 [http://www.twilio.com/docs/api/rest/sending-sms][twilio_rest_sending_sms]를 참조하세요.
 
 ## <a id="howto_provide_twiml_responses"></a>방법: 고유한 웹 사이트에서 TwiML 응답 제공
-응용 프로그램 예를 들어 hello 통해 호출 toohello Twilio API를 시작 하는 경우 **CallCreator.create** 메서드, Twilio 송신할 예상된 tooreturn 있는 요청 tooa URL TwiML 응답 합니다. hello Twilio 제공 URL을 사용 하 여 위의 hello 예제 [http://twimlets.com/message][twimlet_message_url]합니다. (TwiML를 웹 서비스에서 사용 하기 위해 디자인 된 반면 볼 수 있습니다 hello TwiML 브라우저에서. 예를 들어 클릭 [http://twimlets.com/message] [ twimlet_message_url] toosee 빈  **&lt;응답&gt;**  요소로 또 다른 예로, 클릭[http://twimlets.com/message?Message%5B0%5D=Hello%20World%21] [ twimlet_message_url_hello_world] toosee는  **&lt;응답&gt;**  요소를 포함 하는  **&lt;말하기 &gt;**  요소입니다.)
+응용 프로그램에서 Twilio API 호출을 시작하면(예: **CallCreator.create** 메서드를 통해) Twilio에서 TwiML 응답을 반환해야 하는 URL로 요청을 보냅니다. 위 예제에서는 Twilio 제공 URL인 [http://twimlets.com/message][twimlet_message_url]를 사용합니다. TwiML은 웹 서비스에서 사용되도록 설계되었지만 브라우저에서도 TwiML을 볼 수 있습니다. 예를 들어 [http://twimlets.com/message][twimlet_message_url]를 클릭하면 빈 **&lt;Response&gt;** 요소가 표시됩니다. 또 다른 예로, [http://twimlets.com/message?Message%5B0%5D=Hello%20World%21][twimlet_message_url_hello_world]을 클릭하면 **&lt;Say&gt;** 요소를 포함하는 **&lt;Response&gt;** 요소가 표시됩니다.
 
-Hello Twilio 제공 URL에 의존 하지 않고 HTTP 응답을 반환 하는 URL 사이트를 만들 수 있습니다. HTTP 응답; 반환 되는 언어로 hello 사이트를 만들 수 있습니다. 이 항목에서는 hello URL JSP 페이지에서 호스트 됩니다.
+Twilio 제공 URL을 사용하지 않고 HTTP 응답을 반환하는 고유한 URL 사이트를 만들 수 있습니다. HTTP 응답을 반환하는 모든 언어로 사이트를 만들 수 있습니다. 이 항목에서는 JSP 페이지에서 URL을 호스팅한다고 가정합니다.
 
-JSP 페이지 결과 라는 TwiML 응답에 따라 hello **Hello World!** hello 호출인 합니다.
+다음 JSP 페이지에서는 호출 시 **Hello World!**라고 말하는 TwiML 응답이 생성됩니다.
 
 ```xml
     <%@ page contentType="text/xml" %>
@@ -170,50 +170,50 @@ JSP 페이지 결과 라는 TwiML 응답에 따라 hello **Hello World!** hello 
     </Response>
 ```
 
-다음 텍스트를 표시 하는 TwiML 응답에서 페이지 결과 JSP hello 여러 일시 중지 개이고 hello Twilio API 버전 및 hello Azure 역할 이름에 대 한 정보를 표시 합니다.
+다음 JSP 페이지에서는 일부 텍스트를 말하고 여러 일시 중지를 포함하며 Twilio API 버전 및 Azure 역할 이름에 대한 정보를 말하는 TwiML 응답이 생성됩니다.
 
 ```xml
     <%@ page contentType="text/xml" %>
     <Response>
         <Say>Hello from Azure!</Say>
         <Pause></Pause>
-        <Say>hello Twilio API version is <%= request.getParameter("ApiVersion") %>.</Say>
-        <Say>hello Azure role name is <%= System.getenv("RoleName") %>.</Say>
+        <Say>The Twilio API version is <%= request.getParameter("ApiVersion") %>.</Say>
+        <Say>The Azure role name is <%= System.getenv("RoleName") %>.</Say>
         <Pause></Pause>
         <Say>Good bye.</Say>
     </Response>
 ```
 
-hello **ApiVersion** 매개 변수는 Twilio 음성 요청 (SMS 요청 되지 함)에서 사용할 수 있습니다. Twilio 음성 및 SMS 요청에 대 한 toosee hello 사용 가능한 요청 매개 변수를 참조 <https://www.twilio.com/docs/api/twiml/twilio_request> 및 <https://www.twilio.com/docs/api/twiml/sms/twilio_request >각각. hello **RoleName** 환경 변수를 사용 하는 Azure 배포의 일환으로 합니다. (원하면 tooadd 사용자 정의 환경 변수에서 선택할 수 수 있도록 **System.getenv**에 hello 환경 변수 섹션을 참조 [기타 역할 구성 설정] [misc_role_config_settings].)
+**ApiVersion** 매개 변수는 Twilio 음성 요청(SMS 요청 아님)에 사용할 수 있습니다. Twilio 음성 및 SMS 요청에 사용 가능한 요청 매개 변수를 보려면 각각 <https://www.twilio.com/docs/api/twiml/twilio_request> 및 <https://www.twilio.com/docs/api/twiml/sms/twilio_request>를 참조하세요. **RoleName** 환경 변수는 Azure 배포의 일부로 사용할 수 있습니다. **System.getenv**에서 선택될 수 있도록 사용자 지정 환경 변수를 추가하려면 [기타 역할 구성 설정][misc_role_config_settings]의 환경 변수 섹션을 참조하세요.
 
-Tooprovide TwiML 응답 설정 JSP 페이지를 사용 하는 후 사용 hello JSP 페이지의 hello URL hello에 전달 된 URL을 hello **Call.creator** 메서드. 예를 들어 웹 응용 프로그램의 경우 배포 MyTwiML tooan 라는 Azure 호스팅 서비스 및 hello hello JSP 페이지 이름이 mytwiml.jsp, hello URL을 너무 전달 될 수 있습니다.**Call.creator** hello 다음과 같이 합니다.
+JSP 페이지가 TwiML 응답을 제공하도록 설정된 경우 **Call.creator** 메서드에 전달되는 URL로 JSP 페이지의 URL을 사용합니다. 예를 들어 MyTwiML이라는 웹 응용 프로그램이 Azure 호스티드 서비스에 배포되어 있고 JSP 페이지의 이름이 mytwiml.jsp인 경우 다음과 같이 URL을 **Call.creator**에 전달할 수 있습니다.
 
 ```java
-    // Declare tooand From numbers and hello URL of your JSP page
-    PhoneNumber too= new PhoneNumber("NNNNNNNNNN");
+    // Declare To and From numbers and the URL of your JSP page
+    PhoneNumber to = new PhoneNumber("NNNNNNNNNN");
     PhoneNumber from = new PhoneNumber("NNNNNNNNNN");
     URI uri = new URI("http://<your_hosted_service>.cloudapp.net/MyTwiML/mytwiml.jsp");
 
-    // Create a Call creator passing From, tooand URL values
-    // then make hello call by executing hello create() method
+    // Create a Call creator passing From, To and URL values
+    // then make the call by executing the create() method
     Call.creator(to, from, uri).create();
 ```
 
-Hello를 통해 TwiML로 응답에 대 한 또 다른 옵션은 **VoiceResponse** hello에서 사용할 수 있는 클래스 **com.twilio.twiml** 패키지 합니다.
+TwiML로 응답하는 또 다른 옵션은 **com.twilio.twiml** 패키지에 포함된 **VoiceResponse** 클래스를 사용하는 것입니다.
 
-Twilio를 사용 하 여 Java 사용 하 여 Azure에 대 한 자세한 내용은 참조 하십시오. [어떻게 tooMake Azure에서 Java 응용 프로그램에서 전화 통화를 사용 하 여 Twilio][howto_phonecall_java]합니다.
+Azure에서 Java와 함께 Twilio를 사용하는 방법에 대한 자세한 내용은 [Azure의 Java 웹 응용 프로그램에서 Twilio를 사용하여 전화를 거는 방법][howto_phonecall_java]을 참조하세요.
 
 ## <a id="AdditionalServices"></a>방법: 추가 Twilio 서비스 사용
-또한 toohello 예제 Twilio 제공 웹 기반 Api를 여기에 표시 된 Azure 응용 프로그램에서 추가 Twilio 기능 tooleverage를 사용할 수 있습니다. 전체 세부 정보에 대 한 참조 hello [Twilio API 설명서][twilio_api_documentation]합니다.
+여기에서 보여 준 예뿐만 아니라 Twilio는 Azure 응용 프로그램에서 Twilio 기능을 활용할 수 있는 웹 기반 API를 제공합니다. 자세한 내용은 [Twilio API 설명서][twilio_api_documentation]를 참조하세요.
 
 ## <a id="NextSteps"></a>다음 단계
-Hello Twilio 서비스의 기본 사항 hello를 알아보았습니다 했으므로 이러한 링크 toolearn 자세한 수행 합니다.
+Twilio 서비스에 관한 기본적인 사항들을 익혔으며 자세한 내용을 보려면 다음 링크를 따라가십시오.
 
 * [Twilio 보안 지침][twilio_security_guidelines]
 * [Twilio 사용 방법 및 예제 코드][twilio_howtos]
 * [Twilio 빠른 시작 자습서][twilio_quickstarts]
 * [Twilio on GitHub][twilio_on_github]
-* [Talk tooTwilio 지원][twilio_support]
+* [Twilio 지원 문의][twilio_support]
 
 [twilio_java]: https://github.com/twilio/twilio-java
 [twilio_api_service]: https://api.twilio.com

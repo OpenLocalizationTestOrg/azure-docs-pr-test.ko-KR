@@ -1,6 +1,6 @@
 ---
-title: "빠른 시작 샘플 aaaAzure 모니터 CLI 1.0입니다. | Microsoft Docs"
-description: "Azure Monitor 기능에 대한 샘플 CLI 1.0 명령입니다. Azure 모니터는 경고 알림 toosend 수 있는 Microsoft Azure 서비스, 구성 된 원격 분석 데이터 및 자동 크기 조정 클라우드 서비스, 가상 컴퓨터 및 웹 응용 프로그램의 값을 기반으로 하는 호출 웹 Url입니다."
+title: "Azure Monitor CLI 1.0 빠른 시작 샘플 | Microsoft Docs"
+description: "Azure Monitor 기능에 대한 샘플 CLI 1.0 명령입니다. Azure Monitor는 Cloud Services, Virtual Machines 및 Web Apps의 크기를 자동으로 조정하고, 구성된 원격 분석 데이터 값을 기반으로 경고 알림을 보내거나 웹 URL을 호출할 수 있는 Microsoft Azure 서비스입니다."
 author: kamathashwin
 manager: orenr
 editor: 
@@ -14,101 +14,101 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: ashwink
-ms.openlocfilehash: 6cd9cd62b3a1977276563f5e43f5384ccca66247
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ec4512500dc3c77a40d2ebd1e6b460d5bb005811
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-monitor--cross-platform-cli-10-quick-start-samples"></a>Azure Monitor 플랫폼 간 CLI 1.0 빠른 시작 샘플
-Azure 모니터 기능에 액세스 하는 CLI (명령줄 인터페이스) 명령 toohelp 샘플이 문서를 표시 합니다. Azure 모니터를 사용 하면 구성 된 원격 분석 데이터의 값을 기반으로 하는 호출 웹 Url 또는 tooAutoScale 클라우드 서비스, 가상 컴퓨터 및 웹 앱 및 toosend 경고 알림.
+이 문서에서는 Azure Monitor 기능에 액세스하는 데 유용한 샘플 CLI(명령줄 인터페이스) 명령을 보여 줍니다. Azure Monitor를 통해 Cloud Services, Virtual Machines 및 Web Apps의 크기를 자동으로 조정하고, 구성된 원격 분석 데이터의 값을 기반으로 경고 알림을 보내거나 웹 URL을 호출할 수 있습니다.
 
 > [!NOTE]
-> Azure 모니터는 2016 년 9 월 25 일 때까지 "Azure Insights" 라고 불렀습니다 기능에 대 한 새 이름을 hello는입니다. 그러나 hello 네임 스페이스 및 아래의 hello 명령 insights"hello" 여전히 포함 합니다.
+> Azure Monitor는 2016년 9월 25일까지는 "Azure Insights"로 지칭했던 제품의 새로운 이름입니다. 하지만 네임스페이스와 아래 명령에서는 "insights"를 계속 포함합니다.
 > 
 > 
 
 ## <a name="prerequisites"></a>필수 조건
-Hello Azure CLI를 아직 설치 하지 않은 경우 참조 [설치 hello Azure CLI](../cli-install-nodejs.md)합니다. Azure CLI 모르는 경우 읽어볼 수 있는에서 항목에 대 한 [사용 하 여 hello Mac, Linux 및 Windows Azure 리소스 관리자에 대 한 Azure CLI](../xplat-cli-azure-resource-manager.md)합니다.
+이미 Azure CLI를 설치하지 않은 경우 [Azure CLI 설치](../cli-install-nodejs.md)를 참조하세요. Azure CLI를 잘 모르는 경우 자세한 내용은 [Azure Resource Manager에서 Mac, Linux 및 Windows용 Azure CLI 사용](../xplat-cli-azure-resource-manager.md)을 참조하세요.
 
-Windows에서 hello에서 npm 설치 [Node.js 웹 사이트](https://nodejs.org/)합니다. Hello 설치를 마친 후 관리자 권한으로 실행 권한으로 CMD.exe를 사용 하 여 다음 실행 하 hello npm 설치 되어 있는 hello 폴더에서:
+Windows의 경우 [Node.js 웹 사이트](https://nodejs.org/)에서 npm을 설치합니다. 설치를 완료한 후 관리자 권한으로 실행 권한으로 CMD.exe를 사용하여 npm이 설치된 폴더에서 다음을 실행합니다.
 
 ```console
 npm install azure-cli --global
 ```
 
-다음으로 이동 tooany 폴더/원하는 위치 hello 명령줄에 입력 합니다.
+원하는 폴더/위치로 이동하여 명령줄에 다음을 입력합니다.
 
 ```console
 azure help
 ```
 
-## <a name="log-in-tooazure"></a>TooAzure 로그인
-hello 첫 번째 단계는 toologin tooyour Azure 계정입니다.
+## <a name="log-in-to-azure"></a>Azure에 로그인
+첫 번째 단계에서는 Azure 계정에 로그인합니다.
 
 ```console
 azure login
 ```
 
-이 명령을 실행 한 후가지고 toosign hello 화면에 대 한 hello 지침을 통해 합니다. 그러면 계정, 테넌트 ID 및 기본 구독 ID가 표시됩니다. 모든 명령이 기본 구독의 hello 컨텍스트에서 작동 합니다.
+이 명령을 실행한 후 화면의 지시에 따라 로그인해야 합니다. 그러면 계정, 테넌트 ID 및 기본 구독 ID가 표시됩니다. 모든 명령은 기본 구독의 컨텍스트에서 작동합니다.
 
-현재 구독 다음 명령을 사용 하 여 hello toolist hello 세부 정보입니다.
+현재 구독에 대한 세부 정보를 나열하려면 다음 명령을 사용합니다.
 
 ```console
 azure account show
 ```
 
-toochange 작업 컨텍스트 tooa 다른 구독, 다음 명령을 사용 하 여 hello 합니다.
+작업 중인 컨텍스트를 다른 구독으로 변경하려면 다음 명령을 사용합니다.
 
 ```console
 azure account set "subscription ID or subscription name"
 ```
 
-toouse Azure 리소스 관리자 및 Azure 모니터의 명령을 toobe Azure 리소스 관리자 모드에서 필요 합니다.
+Azure Resource Manager 및 Azure Monitor 명령을 사용하려면 Azure Resource Manager 모드에 있어야 합니다.
 
 ```console
 azure config mode arm
 ```
 
-지원 되는 모든 Azure 모니터 명령 목록이 tooview hello 다음을 수행 합니다.
+지원되는 모든 Azure Monitor 명령 목록을 보려면 다음을 수행합니다.
 
 ```console
 azure insights
 ```
 
 ## <a name="view-activity-log-for-a-subscription"></a>구독에 대한 활동 로그 보기
-활동 로그 이벤트 목록이 tooview hello 다음을 수행 합니다.
+활동 로그 이벤트 목록을 보려면 다음을 수행합니다.
 
 ```console
 azure insights logs list [options]
 ```
 
-사용 가능한 옵션 모두 다음 tooview hello를 시도 하십시오.
+사용 가능한 모든 옵션을 보려면 다음을 수행합니다.
 
 ```console
 azure insights logs list -help
 ```
 
-다음은 예제 toolist 로그는 리소스 그룹으로
+다음은 resourceGroup별 로그를 나열하는 예제입니다.
 
 ```console
 azure insights logs list --resourceGroup "myrg1"
 ```
 
-호출자가 예제 toolist 로그
+호출자별 로그를 나열하는 예제
 
 ```console
 azure insights logs list --caller "myname@company.com"
 ```
 
-시작 및 종료 날짜 내에서 리소스 종류에는 호출자가 예제 toolist 로그
+시작 날짜 및 종료 날짜 내 리소스 유형에 대한 호출자별 로그를 나열하는 예제
 
 ```console
 azure insights logs list --resourceProvider "Microsoft.Web" --caller "myname@company.com" --startTime 2016-03-08T00:00:00Z --endTime 2016-03-16T00:00:00Z
 ```
 
 ## <a name="work-with-alerts"></a>경고 작업
-경고 섹션 toowork hello에에서 hello 정보를 사용할 수 있습니다.
+이 섹션의 정보를 사용하여 경고 작업을 수행할 수 있습니다.
 
 ### <a name="get-alert-rules-in-a-resource-group"></a>리소스 그룹의 경고 규칙 가져오기
 ```console
@@ -134,7 +134,7 @@ azure insights alerts rule delete abhingrgtest123 andy0323
 ```
 
 ## <a name="log-profiles"></a>로그 프로필
-이 섹션 toowork 로그 프로필의 hello 정보를 사용 합니다.
+이 섹션의 정보를 사용하여 로그 프로필 작업을 수행할 수 있습니다.
 
 ### <a name="get-a-log-profile"></a>로그 프로필 가져오기
 ```console
@@ -165,7 +165,7 @@ azure insights logprofile add --name default --storageId /subscriptions/1a66ce04
 
 
 ## <a name="diagnostics"></a>진단
-진단 설정 사용 하 여이 섹션 toowork의 hello 정보를 사용 합니다.
+이 섹션의 정보를 사용하여 진단 설정 작업을 수행할 수 있습니다.
 
 ### <a name="get-a-diagnostic-setting"></a>진단 설정 가져오기
 ```console
@@ -184,7 +184,7 @@ azure insights diagnostic set --resourceId /subscriptions/df602c9c-7aa0-407d-a6f
 
 
 ## <a name="autoscale"></a>Autoscale
-자동 크기 조정 설정 사용 하 여이 섹션 toowork의 hello 정보를 사용 합니다. 이러한 예제 toomodify 필요합니다.
+이 섹션의 정보를 사용하여 자동 크기 조정 설정 작업을 수행할 수 있습니다. 이러한 예제를 수정해야 합니다.
 
 ### <a name="get-autoscale-settings-for-a-resource-group"></a>리소스 그룹에 대한 자동 크기 조정 설정 가져오기
 ```console

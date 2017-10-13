@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooUse 음성 및 SMS (.NET)에 대 한 Twilio | Microsoft Docs"
-description: "Azure의 hello Twilio API 서비스와 메시지 toomake 전화 통화 및 SMS 송신에 알아봅니다. 코드 샘플은 .NET으로 작성되었습니다."
+title: "음성 및 SMS에 Twilio를 사용하는 방법(.NET) | Microsoft Docs"
+description: "Azure에서 Twilio API 서비스를 사용하여 전화를 걸고 SMS 메시지를 보내는 방법에 대해 알아봅니다. 코드 샘플은 .NET으로 작성되었습니다."
 services: 
 documentationcenter: .net
 author: devinrader
@@ -14,139 +14,139 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 04/24/2015
 ms.author: MicrosoftHelp@twilio.com
-ms.openlocfilehash: f568da87ef15e9f540fee9674de31e983d4acb6d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1442e3af26ae87e645cf207228ed1197b2afdd4d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-twilio-for-voice-and-sms-capabilities-from-azure"></a>어떻게 toouse Twilio 음성 및 SMS 기능에서 Azure에 대 한
-이 가이드에서는 Azure에서 tooperform hello Twilio API가 있는 일반적인 프로그래밍 작업을 서비스 하는 방법을 보여 줍니다. 포함 하는 hello 시나리오에는 전화를 걸어서를 Short Message Service (SMS) 메시지를 보내는 포함 됩니다. Twilio 및 음성 및 SMS를 사용 하 여 응용 프로그램에 대 한 자세한 내용은 참조 hello [다음 단계](#NextSteps) 섹션.
+# <a name="how-to-use-twilio-for-voice-and-sms-capabilities-from-azure"></a>Azure에서 음성 및 SMS 기능을 위해 Twilio를 사용하는 방법
+이 가이드에서는 Azure에서 Twilio API 서비스로 일반 프로그래밍 작업을 수행하는 방법을 보여 줍니다. 이 문서의 시나리오에서는 전화를 걸고 SMS(Short Message Service) 메시지를 보냅니다. 응용 프로그램에서 음성 및 SMS 사용 방법과 Twilio에 대한 자세한 내용은 [다음 단계](#NextSteps) 섹션을 참조하십시오.
 
 ## <a id="WhatIs"></a>Twilio 정의
-Twilio는 비즈니스 통신의 hello 미래 전원을 켜는 중, 개발자 tooembed 음성 VoIP, 활성화 및 메시징을 응용 프로그램에 합니다. Hello Twilio 통신 API 플랫폼을 통해 노출 하는 클라우드 기반, 글로벌 환경에서 필요한 모든 인프라를 가상화 합니다. 응용 프로그램은 단순 toobuild 하 고 확장 가능한 합니다. 종량제 가격 책정의 유연성과 클라우드 안정성의 이점을 누리세요.
+Twilio는 개발자가 응용 프로그램에 음성, VoIP 및 메시징을 포함할 수 있도록 하면서 비즈니스 통신의 미래를 이끌고 있습니다. 개발자는 클라우드 기반 글로벌 환경에 필요한 모든 인프라를 가상화하고, Twilio 통신 API 플랫폼을 통해 이를 공개합니다. 덕분에 응용 프로그램을 간단히 빌드하고 확장할 수 있습니다. 종량제 가격 책정의 유연성과 클라우드 안정성의 이점을 누리세요.
 
-**Twilio 음성** 응용 프로그램 toomake 허용 및 전화 통화를 수신 합니다. **Twilio SMS** 응용 프로그램 toosend 있으며 특정 SMS 메시지를 수신 합니다. **Twilio 클라이언트** WebRTC 지원 및 전화, 태블릿 또는 브라우저에서 toomake VoIP 전화 있습니다.
+**Twilio 음성** 을 통해 응용 프로그램에서 전화를 걸고 받을 수 있습니다. **Twilio SMS** 를 사용하면 응용 프로그램에서 SMS 메시지를 보내고 받을 수 있습니다. **Twilio 클라이언트** 를 통해서는 전화, 태블릿 또는 브라우저에서 VoIP 통화를 하고 WebRTC를 지원할 수 있습니다.
 
 ## <a id="Pricing"></a>Twilio 가격 책정 및 특별 제공
-Azure 고객은 Twilio 계정을 업그레이드할 때 [특별 제공](http://www.twilio.com/azure)(10달러의 Twilio 크레딧)을 받습니다. Twilio 신용이 적용 된 tooany Twilio 사용량 ($10 신용 해당 toosending 최대 1, 000 SMS 메시지 또는 받기가 too1000 인바운드 hello 전화 번호와 메시지 또는 호출 대상 위치에 따라 음성 분) 될 수 있습니다. [ahoy.twilio.com/azure](http://ahoy.twilio.com/azure)에서 이 Twilio 크레딧을 충전하고 시작하십시오.
+Azure 고객은 Twilio 계정을 업그레이드할 때 [특별 제공](http://www.twilio.com/azure)(10달러의 Twilio 크레딧)을 받습니다. 이 Twilio 크레딧은 모든 Twilio 사용량에 적용될 수 있습니다. 10달러의 크레딧은 전화 번호 및 메시지 또는 통화 대상의 위치에 따라 SMS 메시지를 1,000개 보내거나 최대 1000분간 인바운드 음성을 받을 수 있는 금액입니다. [ahoy.twilio.com/azure](http://ahoy.twilio.com/azure)에서 이 Twilio 크레딧을 충전하고 시작하십시오.
 
 Twilio는 종량제 서비스입니다. 설치 수수료는 없으며 언제든 계정을 종료할 수 있습니다. [Twilio 가격 책정](http://www.twilio.com/voice/pricing)(영문)에서 자세한 내용을 볼 수 있습니다.
 
 ## <a id="Concepts"></a>개념
-hello Twilio API는 응용 프로그램에 대 한 음성 및 SMS 기능을 제공 하는 RESTful API입니다. 클라이언트 라이브러리는 다양한 언어로 사용할 수 있습니다. 목록에 대해서는 [Twilio API 라이브러리][twilio_libraries](영문)를 참조하십시오.
+Twilio API는 응용 프로그램에 대한 음성 및 SMS 기능을 제공하는 RESTful API입니다. 클라이언트 라이브러리는 다양한 언어로 사용할 수 있습니다. 목록에 대해서는 [Twilio API 라이브러리][twilio_libraries](영문)를 참조하십시오.
 
-Hello Twilio API의 주요 측면은 Twilio 동사 및 Twilio Markup Language (TwiML)입니다.
+Twilio API의 핵심 요소는 Twilio 동사와 TwiML(Twilio Markup Language)입니다.
 
 ### <a id="Verbs"></a>Twilio 동사
-hello API에서 Twilio 활용 동사; 예를 들어 hello  **&lt;의견을 언급 해서도&gt;**  동사 Twilio tooaudibly 배달에 대 한 호출에서 메시지 지시 합니다.
+API는 Twilio 동사를 활용합니다. 예를 들어 **&lt;Say&gt;** 동사는 Twilio에 통화 메시지를 음성으로 전달하도록 지시합니다.
 
-hello 다음은 Twilio 동사 목록을입니다.  자세한 내용은 다른 동사와 기능을 통해 약 hello [Twilio Markup Language 설명서](http://www.twilio.com/docs/api/twiml)합니다.
+다음은 Twilio 동사의 목록입니다.  기타 동사 및 기능에 대해서는 [Twilio Markup Language 설명서](http://www.twilio.com/docs/api/twiml)(영문)에서 알아보십시오.
 
-* **&lt;전화&gt;**: hello 호출자 tooanother 전화를 연결 합니다.
-* **&lt;수집&gt;**: hello 전화 키패드 입력 한 자리 숫자를 수집 합니다.
+* **&lt;Dial&gt;**: 발신자를 다른 전화에 연결합니다.
+* **&lt;Gather&gt;**: 전화 키패드에 입력된 숫자를 수집합니다.
 * **&lt;Hangup&gt;**: 통화를 끝냅니다.
 * **&lt;Play&gt;**: 오디오 파일을 재생합니다.
 * **&lt;Pause&gt;**: 지정된 시간(초) 동안 무음으로 대기합니다.
-* **&lt;레코드&gt;**: hello 호출자의 음성 기록 하 고 hello 기록이 포함 된 파일의 URL을 반환 합니다.
-* **&lt;리디렉션&gt;**: 통화 또는 SMS toohello TwiML 다른 URL에 대 한 제어를 전송 합니다.
-* **&lt;거부&gt;**: 들어오는 거절 하면 청구 하지 않고 tooyour Twilio 번호 호출
-* **&lt;예를 들어&gt;**: 호출에서 만든 텍스트 toospeech를 변환 합니다.
+* **&lt;Record&gt;**: 발신자의 음성을 녹음하고 녹음이 포함된 파일의 URL을 반환합니다.
+* **&lt;Redirect&gt;**: 통화 또는 SMS에 대한 제어를 다른 URL의 TwiML로 전송합니다.
+* **&lt;Reject&gt;**: 요금을 청구하지 않고 Twilio 번호의 수신 전화를 거부합니다.
+* **&lt;Say&gt;**: 텍스트를 통화에 사용되는 음성으로 변환합니다.
 * **&lt;Sms&gt;**: SMS 메시지를 보냅니다.
 
 ### <a id="TwiML"></a>TwiML
-TwiML 방법의 Twilio를 알려주는 hello Twilio 동사에 따라 XML 기반 지침의 집합이 tooprocess 통화 나 SMS 합니다.
+TwiML은 Twilio에 통화 또는 SMS 처리 방법을 알려 주는 Twilio 동사를 사용하는 XML 기반 명령 집합입니다.
 
-예를 들어, 다음 TwiML hello hello 텍스트 변환 **Hello World** toospeech 합니다.
+다음 예제 TwiML은 **Hello World** 텍스트를 음성으로 변환합니다.
 
     <?xml version="1.0" encoding="UTF-8" ?>
     <Response>
       <Say>Hello World</Say>
     </Response>
 
-응용 프로그램이 호출 hello Twilio API, hello API 매개 변수 중 하나 hello TwiML 응답을 반환 하는 hello URL입니다. 개발을 위해 응용 프로그램에서 사용 하는 Twilio 제공 Url tooprovide hello TwiML 응답을 사용할 수 있습니다. 직접 Url tooproduce hello TwiML 응답을 호스트할 수 있습니다 및 두 번째 방법은 toouse hello **TwiMLResponse** 개체입니다.
+응용 프로그램에서 Twilio API를 호출할 때 API 매개 변수 중 하나는 TwiML 응답을 반환하는 URL입니다. 개발을 위해서 Twilio 제공 URL을 사용하여 응용 프로그램에 사용되는 TwiML 응답을 제공할 수 있습니다. 또한 TwiML 응답을 생성하는 고유한 URL을 호스트할 수도 있고, **TwiMLResponse** 개체를 사용할 수도 있습니다.
 
-Twilio 동사, 특성 및 TwiML에 대한 자세한 내용은 [TwiML][twiml](영문)을 참조하십시오. Hello Twilio API에 대 한 자세한 내용은 참조 하십시오. [Twilio API][twilio_api]합니다.
+Twilio 동사, 특성 및 TwiML에 대한 자세한 내용은 [TwiML][twiml](영문)을 참조하십시오. Twilio API에 대한 자세한 내용은 [Twilio API][twilio_api](영문)를 참조하십시오.
 
 ## <a id="CreateAccount"></a>Twilio 계정 만들기
-준비 tooget Twilio 계정 되 면에서 등록 [시도 Twilio][try_twilio]합니다. 무료 계정으로 시작했다가 나중에 계정을 업그레이드할 수 있습니다.
+Twilio 계정을 사용할 준비가 되었다면 [Twilio 체험][try_twilio](영문)에서 등록하십시오. 무료 계정으로 시작했다가 나중에 계정을 업그레이드할 수 있습니다.
 
-Twilio 계정을 등록하면 계정 ID 및 인증 토큰을 받게 됩니다. 둘 다 필요한 toomake Twilio API 호출 됩니다. 권한이 없음 tooprevent tooyour 계정에 액세스, 인증 토큰이 안전 하 게 유지 합니다. 계정 ID 및 인증 토큰 hello에서 볼 수 있는 [Twilio 계정 페이지][twilio_account]에 레이블이 지정 된 필드를 hello **계정 SID** 및 **인증 토큰**각각.
+Twilio 계정을 등록하면 계정 ID 및 인증 토큰을 받게 됩니다. 둘 다 Twilio API 통화를 하는 데 필요합니다. 계정에 대한 무단 액세스를 방지하려면 인증 토큰을 안전하게 유지하십시오. 계정 ID 및 인증 토큰은 [Twilio 계정 페이지][twilio_account](영문)의 **ACCOUNT SID** 및 **AUTH TOKEN**에서 각기 확인할 수 있습니다.
 
 ## <a id="create_app"></a>Azure 응용 프로그램 만들기
-Twilio 사용 응용 프로그램을 호스트하는 Azure 응용 프로그램도 다른 Azure 응용 프로그램과 동일합니다. Hello Twilio.NET 라이브러리를 추가 하 고 hello 역할 toouse hello Twilio.NET 라이브러리를 구성 합니다.
+Twilio 사용 응용 프로그램을 호스트하는 Azure 응용 프로그램도 다른 Azure 응용 프로그램과 동일합니다. Twilio .NET 라이브러리를 추가하고 Twilio .NET 라이브러리를 사용하도록 역할을 구성하면 됩니다.
 초기 Azure 프로젝트 만들기에 대한 자세한 내용은 [Visual Studio에서 Azure 프로젝트 만들기][vs_project]를 참조하십시오.
 
-## <a id="configure_app"></a>응용 프로그램 toouse Twilio 라이브러리 구성
-Twilio는 Twilio tooprovide 단순 하 고 간편한 방법도 toointeract hello Twilio REST API와 Twilio 클라이언트의 다양 한 측면을 래핑하는.NET 도우미 라이브러리 집합이 toogenerate TwiML 응답을 제공 합니다.
+## <a id="configure_app"></a>Twilio 라이브러리를 사용하도록 응용 프로그램 구성
+Twilio는 .NET 도우미 라이브러리 집합을 제공하며, 이 라이브러리 집합은 Twilio의 여러 가지 요소를 래핑함으로써 Twilio REST API 및 Twilio 클라이언트를 간단하고 쉽게 조작해서 TwiML 응답을 생성하는 방법을 제공합니다.
 
 Twilio는 다음과 같이 .NET 개발자를 위한 5가지 라이브러리를 제공합니다.
 라이브러리|설명
 ---|---
-Twilio.API|친숙 한.NET 라이브러리의 hello Twilio REST API를 래핑하는 hello 코어 Twilio 라이브러리입니다. 이 라이브러리는 .NET, Silverlight 및 Windows Phone 7에 사용할 수 있습니다.
-Twilio.TwiML|.NET 친화적인 방식 toogenerate TwiML 태그를 제공 합니다.
+Twilio.API|친숙한 .NET 라이브러리에서 Twilio REST API를 래핑하는 핵심 Twilio 라이브러리입니다. 이 라이브러리는 .NET, Silverlight 및 Windows Phone 7에 사용할 수 있습니다.
+Twilio.TwiML|TwiML 태그를 생성하는 친숙한 .NET 방법을 제공합니다.
 Twilio.MVC|ASP.NET MVC를 사용하는 개발자를 위해 이 라이브러리는 TwilioController, TwiML ActionResult 및 요청 유효성 검사 특성을 포함합니다.
 Twilio.WebMatrix|Microsoft의 무료 WebMatrix 개발 도구를 사용하는 개발자를 위해 이 라이브러리는 다양한 Twilio 작업에 사용할 수 있는 Razor 구문을 포함합니다.
-Twilio.Client.Capability|Hello 토큰 생성기 hello Twilio 클라이언트 JavaScript SDK와 함께 사용할 기능을 포함합니다.
+Twilio.Client.Capability|Twilio 클라이언트 JavaScript SDK와 함께 사용할 수 있는 기능 토큰 생성기를 포함합니다.
 
 모든 라이브러리를 사용하려면 .NET 3.5, Silverlight 4 또는 Windows Phone 7 이상이 필요합니다.
 
-이 가이드에서 제공 하는 hello 샘플 hello Twilio.API 라이브러리를 사용 합니다.
+이 가이드에 제공된 샘플에서는 Twilio.API 라이브러리를 사용합니다.
 
-hello 라이브러리 수 [hello NuGet 패키지 관리자 확장을 사용 하 여 설치](http://www.twilio.com/docs/csharp/install) too2015를 Visual Studio 2010에 사용할 수 있습니다.  hello 소스 코드에서 호스팅되는 [GitHub][twilio_github_repo], hello 라이브러리 사용에 대 한 전체 설명서를 포함 하는 Wiki를 포함 하는 합니다.
+라이브러리를 Visual Studio 2010에서 2015까지의 [NuGet 패키지 관리자 확장명을 사용하여 설치](http://www.twilio.com/docs/csharp/install) 할 수 있습니다.  소스 코드는 [GitHub][twilio_github_repo]에서 호스팅되며, 라이브러리 사용에 대한 전체 설명서가 들어 있는 Wiki를 포함합니다.
 
-기본적으로, Microsoft Visual Studio 2010은 버전 1.2의 NuGet을 설치합니다. Hello Twilio 라이브러리를 설치 하려면 버전 1.6의 NuGet이 이상이 필요 합니다. NuGet 설치 또는 업데이트에 대해서는 [http://nuget.org/][nuget](영문)를 참조하십시오.
+기본적으로, Microsoft Visual Studio 2010은 버전 1.2의 NuGet을 설치합니다. Twilio 라이브러리를 설치하려면 버전 1.6 이상의 NuGet이 필요합니다. NuGet 설치 또는 업데이트에 대해서는 [http://nuget.org/][nuget](영문)를 참조하십시오.
 
 > [!NOTE]
-> tooinstall hello 최신 버전의 NuGet에서는 hello Visual Studio 확장 관리자를 사용 하 여 hello 로드 된 버전을 먼저 제거 해야 합니다. toodo, 관리자 권한으로 Visual Studio를 실행 해야 합니다. 그렇지 않으면 hello 제거 단추가 비활성화 됩니다.
+> 최신 버전의 NuGet을 설치하려면 먼저 Visual Studio 확장 관리자를 사용하여 로드된 버전을 제거해야 합니다. 이를 위해서는 Visual Studio를 관리자 권한으로 실행해야 합니다. 관리자 권한으로 실행하지 않으면 제거 단추를 사용할 수 없습니다.
 >
 >
 
-### <a id="use_nuget"></a>tooadd hello Twilio 라이브러리 tooyour Visual Studio 프로젝트:
+### <a id="use_nuget"></a>Visual Studio 프로젝트에 Twilio 라이브러리를 추가하려면
 1. Visual Studio에서 솔루션을 엽니다.
 2. **참조**를 마우스 오른쪽 단추로 클릭합니다.
 3. **NuGet 패키지 관리...**
 4. **온라인**을 클릭합니다.
-5. Hello 검색 온라인 상자에 입력 *twilio*합니다.
-6. 클릭 **설치** hello Twilio 패키지에 있습니다.
+5. 온라인 검색 상자에 *twilio*를 입력합니다.
+6. Twilio 패키지에서 **설치** 를 클릭합니다.
 
 ## <a id="howto_make_call"></a>방법: 발신 전화 걸기
-hello 다음 테이블에 나와 hello를 사용 하 여 나가는 toomake을 호출 하는 방법을 **CallResource** 클래스입니다. 이 코드는 또한 Twilio 제공 사이트 tooreturn hello Twilio Markup Language (TwiML) 응답을 사용합니다. Hello에 대 한 값을 대체 **를** 및 **에서** 전화 번호를 하 고 hello를 확인 하는 확인 **에서** hello 코드를 실행 하기 전에 전화 Twilio 계정에 대 한 번호입니다.
+다음은 **CallResource** 클래스를 사용하여 발신 전화를 거는 방법을 보여 줍니다. 또한 이 코드는 Twilio 제공 사이트를 사용하여 TwiML(Twilio Markup Language) 응답을 반환합니다. **to** 및 **from** 전화 번호의 값을 바꾸고, 코드를 실행하기 전에 Twilio 계정의 **from** 번호를 확인하세요.
 
     // Use your account SID and authentication token instead
-    // of hello placeholders shown here.
+    // of the placeholders shown here.
     const string accountSID = "your_twilio_account";
     const string authToken = "your_twilio_authentication_token";
 
-    // Initialize hello TwilioClient.
+    // Initialize the TwilioClient.
     TwilioClient.Init(accountSID, authToken);
 
-    // Use hello Twilio-provided site for hello TwiML response.
+    // Use the Twilio-provided site for the TwiML response.
     var url = "http://twimlets.com/message";
     url = $"{url}?Message%5B0%5D=Hello%20World";
 
-    // Set hello call From, To, and URL values toouse for hello call.
-    // This sample uses hello sandbox number provided by
-    // Twilio toomake hello call.
+    // Set the call From, To, and URL values to use for the call.
+    // This sample uses the sandbox number provided by
+    // Twilio to make the call.
     var call = CallResource.Create(
         to: new PhoneNumber("+NNNNNNNNNN"),
         from: new PhoneNumber("NNNNNNNNNN"),
         url: new Uri(url));
         }
 
-Hello 매개 변수 toohello를 전달 하는 방법에 대 한 자세한 내용은 **CallResource.Create** 메서드를 참조 [http://www.twilio.com/docs/api/rest/making-calls][twilio_rest_making_calls]합니다.
+**CallResource.Create** 메서드에 전달된 매개 변수에 대한 자세한 내용은 [http://www.twilio.com/docs/api/rest/making-calls][twilio_rest_making_calls]를 참조하세요.
 
-앞서 언급 했 듯이이 코드는 Twilio 제공 사이트 tooreturn hello TwiML 응답을 사용 합니다. 대신 사용자 고유의 사이트 tooprovide hello TwiML 응답을 사용할 수 있습니다. 자세한 내용은 [방법: 고유한 웹 사이트에서 TwiML 응답 제공](#howto_provide_twiml_responses)을 참조하세요.
+언급한 대로 이 코드는 Twilio 제공 사이트를 사용하여 TwiML 응답을 반환합니다. 이 사이트 대신 고유한 사이트를 사용하여 TwiML 응답을 제공할 수 있습니다. 자세한 내용은 [방법: 고유한 웹 사이트에서 TwiML 응답 제공](#howto_provide_twiml_responses)을 참조하세요.
 
 ## <a id="howto_send_sms"></a>방법: SMS 메시지 보내기
-hello 다음 스크린샷은 방법을 사용 하 여 SMS 메시지 toosend hello **MessageResource** 클래스입니다. hello **에서** 번호는 평가판 계정 toosend SMS 메시지에 대해 Twilio에서 제공 됩니다. hello **를** hello 코드를 실행 하기 전에 Twilio 계정에 대 한 번호를 확인 해야 합니다.
+다음 스크린샷은 **MessageResource** 클래스를 사용하여 SMS 메시지를 보내는 방법을 보여 줍니다. 평가판 계정의 경우 Twilio에서 SMS 메시지를 보낼 **from** 번호를 자동으로 입력합니다. 코드를 실행하기 전에 Twilio 계정에 대해 **to** 번호를 확인해야 합니다.
 
     // Use your account SID and authentication token instead
-    // of hello placeholders shown here.
+    // of the placeholders shown here.
     const string accountSID = "your_twilio_account";
     const string authToken = "your_twilio_authentication_token";
 
-    // Initialize hello TwilioClient.
+    // Initialize the TwilioClient.
     TwilioClient.Init(accountSID, authToken);
 
     try
@@ -159,21 +159,21 @@ hello 다음 스크린샷은 방법을 사용 하 여 SMS 메시지 toosend hell
     }
     catch (TwilioException ex)
     {
-        // An exception occurred making hello REST call
+        // An exception occurred making the REST call
         Console.WriteLine(ex.Message);
     }
 
 ## <a id="howto_provide_twiml_responses"></a>방법: 고유한 웹 사이트에서 TwiML 응답 제공
-때 응용 프로그램 시작 호출 toohello Twilio API-예를 들어 hello를 통해 **CallResource.Create** 방법-Twilio 예상된 tooreturn 있는 요청 tooan URL TwiML 응답을 보냅니다. hello 예제 [하는 방법: 나가는 호출](#howto_make_call) 사용 하 여 hello Twilio 제공 URL [http://twimlets.com/message] [ twimlet_message_url] tooreturn hello 응답 합니다.
+응용 프로그램에서 Twilio API 호출을 시작하면(예: **CallResource.Create** 메서드를 통해) Twilio에서 TwiML 응답을 반환해야 하는 URL로 요청을 보냅니다. [방법: 발신 전화 걸기](#howto_make_call)의 예제에서는 Twilio 제공 URL인 [http://twimlets.com/message][twimlet_message_url]를 사용하여 응답을 반환합니다.
 
 > [!NOTE]
-> TwiML를 웹 서비스에서 사용 하기 위해 디자인 된 반면 hello TwiML 브라우저에서 볼 수 있습니다. 예를 들어 클릭 [http://twimlets.com/message] [ twimlet_message_url] toosee 빈 &lt;응답&gt; 요소로 또 다른 예로, 클릭 [http://twimlets.com/message ? 메시지 % 5B0 %5 D = Hello %20World](http://twimlets.com/message?Message%5B0%5D=Hello%20World) toosee는 &lt;응답&gt; 요소를 포함 하는 &lt;의견을 언급 해서도&gt; 요소입니다.
+> TwiML이 웹 서비스에 사용하도록 설계되었지만 브라우저에서도 TwiML을 볼 수 있습니다. 예를 들어 [http://twimlets.com/message][twimlet_message_url]를 클릭하면 빈 &lt;Response&gt; 요소가 표시됩니다. 또 다른 예로, [http://twimlets.com/message?Message%5B0%5D=Hello%20World](http://twimlets.com/message?Message%5B0%5D=Hello%20World)를 클릭하면 &lt;Say&gt; 요소를 포함하는 &lt;Response&gt;요소가 표시됩니다.
 >
 >
 
-Hello Twilio 제공 URL에 의존 하지 않고 HTTP 응답을 반환 하는 URL 사이트를 만들 수 있습니다. HTTP 응답에 반환 되는 언어로 hello 사이트를 만들 수 있습니다. 이 항목에서는 ASP.NET 일반 처리기에서 hello URL를 호스트 합니다.
+Twilio 제공 URL을 사용하지 않고 HTTP 응답을 반환하는 고유한 URL 사이트를 만들 수 있습니다. HTTP 응답을 반환하는 사이트는 어떤 언어로든 만들 수 있습니다. 이 항목에서는 ASP.NET 제네릭 처리기에서 URL을 호스트한다고 가정합니다.
 
-ASP.NET 처리기를 다음 hello 라는 TwiML 응답 crafts **Hello World** hello 호출 합니다.
+다음 ASP.NET 처리기는 호출 시 **Hello World** 라고 말하는 TwiML 응답을 만듭니다.
 
     using System.Text;
     using System.Web;
@@ -207,7 +207,7 @@ ASP.NET 처리기를 다음 hello 라는 TwiML 응답 crafts **Hello World** hel
         }
     }
     
-위의 hello 예제 알 수 있듯이 hello TwiML 응답은 XML 문서 하기만 합니다. hello Twilio.TwiML 라이브러리 TwiML를 생성 하는 클래스를 포함 합니다. hello 아래 예제에서는 위에 표시 된 대로 hello 해당 응답을 생성 하지만 hello를 사용 하 여 **VoiceResponse** 클래스입니다.
+위의 예제와 같이 TwiML 응답은 단지 XML 문서입니다. Twilio.TwiML 라이브러리에는 TwiML을 자동으로 생성하는 클래스가 포함되어 있습니다. 아래 예제에서는 위와 동일한 응답을 생성하지만 **VoiceResponse** 클래스를 사용합니다.
 
     using System.Web;
     using Twilio.TwiML;
@@ -243,17 +243,17 @@ ASP.NET 처리기를 다음 hello 라는 TwiML 응답 crafts **Hello World** hel
 
 TwiML에 대한 자세한 내용은 [https://www.twilio.com/docs/api/twiml](https://www.twilio.com/docs/api/twiml)(영문)을 참조하십시오.
 
-해당 URL toohello를 전달할 수 방식으로 tooprovide TwiML 응답을 설정한 후 **CallResource.Create** 메서드. 예를 들어 배포 MyTwiML tooan Azure 클라우드 서비스 웹 응용 프로그램의 ASP.NET 처리기 hello 이름이 mytwiml.ashx, 있고 hello URL 전달 될 수 있습니다 너무**CallResource.Create** hello 코드 다음에 표시 된 대로 샘플:
+TwiML 응답을 제공하는 방법을 설정한 후에는 **CallResource.Create** 메서드로 URL을 전달할 수 있습니다. 예를 들어 MyTwiML이라는 웹 응용 프로그램을 Azure 클라우드 서비스에 배포했으며 ASP.NET 처리기의 이름이 mytwiml.ashx인 경우 다음 코드 샘플과 같이 URL을 **CallResource.Create**로 전달할 수 있습니다.
 
-    // This sample uses hello sandbox number provided by Twilio toomake hello call.
-    // Place hello call.
+    // This sample uses the sandbox number provided by Twilio to make the call.
+    // Place the call.
     var call = CallResource.Create(
         to: new PhoneNumber("+NNNNNNNNNN"),
         from: new PhoneNumber("NNNNNNNNNN"),
         url: new Uri("http://<your_hosted_service>.cloudapp.net/MyTwiML/mytwiml.ashx"));
         }
 
-Twilio를 사용 하 여 ASP.NET 사용 하 여 Azure에 대 한 자세한 내용은 참조 하십시오. [toomake 휴대폰 호출 방법을 Twilio를 사용 하 여 Azure에서 웹 역할에서][howto_phonecall_dotnet]합니다.
+Azure에서 ASP.NET과 함께 Twilio 사용에 대한 자세한 내용은 [Azure의 웹 역할에서 Twilio를 사용하여 전화를 거는 방법][howto_phonecall_dotnet]을 참조하십시오.
 
 [!INCLUDE [twilio-additional-services-and-next-steps](../includes/twilio-additional-services-and-next-steps.md)]
 

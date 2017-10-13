@@ -1,6 +1,6 @@
 ---
-title: "C#을 사용 하 여 Azure 시간 계열 Insights 환경에 의해 hello aaaQuery 데이터로 | Microsoft Docs"
-description: "이 자습서에서는 tooquery 데이터를 C# 예제 코드와 함께 사용 하는 시간 시계열 Insights 환경은 hello 하는 방법을 설명 합니다."
+title: "C#을 사용하여 Azure Time Series Insights 환경에서 데이터 쿼리 | Microsoft 문서"
+description: "이 자습서에서는 C#을 사용하여 Time Series Insights 환경에서 데이터를 쿼리하는 방법을 다루며 예제 코드를 제공합니다."
 keywords: 
 services: tsi
 documentationcenter: 
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/20/2017
 ms.author: ankryach
-ms.openlocfilehash: 0ddec36b7f275f6de279948193e45f045d30b644
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1444b517664355e8e240ea181d707c464d7ec5bb
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="query-data-from-hello-azure-time-series-insights-environment-using-c"></a>C#을 사용 하 여 hello Azure 시간 계열 Insights 환경에서 데이터를 쿼리 합니다.
+# <a name="query-data-from-the-azure-time-series-insights-environment-using-c"></a>C#을 사용하여 Azure Time Series Insights 환경에서 데이터 쿼리
 
-C# 예제 tooquery 데이터를 Azure 시간 계열 Insights 환경 hello 하는 방법을 보여 줍니다.
-hello 예제 쿼리 API 사용법의 몇 가지 기본적인 예를 보여 줍니다.
-1. 준비 단계로 hello Azure Active Directory API를 통해 hello 액세스 토큰을 확보 합니다. 이 토큰을 hello에 전달할 `Authorization` 모든 쿼리 API 요청의 헤더입니다. 비대화형 응용 프로그램을 설정하려면 [인증 및 권한 부여](time-series-insights-authentication-and-authorization.md)를 참조하세요. Hello 샘플 hello 맨 앞에 정의 된 모든 hello 상수 올바르게 설정 되었는지 확인 하십시오.
-2. hello 사용자 환경의 hello 목록에는 액세스 toois 가져옵니다. Hello 환경 중 하나는 선택 관심 있는 hello 환경으로 및이 환경에 대 한 데이터를 쿼리 하는 추가 합니다.
-3. 가용성 데이터는 HTTPS 요청에의 한 예로 관심 있는 hello 환경에 대 한 요청 됩니다.
-4. 웹 소켓 요청이의 예를 들어 이벤트 집계 데이터는 관심 있는 hello 환경에 대 한 요청 됩니다. Hello 전체 가용성 시간 범위에 대 한 데이터 요청 됩니다.
+이 C# 예제에서는 Azure Time Series Insights 환경에서 데이터를 쿼리하는 방법을 보여 줍니다.
+이 샘플은 쿼리 API 사용의 몇 가지 기본 예제를 보여 줍니다.
+1. 준비 단계로, Azure Active Directory API를 통해 액세스 토큰을 가져옵니다. 이 토큰을 모든 쿼리 API 요청의 `Authorization` 헤더에 전달합니다. 비대화형 응용 프로그램을 설정하려면 [인증 및 권한 부여](time-series-insights-authentication-and-authorization.md)를 참조하세요. 또한 샘플의 시작 부분에 정의된 모든 상수를 올바르게 설정합니다.
+2. 사용자가 액세스 권한을 가진 환경 목록을 가져옵니다. 환경 중 하나를 관심 환경으로 선택하고 이 환경에 대해 추가 데이터를 쿼리합니다.
+3. HTTPS 요청의 예로, 관심 환경에 대해 가용성 데이터를 요청합니다.
+4. 웹 소켓 요청의 예로, 관심 환경에 대해 이벤트 집계 데이터를 요청합니다. 전체 가용성 시간 범위에 대한 데이터가 요청됩니다.
 
 ## <a name="c-example"></a>C# 예제
 
@@ -51,16 +51,16 @@ namespace TimeSeriesInsightsQuerySample
     {
         // For automated execution under application identity,
         // use application created in Active Directory.
-        // toocreate hello application in AAD, follow hello steps provided here:
+        // To create the application in AAD, follow the steps provided here:
         // https://docs.microsoft.com/en-us/azure/time-series-insights/time-series-insights-authentication-and-authorization
 
-        // SET hello application ID of application registered in your Azure Active Directory
+        // SET the application ID of application registered in your Azure Active Directory
         private static string ApplicationClientId = "#DUMMY#";
 
-        // SET hello application key of hello application registered in your Azure Active Directory
+        // SET the application key of the application registered in your Azure Active Directory
         private static string ApplicationClientSecret = "#DUMMY#";
 
-        // SET hello Azure Active Directory tenant.
+        // SET the Azure Active Directory tenant.
         private static string Tenant = "#DUMMY#.onmicrosoft.com";
 
         public static async Task SampleAsync()
@@ -68,7 +68,7 @@ namespace TimeSeriesInsightsQuerySample
             // 1. Acquire an access token.
             string accessToken = await AcquireAccessTokenAsync();
 
-            // 2. Obtain list of environments and get environment FQDN for hello environment of interest.
+            // 2. Obtain list of environments and get environment FQDN for the environment of interest.
             string environmentFqdn;
             {
                 Uri uri = new UriBuilder("https", "api.timeseries.azure.com")
@@ -90,12 +90,12 @@ namespace TimeSeriesInsightsQuerySample
                     JArray environmentsList = (JArray)result["environments"];
                     if (environmentsList.Count == 0)
                     {
-                        // List of user environments is empty, fallback toosample environment.
+                        // List of user environments is empty, fallback to sample environment.
                         environmentFqdn = "10000000-0000-0000-0000-100000000108.env.timeseries.azure.com";
                     }
                     else
                     {
-                        // Assume hello first environment is hello environment of interest.
+                        // Assume the first environment is the environment of interest.
                         JObject firstEnvironment = (JObject)environmentsList[0];
                         environmentFqdn = firstEnvironment["environmentFqdn"].Value<string>();
                     }
@@ -103,7 +103,7 @@ namespace TimeSeriesInsightsQuerySample
             }
             Console.WriteLine("Using environment FQDN '{0}'", environmentFqdn);
 
-            // 3. Obtain availability data for hello environment and get availability range.
+            // 3. Obtain availability data for the environment and get availability range.
             DateTime fromAvailabilityTimestamp;
             DateTime toAvailabilityTimestamp;
             {
@@ -133,16 +133,16 @@ namespace TimeSeriesInsightsQuerySample
                 fromAvailabilityTimestamp,
                 toAvailabilityTimestamp);
 
-            // 4. Get aggregates for hello environment:
+            // 4. Get aggregates for the environment:
             //    group by Event Source Name and calculate number of events in each group.
             {
-                // Assume data for hello whole availablility range is requested.
+                // Assume data for the whole availablility range is requested.
                 DateTime from = fromAvailabilityTimestamp;
-                DateTime too= toAvailabilityTimestamp;
+                DateTime to = toAvailabilityTimestamp;
 
                 JObject inputPayload = new JObject(
-                    // Send HTTP headers as a part of hello message since .NET WebSocket does not support
-                    // sending custom headers on HTTP GET upgrade request tooWebSocket protocol request.
+                    // Send HTTP headers as a part of the message since .NET WebSocket does not support
+                    // sending custom headers on HTTP GET upgrade request to WebSocket protocol request.
                     new JProperty("headers", new JObject(
                         new JProperty("x-ms-client-application-name", "TimeSeriesInsightsQuerySample"),
                         new JProperty("Authorization", "Bearer " + accessToken))),
@@ -186,7 +186,7 @@ namespace TimeSeriesInsightsQuerySample
                         string message;
                         using (var ms = new MemoryStream())
                         {
-                            // Write from socket toomemory stream.
+                            // Write from socket to memory stream.
                             const int bufferSize = 16 * 1024;
                             var temporaryBuffer = new byte[bufferSize];
                             while (true)
@@ -202,7 +202,7 @@ namespace TimeSeriesInsightsQuerySample
                                 }
                             }
 
-                            // Reset position toohello beginning tooallow reads.
+                            // Reset position to the beginning to allow reads.
                             ms.Position = 0;
 
                             using (var sr = new StreamReader(ms))
@@ -219,7 +219,7 @@ namespace TimeSeriesInsightsQuerySample
                             break;
                         }
 
-                        // Number of items corresponds toonumber of aggregates in input payload
+                        // Number of items corresponds to number of aggregates in input payload
                         JArray currentContents = (JArray)messageObj["content"];
 
                         // In this sample list of aggregates in input payload contains
@@ -266,7 +266,7 @@ namespace TimeSeriesInsightsQuerySample
             if (ApplicationClientId == "#DUMMY#" || ApplicationClientSecret == "#DUMMY#" || Tenant.StartsWith("#DUMMY#"))
             {
                 throw new Exception(
-                    $"Use hello link {"https://docs.microsoft.com/en-us/azure/time-series-insights/time-series-insights-authentication-and-authorization"} tooupdate hello values of 'ApplicationClientId', 'ApplicationClientSecret' and 'Tenant'.");
+                    $"Use the link {"https://docs.microsoft.com/en-us/azure/time-series-insights/time-series-insights-authentication-and-authorization"} to update the values of 'ApplicationClientId', 'ApplicationClientSecret' and 'Tenant'.");
             }
 
             var authenticationContext = new AuthenticationContext(
@@ -279,7 +279,7 @@ namespace TimeSeriesInsightsQuerySample
                     clientId: ApplicationClientId,
                     clientSecret: ApplicationClientSecret));
 
-            // Show interactive logon dialog tooacquire token on behalf of hello user.
+            // Show interactive logon dialog to acquire token on behalf of the user.
             // Suitable for native apps, and not on server-side of a web application.
             //AuthenticationResult token = await authenticationContext.AcquireTokenAsync(
             //    resource: "https://api.timeseries.azure.com/",
@@ -302,4 +302,4 @@ namespace TimeSeriesInsightsQuerySample
 
 ## <a name="next-steps"></a>다음 단계
 
-전체 쿼리 API 참조 hello에 대 한 참조 hello [쿼리 API](/rest/api/time-series-insights/time-series-insights-reference-queryapi) 문서.
+전체 쿼리 API 참조는 [쿼리 API](/rest/api/time-series-insights/time-series-insights-reference-queryapi) 문서를 참조하세요.

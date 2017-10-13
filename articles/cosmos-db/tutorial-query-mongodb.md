@@ -1,6 +1,6 @@
 ---
-title: "어떻게 azure Cosmos DB: DocumentDB API hello tooquery를 사용 하 여? | Microsoft Docs"
-description: "Cosmos DB Azure 용 hello DocumentDB API로 tooquery에 알아보기"
+title: "Azure Cosmos DB: DocumentDB API를 사용하여 쿼리하는 방법 | Microsoft Docs"
+description: "Azure Cosmos DB의 DocumentDB API를 사용하여 쿼리하는 방법을 알아봅니다."
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: e3e5a49f7510942bcfb15330e5f86c5dd8b1e5d9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: feffc553a9aa931d96cec71c101674fce08a466b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="azure-cosmos-db-how-tooquery-with-api-for-mongodb"></a>Azure Cosmos DB: 어떻게 MongoDB에 대 한 API와 tooquery?
+# <a name="azure-cosmos-db-how-to-query-with-api-for-mongodb"></a>Azure Cosmos DB: MongoDB API를 사용하여 쿼리하는 방법
 
-hello Azure Cosmos DB [MongoDB에 대 한 API](mongodb-introduction.md) 지원 [MongoDB 셸 쿼리](https://docs.mongodb.com/manual/tutorial/query-documents/)합니다. 
+Azure Cosmos DB [MongoDB API](mongodb-introduction.md)는 [MongoDB 셸 쿼리](https://docs.mongodb.com/manual/tutorial/query-documents/)를 지원합니다. 
 
-이 문서에서는 다음 작업 hello를 다룹니다. 
+이 문서에서 다루는 작업은 다음과 같습니다. 
 
 > [!div class="checklist"]
 > * MongoDB를 사용한 데이터 쿼리
 
 ## <a name="sample-document"></a>샘플 문서
 
-이 문서의 hello 쿼리 샘플 문서 다음 hello를 사용 합니다.
+이 문서의 쿼리에서는 다음 샘플 문서를 사용합니다.
 
 ```json
 {
@@ -64,7 +64,7 @@ hello Azure Cosmos DB [MongoDB에 대 한 API](mongodb-introduction.md) 지원 [
 ```
 ## <a id="examplequery1"></a>예제 쿼리 1 
 
-Hello 샘플 패밀리 문서 위의 들어 hello 다음 쿼리 hello id 필드와 일치 하는 hello 문서가 반환 `WakefieldFamily`합니다.
+위의 샘플 가족 문서를 고려해 볼 때 다음 쿼리에서는 ID 필드가 `WakefieldFamily`와 일치하는 문서를 반환합니다.
 
 **쿼리**
     
@@ -114,7 +114,7 @@ Hello 샘플 패밀리 문서 위의 들어 hello 다음 쿼리 hello id 필드�
 
 ## <a id="examplequery2"></a>예제 쿼리 2 
 
-다음 쿼리 hello hello 제품군의 hello 자식을 반환합니다. 
+다음 쿼리에서는 가족의 모든 자식을 반환합니다. 
 
 **쿼리**
     
@@ -147,7 +147,7 @@ Hello 샘플 패밀리 문서 위의 들어 hello 다음 쿼리 hello id 필드�
 
 ## <a id="examplequery3"></a>예제 쿼리 3 
 
-hello 다음 쿼리는 등록 된 모든 hello 패밀리를 반환 합니다. 
+다음 쿼리에서는 등록된 모든 가족을 반환합니다. 
 
 **쿼리**
     
@@ -156,7 +156,7 @@ hello 다음 쿼리는 등록 된 모든 hello 패밀리를 반환 합니다.
 
 ## <a id="examplequery4"></a>예제 쿼리 4
 
-hello 다음 쿼리는 등록 되지 않은 모든 hello 패밀리를 반환 합니다. 
+다음 쿼리에서는 등록되지 않은 모든 가족을 반환합니다. 
 
 **쿼리**
     
@@ -200,7 +200,7 @@ hello 다음 쿼리는 등록 되지 않은 모든 hello 패밀리를 반환 합
 
 ## <a id="examplequery5"></a>예제 쿼리 5
 
-hello 다음 쿼리는 모든 등록 된 hello 제품군 및 상태는 NY 반환 합니다. 
+다음 쿼리에서는 등록되지 않은 모든 가족을 반환하고 거주 지역(state)은 NY입니다. 
 
 **쿼리**
     
@@ -246,7 +246,7 @@ hello 다음 쿼리는 모든 등록 된 hello 제품군 및 상태는 NY 반환
 
 ## <a id="examplequery6"></a>예제 쿼리 6
 
-hello 다음 쿼리 자식 등급 8에 있는 모든 hello 패밀리를 반환 합니다.
+다음 쿼리에서는 자식(children)의 학년(grade)이 8인 모든 가족을 반환합니다.
 
 **쿼리**
   
@@ -291,7 +291,7 @@ hello 다음 쿼리 자식 등급 8에 있는 모든 hello 패밀리를 반환 �
 
 ## <a id="examplequery7"></a>예제 쿼리 7
 
-hello 다음 쿼리의 자식 배열 크기는 3 모든 hello 패밀리를 반환 합니다.
+다음 쿼리에서는 children 배열의 크기가 3인 모든 가족을 반환합니다.
 
 **쿼리**
   
@@ -299,16 +299,16 @@ hello 다음 쿼리의 자식 배열 크기는 3 모든 hello 패밀리를 반�
 
 **결과**
 
-2명 이상의 자식이 있는 가족이 없기 때문에 결과가 반환되지 않습니다. 매개 변수 2는 경우에이 쿼리는 성공 하 고 hello 전체 문서를 반환 합니다.
+2명 이상의 자식이 있는 가족이 없기 때문에 결과가 반환되지 않습니다. 매개 변수가 2일 때만 이 쿼리가 성공하여 전체 문서를 반환합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-이 자습서에서는 hello 다음 작업을 수행 하면:
+이 자습서에서는 다음을 수행했습니다.
 
 > [!div class="checklist"]
-> * 방법에 대해 배웠습니다 tooquery MongoDB를 사용 하 여 
+> * MongoDB를 사용하여 쿼리하는 방법 
 
-이제 진행할 수 있습니다 다음 자습서 toolearn toohello 어떻게 toodistribute 데이터 전체적으로 합니다.
+이제 전 세계로 데이터를 배포하는 방법을 알아보려면 다음 자습서로 진행할 수 있습니다.
 
 > [!div class="nextstepaction"]
 > [전 세계로 데이터 배포](tutorial-global-distribution-documentdb.md)

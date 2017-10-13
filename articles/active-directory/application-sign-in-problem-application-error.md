@@ -1,6 +1,6 @@
 ---
-title: "응용 프로그램의 페이지에 로그인 한 후에 aaaError | Microsoft Docs"
-description: "Azure AD와 tooresolve 문제 로그인 방법 hello 응용 프로그램 자체에서 오류를 내보낼 때"
+title: "로그인한 후 응용 프로그램 페이지의 오류 | Microsoft Docs"
+description: "응용 프로그램 자체에서 오류를 내보내는 경우 Azure AD 로그인에서 발생한 문제를 해결하는 방법"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 317b6f8e6417520ead80ae4e26c591ba6b134683
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a8cd93256f79ece268ec3411dfbdf590f4b24447
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="error-on-an-applications-page-after-signing-in"></a>로그인한 후 응용 프로그램 페이지의 오류
 
-이 시나리오에서는 Azure AD의 사용자에 hello 체결 하지만 hello 응용 프로그램 흐름의 hello 사용자 toosuccessfully 마침 hello 로그인을 허용 하지 않도록 오류를 표시 합니다. 이 시나리오에서는 hello 응용 프로그램이 Azure AD를 통해 hello 응답 문제를 허용 하지 않습니다.
+이 시나리오에서는 Azure AD에 로그인한 사용자가 있지만 응용 프로그램에서 사용자가 로그인 흐름을 성공적으로 완료할 수 없는 오류를 표시합니다. 이 시나리오에서 응용 프로그램은 Azure AD에서 발생한 응답을 수락하지 않습니다.
 
-몇 가지 가능한 이유와 이유 hello 응용 프로그램에서 Azure AD hello 응답을 수락 하지 않았습니다. Hello hello 응용 프로그램의에서 오류 충분히 명확 tooknow 아닌 경우 누락 된 항목과 hello 응답으로 다음:
+응용 프로그램이 Azure AD의 응답을 수락하지 않은 이유에는 몇 가지가 있습니다. 응용 프로그램의 오류가 응답에서 누락된 내용을 명확하게 파악하지 못한 경우, 다음을 수행합니다.
 
--   Azure AD hello 갤러리 hello 응용 프로그램을 사용 하는 경우 hello 문서의 모든 hello 단계를 따랐는지 확인 [어떻게 toodebug SAML 기반 single sign on tooapplications Azure Active Directory에서](https://azure.microsoft.com/documentation/articles/active-directory-saml-debugging)합니다.
+-   응용 프로그램이 Azure AD 갤러리인 경우 [Azure Active Directory의 응용 프로그램에 SAML 기반 Single Sign-On을 디버깅하는 방법](https://azure.microsoft.com/documentation/articles/active-directory-saml-debugging) 문서에 있는 모든 단계를 수행했는지 확인합니다.
 
--   와 같은 도구를 사용 하 여 [Fiddler](http://www.telerik.com/fiddler) toocapture SAML SAML 응답 및 SAML 토큰을 요청 합니다.
+-   [Fiddler](http://www.telerik.com/fiddler)와 같은 도구를 사용하여 SAML 요청, SAML 응답 및 SAML 토큰을 캡처합니다.
 
--   무엇이 누락 hello 응용 프로그램 공급 업체 tooknow을 hello SAML 응답을 공유 합니다.
+-   응용 프로그램 공급 업체와 함께 SAML 응답을 공유하여 누락된 내용을 파악합니다.
 
-## <a name="missing-attributes-in-hello-saml-response"></a>Hello SAML 응답의에서 누락 된 특성
+## <a name="missing-attributes-in-the-saml-response"></a>SAML 응답에서 누락된 특성
 
-아래의 hello 단계를 수행 하는 tooadd hello Azure AD에 대 한 응답을 전송 하는 hello Azure AD 구성 toobe 특성:
+Azure AD 응답으로 보낼 Azure AD 구성의 특성을 추가하려면 아래 단계를 수행합니다.
 
-1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**
+1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
 
-2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
+2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
 
-3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
+3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
 
-4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
+4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
 
-5.  클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.
+5.  **모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.
 
-   * 여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**
+   * 여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.
 
-6.  Tooconfigure single sign on 원하는 hello 응용 프로그램을 선택 합니다.
+6.  Single Sign-On을 구성하려는 응용 프로그램을 선택합니다.
 
-7.  Hello 응용 프로그램 로드 되 면 클릭 hello **Single sign on** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.
+7.  응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **Single Sign-On**을 클릭합니다.
 
-8.  클릭 **보기 및 편집에서 다른 모든 사용자 특성** hello **사용자 특성** 섹션 tooedit hello 사용자가 로그인 할 때 hello SAML 토큰에서 보낸 toobe toohello 응용 프로그램 특성입니다.
+8.  **사용자 특성** 섹션**에서 다른 모든 사용자 특성 보기 및 편집**을 클릭하여 사용자가 로그인할 때 SAML 토큰을 통해 응용 프로그램으로 보낼 특성을 편집합니다.
 
-   tooadd 특성:
+   특성을 추가하려면:
 
-   * **특성 추가**를 클릭합니다. Hello 입력 **이름** 및 hello 선택 hello **값** hello 드롭다운에서 합니다.
+   * **특성 추가**를 클릭합니다. **이름**을 입력하고 드롭다운에서 **값**을 선택합니다.
 
-   * **저장**을 클릭합니다. Hello 테이블에 새 특성을 hello 표시 됩니다.
+   * **저장**을 클릭합니다. 테이블에 새 특성이 표시됩니다.
 
-9.  Hello 구성을 저장 합니다.
+9.  구성을 저장합니다.
 
-Hello 사용자 toohello 응용 프로그램에 로그인 하는 다음에 Azure AD hello 새 특성을 hello SAML 응답에에서 보냅니다.
+다음 번에 사용자가 응용 프로그램에 로그인하면 Azure AD는 SAML 응답으로 새 특성을 보냅니다.
 
-## <a name="hello-application-expects-a-different-user-identifier-value-or-format"></a>hello 응용 프로그램에서는 다른 사용자의 Id 값 또는 형식
+## <a name="the-application-expects-a-different-user-identifier-value-or-format"></a>응용 프로그램에 필요한 다른 사용자 식별자 값 또는 형식
 
-hello 로그인 toohello 응용 프로그램은 실패에 hello SAML 응답에는 역할 등의 특성 없기 때문에 또는 hello 응용 프로그램 hello EntityID 특성에 대 한 다른 형식 것 이기 때문에 있습니다.
+SAML 응답이 역할과 같은 특성을 누락하거나 응용 프로그램에 EntityID 특성에 대한 다른 형식이 필요하기 때문에 응용 프로그램에 대한 로그인이 실패합니다.
 
-## <a name="add-an-attribute-in-hello-azure-ad-application-configuration"></a>Hello Azure AD 응용 프로그램 구성에서 특성을 추가 합니다.
+## <a name="add-an-attribute-in-the-azure-ad-application-configuration"></a>Azure AD 응용 프로그램 구성에 특성을 추가합니다.
 
-아래의 hello 단계를 수행 하는 사용자 식별자 값 toochange hello:
+사용자 식별자 값을 변경하려면 아래 단계를 수행합니다.
 
-1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**
+1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
 
-2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
+2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
 
-3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
+3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
 
-4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
+4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
 
-5.  클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.
+5.  **모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.
 
-   * 여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**
+   * 여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.
 
-6.  Tooconfigure single sign on 원하는 hello 응용 프로그램을 선택 합니다.
+6.  Single Sign-On을 구성하려는 응용 프로그램을 선택합니다.
 
-7.  Hello 응용 프로그램 로드 되 면 클릭 hello **Single sign on** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.
+7.  응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **Single Sign-On**을 클릭합니다.
 
-8.  Hello에서 **사용자 특성**, 선택 hello에 있는 사용자에 대 한 고유 식별자를 hello **사용자 식별자** 드롭다운입니다.
+8.  **사용자 특성**의 **사용자 식별자** 드롭다운에서 사용자의 고유한 식별자를 선택합니다.
 
 ## <a name="change-entityid-user-identifier-format"></a>EntityID(사용자 식별자) 형식 변경
 
-Hello 응용 프로그램으로 hello EntityID 특성에 대 한 다른 형식입니다. 그런 다음 Azure AD는 hello에 대 한 응답 toohello 응용 프로그램 사용자 인증 후 보냅니다 수 tooselect hello EntityID (사용자 식별자) 형식 수 없습니다.
+응용 프로그램이 EntityID 특성에 대해 다른 형식을 필요로 하는 경우입니다. 사용자 인증 후에 Azure AD에서 응답을 통해 응용 프로그램으로 보내는 EntityID(사용자 식별자) 형식은 선택할 수 없습니다.
 
-Hello NameID 특성 (사용자 식별자)에 대 한 azure AD 선택 hello 형식 선택한 hello 값에 따라 또는 hello SAML AuthRequest hello에 hello 응용 프로그램에서 요청한 형식입니다. 자세한 내용은 방문 hello 문서 [Single Sign On SAML 프로토콜](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) hello에서 NameIDPolicy 섹션.
+Azure AD에서는 선택한 값 또는 SAML AuthRequest에서 응용 프로그램이 요청한 형식을 기반으로 NameID 특성(사용자 식별자)의 형식을 선택합니다. 자세한 내용은 NameIDPolicy 섹션 아래의 [Single Sign-On SAML 프로토콜](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) 문서에서 확인할 수 있습니다.
 
-## <a name="hello-application-expects-a-different-signature-method-for-hello-saml-response"></a>hello 응용 프로그램에서는 hello SAML 응답에 대 한 다른 서명 메서드
+## <a name="the-application-expects-a-different-signature-method-for-the-saml-response"></a>응용 프로그램은 SAML 응답에 대해 다른 시그니처 메서드를 필요로 합니다.
 
-toochange hello SAML 토큰의 어떤 부분은 Azure Active Directory에서 디지털 서명 합니다. 아래의 hello 단계를 수행 합니다.
+Azure Active Directory에서 디지털 방식으로 로그인한 SAML 토큰을 변경하려고 합니다. 다음 단계를 따르세요.
 
-1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**
+1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
 
-2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
+2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
 
-3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
+3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
 
-4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
+4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
 
-5.  클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.
+5.  **모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.
 
-  * 여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**
+  * 여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.
 
-6.  Tooconfigure single sign on 원하는 hello 응용 프로그램을 선택 합니다.
+6.  Single Sign-On을 구성하려는 응용 프로그램을 선택합니다.
 
-7.  Hello 응용 프로그램 로드 되 면 클릭 hello **Single sign on** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.
+7.  응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **Single Sign-On**을 클릭합니다.
 
-8.  클릭 **고급 인증서 서명 설정이 표시** hello에서 **SAML 서명 인증서** 섹션.
+8.  **SAML 서명 인증서** 섹션에서 **고급 인증서 서명 설정 표시**를 클릭합니다.
 
-9.  적절 한 선택 hello **서명 옵션** hello 응용 프로그램에서 예상:
+9.  응용 프로그램에 필요한 적절한 **서명 옵션**을 선택합니다.
 
   * SAML 응답 서명
 
@@ -125,35 +125,35 @@ toochange hello SAML 토큰의 어떤 부분은 Azure Active Directory에서 디
 
   * SAML 어설션 서명
 
-Hello 사용자 toohello 응용 프로그램에 로그인 하는 다음에 Azure AD 로그인 hello 선택한 hello SAML 응답의 일부분입니다.
+다음 번에 사용자가 응용 프로그램에 로그인하면 Azure AD는 선택한 SAML 응답의 일부를 서명합니다.
 
-## <a name="hello-application-expects-hello-signing-algorithm-toobe-sha-1"></a>hello 응용 프로그램에서는 hello 서명 알고리즘 toobe s h A-1
+## <a name="the-application-expects-the-signing-algorithm-to-be-sha-1"></a>응용 프로그램에 필요한 SHA-1이라는 서명 알고리즘
 
-기본적으로 Azure AD 보안 알고리즘 대부분 hello를 사용 하 여 hello SAML 토큰에 서명 합니다. Hello 서명 알고리즘 tooSHA-1을 변경 해도 hello 응용 프로그램에서 필요로 하지 않는 경우는 권장 되지 않습니다.
+기본적으로 Azure AD는 대부분의 보안 알고리즘을 사용하여 SAML 토큰을 서명합니다. 응용 프로그램에서 필요한 경우가 아니면 SHA-1로 서명 알고리즘을 변경하는 것을 권장하지 않습니다.
 
-toochange hello 서명 알고리즘, 아래 hello 단계를 수행 합니다.
+서명 알고리즘을 변경하려면 아래 단계를 수행합니다.
 
-1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**
+1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
 
-2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
+2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
 
-3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
+3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
 
-4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
+4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
 
-5.  클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.
+5.  **모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.
 
-   * 여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**
+   * 여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.
 
-6.  Tooconfigure single sign on 원하는 hello 응용 프로그램을 선택 합니다.
+6.  Single Sign-On을 구성하려는 응용 프로그램을 선택합니다.
 
-7.  Hello 응용 프로그램 로드 되 면 클릭 hello **Single sign on** hello 응용 프로그램의 왼쪽 탐색 메뉴에서 합니다.
+7.  응용 프로그램이 로드되면 응용 프로그램의 왼쪽 탐색 메뉴에서 **Single Sign-On**을 클릭합니다.
 
-8.  클릭 **고급 인증서 서명 설정이 표시** hello에서 **SAML 서명 인증서** 섹션.
+8.  **SAML 서명 인증서** 섹션에서 **고급 인증서 서명 설정 표시**를 클릭합니다.
 
-9.  Hello에 s h A-1을 선택 **서명 알고리즘**합니다.
+9.  **서명 알고리즘**에서 SHA-1을 선택합니다.
 
-다음 번 hello toohello 응용 프로그램에서 사용자가 로그인, Azure AD 로그인 hello sha-1 알고리즘을 사용 하는 SAML 토큰입니다.
+다음 번에 사용자가 응용 프로그램에 로그인하면 Azure AD는 SHA-1 알고리즘을 사용하여 SAML 토큰을 서명합니다.
 
 ## <a name="next-steps"></a>다음 단계
-[어떻게 toodebug SAML 기반 single sign on tooapplications Azure Active Directory에](https://azure.microsoft.com/documentation/articles/active-directory-saml-debugging)
+[Azure Active Directory에서 SAML 기반 Single Sign-On을 응용 프로그램에 디버그하는 방법](https://azure.microsoft.com/documentation/articles/active-directory-saml-debugging)

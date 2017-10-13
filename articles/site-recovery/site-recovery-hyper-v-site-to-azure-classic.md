@@ -1,6 +1,6 @@
 ---
-title: "hello 클래식 포털의 Hyper-v Vm tooAzure aaaReplicate | Microsoft Docs"
-description: "이 문서에서는 컴퓨터가 VMM 클라우드에서 관리 되지 않을 때 tooAzure tooreplicate Hyper-v 가상 컴퓨터 하는 방법을 설명 합니다."
+title: "클래식 포털에서 Azure에 Hyper-V VM 복제 | Microsoft Docs"
+description: "이 문서에서는 컴퓨터가 VMM 클라우드에서 관리되지 않는 경우 Azure에 Hyper-V 가상 컴퓨터를 복제하는 방법을 설명합니다."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 02/21/2017
 ms.author: raynew
-ms.openlocfilehash: 12d08d950a79e956436cb03ffc87ab40e86c589e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 438f32ee3605e2dd0c46de7993a359cc269262fe
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="replicate-between-on-premises-hyper-v-virtual-machines-and-azure-without-vmm-with-azure-site-recovery"></a>Azure Site Recovery로 온-프레미스 Hyper-V 가상 컴퓨터와 Azure(VMM 없음) 간 복제
 > [!div class="op_single_selector"]
@@ -28,46 +28,46 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-이 문서에서는 어떻게 tooreplicate 온-프레미스 Hyper-v 가상 컴퓨터 tooAzure, hello를 사용 하 여 설명 [Azure Site Recovery](site-recovery-overview.md) hello Azure 포털의에서 서비스입니다. 이 시나리오에서는 VMM 클라우드에서 Hyper-V 서버가 관리되지 않습니다.
+이 문서에서는 Azure Portal에서 [Azure Site Recovery](site-recovery-overview.md) 서비스를 사용하여 온-프레미스 Hyper-V 가상 컴퓨터를 Azure에 복제하는 방법을 설명합니다. 이 시나리오에서는 VMM 클라우드에서 Hyper-V 서버가 관리되지 않습니다.
 
-이 문서를 읽은 후 hello 맨 아래에 모든 메모를 게시 하거나 hello에 대 한 기술적 질문 [Azure 복구 서비스 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)합니다.
+이 문서를 읽은 후에는 하단에서 의견을 게시하거나 [Azure Recovery Services 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)에서 기술적인 질문을 합니다.
 
 
-## <a name="site-recovery-in-hello-azure-portal"></a>Hello Azure 포털에서에서 사이트 복구
+## <a name="site-recovery-in-the-azure-portal"></a>Azure 포털에서 Site Recovery
 
-Azure에는 리소스를 만들고 작업하는 Azure Resource Manager와 클래식이라는 두 가지 [배포 모델](../resource-manager-deployment-model.md)이 있습니다. Azure는 두 개의 포털 – Azure 클래식 포털 hello 및 hello Azure 포털에 있습니다.
+Azure에는 리소스를 만들고 작업하는 Azure Resource Manager와 클래식이라는 두 가지 [배포 모델](../resource-manager-deployment-model.md)이 있습니다. Azure에는 두 가지, 즉 Azure 클래식 포털 및 Azure 포털이 있습니다.
 
-이 문서에서는 설명 어떻게 toodeploy hello 클래식 포털의. hello 클래식 포털에 사용 되는 toomaintain 기존 자격 증명 모음이 될 수 있습니다. Hello 클래식 포털을 사용 하 여 새 자격 증명 모음을 만들 수 없습니다.
+이 문서에서는 클래식 포털에 배포하는 방법을 설명합니다. 기존 자격 증명 모음을 유지하기 위해 클래식 포털을 사용할 수 있습니다. 클래식 포털을 사용하여 새 자격 증명 모음을 만들 수 없습니다.
 
 ## <a name="site-recovery-in-your-business"></a>사용자 비즈니스에서 Site Recovery
 
-조직은 어떻게 앱 및 데이터 얻을 실행 되 고 사용할 수 있는 동안 계획 되거나 계획 되지 않은 가동 중지 시간을 결정 하는 BCDR 전략이 필요 하 고 가능한 한 빨리 toonormal 작업 조건 복구. 수행할 수 있는 Site Recovery는 다음과 같습니다.
+조직에서는 계획된 중단 또는 불의의 중지 시간에 앱 및 데이터를 실행 중이고 가용 상태로 유지하고 가능한 신속히 정상적인 작업 상태로 복귀하기 위한 BCDR 전략이 필요합니다. 수행할 수 있는 Site Recovery는 다음과 같습니다.
 
 * Hyper-V VM에서 실행되는 비즈니스 앱에 대한 오프사이트 보호.
-* 단일 위치 tooset를 관리 하 고 복제, 장애 조치 및 복구를 모니터링 합니다.
-* 간단한 장애 조치 tooAzure 및 온-프레미스 사이트에서 Azure tooHyper-V 호스트 서버에서 장애 복구 (복원).
+* 복제, 장애 조치(Failover), 복구를 설정, 관리 및 모니터링하는 단일 위치.
+* Azure로 간단한 장애 조치 및 Azure에서 온-프레미스 사이트의 Hyper-V 호스트 서버로 장애 복구(Failback)(복원).
 * 계층화된 응용 프로그램 워크로드가 함께 장애 조치(Failover)되도록 여러 VM을 포함하는 복구 계획.
 
 ## <a name="azure-prerequisites"></a>Azure 필수 조건
-* [Microsoft Azure](https://azure.microsoft.com/) 계정이 있어야 합니다. [평가판](https://azure.microsoft.com/pricing/free-trial/)으로 시작할 수 있습니다.
-* Azure 저장소 계정 복제 toostore 데이터가 있어야합니다. hello 계정에는 지역에서 복제를 사용 해야 합니다. Hello Azure Site Recovery 자격 증명 모음과 동일한 지역 hello와 관련 된 것 같은 구독 hello 합니다. [Azure 저장소에 대해 자세히 알아보세요](../storage/common/storage-introduction.md). Hello를 사용 하 여 만든 이동 저장소 계정은 지원 되지 않습니다. 참고 [새 Azure 포털](../storage/common/storage-create-storage-account.md) 리소스 그룹에 걸쳐 있습니다.
-* Azure 가상 컴퓨터를 기본 사이트에서 장애 조치 하는 경우 연결 된 tooa 네트워크 수 있도록 Azure 가상 네트워크를 해야 합니다.
+* [Microsoft Azure](https://azure.microsoft.com/) 계정이 있어야 합니다. [무료 평가판](https://azure.microsoft.com/pricing/free-trial/)으로 시작할 수 있습니다.
+* 복제된 데이터를 저장하려면 Azure 저장소 계정이 필요합니다. 계정의 지역에서 복제 기능을 사용하도록 설정해야 합니다. 계정은 Azure Site Recovery 자격 증명 모음과 동일한 지역에 있고 동일한 구독과 연결되어야 합니다. [Azure 저장소에 대해 자세히 알아보세요](../storage/common/storage-introduction.md). 여러 리소스 그룹에 [새 Azure 포털](../storage/common/storage-create-storage-account.md) 을 사용하여 만든 저장소 계정의 이동을 지원하지 않습니다.
+* 기본 사이트에서 장애 조치(failover) 시 Azure 가상 컴퓨터가 네트워크에 연결되도록 하기 위해서는 Azure 가상 네트워크가 필요합니다.
 
 ## <a name="hyper-v-prerequisites"></a>Hyper-V 필수 조건
-* Hello 소스 온-프레미스 사이트에서 실행 하는 하나 이상의 서버 해야 **Windows Server 2012 R2** hello Hyper-v 역할이 설치 된 또는 **Microsoft Hyper-v Server 2012 R2**합니다. 이 서버는 다음 조건을 충족해야 합니다.
+* 원본 온-프레미스 사이트에서 Hyper-V 역할이 설치된 **Windows Server 2012 R2** 또는 **Microsoft Hyper-V Server 2012 R2**를 실행하는 하나 이상의 서버가 있어야 합니다. 이 서버는 다음 조건을 충족해야 합니다.
 * 하나 이상의 가상 컴퓨터를 포함해야 합니다.
-* 직접 또는 프록시를 통해 인터넷에 연결 된 toohello 수 있습니다.
-* 기술 자료에 설명 된 hello 수정 실행 되 고 [2961977](https://support.microsoft.com/en-us/kb/2961977 "KB2961977")합니다.
+* 직접 또는 프록시를 통해 인터넷에 연결되어야 합니다.
+* 기술 자료 [2961977](https://support.microsoft.com/en-us/kb/2961977 "KB2961977")에서 의견이나 질문을 게시합니다.
 
 ## <a name="virtual-machine-prerequisites"></a>가상 컴퓨터 필수 조건
-Tooprotect 원하는 가상 컴퓨터를 준수 해야 [Azure 가상 컴퓨터 요구 사항을](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)합니다.
+보호할 가상 컴퓨터는 [Azure 가상 컴퓨터 요구 사항](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)에 맞아야 합니다.
 
 ## <a name="provider-and-agent-prerequisites"></a>공급자 및 에이전트 필수 조건
-Azure 사이트 복구 배포의 일환으로 hello Azure Site Recovery Provider를 설치 하 고 각 Hyper-v 서버에 Azure 복구 서비스 에이전트 hello 합니다. 다음 사항에 유의하세요.
+Azure Site Recovery 배포의 일환으로 Hyper-V 서버마다 Azure Site Recovery 공급자 및 Azure 복구 서비스 에이전트를 설치합니다. 다음 사항에 유의하세요.
 
-* 항상 hello 최신 버전의 hello 공급자 및 에이전트를 실행 하면이 좋습니다. 이들은 hello Site Recovery 포털에서 사용할 수 있습니다.
-* 자격 증명 모음의 모든 Hyper-v 서버는 동일한 버전의 hello 공급자 및 에이전트 hello 있어야 해야 합니다.
-* hello hello 서버에서 실행 중인 공급자 연결 hello 통해 복구 tooSite 인터넷 합니다. Hello Hyper-v 서버에 현재 구성 된 hello 프록시 설정 또는 공급자 설치 중 구성 하는 사용자 지정 프록시 설정을 사용 하 여 프록시를 않고이 수행할 수 있습니다. 원하는 toouse 해당 hello 프록시 서버 tooAzure 연결 하기 위한 이러한 hello Url에 액세스할 수 있는지 toomake이 필요 합니다.
+* 항상 최신 버전의 공급자 및 에이전트를 실행하는 것이 좋습니다. 이에 대한 내용은 사이트 복구 포털에서 제공됩니다.
+* 자격 증명 모음의 모든 Hyper-V 서버는 동일한 버전의 공급자 및 에이전트를 포함해야 합니다.
+* 서버에서 실행되는 공급자는 인터넷을 통해 사이트 복구에 연결됩니다. 현재 Hyper-V 서버에 구성된 프록시 설정 또는 공급자 설치 중에 구성하는 사용자 지정 프록시 설정을 사용하여 프록시 없이 이를 수행할 수 있습니다. 사용하려는 프록시 서버가 Azure 연결을 위해 이러한 URL에 액세스할 수 있는지 확인해야 합니다.
 
   * *.accesscontrol.windows.net
   * *.backup.windowsazure.com
@@ -77,152 +77,152 @@ Azure 사이트 복구 배포의 일환으로 hello Azure Site Recovery Provider
   - https://www.msftncsi.com/ncsi.txt
   - time.windows.com
   - time.nist.gov
-* 또한에 설명 된 hello IP 주소를 통해 [Azure 데이터 센터 IP 범위](https://www.microsoft.com/download/details.aspx?id=41653) 및 HTTPS (443) 프로토콜입니다. hello 계획 toouse 및 미국 서 부의 Azure 지역 tooallow hello IP 범위 해야 합니다.
+* 또한 [Azure 데이터센터 IP 범위](https://www.microsoft.com/download/details.aspx?id=41653) 및 HTTPS(443) 프로토콜에 설명된 IP 주소를 허용합니다. 사용하려는 Azure 지역 및 미국 서부의 IP 범위를 허용해야 합니다.
 
-이 그림이 보여줍니다 hello 다양 한 통신 채널 및 오케스트레이션 및 복제에 대 한 Site Recovery에 의해 사용 되는 포트
+이 그림에서는 조정 및 복제를 위해 사이트 복구에서 사용되는 다양한 통신 채널 및 포트를 보여줍니다.
 
 ![B2A 토폴로지](./media/site-recovery-hyper-v-site-to-azure-classic/b2a-topology.png)
 
 ## <a name="step-1-create-a-vault"></a>1단계: 자격 증명 모음 만들기
-1. Toohello 로그인 [관리 포털](https://portal.azure.com)합니다.
+1. [관리 포털](https://portal.azure.com)에 로그인합니다.
 2. **Data Services** > **Recovery Services**를 확장하고 **Site Recovery 자격 증명 모음**을 클릭합니다.
 3. **새로 만들기** > **빠른 생성**을 클릭합니다.
-4. **이름**, 이름 tooidentify hello 자격 증명 모음을 입력 합니다.
-5. **지역**, 선택 hello hello 자격 증명 모음에 대 한 지리적 영역입니다. 지원 toocheck 지역에서 지역 가용성 참조 [Azure 사이트 복구 가격 정보](https://azure.microsoft.com/pricing/details/site-recovery/)합니다.
+4. **이름**에 자격 증명 모음을 식별하기 위한 이름을 입력합니다.
+5. **지역**에서 자격 증명 모음에 대한 지리적 지역을 선택합니다. 지원되는 하위 지역을 확인하려면 [Azure Site Recovery 가격 정보](https://azure.microsoft.com/pricing/details/site-recovery/)에서 지리적 가용성을 참조하세요.
 6. **자격 증명 모음 만들기**를 클릭합니다.
 
     ![새 자격 증명 모음](./media/site-recovery-hyper-v-site-to-azure-classic/vault.png)
 
-자격 증명 모음 hello hello 상태 표시줄 tooconfirm 올바르게 만들어졌는지 확인 합니다. hello 자격 증명 모음으로 나열 됩니다 **활성** hello 기본 복구 서비스 페이지에 있습니다.
+상태 표시줄을 점검하여 자격 증명 모음이 성공적으로 만들어졌는지 확인합니다. 자격 증명 모음은 기본 복구 서비스 페이지에서 **활성** 으로 나열됩니다.
 
 ## <a name="step-2-create-a-hyper-v-site"></a>2단계: Hyper-V 사이트 만들기
-1. Hello 복구 서비스 페이지에서 hello 자격 증명 모음 tooopen hello 빠른 시작 페이지를 클릭 합니다. 빠른 시작 언제 든 지 hello 아이콘을 사용 하 여 열 수도 있습니다.
+1. 복구 서비스 페이지에서 자격 증명 모음을 클릭하여 빠른 시작 페이지를 엽니다. 빠른 시작은 언제든지 아이콘을 사용하여 열 수도 있습니다.
 
     ![빠른 시작](./media/site-recovery-hyper-v-site-to-azure-classic/quick-start-icon.png)
-2. Hello 드롭다운 목록에서 선택 **온-프레미스 Hyper-v 사이트와 Azure 간**합니다.
+2. 드롭다운 목록에서 **온-프레미스 Hyper-V 사이트와 Azure 간**을 선택합니다.
 
     ![Hyper-V 사이트 시나리오](./media/site-recovery-hyper-v-site-to-azure-classic/select-scenario.png)
 3. **Hyper-V 사이트 만들기**에서 **Hyper-V 사이트 만들기**를 클릭합니다. 사이트 이름을 지정하고 저장합니다.
 
     ![Hyper-V 사이트](./media/site-recovery-hyper-v-site-to-azure-classic/create-site.png)
 
-## <a name="step-3-install-hello-provider-and-agent"></a>3 단계: hello 공급자 및 에이전트를 설치 합니다.
-Vm tooprotect 원하는 된 각 Hyper-v 서버에 hello 공급자 및 에이전트를 설치 합니다.
+## <a name="step-3-install-the-provider-and-agent"></a>3단계: 공급자 및 에이전트 설치
+보호할 VM이 있는 Hyper-V 서버마다 공급자 및 에이전트를 설치합니다.
 
-Hyper-v 클러스터를 설치 하는 hello 장애 조치 클러스터의 각 노드에서 5-11 단계를 수행 합니다. 모든 노드에 등록 된 후 보호를 사용 하도록 가상 컴퓨터는 hello 클러스터의 노드에서 마이그레이션될 경우에 보호 됩니다.
+Hyper-V 클러스터를 설치하는 경우 장애 조치 클러스터의 각 노드에서 5~11단계를 수행합니다. 모든 노드를 등록하고 보호 기능을 설정한 후 가상 컴퓨터는 클러스터 내의 노드 간에 마이그레이션할 경우에도 보호됩니다.
 
 1. **Hyper-V 서버 준비**에서 **등록 키 다운로드** 파일을 클릭합니다.
-2. Hello에 **등록 키 다운로드** 페이지 **다운로드** toohello에 다음 사이트입니다. Hello Hyper-v 서버에서 쉽게 액세스할 수 있는 hello 키 tooa 안전한 위치에 다운로드 합니다. hello 키는 생성 된 후 5 일 동안 유효 합니다.
+2. **등록 키 다운로드** 페이지에서 사이트 옆의 **다운로드**를 클릭합니다. Hyper-V 서버에서 쉽게 액세스할 수 있는 안전한 위치로 키를 다운로드합니다. 이 키는 생성된 날로부터 5일간 유효합니다.
 
     ![등록 키](./media/site-recovery-hyper-v-site-to-azure-classic/download-key.png)
-3. 클릭 **다운로드 hello 공급자** tooobtain hello 최신 버전입니다.
-4. Hello 자격 증명 모음에 각 Hyper-v 서버에서 hello 파일 tooregister을 실행 합니다. hello 파일은 두 가지 구성 요소를 설치 합니다.
-   * **Azure Site Recovery Provider**-hello Hyper-v 서버와 hello Azure Site Recovery 포털 간의 통신과 오케스트레이션을 처리 합니다.
-   * **Azure 복구 서비스 에이전트**-Azure 저장소와 hello 원본 Hyper-v 서버에서 실행 중인 가상 컴퓨터 간의 데이터 전송을 처리 합니다.
-5. **Microsoft 업데이트** 에서 업데이트를 선택할 수 있습니다. 이 설정을 사용 하면, tooyour Microsoft Update 정책에 따라 공급자 및 에이전트 업데이트가 설치 됩니다.
+3. **공급자 다운로드** 를 클릭하여 최신 버전을 가져옵니다.
+4. 자격 증명 모음에 등록하려는 각 Hyper-V 서버에서 파일을 실행합니다. 이 파일은 다음 두 구성 요소를 설치합니다.
+   * **Azure Site Recovery 공급자**- Hyper-V 서버와 Azure Site Recovery 포털 간의 통신 및 오케스트레이션을 처리합니다.
+   * **Azure 복구 서비스 에이전트**- 원본 Hyper-V 서버에 실행 중인 가상 컴퓨터와 Azure 저장소 간의 데이터 전송을 처리합니다.
+5. **Microsoft 업데이트** 에서 업데이트를 선택할 수 있습니다. 이 설정을 사용하도록 설정하면 공급자와 에이전트 업데이트가 Microsoft 업데이트 정책에 따라 설치됩니다.
 
     ![Microsoft 업데이트](./media/site-recovery-hyper-v-site-to-azure-classic/provider1.png)
-6. **설치** tooinstall hello 공급자를 에이전트에 hello Hyper-v 서버를 지정 합니다.
+6. **설치** 에 Hyper-V 서버에서 공급자 및 에이전트를 설치할 위치를 지정합니다.
 
     ![설치 위치](./media/site-recovery-hyper-v-site-to-azure-classic/provider2.png)
-7. 설치가 완료 되 면 hello 자격 증명 모음에 tooregister hello 서버 설치를 계속 합니다.
-8. Hello에 **자격 증명 모음 설정을** 페이지 **찾아보기** tooselect hello 키 파일입니다. Hello Azure Site Recovery 구독 hello 자격 증명 모음 이름을 지정 하 고 hello 하이퍼-V 사이트 toowhich hello Hyper-v 서버가 속하는 키를 누릅니다.
+7. 설치가 완료되면 설정을 계속 진행하여 자격 증명 모음에 서버를 등록합니다.
+8. **자격 증명 모음 설정** 페이지에서 **찾아보기**를 클릭하고 키 파일을 선택합니다. Azure Site Recovery 구독, 자격 증명 모음 이름 및 Hyper-V 서버가 속한 Hyper-V 사이트를 지정합니다.
 
     ![서버 등록](./media/site-recovery-hyper-v-site-to-azure-classic/provider8.PNG)
-9. Hello에 **인터넷 연결** 페이지 hello 공급자 tooAzure 사이트 복구를 연결 하는 방법을 지정 합니다. 선택 **기본 시스템 프록시 설정 사용** toouse hello 기본 인터넷 연결 설정을 hello 서버에 구성 합니다. 값 hello 기본 설정을 사용할 것임을 지정 하지 않으면 합니다.
+9. **인터넷 연결** 페이지에서 공급자가 Azure Site Recovery에 연결하는 방법을 지정합니다. 서버에 구성되어 있는 기본 인터넷 연결 설정을 사용하려면 **기본 시스템 프록시 설정 사용** 을 선택합니다. 값을 지정 하지 않으면 기본 설정이 사용됩니다.
 
    ![인터넷 설정](./media/site-recovery-hyper-v-site-to-azure-classic/provider7.PNG)
-10. Tooregister hello 서버 hello 자격 증명 모음에서 시작 하는 등록 합니다.
+10. 서버를 자격 증명 모음에 등록하는 등록이 시작됩니다.
 
     ![서버 등록](./media/site-recovery-hyper-v-site-to-azure-classic/provider15.PNG)
-11. 등록에 메타 데이터 완료 되 면 hello Hyper-v 서버를 Azure Site Recovery에서 검색 한 hello 서버 hello에 표시 되 **Hyper-v 사이트** hello에 탭 **서버** hello 자격 증명 모음에 페이지입니다.
+11. 등록이 완료되면 Azure Site Recovery에서 Hyper-V 서버의 메타데이터를 가져오고 서버가 자격 증명 모음의 **서버** 페이지에 있는 **Hyper-V 사이트** 탭에 표시됩니다.
 
-### <a name="install-hello-provider-from-hello-command-line"></a>Hello 공급자 hello 명령줄에서 설치
-대신 hello 명령줄에서 hello Azure Site Recovery Provider를 설치할 수 있습니다. Windows Server Core 2012 r 2를 실행 하는 컴퓨터에 대 한 공급자 tooinstall hello 하려는 경우이 메서드를 사용 해야 합니다. 다음과 같이 hello 명령줄에서 실행 합니다.
+### <a name="install-the-provider-from-the-command-line"></a>명령줄에서 공급자 설치
+또한 명령줄에서 Azure Site Recovery 공급자를 설치할 수도 있습니다. Windows Server Core 2012 R2를 실행하는 컴퓨터에 공급자를 설치하려면 이 방법을 사용해야 합니다. 다음과 같이 명령줄에서 실행합니다.
 
-1. Hello 공급자 설치 파일과 등록 키 tooa 폴더를 다운로드 합니다. 예: C:\ASR.
+1. 공급자 설치 파일 및 등록 키를 폴더로 다운로드합니다. 예: C:\ASR.
 2. 관리자로 명령 프롬프트 창을 실행하고 다음을 입력합니다.
 
         C:\Windows\System32> CD C:\ASR
         C:\ASR> AzureSiteRecoveryProvider.exe /x:. /q
-3. 그런 다음 실행 하 여 hello 공급자를 설치 합니다.
+3. 다음을 실행하여 공급자를 설치합니다.
 
         C:\ASR> setupdr.exe /i
-4. Hello toocomplete 등록을 실행 합니다.
+4. 등록을 완료하려면 다음을 실행합니다.
 
         CD C:\Program Files\Microsoft Azure Site Recovery Provider
-        C:\Program Files\Microsoft Azure Site Recovery Provider\> DRConfigurator.exe /r  /Friendlyname <friendly name of hello server> /Credentials <path of hello credentials file> /EncryptionEnabled <full file name toosave hello encryption certificate>         
+        C:\Program Files\Microsoft Azure Site Recovery Provider\> DRConfigurator.exe /r  /Friendlyname <friendly name of the server> /Credentials <path of the credentials file> /EncryptionEnabled <full file name to save the encryption certificate>         
 
 여기서 매개 변수는 다음과 같습니다.
 
-* **/ 자격 증명**: hello hello 등록 키 다운로드 한 위치를 지정 합니다.
-* **/ FriendlyName**: 이름 tooidentify hello Hyper-v 호스트 서버를 지정 합니다. 이 이름은 hello 포털에 나타납니다.
-* **/EncryptionEnabled**: 선택 사항입니다. (나머지 암호화)에서 tooencrypt 복제본 가상 컴퓨터가 Azure에 있는지 여부를 지정 합니다.
-* **/proxyAddress**; **/proxyport**; **/proxyUsername**; **/proxyPassword**: 선택 사항입니다. 기존 프록시에 인증이 필요 또는 사용자 지정 프록시 toouse 하려는 경우 프록시 매개 변수를 지정 합니다.
+* **/Credentials**: 다운로드한 등록 키의 위치를 지정합니다.
+* **/FriendlyName**: Hyper-V 호스트 서버를 식별하는 이름을 지정합니다. 이 이름이 포털에 나타납니다.
+* **/EncryptionEnabled**: 선택 사항입니다. Azure(암호화 미사용)에서 복제본 가상 컴퓨터를 암호화할 것인지 여부를 지정합니다.
+* **/proxyAddress**; **/proxyport**; **/proxyUsername**; **/proxyPassword**: 선택 사항입니다. 사용자 지정 프록시를 사용하거나 기존 프록시에 인증이 필요한 경우 프록시 매개 변수를 지정합니다.
 
 ## <a name="step-4-create-an-azure-storage-account"></a>4단계: Azure 저장소 계정 만들기
-* **리소스 준비** 선택 **저장소 계정 만들기** toocreate 싱크가 없는 경우 Azure 저장소 계정입니다. hello 계정은 지역에서 복제를 사용할 수 있어야 합니다. Hello Azure Site Recovery 자격 증명 모음과 동일한 지역 hello와 관련 된 것 같은 구독 hello 합니다.
+* Azure Storage 계정이 없는 경우 **리소스 준비**에서 **저장소 계정 만들기**를 선택하여 만듭니다. 계정의 지역에서 복제 기능을 사용하도록 설정해야 합니다. 계정은 Azure Site Recovery 자격 증명 모음과 동일한 지역에 있고 동일한 구독과 연결되어야 합니다.
 
     ![저장소 계정 만들기](./media/site-recovery-hyper-v-site-to-azure-classic/create-resources.png)
 
 > [!NOTE]
-> 1. Hello를 사용 하 여 만든 저장소 계정의 hello 이동을 지원 하지 않습니다 [새 Azure 포털](../storage/common/storage-create-storage-account.md) 리소스 그룹에 걸쳐 있습니다.
-> 2. [저장소 계정 마이그레이션](../azure-resource-manager/resource-group-move-resources.md) 전체 리소스 그룹 내 hello 동일한 구독 또는 구독에서 지원 되지 않습니다 Site Recovery를 배포 하는 데 사용 되는 저장소 계정에 대 한 합니다.
+> 1. 여러 리소스 그룹에 [새 Azure 포털](../storage/common/storage-create-storage-account.md) 을 사용하여 만든 저장소 계정의 이동을 지원하지 않습니다.
+> 2. [저장소 계정 마이그레이션](../azure-resource-manager/resource-group-move-resources.md) 작업은 Site Recovery를 배포하는 데 사용되는 저장소 계정에서 같은 구독 내에 있거나 여러 구독에 있는 리소스 그룹에 대해 수행할 수 없습니다.
 >
 
 ## <a name="step-5-create-and-configure-protection-groups"></a>5단계: 보호 그룹 만들기 및 구성
-보호 그룹에는 논리적 그룹은 동일한 보호 설정을 사용 하 여 tooprotect hello 원하는 가상 컴퓨터의 합니다. 보호 설정 tooa 보호 그룹에서 적용 되며 이러한 설정이 적용 된 tooall 가상 컴퓨터 toohello 그룹을 추가 합니다.
+보호 그룹은 동일한 보호 설정을 사용하여 보호하려는 가상 컴퓨터의 논리적 그룹화입니다. 보호 설정을 보호 그룹에 적용하면 이러한 설정은 그룹에 추가한 가상 컴퓨터 모두에 적용됩니다.
 
 1. **보호 그룹 만들기 및 구성**에서 **보호 그룹 만들기**를 클릭합니다. 필수 조건이 갖추어지지 않은 경우 메시지가 표시되며 **세부 정보 보기** 를 클릭하여 자세한 내용을 확인할 수 있습니다.
-2. Hello에 **보호 그룹** 탭, 보호 그룹을 추가 합니다. 이름, 원본 Hyper-v 사이트 hello, hello 대상 지정 **Azure**, Azure Site Recovery 구독 이름 및 hello Azure 저장소 계정입니다.
+2. **보호 그룹** 탭에서 보호 그룹을 추가합니다. 이름, 소스 Hyper-V 사이트, 대상 **Azure**, Azure Site Recovery 구독 이름 및 Azure 저장소 계정을 지정합니다.
 
     ![보호 그룹](./media/site-recovery-hyper-v-site-to-azure-classic/protection-group.png)
-3. **복제 설정을** 집합 hello **복사 빈도** hello 원본과 대상 간의 hello 데이터 델타를 동기화 할 빈도 toospecify 합니다. 5 분 또는 15 분 too30 초를 설정할 수 있습니다.
+3. **복제 설정**에서 **복사 빈도**를 설정하여 원본과 대상 간에 데이터 델타가 동기화되는 빈도를 지정합니다. 30초, 5분 또는 15분으로 설정할 수 있습니다.
 4. **복구 지점 보존 기간** 에서 복구 기록을 보관하는 시간을 지정합니다.
-5. **응용 프로그램 일치 스냅숏 빈도** 여부 tootake 스냅숏을 사용 하는 hello 스냅숏이 만들어질 때 응용 프로그램은 일관 된 상태에서 볼륨 섀도 복사본 서비스 (VSS) tooensure 지정할 수 있습니다. 기본적으로 수행되지는 않습니다. 이 값 hello 구성 하는 추가 복구 지점 수보다 tooless 설정 되어 있는지 확인 합니다. 이 hello 가상 컴퓨터가 Windows 운영 체제를 실행 중인 경우에 지원 됩니다.
-6. **초기 복제 시작 시간** 경우 hello 보호 그룹의 가상 컴퓨터의 초기 복제를 보내도록 지정 tooAzure 합니다.
+5. **응용프로그램에 일관된 스냅숏의 빈도** 에서 VSS(볼륨 섀도 복사본 서비스)를 사용하여 스냅숏을 만들 때 응용프로그램이 일관된 상태가 되도록 할지 지정할 수 있습니다. 기본적으로 수행되지는 않습니다. 값을 설정할 경우 구성할 추가 복구 지점 수보다 적은지 확인하세요. 이는 가상 컴퓨터가 Windows 운영 체제를 실행하는 경우에만 지원됩니다.
+6. **초기 복제 시작 시간** 에서 보호 그룹에 가상 컴퓨터의 초기 복제를 Azure로 보내도록 지정합니다.
 
     ![보호 그룹](./media/site-recovery-hyper-v-site-to-azure-classic/protection-group2.png)
 
 ## <a name="step-6-enable-virtual-machine-protection"></a>6단계: 가상 컴퓨터 보호 사용
-가상 컴퓨터 tooa 보호 그룹 tooenable 보호에 추가 합니다.
+가상 컴퓨터를 보호 그룹에 추가하여 보호를 사용합니다.
 
 > [!NOTE]
 > 고정 IP 주소를 사용하여 Linux를 실행하는 VM 보호는 지원되지 않습니다.
 >
 >
 
-1. Hello에 **컴퓨터** tooenable 보호 * * 클릭 * * 추가 가상 컴퓨터 tooprotection hello 보호 그룹에 대 한 탭을 그룹화 합니다.
-2. Hello에 **가상 컴퓨터 보호 사용** tooprotect 원하는 선택 hello 가상 컴퓨터 페이지입니다.
+1. 보호 그룹의 **컴퓨터** 탭에서 **가상 컴퓨터를 보호 그룹에 추가하여 보호합니다.**를 클릭합니다.
+2. **가상 컴퓨터 보호 사용** 페이지에서 보호할 가상 컴퓨터를 선택합니다.
 
     ![가상 컴퓨터 보호 사용](./media/site-recovery-hyper-v-site-to-azure-classic/add-vm.png)
 
-    hello 보호 사용 작업을 시작 합니다. Hello에 진행률을 추적할 수 **작업** 탭 합니다. Hello 보호 완료 작업이 실행 hello 가상 컴퓨터 장애 조치에 있게 됩니다.
+    보호 사용 작업이 시작됩니다. **작업** 탭에서 진행률을 추적할 수 있습니다. 보호 완료 작업이 실행된 후에는 가상 컴퓨터가 장애 조치(Failover)를 수행할 준비가 되어 있습니다.
 3. 보호가 설정된 후 다음을 수행할 수 있습니다.
 
-   * 가상 컴퓨터 보기 **보호 된 항목** > **보호 그룹** > *protectiongroup_name*  >  **가상 컴퓨터** hello에서 toomachine 세부 정보를 드릴 수 있습니다 **속성** 탭...
-   * 가상 컴퓨터에 대해 장애 조치 속성 hello 구성 **보호 된 항목** > **보호 그룹** > *protectiongroup_name*  >  **가상 컴퓨터** *virtual_machine_name* > **구성**합니다. 다음을 구성할 수 있습니다.
+   * **보호된 항목** > **보호 그룹** > *protectiongroup_name* > **가상 컴퓨터**에서 보호된 가상 컴퓨터를 볼 수 있습니다. **속성** 탭에서 컴퓨터 세부 정보를 자세히 다룰 수 있습니다.
+   * **보호된 항목** > **보호 그룹** > *protectiongroup_name* > **가상 컴퓨터** *virtual_machine_name* > **구성**에서 가상 컴퓨터의 장애 조치 속성을 구성합니다. 다음을 구성할 수 있습니다.
 
-     * **이름**: Azure의 hello 가상 컴퓨터의 hello 이름입니다.
-     * **크기**: hello 장애 조치 되는 hello 가상 컴퓨터의 대상 크기입니다.
+     * **이름**: Azure의 가상 컴퓨터 이름입니다.
+     * **크기**: 장애 조치된 가상 컴퓨터의 대상 크기입니다.
 
        ![가상 컴퓨터 속성 구성](./media/site-recovery-hyper-v-site-to-azure-classic/vm-properties.png)
    * 다음을 포함하여 *보호된 항목** > **보호 그룹** > *protectiongroup_name* > **Virtual Machines** *virtual_machine_name* > **구성**에서 추가적인 가상 컴퓨터의 설정을 구성합니다.
 
-     * **네트워크 어댑터의 연결이**: 네트워크 어댑터의 hello 수 hello 대상 가상 컴퓨터에 대해 지정 하는 hello 크기에 따라 결정 됩니다. 확인 [가상 컴퓨터 크기 사양](../virtual-machines/linux/sizes.md) hello 가상 컴퓨터 크기에서 지원 되는 nic 수가 hello에 대 한 합니다.
+     * **네트워크 어댑터**: 네트워크 어댑터 수가 대상 가상 컴퓨터에 대해 지정하는 크기에 따라 결정됩니다. [가상 컴퓨터 크기 사양](../virtual-machines/linux/sizes.md) 에서 가상 컴퓨터 크기에 의해 지원되는 NIC의 수를 확인하세요.
 
-       네트워크 어댑터의 hello 번호를 열 때 변경 됩니다 가상 컴퓨터에 대 한 hello 크기를 수정 하 고 hello 설정을 저장할 때 **구성** 페이지 hello 다음 번입니다. hello 대상 가상 컴퓨터의 네트워크 어댑터 수는 최소 hello 수가 원본 가상 컴퓨터의 네트워크 어댑터 및 선택한 hello 가상 컴퓨터의 hello 크기에서 지원 되는 네트워크 어댑터의 최대 수입니다. 아래 설명을 참조하세요.
+       가상 컴퓨터의 크기를 수정하고 설정을 저장하면 다음에 **구성** 페이지를 열 때 네트워크 어댑터의 수가 변경됩니다. 대상 가상 컴퓨터의 네트워크 어댑터 수는 원본 가상 컴퓨터의 네트워크 어댑터 수 이상이어야 하며 선택한 가상 머신 크기에서 지원하는 네트워크 어댑터 수 이하여야 합니다. 아래 설명을 참조하세요.
 
-       * Hello hello 원본 컴퓨터의 네트워크 어댑터 수가 보다 작거나 같은 경우 hello 대상 컴퓨터 크기에 허용 되는 어댑터 수가 toohello 다음 hello 대상 갖습니다 hello hello 소스와 같은 수의 어댑터.
-       * Hello 원본 가상 컴퓨터에 대 한 어댑터의 hello 수를 초과 하면 hello 수 수 hello 대상 크기 다음 hello 대상 크기는 최대 사용 됩니다.
-       * 예를 들어 원본 컴퓨터에 네트워크 어댑터가 두 개 및 4 hello 대상 컴퓨터 크기 지원로 hello 대상 컴퓨터는 두 개의 어댑터를 포함 합니다. Hello 원본 컴퓨터에 두 개의 어댑터가 있지만 hello 지원 되는 대상 크기 하나만 지원 하는 경우 hello 대상 컴퓨터에서 하나의 어댑터를 해야 합니다.
+       * 원본 컴퓨터의 네트워크 어댑터 수가 대상 컴퓨터 크기에 허용되는 어댑터 수보다 작거나 같은 경우, 대상의 어댑터 수는 소스와 동일해야 합니다.
+       * 원본 가상 컴퓨터의 어댑터의 수가 대상 크기에 허용된 수를 초과하면 대상 크기 최대치가 사용됩니다.
+       * 예를 들어 원본 컴퓨터에 두 네트워크 어댑터가 있고 대상 컴퓨터 크기가 4를 지원하는 경우, 대상 컴퓨터에는 2개의 어댑터가 있어야 합니다. 원본 컴퓨터에 두 어댑터가 있지만 지원되는 대상 크기가 하나만 지원하는 경우 대상 컴퓨터에는 1개의 어댑터만 있어야 합니다.
 
-     * **Azure 네트워크**: hello 네트워크 toowhich hello 가상 컴퓨터 장애 조치를 지정 합니다. Hello 가상 컴퓨터에 여러 네트워크 어댑터 모든 어댑터에 연결 된 toohello 해야 동일한 Azure 네트워크입니다.
-     * **서브넷** hello 가상 컴퓨터에서 각 네트워크 어댑터에 대 한 hello Azure 네트워크 toowhich hello 컴퓨터의 선택 hello 서브넷 장애 조치 후 연결 해야 합니다.
-     * **IP 주소를 대상**: 컴퓨터 hello hello 대상 가상 컴퓨터 tooensure hello에 대 한 hello IP 주소를 지정할 수 있습니다는 IP 주소 원본 가상 컴퓨터의 네트워크 어댑터 hello 구성된 toouse 정적 경우 장애 조치 후 동일한 IP 주소 .  IP 주소를 지정 하지 않으면 모든 사용 가능한 주소 hello 장애 조치 시간에 할당 됩니다. 사용 중인 주소를 지정하는 경우 장애 조치가 실패합니다.
+     * **Azure 네트워크**: 가상 컴퓨터가 장애 조치되는 네트워크를 지정합니다. 가상 컴퓨터에 여러 네트워크가 있는 경우 모든 어댑터는 동일한 Azure 네트워크에 연결되어야 합니다.
+     * **서브넷** 가상 컴퓨터에서 각 네트워크 어댑터에 대해 장애 조치 후 컴퓨터가 연결되는 Azure 네트워크의 서브넷을 선택합니다.
+     * **대상 IP 주소**: 원본 가상 컴퓨터의 네트워크 어댑터를 고정 IP 주소를 사용하도록 구성하는 경우, 대상 가상 컴퓨터의 IP 주소를 지정하여 장애 조치 후 컴퓨터가 동일한 IP 주소를 갖도록 할 수 있습니다.  IP 주소를 지정하지 않으면 사용 가능한 임의의 주소가 장애 조치 시 할당됩니다. 사용 중인 주소를 지정하는 경우 장애 조치가 실패합니다.
 
      > [!NOTE]
-     > [마이그레이션 네트워크의](../azure-resource-manager/resource-group-move-resources.md) 전체 리소스 그룹 내 hello 동일한 구독 또는 구독에서 지원 되지 않습니다 Site Recovery를 배포 하는 데 사용 되는 네트워크에 대 한 합니다.
+     > 같은 구독 내에 있거나 여러 구독에 있는 리소스 그룹에 대한 [네트워크의 마이그레이션](../azure-resource-manager/resource-group-move-resources.md)은 Site Recovery를 배포하는 데 사용되는 네트워크에 지원되지 않습니다.
      >
 
      ![가상 컴퓨터 속성 구성](./media/site-recovery-hyper-v-site-to-azure-classic/multiple-nic.png)
@@ -231,48 +231,48 @@ Hyper-v 클러스터를 설치 하는 hello 장애 조치 클러스터의 각 �
 
 
 ## <a name="step-7-create-a-recovery-plan"></a>7단계: 복구 계획 만들기
-순서 tootest hello 배포에서 단일 가상 컴퓨터 또는 하나 이상의 가상 컴퓨터를 포함 하는 복구 계획에 대 한 테스트 장애 조치를 실행할 수 있습니다. [자세히 알아보세요](site-recovery-create-recovery-plans.md) .
+배포를 테스트하기 위해 단일 가상 컴퓨터에 대한 테스트 장애 조치(failover)를 실행하거나 하나 이상의 가상 컴퓨터를 포함한 복구 계획을 실행할 수 있습니다. [자세히 알아보세요](site-recovery-create-recovery-plans.md) .
 
-## <a name="step-8-test-hello-deployment"></a>8 단계: hello 배포를 테스트 합니다.
-테스트 장애 조치 tooAzure 두 가지 방법으로 toorun이 됩니다.
+## <a name="step-8-test-the-deployment"></a>8단계: 배포 테스트
+Azure로의 테스트 장애 조치(Failover)를 실행하는 두 가지 방법이 있습니다.
 
-* **테스트 Azure 네트워크 없이 장애 조치**—이 유형의 테스트 장애 조치 hello 가상 컴퓨터에에서 올바로 표시 Azure 확인 합니다. hello 가상 컴퓨터가 장애 조치 후 연결 된 tooany Azure 네트워크를 되지 않습니다.
-* **테스트 Azure 네트워크와 장애 조치**—이 유형의 장애 조치 검사를 전체 복제 환경이 hello 올바로 표시 하 고 hello 가상 컴퓨터를 통해 실패 한 toohello 지정 된 대상 Azure 네트워크를 연결 합니다. Note는 테스트 장애 조치에 대 한 hello 테스트 가상 컴퓨터의 서브넷을 hello 냅니다 hello 복제 가상 컴퓨터의 hello 서브넷에 기반 합니다. 이 복제 가상 컴퓨터의 서브넷을 hello 기반 hello 원본 가상 컴퓨터의 hello 서브넷으로 다른 tooregular 복제 합니다.
+* **Azure 네트워크를 사용하지 않는 테스트 장애 조치(Failover)**- 이 유형의 테스트 장애 조치는 Azure에서 가상 컴퓨터가 제대로 작동하는지 확인합니다. 장애 조치(Failover) 후에 가상 컴퓨터가 Azure 네트워크에 연결되지 않습니다.
+* **Azure 네트워크를 사용하는 테스트 장애 조치(Failover)**- 이 유형의 테스트 장애 조치는 전체 복제 환경이 예상대로 작동하고 장애 조치된 가상 컴퓨터가 지정한 대상 Azure 네트워크에 연결되는지 확인합니다. 테스트 장애 조치(Failover)의 경우 테스트 가상 컴퓨터의 서브넷이 복제본 가상 컴퓨터의 서브넷에 따라 확인됩니다. 이는 복제본 가상 컴퓨터의 서브넷이 원본 가상 컴퓨터의 서브넷을 기반으로 하는 일반 복제의 경우와 다릅니다.
 
-Azure 네트워크를 지정 하지 않고 toorun 테스트 장애 조치 하려는 경우에 아무 것도 tooprepare 필요 하지 않습니다.
+Azure 네트워크를 지정하지 않고 테스트 장애 조치(Failover)를 실행하려는 경우 아무 것도 준비할 필요가 없습니다.
 
-테스트 장애 조치 대상 (기본 동작 Azure에서 새 네트워크를 만들 때) Azure 프로덕션 네트워크에서 toocreate 분리 된 새 Azure 네트워크를 사용 해야 하는 Azure 네트워크와 toorun 합니다. 자세한 내용은 [테스트 장애 조치(Failover) 실행](site-recovery-failover.md)을 살펴보세요.
+Azure 대상 네트워크를 사용하여 테스트 장애 조치(Failover)를 실행하려면 Azure 프로덕션 네트워크에서 격리된 새 Azure 네트워크를 만듭니다.(Azure에서 새 네트워크를 만들 때의 기본 동작) 자세한 내용은 [테스트 장애 조치(Failover) 실행](site-recovery-failover.md)을 살펴보세요.
 
-toofully 때문에 예상 대로 해당 hello 복제 가상 컴퓨터 toowork hello 인프라를 tooset 해야 복제 및 네트워크 배포를 테스트 합니다. 한 가지 방법으로 dns를 도메인 컨트롤러로 가상 컴퓨터를이 tootooset를 수행 하 고 사이트 복구 toocreate hello 테스트에서 테스트 장애 조치를 실행 하 여 네트워크를 사용 하 여 tooAzure 복제 합니다.  [여기](site-recovery-active-directory.md#test-failover-considerations) 를 참조하세요.
+복제 및 네트워크 배포를 완벽하게 테스트하려면 복제된 가상 컴퓨터가 예상대로 작동하도록 인프라를 설정해야 합니다. 이렇게 하는 한 가지 방법은 DNS를 사용하여 가상 컴퓨터를 도메인 컨트롤러로 설정하고 사이트 복구를 사용하여 이를 Azure에 복제하고 테스트 장애 조치(Failover)를 실행하여 테스트 네트워크에 만드는 것입니다.  [여기](site-recovery-active-directory.md#test-failover-considerations) 를 참조하세요.
 
-다음과 같이 hello 테스트 장애 조치를 실행 합니다.
+다음과 같이 테스트 장애 조치(Failover)를 실행합니다.
 
 > [!NOTE]
-> 장애 조치 tooAzure 작업을 수행할 때 hello에 tooget 최상의 성능을 제공 hello 보호 된 컴퓨터에서 hello Azure 에이전트를 설치 했는지 확인 합니다. 더 빨리 부팅하고 문제가 발생한 경우 진단에도 도움이 됩니다. Linux 에이전트는 [여기](https://github.com/Azure/WALinuxAgent)에서 찾을 수 있습니다. Windows 에이전트는 [여기](http://go.microsoft.com/fwlink/?LinkID=394789)에서 찾을 수 있습니다.
+> Azure에 장애 조치를 수행할 때 최상의 성능을 얻으려면 보호된 컴퓨터에 Azure 에이전트를 설치하도록 합니다. 더 빨리 부팅하고 문제가 발생한 경우 진단에도 도움이 됩니다. Linux 에이전트는 [여기](https://github.com/Azure/WALinuxAgent)에서 찾을 수 있습니다. Windows 에이전트는 [여기](http://go.microsoft.com/fwlink/?LinkID=394789)에서 찾을 수 있습니다.
 >
 >
 
-1. Hello에 **복구 계획** 탭을 클릭 하 고 hello 계획 선택 **테스트 장애 조치**합니다.
-2. Hello에 **확인 테스트 장애 조치** 페이지 선택 **None** 또는 특정 Azure 네트워크입니다.  선택 사항에 유의 **None** hello 테스트 장애 조치는 확인 hello 가상 컴퓨터 tooAzure 올바르게 복제 하지만 복제 네트워크 구성은 확인 하지 않습니다.
+1. **복구 계획** 탭에서 계획을 선택하고 **테스트 장애 조치**를 클릭합니다.
+2. **테스트 장애 조치 확인** 페이지에서 **없음** 또는 특정 Azure 네트워크를 선택합니다.  **없음** 을 선택하면 테스트 장애 조치에서 가상 컴퓨터가 Azure로 올바르게 복제되었는지 확인하지만 복제 네트워크 구성은 확인하지 않습니다.
 
-    ![테스트 장애 조치(Failover)](./media/site-recovery-hyper-v-site-to-azure-classic/test-nonetwork.png)
-3. Hello에 **작업** 탭 장애 조치 진행률을 추적할 수 있습니다. 또한 수 toosee hello Azure 포털에서에서 가상 컴퓨터 테스트 복제본 hello 있어야 합니다. 온-프레미스 네트워크에서 tooaccess 가상 컴퓨터를 설정 하는 경우 원격 데스크톱 연결 toohello 가상 컴퓨터를 시작할 수 있습니다.
-4. Hello 장애 조치 hello을에 도달 하면 **완벽 한 테스트** 단계, 클릭 **테스트 완료** toofinish hello 테스트 장애 조치를 합니다. 드릴 다운 toohello 수 있습니다 **작업** tooperform tootrack 장애 조치가 진행 상황 및 상태에 필요한 모든 작업을 탭 합니다.
-5. 장애 조치 후 수 toosee hello Azure 포털에서에서 가상 컴퓨터 테스트 복제본 hello 됩니다. 온-프레미스 네트워크에서 tooaccess 가상 컴퓨터를 설정 하는 경우 원격 데스크톱 연결 toohello 가상 컴퓨터를 시작할 수 있습니다.
+    ![테스트 장애 조치](./media/site-recovery-hyper-v-site-to-azure-classic/test-nonetwork.png)
+3. **작업** 탭에서 장애 조치 진행률을 추적할 수 있습니다. 또한 Azure 포털에서 가상 컴퓨터 테스트 복제본을 확인할 수 있어야 합니다. 온-프레미스 네트워크에서 가상 컴퓨터에 액세스할 수 있도록 설정한 경우 가상 컴퓨터에 대한 원격 데스크톱 연결을 시작할 수 있습니다.
+4. 장애 조치가 **테스트 완료** 단계에 도달하면 **테스트 완료**를 클릭하여 테스트 장애 조치를 완료합니다. **작업** 탭으로 드릴다운하여 장애 조치 진행률 및 상태를 추적하고 필요한 작업을 수행할 수 있습니다.
+5. 장애 조치(Failover) 후에는 Azure Portal에서 가상 컴퓨터 테스트 복제본을 확인할 수 있습니다. 온-프레미스 네트워크에서 가상 컴퓨터에 액세스할 수 있도록 설정한 경우 가상 컴퓨터에 대한 원격 데스크톱 연결을 시작할 수 있습니다.
 
-   1. Hello 가상 컴퓨터가 성공적으로 시작 되는지 확인 합니다.
-   2. Hello 장애 조치 후 원격 데스크톱을 사용 하 여 Azure에서 tooconnect toohello 가상 컴퓨터를 사용 하도록 하려는 경우는 hello 테스트 장애 조치를 실행 하기 전에 hello 가상 컴퓨터에서 원격 데스크톱 연결을 사용 합니다. Hello 가상 컴퓨터에서 RDP 끝점 tooadd를 해야 합니다. 활용할 수 있습니다는 [Azure 자동화 runbook](site-recovery-runbook-automation.md) toodo입니다.
-   3. 장애 조치 원격 데스크톱을 사용 하 여 Azure에서 공용 IP 주소 tooconnect toohello 가상 컴퓨터를 사용 하면 확인 한 후 공용 주소를 사용 하 여 tooa 가상 컴퓨터를 연결 하지 못하게 하는 모든 도메인 정책 필요는 없습니다.
-6. Hello 테스트가 완료 된 후 hello 다음을 수행 합니다.
+   1. 가상 컴퓨터가 성공적으로 시작되는지 확인합니다.
+   2. 장애 조치(Failover) 후에 원격 데스크탑을 사용하여 Azure의 가상 컴퓨터에 연결하려면 가상 컴퓨터에서 원격 데스크탑 연결을 사용하도록 설정하고 나서 테스트 장애 조치(Failover)를 실행합니다. 가상 컴퓨터에서 RDP 끝점을 추가해야 합니다. 이를 위해서 [Azure Automation Runbook](site-recovery-runbook-automation.md) 을 활용할 수 있습니다.
+   3. 장애 조치(Failover)는 원격 데스크톱을 사용하여 Azure에서 가상 컴퓨터에 연결하기 위해 공용 IP 주소를 사용하는 경우, 공용 주소를 사용하여 가상 컴퓨터에 연결하지 않는 도메인 정책이 없어야 합니다.
+6. 테스트가 완료되면 다음을 수행합니다.
 
-   * 클릭 **hello 테스트 장애 조치가 완료**합니다. Hello 정리 환경 tooautomatically 전원 끄기 테스트 하 고 hello 테스트 가상 컴퓨터를 삭제 합니다.
-   * 클릭 **메모** toorecord hello 테스트 장애 조치와 관련 된 내용을 기록한 후 저장 합니다.
-7. Hello 장애 조치 hello을에 도달 하면 **완벽 한 테스트** 단계 hello 확인을 다음과 같이 완료 합니다.
-   1. Hello Azure 포털에서에서 hello 복제 가상 컴퓨터를 봅니다. 가 성공적으로 시작 되는 hello 가상 컴퓨터를 확인 합니다.
-   2. 온-프레미스 네트워크에서 tooaccess 가상 컴퓨터를 설정 하는 경우 원격 데스크톱 연결 toohello 가상 컴퓨터를 시작할 수 있습니다.
-   3. 클릭 **완료 hello 테스트** toofinish 것입니다.
-   4. 클릭 **메모** toorecord hello 테스트 장애 조치와 관련 된 내용을 기록한 후 저장 합니다.
-   5. 클릭 **hello 테스트 장애 조치가 완료**합니다. Hello 정리 환경 tooautomatically 전원 끄기 테스트 하 고 hello 테스트 가상 컴퓨터를 삭제 합니다.
+   * **테스트 장애 조치(Failover)가 완료되었습니다**를 클릭합니다. 테스트 환경을 정리하여 자동으로 테스트 가상 컴퓨터의 전원을 끄고 컴퓨터를 삭제합니다.
+   * **참고** 를 클릭하여 테스트 장애 조치(Failover)와 연관된 항목을 기록한 후 저장합니다.
+7. 장애 조치(Failover)가 **테스트 완료** 단계에 도달하면 다음과 같이 검증을 마칩니다.
+   1. Azure 포털에서 복제본 가상 컴퓨터를 봅니다. 가상 컴퓨터가 성공적으로 시작되는지 확인합니다.
+   2. 온-프레미스 네트워크에서 가상 컴퓨터에 액세스할 수 있도록 설정한 경우 가상 컴퓨터에 대한 원격 데스크톱 연결을 시작할 수 있습니다.
+   3. **테스트 완료** 를 클릭하여 테스트를 마칩니다.
+   4. **참고** 를 클릭하여 테스트 장애 조치(Failover)와 연관된 항목을 기록한 후 저장합니다.
+   5. **테스트 장애 조치(Failover)가 완료되었습니다**를 클릭합니다. 테스트 환경을 정리하여 자동으로 테스트 가상 컴퓨터의 전원을 끄고 컴퓨터를 삭제합니다.
 
 ## <a name="next-steps"></a>다음 단계
 배포가 설정되고 실행된 후 장애 조치에 대해 [알아봅니다](site-recovery-failover.md) .

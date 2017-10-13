@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toouse hello Azure 슬레이브는 Hudson 연속 통합 플러그 인 | Microsoft Docs"
-description: "Toouse hello Azure 슬레이브는 Hudson 연속 통합 플러그 인 방법을 설명 합니다."
+title: "Hudson Continuous Integration과 함께 Azure 슬레이브 플러그인을 사용하는 방법 | Microsoft Docs"
+description: "Hudson Continuous Integration과 함께 Azure 슬레이브 플러그인을 사용하는 방법에 대해 설명합니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: rmcmurray
@@ -14,30 +14,30 @@ ms.devlang: java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: cd6e67ad71c208aa56746aa8b70ba507da20bee9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c11b59f8ea432075b147a391de4b7bd3331e639e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-hello-azure-slave-plug-in-with-hudson-continuous-integration"></a>어떻게 toouse hello Azure 슬레이브는 Hudson 연속 통합 플러그 인
-hello Azure 슬레이브 Hudson에 대 한 플러그 인 사용 하면 tooprovision 슬레이브 노드를 Azure 배포를 실행 하는 경우.
+# <a name="how-to-use-the-azure-slave-plug-in-with-hudson-continuous-integration"></a>Hudson Continuous Integration과 함께 Azure 슬레이브 플러그인을 사용하는 방법
+Hudson용 Azure 슬레이브 플러그인을 사용하면 분산된 빌드를 실행할 때 슬레이브 노드를 프로비전할 수 있습니다.
 
-## <a name="install-hello-azure-slave-plug-in"></a>Hello Azure 종속 플러그 인 설치
-1. Hello Hudson 대시보드, 클릭 **관리 Hudson**합니다.
-2. Hello에 **관리 Hudson** 페이지에서 클릭 **플러그 인 관리**합니다.
-3. Hello 클릭 **사용 가능** 탭 합니다.
-4. 클릭 **검색** 유형과 **Azure** toolimit hello 목록 toorelevant 플러그 인 합니다.
+## <a name="install-the-azure-slave-plug-in"></a>Azure 슬레이브 플러그인 설치
+1. Hudson 대시보드에서 **Manage Hudson**을 클릭합니다.
+2. **Manage Hudson** 페이지에서 **Manage Plugins**를 클릭합니다.
+3. **Available** 탭을 클릭합니다.
+4. **검색**을 클릭하고 **Azure**를 입력하여 목록에 관련 플러그인만 표시되도록 합니다.
    
-    사용 가능한 플러그 인의 hello 목록을 통해 tooscroll를 선택 하면 볼 수 있습니다 hello Azure 슬레이브 hello에서 플러그 인 **클러스터 관리 및 빌드 Distributed** hello에 대 한 섹션 **다른** 탭 합니다.
-5. 에 대 한 hello 확인란 선택 **Azure 종속 플러그 인**합니다.
+    사용 가능한 플러그인 목록을 스크롤할 경우 **기타** 탭의 **클러스터 관리 및 분산 빌드** 섹션에서 Azure 슬레이브 플러그인이 표시됩니다.
+5. **Azure Slave Plugin**에 대한 확인란을 선택합니다.
 6. **Install**을 클릭합니다.
 7. Hudson을 다시 시작합니다.
 
-이제 해당 hello 플러그 인 설치 된 hello 다음 단계는 Azure 구독 프로필 및 toocreate hello 슬레이브 노드에 대 한 hello VM 만들기에 사용 되는 템플릿 사용 하 여 플러그 인 tooconfigure hello 것입니다.
+이제 플러그인이 설치되었으므로 다음으로 Azure 구독 프로필로 플러그인을 구성하고 슬레이브 노드에 대한 VM을 만드는 데 사용할 템플릿을 만들어야 합니다.
 
-## <a name="configure-hello-azure-slave-plug-in-with-your-subscription-profile"></a>구독 프로필을 사용 하 여 hello Azure 종속 플러그 인 구성
-구독 프로필도 참조 tooas 게시 설정는 보안 자격 증명 및 개발 환경에서 Azure와 toowork 해야 하는 몇 가지 추가 정보를 포함 하는 XML 파일입니다. tooconfigure hello Azure 종속 플러그 인, 해야합니다.
+## <a name="configure-the-azure-slave-plug-in-with-your-subscription-profile"></a>구독 프로필로 Azure 슬레이브 플러그인 구성
+게시 설정으로도 참조되는 구독 프로필은 보안 자격 증명 및 개발 환경에서 Azure로 작업할 때 필요한 일부 추가 정보를 포함하는 XML 파일입니다. Azure 슬레이브 플러그인을 구성하려면 다음이 필요합니다.
 
 * 구독 ID
 * 구독에 대한 관리 인증서
@@ -63,56 +63,56 @@ hello Azure 슬레이브 Hudson에 대 한 플러그 인 사용 하면 tooprovis
 
     </PublishData>
 
-구독 프로필을 만든 후 이러한 단계 tooconfigure hello Azure 종속 플러그 인을 수행 합니다.
+구독 프로필이 있으면 다음 단계를 따라 Azure 슬레이브 플러그인을 구성합니다.
 
-1. Hello Hudson 대시보드, 클릭 **관리 Hudson**합니다.
+1. Hudson 대시보드에서 **Manage Hudson**을 클릭합니다.
 2. **Configure System**을 클릭합니다.
-3. Hello 페이지 toofind hello 아래로 스크롤하여 **클라우드** 섹션.
+3. 페이지를 아래로 스크롤해서 **Cloud** 섹션을 찾습니다.
 4. **Add new cloud > Microsoft Azure**를 클릭합니다.
    
     ![새 클라우드 추가][add new cloud]
    
-    구독 정보 tooenter 해야 하는 hello 필드가 표시 됩니다.
+    그러면 구독 세부 정보를 입력해야 하는 필드가 표시됩니다.
    
     ![프로필 구성][configure profile]
-5. 구독 프로필에서 hello 구독 id 및 관리 인증서를 복사한 hello 적절 한 필드에 붙여 넣습니다.
+5. 구독 프로필에서 구독 ID 및 관리 인증서를 복사하여 해당 필드에 붙여넣습니다.
    
-    Hello 구독 id 및 관리 인증서를 복사 하는 경우 **없는** hello 값을 포함 하는 hello 따옴표를 포함 합니다.
+    구독 ID 및 관리 인증서를 복사할 때 값을 묶고 있는 따옴표는 포함하지 **마세요** .
 6. **Verify configuration**을 클릭합니다.
-7. Hello 구성을 성공적으로 확인 하 고, 클릭 **저장**합니다.
+7. 구성이 성공적으로 확인되면 **Save**를 클릭합니다.
 
-## <a name="set-up-a-virtual-machine-template-for-hello-azure-slave-plug-in"></a>가상 컴퓨터 템플릿을 Azure 슬레이브 hello에 대 한 플러그 인 설정
-Hello 매개 변수를 정의 하는 가상 컴퓨터 템플릿은 플러그 인 hello Azure에 toocreate 종속 노드를 사용 합니다. 단계를 수행 하는 hello에서 Ubuntu VM에 대 한 템플릿을 만드는 것입니다.
+## <a name="set-up-a-virtual-machine-template-for-the-azure-slave-plug-in"></a>Azure 슬레이브 플러그인용 가상 컴퓨터 템플릿 설정
+가상 컴퓨터 템플릿은 플러그인이 Azure에 슬레이브 노드를 만들 때 사용할 매개 변수를 정의합니다. 다음 단계에서는 Ubuntu VM용 템플릿을 만들 것입니다.
 
-1. Hello Hudson 대시보드, 클릭 **관리 Hudson**합니다.
+1. Hudson 대시보드에서 **Manage Hudson**을 클릭합니다.
 2. **Configure System**을 클릭합니다.
-3. Hello 페이지 toofind hello 아래로 스크롤하여 **클라우드** 섹션.
-4. Hello 내 **클라우드** 섹션에서 찾을 **Azure 가상 컴퓨터 템플릿을 추가** hello 클릭 **추가** 단추입니다.
+3. 페이지를 아래로 스크롤해서 **Cloud** 섹션을 찾습니다.
+4. **Cloud** 섹션 내에서 **Add Azure Virtual Machine Template**를 찾은 후 **Add** 단추를 클릭합니다.
    
     ![VM 템플릿 추가][add vm template]
-5. Hello에 클라우드 서비스 이름을 지정 **이름** 필드입니다. Tooan 기존 클라우드 서비스를 참조 하는 hello 이름을 지정 하는 경우 해당 서비스에 VM hello는 프로 비전 됩니다. 그렇지 않은 경우 Azure는 새로운 서비스를 만듭니다.
-6. Hello에 **설명** 필드에, 만들고 있는 hello 템플릿을 설명 하는 텍스트를 입력 합니다. 이 정보는 설명 목적이며 VM 프로비저닝에는 사용되지 않습니다.
-7. Hello에 **레이블을** 필드에, 입력 **linux**합니다. 이 레이블은 사용 되는 tooidentify hello 템플릿을 만들면 이며 Hudson 작업을 만들 때 사용 되는 이후에 tooreference hello 서식 파일입니다.
-8. Hello VM 만들어지는 지역을 선택 합니다.
-9. Hello 적절 한 VM 크기를 선택 합니다.
-10. 저장소 계정을 hello VM을 만들 위치를 지정 합니다. Hello을 반드시 사용 하고자 하는 hello 클라우드 서비스와 동일한 지역입니다. 새 저장소 toobe 생성 하려는 경우이 필드를 비워 둘 수 있습니다.
-11. 보존 시간 (분) Hudson 유휴 슬레이브를 삭제 하기 전에 hello 번호를 지정 합니다. Hello 기본값 60이 그대로 둡니다.
-12. **사용**, 선택이 슬레이브 노드 사용 될 때 적절 한 조건 hello 합니다. 지금은 **Utilize this node as much as possible**을 선택합니다.
+5. **Name** 필드에서 클라우드 서비스 이름을 지정합니다. 지정한 이름이 기존 클라우드 서비스를 참조하는 경우, VM은 해당 서비스를 프로비전합니다. 그렇지 않은 경우 Azure는 새로운 서비스를 만듭니다.
+6. **Description** 필드에 만드는 템플릿을 설명하는 텍스트를 입력합니다. 이 정보는 설명 목적이며 VM 프로비저닝에는 사용되지 않습니다.
+7. **Labels** 필드에 **linux**를 입력합니다. 이 레이블은 만드는 템플릿을 식별하는 데 사용되며, 추후 Hudson 작업을 만들 때 참조에 사용됩니다.
+8. VM을 만들 하위 지역을 선택합니다.
+9. 적절한 VM 크기를 선택합니다.
+10. VM을 만들 저장소 계정을 지정합니다. 사용할 클라우드 서비스와 동일한 하위 지역에 있는지 확인하십시오. 이후 만들어질 새 저장소를 사용하려는 경우 이 필드는 비워두어도 됩니다.
+11. 보존 시간은 Hudson이 유휴 슬레이브를 삭제하기까지의 시간을 분 단위로 지정합니다. 기본값인 60으로 둡니다.
+12. **Usage**에서 슬레이브 노드가 사용되는 경우에 적절한 조건을 선택합니다. 지금은 **Utilize this node as much as possible**을 선택합니다.
     
-     이 시점에서 폼와 어느 정도 비슷한 toothis 형태가 됩니다.
+     이때 다음과 유사한 형식으로 표시되게 됩니다.
     
      ![템플릿 구성][template config]
-13. **이미지 제품군 또는 Id** toospecify 있는 어떤 시스템 이미지를 VM에 설치 됩니다. 이미지 제품군 목록에서 선택하거나 사용자 지정 이미지를 지정할 수 있습니다.
+13. **Image Family or Id** 에서 VM에 설치할 시스템 이미지를 지정해야 합니다. 이미지 제품군 목록에서 선택하거나 사용자 지정 이미지를 지정할 수 있습니다.
     
-     Tooselect 이미지 제품군의 목록에서 hello 이름의 첫 문자 (대/소문자 구분) hello 이미지 패밀리를 입력 합니다. 예를 들어 **U** 를 입력하면 Ubuntu Server 제품군 목록이 표시됩니다. Hello 목록에서 선택 되 면 VM을 프로 비전 할 때 Jenkins hello 해당 시스템 이미지 해당 제품군에서의 최신 버전을 사용 합니다.
+     이미지 제품군 목록에서 선택하려는 경우, 이미지 제품군 이름의 첫 글자(대/소문자 구분)를 입력합니다. 예를 들어 **U** 를 입력하면 Ubuntu Server 제품군 목록이 표시됩니다. 목록에서 선택하면 VM을 프로비저닝할 때 Jenkins가 해당 제품군에서 시스템 이미지의 최신 버전을 사용하게 됩니다.
     
      ![OS 제품군 목록][OS family list]
     
-     대신 toouse 원하는 사용자 지정 이미지를 사용 하도록 설정한 경우 해당 사용자 지정 이미지 hello 이름을 입력 합니다. 사용자 지정 이미지 이름이 표시 되지 않습니다는 목록에 없으므로 이름 hello tooensure을 올바르게 입력.    
+     이미지 제품군 목록에서 선택하는 대신 사용하고자 하는 사용자 지정 이미지가 있는 경우, 해당 사용자 지정 이미지의 이름을 입력합니다. 사용자 지정 이미지 이름은 목록에 표시되지 않으므로 이름을 올바르게 입력했는지 확인해야 합니다.    
     
-     이 자습서에 대 한 입력 **U** Ubuntu 이미지 및 선택 목록을 toobring **Ubuntu Server 14.04 LTS**합니다.
+     이 자습서에서는 **U**를 입력하여 Ubuntu 이미지 목록을 표시하고 **Ubuntu Server 14.04 LTS**를 선택합니다.
 14. **Launch method**에 대해서는 **SSH**를 선택합니다.
-15. Hello에서 아래 hello 스크립트를 복사 및 붙여넣기 **Init 스크립트** 필드입니다.
+15. 다음 스크립트를 복사하여 **Init script** 필드에 붙여넣습니다.
     
          # Install Java
     
@@ -136,22 +136,22 @@ Hello 매개 변수를 정의 하는 가상 컴퓨터 템플릿은 플러그 인
     
          sudo apt-get install -y ant
     
-     hello **Init 스크립트** hello VM이 생성 후에 실행 됩니다. 이 예제에서는 hello 스크립트 Java, git, 및 ant를 설치합니다.
-16. Hello에 **Username** 및 **암호** 필드를 VM에 만들어지는 hello 관리자 계정에 대 한 기본 설정된 값을 입력 합니다.
-17. 클릭 **확인 템플릿** toocheck 지정한 hello 매개 변수는 유효 하는 경우.
+     **Init script** 는 VM이 만들어진 다음에 실행됩니다. 이 예에서는 이 스크립트가 Java, git 및 ant를 설치합니다.
+16. **Username** 및 **Password** 필드에는 VM에 만들어질 관리자 계정에 대한 기본 설정 값을 입력합니다.
+17. **Verify Template** 을 클릭하여 지정한 매개 변수가 유효한지 확인합니다.
 18. **Save**를 클릭합니다.
 
 ## <a name="create-a-hudson-job-that-runs-on-a-slave-node-on-azure"></a>Azure의 슬레이브 노드에서 실행되는 Hudson 작업 만들기
 이 섹션에서는 Azure의 슬레이브 노드에서 실행할 Hudson 작업을 만듭니다.
 
-1. Hello Hudson 대시보드, 클릭 **새 작업**합니다.
-2. 만들려는 hello 작업에 대 한 이름을 입력 합니다.
-3. Hello 작업 유형에 대 한 선택 **빌드 자유 스타일 소프트웨어 작업**합니다.
+1. Hudson 대시보드에서 **New Job**을 클릭합니다.
+2. 만들 작업에 대한 이름을 입력합니다.
+3. 작업 유형에 대해서는 **Build a free-style software job**을 선택합니다.
 4. **확인**을 클릭합니다.
-5. Hello 작업 구성 페이지에서 선택 **이 프로젝트를 실행할 수 있는 제한**합니다.
-6. 선택 **노드 및 레이블 메뉴** 선택 **linux** (지정이 레이블은 hello 이전 단원의 hello 가상 컴퓨터 템플릿을 만들 때).
-7. Hello에 **빌드** 섹션에서 클릭 **추가 빌드 단계** 선택 **셸 실행**합니다.
-8. 다음 스크립트, 대체 hello 편집 **{github 계정 이름은}**, **{project name}**, 및 **{프로젝트 디렉터리}** 와 적절 한 값을 복사한 hello 표시 되는 hello 텍스트 영역에는 스크립트를 편집 합니다.
+5. 작업 구성 페이지에서 **Restrict where this project can be run**을 선택합니다.
+6. **Node and label menu**를 선택하고 **linux**를 선택합니다(이전 섹션에서 가상 컴퓨터 템플릿을 만들 때 이 레이블을 지정했습니다).
+7. **빌드** 섹션에서 **빌드 단계 추가**를 클릭하고 **셸 실행**을 선택합니다.
+8. 다음 스크립트를 편집하여 **{github 계정 이름}**, **{프로젝트 이름}** 및 **{프로젝트 디렉터리}**를 적절한 값으로 대체하고, 편집한 스크립트를 표시되는 텍스트 영역에 붙여넣습니다.
    
         # Clone from git repo
    
@@ -169,7 +169,7 @@ Hello 매개 변수를 정의 하는 가상 컴퓨터 템플릿은 플러그 인
    
         fi
    
-        # change directory tooproject
+        # change directory to project
    
         cd $currentDir/{your project directory}
    
@@ -177,12 +177,12 @@ Hello 매개 변수를 정의 하는 가상 컴퓨터 템플릿은 플러그 인
    
         ant
 9. **Save**를 클릭합니다.
-10. 에 Hudson 대시보드 hello, 방금 만든 hello 작업을 찾 및 hello 클릭 **빌드를 예약** 아이콘입니다.
+10. Hudson 대시보드에서 방금 만든 작업을 찾아서 **Schedule a build** 아이콘을 클릭합니다.
 
-Hudson은 hello 이전 섹션에서 만든 hello 템플릿을 사용 하 여 종속 노드 만들기 및이 작업에 대 한 hello 빌드 단계에서 지정한 hello 스크립트 실행 됩니다.
+그러면 Hudson은 이전 섹션에서 만든 템플릿을 사용하여 슬레이브 노드를 만들고 이 작업에 대한 빌드 단계에서 지정한 스크립트를 실행합니다.
 
 ## <a name="next-steps"></a>다음 단계
-Java와 함께 Azure 사용에 대 한 자세한 내용은 참조 hello [Azure Java 개발자 센터]합니다.
+Java와 함께 Azure를 사용하는 방법에 대한 자세한 내용은 [Azure Java 개발자 센터]를 참조하세요.
 
 <!-- URL List -->
 

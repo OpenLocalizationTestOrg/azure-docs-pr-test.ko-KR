@@ -1,6 +1,6 @@
 ---
-title: "aaaEncode Azure 논리 앱에 있는 플랫 파일 디코딩 또는 | Microsoft Docs"
-description: "파일 파일 인코더 또는 디코더가 논리 앱에 엔터프라이즈 통합 팩 hello에 toouse hello 하는 방법"
+title: "Azure Logic Apps에서 플랫 파일 인코딩 또는 디코딩 | Microsoft Docs"
+description: "Logic Apps에서 엔터프라이즈 통합 팩에 포함된 플랫 파일 인코더 또는 디코더를 사용하는 방법"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -14,74 +14,74 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2016
 ms.author: LADocs; mandia
-ms.openlocfilehash: 2c295586625fd84366ec7cbafdcebf0489ba234d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bc3430624844cdeb92958433fba295f67a8ae0ff
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="overview-of-enterprise-integration-with-flat-files"></a>플랫 파일을 사용한 엔터프라이즈 통합 개요
 
-기업 (B2B) 시나리오에서 tooa 비즈니스 파트너를 보내기 전에 XML tooencode를 콘텐츠 할 수 있습니다. 논리 앱에서는이 커넥터 toodo 인코딩 hello 플랫 파일을 사용할 수 있습니다. hello 만드는 논리 앱 콘텐츠를 볼 수는 XML에서 다양 한 소스를 포함 하 여 HTTP 요청 트리거, 다른 응용 프로그램 또는 hello 중 하나 에서도 많은 [커넥터](../connectors/apis-list.md)합니다. 논리 앱에 대 한 자세한 내용은 참조 hello [논리 앱 설명서](logic-apps-what-are-logic-apps.md "논리 앱에 대 한 자세한")합니다.  
+B2B(Business-to-Business) 시나리오에서 비즈니스 파트너에게 보내기 전에 XML 콘텐츠를 인코딩하려 할 수 있습니다. 논리 앱에서 플랫 파일 인코딩 커넥터를 사용하여 이 작업을 수행할 수 있습니다. 만든 논리 앱은 HTTP 요청 트리거를 포함하여 다른 응용 프로그램 또는 다양한 [커넥터](../connectors/apis-list.md)에서도 다양한 원본의 XML 콘텐츠를 가져올 수 있습니다. 논리 앱에 대한 자세한 내용은 [논리 앱 설명서](logic-apps-what-are-logic-apps.md "논리 앱에 대해 자세히 알아보기")에서도 다양한 원본의 XML 콘텐츠를 가져올 수 있습니다.  
 
-## <a name="create-hello-flat-file-encoding-connector"></a>Hello 플랫 파일 인코딩 커넥터 만들기
-이러한 단계 tooadd를 플랫 파일 인코딩 커넥터 tooyour 논리 앱을 따릅니다.
+## <a name="create-the-flat-file-encoding-connector"></a>플랫 파일 인코딩 커넥터 만들기
+다음 단계를 수행하여 플랫 파일 인코딩 커넥터를 논리 앱을 추가합니다.
 
-1. 논리 앱 만들기 및 [tooyour 통합 계정 연결](logic-apps-enterprise-integration-accounts.md "toolink 통합 계정 tooa 논리 앱에 알아봅니다")합니다. 이 계정은 tooencode hello XML 데이터를 사용 하 여 hello 스키마를 포함 합니다.  
-2. 추가 **요청-때 HTTP 요청을 받으면** 트리거 tooyour 논리 앱.  
-   ![트리거 tooselect의 스크린샷](./media/logic-apps-enterprise-integration-b2b/flatfile-1.png)    
-3. 작업을 다음과 같이 인코딩 hello 플랫 파일을 추가 합니다.
+1. 논리 앱을 만들고 [통합 계정에 연결](logic-apps-enterprise-integration-accounts.md "논리 앱에 통합 계정을 연결하는 방법 알아보기")에서도 다양한 원본의 XML 콘텐츠를 가져올 수 있습니다. 이 계정은 XML 데이터를 인코딩하는 데 사용할 스키마를 포함합니다.  
+2. **요청 - HTTP 요청을 받은 경우** 트리거를 논리 앱에 추가합니다.  
+   ![선택할 트리거의 스크린샷](./media/logic-apps-enterprise-integration-b2b/flatfile-1.png)    
+3. 다음을 수행하여 플랫 파일 인코딩 작업을 추가합니다.
    
-    a. 선택 hello **플러스** 기호입니다.
+    a. **더하기** 기호를 선택합니다.
    
-    b. 선택 hello **동작 추가** 링크 (hello 더하기 기호를 선택한 후 표시 됨).
+    b. 더하기 기호를 선택한 후에 표시되는 **작업 추가** 링크를 선택합니다.
    
-    c. Hello 검색 상자에 입력 *플랫* toofilter toouse 되도록 하나 작업 toohello hello 모든 합니다.
+    c. 검색 상자에 *플랫* 을 입력하여 사용하려는 작업에 대해 모든 작업을 필터링합니다.
    
-    d. 선택 hello **플랫 파일 인코딩** hello 목록에서 옵션입니다.   
+    d. 목록에서 **플랫 파일 인코딩** 옵션을 선택합니다.   
    ![플랫 파일 인코딩 옵션의 스크린샷](media/logic-apps-enterprise-integration-flatfile/flatfile-2.png)   
-4. Hello에 **플랫 파일 인코딩** 대화 상자, 선택 hello **콘텐츠** 입력란.  
+4. **플랫 파일 인코딩** 대화 상자에서 **콘텐츠** 텍스트 상자를 선택합니다.  
    ![텍스트 상자 콘텐츠의 스크린샷](media/logic-apps-enterprise-integration-flatfile/flatfile-3.png)  
-5. Hello tooencode 원하는 내용으로 hello body 태그를 선택 합니다. hello body 태그는 hello 콘텐츠 필드를 채웁니다.     
+5. 본문 태그를 인코딩하려는 콘텐츠로 선택합니다. 본문 태그는 콘텐츠 필드를 채웁니다.     
    ![본문 태그의 스크린샷](media/logic-apps-enterprise-integration-flatfile/flatfile-4.png)  
-6. 선택 hello **스키마 이름** 목록 상자 및 toouse tooencode hello hello 스키마 입력 콘텐츠를 선택 합니다.    
+6. **스키마 이름** 목록 상자를 선택하고 입력 콘텐츠를 인코딩하는 데 사용할 스키마를 선택합니다.    
    ![스키마 이름 목록 상자의 스크린샷](media/logic-apps-enterprise-integration-flatfile/flatfile-5.png)  
 7. 작업을 저장합니다.   
    ![저장 아이콘의 스크린샷](media/logic-apps-enterprise-integration-flatfile/flatfile-6.png)  
 
-이 시점에서 플랫 파일 인코딩 커넥터의 설정이 완료됩니다. 실제 응용 프로그램에서 Salesforce와 같은 기간 업무 응용 프로그램에서는 hello로 인코딩된 데이터 toostore 수도 있습니다. 또는 해당 인코딩된 데이터 tooa 거래 업체를 보낼 수 있습니다. 쉽게 제공 하는 다른 커넥터 hello hello 중 하나를 사용 하 여 인코딩 작업 tooSalesforce 또는 tooyour 거래 업체의 작업 toosend hello 결과 추가할 수 있습니다.
+이 시점에서 플랫 파일 인코딩 커넥터의 설정이 완료됩니다. 실제 응용 프로그램에서는 SalesForce와 같은 LOB(line-of-business) 응용 프로그램에 인코딩한 데이터를 저장할 수 있습니다. 또는 인코딩된 데이터를 거래 업체에 보낼 수 있습니다. 제공된 다른 커넥터 중 하나를 사용하여 Salesforce 또는 거래 파트너에게 인코딩 작업의 출력을 보내는 동작을 쉽게 추가할 수 있습니다.
 
-이제 요청 toohello HTTP 끝점을 만들고이 hello hello 요청 본문에 hello XML 콘텐츠를 포함 하 여 커넥터를 테스트할 수 있습니다.  
+이제 HTTP 끝점에 요청하고 요청 본문에 XML 콘텐츠를 포함하여 커넥터를 테스트할 수 있습니다.  
 
-## <a name="create-hello-flat-file-decoding-connector"></a>Hello 플랫 파일 디코딩 커넥터 만들기
+## <a name="create-the-flat-file-decoding-connector"></a>플랫 파일 디코딩 커넥터 만들기
 
 > [!NOTE]
-> 이 단계는 toocomplete, toohave 스키마 파일을 이미 통합 계정에 업로드 해야 합니다.
+> 이러한 단계를 완료하려면 통합 계정에 이미 업로드된 스키마 파일이 있어야 합니다.
 
-1. 추가 **요청-때 HTTP 요청을 받으면** 트리거 tooyour 논리 앱.  
-   ![트리거 tooselect의 스크린샷](./media/logic-apps-enterprise-integration-b2b/flatfile-1.png)    
-2. 다음과 같이 작업을 디코딩 hello 플랫 파일을 추가 합니다.
+1. **요청 - HTTP 요청을 받은 경우** 트리거를 논리 앱에 추가합니다.  
+   ![선택할 트리거의 스크린샷](./media/logic-apps-enterprise-integration-b2b/flatfile-1.png)    
+2. 다음을 수행하여 플랫 파일 디코딩 작업을 추가합니다.
    
-    a. 선택 hello **플러스** 기호입니다.
+    a. **더하기** 기호를 선택합니다.
    
-    b. 선택 hello **동작 추가** 링크 (hello 더하기 기호를 선택한 후 표시 됨).
+    b. 더하기 기호를 선택한 후에 표시되는 **작업 추가** 링크를 선택합니다.
    
-    c. Hello 검색 상자에 입력 *플랫* toofilter toouse 되도록 하나 작업 toohello hello 모든 합니다.
+    c. 검색 상자에 *플랫* 을 입력하여 사용하려는 작업에 대해 모든 작업을 필터링합니다.
    
-    d. 선택 hello **플랫 파일 디코딩** hello 목록에서 옵션입니다.   
+    d. 목록에서 **플랫 파일 디코딩** 옵션을 선택합니다.   
    ![플랫 파일 디코딩 옵션의 스크린샷](media/logic-apps-enterprise-integration-flatfile/flatfile-2.png)   
-3. 선택 hello **콘텐츠** 제어 합니다. Hello 콘텐츠의 콘텐츠 toodecode hello로 사용할 수 있는 이전 단계에서 목록이 생성 됩니다. 해당 hello 확인 *본문* hello에서 들어오는 HTTP 요청은 사용할 수 있는 toobe 콘텐츠 toodecode hello로 사용 합니다. Hello 콘텐츠 toodecode hello에 직접 입력할 수도 있습니다 **콘텐츠** 제어 합니다.     
-4. 선택 hello *본문* 태그입니다. 이제 알림 hello body 태그는 hello에 **콘텐츠** 제어 합니다.
-5. Toouse toodecode hello 콘텐츠 hello 스키마의 hello 이름을 선택 합니다. hello 다음 스크린샷에서 *OrderFile* hello 선택한 스키마 이름입니다. 이 스키마 이름은 hello 통합 계정에 이전에 업로드 했습니다.
+3. **콘텐츠** 제어를 선택합니다. 그러면 이전 단계에서 콘텐츠로 디코딩하는 데 사용할 수 있는 콘텐츠의 목록이 생성됩니다. 들어오는 HTTP 요청의 *본문* 을 콘텐츠로 디코딩하는 데 사용할 수 있습니다. **콘텐츠** 제어에 직접 디코딩할 콘텐츠를 입력할 수도 있습니다.     
+4. *본문* 태그를 선택합니다. 이제 본문 태그는 **콘텐츠** 제어에 위치합니다.
+5. 콘텐츠를 디코딩하는 데 사용할 스키마의 이름을 선택합니다. 다음 스크린샷에서는 *OrderFile* 이 선택한 스키마 이름임을 보여 줍니다. 이전에 이 스키마 이름을 통합 계정에 업로드했습니다.
    
    ![플랫 파일 디코딩 대화 상자의 스크린샷](media/logic-apps-enterprise-integration-flatfile/flatfile-decode-1.png)    
 6. 작업을 저장합니다.  
    ![저장 아이콘의 스크린샷](media/logic-apps-enterprise-integration-flatfile/flatfile-6.png)    
 
-이 시점에서 플랫 파일 디코딩 커넥터의 설정이 완료됩니다. 실제 응용 프로그램에서 Salesforce와 같은 기간 업무 응용 프로그램에서 toostore hello 디코딩할 데이터 수도 있습니다. hello 동작 tooSalesforce 디코딩 작업 toosend hello 결과 쉽게 추가할 수 있습니다.
+이 시점에서 플랫 파일 디코딩 커넥터의 설정이 완료됩니다. 실제 응용 프로그램에서는 SalesForce와 같은 LOB(line-of-business) 응용 프로그램에 디코딩한 데이터를 저장할 수 있습니다. Salesforce에 디코딩 작업의 출력을 보내는 작업을 쉽게 추가할 수 있습니다.
 
-이제 요청 toohello HTTP 끝점을 하 여 커넥터를 테스트할 수 있습니다 및 hello XML 내용을 포함 하 여 hello hello 요청 본문에 toodecode 합니다.  
+이제 HTTP 끝점에 요청하고 요청 본문에 디코딩하려는 XML 콘텐츠를 포함하여 커넥터를 테스트할 수 있습니다.  
 
 ## <a name="next-steps"></a>다음 단계
-* [엔터프라이즈 통합 팩 hello에 대 한 자세한](logic-apps-enterprise-integration-overview.md "엔터프라이즈 통합 팩에 대 한 자세한 정보")합니다.  
+* [엔터프라이즈 통합 팩에 대해 자세히 알아보기](logic-apps-enterprise-integration-overview.md "엔터프라이즈 통합 팩에 대해 알아보기")  
 

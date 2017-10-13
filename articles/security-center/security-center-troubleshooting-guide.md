@@ -1,6 +1,6 @@
 ---
-title: "보안 센터의 문제 해결 가이드 aaaAzure | Microsoft Docs"
-description: "이 문서는 Azure 보안 센터의 tootroubleshoot 문제 수 있습니다."
+title: "Azure 보안 센터 문제 해결 가이드 | Microsoft Docs"
+description: "이 문서는 Azure 보안 센터의 문제를 해결하는 데 도움이 됩니다."
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -14,62 +14,62 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/11/2017
 ms.author: yurid
-ms.openlocfilehash: 78b3c49eb66fe3a4f80efbba3a47a87b039c07ac
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0e0a0ce5c0795cec0e47cd5f729099f4762381a2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-security-center-troubleshooting-guide"></a>Azure 보안 센터 문제 해결 가이드
-보안 센터 tootroubleshoot 관련 문제 (IT) 정보 기술 전문가, 정보 보안 분석가 및 해당 Azure 보안 센터를 사용 하는 조직과 필요한 클라우드 관리자에 대 한이 가이드는 합니다.
+이 가이드는 Azure Security Center를 사용 중인 정보 기술(IT) 전문가, 정보 보안 분석가 및 클라우드 관리자를 대상으로 하고 문제와 관련된 Security Center 문제를 해결해야 합니다.
 
 >[!NOTE] 
->보안 센터 초기 년 6 월 2017 년 부터는 hello Microsoft Monitoring Agent toocollect 및 저장소 데이터를 사용 합니다. 참조 [Azure 보안 센터 플랫폼 마이그레이션](security-center-platform-migration.md) toolearn 더 합니다. 이 문서의 정보 hello 전환 toohello Microsoft Monitoring Agent 후 보안 센터 기능을 나타냅니다.
+>2017년 6월 초부터 Security Center는 Microsoft Monitoring Agent를 사용하여 데이터를 수집 및 저장합니다. 자세한 내용은 [Azure Security Center 플랫폼 마이그레이션](security-center-platform-migration.md)을 참조하세요. 이 문서의 정보는 Microsoft Monitoring Agent로 전환된 후의 Security Center 기능을 나타냅니다.
 >
 
 ## <a name="troubleshooting-guide"></a>문제 해결 가이드
-이 가이드는 어떻게 tootroubleshoot 보안 센터 관련 문제를 설명 합니다. 대부분 hello 보안 센터에서 수행 문제 해결의 첫 번째 hello 확인 하 여 수행 됩니다 [감사 로그](https://azure.microsoft.com/updates/audit-logs-in-azure-preview-portal/) hello에 대 한 레코드 구성 요소 실패 했습니다. 감사 로그를 통해 다음 사항을 확인할 수 있습니다.
+이 가이드에서는 보안 센터 관련 문제를 해결하는 방법을 설명합니다. Security Center에서 수행되는 대부분의 문제 해결은 실패한 구성 요소에 대한 [감사 로그](https://azure.microsoft.com/updates/audit-logs-in-azure-preview-portal/) 기록을 먼저 확인하여 수행됩니다. 감사 로그를 통해 다음 사항을 확인할 수 있습니다.
 
 * 수행된 작업
-* Hello 작업을 시작한 사람
-* hello 작업이 발생 한 경우
-* hello 작업의 hello 상태
-* hello 작업을 조사 하는 데 도움이 되는 다른 속성의 hello 값
+* 작업을 시작한 사람
+* 작업이 발생한 시간
+* 작업의 상태
+* 작업을 조사하는 데 도움이 될 수 있는 기타 속성 값
 
-hello 감사 로그 읽기 작업 (GET)는 포함 되지 않습니다 되지만 프로그램 리소스에서 수행할 모든 쓰기 작업 (PUT, POST, DELETE)를 포함 합니다.
+감사 로그에는 리소스에서 수행된 모든 쓰기 작업(PUT, POST, DELETE)이 포함되지만 읽기 작업(GET)은 포함되지 않습니다.
 
 ## <a name="microsoft-monitoring-agent"></a>Microsoft Monitoring Agent
-보안 센터 hello Microsoft Monitoring Agent를 사용 하 여 –이 hello Operations Management Suite 및 Azure 가상 컴퓨터에서 보안 데이터 toocollect 로그 분석 서비스 – hello 동일한 에이전트를 사용 합니다. 데이터 수집을 활성화 한 후 hello 에이전트 hello 대상 컴퓨터에 제대로 설치 되어 실행 아래 hello 프로세스 여야 합니다.
+Security Center는 Azure 가상 컴퓨터에서 보안 데이터를 수집하는 데 Microsoft Monitoring Agent를 사용하며 이는 Operations Management Suite 및 Log Analytics 서비스에서 사용하는 동일한 에이전트입니다. 데이터 수집을 활성화하고 에이전트가 대상 컴퓨터에 제대로 설치된 후 아래 프로세스가 실행되어야 합니다.
 
 * HealthService.exe
 
-Hello 서비스 관리 콘솔 (services.msc)을 열면도 나타납니다 hello Microsoft Monitoring Agent 서비스가 실행 되 고 아래와 같이:
+서비스 관리 콘솔(services.msc)을 열 경우 다음과 같이 실행 중인 Microsoft Monitoring Agent 서비스가 나타납니다.
 
 ![Services](./media/security-center-troubleshooting-guide/security-center-troubleshooting-guide-fig5.png)
 
-toosee 있는 hello 에이전트의 버전을 엽니다 **작업 관리자**, hello에 **프로세스** 탭 찾을 hello **Microsoft Monitoring Agent Service**를 마우스 오른쪽 단추로 클릭 하 고 클릭 **속성**합니다. Hello에 **세부 정보** 탭을 아래와 같이 hello 파일 버전을 확인 합니다.
+설치된 에이전트의 버전을 확인하려면 **작업 관리자**를 열고 **프로세스** 탭에서 **Microsoft Monitoring Agent 서비스**를 찾고 마우스 오른쪽 단추로 클릭한 다음 **속성**을 클릭합니다. **세부 정보** 탭에서 아래와 같이 파일 버전을 확인합니다.
 
 ![파일](./media/security-center-troubleshooting-guide/security-center-troubleshooting-guide-fig6.png)
    
 
 ## <a name="microsoft-monitoring-agent-installation-scenarios"></a>Microsoft Monitoring Agent 설치 시나리오
-컴퓨터에 hello Microsoft Monitoring Agent를 설치 하는 경우 다른 결과 생성할 수 있는 두 가지 설치 시나리오가 있습니다. 지원 되는 hello 시나리오입니다.
+컴퓨터에 Microsoft Monitoring Agent를 설치하는 경우 다른 결과 생성할 수 있는 두 가지 설치 시나리오가 있습니다. 지원되는 시나리오는 다음과 같습니다.
 
-* **보안 센터에서 자동으로 설치 하는 에이전트**:이 시나리오에서 위치, 보안 센터 및 로그 검색에서 수 tooview hello 경고 수 있습니다. Hello 구독 hello 리소스가 속한에 대 한 hello 보안 정책에 구성 된 전자 메일 알림을 toohello 전자 메일 주소를 받습니다.
-에서도 확인할 수 있습니다.
-* **Azure에 있는 VM에 수동으로 설치 된 에이전트**: 사용 중인 경우이 시나리오에서는 에이전트 다운로드 하 여 수동으로 이전 tooFebruary 2017을 설치, hello에 필터링 하는 경우에 수 tooview hello 경고 hello 보안 센터 포털에서 됩니다 구독 hello 작업 영역에 속해 있습니다. 필터 hello 구독 hello 리소스에 속한 사례를 있습니다 하지 않습니다 수 toosee 경고 합니다. 에 속한 hello 구독 hello 작업 영역에 대 한 hello 보안 정책에 구성 된 전자 메일 알림을 toohello 전자 메일 주소를 받습니다.
+* **Security Center에서 자동으로 설치되는 에이전트**: 이 시나리오에서는 위치, Security Center 및 로그 검색에서 경고를 볼 수 있습니다. 리소스가 속한 구독의 보안 정책에 구성된 전자 메일 주소로 전자 메일 알림을 받게 됩니다.
+등 4가지 유형의 클러스터가 제공됩니다.
+* **Azure에 있는 VM에 수동으로 설치된 에이전트**: 이 시나리오에서 2017년 2월 이전에 수동으로 다운로드하고 설치한 에이전트를 사용하는 경우 작업 영역이 속한 구독에서 필터링할 때에만 Security Center 포털의 경고를 볼 수 있습니다. 리소스가 속한 구독에서 필터링하는 경우 경고를 볼 수 없습니다. 작업 영역이 속한 구독의 보안 정책에 구성된 전자 메일 주소로 전자 메일 알림을 받게 됩니다.
 
 >[!NOTE]
-> 둘째, tooavoid hello 동작 hello에 설명 된 hello hello 에이전트의 최신 버전 다운로드 있는지 확인 합니다.
+> 두 번째 시나리오에서 설명한 동작을 방지하려면 최신 버전의 에이전트를 다운로드해야 합니다.
 > 
 
 ## <a name="troubleshooting-monitoring-agent-network-requirements"></a>모니터링 에이전트 네트워크 요구 사항 문제 해결
-보안 센터와 tooconnect tooand 레지스터 에이전트에 대 한 hello 포트 번호 및 도메인 Url을 포함 하 여 toonetwork 리소스에 액세스 가져야 합니다.
+에이전트를 Security Center에 연결하고 등록한 경우 포트 번호 및 도메인 URL을 비롯한 네트워크 리소스에 대한 액세스 권한을 가져야 합니다.
 
-- 프록시 서버에 대 한 적절 한 프록시 서버를 에이전트 설정에 구성 된 리소스가 hello tooensure를 해야 합니다. 에 자세한 내용은이 문서를 읽기 [어떻게 toochange hello 프록시 설정](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-windows-agents#configure-proxy-settings)합니다.
-- 인터넷 액세스 toohello 제한 하는 방화벽, tooconfigure 사용자 방화벽 toopermit 액세스 tooOMS이 필요 합니다. 에이전트 설정에서 아무 작업도 필요하지 않습니다.
+- 프록시 서버의 경우 적절한 프록시 서버 리소스가 에이전트 설정에 구성되어 있는지 확인해야 합니다. [프록시 설정을 변경하는 방법](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-windows-agents#configure-proxy-settings)에 대한 자세한 내용은 이 문서를 참조하세요.
+- 인터넷에 대한 액세스를 제한하는 방화벽을 사용하여 경우 OMS에 대한 액세스를 허용하도록 방화벽을 구성해야 합니다. 에이전트 설정에서 아무 작업도 필요하지 않습니다.
 
-다음 표에서 hello 통신에 필요한 리소스를 보여 줍니다.
+다음 표에서는 통신에 필요한 리소스를 보여줍니다.
 
 | 에이전트 리소스 | 포트 | HTTPS 검사 무시 |
 |---|---|---|
@@ -78,40 +78,40 @@ toosee 있는 hello 에이전트의 버전을 엽니다 **작업 관리자**, he
 | *.blob.core.windows.net | 443 | 예 |
 | *.azure-automation.net | 443 | 예 |
 
-Hello 에이전트 온 보 딩 문제를 발생 하는 경우 확인 되었는지 tooread hello 문서 [tootroubleshoot Operations Management Suite 온 보 딩 문제 어떻게](https://support.microsoft.com/en-us/help/3126513/how-to-troubleshoot-operations-management-suite-onboarding-issues)합니다.
+에이전트와 온보딩 문제가 발생하는 경우 [Operations Management Suite 온보딩 문제를 해결하는 방법](https://support.microsoft.com/en-us/help/3126513/how-to-troubleshoot-operations-management-suite-onboarding-issues) 문서를 참조하도록 합니다.
 
 
 ## <a name="troubleshooting-endpoint-protection-not-working-properly"></a>제대로 작동하지 않는 끝점 보호 문제 해결
 
-hello 게스트 에이전트는 모든 항목의 부모 프로세스 hello hello [Microsoft 맬웨어 방지](../security/azure-security-antimalware.md) 확장 않습니다. Hello 게스트 에이전트 프로세스가 실패 하면 hello hello 게스트 에이전트의 자식 프로세스로 실행 되는 Microsoft 맬웨어 방지 실패할 수 있습니다.  과 같은 경우에는 권장된 tooverify hello 다음 옵션:
+게스트 에이전트는 [Microsoft 맬웨어 방지 프로그램](../security/azure-security-antimalware.md) 확장에서 수행하는 모든 작업의 부모 프로세스입니다. 게스트 에이전트 프로세스가 실패하면 게스트 에이전트의 자식 프로세스로 실행되는 Microsoft 맬웨어 방지 프로그램도 실패할 수 있습니다.  이와 같은 경우 다음 옵션을 확인하는 것이 좋습니다.
 
-- Hello 대상 VM 사용자 지정 이미지 고 hello 작성자의 hello VM 게스트 에이전트를 설치 하지 합니다.
-- Hello 대상 Windows VM의 다음 Linux VM의 hello 맬웨어 방지 확장의 hello Windows 버전을 설치 하는 대신 Linux VM이 실패 합니다. hello Linux 게스트 에이전트 요구 사항도 OS 버전 및 필요한 패키지 있으며 이러한 요구 사항을 충족 되지 않으면 hello VM 에이전트가 작동 하지 않습니다 발생 하거나 합니다. 
-- 경우 hello VM 게스트 에이전트의 이전 버전으로 만들어졌습니다. 에 있는 경우에 오래 된 일부 에이전트 수 하지 자동 업데이트 자체 toohello 최신 버전 하며 toothis 문제가 발생할 수 있어야 합니다. 사용자 고유의 이미지를 만드는 경우 항상 최신 버전의 게스트 에이전트 hello를 사용 합니다.
-- 일부 공급 업체 관리 소프트웨어는 hello 게스트 에이전트를 사용 하지 않도록 설정 하거나 액세스 toocertain 파일 위치를 차단할 수 있습니다. 제 3 자 VM에 설치 되어 있는 경우 hello 제외 목록에 해당 hello 에이전트 인지 확인 합니다.
-- 특정 방화벽 설정 또는 보안 그룹 NSG (네트워크) 게스트 에이전트에서 네트워크 트래픽을 tooand를 차단할 수 있습니다.
+- 대상 VM이 사용자 지정 이미지이고 VM 작성자가 게스트 에이전트를 설치하지 않은 경우.
+- 대상이 Windows VM이 아니라 Linux VM이면 Linux VM에 Windows 버전의 맬웨어 방지 확장을 설치하는 작업이 실패합니다. Linux 게스트 에이전트는 OS 버전 및 필수 패키지에 대한 요구 사항이 있으며, 이러한 요구 사항이 충족되지 않으면 VM 에이전트가 작동하지 않습니다. 
+- VM이 이전 버전의 게스트 에이전트를 사용하여 만들어진 경우. 이 경우 일부 오래된 에이전트는 자동으로 최신 버전으로 업데이트할 수 없으며 이로 인해 문제가 발생할 수 있습니다. 사용자 고유의 이미지를 만들 때에는 항상 최신 버전의 게스트 에이전트를 사용해야 합니다.
+- 일부 타사 관리 소프트웨어는 게스트 에이전트를 사용하지 않도록 설정하거나 특정 파일 위치에 대한 액세스를 차단할 수 있습니다. VM에 타사 에이전트가 설치되어 있으면 해당 에이전트가 제외 목록에 있는지 확인합니다.
+- 특정 방화벽 설정 또는 NSG(네트워크 보안 그룹)가 게스트 에이전트와 주고 받는 네트워크 트래픽을 차단할 수 있습니다.
 - 특정 ACL(액세스 제어 목록)에서 디스크 액세스를 차단할 수 있습니다.
-- 디스크 공간 부족 hello 게스트 에이전트는 제대로 작동을 차단할 수 있습니다. 
+- 디스크 공간이 부족하여 게스트 에이전트가 제대로 작동하지 못할 수 있습니다. 
 
-Microsoft 맬웨어 방지 사용자 인터페이스를 사용 하지 않도록 설정 하는 기본 hello,으로 읽기 [Azure 리소스 관리자 Vm 배포 후에 Microsoft 맬웨어 방지 프로그램 사용자 인터페이스를 사용 하도록 설정](https://blogs.msdn.microsoft.com/azuresecurity/2016/03/09/enabling-microsoft-antimalware-user-interface-post-deployment/) 방법에 대 한 자세한 내용은 tooenable 필요한 경우.
+Microsoft 맬웨어 방지 프로그램 사용자 인터페이스는 기본적으로 사용하지 않도록 설정되며, 사용하도록 설정하는 방법에 대한 자세한 내용은 [배포 후 Azure Resource Manager에서 Microsoft 맬웨어 방지 프로그램 사용자 인터페이스를 사용하도록 설정](https://blogs.msdn.microsoft.com/azuresecurity/2016/03/09/enabling-microsoft-antimalware-user-interface-post-deployment/)을 참조하세요.
 
-## <a name="troubleshooting-problems-loading-hello-dashboard"></a>Hello 대시보드를 로드 하는 문제 해결
+## <a name="troubleshooting-problems-loading-the-dashboard"></a>대시보드 로딩 문제 해결
 
-을 hello 보안 센터 대시보드를 로드 하는 문제가 발생 하는 경우 확인 hello 구독 tooSecurity 센터 (예: hello 첫 번째 사용자 hello 구독을 사용 하 여 보안 센터를 열 하나)을 등록 하는 해당 hello 사용자와 hello 사용자에 tooturn 려가 데이터 수집이 *소유자* 또는 *참가자* hello 가입 합니다. 에 있는 사용자도이 순간부터 *판독기* hello 구독 hello 대시보드/경고/권장 구성/정책 볼 수 있습니다.
+Security Center 대시보드를 로드하는 문제가 있는 경우 Security Center에 구독을 등록하는 사용자(즉, 구독을 사용하여 Security Center를 연 첫 번째 사용자)와 데이터 수집을 켜려는 사용자가 구독의 *소유자* 또는 *참여자*인지 확인합니다. 또한 사용자는 이때부터 구독에서 *리더*를 사용하여 dashboard/alerts/recommendation/policy를 볼 수 있습니다.
 
 ## <a name="contacting-microsoft-support"></a>Microsoft 지원에 문의
-이 문서에서 제공 하는 hello 지침을 사용 하 여 몇 가지 문제를 식별할 수 있습니다, 찾을 수 있습니다 다른 hello 보안 센터 공용의 설명 대로 [포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureSecurityCenter)합니다. 그러나 추가로 문제 해결이 필요한 경우 아래와 같이 **Azure Portal**을 사용하여 새로운 지원 요청을 열 수 있습니다. 
+이 문서에서 제공된 지침을 사용하여 몇 가지 문제를 식별할 수 있으며 그 외 문제는 보안 센터 공용 [포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureSecurityCenter)에 설명되어 있는 것을 찾을 수 있습니다. 그러나 추가로 문제 해결이 필요한 경우 아래와 같이 **Azure Portal**을 사용하여 새로운 지원 요청을 열 수 있습니다. 
 
 ![Microsoft 지원](./media/security-center-troubleshooting-guide/security-center-troubleshooting-guide-fig2.png)
 
 
 ## <a name="see-also"></a>참고 항목
-이 문서에서는 방법에 대해 배웠습니다 Azure 보안 센터에서 tooconfigure 보안 정책입니다. Azure 보안 센터에 대해 자세히 toolearn hello 다음을 참조 합니다.
+이 문서에서는 Azure Security Center에서 보안 정책을 구성하는 방법을 배웠습니다. Azure 보안 센터에 대한 자세한 내용은 다음을 참조하세요.
 
-* [Azure 보안 센터 계획 및 운영 가이드](security-center-planning-and-operations-guide.md) -학습 방법을 tooplan hello 디자인 고려 사항 tooadopt Azure 보안 센터를 이해 하 고 있습니다.
-* [Azure 보안 센터에서 보안 상태 모니터링](security-center-monitoring.md) -toomonitor Azure 리소스의 상태를 hello 하는 방법에 대해 알아봅니다
-* [Azure 보안 센터에서 경고를 관리 하 고 응답 toosecurity](security-center-managing-and-responding-alerts.md) -학습 방법을 toomanage 및 응답 toosecurity 경고
-* [Azure 보안 센터를 사용 하 여 파트너 솔루션 모니터링](security-center-partner-solutions.md) -toomonitor 파트너 솔루션의 상태를 hello 하는 방법에 대해 알아봅니다.
-* [Azure 보안 센터 FAQ](security-center-faq.md) -찾기 hello 서비스를 사용 하는 방법에 대 한 질문과 대답
+* [Azure 보안 센터의 계획 및 운영 가이드](security-center-planning-and-operations-guide.md) — 디자인 고려 사항을 계획하고 이해하여 Azure 보안 센터를 채택하는 방법을 알아봅니다.
+* [Azure 보안 센터에서 보안 상태 모니터링](security-center-monitoring.md) — Azure 리소스의 상태를 모니터링하는 방법을 알아봅니다.
+* [Azure 보안 센터에서 보안 경고 관리 및 대응](security-center-managing-and-responding-alerts.md) — 보안 경고를 관리하고 대응하는 방법을 알아봅니다.
+* [Azure 보안 센터를 사용하여 파트너 솔루션 모니터링](security-center-partner-solutions.md) — 파트너 솔루션의 상태를 모니터링하는 방법을 알아봅니다.
+* [Azure 보안 센터 FAQ](security-center-faq.md) — 서비스 사용에 관한 질문과 대답을 찾습니다.
 * [Azure 보안 블로그](http://blogs.msdn.com/b/azuresecurity/) — Azure 보안 및 규정 준수에 관한 블로그 게시물을 찾습니다.
 

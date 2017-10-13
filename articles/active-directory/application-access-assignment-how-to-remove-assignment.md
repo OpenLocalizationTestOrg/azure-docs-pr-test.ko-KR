@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooremove 사용자의 tooan 응용 프로그램에 액세스 | Microsoft Docs"
-description: "이해 어떻게 tooremove 사용자의 tooan 응용 프로그램에 액세스"
+title: "응용 프로그램에 대한 사용자 액세스를 제거하는 방법 | Microsoft Docs"
+description: "응용 프로그램에 대한 사용자 액세스를 제거하는 방법 이해"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,62 +13,62 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 17017bddb73aad5a0ef3a411ac91bf0423f0b600
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 497429e7bf62f7e1d67ea429d6b858725f843688
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooremove-a-users-access-tooan-application"></a>어떻게 tooremove 사용자의 tooan 응용 프로그램에 액세스
+# <a name="how-to-remove-a-users-access-to-an-application"></a>응용 프로그램에 대한 사용자 액세스를 제거하는 방법
 
-이 문서가 도움이 되었나요 toounderstand 어떻게 tooremove 사용자의 tooan 응용 프로그램에 액세스 합니다.
+이 문서는 응용 프로그램에 대한 사용자 액세스를 제거하는 방법을 이해하는 데 도움이 됩니다.
 
-## <a name="i-want-tooremove-a-specific-users-or-groups-assignment-tooan-application"></a>특정 사용자 또는 그룹의 할당 tooan 응용 프로그램 tooremove 원합니다
+## <a name="i-want-to-remove-a-specific-users-or-groups-assignment-to-an-application"></a>응용 프로그램에 대한 특정 사용자 또는 그룹의 할당을 제거하려는 경우
 
-hello에 나열 된 hello 단계를 수행 하는 사용자 또는 그룹 할당 tooan 응용, tooremove [에서 Azure Active Directory에서 엔터프라이즈 응용 프로그램에서 사용자 또는 그룹 할당을 제거할](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-remove-assignment-azure-portal) 문서.
+응용 프로그램에 대한 사용자 또는 그룹 할당을 제거하려면 [Azure Active Directory의 엔터프라이즈 앱에서 사용자 또는 그룹 할당 제거](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-remove-assignment-azure-portal) 문서에 나열된 단계를 따릅니다.
 
-. # # Toodisable 모든 사용자에 대 한 모든 액세스 tooan 응용 프로그램이 원하는
+모든 사용자에 대해 응용 프로그램에 대한 모든 액세스를 비활성화하려는 경우
 
-toodisable 모든 사용자 로그인 tooan 응용 프로그램 hello에 나열 된 hello 단계를 수행 [Azure Active Directory에서 엔터프라이즈 응용 프로그램에 대 한 사용자 로그인을 사용 하지 않도록 설정](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-disable-app-azure-portal) 문서.
+응용 프로그램에 대한 모든 사용자 로그인을 비활성화하려면 [Azure Active Directory의 엔터프라이즈 앱에 대한 사용자 로그인 비활성화](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-disable-app-azure-portal) 문서에 나열된 단계를 따릅니다.
 
-## <a name="i-want-toodelete-an-application-entirely"></a>응용 프로그램 toodelete를 완전히 낮음
+## <a name="i-want-to-delete-an-application-entirely"></a>응용 프로그램을 완전히 삭제하려는 경우
 
-너무**응용 프로그램을 삭제할**, 아래 hello 지침에 따라:
+**응용 프로그램을 삭제**하려면 아래 지침을 따릅니다.
 
-1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자** 또는 **공동 관리자**
+1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 또는 **공동 관리자** 권한으로 로그인합니다.
 
-2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
+2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
 
-3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
+3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
 
-4.  클릭 **엔터프라이즈 응용 프로그램** hello Azure Active Directory 왼쪽 탐색 메뉴에서 합니다.
+4.  Azure Active Directory 왼쪽 탐색 메뉴에서 **엔터프라이즈 응용 프로그램**을 클릭합니다.
 
-5.  클릭 **모든 응용 프로그램** tooview 모든 응용 프로그램의 목록입니다.
+5.  **모든 응용 프로그램**을 클릭하여 모든 응용 프로그램의 목록을 봅니다.
 
-   * 여기에 표시 하려는 hello 응용 프로그램을 표시 되지 않으면 hello를 사용 하 여 **필터** hello 위쪽 hello에 대 한 제어 **모든 응용 프로그램 목록** 및 집합 hello **표시** 옵션 **모든 응용 프로그램입니다.**
+   * 여기에 표시하려는 응용 프로그램이 표시되지 않으면 **모든 응용 프로그램 목록**의 맨 위에서 **필터** 컨트롤을 사용하고 **표시** 옵션을 **모든 응용 프로그램**으로 설정합니다.
 
-6.  원하는 toodelete hello 응용 프로그램을 선택 합니다.
+6.  삭제하려는 응용 프로그램을 선택합니다.
 
-7.  Hello 응용 프로그램 로드 되 면 클릭 **삭제** hello 최고 응용 프로그램에서 아이콘 **개요** 블레이드입니다.
+7.  응용 프로그램이 로드되면 맨 위의 응용 프로그램 **개요** 블레이드에서 **삭제** 아이콘을 클릭합니다.
 
-## <a name="i-want-toodisable-all-future-user-consent-operations-tooany-application"></a>모든 향후 사용자 동의 작업 tooany 응용 프로그램 toodisable 원합니다
+## <a name="i-want-to-disable-all-future-user-consent-operations-to-any-application"></a>모든 응용 프로그램에 대한 모든 이후 사용자 동의 작업을 비활성화하려는 경우
 
-전체 디렉터리 승인 tooany 응용 프로그램에서 최종 사용자가 방지에 대 한 사용자 동의 사용 하지 않도록 설정 합니다. 관리자는 여전히 사용자의 동작에 동의할 수 있습니다. 응용 프로그램에 대해 자세히 toolearn 동의 및 이유 있거나 하지 않을 toodo이,이 읽기 [이해 사용자 및 관리자 동의](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent)합니다.
+전체 디렉터리에 대한 사용자 동의를 비활성화하면 모든 응용 프로그램에 대한 최종 사용자 동의를 방지합니다. 관리자는 여전히 사용자의 동작에 동의할 수 있습니다. 응용 프로그램 동의 및 이 작업을 수행하거나 수행하지 않을 수 있는 이유에 대해 자세히 알아보려면 [사용자 및 관리자 동의 이해하기](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent)를 참조하세요.
 
-너무**전체 디렉터리의 모든 이후 사용자 동의 작업을 사용 하지 않도록 설정**, 아래 hello 지침에 따라:
+**전체 디렉터리에서 모든 이후 사용자 동의 작업을 비활성화**하려면 아래의 지침을 따릅니다.
 
-1.  열기 hello [ **Azure 포털** ](https://portal.azure.com/) 로 로그인 한 **전역 관리자입니다.**
+1.  [**Azure Portal**](https://portal.azure.com/)을 열고 **전역 관리자** 권한으로 로그인합니다.
 
-2.  열기 hello **Azure Active Directory 확장** 클릭 하 여 **더 많은 서비스** hello hello 주 왼쪽 탐색 메뉴 맨 아래에 있습니다.
+2.  왼쪽 주 탐색 메뉴의 맨 아래에서 **추가 서비스**를 클릭하여 **Azure Active Directory 확장**을 엽니다.
 
-3.  에 입력 **"Azure Active Directory**" hello 필터 검색 상자와 선택 hello **Azure Active Directory** 항목입니다.
+3.  필터 검색 상자에 **“Azure Active Directory**”를 입력하고 **Azure Active Directory** 항목을 선택합니다.
 
-4.  클릭 **사용자 및 그룹** hello 탐색 메뉴에 있습니다.
+4.  탐색 메뉴에서 **사용자 및 그룹**을 클릭합니다.
 
 5.  **사용자 설정**을 클릭합니다.
 
-6.  Hello 설정 하 여 모든 이후 사용자 동의 작업을 사용 하지 않도록 설정 **사용자가 앱 tooaccess 데이터 허용 수** 너무 설정/해제**아니요** hello를 클릭 하 고 **저장** 단추입니다.
+6.  **사용자가 앱이 데이터에 액세스하도록 허용할 수 있음** 토글을 **아니요**로 설정하고 **저장** 단추를 클릭하여 모든 이후 사용자 동의 작업을 비활성화합니다.
 
 
 # <a name="next-steps"></a>다음 단계
-[액세스 tooapps 관리](active-directory-managing-access-to-apps.md)
+[앱에 대한 액세스 관리](active-directory-managing-access-to-apps.md)

@@ -1,6 +1,6 @@
 ---
-title: "Azure 가져오기/내보내기 작업 상태-v1 aaaReviewing | Microsoft Docs"
-description: "자세한 내용은 toouse hello 로그 파일을 만든 경우 hello 가져오기 또는 내보내기 작업이 어떻게 toosee hello 상태 hello 가져오기/내보내기 작업의 실행 합니다."
+title: "Azure Import/Export 작업 상태 검토 - v1 | Microsoft Docs"
+description: "가져오기-내보내기 작업의 상태를 보기 위해 가져오기 또는 내보내기 작업을 실행할 때 생성된 로그 파일을 사용하는 방법에 알아봅니다."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/26/2017
 ms.author: muralikk
-ms.openlocfilehash: 363731ede4751124a714b4ce96852e0b8c4dbca4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bdb30bc28c36ab9e969efc8be3b87b97e4027b39
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="reviewing-azure-importexport-job-status-with-copy-log-files"></a>복사 로그 파일로 Azure Import/Export 작업 상태 검토 | Microsoft Docs
-Hello Microsoft Azure 가져오기/내보내기 서비스는 가져오기 또는 내보내기 작업과 연결 된 드라이브를 처리할 때 복사 로그 파일 toohello 저장소 계정 tooor를 가져오거나 내보낼 blob 씁니다. 로그 파일 hello 가져오거나 내보낸 각 파일에 대 한 자세한 상태를 포함 합니다. hello URL tooeach 복사 로그 파일은 완료 된 작업;의 hello 상태를 쿼리할 때 반환 됩니다. 참조 [Get Job](/rest/api/storageservices/Get-Job3) 자세한 정보에 대 한 합니다.  
+Microsoft Azure 가져오기/내보내기 서비스가 가져오기 또는 내보내기 작업과 연결된 드라이브를 처리하는 경우 blob을 가져오는 곳에서 또는 내보내는 곳으로 저장소 계정에 복사 로그 파일을 씁니다. 로그 파일에는 가져오거나 내보낸 각 파일에 대한 자세한 상태가 포함되어 있습니다. 완료된 작업의 상태를 쿼리할 때 각 복사 로그 파일에 대한 URL이 반환됩니다. 자세한 내용은 [작업 가져오기](/rest/api/storageservices/Get-Job3)를 참조하세요.  
 
 ## <a name="example-urls"></a>예제 URL
 
-hello 다음은 두 개의 드라이브가 있는 가져오기 작업에 대 한 복사 로그 파일에 대 한 Url의 예입니다.  
+다음 예제는 두 드라이브를 사용하는 가져오기 작업에 대한 복사 로그 파일 URL입니다.  
   
  `http://myaccount.blob.core.windows.net/ImportExportStatesPath/waies/myjob_9WM35C2V_20130921-034307-902_error.xml`  
   
  `http://myaccount.blob.core.windows.net/ImportExportStatesPath/waies/myjob_9WM45A6Q_20130921-042122-021_error.xml`  
   
- 참조 [가져오기/내보내기 서비스 로그 파일 형식](../storage-import-export-file-format-log.md) hello 형식의 상태 코드의 전체 목록은 hello 및 복사 로그에 대 한 합니다.  
+ 상태 코드의 전체 목록 및 복사 로그 형식은 [가져오기/내보내기 서비스 로그 파일 형식](../storage-import-export-file-format-log.md)을 참조하세요.  
   
 ## <a name="next-steps"></a>다음 단계
  
- * [설정 hello Azure 가져오기/내보내기 도구](storage-import-export-tool-setup-v1.md)   
+ * [Azure Import/Export 도구 설정](storage-import-export-tool-setup-v1.md)   
  * [가져오기 작업을 위한 하드 드라이브 준비](../storage-import-export-tool-preparing-hard-drives-import-v1.md)   
  * [가져오기 작업 복구](../storage-import-export-tool-repairing-an-import-job-v1.md)   
  * [내보내기 작업 복구](../storage-import-export-tool-repairing-an-export-job-v1.md)   
- * [Hello Azure 가져오기/내보내기 도구 문제 해결](storage-import-export-tool-troubleshooting-v1.md)
+ * [Azure Import/Export 도구 문제 해결](storage-import-export-tool-troubleshooting-v1.md)

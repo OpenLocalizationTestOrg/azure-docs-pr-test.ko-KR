@@ -1,6 +1,6 @@
 ---
-title: "OMS 로그 분석의 Linux 응용 프로그램 성능 aaaCollect | Microsoft Docs"
-description: "이 문서 Apache HTTP Server 및 MySQL에 대 한 Linux toocollect 성능 카운터에 대 한 hello OMS 에이전트를 구성 하는 세부 정보를 제공 합니다."
+title: "OMS Log Analytics에서 Linux 응용 프로그램 성능 수집 | Microsoft Docs"
+description: "이 문서에서는 MySQL 및 Apache HTTP 서버에 대한 성능 카운터를 수집하도록 Linux용 OMS 에이전트를 구성하는 세부 정보를 제공합니다."
 services: log-analytics
 documentationcenter: 
 author: mgoedtel
@@ -14,51 +14,51 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/04/2017
 ms.author: magoedte
-ms.openlocfilehash: 51105c6add5c7941a004570a76a4d94c02fc8a71
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 04ea6f728e59ec8b47e54fe45e1adc6cbbfb85ff
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="collect-performance-counters-for-linux-applications-in-log-analytics"></a>Log Analytics에서 Linux 응용 프로그램에 대한 성능 카운터 수집 
-이 문서에서는 hello 구성에 대 한 세부 정보를 제공 [Linux 용 OMS 에이전트](https://github.com/Microsoft/OMS-Agent-for-Linux) 특정 응용 프로그램에 대 한 toocollect 성능 카운터입니다.  이 문서에 포함 하는 hello 응용 프로그램은:  
+이 문서에서는 특정 응용 프로그램에 대한 성능 카운터를 수집하도록 [Linux용 OMS 에이전트](https://github.com/Microsoft/OMS-Agent-for-Linux)를 구성하는 세부 정보를 제공합니다.  이 문서에 포함된 응용 프로그램은 다음과 같습니다.  
 
 - [MySQL](#MySQL)
 - [Apache HTTP 서버](#apache-http-server)
 
 ## <a name="mysql"></a>MySQL
-Hello OMS 에이전트를 설치할 때 hello 컴퓨터에서 MySQL Server 또는 MariaDB 서버가 검색 되 면 한 성능 모니터링 공급자 MySQL Server에 대 한 자동으로 설치 됩니다. 이 공급자는 toohello 로컬 MySQL/MariaDB 서버 tooexpose 성능 통계를 연결합니다. MySQL 사용자 자격 증명 hello 공급자 액세스할 수 있도록 MySQL 서버 hello 구성 되어야 합니다.
+OMS 에이전트가 설치된 경우 컴퓨터에서 MySQL 서버나 MariaDB 서버가 감지되면, MySQL 서버용 성능 모니터링 공급자가 자동으로 설치됩니다. 이 공급자는 성능 통계를 공개하기 위해 로컬 MySQL/MariaDB 서버에 연결합니다. 공급자가 MySQL 서버에 액세스할 수 있도록 MySQL 사용자 자격 증명을 구성해야 합니다.
 
 ### <a name="configure-mysql-credentials"></a>MySQL 자격 증명 구성
-hello MySQL OMI 공급자는 미리 구성 된 MySQL 사용자가 수행 해야 하 고 MySQL 클라이언트 라이브러리가 순서 tooquery hello 성능 및 상태 정보 hello MySQL 인스턴스를 설치 합니다.  이러한 자격 증명 hello Linux 에이전트에 저장 되는 인증 파일에 저장 됩니다.  hello 인증 파일에 바인딩 주소 지정 하 고 포트 hello MySQL 인스턴스가 수신 중인 toouse toogather 메트릭을 자격 증명.  
+MySQL OMI 공급자가 MySQL 인스턴스의 성능 및 상태 정보를 쿼리하려면, 미리 정의된 MySQL 사용자와 설치되어 있는 MySQL 클라이언트 라이브러리가 필요합니다.  이러한 자격 증명은 Linux 에이전트에 저장된 인증 파일에 저장됩니다.  인증 파일은 MySQL 인스턴스가 수신 대기할 바인딩 주소와 포트를 결정하고 메트릭 수집에 사용할 자격 증명을 지정합니다.  
 
-MySQL OMI Linux hello에 대 한 hello OMS 에이전트를 설치 하는 동안 공급자가 바인딩 주소 및 포트와 집합 hello MySQL OMI 인증 파일을 부분적으로 한 MySQL my.cnf 구성 파일 (기본 위치)을 검사 합니다.
+Linux용 OMS 에이전트를 설치하는 동안 MySQL OMI 공급자는 MySQL my.cnf 구성 파일(기본 위치)에서 바인딩 주소와 포트를 검색하고, MySQL OMI 인증 파일을 부분적으로 설정합니다.
 
-hello MySQL 인증 파일에 저장 된 `/var/opt/microsoft/mysql-cimprov/auth/omsagent/mysql-auth`합니다.
+MySQL 인증 파일은 `/var/opt/microsoft/mysql-cimprov/auth/omsagent/mysql-auth`에 저장됩니다.
 
 
 ### <a name="authentication-file-format"></a>인증 파일 형식
-다음은 hello MySQL OMI 인증 파일에 대 한 hello 형식
+다음은 MySQL OMI 인증 파일의 형식입니다.
 
     [Port]=[Bind-Address], [username], [Base64 encoded Password]
     (Port)=(Bind-Address), (username), (Base64 encoded Password)
     (Port)=(Bind-Address), (username), (Base64 encoded Password)
     AutoUpdate=[true|false]
 
-다음 표에 hello hello 인증 파일의 hello 항목을 설명 합니다.
+인증 파일의 항목은 다음 테이블에 설명되어 있습니다.
 
 | 속성 | 설명 |
 |:--|:--|
-| 포트 | Hello 현재 포트 hello를 MySQL 인스턴스가 수신 중인를 나타냅니다. 포트 0 다음 hello 속성이 기본 인스턴스에 대해 사용 되도록 지정 합니다. |
+| 포트 | MySQL 인스턴스가 수신 대기 중인 현재 포트를 나타냅니다. 포트 0은 뒤에 나오는 속성이 기본 인스턴스에 사용된다는 것을 지정합니다. |
 | 바인딩 주소| 현재 MySQL 바인딩-주소입니다. |
-| username| MySQL 사용자 toouse toomonitor hello MySQL server 인스턴스를 사용 합니다. |
-| Base64로 인코딩된 암호| Base 64로 인코드된 hello MySQL 모니터링 사용자의 암호입니다. |
-| AutoUpdate| 에 대 한 toorescan hello my.cnf 파일에서 변경 되는지 여부를 지정 하 고 hello MySQL OMI 공급자가 업그레이드 hello MySQL OMI 인증 파일을 덮어씁니다. |
+| username| MySQL 서버 인스턴스를 모니터링하는 데 사용되는 MySQL 사용자입니다. |
+| Base64로 인코딩된 암호| Base64로 인코딩된 MySQL 모니터링 사용자의 암호입니다. |
+| AutoUpdate| MySQL OMI 공급자가 업그레이드되면 my.cnf 파일에서 변경 내용을 검색하고 MySQL OMI 인증 파일을 덮어쓸지 여부를 지정합니다. |
 
 ### <a name="default-instance"></a>기본 인스턴스
-기본 인스턴스 및 보다 쉽게 한 Linux 호스트에서 여러 MySQL 인스턴스를 관리 하는 포트 번호 toomake hello MySQL OMI 인증 파일 정의할 수 있습니다.  hello 기본 인스턴스가 포트 0 인스턴스에 의해 표시 됩니다. 모든 추가 인스턴스는 서로 다른 값을 지정 하지 않은 경우 hello 기본 인스턴스에서 설정 하는 속성을 상속 합니다. 예를 들어 포트 '3308'에서 수신 대기 중인 MySQL 인스턴스가 추가 되 면 hello 기본 인스턴스의 바인딩 주소, username 및 password Base64 인코딩 tootry 사용된 되며 3308에서 수신 대기 하는 hello 인스턴스를 모니터링 합니다. 사용 하 여 3308 hello 인스턴스가 바인딩된 tooanother 주소인 경우 hello 동일한 MySQL 사용자 이름 및 암호 쌍만 hello 바인딩 주소의 필요 정도와 hello 다른 속성은 상속 됩니다.
+MySQL OMI 인증 파일은 하나의 Linux 호스트에서 여러 MySQL 인스턴스를 쉽게 관리할 수 있도록 기본 인스턴스 및 포트 번호를 정의할 수 있습니다.  기본 인스턴스는 포트 0으로 인스턴스에 의해 표시됩니다. 모든 추가 인스턴스는 서로 다른 값을 지정하지 않는 한 기본 인스턴스의 설정 속성을 상속합니다. 예를 들어, '3308' 포드에서 수신 대기 중인 MySQL 인스턴스가 추가되면, 3308 포트에서 수신 대기 중인 인스턴스를 시도하고 모니터링하기 위해, 기본 인스턴스의 바인딩 주소, 사용자 이름, Base64로 인코딩된 암호가 사용됩니다. 3308의 인스턴스가 다른 주소로 바인딩되고 동일한 MySQL 사용자 이름과 암호 쌍이 사용되면, 바인딩 주소만 필요하고 다른 속성은 상속됩니다.
 
-다음 표에 hello에 인스턴스 설정 예 
+다음 테이블에는 예제 인스턴스 설정이 있습니다. 
 
 | 설명 | 파일 |
 |:--|:--|
@@ -67,53 +67,53 @@ hello MySQL 인증 파일에 저장 된 `/var/opt/microsoft/mysql-cimprov/auth/o
 
 
 ### <a name="mysql-omi-authentication-file-program"></a>MySQL OMI 인증 파일 프로그램
-에 포함 되어 hello 설치 hello MySQL OMI 공급자 MySQL OMI 인증 파일 프로그램 사용된 tooedit hello MySQL OMI 인증 파일 일 수 있습니다. hello 인증 파일 프로그램 hello 수정할 수 있는 위치에서 찾을 수 있습니다.
+MySQL OMI 공급자의 설치에 포함된 것은 MySQL OMI 인증 파일 편집에 사용할 수 있는 MySQL OMI 인증 파일 프로그램입니다. 다음 위치에서 인증 파일 프로그램을 찾을 수 있습니다.
 
     /opt/microsoft/mysql-cimprov/bin/mycimprovauth
 
 > [!NOTE]
-> hello 자격 증명 파일 hello omsagent 계정이 읽을 수 있어야 합니다. 로 hello mycimprovauth 명령을 실행 하는 것이 좋습니다.
+> 자격 증명 파일은 omsagent 계정이 읽을 수 있어야 합니다. omsgent로 mycimprovauth 명령을 실행하는 것이 좋습니다.
 
-hello 다음 표에서 자세히 설명 hello 구문 mycimprovauth 사용에 대 한 합니다.
+다음 테이블에서 mycimprovauth 사용에 대한 구문의 세부 정보를 제공합니다.
 
 | 작업 | 예제 | 설명
 |:--|:--|:--|
-| autoupdate *false\|true* | mycimprovauth autoupdate false | 여부 hello 인증 파일은 자동으로 업데이트 하는 집합에 다시 시작 하거나 업데이트 합니다. |
-| default *bind-address username password* | mycimprovauth default 127.0.0.1 root pwd | 집합 hello hello MySQL OMI 인증 파일의에서 기본 인스턴스.<br>일반 텍스트에 hello 암호 필드를 입력할 수-hello MySQL OMI 인증 파일에에서 hello 암호 Base 64로 인코딩된 됩니다. |
-| delete *default\|port_num* | mycimprovauth 3308 | 중 하나가 기본적으로 또는 포트 번호로 hello 지정 된 인스턴스를 삭제합니다. |
-| help | mycimprov help | 명령 toouse 목록 인쇄 합니다. |
-| print | mycimprov print | MySQL OMI 인증 파일 프로그램 쉽게 tooread 인쇄 합니다. |
-| update port_num *bind-address username password* | mycimprov update 3307 127.0.0.1 root pwd | Hello 지정 된 인스턴스를 업데이트 하거나 존재 하지 않는 경우 hello 인스턴스를 추가 합니다. |
+| autoupdate *false\|true* | mycimprovauth autoupdate false | 다시 시작 또는 업데이트 시 인증 파일이 자동으로 업데이트될지 여부를 설정합니다. |
+| default *bind-address username password* | mycimprovauth default 127.0.0.1 root pwd | MySQL OMI 인증 파일에서 기본 인스턴스를 설정합니다.<br>암호 필드는 일반 텍스트로 입력되어야 하며 MySQL OMI 인증 파일의 암호는 Base 64로 인코딩됩니다. |
+| delete *default\|port_num* | mycimprovauth 3308 | 기본값 또는 포트 번호로 지정된 인스턴스를 삭제합니다. |
+| help | mycimprov help | 사용할 명령 목록을 인쇄합니다. |
+| print | mycimprov print | 읽기 쉬운 MySQL OMI 인증 파일을 인쇄합니다. |
+| update port_num *bind-address username password* | mycimprov update 3307 127.0.0.1 root pwd | 지정된 인스턴스를 업데이트하거나 존재하지 않는 경우 인스턴스를 추가합니다. |
 
-hello 다음 예제 명령은 hello MySQL server에 대 한 기본 사용자 계정을 localhost에 정의 합니다.  일반 텍스트에 hello 암호 필드를 입력할 수-hello MySQL OMI 인증 파일에에서 hello 암호 Base 64로 인코딩된 됩니다.
+다음 예제 명령은 localhost에서 MySQL 서버의 기본 사용자 계정을 정의합니다.  암호 필드는 일반 텍스트로 입력되어야 하며 MySQL OMI 인증 파일의 암호는 Base 64로 인코딩됩니다.
 
     sudo su omsagent -c '/opt/microsoft/mysql-cimprov/bin/mycimprovauth default 127.0.0.1 <username> <password>'
     sudo /opt/omi/bin/service_control restart
 
 ### <a name="database-permissions-required-for-mysql-performance-counters"></a>MySQL 성능 카운터에 필요한 데이터베이스 권한
-MySQL 사용자 hello 쿼리 toocollect MySQL Server 성능 데이터를 다음 액세스 toohello가 필요 합니다. 
+MySQL 사용자는 MySQL 서버 성능 데이터를 수집하기 위해 다음 쿼리에 대한 액세스가 필요합니다. 
 
     SHOW GLOBAL STATUS;
     SHOW GLOBAL VARIABLES:
 
 
-hello MySQL 사용자에 대 한 SELECT 권한도 toohello 다음 기본 표 필요 합니다.
+또한 MySQL 사용자는 다음 기본 테이블에 대한 SELECT 액세스가 필요합니다.
 
 - information_schema
 - mysql. 
 
-Hello 다음 grant 명령을 실행 하 여 이러한 권한은 부여할 수 있습니다.
+이러한 권한은 다음과 같은 권한 부여 명령을 실행하여 부여될 수 있습니다.
 
-    GRANT SELECT ON information_schema.* too‘monuser’@’localhost’;
-    GRANT SELECT ON mysql.* too‘monuser’@’localhost’;
+    GRANT SELECT ON information_schema.* TO ‘monuser’@’localhost’;
+    GRANT SELECT ON mysql.* TO ‘monuser’@’localhost’;
 
 
 > [!NOTE]
-> toogrant 권한 tooa 부여할 hello 권한 뿐만 아니라 ' GRANT option ' hello MySQL 모니터링 사용자 권한을 부여 하는 사용자 hello 있어야 합니다.
+> MySQL 모니터링 사용자에게 권한을 부여하려면, 권한을 부여하는 사용자에게 'GRANT option' 권한은 물론 부여되는 권한에 대한 권한이 있어야 합니다.
 
 ### <a name="define-performance-counters"></a>성능 카운터 정의
 
-Linux toosend 데이터 tooLog 분석에 대 한 hello OMS 에이전트를 구성 하 고 나면 hello 성능 카운터 toocollect를 구성 해야 합니다.  hello 절차를 사용 하 여 [로그 분석에서 Windows 및 Linux 성능 데이터 원본](log-analytics-data-sources-windows-events.md) 다음 표에 hello에 hello 카운터와 함께 합니다.
+Log Analytics에 데이터를 보내도록 Linux용 OMS 에이전트를 구성한 후 수집할 성능 카운터를 구성해야 합니다.  다음 테이블의 카운터와 함께 [Log Analytics의 Windows 및 Linux 성능 데이터 원본](log-analytics-data-sources-windows-events.md)의 절차를 사용합니다.
 
 | 개체 이름 | 카운터 이름 |
 |:--|:--|
@@ -137,19 +137,19 @@ Linux toosend 데이터 tooLog 분석에 대 한 hello OMS 에이전트를 구�
 | MySQL Server | 테이블 잠금 경합 Pct |
 
 ## <a name="apache-http-server"></a>Apache HTTP 서버 
-Apache HTTP Server hello omsagent 번들을 설치할 때 hello 컴퓨터에서 검색 되 면 한 성능 모니터링 공급자 Apache HTTP Server에 대 한 자동으로 설치 됩니다. 이 공급자는 순서 tooaccess 성능 데이터에 hello Apache HTTP Server에 로드 해야 하는 Apache 모듈을 사용 합니다. 다음 명령을 hello로 hello 모듈을 로드할 수 있습니다.
+omsagent 번들이 설치된 경우 컴퓨터에서 Apache HTTP 서버가 감지되면, Apache HTTP 서버용 성능 모니터링 공급자가 자동으로 설치됩니다. 이 공급자는 성능 데이터에 액세스하기 위해 Apache HTTP 서버에 로드되어야 하는 Apache 모듈에 의존합니다. 모듈은 다음 명령을 사용하여 로드될 수 있습니다.
 ```
 sudo /opt/microsoft/apache-cimprov/bin/apache_config.sh -c
 ```
 
-toounload hello Apache 모니터링 모듈을 hello 다음 명령을 실행 합니다.
+Apache 모니터링 모듈을 언로드하려면, 다음 명령을 실행합니다.
 ```
 sudo /opt/microsoft/apache-cimprov/bin/apache_config.sh -u
 ```
 
 ### <a name="define-performance-counters"></a>성능 카운터 정의
 
-Linux toosend 데이터 tooLog 분석에 대 한 hello OMS 에이전트를 구성 하 고 나면 hello 성능 카운터 toocollect를 구성 해야 합니다.  hello 절차를 사용 하 여 [로그 분석에서 Windows 및 Linux 성능 데이터 원본](log-analytics-data-sources-windows-events.md) 다음 표에 hello에 hello 카운터와 함께 합니다.
+Log Analytics에 데이터를 보내도록 Linux용 OMS 에이전트를 구성한 후 수집할 성능 카운터를 구성해야 합니다.  다음 테이블의 카운터와 함께 [Log Analytics의 Windows 및 Linux 성능 데이터 원본](log-analytics-data-sources-windows-events.md)의 절차를 사용합니다.
 
 | 개체 이름 | 카운터 이름 |
 |:--|:--|
@@ -167,4 +167,4 @@ Linux toosend 데이터 tooLog 분석에 대 한 hello OMS 에이전트를 구�
 
 ## <a name="next-steps"></a>다음 단계
 * Linux 에이전트에서 [성능 카운터를 수집합니다](log-analytics-data-sources-performance-counters.md).
-* 에 대 한 자세한 내용은 [검색 로그](log-analytics-log-searches.md) tooanalyze hello 데이터가 데이터 원본 및 솔루션에서 수집 합니다. 
+* 데이터 원본 및 솔루션에서 수집한 데이터를 분석하기 위해 [로그 검색](log-analytics-log-searches.md) 에 대해 알아봅니다. 

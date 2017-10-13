@@ -1,6 +1,6 @@
 ---
-title: "가상 네트워크-Azure CLI 2.0 aaaCreate | Microsoft Docs"
-description: "사용 하 여 가상 네트워크 toocreate Azure CLI 2.0 hello 하는 방법에 대해 알아봅니다."
+title: "가상 네트워크 만들기 - Azure CLI 2.0 | Microsoft Docs"
+description: "Azure CLI 2.0을 사용하여 가상 네트워크를 만드는 방법을 알아봅니다."
 services: virtual-network
 documentationcenter: 
 author: jimdial
@@ -16,25 +16,25 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e79b7fe780fc81f4866f810d830824e43a5a43b2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c7d7b3543f488aedff1ea2c68a2b497e0ca744af
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="create-a-virtual-network-using-hello-azure-cli-20"></a>Hello Azure CLI 2.0을 사용 하 여 가상 네트워크 만들기
+# <a name="create-a-virtual-network-using-the-azure-cli-20"></a>Azure CLI 2.0을 사용하여 가상 네트워크 만들기
 
 [!INCLUDE [virtual-networks-create-vnet-intro](../../includes/virtual-networks-create-vnet-intro-include.md)]
 
-Azure에는 Azure Resource Manager 및 클래식이라는 두 가지 배포 모델이 있습니다. Hello 리소스 관리자 배포 모델을 통해 리소스를 만드는 것이 좋습니다. hello 읽기에 대해 더 알아봅니다 toolearn hello 두 모델 간의 차이 hello [이해 Azure 배포 모델](../azure-resource-manager/resource-manager-deployment-model.md) 문서.
+Azure에는 Azure Resource Manager 및 클래식이라는 두 가지 배포 모델이 있습니다. Resource Manager 배포 모델을 통해 리소스를 만드는 것이 좋습니다. 두 가지 모델의 차이점에 대해 자세히 알아보려면 [Azure 배포 모델 이해](../azure-resource-manager/resource-manager-deployment-model.md) 문서를 참조하세요.
 
-## <a name="cli-versions-toocomplete-hello-task"></a>CLI 버전 toocomplete hello 작업
-Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행할 수 있습니다.
+## <a name="cli-versions-to-complete-the-task"></a>태스크를 완료하기 위한 CLI 버전
+다음 CLI 버전 중 하나를 사용하여 태스크를 완료할 수 있습니다.
 
-- [Azure CLI 1.0](virtual-networks-create-vnet-cli-nodejs.md) – hello 클래식 및 리소스 관리 배포 모델에 대 한 우리의 CLI
-- [Azure CLI 2.0](#create-a-virtual-network) -우리의 차세대 CLI hello 리소스 관리 배포 모델 (이 문서)에 대 한 '
+- [Azure CLI 1.0](virtual-networks-create-vnet-cli-nodejs.md) - 클래식 및 리소스 관리 배포 모델용 CLI
+- [Azure CLI 2.0](#create-a-virtual-network) - 리소스 관리 배포 모델용 차세대 CLI(이 문서)
  
-    리소스 관리자를 통해 다른 도구를 사용 하 여 VNet을 만들 하거나 hello 다음 목록에서에서 다른 옵션을 선택 하 여 hello 클래식 배포 모델을 통해 VNet을 만들 수도 있습니다.
+    다른 도구를 사용하여 Resource Manager를 통해 VNet을 만들거나 다음 목록에서 다른 옵션을 선택하여 클래식 배포 모델을 통해 VNet을 만들 수도 있습니다.
 
 > [!div class="op_single_selector"]
 > * [포털](virtual-networks-create-vnet-arm-pportal.md)
@@ -50,11 +50,11 @@ Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행�
 
 ## <a name="create-a-virtual-network"></a>가상 네트워크 만들기
 
-사용 하 여 가상 네트워크 toocreate hello Azure CLI 2.0 단계를 수행 하는 전체 hello:
+Azure CLI 2.0을 사용하여 가상 네트워크를 만들려면 다음 단계를 완료하세요.
 
-1. 설치 하 고 최신 hello 구성 [Azure CLI 2.0](/cli/azure/install-az-cli2) tooan Azure 계정을 사용 하 여 로그인 [az 로그인](/cli/azure/#login)합니다.
+1. 최신 [Azure CLI 2.0](/cli/azure/install-az-cli2)을 설치 및 구성하고 [az login](/cli/azure/#login)을 사용하여 Azure 계정에 로그인합니다.
 
-2. Hello를 사용 하 여 VNet에 대 한 리소스 그룹 만들기 [az 그룹 만들기](/cli/azure/group#create) hello로 명령을 `--name` 및 `--location` 인수:
+2. `--name` 및 `--location` 인수를 포함한 [az group create](/cli/azure/group#create) 명령을 사용하여 VNet에 대한 리소스 그룹을 만듭니다.
 
     ```azurecli
     az group create --name TestRG --location centralus
@@ -105,20 +105,20 @@ Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행�
 
     사용된 매개 변수:
 
-    - `--name TestVNet`: Hello VNet toobe 생성의 이름입니다.
-    - `--resource-group TestRG`: hello 리소스를 제어 하는 # hello 리소스 그룹 이름입니다. 
-    - `--location centralus`: hello 어떤 toodeploy에 위치 합니다.
-    - `--address-prefix 192.168.0.0/16`: hello 주소 접두사와 블록입니다.  
-    - `--subnet-name FrontEnd`: hello 서브넷의 hello 이름입니다.
-    - `--subnet-prefix 192.168.1.0/24`: hello 주소 접두사와 블록입니다.
+    - `--name TestVNet`: 만들 VNet의 이름입니다.
+    - `--resource-group TestRG`: # 리소스를 제어하는 리소스 그룹 이름입니다. 
+    - `--location centralus`: 배포할 위치입니다.
+    - `--address-prefix 192.168.0.0/16`: 주소 접두사와 블록입니다.  
+    - `--subnet-name FrontEnd`: 서브넷의 이름입니다.
+    - `--subnet-prefix 192.168.1.0/24`: 주소 접두사와 블록입니다.
 
-    toolist hello 기본 정보 toouse hello에서 다음 명령을 사용 하 여 hello VNet을 쿼리할 수 있습니다는 [쿼리 필터](/cli/azure/query-az-cli2):
+    다음 명령에서 사용할 기본 정보를 나열하려면 [쿼리 필터](/cli/azure/query-az-cli2)를 사용하여 VNet을 쿼리할 수 있습니다.
 
     ```azurecli
     az network vnet list --query '[?name==`TestVNet`].{Where:location,Name:name,Group:resourceGroup}' -o table
     ```
 
-    hello 다음 출력을 생성 합니다.
+    다음과 같은 출력을 생성합니다.
 
         Where      Name      Group
 
@@ -154,11 +154,11 @@ Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행�
     사용된 매개 변수:
 
     - `--address-prefix 192.168.2.0/24`: 서브넷 CIDR 블록입니다.
-    - `--name BackEnd`: Hello 새 서브넷의 이름입니다.
-    - `--resource-group TestRG`: hello 리소스 그룹입니다.
-    - `--vnet-name TestVNet`: hello 이름 VNet을 소유 하는 hello입니다.
+    - `--name BackEnd`: 새 서브넷의 이름입니다.
+    - `--resource-group TestRG`: 리소스 그룹입니다.
+    - `--vnet-name TestVNet`: 소유한 VNet의 이름입니다.
 
-5. 쿼리 hello 속성을 새 VNet을 hello:
+5. 새 VNet의 속성을 쿼리합니다.
 
     ```azurecli
     az network vnet show \
@@ -174,7 +174,7 @@ Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행�
 
         TestVNet  centralus  TestRG   Succeeded              2
 
-6. Hello 서브넷의 쿼리 hello 속성:
+6. 서브넷의 속성을 쿼리합니다.
 
     ```azurecli
     az network vnet subnet list \
@@ -193,8 +193,8 @@ Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행�
 
 ## <a name="next-steps"></a>다음 단계
 
-자세한 내용은 방법 tooconnect:
+연결 방법 알아보기:
 
-- Hello를 참조 하 여 가상 컴퓨터 (VM) tooa 가상 네트워크 [Linux VM을 만들](../virtual-machines/linux/quick-create-cli.md) 문서. Hello 아티클의 hello 단계에서 VNet 및 서브넷을 만드는 대신 및 선택할 수 있습니다는 기존 VNet 서브넷 tooconnect VM을 합니다.
-- hello를 참조 하 여 가상 네트워크 tooother 가상 네트워크를 hello [Vnet 연결](../vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md) 문서.
-- 가상 네트워크 tooan hello 온-프레미스 사이트 간 가상 사설망 (VPN) 또는 express 경로 회로 사용 하 여 네트워크. 자세한 방법은 hello [사이트 간 VPN을 사용 하 여 VNet tooan 온-프레미스 네트워크 연결](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md) 및 [VNet tooan ExpressRoute 회로 연결](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md)합니다.
+- 가상 컴퓨터(VM)에서 가상 네트워크 연결은 [Linux VM 만들기](../virtual-machines/linux/quick-create-cli.md) 문서를 참조하세요. 해당 문서의 단계에서 VNet 및 서브넷을 만드는 대신 기존 VNet 및 서브넷을 VM에 연결하도록 선택할 수 있습니다.
+- 가상 네트워크에서 다른 가상 네트워크 연결은 [VNet 연결](../vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md) 문서를 참조하세요.
+- 가상 네트워크에서 온-프레미스 네트워크 연결은 사이트 간 VPN(가상 사설망) 또는 ExpressRoute 회로를 사용합니다. 자세한 내용은 [사이트 간 VPN을 사용하여 VNet을 온-프레미스 네트워크에 연결](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md) 및 [VNet을 ExpressRoute 회선에 연결](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md)을 참조하세요.

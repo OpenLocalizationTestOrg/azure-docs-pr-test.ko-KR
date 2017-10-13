@@ -1,6 +1,6 @@
 ---
 title: "자습서: Teamphoria와 Azure Active Directory 통합 | Microsoft Docs"
-description: "Tooconfigure 단일 로그온 방법을 알아보려면 Azure Active Directory와 Teamphoria 사이입니다."
+description: "Azure Active Directory 및 Teamphoria 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,117 +13,117 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/07/2017
 ms.author: jeedes
-ms.openlocfilehash: f32be9742b76f7fe464036dadc108c62e4a787a7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2a35efb04d7fe22abc6894c149caf090666ce016
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-teamphoria"></a>자습서: Teamphoria와 Azure Active Directory 통합
 
-이 자습서에 설명 어떻게 toointegrate Teamphoria Azure Active directory (Azure AD).
+이 자습서에서는 Azure AD(Azure Active Directory)와 Teamphoria를 통합하는 방법에 대해 알아봅니다.
 
-다음 이점을 hello로 제공 Teamphoria Azure AD와 통합:
+Teamphoria를 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.
 
-- 액세스 tooTeamphoria을 지닌 Azure AD에서 제어할 수 있습니다.
-- 프로그램 사용자 tooautomatically get 로그온 tooTeamphoria (Single Sign-on)와 Azure AD 계정 사용 하도록 설정할 수 있습니다.
-- 하나의 중앙 위치-hello Azure 관리 포털에서에서 사용자 계정을 관리할 수 있습니다.
+- Teamphoria에 대한 액세스 권한이 있는 사용자를 Azure AD에서 제어할 수 있습니다.
+- 사용자가 해당 Azure AD 계정으로 Teamphoria에 자동으로 로그온(Single Sign-on)되도록 설정할 수 있습니다.
+- 단일 중앙 위치인 Azure 관리 포털에서 계정을 관리할 수 있습니다.
 
-Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.
+Azure AD와의 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory를 사용한 응용 프로그램 액세스 및 Single Sign-On](active-directory-appssoaccess-whatis.md)을 참조하세요.
 
 <!--## Overview
 
-tooenable single sign-on with Teamphoria, it must be configured toouse Azure Active Directory as an identity provider. This guide provides information and tips on how tooperform this configuration in Teamphoria.
+To enable single sign-on with Teamphoria, it must be configured to use Azure Active Directory as an identity provider. This guide provides information and tips on how to perform this configuration in Teamphoria.
 
 >[!Note]: 
->This embedded guide is brand new in hello new Azure portal, and we’d love toohear your thoughts. Use hello Feedback ? button at hello top of hello portal tooprovide feedback. hello older guide for using hello [Azure classic portal](https://manage.windowsazure.com) tooconfigure this application can be found [here](https://github.com/Azure/AzureAD-App-Docs/blob/master/articles/en-us/_/sso_configure.md).-->
+>This embedded guide is brand new in the new Azure portal, and we’d love to hear your thoughts. Use the Feedback ? button at the top of the portal to provide feedback. The older guide for using the [Azure classic portal](https://manage.windowsazure.com) to configure this application can be found [here](https://github.com/Azure/AzureAD-App-Docs/blob/master/articles/en-us/_/sso_configure.md).-->
 
 
 ## <a name="prerequisites"></a>필수 조건
 
-다음 항목 hello가 필요 tooconfigure Teamphoria와 Azure AD 통합 합니다.
+Teamphoria와 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.
 
 - Azure AD 구독
 - Teamphoria Single Sign-On이 설정된 구독
 
 > [!NOTE]
-> 이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.
+> 이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.
 
-이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.
+이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.
 
 - 꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 않도록 합니다.
 - Azure AD 평가판 환경이 없으면 [여기](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.
 
 ## <a name="scenario-description"></a>시나리오 설명
-이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.
+이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.
 
-1. Teamphoria는 hello 갤러리 추가
+1. 갤러리에서 Teamphoria 추가
 2. Azure AD Single Sign-on 구성 및 테스트
 
-## <a name="adding-teamphoria-from-hello-gallery"></a>Teamphoria는 hello 갤러리 추가
-tooconfigure hello와의 통합 Teamphoria Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 Teamphoria tooadd가 필요합니다.
+## <a name="adding-teamphoria-from-the-gallery"></a>갤러리에서 Teamphoria 추가
+Teamphoria의 Azure AD 통합을 구성하려면 갤러리의 Teamphoria를 관리되는 SaaS 앱 목록에 추가해야 합니다.
 
-**hello 갤러리에서 Teamphoria tooadd hello 다음 단계를 수행 합니다.**
+**갤러리에서 Teamphoria를 추가하려면 다음 단계를 수행합니다.**
 
-1. Hello에  **[Azure 관리 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다. 
+1. **[Azure 관리 포털](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다. 
 
     ![Active Directory][1]
 
-2. 너무 이동**엔터프라이즈 응용 프로그램**합니다. 이동 하 여 너무**모든 응용 프로그램**합니다.
+2. **엔터프라이즈 응용 프로그램**으로 이동합니다. 그런 후 **모든 응용 프로그램**으로 이동합니다.
 
     ![응용 프로그램][2]
     
-3. 클릭 **추가** hello 대화의 hello 위쪽에 단추입니다.
+3. 대화 상자 위쪽에 있는 **추가** 단추를 클릭합니다.
 
     ![응용 프로그램][3]
 
-4. Hello 검색 상자에 입력 **Teamphoria**합니다.
+4. 검색 상자에 **Teamphoria**를 입력합니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-teamphoria-tutorial/tutorial_teamphoria_search.png)
 
-5. Hello 결과 패널에서 선택 **Teamphoria**, 클릭 하 고 **추가** tooadd hello 응용 프로그램 단추입니다.
+5. 결과 창에서 **Teamphoria**를 선택하고 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-teamphoria-tutorial/tutorial_teamphoria_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Azure AD Single Sign-on 구성 및 테스트
 이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 Teamphoria에서 Azure AD Single Sign-On을 구성하고 테스트합니다.
 
-Single sign on toowork에 대 한 Azure AD는 tooknow Teamphoria에 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다. 즉, Azure AD 사용자 및 Teamphoria에 hello 관련된 사용자 간 링크 관계를 설정할 toobe가 필요 합니다.
+Single Sign-On이 작동하려면 Azure AD에서 Azure AD 사용자에 해당하는 Teamphoria 사용자가 누구인지 알고 있어야 합니다. 즉, Azure AD 사용자와 Teamphoria의 관련 사용자 간에 연결 관계가 형성되어야 합니다.
 
-Hello hello 값을 할당 하 여이 링크 관계가 설정 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** Teamphoria에 합니다.
+이 연결 관계는 Azure AD의 **사용자 이름** 값을 Teamphoria의 **Username** 값으로 할당하여 설정합니다.
 
-tooconfigure 및 Teamphoria 사용 하 여 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.
+Teamphoria에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.
 
-1. **[Azure AD Single Sign-on 구성](#configuring-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.
-2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.
-3. **[Teamphoria 테스트 사용자 만들기](#creating-a-teamphoria-test-user)**  -toohave Britta Simon 그녀의 연결 된 Azure AD toohello 표현인 Teamphoria에 해당 하는 도구입니다.
-4. **[Azure AD hello 테스트 사용자를 할당](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.
-5. **[Single Sign-on 테스트](#testing-single-sign-on)**  -tooverify 구성 works를 hello 여부.
+1. **[Azure AD Single Sign-On 구성](#configuring-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.
+2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.
+3. **[Teamphoria 테스트 사용자 만들기](#creating-a-teamphoria-test-user)** - Britta Simon의 Azure AD 표현과 연결된 해당 사용자를 Teamphoria에 만듭니다.
+4. **[Azure AD 테스트 사용자 할당](#assigning-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - 구성이 작동하는지 확인합니다.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성
 
-이 섹션에서는 Azure AD에서 single sign-on hello Azure 관리 포털에서 설정 및 Teamphoria 응용 프로그램에서 single sign on 구성 합니다.
+이 섹션에서는 Azure 관리 포털에서 Azure AD Single Sign-On을 사용하도록 설정하고 Teamphoria 응용 프로그램에서 Single Sign-On을 구성합니다.
 
-**tooconfigure Azure AD single sign on, Teamphoria와 hello 다음 단계를 수행 합니다.**
+**Teamphoria에서 Azure AD Single Sign-on을 구성하려면 다음 단계를 수행합니다.**
 
-1. Hello에 hello Azure 관리 포털에서 **Teamphoria** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.
+1. Azure 관리 포털의 **Teamphoria** 응용 프로그램 통합 페이지에서 **Single Sign-On**을 클릭합니다.
 
     ![Single Sign-on 구성][4]
 
-2. Hello에 **Single sign on** 대화 상자에서으로 **모드** 선택 **SAML 기반 로그온** tooenable single sign-on입니다.
+2. **Single sign on** 대화 상자에서 **모드**로 **SAML 기반 로그온**을 선택하여 Single Sign-On을 사용하도록 설정합니다.
  
     ![Single Sign-on 구성](./media/active-directory-saas-teamphoria-tutorial/tutorial_teamphoria_samlbase.png)
 
-3. Hello에 **Teamphoria 도메인 및 Url** 섹션를 hello 다음 단계를 수행 합니다.
+3. **Teamphoria 도메인 및 URL** 섹션에서 다음 단계를 수행합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-teamphoria-tutorial/tutorial_teamphoria_url.png)
 
-    a. Hello에 **로그온 URL** 텍스트 패턴 hello를 사용 하 여 hello URL 입력:`https://<sub-domain>.teamphoria.com/login`  
+    a. **로그온 URL** 텍스트 상자에서 `https://<sub-domain>.teamphoria.com/login` 패턴을 사용하여 URL을 입력합니다.    
 
     > [!NOTE] 
-    > 이러한 없는지 hello 실제 값 note 하십시오. Tooupdate hello로 이러한 값이 있는 실제 로그온 URL입니다. 연락처 [Teamphoria 클라이언트 지원 팀](https://www.teamphoria.com/) tooget hello 로그온 URL입니다. 
+    > 이러한 값은 실제 값이 아닙니다. 이러한 값을 실제 로그온 URL로 업데이트해야 합니다. 로그온 URL을 가져오려면 [Teamphoria 클라이언트 지원 팀](https://www.teamphoria.com/)에 문의합니다. 
 
-4. Hello에 **SAML 서명 인증서** 섹션에서 클릭 **인증서 (Base64)** hello 인증서 컴퓨터에 저장 합니다.
+4. **SAML 서명 인증서** 섹션에서 **인증서(Base64)**를 클릭한 후 컴퓨터에 인증서를 저장합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-teamphoria-tutorial/tutorial_teamphoria_certificate.png) 
 
@@ -131,91 +131,91 @@ tooconfigure 및 Teamphoria 사용 하 여 Azure AD에서 single sign-on 테스�
 
     ![Single Sign-on 구성](./media/active-directory-saas-teamphoria-tutorial/tutorial_general_400.png)
 
-6. Hello에 **Teamphoria 구성** 섹션에서 클릭 **구성 Teamphoria** tooopen **sign on 구성** 창. 복사 hello **SAML Single Sign-on 서비스 URL** hello에서 **빠른 참조 섹션.**
+6. **Teamphoria 구성** 섹션에서 **Teamphoria 구성**을 클릭하여 **로그온 구성** 창을 엽니다. **빠른 참조 섹션**에서 **SAML Single Sign-On 서비스 URL**을 복사합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-teamphoria-tutorial/tutorial_teamphoria_configure.png) 
 
-7. tooconfigure single sign on에서 **Teamphoria** 쪽, 관리자 권한으로 로그인 tooyour Teamphoria 응용 프로그램입니다.
+7. **Teamphoria** 측에서 Single Sign-On을 구성하려면 관리자 권한으로 Teamphoria 응용 프로그램에 로그인합니다.
 
-8. 너무 이동**관리 설정** hello hello 구성 탭에서 클릭 하 고 hello 왼쪽된 도구 모음에서 옵션 **SINGLE SIGN-ON** tooopen hello SSO 구성 창.
+8. 왼쪽 도구 모음에서 **관리 설정** 옵션으로 이동하고 구성 탭 아래에서 **SINGLE SIGN-ON**을 클릭하여 SSO 구성 창을 엽니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-teamphoria-tutorial/admin_sso_configure.png)
 
-9. 클릭 **새 ID 공급자 추가** SSO에 대 한 hello 설정을 추가 하기 위한 hello tooopen hello 양식을 오른쪽 위 모서리에서 옵션입니다.
+9. 오른쪽 위 모서리에서 **새 ID 공급자 추가** 옵션을 클릭하여 SSO에 대한 설정을 추가하기 위한 양식을 엽니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-teamphoria-tutorial/add_new_identity_provider.png)
 
-10. 아래에서 설명 된 대로 hello 필드에 대 한 hello 세부 정보 입력
+10. 아래에서 설명한 대로 필드에 세부 정보를 입력합니다.
 
-    ![Single Sign-on 구성](./media/active-directory-saas-teamphoria-tutorial/Teamphoria_sso_save.png)
+    ![Single Sign-On 구성](./media/active-directory-saas-teamphoria-tutorial/Teamphoria_sso_save.png)
 
-    a. **표시 이름** : hello 관리 페이지의 hello 플러그 인의 hello 표시 이름을 입력 합니다.
+    a. **표시 이름**: 관리 페이지에서 플러그 인의 표시 이름을 입력합니다.
 
-    b. **단추 이름** : SSO를 통한 로그인에 대 한 hello 로그인 페이지에 표시 하는 hello 탭의 hello 이름입니다.
+    b. **단추 이름**: SSO를 통한 로그인에 대해 로그인 페이지에 표시하는 탭의 이름입니다.
 
-    c. **인증서** : 열기 hello 인증서 이전에 다운로드 한 hello hello의 복사 hello 내용 메모장에서 Azure 포털에서에서 동일 하 고 여기 hello 상자에 붙여 넣습니다.
+    c. **인증서**: 메모장에서 Azure Portal에서 이전에 다운로드한 인증서를 열고 동일한 내용을 복사하고 상자에 붙여 넣습니다.
 
-    d. **진입점** : 붙여넣기 hello **SAML Single Sign-on 서비스 URL** 이전 양식 hello Azure 포털을 복사 합니다.
+    d. **진입점**: Azure Portal에서 이전에 복사한 **SAML Single Sign-On 서비스 URL**을 붙여 넣습니다.
 
-    e. Hello 옵션을 너무 전환**ON** 을 클릭할 **저장**합니다. 
+    e. 옵션을 **ON**으로 전환하고 **저장**을 클릭합니다.   
 
 <!--### Next steps
 
-tooensure users can sign-in tooTeamphoria after it has been configured toouse Azure Active Directory, review hello following tasks and topics:
+To ensure users can sign-in to Teamphoria after it has been configured to use Azure Active Directory, review the following tasks and topics:
 
-- User accounts must be pre-provisioned into Teamphoria prior toosign-in. tooset this up, see Provisioning.
+- User accounts must be pre-provisioned into Teamphoria prior to sign-in. To set this up, see Provisioning.
  
-- Users must be assigned access tooTeamphoria in Azure AD toosign-in. tooassign users, see Users.
+- Users must be assigned access to Teamphoria in Azure AD to sign-in. To assign users, see Users.
  
-- tooconfigure access polices for Teamphoria users, see Access Policies.
+- To configure access polices for Teamphoria users, see Access Policies.
  
-- For additional information on deploying single sign-on toousers, see [this article](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-appssoaccess-whatis#deploying-azure-ad-integrated-applications-to-users).-->
+- For additional information on deploying single sign-on to users, see [this article](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-appssoaccess-whatis#deploying-azure-ad-integrated-applications-to-users).-->
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Azure AD 테스트 사용자 만들기
-이 섹션의 hello 목표 toocreate Britta Simon 라는 hello Azure 관리 포털에서 테스트 사용자를입니다.
+이 섹션의 목적은 Azure 관리 포털에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.
 
 ![Azure AD 사용자 만들기][100]
 
-**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**
+**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**
 
-1. Hello에 **Azure 관리 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Azure Active Directory** 아이콘입니다.
+1. **Azure 관리 포털**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-teamphoria-tutorial/create_aaduser_01.png) 
 
-2. 너무 이동**사용자 및 그룹** 클릭 **모든 사용자에 게** 사용자 toodisplay hello 목록입니다.
+2. **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭하여 사용자 목록을 표시합니다.
     
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-teamphoria-tutorial/create_aaduser_02.png) 
 
-3. Hello 대화의 hello 위쪽 클릭 **추가** tooopen hello **사용자** 대화 상자.
+3. 대화 상자 위쪽에서 **추가**를 클릭하여 **사용자** 대화 상자를 엽니다.
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-teamphoria-tutorial/create_aaduser_03.png) 
 
-4. Hello에 **사용자** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
+4. **사용자** 대화 상자 페이지에서 다음 단계를 수행합니다.
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-teamphoria-tutorial/create_aaduser_04.png) 
 
-    a. Hello에 **이름** 텍스트 상자에 **BrittaSimon**합니다.
+    a. **이름** 텍스트 상자에 **BrittaSimon**을 입력합니다.
 
-    b. Hello에 **사용자 이름** 텍스트 형식 hello **전자 메일 주소** BrittaSimon의 합니다.
+    b. **사용자 이름** 텍스트 상자에 BrittaSimon의 **전자 메일 주소**를 입력합니다.
 
-    c. 선택 **암호 표시** hello hello 값 기록 **암호**합니다.
+    c. **암호 표시**를 선택하고 **암호** 값을 적어둡니다.
 
     d. **만들기**를 클릭합니다.
  
 ### <a name="creating-a-teamphoria-test-user"></a>Teamphoria 테스트 사용자 만들기
 
-Tooenable Azure AD 사용자가 toolog Teamphoria로 주문 하 고에 Teamphoria에 이들 프로 비전 해야 합니다. Hello Teamphoria의 경우에서 프로 비전은 수동 작업입니다.
+Azure AD 사용자가 Teamphoria에 로그인할 수 있도록 하려면 Teamphoria로 프로비전되어야 합니다. Teamphoria의 경우 프로비전은 수동 작업입니다.
 
-**사용자 계정 수행 tooprovision hello 다음 단계:**
+**사용자 계정을 프로비전하려면 다음 단계를 수행합니다.**
 
-1. 관리자 권한으로 Teamphoria 회사 사이트 tooyour에 로그인 합니다.
+1. Teamphoria 회사 사이트에 관리자 권한으로 로그인합니다.
 
-2. 클릭 **관리자** hello 왼쪽된 도구 모음과 hello에서 설정이 **관리** 탭을 클릭 하 여 **사용자** tooopen hello admin 사용자가 페이지를 합니다.
+2. 왼쪽 도구 모음에서 **관리자** 설정을 클릭하고 **관리** 탭 아래에서 **사용자**를 클릭하여 사용자에 대한 관리 페이지를 엽니다.
 
     ![직원 추가](./media/active-directory-saas-teamphoria-tutorial/admin_manage_users.png)
 
-3. Hello 클릭 **수동 초대** 옵션입니다.
+3. **수동 초대** 옵션을 클릭합니다.
 
     ![피플 초대](./media/active-directory-saas-teamphoria-tutorial/admin_manage_add_users.png)  
 
@@ -223,31 +223,31 @@ Tooenable Azure AD 사용자가 toolog Teamphoria로 주문 하 고에 Teamphori
     
     ![피플 초대](./media/active-directory-saas-teamphoria-tutorial/manual_user_invite.png)  
 
-    a. Hello에 **전자 메일 주소** textbox hello **전자 메일 주소** BrittaSimon입니다.
+    a. **전자 메일 주소** 텍스트 상자에 BrittaSimon의 **전자 메일 주소**를 입력합니다.
 
-    b. Hello에 **이름** 텍스트 상자에 **Britta**합니다.
+    b. **이름** 텍스트 상자에 **Britta**를 입력합니다.
 
-    c. Hello에 **성** 텍스트 상자에 **Simon**합니다.
+    c. **성** 텍스트 상자에 **Simon**을 입력합니다.
 
-    d. **1 사용자 초대**를 클릭합니다. 사용자가 tooaccept hello 초대 tooget hello 시스템에서 생성 해야 합니다.
+    d. **1 사용자 초대**를 클릭합니다. 사용자는 시스템에서 생성할 초대를 수락해야 합니다.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Azure AD hello 테스트 사용자를 할당합니다.
+### <a name="assigning-the-azure-ad-test-user"></a>Azure AD 테스트 사용자 할당
 
-이 섹션에서는 액세스 tooTeamphoria 그녀의 권한을 부여 하 여 Azure single sign on Britta Simon toouse를 사용 합니다.
+이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 Teamphoria에 대한 액세스를 허용합니다.
 
 ![사용자 할당][200] 
 
-**tooassign Britta Simon tooTeamphoria hello 다음 단계를 수행 합니다.**
+**Britta Simon을 Teamphoria에 할당하려면 다음 단계를 수행합니다.**
 
-1. Hello Azure 관리 포털에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.
+1. Azure 관리 포털에서 응용 프로그램 보기를 열고 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.
 
     ![사용자 할당][201] 
 
-2. Hello 응용 프로그램 목록에서 선택 **Teamphoria**합니다.
+2. 응용 프로그램 목록에서 **Teamphoria**를 선택합니다.
 
-    ![Single Sign-on 구성](./media/active-directory-saas-teamphoria-tutorial/tutorial_teamphoria_app.png) 
+    ![Single Sign-On 구성](./media/active-directory-saas-teamphoria-tutorial/tutorial_teamphoria_app.png) 
 
-3. Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.
+3. 왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.
 
     ![사용자 할당][202] 
 
@@ -255,7 +255,7 @@ Tooenable Azure AD 사용자가 toolog Teamphoria로 주문 하 고에 Teamphori
 
     ![사용자 할당][203]
 
-5. **사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.
+5. **사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.
 
 6. **사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.
 
@@ -263,13 +263,13 @@ Tooenable Azure AD 사용자가 toolog Teamphoria로 주문 하 고에 Teamphori
     
 ### <a name="testing-single-sign-on"></a>Single Sign-On 테스트
 
-이 섹션에서는 Azure AD single sign on 구성 hello 액세스 패널을 사용 하 여 테스트할 수 있습니다.
+이 섹션에서는 액세스 패널을 사용하여 Azure AD Single Sign-On 구성을 테스트합니다.
 
 Single Sign-On 설정을 테스트하려면 액세스 패널을 엽니다. 액세스 패널에 대한 자세한 내용은 [액세스 패널 소개](https://msdn.microsoft.com/library/dn308586)를 참조하세요. 
 
 ## <a name="additional-resources"></a>추가 리소스
 
-* [방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와](active-directory-saas-tutorial-list.md)
+* [Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록](active-directory-saas-tutorial-list.md)
 * [Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?](active-directory-appssoaccess-whatis.md)
 
 

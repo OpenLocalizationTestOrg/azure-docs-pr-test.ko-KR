@@ -1,6 +1,6 @@
 ---
-title: "Azure Data Catalog에서 데이터 원본을 aaaSupported | Microsoft Docs"
-description: "이 문서에서는 현재 지원 되는 hello 데이터 원본의 사양을 나열 합니다."
+title: "Azure Data Catalog에서 지원되는 데이터 원본 | Microsoft Docs"
+description: "이 문서에서는 현재 지원되는 데이터 원본의 사양을 나열합니다."
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: 4bfcabf31bf9fd781c939a5026abc42a5407df32
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d6867c73bc6ea3c238cceef8a68466d451f3365c
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="supported-data-sources-in-azure-data-catalog"></a>Azure Data Catalog에서 지원되는 데이터 원본
 
-한 번의 클릭 또는 공용 API를 사용 하 여 메타 데이터를 게시할 수 있습니다-한 번 등록 도구 또는 Azure Data Catalog toohello 웹 포털에 직접 정보를 수동으로 입력 하 여 합니다. hello 다음 표에 요약 되어 오늘 hello 카탈로그에서 지 원하는 및 게시 기능을 각각에 대 한 hello 하는 모든 데이터 원본입니다. 에 hello 각 데이터 원본 "오픈의" 포털 경험에서 실행할 수 있는 외부 데이터 도구가 있습니다. hello 두 번째 테이블에는 각 데이터 원본 연결 속성에 대 한 자세한 기술 사양 포함 되어 있습니다.
+사용자는 공용 API를 사용하거나 등록 도구 클릭 한 번으로 Azure Data Catalog 웹 포털에 정보를 직접 입력하여 메타데이터를 게시할 수 있습니다. 다음 테이블은 현재 카탈로그로 지원되는 모든 데이터 원본 및 각각에 대한 게시 기능을 요약합니다. 또한 포털의 "열기" 경험에서 시작할 수 있는 각 데이터 원본에 대한 외부 데이터 도구가 나열되어 있습니다. 두 번째 테이블에는 각 데이터 원본 연결 속성의 자세한 기술 사양이 포함되어 있습니다.
 
 
 ## <a name="list-of-supported-data-sources"></a>지원되는 데이터 원본 목록
@@ -443,12 +443,12 @@ ms.lasthandoff: 10/06/2017
     </tr>
 </table>
 
-추가 리소스에 대 한 지원이 필요한 경우 제출 기능 요청 toohello [Azure Data Catalog 포럼](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409)합니다.
+추가적인 원본에 대한 지원이 필요하면, [Azure Data Catalog 포럼](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409)에 기능 요청을 제출합니다.
 
 
 ## <a name="data-source-reference-specification"></a>데이터 원본 참조 사양
 > [!NOTE]
-> hello **DSL 구조** 열 다음 표에 hello에 hello 연결 속성만 속성 모음에 "address"에 대 한 Azure 데이터 카탈로그에서 사용 되는 나열 합니다. 즉, "address" propertybag Azure Data Catalog는 지속 되지만 사용 하지 않는 hello 데이터 원본의 다른 연결 속성을 포함할 수 있습니다.
+> 다음 테이블의 **DSL 구조** 열에서는 Azure Data Catalog에서 사용되는 "address" 속성 모음에 대한 연결 속성을 나열합니다. 즉, "address" 속성 모음에는 Azure Data Catalog에서 지속하지만 사용하지 않는 데이터 원본의 다른 연결 속성이 포함될 수 있습니다.
 
 <table>
     <tr>
@@ -970,7 +970,7 @@ ms.lasthandoff: 10/06/2017
       </td>
     </tr>
     <tr>
-      <td>다른 (위의 hello의 없음)</td>
+      <td>기타(위에 해당 없음)</td>
       <td>\*</td>
       <td>\*</td>
       <td>

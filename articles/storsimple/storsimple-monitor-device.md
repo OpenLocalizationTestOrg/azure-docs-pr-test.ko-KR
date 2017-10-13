@@ -1,6 +1,6 @@
 ---
-title: "aaaMonitor StorSimple 장치 | Microsoft Docs"
-description: "StorSimple Manager 서비스 toomonitor I/O 성능, 용량 사용률, 네트워크 처리량 및 장치 성능 toouse hello 하는 방법을 설명 합니다."
+title: "StorSimple 장치 모니터링 | Microsoft Docs"
+description: "StorSimple 관리자 서비스를 사용하여 I/O 성능, 용량 사용률, 네트워크 처리량 및 장치 성능을 모니터링하는 방법에 대해 설명합니다."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,105 +14,105 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/16/2016
 ms.author: alkohli
-ms.openlocfilehash: c1f614a7f52728650bfadb3335435b8b5a17e6ae
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d45bb37c8417785db0ea38be4375a998b6d9f109
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-storsimple-manager-service-toomonitor-your-storsimple-device"></a>StorSimple 장치의 StorSimple Manager 서비스 toomonitor hello를 사용 하 여
+# <a name="use-the-storsimple-manager-service-to-monitor-your-storsimple-device"></a>StorSimple 관리자 서비스를 사용하여 StorSimple 장치를 모니터링합니다.
 ## <a name="overview"></a>개요
-StorSimple 솔루션 내에서 hello toomonitor 특정 장치의 StorSimple Manager 서비스를 사용할 수 있습니다. I/O 성능, 용량 사용률, 네트워크 처리량 및 장치 성능 메트릭을 기준으로 사용자 지정 차트를 만들 수 있습니다. 
+StorSimple 관리자 서비스를 사용하여 StorSimple 솔루션 내에서 특정 장치를 모니터링할 수 있습니다. I/O 성능, 용량 사용률, 네트워크 처리량 및 장치 성능 메트릭을 기준으로 사용자 지정 차트를 만들 수 있습니다. 
 
-tooview hello hello Azure 클래식 포털 선택 hello StorSimple Manager 서비스에서에서 특정 장치에 대 한 정보를 모니터링 합니다. Hello 클릭 **모니터** 탭 한 다음 장치 hello 목록에서 선택 합니다. hello **모니터** 페이지 hello 다음 정보를 포함 합니다.
+특정 장치에 대한 모니터링 정보를 확인하려면, Azure 클래식 포털에서 StorSimple Manager 서비스를 선택합니다. **모니터** 탭을 클릭한 다음, 장치 목록에서 선택합니다. **모니터** 페이지에는 다음 정보가 포함됩니다.
 
 ## <a name="io-performance"></a>I/O 성능
-**I/O 성능** 메트릭을 추적 관련 읽기 toohello 번호 및에서 쓰기 작업 간에 어느 hello iSCSI 시작자 인터페이스 hello 호스트 서버 및 hello 장치 또는 hello 장치와 hello 클라우드입니다. 이 성능은 특정 볼륨, 특정 볼륨 컨테이너 또는 모든 볼륨 컨테이너에 대해 측정될 수 있습니다.
+**I/O 성능** 은 호스트 서버의 iSCSI 시작자 인터페이스와 장치 또는 장치와 클라우드 사이의 읽기 및 쓰기 작업의 수와 관련된 메트릭을 추적합니다. 이 성능은 특정 볼륨, 특정 볼륨 컨테이너 또는 모든 볼륨 컨테이너에 대해 측정될 수 있습니다.
 
-아래 hello 차트 프로덕션 장치에 대 한 모든 hello 볼륨에 대 한 hello 초기자 tooyour 장치에 대 한 hello I/O를 보여 줍니다. hello 메트릭을 그릴은 읽기 및 쓰기 바이트 수 / 초, 읽기 및 쓰기 초당 IO 작업 및 읽기 및 쓰기 대기 시간이 짧습니다.
+아래 차트에서는 프로덕션 장치의 모든 볼륨에 대한 장치 개시자의 I/O를 보여 줍니다. 그려진 메트릭은 초당 읽기 및 쓰기 바이트 수, 초당 읽기 및 쓰기 IO 작업, 읽기 및 쓰기 대기 시간입니다.
 
-![초기자 toodevice 한 IO 성능](./media/storsimple-monitor-device/StorSimple_IO_Performance_For_InitiatorTODevice_For_AllVolumesM.png)
+![초기자에서 장치로의 IO 성능](./media/storsimple-monitor-device/StorSimple_IO_Performance_For_InitiatorTODevice_For_AllVolumesM.png)
 
-Hello에 대 한 동일한 장치, 모든 볼륨 컨테이너를 hello에 대 한 hello 장치 toohello 클라우드에서 hello 데이터에 대 한 hello I/O 작업이 표시 됩니다. 이 장치에서 hello 데이터는 hello 선형 계층만 있고 toohello 클라우드 유출 nothing입니다. 장치 toohello 클라우드에서 발생 읽기 / 쓰기 작업이 없습니다. 따라서 hello 최대치 hello 차트에서 해당 하는 hello 하트 비트 hello 장치와 hello 서비스 간에 확인란이 toohello 빈도 5 분의 간격에 않습니다. 
+동일한 장치에 대한 I/O 작업은 장치에서 모든 볼륨 컨테이너에 대한 클라우드로의 데이터에 대해 그려집니다. 이 장치에서 데이터는 선형 계층에만 있으며 클라우드로는 아무것도 넘어가지 않습니다. 장치에서 클라우드로 가는 읽기/쓰기 작업은 없습니다. 따라서 장치와 서비스 사이에서 하트비트를 검사하는 빈도인 5분 간격으로 차트에 최대치가 표시됩니다. 
 
-![장치 toocloud 한 IO 성능](./media/storsimple-monitor-device/StorSimple_IO_Performance_For_DeviceTOCloud_For_AllVolumeContainersM.png)
+![장치에서 클라우드로의 IO 성능](./media/storsimple-monitor-device/StorSimple_IO_Performance_For_DeviceTOCloud_For_AllVolumeContainersM.png)
 
-Hello 동일한 장치, 클라우드 스냅숏은 수행 되었으나 오후 2시 시작 하는 볼륨 데이터에 대 한에. 이 hello 장치 toohello 클라우드에서 흐르는 데이터에서 발생 했습니다. 읽기 / 쓰기를이 기간 동안 toohello 클라우드를 제공 했습니다. hello IO 차트 표시에 최고를 기록 hello에 해당 하는 다양 한 메트릭이 hello 스냅숏을 만들 때 toohello 시간입니다. 
+동일한 장치에 대해 오후 2시부터 볼륨 데이터에 대한 클라우드 스냅숏이 생성됩니다. 그 결과 장치에서 클라우드로 데이터 흐름이 발생합니다. 읽기/쓰기는 이 기간 동안 클라우드에 제공됩니다. IO 차트에는 스냅숏이 생성된 시간에 해당하는 다양한 메트릭의 최대값이 표시됩니다. 
 
-![클라우드 스냅숏 후 장치 toocloud에 대 한 IO 성능](./media/storsimple-monitor-device/StorSimple_IO_Performance_For_DeviceTOCloud_For_AllVolumeContainers2M.png)
+![클라우드 스냅숏 후 장치에서 클라우드로의 IO 성능](./media/storsimple-monitor-device/StorSimple_IO_Performance_For_DeviceTOCloud_For_AllVolumeContainers2M.png)
 
 ## <a name="capacity-utilization"></a>용량 사용률
-**용량 사용률** hello 볼륨, 볼륨 컨테이너 또는 장치에서 사용 되는 데이터 저장 공간의 양을 메트릭 관련된 toohello 트랙입니다. 주 저장소, 클라우드 저장소, 또는 장치 저장소의 용량 사용률을 hello 기반으로 보고서를 만들 수 있습니다. 용량 사용률은 특정 볼륨, 특정 볼륨 컨테이너 또는 모든 볼륨 컨테이너에 대해 측정될 수 있습니다.
+**용량 사용률** 은 볼륨, 볼륨 컨테이너 또는 장치에서 사용되는 데이터 저장소 공간의 양과 관련된 메트릭을 추적합니다. 기본 저장소, 클라우드 저장소 또는 장치 저장소 용량 사용률을 기반으로 보고서를 만들 수 있습니다. 용량 사용률은 특정 볼륨, 특정 볼륨 컨테이너 또는 모든 볼륨 컨테이너에 대해 측정될 수 있습니다.
 
-기본 hello, 클라우드 및 장치 저장소 용량 다음과 같이 설명할 수 있습니다.
+기본, 클라우드 및 장치 저장소 용량은 다음과 같이 설명할 수 있습니다.
 
 ### <a name="primary-storage-capacity-utilization"></a>기본 저장소 용량 사용률
-이러한 차트 hello hello 데이터 중복 제거 되 고 압축 되기 전에 tooStorSimple 볼륨을 기록 하는 데이터 양을 보여 줍니다. 모든 볼륨 또는 단일 볼륨에 대 한 hello 기본 저장소 사용률을 볼 수 있습니다.
+이 차트는 데이터가 중복 제거 및 압축되기 전에 StorSimple 볼륨에 기록된 데이터의 양을 나타냅니다. 모든 볼륨 또는 단일 볼륨에 대한 기본 저장소 사용률을 볼 수 있습니다.
 
-두 경우 모두 각 개별 볼륨 hello 및 hello 기본 데이터를 합계에 대 한 모든 볼륨에 대 한 hello 기본 저장소 볼륨 용량 사용률 차트를 볼 때에 hello 두 숫자 사이의 불일치로 나타날 수 있습니다. 모든 볼륨의 총 기본 데이터 hello toohello hello hello 개별 볼륨의 기본 데이터의 총 합계를 추가할 수 없습니다. 때문일 수 있으므로 tooone hello 다음 중:
+두 경우 모두에서 각 개별 볼륨 대비 모든 볼륨의 기본 저장소 볼륨 용량 사용률 차트를 보고 기본 데이터를 합산할 때 두 숫자가 일치하지 않을 수 있습니다. 모든 볼륨의 전체 주 데이터는 개별 볼륨의 기본 데이터 총 합계에 합산되지 않을 수 있습니다. 이것은 다음 중 하나 때문일 수 있습니다.
 
-* **모든 볼륨에 대해 포함된 스냅숏 데이터**: 이 동작은 업데이트 3 이전 버전을 실행하는 경우에만 나타납니다. hello 모든 hello 볼륨에 대해 표시 되는 기본 데이터에는 각 볼륨에 대 한 hello 주 데이터 및 hello 스냅숏 데이터 hello 합계입니다. 지정된 된 볼륨에 대해 표시 된 hello 주 데이터 tooonly hello 양을 hello 볼륨에 할당 된 데이터를 해당 (하 고 hello 해당 볼륨 스냅숏 데이터를 포함 하지 않습니다).
+* **모든 볼륨에 대해 포함된 스냅숏 데이터**: 이 동작은 업데이트 3 이전 버전을 실행하는 경우에만 나타납니다. 모든 볼륨에 대해 표시되는 기본 데이터는 각 볼륨과 스냅숏 데이터에 대한 기본 데이터의 합계입니다. 지정된 볼륨에 대해 표시되는 기본 데이터는 해당 볼륨에 할당된 데이터 크기에만 해당합니다(해당 볼륨 스냅숏 데이터를 포함하지 않음).
   
-    이 hello 다음 수식으로도 설명할 수 있습니다.
+    이 상황은 다음 수식으로도 설명할 수 있습니다.
   
     *Primary data (All volumes) = Sum of (Primary data (volume i) + Size of snapshot data (volume i))*
   
-    *where, 기본 데이터 (볼륨 i)의 할당 된 기본 데이터 toovolume 크기 = i*
+    *여기서 (Primary data (volume i)는 볼륨 i에 할당된 기본 데이터의 크기입니다.*
   
-    Hello 서비스를 통해 hello 스냅숏이 삭제 되 면 hello 삭제 hello 백그라운드에서 비동기적으로 수행 됩니다. Hello 볼륨 데이터 크기 toobe hello 스냅숏 삭제 하는 다음 업데이트에 대 한 다소 시간이 걸릴 수 있습니다. 
+    스냅숏이 서비스를 통해 삭제될 경우 삭제는 백그라운드에서 비동기로 수행됩니다. 스냅숏 삭제에 따라 볼륨 데이터 크기가 업데이트되는 데는 다소 시간이 걸릴 수 있습니다. 
   
-    업데이트를 3 이상을 실행 하는 경우 hello 스냅숏 데이터 hello 볼륨 데이터에 포함 되지 않습니다. 및 hello 기본 사용률은 다음과 같이 계산 됩니다.
+    업데이트 3 이상을 실행하는 경우 스냅숏 데이터는 볼륨 데이터에 포함되지 않습니다. 기본 사용률은 다음과 같이 계산됩니다.
   
     *Primary data (All volumes) = Sum of (Primary data (volume i)
   
-    *where, 기본 데이터 (볼륨 i)의 할당 된 기본 데이터 toovolume 크기 = i*
-* **모든 볼륨에 포함 된 모니터링 사용 하지 않도록 설정 된 볼륨**:는 대 한 모니터링이 해제 장치에서 볼륨을 설정한 경우 이러한 개별 볼륨에 대 한 데이터를 모니터링 하는 hello 제공 됩니다 hello 막대형 차트에서입니다. 그러나 hello 차트에서 모든 볼륨에 대 한 hello 데이터 포함 hello 볼륨을 모니터링이 해제 됩니다. 
-* **모든 볼륨에 대해 포함 하는 라이브 연결 된 백업을 사용 하 여 볼륨을 삭제**: 스냅숏 데이터를 포함 하는 볼륨을 삭제는 않지만 hello 연결 된 스냅숏이 여전히 존재 경우 불일치로 표시 될 수 있습니다.
-* **모든 볼륨에 대해 포함된 볼륨이 삭제됨**: 일부 경우 구 볼륨이 삭제 후에도 존재할 수 있습니다. 삭제가 hello 효과 표시 되지 않습니다 및 hello 장치 낮은 사용 가능한 용량을 표시할 수 있습니다. 이러한 볼륨 toocontact Microsoft 지원 tooremove 필요합니다.
+    *여기서 (Primary data (volume i)는 볼륨 i에 할당된 기본 데이터의 크기입니다.*
+* **모든 볼륨에 모니터링을 사용하지 않는 볼륨이 포함되어 있음**: 모니터링을 사용하지 않는 볼륨이 장치에 있는 경우 해당 개별 볼륨의 모니터링 데이터는 차트에 제공되지 않습니다. 그러나 차트의 모든 볼륨에는 모니터링을 사용하지 않는 볼륨이 포함됩니다. 
+* **모든 볼륨에 대해 라이브 연결 백업이 있는 볼륨이 삭제됨**: 스냅숏 데이터를 포함하는 보륨이 삭제되었으나 연결된 스냅숏이 여전히 존재할 경우 불일치가 발생할 수 있습니다.
+* **모든 볼륨에 대해 포함된 볼륨이 삭제됨**: 일부 경우 구 볼륨이 삭제 후에도 존재할 수 있습니다. 삭제의 효과나 나타나지 않으며 장치가 더 낮은 가용 용량을 표시할 수 있습니다. 이러한 볼륨을 제거하려면 Microsoft 지원에 문의해야 합니다.
 
-hello 다음 차트 표시 클라우드 스냅숏을 만든 후 및 하기 전에 StorSimple 장치의 기본 저장소 용량 사용률이 hello 합니다. 볼륨 데이터만 그대로 클라우드 스냅숏 hello 주 저장소를 변경 하지 마십시오. 볼 수 있듯이 hello 차트 hello 기본 용량 사용률이 클라우드 스냅숏을 만드는 결과로 아무런 차이가 표시 됩니다. hello 클라우드 스냅숏 약 오후 2 시 00 분 해당 장치에서 시작 합니다.
+다음 차트에서는 클라우드 스냅숏을 생성하기 전과 생성한 후의 StorSimple 장치 기본 저장소 용량 사용률을 보여 줍니다. 볼륨 데이터만 표시되기 때문에 클라우드 스냅숏으로 인해 기본 저장소가 변경되어서는 안 됩니다. 볼 수 있듯이 차트에서 클라우드 스냅숏을 생성한 후의 기본 용량 사용률에는 아무런 차이가 없습니다. 해당 장치에서 클라우드 스냅숏은 오후 2시 근처에 시작되었습니다.
 
 ![클라우드 스냅숏 전 기본 용량 사용률](./media/storsimple-monitor-device/StorSimple_PrimaryCapacityUtil_For_AllVolumes2M.png)
 
 ![클라우드 스냅숏 후 기본 용량 사용률](./media/storsimple-monitor-device/StorSimple_PrimaryCapacityUtil_For_AllVolumes1M.png)
 
-실행 하는 경우 2를 업데이트 하거나 이상 나눌 수 있습니다 hello 주 저장소 용량 사용률이 개별 볼륨, 모든 볼륨을 계층화 된 볼륨을 모두 및 모든 로컬 고정된 볼륨에서 다음과 같이 합니다. 모든 로컬로 고정 된 볼륨을 하면 별로 분석 tooquickly 모두 사용 hello 로컬 계층의 양을 확인 합니다.
+업데이트 2 이상 실행하는 경우 아래 나와 있는 것처럼 개별 볼륨, 모든 볼륨, 모든 계층화된 볼륨 및 모든 로컬 고정 볼륨으로 기본 저장소 용량 사용률을 구분할 수 있습니다. 모든 로컬 고정 볼륨별로 분석하면 로컬 계층이 얼마나 사용되는지 빠르게 확인할 수 있습니다.
 
 ![모든 로컬 고정 볼륨에 대한 기본 용량 사용률](./media/storsimple-monitor-device/localvolumes.png)
 
 ### <a name="cloud-storage-capacity-utilization"></a>클라우드 저장소 용량 사용률
-이러한 차트 hello 양을 클라우드 저장소 사용을 보여 줍니다. 이 데이터는 중복 제거되고 압축됩니다. 이 양에는 모든 기본 볼륨에 반영되지 않으며 레거시 또는 필수 보존 목적을 위해 유지되는 데이터를 포함할 수 있는 클라우드 스냅숏이 포함되어 있습니다. Hello 번호 정확한 수 없지만 기본 hello 및 클라우드 저장소 소비 수치 tooget hello 데이터 감소의 예측 등급을 비교할 수 있습니다. hello 다음 차트 표시 하기 전에 StorSimple 장치의 및 클라우드 스냅숏을 만든 후 hello 클라우드 저장소 용량 사용률이 됩니다. hello 클라우드 스냅숏 시작에 약 2시 pm 해당 장치에 보 이죠 hello 클라우드 용량 사용률에 촬영 hello 동일 5.73 MB too4.04 GB에서에서 증가 시간입니다.
+이 차트는 사용한 클라우드 저장소의 크기를 표시합니다. 이 데이터는 중복 제거되고 압축됩니다. 이 양에는 모든 기본 볼륨에 반영되지 않으며 레거시 또는 필수 보존 목적을 위해 유지되는 데이터를 포함할 수 있는 클라우드 스냅숏이 포함되어 있습니다. 기본 및 클라우드 저장소 소비 수치를 비교하여 정확한 숫자는 아니지만 데이터 축소 비율을 파악할 수 있습니다. 다음 차트에서는 클라우드 스냅숏을 생성하기 전과 후의 StorSimple 장치 클라우드 저장소 용량 사용률을 보여 줍니다. 클라우드 스냅숏은 해당 장치에서 약 오후 2시에 시작되었으며 동시에 클라우드 용량 사용률도 5.73MB에서 4.04GB로 급증한 것을 알 수 있습니다.
 
 ![클라우드 스냅숏 전 클라우드 용량 사용률](./media/storsimple-monitor-device/StorSimple_CloudCapacityUtil_For_AllVolumeContainers2M.png)
 
 ![클라우드 스냅숏 후 클라우드 용량 사용률](./media/storsimple-monitor-device/StorSimple_CloudCapacityUtil_For_AllVolumeContainers1M.png)
 
 ### <a name="device-storage-capacity-utilization"></a>장치 저장소 용량 사용률
-이러한 차트는 hello 보다 더 큽니다 기본 저장소 사용률 hello SSD 선형 계층을 포함 하기 때문에 hello 장치에 대 한 총 사용률을 보여 줍니다. 이 계층에도 있는 hello 다른 계층에 장치의 데이터를 포함 합니다. hello 이전 데이터를 이동된 toohello HDD 계층 (이때 것은 중복 제거 및 압축 된) 및 이후에 toohello 클라우드 내에 새 데이터가 들어오면 있도록 hello 용량 hello SSD 선형 계층에 유지 됩니다.
+SSD 선형 계층을 포함하므로 기본 저장소 사용률 이상인 장치에 대한 총 사용률을 보여 줍니다. 이 계층에는 장치의 다른 계층에 있는 데이터의 양이 포함되어 있습니다. SSD 선형 계층의 용량은 순환되어 새로운 데이터가 들어오면 이전 데이터가 HDD 계층(이때 중복 제거되고 압축됨) 및 이후에 클라우드로 이동됩니다.
 
-시간이 지남에 따라 기본 용량 사용률 및 장치 용량 사용률을 향상 시킵니다 함께 hello 데이터 toobe 시작 될 때까지 toohello 클라우드 계층입니다. 해당 시점에 hello 장치 용량 사용률 tooplateau, 시작할 하지만 더 많은 데이터를 기록할 때 hello 기본 용량 사용률 증가 합니다.
+시간이 지남에 따라 기본 용량 사용률 및 장치 용량 사용률은 데이터가 클라우드로 티어링되기 시작할 때까지 함께 증가할 가능성이 높습니다. 이때 장치 용량 사용률이 안정 상태를 유지하기 시작하지만 기본 용량 사용률은 더 많은 데이터가 기록될수록 증가합니다.
 
-hello 다음 차트 표시 클라우드 스냅숏을 만든 후 및 하기 전에 StorSimple 장치의 기본 저장소 용량 사용률이 hello 합니다. hello 클라우드 스냅숏 2시 pm에 시작 하 고 hello 장치 용량 사용률을 줄이면 당시에 시작 됩니다. hello 장치 저장소 용량 사용률이 11.58 GB too7.48 GB에서에서 다운 되었습니다. 이 가능성이 hello hello 선형 SSD 계층에 압축 되지 않은 데이터 중복 제거 된, 압축 못하고 나타냅니다 hello HDD 계층으로 이동 합니다. 참고는 hello 장치에 많은 양의 hello SSD 및 HDD 계층 데이터를 이미 있으면 나타나지 않을 수 있습니다이 감소 합니다. 이 예제에서는 hello 장치 적은 양의 데이터에 있습니다.
+다음 차트에서는 클라우드 스냅숏을 생성하기 전과 생성한 후의 StorSimple 장치 기본 저장소 용량 사용률을 보여 줍니다. 클라우드 스냅숏은 오후 2시에 시작했고, 그와 동시에 장치 용량 사용률이 줄기 시작했습니다. 장치 저장소 용량 사용률이 11.58GB에서 7.48GB로 낮아졌습니다. 이는 선영 SSD 계층의 압축되지 않은 데이터가 중복 제거, 압축되어 HDD 계층으로 이동한 것을 나타낼 가능성이 큽니다. 장치의 SSD와 HDD 계층에 이미 많은 양의 데이터가 있으면 이러한 감소가 보이지 않을 수도 있습니다. 이 예에서는 장치에는 적은 양의 데이터가 있습니다.
 
 ![클라우드 스냅숏 전 장치 용량 사용률](./media/storsimple-monitor-device/StorSimple_DeviceCapacityUtil2M.png)
 
 ![클라우드 스냅숏 후 장치 용량 사용률](./media/storsimple-monitor-device/StorSimple_DeviceCapacityUtil1M.png)
 
 ## <a name="network-throughput"></a>네트워크 처리량
-**그 결과 네트워크 처리량** hello iSCSI 초기자 네트워크 인터페이스 hello 호스트 서버와 hello 장치 및 hello 장치와 hello 클라우드 간에 전송 되는 데이터 양을 메트릭 관련된 toohello 트랙입니다. 장치에서 각 hello iSCSI 네트워크 인터페이스에 대해이 메트릭을 모니터링할 수 있습니다.
+**네트워크 처리량** 은 호스트 서버 및 장치의 iSCSI 초기자 네트워크 인터페이스와 장치와 클라우드 사이에서 전송되는 데이터의 양과 관련된 메트릭을 추적합니다. 장치의 각 iSCSI 네트워크 인터페이스에 대한 해당 메트릭을 모니터링할 수 있습니다.
 
-hello hello Data 0 및 Data 4 장치에서 모두 1 GbE 네트워크 인터페이스에 대 한 표시 hello 네트워크 처리량 차트를 수행 합니다. 이 경우 데이터 0은 클라우드를 사용하고 데이터 4는 iSCSI를 사용합니다. 인바운드 및 아웃 바운드 트래픽을 StorSimple 장치에 대 한 hello 두 hello를 볼 수 있습니다. hello 일직선 3시 24분 pm에서 시작 하는 hello 차트에는에서는 5 분 마다 데이터를 수집 및 무시 해야 toohello 팩트 소유 하 고 있는 합니다. 
+다음 차트에서는 모두 장치의 1GbE 네트워크 인터페이스인 데이터 0과 데이터 4에 대한 네트워크 처리량을 보여 줍니다. 이 경우 데이터 0은 클라우드를 사용하고 데이터 4는 iSCSI를 사용합니다. StorSimple 장치에 대한 인바운드 및 아웃바운드 트래픽을 모두 볼 수 있습니다. 차트에서 오후 3시 24분에 시작하는 평평한 선은 데이터를 5분마다 수집한다는 사실 때문에 나타나며, 따라서 무시해야 합니다. 
 
 ![Data4에 대한 네트워크 처리량](./media/storsimple-monitor-device/StorSimple_NetworkThroughput_Data0M.png)
 
 ![Data4에 대한 네트워크 처리량](./media/storsimple-monitor-device/StorSimple_NetworkThroughput_Data4M.png)
 
 ## <a name="device-performance"></a>장치 성능
-**장치 성능** 메트릭을 추적 관련 장치의 toohello 성능입니다. hello 다음 차트에서는 장치에 대 한 CPU 사용률 통계 hello 프로덕션.
+**장치 성능** 은 장치의 성능과 관련된 메트릭을 추적합니다. 다음 차트에서는 프로덕션 환경에서 장치의 CPU 사용률 통계를 보여 줍니다.
 
 ![장치의 CPU 사용률](./media/storsimple-monitor-device/StorSimple_DeviceMonitor_DevicePerformance1M.png)
 
 ## <a name="next-steps"></a>다음 단계
-* 너무 방법에 대해 알아봅니다[hello StorSimple 관리자 서비스 장치 대시보드를 사용 하 여](storsimple-device-dashboard.md)합니다.
-* 너무 방법에 대해 알아봅니다[사용 하 여 StorSimple 장치를 StorSimple Manager 서비스 tooadminister hello](storsimple-manager-service-administration.md)합니다.
+* [StorSimple Manager 서비스 장치 대시보드를 사용](storsimple-device-dashboard.md)하는 방법을 알아봅니다.
+* [StorSimple Manager 서비스를 사용하여 StorSimple 장치를 관리](storsimple-manager-service-administration.md)하는 방법을 알아봅니다.
 

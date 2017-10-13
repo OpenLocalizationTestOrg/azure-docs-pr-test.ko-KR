@@ -1,5 +1,5 @@
 ---
-title: "개발자를 위한 Active Directory aaaAzure | Microsoft Docs"
+title: "개발자용 Azure Active Directory | Microsoft Docs"
 description: "이 문서에서는 Azure Active Directory를 사용하여 Microsoft 회사 및 학교 계정에 로그인하는 방법의 개요를 제공합니다."
 services: active-directory
 author: dstrockis
@@ -14,22 +14,22 @@ ms.workload: identity
 ms.date: 04/07/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 4dbbea6c1e0b8a70c0c36ddd1caec5658130a003
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: dce813b885d492343428428056a2e8aada27b461
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-for-developers"></a>개발자용 Azure Active Directory
-Azure Active Directory는 개발자가 toosecurely 로그인 Microsoft에서 지 원하는 회사 또는 학교 계정 가진 모든 사용자 허용 하는 클라우드 id 서비스입니다.  여기에 hello 설명서 tooadd Azure AD에서 OAuth 및 OpenID Connect 업계 표준 인증 프로토콜을 사용 하 여 tooyour 응용 프로그램을 지원 하는 방법을 보여 줍니다.
+Azure Active Directory는 개발자가 사용자를 Microsoft에서 지원하는 회사 또는 학교 계정에 안전하게 로그인할 수 있게 도와주는 클라우드 ID 서비스입니다.  여기 설명서는 산업 표준 인증 프로토콜 OAuth 및 OpenID Connect를 사용하여 응용 프로그램에 Azure AD 지원을 추가하는 방법을 보여줍니다.
 
 | | |
 | --- | --- |
-|[인증 기본 사항](active-directory-authentication-scenarios.md) | Azure AD에는 소개 tooauthentication |
-|[응용 프로그램 유형](active-directory-authentication-scenarios.md#application-types-and-scenarios) | Azure AD에서 지 원하는 hello 인증 시나리오의 개요 |                                
+|[인증 기본 사항](active-directory-authentication-scenarios.md) | Azure AD를 사용하는 인증 소개 |
+|[응용 프로그램 유형](active-directory-authentication-scenarios.md#application-types-and-scenarios) | Azure AD에서 지원하는 인증 시나리오의 개요 |                                
                                                                               
 ## <a name="get-started"></a>시작
-이러한 단계별된 설치 우리의 인증 라이브러리 toosign를 사용 하 여 Azure Active Directory 사용자에서를 진행 합니다.
+다음 안내식 설치는 인증 라이브러리를 사용하여 Azure Active Directory 사용자를 로그인하는 과정을 안내합니다.
 
 |  |  |  |  |
 | --- | --- | --- | --- |
@@ -40,13 +40,13 @@ Azure Active Directory는 개발자가 toosecurely 로그인 Microsoft에서 지
 | <center>![서비스 간](./media/active-directory-developers-guide/Service_App.png)<br />서비스 간</center> | [개요](active-directory-authentication-scenarios.md#daemon-or-server-application-to-web-api)<br /><br />[.NET](active-directory-code-samples.md#server-or-daemon-application-to-web-api)<br /><br />[OAuth 2.0 클라이언트 자격 증명](active-directory-protocols-oauth-service-to-service.md) |  |
 
 ## <a name="guides"></a>가이드
-이러한 문서는 Azure Active Directory와 tooperform 공통 작업 하는 방법을 알려 줍니다.
+다음 문서는 Azure Active Directory로 일반 작업을 수행하는 방법을 알려줍니다.
 
 |                                                                           |  |
 |---------------------------------------------------------------------------| --- |
-|[앱 등록](active-directory-integrating-applications.md)           | 어떻게 tooregister Azure AD에서 응용 프로그램 |
-|[다중 테넌트 앱](active-directory-devhowto-multi-tenant-overview.md)    | 모든 microsoft에서 toosign 계정 작동 하는 방식 |
-|[OAuth 및 OpenID Connect](active-directory-protocols-openid-connect-code.md)| Toosign 기능 사용자에 게 및 호출 웹 Api는 최신 인증 프로토콜을 사용 하는 방법 |
+|[앱 등록](active-directory-integrating-applications.md)           | Azure AD에서 앱을 등록하는 방법 |
+|[다중 테넌트 앱](active-directory-devhowto-multi-tenant-overview.md)    | Microsoft 작업 계정에 로그인하는 방법 |
+|[OAuth 및 OpenID Connect](active-directory-protocols-openid-connect-code.md)| 최신 인증 프로토콜을 사용하여 사용자를 로그인하고 Web API를 호출하는 방법 |
 |[가이드 더 보기...](active-directory-developers-guide-index.md#guides)        |     |
 
 ## <a name="reference"></a>참조
@@ -54,13 +54,13 @@ Azure Active Directory는 개발자가 toosecurely 로그인 Microsoft에서 지
 
 |                                                                                   | |
 | ----------------------------------------------------------------------------------| --- |
-| [인증 라이브러리(ADAL)](active-directory-authentication-libraries.md)   | Hello 라이브러리 및 Azure AD에서 제공 하는 Sdk의 개요 |
+| [인증 라이브러리(ADAL)](active-directory-authentication-libraries.md)   | Azure AD에서 제공하는 라이브러리 및 SDK의 개요 |
 | [코드 샘플](active-directory-code-samples.md)                                  | 모든 Azure AD 코드 샘플의 목록 |
 | [용어](active-directory-dev-glossary.md)                                      | 이 설명서에서 사용하는 용어 및 단어의 정의 |
 | [참조 자료 더 보기...](active-directory-developers-guide-index.md#reference)|     |
 
 ## <a name="help--support"></a>도움말 및 지원
-이들은 hello 최상의 위치 tooget 도움말을 보려면 Azure Active Directory에서 프로젝트를 개발 합니다.
+Azure Active Directory 개발과 관련하여 도움을 받기에 가장 좋은 장소입니다.
 
 |  |  
 |---|
@@ -71,4 +71,4 @@ Azure Active Directory는 개발자가 toosecurely 로그인 Microsoft에서 지
 <br />
 
 > [!NOTE]
-> Toosign에서 Microsoft 개인 계정은 필요한 경우 tooconsider hello를 사용 하 여 [Azure AD v2.0 끝점](active-directory-appmodel-v2-overview.md)합니다.  Azure AD hello v2.0 끝점은 단일 인증 시스템에 개인 Microsoft 계정 및 Microsoft 작업 계정 (Azure AD)에서 hello 통합.
+> Microsoft 개인 계정에 로그인해야 하는 경우 [Azure AD v2.0 끝점](active-directory-appmodel-v2-overview.md)을 사용하는 방법을 고려해 볼 수 있습니다.  Azure AD v2.0 끝점은 Microsoft 계정과 Microsoft 회사 계정(Azure AD의)을 단일 인증 시스템으로 통합한 것입니다.

@@ -1,6 +1,6 @@
 ---
-title: "응용 프로그램에 Azure 가상 컴퓨터 크기 집합 aaaDeploy | Microsoft Docs"
-description: "Toodeploy 가상 컴퓨터 크기는 Azure 리소스 관리자 템플릿을 사용 하 여 집합에 단순 자동 크기 조정 응용 프로그램에 알아봅니다."
+title: "Azure 가상 컴퓨터 확장 집합에 앱 배포 | Microsoft Docs"
+description: "Azure Resource Manager 템플릿을 사용하여 가상 컴퓨터 확장 집합에 간단한 자동 크기 조정 응용 프로그램을 배포하는 방법을 알아봅니다."
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: rwike77
@@ -15,25 +15,25 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/24/2017
 ms.author: ryanwi
-ms.openlocfilehash: 6fccc310312cabfcdddfcbcd2d154fc5cc440417
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 07883a33382cc660b043c99872312a9e77228253
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="deploy-an-autoscaling-app-using-a-template"></a>템플릿을 사용하여 자동 크기 조정 앱 배포
 
-[Azure 리소스 관리자 템플릿](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment) 은 훌륭한 방법 toodeploy 관련된 리소스의 그룹입니다. 이 자습서를 기반 [간단한 크기 집합 배포](virtual-machine-scale-sets-mvss-start.md) toodeploy 설명에 단순 자동 크기 조정 응용 프로그램 설정 방법 Azure 리소스 관리자 템플릿을 사용 하 여에 대해 설명 합니다.  PowerShell, CLI 또는 hello 포털을 사용 하 여 자동 크기 조정을 설정할 수도 있습니다. 자세한 내용은 [크기 자동 조정 개요](virtual-machine-scale-sets-autoscale-overview.md)를 참조하세요.
+[Azure Resource Manager 템플릿](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment)은 관련된 리소스 그룹을 배포하는 유용한 방법입니다. 이 자습서는 [간단한 확장 집합 배포](virtual-machine-scale-sets-mvss-start.md)를 토대로 구축되었으며 Azure Resource Manager 템플릿을 사용하여 확장 집합에 간단한 자동 크기 조정 응용 프로그램을 배포하는 방법을 설명합니다.  PowerShell, CLI 또는 포털을 사용하여 크기 자동 조정도 설정할 수 있습니다. 자세한 내용은 [크기 자동 조정 개요](virtual-machine-scale-sets-autoscale-overview.md)를 참조하세요.
 
 ## <a name="two-quickstart-templates"></a>2개의 빠른 시작 템플릿
-확장 집합을 배포할 때 [VM 확장](../virtual-machines/virtual-machines-windows-extensions-features.md)을 사용하여 플랫폼 이미지에 새 소프트웨어를 설치할 수 있습니다. VM 확장은 Azure Virtual Machines에 배포 후 구성 및 Automation 작업(예: 앱 배포)을 제공하는 작은 응용 프로그램입니다. 두 개의 서로 다른 예제 서식 파일에 제공 됩니다 [Azure/azure-빠른 시작-템플릿](https://github.com/Azure/azure-quickstart-templates) VM 확장을 사용 하 여 toodeploy 눈금에 자동 크기 조정 응용 프로그램을 설정 하는 방법을 보여 주는 합니다.
+확장 집합을 배포할 때 [VM 확장](../virtual-machines/virtual-machines-windows-extensions-features.md)을 사용하여 플랫폼 이미지에 새 소프트웨어를 설치할 수 있습니다. VM 확장은 Azure Virtual Machines에 배포 후 구성 및 Automation 작업(예: 앱 배포)을 제공하는 작은 응용 프로그램입니다. [Azure/azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates)에는 VM 확장을 사용하여 확장 집합에 자동 크기 조정 응용 프로그램을 배포하는 방법을 보여 주는 2개의 다른 샘플 템플릿이 제공됩니다.
 
 ### <a name="python-http-server-on-linux"></a>Linux의 Python HTTP 서버
-hello [Linux에서 Python HTTP 서버](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) 샘플 템플릿은 Linux 크기 집합에서 실행 되는 단순 자동 크기 조정 응용 프로그램을 배포 합니다.  [Bottle](http://bottlepy.org/docs/dev/), Python 웹 프레임 워크 및 간단한 HTTP 서버 hello에 크기 집합 VM 확장 하는 사용자 지정 스크립트를 사용 하 여 각 VM에 배포 됩니다. hello 눈금 평균 CPU 사용률은 모든 Vm에서 60% 보다 크면 고 hello 평균 CPU 사용률은 30% 보다 작은 경우 작은 규모를 눈금을 설정 합니다.
+[Linux의 Python HTTP 서버](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) 샘플 템플릿은 Linux 확장 집합에서 실행되는 간단한 자동 크기 조정 응용 프로그램을 배포합니다.  Python 웹 프레임워크인 [Bottle](http://bottlepy.org/docs/dev/)과 간단한 HTTP 서버가 사용자 지정 스크립트를 VM 확장을 사용하여 확장 집합의 각 VM에 배포됩니다. 모든 VM의 평균 CPU 사용률이 60%보다 클 때 확장 집합이 확장되고, 평균 CPU 사용률이 30% 미만일 때 확장 집합이 축소됩니다.
 
-또한 toohello 크기 집합 리소스에 hello *azuredeploy.json* 예제 서식 파일을 가상 네트워크, 공용 IP 주소, 부하 분산 장치 및 자동 크기 조정 설정 리소스도 선언 합니다.  템플릿에서 이러한 리소스를 만드는 방법에 대한 자세한 내용은 [자동 크기 조정 기능이 포함된 Linux 확장 집합](virtual-machine-scale-sets-linux-autoscale.md)을 참조하세요.
+확장 집합 리소스 외에, *azuredeploy.json* 샘플 템플릿은 가상 네트워크, 공용 IP 주소, 부하 분산 장치 및 자동 크기 조정 설정 리소스도 선언합니다.  템플릿에서 이러한 리소스를 만드는 방법에 대한 자세한 내용은 [자동 크기 조정 기능이 포함된 Linux 확장 집합](virtual-machine-scale-sets-linux-autoscale.md)을 참조하세요.
 
-Hello에 *azuredeploy.json* 템플릿, hello `extensionProfile` hello 속성 `Microsoft.Compute/virtualMachineScaleSets` 리소스는 사용자 지정 스크립트 확장을 지정 합니다. `fileUris`hello 스크립트가 위치를 지정합니다. 이 경우 두 개의 파일: *workserver.py*, 간단한 HTTP 서버를 정의 하 고 *installserver.sh*, Bottle는 설치 및 시작 HTTP 서버 hello 합니다. `commandToExecute`hello 크기 집합을 배포한 후 hello 명령 toorun를 지정 합니다.
+*azuredeploy.json* 템플릿에서 `Microsoft.Compute/virtualMachineScaleSets` 리소스의 `extensionProfile` 속성은 사용자 지정 스크립트 확장을 지정합니다. `fileUris`는 스크립트 위치를 지정합니다. 이 경우 간단한 HTTP 서버를 정의하는 *workserver.py*와 Bottle을 설치하고 HTTP 서버를 시작하는 *installserver.sh*의 2개 파일이 사용됩니다. `commandToExecute`는 확장 집합이 배포된 후에 실행할 명령을 지정합니다.
 
 ```json
           "extensionProfile": {
@@ -59,11 +59,11 @@ Hello에 *azuredeploy.json* 템플릿, hello `extensionProfile` hello 속성 `Mi
 ```
 
 ### <a name="aspnet-mvc-application-on-windows"></a>Windows의 ASP.NET MVC 응용 프로그램
-hello [Windows에서 ASP.NET MVC 응용 프로그램](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) 샘플 템플릿은 Windows 크기 집합의 IIS에서 실행 되는 간단한 ASP.NET MVC 응용 프로그램을 배포 합니다.  IIS 및 MVC 응용 프로그램 hello hello를 사용 하 여 배포 된 [PowerShell 필요한 상태 구성 (DSC)](virtual-machine-scale-sets-dsc.md) VM 확장 합니다.  hello 배율 설정 눈금 (VM 인스턴스에서 한 번에) 5 분 동안 CPU 사용률이 50% 보다 큰 경우. 
+[Windows의 ASP.NET MVC 응용 프로그램](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) 샘플 템플릿은 Windows 확장 집합의 IIS에서 실행되는 간단한 ASP.NET MVC 앱을 배포합니다.  IIS 및 MVC 앱은 [PowerShell DSC(필요한 상태 구성)](virtual-machine-scale-sets-dsc.md) VM 확장을 사용하여 배포됩니다.  확장 집합은 5분 동안 CPU 사용률이 50%보다 큰 경우 확장됩니다(한 번에 VM 인스턴스에서). 
 
-또한 toohello 크기 집합 리소스에 hello *azuredeploy.json* 예제 서식 파일을 가상 네트워크, 공용 IP 주소, 부하 분산 장치 및 자동 크기 조정 설정 리소스도 선언 합니다. 이 템플릿은 응용 프로그램 업그레이드도 보여 줍니다.  템플릿에서 이러한 리소스를 만드는 방법에 대한 자세한 내용은 [자동 크기 조정 기능이 포함된 WIndows 확장 집합](virtual-machine-scale-sets-windows-autoscale.md)을 참조하세요.
+확장 집합 리소스 외에, *azuredeploy.json* 샘플 템플릿은 가상 네트워크, 공용 IP 주소, 부하 분산 장치 및 자동 크기 조정 설정 리소스도 선언합니다. 이 템플릿은 응용 프로그램 업그레이드도 보여 줍니다.  템플릿에서 이러한 리소스를 만드는 방법에 대한 자세한 내용은 [자동 크기 조정 기능이 포함된 WIndows 확장 집합](virtual-machine-scale-sets-windows-autoscale.md)을 참조하세요.
 
-Hello에 *azuredeploy.json* 템플릿, hello `extensionProfile` hello 속성 `Microsoft.Compute/virtualMachineScaleSets` 리소스 지정는 [원하는 상태 구성 (DSC)](virtual-machine-scale-sets-dsc.md) IIS 및 기본값을 설치 하 여 확장 프로그램 웹 배포 패키지에서 웹 앱입니다.  hello *IISInstall.ps1* 스크립트 hello 가상 컴퓨터에 IIS를 설치 하 고 hello에 *DSC* 폴더입니다.  hello MVC 웹 응용 프로그램 hello에 있으면 *WebDeploy* 폴더입니다.  hello 경로 toohello 설치 스크립트 및 웹 응용 프로그램 hello hello에 정의 되어 `powershelldscZip` 및 `webDeployPackage` hello에 대 한 매개 변수 *azuredeploy.parameters.json* 파일입니다. 
+*azuredeploy.json* 템플릿에서 `Microsoft.Compute/virtualMachineScaleSets` 리소스의 `extensionProfile` 속성은 WebDeploy 패키지에서 IIS 및 기본 웹앱을 설치하는 [DSC(필요한 상태 구성)](virtual-machine-scale-sets-dsc.md) 확장을 지정합니다.  *IISInstall.ps1* 스크립트는 가상 컴퓨터에 IIS를 설치하며 *DSC* 폴더에 포함되어 있습니다.  MVC 웹앱은 *WebDeploy* 폴더에 있습니다.  설치 스크립트 및 웹앱 경로는 *azuredeploy.parameters.json* 파일의 `powershelldscZip` 및 `webDeployPackage` 매개 변수에 정의됩니다. 
 
 ```json
           "extensionProfile": {
@@ -93,11 +93,11 @@ Hello에 *azuredeploy.json* 템플릿, hello `extensionProfile` hello 속성 `Mi
           }
 ```
 
-## <a name="deploy-hello-template"></a>Hello 템플릿을 배포합니다
-가장 간단한 방법은 toodeploy hello hello [Linux에서 Python HTTP 서버](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) 또는 [Windows에서 ASP.NET MVC 응용 프로그램](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) 서식 파일은 toouse hello **tooAzure 배포** hello에 단추를 찾을 수 hello GitHub에서 추가 정보 파일입니다.  또한 PowerShell 또는 Azure CLI toodeploy hello 예제 서식 파일을 사용할 수 있습니다.
+## <a name="deploy-the-template"></a>템플릿 배포
+[Linux에서 Python HTTP 서버](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) 또는 [Windows에서 ASP.NET MVC 응용 프로그램](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) 템플릿을 배포하는 가장 간단한 방법은 GitHub의 추가 정보 파일에 있는 **Azure에 배포** 단추를 사용하는 것입니다.  또한 PowerShell 또는 Azure CLI를 사용하여 샘플 템플릿을 배포할 수도 있습니다.
 
 ### <a name="powershell"></a>PowerShell
-복사 hello [Linux에서 Python HTTP 서버](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) 또는 [Windows에서 ASP.NET MVC 응용 프로그램](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) hello GitHub 리포지토리에 tooa 폴더에서 로컬 컴퓨터에 있는 파일입니다.  열기 hello *azuredeploy.parameters.json* 파일 및 업데이트 hello 기본값의 hello `vmssName`, `adminUsername`, 및 `adminPassword` 매개 변수입니다. PowerShell 스크립트를 너무 뒤 hello 저장*deploy.ps1* hello에 hello와 같은 폴더 *azuredeploy.json* 서식 파일입니다. toodeploy hello 샘플을 실행 하는 템플릿 hello *deploy.ps1* PowerShell 명령 창에서 스크립트입니다.
+GitHub 리포지토리에 있는 [Linux의 Python HTTP 서버](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) 또는 [Windows의 ASP.NET MVC 응용 프로그램](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) 파일을 로컬 컴퓨터의 폴더에 복사합니다.  *azuredeploy.parameters.json* 파일을 열고 `vmssName`, `adminUsername` 및 `adminPassword` 매개 변수의 기본값을 업데이트합니다. 다음 PowerShell 스크립트를 *azuredeploy.json* 템플릿과 동일한 폴더에서 *deploy.ps1*로 저장합니다. 샘플 템플릿을 배포하려면 PowerShell 명령 창에서 *deploy.ps1* 스크립트를 실행합니다.
 
 ```powershell
 param(
@@ -163,7 +163,7 @@ if($resourceProviders.length) {
 $resourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue
 if(!$resourceGroup)
 {
-    Write-Host "Resource group '$resourceGroupName' does not exist. toocreate a new resource group, please enter a location.";
+    Write-Host "Resource group '$resourceGroupName' does not exist. To create a new resource group, please enter a location.";
     if(!$resourceGroupLocation) {
         $resourceGroupLocation = Read-Host "resourceGroupLocation";
     }
@@ -174,7 +174,7 @@ else{
     Write-Host "Using existing resource group '$resourceGroupName'";
 }
 
-# Start hello deployment
+# Start the deployment
 Write-Host "Starting deployment...";
 if(Test-Path $parametersFilePath) {
     New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath -TemplateParameterFile $parametersFilePath;
@@ -191,7 +191,7 @@ IFS=$'\n\t'
 
 # -e: immediately exit if any command has a non-zero exit status
 # -o: prevents errors in a pipeline from being masked
-# IFS new value is less likely toocause confusing bugs when looping arrays or arguments (e.g. $@)
+# IFS new value is less likely to cause confusing bugs when looping arrays or arguments (e.g. $@)
 
 usage() { echo "Usage: $0 -i <subscriptionId> -g <resourceGroupName> -n <deploymentName> -l <resourceGroupLocation>" 1>&2; exit 1; }
 
@@ -238,12 +238,12 @@ if [[ -z "$deploymentName" ]]; then
 fi
 
 if [[ -z "$resourceGroupLocation" ]]; then
-    echo "Enter a location below toocreate a new resource group else skip this"
+    echo "Enter a location below to create a new resource group else skip this"
     echo "ResourceGroupLocation:"
     read resourceGroupLocation
 fi
 
-#templateFile Path - template file toobe used
+#templateFile Path - template file to be used
 templateFilePath="template.json"
 
 if [ ! -f "$templateFilePath" ]; then
@@ -264,7 +264,7 @@ if [ -z "$subscriptionId" ] || [ -z "$resourceGroupName" ] || [ -z "$deploymentN
     usage
 fi
 
-#login tooazure using your credentials
+#login to azure using your credentials
 az account show 1> /dev/null
 
 if [ $? != 0 ];
@@ -272,7 +272,7 @@ then
     az login
 fi
 
-#set hello default subscription id
+#set the default subscription id
 az account set --name $subscriptionId
 
 set +e

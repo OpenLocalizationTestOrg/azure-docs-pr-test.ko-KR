@@ -1,5 +1,5 @@
 ---
-title: "aaaScheduler 제한 및 기본값"
+title: "스케줄러 제한 및 기본값"
 description: "스케줄러 제한 및 기본값"
 services: scheduler
 documentationcenter: .NET
@@ -14,27 +14,27 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/18/2016
 ms.author: deli
-ms.openlocfilehash: 6fe0600d3ce3249d5aab1b877369b175316b5437
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: db6b1c196cb468f41c7a7ce34758de346b522abb
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="scheduler-limits-and-defaults"></a>스케줄러 제한 및 기본값
 ## <a name="scheduler-quotas-limits-defaults-and-throttles"></a>스케줄러 할당량, 제한, 기본값 및 한계
 [!INCLUDE [scheduler-limits-table](../../includes/scheduler-limits-table.md)]
 
-## <a name="hello-x-ms-request-id-header"></a>ms 요청 id x hello 헤더
-라는 응답 헤더를 반환 하는 hello 스케줄러 서비스에 대 한 모든 요청**ms 요청 id x**합니다. 이 헤더는 hello 요청을 고유 하 게 식별 하는 불투명 값을 포함 합니다.
+## <a name="the-x-ms-request-id-header"></a>x-ms-request-id 헤더
+스케줄러 서비스에 대한 모든 요청에서는 이름이**x-ms-request-id**인 응답 헤더를 반환합니다. 이 헤더는 요청을 고유하게 식별하는 불투명 값을 포함합니다.
 
-지속적으로 요청은 실패 하 고 hello 요청이 공식화 제대로 되,이 값 tooreport hello 오류 tooMicrosoft를 사용할 수 있습니다 확인 했습니다. 보고서에서 u e x-ms-id, hello 대략적인 시간 hello 값 hello 구독, 작업 컬렉션 및/또는 작업의 식별자를 hello 및 hello 시도 하는 요청 된 작업 유형을 hello에 해당 hello 요청이 수행 되었습니다.
+요청이 계속 실패하고 해당 요청이 제대로 구성되었음을 확인한 경우 이 값을 사용하여 오류를 Microsoft에 보고할 수 있습니다. 보고서에는 x-ms-request-id 값, 요청을 수행한 대략적인 시간, 구독 식별자, 작업 컬렉션 및/또는 작업, 요청이 시도한 작업 유형을 포함합니다.
 
 ## <a name="see-also"></a>참고 항목
  [스케줄러란?](scheduler-intro.md)
 
  [Azure 스케줄러 개념, 용어 및 엔터티 계층 구조](scheduler-concepts-terms.md)
 
- [Hello Azure 포털에서에서 스케줄러 사용 시작](scheduler-get-started-portal.md)
+ [Azure 포털에서 스케줄러 사용 시작](scheduler-get-started-portal.md)
 
  [Azure 스케줄러의 버전 및 요금 청구](scheduler-plans-billing.md)
 

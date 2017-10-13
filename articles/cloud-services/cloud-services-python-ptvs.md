@@ -1,6 +1,6 @@
 ---
-title: "Python 및 Azure 클라우드 서비스 시작: aaaGet | Microsoft Docs"
-description: "Python 도구를 사용 하 여 웹 역할과 작업자 역할을 포함 하 여 Visual Studio toocreate Azure 클라우드 서비스에 대해 간략하게 설명 합니다."
+title: "Python 및 Azure Cloud Services 시작 | Microsoft Docs"
+description: "Python Tools for Visual Studio를 사용하여 웹 역할과 작업자 역할을 포함한 Azure 클라우드 서비스를 만드는 방법을 간략하게 설명합니다."
 services: cloud-services
 documentationcenter: python
 author: thraka
@@ -14,15 +14,15 @@ ms.devlang: python
 ms.topic: hero-article
 ms.date: 07/18/2017
 ms.author: adegeo
-ms.openlocfilehash: f5fd85e754839f146abe912351c59dc4a148c990
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 030a09c05ac4b480c9326b8a9ebc585339f312b5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="python-web-and-worker-roles-with-python-tools-for-visual-studio"></a>Python Tools for Visual Studio의 Python 웹 및 작업자 역할
 
-이 문서에서는 [Visual Studio용 Python Tools][Python Tools for Visual Studio]를 사용하여 Python 웹 및 작업자 역할을 사용하는 방법을 간략하게 설명합니다. 자세한 내용은 어떻게 toouse Visual Studio toocreate 및 Python을 사용 하는 기본 클라우드 서비스를 배포 합니다.
+이 문서에서는 [Visual Studio용 Python Tools][Python Tools for Visual Studio]를 사용하여 Python 웹 및 작업자 역할을 사용하는 방법을 간략하게 설명합니다. Visual Studio를 사용하여 Python을 사용하는 기본 Cloud Service를 만들고 배포하는 방법을 알아봅니다.
 
 ## <a name="prerequisites"></a>필수 조건
 * [Visual Studio 2013, 2015 또는 2017](https://www.visualstudio.com/)
@@ -35,45 +35,45 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 ## <a name="what-are-python-web-and-worker-roles"></a>Python 웹 및 작업자 역할 정의
-Azure는 응용 프로그램을 실행하기 위한 세 가지 컴퓨팅 모델인 [Azure App Service의 Web Apps 기능][execution model-web sites], [Azure Virtual Machines][execution model-vms] 및 [Azure Cloud Services][execution model-cloud services]를 제공합니다. 이 세 모델은 모두 Python을 지원합니다. 웹 및 작업자 역할을 포함하는 Cloud Services는 *PaaS(Platform as a Service)*를 제공합니다. 클라우드 서비스 내에서 웹 역할 제공 하는 전용된 인터넷 정보 서비스 (IIS) 웹 서버 toohost 프런트 엔드 웹 응용 프로그램의 경우 작업자 역할 사용자 상호 작용 및 입력에 관계 없이 비동기, 장기 실행 또는 영구 작업을 실행할 수 합니다.
+Azure는 응용 프로그램을 실행하기 위한 세 가지 컴퓨팅 모델인 [Azure App Service의 Web Apps 기능][execution model-web sites], [Azure Virtual Machines][execution model-vms] 및 [Azure Cloud Services][execution model-cloud services]를 제공합니다. 이 세 모델은 모두 Python을 지원합니다. 웹 및 작업자 역할을 포함하는 Cloud Services는 *PaaS(Platform as a Service)*를 제공합니다. Cloud Service 내에서 웹 역할은 프런트 엔드 웹 응용 프로그램을 호스트하기 위해 전용 IIS(인터넷 정보 서비스) 웹 서버를 제공하고, 작업자 역할은 사용자 조작 또는 입력과 관계없이 비동기, 장기 실행 또는 영구 작업을 실행할 수 있습니다.
 
 자세한 내용은 [Cloud Service란?]을 참조하세요.
 
 > [!NOTE]
-> *Toobuild 간단한 웹 사이트를 찾고 있습니까?*
-> 시나리오는 간단한 웹 사이트 프런트 엔드만 있을 경우에 Azure 앱 서비스의 hello 경량 웹 응용 프로그램 기능을 사용 하는 것이 좋습니다. 웹 사이트 증가 하 고 요구 사항을 변경 하는 대로 tooa 클라우드 서비스를 쉽게 업그레이드할 수 있습니다. Hello 참조 <a href="/develop/python/">Python 개발자 센터</a> hello 웹 응용 프로그램 기능의 Azure 앱 서비스의 개발을 설명 하는 문서에 대 한 합니다.
+> *간단한 웹 사이트를 빌드하려는 경우*
+> 시나리오에 간단한 웹 사이트 프런트 엔드만 포함된 경우 Azure App Service에서 간단한 Web Apps를 사용하도록 고려합니다. 그러면 웹 사이트가 커지고 요구 사항이 변경될 때 클라우드 서비스로 쉽게 업그레이드할 수 있습니다. Azure App Service의 Web Apps 기능 개발을 설명하는 문서는 <a href="/develop/python/">Python 개발자 센터</a>를 참조하세요.
 > <br />
 > 
 > 
 
 ## <a name="project-creation"></a>프로젝트 만들기
-Visual Studio에서 선택할 수 있습니다 **Azure 클라우드 서비스** hello에 **새 프로젝트** 대화 상자의 **Python**합니다.
+Visual Studio의 **새 프로젝트** 대화 상자에 있는 **Python**에서 **Azure Cloud Service**를 선택하면 됩니다.
 
 ![새 프로젝트 대화 상자](./media/cloud-services-python-ptvs/new-project-cloud-service.png)
 
-Hello Azure 클라우드 서비스 마법사에서 새 웹 및 작업자 역할을 만들 수 있습니다.
+Azure 클라우드 서비스 마법사에서 새 웹 및 작업자 역할 만들기를 선택할 수 있습니다.
 
 ![Azure 클라우드 서비스 대화 상자](./media/cloud-services-python-ptvs/new-service-wizard.png)
 
-hello 작업자 역할 템플릿을 상용구 코드 tooconnect tooan Azure 저장소 계정 또는 Azure 서비스 버스 함께 제공 됩니다.
+작업자 역할 템플릿에는 Azure Storage 계정 또는 Azure Service Bus에 연결하기 위한 상용구 코드가 제공됩니다.
 
 ![클라우드 서비스 솔루션](./media/cloud-services-python-ptvs/worker.png)
 
-언제 든 지 웹 또는 작업자 역할 tooan 기존 클라우드 서비스를 추가할 수 있습니다.  솔루션에 tooadd 기존 프로젝트를 선택 하거나 새로 만들 수 있습니다.
+언제든지 기존 클라우드 서비스에 웹 또는 작업자 역할을 추가할 수 있습니다.  솔루션에 기존 프로젝트를 추가하거나 새 프로젝트를 만들도록 선택할 수 있습니다.
 
 ![역할 추가 명령](./media/cloud-services-python-ptvs/add-new-or-existing-role.png)
 
 클라우드 서비스는 여러 언어로 구현된 역할을 포함할 수 있습니다.  예를 들어 Django로 구현된 Python 웹 역할과 Python 또는 C# 작업자 역할이 포함될 수 있습니다.  서비스 버스 큐 또는 저장소 큐를 사용하면 역할 간에 쉽게 통신할 수 있습니다.
 
-## <a name="install-python-on-hello-cloud-service"></a>Hello 클라우드 서비스에 Python을 설치 합니다.
+## <a name="install-python-on-the-cloud-service"></a>클라우드 서비스에 Python 설치
 > [!WARNING]
-> hello 설치 스크립트 (이 문서를 마지막으로 수정한 hello 시간)에 설치 된 Visual Studio가 작동 하지 않습니다. 이 섹션에서는 해결 방법을 설명합니다.
+> (이 문서를 마지막으로 업데이트한 시간에)Visual Studio를 사용하여 설치된 설치 스크립트가 작동하지 않습니다. 이 섹션에서는 해결 방법을 설명합니다.
 > 
 > 
 
-hello 설치 스크립트와 hello 큰 문제는 python 설치 하지 마십시오입니다. 먼저 두 개의 정의 [시작 작업](cloud-services-startup-tasks.md) hello에 [ServiceDefinition.csdef](cloud-services-model-and-package.md#servicedefinitioncsdef) 파일입니다. hello 첫 번째 작업 (**PrepPython.ps1**) 다운로드 하 고 hello Python 런타임의 설치 합니다. hello 두 번째 작업 (**PipInstaller.ps1**) 실행 pip tooinstall 종속성 할 수 있습니다.
+설치 스크립트의 가장 큰 문제는 Python을 설치하지 않았다는 점입니다. 먼저 [ServiceDefinition.csdef](cloud-services-model-and-package.md#servicedefinitioncsdef) 파일에 두 가지 [시작 태스크](cloud-services-startup-tasks.md)를 정의합니다. 첫 번째 작업(**PrepPython.ps1**)은 Python 런타임을 다운로드하고 설치합니다. 두 번째 작업(**PipInstaller.ps1**)은 pip를 실행하여 가질 수 있는 모든 종속성을 설치합니다.
 
-다음 스크립트는 hello Python 3.5를 대상으로 작성 되었습니다. Toouse hello 버전을 원하는 경우 python, 집합 hello의 2.x **PYTHON2** 변수 파일 너무**에** hello 두 시작 작업 및 hello 런타임 작업에 대 한: `<Variable name="PYTHON2" value="<mark>on</mark>" />`합니다.
+다음 스크립트는 Python 3.5를 대상으로 작성되었습니다. Python 2.x 버전을 사용하려는 경우 두 가지 시작 태스크 및 런타임 태스크에 **PYTHON2** 변수 파일을 **켜기**로 설정합니다. `<Variable name="PYTHON2" value="<mark>on</mark>" />`
 
 ```xml
 <Startup>
@@ -100,7 +100,7 @@ hello 설치 스크립트와 hello 큰 문제는 python 설치 하지 마십시�
 </Startup>
 ```
 
-hello **PYTHON2** 및 **PYPATH** 변수 toohello 작업자 시작 작업을 추가 해야 합니다. hello **PYPATH** 변수 경우에 사용 hello **PYTHON2** 변수는 너무 설정**에**합니다.
+**PYTHON2** 및 **PYPATH** 변수는 작업자 시작 작업에 추가되어야 합니다. **PYPATH** 변수는 **PYTHON2** 변수가 **켜기**로 설정되는 경우에 사용됩니다.
 
 ```xml
 <Runtime>
@@ -166,10 +166,10 @@ hello **PYTHON2** 및 **PYPATH** 변수 toohello 작업자 시작 작업을 추�
 
 
 
-다음으로 hello를 만듭니다 **PrepPython.ps1** 및 **PipInstaller.ps1** hello에 대 한 파일 **. / b i n** 역할 폴더입니다.
+다음으로 역할의 **./bin** 폴더에 **PrepPython.ps1** 및 **PipInstaller.ps1** 파일을 만듭니다.
 
 #### <a name="preppythonps1"></a>PrepPython.ps1
-이 스크립트는 Python을 설치합니다. 경우 hello **PYTHON2** 환경 변수는 너무 설정**에**, Python 2.7가 설치 되어 다음 그렇지 않은 경우 Python 3.5가 설치 되어 있습니다.
+이 스크립트는 Python을 설치합니다. **PYTHON2** 환경 변수가 **켜기**로 설정된 경우 Python 2.7이 설치되고 그렇지 않으면 Python 3.5가 설치됩니다.
 
 ```powershell
 $is_emulated = $env:EMULATED -eq "true"
@@ -195,7 +195,7 @@ if (-not $is_emulated){
             $outFile = "${env:TEMP}\python-2.7.12.amd64.msi"
         }
 
-        Write-Output "Not found, downloading $url too$outFile$nl"
+        Write-Output "Not found, downloading $url to $outFile$nl"
         Invoke-WebRequest $url -OutFile $outFile
         Write-Output "Installing$nl"
 
@@ -215,7 +215,7 @@ if (-not $is_emulated){
 ```
 
 #### <a name="pipinstallerps1"></a>PipInstaller.ps1
-이 스크립트는 pip를 호출 하 고 hello에 설치 하는 모든 hello 종속성 **requirements.txt** 파일입니다. 경우 hello **PYTHON2** 환경 변수는 너무 설정**에**, Python 2.7을 사용 하는 다음 Python 3.5 그렇지 않으면 사용 됩니다.
+이 스크립트는 pip를 호출하고 **requirements.txt** 파일에 모든 종속성을 설치합니다. **PYTHON2** 환경 변수가 **켜기**로 설정된 경우 Python 2.7이 사용되고 그렇지 않으면 Python 3.5가 사용됩니다.
 
 ```powershell
 $is_emulated = $env:EMULATED -eq "true"
@@ -244,13 +244,13 @@ if (-not $is_emulated){
 
 #### <a name="modify-launchworkerps1"></a>LaunchWorker.ps1 수정
 > [!NOTE]
-> 경우 hello는 **작업자 역할** 프로젝트 **LauncherWorker.ps1** 파일은 필요한 tooexecute hello 시작 파일. 에 **웹 역할** 프로젝트를 hello 시작 파일 대신에 정의 된 hello 프로젝트 속성입니다.
+> **작업자 역할** 프로젝트의 경우에 시작 파일을 실행하려면 **LauncherWorker.ps1** 파일이 필요합니다. 대신 **웹 역할** 프로젝트에서 시작 파일은 프로젝트 속성에 정의됩니다.
 > 
 > 
 
-hello **bin\LaunchWorker.ps1** toodo 준비 작업이 하지만 많은 실제로 작동 하지 않는 원래 만들어진 합니다. 다음 스크립트는 hello로 해당 파일의 내용을 hello를 대체 합니다.
+**bin\LaunchWorker.ps1**은 원래 많은 준비 작업을 수행하도록 만들었지만 실제로 작동하지 않습니다. 해당 파일의 내용을 다음 스크립트로 바꿉니다.
 
-이 스크립트 호출 hello **worker.py** python 프로젝트에서 파일입니다. 경우 hello **PYTHON2** 환경 변수는 너무 설정**에**, Python 2.7을 사용 하는 다음 Python 3.5 그렇지 않으면 사용 됩니다.
+이 스크립트는 Python 프로젝트에서 **worker.py** 파일을 호출합니다. **PYTHON2** 환경 변수가 **켜기**로 설정된 경우 Python 2.7이 사용되고 그렇지 않으면 Python 3.5가 사용됩니다.
 
 ```powershell
 $is_emulated = $env:EMULATED -eq "true"
@@ -274,7 +274,7 @@ else
 {
     Write-Output "Running (EMULATED) worker.py$nl"
 
-    # Customize tooyour local dev environment
+    # Customize to your local dev environment
 
     if ($is_python2) {
         cd..
@@ -288,7 +288,7 @@ else
 ```
 
 #### <a name="pscmd"></a>ps.cmd
-Visual Studio 템플릿 hello 만들어져 있어야는 **ps.cmd** hello에 대 한 파일 **. / b i n** 폴더입니다. 이 셸 스크립트 래퍼 스크립트가 위의 hello PowerShell 호출를 호출 하는 hello PowerShell 래퍼의 hello 이름에 따라 로깅을 제공 합니다. 이 파일이 생성되지 않은 경우 포함되어야 하는 내용은 다음과 같습니다. 
+Visual Studio 템플릿은 **./bin** 폴더에 **ps.cmd** 파일을 만들었어야 합니다. 이 셸 스크립트는 위의 PowerShell 래퍼 스크립트를 호출하고 호출된 PowerShell 래퍼의 이름을 기반으로 하는 로깅을 제공합니다. 이 파일이 생성되지 않은 경우 포함되어야 하는 내용은 다음과 같습니다. 
 
 ```bat
 @echo off
@@ -302,38 +302,38 @@ if not exist "%DiagnosticStore%\LogFiles" mkdir "%DiagnosticStore%\LogFiles"
 
 
 ## <a name="run-locally"></a>로컬 실행
-클라우드 서비스 프로젝트 hello 시작 프로젝트로 설정 하 고 F5 키를 누릅니다 hello 클라우드 서비스는 hello 로컬 Azure 에뮬레이터에서 실행 됩니다.
+Cloud Service 프로젝트를 시작 프로젝트로 설정하고 F5 키를 누르면 해당 Cloud Service가 로컬 Azure 에뮬레이터에서 실행됩니다.
 
-PTVS 지원 하지만 hello 에뮬레이터, 디버깅 (예: 중단점)에서 시작 작동 하지 않습니다.
+PTVS를 에뮬레이터에서 시작할 수는 있지만 중단점 등의 디버깅 기능은 작동하지 않습니다.
 
-toodebug 웹 및 작업자 역할, 역할 프로젝트 hello hello 시작 프로젝트로 설정 하 고 디버그할 수 대신 합니다.  여러 시작 프로젝트를 설정할 수도 있습니다.  Hello 솔루션을 마우스 오른쪽 단추로 클릭 한 다음 선택 **시작 프로젝트 설정**합니다.
+웹 및 작업자 역할을 디버그하려는 경우 역할 프로젝트를 시작 프로젝트로 설정하고 해당 프로젝트를 대신 디버그하면 됩니다.  여러 시작 프로젝트를 설정할 수도 있습니다.  이렇게 하려면 솔루션을 마우스 오른쪽 단추로 클릭하고 **시작 프로젝트 설정**을 선택합니다.
 
 ![솔루션 시작 프로젝트 속성](./media/cloud-services-python-ptvs/startup.png)
 
-## <a name="publish-tooazure"></a>TooAzure 게시
-toopublish, hello 솔루션의 hello 클라우드 서비스 프로젝트를 마우스 오른쪽 단추로 클릭 한 다음 선택 **게시**합니다.
+## <a name="publish-to-azure"></a>Azure에 게시
+게시하려면 솔루션의 클라우드 서비스 프로젝트를 마우스 오른쪽 단추로 클릭하고 **게시**를 선택합니다.
 
 ![Microsoft Azure 게시 로그인](./media/cloud-services-python-ptvs/publish-sign-in.png)
 
-Hello 마법사를 따릅니다. 필요한 경우 원격 데스크톱을 사용합니다. 원격 데스크톱 toodebug 대상이 필요 때 유용 합니다.
+마법사를 따릅니다. 필요한 경우 원격 데스크톱을 사용합니다. 원격 데스크톱은 무언가를 디버깅해야 할 때 유용합니다.
 
 설정 구성을 완료한 후 **게시**를 클릭합니다.
 
-Hello 출력 창에 표시 되는 일부 진행 한 후 hello Microsoft Azure 활동 로그 창이 표시 됩니다.
+출력 창에 진행률이 어느 정도 표시된 다음 Microsoft Azure 활동 로그 창이 표시됩니다.
 
 ![Microsoft Azure 활동 로그 창](./media/cloud-services-python-ptvs/publish-activity-log.png)
 
-배포는 몇 분 toocomplete, 다음 웹 또는 작업자 역할은 Azure에서 실행!
+몇 분 후에 배포가 완료되고 웹 및/또는 작업자 역할이 Azure에서 실행됩니다.
 
 ### <a name="investigate-logs"></a>로그 조사
-Hello 클라우드 서비스가 가상 컴퓨터 시작 되 고 Python 설치 후 모든 실패 메시지 hello 로그 toofind에서 볼 수 있습니다. 이러한 로그는 hello 아래의 **C:\Resources\Directory\\{역할} \LogFiles** 폴더입니다. **PrepPython.err.txt** hello 스크립트 잠그려고 할 때이 toodetect Python 설치 된 경우에서 오류가 하나 이상 포함 된 및 **PipInstaller.err.txt** 오래 된 버전의 pip는 불만 제기 될 수 있습니다.
+클라우드 서비스 가상 컴퓨터가 시작되고 Python을 설치한 후에 로그를 보고 오류 메시지를 찾을 수 있습니다. 이러한 로그는 **C:\Resources\Directory\\{role}\LogFiles** 폴더에 있습니다. 스크립트에서 Python이 설치되어 있는지 검색하려고 할 때 **PrepPython.err.txt**에는 하나 이상의 오류가 발견됩니다. **PipInstaller.err.txt**는 PIP의 이전 버전과 호환되지 않을 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
-Visual Studio 용 Python 도구에서 웹 및 작업자 역할 사용에 대 한 자세한 내용을 보려면 hello PTVS 설명서를 참조 합니다.
+Python Tools for Visual Studio에서 웹 및 작업자 역할을 사용하는 방법에 대한 자세한 내용은 PTVS 설명서를 참조하세요.
 
 * [Cloud Service 프로젝트][Cloud Service Projects]
 
-Azure 저장소 서비스 또는 서비스 버스를 사용 하는 등 사용자 웹 및 작업자 역할에서 Azure 서비스를 사용 하는 방법에 대 한 자세한 내용은 다음 문서는 hello 참조:
+Azure Storage 또는 Service Bus를 사용하는 등 웹 및 작업자 역할에서 Azure 서비스를 사용하는 방법에 대한 자세한 내용은 다음 문서를 참조하세요.
 
 * [Blob Service][Blob Service]
 * [Table Service][Table Service]
@@ -344,7 +344,7 @@ Azure 저장소 서비스 또는 서비스 버스를 사용 하는 등 사용자
 <!--Link references-->
 
 [Cloud Service란?]: cloud-services-choose-me.md
-[execution model-web sites]: ../app-service-web/app-service-web-overview.md
+[execution model-web sites]: ../app-service/app-service-web-overview.md
 [execution model-vms]:../virtual-machines/windows/overview.md
 [execution model-cloud services]: cloud-services-choose-me.md
 [Python Developer Center]: /develop/python/

@@ -1,6 +1,6 @@
 ---
-title: "aaaAnalyze Azure 포털 hello 사용 하 여 미디어 | Microsoft Docs"
-description: "이 항목에서는 방법을 tooprocess 미디어 분석 미디어 프로세서 (Mp)를 사용 하 여 미디어 hello Azure 포털입니다."
+title: "Azure Portal을 사용하여 미디어 분석 | Microsoft 문서"
+description: "이 항목에서는 Azure Portal을 사용하여 미디어 분석 미디어 프로세서(MP)로 미디어를 처리하는 방법을 설명합니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: juliako
-ms.openlocfilehash: d549c0315cd58c3771420379316b4f2ad3c2cea6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 22032aef0cc8b7b015503043028873e70c21ee85
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="analyze-your-media-using-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여 미디어를 분석 합니다.
+# <a name="analyze-your-media-using-the-azure-portal"></a>Azure Portal을 사용하여 미디어 분석
 > [!NOTE]
-> toocomplete이이 자습서에서는 Azure 계정이 필요 합니다. 자세한 내용은 [Azure 무료 체험](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요. 
+> 이 자습서를 완료하려면 Azure 계정이 필요합니다. 자세한 내용은 [Azure 무료 체험](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요. 
 > 
 > 
 
 ## <a name="overview"></a>개요
-Azure 미디어 서비스 분석은 음성 및 비전에서 구성 요소 (엔터프라이즈 규모, 규정 준수, 보안 및 글로벌 서비스)을 쉽게 조직 및 기업 tooderive 실행 가능한 통찰력에 대 한 비디오 파일에서의 컬렉션입니다. Azure Media Services Analytics에 대한 자세한 개요는 [이](media-services-analytics-overview.md) 항목을 참조하세요. 
+Azure Media Services Analytics는 조직과 기업이 비디오 파일에서 실질적인 통찰력을 끌어내기 쉽도록 만드는 언어 및 시각 구성 요소 모음으로, 미디어 분석을 엔터프라이즈 규모, 규정 준수, 보안 및 전 세계 범위로 제공합니다. Azure Media Services Analytics에 대한 자세한 개요는 [이](media-services-analytics-overview.md) 항목을 참조하세요. 
 
-이 항목에서는 방법을 tooprocess 미디어 분석 미디어 프로세서 (Mp)를 사용 하 여 미디어 hello Azure 포털입니다. 미디어 분석 MP는 MP4 파일 또는 JSON 파일을 생성합니다. 미디어 프로세서 MP4 파일을 생성 하는 경우에 hello 파일을 점진적으로 다운로드할 수 있습니다. 미디어 프로세서는 JSON 파일을 생성 하는 경우에 hello Azure blob 저장소에서에서 hello 파일을 다운로드할 수 있습니다. 
+이 항목에서는 Azure Portal을 사용하여 미디어 분석 미디어 프로세서(MP)로 미디어를 처리하는 방법을 설명합니다. 미디어 분석 MP는 MP4 파일 또는 JSON 파일을 생성합니다. 미디어 프로세서가 MP4 파일을 생한 경우 파일을 점진적으로 다운로드할 수 있습니다. 미디어 프로세서가 JSON 파일을 생성한 경우 Azure Blob 저장소에서 해당 파일을 다운로드할 수 있습니다. 
 
-## <a name="choose-an-asset-that-you-want-tooanalyze"></a>자산 선택 tooanalyze 원하는
-1. Hello에 [Azure 포털](https://portal.azure.com/)를 Azure 미디어 서비스 계정을 선택 합니다.
-2. Hello에 **설정** 창에서 **자산**합니다.  
-   에서도 확인할 수 있습니다.
+## <a name="choose-an-asset-that-you-want-to-analyze"></a>분석하려는 자산을 선택
+1. [Azure Portal](https://portal.azure.com/)에서 Azure Media Services 계정을 선택합니다.
+2. **설정** 창에서 **자산**을 선택합니다.  
+   을 참조하세요.
     ![비디오 분석](./media/media-services-portal-analyze/media-services-portal-analyze001.png)
-3. 원하는 선택 hello 자산 tooanalyze 및 키를 눌러 hello **분석** 단추입니다.
+3. 분석할 자산을 선택하고 **분석** 단추를 누릅니다.
    
     ![비디오 분석](./media/media-services-portal-analyze/media-services-portal-analyze002.png)
-4. Hello에 **미디어 분석 인 미디어 자산 프로세스** 창, 선택 hello 프로세서. 
+4. **미디어 분석기를 사용하여 미디어 자산 처리** 창에서 프로세서를 선택합니다. 
    
-    hello 문서의 hello 나머지 부분에서는 근거, 방법에 대해 설명 toouse 각 프로세서. 
-5. 키를 눌러 **만들기** toohello 작업을 시작 합니다.
+    문서의 나머지 부분에서는 각 프로세서를 사용하는 이유와 방법을 설명합니다. 
+5. **만들기**를 눌러 작업을 시작합니다.
 
 ## <a name="azure-media-indexer"></a>Azure 미디어 인덱서
-hello **Azure Media Indexer** 미디어 프로세서를 사용 하면 toomake 미디어 파일 및 콘텐츠를 검색할 수, 닫힌된 캡션 트랙을 생성 합니다. 이 섹션에서는 이 MP에 대해 지정할 수 있는 옵션에 대한 자세한 내용을 제공합니다.
+**Azure Media Indexer** 미디어 프로세서를 사용하여 미디어 파일과 콘텐츠를 검색 가능하도록 설정할 수 있으며 선택 캡션 트랙을 생성할 수 있습니다. 이 섹션에서는 이 MP에 대해 지정할 수 있는 옵션에 대한 자세한 내용을 제공합니다.
 
 ![비디오 분석](./media/media-services-portal-analyze/media-services-portal-analyze003.png)
 
 ### <a name="language"></a>언어
-hello 자연어 toobe hello 멀티미디어 파일에서 인식 합니다. 예를 들어 영어 또는 스페인어입니다. 
+멀티미디어 파일에서 인식되는 자연 언어입니다. 예를 들어 영어 또는 스페인어입니다. 
 
 ### <a name="captions"></a>자막
-콘텐츠에서 생성할 자막 형식을 선택할 수 있습니다. 한 인덱싱 작업 hello 형식 뒤에 닫힌된 캡션 파일을 생성할 수 있습니다.  
+콘텐츠에서 생성할 자막 형식을 선택할 수 있습니다. 인덱싱 작업은 다음 형식의 선택 캡션 파일을 생성할 수 있습니다.  
 
 * **SAMI**
 * **TTML**
 * **WebVTT**
 
-비디오 파일 청각 장애가 있는 toopeople를 액세스할 수 있으며 이러한 형식의 닫힌된 캡션 (CC) 파일 사용된 toomake 오디오를 수 있습니다.
+이러한 형식의 CC(선택 캡션)는 청각 장애가 있는 사용자가 액세스할 수 있는 오디오 및 비디오 파일을 만드는 데 사용될 수 있습니다.
 
 ### <a name="aib-file"></a>AIB 파일
-사용자는 사용 하기 위해 toogenerate hello 오디오 인덱스 Blob 파일 같은 hello 사용자 지정 SQL Server IFilter이이 옵션을 선택 합니다. 자세한 내용은 [이 블로그](https://azure.microsoft.com/blog/using-aib-files-with-azure-media-indexer-and-sql-server/) 를 참조하세요.
+사용자 지정 SQL Server IFilter에 사용하기 위해 Audio Index Blob 파일을 생성하려는 경우 이 옵션을 선택합니다. 자세한 내용은 [이 블로그](https://azure.microsoft.com/blog/using-aib-files-with-azure-media-indexer-and-sql-server/) 를 참조하세요.
 
 ### <a name="keywords"></a>키워드
-Toogenerate 키워드 XML 파일을 원하는 경우이 옵션을 선택 합니다. 이 파일에는 빈도 및 오프셋된 정보와 함께 hello 음성 콘텐츠에서 추출 된 키워드가 포함 되어 있습니다.
+키워드 XML 파일을 생성하려는 경우 이 옵션을 선택합니다. 이 파일은 빈도 및 오프셋 정보를 포함하며 음성 콘텐츠에서 추출된 키워드를 포함합니다.
 
 ### <a name="job-name"></a>작업 이름
-Hello 작업을 식별할 수 있는 이름입니다. [이](media-services-portal-check-job-progress.md) 작업의 hello 진행률을 모니터링 하는 방법에 대해 설명 합니다. 
+작업을 식별할 수 있는 친숙한 이름입니다. [이](media-services-portal-check-job-progress.md) 문서에서는 작업 진행률을 모니터링하는 방법을 설명합니다. 
 
 ### <a name="output-file"></a>출력 파일
-Hello 출력 콘텐츠를 식별할 수 있는 이름입니다. 
+출력 콘텐츠를 식별할 수 있는 친숙한 이름입니다. 
 
 ## <a name="azure-media-hyperlapse"></a>Azure 미디어 Hyperlapse
 Azure Media Hyperlapse는 1인칭 또는 액션 카메라 콘텐츠에서 부드러운 시간 경과 비디오를 만드는 MP입니다.  자세한 내용은 [이 항목](media-services-hyperlapse-content.md)을 참조하세요. 이 섹션에서는 이 MP에 대해 지정할 수 있는 옵션에 대한 자세한 내용을 제공합니다.
@@ -79,61 +79,61 @@ Azure Media Hyperlapse는 1인칭 또는 액션 카메라 콘텐츠에서 부드
 ![비디오 분석](./media/media-services-portal-analyze/media-services-portal-analyze004.png)
 
 ### <a name="speed"></a>속도
-Hello 입력된 비디오를 어떤 toospeed와 hello 속도 지정 합니다. hello 출력은 hello 입력된 비디오의 안정화 및 된 경과 된 시간 변환을입니다.
+입력 비디오를 가속화할 속도를 지정합니다. 출력은 입력 비디오의 안정화되고 시간 경과된 표현입니다.
 
 ### <a name="job-name"></a>작업 이름
-Hello 작업을 식별할 수 있는 이름입니다. [이](media-services-portal-check-job-progress.md) 작업의 hello 진행률을 모니터링 하는 방법에 대해 설명 합니다. 
+작업을 식별할 수 있는 친숙한 이름입니다. [이](media-services-portal-check-job-progress.md) 문서에서는 작업 진행률을 모니터링하는 방법을 설명합니다. 
 
 ### <a name="output-file"></a>출력 파일
-Hello 출력 콘텐츠를 식별할 수 있는 이름입니다. 
+출력 콘텐츠를 식별할 수 있는 친숙한 이름입니다. 
 
 ## <a name="azure-media-face-detector"></a>Azure 미디어 얼굴 탐지기
-hello **Azure 미디어 얼굴 탐지기** 미디어 프로세서 MP ()를 사용 하면 toocount, 트랙 이동을 계기 청중 참여도 있고 얼굴 식을 통해 반응 합니다. 이 서비스는 두 가지 기능을 포함합니다. 
+**Azure 미디어 얼굴 탐지기** MP(미디어 프로세서)를 사용하여 이동 추적, 계산이 가능해지며 표정을 통해 대상 그룹 참여 및 반응 판단도 가능합니다. 이 서비스는 두 가지 기능을 포함합니다. 
 
 * **얼굴 검색**
   
-    얼굴 검색은 동영상 내의 얼굴을 찾아 추적합니다. 여러 글꼴로 검색 하 hello 시간 및 위치 메타 데이터와 JSON 파일에서 반환 된, 이동 하는 동안 이후에 추적할 수 있습니다. 추적 하는 동안 toogive hello 사용자가 이동 화면의 hello 프레임을 간단 하 게 유지 되거나 방해 하는 경우에 하는 동안에 맞서게 동일한 일관 된 ID toohello 시도 합니다.
+    얼굴 검색은 동영상 내의 얼굴을 찾아 추적합니다. 여러 얼굴이 검색될 수 있으며 이후 JSON 파일로 반환되는 시간 및 위치 메타데이터를 사용하여 얼굴이 움직일 때마다 추적할 수 있습니다. 추적하는 동안 화면에서 사용자가 움직일 때, 가려지거나 프레임에서 잠시 벗어나는 경우에도 동일한 얼굴에 일관된 ID를 지정하려고 합니다.
   
   > [!NOTE]
-  > 이 서비스는 안면 인식을 수행하지 않습니다. Hello 프레임을 벗어나거나에 대 한 방해 되는 사람이 너무 오래 하 게 할 새 ID를 반환 합니다.
+  > 이 서비스는 안면 인식을 수행하지 않습니다. 너무 오래 프레임에서 벗어나있거나 가려지는 경우에는 다시 돌아왔을 때 새 ID가 지정됩니다.
   > 
   > 
 * **감정 검색**
   
-    Emotion 검색은 hello hello 얼굴 감지 만족도, 슬픔, 걱정, 분노를 등의 여러 있지만 특성을 분석을 반환 하는 얼굴 감지 미디어 프로세서의 선택적 구성 요소는 있습니다. 
+    감정 검색은 검색된 얼굴로부터 행복, 슬픔, 두려움, 분노 등의 여러 감정적 특성에 대한 분석을 반환하는 얼굴 탐지 미디어 프로세서의 선택적 구성 요소입니다. 
 
 ![비디오 분석](./media/media-services-portal-analyze/media-services-portal-analyze005.png)
 
 ### <a name="detection-mode"></a>감지 모드
-Hello 프로세서에 의해 hello 다음 모드 중 하나를 사용할 수 있습니다.
+프로세서에 다음 모드 중 하나를 사용할 수 있습니다.
 
 * 얼굴 감지
 * 얼굴별 감정 감지
 * 감정 집계 감지
 
 ### <a name="job-name"></a>작업 이름
-Hello 작업을 식별할 수 있는 이름입니다. [이](media-services-portal-check-job-progress.md) 작업의 hello 진행률을 모니터링 하는 방법에 대해 설명 합니다. 
+작업을 식별할 수 있는 친숙한 이름입니다. [이](media-services-portal-check-job-progress.md) 문서에서는 작업 진행률을 모니터링하는 방법을 설명합니다. 
 
 ### <a name="output-file"></a>출력 파일
-Hello 출력 콘텐츠를 식별할 수 있는 이름입니다. 
+출력 콘텐츠를 식별할 수 있는 친숙한 이름입니다. 
 
 ## <a name="azure-media-motion-detector"></a>Azure 미디어 동작 탐지기
-hello **Azure 미디어 동작 탐지기** 미디어 프로세서 (MP) 사용 하도록 설정 하면 tooefficiently 그렇지 않으면 길고 정상적인 비디오 내에서 필요한 섹션을 식별 합니다. 동작 감지 동작 발생 hello 비디오의 정적 카메라 장면 tooidentify 섹션에서 사용할 수 있습니다. 타임 스탬프 및 hello hello 이벤트가 발생 하는 영역 경계와 메타 데이터를 포함 하는 JSON 파일을 생성 합니다.
+**Azure 미디어 동작 탐지기** 의 MP(미디어 프로세서)를 사용하여 길고 특별하지 않은 동영상 중에서 원하는 섹션을 효율적으로 식별합니다. 동작 검색은 고정된 카메라 장면에서 동작이 발생한 동영상 섹션을 식별하는 데 사용할 수 있습니다. 이벤트가 발생한 경계 영역 및 타임스탬프가 있는 메타데이터를 포함하는 JSON 파일을 생성합니다.
 
-이 기술은 보안 비디오 피드를 겨냥 수 toocategorize 동작 관련 이벤트 및 거짓 긍정 그림자 조명 변경 등으로입니다. 이렇게 하면 있습니다 카메라 피드에서 toogenerate 보안 경고 수 tooextract 시간이 매우 긴 거리 내 감시 비디오에서 관심 있는 하면서 무한 관련이 없는 이벤트로 스팸 메일 되지 않고.
+보안 동영상 피드를 대상으로 하는 이 기술은 동작을 관련 이벤트와 그림자 및 조명 변화와 같은 가양성으로 분류할 수 있습니다. 이를 통해 수많은 관련 없는 이벤트로 인해 스팸 처리되지 않고 카메라 피드로부터 보안 경고를 생성할 수 있으며, 아주 긴 감시 동영상으로부터 필요한 순간을 추출할 수 있습니다.
 
 ![비디오 분석](./media/media-services-portal-analyze/media-services-portal-analyze006.png)
 
 ## <a name="azure-media-video-thumbnails"></a>Azure 미디어 비디오 미리 보기
-이 프로세서를 사용 하면 hello 원본 비디오에서 흥미로운 조각을 자동으로 선택 하 여 긴 비디오의 요약을 만들 수 있습니다. Tooprovide 비디오에서 어떤 tooexpect의 간략 한 개요를 원하는 경우에 유용 합니다. 자세한 내용 및 예제에 대 한 참조 [Azure 미디어 비디오 축소판 그림 사용 tooCreate 비디오 요약](media-services-video-summarization.md)
+이 프로세서를 사용하면 원본 비디오에서 흥미로운 조각을 자동으로 선택하여 긴 비디오의 요약을 만들 수 있습니다. 이는 긴 비디오에서 예상되는 사항에 대한 빠른 개요를 제공하려는 경우에 유용합니다. 자세한 내용 및 예제는 [Azure 미디어 비디오 미리 보기를 사용하여 비디오 요약 만들기](media-services-video-summarization.md)
 
 ![비디오 분석](./media/media-services-portal-analyze/media-services-portal-analyze008.png)
 
 ### <a name="job-name"></a>작업 이름
-Hello 작업을 식별할 수 있는 이름입니다. [이](media-services-portal-check-job-progress.md) 작업의 hello 진행률을 모니터링 하는 방법에 대해 설명 합니다. 
+작업을 식별할 수 있는 친숙한 이름입니다. [이](media-services-portal-check-job-progress.md) 문서에서는 작업 진행률을 모니터링하는 방법을 설명합니다. 
 
 ### <a name="output-file"></a>출력 파일
-Hello 출력 콘텐츠를 식별할 수 있는 이름입니다. 
+출력 콘텐츠를 식별할 수 있는 친숙한 이름입니다. 
 
 ## <a name="next-steps"></a>다음 단계
 Media Services 학습 경로 보기.

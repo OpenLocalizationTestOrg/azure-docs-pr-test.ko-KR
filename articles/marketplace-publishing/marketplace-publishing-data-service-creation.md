@@ -1,6 +1,6 @@
 ---
-title: "aaaGuide toocreating 마켓플레이스 hello에 대 한 데이터 서비스 | Microsoft Docs"
-description: "Toocreate, 인증 하 고에 대 한 데이터 서비스를 배포 하는 방법의 자세한 지침은 hello Azure Marketplace에서 구입 합니다."
+title: "Marketplace용 데이터 서비스 만들기 가이드 | Microsoft Docs"
+description: "Azure 마켓플레이스에서 구매하기 위한 데이터 서비스를 만들고 인증하고 배포하는 방법에 대한 자세한 지침입니다."
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,125 +14,125 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/26/2016
 ms.author: hascipio; avikova
-ms.openlocfilehash: 0220d357ae0ec89e7d4f6399605850e57c646f73
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c0c9362f1c2e15c947aaaf7187f3383ad243140f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="data-service-publishing-guide-for-hello-azure-marketplace"></a>Azure 마켓플레이스 hello에 대 한 데이터 서비스 게시 가이드
+# <a name="data-service-publishing-guide-for-the-azure-marketplace"></a>Azure 마켓플레이스에 대한 데이터 서비스 게시 가이드
 > [!IMPORTANT]
-> **현재는 새 데이터 서비스 게시자 등록을 더 이상 받지 않고 있습니다. 따라서 새 데이터 서비스 등재 승인을 받을 수 없습니다.** SaaS 비즈니스 응용 프로그램의 경우 원하는 toopublish AppSource에 자세한 정보를 찾을 수 [여기](https://appsource.microsoft.com/partners)합니다. IaaS 응용 프로그램 또는 서비스 개발자 경우는 Azure 마켓플레이스에서 toopublish 같은 자세한 정보를 찾을 수 [여기](https://azure.microsoft.com/marketplace/programs/certified/)합니다.
+> **현재는 새 데이터 서비스 게시자 등록을 더 이상 받지 않고 있습니다. 따라서 새 데이터 서비스 등재 승인을 받을 수 없습니다.** SaaS 비즈니스 응용 프로그램을 AppSource에 게시하려는 경우 [여기](https://appsource.microsoft.com/partners)에서 자세한 내용을 확인할 수 있습니다. IaaS 응용 프로그램 또는 개발자 서비스를 Azure Marketplace에 게시하려는 경우에는 [여기](https://azure.microsoft.com/marketplace/programs/certified/)에서 자세한 내용을 확인할 수 있습니다.
 > 
 > 
 
-Hello 1 단계를 완료 한 후 [계정 만들기 및 등록](marketplace-publishing-accounts-creation-registration.md), 우리를 안내 하 hello [일반 기술 이외의 기타](marketplace-publishing-pre-requisites.md) 및 [기술 요구 사항](marketplace-publishing-data-service-creation-prerequisites.md) 의 데이터 서비스 Azure 마켓플레이스를 제공 합니다. 이제 우리는 단계를 안내 hello hello에 데이터 서비스 제공을 만드는 데 [게시 포털] [ link-pubportal] hello Azure Marketplace에 대 한 합니다.
+1단계 [계정 만들기 및 등록](marketplace-publishing-accounts-creation-registration.md)을 완료한 후 Azure Marketplace에서 제공하는 데이터 서비스 제품의 [일반 비기술 필수 조건](marketplace-publishing-pre-requisites.md) 및 [기술 필수 조건](marketplace-publishing-data-service-creation-prerequisites.md)을 안내해 드렸습니다. 이제 Azure Marketplace의 [게시 포털][link-pubportal]에서 데이터 서비스 제품을 만드는 단계를 안내해 드리겠습니다.
 
-## <a name="1----login-toohello-publishing-portal"></a>1.    로그인 toohello 게시 포털입니다.
-너무 이동[https://publish.windowsazure.com](https://publish.windowsazure.com.)
+## <a name="1----login-to-the-publishing-portal"></a>1.    게시 포털에 로그인합니다.
+[https://publish.windowsazure.com](https://publish.windowsazure.com.)
 
-**첫 번째 시간 로그인 tooPublishing 포털, 회사의 판매자에 프로 파일링 된 동일한 계정 개발자 센터에 등록 되었습니다. hello를 사용 합니다.**  (나중에 추가할 수 있습니다 모든 직원이 회사의 hello 게시 포털에서에서 공동 관리자로).
+**처음으로 게시 포털에 로그인할 때는 개발자 센터에서 회사의 판매자 프로필이 등록된 계정을 동일하게 사용하세요.**  나중에 게시 포털에서 회사의 직원을 공동 관리자로 추가할 수 있습니다.
 
-Hello 클릭 **데이터 서비스를 게시** 이 hello hello 게시 포털에 처음 로그인 하는 경우 타일입니다.
+게시 포털에 처음 로그인하는 경우 **데이터 서비스 게시** 타일을 클릭합니다.
 
-## <a name="2----choose-data-services-in-hello-navigation-menu-on-hello-left-side"></a>2.    선택 **데이터 서비스** hello hello 왼쪽 탐색 메뉴에 있습니다.
+## <a name="2----choose-data-services-in-the-navigation-menu-on-the-left-side"></a>2.    왼쪽의 탐색 메뉴에서 **Data Services**를 선택합니다.
   ![drawing](media/marketplace-publishing-data-service-creation/pubportal-main-nav.png)
 
 ## <a name="3----create-a-new-data-service"></a>3.    새 데이터 서비스를 만듭니다.
-에 새 데이터 서비스 제공에 대 한 hello 제목에 채운 hello 오른쪽에 "+"를 클릭 합니다.
+새 데이터 서비스 제품의 제목을 입력하고 오른쪽의 “+”를 클릭합니다.
 
   ![drawing](media/marketplace-publishing-data-service-creation/step-3.png)
 
-## <a name="4----review-hello-sub-menu-under-hello-newly-created-data-service-in-hello-navigation-menu"></a>4.    Hello 아래에서 검토 hello 하위 메뉴에서 새로 만든 데이터 서비스의 hello 탐색 메뉴.
-Hello 클릭 **연습** 탭 하 고 필요한 하 toopublish hello Azure Marketplace에서 데이터 서비스 제대로 hello에 필요한 모든 단계를 검토 합니다.
+## <a name="4----review-the-sub-menu-under-the-newly-created-data-service-in-the-navigation-menu"></a>4.    탐색 메뉴에서 새로 만든 데이터 서비스 아래에 있는 하위 메뉴를 검토합니다.
+**연습** 탭을 클릭하고 Azure 마켓플레이스에 데이터 서비스를 적절히 게시하는 데 필요한 모든 단계를 검토합니다.
 
 > [!TIP]
-> 항상 hello "연습" 페이지의 hello 링크를 클릭 하거나 hello 왼쪽에 hello 데이터 서비스 제품의 하위 메뉴에 탭을 사용 합니다.
+> 언제든지 "연습" 페이지의 링크를 클릭하거나 왼쪽에서 데이터 서비스 제품 하위 메뉴의 탭을 사용할 수 있습니다.
 > 
 > 
 
 ## <a name="5----create-a-new-plan"></a>5.    새 플랜을 만듭니다.
 ### <a name="offers-plans-transactions"></a>제품, 플랜, 트랜잭션.
-각 제품에 플랜이 여러 개 있어도 되는데, 적어도 플랜이 하나(1) 이상 있어야 합니다. 최종 사용자가 구독 tooyour 제공 hello 행사 계획 중 하나에 대 한 구독. 각 계획은 최종 사용자는 어떻게 정의 수 toouse 서비스 수입니다.
+각 제품에 플랜이 여러 개 있어도 되는데, 적어도 플랜이 하나(1) 이상 있어야 합니다. 최종 사용자는 제품을 구독할 때 제품의 플랜 중 하나를 구독합니다. 각 플랜은 최종 사용자가 서비스를 이용할 수 있는 방식을 정의합니다.
 
-현재 Azure 마켓플레이스 데이터 서비스에 대 한 월간 구독 트랜잭션 기반 모델만 지원, 즉, 최종 사용자에 게 tooand를 구독 하는 hello 특정 계획의 toohello 가격에 따라 월별 요금 지불의 각 월 수 수 tooconsume 됩니다 hello 계획에 정의 된 트랜잭션입니다.
+현재 Azure Marketplace는 데이터 서비스에 대한 월간 구독 트랜잭션 기반 모델만 지원합니다. 즉, 최종 사용자는 구독하는 특정 플랜의 가격에 따른 월정액 요금제에서 청구되는 요금을 지불하며, 매월 플랜에 정의된 수만큼의 트랜잭션을 사용할 수 있습니다.
 
-일반적으로 데이터 서비스는를 반환 하는 레코드의 수로 정의 된 각 트랜잭션에 쿼리를 기반으로 hello toohello 서비스를 전송 합니다. hello 기본값은 100입니다. 트랜잭션 수가 tooeach 쿼리 됩니다. 반환 된 레코드 수가 100로 나뉘고 toohello 가장 가까운 정수로 반올림 합니다.
+일반적으로 각 트랜잭션은 서비스로 전송되는 쿼리를 기준으로 데이터 서비스에서 반환하는 레코드 수로 정의됩니다. 기본값은 100입니다. 각 쿼리로 반환되는 트랜잭션 수는 레코드 수를 100으로 나눈 값을 가장 가까운 정수로 반올림한 숫자입니다.
 
-각 쿼리에 사용 되는 트랜잭션의 Azure 마켓플레이스 서비스 계층 책임 toomonitor (미터) 번호입니다.
+각 쿼리에서 사용한 트랜잭션 수를 모니터링(측정)하는 것은 Azure 마켓플레이스 서비스 계층의 책임입니다.
 
 > [!IMPORTANT]
-> Hello 달간 hello 트랜잭션 제한에 도달 하는 최종 사용자가을 toouse hello 서비스의 월간 구독 주기가 끝날 때까지 계속할 차단 됩니다.
+> 한 달이 지나기 전에 트랜잭션 제한에 도달한 최종 사용자는 월간 구독 주기가 끝날 때까지 서비스를 사용할 수 없습니다.
 > 
-> hello 계획 또는 hello 계획 중 하나 (하지만 해야 하지) 트랜잭션 무제한으로 포함 됩니다.
+> 플랜 또는 플랜 중 하나에 무제한 트랜잭션을 포함할 수 있습니다(필수는 아님).
 > 
 > 
 
 ### <a name="create-a-plan"></a>플랜을 만듭니다.
-1. 클릭 **"+"** 다음 toohello "새 계획 추가"입니다.
-2. Hello 옵션 중 하나 선택: **무제한** 또는 **제한** 이 계획에 대 한 사용 합니다.  제한 한 다음 트랜잭션 hello 계획 hello 수를 제공 하는 경우 한 달에 tooconsume를 허용 됩니다.
+1. “새 플랜 추가” 옆에 있는 **“+”** 를 클릭합니다.
+2. 이 플랜의 사용량을 **무제한** 또는 **제한** 중에 선택합니다.  제한을 선택할 경우 한 달 동안 플랜에 허용되는 트랜잭션 수를 입력합니다.
    
     ![drawing](media/marketplace-publishing-data-service-creation/step-5.1.png)  
    
-    게시 포털에서는 또한 제안 "계획 식별자" 사용된 toocommunicate toohello 최종 사용자 UI hello에 hello 계획의 이름을 hello와 hello 마켓플레이스 서비스 tooidentify hello 계획 에서도 사용 됩니다. 원하는 경우 hello "계획 식별자"를 변경할 수 있습니다.
+    또한 게시 포털에서 "플랜 식별자"를 제안할 것입니다. 플랜 식별자는 UI에서 최종 사용자에 플랜 이름을 알려주고 마켓플레이스 서비스가 플랜을 식별하는 데 사용됩니다. 원하는 경우 "플랜 식별자"를 변경할 수 있습니다.
    
    > [!NOTE]
-   > "계획 식별자" hello 각 제안의 hello 범위 내에서 고유 해야 합니다. 다른 많은 식별자에서 사용 되는 hello 식별자가 잠겨 지 hello 첫 번째 게시 tooproduction 하 고 됩니다 수 toochange 후 게시 포털 계획이 식별자입니다.
+   > "플랜 식별자"는 각 제품의 범위 내에서 고유해야 합니다. 게시 포털에서 여러 가지 식별자가 사용되기 때문에 프로덕션에 처음으로 게시한 후 플랜 식별자가 잠기게 되고 더 이상 이 식별자를 변경할 수 없습니다.
    > 
    > 
-3. Tooaccept 원하는 옵션을 클릭 합니다.
+3. 클릭하여 선택한 내용을 수락합니다.
 4. 새로 만든 플랜에 대한 몇 가지 추가 질문을 받게 됩니다.
    
     ![그리기](media/marketplace-publishing-data-service-creation/step-5.2.png)
 
 | 질문 | 중요도 |
 | --- | --- |
-| **이 계획은 무료이며 전 세계에서 사용할 수 있습니까?** |완전 무료 플랜을 만들 수 있습니다. hello –이 제품에만 계획을 게시 하는 "무료 제공" hello Marketplace에서에서 것입니다. 지원 되는 몇) (중 하나에이 계획을 hello는 옵션 toooffer 최종 사용자에 게 toolearn 상대적으로 적은 수의 월별 트랜잭션 수를 사용 하 여 서비스에 대 한 자세한 제공 합니다.  Hello 응답은 "Yes"를 추가 질문이 없습니다 메시지가 나타납니다. |
+| **이 계획은 무료이며 전 세계에서 사용할 수 있습니까?** |완전 무료 플랜을 만들 수 있습니다. 이 제품의 유일한 플랜인 경우 마켓플레이스에 "무료 제품"을 게시한다는 뜻입니다. 플랜 중 하나만 무료인 경우 월별 트랜잭션 수가 상대적으로 적은 서비스에 대해 자세히 알아보도록 최종 사용자에게 제안하는 옵션이 제공됩니다.  "예"라고 대답하면 더 이상 질문이 나오지 않습니다. |
 
 > [!NOTE]
-> 최종 사용자가 계획 유료 toohello를 업그레이드할 항상 수 있습니다.
+> 최종 사용자는 언제든지 유료 플랜으로 업그레이드할 수 있습니다.
 > 
 > 
 
 | 질문 | 중요도 |
 | --- | --- |
-| **무료 평가판이 있나요?** |전혀 "평가판 아니요" 중에서 선택할 수도 있고 옵션 toouse "ׁ ´ "에 대 한 계획을 제공할 수 있습니다. 게시자에는이 옵션 tooprovide 최종 사용자에 게 hello 가능성 toounderstand hello의 hello 얻을 이점 무료를 1 개월 동안 toouse를 같은입니다. |
+| **무료 평가판이 있나요?** |“평가판 없음”을 선택할 수도 있고 “1개월” 동안 플랜을 사용할 수 있는 옵션을 제공할 수도 있습니다. 게시자는 최종 사용자가 1개월 동안 플랜을 무료로 사용하면서 제품의 장점을 이해할 수 있는 기회를 제공하기 위해 이 옵션을 선호합니다. |
 
 > [!IMPORTANT]
-> 최종 사용자에 게는 결제 수단과 신용 카드, 예: 기업 계약 설정 된 경우에 수 toopurchase 무료 평가판 됩니다.
+> 최종 사용자는 신용 카드, 기업 계약 등의 결제 수단을 설정해야만 무료 평가판을 구입할 수 있습니다.
 > 
-> Hello 무료 평가판의 1 개월 후 Azure 마켓플레이스 시작 됩니다 hello 가격 hello 구독의 hello 날짜를 기준으로 고객 충전 hello 고객 hello 구독 취소 초기화 되지 않은 경우. 특별 한 알림 없음 toohello 최종 사용자에 게 제공 됩니다.
+> 고객이 구독 취소 절차를 시작하지 않는 한, 1개월 무료 평가판 기간이 끝나면 Azure Marketplace에서는 구독 날짜를 기준으로 고객에게 요금을 부과합니다. 최종 사용자에게 특별한 알림이 제공되지 않습니다.
 > 
 > 
 
 | 질문 | 중요도 |
 | --- | --- |
-| **이 계획에는 프로 모션 코드 toopurchase를 필요로 합니다.** |게시자 "A Promocode" toospecific 고객 라는 특수 한 코드를 제공 하 여 서비스를 계획 하는 옵션 toolimit 액세스 tootheir가 있어야 합니다. 이 Promocode를 포함 하는 최종 사용자만 수 toosubscribe toohello 계획 됩니다. "No" 인 선택한 경우 hello를 제공 하는 hello 영역에서 모든 사용자가 사용할 수 있는 동의 (참조 [마켓플레이스 마케팅 콘텐츠 가이드](marketplace-publishing-push-to-staging.md) 자세한 내용을 보려면) 수 toosubscribe toothis 계획 됩니다. 더 이상 질문이 나오지 않습니다. |
-| **유효한 프로모션 코드가 없는 사용자에게도 이 플랜을 숨길까요?** |Hello 응답 toohello 이전 질문은 "Yes" 하는 경우 게시자 hello를 hello hello Marketplace의 UI에에서 표시이 계획을 제거 하는 옵션 toocompletely에 있습니다. 그러나 고객 hello 제품 세부 정보 페이지에서이 계획을 표시 되지 않습니다. Promocode toopurchase를 수신할 최종 사용자가는 것이 promocode를 사용 하 여 수 toosubscribe tooit 합니다. |
+| **이 플랜을 구매하려면 프로모션 코드가 필요합니까?** |게시자는 특정 고객에게 "Promocode"라는 특수 코드를 제공하여 서비스 플랜에 대한 액세스를 제한할 수 있습니다. 이 Promocode가 있는 최종 사용자만 플랜을 구독할 수 있습니다. "아니요"를 선택할 경우 제품이 제공되는 지역의 모든 사람이(자세한 내용은 [마켓플레이스 마케팅 콘텐츠 가이드](marketplace-publishing-push-to-staging.md) 참조) 이 플랜을 구독할 수 있다고 동의하는 것입니다. 더 이상 질문이 나오지 않습니다. |
+| **유효한 프로모션 코드가 없는 사용자에게도 이 플랜을 숨길까요?** |이전 질문에 "예"라고 대답했으면 마켓플레이스 UI에서 이 플랜을 완전히 제거하는 옵션이 게시자에게 제공됩니다. 다시 말해서 고객이 제품 세부 정보 페이지에서 이 플랜을 볼 수 없습니다. 플랜 구매를 위한 promocode를 받은 최종 사용자는 이 promocode를 사용하여 플랜을 구독할 수 있습니다. |
 
 ## <a name="6----create-your-marketplace-marketing-content"></a>6.    마켓플레이스 마케팅 콘텐츠를 만듭니다.
-Tooprovide 정보에 필요 하는 방법에 대 한 **마케팅, 가격, 지원 및 범주** 탭을 방문 하십시오 [마켓플레이스 마케팅 콘텐츠 가이드](marketplace-publishing-push-to-staging.md) hello에 게시 된 공통 tooall 아티팩트는 Azure 마켓플레이스에 적용 됩니다.  
+**마케팅, 가격 책정, 지원 및 범주** 탭의 필수 정보를 입력하는 방법은 Azure 마켓플레이스에 게시된 모든 아티팩트에 공통적으로 적용되는 [마켓플레이스 마케팅 콘텐츠 가이드](marketplace-publishing-push-to-staging.md) 를 참조하세요.  
 
-## <a name="7----connect-your-offer-tooyour-service-sql-azure-based-or-web-service-based"></a>7.    사용자 제공 tooyour 서비스 (SQL Azure 기반 또는 기반 웹 서비스)를 연결 합니다.
-Hello 클릭 **데이터 서비스** 하위 메뉴입니다.
+## <a name="7----connect-your-offer-to-your-service-sql-azure-based-or-web-service-based"></a>7.    제품을 서비스(SQL Azure 기반 또는 웹 서비스 기반)에 연결합니다.
+**데이터 서비스** 하위 메뉴를 클릭합니다.
 
-Hello hello 페이지의 위쪽 절반에 만들라는 메시지가 tooprovide hello 제공 **Namespace**합니다.  
+페이지의 위쪽 절반에서 제품의 **네임스페이스**를 입력하라고 할 것입니다.  
 
-  ![drawing](media/marketplace-publishing-data-service-creation/step-7.png)
+  ![그리기](media/marketplace-publishing-data-service-creation/step-7.png)
 
-새로 만든 tooexpose 제공 tooAzure 마켓플레이스 게시자 hello 어떻게 hello 아래 질문을 정의 합니다. (자세한 내용은 참조는 hello [데이터 서비스 기술 필수 구성 요소 가이드](marketplace-publishing-data-service-creation-prerequisites.md)).
+아래 질문은 게시자가 새로 만든 제품을 Azure 마켓플레이스에 노출하는 방법을 정의합니다. 자세한 내용은 [데이터 서비스 기술 필수 조건 가이드](marketplace-publishing-data-service-creation-prerequisites.md)를 참조하세요.
 
-  ![drawing](media/marketplace-publishing-data-service-creation/step-7.2.png)
+  ![그리기](media/marketplace-publishing-data-service-creation/step-7.2.png)
 
-**Hello 게시 데이터베이스 기반 서비스**
+**데이터베이스 기반 서비스 게시**
 
-**데이터베이스**를 클릭합니다. 다음 페이지 hello 표시 됩니다.
+**데이터베이스**를 클릭합니다. 다음 페이지가 나타납니다.
 
-  ![drawing](media/marketplace-publishing-data-service-creation/step-7.3.png)
+  ![그리기](media/marketplace-publishing-data-service-creation/step-7.3.png)
 
-toocreate hello 데이터 집합에 대 한 CSDL 매핑을 hello SQL Azure DB에 따라:
+SQL Azure DB를 기반으로 데이터 집합에 대한 CSDL 매핑을 만들려면:
 
-  ![drawing](media/marketplace-publishing-data-service-creation/step-7.4.png)
+  ![그리기](media/marketplace-publishing-data-service-creation/step-7.4.png)
 
 그 후 각 테이블에 대해
 
@@ -142,20 +142,20 @@ toocreate hello 데이터 집합에 대 한 CSDL 매핑을 hello SQL Azure DB에
 
 웹 서비스가 다음과 같으면
 
-  ![drawing](media/marketplace-publishing-data-service-creation/step-7.7.png)
+  ![그리기](media/marketplace-publishing-data-service-creation/step-7.7.png)
 
 > [!IMPORTANT]
-> 읽기 [CSDL 통해 서비스 tooOData 웹 기존 매핑](marketplace-publishing-data-service-creation-odata-mapping.md) 자세한 지침과 CSDL 웹 서비스를 만들기 위한 예제에 대 한 합니다.
+> [CSDL을 통해 기존 서비스를 OData에 매핑](marketplace-publishing-data-service-creation-odata-mapping.md) 을 읽고 CSDL 웹 서비스를 만드는 방법에 대한 지침과 예를 살펴보세요.
 > 
 > 
 
 ## <a name="next-steps"></a>다음 단계
-데이터 서비스 제공을 만든 했으므로 hello의 hello 지침을 완료 하는 확인 하십시오 [마켓플레이스 마케팅 콘텐츠 가이드](marketplace-publishing-push-to-staging.md) 계속 하기 전에 너무[준비의데이터서비스테스트](marketplace-publishing-data-service-test-in-staging.md).
+데이터 서비스 제품을 만들었으니, 이제 [마켓플레이스 마케팅 콘텐츠 가이드](marketplace-publishing-push-to-staging.md)의 지침을 완료한 후 [스테이징에서 데이터 서비스 테스트](marketplace-publishing-data-service-test-in-staging.md)를 진행하세요.
 
 ## <a name="see-also"></a>참고 항목
-* [시작 하기: 어떻게 toopublish 제안 toohello Azure 마켓플레이스](marketplace-publishing-getting-started.md)
-* 이 문서를 읽을 전반적인 OData 매핑 프로세스 및 목적을 이해에서 하려는 경우 hello [데이터 서비스 OData 매핑](marketplace-publishing-data-service-creation-odata-mapping.md) tooreview 정의 구조체 및 지침입니다.
-* 학습 및 이해 hello 특정 노드 및 해당 매개 변수의 하려는 경우이 문서를 읽어 보세요. [데이터 서비스 OData 매핑 노드](marketplace-publishing-data-service-creation-odata-mapping-nodes.md) 정의 및 설명을, 예제 및 사례 컨텍스트 사용에 대 한 합니다.
-* 예를 검토 하려는 경우이 문서를 읽어 보세요. [데이터 서비스 OData 매핑 예제](marketplace-publishing-data-service-creation-odata-mapping-examples.md) toosee 샘플 코드와 코드 구문 및 컨텍스트를 이해 합니다.
+* [시작: Azure 마켓플레이스에 제품을 게시하는 방법](marketplace-publishing-getting-started.md)
+* 전체 OData 매핑 프로세스와 목적을 이해하려는 경우 문서 [데이터 서비스 OData 매핑](marketplace-publishing-data-service-creation-odata-mapping.md) 을 읽고 정의, 구조 및 지침을 검토하세요.
+* 특정 노드 및 해당 매개 변수를 학습하고 이해하려면 문서 [데이터 서비스 OData 매핑 노드](marketplace-publishing-data-service-creation-odata-mapping-nodes.md) 에서 정의 및 설명, 예제, 사용 사례 컨텍스트를 살펴보세요.
+* 예제를 검토하고 싶으면 [데이터 서비스 OData 매핑 예제](marketplace-publishing-data-service-creation-odata-mapping-examples.md) 문서를 통해 샘플 코드를 살펴보고 코드 구문 및 컨텍스트를 이해하세요.
 
 [link-pubportal]:https://publish.windowsazure.com

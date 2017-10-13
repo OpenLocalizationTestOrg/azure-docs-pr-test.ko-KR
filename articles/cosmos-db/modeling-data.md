@@ -1,5 +1,5 @@
 ---
-title: "NoSQL 데이터베이스에 대 한 문서 데이터 aaaModeling | Microsoft Docs"
+title: "NoSQL 데이터베이스의 문서 데이터 모델링 | Microsoft Docs"
 description: "NoSQL 데이터베이스의 데이터 모델링에 대해 알아봅니다."
 keywords: "데이터 모델링"
 services: cosmos-db
@@ -15,37 +15,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/29/2016
 ms.author: arramac
-ms.openlocfilehash: 2e388c833f204287896dfa8e6f79c88073731b6b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 16c387fe574243544cf54cf283c7713ddcaa1942
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="modeling-document-data-for-nosql-databases"></a>NoSQL 데이터베이스의 문서 데이터 모델링
-Azure Cosmos DB와 같은 스키마 없는 데이터베이스를 사용 하면 매우 쉽게 하는 동안 계속 사용 해야 하는 tooembrace 변경 tooyour 데이터 모델 잠시 데이터에 대해 생각 합니다. 
+Azure Cosmos DB와 같은 스키마가 없는 데이터베이스에서는 데이터 모델을 매우 쉽게 변경할 수 있지만, 데이터를 고려할 어느 정도의 시간이 필요합니다. 
 
-데이터가 어떻게 저장 toobe? 응용 프로그램 하락 tooretrieve 및 쿼리 데이터는 어떻게 합니까? 응용 프로그램 부하가 읽기 또는 쓰기 중 어디에 집중되어 있는가? 
+데이터를 어떻게 저장할 것인가? 응용 프로그램에서 데이터를 검색 및 쿼리하는 방법은 무엇인가? 응용 프로그램 부하가 읽기 또는 쓰기 중 어디에 집중되어 있는가? 
 
-이 문서를 읽은 후 다음 질문 수 tooanswer hello 수 있습니다.
+이 문서를 읽은 다음에는 다음과 같은 질문에 답할 수 있습니다.
 
 * 문서 데이터베이스에서 문서는 무엇인가?
 * 데이터 모델링은 무엇이고 어떻게 사용해야 하는가? 
-* 문서 데이터베이스 다른 tooa 관계형 데이터베이스에서 데이터 모델링은 어떻게 합니까?
+* 관계형 데이터베이스와 다른 문서 데이터베이스에서 데이터는 어떻게 모델링되는가?
 * 비관계형 데이터베이스에서 데이터 관계는 어떻게 표현하는가?
-* 데이터를 포함 하는 경우 및 때 toodata 연결할 수 있나요?
+* 데이터를 포함해야 하는 경우 및 데이터에 링크하는 경우는 언제인가?
 
 ## <a name="embedding-data"></a>데이터 포함
-Azure Cosmos DB와 같은 문서 저장소에 데이터의 모델링을 시작 하면 tootreat으로 엔터티를 시도 **자체 포함 된 문서** JSON에서 표시 합니다.
+Azure Cosmos DB와 같은 문서 저장소에서 데이터 모델링을 시작하는 경우 엔터티를 JSON으로 표현된 **자체 포함 문서**로 처리해야 합니다.
 
-자세한 설명을 시작하기 전에 먼저 이전 단계로 돌아가서 관계형 데이터베이스에서 모델링을 수행하는 방법에 대해 살펴보겠습니다. hello 다음 예제에서는 관계형 데이터베이스에는 사용자 수 저장 하는 방법을 
+자세한 설명을 시작하기 전에 먼저 이전 단계로 돌아가서 관계형 데이터베이스에서 모델링을 수행하는 방법에 대해 살펴보겠습니다. 다음 예제에서는 관계형 데이터베이스에서 사용자가 저장되는 방법을 보여 줍니다. 
 
 ![관계형 데이터베이스 모델](./media/documentdb-modeling-data/relational-data-model.png)
 
-에서는 언급 한 년 toonormalize 처럼 한 관계형 데이터베이스와 함께 작업 하는 경우 정규화, 정규화 합니다.
+관계형 데이터베이스를 사용할 때 우리는 정규화가 중요하다고 배웠습니다.
 
-데이터 정규화에 일반적으로, 사용자 등의 엔터티를 차지 하 고 데이터의 toodiscrete 나누어에서 분석 해 서 작업이 포함 됩니다. Hello 위의 예에서 사람이 여러 주소 레코드 뿐만 아니라 여러 연락처 세부 레코드가 있을 수 있습니다. 여기에서는 한 단계 더 나가서 유형과 같은 공통 필드를 추출하여 연락처 세부 정보를 보다 세분화합니다. 주소와 마찬가지로 각 레코드에는 *홈* 또는 *비즈니스*와 같은 유형에 포함됩니다. 
+데이터 정규화를 위해서는 일반적으로 사용자와 같은 엔터티를 만들고 이를 개별적인 데이터 조각으로 세분화해야 합니다. 위 예제에서 사용자는 여러 주소 레코드뿐만 아니라 여러 개의 연락처 세부 레코드를 포함할 수 있습니다. 여기에서는 한 단계 더 나가서 유형과 같은 공통 필드를 추출하여 연락처 세부 정보를 보다 세분화합니다. 주소와 마찬가지로 각 레코드에는 *홈* 또는 *비즈니스*와 같은 유형에 포함됩니다. 
 
-데이터 정규화이 너무 프레미스 안내 hello**중복 데이터를 저장 하지 않도록** 각 기록 및 아니라 toodata를 참조 합니다. 이 예제에서는 모든 연락처 세부 정보 및 주소와 함께 개인 tooread toouse 조인 tooeffectively 집계에서 데이터 런타임에 해야 합니다.
+데이터를 정규화할 때의 원칙은 각 레코드에서 **중복된 데이터 저장을 피하고** 데이터를 참조하는 것입니다. 이 예제에서 모든 연락처 세부 정보 및 주소를 사용해서 사용자를 읽으려면 JOINS를 사용해서 데이터를 런타임에 효율적으로 집계해야 합니다.
 
     SELECT p.FirstName, p.LastName, a.City, cd.Detail
     FROM Person p
@@ -55,7 +55,7 @@ Azure Cosmos DB와 같은 문서 저장소에 데이터의 모델링을 시작 �
 
 연락처 세부 정보 및 주소를 사용해서 단일 사용자를 업데이트하려면 여러 개별 테이블 간의 쓰기 작업이 필요합니다. 
 
-에 모델링 방법을 동일 hello 보겠습니다 이제 문서 데이터베이스의 자체 포함 된 엔터티로 데이터입니다.
+이제는 문서 데이터베이스에서 자체 포함된 엔터티와 동일한 데이터를 모델링하는 방법을 살펴보겠습니다.
 
     {
         "id": "1",
@@ -76,39 +76,39 @@ Azure Cosmos DB와 같은 문서 저장소에 데이터의 모델링을 시작 �
         ] 
     }
 
-Hello 방식을 위의 이제는 사용 하 여 **정규화 되지 않은** 개인 레코드 hello 여기서 म **포함** 모든 hello 예: 연락처 세부 정보 및 주소 tooa 단일 toothis 사용자와 관련 된 정보 JSON 문서입니다.
-또한, 우리는 제한 되지 때문에 tooa 해결 스키마는 hello 유연성 toodo 등 다양 한 도형 연락처 세부 정보를 완전히 필요 합니다. 
+위 방법을 사용해서 우리는 연락처 세부 정보 및 주소와 같은 이 사용자와 관련된 모든 정보를 단일 JSON 문서에 **포함시킨** 사용자 레코드를 **비정규화**했습니다.
+또한 고정된 스키마로 제한되지 않기 때문에 다른 도형의 연락처 세부 정보를 완전히 포함하는 것과 같은 유연성이 있습니다. 
 
-읽기 작업을 단일 컬렉션에 대해 및 단일 문서에 대 한 단일 되었습니다 hello 데이터베이스에서 전체 개인 레코드를 검색 합니다. 연락처 세부 정보 및 주소로 사용자 레코드를 업데이트하는 작업도 단일 문서에 대해 단일 쓰기 작업을 수행하는 것과 같습니다.
+데이터베이스에서 전체 사용자 레코드를 검색하는 작업은 이제는 단일 컬렉션에 대해 그리고 단일 문서에 대해 단일 읽기 작업을 수행하는 것과 같습니다. 연락처 세부 정보 및 주소로 사용자 레코드를 업데이트하는 작업도 단일 문서에 대해 단일 쓰기 작업을 수행하는 것과 같습니다.
 
-데이터를 비 정규화 하 여 작업이 더 적게 쿼리 및 업데이트가 toocomplete 일반적인 응용 프로그램 tooissue 할 수 있습니다. 
+데이터를 비정규화하면 응용 프로그램이 일반 작업 수행을 위해 실행해야 하는 쿼리 및 업데이트 수가 줄어듭니다. 
 
-### <a name="when-tooembed"></a>때 tooembed
+### <a name="when-to-embed"></a>포함해야 하는 경우
 일반적으로 다음과 같은 경우에 포함된 데이터 모델을 사용합니다.
 
 * 엔터티 간에 **포함** 관계가 있습니다.
 * 엔터티 사이에 **일 대 몇(one-to-few)** 의 관계가 있습니다.
 * 포함된 데이터가 **자주 변경**되지 않습니다.
 * 포함된 데이터가 **바인딩 없이**증가하지 않습니다.
-* 가 포함 된 데이터는 **정수 계열** 문서에서 toodata 합니다.
+* 포함된 데이터가 문서의 데이터에 대한 **필수** 데이터입니다.
 
 > [!NOTE]
 > 일반적으로 비정규화된 데이터 모델은 **읽기** 성능이 더 뛰어납니다.
 > 
 > 
 
-### <a name="when-not-tooembed"></a>때 tooembed 하지
-Hello 경험 문서 데이터베이스에서 toodenormalize 모든 항목은 하 tooa 단일 문서에 모든 데이터를 포함 하는 동안 피해 야 하는 toosome 상황 발생할 수 있습니다.
+### <a name="when-not-to-embed"></a>포함하지 않는 경우
+문서 데이터베이스에서 가장 좋은 원칙은 모든 것을 비정규화하고 모든 데이터를 단일 문서에 포함시키는 것이지만, 이 경우 방지해야 하는 몇 가지 상황이 발생할 수 있습니다.
 
 다음 JSON 코드 조각을 예로 들어 보겠습니다.
 
     {
         "id": "1",
-        "name": "What's new in hello coolest Cloud",
+        "name": "What's new in the coolest Cloud",
         "summary": "A blog post by someone real famous",
         "comments": [
             {"id": 1, "author": "anon", "comment": "something useful, I'm sure"},
-            {"id": 2, "author": "bob", "comment": "wisdom from hello interwebs"},
+            {"id": 2, "author": "bob", "comment": "wisdom from the interwebs"},
             …
             {"id": 100001, "author": "jane", "comment": "and on we go ..."},
             …
@@ -118,20 +118,20 @@ Hello 경험 문서 데이터베이스에서 toodenormalize 모든 항목은 하
         ]
     }
 
-이 코드 조각은 일반적인 블로그 또는 CMS 시스템을 모델링할 때 나타날 수 있는 포함된 주석이 있는 포스트 엔터티를 나타낼 수 있습니다. hello 문제가이 예제는 해당 hello 주석 배열이 **unbounded**, 단일 게시물을 좋아하고 게시물 점이 주석의 없습니다 (실제) 제한이 toohello 수 있다는 것을 의미 합니다. Hello 문서 hello 크기가 상당히 커져서 서 문제가 드라이브가 될 것이 있습니다.
+이 코드 조각은 일반적인 블로그 또는 CMS 시스템을 모델링할 때 나타날 수 있는 포함된 주석이 있는 포스트 엔터티를 나타낼 수 있습니다. 이 예제에서의 문제는 주석 배열이 **바인딩되지 않음**으로써, 단일 포스트가 가질 수 있는 주석 수에 대한 제한(실질적인)이 없다는 것입니다. 이러한 상황은 문서 크기가 상당히 크게 증가할 수 있기 때문에 문제가 됩니다.
 
-Hello 기능 tootransmit hello 데이터 읽기 뿐만 아니라 hello 유선을 통해 문서 hello의 hello 크기 만큼 증가 하 고 업데이트 hello 문서의 소수 자릿수에 영향을 받습니다.
+문서 크기가 증가함에 따라 확장 시 유선 상의 데이터 전송 기능과 문서 읽기 및 업데이트 기능이 영향을 받습니다.
 
-이 경우 더 나은 tooconsider hello 모델을 따르는 것입니다.
+이 경우에는 다음과 같은 모델을 고려하는 것이 더 좋을 수 있습니다.
 
     Post document:
     {
         "id": "1",
-        "name": "What's new in hello coolest Cloud",
+        "name": "What's new in the coolest Cloud",
         "summary": "A blog post by someone real famous",
         "recentComments": [
             {"id": 1, "author": "anon", "comment": "something useful, I'm sure"},
-            {"id": 2, "author": "bob", "comment": "wisdom from hello interwebs"},
+            {"id": 2, "author": "bob", "comment": "wisdom from the interwebs"},
             {"id": 3, "author": "jane", "comment": "....."}
         ]
     }
@@ -141,7 +141,7 @@ Hello 기능 tootransmit hello 데이터 읽기 뿐만 아니라 hello 유선을
         "postId": "1"
         "comments": [
             {"id": 4, "author": "anon", "comment": "more goodness"},
-            {"id": 5, "author": "bob", "comment": "tails from hello field"},
+            {"id": 5, "author": "bob", "comment": "tails from the field"},
             ...
             {"id": 99, "author": "angry", "comment": "blah angry blah angry"}
         ]
@@ -155,9 +155,9 @@ Hello 기능 tootransmit hello 데이터 읽기 뿐만 아니라 hello 유선을
         ]
     }
 
-이 모델에 hello 3 가장 최근의 주석 hello에 포함 된이 게시는 고정을 가진 배열인 자체 시간입니다. hello 기타 주석은 그룹화 100 주석의 toobatches에 되며 별도 문서에 저장 합니다. hello hello 일괄 처리 크기는 가상의 응용 프로그램을 허용 하므로 hello 사용자 tooload 100 설명을 한 번에 100으로 선택 되었습니다.  
+이 모델은 포스트 자체에 포함된 최근 3개 주석이 있으며, 이러한 포스트는 바인딩이 고정된 배열입니다. 다른 주석은 100개 주석의 일괄 처리로 그룹화되고 개별 문서에 저장됩니다. 일괄 처리의 크기를 100으로 선택한 이유는 이 예제의 가상 응용 프로그램에서 사용자가 한 번에 로드할 수 있는 주석의 수가 100개로 제한되기 때문입니다.  
 
-데이터를 포함 하지 않은 것이 좋습니다 경우 hello 포함 하는 경우에 데이터 문서에서 자주 사용 하 고 자주 변경 됩니다. 
+데이터 포함이 이상적인 대안이 될 수 없는 또 다른 경우는 포함된 데이터가 문서 간에 자주 사용되고 자주 변경되는 경우입니다. 
 
 다음 JSON 코드 조각을 예로 들어 보겠습니다.
 
@@ -177,16 +177,16 @@ Hello 기능 tootransmit hello 데이터 읽기 뿐만 아니라 hello 유선을
         ]
     }
 
-이 예제는 한 사용자의 주식 포트폴리오를 나타낼 수 있습니다. Tooeach 포트폴리오 문서의 tooembed hello 주식 정보를 했습니다. 관련된 데이터는 주식 거래 응용 프로그램을 같은 자주 변경 되는 환경에서 자주 변경 되는 데이터를 포함 하려고 toomean 주식 매도 된 때마다 각 포트폴리오 문서 지속적으로 업데이트 하 합니다.
+이 예제는 한 사용자의 주식 포트폴리오를 나타낼 수 있습니다. 여기에서는 주식 정보를 각 포트폴리오 문서에 포함하도록 선택했습니다. 주식 거래 응용 프로그램과 같이 관련 데이터가 자주 변경되는 환경에서, 자주 변경되는 데이터를 포함시키면 주식이 거래될 때마다 포트폴리오 문서를 계속해서 업데이트해야 합니다.
 
-*zaza* 주식은 하루에도 수백 번 거래될 수 있으며 수천 명의 사용자 포트폴리오에 *zaza* 주식이 포함되어 있을 수 있습니다. 위의 hello와 같은 데이터 모델과 함께 것은 tooupdate 많은 포트폴리오 문서 상태일 때 잘 확장 되지 않습니다 tooa 시스템 선행 매일 여러 번 합니다. 
+*zaza* 주식은 하루에도 수백 번 거래될 수 있으며 수천 명의 사용자 포트폴리오에 *zaza* 주식이 포함되어 있을 수 있습니다. 위와 같은 데이터 모델에서는 매일 여러 번 수천 개의 포트폴리오 문서를 업데이트해야 하므로, 시스템의 확장성이 낮아질 수 있습니다. 
 
 ## <a id="Refer"></a>데이터 참조
 따라서 데이터 포함 방식이 많은 경우에 효과적일 수 있지만, 데이터 비정규화로 인해 얻는 이득보다 잃게 되는 손실이 큰 경우도 있다는 것을 잘 알 수 있습니다. 그러면 이제 무엇을 해야 할까요? 
 
-관계형 데이터베이스는 엔터티 간의 관계를 만들 수 있는 hello 유일한 공간 없습니다. 문서 데이터베이스에 실제로 다른 문서에서 toodata와 관련 한 문서에서 정보를 사용할 수 있습니다. 이제 I am 하지 지원 하 고 1 분도 Azure Cosmos DB에 더 적합 한 tooa 관계형 데이터베이스 또는 다른 문서 데이터베이스 시스템을 구축 했습니다 있지만 간단한 관계 만족 하는 매우 유용할 수 있습니다. 
+관계형 데이터베이스는 엔터티 간의 관계를 생성할 수 있는 유일한 대안이 아닙니다. 문서 데이터베이스에서는 다른 문서에 있는 데이터와 연관되는 정보를 하나의 문서에 저장할 수 있습니다. 여기서는 Azure Cosmos DB의 관계형 데이터베이스 또는 다른 문서 데이터베이스에 더 적합한 시스템을 빌드하는 것보다 단순한 관계로도 충분하고 매우 유용할 수 있다는 것을 보여드리고자 합니다. 
 
-Hello JSON 아래 toohello 재고 항목을 포함 하는 대신 hello 포트폴리오에 이라고 하지만 앞에서 스톡 포트폴리오의 toouse hello 예제를 선택 했습니다. 이 경우, hello 재고 항목 업데이트 toobe 필요한 hello 일 hello만 문서를 통해 자주 변경 되 면 hello 단일 스톡 문서 됩니다. 
+아래의 JSON에서도 이전 단락의 주식 포트폴리오 예제를 사용하지만, 이번에는 포함시키는 대신 포트폴리오의 주식 항목에 대해 설명하고자 합니다. 이렇게 하면 주식 항목이 하루 중 자주 변경되더라도 업데이트해야 하는 문서는 단일 주식 문서뿐입니다. 
 
     Person document:
     {
@@ -222,17 +222,17 @@ Hello JSON 아래 toohello 재고 항목을 포함 하는 대신 hello 포트폴
     }
 
 
-즉시 단점은 toothis 접근 방식을 통해 않은 경우에 응용 프로그램 개인의 포트폴리오;을 표시할 때 열리는 각 주식의 대 한 필요한 tooshow 정보 이 경우 해야 toomake 데이터베이스 tooload hello 정보에 대 한 여러의 트립을 toohello 스톡 각 문서에 대 한 합니다. 여기 hello 하루 종일 자주 발생 하지만 읽기이 특정 시스템의 hello 성능에 큰 영향을 미칠 작업 hello에 손상에 쓰기 작업의 의사 결정 tooimprove hello 효율성을 만들었습니다.
+하지만 이 방식에서 나타날 수 있는 분명한 단점은 응용 프로그램이 사용자 포트폴리오를 표시할 때 저장된 각 주식에 대한 정보를 표시해야 할 경우에 나타납니다. 이 경우에는 각 주식 문서에 대한 정보를 로드하기 위해 데이터베이스를 여러 번에 걸쳐서 경유해야 합니다. 여기에서는 하루 중 자주 발생하는 쓰기 작업의 효율을 향상시키지만, 그에 따라 이 특정 시스템의 성능에 대한 영향이 덜할 수 있는 읽기 작업 성능은 희생하기로 결정했습니다.
 
 > [!NOTE]
-> 정규화 된 데이터 모델 **더 왕복을 요구할 수** toohello 서버입니다.
+> 정규화된 데이터 모델은 서버에 대해 **더 많은 라운드 트립이 요구될 수 있습니다.**
 > 
 > 
 
 ### <a name="what-about-foreign-keys"></a>외래 키의 경우는 어떻게 될까요?
-있기 때문에 현재 제약 조건의 개념이 없으므로, 외래 키 또는 그렇지는 간 문서 관계 문서에서 사용 하는 효율적인 "취약 한 연결" 및 hello 데이터베이스 자체가 확인 하지 않습니다. 문서 참조 데이터 hello tooensure 원하는 tooactually 없으면 필요한 toodo이 응용 프로그램 또는 서버 쪽 트리거 또는 저장된 프로시저 Azure Cosmos db hello 사용을 통해.
+현재는 제약 조건이라는 개념이 없으므로, 외래 키 등 문서에 포함될 수 있는 모든 문서 간 관계는 실질적으로 "약한 링크"이며 데이터베이스 자체에서 확인되지 않습니다. 문서가 참조하는 데이터가 실제로 존재하는지 확인하기 위해서는 응용 프로그램에서 또는 서버측 트리거 또는 Azure Cosmos DB의 저장 프로시저를 사용해서 이를 수행해야 합니다.
 
-### <a name="when-tooreference"></a>때 tooreference
+### <a name="when-to-reference"></a>참조하는 경우
 일반적으로 정규화된 데이터 모델은 다음과 같은 경우에 사용합니다.
 
 * **일대다** 관계를 나타내는 경우
@@ -245,10 +245,10 @@ Hello JSON 아래 toohello 재고 항목을 포함 하는 대신 hello 포트폴
 > 
 > 
 
-### <a name="where-do-i-put-hello-relationship"></a>Hello 관계를 설정 하는 위치
-hello 관계의 hello 증가 문서 toostore hello 참조 내에서 결정 하는 데 도움이 됩니다.
+### <a name="where-do-i-put-the-relationship"></a>관계는 어디에 배치해야 할까요?
+관계의 성장은 참조를 저장할 문서를 결정하는 데 도움이 됩니다.
 
-Hello 아래 게시자 및 설명서를 모델링 하는 JSON 표시 합니다.
+아래의 JSON에서는 발행자와 책을 모델링합니다.
 
     Publisher document:
     {
@@ -260,15 +260,15 @@ Hello 아래 게시자 및 설명서를 모델링 하는 JSON 표시 합니다.
     Book documents:
     {"id": "1", "name": "Azure Cosmos DB 101" }
     {"id": "2", "name": "Azure Cosmos DB for RDBMS Users" }
-    {"id": "3", "name": "Taking over hello world one JSON doc at a time" }
+    {"id": "3", "name": "Taking over the world one JSON doc at a time" }
     ...
     {"id": "100", "name": "Learn about Azure Cosmos DB" }
     ...
-    {"id": "1000", "name": "Deep Dive in tooAzure Cosmos DB" }
+    {"id": "1000", "name": "Deep Dive in to Azure Cosmos DB" }
 
-게시자 별 hello 책 hello 수 제한 증가와 작을 경우에 hello 게시자 문서 안의 hello 책 참조를 저장 한 다음 유용할 수 있습니다. 그러나 hello 게시자 당 책 수를 제하지 없는 경우 다음이 데이터 모델은 될 toomutable, 배열, 위의 hello 예제 게시자 문서 처럼 증가. 
+발행자당 책 수가 작고 제한적으로 증가할 경우, 책 참조를 해당 발행자 문서에 저장해도 좋을 수 있습니다. 하지만 발행자당 책 수가 제한적이지 않으면, 이 데이터 모델의 경우 위의 발행자 문서 예제와 같이 배열이 변하기 쉽고 계속 증가할 수 있습니다. 
 
-비트 작업만 전환는 여전히 나타내는 동일한 데이터를 하지만 이제 hello 모델의 결과 방지 이러한 큰 변경 가능한 컬렉션 합니다.
+이를 조금만 변경하면 동일한 데이터를 제공하지만, 쉽게 변경되는 대규모 컬렉션을 피할 수 있는 모델을 만들 수 있습니다.
 
     Publisher document: 
     {
@@ -279,20 +279,20 @@ Hello 아래 게시자 및 설명서를 모델링 하는 JSON 표시 합니다.
     Book documents: 
     {"id": "1","name": "Azure Cosmos DB 101", "pub-id": "mspress"}
     {"id": "2","name": "Azure Cosmos DB for RDBMS Users", "pub-id": "mspress"}
-    {"id": "3","name": "Taking over hello world one JSON doc at a time"}
+    {"id": "3","name": "Taking over the world one JSON doc at a time"}
     ...
     {"id": "100","name": "Learn about Azure Cosmos DB", "pub-id": "mspress"}
     ...
-    {"id": "1000","name": "Deep Dive in tooAzure Cosmos DB", "pub-id": "mspress"}
+    {"id": "1000","name": "Deep Dive in to Azure Cosmos DB", "pub-id": "mspress"}
 
-위 예제는 hello에서 삭제 한 우리 hello hello 게시자 문서에 바인딩되지 않은 컬렉션입니다. 대신는 한 각 책 문서에서 참조 toohello 게시자입니다.
+위 예제에서는 발행자 문서에 바인딩되지 않은 컬렉션을 배치했습니다. 그리고 각 책 문서에서 발행자에 대한 참조만 두었습니다.
 
 ### <a name="how-do-i-model-manymany-relationships"></a>다대다 관계는 어떻게 모델링할 수 있을까요?
 관계형 데이터베이스에서 *다대다* 관계는 다른 테이블의 레코드를 단순히 하나로 조인하는 조인 테이블을 사용해서 모델링되는 경우가 많습니다. 
 
 ![테이블 조인](./media/documentdb-modeling-data/join-table.png)
 
-로드할된 tooreplicate hello 사용 하 여 동일한 작업에 설명 및 다음과 비슷한 toohello 다음 데이터 모델을 생성할 수 있습니다.
+여기에서도 문서를 사용해서 동일한 방식을 따르고 다음과 비슷하게 보이는 데이터 모델을 만들고 싶을 수도 있습니다.
 
     Author documents: 
     {"id": "a1", "name": "Thomas Andersen" }
@@ -301,9 +301,9 @@ Hello 아래 게시자 및 설명서를 모델링 하는 JSON 표시 합니다.
     Book documents:
     {"id": "b1", "name": "Azure Cosmos DB 101" }
     {"id": "b2", "name": "Azure Cosmos DB for RDBMS Users" }
-    {"id": "b3", "name": "Taking over hello world one JSON doc at a time" }
+    {"id": "b3", "name": "Taking over the world one JSON doc at a time" }
     {"id": "b4", "name": "Learn about Azure Cosmos DB" }
-    {"id": "b5", "name": "Deep Dive in tooAzure Cosmos DB" }
+    {"id": "b5", "name": "Deep Dive in to Azure Cosmos DB" }
 
     Joining documents: 
     {"authorId": "a1", "bookId": "b1" }
@@ -311,10 +311,10 @@ Hello 아래 게시자 및 설명서를 모델링 하는 JSON 표시 합니다.
     {"authorId": "a1", "bookId": "b2" }
     {"authorId": "a1", "bookId": "b3" }
 
-이러한 모델도 작동은 가능합니다. 그러나 작성자의 설명서를 로드 하거나 책 저자 함께 로드 항상 필요 hello 데이터베이스에 대해 두 개 이상의 추가 쿼리 합니다. 한 쿼리에서 toohello 문서와 다른 쿼리 toofetch hello 실제 문서 조인 된 결합 합니다. 
+이러한 모델도 작동은 가능합니다. 하지만 특정 저자와 해당 저자의 책을 로드하거나 특정 책과 해당 책의 저자를 로드하려면 항상 데이터베이스에 대해 2개 이상의 추가 쿼리를 실행해야 할 것입니다. 조인 문서에 대해 쿼리를 한 번 수행하고 조인되는 실제 문서를 인출하기 위해 또 다른 쿼리를 수행해야 합니다. 
 
 이 조인 테이블이 수행하는 작업이 두 가지 데이터를 하나로 묶는 작업뿐이라면 이를 완전히 삭제할 수도 있을 것입니다.
-Hello 다음 사항을 고려 합니다.
+다음을 고려해보세요.
 
     Author documents:
     {"id": "a1", "name": "Thomas Andersen", "books": ["b1, "b2", "b3"]}
@@ -324,18 +324,18 @@ Hello 다음 사항을 고려 합니다.
     {"id": "b1", "name": "Azure Cosmos DB 101", "authors": ["a1", "a2"]}
     {"id": "b2", "name": "Azure Cosmos DB for RDBMS Users", "authors": ["a1"]}
     {"id": "b3", "name": "Learn about Azure Cosmos DB", "authors": ["a1"]}
-    {"id": "b4", "name": "Deep Dive in tooAzure Cosmos DB", "authors": ["a2"]}
+    {"id": "b4", "name": "Deep Dive in to Azure Cosmos DB", "authors": ["a2"]}
 
-이제 작성자 있으면 즉시 여부를 확인 하는 설명서를 작성 한을 반대로 책 문서 로드를 썼 hello 작성자의 hello id 확인 합니다. 서버 hello 수를 줄입니다 hello 조인 테이블에 대 한 중간 쿼리를 저장 하는이 응용 프로그램에 toomake 라운드트립 합니다. 
+특정 저자가 있으면, 그가 작성한 책이 무엇인지 즉시 알 수 있고, 반대로, 로드된 책 문서가 있으면, 해당 저자의 ID를 알 수 있습니다. 이렇게 하면 조인 테이블에 대한 중간 쿼리를 절약해서 응용 프로그램에서 수행해야 하는 서버 라운드 트립 수를 줄일 수 있습니다. 
 
 ## <a id="WrapUp"></a>하이브리드 데이터 모델
 지금까지 데이터 포함(또는 비정규화)과 참조(또는 정규화)에 대해 살펴봤습니다. 이러한 데이터 포함과 참조는 위에서 살펴본 것처럼 각각 장점과 단점을 갖고 있습니다. 
 
-해당 하지 않는 항상 toobe 하거나 했거나를 하지 않는 약간를 무서 toomix 작업 수입니다. 
+하지만 어느 쪽이든 장단점이 있으므로 두 방식을 혼합해서 사용해도 좋습니다. 
 
-응용 프로그램의 특정 사용 패턴 및 사용할 수는 있지만 함께 포함 된 작업 부하에 따라 및 참조 되는 데이터는 것이 좋습니다 수 더 적은 수의 서버와 겹치는 toosimpler 응용 프로그램 논리 왕복 유지 하면서도 성능이 어느 정도 .
+응용 프로그램의 특정 사용 패턴 및 워크로드에 따라 포함 및 참조 데이터를 혼합하는 것이 적합할 수 있으며, 응용 프로그램 논리를 단순화하면서 서버 라운드 트립도 줄이고, 적절한 수준으로 성능을 유지할 수 있습니다.
 
-Hello를 JSON을 따르는 것이 좋습니다. 
+다음과 같은 JSON을 고려해보세요. 
 
     Author documents: 
     {
@@ -378,21 +378,21 @@ Hello를 JSON을 따르는 것이 좋습니다.
         ]
     }
 
-여기 했습니다 (주로) 따랐습니다 hello 포함 된 모델, 여기서 다른 엔터티에서 데이터 hello 최상위 문서에 포함 되어 있지만 다른 데이터를 참조 합니다. 
+여기에서는 주로 포함된 모델을 따랐으며, 다른 엔터티의 데이터가 최상위 문서에 포함되지만 다른 데이터는 참조됩니다. 
 
-Hello 책 문서를 보면 몇 가지 볼 수 있습니다 작성자의 hello 배열에서 살펴볼 때 필드 흥미로운 합니다. 한 *id* hello 필드인 toorefer 백 tooan 만든 문서, 정규화 된 모델 했지만 다음에서 표준 방식 또한 사용 필드에 사용할 *이름* 및 *thumbnailUrl*. म 수 했습니다 구축할와 *id* hello 응용 프로그램 tooget 필요한 추가 정보 "링크" hello를 사용 하 여 hello 각각 만든 문서에서 유지 되었지만 응용 프로그램 hello 작성자의 이름을 표시 하기 때문에 대 한 모든도 서 표시 된 축소판 그림 수 저장 책 당 왕복 toohello 서버 목록에 비 정규화 하 여 **일부** hello 만든이의 데이터입니다.
+책 문서를 보면 저자 배열을 볼 때 몇 가지 흥미로운 필드를 발견할 수 있습니다. 여기에는 정규화된 모델의 표준 방법인 저자 문서를 다시 참조하기 위해 사용하는 필드인 *id* 필드가 있지만, *이름* 및 *thumbnailUrl*도 있습니다. *id* 만 사용하고 응용 프로그램이 필요한 추가 정보를 "link"를 사용해서 해당 저자 문서에서 가져오도록 할 수도 있지만, 이 응용 프로그램에서는 표시된 모든 책과 함께 저자 이름과 썸네일 사진을 표시하므로, 저자에서 **일부** 데이터를 비정규화해서 목록에 있는 책당 서버에 대한 라운드 트립을 줄일 수 있습니다.
 
-물론, hello 저자의 이름이 변경 되었거나 해당 사진 tooupdate 원했습니다는 있는지 toogo 업데이트 만으로는 모든도 서는 적이 게시 되었지만 작성자 이름, 자주 변경 되지 않도록 하는 hello 가정에 따라 샘플 응용 프로그램에서는 이것은 허용 되는 디자인 의사 결정 합니다.  
+물론, 저자 이름이 변경되거나 사진을 업데이트하기를 원할 경우, 저자가 출판한 모든 책에 대해 업데이트를 수행해야 하지만, 저자가 자신의 이름을 자주 변경하지 않는다는 가정에 따라 이 응용 프로그램에서 이러한 정도는 설계상으로 수락할 수 있는 정도입니다.  
 
-Hello 예제는 **미리 집계를 계산** toosave 읽기 작업에 대 한 처리 비용이 많이 드는 값입니다. Hello 예제 hello 작성자 문서에 포함 된 hello 데이터 중 일부는 데이터 실행 시 계산입니다. 작성 되는 책 문서가 새 책을 게시할 때마다, **및** hello countOfBooks 필드에 특정 한 만든 대 한 책 문서 hello 수에 따라 tooa 계산 된 값으로 설정 되어 있습니다. 이 최적화 좋을 읽기 많은 시스템에서 toodo 계산 순서 toooptimize 읽기에 대 한 쓰기 중에 허용 수는 위치입니다.
+위 예제에서는 읽기 작업에 대한 고비용 처리 작업을 줄이기 위해 **사전 계산된 집계** 값이 있습니다. 이 예제에서 저자의 문서에 포함된 일부 데이터는 런타임에 계산되는 데이터입니다. 새 책이 게시될 때마다, 책 문서가 생성됩니다. **그리고** countOfBooks 필드가 특정 저자에 대해 존재하는 책 문서 번호를 기준으로 계산된 값으로 설정됩니다. 이러한 최적화는 읽기를 최적화하기 위해 읽기 계산을 수행할 수 있는 읽기에 집중된 시스템에서 효과적일 수 있습니다.
 
-Azure Cosmos DB 지원 하기 때문에 미리 계산 된 필드를 사용 하 여 모델을 가능한 이루어집니다 기능 toohave hello **다중 문서 트랜잭션**합니다. 많은 NoSQL 저장소는 문서 간에 트랜잭션을 수행 하 고 따라서 "항상 모든 항목"을 포함 toothis 제한 인해 같은 디자인 관련 결정을 대표 수 없습니다. Azure Cosmos DB에서는 서버 쪽 트리거 또는 저장 프로시저를 사용해서 ACID 트랜잭션 내에서 책을 삽입하고 저자를 업데이트할 수 있습니다. 그렇지 않으면 이제 **가** tooembed tooone의 모든 개체 데이터의 일관성이 유지 되는지 정당한 toobe 문서.
+모델에 사전 계산된 필드를 포함할 수 있는 기능은 Azure Cosmos DB에서 **다중 문서 트랜잭션**이 지원되기 때문에 가능합니다. 많은 NoSQL 저장소에서는 문서 간 트랜잭션을 수행할 수 없기 때문에 이러한 제한으로 인해 "항상 모든 것으로 포함"하는 디자인을 선호합니다. Azure Cosmos DB에서는 서버 쪽 트리거 또는 저장 프로시저를 사용해서 ACID 트랜잭션 내에서 책을 삽입하고 저자를 업데이트할 수 있습니다. 이제는 단지 데이터 일관성 유지를 위해 모든 것을 하나의 문서에 포함시켜야 할 **필요가** 없습니다.
 
 ## <a name="NextSteps"></a>다음 단계
-이 문서에서 가장 큰 자 hello는 toounderstand 같이 현재까지 데이터 모델링 스키마가 없는 환경에서이 중요 합니다. 
+이 문서에서 가장 중요한 사항은 스키마가 없는 환경에서의 데이터 모델링도 이전과 같이 중요하다는 것을 이해하는 것입니다. 
 
-방금 없는 단 하나의 방식은 toorepresent 화면에 데이터의 일부 이면은 단 하나의 방식은 toomodel 없는 데이터. Toounderstand 응용 프로그램 및 해야 생성 됩니다을 소비 하는 방법과 hello 데이터를 처리 합니다. 그런 다음 hello 중 일부를 적용 하 여 여기서 설명 지침은 응용 프로그램의 hello 즉시 요구 사항을 해결 하는 모델을 만드는 방법에 대해 설정할 수 있습니다. 응용 프로그램 toochange을 할 때에 변경 하 고 데이터 모델에 따라 쉽게 발전할 하는 스키마 없는 데이터베이스 tooembrace의 hello 유연성을 활용할 수 있습니다. 
+화면에 데이터를 표시하는 방법이 하나만 있지 않은 것처럼 데이터를 모델링하는 방법도 하나만 있는 것이 아닙니다. 응용 프로그램을 이해하고 데이터를 생산, 소비 및 처리하는 방법을 이해해야 합니다. 그런 다음 여기에 제공된 일부 지침을 적용해서 응용 프로그램에 즉시 필요한 사항을 처리할 수 있는 모델을 제작 방법을 설정할 수 있습니다. 응용 프로그램에 변경이 필요한 경우에는 스키마가 없는 데이터베이스의 유연성을 활용해서 변경 사항을 포용하고 데이터 모델을 쉽게 발전시킬 수 있습니다. 
 
-Azure Cosmos DB에 대해 자세히 toolearn toohello 서비스 참조 [설명서](https://azure.microsoft.com/documentation/services/cosmos-db/) 페이지. 
+Azure Cosmos DB에 대한 자세한 내용은 서비스의 [설명서](https://azure.microsoft.com/documentation/services/cosmos-db/) 페이지를 참조하세요. 
 
-toounderstand tooshard 여러 파티션에서 데이터 참조 어떻게 너무[Azure Cosmos DB의 데이터를 분할](documentdb-partition-data.md)합니다. 
+여러 파티션에 데이터를 분할하는 방법에 대한 자세한 내용은 [Azure Cosmos DB에서 데이터 분할](documentdb-partition-data.md)을 참조하세요. 

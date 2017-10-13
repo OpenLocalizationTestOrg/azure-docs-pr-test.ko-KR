@@ -1,6 +1,6 @@
 ---
-title: "Xamarin iOS 모바일 앱에 대 한 인증 aaaGet 시작 됨"
-description: "자세한 방법을 다양 한 AAD, Google, Facebook, Twitter 및 Microsoft를 포함 하 여 id 공급자를 통해 Xamarin iOS 앱의 toouse 모바일 앱 tooauthenticate 사용자입니다."
+title: "Xamarin iOS에서 모바일 앱에 대한 인증 시작"
+description: "모바일 앱을 사용하여 AAD, Google, Facebook, Twitter, Microsoft 등의 다양한 ID 공급자를 통해 Xamarin iOS 앱 사용자를 인증하는 방법을 알아봅니다."
 services: app-service\mobile
 documentationcenter: xamarin
 author: ggailey777
@@ -14,56 +14,56 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: glenga
-ms.openlocfilehash: 6458e9651b03df61c86b88b11953792e04bfa5b2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 454b2df5a9bf8cfba93befea54370957ab044d95
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="add-authentication-tooyour-xamarinios-app"></a>인증 tooyour Xamarin.iOS 앱 추가
+# <a name="add-authentication-to-your-xamarinios-app"></a>Xamarin.iOS 앱에 인증 추가
 [!INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
 
-이 항목에서는 클라이언트 응용 프로그램에서 앱 서비스 모바일 앱의 tooauthenticate 사용자입니다. 이 자습서에서는 앱 서비스에서 지 원하는 id 공급자를 사용 하 여 인증 toohello Xamarin.iOS 퀵 스타트 프로젝트를 추가 합니다. Hello 사용자 ID 값이 표시 되 고 인증 되 고 모바일 앱의 승인을, 후 하 고 제한 된 수 tooaccess 테이블 데이터 됩니다.
+이 항목에서는 클라이언트 응용 프로그램에서 앱 서비스 모바일 앱의 사용자를 인증하는 방법을 보여 줍니다. 이 자습서에서는 앱 서비스가 지원하는 ID 공급자를 사용하여 Xamarin.iOS 빠른 시작 프로젝트에 인증을 추가합니다. 모바일 앱에서 인증이 완료되고 권한이 부여되고 나면 사용자 ID 값이 표시되고 제한된 테이블 데이터에 액세스할 수 있게 됩니다.
 
-Hello 자습서를 먼저 완료 해야 [Xamarin.iOS 앱 만들기]합니다. 사용 하지 않는 경우 hello 퀵 스타트 서버 프로젝트를 다운로드, hello 인증 확장 프로그램 패키지 tooyour 프로젝트를 추가 해야 합니다. 서버 확장 패키지에 대 한 자세한 내용은 참조 [Azure 모바일 앱에 대 한 hello.NET 백 엔드 서버 SDK에서 작동](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)합니다.
+[Xamarin.iOS 앱 만들기]자습서를 먼저 완료해야 합니다. 다운로드한 빠른 시작 서버 프로젝트를 사용하지 않는 경우 프로젝트에 인증 확장 패키지를 추가해야 합니다. 서버 확장 패키지에 대한 자세한 내용은 [Azure 모바일 앱용 .NET 백 엔드 서버 SDK 사용](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)을 참조하세요.
 
-## <a name="register-your-app-for-authentication-and-configure-app-services"></a>인증을 위해 앱 등록 및 App Services 구성
+## <a name="register-your-app-for-authentication-and-configure-app-services"></a>인증을 위해 앱 등록 및 앱 서비스 구성
 [!INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
-## <a name="add-your-app-toohello-allowed-external-redirect-urls"></a>응용 프로그램 toohello 허용 된 외부 리디렉션 Url을 사용 하 여 추가
+## <a name="add-your-app-to-the-allowed-external-redirect-urls"></a>허용되는 외부 리디렉션 URL에 앱 추가
 
-보안 인증을 위해서는 앱에 대한 새로운 URL 체계를 정의해야 합니다. Hello 인증 프로세스가 완료 되 면 hello 인증 시스템 tooredirect 백 tooyour 앱을 수 있습니다. 이 자습서에서는 사용 하 여 hello URL 체계 _appname_ 전체. 그러나 선택한 어떤 URL 체계도 사용 가능합니다. 고유 tooyour 모바일 응용 프로그램 이어야 합니다. hello 서버 쪽에서 tooenable hello 리디렉션:
+보안 인증을 위해서는 앱에 대한 새로운 URL 체계를 정의해야 합니다. 이를 통해 인증 시스템은 인증 프로세스가 완료되면 앱으로 다시 리디렉션될 수 있습니다. 이 자습서에서는 전체적으로 URL 체계 _appname_을 사용합니다. 그러나 선택한 어떤 URL 체계도 사용 가능합니다. 이 체계는 모바일 응용 프로그램에 고유해야 합니다. 서버 쪽에서 리디렉션을 사용하도록 설정하려면:
 
-1. Hello [Azure 포털], 응용 프로그램 서비스를 선택 합니다.
+1. [Azure Portal]에서 해당 App Service를 선택합니다.
 
-2. Hello 클릭 **인증 / 권한 부여** 메뉴 옵션입니다.
+2. **인증/권한 부여** 메뉴 옵션을 클릭합니다.
 
-3. Hello에 **외부 리디렉션 Url 허용**, 입력 `url_scheme_of_your_app://easyauth.callback`합니다.  hello **url_scheme_of_your_app** 이 문자열에는 모바일 응용 프로그램에 대 한 hello URL 체계입니다.  이 체계는 프로토콜에 대한 일반 URL 사양을 따라야 합니다(문자 및 숫자만 사용하고 문자로 시작).  Tooadjust hello 여러 위치에서 URL 체계를 사용 하 여 모바일 응용 프로그램 코드 필요 하므로 선택 하는 hello 문자열의 메모를 확인 해야 합니다.
+3. **허용되는 외부 리디렉션 URL**에서 `url_scheme_of_your_app://easyauth.callback`을 입력합니다.  이 문자열의 **url_scheme_of_your_app**은 모바일 응용 프로그램에 대한 URL 체계입니다.  이 체계는 프로토콜에 대한 일반 URL 사양을 따라야 합니다(문자 및 숫자만 사용하고 문자로 시작).  여러 위치에서 URL 체계에 따라 모바일 응용 프로그램 코드를 조정해야 할 경우 선택한 문자열을 적어두어야 합니다.
 
 4. **확인**을 클릭합니다.
 
 5. **Save**를 클릭합니다.
 
-## <a name="restrict-permissions-tooauthenticated-users"></a>Tooauthenticated 사용자 사용 권한 제한
+## <a name="restrict-permissions-to-authenticated-users"></a>사용 권한을 인증된 사용자로 제한
 [!INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
-&nbsp;&nbsp;4. Visual Studio 또는 Xamarin Studio에서 장치 또는 에뮬레이터에 hello client 프로젝트를 실행 합니다. Hello 앱 시작 된 후 401 (권한 없음) 상태 코드와 함께 처리 되지 않은 예외가 발생할 때를 확인 합니다. hello hello 디버거의 로깅된 toohello 콘솔입니다. 따라서 Visual Studio에서 hello 오류 hello 출력 창에 표시 됩니다.
+&nbsp;&nbsp;4. Visual Studio 또는 Xamarin Studio에서 클라이언트 프로젝트를 장치 또는 에뮬레이터에서 실행합니다. 앱 시작 후 상태 코드가 401(권한이 부여되지 않음)인 처리되지 않은 예외가 발생했는지 확인합니다. 오류는 디버거의 콘솔에 기록됩니다. 따라서 Visual Studio의 출력 창에 오류가 표시됩니다.
 
-&nbsp;&nbsp;인증 되지 않은 사용자로 모바일 앱 백 엔드 tooaccess 가져오려고 hello 앱이 무단된 오류가 발생 합니다. hello *TodoItem* 테이블에는 이제 인증이 필요 합니다.
+&nbsp;&nbsp;이 권한 없음 오류는 앱이 인증되지 않은 사용자로 모바일 앱 백엔드에 액세스하려고 하기 때문에 발생합니다. *TodoItem* 테이블에서 이제 인증을 요구합니다.
 
-다음으로 인증된 된 사용자와 hello 모바일 앱 백 엔드에서 hello 클라이언트 응용 프로그램 toorequest 리소스를 업데이트 합니다.
+다음으로 클라이언트 앱을 업데이트하여 모바일 앱 백엔드에서 인증된 된 사용자를 사용하여 리소스를 요청합니다.
 
-## <a name="add-authentication-toohello-app"></a>인증 toohello 앱 추가
-이 섹션에서는 데이터를 표시 하기 전에 hello 앱 toodisplay 로그인 화면을 수정 합니다. Hello 앱 시작 시 tooyour 앱 서비스 하지 연결 되지 않습니다를 데이터가 표시 되지 않습니다. Hello 처음으로 해당 hello 사용자를 수행한 다음 hello 새로 고침 제스처 hello 로그인 화면이 표시 됩니다. 성공적으로 로그인 한 후 hello 할 일 항목 목록이 표시 됩니다.
+## <a name="add-authentication-to-the-app"></a>앱에 인증 추가
+이 섹션에서는 데이터 표시 전에 로그인 화면을 표시하도록 앱을 수정합니다. 앱이 시작될 때 앱은 앱 서비스에 연결하지 않으며, 데이터를 표시하지 않습니다. 사용자가 새로 고침 제스처를 처음 수행한 다음 로그인 화면이 나타나고, 로그인이 성공하면 todo 항목 목록이 표시됩니다.
 
-1. Hello 클라이언트 프로젝트를 열고 hello 파일 **QSTodoService.cs** hello 다음 추가 및 문을 사용 하 여 및 `MobileServiceUser` 접근자 toohello QSTodoService 클래스 사용:
+1. 클라이언트 프로젝트에서 QSTodoService 클래스에 문 및 접근자가 있는 `MobileServiceUser`를 사용하여 **QSTodoService.cs** 파일을 열고 다음을 추가합니다.
  
         using UIKit;
        
         // Logged in user
         private MobileServiceUser user;
         public MobileServiceUser User { get { return user; } }
-2. 라는 새 메서드 추가 **Authenticate** 너무**QSTodoService** 정의 뒤 hello로:
+2. 다음 정의를 포함하여 새 메서드로 명명된 **Authenticate**를 **QSTodoService**에 추가합니다.
 
         public async Task Authenticate(UIViewController view)
         {
@@ -78,9 +78,9 @@ Hello 자습서를 먼저 완료 해야 [Xamarin.iOS 앱 만들기]합니다. �
             }
         }
 
-    >[AZURE.NOTE] Facebook 이외의 id 공급자를 사용 하는 경우 변경 너무 전달 된 값이 hello**LoginAsync** hello 다음의 tooone 위에: _MicrosoftAccount_, _Twitter_, _Google_, 또는 _WindowsAzureActiveDirectory_합니다.
+    >[AZURE.NOTE] Facebook 이외의 ID 공급자를 사용하는 경우, 위의 **LoginAsync**에 전달된 값을 _MicrosoftAccount_, _Twitter_, _Google_ 또는 _WindowsAzureActiveDirectory_ 중 하나로 변경합니다.
 
-3. **QSTodoListViewController.cs**를 엽니다. Hello 메서드 정의를 수정할 **ViewDidLoad** hello 호출 너무 제거**RefreshAsync()** hello 끝 근처에:
+3. **QSTodoListViewController.cs**를 엽니다. 끝 부근의 **RefreshAsync()** 호출을 제거하여 **ViewDidLoad**의 메서드 정의를 수정합니다.
    
         public override async void ViewDidLoad ()
         {
@@ -93,10 +93,10 @@ Hello 자습서를 먼저 완료 해야 [Xamarin.iOS 앱 만들기]합니다. �
                 await RefreshAsync();
             }
    
-            // Comment out hello call tooRefreshAsync
+            // Comment out the call to RefreshAsync
             // await RefreshAsync();
         }
-4. Hello 방법을 수정 **RefreshAsync** tooauthenticate 경우 hello **사용자** 속성이 null입니다. Hello 코드 hello 메서드 정의의 hello 위쪽에 다음을 추가 합니다.
+4. **User** 속성이 null인 경우 인증을 수행하려면 **RefreshAsync** 메서드를 수정합니다. 메서드 정의 상단에서 다음 코드를 추가합니다.
    
         // start of RefreshAsync method
         if (todoService.User == null) {
@@ -107,7 +107,7 @@ Hello 자습서를 먼저 완료 해야 [Xamarin.iOS 앱 만들기]합니다. �
             }
         }
         // rest of RefreshAsync method
-5. 열기 **AppDelegate.cs**, hello 메서드 뒤에 추가 합니다.
+5. **AppDelegate.cs**를 열고 다음 메서드를 추가합니다.
 
         public static Func<NSUrl, bool> ResumeWithURL;
 
@@ -115,10 +115,10 @@ Hello 자습서를 먼저 완료 해야 [Xamarin.iOS 앱 만들기]합니다. �
         {
             return ResumeWithURL != null && ResumeWithURL(url);
         }
-6. 열기 **Info.plist** 파일, 너무 탐색**URL 형식** hello에 **고급** 섹션. 이제 hello 구성할 **식별자** 및 hello **URL 스키마** URL 형식과 클릭 **URL 형식 추가**합니다. **URL 스키마** {url_scheme_of_your_app}로 hello 동일 해야 합니다.
-7. Visual Studio 또는 Xamarin Studio tooyour 장치 또는 에뮬레이터를 대상으로 하는 hello 클라이언트 프로젝트를 실행 하려면 Mac에서 Xamarin 빌드 호스트 연결 되어 있습니다. Hello 앱 데이터가 표시 되지 않습니다 확인 합니다.
+6. **Info.plist** 파일을 열고 **고급** 섹션의 **URL 형식**으로 이동합니다. 이제 URL 형식의 **식별자** 및 **URL 스키마**를 구성하고 **URL 형식 추가**를 클릭합니다. **URL 스키마**는 {url_scheme_of_your_app}와 동일해야 합니다.
+7. Mac 컴퓨터의 Xamarin 빌드 호스트에 연결된 Visual Studio 또는 Xamarin Studio에서 장치 또는 에뮬레이터를 대상으로 하는 클라이언트 프로젝트를 실행합니다. 앱이 데이터를 표시하지 않는지 확인합니다.
    
-    Hello hello 로그인 화면 tooappear 발생 하는 항목 목록을 아래로 잡아당겨 hello 새로 고침 제스처를 수행 합니다. 성공적으로 유효한 자격 증명을 입력 하 고 나면 hello 앱 hello 할 일 항목 목록이 표시 됩니다 하 고 업데이트 toohello 데이터를 만들 수 있습니다.
+    항목 목록을 아래로 끌어서 새로 고침 제스처를 수행하고 로그인 화면이 나타나도록 합니다. 유효한 자격 증명을 성공적으로 입력하면 앱이 todo 항목 목록을 표시하고 사용자가 데이터를 업데이트할 수 있습니다.
 
 <!-- URLs. -->
 [Submit an app page]: http://go.microsoft.com/fwlink/p/?LinkID=266582

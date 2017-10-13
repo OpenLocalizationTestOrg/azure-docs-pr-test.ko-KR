@@ -1,6 +1,6 @@
 ---
-title: "Azure 이벤트 표 형태에 대 한 이벤트 aaaCustom | Microsoft Docs"
-description: "Toothat 이벤트 구독 및 Azure 이벤트 표 형태 toopublish 항목을 사용 합니다."
+title: "Azure Event Grid에 대한 사용자 지정 이벤트 | Microsoft Docs"
+description: "Azure Event Grid를 사용하여 토픽을 게시하고 해당 이벤트를 구독합니다."
 services: event-grid
 keywords: 
 author: djrosanova
@@ -8,20 +8,20 @@ ms.author: darosa
 ms.date: 08/15/2017
 ms.topic: hero-article
 ms.service: event-grid
-ms.openlocfilehash: 5055df1c970b043cadf06978a076f7f5c83501cd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: cd285471196f75f6a8c8ead0e2895fd71414f223
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-and-route-custom-events-with-azure-event-grid"></a>Azure Event Grid로 사용자 지정 이벤트 만들기 및 라우팅
 
-Azure의 이벤트 표 형태에는 hello 클라우드에 대 한 이벤트 서비스입니다. Hello Azure CLI toocreate 사용자 지정 항목을 사용 하 여이 문서에서는 toohello 항목, 구독 및 hello 이벤트 tooview hello 결과 트리거합니다. 일반적으로 이벤트 tooan 끝점을 webhook 또는 Azure 함수와 같은 toohello 이벤트에 응답을 보냅니다. 그러나 toosimplify이 문서에서는, hello 메시지를 단순히 수집 하는 hello 이벤트 tooa URL을 보냅니다. 오픈 소스이면서 [RequestBin](https://requestb.in/)이라는 타사 도구를 사용하여 이 URL을 만듭니다.
+Azure Event Grid는 클라우드에 대한 이벤트 서비스입니다. 이 문서에서는 Azure CLI를 사용하여 사용자 지정 토픽을 만들고 해당 토픽을 구독하며 이벤트를 트리거하여 결과를 확인합니다. 일반적으로 웹후크 또는 Azure Function과 같은 이벤트에 응답하는 끝점으로 이벤트를 보냅니다. 그러나 이 문서를 간소화하기 위해 이벤트를 메시지를 수집하기만 하는 URL로 보냅니다. 오픈 소스이면서 [RequestBin](https://requestb.in/)이라는 타사 도구를 사용하여 이 URL을 만듭니다.
 
 >[!NOTE]
->**RequestBin**은 높은 처리량 사용을 위해 설계되지 않은 오픈 소스 도구입니다. 순수 하 게 가격은 hello 도구의 여기 hello 사용 됩니다. 한 번에 둘 이상의 이벤트를 밀어 넣으면 hello 도구에서 사용자 이벤트를 모두 표시 되지 않을 수 있습니다.
+>**RequestBin**은 높은 처리량 사용을 위해 설계되지 않은 오픈 소스 도구입니다. 여기서는 순전히 시연을 위해서만 이 도구를 사용합니다. 한 번에 둘 이상의 이벤트를 푸시하면 도구에서 모든 이벤트가 표시되지 않을 수 있습니다.
 
-완료 했으면 hello 이벤트 데이터 tooan 끝점 전송 되었는지 확인할 수 있습니다.
+작업을 완료하면 이벤트 데이터가 끝점에 보내진 것을 확인할 수 있습니다.
 
 ![이벤트 데이터](./media/custom-event-quickstart/request-result.png)
 
@@ -29,15 +29,15 @@ Azure의 이벤트 표 형태에는 hello 클라우드에 대 한 이벤트 서�
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-이 문서 hello Azure CLI의 최신 버전을 실행 되 고 있는지 필요 tooinstall 선택한 hello CLI를 사용 하 여 로컬로 (2.0.14 이상 버전). toofind hello 버전을 실행 `az --version`합니다. Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치](/cli/azure/install-azure-cli)합니다.
+CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 문서에서는 최신 버전의 Azure CLI(2.0.14 이상)을 실행해야 합니다. 버전을 확인하려면 `az --version`을 실행합니다. 설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치](/cli/azure/install-azure-cli)를 참조하세요.
 
 ## <a name="create-a-resource-group"></a>리소스 그룹 만들기
 
-Event Grid 토픽은 Azure 리소스이며 Azure 리소스 그룹에 배치해야 합니다. hello 리소스 그룹은 리소스는 Azure에 배포 되 고 관리 하는 논리적 컬렉션입니다.
+Event Grid 토픽은 Azure 리소스이며 Azure 리소스 그룹에 배치해야 합니다. 리소스 그룹은 Azure 리소스가 배포 및 관리되는 논리적 컬렉션입니다.
 
-Hello로 리소스 그룹 만들기 [az 그룹 만들기](/cli/azure/group#create) 명령입니다. 
+[az group create](/cli/azure/group#create) 명령을 사용하여 리소스 그룹을 만듭니다. 
 
-hello 다음 예제에서는 명명 된 리소스 그룹 *gridResourceGroup* hello에 *westus2* 위치 합니다.
+다음 예제에서는 *westus2* 위치에 *gridResourceGroup*이라는 리소스 그룹을 만듭니다.
 
 ```azurecli-interactive
 az group create --name gridResourceGroup --location westus2
@@ -45,7 +45,7 @@ az group create --name gridResourceGroup --location westus2
 
 ## <a name="create-a-custom-topic"></a>사용자 지정 토픽 만들기
 
-토픽은 이벤트를 게시하는 사용자 정의 끝점을 제공합니다. hello 다음 예제에서는 hello 항목 리소스 그룹 `<topic_name>`을 토픽의 고유한 이름으로 바꿉니다. DNS 항목으로 표시 되기 때문에 hello 항목 이름은 고유 해야 합니다. 이벤트 표 형태 hello 미리 보기 릴리스에 대 한 지원 **westus2** 및 **westcentralus** 위치입니다.
+토픽은 이벤트를 게시하는 사용자 정의 끝점을 제공합니다. 다음 예제에서는 리소스 그룹에 토픽을 만듭니다. `<topic_name>`을 토픽의 고유한 이름으로 바꿉니다. DNS 항목으로 표시되기 때문에 토픽 이름은 고유해야 합니다. 미리 보기 릴리스의 경우 Event Grid는 **westus2** 및 **westcentralus** 위치를 지원합니다.
 
 ```azurecli-interactive
 az eventgrid topic create --name <topic_name> -l westus2 -g gridResourceGroup
@@ -53,11 +53,11 @@ az eventgrid topic create --name <topic_name> -l westus2 -g gridResourceGroup
 
 ## <a name="create-a-message-endpoint"></a>메시지 끝점 만들기
 
-Toohello 항목, 구독 하기 전에 hello 이벤트 메시지에 대 한 hello 끝점을 만들어 보겠습니다. Toorespond toohello 이벤트 코드를 작성 하지 않고 빠르게 검색할 수 있도록 hello 메시지를 수집 하는 끝점을 만들어 보겠습니다. RequestBin는 오픈 소스, toocreate 끝점을 사용 하면 타사 도구 및 tooit 전송 되는 요청을 봅니다. 너무 이동[RequestBin](https://requestb.in/)를 클릭 하 고 **는 RequestBin 만들**합니다.  Toohello 항목 구독할 때 필요 하므로 hello bin URL을 복사 합니다.
+토픽을 구독하기 전에 이벤트 메시지에 대한 끝점을 만들어 보겠습니다. 이벤트에 응답하는 코드를 작성하지 않고 메시지를 볼 수 있도록 메시지를 수집하는 끝점을 만들어 보겠습니다. RequestBin은 오픈 소스이면서 타사 도구로, 이 도구를 통해 끝점을 만들고 끝점에 전송된 요청을 볼 수 있습니다. [RequestBin](https://requestb.in/)으로 이동하고 **RequestBin 만들기**를 클릭합니다.  토픽을 구독할 때 필요하기 때문에 bin URL을 복사합니다.
 
-## <a name="subscribe-tooa-topic"></a>Tooa 항목 구독
+## <a name="subscribe-to-a-topic"></a>토픽 구독
 
-Tooa 항목 tootell 이벤트 표 형태를 구독 하면 이벤트 tootrack 원하는 합니다. hello 다음 예제에서는 구독 toohello 항목을 생성 하 고 이벤트 알림에 대 한 hello 끝점으로 RequestBin hello URL 전달 합니다. 대체 `<event_subscription_name>` 구독에 대 한 고유한 이름을 사용 하 고 `<URL_from_RequestBin>` hello 섹션 앞의 hello 값으로. 끝점을 구독할 때 지정 하 여 이벤트 표 형태 hello 이벤트 toothat 끝점의 라우팅을 처리 합니다. 에 대 한 `<topic_name>`, 이전에 만든 hello 값을 사용 합니다. 
+토픽을 구독하여 Event Grid에 추적하려는 이벤트를 알립니다. 다음 예제에서는 사용자가 만든 토픽을 구독하고 RequestBin의 URL을 이벤트 알림에 대한 끝점으로 전달합니다. `<event_subscription_name>`을 구독의 고유한 이름으로, `<URL_from_RequestBin>`을 이전 섹션의 값으로 바꿉니다. 구독할 때 끝점을 지정하면 Event Grid에서 해당 끝점으로 이벤트 라우팅을 처리합니다. `<topic_name>`에는 앞에서 만든 값을 사용합니다. 
 
 ```azurecli-interactive
 az eventgrid topic event-subscription create --name <event_subscription_name> \
@@ -66,30 +66,30 @@ az eventgrid topic event-subscription create --name <event_subscription_name> \
   --topic-name <topic_name>
 ```
 
-## <a name="send-an-event-tooyour-topic"></a>이벤트 tooyour 항목 보내기
+## <a name="send-an-event-to-your-topic"></a>토픽에 이벤트 보내기
 
-이제 보겠습니다 이벤트 toosee를 트리거할 이벤트 표 형태 hello 메시지 tooyour 끝점을 배포 하는 방법입니다. 첫째, hello URL 가져오고 hello 항목에 대 한 주요 보겠습니다. 다시, `<topic_name>`의 토픽 이름을 사용합니다.
+이제 이벤트를 트리거하여 Event Grid가 메시지를 사용자 끝점에 어떻게 배포하는지 살펴 보겠습니다. 먼저, 토픽에 대한 URL 및 키를 가져오겠습니다. 다시, `<topic_name>`의 토픽 이름을 사용합니다.
 
 ```azurecli-interactive
 endpoint=$(az eventgrid topic show --name <topic_name> -g gridResourceGroup --query "endpoint" --output tsv)
 key=$(az eventgrid topic key list --name <topic_name> -g gridResourceGroup --query "key1" --output tsv)
 ```
 
-toosimplify이이 문서에서는까지 설정한 샘플 이벤트 데이터 toosend toohello 항목입니다. 일반적으로 응용 프로그램 또는 Azure 서비스는 hello 이벤트 데이터를 보내는 것입니다. 다음 예제는 hello hello 이벤트 데이터를 가져옵니다.
+이 문서를 간소화하기 위해 토픽에 보낼 샘플 이벤트 데이터를 설정했습니다. 일반적으로 응용 프로그램 또는 Azure 서비스는 이벤트 데이터를 보냅니다. 다음 예제는 이벤트 데이터를 가져옵니다.
 
 ```azurecli-interactive
 body=$(eval echo "'$(curl https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/event-grid/customevent.json)'")
 ```
 
-경우 있습니다 `echo "$body"` hello 전체 이벤트를 볼 수 있습니다. hello `data` hello JSON 요소가 이벤트의 hello 페이로드입니다. 모든 잘 구성된(Well-Formed) JSON은 이 필드에 배치될 수 있습니다. 또한 고급 라우팅 및 필터링에 대 한 hello 제목 필드를 사용할 수 있습니다.
+`echo "$body"`를 수행한 경우 전체 이벤트를 확인할 수 있습니다. JSON의 `data` 요소는 이벤트의 페이로드입니다. 모든 잘 구성된(Well-Formed) JSON은 이 필드에 배치될 수 있습니다. 또한 고급 라우팅 및 필터링을 위해 제목 필드를 사용할 수 있습니다.
 
-CURL은 HTTP 요청을 수행하는 유틸리티입니다. 이 문서에서는 CURL toosend hello 이벤트 tooour 항목을 사용합니다. 
+CURL은 HTTP 요청을 수행하는 유틸리티입니다. 이 문서에서는 토픽에 이벤트를 보내도록 CURL을 사용합니다. 
 
 ```azurecli-interactive
 curl -X POST -H "aeg-sas-key: $key" -d "$body" $endpoint
 ```
 
-Hello 이벤트를 실행 하 고 이벤트 표 형태 구독할 때 구성한 hello 메시지 toohello 끝점으로 전송 합니다. Toohello 앞에서 만든 RequestBin URL를 찾습니다. 또는 열려 있는 RequestBin 브라우저에서 새로 고침을 클릭합니다. 방금 전송 받은 hello 이벤트가 표시 됩니다. 
+이벤트를 트리거했고 Event Grid가 구독할 때 구성한 끝점으로 메시지를 보냈습니다. 이전에 만든 RequestBin URL로 이동합니다. 또는 열려 있는 RequestBin 브라우저에서 새로 고침을 클릭합니다. 방금 전송 받은 이벤트가 표시됩니다. 
 
 ```json
 [{
@@ -106,7 +106,7 @@ Hello 이벤트를 실행 하 고 이벤트 표 형태 구독할 때 구성한 h
 ```
 
 ## <a name="clean-up-resources"></a>리소스 정리
-이 이벤트는 toocontinue 컨트롤러로이 문서에서 만든 hello 리소스를 정리할 합니다. Toocontinue 않으려는 경우이 문서에서 만든 명령 toodelete hello 리소스 다음 hello를 사용 합니다.
+이 이벤트로 작업을 계속하려는 경우 이 문서에서 만든 리소스를 정리하지 마세요. 계속하지 않으려는 경우 다음 명령을 사용하여 이 문서에서 만든 리소스를 삭제합니다.
 
 ```azurecli-interactive
 az group delete --name gridResourceGroup
@@ -114,7 +114,9 @@ az group delete --name gridResourceGroup
 
 ## <a name="next-steps"></a>다음 단계
 
-배웠으므로 어떻게 toocreate 항목과 이벤트 구독에 대 한 자세한 내용 이벤트 표 형태 수행할 수 있습니다 않습니다.
+토픽 및 이벤트 구독을 만드는 방법을 배웠으므로 어떤 Event Grid가 도움이 되는지 자세히 알아보세요.
 
 - [Event Grid 정보](overview.md)
+- [Blob 저장소 이벤트를 사용자 지정 웹 끝점으로 라우팅(미리 보기)](../storage/blobs/storage-blob-event-quickstart.md?toc=%2fazure%2fevent-grid%2ftoc.json)
 - [Azure Event Grid 및 Logic Apps를 사용하여 가상 컴퓨터 변경 모니터링](monitor-virtual-machine-changes-event-grid-logic-app.md)
+- [데이터 웨어하우스로 빅 데이터 스트림](event-grid-event-hubs-integration.md)

@@ -1,6 +1,6 @@
 ---
-title: "StorSimple 8000 시리즈 장치에 대 한 웹 프록시를 aaaSet | Microsoft Docs"
-description: "자세한 방법을 tooconfigure StorSimple에 대 한 Windows PowerShell toouse 웹 StorSimple 장치에 대 한 프록시 설정 합니다."
+title: "StorSimple 8000 시리즈 장치에 대한 웹 프록시 설정 | Microsoft Docs"
+description: "StorSimple용 Windows PowerShell을 사용하여 StorSimple 장치에 대한 웹 프록시 설정을 구성하는 방법을 알아봅니다."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,145 +14,145 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/19/2017
 ms.author: alkohli
-ms.openlocfilehash: ed34ff400df66a5f1950c21d5298b41acc538cca
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1109e44ed9c6aa8a0f7305b8a50410316711589c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="configure-web-proxy-for-your-storsimple-device"></a>StorSimple 장치에 대한 웹 프록시 구성
 
 ## <a name="overview"></a>개요
 
-이 자습서에서는 설명 방법을 뷰와 tooconfigure StorSimple 용 Windows PowerShell toouse 웹 StorSimple 장치에 대 한 프록시 설정 합니다. hello 웹 프록시 설정은 hello 클라우드와 통신할 때 hello StorSimple 장치에서 사용 됩니다. 웹 프록시 서버는 사용 되는 tooadd 다른 보안 계층 콘텐츠 필터링, tooease 대역폭 요구 사항이 캐시 또는 분석에도 도움이 됩니다.
+이 자습서에서는 StorSimple용 Windows PowerShell을 사용하여 StorSimple 장치에 대한 웹 프록시 설정을 구성하고 보는 방법을 설명합니다. 클라우드와 통신할 때 StorSimple 장치에서 웹 프록시 설정을 사용합니다. 웹 프록시 서버를 사용하여 보안, 필터 콘텐츠, 캐시의 다른 계층을 추가함으로써 대역폭 요구 사항 또는 분석을 돕습니다.
 
-이 자습서의 지침에 hello tooStorSimple 8000 시리즈 실제 장치만 적용 됩니다. 웹 프록시 구성은 hello StorSimple 클라우드 어플라이언스에 (8010 및 8020)에서 지원 되지 않습니다.
+이 자습서의 지침은 StorSimple 8000 시리즈 물리적 장치에만 적용됩니다. 웹 프록시 구성은 StorSimple Cloud Appliance(8010 및 8020)에서 지원되지 않습니다.
 
-웹 프록시는 StorSimple 장치에 대한 _선택적_ 구성입니다. StorSimple용 Windows PowerShell을 통해서만 웹 프록시를 구성할 수 있습니다. hello 구성 과정은 다음과 같습니다.
+웹 프록시는 StorSimple 장치에 대한 _선택적_ 구성입니다. StorSimple용 Windows PowerShell을 통해서만 웹 프록시를 구성할 수 있습니다. 구성은 다음과 같은 2단계 프로세스입니다.
 
-1. 먼저 StorSimple cmdlet에 대 한 hello 설치 마법사 또는 Windows PowerShell을 통해 웹 프록시 설정을 구성 합니다.
-2. 그런 다음 StorSimple cmdlet에 대 한 Windows PowerShell을 통해 되는 구성 하는 hello 웹 프록시 설정을 활성화.
+1. 먼저 StorSimple cmdlet용 설치 마법사 또는 Windows PowerShell을 통해 웹 프록시 설정을 구성합니다.
+2. 그런 다음 StorSimple cmdlet용 Windows PowerShell을 통해 구성된 웹 프록시 설정을 사용합니다.
 
-Hello 웹 프록시 구성을 완료 되 면 StorSimple에 대 한 웹 프록시 설정을 구성 하는 hello hello Microsoft Azure StorSimple 장치 관리자 서비스와 Windows PowerShell hello 모두에서 볼 수 있습니다.
+웹 프록시 구성을 완료한 후에 Microsoft Azure StorSimple 장치 관리자 서비스 및 StorSimple용 Windows PowerShell에서 구성된 웹 프록시 설정을 볼 수 있습니다.
 
 이 자습서를 읽은 후에 다음을 수행할 수 있습니다.
 
 * 설치 마법사 및 cmdlet을 사용하여 웹 프록시를 구성합니다.
 * Cmdlet을 사용하여 웹 프록시를 사용하도록 설정합니다.
-* Hello Azure 포털에서에서 웹 프록시 설정 보기
+* Azure Portal에서 웹 프록시 설정을 봅니다.
 * 웹 프록시를 구성하는 동안 오류 문제를 해결합니다.
 
 
 ## <a name="configure-web-proxy-via-windows-powershell-for-storsimple"></a>StorSimple용 Windows PowerShell을 통해 웹 프록시 구성
 
-Hello tooconfigure 웹 프록시 설정을 다음 중 하나를 사용 합니다.
+웹 프록시 설정을 구성하려면 다음 중 하나를 사용합니다.
 
-* 설치 마법사 tooguide hello 구성 단계를 안내 합니다.
+* 설치 마법사는 구성 단계를 안내합니다.
 * StorSimple용 Windows PowerShell에서 Cmdlet
 
-이러한 각 방법의 hello 다음 섹션에서에서 설명 합니다.
+이러한 각 메서드는 다음 섹션에서 설명합니다.
 
-## <a name="configure-web-proxy-via-hello-setup-wizard"></a>Hello 설치 마법사를 통해 웹 프록시 구성
+## <a name="configure-web-proxy-via-the-setup-wizard"></a>설치 마법사를 통해 웹 프록시 구성
 
-웹 프록시 구성에 대 한 hello 설치 마법사 tooguide hello 통해 단계를 사용 합니다. Hello 단계 tooconfigure 웹 프록시 장치에서 다음을 수행 합니다.
+웹 프록시를 구성하기 위한 단계를 안내하는 설치 마법사를 사용합니다. 다음 단계를 수행하여 장치에 웹 프록시를 구성합니다.
 
-#### <a name="tooconfigure-web-proxy-via-hello-setup-wizard"></a>hello 설치 마법사를 통해 tooconfigure 웹 프록시
+#### <a name="to-configure-web-proxy-via-the-setup-wizard"></a>설치 마법사를 통해 웹 프록시를 구성하려면
 
-1. Hello 직렬 콘솔 메뉴에서 옵션 1, 선택 **전체 권한으로 로그인** hello 설명과 **장치 관리자 암호**합니다. 형식 hello 다음 설치 마법사 세션 toostart를 명령 수 있습니다.
+1. 직렬 콘솔 메뉴에서 옵션 1, **모든 권한으로 로그인**을 선택하고 **장치 관리자 암호**를 제공합니다. 설치 마법사 세션을 시작하려면 다음 명령을 입력합니다.
    
     `Invoke-HcsSetupWizard`
-2. 인 경우 hello 처음으로 장치 등록에 대 한 hello 설치 마법사를 사용 해야 tooconfigure 모든 hello 필요한 네트워크 설정을 hello 웹 프록시 구성에 도달할 때까지 합니다. 이미 장치에 등록 하는 경우 hello 웹 프록시 구성에 도달할 때까지 모든 hello 구성 된 네트워크 설정을 적용 합니다. Hello 설치 마법사에서 입력 정보 요청된 tooconfigure 웹 프록시 설정 때 입력 **예**합니다.
-3. Hello에 대 한 **웹 프록시 URL**, hello IP 주소를 지정 또는 웹 프록시 서버와 hello TCP 포트 번호의 싶다는 의사를 장치 toouse hello 클라우드와 통신할 때 정규화 된 도메인 이름 (FQDN)을 환영 합니다. 형식에 따라 hello를 사용 합니다.
+2. 처음으로 장치 등록을 위해 설치 마법사를 사용하면 웹 프록시를 구성할 때까지 모든 필요한 네트워크 설정을 구성해야 합니다. 장치가 이미 등록되어 있다면 웹 프록시를 구성할 때까지 모든 구성된 네트워크 설정을 적용합니다. 설치 마법사에서 웹 프록시 설정을 구성하는 메시지가 표시되면 **예**를 입력합니다.
+3. **웹 프록시 URL**에 대해 웹 프록시 서버의 IP 주소 또는 정규화된 도메인 이름(FQDN) 및 클라우드와 통신할 때 사용하려는 장치인 TCP 포트 번호 장치를 지정합니다. 이때 다음 형식을 사용합니다.
    
-    `http://<IP address or FQDN of hello web proxy server>:<TCP port number>`
+    `http://<IP address or FQDN of the web proxy server>:<TCP port number>`
    
     기본적으로 TCP 포트 번호 8080가 지정됩니다.
-4. Hello 인증 유형을 선택 **NTLM**, **기본**, 또는 **None**합니다. Basic은 hello hello 프록시 서버 구성에 대 한 보안 수준이 가장 낮은 인증입니다. NT LAN Manager (NTLM)은 3 방향 메시징 시스템 (4 추가 무결성이 필요한 경우)을 사용 하는 매우 안전 하 고 복잡 한 인증 프로토콜 tooauthenticate 사용자입니다. hello 기본 인증이 NTLM입니다. 자세한 내용은 [기본](http://hc.apache.org/httpclient-3.x/authentication.html) 및 [NTLM 인증](http://hc.apache.org/httpclient-3.x/authentication.html)을 참조하세요. 
+4. 인증 유형으로 **NTLM**, **기본** 또는 **없음**을 선택합니다. 기본은 프록시 서버 구성에 대한 최소한의 보안 인증입니다. NT LAN 관리자(NTLM)는 3방향 메시징 시스템을 사용(추가 무결성이 필요하면 4방향)하여 사용자를 인증하는 안전하고 복잡한 인증 프로토콜입니다. 기본 인증은 NTLM입니다. 자세한 내용은 [기본](http://hc.apache.org/httpclient-3.x/authentication.html) 및 [NTLM 인증](http://hc.apache.org/httpclient-3.x/authentication.html)을 참조하세요. 
    
    > [!IMPORTANT]
-   > **StorSimple 장치 관리자 서비스 hello, 기본 hello 장치 모니터링 차트가 작동 하지 않습니다 또는 hello 장치에 대 한 hello 프록시 서버 구성에서 NTLM 인증을 사용 합니다. 모니터링 차트 toowork hello에 대 한 tooensure 필요한 인증 tooNONE을 설정 합니다.**
+   > **StorSimple 장치 관리자 서비스에서는 해당 장치에 대한 프록시 서버 구성에서 기본 또는 NTLM 인증이 사용되면 장치 모니터링 차트가 실행되지 않습니다. 작업할 모니터링 차트의 경우 인증이 NONE으로 설정되어 있는지 확인해야 합니다.**
   
-5. Hello 인증을 사용 하도록 설정한 경우 제공 된 **웹 프록시 사용자 이름** 및 **웹 프록시 암호**합니다. Tooconfirm hello 암호도 필요 합니다.
+5. 인증을 사용하도록 설정한 경우 **웹 프록시 사용자 이름** 및 **웹 프록시 암호**를 제공합니다. 또한 암호를 확인해야 합니다.
    
     ![StorSimple 장치1에서 웹 프록시 구성](./media/storsimple-configure-web-proxy/IC751830.png)
 
-처음으로 hello에 대 한 장치를 등록 하는, hello 등록 계속 진행 합니다. 장치가 이미 등록 된 경우 hello 마법사를 종료 합니다. hello 구성 설정이 저장 됩니다.
+처음으로 장치를 등록하는 경우 등록을 계속합니다. 이미 장치가 등록된 경우 마법사가 종료됩니다. 구성된 설정은 저장됩니다.
 
-이제 웹 프록시를 사용하도록 설정되었습니다. Hello를 건너뛸 수 [웹 프록시를 사용 하려는](#enable-web-proxy) 단계를 너무 직접 이동[hello Azure 포털에서에서 웹 프록시 설정 보기](#view-web-proxy-settings-in-the-azure-portal)합니다.
+이제 웹 프록시를 사용하도록 설정되었습니다. [웹 프록시를 사용하도록 설정](#enable-web-proxy) 단계를 건너뛰고 [Azure Portal에서 웹 프록시 설정 보기](#view-web-proxy-settings-in-the-azure-portal)로 바로 이동할 수 있습니다.
 
 ## <a name="configure-web-proxy-via-windows-powershell-for-storsimple-cmdlets"></a>StorSimple cmdlet용 Windows PowerShell을 통해 웹 프록시 구성
 
-다른 방법 tooconfigure 웹 프록시 설정을 통해 Windows PowerShell for StorSimple cmdlet hello입니다. Hello 단계 tooconfigure 웹 프록시를 다음을 수행 합니다.
+웹 프록시 설정을 구성하는 다른 방법은 StorSimple cmdlet용 Windows PowerShell을 통한 방법입니다. 다음 단계를 수행하여 웹 프록시를 구성합니다.
 
-#### <a name="tooconfigure-web-proxy-via-cmdlets"></a>cmdlet 통해 tooconfigure 웹 프록시
-1. Hello 직렬 콘솔 메뉴에서 옵션 1, 선택 **전체 권한으로 로그인**합니다. 메시지가 표시 되 면 제공 hello **장치 관리자 암호**합니다. hello 기본 암호는 `Password1`합니다.
-2. Hello 명령 프롬프트에서 다음을 입력 합니다.
+#### <a name="to-configure-web-proxy-via-cmdlets"></a>cmdlet를 통해 웹 프록시를 구성하려면
+1. 직렬 콘솔 메뉴에서 옵션 1, **모든 권한으로 로그인**을 선택합니다. 메시지가 표시되면 **장치 관리자 암호**를 제공합니다. 기본 암호는 `Password1`입니다.
+2. 명령 프롬프트에 다음을 입력합니다.
    
     `Set-HcsWebProxy -Authentication NTLM -ConnectionURI "<http://<IP address or FQDN of web proxy server>:<TCP port number>" -Username "<Username for web proxy server>"`
    
-    입력 하 고 메시지가 표시 되 면 hello 암호를 확인 합니다.
+    메시지가 표시되면 암호를 제공하고 확인합니다.
    
     ![StorSimple 장치3에서 웹 프록시 구성](./media/storsimple-configure-web-proxy/IC751831.png)
 
-hello 웹 프록시는 이제 구성 및 toobe 사용 하도록 설정 해야 합니다.
+웹 프록시를 구성하고 사용할 수 있어야 합니다.
 
 ## <a name="enable-web-proxy"></a>웹 프록시 활성화
 
-웹 프록시는 기본적으로 사용하지 않도록 설정되어 있습니다. StorSimple 장치에서 hello 웹 프록시 설정을 구성한 후 StorSimple tooenable hello 웹 프록시 설정에 대 한 hello Windows PowerShell을 사용 합니다.
+웹 프록시는 기본적으로 사용하지 않도록 설정되어 있습니다. StorSimple 장치에서 웹 프록시 설정을 구성한 후에 StorSimple용 Windows PowerShell을 사용하여 웹 프록시 설정을 사용하도록 설정합니다.
 
 > [!NOTE]
-> **Hello 설치 마법사 tooconfigure 웹 프록시를 사용 하는 경우에이 단계가 필요 하지 않습니다. 웹 프록시는 설치 마법사 세션 후 기본적으로 자동으로 사용하도록 설정됩니다.**
+> **설치 마법사를 사용하여 웹 프록시를 구성하는 경우 이 단계가 필요하지 않습니다. 웹 프록시는 설치 마법사 세션 후 기본적으로 자동으로 사용하도록 설정됩니다.**
 
 
-장치에서 StorSimple tooenable 웹 프록시에 대 한 Windows PowerShell에서 단계를 수행 하는 hello를 수행 합니다.
+장치에서 웹 프록시를 사용하려면 StorSimple용 Windows PowerShell에서 다음 단계를 수행합니다.
 
-#### <a name="tooenable-web-proxy"></a>tooenable 웹 프록시
-1. Hello 직렬 콘솔 메뉴에서 옵션 1, 선택 **전체 권한으로 로그인**합니다. 메시지가 표시 되 면 제공 hello **장치 관리자 암호**합니다. hello 기본 암호는 `Password1`합니다.
-2. Hello 명령 프롬프트에서 다음을 입력 합니다.
+#### <a name="to-enable-web-proxy"></a>웹 프록시를 활성화하려면
+1. 직렬 콘솔 메뉴에서 옵션 1, **모든 권한으로 로그인**을 선택합니다. 메시지가 표시되면 **장치 관리자 암호**를 제공합니다. 기본 암호는 `Password1`입니다.
+2. 명령 프롬프트에 다음을 입력합니다.
    
     `Enable-HcsWebProxy`
    
-    StorSimple 장치에서 이제 hello 웹 프록시 구성을 설정한 합니다.
+    StorSimple 장치에서 웹 프록시 구성을 사용하도록 설정합니다.
    
     ![StorSimple 장치4에서 웹 프록시 구성](./media/storsimple-configure-web-proxy/IC751832.png)
 
-## <a name="view-web-proxy-settings-in-hello-azure-portal"></a>Hello Azure 포털에서에서 웹 프록시 설정 보기
+## <a name="view-web-proxy-settings-in-the-azure-portal"></a>Azure Portal에서 웹 프록시 설정 보기
 
-hello 웹 프록시 설정이 hello Windows PowerShell 인터페이스를 통해 구성 및 hello 포털 내에서 변경할 수 없습니다. 그러나 hello 포털에서 이러한 구성된 설정은 볼 수, 있습니다. Hello 단계 tooview 웹 프록시를 다음을 수행 합니다.
+웹 프록시 설정은 Windows PowerShell 인터페이스를 통해 구성하며 포털에서 변경할 수 없습니다. 하지만 포털에서 이러한 구성된 설정을 볼 수는 있습니다. 다음 단계를 수행하여 웹 프록시를 봅니다.
 
-#### <a name="tooview-web-proxy-settings"></a>tooview 웹 프록시 설정
-1. 너무 이동**StorSimple 장치 관리자 서비스 > 장치**합니다. 선택 하 고 장치를 클릭 하 고 이동 하 여 너무**장치 설정 > 네트워크**합니다.
+#### <a name="to-view-web-proxy-settings"></a>웹 프록시 설정을 보려면
+1. **StorSimple 장치 관리자 서비스 > 장치**로 이동합니다. 장치를 선택하여 클릭하고 **장치 설정 > 네트워크**로 이동합니다.
 
     ![네트워크 클릭](./media/storsimple-8000-configure-web-proxy/view-web-proxy-1.png)
 
-2. Hello에 **네트워크 설정** 블레이드에서 hello 클릭 **웹 프록시** 바둑판식으로 배열입니다.
+2. **네트워크 설정** 블레이드에서 **웹 프록시** 타일을 클릭합니다.
 
     ![웹 프록시 클릭](./media/storsimple-8000-configure-web-proxy/view-web-proxy-2.png)
 
-3. Hello에 **웹 프록시** 블레이드를 검토 StorSimple 장치에서 웹 프록시 설정 구성 하는 hello 만듭니다.
+3. **웹 프록시** 블레이드에서 StorSimple 장치에 구성된 웹 프록시 설정을 검토합니다.
    
     ![웹 프록시 설정 보기](./media/storsimple-8000-configure-web-proxy/view-web-proxy-3.png)
 
 
 ## <a name="errors-during-web-proxy-configuration"></a>웹 프록시 구성하는 동안 오류
 
-Hello 웹 프록시 설정이 올바르게 구성 되는 경우 오류 메시지는 StorSimple 용 Windows PowerShell에 표시 된 toohello 사용자입니다. 다음 표에서 hello 이러한 오류 메시지, 가능한 원인 및 권장 되는 작업 중 일부를 설명 합니다.
+웹 프록시 설정이 제대로 구성되지 않으면 StorSimple용 Windows PowerShell에서 사용자에게 오류 메시지가 표시됩니다. 다음 테이블에서 이러한 오류 메시지, 가능한 원인 및 권장되는 작업 중 일부를 설명합니다.
 
 | 일련 번호 | HRESULT 오류 코드 | 가능한 근본 원인 | 권장 작업 |
 |:--- |:--- |:--- |:--- |
-| 1. |0x80070001 |Hello 수동 컨트롤러에서 명령을 실행 하 고 hello 활성 컨트롤러와 수 toocommunicate 않습니다. |Hello 활성 컨트롤러에서 hello 명령을 실행 합니다. hello 수동 컨트롤러에서 toorun hello 명령을 tooactive 수동 컨트롤러에서 hello 연결을 수정 해야 합니다. 이 연결이 끊어진 경우 Microsoft 지원과 연계해야 합니다. |
-| 2. |0x800710dd-작업 식별자 hello 잘못 되었습니다. |프록시 설정은 StorSimple Cloud Appliance에서 지원되지 않습니다. |프록시 설정은 StorSimple Cloud Appliance에서 지원되지 않습니다. 물리적 StorSimple 장치에만 구성할 수 있습니다. |
-| 3. |0x80070057 - 잘못된 매개 변수 |Hello 프록시 설정에 대해 제공 된 hello 매개 변수 중 하나가 올바르지 않습니다. |hello URI 형식이 잘못 된 제공 되지 않습니다. 형식에 따라 hello를 사용 합니다.`http://<IP address or FQDN of hello web proxy server>:<TCP port number>` |
-| 4. |0x800706ba - RPC 서버를 사용할 수 없음 |hello 근본 원인을 hello 다음 중 하나입니다.</br></br>클러스터가 켜지지 않았습니다. </br></br>데이터 경로 서비스가 실행되고 있지 않습니다.</br></br>수동 컨트롤러에서 hello 명령을 실행 이므로 hello 활성 컨트롤러와 수 toocommunicate 합니다. |Hello 클러스터는 Microsoft 지원 tooensure 참여 작동 중 이며 데이터 경로 서비스가 실행 되 고 있습니다.</br></br>Hello 활성 컨트롤러에서 hello 명령을 실행 합니다. Hello 수동 컨트롤러에서 toorun hello 명령을 원하는 경우 해당 hello 수동 컨트롤러가 활성 컨트롤러 hello와 통신할 수 있어야 합니다. 이 연결이 끊어진 경우 Microsoft 지원과 연계해야 합니다. |
-| 5. |0x800706be - RPC 호출 실패 |클러스터의 작동이 중단되었습니다. |클러스터 hello tooensure 중일 Microsoft 지원에 문의 합니다. |
-| 6. |0x8007138f - 클러스터 리소스를 찾을 수 없음 |플랫폼 서비스 클러스터 리소스를 찾을 수 없습니다. 이 hello 설치가 적절 하지 않은 경우 발생할 수 있습니다. |장치에서 공장 재설정 tooperform을 할 수 있습니다. Toocreate 플랫폼 리소스를 할 수 있습니다. Microsoft 지원에 다음 단계를 문의합니다. |
-| 7. |0x8007138c - 클러스터 리소스는 온라인 상태가 아님 |플랫폼 또는 데이터 경로 클러스터 리소스는 온라인 상태가 아닙니다. |연락처 Microsoft 지원 toohelp hello 데이터 경로 및 플랫폼 서비스 리소스가 온라인 상태 인지 확인 합니다. |
+| 1. |0x80070001 |명령은 수동 컨트롤러에서 실행되고 활성 컨트롤러와 통신할 수 없습니다. |활성 컨트롤러에서 이 명령을 실행합니다. 수동 컨트롤러에서 명령을 실행하려면 수동에서 활성 컨트롤러로 연결을 수정해야 합니다. 이 연결이 끊어진 경우 Microsoft 지원과 연계해야 합니다. |
+| 2. |0x800710dd - 작업 식별자가 유효하지 않습니다. |프록시 설정은 StorSimple Cloud Appliance에서 지원되지 않습니다. |프록시 설정은 StorSimple Cloud Appliance에서 지원되지 않습니다. 물리적 StorSimple 장치에만 구성할 수 있습니다. |
+| 3. |0x80070057 - 잘못된 매개 변수 |프록시 설정에 대해 제공된 매개 변수 중 하나가 잘못되었습니다. |URI는 올바른 형식으로 제공되지 않습니다. 다음 형식을 사용하세요. `http://<IP address or FQDN of the web proxy server>:<TCP port number>` |
+| 4. |0x800706ba - RPC 서버를 사용할 수 없음 |근본 원인은 다음 중 하나입니다.</br></br>클러스터가 켜지지 않았습니다. </br></br>데이터 경로 서비스가 실행되고 있지 않습니다.</br></br>명령은 수동 컨트롤러에서 실행되고 활성 컨트롤러와 통신할 수 없습니다. |Microsoft 지원과 연계하여 클러스터가 작동하고 데이터 경로 서비스가 실행 중인지 확인합니다.</br></br>활성 컨트롤러에서 명령을 실행합니다. 수동 컨트롤러에서 명령을 실행하려는 경우 수동 컨트롤러가 활성 컨트롤러와 통신할 수 있는지 확인해야 합니다. 이 연결이 끊어진 경우 Microsoft 지원과 연계해야 합니다. |
+| 5. |0x800706be - RPC 호출 실패 |클러스터의 작동이 중단되었습니다. |Microsoft 지원과 연계하여 클러스터가 작동하는지 확인합니다. |
+| 6. |0x8007138f - 클러스터 리소스를 찾을 수 없음 |플랫폼 서비스 클러스터 리소스를 찾을 수 없습니다. 설치가 올바르지 않은 경우 발생할 수 있습니다. |장치에서 공장 재설정을 수행해야 합니다. 플랫폼 리소스를 만들어야 할 수 있습니다. Microsoft 지원에 다음 단계를 문의합니다. |
+| 7. |0x8007138c - 클러스터 리소스는 온라인 상태가 아님 |플랫폼 또는 데이터 경로 클러스터 리소스는 온라인 상태가 아닙니다. |Microsoft 지원에 문의하여 데이터 경로 및 플랫폼 서비스 리소스가 온라인 상태인지 확인합니다. |
 
 > [!NOTE]
-> * 오류 메시지 목록은 위에 hello 완전 하지 않습니다.
-> * 오류 관련된 tooweb 프록시 설정은 hello StorSimple 장치 관리자 서비스에서 Azure 포털에에서 표시 되지 않습니다. Hello 구성이 완료 되 면 웹 프록시에 문제가 경우 hello 장치 상태 너무 변경**오프 라인** hello 클래식 포털의. |
+> * 위의 오류 메시지 목록은 전체 목록이 아닙니다.
+> * 웹 프록시 설정에 관련된 오류는 StorSimple 장치 관리자 서비스의 Azure Portal에 나타나지 않습니다. 구성이 완료된 후에 웹 프록시에 문제가 있다면 클래식 포털에서 장치 상태가 **오프라인** 으로 변경됩니다. |
 
 ## <a name="next-steps"></a>다음 단계
-* 장치 배포 또는 웹 프록시 설정을 구성 하는 동안에 문제가 발생 하는 경우 참조 너무[StorSimple 장치 배포 문제를 해결](storsimple-troubleshoot-deployment.md)합니다.
-* StorSimple 장치 관리자 서비스 toouse hello 너무 이동 toolearn[사용 하 여 StorSimple 장치를 StorSimple 장치 관리자 서비스 tooadminister hello](storsimple-8000-manager-service-administration.md)합니다.
+* 장치를 배포하거나 웹 프록시 설정을 구성하는 동안 문제가 발생하면 [StorSimple 장치 배포 문제 해결](storsimple-troubleshoot-deployment.md)을 참조하세요.
+* StorSimple 장치 관리자 서비스를 사용하는 방법을 알아보려면 [StorSimple 장치 관리자 서비스를 사용하여 StorSimple 장치 관리](storsimple-8000-manager-service-administration.md)로 이동하세요.
 

@@ -1,6 +1,6 @@
 ---
-title: "테이블 저장소 (Node.js) aaaWeb 앱 | Microsoft Docs"
-description: "Azure 저장소 서비스와 hello Azure 모듈을 추가 하 여 Express 자습서와 함께 hello 웹 앱에 구축 하는 자습서입니다."
+title: "테이블 저장소를 사용하는 웹앱(Node.js) | Microsoft Docs"
+description: "Azure 저장소 서비스 및 Azure 모듈을 추가해 Express를 사용하여 웹 앱 빌드 자습서를 기반으로 응용 프로그램을 빌드하는 자습서입니다."
 services: cosmos-db
 documentationcenter: nodejs
 author: mimig1
@@ -14,77 +14,77 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: mimig
-ms.openlocfilehash: 7eefc09baab61cf44c98183135abe572b11812e9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b802f880c1131abb7eb9ba00dd8f2e65017bc802
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="nodejs-web-application-using-storage"></a>저장소를 사용하는 Node.js 웹 응용 프로그램
 ## <a name="overview"></a>개요
-이 자습서에서 만든 응용 프로그램을 hello는 [Express를 사용 하 여 Node.js 웹 응용 프로그램] 자습서 hello Microsoft Azure 클라이언트 라이브러리를 사용 하 여 데이터 관리 서비스와 Node.js toowork에 대 한 확장 됩니다. TooAzure를 배포할 수 있음을 작업 목록-웹 기반 응용 프로그램을 만들어 응용 프로그램을 확장 합니다. hello 작업 목록에는 작업을 검색, 새 작업 추가 및 작업을 완료로 표시 하려면 사용자 수 있습니다.
+이 자습서에서는 데이터 관리 서비스를 작업하도록 Node.js용 Microsoft Azure Client Libraries를 사용하여 [Express를 사용하는 Node.js 웹 응용 프로그램] 자습서에서 만든 응용 프로그램을 확장합니다. Azure에 배포할 수 있는 웹 기반 작업 목록 응용 프로그램을 만들도록 응용 프로그램을 확장합니다. 작업 목록을 통해 사용자는 작업을 가져오고 새 작업을 추가하고 작업을 완료로 표시할 수 있습니다.
 
-hello 작업 항목은 Azure 저장소에 저장 됩니다. Azure 저장소는 내결함성과 고가용성이 있는 구조화되지 않은 데이터 저장소를 제공합니다. Azure Storage에는 데이터를 저장 및 액세스할 수 있는 몇 가지 데이터 구조가 포함되어 있습니다. Hello 저장소 서비스 REST Api를 통해 또는 Node.js 용 Azure SDK hello에 포함 된 Api hello에서 사용할 수 있습니다. 자세한 내용은 [Azure에 데이터 저장 및 액세스]를 참조하십시오.
+작업 항목은 Azure 저장소에 저장됩니다. Azure 저장소는 내결함성과 고가용성이 있는 구조화되지 않은 데이터 저장소를 제공합니다. Azure Storage에는 데이터를 저장 및 액세스할 수 있는 몇 가지 데이터 구조가 포함되어 있습니다. Node.js용 Azure SDK에 포함된 API 또는 REST API를 통해 저장소 서비스를 사용할 수 있습니다. 자세한 내용은 [Azure에 데이터 저장 및 액세스]를 참조하십시오.
 
-이 자습서에서는 hello 완료 한 것으로 가정 [Node.js 웹 응용 프로그램] 및 [빠른 Node.js][Express를 사용 하 여 Node.js 웹 응용 프로그램] 자습서입니다.
+이 자습서는 [Node.js 웹 응용 프로그램] 및 [Express를 사용하는 Node.js][Express를 사용하는 Node.js 웹 응용 프로그램] 자습서를 완료했다고 가정합니다.
 
-다음 정보는 hello 포함 됩니다.
+여기에는 다음 정보가 포함되어 있습니다.
 
-* 방법으로 toowork hello Jade 템플릿 엔진
-* 어떻게 toowork Azure 데이터 관리 서비스
+* Jade 템플릿 엔진으로 작업하는 방법
+* Azure 데이터 관리 서비스로 작업하는 방법
 
-다음 스크린 샷 hello 완료 hello 응용 프로그램을 보여 줍니다.
+다음 스크린샷에 완성된 응용 프로그램이 나와 있습니다.
 
-![hello는 internet explorer에서 웹 페이지를 완료합니다.](./media/table-storage-cloud-service-nodejs/getting-started-1.png)
+![Internet Explorer의 완료된 웹 페이지](./media/table-storage-cloud-service-nodejs/getting-started-1.png)
 
 ## <a name="setting-storage-credentials-in-webconfig"></a>Web.Config에서 저장소 자격 증명 설정
-저장소 자격 증명 tooaccess Azure 저장소에에서 전달 해야 합니다. 이 hello web.config 응용 프로그램 설정을 사용 하 여 수행 됩니다.
-hello Azure SDK에서 다음에 읽기 환경 변수 tooNode 변수로 hello web.config 설정은 전달 됩니다.
+Azure Storage에 액세스하려면 저장소 자격 증명을 전달해야 합니다. 이를 위해 web.config 응용 프로그램 설정을 사용합니다.
+web.config 설정은 환경 변수로서 노드에 전달된 다음 Azure SDK에서 읽습니다.
 
 > [!NOTE]
-> 저장소 자격 증명 hello 응용 프로그램이 배포 된 tooAzure 때에 사용 됩니다. Hello 에뮬레이터에서 실행할 경우 hello 응용 프로그램 hello 저장소 에뮬레이터를 사용 합니다.
+> 저장소 자격 증명은 응용 프로그램이 Azure에 배포될 경우에만 사용됩니다. 에뮬레이터에서 실행 중이면 응용 프로그램은 저장소 에뮬레이터를 사용합니다.
 >
 >
 
-Hello 단계 tooretrieve hello 저장소 계정 자격 증명에 다음을 수행 하 고 toohello web.config 설정 추가:
+다음 단계에 따라 저장소 계정 자격 증명을 가져와 web.config 설정에 추가합니다.
 
-1. 열려 있지 않으면 hello에서 hello Azure PowerShell을 시작 **시작** 메뉴를 확장 하 여 **모든 프로그램, Azure**를 마우스 오른쪽 단추로 클릭 **Azure PowerShell**를 선택한 후  **관리자 권한으로 실행**합니다.
-2. 응용 프로그램을 포함 하는 디렉터리 toohello 폴더를 변경 합니다. 예를 들어 C:\\node\\tasklist\\WebRole1로 변경합니다.
-3. Hello Azure Powershell 창에서 다음 cmdlet tooretrieve hello 저장소 계정 정보 hello를 입력 합니다.
+1. 설정이 열려 있지 않은 경우 **모든 프로그램, Azure**를 확장하고 **Azure PowerShell**을 마우스 오른쪽 단추로 클릭한 다음 **관리자 권한으로 실행**을 선택하여 **시작** 메뉴에서 Azure PowerShell을 시작합니다.
+2. 응용 프로그램이 포함된 폴더로 디렉터리를 변경합니다. 예를 들어 C:\\node\\tasklist\\WebRole1로 변경합니다.
+3. Azure Powershell 창에서 다음 cmdlet을 입력하여 저장소 계정 정보를 가져옵니다.
 
     ```powershell
     PS C:\node\tasklist\WebRole1> Get-AzureStorageAccounts
     ```
 
-   hello 위의 cmdlet hello의 목록을 검색 저장소 계정 및 호스팅된 서비스와 연결 된 계정 키입니다.
+   앞에 나오는 cmdlet은 호스티드 서비스와 연결된 저장소 계정 및 계정 키 목록을 가져옵니다.
 
    > [!NOTE]
-   > Hello Azure SDK는 한 서비스를 배포할 때 저장소 계정을 만듭니다, 이후 hello 이전 가이드에서 응용 프로그램 배포에서 저장소 계정은 이미 있어야 합니다.
+   > 서비스를 배포할 때 Azure SDK가 저장소 계정을 만들기 때문에 저장소 계정은 이전 가이드에서 응용 프로그램을 배포해서 이미 있어야 합니다.
    >
    >
-4. 열기 hello **ServiceDefinition.csdef** hello 응용 프로그램은 배포 된 tooAzure 때 사용 되는 hello 환경 설정이 포함 된 파일:
+4. 응용 프로그램이 Azure에 배포될 때 사용하는 환경 설정이 포함된 **ServiceDefinition.csdef** 파일을 엽니다.
 
     ```powershell
     PS C:\node\tasklist> notepad ServiceDefinition.csdef
     ```
 
-5. 삽입 hello 다음에서 차단 **환경** 요소를 대체 {저장소 계정} 및 {저장소 액세스 키} hello 계정 이름 및 배포에 대 한 toouse 원하는 hello 저장소 계정에 대 한 기본 키 hello 사용:
+5. **Environment** 요소 아래에 다음 블록을 삽입하고 {STORAGE ACCOUNT} 및 {STORAGE ACCESS KEY}를 배포에 사용할 저장소 계정의 계정 이름 및 기본 키로 대체합니다.
 
   <Variable name="AZURE_STORAGE_ACCOUNT" value="{STORAGE ACCOUNT}" />
   <Variable name="AZURE_STORAGE_ACCESS_KEY" value="{STORAGE ACCESS KEY}" />
 
-   ![hello web.cloud.config 파일 내용](./media/table-storage-cloud-service-nodejs/node37.png)
+   ![web.cloud.config 파일 콘텐츠](./media/table-storage-cloud-service-nodejs/node37.png)
 
-6. Hello 파일을 저장 하 고 메모장을 닫습니다.
+6. 파일을 저장하고 메모장을 닫습니다.
 
 ### <a name="install-additional-modules"></a>추가 모듈 설치
-1. 사용 하 여 hello 다음 명령 tooinstall hello [azure], [노드-uuid] [nconf] 및 [비동기] 모듈 로컬로 뿐 toosave 항목을 toohello **package.json** 파일:
+1. 다음 명령을 사용하여 [azure], [node-uuid], [nconf] 및 [async] 모듈을 로컬에 설치하고 해당 모듈의 항목을 **package.json** 파일에 저장합니다.
 
   ```powershell
   PS C:\node\tasklist\WebRole1> npm install azure-storage node-uuid async nconf --save
   ```
 
-  이 명령의 출력 hello 비슷한 toohello 다음과 같아야 합니다.
+  이 명령의 출력은 다음과 유사합니다.
 
   ```
   node-uuid@1.4.1 node_modules\node-uuid
@@ -105,13 +105,13 @@ Hello 단계 tooretrieve hello 저장소 계정 자격 증명에 다음을 수�
   └── request@2.27.0 (json-stringify-safe@5.0.0, tunnel-agent@0.3.0, aws-sign@0.3.0, forever-agent@0.5.2, qs@0.6.6, oauth-sign@0.3.0, cookie-jar@0.3.0, hawk@1.0.0, form-data@0.1.3, http-signature@0.10.0)
   ```
 
-## <a name="using-hello-table-service-in-a-node-application"></a>Node 응용 프로그램의 hello 테이블 서비스 사용
-이 섹션에서는 hello hello에서 만든 기본 응용 프로그램 **express** 명령을 추가 하 여 확장 되는 **task.js** 작업에 대 한 hello 모델이 포함 된 파일입니다. Hello 기존 수정 **app.js** 파일을 새 **tasklist.js** hello 모델을 사용 하는 파일입니다.
+## <a name="using-the-table-service-in-a-node-application"></a>node 응용 프로그램에서 테이블 서비스 사용
+이 섹션에서는 작업에 대한 모델을 포함하는 **task.js** 파일을 추가하여 **express** 명령으로 만들어진 기본 응용 프로그램을 확장합니다. 기존 **app.js** 파일을 수정하고 모델을 사용하는 새 **tasklist.js** 파일을 만듭니다.
 
-### <a name="create-hello-model"></a>Hello 모델 만들기
-1. Hello에 **WebRole1** 디렉터리 라는 새 디렉터리를 만들고 **모델**합니다.
-2. Hello에 **모델** 디렉터리 라는 새 파일을 만들어 **task.js**합니다. 이 파일에는 응용 프로그램에서 만든 hello 작업에 대 한 hello 모델이 들어 있습니다.
-3. Hello hello 시작 시 **task.js** 파일에서 다음 코드는 데 필요한 tooreference 라이브러리 hello 추가:
+### <a name="create-the-model"></a>모델 만들기
+1. **WebRole1** 디렉터리에서 **models**라는 새로운 디렉터리를 만듭니다.
+2. **models** 디렉터리에서 **task.js**라는 새 파일을 만듭니다. 이 파일에는 응용 프로그램에서 만든 작업 모델이 포함됩니다.
+3. **task.js** 파일의 시작 부분에 필수 라이브러리를 참조하는 다음 코드를 추가합니다.
 
     ```nodejs
     var azure = require('azure-storage');
@@ -119,7 +119,7 @@ Hello 단계 tooretrieve hello 저장소 계정 자격 증명에 다음을 수�
     var entityGen = azure.TableUtilities.entityGenerator;
     ```
 
-4. 다음으로 코드 toodefine 추가 hello (Task) 개체를 내보냅니다. hello (Task) 개체는 toohello 테이블을 연결 하는 일을 담당 합니다.
+4. 그런 다음, Task 개체를 정의하고 내보내는 코드를 추가합니다. Task 개체가 테이블에 연결하는 작업을 수행합니다.
 
     ```nodejs
     module.exports = Task;
@@ -136,7 +136,7 @@ Hello 단계 tooretrieve hello 저장소 계정 자격 증명에 다음을 수�
     };
     ```
 
-5. 다음에 추가 코드 toodefine 추가 방법에 나오는 hello 작업 개체에 hello hello 테이블에 저장 된 데이터와의 상호 작용 허용:
+5. 이제 다음 코드를 추가하여 Task 개체에서 추가 메서드를 정의합니다. 이 메서드가 테이블에 저장된 데이터에 대한 조작을 허용합니다.
 
     ```nodejs
     Task.prototype = {
@@ -153,7 +153,7 @@ Hello 단계 tooretrieve hello 저장소 계정 자격 증명에 다음을 수�
 
       addItem: function(item, callback) {
         self = this;
-        // use entityGenerator tooset types
+        // use entityGenerator to set types
         // NOTE: RowKey must be a string type, even though
         // it contains a GUID in this example.
         var itemDescriptor = {
@@ -190,11 +190,11 @@ Hello 단계 tooretrieve hello 저장소 계정 자격 증명에 다음을 수�
     }
     ```
 
-6. 저장 후 닫기 hello **task.js** 파일입니다.
+6. **task.js** 파일을 저장하고 닫습니다.
 
-### <a name="create-hello-controller"></a>Hello 컨트롤러 만들기
-1. Hello에 **WebRole1/경로** 디렉터리 라는 새 파일을 만들어 **tasklist.js** 텍스트 편집기에서 엽니다.
-2. 추가 코드를 너무 다음 hello**tasklist.js**합니다. 이 코드를 azure hello 및에서 사용 되는 비동기 모듈 로드 **tasklist.js** hello 정의 **TaskList \ / s** hello의 인스턴스를 전달 되는 함수 **작업** म 개체 앞에서 정의한:
+### <a name="create-the-controller"></a>컨트롤러 만들기
+1. **WebRole1/routes** 디렉터리에서 **tasklist.js**라는 새 파일을 만들고 텍스트 편집기에서 엽니다.
+2. 아래 코드를 **tasklist.js**에 추가합니다. 이 코드는 **tasklist.js**에서 사용되는 Azure 및 비동기 모듈을 로드하고 이전에 정의한 **Task** 개체의 인스턴스에 전달되는 **TaskList** 함수를 정의합니다.
 
     ```nodejs
     var azure = require('azure-storage');
@@ -207,7 +207,7 @@ Hello 단계 tooretrieve hello 저장소 계정 자격 증명에 다음을 수�
     }
     ```
 
-3. 계속 해 서 추가 toohello **tasklist.js** 너무 hello 메서드를 추가 하 여 파일**showTasks**, **addTask**, 및 **completeTasks**:
+3. **showTasks**, **addTask** 및 **completeTasks**에 사용된 메서드를 추가하여 **tasklist.js** 파일에 계속 추가합니다.
 
     ```nodejs
     TaskList.prototype = {
@@ -253,11 +253,11 @@ Hello 단계 tooretrieve hello 저장소 계정 자격 증명에 다음을 수�
     }
     ```
 
-4. Hello 저장 **tasklist.js** 파일입니다.
+4. **tasklist.js** 파일을 저장합니다.
 
 ### <a name="modify-appjs"></a>app.js 수정
-1. Hello에 **WebRole1** 디렉터리, 열기 hello **app.js** 파일 텍스트 편집기에서.
-2. Hello 파일 시작 부분의 hello, hello 다음 tooload hello azure 모듈을 추가 하 고 hello 테이블 이름과 파티션 키를 설정 합니다.
+1. **WebRole1** 디렉터리에 있는 **app.js** 파일을 텍스트 편집기에서 엽니다.
+2. 파일 시작 부분에 다음을 추가하여 azure 모듈을 로드하고 테이블 이름과 파티션 키를 설정합니다.
 
     ```nodejs
     var azure = require('azure-storage');
@@ -265,14 +265,14 @@ Hello 단계 tooretrieve hello 저장소 계정 자격 증명에 다음을 수�
     var partitionKey = 'hometasks';
     ```
 
-3. 표시 toowhere 아래로 스크롤하여 hello app.js 파일에 다음 줄 hello:
+3. app.js 파일에서 다음 줄이 보일 때까지 아래로 스크롤합니다.
 
     ```nodejs
     app.use('/', routes);
     app.use('/users', users);
     ```
 
-    Hello 줄 앞에 오는 코드 다음 hello로 대체 합니다. 이 코드의 인스턴스를 초기화 합니다. <strong>작업</strong> 연결 tooyour 스토리지 계정으로 합니다. hello <strong>작업</strong> toohello 전달 <strong>TaskList \ / s</strong>를 사용 하는 것 toocommunicate hello 테이블 서비스:
+    앞에 나온 줄을 다음 코드로 바꿉니다. 이 코드는 저장소 계정에 대한 연결을 사용하여 <strong>Task</strong>의 인스턴스를 초기화합니다. <strong>Task</strong>는 <strong>TaskList</strong>로 전달되어 Table Service와의 통신에 사용됩니다.
 
     ```nodejs
     var TaskList = require('./routes/tasklist');
@@ -285,11 +285,11 @@ Hello 단계 tooretrieve hello 저장소 계정 자격 증명에 다음을 수�
     app.post('/completetask', taskList.completeTask.bind(taskList));
     ```
 
-4. Hello 저장 **app.js** 파일입니다.
+4. **app.js** 파일을 저장합니다.
 
-### <a name="modify-hello-index-view"></a>Hello 인덱스 뷰를 수정 합니다.
-1. 디렉터리 toohello 변경 **뷰** 디렉터리 및 오픈 hello **index.jade** 파일 텍스트 편집기에서.
-2. Hello hello 내용 바꾸기 **index.jade** 코드 다음 hello로는 파일입니다. 이 코드는 기존 작업을 표시 하기 위한 hello 뷰를 정의 하 고 새 작업 추가 및 기존 세션을 완료 된 것으로 표시 하기 위한 양식을 정의 합니다.
+### <a name="modify-the-index-view"></a>인덱스 보기 수정
+1. 디렉터리를 **views** 디렉터리로 변경하고 **index.jade** 파일을 텍스트 편집기에서 엽니다.
+2. **index.jade** 파일 내용을 다음 코드로 바꿉니다. 이 코드는 기존 작업을 표시하는 데 사용되는 보기와 새 작업을 추가하고 기존 작업을 완료로 표시하는 데 사용되는 양식을 정의합니다.
 
     ```
     extends layout
@@ -332,48 +332,48 @@ Hello 단계 tooretrieve hello 저장소 계정 자격 증명에 다음을 수�
 
 3. **index.jade** 파일을 저장하고 닫습니다.
 
-### <a name="modify-hello-global-layout"></a>Hello 글로벌 레이아웃 수정
-hello **layout.jade** hello에 대 한 파일 **뷰** 디렉터리는 기본 서식 파일의 다른 사용 **.jade** 파일입니다. 이 단계에서 수정 hello **layout.jade** toouse 파일 [Twitter 부트스트랩](https://github.com/twbs/bootstrap), 변수인 쉽게 toodesign 좋은 찾고 웹 사이트를 사용 하면 하는 도구 키트입니다.
+### <a name="modify-the-global-layout"></a>전역 레이아웃 수정
+**views** 디렉터리의 **layout.jade** 파일은 다른 **.jade** 파일에 대한 전역 템플릿으로 사용됩니다. 이 단계에서는 멋진 모습의 웹 사이트를 쉽게 디자인할 수 있게 해주는 도구 키트인 [Twitter Bootstrap](https://github.com/twbs/bootstrap)을 사용하도록 **layout.jade** 파일을 수정합니다.
 
-1. 다운로드 하 고 hello 파일에 대 한 추출 [Twitter 부트스트랩](http://getbootstrap.com/)합니다. 복사 hello **bootstrap.min.css** hello에서 파일 **부트스트랩\\dist\\css** 폴더 toohello **공용\\스타일 시트** tasklist \ / s 응용 프로그램의 디렉터리입니다.
-2. Hello에서 **뷰** 폴더, 열기 hello **layout.jade** 텍스트 편집기에서 파일을 hello 내용을 hello 다음 코드로 바꿉니다.
+1. [Twitter Bootstrap](http://getbootstrap.com/)용 파일을 다운로드하여 추출합니다. **bootstrap\\dist\\css** 폴더의 **bootstrap.min.css** 파일을 tasklist 응용 프로그램의 **public\\stylesheets** 디렉터리에 복사합니다.
+2. **views** 폴더에 있는 **layout.jade** 파일을 텍스트 편집기에서 열어 내용을 다음으로 바꿉니다.
 
     doctype html  html    head      title= title      link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')      link(rel='stylesheet', href='/stylesheets/style.css')    body.app      nav.navbar.navbar-default        div.navbar-header          a.navbar-brand(href='/') My Tasks      block content
 
-3. Hello 저장 **layout.jade** 파일입니다.
+3. **layout.jade** 파일을 저장합니다.
 
-### <a name="running-hello-application-in-hello-emulator"></a>Hello 에뮬레이터의에서 hello 응용 프로그램 실행
-Hello 명령 toostart hello 응용 프로그램 hello 에뮬레이터에서 다음을 사용 합니다.
+### <a name="running-the-application-in-the-emulator"></a>에뮬레이터에서 응용 프로그램 실행
+에뮬레이터에서 응용 프로그램을 시작하려면 다음 명령을 사용합니다.
 
 ```powershell
 PS C:\node\tasklist\WebRole1> start-azureemulator -launch
 ```
 
-hello 브라우저가 열리고 hello 페이지 뒤에 표시 됩니다.
+브라우저가 열리며 다음 페이지를 표시합니다.
 
-![웹 페이지 제목 내 작업 목록에 tooadd 작업 및 필드를 포함 하는 테이블에 새 작업 있습니다.](./media/table-storage-cloud-service-nodejs/node44.png)
+![작업 및 새 작업을 추가할 필드를 포함하는 테이블이 있는 내 작업 목록 웹 페이지](./media/table-storage-cloud-service-nodejs/node44.png)
 
-Hello 양식 tooadd 항목을 사용 하거나 완료 된 것으로 표시 하 여 기존 항목을 제거 합니다.
+양식을 사용하여 항목을 추가하거나 기존 항목을 완료됨으로 표시하여 제거합니다.
 
-## <a name="publishing-hello-application-tooazure"></a>게시 hello 응용 프로그램 tooAzure
-Hello Windows PowerShell 창에서 다음 cmdlet tooredeploy hello 호스팅된 서비스 tooAzure 호출 합니다.
+## <a name="publishing-the-application-to-azure"></a>Azure에 응용 프로그램 게시
+Windows PowerShell 창에서 다음 cmdlet을 호출하여 호스티드 서비스를 Azure에 다시 배포합니다.
 
 ```powershell
 PS C:\node\tasklist\WebRole1> Publish-AzureServiceProject -name myuniquename -location datacentername -launch
 ```
 
-**myuniquename**을 이 응용 프로그램의 고유한 이름으로 바꿉니다. 대체 **datacentername** Azure 데이터 센터의 hello 이름으로 같은 **West US**합니다.
+**myuniquename**을 이 응용 프로그램의 고유한 이름으로 바꿉니다. **datacentername**을 **West US**와 같은 Azure 데이터 센터 이름으로 바꿉니다.
 
-Hello 배포가 완료 된 후 응답 비슷한 toohello 다음을 표시 되어야 합니다.
+배포가 완료된 후 다음과 유사한 응답이 표시됩니다.
 
 ```
   PS C:\node\tasklist> publish-azureserviceproject -servicename tasklist -location "West US"
-  WARNING: Publishing tasklist tooMicrosoft Azure. This may take several minutes...
+  WARNING: Publishing tasklist to Microsoft Azure. This may take several minutes...
   WARNING: 2:18:42 PM - Preparing runtime deployment for service 'tasklist'
   WARNING: 2:18:42 PM - Verifying storage account 'tasklist'...
   WARNING: 2:18:43 PM - Preparing deployment for tasklist with Subscription ID: 65a1016d-0f67-45d2-b838-b8f373d6d52e...
   WARNING: 2:19:01 PM - Connecting...
-  WARNING: 2:19:02 PM - Uploading Package toostorage service larrystore...
+  WARNING: 2:19:02 PM - Uploading Package to storage service larrystore...
   WARNING: 2:19:40 PM - Upgrading...
   WARNING: 2:22:48 PM - Created Deployment ID: b7134ab29b1249ff84ada2bd157f296a.
   WARNING: 2:22:48 PM - Initializing...
@@ -381,37 +381,37 @@ Hello 배포가 완료 된 후 응답 비슷한 toohello 다음을 표시 되어
   WARNING: 2:22:50 PM - Created Website URL: http://tasklist.cloudapp.net/.
 ```
 
-Hello를 지정 하 여 **-시작** hello 이전 cmdlet에서 hello 브라우저 옵션 열리고 게시가 완료 되 면 Azure에서 실행 중인 응용 프로그램을 표시 합니다.
+이전 cmdlet에서 **-launch** 옵션을 지정했으므로 브라우저가 열리며 게시가 완료될 때 Azure에서 실행 중인 응용 프로그램이 표시됩니다.
 
-![Hello 내 작업 목록 페이지를 표시 하는 브라우저 창입니다. hello URL hello 페이지 이제 Azure에서 호스팅됨을 나타냅니다.](./media/table-storage-cloud-service-nodejs/getting-started-1.png)
+![내 작업 목록 페이지를 표시하는 브라우저 창. URL은 페이지가 Azure에서 호스트되고 있음을 나타냅니다.](./media/table-storage-cloud-service-nodejs/getting-started-1.png)
 
 ## <a name="stopping-and-deleting-your-application"></a>응용 프로그램 중지 및 삭제
-응용 프로그램을 배포한 후 toodisable 비용이 발생 하지 않도록 또는 빌드 및 hello 내의 다른 응용 프로그램을 배포할 수 있도록 무료로 평가판 기간을 할 수 있습니다.
+추가 비용을 방지하거나 다른 응용 프로그램을 빌드 및 배포할 수 있도록 이전에 배포한 응용 프로그램을 무료 평가판 기간 동안 사용하지 않도록 설정할 수 있습니다.
 
 Azure는 사용된 서버 시간의 시간당 웹 역할 인스턴스 요금을 청구합니다.
-서버 시간 인스턴스를 실행 하지 않는 중지 하는 hello 상태에 놓인 경우에 응용 프로그램을 배포한 후에 사용 됩니다.
+서버 시간은 응용 프로그램이 배포된 다음에 사용되며 인스턴스가 실행되지 않고 중지된 상태인 경우에도 사용됩니다.
 
-hello 다음 단계 방법을 보여 줍니다 toostop 및 응용 프로그램을 삭제 합니다.
+다음 단계에 따라 응용 프로그램을 중지 및 제거할 수 있습니다.
 
-1. Hello Windows PowerShell 창에서 cmdlet 뒤 hello를 사용 하 여 hello 이전 섹션에서 만든 hello 서비스 배포를 중지 합니다.
+1. Windows PowerShell 창에서, 이전 섹션에서 만든 서비스 배포를 다음 cmdlet을 사용하여 중지합니다.
 
     ```powershell
     PS C:\node\tasklist\WebRole1> Stop-AzureService
     ```
 
-   Hello 서비스를 중지 하면 몇 분 정도 걸릴 수 있습니다. Hello 서비스가 중지 되 면이 중지 되었음을 나타내는 메시지가 나타납니다.
+   서비스를 중지하려면 몇 분 정도 걸릴 수 있습니다. 서비스가 중지되면 서비스가 중지되었다는 메시지가 표시됩니다.
 
-2. cmdlet을 다음 호출 hello toodelete hello 서비스:
+2. 서비스를 삭제하려면 다음 cmdlet을 호출합니다.
 
     ```powershell
     PS C:\node\tasklist\WebRole1> Remove-AzureService contosotasklist
     ```
 
-   메시지가 표시 되 면 입력 **Y** toodelete hello 서비스입니다.
+   메시지가 표시되면 **Y** 를 입력하여 서비스를 삭제합니다.
 
-   Hello 서비스를 삭제 하면 몇 분 정도 걸릴 수 있습니다. Hello 서비스가 삭제 된 후 hello 서비스가 삭제 되었거나 메시지가 받게 됩니다.
+   서비스를 삭제하려면 몇 분 정도 걸릴 수 있습니다. 서비스가 삭제되면 서비스가 삭제되었다는 메시지가 표시됩니다.
 
-[Express를 사용 하 여 Node.js 웹 응용 프로그램]: http://azure.microsoft.com/develop/nodejs/tutorials/web-app-with-express/
+[Express를 사용하는 Node.js 웹 응용 프로그램]: http://azure.microsoft.com/develop/nodejs/tutorials/web-app-with-express/
 [Azure에 데이터 저장 및 액세스]: http://msdn.microsoft.com/library/azure/gg433040.aspx
 [Node.js 웹 응용 프로그램]: http://azure.microsoft.com/develop/nodejs/tutorials/getting-started/
 

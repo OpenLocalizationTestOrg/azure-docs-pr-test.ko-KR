@@ -1,6 +1,6 @@
 ---
-title: "Azure 클라우드 서비스와 Azure CDN aaaIntegrate | Microsoft Docs"
-description: "어떻게 toodeploy 클라우드 서비스 역할 하는 콘텐츠를 통합된 Azure CDN 끝점에 알아봅니다"
+title: "Azure CDN과 Azure 클라우드 서비스 통합 | Microsoft Docs"
+description: "통합 Azure CDN 끝점에서 콘텐츠를 제공하는 클라우드 서비스의 배포 방법에 대해 알아봅니다."
 services: cdn, cloud-services
 documentationcenter: .net
 author: zhangmanling
@@ -14,18 +14,18 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: f20d60b0b5edc133adf06d010633a15f62e2b8de
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f2849fe25fd0d5b3dc26598ffba7591cb7433161
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="intro"></a> Azure CDN과 클라우드 서비스 통합
-클라우드 서비스는 hello 클라우드 서비스의 위치에서 모든 콘텐츠를 처리 하는 Azure CDN와 통합할 수 있습니다. 이 접근 방식에서는 장점 다음 hello:
+클라우드 서비스는 Azure CDN과 통합되어 클라우드 서비스의 위치에 있는 모든 콘텐츠를 제공할 수 있습니다. 이 접근 방식을 통해 다음과 같은 장점을 얻을 수 있습니다.
 
 * 클라우드 서비스 프로젝트 디렉터리의 이미지, 스크립트 및 스타일시트를 쉽게 배포 및 업데이트
-* 클라우드 서비스, jQuery 또는 부트스트랩 버전 등의 hello NuGet 패키지를 쉽게 업그레이드합니다
-* 웹 응용 프로그램을 관리 및 CDN served 콘텐츠 hello에서 모두 동일 Visual Studio 인터페이스
+* jQuery 또는 부트스트랩 버전과 같은 클라우드 서비스의 NuGet 패키지를 쉽게 업그레이드
+* 동일한 Visual Studio 인터페이스에서 웹 응용 프로그램 및 CDN 제공 콘텐츠 모두 관리
 * 웹 응용 프로그램 및 CDN 제공 콘텐츠에 대한 통합 배포 워크플로
 * ASP.NET 묶음 및 축소를 Azure CDN과 통합
 
@@ -35,22 +35,22 @@ ms.lasthandoff: 10/06/2017
 * [Azure CDN 끝점을 클라우드 서비스와 통합하여 Azure CDN에서 웹 페이지의 정적 콘텐츠 제공](#deploy)
 * [클라우드 서비스의 정적 콘텐츠에 대한 캐시 설정 구성](#caching)
 * [Azure CDN을 통해 컨트롤러 작업의 콘텐츠 제공](#controller)
-* [Serve 번들로 제공 하 고 Visual Studio에서 디버깅이 hello 스크립트를 유지 하면서 Azure CDN을 통해 콘텐츠를 축소](#bundling)
+* [Visual Studio의 스크립트 디버깅 환경은 유지하면서 Azure CDN을 통해 묶이고 축소된 콘텐츠 제공](#bundling)
 * [Azure CDN이 오프라인인 경우 스크립트 및 CSS 대체 구성](#fallback)
 
 ## <a name="what-you-will-build"></a>빌드할 내용
-Hello 기본 ASP.NET MVC 템플릿에서 사용 하 여 클라우드 서비스 웹 역할을 배포 하, 이미지, 컨트롤러 작업 결과 및 hello 기본 JavaScript 및 CSS 파일을 같은 통합된 된 Azure CDN에서 코드 tooserve 콘텐츠를 추가 하 고 tooconfigure hello 코드를 작성할 수도 합니다. 해당 hello CDN hello 이벤트에서 제공 하는 번들에 대 한 대체 (fallback) 메커니즘은 오프 라인 상태입니다.
+기본 ASP.NET MVC 템플릿을 사용하여 클라우드 서비스 웹 역할을 배포하고, 코드를 추가하여 통합 Azure CDN에서 이미지, 컨트롤러 작업 결과, 기본 JavaScript 및 CSS 파일과 같은 콘텐츠를 제공하고, 코드를 작성하여 CDN이 오프라인인 경우에 제공할 번들의 대체 메커니즘을 구성합니다.
 
 ## <a name="what-you-will-need"></a>필요한 사항
-이 자습서에는 다음 필수 구성 요소는 hello:
+이 자습서를 사용하려면 다음 필수 조건이 필요합니다.
 
 * 활성 [Microsoft Azure 계정](/account/)
 * [Azure SDK](http://go.microsoft.com/fwlink/?linkid=518003&clcid=0x409)
 
 > [!NOTE]
-> 이 자습서는 Azure 계정 toocomplete 필요합니다.
+> 이 자습서를 완료하려면 Azure 계정이 있어야 합니다.
 > 
-> * 할 수 있습니다 [무료로 Azure 계정을 개설](https://azure.microsoft.com/pricing/free-trial/) -크레딧을 얻게 유료 Azure 서비스 아웃 tootry 사용할 수 있으며 사용 후에 최대 hello 계정 등에 사용 하 여 웹 사이트와 같은 Azure 서비스를 해제 합니다.
+> * [Azure 계정을 무료로 개설](https://azure.microsoft.com/pricing/free-trial/) 할 수 있음 - 유료 Azure 서비스를 사용해볼 수 있는 크레딧을 받게 되며 크레딧을 모두 사용한 후에도 계정을 유지하고 무료 Azure 서비스(예: 웹 서비스)를 사용할 수 있습니다.
 > * [MSDN 구독자 혜택을 활성화](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) 할 수 있음 - MSDN 구독은 유료 Azure 서비스에 사용할 수 있는 크레딧을 매달 제공합니다.
 > 
 > 
@@ -58,121 +58,121 @@ Hello 기본 ASP.NET MVC 템플릿에서 사용 하 여 클라우드 서비스 �
 <a name="deploy"></a>
 
 ## <a name="deploy-a-cloud-service"></a>클라우드 서비스 배포
-이 섹션에서는 hello 기본 Visual Studio 2015 tooa 클라우드 서비스 웹 역할에 ASP.NET MVC 응용 프로그램 템플릿을 배포 하 고 새 CDN 끝점에 부합 합니다. 아래 hello 지침을 따르세요.
+이 섹션에서는 Visual Studio 2015에서 기본 ASP.NET MVC 응용 프로그램 템플릿을 클라우드 서비스 웹 역할에 배포한 후 새로운 CDN 끝점과 통합합니다. 아래의 지침을 따르세요.
 
-1. Visual Studio 2015에서 새 Azure 클라우드 서비스는 hello 메뉴 모음에서 너무 이동 하 여 만들**파일 > 새로 만들기 > 프로젝트 > 클라우드 > Azure 클라우드 서비스**합니다. 해당 서비스의 이름을 지정하고 **확인**을 클릭합니다.
+1. Visual Studio 2015의 메뉴 모음에서 **파일 > 새로 만들기 > 프로젝트 > 클라우드 > Azure 클라우드 서비스**로 이동하여 새 Azure 클라우드 서비스를 만듭니다. 해당 서비스의 이름을 지정하고 **확인**을 클릭합니다.
    
     ![](media/cdn-cloud-service-with-cdn/cdn-cs-1-new-project.PNG)
-2. 선택 **ASP.NET 웹 역할** hello 클릭  **>**  단추입니다. 확인을 클릭합니다.
+2. **ASP.NET 웹 역할**을 선택하고 **>** 단추를 클릭합니다. 확인을 클릭합니다.
    
     ![](media/cdn-cloud-service-with-cdn/cdn-cs-2-select-role.PNG)
 3. **MVC**를 선택하고 **확인**을 클릭합니다.
    
     ![](media/cdn-cloud-service-with-cdn/cdn-cs-3-mvc-template.PNG)
-4. 지금이 웹 역할 tooan Azure 클라우드 서비스를 게시 합니다. Hello 클라우드 서비스 프로젝트를 마우스 오른쪽 단추로 클릭 하 고 선택 **게시**합니다.
+4. 이제 이 웹 역할을 Azure 클라우드 서비스에 게시합니다. 클라우드 서비스 프로젝트를 마우스 오른쪽 단추로 클릭하고 **게시**를 선택합니다.
    
     ![](media/cdn-cloud-service-with-cdn/cdn-cs-4-publish-a.png)
-5. 아직 Microsoft Azure에 등록 하지 않은 경우 클릭 hello **계정 추가...**  드롭다운을 클릭 하 고 hello **계정 추가** 메뉴 항목입니다.
+5. 아직 Microsoft Azure에 로그인하지 않은 경우 **계정 추가...** 드롭다운을 클릭하고 **계정 추가** 메뉴 항목을 클릭합니다.
    
     ![](media/cdn-cloud-service-with-cdn/cdn-cs-5-publish-signin.png)
-6. Hello 로그인 페이지에서 hello tooactivate Azure 계정을 사용 하는 Microsoft 계정으로 로그인 합니다.
+6. 로그인 페이지에서 Azure 계정을 활성화하는 데 사용한 Microsoft 계정으로 로그인합니다.
 7. 로그인했으면 **다음**을 클릭합니다.
    
     ![](media/cdn-cloud-service-with-cdn/cdn-cs-6-publish-signedin.png)
-8. Visual Studio에서는 클라우드 서비스 또는 저장소 계정이 생성되지 않았다고 가정하고 두 계정의 생성을 지원합니다. Hello에 **클라우드 서비스 만들기 및 계정** 대화 상자, 형식 hello 원하는 서비스 이름과 선택 hello 원하는 지역입니다. 그런 다음에 **만들기**를 클릭합니다.
+8. Visual Studio에서는 클라우드 서비스 또는 저장소 계정이 생성되지 않았다고 가정하고 두 계정의 생성을 지원합니다. **클라우드 서비스 및 계정 만들기** 대화 상자에서 원하는 서비스 이름을 입력하고 원하는 지역을 선택합니다. 그런 다음에 **만들기**를 클릭합니다.
    
     ![](media/cdn-cloud-service-with-cdn/cdn-cs-7-publish-createserviceandstorage.png)
-9. Hello에서 게시 설정 페이지, hello 구성 확인 및 클릭 **게시**합니다.
+9. 게시 설정 페이지에서 구성을 확인하고 **게시**를 클릭합니다.
    
     ![](media/cdn-cloud-service-with-cdn/cdn-cs-8-publish-finalize.png)
    
    > [!NOTE]
-   > 클라우드 서비스에 대 한 hello 게시 프로세스에 오랜 시간이 걸립니다. 모든 역할 옵션에 대 한 웹 배포 사용 hello 빠른 (하지만 임시) 업데이트 tooyour 웹 역할을 제공 하 여 속도가 훨씬 빨라집니다 클라우드 서비스를 디버깅 만들 수 있습니다. 이 옵션에 대 한 자세한 내용은 참조 하십시오. [hello Azure Tools를 사용 하 여 클라우드 서비스 게시](http://msdn.microsoft.com/library/ff683672.aspx)합니다.
+   > 클라우드 서비스를 게시하는 프로세스는 시간이 조금 걸립니다. 모든 웹 역할에 대해 웹 배포 사용 옵션을 사용하면 웹 역할에 대한 신속한(하지만 임시적) 업데이트를 제공함으로써 클라우드 서비스를 훨씬 빠르게 디버깅할 수 있습니다. 이 옵션에 대한 자세한 내용은 [Azure Tools를 사용하여 클라우드 서비스 게시](http://msdn.microsoft.com/library/ff683672.aspx)를 참조하세요.
    > 
    > 
    
-    Hello 때 **Microsoft Azure 활동 로그** 게시 상태 임을 보여주고 **완료**,이 클라우드 서비스와 통합 된 CDN 끝점을 만듭니다.
+    **Microsoft Azure 활동 로그**에서 게시 상태가 **완료**로 표시된 경우 이 클라우드 서비스와 통합된 CDN 끝점을 만들 수 있습니다.
    
    > [!WARNING]
-   > 게시 후 배포 된 hello 클라우드 서비스 오류 화면 표시 하는 경우 될 hello 클라우드 서비스가 배포 되었으며 사용 중이기 때문에 [.NET 4.5.2 포함 하지 않는 운영 체제를 게스트](../cloud-services/cloud-services-guestos-update-matrix.md#news-updates)합니다.  [시작 작업으로 .NET 4.5.2를 배포](../cloud-services/cloud-services-dotnet-install-dotnet.md)하여 이 문제를 해결할 수 있습니다.
+   > 게시 후, 배포된 클라우드 서비스에서 오류 화면을 표시하는 경우 개발한 클라우드 서비스가 [.NET 4.5.2가 포함되지 않은 게스트 OS](../cloud-services/cloud-services-guestos-update-matrix.md#news-updates)를 사용하고 있기 때문일 수 있습니다.  [시작 작업으로 .NET 4.5.2를 배포](../cloud-services/cloud-services-dotnet-install-dotnet.md)하여 이 문제를 해결할 수 있습니다.
    > 
    > 
 
 ## <a name="create-a-new-cdn-profile"></a>새 CDN 프로필 만들기
-CDN 프로필은 CDN 끝점의 컬렉션입니다.  각 프로필에는 CDN 끝점이 하나 이상 있습니다.  여러 프로필 tooorganize toouse를 지정할 수 있습니다 인터넷 도메인, 웹 응용 프로그램 또는 기타 일부 조건에 의해 CDN 끝점입니다.
+CDN 프로필은 CDN 끝점의 컬렉션입니다.  각 프로필에는 CDN 끝점이 하나 이상 있습니다.  여러 프로필을 사용하여 인터넷 도메인, 웹 응용 프로그램 또는 일부 기타 조건에서 CDN 끝점을 구성할 수도 있습니다.
 
 > [!TIP]
-> 이 자습서에 대 한 toouse 되도록 CDN 프로필을 이미 보유 하는 경우 너무 진행[새 CDN 끝점 만들기](#create-a-new-cdn-endpoint)합니다.
+> 이미 이 자습서에 사용하려는 CDN 프로필이 있는 경우 [새 CDN 끝점 만들기](#create-a-new-cdn-endpoint)로 진행합니다.
 > 
 > 
 
 [!INCLUDE [cdn-create-profile](../../includes/cdn-create-profile.md)]
 
 ## <a name="create-a-new-cdn-endpoint"></a>새 CDN 끝점 만들기
-**저장소 계정에 대 한 새 CDN 끝점 toocreate**
+**저장소 계정에 대한 새 CDN 끝점을 만들려면**
 
-1. Hello에 [Azure 관리 포털](https://portal.azure.com), tooyour CDN 프로필을 탐색 합니다.  수 있는 고정 toohello 대시보드 hello 이전 단계에서 합니다.  경우 not, 있습니다 찾을 수 있습니다 것을 클릭 하 여 **찾아보기**, 다음 **CDN 프로필**, 인증서 및 hello 프로필 클릭 하면 tooadd를 끝점입니다.
+1. [Azure 관리 포털](https://portal.azure.com)에서 CDN 프로필로 이동합니다.  이전 단계에서 대시보드에 고정해 놓았을 수 있습니다.  그렇지 않은 경우 **찾아보기**, **CDN 프로필**을 차례로 클릭한 다음 끝점을 추가하려는 프로필을 클릭하면 찾을 수 있습니다.
    
-    CDN 프로필 블레이드 hello 나타납니다.
+    CDN 프로필 블레이드가 나타납니다.
    
     ![CDN 프로필][cdn-profile-settings]
-2. Hello 클릭 **끝점 추가** 단추입니다.
+2. **끝점 추가** 단추를 클릭합니다.
    
     ![끝점 추가 단추][cdn-new-endpoint-button]
    
-    hello **끝점 추가** 블레이드 나타납니다.
+    **끝점 추가** 블레이드가 나타납니다.
    
     ![끝점 추가 블레이드][cdn-add-endpoint]
-3. 이 CDN 끝점에 대한 **이름** 을 입력합니다.  이 이름은 hello 도메인에서 캐시 된 리소스 사용된 tooaccess 됩니다 `<EndpointName>.azureedge.net`합니다.
-4. Hello에 **원본 형식을** 드롭다운 *클라우드 서비스*합니다.  
-5. Hello에 **원본 호스트 이름을** 드롭다운을 클라우드 서비스를 선택 합니다.
-6. 에 대 한 hello 기본값 그대로 두고 **원래 경로**, **원본 호스트 헤더**, 및 **프로토콜/원본 포트**합니다.  하나 이상의 프로토콜(HTTP 또는 HTTPS)을 지정해야 합니다.
-7. Hello 클릭 **추가** 단추 toocreate hello 새 끝점입니다.
-8. Hello 끝점을 만들 되 면 hello 프로필에 대 한 끝점의 목록에 나타납니다. hello 목록 보기 hello URL toouse tooaccess 캐시 hello 원본 도메인 뿐만 아니라 콘텐츠를 표시 합니다.
+3. 이 CDN 끝점에 대한 **이름** 을 입력합니다.  이 이름은 `<EndpointName>.azureedge.net`도메인의 캐시된 리소스에 액세스하기 위해 사용됩니다.
+4. **원본 형식** 드롭다운에서 *클라우드 서비스*를 선택합니다.  
+5. **원본 호스트 이름** 드롭다운에서 클라우드 서비스를 선택합니다.
+6. **원본 경로**, **원본 호스트 헤더** 및 **프로토콜/원본 포트**에 대한 기본값을 그대로 유지합니다.  하나 이상의 프로토콜(HTTP 또는 HTTPS)을 지정해야 합니다.
+7. **추가** 단추를 클릭하여 새 끝점을 만듭니다.
+8. 끝점이 만들어지면 프로필에 대한 끝점 목록에 표시됩니다. 목록 보기에는 캐시된 콘텐츠에 액세스하는 데 사용할 URL과 원본 도메인이 표시됩니다.
    
     ![CDN 끝점][cdn-endpoint-success]
    
    > [!NOTE]
-   > hello 끝점 즉시 사용할 수 있는 되지 않습니다.  Hello CDN 네트워크를 통해 등록 toopropagate hello에 대 일 분까지 걸릴 수 있으므로 합니다. Hello 콘텐츠 hello CDN 통해 사용 가능할 때까지 사용자가 즉시 toouse hello CDN 도메인 이름을 시도 상태 코드 404을 받을 수 있습니다.
+   > 끝점은 즉시 사용할 수 없습니다.  CDN 네트워크를 통해 등록을 전파하는 데 최대 90분까지 걸릴 수 있습니다. 사용자가 CDN 도메인 이름을 즉시 사용하려고 시도할 경우 CDN을 통해 콘텐츠를 사용할 수 있을 때까지 상태 코드 404가 표시될 수 있습니다.
    > 
    > 
 
-## <a name="test-hello-cdn-endpoint"></a>테스트 hello CDN 끝점
-게시 상태 hello 다음과 같은 경우 **Completed**브라우저 창을 열고 너무 이동**http://<cdnName>*.azureedge.net/Content/bootstrap.css** 합니다. 이 자습서 설정에서 이 URL은 다음과 같습니다.
+## <a name="test-the-cdn-endpoint"></a>CDN 끝점 테스트
+게시 상태가 **완료됨**인 경우 브라우저 창을 열고 **http://<cdnName>*.azureedge.net/Content/bootstrap.css**로 이동합니다. 이 자습서 설정에서 이 URL은 다음과 같습니다.
 
     http://camservice.azureedge.net/Content/bootstrap.css
 
-해당 하는 hello CDN 끝점에서 원본 URL을 다음 toohello:
+이는 CDN 끝점의 다음 원본 URL과 일치합니다.
 
     http://camcdnservice.cloudapp.net/Content/bootstrap.css
 
-너무 이동할 때**http://*&lt;cdnName >*.azureedge.net/Content/bootstrap.css**, 브라우저에 따라 됩니다 증명된 toodownload 또는 열기 hello bootstrap.css입니다 게시 된 웹 앱에서 발생 했습니다.
+**http://*&lt;cdnName>*.azureedge.net/Content/bootstrap.css**로 이동한 경우 브라우저에 따라 게시한 웹앱에서 제공한 bootstrap.css를 다운로드하거나 열라는 메시지가 표시됩니다.
 
 ![](media/cdn-cloud-service-with-cdn/cdn-1-browser-access.PNG)
 
 마찬가지로 CDN 끝점에서 **http://*&lt;서비스 이름>*.cloudapp.net/**의 공개적으로 액세스 가능한 URL에 바로 액세스할 수 있습니다. 예:
 
-* Hello /Script 경로에서.js 파일
-* /Content hello에서 모든 콘텐츠 파일 경로
+* /Script 경로의 .js 파일
+* /Content 경로의 모든 콘텐츠 파일
 * 모든 controller/action
-* 쿼리 문자열 hello를 모든 URL 쿼리 문자열이 포함 된 CDN 끝점에서 사용 하는 경우
+* CDN 끝점에서 쿼리 문자열을 사용하도록 설정한 경우 쿼리 문자열이 포함된 모든 URL
 
-실제로 구성 이상 hello,으로 호스트할 수 있습니다 hello 전체 클라우드 서비스에서  **http://*&lt;cdnName >*.azureedge.net/**합니다. 너무를 탐색 하는 경우**http://camservice.azureedge.net/ * * hello 작업 결과에서 받는 Home/Index입니다.
+실제로 위의 구성을 사용하면 **http://*&lt;cdnName>*.azureedge.net/**에서 전체 클라우드 서비스를 호스팅할 수 있습니다. **http://camservice.azureedge.net/**으로 이동하면 Home/Index에서 작업 결과를 가져옵니다.
 
 ![](media/cdn-cloud-service-with-cdn/cdn-2-home-page.PNG)
 
-그러나이 의미는 아닙니다 좋습니다 tooserve Azure CDN을 통해 전체 클라우드 서비스는 항상 임을 것입니다. 
+그러나 Azure CDN을 통해 전체 클라우드 서비스를 제공하는 것이 항상 바람직하지 않을 수도 있습니다. 
 
-정적 배달 최적화 CDN 않습니다 하지 반드시 속도를 높이기 toobe 캐시는 사용 되지 않는 되거나 hello CDN 매우 자주 새 버전의 hello 자산 hello 원본 서버에서 끌어오도록 해야 하므로 자주 업데이트 되는 동적 자산 배달 합니다. 이 시나리오에서는 사용할 수 있습니다 [동적 사이트 가속](cdn-dynamic-site-acceleration.md) 다양 한 기술을 toospeed 캐시할 동적 자산 배달을 사용 하 여 CDN 끝점에서 (DSA) 최적화 합니다. 
+CDN이 새로운 버전의 자산을 원본 서버에서 매우 자주 풀해야 하므로 고정 배달 최적화를 포함한 CDN은 동적 자산의 배달 속도를 반드시 높이지 않으며 따라서 캐시되지 않거나 매우 자주 업데이트됩니다. 이 시나리오에서는 CDN 끝점에서 DSA([동적 사이트 가속](cdn-dynamic-site-acceleration.md)) 최적화를 사용할 수 있습니다. 이 기능은 캐시 불가능한 동적 자산의 배달 속도를 향상시키기 위한 다양한 기술을 사용합니다. 
 
-정적 및 동적 콘텐츠가 혼합 된 사이트가 있는 경우 선택할 수 있습니다 tooserve CDN에서 정적 콘텐츠 (예: 일반 웹 배달의 경우)는 정적 최적화 형식과 및 tooserve 동적 콘텐츠 hello 원본 서버에서 직접 또는 CDN을 통해 DSA 최적화 상황별으로 설정 되어 있는 끝점입니다. toothat 끝 tooaccess 개별 콘텐츠 hello CDN 끝점에서 파일을 방법 이미 살펴보았습니다. Tooserve에 특정 CDN 끝점을 통해 특정 컨트롤러 동작을 서비스 방법을 컨트롤러 작업을 통해 Azure CDN에서 콘텐츠 하겠습니다.
+고정 및 동적 콘텐츠가 혼합된 사이트가 있는 경우 고정 최적화 형식(예: 일반 웹 배달)을 사용하여 CDN에서 고정 콘텐츠를 실행하고 상황에 따라 DSA 최적화를 설정하여 원본 서버에서 직접 또는 CDN 끝점을 통해 들어오는 동적 콘텐츠를 제공할 수 있습니다. 이를 위해 CDN 끝점에서 개별 콘텐츠 파일에 액세스하는 방법을 이미 알아보았습니다. Azure CDN을 통해 컨트롤러 작업의 콘텐츠 제공에서는 특정 CDN 끝점을 통해 특정 컨트롤러 작업을 제공하는 방법을 설명하겠습니다.
 
-hello는 대체 항목은 toodetermine tooserve Azure CDN에서 클라우드 서비스에서 경우-기준 콘텐츠입니다. toothat 끝 tooaccess 개별 콘텐츠 hello CDN 끝점에서 파일을 방법 이미 살펴보았습니다. 살펴본 다음 방법을 tooserve를 통해 특정 컨트롤러 액션 hello에 CDN 끝점 [Azure CDN을 통해 컨트롤러 작업에서 콘텐츠를 제공](#controller)합니다.
+대안은 클라우드 서비스의 사례별로 Azure CDN에서 제공할 콘텐츠를 판단하는 것입니다. 이를 위해 CDN 끝점에서 개별 콘텐츠 파일에 액세스하는 방법을 이미 알아보았습니다. [Azure CDN을 통해 컨트롤러 작업의 콘텐츠 제공](#controller)에서는 CDN 끝점을 통해 특정 컨트롤러 작업을 제공하는 방법을 설명하겠습니다.
 
 <a name="caching"></a>
 
 ## <a name="configure-caching-options-for-static-files-in-your-cloud-service"></a>클라우드 서비스의 정적 파일에 대한 캐싱 옵션 구성
-클라우드 서비스에서 Azure CDN 통합을 원하는 정적 콘텐츠 toobe hello CDN 끝점에 캐시를 지정할 수 있습니다. toodo이,이 오픈 *Web.config* 웹 역할에서 프로젝트 (예: WebRole1) 하 고 추가 `<staticContent>` 요소 너무`<system.webServer>`합니다. 다음 XML hello 3 일에서 hello 캐시 tooexpire를 구성합니다.  
+클라우드 서비스의 Azure CDN 통합으로 정적 콘텐츠를 CDN 끝점에서 캐시하는 방법을 지정할 수 있습니다. 이를 수행하려면 웹 역할 프로젝트(예: WebRole1)에서 *Web.config*를 열고 `<staticContent>` 요소를 `<system.webServer>`에 추가합니다. 아래 XML은 캐시가 3일 이내에 만료되도록 구성합니다.  
 
     <system.webServer>
       <staticContent>
@@ -181,7 +181,7 @@ hello는 대체 항목은 toodetermine tooserve Azure CDN에서 클라우드 서
       ...
     </system.webServer>
 
-이렇게 하면 클라우드 서비스의 모든 정적 파일은 hello CDN 캐시에서 동일한 규칙을 관찰 합니다. 캐싱 설정을 더 세밀하게 제어하려면 *Web.config* 파일을 폴더에 추가하고 이 파일에 해당 설정을 추가합니다. 예를 들어 추가 *Web.config* toohello 파일 *\Content* 폴더 및 바꾸기 hello 다음과 같은 XML로 콘텐츠를 hello:
+이렇게 구성하면 클라우드 서비스의 모든 정적 파일이 CDN 캐시에서 동일한 규칙을 준수합니다. 캐싱 설정을 더 세밀하게 제어하려면 *Web.config* 파일을 폴더에 추가하고 이 파일에 해당 설정을 추가합니다. 예를 들어 *Web.config* 파일을 *\Content* 폴더에 추가하고 다음 XML로 내용을 바꿉니다.
 
     <?xml version="1.0"?>
     <configuration>
@@ -192,26 +192,26 @@ hello는 대체 항목은 toodetermine tooserve Azure CDN에서 클라우드 서
       </system.webServer>
     </configuration>
 
-이 설정을 사용 하면 hello에서 모든 정적 파일 *\Content* 폴더 toobe 15 일 동안 캐시 합니다.
+이 설정을 통해 *\Content* 폴더의 모든 정적 파일은 15일 동안 캐시됩니다.
 
-방법에 대 한 자세한 내용은 tooconfigure hello `<clientCache>` 요소 참조 [클라이언트 캐시 &lt;clientCache >](http://www.iis.net/configreference/system.webserver/staticcontent/clientcache)합니다.
+`<clientCache>` 요소를 구성하는 방법에 대한 자세한 내용은 [클라이언트 캐시 &lt;clientCache>](http://www.iis.net/configreference/system.webserver/staticcontent/clientcache)를 참조하세요.
 
-[Azure CDN을 통해 컨트롤러 작업에서 콘텐츠를 제공](#controller), 또한 살펴본 다음 hello CDN 캐시에서에서 컨트롤러 작업 결과 대 한 캐시 설정을 구성할 수 있습니다.
+[Azure CDN을 통해 컨트롤러 작업의 콘텐츠 제공](#controller)에서는 CDN 캐시의 컨트롤러 작업 결과에 대해 캐시 설정을 구성하는 방법에 관해서도 설명합니다.
 
 <a name="controller"></a>
 
 ## <a name="serve-content-from-controller-actions-through-azure-cdn"></a>Azure CDN을 통해 컨트롤러 작업의 콘텐츠 제공
-Azure CDN을 클라우드 서비스 웹 역할을 통합 때는 hello Azure CDN을 통해 컨트롤러 작업에서 상대적으로 쉬운 tooserve 콘텐츠입니다. Azure CDN (위 예제)을 통해 직접 서비스 클라우드 경우를 제외 [Maarten Balliauw](https://twitter.com/maartenballiauw) 표시 하는 toodo 재미 있는 MemeGenerator 컨트롤러에 [hello Azure CDN을 사용 하 여 hello 웹에 대 한 대기 시간 ](http://channel9.msdn.com/events/TechDays/Techdays-2014-the-Netherlands/Reducing-latency-on-the-web-with-the-Windows-Azure-CDN). 여기서 그 방법을 간단히 재현해보겠습니다.
+클라우드 서비스 웹 역할을 Azure CDN과 통합한 경우 Azure CDN을 통해 컨트롤러 작업의 콘텐츠를 비교적 쉽게 제공할 수 있습니다. [Maarten Balliauw](https://twitter.com/maartenballiauw)는 Azure CDN을 통해 직접 클라우드 서비스를 제공(위에서 설명함)하지 않고 [Azure CDN으로 웹 대기 시간 단축](http://channel9.msdn.com/events/TechDays/Techdays-2014-the-Netherlands/Reducing-latency-on-the-web-with-the-Windows-Azure-CDN)에서 재미있는 MemeGenerator 컨트롤러로 이 작업을 수행하는 방법을 보여 줍니다. 여기서 그 방법을 간단히 재현해보겠습니다.
 
-클라우드 서비스에서 젊은 Chuck Norris 이미지에 따라 toogenerate memes 한다고 가정 (하 여 사진 [Alan Light](http://www.flickr.com/photos/alan-light/218493788/)) 다음과 같이:
+클라우드 서비스에서 다음과 같은 젊은 척 노리스의 이미지( [Alan Light](http://www.flickr.com/photos/alan-light/218493788/)제공 사진)를 기반으로 하여 밈을 생성하려고 한다고 가정해 보세요.
 
 ![](media/cdn-cloud-service-with-cdn/cdn-5-memegenerator.PNG)
 
-간단한 있는 `Index` toohello 작업을 게시 한 후 다음 hello 고객 toospecify hello 최상급 hello 이미지에서 허용 하는 작업 hello 캐릭터가 문화적 요소로 등장 생성 합니다. Chuck Norris 이므로, 예상 페이지 toobecome이 매우 인기 있는 전역적으로 합니다. 이는 Azure CDN으로 동적인 요소가 가미된 콘텐츠를 제공하는 좋은 예입니다.
+고객이 최상급 이미지를 지정한 후 작업에 게시하면 밈이 생성되는 간단한 `Index` 작업이 있습니다. 유명한 척 노리스이기 때문에 이 페이지가 전 세계적으로 널리 알려질 것으로 예상합니다. 이는 Azure CDN으로 동적인 요소가 가미된 콘텐츠를 제공하는 좋은 예입니다.
 
-이 컨트롤러 동작 toosetup 위의 hello 단계를 수행 합니다.
+위의 단계에 따라 이 컨트롤러 작업을 설정하려면 다음을 수행합니다.
 
-1. Hello에 *\Controllers* 폴더를 새.cs 파일을 만들 *MemeGeneratorController.cs* 바꾸기 hello hello를 사용 하 여 콘텐츠 코드를 다음 및 합니다. CDN 이름의 있는지 tooreplace hello 강조 표시 된 부분을 수 있습니다.  
+1. *\Controllers* 폴더에서 *MemeGeneratorController.cs*라는 새로운 .cs 파일을 만들고 내용을 다음 코드로 바꿉니다. 또한 강조 표시된 부분은 사용 중인 CDN 이름으로 바꿉니다.  
    
         using System;
         using System.Collections.Generic;
@@ -255,7 +255,7 @@ Azure CDN을 클라우드 서비스 웹 역할을 통합 때는 hello Azure CDN�
                         return new HttpStatusCodeResult(HttpStatusCode.NotFound);
                     }
    
-                    if (Debugger.IsAttached) // Preserve hello debug experience
+                    if (Debugger.IsAttached) // Preserve the debug experience
                     {
                         return Redirect(string.Format("/MemeGenerator/Generate?top={0}&bottom={1}", data.Item1, data.Item2));
                     }
@@ -308,13 +308,13 @@ Azure CDN을 클라우드 서비스 웹 역할을 통합 때는 hello Azure CDN�
                 }
             }
         }
-2. Hello 기본 마우스 오른쪽 단추로 클릭 `Index()` 작업을 선택 **뷰 추가**합니다.
+2. 기본 `Index()` 작업을 마우스 오른쪽 단추로 클릭하고 **뷰 추가**를 선택합니다.
    
     ![](media/cdn-cloud-service-with-cdn/cdn-6-addview.PNG)
-3. 아래 hello 설정을 적용 하 고 클릭 **추가**합니다.
+3. 아래의 설정을 적용하고 **추가**를 클릭합니다.
    
    ![](media/cdn-cloud-service-with-cdn/cdn-7-configureview.PNG)
-4. 새 열기 hello *Views\MemeGenerator\Index.cshtml* hello 콘텐츠 hello 최상급 전송 하기 위한 간단한 HTML 다음 hello로 바꿉니다.
+4. 새로운 *Views\MemeGenerator\Index.cshtml* 파일을 열고 내용을 다음과 같이 최상급을 제출하는 간단한 HTML로 바꿉니다.
    
         <h2>Meme Generator</h2>
    
@@ -325,9 +325,9 @@ Azure CDN을 클라우드 서비스 웹 역할을 통합 때는 hello Azure CDN�
             <br />
             <input class="btn" type="submit" value="Generate meme" />
         </form>
-5. Hello 클라우드 서비스를 다시 게시 하 고 탐색 너무**http://*&lt;serviceName >*브라우저에서.cloudapp.net/MemeGenerator/Index** 합니다.
+5. 클라우드 서비스를 다시 게시하고 브라우저에서 **http://*&lt;serviceName>*.cloudapp.net/MemeGenerator/Index**로 이동합니다.
 
-너무 hello 폼 값을 제출할 때`/MemeGenerator/Index`, hello `Index_Post` 작업 메서드가 링크 toohello 반환 `Show` hello 각각 입력된 식별자를 가진 동작 메서드가 있습니다. Hello 링크를 클릭 하면 hello 코드 다음에 도달 하면:  
+양식 값을 `/MemeGenerator/Index`로 제출할 경우 `Index_Post` 동작 메서드가 각각의 입력 식별자와 함께 `Show` 동작 메서드에 대한 링크를 반환합니다. 링크를 클릭하면 다음 코드로 이동합니다.  
 
     [OutputCache(VaryByParam = "*", Duration = 1, Location = OutputCacheLocation.Downstream)]
     public ActionResult Show(string id)
@@ -338,7 +338,7 @@ Azure CDN을 클라우드 서비스 웹 역할을 통합 때는 hello Azure CDN�
             return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
-        if (Debugger.IsAttached) // Preserve hello debug experience
+        if (Debugger.IsAttached) // Preserve the debug experience
         {
             return Redirect(string.Format("/MemeGenerator/Generate?top={0}&bottom={1}", data.Item1, data.Item2));
         }
@@ -348,35 +348,35 @@ Azure CDN을 클라우드 서비스 웹 역할을 통합 때는 hello Azure CDN�
         }
     }
 
-로컬 디버거를 연결 하면 뷰어에서 hello 일반 디버그 경험이 로컬 리디렉션 얻이 됩니다. Hello 클라우드 서비스에서 실행 되는 경우를 리디렉션해야 합니다.
+로컬 디버거가 연결되어 있다면 로컬로 리디렉션되면서 정규 디버그 환경이 구현됩니다. 클라우드 서비스에서 실행 중인 경우에는 다음으로 리디렉션됩니다.
 
     http://<yourCDNName>.azureedge.net/MemeGenerator/Generate?top=<formInput>&bottom=<formInput>
 
-CDN 끝점에 대 한 원본 URL을 다음 toohello 해당:
+이는 CDN 끝점의 다음 원본 URL과 일치합니다.
 
     http://<youCloudServiceName>.cloudapp.net/MemeGenerator/Generate?top=<formInput>&bottom=<formInput>
 
 
-Hello를 사용 하 여 있습니다 `OutputCacheAttribute` hello에 대 한 특성 `Generate` Azure CDN은 유지 하는 메서드 toospecify 어떻게 hello 작업 결과 캐시 해야 합니다. 아래 hello 코드는 1 시간 (3, 600 초)의 캐시 만료를 지정 합니다.
+그런 다음 `Generate` 메서드의 `OutputCacheAttribute` 특성을 사용하여 작업 결과를 캐시할 방법을 지정할 수 있으며, 이렇게 지정한 설정은 Azure CDN에서 적용됩니다. 다음 코드는 캐시 만료를 1시간(3,600초)으로 지정합니다.
 
     [OutputCache(VaryByParam = "*", Duration = 3600, Location = OutputCacheLocation.Downstream)]
 
-마찬가지로, 통해 hello 원하는 캐싱 옵션을 사용 하 여 Azure CDN에서 클라우드 서비스에서 컨트롤러 작업에서 콘텐츠를 사용할 수 있습니다.
+마찬가지로 클라우드 서비스에서 모든 컨트롤러 작업의 콘텐츠를 Azure CDN을 통해 원하는 캐싱 옵션으로 제공할 수 있습니다.
 
-Hello 다음 섹션에서 하겠습니다 tooserve hello 번들로 제공 하 고 스크립트와 Azure CDN을 통해 CSS 축소 하는 방법입니다.
+다음 섹션에서는 Azure CDN을 통해 묶이고 축소된 스크립트 및 CSS를 제공하는 방법을 설명하겠습니다.
 
 <a name="bundling"></a>
 
 ## <a name="integrate-aspnet-bundling-and-minification-with-azure-cdn"></a>ASP.NET 묶음 및 축소를 Azure CDN과 통합
-스크립트 및 CSS 스타일 시트 자주 변경 되며 hello Azure CDN에 캐시에 가장 적합 합니다. Azure CDN을 통해 제공 hello 전체 웹 역할은 hello 가장 쉬운 방법은 toointegrate 묶음 및 축소 Azure CDN을 사용 합니다. 그러나 하지 못하게 하려는 toodo이, 대로 살펴본 다음 방법을 toodo hello를 유지 하면서이 필요한 ASP.NET 묶음 및 축소의 develper 경험와 같은:
+스크립트 및 CSS 스타일시트는 드물게 변경되며 Azure CDN 캐시의 주요 후보입니다. Azure CDN을 통해 전체 웹 역할을 제공하는 것은 묶음 및 축소를 Azure CDN에 통합하는 가장 쉬운 방법입니다. 그러나 이러한 방법을 원하지 않을 수도 있으므로 다음과 같이 ASP.NET 묶음 및 축소의 바람직한 개발자 환경을 유지하면서 동시에 통합을 수행하는 방법을 설명하겠습니다.
 
 * 탁월한 디버그 모드 환경
 * 간소화된 배포
-* 스크립트/CSS 버전 업그레이드에 대 한 즉시 업데이트 tooclients
+* 스크립트/CSS 버전 업그레이드를 위한 클라이언트 즉시 업데이트
 * CDN 끝점의 오류에 대비한 대체 메커니즘
 * 코드 수정의 최소화
 
-Hello에 **WebRole1** 에서 만든 프로젝트 [Azure CDN에서 정적 콘텐츠 웹 페이지에서 서비스 및 Azure 웹 사이트와 Azure CDN 끝점을 통합](#deploy)개방형 *App_Start\ BundleConfig.cs* hello 살펴보세요 및 `bundles.Add()` 메서드를 호출 합니다.
+[Azure CDN 끝점을 Azure 웹 사이트와 통합하여 Azure CDN에서 웹 페이지에 정적 콘텐츠 제공](#deploy)에서 만든 **WebRole1** 프로젝트에서 *App_Start\BundleConfig.cs*를 열고 `bundles.Add()` 메서드 호출을 확인합니다.
 
     public static void RegisterBundles(BundleCollection bundles)
     {
@@ -385,23 +385,23 @@ Hello에 **WebRole1** 에서 만든 프로젝트 [Azure CDN에서 정적 콘텐�
         ...
     }
 
-먼저 hello `bundles.Add()` hello 가상 디렉터리에 있는 스크립트 번들을 추가 하는 문을 `~/bundles/jquery`합니다. 그런 다음을 열고 *Views\Shared\_Layout.cshtml* toosee hello 스크립트 번들 태그를 렌더링 하는 방법입니다. 다음 Razor 코드의 줄 수 toofind hello 있어야 합니다.
+첫 번째 `bundles.Add()` 문은 가상 디렉터리 `~/bundles/jquery`에 스크립트 번들을 추가합니다. 그런 다음 *Views\Shared\_Layout.cshtml* 파일을 열고 스크립트 번들 태그가 어떻게 렌더링되는지 살펴보세요. 다음과 같은 Razor 코드 줄이 있습니다.
 
     @Scripts.Render("~/bundles/jquery")
 
-렌더링이 Razor 코드가 hello Azure 웹 역할에서 실행 되는 경우는 `<script>` hello에 대 한 태그 스크립트 번들 비슷한 toohello 다음:
+이 Razor 코드가 Azure 웹 역할에서 실행되는 경우 다음과 유사한 스크립트 번들의 `<script>` 태그를 렌더링합니다.
 
     <script src="/bundles/jquery?v=FVs3ACwOLIVInrAl5sdzR2jrCDmVOWFbZMY6g6Q0ulE1"></script>
 
-그러나이 실행 될 때 Visual Studio에서를 입력 하 여 `F5`를 개별적으로 hello 번들에서 각 스크립트 파일을 렌더링 합니다 (위의 hello 경우에만 하나의 스크립트 파일은 hello 번들에):
+그러나 `F5`키를 눌러 Visual Studio에서 코드가 실행되면 다음과 같이 번들의 각 스크립트 파일을 개별적으로 렌더링합니다(위의 경우에는 하나의 스크립트 파일만 번들에 있음).
 
     <script src="/Scripts/jquery-1.10.2.js"></script>
 
-이렇게 하면 toodebug hello JavaScript 코드 개발 환경에서 프로덕션 환경에서 동시 클라이언트 연결 (번들)을 절감 하 고 파일을 향상 다운로드 성능을 (축소) 하는 동안 있습니다. Azure CDN 통합 훌륭한 기능 toopreserve 이며 또한 렌더링 hello 번들 자동으로 생성 된 버전 문자열에 이미 포함 되어 있으므로 원하는 기능 NuGet 통해 jQuery 버전을 업데이트할 때마다 하므로 hello tooreplicate hello 클라이언트 쪽에서 업데이트할 수 있으므로 즉시 가능한 합니다.
+그러면 프로덕션 환경에서 클라이언트의 동시 연결은 줄이고(묶음) 파일 다운로드 성능은 향상시키는(축소) 동시에 개발 환경에서 JavaScript 코드를 디버깅할 수 있습니다. 이 방법은 Azure CDN 통합을 유지하는 훌륭한 기능입니다. 또한 렌더링된 번들에는 이미 자동으로 생성된 버전 문자열이 포함되어 있기 때문에 NuGet을 통해 jQuery 버전을 업데이트할 때마다 가능한 한 빠르게 클라이언트 쪽에서 업데이트할 수 있도록 해당 기능을 복제할 수 있습니다.
 
-Toointegration ASP.NET 묶음 및 축소 CDN 끝점과 아래 hello 단계를 수행 합니다.
+ASP.NET 묶음 및 축소를 CDN 끝점과 통합하려면 다음 단계를 따르세요.
 
-1. 다시 *App_Start\BundleConfig.cs*, hello 수정 `bundles.Add()` 메서드 toouse 다른 [번들 생성자](http://msdn.microsoft.com/library/jj646464.aspx), CDN 주소를 지정 하는 하나입니다. toodo이, replace hello `RegisterBundles` 코드 다음 hello로 메서드를 정의 합니다.  
+1. *App_Start\BundleConfig.cs* 파일로 돌아가서 CDN 주소를 지정한 다른 [Bundle 생성자](http://msdn.microsoft.com/library/jj646464.aspx)를 사용하도록 `bundles.Add()` 메서드를 수정합니다. 이를 수행하려면 `RegisterBundles` 메서드 정의를 다음 코드로 바꿉니다.  
    
         public static void RegisterBundles(BundleCollection bundles)
         {
@@ -416,8 +416,8 @@ Toointegration ASP.NET 묶음 및 축소 CDN 끝점과 아래 hello 단계를 �
             bundles.Add(new ScriptBundle("~/bundles/jqueryval", string.Format(cdnUrl, "bundles/jqueryval")).Include(
                         "~/Scripts/jquery.validate*"));
    
-            // Use hello development version of Modernizr toodevelop with and learn from. Then, when you're
-            // ready for production, use hello build tool at http://modernizr.com toopick only hello tests you need.
+            // Use the development version of Modernizr to develop with and learn from. Then, when you're
+            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr", string.Format(cdnUrl, "bundles/modernizer")).Include(
                         "~/Scripts/modernizr-*"));
    
@@ -430,27 +430,27 @@ Toointegration ASP.NET 묶음 및 축소 CDN 끝점과 아래 hello 단계를 �
                         "~/Content/site.css"));
         }
    
-    수 있는지 tooreplace `<yourCDNName>` Azure CDN의 hello 이름으로 합니다.
+    `<yourCDNName>` 을 사용 중인 Azure CDN 이름으로 바꾸세요.
    
-    설정 하는 일반 단어에서 `bundles.UseCdn = true` 신중 하 게 만든된 CDN URL tooeach 번들을 추가 합니다. 예를 들어 hello 첫 번째 생성자 hello 코드에서:
+    쉽게 말하면 `bundles.UseCdn = true` 를 설정하고 있으며 신중하게 만든 CDN URL을 각 번들에 추가했습니다. 예를 들어 코드의 첫 번째 생성자는 다음과 같습니다.
    
         new ScriptBundle("~/bundles/jquery", string.Format(cdnUrl, "bundles/jquery"))
    
-    hello와 동일 합니다.
+    이 코드는 다음과 같습니다.
    
         new ScriptBundle("~/bundles/jquery", string.Format(cdnUrl, "http://<yourCDNName>.azureedge.net/bundles/jquery?v=<W.X.Y.Z>"))
    
-    이 생성자 지시 ASP.NET 묶음 및 축소 toorender 개별 스크립트 파일 디버깅할 때 로컬에 있지만 사용 하 여 hello CDN 주소 tooaccess hello 스크립트에 지정 합니다. 그러나 신중하게 만든 이 CDN URL의 두 가지 중요한 특징에서 다음을 주의해야 합니다.
+    이 생성자에 따라 ASP.NET 묶음 및 축소가 로컬에서 디버깅될 때 개별 스크립트 파일을 렌더링하지만 지정된 CDN 주소를 사용하여 해당 스크립트에 액세스합니다. 그러나 신중하게 만든 이 CDN URL의 두 가지 중요한 특징에서 다음을 주의해야 합니다.
    
-   * 이 CDN URL에 대 한 hello 원본은 `http://<yourCloudService>.cloudapp.net/bundles/jquery?v=<W.X.Y.Z>`, 클라우드 서비스에서 hello 스크립트 번들의 가상 디렉터리 hello 실제로 변수인 합니다.
-   * CDN 생성자를 사용 하므로 hello hello 번들에 대 한 CDN 스크립트 태그는 더 이상 URL 렌더링 hello에 자동으로 생성 하는 hello 버전 문자열을 포함 합니다. Hello 스크립트 번들은 Azure CDN에 캐시를 누락 하는 수정 된 tooforce 때마다 고유한 버전 문자열을 수동으로 생성 해야 합니다. At hello 동일 time, hello 번들 배포 된 후이 고유한 버전 문자열 hello 배포 toomaximize 캐시 적중 횟수 Azure CDN에서의 hello 수명 통해 일정 해야 합니다.
-   * 쿼리 문자열 v hello < W.X.Y.Z > 끌어오는 소스에서 = *Properties\AssemblyInfo.cs* 웹 역할 프로젝트에 있습니다. TooAzure 게시할 때마다 hello 어셈블리 버전을 증가 포함 하는 배포 워크플로 사용할 수 있습니다. 방금 수정할 수 있습니다 또는 *Properties\AssemblyInfo.cs* 프로젝트 tooautomatically 증가 hello 버전 문자열에서을 빌드할 때마다 사용 하 여 hello 와일드 카드 문자 ' *'입니다. 예:
+   * 이 CDN URL의 원본은 `http://<yourCloudService>.cloudapp.net/bundles/jquery?v=<W.X.Y.Z>`이며, 실제로는 클라우드 서비스에서 스크립트 번들의 가상 디렉터리입니다.
+   * CDN 생성자를 사용하고 있으므로 번들의 CDN 스크립트 태그가 더 이상 렌더링된 URL에 자동으로 생성된 버전 문자열을 포함하지 않습니다. 스크립트 번들이 Azure CDN에서 캐시 누락을 강제하도록 수정될 때마다 고유한 버전 문자열을 수동으로 생성해야 합니다. 동시에 고유한 버전 문자열은 전 배포 수명 동안 일정하게 유지되어 번들이 배포된 이후 Azure CDN에서 캐시 적중을 극대화해야 합니다.
+   * 쿼리 문자열 v=<W.X.Y.Z>는 웹 역할 프로젝트의 *Properties\AssemblyInfo.cs*에서 가져옵니다. Azure에 게시할 때마다 어셈블리 버전 증분 등의 기능을 포함하는 배포 워크플로를 설정할 수 있습니다. 또는 간단히 와일드카드 문자(*)를 사용하여 빌드할 때마다 버전 문자열을 자동으로 증분하도록 프로젝트의 *Properties\AssemblyInfo.cs* 파일을 수정할 수 있습니다. 예:
      
         [assembly: AssemblyVersion("1.0.0.*")]
      
-     여기에 배포의 hello 수명에 대 한 고유 문자열을 생성 전략 toostreamline 작동 합니다.
-2. Hello 클라우드 서비스 및 액세스 hello 홈 페이지를 다시 게시 합니다.
-3. 보기 hello hello 페이지에 대 한 HTML 코드입니다. 수 toosee hello CDN URL 변경 tooyour 클라우드 서비스를 다시 게시 될 때마다 고유한 버전 문자열을 사용 하 여 렌더링 해야 합니다. 예:  
+     배포 수명 동안의 고유한 문자열 생성을 간소화하는 다른 전략도 효과가 있을 수 있습니다.
+2. 클라우드 서비스를 다시 게시하고 홈페이지에 액세스합니다.
+3. 페이지의 HTML 코드를 확인합니다. 변경 내용을 클라우드 서비스에 다시 게시할 때마다 고유한 버전 문자열과 함께 렌더링된 CDN URL이 표시됩니다. 예:  
    
         ...
    
@@ -465,8 +465,8 @@ Toointegration ASP.NET 묶음 및 축소 CDN 끝점과 아래 hello 단계를 �
         <script src="http://camservice.azureedge.net/bundles/bootstrap?v=1.0.0.25449"></script>
    
         ...
-4. Visual Studio에서를 입력 하 여 Visual Studio에서 클라우드 서비스의 hello 디버그 `F5`.,
-5. 보기 hello hello 페이지에 대 한 HTML 코드입니다. 개별적으로 렌더링된 각 스크립트 파일을 살펴볼 수 있으므로 Visual Studio의 일관된 디버그 환경을 구현할 수 있습니다.  
+4. Visual Studio로 돌아가 `F5`키를 눌러 Visual Studio에서 클라우드 서비스를 디버깅합니다.
+5. 페이지의 HTML 코드를 확인합니다. 개별적으로 렌더링된 각 스크립트 파일을 살펴볼 수 있으므로 Visual Studio의 일관된 디버그 환경을 구현할 수 있습니다.  
    
         ...
    
@@ -487,11 +487,11 @@ Toointegration ASP.NET 묶음 및 축소 CDN 끝점과 아래 hello 단계를 �
 <a name="fallback"></a>
 
 ## <a name="fallback-mechanism-for-cdn-urls"></a>CDN URL의 대체 메커니즘
-Azure CDN 끝점에 어떤 이유로 든 실패 하면 웹 페이지 toobe 스마트 충분 한 tooaccess 원본 웹 서버 hello JavaScript 또는 부트스트랩 로드 하기 위한 대체 옵션으로 할 수 있습니다. 것 만큼 심각 toolose 이미지 tooCDN 사용 불가능 하지만 스크립트 및 스타일 시트에서 제공 하는 훨씬 더 심각한 toolose 중요 한 페이지 기능 인해 웹 사이트에 합니다.
+어떤 이유로 Azure CDN 끝점에 문제가 발생한 경우 JavaScript 또는 부트스트랩을 로드하는 대체 옵션으로 원본 웹 서버에 액세스할 수 있을 정도로 지능적인 웹 페이지를 원합니다. CDN을 사용할 수 없어서 웹 사이트의 이미지가 손실되는 심각한 상황이 올 수도 있지만 좀 더 심각한 경우는 스크립트 및 스타일시트에서 제공하는 중요한 페이지 기능을 사용하지 못하는 게 되는 것입니다.
 
-hello [번들](http://msdn.microsoft.com/library/system.web.optimization.bundle.aspx) 클래스 라는 속성이 포함 [CdnFallbackExpression](http://msdn.microsoft.com/library/system.web.optimization.bundle.cdnfallbackexpression.aspx) 수 있게 해 주는 tooconfigure hello CDN 실패에 대 한 대체 메커니즘이 있습니다. toouse이이 속성을 아래 hello 단계 수행:
+[Bundle](http://msdn.microsoft.com/library/system.web.optimization.bundle.aspx) 클래스에는 CDN 오류에 대비해 대체 메커니즘을 구성할 수 있도록 [CdnFallbackExpression](http://msdn.microsoft.com/library/system.web.optimization.bundle.cdnfallbackexpression.aspx)이라는 속성이 포함되어 있습니다. 이 속성을 사용하려면 다음 단계를 따르세요.
 
-1. 웹 역할 프로젝트를 열고 *App_Start\BundleConfig.cs*각 CDN URL을 추가한, [번들 생성자](http://msdn.microsoft.com/library/jj646464.aspx), hello 다음 강조 표시 하 고 tooadd 대체 메커니즘이 toohello 변경 기본 번들:  
+1. 웹 역할 프로젝트에서 각 [Bundle 생성자](http://msdn.microsoft.com/library/jj646464.aspx)의 CDN URL을 추가한 *App_Start\BundleConfig.cs* 파일을 열고 다음과 같이 강조 표시된 내용을 변경하여 기본 번들에 대체 메커니즘을 추가합니다.  
    
         public static void RegisterBundles(BundleCollection bundles)
         {
@@ -508,8 +508,8 @@ hello [번들](http://msdn.microsoft.com/library/system.web.optimization.bundle.
                         { CdnFallbackExpression = "$.validator" }
                         .Include("~/Scripts/jquery.validate*"));
    
-            // Use hello development version of Modernizr toodevelop with and learn from. Then, when you&#39;re
-            // ready for production, use hello build tool at http://modernizr.com toopick only hello tests you need.
+            // Use the development version of Modernizr to develop with and learn from. Then, when you&#39;re
+            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr", string.Format(cdnUrl, "bundles/modernizer"))
                         { CdnFallbackExpression = "window.Modernizr" }
                         .Include("~/Scripts/modernizr-*"));
@@ -525,19 +525,19 @@ hello [번들](http://msdn.microsoft.com/library/system.web.optimization.bundle.
                         "~/Content/site.css"));
         }
    
-    때 `CdnFallbackExpression` 은 null이 아닌 스크립트는에 삽입할 HTML hello tootest hello 번들 성공적으로 로드 되 고 있는지 여부를 하 고 그렇지 않은 경우 hello 번들 hello 원본 웹 서버에서 직접 액세스 합니다. 이 속성은 toobe 집합 tooa JavaScript 식 hello 해당 CDN 번들 제대로 로드 하는지 여부를 테스트 하는 합니다. hello 식 tootest 필요한 각 번들 toohello 내용에 따라 달라 집니다. 번들 기본 hello에 대 한:
+    `CdnFallbackExpression` 이 null이 아니면 스크립트가 HTML에 삽입되어 번들이 제대로 로드되는지 테스트하고 제대로 로드되지 않는 경우 원본 웹 서버에서 직접 번들에 액세스합니다. 이 속성은 각각의 CDN 번들이 제대로 로드되는지 테스트하는 JavaScript 식으로 설정되어야 합니다. 각 번들을 테스트하는 데 필요한 식은 콘텐츠에 따라 다릅니다. 위 기본 번들의 경우는 다음과 같습니다.
    
    * `window.jquery` 는 jquery-{version}.js에 정의되어 있습니다.
    * `$.validator` 는 jquery.validate.js에 정의되어 있습니다.
    * `window.Modernizr` 는 modernizer-{version}.js에 정의되어 있습니다.
    * `$.fn.modal` 은 bootstrap.js에 정의되어 있습니다.
      
-     알 수 있습니다는 설정 하지 않았는데 CdnFallbackExpression hello에 대 한 `~/Cointent/css` 번들입니다. 현재이 때문에 이것이 [System.Web.Optimization의 버그](https://aspnetoptimization.codeplex.com/workitem/104) 삽입 하는 `<script>` hello 대신 대체 CSS에서 예상 하는 hello에 대 한 태그 `<link>` 태그입니다.
+     여기서는 `~/Cointent/css` 번들에 대해 CdnFallbackExpression을 설정하지 않았습니다. 그 이유는 현재 필요한 `<link>` 태그 대신 대체 CSS의 `<script>` 태그를 삽입하는 [bug in System.Web.Optimization](https://aspnetoptimization.codeplex.com/workitem/104)가 있기 때문입니다.
      
      그러나 [Ember 컨설팅 그룹](https://github.com/EmberConsultingGroup)에서 제공한 우수한 [스타일 번들 대체](https://github.com/EmberConsultingGroup/StyleBundleFallback)를 사용할 수 있습니다.
-2. CSS에 대 한 toouse hello 해결 웹 역할 프로젝트에 새.cs 파일을 만들 *App_Start* 라는 폴더 *StyleBundleExtensions.cs*, 및 해당 내용을 hello로 바꾸기 [에서 발생 한 코드 GitHub](https://github.com/EmberConsultingGroup/StyleBundleFallback/blob/master/Website/App_Start/StyleBundleExtensions.cs)합니다.
-3. *App_Start\StyleFundleExtensions.cs*, hello 네임 스페이스 tooyour 웹 역할의 이름을 바꿉니다 (예: **WebRole1**).
-4. 너무 돌아가서`App_Start\BundleConfig.cs` hello를 마지막 수정 `bundles.Add` 문을 강조 표시 된 코드를 다음 hello로:  
+2. 이 CSS 해결 방법을 사용하려면 *StyleBundleExtensions.cs*라고 하는 웹 역할 프로젝트의 *App_Start* 폴더에서 새로운 .cs 파일을 만들어 해당 내용을 [GitHub의 코드](https://github.com/EmberConsultingGroup/StyleBundleFallback/blob/master/Website/App_Start/StyleBundleExtensions.cs)로 바꿉니다.
+3. *App_Start\StyleFundleExtensions.cs* 파일에서 웹 역할 이름(예: **WebRole1**)에 대한 네임스페이스의 이름을 바꿉니다.
+4. `App_Start\BundleConfig.cs` 파일로 돌아가 마지막 `bundles.Add` 문을 다음과 같은 강조 표시된 코드로 수정합니다.  
    
         bundles.Add(new StyleBundle("~/Content/css", string.Format(cdnUrl, "Content/css"))
             <mark>.IncludeFallback("~/Content/css", "sr-only", "width", "1px")</mark>
@@ -545,9 +545,9 @@ hello [번들](http://msdn.microsoft.com/library/system.web.optimization.bundle.
                   "~/Content/bootstrap.css",
                   "~/Content/site.css"));
    
-    이 새 확장 메서드 hello를 사용 하 여 일치 하는 클래스 이름, 규칙 이름 및 hello CSS 번들 및 toofind hello 일치 실패할 경우 폭포 백 toohello 원본 웹 서버에 정의 된 규칙 값 tooinject 스크립트 hello에 대 한 HTML hello toocheck hello DOM에 동일한 개념입니다.
-5. 클라우드 서비스를 다시 hello 및 액세스 hello 홈 페이지를 게시 합니다.
-6. 보기 hello hello 페이지에 대 한 HTML 코드입니다. 비슷한 toohello 다음 삽입된 스크립트를 찾아야 합니다.    
+    이 새로운 확장 메서드는 동일한 개념을 사용하여 CSS 번들에 정의된 일치하는 클래스 이름, 규칙 이름 및 규칙 값에 대한 DOM을 확인하고 일치 항목을 찾지 못할 경우 원본 웹 서버로 대체하는 스크립트를 HTML에 삽입합니다.
+5. 클라우드 서비스를 다시 게시하고 홈페이지에 액세스합니다.
+6. 페이지의 HTML 코드를 확인합니다. 다음과 비슷한 삽입 스크립트가 표시됩니다.    
    
         ...
    
@@ -584,14 +584,14 @@ hello [번들](http://msdn.microsoft.com/library/system.web.optimization.bundle.
    
         ...
 
-    Hello CSS 번들에 대 한 삽입 된 스크립트에 여전히 hello에서 잘못 된 나머지 hello 포함 `CdnFallbackExpression` hello 줄에는 속성:
+    CSS 번들의 삽입 스크립트에서 다음 줄에 여전히 `CdnFallbackExpression` 속성의 나머지 잘못된 부분이 포함되어 있습니다.
 
         }())||document.write('<script src="/Content/css"><\/script>');</script>
 
-    하지만 hello의 첫 번째 부분 hello | | 식은 항상 (바로 위에 있는 hello 줄)에서 true를 반환, hello document.write() 함수 실행 되지 않습니다.
+    그러나 || 식의 첫 부분이 항상 true를 반환하므로(바로 위의 줄에서) document.write() 함수가 실행되지 않습니다.
 
 ## <a name="more-information"></a>추가 정보
-* [Hello Azure 콘텐츠 배달 네트워크 (CDN)의 개요](http://msdn.microsoft.com/library/azure/ff919703.aspx)
+* [Azure CDN(콘텐츠 배달 네트워크) 개요](http://msdn.microsoft.com/library/azure/ff919703.aspx)
 * [Azure CDN 사용](cdn-create-new-endpoint.md)
 * [ASP.NET 묶음 및 축소](http://www.asp.net/mvc/tutorials/mvc-4/bundling-and-minification)
 

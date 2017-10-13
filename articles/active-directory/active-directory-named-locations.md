@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory에서 aaaNamed 위치 | Microsoft Docs"
-description: "지정 된 위치를 구성 하지 않아도 IP 주소는 조직에서 소유 하는 hello 이동 불가능 tooatypical 위치 위험 이벤트 유형에 대 한 거짓 긍정을 생성 합니다."
+title: "Azure Active Directory의 명명된 위치 | Microsoft Docs"
+description: "명명된 위치를 구성하여 조직에서 소유한 IP 주소가 비정상적 위치 간 이동 불가능 위험 이벤트 유형에 대해 거짓 긍정을 생성하지 않도록 할 수 있습니다."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -11,51 +11,51 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/31/2017
+ms.date: 09/20/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 591e4b94b2ec9d45e20c01711e922f9972e047e5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: da437908509e40386ed23863648bd6956b308186
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="named-locations-in-azure-active-directory"></a>Azure Active Directory의 명명된 위치
 
-Azure Active Directory의 위치 기능 라는 hello, 조직에서 신뢰할 수 있는 IP 주소 범위를 레이블을 지정할 수 있습니다. 사용자 환경에서의 hello 검색의 hello 컨텍스트에서 명명 된 위치를 사용할 수 있습니다 [이벤트 위험](active-directory-reporting-risk-events.md)합니다. hello 기능은 hello hello에 대 한 보고 된 거짓 긍정 수를 줄일 *이동 불가능 tooatypical 위치* 위험 이벤트 유형입니다. 
+Azure Active Directory의 명명된 위치 기능을 사용하여 조직 내에서 신뢰할 수 있는 IP 주소 범위에 레이블을 지정할 수 있습니다. 사용자 환경에서 [위험 이벤트](active-directory-reporting-risk-events.md) 검색의 컨텍스트에서 명명된 위치를 사용할 수 있습니다. 이 기능은 *비정상적 위치 간 이동 불가능* 위험 이벤트 유형에 대해 보고되는 가양성의 수를 줄이는 데 도움이 됩니다. 
 
 ## <a name="configuration"></a>구성
 
-tooconfigure 명명된 된 위치:
+명명된 위치를 구성하려면:
 
-1. Toohello 로그인 [Azure 포털](https://portal.azure.com) 전역 관리자로 합니다.
+1. 전역 관리자 권한으로 [Azure Portal](https://portal.azure.com)에 로그인합니다.
 
-2. Hello 왼쪽된 창에서 클릭 **Azure Active Directory**합니다.
+2. 왼쪽 창에서 **Azure Active Directory**를 클릭합니다.
 
-    ![hello 왼쪽된 창에서 hello Azure Active Directory 링크](./media/active-directory-named-locations/01.png)
+    ![왼쪽 창의 Azure Active Directory 링크](./media/active-directory-named-locations/01.png)
 
-3. Hello에 **Azure Active Directory** 블레이드 hello **보안** 섹션에서 클릭 **조건부 액세스**합니다.
+3. **Azure Active Directory** 블레이드의 **보안** 섹션에서 **조건부 액세스**를 클릭합니다.
 
-    ![hello 조건부 액세스 명령](./media/active-directory-named-locations/05.png)
-
-
-4. Hello에 **조건부 액세스** 블레이드 hello **관리** 섹션에서 클릭 **명명 된 위치**합니다.
-
-    ![명명 된 위치 명령 hello](./media/active-directory-named-locations/06.png)
+    ![조건부 액세스 명령](./media/active-directory-named-locations/05.png)
 
 
-5. Hello에 **명명 된 위치를** 블레이드에서 클릭 **새 위치로**합니다.
+4. **조건부 액세스** 블레이드의 **관리** 섹션에서 **명명된 위치**를 클릭합니다.
 
-    ![hello 새 위치 명령](./media/active-directory-named-locations/07.png)
+    ![명명된 위치 명령](./media/active-directory-named-locations/06.png)
 
 
-6. Hello에 **새로** 블레이드에서 다음 hello지 않습니다.
+5. **명명된 위치** 블레이드에서 **새 위치**를 클릭합니다.
 
-    ![hello 새 블레이드](./media/active-directory-named-locations/08.png)
+    ![새 위치 명령](./media/active-directory-named-locations/07.png)
 
-    a. Hello에 **이름** 명명 된 위치에 대 한 이름을 입력 합니다.
 
-    b. Hello에 **IP 범위** IP 범위를 입력 합니다. hello IP 범위 toobe hello에 필요한 *Classless Inter-domain Routing* (CIDR) 형식입니다.  
+6. **새로 만들기** 블레이드에서 다음을 수행합니다.
+
+    ![새로 만들기 블레이드](./media/active-directory-named-locations/56.png)
+
+    a. **이름** 상자에 명명된 위치의 이름을 입력합니다.
+
+    b. **IP 범위** 상자에 IP 범위를 입력합니다. IP 범위는 CIDR(*Classless Inter-Domain Routing*) 형식이어야 합니다.  
 
     c. **만들기**를 클릭합니다.
 
@@ -63,15 +63,15 @@ tooconfigure 명명된 된 위치:
 
 ## <a name="what-you-should-know"></a>알아야 할 사항
 
-**대량 업데이트**: 작성 하거나 대량 업데이트에 대 한 명명 된 위치를 업데이트할 때이 업로드 하거나 hello IP 범위와 관련 된 CSV 파일 다운로드 수 있습니다. 업로드는 hello 목록을 덮어쓰는 대신 hello 파일 toohello 목록에 hello IP 범위를 추가 합니다.
+**대량 업데이트**: 명명된 위치를 만들거나 업데이트하는 경우 대량 업데이트를 위해 IP 주소가 포함된 CSV 파일을 업로드 또는 다운로드할 수 있습니다. 업로드를 수행하면 목록을 덮어쓰지 않고 목록에 파일의 IP 범위가 추가됩니다.
 
-![hello 업로드 및 다운로드 링크](./media/active-directory-named-locations/09.png)
+![업로드 및 다운로드 링크](./media/active-directory-named-locations/09.png)
 
 
-**제한 사항**: 그 중 하나의 IP 할당 범위 tooeach와 최대 60 명명 된 위치를 정의할 수 있습니다. 구성 된 하나의 명명 된 위치를 설정한 경우에 대 한 too500 IP 범위를 정의할 수 있습니다.
+**제한 사항**: 명명된 위치는 최대 60개까지 정의할 수 있으며 각 위치에는 IP 범위를 한 개만 할당할 수 있습니다. 명명된 위치가 하나만 구성된 경우 해당 위치에 대해 IP 범위를 최대 500개까지 정의할 수 있습니다.
 
 
 ## <a name="next-steps"></a>다음 단계
 
-위험 이벤트에 대해 자세히 toolearn 참조 [Azure Active Directory 위험 이벤트](active-directory-reporting-risk-events.md)합니다.
+위험 이벤트에 대한 자세한 내용은 [Azure Active Directory 위험 이벤트](active-directory-reporting-risk-events.md)를 참조하세요.
 

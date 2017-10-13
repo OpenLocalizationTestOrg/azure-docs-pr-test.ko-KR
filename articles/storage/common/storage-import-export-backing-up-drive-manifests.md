@@ -1,6 +1,6 @@
 ---
-title: "Azure 가져오기/내보내기 드라이브 매니페스트를 aaaBacking | Microsoft Docs"
-description: "어떻게 toohave 드라이브 매니페스트를 자동으로 백업 하는 hello Microsoft Azure 가져오기/내보내기 서비스에 알아봅니다."
+title: "Azure Import/Export 드라이브 매니페스트 백업 | Microsoft Docs"
+description: "Microsoft Azure Import/Export 서비스에 대한 드라이브 매니페스트를가 자동으로 백업하도록 하는 방법을 알아봅니다."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: f48b97a2cce62714aace2b30a393305202c7ecd9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 33eb8e1eea8f8aa7b79ef3e54f2b1ed88dc794ae
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="backing-up-drive-manifests-for-azure-importexport-jobs"></a>Azure Import/Export 작업에 대한 드라이브 배니페스트 백업
 
-드라이브 매니페스트 자동으로 백업할 수 tooblobs hello 설정 하 여 `BackupDriveManifest` 속성 너무`true` hello에 [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 또는 [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) REST API 작업 합니다. 기본적으로 hello 드라이브 매니페스트 백업 되지 않습니다. 드라이브 매니페스트 백업은 hello hello 작업과 연결 된 hello 저장소 계정 내의 컨테이너에 블록 blob으로 저장 됩니다. Hello 컨테이너 이름이 기본적으로 `waimportexport`, hello에 다른 이름을 지정할 수 있지만 `DiagnosticsPath` 속성 hello를 호출할 때 `Put Job` 또는 `Update Job Properties` 작업 합니다. hello 백업 매니페스트 blob에에서 이름이 지정 형식에 따라 hello: `waies/jobname_driveid_timestamp_manifest.xml`합니다.
+드라이브 매니페스트는 [작업 배치](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 또는 [작업 속성 업데이트](/rest/api/storageimportexport/jobs#Jobs_Update) REST API 작업에서 `BackupDriveManifest` 속성을 `true`로 설정하여 자동으로 Blob에 백업될 수 있습니다. 기본적으로 드라이브 매니페스트는 백업되지 않습니다. 드라이브 매니페스트 백업은 작업과 연결된 저장소 계정 내의 컨테이너에 블록 blob으로 저장됩니다. 기본적으로 컨테이너 이름은 `waimportexport`이지만 `Put Job` 또는 `Update Job Properties` 작업을 호출할 때 `DiagnosticsPath` 속성에서 다른 이름을 지정할 수 있습니다. 백업 매니페스트 blob은 다음과 같은 형식으로 이름이 지정됩니다: `waies/jobname_driveid_timestamp_manifest.xml`.
 
- Hello hello를 호출 하 여 작업에 대 한 URI hello 백업 드라이브의 매니페스트를 검색할 수 있습니다 [Get Job](/rest/api/storageimportexport/jobs#Jobs_Get) 작업 합니다. hello에 URI가 반환 되는 hello blob `ManifestUri` 각 드라이브에 대 한 속성입니다.
+ [작업 가져오기](/rest/api/storageimportexport/jobs#Jobs_Get) 작업을 호출하여 작업의 백업 드라이브 매니페스트 URI를 검색할 수 있습니다. Blob URI는 각 드라이브에 대한 `ManifestUri` 속성으로 반환됩니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-* [Hello 가져오기/내보내기 서비스 REST API를 사용 하 여](storage-import-export-using-the-rest-api.md)
+* [Import/Export 서비스 REST API 사용](storage-import-export-using-the-rest-api.md)

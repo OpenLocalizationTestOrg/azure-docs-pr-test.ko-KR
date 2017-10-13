@@ -1,11 +1,11 @@
 # 개요
 ## [Azure Multi-Factor Authentication 정의](multi-factor-authentication.md)
 ## [작동 방법](multi-factor-authentication-how-it-works.md)
-## [어떻게 tooget Azure MFA](multi-factor-authentication-versions-plans.md)
+## [Azure MFA를 가져오는 방법](multi-factor-authentication-versions-plans.md)
 
 # 시작
-## [위치 선택 toodeploy](multi-factor-authentication-get-started.md)
-## [Hello 클라우드에서 MFA](multi-factor-authentication-get-started-cloud.md)
+## [배포할 위치 선택](multi-factor-authentication-get-started.md)
+## [클라우드의 MFA](multi-factor-authentication-get-started-cloud.md)
 ## [온-프레미스에서 MFA](multi-factor-authentication-get-started-server.md)
 ## [O365 사용자에 대한 MFA](https://support.office.com/article/Plan-for-multi-factor-authentication-for-Office-365-Deployments-043807b2-21db-4d5c-b430-c8a6dee0e6ba)
 ## [보안 모범 사례](multi-factor-authentication-security-best-practices.md)
@@ -18,7 +18,7 @@
 #### [NPS 확장에 대한 고급 구성](nps-extension-advanced-configuration.md)
 ### [인증 공급자 만들기](multi-factor-authentication-get-started-auth-provider.md)
 ### 온-프레미스에서 MFA 배포
-#### [Hello 사용자 포털 설치](multi-factor-authentication-get-started-portal.md)
+#### [사용자 포털 설치](multi-factor-authentication-get-started-portal.md)
 #### [고급 VPN 구성](multi-factor-authentication-advanced-vpn-configurations.md)
 #### [모바일 앱 웹 서비스](multi-factor-authentication-get-started-server-webservice.md)
 #### [고가용성 구성](mfa-server-high-availability.md)

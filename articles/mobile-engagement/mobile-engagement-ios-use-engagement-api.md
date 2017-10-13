@@ -1,6 +1,6 @@
 ---
-title: "iOS에서 aaaHow tooUse hello Engagement API"
-description: "최신 iOS SDK-iOS에서 tooUse Engagement API hello 하는 방법"
+title: "iOS에서 Engagement API를 사용하는 방법"
+description: "최신 iOS SDK - iOS에서 Engagement API를 사용하는 방법"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,48 +14,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 7fb9b95ad319cf3b1e2de81b5d6aee5b30266069
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a31424da98205e97bdf57010cccfd044360f03dd
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-hello-engagement-api-on-ios"></a>IOS에서 tooUse Engagement API hello 하는 방법
-이 문서는 추가 기능 toohello 문서 어떻게 iOS에서 Engagement tooIntegrate: 방법을 toouse hello Engagement API tooreport 응용 프로그램 통계에 대 한 깊이 세부 정보에 제공 합니다.
+# <a name="how-to-use-the-engagement-api-on-ios"></a>iOS에서 Engagement API를 사용하는 방법
+이 문서는 iOS에 Engagement를 통합하는 방법 문서를 보완하는 추가 문서로, Engagement API를 사용하여 응용 프로그램 통계를 보고하는 방법을 자세히 설명합니다.
 
-유의 하려는 경우 Engagement tooreport 응용 프로그램의 세션, 활동, 충돌 및 기술 정보는 다음 hello 가장 간단한 방법은 toomake을 모든 사용자 지정은 `UIViewController` hello 해당 개체가 상속 `EngagementViewController` 클래스 .
+Engagement에서 응용 프로그램 세션, 활동, 작동 중단 및 기술 정보만 보고하도록 하려는 경우 가장 간단한 방법은 모든 사용자 지정 `UIViewController` 개체가 해당 `EngagementViewController` 클래스에서 상속하도록 지정하는 것입니다.
 
-예를 들어 tooreport 응용 프로그램에 대 한 특정 이벤트, 오류 및 작업, 필요한 경우 더 많은 toodo 하려는 경우 또는 tooreport 응용 프로그램의 활동에에서 있으면 다른 방식으로 hello hello에 구현 하는 보다 `EngagementViewController` toouse hello 필요 클래스 API 계약입니다.
+응용 프로그램 관련 이벤트, 오류, 작업을 보고하는 등 추가 작업을 수행하려는 경우 또는 `EngagementViewController` 클래스에서 구현되는 것과는 다른 방식으로 응용 프로그램 활동을 보고해야 하는 경우에는 Engagement API를 사용해야 합니다.
 
-hello Engagement API에서 제공 hello `EngagementAgent` 클래스입니다. Hello를 호출 하 여이 클래스의 인스턴스를 검색할 수 있습니다 `[EngagementAgent shared]` 정적 메서드 (해당 hello 참고 `EngagementAgent` 반환 된 개체는 단일).
+Engagement API는 `EngagementAgent` 클래스를 통해 제공됩니다. 이 클래스의 인스턴스는 `[EngagementAgent shared]` 정적 메서드를 호출하여 검색할 수 있습니다(반환되는 `EngagementAgent` 개체는 단일 항목임).
 
-모든 API를 호출 하기 전에, hello `EngagementAgent` hello 메서드를 호출 하 여 개체를 초기화 합니다`[EngagementAgent init:@"Endpoint={YOUR_APP_COLLECTION.DOMAIN};SdkKey={YOUR_SDK_KEY};AppId={YOUR_APPID}"];`
+API를 호출하기 전에 메서드 `[EngagementAgent init:@"Endpoint={YOUR_APP_COLLECTION.DOMAIN};SdkKey={YOUR_SDK_KEY};AppId={YOUR_APPID}"];`을(를) 호출하여 `EngagementAgent` 개체를 초기화해야 합니다.
 
 ## <a name="engagement-concepts"></a>Engagement 개념
-hello 다음과 같은 부분이 구체화 hello 일반적인 [Mobile Engagement 개념](mobile-engagement-concepts.md) hello iOS 플랫폼에 대 한 합니다.
+다음 요소는 iOS 플랫폼과 관련된 일반적인 [Mobile Engagement 개념](mobile-engagement-concepts.md) 을 구체화합니다.
 
 ### <a name="session-and-activity"></a>`Session` 및 `Activity`
-*활동* toosay hello 된 hello 응용 프로그램의 한 화면은 주로 *활동* hello 화면에 표시 되 고 hello 화면을 닫으면이 중지 될 때 시작:이 hello 경우 hello Engagement SDK가 통합 hello를 사용 하 여 `EngagementViewController` 클래스입니다.
+*작업*은 일반적으로 단일 응용 프로그램 화면과 연결됩니다. 즉, *작업*은 화면을 표시하면 시작되며 화면을 닫으면 중지됩니다. `EngagementViewController` 클래스를 사용하여 Engagement SDK를 통합하는 경우 이러한 방식이 사용됩니다.
 
-하지만 *활동* hello Engagement API를 사용 하 여 수동으로 제어할 수도 있습니다. 이렇게 하면 toosplit 각된 화면에 대 한 자세한 내용은 hello 사용 현황 (예: tooknown 얼마나 자주 및이 화면 안에 대화 상자 사용 되는 시간)이 화면의 여러 하위 부분 tooget 있습니다.
+하지만 Engagement API를 사용하여 *활동* 을 수동으로 제어할 수도 있습니다. 이렇게 하면 지정된 화면을 여러 하위 부분으로 분할하여 해당 화면의 사용에 대해 더 많은 세부 정보(예: 이 화면 내에서 대화 상자를 사용하는 빈도와 기간)를 확인할 수 있습니다.
 
 ## <a name="reporting-activities"></a>활동 보고
 ### <a name="user-starts-a-new-activity"></a>사용자가 새 활동을 시작함
             [[EngagementAgent shared] startActivity:@"MyUserActivity" extras:nil];
 
-Toocall 필요한 `startActivity()` 각 시간 hello 사용자 동작을 변경 합니다. 첫 번째 호출 toothis 함수 hello 새 사용자 세션을 시작 합니다.
+사용자 활동이 변경될 때마다 `startActivity()` 을(를) 호출해야 합니다. 이 함수를 처음 호출하면 새 사용자 세션이 시작됩니다.
 
 ### <a name="user-ends-his-current-activity"></a>사용자가 현재 활동을 종료함
             [[EngagementAgent shared] endActivity];
 
 > [!WARNING]
-> 수행 해야 **NEVER** toosplit 여러 세션으로 응용 프로그램의 용도 중 하나를 원하는 경우를 제외 하 고이 함수를 직접 호출: toothis 함수 끝 호출 hello 현재 세션에 즉시 등에 대 한 순차적 호출 너무`startActivity()`새 세션을 시작 합니다. 이 함수는 응용 프로그램이 닫힐 때 hello SDK에서 자동으로 호출 됩니다.
+> 단일 응용 프로그램 사용을 여러 세션으로 분할하려는 경우를 제외하고는 이 함수를 직접 호출하면 **안 됩니다**. 이 함수를 호출하면 현재 세션이 즉시 종료되므로 `startActivity()`를 후속 호출 시 새 세션이 시작됩니다. 응용 프로그램을 닫으면 SDK에서 이 함수를 자동으로 호출합니다.
 > 
 > 
 
 ## <a name="reporting-events"></a>이벤트 보고
 ### <a name="session-events"></a>세션 이벤트
-세션 이벤트는 세션 동안 사용자가 수행 하는 일반적으로 사용 되는 tooreport hello 작업입니다.
+세션 이벤트는 일반적으로 사용자가 세션 중에 수행하는 동작을 보고하는 데 사용됩니다.
 
 **추가 데이터가 없는 예제:**
 
@@ -89,7 +89,7 @@ Toocall 필요한 `startActivity()` 각 시간 hello 사용자 동작을 변경 
     }
 
 ### <a name="standalone-events"></a>독립 실행형 이벤트
-반대 toosession 이벤트, 독립 실행형 이벤트 세션의 hello 컨텍스트 외부에서 사용할 수 있습니다.
+세션 이벤트와 달리 독립 실행형 이벤트는 세션의 컨텍스트 외부에서 사용할 수 있습니다.
 
 **예제:**
 
@@ -97,16 +97,16 @@ Toocall 필요한 `startActivity()` 각 시간 hello 사용자 동작을 변경 
 
 ## <a name="reporting-errors"></a>오류 보고
 ### <a name="session-errors"></a>세션 오류
-세션 오류는 일반적으로 사용 되는 tooreport hello 오류 hello 사용자 세션 동안 영향입니다.
+세션 오류는 일반적으로 세션 중에 사용자에게 영향을 주는 오류를 보고하는 데 사용됩니다.
 
 **예제:**
 
-    /** hello user has entered invalid data in a form */
+    /** The user has entered invalid data in a form */
     @implementation MyViewController {
       [...]
       -(void)onMyFormSubmitted:(MyForm*)form {
         [...]
-        /* hello user has entered an invalid email address */
+        /* The user has entered an invalid email address */
         [[EngagementAgent shared] sendSessionError:@"sign_up_email" extras:nil]
         [...]
       }
@@ -114,7 +114,7 @@ Toocall 필요한 `startActivity()` 각 시간 hello 사용자 동작을 변경 
     }
 
 ### <a name="standalone-errors"></a>독립 실행형 오류
-반대 toosession 오류, 독립 실행형 오류 세션의 hello 컨텍스트 외부에서 사용할 수 있습니다.
+세션 오류와 달리 독립 실행형 오류는 세션의 컨텍스트 외부에서 사용할 수 있습니다.
 
 **예제:**
 
@@ -123,7 +123,7 @@ Toocall 필요한 `startActivity()` 각 시간 hello 사용자 동작을 변경 
 ## <a name="reporting-jobs"></a>작업 보고
 **예제:**
 
-로그인 프로세스의 기간을 tooreport hello 일정 있다고 가정 합니다.
+로그인 프로세스의 기간을 보고하는 경우를 가정해 보겠습니다.
 
     [...]
     -(void)signIn
@@ -139,11 +139,11 @@ Toocall 필요한 `startActivity()` 각 시간 hello 사용자 동작을 변경 
     [...]
 
 ### <a name="report-errors-during-a-job"></a>작업 중 오류 보고
-오류 되지 않고 작업을 실행 하는 관련된 tooa 수 toohello 현재 사용자 세션 관련 됩니다.
+오류는 현재 사용자 세션이 아닌 실행 중인 작업에 관련될 수 있습니다.
 
 **예제:**
 
-로그인 프로세스 동안 tooreport 오류가 원하는 있다고 가정 합니다.
+로그인 프로세스 중의 오류를 보고하는 경우를 가정해 보겠습니다.
 
     [...]
     -(void)signin
@@ -153,7 +153,7 @@ Toocall 필요한 `startActivity()` 각 시간 hello 사용자 동작을 변경 
 
       BOOL success = NO;
       while (!success) {
-        /* Try toosign in */
+        /* Try to sign in */
         NSError* error = nil;
         [self trySigin:&error];
         success = error == nil;
@@ -176,11 +176,11 @@ Toocall 필요한 `startActivity()` 각 시간 hello 사용자 동작을 변경 
     [...]
 
 ### <a name="events-during-a-job"></a>작업 중의 이벤트
-이벤트 되지 않고 작업을 실행 하는 관련된 tooa 수 toohello 현재 사용자 세션 관련 됩니다.
+이벤트는 현재 사용자 세션이 아닌 실행 중인 작업에 관련될 수 있습니다.
 
-**예제:**
+**예:**
 
-소셜 네트워크는 한 작업 tooreport hello 총 시간 사용는 hello 하는 동안 사용자가 연결 된 toohello 서버 한다고 가정 합니다. hello 사용자 친구에서 메시지를 받을 수, 작업 이벤트입니다.
+소셜 네트워크가 있으며 작업을 사용하여 사용자가 서버에 연결되어 있는 총 시간을 보고한다고 가정해 보겠습니다. 사용자는 친구로부터 메시지를 받을 수 있습니다. 이것이 작업 이벤트입니다.
 
     [...]
     - (void) signin
@@ -203,22 +203,22 @@ Toocall 필요한 `startActivity()` 각 시간 hello 사용자 동작을 변경 
     [...]
 
 ## <a name="extra-parameters"></a>extras 매개 변수
-임의의 데이터에 연결 된 tooevents, 오류, 활동 및 작업 가능 합니다.
+이벤트, 오류, 활동 또는 작업에 임의 데이터를 연결할 수 있습니다.
 
 이 데이터는 구조화할 수 있으며 iOS의 NSDictionary 클래스를 사용합니다.
 
 extras는`arrays(NSArray, NSMutableArray)`, `numbers(NSNumber class)`, `strings(NSString, NSMutableString)`, `urls(NSURL)`, `data(NSData, NSMutableData)` 또는 기타 `NSDictionary` 인스턴스를 포함할 수 있습니다.
 
 > [!NOTE]
-> hello 추가 매개 변수는 직렬화 JSON. Hello 위에서 설명한 것 보다 toopass 서로 다른 개체를 원하는 경우 hello 메서드를 클래스에 다음을 구현 해야 합니다.
+> extras 매개 변수는 JSON에서 serialize됩니다. 위에서 설명한 것과 다른 개체를 전달하려는 경우에는 클래스에서 다음 메서드를 구현해야 합니다.
 > 
 > -(NSString*) JSONRepresentation;
 > 
-> hello 메서드는 개체의 JSON 표현을 반환 합니다.
+> 해당 메서드는 개체의 JSON 표현을 반환해야 합니다.
 > 
 > 
 
-### <a name="example"></a>예제
+### <a name="example"></a>예
     NSMutableDictionary* extras = [NSMutableDictionary dictionaryWithCapacity:2];
     [extras setObject:[NSNumber numberWithInt:123] forKey:@"video_id"];
     [extras setObject:@"http://foobar.com/blog" forKey:@"ref_click"];
@@ -226,25 +226,25 @@ extras는`arrays(NSArray, NSMutableArray)`, `numbers(NSNumber class)`, `strings(
 
 ### <a name="limits"></a>제한
 #### <a name="keys"></a>구성
-각 키 hello에 `NSDictionary` hello 다음 정규식 일치 해야 합니다.
+`NSDictionary` 의 각 키는 다음 정규식과 일치해야 합니다.
 
 `^[a-zA-Z][a-zA-Z_0-9]*`
 
 즉, 키는 하나 이상의 문자로 시작해야 하며 그 뒤에 문자, 숫자 또는 밑줄(\_)이 붙어야 합니다.
 
 #### <a name="size"></a>크기
-추가 항목은 너무 제한**1024** (한 번 인코딩된 json에서 hello Engagement 에이전트에 의해) 호출당 문자입니다.
+extras는 Engagement 에이전트에 의해 JSON으로 인코딩되고 나면 호출당 **1024** 자로 제한됩니다.
 
-Hello 앞의 예제 JSON 전송 toohello 서버 hello 58 자입니다.
+위의 예제에서 서버로 전송된 JSON의 길이는 58자입니다.
 
     {"ref_click":"http:\/\/foobar.com\/blog","video_id":"123"}
 
 ## <a name="reporting-application-information"></a>응용 프로그램 정보 보고
-Hello를 사용 하 여 정보 (또는 다른 응용 프로그램 관련 정보가) 추적을 수동으로 보고할 수 있습니다 `sendAppInfo:` 함수입니다.
+`sendAppInfo:` 함수를 사용하면 추적 정보 또는 기타 응용 프로그램 관련 정보를 수동으로 보고할 수 있습니다.
 
-이러한 정보를 점진적으로 보낼 수 있는 참고: 지정된 된 장치에 대 한 지정된 된 키에 대 한 최신 값 hello만 유지 됩니다.
+이러한 정보는 증분 방식으로 보낼 수 있습니다. 그러면 특정 장치에 대해 지정한 키의 최신 값만 보관됩니다.
 
-와 같은 이벤트 extras hello `NSDictionary` 클래스는 사용 되는 tooabstract 응용 프로그램 정보, 배열은 또는 하위 사전 플랫 문자열 (JSON serialization 사용)으로 처리 됩니다.
+extras 이벤트와 마찬가지로 `NSDictionary` 클래스도 응용 프로그램 정보를 요약하는 데 사용됩니다. 배열 또는 하위 사전은 JSON serialization을 사용하여 플랫 문자열로 처리됩니다.
 
 **예제:**
 
@@ -255,15 +255,15 @@ Hello를 사용 하 여 정보 (또는 다른 응용 프로그램 관련 정보�
 
 ### <a name="limits"></a>제한
 #### <a name="keys"></a>구성
-각 키 hello에 `NSDictionary` hello 다음 정규식 일치 해야 합니다.
+`NSDictionary` 의 각 키는 다음 정규식과 일치해야 합니다.
 
 `^[a-zA-Z][a-zA-Z_0-9]*`
 
 즉, 키는 하나 이상의 문자로 시작해야 하며 그 뒤에 문자, 숫자 또는 밑줄(\_)이 붙어야 합니다.
 
 #### <a name="size"></a>크기
-응용 프로그램 정보는 너무 제한적**1024** (한 번 인코딩된 json에서 hello Engagement 에이전트에 의해) 호출당 문자입니다.
+응용 프로그램 정보s는 Engagement 에이전트에 의해 JSON으로 인코딩되고 나면 호출당 **1024** 자로 제한됩니다.
 
-Hello 앞의 예제 JSON 전송 toohello 서버 hello 44 자입니다.
+위의 예제에서 서버로 전송된 JSON의 길이는 44자입니다.
 
     {"birthdate":"1983-12-07","gender":"female"}

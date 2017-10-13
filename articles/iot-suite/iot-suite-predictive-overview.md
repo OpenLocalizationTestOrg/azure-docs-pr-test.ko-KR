@@ -1,6 +1,6 @@
 ---
-title: "솔루션을 미리 구성 된 유지 관리 aaaPredictive | Microsoft Docs"
-description: "Hello Azure IoT Suite 예측 유지 관리에 대 한 설명을 미리 솔루션을 구성 합니다."
+title: "미리 구성된 예측 유지 관리 솔루션 | Microsoft Docs"
+description: "Azure IoT Suite 예측 정비 사전 구성 솔루션에 대한 설명입니다."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,125 +15,125 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: 2d09801467d33db6b7d6333fa071aea2bf573f20
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8bad198488c4940a83eb32ec02122a91d47ca86c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="predictive-maintenance-preconfigured-solution-overview"></a>예측 정비 사전 구성 솔루션 개요
 
-hello *예측 유지 관리* [솔루션 미리 구성 된] [ lnk_preconfigured_solutions] hello 중 하나인 [Microsoft Azure IoT Suite] [ lnk_iot_suite] 솔루션 미리 구성 합니다. 이 솔루션은 실시간 장치 원격 분석 컬렉션과 [Azure Machine Learning][lnk-machine-learning]을 사용하여 생성되는 예측 모델을 통합합니다.
+*예측 정비* [사전 구성 솔루션][lnk_preconfigured_solutions]은 [Microsoft Azure IoT Suite][lnk_iot_suite] 사전 구성 솔루션 중 하나입니다. 이 솔루션은 실시간 장치 원격 분석 컬렉션과 [Azure Machine Learning][lnk-machine-learning]을 사용하여 생성되는 예측 모델을 통합합니다.
 
-Azure IoT Suite 신속 하 게 하 고 쉽게 tooand 모니터 자산 연결 하 고 사용할 수 실시간 대시보드 및 시각화에 대 한 원격 분석 분석 합니다. Hello 예측 유지 관리 솔루션에 hello 대시보드 및 시각화를 알려 효율성 드라이브 하 고 스트림을 수익을 향상 시킬 수 있는 새 인텔리전스 합니다.
+사용자는 Azure IoT Suite를 통해 신속하고 간편하게 연결되고 자산을 모니터링하며 실시간으로 원격 분석 데이터를 대시보드 및 시각적 개체로 분석할 수 있습니다. 예측 유지 관리 솔루션에서 대시보드와 시각화는 효율을 증진하고 매출원을 향상시킬 수 있는 새로운 인텔리전스를 제공합니다.
 
-## <a name="hello-scenario"></a>hello 시나리오
+## <a name="the-scenario"></a>시나리오
 
-Fabrikam은 경쟁력 있는 가격으로 우수한 고객 경험을 제공하는 데 중점을 두고 있는 지역 항공사입니다. 항공기 지연의 이유 중 하나는 정비 문제이며 항공 엔진 정비는 특히 어려운 부분입니다. Fabrikam 안 엔진 실패 비행 중 해서든, 하므로 해당 엔진을 정기적으로 검사 하 고 tooa 계획에 따라 유지 관리 예약 됩니다. 그러나 엔진 착용 항상 하지 비행기 hello 동일 합니다. 엔진에 대해 필요 이상의 정비를 수행하는 경우도 있습니다. 무엇보다, 정비가 수행될 때까지 항공기를 이륙할 수 없는 문제가 발생합니다. 비행기 위치에 있는 오른쪽 기술자를 hello 또는 예비 부품을 사용할 수 없는 면 이러한 문제는 특히 비용이 증가할 수 있습니다.
+Fabrikam은 경쟁력 있는 가격으로 우수한 고객 경험을 제공하는 데 중점을 두고 있는 지역 항공사입니다. 항공기 지연의 이유 중 하나는 정비 문제이며 항공 엔진 정비는 특히 어려운 부분입니다. Fabrikam은 비행 중 엔진 고장은 어떻게 해서든 막아야 하기 때문에 엔진을 정기적으로 조사하고 계획에 따라 유지 관리 일정을 예약합니다. 하지만 항공기 엔진이 항상 동일하게 마모되는 것은 아닙니다. 엔진에 대해 필요 이상의 정비를 수행하는 경우도 있습니다. 무엇보다, 정비가 수행될 때까지 항공기를 이륙할 수 없는 문제가 발생합니다. 적당한 기술자나 예비 부품이 없는 곳에 항공기가 있는 경우에는 특히 비용이 많이 드는 문제를 유발할 수 있습니다.
 
-Fabrikam의 비행기의 hello 엔진 비행 중 엔진을 모니터링 하는 센서와 계측 됩니다. Fabrikam은 hello 비행 중 수집 된 hello 예측 유지 관리 솔루션 toocollect hello 센서 데이터를 사용 합니다. 엔진 작업의 누적 년 후 오류 데이터, Fabrikam의 데이터 과학자는 방식으로 toopredict hello 남은 연수 (RUL) 비행기 엔진의 모델링 됩니다. hello 모델 데이터 hello 엔진 센서 중 4 개에서 및 tooeventual 실패 하는 엔진 마모 간의 상관 관계를 사용 합니다. Fabrikam tooperform 정기적 검사 tooensure 안전성을 계속 하는 동안 모든 비행 후 각 엔진에 대 한 hello 모델 toocompute hello RUL를 지금 사용할 수 있는 것입니다. hello 모델 hello 비행 중 hello 엔진에서 수집 하는 hello 원격 분석을 사용 합니다. Fabrikam은 이제 향후 고장 시점을 예측하고 정비 및 수리를 사전에 계획할 수 있습니다.
+Fabrikam 항공기의 엔진에는 비행 중에 엔진 상태를 모니터링하는 센서가 달려 있습니다. Fabrikam은 비행 중 수집된 센서 데이터를 수집하는 예측 유지 관리 솔루션을 사용합니다. Fabrikam의 데이터 과학자들은 엔진 작동 및 고장 데이터를 다년간 축적한 후에 항공기 엔진의 잔여 수명(Remaining Useful Life, RUL)을 예측하는 방식을 모델링했습니다. 이 모델은 4개 엔진 센서의 데이터와 우발적인 고장으로 이어지는 엔진 마모 사이의 상관 관계를 사용합니다. Fabrikam은 안전을 보장하기 위하여 정기적인 정밀 검사를 계속 수행하는 한편, 이 모델을 통해 비행이 끝날 때마다 각 엔진에 대한 RUL을 계산할 수 있게 되었습니다. 모델은 비행 중 엔진에서 수집한 원격 분석 데이터를 사용합니다. Fabrikam은 이제 향후 고장 시점을 예측하고 정비 및 수리를 사전에 계획할 수 있습니다.
 
 > [!NOTE]
-> hello 솔루션 모델 실제 엔진 마모 데이터를 사용합니다.
+> 솔루션 모델은 실제 엔진 마모 데이터를 사용합니다.
 
-Hello 지점 유지 관리에 필요한 경우를 예측 하 여 Fabrikam 작업 tooreduce 비용을 최적화할 수 있습니다.
+정비가 필요한 시점을 예측함으로써, Fabrikam은 비용을 줄이도록 운영을 최적화할 수 있습니다.
 
 유지 관리 코디네이터는 다음 작업을 수행하도록 스케줄러와 함께 작동합니다.
 
-- 특정 위치에서 중지 비행기와 toocoincide 유지 관리를 계획 합니다.
-- 충분 한 시간 ´ ü ± 서비스 hello 비행기 toobe 일정 중단이 발생 하지 않고 확인 합니다.
-- tooschedule 기술자 tooensure 비행기 대기 시간 없이 효율적으로 처리 합니다.
+- 특정 위치에서 중지하는 항공기와 일치하도록 유지 관리를 계획합니다.
+- 일정 중단 없이 항공기가 서비스되지 않을 충분한 시간을 보장합니다.
+- 대기 시간 없이 항공기를 충분히 정비할 수 있도록 기술자의 일정을 예약합니다.
 
 재고 관리자는 정비 계획을 수신하기 때문에 주문 공정 및 예비 부품 재고를 최적화할 수 있습니다.
 
-이러한 작업 Fabrikam toominimize 비행기 명확 하 게 시간을 설정 하 고 승객 및 직원 일 동 hello 안전성을 보장 하면서 운영 비용을 절감 합니다.
+이러한 활동을 통하여 Fabrikam은 승객과 승무원의 안전을 보장하면서 항공기 지상 체류 시간을 최소화하고 운영비를 줄일 수 있습니다.
 
-toounderstand 어떻게 [Azure IoT Suite] [ lnk_iot_suite] hello 기능 고객 필요한 toorealize hello 가능성을 제공 하는지 검토이 예측 유지 관리의 [인포 그래픽] [lnk_infographic].
+[Azure IoT Suite][lnk_iot_suite]가 고객에게 필요한 기능을 제공하는 방식을 이해하려면 예측 정비의 잠재력을 깨달을 필요가 있습니다. 이 내용은 [infographic][lnk_infographic]을 참조하세요.
 
-## <a name="how-hello-predictive-maintenance-solution-is-built"></a>Hello 예측 유지 관리 솔루션 빌드 방법
+## <a name="how-the-predictive-maintenance-solution-is-built"></a>예측 정비 솔루션이 구축되는 방식
 
-hello 솔루션은 사용할 수 있는 기존 Azure 기계 학습 모델 템플릿 tooshow IoT Suite 서비스를 통해 수집 된 장치 원격 분석에서 작업 하는 이러한 기능 합니다. Microsoft 만들었습니다는 [회귀 모델] [ lnk_regression_model] 공개적으로 사용할 수 있는 데이터를 기반으로 하는 비행기 엔진<sup>\[1\]</sup>, 단계별 및 toouse 모델 hello 하는 방법에 대 한 지침입니다.
+솔루션은 템플릿으로 사용할 수 있는 기존의 Azure Machine Learning을 사용하여 IoT Suite 서비스를 통해 수집되는 장치 원격 분석에서 작동하는 이러한 기능을 보여줍니다. Microsoft는 공개적으로 사용 가능한 데이터<sup>\[1\]</sup>을 기반으로 하는 항공기 엔진의 [회귀 모델][lnk_regression_model] 및 해당 모델을 사용하는 방법에 대한 단계별 지침을 구축했습니다.
 
-이 템플릿에서 만든 hello 회귀 모델을 사용 하는 hello Azure IoT 예측 유지 관리 솔루션입니다. hello 모델을 Azure 구독에 배포 하 고 자동으로 생성 된 API를 통해 노출 합니다. hello 테스트 (총 100)의 4를 나타내는 데이터의 하위 집합을 포함 하는 hello 솔루션 엔진 및 총 21) (의 4 hello 센서 데이터 스트림을 합니다. 이 데이터는 충분히 tooprovide hello 학습 된 모델에서 올바른 결과입니다.
+Azure IoT 예측 유지 관리 솔루션은 이 템플릿에서 만든 회귀 모델을 사용합니다. 모델은 Azure 구독에 배포되고 자동으로 생성된 API를 통해 노출됩니다. 이 솔루션은 4개(총 100개 중)의 엔진을 나타내는 테스트 데이터의 하위 집합과 4개(총 21개 중)의 센서 데이터 스트림을 포함합니다. 이 데이터는 학습된 모델을 통해 정확한 결과를 제공하는 데 충분합니다.
 
 *\[1\] A. Saxena and K. Goebel(2008). "Turbofan 엔진 성능 저하 시뮬레이션 데이터 집합", NASA Ames Prognostics Data Repository(http://ti.arc.nasa.gov/tech/dash/pcoe/prognostic-data-repository/), NASA Ames Research Center, Moffett Field, CA*
 
 ## <a name="get-started-with-predictive-maintenance"></a>예측 유지 관리 시작
 
-이 자습서 tooprovision 예측 유지 관리 솔루션을 hello 하는 방법을 보여 줍니다. 또한 안내 합니다 hello hello 예측 유지 관리 솔루션의 기본 기능입니다. 이러한 기능 중 대부분 hello 미리 구성 된 솔루션과 함께 배포 하는 hello 솔루션 대시보드를 통해 액세스할 수 있습니다.
+이 자습서에서는 예측 유지 관리 솔루션을 프로비전하는 방법을 보여 줍니다. 또한 예측 유지 관리 솔루션의 기본 기능을 안내합니다. 미리 구성된 솔루션과 함께 배포한 솔루션 대시보드를 통해 이러한 기능 다수에 액세스할 수 있습니다.
 
-toocomplete이이 자습서에서는 활성 Azure 구독이 필요 합니다.
+이 자습서를 완료하려면 활성 Azure 구독이 필요합니다.
 
 > [!NOTE]
 > 계정이 없는 경우 몇 분 만에 무료 평가판 계정을 만들 수 있습니다. 자세한 내용은 [Azure 무료 평가판][lnk_free_trial]을 참조하세요.
 
-1. 너무 로그온[azureiotsuite.com] [ lnk-azureiotsuite] Azure를 사용 하 여 계정 자격 증명을 누르고  **+**  toocreate 솔루션입니다.
-1. 클릭 **선택** hello **예측 유지 관리** 바둑판식으로 배열입니다.
+1. Azure 계정 자격 증명을 사용하여 [azureiotsuite.com][lnk-azureiotsuite]에 로그온한 다음 **+**를 클릭하여 솔루션을 만듭니다.
+1. **예측 유지 관리** 타일 **선택**을 클릭합니다.
 1. 예측 정비 사전 구성 솔루션에 **솔루션 이름**을 입력합니다.
-1. 선택 hello **지역** 및 **구독** toouse tooprovision hello 솔루션을 원할 수 있습니다.
-1. 클릭 **솔루션 만들기** toobegin hello를 프로 비전 프로세스입니다. 이 프로세스는 일반적으로 몇 분 toorun을 걸립니다.
+1. 솔루션을 프로비전하는 데 사용할 **지역** 및 **구독**을 선택합니다.
+1. **솔루션 만들기** 를 클릭하여 프로비전 프로세스를 시작합니다. 일반적으로 이 프로세스는 실행하는 데 몇 분 정도 걸립니다.
 
-### <a name="wait-for-hello-provisioning-process-toocomplete"></a>프로비저닝 프로세스 toocomplete hello에 대 한 대기
+### <a name="wait-for-the-provisioning-process-to-complete"></a>프로비전 프로세스가 완료될 때까지 대기
 
-1. 솔루션에 hello 타일을 클릭 **프로 비전** 상태입니다.
-1. 공지 hello **상태를 프로 비전** Azure 구독에서 Azure 서비스 배포 됩니다.
-1. 프로 비전이 완료 되 면 hello 상태가 변경 될 너무**준비**합니다.
-1. Hello 오른쪽 창에 솔루션의 hello 타일 toosee hello 자세히를 클릭 합니다. 이 창의 hello 솔루션 대시보드 및 액세스 hello 기계 학습 작업 영역을 시작할 수 있습니다.
+1. **프로비전** 상태인 솔루션 타일을 클릭합니다.
+1. Azure 서비스가 Azure 구독에 배포될 때 **프로비전 상태** 입니다.
+1. 프로비전이 완료되면 **준비**상태로 바뀝니다.
+1. 타일을 클릭하여 오른쪽 창에 솔루션의 세부 정보를 표시합니다. 이 창에서 솔루션 대시보드를 실행하고 Machine Learning 작업 영역에 액세스할 수 있습니다.
 
 > [!NOTE]
-> Hello 미리 구성 된 솔루션을 배포 하는 문제가 발생 하는 경우 검토 [hello azureiotsuite.com 사이트에 대 한 권한을] [ lnk-permissions] 및 hello [FAQ] [ lnk-faq]. Hello 문제가 지속 되 면 hello에 서비스 티켓을 만들 [포털][lnk-portal]합니다.
+> 미리 구성된 솔루션을 배포하는 데 문제가 발생하면 [azureiotsuite.com 사이트에 대한 사용 권한][lnk-permissions] 및 [FAQ][lnk-faq]를 검토하세요. 문제가 지속되면 [포털][lnk-portal]에서 서비스 티켓을 만듭니다.
 
-솔루션에 대 한 목록에 없는 세부 정보 toosee 예상할 수 있습니까? [사용자 의견](https://feedback.azure.com/forums/321918-azure-iot)에 기능 제안을 보내주세요.
+목록에는 없지만 솔루션에 대해 참조하고 싶은 세부 정보가 있나요? [사용자 의견](https://feedback.azure.com/forums/321918-azure-iot)에 기능 제안을 보내주세요.
 
-## <a name="view-hello-solution"></a>보기 hello 솔루션
+## <a name="view-the-solution"></a>솔루션 보기
 
-이 섹션에서는 UI hello 솔루션을 안내합니다.
+이 섹션에서는 솔루션 UI를 안내합니다.
 
 ### <a name="predictive-maintenance-dashboard"></a>대시보드에서 예측 유지 관리
 
-PowerBI JavaScript 컨트롤을 사용 하는 hello 웹 응용 프로그램에서이 페이지 (hello 참조 [powerbi-visuals 리포지토리][lnk-powerbi]) toovisualize:
+웹 응용 프로그램의 이 페이지는 PowerBI JavaScript 제어를 사용하여([PowerBI 시각 효과 리포지토리][lnk-powerbi]를 참조) 다음을 시각화합니다.
 
-* hello blob 저장소에 hello 스트림 분석 작업의 데이터를 출력 합니다.
-* 비행기 엔진 당 hello RUL 및 주기 수입니다.
+* Blob Storage의 Stream Analytics 작업에서 출력 데이터.
+* 항공기 엔진 당 RUL 및 주기 수.
 
-### <a name="observing-hello-behavior-of-hello-cloud-solution"></a>Hello 클라우드 솔루션의 hello 동작을 관찰합니다.
+### <a name="observing-the-behavior-of-the-cloud-solution"></a>클라우드 솔루션의 동작 관찰
 
-Hello Azure 포털에서 toohello 리소스 그룹 이동 hello 솔루션 이름이 선택한 tooview 프로 비전 된 리소스입니다.
+Azure 포털에서 선택한 솔루션 이름을 가진 리소스 그룹으로 이동하여 프로비전된 리소스를 볼 수 있습니다.
 
 ![][img-resource-group]
 
-Hello 미리 구성 된 솔루션의 프로 비전 할 때 전자 메일 링크 toohello 기계 학습 작업 영역에 나타납니다. Hello에서 toohello 기계 학습 작업 영역을 탐색할 수 있습니다 [azureiotsuite.com] [ lnk-azureiotsuite] 프로 비전 된 솔루션에 대 한 페이지입니다. 타일은 hello 솔루션은 hello 하는 경우이 페이지에서 사용할 수 **준비** 상태입니다.
+미리 구성된 솔루션을 프로비전할 때 기계 학습 작업 영역에 대한 링크가 포함된 전자 메일을 수신합니다. 또한 프로비전된 솔루션에 대한 [azureiotsuite.com][lnk-azureiotsuite] 페이지에서 Machine Learning 작업 영역으로 이동할 수 있습니다. 솔루션이 **준비** 상태일 때 이 페이지에 타일이 제공됩니다.
 
 ![][img-machine-learning]
 
-Hello 솔루션 포털에서 해당 hello 샘플이 프로 비전 되어 4 개의 시뮬레이션 된 장치 toorepresent 두 비행기 각각 4 개의 센서 비행기 당 두 개의 엔진으로 볼 수 있습니다. Toohello 솔루션 포털을 처음 표시할 때 hello 시뮬레이션 중지 됩니다.
+솔루션 포털에서 항공기 당 2개의 엔진, 엔진 당 4개의 센서가 있는 2대의 항공기를 나타내는 네 가지의 시뮬레이션된 장치를 사용하여 샘플이 프로비전된 것을 볼 수 있습니다. 솔루션 포털로 먼저 이동할 때 시뮬레이션이 중지됩니다.
 
 ![][img-simulation-stopped]
 
-클릭 **시뮬레이션 시작** toobegin hello 시뮬레이션 합니다. 센서 기록, RUL, 주기 및 RUL hello 기록 hello 대시보드를 채웁니다.
+**시뮬레이션 시작**을 클릭하여 시뮬레이션을 시작합니다. 센서 기록, RUL, 주기 및 RUL 기록으로 대시보드가 채워집니다.
 
 ![][img-simulation-running]
 
-RUL 160 (예시 목적을 위해 선택 대 한 임의의 임계값) 보다 작은 경우 RUL 표시할 경고 기호 다음 toohello를 hello 솔루션 포털에 표시 됩니다. hello 솔루션 포털에는 hello 비행기 엔진 노란색으로 강조 표시합니다. Hello RUL 값 전반적으로 일반 하향 추세를 포함 하는 방법 사항을 참고 하십시오. 하지만 다음과 같은 toobounce 및 축소 합니다. 이 동작은 hello 다양 한 주기 길이 및 hello 모델 정확도에서 발생합니다.
+RUL이 160(데모 목적으로 선택한 임의의 임계값) 미만인 경우, 솔루션 포털은 RUL 표시 옆에 경고 기호를 표시합니다. 또한 솔루션 포털은 항공기 엔진을 노란색으로 강조 표시합니다. RUL 값이 전반적으로 일반 하향 추세를 갖지만 아래 위로 요동치는 경향이 있습니다. 이 동작은 다양한 주기 길이 및 모델 정확도로 인해 발생합니다.
 
 ![][img-simulation-warning]
 
-hello 전체 시뮬레이션 약 35 분 toocomplete 148 주기를 사용합니다. 약 5 분에서 처음으로 hello에 대 한 hello 160 RUL 임계값을 충족 하 고 두 엔진에서 약 8 분 hello 임계값에 도달 합니다.
+전체 시뮬레이션이 148 주기를 완료하려면 약 35분이 걸립니다. 160 RUL 임계값은 처음 약 5분이 지나서 도달하고 두 엔진은 약 8분이 지나서 임계값에 도달합니다.
 
-hello 시뮬레이션 148 사이클 hello 전체 데이터 집합을 실행 하 고 최종 RUL 및 주기 값에 settles.
+시뮬레이션은 148주기 동안 전체 데이터 집합을 실행하고 최종 RUL 및 주기 값에 도달합니다.
 
-언제 든 hello 시뮬레이션을 중지할 수 있습니다 지점 하지만 클릭 하면 **시작 시뮬레이션** 재생 hello hello 데이터 집합의 hello 시작에서 시뮬레이션 합니다.
+언제든 시뮬레이션을 중지할 수 있지만 **시뮬레이션 시작** 을 클릭하면 데이터 집합의 처음부터 시뮬레이션을 재생합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-Azure IoT 예측 유지 관리 시나리오, 읽기를 사용 하는 방법에 대 한 자세한 toolearn [hello 사물 인터넷에서에서 값을 캡처할][lnk_capture_value]합니다.
+Azure IoT가 예측 정비 시나리오를 가능하게 하는 방식에 대해 자세히 알아보려면, [사물 인터넷에서 값 캡처][lnk_capture_value]를 참조하세요.
 
-수행 된 [연습] [ lnk-predictive-walkthrough] hello 예측 유지 관리 솔루션의 합니다.
+예측 유지 관리 솔루션을 [연습][lnk-predictive-walkthrough]합니다.
 
-탐색할 수도 있습니다 hello 중 일부 다른 기능 및 hello IoT Suite 미리 구성 된 솔루션의 기능:
+미리 구성된 IoT Suite 솔루션의 몇 가지 다른 기능 및 기능을 탐색할 수 있습니다.
 
 * [IoT Suite에 대한 질문과 대답][lnk-faq]
-* [Hello 접지에서 IoT 보안][lnk-security-groundup]
+* [처음부터 IoT 보안을 고려][lnk-security-groundup]
 
 [img-resource-group]: media/iot-suite-predictive-overview/resource-group.png
 [img-simulation-stopped]: media/iot-suite-predictive-overview/simulation-stopped.png

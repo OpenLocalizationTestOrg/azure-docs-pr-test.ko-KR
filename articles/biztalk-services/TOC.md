@@ -12,7 +12,7 @@
 ### [제한](biztalk-throttling-thresholds.md)
 ### [서비스 설정 및 모니터링](biztalk-dashboard-monitor-scale-tabs.md)
 ## 마이그레이션
-### [BizTalk Server EDI 솔루션 tooBizTalk 서비스](biztalk-migrating-to-edi-guide.md)
+### [BizTalk Server EDI 솔루션을 BizTalk Services로](biztalk-migrating-to-edi-guide.md)
 ## 모니터
 ### [서비스 상태에 종속된 작업](biztalk-service-state-chart.md)
 ## 보안

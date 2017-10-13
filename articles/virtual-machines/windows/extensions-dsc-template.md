@@ -1,5 +1,5 @@
 ---
-title: "상태 구성 리소스 관리자 템플릿 aaaDesired | Microsoft Docs"
+title: "원하는 상태 구성 Resource Manager 템플릿 | Microsoft Docs"
 description: "Azure에서 원하는 상태 구성에 대한 Resource Manager 템플릿 정의 및 예제와 문제 해결"
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,17 +16,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: na
 ms.date: 09/15/2016
 ms.author: zachal
-ms.openlocfilehash: fc47ac149b1179d9305797eaa8ed8a83c0958c37
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4292f9d8cd181073fdf0adff99fcb9624e0e9f55
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="windows-vmss-and-desired-state-configuration-with-azure-resource-manager-templates"></a>Azure Resource Manager 템플릿을 사용하여 Windows VMSS 및 원하는 상태 구성
-이 문서에서는 hello에 대 한 hello 리소스 관리자 템플릿을 설명 [필요한 상태 구성 확장 처리기](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다. 
+이 문서에서는 [필요한 상태 구성 확장 처리기](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)를 위한 Resource Manager 템플릿에 대해 설명합니다. 
 
 ## <a name="template-example-for-a-windows-vm"></a>Windows VM의 템플릿 예제
-hello 다음 코드 조각은 들어갑니다 hello hello 템플릿의 리소스 섹션.
+다음 코드 조각은 템플릿의 리소스 섹션에 대한 코드입니다.
 
 ```json
             "name": "Microsoft.Powershell.DSC",
@@ -60,7 +60,7 @@ hello 다음 코드 조각은 들어갑니다 hello hello 템플릿의 리소스
 ```
 
 ## <a name="template-example-for-windows-vmss"></a>Windows VMSS의 템플릿 예제
-VMSS 노드 "VirtualMachineProfile" hello "extensionProfile" 특성으로 "속성" 섹션을 있습니다. "extensions" 아래에 DSC가 추가됩니다. 
+VMSS 노드에는 "VirtualMachineProfile", "extensionProfile" 특성을 포함하는 "properties" 섹션이 있습니다. "extensions" 아래에 DSC가 추가됩니다. 
 
 ```json
 "extensionProfile": {
@@ -93,7 +93,7 @@ VMSS 노드 "VirtualMachineProfile" hello "extensionProfile" 특성으로 "속�
 ```
 
 ## <a name="detailed-settings-information"></a>자세한 설정 정보
-hello 다음 스키마는 hello Azure Resource Manager 템플릿에 Azure DSC 확장의 hello 설정 부분입니다.
+다음 스키마는 Azure Resource Manager 템플릿에 있는 Azure DSC 확장의 설정 부분에 대한 것입니다.
 
 ```json
 
@@ -140,24 +140,24 @@ hello 다음 스키마는 hello Azure Resource Manager 템플릿에 Azure DSC �
 ## <a name="details"></a>세부 정보
 | 속성 이름 | 형식 | 설명 |
 | --- | --- | --- |
-| settings.wmfVersion |string |Hello VM에 설치 되어야 하는 Windows 관리 프레임 워크의 hello 버전을 지정 합니다. 이 속성 too'latest 설정 ' wmf hello 가장 업데이트 된 버전 설치 합니다. 이 속성에 대 한 hello 현재 가능한 값은 **'4.0', '5.0', ' 5.0PP' 및 'latest'**합니다. 이러한 가능한 값은 주체 tooupdates 합니다. hello 기본값은 '최신'입니다. |
-| settings.configuration.url |string |DSC 구성 zip 파일에서 어떤 toodownload hello URL 위치를 지정합니다. 제공 된 hello URL 액세스에 대 한 SAS 토큰을 필요한 경우 SAS 토큰의 tooset hello protectedSettings.configurationUrlSasToken 속성 toohello 값이 필요 합니다. settings.configuration.script 및/또는 settings.configuration.function이 정의된 경우 이 속성이 필요합니다. |
-| settings.configuration.script |string |DSC 구성의 hello 정의 포함 하는 hello 스크립트의 hello 파일 이름을 지정 합니다. 이 스크립트는 hello configuration.url 속성으로 지정 된 hello URL에서 다운로드 한 hello zip 파일의 hello 루트 폴더에 있어야 합니다. settings.configuration.url 및/또는 settings.configuration.script가 정의된 경우 이 속성이 필요합니다. |
-| settings.configuration.function |string |DSC 구성의 hello 이름을 지정합니다. 명명 된 hello 구성 configuration.script에 정의 된 hello 스크립트에 포함 되어야 합니다. settings.configuration.url 및/또는 settings.configuration.function이 정의된 경우 이 속성이 필요합니다. |
-| settings.configurationArguments |컬렉션 |Toopass tooyour DSC 구성을 원하는 매개 변수를 정의 합니다. 이 속성은 암호화되지 않습니다. |
-| settings.configurationData.url |string |DSC 구성에 대 한 입력으로 구성 데이터 (.psd1) 파일 toouse 어떤 toodownload에서 hello URL을 지정 합니다. 제공 된 hello URL 액세스에 대 한 SAS 토큰을 필요한 경우 SAS 토큰의 tooset hello protectedSettings.configurationDataUrlSasToken 속성 toohello 값이 필요 합니다. |
-| settings.privacy.dataEnabled |문자열 |원격 분석 수집을 사용하거나 사용하지 않도록 설정합니다. hello 가능한 값만이 속성은 **'사용', '사용 안 함', ', 또는 $null**합니다. 이 속성을 비워 두거나 null로 설정하면 원격 분석이 사용됩니다. hello 기본값은 '. [추가 정보](https://blogs.msdn.microsoft.com/powershell/2016/02/02/azure-dsc-extension-data-collection-2/) |
-| settings.advancedOptions.downloadMappings |컬렉션 |어떤 toodownload에서 WMF를 hello 대체 위치를 정의 합니다. [추가 정보](http://blogs.msdn.com/b/powershell/archive/2015/10/21/azure-dsc-extension-2-2-amp-how-to-map-downloads-of-the-extension-dependencies-to-your-own-location.aspx) |
-| protectedSettings.configurationArguments |컬렉션 |Toopass tooyour DSC 구성을 원하는 매개 변수를 정의 합니다. 이 속성은 암호화됩니다. |
-| protectedSettings.configurationUrlSasToken |string |Configuration.url에 정의 된 hello SAS 토큰 tooaccess hello URL을 지정 합니다. 이 속성은 암호화됩니다. |
-| protectedSettings.configurationDataUrlSasToken |string |ConfigurationData.url에 정의 된 hello SAS 토큰 tooaccess hello URL을 지정 합니다. 이 속성은 암호화됩니다. |
+| settings.wmfVersion |문자열 |VM에 설치해야 하는 Windows Management Framework의 버전을 지정합니다. 이 속성을 'latest'로 설정하면 WMF의 최신 업데이트 버전이 설치됩니다. 현재 이 속성에 대해 설정 가능한 값은 **'4.0', '5.0', '5.0PP' 및 'latest'**뿐입니다. 가능한 값은 업데이트에 따라 달라집니다. 기본값은 'latest'입니다. |
+| settings.configuration.url |문자열 |DSC 구성 zip 파일을 다운로드할 URL 위치를 지정합니다. 제공된 URL에서 액세스를 위해 SAS 토큰을 요구하는 경우 protectedSettings.configurationUrlSasToken 속성을 SAS 토큰 값으로 설정해야 합니다. settings.configuration.script 및/또는 settings.configuration.function이 정의된 경우 이 속성이 필요합니다. |
+| settings.configuration.script |문자열 |DSC 구성의 정의를 포함하는 스크립트의 파일 이름을 지정합니다. 이 스크립트는 configuration.url 속성에 지정된 URL에서 다운로드된 zip 파일의 루트 폴더에 있어야 합니다. settings.configuration.url 및/또는 settings.configuration.script가 정의된 경우 이 속성이 필요합니다. |
+| settings.configuration.function |문자열 |DSC 구성의 이름을 지정합니다. 명명된 구성은 configuration.script에 정의된 스크립트에 있어야 합니다. settings.configuration.url 및/또는 settings.configuration.function이 정의된 경우 이 속성이 필요합니다. |
+| settings.configurationArguments |컬렉션 |DSC 구성을 전달하려는 매개 변수를 정의합니다. 이 속성은 암호화되지 않습니다. |
+| settings.configurationData.url |문자열 |DSC 구성에 대한 입력으로 사용할 구성 데이터(.psd1) 파일을 다운로드할 URL을 지정합니다. 제공된 URL에서 액세스를 위해 SAS 토큰을 요구하는 경우 protectedSettings.configurationDataUrlSasToken 속성을 SAS 토큰 값으로 설정해야 합니다. |
+| settings.privacy.dataEnabled |문자열 |원격 분석 수집을 사용하거나 사용하지 않도록 설정합니다. 이 속성에 설정할 수 있는 값은 **'Enable', 'Disable', '' 또는 $null**뿐입니다. 이 속성을 비워 두거나 null로 설정하면 원격 분석이 사용됩니다. 기본값은 ''입니다. [추가 정보](https://blogs.msdn.microsoft.com/powershell/2016/02/02/azure-dsc-extension-data-collection-2/) |
+| settings.advancedOptions.downloadMappings |컬렉션 |WMF를 다운로드할 대체 위치를 정의합니다. [추가 정보](http://blogs.msdn.com/b/powershell/archive/2015/10/21/azure-dsc-extension-2-2-amp-how-to-map-downloads-of-the-extension-dependencies-to-your-own-location.aspx) |
+| protectedSettings.configurationArguments |컬렉션 |DSC 구성을 전달하려는 매개 변수를 정의합니다. 이 속성은 암호화됩니다. |
+| protectedSettings.configurationUrlSasToken |문자열 |configuration.url에서 정의한 URL에 액세스하기 위해 SAS 토큰을 지정합니다. 이 속성은 암호화됩니다. |
+| protectedSettings.configurationDataUrlSasToken |문자열 |configuration.url에서 정의한 URL에 액세스하기 위해 SAS 토큰을 지정합니다. 이 속성은 암호화됩니다. |
 
 ## <a name="settings-vs-protectedsettings"></a>Settings 및 ProtectedSettings
-모든 설정이 hello VM에서 설정 텍스트 파일에 저장 됩니다.
-속성의 '설정' 공용 속성이 되므로 hello 설정 텍스트 파일에 암호화 되지 않습니다.
-'ProtectedSettings' 속성의 인증서로 암호화 하 고 hello VM에서이 파일에 일반 텍스트로 표시 되지 않습니다.
+모든 설정은 VM의 설정 텍스트 파일에 저장됩니다.
+'settings'의 속성은 설정 텍스트 파일에서 암호화되지 않으므로 공용 속성입니다.
+'protectedSettings'의 속성은 인증서를 사용하여 암호화되므로 VM에서 이 파일에 일반 텍스트로 표시되지 않습니다.
 
-Hello 구성에서 자격 증명을 필요한 경우 protectedSettings 포함 될 수 있습니다.
+구성에 자격 증명이 필요한 경우 protectedSettings에 포함될 수 있습니다.
 
 ```json
 "protectedSettings": {
@@ -170,11 +170,11 @@ Hello 구성에서 자격 증명을 필요한 경우 protectedSettings 포함 �
 }
 ```
 
-## <a name="example"></a>예제
-hello 다음 예제에서는 파생 hello의 hello "시작" 섹션에서 [DSC 확장 처리기 개요 페이지](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다.
-이 예제에서는 cmdlet toodeploy hello 확장명 대신 리소스 관리자 템플릿을 사용 합니다. Hello "IisInstall.ps1" 구성을 저장에 배치할는 합니다. ZIP 파일 및 액세스할 수 있는 URL에 hello 파일을 업로드 합니다. 이 예제에서는 Azure blob 저장소를 사용 하지만 가능한 toodownload. 임의의 위치에서 ZIP 파일입니다.
+## <a name="example"></a>예
+다음 예제는 [DSC 확장 처리기 개요 페이지](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)의 "시작" 섹션에서 파생됩니다.
+이 예제에서는 cmdlet 대신 Resource Manager 템플릿을 사용하여 확장을 배포합니다. "IisInstall.ps1" 구성을 저장하고 .ZIP 파일에 배치한 다음 파일을 액세스 가능한 URL에 업로드합니다. 이 예제에서는 Azure Blob Storage를 사용하지만 임의의 위치에서 .ZIP 파일을 다운로드할 수 있습니다.
 
-hello Azure 리소스 관리자 템플릿 hello 다음 코드 hello VM toodownload hello 올바른 파일 지시 고 hello 적절 한 PowerShell 함수를 실행 합니다.
+Azure Resource Manager 템플릿에서 다음 코드는 VM에 올바른 파일을 다운로드하고 적절한 PowerShell 함수를 실행하도록 지시합니다.
 
 ```json
 "settings": {
@@ -190,16 +190,16 @@ hello Azure 리소스 관리자 템플릿 hello 다음 코드 hello VM toodownlo
 }
 ```
 
-## <a name="updating-from-hello-previous-format"></a>Hello 이전 형식에서 업데이트
-Hello 이전 형식 (hello 공용 속성 ModulesUrl, ConfigurationFunction, SasToken, 또는 속성 포함) 자동으로 모든 설정은 toohello 현재 형식에 맞게 조정 하 고 이전과 마찬가지로 실행 합니다.
+## <a name="updating-from-the-previous-format"></a>이전 형식에서 업데이트
+이전 형식의 모든 설정(공용 속성 ModulesUrl, ConfigurationFunction, SasToken 또는 Properties 포함)은 현재 형식으로 자동 조정되며 이전과 같이 실행됩니다.
 
-스키마를 따르는 hello은 처럼 보이지만 어떤 hello 이전 설정 스키마입니다.
+다음 스키마는 이전 설정 스키마와 같습니다.
 
 ```json
 "settings": {
     "WMFVersion": "latest",
     "ModulesUrl": "https://UrlToZipContainingConfigurationScript.ps1.zip",
-    "SasToken": "SAS Token if ModulesUrl points tooprivate Azure Blob Storage",
+    "SasToken": "SAS Token if ModulesUrl points to private Azure Blob Storage",
     "ConfigurationFunction": "ConfigurationScript.ps1\\ConfigurationFunction",
     "Properties":  {
         "ParameterToConfigurationFunction1":  "Value1",
@@ -223,7 +223,7 @@ Hello 이전 형식 (hello 공용 속성 ModulesUrl, ConfigurationFunction, SasT
 }
 ```
 
-Hello 이전 형식 toohello 현재 형식에 맞게 변경 다음과 같습니다.
+다음은 현재 형식에 맞게 이전 형식을 조정하는 방법입니다.
 
 | 속성 이름 | 이전 스키마에 해당 |
 | --- | --- |
@@ -240,37 +240,37 @@ Hello 이전 형식 toohello 현재 형식에 맞게 변경 다음과 같습니�
 | protectedSettings.configurationDataUrlSasToken |protectedSettings.DataBlobUri의 SAS 토큰 |
 
 ## <a name="troubleshooting---error-code-1100"></a>문제 해결 - 오류 코드 1100
-오류 코드 1100 hello 사용자 입력 toohello DSC 확장에 문제가 있다는 것을 나타냅니다.
-이러한 오류의 hello 텍스트는 가변적이 고 변경 될 수 있습니다.
-다음은 몇 가지 발생할 수 있습니다 hello 오류와 해결 방법입니다.
+오류 코드 1100은 DSC 확장에 대한 사용자 입력에 문제가 있다는 것을 나타냅니다.
+이러한 오류의 텍스트는 변수이며 변경될 수 있습니다.
+다음은 발생할 수 있는 일부 오류와 해결 방법입니다.
 
 ### <a name="invalid-values"></a>잘못된 값
-"Privacy.dataCollection이 '{0}'입니다. hello만 가능한 값은 ', '사용' 및 '해제' ""WmfVersion는 ' {'이 (0). 유일하게 가능한 값은 … 및 'latest'"
+"Privacy.dataCollection이 '{0}'입니다. 유일하게 가능한 값은 '', 'Enable' 및 'Disable'" 이며 "WmfVersion은 '{0}'입니다. 유일하게 가능한 값은 … 및 'latest'"
 
 문제점: 제공된 값이 허용되지 않습니다.
 
-해결 방법: hello 잘못 된 값 tooa 유효한 값을 변경 합니다. Hello 세부 정보 섹션에서 hello 표를 참조 하세요.
+해결 방법: 잘못된 값을 올바른 값으로 변경합니다. 세부 정보 섹션의 표를 참조하세요.
 
 ### <a name="invalid-url"></a>잘못된 URL
 "ConfigurationData.url은 '{0}'입니다. 유효한 URL이 아닙니다." "DataBlobUri는 '{0}'입니다. 유효한 URL이 아닙니다." "Configuration.url이 '{0}'입니다. 유효한 URL이 아닙니다."
 
 문제점: 제공된 URL이 유효하지 않습니다.
 
-해결 방법: 제공된 모든 URL을 확인합니다. 모든 Url hello 확장 hello 원격 컴퓨터에서 액세스할 수 있는 toovalid 위치를 확인 하 고 있는지 확인 합니다.
+해결 방법: 제공된 모든 URL을 확인합니다. 모든 URL이 원격 컴퓨터의 확장 기능에서 액세스할 수 있는 올바른 위치인지 확인합니다.
 
 ### <a name="invalid-configurationargument-type"></a>잘못된 ConfigurationArgument 형식
 "잘못된 configurationArguments 형식 {0}입니다."
 
-문제: hello ConfigurationArguments 속성 tooa 해시 테이블 개체를 확인할 수 없습니다. 
+문제점: ConfigurationArguments 속성을 Hashtable 개체로 확인할 수 없습니다. 
 
-해결 방법: ConfigurationArguments 속성을 해시 테이블로 만듭니다. Hello 앞에 있는 예제에서 제공 하는 hello 형식을 따라야 합니다. 따옴표, 쉼표 및 중괄호를 확인합니다.
+해결 방법: ConfigurationArguments 속성을 해시 테이블로 만듭니다. 위의 예제에서 제공한 형식을 따릅니다. 따옴표, 쉼표 및 중괄호를 확인합니다.
 
 ### <a name="duplicate-configurationarguments"></a>중복 ConfigurationArguments
 "공용 및 보호된 configurationArguments에 중복 인수 '{0}'이(가) 있습니다."
 
-문제: 공용 설정에서 ConfigurationArguments hello hello ConfigurationArguments 보호 설정에 속성을 포함 hello로 이름이 같은 합니다.
+문제점: 공용 설정의 ConfigurationArguments 및 보호된 설정의 ConfigurationArguments에 동일한 이름의 속성이 포함되어 있습니다.
 
-해결 방법: hello 중복 된 속성 중 하나를 제거 합니다.
+해결 방법: 중복된 속성 중 하나를 제거합니다.
 
 ### <a name="missing-properties"></a>누락된 속성
 "Configuration.function을 사용하려면 configuration.url 또는 configuration.module을 지정해야 합니다."
@@ -289,15 +289,15 @@ Hello 이전 형식 toohello 현재 형식에 맞게 변경 다음과 같습니�
 
 해결 방법: 
 
-* Hello 누락 된 속성을 제공 합니다.
-* Hello 누락 된 속성이 되어야 하는 hello 속성을 제거 합니다.
+* 누락된 속성을 제공합니다.
+* 누락된 속성을 요구하는 속성을 제거합니다.
 
 ## <a name="next-steps"></a>다음 단계
-DSC에 대해 알아보고에 설정 하는 가상 컴퓨터 크기 [hello Azure DSC 확장을 사용 하 여 가상 컴퓨터 크기 조정 집합 사용 하 여](../../virtual-machine-scale-sets/virtual-machine-scale-sets-dsc.md)
+[Azure DSC 확장에 가상 컴퓨터 확장 집합 사용](../../virtual-machine-scale-sets/virtual-machine-scale-sets-dsc.md)에서 DSC 및 가상 컴퓨터 확장 집합에 대한 자세한 정보
 
 [DSC의 보안 자격 증명 관리](extensions-dsc-credentials.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)에서 자세한 내용을 참조하세요. 
 
-Hello Azure DSC 확장 처리기에 대 한 자세한 내용은 참조 하십시오. [소개 toohello Azure 필요한 상태 구성 확장 처리기](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다. 
+Azure DSC 확장 처리기에 대한 자세한 내용은 [Azure 필요한 상태 구성 확장 처리기 소개](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)를 참조하세요. 
 
-PowerShell DSC에 대 한 자세한 내용은 [hello PowerShell 설명서 센터를 방문](https://msdn.microsoft.com/powershell/dsc/overview)합니다. 
+PowerShell DSC에 대한 자세한 내용은 [PowerShell 설명서 센터를 방문하세요](https://msdn.microsoft.com/powershell/dsc/overview). 
 

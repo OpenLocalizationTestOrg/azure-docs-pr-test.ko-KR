@@ -1,5 +1,5 @@
 ---
-title: "Windows VM 확장 오류 aaaTroubleshooting | Microsoft Docs"
+title: "Windows VM 확장 오류 문제 해결 | Microsoft Docs"
 description: "Azure Windows VM 확장 오류 문제 해결에 대해 자세히 알아봅니다."
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 03/29/2016
 ms.author: kundanap
-ms.openlocfilehash: d24544743d9e0cb1a68ec9ab7718716f918054f8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4dba196e1b838f2092b30972fb070514bd2a4b25
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="troubleshooting-azure-windows-vm-extension-failures"></a>Azure Windows VM 확장 오류 문제 해결
 [!INCLUDE [virtual-machines-common-extensions-troubleshoot](../../../includes/virtual-machines-common-extensions-troubleshoot.md)]
 
 ## <a name="viewing-extension-status"></a>확장 상태 보기
-Azure Powershell에서 Azure Resource Manager 템플릿을 실행할 수 있습니다. Hello 템플릿을 실행 하 고 나면 Azure 리소스 탐색기 또는 hello 명령줄 도구에서 hello 확장 상태를 볼 수 있습니다.
+Azure Powershell에서 Azure Resource Manager 템플릿을 실행할 수 있습니다. 템플릿을 실행한 후 Azure 리소스 탐색기 또는 명령줄 도구에서 확장 상태를 볼 수 있습니다.
 
 다음은 예제입니다.
 
@@ -33,7 +33,7 @@ Azure PowerShell:
 
       Get-AzureRmVM -ResourceGroupName $RGName -Name $vmName -Status
 
-다음은 hello 샘플 출력이입니다.
+샘플 출력은 다음과 같습니다.
 
       Extensions:  {
       "ExtensionType": "Microsoft.Compute.CustomScriptExtension",
@@ -59,12 +59,12 @@ Azure PowerShell:
   ]
 
 ## <a name="troubleshooting-extension-failures"></a>확장 오류 문제 해결
-### <a name="re-running-hello-extension-on-hello-vm"></a>Hello VM에 확장 hello를 다시 실행합니다.
-Hello 사용자 지정 스크립트 확장을 사용 하 여 VM에서 스크립트를 실행 하는 경우에 오류가 있는 VM 만들었지만 hello 스크립트는 실패 했을 경우에 따라 실행할 수 있습니다. 이러한 conditons에서이 오류 로부터 방식으로 toorecover 권장 hello는 tooremove hello 확장 한 hello 서식 파일을 다시 실행 합니다.
-참고: 앞으로이 기능은 될 향상 된 tooremove hello hello 확장을 제거 하기 위해 필요 합니다.
+### <a name="re-running-the-extension-on-the-vm"></a>VM에서 확장 다시 실행
+사용자 지정 스크립트 확장을 사용하여 VM에서 스크립트를 실행하는 경우 때때로 VM이 성공적으로 만들어졌지만 스크립트가 실패하는 오류가 발생할 수 있습니다. 이러한 조건에서 이 오류를 복구하는 권장 방법은 확장을 제거하고 템플릿을 다시 실행하는 것입니다.
+참고: 이후에는 확장을 제거할 필요가 없도록 이 기능이 향상될 예정입니다.
 
-#### <a name="remove-hello-extension-from-azure-powershell"></a>Azure PowerShell에서 hello 확장 제거
+#### <a name="remove-the-extension-from-azure-powershell"></a>Azure Powershell에서 확장 제거
     Remove-AzureRmVMExtension -ResourceGroupName $RGName -VMName $vmName -Name "myCustomScriptExtension"
 
-Hello 확장 제거 되 면 hello 템플릿을 hello VM에서 다시 실행된 toorun hello 스크립트 수 있습니다.
+확장이 제거되면 템플릿을 다시 실행하여 VM에서 스크립트를 실행할 수 있습니다.
 

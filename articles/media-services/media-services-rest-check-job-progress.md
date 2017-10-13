@@ -1,6 +1,6 @@
 ---
-title: "REST API를 사용 하 여 aaaHow toocheck 작업 진행률 | Microsoft Docs"
-description: "Tootrack 진행 상황을 작업 하는 방법에 대해 알아봅니다."
+title: "REST API를 사용하여 작업 진행률을 확인하는 방법 | Microsoft 문서"
+description: "작업 진행률을 추적하는 방법에 대해 알아봅니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: 32f12c81422566d980a7200b1662a3cc3ebc39a8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fea4383e81f3ca21955252cf1d573f1b347b5a38
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="how-to-check-job-progress"></a>방법: 작업 진행 상태 확인
 > [!div class="op_single_selector"]
@@ -28,14 +28,14 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-작업을 실행 하면 일반적 방법을 tootrack 작업 진행 상황을 필요 합니다. Hello 작업의 상태 속성을 사용 하 여 hello 작업 상태를 알아볼 수 있습니다. Hello State 속성에 대 한 자세한 내용은 참조 하십시오. [Job 엔터티 속성](https://docs.microsoft.com/rest/api/media/operations/job#job_entity_properties)합니다.
+작업을 실행할 때 작업 진행 상태를 추적하는 방법이 종종 필요합니다. 작업의 상태 속성을 사용하여 작업 상태를 찾을 수 있습니다. 상태 속성에 대한 자세한 내용은 [Job 엔터티 속성](https://docs.microsoft.com/rest/api/media/operations/job#job_entity_properties)을 참조하세요.
 
-## <a name="connect-toomedia-services"></a>TooMedia 서비스 연결
+## <a name="connect-to-media-services"></a>미디어 서비스에 연결
 
-AMS API를 참조 하는 tooconnect toohello 방법에 대 한 내용은 [Azure AD 인증 액세스 hello Azure 미디어 서비스 API](media-services-use-aad-auth-to-access-ams-api.md)합니다. 
+AMS API에 연결하는 방법에 대한 자세한 내용은 [Azure AD 인증을 사용하여 Azure Media Services API 액세스](media-services-use-aad-auth-to-access-ams-api.md)를 참조하세요. 
 
 >[!NOTE]
->Toohttps://media.windows.net을 성공적으로 연결한 후 다른 Media Services URI를 지정 하는 301 리디렉션을 받게 됩니다. 후속 호출 toohello 해야 새 URI입니다.
+>https://media.windows.net에 연결하면 다른 미디어 서비스 URI를 지정하는 301 리디렉션을 받게 됩니다. 사용자는 새 URI에 대한 후속 호출을 해야 합니다.
 
 ## <a name="check-job-progress"></a>작업 진행 상태 확인
 
@@ -66,7 +66,7 @@ AMS API를 참조 하는 tooconnect toohello 방법에 대 한 내용은 [Azure 
     DataServiceVersion: 3.0;
     Strict-Transport-Security: max-age=31536000; includeSubDomains
 
-    {"odata.metadata":"https://media.windows.net/api/$metadata#Jobs","value":[{"Id":"nb:jid:UUID:f3c43f94-327f-2347-90bb-3bf79f8559f1","Name":"Encoding BigBuckBunny into tooH264 Adaptive Bitrate MP4 Set 720p","Created":"2015-02-11T01:46:08.897","LastModified":"2015-02-11T01:46:08.897","EndTime":null,"Priority":0,"RunningDuration":0.0,"StartTime":"2015-02-11T01:46:16.58","State":2,"TemplateId":null,"JobNotificationSubscriptions":[]}]} 
+    {"odata.metadata":"https://media.windows.net/api/$metadata#Jobs","value":[{"Id":"nb:jid:UUID:f3c43f94-327f-2347-90bb-3bf79f8559f1","Name":"Encoding BigBuckBunny into to H264 Adaptive Bitrate MP4 Set 720p","Created":"2015-02-11T01:46:08.897","LastModified":"2015-02-11T01:46:08.897","EndTime":null,"Priority":0,"RunningDuration":0.0,"StartTime":"2015-02-11T01:46:16.58","State":2,"TemplateId":null,"JobNotificationSubscriptions":[]}]} 
 
 
 ## <a name="media-services-learning-paths"></a>미디어 서비스 학습 경로

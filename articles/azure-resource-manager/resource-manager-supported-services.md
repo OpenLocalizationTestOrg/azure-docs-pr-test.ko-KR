@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure 리소스 공급자 및 리소스 종류 | Microsoft Docs"
-description: "리소스 관리자, 스키마 및 사용 가능한 API 버전을 지 원하는 hello 리소스 공급자 및 hello 리소스를 호스팅할 수 있는 hello 영역에 설명 합니다."
+title: "Azure 리소스 공급자 및 리소스 종류 | Microsoft Docs"
+description: "리소스 관리자, 스키마, 제공되는 API 버전 및 리소스를 호스팅할 수 있는 지역을 지원하는 리소스 공급자에 대해 설명합니다."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: tomfitz
-ms.openlocfilehash: 23db1d3808a20166f3b44ec801e1bcc46fbb9bd3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6a9128f45d4199404019cee594842d59c7f1aaf3
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="resource-providers-and-types"></a>리소스 공급자 및 형식
 
-리소스를 배포할 때는 hello 리소스 공급자 및 형식에 대 한 tooretrieve 정보가 자주 필요 합니다. 이 문서에서는 다음을 설명합니다.
+리소스를 배포할 때는 리소스 공급자 및 형식에 대한 정보를 자주 검색하게 됩니다. 이 문서에서는 다음을 설명합니다.
 
 * Azure의 모든 리소스 공급자 보기
 * 리소스 공급자의 등록 상태 확인
@@ -31,11 +31,11 @@ ms.lasthandoff: 10/06/2017
 * 리소스 종류에 대한 유효한 위치 보기
 * 리소스 종류에 대한 유효한 API 버전 보기
 
-Hello 포털, PowerShell 또는 Azure CLI를 통해 이러한 단계를 수행할 수 있습니다.
+이러한 단계는 포털, PowerShell 또는 Azure CLI를 통해 수행할 수 있습니다.
 
 ## <a name="powershell"></a>PowerShell
 
-toosee Azure 및 구독에 대 한 hello 등록 상태에서 모든 리소스 공급자를 사용합니다.
+Azure의 모든 리소스 공급자와 구독에 대한 등록 상태를 보려면 다음을 사용합니다.
 
 ```powershell
 Get-AzureRmResourceProvider -ListAvailable | Select-Object ProviderNamespace, RegistrationState
@@ -53,7 +53,7 @@ Microsoft.CognitiveServices      Registered
 ...
 ```
 
-리소스 공급자 등록 중 hello 리소스 공급자에 구독 toowork을 구성 합니다. 등록에 대 한 hello 범위 항상 hello 구독입니다. 기본적으로 대부분의 리소스 공급자는 자동으로 등록됩니다. 할 수 있습니다 toomanually 일부 리소스 공급자를 등록 합니다. 리소스 공급자 tooregister 있어야 권한 tooperform hello `/register/action` hello 리소스 공급자에 대 한 작업입니다. 이 작업은 참가자 hello 및 소유자 역할에 포함 됩니다.
+리소스 공급자를 등록하면 구독이 리소스 공급자에서 작동하도록 구성됩니다. 등록 범위는 항상 해당 구독입니다. 기본적으로 대부분의 리소스 공급자는 자동으로 등록됩니다. 그러나 일부 리소스 공급자는 수동으로 등록해야 할 수도 있습니다. 리소스 공급자를 등록하려면 리소스 공급자에 대해 `/register/action` 작업을 수행할 권한이 있어야 합니다. 이 작업은 참가자 및 소유자 역할에 포함되어 있습니다.
 
 ```powershell
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch
@@ -70,7 +70,7 @@ Locations         : {West Europe, East US, East US 2, West US...}
 
 구독에 리소스 공급자의 리소스 종류가 아직 포함되어 있으면 해당 리소스 공급자를 등록 취소할 수 없습니다.
 
-특정 리소스 공급자를 사용 하 여 toosee 정보:
+특정 리소스 공급자에 대한 정보를 보려면 다음을 사용합니다.
 
 ```powershell
 Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch
@@ -87,7 +87,7 @@ Locations         : {West Europe, East US, East US 2, West US...}
 ...
 ```
 
-리소스 공급자에 대 한 toosee hello 리소스 형식을 사용 합니다.
+리소스 공급자에 대한 리소스 종류를 보려면 다음을 사용합니다.
 
 ```powershell
 (Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch).ResourceTypes.ResourceTypeName
@@ -102,9 +102,9 @@ locations
 locations/quotas
 ```
 
-hello API 버전 tooa 버전의 hello 리소스 공급자가 릴리스되는 REST API 작업은 해당 합니다. 리소스 공급자를 통해 새로운 기능, 새 버전의 hello REST API를 해제 합니다. 
+API 버전은 리소스 공급자가 릴리스하는 REST API 작업의 버전에 해당합니다. 리소스 공급자는 새 기능을 사용하도록 설정할 때 새 버전의 REST API를 릴리스합니다. 
 
-리소스 유형에 대 한 tooget hello 사용 가능한 API 버전을 사용 합니다.
+리소스 종류의 사용 가능한 API 버전을 가져오려면 다음을 사용합니다.
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch).ResourceTypes | Where-Object ResourceTypeName -eq batchAccounts).ApiVersions
@@ -120,9 +120,9 @@ hello API 버전 tooa 버전의 hello 리소스 공급자가 릴리스되는 RES
 2015-07-01
 ```
 
-모든 지역에서 리소스 관리자가 지원 되지만 hello 리소스 배포한 모든 지역에서 지원 되지 않는 경우. 또한 hello 리소스를 지 원하는 일부 영역을 사용 하지 못하게 하는 구독에 제한 사항이 있을 수 있습니다. 
+리소스 관리자는 모든 지역에서 지원되지만 배포한 리소스는 모든 지역에서 지원되지 않을 수 있습니다. 또한 해당 리소스를 지원하는 일부 지역을 사용하지 못하도록 구독에 대한 제한 사항이 있을 수 있습니다. 
 
-리소스 종류에 대 한 tooget hello 지원 위치를 사용 합니다.
+리소스 종류의 지원되는 위치를 가져오려면 다음을 사용합니다.
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch).ResourceTypes | Where-Object ResourceTypeName -eq batchAccounts).Locations
@@ -139,7 +139,7 @@ West US
 ```
 
 ## <a name="azure-cli"></a>Azure CLI
-toosee Azure 및 구독에 대 한 hello 등록 상태에서 모든 리소스 공급자를 사용합니다.
+Azure의 모든 리소스 공급자와 구독에 대한 등록 상태를 보려면 다음을 사용합니다.
 
 ```azurecli
 az provider list --query "[].{Provider:namespace, Status:registrationState}" --out table
@@ -157,7 +157,7 @@ Microsoft.CognitiveServices      Registered
 ...
 ```
 
-리소스 공급자 등록 중 hello 리소스 공급자에 구독 toowork을 구성 합니다. 등록에 대 한 hello 범위 항상 hello 구독입니다. 기본적으로 대부분의 리소스 공급자는 자동으로 등록됩니다. 할 수 있습니다 toomanually 일부 리소스 공급자를 등록 합니다. 리소스 공급자 tooregister 있어야 권한 tooperform hello `/register/action` hello 리소스 공급자에 대 한 작업입니다. 이 작업은 참가자 hello 및 소유자 역할에 포함 됩니다.
+리소스 공급자를 등록하면 구독이 리소스 공급자에서 작동하도록 구성됩니다. 등록 범위는 항상 해당 구독입니다. 기본적으로 대부분의 리소스 공급자는 자동으로 등록됩니다. 그러나 일부 리소스 공급자는 수동으로 등록해야 할 수도 있습니다. 리소스 공급자를 등록하려면 리소스 공급자에 대해 `/register/action` 작업을 수행할 권한이 있어야 합니다. 이 작업은 참가자 및 소유자 역할에 포함되어 있습니다.
 
 ```azurecli
 az provider register --namespace Microsoft.Batch
@@ -167,7 +167,7 @@ az provider register --namespace Microsoft.Batch
 
 구독에 리소스 공급자의 리소스 종류가 아직 포함되어 있으면 해당 리소스 공급자를 등록 취소할 수 없습니다.
 
-특정 리소스 공급자를 사용 하 여 toosee 정보:
+특정 리소스 공급자에 대한 정보를 보려면 다음을 사용합니다.
 
 ```azurecli
 az provider show --namespace Microsoft.Batch
@@ -186,7 +186,7 @@ az provider show --namespace Microsoft.Batch
 }
 ```
 
-리소스 공급자에 대 한 toosee hello 리소스 형식을 사용 합니다.
+리소스 공급자에 대한 리소스 종류를 보려면 다음을 사용합니다.
 
 ```azurecli
 az provider show --namespace Microsoft.Batch --query "resourceTypes[*].resourceType" --out table
@@ -203,9 +203,9 @@ locations
 locations/quotas
 ```
 
-hello API 버전 tooa 버전의 hello 리소스 공급자가 릴리스되는 REST API 작업은 해당 합니다. 리소스 공급자를 통해 새로운 기능, 새 버전의 hello REST API를 해제 합니다. 
+API 버전은 리소스 공급자가 릴리스하는 REST API 작업의 버전에 해당합니다. 리소스 공급자는 새 기능을 사용하도록 설정할 때 새 버전의 REST API를 릴리스합니다. 
 
-리소스 유형에 대 한 tooget hello 사용 가능한 API 버전을 사용 합니다.
+리소스 종류의 사용 가능한 API 버전을 가져오려면 다음을 사용합니다.
 
 ```azurecli
 az provider show --namespace Microsoft.Batch --query "resourceTypes[?resourceType=='batchAccounts'].apiVersions | [0]" --out table
@@ -223,9 +223,9 @@ Result
 2015-07-01
 ```
 
-모든 지역에서 리소스 관리자가 지원 되지만 hello 리소스 배포한 모든 지역에서 지원 되지 않는 경우. 또한 hello 리소스를 지 원하는 일부 영역을 사용 하지 못하게 하는 구독에 제한 사항이 있을 수 있습니다. 
+리소스 관리자는 모든 지역에서 지원되지만 배포한 리소스는 모든 지역에서 지원되지 않을 수 있습니다. 또한 해당 리소스를 지원하는 일부 지역을 사용하지 못하도록 구독에 대한 제한 사항이 있을 수 있습니다. 
 
-리소스 종류에 대 한 tooget hello 지원 위치를 사용 합니다.
+리소스 종류의 지원되는 위치를 가져오려면 다음을 사용합니다.
 
 ```azurecli
 az provider show --namespace Microsoft.Batch --query "resourceTypes[?resourceType=='batchAccounts'].locations | [0]" --out table
@@ -245,29 +245,29 @@ West US
 
 ## <a name="portal"></a>포털
 
-Azure 및 구독에 대 한 hello 등록 상태에서 모든 리소스 공급자 선택 toosee **구독**합니다.
+Azure의 모든 리소스 공급자 및 구독에 대한 등록 상태를 보려면 **구독**을 선택합니다.
 
 ![구독 선택](./media/resource-manager-supported-services/select-subscriptions.png)
 
-Hello 구독 tooview를 선택 합니다.
+보려는 구독을 선택합니다.
 
 ![구독 지정](./media/resource-manager-supported-services/subscription.png)
 
-선택 **리소스 공급자** 및 사용 가능한 리소스 공급자의 뷰 hello 목록입니다.
+**리소스 공급자**를 선택하고 사용 가능한 리소스 공급자의 목록을 봅니다.
 
 ![리소스 공급자 보기](./media/resource-manager-supported-services/show-resource-providers.png)
 
-리소스 공급자 등록 중 hello 리소스 공급자에 구독 toowork을 구성 합니다. 등록에 대 한 hello 범위 항상 hello 구독입니다. 기본적으로 대부분의 리소스 공급자는 자동으로 등록됩니다. 할 수 있습니다 toomanually 일부 리소스 공급자를 등록 합니다. 리소스 공급자 tooregister 있어야 권한 tooperform hello `/register/action` hello 리소스 공급자에 대 한 작업입니다. 이 작업은 참가자 hello 및 소유자 역할에 포함 됩니다. 리소스 공급자 tooregister 선택 **등록**합니다.
+리소스 공급자를 등록하면 구독이 리소스 공급자에서 작동하도록 구성됩니다. 등록 범위는 항상 해당 구독입니다. 기본적으로 대부분의 리소스 공급자는 자동으로 등록됩니다. 그러나 일부 리소스 공급자는 수동으로 등록해야 할 수도 있습니다. 리소스 공급자를 등록하려면 리소스 공급자에 대해 `/register/action` 작업을 수행할 권한이 있어야 합니다. 이 작업은 참가자 및 소유자 역할에 포함되어 있습니다. 리소스 공급자를 등록하려면 **등록**을 선택합니다.
 
 ![리소스 공급자 등록](./media/resource-manager-supported-services/register-provider.png)
 
 구독에 리소스 공급자의 리소스 종류가 아직 포함되어 있으면 해당 리소스 공급자를 등록 취소할 수 없습니다.
 
-특정 리소스 공급자에 대 한 정보 toosee 선택 **더 많은 서비스**합니다.
+특정 리소스 공급자에 대한 정보를 보려면 **추가 서비스**를 선택합니다.
 
 ![추가 서비스 선택](./media/resource-manager-supported-services/more-services.png)
 
-검색할 **리소스 탐색기** hello 사용 가능한 옵션에서 선택 합니다.
+**리소스 탐색기**를 검색하고 사용 가능한 옵션 중에서 선택합니다.
 
 ![리소스 탐색기 선택](./media/resource-manager-supported-services/select-resource-explorer.png)
 
@@ -275,20 +275,20 @@ Hello 구독 tooview를 선택 합니다.
 
 ![공급자 선택](./media/resource-manager-supported-services/select-providers.png)
 
-리소스 공급자 선택 hello 및 리소스 tooview 한다는 것을 입력 합니다.
+보려는 리소스 공급자 및 리소스 종류를 선택합니다.
 
 ![리소스 종류 선택](./media/resource-manager-supported-services/select-resource-type.png)
 
-모든 지역에서 리소스 관리자가 지원 되지만 hello 리소스 배포한 모든 지역에서 지원 되지 않는 경우. 또한 hello 리소스를 지 원하는 일부 영역을 사용 하지 못하게 하는 구독에 제한 사항이 있을 수 있습니다. hello 리소스 탐색기 hello 리소스 유형에 대 한 유효한 위치가 표시 됩니다.
+리소스 관리자는 모든 지역에서 지원되지만 배포한 리소스는 모든 지역에서 지원되지 않을 수 있습니다. 또한 해당 리소스를 지원하는 일부 지역을 사용하지 못하도록 구독에 대한 제한 사항이 있을 수 있습니다. 리소스 탐색기에는 리소스 종류에 대한 유효한 위치가 표시됩니다.
 
 ![위치 표시](./media/resource-manager-supported-services/show-locations.png)
 
-hello API 버전 tooa 버전의 hello 리소스 공급자가 릴리스되는 REST API 작업은 해당 합니다. 리소스 공급자를 통해 새로운 기능, 새 버전의 hello REST API를 해제 합니다. 리소스 탐색기 hello hello 리소스 종류에 대해 유효한 API 버전을 표시합니다.
+API 버전은 리소스 공급자가 릴리스하는 REST API 작업의 버전에 해당합니다. 리소스 공급자는 새 기능을 사용하도록 설정할 때 새 버전의 REST API를 릴리스합니다. 리소스 탐색기에는 리소스 종류에 대한 유효한 API 버전이 표시됩니다.
 
 ![API 버전 표시](./media/resource-manager-supported-services/show-api-versions.png)
 
 ## <a name="next-steps"></a>다음 단계
-* 리소스 관리자 템플릿을 만드는 방법에 대해 toolearn 참조 [제작 Azure 리소스 관리자 템플릿을](resource-group-authoring-templates.md)합니다.
-* 리소스를 배포 하는 방법에 대 한 toolearn 참조 [Azure 리소스 관리자 템플릿 사용 하 여 응용 프로그램 배포](resource-group-template-deploy.md)합니다.
-* 리소스 공급자에 대 한 tooview hello 작업 참조 [Azure REST API](/rest/api/)합니다.
+* 리소스 관리자 템플릿을 만드는 방법에 대한 자세한 내용은 [Azure 리소스 관리자 템플릿 작성](resource-group-authoring-templates.md)을 참조하세요.
+* 리소스 배포에 대한 자세한 내용은 [Azure 리소스 관리자 템플릿을 사용하여 응용 프로그램 배포](resource-group-template-deploy.md)를 참조하세요.
+* 리소스 공급자에 대한 작업을 보려면 [Azure REST API](/rest/api/)를 참조하세요.
 

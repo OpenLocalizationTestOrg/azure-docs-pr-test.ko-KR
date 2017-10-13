@@ -1,6 +1,6 @@
 ---
-title: "azure-aaaControl 라우팅 및 가상 어플라이언스 템플릿 | Microsoft Docs"
-description: "자세한 내용은 방법 toocontrol 라우팅 및 가상 어플라이언스 Azure 리소스 관리자 템플릿을 사용 하 여 합니다."
+title: "Azure에서 라우팅 및 가상 어플라이언스 제어 - 템플릿 | Microsoft Docs"
+description: "Azure Resource Manager 템플릿을 사용하여 라우팅 및 가상 어플라이언스 제어 방법 알아보기"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
-ms.openlocfilehash: 781340593541784d2d9772d310c041ad4a5c3101
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b2c962d5449d18b51cfd84b0e1992695b54d1c48
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-user-defined-routes-udr-using-a-template"></a>템플릿을 사용하여 사용자 정의 경로(UDR) 만들기
 
@@ -31,14 +31,14 @@ ms.lasthandoff: 10/06/2017
 > * [CLI(클래식)](virtual-network-create-udr-classic-cli.md)
 
 > [!IMPORTANT]
-> Azure 리소스를 사용 하기 전에 Azure에 현재 두 가지 배포 모델에 중요 한 toounderstand: Azure 리소스 관리자 및 기본 합니다. Azure 리소스로 작업하기 전에 [배포 모델 및 도구](../azure-resource-manager/resource-manager-deployment-model.md) 를 이해해야 합니다. 이 문서의 hello 위쪽 hello 탭을 클릭 하 여 다양 한 도구에 대 한 hello 설명서를 볼 수 있습니다. 이 문서에서는 hello 리소스 관리자 배포 모델에 설명 합니다. 
+> Azure 리소스로 작업하기 전에 Azure에는 현재 Azure Resource Manager와 클래식 모드의 두 가지 배포 모델이 있다는 것을 이해해야 합니다. Azure 리소스로 작업하기 전에 [배포 모델 및 도구](../azure-resource-manager/resource-manager-deployment-model.md) 를 이해해야 합니다. 이 문서의 윗부분에 있는 탭을 클릭하여 다양한 도구에 대한 설명서를 볼 수 있습니다. 이 문서에서는 Resource Manager 배포 모델에 대해 설명합니다. 
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
 ## <a name="udr-resources-in-a-template-file"></a>템플릿 파일의 UDR 리소스
-보고 하 고 hello 다운로드 [샘플 템플릿](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR)합니다.
+[샘플 템플릿](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR)을 보고 다운로드할 수 있습니다.
 
-hello 다음 단원에서는 hello의 hello 정의 hello에 프런트 엔드 UDR **azuredeploy vnet-nsg udr.json** hello 시나리오에 대 한 파일:
+다음 섹션에서는 시나리오에 대한 **azuredeploy-vnet-nsg-udr.json** 파일에 있는 프런트 엔드 UDR의 정의를 보여줍니다.
 
     "apiVersion": "2015-06-15",
     "type": "Microsoft.Network/routeTables",
@@ -59,7 +59,7 @@ hello 다음 단원에서는 hello의 hello 정의 hello에 프런트 엔드 UDR
         }
       ]
 
-tooassociate hello UDR toohello 프런트 엔드 서브넷에 hello 템플릿과 UDR hello에 대 한 hello 참조 id가 사용 하 여 toochange hello 서브넷 정의 해야합니다.
+프런트 엔드 서브넷에 UDR을 연결하려면 템플릿에서 서브넷 정의를 변경하고 UDR에 대한 참조 ID를 사용해야 합니다.
 
     "subnets": [
         "name": "[parameters('frontEndSubnetName')]",
@@ -73,9 +73,9 @@ tooassociate hello UDR toohello 프런트 엔드 서브넷에 hello 템플릿과
           }
         },
 
-Hello 템플릿에서 hello 백 엔드 NSG와 hello 백 엔드 서브넷에 대해 수행 되 고 동일한 hello를 확인 합니다.
+템플릿의 백 엔드 NSG 및 백 엔드 서브넷에 대해 동일한 작업이 수행됩니다.
 
-또한 해야 tooensure 해당 hello **FW1** VM에 hello IP hello 사용된 tooreceive 고 패킷을 전달 될 NIC에서 사용 하도록 설정 하는 속성을 전달 합니다. 위의 hello 시나리오에 따라 hello azuredeploy-nsg-udr.json 파일에 FW1에 대 한 NIC hello 하는 hello 섹션 아래의 hello 정의 보여 줍니다.
+**FW1** VM에 NIC에 대해 설정된 패킷 수신 및 전달에 사용할 IP 전달 속성이 있는지도 확인해야 합니다. 아래 섹션에서는 위의 시나리오를 기반으로 azuredeploy-nsg-udr.json 파일에 있는 FW1에 대한 NIC의 정의를 보여줍니다.
 
     "apiVersion": "2015-06-15",
     "type": "Microsoft.Network/networkInterfaces",
@@ -111,17 +111,17 @@ Hello 템플릿에서 hello 백 엔드 NSG와 hello 백 엔드 서브넷에 대�
       "count": "[parameters('fwCount')]"
     }
 
-## <a name="deploy-hello-template-by-using-click-toodeploy"></a>Hello 템플릿을 사용 하 여 배포 toodeploy 클릭
-hello 공용 저장소에서 사용할 수 있는 hello 샘플 템플릿 hello 기본 사용 되는 값 toogenerate hello 위에서 언급 한 시나리오를 포함 하는 매개 변수 파일을 사용 합니다. toodeploy toodeploy, 클릭 하 여 사용 하 여이 서식 파일에 따라 [이 링크](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR), 클릭 **tooAzure 배포**hello 기본 매개 변수 값, 필요한 경우 바꾼 hello 포털의 hello 지침을 따릅니다.
+## <a name="deploy-the-template-by-using-click-to-deploy"></a>클릭하여 배포하는 방식으로 템플릿 배포
+공용 저장소에서 사용할 수 있는 샘플 템플릿은 위에 설명된 시나리오를 생성하는 데 사용된 기본값을 포함하는 매개 변수 파일을 사용합니다. 클릭하여 배포하는 방식으로 이 템플릿을 배포하려면 [이 링크](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR)에 따라 **Azure에 배포**를 클릭하고 필요한 경우 기본 매개 변수 값을 대체하고 포털의 지침을 따릅니다.
 
-1. Azure PowerShell을 처음 사용 하는 경우 참조 [어떻게 tooInstall 및 Azure PowerShell 구성](/powershell/azure/overview) 모든 hello 방식으로 toohello toosign를 Azure로 끝나고 구독을 선택 하는 hello 지침을 따릅니다.
-2. 다음 명령은 toocreate hello 리소스 그룹을 실행 합니다.
+1. Azure PowerShell을 처음 사용하는 경우 [Azure PowerShell을 설치 및 구성하는 방법](/powershell/azure/overview) 을 참조하고 지침을 끝까지 따르면서 Azure에 로그인하고 구독을 선택합니다.
+2. 다음 명령을 실행하여 리소스 그룹을 만듭니다.
 
     ```powershell
     New-AzureRmResourceGroup -Name TestRG -Location westus
     ```
 
-3. 다음 명령 toodeploy hello 템플릿이 hello를 실행 합니다.
+3. 다음 명령을 실행하여 템플릿을 배포합니다.
 
     ```powershell
     New-AzureRmResourceGroupDeployment -Name DeployUDR -ResourceGroupName TestRG `
@@ -171,22 +171,22 @@ hello 공용 저장소에서 사용할 수 있는 hello 샘플 템플릿 hello �
 
         ResourceId        : /subscriptions/[Subscription Id]/resourceGroups/TestRG
 
-## <a name="deploy-hello-template-by-using-hello-azure-cli"></a>Hello Azure CLI를 사용 하 여 hello 서식 파일을 배포 합니다.
+## <a name="deploy-the-template-by-using-the-azure-cli"></a>Azure CLI를 사용하여 템플릿 배포
 
-hello Azure CLI, 단계를 수행 하는 전체 hello 사용 하 여 toodeploy hello ARM 템플릿:
+Azure CLI를 사용하여 ARM 템플릿을 배포하려면 다음 단계를 완료합니다.
 
-1. Azure CLI 처음 사용 하는 경우 참조 [설치 및 구성 hello Azure CLI](../cli-install-nodejs.md) Azure 계정 및 구독을 선택 하면 toohello 포인트 hello 지침을 따릅니다.
-2. Hello 명령 tooswitch tooResource 관리자 모드를 다음을 실행 합니다.
+1. Azure CLI를 처음 사용하는 경우 [Azure CLI 설치 및 구성](../cli-install-nodejs.md)을 참조하고 Azure 계정 및 구독을 선택하는 부분까지 관련 지침을 따릅니다.
+2. 다음 명령을 실행하여 Resource Manager 모드로 전환합니다.
 
     ```azurecli
     azure config mode arm
     ```
 
-    다음은 위의 hello 명령에 대 한 예상 hello 출력이입니다.
+    다음은 위의 명령에 대해 예상된 출력입니다.
 
         info:    New mode is arm
 
-3. 브라우저에서 이동 너무**https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**hello json 파일의 hello 내용을 복사한에 새 파일에 붙여 넣습니다 프로그램 컴퓨터입니다. 이 시나리오에서는 있습니다 것 수 값을 복사할 hello 라는 tooa 파일 아래 **c:\udr\azuredeploy.parameters.json**합니다.
+3. 브라우저에서 **https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**으로 이동하고 json 파일의 내용을 복사하여 컴퓨터에 새 파일로 붙여넣습니다. 이 시나리오의 경우 아래 값을 **c:\udr\azuredeploy.parameters.json**이라는 파일로 복사합니다.
 
     ```json
         {
@@ -206,7 +206,7 @@ hello Azure CLI, 단계를 수행 하는 전체 hello 사용 하 여 toodeploy h
         }
     ```
 
-4. 다음 명령을 toodeploy hello 템플릿 및 매개 변수 파일 다운로드 하 고 위에서 수정를 사용 하 여 새 VNet을 hello hello를 실행 합니다.
+4. 위에서 다운로드하고 수정한 템플릿 및 매개 변수를 사용하여 새 VNet을 배포하기 위해 다음 명령을 실행합니다.
 
     ```azurecli
     azure group create -n TestRG -l westus --template-uri 'https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.json' -e 'c:\udr\azuredeploy.parameters.json'
@@ -229,7 +229,7 @@ hello Azure CLI, 단계를 수행 하는 전체 hello 사용 하 여 toodeploy h
         data:    
         info:    group create command OK
 
-5. Hello hello 새 리소스 그룹에서 만든 명령 tooview hello 리소스가 다음을 실행 합니다.
+5. 다음 명령을 실행하여 새 리소스 그룹에 생성된 리소스를 확인합니다.
 
     ```azurecli
     azure group show TestRG
@@ -239,7 +239,7 @@ hello Azure CLI, 단계를 수행 하는 전체 hello 사용 하 여 toodeploy h
 
             info:    Executing command group show
             info:    Listing resource groups
-            info:    Listing resources for hello group
+            info:    Listing resources for the group
             data:    Id:                  /subscriptions/[Subscription Id]/resourceGroups/TestRG
             data:    Name:                TestRG
             data:    Location:            westus
@@ -404,5 +404,5 @@ hello Azure CLI, 단계를 수행 하는 전체 hello 사용 하 여 toodeploy h
             info:    group show command OK
 
 > [!TIP]
-> 모든 hello 리소스, 표시 되지 않으면 실행 hello `azure group deployment show` hello 배포의 상태를 프로 비전 명령을 tooensure hello는 *성공*합니다.
+> 일부 리소스가 표시되지 않으면 `azure group deployment show` 명령을 실행하여 배포의 프로비전 상태가 *성공*인지 확인합니다.
 > 

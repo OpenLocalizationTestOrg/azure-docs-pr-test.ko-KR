@@ -1,6 +1,6 @@
 ---
-title: "Azure 미디어 분석 OCR aaaDigitize 텍스트 | Microsoft Docs"
-description: "Azure 미디어 분석 OCR (광학 인식)에 사용할 수 있게 하면 비디오 파일의 텍스트 콘텐츠 tooconvert 검색 가능한 디지털 편집 가능한 텍스트입니다.  이렇게 하면 의미 있는 메타 데이터에서 미디어의 hello 비디오 신호 tooautomate hello 추출 있습니다."
+title: "Azure 미디어 분석 OCR로 텍스트 디지털화 | Microsoft Docs"
+description: "Azure 미디어 분석 OCR(광학 문자 인식)을 사용하면 비디오 파일의 텍스트 콘텐츠를 편집 및 검색 가능한 디지털 텍스트로 변환할 수 있습니다.  이 방법을 사용하면 미디어의 비디오 신호에서 의미 있는 메타데이터를 자동으로 추출할 수 있습니다."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,40 +14,40 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako
-ms.openlocfilehash: 0476c3ba3942b2c5182a34a429909adbf5c75ac9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 43f5b3a9bbec243e668c79702045094fcfedbdda
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="use-azure-media-analytics-tooconvert-text-content-in-video-files-into-digital-text"></a>Azure 미디어 분석 tooconvert 텍스트 콘텐츠를 사용 하 여 디지털 텍스트로 비디오 파일에서
+# <a name="use-azure-media-analytics-to-convert-text-content-in-video-files-into-digital-text"></a>Azure 미디어 분석을 사용하여 비디오 파일의 텍스트 콘텐츠를 디지털 텍스트로 변환
 ## <a name="overview"></a>개요
-비디오 파일에서 콘텐츠 tooextract 텍스트 필요 하 고 검색 가능한 디지털 텍스트는 편집 가능한를 생성 하는 경우에 Azure 미디어 분석 OCR (광학 인식)를 사용 해야 합니다. 이 Azure 미디어 프로세서는 비디오 파일의 텍스트 콘텐츠를 검색하고 사용할 수 있는 텍스트 파일을 생성합니다. OCR 있습니다 tooautomate hello 의미 있는 메타 데이터에서에서 추출을 중인 미디어의 hello 비디오 신호를 수 있습니다.
+비디오 파일에서 텍스트 콘텐츠를 추출하고 편집 및 검색 가능한 디지털 텍스트를 생성해야 할 경우 Azure 미디어 분석 OCR(광학 문자 인식)을 사용하는 것이 좋습니다. 이 Azure 미디어 프로세서는 비디오 파일의 텍스트 콘텐츠를 검색하고 사용할 수 있는 텍스트 파일을 생성합니다. OCR을 사용하면 미디어의 비디오 신호에서 의미 있는 메타데이터를 자동으로 추출할 수 있습니다.
 
-함께에서 함께 사용 하면 검색 엔진 쉽게 텍스트가 미디어 인덱스 및 콘텐츠 hello 검색 기능을 향상 시킬 수 있습니다 됩니다. 이러한 방식은 비디오 녹화 또는 슬라이드 쇼 프레젠테이션의 화면 캡처와 같이 텍스트가 풍부한 비디오에서 특히 유용합니다. hello Azure OCR 미디어 프로세서 디지털 텍스트에 대해 최적화 되어 있습니다.
+검색 엔진과 함께 사용할 경우 텍스트에 따라 미디어를 쉽게 인덱싱하고 콘텐츠 검색 기능을 향상할 수 있습니다. 이러한 방식은 비디오 녹화 또는 슬라이드 쇼 프레젠테이션의 화면 캡처와 같이 텍스트가 풍부한 비디오에서 특히 유용합니다. Azure OCR 미디어 프로세서는 디지털 텍스트에 맞게 최적화됩니다.
 
-hello **Azure 미디어 OCR** 미디어 프로세서는 현재 미리 보기로 합니다.
+**Azure 미디어 OCR** 미디어 프로세서는 현재 미리 보기로 제공됩니다.
 
-이 항목에 대 한 세부 정보를 제공 **Azure 미디어 OCR** 표시 방법을 toouse Media Services SDK for.NET으로 합니다. 추가 정보 및 예제에 대해서는 [이 블로그](https://azure.microsoft.com/blog/announcing-video-ocr-public-preview-new-config/)를 참조하세요.
+이 토픽은 **Azure Media OCR** 에 대한 세부 정보 및 .NET용 Media Services SDK와 함께 사용하는 방법을 보여 줍니다. 추가 정보 및 예제에 대해서는 [이 블로그](https://azure.microsoft.com/blog/announcing-video-ocr-public-preview-new-config/)를 참조하세요.
 
 ## <a name="ocr-input-files"></a>OCR 입력 파일
-동영상 파일입니다. 현재 형식에 따라 hello 지원 됩니다: MP4, MOV, 및 WMV입니다.
+동영상 파일입니다. 현재 MP4, MOV 및 WMV 형식이 지원됩니다.
 
 ## <a name="task-configuration"></a>작업 구성
 작업 구성(사전 설정) **Azure 미디어 OCR**로 작업을 만들 때에는 JSON 또는 XML을 사용하여 구성 사전 설정을 지정해야 합니다. 
 
 >[!NOTE]
->hello OCR 엔진에만 두 높이/너비에서 유효한 입력으로 최소 40 픽셀 toomaximum 32000 (픽셀) 사용 하 여 프로그램 이미지 영역이 됩니다.
+>OCR 엔진은 높이/너비의 유효한 입력으로 최소 40픽셀에서 최대 32000픽셀의 이미지 영역만 차지합니다.
 >
 
 ### <a name="attribute-descriptions"></a>특성 설명
 | 특성 이름 | 설명 |
 | --- | --- |
-|AdvancedOutput| AdvancedOutput tootrue로 설정 하면 모든 단일 단어 (추가 toophrases 및 지역)에 대 한 위치 데이터 hello JSON 출력에 포함 됩니다. Toosee 하지 않을 경우 이러한 세부 정보 집합 hello toofalse를 플래그입니다. hello 기본값은 false입니다. 자세한 내용은 [이 블로그](https://azure.microsoft.com/blog/azure-media-ocr-simplified-output/)를 참조하세요.|
-| 언어 |(선택 사항) 어떤 toolook에 대 한 텍스트의 hello 언어에 설명 합니다. Hello 다음 중 하나: 자동 검색 (기본값), 아랍어, ChineseSimplified, ChineseTraditional, 체코어 덴마크어, 네덜란드어, 영어, 핀란드어, 프랑스어, 독일어, 그리스어, 헝가리어, 이탈리아어, 일본어, 한국어, 노르웨이어, 폴란드어, 포르투갈어, 루마니아어, 러시아어, SerbianCyrillic, SerbianLatin, 슬로바키아어, 스페인어, 스웨덴어, 터키어로 지원 합니다. |
-| TextOrientation |(선택 사항)는 toolook에 대 한 텍스트의 hello 방향을 설명합니다.  모든 문자 맨 hello "왼쪽된" 의미는 hello 왼쪽 방향으로 리 켰습니다.  기본 텍스트(예: 책에서 사용되는 텍스트)를 "위쪽" 방향으로 호출할 수 있습니다.  Hello 다음 중 하나: 자동 검색 (기본값), 최대, 오른쪽, 아래쪽, 왼쪽 합니다. |
-| TimeInterval |(선택 사항) hello 샘플링 속도 설명 합니다.  기본값은 1/2초 간격입니다.<br/>JSON 형식 – HH:mm:ss.SSS(기본값 00:00:00.500)<br/>XML 형식 – W3C XSD 기간 기본 형식(기본 PT0.5) |
-| DetectRegions |(선택 사항) DetectRegion 개체 배열을 toodetect 텍스트에서 hello 비디오 프레임 내에서 영역을 지정 합니다.<br/>DetectRegion 개체는 다음 4 개의 정수 값에는 hello 구성 됩니다.<br/>왼쪽-hello 왼쪽 여백에서 픽셀<br/>Top-hello 위쪽 여백에서 픽셀<br/>너비-픽셀에 hello 영역의 너비<br/>높이 – 픽셀에 hello 영역의 높이 |
+|AdvancedOutput| AdvancedOutput을 true로 설정하면 JSON 출력에는 모든 단일 단어(구 및 지역 외에)에 대해 위치 데이터가 포함됩니다. 이러한 세부 정보를 표시하지 않으려면 flag를 false로 설정합니다. 기본값은 False입니다. 자세한 내용은 [이 블로그](https://azure.microsoft.com/blog/azure-media-ocr-simplified-output/)를 참조하세요.|
+| language |(선택 사항) 검색할 텍스트의 언어에 대해 설명합니다. AutoDetect(기본값), Arabic, ChineseSimplified, ChineseTraditional, Czech Danish, Dutch, English, Finnish, French, German, Greek, Hungarian, Italian, Japanese, Korean, Norwegian, Polish, Portuguese, Romanian, Russian, SerbianCyrillic, SerbianLatin, Slovak, Spanish, Swedish, Turkish 중 하나일 수 있습니다. |
+| TextOrientation |(선택 사항) 검색할 텍스트의 방향에 대해 설명합니다.  "Left"는 모든 문자의 위쪽이 왼쪽을 향함을 나타냅니다.  기본 텍스트(예: 책에서 사용되는 텍스트)를 "위쪽" 방향으로 호출할 수 있습니다.  AutoDetect(기본값), Up, Right, Down, Left 중 하나일 수 있습니다. |
+| TimeInterval |(선택 사항) 샘플링 속도를 설명합니다.  기본값은 1/2초 간격입니다.<br/>JSON 형식 – HH:mm:ss.SSS(기본값 00:00:00.500)<br/>XML 형식 – W3C XSD 기간 기본 형식(기본 PT0.5) |
+| DetectRegions |(선택 사항) 텍스트를 검색할 비디오 프레임 내의 영역을 지정하는 DetectRegion 개체의 배열입니다.<br/>DetectRegion 개체는 다음 4개 정수 값으로 구성됩니다.<br/>Left - 왼쪽 여백에서 픽셀<br/>Top - 위쪽 여백에서 픽셀<br/>Width – 영역 너비(픽셀)<br/>Height – 영역 높이(픽셀) |
 
 #### <a name="json-preset-example"></a>JSON 사전 설정 예제
 
@@ -91,33 +91,33 @@ hello **Azure 미디어 OCR** 미디어 프로세서는 현재 미리 보기로 
     </VideoOcrPreset>
 
 ## <a name="ocr-output-files"></a>OCR 출력 파일
-hello OCR 미디어 프로세서의 hello 출력은 JSON 파일입니다.
+OCR 미디어 프로세서의 출력은 JSON 파일입니다.
 
-### <a name="elements-of-hello-output-json-file"></a>Hello 출력 JSON 파일의 요소
-hello 비디오 OCR 출력 비디오에 문자가 hello에 시간을 세그먼트 데이터를 제공 합니다.  분석에 관심이 hello 단어 정확 하 게 언어 또는 toohone에서 방향 등의 특성을 사용할 수 있습니다. 
+### <a name="elements-of-the-output-json-file"></a>출력 JSON 파일의 요소
+비디오 OCR 출력은 비디오에서 찾을 수 있는 문자에 대한 시분할 데이터를 제공합니다.  분석하려는 정확한 단어 쪽을 향하는 방향 또는 언어와 같은 특성을 사용할 수 있습니다. 
 
-hello 출력 특성에 따라 hello를 포함 되어 있습니다.
+출력은 다음 특성을 포함합니다.
 
 | 요소 | 설명 |
 | --- | --- |
-| 시간 간격 |"틱" hello 비디오의 초 당 |
+| 시간 간격 |동영상의 초당 "틱" |
 | Offset |타임스탬프의 시간 오프셋 동영상 API 버전 1.0에서는 항상 0입니다. |
-| 프레임 속도 |Hello 비디오의 초당 프레임 수 |
-| width |hello 픽셀에서 비디오의 너비 |
-| height |hello 픽셀에서 비디오의 높이 |
-| 조각 |시간 기반 청크는 hello에 메타 데이터 청크 되는 비디오의 배열 |
+| 프레임 속도 |동영상의 초당 프레임 수 |
+| width |픽셀 단위의 동영상 너비 |
+| height |픽셀 단위의 동영상 높이 |
+| 조각 |메타데이터가 청크되는 시간 기반 비디오 청크 배열 |
 | start |"틱" 단위의 조각 시작 시간 |
 | duration |"틱" 단위의 조각 길이 |
-| interval |조각을 지정한 hello 내에서 각 이벤트의 간격 |
+| interval |지정된 조각 내의 각 이벤트 간격 |
 | events |영역을 포함하는 배열 |
 | region |검색된 단어 또는 구를 나타내는 개체 |
-| 언어 |hello 텍스트 영역 내에서 검색의 언어 |
-| orientation |영역 내에서 검색 하는 hello 텍스트의 방향 |
+| 언어 |지역 내에서 검색된 텍스트의 언어 |
+| orientation |지역 내에서 검색된 텍스트의 방향 |
 | lines |지역 내에서 검색된 텍스트의 줄 배열 |
-| 텍스트 |실제 hello 텍스트 |
+| 텍스트 |실제 텍스트 |
 
 ### <a name="json-output-example"></a>JSON 출력 예제
-hello 다음 출력 예제에서는 hello 일반 비디오 정보와 여러 비디오 조각을 합니다. 모든 비디오 조각은 OCR MP hello 언어 및의 텍스트 방향으로 검색 되는 영역 마다 포함 됩니다. hello 영역에는 모든 단어 줄 hello 줄의 텍스트, hello 줄의 위치 및 모든 단어 정보 (word 콘텐츠에, 위치 및 신뢰도)이이 줄에서이 영역에 포함 되어 있습니다. hello 다음은 예를 들어, 넣은 몇 가지 설명을 인라인 합니다.
+다음 출력 예제는 일반 동영상 정보 및 몇 가지 동영상 조각을 포함합니다. 모든 이벤트 조각에는 OCR MP에 의해 언어 및 텍스트 방향에 따라 검색되는 모든 영역이 포함됩니다. 또한 이러한 영역에는 이 영역의 모든 단어 줄과 이 줄에 포함된 줄의 텍스트, 줄의 위치 및 모든 단어 정보(단어 내용, 위치 및 신뢰도)가 들어 있습니다. 다음 예제에서는 줄 내에 주석을 추가합니다.
 
     {
         "version": 1, 
@@ -130,14 +130,14 @@ hello 다음 출력 예제에서는 hello 일반 비디오 정보와 여러 비�
             {
                 "start": 0, 
                 "duration": 180000, 
-                "interval": 90000,  // hello time information about this fragment
+                "interval": 90000,  // the time information about this fragment
                 "events": [
                     [
                        { 
-                            "region": { // hello detected region array in this fragment 
+                            "region": { // the detected region array in this fragment 
                                 "language": "English",  // region language
                                 "orientation": "Up",  // text orientation
-                                "lines": [  // line information array in this region, including hello text and hello position
+                                "lines": [  // line information array in this region, including the text and the position
                                     {
                                         "text": "One Two", 
                                         "left": 10, 
@@ -174,15 +174,15 @@ hello 다음 출력 예제에서는 hello 일반 비디오 정보와 여러 비�
 
 ## <a name="net-sample-code"></a>.NET 샘플 코드
 
-hello 다음 프로그램 표시 하는 방법:
+다음 프로그램은 방법을 보여 줍니다.
 
-1. 자산 만들기 hello 자산 미디어 파일을 업로드 합니다.
+1. 자산을 만들고 미디어 파일을 자산에 업로드합니다.
 2. OCR 구성/사전 설정 파일을 사용하여 작업을 만듭니다.
-3. Hello 출력 JSON 파일을 다운로드 합니다. 
+3. 출력 JSON 파일을 다운로드합니다. 
    
 #### <a name="create-and-configure-a-visual-studio-project"></a>Visual Studio 프로젝트 만들기 및 구성
 
-개발 환경을 설정 하 고에 설명 된 대로 연결 정보를 포함 하는 hello app.config 파일을 채울 [.net 미디어 서비스 개발](media-services-dotnet-how-to-use.md)합니다. 
+개발 환경을 설정하고 [.NET을 사용한 Media Services 환경](media-services-dotnet-how-to-use.md)에 설명된 대로 연결 정보를 사용하여 app.config 파일을 채웁니다. 
 
 #### <a name="example"></a>예제
 
@@ -198,7 +198,7 @@ hello 다음 프로그램 표시 하는 방법:
     {
         class Program
         {
-            // Read values from hello App.config file.
+            // Read values from the App.config file.
             private static readonly string _AADTenantDomain =
                 ConfigurationManager.AppSettings["AADTenantDomain"];
             private static readonly string _RESTAPIEndpoint =
@@ -214,17 +214,17 @@ hello 다음 프로그램 표시 하는 방법:
 
                 _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
-                // Run hello OCR job.
+                // Run the OCR job.
                 var asset = RunOCRJob(@"C:\supportFiles\OCR\presentation.mp4",
                                             @"C:\supportFiles\OCR\config.json");
 
-                // Download hello job output asset.
+                // Download the job output asset.
                 DownloadAsset(asset, @"C:\supportFiles\OCR\Output");
             }
 
             static IAsset RunOCRJob(string inputMediaFilePath, string configurationFile)
             {
-                // Create an asset and upload hello input media file toostorage.
+                // Create an asset and upload the input media file to storage.
                 IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
                     "My OCR Input Asset",
                     AssetCreationOptions.None);
@@ -232,38 +232,38 @@ hello 다음 프로그램 표시 하는 방법:
                 // Declare a new job.
                 IJob job = _context.Jobs.Create("My OCR Job");
 
-                // Get a reference tooAzure Media OCR.
+                // Get a reference to Azure Media OCR.
                 string MediaProcessorName = "Azure Media OCR";
 
                 var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-                // Read configuration from hello specified file.
+                // Read configuration from the specified file.
                 string configuration = File.ReadAllText(configurationFile);
 
-                // Create a task with hello encoding details, using a string preset.
+                // Create a task with the encoding details, using a string preset.
                 ITask task = job.Tasks.AddNew("My OCR Task",
                     processor,
                     configuration,
                     TaskOptions.None);
 
-                // Specify hello input asset.
+                // Specify the input asset.
                 task.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job.
+                // Add an output asset to contain the results of the job.
                 task.OutputAssets.AddNew("My OCR Output Asset", AssetCreationOptions.None);
 
-                // Use hello following event handler toocheck job progress.  
+                // Use the following event handler to check job progress.  
                 job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-                // Launch hello job.
+                // Launch the job.
                 job.Submit();
 
-                // Check job execution and wait for job toofinish.
+                // Check job execution and wait for job to finish.
                 Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
                 progressJobTask.Wait();
 
-                // If job state is Error, hello event handling
+                // If job state is Error, the event handling
                 // method for job progress should log errors.  Here we check
                 // for error state and exit if needed.
                 if (job.State == JobState.Error)

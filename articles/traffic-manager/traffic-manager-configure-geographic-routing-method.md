@@ -1,6 +1,6 @@
 ---
-title: "지리적 aaaConfigure 트래픽 라우팅 방법 Azure 트래픽 관리자를 사용 하 여 | Microsoft Docs"
-description: "이 문서에서는 어떻게 tooconfigure hello Azure 트래픽 관리자를 사용 하 여 지리적 트래픽 라우팅 방법 설명"
+title: "Azure Traffic Manager를 사용한 지리적 트래픽 라우팅 방법 구성 | Microsoft Docs"
+description: "이 문서에서는 Azure Traffic Manager를 사용하여 지리적 트래픽 라우팅 방법을 구성하는 방법을 설명합니다."
 services: traffic-manager
 documentationcenter: 
 author: kumudd
@@ -14,52 +14,52 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/22/2017
 ms.author: kumud
-ms.openlocfilehash: 4142389211ae54e7feea6564641e01e4477491e8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 13190189074b24b2d28cd3ce46cf8571f3e1e1d1
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="configure-hello-geographic-traffic-routing-method-using-traffic-manager"></a>트래픽 관리자를 사용 하 여 hello 지리적 트래픽 라우팅 방법 구성
+# <a name="configure-the-geographic-traffic-routing-method-using-traffic-manager"></a>Traffic Manager를 사용한 지리적 트래픽 라우팅 방법 구성
 
-hello 지리적 트래픽 라우팅 방법을 toodirect 트래픽 hello 요청 발생 한 위치 hello 지리적 위치에 따라 toospecific 끝점을 수 있습니다. 이 자습서 toocreate 트래픽 관리자 라우팅이 방법으로 프로 파일링 하는 방법을 보여 주고 hello 끝점 tooreceive 트래픽을 특정 지역에서 구성.
+지리적 트래픽 라우팅 방법을 사용하면 요청이 발생하는 지리적 위치를 기반으로 특정 끝점에 트래픽을 보낼 수 있습니다. 이 자습서는 이 라우팅 방법을 사용하여 Traffic Manager 프로필을 만들고, 특정 지역에서 트래픽을 받도록 끝점을 구성하는 방법을 보여 줍니다.
 
 ## <a name="create-a-traffic-manager-profile"></a>Traffic Manager 프로필 만들기
 
-1. Toohello 브라우저에서 로그인 [Azure 포털](http://portal.azure.com)합니다. 아직 계정이 없는 경우 [1개월 무료 평가판](https://azure.microsoft.com/free/)을 등록할 수 있습니다.
-2. Hello 허브 메뉴에서를 클릭 **새로** > **네트워킹** > **스크롤하게**, 클릭 하 고 **트래픽 관리자 프로필**tooopen hello **만들 트래픽 관리자 프로필** 블레이드입니다.
-3. Hello에 **만들 트래픽 관리자 프로필** 블레이드:
-    1. 사용자의 프로필에 사용할 이름을 제공합니다. 이 이름은 toobe hello trafficmanager.net 영역 내에서 고유 해야 하며 hello DNS 이름이 됩니다 <profilename>, 있으며 trafficmanager.net tooaccess 사용 되는 트래픽 관리자 프로필을 수 있습니다.
-    2. 선택 hello **지리** 라우팅 방법입니다.
-    3. Hello 구독 toocreate 아래에서이 프로필을 선택 합니다.
-    4. 기존 리소스 그룹을 사용 하거나 새 리소스 그룹 tooplace 아래에서이 프로필을 만듭니다. Hello를 사용 하 여 toocreate 새 리소스 그룹을 선택 하면 **리소스 그룹 위치** hello 리소스 그룹의 드롭다운 toospecify hello 위치입니다. 이 설정은 toohello 위치 hello 리소스 그룹의 나타내며 hello 전체적으로 배포 되는 트래픽 관리자 프로필에는 영향이 없습니다.
+1. 브라우저에서 [Azure Portal](http://portal.azure.com)에 로그인합니다. 아직 계정이 없는 경우 [1개월 무료 평가판](https://azure.microsoft.com/free/)을 등록할 수 있습니다.
+2. 허브 메뉴에서 **새로 만들기** > **네트워킹** > **모두 보기**를 클릭한 다음, **Traffic Manager 프로필**을 클릭하여 **Traffic Manager 프로필 만들기** 블레이드를 엽니다.
+3. **Traffic Manager 프로필 만들기** 블레이드에서
+    1. 사용자의 프로필에 사용할 이름을 제공합니다. 이 이름은 trafficmanager.net 내에서 고유해야 하며 사용자의 Traffic Manager 프로필에 액세스하는 데 사용되는 DNS 이름 <profilename>,trafficmanager.net으로 표시됩니다.
+    2. **지리적** 라우팅 방법을 선택합니다.
+    3. 이 프로필에서 만들려는 구독을 선택합니다.
+    4. 기존 리소스 그룹을 사용하거나 이 프로필에서 대체할 새 리소스 그룹을 만듭니다. 새 리소스 그룹을 만드는 경우 **리소스 그룹 위치** 드롭다운을 사용하여 리소스 그룹의 위치를 지정합니다. 이 설정은 리소스 그룹의 위치를 나타내며 전역적으로 배포되는 Traffic Manager 프로필에는 영향을 미치지 않습니다.
     5. **만들기**를 클릭하면 사용자의 Traffic Manager 프로필이 생성되고 전역적으로 배포됩니다.
 
 ![Traffic Manager 프로필 만들기](./media/traffic-manager-geographic-routing-method/create-traffic-manager-profile.png)
 
 ## <a name="add-endpoints"></a>끝점 추가
 
-1. Hello 포털 검색 표시줄에 방금 만든 hello 트래픽 관리자 프로필 이름을 검색 하 고 표시 되 면 hello 결과 클릭 합니다.
-2. 너무 이동**설정** -> **끝점** hello 트래픽 관리자 블레이드에서 합니다.
-3. 클릭 **추가** tooshow hello **끝점 추가** 블레이드입니다.
-3. Hello에 **끝점** 블레이드에서 클릭 **추가** 및 hello **끝점 추가** 블레이드에 표시 되는 다음과 같이 완료:
-4. 선택 **형식** 추가 하는 끝점의 hello 유형에 따라 합니다. 프로덕션에 사용되는 지리적 라우팅 프로필의 경우 둘 이상의 끝점이 있는 자식 프로필을 포함하는 중첩 끝점 형식을 사용하는 것이 좋습니다. 자세한 내용은 [지리적 트래픽 라우팅 방법에 대한 FAQ](traffic-manager-FAQs.md)를 참조하세요.
-5. 제공 된 **이름** 기준이 될 toorecognize이이 끝점입니다.
-6. 이 블레이드의 특정 필드를 추가 하는 끝점의 hello 형식에 따라 달라 집니다.
-    1. Azure 끝점을 추가 하는 경우 선택 hello **대상 리소스 종류** 및 hello **대상** hello 리소스에 따라 원하는 toodirect 트래픽을
-    2. 추가 하는 경우는 **외부** 끝점 hello 제공 **정규화 된 도메인 이름 (FQDN)** 끝점입니다.
-    3. 추가 하는 경우는 **Nested 끝점**선택, hello **대상 리소스** 해당 toohello 자식 프로필 toouse을 hello를 지정 하는 **최소 자식 끝점계산**.
-7. Hello 지도 섹션을 사용 하 여 hello 트래픽을 전송 toobe toothis 끝점 저장할에서 tooadd hello 지역 드롭다운입니다. 하나 이상의 영역을 추가해야 하며 여러 지역을 매핑할 수 있습니다.
-8. 모든 끝점에 대해이 단계를 반복이 프로필에서 tooadd 원하는
+1. 포털의 검색 창에서 방금 만든 Traffic Manager 프로필 이름을 검색하고 표시되면 결과를 클릭합니다.
+2. Traffic Manager 블레이드에서 **설정** -> **끝점**으로 이동합니다.
+3. **추가**를 클릭하여 **끝점 추가** 블레이드를 표시합니다.
+3. **끝점** 블레이드에서 **추가**를 클릭하고 표시되는 **끝점 추가** 블레이드에서 다음과 같이 완료합니다.
+4. 추가하려는 끝점의 형식에 따라 **형식**을 선택합니다. 프로덕션에 사용되는 지리적 라우팅 프로필의 경우 둘 이상의 끝점이 있는 자식 프로필을 포함하는 중첩 끝점 형식을 사용하는 것이 좋습니다. 자세한 내용은 [지리적 트래픽 라우팅 방법에 대한 FAQ](traffic-manager-FAQs.md)를 참조하세요.
+5. 이 끝점을 인식하는 기준으로 사용할 **이름**을 제공합니다.
+6. 이 블레이드에서 특정 필드는 사용자가 추가하는 끝점의 형식에 따라 달라집니다.
+    1. Azure 끝점을 추가하는 경우 트래픽을 보낼 리소스에 따라 **대상 리소스 형식** 및 **대상**을 선택합니다.
+    2. **외부** 끝점을 추가하는 경우 사용자의 끝점에 사용할 **FQDN(정규화된 도메인 이름)**을 제공합니다.
+    3. **중첩 끝점**을 추가하는 경우 사용할 자식 프로필에 해당하는 **대상 리소스**를 선택하고 **최소 자식 끝점 수**를 지정합니다.
+7. 지역 매핑 섹션에서 드롭다운을 사용하여 이 끝점으로 전송할 트래픽이 발생되는 지역을 추가합니다. 하나 이상의 영역을 추가해야 하며 여러 지역을 매핑할 수 있습니다.
+8. 이 프로필에서 추가하려는 모든 끝점에 대해 이 단계를 반복합니다.
 
 ![Traffic Manager 끝점 추가](./media/traffic-manager-geographic-routing-method/add-traffic-manager-endpoint.png)
 
-## <a name="use-hello-traffic-manager-profile"></a>Hello 트래픽 관리자 프로필을 사용 하 여
-1.  Hello hello 포털 검색 창에서 검색할 **트래픽 관리자 프로필** 이름 hello 섹션 앞에서 만든 하 고 결과 표시 하는 hello hello에 hello 트래픽 관리자 프로필을 클릭 합니다.
-2. Hello에 **트래픽 관리자 프로필** 블레이드에서 클릭 **개요**합니다.
-3. hello **트래픽 관리자 프로필** 블레이드를 새로 만든된 트래픽 관리자 프로필의 hello DNS 이름을 표시 합니다. 이 끝점에 의해 모든 클라이언트 (예를 들어 이동 하 여 웹 브라우저를 사용 하 여 tooit) 라우팅된 tooget toohello 오른쪽 hello 라우팅 유형을 기준으로 사용할 수 있습니다.  Hello 지리적 라우팅의 경우에서 트래픽 관리자 hello 들어오는 요청의 소스 IP hello 찾은 hello 영역을 발생 하는 것을 결정 합니다. 해당 지역의 매핑된 tooan 끝점 이면 트래픽은 라우트된 toothere입니다. 이 영역의 매핑된 tooan 끝점이 없는 경우 트래픽 관리자는 NODATA 쿼리 응답을 반환 합니다.
+## <a name="use-the-traffic-manager-profile"></a>Traffic Manager 프로필 사용
+1.  포털의 검색 창에서 이전 섹션에서 만들었던 **Traffic Manager 프로필** 이름을 검색하고 표시되는 결과에서 해당 Traffic Manager 프로필을 클릭합니다.
+2. **Traffic Manager 프로필** 블레이드에서 **개요**를 클릭합니다.
+3. **Traffic Manager 프로필** 블레이드에 사용자의 새로 만든 Traffic Manager 프로필의 DNS 이름이 표시됩니다. 이는 라우팅 형식에서 결정된 대로 올바른 끝점으로 라우팅되도록 모든 클라이언트가 사용할 수 있습니다(예를 들어 웹 브라우저를 사용하여 이동).  지리적 라우팅의 경우 Traffic Manager는 들어오는 요청의 원본 IP를 찾아 그 발생 지역을 결정합니다. 해당 지역이 끝점에 매핑된 경우 트래픽은 그곳으로 라우팅됩니다. 이 지역이 끝점에 매핑되지 않은 경우 Traffic Manager는 NODATA 쿼리 응답을 반환합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
 - [지리적 트래픽 라우팅 방법](traffic-manager-routing-methods.md#geographic)에 대해 자세히 알아봅니다.
-- 너무 방법에 대해 알아봅니다[트래픽 관리자 설정을 테스트](traffic-manager-testing-settings.md)합니다.
+- [Traffic Manager 설정 테스트](traffic-manager-testing-settings.md)에 대해 알아보세요.

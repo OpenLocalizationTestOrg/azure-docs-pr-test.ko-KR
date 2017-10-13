@@ -1,6 +1,6 @@
 ---
-title: "사용할 수 없는 aaaSKU 시리즈 | Microsoft Docs"
-description: "일부 SKU 계열이이 영역에 대 한 hello 선택한 구독에 대해 사용할 수 있습니다."
+title: "SKU 시리즈 사용할 수 없음 | Microsoft Docs"
+description: "이 지역의 선택한 구독에 대해 일부 SKU 시리즈를 사용할 수 없습니다."
 services: Azure Supportability
 documentationcenter: 
 author: ganganarayanan
@@ -14,35 +14,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/12/2016
 ms.author: gangan
-ms.openlocfilehash: 76d45894c75c714fb3165b86add4be9012cbd5bc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3dc32bfb88e43e82cc4b3f43e31ce20d4302b688
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="sku-series-unavailable"></a>SKU 시리즈 사용할 수 없음
-일부 지역에서는 특정 SKU를 새 구독에서 자동으로 사용할 수 없습니다.  이 발생할 수 있습니다 때 [더 강력한 Sku 영역에 도입 된](https://azure.microsoft.com/updates/announcing-new-dv2-series-virtual-machine-size/) hello의 hello 인기도 레거시 SKU 감소 하 고 있습니다.
-hello 메시지 "*일부 SKU 시리즈를이 영역에 대 한 hello 선택한 구독에 대해 사용할 수 없는*" 지원 요청 tooincrease 계산 코어 할당량을 만들 때 표시 됩니다.
+일부 지역에서는 특정 SKU를 새 구독에서 자동으로 사용할 수 없습니다.  이러한 현상은 [지역에 더 강력한 SKU가 도입되고](https://azure.microsoft.com/updates/announcing-new-dv2-series-virtual-machine-size/) 레거시 SKU의 인지도가 감소할 때 발생할 수 있습니다.
+계산 코어 할당량을 늘리는 지원 요청을 생성할 때 "*Some SKU series are unavailable for the selected subscription for this region(이 지역의 선택한 구독에 대해 일부 SKU 시리즈를 사용할 수 없습니다)*" 메시지가 표시됩니다.
 
-Hello에 대 한 SKU 가용성을 검토할 수도 [지역별 Azure 서비스](https://azure.microsoft.com/regions/#services) 페이지. 
+[지역별 Azure 서비스](https://azure.microsoft.com/regions/#services) 페이지에서 SKU 가용성을 검토할 수 있습니다. 
 
-toorequest 액세스 tooa 구독에서 제한 SKU "구독 관리" 지원 요청을 만듭니다.
+구독에서 제한된 SKU로 액세스를 요청하려면 "구독 관리" 지원 요청을 생성합니다.
 
-* Hello 기본 사항 페이지에서 문제 유형 "구독 관리"로 선택 하 고 "다음"을 클릭 합니다.
+* 기본 페이지에서 문제 유형으로 "구독 관리"를 선택하고 "다음"을 클릭합니다.
 
 ![기본 사항 블레이드](./media/SKU-series-unavailable/BasicsSubMgmt.png)
 
-* Hello 문제 페이지에서 "기타 일반적인 질문"으로 hello 문제 종류를 선택 하 고 hello 정확한 지역 및 보이지 않는 SKU를 입력 합니다.
-  이렇게 하면 hello 지원 프로세스를 촉진 합니다.
+* 문제 페이지에서 문제 유형으로 "기타 일반 질문"을 선택하고 표시되지 않는 정확한 지역 및 SKU를 입력합니다.
+  그러면 지원 과정을 신속하게 처리할 수 있습니다.
 
 ![문제](./media/SKU-series-unavailable/ProblemSubMgmt.png)
 
-* Hello 연락처 정보 페이지에서 담당자 정보를 입력 하 고 "만들기"를 클릭 합니다.
+* 연락처 정보 페이지에서 연락처 세부 정보를 입력하고 "만들기"를 클릭합니다.
 
 ![연락처 정보](./media/SKU-series-unavailable/ContactInformation.png)
 
 ## <a name="feedback"></a>사용자 의견
-우리는 항상 열려 toofeedback 및 제안을! [제안 사항](https://feedback.azure.com/forums/266794-support-feedback)을 보내 주세요. 통해 당사와 참여 수 또한 [Twitter](https://twitter.com/azuresupport) 또는 hello [MSDN 포럼](https://social.msdn.microsoft.com/Forums/azure)합니다.
+Microsoft는 사용자 의견 및 제안을 항상 환영합니다! [제안 사항](https://feedback.azure.com/forums/266794-support-feedback)을 보내 주세요. [Twitter](https://twitter.com/azuresupport)나 [MSDN 포럼](https://social.msdn.microsoft.com/Forums/azure)을 통해 참여하실 수도 있습니다.
 
 ## <a name="learn-more"></a>자세한 정보
 [Azure 지원 FAQ](https://azure.microsoft.com/support/faq)

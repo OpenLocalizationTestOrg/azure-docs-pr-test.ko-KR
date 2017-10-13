@@ -1,6 +1,6 @@
 ---
-title: "사물 인터넷 (IoT Suite)에 대 한 aaaAzure 솔루션 | Microsoft Docs"
-description: "샘플 솔루션 아키텍처 및 tooAzure IoT Suite 및 미리 구성 하는 hello 솔루션 관계를 포함 하 여 Azure에서 IoT의 개요입니다."
+title: "사물 인터넷을 위한 Azure 솔루션(IoT Suite) | Microsoft Docs"
+description: "샘플 솔루션 아키텍처 및 이를 Azure IoT Suite 및 미리 구성된 솔루션과 연결하는 방법을 비롯한 Azure의 IoT에 대한 개요입니다."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,32 +15,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: e527ca3f7541c84fbd6abc99ee38792468f88644
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 320190488bb4c7b8192421f9dd50a5264f558584
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 [!INCLUDE [iot-azure-and-iot](../../includes/iot-azure-and-iot.md)]
 
 ## <a name="azure-iot-suite"></a>Azure IoT Suite
-Microsoft Azure IoT Suite hello에 tooget 확장할 수 있는 미리 구성 된 솔루션의 집합을 통해 빠르게 시작할 수 있는 엔터프라이즈 수준의 솔루션입니다. 이러한 솔루션은 [원격 모니터링][lnk-preconfigured-solutions], [예측 유지 관리][lnk-predictive-maintenance] 및 [연결된 공장][lnk-connected-factory] 같은 일반적인 IoT 시나리오를 처리합니다. 이러한 솔루션은 hello이이 문서에 설명 된 IoT 솔루션 아키텍처의 구현입니다.
+Microsoft Azure IoT Suite는 미리 구성된 확장 가능 솔루션 집합을 통해 빠르게 시작할 수 있는 엔터프라이즈급 솔루션입니다. 이러한 솔루션은 [원격 모니터링][lnk-preconfigured-solutions], [예측 유지 관리][lnk-predictive-maintenance] 및 [연결된 공장][lnk-connected-factory] 같은 일반적인 IoT 시나리오를 처리합니다. 이러한 솔루션은 이 문서에서 설명한 IoT 솔루션 아키텍처의 구현입니다.
 
-hello 미리 구성 된 솔루션이 완료 되 면 작업을 포함 하는 종단 간 솔루션:
+미리 구성된 솔루션은 완전하고 작동 가능하며 다음을 포함하는 포괄적 솔루션입니다.
 
-- 시작한 장치 tooget을 시뮬레이션 합니다.
+- 시작을 위한 시뮬레이션된 장치
 - 미리 구성된 Azure 서비스(예: [Azure IoT Hub][Azure IoT Hub], [Azure Event Hubs][Azure Event Hubs], [Azure Stream Analytics][Azure Stream Analytics], [Azure Machine Learning][Azure Machine Learning] 및 [Azure Storage][Azure storage])
 - 솔루션 특정 관리 콘솔 
 
-미리 구성 하는 hello 솔루션 검증 된, 프로덕션에 사용 가능한 코드에서 사용자 지정할 수 있으며 특정 사용자 고유의 IoT 시나리오 tooimplement 확장 포함 됩니다.
+미리 구성된 솔루션은 프로덕션에 사용할 준비가 된 입증된 코드를 포함하며 이 코드는 고유한 특정 IoT 시나리오를 구현하도록 사용자 지정하고 확장할 수 있습니다.
 
-Hello에 관심이 있을 수 [Azure IoT Hub] [ Azure IoT Hub] hello 미리 구성 된 솔루션의 대부분을 사용 하는 서비스입니다. [Azure IoT Hub] [ Azure IoT Hub] 장치 및 미리 구성 하는 hello 솔루션 아키텍처에서 사용 하는 hello 클라우드 간의 hello 안전 하 고 신뢰할 수 있는 양방향 통신을 제공 합니다.
+또한 다수의 미리 구성된 솔루션에서 사용하는 [Azure IoT Hub][Azure IoT Hub] 서비스에도 관심이 있을 수 있습니다. [Azure IoT Hub][Azure IoT Hub]는 미리 구성된 솔루션 아키텍처에서 사용되는 장치와 클라우드 간에 안전하고 안정적인 양방향 통신을 제공합니다.
 
 ## <a name="next-steps"></a>다음 단계
-이러한 리소스 toocontinue IoT Suite에 대 한 학습을 탐색 하 고 미리 구성 된 솔루션을 hello:
+IoT Suite 및 미리 구성된 솔루션에 대해 계속 알아보려면 다음 리소스를 탐색합니다.
 
 * [Azure IoT Suite란?][lnk-whatissuite]
-* [Hello 미리 구성 된 Azure IoT Suite 솔루션은 무엇입니까?][lnk-whatarepreconfigured]
+* [미리 구성된 Azure IoT Suite 솔루션은 무엇입니까?][lnk-whatarepreconfigured]
 
 [lnk-whatissuite]: iot-suite-overview.md
 [lnk-whatarepreconfigured]: iot-suite-what-are-preconfigured-solutions.md

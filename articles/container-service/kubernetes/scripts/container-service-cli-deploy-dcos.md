@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure CLI 스크립트 샘플-ACS DC/OS 클러스터 만들기 | Microsoft Docs"
+title: "Azure CLI 스크립트 샘플 - ACS DC/OS 클러스터 만들기 | Microsoft Docs"
 description: "Azure CLI 스크립트 샘플 - ACS DC/OS 클러스터 만들기"
 services: container-service
 documentationcenter: 
@@ -16,11 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/30/2017
 ms.author: nepeters
-ms.openlocfilehash: cbc990e5e650487d6aa4572c7ff5e1c3fa150906
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7766cdb8576e12bd011dc7e01cf3311720eb4162
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-an-azure-container-service-dcos-cluster"></a>Azure Container Service DC/OS 클러스터 만들기
 
@@ -44,7 +44,7 @@ az acs create \
 
 ## <a name="clean-up-deployment"></a>배포 정리 
 
-Hello 명령 tooremove hello 리소스 그룹, VM 및 관련 된 모든 리소스를 다음을 실행 합니다.
+다음 명령을 실행하여 리소스 그룹, VM 및 모든 관련된 리소스를 제거할 수 있습니다.
 
 ```azurecli
 az group delete --name myResourceGroup
@@ -52,15 +52,15 @@ az group delete --name myResourceGroup
 
 ## <a name="script-explanation"></a>스크립트 설명
 
-이 스크립트 명령 toocreate hello 배포한 후에 hello를 사용 합니다. Hello 테이블의 각 항목 toocommand 특정 문서를 연결합니다.
+이 스크립트는 다음 명령을 사용하여 배포합니다. 테이블에 있는 각 항목은 명령에 해당하는 문서에 연결됩니다.
 
 | 명령 | 참고 사항 |
 |---|---|
-| [az group create](https://docs.microsoft.com/cli/azure/group#create) | 모든 리소스가 저장되는 리소스 그룹을 만듭니다. |
-| [az acs create](https://docs.microsoft.com/cli/azure/acs#create) | ACS 클러스터를 만듭니다. |
+| [az group create](https://docs.microsoft.com/cli/azure/group#az_group_create) | 모든 리소스가 저장되는 리소스 그룹을 만듭니다. |
+| [az acs create](https://docs.microsoft.com/cli/azure/acs#az_acs_create) | ACS 클러스터를 만듭니다. |
 
 ## <a name="next-steps"></a>다음 단계
 
-Azure CLI hello에 대 한 자세한 내용은 참조 하십시오. [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)합니다.
+Azure CLI에 대한 자세한 내용은 [Azure CLI 설명서](https://docs.microsoft.com/cli/azure/overview)를 참조하세요.
 
-추가 Azure 컨테이너 서비스 CLI 스크립트 예제는 hello에서 확인할 수 있습니다 [Azure 컨테이너 서비스 설명서](../cli-samples.md)합니다.
+추가 Azure Container Service CLI 스크립트 샘플은 [Azure Container Service 설명서](../cli-samples.md)에서 확인할 수 있습니다.

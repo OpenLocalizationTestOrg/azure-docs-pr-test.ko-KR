@@ -1,6 +1,6 @@
 ---
-title: "Operations Management Suite 보안 및 감사 솔루션 기준의 초기 평가 aaaWeb | Microsoft Docs"
-description: "이 문서에서는 toouse OMS 보안 및 감사 솔루션 tooperform 규정 준수 및 보안 용도 대 한 모든 모니터링 대상된 웹 서버에 대 한 초기 평가의 초기 평가 웹 하는 방법을 설명 합니다."
+title: "Operations Management Suite 보안 및 감사 솔루션 기준의 웹 기준 평가 | Microsoft Docs"
+description: "이 문서에서는 OMS 보안 및 감사 솔루션에 웹 기준 평가를 사용하여 규정 준수 및 보안 목적을 위해 모니터링되는 모든 웹 서버의 기준 평가를 수행하는 방법을 설명합니다."
 services: operations-management-suite
 documentationcenter: na
 author: YuriDio
@@ -15,67 +15,67 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2017
 ms.author: yurid
-ms.openlocfilehash: dafa9d3d93fae31748306b60ee40b285dd59c802
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 40b0c6ca933ea02ac9f5fe3bfaaf87a310542a8d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="web-baseline-assessment-in-operations-management-suite-security-and-audit-solution"></a>Operations Management Suite 보안 및 감사 솔루션의 웹 기준 평가
-이 문서를 사용 하면 OMS 보안을 사용 하 고 감사 웹 초기 평가 기능 tooaccess hello 보안 리소스 상태를 모니터링 합니다.
+이 문서를 통해 OMS 보안 및 감사 웹 기준 평가 기능을 사용하여 모니터링되는 리소스의 보안 상태에 액세스할 수 있습니다.
 
 ## <a name="what-is-web-baseline-assessment"></a>웹 기준 평가란?
-현재 OMS 보안은 운영 체제에 대한 보안 기준 평가를 제공합니다. 24 시간 마다 서버 운영 체제 설정을 hello를 검색 하 고 잠재적으로 취약 한 설정에 대 한 뷰를 제공 합니다. 이에 대한 자세한 내용은 [Operations Management Suite 보안 및 감사 솔루션의 기준 평가](https://docs.microsoft.com/azure/operations-management-suite/oms-security-baseline)를 참조하세요.
+현재 OMS 보안은 운영 체제에 대한 보안 기준 평가를 제공합니다. 24시간마다 서버의 OS 설정을 검색하고 잠재적으로 취약한 설정에 대한 보기를 제공합니다. 이에 대한 자세한 내용은 [Operations Management Suite 보안 및 감사 솔루션의 기준 평가](https://docs.microsoft.com/azure/operations-management-suite/oms-security-baseline)를 참조하세요.
 
-hello hello 웹 초기 평가의 ´ ֲ toofind 잠재적으로 취약 한 웹 서버 설정. hello 웹 초기 구성에 대 한 기본 원본은 다음 세 가지 hello:.NET, ASP.NET 및 IIS 구성 합니다.  운영 시스템 초기 평가 hello, 처럼 OMS 보안은 사용 하겠습니다 tooscan 사용자 웹 서버에 24 시간 마다 하 고 그 중 보안 상태에 대 한 뷰를 제공 합니다.  인터넷 정보 서비스 (IIS), 구성은 하는 고도로 사용자 지정 가능한 재정의 된 다양 한 사이트 및 응용 프로그램 수준 toobe 수 있습니다. hello 스캐너 추가 toohello 기본 루트 수준에서 각 응용 프로그램/사이트 수준에서 hello 설정을 확인합니다. Tooidentify 잠재적으로 취약 한 설정을 사용 하면 하 고 해당 설정 하기 위한 권장 사항 함께 신속 하 게 수정 합니다.
+웹 기준 평가의 목표는 잠재적으로 취약한 웹 서버 설정을 찾는 것입니다. 웹 기준 구성에 대한 세 가지 기본 소스는 .NET, ASP.NET 및 IIS 구성입니다.  운영 체제 기준 평가와 마찬가지로 OMS 보안은 24시간마다 웹 서버를 검색하고 그 중 보안 상태에 대한 보기를 제공하게 됩니다.  IIS(인터넷 정보 서비스)에서 구성은 고도로 사용자 지정되어 다양한 사이트 및 응용 프로그램 수준을 재정의할 수 있습니다. 스캐너는 기본 루트 수준 외에도 각 응용 프로그램/사이트 수준의 설정을 확인합니다. 잠재적으로 취약한 설정을 찾아서 신속하게 해결하는 데 도움이 되며, 해당 설정에 대한 권장 사항이 제공됩니다.
 
 >[!NOTE] 
->Hello 일반적인 구성 식별자와이 OMS 보안에서 사용 하는 기준 규칙을 다운로드할 수 있습니다 [페이지](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335?redir=0)합니다.
+>이 [페이지](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335?redir=0)에서는 OMS 보안에서 사용하는 일반 구성 식별자 및 기준 규칙을 다운로드할 수 있습니다.
 
 
 ## <a name="web-security-baseline-assessment"></a>웹 보안 기준 평가
 
-이 미리 보기에 대 한 hello 기능은 hello OMS 검색 옵션 및 hello OMS 보안 및 감사 대시보드를 통해 액세스할 수 있습니다. Tooperform appropriated hello 쿼리 아래 hello 단계를 수행 합니다.
+이 미리 보기의 경우 OMS Search 옵션과 OMS 보안 및 감사 대시보드를 통해 기능을 사용할 수 있습니다. 아래의 단계를 수행하여 적절한 쿼리를 수행합니다.
 
-1. Hello에 **Microsoft Operations Management Suite** 기본 대시보드 클릭 **보안 및 감사** 바둑판식으로 배열입니다.
-2. Hello에 **보안 및 감사** 대시보드를 hello 웹 초기 관점 다음 toohello OS 초기 관점을 볼 수 있습니다.
+1. **Microsoft Operations Management Suite** 기본 대시보드에서 **보안 및 감사** 타일을 클릭합니다.
+2. **보안 및 감사** 대시보드에서 OS 기준 관점 옆에 있는 웹 기준 관점을 볼 수 있습니다.
    
     ![OMS 보안 및 감사 웹 보안 기준 평가](./media/oms-security-web-baseline/oms-security-web-baseline-fig5.png)
 
-3. 왼쪽된 창의 hello 모든 평가 hello 서버에 전달 하는 규칙의 hello 평균 백분율 및 평가 된 서버 hello 목록, 비교 하는 웹 서버 toohello 기준 hello 수를 표시 합니다.
-4. hello 오른쪽 창에는 고유한 hello 나열 하 여 실패 한 규칙 *심각도*, 및 *RuleType*합니다. Hello 오른쪽 창 규칙 중 하나를 클릭 하면 해당 규칙의 hello 세부 정보가 표시 됩니다. 예제는 hello 이미지 아래에 표시 됩니다. 계산 되는 hello 규칙 아래에 나열 됩니다 *규칙 설정*합니다. hello *AzId* 필드는 추적 hello 기준 규칙에 대 한 Microsoft에서 사용 되는 각 규칙에 대 한 고유 식별자입니다. 또한 toothat 사용자 hello를 볼 수 *예상 결과* (Microsoft의 권장 값), 및 기타 세부 정보 hello 규칙의 hello 보안 영향에 대 한 합니다.
+3. 왼쪽 창에는 기준과 비교한 웹 서버 수, 평가한 모든 서버에서 전달된 규칙의 평균 백분율, 평가된 서버 목록이 표시됩니다.
+4. 오른쪽 창에는 실패한 고유한 규칙이 *심각도* 및 *규칙 유형*별로 표시됩니다. 오른쪽 창의 규칙을 클릭하면 해당 규칙의 세부 정보가 표시됩니다. 아래 이미지에 예제가 나와 있습니다. 평가된 규칙은 *규칙 설정* 아래에 나열됩니다. *AzId* 필드는 Microsoft에서 기준 규칙을 추적하는 데 사용하는 각 규칙의 고유 식별자입니다. 그 외에도 사용자가 *예상 결과*(Microsoft의 권장 값) 및 규칙이 보안에 미치는 영향에 대한 기타 세부 정보를 볼 수 있습니다.
     
     ![쿼리](./media/oms-security-web-baseline/oms-security-web-baseline-fig6.png)
 
-5. Tooreview hello 결과 사용자가 직접 쿼리를 만들 수 있습니다. 
+5. 사용자 고유의 쿼리를 만들어서 결과를 검토할 수 있습니다. 
 
-사용할 수 있는 hello 첫 번째 쿼리는 hello **웹 초기 평가 요약**합니다. Hello에 **검색 시작** 필드에서이 쿼리를 입력: *유형 = SecurityBaselineSummary BaselineType 웹 =*합니다. hello 다음은 출력 샘플입니다.
+사용할 수 있는 첫 번째 쿼리는 **웹 기준 평가 요약**입니다. **여기에서 검색 시작** 필드에 Type*=SecurityBaselineSummary BaselineType=Web* 쿼리를 입력합니다. 다음은 출력 샘플입니다.
 
 ![쿼리 결과](./media/oms-security-web-baseline/oms-security-web-baseline-fig7.png)
 
 >[!NOTE] 
 >이 쿼리에서 각 레코드는 단일 서버에 대한 요약 평가를 나타냅니다.
 
-Hello에 있는 경우 **로그 검색**을 각각 다른 쿼리에 tooobtain hello 웹 초기 평가 대 한 자세한 정보를 입력할 수 있습니다. 또한 toohello 이전 쿼리를 사용할 수도 있습니다이 미리 보기에서 다음 hello:
+**로그 검색**에 있는 경우 여러 쿼리를 입력하여 웹 기준 평가에 대한 자세한 정보를 얻을 수 있습니다. 이 미리 보기에서는 이전 쿼리 외에도 다음과 같은 쿼리를 사용할 수 있습니다.
 
-**웹 기준 규칙 평가**: 각 레코드는 단일 서버에서 단일 웹 기준 규칙 평가를 나타냅니다. 데이터를 포함 모든 실패 한 규칙에 대 한 hello *SitePath* 어떤 hello에 규칙이 확인 되었고, hello *예상 결과*, 및 hello *실제 결과*합니다.
+**웹 기준 규칙 평가**: 각 레코드는 단일 서버에서 단일 웹 기준 규칙 평가를 나타냅니다. 실패한 규칙에 대한 모든 데이터, 규칙을 평가한 *SitePath*, *예상 결과* 및 *실제 결과*가 포함됩니다.
 
 쿼리: *Type=SecurityBaseline BaselineType=Web AnalyzeResult=Failed*
 
 ![쿼리 결과 2](./media/oms-security-web-baseline/oms-security-web-baseline-fig8.png)
 
-**특정 서버에 대 한 모든 결과 표시**:이 쿼리에서 toosee 발생 하는 방법을 보여 줍니다. 특정 서버의: 쿼리: *형식 SecurityBaseline BaselineType = = 웹 컴퓨터 BaselineTestVM1 =*
+**특정 서버에 대한 모든 결과 표시**: 이 쿼리는 특정 서버의 결과를 보는 방법을 보여 줍니다. 쿼리: *Type=SecurityBaseline BaselineType=Web Computer=BaselineTestVM1*
 
 ![쿼리 결과 3](./media/oms-security-web-baseline/oms-security-web-baseline-fig3.png)
 
-이러한 레코드/쿼리 toocreate 고유한 대시보드, 보고서 또는 경고에 사용할 수 있습니다. 다음은 샘플 UI 컨트롤 tooyour 대시보드를 추가할 수 있습니다. 학습할 수 있는 방법을 toovisualize OMS 뷰 디자이너를 사용 하 여 데이터 [여기](https://blogs.technet.microsoft.com/msoms/2016/06/30/oms-view-designer-visualize-your-data-your-way/)합니다. hello 아래 화면은이 사용자 지정 확인 되 면 hello 타일 방법의 예는 같습니다.
+이러한 레코드/쿼리를 사용하여 고유한 대시보드, 보고서 또는 경고를 만들 수 있습니다. 다음은 대시보드에 추가할 수 있는 샘플 UI 컨트롤입니다. [여기](https://blogs.technet.microsoft.com/msoms/2016/06/30/oms-view-designer-visualize-your-data-your-way/)에서 OMS 뷰 디자이너를 사용하여 데이터를 시각화하는 방법을 배울 수 있습니다. 이를 사용자 지정하면 아래 화면은 타일의 모양을 보여 줍니다.
 
 ![dashboard](./media/oms-security-web-baseline/oms-security-web-baseline-fig4.png)
 
 ## <a name="see-also"></a>참고 항목
-이 문서에서는 OMS 보안 및 감사 웹 기준 평가에 대해 알아보았습니다. OMS 보안에 대해 자세히 toolearn hello 다음 문서 참조:
+이 문서에서는 OMS 보안 및 감사 웹 기준 평가에 대해 알아보았습니다. OMS 보안에 대해 자세히 알아보려면 다음 문서를 참조하세요.
 
 * [OMS(Operations Management Suite) 개요](operations-management-suite-overview.md)
-* [모니터링 및 Operations Management Suite 보안 및 감사 솔루션에 응답 중 tooSecurity 경고](oms-security-responding-alerts.md)
+* [Operations Management Suite 보안 및 감사 솔루션의 보안 경고 모니터링 및 응답](oms-security-responding-alerts.md)
 * [Operations Management Suite 보안 및 감사 솔루션의 리소스 모니터링](oms-security-monitoring-resources.md)
 

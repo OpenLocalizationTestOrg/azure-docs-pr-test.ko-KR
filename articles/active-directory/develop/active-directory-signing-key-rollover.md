@@ -1,6 +1,6 @@
 ---
-title: "Azure AD에서 키 롤오버 aaaSigning | Microsoft Docs"
-description: "이 문서에서는 Azure Active Directory에 대 한 키 롤오버에 대 한 유용한 정보를 서명 하는 hello 설명"
+title: "Azure AD에서 서명 키 롤오버 | Microsoft Docs"
+description: "이 문서에서는 Azure Active Directory에 대한 서명 키 롤오버 모범 사례를 설명합니다."
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,24 +15,24 @@ ms.topic: article
 ms.date: 07/18/2016
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: ac6ade7f3ba2fbd22ea6d447aa5d07a2d6bdd451
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 228bb9058537af1e4eb38207c376c2eb86aee68c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="signing-key-rollover-in-azure-active-directory"></a>Azure Active Directory에서 서명 키 롤오버
-이 항목에서는 Azure Active Directory (Azure AD) toosign 보안 토큰에 사용 되는 공개 키를 hello에 대 한 tooknow 필요한 설명 합니다. 것이 중요 한 toonote는 주기적으로 및를 긴급 상황에서는 이러한 키 롤오버를 통해 즉시 롤백할 수 없습니다. Azure AD를 사용 하는 모든 응용 프로그램 수 tooprogrammatically 핸들 hello 키 롤오버 프로세스 하거나 정기적으로 수동 롤오버 프로세스를 설정 해야 합니다. Hello 키가 작동 방식을 tooassess hello hello 롤오버 tooyour 응용 프로그램에 미치는 방식과 toounderstand 읽고 tooupdate 응용 프로그램, 필요한 경우 정기적으로 수동 롤오버 프로세스 toohandle 키 롤오버를 설정할 합니다.
+이 항목에서는 보안 토큰을 서명하기 위해 Azure AD(Azure Active Directory)에 사용되는 공개 키에 대해 알아야 할 내용을 설명합니다. 이러한 키 롤오버가 정기적으로 있으며, 비상 시에는 곧바로 롤오버될 수 있습니다. Azure AD를 사용하는 모든 응용 프로그램은 키 롤오버 프로세스를 프로그래밍 방식으로 처리하거나 정기적인 수동 롤오버 프로세스를 설정할 수 있어야 합니다. 키의 작동 방식과 롤오버가 응용 프로그램에 미친 영향을 평가하는 방법, 필요한 경우 키 롤오버를 처리하도록 응용 프로그램을 업데이트하거나 정기적인 수동 롤오버 프로세스를 설정하는 방법을 이해하려면 계속 읽어 보세요.
 
 ## <a name="overview-of-signing-keys-in-azure-ad"></a>Azure AD의 서명 키 개요
-Azure AD는 업계 표준 tooestablish 트러스트 자체와 hello 사이 작성 된 공개 키 암호화를 사용을 사용 하는 응용 프로그램입니다. 실질적으로 보안 그룹은 다음 방식으로 hello: Azure AD는 공개 및 개인 키 쌍으로 구성 된 서명 키를 사용 합니다. 사용자 인증을 위해 Azure AD를 사용 하는 tooan 응용 프로그램에 로그인 하면 Azure AD는 hello 사용자에 대 한 정보를 포함 하는 보안 토큰을 만듭니다. 이 토큰은 응용 프로그램 백 toohello 전송 하기 전에 해당 개인 키를 사용 하 여 Azure AD에서 서명 됩니다. 토큰 hello tooverify가 유효 하 고 실제로 Azure AD에서 공개한, hello 응용 프로그램 hello hello 테 넌 트에 포함 된 Azure AD에 의해 노출 되는 공개 키를 사용 하 여 hello 토큰 서명의 유효성을 검사 해야 [검색 문서 OpenID Connect](http://openid.net/specs/openid-connect-discovery-1_0.html) 또는 SAML/Ws-fed [페더레이션 메타 데이터 문서](active-directory-federation-metadata.md)합니다.
+Azure AD는 업계 표준을 기반으로 하는 공개 키 암호화를 사용하여 Azure AD 자체 및 이를 사용하는 응용 프로그램 간의 트러스트를 설정합니다. 실질적인 측면에서, Azure AD는 공개 및 개인 키 쌍으로 구성된 서명 키를 사용하는 방식으로 작동합니다. 사용자가 인증을 위해 Azure AD를 사용하는 응용 프로그램에 로그인하면 Azure AD는 사용자에 대한 정보가 포함된 보안 토큰을 만듭니다. 이 토큰은 응용 프로그램으로 다시 전송되기 전에 개인 키를 사용하여 Azure AD에 의해 서명됩니다. 해당 토큰이 유효하고 실제로 Azure AD에서 발생한 것인지 확인하기 위해 응용 프로그램은 테넌트의 [OpenID Connect Discovery 문서](http://openid.net/specs/openid-connect-discovery-1_0.html) 또는 SAML/WS-Fed [페더레이션 메타데이터 문서](active-directory-federation-metadata.md)에 포함된 Azure AD가 노출한 공개 키를 사용하여 토큰의 서명을 유효성 검사해야 합니다.
 
-보안을 위해 Azure AD의 서명 키 롤 주기적으로 고, 비상 시 hello 경우에서 수 롤오버 즉시 합니다. Azure AD와 통합 되어 있는 모든 응용 프로그램 키 롤오버 이벤트 발생할 수 있는 빈도 관계 없이 toohandle를 준비 해야 합니다. 그렇지 않은 경우 응용 프로그램 토큰에는 만료 된 키 tooverify hello 서명 toouse 시도 hello 로그인 요청이 실패 합니다.
+보안을 위해 Azure AD의 서명 키는 주기적으로 롤링하고, 비상 시에는 곧바로 롤오버될 수 있습니다. 빈도에 관계 없이 키 롤오버 이벤트를 처리하기 위해 Azure AD와 통합되는 모든 응용 프로그램을 준비해야 합니다. 없는 경우 응용 프로그램은 토큰에서 서명을 확인하기 위해 만료된 키를 사용하려고 시도하며 서명 요청이 실패합니다.
 
-항상 둘 이상의 유효한 키가 hello OpenID Connect 검색 문서 및 hello 페더레이션 메타 데이터 문서에서 사용할 수 있습니다. 응용 프로그램을 준비 해야 toouse hello 키에 지정 된 hello 문서 키가 두 개를 곧 롤오버 될 수 있으므로 다른를 대체할 하 고 등 수 있습니다.
+OpenID Connect discovery 문서와 페더레이션 메타데이터 문서에는 사용 가능한 키가 항상 두 개 이상 있습니다. 하나의 키가 곧 롤오버되고 다른 키가 대체되는 방식으로 문서에 지정된 키를 사용하도록 응용 프로그램이 준비되어야 합니다.
 
-## <a name="how-tooassess-if-your-application-will-be-affected-and-what-toodo-about-it"></a>어떻게 응용 프로그램이 영향을 받을 경우 tooassess 및 항목에 대 한 어떤 toodo
-응용 프로그램에서 키 롤오버를 처리 하는 방법에 따라 다름 hello 유형의 응용 프로그램이 나 어떤 identity 프로토콜 및 라이브러리를 사용 하는 등의 변수 아래 섹션에서는 hello hello 가장 일반적인 유형의 응용 프로그램 hello 키 롤오버의 영향을 받는 방법을 tooupdate 응용 프로그램 toosupport 자동 롤오버 hello 또는 hello 키를 수동으로 업데이트 한 지침을 제공 하는지 여부를 평가 합니다.
+## <a name="how-to-assess-if-your-application-will-be-affected-and-what-to-do-about-it"></a>응용 프로그램이 영향을 받을지 여부와 그에 대한 대처 방안을 평가하는 방법
+응용 프로그램이 키 롤오버를 처리하는 방식은 응용 프로그램 유형 또는 사용된 ID 프로토콜 및 라이브러리 버전과 같은 변수에 따라 달라집니다. 아래 섹션에서는 가장 일반적인 유형의 응용 프로그램이 키 롤오버의 영향을 받는지 여부와 자동 롤오버를 지원하거나 수동으로 키를 업데이트하도록 응용 프로그램을 업데이트하는 방법에 대한 지침을 제공하는지 여부를 평가합니다.
 
 * [리소스에 액세스하는 네이티브 클라이언트 응용 프로그램](#nativeclient)
 * [리소스에 액세스하는 웹 응용 프로그램/API](#webclient)
@@ -45,30 +45,30 @@ Azure AD는 업계 표준 tooestablish 트러스트 자체와 hello 사이 작�
 * [리소스를 보호하며 Visual Studio 2013을 사용하여 만든 웹 API](#vs2013_webapi)
 * [리소스를 보호하며 Visual Studio 2012를 사용하여 만든 웹 응용 프로그램](#vs2012)
 * [리소스를 보호하며 Visual Studio 2010, 2008 또는 WIF(Windows Identity Foundation)를 사용하여 만든 웹 응용 프로그램](#vs2010)
-* [웹 응용 프로그램/리소스를 보호 하는 Api를 사용 하 여 다른 라이브러리 또는 수동으로 구현 하는 hello의 지원 되는 프로토콜](#other)
+* [다른 라이브러리를 사용하거나 지원되는 프로토콜을 수동으로 구현하여 리소스를 보호하는 웹 응용 프로그램/API](#other)
 
 이 설명서는 다음에 적용할 수 **없습니다** .
 
-* (사용자 정의 포함)는 Azure AD 응용 프로그램 갤러리에서 추가 하는 응용 프로그램에 대 한 예정 toosigning 키를 가진 별도 지침이 있습니다. [자세한 정보](../active-directory-sso-certs.md)
-* 온-프레미스 응용 프로그램 프록시를 통해 게시 된 응용 프로그램 서명 키에 대 한 tooworry 필요는 없습니다.
+* Azure AD 응용 프로그램 갤러리에서 추가된 응용 프로그램(사용자 지정 포함)에는 서명 키와 관련하여 별도 설명서가 있습니다. [자세한 정보](../active-directory-sso-certs.md)
+* 응용 프로그램 프록시를 통해 게시된 온-프레미스 응용 프로그램은 서명 키에 대해 걱정할 필요가 없습니다.
 
 ### <a name="nativeclient"></a>리소스에 액세스하는 네이티브 클라이언트 응용 프로그램
-리소스에만 액세스하는 응용 프로그램(즉, Microsoft Graph, KeyVault, Outlook API 및 다른 Microsoft Api) 일반적으로 토큰을 가져올 및만 toohello 리소스 소유자를 따라 전달 합니다. 모든 리소스를 보호 하지 않습니다, 있다고 가정 hello 토큰을 검사 하지 않는 하며 따라서 tooensure 올바르게 서명은 필요 하지 않습니다.
+리소스에만 액세스하는 응용 프로그램(즉, Microsoft Graph, KeyVault, Outlook API 및 기타 Microsoft API)은 일반적으로 토큰만 가져와서 리소스 소유자에게 전달합니다. 리소스를 보호하지 못한다면 토큰을 검사하지 않으므로 제대로 서명되었는지 확인할 필요도 없습니다.
 
-네이티브 클라이언트 응용 프로그램 데스크톱 또는 모바일,이 범주에 속하는 하 고 따라서 영향을 받지 않습니다 hello 롤오버 합니다.
+데스크톱 또는 모바일의 네티이브 클라이언트 응용 프로그램이 이 범주에 해당하므로 롤오버의 영향을 받지 않습니다.
 
 ### <a name="webclient"></a>리소스에 액세스하는 웹 응용 프로그램/API
-리소스에만 액세스하는 응용 프로그램(즉, Microsoft Graph, KeyVault, Outlook API 및 다른 Microsoft Api) 일반적으로 토큰을 가져올 및만 toohello 리소스 소유자를 따라 전달 합니다. 모든 리소스를 보호 하지 않습니다, 있다고 가정 hello 토큰을 검사 하지 않는 하며 따라서 tooensure 올바르게 서명은 필요 하지 않습니다.
+리소스에만 액세스하는 응용 프로그램(즉, Microsoft Graph, KeyVault, Outlook API 및 기타 Microsoft API)은 일반적으로 토큰만 가져와서 리소스 소유자에게 전달합니다. 리소스를 보호하지 못한다면 토큰을 검사하지 않으므로 제대로 서명되었는지 확인할 필요도 없습니다.
 
-웹 응용 프로그램 및 웹 응용 프로그램 전용 흐름 hello를 사용 하는 Api (클라이언트 자격 증명 / 클라이언트 인증서)이이 범주에 해당 하 고 따라서 영향을 받지 않습니다 hello 롤오버 합니다.
+앱 전용 흐름을 사용하는 웹 응용 프로그램 및 웹 API(클라이언트 자격 증명/클라이언트 인증서)가 이 범주에 해당하므로 롤오버의 영향을 받지 않습니다.
 
 ### <a name="appservices"></a>리소스를 보호하고 Azure 앱 서비스를 사용하여 구축된 웹 응용 프로그램/API
-Azure 앱 서비스의 인증 / 권한 부여 (EasyAuth) 기능에 이미 키 롤오버를 toohandle hello 필수 논리가 자동으로 합니다.
+Azure 앱 서비스의 인증/권한 부여(EasyAuth) 기능에는 이미 키 롤오버를 자동으로 처리하는 데 필요한 논리가 있습니다.
 
 ### <a name="owin"></a>.NET OWIN OpenID Connect, WS-Fed 또는 WindowsAzureActiveDirectoryBearerAuthentication 미들웨어를 사용하여 리소스를 보호하는 웹 응용 프로그램/API
-응용 프로그램에서.NET OWIN OpenID Connect, Ws-fed 또는 WindowsAzureActiveDirectoryBearerAuthentication 미들웨어 hello를 사용 하는 경우 이미 키 롤오버를 toohandle hello 필수 논리가 자동으로 합니다.
+응용 프로그램에서 .NET OWIN OpenID Connect, WS-Fed 또는 WindowsAzureActiveDirectoryBearerAuthentication 미들웨어를 사용 하는 경우, 자동으로 키 롤오버를 처리하는 데 필요한 논리가 이미 있는 것입니다.
 
-응용 프로그램이 응용 프로그램의 Startup.cs 또는 Startup.Auth.cs 코드 조각은 다음 hello에 대 한 검색 하 여 이러한 항목 중 하나를 사용 중인지 확인할 수 있습니다.
+응용 프로그램의 Startup.cs 또는 Startup.Auth.cs에서 다음 코드 조각을 찾아봄으로써 응용 프로그램에서 이들 미들웨어를 사용하는지 확인할 수 있습니다.
 
 ```
 app.UseOpenIdConnectAuthentication(
@@ -93,9 +93,9 @@ app.UseWsFederationAuthentication(
 ```
 
 ### <a name="owincore"></a>.NET Core OpenID Connect 또는 JwtBearerAuthentication 미들웨어를 사용하여 리소스를 보호하는 웹 응용 프로그램/API
-응용 프로그램은.NET Core OWIN OpenID Connect hello 또는 JwtBearerAuthentication 미들웨어를 사용 하는 경우 이미 키 롤오버를 toohandle hello 필수 논리가 자동으로 합니다.
+응용 프로그램에서 .NET Core OWIN OpenID Connect 또는 JwtBearerAuthentication 미들웨어를 사용 하는 경우, 자동으로 키 롤오버를 처리하는 데 필요한 논리가 이미 있는 것입니다.
 
-응용 프로그램이 응용 프로그램의 Startup.cs 또는 Startup.Auth.cs 코드 조각은 다음 hello에 대 한 검색 하 여 이러한 항목 중 하나를 사용 중인지 확인할 수 있습니다.
+응용 프로그램의 Startup.cs 또는 Startup.Auth.cs에서 다음 코드 조각을 찾아봄으로써 응용 프로그램에서 이들 미들웨어를 사용하는지 확인할 수 있습니다.
 
 ```
 app.UseOpenIdConnectAuthentication(
@@ -113,9 +113,9 @@ app.UseJwtBearerAuthentication(
 ```
 
 ### <a name="passport"></a>Node.js passport-azure-ad 모듈을 사용하여 리소스를 보호하는 웹 응용 프로그램/API
-응용 프로그램 hello Node.js passport ad 모듈을 사용 하는 경우 이미 키 롤오버를 toohandle hello 필수 논리가 자동으로 합니다.
+응용 프로그램에서 Node.js passport-ad module을 사용 하는 경우, 자동으로 키 롤오버를 처리하는 데 필요한 논리가 이미 있는 것입니다.
 
-되는지 확인할 수 있습니다 다음 응용 프로그램의 app.js의 조각 hello에 대 한 검색 하 여 응용 프로그램 passport ad 프로그램
+응용 프로그램의 app.js에서 다음 코드 조각을 찾아봄으로써 응용 프로그램 passport ad를 확인할 수 있습니다.
 
 ```
 var OIDCStrategy = require('passport-azure-ad').OIDCStrategy;
@@ -126,31 +126,31 @@ passport.use(new OIDCStrategy({
 ```
 
 ### <a name="vs2015"></a>리소스를 보호하며 Visual Studio 2015 또는 Visual Studio 2017을 사용하여 만든 웹 응용 프로그램/API
-Visual Studio 2015 또는 Visual Studio 2017에서 웹 응용 프로그램 템플릿을 사용 하 여 응용 프로그램을 빌드한 경우 선택한 **작업 및 학교 계정** hello에서 **인증 변경** 메뉴 이미 hello 필수 논리가 toohandle 키 롤오버를 자동으로 부여 합니다. Hello OpenID Connect OWIN 미들웨어에 포함 된이 논리를 검색 및 hello OpenID Connect 검색 문서에서 hello 키를 캐시 하 고 주기적으로 새로 고쳐집니다.
+Visual Studio 2015 또는 Visual Studio 2017에서 웹 응용 프로그램 템플릿을 사용하여 응용 프로그램을 빌드했고 **인증 변경** 메뉴에서 **회사 및 학교 계정**을 선택한 경우 자동으로 키 롤오버를 처리하는 데 필요한 논리가 이미 있는 것입니다. OWIN OpenID Connect 미들웨어에 포함된 이 논리는 OpenID Connect discovery 문서에서 키를 검색하고 캐시하며 주기적으로 새로 고칩니다.
 
-인증 tooyour 솔루션을 수동으로 추가 하는 경우 응용 프로그램에서는 hello 필수 키 롤오버 논리가 없을 수 있습니다. Toowrite 필요 합니다 것의 단계를 직접 또는 따라 hello [웹 응용 프로그램 / Api 수동으로 hello 중 하나를 구현 하거나 다른 라이브러리를 사용 하 여 프로토콜을 지원 합니다.](#other)합니다.
+인증을 솔루션에 수동으로 추가하면 응용 프로그램에 필요한 키 롤오버 논리가 없을 수도 있습니다. 사용자가 직접 작성하거나 [웹 응용 프로그램/다른 라이브러리를 사용하거나 지원되는 프로토콜을 수동으로 구현하는 API](#other)의 단계를 따라야 합니다.
 
 ### <a name="vs2013"></a>리소스를 보호하며 Visual Studio 2013을 사용하여 만든 웹 응용 프로그램
-Visual Studio 2013에서 웹 응용 프로그램 템플릿을 사용 하 여 응용 프로그램을 빌드한 경우 선택한 **조직 계정** hello에서 **인증 변경** 메뉴 이미 hello 필요 키 롤오버를 자동으로 논리 toohandle 합니다. 이 논리는 조직의 고유 식별자 및 hello 프로젝트와 관련 된 두 개의 데이터베이스 테이블에 키 정보를 서명 하는 hello를 저장 합니다. Hello 프로젝트의 Web.config 파일에 hello 데이터베이스에 대 한 hello 연결 문자열을 찾을 수 있습니다.
+Visual Studio 2013에서 웹 응용 프로그램 템플릿을 사용하여 응용 프로그램을 빌드했고 **인증 변경** 메뉴에서 **조직 계정**을 선택한 경우 자동으로 키 롤오버를 처리하는 데 필요한 논리가 이미 있는 것입니다. 이 논리는 조직의 고유 ID 및 서명 키 정보를 프로젝트와 연결된 두 데이터베이스 테이블에 저장합니다. 프로젝트의 Web.config 파일에서 데이터베이스에 대한 연결 문자열을 찾을 수 있습니다.
 
-인증 tooyour 솔루션을 수동으로 추가 하는 경우 응용 프로그램에서는 hello 필수 키 롤오버 논리가 없을 수 있습니다. Toowrite 필요 합니다 것의 단계를 직접 또는 따라 hello [웹 응용 프로그램 / Api 수동으로 hello 중 하나를 구현 하거나 다른 라이브러리를 사용 하 여 프로토콜을 지원 합니다.](#other)합니다.
+인증을 솔루션에 수동으로 추가하면 응용 프로그램에 필요한 키 롤오버 논리가 없을 수도 있습니다. 사용자가 직접 작성하거나 [웹 응용 프로그램/다른 라이브러리를 사용하거나 지원되는 프로토콜을 수동으로 구현하는 API](#other)의 단계를 따라야 합니다.
 
-단계를 수행 하는 hello hello 논리가 응용 프로그램에서 제대로 작동 하는지 확인 하는 데 도움이 됩니다.
+다음 단계는 응용 프로그램에서 논리가 제대로 작동하는지 확인하는 데 도움이 됩니다.
 
-1. Visual Studio 2013에서 hello 솔루션을 열고 hello에 클릭 **서버 탐색기** hello 오른쪽 창에 탭 합니다.
-2. **데이터 연결**, **DefaultConnection**, **테이블**을 차례로 확장합니다. Hello 찾을 **IssuingAuthorityKeys** 테이블을 마우스 오른쪽 단추로 클릭 하 고 클릭 **테이블 데이터 표시**합니다.
-3. Hello에 **IssuingAuthorityKeys** 테이블, hello 키에 대 한 toohello 지문 값을 해당 하는 하나 이상의 행이 생깁니다. Hello 테이블의 모든 행을 삭제 합니다.
-4. 마우스 오른쪽 단추로 클릭 hello **테 넌 트** 테이블을 마우스 클릭 **테이블 데이터 표시**합니다.
-5. Hello에 **테 넌 트** 테이블, 해당 tooa 고유한 디렉터리 테 넌 트 식별자는 하나 이상의 행이 생깁니다. Hello 테이블의 모든 행을 삭제 합니다. 두 hello의 hello 행을 삭제 하지 않으면 **테 넌 트** 테이블 및 **IssuingAuthorityKeys** 테이블을 런타임 시 오류가 발생 합니다.
-6. 빌드하고 hello 응용 프로그램을 실행 합니다. Tooyour 계정에 로그인 한 후에 hello 응용 프로그램을 중지할 수 있습니다.
-7. Toohello 반환 **서버 탐색기** hello에 hello 값을 살펴보고 및 **IssuingAuthorityKeys** 및 **테 넌 트** 테이블입니다. 이러한가 되어 자동으로 다시 채워집니다 hello hello 페더레이션 메타 데이터 문서에서 적절 한 정보를 확인할 수 있습니다.
+1. Visual Studio 2013에서 솔루션을 열고 오른쪽 창에서 **서버 탐색기** 탭을 클릭합니다.
+2. **데이터 연결**, **DefaultConnection**, **테이블**을 차례로 확장합니다. **IssuingAuthorityKeys** 테이블을 찾아 마우스 오른쪽 단추로 클릭한 후 **테이블 데이터 표시**를 클릭합니다.
+3. **IssuingAuthorityKeys** 테이블에는 키에 대한 지문 값에 해당하는 행이 하나 이상 있습니다. 테이블의 모든 행을 삭제합니다.
+4. **테넌트** 테이블을 마우스 오른쪽 단추로 클릭하고 **테이블 데이터 표시**를 클릭합니다.
+5. **테넌트** 테이블에는 고유한 디렉터리 테넌트 식별자에 해당하는 행이 하나 이상 있습니다. 테이블의 모든 행을 삭제합니다. **테넌트** 테이블 및 **IssuingAuthorityKeys** 테이블 모두에서 행을 삭제하지 않으면 런타임에 오류가 발생합니다.
+6. 응용 프로그램을 빌드 및 실행합니다. 계정에 로그인한 후에 응용 프로그램을 중지할 수 있습니다.
+7. **서버 탐색기**로 돌아가 **IssuingAuthorityKeys** 및 **테넌트** 테이블에서 값을 확인합니다. 페더레이션 메타데이터 문서의 적절한 정보로 자동으로 다시 채워진 것을 알 수 있습니다.
 
 ### <a name="vs2013"></a>리소스를 보호하며 Visual Studio 2013을 사용하여 만든 웹 API
-Hello Web API 템플릿을 사용 하 여 Visual Studio 2013에서 web API 응용 프로그램을 만든 경우 다음 선택한 **조직 계정** hello에서 **인증 변경** 메뉴 하면 이미 있는 hello 응용 프로그램에서 필수 논리가 있습니다.
+Visual Studio 2013에서 Web API 템플릿을 사용하여 Web API 응용 프로그램을 만들었고 **인증 변경** 메뉴에서 **조직 계정**을 선택한 경우 응용 프로그램에 필요한 논리가 이미 있는 것입니다.
 
-인증을 수동으로 구성한 경우 아래 지침을 hello toolearn 어떻게 tooconfigure 웹 API tooautomatically 키 정보를 업데이트 합니다.
+인증을 수동으로 구성한 경우 아래 지침을 따라 키 정보를 자동으로 업데이트하는 Web API를 구성하는 방법을 알아봅니다.
 
-hello 다음 코드 조각은 방법을 보여 주는 tooget hello 페더레이션 메타 데이터 문서에서 최신 키 hello hello를 사용 하 여 [JWT 토큰 처리기](https://msdn.microsoft.com/library/dn205065.aspx) toovalidate hello 토큰입니다. hello 코드 조각에서는 데이터베이스, 구성 파일 또는 다른 위치에서 든 관계 없이 Azure AD의 자체 캐싱 메커니즘 이후 지속 hello 키 toovalidate에 대 한 토큰을 사용 하 여 가정 합니다.
+다음 코드 조각은 페더레이션 메타데이터 문서에서 최신 키를 가져온 후 [JWT 토큰 처리기](https://msdn.microsoft.com/library/dn205065.aspx) 를 사용하여 토큰의 유효성을 검사하는 방법을 보여 줍니다. 이 코드 조각은 Azure AD에서 향후 토큰의 유효성을 검사하기 위해 키를 유지하는 데 키 위치에 관계 없이(데이터베이스, 구성 파일 또는 다른 곳) 고유의 캐싱 메커니즘을 사용한다고 가정합니다.
 
 ```
 using System;
@@ -172,7 +172,7 @@ namespace JWTValidation
     {
         private string MetadataAddress = "[Your Federation Metadata document address goes here]";
 
-        // Validates hello JWT Token that's part of hello Authorization header in an HTTP request.
+        // Validates the JWT Token that's part of the Authorization header in an HTTP request.
         public void ValidateJwtToken(string token)
         {
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler()
@@ -183,17 +183,17 @@ namespace JWTValidation
 
             TokenValidationParameters validationParams = new TokenValidationParameters()
             {
-                AllowedAudience = "[Your App ID URI goes here, as registered in hello Azure Classic Portal]",
-                ValidIssuer = "[hello issuer for hello token goes here, such as https://sts.windows.net/68b98905-130e-4d7c-b6e1-a158a9ed8449/]",
+                AllowedAudience = "[Your App ID URI goes here, as registered in the Azure Classic Portal]",
+                ValidIssuer = "[The issuer for the token goes here, such as https://sts.windows.net/68b98905-130e-4d7c-b6e1-a158a9ed8449/]",
                 SigningTokens = GetSigningCertificates(MetadataAddress)
 
-                // Cache hello signing tokens by your desired mechanism
+                // Cache the signing tokens by your desired mechanism
             };
 
             Thread.CurrentPrincipal = tokenHandler.ValidateToken(token, validationParams);
         }
 
-        // Returns a list of certificates from hello specified metadata document.
+        // Returns a list of certificates from the specified metadata document.
         public List<X509SecurityToken> GetSigningCertificates(string metadataAddress)
         {
             List<X509SecurityToken> tokens = new List<X509SecurityToken>();
@@ -226,7 +226,7 @@ namespace JWTValidation
                     }
                     else
                     {
-                        throw new InvalidOperationException("There is no RoleDescriptor of type SecurityTokenServiceType in hello metadata");
+                        throw new InvalidOperationException("There is no RoleDescriptor of type SecurityTokenServiceType in the metadata");
                     }
                 }
                 else
@@ -241,17 +241,17 @@ namespace JWTValidation
 ```
 
 ### <a name="vs2012"></a>리소스를 보호하며 Visual Studio 2012를 사용하여 만든 웹 응용 프로그램
-Visual Studio 2012에서 응용 프로그램을 빌드한 경우 아마도 사용한 Identity hello 및 액세스 도구 tooconfigure 응용 프로그램. Hello를 사용 하는 것 역시 [유효성 검사 발급자 이름 레지스트리 VINR ()](https://msdn.microsoft.com/library/dn205067.aspx)합니다. hello VINR은 신뢰할 수 있는 id 공급자 (Azure AD)에 대 한 정보를 유지 관리 하 고 해당에서 발급 한 toovalidate 토큰을 사용 하는 hello 키. hello VINR을 사용 하면 쉽게 tooautomatically 업데이트 hello 키 정보 hello 최신 페더레이션 메타 데이터와 관련 된 문서 검사 hello 구성이 최신 hello로 만료 된 경우 디렉터리에 다운로드 하 여 Web.config 파일에 저장 합니다. 문서 및 hello 응용 프로그램 toouse hello 새 키 업데이트 필요에 따라 합니다.
+Visual Studio 2012에서 응용 프로그램을 빌드한 경우 응용 프로그램을 구성하는 데 아마도 ID 및 액세스 도구를 사용한 것입니다. 또한 [발급자 이름 레지스트리 유효성 검사(VINR)](https://msdn.microsoft.com/library/dn205067.aspx)를 사용할 가능성이 높습니다. VINR은 발급된 토큰의 유효성을 검사하는 데 사용된 키와 신뢰할 수 있는 ID 공급자(Azure AD)에 대한 정보의 유지 관리를 담당합니다. 또한 VINR을 통해 해당 디렉터리에 연결된 최신 페더레이션 메타데이터 문서를 다운로드하고 구성이 최신 문서와 함께 만료되었는지 확인하며 필요에 따라 새 키를 사용하도록 응용 프로그램을 업데이트하여 Web.config 파일에 저장된 키 정보를 자동으로 간편하게 업데이트할 수 있습니다.
 
-Hello 코드 샘플 또는 연습 문서 Microsoft에서 제공 하는 중 하나를 사용 하 여 응용 프로그램을 만든 경우 hello 키 롤오버 논리가 이미 프로젝트에 포함 됩니다. 아래 hello 코드 프로젝트에 이미 존재 한다는 것을 확인할 수 있습니다. 응용 프로그램에 아직 없는 경우이 논리를 하 고 올바르게 작동 tooverify tooadd 아래 hello 단계를 수행 합니다.
+Microsoft에서 제공하는 코드 샘플 또는 연습 문서를 사용하여 응용 프로그램을 만든 경우 키 롤오버 논리가 프로젝트에 이미 포함됩니다. 아래 코드가 프로젝트에 이미 있는 것을 확인할 수 있습니다. 응용 프로그램에 이 논리가 아직 없는 경우 아래 단계에 따라 추가하고 제대로 작동하는지 확인합니다.
 
-1. **솔루션 탐색기**, 참조 toohello 추가 **System.IdentityModel** hello 적절 한 프로젝트에 대 한 어셈블리입니다.
-2. 열기 hello **Global.asax.cs** 파일을 hello 다음 추가 지시문을 사용 하 여:
+1. **솔루션 탐색기**에서 참조를 해당 프로젝트에 대한 **System.IdentityModel** 어셈블리에 추가합니다.
+2. **Global.asax.cs** 파일을 열고 지시문을 사용하여 다음을 추가합니다.
    ```
    using System.Configuration;
    using System.IdentityModel.Tokens;
    ```
-3. 다음 메서드 toohello hello 추가 **Global.asax.cs** 파일:
+3. **Global.asax.cs** 파일에 다음 메서드를 추가합니다.
    ```
    protected void RefreshValidationSettings()
    {
@@ -261,7 +261,7 @@ Hello 코드 샘플 또는 연습 문서 Microsoft에서 제공 하는 중 하�
     ValidatingIssuerNameRegistry.WriteToConfig(metadataAddress, configPath);
    }
    ```
-4. Hello 호출 **refreshvalidationsettings ()** hello에 대 한 메서드 **application_start ()** 메서드에서 **Global.asax.cs** 표시 된 것 처럼:
+4. 아래와 같이 **Global.asax.cs**의 **Application_Start()** 메서드에서 **RefreshValidationSettings()** 메서드를 추가합니다.
    ```
    protected void Application_Start()
    {
@@ -271,11 +271,11 @@ Hello 코드 샘플 또는 연습 문서 Microsoft에서 제공 하는 중 하�
    }
    ```
 
-다음이 단계를 따른 후 응용 프로그램의 Web.config hello hello 최신 키를 포함 하 여 hello 페더레이션 메타 데이터 문서에서 최신 정보로 업데이트 됩니다. 이 업데이트는 IIS;에서 응용 프로그램 풀 재활용 될 때마다 발생 합니다. 기본적으로 29 시간 마다 IIS toorecycle 응용 프로그램 설정 됩니다.
+이러한 단계를 완료하면 응용 프로그램의 Web.config가 최신 키를 포함한 페더레이션 메타데이터 문서의 최신 정보로 업데이트됩니다. 이 업데이트는 응용 프로그램 풀이 IIS에서 재활용될 때마다 발생하며 기본적으로 IIS는 29시간마다 응용 프로그램을 재활용하도록 설정됩니다.
 
-Hello 키 롤오버 논리가 작동 tooverify 아래 hello 단계를 수행 합니다.
+아래 단계에 따라 키 롤오버 논리가 제대로 작동하는지 확인합니다.
 
-1. 응용 프로그램 열기 hello 위의 hello 코드를 사용 하 고 있는지 확인 한 후 **Web.config** toohello 이동한 다음 파일  **<issuerNameRegistry>**  블록에서 구체적으로 다음 몇 줄만 작성 hello:
+1. 응용 프로그램이 위의 코드를 사용 중인지를 확인한 후 **Web.config** 파일을 열고 **<issuerNameRegistry>** 블록으로 이동하여 구체적으로 다음 몇 줄을 확인합니다.
    ```
    <issuerNameRegistry type="System.IdentityModel.Tokens.ValidatingIssuerNameRegistry, System.IdentityModel.Tokens.ValidatingIssuerNameRegistry">
         <authority name="https://sts.windows.net/ec4187af-07da-4f01-b18f-64c2f5abecea/">
@@ -283,31 +283,31 @@ Hello 키 롤오버 논리가 작동 tooverify 아래 hello 단계를 수행 합
             <add thumbprint="3A38FA984E8560F19AADC9F86FE9594BB6AD049B" />
           </keys>
    ```
-2. Hello에  **<add thumbprint=””>**  설정, 다른 모든 문자를 대체 하 여 hello 지문 값을 변경 합니다. Hello 저장 **Web.config** 파일입니다.
-3. Hello 응용 프로그램을 빌드하고 실행 합니다. Hello 로그인 프로세스를 완료할 수 응용 프로그램 디렉터리의 페더레이션 메타 데이터 문서에서 hello 필요한 정보를 다운로드 하 여 hello 키를 정상적으로 업데이트 됩니다. 로그인 하는 데 문제가 있는 경우 hello를 참조 하 여 응용 프로그램의 hello 변경 올바른지 확인 [추가 로그온 tooYour 웹 응용 프로그램 사용 하 여 Azure AD](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect) 항목 또는 다운로드 한 후 조사 아래의 코드 예제는 hello: [ Azure Active Directory 용 다중 테 넌 트 클라우드 응용 프로그램](https://code.msdn.microsoft.com/multi-tenant-cloud-8015b84b)합니다.
+2. **<add thumbprint=””>** 설정에서 모든 문자를 다른 것으로 바꿔서 지문 값을 변경합니다. **Web.config** 파일을 저장합니다.
+3. 응용 프로그램을 빌드하고 실행합니다. 로그인 프로세스를 완료할 수 있으면 응용 프로그램은 디렉터리의 페더레이션 메타데이터 문서에서 필요한 정보를 다운로드하여 키를 성공적으로 업데이트합니다. 로그인하는 데 문제가 있는 경우 [Azure AD를 사용하여 웹 응용 프로그램에 로그온 추가](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect) 항목을 읽거나 [Azure Active Directory에 대한 다중 테넌트 클라우드 응용 프로그램](https://code.msdn.microsoft.com/multi-tenant-cloud-8015b84b) 코드 샘플을 다운로드 및 검사하여 응용 프로그램의 변경 내용이 올바른지 확인합니다.
 
 ### <a name="vs2010"></a>리소스를 보호하며 Visual Studio 2008 또는 2010 및 .NET 3.5용 WIF(Windows Identity Foundation) v1.0을 사용하여 만든 웹 응용 프로그램
-WIF v 1.0에서 응용 프로그램을 작성 하는 경우 디자인 하는 메커니즘이 제공된 tooautomatically 창 응용 프로그램의 구성 toouse 새 키.
+WIF v1.0에서 응용 프로그램을 빌드한 경우 새 키를 사용하도록 응용 프로그램의 구성을 자동으로 새로 고치는 데 제공된 메커니즘이 없습니다.
 
-* *가장 쉬운 방법은* hello hello 최신 메타 데이터 문서를 검색 하 고 구성을 업데이트할 수 있는 WIF SDK에에서 포함 된 hello FedUtil 도구를 사용 합니다.
-* Hello hello System 네임 스페이스에는 WIF의 최신 버전을 포함 하 여 응용 프로그램 too.NET 4.5를 업데이트 합니다. Hello를 사용 하 여 있습니다 [유효성 검사 발급자 이름 레지스트리 VINR ()](https://msdn.microsoft.com/library/dn205067.aspx) hello 응용 프로그램의 구성 tooperform 자동 업데이트 합니다.
-* 이 지침 문서 hello 끝나기 전에 hello 지침에 따라 수동 롤오버를 수행 합니다.
+* *가장 쉬운 방법* WIF SDK에 포함된 FedUtil 도구를 사용합니다. 이 도구를 통해 최신 메타데이터 문서를 검색하고 구성을 업데이트할 수 있습니다.
+* 응용 프로그램을 시스템 네임스페이스에 있는 최신 버전의 WIF를 포함하는 .NET 4.5로 업데이트합니다. 그런 다음 [발급자 이름 레지스트리 유효성 검사(VINR)](https://msdn.microsoft.com/library/dn205067.aspx) 를 사용하여 응용 프로그램 구성의 자동 업데이트를 수행할 수 있습니다.
+* 이 지침 문서의 끝에 있는 지침에 따라 수동 롤오버를 수행합니다.
 
-Toouse hello FedUtil tooupdate 구성 지침:
+구성을 업데이트하기 위해 FedUtil을 사용하는 지침:
 
-1. Hello WIF v1.0 SDK가 Visual Studio 2008 또는 2010 용 개발 컴퓨터에 설치 되어 있는지 확인 합니다. 아직 설치되어 있지 않은 경우 [여기에서 다운로드](https://www.microsoft.com/en-us/download/details.aspx?id=4451) 할 수 있습니다.
-2. Visual Studio에서 hello 솔루션을 열고 다음 hello 응용 프로그램 프로젝트를 마우스 오른쪽 단추로 클릭 및 선택 **페더레이션 메타 데이터 업데이트**합니다. 이 옵션을 사용할 수 없는 경우 FedUtil 및/또는 hello WIF v1.0 SDK 설치 되지 않았습니다.
-3. Hello 프롬프트에서 선택 **업데이트** toobegin 페더레이션 메타 데이터를 업데이트 합니다. Hello 응용 프로그램이 호스팅된 곳 액세스 toohello 서버 환경에 있으면 FedUtil의 필요에 따라 사용할 수 있습니다 [자동 메타 데이터 업데이트 스케줄러](https://msdn.microsoft.com/library/ee517272.aspx)합니다.
-4. 클릭 **마침** toocomplete hello 업데이트 프로세스입니다.
+1. Visual Studio 2008 또는 2010의 개발 컴퓨터에 WIF v1.0 SDK가 설치되어 있는지 확인합니다. 아직 설치되어 있지 않은 경우 [여기에서 다운로드](https://www.microsoft.com/en-us/download/details.aspx?id=4451) 할 수 있습니다.
+2. Visual Studio에서 솔루션을 열고 해당 프로젝트를 마우스 오른쪽 단추로 클릭하고 **페더레이션 메타데이터 업데이트**를 선택합니다. 이 옵션을 사용할 수 없는 경우 FedUtil 및/또는 WIF v1.0 SDK가 설치되지 않은 것입니다.
+3. 프롬프트에서 **업데이트** 를 선택하여 페더레이션 메타데이터의 업데이트를 시작합니다. 응용 프로그램이 호스팅되는 서버 환경에 대한 액세스 권한이 있는 경우 필요에 따라 FedUtil의 [자동 메타데이터 업데이트 스케줄러](https://msdn.microsoft.com/library/ee517272.aspx)를 사용할 수 있습니다.
+4. **마침** 을 클릭하고 업데이트 프로세스를 완료합니다.
 
-### <a name="other"></a>웹 응용 프로그램/리소스를 보호 하는 Api를 사용 하 여 다른 라이브러리 또는 수동으로 구현 하는 hello의 지원 되는 프로토콜
-Tooreview hello 라이브러리 해야 또는 hello 또는 hello OpenID Connect 검색 문서에서 키 hello 프로그램 구현 tooensure를 검색 하는 일부 다른 라이브러리를 사용 하는 하거나 수동으로 hello 지원 프로토콜의 구현 된 경우 페더레이션 메타 데이터 문서입니다. 이 한 가지 방법은 toocheck toodo tooeither hello OpenID 검색 문서 또는 hello 페더레이션 메타 데이터 문서는 모든 호출에 대 한 코드나 hello 라이브러리 코드의 검색입니다.
+### <a name="other"></a>다른 라이브러리를 사용하거나 지원되는 프로토콜을 수동으로 구현하여 리소스를 보호하는 웹 응용 프로그램/API
+다른 라이브러리를 사용하거나 지원되는 프로토콜을 수동으로 구현하는 경우, 키가 OpenID Connect discovery 문서 또는 페더레이션 메타데이터 문서에서 검색되는지 확인하기 위해 라이브러리나 구현을 검토할 필요가 있습니다. 이를 확인하는 하나의 방법은 OpenID discovery 문서 또는 페더레이션 메타데이터 문서에 대한 모든 호출 코드 또는 라이브러리 코드를 검색하는 것입니다.
 
-Hello 키와 업데이트를 적절 하 게 하 여 수행할 것 hello 지침 문서가이 끝나기 전에 hello 지침에 따라 수동 롤오버를 검색할 어딘가에 저장 되는 키 또는 하드 코딩 된 응용 프로그램을 수동으로 실행할 수 있습니다. **좋습니다 응용 프로그램 toosupport 자동 롤오버를 향상 시키는** hello를 사용 하 여 Azure AD 롤오버 운율 늘어나거나가이 문서 tooavoid 이후 중단 오버 헤드의 개요에 도달한는 응급 대역의 롤오버입니다.
+키가 어딘가에 저장되거나 응용 프로그램에 하드 코딩되는 경우 이 지침 문서의 끝에 있는 지침에 따라 수동 롤오버를 수행하여 수동으로 키를 검색하고 적절하게 업데이트할 수 있습니다. **자동 롤오버를 지원하기 위해 응용 프로그램을 향상하는 것이 아주 좋습니다** .
 
-## <a name="how-tootest-your-application-toodetermine-if-it-will-be-affected"></a>어떻게 tootest 프로그램 응용 프로그램 toodetermine 영향을 받게 됩니다 하는 경우
-응용 프로그램 hello 스크립트를 다운로드 하 고 hello 지침에 자동 키 롤오버를 지원 하는지 여부를 확인할 수 있습니다 [이 GitHub 리포지토리 합니다.](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey)
+## <a name="how-to-test-your-application-to-determine-if-it-will-be-affected"></a>응용 프로그램을 테스트하여 영향을 받을지 확인하는 방법
+스크립트를 다운로드하고 [이 GitHub 리포지토리](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey)
 
-## <a name="how-tooperform-a-manual-rollover-if-you-application-does-not-support-automatic-rollover"></a>어떻게 응용 프로그램 자동 롤오버를 지원 하지 않는 경우 수동 롤오버 tooperform
-응용 프로그램은 경우 **하지** 자동 롤오버 지원, 그에 따라 tooestablish 프로세스를 주기적으로 모니터 Azure AD의 서명 키를 수동 롤오버를 수행 해야 합니다. [이 GitHub 리포지토리](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey) 스크립트 및 방법에 대 한 지침이 포함 되어 toodo이 있습니다.
+## <a name="how-to-perform-a-manual-rollover-if-you-application-does-not-support-automatic-rollover"></a>응용 프로그램이 자동 롤오버를 지원하지 않는 경우 수동 롤오버를 수행하는 방법
+응용 프로그램이 자동 롤오버를 지원하지 **않는** 경우 주기적으로 Azure AD의 서명 키를 모니터링하고 적절하게 수동 롤오버를 수행하는 프로세스를 설정해야 합니다. [이 GitHub 리포지토리](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey) 는 이 작업을 수행하는 방법에 대한 스크립트 및 지침을 포함합니다.
 

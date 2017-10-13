@@ -1,8 +1,8 @@
 ### <a name="server-auth"></a>방법: 공급자를 사용하여 인증(서버 흐름)
-toohave 모바일 앱 관리 응용 프로그램에서 인증 프로세스 hello, id 공급자와 앱을 등록 해야 합니다. 다음 Azure 앱 서비스에 필요한 tooconfigure hello 응용 프로그램 ID 및 공급자가 제공 하는 암호입니다.
-자세한 내용은 hello 자습서를 참조 하십시오. [추가 인증 tooyour 앱](../articles/app-service-mobile/app-service-mobile-cordova-get-started-users.md)합니다.
+Mobile Apps가 앱에서 인증 프로세스를 관리하게 하려면 앱을 ID 공급자에 등록해야 합니다. 그런 다음, Azure 앱 서비스에서 공급자로부터 제공된 응용 프로그램 ID 및 암호를 구성해야 합니다.
+자세한 내용은 [앱에 인증 추가](../articles/app-service-mobile/app-service-mobile-cordova-get-started-users.md)자습서를 참조하세요.
 
-Id 공급자를 등록 하면 호출 hello `.login()` 공급자의 hello 이름의 메서드. 예를 들어 Facebook과 toologin 코드 다음 hello를 사용 합니다.
+ID 공급자를 등록하고 나면 공급자의 이름을 사용하여 `.login()` 메서드를 호출합니다. 예를 들어 Facebook으로 로그인하려면 다음 코드를 사용합니다.
 
 ```
 client.login("facebook").done(function (results) {
@@ -12,16 +12,16 @@ client.login("facebook").done(function (results) {
 });
 ```
 
-hello 공급자에 대 한 유효한 값 hello 'aad', 'facebook', 'google', 'microsoftaccount' 및 'twitter' 됩니다.
+공급자에 대해 유효한 값은 'aad', 'facebook', 'google', 'microsoftaccount' 및 'twitter'입니다.
 
 > [!NOTE]
-> Google 인증은 서버 흐름을 통해 현재 작동하지 않습니다.  사용 해야 google tooauthenticate는 [클라이언트 흐름 메서드](#client-auth)합니다.
+> Google 인증은 서버 흐름을 통해 현재 작동하지 않습니다.  Google을 인증하려면 [클라이언트 흐름 메서드](#client-auth)를 사용해야 합니다.
 
-이 경우 Azure 앱 서비스는 hello OAuth 2.0 인증 흐름을 관리합니다.  Hello 선택한 공급자의 hello 로그인 페이지를 표시 하 고 hello id 공급자와 성공적으로 로그인 한 후 앱 서비스 인증 토큰을 생성 합니다. hello 로그인 함수 완료 되 면 hello 사용자 ID와 응용 프로그램 서비스를 노출 하는 JSON 개체로 인증 토큰 hello userId 및 authenticationToken 필드에 각각 반환 합니다. 이 토큰은 캐시했다가 만료될 때까지 다시 사용할 수 있습니다.
+이 경우 Azure App Service는 OAuth 2.0 인증 흐름을 관리합니다.  선택한 공급자의 로그인 페이지가 표시되고 ID 공급자로 성공적으로 로그인한 후에는 App Service 인증 토큰이 생성됩니다. login 함수를 완료하면 사용자 ID와 App Service 인증 토큰을 각각 userId 및 authenticationToken 필드에 표시하는 JSON 개체가 반환됩니다. 이 토큰은 캐시했다가 만료될 때까지 다시 사용할 수 있습니다.
 
 ###<a name="client-auth"></a>방법: 공급자를 사용하여 인증(클라이언트 흐름)
 
-앱 수 hello id 공급자에 게 문의 독립적으로 하 고 hello 토큰 tooyour 앱 서비스 인증에 대 한 반환을 제공 합니다. 이 클라이언트 흐름 tooprovide를 사용자나 hello id 공급자 로부터 tooretrieve 추가 사용자 데이터에 대 한 단일 로그인 환경이 있습니다.
+앱이 독립적으로 ID 공급자에 연결한 후 반환된 토큰을 인증을 위해 앱 서비스에 제공할 수도 있습니다. 이 클라이언트 흐름을 사용하면 단일 로그인 환경을 사용자에게 제공하거나 ID 공급자로부터 더 많은 사용자 데이터를 검색할 수 있습니다.
 
 #### <a name="social-authentication-basic-example"></a>소셜 인증 기본 예제
 
@@ -38,11 +38,11 @@ client.login(
 });
 
 ```
-이 예에서는 hello 토큰 변수에 저장 됨 SDK hello 해당 공급자가 제공 hello 토큰을 가정 합니다.
+이 예제에서는 각 공급자 SDK에서 제공된 토큰이 token 변수에 저장되어 있다고 가정합니다.
 
 #### <a name="microsoft-account-example"></a>Microsoft 계정 예제
 
-다음 예제에서는 hello Microsoft 계정을 사용 하 여 단일 로그온 Windows 스토어 앱에 대 한 지원 라이브 SDK hello:
+다음 예제는 Microsoft 계정을 사용하여 Windows 스토어 앱용 Single Sign-On을 지원하는 Live SDK를 사용합니다.
 
 ```
 WL.login({ scope: "wl.basic"}).then(function (result) {
@@ -59,11 +59,11 @@ WL.login({ scope: "wl.basic"}).then(function (result) {
 
 ```
 
-이 예제에서는 토큰을 가져옵니다 Live Connect에서 hello 로그인 함수를 호출 하 여 제공 된 tooyour 앱 서비스는.
+이 예제는 login 함수를 호출하여 앱 서비스에 제공된 토큰을 Live Connect에서 가져옵니다.
 
-###<a name="auth-getinfo"></a>방법: hello 인증 된 사용자에 대 한 정보
+###<a name="auth-getinfo"></a>방법: 인증된 사용자에 대한 정보 얻기
 
-hello에서 hello 인증 정보를 검색할 수 `/.auth/me` AJAX 라이브러리를 사용 하 여 HTTP를 사용 하 여 끝점 호출 합니다.  Hello 설정 확인 `X-ZUMO-AUTH` 헤더 tooyour 인증 토큰입니다.  hello 인증 토큰에 저장 된 `client.currentUser.mobileServiceAuthenticationToken`합니다.  예를 들어 toouse hello 인출 API:
+모든 AJAX 라이브러리와 함께 HTTP 호출 사용 시 인증 정보를 `/.auth/me` 끝점에서 검색할 수 있습니다.  `X-ZUMO-AUTH` 헤더를 인증 토큰으로 설정했는지 확인합니다.  인증 토큰은 `client.currentUser.mobileServiceAuthenticationToken`에 저장되어 있습니다.  예를 들어, fetch API를 사용하려면 다음과 같이 합니다.
 
 ```
 var url = client.applicationUrl + '/.auth/me';
@@ -73,8 +73,8 @@ fetch(url, { headers: headers })
     .then(function (data) {
         return data.json()
     }).then(function (user) {
-        // hello user object contains hello claims for hello authenticated user
+        // The user object contains the claims for the authenticated user
     });
 ```
 
-fetch는 [npm 패키지](https://www.npmjs.com/package/whatwg-fetch)로 제공되거나 [CDNJS](https://cdnjs.com/libraries/fetch)에서 브라우저 다운로드할 수 있습니다. JQuery 또는 다른 AJAX API toofetch hello 정보 사용할 수 있습니다.  데이터는 JSON 개체로 수신됩니다.
+fetch는 [npm 패키지](https://www.npmjs.com/package/whatwg-fetch)로 제공되거나 [CDNJS](https://cdnjs.com/libraries/fetch)에서 브라우저 다운로드할 수 있습니다. 또한 jQuery 또는 AJAX API를 사용하여 정보를 가져올 수도 있습니다.  데이터는 JSON 개체로 수신됩니다.

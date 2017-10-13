@@ -1,6 +1,6 @@
 ---
-title: "aaaMove VM (클래식) 또는 클라우드 서비스 역할 인스턴스 tooa 다른 서브넷-Azure PowerShell | Microsoft Docs"
-description: "자세한 내용은 방법 toomove (클래식) Vm 클라우드 서비스 역할 인스턴스 tooa PowerShell을 사용 하는 다른 서브넷 및 합니다."
+title: "VM(클래식) 또는 Cloud Services 역할 인스턴스를 다른 서브넷으로 이동 - Azure PowerShell | Microsoft Docs"
+description: "PowerShell을 사용하여 VM(클래식) 및 Cloud Services 역할 인스턴스를 다른 서브넷으로 이동하는 방법을 알아봅니다."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,30 +15,30 @@ ms.workload: infrastructure-services
 ms.date: 03/22/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c8d2de56f42a91be4a665414ea9641ffd46588fd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b094f8338394ef2e84cad3070936d715411326a4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="move-a-vm-classic-or-cloud-services-role-instance-tooa-different-subnet-using-powershell"></a>VM (클래식) 또는 클라우드 서비스 역할 인스턴스 tooa 다른 서브넷 PowerShell을 사용 하 여 이동
-Hello에 PowerShell toomove tooanother 한 서브넷에서에서 Vm (클래식)을 사용할 수 있습니다 동일한 가상 네트워크 (VNet). PowerShell을 사용 하는 대신 hello CSCFG 파일을 편집 하 여 역할 인스턴스를 이동할 수 있습니다.
+# <a name="move-a-vm-classic-or-cloud-services-role-instance-to-a-different-subnet-using-powershell"></a>PowerShell을 사용하여 VM(클래식) 또는 Cloud Services 역할 인스턴스를 다른 서브넷으로 이동
+PowerShell을 사용하여 동일한 가상 네트워크(VNet)에 있는 한 서브넷에서 다른 서브넷으로 VM(클래식)을 이동할 수 있습니다. PowerShell을 사용하지 않고 CSCFG 파일을 편집하여 역할 인스턴스를 이동할 수 있습니다.
 
 > [!NOTE]
-> 이 문서에서는 hello 클래식 배포 모델을 통해 toomove Vm을 배포 하는 방법을 설명 합니다.
+> 이 문서에서는 클래식 배포 모델을 통해서만 배포된 VM을 이동하는 방법을 설명합니다.
 > 
 > 
 
-Vm tooanother 서브넷을 이동 하는 이유 Hello 기존 서브넷 너무 작습니다 인해 확장할 수 없는 경우 서브넷 마이그레이션 유용 합니다. tooexisting 해당 서브넷에 Vm을 실행 합니다. 이 경우 새, 더 큰 서브넷을 만들고 hello Vm toohello 새 서브넷을 마이그레이션할 수 있습니다 다음 마이그레이션이 완료 된 후에 hello 이전 빈 서브넷을 삭제할 수 있습니다.
+다른 서브넷으로 VM을 이동하는 이유 서브넷 마이그레이션은 기존 서브넷이 너무 작고 해당 서브넷에서 실행 중인 기존 VM으로 인해 확장할 수 없는 경우에 유용합니다. 이 경우 새로운, 더 큰 서브넷을 만들고 새 서브넷으로 VM을 마이그레이션한 다음 마이그레이션이 완료된 후 이전의 빈 서브넷을 삭제할 수 있습니다.
 
-## <a name="how-toomove-a-vm-tooanother-subnet"></a>어떻게 toomove VM tooanother 서브넷
-toomove VM 템플릿으로 아래 hello 예제를 사용 하 여 hello Set-azuresubnet PowerShell cmdlet을 실행 합니다. Hello 아래 예제에서는 이동 TestVM 서브넷에서 tooSubnet 2입니다. 있는지 tooedit hello 예제 tooreflect 환경 이어야 합니다. 하는 절차의 일부로 hello Update-azurevm cmdlet을 실행할 때마다 다시 시작 됩니다 VM hello 업데이트 프로세스의 일부로 참고 합니다.
+## <a name="how-to-move-a-vm-to-another-subnet"></a>다른 서브넷으로 VM을 이동하는 방법
+VM을 이동하려면 아래 예를 템플릿으로 사용하여 Set-AzureSubnet PowerShell cmdlet을 실행합니다. 아래 예제에서는 현재 서브넷에서 Subnet-2로 TestVM을 이동합니다. 사용 중인 환경에 맞게 예를 편집해야 합니다. 절차의 일부로 Update-AzureVM cmdlet을 실행할 때마다 VM이 업데이트 프로세스의 일환으로 다시 시작됩니다.
 
     Get-AzureVM –ServiceName TestVMCloud –Name TestVM `
     | Set-AzureSubnet –SubnetNames Subnet-2 `
     | Update-AzureVM
 
-VM에 대 한 고정 내부 개인 ip 주소를 지정한 경우 tooclear 해당 설정을 hello VM tooa 새 서브넷을 이동할 수 있습니다. 이 경우 다음 hello를 사용 합니다.
+VM에 대한 고정 내부 개인 IP를 지정한 경우 먼저 해당 설정을 제거해야 새 서브넷으로 VM을 이동할 수 있습니다. 이 경우 다음을 사용합니다.
 
     Get-AzureVM -ServiceName TestVMCloud -Name TestVM `
     | Remove-AzureStaticVNetIP `
@@ -47,8 +47,8 @@ VM에 대 한 고정 내부 개인 ip 주소를 지정한 경우 tooclear 해당
     | Set-AzureSubnet -SubnetNames Subnet-2 `
     | Update-AzureVM
 
-## <a name="toomove-a-role-instance-tooanother-subnet"></a>역할 인스턴스 tooanother 서브넷 toomove
-역할 인스턴스를 toomove hello CSCFG 파일을 편집 합니다. Hello 아래 예제에서는 이동 "role0"을 기존 가상 네트워크의 *VNETName* 서브넷에서 너무*서브넷 2*합니다. Hello 역할 인스턴스가 이미 배포 되었기 때문에 변경 하기만 하면 hello 서브넷 이름이 e t-2 = 합니다. 있는지 tooedit hello 예제 tooreflect 환경 이어야 합니다.
+## <a name="to-move-a-role-instance-to-another-subnet"></a>다른 서브넷으로 역할 인스턴스를 이동하려면
+역할 인스턴스를 이동하려면 CSCFG 파일을 편집합니다. 아래 예제에서는 가상 네트워크 *VNETName*의 "Role0"을 현재 서브넷에서 *Subnet-2*로 이동합니다. 역할 인스턴스가 이미 배포되었기 때문에 서브넷 이름 = Subnet-2를 변경하기만 합니다. 사용 중인 환경에 맞게 예를 편집해야 합니다.
 
     <NetworkConfiguration>
         <VirtualNetworkSite name="VNETName" />

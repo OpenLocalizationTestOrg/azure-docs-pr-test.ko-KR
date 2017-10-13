@@ -1,6 +1,6 @@
 ---
-title: "Azure 미디어 인덱서 2 미리 보기를 사용 하 여 미디어 파일 aaaIndexing | Microsoft Docs"
-description: "Azure Media Indexer 하면 toomake 콘텐츠 검색 가능한 미디어 파일 및 전체 텍스트 대 본 toogenerate 닫힌 캡션 및 키워드에 대 한 있습니다. 이 항목 toouse Media Indexer 2 미리 보기 하는 방법을 보여 줍니다."
+title: "Azure Media Indexer 2 미리 보기를 사용하여 미디어 파일 인덱싱 | Microsoft 문서"
+description: "Azure 미디어 인덱서를 사용하면 미디어 파일 콘텐츠를 검색 가능하게 만들고 선택 자막 및 키워드용 전체 텍스트 기록을 생성할 수 있습니다. 이 토픽에서는 Media Indexer 2 Preview를 사용하는 방법을 보여 줍니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,48 +14,48 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: adsolank;juliako;
-ms.openlocfilehash: f83fa0db58b828ffa29933d68ce108b4906dcd78
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0afdd1c04e50215a55fb92c70b1210d1f80d8e3f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="indexing-media-files-with-azure-media-indexer-2-preview"></a>Azure 미디어 인덱서 2 미리 보기를 사용하여 미디어 파일 인덱싱
 ## <a name="overview"></a>개요
-hello **Azure 미디어 인덱서 2 미리 보기** 미디어 프로세서 MP ()를 사용 하면 toomake 미디어 파일 및 콘텐츠를 검색할 수, 닫힌된 캡션 트랙을 생성 합니다. 이전 버전의 비교 toohello [Azure Media Indexer](media-services-index-content.md), **Azure 미디어 인덱서 2 미리 보기** 더 빠른 인덱싱을 수행 하 고는 광범위 한 언어 지원을 제공 합니다. 지원되는 언어는 영어, 스페인어, 프랑스어, 독일어, 이탈리아어, 중국어(북경어, 간체), 포르투갈어, 아랍어, 일본어 등입니다.
+**Azure 미디어 인덱서 2 미리 보기** MP(미디어 프로세서)를 사용하여 미디어 파일과 콘텐츠를 검색 가능하도록 설정할 수 있으며 선택 캡션 트랙을 생성할 수 있습니다. [Azure 미디어 인덱서 2 미리 보기](media-services-index-content.md)는 이전 버전의 **Azure 미디어 인덱서** 에 비해 보다 빠른 인덱싱을 수행하고 더 광범위한 언어 지원을 제공합니다. 지원되는 언어는 영어, 스페인어, 프랑스어, 독일어, 이탈리아어, 중국어(북경어, 간체), 포르투갈어, 아랍어, 일본어 등입니다.
 
-hello **Azure 미디어 인덱서 2 미리 보기** MP는 현재 미리 보기로 합니다.
+**Azure 미디어 인덱서 2 미리 보기** MP는 현재 미리 보기 상태입니다.
 
-이 항목에서는 방법을와 작업 toocreate 인덱싱 **Azure 미디어 인덱서 2 미리 보기**합니다.
+이 토픽에서는 **Azure Media Indexer 2 Preview**를 사용하여 인덱싱 작업을 만드는 방법을 보여 줍니다.
 
 > [!NOTE]
-> hello 고려 사항에 따라 적용 됩니다.
+> 고려 사항은 다음과 같습니다.
 > 
 > 인덱서 2는 Azure China 및 Azure Government에서 지원되지 않습니다.
 > 
-> 콘텐츠를 인덱싱할 때는 (배경 음악, 노이즈, 효과 또는 마이크 소음이 없어야 함) 없이 음성이 명확한 미디어 파일 toouse 있는지 확인 합니다. 적절한 콘텐츠의 예: 회의, 강의 또는 프레젠테이션 녹음. hello 다음 콘텐츠 맞지 않을 인덱싱: 영화, TV 쇼 혼합된 오디오와 소리 효과가 있는 어느 것에 저하 배경 노이즈 (소음)로 콘텐츠를 기록 합니다.
+> 콘텐츠를 인덱싱할 때, 음성이 매우 분명한(배경 음악, 소음, 효과 또는 마이크 소음) 미디어 파일을 사용해야 합니다. 적절한 콘텐츠의 예: 회의, 강의 또는 프레젠테이션 녹음. 인덱싱에 적합하지 않을 수 있는 콘텐츠: 영화, TV 프로그램, 오디오 및 사운드 효과가 혼합된 콘텐츠, 배경 소음(기계 소음)이 들어간 녹음 품질이 좋지 않은 콘텐츠.
 > 
 > 
 
-이 항목에 대 한 세부 정보를 제공 **Azure 미디어 인덱서 2 미리 보기** 표시 방법을 toouse Media Services SDK for.NET으로
+이 토픽에서는 **Azure Media Indexer 2 Preview** 에 대한 세부 정보 및 .NET용 Media Services SDK와 함께 사용하는 방법을 보여 줍니다.
 
 ## <a name="input-and-output-files"></a>입력 및 출력 파일
 ### <a name="input-files"></a>입력 파일
 오디오 또는 비디오 파일
 
 ### <a name="output-files"></a>출력 파일
-한 인덱싱 작업 hello 형식 뒤에 닫힌된 캡션 파일을 생성할 수 있습니다.  
+인덱싱 작업은 다음 형식의 선택 캡션 파일을 생성할 수 있습니다.  
 
 * **SAMI**
 * **TTML**
 * **WebVTT**
 
-비디오 파일 청각 장애가 있는 toopeople를 액세스할 수 있으며 이러한 형식의 닫힌된 캡션 (CC) 파일 사용된 toomake 오디오를 수 있습니다.
+이러한 형식의 CC(선택 캡션)는 청각 장애가 있는 사용자가 액세스할 수 있는 오디오 및 비디오 파일을 만드는 데 사용될 수 있습니다.
 
 ## <a name="task-configuration-preset"></a>작업 구성(기본 설정)
 **Azure 미디어 인덱서 2 미리 보기**로 인덱싱 작업을 만들 때에는 구성 기본 설정을 지정해야 합니다.
 
-hello 다음 JSON 사용 가능한 매개 변수를 설정 합니다.
+다음 JSON은 사용 가능한 매개 변수를 설정합니다.
 
     {
       "version":"1.0",
@@ -72,7 +72,7 @@ hello 다음 JSON 사용 가능한 매개 변수를 설정 합니다.
     }
 
 ## <a name="supported-languages"></a>지원되는 언어
-Azure 미디어 인덱서 2 미리 보기 (아래와 같이 hello 작업 구성에서 사용 가능한 4 문자 코드 대괄호로 hello 언어 이름 지정) 하는 경우 언어를 다음 hello에 대 한 음성-텍스트를 지원 합니다.
+Azure 미디어 인덱서 2 미리 보기는 다음 언어에 대한 음성-텍스트를 지원합니다(작업 구성에서 언어 이름을 지정할 때 아래와 같이 대괄호 안의 4자로 된 코드를 사용할 경우).
 
 * 영어[EnUs]
 * 스페인어[EsEs]
@@ -89,14 +89,14 @@ Azure 미디어 인덱서 2 미리 보기 (아래와 같이 hello 작업 구성�
 
 ## <a name="supported-file-types"></a>지원되는 파일 형식
 
-지원 되는 파일 형식에 대 한 정보를 참조 hello [지원 되는 코덱/형식](media-services-media-encoder-standard-formats.md#input-containerfile-formats) 섹션.
+지원되는 파일 형식에 대한 내용은 [지원되는 코덱/형식](media-services-media-encoder-standard-formats.md#input-containerfile-formats) 섹션을 참조하세요.
 
 ## <a name="net-sample-code"></a>.NET 샘플 코드
 
-hello 다음 프로그램 표시 하는 방법:
+다음 프로그램은 방법을 보여 줍니다.
 
-1. 자산 만들기 hello 자산 미디어 파일을 업로드 합니다.
-2. 인덱싱 작업 hello 다음 json 사전 설정을 포함 하는 구성 파일을 기반으로 작업을 만듭니다.
+1. 자산을 만들고 미디어 파일을 자산에 업로드합니다.
+2. 다음 json 사전 설정을 포함하는 구성 파일을 기반으로 인덱싱 태스크가 포함된 작업을 만듭니다.
    
         {
           "version":"1.0",
@@ -111,11 +111,11 @@ hello 다음 프로그램 표시 하는 방법:
                "Type":"SpReco"
             }]
         }
-3. Hello 출력 파일을 다운로드 합니다. 
+3. 출력 파일을 다운로드합니다. 
    
 #### <a name="create-and-configure-a-visual-studio-project"></a>Visual Studio 프로젝트 만들기 및 구성
 
-개발 환경을 설정 하 고에 설명 된 대로 연결 정보를 포함 하는 hello app.config 파일을 채울 [.net 미디어 서비스 개발](media-services-dotnet-how-to-use.md)합니다. 
+개발 환경을 설정하고 [.NET을 사용한 Media Services 환경](media-services-dotnet-how-to-use.md)에 설명된 대로 연결 정보를 사용하여 app.config 파일을 채웁니다. 
 
 #### <a name="example"></a>예제
 
@@ -131,7 +131,7 @@ hello 다음 프로그램 표시 하는 방법:
     {
         class Program
         {
-            // Read values from hello App.config file.
+            // Read values from the App.config file.
             private static readonly string _AADTenantDomain =
                 ConfigurationManager.AppSettings["AADTenantDomain"];
             private static readonly string _RESTAPIEndpoint =
@@ -151,13 +151,13 @@ hello 다음 프로그램 표시 하는 방법:
                 var asset = RunIndexingJob(@"C:\supportFiles\Indexer\BigBuckBunny.mp4",
                                             @"C:\supportFiles\Indexer\config.json");
 
-                // Download hello job output asset.
+                // Download the job output asset.
                 DownloadAsset(asset, @"C:\supportFiles\Indexer\Output");
             }
 
             static IAsset RunIndexingJob(string inputMediaFilePath, string configurationFile)
             {
-                // Create an asset and upload hello input media file toostorage.
+                // Create an asset and upload the input media file to storage.
                 IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
                     "My Indexing Input Asset",
                     AssetCreationOptions.None);
@@ -165,38 +165,38 @@ hello 다음 프로그램 표시 하는 방법:
                 // Declare a new job.
                 IJob job = _context.Jobs.Create("My Indexing Job");
 
-                // Get a reference tooAzure Media Indexer 2 Preview.
+                // Get a reference to Azure Media Indexer 2 Preview.
                 string MediaProcessorName = "Azure Media Indexer 2 Preview";
 
                 var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-                // Read configuration from hello specified file.
+                // Read configuration from the specified file.
                 string configuration = File.ReadAllText(configurationFile);
 
-                // Create a task with hello encoding details, using a string preset.
+                // Create a task with the encoding details, using a string preset.
                 ITask task = job.Tasks.AddNew("My Indexing Task",
                     processor,
                     configuration,
                     TaskOptions.None);
 
-                // Specify hello input asset toobe indexed.
+                // Specify the input asset to be indexed.
                 task.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job.
+                // Add an output asset to contain the results of the job.
                 task.OutputAssets.AddNew("My Indexing Output Asset", AssetCreationOptions.None);
 
-                // Use hello following event handler toocheck job progress.  
+                // Use the following event handler to check job progress.  
                 job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-                // Launch hello job.
+                // Launch the job.
                 job.Submit();
 
-                // Check job execution and wait for job toofinish.
+                // Check job execution and wait for job to finish.
                 Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
                 progressJobTask.Wait();
 
-                // If job state is Error, hello event handling
+                // If job state is Error, the event handling
                 // method for job progress should log errors.  Here we check
                 // for error state and exit if needed.
                 if (job.State == JobState.Error)

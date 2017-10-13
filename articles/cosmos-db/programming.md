@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos db aaaServer 쪽 JavaScript 프로그래밍 | Microsoft Docs"
-description: "어떻게 toouse Azure Cosmos DB toowrite 저장 프로시저, 데이터베이스 트리거 및 사용자 정의 함수 (Udf) javascript에서에 대해 알아봅니다. 데이터베이스 프로그래밍 팁 등을 가져옵니다."
+title: "Azure Cosmos DB에 대한 서버 쪽 JavaScript 프로그래밍 | Microsoft Docs"
+description: "Azure Cosmos DB를 사용하여 JavaScript에서 저장 프로시저, 데이터베이스 트리거 및 UDF(사용자 정의 함수)를 작성하는 방법을 알아봅니다. 데이터베이스 프로그래밍 팁 등을 가져옵니다."
 keywords: "데이터베이스 트리거, 저장된 프로시저, 저장된 프로시저, 데이터베이스 프로그램, sproc, documentdb, azure, Microsoft azure"
 services: cosmos-db
 documentationcenter: 
@@ -15,47 +15,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2016
 ms.author: andrl
-ms.openlocfilehash: 5a011d1c4b0b5908d5de73607a1bc328ed1711d0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8cddc7a8c9aa677b9c93bee3a7e05c226cc1f655
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-cosmos-db-server-side-programming-stored-procedures-database-triggers-and-udfs"></a>Azure Cosmos DB 서버 쪽 프로그래밍: 저장 프로시저, 데이터베이스 트리거 및 UDF
-Azure Cosmos DB가 언어 통합 트랜잭션 방식으로 JavaScript를 실행하므로 개발자가 기본적으로 [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/) JavaScript로 **저장 프로시저**, **트리거** 및 **UDF(사용자 정의 함수)**를 작성할 수 있는 방법을 알아봅니다. 이렇게 하면 toowrite 데이터베이스 프로그램 응용 프로그램 논리를 제공 하 고 hello 데이터베이스 저장소 파티션을에서 직접 실행할 수 있습니다. 
+Azure Cosmos DB가 언어 통합 트랜잭션 방식으로 JavaScript를 실행하므로 개발자가 기본적으로 [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/) JavaScript로 **저장 프로시저**, **트리거** 및 **UDF(사용자 정의 함수)**를 작성할 수 있는 방법을 알아봅니다. 이 경우 사용자가 데이터베이스 저장소 파티션에 직접 전달되고 실행될 수 있는 데이터베이스 프로그램 응용 프로그램 논리를 작성할 수 있습니다. 
 
-권장 가져오기에 의해 시작 시청 hello 다음 비디오, Andrew 무역 ㈜ 간략 한 소개 tooCosmos DB의 서버 쪽 데이터베이스 프로그래밍 모델을 제공 합니다. 
+먼저 Andrew Liu가 Cosmos DB의 서버 쪽 데이터베이스 프로그래밍 모델을 간략하게 설명하는 다음 동영상을 보는 것이 좋습니다. 
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-Demo-A-Quick-Intro-to-Azure-DocumentDBs-Server-Side-Javascript/player]
 > 
 > 
 
-에서 반환 toothis 문서 hello 답변 toohello 다음 질문을 배웁니다.  
+그런 다음 이 문서로 돌아와서 다음 내용을 살펴보세요.  
 
 * JavaScript를 사용해서 저장 프로시저, 트리거 또는 UDF를 작성하는 방법은 무엇인가?
 * Cosmos DB는 ACID를 어떻게 보장하나요?
 * Cosmos DB에서 트랜잭션이 어떻게 작동하나요?
 * 사전 트리거 및 사후 트리거는 무엇이고 어떻게 작성하는가?
 * HTTP를 사용해서 RESTful 방식으로 저장 프로시저, 트리거 또는 UDF를 등록하고 실행하는 방법은 무엇인가?
-* Cosmos DB Sdk는 사용 가능한 toocreate와 실행 저장 프로시저, 트리거 및 Udf?
+* 저장 프로시저, 트리거 및 UDF를 생성 및 실행하기 위해 사용할 수 있는 Cosmos DB SDK는 무엇인가요?
 
-## <a name="introduction-toostored-procedure-and-udf-programming"></a>소개 tooStored 프로시저 및 UDF 프로그래밍
-이 접근 방식을 *"는 최신 하루 T-SQL JavaScript"* 형식 시스템 불일치 및 개체-관계형 매핑 기술 hello 복잡성에서 응용 프로그램 개발자를 해제 합니다. 또한 여러 과소 toobuild 다양 한 응용 프로그램 일 수 있는 내장 장점에:  
+## <a name="introduction-to-stored-procedure-and-udf-programming"></a>저장 프로시저 및 UDF 프로그래밍 소개
+이 *"최신 T-SQL로서의 JavaScript"* 접근 방법을 통해 응용 프로그램 개발자는 형식 시스템 불일치 및 개체-관계형 매핑 기술의 복잡성을 벗어날 수 있습니다. 또한 풍부한 응용 프로그램을 작성하기 위해 활용할 수 있는 내재된 많은 장점이 있습니다.  
 
-* **절차적 논리 없이:** 높은 수준의 프로그래밍 언어로 JavaScript 풍부 하 고 친숙 한 인터페이스 tooexpress 비즈니스 논리를 제공 합니다. 작업 자세히 toohello 데이터의 복잡 한 시퀀스를 수행할 수 있습니다.
+* **절차적 논리:** 고급 프로그래밍 언어인 JavaScript는 비즈니스 논리를 노출하는 풍부하고 익숙한 인터페이스를 제공합니다. 데이터에 더 가까운 복잡한 작업 시퀀스를 수행할 수 있습니다.
 * **원자성 트랜잭션:** Cosmos DB는 단일 저장 프로시저 또는 트리거 내에서 수행되는 데이터베이스 작업의 원자성을 보장합니다. 따라서 응용 프로그램이 관련 작업을 단일 배치로 결합하여 모두 성공하거나 모두 실패하도록 할 수 있습니다. 
-* **성능:** hello 버퍼에서 JSON은 기본적으로 매핑된 toohello Javascript 언어 형식 시스템 및 Cosmos DB에는 저장소의 기본 단위 hello 허용 JSON의 구체화를 지연과 같은 최적화 수 이기도 hello 팩트 문서 풀과 쉽게 사용할 수 있는 주문형 toohello 코드를 실행 합니다. 배송 비즈니스 논리 toohello 데이터베이스와 관련 된 성능 이점이 더 있습니다.
+* **성능:** JSON은 본질적으로 Javascript 언어 형식 시스템에 매핑되고 Cosmos DB의 기본 저장소 단위이기도 하므로 버퍼 풀에서 JSON 문서의 지연 구체화와 같은 많은 최적화를 수행할 수 있으며 요청 시 실행 코드에서 JSON 문서를 사용할 수 있습니다. 데이터베이스에 비즈니스 논리를 전달할 경우 다음과 같은 추가 성능 이점이 있습니다.
   
-  * 일괄 처리 – 개발자가 삽입 등의 작업을 그룹화하여 대량 제출할 수 있습니다. hello 네트워크 트래픽 대기 시간이 비용과 hello 저장소 오버 헤드 toocreate 별도 트랜잭션을 크게 감소 됩니다. 
-  * 미리 컴파일-저장된 프로시저, 트리거 및 사용자 정의 함수 (Udf) tooavoid 각 호출에 대해 JavaScript 컴파일 비용 Cosmos DB 미리 컴파일합니다. hello 오버 헤드의 절차적 논리 없이 hello에 대 한 hello 바이트 코드를 작성 상환 tooa 최소 값입니다.
-  * 시퀀싱 – 보조 저장소 작업을 하나 또는 많이 수행하는 파생 작업("트리거")이 필요한 작업이 많습니다. 원자성을 외에도이 형식의 성능이 더 우수는 toohello 서버를 이동할 때. 
-* **캡슐화:** 저장 프로시저는 한 곳에 사용 되는 toogroup 비즈니스 논리 일 수 있습니다. 다음 두 가지 장점이 있습니다.
-  * 데이터 설계자 tooevolve hello 데이터에서 독립적으로 응용 프로그램 수 있는 hello 원시 데이터를 기반으로 추상화 계층을 추가 합니다. Hello 데이터가 toohello 불안정 가정 toobe hello 응용 프로그램으로 처리 된 데이터와 함께 toodeal 직접 있는 경우 필요할 수 있는 기한 스키마 없는 경우 특히 유용 합니다.  
-  * 이 추상화 hello 스크립트에서 hello 액세스를 간소화 하 여 자신의 데이터 보안을 유지 하는 기업 수 있습니다.  
+  * 일괄 처리 – 개발자가 삽입 등의 작업을 그룹화하여 대량 제출할 수 있습니다. 개별 트랜잭션을 만들기 위한 네트워크 트래픽 지연 비용 및 저장소 오버헤드가 크게 줄어듭니다. 
+  * 사전 컴파일 – Cosmos DB는 각 호출의 JavaScript 컴파일 비용을 방지하기 위해 저장 프로시저, 트리거 및 UDF(사용자 정의 함수)를 사전 컴파일합니다. 절차적 논리의 바이트 코드 작성 오버헤드가 최소값으로 줄어듭니다.
+  * 시퀀싱 – 보조 저장소 작업을 하나 또는 많이 수행하는 파생 작업("트리거")이 필요한 작업이 많습니다. 원자성뿐 아니라 이 특성도 서버로 이동할 경우 성능이 향상됩니다. 
+* **캡슐화:** 저장 프로시저를 사용하여 비즈니스 논리를 단일 장소에 그룹화할 수 있습니다. 다음 두 가지 장점이 있습니다.
+  * 원시 데이터 위에 추상 계층이 추가되므로 데이터 설계자가 데이터와 독립적으로 응용 프로그램을 개발할 수 있습니다. 데이터를 직접 처리해야 할 경우 응용 프로그램에 포함되어야 할 수 있는 가정으로 인해 데이터에 스키마가 사용되지 않을 경우 이러한 장점은 특히 유용할 수 있습니다.  
+  * 이 추상화는 스크립트에서의 액세스를 간소화하여 기업이 데이터 보안을 유지할 수 있게 합니다.  
 
-hello 데이터베이스 트리거, 저장된 프로시저 및 사용자 지정 쿼리 연산자의 생성 및 실행 통해 지원 됩니다 hello [REST API](/rest/api/documentdb/), [Azure DocumentDB 스튜디오](https://github.com/mingaliu/DocumentDBStudio/releases), 및 [Sdk클라이언트](documentdb-sdk-dotnet.md) .NET, Node.js 및 JavaScript를 포함 하 여 많은 플랫폼에서 합니다.
+데이터베이스 트리거, 저장 프로시저 및 사용자 지정 쿼리 연산자의 만들기 및 실행은 .NET, Node.js 및 JavaScript를 비롯한 많은 플랫폼의 [REST API](/rest/api/documentdb/), [Azure DocumentDB Studio](https://github.com/mingaliu/DocumentDBStudio/releases) 및 [클라이언트 SDK](documentdb-sdk-dotnet.md)를 통해 지원됩니다.
 
-이 자습서에서는 hello [Q 프라미스를 통해 Node.js SDK](http://azure.github.io/azure-documentdb-node-q/) tooillustrate 저장된 프로시저, 트리거 및 Udf의 구문 및 사용법입니다.   
+이 자습서에서는 [Q Promise와 함께 Node.js SDK](http://azure.github.io/azure-documentdb-node-q/)를 사용하여 저장 프로시저, 트리거 및 UDF의 구문 및 사용법을 설명합니다.   
 
 ## <a name="stored-procedures"></a>저장 프로시저
 ### <a name="example-write-a-simple-stored-procedure"></a>예: 간단한 저장 프로시저 작성
@@ -72,9 +72,9 @@ hello 데이터베이스 트리거, 저장된 프로시저 및 사용자 지정 
     }
 
 
-저장 프로시저는 컬렉션당 등록되며 해당 컬렉션에 있는 모든 문서 및 첨부 파일에 대해 작동할 수 있습니다. hello 다음 코드 조각에서는 tooregister hello helloWorld 컬렉션을 사용 하 여 프로시저를 저장 하는 방법을 
+저장 프로시저는 컬렉션당 등록되며 해당 컬렉션에 있는 모든 문서 및 첨부 파일에 대해 작동할 수 있습니다. 다음 조각은 helloWorld 저장 프로시저를 컬렉션에 등록하는 방법을 보여 줍니다. 
 
-    // register hello stored procedure
+    // register the stored procedure
     var createdStoredProcedure;
     client.createStoredProcedureAsync('dbs/testdb/colls/testColl', helloWorldStoredProc)
         .then(function (response) {
@@ -85,9 +85,9 @@ hello 데이터베이스 트리거, 저장된 프로시저 및 사용자 지정 
         });
 
 
-Hello 저장 프로시저 등록 되 면 hello 컬렉션에 대해 실행 하 고 hello 클라이언트에서 다시 hello 결과 읽을 수 있습니다. 
+저장 프로시저가 등록되면 컬렉션에 대해 실행하고 클라이언트에서 결과를 읽을 수 있습니다. 
 
-    // execute hello stored procedure
+    // execute the stored procedure
     client.executeStoredProcedureAsync('dbs/testdb/colls/testColl/sprocs/helloWorld')
         .then(function (response) {
             console.log(response.result); // "Hello, World"
@@ -96,12 +96,12 @@ Hello 저장 프로시저 등록 되 면 hello 컬렉션에 대해 실행 하 �
         });
 
 
-hello 컨텍스트 개체는 tooall 작업 toohello 요청 및 응답 개체에 액세스할 수 있을 뿐 아니라 Cosmos DB 저장소에서 수행할 수 있는 액세스를 제공 합니다. 이 경우 보낸 백 toohello 클라이언트 hello 응답의 hello 응답 개체 tooset hello 본문을 사용 했습니다. 자세한 내용은 참조 toohello [Azure Cosmos DB JavaScript 서버 SDK 설명서](http://azure.github.io/azure-documentdb-js-server/)합니다.  
+컨텍스트 개체는 Cosmos DB 저장소에서 수행할 수 있는 모든 작업에 대한 액세스와 요청 및 응답 개체에 대한 액세스를 제공합니다. 여기서는 응답 개체를 사용하여 클라이언트로 전송되는 응답의 본문을 설정했습니다. 자세한 내용은 [Azure Cosmos DB JavaScript 서버 SDK 설명서](http://azure.github.io/azure-documentdb-js-server/)를 참조하세요.  
 
-주세요이 예제에서 확장 하 고 그 밖의 관련된 기능 데이터베이스 추가 toohello 저장 프로시저입니다. 저장된 프로시저 수 만들고, 업데이트, 읽기, 쿼리 하 고 문서와 hello 컬렉션 내 첨부 파일을 삭제 합니다.    
+이 예제를 확장하여 저장 프로시저에 데이터베이스 관련 기능을 더 추가하겠습니다. 저장 프로시저는 컬렉션 내의 문서와 첨부 파일을 만들고 업데이트하고 읽고 쿼리 및 삭제할 수 있습니다.    
 
-### <a name="example-write-a-stored-procedure-toocreate-a-document"></a>예: 저장된 프로시저 toocreate는 문서를 작성
-다음 코드 조각 hello toouse Cosmos DB 리소스가 있는 상황에 맞는 개체 toointeract hello 하는 방법을 보여 줍니다.
+### <a name="example-write-a-stored-procedure-to-create-a-document"></a>예: 문서 작성을 위한 저장 프로시저 작성
+다음 코드 조각에서는 컨텍스트 개체를 사용하여 Cosmos DB 리소스를 조작하는 방법을 보여 줍니다.
 
     var createDocumentStoredProc = {
         id: "createMyDocument",
@@ -120,19 +120,19 @@ hello 컨텍스트 개체는 tooall 작업 toohello 요청 및 응답 개체에 
     }
 
 
-이 저장된 프로시저는 입력된 documentToCreate, hello 현재 컬렉션에서 만든 문서 toobe hello 본문으로 사용 합니다. 이러한 모든 작업은 비동기이며 JavaScript 함수 콜백에 따라 달라집니다. hello 콜백 함수 hello 작업이 실패 하면이 고 hello에 대 한 개체를 만든 경우 hello error 개체에 대해 하나씩 두 개의 매개 변수를에 있습니다. Hello 콜백 내부 사용자 hello 예외를 처리 하거나 오류를 throw 합니다. 콜백을 제공 하지 않으면이 고 오류가 있으면에 경우 hello Azure Cosmos DB 런타임 오류를 throw 합니다.   
+이 저장 프로시저는 현재 컬렉션에 만들 문서의 본문을 입력 documentToCreate로 사용합니다. 이러한 모든 작업은 비동기이며 JavaScript 함수 콜백에 따라 달라집니다. 콜백 함수에는 작업이 실패할 경우의 오류 개체 및 만들어진 개체에 각각 사용되는 두 개의 매개 변수가 있습니다. 콜백 내에서 사용자는 예외를 처리하거나 오류를 throw할 수 있습니다. 콜백이 제공되지 않았고 오류가 있는 경우, Azure Cosmos DB 런타임에서 오류를 throw합니다.   
 
-Hello 위의 예에서 hello 콜백 hello 작업이 실패 한 경우 오류를 throw 합니다. 그렇지 않으면 hello 응답 toohello 클라이언트의 hello 본문으로 문서를 작성 하는 hello의 hello id를 설정 합니다. 다음은 이 저장 프로시저가 입력 매개 변수를 사용하여 실행되는 방법을 보여 줍니다.
+위 예제에서 콜백은 작업이 실패한 경우에 오류를 throw합니다. 그렇지 않으면 만들어진 문서의 ID를 클라이언트에 반환되는 응답의 본문으로 설정합니다. 다음은 이 저장 프로시저가 입력 매개 변수를 사용하여 실행되는 방법을 보여 줍니다.
 
-    // register hello stored procedure
+    // register the stored procedure
     client.createStoredProcedureAsync('dbs/testdb/colls/testColl', createDocumentStoredProc)
         .then(function (response) {
             var createdStoredProcedure = response.resource;
 
-            // run stored procedure toocreate a document
+            // run stored procedure to create a document
             var docToCreate = {
                 id: "DocFromSproc",
-                book: "hello Hitchhiker’s Guide toohello Galaxy",
+                book: "The Hitchhiker’s Guide to the Galaxy",
                 author: "Douglas Adams"
             };
 
@@ -148,16 +148,16 @@ Hello 위의 예에서 hello 콜백 hello 작업이 실패 한 경우 오류를 
     });
 
 
-참고가 저장 프로시저는 입력으로 문서 본문의 배열이 수정된 tootake 수 있으며 저장 동일 hello에서 모든 만들 여러 네트워크 대신 프로시저 실행 개별적으로 각 toocreate 그중에서 요청 합니다. 이 사용 되는 tooimplement Cosmos DB (이 자습서의 뒷부분에서 설명)에 대 한 효율적인 대량 가져오기 도구를 수 있습니다.   
+문서 본문 배열을 입력으로 사용하고 여러 네트워크 요청을 통해 각각 개별적으로 만드는 대신 동일한 저장 프로시저 실행에서 모두 만들도록 이 저장 프로시저를 수정할 수 있습니다. 이 저장 프로시저를 사용하여 Cosmos DB에 대한 효율적인 대량 가져오기를 구현할 수 있습니다(이 자습서의 뒷부분에서 설명).   
 
-설명 된 hello 예제 toouse 프로시저를 저장 하는 방법을 보여 줍니다. 트리거 및 사용자 정의 함수 (Udf) hello 자습서의 뒷부분에서 설명 합니다.
+설명한 예제에서는 저장 프로시저를 사용하는 방법을 보여 주었습니다. 트리거와 UDF(사용자 정의 함수)는 자습서의 뒷부분에서 설명합니다.
 
 ## <a name="database-program-transactions"></a>데이터베이스 프로그램 트랜잭션
 일반적인 데이터베이스의 트랜잭션은 하나의 논리적 작업 단위로 수행되는 작업 시퀀스로 정의할 수 있습니다. 각 트랜잭션에서 **ACID 보장**을 제공합니다. ACID는 원자성, 일관성, 격리 및 내구성의 네 가지 속성을 나타내는 잘 알려진 머리글자어입니다.  
 
-간단히 말해서 원자성 트랜잭션 내에 수행 된 모든 hello 작업으로 하나의 단위로 처리 됩니다 여기서 중 하나가 해당 내용을 모두 커밋됩니다 또는 none입니다. 일관성은 hello 데이터를 항상 내부 상태가 정상 트랜잭션에 걸쳐 않았는지 확인 합니다. 격리는 두 개의 트랜잭션이 서로 충돌할 – 일반적으로, 대부분의 상용 시스템 제공 hello 응용 프로그램 요구 사항에 따라 사용할 수 있는 여러 격리 수준을 보장 합니다. 내구성은 hello 데이터베이스에서 커밋된 모든 변경 내용이 항상 있는지 확인 합니다.   
+간단히 설명하면, 원자성은 트랜잭션 내부에서 수행된 모든 작업이 하나의 단위로 처리되어 모두 커밋되거나 커밋되지 않도록 합니다. 일관성은 데이터가 트랜잭션 간에 항상 양호한 내부 상태로 유지되도록 합니다. 격리는 두 트랜잭션이 서로를 방해하지 않도록 합니다. 일반적으로 대부분의 상용 시스템은 응용 프로그램 요구에 따라 사용할 수 있는 여러 격리 수준을 제공합니다. 내구성은 데이터베이스에서 커밋된 변경 내용이 항상 유지되도록 합니다.   
 
-Cosmos db에서 JavaScript hello에서 호스팅되는 hello 데이터베이스와 동일한 메모리 공간입니다. 따라서 저장된 프로시저 및 트리거 내에서 수행 된 요청의 실행 hello에 동일한 데이터베이스 세션의 범위입니다. 이렇게 하면 하나의 저장된 프로시저/트리거의 일부인 모든 작업에 대해 Cosmos DB tooguarantee를 ACID 수 있습니다. Hello 다음 사항을 고려 프로시저 정의 저장 합니다.
+Cosmos DB에서 JavaScript는 데이터베이스와 동일한 메모리 공간에 호스트됩니다. 따라서 저장 프로시저 및 트리거 내에서 수행된 요청이 동일한 데이터베이스 세션 범위에서 실행됩니다. 이렇게 하면 Cosmos DB에서 단일 저장 프로시저/트리거에 속하는 모든 작업에 대해 ACID를 보장할 수 있습니다. 다음 저장 프로시저 정의를 고려해 보세요.
 
     // JavaScript source code
     var exchangeItemsSproc = {
@@ -175,24 +175,24 @@ Cosmos db에서 JavaScript hello에서 호스팅되는 hello 데이터베이스�
                 function (err, documents, responseOptions) {
                     if (err) throw new Error("Error" + err.message);
 
-                    if (documents.length != 1) throw "Unable toofind both names";
+                    if (documents.length != 1) throw "Unable to find both names";
                     player1Document = documents[0];
 
                     var filterQuery2 = 'SELECT * FROM Players p where p.id = "' + playerId2 + '"';
                     var accept2 = collection.queryDocuments(collection.getSelfLink(), filterQuery2, {},
                         function (err2, documents2, responseOptions2) {
                             if (err2) throw new Error("Error" + err2.message);
-                            if (documents2.length != 1) throw "Unable toofind both names";
+                            if (documents2.length != 1) throw "Unable to find both names";
                             player2Document = documents2[0];
                             swapItems(player1Document, player2Document);
                             return;
                         });
-                    if (!accept2) throw "Unable tooread player details, abort ";
+                    if (!accept2) throw "Unable to read player details, abort ";
                 });
 
-            if (!accept) throw "Unable tooread player details, abort ";
+            if (!accept) throw "Unable to read player details, abort ";
 
-            // swap hello two players’ items
+            // swap the two players’ items
             function swapItems(player1, player2) {
                 var player1ItemSave = player1.item;
                 player1.item = player2.item;
@@ -200,91 +200,91 @@ Cosmos db에서 JavaScript hello에서 호스팅되는 hello 데이터베이스�
 
                 var accept = collection.replaceDocument(player1._self, player1,
                     function (err, docReplaced) {
-                        if (err) throw "Unable tooupdate player 1, abort ";
+                        if (err) throw "Unable to update player 1, abort ";
 
                         var accept2 = collection.replaceDocument(player2._self, player2,
                             function (err2, docReplaced2) {
-                                if (err) throw "Unable tooupdate player 2, abort"
+                                if (err) throw "Unable to update player 2, abort"
                             });
 
-                        if (!accept2) throw "Unable tooupdate player 2, abort";
+                        if (!accept2) throw "Unable to update player 2, abort";
                     });
 
-                if (!accept) throw "Unable tooupdate player 1, abort";
+                if (!accept) throw "Unable to update player 1, abort";
             }
         }
     }
 
-    // register hello stored procedure in Node.js client
+    // register the stored procedure in Node.js client
     client.createStoredProcedureAsync(collection._self, exchangeItemsSproc)
         .then(function (response) {
             var createdStoredProcedure = response.resource;
         }
     );
 
-이 저장된 프로시저는 한 번에 두 플레이어 간에 게임 앱 tootrade 항목 내에서 트랜잭션을 사용합니다. hello는 프로시저 시도 tooread 두 문서는 인수로 전달 된 각 해당 toohello 플레이어 Id를 저장 합니다. 두 플레이어 문서 발견 되 면 해당 항목을 교체 하 여 hello 문서 업데이트 hello 저장 프로시저입니다. Hello 과정 오류가 발생 하면 암시적으로 hello 트랜잭션을 중단 하는 JavaScript 예외를 throw 합니다.
+이 저장 프로시저는 게임 앱 내의 트랜잭션을 사용하여 단일 작업으로 두 플레이어 간에 항목을 교환합니다. 저장 프로시저는 각각 인수로 전달된 플레이어 ID에 해당하는 두 개의 문서를 읽으려고 합니다. 두 플레이어 문서가 모두 있으면 저장 프로시저가 항목을 교환하여 문서를 업데이트합니다. 이 과정에서 오류가 발생할 경우 JavaScript 예외가 발생하여 암시적으로 트랜잭션이 중단됩니다.
 
-Hello 컬렉션 hello 저장 프로시저는 등록은 단일 파티션 컬렉션에 대 한 경우 hello 트랜잭션은 hello 컬렉션 내에서 범위 지정 된 tooall hello 문서입니다. Hello 컬렉션 분할 된 경우 저장된 프로시저는 단일 파티션 키의 hello 트랜잭션 범위에서 실행 됩니다. 각 저장 프로시저 실행 그런 다음에서 해당 toohello 범위 hello 트랜잭션이 실행 되어야 하는 파티션 키 값을 포함 해야 합니다. 자세한 내용은 [Azure Cosmos DB 분할](partition-data.md)을 참조하세요.
+저장 프로시저가 등록된 컬렉션이 단일 파티션 컬렉션인 경우 트랜잭션은 해당 컬렉션 내의 모든 문서로 범위가 지정됩니다. 컬렉션이 분할된 경우 저장 프로시저는 단일 파티션 키의 트랜잭션 범위에서 실행됩니다. 이 경우 각 저장 프로시저 실행에는 트랜잭션이 실행되는 범위에 해당하는 파티션 키 값이 포함되어야 합니다. 자세한 내용은 [Azure Cosmos DB 분할](partition-data.md)을 참조하세요.
 
 ### <a name="commit-and-rollback"></a>커밋 및 롤백
-트랜잭션은 기본적으로 Cosmos DB의 JavaScript 프로그래밍 모델에 전체 통합됩니다. JavaScript 함수 내부에서 모든 작업은 자동으로 단일 트랜잭션 아래에 래핑됩니다. Hello JavaScript 완료 된 모든 예외 없이 hello operations toohello 데이터베이스가 커밋됩니다. 사실상 관계형 데이터베이스에서 hello "BEGIN TRANSACTION" 및 "트랜잭션 커밋" 명령문은 Cosmos DB에서 암시적입니다.  
+트랜잭션은 기본적으로 Cosmos DB의 JavaScript 프로그래밍 모델에 전체 통합됩니다. JavaScript 함수 내부에서 모든 작업은 자동으로 단일 트랜잭션 아래에 래핑됩니다. JavaScript가 예외 없이 완료되면 데이터베이스에 대한 작업이 커밋됩니다. 실제로 관계형 데이터베이스의 "BEGIN TRANSACTION" 및 "COMMIT TRANSACTION" 문은 Cosmos DB에서 암시적입니다.  
 
-Hello 스크립트에서 전파 되는 모든 예외가 있는 경우 Cosmos DB JavaScript 런타임은 hello 전체 트랜잭션을 롤백합니다. 앞에서 보았듯이 hello에 예제에서는 예외를 throw 효과적으로 동일한 tooa Cosmos db에서 "ROLLBACK TRANSACTION"입니다.
+스크립트에서 전파된 예외가 있을 경우 Cosmos DB의 JavaScript 런타임이 전체 트랜잭션을 롤백합니다. 앞의 예제에 표시된 대로, 예외 throw는 Cosmos DB의 "ROLLBACK TRANSACTION"과 동등합니다.
 
 ### <a name="data-consistency"></a>데이터 일관성
-저장된 프로시저 및 트리거 항상 hello hello Azure Cosmos DB 컨테이너의 주 복제본에서 실행 됩니다. 이렇게 하면 저장 프로시저 내부의 읽기에서 강력한 일관성을 제공합니다. Hello 주 또는 보조 복제본에서 사용자 정의 함수를 사용 하 여 쿼리를 실행할 수 있지만 인지 확인 하는 toomeet hello hello 적절 한 복제본을 선택 하 여 일관성 수준이 요청 합니다.
+저장 프로시저와 트리거는 항상 Azure Cosmos DB 컨테이너의 주 복제본에서 실행됩니다. 이렇게 하면 저장 프로시저 내부의 읽기에서 강력한 일관성을 제공합니다. 사용자 정의 함수를 사용한 쿼리는 주 복제본이나 모든 보조 복제본에서 실행할 수 있지만 적절한 복제본을 선택하여 요청된 일관성 수준을 충족해야 합니다.
 
 ## <a name="bounded-execution"></a>제한된 예외
-지정 된 hello 서버 내에 모든 Cosmos DB 작업이 완료 되어야 요청 시간 제한 기간입니다. 이 제약 조건에는 tooJavaScript 함수 (저장된 프로시저, 트리거 및 사용자 정의 함수)도 적용 됩니다. 해당 시간 제한 값으로는 작업이 완료 되지 않으면, hello 트랜잭션이 롤백됩니다. JavaScript 함수 hello 시간 제한 내에 완료 하거나 연속 기반 모델 toobatch/다시 시작 실행을 구현 해야 합니다.  
+모든 Cosmos DB 작업은 서버에서 지정된 요청 시간 제한 기간 내에 완료되어야 합니다. 이 제약 조건은 JavaScript 함수(저장 프로시저, 트리거 및 사용자 정의 함수)에도 적용됩니다. 작업이 시간 제한 내에 완료되지 않으면 트랜잭션이 롤백됩니다. JavaScript 함수는 시간 제한 내에 완료되거나 실행을 일괄 처리/다시 시작하는 연속 기반 모델을 구현해야 합니다.  
 
-저장된 프로시저 및 트리거 toohandle 시간 제한의 순서 toosimplify 개발, 만들기, 읽기, replace 및 문서와 첨부 파일의 삭제) (용 hello 컬렉션 개체에서 모든 함수를 나타내는 부울 값을 반환 하는지 여부를 하는 작업이 완료 됩니다. 이 값이 false 일 경우는 tooexpire에 대 한 hello 시간 제한 되며 해당 hello 프로시저 실행을 래핑해야 나타냅니다.  작업 큐에 대기 중인된 이전 toohello 첫 번째 허용 되지 않은 저장소 작업 toocomplete를 보장 hello 저장 프로시저가 시간 내에 완료 하 고 더 이상 요청을 대기 하지 않습니다.  
+시간 제한을 처리하는 저장 프로시저 및 트리거 개발을 간소화하기 위해 컬렉션 개체 아래의 모든 함수(문서와 첨부 파일 만들기, 읽기, 바꾸기 및 삭제)는 해당 작업이 완료되는지 여부를 나타내는 부울 값을 반환합니다. 이 값이 false이면 시간 제한이 만료되며 프로시저 실행이 종료되어야 함을 나타냅니다.  수락되지 않은 첫 번째 저장소 작업 전에 대기된 작업은 저장 프로시저가 제시간에 완료되고 더 이상 요청을 대기열에 추가하지 않을 경우 완료됩니다.  
 
-JavaScript 함수는 리소스 사용에 의해서도 제한됩니다. Cosmos DB 데이터베이스 계정의 사용자를 프로 비전 하는 hello 크기에 따라 컬렉션당 처리량을 예약 합니다. 처리량은 요청 단위 또는 RU라고 하는 정규화된 CPU, 메모리 및 IO 사용 단위로 표현됩니다. JavaScript 함수 짧은 시간 동안 RUs의 다 수를 잠재적으로 사용할 수 있으며 hello 컬렉션의 제한에 도달할 경우 속도 제한 될 수 있습니다. 저장된 프로시저를 많이 사용 하는 리소스는 기본 데이터베이스 작업의 격리 된 tooensure 가용성 수도 있습니다.  
+JavaScript 함수는 리소스 사용에 의해서도 제한됩니다. Cosmos DB는 프로비전된 데이터베이스 계정 크기에 따라 컬렉션당 처리량을 예약합니다. 처리량은 요청 단위 또는 RU라고 하는 정규화된 CPU, 메모리 및 IO 사용 단위로 표현됩니다. JavaScript 함수는 짧은 시간 내에 다수의 RU를 사용할 수 있으며, 컬렉션 한도에 도달할 경우 비율이 제한될 수 있습니다. 기본 데이터베이스 작업의 가용성을 위해 리소스를 많이 사용하는 저장 프로시저가 보장될 수도 있습니다.  
 
 ### <a name="example-bulk-importing-data-into-a-database-program"></a>예: 데이터베이스 프로그램으로 데이터 대량 가져오기
-다음은 문서 toobulk 가져오기 컬렉션으로 작성 된 저장된 프로시저의 예입니다. 참고 hello 부울 값을 확인 하 여 hello 저장 프로시저 경계가 지정 된 핸들 실행 방법 값의 반환 createDocument를 하 고 사용 하 여 hello hello 저장 프로시저 tootrack 및 다시 시작 진행 상황을 호출할 때마다 일괄 처리에서 삽입 하는 문서 수입니다.
+다음은 문서를 컬렉션으로 대량 가져오기 위해 작성된 저장 프로시저의 예입니다. 저장 프로시저가 createDocument의 부울 반환 값을 검사하여 제한된 실행을 처리한 다음 각 저장 프로시저 호출에 삽입된 문서 수를 사용하여 일괄 처리의 진행 상황을 추적하고 다시 시작하는 방법을 확인합니다.
 
     function bulkImport(docs) {
         var collection = getContext().getCollection();
         var collectionLink = collection.getSelfLink();
 
-        // hello count of imported docs, also used as current doc index.
+        // The count of imported docs, also used as current doc index.
         var count = 0;
 
         // Validate input.
-        if (!docs) throw new Error("hello array is undefined or null.");
+        if (!docs) throw new Error("The array is undefined or null.");
 
         var docsLength = docs.length;
         if (docsLength == 0) {
             getContext().getResponse().setBody(0);
         }
 
-        // Call hello create API toocreate a document.
+        // Call the create API to create a document.
         tryCreate(docs[count], callback);
 
         // Note that there are 2 exit conditions:
-        // 1) hello createDocument request was not accepted. 
-        //    In this case hello callback will not be called, we just call setBody and we are done.
-        // 2) hello callback was called docs.length times.
-        //    In this case all documents were created and we don’t need toocall tryCreate anymore. Just call setBody and we are done.
+        // 1) The createDocument request was not accepted. 
+        //    In this case the callback will not be called, we just call setBody and we are done.
+        // 2) The callback was called docs.length times.
+        //    In this case all documents were created and we don’t need to call tryCreate anymore. Just call setBody and we are done.
         function tryCreate(doc, callback) {
             var isAccepted = collection.createDocument(collectionLink, doc, callback);
 
-            // If hello request was accepted, callback will be called.
-            // Otherwise report current count back toohello client, 
-            // which will call hello script again with remaining set of docs.
+            // If the request was accepted, callback will be called.
+            // Otherwise report current count back to the client, 
+            // which will call the script again with remaining set of docs.
             if (!isAccepted) getContext().getResponse().setBody(count);
         }
 
-        // This is called when collection.createDocument is done in order tooprocess hello result.
+        // This is called when collection.createDocument is done in order to process the result.
         function callback(err, doc, options) {
             if (err) throw err;
 
-            // One more document has been inserted, increment hello count.
+            // One more document has been inserted, increment the count.
             count++;
 
             if (count >= docsLength) {
-                // If we created all documents, we are done. Just set hello response.
+                // If we created all documents, we are done. Just set the response.
                 getContext().getResponse().setBody(count);
             } else {
                 // Create next document.
@@ -295,7 +295,7 @@ JavaScript 함수는 리소스 사용에 의해서도 제한됩니다. Cosmos DB
 
 ## <a id="trigger"></a> 데이터베이스 트리거
 ### <a name="database-pre-triggers"></a>데이터베이스 사전 트리거
-Cosmos DB는 문서 작업에 의해 실행되거나 트리거되는 트리거를 제공합니다. 예를 들어 hello 문서를 만들기 전에이 사전 트리거가 실행 되도록 한 문서를 만들 경우 사전 트리거를 지정할 수 있습니다. hello 다음은 사전 트리거 생성 중인 문서의 사용된 toovalidate hello 속성을 수 있는 방법의 예입니다.
+Cosmos DB는 문서 작업에 의해 실행되거나 트리거되는 트리거를 제공합니다. 예를 들어 문서를 만들 때 사전 트리거를 지정할 수 있습니다. 이 사전 트리거는 문서를 만들기 전에 실행됩니다. 다음은 사전 트리거를 사용하여 만드는 문서의 속성 유효성을 검사할 수 있는 방법의 예입니다.
 
     var validateDocumentContentsTrigger = {
         id: "validateDocumentContents",
@@ -303,7 +303,7 @@ Cosmos DB는 문서 작업에 의해 실행되거나 트리거되는 트리거�
             var context = getContext();
             var request = context.getRequest();
 
-            // document toobe created in hello current operation
+            // document to be created in the current operation
             var documentToCreate = request.getBody();
 
             // validate properties
@@ -312,7 +312,7 @@ Cosmos DB는 문서 작업에 의해 실행되거나 트리거되는 트리거�
                 documentToCreate["my timestamp"] = ts.getTime();
             }
 
-            // update hello document that will be created
+            // update the document that will be created
             request.setBody(documentToCreate);
         },
         triggerType: TriggerType.Pre,
@@ -320,7 +320,7 @@ Cosmos DB는 문서 작업에 의해 실행되거나 트리거되는 트리거�
     }
 
 
-및 hello 트리거에 Node.js 등록 클라이언트 측 코드에 해당 하는 hello:
+트리거에 해당하는 Node.js 클라이언트 쪽 등록 코드는 다음과 같습니다.
 
     // register pre-trigger
     client.createTriggerAsync(collection.self, validateDocumentContentsTrigger)
@@ -347,9 +347,9 @@ Cosmos DB는 문서 작업에 의해 실행되거나 트리거되는 트리거�
     });
 
 
-사전 트리거는 입력 매개 변수를 사용할 수 없습니다. hello 요청 개체는 hello 작업과 연결 된 사용된 toomanipulate hello 요청 메시지를 수 있습니다. 여기서은 문서의 hello 작성 된 hello 사전 트리거 실행 중 이며 JSON 형식으로 만든 hello 문서 toobe hello 요청 메시지 본문에 포함 합니다.   
+사전 트리거는 입력 매개 변수를 사용할 수 없습니다. 요청 개체를 사용하여 작업과 연결된 요청 메시지를 조작할 수 있습니다. 여기서는 문서를 만들어 사전 트리거를 실행하며 요청 메시지 본문에 JSON 형식으로 만들 문서가 포함됩니다.   
 
-트리거 등록 되는 경우 사용자로 실행할 수 있는 hello 작업을 지정할 수 있습니다. 이 트리거가 hello 다음은 허용 되지 않습니다 즉 TriggerOperation.Create로 만들어졌습니다.
+사용자는 트리거를 등록할 때 트리거 실행에 사용되는 작업을 지정할 수 있습니다. 이 트리거는 TriggerOperation.Create로 만들어졌으므로 다음이 허용되지 않습니다.
 
     var options = { preTriggerInclude: "validateDocumentContents" };
 
@@ -364,9 +364,9 @@ Cosmos DB는 문서 작업에 의해 실행되거나 트리거되는 트리거�
     // Fails, can’t use a create trigger in a replace operation
 
 ### <a name="database-post-triggers"></a>데이터베이스 사후 트리거
-사전 트리거와 마찬가지로 사후 트리거는 문서 작업과 연결되며 입력 매개 변수를 사용하지 않습니다. 실행 시 **후** hello 작업이 완료 되 고 toohello 클라이언트 전송 되는 액세스 toohello 응답 메시지가 있어야 합니다.   
+사전 트리거와 마찬가지로 사후 트리거는 문서 작업과 연결되며 입력 매개 변수를 사용하지 않습니다. 작업이 완료된 **후에** 실행되며 클라이언트에 전송된 응답 메시지에 액세스할 수 있습니다.   
 
-다음 예제는 hello 동작의 사후 트리거를 보여 줍니다.
+다음 예제는 사후 트리거 작동을 보여 줍니다.
 
     var updateMetadataTrigger = {
         id: "updateMetadata",
@@ -382,11 +382,11 @@ Cosmos DB는 문서 작업에 의해 실행되거나 트리거되는 트리거�
             var filterQuery = 'SELECT * FROM root r WHERE r.id = "_metadata"';
             var accept = collection.queryDocuments(collection.getSelfLink(), filterQuery,
                 updateMetadataCallback);
-            if(!accept) throw "Unable tooupdate metadata, abort";
+            if(!accept) throw "Unable to update metadata, abort";
 
             function updateMetadataCallback(err, documents, responseOptions) {
                 if(err) throw new Error("Error" + err.message);
-                         if(documents.length != 1) throw 'Unable toofind metadata document';
+                         if(documents.length != 1) throw 'Unable to find metadata document';
 
                          var metadataDocument = documents[0];
 
@@ -395,9 +395,9 @@ Cosmos DB는 문서 작업에 의해 실행되거나 트리거되는 트리거�
                          metadataDocument.createdNames += " " + createdDocument.id;
                          var accept = collection.replaceDocument(metadataDocument._self,
                                metadataDocument, function(err, docReplaced) {
-                                      if(err) throw "Unable tooupdate metadata, abort";
+                                      if(err) throw "Unable to update metadata, abort";
                                });
-                         if(!accept) throw "Unable tooupdate metadata, abort";
+                         if(!accept) throw "Unable to update metadata, abort";
                          return;                    
             }                                                                                            
         },
@@ -406,14 +406,14 @@ Cosmos DB는 문서 작업에 의해 실행되거나 트리거되는 트리거�
     }
 
 
-다음 예제는 hello와 같이 hello 트리거를 등록할 수 있습니다.
+다음 샘플에 표시된 대로 트리거를 등록할 수 있습니다.
 
     // register post-trigger
     client.createTriggerAsync('dbs/testdb/colls/testColl', updateMetadataTrigger)
         .then(function(createdTrigger) { 
             var docToCreate = { 
                 name: "artist_profile_1023",
-                artist: "hello Band",
+                artist: "The Band",
                 albums: ["Hellujah", "Rotators", "Spinning Top"]
             };
 
@@ -432,14 +432,14 @@ Cosmos DB는 문서 작업에 의해 실행되거나 트리거되는 트리거�
     });
 
 
-이 트리거가 hello 메타 데이터 문서를 쿼리하고 새로 만든 hello 문서에 대 한 세부 정보로 업데이트 합니다.  
+이 트리거는 메타데이터 문서를 쿼리하고 새로 만든 문서에 대한 세부 정보로 업데이트합니다.  
 
-Toonote는 hello 중요 한 한 가지 **트랜잭션** Cosmos DB에는 트리거를 실행 합니다. 이 사후 트리거 hello의 일부분으로 실행 동일한 트랜잭션을 hello 원래 문서 hello 작성 합니다. 따라서 면 hello 사후 트리거 (say hello 메타 데이터 문서 수 없습니다 tooupdate 하는 경우)에서 예외를 throw 했습니다 hello 전체 트랜잭션이 실패 하 고 롤백됩니다. 문서가 만들어지지 않고 예외가 반환됩니다.  
+한 가지 중요한 사항은 Cosmos DB에서 트리거의 **트랜잭션** 실행입니다. 이 사후 트리거는 원본 문서 만들기와 동일한 트랜잭션의 일부로 실행됩니다. 따라서 사후 트리거에서 예외가 발생할 경우(가령 메타데이터 문서를 업데이트할 수 없는 경우) 전체 트랜잭션이 실패하고 롤백됩니다. 문서가 만들어지지 않고 예외가 반환됩니다.  
 
 ## <a id="udf"></a>사용자 정의 함수
-사용자 정의 함수 (Udf) 사용 되는 tooextend hello DocumentDB API SQL 쿼리 언어 문법 되 고 사용자 지정 비즈니스 논리를 구현 합니다. UDF는 쿼리 내부에서만 호출할 수 있습니다. 이러한 액세스 toohello 컨텍스트 개체를 갖지 않는 하며 toobe 계산 전용 JavaScript로 사용 합니다. 따라서 hello Cosmos DB 서비스의 보조 복제본에서 Udf는 실행할 수 있습니다.  
+UDF(사용자 정의 함수)는 DocumentDB API SQL 쿼리 언어 문법을 확장하고 사용자 지정 비즈니스 논리를 구현하는 데 사용됩니다. UDF는 쿼리 내부에서만 호출할 수 있습니다. 컨텍스트 개체에 액세스할 수 없으며 계산 전용 JavaScript로 사용되어야 합니다. 따라서 UDF는 Cosmos DB 서비스의 보조 복제본에서 실행할 수 있습니다.  
 
-hello 다음 샘플 다양 한 수입 대괄호의 비율에 따라 한 UDF toocalculate 수입과 세금 만들고 사용 쿼리 toofind 내 모든 사람 20000 이상 세금에 지불 합니다.
+다음 샘플에서는 다양한 수입 브래킷에 대한 비율에 따라 소득세를 계산하는 UDF를 만든 다음 쿼리 내부에서 사용하여 납부한 세금이 $20,000를 초과하는 모든 사람을 찾습니다.
 
     var taxUdf = {
         id: "tax",
@@ -458,7 +458,7 @@ hello 다음 샘플 다양 한 수입 대괄호의 비율에 따라 한 UDF tooc
     }
 
 
-hello UDF는 이후에 hello 다음 예제에서에서와 같은 쿼리에서 사용할 수 있습니다.
+이후에 다음 샘플과 같이 쿼리에 UDF를 사용할 수 있습니다.
 
     // register UDF
     client.createUserDefinedFunctionAsync('dbs/testdb/colls/testColl', taxUdf)
@@ -479,12 +479,12 @@ hello UDF는 이후에 hello 다음 예제에서에서와 같은 쿼리에서 �
     });
 
 ## <a name="javascript-language-integrated-query-api"></a>JavaScript 언어 통합 쿼리 API
-또한 tooissuing 쿼리 DocumentDB의 SQL 문법을 사용 하 여 hello 서버 쪽 SDK 있습니다 sql 지식 없이도 fluent JavaScript 인터페이스를 사용 하 여 최적화 된 tooperform 쿼리를. API 있습니다 tooprogrammatically 빌드 쿼리 조건자 함수 연속 함수에 전달 하 여 hello JavaScript 쿼리는 구문이 친숙 한 tooECMAScript5 배열 기본 제공 항목 및 lodash와 같은 인기 있는 JavaScript 라이브러리와 함께 호출 합니다. Hello JavaScript 런타임 toobe Azure Cosmos DB 인덱스를 사용 하 여 효율적으로 실행 하 여 쿼리를 구문 분석 됩니다.
+DocumentDB의 SQL 문법을 사용하여 쿼리를 발급하는 것 외에도 서버 쪽 SDK를 사용하면 SQL의 지식 없이도 흐름 JavaScript 인터페이스를 사용하여 최적화된 쿼리를 수행할 수 있습니다. JavaScript 쿼리 API를 사용하면 조건자 함수를 ECMAScript5의 배열 기본 제공 항목과 익숙한 구문 및 lodash와 같은 인기 있는 JavaScript 라이브러리가 포함된 연결 가능한 함수 호출에 전달하여 쿼리를 프로그래밍 방식으로 작성할 수 있습니다. 쿼리는 Azure Cosmos DB의 인덱스를 사용하여 효율적으로 실행되도록 JavaScript 런타임으로 구문 분석됩니다.
 
 > [!NOTE]
-> `__`(이중 밑줄)이 너무 별칭`getContext().getCollection()`합니다.
+> `__`(이중 밑줄)은 `getContext().getCollection()`에 대한 별칭입니다.
 > <br/>
-> 즉, 사용할 수 있습니다 `__` 또는 `getContext().getCollection()` tooaccess hello JavaScript 쿼리 API입니다.
+> 즉, `__` 또는 `getContext().getCollection()`을 사용하여 JavaScript 쿼리 API에 액세스할 수 있습니다.
 > 
 > 
 
@@ -503,7 +503,7 @@ value()로 종료되어야 하는 연결된 호출을 시작합니다.
 <b>filter(predicateFunction [, options] [, callback])</b>
 <ul>
 <li>
-Hello hello 결과 집합으로 순서 toofilter/out 입력된 문서에서에서 true/false를 반환 하는 조건자 함수를 사용 하 여 입력을 필터링 합니다. 비슷한 tooa 동작 SQL의 WHERE 절.
+출력 문서를 결과 집합으로 필터링하기 위해 true/false를 반환하는 조건자 함수를 사용하여 입력을 필터링합니다. 이 동작은 SQL의 WHERE 절과 유사합니다.
 </li>
 </ul>
 </li>
@@ -511,7 +511,7 @@ Hello hello 결과 집합으로 순서 toofilter/out 입력된 문서에서에�
 <b>map(transformationFunction [, options] [, callback])</b>
 <ul>
 <li>
-각 입력된 항목 tooa JavaScript 개체 또는 값을 매핑하는 변환 함수를 지정 된 투영을 적용 합니다. SQL에 유사한 tooa SELECT 절 처럼 동작 합니다.
+각 입력 항목을 JavaScript 개체 또는 값에 매핑하는 변환 함수에 대해 프로젝션을 적용합니다. 이 동작은 SQL의 SELECT 절과 유사합니다.
 </li>
 </ul>
 </li>
@@ -519,7 +519,7 @@ Hello hello 결과 집합으로 순서 toofilter/out 입력된 문서에서에�
 <b>pluck([propertyName] [, options] [, callback])</b>
 <ul>
 <li>
-각 입력된 항목에서 hello 단일 속성 값을 추출 하는 지도 대 한 바로 가기입니다.
+이 각 입력 항목에서 단일 속성의 값을 추출하는 맵에 대한 바로 가기입니다.
 </li>
 </ul>
 </li>
@@ -527,7 +527,7 @@ Hello hello 결과 집합으로 순서 toofilter/out 입력된 문서에서에�
 <b>flatten([isShallow] [, options] [, callback])</b>
 <ul>
 <li>
-평면화 tooa 단일 배열에서 각 입력된 항목의 배열 및 결합 합니다. LINQ에서 비슷한 tooSelectMany 처럼 동작 합니다.
+각 입력 항목의 배열을 단일 배열로 결합하고 평면화합니다. 이 동작은 LINQ의 SelectMany와 유사합니다.
 </li>
 </ul>
 </li>
@@ -535,7 +535,7 @@ Hello hello 결과 집합으로 순서 toofilter/out 입력된 문서에서에�
 <b>sortBy([predicate] [, options] [, callback])</b>
 <ul>
 <li>
-조건자를 지정 하는 hello를 사용 하 여 오름차순 hello 입력된 문서 스트림에 hello 문서를 정렬 하 여 새 문서 집합을 생성 합니다. 비슷한 tooa ORDER BY 절 SQL 처럼 동작 합니다.
+주어진 조건자를 사용하여 입력 문서 스트림의 문서를 오름차순으로 정렬하여 새 문서 집합을 생성합니다. 이 동작은 SQL의 ORDER BY 절과 유사합니다.
 </li>
 </ul>
 </li>
@@ -543,34 +543,34 @@ Hello hello 결과 집합으로 순서 toofilter/out 입력된 문서에서에�
 <b>sortByDescending([predicate] [, options] [, callback])</b>
 <ul>
 <li>
-조건자를 지정 하는 hello를 사용 하 여 내림차순으로 hello 입력된 문서 스트림에 hello 문서를 정렬 하 여 새 문서 집합을 생성 합니다. SQL에 유사한 tooa x DESC ORDER BY 절 처럼 동작 합니다.
+주어진 조건자를 사용하여 입력 문서 스트림의 문서를 내림차순으로 정렬하여 새 문서 집합을 생성합니다. 이 동작은 SQL의 ORDER BY x DESC 절과 유사합니다.
 </li>
 </ul>
 </li>
 </ul>
 
 
-조건자 및/또는 선택기 함수 안에 포함 하는 경우 hello 다음과 같은 JavaScript 구문이 어 자동으로 최적화 된 toorun 직접 Azure Cosmos DB 인덱스:
+조건자 및/또는 선택기 함수 안에 포함된 경우 다음과 같은 JavaScript 구문이 Azure Cosmos DB 인덱스에서 직접 실행하도록 자동으로 최적화됩니다.
 
 * 간단한 연산자: = = + - * / % | ^ &amp; == != === !=== &lt; &gt; &lt;= &gt;= || &amp;&amp; &lt;&lt; &gt;&gt; &gt;&gt;&gt;! ~
-* 리터럴 hello 개체를 포함 한 리터럴: {}
+* 개체 리터럴을 포함하는 리터럴: {}
 * var, 반환
 
-다음 JavaScript를 생성 하는 hello Azure Cosmos DB 인덱스에 대 한 최적화 되지 않습니다.
+다음 JavaScript 구문은 Azure Cosmos DB 인덱스에 대해 최적화되지 않습니다.
 
 * 흐름 제어(예: if, for, while)
 * 함수 호출
 
 자세한 내용은 [서버 쪽 JSDocs](http://azure.github.io/azure-documentdb-js-server/)를 참조하세요.
 
-### <a name="example-write-a-stored-procedure-using-hello-javascript-query-api"></a>예: hello JavaScript 쿼리 API를 사용 하 여 저장된 프로시저를 작성 합니다.
-아래의 코드 예제는 hello는 저장된 프로시저의 hello 컨텍스트에서 hello JavaScript 쿼리 API를 사용할 수 있는 방법을의 예시입니다. hello 저장된 프로시저는 입력된 매개 변수에서 제공 하 여 문서에 삽입 하 고 업데이트 hello를 사용 하 여 메타 데이터 문서를 `__.filter()` 메서드 minSize, maxSize 및 totalSize hello 입력된 문서 크기 속성을 기반으로 합니다.
+### <a name="example-write-a-stored-procedure-using-the-javascript-query-api"></a>예: JavaScript 쿼리 API를 사용하여 저장된 프로시저 작성
+다음 코드 샘플은 저장된 프로시저의 컨텍스트에서 JavaScript 쿼리 API를 사용할 수 있는 방법의 예입니다. 저장된 프로시저는 입력된 매개 변수로 지정된 문서를 삽입하고 입력된 문서의 크기 속성을 기반으로 하는 minSize, maxSize 및 totalSize가 있는 `__.filter()` 메서드를 사용하여 메타데이터 문서를 업데이트합니다.
 
     /**
      * Insert actual doc and update metadata doc: minSize, maxSize, totalSize based on doc.size.
      */
     function insertDocumentAndUpdateMetadata(doc) {
-      // HTTP error codes sent tooour callback funciton by DocDB server.
+      // HTTP error codes sent to our callback funciton by DocDB server.
       var ErrorCode = {
         RETRY_WITH: 449,
       }
@@ -578,22 +578,22 @@ Hello hello 결과 집합으로 순서 toofilter/out 입력된 문서에서에�
       var isAccepted = __.createDocument(__.getSelfLink(), doc, {}, function(err, doc, options) {
         if (err) throw err;
 
-        // Check hello doc (ignore docs with invalid/zero size and metaDoc itself) and call updateMetadata.
+        // Check the doc (ignore docs with invalid/zero size and metaDoc itself) and call updateMetadata.
         if (!doc.isMetadata && doc.size > 0) {
-          // Get hello meta document. We keep it in hello same collection. it's hello only doc that has .isMetadata = true.
+          // Get the meta document. We keep it in the same collection. it's the only doc that has .isMetadata = true.
           var result = __.filter(function(x) {
             return x.isMetadata === true
           }, function(err, feed, options) {
             if (err) throw err;
 
             // We assume that metadata doc was pre-created and must exist when this script is called.
-            if (!feed || !feed.length) throw new Error("Failed toofind hello metadata document.");
+            if (!feed || !feed.length) throw new Error("Failed to find the metadata document.");
 
-            // hello metadata document.
+            // The metadata document.
             var metaDoc = feed[0];
 
             // Update metaDoc.minSize:
-            // for 1st document use doc.Size, for all hello rest see if it's less than last min.
+            // for 1st document use doc.Size, for all the rest see if it's less than last min.
             if (metaDoc.minSize == 0) metaDoc.minSize = doc.size;
             else metaDoc.minSize = Math.min(metaDoc.minSize, doc.size);
 
@@ -603,12 +603,12 @@ Hello hello 결과 집합으로 순서 toofilter/out 입력된 문서에서에�
             // Update metaDoc.totalSize.
             metaDoc.totalSize += doc.size;
 
-            // Update/replace hello metadata document in hello store.
+            // Update/replace the metadata document in the store.
             var isAccepted = __.replaceDocument(metaDoc._self, metaDoc, function(err) {
               if (err) throw err;
-              // Note: in case concurrent updates causes conflict with ErrorCode.RETRY_WITH, we can't read hello meta again 
-              //       and update again because due tooSnapshot isolation we will read same exact version (we are in same transaction).
-              //       We have tootake care of that on hello client side.
+              // Note: in case concurrent updates causes conflict with ErrorCode.RETRY_WITH, we can't read the meta again 
+              //       and update again because due to Snapshot isolation we will read same exact version (we are in same transaction).
+              //       We have to take care of that on the client side.
             });
             if (!isAccepted) throw new Error("replaceDocument(metaDoc) returned false.");
           });
@@ -618,8 +618,8 @@ Hello hello 결과 집합으로 순서 toofilter/out 입력된 문서에서에�
       if (!isAccepted) throw new Error("createDocument(actual doc) returned false.");
     }
 
-## <a name="sql-toojavascript-cheat-sheet"></a>SQL tooJavascript 치트 시트
-hello 다음 표에 표시 다양 한 SQL 쿼리 및 hello 해당 JavaScript 쿼리 합니다.
+## <a name="sql-to-javascript-cheat-sheet"></a>SQL-Javascript 치트 시트
+다음 표에서 다양한 SQL 쿼리 및 해당 JavaScript 쿼리를 표시합니다.
 
 SQL 쿼리를 사용하는 것과 같이 문서 속성 키(예: `doc.id`)는 소문자를 구분합니다.
 
@@ -632,26 +632,26 @@ SQL 쿼리를 사용하는 것과 같이 문서 속성 키(예: `doc.id`)는 소
 |SELECT docs.id, docs.message AS msg<br>FROM docs<br>WHERE docs.id="X998_Y998"|__.chain()<br>&nbsp;&nbsp;&nbsp;&nbsp;.filter(function(doc) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return doc.id ==="X998_Y998";<br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>&nbsp;&nbsp;&nbsp;&nbsp;.map(function(doc) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: doc.id,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg: doc.message<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>.value();|5|
 |SELECT VALUE tag<br>FROM docs<br>JOIN tag IN docs.Tags<br>ORDER BY docs._ts|__.chain()<br>&nbsp;&nbsp;&nbsp;&nbsp;.filter(function(doc) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return doc.Tags && Array.isArray(doc.Tags);<br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>&nbsp;&nbsp;&nbsp;&nbsp;.sortBy(function(doc) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return doc._ts;<br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>&nbsp;&nbsp;&nbsp;&nbsp;.pluck("Tags")<br>&nbsp;&nbsp;&nbsp;&nbsp;.flatten()<br>&nbsp;&nbsp;&nbsp;&nbsp;.value()|6|
 
-hello 다음 설명에서는 설명 위의 hello 테이블의 각 쿼리 합니다.
+다음 설명에서는 위의 테이블에 있는 각 쿼리를 설명합니다.
 1. 모든 문서(연속 토큰과 함께 페이지가 매겨진)의 결과는 있는 그대로입니다.
-2. 프로젝트 hello id, 메시지 (별칭 toomsg) 및 모든 문서에서 작업 합니다.
-3. Hello 조건자를 사용 하 여 문서에 대 한 쿼리: id = "X998_Y998"입니다.
-4. 태그 속성 및 태그가 있는 문서에 대 한 쿼리는 hello 값 123이 포함 된 배열입니다.
-5. 쿼리는 조건자를 사용 하 여 문서에 대 한 id = "X998_Y998" 다음 프로젝트 hello id 및 메시지 (별칭이 지정 toomsg).
-6. 배열 속성 태그를 포함 하는 문서에 대 한 필터링 및 hello _ts timestamp 시스템 속성으로 hello 결과 문서를 정렬 하 고 프로젝트 + hello 태그 배열을 평면화합니다
+2. 모든 문서에서 id, message(msg로 별칭이 지정됨) 및 action을 프로젝션합니다.
+3. 조건자: id = "X998\_Y998"을 사용하여 문서를 쿼리합니다.
+4. Tags 속성이 있는 문서를 쿼리합니다. Tags는 123 값을 포함하는 배열입니다.
+5. 조건자 id = "X998_Y998"을 사용하여 문서를 쿼리한 다음 id와 message(msg로 별칭이 지정됨)를 프로젝션합니다.
+6. array 속성 Tags가 있는 문서를 필터링하고 _ts timestamp system 속성으로 결과 문서를 정렬한 다음 Tags 배열을 프로젝션 및 평면화합니다.
 
 
 ## <a name="runtime-support"></a>런타임 지원
-[DocumentDB JavaScript 서버 쪽 API](http://azure.github.io/azure-documentdb-js-server/) hello에 대 한 지원을 제공 대부분 hello의 JavaScript 언어 기능으로 표준화 된 일반 [ECMA 262](http://www.ecma-international.org/publications/standards/Ecma-262.htm)합니다.
+[DocumentDB JavaScript 서버 쪽 API](http://azure.github.io/azure-documentdb-js-server/)는 [ECMA-262](http://www.ecma-international.org/publications/standards/Ecma-262.htm)에서 표준화된 일반 JavaScript 언어 기능을 대부분 지원합니다.
 
 ### <a name="security"></a>보안
-JavaScript 저장 프로시저 및 트리거는 샌드 박싱된 하나의 스크립트의 hello 효과 hello 스냅숏 트랜잭션 격리 hello 데이터베이스 수준에서 수행 하지 않고 다른 toohello 노출 하지 않도록 합니다. hello 런타임 환경 풀링된 있더라도 hello 컨텍스트의 각 실행 후 정리 됩니다. 따라서 toobe 보장 됩니다 서로 모든 의도 하지 않은 부작용의 안전 합니다.
+JavaScript 저장 프로시저와 트리거는 한 스크립트의 결과가 데이터베이스 수준의 스냅숏 트랜잭션 격리를 통과하지 않고 다른 스크립트로 누출되지 않도록 샌드박스됩니다. 런타임 환경은 풀링되지만 각 실행 후에 컨텍스트가 정리됩니다. 따라서 서로 간의 의도치 않은 파생 작업으로부터 보호됩니다.
 
 ### <a name="pre-compilation"></a>사전 컴파일
-저장된 프로시저, 트리거 및 Udf 순서 tooavoid 컴파일 비용에 암시적으로 미리 컴파일된 toohello 바이트 코드 형식 hello 시 각 스크립트 호출 됩니다. 이렇게 하면 저장 프로시저 호출이 빠르며 사용 공간이 적습니다.
+저장 프로시저, 트리거 및 UDF는 각 스크립트 호출 시 컴파일 비용을 방지하기 위해 암시적으로 바이트 코드 형식으로 사전 컴파일됩니다. 이렇게 하면 저장 프로시저 호출이 빠르며 사용 공간이 적습니다.
 
 ## <a name="client-sdk-support"></a>클라이언트 SDK 지원
-에 대 한 추가 toohello DocumentDB API에서에서 [Node.js](documentdb-sdk-node.md) 클라이언트, Azure Cosmos DB에 [.NET](documentdb-sdk-dotnet.md), [.NET Core](documentdb-sdk-dotnet-core.md), [Java](documentdb-sdk-java.md), [ JavaScript](http://azure.github.io/azure-documentdb-js/), 및 [Python Sdk](documentdb-sdk-python.md) hello DocumentDB API에 대 한 합니다. 이러한 SDK를 사용하여 저장 프로시저, 트리거 및 UDF를 만들고 실행할 수도 있습니다. hello 방법을 예제와 다음 toocreate 고 hello.NET 클라이언트를 사용 하 여 저장된 프로시저를 실행 합니다. 저장 프로시저를 JSON으로 및를 다시 읽고 hello.NET 형식 hello로 전달 되는 방법을 확인 합니다.
+[Node.js](documentdb-sdk-node.md) 클라이언트용 DocumentDB API뿐 아니라 Azure Cosmos DB에는 DocumentDB API용 [.NET](documentdb-sdk-dotnet.md), [.NET Core](documentdb-sdk-dotnet-core.md), [Java](documentdb-sdk-java.md), [JavaScript](http://azure.github.io/azure-documentdb-js/) 및 [Python SDK](documentdb-sdk-python.md)도 있습니다. 이러한 SDK를 사용하여 저장 프로시저, 트리거 및 UDF를 만들고 실행할 수도 있습니다. 다음 예제에서는 .NET 클라이언트를 사용하여 저장 프로시저를 만들고 실행하는 방법을 보여 줍니다. .NET 유형을 저장 프로시저에 JSON으로 전달하고 다시 읽는 방법을 확인합니다.
 
     var markAntiquesSproc = new StoredProcedure
     {
@@ -684,7 +684,7 @@ JavaScript 저장 프로시저 및 트리거는 샌드 박싱된 하나의 스�
     Document createdDocument = await client.ExecuteStoredProcedureAsync<Document>(UriFactory.CreateStoredProcedureUri("db", "coll", "sproc"), document, 1920);
 
 
-이 샘플은 어떻게 toouse hello [DocumentDB.NET API](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet) toocreate 사전 트리거 고 hello 트리거를 사용 된 문서를 만듭니다. 
+이 샘플에서는 [DocumentDB .NET API](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet)를 사용하여 사전 트리거를 만들고 트리거를 사용하도록 설정하여 문서를 만드는 방법을 보여 줍니다. 
 
     Trigger preTrigger = new Trigger()
     {
@@ -705,7 +705,7 @@ JavaScript 저장 프로시저 및 트리거는 샌드 박싱된 하나의 스�
         });
 
 
-다음 예제는 hello toocreate 사용자 함수 (UDF)을 정의 하는 방법을 보여 줍니다 고에서 사용 하 여 한 [DocumentDB API SQL 쿼리](documentdb-sql-query.md)합니다.
+다음 예제에서는 UDF(사용자 정의 함수)를 만들고 [DocumentDB API SQL 쿼리](documentdb-sql-query.md)에 사용하는 방법을 보여 줍니다.
 
     UserDefinedFunction function = new UserDefinedFunction()
     {
@@ -723,7 +723,7 @@ JavaScript 저장 프로시저 및 트리거는 샌드 박싱된 하나의 스�
     }
 
 ## <a name="rest-api"></a>REST API
-모든 Azure Cosmos DB 작업은 RESTful 방식으로 수행할 수 있습니다. HTTP POST를 사용하여 저장 프로시저, 트리거 및 사용자 정의 함수를 컬렉션 아래에 등록할 수 있습니다. hello 다음은 방법의 예로 tooregister 저장된 프로시저:
+모든 Azure Cosmos DB 작업은 RESTful 방식으로 수행할 수 있습니다. HTTP POST를 사용하여 저장 프로시저, 트리거 및 사용자 정의 함수를 컬렉션 아래에 등록할 수 있습니다. 다음은 저장 프로시저를 등록하는 방법의 예입니다.
 
     POST https://<url>/sprocs/ HTTP/1.1
     authorization: <<auth>>
@@ -746,7 +746,7 @@ JavaScript 저장 프로시저 및 트리거는 샌드 박싱된 하나의 스�
     }
 
 
-hello 저장된 프로시저는 등록 된 hello URI에 대 한 POST 요청을 실행 하 여 dbs/testdb/colls/testColl/저장 프로시저와 hello 본문을 포함 하는 저장된 프로시저 toocreate hello 합니다. 트리거 및 UDF는 각각 /triggers 및 /udfs에 대해 POST를 실행해서 비슷하게 등록할 수 있습니다.
+만들려는 저장 프로시저를 본문에 포함하여 URI dbs/testdb/colls/testColl/sprocs에 대해 POST 요청을 실행하면 저장 프로시저가 등록됩니다. 트리거 및 UDF는 각각 /triggers 및 /udfs에 대해 POST를 실행해서 비슷하게 등록할 수 있습니다.
 그런 다음 해당 리소스 링크에 대해 POST 요청을 실행해서 이 저장 프로시저를 실행할 수 있습니다.
 
     POST https://<url>/sprocs/<sproc> HTTP/1.1
@@ -754,16 +754,16 @@ hello 저장된 프로시저는 등록 된 hello URI에 대 한 POST 요청을 �
     x-ms-date: Thu, 07 Aug 2014 03:43:20 GMT
 
 
-    [ { "name": "TestDocument", "book": "Autumn of hello Patriarch"}, "Price", 200 ]
+    [ { "name": "TestDocument", "book": "Autumn of the Patriarch"}, "Price", 200 ]
 
 
-여기서 hello 입력된 toohello 저장 프로시저는 hello 요청 본문에 전달 됩니다. Hello 입력 JSON 배열이 입력된 매개 변수로 전달 되는 참고 합니다. 프로시저는 hello에 대 한 첫 번째 입력은 응답 본문 문서로 저장 하는 hello. 수신 하는 hello 응답은 다음과 같습니다.
+여기서는 저장 프로시저에 대한 입력이 요청 본문에 전달됩니다. 입력은 입력 매개 변수의 JSON 배열로 전달됩니다. 저장 프로시저는 첫 번째 입력을 응답 본문인 문서로 사용합니다. 수신하는 응답은 다음과 같습니다.
 
     HTTP/1.1 200 OK
 
     { 
       name: 'TestDocument',
-      book: ‘Autumn of hello Patriarch’,
+      book: ‘Autumn of the Patriarch’,
       id: ‘V7tQANV3rAkDAAAAAAAAAA==‘,
       ts: 1407830727,
       self: ‘dbs/V7tQAA==/colls/V7tQANV3rAk=/docs/V7tQANV3rAkDAAAAAAAAAA==/’,
@@ -773,7 +773,7 @@ hello 저장된 프로시저는 등록 된 hello URI에 대 한 POST 요청을 �
     }
 
 
-저장 프로시저와 달리 트리거는 직접 실행할 수 없습니다. 대신, 문서 작업의 일부로 실행됩니다. 요청 HTTP 헤더를 사용 하 여 hello 트리거 toorun을 지정할 수 있습니다. hello 요청 toocreate 문서입니다.
+저장 프로시저와 달리 트리거는 직접 실행할 수 없습니다. 대신, 문서 작업의 일부로 실행됩니다. HTTP 헤더를 사용하여 요청과 함께 실행할 트리거를 지정할 수 있습니다. 다음은 문서 만들기 요청입니다.
 
     POST https://<url>/docs/ HTTP/1.1
     authorization: <<auth>>
@@ -784,23 +784,23 @@ hello 저장된 프로시저는 등록 된 hello URI에 대 한 POST 요청을 �
 
     {
        "name": "newDocument",
-       “title”: “hello Wizard of Oz”,
+       “title”: “The Wizard of Oz”,
        “author”: “Frank Baum”,
        “pages”: 92
     }
 
 
-여기 hello 요청으로 실행 하는 hello 사전 트리거 toobe hello x-ms-documentdb-pre-trigger-include 헤더에 지정 됩니다. 마찬가지로 모든 사후 트리거 hello x-ms-documentdb-post-trigger-include 헤더에 제공 됩니다. 지정된 요청에 사전 트리거와 사후 트리거를 둘 다 지정할 수 있습니다.
+여기서는 요청과 함께 실행할 사전 트리거가 x-ms-documentdb-pre-trigger-include 헤더에 지정됩니다. 마찬가지로, 모든 사후 트리거는 x-ms-documentdb-post-trigger-include 헤더에 지정됩니다. 지정된 요청에 사전 트리거와 사후 트리거를 둘 다 지정할 수 있습니다.
 
 ## <a name="sample-code"></a>샘플 코드
 [GitHub 리포지토리](https://github.com/Azure/azure-documentdb-js-server/tree/master/samples)에서 더 많은 서버 쪽 코드 예제([bulk-delete](https://github.com/Azure/azure-documentdb-js-server/tree/master/samples/stored-procedures/bulkDelete.js) 및 [update](https://github.com/Azure/azure-documentdb-js-server/tree/master/samples/stored-procedures/update.js) 포함)를 찾을 수 있습니다.
 
-Tooshare 놀라운 저장된 프로시저를 선택 하십시오. 끌어오기 요청을 보내주세요. 
+저장된 프로시저를 공유하시겠습니까? 끌어오기 요청을 보내주세요. 
 
 ## <a name="next-steps"></a>다음 단계
-를 만든 후 하나 이상의 저장된 프로시저, 트리거 및 사용자 정의 함수 생성 로드 하 고 hello 데이터 탐색기를 사용 하 여 Azure 포털에서에서 볼 수 있습니다.
+하나 이상의 저장된 프로시저, 트리거 및 생성된 사용자 정의 함수가 있다면 데이터 탐색기를 사용하여 Azure Portal에서 해당 함수를 로드하고 볼 수 있습니다.
 
-Hello 다음 살펴보면 참조 및 리소스 Azure Cosmos dB 서버 쪽 프로그래밍에 대 한 자세한 경로 toolearn 프로그램에 유용 합니다.
+또한 Azure Cosmos DB 서버 쪽 프로그래밍에 대한 자세한 내용을 보려면 경로에서 다음의 참조 자료 및 리소스가 유용합니다.
 
 * [Azure Cosmos DB SDK](documentdb-sdk-dotnet.md)
 * [DocumentDB 스튜디오](https://github.com/mingaliu/DocumentDBStudio/releases)
@@ -808,5 +808,5 @@ Hello 다음 살펴보면 참조 및 리소스 Azure Cosmos dB 서버 쪽 프로
 * [JavaScript ECMA-262](http://www.ecma-international.org/publications/standards/Ecma-262.htm)
 * [안전하고 이식 가능한 데이터베이스 확장성](http://dl.acm.org/citation.cfm?id=276339) 
 * [서비스 지향 데이터베이스 아키텍처](http://dl.acm.org/citation.cfm?id=1066267&coll=Portal&dl=GUIDE) 
-* [Microsoft SQL server에 hello.NET 런타임 호스팅](http://dl.acm.org/citation.cfm?id=1007669)
+* [Microsoft SQL server에서 .NET 런타임 호스팅](http://dl.acm.org/citation.cfm?id=1007669)
 

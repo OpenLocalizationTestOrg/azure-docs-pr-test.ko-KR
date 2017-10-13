@@ -1,6 +1,6 @@
 ---
-title: Azure Redis Cache aaaHow toomonitor | Microsoft Docs
-description: "자세한 방법을 toomonitor hello 상태와 성능을 Azure Redis Cache 인스턴스"
+title: "Azure Redis Cache를 모니터링하는 방법 | Microsoft Docs"
+description: "Azure Redis Cache 인스턴스의 상태와 성능을 모니터링하는 방법을 알아봅니다."
 services: redis-cache
 documentationcenter: 
 author: steved0x
@@ -14,44 +14,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: sdanie
-ms.openlocfilehash: c474d485dfcbb109d5bb634a980f6db080598e13
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8996f5ce03e39557d9cc9c3de1ec214f5cd664b4
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-toomonitor-azure-redis-cache"></a>Azure Redis 캐시 하는 toomonitor 방법
-Azure Redis Cache를 사용 하 여 [Azure 모니터](https://docs.microsoft.com/azure/monitoring-and-diagnostics/) tooprovide 캐시 인스턴스를 모니터링 하는 여러 가지 옵션입니다. 볼 메트릭, 메트릭 차트 toohello 시작 보드에 고정, 모니터링 차트의 hello 날짜 및 시간 범위를 사용자 지정, 추가 및 hello 차트에서 메트릭을 제거 있고 특정 조건이 충족 될 때 경고를 설정 합니다. 이러한 도구는 하면 toomonitor hello 상태 Azure Redis 캐시 인스턴스를 사용 하도록 설정 하 고 캐싱 응용 프로그램을 관리 하는 데 도움이 됩니다.
+# <a name="how-to-monitor-azure-redis-cache"></a>Azure Redis Cache를 모니터링하는 방법
+Azure Redis Cache에서는 [Azure Monitor](https://docs.microsoft.com/azure/monitoring-and-diagnostics/)를 사용하여 캐시 인스턴스를 모니터링하기 위한 몇 가지 옵션을 제공합니다. 메트릭을 보고, 메트릭 차트를 시작 보드에 고정하고, 모니터링 차트의 날짜 및 시간 범위를 사용자 지정하고, 차트에서 메트릭을 추가 및 제거하고, 특정 조건이 충족될 경우의 경고를 설정할 수 있습니다. 이러한 도구는 Azure Redis Cache 인스턴스의 상태를 모니터링할 수 있게 해주며 캐싱 응용 프로그램 관리에 도움이 됩니다.
 
-메트릭을 사용 하 여 Azure Redis Cache 인스턴스는 수집에 대 한 hello Redis [정보](http://redis.io/commands/info) 30 일 동안 자동으로 저장 및 분 당 2 배 정도 빨라질 명령 (참조 [캐시 메트릭 내보내기](#export-cache-metrics) tooconfigure는 다른 보존 정책을) hello 메트릭 차트에 표시 되 고 경고 규칙에 따라 평가 될 수 있도록 합니다. 각 캐시 메트릭에 사용 되는 hello 다른 정보 값에 대 한 자세한 내용은 참조 [사용 가능한 메트릭 및 보고 간격](#available-metrics-and-reporting-intervals)합니다.
+Azure Redis Cache 인스턴스의 메트릭은 Redis [INFO](http://redis.io/commands/info) 명령을 사용하여 분당 약 2번 수집되고 30일 동안 자동으로 저장되므로(다른 보존 정책을 구성하려는 경우 [캐시 메트릭 내보내기](#export-cache-metrics) 참조) 메트릭 차트에 표시하고 경고 규칙에 따라 평가할 수 있습니다. 각 캐시 메트릭에 사용되는 다양한 INFO 값에 대한 자세한 내용은 [사용 가능한 메트릭 및 보고 간격](#available-metrics-and-reporting-intervals)을 참조하세요.
 
 <a name="view-cache-metrics"></a>
 
-tooview 캐시 메트릭 [찾아보기](cache-configure.md#configure-redis-cache-settings) hello의 tooyour 캐시 인스턴스에 [Azure 포털](https://portal.azure.com)합니다.  Hello에 몇 가지 기본 제공 차트를 제공 하는 azure Redis 캐시 **개요** 블레이드 및 hello **메트릭 Redis** 블레이드입니다. 각 차트는 메트릭을 추가 또는 제거한 hello 보고 간격을 변경 하 여 사용자 지정할 수 있습니다.
+캐시 메트릭을 보려면 [Azure Portal](https://portal.azure.com)에서 캐시 인스턴스를 [찾아보세요](cache-configure.md#configure-redis-cache-settings).  Azure Redis Cache는 **개요** 블레이드 및 **Redis 메트릭** 블레이드에 몇 가지 기본 제공 차트를 제공합니다. 각 차트는 메트릭을 추가하거나 제거하고 보고 간격을 변경하여 사용자 지정할 수 있습니다.
 
 ![Redis 메트릭](./media/cache-how-to-monitor/redis-cache-redis-metrics-blade.png)
 
 ## <a name="view-pre-configured-metrics-charts"></a>미리 구성된 메트릭 차트 보기
 
-hello **개요** 블레이드는 hello 미리 구성 된 모니터링 차트를 수행 합니다.
+**개요** 블레이드에는 미리 구성된 다음 모니터링 차트가 있습니다.
 
 * [모니터링 차트](#monitoring-charts)
 * [사용 현황 차트](#usage-charts)
 
 ### <a name="monitoring-charts"></a>모니터링 차트
-hello **모니터링** hello 섹션인 **개요** 블레이드는 **적중 및 누락 수**, **가져오고 설정**, **연결**, 및 **총 명령** 차트입니다.
+**개요** 블레이드의 **모니터링** 섹션에는 **적중 및 누락**, **가져오기 및 설정** 및 **연결** 및 **총 명령** 차트가 있습니다.
 
 ![모니터링 차트](./media/cache-how-to-monitor/redis-cache-monitoring-part.png)
 
 ### <a name="usage-charts"></a>사용 현황 차트
-hello **사용량** hello 섹션인 **개요** 블레이드는 **Redis 서버 로드가**, **메모리 사용량**, **네트워크 대역폭** , 및 **CPU 사용량** , 차트 및 hello 표시 **가격 책정 계층** hello 캐시 인스턴스에 대 한 합니다.
+**개요** 블레이드의 **사용 현황** 섹션에는 **Redis 서버 부하**, **메모리 사용량**, **네트워크 대역폭** 및 **CPU 사용량** 차트가 있으며 캐시 인스턴스의 **가격 책정 계층**도 표시됩니다.
 
 ![사용 현황 차트](./media/cache-how-to-monitor/redis-cache-usage-part.png)
 
-hello **가격 책정 계층** 표시 hello 캐시 가격 책정 계층을 지 및도 사용할 수 있습니다[배율](cache-how-to-scale.md) 가격 책정 계층을 서로 다른 캐시 tooa hello 합니다.
+**가격 책정 계층** 은 캐시 가격 책정 계층을 표시하며 다른 가격 책정 계층으로 캐시 [크기를 조정](cache-how-to-scale.md) 하는 데 사용할 수 있습니다.
 
 ## <a name="view-metrics-with-azure-monitor"></a>Azure Monitor의 메트릭 보기
-tooview Redis 메트릭 및 Azure 모니터를 사용 하는 사용자 지정 차트를 만들 클릭 **메트릭** hello에서 **리소스 메뉴**, 원하는 hello 메트릭을 사용 하 여, 간격, 차트 종류를 보고 차트를 사용자 지정 하 고 및 더 많은 합니다.
+Azure Monitor를 사용하여 Redis 메트릭을 보고 사용자 지정 차트를 만들려면 **리소스 메뉴**에서 **메트릭**을 클릭하고 원하는 메트릭, 보고 간격, 차트 종류 등을 사용하여 차트를 사용자 지정합니다.
 
 ![Redis 메트릭](./media/cache-how-to-monitor/redis-cache-monitor.png)
 
@@ -60,84 +60,84 @@ Azure Monitor에서 메트릭을 사용하는 방법에 대한 자세한 내용�
 <a name="how-to-view-metrics-and-customize-chart"></a>
 <a name="enable-cache-diagnostics"></a>
 ## <a name="export-cache-metrics"></a>캐시 메트릭 내보내기
-기본적으로 Azure Monitor의 캐시 메트릭은 [30일 동안 저장](../monitoring-and-diagnostics/monitoring-overview-azure-monitor.md#store-and-archive)되었다가 삭제됩니다. toopersist 수 30 일 보다 오래 하면 캐시 메트릭이 [저장소 계정을 지정](../monitoring-and-diagnostics/monitoring-archive-diagnostic-logs.md) 지정는 **보존 (일)** 캐시 메트릭에 대 한 정책입니다. 
+기본적으로 Azure Monitor의 캐시 메트릭은 [30일 동안 저장](../monitoring-and-diagnostics/monitoring-overview-azure-monitor.md#store-and-archive)된 후 삭제됩니다. 캐시 메트릭을 30일보다 더 오래 유지하려면 [저장소 계정을 지정](../monitoring-and-diagnostics/monitoring-archive-diagnostic-logs.md)하고 캐시 메트릭에 대한 **보존(일)** 정책을 지정할 수 있습니다. 
 
-tooconfigure 캐시 메트릭에 대 한 저장소 계정:
+캐시 메트릭에 대한 저장소 계정을 구성하려면
 
-1. 클릭 **진단** hello에서 **리소스 메뉴** hello에 **Redis Cache** 블레이드입니다.
+1. **Redis Cache** 블레이드의 **리소스 메뉴**에서 **진단**을 클릭합니다.
 2. **설정**을 클릭합니다.
-3. 확인 **tooa 저장소 계정 보관**합니다.
-4. Toostore hello 캐시 메트릭을에 hello 저장소 계정을 선택 합니다.
-5. Hello 확인 **1 분** 확인란을 선택 하 고 지정는 **보존 (일)** 정책입니다. 원하는 대로 보존 정책을 tooapply 원하는 하지 않으며 데이터를 영원히 유지 하는 경우 설정 **보존 (일)** 너무**0**합니다.
+3. **저장소 계정에 보관**을 선택합니다.
+4. 캐시 메트릭을 저장할 저장소 계정을 선택합니다.
+5. **1분** 확인란을 선택하고 **보존(일)** 정책을 지정합니다. 보존 정책 적용 및 데이터 무기한 보존을 원하지 않는 경우 **보존(일)**을 **0**으로 설정합니다.
 6. **Save**를 클릭합니다.
 
 ![Redis 진단](./media/cache-how-to-monitor/redis-cache-diagnostics.png)
 
 >[!NOTE]
->추가 tooarchiving 프로그램 캐시 메트릭을 toostorage 수도 있습니다 [스트리밍할 tooan 이벤트 허브 또는 tooLog 분석 보내기](../monitoring-and-diagnostics/monitoring-overview-metrics.md#export-metrics)합니다.
+>캐시 메트릭을 저장소에 보관하는 것 외에 [이벤트 허브에 파일을 스트리밍하거나 Log Analytics로 전송](../monitoring-and-diagnostics/monitoring-overview-metrics.md#export-metrics)할 수도 있습니다.
 >
 >
 
-tooaccess 메트릭, hello이이 문서에 설명 된 대로 Azure 포털에서 볼 수 있습니다, 그리고도 액세스할 수 hello를 사용 하 여 [Azure 모니터 메트릭 REST API](../monitoring-and-diagnostics/monitoring-overview-metrics.md#access-metrics-via-the-rest-api)합니다.
+메트릭에 액세스하려면 이 문서 앞부분에서 설명한 대로 Azure Portal에서 보고 [Azure Monitor 메트릭 REST API](../monitoring-and-diagnostics/monitoring-overview-metrics.md#access-metrics-via-the-rest-api)를 사용하여 액세스할 수도 있습니다.
 
 > [!NOTE]
-> 저장소 계정을 변경 하면 hello hello 이전에 구성 된 저장소 계정의 데이터를에서 계속 다운로드를 사용할 수 있지만 hello Azure 포털에에서 표시 되지 않습니다.  
+> 저장소 계정을 변경하는 경우 이전에 구성된 저장소 계정의 데이터는 계속 다운로드할 수는 있으나 Azure 포털에 표시되지는 않습니다.  
 > 
 > 
 
 ## <a name="available-metrics-and-reporting-intervals"></a>사용 가능한 메트릭 및 보고 간격
-캐시 메트릭은 **지난 시간**, **오늘**, **지난 주** 및 **사용자 지정**을 포함한 몇 가지 보고 간격을 사용하여 보고됩니다. hello **메트릭을** 블레이드 각 메트릭 차트에 대 한 hello 차트에서 각 메트릭에 대 한 hello 평균, 최소 및 최대 값을 표시 하 고 일부 메트릭을 보고 간격 hello에 대 한 합계를 표시 합니다. 
+캐시 메트릭은 **지난 시간**, **오늘**, **지난 주** 및 **사용자 지정**을 포함한 몇 가지 보고 간격을 사용하여 보고됩니다. 각 메트릭 차트의 **메트릭** 블레이드에는 차트의 각 메트릭에 대한 평균값, 최소값 및 최대값이 표시되고 일부 메트릭의 경우 보고 간격에 대한 총계가 표시됩니다. 
 
-각 메트릭은 두 가지 버전을 포함합니다. 메트릭을 하나를 사용 하는 캐시 및 hello 전체 캐시에 대 한 성능 측정 [클러스터링](cache-how-to-premium-clustering.md), 두 번째 버전을 포함 하는 hello 메트릭의 `(Shard 0-9)` 캐시에 단일 분할 영역에 대 한 hello 이름 측정값 성능이 합니다. 예를 들어 분할 4 개가 캐시가 `Cache Hits` hello 전체 캐시에 대 한 적중의 총 양 hello 및 `Cache Hits (Shard 3)` hello 캐시의 해당 분할에 대 한 바로 hello 적중 됩니다.
+각 메트릭은 두 가지 버전을 포함합니다. 하나의 메트릭은 전체 캐시 및 [클러스터링](cache-how-to-premium-clustering.md)을 사용하는 캐시에 대한 성능을 측정합니다. 이름에 `(Shard 0-9)`를 포함하는 메트릭의 차기 버전은 캐시에서 단일 분할에 대한 성능을 측정합니다. 예를 들어 캐시에 4개의 분할이 있는 경우 `Cache Hits`은 전체 캐시에 대한 총 적중 수이고 `Cache Hits (Shard 3)`는 캐시의 해당 분할에 대한 적중입니다.
 
 > [!NOTE]
-> Hello 캐시 경우에 연결 된 활성 클라이언트 응용 프로그램이 없는 유휴 상태, 연결 된 클라이언트, 메모리 사용량, 수행 되는 작업 등의 일부 캐시 활동이 나타날 수 있습니다. 이 작업은 Azure Redis Cache 인스턴스 hello 작업 중 정상입니다.
+> 활성 클라이언트 응용 프로그램이 연결되어 있지 않아서 캐시가 유휴 상태인 경우에도 연결된 클라이언트, 메모리 사용, 수행 중인 작업 등 일부 캐시 활동이 나타날 수 있습니다. Azure Redis Cache 인스턴스 작업 중에는 이러한 활동이 일반적으로 나타납니다.
 > 
 > 
 
 | 메트릭 | 설명 |
 | --- | --- |
-| 캐시 적중 |hello hello 지정한 보고 간격 동안 성공한 키 조회 수입니다. 너무 매핑됩니다`keyspace_hits` hello Redis에서에서 [정보](http://redis.io/commands/info) 명령입니다. |
-| 캐시 누락 |hello hello 지정한 보고 간격 동안 실패 한 키 조회 수입니다. 너무 매핑됩니다`keyspace_misses` hello 정보 Redis 명령에서에서 합니다. 캐시 누락 않습니다 해 서 반드시 hello 캐시와 문제가 있습니다. 예를 들어 hello 캐시 배제 프로그래밍 패턴을 사용할 경우 응용 프로그램 검색 첫 번째 항목에 대 한 hello 캐시 합니다. Hello 항목이 없는 경우 (캐시 누락), hello hello 데이터베이스에서 검색 된 항목과 toohello 캐시 다음에 추가 합니다. 캐시 누락은 캐시 배제 프로그래밍 패턴 hello에 대 한 일반적인 동작입니다. Hello 캐시 누락 수가 예상 보다 높은 경우 채우고 hello 캐시에서 읽고 있는 hello 응용 프로그램 논리를 검사 합니다. Toomemory 압력 때문 hello 캐시에서 항목이 제거 되 고은 다음 캐시 누락 수 있지만 메모리 압력에 대 한 더 나은 메트릭 toomonitor 것 경우 `Used Memory` 또는 `Evicted Keys`합니다. |
-| 연결된 클라이언트 |클라이언트 hello 지정한 보고 간격 동안 연결 toohello 캐시 hello 수입니다. 너무 매핑됩니다`connected_clients` hello 정보 Redis 명령에서에서 합니다. 한 번 hello [연결 제한](cache-configure.md#default-redis-server-configuration) 에 도달 하면 이후 연결 시도가 toohello 캐시 실패 합니다. 하 활성 클라이언트 응용 프로그램이 없는 경우에 있을 수 있습니다 toointernal 프로세스 및 연결 때문에 연결 된 클라이언트의 몇 가지 인스턴스여야 합니다. |
-| 제거된 키 |hello hello 중 hello 캐시에서 제거 하는 항목 수가 지정 된 보고 간격 due toohello `maxmemory` 제한 합니다. 너무 매핑됩니다`evicted_keys` hello 정보 Redis 명령에서에서 합니다. |
-| 만료된 키 |항목 수가 hello hello 지정한 보고 간격 동안 hello 캐시에서 만료 되었습니다. 이 값이 너무 매핑할`expired_keys` hello 정보 Redis 명령에서에서 합니다. |
-| 전체 키  | hello hello 이전 보고 기간 중 hello 캐시에 있는 키의 최대 수입니다. 너무 매핑됩니다`keyspace` hello 정보 Redis 명령에서에서 합니다. 클러스터링을 사용 하 고, 캐시에 대 한 메트릭 시스템의 기반이 되는 hello tooa 제한인 인해 총 키 hello의 hello 보고 간격 동안 hello 최대 키 수 있었던 hello 분할 키의 최대 수를 반환 합니다.  |
-| 가져오기 |hello hello 지정한 보고 간격 동안 hello 캐시에서 get 작업 수입니다. 이 값은 모든 명령을 hello Redis 정보에서에서 hello 다음의 hello 합계 값: `cmdstat_get`, `cmdstat_hget`, `cmdstat_hgetall`, `cmdstat_hmget`, `cmdstat_mget`, `cmdstat_getbit`, 및 `cmdstat_getrange`, 캐시 적중 횟수의 합계와 동일한 toohello 및 및 hello 보고 간격 동안 누락입니다. |
-| Redis 서버 부하 |주기는 hello에서 Redis 서버는 사용 중 처리 및 메시지에 대 한 유휴 상태를 대기 하지 않는 hello 비율입니다. 이 카운터가 100 hello Redis 서버 성능 최대값에 도달 하 고 처리할 수 없습니다. CPU hello 있음을 의미 하는 경우 하나 더 빠르게 작동 합니다. Redis 서버 로드가 표시 되는 경우 다음 보게 hello 클라이언트의 시간 제한 예외. 이 경우 강화나 여러 캐시로의 데이터 분할을 고려해야 합니다. |
-| 설정 |hello 중 집합 작업 toohello 캐시 hello 수는 보고 간격을 지정합니다. 이 값은 모든 명령을 hello Redis 정보에서에서 hello 다음의 hello 합계 값: `cmdstat_set`, `cmdstat_hset`, `cmdstat_hmset`, `cmdstat_hsetnx`, `cmdstat_lset`, `cmdstat_mset`, `cmdstat_msetnx`, `cmdstat_setbit`, `cmdstat_setex`, `cmdstat_setrange` 및 `cmdstat_setnx`합니다. |
-| 총 작업 |hello hello 동안 hello 캐시 서버에서 처리 되는 명령의 총 수는 보고 간격을 지정 합니다. 이 값이 너무 매핑할`total_commands_processed` hello 정보 Redis 명령에서에서 합니다. Azure Redis Cache pub/sub에 순수 하 게 사용 되는 경우는 있을 대 한 메트릭은 `Cache Hits`, `Cache Misses`, `Gets`, 또는 `Sets`, 이지만 `Total Operations` pub/sub 작업에 대 한 hello 캐시 사용량을 반영 하는 메트릭을 합니다. |
-| 사용된 메모리 |hello hello 중 mb에서 hello 캐시에 키/값 쌍에 대해 사용 하는 캐시 메모리 양을 보고 간격을 지정 합니다. 이 값이 너무 매핑할`used_memory` hello 정보 Redis 명령에서에서 합니다. 메타데이터 또는 조각화를 포함하지 않습니다. |
-| 사용된 메모리 RSS |캐시 메모리 (MB) 사용 하 여 hello 지정한 보고 간격 동안, 조각화 및 메타 데이터를 포함 하 여 hello 양입니다. 이 값이 너무 매핑할`used_memory_rss` hello 정보 Redis 명령에서에서 합니다. |
-| CPU |hello hello Azure Redis Cache 서버의 백분율 동안 cpu hello 보고 간격을 지정 합니다. 이 값이 매핑할 toohello 운영 체제 `\Processor(_Total)\% Processor Time` 성능 카운터입니다. |
-| 캐시 읽기 |hello 동안 (m B/초) 초당 메가바이트 단위로 hello 캐시에서 읽은 데이터 hello 공간은 보고 간격을 지정 합니다. 이 값은 하지 특정 Redis를 hello 캐시를 호스트 하는 hello 가상 컴퓨터를 지 원하는 hello 네트워크 인터페이스 카드에서 파생 됩니다. **이 값이이 캐시에서 사용 되는 toohello 네트워크 대역폭을 해당 합니다. 서버 쪽 네트워크 대역폭 제한에 대 한 경고를 tooset 하려는 경우 다음 사용 하 여 만들이 `Cache Read` 카운터입니다. 참조 [이 테이블](cache-faq.md#cache-performance) 다양 한 캐시 가격 책정 계층 및 크기에 대 한 대역폭 제한을 관찰 된 hello에 대 한 합니다.** |
-| 캐시 쓰기 |기록한 toohello 캐시 메가바이트에서 (MB/s) hello 지정한 보고 간격 동안 데이터의 양을 hello 합니다. 이 값은 하지 특정 Redis를 hello 캐시를 호스트 하는 hello 가상 컴퓨터를 지 원하는 hello 네트워크 인터페이스 카드에서 파생 됩니다. 이 값은 toohello 캐시 hello 클라이언트에서 전송 된 데이터의 네트워크 대역폭 toohello 해당 합니다. |
+| 캐시 적중 |지정한 보고 간격 동안 성공한 키 조회 수입니다. 이 값은 Redis [INFO](http://redis.io/commands/info) 명령에서 `keyspace_hits`에 매핑됩니다. |
+| 캐시 누락 |지정한 보고 간격 동안 실패한 키 조회 수입니다. 이 값은 Redis INFO 명령에서 `keyspace_misses` 에 매핑됩니다. 캐시 누락이 반드시 캐시에 문제가 있음을 의미하는 것은 아닙니다. 예를 들어 캐시 배제 프로그래밍 패턴을 사용하는 경우 응용 프로그램은 먼저 캐시에서 항목을 찾습니다. 항목이 캐시에 없으면(캐시 누락) 데이터베이스에서 항목을 검색하고 다음 검색을 위해 캐시에 항목을 추가합니다. 캐시 누락은 캐시 배제 프로그래밍 패턴의 일반적인 동작입니다. 캐시 누락 수가 예상보다 높은 경우 캐시를 채우고 캐시에서 읽는 응용 프로그램 논리를 검사합니다. 메모리 압력 때문에 캐시에서 항목이 제거되고 있는 경우 캐시 누락이 있을 수 있으며 메모리 압력을 모니터링하는 데 더 유용한 메트릭은 `Used Memory` 또는 `Evicted Keys`입니다. |
+| 연결된 클라이언트 |지정한 보고 간격 동안 캐시에 설정된 클라이언트 연결 수입니다. 이 값은 Redis INFO 명령에서 `connected_clients` 에 매핑됩니다. [연결 제한](cache-configure.md#default-redis-server-configuration) 에 도달하면 캐시에 대한 후속 연결 시도가 실패합니다. 활성 클라이언트 응용 프로그램이 없는 경우에도 내부 프로세스 및 연결 때문에 연결된 클라이언트 인스턴스가 여전히 몇 개 있을 수 있습니다. |
+| 제거된 키 |지정한 보고 간격 동안 `maxmemory` 제한 때문에 캐시에서 제거된 항목의 수입니다. 이 값은 Redis INFO 명령에서 `evicted_keys` 에 매핑됩니다. |
+| 만료된 키 |지정한 보고 간격 동안 캐시에서 만료된 항목의 수입니다. 이 값은 Redis INFO 명령에서 `expired_keys` 에 매핑됩니다. |
+| 전체 키  | 이전 보고 기간 동안 캐시에 있는 최대 키 수입니다. 이 값은 Redis INFO 명령에서 `keyspace` 에 매핑됩니다. 기본 메트릭 시스템의 제한으로 인해 클러스터링이 사용되도록 설정된 캐시에서 전체 키는 보고 간격 동안 최대 키 수를 가진 분할된 데이터베이스의 최대 키 수를 반환합니다.  |
+| 가져오기 |지정한 보고 간격 동안 캐시에서 수행된 가져오기 작업의 수입니다. 이 값은 모든 Redis INFO 명령 `cmdstat_get`, `cmdstat_hget`, `cmdstat_hgetall`, `cmdstat_hmget`, `cmdstat_mget`, `cmdstat_getbit` 및 `cmdstat_getrange` 값의 합계이며 보고 간격 동안의 캐시 적중 및 누락 합계에 해당합니다. |
+| Redis 서버 부하 |Redis 서버가 작업을 처리하는 중이며 유휴 상태로 메시지를 대기하고 있지 않은 주기 비율입니다. 이 카운터가 100이 되면 Redis 서버가 성능 한계에 도달하여 CPU가 더 빨리 작업을 처리할 수 없습니다. Redis 서버 부하가 높으면 클라이언트에 시간 제한 예외가 표시됩니다. 이 경우 강화나 여러 캐시로의 데이터 분할을 고려해야 합니다. |
+| 설정 |지정한 보고 간격 동안 캐시에 수행된 설정 작업의 수입니다. 이 값은 모든 Redis INFO 명령 `cmdstat_set`, `cmdstat_hset`, `cmdstat_hmset`, `cmdstat_hsetnx`, `cmdstat_lset`, `cmdstat_mset`, `cmdstat_msetnx`, `cmdstat_setbit`, `cmdstat_setex`, `cmdstat_setrange` 및 `cmdstat_setnx` 값의 합계입니다. |
+| 총 작업 |지정한 보고 간격 동안 캐시 서버에서 처리한 총 명령 수입니다. 이 값은 Redis INFO 명령에서 `total_commands_processed` 에 매핑됩니다. Azure Redis Cache가 pub/sub에만 사용되는 경우 `Cache Hits`, `Cache Misses`, `Gets` 또는 `Sets`에 대한 메트릭은 없으나 pub/sub 작업의 캐시 사용량을 반영하는 `Total Operations` 메트릭은 있습니다. |
+| 사용된 메모리 |지정한 보고 간격 동안 캐시의 키/값 쌍에 사용된 캐시 메모리의 양(MB)입니다. 이 값은 Redis INFO 명령에서 `used_memory` 에 매핑됩니다. 메타데이터 또는 조각화를 포함하지 않습니다. |
+| 사용된 메모리 RSS |조각화 및 메타데이터를 포함하여 지정한 보고 간격 동안 사용된 캐시 메모리의 양(MB)입니다. 이 값은 Redis INFO 명령에서 `used_memory_rss` 에 매핑됩니다. |
+| CPU |지정한 보고 간격 동안의 Azure Redis Cache 서버 CPU 사용률(%)입니다. 이 값은 운영 체제 `\Processor(_Total)\% Processor Time` 성능 카운터에 매핑됩니다. |
+| 캐시 읽기 |지정한 보고 간격 동안 캐시에서 읽은 초당 메가바이트(MB/s) 단위의 데이터 양입니다. 이 값은 캐시를 호스트하는 가상 컴퓨터를 지원하는 네트워크 인터페이스 카드에서 가져오며 Redis에 특정한 값이 아닙니다. **이 값은 캐시에서 사용되는 네트워크 대역폭에 해당합니다. 서버 쪽 네트워크 대역폭 제한에 대한 경고를 설정하려면 `Cache Read` 카운터를 사용하여 경고를 생성합니다. 다양한 캐시 가격 책정 계층 및 크기에 대해 관찰된 대역폭 제한은 [이 테이블](cache-faq.md#cache-performance)을 참조하세요.** |
+| 캐시 쓰기 |지정한 보고 간격 동안 캐시에 쓰는 초당 메가바이트(MB/s) 단위의 데이터 양입니다. 이 값은 캐시를 호스트하는 가상 컴퓨터를 지원하는 네트워크 인터페이스 카드에서 가져오며 Redis에 특정한 값이 아닙니다. 이 값은 클라이언트에서 캐시로 전송되는 데이터의 네트워크 대역폭에 해당됩니다. |
 
 <a name="operations-and-alerts"></a>
 ## <a name="alerts"></a>경고
-메트릭 및 활동 로그를 기반으로 하는 tooreceive 경고를 구성할 수 있습니다. Azure 모니터 표시할 때을 다음 경고 toodo hello tooconfigure가 있습니다.
+메트릭 및 활동 로그를 기반으로 경고를 수신하도록 구성할 수 있습니다. Azure Monitor를 사용하여 트리거되면 다음을 수행하도록 경고를 구성할 수 있습니다.
 
 * 전자 메일 알림 보내기
 * 웹후크 호출
 * Azure 논리 앱 호출
 
-캐시에 대 한 경고 규칙 tooconfigure 클릭 **규칙 경고** hello에서 **리소스 메뉴**합니다.
+캐시에 대한 경고 규칙을 구성하려면 **리소스 메뉴**에서 **경고 규칙**을 클릭합니다.
 
 ![모니터링](./media/cache-how-to-monitor/redis-cache-monitoring.png)
 
 경고 구성 및 사용에 대한 자세한 내용은 [경고 개요](../monitoring-and-diagnostics/insights-alerts-portal.md)를 참조하세요.
 
 ## <a name="activity-logs"></a>활동 로그
-활동 로그에서 Azure Redis 캐시 인스턴스에 수행 된 hello 작업에 대 한 정보를 제공 합니다. 이전에는 이러한 로그를 "감사 로그" 또는 "작업 로그"라고도 했습니다. 작업 로그를 사용 하 여 hello 확인할 수 있습니다 "부분, who, 시기 및" 모든 쓰기 작업 (PUT, POST, DELETE)에서 Azure Redis Cache 인스턴스 사용에 대 한 합니다. 
+활동 로그는 Azure Redis Cache 인스턴스에서 수행된 작업에 대한 정보를 제공합니다. 이전에는 이러한 로그를 "감사 로그" 또는 "작업 로그"라고도 했습니다. 활동 로그를 통해 Azure Redis Cache 인스턴스에 대한 모든 쓰기 작업(PUT, POST, DELETE)에서 "무엇을, 누가, 언제"를 판단할 수 있습니다. 
 
 > [!NOTE]
 > 활동 로그에는 읽기(GET) 작업은 포함되지 않습니다.
 >
 >
 
-캐시에 대 한 활동 로그 tooview 클릭 **활동 로그** hello에서 **리소스 메뉴**합니다.
+캐시에 대한 활동 로그를 보려면 **리소스 메뉴**에서 **활동 로그**를 클릭합니다.
 
-활동 로그에 대 한 자세한 내용은 참조 [hello Azure 활동 로그 간략하게](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md)합니다.
+활동 로그에 대한 자세한 내용은 [Azure 활동 로그 개요](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md)를 참조하세요.
 
 
 

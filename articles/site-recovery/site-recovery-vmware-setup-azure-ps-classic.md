@@ -1,6 +1,6 @@
 ---
 title: " Azure에서 실행되는 프로세스 서버 관리(클래식) | Microsoft Docs"
-description: "이 문서에서는 설명 어떻게 tooset 장애 프로세스 Server(Classic)에서 Azure를 구성 합니다."
+description: "이 문서에서는 Azure에서 장애 복구 프로세스 서버(클래식)를 설정하는 방법을 설명합니다."
 services: site-recovery
 documentationcenter: 
 author: AnoopVasudavan
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/29/2017
 ms.author: anoopkv
-ms.openlocfilehash: eadcc0236c77c9ebbbc885c4a7ee81098f1f4e72
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 479bbd207bcf715138c340f9e4d2634120bab85c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="manage-a-process-server-running-in-azure-classic"></a>Azure에서 실행되는 프로세스 서버 관리(클래식)
 > [!div class="op_single_selector"]
 > * [Azure 클래식](./site-recovery-vmware-setup-azure-ps-classic.md)
 > * [리소스 관리자](./site-recovery-vmware-setup-azure-ps-resource-manager.md)
 
-장애 복구 하는 동안 좋습니다 toodeploy 프로세스 서버가 Azure의 hello Azure 가상 네트워크와 온-프레미스 네트워크 간의 대기 시간이 긴 경우. 이 문서에서는 설정, 구성 하는 방법을 hello 프로세스 서버를 Azure에서 실행 중인 관리를 설명 합니다.
+장애 복구 동안 Azure Virtual Network와 온-프레미스 네트워크 간에 대기 시간이 긴 경우 Azure에서 프로세스 서버를 배포하는 것이 좋습니다. 이 문서에서는 Azure에서 실행 중인 프로세스 서버를 설정, 구성 및 관리하는 방법을 설명합니다.
 
 > [!NOTE]
-> 이 문서는 toobe로 사용한 경우 클래식 배포 모델 hello hello 가상 컴퓨터에 대 한 장애 조치 중에 사용 합니다. Hello 배포 모델에 따라 hello 단계에 따라 리소스 관리자를 사용 하는 경우 [어떻게 tooset 위로 및 장애 복구 프로세스 서버 (리소스 관리자) 구성](./site-recovery-vmware-setup-azure-ps-resource-manager.md)
+> 이 문서는 장애 조치 중에 가상 컴퓨터에 대한 배포 모델로 클래식을 사용한 경우에 사용할 수 있습니다. 배포 모델로 Resource Manager를 사용한 경우 [장애 복구 프로세스 서버를 설정 및 구성하는 방법(Resource Manager)](./site-recovery-vmware-setup-azure-ps-resource-manager.md)의 단계를 따르세요.
 
 ## <a name="prerequisites"></a>필수 조건
 
@@ -36,27 +36,27 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="deploy-a-process-server-on-azure"></a>Azure에 프로세스 서버 배포
 
-1. Azure 마켓플레이스에서 hello를 사용 하 여 가상 컴퓨터를 만들 **Microsoft Azure 사이트 복구 프로세스 서버 V2** </br>
+1. Azure Marketplace에서 **Microsoft Azure Site Recovery 프로세스 서버 V2**를 사용하여 가상 컴퓨터를 만듭니다. </br>
     ![Marketplace_image_1](./media/site-recovery-vmware-setup-azure-ps-classic/marketplace-ps-image.png)
-2. Hello 배포 모델을 선택 해야 **클래식** </br>
+2. 배포 모델로 **클래식**을 선택 했는지 확인합니다. </br>
   ![Marketplace_image_2](./media/site-recovery-vmware-setup-azure-ps-classic/marketplace-ps-image-classic.png)
-3. Hello 만들기 가상 컴퓨터 마법사에서 > 기본 설정 확인 hello 구독 및 위치 toowhere 장애 조치 hello 가상 컴퓨터를 선택 합니다.</br>
+3. 가상 컴퓨터 만들기 마법사 > 기본 설정에서 가상 컴퓨터를 장애 조치한 구독 및 위치를 선택합니다.</br>
   ![create_image_1](./media/site-recovery-vmware-setup-azure-ps-classic/azureps-classic-basic-info.png)
-4. Hello 가상 컴퓨터에 연결 되어 있는지 확인 toohello Azure 가상 네트워크 toowhich hello 장애 조치 가상 컴퓨터에 연결 되어 있습니다.</br>
+4. 가상 컴퓨터가 장애 조치된 가상 컴퓨터가 연결된 Azure Virtual Network에 연결되어 있는지 확인합니다.</br>
   ![create_image_2](./media/site-recovery-vmware-setup-azure-ps-classic/azureps-classic-settings.png)
-5. Hello 프로세스 서버 가상 컴퓨터를 프로 비전 되 면 toolog에 필요 하 고 구성 서버 hello로 등록 합니다.
+5. 프로세스 서버 가상 컴퓨터가 프로비전되면 로그인한 후 구성 서버에 등록해야 합니다.
 
 > [!NOTE]
-> toobe 수 toouse이 프로세스 서버 tooregister 해야 장애 복구를 사용 하 여 hello 온-프레미스 구성 서버입니다.
+> 장애 복구를 위해 이 프로세스 서버를 사용하려면 온-프레미스 구성 서버에 등록해야 합니다.
 
-## <a name="registering-hello-process-server-running-in-azure-tooa-configuration-server-running-on-premises"></a>Hello (Azure에서 실행) 프로세스 서버 tooa (온-프레미스로 실행) 구성 서버를 등록 하는 중
+## <a name="registering-the-process-server-running-in-azure-to-a-configuration-server-running-on-premises"></a>프로세스 서버(Azure에서 실행)를 구성 서버(온-프레미스에서 실행)에 등록
 
 [!INCLUDE [site-recovery-vmware-register-process-server](../../includes/site-recovery-vmware-register-process-server.md)]
 
-## <a name="upgrading-hello-process-server-toolatest-version"></a>Hello 프로세스 서버 toolatest 버전을 업그레이드 합니다.
+## <a name="upgrading-the-process-server-to-latest-version"></a>프로세스 서버를 최신 버전으로 업그레이드
 
 [!INCLUDE [site-recovery-vmware-upgrade-process-server](../../includes/site-recovery-vmware-upgrade-process-server.md)]
 
-## <a name="unregistering-hello-process-server-running-in-azure-from-a-configuration-server-running-on-premises"></a>등록을 취소 hello (온-프레미스로 실행) 하 여 구성 서버에서 프로세스 서버 (Azure에서 실행)
+## <a name="unregistering-the-process-server-running-in-azure-from-a-configuration-server-running-on-premises"></a>프로세스 서버(Azure에서 실행)를 구성 서버(온-프레미스에서 실행)에 등록 취소
 
 [!INCLUDE [site-recovery-vmware-upgrade-process-server](../../includes/site-recovery-vmware-unregister-process-server.md)]

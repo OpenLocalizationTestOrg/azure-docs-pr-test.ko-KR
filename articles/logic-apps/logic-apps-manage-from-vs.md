@@ -1,5 +1,5 @@
 ---
-title: "Visual Studio-Azure 논리 앱에서에서 aaaManage 논리 앱 | Microsoft Docs"
+title: "Visual Studio에서 Logic Apps 관리 - Azure Logic Apps | Microsoft Docs"
 description: "Visual Studio 클라우드 탐색기를 사용하여 Logic Apps 및 기타 Azure 자산 관리"
 author: klam
 manager: anneta
@@ -15,15 +15,15 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 12/19/2016
 ms.author: LADocs; klam
-ms.openlocfilehash: 419f83eb062b56e4ac2642dea4de1a025f747521
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a5bf24de1a7a2b6d4c1ae6416c95d83ef7506da3
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="manage-your-logic-apps-with-visual-studio-cloud-explorer"></a>Visual Studio 클라우드 탐색기를 사용하여 Logic Apps 관리
 
-하지만 hello [Azure 포털](https://portal.azure.com/) toodesign 수 있는 좋은 방법 제공 Azure 논리 앱을 관리 하 고, 논리 앱을 포함 하 여 Azure 자산을 관리 하기 위한 Visual Studio 클라우드 탐색기를 사용할 수 있습니다. Visual Studio 클라우드 탐색기를 사용하면 게시된 논리 앱을 찾아보기, 관리, 편집 및 다운로드할 수 있습니다. 관리 작업에는 실행 기록의 보기, 활성화 및 비활성화가 포함됩니다. 
+[Azure Portal](https://portal.azure.com/)에서는 Azure Logic Apps를 디자인하고 관리하는 유용한 방법을 제공하지만 Visual Studio 클라우드 탐색기를 사용하면 논리 앱을 포함한 여러 Azure 자산을 관리할 수 있습니다. Visual Studio 클라우드 탐색기를 사용하면 게시된 논리 앱을 찾아보기, 관리, 편집 및 다운로드할 수 있습니다. 관리 작업에는 실행 기록의 보기, 활성화 및 비활성화가 포함됩니다. 
 
 먼저 이러한 Azure Logic Apps용 Visual Studio Tools를 설치하고 구성해야 Visual Studio에서 논리 앱에 액세스하고 관리할 수 있습니다. 
 
@@ -32,54 +32,54 @@ ms.lasthandoff: 10/06/2017
 * [Visual Studio 2015 또는 Visual Studio 2017](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)
 * [최신 Azure SDK](https://azure.microsoft.com/downloads/) (2.9.1 이상)
 * [Visual Studio 클라우드 탐색기](https://marketplace.visualstudio.com/items?itemName=MicrosoftCloudExplorer.CloudExplorerforVisualStudio2015)
-* 액세스 toohello 웹 hello 포함 된 디자이너를 사용 하는 경우
+* 포함된 디자이너를 사용하는 경우 웹에 대한 액세스
 
 ## <a name="install-visual-studio-tools-for-logic-apps"></a>Logic Apps용 Visual Studio 도구 설치
 
-Hello 필수 구성 요소를 설치한 후 다운로드 하 고 Visual Studio 용 hello Azure 논리 앱 도구를 설치 합니다.
+필수 구성 요소를 설치한 후 Visual Studio용 Azure Logic Apps 도구를 다운로드하여 설치합니다.
 
-1. Visual Studio를 엽니다. Hello에 **도구** 메뉴 선택 **확장명 및 업데이트**합니다.
-2. Hello 확장 **온라인** 범주 온라인 hello Visual Studio 갤러리에서에서 검색할 수 있도록 합니다.
+1. Visual Studio를 엽니다. **도구** 메뉴에서 **확장 및 업데이트**를 선택합니다.
+2. Visual Studio 갤러리에서 온라인을 검색할 수 있도록 **온라인** 범주를 확장합니다.
 3. **Visual Studio용 Azure Logic Apps 도구**를 찾을 때까지 **Logic Apps**을 찾아보거나 검색합니다.
-4. toodownload 및 설치 hello 확장 클릭 **다운로드**합니다.
+4. 확장을 다운로드하고 설치하려면 **다운로드**를 클릭합니다.
 5. 설치 후 Visual Studio를 다시 시작합니다.
 
 > [!NOTE]
-> toodownload hello Azure 논리 앱 Tools for Visual Studio를 이동한 다음 toohello [Visual Studio 마켓플레이스](https://visualstudiogallery.msdn.microsoft.com/e25ad307-46cf-412e-8ba5-5b555d53d2d9)합니다.
+> 직접 Visual Studio용 Azure Logic Apps 도구를 다운로드하려면 [Visual Studio Marketplace](https://visualstudiogallery.msdn.microsoft.com/e25ad307-46cf-412e-8ba5-5b555d53d2d9)로 이동합니다.
 
 ## <a name="browse-for-logic-apps-in-cloud-explorer"></a>클라우드 탐색기에서 논리 앱 찾아보기
 
-1.  hello에 클라우드 탐색기 tooopen **보기** 메뉴 선택 **클라우드 탐색기**합니다.
+1.  클라우드 탐색기를 열려면 **보기** 메뉴에서 **클라우드 탐색기**를 선택합니다.
 2.  리소스 그룹 또는 리소스 유형별로 논리 앱을 찾아봅니다. 
 
-    * Azure 구독을 선택, hello 확장을 리소스 유형에 따라 이동 하는 경우 **논리 앱** 섹션을 논리 앱을 선택 합니다. 
-    * 리소스 그룹으로 이동 하는 경우 논리 앱 없는 hello 리소스 그룹을 확장 하 고 논리 앱을 선택 합니다.
+    * 리소스 종류별로 찾아보는 경우 Azure 구독을 선택하고 **Logic Apps** 섹션을 확장한 다음 논리 앱을 선택합니다. 
+    * 리소스 그룹별로 찾아보는 경우 논리 앱을 갖는 리소스 그룹을 확장하고 논리 앱을 선택합니다.
 
-    tooview 명령을 논리 앱에 대 한 논리 앱을 마우스 오른쪽 단추로 클릭 하거나 클라우드 탐색기 hello 맨 아래에 선택 hello에서 **동작** 메뉴.
+    논리 앱에 대한 명령을 보려면 논리 앱을 마우스 오른쪽 단추로 클릭하거나 클라우드 탐색기 아래쪽의 **작업** 메뉴에서 선택합니다.
 
     ![논리 앱 찾아보기](./media/logic-apps-manage-from-vs/browse.png)
 
 ## <a name="edit-your-logic-app-with-logic-apps-designer"></a>Logic Apps 디자이너로 논리 앱 편집
 
-클라우드 탐색기에서 hello에 현재 배포 된 논리 앱을 열 수 있습니다 hello Azure 포털에서에서 사용 하는 동일한 디자이너입니다. 
+클라우드 탐색기에서는 Azure Portal에서 사용하는 동일한 디자이너에서 현재 배포된 논리 앱을 열 수 있습니다. 
 
-* tooedit 클라우드 탐색기에서 논리 앱, 논리 앱을 마우스 오른쪽 단추로 클릭 하 고 선택 **논리가 응용 프로그램 편집기 열기**합니다. 
+* 클라우드 탐색기에서 논리 앱을 편집하려면 논리 앱을 마우스 오른쪽 단추로 클릭하고 **논리 앱 편집기로 열기**를 선택합니다. 
 
-* toopublish 업데이트 toohello 클라우드 선택 **게시**합니다. 
+* 업데이트를 클라우드에 게시하려면 **게시**를 선택합니다. 
 
-* 새 실행 toostart 선택 **트리거 실행**합니다.
+* 새 실행을 시작하려면 **트리거 실행**을 선택합니다.
 
 ![논리 앱 디자이너](./media/logic-apps-manage-from-vs/designer.png)
 
-Hello 디자이너에서 수도 있습니다 **다운로드** 논리 앱. 이 작업은 자동으로 hello 논리 앱 정의 매개 변수화 하 고 Azure 리소스 관리자 배포 템플릿으로 hello 정의 저장 합니다. 이 배포 템플릿 tooyour Azure 리소스 그룹 프로젝트를 추가할 수 있습니다.
+디자이너에서 논리 앱을 **다운로드**할 수도 있습니다. 이 작업은 자동으로 논리 앱 정의를 매개 변수화하고 Azure Resource Manager 배포 템플릿으로 정의를 저장합니다. Azure 리소스 그룹 프로젝트에 이 배포 템플릿을 추가할 수 있습니다.
 
 ## <a name="browse-your-logic-app-run-history"></a>논리 앱 실행 기록 찾아보기
 
-실행 논리 앱에 대 한 기록이 tooview hello 논리 앱을 마우스 오른쪽 단추로 클릭 하 고 선택 **열기 실행 기록이**합니다. tooreorder hello 속성 선택 하 여 표시 된 hello 열 머리글 중 하나에 실행된 기록을 기반으로 합니다.
+논리 앱의 실행 기록을 보려면 논리 앱을 마우스 오른쪽 단추로 클릭하고 **실행 기록 열기**를 선택합니다. 표시된 속성 중 하나에 따라 실행 기록의 순서를 변경하려면 열 머리글을 선택합니다.
 
 ![실행 기록](media/logic-apps-manage-from-vs/runs.png)
 
-hello 실행 hello 입 / 출력에서 각 단계를 포함 하 여 결과 검토할 수 있도록 실행 인스턴스에 대 한 기록이 tooshow hello는 인스턴스를 실행 하는 hello 중 하나를 두 번 클릭 합니다.
+각 단계의 입력 및 출력을 비롯하여 실행 결과를 검토할 수 있도록 인스턴스에 대한 실행 기록을 표시하려면 실행 인스턴스 중 하나를 두 번 클릭합니다.
 
 ![단계에서 기록 결과, 입력 및 출력 실행](./media/logic-apps-manage-from-vs/history.png)
 

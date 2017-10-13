@@ -1,6 +1,6 @@
 ---
-title: "aaaBridge 네이티브 Mobile Engagement Android SDK와 Android 웹 보기"
-description: "설명 방법을 toocreate WebView 사이의 다리 Javascript를 실행 하 고 네이티브 Mobile Engagement Android SDK hello"
+title: "Android WebView와 네이티브 Mobile Engagement Android SDK 브리지"
+description: "Javascript를 실행하는 WebView와 네이티브 Mobile Engagement Android SDK 간의 브리지를 만드는 방법을 설명합니다."
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: a7a09bcc156490fe69ad29a67809745dcfc22da6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f4fc7b3c81747ec80974a99084eeb1acc311f11f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="bridge-android-webview-with-native-mobile-engagement-android-sdk"></a>Android WebView와 네이티브 Mobile Engagement Android SDK 브리지
 > [!div class="op_single_selector"]
@@ -27,9 +27,9 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-일부 모바일 응용 프로그램은 여기서 hello 응용 프로그램 자체가 네이티브 Android 개발을 사용 하 여 개발 된 되지만 일부 또는 모든 hello 화면 Android WebView 내에서 렌더링 되는 하이브리드 응용 프로그램으로 설계 되었습니다. 이 자습서에서는 설명 하 고 이러한 응용 프로그램 내에서 Mobile Engagement Android SDK를 계속 사용할 수 있습니다 어떻게 toogo이 작업을 수행 하는 방법에 대 한 합니다. hello Android 설명서를 기반으로 하는 hello 샘플 코드 아래 [여기](https://developer.android.com/guide/webapps/webview.html#BindingJavaScript)합니다. 문서화 된이 방법을 사용할 수 있습니다 어떻게 설명 Mobile Engagement Android SDK는 일반적으로 메서드를 사용 하는 하이브리드 응용 프로그램에서 Webview 시작할 수도 요청 tootrack 이벤트, 작업, 오류, 응용 프로그램 정보를 통해 파이핑 하는 동안 동일한 tooimplement hello Android SDK 취급 합니다. 
+일부 모바일 앱은 앱 자체가 네이티브 Android 개발을 사용하여 개발되지만 화면의 일부 또는 전부가 Android WebView 내에서 렌더링되는 하이브리드 앱으로 설계됩니다. 이러한 앱 내에서 Mobile Engagement Android SDK를 계속 사용할 수 있으며, 해당 작업 방법이 이 자습서에 설명되어 있습니다. 아래 샘플 코드는 Android 설명서( [여기](https://developer.android.com/guide/webapps/webview.html#BindingJavaScript))를 기반으로 합니다. Android 설명서에서는 하이브리드 앱의 Webview에서 Android SDK를 통해 파이프하는 동안 이벤트, 작업, 오류 및 앱 정보에 대한 추적 요청을 시작할 수 있도록 이 문서화된 접근 방식을 사용하여 Mobile Engagement Android SDK의 자주 사용되는 메서드에 대해 동일한 기능을 구현하는 방법을 설명합니다. 
 
-1. 통해 수행한 tooensure 해야 우선, 우리의 [시작 자습서](mobile-engagement-android-get-started.md) 하이브리드 앱에서 toointegrate hello Mobile Engagement Android SDK입니다. 이렇게 하면 일단 프로그램 `OnCreate` 메서드 hello 다음과 같습니다.  
+1. 먼저 [시작 자습서](mobile-engagement-android-get-started.md) 에 따라 Mobile Engagement Android SDK를 하이브리드 앱에 통합해야 합니다. 그러면 `OnCreate` 메서드가 다음과 같이 표시됩니다.  
    
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ ms.lasthandoff: 10/06/2017
             engagementConfiguration.setConnectionString("<Mobile Engagement Conn String>");
             EngagementAgent.getInstance(this).init(engagementConfiguration);
         }
-2. 이제 하이브리드 앱에 WebView가 표시된 화면이 있는지 확인합니다. hello에 대 한 코드 됩니다 비슷한 toohello 다음 로컬 HTML 파일을 로드는 म **Sample.html** hello에 hello Webview의에서 `onCreate` 화면 메서드. 
+2. 이제 하이브리드 앱에 WebView가 표시된 화면이 있는지 확인합니다. 코드는 화면의 `onCreate` 메서드에서 로컬 HTML 파일 **Sample.html**을 Webview에 로드하는 다음 코드와 유사합니다. 
    
         private void SetWebView() {
             WebView myWebView = (WebView) findViewById(R.id.webview);
@@ -52,7 +52,7 @@ ms.lasthandoff: 10/06/2017
             ...
             SetWebView();
         }
-3. 이제 브리지 파일을 만들 **WebAppInterface** hello를 사용 하 여 Mobile Engagement Android SDK 메서드를 사용 하는 래퍼를 만드는 일부를 통해 일반적으로 `@JavascriptInterface` hello에 설명 된 방법을 [Android 설명서 ](https://developer.android.com/guide/webapps/webview.html#BindingJavaScript):
+3. 이제 [Android 설명서](https://developer.android.com/guide/webapps/webview.html#BindingJavaScript)에 설명된 `@JavascriptInterface` 접근 방식을 사용하여 자주 사용되는 몇 가지 Mobile Engagement Android SDK 메서드에 래퍼를 만드는 **WebAppInterface**라는 브리지 파일을 만듭니다.
    
         import android.content.Context;
         import android.os.Bundle;
@@ -67,7 +67,7 @@ ms.lasthandoff: 10/06/2017
         public class WebAppInterface {
             Context mContext;
    
-            /** Instantiate hello interface and set hello context */
+            /** Instantiate the interface and set the context */
             WebAppInterface(Context c) {
                 mContext = c;
             }
@@ -110,7 +110,7 @@ ms.lasthandoff: 10/06/2017
                 return extras;
             }
         }  
-4. 연결 파일 위에 hello 작성 했으면, tooensure 우리의 Webview에 연결 되어 있는지 필요 합니다. Tooedit 해야이 toohappen 프로그램 `SetWebview` 메서드 한다는 hello 다음과 같습니다.
+4. 위 브리지 파일을 만든 후에는 이 파일이 Webview와 연결되었는지 확인해야 합니다. 그러려면 `SetWebview` 메서드를 다음과 같이 편집해야 합니다.
    
         private void SetWebView() {
             WebView myWebView = (WebView) findViewById(R.id.webview);
@@ -119,8 +119,8 @@ ms.lasthandoff: 10/06/2017
             webSettings.setJavaScriptEnabled(true);
             myWebView.addJavascriptInterface(new WebAppInterface(this), "EngagementJs");
         }
-5. 호출에서는 위의 조각 hello, `addJavascriptInterface` tooassociate 우리의 브리지 우리의 Webview 클래스와 호출 핸들을 만든 **EngagementJs** hello 브리지 파일에서 toocall hello 메서드. 
-6. 이제 hello 다음 호출 하는 파일을 만들 **Sample.html** 프로젝트 폴더의 호출 **자산** hello Webview에 로드 되 고 여기서 म hello 브리지 파일에서 hello 메서드를 호출 합니다.
+5. 위 조각에서는 브리지 클래스를 Webview에 연결하기 위해 `addJavascriptInterface` 를 호출했으며, 브리지 파일에서 메서드를 호출하기 위해 **EngagementJs** 라는 핸들을 만들었습니다. 
+6. 이제 **assets**이라는 폴더의 프로젝트에서 **Sample.html**이라는 파일을 만듭니다. Webview로 로드되는 이 브리지 파일에서 메서드를 호출합니다.
    
         <!doctype html>
         <html>
@@ -144,7 +144,7 @@ ms.lasthandoff: 10/06/2017
                         if(input)
                         {
                             var value = input.value;
-                            // Example of how extras info can be passed with hello Engagement logs
+                            // Example of how extras info can be passed with the Engagement logs
                             var extras = '{"CustomerId":"MS290011"}';
    
                             if(value && value.length > 0)
@@ -197,16 +197,16 @@ ms.lasthandoff: 10/06/2017
                 </div>
             </body>
         </html>
-7. 위의 hello HTML 파일에 대 한 참고 hello 다음 지점:
+7. 위 HTML 파일에 대해 유의할 사항은 다음과 같습니다.
    
-   * 이벤트, 작업, 오류, AppInfo의 이름으로 사용 되는 데이터 toobe을 제공할 수 있는 입력란의 집합을 포함 합니다. Hello 단추 다음 tooit 클릭할 때 toohello 결국 hello 브리지 파일 toopass에서 hello 메서드를 호출 toohello Mobile Engagement Android SDK이 호출 하는 Javascript 호출 합니다. 
-   * 우리는 태그 지정에 몇 가지 추가 정보를 정적 toohello 이벤트, 작업 및 오류 toodemonstrate도 방법을 수행할 수 있습니다. Hello에서 보면이 추가 정보는 JSON 문자열을 전송 되 `WebAppInterface` 파일, 구문 분석 되 고에 Android `Bundle` 보내는 이벤트, 작업, 및 오류와 함께 전달 됩니다. 
-   * Mobile Engagement 작업이 10 초 동안 실행 하 고 종료 hello 입력된 상자에 지정한 hello 이름으로 시작 합니다. 
-   * Mobile Engagement appinfo 또는 태그와 'customer_name' hello 정적 키와 입력 한 hello 입력에 hello 값으로 hello 태그에 대 한 hello 값 전달 됩니다. 
-8. 실행된 hello 앱 hello 다음에 표시 됩니다. 이제 다음 hello와 같은 테스트 이벤트에 대 한 몇 가지 이름을 제공 하 고 클릭 **보낼** 그 아래의 합니다. 
+   * 이 파일은 이벤트, 작업, 오류, 앱 정보의 이름으로 사용할 데이터를 제공할 수 있는 입력 상자 집합을 포함합니다. 입력 상자 옆의 단추를 클릭하면 이 호출을 Mobile Engagement Android SDK로 전달하기 위해 브리지 파일에서 메서드를 호출하는 Javascript가 호출됩니다. 
+   * 작업 방법을 보여 주기 위해 이벤트, 작업 및 오류의 몇 가지 정적 추가 정보에 대한 태그를 지정합니다. 이 추가 정보는 JSON 문자열로 전송됩니다. `WebAppInterface` 파일에서 구문 분석되어 Android `Bundle`에 배치된 후 전송되는 이벤트, 작업 및 오류와 함께 전달됩니다. 
+   * Mobile Engagement 작업은 입력 상자에 지정한 이름으로 시작되며, 10초간 실행된 후 종료됩니다. 
+   * Mobile Engagement 앱 정보 또는 태그는 입력 상자에 태그 값으로 입력한 값 및 정적 키로 'customer_name'과 함께 전달됩니다. 
+8. 앱을 실행하면 다음이 표시됩니다. 이제 다음과 같은 테스트 이벤트의 이름을 제공하고 아래의 **Send** 를 클릭합니다. 
    
     ![][1]
-9. 이제 toohello 이동 **모니터** 앱과 검토의 탭 **이벤트 세부 정보->**, hello 정적 응용 프로그램 정보를 전송 하는 함께 표시 하는이 이벤트가 표시 됩니다. 
+9. 이제 앱의 **모니터링** 탭으로 이동하면 **이벤트 -> 세부 정보** 아래에 전송한 정적 앱 정보와 함께 이 이벤트가 표시됩니다. 
    
    ![][2]
 

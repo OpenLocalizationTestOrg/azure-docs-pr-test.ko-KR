@@ -1,6 +1,6 @@
 ---
 title: "자습서: Kantega SSO for Bitbucket과 Azure Active Directory 통합 | Microsoft Docs"
-description: "Tooconfigure 단일 로그온 방법에 대해 알아봅니다 Azure Active Directory 및 Bitbucket에 대해 Kantega SSO 사이입니다."
+description: "Azure Active Directory와 Kantega SSO for Bitbucket 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,117 +13,117 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: jeedes
-ms.openlocfilehash: e86a9a9a42f2f80fe83191f113f6bab46cc8a37d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6656c9abf8483ee98c0cb1a16c06d078e32240f2
+ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/29/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-kantega-sso-for-bitbucket"></a>자습서: Kantega SSO for Bitbucket과 Azure Active Directory 통합
 
-이 자습서에 설명 어떻게 toointegrate Kantega SSO Bitbucket Azure Active directory (Azure AD)에 대 한 합니다.
+이 자습서에서는 Kantega SSO for Bitbucket을 Azure AD(Azure Active Directory)와 통합하는 방법에 대해 알아봅니다.
 
-다음 이점을 hello로 제공 Kantega SSO Bitbucket에 대해 Azure AD와 통합:
+Kantega SSO for Bitbucket을 Azure AD와 통합하면 다음과 같은 이점이 있습니다.
 
-- Bitbucket에 대해 액세스 tooKantega SSO가 Azure AD에서 제어할 수 있습니다.
-- Azure AD 계정을 사용 하면 사용자가 tooautomatically get 로그온 tooKantega SSO (Single Sign-on) Bitbucket에 대해 설정할 수 있습니다.
-- 하나의 중앙 위치-hello Azure 포털에서에서 사용자 계정을 관리할 수 있습니다.
+- Kantega SSO for Bitbucket에 대한 액세스 권한이 있는 사용자를 Azure AD에서 제어할 수 있습니다.
+- 사용자가 자신의 Azure AD 계정으로 Kantega SSO for Bitbucket에 자동으로 로그온(Single Sign-On) 되도록 설정할 수 있습니다.
+- 단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.
 
-Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.
+Azure AD와 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory의 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.
 
 ## <a name="prerequisites"></a>필수 조건
 
-Bitbucket에 대해 Kantega SSO와 Azure AD 통합 tooconfigure 다음 항목 hello가 필요 합니다.
+Kantega SSO for Bitbucket과 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.
 
 - Azure AD 구독
 - Kantega SSO for Bitbucket Single Sign-on이 설정된 구독
 
 > [!NOTE]
-> 이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.
+> 이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.
 
-이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.
+이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.
 
 - 꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.
 - Azure AD 평가판 환경이 없으면 [여기](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.
 
 ## <a name="scenario-description"></a>시나리오 설명
-이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.
+이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.
 
-1. Bitbucket에 대해 Kantega SSO hello 갤러리 추가
+1. 갤러리에서 Kantega SSO for Bitbucket 추가
 2. Azure AD Single Sign-on 구성 및 테스트
 
-## <a name="adding-kantega-sso-for-bitbucket-from-hello-gallery"></a>Bitbucket에 대해 Kantega SSO hello 갤러리 추가
-tooconfigure hello와의 통합 Kantega SSO Bitbucket에 대해 Azure AD로 해야 tooadd Kantega SSO Bitbucket에 대해 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서.
+## <a name="adding-kantega-sso-for-bitbucket-from-the-gallery"></a>갤러리에서 Kantega SSO for Bitbucket 추가
+Kantega SSO for Bitbucket이 Azure AD에 통합되도록 구성하려면 갤러리에서 Kantega SSO for Bitbucket을 관리되는 SaaS 앱 목록에 추가해야 합니다.
 
-**hello 갤러리, Bitbucket에 대해 Kantega SSO tooadd hello 다음 단계를 수행 합니다.**
+**갤러리에서 Kantega SSO for Bitbucket을 추가하려면 다음 단계를 수행합니다.**
 
-1. Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다. 
+1. **[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다. 
 
     ![Active Directory][1]
 
-2. 너무 이동**엔터프라이즈 응용 프로그램**합니다. 이동 하 여 너무**모든 응용 프로그램**합니다.
+2. **엔터프라이즈 응용 프로그램**으로 이동합니다. 그런 후 **모든 응용 프로그램**으로 이동합니다.
 
     ![응용 프로그램][2]
     
-3. tooadd 새 응용 프로그램을 클릭 하 여 **새 응용 프로그램** 대화의 hello 위쪽에 단추입니다.
+3. 새 응용 프로그램을 추가하려면 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭합니다.
 
     ![응용 프로그램][3]
 
-4. Hello 검색 상자에 입력 **Bitbucket에 대해 Kantega SSO**합니다.
+4. 검색 상자에 **Kantega SSO for Bitbucket**을 입력합니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_kantegassoforbitbucket_search.png)
 
-5. Hello 결과 패널에서 선택 **Bitbucket에 대해 Kantega SSO**, 클릭 하 고 **추가** tooadd hello 응용 프로그램 단추입니다.
+5. 결과 창에서 **Kantega SSO for Bitbucket**을 선택하고 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_kantegassoforbitbucket_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Azure AD Single Sign-on 구성 및 테스트
 이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 Kantega SSO for Bitbucket에서 Azure AD Single Sign-On을 구성하고 테스트합니다.
 
-Single sign on toowork에 대 한 Azure AD는 tooknow Bitbucket에 대해 Kantega SSO에서 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다. 즉, Azure AD 사용자 및 hello Bitbucket에 대해 Kantega SSO에서 관련된 사용자 간 링크 관계를 설정 하는 toobe가 필요 합니다.
+Single Sign-On이 작동하려면 Azure AD 사용자에 해당하는 Kantega SSO for Bitbucket 사용자가 누구인지 Azure AD에서 알고 있어야 합니다. 즉, Azure AD 사용자와 Kantega SSO for Bitbucket의 관련 사용자 간에 링크 관계가 설정되어야 합니다.
 
-Bitbucket에 대해 Kantega sso에서는 hello hello 값을 할당 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** tooestablish hello 링크 관계입니다.
+Kantega SSO for Bitbucket에서 Azure AD의 **사용자 이름** 값을 **Username** 값으로 할당하여 링크 관계를 설정합니다.
 
-tooconfigure 및 Bitbucket에 대해 Kantega SSO와 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.
+Kantega SSO for Bitbucket에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.
 
-1. **[Azure AD Single Sign-on 구성](#configuring-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.
-2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.
-3. **[Bitbucket 테스트 사용자에 대 한 Kantega SSO 만들기](#creating-a-kantega-sso-for-bitbucket-test-user)**  -toohave Britta Simon 사용자의 연결 된 Azure AD toohello 표현인 Bitbucket에 대해 Kantega SSO에서의 해당 하는 도구입니다.
-4. **[Azure AD hello 테스트 사용자를 할당](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.
-5. **[Single Sign-on 테스트](#testing-single-sign-on)**  -tooverify 구성 works를 hello 여부.
+1. **[Azure AD Single Sign-On 구성](#configuring-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.
+2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.
+3. **[Kantega SSO for Bitbucket 테스트 사용자 만들기](#creating-a-kantega-sso-for-bitbucket-test-user)** - Britta Simon의 Azure AD 표현과 연결되는 대응 사용자를 Kantega SSO for Bitbucket에 만듭니다.
+4. **[Azure AD 테스트 사용자 할당](#assigning-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - 구성이 작동하는지 확인합니다.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성
 
-이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 Bitbucket 응용 프로그램에 대 한 프로그램 Kantega SSO에서 single sign on 구성 합니다.
+이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 Kantega SSO for Bitbucket 응용 프로그램에서 Single Sign-On을 구성합니다.
 
-**Bitbucket에 대 한 Kantega SSO와 Azure AD에서 single sign-on tooconfigure hello 다음 단계를 수행 합니다.**
+**Kantega SSO for Bitbucket에서 Azure AD Single Sign-on을 구성하려면 다음 단계를 수행합니다.**
 
-1. Hello hello에 Azure 포털에서에서 **Bitbucket에 대해 Kantega SSO** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.
+1. Azure Portal의 **Kantega SSO for Bitbucket** 응용 프로그램 통합 페이지에서 **Single Sign-On**을 클릭합니다.
 
     ![Single Sign-on 구성][4]
 
-2. Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.
+2. **Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택하여 Single Sign-On을 사용하도록 설정합니다.
  
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_kantegassoforbitbucket_samlbase.png)
 
-3. **IDP** 시작 모드 hello에 **Bitbucket 도메인 및 Url에 대 한 SSO Kantega** 섹션 hello 단계 다음에 수행:
+3. **IDP** 시작 모드로 **Kantega SSO for Bitbucket 도메인 및 URL** 섹션에서 다음 단계를 수행합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_kantegassoforbitbucket_url1.png)
 
-    a. Hello에 **식별자** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
+    a. **식별자** 텍스트 상자에서 `https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login` 패턴을 사용하여 URL을 입력합니다.
 
-    b. Hello에 **회신 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
+    b. **회신 URL** 텍스트 상자에 다음 패턴으로 URL을 입력합니다.`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
 
-4. **SP** 검사 시작된 모드 **고급 URL 설정 표시** hello 단계 다음에 수행:
+4. **SP** 시작 모드에서 **고급 URL 설정 표시**를 확인하고 다음 단계를 수행합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_kantegassoforbitbucket_url2.png)
     
-    Hello에 **로그온 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
+    **로그온 URL** 텍스트 상자에서 다음 패턴으로 URL을 입력합니다. `https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
 
     > [!NOTE] 
-    > 이러한 값은 실제 값이 아닙니다. 이러한 항목을 업데이트 식별자, 회신 URL 및 로그온 URL 실제 hello로 값입니다. 이러한 값은 hello 자습서의 뒷부분에 설명 된 Bitbucket 플러그 인의 hello 구성 하는 동안 수신 됩니다.
+    > 이러한 값은 실제 값이 아닙니다. 이러한 값을 실제 식별자, 회신 URL 및 로그온 URL로 업데이트합니다. 이러한 값은 Bitbucket 플러그 인 구성 중에 수신되며 자습서의 뒷부분에 설명되어 있습니다.
 
-5. Hello에 **SAML 서명 인증서** 섹션에서 클릭 **메타 데이터 XML** hello 메타 데이터 파일을 컴퓨터에 저장 합니다.
+5. **SAML 서명 인증서** 섹션에서 **메타데이터 XML**을 클릭한 후 컴퓨터에 메타데이터 파일을 저장합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_kantegassoforbitbucket_certificate.png) 
 
@@ -131,21 +131,21 @@ tooconfigure 및 Bitbucket에 대해 Kantega SSO와 Azure AD에서 single sign-o
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_general_400.png)
 
-7. 다른 웹 브라우저 창에서 관리자 권한으로 tooyour Bitbucket 관리자 포털에 로그인 합니다.
+7. 다른 웹 브라우저 창에서 Bitbucket 관리 포털에 관리자로 로그인합니다.
 
-8. 코그를 클릭 하 고 hello 클릭 **새 추가 기능은 찾을**합니다.
+8. 톱니바퀴를 클릭하고 **Find new add-ons**(새 추가 기능 찾기)를 클릭합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon1.png)
 
-9. 검색 **Bitbucket SAML 및 Kerberos Kantega SSO** 클릭 **설치** 단추 tooinstall hello 새 SAML 플러그 인 합니다.
+9. **Kantega SSO for Bitbucket SAML & Kerberos**를 검색하고 **설치** 단추를 클릭하여 새 SAML 플러그 인을 설치합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon2.png)
 
-10. hello 플러그 인 설치를 시작합니다.
+10. 플러그 인 설치가 시작됩니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon31.png)
 
-11. 한 번 hello 설치가 완료 되었습니다. **닫기**를 클릭합니다.
+11. 설치가 완료되면 **닫기**를 클릭합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon33.png)
 
@@ -153,11 +153,11 @@ tooconfigure 및 Bitbucket에 대해 Kantega SSO와 Azure AD에서 single sign-o
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon34.png)
     
-13. 클릭 **구성** tooconfigure hello 새 플러그 인 합니다.  
+13. **구성**을 클릭하여 새 플러그 인을 구성합니다.    
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon35.png)
 
-14. Hello에 **SAML** 섹션. 선택 **Azure Active Directory (Azure AD)** hello에서 **추가 id 공급자** 드롭다운입니다.
+14. **SAML** 섹션의 **ID 공급자 추가** 드롭다운에서 **Azure AD(Azure Active Directory)**를 선택합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon4.png)
 
@@ -165,15 +165,15 @@ tooconfigure 및 Bitbucket에 대해 Kantega SSO와 Azure AD에서 single sign-o
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon5.png)
 
-16. Hello에 **앱 속성** 섹션에서 다음 단계를 수행 합니다.
+16. **앱 속성** 섹션에서 다음 단계를 수행합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon6.png)
 
-    a. 복사 hello **앱 ID URI** 값으로 사용 하 여 **식별자, 회신 URL 및 로그온 URL** hello에 **Bitbucket 도메인 및 Url에 대 한 SSO Kantega** Azure 포털에서 섹션.
+    a. **앱 ID URI**을 복사하여 Azure Portal의 **Kantega SSO for Bitbucket 도메인 및 URL** 섹션에서 **식별자, 회신 URL 및 로그온 URL**로 사용합니다.
 
     b. **다음**을 누릅니다.
 
-17. Hello에 **메타 데이터 가져오기** 섹션에서 다음 단계를 수행 합니다.
+17. **Metadata import**(메타데이터 가져오기) 섹션에서 다음 단계를 수행합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon7.png)
 
@@ -181,23 +181,23 @@ tooconfigure 및 Bitbucket에 대해 Kantega SSO와 Azure AD에서 single sign-o
 
     b. **다음**을 누릅니다.
 
-18. Hello에 **이름과 SSO 위치** 섹션에서 다음 단계를 수행 합니다.
+18. **Name and SSO location**(이름 및 SSO 위치) 섹션에서 다음 단계를 수행합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon8.png)
 
-    a. Hello Id 공급자의 이름을 추가에서 **Id 공급자 이름** (예: Azure AD) 텍스트 상자에 붙여넣습니다.
+    a. **ID 공급자 이름** 텍스트 상자에 ID 공급자의 이름(예: Azure AD)을 입력합니다.
 
     b. **다음**을 누릅니다.
 
-19. Hello 서명 인증서를 확인 하 고 클릭 **다음**합니다.    
+19. 서명 인증서를 확인하고 **다음**을 클릭합니다.  
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon9.png)
 
-20. Hello에 **Bitbucket 사용자 계정** 섹션에서 다음 단계를 수행 합니다.
+20. **Bitbucket 사용자 계정** 섹션에서 다음 단계를 수행합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon10.png)
 
-    a. 선택 **필요한 경우 Bitbucket의 내부 디렉터리에서 사용자를 만들려면** 사용자에 대 한 hello 그룹의 hello 적절 한 이름을 입력 하 고 (수 여러 아니요. 그룹의 쉼표로 구분).
+    a. 선택 **필요한 경우 Bitbucket의 내부 디렉터리에서 사용자를 만들려면** 사용자에 대 한 그룹의 적절 한 이름을 입력 하 고 (수 여러 아니요. 그룹의 쉼표로 구분).
 
     b. **다음**을 누릅니다.
 
@@ -205,58 +205,58 @@ tooconfigure 및 Bitbucket에 대해 Kantega SSO와 Azure AD에서 single sign-o
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon11.png)
 
-22. Hello에 **도메인을 Azure AD에 대 한 알려진** 섹션에서 다음 단계를 수행 합니다.   
+22. **Known domains for Azure AD**(Azure AD에 알려진 도메인) 섹션에서 다음 단계를 수행합니다. 
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon12.png)
 
-    a. 선택 **알려진 도메인** hello hello 페이지의 왼쪽된 창에서.
+    a. 페이지의 왼쪽 창에서 **Known domains**(알려진 도메인)를 선택합니다.
 
-    b. Hello에 도메인 이름을 입력 **알려진 도메인** 텍스트 상자에 붙여넣습니다.
+    b. **Known domains**(알려진 도메인) 텍스트 상자에 도메인 이름을 입력합니다.
 
     c. **Save**를 클릭합니다.  
 
 > [!TIP]
-> 이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!  Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션. 자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)
+> 이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.  **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다. 포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Azure AD 테스트 사용자 만들기
-이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.
+이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.
 
 ![Azure AD 사용자 만들기][100]
 
-**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**
+**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**
 
-1. Hello에 **Azure 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Azure Active Directory** 아이콘입니다.
+1. **Azure Portal**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kantegassoforbitbucket-tutorial/create_aaduser_01.png) 
 
-2. 사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹** 클릭 **모든 사용자에 게**합니다.
+2. 사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭합니다.
     
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kantegassoforbitbucket-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **사용자** 대화 상자를 클릭 하 여 **추가** hello 대화의 hello 상단에서 합니다.
+3. **사용자** 대화 상자를 열려면 대화 상자 위쪽에서 **추가**를 클릭합니다.
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kantegassoforbitbucket-tutorial/create_aaduser_03.png) 
 
-4. Hello에 **사용자** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
+4. **사용자** 대화 상자 페이지에서 다음 단계를 수행합니다.
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-kantegassoforbitbucket-tutorial/create_aaduser_04.png) 
 
-    a. Hello에 **이름** 텍스트 상자에 **BrittaSimon**합니다.
+    a. **이름** 텍스트 상자에 **BrittaSimon**을 입력합니다.
 
-    b. Hello에 **사용자 이름** 텍스트 형식 hello **전자 메일 주소** BrittaSimon의 합니다.
+    b. **사용자 이름** 텍스트 상자에 BrittaSimon의 **전자 메일 주소**를 입력합니다.
 
-    c. 선택 **암호 표시** hello hello 값 기록 **암호**합니다.
+    c. **암호 표시**를 선택하고 **암호** 값을 적어둡니다.
 
     d. **만들기**를 클릭합니다.
  
 ### <a name="creating-a-kantega-sso-for-bitbucket-test-user"></a>Kantega SSO for Bitbucket 테스트 사용자 만들기
 
-tooenable Azure AD 사용자가 toolog tooBitbucket에서 이러한 해야에 프로 비전 Bitbucket 합니다. Kantega SSO for Bitbucket에서는 프로비전이 수동 작업입니다.
+Azure AD 사용자가 Bitbucket에 로그인할 수 있도록 하려면 Bitbucket으로 프로비전되어야 합니다. Kantega SSO for Bitbucket에서는 프로비전이 수동 작업입니다.
 
-**tooprovision 사용자 계정을 hello 다음 단계를 수행 합니다.**
+**사용자 계정을 프로비전하려면 다음 단계를 수행합니다.**
 
-1. 관리자 권한으로 Bitbucket 회사 사이트 tooyour에 로그인 합니다.
+1. Bitbucket 회사 사이트에 관리자 권한으로 로그인합니다.
 
 2. 설정 아이콘을 클릭합니다.
 
@@ -270,39 +270,39 @@ tooenable Azure AD 사용자가 toolog tooBitbucket에서 이러한 해야에 �
 
     ![직원 추가](./media/active-directory-saas-kantegassoforbitbucket-tutorial/user3.png)     
 
-5. Hello에 **Create User** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
+5. **사용자 만들기** 대화 상자 페이지에서 다음 단계를 수행합니다.
 
     ![직원 추가](./media/active-directory-saas-kantegassoforbitbucket-tutorial/user4.png) 
 
-    a. Hello에 **Username** 텍스트 형식 hello 전자 메일 사용자의 같은 Brittasimon@contoso.com합니다.
+    a. **사용자 이름** 텍스트 상자에서 Brittasimon@contoso.com과 같은 사용자의 이메일 주소를 입력합니다.
     
-    b. Hello에 **전체 이름을** 텍스트 형식 Britta Simon 같은 hello 사용자의 전체 이름입니다.
+    b. **전체 이름** 텍스트 상자에서 Britta Simon과 같은 사용자의 전체 이름을 입력합니다.
     
-    c. Hello에 **전자 메일 주소** textbox, 사용자의 hello 전자 메일 주소를 입력 같은 Brittasimon@contoso.com합니다.
+    c. **이메일 주소** 텍스트 상자에서 Brittasimon@contoso.com과 같은 사용자의 이메일 주소를 입력합니다.
 
-    d. Hello에 **암호** textbox, 사용자의 hello 암호를 입력 합니다.  
+    d. **암호** 텍스트 상자에서 사용자에 대한 암호를 입력합니다.  
 
-    e. Hello에 **암호 확인** textbox, 사용자의 hello 암호 다시 입력 합니다.
+    e. **암호 확인** 텍스트 상자에 사용자의 암호를 다시 입력합니다.
 
     f. **사용자 만들기**를 클릭합니다.   
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Azure AD hello 테스트 사용자를 할당합니다.
+### <a name="assigning-the-azure-ad-test-user"></a>Azure AD 테스트 사용자 할당
 
-이 섹션에서는 액세스 tooKantega SSO Bitbucket에 대해 부여 하 여 Britta Simon toouse Azure single sign on을 사용 합니다.
+이 섹션에서는 Britta Simon이 Azure Single Sign-On을 사용할 수 있도록 Kantega SSO for Bitbucket에 대한 액세스 권한을 부여합니다.
 
 ![사용자 할당][200] 
 
-**tooassign Britta Simon tooKantega Bitbucket에 대 한 SSO hello 다음 단계를 수행 합니다.**
+**Britta Simon을 Kantega SSO for Bitbucket에 할당하려면 다음 단계를 수행합니다.**
 
-1. Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.
+1. Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.
 
     ![사용자 할당][201] 
 
-2. Hello 응용 프로그램 목록에서 선택 **Bitbucket에 대해 Kantega SSO**합니다.
+2. 응용 프로그램 목록에서 **Kantega SSO for Bitbucket**을 선택합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_kantegassoforbitbucket_app.png) 
 
-3. Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.
+3. 왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.
 
     ![사용자 할당][202] 
 
@@ -310,7 +310,7 @@ tooenable Azure AD 사용자가 toolog tooBitbucket에서 이러한 해야에 �
 
     ![사용자 할당][203]
 
-5. **사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.
+5. **사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.
 
 6. **사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.
 
@@ -318,14 +318,14 @@ tooenable Azure AD 사용자가 toolog tooBitbucket에서 이러한 해야에 �
     
 ### <a name="testing-single-sign-on"></a>Single Sign-On 테스트
 
-이 섹션에서는 Azure AD single sign on 구성 hello 액세스 패널을 사용 하 여 테스트할 수 있습니다.
+이 섹션에서는 액세스 패널을 사용하여 Azure AD Single Sign-On 구성을 테스트합니다.
 
-Bitbucket 타일 hello 액세스 패널에에서 대 한 hello Kantega SSO를 클릭할 때 Bitbucket 응용 프로그램에 대 한 자동으로 로그온 tooyour Kantega SSO를 가져와야 합니다.
-액세스 패널에 대 한 자세한 내용은 참조 [액세스 패널 소개 toohello](active-directory-saas-access-panel-introduction.md)합니다. 
+액세스 패널에서 Kantega SSO for Bitbucket 타일을 클릭하면 Kantega SSO for Bitbucket 응용 프로그램에 자동으로 로그온됩니다.
+액세스 패널에 대한 자세한 내용은 [액세스 패널 소개](active-directory-saas-access-panel-introduction.md)를 참조하세요. 
 
 ## <a name="additional-resources"></a>추가 리소스
 
-* [방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와](active-directory-saas-tutorial-list.md)
+* [Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록](active-directory-saas-tutorial-list.md)
 * [Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?](active-directory-appssoaccess-whatis.md)
 
 

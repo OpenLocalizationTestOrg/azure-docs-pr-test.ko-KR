@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory Domain Services: 문의 | Microsoft Docs"
-description: "Hello Azure AD 도메인 서비스 제품 팀에 문의"
+description: "Azure AD 도메인 서비스 제품 팀에 문의"
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/23/2017
 ms.author: maheshu
-ms.openlocfilehash: 7a23d50a392549f6c7e1182bcd9a328a28e74bff
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0a4a08a58302c113405756ad7d3bb6487887a72a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-ad-domain-services---contact-us"></a>Azure AD Domain Services - 문의
-## <a name="contact-hello-product-team"></a>연락처 hello 제품 팀
-관리 되는 도메인 문제 경우 toosee hello 단계 hello 설명 하는 경우 확인 [문제 해결 가이드](active-directory-ds-troubleshooting.md) hello 문제를 해결 합니다. 여전히 문제가, 불구 무료 toocontact 주세요.
+## <a name="contact-the-product-team"></a>제품팀에 문의
+관리된 도메인과 관련된 문제가 발생하는 경우 이 [문제 해결 가이드](active-directory-ds-troubleshooting.md) 에 설명된 단계가 문제를 해결하는지 확인해 주세요. 여전히 문제가 발생하는 경우 자유롭게 문의해 주세요.
 
 [Azure AD 도메인 서비스 피드백](mailto:aaddsfb@microsoft.com)에 메일을 보내주세요.
 
-Hello 문제를 조사할 수 있도록 hello 다음을 포함 하는 것을 확인 합니다.
+문제를 조사할 수 있도록 다음 내용이 포함되어야 합니다.
 
-* hello **테 넌 트 ID/디렉터리 ID** Azure AD 디렉터리에 대 한 합니다. hello 테 넌 트 ID는 hello hello에 hello 디렉터리 ID 필드에 표시 되는 GUID [디렉터리에 대 한 속성 페이지](https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Properties)
-* hello **DNS 도메인 이름을** AAD 도메인 서비스는 관리 되는 도메인에 대 한 구성 합니다.
+* Azure AD 디렉터리에 대한 **테넌트 ID/디렉터리 ID**. 테넌트 ID는 [디렉터리에 대한 속성 페이지](https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Properties)의 디렉터리 ID 필드에 표시되는 GUID입니다.
+* AAD 도메인 서비스 관리되는 도메인에 대해 사용자가 구성한 **DNS 도메인 이름** 입니다.
 
 ## <a name="provide-feedback"></a>피드백 제공
-Hello 통해 Azure AD 도메인 서비스에 대 한 사용자 의견이 있으시면 언제  **[Azure Active Directory 사용자 음성 채널](https://feedback.azure.com/forums/169401-azure-active-directory/)**합니다.
+**[Azure Active Directory 사용자 의견 채널](https://feedback.azure.com/forums/169401-azure-active-directory/)**을 통한 Azure AD 도메인 서비스에 대한 여러분의 피드백을 환영합니다.
 
-확인 해당 하면 사전-보류 질문이 나 hello 단어로 피드백 **'AADDS'**에 대 한 tooreach 주세요.
+문의하시려면 **'AADDS'**라는 단어로 질문 또는 피드백을 시작해 주세요.

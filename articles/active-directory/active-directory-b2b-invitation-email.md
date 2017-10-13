@@ -1,5 +1,5 @@
 ---
-title: "hello Azure Active Directory B2B 공동 작업에 대 한 초대 전자 메일의 aaaThe 요소 | Microsoft Docs"
+title: "Azure Active Directory B2B 공동 작업 초대 전자 메일의 요소 | Microsoft Docs"
 description: "Azure Active Directory B2B 공동 작업 초대 전자 메일 템플릿"
 services: active-directory
 documentationcenter: 
@@ -15,60 +15,60 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 05/23/2017
 ms.author: sasubram
-ms.openlocfilehash: f4908014d71a63442bbdca2182f54c7a79675a82
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 458a2cab13b7e83f120e0926a95d454070181dfb
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="hello-elements-of-hello-b2b-collaboration-invitation-email"></a>hello B2B 공동 작업 초대 메일의 hello 요소
+# <a name="the-elements-of-the-b2b-collaboration-invitation-email"></a>B2B 공동 작업 초대 전자 메일의 요소
 
-초대 메일 Azure ad에서 B2B 공동 작업 사용자도를 중요 한 구성 요소 toobring 파트너를 됩니다. 사용할 수 있습니다 tooincrease hello 받는 사람의 신뢰 합니다. 타당성이 및 소셜 증명 toohello 전자 메일을 추가할 수 있습니다, toomake 있는지 hello 받는 사람 선택 hello 익숙하지 느낌 **시작** tooaccept hello 초대 단추입니다. 이 트러스트 이므로 키 tooreduce 마찰을 공유 합니다. 고도 toomake hello 전자 메일 보기 좋은!
+초대 전자 메일은 온보드의 파트너를 Azure AD에서 B2B 공동 작업 사용자로 불러오기 위한 중요한 구성 요소입니다. 받는 사람의 신뢰를 높이는 데 사용할 수 있습니다. 전자 메일에 적법성과 사회적 증거를 전자 메일에 추가하여 받는 사람이 안심하고 **시작** 단추를 선택하여 초대를 수락할 수 있습니다. 이 신뢰는 공유 마찰을 줄이는 데 핵심적입니다. 또한 이 템플릿을 통해 전자 메일도 보기 좋게 구성할 수 있습니다.
 
 ![Azure AD B2b 초대 전자 메일](media/active-directory-b2b-invitation-email/invitation-email.png)
 
-## <a name="explaining-hello-email"></a>Hello 전자 메일 설명
-살펴보겠습니다 hello 전자 메일의 몇 가지 요소는 최선의 방법 toouse의 기능을 확인할 수 있도록 합니다.
+## <a name="explaining-the-email"></a>전자 메일 설명
+전자 메일의 몇 가지 요소를 확인하여 이러한 기능을 최대한 활용하는 방법에 대해 살펴보겠습니다.
 
 ### <a name="subject"></a>제목
-hello hello 전자 메일의 제목을 뒤에 오는 패턴 hello: 초대 toohello &lt;tenantname&gt; 조직
+전자 메일의 제목은 다음 패턴을 따릅니다. &lt;tenantname&gt; 조직에 초대되었습니다.
 
 ### <a name="from-address"></a>보낸 사람 주소
-주소에서 hello에 대 한 LinkedIn 같은 패턴을 사용합니다.  하면 명확 해야 hello 초대자 이며 회사, 및도 명확히 hello 메일 Microsoft 전자 메일 주소에서 제공 되 게 합니다. hello 형식은: &lt;초대자의 표시 이름을&gt; 에서 &lt;tenantname&gt; (Microsoft)를 통해 <invites@microsoft.com&gt;
+보낸 사람 주소에 대해서는 LinkedIn 유사 패턴을 사용합니다.  초대자가 누구인지와 어떤 회사에 소속되어 있는지를 명확히 하고 전자 메일이 Microsoft 전자 메일 주소에서 전송된 것인지를 명확히 해야 합니다. 형식: &lt;tenantname&gt;(Microsoft를 통해) <invites@microsoft.com&gt;의 &lt;초대자 표시 이름&gt;
 
 ### <a name="reply-to"></a>회신
-hello 회신 tooemail toohello 전자 메일에 전자 메일 백 toohello 초대자 보냅니다 회신할 수 있도록 사용 가능한 경우 toohello 초대자 전자 메일을 설정 됩니다.
+회신 전자 메일은 사용 가능할 때 초대자의 전자 메일로 설정되므로 전자 메일에 회신하면 초대자에게 전자 메일이 다시 전송됩니다.
 
 ### <a name="branding"></a>브랜딩
-테 넌 트 로부터 전자 메일 브랜딩 하는 hello 회사를 사용 하는 hello 초대 수 설정한 테 넌 트에 대 한 합니다. 이 기능을 tootake 사용 하려는 경우 [여기](https://docs.microsoft.com/azure/active-directory/active-directory-branding-custom-signon-azure-portal) 방법에 대 한 hello 내용이 tooconfigure 것입니다. hello 배너 로고가 hello 전자 메일에 나타납니다. Hello 이미지 크기에 따라 및 품질 지침 [여기](https://docs.microsoft.com/azure/active-directory/active-directory-branding-custom-signon-azure-portal) 좋습니다. 또한 hello 회사 이름에에서도 표시 hello 호출 tooaction 합니다.
+테넌트에서 보낸 초대 전자 메일은 테넌트에 대해 설정했을 수 있는 회사 브랜딩을 사용합니다. 이 기능을 활용하려는 경우 자세한 구성 방법은 [다음](https://docs.microsoft.com/azure/active-directory/active-directory-branding-custom-signon-azure-portal)과 같습니다. 전자 메일에 배너 로고가 나타납니다. 최상의 결과를 얻으려면 [여기](https://docs.microsoft.com/azure/active-directory/active-directory-branding-custom-signon-azure-portal)에 제공되는 이미지 크기 및 품질 지침을 따르세요. 또한 회사 이름이 활용 방안에도 표시됩니다.
 
-### <a name="call-tooaction"></a>Tooaction 호출
-tooaction 두 부분으로 구성 하는 호출 hello: 이유 hello 받는 hello 메일을 어떤 hello 받는 항목에 대 한 toodo 요청 하는 설명 합니다.
-- hello hello 패턴을 사용 하 여 "이유" 섹션을 해결할 수 있습니다: hello에 초대 된 tooaccess 응용 프로그램 확인 한 후 &lt;tenantname&gt; 조직
+### <a name="call-to-action"></a>활용 방안
+활용 방안은 받는 사람이 메일을 받은 이유에 대한 설명과 받는 사람이 요청 받은 작업의 두 부분으로 구성됩니다.
+- "이유" 섹션은 다음 패턴을 사용하여 처리될 수 있습니다. &lt;tenantname&gt; 조직에서 응용 프로그램에 액세스하도록 초대되었습니다.
 
-- "어떻게 되 고 묻는 toodo" 섹션의 hello hello 중일 경우에 표시 됩니다는 hello 및 **시작** 단추입니다. Hello 받는 사람 초대 hello 필요 없이 추가 된 경우이 단추 표시 되지 않습니다.
+- 또한 "요청되는 작업" 섹션은 **시작** 단추의 존재 여부에 따라 결정됩니다. 초대 받을 필요가 없는 받는 사람이 추가되면 이 단추가 표시되지 않습니다.
 
 ### <a name="inviters-information"></a>초대자에 대한 정보
-hello 초대자 표시 이름 hello 전자 메일에 포함 됩니다. 등과 또한 프로필 사진을 Azure AD 계정에 대해 설정한 경우 전자 메일 초대 hello 됩니다도 해당 그림. 두 의도 한 tooincrease hello 전자 메일에 대 한 받는 사람의 신뢰성 됩니다.
+초대자의 표시 이름이 전자 메일에 포함됩니다. 또한 Azure AD 계정에 대해 프로필 사진을 설정한 경우 초대 전자 메일에 해당 사진도 포함됩니다. 두 가지 항목 모두 전자 메일에 대한 받는 사람의 신뢰도를 높이기 위한 것입니다.
 
-프로필 사진 아직 설정 하지 않은, hello 그림 대신 hello 초대자 이니셜 있는 아이콘이 표시 됩니다.
+자신의 프로필 사진을 아직 설정하지 않은 경우 다음과 같이 사진 대신 초대자의 이니셜이 있는 아이콘이 표시됩니다.
 
-  ![hello 초대자 이니셜을 표시합니다.](media/active-directory-b2b-invitation-email/inviters-initials.png)
+  ![초대자의 이니셜 표시](media/active-directory-b2b-invitation-email/inviters-initials.png)
 
 ### <a name="body"></a>body
-hello 메시지를 포함 하는 hello 본문 해당 hello 초대자 작성 또는 hello 초대 API 통해 전달 됩니다. 이것은 텍스트 영역에 불과하며, 보안상의 이유로 HTML 태그를 처리하지 않습니다.
+본문에는 초대자가 작성했거나 초대 API를 통해 전달된 메시지가 포함됩니다. 이것은 텍스트 영역에 불과하며, 보안상의 이유로 HTML 태그를 처리하지 않습니다.
 
 ### <a name="footer-section"></a>바닥글 섹션
-hello 바닥글 hello Microsoft 회사 브랜드 있어서 hello 받는 발신에서 hello 전자 메일을 보냈습니다. 하는지 여부를 알 수 있습니다. 특수 사례:
+바닥글에는 Microsoft 회사 브랜드가 포함되며, 받는 사람은 이를 통해 전자 메일이 모니터링되지 않은 별칭에서 전송되었는지 여부를 알 수 있습니다. 특수 사례:
 
-- hello 초대자 테 넌 트를 초대 hello에 전자 메일 주소 없습니다
+- 초대자에게 초대 테넌시의 전자 메일 주소가 없습니다.
 
-  ![그림 초대자 테 넌 트를 초대 hello에 ई म े 하지 않습니다.](media/active-directory-b2b-invitation-email/inviter-no-email.png)
+  ![초대자 사진에 초대 테넌시의 전자 메일 주소가 없습니다.](media/active-directory-b2b-invitation-email/inviter-no-email.png)
 
 
-- hello 받는 tooredeem hello 초대 필요 하지 않습니다.
+- 받는 사람이 초대를 충전할 필요가 없습니다.
 
-  ![받는 사람 tooredeem 초대 필요 하지 않은 경우](media/active-directory-b2b-invitation-email/when-recipient-doesnt-redeem.png)
+  ![받는 사람이 초대를 충전할 필요가 없는 경우](media/active-directory-b2b-invitation-email/when-recipient-doesnt-redeem.png)
 
 
 ## <a name="next-steps"></a>다음 단계

@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate Python을 사용 하 여 Azure에 Windows VM을 관리 하 고 | Microsoft Docs"
-description: "Toouse Python toocreate 알아보고 Azure에서 Windows VM을 관리 합니다."
+title: "Python을 사용하여 Azure에서 Windows VM 만들기 및 관리 | Microsoft Docs"
+description: "Python을 사용하여 Azure에서 Windows VM을 만들고 관리하는 방법을 설명합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/22/2017
 ms.author: davidmu
-ms.openlocfilehash: c5553e4e7361e6b9a7183cd935be382f967160cb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bb777d41570d7b1dc97402d532519488912948e3
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-and-manage-windows-vms-in-azure-using-python"></a>Python을 사용하여 Azure에서 Windows VM 만들기 및 관리
 
@@ -32,35 +32,35 @@ ms.lasthandoff: 10/06/2017
 > * 리소스 만들기
 > * 관리 작업 수행
 > * 리소스 삭제
-> * Hello 응용 프로그램 실행
+> * 응용 프로그램 실행
 
-다음이 단계 toodo 약 20 분이 필요합니다.
+이러한 단계를 수행하려면 약 20분이 걸립니다.
 
 ## <a name="create-a-visual-studio-project"></a>Visual Studio 프로젝트 만들기
 
-1. [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio)를 아직 설치하지 않았으면 설치합니다. 선택 **Python 개발** 작업 페이지 hello 되 고 클릭 **설치**합니다. Hello 요약을 볼 수 있습니다는 **Python 3 64 비트 (3.6.0)** 가 자동으로 선택 됩니다. Visual Studio를 이미 설치한 경우 Visual Studio 시작 관리자 hello를 사용 하 여 hello Python 작업을 추가할 수 있습니다.
+1. [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio)를 아직 설치하지 않았으면 설치합니다. 작업 페이지에서 **Python 개발**을 선택한 다음 **설치**를 클릭합니다. 요약하자면, **Python 3 64비트(3.6.0)**가 자동으로 선택되는 것을 확인할 수 있습니다. Visual Studio를 이미 설치한 경우 Visual Studio 시작 관리자를 사용하여 Python 워크로드를 추가할 수 있습니다.
 2. Visual Studio를 설치하고 시작한 후 **파일** > **신규** > **프로젝트**를 클릭합니다.
-3. 클릭 **템플릿** > **Python** > **Python 응용 프로그램**, 입력 *myPythonProject* hello 이름에 대 한 hello 프로젝트의 hello 프로젝트의 hello 위치를 선택 하 고 클릭 **확인**합니다.
+3. **템플릿** > **Python** > **Python 응용 프로그램**을 클릭하고, 프로젝트의 이름에 사용할 *myPythonProject*를 입력한 후, 프로젝트의 위치를 선택하고, **확인**을 클릭합니다.
 
 ## <a name="install-packages"></a>패키지 설치
 
 1. 솔루션 탐색기에서 *myPythonProject* 아래에 있는 **Python 환경**을 마우스 오른쪽 단추로 클릭한 다음, **가상 환경 추가**를 선택합니다.
-2. Hello 가상 환경 추가 화면에서의 hello 기본 이름을 적용 *env*, 다음 사항을 확인 *Python 3.6 (64 비트)* hello 기본 인터프리터를 선택한 다음 클릭 **만들기**.
-3. 마우스 오른쪽 단추로 클릭 hello *env* 만든 환경 클릭 **Python 패키지 설치**, 입력 *azure* 검색 상자 hello와 다음 Enter 키를 누릅니다.
+2. 가상 환경 추가 화면에서 기본 이름 *env*를 수락하고, *Python 3.6(64비트)*이 기본 인터프리터로 선택되어 있는지 확인한 후 **만들기**를 클릭합니다.
+3. 만든 *env* 환경을 마우스 오른쪽 단추로 클릭하고, **Python 패키지 설치**를 클릭한 후, 검색 상자에 *azure*를 입력한 다음, Enter 키를 누릅니다.
 
-Azure hello 패키지가 성공적으로 설치 된 hello 출력 창에 표시 됩니다. 
+azure 패키지가 성공적으로 설치되었음이 출력 창에 표시됩니다. 
 
 ## <a name="create-credentials"></a>자격 증명 만들기
 
-이 단계를 시작하기 전에 [Active Directory 서비스 주체](../../azure-resource-manager/resource-group-create-service-principal-portal.md)가 있는지 확인합니다. 이후 단계에서 또한 hello 응용 프로그램 ID, 인증 키 hello 및 필요한 hello 테 넌 트 ID을 기록해 야 합니다.
+이 단계를 시작하기 전에 [Active Directory 서비스 주체](../../azure-resource-manager/resource-group-create-service-principal-portal.md)가 있는지 확인합니다. 또한 이후 단계에서 필요한 응용 프로그램 ID, 인증 키 및 테넌트 ID를 기록해 두어야 합니다.
 
-1. 열기 *myPythonProject.py* 생성 된 파일을 다음 응용 프로그램 toorun 코드 tooenable이를 추가 합니다.
+1. 만든 *myPythonProject.py* 파일을 열고, 응용 프로그램을 실행하도록 활성화하는 다음 코드를 추가합니다.
 
     ```python
     if __name__ == "__main__":
     ```
 
-2. 필요한 tooimport hello 코드 hello.py 파일의 이러한 문을 toohello 맨 위에 추가 합니다.
+2. 필요한 코드를 가져오려면 .py 파일의 맨 위에 다음 문을 추가합니다.
 
     ```python
     from azure.common.credentials import ServicePrincipalCredentials
@@ -70,7 +70,7 @@ Azure hello 패키지가 성공적으로 설치 된 hello 출력 창에 표시 �
     from azure.mgmt.compute.models import DiskCreateOption
     ```
 
-3. 다음의 hello.py 파일 추가 변수에 toospecify 공통 값을 사용 하는 hello import 문의 hello 코드:
+3. 다음으로 .py 파일에 가져오기 문 뒤에 변수를 추가하여 이 코드에 사용되는 공통 값을 지정합니다.
    
     ```
     SUBSCRIPTION_ID = 'subscription-id'
@@ -81,7 +81,7 @@ Azure hello 패키지가 성공적으로 설치 된 hello 출력 창에 표시 �
 
     **subscription-id**를 구독 ID로 바꿉니다.
 
-4. toocreate hello Active Directory 자격 증명 toomake 요청 해야 하는 hello.py 파일의 hello 변수가 후이 함수를 추가 합니다.
+4. 요청하는 데 필요한 Active Directory 자격 증명을 만들려면 .py 파일에 변수 뒤에 다음 함수를 추가합니다.
 
     ```python
     def get_credentials():
@@ -94,9 +94,9 @@ Azure hello 패키지가 성공적으로 설치 된 hello 출력 창에 표시 �
         return credentials
     ```
 
-    대체 **응용 프로그램 id**, **인증 키**, 및 **테 넌 트 id** Azure Active Directory를 만들 때 이전에 수집 하는 hello 값으로 서비스 보안 주체입니다.
+    **application-id**, **authentication-key** 및 **tenant-id**를 Azure Active Directory 서비스 주체를 만들 때 이전에 수집한 값으로 바꿉니다.
 
-5. hello에서이 코드를 추가 하는 이전에 추가한 toocall hello 함수 **경우** hello hello.py 파일 끝에 문의:
+5. 이전에 추가한 함수를 호출하려면 .py 파일의 끝에서 **if** 문 아래에 이 코드를 추가합니다.
 
     ```python
     credentials = get_credentials()
@@ -106,7 +106,7 @@ Azure hello 패키지가 성공적으로 설치 된 hello 출력 창에 표시 �
  
 ### <a name="initialize-management-clients"></a>관리 클라이언트 초기화
 
-관리 클라이언트는 필요한 toocreate 하 고 Azure의 hello Python SDK를 사용 하 여 리소스를 관리 합니다. toocreate hello 관리 클라이언트 hello 아래이 코드를 추가 **경우** hello.py 파일 끝 다음에 문:
+관리 클라이언트는 Azure에서 Python SDK를 사용하여 리소스를 만들고 관리하는 데 필요합니다. 관리 클라이언트를 만들려면 .py 파일의 끝에서 **if** 문 아래에 이 코드를 추가합니다.
 
 ```python
 resource_group_client = ResourceManagementClient(
@@ -123,11 +123,11 @@ compute_client = ComputeManagementClient(
 )
 ```
 
-### <a name="create-hello-vm-and-supporting-resources"></a>Hello VM을 만들고 리소스를 지원 합니다.
+### <a name="create-the-vm-and-supporting-resources"></a>VM 및 지원 리소스 만들기
 
 모든 리소스는 [리소스 그룹](../../azure-resource-manager/resource-group-overview.md)에 포함되어야 합니다.
 
-1. 리소스 그룹 toocreate hello.py 파일의 hello 변수가 뒤이 함수를 추가 합니다.
+1. 리소스 그룹을 만들려면 .py 파일에서 변수 뒤에 이 함수를 추가합니다.
 
     ```python
     def create_resource_group(resource_group_client):
@@ -138,16 +138,16 @@ compute_client = ComputeManagementClient(
         )
     ```
 
-2. hello에서이 코드를 추가 하는 이전에 추가한 toocall hello 함수 **경우** hello hello.py 파일 끝에 문의:
+2. 이전에 추가한 함수를 호출하려면 .py 파일의 끝에서 **if** 문 아래에 이 코드를 추가합니다.
 
     ```python
     create_resource_group(resource_group_client)
-    input('Resource group created. Press enter toocontinue...')
+    input('Resource group created. Press enter to continue...')
     ```
 
-[가용성 집합](tutorial-availability-sets.md) 쉽게 드립니다 toomaintain hello 가상 컴퓨터 응용 프로그램에서 사용 합니다.
+[가용성 집합](tutorial-availability-sets.md)은 응용 프로그램에서 사용되는 가상 컴퓨터를 쉽게 유지 관리할 수 있도록 합니다.
 
-1. toocreate 가용성 설정 hello.py 파일의 hello 변수가 후이 함수를 추가 합니다.
+1. 가용성 집합을 만들려면 .py 파일에서 변수 뒤에 이 함수를 추가합니다.
    
     ```python
     def create_availability_set(compute_client):
@@ -163,17 +163,17 @@ compute_client = ComputeManagementClient(
         )
     ```
 
-2. hello에서이 코드를 추가 하는 이전에 추가한 toocall hello 함수 **경우** hello hello.py 파일 끝에 문의:
+2. 이전에 추가한 함수를 호출하려면 .py 파일의 끝에서 **if** 문 아래에 이 코드를 추가합니다.
 
     ```python
     create_availability_set(compute_client)
     print("------------------------------------------------------")
-    input('Availability set created. Press enter toocontinue...')
+    input('Availability set created. Press enter to continue...')
     ```
 
-A [공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) hello 가상 컴퓨터와 필요한 toocommunicate 됩니다.
+[공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview-arm.md)는 가상 컴퓨터와 통신하는 데 필요합니다.
 
-1. toocreate hello 가상 컴퓨터에 대 한 공용 IP 주소를 hello.py 파일의 hello 변수가 후이 함수를 추가 합니다.
+1. 가상 컴퓨터에 대한 공용 IP 주소를 만들려면 .py 파일에서 변수 뒤에 이 함수를 추가합니다.
 
     ```python
     def create_public_ip_address(network_client):
@@ -190,18 +190,18 @@ A [공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview
         return creation_result.result()
     ```
 
-2. hello에서이 코드를 추가 하는 이전에 추가한 toocall hello 함수 **경우** hello hello.py 파일 끝에 문의:
+2. 이전에 추가한 함수를 호출하려면 .py 파일의 끝에서 **if** 문 아래에 이 코드를 추가합니다.
 
     ```python
     creation_result = create_public_ip_address(network_client)
     print("------------------------------------------------------")
     print(creation_result)
-    input('Press enter toocontinue...')
+    input('Press enter to continue...')
     ```
 
 가상 컴퓨터는 [가상 네트워크](../../virtual-network/virtual-networks-overview.md)의 서브넷에 있어야 합니다.
 
-1. toocreate 가상 네트워크를 hello.py 파일의 hello 변수가 후이 함수를 추가 합니다.
+1. 가상 네트워크를 만들려면 .py 파일에서 변수 뒤에 이 함수를 추가합니다.
 
     ```python
     def create_vnet(network_client):
@@ -219,16 +219,16 @@ A [공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview
         return creation_result.result()
     ```
 
-2. hello에서이 코드를 추가 하는 이전에 추가한 toocall hello 함수 **경우** hello hello.py 파일 끝에 문의:
+2. 이전에 추가한 함수를 호출하려면 .py 파일의 끝에서 **if** 문 아래에 이 코드를 추가합니다.
    
     ```python
     creation_result = create_vnet(network_client)
     print("------------------------------------------------------")
     print(creation_result)
-    input('Press enter toocontinue...')
+    input('Press enter to continue...')
     ```
 
-3. tooadd 서브넷 toohello 가상 네트워크를 hello.py 파일의 hello 변수가 후이 함수를 추가 합니다.
+3. 가상 네트워크에 대한 서브넷을 만들려면 .py 파일에서 변수 뒤에 이 함수를 추가합니다.
     
     ```python
     def create_subnet(network_client):
@@ -245,18 +245,18 @@ A [공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview
         return creation_result.result()
     ```
         
-4. hello에서이 코드를 추가 하는 이전에 추가한 toocall hello 함수 **경우** hello hello.py 파일 끝에 문의:
+4. 이전에 추가한 함수를 호출하려면 .py 파일의 끝에서 **if** 문 아래에 이 코드를 추가합니다.
    
     ```python
     creation_result = create_subnet(network_client)
     print("------------------------------------------------------")
     print(creation_result)
-    input('Press enter toocontinue...')
+    input('Press enter to continue...')
     ```
 
-가상 컴퓨터에는 hello 가상 네트워크에서 네트워크 인터페이스 toocommunicate가 필요 합니다.
+가상 컴퓨터는 가상 네트워크에서 통신하기 위해 네트워크 인터페이스가 필요합니다.
 
-1. 네트워크 인터페이스 toocreate hello.py 파일에 있는 hello 변수 뒤이 함수를 추가 합니다.
+1. 네트워크 인터페이스를 만들려면 .py 파일에서 변수 뒤에 이 함수를 추가합니다.
 
     ```python
     def create_nic(network_client):
@@ -288,18 +288,18 @@ A [공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview
         return creation_result.result()
     ```
 
-2. hello에서이 코드를 추가 하는 이전에 추가한 toocall hello 함수 **경우** hello hello.py 파일 끝에 문의:
+2. 이전에 추가한 함수를 호출하려면 .py 파일의 끝에서 **if** 문 아래에 이 코드를 추가합니다.
 
     ```python
     creation_result = create_nic(network_client)
     print("------------------------------------------------------")
     print(creation_result)
-    input('Press enter toocontinue...')
+    input('Press enter to continue...')
     ```
 
-리소스를 지 원하는 모든 hello, 만든 가상 컴퓨터를 만들 수 있습니다.
+모든 지원 리소스를 만들었으므로 가상 컴퓨터를 만들 수 있습니다.
 
-1. toocreate hello 가상 컴퓨터, hello.py 파일에 있는 hello 변수 뒤에이 함수를 추가 합니다.
+1. 가상 컴퓨터를 만들려면 .py 파일에서 변수 뒤에 이 함수를 추가합니다.
    
     ```python
     def create_vm(network_client, compute_client):  
@@ -348,26 +348,26 @@ A [공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview
     ```
 
     > [!NOTE]
-    > 이 자습서는 hello Windows Server 운영 체제의 버전을 실행 하는 가상 컴퓨터를 만듭니다. 다른 이미지 선택에 대 한 더 toolearn 참조 [탐색 하 고 Windows PowerShell 및 Azure CLI hello를 사용 하 여 Azure 가상 컴퓨터 이미지 선택](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.
+    > 이 자습서는 Windows Server 운영 체제의 버전을 실행하는 가상 컴퓨터를 만듭니다. 기타 이미지 선택에 대해 자세히 알아보려면 [Windows PowerShell 및 Azure CLI를 사용하여 Azure 가상 컴퓨터 탐색 및 선택](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)을 참조하세요.
     > 
     > 
 
-2. hello에서이 코드를 추가 하는 이전에 추가한 toocall hello 함수 **경우** hello hello.py 파일 끝에 문의:
+2. 이전에 추가한 함수를 호출하려면 .py 파일의 끝에서 **if** 문 아래에 이 코드를 추가합니다.
 
     ```python
     creation_result = create_vm(network_client, compute_client)
     print("------------------------------------------------------")
     print(creation_result)
-    input('Press enter toocontinue...')
+    input('Press enter to continue...')
     ```
 
 ## <a name="perform-management-tasks"></a>관리 작업 수행
 
-가상 컴퓨터의 hello 수명 주기 동안 시작, 중지, 또는 가상 컴퓨터를 삭제 하는 등의 toorun 관리 작업을 할 수 있습니다. 또한 toocreate 코드 tooautomate 반복적 복잡 한 작업을 지정할 수 있습니다.
+가상 컴퓨터의 수명 주기 동안 가상 컴퓨터 시작, 중지 또는 삭제 등의 관리 작업을 실행하려고 할 수 있습니다. 또한 반복적이거나 복잡한 작업을 자동화하는 코드를 만들 수도 있습니다.
 
-### <a name="get-information-about-hello-vm"></a>Hello VM에 대 한 정보 가져오기
+### <a name="get-information-about-the-vm"></a>VM 관련 정보 가져오기
 
-1. hello 가상 컴퓨터에 대 한 정보 tooget hello.py 파일의 hello 변수가 후이 함수를 추가 합니다.
+1. 가상 컴퓨터에 대한 정보를 가져오려면 .py 파일에서 변수 뒤에 이 함수를 추가합니다.
 
     ```python
     def get_vm(compute_client):
@@ -420,59 +420,59 @@ A [공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview
             print("  code: ", stat.code)
             print("  displayStatus: ", stat.display_status)
     ```
-2. hello에서이 코드를 추가 하는 이전에 추가한 toocall hello 함수 **경우** hello hello.py 파일 끝에 문의:
+2. 이전에 추가한 함수를 호출하려면 .py 파일의 끝에서 **if** 문 아래에 이 코드를 추가합니다.
 
     ```python
     get_vm(compute_client)
     print("------------------------------------------------------")
-    input('Press enter toocontinue...')
+    input('Press enter to continue...')
     ```
 
-### <a name="stop-hello-vm"></a>Hello VM 중지
+### <a name="stop-the-vm"></a>VM을 중지합니다.
 
-가상 컴퓨터를 중지 하 고 해당 설정을 모두 그대로 유지 하지만 계속 toobe 유료로 제공, 가상 컴퓨터를 중지 하 고 할당을 취소 하거나 수 있습니다. 가상 컴퓨터를 할당을 해제하면 연결된 모든 리소스의 할당이 취소되고 대금 청구가 끝납니다.
+가상 컴퓨터를 중지하고 해당 설정을 모두 그대로 유지하면 계속 요금이 청구될 수 있습니다. 그렇지 않으려면 가상 컴퓨터를 중지하고 할당을 해제합니다. 가상 컴퓨터를 할당을 해제하면 연결된 모든 리소스의 할당이 취소되고 대금 청구가 끝납니다.
 
-1. toostop hello 가상 컴퓨터를 할당 취소 하지 않고 hello.py 파일의 hello 변수가 후이 함수를 추가 합니다.
+1. 가상 컴퓨터를 할당 취소 없이 중지하려면 .py 파일에서 변수 뒤에 이 함수를 추가합니다.
 
     ```python
     def stop_vm(compute_client):
         compute_client.virtual_machines.power_off(GROUP_NAME, VM_NAME)
     ```
 
-    Toodeallocate hello 가상 컴퓨터를 하려면 hello power_off 통화 toothis 코드를 변경 합니다.
+    가상 컴퓨터의 할당을 취소하려는 경우 power_off 호출을 이 코드로 변경합니다.
 
     ```python
     compute_client.virtual_machines.deallocate(GROUP_NAME, VM_NAME)
     ```
 
-2. hello에서이 코드를 추가 하는 이전에 추가한 toocall hello 함수 **경우** hello hello.py 파일 끝에 문의:
+2. 이전에 추가한 함수를 호출하려면 .py 파일의 끝에서 **if** 문 아래에 이 코드를 추가합니다.
 
     ```python
     stop_vm(compute_client)
-    input('Press enter toocontinue...')
+    input('Press enter to continue...')
     ```
 
-### <a name="start-hello-vm"></a>Hello VM 시작
+### <a name="start-the-vm"></a>VM 시작
 
-1. toostart hello 가상 컴퓨터, hello.py 파일에 있는 hello 변수 뒤에이 함수를 추가 합니다.
+1. 가상 컴퓨터를 시작하려면 .py 파일에서 변수 뒤에 이 함수를 추가합니다.
 
     ```python
     def start_vm(compute_client):
         compute_client.virtual_machines.start(GROUP_NAME, VM_NAME)
     ```
 
-2. hello에서이 코드를 추가 하는 이전에 추가한 toocall hello 함수 **경우** hello hello.py 파일 끝에 문의:
+2. 이전에 추가한 함수를 호출하려면 .py 파일의 끝에서 **if** 문 아래에 이 코드를 추가합니다.
 
     ```python
     start_vm(compute_client)
-    input('Press enter toocontinue...')
+    input('Press enter to continue...')
     ```
 
-### <a name="resize-hello-vm"></a>Hello VM의 크기를 조정합니다
+### <a name="resize-the-vm"></a>VM 크기 조정
 
 가상 컴퓨터의 크기를 결정할 때 배포의 여러 측면을 고려해야 합니다. 자세한 내용은 [VM 크기](sizes.md)를 참조하세요.
 
-1. hello.py 파일의 hello 변수가 한 후이 함수를 추가 하는 hello 가상 컴퓨터의 toochange hello 크기:
+1. 가상 컴퓨터의 크기를 변경하려면 .py 파일에서 변수 뒤에 이 함수를 추가합니다.
 
     ```python
     def update_vm(compute_client):
@@ -487,20 +487,20 @@ A [공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview
     return update_result.result()
     ```
 
-2. hello에서이 코드를 추가 하는 이전에 추가한 toocall hello 함수 **경우** hello hello.py 파일 끝에 문의:
+2. 이전에 추가한 함수를 호출하려면 .py 파일의 끝에서 **if** 문 아래에 이 코드를 추가합니다.
 
     ```python
     update_result = update_vm(compute_client)
     print("------------------------------------------------------")
     print(update_result)
-    input('Press enter toocontinue...')
+    input('Press enter to continue...')
     ```
 
-### <a name="add-a-data-disk-toohello-vm"></a>데이터 디스크 toohello VM 추가
+### <a name="add-a-data-disk-to-the-vm"></a>VM에 데이터 디스크 추가
 
 가상 컴퓨터에도 VHD로 저장되는 [데이터 디스크](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)가 하나 이상 있을 수 있습니다.
 
-1. 데이터 디스크 toohello 가상 컴퓨터를 tooadd hello.py 파일에 있는 hello 변수 뒤이 함수를 추가 합니다. 
+1. 가상 컴퓨터에 데이터 디스크를 추가하려면 .py 파일에서 변수 뒤에 이 함수를 추가합니다. 
 
     ```python
     def add_datadisk(compute_client):
@@ -533,27 +533,27 @@ A [공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview
         return add_result.result()
     ```
 
-2. hello에서이 코드를 추가 하는 이전에 추가한 toocall hello 함수 **경우** hello hello.py 파일 끝에 문의:
+2. 이전에 추가한 함수를 호출하려면 .py 파일의 끝에서 **if** 문 아래에 이 코드를 추가합니다.
 
     ```python
     add_result = add_datadisk(compute_client)
     print("------------------------------------------------------")
     print(add_result)
-    input('Press enter toocontinue...')
+    input('Press enter to continue...')
     ```
 
 ## <a name="delete-resources"></a>리소스 삭제
 
-Azure에서 사용 되는 리소스에 대 한 요금이 청구 되므로 항상 것은 더 이상 필요 없는 것이 좋습니다 toodelete 리소스입니다. Toodelete hello 가상 컴퓨터 및 리소스를 지 원하는 모든 hello, 모든 있는 toodo hello 리소스 그룹 삭제 됩니다.
+Azure에서 사용되는 리소스에 대한 요금이 부과되기 때문에, 항상 더 이상 필요하지 않은 리소스를 삭제하는 것이 좋습니다. 가상 컴퓨터 및 모든 지원 리소스를 삭제하려는 경우, 리소스 그룹을 삭제해야 합니다.
 
-1. toodelete hello 리소스 그룹 및 모든 리소스를 hello.py 파일의 hello 변수가 후이 함수를 추가 합니다.
+1. 리소스 그룹 및 모든 리소스를 삭제하려면 .py 파일에서 변수 뒤에 이 함수를 추가합니다.
    
     ```python
     def delete_resources(resource_group_client):
         resource_group_client.resource_groups.delete(GROUP_NAME)
     ```
 
-2. hello에서이 코드를 추가 하는 이전에 추가한 toocall hello 함수 **경우** hello hello.py 파일 끝에 문의:
+2. 이전에 추가한 함수를 호출하려면 .py 파일의 끝에서 **if** 문 아래에 이 코드를 추가합니다.
    
     ```python
     delete_resources(resource_group_client)
@@ -561,17 +561,17 @@ Azure에서 사용 되는 리소스에 대 한 요금이 청구 되므로 항상
 
 3. *myPythonProject.py*를 저장합니다.
 
-## <a name="run-hello-application"></a>Hello 응용 프로그램 실행
+## <a name="run-the-application"></a>응용 프로그램 실행
 
-1. toorun hello 콘솔 응용 프로그램을 클릭 하 여 **시작** Visual Studio에서.
+1. 콘솔 응용 프로그램을 실행하려면 Visual Studio에서 **시작**을 클릭합니다.
 
-2. 키를 눌러 **Enter** 후 각 리소스의 hello 상태가 반환 됩니다. Hello 상태 정보에 표시 됩니다는 **Succeeded** 의 프로비저닝 상태입니다. Hello 가상 컴퓨터를 만든 후 만든 모든 hello 리소스 hello 기회 toodelete 수 있습니다. 누르기 전에 **Enter** toostart 삭제 리소스를 가져올 수 있었습니다 몇 분 tooverify 생성 hello Azure 포털의에서. Azure 포털 열기 hello 있는, 경우에 toorefresh hello 블레이드 toosee 새 리소스를 할 수 있습니다.  
+2. 각 리소스의 상태가 반환된 후 **Enter** 키를 누릅니다. 상태 정보에 **Succeeded** 프로비저닝 상태가 표시됩니다. 가상 컴퓨터를 만든 후 만든 모든 리소스를 삭제할 기회가 있습니다. **Enter** 키를 눌러 리소스 삭제를 시작하기 전에 Azure Portal에서 리소스 만들기를 확인하는 데에 몇 분이 걸릴 수 있습니다. Azure Portal이 열려 있는 경우 새 리소스를 보려면 블레이드를 새로 고쳐야 할 수 있습니다.  
 
-    이 콘솔 응용 프로그램 toorun 시작 toofinish에서 완전히에 대 일 분 정도 취해야 합니다. 모든 hello 리소스 하기 전에 hello 응용 프로그램 완료 되었으며 hello 리소스 그룹이 삭제 된 후 몇 분 정도 걸릴 수 있습니다.
+    이 콘솔 응용 프로그램을 처음부터 끝까지 완전히 실행하려면 약 5분이 필요합니다. 응용 프로그램이 종료된 후 모든 리소스 및 리소스 그룹을 삭제하려면 몇 분 정도 걸릴 수 있습니다.
 
 
 ## <a name="next-steps"></a>다음 단계
 
-- 다음 단계에서 toolook 것 hello 배포 문제가 있는 경우 [Azure 포털을 사용 하는 리소스 그룹 배포 문제 해결](../../resource-manager-troubleshoot-deployments-portal.md)
-- Hello에 대 한 자세한 [Azure Python 라이브러리](https://docs.microsoft.com/python/api/overview/azure/?view=azure-python)
+- 배포에 문제가 있는 경우 다음 단계로서 [Azure Portal을 사용하여 리소스 그룹 배포 문제 해결](../../resource-manager-troubleshoot-deployments-portal.md)
+- [Azure Python 라이브러리](https://docs.microsoft.com/python/api/overview/azure/?view=azure-python)에 대한 자세한 내용
 

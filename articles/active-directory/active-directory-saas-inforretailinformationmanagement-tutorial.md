@@ -1,6 +1,6 @@
 ---
 title: "자습서: Infor Retail – Information Management과 Azure Active Directory 통합 | Microsoft Docs"
-description: "Tooconfigure 단일 로그온 방법에 대해 알아봅니다 Azure Active Directory와 정보 관리 – 정보 소매 사이입니다."
+description: "Azure Active Directory 및 Infor Retail – Information Management 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,191 +14,191 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/25/2017
 ms.author: jeedes
-ms.openlocfilehash: 9cd8ab65d41d01832e0611f7f8254aa257120508
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1ab8b7e98324ba4f4ae95775f89df0461058fe4b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-infor-retail--information-management"></a>자습서: Infor Retail – Information Management과 Azure Active Directory 통합
 
-이 자습서에 설명 어떻게 toointegrate 정보 소매 – Azure Active Directory (Azure AD)와 정보를 관리 합니다.
+이 자습서에서는 Azure AD(Azure Active Directory)와 Infor Retail – Information Management를 통합하는 방법에 대해 알아봅니다.
 
-정보 소매 – Azure AD와 정보 관리를 통합 이점을 다음 hello로 제공:
+Infor Retail – Information Management와 Azure AD를 통합하면 다음과 같은 이점이 제공됩니다.
 
-- Azure ad 액세스 tooInfor 소매 – 정보 관리를 가진 제어할 수 있습니다.
-- 에 사용자가 tooautomatically get 로그온 tooInfor 소매 – 정보 관리 (Single Sign-on)는 Azure AD 계정 사용할 수 있습니다.
-- 하나의 중앙 위치-hello Azure 포털에서 계정을 관리할 수 있습니다.
+- Azure AD에서 Infor Retail – Information Management에 대한 액세스 권한이 있는 사용자를 제어할 수 있습니다.
+- 사용자가 해당 Azure AD 계정으로 Infor Retail – Information Management에 자동으로 로그온(Single Sign-On)되도록 설정할 수 있습니다.
+- 단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.
 
-Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.
+Azure AD와 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory의 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.
 
 ## <a name="prerequisites"></a>필수 조건
 
-다음 항목 hello가 필요 tooconfigure 정보 소매 – 정보 관리와 Azure AD 통합 합니다.
+Infor Retail – Information Management과의 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.
 
 - Azure AD 구독
 - Infor Retail – Information Management Single Sign-on이 설정된 구독
 
 > [!NOTE]
-> 이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.
+> 이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.
 
-이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.
+이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.
 
 - 꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.
 - Azure AD 평가판 환경이 없으면 [1개월 평가판을 얻을](https://azure.microsoft.com/pricing/free-trial/) 수 있습니다.
 
 ## <a name="scenario-description"></a>시나리오 설명
-이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.
+이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.
 
-1. 추가 정보 소매 – hello 갤러리에서 정보 관리
+1. 갤러리에서 Infor Retail – Information Management 추가
 2. Azure AD Single Sign-on 구성 및 테스트
 
-## <a name="adding-infor-retail--information-management-from-hello-gallery"></a>추가 정보 소매 – hello 갤러리에서 정보 관리
-Azure AD에 정보 관리 – 정보 소매 tooconfigure hello 통합 tooadd 정보 소매 – 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 정보를 관리 해야합니다.
+## <a name="adding-infor-retail--information-management-from-the-gallery"></a>갤러리에서 Infor Retail – Information Management 추가
+Azure AD로의 Infor Retail – Information Management 통합을 구성하려면 갤러리의 Infor Retail – Information Management를 관리되는 SaaS 앱 목록에 추가해야 합니다.
 
-**tooadd 정보 소매 – hello 갤러리, 정보 관리 hello 다음 단계를 수행 합니다.**
+**갤러리에서 Infor Retail – Information Management를 추가하려면 다음 단계를 수행합니다.**
 
-1. Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다. 
+1. **[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다. 
 
-    ![hello Azure Active Directory 단추][1]
+    ![Azure Active Directory 단추][1]
 
-2. 너무 이동**엔터프라이즈 응용 프로그램**합니다. 이동 하 여 너무**모든 응용 프로그램**합니다.
+2. **엔터프라이즈 응용 프로그램**으로 이동합니다. 그런 후 **모든 응용 프로그램**으로 이동합니다.
 
-    ![hello 엔터프라이즈 응용 프로그램 블레이드][2]
+    ![엔터프라이즈 응용 프로그램 블레이드][2]
     
-3. tooadd 새 응용 프로그램을 클릭 하 여 **새 응용 프로그램** 대화의 hello 위쪽에 단추입니다.
+3. 새 응용 프로그램을 추가하려면 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭합니다.
 
-    ![hello 새 응용 프로그램 단추][3]
+    ![새 응용 프로그램 단추][3]
 
-4. Hello 검색 상자에 입력 **정보 관리 – 정보 소매**선택, **정보 관리 – 정보 소매** 결과 패널에서 클릭 **추가** 단추 tooadd hello 응용 프로그램입니다.
+4. 검색 상자에 **Infor Retail – Information Management**를 입력하고 결과 패널에서 **Infor Retail – Information Management**를 선택한 다음 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.
 
-    ![정보 소매 – hello 결과 목록에 정보 관리](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_addfromgallery.png)
+    ![결과 목록의 Infor Retail – Information Management](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성 및 테스트
 
 이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 Infor Retail – Information Management에서 Azure AD Single Sign-On을 구성하고 테스트합니다.
 
-Single sign on toowork에 대 한 Azure AD tooknow 정보 정품에서 hello 테이블에 해당 사용자는 필요 – Azure ad에서가 tooa 사용자 정보 관리 합니다. 즉, Azure AD 사용자 및 hello 정보 정품 – 정보 관리 관련된 사용자 간 링크 관계를 설정 하는 toobe가 필요 합니다.
+Single Sign-On이 작동하려면 Azure AD에서 Azure AD 사용자에 해당하는 Infor Retail – Information Management 사용자가 누구인지 알고 있어야 합니다. 즉, Azure AD 사용자와 Infor Retail – Information Management의 관련 사용자 간에 연결이 형성되어야 합니다.
 
-정보 관리 – 정보 정품에서 hello hello 값을 할당 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** tooestablish hello 링크 관계입니다.
+Infor Retail – Information Management에서 Azure AD의 **사용자 이름** 값을 **Username** 값으로 할당하여 링크 관계를 설정합니다.
 
-tooconfigure 및 정보 소매 – 정보 관리를 사용 하 여 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.
+Infor Retail – Information Management에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.
 
-1. **[Azure AD Single Sign-on 구성](#configure-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.
-2. **[Azure AD 테스트를 만들고](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.
-3. **[프로그램 정보 소매 – 정보 관리 테스트 사용자 만들기](#create-an-infor-retail--information-management-test-user)**  -toohave 정보 정품에서 Britta Simon의 상대 – 사용자의 연결 된 Azure AD toohello 표현인 정보 관리 합니다.
-4. **[Azure AD hello 테스트 사용자를 할당](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.
-5. **[Single sign on 테스트](#test-single-sign-on)**  -tooverify 구성 works를 hello 여부.
+1. **[Azure AD Single Sign-On 구성](#configure-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.
+2. **[Azure AD 테스트 사용자 만들기](#create-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.
+3. **[Infor Retail – Information Management 테스트 사용자 만들기](#create-an-infor-retail--information-management-test-user)** - Britta Simon의 Azure AD 표현과 연결된 해당 사용자를 Infor Retail – Information Management에 만듭니다.
+4. **[Azure AD 테스트 사용자 할당](#assign-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.
+5. **[Single Sign-On 테스트](#test-single-sign-on)** - 구성이 작동하는지 여부를 확인합니다.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성
 
-이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 사용자 정보 소매 – 정보 관리 응용 프로그램에서에서 single sign on 구성 합니다.
+이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 Infor Retail – Information Management 응용 프로그램에서 Single Sign-On을 구성합니다.
 
-**정보 관리 – 정보 소매와 Azure AD에서 single sign-on tooconfigure hello 다음 단계를 수행 합니다.**
+**Infor Retail – Information Management과의 Azure AD Single Sign-On을 구성하려면 다음 단계를 수행합니다.**
 
-1. Hello hello에 Azure 포털에서에서 **정보 관리 – 정보 소매** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.
+1. Azure Portal의 **Infor Retail – Information Management** 응용 프로그램 통합 페이지에서 **Single sign-on**을 클릭합니다.
 
     ![Single Sign-On 구성 링크][4]
 
-2. Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.
+2. **Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택하여 Single Sign-On을 사용하도록 설정합니다.
  
     ![Single Sign-On 대화 상자](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_samlbase.png)
 
-3. Hello에 **정보 소매 – 정보 관리 도메인 및 Url** 섹션를 hello IDP의 tooconfigure hello 응용 프로그램 시작 모드를 원하는 경우 다음 단계를 수행 합니다.
+3. **Infor Retail – Information Management 도메인 및 URL** 섹션에서 IDP 시작 모드로 응용 프로그램을 구성하려는 경우 다음 단계를 수행합니다.
 
     ![Infor Retail – Information Management 도메인 및 URL Single Sign-On 정보 IDP](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_url.png)
 
-    a. Hello에 **식별자** 텍스트 상자에 다음 hello를 사용 하 여 URL 패턴: 
+    a. **식별자** 텍스트 상자에서 다음 패턴을 사용하여 URL을 입력합니다. 
     |   |
     | -- |
     | `https://<company name>.mingle.infor.com` |
     | `http://<company name>.mingledev.infor.com` |
 
-    b. Hello에 **회신 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<company name>.mingle.infor.com/sp/ACS.saml2`
+    b. **회신 URL** 텍스트 상자에 다음 패턴으로 URL을 입력합니다.`https://<company name>.mingle.infor.com/sp/ACS.saml2`
 
-4. 확인 **고급 URL 설정 표시** hello tooconfigure hello 응용 프로그램에 필요한 경우 단계를 다음을 수행 하 고 **SP** 시작 모드:
+4. **SP** 시작 모드에서 응용 프로그램을 구성하려면 **고급 URL 설정 표시**를 확인하고 다음 단계를 수행합니다.
 
     ![Infor Retail – Information Management 도메인 및 URL Single Sign-On 정보 SP](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_url1.png)
 
-    Hello에 **로그온 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<company name>.mingle.infor.com/<company code>`
+    **로그온 URL** 텍스트 상자에서 다음 패턴으로 URL을 입력합니다. `https://<company name>.mingle.infor.com/<company code>`
      
     > [!NOTE] 
-    > 이러한 값은 실제 값이 아닙니다. 이러한 항목을 업데이트 식별자, 회신 URL 및 로그온 URL 실제 hello로 값입니다. 연락처 [정보 소매 – 정보 관리 클라이언트 지원 팀](mailto:innovate@infor.com) tooget 이러한 값입니다. 
+    > 이러한 값은 실제 값이 아닙니다. 이러한 값을 실제 식별자, 회신 URL 및 로그온 URL로 업데이트합니다. 이들 값을 얻으려면 [Infor Retail – Information Management 클라이언트 지원 팀](mailto:innovate@infor.com)에 문의하세요. 
 
-5. Hello에 **SAML 서명 인증서** 섹션에서 클릭 **메타 데이터 XML** hello 메타 데이터 파일을 컴퓨터에 저장 합니다.
+5. **SAML 서명 인증서** 섹션에서 **메타데이터 XML**을 클릭한 후 컴퓨터에 메타데이터 파일을 저장합니다.
 
-    ![hello 인증서 다운로드 링크](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_certificate.png) 
+    ![인증서 다운로드 링크](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_certificate.png) 
 
 6. **저장** 단추를 클릭합니다.
 
     ![Single Sign-On 구성 저장 단추](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_general_400.png)
     
-7. tooconfigure single sign on에서 **정보 관리 – 정보 소매** toosend hello 다운로드 해야 쪽에서는 **메타 데이터 XML** 너무[정보 소매 – 정보 관리 지원 팀 ](mailto:innovate@infor.com). 이 설정은 toohave hello 양쪽 모두에 제대로 설정 하는 SAML SSO 연결 설정 합니다.
+7. **Infor Retail – Information Management** 쪽에서 Single Sign-On을 구성하려면 다운로드한 **메타데이터 XML**을 [Infor Retail – Information Management 지원 팀](mailto:innovate@infor.com)에 보내야 합니다. 이렇게 설정하면 SAML SSO 연결이 양쪽에서 제대로 설정됩니다.
 
 > [!TIP]
-> 이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!  Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션. 자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)
+> 이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.  **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다. 포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.
 
 ### <a name="create-an-azure-ad-test-user"></a>Azure AD 테스트 사용자 만들기
 
-이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.
+이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.
 
    ![Azure AD 테스트 사용자 만들기][100]
 
-**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**
+**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**
 
-1. Hello hello 왼쪽된 창에서 Azure 포털에서에서 클릭 hello **Azure Active Directory** 단추입니다.
+1. Azure Portal의 왼쪽 창에서 **Azure Active Directory** 단추를 클릭합니다.
 
-    ![hello Azure Active Directory 단추](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_01.png)
+    ![Azure Active Directory 단추](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_01.png)
 
-2. 사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹**, 클릭 하 고 **모든 사용자가**합니다.
+2. 사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭합니다.
 
-    !["사용자 및 그룹" hello 및 "모든 사용자" 링크](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_02.png)
+    !["사용자 및 그룹" 및 "모든 사용자" 링크](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_02.png)
 
-3. tooopen hello **사용자** 대화 상자를 클릭 **추가** hello hello 맨 **모든 사용자에 게** 대화 상자.
+3. **사용자** 대화 상자를 열려면 **모든 사용자** 대화 상자 위쪽에서 **추가**를 클릭합니다.
 
-    ![hello 추가 단추](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_03.png)
+    ![추가 단추](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_03.png)
 
-4. Hello에 **사용자** 대화 상자를 hello 다음 단계를 수행 합니다.
+4. **사용자** 대화 상자에서 다음 단계를 수행합니다.
 
-    ![hello 사용자 대화 상자](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_04.png)
+    ![사용자 대화 상자](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_04.png)
 
-    a. Hello에 **이름** 상자에서 입력 **BrittaSimon**합니다.
+    a. **이름** 상자에 **BrittaSimon**을 입력합니다.
 
-    b. Hello에 **사용자 이름** 상자의 사용자 Britta Simon의 hello 전자 메일 주소를 입력 합니다.
+    b. **사용자 이름** 상자에 사용자인 Britta Simon의 전자 메일 주소를 입력합니다.
 
-    c. 선택 hello **암호 표시** 확인란을 선택한 다음 hello에 표시 되는 hello 값 기록 **암호** 상자입니다.
+    c. **암호 표시** 확인란을 선택한 다음 **암호** 상자에 표시된 값을 적어둡니다.
 
     d. **만들기**를 클릭합니다.
  
 ### <a name="create-an-infor-retail--information-management-test-user"></a>Infor Retail – Information Management 테스트 사용자 만들기
 
-이 섹션에서는 Infor Retail – Information Management에서 Britta Simon이라는 사용자를 만듭니다. 와 협력 하세요 [정보 소매 – 정보 관리 지원 팀](mailto:innovate@infor.com) tooadd hello 사용자 hello 정보 소매 – 정보 관리 플랫폼에에서 있습니다.
+이 섹션에서는 Infor Retail – Information Management에서 Britta Simon이라는 사용자를 만듭니다. [Infor Retail – Information Management 지원 팀](mailto:innovate@infor.com)과 협의하여 Infor Retail – Information Management 플랫폼에 사용자를 추가하세요.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Azure AD hello 테스트 사용자를 할당 합니다.
+### <a name="assign-the-azure-ad-test-user"></a>Azure AD 테스트 사용자 할당
 
-이 섹션에서는 tooInfor 소매 – 정보 관리 액세스 권한을 부여 하 여 Azure에서 single sign-on Britta Simon toouse를 사용 합니다.
+이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 Infor Retail – Information Management에 대한 액세스 권한을 부여합니다.
 
-![Hello 사용자 역할 할당][200] 
+![사용자 역할 할당][200] 
 
-**tooassign Britta Simon tooInfor 소매 – 정보 관리 hello 다음 단계를 수행 합니다.**
+**Infor Retail – Information Management에 Britta Simon을 할당하려면 다음 단계를 수행합니다.**
 
-1. Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.
+1. Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.
 
     ![사용자 할당][201] 
 
-2. Hello 응용 프로그램 목록에서 선택 **정보 관리 – 정보 소매**합니다.
+2. 응용 프로그램 목록에서 **Infor Retail – Information Management**를 선택합니다.
 
-    ![hello 정보 소매 – hello 응용 프로그램 목록에서 연결 정보 관리](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_app.png)  
+    ![응용 프로그램 목록의 Infor Retail – Information Management 링크](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_app.png)  
 
-3. Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.
+3. 왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.
 
-    ![hello "사용자 및 그룹" 링크][202]
+    !["사용자 및 그룹" 링크][202]
 
 4. **추가** 단추를 클릭합니다. 그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.
 
-    ![hello 할당 추가 창][203]
+    ![할당 추가 창][203]
 
-5. **사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.
+5. **사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.
 
 6. **사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.
 
@@ -206,14 +206,14 @@ tooconfigure 및 정보 소매 – 정보 관리를 사용 하 여 Azure AD에�
     
 ### <a name="test-single-sign-on"></a>Single Sign-On 테스트
 
-이 섹션에서는 Azure AD single sign on 구성 hello 액세스 패널을 사용 하 여 테스트할 수 있습니다.
+이 섹션에서는 액세스 패널을 사용하여 Azure AD Single Sign-On 구성을 테스트합니다.
 
-Hello 정보 소매 – hello 액세스 패널에에서 정보 관리 타일을 클릭할 때 자동으로 로그온 tooyour 정보 소매 – 정보 관리 응용 프로그램을 구해야 합니다.
-액세스 패널에 대 한 자세한 내용은 참조 [액세스 패널 소개 toohello](active-directory-saas-access-panel-introduction.md)합니다. 
+액세스 패널에서 Infor Retail – Information Management 타일을 클릭하면 Infor Retail – Information Management 응용 프로그램에 자동으로 로그온되어야 합니다.
+액세스 패널에 대한 자세한 내용은 [액세스 패널 소개](active-directory-saas-access-panel-introduction.md)를 참조하세요. 
 
 ## <a name="additional-resources"></a>추가 리소스
 
-* [방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와](active-directory-saas-tutorial-list.md)
+* [Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록](active-directory-saas-tutorial-list.md)
 * [Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?](active-directory-appssoaccess-whatis.md)
 
 

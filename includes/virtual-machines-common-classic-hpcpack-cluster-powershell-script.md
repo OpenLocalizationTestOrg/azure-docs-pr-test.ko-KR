@@ -2,39 +2,39 @@
 
 
 
-환경 및 선택 사항에 따라 hello 스크립트 hello Azure 가상 네트워크, 저장소 계정, 클라우드 서비스, 도메인 컨트롤러, 원격 또는 로컬 SQL 데이터베이스, 헤드 노드 및 추가 클러스터를 포함 하 여 모든 hello 클러스터 인프라를 만들 수 있습니다. 노드입니다. 또는 hello 스크립트는 기존 Azure 인프라를 사용 하 고만 hello HPC 클러스터 노드를 만들 수 있습니다.
+사용자의 환경과 선택 사항에 따라 스크립트를 사용하여 Azure 가상 네트워크, 저장소 계정, 클라우드 서비스, 도메인 컨트롤러, 원격 또는 로컬 SQL 데이터베이스, 헤드 노드, 추가 클러스터 노드를 포함한 모든 클러스터 인프라를 만들 수 있습니다. 또는 스크립트에서 기존 Azure 인프라를 사용하여 HPC 클러스터 노드만 만들 수도 있습니다.
 
-HPC Pack 클러스터를 계획 하는 방법에 대 한 배경 정보를 참조 hello [제품 평가 및 계획](https://technet.microsoft.com/library/jj899596.aspx) 및 [시작](https://technet.microsoft.com/library/jj899590.aspx) hello HPC Pack 2012 R2 TechNet 라이브러리에서에서 콘텐츠입니다.
+HPC 팩 클러스터 계획에 대한 배경 정보는 HPC 팩 2012 R2 TechNet 라이브러리에서 [제품 평가 및 계획](https://technet.microsoft.com/library/jj899596.aspx)과 [시작하기](https://technet.microsoft.com/library/jj899590.aspx) 콘텐츠를 참조하세요.
 
 ## <a name="prerequisites"></a>필수 조건
-* **Azure 구독**: 어느 hello Azure Global 또는 Azure China 서비스에서에서 구독을 사용할 수 있습니다. 구독 제한과 hello 유형과 수, 클러스터 노드를 배포할 수에 영향을 줍니다. 자세한 내용은 [Azure 구독 및 서비스 제한, 할당량 및 제약 조건](../articles/azure-subscription-service-limits.md)을 참조하세요.
-* **Azure powershell 0.8.10 Windows 클라이언트 컴퓨터 또는 나중에 설치 및 구성**: 참조 [Azure PowerShell 시작](/powershell/azureps-cmdlets-docs) 설치 지침과 단계 tooconnect tooyour Azure 구독에 대 한 합니다.
-* **HPC Pack IaaS 배포 스크립트**: 다운로드 하 고 hello hello에서 hello 스크립트의 최신 버전을 푸는 [Microsoft 다운로드 센터](https://www.microsoft.com/download/details.aspx?id=44949)합니다. Hello 버전의 hello 스크립트를 실행 하 여 확인 `New-HPCIaaSCluster.ps1 –Version`합니다. 이 문서는 hello 스크립트의 버전 4.5.2 기반으로 합니다.
-* **스크립트 구성 파일**: hello 스크립트 tooconfigure hello HPC 클러스터를 사용 하는 XML 파일을 만듭니다. 내용 및 예제에 대 한이 문서의 뒷부분에 나오는 섹션을 참조 하 고 hello Manual.rtf hello 배포 스크립트를 함께 제공 되는 파일입니다.
+* **Azure 구독**: Azure Global 또는 Azure China 서비스의 구독을 사용할 수 있습니다. 구독 제한은 배포할 수 있는 클러스터 노드의 수와 유형에 영향을 줍니다. 자세한 내용은 [Azure 구독 및 서비스 제한, 할당량 및 제약 조건](../articles/azure-subscription-service-limits.md)을 참조하세요.
+* **Azure PowerShell 0.8.10 이상이 설치 및 구성된 Windows 클라이언트 컴퓨터**: Azure 구독에 연결하기 위한 설치 지침 및 단계는 [Azure PowerShell 시작](/powershell/azureps-cmdlets-docs)을 참조하세요.
+* **HPC 팩 IaaS 배포 스크립트**: [Microsoft 다운로드 센터](https://www.microsoft.com/download/details.aspx?id=44949)에서 최신 버전의 스크립트를 다운로드하고 압축을 풉니다. `New-HPCIaaSCluster.ps1 –Version`을 실행하여 스크립트 버전을 확인합니다. 이 문서는 버전 4.5.2의 스크립트를 기반으로 합니다.
+* **스크립트 구성 파일**: 스크립트가 HPC 클러스터를 구성하는 데 사용하는 XML 파일을 만듭니다. 정보 및 예제는 이 문서의 후반부에 나오는 단원 및 배포 스크립트와 함께 제공되는 Manual.rtf 파일을 참조하세요.
 
 ## <a name="syntax"></a>구문
 ```PowerShell
 New-HPCIaaSCluster.ps1 [-ConfigFile] <String> [-AdminUserName]<String> [[-AdminPassword] <String>] [[-HPCImageName] <String>] [[-LogFile] <String>] [-Force] [-NoCleanOnFailure] [-PSSessionSkipCACheck] [<CommonParameters>]
 ```
 > [!NOTE]
-> 관리자 권한으로 hello 스크립트를 실행 합니다.
+> 스크립트는 관리자 권한으로 실행합니다.
 > 
 > 
 
 ### <a name="parameters"></a>매개 변수
-* **ConfigFile**: hello 구성 파일 toodescribe hello HPC 클러스터의 hello 파일 경로 지정 합니다. Hello 구성 파일 hello hello 스크립트를 포함 하는 hello 폴더에 있는 Manual.rtf 파일 또는이 항목에 대 한 자세한 정보를 참조 하십시오.
-* **AdminUserName**: hello 사용자 이름을 지정 합니다. Hello 스크립트를 hello 도메인 포리스트를 만드는 경우이 모든 Vm에 대 한 hello 로컬 관리자 사용자 이름 및 도메인 관리자 이름을 hello 합니다. Hello 도메인 포리스트가 이미 있는 경우이 로컬 관리자 사용자 이름 tooinstall HPC 팩 hello 같이 hello 도메인 사용자를 지정 합니다.
-* **AdminPassword**: hello 관리자 암호를 지정 합니다. Hello 명령줄에 지정 되지 경우 hello 스크립트 tooinput hello 암호를 표시 됩니다.
-* **HPCImageName** (선택 사항): toodeploy hello HPC 클러스터를 사용 하는 hello HPC Pack VM 이미지 이름을 지정 합니다. Hello Azure Marketplace에서에서 HPC Pack을 Microsoft에서 제공한 이미지 여야 합니다. 경우 (권장된 일반적으로)을 지정된 하지 않은 hello hello 게시 된 최신 버전을 선택 하는 스크립트 [HPC Pack 2012 R2 이미지](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/)합니다. hello 최신 이미지 HPC Pack 2012 R2 업데이트 3이 설치 되어 있는 Windows Server 2012 R2 Datacenter를 기반으로 합니다.
+* **ConfigFile**: HPC 클러스터를 설명하는 구성 파일의 파일 경로를 지정합니다. 자세한 내용은 이 토픽의 구성 파일 또는 스크립트가 포함된 폴더의 Manual.rtf 파일을 참조하세요.
+* **AdminUserName**: 사용자 이름을 지정합니다. 스크립트로 도메인 포리스트를 만든 경우 모든 VM의 로컬 관리자 사용자 이름과 도메인 관리자 이름이 됩니다. 도메인 포리스트가 이미 있는 경우에는 로컬 관리자 이름으로 도메인 사용자를 지정하여 HPC 팩을 설치합니다.
+* **AdminPassword**: 관리자의 암호를 지정합니다. 명령줄에서 이 매개 변수를 지정하지 않은 경우 스크립트에서 암호를 입력하라는 메시지를 표시합니다.
+* **HPCImageName**(선택 사항): HPC 클러스터를 배포하는 데 사용하는 HPC 팩 VM 이미지 이름을 지정합니다. Microsoft에서 제공한 Azure 마켓플레이스의 HPC 팩 이미지여야 합니다. 이 매개 변수를 지정하지 않을 경우(일반적으로 지정하는 것이 좋음) 스크립트에서 최근 게시된 [HPC Pack 2012 R2 이미지](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/)를 선택합니다. 최신 이미지는 HPC Pack 2012 R2 업데이트 3이 설치된 Windows Server 2012 R2 Datacenter를 기준으로 합니다.
   
   > [!NOTE]
   > 유효한 HPC 팩 이미지를 지정하지 않으면 배포가 실패합니다.
   > 
   > 
-* **로그 파일** (선택 사항): hello 배포 로그 파일 경로 지정 합니다. 지정 하지 않으면 hello 스크립트 hello hello 스크립트를 실행 하는 hello 컴퓨터의 임시 디렉터리에 로그 파일을 만듭니다.
-* **Force** (선택 사항): 모든 hello 확인 프롬프트를 표시 하지 않습니다.
-* **NoCleanOnFailure** (선택 사항): 지정 해당 hello 올바르게 배포 되지 않는 Azure Vm은 제거 되지 않습니다. Hello 스크립트 toocontinue hello 배포를 다시 실행 하기 전에 이러한 Vm을 수동으로 제거 하거나 hello 배포가 실패할 수 있습니다.
-* **PSSessionSkipCACheck** (선택 사항):이 스크립트에 의해 배포 된 Vm이 포함 된 모든 클라우드 서비스에 대 한 자체 서명 된 인증서를 자동으로 Azure에서 생성와 기본 Windows hello hello 클라우드 서비스에 모든 hello Vm이이 인증서 사용 원격 관리 (WinRM) 인증서입니다. toodeploy 이러한 Azure Vm에서 HPC 기능을 기본적으로 스크립트 hello이 인증서를 임시로 설치 이러한 hello 로컬 컴퓨터에서에서\\hello 클라이언트 컴퓨터 toosuppress의 신뢰할 수 있는 루트 인증 기관 저장소 hello "신뢰할 수 없는 CA" 보안 스크립트를 실행 하는 동안 오류가 발생 했습니다. hello 스크립트가 완료 되 면 hello 인증서는 제거 됩니다. 이 매개 변수를 지정 하는 경우 hello 인증서 hello 클라이언트 컴퓨터에 설치 되지 않은 및 hello 보안 경고가 표시 되지 않습니다.
+* **LogFile**(선택 사항): 배포 로그 파일 경로를 지정합니다. 이 매개 변수를 지정하지 않을 경우 스크립트를 실행하는 컴퓨터의 temp 디렉터리에 로그 파일이 만들어집니다.
+* **Force**(선택 사항): 모든 확인 메시지를 표시하지 않습니다.
+* **NoCleanOnFailure**(선택 사항): 성공적으로 배포되지 않은 Azure VM을 제거하지 않도록 지정합니다. 배포를 계속하려면 스크립트를 다시 실행하기 전에 이러한 VM을 수동으로 제거합니다. 그렇지 않을 경우 배포가 실패합니다.
+* **PSSessionSkipCACheck**(선택 사항): 이 스크립트에서 배포한 VM을 사용하는 모든 클라우드 서비스에서는 Azure가 자체 서명된 인증서를 자동으로 생성하며 클라우드 서비스의 모든 VM은 이 인증서를 기본 WinRM(Windows 원격 관리) 인증서로 사용합니다. 스크립트는 이러한 Azure VM에 HPC 기능을 배포하기 위해 기본적으로 이러한 인증서를 로컬 컴퓨터\\클라이언트 컴퓨터의 신뢰할 수 있는 루트 인증 기관 저장소에 일시적으로 설치하여 스크립트 실행 중 "신뢰할 수 없는 CA" 보안 오류를 표시하지 않습니다. 스크립트가 완료되면 인증서가 제거됩니다. 이 매개 변수를 지정할 경우 인증서가 클라이언트 컴퓨터에 설치되지 않고 보안 경고가 표시되지 않습니다.
   
   > [!IMPORTANT]
   > 이 매개 변수는 프로덕션 배포에 권장되지 않습니다.
@@ -42,16 +42,16 @@ New-HPCIaaSCluster.ps1 [-ConfigFile] <String> [-AdminUserName]<String> [[-AdminP
   > 
 
 ### <a name="example"></a>예제
-hello 다음 예제에서는 구성 파일을 사용 하 여 HPC Pack 클러스터 *에서는 MyConfigFile.xml*, hello 클러스터 설치를 위한 관리자 자격 증명을 지정 합니다.
+다음 예제는 *MyConfigFile.xml*구성 파일을 사용하여 HPC 팩 클러스터를 만들며 클러스터 설치를 위한 관리자 자격 증명을 지정합니다.
 
 ```PowerShell
 .\New-HPCIaaSCluster.ps1 –ConfigFile MyConfigFile.xml -AdminUserName <username> –AdminPassword <password>
 ```
 
 ### <a name="additional-considerations"></a>추가 고려 사항
-* hello 스크립트 hello HPC Pack 웹 포털 또는 hello HPC Pack REST API를 통해 작업 제출을 선택적으로 사용할 수 있습니다.
-* 필요에 따라 hello 스크립트 tooinstall 추가 소프트웨어를 선택 하거나 다른 설정을 구성 하는 경우 hello 헤드 노드에서 사용자 지정 전 / 구성 후 스크립트를 실행할 수 있습니다.
+* 이 스크립트는 HPC 팩 웹 포털 또는 HPC 팩 REST API를 통한 작업 제출을 선택적으로 활성화할 수 있습니다.
+* 추가 소프트웨어를 설치하거나 다른 설정을 구성하려는 경우 이 스크립트로 헤드 노드에서 사용자 지정 사전/사후 구성 스크립트를 선택적으로 실행할 수 있습니다.
 
 ## <a name="configuration-file"></a>구성 파일
-hello 배포 스크립트에 대 한 hello 구성 파일은 XML 파일입니다. hello 스키마 파일이 HPCIaaSClusterConfig.xsd hello HPC Pack IaaS 배포 스크립트 폴더입니다. **IaaSClusterConfig** 는 hello hello 배포 스크립트 폴더에 있는 Manual.rtf 파일에 자세히 설명 하는 hello 자식 요소를 포함 하는 hello 구성 파일의 hello 루트 요소입니다.
+배포 스크립트의 구성 파일은 XML 파일입니다. 스키마 파일 HPCIaaSClusterConfig.xsd는 HPC 팩 IaaS 배포 스크립트 폴더에 있습니다. **IaaSClusterConfig** 는 배포 스크립트 폴더의 Manual.rtf 파일에 자세히 설명된 하위 요소가 포함된 구성 파일의 루트 요소입니다.
 

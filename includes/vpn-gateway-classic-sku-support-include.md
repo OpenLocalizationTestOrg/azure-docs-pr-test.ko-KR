@@ -1,2 +1,2 @@
 > [!NOTE]
-> hello 새로운 VPN 게이트웨이 Sku (VpnGw1, VpnGw2, 및 VpnGw3) hello 리소스 관리자 배포 모델에만 해당 지원 됩니다. 클래식 가상 네트워크를 계속 toouse hello 이전 Sku입니다. Hello 오래 된 게이트웨이 Sku에 대 한 자세한 내용은 참조 [가상 네트워크 게이트웨이 Sku (이전) 작업](../articles/vpn-gateway/vpn-gateway-about-skus-legacy.md)합니다.
+> 새 VPN Gateway SKU(VpnGw1, VpnGw2, 및 VpnGw3)는 리소스 관리자 배포 모델에 대해서만 지원됩니다. 클래식 가상 네트워크는 이전 SKU를 계속 사용합니다. 이전 게이트웨이 SKU에 대한 자세한 내용은 [가상 네트워크 게이트웨이 SKU(이전)로 작업](../articles/vpn-gateway/vpn-gateway-about-skus-legacy.md)을 참조합니다.

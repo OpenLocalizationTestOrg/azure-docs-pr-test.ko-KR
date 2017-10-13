@@ -1,6 +1,6 @@
 ---
-title: "aaaUsing 관리 되는 디스크와 Azure 가상 컴퓨터 크기 집합 | Microsoft Docs"
-description: "관리 되는 디스크를 가상 컴퓨터 크기 집합 toouse 근거, 방법에 대해 알아봅니다"
+title: "관리 디스크를 Azure 가상 컴퓨터 확장 집합과 함께 사용 | Microsoft Docs"
+description: "관리 디스크를 가상 컴퓨터 확장 집합과 함께 사용하는 이유 및 방법 알아보기"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gatneil
@@ -15,41 +15,41 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 6/01/2017
 ms.author: negat
-ms.openlocfilehash: 0e2a21e9f8b114ae1c8b81e1e6124621366f5643
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 338144eb103c68c7fff407cbeccce11734c1c34b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-vm-scale-sets-and-managed-disks"></a>Azure VM 확장 집합 및 관리 디스크
 
 Azure [가상 컴퓨터 확장 집합](/azure/virtual-machine-scale-sets/)에서는 관리 디스크가 있는 가상 컴퓨터를 지원합니다. 확장 집합이 있는 관리 디스크를 사용하면 다음과 같은 여러 가지 이점이 있습니다.
 
-* Toopre 더 이상 필요-만들고 hello 크기 집합 Vm에 대 한 저장소 계정을 toostore hello OS 디스크를 관리 합니다.
+* 확장 집합 VM에 대한 OS 디스크를 저장하기 위해 더 이상 저장소 계정을 미리 만들어서 관리할 필요가 없습니다.
 
-* 관리 되는 데이터 디스크 toohello 크기 집합을 연결할 수 있습니다.
+* 확장 집합에 관리 데이터 디스크를 연결할 수 있습니다.
 
-* 관리 디스크를 사용하면 확장 집합이 플랫폼 이미지 기반인 경우 VM 1,000대, 사용자 지정 이미지 기반인 경우 VM 100대의 용량을 확보할 수 있습니다.
+* 관리 디스크를 사용하면 확장 집합이 플랫폼 이미지 기반인 경우 VM 1,000대, 사용자 지정 이미지 기반인 경우 VM 300대의 용량을 확보할 수 있습니다.
 
 ## <a name="get-started"></a>시작
 
-간단한 방법을 관리 되는 디스크 크기 집합 시작 tooget는 hello Azure 포털에서에서 toodeploy 하나 있습니다. 자세한 내용은 [이 문서](./virtual-machine-scale-sets-portal-create.md)(영문)를 읽어보세요. 또 다른 간단한 방법은 tooget 시작은 toouse [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2) toodeploy 소수 자릿수를 설정 합니다. hello 다음 보여 주는 예제는 Ubuntu toocreate 된 50GB 및 100GB 데이터 디스크를 각각 10 개의 Vm 크기 집합을 따라 하는 방법:
+관리 디스크 확장 집합을 시작하는 간단한 방법은 Azure Portal에서 배포하는 것입니다. 자세한 내용은 [이 문서](./virtual-machine-scale-sets-portal-create.md)(영문)를 읽어보세요. 또 다른 간단한 방법은 [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2)을 사용하여 확장 집합을 배포하는 것입니다. 다음 예에서는 VM이 10대이고 각 VM에 50GB 및 100GB 데이터 디스크가 포함된 Ubuntu 기반 확장 집합을 만드는 방법을 보여줍니다.
 
 ```azurecli
 az group create -l southcentralus -n dsktest
 az vmss create -g dsktest -n dskvmss --image ubuntults --instance-count 10 --data-disk-sizes-gb 50 100
 ```
 
-Hello에 표시 될 수 있습니다 또는 [Azure 빠른 시작 템플릿 GitHub 리포지토리](https://github.com/Azure/azure-quickstart-templates) 포함 하는 폴더에 대 한 `vmss` toosee 미리 만들어진 크기 집합을 배포 하는 템플릿의 예입니다. 서식 파일에서 관리 하는 디스크를 이미 사용 중인 tootell를 참조할 수 있습니다 너무[이 목록](https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md)합니다.
+또는 `vmss`가 포함된 폴더에 대한 [Azure 빠른 시작 템플릿 GitHub 리포지토리](https://github.com/Azure/azure-quickstart-templates)에서 확장 집합을 배포하는 미리 작성된 템플릿 예제를 볼 수 있습니다. 이미 관리 디스크를 사용하는 템플릿을 알아보려면 [이 목록](https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md)을 참조하세요.
 
 ## <a name="next-steps"></a>다음 단계
 
 일반적인 관리 디스크에 대한 자세한 내용은 [이 문서](../virtual-machines/windows/managed-disks-overview.md)를 참조하세요.
 
-toosee tooconvert 사용 하 여 리소스 관리자 템플릿 tooprovision 눈금 집합에 디스크를 관리 하는 방법은 참조 [이 여기서](./virtual-machine-scale-sets-convert-template-to-md.md)합니다. hello 동일한 수정 toohello 리소스 관리자 템플릿 적용 toohello Azure REST API도 합니다.
+Resource Manager 템플릿을 변환하여 확장 집합에 관리 디스크를 프로비전하는 방법은 [이 문서](./virtual-machine-scale-sets-convert-template-to-md.md)를 참조하세요. Resource Manager 템플릿의 수정 사항은 Azure REST API에도 똑같이 적용됩니다.
 
-관리 되는 데이터 디스크를 사용 하 여 눈금 집합에 대해 자세히 toolearn 참조 [이 여기서](./virtual-machine-scale-sets-attached-disks.md)합니다.
+관리 디스크를 확장 집합과 함께 사용하는 자세한 방법은 [이 문서](./virtual-machine-scale-sets-attached-disks.md)를 참조하세요.
 
-규모가 큰 집합으로 작업할 toobegin 너무 참조[이 여기서](./virtual-machine-scale-sets-placement-groups.md)합니다.
+대규모 확장 집합을 시작하려면 [이 문서](./virtual-machine-scale-sets-placement-groups.md)를 참조하세요.
 
 

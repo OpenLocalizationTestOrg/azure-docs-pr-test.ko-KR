@@ -1,6 +1,6 @@
 ---
-title: "OMS의 관리 솔루션 aaaBuild | Microsoft Docs"
-description: "패키지에 포함 된 관리 시나리오를 제공 하 여 hello 기능 Operations Management Suite (OMS)을 확장 하는 관리 솔루션을 고객 tootheir OMS 작업 영역을 추가할 수 있습니다.  이 문서에서는 관리 솔루션 toobe를 만드는 방법에 대 한 내용은 사용자가 자신의 환경에서 사용 또는 사용 가능한 tooyour 고객을 제공 합니다."
+title: "OMS에서 관리 솔루션 만들기 | Microsoft Docs"
+description: "관리 솔루션은 고객이 OMS 작업 영역에 추가할 수 있는 패키지 관리 시나리오를 제공하여 OMS(Operations Management Suite)의 기능을 확장합니다.  이 문서에서는 자체 환경에 사용할 관리 솔루션 또는 고객에게 제공할 관리 솔루션을 만드는 방법에 대해 자세히 설명합니다."
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -15,72 +15,72 @@ ms.workload: infrastructure-services
 ms.date: 03/20/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: dea4c0d9e608d9fe4aa41088705958c9fe999372
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6ea959f1e95ea46c07eec3afa9d46bfeb72ca3e4
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="design-and-build-a-management-solution-in-operations-management-suite-oms-preview"></a>OMS(Operations Management Suite)에서 관리 솔루션 설계 및 만들기(미리 보기)
 > [!NOTE]
-> 현재 Preview로 제공되는 OMS의 사용자 지정 솔루션 만들기에 대한 예비 설명서입니다. 아래에 설명 된 모든 스키마 주체 toochange입니다.
+> 현재 Preview로 제공되는 OMS의 사용자 지정 솔루션 만들기에 대한 예비 설명서입니다. 아래 설명된 스키마는 변경될 수 있습니다.
 
-[관리 솔루션](operations-management-suite-solutions.md) 패키지에 포함 된 관리 시나리오를 제공 하 여 hello 기능 Operations Management Suite (OMS)의 확장 고객 tootheir OMS 작업 영역을 추가할 수 있습니다.  이 문서는 것이 기본적인 프로세스 toodesign 수를 표시 하 고 적합 한 가장 일반적인 요구 사항에 대 한 관리 솔루션을 빌드합니다.  새 toobuilding 관리 솔루션의 경우 시작 지점으로이 프로세스를 사용 하 여 고 요구 사항을 발전 더 복잡 한 솔루션에 대 한 hello 개념을 활용할 수 있습니다.
+[관리 솔루션](operations-management-suite-solutions.md)은 고객이 OMS 작업 영역에 추가할 수 있는 패키지 관리 시나리오를 제공하여 OMS(Operations Management Suite)의 기능을 확장합니다.  이 문서에서는 가장 일반적인 요구 사항에 적합한 관리 솔루션을 설계하고 만들기 위한 기본 프로세스를 제공합니다.  관리 솔루션을 처음 만드는 경우 이 프로세스를 시작 지점으로 사용한 다음, 요구 사항이 진화함에 따라 더 복잡한 솔루션에 대한 개념을 활용할 수 있습니다.
 
 ## <a name="what-is-a-management-solution"></a>관리 솔루션이란?
 
-OMS 및 특정 모니터링 시나리오 tooachieve 함께 작동 하는 Azure 리소스를 포함 하는 관리 솔루션입니다.  로 구현 될 [리소스 관리 템플릿](../azure-resource-manager/resource-manager-template-walkthrough.md) 방법에 대 한 세부 정보를 포함 하는 tooinstall hello 솔루션을 설치할 때 포함 된 리소스를 구성 합니다.
+관리 솔루션에는 특정 모니터링 시나리오를 달성하기 위해 함께 작동하는 OMS 및 Azure 리소스가 포함되어 있습니다.  이 솔루션은 설치할 때 포함된 리소스를 설치하고 구성하는 방법에 대한 세부 정보가 포함된 [리소스 관리 템플릿](../azure-resource-manager/resource-manager-template-walkthrough.md)으로 구현됩니다.
 
-기본 전략 hello hello Azure 환경에서 개별 구성 요소를 작성 하 여 toostart 관리 솔루션은 합니다.  제대로 작동 하는 hello 기능을 사용할 수 있게 되 면 시작할 수 있습니다에 패키징하는 [관리 솔루션 파일](operations-management-suite-solutions-solution-file.md)합니다. 
+기본 전략은 Azure 환경에서 개별 구성 요소를 작성하여 관리 솔루션을 시작하는 것입니다.  기능이 제대로 작동하면 [관리 솔루션 파일](operations-management-suite-solutions-solution-file.md)에 패키징할 수 있습니다. 
 
 
 ## <a name="design-your-solution"></a>솔루션 디자인
-관리 솔루션에 대 한 가장 일반적인 패턴 hello hello 다음 다이어그램에에서 표시 됩니다.  이 패턴의 hello 다른 구성 요소는 hello 아래에 설명 되어 있습니다.
+관리 솔루션에 대한 가장 일반적인 패턴은 다음 다이어그램에서 보여 줍니다.  이 패턴의 다른 구성 요소에 대해서는 아래에서 설명합니다.
 
 ![OMS 솔루션 개요](media/operations-management-suite-solutions/solution-overview.png)
 
 
 ### <a name="data-sources"></a>데이터 원본
-솔루션을 디자인 hello 첫 번째 단계는 hello 로그 분석 저장소에서 필요로 하는 hello 데이터를 결정 합니다.  이 데이터를 수집할 수 있습니다는 [데이터 소스](../log-analytics/log-analytics-data-sources.md) 또는 [다른 솔루션](operations-management-suite-solutions.md), 솔루션 tooprovide hello 프로세스 toocollect 할 수 또는 것입니다.
+솔루션 설계의 첫 번째 단계는 Log Analytics 리포지토리에서 필요한 데이터를 결정하는 것입니다.  이 데이터는 [데이터 원본](../log-analytics/log-analytics-data-sources.md) 또는 [다른 솔루션](operations-management-suite-solutions.md)에서 수집할 수 있거나, 솔루션에서 수집할 수 있는 프로세스를 제공해야 할 수도 있습니다.
 
-다양 한 방법으로 데이터 원본에 설명 된 대로 hello 로그 분석 저장소에서 수집할 수 있는 없는 [로그 분석에서 데이터 원본을](../log-analytics/log-analytics-data-sources.md)합니다.  이 hello Windows 이벤트 로그에서에서 이벤트를 포함 하거나 의해 생성 된 Syslog 또한 tooperformance 카운터는 Windows 및 Linux 클라이언트에 대 한 합니다.  또한 Azure Monitor에서 수집한 Azure 리소스에서도 데이터를 수집할 수 있습니다.  
+[Log Analytics의 데이터 원본](../log-analytics/log-analytics-data-sources.md)에서 설명한 대로 데이터 원본은 Log Analytics 리포지토리에서 다양한 방법으로 수집할 수 있습니다.  여기에는 Windows 및 Linux 클라이언트의 성능 카운터 외에도 Windows 이벤트 로그의 이벤트 또는 Syslog로 생성된 이벤트가 포함됩니다.  또한 Azure Monitor에서 수집한 Azure 리소스에서도 데이터를 수집할 수 있습니다.  
 
-Hello 사용 가능한 데이터 원본 중 하나를 통해 액세스할 수 없는 데이터가 필요한 경우 hello를 사용할 수 있습니다 [HTTP 데이터 수집기 API](../log-analytics/log-analytics-data-collector-api.md) toowrite 데이터 toohello 로그 분석 저장소는 REST를 호출할 수 있는 모든 클라이언트에서 수 있는 API입니다.  hello 가장 일반적인 방법은 관리 솔루션에 사용자 지정 데이터 컬렉션은 toocreate는 [Azure 자동화에서 runbook](../automation/automation-runbook-types.md) Azure 또는 외부 리소스에서 필요한 hello 데이터를 수집 하 고 사용 하 여 데이터 수집기 API toowrite hello toohello 리포지토리입니다.  
+사용 가능한 데이터 원본 중 하나를 통해 액세스할 수 없는 데이터가 필요한 경우, REST API를 호출할 수 있는 모든 클라이언트에서 Log Analytics 리포지토리에 데이터를 쓸 수 있는 [HTTP 데이터 수집기 API](../log-analytics/log-analytics-data-collector-api.md)를 사용할 수 있습니다 .  관리 솔루션의 가장 일반적인 사용자 지정 데이터 수집 방법은 Azure 또는 외부 리소스에서 필요한 데이터를 수집하고 데이터 수집기 API를 사용하여 리포지토리에 쓰는 [Azure Automation Runbook](../automation/automation-runbook-types.md)을 만드는 것입니다.  
 
 ### <a name="log-searches"></a>로그 검색
-[로그 검색](../log-analytics/log-analytics-log-searches.md) 사용 되는 tooextract 되며 hello 로그 분석 저장소에서 데이터를 분석 합니다.  보기 및 분석 중에 추가 tooallowing hello 사용자 tooperform 임시 hello 저장소에서 데이터의 경고에서 사용 됩니다.  
+[로그 검색](../log-analytics/log-analytics-log-searches.md)은 Log Analytics 리포지토리에서 데이터를 추출하고 분석하는 데 사용됩니다.  사용자가 리포지토리에서 데이터의 임시 분석을 수행할 수 있는 것 외에도 보기 및 경고에서 사용합니다.  
 
-모든 뷰나 경고에서 사용 되지 않습니다 하는 경우에 도움이 toohello 사용자 수를 생각 하는 쿼리를 정의 해야 합니다.  이러한을 사용할 수 있는 toothem 저장 된 검색으로 hello 포털에서 되며에 포함할 수도 있습니다는 [쿼리 목록 시각화 부분](../log-analytics/log-analytics-view-designer-parts.md#list-of-queries-part) 사용자 지정 보기에 있습니다.
+모든 보기 또는 경고에서 사용하지 않더라도 사용자에게 도움이 되는 것으로 판단되는 쿼리를 정의해야 합니다.  이러한 쿼리는 포털에서 저장된 검색으로 사용할 수 있으며, 사용자 지정 보기의 [쿼리 목록 시각화 요소](../log-analytics/log-analytics-view-designer-parts.md#list-of-queries-part)에도 포함할 수 있습니다.
 
 ### <a name="alerts"></a>경고
-[로그 분석에서 경고](../log-analytics/log-analytics-alerts.md) 를 통해 문제를 식별 [검색 로그](#log-searches) hello 리포지토리에 hello 데이터에 대 한 합니다.  Hello 사용자에 게 알리는 또는 자동으로 응답 작업을 실행 합니다. 응용 프로그램에 대한 다양한 경고 조건을 식별하고, 해당 경고 규칙을 솔루션 파일에 포함해야 합니다.
+[Log Analytics의 경고](../log-analytics/log-analytics-alerts.md)는 리포지토리의 데이터에 대한 [로그 검색](#log-searches)을 통해 로그를 통해 문제를 식별합니다.  사용자에게 알리거나 응답에서 작업을 자동으로 실행합니다. 응용 프로그램에 대한 다양한 경고 조건을 식별하고, 해당 경고 규칙을 솔루션 파일에 포함해야 합니다.
 
-잠재적으로 프로세스를 자동화 hello 문제를 수정할 수, 하는 경우 다음 일반적으로 만들게 runbook tooperform Azure 자동화에서에서이 재구성 됩니다.  대부분의 Azure 서비스를 관리할 수 [cmdlet](/powershell/azure/overview) 는 hello runbook tooperform 이러한 기능을 활용 합니다.
+잠재적으로 자동화된 프로세스로 문제를 해결할 수 있는 경우 일반적으로 Azure Automation에서 Runbook을 만들어 이 수정 작업을 수행합니다.  대부분의 Azure 서비스는 Runbook에서 이러한 기능을 수행하는 데 활용하는 [cmdlet](/powershell/azure/overview)으로 관리될 수 있습니다.
 
-솔루션 응답 tooan 경고의 외부 기능이 필요한 경우 사용할 수 있습니다는 [webhook 응답](../log-analytics/log-analytics-alerts-actions.md)합니다.  이렇게 하면 있습니다 toocall hello 경고에서 정보를 보내는 외부 웹 서비스.
+경고에 대한 응답으로 외부 기능이 솔루션에 필요한 경우 [웹후크 응답](../log-analytics/log-analytics-alerts-actions.md)을 사용할 수 있습니다.  이렇게 하면 경고에서 정보를 보내는 외부 웹 서비스를 호출할 수 있습니다.
 
 ### <a name="views"></a>뷰
-로그 분석에는 뷰는 hello 로그 분석 저장소에서 사용 되는 toovisualize 데이터입니다.  각 솔루션에는 단일 뷰를 일반적으로 포함 합니다는 [타일](../log-analytics/log-analytics-view-designer-tiles.md) hello 사용자의 주 대시보드에 표시 되는 합니다.  hello 보기에는 개수에 관계 없이 포함 될 수 있습니다 [시각화 부분](../log-analytics/log-analytics-view-designer-parts.md) tooprovide hello 수집 된 데이터 toohello 사용자의 각기 다른 시각화 합니다.
+Log Analytics의 보기는 Log Analytics 리포지토리의 데이터를 시각화하는 데 사용됩니다.  각 솔루션에는 일반적으로 사용자의 주 대시보드에 표시되는 [타일](../log-analytics/log-analytics-view-designer-tiles.md)이 있는 단일 보기가 포함됩니다.  보기에는 사용자에게 수집된 데이터의 다양한 시각화를 제공하기 위해 많은 [시각화 요소](../log-analytics/log-analytics-view-designer-parts.md)가 포함될 수 있습니다.
 
-하면 [hello 뷰 디자이너를 사용 하 여 사용자 지정 뷰 만들기](../log-analytics/log-analytics-view-designer.md) 있는 솔루션 파일에 포함 하기 위해 나중에 내보낼 수 있습니다.  
+[뷰 디자이너를 사용하여 사용자 지정 보기를 만들면](../log-analytics/log-analytics-view-designer.md) 나중에 솔루션 파일에 포함하여 내보낼 수 있습니다.  
 
 
 ## <a name="create-solution-file"></a>솔루션 파일 만들기
-구성 하 고 솔루션의 일부가 될 hello 구성 요소를 테스트 한, 후 [솔루션 파일을 만들](operations-management-suite-solutions-solution-file.md)합니다.  Hello 솔루션 구성 요소에서 구현 됩니다는 [리소스 관리자 템플릿](../azure-resource-manager/resource-group-authoring-templates.md) 포함 하는 [솔루션 리소스](operations-management-suite-solutions-solution-file.md#solution-resource) 관계 toohello와 기타 리소스를 hello 파일입니다.  
+솔루션에 포함될 구성 요소를 구성하고 테스트하면 [솔루션 파일을 만들 수 있습니다](operations-management-suite-solutions-solution-file.md).  파일의 다른 리소스와 관계가 있는 [솔루션 리소스](operations-management-suite-solutions-solution-file.md#solution-resource)를 포함하는 [Resource Manager 템플릿](../azure-resource-manager/resource-group-authoring-templates.md)에 솔루션 구성 요소를 구현합니다.  
 
 
 ## <a name="test-your-solution"></a>솔루션 테스트
-솔루션을 개발 하는 동안 tooinstall 필요 하 고 작업 영역에 테스트 합니다.  이렇게 하려면 너무 hello 사용할 수 있는 방법 중 하나로[테스트 하 고 리소스 관리자 템플릿을 설치](../azure-resource-manager/resource-group-template-deploy.md)합니다.
+솔루션을 개발하는 동안 작업 영역에서 솔루션을 설치하고 테스트해야 합니다.  [Resource Manager 템플릿을 테스트하고 설치](../azure-resource-manager/resource-group-template-deploy.md)하는 데 사용할 수 있는 방법 중 하나를 사용하여 이 작업을 수행할 수 있습니다.
 
 ## <a name="publish-your-solution"></a>솔루션 게시
-완료 하 고 솔루션을 테스트 후 원본 hello 중 하나를 통해 사용할 수 있는 toocustomers를 만들 수 있습니다.
+솔루션을 완료하고 테스트한 후에는 다음 원본을 통해 고객이 솔루션을 사용할 수 있도록 할 수 있습니다.
 
-- **Azure 퀵 스타트 템플릿** -  [Azure 빠른 시작 템플릿](https://azure.microsoft.com/resources/templates/) GitHub 통해 hello 커뮤니티에서 제공 하는 리소스 관리자 템플릿 집합입니다.  사용할 수 있습니다 솔루션 hello에 다음 정보에 의해 [기여 가이드](https://github.com/Azure/azure-quickstart-templates/tree/master/1-CONTRIBUTION-GUIDE)합니다.
-- **Azure Marketplace** -  hello [Azure 마켓플레이스](https://azuremarketplace.microsoft.com/marketplace/) toodistribute 있으며 판매 솔루션 Isv tooother 개발자와 IT 전문가입니다.  학습할 수 있는 방법을 toopublish 사용자 솔루션 tooAzure Marketplace에서 [어떻게 toopublish hello Azure Marketplace에서에서 제공 하는 서비스를 관리 하 고](../marketplace-publishing/marketplace-publishing-getting-started.md)합니다.
+- **Azure 퀵 스타트 템플릿** -  [Azure 퀵 스타트 템플릿](https://azure.microsoft.com/resources/templates/)은 GitHub를 통해 커뮤니티에서 제공한 Resource Manager 템플릿 집합입니다.  [참여 가이드](https://github.com/Azure/azure-quickstart-templates/tree/master/1-CONTRIBUTION-GUIDE)(영문)의 정보에 따라 솔루션을 사용할 수 있게 만들 수 있습니다.
+- **Azure Marketplace** -  [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/)를 사용하면 다른 개발자, ISV 및 IT 전문가에게 솔루션을 배포하고 판매할 수 있습니다.  [Azure Marketplace에 제품을 게시하고 관리하는 방법](../marketplace-publishing/marketplace-publishing-getting-started.md)에서 솔루션을 Azure Marketplace에 게시하는 방법에 대해 자세히 알아볼 수 있습니다.
 
 
 
 ## <a name="next-steps"></a>다음 단계
-* 너무 방법에 대해 알아봅니다[솔루션 파일을 만들](operations-management-suite-solutions-solution-file.md) 관리 솔루션에 대 한 합니다.
-* 세부 사항을 hello [제작 Azure 리소스 관리자 템플릿을](../azure-resource-manager/resource-group-authoring-templates.md)합니다.
+* 관리 솔루션의 [솔루션 파일을 만드는 방법](operations-management-suite-solutions-solution-file.md)에 대해 알아봅니다.
+* [Azure Resource Manager 템플릿 작성](../azure-resource-manager/resource-group-authoring-templates.md)에 대해 자세히 알아봅니다.
 * [Azure 빠른 시작 템플릿](https://azure.microsoft.com/documentation/templates)에서 다양한 Resource Manager 템플릿 샘플을 검색합니다.

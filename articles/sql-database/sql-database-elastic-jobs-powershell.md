@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate 탄력적 작업 PowerShell을 사용 하 고 관리 | Microsoft Docs"
-description: "PowerShell은 toomanage Azure SQL 데이터베이스 풀 사용"
+title: "PowerShell을 사용하여 탄력적 작업 만들기 및 관리 | Microsoft Docs"
+description: "Azure SQL 데이터베이스 풀을 관리하는데 사용되는 PowerShell"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: f6c18aecfa7e8c0b102a3b7cd2f266f5542ae400
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b4c97e8f51581f9a3f7c5a8d8e82562255fe7b48
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-and-manage-sql-database-elastic-jobs-using-powershell-preview"></a>PowerShell을 사용하여 SQL Database 탄력적 작업 만들기 및 관리(미리 보기)
 
-hello PowerShell Api에 대 한 **탄력적 데이터베이스 작업** (미리 보기)에서 스크립트 실행 될 데이터베이스 그룹을 정의할 수 있습니다. 이 문서에서는 어떻게 toocreate 및 관리 **탄력적 데이터베이스 작업** PowerShell cmdlet을 사용 합니다. [탄력적 작업 개요](sql-database-elastic-jobs-overview.md)를 참조하세요. 
+**탄력적 데이터베이스 작업** (미리 보기)에 PowerShell API를 사용하면 스크립트를 실행할 데이터베이스 그룹을 정의할 수 있습니다. 이 문서는 PowerShell cmdlet을 사용하여 **탄력적 데이터베이스 작업** 을 만들고 관리하는 방법을 보여줍니다. [탄력적 작업 개요](sql-database-elastic-jobs-overview.md)를 참조하세요. 
 
 ## <a name="prerequisites"></a>필수 조건
 * Azure 구독. 무료 평가판에 대한 내용은 [무료 1개월 평가판](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요.
-* 집합 hello 탄력적 데이터베이스 도구를 사용 하 여 만든 데이터베이스입니다. [탄력적 데이터베이스 도구 시작하기](sql-database-elastic-scale-get-started.md)를 참조하세요.
-* Azure PowerShell. 자세한 내용은 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](https://docs.microsoft.com/powershell/azure/overview)합니다.
+* 탄력적 데이터베이스 도구로 만든 데이터 집합. [탄력적 데이터베이스 도구 시작하기](sql-database-elastic-scale-get-started.md)를 참조하세요.
+* Azure PowerShell. 자세한 내용은 [Azure PowerShell을 설치 및 구성하는 방법](https://docs.microsoft.com/powershell/azure/overview)을 참조하세요.
 * **탄력적 데이터베이스 작업** PowerShell 패키지: [Installing 탄력적 데이터베이스 작업](sql-database-elastic-jobs-service-installation.md)
 
 ### <a name="select-your-azure-subscription"></a>Azure 구독 선택
-구독 Id를 필요한 tooselect hello 구독 (**-SubscriptionId**) 또는 구독 이름 (**-SubscriptionName**). 여러 구독이 있는 경우에 hello을 실행할 수 있습니다 **Get AzureRmSubscription** cmdlet 및 복사 hello hello 결과 집합에서 구독 정보를 원하는 합니다. 구독 정보를 사용 하는 후 hello 기본값으로 commandlet tooset 다음 hello이이 구독을 실행, 즉 대상 만들기 및 작업 관리에 대 한 hello:
+구독을 선택하려면 구독 ID**-SubscriptionId** 또는 구독 이름(**-SubscriptionName**이 필요합니다. 구독이 여러 개일 경우 **Get-AzureRmSubscription** cmdlet을 실행하고 결과 집합에서 원하는 구독 정보를 복사할 수 있습니다. 구독 정보가 준비되면 다음 commandlet을 실행하여 이 구독을 기본값, 즉 작업을 만들고 관리하기 위한 대상으로 설정합니다.
 
     Select-AzureRmSubscription -SubscriptionId {SubscriptionID}
 
-hello [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) hello 탄력적 데이터베이스 작업에 대 한 PowerShell 스크립트를 실행 하 고 사용 현황 toodevelop에 대 한 권장 합니다.
+[PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) 를 사용하여 탄력적 데이터베이스 작업에 대한 PowerShell 스크립트를 개발 및 실행하는 것이 좋습니다.
 
 ## <a name="elastic-database-jobs-objects"></a>탄력적 데이터베이스 작업 개체
-다음 표에 모든 hello 개체 형식을 hello **탄력적 데이터베이스 작업** 해당 설명 및 관련 PowerShell Api와 함께 합니다.
+다음 표에서는 **탄력적 데이터베이스 작업** 의 모든 개체 유형과 해당 설명 및 관련된 PowerShell API를 보여줍니다.
 
 <table style="width:100%">
   <tr>
@@ -48,14 +48,14 @@ hello [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) hell
   </tr>
   <tr>
     <td>자격 증명</td>
-    <td>Dacpac의 응용 프로그램 또는 스크립트의 실행에 대 한 toodatabases 연결할 때의 사용자 이름 및 암호 toouse 합니다. <p>hello 암호 tooand hello 탄력적 데이터베이스 작업을 데이터베이스에 저장을 보내기 전에 암호화 됩니다.  hello 암호 hello 만들어지고 hello 설치 스크립트에서 업로드 한 hello 자격 증명을 통해 탄력적 데이터베이스 작업 서비스에서 암호가 해독 됩니다.</td>
+    <td>PACPAC 응용 프로그램 또는 스크립트 실행을 위해 데이터베이스에 연결할 때 사용할 사용자 이름 및 암호입니다. <p>탄력적 데이터베이스 작업 데이터베이스로 보내고 저장하기 전에 암호가 암호화됩니다.  설치 스크립트에서 생성 및 업로드된 자격 증명을 통해 탄력적 데이터베이스 작업 서비스에서 암호를 해독합니다.</td>
     <td><p>Get-AzureSqlJobCredential</p>
     <p>New-AzureSqlJobCredential</p><p>Set-AzureSqlJobCredential</p></td></td>
   </tr>
 
   <tr>
     <td>스크립트</td>
-    <td>Transact SQL 스크립트 toobe 데이터베이스에 걸쳐 실행에 사용 합니다.  hello 스크립트는 hello 서비스는 실패 시 hello 스크립트의 실행을 다시 시도 하므로 작성된 toobe idempotent 이어야 합니다.
+    <td>데이터베이스에서 실행하는 데 사용할 TRANSACT-SQL 스크립트입니다.  실패 시 서비스에서 스크립트 실행을 다시 시도하므로 스크립트를 idempotent로 작성해야 합니다.
     </td>
     <td>
     <p>Get-AzureSqlJobContent</p>
@@ -67,7 +67,7 @@ hello [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) hell
 
   <tr>
     <td>DACPAC</td>
-    <td><a href="https://msdn.microsoft.com/library/ee210546.aspx">데이터 계층 응용 프로그램 </a> 패키지 toobe 데이터베이스에 적용 합니다.
+    <td>데이터베이스에서 적용할 <a href="https://msdn.microsoft.com/library/ee210546.aspx">데이터 계층 응용 프로그램</a> 패키지입니다.
 
     </td>
     <td>
@@ -78,7 +78,7 @@ hello [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) hell
   </tr>
   <tr>
     <td>데이터베이스 대상</td>
-    <td>데이터베이스 및 서버 포인팅 tooan Azure SQL 데이터베이스 이름을 지정 합니다.
+    <td>Azure SQL 데이터베이스를 가리키는 데이터베이스 및 서버 이름입니다.
 
     </td>
     <td>
@@ -88,7 +88,7 @@ hello [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) hell
   </tr>
   <tr>
     <td>분할된 데이터베이스 맵 대상</td>
-    <td>데이터베이스 대상과 자격 증명 toobe의 조합이 탄력적 데이터베이스 분할 맵을에 저장 된 toodetermine 정보를 사용 합니다.
+    <td>탄력적 데이터베이스 분할된 데이터베이스 맵 내에 저장된 정보를 확인하는 데 사용할 자격 증명 및 데이터베이스 대상의 조합입니다.
     </td>
     <td>
     <p>Get-AzureSqlJobTarget</p>
@@ -98,7 +98,7 @@ hello [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) hell
   </tr>
 <tr>
     <td>사용자 지정 컬렉션 대상</td>
-    <td>정의 된 그룹의 데이터베이스 toocollectively 실행에 사용 합니다.</td>
+    <td>전체적으로 실행하는 데 사용할 정의된 데이터베이스 그룹입니다.</td>
     <td>
     <p>Get-AzureSqlJobTarget</p>
     <p>New-AzureSqlJobTarget</p>
@@ -116,7 +116,7 @@ hello [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) hell
 <tr>
     <td>작업</td>
     <td>
-    <p>사용 되는 tootrigger 실행 또는 toofulfill 일정을 지정할 수 있는 작업에 대 한 매개 변수 정의입니다.</p>
+    <p>실행을 트리거하거나 일정을 이행하는 데 사용할 수 있는 작업에 대한 매개 변수 정의입니다.</p>
     </td>
     <td>
     <p>Get-AzureSqlJob</p>
@@ -128,7 +128,7 @@ hello [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) hell
 <tr>
     <td>작업 실행</td>
     <td>
-    <p>스크립트를 실행 하거나 실패 하 여 데이터베이스 연결에 대 한 자격 증명을 사용 하 여 DACPAC tooa 대상 적용 필요한 toofulfill 작업의 컨테이너에 따라 tooan 실행 정책에서 처리 합니다.</p>
+    <p>실행 정책에 따라 오류를 처리하고 데이터베이스 연결에 자격 증명을 사용하여 스크립트 실행 또는 대상에 DACPAC 적용을 이행하는 데 필요한 작업의 컨테이너입니다.</p>
     </td>
     <td>
     <p>Get-AzureSqlJobExecution</p>
@@ -140,8 +140,8 @@ hello [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) hell
 <tr>
     <td>작업 태스크 실행</td>
     <td>
-    <p>작업 toofulfill 작업의 단일 단위입니다.</p>
-    <p>작업 태스크 toosuccessfully 수 없는 경우 실행, hello 결과 예외 메시지가 기록 되 고 새 일치 하는 작업 작업을 만들고 지정에 따라 toohello에서 실행 정책을 실행 합니다.</p></p>
+    <p>작업을 이행하는 단일 작업 단위입니다.</p>
+    <p>작업 태스크를 성공적으로 실행할 수 없는 경우 결과 예외 메시지가 기록되고 지정된 실행 정책에 따라 일치하는 새 작업 태스크가 생성 및 실행됩니다.</p></p>
     </td>
     <td>
     <p>Get-AzureSqlJobExecution</p>
@@ -166,7 +166,7 @@ hello [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) hell
 <tr>
     <td>일정</td>
     <td>
-    <p>시간 간격을 되풀이 해야 하거나 한 번에 실행 tootake 위치에 대 한 사양을 기반합니다.</p>
+    <p>되풀이 간격 또는 한 번 수행할 실행에 대한 시간 기반 지정입니다.</p>
     </td>
     <td>
     <p>Get-AzureSqlJobSchedule</p>
@@ -178,7 +178,7 @@ hello [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) hell
 <tr>
     <td>작업 트리거</td>
     <td>
-    <p>작업과 일정 tootrigger 작업 실행과 toohello 일정에 따라 간의 매핑.</p>
+    <p>일정에 따라 작업 실행을 트리거할 작업과 일정 간의 매핑입니다.</p>
     </td>
     <td>
     <p>New-AzureSqlJobTrigger</p>
@@ -188,50 +188,50 @@ hello [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) hell
 </table>
 
 ## <a name="supported-elastic-database-jobs-group-types"></a>지원되는 탄력적 데이터베이스 작업 그룹 유형
-hello 작업 그룹 데이터베이스에 대 한 TRANSACT-SQL (T-SQL) 스크립트 또는 Dacpac의 응용 프로그램을 실행합니다. 작업이 제출 된 toobe에서 실행 되 면 데이터베이스의 hello 작업 "확장" hello hello을 수행 각 자식 작업으로 그룹 hello 그룹에서 단일 데이터베이스에 대해 실행을 요청 했습니다. 
+이 작업은 데이터베이스 그룹에 대해 DACPAC 응용 프로그램 또는 Transact-SQL(T-SQL) 스크립트를 실행합니다. 데이터베이스 그룹에 대해 실행할 작업이 제출되면 작업은 자식 작업으로 "확장"되며 여기에서 각 자식 작업은 그룹의 단일 데이터베이스에 대해 요청된 실행을 수행합니다. 
 
 두 가지 형식의 그룹을 만들 수 있습니다. 
 
-* [분할 맵은](sql-database-elastic-scale-shard-map-management.md) 그룹: 작업 제출 된 tootarget 분할 맵을 이면 hello 작업 hello shard map toodetermine 열의 현재 집합이 분할 된 데이터베이스를 쿼리 하 한 다음 hello 분할 맵을 자식 각 분할에 대 한 작업을 만듭니다.
-* 사용자 지정 컬렉션 그룹: 사용자 지정 데이터베이스 집합입니다. 사용자 지정 컬렉션을 대상으로 하는 작업, 경우에 생성 됩니다 자식 각 데이터베이스에 대 한 작업 현재 hello 사용자 지정 컬렉션.
+* [분할된 데이터베이스 맵](sql-database-elastic-scale-shard-map-management.md) 그룹: 분할된 데이터베이스 맵을 대상으로 하는 작업이 제출되면 해당 작업은 분할된 데이터베이스 맵을 쿼리하여 분할된 데이터베이스의 현재 집합을 확인한 다음 분할된 데이터베이스 맵의 각 분할된 데이터베이스에 대한 자식 작업을 만듭니다.
+* 사용자 지정 컬렉션 그룹: 사용자 지정 데이터베이스 집합입니다. 작업이 사용자 지정 컬렉션을 대상으로 하는 경우 사용자 지정 컬렉션에서 현재 각 데이터베이스에 대한 자식 작업을 만듭니다.
 
-## <a name="tooset-hello-elastic-database-jobs-connection"></a>tooset hello 탄력적 데이터베이스 작업 연결
-연결이 필요한 toobe toohello 작업 설정 *제어 데이터베이스* 이전 toousing hello Api 작업 합니다. 이 cmdlet을 실행 한 자격 증명 창 toopop을 hello 사용자 이름 및 암호를 탄력적 데이터베이스 작업을 설치할 때 만든 요청을 트리거합니다. 이 항목에 제공된 모든 예제에서는 이 첫 번째 단계가 이미 수행되었다고 가정합니다.
+## <a name="to-set-the-elastic-database-jobs-connection"></a>탄력적 데이터베이스 작업 연결을 설정하려면
+작업 API를 사용하기 전에 작업 *제어 데이터베이스* 에 대한 연결을 설정해야 합니다. 이 cmdlet을 실행하면 자격 증명 창이 트리거되어 탄력적 데이터베이스 작업을 설치할 때 만든 사용자 이름 및 암호를 요청하는 팝업이 표시됩니다. 이 항목에 제공된 모든 예제에서는 이 첫 번째 단계가 이미 수행되었다고 가정합니다.
 
-연결 toohello 탄력적 데이터베이스 작업을 엽니다.
+탄력적 데이터베이스 작업에 대한 연결을 엽니다.
 
     Use-AzureSqlJobConnection -CurrentAzureSubscription 
 
-## <a name="encrypted-credentials-within-hello-elastic-database-jobs"></a>Hello 탄력적 데이터베이스 작업 내에서 암호화 된 자격 증명
-데이터베이스 자격 증명 hello 작업에 삽입할 수 *제어 데이터베이스* 암호화의 암호를 사용 합니다. 필요한 toostore 자격 증명 tooenable 작업 toobe는 나중에 실행 (작업 일정 사용) 이며
+## <a name="encrypted-credentials-within-the-elastic-database-jobs"></a>탄력적 데이터베이스 작업 내의 암호화된 자격 증명
+암호를 암호화하여 작업 *제어 데이터베이스*에 데이터베이스 자격 증명을 삽입할 수 있습니다. 나중에 작업을 실행할 수 있도록 자격 증명을 저장해야 합니다(작업 일정 사용).
 
-암호화는 hello 설치 스크립트의 일부분으로 만든 인증서를 통해 작동 합니다. hello 설치 스크립트를 만들고 hello의 암호 해독에 대 한 hello Azure 클라우드 서비스에 업로드 hello 인증서는 암호화 된 암호를 저장 합니다. hello hello 작업 내에서 공개 키를 저장 하는 나중에 Azure 클라우드 서비스 hello *제어 데이터베이스* hello 인증서를 요구 하지 않고 hello PowerShell API 또는 Azure 클래식 포털 인터페이스 tooencrypt 제공 된 암호 수 toobe 로컬로 설치 합니다.
+암호화는 설치 스크립트의 일부로 생성된 인증서를 통해 작동합니다. 설치 스크립트는 저장된 암호화된 암호 해독을 위해 인증서를 만들고 Azure 클라우드 서비스에 업로드합니다. Azure 클라우드 서비스는 나중에 작업 *제어 데이터베이스* 내에 공개 키를 저장합니다. 그러면 PowerShell API 또는 Azure 클래식 포털 인터페이스에서 인증서를 로컬에 설치하도록 요구하지 않고 제공된 암호를 암호화할 수 있습니다.
 
-hello 자격 증명 암호 암호화 되 고 읽기 전용 액세스 tooElastic 데이터베이스 작업 개체는 사용자 로부터 안전한 는합니다. 하지만 읽기 / 쓰기 액세스 tooElastic 데이터베이스 작업을 개체 tooextract 암호를 가진 악의적인 사용자에 대 한 가능 합니다. 자격 증명은 작업 실행에서 다시 디자인 된 toobe. 연결을 설정할 때 자격 증명 tootarget 데이터베이스를 전달 됩니다. 현재 각 자격 증명에 대해 사용 하는 hello 대상 데이터베이스에 제한이 없습니다, 악의적인 사용자는 hello 악의적인 사용자가 제어 데이터베이스에 대 한 데이터베이스 대상을 추가할 수 있습니다. hello 사용자는이 데이터베이스 toogain hello 자격 증명의이 암호를 대상으로 하는 작업을 시작 이후에 못했습니다.
+자격 증명 암호가 암호화되고 탄력적 데이터베이스 작업 개체에 대한 읽기 전용 액세스 권한이 있는 사용자로부터 보호됩니다. 하지만 탄력적 데이터베이스 작업 개체에 대한 읽기-쓰기 액세스 권한이 있는 악의적인 사용자가 암호를 추출할 수 있습니다. 자격 증명은 작업 실행 간에 다시 사용되도록 설계되었습니다. 연결을 설정할 때 자격 증명이 대상 데이터베이스에 전달됩니다. 현재 각 자격 증명에 사용되는 대상 데이터베이스에 제한이 없으며 악의적인 사용자는 자신이 제어할 수 있는 데이터베이스에 대한 데이터베이스 대상을 추가할 수 있습니다. 사용자는 이후 이 데이터베이스를 대상으로 작업을 시작하여 자격 증명의 암호를 얻습니다.
 
 탄력적 데이터베이스 작업에 대한 보안 모범 사례는 다음과 같습니다.
 
-* Hello Api tootrusted 개인의 사용을 제한 합니다.
-* 자격 증명 hello 있어야 합니다. 최소 권한이 필요한 tooperform hello 작업 태스크입니다.  자세한 내용은 이 [권한 부여 및 사용 권한](https://msdn.microsoft.com/library/bb669084.aspx) SQL Server MSDN 문서에서 확인할 수 있습니다.
+* API 사용을 신뢰할 수 있는 개인으로 제한합니다.
+* 자격 증명에 작업 태스크를 수행하는 데 필요한 최소한의 권한만 있어야 합니다.  자세한 내용은 이 [권한 부여 및 사용 권한](https://msdn.microsoft.com/library/bb669084.aspx) SQL Server MSDN 문서에서 확인할 수 있습니다.
 
-### <a name="toocreate-an-encrypted-credential-for-job-execution-across-databases"></a>데이터베이스에 걸쳐 작업 실행에는 암호화 된 자격 증명 toocreate
-새 암호화 toocreate 자격 증명, hello [ **Get-credential cmdlet** ](https://technet.microsoft.com/library/hh849815.aspx) 사용자 이름 및 toohello 전달 될 수 있는 암호를 묻는 [ **AzureSqlJobCredential 새로 만들기 cmdlet**](/powershell/module/elasticdatabasejobs/new-azuresqljobcredential)합니다.
+### <a name="to-create-an-encrypted-credential-for-job-execution-across-databases"></a>데이터베이스에 대한 작업 실행을 위한 암호화된 자격 증명을 만들려면
+새 암호화된 자격 증명을 만들기 위해 [**Get-Credential cmdlet**](https://technet.microsoft.com/library/hh849815.aspx)에서 [**New-AzureSqlJobCredential cmdlet**](/powershell/module/elasticdatabasejobs/new-azuresqljobcredential)에 전달할 수 있는 사용자 이름 및 암호를 묻는 메시지를 표시합니다.
 
     $credentialName = "{Credential Name}"
     $databaseCredential = Get-Credential
     $credential = New-AzureSqlJobCredential -Credential $databaseCredential -CredentialName $credentialName
     Write-Output $credential
 
-### <a name="tooupdate-credentials"></a>tooupdate 자격 증명
-암호 변경 될 때 사용 하 여 hello [ **집합 AzureSqlJobCredential cmdlet** ](/powershell/module/elasticdatabasejobs/set-azuresqljobcredential) 집합 hello 및 **CredentialName** 매개 변수입니다.
+### <a name="to-update-credentials"></a>자격 증명을 업데이트하려면
+암호가 변경될 때 [**Set-AzureSqlJobCredential cmdlet**](/powershell/module/elasticdatabasejobs/set-azuresqljobcredential)을 사용하고 **CredentialName** 매개 변수를 설정합니다.
 
     $credentialName = "{Credential Name}"
     Set-AzureSqlJobCredential -CredentialName $credentialName -Credential $credential 
 
-## <a name="toodefine-an-elastic-database-shard-map-target"></a>toodefine 탄력적 데이터베이스 분할 맵 대상
-분할 집합의 모든 데이터베이스에 대해 작업 tooexecute (사용 하 여 만든 [탄력적 데이터베이스 클라이언트 라이브러리](sql-database-elastic-database-client-library.md)), hello 데이터베이스 대상 분할 맵을 사용 합니다. 이 예제는 hello 탄력적 데이터베이스 클라이언트 라이브러리를 사용 하 여 만든 분할 응용 프로그램이 필요 합니다. [탄력적 데이터베이스 도구 샘플 시작](sql-database-elastic-scale-get-started.md)을 참조하세요.
+## <a name="to-define-an-elastic-database-shard-map-target"></a>탄력적 데이터베이스 분할된 데이터베이스 맵 대상을 정의하려면
+[탄력적 데이터베이스 클라이언트 라이브러리](sql-database-elastic-database-client-library.md)를 통해 만든 분할된 데이터베이스 집합의 모든 데이터베이스에 대해 작업을 실행하려면 분할된 데이터베이스 맵을 데이터베이스 대상으로 사용합니다. 이 예제에서는 탄력적 데이터베이스 클라이언트 라이브러리를 사용하여 만든 분할된 데이터베이스 응용 프로그램이 필요합니다. [탄력적 데이터베이스 도구 샘플 시작](sql-database-elastic-scale-get-started.md)을 참조하세요.
 
-hello shard map manager 데이터베이스는 데이터베이스 대상으로 설정 해야 하 고 hello 특정 분할 맵은 대상으로 지정 해야 합니다.
+분할된 데이터베이스 맵 관리자 데이터베이스를 데이터베이스 대상으로 설정한 후 분할된 특정 데이터베이스 맵을 대상으로 지정해야 합니다.
 
     $shardMapCredentialName = "{Credential Name}"
     $shardMapDatabaseName = "{ShardMapDatabaseName}" #example: ElasticScaleStarterKit_ShardMapManagerDb
@@ -242,9 +242,9 @@ hello shard map manager 데이터베이스는 데이터베이스 대상으로 �
     Write-Output $shardMapTarget
 
 ## <a name="create-a-t-sql-script-for-execution-across-databases"></a>데이터베이스에서 실행할 T-SQL 스크립트 만들기
-실행에 대 한 T-SQL 스크립트를 만들 때이 가장 좋습니다 toobuild 해당 toobe [idempotent](https://en.wikipedia.org/wiki/Idempotence) 및 오류에 대 한 복원 합니다. 탄력적 데이터베이스 작업 실행 hello 오류의 hello 분류에 관계 없이 오류가 발생할 때마다 스크립트의 실행을 다시 시도 합니다.
+실행할 T-SQL 스크립트를 만드는 경우 [idempotent](https://en.wikipedia.org/wiki/Idempotence) 이고 오류로부터 복구되도록 작성하는 것이 좋습니다. 탄력적 데이터베이스 작업은 실행이 실패할 때마다 오류 분류에 관계없이 스크립트 실행을 다시 시도합니다.
 
-사용 하 여 hello [ **새로 AzureSqlJobContent cmdlet** ](/powershell/module/elasticdatabasejobs/new-azuresqljobcontent) toocreate 및 실행에 대 한 스크립트를 저장 하 고 hello 설정할 **-ContentName** 및 **-CommandText**매개 변수입니다.
+[**New-AzureSqlJobContent cmdlet**](/powershell/module/elasticdatabasejobs/new-azuresqljobcontent)을 사용하여 실행할 스크립트를 만들고 저장한 다음 **-ContentName** 및 **-CommandText** 매개 변수를 설정합니다.
 
     $scriptName = "Create a TestTable"
 
@@ -264,21 +264,21 @@ hello shard map manager 데이터베이스는 데이터베이스 대상으로 �
     Write-Output $script
 
 ### <a name="create-a-new-script-from-a-file"></a>파일에서 새 스크립트 만들기
-Hello T-SQL 스크립트 파일 내에서 정의 된 경우이 tooimport hello 스크립트를 사용 합니다.
+T-SQL 스크립트가 파일 내에서 정의된 경우 다음을 사용하여 스크립트를 가져옵니다.
 
     $scriptName = "My Script Imported from a File"
-    $scriptPath = "{Path tooSQL File}"
+    $scriptPath = "{Path to SQL File}"
     $scriptCommandText = Get-Content -Path $scriptPath
     $script = New-AzureSqlJobContent -ContentName $scriptName -CommandText $scriptCommandText
     Write-Output $script
 
-### <a name="tooupdate-a-t-sql-script-for-execution-across-databases"></a>데이터베이스에 걸쳐 실행에 사용 되는 T-SQL tooupdate 스크립트
-이 PowerShell 스크립트 업데이트 hello 기존 스크립트에 대 한 T-SQL 명령 텍스트입니다.
+### <a name="to-update-a-t-sql-script-for-execution-across-databases"></a>데이터베이스에서 실행되도록 T-SQL 스크립트를 업데이트하려면
+이 PowerShell 스크립트는 기존 스크립트에 대한 T-SQL 명령 텍스트를 업데이트합니다.
 
-변수 tooreflect 원하는 hello 스크립트 정의 toobe 집합을 추적 하는 집합 hello:
+설정하려는 스크립트 정의가 반영되도록 다음 변수를 설정합니다.
 
     $scriptName = "Create a TestTable"
-    $scriptUpdateComment = "Adding AdditionalInformation column tooTestTable"
+    $scriptUpdateComment = "Adding AdditionalInformation column to TestTable"
     $scriptCommandText = "
     IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'TestTable')
     BEGIN
@@ -299,13 +299,13 @@ Hello T-SQL 스크립트 파일 내에서 정의 된 경우이 tooimport hello �
     INSERT INTO TestTable(InsertionTime, AdditionalInformation) VALUES (sysutcdatetime(), 'test');
     GO"
 
-### <a name="tooupdate-hello-definition-tooan-existing-script"></a>tooupdate hello 정의 tooan 기존 스크립트
+### <a name="to-update-the-definition-to-an-existing-script"></a>기존 스크립트에 대한 정의를 업데이트하려면
     Set-AzureSqlJobContentDefinition -ContentName $scriptName -CommandText $scriptCommandText -Comment $scriptUpdateComment 
 
-## <a name="toocreate-a-job-tooexecute-a-script-across-a-shard-map"></a>toocreate 작업 tooexecute 분할 맵을 통해 스크립트
+## <a name="to-create-a-job-to-execute-a-script-across-a-shard-map"></a>분할된 데이터베이스 맵에서 스크립트를 실행하는 작업을 만들려면
 이 PowerShell 스크립트는 탄력적 확장 분할된 데이터베이스 맵의 각 분할된 데이터베이스에서 스크립트를 실행하는 작업을 시작합니다.
 
-다음 변수 tooreflect hello 집합 hello 필요한 스크립트 및 대상:
+원하는 스크립트 및 대상이 반영되도록 다음 변수를 설정합니다.
 
     $jobName = "{Job Name}"
     $scriptName = "{Script Name}"
@@ -317,30 +317,30 @@ Hello T-SQL 스크립트 파일 내에서 정의 된 경우이 tooimport hello �
     $job = New-AzureSqlJob -ContentName $scriptName -CredentialName $credentialName -JobName $jobName -TargetId $shardMapTarget.TargetId
     Write-Output $job
 
-## <a name="tooexecute-a-job"></a>tooexecute 작업
+## <a name="to-execute-a-job"></a>작업을 실행하려면
 이 PowerShell 스크립트는 기존 작업을 실행합니다.
 
-다음 실행 하는 변수 tooreflect hello 원하는 작업 이름 toohave hello를 업데이트 합니다.
+실행하려는 작업 이름이 반영되도록 다음 변수를 업데이트합니다.
 
     $jobName = "{Job Name}"
     $jobExecution = Start-AzureSqlJobExecution -JobName $jobName 
     Write-Output $jobExecution
 
-## <a name="tooretrieve-hello-state-of-a-single-job-execution"></a>단일 작업 실행 tooretrieve hello 상태
-사용 하 여 hello [ **Get AzureSqlJobExecution cmdlet** ](/powershell/module/elasticdatabasejobs/get-azuresqljobexecution) 및 집합 hello **JobExecutionId** 작업 실행의 매개 변수 tooview hello 상태입니다.
+## <a name="to-retrieve-the-state-of-a-single-job-execution"></a>단일 작업 실행의 상태를 검색하려면
+[**Get-AzureSqlJobExecution cmdlet**](/powershell/module/elasticdatabasejobs/get-azuresqljobexecution)을 사용하고 **JobExecutionId** 매개 변수를 설정하여 작업 실행의 상태를 표시합니다.
 
     $jobExecutionId = "{Job Execution Id}"
     $jobExecution = Get-AzureSqlJobExecution -JobExecutionId $jobExecutionId
     Write-Output $jobExecution
 
-사용 하 여 hello 동일 **Get AzureSqlJobExecution** hello 사용 하 여 cmdlet **includechildren를 실행** 자식 작업 실행의 매개 변수 tooview hello 상태 각각에 대해 각 작업 실행에 대 한 특정 상태를 즉 hello hello 작업의 대상인 데이터베이스입니다.
+**IncludeChildren** 매개 변수와 함께 동일한 **Get-AzureSqlJobExecution cmdlet**을 사용하여 자식 작업 실행 상태, 즉 작업 대상인 각 데이터베이스에 대한 각 작업 실행의 특정 상태를 표시할 수 있습니다.
 
     $jobExecutionId = "{Job Execution Id}"
     $jobExecutions = Get-AzureSqlJobExecution -JobExecutionId $jobExecutionId -IncludeChildren
     Write-Output $jobExecutions 
 
-## <a name="tooview-hello-state-across-multiple-job-executions"></a>여러 작업 실행 간에 tooview hello 상태
-hello [ **Get AzureSqlJobExecution cmdlet** ](/powershell/module/elasticdatabasejobs/new-azuresqljob) 에 사용 되는 toodisplay 일 수 있는 여러 선택적 매개 변수 hello 제공 된 매개 변수를 통해 필터링, 작업 실행이 여러 개 있습니다. hello 다음 hello 가지가 toouse Get AzureSqlJobExecution의 일부를 보여 줍니다.
+## <a name="to-view-the-state-across-multiple-job-executions"></a>여러 작업 실행 간에 상태를 보려면
+[**Get-AzureSqlJobExecution cmdlet**](/powershell/module/elasticdatabasejobs/new-azuresqljob)에는 제공된 매개 변수를 통해 필터링되는 여러 작업 실행을 표시하는 데 사용할 수 있는 여러 선택적 매개 변수가 있습니다. 아래에서는 Get-AzureSqlJobExecution을 사용할 수 있는 여러 방법을 보여 줍니다.
 
 모든 활성 최상위 작업 실행을 검색합니다.
 
@@ -375,7 +375,7 @@ hello [ **Get AzureSqlJobExecution cmdlet** ](/powershell/module/elasticdatabase
     $target = Get-AzureSqlJobTarget -CustomCollectionName $customCollectionName
     Get-AzureSqlJobExecution -TargetId $target.TargetId -IncludeInactive
 
-특정 작업 실행 내에서 작업 태스크 실행의 hello 목록 검색:
+특정 작업 실행 내의 작업 태스크 실행 목록을 검색합니다.
 
     $jobExecutionId = "{Job Execution Id}"
     $jobTaskExecutions = Get-AzureSqlJobTaskExecution -JobExecutionId $jobExecutionId
@@ -383,14 +383,14 @@ hello [ **Get AzureSqlJobExecution cmdlet** ](/powershell/module/elasticdatabase
 
 작업 태스크 실행 세부 정보를 검색합니다.
 
-hello PowerShell 스크립트 뒤의 실행 실패를 디버깅할 때 매우 유용 작업 작업 실행을 사용 하는 tooview hello 세부 정보 일 수 있습니다.
+다음 PowerShell 스크립트를 사용하여 실행 실패를 디버그할 때 특히 유용한 작업 태스크 실행 세부 정보를 볼 수 있습니다.
 
     $jobTaskExecutionId = "{Job Task Execution Id}"
     $jobTaskExecution = Get-AzureSqlJobTaskExecution -JobTaskExecutionId $jobTaskExecutionId
     Write-Output $jobTaskExecution
 
-## <a name="tooretrieve-failures-within-job-task-executions"></a>작업 작업 실행 내에서 tooretrieve 오류
-hello **JobTaskExecution 개체** 메시지 속성과 함께 hello 작업의 수명 주기 hello에 대 한 속성을 포함 합니다. Hello 수명 주기 속성은 너무 설정 작업 태스크 실행에 실패 한 경우*실패* toohello 결과 예외 메시지 및 스택 hello 메시지 속성이 설정 됩니다. 작업이 수행 되지 않은 경우 지정된 된 작업에 대 한 실패 작업 실행 태스크가의 중요 한 tooview hello 세부 정보입니다.
+## <a name="to-retrieve-failures-within-job-task-executions"></a>작업 태스크 실행 내의 오류를 검색하려면
+**JobTaskExecution 개체** 에는 메시지 속성과 함께 작업의 수명 주기에 대한 속성이 포함되어 있습니다. 작업 태스크 실행에 실패한 경우 수명 주기 속성이 *Failed* 로 설정되고 메시지 속성은 결과 예외 메시지 및 해당 스택으로 설정됩니다. 작업이 수행되지 않은 경우 지정된 작업에 대해 실패한 작업 태스크 세부 정보를 보는 것이 중요합니다.
 
     $jobExecutionId = "{Job Execution Id}"
     $jobTaskExecutions = Get-AzureSqlJobTaskExecution -JobExecutionId $jobExecutionId
@@ -402,8 +402,8 @@ hello **JobTaskExecution 개체** 메시지 속성과 함께 hello 작업의 수
             }
         }
 
-## <a name="toowait-for-a-job-execution-toocomplete"></a>작업 실행 toocomplete에 대 한 toowait
-PowerShell 스크립트 뒤 hello 작업 작업 toocomplete에 대 한 사용된 toowait 될 수 있습니다.
+## <a name="to-wait-for-a-job-execution-to-complete"></a>작업 실행이 완료될 때까지 대기하려면
+다음 PowerShell 스크립트를 사용하여 작업 태스크가 완료될 때까지 기다릴 수 있습니다.
 
     $jobExecutionId = "{Job Execution Id}"
     Wait-AzureSqlJobExecution -JobExecutionId $jobExecutionId 
@@ -413,14 +413,14 @@ PowerShell 스크립트 뒤 hello 작업 작업 toocomplete에 대 한 사용된
 
 실행 정책은 현재 다음과 같은 정의를 허용합니다.
 
-* Hello 실행 정책에 대 한 이름: 식별자입니다.
+* 이름: 실행 정책의 식별자입니다.
 * 작업 시간 제한: 탄력적 데이터베이스 작업에 의해 작업이 취소되기 전의 총 시간입니다.
-* 첫 번째 다시 시도 하기 전에 초기 다시 시도 간격: 간격 toowait 합니다.
-* 다시 시도 간격 toouse의 최대 다시 시도 간격: 상한입니다.
-* 다시 시도 간격 백오프 계수: 계수가 toocalculate hello 다음 재시도 간격을 사용 합니다.  hello 다음 수식을 사용 하는: (초기 재시도 간격) * Math.pow ((계수 백오프 간격) (다시 시도 횟수)-2). 
-* 작업 내에서 다시 시도 횟수 tooperform의 최대 시도 횟수: hello의 최대 수입니다.
+* 초기 재시도 간격: 첫 번째 재시도 전에 대기할 간격입니다.
+* 최대 재시도 간격: 사용할 재시도 간격의 최대값입니다.
+* 재시도 간격 백오프 계수: 재시도 사이의 다음 간격을 계산하는 데 사용되는 계수입니다.  (초기 재시도 간격) * Math.pow((계수 백오프 간격), (재시도 횟수) - 2) 수식이 사용됩니다. 
+* 최대 시도 횟수: 작업 내에서 수행할 최대 재시도 횟수입니다.
 
-hello 기본 실행 정책은 다음 값에는 hello를 사용 합니다.
+기본 실행 정책은 다음 값을 사용합니다.
 
 * 이름: 기본 실행 정책
 * 작업 시간 제한: 1주
@@ -429,7 +429,7 @@ hello 기본 실행 정책은 다음 값에는 hello를 사용 합니다.
 * 재시도 간격 계수: 2
 * 최대 시도 횟수: 2,147,483,647
 
-원하는 hello 실행 정책을 만듭니다.
+원하는 실행 정책을 만듭니다.
 
     $executionPolicyName = "{Execution Policy Name}"
     $initialRetryInterval = New-TimeSpan -Seconds 10
@@ -442,7 +442,7 @@ hello 기본 실행 정책은 다음 값에는 hello를 사용 합니다.
     Write-Output $executionPolicy
 
 ### <a name="update-a-custom-execution-policy"></a>사용자 지정 실행 정책 업데이트
-원하는 hello 실행 정책 tooupdate를 업데이트 합니다.
+업데이트하려는 실행 정책을 업데이트합니다.
 
     $executionPolicyName = "{Execution Policy Name}"
     $initialRetryInterval = New-TimeSpan -Seconds 15
@@ -454,65 +454,65 @@ hello 기본 실행 정책은 다음 값에는 hello를 사용 합니다.
     Write-Output $updatedExecutionPolicy
 
 ## <a name="cancel-a-job"></a>작업 취소
-탄력적 데이터베이스 작업은 작업 취소 요청을 지원합니다.  탄력적 데이터베이스 작업에서 현재 실행 중인 작업에 대 한 취소 요청을 감지한 경우 toostop hello 작업을 시도 합니다.
+탄력적 데이터베이스 작업은 작업 취소 요청을 지원합니다.  탄력적 데이터베이스 작업이 현재 실행 중인 작업에 대한 취소 요청을 감지하는 경우 작업을 중지하려고 합니다.
 
 탄력적 데이터베이스 작업이 취소를 수행할 수 있는 방법에는 다음 두 가지가 있습니다.
 
-1. 현재 실행 중인 작업이 취소: 작업이 현재 실행 되는 동안 취소가 검색 되 면 취소가 현재 hello 작업의 측면을 실행 하는 hello 내에서 시도 됩니다.  예를 들어: 시도가 toocancel hello 쿼리 됩니다는 장기 실행 쿼리는 취소 하려고 할 때 현재 수행 중인 경우.
-2. 태스크 다시 시도 취소: hello 제어 스레드 hello 작업을 시작 하지 않도록 하 고 취소 됨으로 hello 요청 선언 됩니다 취소가 실행에 대 한 태스크를 시작 하기 전에 hello 제어 스레드에 의해 검색 되 면 합니다.
+1. 현재 실행 중인 태스크 취소: 태스크가 현재 실행되는 동안 취소가 감지되면 현재 실행 중인 태스크 측면 내에서 취소가 시도됩니다.  예를 들어 현재 장기 실행 쿼리를 수행하는 동안 취소가 시도되면 쿼리를 취소하려고 합니다.
+2. 태스크 재시도 취소: 태스크 실행이 시작되기 전에 제어 스레드에서 취소가 감지되면 제어 스레드는 태스크를 시작하지 않고 요청을 취소된 것으로 선언합니다.
 
-부모 작업에 대 한 작업 취소가 요청 하 고 모든 해당 자식 작업에 대 한 hello 부모 작업에 대 한 hello 취소 요청이 적용 됩니다.
+부모 작업에 대해 작업 취소가 요청된 경우 부모 작업 및 모든 자식 작업에 대해 취소 요청이 적용됩니다.
 
-toosubmit 취소 요청을 사용 하 여 hello [ **중지 AzureSqlJobExecution cmdlet** ](/powershell/module/elasticdatabasejobs/stop-azuresqljobexecution) 및 집합 hello **JobExecutionId** 매개 변수입니다.
+취소 요청을 제출하려면 [**Stop-AzureSqlJobExecution cmdlet**](/powershell/module/elasticdatabasejobs/stop-azuresqljobexecution)을 사용하고 **JobExecutionId** 매개 변수를 설정합니다.
 
     $jobExecutionId = "{Job Execution Id}"
     Stop-AzureSqlJobExecution -JobExecutionId $jobExecutionId
 
-## <a name="toodelete-a-job-and-job-history-asynchronously"></a>toodelete 작업을 비동기적으로 작업 기록 및
-탄력적 데이터베이스 작업은 비동기 작업 삭제를 지원합니다. 작업을 삭제 하도록 표시할 수 있습니다 및 hello 작업에 대 한 모든 작업 실행 완료 된 후 hello 시스템 hello 작업 및 모든 작업 기록을 삭제 합니다. hello 시스템 활성 작업 실행 될 때 자동으로 취소 되지 않습니다.  
+## <a name="to-delete-a-job-and-job-history-asynchronously"></a>비동기적으로 작업 기록 및 작업을 삭제하려면
+탄력적 데이터베이스 작업은 비동기 작업 삭제를 지원합니다. 작업을 삭제되도록 표시할 수 있으며, 작업에 대한 모든 작업 실행이 완료된 후 작업 및 모든 작업 기록이 삭제됩니다. 활성 작업 실행은 자동으로 취소되지 않습니다.  
 
-호출 [ **중지 AzureSqlJobExecution** ](/powershell/module/elasticdatabasejobs/stop-azuresqljobexecution) toocancel 활성 작업 실행 합니다.
+활성 작업 실행을 취소하려면 [**Stop-AzureSqlJobExecution**](/powershell/module/elasticdatabasejobs/stop-azuresqljobexecution)을 호출합니다.
 
-tootrigger 작업 삭제를 사용 하 여 hello [ **제거 AzureSqlJob cmdlet** ](/powershell/module/elasticdatabasejobs/remove-azuresqljob) 및 집합 hello **JobName** 매개 변수입니다.
+작업 삭제를 트리거하려면 [**Remove-AzureSqlJob cmdlet**](/powershell/module/elasticdatabasejobs/remove-azuresqljob)을 사용하고 **JobName** 매개 변수를 설정합니다.
 
     $jobName = "{Job Name}"
     Remove-AzureSqlJob -JobName $jobName
 
-## <a name="toocreate-a-custom-database-target"></a>사용자 지정 데이터베이스 대상 toocreate
-직접 실행하거나 사용자 지정 데이터베이스 그룹 내에 포함할 사용자 지정 데이터베이스 대상을 정의할 수 있습니다. 예를 들어 있으므로 **탄력적 풀** 는 아직 직접 지원 PowerShell Api를 사용 하 여 만들 수 있습니다는 사용자 지정 데이터베이스 대상과 hello 풀에서 모든 hello 데이터베이스를 포괄 하는 사용자 지정 데이터베이스 컬렉션 대상입니다.
+## <a name="to-create-a-custom-database-target"></a>사용자 지정 데이터베이스 대상을 만들려면
+직접 실행하거나 사용자 지정 데이터베이스 그룹 내에 포함할 사용자 지정 데이터베이스 대상을 정의할 수 있습니다. 예를 들어, **탄력적 풀**은 PowerShell API를 사용하여 직접 지원되지 않으므로 풀에 있는 모든 데이터베이스를 포함하는 사용자 지정 데이터베이스 컬렉션 대상 및 사용자 지정 데이터베이스 대상을 만들 수 있습니다.
 
-Hello 다음 변수 tooreflect hello 필요한 데이터베이스 정보를 설정 합니다.
+원하는 데이터베이스 정보가 반영되도록 다음 변수를 설정합니다.
 
     $databaseName = "{Database Name}"
     $databaseServerName = "{Server Name}"
     New-AzureSqlJobDatabaseTarget -DatabaseName $databaseName -ServerName $databaseServerName 
 
-## <a name="toocreate-a-custom-database-collection-target"></a>toocreate 사용자 지정 데이터베이스 수집 대상
-사용 하 여 hello [ **새로 AzureSqlJobTarget** ](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) cmdlet toodefine 여러 정의 된 데이터베이스 대상 사용자 지정 데이터베이스 컬렉션 대상 tooenable 실행 합니다. 데이터베이스 그룹을 만든 후 데이터베이스 사용자 지정 컬렉션을 대상 hello와 연결할 수 있습니다.
+## <a name="to-create-a-custom-database-collection-target"></a>사용자 지정 데이터베이스 컬렉션 대상을 만들려면
+[**New-AzureSqlJobTarget cmdlet**](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget)을 사용하여 정의된 여러 데이터베이스 대상에서 실행할 수 있도록 사용자 지정 데이터베이스 컬렉션 대상을 정의할 수 있습니다. 데이터베이스 그룹을 만든 후 사용자 지정 컬렉션 대상에 데이터베이스를 연결할 수 있습니다.
 
-같은 변수 tooreflect hello 원하는 사용자 지정 컬렉션 대상 구성이 hello를 설정 합니다.
+원하는 사용자 지정 컬렉션 대상 구성이 반영되도록 다음 변수를 설정합니다.
 
     $customCollectionName = "{Custom Database Collection Name}"
     New-AzureSqlJobTarget -CustomCollectionName $customCollectionName 
 
-### <a name="tooadd-databases-tooa-custom-database-collection-target"></a>tooadd 데이터베이스 tooa 사용자 지정 데이터베이스 수집 대상
-특정 사용자 지정 컬렉션 tooa 데이터베이스 tooadd hello를 사용 하 여 [ **추가 AzureSqlJobChildTarget** ](/powershell/module/elasticdatabasejobs/add-azuresqljobchildtarget) cmdlet.
+### <a name="to-add-databases-to-a-custom-database-collection-target"></a>사용자 지정 데이터베이스 컬렉션 대상에 데이터베이스를 추가하려면
+특정 사용자 지정 컬렉션에 데이터베이스를 추가하려면 [**Add-AzureSqlJobChildTarget**](/powershell/module/elasticdatabasejobs/add-azuresqljobchildtarget) cmdlet을 사용합니다.
 
     $databaseServerName = "{Database Server Name}"
     $databaseName = "{Database Name}"
     $customCollectionName = "{Custom Database Collection Name}"
     Add-AzureSqlJobChildTarget -CustomCollectionName $customCollectionName -DatabaseName $databaseName -ServerName $databaseServerName 
 
-#### <a name="review-hello-databases-within-a-custom-database-collection-target"></a>사용자 지정 데이터베이스 컬렉션 대상 내에서 데이터베이스를 hello 검토
-사용 하 여 hello [ **Get AzureSqlJobTarget** ](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) cmdlet tooretrieve hello 자식 데이터베이스 사용자 지정 데이터베이스 컬렉션 대상 내에서. 
+#### <a name="review-the-databases-within-a-custom-database-collection-target"></a>사용자 지정 데이터베이스 컬렉션 대상 내의 데이터베이스 검토
+[**Get-AzureSqlJobTarget**](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) cmdlet을 사용하여 사용자 지정 데이터베이스 컬렉션 대상 내의 자식 데이터베이스를 검색할 수 있습니다. 
 
     $customCollectionName = "{Custom Database Collection Name}"
     $target = Get-AzureSqlJobTarget -CustomCollectionName $customCollectionName
     $childTargets = Get-AzureSqlJobTarget -ParentTargetId $target.TargetId
     Write-Output $childTargets
 
-### <a name="create-a-job-tooexecute-a-script-across-a-custom-database-collection-target"></a>사용자 지정 데이터베이스 수집 대상에서 작업 tooexecute 스크립트 만들기
-사용 하 여 hello [ **새로 AzureSqlJob** ](/powershell/module/elasticdatabasejobs/new-azuresqljob) cmdlet toocreate 그룹 사용자 지정 데이터베이스 컬렉션 대상에 의해 정의 된 데이터베이스에 대해 작업 합니다. 탄력적 데이터베이스 작업을 각각 해당 tooa 데이터베이스 hello 사용자 지정 데이터베이스 컬렉션 대상과 연결 된 및 hello 스크립트 각 데이터베이스에 대해 실행 되도록 확인 여러 자식 작업으로 hello 작업으로 확장 됩니다. 마찬가지로 스크립트 idempotent toobe 탄력적인 tooretries 중요 합니다.
+### <a name="create-a-job-to-execute-a-script-across-a-custom-database-collection-target"></a>사용자 지정 데이터베이스 컬렉션 대상에서 스크립트를 실행하는 작업 만들기
+[**New-AzureSqlJob**](/powershell/module/elasticdatabasejobs/new-azuresqljob) cmdlet을 사용하여 사용자 지정 데이터베이스 컬렉션 대상에서 정의된 데이터베이스 그룹에 대한 작업을 만들 수 있습니다. 탄력적 데이터베이스 작업은 각각 사용자 지정 데이터베이스 컬렉션 대상과 연결된 데이터베이스에 해당하는 여러 자식 작업으로 작업을 확장하고 각 데이터베이스에 대해 스크립트가 실행되도록 합니다. 스크립트는 재시도 복구에 대해 idempotent여야 합니다.
 
     $jobName = "{Job Name}"
     $scriptName = "{Script Name}"
@@ -523,13 +523,13 @@ Hello 다음 변수 tooreflect hello 필요한 데이터베이스 정보를 설�
     Write-Output $job
 
 ## <a name="data-collection-across-databases"></a>데이터베이스에서 데이터 수집
-데이터베이스의 그룹에 걸쳐 작업 tooexecute 쿼리를 사용 하 여 한 hello 결과 tooa 특정 테이블을 보낼 수 있습니다. 각 데이터베이스의 hello 팩트 toosee hello 쿼리 결과 후 hello 테이블을 쿼리할 수 있습니다. 이 쿼리를 제공 비동기 메서드 tooexecute 많은 데이터베이스에 걸쳐 있습니다. 실패한 시도는 재시도를 통해 자동으로 처리됩니다.
+작업을 사용하여 데이터베이스 그룹에서 쿼리를 실행하고 결과를 특정 테이블에 전송할 수 있습니다. 각 데이터베이스의 쿼리 결과를 볼 수 있으면 테이블을 쿼리할 수 있습니다. 이는 많은 데이터베이스에서 쿼리를 실행하는 비동기 메서드를 제공합니다. 실패한 시도는 재시도를 통해 자동으로 처리됩니다.
 
-아직 존재 하지 않는 경우 hello 지정 된 대상 테이블이 자동으로 만들어집니다. hello 새 테이블의 결과 집합을 반환 하는 hello hello 스키마와 일치 합니다. 스크립트에서 여러 결과 집합을 반환 하는 경우 탄력적 데이터베이스 작업 hello 첫 번째 toohello 대상 테이블에만 전송 합니다.
+지정된 대상 테이블이 아직 없는 경우 자동으로 만들어집니다. 새 테이블은 반환된 결과 집합의 스키마와 일치합니다. 스크립트에서 여러 결과 집합이 반환되는 경우 탄력적 데이터베이스 작업은 대상 테이블에 첫 번째 결과 집합만 보냅니다.
 
-hello 다음 PowerShell 스크립트는 스크립트를 실행 하 고 수집 결과 지정된 된 테이블에 합니다. 이 스크립트는 단일 결과 집합을 출력하는 T-SQL 스크립트가 생성되었으며 사용자 지정 데이터베이스 컬렉션 대상이 생성되었다고 가정합니다.
+다음 PowerShell 스크립트는 스크립트를 실행하고 지정된 테이블에 결과를 수집합니다. 이 스크립트는 단일 결과 집합을 출력하는 T-SQL 스크립트가 생성되었으며 사용자 지정 데이터베이스 컬렉션 대상이 생성되었다고 가정합니다.
 
-이 스크립트 hello를 사용 하 여 [ **Get AzureSqlJobTarget** ](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) cmdlet. 스크립트, 자격 증명 및 실행 대상에 대 한 hello 매개 변수 설정:
+이 스크립트는 [**Get-AzureSqlJobTarget**](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) cmdlet을 사용합니다. 스크립트, 자격 증명 및 실행 대상에 대한 매개 변수를 설정합니다.
 
     $jobName = "{Job Name}"
     $scriptName = "{Script Name}"
@@ -542,8 +542,8 @@ hello 다음 PowerShell 스크립트는 스크립트를 실행 하 고 수집 �
     $destinationTableName = "{Destination Table Name}"
     $target = Get-AzureSqlJobTarget -CustomCollectionName $customCollectionName
 
-### <a name="toocreate-and-start-a-job-for-data-collection-scenarios"></a>toocreate 및 데이터 컬렉션 시나리오에 대 한 작업 시작
-이 스크립트 hello를 사용 하 여 [ **시작 AzureSqlJobExecution** ](/powershell/module/elasticdatabasejobs/start-azuresqljobexecution) cmdlet.
+### <a name="to-create-and-start-a-job-for-data-collection-scenarios"></a>데이터 수집 시나리오에 대한 작업을 만들고 시작하려면
+이 스크립트는 [**Start-AzureSqlJobExecution**](/powershell/module/elasticdatabasejobs/start-azuresqljobexecution) cmdlet을 사용합니다.
 
     $job = New-AzureSqlJob -JobName $jobName 
     -CredentialName $executionCredentialName 
@@ -558,8 +558,8 @@ hello 다음 PowerShell 스크립트는 스크립트를 실행 하 고 수집 �
     $jobExecution = Start-AzureSqlJobExecution -JobName $jobName
     Write-Output $jobExecution
 
-## <a name="tooschedule-a-job-execution-trigger"></a>작업 실행 트리거 tooschedule
-PowerShell 스크립트 뒤 hello 사용된 toocreate 되풀이 일정 일 수 있습니다. 이 스크립트는 분 간격을 사용하지만 [**New-AzureSqlJobSchedule**](/powershell/module/elasticdatabasejobs/new-azuresqljobschedule)은 -DayInterval, -HourInterval, -MonthInterval 및 -WeekInterval 매개 변수도 지원합니다. -OneTime을 전달하여 한 번만 실행되는 일정을 만들 수 있습니다.
+## <a name="to-schedule-a-job-execution-trigger"></a>작업 실행 트리거를 예약하려면
+다음 PowerShell 스크립트를 사용하여 되풀이 일정을 만들 수 있습니다. 이 스크립트는 분 간격을 사용하지만 [**New-AzureSqlJobSchedule**](/powershell/module/elasticdatabasejobs/new-azuresqljobschedule)은 -DayInterval, -HourInterval, -MonthInterval 및 -WeekInterval 매개 변수도 지원합니다. -OneTime을 전달하여 한 번만 실행되는 일정을 만들 수 있습니다.
 
 새 일정을 만듭니다.
 
@@ -572,10 +572,10 @@ PowerShell 스크립트 뒤 hello 사용된 toocreate 되풀이 일정 일 수 �
     -StartTime $startTime 
     Write-Output $schedule
 
-### <a name="tootrigger-a-job-executed-on-a-time-schedule"></a>tootrigger 된 일정에서 실행 되는 작업
-작업 트리거는 정의 된 실행 작업에 따라 tooa 시간 일정 toohave 될 수 있습니다. PowerShell 스크립트 뒤 hello 사용된 toocreate 작업 트리거 일 수 있습니다.
+### <a name="to-trigger-a-job-executed-on-a-time-schedule"></a>시간 일정에 따라 실행되는 작업을 트리거하려면
+시간 일정에 따라 작업을 실행하는 작업 트리거를 정의할 수 있습니다. 다음 PowerShell 스크립트를 사용하여 작업 트리거를 만들 수 있습니다.
 
-사용 하 여 [새로 AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/new-azuresqljobtrigger) 집합 hello 변수 toocorrespond toohello 원하는 작업 및 일정에 따라:
+[New-AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/new-azuresqljobtrigger) 를 사용하고 원하는 작업 및 일정에 맞게 다음 변수를 설정합니다.
 
     $jobName = "{Job Name}"
     $scheduleName = "{Schedule Name}"
@@ -584,8 +584,8 @@ PowerShell 스크립트 뒤 hello 사용된 toocreate 되풀이 일정 일 수 �
     -JobName $jobName
     Write-Output $jobTrigger
 
-### <a name="tooremove-a-scheduled-association-toostop-job-from-executing-on-schedule"></a>tooremove 일정에 따라 실행 되는 예약 된 연결 toostop 작업
-작업 트리거 hello 작업 트리거를 통해 작업 실행을 다시 발생 toodiscontinue는 제거할 수 있습니다. 실행 되는 작업의 작업 트리거 toostop 제거 hello를 사용 하 여 따라 tooa 일정 [ **제거 AzureSqlJobTrigger cmdlet**](/powershell/module/elasticdatabasejobs/remove-azuresqljobtrigger)합니다.
+### <a name="to-remove-a-scheduled-association-to-stop-job-from-executing-on-schedule"></a>일정에 따라 작업이 실행되지 않도록 예약된 연결을 제거하려면
+작업 트리거를 통한 되풀이 작업 실행을 중단하려면 작업 트리거를 제거할 수 있습니다. [**Remove-AzureSqlJobTrigger cmdlet**](/powershell/module/elasticdatabasejobs/remove-azuresqljobtrigger)을 사용하여 일정에 따라 작업이 실행되지 않도록 작업 트리거를 제거합니다.
 
     $jobName = "{Job Name}"
     $scheduleName = "{Schedule Name}"
@@ -593,38 +593,38 @@ PowerShell 스크립트 뒤 hello 사용된 toocreate 되풀이 일정 일 수 �
     -ScheduleName $scheduleName 
     -JobName $jobName
 
-### <a name="retrieve-job-triggers-bound-tooa-time-schedule"></a>작업 트리거 바인딩된 tooa 시간 일정을 검색 합니다.
-PowerShell 스크립트 뒤 hello 사용된 tooobtain를 수 있으며 hello 작업 트리거 tooa 등록 된 특정 시간 일정이 표시 됩니다.
+### <a name="retrieve-job-triggers-bound-to-a-time-schedule"></a>시간 일정에 바인딩된 작업 트리거 검색
+다음 PowerShell 스크립트를 사용하여 특정 시간 일정에 등록된 작업 트리거를 가져오고 표시할 수 있습니다.
 
     $scheduleName = "{Schedule Name}"
     $jobTriggers = Get-AzureSqlJobTrigger -ScheduleName $scheduleName
     Write-Output $jobTriggers
 
-### <a name="tooretrieve-job-triggers-bound-tooa-job"></a>작업 트리거 tooretrieve 바인딩된 tooa 작업
-사용 하 여 [Get AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/get-azuresqljobtrigger) 등록 된 작업을 포함 하는 일정을 tooobtain 및 표시 합니다.
+### <a name="to-retrieve-job-triggers-bound-to-a-job"></a>작업에 바인딩된 작업 트리거를 검색하려면
+[Get-AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/get-azuresqljobtrigger) 를 사용하여 등록된 작업을 포함하는 일정을 가져오고 표시합니다.
 
     $jobName = "{Job Name}"
     $jobTriggers = Get-AzureSqlJobTrigger -JobName $jobName
     Write-Output $jobTriggers
 
-## <a name="toocreate-a-data-tier-application-dacpac-for-execution-across-databases"></a>데이터베이스에 걸쳐 실행에 대 한 데이터 계층 응용 프로그램 (DACPAC) toocreate
-DACPAC를 toocreate 참조 [데이터 계층 응용 프로그램](https://msdn.microsoft.com/library/ee210546.aspx)합니다. toodeploy DACPAC를 사용 하 여 hello [새로 AzureSqlJobContent cmdlet](/powershell/module/elasticdatabasejobs/new-azuresqljobcontent)합니다. hello DACPAC에 액세스할 수 있는 toohello 서비스 여야 합니다. 만들고 생성된 된 DACPAC tooAzure 저장소 tooupload 권장 한 [공유 액세스 서명을](../storage/common/storage-dotnet-shared-access-signature-part-1.md) hello DACPAC에 대 한 합니다.
+## <a name="to-create-a-data-tier-application-dacpac-for-execution-across-databases"></a>데이터베이스에서 실행할 DACPAC(데이터 계층 응용 프로그램)를 만들려면
+DACPAC를 만들려면 [데이터 계층 응용 프로그램](https://msdn.microsoft.com/library/ee210546.aspx)을 참조하세요. DACPAC를 배포하려면 [New-AzureSqlJobContent cmdlet](/powershell/module/elasticdatabasejobs/new-azuresqljobcontent)을 사용합니다. DACPAC는 서비스에 액세스할 수 있어야 합니다. 생성된 DACPAC를 Azure 저장소에 업로드하고 DACPAC에 대한 서 [공유 액세스 서명](../storage/common/storage-dotnet-shared-access-signature-part-1.md) 을 만드는 것이 좋습니다.
 
     $dacpacUri = "{Uri}"
     $dacpacName = "{Dacpac Name}"
     $dacpac = New-AzureSqlJobContent -DacpacUri $dacpacUri -ContentName $dacpacName 
     Write-Output $dacpac
 
-### <a name="tooupdate-a-data-tier-application-dacpac-for-execution-across-databases"></a>데이터베이스에 걸쳐 실행에 대 한 데이터 계층 응용 프로그램 (DACPAC) tooupdate
-탄력적 데이터베이스 작업 내에 등록 하는 기존 Dacpac 업데이트 toopoint toonew Uri 일 수 있습니다. 사용 하 여 hello [ **집합 AzureSqlJobContentDefinition cmdlet** ](/powershell/module/elasticdatabasejobs/set-azuresqljobcontentdefinition) 기존 tooupdate hello DACPAC URI DACPAC를 등록 합니다.
+### <a name="to-update-a-data-tier-application-dacpac-for-execution-across-databases"></a>데이터베이스에서 실행할 DACPAC(데이터 계층 응용 프로그램)를 업데이트하려면
+탄력적 데이터베이스 작업 내에 등록된 기존 DACPAC를 새 URI를 가리키도록 업데이트할 수 있습니다. [**Set-AzureSqlJobContentDefinition cmdlet**](/powershell/module/elasticdatabasejobs/set-azuresqljobcontentdefinition)을 사용하여 기존에 등록된 DACPAC에서 DACPAC URI를 업데이트합니다.
 
     $dacpacName = "{Dacpac Name}"
     $newDacpacUri = "{Uri}"
     $updatedDacpac = Set-AzureSqlJobDacpacDefinition -ContentName $dacpacName -DacpacUri $newDacpacUri
     Write-Output $updatedDacpac
 
-## <a name="toocreate-a-job-tooapply-a-data-tier-application-dacpac-across-databases"></a>toocreate 작업 tooapply 데이터베이스 간에 데이터 계층 응용 프로그램 (DACPAC)
-탄력적 데이터베이스 작업 내에서 DACPAC를 만든 후 작업은 데이터베이스 그룹에 걸쳐 tooapply hello DACPAC 만들 있습니다. PowerShell 스크립트 뒤 hello 데이터베이스의 사용자 지정 컬렉션에서 사용 되는 toocreate DACPAC 작업이 될 수 있습니다.
+## <a name="to-create-a-job-to-apply-a-data-tier-application-dacpac-across-databases"></a>데이터베이스에 DACPAC(데이터 계층 응용 프로그램)를 적용하는 작업을 만들려면
+탄력적 데이터베이스 작업 내에서 DACPAC를 만든 후 데이터베이스 그룹에 DACPAC를 적용하는 작업을 만들 수 있습니다. 다음 PowerShell 스크립트를 사용하여 사용자 지정 데이터베이스 컬렉션에 대한 DACPAC 작업을 만들 수 있습니다.
 
     $jobName = "{Job Name}"
     $dacpacName = "{Dacpac Name}"

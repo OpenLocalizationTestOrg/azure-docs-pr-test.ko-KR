@@ -1,5 +1,5 @@
 ---
-title: "미디어 서비스 커뮤니티 개요 aaaAzure | Microsoft Docs"
+title: "Azure Media Services 커뮤니티 개요 | Microsoft 문서"
 description: "이 Azure 미디어 서비스(AMS) 커뮤니티 페이지에서는 AMS에 대한 업데이트를 받고 새 비디오 및 팟캐스트를 보고 질문을 하며 피드백을 제공하는 다양한 방법에 대해 설명합니다. "
 services: media-services
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: 97329ef099752506af6ec6947a88a00c35d141a3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ef77ed3a4efee7ebcdd716376be78db38ce46f8f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-media-services-community"></a>Azure 미디어 서비스 커뮤니티
 이 Azure 미디어 서비스(AMS) 커뮤니티 페이지에서는 AMS에 대한 업데이트를 받고 새 비디오 및 팟캐스트를 보고 질문을 하며 피드백을 제공하는 다양한 방법에 대해 설명합니다.   
@@ -37,10 +37,10 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="discussion"></a>토론
 ### <a name="twitter"></a>Twitter
-사용 하 여 hello [ @MSFTAzureMedia ](https://twitter.com/MSFTAzureMedia) twitter 핸들 toofollow hello AMS 뉴스 및 Twitter에 대 한 업데이트 합니다. Hello를 사용할 수 있습니다 [ @AzureSupport ](https://twitter.com/azuresupport) twitter에서 Twitter 핸들 toorequest 지원 합니다.  
+[@MSFTAzureMedia](https://twitter.com/MSFTAzureMedia) twitter 핸들을 사용하여 AMS 뉴스 및 업데이트를 Twitter에 팔로우합니다. [@AzureSupport](https://twitter.com/azuresupport) twitter 핸들을 사용하여 Twitter에서 지원을 요청할 수 있습니다.  
 
 ### <a name="online-forums"></a>온라인 포럼
-hello 다음 포럼에 사용할 수 현재 제품 및 기능에 대해 질문 하기.
+현재 제품 및 기능에 대한 질문을 하는 데 다음 포럼을 사용할 수 있습니다.
 
 현재 MSDN은 AMS 기본 포럼입니다.
 
@@ -48,10 +48,10 @@ hello 다음 포럼에 사용할 수 현재 제품 및 기능에 대해 질문 �
 
 [![StackOverflow](./media/media-services-community/stack-overflow.png)](http://stackoverflow.com/questions/tagged/azure-media-services) 
 
-## <a name="contact-hello-team"></a>연락처 hello 팀
+## <a name="contact-the-team"></a>팀에 문의
 Azure 미디어 서비스 기본 전자 메일: **mediaservices@microsoft.com**
 
-다음 표에서 hello 기능 하위 팀의 전자 메일 주소를 나열 합니다.
+다음 표에 기능 하위 팀의 전자 메일이 나열되어 있습니다.
 
 | 기능 | Email |
 | --- | --- |

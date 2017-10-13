@@ -1,6 +1,6 @@
 ---
-title: "aaaConnect tooa (클래식) Azure에서 SQL Server 가상 컴퓨터 | Microsoft Docs"
-description: "자세한 내용은 방법 tooconnect tooSQL 서버 Azure에서 가상 컴퓨터에서 실행 합니다. 이 항목에서는 hello 클래식 배포 모델을 사용 합니다. hello 시나리오 hello 네트워킹 구성 및 hello 클라이언트의 hello 위치에 따라 다릅니다."
+title: "Azure에서 SQL Server 가상 컴퓨터에 연결(클래식) | Microsoft Docs"
+description: "Azure의 가상 컴퓨터에서 실행되는 SQL Server에 연결하는 방법을 알아봅니다. 이 항목에서는 클래식 배포 모드를 사용합니다. 시나리오는 네트워킹 구성 및 클라이언트의 위치에 따라 다릅니다."
 services: virtual-machines-windows
 documentationcenter: na
 author: rothja
@@ -15,13 +15,13 @@ ms.workload: iaas-sql-server
 ms.date: 01/31/2017
 ms.author: jroth
 experimental_id: d51f3cc6-753b-4e
-ms.openlocfilehash: 9577e4bdad79435e34a64fc669ec4848649fc945
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 67b328cb754e49fe1dea9d57f74dd31793acd93c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="connect-tooa-sql-server-virtual-machine-on-azure-classic-deployment"></a>Tooa (클래식 배포) Azure에서 SQL Server 가상 컴퓨터를 연결 합니다.
+# <a name="connect-to-a-sql-server-virtual-machine-on-azure-classic-deployment"></a>Azure에서 SQL Server 가상 컴퓨터 연결(클래식 배포)
 > [!div class="op_single_selector"]
 > * [리소스 관리자](../sql/virtual-machines-windows-sql-connect.md)
 > * [클래식](../classic/sql-connect.md)
@@ -29,84 +29,84 @@ ms.lasthandoff: 10/06/2017
 > 
 
 ## <a name="overview"></a>개요
-이 항목에서는 tooconnect tooyour SQL Server 인스턴스는 Azure 가상 컴퓨터에서 실행 하는 방법을 설명 합니다. 여기서는 몇 가지 [일반 연결 시나리오](#connection-scenarios)를 다룬 다음 [Azure VM에서 SQL Server 연결을 구성하기 위한 상세 단계](#steps-for-configuring-sql-server-connectivity-in-an-azure-vm)를 제공합니다.
+이 항목에서는 Azure 가상 컴퓨터에서 실행되는 SQL Server 인스턴스에 연결하는 방법을 설명합니다. 여기서는 몇 가지 [일반 연결 시나리오](#connection-scenarios)를 다룬 다음 [Azure VM에서 SQL Server 연결을 구성하기 위한 상세 단계](#steps-for-configuring-sql-server-connectivity-in-an-azure-vm)를 제공합니다.
 
 > [!IMPORTANT] 
-> Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../azure-resource-manager/resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다. 이 문서에서는 hello 클래식 배포 모델을 사용 하 여 설명 합니다. 대부분의 새로운 배포 hello 리소스 관리자 모델을 사용 하는 것이 좋습니다. 리소스 관리자 Vm을 사용 하는 경우 참조 [tooa 리소스 관리자를 사용 하 여 Azure에서 SQL Server 가상 컴퓨터를 연결](../sql/virtual-machines-windows-sql-connect.md)합니다.
+> Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../azure-resource-manager/resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다. 이 문서에서는 클래식 배포 모델 사용에 대해 설명합니다. 새로운 배포는 대부분 리소스 관리자 모델을 사용하는 것이 좋습니다. Resource Manager VM을 사용하는 경우 [Azure에서 Resource Manager를 사용하여 SQL Server 가상 컴퓨터에 연결](../sql/virtual-machines-windows-sql-connect.md)을 참조하세요.
 
 ## <a name="connection-scenarios"></a>연결 시나리오
-hello 방식으로 클라이언트 tooSQL hello 클라이언트와 hello 컴퓨터/네트워킹 구성의 hello 위치에 따라 달라 집니다 가상 컴퓨터에서 실행 중인 서버를 연결 합니다. 이 시나리오에는 다음이 포함됩니다.
+클라이언트가 가상 컴퓨터를 실행 중인 SQL Server에 연결하는 방법은 클라이언트의 위치 및 컴퓨터/네트워킹 구성에 따라 달라집니다. 이 시나리오에는 다음이 포함됩니다.
 
-* [연결 tooSQL 서버 hello에 동일한 클라우드 서비스](#connect-to-sql-server-in-the-same-cloud-service)
-* [TooSQL 서버 hello 통해 연결 인터넷](#connect-to-sql-server-over-the-internet)
-* [연결 tooSQL 서버 hello에 동일한 가상 네트워크](#connect-to-sql-server-in-the-same-virtual-network)
+* [동일한 클라우드 서비스의 SQL Server에 연결](#connect-to-sql-server-in-the-same-cloud-service)
+* [인터넷을 통해 SQL Server에 연결](#connect-to-sql-server-over-the-internet)
+* [동일한 가상 네트워크의 SQL Server에 연결](#connect-to-sql-server-in-the-same-virtual-network)
 
 > [!NOTE]
-> 이러한 메서드를 사용 하 여 연결 하기 전에 hello 따라야 [이 문서 tooconfigure 연결의 단계를](#steps-for-configuring-sql-server-connectivity-in-an-azure-vm)합니다.
+> 이러한 방법으로 연결하기 전에 [이 문서의 단계에 따라 연결을 구성](#steps-for-configuring-sql-server-connectivity-in-an-azure-vm)해야 합니다.
 > 
 > 
 
-### <a name="connect-toosql-server-in-hello-same-cloud-service"></a>연결 tooSQL 서버 hello에 동일한 클라우드 서비스
-여러 가상 컴퓨터에서에서 만들 수 있습니다 hello 동일한 클라우드 서비스입니다. toounderstand이 가상 컴퓨터 시나리오에서는 참조 [어떻게 tooconnect 가상 컴퓨터 가상 네트워크 또는 클라우드 서비스와](../classic/connect-vms.md#connect-vms-in-a-standalone-cloud-service)합니다. 이 시나리오에서는 하나의 가상 컴퓨터에서 클라이언트는 tooconnect tooSQL 실행 중인 서버 hello에 다른 가상 컴퓨터에서 동일한 클라우드 서비스입니다.
+### <a name="connect-to-sql-server-in-the-same-cloud-service"></a>동일한 클라우드 서비스의 SQL Server에 연결
+한 클라우드 서비스에 여러 가상 컴퓨터를 만들 수 있습니다. 가상 컴퓨터 시나리오를 이해하려면 [가상 컴퓨터를 가상 네트워크 또는 클라우드 서비스와 연결하는 방법](../classic/connect-vms.md#connect-vms-in-a-standalone-cloud-service)을 참조하세요. 이 시나리오에서 한 가상 컴퓨터의 클라이언트는 동일한 클라우드 서비스의 다른 가상 컴퓨터에서 실행 중인 SQL Server에 연결하려고 합니다.
 
-이 시나리오에서는 연결할 수 있습니다 VM hello를 사용 하 여 **이름** (표시 **컴퓨터 이름** 또는 **호스트 이름** hello 포털에서). 만드는 동안 hello VM에 대해 제공한 hello 이름입니다. 예를 들어, SQL VM의 이름을 **mysqlvm**, hello 동일한 클라우드 서비스를 사용할 수 있는 클라이언트 VM 다음 연결 문자열 tooconnect hello:
+이 시나리오에서는 VM **이름**(포털에 **컴퓨터 이름** 또는 **호스트 이름**으로도 표시됨)을 사용하여 연결할 수 있습니다. 이 이름은 VM을 만들 때 제공된 이름입니다. 예를 들어 SQL VM 이름을 **mysqlvm**으로 지정하면 동일한 클라우드 서비스의 클라이언트 VM은 다음 연결 문자열을 사용하여 연결할 수 있습니다.
 
     "Server=mysqlvm;Integrated Security=false;User ID=<login_name>;Password=<your_password>"
 
-### <a name="connect-toosql-server-over-hello-internet"></a>TooSQL 서버 hello 인터넷을 통해 연결
-원하는 tooconnect tooyour SQL Server 데이터베이스 엔진 hello 인터넷에서에서 들어오는 TCP 통신에 대 한 가상 컴퓨터 끝점을 만들어야 합니다. 이 Azure 구성 단계에서는 들어오는 TCP 포트 트래픽을 tooa TCP 포트를 액세스할 수 있는 toohello 가상 컴퓨터가 안내 합니다.
+### <a name="connect-to-sql-server-over-the-internet"></a>인터넷을 통해 SQL Server에 연결 
+인터넷을 통해 SQL Server 데이터베이스 엔진에 연결할 경우 들어오는 TCP 통신에 대해 가상 컴퓨터 끝점을 만들어야 합니다. 이 Azure 구성 단계에서는 들어오는 TCP 포트 트래픽을 가상 컴퓨터에 액세스 가능한 TCP 포트로 보냅니다.
 
-통해 tooconnect hello 인터넷 hello VM의 DNS 이름 및 hello VM 끝점 포트 번호 (이 문서의 뒷부분에 나오는 구성)를 사용 해야 합니다. toofind hello DNS 이름 toohello Azure 포털에서 선택한 탐색 **가상 컴퓨터 (클래식)**합니다. 그런 다음 가상 컴퓨터를 선택합니다. hello **DNS 이름** hello에 보여집니다 **개요** 섹션.
+인터넷을 통해 연결하려면 VM의 DNS 이름 및 VM 끝점 포트 번호(이 문서 뒷부분에서 구성)를 사용해야 합니다. DNS 이름을 찾으려면 Azure Portal로 이동하고 **가상 컴퓨터(클래식)** 를 선택합니다. 그런 다음 가상 컴퓨터를 선택합니다. **DNS 이름**이 **개요** 섹션에 표시됩니다.
 
-예를 들어 이름이 **mysqlvm**, DNS 이름이 **mysqlvm7777.cloudapp.net**이고 VM 끝점이 **57500**인 클래식 가상 컴퓨터를 고려해보세요. 올바르게 구성 된 연결을 가정할 hello 연결 문자열 뒤에 있을 수 어디에서 나 사용된 tooaccess hello 가상 컴퓨터 인터넷 hello:
+예를 들어 이름이 **mysqlvm**, DNS 이름이 **mysqlvm7777.cloudapp.net**이고 VM 끝점이 **57500**인 클래식 가상 컴퓨터를 고려해보세요. 올바르게 구성된 연결이라고 가정할 경우 다음 연결 문자열을 사용하여 인터넷의 어디에서든지 가상 컴퓨터에 액세스할 수 있습니다.
 
     "Server=mycloudservice.cloudapp.net,57500;Integrated Security=false;User ID=<login_name>;Password=<your_password>"
 
-이 연결 문자열을 통해 클라이언트에 대 한 연결을 사용 하지만 인터넷 hello, 것은 아닙니다 모든 사용자가 SQL Server tooyour 연결할 수 있습니다. 클라이언트 외부 toohello 올바른 사용자 이름 및 암호가 있어야 합니다. 추가 보안을 위해 hello 공용 가상 컴퓨터 끝점에 대 한 hello 잘 알려진 포트 1433 사용 하지 마십시오. 및 가능한 경우 허용할 끝점 toorestrict 트래픽만 toohello 클라이언트에는 ACL을 추가 하는 것이 좋습니다. 끝점 Acl을 사용 하 여, 참조 [끝점에서 ACL 관리 hello](../classic/setup-endpoints.md#manage-the-acl-on-an-endpoint)합니다.
+이 연결 문자열은 인터넷을 통한 클라이언트의 연결이 사용하도록 설정하지만 누구나 SQL Server에 연결할 수 있다는 뜻은 아닙니다. 외부 클라이언트는 정확한 사용자 이름과 암호가 있어야 합니다. 보안을 높이기 위해 잘 알려진 포트 1433은 공용 가상 컴퓨터 끝점으로 사용하지 않는 것이 좋습니다. 또한 가능하다면 끝점에 ACL을 추가하여 트래픽을 허용한 클라이언트로  한정하는 것이 좋습니다. 끝점에서 ACL을 사용하는 방법에 대한 지침은 [끝점에 대한 ACL 관리](../classic/setup-endpoints.md#manage-the-acl-on-an-endpoint)를 참조하세요.
 
 > [!NOTE]
-> Hello Azure 데이터 센터에서에서 나가는 모든 데이터는 주체 toonormal SQL Server와 함께이 기술을 toocommunicate를 사용 하면 [아웃 바운드 데이터 전송에 대 한 가격](https://azure.microsoft.com/pricing/details/data-transfers/)합니다.
+> 이 방법을 사용하여 SQL Server와 통신하는 경우 Azure 데이터 센터에서 보내는 모든 데이터에는 일반적으로 [아웃바운드 데이터 전송 가격](https://azure.microsoft.com/pricing/details/data-transfers/)이 적용됩니다.
 > 
 > 
 
-### <a name="connect-toosql-server-in-hello-same-virtual-network"></a>연결 tooSQL 서버 hello에 동일한 가상 네트워크
-[가상 네트워크](../../../virtual-network/virtual-networks-overview.md) 에서는 추가적인 시나리오가 가능합니다. Hello 서로 다른 클라우드 서비스에 있는 동일한 가상 네트워크에서 이러한 경우에 Vm의에서 Vm에 연결할 수 있습니다. 또한 [사이트 간 VPN](../../../vpn-gateway/vpn-gateway-site-to-site-create.md)을 통해 온-프레미스 네트워크와 컴퓨터에 VM을 연결하는 하이브리드 아키텍처를 만들 수 있습니다.
+### <a name="connect-to-sql-server-in-the-same-virtual-network"></a>동일한 가상 네트워크의 SQL Server에 연결
+[가상 네트워크](../../../virtual-network/virtual-networks-overview.md) 에서는 추가적인 시나리오가 가능합니다. VM이 다른 클라우드 서비스에 있더라도 동일한 가상 네트워크의 VM에 연결할 수 있습니다. 또한 [사이트 간 VPN](../../../vpn-gateway/vpn-gateway-site-to-site-create.md)을 통해 온-프레미스 네트워크와 컴퓨터에 VM을 연결하는 하이브리드 아키텍처를 만들 수 있습니다.
 
-가상 네트워크는 또한 toojoin 하면 Azure Vm tooa 도메인을 설정 합니다. 도메인 가입 tooa hello 유일한 방법은 toouse SQL Server와 함께 Windows 인증을입니다. hello 다른 연결 시나리오의 SQL 인증을 요구할 사용자 이름 및 암호.
+가상 네트워크를 사용하면 Azure VM을 도메인에 연결할 수 있습니다. 도메인에 연결하는 것이 SQL Server에 Windows 인증을 사용하는 유일한 방법입니다. 다른 연결 시나리오의 경우 사용자 이름과 암호가 있는 SQL 인증이 필요합니다.
 
-Tooconfigure 도메인 환경 및 Windows 인증을 하려면 불필요 tooconfigure hello 공용 끝점 또는 hello SQL 인증 및 로그인 합니다. 이 시나리오에서는 hello 연결 문자열에 hello SQL Server VM 이름을 지정 하 여 tooyour SQL Server 인스턴스에 연결할 수 있습니다. 다음 예에서는 hello Windows 인증이 구성 된 해당 hello 사용자 액세스 toohello SQL Server 인스턴스에 부여 되었다고 가정 합니다.
+도메인 환경과 Windows 인증을 구성하려는 경우 공용 끝점이나 SQL 인증 및 로그인을 구성할 필요가 없습니다. 이 시나리오에서는 연결 문자열에 SQL Server VM 이름을 지정하여 SQL Server에 연결할 수 있습니다. 다음 예에서는 Windows 인증도 구성되었고 사용자에게 SQL Server 인스턴스에 대한 액세스 권한이 있다고 가정합니다.
 
     "Server=mysqlvm;Integrated Security=true"
 
 ## <a name="steps-for-configuring-sql-server-connectivity-in-an-azure-vm"></a>Azure VM에서 SQL Server 연결을 구성하기 위한 단계
-단계를 수행 하는 hello tooconnect toohello SQL Server 인스턴스를 통해 SQL Server Management Studio (SSMS)를 사용 하 여 인터넷 hello 하는 방법을 보여 줍니다. 그러나 hello 동일한 단계 적용 toomaking Azure 및 온-프레미스를 실행 중인 응용 프로그램에 액세스할 수 있는 SQL Server 가상 컴퓨터.
+다음 단계는 SQL Server Management Studio (SSMS)를 사용하여 인터넷을 통해 SQL Server 인스턴스에 연결하는 방법을 보여줍니다. 그러나 동일한 단계는 온-프레미스 및 Azure에서 실행중인 응용 프로그램에 대해 SQL Server 가상 컴퓨터를 액세스할 수 있게 만들도록 적용합니다.
 
-다른 VM에서 SQL Server 인스턴스의 toohello 연결 하거나 인터넷 hello 수 있습니다, 전에 작업을 수행 하는 hello를 완료 해야 합니다.
+인터넷 또는 다른 VM에서 SQL Server의 인스턴스에 연결하기 전에 먼저 다음 작업을 완료해야 합니다.
 
-* [Hello 가상 컴퓨터에 대 한 TCP 끝점 만들기](#create-a-tcp-endpoint-for-the-virtual-machine)
-* [Hello Windows 방화벽에서 TCP 포트를 열어야 합니다.](#open-tcp-ports-in-the-windows-firewall-for-the-default-instance-of-the-database-engine)
-* [SQL Server toolisten hello TCP 프로토콜에서 구성](#configure-sql-server-to-listen-on-the-tcp-protocol)
+* [가상 컴퓨터에 대한 TCP 끝점 만들기](#create-a-tcp-endpoint-for-the-virtual-machine)
+* [Windows 방화벽에서 TCP 포트 열기](#open-tcp-ports-in-the-windows-firewall-for-the-default-instance-of-the-database-engine)
+* [TCP 프로토콜에서 수신하도록 SQL Server 구성](#configure-sql-server-to-listen-on-the-tcp-protocol)
 * [혼합된 모드 인증에 대한 SQL Server 구성](#configure-sql-server-for-mixed-mode-authentication)
 * [SQL Server 인증 로그인 만들기](#create-sql-server-authentication-logins)
-* [Hello 가상 컴퓨터의 DNS 이름을 hello 결정](#determine-the-dns-name-of-the-virtual-machine)
-* [다른 컴퓨터에서 toohello 데이터베이스 엔진 연결](#connect-to-the-database-engine-from-another-computer)
+* [가상 컴퓨터의 DNS 이름 확인](#determine-the-dns-name-of-the-virtual-machine)
+* [다른 컴퓨터에서 데이터베이스 엔진에 연결](#connect-to-the-database-engine-from-another-computer)
 
-hello 연결 경로 hello 다이어그램을 다음으로 요약 되어 있습니다.
+연결 경로는 다음 다이어그램에 요약되어 있습니다.
 
-![Tooa SQL Server 가상 컴퓨터 연결](../../../../includes/media/virtual-machines-sql-server-connection-steps/SQLServerinVMConnectionMap.png)
+![SQL Server 가상 컴퓨터에 연결](../../../../includes/media/virtual-machines-sql-server-connection-steps/SQLServerinVMConnectionMap.png)
 
-[!INCLUDE [Connect tooSQL Server in a VM Classic TCP Endpoint](../../../../includes/virtual-machines-sql-server-connection-steps-classic-tcp-endpoint.md)]
+[!INCLUDE [Connect to SQL Server in a VM Classic TCP Endpoint](../../../../includes/virtual-machines-sql-server-connection-steps-classic-tcp-endpoint.md)]
 
-[!INCLUDE [Connect tooSQL Server in a VM](../../../../includes/virtual-machines-sql-server-connection-steps.md)]
+[!INCLUDE [Connect to SQL Server in a VM](../../../../includes/virtual-machines-sql-server-connection-steps.md)]
 
-[!INCLUDE [Connect tooSQL Server in a VM Classic Steps](../../../../includes/virtual-machines-sql-server-connection-steps-classic.md)]
+[!INCLUDE [Connect to SQL Server in a VM Classic Steps](../../../../includes/virtual-machines-sql-server-connection-steps-classic.md)]
 
 ## <a name="next-steps"></a>다음 단계
-고가용성 및 재해 복구를 위한 toouse AlwaysOn 가용성 그룹에도 계획 하는 경우 수신기를 구현 하는 것이 좋습니다. 데이터베이스 클라이언트 toohello 수신기 하지 않고 직접 tooone hello SQL Server 인스턴스를 연결합니다. hello 수신기 경로 클라이언트 toohello 기본 hello 가용성 그룹의 복제본입니다. 자세한 내용은 [Azure에서 AlwaysOn 가용성 그룹에 대한 ILB 수신기 구성](../classic/ps-sql-int-listener.md)을 참조하세요.
+고가용성 및 재해 복구를 위해 AlwaysOn 가용성 그룹도 사용하려는 경우 수신기의 구현을 고려해야 합니다. 데이터베이스 클라이언트는 SQL Server 인스턴스 중 하나에 직접 연결하기 보다는 수신기에 연결합니다. 수신기는 가용성 그룹의 주 복제본에 클라이언트를 라우팅합니다. 자세한 내용은 [Azure에서 AlwaysOn 가용성 그룹에 대한 ILB 수신기 구성](../classic/ps-sql-int-listener.md)을 참조하세요.
 
-Azure 가상 컴퓨터에서 실행 중인 SQL Server에 대 한 보안 모범 사례를 hello 모든 중요 한 tooreview 이며 자세한 내용은 [Azure Virtual Machines의 SQL Server에 대한 보안 고려 사항](../sql/virtual-machines-windows-sql-security.md)을 참조하세요.
+Azure 가상 컴퓨터에서 실행되는 SQL Server에 대한 모든 보안 모범 사례를 반드시 검토해야 합니다. 자세한 내용은 [Azure 가상 컴퓨터의 SQL Server에 대한 보안 고려 사항](../sql/virtual-machines-windows-sql-security.md)을 참조하세요.
 
-[Hello 학습 경로 탐색](https://azure.microsoft.com/documentation/learning-paths/sql-azure-vm/) Azure 가상 컴퓨터에 SQL Server에 대 한 합니다. 
+[학습 경로를 탐색](https://azure.microsoft.com/documentation/learning-paths/sql-azure-vm/) 합니다. 
 
-다른 항목은 서로 관련 toorunning Azure Vm에서 SQL Server에 대 한 참조 [Azure 가상 컴퓨터에 SQL Server](../sql/virtual-machines-windows-sql-server-iaas-overview.md)합니다.
+Azure VM에서의 SQL Server 실행에 관한 다른 항목은 [Azure 가상 컴퓨터의 SQL Server](../sql/virtual-machines-windows-sql-server-iaas-overview.md)를 참조하세요.
 

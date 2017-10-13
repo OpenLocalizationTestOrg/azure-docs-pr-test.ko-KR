@@ -1,5 +1,5 @@
 ---
-title: "aaaMobile Engagement 개념 | Microsoft Docs"
+title: "Mobile Engagement 개념 | Microsoft Docs"
 description: "Azure Mobile Engagement 개념"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,72 +14,72 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 5aa7f28c00cd641a36a6e040c6b13d802ea6ae41
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8450651528007b4527366b89a6ad7615169f93c0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-mobile-engagement-concepts"></a>Azure Mobile Engagement 개념
-Mobile Engagement는 몇 가지 개념 일반적인 tooall 지원 플랫폼을 정의합니다. 이 문서에서는 이러한 개념을 간략하게 설명합니다.
+Mobile Engagement는 지원되는 모든 플랫폼에 공통되는 몇 가지 개념을 정의합니다. 이 문서에서는 이러한 개념을 간략하게 설명합니다.
 
-이 문서는 좋은 시작은 새 tooMobile 참여 하려는 경우입니다. 또한 자세한 세부 정보 및 예제도 가능한 제한 된이 문서에서 설명 하는 hello 개념을 구체화 합니다 대로 사용 하는 있는지 tooread hello 설명서 특정 toohello 플랫폼을 확인 합니다.
+Mobile Engagement를 처음 사용하는 경우 이 문서부터 참조하면 좋습니다. 또한 사용 중인 플랫폼과 관련된 문서를 읽어보세요. 자세한 정보 및 예제뿐만 아니라 가능한 제한 사항을 통해 이 문서에 설명된 개념을 구체적으로 설명해 줍니다.
 
 ## <a name="devices-and-users"></a>장치 및 사용자
-Mobile Engagement는 각 장치에 대한 고유 식별자를 생성하여 사용자를 식별합니다. 이 식별자 hello 장치 식별자 라고 합니다. (또는 `deviceid`). 모든 응용 프로그램 실행 hello 동일 하는 방식으로 생성 됩니다 장치 공유 hello 동일한 장치 식별자입니다.
+Mobile Engagement는 각 장치에 대한 고유 식별자를 생성하여 사용자를 식별합니다. 이 식별자를 장치 식별자(또는 `deviceid`)라고 합니다. 식별자는 동일한 장치에서 실행하는 모든 응용 프로그램이 동일한 장치 식별자를 공유하는 방식으로 생성됩니다.
 
-암시적으로 Mobile Engagement 장치 toobelong tooexactly 한 사용자를 고려 하 따라서 사용자 및 장치는 해당 하는 개념을 의미 합니다.
+암시적으로 Mobile Engagement는 한 장치가 정확히 한 명의 사용자에게 속하는 것으로 간주하므로, 사용자와 장치는 동등한 개념입니다.
 
 ## <a name="sessions-and-activities"></a>세션 및 작업
-세션은 hello 시간 hello 사용자 로부터 사용자가 수행 하는 hello 응용 프로그램의 용도 중 하나를 사용 하 여 hello 사용자 중지 될 때까지 시작.
+세션은 사용자가 응용 프로그램을 한 번 사용하는 것으로, 사용을 시작한 시간부터 중지할 때까지의 시간입니다.
 
-활동은 사용자가 수행 하는 hello 응용 프로그램의 지정된 된 하위 부분의 용도 중 하나 (일반적으로 화면 하지만 어느 것에 적합 한 toohello 응용 프로그램 수)입니다.
+작업은 사용자가 수행하는 응용 프로그램의 지정된 하위 부분에 대한 한 번의 사용입니다(일반적으로 한 화면이지만 응용 프로그램에 적합한 어떤 항목이든 될 수 있음).
 
 사용자는 한번에 하나의 동작만 수행할 수 있습니다.
 
-활동 이름 (제한 된 too64 문자 수)으로 식별 및 (1024 바이트의 hello 제한)에서 필요에 따라 몇 가지 추가 데이터를 포함할 수 있습니다.
+작업은 이름(64자로 제한됨)으로 식별되고 선택적으로 추가 데이터(1024바이트로 제한됨)를 일부 포함할 수 있습니다.
 
-세션은 사용자가 수행한 작업의 hello 시퀀스에서 자동으로 계산 됩니다. Hello 사용자 자신의 첫 번째 활동을 시작 하 고 그 그의 마지막 작업이 끝나면 중지는 세션 시작 됩니다. 즉, 세션을 명시적으로 시작 되거나 중지 toobe 필요 하지 않습니다. 대신, 작업이 명시적으로 시작되거나 중지됩니다. 작업이 보고되지 않으면 세션이 보고되지 않습니다.
+세션은 사용자가 수행한 작업의 시퀀스에서 자동으로 계산됩니다. 사용자가 첫 번째 작업을 시작할 때 세션이 시작되고 마지막 작업을 끝내면 세션이 중지됩니다. 즉, 세션을 명시적으로 시작하거나 중지할 필요가 없습니다. 대신, 작업이 명시적으로 시작되거나 중지됩니다. 작업이 보고되지 않으면 세션이 보고되지 않습니다.
 
 ## <a name="events"></a>이벤트
-이벤트는 사용 되는 tooreport 인스턴트 작업 (예: 단추 누름 또는 사용자가 읽을 문서)입니다.
+이벤트는 인스턴트 동작(예: 사용자가 단추 누름 또는 문서 읽음)을 보고하는 데 사용됩니다.
 
-이벤트 관련된 toohello 현재 세션 작업을 실행 하는 tooa 이거나 독립 실행형 이벤트 수 있습니다.
+이벤트는 현재 세션 또는 실행 중인 작업과 관련될 수 있거나 독립 실행형이 될 수 있습니다.
 
-이벤트 이름 (제한 된 too64 문자)으로 식별 되 고 (1024 바이트의 hello 제한)에서 필요에 따라 몇 가지 추가 데이터를 포함할 수 있습니다.
+이벤트는 이름(64자로 제한됨)으로 식별되고 선택적으로 추가 데이터(1024바이트로 제한됨)를 일부 포함할 수 있습니다.
 
 ## <a name="error"></a>오류
-오류는 hello 응용 프로그램 (예: 잘못 된 사용자 작업 또는 API 호출 실패)가 제대로 검색 하는 사용 되는 tooreport 문제입니다.
+오류는 응용 프로그램에서 올바르게 감지하는 문제(예: 잘못된 사용자 작업 또는 API 호출 실패)를 보고하는 데 사용됩니다.
 
-오류 관련된 toohello 현재 세션 작업을 실행 하는 tooa 이거나 독립 실행형 오류일 수 있습니다.
+오류는 현재 세션 또는 실행 중인 작업과 관련될 수 있거나 독립 실행형이 될 수 있습니다.
 
-오류가 이름 (제한 된 too64 문자)으로 식별 되 고 (1024 바이트의 hello 제한)에서 필요에 따라 몇 가지 추가 데이터를 포함할 수입니다.
+오류는 이름(64자로 제한됨)으로 식별되고 선택적으로 추가 데이터(1024바이트로 제한됨)를 일부 포함할 수 있습니다.
 
 ## <a name="job"></a>작업
-작업은 사용 되는 tooreport 작업 기간 필요 (마찬가지로 API 호출의 기간, 표시할 광고의 시간, 백그라운드 작업의 기간이 나 사용자 작업의 기간).
+작업은 기간(예: API 호출 기간, 광고의 표시 시간, 백그라운드 작업의 기간 또는 사용자 작업의 기간)이 있는 동작을 보고하는 데 사용됩니다.
 
-작업은 사용자 개입 없이 hello 백그라운드에서 작업을 수행할 수 있으므로 관련된 tooa 세션 되지 않습니다.
+사용자 개입 없이 작업을 백그라운드에서 수행할 수 있으므로 작업은 특정 세션과 관련되지 않습니다.
 
-작업 이름 (제한 된 too64 문자)으로 식별 되 있으며 (1024 바이트의 hello 제한)에서 필요에 따라 몇 가지 추가 데이터를 포함할 수 있습니다.
+작업은 이름(64자로 제한됨)으로 식별되고 선택적으로 추가 데이터(1024바이트로 제한됨)를 일부 포함할 수 있습니다.
 
 ## <a name="crash"></a>크래시
-충돌은 hello hello 응용 프로그램에 의해 검색 되지 문제가 확인 오류가 발생 했습니다. 충돌 하는 Mobile Engagement SDK tooreport 응용 프로그램에서 자동으로 발급 됩니다.
+크래시는 Mobile Engagement SDK에서 응용 프로그램에 의해 검색되지 않는 문제가 크래시로 지정되는 응용 프로그램 오류를 보고하기 위해 자동으로 발급합니다.
 
 ## <a name="application-information"></a>응용 프로그램 정보
-응용 프로그램 정보 (또는 앱 정보)는 사용 되는 tootag 사용자, 즉, tooassociate (이 비슷한 tooweb 쿠키를 제외 하 고 앱 정보 hello 서버 쪽 hello Azure Mobile Engagement 플랫폼에 저장 된) 응용 프로그램의 일부 데이터 toohello 사용자입니다.
+응용 프로그램 정보(또는 앱 정보)는 일부 데이터를 응용 프로그램의 사용자와 연결하기 위해 사용자를 태그하는 데 사용됩니다. 즉, 앱 정보가 Azure Mobile Engagement 플랫폼의 서버 측에 저장되는 점을 제외하면 웹 쿠키와 비슷합니다.
 
-Hello Mobile Engagement SDK API를 사용 하 여 또는 hello Mobile Engagement 플랫폼 Device API를 사용 하 여 응용 프로그램 정보를 등록할 수 있습니다.
+Mobile Engagement SDK의 API 또는 Mobile Engagement 플랫폼의 장치 API를 사용하여 앱 정보를 등록할 수 있습니다.
 
-앱 정보에는 키/값 쌍 연결된 tooa 장치입니다. hello 키는 hello 앱 정보 (제한 된 too64 ASCII 문자 [a-zA-Z], [0-9] 숫자 및 밑줄 [__])의 hello 이름입니다. hello 값 (제한 된 too1024 문자)는 문자열, 정수, 날짜 (yyyy-월-일) 또는 부울 (true 또는 false) 수 있습니다.
+앱 정보는 장치에 연결된 키/값 쌍입니다. 키는 앱 정보의 이름(64자의 ASCII 문자 [zA-A-z], [0-9] 숫자 및 밑줄 [_]로 제한됨)입니다. 값(1024자로 제한됨)은 문자열, 정수, 날짜(yyyy-MM-dd) 또는 부울(true 또는 false)이 될 수 있습니다.
 
-앱 정보 개수에 관계 없이 hello Mobile Engagement 가격 조건에 정의 된 hello 제한 내에서 관련된 tooa 장치 수 있습니다. 지정 된 키에 대 한 Mobile Engagement만은 hello 최신 값 집합 기록이 없습니다. 설정 또는 응용 프로그램 정보의 hello 값을 변경 하면 Mobile Engagement toore-이 앱에 설정 된 대상 그룹 조건 평가 정보 (있는 경우)에 해당 응용 프로그램 정보를 의미 합니다. 사용 되는 tootrigger 실시간 푸시 될 수 있습니다.
+앱 정보는 개수에 관계없이 Mobile Engagement 가격 조건으로 정의된 제한 내에서 장치에 연결할 수 있습니다. 지정된 단일 키에 대해 Mobile Engagement는 최신 값 집합의 추적(기록 제외)만 유지합니다. 앱 정보의 값을 설정 또는 변경하면 Mobile Engagement에서 이 앱 정보(있는 경우)에 대한 대상 기준을 다시 평가합니다. 즉, 앱 정보를 사용하여 실시간 푸시를 트리거할 수 있습니다.
 
 ## <a name="extra-data"></a>추가 데이터
-추가 데이터 (또는 추가 기능)는 일부 임의의 데이터 연결된 tooevents, 오류, 활동 및 작업 수입니다.
+추가 데이터(또는 기타 데이터)는 이벤트, 오류, 작업 및 작업에 연결할 수 있는 임의의 데이터입니다.
 
-추가 기능 구성 유사한 tooJSON 개체: 키/값 쌍의 트리 수 있습니다. 키는 제한 too64 ASCII 문자 [zA-A-z], [0-9] 및 [__] 밑줄) hello extras의 총 크기는 제한 된 too1024 (한 번에서 인코딩된 문자 JSON에서 Mobile Engagement SDK hello).
+추가 데이터는 JSON 개체와 비슷하게 구조화됩니다. 이러한 데이터는 키/값 쌍의 트리로 구성됩니다. 키가 64자의 ASCII 문자 [zA-A-z], 숫자 [0-9] 및 밑줄 [_]로 제한되며 추가 데이터의 총 크기는 1024 자(Mobile Engagement SDK에 의해 JSON에서 한번 인코딩됨)로 제한됩니다.
 
-키/값 쌍의 전체 트리 hello JSON 개체로 저장 됩니다. 그럼에도 불구 하 고 유일한 hello 첫 번째 키/값 수준은 분해 된 toobe 액세스할 수 있는 toosome 세그먼트와 같은 함수를 고급 직접 (예를 들어 쉽게 정의한 10 번 이상 hello 이벤트 전송을 모든 사용자가 구성 된 "SciFi 팬" 라는 세그먼트 명명 된 content_type"hello 불필요 한 키"와 "content_viewed" hello에 scifi"집합 toohello 값" 지난 한 달). 따라서 좋습니다 toosend만 extras 스칼라 값 (예: 문자열, 날짜, 정수 또는 부울 값)를 사용 하 여 키/값 쌍의 단순 목록을 구성 합니다.
+키/값 쌍의 전체 트리는 JSON 개체로 저장됩니다. 그러나 첫 번째 수준의 키/값은 Segments와 같은 일부 고급 함수에서 직접 액세스할 수 있도록 구성 해제됩니다. 예를 들어 지난 달에 추가 키 "content_type"이 "scifi" 값으로 설정된 "content_viewed"라는 이벤트를 10번 이상 전송한 모든 사용자로 구성된 "SciFi 팬" 세그먼트를 쉽게 정의할 수 있습니다. 따라서 스칼라 값(예: 문자열, 날짜, 정수 또는 부울)을 사용하여 키/값 쌍의 간단한 목록으로 구성된 기타 데이터만 보내는 것이 좋습니다.
 
 ## <a name="next-steps"></a>다음 단계
 * [Azure Mobile Engagement의 Windows 유니버설 SDK 개요](mobile-engagement-windows-store-sdk-overview.md)

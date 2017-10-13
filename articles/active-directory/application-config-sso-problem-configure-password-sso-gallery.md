@@ -1,6 +1,6 @@
 ---
-title: "aaaProblem 암호 single sign on Azure AD 갤러리 응용 프로그램에 대 한 구성 | Microsoft Docs"
-description: "암호 Single sign-on 이미 나열 되어 있는 응용 프로그램에 대 한 hello Azure AD 응용 프로그램 갤러리에서에서 구성할 때 일반적인 문제 사람이 면 hello 이해"
+title: "Azure AD 갤러리 응용 프로그램에 대해 암호 Single Sign-On을 구성할 때 발생하는 문제 | Microsoft Docs"
+description: "Azure AD 응용 프로그램 갤러리에 이미 나열된 응용 프로그램에 대해 암호 Single Sign-On을 구성할 때 발생하는 일반적인 문제 이해"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,98 +13,98 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 78c37c52453c375bf7ccbca6df5c9008be4ce642
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 58d29996a922fac6d295e753ba5d66d32e745a57
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="problem-configuring-password-single-sign-on-for-an-azure-ad-gallery-application"></a>Azure AD 갤러리 응용 프로그램에 대해 암호 Single Sign-On을 구성할 때 발생하는 문제
 
-이 문서가 도움이 되었나요 toounderstand hello 일반적인 문제 사람 얼굴을 구성할 때 **암호 Single sign-on** Azure AD 갤러리 응용 프로그램과 함께 합니다.
+이 문서는 Azure AD 갤러리 응용 프로그램에 대해 **암호 Single Sign-On**을 구성할 때 발생하는 일반적인 문제를 이해하는 데 도움이 됩니다.
 
-## <a name="credentials-are-filled-in-but-hello-extension-does-not-submit-them"></a>자격 증명을 입력 하지만 hello 확장 제출 하지 않습니다.
+## <a name="credentials-are-filled-in-but-the-extension-does-not-submit-them"></a>자격 증명은 입력했지만 확장에서 제출하지 않음
 
-Hello 응용 프로그램 공급 업체의 로그인을 변경 된 경우 페이지 최근에 tooadd 필드 일반적으로 발생 하 고, toodetect hello 사용자 이름 및 암호 필드를 사용 하는 기본 식별자를 변경 하 고 또는 어떻게 hello 로그인 환경을 자신의 응용 프로그램에 사용할 수정 합니다. 에서는 대부분의 경우에서 Microsoft 작업할 수 응용 프로그램 공급 업체 toorapidly 해결 이러한 문제.
+이 문제는 일반적으로 응용 프로그램 공급업체에서 최근에 로그인 페이지를 변경하여 필드를 추가했거나, 사용자 이름 및 암호 필드 감지에 사용하는 기반 식별자를 변경했거나, 응용 프로그램의 로그인 경험 방식을 수정한 경우에 발생합니다. 다행스럽게도 많은 경우에 Microsoft와 응용 프로그램 공급업체가 협력하여 이 문제를 신속하게 해결할 수 있습니다.
 
-Microsoft는 이러한 통합을 해제 하지만 때로는 없는 수 toofind 검색 기술을 tooautomatically 하는 동안 이러한 문제를 트래버스하여, 또는 어느 정도 시간이 필요 오른쪽 toofix를 시간입니다. Hello 경우 이러한 통합 중 하나가 제대로 작동 하지 않으면 주시면이 최대한 빨리 해결할 수 있도록 지원 케이스를 연 경우.
+Microsoft에는 이렇게 통합이 깨졌을 때 자동으로 감지할 기술이 있지만, 문제를 즉시 발견하지 못하거나 해결할 때까지 시간이 걸리는 경우도 있습니다. 이러한 통합이 올바르게 작동하지 않는 경우에는 가능한 한 빨리 해결할 수 있도록 지원 사례를 열어 주시면 감사하겠습니다.
 
-또한 toothis에서 **이 응용 프로그램의 공급이 업체에 연결 하는 경우** **으로 보내거나** toonatively Azure Active Directory와 응용 프로그램 통합에서는 작업할 수 있도록 합니다. Hello 공급 업체 toohello를 보낼 수 있습니다 [hello Azure Active Directory 응용 프로그램 갤러리에서 응용 프로그램을 나열](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) tooget을 시작 합니다.
+또한 **이 응용 프로그램의 공급업체와 연락된 경우는 응용 프로그램을 Azure Active Directory와 기본적으로 통합하기 위한 작업을 함께 진행할 수 있도록** **Microsoft로 보내 주세요**. 공급업체에서 작업을 시작할 수 있도록 [Azure Active Directory 응용 프로그램 갤러리에 응용 프로그램 나열](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing)로 보내 주시면 됩니다.
 
-## <a name="credentials-are-filled-in-and-submitted-but-hello-page-indicates-hello-credentials-are-incorrect"></a>자격 증명은 입력 되 고, 전송 되지만 hello 페이지 hello 자격 증명이 잘못 되었음을 알려 줍니다.
+## <a name="credentials-are-filled-in-and-submitted-but-the-page-indicates-the-credentials-are-incorrect"></a>자격 증명을 입력하고 제출했지만 페이지에 자격 증명이 잘못되었다고 표시됨
 
-이 문제를 첫 번째 확인 hello 다음 tooresolve:
+이 문제를 해결하려면 먼저 다음을 확인합니다.
 
--   먼저 시도 합니다. 너무 hello 사용자에 게**toohello 응용 프로그램 웹 사이트에 직접 로그인** hello 자격 증명을 저장 합니다.
+-   사용자가 먼저 저장된 자격 증명을 사용해서 **응용 프로그램 웹 사이트에 직접 로그인**을 시도하도록 합니다.
 
-  * 연결이 되 면 다음 hello 사용자가 클릭 hello **자격 증명을 업데이트** hello 단추 **응용 프로그램 타일** hello에 **앱** hello의 섹션 [응용 프로그램 액세스 패널](https://myapps.microsoft.com/) tooupdate에 알려진 최신 toohello 사용자 이름 및 암호를 사용 합니다.
+  * 로그인이 되면 사용자가 [응용 프로그램 액세스 패널](https://myapps.microsoft.com/)의 **응용 프로그램** 섹션에서 **응용 프로그램 타일**에 있는 **자격 증명 업데이트** 단추를 클릭하여 문제가 없는 최신 사용자 이름 및 암호로 업데이트하도록 합니다.
 
-   * 또는이 사용자에 대 한 다른 관리자 할당 hello 자격 증명 toohello 이동 하 여 hello 사용자 또는 그룹의 응용 프로그램 할당 찾을 **사용자 및 그룹** hello 할당을 선택 하는 hello 응용 프로그램의 탭 및 hello를 클릭 하면 **업데이트 자격 증명** 단추입니다.
+   * 자신이나 다른 관리자가 이 사용자에게 자격 증명을 할당한 경우는 응용 프로그램의 **사용자 및 그룹** 탭으로 이동하여 할당을 선택하고 **자격 증명 업데이트** 단추를 클릭하여 사용자 또는 그룹의 응용 프로그램 할당을 찾습니다.
 
--   Hello 사용자 자신의 자격 증명에 할당 한 경우 사용자가 hello 있어야 **toobe 있는지 hello 응용 프로그램에서 해당 암호가 만료 되지 않았는지 확인** 그리고 있다면 **만료 된 암호를 업데이트** toohello 로그인 직접 응용 프로그램입니다.
+-   사용자가 직접 자격 증명을 할당한 경우는 사용자에게 **응용 프로그램에서 암호가 만료되지 않았는지 확인하라고 한** 다음, 만료되었으면 응용 프로그램에 직접 로그인하여 **만료된 암호를 업데이트**하도록 합니다.
 
-   * Hello 암호 hello 응용 프로그램에서 업데이트 한 후 요청 hello 사용자 tooclick hello **자격 증명을 업데이트** hello 단추 **응용 프로그램 타일** hello에 **앱** 섹션의 hello [응용 프로그램 액세스 패널](https://myapps.microsoft.com/) tooupdate 해당 toohello 알려진 최신 사용자 이름 및 암호를 사용 합니다.
+   * 응용 프로그램에서 암호가 업데이트된 후에 사용자에게 [응용 프로그램 액세스 패널](https://myapps.microsoft.com/)의 **응용 프로그램** 섹션에서 **응용 프로그램 타일**에 있는 **자격 증명 업데이트** 단추를 클릭하여 문제가 없는 최신 사용자 이름 및 암호로 업데이트하라고 요청합니다.
 
-   * 또는이 사용자에 대 한 다른 관리자 할당 hello 자격 증명 toohello 이동 하 여 hello 사용자 또는 그룹의 응용 프로그램 할당 찾을 **사용자 및 그룹** hello 할당을 선택 하는 hello 응용 프로그램의 탭 및 hello를 클릭 하면 **업데이트 자격 증명** 단추입니다.
+   * 자신이나 다른 관리자가 이 사용자에게 자격 증명을 할당한 경우는 응용 프로그램의 **사용자 및 그룹** 탭으로 이동하여 할당을 선택하고 **자격 증명 업데이트** 단추를 클릭하여 사용자 또는 그룹의 응용 프로그램 할당을 찾습니다.
 
--   Hello 아래 hello 단계를 수행 하 여 hello 사용자 업데이트 hello 액세스 패널 브라우저 확장을 보유 [어떻게 tooinstall hello 액세스 패널 브라우저 확장](#how-to-install-the-access-panel-browser-extension) 섹션.
+-   사용자가 아래 [액세스 패널 브라우저 확장을 설치하는 방법](#how-to-install-the-access-panel-browser-extension) 섹션의 단계에 따라 액세스 패널 브라우저 확장을 업데이트하도록 합니다.
 
--   Hello 액세스 패널 브라우저 확장이 실행 되 고 사용자의 브라우저에서 사용할 수 있는지 확인 하십시오.
+-   액세스 패널 브라우저 확장이 실행 중이며 사용자의 브라우저에서 사용하도록 설정되어 있는지 확인합니다.
 
--   사용자가 하는 동안 hello 액세스 패널에서 toohello 응용 프로그램에서 toosign 시도 하지 않는 확인 **incognito, inPrivate, 또는 개인 모드**합니다. 이러한 모드에는 hello 액세스 패널 확장이 지원 되지 않습니다.
+-   **incognito, inPrivate 또는 개인 모드**일 때 사용자가 액세스 패널의 응용 프로그램에 로그인하려고 하지 않았는지 확인합니다. 이러한 모드에서는 액세스 패널 확장이 지원되지 않습니다.
 
-작동 하지 않는 경우 세분에 일시적으로 hello 응용 프로그램의 Azure AD와의 통합 hello 응용 프로그램 쪽에서 변경 내용이 발생 하는 hello 사례 수 있습니다. 예를 들어 경우 발생할 수 hello 응용 프로그램 공급 업체에서는 수동 vs에 따라 다르게 동작 하는 해당 페이지에 대 한 스크립트 입력을 유발 하는 자동으로 자체, toobreak 같은 통합을 자동화 합니다. 에서는 대부분의 경우에서 Microsoft 작업할 수 응용 프로그램 공급 업체 toorapidly 해결 이러한 문제.
+이 방법이 통하지 않는 경우는 응용 프로그램 쪽에서 변경이 일어나 일시적으로 응용 프로그램과 Azure AD의 통합이 깨졌을 수 있습니다. 예를 들어, 응용 프로그램 공급업체에서 수동 입력과 자동 입력에 대해 다르게 작동하는 스크립트를 페이지에 포함하는 바람에 자동화 통합이 깨지는 경우에 이 문제가 발생할 수 있습니다. 다행스럽게도 많은 경우에 Microsoft와 응용 프로그램 공급업체가 협력하여 이 문제를 신속하게 해결할 수 있습니다.
 
-Microsoft는 이러한 통합을 해제 하지만 때로는 없는 수 toofind 검색 기술을 tooautomatically 하는 동안 이러한 문제를 트래버스하여, 또는 어느 정도 시간이 필요 오른쪽 toofix를 시간입니다. Hello 경우 이러한 통합 중 하나가 제대로 작동 하지 않으면 주시면이 최대한 빨리 해결할 수 있도록 지원 케이스를 연 경우.
+Microsoft에는 이렇게 통합이 깨졌을 때 자동으로 감지할 기술이 있지만, 문제를 즉시 발견하지 못하거나 해결할 때까지 시간이 걸리는 경우도 있습니다. 이러한 통합이 올바르게 작동하지 않는 경우에는 가능한 한 빨리 해결할 수 있도록 지원 사례를 열어 주시면 감사하겠습니다.
 
-또한 toothis에서 **이 응용 프로그램의 공급이 업체에 연결 하는 경우** **으로 보내거나** toonatively Azure Active Directory와 응용 프로그램 통합에서는 작업할 수 있도록 합니다. Hello 공급 업체 toohello를 보낼 수 있습니다 [hello Azure Active Directory 응용 프로그램 갤러리에서 응용 프로그램을 나열](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) tooget을 시작 합니다.
+또한 **이 응용 프로그램의 공급업체와 연락된 경우는 응용 프로그램을 Azure Active Directory와 기본적으로 통합하기 위한 작업을 함께 진행할 수 있도록** **Microsoft로 보내 주세요**. 공급업체에서 작업을 시작할 수 있도록 [Azure Active Directory 응용 프로그램 갤러리에 응용 프로그램 나열](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing)로 보내 주시면 됩니다.
 
-## <a name="hello-extension-works-in-chrome-and-firefox-but-not-in-internet-explorer"></a>Internet Explorer 있지만 Chrome 및 Firefox에서 작동 하는 hello 확장
+## <a name="the-extension-works-in-chrome-and-firefox-but-not-in-internet-explorer"></a>Chrome 및 Firefox에서는 확장이 작동하지만 Internet Explorer에서는 작동하지 않음
 
-두 가지 주요 원인은 toothis 문제:
+이 문제에는 두 가지 주요 원인이 있습니다.
 
--   Hello 웹 사이트가 없는 경우 Internet Explorer에서 사용 하는 hello 보안 설정에 따라의 일부가 **신뢰할 수 있는 영역**, 스크립트 hello 응용 프로그램에 대 한 실행에서 차단 될 경우에 따라 합니다.
+-   Internet Explorer의 보안 설정에 따라, 웹 사이트가 **신뢰할 수 있는 영역**에 속해 있지 않으면 응용 프로그램에서 스크립트 실행이 차단될 수 있습니다.
 
-  *  tooresolve이 너무 hello 사용자 라고 지시할**hello 응용 프로그램의 웹 사이트 추가** toohello **신뢰할 수 있는 사이트** 목록 내에서 해당 **Internet Explorer 보안 설정**합니다. 사용자가 toohello를 보낼 수 있습니다 [목록 사이트 어떻게 tooadd 사이트 toomy 신뢰할 수 있는](https://answers.microsoft.com/en-us/ie/forum/ie9-windows_7/how-do-i-add-a-site-to-my-trusted-sites-list/98cc77c8-b364-e011-8dfc-68b599b31bf5) 자세한 지침에 대 한 문서입니다.
+  *  이 문제를 해결하려면 사용자에게 **Internet Explorer 보안 설정**에서 **응용 프로그램의 웹 사이트**를 **신뢰할 수 있는 사이트** 목록에 추가하라고 요청합니다. 사용자가 자세한 지침을 확인할 수 있도록 [사이트를 신뢰할 수 있는 사이트 목록에 추가하는 방법](https://answers.microsoft.com/en-us/ie/forum/ie9-windows_7/how-do-i-add-a-site-to-my-trusted-sites-list/98cc77c8-b364-e011-8dfc-68b599b31bf5) 문서로 안내할 수도 있습니다.
 
--   드문 경우에 Internet Explorer의 보안 유효성 검사 수 하는 경우가 발생할 hello 페이지 tooload 스크립트의 hello 실행 보다 느리게 합니다.
+-   드물게 Internet Explorer의 보안 유효성 검사 때문에 스크립트 실행 속도보다 페이지 로드 속도가 느려질 수 있습니다.
 
-   * 그러나이 경우 hello 브라우저 버전, 컴퓨터 및 속도 또는 방문한 사이트에 따라 달라질 수 있습니다. 이 경우이 특정 응용 프로그램에 대 한 hello 통합을 수정할 수 있도록 지원에 문의 하는 것이 좋습니다.
+   * 이런 상황은 브라우저 버전, 컴퓨터 속도, 방문한 사이트에 따라 달라질 수 있습니다. 그런 경우는 특정 응용 프로그램의 통합을 수정할 수 있도록 지원 팀에 문의해 주세요.
 
-또한 toothis에서 **이 응용 프로그램의 공급이 업체에 연결 하는 경우** **으로 보내거나** toonatively Azure Active Directory와 응용 프로그램 통합에서는 작업할 수 있도록 합니다. Hello 공급 업체 toohello를 보낼 수 있습니다 [hello Azure Active Directory 응용 프로그램 갤러리에서 응용 프로그램을 나열](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) tooget을 시작 합니다.
+또한 **이 응용 프로그램의 공급업체와 연락된 경우는 응용 프로그램을 Azure Active Directory와 기본적으로 통합하기 위한 작업을 함께 진행할 수 있도록** **Microsoft로 보내 주세요**. 공급업체에서 작업을 시작할 수 있도록 [Azure Active Directory 응용 프로그램 갤러리에 응용 프로그램 나열](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing)로 보내 주시면 됩니다.
 
-## <a name="check-if-hello-applications-login-page-has-changed-recently-or-requires-an-additional-field"></a>또는 확인 하는 경우 hello 응용 프로그램의 로그인 페이지 최근에 변경 된 추가 필드를 필요
+## <a name="check-if-the-applications-login-page-has-changed-recently-or-requires-an-additional-field"></a>응용 프로그램의 로그인 페이지가 최근에 변경되었거나 추가 필드가 필요한지 확인
 
-Hello 응용 프로그램의 로그인 페이지 크게 변경 된 경우 때때로이 인해 통합 toobreak 취급 합니다. 이 예는 응용 프로그램 공급 업체 captcha 필드에는 기호를 추가 하거나 tootheir multi-factor authentication이 발생 하는 경우입니다. 에서는 대부분의 경우에서 Microsoft 작업할 수 응용 프로그램 공급 업체 toorapidly 해결 이러한 문제.
+응용 프로그램의 로그인 페이지가 최근에 변경된 경우는 그 때문에 통합이 깨질 수도 있습니다. 이런 예로는 응용 프로그램 공급업체에서 로그인 필드, chaptcha 또는 다단계 인증을 경험에 추가하는 경우가 있습니다. 다행스럽게도 많은 경우에 Microsoft와 응용 프로그램 공급업체가 협력하여 이 문제를 신속하게 해결할 수 있습니다.
 
-Microsoft는 이러한 통합을 해제 하지만 때로는 없는 수 toofind 검색 기술을 tooautomatically 하는 동안 이러한 발급 바로 합니다. 그렇지 않은 경우 일부 시간 toofix를 가지도록 합니다. Hello 경우에서 이러한 통합 중 하나가 제대로 작동 하지 않으면 주시면이 최대한 빨리 해결할 수 있도록 한 지원 케이스 개시 합니다.
+Microsoft에는 이렇게 통합이 깨졌을 때 자동으로 감지할 기술이 있지만, 문제를 즉시 발견하지 못할 수도 있습니다. 아니면 해결할 때까지 시간이 오래 걸릴 수도 있습니다. 이러한 통합이 올바르게 작동하지 않는 경우에는 가능한 한 빨리 해결할 수 있도록 지원 사례를 열어 주시면 감사하겠습니다.
 
-또한 toothis에서 **이 응용 프로그램의 공급이 업체에 연결 하는 경우** **으로 보내거나** toonatively Azure Active Directory와 응용 프로그램 통합에서는 작업할 수 있도록 합니다. Hello 공급 업체 toohello를 보낼 수 있습니다 [hello Azure Active Directory 응용 프로그램 갤러리에서 응용 프로그램을 나열](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) tooget을 시작 합니다.
+또한 **이 응용 프로그램의 공급업체와 연락된 경우는 응용 프로그램을 Azure Active Directory와 기본적으로 통합하기 위한 작업을 함께 진행할 수 있도록** **Microsoft로 보내 주세요**. 공급업체에서 작업을 시작할 수 있도록 [Azure Active Directory 응용 프로그램 갤러리에 응용 프로그램 나열](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing)로 보내 주시면 됩니다.
 
-## <a name="how-tooinstall-hello-access-panel-browser-extension"></a>Tooinstall은 액세스 패널 브라우저 확장을 hello 하는 방법
+## <a name="how-to-install-the-access-panel-browser-extension"></a>액세스 패널 브라우저 확장을 설치하는 방법
 
-아래의 hello 단계를 수행 하는 액세스 패널 브라우저 확장 tooinstall hello:
+액세스 패널 브라우저 확장을 설치하려면 아래 단계를 수행합니다.
 
-1.  열기 hello [액세스 패널](https://myapps.microsoft.com) hello 지원 되는 브라우저와로 로그인 중 하나에 **사용자** Azure AD에 있습니다.
+1.  지원되는 브라우저 중 하나에서 [액세스 패널](https://myapps.microsoft.com)을 열고 Azure AD에서 **사용자**로 로그인합니다.
 
-2.  클릭는 **password SSO 응용 프로그램** hello 액세스 패널에에서 있습니다.
+2.  액세스 패널에서 **암호-SSO 응용 프로그램**을 클릭합니다.
 
-3.  Hello 프롬프트 묻는 tooinstall hello 소프트웨어에서 선택 **지금 설치**합니다.
+3.  소프트웨어를 설치하라는 프롬프트에서 **지금 설치**를 선택합니다.
 
-4.  브라우저에 따라 toohello 방향이 지정 된 다운로드 링크 할 수 있습니다. **추가** hello 확장 tooyour 브라우저.
+4.  브라우저에 따라 다운로드 링크로 이동됩니다. 브라우저에 확장을 **추가**합니다.
 
-5.  브라우저를 요청 하면 선택 tooeither **사용** 또는 **허용** hello 확장 합니다.
+5.  브라우저에서 요청하면 확장을 **사용** 또는 **허용**하도록 선택합니다.
 
 6.  설치되면 브라우저 세션을 **다시 시작**합니다.
 
-7.  Hello 액세스 패널에 로그인 하 고 참조 하면 **시작** password SSO 응용 프로그램
+7.  액세스 패널에 로그인하고 암호 SSO 응용 프로그램을 **시작**할 수 있는지 확인합니다.
 
-Hello 직접 링크 아래에서 Chrome 및 Firefox에 대 한 hello 확장을 다운로드할 수 있습니다.
+아래와 같은 직접 링크에서 Chrome 및 Firefox에 대한 확장을 다운로드할 수 있습니다.
 
 -   [Chrome 액세스 패널 확장](https://chrome.google.com/webstore/detail/access-panel-extension/ggjhpefgjjfobnfoldnjipclpcfbgbhl)
 
 -   [Firefox 액세스 패널 확장](https://addons.mozilla.org/firefox/addon/access-panel-extension/)
 
 ## <a name="next-steps"></a>다음 단계
-[응용 프로그램 프록시 single sign on tooyour 앱을 제공 합니다.](active-directory-application-proxy-sso-using-kcd.md)
+[응용 프로그램 프록시를 사용하여 앱에 Single Sign-On 제공](active-directory-application-proxy-sso-using-kcd.md)
 

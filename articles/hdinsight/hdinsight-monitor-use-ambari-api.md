@@ -1,6 +1,6 @@
 ---
-title: "사용 하 여 HDInsight의 Hadoop 클러스터를 aaaMonitor hello Ambari API-Azure | Microsoft Docs"
-description: "Hello Apache Ambari Api를 사용 하 여 만들고 관리 하 고, Hadoop 클러스터 모니터링에 대 한 합니다. 직관적인 연산자 도구와 Api Hadoop의 hello 복잡성을 숨깁니다."
+title: "Ambari API를 사용하여 HDInsight에서 Hadoop 클러스터 모니터링 - Azure | Microsoft Docs"
+description: "Hadoop 클러스터를 생성, 관리 및 모니터링하는 데 Apache Ambari API를 사용합니다. 직관적 운영자 도구와 API를 사용하면 Hadoop의 복잡한 작업을 간편하게 수행할 수 있습니다."
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -16,53 +16,53 @@ ms.topic: article
 ms.date: 04/07/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: d61a8aae5ddfcd7d44f2e4cc899e0a4da5e5fdcc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b6fc2098027690eb76b69b1427f0e9541b8a7a69
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="monitor-hadoop-clusters-in-hdinsight-using-hello-ambari-api"></a>Hello Ambari API를 사용 하 여 HDInsight의 Hadoop 클러스터를 모니터링 합니다.
-Ambari Api를 사용 하 여 toomonitor HDInsight 클러스터 하는 방법에 대해 알아봅니다.
+# <a name="monitor-hadoop-clusters-in-hdinsight-using-the-ambari-api"></a>Ambari API를 사용하여 HDInsight에서 Hadoop 클러스터 모니터링
+Ambari API를 사용하여 HDInsight 클러스터를 모니터링하는 방법을 알아봅니다.
 
 > [!NOTE]
-> hello이이 문서의 정보는 읽기 전용 버전의 hello Ambari REST API를 제공 하는 Windows 기반 HDInsight 클러스터를 주로입니다. Linux 기반 클러스터는 [Ambari를 사용하여 Hadoop 클러스터 관리](hdinsight-hadoop-manage-ambari.md)를 참조하세요.
+> 이 문서의 정보는 주로 Windows 기반 HDInsight 클러스터에 대한 것이며 Ambari REST API의 읽기 전용 버전을 제공합니다. Linux 기반 클러스터는 [Ambari를 사용하여 Hadoop 클러스터 관리](hdinsight-hadoop-manage-ambari.md)를 참조하세요.
 > 
 > 
 
 ## <a name="what-is-ambari"></a>Ambari 정의
-[Apache Ambari][ambari-home]는 Apache Hadoop 클러스터를 프로비전, 관리 및 모니터링하는 데 사용됩니다. 직관적인 도구 컬렉션으로 연산자와 강력한 클러스터 hello 작업 단순화 Hadoop의 hello 복잡성을 숨기는 Api 집합이 포함 됩니다. Hello Api에 대 한 자세한 내용은 참조 [Ambari API 참조][ambari-api-reference]합니다. 
+[Apache Ambari][ambari-home]는 Apache Hadoop 클러스터를 프로비전, 관리 및 모니터링하는 데 사용됩니다. Hadoop의 복잡성을 숨기고 클러스터 작업을 단순화하는 직관적인 연산자 도구 모음 및 강력한 API 집합이 포함되어 있습니다. API에 대한 자세한 내용은 [Ambari API 참조][ambari-api-reference]를 참조하세요. 
 
-현재 HDInsight만 hello Ambari 모니터링 기능을 지원합니다. Ambari API 1.0은 HDInsight 클러스터 버전 3.0 및 2.1 클러스터에서만 지원됩니다. 이 문서에서는 HDInsight 버전 3.1 및 2.1 클러스터에서 Ambari API에 액세스하는 방법에 대해 설명합니다. 두 hello 사이의 hello 주요 차이점 hello 소개 새로운 기능 (예: 작업 기록 서버 hello)를 사용 하 여이 변경한 hello 구성 요소의 일부입니다. 
+HDInsight는 현재 Ambari 모니터링 기능만 지원합니다. Ambari API 1.0은 HDInsight 클러스터 버전 3.0 및 2.1 클러스터에서만 지원됩니다. 이 문서에서는 HDInsight 버전 3.1 및 2.1 클러스터에서 Ambari API에 액세스하는 방법에 대해 설명합니다. 두 버전 간의 가장 큰 차이점은 작업 기록 서버와 같은 새 기능이 도입되면서 일부 구성 요소가 변경되었다는 것입니다. 
 
 **필수 구성 요소**
 
-이 자습서를 시작 하기 전에 다음 항목 hello가 있어야 합니다.
+이 자습서를 시작하기 전에 다음 항목이 있어야 합니다.
 
 * **Azure PowerShell이 포함된 워크스테이션**.
-* (선택 사항)[cURL][curl]. tooinstall, 참조 [버전 및 다운로드 cURL][curl-download]합니다.
+* (선택 사항)[cURL][curl]. 설치하려면 [cURL 릴리스 및 다운로드][curl-download]를 참조하세요.
   
   > [!NOTE]
-  > Windows에서 사용 하 여 큰따옴표 hello 옵션 값에 대 한 단일 따옴표 대신 hello cURL 명령을 때 사용 합니다.
+  > Windows에서 cURL 명령을 사용할 때는 옵션 값에 작은따옴표 대신 큰따옴표를 사용합니다.
   > 
   > 
-* **Azure HDInsight 클러스터**. 클러스터 프로비전에 대한 자세한 내용은 [HDInsight 사용 시작][hdinsight-get-started] 또는 [HDInsight 클러스터 프로비전][hdinsight-provision]을 참조하세요. Hello 자습서를 통해 데이터 toogo 다음 hello가 필요 합니다.
+* **Azure HDInsight 클러스터**. 클러스터 프로비전에 대한 자세한 내용은 [HDInsight 사용 시작][hdinsight-get-started] 또는 [HDInsight 클러스터 프로비전][hdinsight-provision]을 참조하세요. 자습서를 완료하려면 다음 데이터가 필요합니다.
   
   | 클러스터 속성 | Azure PowerShell 변수 이름 | 값 | 설명 |
   | --- | --- | --- | --- |
-  |   HDInsight 클러스터 이름 |$clusterName | |HDInsight 클러스터의 hello 이름입니다. |
-  |   클러스터 사용자 이름 |$clusterUsername | |클러스터 사용자 이름이 hello 클러스터를 만들 때 지정 합니다. |
+  |   HDInsight 클러스터 이름 |$clusterName | |HDInsight 클러스터의 이름입니다. |
+  |   클러스터 사용자 이름 |$clusterUsername | |클러스터 사용자 이름은 클러스터를 만들 때 지정됩니다. |
   |   클러스터 암호 |$clusterPassword | |클러스터 사용자 암호입니다. |
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 
 ## <a name="jump-start"></a>신속한 시작
-Toouse Ambari toomonitor HDInsight 클러스터는 여러 가지가.
+Ambari를 사용하여 HDInsight 클러스터를 모니터링하는 몇 가지 방법이 있습니다.
 
 **Azure PowerShell 사용**
 
-Azure PowerShell 스크립트 뒤 hello hello MapReduce 작업 추적 장치 정보를 가져옵니다 *3.5 HDInsight 클러스터에 있습니다.*  hello 주요 차이점은 hello YARN 서비스 (MapReduce 아님)에서 이러한 세부 정보를 가져옵니다.
+다음 Azure PowerShell 스크립트는 *HDInsight 3.5 클러스터*에서 MapReduce 작업 추적기 정보를 가져옵니다.  가장 큰 차이점은 MapReduce가 아니라 YARN 서비스에서 이러한 세부 정보를 가져온다는 것입니다.
 
     $clusterName = "<HDInsightClusterName>"
     $clusterUsername = "<HDInsightClusterUsername>"
@@ -78,7 +78,7 @@ Azure PowerShell 스크립트 뒤 hello hello MapReduce 작업 추적 장치 정
 
     $response.metrics.'yarn.queueMetrics'
 
-PowerShell 스크립트 뒤 hello hello MapReduce 작업 추적 장치 정보를 가져옵니다 *2.1 HDInsight 클러스터에*:
+다음 Azure PowerShell 스크립트는 *HDInsight 2.1 클러스터*에서 MapReduce 작업 추적기 정보를 가져옵니다.
 
     $clusterName = "<HDInsightClusterName>"
     $clusterUsername = "<HDInsightClusterUsername>"
@@ -94,17 +94,17 @@ PowerShell 스크립트 뒤 hello hello MapReduce 작업 추적 장치 정보를
 
     $response.metrics.'mapred.JobTracker'
 
-hello 출력이 생성 됩니다.
+출력은 다음과 같습니다.
 
 ![Jobtracker 출력][img-jobtracker-output]
 
 **cURL 사용**
 
-hello 다음 정보를 가져오는 예제 클러스터 cURL을 사용 하 여:
+다음 예제는 cURL을 사용하여 클러스터 정보를 가져옵니다.
 
     curl -u <username>:<password> -k https://<ClusterName>.azurehdinsight.net:443/ambari/api/v1/clusters/<ClusterName>.azurehdinsight.net
 
-hello 출력이 생성 됩니다.
+출력은 다음과 같습니다.
 
     {"href":"https://hdi0211v2.azurehdinsight.net/ambari/api/v1/clusters/hdi0211v2.azurehdinsight.net/",
      "Clusters":{"cluster_name":"hdi0211v2.azurehdinsight.net","version":"2.1.3.0.432823"},
@@ -121,12 +121,12 @@ hello 출력이 생성 됩니다.
         "Hosts":{"cluster_name":"hdi0211v2.azurehdinsight.net",
                  "host_name":"headnode0.{ClusterDNS}.azurehdinsight.net"}}]}
 
-**2014 년 10 월 8 릴리스 hello에 대 한**:
+**2014/10/8 릴리스**:
 
-때 Ambari hello를 사용 하 여 끝점, "을 (를) https://{clusterDns}.azurehdinsight.net/ambari/api/v1/clusters/{clusterDns}.azurehdinsight.net/services/{servicename}/components/{componentname" hello *host_name* 필드 hello hello 호스트 이름 대신 hello 노드의 정규화 된 도메인 이름 (FQDN)을 반환합니다. Hello 2014 년 10 월 8 릴리스 전에이 예제에서는 반환 단순히 "**headnode0**"입니다. Hello FQDN을 얻게 hello 2014 년 10 월 8 릴리스 후 "**headnode0. { ClusterDNS}.azurehdinsight.net**"와 같이 hello 앞의 예제입니다. 이 변경은 필요한 toofacilitate 시나리오 여러 클러스터 유형 (예: HBase 및 Hadoop)를 배포할 수 있는 하나의 가상 네트워크 (VNET) 했습니다. 예를 들어 Hadoop의 백 엔드 플랫폼으로 HBase를 사용하는 등의 경우 이 변경이 적용됩니다.
+Ambari 끝점 "https://{clusterDns}.azurehdinsight.net/ambari/api/v1/clusters/{clusterDns}.azurehdinsight.net/services/{servicename}/components/{componentname}"을 사용할 때 *host_name* 필드에서 호스트 이름만이 아니라 노드의 FQDN(정규화된 도메인 이름)을 반환합니다. 10/8/2014 릴리스 이전 버전에서는 이 예가 "**headnode0**"만 반환했습니다. 10/8/2014 릴리스부터는 위의 예에 나와 있는 것처럼 FQDN "**headnode0.{ClusterDNS}.azurehdinsight.net**"이 반환됩니다. 이 변경은 HBase, Hadoop 등의 여러 클러스터 유형을 VNET(가상 네트워크) 하나에 배포할 수 있는 시나리오를 원활하게 수행하기 위해 필요한 작업이었습니다. 예를 들어 Hadoop의 백 엔드 플랫폼으로 HBase를 사용하는 등의 경우 이 변경이 적용됩니다.
 
 ## <a name="ambari-monitoring-apis"></a>Ambari 모니터링 API
-hello 다음 표에서 hello 가장 일반적인 Ambari 모니터링 API 호출 수입니다. Hello API에 대 한 자세한 내용은 참조 [Ambari API 참조][ambari-api-reference]합니다.
+다음 테이블은 가장 일반적으로 사용되는 Ambari 모니터링 API 호출을 나열합니다. API에 대한 자세한 내용은 [Ambari API 참조][ambari-api-reference]를 참조하세요.
 
 | 모니터링 API 호출 | URI | 설명 |
 | --- | --- | --- |
@@ -144,9 +144,9 @@ hello 다음 표에서 hello 가장 일반적인 Ambari 모니터링 API 호출 
 | 구성 정보 가져오기 |`/api/v1/clusters/<ClusterName>.azurehdinsight.net/configurations?type=<ConfigType>&tag=<VersionName>` |구성 유형: core-site, hdfs-site, mapred-site, hive-site |
 
 ## <a name="next-steps"></a>다음 단계
-파악 했으므로 이제 toouse Ambari 모니터링 API를 호출 하는 방법입니다. toolearn 더 참조 하십시오.
+Ambari 모니터링 API 호출을 사용하는 방법을 알아보았습니다. 자세한 내용은 다음을 참조하세요.
 
-* [Hello Azure 포털을 사용 하 여 HDInsight 클러스터를 관리][hdinsight-admin-portal]
+* [Azure Portal을 사용하여 HDInsight 클러스터 관리][hdinsight-admin-portal]
 * [Azure PowerShell을 사용하여 HDInsight 클러스터 관리][hdinsight-admin-powershell]
 * [명령줄 인터페이스를 사용하여 HDInsight 클러스터 관리][hdinsight-admin-cli]
 * [HDInsight 설명서][hdinsight-documentation]

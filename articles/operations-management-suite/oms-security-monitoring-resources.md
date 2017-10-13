@@ -1,6 +1,6 @@
 ---
-title: "Operations Management Suite 보안 및 감사 솔루션의 리소스 aaaMonitoring | Microsoft Docs"
-description: "이 문서 toouse OMS 보안 및 감사 기능 toomonitor를 사용 하면 리소스 및 보안 문제를 식별 합니다."
+title: "Operations Management Suite 보안 및 감사 솔루션의 리소스 모니터링 | Microsoft Docs"
+description: "이 문서는 OMS 보안 및 감사 기능을 사용하여 리소스를 모니터링하고 보안 문제를 식별하는 방법을 설명합니다."
 services: operations-management-suite
 documentationcenter: na
 author: YuriDio
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/30/2017
 ms.author: yurid
-ms.openlocfilehash: 932b946ae1ffa3b979c02f419702d42d46abf7ca
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2f73266b65a4eda6c8751a2d56bc3f11bf4e6a57
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="monitoring-resources-in-operations-management-suite-security-and-audit-solution"></a>Operations Management Suite 보안 및 감사 솔루션의 리소스 모니터링
-이 문서를 사용 하 여 OMS 보안 및 감사 기능 toomonitor 리소스를 사용 하 고 보안 문제를 식별할 수 있습니다.
+이 문서는 OMS 보안 및 감사 기능을 사용하여 리소스를 모니터링하고 보안 문제를 식별하는 방법을 설명합니다.
 
 ## <a name="what-is-oms"></a>OMS란?
-Microsoft Operations Management Suite(OMS)란 온-프레미스 및 클라우드 인프라를 관리 및 보호하도록 도와주는 Microsoft의 클라우드 기반 IT 관리 솔루션입니다. OMS에 대 한 자세한 내용은 hello 문서를 읽어 보세요. [Operations Management Suite](https://technet.microsoft.com/library/mt484091.aspx)합니다.
+Microsoft Operations Management Suite(OMS)란 온-프레미스 및 클라우드 인프라를 관리 및 보호하도록 도와주는 Microsoft의 클라우드 기반 IT 관리 솔루션입니다. OMS에 대한 자세한 내용은 [Operations Management Suite](https://technet.microsoft.com/library/mt484091.aspx)문서를 참조하세요.
 
 ## <a name="monitoring-resources"></a>리소스 모니터링
-때마다 가능 tooprevent 보안 사고 hello 첫 번째 위치에서 발생에서 해야 합니다. 그러나 것이 불가능 한 tooprevent 모두 보안 사고 합니다. 보안 문제가 발생할 경우 tooensure 미치는 영향을 최소화 해야 합니다.  사용 되는 toominimize 일 수 있는 세 가지 중요 한 권장 사항 숫자 hello 및 보안 사고의 영향 hello:
+보안 문제는 가능하면 처음부터 발생하지 않도록 예방해야 합니다. 하지만 모든 보안 문제를 방지하는 것은 가능하지 않습니다. 보안 문제가 발생하면 영향을 최소화하도록 해야 합니다.  보안 문제의 수와 영향을 최소화하기 위해 세 가지 중요 권장 사항을 사용할 수 있습니다.
 
 * 사용자 환경의 취약성을 정기적으로 평가합니다.
-* 모든 컴퓨터 시스템 및 설치 된 최신 패치 hello 모든 네트워크 장치 tooensure 정기적으로 확인 합니다.
+* 모든 컴퓨터 시스템과 네트워크 장치를 정기적으로 검사하여 최신 패치가 모두 설치되었는지 확인합니다.
 * 운영 시스템 이벤트 로그, 응용 프로그램별 로그, 침입 검색 시스템 로그를 포함한 모든 로그와 로깅 메커니즘을 정기적으로 검사합니다.
 
-보안 문제의 hello 영향을 최소화 하는 데 사용할 수 있는 모든 리소스를 모니터링 하는 IT tooactively OMS 보안 및 감사 솔루션 수 있습니다. OMS 보안 및 감사에는 리소스 모니터링에 사용할 수 있는 보안 도메인이 있습니다. hello 보안 도메인 빠르게 액세스할 tooa 옵션, 보안 모니터링 hello에 대 한 다음 도메인 자세히 설명 합니다.
+OMS 보안 및 감사 솔루션을 사용하면 IT가 모든 리소스를 능동적으로 모니터링하여 보안 문제의 영향을 최소화할 수 있습니다. OMS 보안 및 감사에는 리소스 모니터링에 사용할 수 있는 보안 도메인이 있습니다. 보안 도메인을 통해 옵션에 빠르게 액세스할 수 있으며, 여기서는 보안 모니터링과 관려된 다음 도메인에 대해 자세히 살펴봅니다.
 
 * 맬웨어 평가
 * 업데이트 평가
@@ -46,69 +46,69 @@ Microsoft Operations Management Suite(OMS)란 온-프레미스 및 클라우드 
 > 
 
 ### <a name="monitoring-system-protection"></a>시스템 보호 모니터링
-철저 한 방어 방법은, 모든 계층의 보호는 hello에 대 한 중요 한 자산의 전반적인 보안 상태입니다. 사용 하는 컴퓨터 위협 및 보호가 부족 한 컴퓨터에에서 표시 됩니다 hello 맬웨어 평가 타일 보안 도메인에서 검색 했습니다. 맬웨어 평가 hello에서 hello 정보를 통해 필요로 하는 계획 tooapply 보호 toohello 서버를 식별할 수 있습니다. 아래 단계를이 옵션에 따라 hello tooaccess:
+심층 방어 수단에서는 자산의 전반적 보안 상태를 위해 모든 보호 계층이 중요합니다. 위협이 검색된 컴퓨터와 적절히 보호되지 않은 컴퓨터는 보안 도메인의 맬웨어 평가 타일에 표시됩니다. 맬웨어 평가의 정보를 사용하면 보호가 필요한 서버를 보호하는 계획을 식별할 수 있습니다. 이 옵션에 액세스하려면 다음 단계를 따릅니다.
 
-1. Hello에 **Microsoft Operations Management Suite** 기본 대시보드 클릭 **보안 및 감사** 바둑판식으로 배열입니다.
+1. **Microsoft Operations Management Suite** 기본 대시보드에서 **보안 및 감사** 타일을 클릭합니다.
    
     ![보안 및 감사](./media/oms-security-responding-alerts/oms-security-responding-alerts-fig1.png)
-2. Hello에 **보안 및 감사** 대시보드를 클릭 하 여 **맬웨어 방지 평가** 아래 **보안 도메인**합니다. hello **맬웨어 방지 평가** 아래 표시 된 대로 대시보드가 표시 됩니다.
+2. **보안 및 감사** 대시보드에서 **보안 도메인**의 **맬웨어 평가**를 클릭합니다. **맬웨어 평가** 대시보드가 아래와 같이 나타납니다.
 
 ![맬웨어 평가](./media/oms-security-monitoring-resources/oms-security-monitoring-resources-fig2-ga.png)
 
-Hello를 사용할 수 있습니다 **맬웨어 평가** 다음 보안 문제는 대시보드 tooidentify hello:
+**맬웨어 평가** 대시보드를 사용하여 다음과 같은 보안 문제를 식별할 수 있습니다.
 
-* **활성 위협이**:가 손상 되 고 활성 위협이 hello 시스템에 있는 컴퓨터입니다.
-* **위협 재구성**: hello 위협 하지만 손상 된 컴퓨터 재구성 합니다.
-* **날짜가 지난 서명**: 맬웨어 보호를 사용할 수 있지만 hello 서명을 포함 하는 컴퓨터 최신이 아닙니다.
+* **미해결 위협**: 손상된 상태이며 시스템에 미해결 위협이 있는 컴퓨터
+* **해결된 위협**: 손상되었지만 위협이 해결된 컴퓨터
+* **서명 만료**: 맬웨어 보호를 사용하지만 서명이 만료된 컴퓨터
 * **실시간 보호하지 않음**: 맬웨어 방지 프로그램이 설치되지 않은 컴퓨터
 
 ### <a name="monitoring-updates"></a>업데이트 모니터링
-Hello 최신 보안 업데이트를 적용 하는 것은 최상의 보안 방법 및 업데이트 관리 전략에 포함 되어야 합니다. Microsoft Monitoring Agent 서비스 (HealthService.exe) 모니터링 되는 컴퓨터에서 업데이트 정보를 읽고 한 다음 처리를 위해 클라우드의 hello에이 업데이트 된 정보 toohello OMS 서비스를 보냅니다. Microsoft Monitoring Agent 서비스 hello로 자동 서비스가 구성 된 하 고 hello 대상 컴퓨터에서 항상 실행 해야 합니다.
+최신 보안 업데이트를 적용하는 것이 보안 모범 사례이며 업데이트 관리 전략에 포함해야 합니다. Microsoft Monitoring Agent 서비스(HealthService.exe)는 모니터링되는 컴퓨터에서 업데이트 정보를 읽은 다음 업데이트된 이 정보를 클라우드의 OMS 서비스로 전송하여 처리합니다. Microsoft Monitoring Agent 서비스는 자동 서비스로 구성되며 대상 컴퓨터에 항상 실행되고 있어야 합니다.
 
 ![업데이트 모니터링](./media/oms-security-monitoring-resources/oms-security-monitoring-resources-fig3.png)
 
-논리는 데이터를 업데이트 하는 적용 된 toohello 및 hello 클라우드 서비스는 hello 데이터를 기록 합니다. 누락 된 업데이트가 발견 되 면 hello에 표시 됩니다 **업데이트** 대시보드 합니다. Hello를 사용할 수 있습니다 **업데이트** 대시보드 toowork 누락 된 업데이트 하 고 계획 tooapply을 개발 하 고 필요로 하는 toohello 서버입니다. Tooaccess hello 아래 hello 단계에 따라 **업데이트** 대시보드:
+논리는 업데이트 데이터에 적용되며 클라우드 서비스는 데이터를 기록합니다. 누락된 업데이트가 발견되면 **업데이트** 대시보드에 표시됩니다. **업데이트** 대시보드를 사용하여 누락된 업데이트를 작업하고 필요로 하는 서버에 적용하도록 계획할 수 있습니다. 아래 단계를 따라 **업데이트** 대시보드에 액세스합니다.
 
-1. Hello에 **Microsoft Operations Management Suite** 기본 대시보드 클릭 **보안 및 감사** 바둑판식으로 배열입니다.
-2. Hello에 **보안 및 감사** 대시보드를 클릭 하 여 **업데이트 평가** 아래 **보안 도메인**합니다. hello 업데이트 대시보드가 다음과 같이 나타납니다.
+1. **Microsoft Operations Management Suite** 기본 대시보드에서 **보안 및 감사** 타일을 클릭합니다.
+2. **보안 및 감사** 대시보드에서 **보안 도메인**의 **업데이트 평가**를 클릭합니다. 업데이트 대시보드가 아래와 같이 표시됩니다.
 
 ![업데이트 평가](./media/oms-security-monitoring-resources/oms-security-monitoring-resources-fig4.png)
 
-이 대시보드는 업데이트 평가 toounderstand hello의 현재 상태 컴퓨터와 가장 중요 한 위협을 해결 hello 수행할 수 있습니다. Hello를 사용 하 여 **중요 또는 보안 업데이트가** 타일, IT 관리자가 될 수 tooaccess 자세한 아래와 같이 누락 된 hello 업데이트에 대 한 정보:
+이 대시보드에서 업데이트 평가를 수행하여 컴퓨터의 현재 상태를 확인하고 가장 위험한 위협을 해결할 수 있습니다. IT 관리자는 **위험 또는 중요 업데이트** 타일을 사용하여 다음과 같이 누락된 업데이트에 대한 상세 정보에 액세스할 수 있습니다.
 
 ![검색 결과](./media/oms-security-monitoring-resources/oms-security-monitoring-resources-fig5.png)
 
-이 보고서에 포함 될 수 있는 중요 한 정보 tooidentify hello 위협의 경우이 시스템은에, 취약 한 hello 보안 업데이트 및 MS 공지 hello에 대 한 자세한 세부 정보를 포함 하는 hello와 관련 된 hello Microsoft KB 문서를 포함 하는 데 사용 보안 문제가 있습니다.
+이 보고서에는 이 시스템이 취약한 위협의 유형을 식별하는 데 사용할 수 있는 중요 정보가 포함됩니다. 예를 들면 보안 업데이트와 관련된 Microsoft KB 문서, 취약성에 대한 상세 정보가 포함된 MS 게시판이 있습니다.
 
 ### <a name="monitoring-identity-and-access"></a>ID 및 액세스 모니터링
-사용자들이 어디에서나 다양한 장치를 사용하여 많은 클라우드 및 온-프레미스 앱에 액세스함에 따라 자격 증명을 보호하는 것이 매우 중요해졌습니다. 자격 증명 도난 공격에 노출 되는를 처음 공격자는 권한 tooa 일반 사용자 자격 증명 tooaccess hello 네트워크 내에서 시스템입니다. 여러 번이 처음 공격이 방식으로 tooget 액세스 toohello 네트워크만, hello 궁극적인 목표는 toodiscover 권한 계정입니다. 
+사용자들이 어디에서나 다양한 장치를 사용하여 많은 클라우드 및 온-프레미스 앱에 액세스함에 따라 자격 증명을 보호하는 것이 매우 중요해졌습니다. 자격 증명 도난 공격은 공격자가 처음에 일반 사용자의 자격 증명에 대한 액세스 권한을 얻은 다음 네트워크 내 시스템에 액세스하는 공격입니다. 대부분의 경우 이러한 최초 공격은 네트워크에 대한 액세스 권한을 얻기 위한 한 가지 방법에 불과하며 궁극적 목적은 권한이 있는 계정을 발견하는 것입니다. 
 
-공격자는 무료로 사용할 수 있는 다른 로그온 계정 hello 세션에서 자격 증명 tooextract 도구를 사용 하 여 hello 네트워크에 유지 됩니다. Hello 시스템 구성에 따라 해시, 티켓 또는도 일반 텍스트 암호의 hello 형태로 이러한 자격 증명을 추출할 수 있습니다.  
+공격자는 네트워크 안에 남아 도구를 자유롭게 사용하면서 로그온된 다른 계정의 세션에서 자격 증명을 추출합니다. 시스템 구성에 따라 이러한 자격 증명은 해시, 티켓으로 추출하거나 심지어 일반 텍스트 비밀번호의 형태로도 추출할 수 있습니다.  
 
 > [!NOTE]
-> 직접 않는 노출 toohello 인터넷 모든 종류의 잘 알려진 사용자 이름 (예: 관리자)를 사용 하 여 해당 try toologin 시도 실패 많은 표시 됩니다. 대부분의 경우에서 되 확인 hello 잘 알려진 사용자 이름을 사용 하지 않는 경우 들어 hello 암호가 강력 합니다.
+> 인터넷에 직접 노출된 컴퓨터에서는 모든 종류의 잘 알려진 사용자 이름(예: Administrator)을 사용하여 로그인하려는 시도가 여러 번 실패하는 것을 볼 수 있습니다. 대부분의 경우 잘 알려진 사용자 이름을 사용하지 않고 강력한 비밀번호를 사용하는 것이 좋습니다.
 > 
 > 
 
-해당 권한 계정을 손상 되기 전에 가능한 tooidentify 이러한 침입자가 있습니다. 활용할 수 있는 **OMS 보안 및 감사 솔루션** toomonitor id 및 액세스 합니다. Tooaccess hello 아래 hello 단계에 따라 **Id 및 액세스** 대시보드:
+침입자가 권한이 있는 계정을 손상하기 전에 그러한 침입자를 식별하는 것이 가능합니다. **OMS 보안 및 감사 솔루션** 을 사용하여 ID 및 액세스를 모니터링할 수 있습니다. 아래 단계를 따라 **ID 및 액세스** 대시보드에 액세스합니다.
 
-1. Hello에 **Microsoft Operations Management Suite** 기본 대시보드 클릭 보안 및 감사 타일입니다.
-2. Hello에 **보안 및 감사** 대시보드를 클릭 하 여 **Id 및 액세스** 아래 **보안 도메인**합니다. hello **Id 및 액세스** 아래 표시 된 대로 대시보드가 표시 됩니다.
+1. **Microsoft Operations Management Suite** 기본 대시보드에서 보안 및 감사 타일을 클릭합니다.
+2. **보안 및 감사** 대시보드에서 **보안 도메인**의 **ID 및 액세스**를 클릭합니다. **ID 및 액세스** 대시보드가 아래와 같이 표시됩니다.
 
 ![ID 및 액세스](./media/oms-security-monitoring-resources/oms-security-monitoring-resources-fig6-ga.png)
 
-일반 모니터링 전략에 반드시 ID 모니터링을 포함해야 합니다. IT 관리자는 유효한 특정 사용자 이름에 여러 번의 시도가 있었는지 살펴보아야 합니다. Hello 실제 사용자 이름을 획득 하거나 공격자를 나타내고 toobrute 대입 또는 만료 하드 코드 된 암호를 사용 하는 자동 도구 시도 될 수 있습니다이 합니다.
+일반 모니터링 전략에 반드시 ID 모니터링을 포함해야 합니다. IT 관리자는 유효한 특정 사용자 이름에 여러 번의 시도가 있었는지 살펴보아야 합니다. 그럴 경우 실제 사용자 이름을 확보한 공격자가 무차별 공격을 시도하고 있거나 자동 도구가 만료된 하드 코딩 비밀번호를 사용하는 있는 경우일 수 있습니다.
 
-이 대시보드 사용 IT tooquickly 잠재적 위협 관련된 tooidentity 및 액세스 toocompany의 리소스를 식별 합니다. 특정은 중요 한 tooalso 잠재적인 추세를 파악 합니다. 예를 들어 hello 로그온 시간에 따른 타일에서 확인할 수 있습니다 기간 동안 실패 한 로그온 시도가 수행 된 횟수입니다. 이 경우 컴퓨터를 hello **FileServer** 35 로그온 시도 수신 합니다. 이 컴퓨터를 클릭하여 자세한 정보를 확인할 수 있습니다. 
+IT는 이 대시보드를 사용하여 회사 리소스에 잠재적 위협이 될 수 있는 ID 및 액세스를 빠르게 식별할 수 있습니다. 잠재적 동향을 식별하는 것도 특히 중요합니다. 예를 들어 시간별 로그온 타일에서는 실패한 로그온 시도가 수행된 시간 및 횟수를 확인할 수 있습니다. 이 경우에는 **FileServer** 컴퓨터에 35회의 로그온 시도가 있었습니다. 이 컴퓨터를 클릭하여 자세한 정보를 확인할 수 있습니다. 
 
 ![자세한 내용](./media/oms-security-monitoring-resources/oms-security-monitoring-resources-fig7-new.png)
 
-이 컴퓨터에 대해 생성 된 hello 보고서는이 패턴에 대 한 중요 한 세부 정보를 제공 합니다. 해당 hello 발견 **계정** 열은 사용 되는 tootry tooaccess 사용자 계정과 hello hello 시스템 hello **TIMEGENERATED** 는 hello 시도가 수행 된 시간 간격을 hello 열 제공 하 고 hello **LOGONTYPENAME** 이 시도가 수행 된 위치를 hello 열 제공 합니다. 이러한 시도 프로그램에 의해 hello 시스템에서 로컬로 수행 된, 경우 hello **프로세스** 열에서 hello 프로세스 이름을 보여 주는 것입니다. 시나리오 hello 로그온 시도 프로그램에서 제공 되는 위치에서 이미 hello 프로세스 이름을 사용할 수 있으며 이제 수행할 수 있습니다 추가로 조사 hello 대상 시스템에 있습니다.
+이 컴퓨터에 대해 생성된 보고서는 이 패턴에 대해 중요한 정보를 보여줍니다. **ACCOUNT** 열에는 시스템에 액세스를 시도하는 데 사용된 사용자 계정, **TIMEGENERATED** 열에는 시도가 수행된 시간 간격, **LOGONTYPENAME** 열에는 이 시도가 수행된 위치가 표시됩니다. 이러한 시도가 시스템 안에서 프로그램에 의해 로컬로 수행된 경우 **PROCESS** 열에 프로세스 이름이 표시됩니다. 프로그램이 로그온 시도를 하는 시나리오에서는 이미 프로세스 이름을 알고 있으므로 대상 시스템에서 추가 조사를 수행할 수 있습니다.
 
 ## <a name="see-also"></a>참고 항목
-이 문서에서는 방법에 대해 배웠습니다 toouse OMS 보안 및 감사 솔루션 toomonitor 리소스입니다. OMS 보안에 대해 자세히 toolearn hello 다음 문서 참조:
+이 문서에서는 OMS 보안 및 감사 솔루션을 사용하여 리소스를 모니터링하는 방법을 배웠습니다. OMS 보안에 대해 자세히 알아보려면 다음 문서를 참조하세요.
 
 * [OMS(Operations Management Suite) 개요](operations-management-suite-overview.md)
 * [Operations Management Suite 보안 및 감사 솔루션 시작](oms-security-getting-started.md)
-* [모니터링 및 Operations Management Suite 보안 및 감사 솔루션에 응답 중 tooSecurity 경고](oms-security-responding-alerts.md)
+* [Operations Management Suite 보안 및 감사 솔루션의 보안 경고 모니터링 및 응답](oms-security-responding-alerts.md)
 

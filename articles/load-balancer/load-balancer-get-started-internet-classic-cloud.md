@@ -1,9 +1,9 @@
 ---
-title: "Azure 클라우드 서비스에 대 한 부하 분산 장치는 인터넷 연결 aaaCreate | Microsoft Docs"
-description: "인터넷 연결 toocreate 분산 장치 클라우드 서비스에 대 한 클래식 배포 모델에 로드 하는 방법에 대해 알아봅니다"
+title: "Azure 클라우드 서비스에 대한 인터넷 연결 부하 분산 장치 만들기 | Microsoft Docs"
+description: "클라우드 서비스를 사용하여 클래식 배포 모델에서 인터넷 연결 부하 분산 장치를 만드는 방법에 대해 알아봅니다."
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 tags: azure-service-management
 ms.assetid: 0bb16f96-56a6-429f-88f5-0de2d0136756
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: d93cf76d417cbfc744cf07ba48c43a63cc14df69
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 52824d5c39bb821351650584c33f70e2e84749cb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-creating-an-internet-facing-load-balancer-for-cloud-services"></a>클라우드 서비스를 위한 인터넷 연결 부하 분산 장치 만들기 시작
 
@@ -31,17 +31,17 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
 
 > [!IMPORTANT]
-> Azure 리소스를 사용 하기 전에 Azure에 현재 두 가지 배포 모델에 중요 한 toounderstand: Azure 리소스 관리자 및 기본 합니다. Azure 리소스로 작업하기 전에 [배포 모델 및 도구](../azure-classic-rm.md) 를 이해해야 합니다. 이 문서의 hello 위쪽 hello 탭을 클릭 하 여 다양 한 도구에 대 한 hello 설명서를 볼 수 있습니다. 이 문서에서는 hello 클래식 배포 모델에 설명 합니다. 수도 있습니다 [toocreate 인터넷 연결 로드 분산 장치는 Azure 리소스 관리자를 사용 하는 방법에 대해 알아봅니다](load-balancer-get-started-internet-arm-ps.md)합니다.
+> Azure 리소스로 작업하기 전에 Azure에는 현재 Azure Resource Manager와 클래식 모드의 두 가지 배포 모델이 있다는 것을 이해해야 합니다. Azure 리소스로 작업하기 전에 [배포 모델 및 도구](../azure-classic-rm.md) 를 이해해야 합니다. 이 문서의 윗부분에 있는 탭을 클릭하여 다양한 도구에 대한 설명서를 볼 수 있습니다. 이 문서에서는 클래식 배포 모델에 대해 설명합니다. 또한 [Azure 리소스 관리자를 사용하여 인터넷 연결 부하 분산 장치를 만드는 방법을 배울 수 있습니다](load-balancer-get-started-internet-arm-ps.md).
 
-클라우드 서비스는 자동으로 부하 분산 장치 구성 및 hello 서비스 모델을 통해 사용자 지정할 수 있습니다.
+클라우드 서비스는 자동으로 부하 분산 장치를 사용하여 구성되며 서비스 모델을 통해 사용자 지정될 수 있습니다.
 
-## <a name="create-a-load-balancer-using-hello-service-definition-file"></a>Hello 서비스 정의 파일을 사용 하 여 부하 분산 장치 만들기
+## <a name="create-a-load-balancer-using-the-service-definition-file"></a>서비스 정의 파일을 사용하여 부하 분산 장치 만들기
 
-클라우드 서비스에 대 한.NET 2.5 tooupdate hello Azure SDK를 활용할 수 있습니다. 클라우드 서비스에 대 한 끝점 설정 hello 내용이 [서비스 정의](https://msdn.microsoft.com/library/azure/gg557553.aspx) .csdef 파일입니다.
+Azure SDK for .NET 2.5를 사용하여 클라우드 서비스를 업데이트할 수 있습니다. Cloud Services에 대한 끝점 설정은 [service definition](https://msdn.microsoft.com/library/azure/gg557553.aspx).csdef 파일에서 수행합니다.
 
-hello 다음 예제는 클라우드 배포에 대 한 servicedefinition.csdef 파일은 구성 하는 방법.
+다음 예제에서는 클라우드 배포에 대한 servicedefinition.csdef 파일이 구성되는 방식을 보여 줍니다.
 
-클라우드 배포에서 생성 된 hello.csdef 파일에 대 한 hello 조각 검사 hello 구성 된 외부 끝점이 toouse 포트 HTTP 포트 10000, 10001, 및 10002에서 볼 수 있습니다.
+클라우드 배포에 의해 생성된 .csdef 파일의 코드 조각을 검사하면 포트 10000, 10001 및 10002에서 HTTP 포트를 사용하도록 구성된 외부 끝점을 확인할 수 있습니다.
 
 ```xml
 <ServiceDefinition name=“Tenant“>
@@ -66,7 +66,7 @@ hello 다음 예제는 클라우드 배포에 대 한 servicedefinition.csdef �
 
 ## <a name="check-load-balancer-health-status-for-cloud-services"></a>클라우드 서비스에 대한 부하 분산 장치 상태 확인
 
-hello 다음은 상태 검색의 예입니다.
+다음은 상태 프로브의 예입니다.
 
 ```xml
 <LoadBalancerProbes>
@@ -74,13 +74,13 @@ hello 다음은 상태 검색의 예입니다.
 </LoadBalancerProbes>
 ```
 
-hello 부하 분산 장치 결합 하 여 hello 끝점의 hello 정보와 hello 프로브 toocreate의 hello 정보 hello 형식의 URL `http://{DIP of VM}:80/Probe.aspx` hello 서비스의 hello 상태를 사용 하는 tooquery 일 수 있는 합니다.
+부하 분산 장치는 끝점의 정보와 프로브의 정보를 결합하여 서비스 상태를 쿼리하는 데 사용할 수 있는 `http://{DIP of VM}:80/Probe.aspx` 형식의 URL을 만듭니다.
 
-hello 서비스에서 검색 주기 프로브 hello에서 동일한 IP 주소입니다. Hello 가상 컴퓨터가 실행 되 고 hello 노드의 hello 호스트에서 들어오는 hello 상태 프로브 요청입니다. hello 서비스는 hello 부하 분산 장치 tooassume hello 서비스가 정상 임을 대 한 HTTP 200 상태 코드로 toorespond에 있습니다. 다른 모든 HTTP 상태는 hello 순환 순서에서 가상 컴퓨터는 직접 (예: 503) 코드.
+서비스는 같은 IP 주소에서 주기적 프로브를 검색합니다. 이는 가상 컴퓨터가 실행되는 노드의 호스트에서 들어오는 상태 프로브 요청입니다. 부하 분산 장치에서 서비스가 정상이라고 가정하려면 서비스가 HTTP 200 상태 코드로 응답해야 합니다. 다른 모든 HTTP 상태 코드(예: 503)는 직접 순환에서 가상 컴퓨터를 제거합니다.
 
-또한 hello 프로브 정의 hello hello 프로브 빈도 제어합니다. 경우에 위의 hello 부하 분산 장치는 hello 끝점 마다 5 초를 검색 합니다. No로 대답 양의 10 초 (두 개의 프로브 간격) 동안 수신 되 면 hello 프로브 다운 가정 하 고 hello 가상 컴퓨터 순환 순서에서 사용 됩니다. 마찬가지로, 회전 hello 서비스는 양의 응답을 받을 경우 hello 서비스 다시 배치는 toorotation 바로 합니다. Hello 서비스는 변동이 간의 정상 및 비정상을 하는 경우 hello 부하 분산 장치 프로브 수에 대 한 정상까지 hello 서비스 백 toorotation toodelay hello 다시 도입을 결정할 수 있습니다.
+또한 프로브 정의는 프로브 빈도를 제어합니다. 위 사례에서 부하 분산 장치는 5초마다 끝점을 검색합니다. 10초(2개 프로브 간격) 동안 긍정적인 응답이 수신되지 않으면 프로브가 다운된 것으로 간주되며 가상 컴퓨터가 순환에서 제거됩니다. 마찬가지로, 서비스가 순환에서 제거되고 긍정적인 응답이 수신되면 서비스가 즉시 순환에 다시 배치됩니다. 서비스가 정상 상태와 비정상 상태 간에 변동되는 경우 서비스가 많은 프로브 동안 정상 상태로 유지될 때까지 부하 분산 장치에서 서비스를 다시 순환에 배치하는 것을 지연할 수 있습니다.
 
-Hello에 대 한 hello 서비스 정의 스키마를 확인 [상태 프로브](https://msdn.microsoft.com/library/azure/jj151530.aspx) 자세한 정보에 대 한 합니다.
+자세한 내용은 [상태 프로브](https://msdn.microsoft.com/library/azure/jj151530.aspx) 에 대한 서비스 정의 스키마를 참조하세요.
 
 ## <a name="next-steps"></a>다음 단계
 

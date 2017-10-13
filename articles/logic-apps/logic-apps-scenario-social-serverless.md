@@ -1,6 +1,6 @@
 ---
-title: "aaaScenario-Azure 서버와 고객 insights 대시보드 만들기 | Microsoft Docs"
-description: "방법의 예로 Azure 논리 앱 및 Azure 기능을 피드백, 공유 데이터 등 대시보드 toomanage 고객을 빌드할 수 있습니다."
+title: "시나리오 - Azure 서버를 사용하지 않고 Customer Insights 대시보드 만들기 | Microsoft Docs"
+description: "Azure Logic Apps 및 Azure Functions를 사용하여 고객 피드백, 소셜 데이터 등을 관리하는 대시보드를 구축할 수 있는 방법의 예입니다."
 keywords: 
 services: logic-apps
 author: jeffhollan
@@ -15,95 +15,95 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/29/2017
 ms.author: jehollan
-ms.openlocfilehash: db175e895e37aa795a9c34bf4d65566bf68f8c37
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0b6e118cb13ab8185d8eeb42bec6147155967967
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-a-real-time-customer-insights-dashboard-with-azure-logic-apps-and-azure-functions"></a>Azure Logic Apps 및 Azure Functions를 사용하여 실시간 Customer Insights 대시보드 만들기
 
-Azure 서버가 없는 도구 toothink 인프라에 대 한 필요 없이 강력한 기능 tooquickly hello 클라우드에서 구축 및 호스트 응용 프로그램을 제공 합니다.  이 시나리오에서는 대시보드 tootrigger 고객의 의견에, 분석 하는 기계 학습 작업 완료 만들어져 insights Power BI 또는 Azure 데이터 레이크와 같은 원본 게시 합니다.
+Azure 서버를 사용하지 않는 도구는 인프라에 대한 염려 없이 클라우드에서 응용 프로그램을 빠르게 구축하고 호스팅하는 강력한 기능을 제공합니다.  이 시나리오에서는 고객 피드백을 트리거하고 기계 학습으로 피드백을 분석하고 Power BI 또는 Azure Data Lake와 같은 원본 정보를 게시하는 대시보드를 만듭니다.
 
-## <a name="overview-of-hello-scenario-and-tools-used"></a>Hello 시나리오 및 사용 되는 도구 개요
+## <a name="overview-of-the-scenario-and-tools-used"></a>시나리오 및 사용하는 도구 개요
 
-이 솔루션 tooimplement 순서, 서버가 없는 응용 프로그램에서 Azure의 hello 두 핵심 구성 요소 활용 됩니다: [Azure 함수](https://azure.microsoft.com/services/functions/) 및 [Azure 논리 앱](https://azure.microsoft.com/services/logic-apps/)합니다.
+이 솔루션을 구현하기 위해 Azure에서 서버를 사용하지 않는 앱의 두 개의 주요 구성 요소인 [Azure Functions](https://azure.microsoft.com/services/functions/) 및 [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/)를 활용합니다.
 
-논리 앱은 hello 클라우드에서 서버가 없는 워크플로 엔진입니다.  오케스트레이션 서버가 없는 구성 요소에서 제공 하 고 tooover 100 개의 서비스 및 Api를 연결 합니다.  이 시나리오에서는 고객의 의견에 논리 앱 tootrigger를 만듭니다.  Outlook.com, Office 365, 설문 조사 원숭이, Twitter 및 HTTP 요청 포함 하는 데 도움이 되는 응답할 toocustomer 피드백 hello 커넥터의 일부 [web form에서](https://blogs.msdn.microsoft.com/logicapps/2017/01/30/calling-a-logic-app-from-an-html-form/)합니다.  워크플로용으로 hello 아래에서 Twitter hashtag을 모니터링 됩니다.
+Logic Apps는 클라우드에서 서버를 사용하지 않는 워크플로 엔진입니다.  서버가 없는 구성 요소에 오케스트레이션을 제공하고 100개 이상의 서비스 및 API에도 연결합니다.  이 시나리오에서는 고객의 피드백을 트리거하기 위한 논리 앱을 만듭니다.  고객 피드백에 응답하는 데 도움이 되는 일부 커넥터는 [웹 형식에서](https://blogs.msdn.microsoft.com/logicapps/2017/01/30/calling-a-logic-app-from-an-html-form/) Outlook.com, Office 365, Survey Monkey, Twitter 및 HTTP 요청을 포함합니다.  아래 워크플로의 경우 Twitter에 대한 해시 태그를 모니터링합니다.
 
-함수는 hello 클라우드에서 서버가 없는 compute를 제공합니다.  이 시나리오에서는 미리 정의 된 키 단어 들의 계열을 기반으로 하는 고객의 Azure 기능 tooflag 트 윗 사용 합니다.
+함수는 클라우드에서 서버를 사용하지 않는 계산을 제공합니다.  이 시나리오에서는 일련의 미리 정의된 키워드에 따라 고객의 트윗을 플래그 지정하기 위해 Azure Functions를 사용합니다.
 
-hello 전체 솔루션 수 [Visual Studio에서 빌드](logic-apps-deploy-from-vs.md) 및 [리소스 템플릿의 일부분으로 배포](logic-apps-create-deploy-template.md)합니다.  Hello 시나리오의 연습 동영상을 보려면 이기도 [Channel 9](http://aka.ms/logicappsdemo)합니다.
+전체 솔루션은 [Visual Studio에서 작성](logic-apps-deploy-from-vs.md) 및 [리소스 템플릿의 일부분으로 배포](logic-apps-create-deploy-template.md)될 수 있습니다.  [Channel 9에](http://aka.ms/logicappsdemo) 시나리오의 연습 동영상이 있습니다.
 
-## <a name="build-hello-logic-app-tootrigger-on-customer-data"></a>고객 데이터에 hello 논리 앱 tootrigger 빌드
+## <a name="build-the-logic-app-to-trigger-on-customer-data"></a>고객 데이터를 트리거하는 논리 앱 빌드
 
-후 [논리 앱을 만들어](logic-apps-create-a-logic-app.md) Visual Studio 또는 hello Azure 포털에서:
+Visual Studio 또는 Azure Portal에서 [논리 앱을 만든](logic-apps-create-a-logic-app.md) 후:
 
 1. Twitter에서 **새 트윗**에 대한 트리거 추가
-2. 키워드 또는 hashtag hello 트리거 toolisten tootweets를 구성 합니다.
+2. 키워드 또는 해시 태그에 대한 트윗을 수신하도록 트리거를 구성합니다.
 
    > [!NOTE]
-   > hello 트리거에 대 한 hello 되풀이 속성이 hello 논리 앱 폴링 기반 트리거에 새 항목을 확인 하는 빈도 결정 합니다.
+   > 트리거에 대한 되풀이 속성이 논리 앱이 폴링 기반 트리거에 대한 새 항목을 확인하는 주기를 결정합니다.
 
    ![Twitter 트리거의 예][1]
 
-이 앱은 이제 모든 새 트윗에서 실행됩니다.  고 수 있습니다 다음 해당 윗 데이터 더 hello 감성 표현 됩니다.  이 사용 하 여 hello [Azure Cognitive 서비스](https://azure.microsoft.com/services/cognitive-services/) 텍스트의 toodetect 감성 합니다.
+이 앱은 이제 모든 새 트윗에서 실행됩니다.  그런 다음 해당 트윗 데이터를 가져오고 더 자세한 데이터 표현을 이해할 수 있습니다.  이를 위해 [Azure 인식 서비스](https://azure.microsoft.com/services/cognitive-services/)를 사용하여 텍스트의 데이터를 검색할 수 있습니다.
 
 1. **새 단계** 클릭
-1. Hello을 선택 하거나 검색할 **텍스트 분석** 커넥터
-1. 선택 hello **검색 감성** 작업
-1. 메시지가 표시 되 면 hello 텍스트 분석 서비스에 대 한 올바른 인식 서비스 키를 입력
-1. Hello 추가 **윗 텍스트** 텍스트 tooanalyze hello으로 합니다.
+1. **텍스트 분석** 커넥터 선택 또는 검색
+1. **데이터 감지** 작업 선택
+1. 메시지가 나타나는 경우 텍스트 분석 서비스에 대한 올바른 Cognitive Services 키 제공
+1. 분석할 텍스트로 **트윗 텍스트**를 추가합니다.
 
-Hello 윗 hello 윗 데이터 및 통찰력을 만들었으므로 이제 해당 다양 한 다른 커넥터 관련 수 있습니다.
-* Power BI-행 tooStreaming 데이터 집합 추가: 보기 트 윗 Power BI 대시보드에 실시간으로 합니다.
-* Azure 데이터 레이크-파일을 추가할: 고객 데이터 tooan Azure 데이터 레이크 데이터 집합 tooinclude 분석 작업에 추가 합니다.
+이제 트윗에 대한 트윗 데이터 및 정보가 있으므로 다양한 다른 커넥터가 연결될 수 있습니다.
+* Power BI - 스트리밍 데이터 집합에 행 추가: 보Power BI 대시보드에서 실시간으로 트윗을 봅니다.
+* Azure Data Lake - 파일 추가: 분석 작업에 포함할 Azure Data Lake 데이터 집합에 고객 데이터를 추가합니다.
 * SQL - 행 추가: 나중의 검색을 위해 데이터베이스에 데이터를 저장합니다.
 * Slack - 메시지 보내기: 작업을 필요로 하는 부정적인 피드백에 대한 Slack 채널을 경고합니다.
 
-Azure 함수에 사용 되는 toodo hello 데이터를 기반으로 더 많은 사용자 지정 계산 될 수도 있습니다.
+Azure 함수는 데이터 외에 더 많은 사용자 지정 계산을 수행하는 데도 사용할 수 있습니다.
 
-## <a name="enriching-hello-data-with-an-azure-function"></a>Azure 함수를 사용 하 여 hello 데이터 보강
+## <a name="enriching-the-data-with-an-azure-function"></a>Azure 함수를 사용하여 데이터 보강
 
-함수를 만들 수는 Azure 구독에서 toohave 함수 앱 해야 합니다.  Hello 포털에서 Azure 함수를 만드는 방법에 대 한 자세한 정보 수 [여기에서 찾을 수](../azure-functions/functions-create-first-azure-function-azure-portal.md)
+함수를 만들려면 먼저 Azure 구독에 함수 앱이 있어야 합니다.  포털에서 Azure 함수를 만드는 자세한 내용은 [여기에서 찾을 수](../azure-functions/functions-create-first-azure-function-azure-portal.md) 있습니다.
 
-논리 앱에서 직접 호출할 함수 toobe에 대 한 해당 요구 toohave HTTP 트리거할 바인딩.  Hello를 사용 하는 것이 좋습니다 **HttpTrigger** 서식 파일입니다.
+논리 앱에서 직접 호출될 함수의 경우 HTTP 트리거 바인딩이 있어야 합니다.  **HttpTrigger** 템플릿을 사용하는 것이 좋습니다.
 
-이 시나리오에서는 hello 요청 본문의 hello Azure 함수 hello 윗 텍스트 것입니다.  Hello 함수 코드에서 단순히 논리를 정의에 키 단어 또는 구를 hello 윗 텍스트에 포함 되어 있는 경우.  간단 하 게 또는 hello 시나리오에 필요에 따라 복잡 한 hello 함수 자체를 유지할 수 없습니다.
+이 시나리오에서 Azure 함수의 요청 본문은 트윗 텍스트입니다.  함수 코드에서 단순히 트윗 텍스트가 키워드 또는 구를 포함하는 경우에 대한 논리를 정의합니다.  함수 자체는 시나리오의 필요에 따라 간단하거나 복잡하게 유지될 수 있습니다.
 
-Hello 함수 hello 끝 하기만 하면 일부 데이터가 포함 된 응답 toohello 논리 앱을 반환 합니다.  간단한 부울 값(예: `containsKeyword`) 또는 복잡한 개체일 수 있습니다.
+함수 끝에서 일부 데이터로 논리 앱에 대한 응답을 반환합니다.  간단한 부울 값(예: `containsKeyword`) 또는 복잡한 개체일 수 있습니다.
 
 ![구성된 Azure 함수 단계][2]
 
 > [!TIP]
-> 복잡 한 응답에서 논리 앱의 함수에 액세스할 때는 hello JSON을 구문 분석 작업을 사용 합니다.
+> 논리 앱의 함수에서 복잡한 응답에 액세스할 때 JSON 구문 분석 작업을 사용합니다.
 
-Hello 함수를 저장 한 후에 위에서 만든 hello 논리 앱에 추가할 수 있습니다.  Hello 논리 앱:
+함수가 저장된 후 위에서 만든 논리 앱에 추가할 수 있습니다.  논리 앱에서:
 
-1. Tooadd 클릭는 **새 단계**
-1. 선택 hello **Azure 함수** 커넥터
-1. Toochoose 기존 함수를 선택 하 고 만든 toohello 함수 찾아보기
-1. Hello에 보낼 **윗 텍스트** hello에 대 한 **요청 본문**
+1. **새 단계**를 클릭하여 추가
+1. **Azure Functions** 커넥터 선택
+1. 기존 함수를 선택하고 만든 함수로 이동하려면 선택
+1. **요청 본문**에 대한 **트윗 텍스트**에 전송
 
-## <a name="running-and-monitoring-hello-solution"></a>실행 중 이며 hello 솔루션 모니터링
+## <a name="running-and-monitoring-the-solution"></a>솔루션 실행 및 모니터링
 
-논리 앱의 서버가 없는 오케스트레이션을 작성의 hello 이점 중 하나에 hello 풍부한 디버그 및 모니터링 기능입니다.  Visual Studio hello Azure 포털 내에서 또는 hello REST API와 Sdk를 통해 모든 실행 (현재 또는 기록)에서 볼 수 있습니다.
+Logic Apps에서 서버를 사용하지 않는 오케스트레이션 제작의 이점 중 하나는 풍부한 디버그와 모니터링 기능입니다.  Visual Studio, Azure Portal 내에서 또는 REST API 및 SDK를 통해 모든 실행(현재 또는 기록)을 볼 수 있습니다.
 
-Hello를 사용 하는 hello 가장 쉬운 방법으로 tootest 논리 앱 중 하나 **실행** hello 디자이너에서 단추입니다.  클릭 하면 **실행** toopoll hello 트리거 이벤트 감지 되 면 될 때까지 5 초 마다 계속 되며 실행 hello 진행 됨에 따라 라이브 뷰를 제공 합니다.
+논리 앱을 테스트하는 가장 쉬운 방법 중 하나는 디자이너에서 **실행** 단추를 사용하는 것입니다.  **실행**을 클릭하면 이벤트가 감지될 때까지 5초마다 트리거 폴링이 계속되고 실행이 진행됨에 따라 라이브 보기를 제공합니다.
 
-Hello Azure 포털 또는 Visual Studio 클라우드 탐색기 hello를 사용 하 여 hello 개요 블레이드에서 이전 실행된 기록은 볼 수 있습니다.
+Azure Portal의 개요 블레이드 또는 Visual Studio 클라우드 탐색기를 사용하여 이전 실행 기록을 볼 수 있습니다.
 
 ## <a name="creating-a-deployment-template-for-automated-deployments"></a>자동화된 배포를 위한 배포 템플릿 만들기
 
-솔루션을 개발한 후 캡처된 하 고 Azure 배포 템플릿 tooany Azure 지역에서 hello world 통해 배포할 수 있습니다.  이 워크플로의 다양한 버전에 대한 매개 변수 수정뿐만 아니라 빌드 및 릴리스 파이프라인에서 이 솔루션을 통합하는 데 유용합니다.  배포 템플릿 만들기에 대한 자세한 내용은 [이 문서에서](logic-apps-create-deploy-template.md) 찾을 수 있습니다.
+솔루션이 개발되었으므로 Azure 배포 템플릿을 통해 전 세계 모든 Azure 지역에 캡처 및 배포될 수 있습니다.  이 워크플로의 다양한 버전에 대한 매개 변수 수정뿐만 아니라 빌드 및 릴리스 파이프라인에서 이 솔루션을 통합하는 데 유용합니다.  배포 템플릿 만들기에 대한 자세한 내용은 [이 문서에서](logic-apps-create-deploy-template.md) 찾을 수 있습니다.
 
-Azure 기능 통합 될 수도 있지만 hello 배포 템플릿에-단일 템플릿으로 모든 종속성이 있는 hello 전체 솔루션을 관리할 수 있도록 합니다.  함수 템플릿은 배포의 예는 hello에서 확인할 수 있습니다 [Azure 빠른 시작 템플릿 리포지토리](https://github.com/Azure/azure-quickstart-templates/tree/master/101-function-app-create-dynamic)합니다.
+Azure Functions는 모든 종속성과 함께 전체 솔루션을 단일 템플릿으로 관리할 수 있도록 배포 템플릿에 통합될 수도 있습니다.  함수 배포 템플릿의 예는 [Azure 빠른 시작 템플릿 리포지토리](https://github.com/Azure/azure-quickstart-templates/tree/master/101-function-app-create-dynamic)에서 찾을 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
 
 * [Azure Logic Apps 다른 예제 및 시나리오 참조](logic-apps-examples-and-scenarios.md)
 * [종단 간 이 솔루션을 만드는 연습 동영상 시청](http://aka.ms/logicappsdemo)
-* [자세한 내용은 어떻게 논리 앱 내에서 toohandle 및 catch 예외](logic-apps-exception-handling.md)
+* [논리 앱 내에서 예외를 처리 및 catch하는 방법 알아보기](logic-apps-exception-handling.md)
 
 <!-- Image References -->
 [1]: ./media/logic-apps-scenario-social-serverless/twitter.png

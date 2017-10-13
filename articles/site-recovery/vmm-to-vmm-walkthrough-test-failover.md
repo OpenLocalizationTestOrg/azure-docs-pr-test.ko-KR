@@ -1,6 +1,6 @@
 ---
-title: "Azure 사이트 복구와 Hyper-v VM 복제 tooa 보조 사이트에 대 한 테스트 장애 조치 aaaRun | Microsoft Docs"
-description: "어떻게 복제 tooa Hyper-v VM에 대 한 테스트 장애 조치 toorun 보조 System Center VMM 인 사이트를 Azure Site Recovery에 설명 합니다."
+title: "Azure Site Recovery를 사용하여 Hyper-V VM을 보조 사이트로 복제하기 위한 테스트 장애 조치(failover) 실행 | Microsoft 문서"
+description: "Azure Site Recovery를 사용하여 보조 System Center VMM 사이트로 Hyper-V VM을 복제하기 위해 테스트 장애 조치(failover)를 실행하는 방법을 설명합니다."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,44 +14,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/30/2017
 ms.author: raynew
-ms.openlocfilehash: a60411541c2db001c573735bcb0d651f6618f295
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 23d235d326273e7ec59feee6588a39f685401e52
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="step-10-run-a-test-failover-for-hyper-v-replication-tooa-secondary-site"></a>10 단계: Hyper-v 복제 tooa 보조 사이트에 대 한 테스트 장애 조치 실행
+# <a name="step-10-run-a-test-failover-for-hyper-v-replication-to-a-secondary-site"></a>10단계: 보조 사이트로의 Hyper-V 복제를 위한 테스트 장애 조치(failover) 실행
 
 
-Hyper-v 가상 컴퓨터 (Vm)에 대 한 복제를 사용 하도록 설정한 후 [Azure Site Recovery](site-recovery-overview.md),이 문서 toorun 테스트 장애 조치를 사용 합니다. 테스트 장애 조치(failover)에서는 복제가 프로덕션 환경에 영향을 주지 않는 상태로 작동하는지를 확인합니다. 
+[Azure Site Recovery](site-recovery-overview.md)를 사용하여 Hyper-V VM(가상 컴퓨터)을 복제하도록 설정한 후 이 문서를 참조하여 테스트 장애 조치(failover)를 실행할 수 있습니다. 테스트 장애 조치(failover)에서는 복제가 프로덕션 환경에 영향을 주지 않는 상태로 작동하는지를 확인합니다. 
 
 
-이 문서를 읽은 후 게시 설명을 hello 맨 아래에 하거나 hello에 [Azure 복구 서비스 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)합니다.
+이 문서를 읽은 후에 하단 또는 [Azure Recovery Services 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)에서 의견을 게시합니다.
 
 
 ## <a name="before-you-start"></a>시작하기 전에
 
-- 테스트 장애 조치를 트리거하는, hello 네트워크 toowhich hello 테스트 복제본 Vm에 연결 됩니다 지정할 수 있습니다. [자세한 내용은](site-recovery-test-failover-vmm-to-vmm.md#network-options-in-site-recovery) hello 네트워크 옵션에 대 한 합니다.
+- 테스트 장애 조치(failover)를 트리거할 때는 테스트 복제본 VM이 연결되도록 할 네트워크를 지정할 수 있습니다. 네트워크 옵션에 대해 자세히 알아보려면 [여기](site-recovery-test-failover-vmm-to-vmm.md#network-options-in-site-recovery)를 참조하세요.
 - 네트워크 매핑 중 선택한 네트워크는 선택하지 않는 것이 좋습니다.
-- hello이이 문서의 지침에 설명 방법을 통해 단일 VM toofail 합니다. 에 대 한 읽기 [복구 계획 만들기](site-recovery-create-recovery-plans.md) 하려는 경우 toofail 여러 Vm에 함께 합니다.
+- 이 문서의 지침에서는 단일 VM을 장애 조치(failover)하는 방법을 설명합니다. 여러 VM을 함께 장애 조치(failover)하려는 경우에는 [복구 계획 만들기](site-recovery-create-recovery-plans.md)를 확인해 보세요.
 - 또한 [테스트 장애 조치(failover)의 제한 사항](site-recovery-test-failover-vmm-to-vmm.md#things-to-note)도 살펴보세요.
-- hello 테스트 장애 조치 중 VM tooa 제공 되는 IP 주소는 hello VM hello 동일한 IP 주소 (hello IP 주소는 hello 테스트 장애 조치 네트워크에서 사용할 수 있다고 가정)는 계획 되거나 계획 되지 않은 장애 조치에 대 한 수신 하 게 합니다. Hello IP 주소를 hello 테스트 장애 조치 네트워크에서 사용할 수 없는 경우 VM hello hello 테스트 장애 조치 네트워크에서 사용할 수 있는 다른 IP 주소를 받습니다.
-- 않도록 하려는 경우 테스트 장애 조치 toodo 프로덕션 네트워크에서는 종단 간 네트워크 연결 컴퓨터의 전체 유효성 검사에 대 한, note입니다.
-    - hello 주 VM hello 테스트 장애 조치를 수행할 때 종료 되어야 합니다. 그렇지 않은 경우 두 Vm이 동일한 id hello에서 실행 될 것 hello로 동일한 네트워크 hello에서 같은 시간입니다. 
-    - Tootest Vm 변경 하면 hello 정리 하면 테스트 장애 조치 하는 경우 해당 변경 내용이 손실 됩니다. 이러한 변경 내용은 뒤로 toohello 복제 되지 않습니다 주 VM입니다.
-    - 테스트는 프로덕션 네트워크 toodowntime 프로덕션 작업에 대 한 안내 합니다. 사용자가 toouse 하지 hello 앱 hello 재해 복구 훈련과 진행 중인 경우.  
+- 테스트 장애 조치(failover) 중에 VM에 제공된 IP 주소는 이 IP 주소가 테스트 장애 조치(failover) 네트워크에서 사용할 수 있는 경우, VM이 계획되거나 계획되지 않은 장애 조치(failover)에 대해 수신하는 것과 같은 IP 주소입니다. 해당 IP 주소를 테스트 장애 조치(failover) 네트워크에서 사용할 수 없는 경우 VM은 테스트 장애 조치(failover) 네트워크에서 사용 가능한 다른 IP 주소를 받게 됩니다.
+- 프로덕션 네트워크에서 테스트 장애 조치(failover)를 수행하려는 경우 종단 간 네트워크 연결 컴퓨터의 유효성을 완전하게 검사하려면 다음 사항에 유의하세요.
+    - 테스트 장애 조치(failover)를 수행할 때는 주 VM을 종료해야 합니다. 이렇게 하지 않으면 ID가 같은 두 VM이 동시에 동일한 네트워크에서 실행됩니다. 
+    - 테스트 VM을 변경하는 경우 테스트 장애 조치(failover)를 지우면 해당 변경 내용이 손실됩니다. 즉, 이러한 변경 내용이 기본 VM에 다시 복제되지 않습니다.
+    - 프로덕션 네트워크를 테스트하면 프로덕션 작업에서 가동 중지 시간이 발생합니다. 따라서 재해 복구 연습을 진행 중일 때는 사용자들이 앱을 사용하지 않도록 요청하세요.  
 
 
 ## <a name="run-a-test-failover-for-a-vm"></a>VM에 대해 테스트 장애 조치(failover) 실행
 
-1. 단일 VM 통해 toofail에서 **복제 항목**, hello VM 클릭 > **테스트 장애 조치**합니다.
-2. **테스트 장애 조치**, 테스트 Vm 되는 방식이 연결된 toonetworks hello 테스트 장애 조치 후를 지정 합니다. 
-3. 클릭 **확인** toobegin hello 장애 조치 합니다. Hello에서 진행률 추적 **작업** 탭 합니다.
-5. 장애 조치 완료 되 면 해당 hello 테스트 Vm 시작을 성공적으로 확인 합니다.
-6. 완료 되 면 클릭 **테스트 장애 조치 정리** hello 복구 계획에 있습니다.
-7. **노트**을 기록 하 고 테스트 장애 조치 hello와 관련 된 모든 관찰을 저장 합니다. 이 단계는 hello 가상 컴퓨터와 테스트 장애 조치 중에 생성 된 네트워크를 삭제 합니다.
+1. 단일 VM을 장애 조치(failover)하려면 **복제된 항목**에서 VM > **테스트 장애 조치(failover)**를 클릭합니다.
+2. **테스트 장애 조치(failover)**에서 테스트 장애 조치(failover) 후에 테스트 VM을 네트워크에 연결할 방법을 지정합니다. 
+3. **확인**을 클릭하여 장애 조치(failover)를 시작합니다. **작업** 탭에서 진행 상황을 추적합니다.
+5. 장애 조치(failover)가 완료되면 테스트 VM이 정상적으로 시작되는지 확인합니다.
+6. 작업이 완료되면 복구 계획에서 **테스트 장애 조치 정리**를 클릭합니다.
+7. **참고**에서 테스트 장애 조치와 관련된 모든 관측 내용을 기록하고 저장합니다. 이 단계는 테스트 장애 조치(failover) 중에 생성된 가상 컴퓨터 및 네트워크를 삭제합니다.
 
 
 ## <a name="next-steps"></a>다음 단계
 
-Hello 배포를 테스트 한 후에 대 한 자세한 다른 유형의 [장애 조치](site-recovery-failover.md)합니다.
+배포를 테스트한 후 다른 유형의 [장애 조치(failover)](site-recovery-failover.md)에 대해 알아봅니다.

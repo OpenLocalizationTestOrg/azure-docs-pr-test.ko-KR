@@ -1,5 +1,5 @@
 ---
-title: "응용 프로그램 Insights 원격 분석 데이터 모델-aaaAzure 추적 원격 분석 | Microsoft Docs"
+title: "Azure Application Insights 원격 분석 데이터 모델 - 추적 원격 분석 | Microsoft Docs"
 description: "추적 원격 분석을 위한 Azure Application Insights 데이터 모델"
 services: application-insights
 documentationcenter: .net
@@ -12,15 +12,15 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: bwren
-ms.openlocfilehash: dfdee958e07d57448ff41abc5cd33bfd05dac090
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e1da0d6a6fbd9ca5486936c326ade667d7b01006
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="trace-telemetry-application-insights-data-model"></a>추적 원격 분석: Application Insights 데이터 모델
 
-[Application Insights](app-insights-overview.md)에서 추적 원격 분석은 텍스트를 검색하는 `printf` 스타일 추적 문을 나타냅니다. `Log4Net`, `NLog` 및 기타 텍스트 기반 로그 파일 항목이 이 형식의 인스턴스로 변환됩니다. hello 추적 확장성으로 측정 필요가 없습니다.
+[Application Insights](app-insights-overview.md)에서 추적 원격 분석은 텍스트를 검색하는 `printf` 스타일 추적 문을 나타냅니다. `Log4Net`, `NLog` 및 기타 텍스트 기반 로그 파일 항목이 이 형식의 인스턴스로 변환됩니다. 추적에는 확장 기능으로 사용할 측정이 없습니다.
 
 ## <a name="message"></a>Message
 

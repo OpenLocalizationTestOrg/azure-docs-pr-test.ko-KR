@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure AD Xamarin 시작 | Microsoft Docs"
+title: "Azure AD Xamarin 시작 | Microsoft 문서"
 description: "로그인을 위해 Azure AD와 통합되고 OAuth를 사용하여 Azure AD로 보호되는 API를 호출하는 Xamarin 응용 프로그램을 빌드합니다."
 services: active-directory
 documentationcenter: xamarin
@@ -15,55 +15,55 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: jmprieur
 ms.custom: aaddev
-ms.openlocfilehash: 6a0d189648b7071558ac1cf2b908808668960a4e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 54ee403f283bc5dc79911e2e813dd513ff595828
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="integrate-azure-ad-with-xamarin-apps"></a>Xamarin 앱에 Azure AD 통합
 [!INCLUDE [active-directory-devquickstarts-switcher](../../../includes/active-directory-devquickstarts-switcher.md)]
 
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-Xamarin을 사용하면 iOS, Android 및 Windows(모바일 장치 및 PC)에서 실행할 수 있는 Mobile Apps를 C#으로 작성할 수 있습니다. Xamarin을 사용 하는 응용 프로그램을 빌드하는 경우 Azure Active Directory (Azure AD)는 Azure AD 계정 가진 단순 tooauthenticate 사용자가 있습니다. hello 앱 Office 365 Api hello 또는 hello Azure API와 같은 Azure AD로 보호 되는 모든 웹 API를 사용할 안전 하 게 수 있습니다.
+Xamarin을 사용하면 iOS, Android 및 Windows(모바일 장치 및 PC)에서 실행할 수 있는 Mobile Apps를 C#으로 작성할 수 있습니다. Xamarin을 사용하여 앱을 빌드하는 경우 Azure AD(Azure Active Directory)를 사용하면 간단하게 Azure AD 계정으로 사용자를 인증할 수 있습니다. 또한 앱에서 Office 365 API 또는 Azure API 같은 Azure AD를 통해 보호되는 웹 API를 안전하게 사용할 수 있습니다.
 
-Azure AD tooaccess 보호 된 리소스를 필요로 하는 Xamarin 앱에 대 한 Active Directory 인증 라이브러리 (ADAL) hello를 제공 합니다. hello ADAL의 목적으로 toomake 앱 tooget 액세스 토큰을 쉽게 합니다. 이 문서에서는 얼마나 쉬운지 toodemonstrate 방법을 toobuild DirectorySearcher 앱 있는:
+보호된 리소스에 액세스해야 하는 Xamarin 앱의 경우 Azure AD는 ADAL(Active Directory 인증 라이브러리)을 제공합니다. ADAL의 유일한 용도는 앱이 쉽게 액세스 토큰을 가져오도록 하는 것입니다. 이 작업이 얼마나 쉬운지 보여 드리기 위해 이 문서에서는 다음 작업을 수행하는 DirectorySearcher 앱을 빌드해 보겠습니다.
 
 * iOS, Android, Windows 데스크톱, Windows Phone 및 Windows 스토어에서 실행됩니다.
-* 단일 이식 가능한 클래스 라이브러리 (PCL) tooauthenticate 사용자가 사용 하 고 hello Azure AD Graph API에 대 한 토큰을 가져옵니다.
+* 단일 PCL(이식 가능 클래스 라이브러리)을 사용하여 사용자를 인증하고 Azure AD Graph API에 대한 토큰을 가져옵니다.
 * 지정된 UPN을 가진 사용자를 디렉터리에서 검색합니다.
 
 ## <a name="before-you-get-started"></a>시작하기 전에
-* Hello 다운로드 [기초 프로젝트](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/skeleton.zip), hello 다운로드 또는 [완성 된 샘플](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/complete.zip)합니다. 각 다운로드는 Visual Studio 2013 솔루션입니다.
-* Toocreate 사용자 및 레지스터 hello 앱에서 Azure AD 테 넌 트가 있어야합니다. 테 넌 트 아직 없는 경우 [자세한 방법을 하나 tooget](active-directory-howto-tenant.md)합니다.
+* [기본 프로젝트](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/skeleton.zip)를 다운로드하거나 [완성된 샘플](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/complete.zip)을 다운로드하세요. 각 다운로드는 Visual Studio 2013 솔루션입니다.
+* 또한 사용자를 만들고 앱을 등록할 Azure AD 테넌트도 필요합니다. 테넌트가 아직 없는 경우 [얻는 방법을 알아보세요](active-directory-howto-tenant.md).
 
-준비 되 면 다음 절차에 따라 hello hello 다음 네 개의 절.
+준비가 완료되면 다음 4가지 섹션의 절차를 수행합니다.
 
 ## <a name="step-1-set-up-your-xamarin-development-environment"></a>1단계: Xamarin 개발 환경 설정
-이 자습서에는 iOS, Android 및 Windows용 프로젝트가 포함되어 있으므로 Visual Studio와 Xamarin이 둘 다 필요합니다. toocreate hello 필요한 환경에서 전체 hello 프로세스 [설정 및 Visual Studio 및 Xamarin이 설치](https://msdn.microsoft.com/library/mt613162.aspx) msdn 합니다. hello 지침 hello 설치 toobe 완료를 기다리는 동안 Xamarin에 대 한 자세한 toolearn를 검토할 수 있는 자료를 포함 합니다.
+이 자습서에는 iOS, Android 및 Windows용 프로젝트가 포함되어 있으므로 Visual Studio와 Xamarin이 둘 다 필요합니다. 필요한 환경을 만들려면 MSDN에서 [Visual Studio 및 Xamarin 설정 및 설치](https://msdn.microsoft.com/library/mt613162.aspx)의 프로세스를 완료하세요. 이러한 지침에는 설치 관리자가 완료되기를 기다리는 동안 Xamarin에 대해 자세히 알아보기 위해 검토할 수 있는 자료가 포함되어 있습니다.
 
-Hello 설치를 완료 한 후 Visual Studio에서 hello 솔루션을 엽니다. 그러면 5개의 플랫폼별 프로젝트와 모든 플랫폼에서 공유되는 1개의 PCL, DirectorySearcher.cs의 6개 프로젝트를 찾을 수 있습니다.
+필요한 설정을 마치면 Visual Studio에서 솔루션을 엽니다. 그러면 5개의 플랫폼별 프로젝트와 모든 플랫폼에서 공유되는 1개의 PCL, DirectorySearcher.cs의 6개 프로젝트를 찾을 수 있습니다.
 
-## <a name="step-2-register-hello-directorysearcher-app"></a>2 단계: hello DirectorySearcher 앱 등록
-tooenable hello 앱 tooget 토큰 먼저 tooregister에서 Azure AD 테 넌 트 및 사용 권한 tooaccess hello Azure AD Graph API에 부여 합니다. 방법은 다음과 같습니다.
+## <a name="step-2-register-the-directorysearcher-app"></a>2단계: DirectorySearcher 앱 등록
+앱에서 토큰을 가져올 수 있도록 먼저 Azure AD 테넌트에 앱을 등록하고 Azure AD Graph API에 액세스할 수 있는 권한을 부여해야 합니다. 방법은 다음과 같습니다.
 
-1. Toohello 로그인 [Azure 포털](https://portal.azure.com)합니다.
-2. Hello 위쪽 막대에서 계정을 클릭 합니다. 그런 다음 hello **디렉터리** 목록, 선택 hello Active Directory 테 넌 트 tooregister hello 앱을 원하는 합니다.
-3. 클릭 **더 서비스** 에 hello 왼쪽된 창에서 선택한 후 **Azure Active Directory**합니다.
+1. [Azure 포털](https://portal.azure.com)에 로그인합니다.
+2. 위쪽 막대에서 계정을 클릭합니다. 그런 다음 **디렉터리** 목록에서 앱을 등록할 Active Directory 테넌트를 선택합니다.
+3. 왼쪽 창에서 **더 많은 서비스**를 클릭하고 **Azure Active Directory**를 선택합니다.
 4. **앱 등록**을 클릭하고 **추가**를 선택합니다.
-5. 새 toocreate **네이티브 클라이언트 응용 프로그램**, hello 프롬프트를 따릅니다.
-  * **이름** hello 앱 toousers에 설명 합니다.
-  * **리디렉션 URI** Azure AD에서는 tooreturn 토큰 응답 체계 및 문자열 조합입니다. 값(예:  http://DirectorySearcher )을 입력합니다.
-6. Azure AD를 등록을 완료 한 후 hello 앱 고유한 응용 프로그램 ID를 할당 Hello에서 hello 값 복사 **응용 프로그램** 탭, 나중에 필요 합니다.
-7. Hello에 **설정** 페이지에서 **필요한 권한**를 선택한 후 **추가**합니다.
-8. 선택 **Microsoft Graph** API hello으로 합니다. 아래 **위임 된 권한**, hello 추가 **디렉터리 데이터 읽기** 권한.  
-그러면 사용자에 대 한 hello 앱 tooquery hello Graph API 있습니다.
+5. 새 **네이티브 클라이언트 응용 프로그램**을 만들려면 지시를 따릅니다.
+  * **이름**은 사용자에게 앱에 대해 설명합니다.
+  * **리디렉션 URI**는 Azure AD가 토큰 응답을 반환하는 데 사용하는 구성표 및 문자열의 조합입니다. 값(예:  http://DirectorySearcher )을 입력합니다.
+6. 등록이 완료되면 Azure AD가 앱에 고유한 응용 프로그램 ID를 할당합니다. **응용 프로그램** 탭에서 이 값을 복사해 둡니다. 나중에 이 값이 필요합니다.
+7. **설정** 페이지에서 **필요한 사용 권한**, **추가**를 차례로 선택합니다.
+8. API로 **Microsoft Graph**를 선택합니다. **위임된 권한**에서 **디렉터리 데이터 읽기** 권한을 추가합니다.  
+이렇게 하면 앱에서 사용자의 Graph API를 쿼리할 수 있습니다.
 
 ## <a name="step-3-install-and-configure-adal"></a>3단계: ADAL 설치 및 구성
-Azure AD에 앱이 있으므로 ADAL을 설치하고 ID 관련 코드를 작성할 수 있습니다. Azure AD와 tooenable ADAL toocommunicate hello 앱 등록에 대 한 정보를 지정 합니다.
+Azure AD에 앱이 있으므로 ADAL을 설치하고 ID 관련 코드를 작성할 수 있습니다. ADAL이 Azure AD와 통신할 수 있도록 앱 등록에 대한 정보를 제공합니다.
 
-1. Hello 패키지 관리자 콘솔을 사용 하 여 ADAL toohello DirectorySearcher 프로젝트를 추가 합니다.
+1. 패키지 관리자 콘솔을 사용하여 ADAL을 DirectorySearcher 프로젝트에 추가합니다.
 
     `
     PM> Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -ProjectName DirectorySearcherLib
@@ -85,27 +85,27 @@ Azure AD에 앱이 있으므로 ADAL을 설치하고 ID 관련 코드를 작성�
     PM> Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -ProjectName DirSearchClient-Universal
     `
 
-    두 개의 라이브러리 참조 tooeach 프로젝트를 추가 하는 참고: hello PCL 부분의 ADAL와 플랫폼별 부분입니다.
-2. Hello DirectorySearcherLib 프로젝트에서 DirectorySearcher.cs를 엽니다.
-3. Hello Azure 포털에에서 입력 된 hello hello 클래스 멤버 값을 바꿉니다. ADAL를 사용 하 여 때마다 코드 toothese 값을 참조 합니다.
+    ADAL의 PCL 부분과 플랫폼별 부분의 두 라이브러리 참조가 각 프로젝트에 추가됩니다.
+2. DirectorySearcherLib 프로젝트에서 DirectorySearcher.cs를 엽니다.
+3. 클래스 멤버 값을 Azure Portal에서 입력한 값으로 바꿉니다. 코드에서 ADAL을 사용할 때마다 이러한 값을 참조합니다.
 
-  * hello *테 넌 트* 여 Azure AD 테 넌 트 (예: contoso.onmicrosoft.com) hello 도메인입니다.
-  * hello *clientId* hello 포털에서 복사 된 hello 앱으로의 hello 클라이언트 ID입니다.
-  * hello *returnUri* 값 hello 리디렉션 URI (예를 들어 http://DirectorySearcher) hello 포털에 입력 합니다.
+  * *테넌트*는 Azure AD 테넌트의 도메인(예: contoso.onmicrosoft.com)입니다.
+  * *clientId*는 포털에서 복사한 앱의 클라이언트 ID입니다.
+  * *returnUri*는 포털에 입력한 리디렉션 URI(예: http://DirectorySearcher )입니다.
 
-## <a name="step-4-use-adal-tooget-tokens-from-azure-ad"></a>4 단계: Azure AD에서 ADAL tooget 토큰 사용
-있는 모든 hello 앱의 인증 논리를 거의 `DirectorySearcher.SearchByAlias(...)`합니다. Hello 플랫폼별 프로젝트에 반드시 필요한 것은 컨텍스트 매개 변수에 toohello toopass `DirectorySearcher` PCL입니다.
+## <a name="step-4-use-adal-to-get-tokens-from-azure-ad"></a>4단계: ADAL을 사용하여 Azure AD에서 토큰 가져오기
+거의 모든 앱 인증 논리가 `DirectorySearcher.SearchByAlias(...)`에 있습니다. 플랫폼별 프로젝트에서는 `DirectorySearcher` PCL에 컨텍스트 매개 변수를 전달하기만 하면 됩니다.
 
-1. DirectorySearcher.cs를 연 다음 새 매개 변수 toohello 추가 `SearchByAlias(...)` 메서드. `IPlatformParameters`hello 플랫폼별 캡슐화 hello 컨텍스트 매개 변수는 ADAL 요구 tooperform hello 인증 개체입니다.
+1. DirectorySearcher.cs를 연 다음 새 매개 변수를 `SearchByAlias(...)` 메서드에 추가합니다. `IPlatformParameters`는 ADAL이 인증을 수행하는 데 필요한 플랫폼별 개체를 캡슐화하는 컨텍스트 매개 변수입니다.
 
     ```C#
     public static async Task<List<User>> SearchByAlias(string alias, IPlatformParameters parent)
     {
     ```
 
-2. 초기화 `AuthenticationContext`, ADAL의 기본 클래스인 hello 합니다.  
-이 작업 단계 ADAL hello 조정 요구 toocommunicate Azure AD와 것입니다.
-3. 호출 `AcquireTokenAsync(...)`, hello를 허용 하는 `IPlatformParameters` 개체 하 고 hello 인증 흐름은 필요한 tooreturn 토큰 toohello 응용 프로그램을 호출 합니다.
+2. ADAL의 기본 클래스인 `AuthenticationContext`를 초기화합니다.  
+이 작업을 수행하면 Azure AD와 통신하는 데 필요한 좌표가 ADAL에 전달됩니다.
+3. 그런 다음 `AcquireTokenAsync(...)`를 호출합니다. 이 메서드는 `IPlatformParameters` 개체를 수락하고 앱에 토큰을 반환하는 데 필요한 인증 흐름을 호출합니다.
 
     ```C#
     ...
@@ -123,8 +123,8 @@ Azure AD에 앱이 있으므로 ADAL을 설치하고 ID 관련 코드를 작성�
     ...
     ```
 
-    `AcquireTokenAsync(...)`사용자가 tooenter 캐싱 또는 오래 된 토큰 새로 고침) (통해 자격 증명을 확인 하지 않고 리소스 (이 경우 Graph API hello)를 요청 하는 첫 번째 시도 tooreturn hello에 대 한 토큰. 필요에 따라 hello 요청한 토큰을 획득 하기 전에 사용자가 hello Azure AD 로그인 페이지를 표시 됩니다.
-4. 연결 hello hello에 대 한 액세스 토큰 toohello Graph API 요청 **권한 부여** 헤더:
+    `AcquireTokenAsync(...)`는 먼저 사용자에게 자격 증명을 요구하지 않고(이전 토큰을 캐시하거나 새로 고침) 요청된 리소스(이 경우 Graph API)에 대한 토큰을 반환하려고 합니다. 필요한 경우에만 요청된 토큰을 획득하기 전에 사용자에게 Azure AD 로그인 페이지를 표시합니다.
+4. **Authorization** 헤더의 Graph API GET 요청에 액세스 토큰을 연결합니다.
 
     ```C#
     ...
@@ -132,15 +132,15 @@ Azure AD에 앱이 있으므로 ADAL을 설치하고 ID 관련 코드를 작성�
     ...
     ```
 
-그 hello에 대 한 `DirectorySearcher` PCL 및 hello 응용 프로그램의 id 관련 코드입니다. 이제 남은 것 toocall hello `SearchByAlias(...)` 각 플랫폼의 보기에서 메서드 및 tooadd 코드 올바르게 처리 하기 위한 UI 수명 주기 hello 필요한 경우.
+`DirectorySearcher` PCL 및 앱의 ID 관련 코드에 대한 작업이 끝났습니다. 이제 각 플랫폼 보기에서 `SearchByAlias(...)` 메서드를 호출하고, 필요한 경우 UI 수명 주기를 올바르게 처리하기 위한 코드를 추가하면 됩니다.
 
 ### <a name="android"></a>Android
-1. MainActivity.cs에 대 한 호출을 너무 추가`SearchByAlias(...)` hello 단추 클릭 처리기:
+1. MainActivity.cs의 단추 클릭 처리기에서 `SearchByAlias(...)` 호출을 추가합니다.
 
     ```C#
     List<User> results = await DirectorySearcher.SearchByAlias(searchTermText.Text, new PlatformParameters(this));
     ```
-2. Hello 재정의 `OnActivityResult` 수명 주기 메서드 tooforward 인증 백 toohello 적절 한 방법을 리디렉션합니다. ADAL은 Android에서 이 작업을 위한 도우미 메서드를 제공합니다.
+2. `OnActivityResult` 수명 주기 메서드를 재정의하여 인증 리디렉션을 해당 메서드로 다시 전달해야 합니다. ADAL은 Android에서 이 작업을 위한 도우미 메서드를 제공합니다.
 
     ```C#
     ...
@@ -153,7 +153,7 @@ Azure AD에 앱이 있으므로 ADAL을 설치하고 ID 관련 코드를 작성�
     ```
 
 ### <a name="windows-desktop"></a>Windows Desktop
-MainWindow.xaml.cs를에 대 한 호출을 너무 확인`SearchByAlias(...)` 전달 하 여 한 `WindowInteropHelper` hello 데스크톱에서 `PlatformParameters` 개체:
+MainWindow.xaml.cs에서 데스크톱의 `PlatformParameters` 개체에 `WindowInteropHelper`를 전달하여 `SearchByAlias(...)`를 호출하면 됩니다.
 
 ```C#
 List<User> results = await DirectorySearcher.SearchByAlias(
@@ -162,7 +162,7 @@ List<User> results = await DirectorySearcher.SearchByAlias(
 ```
 
 #### <a name="ios"></a>iOS
-DirSearchClient_iOSViewController.cs에서 iOS hello `PlatformParameters` 개체는 참조 toohello 뷰-컨트롤러:
+DirSearchClient_iOSViewController.cs에서 iOS `PlatformParameters` 개체는 보기 컨트롤러에 대한 참조를 사용합니다.
 
 ```C#
 List<User> results = await DirectorySearcher.SearchByAlias(
@@ -171,7 +171,7 @@ List<User> results = await DirectorySearcher.SearchByAlias(
 ```
 
 ### <a name="windows-universal"></a>Windows 범용
-Windows 유니버설에서 MainPage.xaml.cs를 연 다음 hello 구현 `Search` 메서드. 이 메서드는 필요에 따라 공유 프로젝트 tooupdate UI에에서는 도우미 메서드를 사용 합니다.
+Windows 유니버설에서 MainPage.xaml.cs를 열고 `Search` 메서드를 구현합니다. 이 메서드는 공유 프로젝트의 도우미 메서드를 사용하여 필요에 따라 UI를 업데이트합니다.
 
 ```C#
 ...
@@ -182,15 +182,15 @@ List<User> results = await DirectorySearcherLib.DirectorySearcher.SearchByAlias(
 ## <a name="whats-next"></a>다음 단계
 이제 5개의 서로 다른 플랫폼에서 OAuth 2.0을 사용하여 사용자를 인증하고 안전하게 Web API를 호출할 수 있는 Xamarin 앱이 작성되었습니다.
 
-사용자와 테 넌 트 채워진 이미 하지 않은 경우 지금은 hello 시간 toodo 이므로 합니다.
+아직 사용자로 테넌트를 채우지 않은 경우 지금 채울 수 있습니다.
 
-1. DirectorySearcher 응용 프로그램을 실행 하 고 hello 사용자 중 하나를 사용 하 여 로그인 합니다.
+1. DirectorySearcher 앱을 실행하고 해당 사용자 중 하나로 로그인합니다.
 2. 해당 UPN에 따라 다른 사용자를 검색합니다.
 
-ADAL은 hello 응용 프로그램에 쉽게 tooincorporate 일반적인 id 기능이 있습니다. 관리의 모든 hello dirty 작업, 캐시 관리와 같은 OAuth 프로토콜 지원 등 hello 사용자 로그인 UI 제시 하 고 토큰 만료를 새로 고치 합니다. Tooknow 단일 API 호출 해야 `authContext.AcquireToken*(…)`합니다.
+ADAL은 앱에 일반적인 ID 기능을 쉽게 통합할 수 있습니다. 또한 캐시 관리, OAuth 프로토콜 지원, 사용자에게 로그인 UI 제공, 만료된 토큰 새로 고침 등의 모든 귀찮은 작업을 대신 처리합니다. 사용자는 단일 API 호출 `authContext.AcquireToken*(…)`만 알고 있으면 됩니다.
 
-참조용으로 hello 다운로드 [완성 된 샘플](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/complete.zip) (없이 구성 값).
+참조용 자료로 [완성된 샘플](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/complete.zip)(사용자 구성 값 제외)을 다운로드하세요.
 
-이제 tooadditional id 시나리오에서 이동할 수 있습니다. 예를 들어 [Azure AD를 사용하여 .NET Web API 보안 유지](active-directory-devquickstarts-webapi-dotnet.md)를 시도해 보세요.
+이제 추가 ID 시나리오로 이동할 수 있습니다. 예를 들어 [Azure AD를 사용하여 .NET Web API 보안 유지](active-directory-devquickstarts-webapi-dotnet.md)를 시도해 보세요.
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../../includes/active-directory-devquickstarts-additional-resources.md)]

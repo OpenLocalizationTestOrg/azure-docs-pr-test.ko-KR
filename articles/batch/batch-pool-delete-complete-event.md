@@ -1,5 +1,5 @@
 ---
-title: "aaa \"Azure 배치 풀을 삭제 완료 이벤트 | \"Microsoft Docs"
+title: "Azure Batch 풀 삭제 완료 이벤트 | Microsoft Docs"
 description: "Batch 풀 삭제 완료 이벤트에 대한 참조입니다."
 services: batch
 author: tamram
@@ -12,17 +12,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 04/20/2017
 ms.author: tamram
-ms.openlocfilehash: 494c371e48ebfb1bf3d2973a7401829a939ba141
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 890f2ba7fda37060c56177868d6214d517d91831
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="pool-delete-complete-event"></a>풀 삭제 완료 이벤트
 
  이 이벤트는 풀 삭제 작업이 완료되면 내보내집니다.
 
- hello 다음 예제에서는 풀 삭제 완료 이벤트의 hello 본문
+ 다음 예에서는 풀 삭제 완료 이벤트의 본문을 보여 줍니다.
 
 ```
 {
@@ -34,9 +34,9 @@ ms.lasthandoff: 10/06/2017
 
 |요소|형식|참고 사항|
 |-------------|----------|-----------|
-|id|문자열|hello 풀의 hello id입니다.|
-|startTime|DateTime|시작 hello 풀을 삭제 하는 hello 시간입니다.|
-|endTime|DateTime|hello hello 풀 삭제 완료 시간입니다.|
+|id|String|풀의 ID입니다.|
+|startTime|DateTime|풀 삭제가 시작된 시간입니다.|
+|endTime|DateTime|풀 삭제가 완료된 시간입니다.|
 
 ## <a name="remarks"></a>설명
 풀 크기 조정 작업의 상태 및 오류 코드에 대한 자세한 내용은 [계정에서 풀 삭제](https://docs.microsoft.com/rest/api/batchservice/delete-a-pool-from-an-account)를 참조하세요.

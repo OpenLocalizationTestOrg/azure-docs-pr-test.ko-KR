@@ -1,5 +1,5 @@
 ---
-title: "Azure Linux 가상 컴퓨터에서 Oracle ASM를 aaaSet | Microsoft Docs"
+title: "Azure Linux 가상 컴퓨터에 Oracle ASM 설정 | Microsoft Docs"
 description: "Azure 환경에서 Oracle ASM을 빠르게 준비하여 실행합니다."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 07/19/2017
 ms.author: rclaus
-ms.openlocfilehash: d6a7046638e919876477d46943faabcb1872acac
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 117212a2e7e3da7c3e249798eec804a652e0ef58
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="set-up-oracle-asm-on-an-azure-linux-virtual-machine"></a>Azure Linux 가상 컴퓨터에 Oracle ASM 설정  
 
-Azure 가상 컴퓨터는 완전히 구성 가능하고 유연한 컴퓨팅 환경을 제공합니다. 이 자습서에서는 hello 설치 및 구성의 Oracle 자동화 된 저장소 관리 (ASM)와 결합 하는 기본 Azure 가상 컴퓨터 배포에 설명 합니다.  다음 방법에 대해 알아봅니다.
+Azure 가상 컴퓨터는 완전히 구성 가능하고 유연한 컴퓨팅 환경을 제공합니다. 이 자습서에서는 Oracle ASM(Automated Storage Management) 설치 및 구성과 결합된 기본 Azure 가상 컴퓨터 배포에 대해 설명합니다.  다음 방법에 대해 알아봅니다.
 
 > [!div class="checklist"]
-> * 만들고 tooan Oracle 데이터베이스 VM 연결
+> * Oracle 데이터베이스 VM 만들기 및 연결
 > * Oracle Automated Storage Management 설치 및 구성
 > * Oracle Grid 인프라 설치 및 구성
 > * Oracle ASM 설치 초기화
@@ -35,13 +35,13 @@ Azure 가상 컴퓨터는 완전히 구성 가능하고 유연한 컴퓨팅 환�
 
 [!INCLUDE [cloud-shell-try-it.md](../../../../includes/cloud-shell-try-it.md)]
 
-Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 자습서를 사용 하려면 2.0.4 hello Azure CLI 버전을 실행 되 고 있는지 이상. 실행 `az --version` toofind hello 버전입니다. Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다. 
+CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 자습서에서 Azure CLI 버전 2.0.4 이상을 실행해야 합니다. `az --version`을 실행하여 버전을 찾습니다. 설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요. 
 
-## <a name="prepare-hello-environment"></a>Hello 환경 준비
+## <a name="prepare-the-environment"></a>환경 준비
 
 ### <a name="create-a-resource-group"></a>리소스 그룹 만들기
 
-리소스 그룹 toocreate hello를 사용 하 여 [az 그룹 만들기](/cli/azure/group#create) 명령입니다. Azure 리소스 그룹은 Azure 리소스가 배포 및 관리되는 논리적 컨테이너입니다. 이 예제에서는 리소스 그룹 이름이 *myResourceGroup* hello에 *eastus* 영역입니다.
+리소스 그룹을 만들려면 [az group create](/cli/azure/group#create) 명령을 사용합니다. Azure 리소스 그룹은 Azure 리소스가 배포 및 관리되는 논리적 컨테이너입니다. 이 예제에서는 *eastus* 지역에 *myResourceGroup*이라는 리소스 그룹을 만듭니다.
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location eastus
@@ -49,9 +49,9 @@ az group create --name myResourceGroup --location eastus
 
 ### <a name="create-a-vm"></a>VM 만들기
 
-가상 컴퓨터 toocreate hello Oracle 데이터베이스 이미지를 기반 및 toouse Oracle ASM 구성, hello를 사용 하 여 [az vm 만들기](/cli/azure/vm#create) 명령입니다. 
+Oracle Database 이미지에 따라 가상 컴퓨터를 만들고 Oracle ASM을 사용하도록 구성하려면 [az vm create](/cli/azure/vm#create) 명령을 사용합니다. 
 
-hello 다음 예제에서는 각 50GB의 네 개의 연결 된 데이터 디스크와 Standard_DS2_v2 크기로 사용 되는 myVM 이라는 VM 이미 hello 기본 키 위치에 존재 하지 않습니다, 하는 경우 또한 SSH 키를 만듭니다.  toouse 특정 키의 집합, hello를 사용 하 여 `--ssh-key-value` 옵션입니다.  
+다음 예에서는 각 50GB인 네 개의 연결된 데이터 디스크를 포함한 Standard_DS2_v2 크기의 myVM이라는 VM을 만듭니다. 또한 기본 키 위치에 SSH 키가 없는 경우 이 키를 만듭니다.  특정 키 집합을 사용하려면 `--ssh-key-value` 옵션을 사용합니다.  
 
    ```azurecli-interactive
    az vm create --resource-group myResourceGroup \
@@ -62,7 +62,7 @@ hello 다음 예제에서는 각 50GB의 네 개의 연결 된 데이터 디스�
     --data-disk-sizes-gb 50 50 50 50
    ```
 
-Hello VM을 만든 후 Azure CLI 정보 비슷한 toohello를 다음 예제에서는 표시 됩니다. Hello 값을 확인 `publicIpAddress`합니다. VM이 주소 tooaccess hello를 사용 합니다.
+VM을 만든 후 Azure CLI는 다음 예제와 비슷한 정보를 표시합니다. `publicIpAddress`에 대한 값을 기록해 둡니다. 이 주소는 VM에 액세스하는 데 사용됩니다.
 
    ```azurecli
    {
@@ -77,9 +77,9 @@ Hello VM을 만든 후 Azure CLI 정보 비슷한 toohello를 다음 예제에�
    }
    ```
 
-### <a name="connect-toohello-vm"></a>Toohello VM 연결
+### <a name="connect-to-the-vm"></a>VM에 연결
 
-와 SSH 세션 toocreate VM hello, 추가 설정을 구성 하 고 hello 다음 명령을 사용 합니다. Hello로 hello IP 주소를 교체 `publicIpAddress` VM에 대 한 값입니다.
+VM으로 SSH 세션을 만들고 추가 설정을 구성하려면 다음 명령을 사용합니다. 해당 IP 주소를 VM의 `publicIpAddress` 값으로 바꿉니다.
 
 ```bash 
 ssh <publicIpAddress>
@@ -87,17 +87,17 @@ ssh <publicIpAddress>
 
 ## <a name="install-oracle-asm"></a>Oracle ASM 설치
 
-tooinstall Oracle ASM, 전체 hello 단계를 수행 합니다. 
+Oracle ASM을 설치하려면 다음 단계를 완료합니다. 
 
 Oracle ASM 설치에 대한 자세한 내용은 [Oracle Linux 6에 대한 Oracle ASMLib 다운로드](http://www.oracle.com/technetwork/server-storage/linux/asmlib/ol6-1709075.html)를 참조하세요.  
 
-1. ASM 설치 순서 toocontinue의 루트로 toologin이 필요합니다.
+1. ASM 설치를 계속하기 위해 루트로 로그인해야 합니다.
 
    ```bash
    sudo su -
    ```
    
-2. 이러한 추가 명령을 tooinstall Oracle ASM 구성 요소를 실행 합니다.
+2. Oracle ASM 구성 요소를 설치하기 위해 이러한 추가 명령을 실행합니다.
 
    ```bash
     yum list | grep oracleasm 
@@ -114,7 +114,7 @@ Oracle ASM 설치에 대한 자세한 내용은 [Oracle Linux 6에 대한 Oracle
    rpm -qa |grep oracleasm
    ```
 
-    hello이이 명령의 출력에는 다음과 같은 구성 요소가 hello를 수록 되어야 합니다.
+    이 명령의 출력은 다음 구성 요소를 나열해야 합니다.
 
     ```bash
    oracleasm-support-2.1.10-4.el6.x86_64
@@ -122,7 +122,7 @@ Oracle ASM 설치에 대한 자세한 내용은 [Oracle Linux 6에 대한 Oracle
    oracleasmlib-2.0.12-1.el6.x86_64
     ```
 
-4. ASM 올바르게 순서 toofunction에서 특정 사용자 및 역할 필요합니다. 다음 명령을 hello hello 필수 사용자 계정 및 그룹을 만듭니다. 
+4. ASM이 제대로 작동하기 위해 특정 사용자 및 역할이 필요합니다. 다음 명령은 필수 구성 요소 사용자 계정 및 그룹을 만듭니다. 
 
    ```bash
     groupadd -g 54345 asmadmin 
@@ -138,13 +138,13 @@ Oracle ASM 설치에 대한 자세한 내용은 [Oracle Linux 6에 대한 Oracle
    id grid
    ```
 
-    hello이 명령의 출력을 나열 해야 hello 다음 사용자 및 그룹:
+    이 명령의 출력은 다음과 같은 사용자 및 그룹을 나열해야 합니다.
 
     ```bash
     uid=3000(grid) gid=54321(oinstall) groups=54321(oinstall),54322(dba),54345(asmadmin),54346(asmdba),54347(asmoper)
     ```
  
-6. 사용자에 대 한 폴더를 만들고 *그리드* hello 소유자를 변경 하 고:
+6. *grid* 사용자를 위한 폴더를 만들고 소유자를 변경합니다.
 
    ```bash
    mkdir /u01/app/grid 
@@ -153,38 +153,38 @@ Oracle ASM 설치에 대한 자세한 내용은 [Oracle Linux 6에 대한 Oracle
 
 ## <a name="set-up-oracle-asm"></a>Oracle ASM 설정
 
-이 자습서에서는 hello 기본 사용자가 *그리드* hello 기본 그룹은 및 *asmadmin*합니다. 해당 hello 확인 *oracle* hello asmadmin 그룹의 일부인 사용자입니다. Oracle ASM 설치 단계를 수행 하는 전체 hello tooset:
+이 자습서에서는 기본 사용자가 *grid*이며, 기본 그룹은 *asmadmin*입니다. *oracle* 사용자가 asmadmin 그룹의 구성원인지 확인합니다. Oracle ASM 설치를 설정하려면 다음 단계를 완료합니다.
 
-1. Hello Oracle ASM 라이브러리 드라이버 설정 정의가 포함 됩니다 (표) hello 기본 사용자 및 기본 그룹 (asmadmin) 부팅 시 hello 드라이브 toostart 구성 뿐만 아니라 (y 선택) 및 디스크에서 부팅에 대 한 tooscan (y 선택). 다음 명령을 hello에서 tooanswer hello 프롬프트가 필요 합니다.
+1. Oracle ASM 라이브러리 드라이버를 설정하는 작업에는 드라이브를 부팅하기 시작(y 선택)하고 부팅 시 디스크를 검색(y 선택)하도록 구성할 뿐만 아니라 기본 사용자(그리드) 및 기본 그룹(asmadmin)을 정의하는 작업이 포함됩니다. 다음 명령에서 표시되는 메시지에 답해야 합니다.
 
    ```bash
    /usr/sbin/oracleasm configure -i
    ```
 
-   이 명령의 출력 hello 비슷한 toohello 뒤, 프롬프트 toobe 답변으로 중지 찾아야 합니다.
+   이 명령의 출력은 다음 출력과 유사해야 하며 표시되는 메시지에 답하면 중지됩니다.
 
     ```bash
-   Configuring hello Oracle ASM library driver.
+   Configuring the Oracle ASM library driver.
 
-   This will configure hello on-boot properties of hello Oracle ASM library
-   driver. hello following questions will determine whether hello driver is
-   loaded on boot and what permissions it will have. hello current values
+   This will configure the on-boot properties of the Oracle ASM library
+   driver. The following questions will determine whether the driver is
+   loaded on boot and what permissions it will have. The current values
    will be shown in brackets ('[]'). Hitting <ENTER> without typing an
    answer will keep that current value. Ctrl-C will abort.
 
-   Default user tooown hello driver interface []: grid
-   Default group tooown hello driver interface []: asmadmin
+   Default user to own the driver interface []: grid
+   Default group to own the driver interface []: asmadmin
    Start Oracle ASM library driver on boot (y/n) [n]: y
    Scan for Oracle ASM disks on boot (y/n) [y]: y
    Writing Oracle ASM library driver configuration: done
    ```
 
-2. Hello 디스크 구성 보기:
+2. 디스크 구성을 확인합니다.
    ```bash
    cat /proc/partitions
    ```
 
-   이 명령의 hello 출력의 사용 가능한 디스크 목록을 다음 비슷한 toohello 같아야 합니다.
+   이 명령의 출력은 다음 사용 가능한 디스크 목록과 유사해야 합니다.
 
    ```bash
    8       16   14680064 sdb
@@ -199,34 +199,34 @@ Oracle ASM 설치에 대한 자세한 내용은 [Oracle Linux 6에 대한 Oracle
    11       0       1152 sr0
    ```
 
-3. 디스크 포맷 */개발/sdc* hello를 실행 하 여 다음 명령 및 hello 응답 프롬프트에:
+3. 다음 명령을 실행하고 표시되는 메시지에 답하여 */dev/sdc* 디스크를 포맷합니다.
    - 새 파티션의 경우 *n*
    - 주 파티션의 경우 *p*
-   - *1* tooselect hello 첫 번째 파티션
-   - 키를 눌러 `enter` 기본 첫 번째 실린더 hello에 대 한
-   - 키를 눌러 `enter` 기본 마지막 실린더 hello에 대 한
-   - 키를 눌러 *w* toowrite hello 변경 toohello 파티션 테이블  
+   - 첫 번째 파티션을 선택하려면 *1*
+   - 첫 번째 기본 실린더의 경우 `enter` 키를 누름
+   - 최근 기본 실린더의 경우 `enter` 키를 누름
+   - 파티션 테이블에 변경 내용을 쓰려면 *w* 키를 누름  
 
    ```bash
    fdisk /dev/sdc
    ```
    
-   위에 제공 된 hello 답변을 사용 하 여, hello fdisk 명령에 대 한 hello 출력 hello 다음과 같이 표시 됩니다.
+   fdisk 명령에 대한 출력은 위에 제공된 답변을 사용하여 다음과 같이 표시됩니다.
 
    ```bash
    Device contains not a valid DOS partition table, or Sun, SGI or OSF disklabel
    Building a new DOS disklabel with disk identifier 0xf865c6ca.
-   Changes will remain in memory only, until you decide toowrite them.
-   After that, of course, hello previous content won't be recoverable.
+   Changes will remain in memory only, until you decide to write them.
+   After that, of course, the previous content won't be recoverable.
 
    Warning: invalid flag 0x0000 of partition table 4 will be corrected by w(rite)
 
-   hello device presents a logical sector size that is smaller than
-   hello physical sector size. Aligning tooa physical sector (or optimal
+   The device presents a logical sector size that is smaller than
+   the physical sector size. Aligning to a physical sector (or optimal
    I/O) size boundary is recommended, or performance may be impacted.
 
    WARNING: DOS-compatible mode is deprecated. It's strongly recommended to
-           switch off hello mode (command 'c') and change display units to
+           switch off the mode (command 'c') and change display units to
            sectors (command 'u').
 
    Command (m for help): n
@@ -241,21 +241,21 @@ Oracle ASM 설치에 대한 자세한 내용은 [Oracle Linux 6에 대한 Oracle
    Using default value 6527
 
    Command (m for help): w
-   hello partition table has been altered!
+   The partition table has been altered!
 
-   Calling ioctl() toore-read partition table.
+   Calling ioctl() to re-read partition table.
    Syncing disks.
    ```
 
-4. 반복 hello에 대 한 fdisk 명령 앞 `/dev/sdd`, `/dev/sde`, 및 `/dev/sdf`합니다.
+4. `/dev/sdd`, `/dev/sde` 및 `/dev/sdf`의 경우 위의 fdisk 명령을 반복합니다.
 
-5. Hello 디스크 구성을 확인 하십시오.
+5. 디스크 구성을 확인합니다.
 
    ```bash
    cat /proc/partitions
    ```
 
-   hello 명령의 hello 출력 hello 다음과 같이 표시 됩니다.
+   명령 출력은 다음과 같습니다.
 
    ```bash
    major minor  #blocks  name
@@ -276,20 +276,20 @@ Oracle ASM 설치에 대한 자세한 내용은 [Oracle Linux 6에 대한 Oracle
      11       0    1048575 sr0
    ```
 
-6. Hello Oracle ASM 서비스 상태를 확인 하 고 hello Oracle ASM 서비스를 시작 합니다.
+6. Oracle ASM 서비스 상태를 확인하고 Oracle ASM 서비스를 시작합니다.
 
    ```bash
    service oracleasm status 
    service oracleasm start
    ```
 
-   hello 명령의 hello 출력 hello 다음과 같이 표시 됩니다.
+   명령 출력은 다음과 같습니다.
    
    ```bash
    Checking if ASM is loaded: no
    Checking if /dev/oracleasm is mounted: no
-   Initializing hello Oracle ASMLib driver:                     [  OK  ]
-   Scanning hello system for Oracle ASMLib disks:               [  OK  ]
+   Initializing the Oracle ASMLib driver:                     [  OK  ]
+   Scanning the system for Oracle ASMLib disks:               [  OK  ]
    ```
 
 7. Oracle ASM 디스크를 만듭니다.
@@ -301,7 +301,7 @@ Oracle ASM 설치에 대한 자세한 내용은 [Oracle Linux 6에 대한 Oracle
    service oracleasm createdisk FRA /dev/sdf1
    ```    
 
-   hello 명령의 hello 출력 hello 다음과 같이 표시 됩니다.
+   명령 출력은 다음과 같습니다.
 
    ```bash
    Marking disk "ASMSP" as an ASM disk:                       [  OK  ]
@@ -316,7 +316,7 @@ Oracle ASM 설치에 대한 자세한 내용은 [Oracle Linux 6에 대한 Oracle
    service oracleasm listdisks
    ```   
 
-   다음 Oracle ASM 디스크 hello 오프 hello 명령의 hello 출력 수록 되어야 합니다.
+   이 명령의 출력은 다음 Oracle ASM 디스크를 나열합니다.
 
    ```bash
     ASMSP
@@ -325,7 +325,7 @@ Oracle ASM 설치에 대한 자세한 내용은 [Oracle Linux 6에 대한 Oracle
     FRA
    ```
 
-9. Hello 루트, oracle 및 눈금 사용자에 대 한 hello 암호를 변경 합니다. **이러한 새 암호를 기록** 대로 hello 설치 하는 동안에 나중에 사용 됩니다.
+9. 루트, oracle 및 그리드 사용자에 대한 암호를 변경합니다. 나중에 설치하는 동안 사용하도록 **이러한 새 암호를 기록**합니다.
 
    ```bash
    passwd oracle 
@@ -333,7 +333,7 @@ Oracle ASM 설치에 대한 자세한 내용은 [Oracle Linux 6에 대한 Oracle
    passwd root
    ```
 
-10. Hello 폴더 사용 권한을 변경 합니다.
+10. 폴더 사용 권한을 변경합니다.
 
    ```bash
    chmod -R 775 /opt 
@@ -350,19 +350,19 @@ Oracle ASM 설치에 대한 자세한 내용은 [Oracle Linux 6에 대한 Oracle
 
 ## <a name="download-and-prepare-oracle-grid-infrastructure"></a>Oracle Grid Infrastructure 다운로드 및 준비
 
-toodownload hello Oracle 그리드 인프라 소프트웨어, 단계를 수행 하는 전체 hello 준비 및:
+Oracle Grid Infrastructure 소프트웨어를 다운로드 및 준비하려면 다음 단계를 완료합니다.
 
-1. Hello에서 Oracle 그리드 인프라 다운로드 [Oracle ASM 다운로드 페이지](http://www.oracle.com/technetwork/database/enterprise-edition/downloads/database12c-linux-download-2240591.html)합니다. 
+1. [Oracle ASM 다운로드 페이지](http://www.oracle.com/technetwork/database/enterprise-edition/downloads/database12c-linux-download-2240591.html)에서 Oracle Grid Infrastructure를 다운로드합니다. 
 
-   라는 hello 다운로드 아래 **Oracle Database 12c 릴리스 1 그리드 인프라 (12.1.0.2.0) Linux x86-64에 대 한**, hello 두 개의.zip 파일을 다운로드 합니다.
+   다운로드 제목 **Linux x86-64용 Oracle Database 12c 릴리스 1 Grid Infrastructure(12.1.0.2.0)**에서 두 개의 .zip 파일을 다운로드합니다.
 
-2. Hello.zip tooyour 클라이언트 컴퓨터 파일을 다운로드 한 후 복사 프로토콜 보안 (SCP) toocopy hello 파일 tooyour VM을 사용할 수 있습니다.
+2. 클라이언트 컴퓨터에 .zip 파일을 다운로드한 후 SCP(보안 복사 프로토콜)를 사용하여 파일을 VM에 복사합니다.
 
    ```bash
    scp *.zip <publicIpAddress>:.
    ```
 
-3. SSH는 hello로 순서 toomove hello.zip 파일에는 Azure에서 Oracle VM 스풀링됩니다/폴더를 선택 합니다. Hello 파일의 hello 소유자를 변경 합니다.
+3. .zip 파일을 /opt 폴더로 이동하기 위해 Azure에서 Oracle VM에 다시 SSH합니다. 그런 다음 파일의 소유자를 변경합니다.
 
    ```bash
    ssh <publicIPAddress>
@@ -372,7 +372,7 @@ toodownload hello Oracle 그리드 인프라 소프트웨어, 단계를 수행 �
    sudo chown grid:oinstall linuxamd64_12102_grid_2of2.zip
    ```
 
-4. Hello 파일을 압축을 풉니다. (설치 hello Linux의 압축을 푸는 도구가 설치 되어 있지 않은 경우.)
+4. 파일의 압축을 풉니다. (Linux 압축 풀기 도구가 설치되어 있지 않은 경우 이를 설치합니다.)
    
    ```bash
    sudo yum install unzip
@@ -386,31 +386,31 @@ toodownload hello Oracle 그리드 인프라 소프트웨어, 단계를 수행 �
    sudo chown -R grid:oinstall /opt/grid
    ```
 
-6. 구성된 스왑 공간을 업데이트합니다. Oracle 그리드 구성 6.8 g B 이상의 스왑 공간 tooinstall 눈금 필요 합니다. Azure에서 Oracle Linux 이미지 hello 기본 스왑 파일 크기는 2048MB만 합니다. Tooincrease 해야 `ResourceDisk.SwapSizeMB` hello에 `/etc/waagent.conf` 파일을 업데이트 하는 hello 설정 tootake 효과 대 한 순서 대로 hello WALinuxAgent 서비스를 다시 시작 합니다. 읽기 전용 파일 이기 때문에 toochange 파일 사용 권한을 tooenable 쓰기 액세스 해야 합니다.
+6. 구성된 스왑 공간을 업데이트합니다. Oracle Grid 구성 요소에서 Grid를 설치하려면 적어도 6.8GB의 스왑 공간이 필요합니다. Azure에서 Oracle Linux 이미지에 대한 기본 스왑 파일 크기는 2048MB입니다. 업데이트된 설정을 적용하기 위해 `/etc/waagent.conf` 파일에서 `ResourceDisk.SwapSizeMB`를 늘리고 WALinuxAgent 서비스를 다시 시작해야 합니다. 읽기 전용 파일이기 때문에 쓰기 액세스를 사용할 수 있도록 파일 사용 권한을 변경해야 합니다.
 
    ```bash
    sudo chmod 777 /etc/waagent.conf  
    vi /etc/waagent.conf
    ```
    
-   검색할 `ResourceDisk.SwapSizeMB` hello 값도 변경 및**8192**합니다. Toopress 해야 `insert` tooenter 삽입 모드의 hello 값의 형식 **8192** 누릅니다 `esc` tooreturn toocommand 모드. toowrite hello 변경과 quit hello 파일 입력 `:wq` 누릅니다 `enter`합니다.
+   `ResourceDisk.SwapSizeMB`를 검색하고 값을 **8192**로 변경합니다. `insert`를 눌러 삽입 모드를 입력하고 **8192** 값을 입력한 다음 `esc` 키를 눌러 명령 모드로 돌아가야 합니다. 변경 내용을 쓰고 파일을 종료하려면 `:wq`를 입력하고 `enter` 키를 누릅니다.
    
    > [!NOTE]
-   > 항상 사용 하는 것이 좋습니다 `WALinuxAgent` tooconfigure 스왑 공간을 hello 로컬 임시 디스크 (임시 디스크에) 최상의 성능을 위해 항상 만들어집니다. 에 대 한 자세한 내용은 참조 하십시오. [tooadd 스왑 Linux Azure 가상 컴퓨터에서 파일을 어떻게](https://support.microsoft.com/en-us/help/4010058/how-to-add-a-swap-file-in-linux-azure-virtual-machines)합니다.
+   > 성능을 최대화하기 위해 스왑 공간이 항상 로컬 사용 후 삭제 디스크(임시 디스크)에 만들어지도록 `WALinuxAgent`를 사용하여 스왑 공간을 구성하는 것이 좋습니다. 자세한 내용은 [Linux Azure Virtual Machines에 스왑 파일을 추가하는 방법](https://support.microsoft.com/en-us/help/4010058/how-to-add-a-swap-file-in-linux-azure-virtual-machines)을 참조합니다.
 
-## <a name="prepare-your-local-client-and-vm-toorun-x11"></a>로컬 클라이언트 및 VM toorun x11 준비
-Oracle ASM 구성 그래픽 인터페이스 toocomplete hello 설치 및 구성이 필요 합니다. 사용 하 여 hello x11 프로토콜 toofacilitate이이 설치 됩니다. X11 이미 클라이언트 시스템 (Mac 또는 Linux)를 사용 하는 경우 기능이 사용 하도록 설정 하 고 구성-있습니다이 구성을 건너뛸 단독 tooWindows 컴퓨터를 설정 합니다. 
+## <a name="prepare-your-local-client-and-vm-to-run-x11"></a>로컬 클라이언트와 VM에서 X11 실행 준비
+Oracle ASM를 구성하려면 설치 및 구성을 완료할 그래픽 인터페이스가 필요합니다. X11 프로토콜을 사용하여 이 설치를 용이하게 합니다. X11 기능을 사용하도록 설정하고 구성한 클라이언트 시스템(Mac 또는 Linux)을 사용하는 경우 Windows 컴퓨터에만 독점적인 이 구성 및 설정을 건너뛰어도 됩니다. 
 
-1. [PuTTY 다운로드](http://www.putty.org/) 및 [Xming 다운로드](https://xming.en.softonic.com/) tooyour Windows 컴퓨터. 계속 하기 전에 hello 기본 값으로 이러한 응용 프로그램의 두 가지 toocomplete hello 설치를 해야 합니다.
+1. Windows 컴퓨터에 [PuTTY를 다운로드](http://www.putty.org/)하고 [Xming](https://xming.en.softonic.com/)을 다운로드합니다. 계속하기 전에 기본 값으로 이러한 응용 프로그램의 설치를 완료해야 합니다.
 
-2. PuTTY를 설치한 후 명령 프롬프트를 열고, PuTTY 폴더 (예: C:\Program Files\PuTTY) hello로 변경 하 고 실행 `puttygen.exe` 의 순서로 toogenerate 키입니다.
+2. PuTTY를 설치한 후에 명령 프롬프트를 열고, PuTTY 폴더(예: C:\Program Files\PuTTY)로 변경하고 키를 생성하기 위해 `puttygen.exe`를 실행합니다.
 
 3. PuTTY 키 생성기에서,
    
-   1. Hello를 선택 하 여 키를 생성 `Generate` 단추입니다.
-   2. Hello 키 (Ctrl + C)의 hello 내용을 복사 합니다.
-   3. 선택 hello `Save private key` 단추입니다.
-   4. 암호를 사용 하 여 hello 키를 보안에 대 한 hello 경고를 무시 한 다음 선택 `OK`합니다.
+   1. `Generate` 단추를 선택하여 키를 생성합니다.
+   2. 키의 콘텐츠를 복사(Ctrl + C)합니다.
+   3. `Save private key` 단추를 선택합니다.
+   4. 암호를 사용하여 키를 보호하는 방법에 대한 경고를 무시한 다음 `OK`을 선택합니다.
 
    ![PuTTY 키 생성기의 스크린샷](./media/oracle-asm/puttykeygen.png)
 
@@ -422,88 +422,88 @@ Oracle ASM 구성 그래픽 인터페이스 toocomplete hello 설치 및 구성�
    cd .ssh
    ```
 
-5. `authorized_keys`라는 파일을 만듭니다. 이 파일의 hello 키의 내용을 hello를 붙여 넣고 hello 파일을 저장 합니다.
+5. `authorized_keys`라는 파일을 만듭니다. 키의 콘텐츠를 이 파일에 붙여넣은 다음 파일을 저장합니다.
 
    > [!NOTE]
-   > hello 키 hello 문자열을 포함 해야 `ssh-rsa`합니다. 또한 hello 키의 내용을 hello 텍스트 한 줄 이어야 합니다.
+   > 키에는 문자열 `ssh-rsa`가 포함되어야 합니다. 또한 키의 콘텐츠는 한 줄 텍스트여야 합니다.
    >  
 
-6. 클라이언트 컴퓨터에서 PuTTY를 시작합니다. Hello에 **범주** 창 너무 이동**연결** > **SSH** > **Auth**합니다. Hello에 **인증에 대 한 개인 키 파일** 상자 이전에 생성 toohello 키를 검색 합니다.
+6. 클라이언트 컴퓨터에서 PuTTY를 시작합니다. **카테고리** 창에서 **연결** > **SSH** > **인증**으로 이동합니다. **인증에 대한 개인 키 파일** 상자에서 이전에 생성한 키를 찾아봅니다.
 
-   ![Hello SSH 인증 옵션의 스크린 샷](./media/oracle-asm/setprivatekey.png)
+   ![SSH 인증 옵션의 스크린샷](./media/oracle-asm/setprivatekey.png)
 
-7. Hello에 **범주** 창 너무 이동**연결** > **SSH** > **X11**합니다. 선택 hello **사용 X11 전달** 확인란 합니다.
+7. **카테고리** 창에서 **연결** > **SSH** > **X11**로 이동합니다. **X11 전달을 사용하도록 설정** 확인란을 선택합니다.
 
-   ![Hello SSH X11의 스크린샷 옵션 전달](./media/oracle-asm/enablex11.png)
+   ![SSH X11 전달 옵션의 스크린샷](./media/oracle-asm/enablex11.png)
 
-8. Hello에 **범주** 창 너무 이동**세션**합니다. Oracle ASM VM 입력 `<publicIPaddress>` hello 호스트 이름 대화 상자에서 새 입력 `Saved Session` 이름을 지정 하 고 클릭 `Save`합니다.  저장 한 후 클릭 `open` tooconnect tooyour Oracle ASM 가상 컴퓨터.  hello 처음 연결 하면 경고가 표시 되도록 hello 원격 시스템 레지스트리에서 캐시 되지 않습니다. 클릭 `yes` tooadd 것 하 고 계속 합니다.
+8. **카테고리** 창에서 **세션**으로 이동합니다. 호스트 이름 대화 상자에서 Oracle ASM VM `<publicIPaddress>`를 입력하고 새 `Saved Session` 이름을 채운 다음 `Save`을 클릭합니다.  저장하면 `open`를 클릭하여 Oracle ASM 가상 컴퓨터에 연결합니다.  처음 연결하면 원격 시스템이 레지스트리에서 캐시되지 않는다는 경고가 표시됩니다. `yes`를 클릭하고 계속 추가합니다.
 
-   ![Hello PuTTY 세션 옵션의 스크린 샷](./media/oracle-asm/puttysession.png)
+   ![PuTTY 세션 옵션의 스크린샷](./media/oracle-asm/puttysession.png)
 
 ## <a name="install-oracle-grid-infrastructure"></a>Oracle Grid Infrastructure 설치
 
-tooinstall Oracle 그리드 인프라 전체 hello 단계를 수행 합니다.
+Grid Infrastructure를 설치하려면 다음 단계를 완료합니다.
 
-1. **그리드**로 로그인합니다. (암호를 입력 하지 않고에 수 toosign 수 있어야 합니다.) 
+1. **그리드**로 로그인합니다. (로그인할 때 암호 입력 화면이 나타나지 않아야 합니다.) 
 
    > [!NOTE]
-   > Windows를 실행 하는 경우 Xming hello 설치를 시작 하기 전에 시작 해야 합니다.
+   > Windows를 실행하는 경우 설치를 시작하기 전에 Xming을 시작해야 합니다.
 
    ```bash
    cd /opt/grid
    ./runInstaller
    ```
 
-   Oracle Grid Infrastructure 12c 릴리스 1 설치 관리자가 열립니다. (Hello installer toostart 몇 분 정도 걸릴 수 있습니다.)
+   Oracle Grid Infrastructure 12c 릴리스 1 설치 관리자가 열립니다. (설치 관리자를 시작하는 데 몇 분 정도 걸릴 수 있습니다.)
 
-2. Hello에 **설치 옵션을 선택** 페이지 **설치 및 독립 실행형 서버에 대 한 Oracle 그리드 인프라 구성**합니다.
+2. **설치 옵션 선택** 페이지에서 **독립 실행형 서버에 대한 Oracle Grid Infrastructure 설치 및 구성**을 선택합니다.
 
-   ![Hello 설치 관리자의 설치 옵션 선택 페이지의 스크린샷](./media/oracle-asm/install01.png)
+   ![설치 관리자 설치 옵션 선택 페이지의 스크린샷](./media/oracle-asm/install01.png)
 
-3. Hello에 **제품 언어 선택** 페이지 **영어** hello 원하는 언어를 선택 합니다.  `next`을 클릭합니다.
+3. **제품 언어 선택** 페이지에서 **영어** 또는 원하는 언어를 선택했는지 확인합니다.  `next`을 클릭합니다.
 
-4. Hello에 **ASM 디스크 그룹 만들기** 페이지:
-   - Hello 디스크 그룹에 대 한 이름을 입력 합니다.
+4. **ASM 디스크 그룹 만들기** 페이지에서,
+   - 디스크 그룹에 사용할 이름을 입력합니다.
    - **중복**에서 **외부**를 선택합니다.
    - **할당 단위 크기**에서 **4**를 선택합니다.
    - **디스크 추가**에서 **ORCLASMSP**를 선택합니다.
    - `next`을 클릭합니다.
 
-5. Hello에 **ASM 암호 지정** 페이지, 선택 hello **이러한 계정에 대해 동일한 암호를 사용 하 여** 옵션을 암호를 입력 합니다.
+5. **ASM 암호 지정** 페이지에서 **이러한 계정에 대해 동일한 암호 사용** 옵션을 선택하고 암호를 입력합니다.
 
-   ![Hello 설치 관리자의 ASM 암호 지정 페이지의 스크린샷](./media/oracle-asm/install04.png)
+   ![설치 관리자 ASM 암호 지정 페이지의 스크린샷](./media/oracle-asm/install04.png)
 
-6. Hello에 **관리 옵션 지정** 페이지 hello 옵션 tooconfigure EM 클라우드 제어 해야 합니다. 이 옵션을 무시-클릭 `next` toocontinue 합니다. 
+6. **관리 옵션 지정** 페이지에서는 EM 클라우드 컨트롤을 구성하는 옵션이 있습니다. 이 옵션을 무시하려면 `next`을 클릭하여 계속합니다. 
 
-7. Hello에 **권한 있는 운영 체제 그룹** 페이지에서 hello 기본 설정을 사용 합니다. 클릭 `next` toocontinue 합니다.
+7. **권한있는 운영 체제 그룹** 페이지에서 기본 설정을 사용합니다. 계속하려면 `next`을 클릭합니다.
 
-8. Hello에 **설치 위치 지정** 페이지에서 hello 기본 설정을 사용 합니다. 클릭 `next` toocontinue 합니다.
+8. **설치 위치 지정** 페이지에서 기본 설정을 사용합니다. 계속하려면 `next`을 클릭합니다.
 
-9. Hello에 **만들 인벤토리** 페이지, 너무 hello 인벤토리 디렉터리 변경`/u01/app/grid/oraInventory`합니다. 클릭 `next` toocontinue 합니다.
+9. **인벤토리 만들기** 페이지에서 인벤토리 디렉터리를 `/u01/app/grid/oraInventory`로 변경합니다. 계속하려면 `next`을 클릭합니다.
 
-   ![Hello 설치 관리자 만들기 인벤토리 페이지의 스크린샷](./media/oracle-asm/install08.png)
+   ![설치 관리자 인벤토리 만들기 페이지의 스크린샷](./media/oracle-asm/install08.png)
 
-10. Hello에 **루트 스크립트 실행 구성** 페이지, 선택 hello **자동 구성 스크립트를 실행** 확인란 합니다. 그런 다음 선택 하는 hello **"root" 사용자 자격 증명을 사용 하 여** 옵션을 선택한 hello 루트 사용자 암호를 입력 합니다.
+10. **루트 스크립트 실행 구성** 페이지에서 **구성 스크립트 자동으로 실행** 확인란을 선택합니다. 그런 다음 **"root" 사용자 자격 증명 사용** 옵션을 선택하고 루트 사용자 암호를 입력합니다.
 
-    ![Hello 설치 프로그램의 루트 스크립트 실행 구성 페이지의 스크린샷](./media/oracle-asm/install09.png)
+    ![설치 관리자 루트 스크립트 실행 구성 페이지의 스크린샷](./media/oracle-asm/install09.png)
 
-11. Hello에 **Prerequisite Checks 수행** 페이지, 오류와 함께 hello 현재 설치에 실패 합니다. 이는 정상적인 동작입니다. `Fix & Check Again`를 선택합니다.
+11. **필수 요소 확인 수행** 페이지에서 오류가 발생하여 현재 설치에 실패합니다. 이는 정상적인 동작입니다. `Fix & Check Again`를 선택합니다.
 
-12. Hello에 **픽스업 스크립트** 대화 상자를 클릭 하 여 `OK`합니다.
+12. **스크립트 수정** 대화 상자에서 `OK`을 클릭합니다.
 
-13. Hello에 **요약** 페이지에서 선택한 설정을 검토 한 다음 클릭 `Install`합니다.
+13. **요약** 페이지에서 선택한 설정을 검토한 다음 `Install`를 클릭합니다.
 
-    ![Hello 설치 관리자의 요약 페이지의 스크린샷](./media/oracle-asm/install12.png)
+    ![설치 관리자 요약 페이지의 스크린샷](./media/oracle-asm/install12.png)
 
-14. 권한 있는 사용자로 실행 toobe 구성 스크립트를 알리는 경고 대화 상자가 나타납니다. 클릭 `Yes` toocontinue 합니다.
+14. 구성 스크립트를 권한 있는 사용자로 실행해야 한다는 경고 대화 상자가 표시됩니다. 계속하려면 `Yes`을 클릭합니다.
 
-15. Hello에 **마침** 페이지 `Close` toofinish hello 설치 합니다.
+15. **마침** 페이지에서 `Close`를 클릭하여 설치를 마칩니다.
 
 ## <a name="set-up-your-oracle-asm-installation"></a>Oracle ASM 설치 설정
 
-Oracle ASM 설치 단계를 수행 하는 전체 hello tooset:
+Oracle ASM 설치를 설정하려면 다음 단계를 완료합니다.
 
-1. X11 세션에서 **그리드**로 로그인되었는지 확인합니다. Toohit 해야 `enter` toorevive hello 터미널입니다. 다음 Oracle 자동화 된 저장소 관리 Configuration Assistant hello를 시작 합니다.
+1. X11 세션에서 **그리드**로 로그인되었는지 확인합니다. `enter` 키를 눌러서 터미널을 복구할 수도 있습니다. Oracle Automated Storage Management Configuration Assistant를 시작합니다.
 
    ```bash
    cd /u01/app/grid/product/12.1.0/grid/bin
@@ -512,40 +512,40 @@ Oracle ASM 설치 단계를 수행 하는 전체 hello tooset:
 
    Oracle ASM 구성 도우미가 열립니다.
 
-2. Hello에 **ASM 구성: 디스크 그룹** 대화 상자를 클릭 hello `Create` 단추를 선택한 다음 클릭 `Show Advanced Options`합니다.
+2. **ASM 구성: 디스크 그룹** 대화 상자에서 `Create` 단추를 클릭한 다음 `Show Advanced Options`을 클릭합니다.
 
-3. Hello에 **디스크 그룹 만들기** 대화 상자:
+3. **디스크 그룹 만들기** 대화 상자에서 다음을 수행합니다.
 
-   - Hello 디스크 그룹 이름을 입력 **데이터**합니다.
+   - 디스크 그룹 이름 **DATA**를 입력합니다.
    - **멤버 디스크 선택**에서 **ORCL_DATA** 및 **ORCL_DATA1**을 선택합니다.
    - **할당 단위 크기**에서 **4**를 선택합니다.
-   - 클릭 `ok` toocreate hello 디스크 그룹입니다.
-   - 클릭 `ok` tooclose hello 확인 창이 있습니다.
+   - `ok`을 클릭하여 디스크 그룹을 만듭니다.
+   - `ok`을 클릭하여 확인 창을 닫습니다.
 
-   ![Hello 디스크 그룹 만들기 대화 상자의 스크린 샷](./media/oracle-asm/asm02.png)
+   ![디스크 그룹 만들기 대화 상자의 스크린샷](./media/oracle-asm/asm02.png)
 
-4. Hello에 **ASM 구성: 디스크 그룹** 대화 상자를 클릭 hello `Create` 단추를 선택한 다음 클릭 `Show Advanced Options`합니다.
+4. **ASM 구성: 디스크 그룹** 대화 상자에서 `Create` 단추를 클릭한 다음 `Show Advanced Options`을 클릭합니다.
 
-5. Hello에 **디스크 그룹 만들기** 대화 상자:
+5. **디스크 그룹 만들기** 대화 상자에서 다음을 수행합니다.
 
-   - Hello 디스크 그룹 이름을 입력 **FRA**합니다.
+   - 디스크 그룹 이름 **FRA**를 입력합니다.
    - **중복**에서 **외부(없음)**를 선택합니다.
    - **멤버 디스크 선택**에서 **ORCL_FRA**를 선택합니다.
    - **할당 단위 크기**에서 **4**를 선택합니다.
-   - 클릭 `ok` toocreate hello 디스크 그룹입니다.
-   - 클릭 `ok` tooclose hello 확인 창이 있습니다.
+   - `ok`을 클릭하여 디스크 그룹을 만듭니다.
+   - `ok`을 클릭하여 확인 창을 닫습니다.
 
-   ![Hello 디스크 그룹 만들기 대화 상자의 스크린 샷](./media/oracle-asm/asm04.png)
+   ![디스크 그룹 만들기 대화 상자의 스크린샷](./media/oracle-asm/asm04.png)
 
-6. 선택 **종료** tooclose ASM Configuration Assistant 합니다.
+6. **끝내기**를 선택하여 ASM 구성 도우미를 닫습니다.
 
-   ![스크린 샷 hello 구성 ASM: 끝내기 단추와 디스크 그룹 대화 상자](./media/oracle-asm/asm05.png)
+   ![끝내기 단추가 있는 ASM 구성: 디스크 그룹 대화 상자의 스크린샷](./media/oracle-asm/asm05.png)
 
-## <a name="create-hello-database"></a>Hello 데이터베이스 만들기
+## <a name="create-the-database"></a>데이터베이스 만들기
 
-Oracle 데이터베이스 소프트웨어 hello hello Azure 마켓플레이스 이미지에 이미 설치 되었습니다. toocreate 데이터베이스를 전체 hello 단계를 수행 합니다.
+Oracle 데이터베이스 소프트웨어는 이미 Azure Marketplace 이미지에 설치되어 있습니다. 데이터베이스를 만들려면 다음 단계를 완료합니다.
 
-1. 사용자가 toohello Oracle superuser 전환한 다음 로깅에 대 한 hello 수신기를 초기화 합니다.
+1. 사용자를 Oracle superuser로 전환하고, 다음을 로깅하기 위해 수신기를 초기화합니다.
 
    ```bash
    su - oracle
@@ -554,27 +554,27 @@ Oracle 데이터베이스 소프트웨어 hello hello Azure 마켓플레이스 �
    ```
    데이터베이스 구성 도우미가 열립니다.
 
-2. Hello에 **데이터베이스 작업** 페이지 `Create Database`합니다.
+2. **데이터베이스 작업 페이지**에서 `Create Database`를 클릭합니다.
 
-3. Hello에 **생성 모드** 페이지:
+3. **생성 모드** 페이지에서,
 
-   - Hello 데이터베이스에 대 한 이름을 입력 합니다.
+   - 데이터베이스에 사용할 이름을 입력합니다.
    - **저장소 형식**의 경우 **ASM(자동 저장소 관리)**을 선택하도록 합니다.
-   - 에 대 한 **데이터베이스 파일 위치**, hello 기본값을 사용 하 여 ASM 제안 위치입니다.
-   - 에 대 한 **빠른 복구 영역**, hello 기본값을 사용 하 여 ASM 제안 위치입니다.
+   - **데이터베이스 파일 위치**의 경우 위치를 제안하는 ASM 기본값을 사용합니다.
+   - **빠른 복구 영역**의 경우 위치를 제안하는 ASM 기본값을 사용합니다.
    - **관리 암호** 및 **암호 확인**을 입력합니다.
    - `create as container database`를 선택했는지 확인합니다.
    - `pluggable database name` 값을 입력합니다.
 
-4. Hello에 **요약** 페이지에서 선택한 설정을 검토 한 다음 클릭 `Finish` toocreate hello 데이터베이스입니다.
+4. **요약** 페이지에서 선택한 설정을 검토한 다음 `Finish`을 클릭하여 데이터베이스를 만듭니다.
 
-   ![Hello 요약 페이지의 스크린샷](./media/oracle-asm/createdb03.png)
+   ![요약 페이지의 스크린샷](./media/oracle-asm/createdb03.png)
 
-5. hello 데이터베이스 생성 되었습니다. Hello에 **마침** 페이지에서는 hello toounlock 추가 계정을 toouse이이 데이터베이스 옵션 및 hello 암호를 변경할 수 있습니다. Toodo 하므로, 선택 **암호 관리** -그렇지 않으면 클릭 `close`합니다.
+5. 데이터베이스가 생성되었습니다. **마침** 페이지에서는 추가 계정의 잠금을 해제하여 이 데이터베이스를 사용하고 암호를 변경하는 옵션이 있습니다. 작업을 수행하려는 경우 **암호 관리**를 선택하고 그렇지 않으면 `close`를 클릭합니다.
 
-## <a name="delete-hello-vm"></a>Hello VM 삭제
+## <a name="delete-the-vm"></a>VM 삭제
 
-저장소 관리를 자동화 하는 Oracle hello Azure Marketplace에서에서 hello Oracle DB 이미지에서 구성 했습니다.  이 VM이 필요 없는 경우 hello 다음 명령 tooremove hello 리소스 그룹, VM 및 관련 된 모든 리소스를 사용할 수 없습니다.
+Azure Marketplace의 Oracle DB 이미지에서 Oracle Automated Storage Management를 성공적으로 구성했습니다.  더 이상 VM이 필요하지 않은 경우 다음 명령을 사용하여 리소스 그룹, VM 및 모든 관련된 리소스를 제거할 수 있습니다.
 
 ```azurecli
 az group delete --name myResourceGroup

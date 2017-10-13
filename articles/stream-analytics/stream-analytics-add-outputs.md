@@ -1,5 +1,5 @@
 ---
-title: "스트림 분석 작업에 대 한 출력 aaaHow tooconfigure 데이터 | Microsoft Docs"
+title: "Stream Analytics 작업에 대한 출력 데이터를 구성하는 방법 | Microsoft Docs"
 description: "Stream Analytics 작업에 대한 출력 구성 | 학습 경로 세그먼트."
 keywords: "데이터 출력, 데이터 이동"
 documentationcenter: 
@@ -15,37 +15,37 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 04/26/2017
 ms.author: samacha
-ms.openlocfilehash: c5d89e9e9f9211d3e778580c071dd53d56aed9fe
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1ffa517469da1a8d79917b9747abc97ca3bef463
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-tooconfigure-data-outputs-for-stream-analytics-jobs"></a>스트림 분석 작업에 대 한 tooconfigure 데이터 출력 하는 방법
+# <a name="how-to-configure-data-outputs-for-stream-analytics-jobs"></a>Stream Analytics 작업에 대한 출력 데이터를 구성하는 방법
 
-Azure 스트림 분석 작업이 연결 된 tooone 또는 연결 tooan 기존 데이터 싱크를 정의 하는 자세한 데이터 출력을 수 있습니다. 스트림 분석 작업을 처리 하 고 들어오는 데이터 변환으로 데이터 출력 이벤트 스트림의 tooyour 작업 출력을 기록 됩니다.
+Azure Stream Analytics 작업은 기존 데이터 링크에 대한 연결을 정의하는 하나 이상의 데이터 출력에 연결할 수 있습니다. Stream Analytics 작업이 들어오는 데이터를 처리 및 변환하면 데이터 출력 이벤트 스트림이 작업의 출력에 기록됩니다.
 
-실시간 대시보드를 사용 하는 toosource 또는 경고, 트리거 데이터를 이동 하는 워크플로 또는 단순히 저장 된 데이터 일괄 처리는 나중에 처리에 대 한 스트림 분석 데이터 출력 될 수 있습니다. Stream Analytics은 여기에 자세히 문서화되어 있는 여러 Azure 서비스와 높은 수준으로 통합됩니다.
+Stream Analytics 데이터 출력을 사용하여 실시간 대시보드 또는 경고를 제공하거나, 데이터 이동 워크플로를 트리거하거나, 나중에 일괄 처리하기 위해 데이터를 보관할 수 있습니다. Stream Analytics은 여기에 자세히 문서화되어 있는 여러 Azure 서비스와 높은 수준으로 통합됩니다.
 
-tooadd 출력 tooyour 스트림 분석 작업:
+Stream Analytics 작업에 출력을 추가하려면
 
-1. Hello에 [Azure 포털](https://portal.azure.com)작업 열고 클릭 **출력** 클릭 하 고 **추가** 나타나는 hello 출력 블레이드에서 합니다.
+1. [Azure Portal](https://portal.azure.com)에서 작업을 열고 **출력**을 클릭한 다음, 표시되는 출력 블레이드에서 **추가**를 클릭합니다.
    
     ![출력 추가](./media/stream-analytics-add-outputs/1-stream-analytics-add-outputs.png)  
    
-2. 이 출력 hello에 대 한 이름을 제공 **출력 별칭** 상자입니다. 이 이름은 toorefer toohello 출력 나중에 작업의 쿼리에서 사용할 수 있습니다.  
+2. **출력 별칭** 상자에 이 출력의 이름을 입력합니다. 이 이름은 나중에 작업 쿼리에서 출력을 참조하는 데 사용할 수 있습니다.  
    
-    Hello 필요한 연결 속성 tooconnect tooyour 출력 hello 나머지를 입력 합니다.  이러한 필드는 출력 형식마다 다르며 여기서 자세히 정의됩니다.  
+    출력에 연결하는 데 필요한 나머지 연결 속성을 입력합니다.  이러한 필드는 출력 형식마다 다르며 여기서 자세히 정의됩니다.  
    
     ![데이터 이동 서비스 선택](./media/stream-analytics-add-outputs/2-stream-analytics-add-outputs.png)  
    
-3. Hello 출력 종류에 따라 toospecify hello 데이터 serialize 되거나 포맷 어떻게 할 수 있습니다. 각 출력 형식에 대 한 특정 serialization 설정 hello 여기에 설명 되어 있습니다.
+3. 출력 형식에 따라 데이터를 직렬화하거나 형식을 지정하는 방법을 지정해야 할 수도 있습니다. 각 출력 형식에 대한 특정 직렬화 설정은 여기에 문서화되어 있습니다.
    
-    Hello 필요한 연결 속성 tooconnect tooyour 데이터 원본 hello 나머지를 입력 합니다. 이러한 필드 입력 및 소스 형식의 형식에 따라 다르며 자세히 hello에 정의 되어 [작업 만들기 문서](stream-analytics-create-a-job.md)합니다.  
+    데이터 원본에 연결하는 데 필요한 나머지 연결 속성을 입력합니다. 이러한 필드는 입력 형식 및 원본 형식마다 다르며 [작업 만들기 문서](stream-analytics-create-a-job.md)에 자세히 정의되어 있습니다.  
 
 > [!Note]
 >
-> Hello 작업이 시작 되 고 이벤트 전송이 시작 모든 출력 요소 toohello 추가 된 작업을 종료 해야 합니다. 예를 들어 Blob 저장소를 사용 하 여 출력을 출력으로 hello 작업 자동으로 저장소 계정을 만들지 않습니다. Hello ASA 작업을 시작 하기 전에 hello 사용자가 만든 toobe가 필요 합니다.
+> 작업에 추가 된 모든 출력 요소는 작업이 시작 및 이벤트 전송이 시작되기 전에 있어야 합니다. 예를 들어, 출력으로 Blob 저장소를 사용한 경우, 작업은 저장소 계정을 자동으로 만들지 않습니다. ASA 작업이 시작되기 전에 사용자가 만들어야 합니다.
 > 
  
 
@@ -53,7 +53,7 @@ tooadd 출력 tooyour 스트림 분석 작업:
 추가 지원이 필요할 경우 [Azure 스트림 분석 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>다음 단계
-* [스트림 분석 소개 tooAzure](stream-analytics-introduction.md)
+* [Azure Stream Analytics 소개](stream-analytics-introduction.md)
 * [Azure Stream Analytics 사용 시작](stream-analytics-real-time-fraud-detection.md)
 * [Azure  Stream Analytics 작업 규모 지정](stream-analytics-scale-jobs.md)
 * [Azure  Stream Analytics 쿼리 언어 참조](https://msdn.microsoft.com/library/azure/dn834998.aspx)

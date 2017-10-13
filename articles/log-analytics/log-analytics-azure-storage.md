@@ -1,6 +1,6 @@
 ---
-title: "aaaCollect Azure 로그 분석에 대 한 로그 및 메트릭 서비스 | Microsoft Docs"
-description: "Azure 리소스 toowrite 로그 및 메트릭 tooLog 분석에서 진단 유틸리티를 구성 합니다."
+title: "Log Analytics에서 Azure 서비스 로그 및 메트릭 수집 | Microsoft Docs"
+description: "로그 및 메트릭을 Log Analytics에 쓰도록 Azure 리소스에 대한 진단을 구성합니다."
 services: log-analytics
 documentationcenter: 
 author: MGoedtel
@@ -15,20 +15,20 @@ ms.topic: article
 ms.date: 04/12/2017
 ms.author: magoedte
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 1cede9a94ec83c4e3a95853dc2ec355d8df06d6e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7a3785e39f0d1cf849dbbf0d83d89eaed58c5b0b
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="collect-azure-service-logs-and-metrics-for-use-in-log-analytics"></a>Log Analytics에서 사용할 Azure 서비스 로그 및 메트릭 수집
 
 Azure 서비스에 대한 로그 및 메트릭을 수집하는 방법에는 다음 네 가지가 있습니다.
 
-1. Azure 진단 직접 tooLog 분석 (*진단* 다음 표는 hello에서)
-2. Azure 진단 tooAzure 저장소 tooLog 분석 (*저장소* 다음 표는 hello에서)
-3. Azure 서비스에 대 한 커넥터 (*커넥터* 다음 표는 hello에서)
-4. 로그 분석 (다음 표는 hello에 나열 되지 않은 서비스에 대 한 공백) toocollect 및 게시 데이터 스크립트
+1. Azure 진단에서 Log Analytics로 직접(다음 표에서 *진단*)
+2. Azure 진단 -> Azure Storage -> Log Analytics(다음 표에서 *저장소*)
+3. Azure 서비스에 대한 커넥터(다음 표에서 *커넥터*)
+4. 데이터를 수집한 후 Log Analytics에 게시하기 위한 스크립트(다음 표에서 비어 있으며, 나열되지 않은 서비스에 해당)
 
 
 | 부여                 | 리소스 종류                           | 로그        | 메트릭     | 해결 방법 |
@@ -60,22 +60,22 @@ Azure 서비스에 대한 로그 및 메트릭을 수집하는 방법에는 다�
 
 
 > [!NOTE]
-> Hello 설치 좋습니다 (Linux 및 Windows) Azure 가상 컴퓨터를 모니터링, [로그 분석 VM 확장](log-analytics-azure-vm-extension.md)합니다. hello 에이전트가 가상 컴퓨터 내에서 수집 된 정보를 제공 합니다. 가상 컴퓨터 크기 집합에 대 한 hello 확장을 사용할 수도 있습니다.
+> Azure 가상 컴퓨터(Linux 및 Windows 모두)를 모니터링하려면 [Log Analytics VM 확장](log-analytics-azure-vm-extension.md)을 설치하는 것이 좋습니다. 이 에이전트는 가상 컴퓨터 내에서 수집된 통찰력을 제공합니다. 또한 가상 컴퓨터 확장 집합에 대한 확장을 사용할 수도 있습니다.
 >
 >
 
-## <a name="azure-diagnostics-direct-toolog-analytics"></a>Azure 진단 직접 tooLog 분석
-많은 Azure 리소스가 수 toowrite 진단 로그 및 메트릭 tooLog 분석에는 hello 기본 설정으로 분석을 위해 hello 데이터를 수집할 직접입니다. Azure 진단을 사용 하는 경우 데이터가 즉시 기록 tooLog 분석 되며 필요 toofirst 쓰기 hello 데이터 toostorage 없습니다.
+## <a name="azure-diagnostics-direct-to-log-analytics"></a>Azure 진단에서 Log Analytics로 직접
+많은 Azure 리소스는 Log Analytics에 직접 진단 로그 및 메트릭을 쓸 수 있으며, 이러한 방식은 분석을 위해 데이터를 수집할 때 선호되는 방식입니다. Azure 진단을 사용하면 데이터가 Log Analytics에 직접 써지며, 먼저 데이터를 저장소에 쓸 필요가 없습니다.
 
-Azure 리소스를 지 원하는 [Azure 모니터](../monitoring-and-diagnostics/monitoring-overview.md) 해당 로그 및 메트릭 보낼 수 직접 tooLog 분석 합니다.
+[Azure Monitor](../monitoring-and-diagnostics/monitoring-overview.md)를 지원하는 Azure 리소스는 해당 로그 및 메트릭을 Log Analytics으로 직접 보낼 수 있습니다.
 
-* 너무 hello 사용 가능한 메트릭 hello 세부 정보를 참조[지원 되는 Azure 모니터로 메트릭](../monitoring-and-diagnostics/monitoring-supported-metrics.md)합니다.
-* 너무 hello hello 사용 가능한 로그의 세부 정보를 참조[진단 로그에 대 한 서비스 및 스키마 지원](../monitoring-and-diagnostics/monitoring-diagnostic-logs-schema.md)합니다.
+* 사용 가능한 메트릭에 대한 자세한 내용은 [Azure Monitor에서 지원되는 메트릭](../monitoring-and-diagnostics/monitoring-supported-metrics.md)을 참조하세요.
+* 사용 가능한 로그에 대한 자세한 내용은 [진단 로그에 지원되는 서비스 및 스키마](../monitoring-and-diagnostics/monitoring-diagnostic-logs-schema.md)를 참조하세요.
 
 ### <a name="enable-diagnostics-with-powershell"></a>PowerShell에서 진단 사용
-2016 년 11 월 (v2.3.0) hello 필요 하거나 나중에 릴리스의 [Azure PowerShell](/powershell/azure/overview)합니다.
+[Azure PowerShell](/powershell/azure/overview)의 2016년 11월(v2.3.0) 이후 릴리스가 필요합니다.
 
-PowerShell 예제를 방법을 따르는 hello toouse [집합 AzureRmDiagnosticSetting](/powershell/module/azurerm.insights/set-azurermdiagnosticsetting) tooenable 진단 네트워크 보안 그룹에 있습니다. hello 동일한 방법은 모든 지원 되는 리소스에 대 한-집합 `$resourceId` toohello 리소스 id에 대 한 진단 tooenable hello 리소스입니다.
+다음 PowerShell 예제에서는 [Set-AzureRmDiagnosticSetting](/powershell/module/azurerm.insights/set-azurermdiagnosticsetting)을 사용하여 네트워크 보안 그룹에 대해 진단을 사용하도록 설정하는 방법을 보여 줍니다. 지원되는 모든 리소스에 대해 같은 방법을 사용할 수 있습니다. `$resourceId`를 진단을 사용하도록 설정할 리소스의 리소스 ID로 설정하기만 하면 됩니다.
 
 ```powershell
 $workspaceId = "/subscriptions/d2e37fee-1234-40b2-5678-0b2199de3b50/resourcegroups/oi-default-east-us/providers/microsoft.operationalinsights/workspaces/rollingbaskets"
@@ -87,7 +87,7 @@ Set-AzureRmDiagnosticSetting -ResourceId $ResourceId  -WorkspaceId $workspaceId 
 
 ### <a name="enable-diagnostics-with-resource-manager-templates"></a>Resource Manager 템플릿을 사용하여 진단 사용
 
-카탈로그 항목이 생성 된 hello 진단 템플릿 비슷한 toohello 하나를 사용 하 여 아래 tooyour 로그 분석 작업 영역을 전송 하는 경우 리소스에 tooenable 진단 합니다. 이 예제는 Automation 계정에 대한 것이지만 지원되는 모든 리소스 형식에 작동합니다.
+리소스가 생성될 때 진단을 사용하도록 설정하고 진단이 Log Analytics 작업 영역에 진단이 전송되도록 하려면 아래와 비슷한 템플릿을 사용할 수 있습니다. 이 예제는 Automation 계정에 대한 것이지만 지원되는 모든 리소스 형식에 작동합니다.
 
 ```json
         {
@@ -116,11 +116,11 @@ Set-AzureRmDiagnosticSetting -ResourceId $ResourceId  -WorkspaceId $workspaceId 
 
 [!INCLUDE [log-analytics-troubleshoot-azure-diagnostics](../../includes/log-analytics-troubleshoot-azure-diagnostics.md)]
 
-## <a name="azure-diagnostics-toostorage-then-toolog-analytics"></a>Azure 진단 toostorage 다음 tooLog 분석
+## <a name="azure-diagnostics-to-storage-then-to-log-analytics"></a>Azure 진단 -> Azure Storage -> Log Analytics
 
-일부 리소스 내에서 로그를 수집 하려는 가능한 toosend hello 로그 tooAzure 저장소 사용 되며 다음 로그 분석 tooread hello 로그 저장소를 구성 합니다.
+일부 리소스에서 로그를 수집하기 위해서는 Azure Storage에 로그를 보낸 다음 저장소에서 로그를 읽도록 Log Analytics를 구성할 수 있습니다.
 
-로그 분석 צ ְ ײ Azure 저장소에서이 접근 방식을 toocollect 진단을 hello에 대 한 리소스 및 로그:
+Log Analytics는 이 접근 방법을 사용하여 다음 리소스 및 로그에 대한 진단을 Azure Storage에서 수집할 수 있습니다.
 
 | 리소스 | 로그 |
 | --- | --- |
@@ -129,26 +129,26 @@ Set-AzureRmDiagnosticSetting -ResourceId $ResourceId  -WorkspaceId $workspaceId 
 | 웹 역할  <br> 작업자 역할 |Linux Syslog <br> Windows 이벤트 <br> IIS 로그 <br> Windows ETWEvent |
 
 > [!NOTE]
-> 저장소 계정 tooa 진단을 보낼 경우 저장소 및 트랜잭션에 대 한 로그 분석 저장소 계정에서 hello 데이터를 읽을 때 일반 Azure 데이터 요금이 청구 됩니다.
+> 진단을 계정으로 보내는 경우 저장소 및 트랜잭션에 대해, 그리고 Log Analytics가 저장소 계정에서 데이터를 읽는 경우에 일반 Azure 데이터 요금이 청구될 수 있습니다.
 >
 >
 
-참조 [이벤트에 대 한 IIS 및 테이블 저장소에 blob 저장소를 사용 하 여](log-analytics-azure-storage-iis-table.md) toolearn 로그 분석에서 이러한 로그를 수집할 수는 방법에 대 한 자세한 합니다.
+Log Analytics에서 이러한 로그를 수집하는 방법에 대한 자세한 내용은 [IIS에 대해 Blob Storage 사용 및 이벤트에 대해 Table Storage 사용](log-analytics-azure-storage-iis-table.md)을 참조하세요.
 
 ## <a name="connectors-for-azure-services"></a>Azure 서비스용 커넥터
 
-Application Insights toobe tooLog 분석을 전송에 의해 수집 된 데이터를 수 있는 Application Insights에 대 한 커넥터가 있습니다.
+Application Insights에서 수집된 데이터를 Log Analytics에 전송할 수 있도록 하는 Application Insights용 커넥터가 있습니다.
 
-Hello에 대 한 자세한 [Application Insights 커넥터](https://blogs.technet.microsoft.com/msoms/2016/09/26/application-insights-connector-in-oms/)합니다.
+[Application Insights 커넥터](https://blogs.technet.microsoft.com/msoms/2016/09/26/application-insights-connector-in-oms/)에 대해 자세히 알아보세요.
 
-## <a name="scripts-toocollect-and-post-data-toolog-analytics"></a>스크립트 toocollect 및 post 데이터 tooLog 분석
+## <a name="scripts-to-collect-and-post-data-to-log-analytics"></a>데이터를 수집한 후 Log Analytics에 게시하기 위한 스크립트
 
-Toosend 로그 및 메트릭 tooLog 직접적인 방법을 제공 하지 않는 Azure 서비스에 대 한 Azure 자동화 스크립트 toocollect에서는 분석 로그 및 메트릭 hello 합니다. hello 스크립트 수 있습니다 다음 송신 hello tooLog 분석 사용 하 여 데이터 hello [데이터 수집기 API](log-analytics-data-collector-api.md)
+Log Analytics에 로그 및 메트릭을 전송하는 직접적인 방법을 제공하지 않는 Azure 서비스의 경우, Azure Automation 스크립트를 사용하여 로그 및 메트릭을 수집할 수 있습니다. 그러면 이 스크립트는 [데이터 수집기 API](log-analytics-data-collector-api.md)를 사용하여 Log Analytics로 데이터를 전송할 수 있습니다.
 
-hello Azure 템플릿 갤러리에 [Azure 자동화를 사용 하는 예제](https://azure.microsoft.com/en-us/resources/templates/?term=OMS) toocollect 데이터 서비스 및 tooLog 분석을 전송 합니다.
+Azure 템플릿 갤러리에는 [Azure Automation을 사용하여](https://azure.microsoft.com/en-us/resources/templates/?term=OMS) 서비스에서 데이터를 수집한 후 Log Analytics로 전송하는 예제가 나와 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-* [이벤트에 대 한 IIS 및 테이블 저장소에 대 한 blob 저장소를 사용 하 여](log-analytics-azure-storage-iis-table.md) tooread hello 로그 저장소 또는 IIS 로그 서 면된 tooblob 저장소 tootable 진단 유틸리티를 작성 하는 Azure 서비스에 대 한 합니다.
-* [솔루션 사용](log-analytics-add-solutions.md) hello 데이터에 대 한 tooprovide 한 정보입니다.
-* [검색 쿼리를 사용 하 여](log-analytics-log-searches.md) tooanalyze hello 데이터입니다.
+* [이벤트에 대해 IIS 및 테이블 저장소에 Blob Storage를 사용하여](log-analytics-azure-storage-iis-table.md) Table Storage에 진단을 기록하는 Azure 서비스나 Blob Storage에 기록된 IIS 로그에 대해 로그를 읽을 수 있습니다.
+* [솔루션을 사용하도록 설정](log-analytics-add-solutions.md) 하여 데이터에 대한 정보를 제공합니다.
+* [검색 쿼리를 사용](log-analytics-log-searches.md) 하여 데이터를 분석합니다.

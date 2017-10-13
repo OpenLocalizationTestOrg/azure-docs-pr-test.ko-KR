@@ -1,6 +1,6 @@
 ---
-title: "aaaUse 빈 Azure HDInsight의 Hadoop 클러스터에 지 노드에 | Microsoft Docs"
-description: "어떻게 tooadd 빈 가장자리 노드 tooan HDInsight 클러스터를 클라이언트로 사용할 수 및 다음 테스트/호스트 HDInsight 응용 프로그램입니다."
+title: "HDInsight의 Hadoop 클러스터에서 빈 에지 노드 사용 - Azure | Microsoft Docs"
+description: "클라이언트로 사용할 수 있는 HDInsight 클러스터에 빈 에지 노드를 추가한 다음 HDInsight 응용 프로그램을 테스트/호스트하는 방법입니다."
 services: hdinsight
 editor: cgronlun
 manager: jhubbard
@@ -16,17 +16,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/22/2017
 ms.author: jgao
-ms.openlocfilehash: 9c910905b51f2fe92e6e5d47d86a32bd5247c2cd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e21dabcc6999b1f1047d334e782f723d0c03c2cb
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="use-empty-edge-nodes-on-hadoop-clusters-in-hdinsight"></a>HDInsight의 Hadoop 클러스터에서 빈 에지 노드 사용
 
-Tooadd 빈 노드 tooan HDInsight 클러스터를 가장자리 하는 방법에 대해 알아봅니다. 빈 가장자리 노드는 없는 Hadoop 서비스를 실행 하면서도 같은 클라이언트 도구는 설치 하 고 hello headnodes 처럼 구성 하는 hello로 Linux 가상 컴퓨터. Hello 클러스터에 액세스, 클라이언트 응용 프로그램을 테스트 하 고, 클라이언트 응용 프로그램을 호스팅하기 위한 hello 가장자리 노드를 사용할 수 있습니다. 
+HDInsight 클러스터에 빈 에지 노드를 추가하는 방법을 알아봅니다. 빈 에지 노드는 Hadoop 서비스는 실행되지 않지만 헤드 노드와 동일한 클라이언트 도구가 설치 및 구성된 Linux 가상 컴퓨터입니다. 클러스터에 액세스하고, 클라이언트 응용 프로그램을 테스트하며 클라이언트 응용 프로그램을 호스트하는 데 에지 노드를 사용할 수 있습니다. 
 
-Hello 클러스터를 만들 때 빈 가장자리 노드 tooan 기존 HDInsight 클러스터에 tooa 새 클러스터를 추가할 수 있습니다. 빈 에지 노드는 Azure Resource Manager 템플릿을 사용하여 추가합니다.  hello 다음 샘플을 수행 하는 방법을 템플릿을 사용 하 여:
+빈 에지 노드를 기존 HDInsight 클러스터에 추가할 수 있습니다(클러스터를 만들 때는 새 클러스터에 추가). 빈 에지 노드는 Azure Resource Manager 템플릿을 사용하여 추가합니다.  다음 예제는 템플릿을 사용하여 추가하는 방법을 보여 줍니다.
 
     "resources": [
         {
@@ -57,108 +57,108 @@ Hello 클러스터를 만들 때 빈 가장자리 노드 tooan 기존 HDInsight 
         }
     ],
 
-Hello 예제와 같이 필요에 따라를 호출할 수 있습니다는 [태스크 스크립팅할](hdinsight-hadoop-customize-cluster-linux.md) tooperform 등의 추가 구성을 설치 [Apache 색상을 나타내는](hdinsight-hadoop-hue-linux.md) hello 가장자리 노드에 있습니다. hello 스크립트 동작 스크립트 hello 웹에서 공개적으로 액세스할 수 있어야 합니다.  예를 들어 hello 스크립트는 Azure 저장소에 저장 되 면 공용 컨테이너 또는 공용 blob 중 하나를 사용 합니다.
+샘플에서 보여 주듯이 필요에 따라 [스크립트 동작](hdinsight-hadoop-customize-cluster-linux.md)을 호출하여 추가 구성을 수행할 수 있습니다(예: 에지 노드에서 [Apache Hue](hdinsight-hadoop-hue-linux.md) 설치). 스크립트 작업 스크립트는 웹에서 공개적으로 액세스할 수 있어야 합니다.  예를 들어 스크립트가 Azure Storage에 저장된 경우 공용 컨테이너 또는 공용 Blob을 사용합니다.
 
-hello 가장자리 노드 가상 컴퓨터 크기는 hello HDInsight 클러스터 작업자 노드 vm 크기 요구 사항을 충족 해야 합니다. Hello 권장 되는 작업자 노드 vm 크기에 대 한 참조 [HDInsight 클러스터를 만드는 Hadoop](hdinsight-hadoop-provision-linux-clusters.md#cluster-types)합니다.
+에지 노드 가상 컴퓨터 크기는 HDInsight 클러스터 작업자 노드 VM 크기 요구 사항을 충족해야 합니다. 권장되는 작업자 노드 VM 크기에 대한 자세한 내용은 [HDInsight에서 Hadoop 클러스터 만들기](hdinsight-hadoop-provision-linux-clusters.md#cluster-types)를 참조하세요.
 
-가장자리 노드를 만든 후에 toohello 가장자리 노드 SSH를 사용 하 여 연결 하 고 HDInsight의 클라이언트 도구 tooaccess hello Hadoop 클러스터를 실행할 수 있습니다.
+에지 노드를 만든 후 SSH를 사용하여 에지 노드에 연결할 수 있고 HDInsight에서 Hadoop 클러스터에 액세스하는 클라이언트 도구를 실행할 수 있습니다.
 
 > [!WARNING] 
-> HDInsight에서 빈 에지 노드를 사용하는 기능은 현재 미리 보기로 제공됩니다. Microsoft에서 상업적으로 적절 한 지원을 받을 하는 hello 가장자리 노드에 설치 되어 있는 사용자 지정 구성 요소. 이를 통해 발생한 문제가 해결될 수도 있습니다. 또는 추가 지원을 요청에 대 한 참조 toocommunity 리소스 수 있습니다. hello 커뮤니티에서 도움말을 가져오기 위한 대부분의 활성 사이트 hello hello 다음과가 같습니다.
+> HDInsight에서 빈 에지 노드를 사용하는 기능은 현재 미리 보기로 제공됩니다. 에지 노드에 설치된 사용자 지정 구성 요소는 Microsoft에서 상업적으로 적절한 지원을 받습니다. 이를 통해 발생한 문제가 해결될 수도 있습니다. 또는 추가 지원을 위해 커뮤니티 리소스가 제공될 수 있습니다. 다음은 커뮤니티의 도움을 받을 수 있는 가장 활발한 사이트 중 일부입니다.
 >
 > * [HDInsight에 대한 MSDN 포럼](https://social.msdn.microsoft.com/Forums/azure/home?forum=hdinsight)
 > * [http://stackoverflow.com](http://stackoverflow.com).
 >
-> Apache 기술을 사용 하는 것일 수 있습니다 수 toofind 지원을 통해 hello Apache 프로젝트 사이트에 [http://apache.org](http://apache.org), hello 같은 [Hadoop](http://hadoop.apache.org/) 사이트입니다.
+> Apache 기술을 사용하는 경우 [http://apache.org](http://apache.org)에서 [Hadoop](http://hadoop.apache.org/) 사이트 등의 Apache 프로젝트 사이트를 통해 지원을 찾을 수도 있습니다.
 
-## <a name="add-an-edge-node-tooan-existing-cluster"></a>가장자리 노드 tooan 기존 클러스터를 추가 합니다.
-이 섹션에서는 리소스 관리자 템플릿 tooadd 가장자리 노드 tooan 기존 HDInsight 클러스터를 사용합니다.  hello 리소스 관리자 템플릿을 찾을 수 [GitHub](https://azure.microsoft.com/en-us/resources/templates/101-hdinsight-linux-add-edge-node/)합니다. hello 리소스 관리자 템플릿 https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-hdinsight-linux-add-edge-node/scripts/EmptyNodeSetup.sh에 있는 스크립트 작업을 호출 합니다. hello 스크립트는 모든 작업을 수행 하지 않습니다.  것 toodemonstrate 리소스 관리자 템플릿으로 스크립트 작업을 호출 합니다.
+## <a name="add-an-edge-node-to-an-existing-cluster"></a>기존 클러스터에 에지 노드 추가
+이 섹션에서는 Resource Manager 템플릿을 사용하여 기존 HDInsight 클러스터에 에지 노드를 추가합니다.  Resource Manager 템플릿은 [GitHub](https://azure.microsoft.com/en-us/resources/templates/101-hdinsight-linux-add-edge-node/)에서 찾을 수 있습니다. 리소스 관리자 템플릿은 https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-hdinsight-linux-add-edge-node/scripts/EmptyNodeSetup.sh에 있는 스크립트 동작을 호출합니다. 스크립트는 어떤 작업도 수행하지 않습니다.  Resource Manager 템플릿에서 스크립트 호출 작업을 보여 주기 위한 것입니다.
 
-**tooadd 빈 가장자리 노드 tooan 기존 클러스터**
+**기존 클러스터에 빈 에지 노드를 추가하려면**
 
 1. 아직 없는 경우 HDInsight 클러스터를 만듭니다.  [Hadoop 자습서: HDInsight에서 Hadoop 사용 시작](hdinsight-hadoop-linux-tutorial-get-started.md)을 참조하세요.
-2. Hello tooAzure에 이미지 toosign와 hello Azure 포털에서에서 열기 hello Azure 리소스 관리자 템플릿을 다음를 클릭 합니다. 
+2. Azure에 로그인하여 Azure Portal에서 Azure Resource Manager 템플릿을 열려면 다음 이미지를 클릭합니다. 
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-add-edge-node%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-apps-use-edge-node/deploy-to-azure.png" alt="Deploy tooAzure"></a>
-3. Hello 다음과 같은 속성을 구성 합니다.
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-add-edge-node%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-apps-use-edge-node/deploy-to-azure.png" alt="Deploy to Azure"></a>
+3. 다음 속성을 구성합니다.
    
-   * **구독**: hello 클러스터를 만드는 데 사용 되는 Azure 구독을 선택 합니다.
-   * **리소스 그룹**: hello 기존 HDInsight 클러스터에 사용 되는 선택 hello 리소스 그룹입니다.
-   * **위치**: hello 기존 HDInsight 클러스터의 hello 위치를 선택 합니다.
-   * **클러스터 이름**: 기존 HDInsight 클러스터의 hello 이름을 입력 합니다.
-   * **노드 크기를 가장자리**: hello VM 크기 중 하나를 선택 합니다. hello vm 크기는 hello 작업자 노드 vm 크기 요구 사항을 충족 해야 합니다. Hello 권장 되는 작업자 노드 vm 크기에 대 한 참조 [HDInsight 클러스터를 만드는 Hadoop](hdinsight-hadoop-provision-linux-clusters.md#cluster-types)합니다.
-   * **노드 접두사 가장자리**: hello 기본값은 **새**합니다.  Hello 기본값을 사용 하 여 hello 가장자리 노드 이름이 **새 edgenode**합니다.  Hello 접두사 hello 포털에서 사용자 지정할 수 있습니다. 또한 hello 템플릿에서 hello 전체 이름을 사용자 지정할 수 있습니다.
+   * **구독**: 이 클러스터를 만드는 데 사용되는 Azure 구독을 선택합니다.
+   * **리소스 그룹**: 기존 HDInsight 클러스터에 사용되는 리소스 그룹을 선택합니다.
+   * **위치**: 기존 HDInsight 클러스터의 위치를 선택 합니다.
+   * **클러스터 이름**: 기존 HDInsight 클러스터의 이름을 입력합니다.
+   * **에지 노드 크기**: VM 크기 중 하나를 선택합니다. VM 크기는 작업자 노드 VM 크기 요구 사항을 충족해야 합니다. 권장되는 작업자 노드 VM 크기에 대한 자세한 내용은 [HDInsight에서 Hadoop 클러스터 만들기](hdinsight-hadoop-provision-linux-clusters.md#cluster-types)를 참조하세요.
+   * **에지 노드 접두사**: 기본값은 **new**입니다.  에지 노드 이름의 기본값은 **new-edgenode**가 사용됩니다.  포털에서 접두사를 사용자 지정할 수 있습니다. 템플릿에서 전체 이름을 사용자 지정할 수도 있습니다.
 
-4. 확인 **toohello 약관 위에서 설명한 동의**, 클릭 하 고 **구매** toocreate hello 가장자리 노드.
+4. **위에 명시된 사용 약관에 동의함**을 선택한 다음 **구매**를 클릭하여 에지 노드를 만듭니다.
 
 >[!IMPORTANT]
-> Hello 기존 HDInsight 클러스터에 대 한 있는지 tooselect hello Azure 리소스 그룹을 확인 합니다.  그렇지 않으면 오류가 hello 메시지 "을 수행할 수 없습니다 중첩 된 리소스에 대해 요청 된 작업입니다. 부모 리소스 '&lt;ClusterName>' 찾을 수 없음"이라는 오류 메시지를 받습니다.
+> 기존 HDInsight 클러스터에 대한 Azure 리소스 그룹을 선택해야 합니다.  그렇지 않으면 "중첩된 리소스에서 요청한 작업을 수행할 수 없습니다. 부모 리소스 '&lt;ClusterName>' 찾을 수 없음"이라는 오류 메시지를 받습니다.
 
 ## <a name="add-an-edge-node-when-creating-a-cluster"></a>클러스터를 만들 때 에지 노드 추가
-이 섹션에서는 리소스 관리자 템플릿 toocreate HDInsight 클러스터를 사용 하 여 가장자리 노드 사용.  hello에 hello 리소스 관리자 템플릿을 찾을 수 [Azure 빠른 시작 템플릿 갤러리](https://azure.microsoft.com/documentation/templates/101-hdinsight-linux-with-edge-node/)합니다. hello 리소스 관리자 템플릿 https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-hdinsight-linux-with-edge-node/scripts/EmptyNodeSetup.sh에 있는 스크립트 작업을 호출 합니다. hello 스크립트는 모든 작업을 수행 하지 않습니다.  것 toodemonstrate 리소스 관리자 템플릿으로 스크립트 작업을 호출 합니다.
+이 섹션에서는 Resource Manager 템플릿을 사용하여 에지 노드로 HDInsight 클러스터를 만듭니다.  Resource Manager 템플릿은 [Azure 빠른 시작 템플릿 갤러리](https://azure.microsoft.com/documentation/templates/101-hdinsight-linux-with-edge-node/)에서 찾을 수 있습니다. 리소스 관리자 템플릿은 https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-hdinsight-linux-with-edge-node/scripts/EmptyNodeSetup.sh에있는 스크립트 동작을 호출합니다. 스크립트는 어떤 작업도 수행하지 않습니다.  Resource Manager 템플릿에서 스크립트 호출 작업을 보여 주기 위한 것입니다.
 
-**tooadd 빈 가장자리 노드 tooan 기존 클러스터**
+**기존 클러스터에 빈 에지 노드를 추가하려면**
 
 1. 아직 없는 경우 HDInsight 클러스터를 만듭니다.  [HDInsight에서 Hadoop 사용 시작](hdinsight-hadoop-linux-tutorial-get-started.md)을 참조하세요.
-2. Hello tooAzure에 이미지 toosign와 hello Azure 포털에서에서 열기 hello Azure 리소스 관리자 템플릿을 다음를 클릭 합니다. 
+2. Azure에 로그인하여 Azure Portal에서 Azure Resource Manager 템플릿을 열려면 다음 이미지를 클릭합니다. 
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-with-edge-node%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-apps-use-edge-node/deploy-to-azure.png" alt="Deploy tooAzure"></a>
-3. Hello 다음과 같은 속성을 구성 합니다.
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-with-edge-node%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-apps-use-edge-node/deploy-to-azure.png" alt="Deploy to Azure"></a>
+3. 다음 속성을 구성합니다.
    
-   * **구독**: hello 클러스터를 만드는 데 사용 되는 Azure 구독을 선택 합니다.
-   * **리소스 그룹**: hello 클러스터에 사용 되는 새 리소스 그룹을 만듭니다.
-   * **위치**: hello 리소스 그룹에 대 한 위치를 선택 합니다.
-   * **클러스터 이름**: 새 클러스터 toocreate hello에 대 한 이름을 입력 합니다.
-   * **클러스터 로그인 사용자 이름**: hello Hadoop HTTP 사용자 이름을 입력 합니다.  기본 이름은 hello **admin**합니다.
-   * **로그인 암호 클러스터**: hello Hadoop HTTP 사용자 암호를 입력 합니다.
-   * **Ssh 사용자 이름이**: hello SSH 사용자 이름을 입력 합니다. 기본 이름은 hello **sshuser**합니다.
-   * **Ssh 암호**: hello SSH 사용자 암호를 입력 합니다.
-   * **설치 스크립트 작업**:이 자습서를 진행 하 고 hello 기본값을 유지 합니다.
+   * **구독**: 이 클러스터를 만드는 데 사용되는 Azure 구독을 선택합니다.
+   * **리소스 그룹**: 클러스터에 사용되는 새 리소스 그룹을 만듭니다.
+   * **위치**: 리소스 그룹의 위치를 선택합니다.
+   * **클러스터 이름**: 만들려는 새 클러스터의 이름을 입력합니다.
+   * **클러스터 로그인 사용자 이름**: Hadoop HTTP 사용자 이름을 입력합니다.  기본 이름은 **admin**입니다.
+   * **클러스터 로그인 암호**: Hadoop HTTP 사용자 암호를 입력합니다.
+   * **Ssh 사용자 이름**: SSH 사용자 이름을 입력합니다. 기본 이름은 **sshuser**입니다.
+   * **Ssh 암호**: SSH 사용자 암호를 입력합니다.
+   * **스크립트 동작 설치**: 이 자습서를 진행하기 위한 기본값을 그대로 유지합니다.
      
-     일부 속성이 hello 템플릿에 하드 코드 된: 클러스터 종류, 클러스터 작업자 노드 수, 가장자리 노드 크기 및 가장자리 노드 이름입니다.
-4. 확인 **toohello 약관 위에서 설명한 동의**, 클릭 하 고 **구매** hello 가장자리 노드와 toocreate hello 클러스터입니다.
+     클러스터 유형, 클러스터 작업자 노드 수, 에지 노드 크기 및 에지 노드 이름과 같은 일부 속성은 템플릿에 하드 코드되어 있습니다.
+4. **위에 명시된 사용 약관에 동의함**을 선택한 다음 **구매**를 클릭하여 에지 노드가 있는 클러스터를 만듭니다.
 
 ## <a name="access-an-edge-node"></a>에지 노드 액세스
-hello 가장자리 노드 ssh 끝점은 &lt;EdgeNodeName >.&lt; ClusterName >-ssh.azurehdinsight.net:22 합니다.  예: new-edgenode.myedgenode0914-ssh.azurehdinsight.net:22
+에지 노드 ssh 끝점은 &lt;EdgeNodeName>.&lt;ClusterName>-ssh.azurehdinsight.net:22입니다.  예: new-edgenode.myedgenode0914-ssh.azurehdinsight.net:22
 
-hello 가장자리 노드가 hello Azure 포털에서 응용 프로그램으로 나타납니다.  hello 포털 제공 정보 tooaccess hello hello SSH를 사용 하 여 노드를 가장자리입니다.
+에지 노드는 Azure Portal에서 응용 프로그램으로 나타납니다.  포털은 SSH를 사용하여 에지 노드에 액세스하는 정보를 제공합니다.
 
-**tooverify hello 가장자리 노드 SSH 끝점**
+**에지 노드 SSH 끝점을 확인하려면**
 
-1. Toohello 로그온 [Azure 포털](https://portal.azure.com)합니다.
-2. 가장자리 노드도 hello HDInsight 클러스터를 엽니다.
-3. 클릭 **응용 프로그램** hello 클러스터 블레이드에서 합니다. Hello 가장자리 노드를 참조 해야 합니다.  기본 이름은 hello **새 edgenode**합니다.
-4. Hello 가장자리 노드를 클릭 합니다. Hello SSH 끝점에 표시 되어야 합니다.
+1. [Azure 포털](https://portal.azure.com)에 로그인합니다.
+2. 에지 노드를 사용하여 HDInsight 클러스터를 엽니다.
+3. 클러스터 블레이드에서 **응용 프로그램** 을 클릭합니다. 에지 노드가 표시됩니다.  기본 이름은 **new-edgenode**입니다.
+4. 에지 노드를 클릭합니다. SSH 끝점이 표시됩니다.
 
-**hello 가장자리 노드에서 toouse 하이브**
+**에지 노드에서 Hive를 사용하려면**
 
-1. SSH tooconnect toohello 가장자리 노드를 사용 합니다. 자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
+1. SSH를 사용하여 에지 노드에 연결합니다. 자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
 
-2. SSH를 사용 하 여 toohello 가장자리 노드를 연결한 후 다음 명령 tooopen hello 하이브 콘솔 hello를 사용 합니다.
+2. SSH를 사용하여 에지 노드를 연결한 후 다음 명령을 사용하여 Hive 콘솔을 엽니다.
    
         hive
-3. 다음 명령은 tooshow 하이브 표 hello 클러스터의 hello를 실행 합니다.
+3. 클러스터의 Hive 테이블을 표시하려면 다음 명령을 실행합니다.
    
         show tables;
 
 ## <a name="delete-an-edge-node"></a>에지 노드를 삭제합니다.
-Hello Azure 포털에서에서 가장자리 노드를 삭제할 수 있습니다.
+Azure Portal에서 에지 노드를 삭제할 수 있습니다.
 
-**tooaccess 가장자리 노드**
+**에지 노드에 액세스하려면**
 
-1. Toohello 로그온 [Azure 포털](https://portal.azure.com)합니다.
-2. 가장자리 노드도 hello HDInsight 클러스터를 엽니다.
-3. 클릭 **응용 프로그램** hello 클러스터 블레이드에서 합니다. 에지 노드의 목록이 표시됩니다.  
-4. 마우스 오른쪽 단추로 클릭 hello 가장자리 사용할 노드 toodelete, 마우스 클릭 **삭제**합니다.
-5. 클릭 **예** tooconfirm 합니다.
+1. [Azure 포털](https://portal.azure.com)에 로그인합니다.
+2. 에지 노드를 사용하여 HDInsight 클러스터를 엽니다.
+3. 클러스터 블레이드에서 **응용 프로그램** 을 클릭합니다. 에지 노드의 목록이 표시됩니다.  
+4. 삭제할 에지 노드를 마우스 오른쪽 단추로 클릭하고 **삭제**를 클릭합니다.
+5. **예** 를 클릭하여 확인합니다.
 
 ## <a name="next-steps"></a>다음 단계
-이 문서에서는 배웠습니다 어떻게 tooadd 방법을 tooaccess hello 가장자리 노드 및 가장자리 노드. 더 toolearn hello 다음 문서를 참조:
+이 문서에서 에지 노드를 추가하는 방법과 에지 노드에 액세스하는 방법을 알아보았습니다. 자세한 내용은 다음 문서를 참조하세요.
 
-* [HDInsight 응용 프로그램을 설치](hdinsight-apps-install-applications.md): tooinstall HDInsight 응용 프로그램 tooyour 클러스터 하는 방법에 대해 알아봅니다.
-* [사용자 지정 HDInsight 응용 프로그램을 설치](hdinsight-apps-install-custom-applications.md): 자세한 방법을 toodeploy 게시 되지 않은 HDInsight 응용 프로그램 tooHDInsight 합니다.
-* [HDInsight는 응용 프로그램 게시](hdinsight-apps-publish-applications.md): 자세한 방법을 toopublish 사용자 사용자 지정 HDInsight 응용 프로그램 tooAzure 마켓플레이스입니다.
-* [MSDN: HDInsight 응용 프로그램을 설치 하](https://msdn.microsoft.com/library/mt706515.aspx): 자세한 방법을 toodefine HDInsight 응용 프로그램입니다.
-* [스크립트 동작을 사용 하 여 Linux 기반 HDInsight 클러스터를 사용자 지정](hdinsight-hadoop-customize-cluster-linux.md): 자세한 방법을 toouse 스크립트 동작 tooinstall 추가 응용 프로그램입니다.
-* [리소스 관리자 템플릿을 사용 하 여 HDInsight의 Linux 기반 Hadoop 클러스터를 만들어](hdinsight-hadoop-create-linux-clusters-arm-templates.md): 방법을 toocall 리소스 관리자 템플릿 toocreate HDInsight 클러스터에 대해 알아봅니다.
+* [HDInsight 응용 프로그램 설치](hdinsight-apps-install-applications.md): HDInsight 응용 프로그램을 클러스터에 설치하는 방법을 알아봅니다.
+* [사용자 지정 HDInsight 응용 프로그램 설치](hdinsight-apps-install-custom-applications.md): HDInsight로 게시 취소된 HDInsight 응용 프로그램을 배포하는 방법을 알아봅니다.
+* [HDInsight 응용 프로그램 게시](hdinsight-apps-publish-applications.md): 사용자 지정 HDInsight 응용 프로그램을 Azure Marketplace에 게시하는 방법을 알아봅니다.
+* [MSDN: HDInsight 응용 프로그램 설치](https://msdn.microsoft.com/library/mt706515.aspx): HDInsight 응용 프로그램을 정의하는 방법을 알아봅니다.
+* [스크립트 작업을 사용하여 Linux 기반 HDInsight 클러스터 사용자 지정](hdinsight-hadoop-customize-cluster-linux.md): 스크립트 작업을 사용하여 추가 응용 프로그램을 설치하는 방법을 알아봅니다.
+* [Resource Manager 템플릿을 사용하여 HDInsight의 Linux 기반 Hadoop 클러스터 만들기](hdinsight-hadoop-create-linux-clusters-arm-templates.md): Resource Manager 템플릿을 호출하여 HDInsight 클러스터를 만드는 방법을 알아봅니다.
 

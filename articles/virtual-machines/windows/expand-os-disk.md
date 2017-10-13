@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Windows VM의 운영 체제 드라이브 aaaExpand hello | Microsoft Docs"
-description: "Hello hello 리소스 관리자 배포 모델에서 Azure Powershell을 사용 하 여 가상 컴퓨터의 운영 체제 드라이브의 hello 크기를 확장 합니다."
+title: "Azure에서 Windows VM의 OS 드라이브 확장 | Microsoft Docs"
+description: "Resource Manager 배포 모델에서 Azure Powershell을 사용하여 가상 컴퓨터의 OS 드라이브 크기를 확장합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: kirpasingh
@@ -15,12 +15,12 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 10/18/2016
 ms.author: kirpas
-ms.openlocfilehash: 07d29e63a43af2839dbb38e572c4634417922676
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 31c300d0ff39853a5d2d995d00e578bb1838e4cc
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooexpand-hello-os-drive-of-a-virtual-machine-in-an-azure-resource-group"></a>어떻게 tooexpand hello Azure 리소스 그룹에 가상 컴퓨터의 운영 체제 드라이브
+# <a name="how-to-expand-the-os-drive-of-a-virtual-machine-in-an-azure-resource-group"></a>Azure 리소스 그룹에서 가상 컴퓨터의 OS 드라이브를 확장하는 방법
 [!INCLUDE [virtual-machine-common-expand-os-disk](../../../includes/virtual-machines-common-expand-os-disk.md)]
 

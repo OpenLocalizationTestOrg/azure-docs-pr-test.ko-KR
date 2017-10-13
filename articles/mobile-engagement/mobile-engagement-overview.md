@@ -1,5 +1,5 @@
 ---
-title: "aaaMobile 서비스 개요 | Microsoft Docs"
+title: "Mobile Engagement 개요 | Microsoft Docs"
 description: "Azure Mobile Engagement 개요"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 01/04/2016
 ms.author: piyushjo;matt-gibbs
-ms.openlocfilehash: 8892d5c57a2311a0b11da7313e2e5eaca1b6ae8e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 42b50685b854cabe8906f42aac81ab82c63f8a94
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-mobile-engagement-overview"></a>Azure Mobile Engagement 개요
 Azure Mobile Engagement는 데이터 기반 통찰력을 앱 사용, 실시간 사용자 분석에 제공하고 컨텍스트 인식 푸시 알림 및 앱 내 메시징을 가능하게 하는 SaaS(Software-as-a-Service) 사용자 참여 플랫폼입니다.
@@ -28,24 +28,24 @@ Azure Mobile Engagement는 데이터 기반 통찰력을 앱 사용, 실시간 �
 > 
 > 
 
-Azure Mobile Engagement와 응용 프로그램 게시자 및 마케팅 전문가 수 잘 이해 하 고 hello 응용 프로그램 사용자와 상호 작용 합니다.
+Azure Mobile Engagement를 통해 응용 프로그램 게시자와 마케팅 전문가는 앱 사용자를 더 잘 이해하고 상호 작용할 수 있습니다.
 
-## <a name="real-time-actionable-analytics-toomaximize-return-on-investment"></a>실행 가능한 실시간 분석 toomaximize 투자 수익을
-계약 시나리오를 결합 하 여 toouser 동작이 인구 통계에 따라 트리거할 `big data` 실시간 메시지 처리를 사용 하 여 컬렉션입니다. Mobile Engagement의 거의 모든 질문 관련 tooyour 특정 비즈니스 요구에 응답할 수 있습니다. 예를 들어 toomeasure 핵심 성과 지표 (Kpi) 사용자 지정 대시보드를 만들, 신속 하 게 찾을 수 있습니다 및 수정 프로그램 사용 병목 사용자 깔때기형 경로에 보존 및 사용자 인력을 추적 하 여 어떤 캠페인을 발생 시키는 가장 높은 hello 결정 수익을 투자 합니다. Mobile Engagement의 사용자 경로 전방위 tooeasily 있습니다 및 지속적으로 개선 하 고 더 높은 보존 율이 높아지고 운전 – hello 사용자 환경을 최적화 및 응용 프로그램 사용을 향상 합니다.
+## <a name="real-time-actionable-analytics-to-maximize-return-on-investment"></a>투자 수익률(ROI) 극대화를 위해 실행 가능한 실시간 분석
+`big data` 수집과 실시간 메시지 처리를 결합하여 사용자 동작 및 인구 통계에 따라 참여 시나리오를 트리거하세요. Mobile Engagement는 특정 비즈니스 요구 사항과 관련된 거의 모든 질문에 답변할 수 있습니다. 예를 들어 사용자 지정 대시보드를 만들어 KPI(핵심 성과 지표)를 측정하고, 사용자 깔때기 경로에서 사용 병목 상태를 빠르게 찾아 해결하고, 재방문 주기 및 사용자 연결 유지를 추적하여, 이를 통해 어떤 캠페인이 가장 높은 투자 수익률을 끌어내는지 알아낼 수 있습니다. Mobile Engagement의 360도 사용자 경로 뷰를 통해 사용자 환경을 지속적으로 간편하게 개선하고 최적화하여 재방문 주기 비율을 높이고 앱 사용을 향상시킬 수 있습니다.
 
 ## <a name="value-added-push-and-communications-platform"></a>부가 가치 푸시 및 통신 플랫폼
-Mobile Engagement는 앱 내 메시징 기능을 제공하고 Google의 GCM, Apple의 APNS 및 Microsoft MPNS와 같이 네이티브 푸시 알림 게이트웨이를 사용하게 원활하게 작동합니다. 가 초과 및 전원 toocreate hello toogive 사용자 동작 tooidentify 고유한 고객 세그먼트를 분석 하 여 캠페인의 대상입니다.
+Mobile Engagement는 앱 내 메시징 기능을 제공하고 Google의 GCM, Apple의 APNS 및 Microsoft MPNS와 같이 네이티브 푸시 알림 게이트웨이를 사용하게 원활하게 작동합니다. 더 나아가, 특유한 고객층을 식별하기 위하여 사용자 동작을 분석하여 특정 고객을 대상으로 하는 캠페인을 만들 수 있는 역량을 제공합니다.
 
 따라서 앱 개발자자 매우 효율적인 비주입식 방법으로 고객과 연결하는 이점을 제공합니다.
 
 ## <a name="open-apis-and-ease-of-integration"></a>개방형 API 및 간편한 통합
-편리한 통합을 위해 API 및 SDK을 제공하기 때문에, 기존 CRM, CMS 또는 기타 백엔드 시스템의 데이터를 활용할 수 있습니다. 이렇게 하면 toofurther 대상 사용자 그룹을 개선 하 고 대 한 투자를 보호 합니다.
+편리한 통합을 위해 API 및 SDK을 제공하기 때문에, 기존 CRM, CMS 또는 기타 백엔드 시스템의 데이터를 활용할 수 있습니다. 따라서 고객 대상을 더 향상하고 투자를 보호할 수 있습니다.
 
-## <a name="data-protection--privacy-across-hello-globe"></a>데이터 보호 및 hello 전세계 개인 정보 보호
-Microsoft는이 제품 및 서비스 수명 주기의 필수적인 부분 나누는 것 약정 tooprivacy을 가집니다. 고객을 의미 있는 개인 정보 선택 제공 toobe 개인 정보 보호에 투명 하 게 작동 하 고 책임감 있게 hello 데이터 저장을 관리 합니다. 모든 Azure 서비스와 마찬가지로 Mobile Engagement에서는 고객의 재산에서 파생된 정보를 공유하거나 판매하지 않습니다. Mobile Engagement는 사용할 수 있는 전역으로 허용 범위를 특정 지역 또는 국가 데이터 개인 정보 보호 법에서 부여 toobe 유지.
+## <a name="data-protection--privacy-across-the-globe"></a>전 세계에서 데이터 보호 및 프라이버시
+Microsoft는 오랫동안 개인 정보 보호를 위해 노력해 왔으며 개인 정보 보호는 Microsoft 제품 및 서비스 수명 주기의 필수 요소입니다. 우리는 투명한 개인 정보 관행을 통해 고객에게 중요한 개인 정보 선택권을 제공하고, 우리가 저장하는 데이터를 책임감 있게 관리하고 있습니다. 모든 Azure 서비스와 마찬가지로 Mobile Engagement에서는 고객의 재산에서 파생된 정보를 공유하거나 판매하지 않습니다. Mobile Engagement는 전 세계적으로 제공되며, 지역 또는 국가별 데이터 프라이버시 법률을 따를 수 있습니다.
 
 ### <a name="next-steps"></a>다음 단계:
-[모범 사례 및 toocreate Mobile Engagement 처리](mobile-engagement-getting-started-best-practices.md)
+[모범 사례 및 사용자의 Mobile Engagement를 만드는 프로세스](mobile-engagement-getting-started-best-practices.md)
 
 [시작](/index.md)
 

@@ -21,4 +21,4 @@
 | VM당 최대 IOPS |GS5 VM에서 80,000 IOPS<sup>1</sup> |
 | VM당 최대 처리량 |GS5 VM에서 2,000MB/s<sup>1</sup> |
 
-<sup>1</sup>너무 참조[VM 크기](../articles/virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 다른 VM 크기에 대 한 제한에 대 한 합니다. 
+<sup>1</sup>다른 VM 크기에 대한 한도는 [VM 크기](../articles/virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 참조하세요. 

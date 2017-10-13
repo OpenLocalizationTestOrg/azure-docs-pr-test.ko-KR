@@ -1,5 +1,5 @@
 ---
-title: "SQL 데이터 웨어하우스에 Azure 기계 학습 aaaUse | Microsoft Docs"
+title: "SQL Data Warehouse와 함께 Azure Machine Learning 사용 | Microsoft Docs"
 description: "솔루션 개발을 위한 Azure SQL 데이터 웨어하우스와 함께 Azure 기계 학습 사용을 위한 팁"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,43 +15,43 @@ ms.workload: data-services
 ms.custom: integrate
 ms.date: 10/31/2016
 ms.author: kevin;barbkess
-ms.openlocfilehash: fdfe8c936d2bb7a02163a0bbf6435e1ebd518d4f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c19860c6b5b1c15d1e29ddc67f9cf9ad4618725b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="use-azure-machine-learning-with-sql-data-warehouse"></a>SQL 데이터 웨어하우스와 함께 Azure 기계 학습 사용
-Azure 기계 학습 SQL 데이터 웨어하우스의 데이터에 대해 toocreate 예측 모델을 사용할 수 있으며 다음 준비를 사용 하는 웹 서비스로 게시 하는 완전히 관리 되는 예측 분석 서비스입니다. 예측 분석의 hello 기본 사항 학습 하 고 기계 학습을 읽어 [소개 tooMachine Azure에서 학습][Introduction tooMachine Learning on Azure]합니다.  방법 toocreate, 학습, 점수 및 hello를 사용 하 여 기계 학습 모델을 테스트 한 다음 알아보십시오 [만들기 실험 자습서][Create experiment tutorial]합니다.
+Azure 기계 학습은 SQL 데이터 웨어하우스의 데이터에 대해 예측 모델을 만드는 데 사용할 수 있는 완전한 관리 예측 분석 서비스로, 사용할 준비가 된 웹 서비스로 게시할 수 있습니다. [Azure에서 기계 학습 소개][Introduction to Machine Learning on Azure]를 읽어 예측 분석의 기본 사항 및 기계 학습에 대해 알 수 있습니다.  그런 다음 [실험 만들기 자습서][Create experiment tutorial]를 사용하여 기계 학습 모델을.만들고, 훈련하고, 점수를 매기고 테스트하는 방법에 대해 알 수 있습니다.
 
-이 문서에서는 살펴보겠습니다 어떻게 hello를 사용 하 여 다음 toodo hello [Azure 기계 학습 스튜디오][Azure Machine Learning Studio]:
+이 문서에서는 [Azure 기계 학습 스튜디오][Azure Machine Learning Studio]를 사용하여 다음을 수행하는 방법에 대해 알아봅니다.
 
-* 데이터베이스 toocreate에서 데이터 읽기, 학습 및 예측 모델 점수를 매깁니다.
-* 데이터 tooyour 데이터베이스 쓰기
+* 데이터베이스에서 데이터를 읽어, 예측 모델을 만들고 훈련하고 점수 매기기
+* 데이터베이스에 데이터 쓰기
 
 ## <a name="read-data-from-sql-data-warehouse"></a>SQL 데이터 웨어하우스에서 데이터 읽기
-우리는 hello AdventureWorksDW 데이터베이스의 Product 테이블에서 데이터를 읽습니다.
+AdventureWorksDW 데이터베이스의 Product 테이블에서 데이터를 읽습니다.
 
 ### <a name="step-1"></a>1단계
-클릭 하 여 새 실험 시작 + hello hello 기계 학습 스튜디오 창 맨 아래에 새 실험을 선택한 다음 빈 실험을 선택 합니다. 선택 hello 기본 hello hello 캔버스 맨 위에 있는 이름 실험을 toosomething 의미 있는 예를 들어 자전거 가격 예측 합니다.
+기계 학습 스튜디오 창의 아래쪽에서 +NEW를 클릭하여 새 실험을 시작한 다음 EXPERIMENT, Blank Experiment를 선택합니다. 캔버스 위에서 기본 실험 이름을 선택하고 의미 있는 이름(예: 자전거 가격 예측)으로 바꿉니다.
 
 ### <a name="step-2"></a>2단계
-데이터 집합의 hello 팔레트에 hello 판독기 모듈 및 모듈 hello 실험 캔버스의 왼쪽 hello 찾습니다. Hello 모듈 toohello 실험 캔버스를 끕니다.
+데이터 집합의 팔레트에서 판독기 모듈 및 실험 캔버스의 왼쪽에 있는 모듈을 찾습니다. 실험 캔버스에 모듈을 끌어 놓습니다.
 ![][drag_reader]
 
 ### <a name="step-3"></a>3단계
-Hello 판독기 모듈을 선택 하 고 hello 속성 창 입력 합니다.
+판독기 모듈을 선택하고 속성 창을 완성합니다.
 
-1. Hello 데이터 원본으로 Azure SQL 데이터베이스를 선택 합니다.
-2. 데이터베이스 서버 이름: 종류 hello 서버 이름입니다. Hello를 사용할 수 있습니다 [Azure 포털] [ Azure portal] toofind이 있습니다.
+1. Azure SQL 데이터베이스를 데이터 원본으로 선택합니다.
+2. 데이터베이스 서버 이름: 서버 이름을 입력합니다. [Azure Portal][Azure portal]을 사용하여 찾을 수 있습니다.
 
 ![][server_name]
 
-1. 데이터베이스 이름: 방금 지정한 hello 서버에 있는 데이터베이스의 형식 hello 이름입니다.
-2. 서버 사용자 계정 이름: hello hello 데이터베이스에 대 한 액세스 권한이 있는 계정의 사용자 이름을 입력 합니다.
-3. 서버 사용자 계정 암호: 제공 hello에 대 한 hello 암호가 사용자 계정을 지정 합니다.
-4. 모든 서버 인증서 수락: tooskip 데이터를 읽기 전에 먼저 hello 사이트 인증서를 검토 하려는 경우이 옵션 (보안 수준 낮음)을 사용 합니다.
-5. 쿼리 만들기: tooread 원하는 hello 데이터를 설명 하는 SQL 문을 입력 합니다. 이 경우 다음 쿼리는 hello를 사용 하 여 Product 테이블에서 데이터를 읽이 됩니다.
+1. 데이터베이스 이름: 방금 지정한 서버에서 데이터베이스의 이름을 입력합니다.
+2. 서버 사용자 계정 이름: 데이터베이스에 대한 액세스 권한이 있는 계정의 사용자 이름을 입력합니다.
+3. 서버 사용자 계정 암호: 지정된 사용자 계정에 대한 암호를 제공합니다.
+4. 모든 서버 인증서 수락: 데이터를 읽기 전에 사이트 인증서 검토를 건너뛰려면 이 옵션을 사용합니다(보안 수준 낮음).
+5. 데이터베이스 쿼리: 읽을 데이터를 설명하는 SQL 문을 입력합니다. 이 경우 다음 쿼리를 사용하여 Product 테이블에서 데이터를 읽습니다.
 
 ```SQL
 SELECT ProductKey, EnglishProductName, StandardCost,
@@ -63,51 +63,51 @@ FROM dbo.DimProduct;
 ![][reader_properties]
 
 ### <a name="step-4"></a>4단계
-1. Hello 실험 캔버스에서 실행을 클릭 하 여 hello 실험을 실행 합니다.
-2. Hello 실험 완료 되 면 hello 판독기 모듈 성공적으로 완료 된 녹색 확인 표시가 tooindicate를 갖습니다. 또한 hello 오른쪽 위 모서리에서 실행 중 상태로 마침 hello를 확인 합니다.
+1. 실험 캔버스에서 RUN을 클릭하여 실험을 실행합니다.
+2. 실험이 완료되면 판독기 모듈에 녹색 확인 표시가 생겨 성공적으로 완료되었음을 나타냅니다. 오른쪽 위 모서리에서 실행 완료 상태도 확인됩니다.
 
 ![][run]
 
-1. toosee 가져온된 데이터 hello hello 아래쪽 hello 자동차 데이터 집합의 출력 포트 hello 누르고 시각화를 선택 합니다.
+1. 가져온 데이터를 확인하려면 자동차 데이터 집합 아래에서 출력 포트를 클릭하고 Visualize를 선택합니다.
 
 ## <a name="create-train-and-score-a-model"></a>모델 만들기, 훈련 및 점수 매기기
 이제 이 데이터 집합을 사용하여 다음을 수행할 수 있습니다.
 
 * 모델 만들기: 데이터 처리 및 기능 정의
-* Hello 모델 학습: 선택 하 고 학습 알고리즘을 적용
-* 점수 및 테스트 hello 모델: 새 자전거 가격 예측
+* 모델 교육: 학습 알고리즘 선택 및 적용
+* 모델 점수 매기기 및 테스트: 새 자전거 가격 예측
 
 ![][model]
 
-toolearn 방법 toocreate, 학습, 점수 및 기계 학습 모델 사용 하 여 hello를 테스트 하는 방법에 대 한 자세한 [만들기 실험 자습서][Create experiment tutorial]합니다.
+기계 학습 모델을.만들고, 훈련하고, 점수를 매기고 테스트하는 방법에 대해 알려면 [실험 만들기 자습서][Create experiment tutorial]를 사용합니다.
 
-## <a name="write-data-tooazure-sql-data-warehouse"></a>데이터 tooAzure SQL 데이터 웨어하우스 쓰기
-Hello 결과 집합 tooProductPriceForecast 테이블 hello AdventureWorksDW 데이터베이스에 작성 하 합니다.
+## <a name="write-data-to-azure-sql-data-warehouse"></a>Azure SQL 데이터 웨어하우스에 데이터 쓰기
+결과 집합을 AdventureWorksDW 데이터베이스의 ProductPriceForecast 테이블에 기록합니다.
 
 ### <a name="step-1"></a>1단계
-데이터 집합의 hello 팔레트에 hello 기록기 모듈 및 모듈 hello 실험 캔버스의 왼쪽 hello 찾습니다. Hello 모듈 toohello 실험 캔버스를 끕니다.
+데이터 집합의 팔레트에서 기록기 모듈 및 실험 캔버스의 왼쪽에 있는 모듈을 찾습니다. 실험 캔버스에 모듈을 끌어 놓습니다.
 
 ![][drag_writer]
 
 ### <a name="step-2"></a>2단계
-Hello 기록기 모듈을 선택 하 고 hello 속성 창 입력 합니다.
+기록기 모듈을 선택하고 속성 창을 완성합니다.
 
-1. Hello 데이터 대상으로 Azure SQL 데이터베이스를 선택 합니다.
-2. 데이터베이스 서버 이름: 종류 hello 서버 이름입니다. Hello를 사용할 수 있습니다 [Azure 포털] [ Azure portal] toofind이 있습니다.
-3. 데이터베이스 이름: 방금 지정한 hello 서버에 있는 데이터베이스의 형식 hello 이름입니다.
-4. 서버 사용자 계정 이름: hello hello 데이터베이스에 대 한 쓰기 권한이 있는 계정의 사용자 이름을 입력 합니다.
-5. 서버 사용자 계정 암호: 제공 hello에 대 한 hello 암호가 사용자 계정을 지정 합니다.
-6. (안전 하지 않음) 모든 서버 인증서 수락: tooview hello 인증서를 표시 하지 않으려는 경우이 옵션을 선택 합니다.
-7. 쉼표로 구분 된 목록이 저장 열 toobe: toooutput 원하는 hello 데이터 집합 또는 결과 열 목록을 제공 합니다.
-8. 데이터 테이블 이름: hello 데이터 테이블의 hello 이름을 지정 합니다.
-9. Datatable 열의 쉼표로 구분 된 목록: hello 새 테이블에 열 이름을 toouse hello를 지정 합니다. hello 열 이름은 다를 수 있습니다 hello 원본 데이터 집합에 hello 것 이지만 나열 해야 hello 출력 테이블에 대 한 정의 하는 동일한 수의 열을 여기 hello 합니다.
-10. SQL Azure 작업당 작성 된 행 수: hello tooa SQL 데이터베이스를 한 번에 작성 된 행 수를 구성할 수 있습니다.
+1. Azure SQL 데이터베이스를 데이터 대상으로 선택합니다.
+2. 데이터베이스 서버 이름: 서버 이름을 입력합니다. [Azure Portal][Azure portal]을 사용하여 찾을 수 있습니다.
+3. 데이터베이스 이름: 방금 지정한 서버에서 데이터베이스의 이름을 입력합니다.
+4. 서버 사용자 계정 이름: 데이터베이스에 대한 쓰기 권한이 있는 계정의 사용자 이름을 입력합니다.
+5. 서버 사용자 계정 암호: 지정된 사용자 계정에 대한 암호를 제공합니다.
+6. (안전하지 않은) 모든 서버 인증서 수락: 인증서를 보지 않으려는 경우 이 옵션을 선택합니다.
+7. 저장될 열의 쉼표로 구분된 목록: 출력하려면 데이터 집합 또는 결과 열 목록을 제공합니다.
+8. 데이터 테이블 이름: 데이터 테이블의 이름을 지정합니다.
+9. 데이터 테이블 열의 쉼표로 구분된 목록: 새 테이블에 사용할 열 이름을 지정합니다. 열 이름은 원본 데이터 집합의 열과 다를 수 있지만, 출력 테이블에 대해 여기에서 정의한 동일한 열 수를 나열해야 합니다.
+10. SQL Azure 작업당 작성된 행 수: 하나의 작업으로 SQL 데이터베이스에 기록되는 행의 수를 구성할 수 있습니다.
 
 ![][writer_properties]
 
 ### <a name="step-3"></a>3단계
-1. Hello 실험 캔버스에서 실행을 클릭 하 여 hello 실험을 실행 합니다.
-2. Hello 실험 완료 되 면 모든 모듈은 성공적으로 완료 된 녹색 확인 표시가 tooindicate를 갖습니다.
+1. 실험 캔버스에서 RUN을 클릭하여 실험을 실행합니다.
+2. 실험이 완료되면 모든 모듈에 성공적으로 완료되었음을 나타내는 녹색 확인 표시가 표시됩니다.
 
 ## <a name="next-steps"></a>다음 단계
 더 많은 개발 팁은 [SQL Data Warehouse 개발 개요][SQL Data Warehouse development overview]를 참조하세요.
@@ -126,7 +126,7 @@ Hello 기록기 모듈을 선택 하 고 hello 속성 창 입력 합니다.
 
 [SQL Data Warehouse development overview]: ./sql-data-warehouse-overview-develop.md
 [Create experiment tutorial]: https://azure.microsoft.com/documentation/articles/machine-learning-create-experiment/
-[Introduction toomachine learning on Azure]: https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
+[Introduction to machine learning on Azure]: https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
 [Azure Machine Learning Studio]: https://studio.azureml.net/Home
 [Azure portal]: https://portal.azure.com/
 

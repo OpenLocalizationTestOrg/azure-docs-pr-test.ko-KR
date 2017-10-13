@@ -1,6 +1,6 @@
 ---
-title: "aaaGet은 SQL 데이터 웨어하우스 위협 검색 시작"
-description: "위협 검색 tooget 시작 하는 방법"
+title: "SQL 데이터 웨어하우스 위협 감지 시작"
+description: "위협 감지를 시작하는 시기"
 services: sql-data-warehouse
 documentationcenter: 
 author: ronortloff
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
-ms.openlocfilehash: dec0b734849e7f52434e099db0b38fbf0bf6ad53
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f4a2376fe4fb710d031c35ca7fdbf4c7bb0f3caa
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="get-started-with-threat-detection"></a>위협 감지 시작
 > [!div class="op_single_selector"]
@@ -29,49 +29,49 @@ ms.lasthandoff: 10/06/2017
 > 
 
 ## <a name="overview"></a>개요
-위협 검색 잠재적 보안 위협을 toohello 데이터베이스 비정상 데이터베이스 작업을 검색 합니다. 위협 감지는 미리 보기로 제공되며 SQL 데이터 웨어하우스를 지원합니다.
+위협 감지는 데이터베이스에 대한 잠재적인 보안 위협을 나타내는 비정상적인 데이터베이스 활동을 감지합니다. 위협 감지는 미리 보기로 제공되며 SQL 데이터 웨어하우스를 지원합니다.
 
-위협 요소 탐지 새 고객 toodetect 있고 비정상적인 활동에서 보안 경고를 제공 하 여 발생 하는 대로 toopotential 위협 응답을 보안 계층을 제공 합니다. 사용자가 사용 하 여 hello 의심 스러운 이벤트를 탐색할 수 [Azure SQL 데이터 웨어하우스 감사](sql-data-warehouse-auditing-overview.md) 는 시도 tooaccess에서 발생 한 경우 toodetermine 위반를 주거나 이들을 착취 hello 데이터 웨어하우스의 데이터에서에서 합니다.
-위협 요소 탐지 간단한 tooaddress 잠재적 위협 toohello 데이터 보안 전문가 hello 필요 toobe 없이 웨어하우스 또는 시스템 모니터링 하는 고급 보안을 관리 하면 있습니다.
+위협 감지는 비정상적인 활동에 대한 보안 경고를 제공하여 잠재적인 위협이 발생하면 고객이 이를 감지하고 대응할 수 있도록 하는 새로운 차원의 보안을 제공합니다. 사용자는 데이터 웨어하우스의 데이터를 액세스, 침해 또는 악용하려는 시도로 인해 의심스러운 이벤트가 발생했는지를 판단하기 위해서 [Azure SQL Data Warehouse 감사](sql-data-warehouse-auditing-overview.md) 를 사용하여 의심스러운 이벤트를 살펴볼 수 있습니다.
+위협 감지는 보안 전문가가 되거나 고급 보안 모니터링 시스템을 관리할 필요 없이 데이터 웨어하우스에 대한 잠재적인 위협에 간단하게 대처할 수 있도록 합니다.
 
-예를 들어 위협 감지는 잠재적인 SQL 삽입 시도를 나타내는 비정상적인 데이터베이스 활동을 감지합니다. SQL 주입 hello 일반적인 웹 응용 프로그램 보안 문제에 hello 인터넷을 사용 하는 tooattack 데이터 기반 응용 프로그램 중 하나입니다. 공격자가 활용 응용 프로그램 취약점 tooinject 악의적인 SQL 문을 졌는 지 또는 hello 데이터베이스의 데이터 수정에 대 한 응용 프로그램 입력 필드에 합니다.
+예를 들어 위협 감지는 잠재적인 SQL 삽입 시도를 나타내는 비정상적인 데이터베이스 활동을 감지합니다. SQL 삽입은 데이터 기반 응용 프로그램 공격에 사용되는 인터넷 상의 일반적인 웹 응용 프로그램 보안 문제 중 하나입니다. 공격자는 데이터베이스의 데이터를 침범하거나 수정하기 위해 응용 프로그램의 취약성을 이용하여 악의적인 SQL 문을 응용 프로그램 항목 필드에 삽입합니다.
 
 ## <a name="set-up-threat-detection-for-your-database"></a>데이터베이스에 대한 위협 감지 설정
-1. 시작 hello Azure 포털에 [https://portal.azure.com](https://portal.azure.com)합니다.
-2. SQL 데이터 웨어하우스 toomonitor 원하는 hello의 구성 블레이드에서 toohello 이동 합니다. Hello 설정 블레이드에서 선택 **감사 및 위협 요소 탐지**합니다.
+1. [https://portal.azure.com](https://portal.azure.com)에서 Azure 포털을 시작합니다.
+2. 모니터링할 SQL 데이터 웨어하우스의 구성 블레이드로 이동합니다. 설정 블레이드에서 **감사 및 위협 감지**를 선택합니다.
    
     ![탐색 창][1]
-3. Hello에 **감사 및 위협 요소 탐지** 구성 블레이드 turn **ON** 감사를 위해 표시 하는 hello 위협 검색 설정 합니다.
+3. **감사 및 위협 감지** 구성 블레이드에서 감사를 **켜면** 위협 감지 설정이 표시됩니다.
    
     ![탐색 창][2]
 4. 위협 감지를 **켭니다**
-5. 비정상적인 데이터 웨어하우스 작업 검색에 대해 보안 경고를 받을 전자 메일의 hello 목록을 구성 합니다.
-6. 클릭 **저장** hello에 **감사 및 위협 검색** 구성 블레이드 toosave hello 신규 또는 업데이트 된 감사 및 위협 검색 정책입니다.
+5. 비정상적인 데이터 웨어하우스 활동이 감지되는 경우 보안 경고를 수신할 이메일 목록을 구성합니다.
+6. **감사 및 위협 감지** 구성 블레이드에서 **저장**을 클릭하여 새로운 또는 업데이트된 감사 및 위협 감지 정책을 저장합니다.
    
     ![탐색 창][3]
 
 ## <a name="explore-anomalous-data-warehouse-activities-upon-detection-of-a-suspicious-event"></a>의심스러운 이벤트 감지 시 비정상적인 데이터 웨어하우스 활동 살펴보기
 1. 비정상적인 데이터베이스 활동이 감지되면 이메일 알림을 받게 됩니다. <br/>
-   hello 전자 메일 hello 비정상적인 활동, 데이터베이스 이름, 서버 이름 및 hello 이벤트 시간의 hello 특성을 포함 하 여 hello 의심 되는 보안 이벤트를 처리 정보를 제공 합니다. 또한, 가능한 원인에 정보를 제공 합니다 및 작업 tooinvestigate 권장 하 고 hello 잠재적인 위협 toohello 데이터베이스 완화 합니다.<br/>
+   이메일에는 비정상적인 활동의 특징, 데이터베이스 이름, 서버 이름, 이벤트 시간을 포함하여 의심스러운 보안 이벤트에 대한 정보가 제공됩니다. 또한 가능한 원인에 대한 정보와 데이터베이스에 대한 잠재적인 위협을 조사하고 완화시키기 위해 권장되는 조치가 제공됩니다.<br/>
    
     ![탐색 창][4]
-2. Hello 전자 메일의 hello에서 클릭 **Azure SQL 감사 로그** 링크를 hello Azure 클래식 포털을 시작 하 고 hello 의심 스러운 이벤트의 hello 시간대 hello 관련 된 감사 레코드가 표시 됩니다.
+2. 이메일에서 **Azure SQL 감사 로그** 링크를 클릭하면 Azure 클래식 포털이 열리고 의심스러운 이벤트가 발생한 무렵의 시간에 해당하는 감사 레코드가 표시됩니다.
    
     ![탐색 창][5]
-3. SQL 문 처럼 hello 데이터베이스 의심 스러운 활동에 대 한 자세한 내용은 hello 감사 레코드 tooview 클릭 실패 이유 및 클라이언트 IP입니다.
+3. 의심스러운 데이터베이스 활동에 대한 세부 정보(예: SQL 문, 실패 원인, 클라이언트 IP)를 보려면 감사 레코드를 클릭합니다.
    
     ![탐색 창][6]
-4. Hello 감사 레코드 블레이드에서 클릭 **Excel에서 열기** tooopen 미리 구성 된 excel 서식 파일 tooimport 및 hello 의심 스러운 이벤트의 hello 시간대 hello 감사 로그의 심층 분석을 실행된 합니다.<br/>
-   **참고:** Excel 2010 또는 나중에 파워 쿼리 및 hello **빠른 결합** 설정은 필수입니다.
+4. 미리 구성된 Excel 템플릿을 열고 의심스러운 이벤트가 발생한 무렵의 시간에 대한 감사 로그를 가져와서 심층적인 분석을 실행하려면 감사 레코드 블레이드에서 **Excel에서 열기**를 클릭합니다.<br/>
+   **참고:** Excel 2010 이상의 경우 파워 쿼리 및 **빠른 결합** 설정이 필요합니다.
    
     ![탐색 창][7]
-5. tooconfigure hello **빠른 결합** hello에 설정- **파워 쿼리** 리본 탭 **옵션** toodisplay hello 옵션 대화 상자. Hello 개인 정보 섹션을 선택 하 고 hello 두 번째 옵션-'hello 개인 정보 수준을 무시 하 고 잠재적으로 성능 향상'를 선택 합니다.
+5. **빠른 결합** 설정을 구성하려면 - **파워 쿼리** 리본 탭에서 **옵션**을 선택하여 옵션 대화 상자를 표시합니다. 개인 정보 섹션을 선택하고 두 번째 옵션 '개인 정보 보호 수준을 무시하고 잠재적으로 성능 향상'을 선택합니다.
    
     ![탐색 창][8]
-6. tooload SQL 감사 로그 hello 매개 변수가 확인 hello 설정 탭에서 올바르게 설정 하 고 다음 hello '데이터' 리본 선택 hello ' 모두 새로 고침 ' 단추를 클릭 합니다.
+6. SQL 감사 로그를 로드하려면, 설정 탭의 매개 변수가 바르게 설정되었는지 확인한 후 '데이터' 리본을 선택하고 '모두 새로 고침' 단추를 클릭합니다.
    
     ![탐색 창][9]
-7. hello에 hello 결과가 표시 **SQL 감사 로그** 시트 발견 되 고 응용 프로그램에서 hello 보안 이벤트의 hello 영향을 완화 하는 hello 비정상적인 활동의 심층 분석 toorun 있습니다.
+7. **SQL 감사 로그** 시트에 결과가 표시되며 사용자는 이를 통해 감지된 비정상적인 활동을 심층적으로 분석하고 응용 프로그램의 보안 이벤트에 대한 영향을 완화시킬 수 있습니다.
 
 <!--Image references-->
 [1]: ./media/sql-data-warehouse-security-threat-detection/1_td_click_on_settings.png

@@ -1,6 +1,6 @@
 ---
-title: "aaaAssign 그룹화 tooAzure AD 앱 | Microsoft Docs"
-description: "어떻게 tooimplement Azure 응용 프로그램에 대 한 할당을 그룹화 합니다."
+title: "Azure AD 앱에 그룹 할당 | Microsoft Docs'"
+description: "Azure 응용 프로그램에 대해 그룹 할당을 구현하는 방법."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -16,26 +16,26 @@ ms.date: 05/07/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
 robots: noindex
-ms.openlocfilehash: 086619df09c13bf259afc3128d45ed804b99e519
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e0b0b87a454db96747f024e81882fe83d62fdbe2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="assign-azure-active-directory-groups-tooan-application"></a>Azure Active Directory 그룹 tooan 응용 프로그램 할당
-사용자 및 그룹 tooan 응용 프로그램을 할당할 수 있습니다, 전에 사용자 할당을 요구 해야 합니다. toolearn 어떻게 toorequire 사용자 할당 hello 참조 [사용자 할당 필요](active-directory-applications-guiding-developers-requiring-user-assignment.md) 문서.
+# <a name="assign-azure-active-directory-groups-to-an-application"></a>응용 프로그램에 Azure Active Directory 그룹 할당
+응용 프로그램에 사용자 및 그룹을 할당하기 전에 사용자 할당을 요구해야 합니다. 사용자 할당을 요구하는 방법에 대한 내용은 [사용자 할당 요구](active-directory-applications-guiding-developers-requiring-user-assignment.md) 문서를 참조하세요.
 
-이 문서에서는이 응용 프로그램에 사용 하는 hello active directory에서 그룹을 이미 생성 했다고 가정 합니다.
+이 문서에서는 이 응용 프로그램에 대해 사용하는 Active Directory에서 그룹을 이미 만들었다고 가정합니다.
 
-## <a name="assigning-groups-tooan-application"></a>그룹 tooan 응용 프로그램 할당
-1. 관리자 계정으로 Azure 포털 toohello에 로그인 합니다.
-2. Hello 클릭 **모든 항목** hello 주 메뉴의 항목입니다.
-3. Hello 응용 프로그램에 대 한 사용 하는 hello 디렉터리를 선택 합니다.
-4. Hello 클릭 **응용 프로그램** 탭 합니다.
-5. 이 디렉터리와 연결 된 응용 프로그램의 hello 목록에서 hello 응용 프로그램을 선택 합니다.
-6. Hello 클릭 **사용자 및 그룹** 탭 합니다.
-7. Hello를 사용 하 여 active directory에서 그룹의 필터 hello 목록 **그룹** 드롭다운 목록입니다.
-8. Hello 그룹을 선택 합니다.
+## <a name="assigning-groups-to-an-application"></a>응용 프로그램에 그룹 지정
+1. 관리자 계정으로 Azure 포털에 로그인합니다.
+2. 주 메뉴에서 **모든 항목** 항목을 클릭합니다.
+3. 응용 프로그램에 대해 사용하는 디렉터리를 선택합니다.
+4. **응용 프로그램** 탭을 클릭합니다.
+5. 이 디렉터리와 연결된 응용 프로그램 목록에서 응용 프로그램을 선택합니다.
+6. **사용자 및 그룹** 탭을 클릭합니다.
+7. **그룹** 드롭다운 목록을 사용하여 Active Directory에서 그룹 목록을 필터링합니다.
+8. 그룹을 선택합니다.
 9. **할당**을 클릭합니다.
 10. 메시지가 표시되면 **예** 를 클릭합니다.
 

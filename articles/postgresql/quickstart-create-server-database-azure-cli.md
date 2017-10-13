@@ -1,6 +1,6 @@
 ---
-title: "PostgreSQL hello Azure CLI를 사용 하 여에 대 한 Azure 데이터베이스 만들기 | Microsoft Docs"
-description: "빠른 시작 가이드 toocreate 하 고 Azure CLI (명령줄 인터페이스)를 사용 하 여 PostgreSQL 서버에 대 한 Azure 데이터베이스를 관리 합니다."
+title: "Azure CLI를 사용하여 PostgreSQL용  Azure Database 만들기 | Microsoft Docs"
+description: "Azure CLI(명령줄 인터페이스)를 통해 Azure Database for PostgreSQL 서버를 만들고 관리하기 위한 빠른 시작 가이드입니다."
 services: postgresql
 author: sanagama
 ms.author: sanagama
@@ -10,68 +10,68 @@ ms.service: postgresql
 ms.devlang: azure-cli
 ms.topic: quickstart
 ms.date: 06/13/2017
-ms.openlocfilehash: 946aa3cbf5ff9f5ac4e51248412d3da5d718141e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d78243abc140c7b3f0b99bdf56821b7920568550
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="create-an-azure-database-for-postgresql-using-hello-azure-cli"></a>PostgreSQL hello Azure CLI를 사용 하 여에 대 한 Azure 데이터베이스 만들기
-Azure에 대 한 PostgreSQL 데이터베이스가 toorun 수 있는 관리 되는 서비스, 관리 하 고 hello 클라우드에서 항상 사용 가능한 PostgreSQL 데이터베이스의 크기를 조정 합니다. hello Azure CLI 사용된 toocreate 이며 hello 명령줄에서 또는 스크립트에서 Azure 리소스를 관리 합니다. 이 빠른 시작에서는 toocreate Azure 데이터베이스 방법 PostgreSQL 서버에 대 한 프로그램 [Azure 리소스 그룹](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview) Azure CLI hello를 사용 하 여 합니다.
+# <a name="create-an-azure-database-for-postgresql-using-the-azure-cli"></a>Azure CLI를 사용하여 PostgreSQL용  Azure Database 만들기
+PostgreSQL용  Azure Database는 클라우드에서 항상 사용 가능한 PostgreSQL 데이터베이스를 실행, 관리 및 크기 조정할 수 있게 하는 관리 서비스입니다. 명령줄 또는 스크립트에서 Azure 리소스를 만들고 관리하는 데 Azure CLI가 사용됩니다. 이 빠른 시작에서는 Azure CLI를 사용하여 [Azure 리소스 그룹](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview)에서 PostgreSQL용 Azure Database 서버를 만드는 방법을 살펴봅니다.
 
 Azure 구독이 아직 없는 경우 시작하기 전에 [체험](https://azure.microsoft.com/free/) 계정을 만듭니다.
 
 [!INCLUDE [cloud-shell-try-it](../../includes/cloud-shell-try-it.md)]
 
-Tooinstall를 선택 하 고 로컬로 hello CLI를 사용 하 여이 항목 2.0 이상에 hello Azure CLI 버전을 실행 중인 필요 합니다. 실행 `az --version` toofind hello 버전입니다. Tooinstall 또는 업그레이드를 보려면 참고 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)합니다. 
+CLI를 로컬로 설치하여 사용하도록 선택한 경우 이 항목에서 Azure CLI 버전 2.0 이상을 실행해야 합니다. `az --version`을 실행하여 버전을 찾습니다. 설치 또는 업그레이드해야 하는 경우 [Azure CLI 2.0 설치]( /cli/azure/install-azure-cli)를 참조하세요. 
 
-다중 구독인 경우 hello 리소스는 지불 hello 적절 한 구독을 선택 합니다. [az account set](/cli/azure/account#set) 명령을 사용하여 계정에 속한 특정 구독 ID를 선택합니다.
+구독이 여러 개인 경우 리소스가 과금될 적절한 구독을 선택합니다. [az account set](/cli/azure/account#set) 명령을 사용하여 계정에 속한 특정 구독 ID를 선택합니다.
 ```azurecli-interactive
 az account set --subscription 00000000-0000-0000-0000-000000000000
 ```
 
 ## <a name="create-a-resource-group"></a>리소스 그룹 만들기
 
-만들기는 [Azure 리소스 그룹](../azure-resource-manager/resource-group-overview.md) hello를 사용 하 여 [az 그룹 만들기](/cli/azure/group#create) 명령입니다. 리소스 그룹은 Azure 리소스가 그룹으로 배포되고 관리되는 논리 컨테이너입니다. hello 다음 예제에서는 명명 된 리소스 그룹 `myresourcegroup` hello에 `westus` 위치 합니다.
+[az group create](/cli/azure/group#create) 명령을 사용하여 [Azure 리소스 그룹](../azure-resource-manager/resource-group-overview.md)을 만듭니다. 리소스 그룹은 Azure 리소스가 그룹으로 배포되고 관리되는 논리 컨테이너입니다. 다음 예제는 `westus` 위치에 `myresourcegroup`이라는 리소스 그룹을 만듭니다.
 ```azurecli-interactive
 az group create --name myresourcegroup --location westus
 ```
 
 ## <a name="create-an-azure-database-for-postgresql-server"></a>PostgreSQL용 Azure Database 서버 만들기
 
-만들기는 [PostgreSQL 서버에 대 한 Azure 데이터베이스](overview.md) hello를 사용 하 여 [az postgres 서버 만들](/cli/azure/postgres/server#create) 명령입니다. 서버는 그룹으로 관리되는 데이터베이스 그룹을 포함합니다. 
+[az postgres server create](/cli/azure/postgres/server#create) 명령을 사용하여 [PostgreSQL용 Azure Database 서버](overview.md)를 만듭니다. 서버는 그룹으로 관리되는 데이터베이스 그룹을 포함합니다. 
 
-hello 다음 예제에서는 이라는 서버 `mypgserver-20170401` 리소스 그룹에서 `myresourcegroup` 서버 관리자 로그인과 `mylogin`합니다. 서버 hello 이름을 tooDNS 이름을 매핑하고 필요한 toobe Azure에서 전역적으로 고유 합니다. 대체 hello `<server_admin_password>` 고유한 값을 사용 합니다.
+다음 예제에서는 `mylogin` 서버 관리자 로그인을 사용하여 `myresourcegroup` 리소스 그룹에 이름이 `mypgserver-20170401`인 서버를 만듭니다. 서버 이름은 DNS 이름에 매핑되므로 Azure에서 전역적으로 고유해야 합니다. `<server_admin_password>`를 자신의 고유한 값으로 직접 바꿉니다.
 ```azurecli-interactive
 az postgres server create --resource-group myresourcegroup --name mypgserver-20170401  --location westus --admin-user mylogin --admin-password <server_admin_password> --performance-tier Basic --compute-units 50 --version 9.6
 ```
 
 > [!IMPORTANT]
-> 여기서 지정 하는 hello 서버 관리자 로그인 및 암호는 toohello 서버에서 필요한 toolog와이 빠른 시작의 뒷부분에 나오는 해당 데이터베이스. 나중에 사용하기 위해 이 정보를 기억하거나 기록합니다.
+> 여기에 지정한 서버 관리자 로그인 및 암호는 이 빠른 시작의 뒷부분에 나오는 서버 및 데이터베이스에 로그인해야 합니다. 나중에 사용하기 위해 이 정보를 기억하거나 기록합니다.
 
-기본적으로 **postgres** 데이터베이스가 서버 아래에 만들어집니다. hello [postgres](https://www.postgresql.org/docs/9.6/static/app-initdb.html) 데이터베이스는 사용자, 유틸리티 및 타사 응용 프로그램에서 사용 하기 위해 의미 하는 기본 데이터베이스입니다. 
+기본적으로 **postgres** 데이터베이스가 서버 아래에 만들어집니다. [postgres](https://www.postgresql.org/docs/9.6/static/app-initdb.html) 데이터베이스는 사용자, 유틸리티 및 타사 응용 프로그램에서 사용하는 기본 데이터베이스입니다. 
 
 
 ## <a name="configure-a-server-level-firewall-rule"></a>서버 수준 방화벽 규칙 구성
 
-Hello로 Azure PostgreSQL 서버 수준 방화벽 규칙 만들기 [az postgres 서버 방화벽 규칙 만들기](/cli/azure/postgres/server/firewall-rule#create) 명령입니다. 와 같은 외부 응용 프로그램 서버 수준 방화벽 규칙을 허용 [psql](https://www.postgresql.org/docs/9.2/static/app-psql.html) 또는 [PgAdmin](https://www.pgadmin.org/) hello PostgreSQL Azure 서비스 방화벽을 통해 tooconnect tooyour 서버입니다. 
+[az postgres server firewall-rule create](/cli/azure/postgres/server/firewall-rule#create) 명령을 사용하여 Azure PostgreSQL 서버 수준 방화벽 규칙을 만듭니다. 서버 수준 방화벽 규칙을 사용하면 [psql](https://www.postgresql.org/docs/9.2/static/app-psql.html) 또는 [PgAdmin](https://www.pgadmin.org/)과 같은 외부 응용 프로그램에서 Azure PostgreSQL 서비스 방화벽을 통해 서버에 연결할 수 있습니다. 
 
-IP 범위 toobe 수 tooconnect 네트워크에서에 대해 설명 하는 방화벽 규칙을 설정할 수 있습니다. hello 다음 예제에서는 [az postgres 서버 방화벽 규칙 만들기](/cli/azure/postgres/server/firewall-rule#create) toocreate 방화벽 규칙 `AllowAllIps` 는 ip 주소 범위입니다. tooopen 모든 IP 주소를 IP 주소와 255.255.255.255 끝 주소 hello로 시작 하는 hello로 0.0.0.0를 사용 합니다.
+IP 범위를 적용하는 방화벽 규칙을 설정하여 네트워크에서 연결할 수 있습니다. 다음 예제에서는 [az postgres server firewall-rule create](/cli/azure/postgres/server/firewall-rule#create)를 사용하여 IP 주소 범위에 대한 `AllowAllIps` 방화벽 규칙을 만듭니다. 모든 IP 주소를 열려면 시작 IP 주소로 0.0.0.0을, 끝나는 IP 주소로 255.255.255.255를 사용합니다.
 ```azurecli-interactive
 az postgres server firewall-rule create --resource-group myresourcegroup --server mypgserver-20170401 --name AllowAllIps --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
 ```
 
 > [!NOTE]
-> Azure PostgreSQL 서버는 5432 포트를 통해 통신합니다. 회사 네트워크 내에서 연결하려는 경우 5432 포트를 통한 아웃바운드 트래픽이 네트워크 방화벽에서 허용되지 않을 수 있습니다. IT 부서 포트 5432 tooconnect tooyour Azure SQL 데이터베이스 서버를 열고 있으며
+> Azure PostgreSQL 서버는 5432 포트를 통해 통신합니다. 회사 네트워크 내에서 연결하려는 경우 5432 포트를 통한 아웃바운드 트래픽이 네트워크 방화벽에서 허용되지 않을 수 있습니다. IT 부서에서 포트 5432를 열어 Azure SQL Database 서버에 연결할 수 있도록 합니다.
 
-## <a name="get-hello-connection-information"></a>Hello 연결 정보를 가져옵니다
+## <a name="get-the-connection-information"></a>연결 정보 가져오기
 
-tooconnect tooyour 서버 tooprovide 호스트 정보 및 액세스 자격 증명이 필요 합니다.
+서버에 연결하려면 호스트 정보와 액세스 자격 증명을 제공해야 합니다.
 ```azurecli-interactive
 az postgres server show --resource-group myresourcegroup --name mypgserver-20170401
 ```
 
-hello 결과 JSON 형식에서입니다. Hello 메모 **administratorLogin** 및 **fullyQualifiedDomainName**합니다.
+결과는 JSON 형식입니다. **administratorLogin** 및 **fullyQualifiedDomainName**을 기록해 둡니다.
 ```json
 {
   "administratorLogin": "mylogin",
@@ -96,67 +96,67 @@ hello 결과 JSON 형식에서입니다. Hello 메모 **administratorLogin** 및
 }
 ```
 
-## <a name="connect-toopostgresql-database-using-psql"></a>Psql를 사용 하 여 tooPostgreSQL 데이터베이스 연결
+## <a name="connect-to-postgresql-database-using-psql"></a>psql을 사용하여 PostgreSQL 데이터베이스에 연결
 
-클라이언트 컴퓨터에 설치 된 PostgreSQL의 로컬 인스턴스를 사용할 수 있습니다 [psql](https://www.postgresql.org/docs/9.6/static/app-psql.html) tooconnect tooan Azure PostgreSQL 서버입니다. 이제 hello psql 명령줄 유틸리티 tooconnect toohello Azure PostgreSQL 서버를 사용 합니다.
+클라이언트 컴퓨터에 PostgreSQL이 설치되어 있는 경우 [psql](https://www.postgresql.org/docs/9.6/static/app-psql.html) 로컬 인스턴스를 사용하여 Azure PostgreSQL 서버에 연결할 수 있습니다. 이제 psql 명령줄 유틸리티를 사용하여 Azure PostgreSQL 서버에 연결해 보겠습니다.
 
-1. Hello psql 명령 tooconnect tooan Azure 데이터베이스 PostgreSQL 서버에 대 한 다음 실행
+1. 다음 psql 명령을 실행하여 Azure Database for PostgreSQL 서버에 연결합니다.
 ```azurecli-interactive
 psql --host=<servername> --port=<port> --username=<user@servername> --dbname=<dbname>
 ```
 
-  다음 명령을 hello 라는 toohello 기본 데이터베이스를 연결 하는 예를 들어 **postgres** PostgreSQL 서버의 **mypgserver 20170401.postgres.database.azure.com** 액세스 자격 증명을 사용 하 여 합니다. Hello 입력 `<server_admin_password>` 암호를 묻는 메시지가 나타나면 선택 합니다.
+  예를 들어 다음 명령은 액세스 자격 증명을 사용하여 **mypgserver-20170401.postgres.database.azure.com** PostgreSQL 서버의 **postgres**라는 기본 데이터베이스에 연결합니다. 암호를 묻는 메시지가 표시되면 선택한 `<server_admin_password>`를 입력합니다.
   
   ```azurecli-interactive
 psql --host=mypgserver-20170401.postgres.database.azure.com --port=5432 --username=mylogin@mypgserver-20170401 --dbname=postgres
 ```
 
-2.  연결 된 toohello 서버 되 면 hello 프롬프트에서 빈 데이터베이스를 만듭니다.
+2.  서버에 연결되면 프롬프트에서 빈 데이터베이스를 만듭니다.
 ```sql
 CREATE DATABASE mypgsqldb;
 ```
 
-3.  Hello 프롬프트에서 실행 명령을 tooswitch 연결 toohello 새로 만든 데이터베이스를 다음 hello **mypgsqldb**:
+3.  프롬프트에서 다음 명령을 실행하여 새로 만든 **mypgsqldb** 데이터베이스에 대한 연결로 전환합니다.
 ```sql
 \c mypgsqldb
 ```
 
-## <a name="connect-toopostgresql-database-using-pgadmin"></a>PgAdmin를 사용 하 여 tooPostgreSQL 데이터베이스 연결
+## <a name="connect-to-postgresql-database-using-pgadmin"></a>pgAdmin을 사용하여 PostgreSQL 데이터베이스에 연결
 
-hello GUI 도구를 사용 하 여 tooconnect tooAzure PostgreSQL 서버 _pgAdmin_
-1.  Hello 시작 _pgAdmin_ 클라이언트 컴퓨터에 응용 프로그램입니다. _pgAdmin_은 http://www.pgadmin.org/에서 설치할 수 있습니다.
-2.  선택 **새 서버 추가** hello에서 **빠른 링크** 메뉴.
-3.  Hello에 **서버 만들기-** 대화 상자 **일반** 탭에서 서버 hello에 대 한 고유 이름을 입력 합니다. **Azure PostgreSQL 서버**라고 하겠습니다.
+GUI 도구 _pgAdmin_을 사용하여 Azure PostgreSQL 서버에 연결하려면
+1.  클라이언트 컴퓨터에서 _pgAdmin_ 응용 프로그램을 실행합니다. _pgAdmin_은 http://www.pgadmin.org/에서 설치할 수 있습니다.
+2.  **빠른 링크** 메뉴에서 **새 서버 추가**를 선택합니다.
+3.  **만들기-서버** 대화 상자의 **일반** 탭에서서버에 대해 고유하면서 익숙한 이름을 입력합니다. **Azure PostgreSQL 서버**라고 하겠습니다.
  ![pgAdmin 도구 - 만들기 - 서버](./media/quickstart-create-server-database-azure-cli/1-pgadmin-create-server.png)
-4.  Hello에 **서버 만들기-** 대화 상자, **연결** 탭:
-    - Hello 정규화 된 서버 이름을 입력 하십시오 (예를 들어 **mypgserver 20170401.postgres.database.azure.com**) hello에 **호스트 이름 / 주소** 상자입니다. 
-    - Hello에 포트 5432 입력 **포트** 상자입니다. 
-    - Hello 입력 **서버 관리자 로그인 (user@mypgserver)** 의 앞부분에 나오는이 빠른 시작 및 hello에 hello 서버를 만들 때 입력 한 암호가 얻은 **Username** 및 **암호** 상자에 각각 있습니다.
-    - **SSL 모드**를 **필수**로 선택합니다. 기본적으로 모든 Azure PostgreSQL 서버는 SSL을 실행한 상태에서 만들어집니다.  SSL 적용 해제 tooturn 세부 사항을 볼 [적용 SSL](./concepts-ssl-connection-security.md)합니다.
+4.  **만들기 - 서버** 대화 상자의 **연결** 탭에서 
+    - **호스트 이름/주소** 상자에 정규화된 서버 이름(예: **mypgserver 20170401.postgres.database.azure.com**)을 입력합니다. 
+    - **포트** 상자에 포트 5432를 입력합니다. 
+    - 이 빠른 시작의 앞 부분에서 구한 **서버 관리자 로그인(user@mypgserver)**과, 서버를 만들 때 입력한 암호를 각각 **사용자 이름**과 **암호**에 입력합니다.
+    - **SSL 모드**를 **필수**로 선택합니다. 기본적으로 모든 Azure PostgreSQL 서버는 SSL을 실행한 상태에서 만들어집니다.  SSL 실행을 해제하려면 [SSL 적용](./concepts-ssl-connection-security.md)에서 세부 사항을 참조하세요.
 
     ![pgAdmin - 만들기 - 서버](./media/quickstart-create-server-database-azure-cli/2-pgadmin-create-server.png)
 5.  **Save**를 클릭합니다.
-6.  Hello 브라우저 왼쪽된 창에서 확장 hello **서버 그룹**합니다. **Azure PostgreSQL 서버**를 선택합니다.
-7.  Hello 선택 **서버** 에 연결 하 고 눌러 **데이터베이스** 그 아래에서 합니다. 
-8.  마우스 오른쪽 단추로 클릭 **데이터베이스** tooCreate 데이터베이스입니다.
-9.  데이터베이스 이름을 선택 **mypgsqldb** 및 서버 관리자 로그인에 대 한 hello 소유자가 **mylogin**합니다.
-10. 클릭 **저장** toocreate 빈 데이터베이스입니다.
-11. Hello에 **브라우저**, hello 확장 **서버** 그룹입니다. Hello 사용자가 만든 서버를 확장 하 고 hello 데이터베이스 참조 **mypgsqldb** 그 아래에서 합니다.
+6.  브라우저 왼쪽 창에서 **서버 그룹**을 확장합니다. **Azure PostgreSQL 서버**를 선택합니다.
+7.  연결된 **서버**를 선택한 다음 그 아래의 **데이터베이스**를 선택합니다. 
+8.  **데이터베이스**를 마우스 오른쪽 단추로 클릭하여 데이터베이스를 만듭니다.
+9.  데이터베이스 이름 **mypgsqldb**를 선택하고 그에 대한 소유자를 서버 관리자 로그인 **mylogin**으로 선택합니다.
+10. **저장**을 클릭하여 빈 데이터베이스를 만듭니다.
+11. **브라우저**에서 **서버** 그룹을 확장합니다. 만든 서버를 확장하고 그 아래에서 **mypgsqldb** 데이터베이스를 확인합니다.
  ![pgAdmin - 만들기 - 데이터베이스](./media/quickstart-create-server-database-azure-cli/3-pgadmin-database.png)
 
 
 ## <a name="clean-up-resources"></a>리소스 정리
 
-Hello를 삭제 하 여 hello 빠른 시작에서 만든 모든 리소스를 정리 [Azure 리소스 그룹](../azure-resource-manager/resource-group-overview.md)합니다.
+[Azure 리소스 그룹](../azure-resource-manager/resource-group-overview.md)을 삭제하여 이 빠른 시작에서 만든 모든 리소스를 정리합니다.
 
 > [!TIP]
-> 이 컬렉션의 다른 빠른 시작은 이 빠른 시작을 기반으로 구성됩니다. Toocontinue toowork 후속 사용 하려는 경우 퀵 스타트를 정리 하지 않습니다는이 빠른 시작에서 만든 리소스 hello 합니다. Toocontinue 않으려는 경우 다음 단계 toodelete hello이 퀵이 스타트의 hello Azure CLI에에서 의해 생성 된 모든 리소스를 사용 합니다.
+> 이 컬렉션의 다른 빠른 시작은 이 빠른 시작을 기반으로 구성됩니다. 다음 빠른 시작을 계속 진행하려는 경우 이 빠른 시작에서 만든 리소스를 정리하지 않습니다. 계속하지 않으려는 경우 다음 단계에 따라 이 빠른 시작에서 만든 모든 리소스를 Azure CLI에서 삭제합니다.
 
 ```azurecli-interactive
 az group delete --name myresourcegroup
 ```
 
-실행할 수만 toodelete hello 하나의 새로 만든된 서버 싶으면, [az postgres 서버 삭제](/cli/azure/postgres/server#delete) 명령입니다.
+새로 만든 서버만 삭제하려면 [az postgres server delete](/cli/azure/postgres/server#delete) 명령을 실행합니다.
 ```azurecli-interactive
 az postgres server delete --resource-group myresourcegroup --name mypgserver-20170401
 ```

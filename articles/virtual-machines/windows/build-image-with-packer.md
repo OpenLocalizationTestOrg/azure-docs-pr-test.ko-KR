@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toocreate Packer 사용 하 여 Windows Azure VM 이미지 | Microsoft Docs"
-description: "자세한 내용은 방법 toouse Packer toocreate 이미지의 Windows Azure 가상 컴퓨터"
+title: "Packer를 사용하여 Windows Azure VM 이미지를 만드는 방법 | Microsoft Docs"
+description: "Azure에서 Packer를 사용하여 Windows 가상 컴퓨터의 이미지를 만드는 방법에 대해 알아보기"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 08/18/2017
 ms.author: iainfou
-ms.openlocfilehash: d310fae3becb453b52d21281cb8ac53fa14a3fc2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 11a4a4d65be09e6c518836c25bb455a6df738dcb
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-toouse-packer-toocreate-windows-virtual-machine-images-in-azure"></a>Azure에서 toouse Packer toocreate Windows 가상 컴퓨터 이미지 하는 방법
-Azure의 각 가상 컴퓨터 (VM) hello Windows 배포 및 운영 체제 버전을 정의 하는 이미지에서 만들어집니다. 이미지는 사전 설치된 응용 프로그램 및 구성을 포함할 수 있습니다. 응용 프로그램 환경 하거나 만들 수 있습니다 맞게 사용자 지정 이미지 tooyour 요구 사항 및 Azure 마켓플레이스 hello 가장 일반적인 OS에 대 한 첫 번째 및 제 3 자에 대 한 여러 이미지를 제공 합니다. 이 문서 toouse hello 소스 도구를 열고 하는 방법을 자세히 설명 [Packer](https://www.packer.io/) Azure의 toodefine 및 빌드 사용자 지정 이미지입니다.
+# <a name="how-to-use-packer-to-create-windows-virtual-machine-images-in-azure"></a>Azure에서 Packer를 사용하여 Windows 가상 컴퓨터 이미지를 만드는 방법
+Azure의 각 VM(가상 컴퓨터)은 Windows 배포판 및 OS 버전을 정의하는 이미지에서 만들어집니다. 이미지는 사전 설치된 응용 프로그램 및 구성을 포함할 수 있습니다. Azure Marketplace는 가장 일반적인 OS 및 응용 프로그램 환경에 대한 다양한 자사 및 타사 이미지를 제공하거나 사용자 요구에 맞게 사용자 지정 이미지를 만들 수 있습니다. 이 문서에는 오픈 소스 도구 [Packer](https://www.packer.io/)를 사용하여 Azure에서 사용자 지정 이미지를 정의하고 작성하는 방법을 자세히 설명합니다.
 
 
 ## <a name="create-azure-resource-group"></a>Azure 리소스 그룹 만들기
-Hello 빌드 프로세스 동안 Packer hello 원본 VM는 것과 같이 임시 Azure 리소스를 만듭니다. 이미지 형식으로 사용 하기 위해 VM의 소스가 되 toocapture, 리소스 그룹을 정의 해야 합니다. hello hello Packer 빌드 프로세스의 출력에에서 저장 됩니다이 리소스 그룹.
+빌드 프로세스 동안 Packer는 원본 VM을 빌드하므로 임시 Azure 리소스를 만듭니다. 이미지로 사용하기 위해 해당 원본 VM을 캡처하려면 리소스 그룹을 정의해야 합니다. Packer 빌드 프로세스의 출력은 이 리소스 그룹에 저장됩니다.
 
-[New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup)을 사용하여 리소스 그룹을 만듭니다. hello 다음 예제에서는 명명 된 리소스 그룹 *myResourceGroup* hello에 *eastus* 위치:
+[New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup)을 사용하여 리소스 그룹을 만듭니다. 다음 예제에서는 *eastus* 위치에 *myResourceGroup*이라는 리소스 그룹을 만듭니다.
 
 ```powershell
 $rgName = "myResourceGroup"
@@ -36,9 +36,9 @@ New-AzureRmResourceGroup -Name $rgName -Location $location
 ```
 
 ## <a name="create-azure-credentials"></a>Azure 자격 증명 만들기
-Packer는 서비스 사용자를 사용하여 Azure를 인증합니다. Azure 서비스 사용자는 앱, 서비스 및 Packer와 같은 자동화 도구를 사용할 수 있는 보안 ID입니다. 제어 하 고이 정보를 toowhat 작업 hello 서비스 사용자는 Azure에서 수행할 수 있는 대로 hello 사용 권한을 정의 합니다.
+Packer는 서비스 사용자를 사용하여 Azure를 인증합니다. Azure 서비스 사용자는 앱, 서비스 및 Packer와 같은 자동화 도구를 사용할 수 있는 보안 ID입니다. 서비스 사용자가 Azure에서 수행할 수 있는 작업에 대한 사용 권한은 사용자가 제어하고 정의합니다.
 
-서비스와 사용자 만들기 [새로 AzureRmADServicePrincipal](/powershell/module/azurerm.resources/new-azurermadserviceprincipal) 서비스 보안 주체 toocreate hello에 대 한 권한을 할당 하 고 사용 하 여 리소스를 관리 하 고 [새로 AzureRmRoleAssignment](/powershell/module/azurerm.resources/new-azurermroleassignment):
+[New-AzureRmADServicePrincipal](/powershell/module/azurerm.resources/new-azurermadserviceprincipal)을 사용하여 서비스 사용자를 만들고 [New-AzureRmRoleAssignment](/powershell/module/azurerm.resources/new-azurermroleassignment)를 사용하여 리소스를 만들고 관리하는 권한을 서비스 사용자에게 할당합니다.
 
 ```powershell
 $sp = New-AzureRmADServicePrincipal -DisplayName "Azure Packer IKF" -Password "P@ssw0rd!"
@@ -46,7 +46,7 @@ Sleep 20
 New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $sp.ApplicationId
 ```
 
-tooauthenticate tooAzure 또한 해야 tooobtain Azure 테 넌 트 및 구독 Id와 [Get AzureRmSubscription](/powershell/module/azurerm.profile/get-azurermsubscription):
+Azure를 인증하려면 [Get-AzureRmSubscription](/powershell/module/azurerm.profile/get-azurermsubscription)을 사용하여 Azure 테넌트 및 구독 ID를 가져와야 합니다.
 
 ```powershell
 $sub = Get-AzureRmSubscription
@@ -54,23 +54,23 @@ $sub.TenantId
 $sub.SubscriptionId
 ```
 
-Hello 다음 단계에서 이러한 두 개의 Id를 사용합니다.
+다음 단계에서 이러한 두 개의 ID를 사용합니다.
 
 
 ## <a name="define-packer-template"></a>Packer 템플릿 정의
-toobuild 이미지를 JSON 파일로 템플릿을 만듭니다. Hello 서식 파일에 빌더를 정의 하 고 provisioners hello 실제을 수행 하는 빌드 프로세스입니다. Packer에는 [provisioner Azure에 대 한](https://www.packer.io/docs/builders/azure.html) toodefine Azure 사용할 수 있는 hello 서비스 사용자 자격 증명 hello 앞 단계에서에서 만든 등의 리소스입니다.
+이미지를 작성하려면 JSON 파일로 템플릿을 만듭니다. 템플릿에서 실제 빌드 프로세스를 통해 수행하는 작성기와 프로비저너를 정의합니다. Packer에는 이전 단계에서 만든 서비스 사용자 자격 증명과 같은 Azure 리소스를 정의하도록 허용하는 [Azure용 프로비저너](https://www.packer.io/docs/builders/azure.html)가 있습니다.
 
-라는 파일을 만들어 *windows.json* 붙여넣기 hello에 따라 콘텐츠입니다. Hello 다음에 대 한 고유한 값을 입력 합니다.
+*windows.json*이라는 파일을 만들고 다음 콘텐츠를 붙여 넣습니다. 다음에 대해 사용자 고유의 값을 입력합니다.
 
-| 매개 변수                           | 여기서 tooobtain |
+| 매개 변수                           | 얻을 수 있는 위치 |
 |-------------------------------------|----------------------------------------------------|
 | *client_id*                         | `$sp.applicationId`를 사용하여 서비스 사용자 ID 보기 |
 | *client_secret*                     | `$securePassword`에서 지정한 암호 |
 | *tenant_id*                         | `$sub.TenantId` 명령의 출력 |
 | *subscription_id*                   | `$sub.SubscriptionId` 명령의 출력 |
 | *object_id*                         | `$sp.Id`를 사용하여 서비스 사용자 개체 ID 보기 |
-| *managed_image_resource_group_name* | Hello 첫 번째 단계에서 만든 리소스 그룹의 이름 |
-| *managed_image_name*                | 만들어진 hello 관리 되는 디스크 이미지에 대 한 이름 |
+| *managed_image_resource_group_name* | 첫 번째 단계에서 만든 리소스 그룹의 이름 |
+| *managed_image_name*                | 만들어진 관리되는 디스크 이미지의 이름 |
 
 ```json
 {
@@ -116,19 +116,19 @@ toobuild 이미지를 JSON 파일로 템플릿을 만듭니다. Hello 서식 파
 }
 ```
 
-이 서식 파일 빌드는 Windows Server 2016 VM을 IIS 설치를 다음 hello Sysprep 사용 하 여 VM을 일반화 하 여 합니다.
+이 템플릿은 Windows Server 2016 VM을 빌드하고 IIS를 설치한 다음 Sysprep을 사용하여 VM을 일반화합니다.
 
 
 ## <a name="build-packer-image"></a>Packer 이미지 작성
-로컬 컴퓨터에 설치 된 Packer 아직 없는 경우 [hello Packer 설치 지침을 따라](https://www.packer.io/docs/install/index.html)합니다.
+로컬 컴퓨터에 Packer를 아직 설치하지 않은 경우 [Packer 설치 지침을 따릅니다](https://www.packer.io/docs/install/index.html).
 
-Hello 이미지 프로그램 Packer를 지정 하 여 서식 파일을 다음과 같이 만듭니다.
+다음과 같이 Packer 템플릿 파일을 지정하여 이미지를 작성합니다.
 
 ```bash
 ./packer build windows.json
 ```
 
-Hello 명령 앞에서 hello 출력의 예는 다음과 같습니다.
+이전 명령에서 출력의 예는 다음과 같습니다.
 
 ```bash
 azure-arm output will be in this color.
@@ -147,25 +147,25 @@ azure-arm output will be in this color.
 ==> azure-arm: Deploying deployment template ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
 ==> azure-arm:  -> DeploymentName    : ‘pkrdppq0mthtbtt’
-==> azure-arm: Getting hello certificate’s URL ...
+==> azure-arm: Getting the certificate’s URL ...
 ==> azure-arm:  -> Key Vault Name        : ‘pkrkvpq0mthtbtt’
 ==> azure-arm:  -> Key Vault Secret Name : ‘packerKeyVaultSecret’
 ==> azure-arm:  -> Certificate URL       : ‘https://pkrkvpq0mthtbtt.vault.azure.net/secrets/packerKeyVaultSecret/8c7bd823e4fa44e1abb747636128adbb'
-==> azure-arm: Setting hello certificate’s URL ...
+==> azure-arm: Setting the certificate’s URL ...
 ==> azure-arm: Validating deployment template ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
 ==> azure-arm:  -> DeploymentName    : ‘pkrdppq0mthtbtt’
 ==> azure-arm: Deploying deployment template ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
 ==> azure-arm:  -> DeploymentName    : ‘pkrdppq0mthtbtt’
-==> azure-arm: Getting hello VM’s IP address ...
+==> azure-arm: Getting the VM’s IP address ...
 ==> azure-arm:  -> ResourceGroupName   : ‘packer-Resource-Group-pq0mthtbtt’
 ==> azure-arm:  -> PublicIPAddressName : ‘packerPublicIP’
 ==> azure-arm:  -> NicName             : ‘packerNic’
 ==> azure-arm:  -> Network Connection  : ‘PublicEndpoint’
 ==> azure-arm:  -> IP Address          : ‘40.76.55.35’
-==> azure-arm: Waiting for WinRM toobecome available...
-==> azure-arm: Connected tooWinRM!
+==> azure-arm: Waiting for WinRM to become available...
+==> azure-arm: Connected to WinRM!
 ==> azure-arm: Provisioning with Powershell...
 ==> azure-arm: Provisioning with shell script: /var/folders/h1/ymh5bdx15wgdn5hvgj1wc0zh0000gn/T/packer-powershell-provisioner902510110
     azure-arm: #< CLIXML
@@ -174,7 +174,7 @@ azure-arm output will be in this color.
     azure-arm: ------- -------------- ---------      --------------
     azure-arm: True    No             Success        {Common HTTP Features, Default Document, D...
     azure-arm: <Objs Version=“1.1.0.1” xmlns=“http://schemas.microsoft.com/powershell/2004/04"><Obj S=“progress” RefId=“0"><TN RefId=“0”><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N=“SourceId”>1</I64><PR N=“Record”><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj></Objs>
-==> azure-arm: Querying hello machine’s properties ...
+==> azure-arm: Querying the machine’s properties ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
 ==> azure-arm:  -> ComputeName       : ‘pkrvmpq0mthtbtt’
 ==> azure-arm:  -> Managed OS Disk   : ‘/subscriptions/guid/resourceGroups/packer-Resource-Group-pq0mthtbtt/providers/Microsoft.Compute/disks/osdisk’
@@ -190,11 +190,11 @@ azure-arm output will be in this color.
 ==> azure-arm:  -> Image Location            : ‘eastus’
 ==> azure-arm: Deleting resource group ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
-==> azure-arm: Deleting hello temporary OS disk ...
+==> azure-arm: Deleting the temporary OS disk ...
 ==> azure-arm:  -> OS Disk : skipping, managed disk was used...
 Build ‘azure-arm’ finished.
 
-==> Builds finished. hello artifacts of successful builds are:
+==> Builds finished. The artifacts of successful builds are:
 --> azure-arm: Azure.ResourceManagement.VMImage:
 
 ManagedImageResourceGroupName: myResourceGroup
@@ -202,17 +202,17 @@ ManagedImageName: myPackerImage
 ManagedImageLocation: eastus
 ```
 
-Hello 배포를 정리 하 고 hello provisioners 실행 Packer toobuild hello VM에 대 한 몇 가지 분 걸립니다.
+Packer가 VM을 빌드하고 프로비저너를 실행하고 배포를 정리하는 데 몇 분 정도 걸립니다.
 
 
 ## <a name="create-vm-from-azure-image"></a>Azure 이미지에서 VM 만들기
-된 hello Vm에 대 한 관리자 사용자 이름 및 암호 설정 [Get-credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential)합니다.
+[Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential)을 사용하여 VM의 관리자 사용자 이름과 암호를 설정합니다.
 
 ```powershell
 $cred = Get-Credential
 ```
 
-이제 [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm)을 사용하여 이미지에서 VM을 만들 수 있습니다. hello 다음 예제에서는 V *myVM* 에서 *myPackerImage*합니다.
+이제 [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm)을 사용하여 이미지에서 VM을 만들 수 있습니다. 다음 예제에서는 *myPackerImage*에서 *myVM*이라는 VM을 만듭니다.
 
 ```powershell
 # Create a subnet configuration
@@ -264,7 +264,7 @@ $nic = New-AzureRmNetworkInterface `
     -PublicIpAddressId $publicIP.Id `
     -NetworkSecurityGroupId $nsg.Id
 
-# Define hello image created by Packer
+# Define the image created by Packer
 $image = Get-AzureRMImage -ImageName myPackerImage -ResourceGroupName $rgName
 
 # Create a virtual machine configuration
@@ -276,11 +276,11 @@ Add-AzureRmVMNetworkInterface -Id $nic.Id
 New-AzureRmVM -ResourceGroupName $rgName -Location $location -VM $vmConfig
 ```
 
-몇 분 toocreate hello VM이 필요합니다.
+VM을 만드는 데 몇 분이 걸립니다.
 
 
 ## <a name="test-vm-and-iis"></a>VM 및 IIS 테스트
-Hello를 사용 하 여 VM의 공용 IP 주소 가져오기 [Get AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress)합니다. hello 다음 예제에서는 가져옵니다 hello IP 주소를 *myPublicIP* 앞에서 만든:
+[Get-AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress)를 사용하여 VM의 공용 IP 주소를 가져옵니다. 다음 예제에서는 앞서 만든 *myPublicIP*의 IP 주소를 가져옵니다.
 
 ```powershell
 Get-AzureRmPublicIPAddress `
@@ -288,12 +288,12 @@ Get-AzureRmPublicIPAddress `
     -Name "myPublicIP" | select "IpAddress"
 ```
 
-그런 다음 tooa 웹 브라우저에서 hello 공용 IP 주소를 입력할 수 있습니다.
+그런 다음 웹 브라우저에 공용 IP 주소를 입력할 수 있습니다.
 
 ![IIS 기본 사이트](./media/build-image-with-packer/iis.png) 
 
 
 ## <a name="next-steps"></a>다음 단계
-이 예제에서는 IIS가 이미 설치 된 Packer toocreate VM 이미지를 사용 합니다. 이 VM 이미지 toodeploy 앱 tooVMs hello Team Services, Ansible, Chef 또는 Puppet를 사용 하 여 이미지에서에서 만든 같은 기존 배포 워크플로 함께 사용할 수 있습니다.
+이 예제에서는 이미 설치된 IIS를 사용하여 VM 이미지를 만드는 데 Packer를 사용했습니다. Team Services, Ansible, Chef 또는 Puppet를 사용하여 이미지에서 만든 VM에 앱을 배포하는 것과 같은 기존 배포 워크플로와 함께 이 VM 이미지를 사용할 수 있습니다.
 
 다른 Windows 배포판에 대한 추가 예제 Packer 템플릿은 [이 GitHub 리포지토리](https://github.com/hashicorp/packer/tree/master/examples/azure)를 참조하세요.

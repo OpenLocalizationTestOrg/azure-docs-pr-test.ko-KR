@@ -1,6 +1,6 @@
 ---
-title: "php aaaHow toouse 서비스 버스 큐 | Microsoft Docs"
-description: "Azure에서 서비스 버스 toouse 큐 대기 하는 방법에 대해 알아봅니다. 코드 샘플은 PHP로 작성되었습니다."
+title: "PHP에서 Service Bus 큐를 사용하는 방법 | Microsoft Docs"
+description: "Azure에서 서비스 버스 큐를 사용하는 방법에 대해 알아봅니다. 코드 샘플은 PHP로 작성되었습니다."
 services: service-bus-messaging
 documentationcenter: php
 author: sethmanheim
@@ -14,42 +14,42 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: sethm
-ms.openlocfilehash: 8cf233176029b679d172eaf713632087beca5e4e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3514812f7f087582035dad5d9a4d620652aa4da9
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="how-toouse-service-bus-queues-with-php"></a>Php toouse 서비스 버스 큐 대기 하는 방법
+# <a name="how-to-use-service-bus-queues-with-php"></a>PHP에서 Service Bus 큐를 사용하는 방법
 [!INCLUDE [service-bus-selector-queues](../../includes/service-bus-selector-queues.md)]
 
-이 가이드에서는 toouse 서비스 버스 큐입니다. hello PHP로 작성 된 100 개의 샘플과 hello를 사용 하 여 [PHP 용 Azure SDK](../php-download-sdk.md)합니다. hello 가이드에서 다루는 시나리오 포함 **큐를 만드는**, **메시지 보내기 및 받기**, 및 **큐 삭제**합니다.
+이 가이드에서는 서비스 버스 큐를 사용하는 방법을 보여 줍니다. 샘플은 PHP로 작성되었으며 [PHP용 Azure SDK](../php-download-sdk.md)를 사용합니다. 여기서 다루는 시나리오에는 **큐 만들기**, **메시지 보내기 및 받기**, **큐 삭제** 등이 포함됩니다.
 
 [!INCLUDE [howto-service-bus-queues](../../includes/howto-service-bus-queues.md)]
 
 ## <a name="create-a-php-application"></a>PHP 응용 프로그램 만들기
-hello Azure Blob 서비스에 액세스 하는 PHP 응용 프로그램을 만들기 위한 요구 사항은 hello만 hello hello에 클래스 참조 [PHP 용 Azure SDK](../php-download-sdk.md) 에서 코드 내에서. 응용 프로그램 또는 메모장 모든 개발 도구 toocreate를 사용할 수 있습니다.
+Azure Blob service에 액세스하는 PHP 응용 프로그램을 만드는 데 유일한 요구 사항은 코드 내에서 [PHP용 Azure SDK](../php-download-sdk.md)의 클래스를 참조하는 것입니다. 어떠한 개발 도구를 사용해도 응용 프로그램 또는 메모장을 만들 수 있습니다.
 
 > [!NOTE]
-> PHP 설치 hello 있어야 [OpenSSL 확장](http://php.net/openssl) 설치 되어 있고 활성화 합니다.
+> PHP를 설치하려면 [OpenSSL 확장](http://php.net/openssl)도 설치되어 있고 사용하도록 설정되어 있어야 합니다.
 > 
 > 
 
 이 가이드에서는 PHP 응용 프로그램 내에서 로컬로 또는 Azure 웹 역할, 작업자 역할 또는 웹 사이트 내에서 실행되는 코드에서 호출할 수 있는 서비스 기능을 사용합니다.
 
-## <a name="get-hello-azure-client-libraries"></a>Hello Azure 클라이언트 라이브러리 가져오기
+## <a name="get-the-azure-client-libraries"></a>Azure 클라이언트 라이브러리 가져오기
 [!INCLUDE [get-client-libraries](../../includes/get-client-libraries.md)]
 
-## <a name="configure-your-application-toouse-service-bus"></a>사용자 응용 프로그램 toouse 서비스 버스를 구성 합니다.
-toouse hello 서비스 버스 큐 Api를 다음 hello지 않습니다.
+## <a name="configure-your-application-to-use-service-bus"></a>서비스 버스를 사용하도록 응용 프로그램 구성
+서비스 버스 큐 API를 사용하려면 다음을 수행합니다.
 
-1. Hello를 사용 하 여 참조 hello 자동 로더에 파일 [require_once] [ require_once] 문.
+1. [require_once][require_once] 문을 사용하여 자동 로더 파일을 참조합니다.
 2. 사용할 수 있는 모든 클래스 참조
 
-hello 다음 예제에서는 어떻게 tooinclude hello 자동 로더 파일과 참조 hello `ServicesBuilder` 클래스입니다.
+다음 예제에서는 자동 로더 파일을 포함하고 `ServicesBuilder` 클래스를 참조하는 방법을 보여 줍니다.
 
 > [!NOTE]
-> 이 예제 (및이 문서의 다른 예제) 작성기를 통해 Azure에 대 한 hello PHP 클라이언트 라이브러리를 설치 했다고 가정 합니다. 수동으로 또는 배 패키지로 hello 라이브러리를 설치 하는 경우에 hello 참조 해야 **WindowsAzure.php** 자동 로더에 파일입니다.
+> 이 예제 및 이 문서의 다른 예제에서는 작성기를 통해 Azure용 PHP 클라이언트 라이브러리를 설치했다고 가정합니다. 라이브러리를 수동으로 또는 PEAR 패키지로 설치한 경우 **WindowsAzure.php** 자동 로더 파일을 참조해야 합니다.
 > 
 > 
 
@@ -58,25 +58,25 @@ require_once 'vendor/autoload.php';
 use WindowsAzure\Common\ServicesBuilder;
 ```
 
-아래의 hello 예제 hello `require_once` hello 예제 tooexecute에 필요한 hello 클래스가 참조 하지만 문에 항상 표시 됩니다.
+아래 예제에서 `require_once` 문은 항상 표시되지만 예제를 실행하는 데 필요한 클래스만 참조됩니다.
 
 ## <a name="set-up-a-service-bus-connection"></a>서비스 버스 연결 설정
-서비스 버스 클라이언트 tooinstantiate 있어야 유효한 연결 문자열 형식:
+서비스 버스 클라이언트를 인스턴스화하려면 먼저 다음 형식의 유효한 연결 문자열이 있어야 합니다.
 
 ```
 Endpoint=[yourEndpoint];SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[Primary Key]
 ```
 
-여기서 `Endpoint` hello 형식의 일반적으로 `[yourNamespace].servicebus.windows.net`합니다.
+여기서 `Endpoint`는 일반적으로 `[yourNamespace].servicebus.windows.net` 형식입니다.
 
-toocreate hello를 사용 해야 하는 모든 Azure 서비스 클라이언트 `ServicesBuilder` 클래스입니다. 다음을 수행할 수 있습니다.
+Azure 서비스 클라이언트를 만들려면 `ServicesBuilder` 클래스를 사용해야 합니다. 다음을 수행할 수 있습니다.
 
-* Hello 연결을 통과할 tooit 직접 문자열입니다.
-* 사용 하 여 hello **CloudConfigurationManager (CCM)** toocheck hello 연결 문자열에 대 한 여러 외부 원본:
+* 연결 문자열을 직접 전달합니다.
+* **CCM(CloudConfigurationManager)** 을 사용하여 여러 외부 소스에서 연결 문자열을 확인할 수 있습니다.
   * 기본적으로 하나의 외부 소스, 환경 변수에 대한 지원이 제공됩니다.
-  * Hello를 확장 하 여 새 원본을 추가할 수 있습니다 `ConnectionStringSource` 클래스
+  * `ConnectionStringSource` 클래스를 확장하여 새 소스를 추가할 수 있습니다.
 
-Hello 여기에 설명 된 예제를 보려면 hello 연결 문자열은 직접 전달 합니다.
+여기에 설명된 예제의 경우 연결 문자열이 직접 전달됩니다.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -89,9 +89,9 @@ $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($
 ```
 
 ## <a name="create-a-queue"></a>큐 만들기
-Hello 통해 서비스 버스 큐에 대 한 관리 작업을 수행할 수 `ServiceBusRestProxy` 클래스입니다. A `ServiceBusRestProxy` hello를 통해 개체가 생성 된 `ServicesBuilder::createServiceBusService` hello 토큰 권한 toomanage 캡슐화 하는 적절 한 연결 문자열의 팩터리 메서드 것입니다.
+`ServiceBusRestProxy` 클래스를 사용하여 Service Bus 큐에 대한 관리 작업을 수행할 수 있습니다. `ServiceBusRestProxy` 개체는 관리에 필요한 토큰 사용 권한을 캡슐화하는 적절한 연결 문자열을 사용한 `ServicesBuilder::createServiceBusService` 팩터리 메서드를 통해 구성됩니다. 
 
-hello 방법을 예제와 다음 tooinstantiate는 `ServiceBusRestProxy` 호출 `ServiceBusRestProxy->createQueue` toocreate 라는 큐 `myqueue` 내에서 한 `MySBNamespace` 서비스 네임 스페이스:
+다음 예제에서는 `ServiceBusRestProxy`를 인스턴스화하고 `ServiceBusRestProxy->createQueue`을 호출하여 `MySBNamespace` 네임스페이스 내에 이름이 `myqueue`인 큐를 만드는 방법을 보여줍니다.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -120,12 +120,12 @@ catch(ServiceException $e){
 ```
 
 > [!NOTE]
-> Hello를 사용할 수 있습니다 `listQueues` 메서드를 `ServiceBusRestProxy` 네임 스페이스 내에서 지정 된 이름의 큐가 이미 있으면 toocheck 개체입니다.
+> `ServiceBusRestProxy` 개체의 `listQueues` 메서드를 사용하여 네임스페이스 내에 지정된 이름의 큐가 이미 있는지 확인할 수 있습니다.
 > 
 > 
 
-## <a name="send-messages-tooa-queue"></a>송신 메시지 tooa 큐
-메시지 tooa 서비스 버스 큐 toosend 응용 프로그램 호출 hello `ServiceBusRestProxy->sendQueueMessage` 메서드. 코드에서 보여 주는 방법을 다음 hello 메시지 toohello toosend `myqueue` 내에서 이전에 만든 큐는 `MySBNamespace` 서비스 네임 스페이스입니다.
+## <a name="send-messages-to-a-queue"></a>큐에 메시지 보내기
+Service Bus 큐에 메시지를 보내기 위해 응용 프로그램은 `ServiceBusRestProxy->sendQueueMessage` 메서드를 호출합니다. 다음 코드는 위에서 `MySBNamespace` 서비스 네임스페이스 내에서 이전에 만든 `myqueue` 큐에 메시지를 보내는 방법을 보여 줍니다.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -155,19 +155,19 @@ catch(ServiceException $e){
 }
 ```
 
-너무 (보내고 받은에서) 서비스 버스 큐는 hello의 인스턴스 메시지 [BrokeredMessage] [ BrokeredMessage] 클래스입니다. [BrokeredMessage] [ BrokeredMessage] 개체 toohold 사용 되는 사용자 지정 하는 응용 프로그램 관련 속성 및 임의 응용 프로그램 데이터의 본문이 되는 표준 메서드 및 속성 집합이 있습니다.
+Service Bus 큐로 보내고 받은 메시지는 [BrokeredMessage][BrokeredMessage] 클래스의 인스턴스입니다. [BrokeredMessage][BrokeredMessage] 개체에는 표준 메서드 집합과, 응용 프로그램별 사용자 지정 속성을 저장하는 데 사용되는 사전 및 임의 응용 프로그램 데이터 본문이 있습니다.
 
-서비스 버스 큐 최대 메시지 크기는 256KB hello 지원 [표준 계층](service-bus-premium-messaging.md) 및 hello에서 1 MB [Premium 계층](service-bus-premium-messaging.md)합니다. hello 표준 및 사용자 지정 응용 프로그램 속성을 포함 하는 hello 헤더는 64KB의 최대 크기를 가질 수 있습니다. 큐에 유지 하는 메시지의 hello 수를 제한 하지 않으며 cap hello 총 크기는 큐에서 대기 하는 hello 메시지에입니다. 큐 크기의 상한은 5GB입니다.
+Service Bus 큐는 [표준 계층](service-bus-premium-messaging.md)에서 256KB의 최대 메시지 크기를 [프리미엄 계층](service-bus-premium-messaging.md)에서 1MB를 지원합니다. 표준 및 사용자 지정 응용 프로그램 속성이 포함된 헤더의 최대 크기는 64KB입니다. 한 큐에 저장되는 메시지 수에는 제한이 없지만 한 큐에 저장되는 총 메시지 크기는 제한됩니다. 큐 크기의 상한은 5GB입니다.
 
 ## <a name="receive-messages-from-a-queue"></a>큐에서 메시지 받기
 
-hello 가장 좋은 방법은 tooreceive 메시지 큐에서은 toouse는 `ServiceBusRestProxy->receiveQueueMessage` 메서드. 메시지는 [*ReceiveAndDelete*](/dotnet/api/microsoft.servicebus.messaging.receivemode.receiveanddelete) 및 [*PeekLock*](/dotnet/api/microsoft.servicebus.messaging.receivemode.peeklock)의 두 가지 모드로 받을 수 있습니다. **PeekLock** hello 기본값입니다.
+큐에서 메시지를 받는 가장 쉬운 방법은 `ServiceBusRestProxy->receiveQueueMessage` 메서드를 사용하는 것입니다. 메시지는 [*ReceiveAndDelete*](/dotnet/api/microsoft.servicebus.messaging.receivemode.receiveanddelete) 및 [*PeekLock*](/dotnet/api/microsoft.servicebus.messaging.receivemode.peeklock)의 두 가지 모드로 받을 수 있습니다. **PeekLock**이 기본값입니다.
 
-사용 하는 경우 [ReceiveAndDelete](/dotnet/api/microsoft.servicebus.messaging.receivemode.receiveanddelete) 모드에서는 수신은 1 단계 작업입니다; 즉, 서비스 버스 큐의 메시지에 대 한 읽기 요청을 받으면 hello 메시지 사용 되는 것을 표시 하 고 toohello 응용 프로그램을 반환 합니다. [ReceiveAndDelete](/dotnet/api/microsoft.servicebus.messaging.receivemode.receiveanddelete) 모드는 hello 가장 간단한 모델 이며는 응용 프로그램은 오류의 hello 이벤트에서 메시지를 처리 하지 허용할 수 없는 시나리오에 가장 적합 합니다. toounderstand hello는 hello 소비자 문제에 요청을 수신 하는 시나리오 및 후 처리 하기 전에 크래시 합니다. 서비스 버스 사용 되는 것을 다음 hello 응용 프로그램 다시 시작 되 고 메시지 사용을 시작할 때 hello 메시지를 표시 한 됩니다, 때문에 누락 됩니다 hello 메시지 했던 이전 toohello 크래시를 사용 합니다.
+[ReceiveAndDelete](/dotnet/api/microsoft.servicebus.messaging.receivemode.receiveanddelete) 모드를 사용하는 경우 수신은 1단계 작업입니다. 즉, Service Bus가 큐의 메시지에 대한 읽기 요청을 받으면 메시지를 이용되는 것으로 표시하고 응용 프로그램에 반환합니다. [ReceiveAndDelete](/dotnet/api/microsoft.servicebus.messaging.receivemode.receiveanddelete) 모드는 가장 단순한 모델이며, 응용 프로그램이 실패 이벤트 시 메시지를 처리하지 않아도 안전한 시나리오에서 효과적입니다. 이해를 돕기 위해 소비자가 수신 요청을 실행한 후 처리하기 전에 크래시되는 시나리오를 고려해 보세요. 서비스 버스는 메시지를 이용되는 것으로 표시하기 때문에 응용 프로그램이 다시 시작되고 메시지 소비를 다시 시작할 경우 크래시 전에 소비된 메시지가 누락됩니다.
 
-Hello 기본에서 [PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode.peeklock) 모드에서는 메시지를 표시 하므로 누락 된 메시지를 허용할 수 없는 가능한 toosupport 응용 프로그램 2 단계 작업을 지정 됩니다. 서비스 버스 요청을 받으면 hello 사용 되는 다음 메시지 toobe 찾습니다, tooprevent 잠급니다 다른 소비자가 수신할 toohello 응용 프로그램 반환 합니다. Hello hello의 두 번째 단계를 완료 hello 응용 프로그램 hello 메시지 처리를 완료 (또는 이후 처리를 위해 안정적으로 저장) 한 후 너무 hello 받은 메시지를 전달 하 여 수신 프로세스`ServiceBusRestProxy->deleteMessage`합니다. 서비스 버스 hello를 표시 하는 경우 `deleteMessage` 호출 hello 메시지를 사용 되 고 표시 하 고 hello 큐에서 제거 합니다.
+기본값인 [PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode.peeklock) 모드에서는 메시지 수신이 2단계 작업이므로 메시지 누락이 허용되지 않는 응용 프로그램을 지원할 수 있습니다. 서비스 버스는 요청을 받으면 소비할 다음 메시지를 찾아서 다른 소비자가 수신할 수 없도록 잠근 후 응용 프로그램에 반환합니다. 응용 프로그램은 메시지 처리를 완료하거나 추가 처리를 위해 안전하게 저장한 후에 받은 메시지를 `ServiceBusRestProxy->deleteMessage`에 전달하여 수신 프로세스의 두 번째 단계를 완료합니다. Service Bus는 `deleteMessage` 호출을 확인한 후 메시지를 이용되는 것으로 표시하고 큐에서 제거합니다.
 
-hello 방법을 예제와 다음 tooreceive 하 고 사용 하 여 메시지 처리 [PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode.peeklock) 모드 (hello 기본 모드).
+다음 예제에서는 [PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode.peeklock) 모드(기본 모드)를 사용하여 메시지를 받고 처리하는 방법을 보여 줍니다.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -180,7 +180,7 @@ use WindowsAzure\ServiceBus\Models\ReceiveMessageOptions;
 $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
 
 try    {
-    // Set hello receive mode tooPeekLock (default is ReceiveAndDelete).
+    // Set the receive mode to PeekLock (default is ReceiveAndDelete).
     $options = new ReceiveMessageOptions();
     $options->setPeekLock();
 
@@ -207,18 +207,18 @@ catch(ServiceException $e){
 }
 ```
 
-## <a name="how-toohandle-application-crashes-and-unreadable-messages"></a>Toohandle 응용 프로그램이 크래시 되는 방법 및 읽을 수 없는 메시지
+## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>응용 프로그램 작동 중단 및 읽을 수 없는 메시지를 처리하는 방법
 
-서비스 버스 기능 toohelp 정상적으로 응용 프로그램 또는 메시지를 처리 하는 데 문제가 오류 로부터 복구를 제공 합니다. 수신기 응용 프로그램 수 없는 경우 몇 가지 이유로 tooprocess 환영 메시지가 다음 hello를 호출할 수 있습니다 `unlockMessage` 메서드를 수신 하는 hello 메시지 (hello 대신 `deleteMessage` 메서드). Hello 큐 내에서 서비스 버스 toounlock hello 메시지 시키며 수신 다시 사용할 수 있는 toobe 확인, 사용자가 여를 많이 사용 응용 프로그램 또는 다른 소비 응용 프로그램에서 동일한 hello 중 하나입니다.
+서비스 버스는 응용 프로그램 오류나 메시지 처리 문제를 정상적으로 복구하는 데 유용한 기능을 제공합니다. 어떤 이유로든 수신자 응용 프로그램이 메시지를 처리할 수 없는 경우 받은 메시지에 대해 `deleteMessage` 메서드 대신 `unlockMessage` 메서드를 호출할 수 있습니다. 그러면 서비스 버스에서 큐 메시지의 잠금을 해제하므로 동일한 소비 응용 프로그램이나 다른 소비 응용 프로그램에서 메시지를 다시 받을 수 있습니다.
 
-또한 hello 큐 내에서 잠긴 메시지와 관련 된 제한 시간 집합과 hello 응용 프로그램 실패 하기 전에 hello 메시지 tooprocess hello 잠금 제한 시간이 만료 (예를 들어 hello 응용 프로그램이 충돌할 경우), 서비스 버스에서 hello 메시지를 잠금 해제 한 다음 자동으로 사용할 수 있는 toobe 수신 다시 확인 합니다.
+큐 내에서 잠긴 메시지와 연결된 제한 시간도 있으며, 응용 프로그램에서 잠금 제한 시간이 만료되기 전에 메시지를 처리하지 못하는 경우(예: 응용 프로그램이 크래시되는 경우) 서비스 버스가 메시지를 자동으로 잠금 해제하여 다시 받을 수 있게 합니다.
 
-Hello hello 응용 프로그램 이벤트 충돌 hello 메시지 처리 전후에 그러나 hello 전에 `deleteMessage` 요청이 발생 한 후 다시 시작할 때 hello 메시지 다시 전달한 toohello 응용 프로그램 됩니다. 이 이라고 하는데 *최소 한 번* 처리; 즉, 각 메시지는 한 번 이상 처리 되지만 특정 상황 hello에 동일한 메시지를 다시 배달 될 수 있습니다. 중복 처리가 다음 추가 추가 hello 시나리오 허용할 수 없는 경우 논리 tooapplications toohandle 중복 메시지 배달이 것이 좋습니다. 이 대개 달성 hello를 사용 하 여 `getMessageId` 메서드 hello 메시지를 배달 시도에서 일관적으로 유지 합니다.
+응용 프로그램이 메시지를 처리한 후 `deleteMessage` 요청이 실행되기 전에 크래시되는 경우 다시 시작될 때 메시지가 응용 프로그램에 다시 배달됩니다. 이를 *최소 한 번 이상 처리*라고 합니다. 즉, 각 메시지가 최소 한 번 이상 처리되지만 특정 상황에서는 동일한 메시지가 다시 배달될 수 있습니다. 중복 처리가 허용되지 않는 시나리오에서는 중복 메시지 배달을 처리하는 논리를 응용 프로그램에 추가하는 것이 좋습니다. 이 경우 대체로 배달 시도 간에 일정하게 유지되는 메시지의 `getMessageId` 메서드를 사용합니다.
 
 ## <a name="next-steps"></a>다음 단계
-서비스 버스 큐의 hello 기본 사항 학습 한, 했으므로 참조 [큐, 토픽 및 구독] [ Queues, topics, and subscriptions] 자세한 정보에 대 한 합니다.
+지금까지 Service Bus 큐의 기본 사항에 대해 알아보았습니다. 자세한 내용은 [큐, 토픽 및 구독][Queues, topics, and subscriptions]을 참조하세요.
 
-자세한 내용은 hello 또한 방문 [PHP 개발자 센터](https://azure.microsoft.com/develop/php/)합니다.
+자세한 내용은 [PHP 개발자 센터](https://azure.microsoft.com/develop/php/)를 참조하세요.
 
 [BrokeredMessage]: /dotnet/api/microsoft.servicebus.messaging.brokeredmessage
 [Queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md

@@ -1,6 +1,6 @@
 ---
-title: "Azure 로그 분석에서 로그 검색을 사용 하 여 aaaFind 데이터 | Microsoft Docs"
-description: "로그 검색 toocombine 사용 하면 사용자 환경 내에서 여러 원본의 모든 컴퓨터 데이터를 서로 연결 하 고 있습니다."
+title: "Azure Log Analytics에서 로그 검색을 사용하여 데이터 찾기 | Microsoft Docs"
+description: "로그 검색을 사용하면 사용자 환경 내에서 여러 소스의 컴퓨터 데이터를 서로 연결하고 결합할 수 있습니다."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,85 +14,85 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/26/2017
 ms.author: bwren
-ms.openlocfilehash: 1161857a0027f05726492417362cb24a8fe21ef8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bf237a837297cb8f1ab3a3340139133adcd2b244
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="find-data-using-log-searches-in-log-analytics"></a>Log Analytics에서 로그 검색을 사용하여 데이터 찾기
 
 >[!NOTE]
-> 이 문서에서는 로그 분석에 hello 현재 쿼리 언어를 사용 하 여 로그 검색을 설명 합니다.  작업 영역에는 업그레이드 된 toohello 되었으면 [새 로그 분석 쿼리 언어](log-analytics-log-search-upgrade.md), 너무 참조 해야 하는 다음[로그 분석 (새)에 있는 이해 로그 검색](log-analytics-log-search-new.md)합니다.
+> 이 문서에서는 Log Analytics에서 최신 쿼리 언어를 사용하는 로그 검색에 대해 설명합니다.  작업 영역을 [새 Log Analytics 쿼리 언어](log-analytics-log-search-upgrade.md)로 업그레이드한 경우에는 [Log Analytics의 로그 검색 이해(신규)](log-analytics-log-search-new.md)를 참조해야 합니다.
 
 
-사용자 환경 내에서 여러 원본의 모든 컴퓨터 데이터를 서로 연결 하 고 로그 분석의 hello 핵심은 toocombine 수 있는 hello 로그 검색 기능. 솔루션에서 특정 문제 영역 주위에 피벗 된 메트릭을 하면 로그 검색 toobring 제공 되어 있습니다.
+Log Analytics의 핵심은 사용자 환경 내에서 여러 원본의 모든 컴퓨터 데이터를 서로 연결하고 결합할 수 있게 하는 로그 검색 기능입니다. 솔루션도 로그 검색에서 제공되어 특정 문제 영역 주위에 피벗된 메트릭을 가져옵니다.
 
-Hello 검색 페이지에서 쿼리를 만들 수 있습니다 및 다음 검색 하는 경우 필터링 할 수 있습니다 hello 결과 패싯 컨트롤을 사용 하 여 합니다. 또한 결과 tootransform 고급 쿼리, 필터 및 보고서를 만들 수 있습니다.
+검색 페이지에서, 쿼리를 만든 다음 검색 시 패싯 컨트롤을 사용하여 결과를 필터링할 수 있습니다. 변환, 필터링 및 결과를 보고하는 고급 쿼리를 만들 수도 있습니다.
 
-일반적인 로그 검색 쿼리는 대부분의 솔루션 페이지에 표시됩니다. Hello OMS 콘솔에서 타일을 클릭 하거나 로그 검색을 사용 하 여 hello 항목에 대 한 세부 정보 tooview을 tooother 항목에서 드릴 수 있습니다.
+일반적인 로그 검색 쿼리는 대부분의 솔루션 페이지에 표시됩니다. OMS 콘솔에서는 로그 검색을 사용하여 타일을 클릭하거나 다른 항목을 확인하여 항목에 대한 세부 정보를 볼 수 있습니다.
 
-이 자습서에서는 살펴봅니다 예제 toocover 모든 hello 기본 로그 검색을 사용 하는 경우.
+이 자습서에서는 로그 검색을 사용하는 경우 모든 기본 사항을 설명하는 예제를 살펴봅니다.
 
-다음에 빌드 방법을 toouse hello 구문 tooextract hello insights에서에서 원하는 hello 데이터에 대 한 실용적인 사용 사례에 대 한 이해가 얻을 수 있도록 알아보고 간단 하 고 실용적인 예제부터 시작 하겠습니다.
+간단하고 실용적인 예제부터 시작하고 이를 확장하므로 구문을 사용하여 데이터에서 원하는 통찰력을 추출하는 방법에 대한 실용적인 사용 사례를 이해할 수 있습니다.
 
-검색 기법을 알아본 후 hello을 검토할 수 있습니다 [로그 분석 로그 검색 참조](log-analytics-search-reference.md)합니다.
+검색 기술을 숙지한 후에 [Log Analytics log search reference](log-analytics-search-reference.md)(Log Analytics 로그 검색 참조)를 검토할 수 있습니다.
 
 ## <a name="use-basic-filters"></a>기본 필터 사용
-hello 먼저 tooknow는 hello 첫 번째 부분의 앞 검색 쿼리를 "|" 세로줄 문자는 항상 한 *필터*합니다. TSQL에서 WHERE 절로 결정의 생각할 수 *어떤* hello OMS 데이터 저장소에서 데이터 toopull의 하위 집합입니다. Hello 데이터 저장소에서 검색은 대개 지정 하므로 쿼리가 WHERE 절 hello로 시작 하는 자연 tooextract, 원하는 hello 데이터의 hello 특성입니다.
+먼저 알아야 할 점은 검색 쿼리의 첫 번째 부분("|" 세로줄 문자 앞에 나오는)은 항상 *필터*라는 점입니다. TSQL에서 WHERE 절로 생각할 수 있으며 이는 OMS 데이터 저장소에서 *어떤* 데이터의 하위 집합을 가져올지 결정합니다. 데이터 저장소에 대한 검색은 대개 추출하려는 데이터의 특성을 지정하므로 쿼리가 WHERE 절과 함께 시작하는 것이 자연스럽습니다.
 
-hello 사용할 수 있는 가장 기본적인 필터는 *키워드*'오류' 또는 '시간 제한' 또는 컴퓨터 이름과 같은 합니다. 이러한 유형의 간단한 쿼리는 일반적으로 다양 한 도형을 반환할 hello 내 데이터의 동일한 결과 집합입니다. 로그 분석에 다른 때문에 이것이 *형식* hello 시스템의 데이터입니다.
+사용할 수 있는 가장 기본적인 필터는 ‘오류’ 또는 ‘시간 제한’ 또는 컴퓨터 이름과 같은 *키워드*입니다. 이러한 유형의 간단한 쿼리는 일반적으로 동일한 결과 집합 내에서 다양한 모양의 데이터를 반환합니다. Log Analytics는 시스템에 다양한 데이터 *유형* 이 있기 때문입니다.
 
-### <a name="tooconduct-a-simple-search"></a>단순 검색 tooconduct
-1. Hello OMS 포털에서 클릭 **로그 검색**합니다.  
+### <a name="to-conduct-a-simple-search"></a>단순 검색을 수행하려면
+1. OMS 포털에서 **로그 검색**을 클릭합니다.  
     ![검색 타일](./media/log-analytics-log-searches/oms-overview-log-search.png)
-2. Hello 쿼리 필드에 입력 `error` 클릭 하 고 **검색**합니다.  
+2. 쿼리 필드에서 `error`를 입력하고 **검색**을 클릭합니다.  
     ![검색 오류](./media/log-analytics-log-searches/oms-search-error.png)  
-    에 대 한 예를 들어 hello 쿼리 `error` hello 다음 이미지 반환 100000 **이벤트** 레코드 (로그 관리에서 수집), 18 **ConfigurationAlert** 레코드 (구성으로 생성 합니다. 평가) 및 12 **ConfigurationChange** 레코드 (hello 변경 내용 추적에서 캡처) 합니다.   
+    예를 들어, 다음 이미지에서 `error`에 대한 쿼리는 100,000건의 **이벤트** 레코드(로그 관리에서 수집), 18건의 **ConfigurationAlert** 레코드(구성 평가에서 생성) 및 12건의 **ConfigurationChange** 레코드(변경 내용 추적에서 캡처)를 반환합니다.   
     ![검색 결과](./media/log-analytics-log-searches/oms-search-results01.png)  
 
-이러한 필터는 실제로 개체 유형/클래스가 아닙니다. *형식* 은 한 개의 태그, 또는 속성, 또는 문자열/이름/범주 이며 있는 tooa 하나의 데이터를 연결 합니다. Hello 시스템의 일부 문서 분류 **유형: ConfigurationAlert** 고 일부는 **유형: 성능**, 또는 **유형: 이벤트**등. 각 검색 결과, 문서, 레코드 또는 항목의 데이터를 이러한 각 작업에 대 한 hello 원시 속성 및 해당 값 표시 및 사용 하 여 이러한 필드 이름은 toospecify hello 필터에서 tooretrieve hello 레코드만 하려는 경우 여기서 hello 필드에 지정 된이 값입니다.
+이러한 필터는 실제로 개체 유형/클래스가 아닙니다. *유형* 은 한 개의 태그, 속성 또는 문자열/이름/범주이며 하나의 데이터에 첨부됩니다. 시스템의 일부 문서는 **Type:ConfigurationAlert**로 태그가 지정되고 일부는 **Type:Perf** 또는 **Type:Event** 등으로 태그가 지정됩니다. 각 검색 결과, 문서, 레코드 또는 항목은 각 데이터에 대한 원시 속성 및 값을 표시하고 필드에 지정된 값이 있는 레코드만 검색하려는 경우 필드 이름을 사용하여 필터에 지정할 수 있습니다.
 
-*유형*은 실제로 모든 레코드가 있는 필드이며 다른 필드와 다르지 않습니다. Hello 형식 필드의 hello 값을 기준으로 설정 되었습니다. 해당 레코드를 다른 형태 또는 모습을 갖습니다. 참고로, **유형 = Perf**, 또는 **유형 =** 성능 데이터 또는 이벤트에 대 한 toolearn tooquery 할 hello 구문 이기도 합니다.
+*유형*은 실제로 모든 레코드가 있는 필드이며 다른 필드와 다르지 않습니다. 형식 필드의 값을 기반으로 설정되었습니다. 해당 레코드를 다른 형태 또는 모습을 갖습니다. 부수적으로, **Type=Perf** 또는 **Type=Event**는 성능 데이터 또는 이벤트를 쿼리하는 방법을 알아보아야 하는 구문입니다.
 
-Hello 필드 이름 및 hello 값 앞에 콜론 (:) 또는 등호 (=) 중 하나를 사용할 수 있습니다. **Type: Event** 및 **유형 =** 에 해당 하는 의미를 선택할 수 있습니다 hello 원하는 스타일입니다.
+필드 이름 뒤 또는 값 앞에 콜론 (:) 또는 등호 (=) 중 하나를 사용할 수 있습니다. **Type:Event** and **Type=Event** 는 의미가 동일하며 선호하는 스타일을 선택할 수 있습니다.
 
-따라서 경우 hello 형식 = Perf 레코드 'CounterName' 라는 필드가 있는 다음 비슷한 쿼리를 작성할 수 있습니다 `Type=Perf CounterName="% Processor Time"`합니다.
+따라서 Type=Perf 레코드에 'CounterName'이라는 필드가 있는 경우 `Type=Perf CounterName="% Processor Time"`와 비슷한 쿼리를 작성할 수 있습니다.
 
-이렇게 하면 있습니다 hello 성능 데이터만 hello 성능 카운터 이름 "% Processor Time"입니다.
+이렇게 하면 성능 카운터 이름이 "% 프로세서 시간"인 성능 데이터만 얻을 수 있습니다.
 
-### <a name="toosearch-for-processor-time-performance-data"></a>프로세서 시간 성능 데이터에 대 한 toosearch
-* Hello 검색 쿼리 필드에 입력`Type=Perf CounterName="% Processor Time"`
+### <a name="to-search-for-processor-time-performance-data"></a>프로세서 시간 성능 데이터를 검색 하려면
+* 검색 쿼리 필드에 `Type=Perf CounterName="% Processor Time"`
 
-더 정확 하 게 하 고 사용할 수도 있습니다 **InstanceName = _'total '** Windows 성능 카운터는 hello 쿼리 합니다. 또한 패싯 및 다른 **field:value**을 선택할 수 있습니다. hello 필터 hello 쿼리 표시줄에 tooyour 필터를 자동으로 추가 됩니다. 다음 이미지는 hello에서 볼 수 있습니다. 표시 여기서 tooclick tooadd **InstanceName: '_Total'** 아무것도 입력 하지 않고 toohello 쿼리 합니다.
+또한 더욱 구체적 지정이 가능하여 쿼리에서 Windows 성능 카운터인 **InstanceName=_'Total'**를 사용할 수 있습니다. 또한 패싯 및 다른 **field:value**을 선택할 수 있습니다. 필터는 쿼리 표시줄의 필터에 자동으로 추가됩니다. 다음 그림에서 볼 수 있습니다. 아무것도 입력하지 않고 쿼리에 **InstanceName:’_Total’**을 추가하려는 경우 클릭할 위치를 보여줍니다.
 
 ![검색 패싯](./media/log-analytics-log-searches/oms-search-facet.png)
 
 쿼리는 `Type=Perf CounterName="% Processor Time" InstanceName="_Total"`
 
-이 예제에서는 toospecify 없는 **유형 = Perf** tooget toothis 결과입니다. Hello 필드 CounterName 및 InstanceName 종류의 레코드에만 존재 하므로 = Perf, hello 쿼리는 모호한 tooreturn hello 동일한 결과 더 긴 이전과 hello:
+이 예제에서 이 결과를 얻으려면 **Type=Perf** 를 지정할 필요가 없습니다. 필드 CounterName 및 InstanceName는 Type=Perf의 레코드에만 존재하므로 쿼리는 더 긴 이전과 같은 결과를 반환할 만큼 구체적입니다.
 
 ```
 CounterName="% Processor Time" InstanceName="_Total"
 ```
 
-이 hello 쿼리에서 모든 hello 필터에 있는 것으로 평가 되기 때문 *AND* 서로 합니다. 효과적으로 hello toohello 조건을 추가 하면 필드 더 할수록 더 구체적이 고 구체화 된 결과입니다.
+쿼리에서 모든 필터가 서로 *AND* 에 있는 것으로 평가되기 때문입니다. 효과적으로 기준에 더 많은 필드를 더할수록 더 구체적이고 구체화된 결과는 적어집니다.
 
-예를 들어 hello 쿼리 `Type=Event EventLog="Windows PowerShell"` 는 너무 동일`Type=Event AND EventLog="Windows PowerShell"`합니다. 로그인 하 고 hello Windows PowerShell 이벤트 로그에서 수집 된 모든 이벤트를 반환 합니다. 추가 하는 경우 필터를 여러 번 반복 해 서 hello 동일한 패싯을 다음 hello 문제는 순수 하 게 외관상 hello 검색 표시줄을 채울 수 있지만 여전히 결과 반환 hello 같은 hello 암시적 AND 연산자가 항상 있기 때문에 선택 하 여 합니다.
+예를 들어 쿼리 `Type=Event EventLog="Windows PowerShell"`는 `Type=Event AND EventLog="Windows PowerShell"`와 동일합니다. Windows PowerShell 이벤트 로그에서 로그인되고 수집된 모든 이벤트를 반환합니다. 동일한 패싯을 반복해서 선택하여 필터를 여러 번 추가하는 경우 이는 순수하게 외관상의 문제입니다. 검색 표시줄을 채울 수 있지만 암시적 AND 연산자가 항상 있기 때문에 여전히 동일한 결과를 반환합니다.
 
-NOT 연산자를 명시적으로 사용 하 여 쉽게 암시적 AND 연산자 hello를 되돌릴 수 있습니다. 예:
+NOT 연산자를 명시적으로 사용하여 쉽게 암시적 AND 연산자를 역방향으로 사용할 수 있습니다. 예:
 
-`Type:Event NOT(EventLog:"Windows PowerShell")`또는 이와 동등한 `Type=Event EventLog!="Windows PowerShell"` hello Windows PowerShell 로그 되지 않은 모든 로그에서 모든 이벤트를 반환 합니다.
+`Type:Event NOT(EventLog:"Windows PowerShell")` 또는 이와 동일한 `Type=Event EventLog!="Windows PowerShell"`은 Windows PowerShell 로그가 아닌 다른 모든 로그의 모든 이벤트를 반환합니다.
 
-또는 'OR'같은 다른 부울 연산자를 사용할 수 있습니다. hello 다음 쿼리는 hello에 대 한 이벤트 로그는 두 응용 프로그램 또는 시스템 레코드를 반환 합니다.
+또는 'OR'같은 다른 부울 연산자를 사용할 수 있습니다. 다음 쿼리는 어떤 EventLog가 응용 프로그램 OR 시스템인지에 대한 레코드를 반환합니다.
 
 ```
 EventLog=Application OR EventLog=System
 ```
 
-위의 쿼리는 hello를 사용 하 여 항목 얻을 수 있습니다 both 로그에 대 한 hello에서 동일한 결과 집합입니다.
+위의 쿼리를 사용하여 동일한 결과 집합에서 두 로그 항목을 얻을 수 있습니다.
 
-그러나 hello 또는 hello 암시적 AND 두어 위치를 제거 하면 다음 hello 다음 쿼리 생성 하지 않습니다 결과 tooBOTH 로그에 속하는 이벤트 로그 항목이 없기 때문에 있습니다. 각 이벤트 로그 항목 tooonly hello 두 로그 중 하나 작성 되었습니다.
+그러나 암시적 AND 상태로 두어 OR을 제거하면 BOTH 로그에 속하는 이벤트 로그 항목이 없기 때문에 다음의 쿼리는 결과를 생성하지 않습니다. 각 이벤트 로그 항목은 두 로그 중 하나에 작성되었습니다.
 
 ```
 EventLog=Application EventLog=System
@@ -100,7 +100,7 @@ EventLog=Application EventLog=System
 
 
 ## <a name="use-additional-filters"></a>추가 필터 사용
-hello 다음 쿼리는 반환 데이터를 전송 하는 모든 hello 컴퓨터에 대 한 2 개의 이벤트 로그에 대 한 항목입니다.
+다음 쿼리는 데이터를 전송하는 모든 컴퓨터에 대한 2개의 이벤트 로그에 항목을 반환합니다.
 
 ```
 EventLog=Application OR EventLog=System
@@ -108,40 +108,40 @@ EventLog=Application OR EventLog=System
 
 ![검색 결과](./media/log-analytics-log-searches/oms-search-results03.png)
 
-Hello 필드 또는 필터 중 하나를 선택 하면 hello 쿼리 tooa 제외 특정 컴퓨터를 모든 다른 좁혀집니다. hello 결과 쿼리는 hello 다음과 유사 합니다.
+필드 또는 필터 중 하나를 선택하면 다른 모두를 제외하고 특정 컴퓨터에 대한 쿼리 범위가 좁혀집니다. 결과 쿼리는 다음과 유사합니다.
 
 ```
 EventLog=Application OR EventLog=System Computer=SERVER1.contoso.com
 ```
 
-Hello 때문에 해당 하는 toohello 다음 변수인 암시적 and.
+암시적 AND 때문에 다음과 같습니다.
 
 ```
 EventLog=Application OR EventLog=System AND Computer=SERVER1.contoso.com
 ```
 
-각 쿼리 명시적 순서에 따라 hello에 평가 됩니다. 참고 hello 괄호가 있습니다.
+각 쿼리는 다음과 같은 명시적 순서로 평가됩니다. 괄호에 유의하십시오.
 
 ```
 (EventLog=Application OR EventLog=System) AND Computer=SERVER1.contoso.com
 ```
 
-Hello 이벤트 로그 필드와 마찬가지로 추가 하 여 특정 컴퓨터 집합에 대 한 데이터를 검색할 수 있습니다 또는 합니다. 예:
+이벤트 로그 필드와 마찬가지로 OR을 추가하여 특정 컴퓨터 집합에 대한 데이터를 검색할 수 있습니다. 예:
 
 ```
 (EventLog=Application OR EventLog=System) AND (Computer=SERVER1.contoso.com OR Computer=SERVER2.contoso.com OR Computer=SERVER3.contoso.com)
 ```
 
-마찬가지로, 다음 쿼리 반환이이 hello **CPU 시간 %** hello 두 컴퓨터를 선택 합니다.
+마찬가지로 다음 쿼리는 선택한 두 컴퓨터에 **CPU 시간 (%)** 을 반환합니다.
 
 ```
 CounterName="% Processor Time"  AND InstanceName="_Total" AND (Computer=SERVER1.contoso.com OR Computer=SERVER2.contoso.com)
 ```
 
 ### <a name="field-types"></a>필드 형식
-필터를 만들 때 다양 한 유형의 필드를 로그 검색에서 반환 된 작업의 hello 차이 이해 해야 합니다.
+필터를 만들 때 로그 검색에서 반환된 다양한 유형의 필드로 작업할 때의 차이점을 이해해야 합니다.
 
-**검색 가능한 필드**는 검색 결과에 파란색으로 표시됩니다.  Hello 다음과 같은 검색 조건 특정 toohello 필드에 검색 가능한 필드를 사용할 수 있습니다.
+**검색 가능한 필드**는 검색 결과에 파란색으로 표시됩니다.  검색 조건에서 다음과 같은 필드에 국한되는 검색 가능한 필드를 사용할 수 있습니다.
 
 ```
 Type: Event EventLevelName: "Error"
@@ -149,7 +149,7 @@ Type: SecurityEvent Computer:Contains("contoso.com")
 Type: Event EventLevelName IN {"Error","Warning"}
 ```
 
-**자유 텍스트 검색 가능 필드**는 검색 결과에서 회색으로 표시됩니다.  검색 가능한 필드와 같은 검색 조건 특정 toohello 필드와 사용할 수 없습니다.  값 형식은 hello 다음과 같은 모든 필드에서 쿼리를 수행할 때 검색 됩니다.
+**자유 텍스트 검색 가능 필드**는 검색 결과에서 회색으로 표시됩니다.  검색 가능한 필드와 같은 필드에만 해당되는 검색 조건은 이러한 필드에 사용할 수 없습니다.  이러한 필드는 다음과 같은 모든 필드에서 쿼리를 수행할 때만 검색됩니다.
 
 ```
 "Error"
@@ -158,43 +158,43 @@ Type: Event "Exception"
 
 
 ### <a name="boolean-operators"></a>부울 연산자
-날짜/시간 및 숫자 필드를 사용하여 *보다 큼*, *보다 작음*, *보다 작거나 같음*을 사용하는 값을 검색할 수 있습니다. 와 같은 간단한 연산자를 사용할 수 있습니다 >, <>, =, < =,! = hello 쿼리 검색 표시줄에 있습니다.
+날짜/시간 및 숫자 필드를 사용하여 *보다 큼*, *보다 작음*, *보다 작거나 같음*을 사용하는 값을 검색할 수 있습니다. 쿼리 검색 표시줄에서 >, < , >=, <= , != 와 같은 간단한 연산자를 사용할 수 있습니다.
 
-특정 기간에 특정 이벤트 로그를 쿼리할 수 있습니다. 예를 들어 hello 지난 24 시간 동안은 표현 다음 mnemonic 식 hello로 합니다.
+특정 기간에 특정 이벤트 로그를 쿼리할 수 있습니다. 예를 들어 지난 24시간을 다음 mnemonic 식으로 표현합니다.
 
 ```
 EventLog=System TimeGenerated>NOW-24HOURS
 ```
 
 
-#### <a name="toosearch-using-a-boolean-operator"></a>부울 연산자를 사용 하 여 toosearch
-* Hello 검색 쿼리 필드에 입력`EventLog=System TimeGenerated>NOW-24HOURS`  
+#### <a name="to-search-using-a-boolean-operator"></a>부울 연산자를 사용하여 검색하려면
+* 검색 쿼리 필드에 `EventLog=System TimeGenerated>NOW-24HOURS`  
     ![부울 값을 사용하여 검색](./media/log-analytics-log-searches/oms-search-boolean.png)
 
-제어할 수 있지만 시간 간격을 그래픽으로 hello 하 고 대부분의 시간 toodo 발생 하는 이점을 tooincluding hello 쿼리에 직접 시간 필터를 설정할 수 있습니다. 예를 들어이 방식은 효과적 hello에 관계 없이 각 타일에 대 한 hello 시간을 재정의할 수 대시보드와 *글로벌* hello 대시보드 페이지에서 시간 선택기입니다. 자세한 내용은 [대시보드에서 시간 문제](http://cloudadministrator.wordpress.com/2014/10/19/system-center-advisor-restarted-time-matters-in-dashboard-part-6/)를 참조하십시오.
+시간 간격을 그래픽으로 제어할 수 있지만, 그렇게 하려는 대부분의 시간에 쿼리에 직접 하는 시간 필터를 포함하여 장점이 있습니다. 예를 들어 이 방식은 대시보드 페이지에서 *전역* 시간 선택기와 무관하게 각 타일에 대한 시간을 재정의할 수 있는 경우 대시보드와 잘 작동합니다. 자세한 내용은 [대시보드에서 시간 문제](http://cloudadministrator.wordpress.com/2014/10/19/system-center-advisor-restarted-time-matters-in-dashboard-part-6/)를 참조하십시오.
 
-시간별으로 필터링 하는 경우 유의 hello에 대 한 결과 얻을 *교차* hello의 두 기간의: hello OMS 포털 (S1)에 지정 된 hello 및 hello 쿼리 (S2)에 지정 된 hello 합니다.
+시간별로 필터링하는 경우 두 기간(OMS 포털(S1)에서 지정한 기간, 쿼리(S2)에 지정한 기간)의 *교집합*에 대한 결과를 얻습니다.
 
 ![교집합](./media/log-analytics-log-searches/oms-search-intersection.png)
 
-즉, hello 기간이 교차 하지 않는, 예를 들어 선택할 수 있는 hello OMS 포털의 경우 **이번 주** hello 쿼리에서 정의 하는 경우 **지난주**, 교차가 없습니다 및 사용자가 없습니다 어떤 결과도 받을 수 있습니다.
+즉, 기간이 교차하지 않을 경우, 예를 들어 OMS 포털에서 **이번 주**를 선택하고 쿼리에서는 **지난 주**를 정의하는 경우 교집합이 없으므로 결과가 수신되지 않습니다.
 
-Hello TimeGenerated 필드에 사용 되는 비교 연산자가 다른 경우에도 유용 합니다. 예를 들어 숫자 필드를 사용하는 경우입니다.
+TimeGenerated 필드에 사용되는 비교 연산자가 다른 경우에도 유용합니다. 예를 들어 숫자 필드를 사용하는 경우입니다.
 
-예를 들어을 가진다 고 구성 평가 경고 심각도 값을 다음 hello:
+예를 들어 구성 평가 경고는 다음의 심각도 값을 가진다고 가정합니다.
 
 * 0 = 정보
 * 1 = 경고
 * 2 = 중요
 
-경고 및 위험 경고에 대 한 쿼리 및 다음 쿼리는 hello 쿼리하고 정보를 제외할 수 있습니다.
+경고 및 중요한 알림을 쿼리하고 다음 쿼리로 정보를 제외할 수 있습니다.
 
 ```
 Type=ConfigurationAlert  Severity>=1
 ```
 
 
-범위 쿼리를 사용할 수 있습니다. 즉, 시퀀스에 있는 값의 hello 시작 및 끝 범위를 제공할 수 있습니다. 예를 들어 여기서 hello hello Operations Manager 이벤트 로그에서 이벤트를 하려는 경우 EventID가 보다 크거나 같은 too2100 넘지 않는, 2199 hello 다음 쿼리는 이벤트를 반환 합니다.
+범위 쿼리를 사용할 수 있습니다. 즉, 시퀀스에서 값의 시작 및 끝 범위를 제공할 수 있습니다. 예를 들어 EventID가 보다 2100 이상이지만 2199 미만일 때 Operations Manager 이벤트 로그에서 이벤트를 하려는 경우 다음의 쿼리는 이벤트를 반환합니다.
 
 ```
 Type=Event EventLog="Operations Manager" EventID:[2100..2199]
@@ -202,29 +202,29 @@ Type=Event EventLog="Operations Manager" EventID:[2100..2199]
 
 
 > [!NOTE]
-> hello 사용 해야 하는 범위 구문은 hello 콜론 (:) field: value 구분 기호 및 *하지* hello 등호 (=) 합니다. Hello 범위의 hello 아래쪽과 위쪽 끝 대괄호로 묶고 두 마침표 (.)로 구분 합니다.
+> 사용해야 하는 범위 구문은 콜론(:) field:value 구분이고 등호(=)는 *아닙니다* . 아래쪽과 위쪽의 범위 끝을 대괄호로 묶고 두 마침표(..)로 구분합니다.
 >
 >
 
 ## <a name="manipulate-search-results"></a>검색 결과 조작
-데이터를 검색할 때 검색 쿼리 toorefine 원하는 고 hello 결과 대 한 제어를 어느 정도 합니다. 결과가 검색 되 면 명령을 tootransform를 적용할 수 있습니다 이러한.
+데이터를 검색할 때 검색 쿼리를 구체화하고 결과를 어느 정도 제어합니다. 결과를 검색할 때 이를 변환하는 명령을 적용할 수 있습니다.
 
-로그 분석 검색에서 명령은 *해야* hello 세로줄 문자 (|) 뒤 합니다. 필터는 쿼리 문자열의 첫 번째 부분 hello 항상 있어야 합니다. 작업할 때 hello 데이터 집합을 정의 하 고 "파이프" 합니다 그 결과 명령입니다. Hello 파이프 tooadd 추가 명령을 사용할 수 있습니다. 이것은 느슨하게 비슷한 toohello Windows PowerShell 파이프라인입니다.
+Log Analytics 검색에서 명령은 세로줄 문자(|) 뒤에 *와야* 합니다. 필터는 쿼리 문자열의 첫번째 부분에 항상 있어야 합니다. 작업하는 데이터 집합을 정의하고 이러한 결과를 명령으로 "파이프"합니다. 다음 명령을 추가하려면 파이프를 사용할 수 있습니다. 이것은 Windows PowerShell 파이프라인과 대강 비슷합니다.
 
-로그 분석 검색 언어 hello toofollow PowerShell 스타일 및 지침 toomake를 시도 하는 일반적으로 it 비슷한 toohello IT 전문가 및 tooease hello 배워야 할 필요성이 합니다.
+일반적으로 Log Analytics 검색 언어는 PowerShell 스타일을 따르고 지침도 IT 전문가와 비슷하게 하며 학습 곡선을 보다 쉽게 하려고 합니다.
 
 명령은 동사의 이름이 있으므로 수행할 작업을 쉽게 알 수 있습니다.  
 
 ### <a name="sort"></a>정렬
-hello 정렬 명령 toodefine hello를 하나 또는 여러 필드에서 순서를 정렬할 수 있습니다. 기본적으로 사용하지 않아도 시간 내림차순으로 정렬되도록 적용됩니다. hello 가장 최근의 결과가 검색 결과의 hello 위쪽에 항상 표시 됩니다. 즉, `Type=Event EventID=1234` 로 검색을 실행하면 실제로 실행되는 작업은 다음과 같습니다.
+정렬 명령을 사용하면 하나 또는 여러 필드에서 정렬 순서를 정의할 수 있습니다. 기본적으로 사용하지 않아도 시간 내림차순으로 정렬되도록 적용됩니다. 가장 최근의 결과가 검색 결과 위쪽에 항상 표시됩니다. 즉, `Type=Event EventID=1234` 로 검색을 실행하면 실제로 실행되는 작업은 다음과 같습니다.
 
 ```
 Type=Event EventID=1234 **| Sort TimeGenerated desc**
 ```
 
-Hello 유형의 로그를 잘 알고 있다면 경험을 이기 때문입니다. 예를 들어 Windows 이벤트 뷰어 안녕하세요에.
+로그를 잘 알고 있다면 경험 형식 때문입니다. 예를 들어 Windows 이벤트 뷰어에서 그렇습니다.
 
-Toochange hello 방식으로 결과 반환 하는 정렬을 사용할 수 있습니다. hello 다음 예제에서는이 과정
+정렬을 사용하여 결과를 반환하는 방식을 변경할 수 있습니다. 다음 예제는 이 작동 방식을 보여 줍니다.
 
 ```
 Type=Event EventID=1234 | Sort TimeGenerated asc
@@ -239,10 +239,10 @@ Type=Event EventID=1234 | Sort Computer asc,TimeGenerated desc
 ```
 
 
-hello 위의 간단한 예제 알려주는 명령이 작동 하는 방법을 hello 필터를 반환 하는 hello 결과의 hello 형태를 변경 합니다.
+위의 간단한 예제는 명령이 작동하는 방법을 보여줍니다. 필터가 반환하는 결과의 형태를 변경합니다.
 
 ### <a name="limit-and-top"></a>제한 및 위쪽
-덜 알려진 다른 명령에는 제한이 있습니다. 제한은 PowerShell같은 동사입니다. 제한은 TOP 명령과 기능적으로 동일한 toohello입니다. hello 쿼리인 hello 동일한 결과 반환 합니다.
+덜 알려진 다른 명령에는 제한이 있습니다. 제한은 PowerShell같은 동사입니다. 제한은 TOP 명령과 기능적으로 동일합니다. 다음 쿼리는 동일한 결과를 반환합니다.
 
 ```
 Type=Event EventID=600 | Limit 1
@@ -253,73 +253,73 @@ Type=Event EventID=600 | Top 1
 ```
 
 
-#### <a name="toosearch-using-top"></a>top를 사용 하 여 toosearch
-* Hello 검색 쿼리 필드에 입력`Type=Event EventID=600 | Top 1`   
+#### <a name="to-search-using-top"></a>Top을 사용하여 검색하려면
+* 검색 쿼리 필드에 `Type=Event EventID=600 | Top 1` 을 입력합니다  
     ![상위 검색](./media/log-analytics-log-searches/oms-search-top.png)
 
-위 hello 이미지에서 된 358 천 레코드가 EventID = 600입니다. 필드, 패싯 및 왼쪽 항상 반환 된 hello 결과 대 한 정보를 표시 하는 hello에 대 한 필터 hello *hello 필터 부분에 의해* 모든 파이프 문자 앞 hello 참가 하는 hello 쿼리 합니다. hello **결과** hello 예제 명령이 모양을 만들고 hello 결과 변환 하기 때문에 창 hello 가장 최근 1 개의 결과 반환 합니다.
+위의 이미지에서 EventID=600인 레코드는 358개가 있습니다. 왼쪽에서 필드, 패싯 및 필터는 항상 쿼리의 *필터 부분으로* 반환된 결과에 대한 정보를 표시하며 이는 모든 파이프 문자 앞에 오는 부분입니다. **결과** 창은 예제 명령이 결과를 모양을 만들고 변환하기 때문에 가장 최근 1개의 결과를 반환합니다.
 
 ### <a name="select"></a>여기서
-hello SELECT 명령은 PowerShell에서 Select-object 처럼 동작 합니다. 자신의 원래 속성을 모두 갖지 않는 필터된 결과를 반환합니다. 대신 사용자가 지정한 hello 속성만 선택 합니다.
+SELECT 명령은 PowerShell에서 Select-Object 처럼 동작합니다. 자신의 원래 속성을 모두 갖지 않는 필터된 결과를 반환합니다. 대신 지정한 속성을 선택합니다.
 
-#### <a name="toorun-a-search-using-hello-select-command"></a>select 명령 hello를 사용 하 여 검색 한 toorun
+#### <a name="to-run-a-search-using-the-select-command"></a>선택 명령을 사용하는 검색을 실행하려면
 1. 검색에서 `Type=Event` 을 입력하고 **검색**을 클릭합니다.
-2. 클릭 **+ 자세히 표시** hello 결과 tooview 결과 hello 하는 모든 hello 속성 중 하나에 있습니다.
-3. 그 중 일부를 명시적으로 및 선택 hello 쿼리 변경 내용을 너무`Type=Event | Select Computer,EventID,RenderedDescription`합니다.  
+2. 있는 모든 속성을 보려면 결과 중 하나에서 **+자세히 표시** 를 클릭합니다.
+3. 그 중 일부를 명시적으로 선택하고 쿼리가 `Type=Event | Select Computer,EventID,RenderedDescription`로 변경됩니다.  
     ![선택 검색](./media/log-analytics-log-searches/oms-search-select.png)
 
-이 명령은 toocontrol 검색 출력을 종종 hello 전체 레코드는 아닙니다 하 고 탐색을 위한 중요 데이터의 hello 부분만 선택 하는 경우에 특히 유용 합니다. 이 기능은 다른 유형의 레코드들이 *일부* 공통 속성이 있지만 *일부* 속성은 공통이 아닌 경우에도 유용합니다. 는 테이블 처럼 더 자연스럽 게는 출력을 생성 하거나 tooa CSV 파일을 내보낸 다음 Excel에서 massaged 되는 경우에 사용할 수 있습니다.
+검색 출력을 제어하고 탐색을 위한 중요 데이터의 일부만 선택하려는 경우 특히 유용한 명령으로 종종 전체 레코드는 아닙니다. 이 기능은 다른 유형의 레코드들이 *일부* 공통 속성이 있지만 *일부* 속성은 공통이 아닌 경우에도 유용합니다. CSV 파일로 내보낸 다음 Excel에서 massaged되는 경우 테이블처럼 더 자연스럽게 보이거나 잘 작동하는 출력을 생성할 수 있습니다.
 
-## <a name="use-hello-measure-command"></a>Hello 측정값 명령 사용
-측정값은 hello 로그 분석 검색에서 가장 용도가 넓은 함수로 명령 중 하나입니다. 있습니다 tooapply 통계 *함수* tooyour 데이터 및 집계 결과 지정된 된 필드를 그룹화 합니다. 측정값이 지원하는 여러 통계 함수가 있습니다.
+## <a name="use-the-measure-command"></a>측정값 명령 사용
+MEASURE는 Log Analytics 검색에서 가장 용도가 많은 명령 중 하나입니다. 데이터에 통계 *함수* 를 적용하고 지정된 필드가 그룹화된 결과를 집계할 수 있습니다. 측정값이 지원하는 여러 통계 함수가 있습니다.
 
 ### <a name="measure-count"></a>개수() 측정
-hello, 첫 번째 통계 함수로 toowork 및 가장 간단한 toounderstand hello 중 하나는 hello *count ()* 함수입니다.
+작업할 첫번째 통계 함수에서 이해하기 가장 간단한 것은 *count()* 함수입니다.
 
-와 같은 모든 검색 쿼리에서 나온 결과 `Type=Event`, hello 검색 결과의 왼쪽에 패싯이 라는 필터를 표시 합니다. hello 필터 실행 된 hello 검색에서 지정된 된 필드 hello 결과에 의해 값의 분포를 보여 줍니다.
+`Type=Event`과 같은 모든 검색 쿼리에서 나온 결과는 검색 결과의 왼쪽에 패싯이라고 하는 필터를 표시합니다. 필터는 실행된 검색에서 결과에 지정된 필드에 의해 값의 분포를 표시합니다.
 
 ![측정값 개수 검색](./media/log-analytics-log-searches/oms-search-measure-count01.png)
 
-예를 들어 hello 이미지 위의 살펴보겠습니다 hello **컴퓨터** 필드가 hello 739 천 거의에서 이벤트 내 hello 결과 표시 68 고유한 특정 값에 대 한 hello **컴퓨터** 해당 레코드에서 필드입니다. hello 타일이 표시 hello hello 가장 일반적인 5 개의 값인 hello로 작성 된 상위 5 **컴퓨터** 필드), 해당 필드에 특정 값을 포함 하는 문서 hello 수로 정렬 합니다. Hello 이미지에는 –는 거의 369 천 이벤트 중 90 천 hello OpsInsights04.contoso.com 컴퓨터 83 천 hello DB03.contoso.com 컴퓨터에서에서 제공 하 고 볼 수 있습니다.
+예를 들어, 위의 이미지에서는 **컴퓨터** 필드가 표시되고 결과에서 거의 73만 9천개까지 이벤트를 보여줍니다. 해당 레코드에는 **컴퓨터** 필드에 대한 68개의 고유한 값이 있습니다. 타일은 **컴퓨터** 필드에 기록되는 가장 일반적인 5개의 값인 상위 5개만을 표시하며) 해당 필드에 특정 값을 포함하는 문서 수를 기준으로 정렬됩니다. 이 이미지에 있는 거의 369,000개 이미지 중 90,000개는 OpsInsights04.contoso.com 컴퓨터에서, 83,000개는 DB03.contoso.com 컴퓨터 등에서 생성된 것입니다.
 
-어떻게 할까요 toosee 모든 값 hello 타일 표시 하므로 hello 상위 5?
+타일이 상위 5개만 표시하므로 모든 값을 보려면 어떻게 해야 합니까?
 
-Hello 측정값 즉 명령을 hello count () 함수를 사용 하 여 수행할 수 있습니다. 이 함수는 매개 변수를 사용하지 않습니다. Hello 필드를 기준으로 – hello toogroup 사용할 지정 **컴퓨터** 이 경우 필드:
+개수() 함수를 사용하여 측정값 명령으로 수행할 수 있는 작업입니다. 이 함수는 매개 변수를 사용하지 않습니다. 방금 이 경우에 **컴퓨터** 필드를 기준으로 그룹화하려는 필드를 지정했습니다.
 
 `Type=Event | Measure count() by Computer`
 
 ![측정값 개수 검색](./media/log-analytics-log-searches/oms-search-measure-count-computer.png)
 
-하지만 **컴퓨터**는 각 데이터*에서* 사용되는 필드입니다. 관련된 관계 데이터베이스가 없고 별도의 **컴퓨터** 개체는 없습니다. 방금 값 hello *에* , 및 여러 다른 특성과 측면 hello 데이터를 생성 한 엔터티 데이터를 설명할 수 hello 따라서 hello 용어 *패싯*합니다. 그러나 다른 필드에 의해 그룹화할 수 있습니다. Hello hello 측정값 명령으로 파이프 하는 거의 739 천 이벤트의 원래 결과는 또한 라는 필드가 있기 때문에 **EventID**를 적용할 수 있습니다 하 여 해당 필드로 동일한 기술을 toogroup hello 하 고 EventID로 이벤트의 개수를 가져올:
+하지만 **컴퓨터**는 각 데이터*에서* 사용되는 필드입니다. 관련된 관계 데이터베이스가 없고 별도의 **컴퓨터** 개체는 없습니다. 데이터에 *있는* 값은 해당 값이 생성된 엔티티, 데이터의 다양한 특성 및 측면(따라서 *패싯*이라고 함)을 설명할 수 있습니다. 그러나 다른 필드에 의해 그룹화할 수 있습니다. 또한 measure 명령으로 파이프되는 거의 739,000개 이벤트의 원래 결과에도 **EventID**라는 필드가 있기 때문에 동일한 기법을 적용하여 해당 필드별로 그룹화하고 EventID별로 이벤트의 개수를 가져올 수 있습니다.
 
 ```
 Type=Event | Measure count() by EventID
 ```
 
-경우 특정 값을 포함 하는 hello 실제 레코드 개수에 관심이 모르겠으면 되지만 대신의 목록을 원하는 경우 hello 값 자체를 추가할 수는 *선택* 선택 hello 첫 번째 열 및 hello 끝나기 전에 명령을:
+특정 값을 포함하는 실제 레코드 개수에 관심이 없지만 대신 값 자체의 목록을 원하는 경우 끝부분에 *선택* 명령을 추가하고 첫 열을 선택할 수 있습니다.
 
 ```
 Type=Event | Measure count() by EventID | Select EventID
 ```
 
-더 복잡해 하 고 미리 hello 쿼리에서 hello 결과 정렬할 수 다음 또는 hello 표의 hello 열을 너무 클릭할 수 있습니다.
+쿼리에서 더 복잡해 지고 미리 결과를 정렬할 수 있습니다. 또는 그리드의 열을 클릭할 수 있습니다.
 
 ```
 Type=Event | Measure count() by EventID | Select EventID | Sort EventID asc
 ```
 
-#### <a name="toosearch-using-measure-count"></a>측정값 개수를 사용 하 여 toosearch
-* Hello 검색 쿼리 필드에 입력`Type=Event | Measure count() by EventID`
-* 추가 `| Select EventID` hello 쿼리의 toohello 끝입니다.
-* 마지막으로 추가 `| Sort EventID asc` hello 쿼리의 toohello 끝입니다.
+#### <a name="to-search-using-measure-count"></a>측정값 개수를 사용하여 검색
+* 검색 쿼리 필드에 `Type=Event | Measure count() by EventID`
+* 쿼리의 끝에 `| Select EventID` 를 추가합니다.
+* 마지막으로 쿼리의 끝에 `| Sort EventID asc` 을 추가합니다.
 
-몇 가지 중요 한 사항 toonotice 및 강조를 알아봅니다.
+몇가지 중요한 사항 및 강조를 알아봅니다.
 
-첫째, hello 결과가 표시 되지 않습니다 hello 원래 원시 결과가 더 이상. 대신 집계된 결과이며 기본적으로 그룹의 결과입니다. 이 문제가 아니지 하지만 hello 원래 원시 모양과 hello 집계/통계 함수의 결과로 서 hello 즉석에서 생성 되는 매우 다른 모양의 데이터를 상호 작용 하는 이해 해야 합니다.
+첫 번째로 표시되는 결과는 원래 원시 결과가 아닙니다. 대신 집계된 결과이며 기본적으로 그룹의 결과입니다. 이는 문제가 아니지만 집계/통계 함수의 결과로서 즉석에서 생성되는 원래 원시 모양과 달라진  매우 다른 모양의 데이터를 조작한다는 점을 이해해야 합니다.
 
-두 번째, **개수 측정** 만 hello 상위 100 고유한 결과 현재 반환 합니다. 이 제한은 toohello 다른 통계 함수 적용 되지 않습니다. 따라서 일반적으로 해야 toouse 보다 정확 하 게 필터 첫 번째 toosearch 특정 항목에 대 한 측정값 개수 ()를 적용 하기 전에 합니다.
+두 번째로 **개수 측정** 은 현재 상위 100개의 고유한 결과만 반환합니다. 이 제한은 다른 통계 함수에 적용되지 않습니다. 따라서 측정값 개수()를 적용하기 전에 특정 항목을 검색하려면 일반적으로 보다 정밀한 필터를 사용해야 합니다.
 
-## <a name="use-hello-max-and-min-functions-with-hello-measure-command"></a>Hello 측정값 명령으로 hello 최대 및 최소 함수 사용
+## <a name="use-the-max-and-min-functions-with-the-measure-command"></a>측정값 명령과 최대 및 최소 함수 사용
 **Measure Max()** 및 **Measure Min()**이 유용한 다양한 시나리오가 있습니다. 그러나 각 함수는 서로 반대이므로 최대()를 설명하고 최소()를 직접 시험해 보겠습니다.
 
 보안 이벤트를 쿼리할 경우 **레벨** 속성이 있을 수 있습니다. 예:
@@ -330,7 +330,7 @@ Type=SecurityEvent
 
 ![측정값 개수 시작 검색](./media/log-analytics-log-searches/oms-search-measure-max01.png)
 
-모든 hello 보안에 대해 tooview hello 가장 높은 값을 원하는 경우 사용할 수 이벤트 필드에 따라 hello 그룹, 공용 컴퓨터를 지정 합니다.
+공통 컴퓨터, 필드별 그룹에서 모든 보안 이벤트에 대해 가장 높은 값을 보려면 다음을 사용할 수 있습니다.
 
 ```
 Type=ConfigurationAlert | Measure Max(Level) by Computer
@@ -338,7 +338,7 @@ Type=ConfigurationAlert | Measure Max(Level) by Computer
 
 ![측정값 최대 컴퓨터 검색](./media/log-analytics-log-searches/oms-search-measure-max02.png)
 
-Hello 컴퓨터에 대 한 있음을 표시 합니다 **수준** 레코드, 그 중 대부분에는 적어도 수준 8, 수준 16의 많은 했습니다.
+**레벨** 레코드가 있는 컴퓨터의 경우 대부분은 레벨 8 이상이며 레벨 16도 많습니다.
 
 ```
 Type=ConfigurationAlert | Measure Max(Severity) by Computer
@@ -346,18 +346,18 @@ Type=ConfigurationAlert | Measure Max(Severity) by Computer
 
 ![최대 시간이 생성된 컴퓨터 검색](./media/log-analytics-log-searches/oms-search-measure-max03.png)
 
-이 함수는 숫자와 잘 작동하지만 DateTime 필드와도 작동합니다. Hello에 대 한 유용한 toocheck를 마지막 또는 각 컴퓨터에 인덱싱된 데이터의 모든 부분에 대 한 가장 최근 타임 스탬프입니다. 예를 들어: hello 최신 보안 이벤트를 보고 한 때는 각 컴퓨터에 대 한?
+이 함수는 숫자와 잘 작동하지만 DateTime 필드와도 작동합니다. 각 컴퓨터에 인덱싱된 데이터의 모든 부분에 대한 마지막 또는 가장 최근 타임스탬프를 확인하는 것이 유용합니다. 예: 각 컴퓨터에 대해 가장 최근 보고된 보안 이벤트는 무엇이었습니까?
 
 ```
 Type=ConfigurationChange | Measure Max(TimeGenerated) by Computer
 ```
 
-## <a name="use-hello-avg-function-with-hello-measure-command"></a>Hello 측정값 명령으로 hello avg 함수 사용
-그룹을 기준으로 결과 hello 동일 또는 다른 필드 및 측정값을 사용한 평균 () 통계 함수 hello 있습니다 toocalculate hello 일부 필드에 대 한 평균 값. 다양한 성능 데이터와 같은 경우에 유용합니다.
+## <a name="use-the-avg-function-with-the-measure-command"></a>측정값 명령과 평균 함수 사용
+측정값을 사용한 평균() 통계 함수를 사용하면 일부 필드에 대한 평균값을 계산하고 동일한 또는 다른 필드 결과를 그룹화할 수 있습니다. 다양한 성능 데이터와 같은 경우에 유용합니다.
 
 성능 데이터를 시작하겠습니다. OMS는 현재 Windows 및 Linux 컴퓨터 양쪽 모두에 대한 성능 카운터를 수집합니다.
 
-에 대 한 toosearch *모든* 성능 데이터를 hello 가장 기본적인 쿼리는:
+*모든* 성능 데이터를 검색하려면 가장 기본적인 쿼리는 다음과 같습니다.
 
 ```
 Type=Perf
@@ -365,19 +365,19 @@ Type=Perf
 
 ![avg 시작 검색](./media/log-analytics-log-searches/oms-search-avg01.png)
 
-hello 먼저 보면 점은 로그 분석에서는 설명 세 가지 관점: hello 차트; 뒤에 실제 레코드가 hello를 보여 주는 보여 주는 목록 성능 카운터 데이터;의 테이블 형식 뷰를 보여 주는 표 및 메트릭을 보여 주는 차트 hello에 대 한 성능 카운터입니다.
+가장 먼저 Log Analytics에 세 가지 관점이 표시되는 것을 볼 수 있습니다. 즉, 목록에는 차트에 사용된 실제 레코드가 표시되고 표에는 성능 카운터 데이터가 테이블 형식으로 표시되며 메트릭에는 성능 카운터가 차트로 표시됩니다.
 
-위 hello 이미지에서 hello 다음 나타내는 표시 된 필드의 두 집합이 있습니다.
+위 이미지에서 다음과 같은 내용을 나타내는 표시된 필드의 두 집합이 있습니다.
 
-* 첫 번째 집합 hello hello 쿼리 필터에서 Windows 성능 카운터 이름, 개체 이름 및 인스턴스 이름을 식별합니다. Hello 필드로 있습니다 것은 가장 일반적으로 사용할 패싯/필터
-* **CounterValue** hello hello 카운터의 실제 값이 있습니다. 이 예제에서는 hello 값은 *75*합니다.
+* 첫 번째 집합은 쿼리 필터에서 Windows 성능 카운터 이름, 개체 이름 및 인스턴스 이름을 식별합니다. 가장 일반적으로 사용할 패싯/필터 필드입니다.
+* **CounterValue**는 카운터의 실제 값입니다. 이 예에서 이 값은 *75*입니다.
 * **TimeGenerated**는 24시간 형식으로 12:51입니다.
 
-다음은 그래프에서 hello 메트릭 보기입니다.
+다음은 메트릭의 그래프입니다.
 
 ![avg 시작 검색](./media/log-analytics-log-searches/oms-search-avg02.png)
 
-Hello Perf 레코드 도형에 대 한 읽기 및 다른 검색 방법에 대 한 읽은 후 측정값 평균 () tooaggregate이이 종류의 숫자 데이터를 사용할 수 있습니다.
+Perf 레코드 모양을 읽고 다른 검색 방법에 대해 읽은 후 이러한 종류의 숫자 데이터를 집계하려면 measure Avg()를 사용할 수 있습니다.
 
 간단한 예는 다음과 같습니다.
 
@@ -387,34 +387,34 @@ Type=Perf  ObjectName:Processor  InstanceName:_Total  CounterName:"% Processor T
 
 ![avg samplevalue 검색](./media/log-analytics-log-searches/oms-search-avg03.png)
 
-이 예제에서는 hello CPU 총 시간 성능 카운터 및 컴퓨터별 평균을 선택합니다. Toonarrow 결과 tooonly hello 지난 6 시간 동안 다운 하려는 경우 hello 시간 필터 컨트롤을 사용 하거나 다음과 같이 쿼리에서 지정 합니다.
+이 예제에서 CPU 총 시간 성능 카운터를 선택하고 컴퓨터에 의해 평균을 냅니다. 최근 6시간으로 결과의 범위를 좁히려면, 시간 필터 제어를 사용하거나 쿼리에 다음과 같이 지정할 수 있습니다.
 
 ```
 Type=Perf  ObjectName:Processor  InstanceName:_Total  CounterName:"% Processor Time" TimeGenerated>NOW-6HOURS | Measure Avg(CounterValue) by Computer
 ```
 
-### <a name="toosearch-using-hello-avg-function-with-hello-measure-command"></a>toosearch hello avg 함수를 사용 하 여 hello 측정값 명령 사용
-* Hello 검색 쿼리 상자에 입력 `Type=Perf  ObjectName:Processor  InstanceName:_Total  CounterName:"% Processor Time" TimeGenerated>NOW-6HOURS | Measure Avg(CounterValue) by Computer`합니다.
+### <a name="to-search-using-the-avg-function-with-the-measure-command"></a>측정값 명령과 평균 함수 사용를 사용하여 검색하려면
+* 검색 쿼리 박스에 `Type=Perf  ObjectName:Processor  InstanceName:_Total  CounterName:"% Processor Time" TimeGenerated>NOW-6HOURS | Measure Avg(CounterValue) by Computer`를 입력합니다.
 
-컴퓨터 *간에* 데이터를 집계하고 상호 연결할 수 있습니다. 예를 들어, 다른 하나 종류의 일부는 같은 tooany 팜에서 호스트 집합이 있는지와 동일한 유형의 작업 및 부하를 대략적으로 분산 해야 하는 모든 hello를 방금 않으므로 한다고 가정 합니다. 다음 쿼리 평균을 hello 전체 팜에 대 한 hello로 이동 하는 하나에 모든 카운터를 가져올 수 있습니다. 다음 예제는 hello로 hello 컴퓨터를 선택 하 여 시작할 수 있습니다.
+컴퓨터 *간에* 데이터를 집계하고 상호 연결할 수 있습니다. 예를 들어 각 노드가 서로 동일한 종류의 일부 팜에서 호스트 집합이 있고 이들이 모두 같은 유형의 작업을 한다고 가정하면 부하가 대략적으로 분산되어야 합니다. 다음의 쿼리로 이동하는 하나에 모든 카운터를 가져오고 전체 팜에 대한 평균을 가져올 수 있습니다. 다음 예제로 컴퓨터를 선택하여 시작할 수 있습니다.
 
 ```
 Type=Perf AND (Computer="AzureMktg01" OR Computer="AzureMktg02" OR Computer="AzureMktg03")
 ```
 
-Tooselect 2 개의 핵심 성과 지표 (Kpi)만 원하는 hello 컴퓨터를가지고: CPU 사용량 % 및 % 사용 가능한 디스크 공간입니다. 따라서 hello 쿼리 부분의 됩니다.:
+컴퓨터가 있으므로 또한 2개의 핵심 성과 지표 (KPI) 즉, CPU 사용량 % 및 % 사용 가능한 디스크 공간을 선택하려 합니다. 따라서 쿼리의 부분은 다음과 같이 됩니다.
 
 ```
 Type=Perf InstanceName:_Total  ((ObjectName:Processor AND CounterName:"% Processor Time") OR (ObjectName="LogicalDisk" AND CounterName="% Free Space")) AND TimeGenerated>NOW-4HOURS
 ```
 
-이제 다음 예제는 hello로 컴퓨터 및 카운터를 추가할 수 있습니다.
+이제 다음 예제로 컴퓨터 및 카운터를 추가할 수 있습니다.
 
 ```
 Type=Perf InstanceName:_Total  ((ObjectName:Processor AND CounterName:"% Processor Time") OR (ObjectName="LogicalDisk" AND CounterName="% Free Space")) AND TimeGenerated>NOW-4HOURS AND (Computer="AzureMktg01" OR Computer="AzureMktg02" OR Computer="AzureMktg03")
 ```
 
-매우 구체적으로 선택 해야 하므로 hello **avg () 측정** 명령을 반환할 수 있습니다 hello 평균 컴퓨터가 아니라 hello 팜 전체에서 단순히 CounterName로 그룹화 하 여 합니다. 예:
+매우 구체적인 선택을 하기 때문에 **평균() 측정** 명령이 컴퓨터로 평균이 아닌 팜 전체에서 단순히 CounterName로 그룹화하여 반환할 수 있습니다. 예:
 
 ```
 Type=Perf  InstanceName:_Total  ((ObjectName:Processor AND CounterName:"% Processor Time") OR (ObjectName="LogicalDisk" AND CounterName="% Free Space")) AND TimeGenerated>NOW-4HOURS AND (Computer="AzureMktg01" OR Computer="AzureMktg02" OR Computer="AzureMktg03") | Measure Avg(CounterValue) by CounterName
@@ -424,19 +424,19 @@ Type=Perf  InstanceName:_Total  ((ObjectName:Processor AND CounterName:"% Proces
 
 ![avg 그룹화 검색](./media/log-analytics-log-searches/oms-search-avg04.png)
 
-대시보드에서 hello 검색 쿼리를 쉽게 사용할 수 있습니다. Hello 검색 쿼리를 저장 하 고 라는 여기에서 대시보드를 만들 수 예를 들어 *웹 팜 Kpi*합니다. 대시보드를 사용 하 여에 대 한 더 toolearn 참조 [로그 분석에 사용자 지정 대시보드를 만들](log-analytics-dashboards.md)합니다.
+대시보드에서 검색 쿼리를 쉽게 사용할 수 있습니다. 예를 들어 검색 쿼리를 저장하고 여기에서 *Web Farm KPIs*라는 대시보드를 만들 수 있습니다. 대시보드 사용에 대해 자세히 알아보려면 [Log Analytics에서 사용자 지정 대시보드 만들기](log-analytics-dashboards.md)를 참조하세요.
 
 ![avg 대시보드 검색](./media/log-analytics-log-searches/oms-search-avg05.png)
 
-### <a name="use-hello-sum-function-with-hello-measure-command"></a>Hello sum 함수를 사용 하 여 hello 측정값 명령 사용
-hello sum 함수는 hello 측정값 명령의 유사한 tooother 기능입니다. Toouse에서 sum 함수 hello 하는 방법에 대 한 예제를 볼 수 [Microsoft Azure Operational Insights의 W3C IIS 로그 검색](http://blogs.msdn.com/b/dmuscett/archive/2014/09/20/w3c-iis-logs-search-in-system-center-advisor-limited-preview.aspx)합니다.
+### <a name="use-the-sum-function-with-the-measure-command"></a>측정값 명령과 합계 함수 사용
+합계 함수는 측정값 명령의 다른 함수와 비슷합니다. 합계 함수를 사용하는 방법에 대한 예제는 [Microsoft Azure Operational Insights의 W3C IIS 로그 검색](http://blogs.msdn.com/b/dmuscett/archive/2014/09/20/w3c-iis-logs-search-in-system-center-advisor-limited-preview.aspx)에서 볼 수 있습니다.
 
 숫자, 날짜 시간 및 텍스트 문자열이 포함된  Max() 및 Min()을 사용할 수 있습니다. 텍스트 문자열을 이용하여 사전순으로 정렬하고 처음 및 마지막을 가져옵니다.
 
-그러나 숫자 필드가 아닌 어느 것도 합계()를 사용할 수 없습니다. 도 tooAvg() 적용 됩니다.
+그러나 숫자 필드가 아닌 어느 것도 합계()를 사용할 수 없습니다. 평균()에도 적용됩니다.
 
-### <a name="use-hello-percentile-function-with-hello-measure-command"></a>Hello 백분위 수 함수 hello 측정값 명령 사용
-숫자 필드에만 사용할 수 있다는 점에서 hello 백분위 수 함수는 유사한 tooAvg() 및 sum ()입니다. 숫자 필드에 1 too99 사이의 모든 백분위 수를 사용할 수 있습니다. **percentile** 및 **pct** 명령을 모두 사용할 수 있습니다. 다음은 몇 가지 예입니다.  
+### <a name="use-the-percentile-function-with-the-measure-command"></a>measure 명령과 percentile 함수 사용
+percentile 함수는 숫자 필드에만 사용할 수 있다는 면에서 Avg() 및 Sum()과 유사합니다. 숫자 필드에 1과 99 사이의 모든 백분위 수를 사용할 수 있습니다. **percentile** 및 **pct** 명령을 모두 사용할 수 있습니다. 다음은 몇 가지 예입니다.  
 
 ```
 Type:Perf CounterName:"DiskTransers/sec" |measure percentile95(CurrentValue) by Computer
@@ -445,8 +445,8 @@ Type:Perf CounterName:"DiskTransers/sec" |measure percentile95(CurrentValue) by 
 Type:Perf ObjectName=LogicalDisk CounterName="Current Disk Queue Length" Computer="MyComputerName" | measure pct65(CurrentValue) by InstanceName
 ```
 
-## <a name="use-hello-where-command"></a>명령을 경우 hello를 사용 합니다.
-측정값 명령이 – hello 쿼리의 시작 부분에서 필터링 하는 것과 반대로 tooraw 결과로 생성 된 결과 집계 하는 hello 여기서 명령이 필터와 같이 작동 하지만 hello 파이프라인 toofurther 필터에 적용할 수 있습니다.
+## <a name="use-the-where-command"></a>Where 명령 사용
+명령이 필터와 같이 작동하지만 쿼리의 시작 부분에서 필터링된 원시 결과와 반대로 파이프라인에 적용하여 측정값 명령이 생성한 집계된 결과를 자세히 필터링할 수 있습니다.
 
 예:
 
@@ -454,24 +454,24 @@ Type:Perf ObjectName=LogicalDisk CounterName="Current Disk Queue Length" Compute
 Type=Perf  CounterName="% Processor Time"  InstanceName="_Total" | Measure Avg(CounterValue) as AVGCPU by Computer
 ```
 
-다른 파이프를 추가할 수 있습니다 "|" 문자 및 hello 명령 tooonly 구할 컴퓨터와 이상 80% 평균 CPU가 다음 예제에서는 hello:
+다음 예제로 다른 파이프 "|" 문자 및 Where 명령을 추가하여 평균 CPU가 80% 이상인 컴퓨터를 가져올 수 있습니다.
 
 ```
 Type=Perf  CounterName="% Processor Time"  InstanceName="_Total" | Measure Avg(CounterValue) as AVGCPU by Computer | Where AVGCPU>80
 ```
 
-Microsoft System Center-Operations Manager에 잘 알고 있는 관리 팩 측면에서 명령을의 hello 생각할 수 있습니다. Hello 예제가 규칙 인 경우 hello 첫번째 hello 쿼리의 부분이 hello 데이터 원본과 hello 명령 hello conditiondetection 수 없는 합니다.
+Microsoft System Center Operations Manager에 익숙하다면 where 명령을 관리 팩 측면에서 생각할 수 있습니다. 예제가 규칙인 경우 쿼리의 첫번째 부분이 데이터 원본이고 where 명령은 조건 검색입니다.
 
-타일로 hello 쿼리를 사용 하 여 **내 대시보드**, 일종의 모니터로 toosee 때 컴퓨터 Cpu 초과 사용 됩니다. 대시보드에 대 한 자세한 정보는 toolearn 참조 [로그 분석에 사용자 지정 대시보드를 만들](log-analytics-dashboards.md)합니다. 만들고 및 hello 모바일 앱을 사용 하 여 대시보드를 사용 하 여 수도 있습니다. 자세한 내용은 [OMS Mobile App](http://www.windowsphone.com/en-us/store/app/operational-insights/4823b935-83ce-466c-82bb-bd0a3f58d865)(OMS 모바일 앱)을 참조하세요. 다음 이미지는 hello의 hello 아래쪽 두 타일을 볼 수 있습니다 목록을 표시 한 hello 모니터를 숫자로 합니다. 기본적으로, 항상 hello 숫자 toobe 0을 빈 목록 toobe hello 합니다. 그렇지 않은 경우 경고 조건을 나타냅니다. 필요한 경우 컴퓨터를 살펴보면 압력을 받고 있기 tootake를 사용할 수 있습니다.
+**내 대시보드**에서 컴퓨터 CPU가 과도하게 사용되는 경우 참조하는 모니터로서 쿼리를 타일로 사용할 수 있습니다. 대시보드에 대해 자세히 알아보려면 [Log Analytics에서 사용자 지정 대시보드 만들기](log-analytics-dashboards.md)를 참조하세요. 또한 모바일 앱을 사용하여 대시보드를 만들고 사용할 수 있습니다. 자세한 내용은 [OMS Mobile App](http://www.windowsphone.com/en-us/store/app/operational-insights/4823b935-83ce-466c-82bb-bd0a3f58d865)(OMS 모바일 앱)을 참조하세요. 다음 이미지의 아래쪽 두 타일에서 목록을 표시한 모니터를 숫자로 볼 수 있습니다 . 기본적으로 항상 수는 0으로, 목록은 비어 있어야 합니다. 그렇지 않은 경우 경고 조건을 나타냅니다. 필요한 경우 이것을 사용하여 압력을 받는 컴퓨터를 볼 수 있습니다.
 
 ![모바일 대시보드](./media/log-analytics-log-searches/oms-search-mobile.png)
 
-## <a name="use-hello-in-operator"></a>Hello를 사용 하 여 in 연산자
-hello *IN* 연산자와 함께 *NOT IN* 는 다른 검색을 인수로 포함 하는 검색 toouse 하위 있습니다. 이러한 연산자는 다른 *기본* 또는 *외부* 검색 내 중괄호 {} 안에 포함됩니다. hello 결과 대체로, 고유한 결과 목록이 며 기본 검색에서 인수로 사용 됩니다.
+## <a name="use-the-in-operator"></a>in 연산자 사용
+*IN* 연산자와 *NOT IN* 연산자를 사용하면 인수로 다른 검색이 포함된 검색인 하위 검색을 사용할 수 있습니다. 이러한 연산자는 다른 *기본* 또는 *외부* 검색 내 중괄호 {} 안에 포함됩니다. 하위 검색의 결과(흔히, 고유한 결과 목록)는 기본 검색의 인수로 사용됩니다.
 
-검색에서 생성할 수 있는 하지만 검색 식에서 직접 설명할 수 없는 데이터의 하위 toomatch 하위 집합을 사용할 수 있습니다. 예를 들어 하나의 검색 toofind 모든 이벤트를 사용 하 여 관심이 있는 경우 *보안 업데이트가 누락 된 컴퓨터*, toodesign를 먼저 식별 하는 대체로 며 필요 *보안 업데이트가 누락 된 컴퓨터*  속하는 toothose 호스트 이벤트를 찾기 전에 합니다.
+검색 식에 직접적으로 설명할 수 없는, 하지만 검색을 통해 생성될 수 있는 데이터의 하위 집합에 맞추기 위해 하위 검색을 사용할 수 있습니다. 예를 들어, *보안 업데이트가 없는 컴퓨터*에서 모든 이벤트를 찾는 검색을 사용하려면 해당 호스트에 속하는 이벤트를 찾기 전에 *보안 업데이트가 없는 컴퓨터*를 먼저 식별하는 하위 검색을 디자인해야 합니다.
 
-따라서 표현할 수 있습니다 *필수 보안 업데이트가 누락 된 현재 컴퓨터* 다음 쿼리에서 hello로:
+따라서 다음 쿼리를 통해 *현재 필수 보안 업데이트가 누락된 컴퓨터* 를 나타낼 수 있습니다.
 
 ```
 Type:Update UpdateState=Needed Optional=false Classification="Security Updates" TimeGenerated>NOW-24HOURS | measure count() by Computer
@@ -479,16 +479,16 @@ Type:Update UpdateState=Needed Optional=false Classification="Security Updates" 
 
 ![IN 검색 예제](./media/log-analytics-log-searches/oms-search-in01-revised.png)
 
-Hello 목록을 만든 후에 한 해당 컴퓨터에 대 한 이벤트를 찾는 외부 (기본) 검색을 내부 검색 toofeed hello 컴퓨터의 목록으로 hello 검색을 사용할 수 있습니다. Hello 내부 검색을 중괄호로 묶고 IN 연산자 hello를 사용 하 여 hello 외부 검색에서 필터/필드에 대 한 가능한 값으로 해당 결과 제공 하 여이 작업을 수행 합니다. hello 쿼리는 다음과 같습니다.
+목록이 확보되면, 이 검색을 컴퓨터에 대한 이벤트를 찾는 외부(기본) 검색에 컴퓨터 목록을 제공하는 내부 검색으로 사용할 수 있습니다. 그렇게 하려면 내부 검색을 괄호로 묶고 그 결과를 IN 연산자를 사용하는 외부 검색 필터/필드에 가능한 값으로 제공합니다. 쿼리는 다음과 유사합니다.
 
 ```
 Type=Event Computer IN {Type:Update UpdateState=Needed Optional=false Classification="Security Updates" TimeGenerated>NOW-24HOURS | measure count() by Computer}
 ```
 ![IN 검색 예제](./media/log-analytics-log-searches/oms-search-in02-revised.png)
 
-또한 공지 hello 시간 때문에 hello 내부 검색에 사용 된 필터 hello 시스템 업데이트 평가 24 시간 마다 모든 컴퓨터의 스냅숏을 만들기를 사용 합니다. 하루에만 검색 하 여 더 간단 하 고 정확한 hello 내부 쿼리를 만들 수 있습니다. hello 외부 검색 대신 사용 하 여 hello 시간 선택을 hello 사용자 인터페이스에서 지난 7 일 동안 hello에서 이벤트를 검색 합니다. time 연산자에 대한 자세한 내용은 [부울 연산자](#boolean-operators) 참조하세요.
+또한, 시스템 업데이트 평가에서 24시간마다 모든 컴퓨터의 스냅숏을 만들기 때문에, 내부 검색에 사용되는 시간 필터에 유의합니다. 하루 동안만 검색하면 내부 쿼리를 보다 가볍고 정확하게 만들 수 있습니다. 대신, 외부 검색은 마지막 7일간의 이벤트를 검색하는, 사용자 인터페이스의 시간 선택을 사용합니다. time 연산자에 대한 자세한 내용은 [부울 연산자](#boolean-operators) 참조하세요.
 
-때문에 사용자에 대 한 필터 값으로 hello 내부 검색만 실제로 사용 하 여 hello 결과 hello 외부, hello 외부 검색에 명령을 적용할 수 있습니다. 예를 들어 계속 수 이벤트를 다른 measure 명령으로 위에 그룹 hello:
+내부 검색의 결과를 외부 검색에 대한 필터 값으로만 사용하기 때문에, 외부 검색에 명령을 적용할 수 있습니다. 예를 들어, 위의 이벤트를 다른 measure 명령을 사용하여 그룹화할 수 있습니다.
 
 ```
 Type=Event Computer IN {Type:Update UpdateState=Needed Optional=false Classification="Security Updates" TimeGenerated>NOW-24HOURS | measure count() by Computer} | measure count() by Source
@@ -496,13 +496,13 @@ Type=Event Computer IN {Type:Update UpdateState=Needed Optional=false Classifica
 
 ![IN 검색 예제](./media/log-analytics-log-searches/oms-search-in03-revised.png)
 
-일반적으로 원하는 내부 쿼리 tooexecute 신속 하 게 및 또한 tooreturn 적은 양의 결과 대 한 로그 분석에는 서비스 쪽 시간 제한이 때문입니다. Hello 내부 쿼리가 더 많은 결과 반환 하는 경우 hello 결과 목록이 잘리기 있는 발생 시키는 외부 검색 tooreturn hello 잘못 된 결과가 있습니다.
+일반적으로, Log Analytics에 서비스 쪽 제한 시간이 있고 소량의 결과를 반환하기 때문에 내부 쿼리가 신속하게 실행되기를 바랍니다. 내부 쿼리가 더 많은 결과를 반환하면, 결과 목록이 잘리고, 이렇게 되면 외부 검색이 잘못된 결과를 반환하도록 유발할 가능성이 있습니다.
 
-다른 규칙은 해당 hello 내부 검색에는 현재 tooprovide 필요한 *집계* 결과입니다. 즉, *measure* 명령을 포함해야 합니다. 현재는 외부 검색에 원시 결과를 제공할 수 없습니다.
+또 다른 규칙은 내부 검색이 현재 *집계된* 결과를 제공해야 한다는 점입니다. 즉, *measure* 명령을 포함해야 합니다. 현재는 외부 검색에 원시 결과를 제공할 수 없습니다.
 
-또한 IN 연산자를 하나만 있을 수 있으며 hello hello 쿼리의 마지막 필터 여야 합니다. 또는 여러 명의 IN 연산자 수 없습니다.-이 기본적으로 실행할 수 없으며 여러 하위 검색: 각 외부 검색에 대 한 중요 한 점은 하나의 하위/내부 검색만 hello 불가능 합니다.
+또한, IN 연산자는 하나만 있어야 하고 쿼리의 마지막 필터여야 합니다. 여러 개의 IN 연산자에 OR을 사용할 수 없습니다. 이것은 근본적으로 하위 검색을 여러 개 실행하지 못하도록 합니다. 중요한 점은 각 외부 검색에 대한 하위/내부 검색은 하나만 가능하다는 점입니다.
 
-이러한 제한은 IN 통해 많은 종류의 상관 관계 검색이 가능 및 toodefine 사용 하면 다음과 유사한 toogroups 컴퓨터, 사용자 또는 파일 – 등 어떤 hello 필드 데이터에 포함 합니다. 다음은 추가적인 예입니다.
+이러한 제한이 있더라도, IN을 사용하면 다양한 종류의 상호 관련 검색이 가능하며, 컴퓨터, 사용자, 또는 파일(데이터에 포함된 필드면 무엇이든) 같은 그룹과 유사한 것을 정의할 수 있습니다. 다음은 추가적인 예입니다.
 
 **자동 업데이트 설정이 비활성화된 컴퓨터에 누락된 모든 업데이트**
 
@@ -522,14 +522,14 @@ Type=Event EventLevelName=error Computer IN {Type=SQLAssessmentRecommendation | 
 Type=SecurityEvent Computer IN { Type=ADAssessmentRecommendation | measure count() by Computer }
 ```
 
-**다른 계정 toohello 로그온 되어 있는 동일한 컴퓨터 BACONLAND\jochan 계정이 로그온가?**
+**BACONLAND\jochan 계정이 로그인된 컴퓨터에 또 어떤 계정이 로그인되어 있습니까?**
 
 ```
 Type=SecurityEvent EventID=4624   Account!="BACONLAND\\jochan" Computer IN { Type=SecurityEvent EventID=4624   Account="BACONLAND\\jochan" | measure count() by Computer } | measure count() by Account
 ```
 
-## <a name="use-hello-distinct-command"></a>Hello distinct 명령 사용
-Hello 이름에서 알 수 있듯이이 명령은 필드의 고유 값 목록을 제공 합니다. 매우 간단하지만 유용합니다. 동일한 결과 얻을 수도 measure count () 명령을 사용도 아래와 같이 hello 합니다.
+## <a name="use-the-distinct-command"></a>distinct 명령 사용
+이름에서 알 수 있듯이, 이 명령은 필드의 고유 값 목록을 제공합니다. 매우 간단하지만 유용합니다. 아래에서 볼 수 있듯이, measure count() 명령을 사용하면 같은 결과를 낼 수 있습니다.
 
 ```
 Type=Event | Measure count() by Computer
@@ -537,15 +537,15 @@ Type=Event | Measure count() by Computer
 
 ![DISTINCT 검색 명령 예제](./media/log-analytics-log-searches/oms-search-distinct01-revised.png)
 
-그러나에 관심이 모든 고유 값 및 해당 값이 있는 문서 hello 수가 아니라 목록만 이면 다음 DISTINCT 및 제공할 수를 출력 하는 쉽고 명확한 tooread 간단한 구문을 아래와 같이.
+고유 값 목록에만 관심이 있고 그 값을 포함하는 문서의 수에는 관심이 없다면, DISTINCT는 보다 읽기 쉽고 깔끔한 결과와 짧은 구문을 제공합니다(아래 참조).
 
 ```
 Type=Event | Distinct Computer
 ```
 ![DISTINCT 검색 명령 예제](./media/log-analytics-log-searches/oms-search-distinct02-revised.png)
 
-## <a name="use-hello-countdistinct-function-with-hello-measure-command"></a>Hello countdistinct 함수 hello 측정값 명령 사용
-countdistinct 함수 hello hello 각 그룹 내에서 고유 값 수를 계산합니다. 예를 들어, 될 수 toocount hello 수가 고유 컴퓨터 각 형식에 대 한 보고를 사용 합니다.
+## <a name="use-the-countdistinct-function-with-the-measure-command"></a>measure 명령과 함께 countdistinct 함수 사용
+countdistinct 함수는 각 그룹에 포함된 고유 값의 수를 셉니다. 예를 들어, 각 유형에 대해 보고하는 고유한 컴퓨터의 수를 계산하는 데 사용할 수 있습니다.
 
 ```
 * | measure countdistinct(Computer) by Type
@@ -553,10 +553,10 @@ countdistinct 함수 hello hello 각 그룹 내에서 고유 값 수를 계산�
 
 ![OMS-countdistinct](./media/log-analytics-log-searches/oms-countdistinct.png)
 
-## <a name="use-hello-measure-interval-command"></a>Hello 측정 간격 명령을 사용 하 여
-실시간에 가까운 성능 데이터 수집을 통해, Log Analytics의 모든 성능 카운터를 수집하고 시각화할 수 있습니다. 단순히 입력 hello 쿼리 **유형: 성능** 메트릭 그래프 카운터 및 로그 분석 환경에서 서버 hello 수에 따라 수천을 반환 합니다. Hello를 살펴볼 수 주문형 메트릭 집계로 높은 수준과 심층 탐구는 데 필요한 만큼 더 세분화 된 데이터에서 사용자 환경에서 전반적인 메트릭.
+## <a name="use-the-measure-interval-command"></a>measure interval 명령 사용
+실시간에 가까운 성능 데이터 수집을 통해, Log Analytics의 모든 성능 카운터를 수집하고 시각화할 수 있습니다. 간단하게 **Type:Perf** 쿼리만 입력하면, Log Analytics 환경의 카운터와 서버 수를 기반으로 수천 개의 메트릭 그래프가 반환됩니다. 주문형 메트릭 집계를 통해, 대략적인 수준에서 환경의 전반적인 메트릭을 살펴볼 수 있고 필요에 따라 보다 세부적인 데이터를 깊게 파고들 수 있습니다.
 
-원하는 tooknow hello 평균 CPU 모든 컴퓨터에서 이란 경우를 가정해 봅니다. 모든 컴퓨터에 대 한 평균 CPU hello 살펴보면 아닐 수 있습니다 유용 하므로 결과 매끄럽게 얻을 수 있습니다. 더 세부적으로 toolook를 집계할 수 있습니다 결과 창이 청크를 더 작은 시간과 모양에 시계열에 다른 차원에서. 예를 들어 다음과 같은 모든 컴퓨터에서 CPU 사용량의 hello 시간별 평균을 수행할 수 있습니다.
+모든 컴퓨터를 통틀어 평균 CPU가 어떻게 되는지 알아야 한다고 가정하겠습니다. 모든 컴퓨터의 평균 CPU를 살펴보는 것은 결과가 완화될 수 있기 때문에 도움이 되지 않습니다. 보다 자세히 알아보기 위해서는, 결과를 기간이 더 짧은 청크로 집계하고, 여러 차원에 걸쳐 시계열을 살펴봅니다. 예를 들어, 모든 컴퓨터에 대한 시간당 평균 CPU 사용률을 다음과 같이 수행할 수 있습니다.
 
 ```
 Type:Perf CounterName="% Processor Time" InstanceName="_Total" | measure avg(CounterValue) by Computer Interval 1HOUR
@@ -564,21 +564,21 @@ Type:Perf CounterName="% Processor Time" InstanceName="_Total" | measure avg(Cou
 
 ![평균 간격 측정](./media/log-analytics-log-searches/oms-measure-avg-interval.png)
 
-기본적으로, 이러한 결과는 다중 계열 대화형 꺾은선형 차트에 표시됩니다.  이 차트는 계열 전환(y 축 재조정 포함), 확대/축소 및 가리킴을 지원합니다.  hello 테이블 표시 옵션은 필요한 경우 hello 원시 데이터를 보기 위해 계속 사용할 수 있습니다.
+기본적으로, 이러한 결과는 다중 계열 대화형 꺾은선형 차트에 표시됩니다.  이 차트는 계열 전환(y 축 재조정 포함), 확대/축소 및 가리킴을 지원합니다.  필요한 경우 원시 데이터를 볼 수 있도록, 테이블 표시 옵션이 제공됩니다.
 
-다른 필드를 기준으로 그룹화가 가능합니다. 이 예제에서는 하나의 특정 컴퓨터에 대 한 모든 hello % 카운터 보고 하 고 모든 카운터의 시간별 70 백분위 수 hello 란 tooknow 원하는:
+다른 필드를 기준으로 그룹화가 가능합니다. 이 예제에서는, 특정 컴퓨터 한 대에 대한 모든 % 카운터를 살펴보고 있으며, 모든 카운터의 시간당 70 백분위 수가 무엇인지 알고자 합니다.
 
 ```
 Type:Perf Computer=beefpatty4 CounterName=%* InstanceName=_Total | measure percentile70(CounterValue) by CounterName Interval 1HOUR
 ```
-한 가지 toonote은 이러한 쿼리 제한 tooperformance 카운터 되지 않는다는 것입니다. tooany 메트릭을 적용할 수 있습니다. 이 예제에서, W3C IIS 로그를 보고 있습니다. 각 요청을 처리 하기 위해 5 분 간격에 대해 걸리는 hello 최대 시간 이란 tooknow 합니다.
+이 쿼리는 성능 카운터로 제한되지 않습니다. 모든 메트릭에 적용할 수 있습니다. 이 예제에서, W3C IIS 로그를 보고 있습니다. 5분 간격으로 각 요청을 처리하는데 소요되는 최대 시간이 얼마인지 알아 보려고 합니다.
 
 ```
 Type:W3CIISLog | measure max(TimeTaken) by csMethod Interval 5MINUTES
 ```
 
 ### <a name="use-multiple-aggregates-in-one-query"></a>한 쿼리에 여러 집계 사용
-measure 명령에 집계 절을 여러 개 지정할 수 있습니다.  각 절에는 개별적으로 별칭을 지정할 수 있습니다.  필드 이름이 사용 된 집계 함수를 hello 됩니다 별칭 hello 결과 부여 되지 않은 경우 (즉, "avg(CounterValue)" avg(CounterValue))에 대 한 합니다.
+measure 명령에 집계 절을 여러 개 지정할 수 있습니다.  각 절에는 개별적으로 별칭을 지정할 수 있습니다.  별칭을 지정하지 않으면, 사용된 집계 함수가 필드 이름이 됩니다(예: avg(CounterValue)의 경우 "avg(CounterValue)").
 
  ```
 Type=WireData | measure avg(ReceivedBytes), avg(SentBytes) by Direction interval 1hour
@@ -595,5 +595,5 @@ Type=WireData | measure avg(ReceivedBytes), avg(SentBytes) by Direction interval
 ## <a name="next-steps"></a>다음 단계
 로그 검색에 대한 자세한 내용은 다음을 참조하십시오.
 
-* 사용 하 여 [로그 분석의 사용자 지정 필드](log-analytics-custom-fields.md) tooextend 로그 검색 합니다.
-* 검토 hello [로그 분석 로그 검색 참조](log-analytics-search-reference.md) tooview hello의 모든 필드 및 패싯 로그 분석에서 사용할 수를 검색 합니다.
+* [Log Analytics의 사용자 지정 필드](log-analytics-custom-fields.md) 를 사용하여 로그 검색을 확장합니다.
+* Log Analytics에 제공되는 모든 검색 필드 및 패싯을 보려면 [Log Analytics log search reference](log-analytics-search-reference.md) (Log Analytics 로그 검색 참조)를 검토합니다.

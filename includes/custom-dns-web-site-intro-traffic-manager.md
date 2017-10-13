@@ -1,2 +1,2 @@
-Microsoft Azure 트래픽 관리자 tooload 균형 트래픽 tooyour Azure 웹 사이트를 사용 하면 해당 웹 사이트에 액세스할 수 있습니다 hello를 사용 하 여  **\*. trafficmanager.net** Azure에서 할당 된 도메인 이름입니다. 또한와 순서 tooprovide 사용자에 대 한 더 인식할 수 있는 도메인 이름에서에서 웹 사이트는 사용자 지정 도메인 이름 예: www.contoso.com 연결할 수 있습니다.
+Microsoft Azure Traffic Manager를 사용하여 Azure Websites에 대한 트래픽의 부하를 분산하면 Azure에서 할당한 **\*.trafficmanager.net** 도메인 이름을 사용하여 해당 웹 사이트에 액세스할 수 있습니다. 또한 사용자가 더욱 쉽게 알 수 있는 도메인 이름을 제공하기 위해 www.contoso.com과 같은 사용자 지정 도메인 이름을 웹 사이트와 연결할 수도 있습니다.
 

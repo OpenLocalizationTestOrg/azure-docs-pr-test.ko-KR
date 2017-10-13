@@ -1,46 +1,46 @@
 <!--author=alkohli last changed: 08/21/17-->
 
-#### <a name="toodownload-hotfixes"></a>toodownload 핫픽스
+#### <a name="to-download-hotfixes"></a>핫픽스를 다운로드하려면
 
-Hello hello Microsoft Update 카탈로그에서에서 단계 toodownload hello 소프트웨어 업데이트를 다음을 수행 합니다.
+Microsoft 업데이트 카탈로그에서 소프트웨어 업데이트를 다운로드하려면 다음 단계를 수행합니다.
 
-1. Internet Explorer를 시작 하 고 탐색 너무[http://catalog.update.microsoft.com](http://catalog.update.microsoft.com)합니다.
-2. Microsoft Update 카탈로그 hello를 사용 하 여이 컴퓨터에 처음으로 이면 클릭 **설치** 때 메시지 표시 tooinstall hello Microsoft Update 카탈로그 추가 기능입니다.
+1. Internet Explorer를 시작하고 [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com)으로 이동합니다.
+2. 이 컴퓨터에서 Microsoft 업데이트 카탈로그를 처음 사용하는 경우 Microsoft 업데이트 카탈로그 추가 기능을 설치하라는 메시지가 나타나면 **설치** 를 클릭합니다.
 
     ![카탈로그 설치](./media/storsimple-install-update2-hotfix/HCS_InstallCatalog-include.png)
 
-3. Hello Microsoft Update 카탈로그의 hello 검색 상자에 hello 기술 자료 (KB) 번호를 입력 hello 핫픽스의 원하는 toodownload, 예를 들어 **4037264**, 클릭 하 고 **검색**합니다.
+3. Microsoft 업데이트 카탈로그의 검색 상자에 다운로드하려는 핫픽스의 KB(기술 자료) 번호(예: **4037264**)를 입력하고 **검색**을 클릭합니다.
    
-    hello 핫픽스 목록이 표시 되 면 예를 들어 **StorSimple 8000 시리즈에 대 한 누적 소프트웨어 번들 업데이트 5.0**합니다.
+    핫픽스 목록이 나타납니다(예: **StorSimple 8000 시리즈용 누적 소프트웨어 번들 업데이트 5.0**).
    
     ![카탈로그 검색](./media/storsimple-install-update5-hotfix/update-catalog-search.png)
 
-4. **다운로드**를 클릭합니다. 지정 하거나 **찾아보기** tooa 로컬 위치 hello tooappear 다운로드 합니다. Hello 파일 클릭 toodownload toohello 위치 및 폴더를 지정 합니다. hello 폴더 hello 장치에서 연결할 수 있는 tooa 복사한 네트워크 공유 될 수도 있습니다.
-5. 위의 hello 표에 나열 된 모든 추가 핫픽스에 대 한 검색 (**4037266**), 및 hello 테이블 앞에 나열 된 toohello 특정 폴더에 파일 다운로드 hello에 해당 합니다.
+4. **다운로드**를 클릭합니다. 다운로드를 표시할 로컬 위치를 지정하거나 **검색** 합니다. 파일을 클릭하여 지정된 위치 및 폴더로 다운로드합니다. 장치에서 연결할 수 있는 네트워크 공유에 폴더도 복사할 수 있습니다.
+5. 위의 표에 나열된 추가 핫픽스(**4037266**)를 검색하고 해당 파일을 이전 표에 나열된 대로 특정 폴더에 다운로드합니다.
 
 > [!NOTE]
-> hello 핫픽스 두 컨트롤러 toodetect hello 피어 컨트롤러에서 잠재적인 오류 메시지에서 액세스할 수 있어야 합니다.
+> 피어 컨트롤러의 잠재적 오류 메시지를 검색하려면 컨트롤러 둘 다에서 핫픽스에 액세스할 수 있어야 합니다.
 >
-> hello 핫픽스 3 별도 폴더에 복사 해야 합니다. 예를 들어에 hello 장치 소프트웨어/Ci/MDS 에이전트 업데이트를 복사할 수 있습니다 _FirstOrderUpdate_ hello 모든 폴더를 다른 정기적인 업데이트 hello에 복사할 수 없습니다 _SecondOrderUpdate_ 폴더 및 유지 관리 모드 업데이트에서 복사한 _ThirdOrderUpdate_ 폴더입니다.
+> 핫픽스는 3개의 별도 폴더에 복사해야 합니다. 예를 들어, 장치 소프트웨어/Cis/MDS 에이전트 업데이트는 _FirstOrderUpdate_ 폴더에 복사할 수 있으며, 다른 정기적인 업데이트는 모두 _SecondOrderUpdate_ 폴더에 복사되고, 유지 관리 모드 업데이트는 _ThirdOrderUpdate_ 폴더에 복사할 수 있습니다.
 
-#### <a name="tooinstall-and-verify-regular-mode-hotfixes"></a>tooinstall 일반 모드 핫픽스를 확인 합니다.
+#### <a name="to-install-and-verify-regular-mode-hotfixes"></a>일반 모드 핫픽스를 설치 및 확인하려면
 
-Hello 단계 tooinstall 다음을 수행 하 고 일반 모드 핫픽스를 확인 합니다. 이미 설치 하는 경우에 Azure 포털 hello를 사용 하 여 너무 건너 뛸[설치 하 고 유지 관리 모드 핫픽스 확인](#to-install-and-verify-maintenance-mode-hotfixes)합니다.
+일반 모드 핫픽스를 설치 및 확인하려면 다음 단계를 수행합니다. 이미 Azure Portal을 사용하여 설치한 경우 [유지 관리 모드 핫픽스 설치 및 확인](#to-install-and-verify-maintenance-mode-hotfixes)으로 건너뜁니다.
 
-1. StorSimple 장치 직렬 콘솔에 액세스 hello Windows PowerShell 인터페이스 tooinstall hello 핫픽스 합니다. 에 따라 hello에 필요한 세부 정보 [사용 PuTTy tooconnect toohello 직렬 콘솔](../articles/storsimple/storsimple-8000-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console)합니다. Hello 명령 프롬프트에를 눌러 **Enter**합니다.
-2. 선택 **옵션 1** toolog 전체 액세스 권한이 있는 toohello 장치에 있습니다. Hello 핫픽스 hello 수동 컨트롤러에 먼저 설치 해야 하는 것이 좋습니다.
-3. tooinstall hello 핫픽스, 형식 hello 명령 프롬프트에서:
+1. 핫픽스를 설치하려면 StorSimple 장치 직렬 콘솔에서 Windows PowerShell 인터페이스에 액세스합니다. [PuTTy를 사용하여 직렬 콘솔에 연결](../articles/storsimple/storsimple-8000-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console)에서 자세한 지침을 따르세요. 명령 프롬프트에서 **Enter**키를 누릅니다.
+2. **옵션 1** 을 선택하여 모든 권한으로 장치에 로그온합니다. 먼저 수동 컨트롤러에 핫픽스를 설치하는 것이 좋습니다.
+3. 핫픽스를 설치하려면 명령 프롬프트에 다음을 입력합니다.
    
-    `Start-HcsHotfix -Path <path tooupdate file> -Credential <credentials in domain\username format>`
+    `Start-HcsHotfix -Path <path to update file> -Credential <credentials in domain\username format>`
    
-    명령 위에 hello 공유 경로에 DNS를 사용 하지 않고 IP를 사용 합니다. hello credential 매개 변수는 인증 된 공유에 액세스 하는 경우에 사용 됩니다.
+    위 명령에서 공유 경로에 DNS 대신 IP를 사용합니다. 자격 증명 매개 변수는 인증된 공유에 액세스하는 경우에만 사용됩니다.
    
-    Hello 자격 증명 매개 변수 tooaccess 공유를 사용 하는 것이 좋습니다. 열려 있는 너무 일반적으로 "everyone 이라는"도 공유 toounauthenticated 사용자 열.
+    자격 증명 매개 변수를 사용하여 공유에 액세스하는 것이 좋습니다. 일반적으로 "모든 사용자"에게 개방된 공유도 인증되지 않은 사용자에게는 개방되지 않습니다.
    
-4. 메시지가 표시 되 면 hello 암호를 제공 합니다. Hello 첫 번째 주문 업데이트를 설치 하기 위한 샘플 출력은 다음과 같습니다. 첫 번째 주문 업데이트 hello toopoint toohello 특정 파일이 필요합니다.
+4. 메시지가 표시되면 암호를 제공합니다. 첫 번째 주문 업데이트를 설치하기 위한 샘플 출력은 다음과 같습니다. 첫 번째 주문 업데이트의 경우 특정 파일을 가리키도록 해야 합니다.
 
     >[!NOTE] 
-    > Hello를 설치 해야 _HcsSoftwareUpdate.exe_ 첫 번째입니다. 이 설치가 완료된 후에 _CisMdsAgentUpdate.exe_를 설치합니다.
+    > 먼저 _HcsSoftwareUpdate.exe_를 설치해야 합니다. 이 설치가 완료된 후에 _CisMdsAgentUpdate.exe_를 설치합니다.
    
         ````
         Controller0>Start-HcsHotfix -Path \\10.100.100.100\share
@@ -48,16 +48,16 @@ Hello 단계 tooinstall 다음을 수행 하 고 일반 모드 핫픽스를 확�
    
         Confirm
    
-        This operation starts hello hotfix installation and could reboot one or
-        both of hello controllers. If hello device is serving I/Os, these will not
-        be disrupted. Are you sure you want toocontinue?
+        This operation starts the hotfix installation and could reboot one or
+        both of the controllers. If the device is serving I/Os, these will not
+        be disrupted. Are you sure you want to continue?
         [Y] Yes [N] No [?] Help (default is "Y"): Y
    
         ````
-5. 형식 **Y** 때 메시지 표시 tooconfirm hello 핫픽스를 설치 합니다.
-6. Hello를 사용 하 여 hello 업데이트를 모니터링할 `Get-HcsUpdateStatus` cmdlet. hello 업데이트 hello 수동 컨트롤러에서 먼저 완료 됩니다. Hello 수동 컨트롤러 업데이트 되, 장애 조치 됩니다 hello 업데이트 후에 적용 되 면 다른 컨트롤러를 hello 합니다. hello 컨트롤러를 모두 업데이트 하는 경우 hello 업데이트가 완료 되었습니다.
+5. 핫픽스 설치를 확인하라는 메시지가 표시되면 **Y** 를 입력합니다.
+6. `Get-HcsUpdateStatus` cmdlet을 사용하여 업데이트를 모니터링합니다. 업데이트가 수동 컨트롤러에서 먼저 완료됩니다. 수동 컨트롤러가 업데이트되면 장애 조치(failover)된 다음 업데이트가 다른 컨트롤러에 적용됩니다. 두 컨트롤러가 모두 업데이트되면 업데이트가 완료됩니다.
    
-    hello 다음 샘플은 출력 hello 업데이트 진행 중에서입니다. hello `RunInprogress` 은 `True` hello 업데이트가 진행 중 설정 된 경우입니다.
+    다음 샘플 출력에서는 진행 중인 업데이트를 보여줍니다. 업데이트가 진행 중이면 `RunInprogress`가 `True`입니다.
 
     ```
     Controller0>Get-HcsUpdateStatus
@@ -68,7 +68,7 @@ Hello 단계 tooinstall 다음을 수행 하 고 일반 모드 핫픽스를 확�
     Controller1Events   :
     ```
    
-     다음 샘플 출력 hello 해당 hello 업데이트가 완료 된 나타냅니다. hello `RunInProgress` 은 `False` hello 업데이트 제거가 완료 합니다.
+     다음 샘플 출력은 업데이트가 완료되었음을 나타냅니다. 업데이트가 완료되면 `RunInProgress`가 `False`입니다.
    
     ```
     Controller0>Get-HcsUpdateStatus
@@ -80,50 +80,50 @@ Hello 단계 tooinstall 다음을 수행 하 고 일반 모드 핫픽스를 확�
     ```
 
     > [!NOTE]
-    > 경우에 따라서는 cmdlet 보고서 hello `False` hello 업데이트 중인 경우 계속 진행 합니다. 핫픽스 hello tooensure 완료, 몇 분 정도 기다렸다가,이 명령을 다시 실행 및 해당 hello 확인 `RunInProgress` 은 `False`합니다. 인 경우 hello 핫픽스 완료 되었습니다.
+    > 업데이트가 진행 중일 때 cmdlet에서 `False`를 보고하는 경우도 있습니다. 핫픽스가 완료되었는지 확인하려면 몇 분 동안 기다린 후 이 명령을 다시 실행하고 `RunInProgress`가 `False`인지 확인합니다. 맞으면 핫픽스가 완료된 것입니다.
 
-7. Hello 소프트웨어 업데이트가 완료 되 면 hello 시스템 소프트웨어 버전을 확인 합니다. 형식:
+7. 소프트웨어 업데이트가 완료된 후 시스템 소프트웨어 버전을 확인합니다. 형식:
    
     `Get-HcsSystem`
    
-    다음 버전 hello를 표시 되어야 합니다.
+    다음 버전이 표시되어야 합니다.
    
    * `FriendlySoftwareVersion: StorSimple 8000 Series Update 5.0`
    *  `HcsSoftwareVersion: 6.3.9600.17845`
    
-    Hello 업데이트를 적용 한 후 hello 버전 번호가 변경 되지 않으면 해당 hello 핫픽스가 tooapply 못한 나타냅니다. 이 경우 추가 지원을 받으려면 [Microsoft 지원](../articles/storsimple/storsimple-8000-contact-microsoft-support.md) 에 문의하세요.
+    업데이트를 적용한 후 버전 번호가 변경되지 않으면 핫픽스를 적용하지 못한 것입니다. 이 경우 추가 지원을 받으려면 [Microsoft 지원](../articles/storsimple/storsimple-8000-contact-microsoft-support.md) 에 문의하세요.
      
     > [!IMPORTANT]
-    > Hello hello 통해 활성 컨트롤러를 다시 시작 해야 `Restart-HcsController` 적용 하기 전에 cmdlet hello 다음 업데이트 합니다.
+    > 다음 업데이트를 적용하기 전에 `Restart-HcsController` cmdlet을 통해 활성 컨트롤러를 다시 시작해야 합니다.
      
-8. Tooinstall hello 3-6 단계를 반복 _CisMDSAgentupdate.exe_ 에이전트 다운로드 tooyour _FirstOrderUpdate_ 폴더입니다.
-8. 3-6 단계 tooinstall hello 두 번째 주문 업데이트를 반복 합니다. 
+8. _FirstOrderUpdate_ 폴더에 다운로드한 _CisMDSAgentupdate.exe_ 에이전트를 설치하려면 3~6단계를 반복합니다.
+8. 두 번째 주문 업데이트를 설치하려면 3~6단계를 반복합니다. 
 
     > [!NOTE] 
-    > 두 번째 주문 업데이트에 대 한 여러 업데이트가 방금 hello를 실행 하 여 설치 수 `Start-HcsHotfix cmdlet` toohello 폴더는 두 번째 주문 업데이트의 위치를 가리키는 합니다. hello cmdlet hello 폴더에서 사용할 수 있는 모든 hello 업데이트 실행 됩니다. 업데이트가 이미 설치 되어 있는 경우 hello 업데이트 논리에서는 하는 검색 하 고 해당 업데이트를 적용 되지 않습니다.
+    > 두 번째 주문 업데이트의 경우 `Start-HcsHotfix cmdlet`을 실행하고 두 번째 주문 업데이트가 있는 폴더를 가리키면 여러 업데이트를 설치할 수 있습니다. 이 cmdlet은 폴더에서 사용할 수 있는 모든 업데이트를 실행합니다. 업데이트가 이미 설치되어 경우 업데이트 논리를 감지하고 해당 업데이트를 적용하지 않습니다.
 
-    Hello를 사용 하 여 모든 hello 핫픽스를 설치 했으면 `Get-HcsSystem` cmdlet. hello 버전 이어야 합니다.
+    핫픽스를 모두 설치한 후 `Get-HcsSystem` cmdlet을 사용합니다. 버전은 다음과 같아야 합니다.
     
     * `CisAgentVersion:  1.0.9724.0`
     * `MdsAgentVersion: 35.2.2.0`
     * `Lsisas2Version: 2.0.78.00`
 
 
-#### <a name="tooinstall-and-verify-maintenance-mode-hotfixes"></a>tooinstall 유지 관리 모드 핫픽스를 확인 합니다.
+#### <a name="to-install-and-verify-maintenance-mode-hotfixes"></a>유지 관리 모드 핫픽스를 설치 및 확인하려면
 
-KB4037263 tooinstall 디스크 펌웨어 업데이트를 사용 합니다. 이러한 업데이트가 중단 되 고 약 30 분 toocomplete를 수행 합니다. 선택할 수 있습니다 tooinstall 계획 된 유지 관리 창에서 이러한 연결 toohello 장치 직렬 콘솔에서.
+KB4037263을 사용하여 디스크 펌웨어 업데이트를 설치합니다. 작업 중단 업데이트이며 완료하는 데 약 30분이 소요됩니다. 장치 직렬 콘솔에 연결하여 계획된 유지 관리 기간에 설치하도록 선택할 수 있습니다.
 
 > [!NOTE] 
-> 디스크 펌웨어 이미 최신 상태 이면 이러한 업데이트 tooinstall 필요 하지는 않습니다. Hello 실행 `Get-HcsUpdateAvailability` hello 장치 직렬 콘솔 toocheck 업데이트 사용할 수 있고 여부 hello에서 cmdlet은 중단 (유지 관리 모드) 또는 무중단 (일반 모드)를 업데이트 합니다. 업데이트 합니다.
+> 디스크 펌웨어가 이미 최신 상태인 경우 이러한 업데이트를 설치할 필요가 없습니다. 장치 일련 번호 콘솔에서 `Get-HcsUpdateAvailability` cmdlet을 실행하여 업데이트가 사용 가능한지 여부와 업데이트가 중단(유지 관리 모드) 또는 비중단(일반 모드)인지에 대해 확인합니다.
 
-tooinstall hello 디스크 펌웨어 업데이트 아래 hello 지침을 따릅니다.
+디스크 펌웨어 업데이트를 설치하려면 아래 지침을 따릅니다.
 
-1. Hello 유지 관리 모드에서 hello 장치를 배치 합니다. 
+1. 장치를 유지 관리 모드로 설정합니다. 
 
     > [!NOTE] 
-    > 유지 관리 모드에서 tooa 장치를 연결할 때 Windows PowerShell 원격을 사용 하지 마십시오. 대신 hello 장치 컨트롤러 hello 장치 직렬 콘솔을 통해 연결 된 경우에이 cmdlet을 실행 합니다.
+    > 유지 관리 모드에서 장치에 연결할 때는 Windows PowerShell 원격을 사용해서는 안 됩니다. 장치 직렬 콘솔을 통해 연결된 경우에는 장치 컨트롤러에서 이 cmdlet을 실행해야 합니다.
 
-    유지 관리 모드에서 tooplace hello 컨트롤러 입력 합니다.
+    컨트롤러를 유지 관리 모드로 배치하려면 다음을 입력합니다.
    
     `Enter-HcsMaintenanceMode`
    
@@ -132,14 +132,14 @@ tooinstall hello 디스크 펌웨어 업데이트 아래 hello 지침을 따릅�
         Controller0>Enter-HcsMaintenanceMode
         Checking device state...
    
-        In maintenance mode, your device will not service IOs and will be disconnected from hello Microsoft Azure StorSimple Manager service. Entering maintenance mode will end hello current session and reboot both controllers, which takes a few minutes toocomplete. Are you sure you want tooenter maintenance mode?
+        In maintenance mode, your device will not service IOs and will be disconnected from the Microsoft Azure StorSimple Manager service. Entering maintenance mode will end the current session and reboot both controllers, which takes a few minutes to complete. Are you sure you want to enter maintenance mode?
         [Y] Yes [N] No (Default is "Y"): Y
    
         -----------------------MAINTENANCE MODE------------------------
         Microsoft Azure StorSimple Appliance Model 8600
         Name: Update4-8600-mystorsimple
         Copyright (C) 2014 Microsoft Corporation. All rights reserved.
-        You are connected tooController0 - Passive
+        You are connected to Controller0 - Passive
         ---------------------------------------------------------------
    
         Serial Console Menu
@@ -149,26 +149,26 @@ tooinstall hello 디스크 펌웨어 업데이트 아래 hello 지침을 따릅�
         [4] Change language
         Please enter your choice>
    
-    두 hello 컨트롤러 유지 관리 모드로 다시 시작 합니다.
-2. tooinstall hello 디스크 펌웨어 업데이트, 유형:
+    두 컨트롤러 모두 유지 관리 모드로 다시 시작합니다.
+2. 디스크 펌웨어 업데이트를 설치하려면 다음을 입력합니다.
    
-    `Start-HcsHotfix -Path <path tooupdate file> -Credential <credentials in domain\username format>`
+    `Start-HcsHotfix -Path <path to update file> -Credential <credentials in domain\username format>`
    
     샘플 출력은 다음과 같습니다.
    
         Controller1>Start-HcsHotfix -Path \\10.100.100.100\share\ThirdOrderUpdates\ -Credential contoso\john
         Enter Password:
-        WARNING: In maintenance mode, hotfixes should be installed on each controller sequentially. After hello hotfix is installed on this controller, install it on hello peer controller.
+        WARNING: In maintenance mode, hotfixes should be installed on each controller sequentially. After the hotfix is installed on this controller, install it on the peer controller.
         Confirm
-        This operation starts a hotfix installation and could reboot one or both of hello controllers. By installing new updates you agree to, and accept any additional terms associated with, hello new functionality listed in hello release notes (https://go.microsoft.com/fwLink/?LinkID=613790). Are you sure you want toocontinue?
+        This operation starts a hotfix installation and could reboot one or both of the controllers. By installing new updates you agree to, and accept any additional terms associated with, the new functionality listed in the release notes (https://go.microsoft.com/fwLink/?LinkID=613790). Are you sure you want to continue?
         [Y] Yes [N] No (Default is "Y"): Y
-        WARNING: Installation is currently in progress. This operation can take several minutes toocomplete.
-3. Hello 설치 진행률 사용 하 여 모니터링 `Get-HcsUpdateStatus` 명령입니다. hello 업데이트가 완료 되 면 hello `RunInProgress` 쪽 변경`False`합니다.
-4. Hello 설치가 완료 되 면 유지 관리 모드 핫픽스가 설치 되어 있는 hello hello 컨트롤러 다시 시작 됩니다. 모든 권한이 있는 옵션 1로 로그인 하 고 hello 디스크 펌웨어 버전을 확인 합니다. 형식:
+        WARNING: Installation is currently in progress. This operation can take several minutes to complete.
+3. `Get-HcsUpdateStatus` 명령을 사용하여 설치 진행률을 모니터링합니다. `RunInProgress`가 `False`로 변경되면 업데이트가 완료됩니다.
+4. 설치가 완료된 후에 유지 관리 모드 핫픽스가 설치된 컨트롤러가 다시 시작됩니다. 모든 권한이 있는 옵션 1로 로그인하고 디스크 펌웨어 버전을 확인합니다. 형식:
    
    `Get-HcsFirmwareVersion`
    
-   hello는 디스크 펌웨어 버전이 필요 합니다.
+   예상된 디스크 펌웨어 버전은 다음과 같습니다.
    
    `XMGJ, XGEG, KZ50, F6C2, VR08, N003, 0107`
    
@@ -179,7 +179,7 @@ tooinstall hello 디스크 펌웨어 업데이트 아래 hello 지침을 따릅�
        Name: Update4-8600-mystorsimple
        Software Version: 6.3.9600.17845
        Copyright (C) 2014 Microsoft Corporation. All rights reserved.
-       You are connected tooController1
+       You are connected to Controller1
        ---------------------------------------------------------------
    
        Controller1>Get-HcsFirmwareVersion
@@ -255,9 +255,9 @@ tooinstall hello 디스크 펌웨어 업데이트 아래 hello 지침을 따릅�
               WD:WD4001FYYG-01SL3:VR08
               WD:WD4001FYYG-01SL3:VR08
    
-    Hello 실행 `Get-HcsFirmwareVersion` 소프트웨어 버전 hello 하는 hello 두 번째 컨트롤러 tooverify에 명령 업데이트 되었습니다. 그런 다음 hello 유지 관리 모드를 종료할 수 있습니다. 따라서 toodo 다음 각 장치 컨트롤러에 대 한 명령을 hello를 입력 합니다.
+    두 번째 컨트롤러에서 `Get-HcsFirmwareVersion` 명령을 실행하여 해당 소프트웨어 버전이 업데이트되었는지 확인합니다. 그런 다음 유지 관리 모드를 끝낼 수 있습니다. 이렇게 하려면 각 장치 컨트롤러에 대해 다음 명령을 입력합니다.
    
    `Exit-HcsMaintenanceMode`
 
-5. 유지 관리 모드를 종료 하는 hello 컨트롤러 다시 시작 합니다. Hello 디스크 펌웨어 후 업데이트를 적용 하 고 hello 장치 반환 toohello Azure 포털의 유지 관리 모드 종료 되었습니다. Note 24 시간 동안 hello 유지 관리 모드 업데이트를 설치한 hello 포털이 표시 되지 않습니다.
+5. 유지 관리 모드를 종료하면 컨트롤러가 다시 시작됩니다. 디스크 펌웨어 업데이트가 성공적으로 적용되고 장치가 유지 관리 모드를 종료한 후 Azure Portal로 돌아갑니다. 유지 관리 모드 업데이트가 설치되었는지 24시간 동안 포털에 표시되지 않을 수도 있습니다.
 

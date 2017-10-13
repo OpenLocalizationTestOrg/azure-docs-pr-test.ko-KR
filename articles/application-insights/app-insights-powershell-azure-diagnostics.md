@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 Application Insights aaaUsing PowerShell toosetup | Microsoft Docs"
-description: "구성 Azure 진단 toopipe tooApplication 통찰력을 자동화 합니다."
+title: "Azure에서 PowerShell을 사용하여 Application Insights 설정 | Microsoft Docs"
+description: "Application Insights에 대한 파이프에 Azure 진단 자동화 구성"
 services: application-insights
 documentationcenter: .net
 author: sbtron
@@ -13,17 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/17/2015
 ms.author: bwren
-ms.openlocfilehash: c48a5d8eb23df162522860935af876063aaa6976
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3b6da89cc33cda713b483a2af3cbb493a03d6bec
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="using-powershell-tooset-up-application-insights-for-an-azure-web-app"></a>Azure 웹 앱에 대 한 PowerShell tooset Application Insights를 사용 하 여
-[Microsoft Azure](https://azure.com) 수 [toosend Azure 진단 구성](app-insights-azure-diagnostics.md) 너무[Azure Application Insights](app-insights-overview.md)합니다. hello 진단 tooAzure 클라우드 서비스 및 Azure Vm에 연결합니다. Hello Application Insights SDK를 사용 하 여 hello 앱 내에서 전송 하는 hello 원격 분석을 보완 합니다. 일부로 hello Azure에서 새 리소스를 만드는 과정을 자동화, PowerShell을 사용 하 여 진단을 구성할 수 있습니다.
+# <a name="using-powershell-to-set-up-application-insights-for-an-azure-web-app"></a>PowerShell을 사용하여 Azure 웹앱에서 Application Insights 설정
+[Microsoft Azure](https://azure.com)는 [Azure Application Insights](app-insights-overview.md)에 [Azure 진단을 보내도록 구성](app-insights-azure-diagnostics.md)될 수 있습니다. 진단은 Azure 클라우드 서비스 및 Azure VM과 연관됩니다. 이들 항목은 Application Insights SDK를 사용하여 앱 내부에서 보내는 원격 분석을 보완합니다. Azure에서 새 리소스 생성 과정에 대한 자동화의 일환으로 PowerShell을 사용하여 진단을 구성할 수 있습니다.
 
 ## <a name="azure-template"></a>Azure 템플릿
-Azure의 hello 웹 앱이 Azure 리소스 관리자 템플릿을 사용 하 여 리소스를 만들 경우에이 toohello 리소스 노드를 추가 하 여 Application Insights를 구성할 수 있습니다.
+웹앱이 Azure에 있고 Azure Resource Manager 템플릿을 사용하여 리소스를 만드는 경우 리소스 노드에 이를 추가하여 Application Insights를 구성할 수 있습니다.
 
     {
       resources: [
@@ -42,11 +42,11 @@ Azure의 hello 웹 앱이 Azure 리소스 관리자 템플릿을 사용 하 여 
        ]
      } 
 
-* `nameOfAIAppResource`-hello Application Insights 리소스에 대 한 이름
-* `myWebAppName`-hello 웹 응용 프로그램의 hello id
+* `nameOfAIAppResource` - Application Insights 리소스의 이름
+* `myWebAppName` - 웹앱의 ID
 
 ## <a name="enable-diagnostics-extension-as-part-of-deploying-a-cloud-service"></a>클라우드 서비스 배포의 일부로 진단 확장을 사용하도록 설정
-hello `New-AzureDeployment` cmdlet에 매개 변수가 `ExtensionConfiguration`, 진단 구성의 배열을 사용 하는 합니다. Hello를 사용 하 여 만들 수 있습니다 `New-AzureServiceDiagnosticsExtensionConfig` cmdlet. 예:
+`New-AzureDeployment` cmdlet에는 `ExtensionConfiguration` 매개 변수가 있으며, 진단 구성의 배열을 사용합니다. 이것은 `New-AzureServiceDiagnosticsExtensionConfig` cmdlet을 사용하여 만들 수 있습니다. 예:
 
 ```ps
 
@@ -123,9 +123,9 @@ hello `New-AzureDeployment` cmdlet에 매개 변수가 `ExtensionConfiguration`,
     Remove-AzureServiceDiagnosticsExtension -ServiceName "MyService"
 ```
 
-중 하나를 사용 하 여 hello 진단 확장을 사용 하는 경우 `Set-AzureServiceDiagnosticsExtension` 또는 `New-AzureServiceDiagnosticsExtensionConfig` hello 역할 매개 변수 없이 제거할 수 있습니다 사용 하 여 hello 확장 `Remove-AzureServiceDiagnosticsExtension` hello 역할 매개 변수 없이 합니다. Hello 역할 매개 변수는 hello 확장을 사용 하도록 설정할 때 사용 된 경우 다음도 수 사용 합니다 hello 확장명을 제거 하는 경우.
+Role 매개 변수 없이 `Set-AzureServiceDiagnosticsExtension` 또는 `New-AzureServiceDiagnosticsExtensionConfig`를 사용하여 진단 확장을 사용하도록 설정했다면, Role 매개 변수 없이 `Remove-AzureServiceDiagnosticsExtension`을 사용하여 확장을 제거할 수 있습니다. Role 매개 변수가 확장을 사용하도록 설정할 때 사용되었으면, 확장을 제거할 때도 사용되어야 합니다.
 
-각 개별 역할에서 tooremove hello 진단 확장:
+각각의 개별 역할에서 진단 확장을 제거하려면:
 
 ```ps
 
@@ -135,6 +135,6 @@ hello `New-AzureDeployment` cmdlet에 매개 변수가 `ExtensionConfiguration`,
 
 ## <a name="see-also"></a>참고 항목
 * [Application Insights로 Azure 클라우드 서비스 앱 모니터링](app-insights-cloudservices.md)
-* [Azure 진단 tooApplication Insights 보내기](app-insights-azure-diagnostics.md)
+* [Application Insights에 Azure 진단 보내기](app-insights-azure-diagnostics.md)
 * [구성 경고 자동화](app-insights-powershell-alerts.md)
 

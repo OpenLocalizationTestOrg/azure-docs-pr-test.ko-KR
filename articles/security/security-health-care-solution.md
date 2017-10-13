@@ -1,6 +1,6 @@
 ---
-title: "aaaA 실무 가이드 toodesigning 보안 상태 Azure의 관리 솔루션 | Microsoft Docs"
-description: " 이 문서는 tooimprove 보안 hello Azure 서비스와 기능을 사용 하 여 의료 솔루션에 대해 구성 하는 방법 이해 하도록 도와 줍니다. "
+title: "Azure에서 보안 의료 서비스 솔루션을 설계하는 실용 가이드 | Microsoft Docs"
+description: " 이 문서에서는 구성한 Azure 서비스 및 기능을 사용하여 의료 솔루션에 대한 보안을 개선하는 방법을 이해하도록 도움을 줍니다. "
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/07/2017
 ms.author: terrylan
-ms.openlocfilehash: bf8812402c2181f033f5d71e1814fd1b4ee4fb2f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 34ded89eb7fe005be2341f96e5b883ec73d9e0a5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="a-practical-guide-toodesigning-secure-health-care-solutions-in-azure"></a>실제는 Azure에서 toodesigning 보안 의료 솔루션 가이드
-통합 보안 컨트롤 toomeet 준수 의무 사항이 도움이 되는 지침에 대 한 상태 업계 시작, 시스템 통합 업체가 (SIs), 독립 소프트웨어 공급 업체 (Isv) 및 이동 tooAzure를 고려 하는 조직이 의료 찾고 있습니다.
+# <a name="a-practical-guide-to-designing-secure-health-care-solutions-in-azure"></a>Azure에서 보안 의료 서비스 솔루션을 설계하는 실용 가이드
+Azure로 전환할지를 고려하는 의료 업계 신생 기업, 시스템 통합 업체(SI), 독립 소프트웨어 공급 업체(ISV) 및 의료 조직은 규정 준수 의무를 충족하는 데 도움이 되는 보안 제어를 통합하는 데 도움이 되는 지침을 찾고 있습니다.
 
-[실무 가이드 tooDesigning Secure 의료 보험 솔루션 Microsoft Azure에서](https://aka.ms/azureindustrysecurity) 를 사용 하 여 솔루션 hello Azure 서비스 및 요구 사항에 따라 구성할 수 있는 기능에 대 한 보안을 개선 하는 방법을 이해 하는 데 도움이 됩니다.
-hello 콘텐츠는 세 가지 주요 부분으로 구분 됩니다.
+[Microsoft Azure에서 보안 의료 솔루션을 설계하기 위한 실용적인 가이드](https://aka.ms/azureindustrysecurity) 는 요구 사항에 따라 구성할 수 있는 Azure 서비스 및 기능을 사용하여 솔루션에 대한 보안을 개선하는 방법을 이해하는 데 도움이 됩니다.
+콘텐츠는 다음과 같은 세 가지 주요 섹션으로 구분됩니다.
 
 1. 위험 관리, 공동 책임, 정보 보안 관리 시스템 설정, 산업 및 지역 규정 이해 및 표준 운영 절차 설정을 포함하는 클라우드 기술을 사용하기 위한 고려 사항 지침입니다.
-2. 주요 보안 원칙을 둘 다 tooa 표준 정보 보안 관리 ISO 27001, 같은 표준 및 표준 개발 프로세스와 같은 Microsoft의 개발 수명 주기 SDL (Security)를 정렬 합니다.
-3. Hello 핵심 원칙 toouse 적용의 경우 솔루션에서 맞춤을 시연 함으로써 hello 솔루션에 대 한 요구 사항이 있는 정렬 된 toohello 정보 보안 관리 표준 관점을 설계 합니다.
+2. 표준 정보 보안 관리 표준(예: ISO 27001) 및 표준 개발 프로세스(예: Microsoft SDL(Security Development Lifecycle))에 정렬된 주요 보안 원칙입니다.
+3. 솔루션에 대한 요구 사항이 정보 보안 관리 표준에 정렬되어 있는 솔루션 아키텍쳐 관점에서 내역을 표시하여 사례를 사용하는 핵심 원칙을 적용합니다.
 
-바라 [A 실무 가이드 tooDesigning Secure 의료 보험 솔루션](https://aka.ms/azureindustrysecurity) 유용한 질문이 나 제안 하는 경우 알려주세요 채로 아래 설명 합니다.
+[보안 의료 솔루션을 설계하기 위한 실용적인 가이드](https://aka.ms/azureindustrysecurity) 를 활용하시고 질문이나 제안이 있다면 아래에 의견을 남겨 두어 알려주시기 바랍니다.

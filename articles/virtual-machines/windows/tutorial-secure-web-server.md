@@ -1,6 +1,6 @@
 ---
-title: "Azure에서 aaaSecure SSL과 함께 IIS 인증서 | Microsoft Docs"
-description: "Toosecure hello IIS 웹 서버 Azure에서 Windows VM에서 SSL 인증서를 사용 하는 방법에 대해 알아봅니다"
+title: "Azure에서 SSL 인증서로 IIS 보호 | Microsoft Docs"
+description: "Azure의 Windows VM에서 SSL 인증서로 IIS 웹 서버를 보호하는 방법을 알아봅니다."
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -16,32 +16,32 @@ ms.workload: infrastructure
 ms.date: 07/14/2017
 ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 7a9e0ce07be2f55095fdb5347b64faf5caa4f7e3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6567853e9ef3cad63595dc0afe7a793bdc5d972c
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="secure-iis-web-server-with-ssl-certificates-on-a-windows-virtual-machine-in-azure"></a>Azure의 Windows 가상 컴퓨터에서 SSL 인증서로 IIS 웹 서버 보호
-toosecure 웹 서버, 나중에 SSL (Secure Sockets) 인증서 수 tooencrypt 웹 트래픽을 사용 합니다. 이 SSL 인증서 Azure 키 자격 증명 모음에 저장할 수 있으며 Azure에서 인증서 tooWindows 가상 컴퓨터 (Vm)의 보안 배포를 허용 합니다. 이 자습서에서는 다음 방법에 대해 알아봅니다.
+웹 서버를 보호하기 위해 웹 트래픽을 암호화하는 데 SSL(Secure Sockets Later) 인증서를 사용할 수 있습니다. 이러한 SSL 인증서는 Azure Key Vault에 저장될 수 있으며 Azure에서 Windows VM(가상 컴퓨터)에 인증서의 보안 배포를 허용합니다. 이 자습서에서는 다음 방법에 대해 알아봅니다.
 
 > [!div class="checklist"]
 > * Azure Key Vault 만들기
-> * 생성 또는 인증서 toohello 주요 자격 증명 모음 업로드
-> * VM을 만들고 hello IIS 웹 서버 설치
-> * Hello VM hello 인증서 삽입 및을 SSL 바인딩과 함께 IIS를 구성 합니다.
+> * Key Vault에 인증서 생성 또는 업로드
+> * VM 만들기 및 IIS 웹 서버 설치
+> * VM에 인증서 삽입 및 SSL 바인딩으로 IIS 구성
 
-이 자습서는 Azure PowerShell 모듈 버전 3.6 이상 hello가 필요합니다. 실행 ` Get-Module -ListAvailable AzureRM` toofind hello 버전입니다. Tooupgrade 필요한 경우 참조 [Azure PowerShell 설치 모듈](/powershell/azure/install-azurerm-ps)합니다.
+이 자습서에는 Azure PowerShell 모듈 버전 3.6 이상이 필요합니다. ` Get-Module -ListAvailable AzureRM`을 실행하여 버전을 찾습니다. 업그레이드해야 하는 경우 [Azure PowerShell 모듈 설치](/powershell/azure/install-azurerm-ps)를 참조하세요.
 
 
 ## <a name="overview"></a>개요
-Azure Key Vault는 암호화 키 및 비밀 정보(인증서 또는 암호)를 보호합니다. 주요 자격 증명 모음은 hello 인증서 관리 프로세스를 간소화 하는 데 도움이 됩니다 하 고 해당 인증서에 액세스 하는 키의 toomaintain 제어 있습니다. Key Vault 내에 자체 서명된 인증서를 만들거나 이미 소유하고 있는 기존의 신뢰할 수 있는 인증서를 업로드할 수 있습니다.
+Azure Key Vault는 암호화 키 및 비밀 정보(인증서 또는 암호)를 보호합니다. Key Vault를 사용하면 인증서 관리 프로세스를 간소화하고 해당 인증서에 액세스하는 키의 제어를 유지할 수 있습니다. Key Vault 내에 자체 서명된 인증서를 만들거나 이미 소유하고 있는 기존의 신뢰할 수 있는 인증서를 업로드할 수 있습니다.
 
-내재된 인증서를 포함하는 사용자 지정 VM 이미지를 사용하는 대신 실행 중인 VM에 인증서를 삽입합니다. 이 프로세스 hello 최신 인증서 배포 하는 동안 웹 서버에 설치 되어 있는지 확인 합니다. 인증서를 바꾸거나 갱신도 없으면 toocreate 새 사용자 지정 VM 이미지입니다. hello 최신 인증서는 추가 Vm을 만들 때 자동으로 삽입 됩니다. Hello 전체 과정 hello 인증서 되지 hello Azure 플랫폼에서 나 가지 스크립트, 명령줄 기록 또는 서식 파일에 표시 됩니다.
+내재된 인증서를 포함하는 사용자 지정 VM 이미지를 사용하는 대신 실행 중인 VM에 인증서를 삽입합니다. 이 프로세스를 통해 배포하는 동안 가장 최신 인증서가 웹 서버에 설치됩니다. 인증서를 갱신하거나 바꾸는 경우 새 사용자 지정 VM 이미지를 만들 필요가 없습니다. 최신 인증서는 추가 VM을 만들 때 자동으로 삽입됩니다. 전체 프로세스 동안 인증서는 Azure 플랫폼에서 벗어나거나 스크립트, 명령줄 기록 또는 템플릿에 노출되지 않습니다.
 
 
 ## <a name="create-an-azure-key-vault"></a>Azure Key Vault 만들기
-Key Vault 및 인증서를 만들려면 먼저 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup)을 사용하여 리소스 그룹을 만듭니다. hello 다음 예제에서는 명명 된 리소스 그룹 *myResourceGroupSecureWeb* hello에 *미국 동부* 위치:
+Key Vault 및 인증서를 만들려면 먼저 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup)을 사용하여 리소스 그룹을 만듭니다. 다음 예제에서는 *미국 동부* 위치에 *myResourceGroupSecureWeb*이라는 리소스 그룹을 만듭니다.
 
 ```powershell
 $resourceGroup = "myResourceGroupSecureWeb"
@@ -49,7 +49,7 @@ $location = "East US"
 New-AzureRmResourceGroup -ResourceGroupName $resourceGroup -Location $location
 ```
 
-다음으로 [New-AzureRmKeyVault](/powershell/module/azurerm.keyvault/new-azurermkeyvault)를 사용하여 Key Vault를 만듭니다. 각 Key Vault에는 고유한 이름이 필요하며 모두 소문자여야 합니다. 대체 `<mykeyvault>` 다음 예에서는 고유 키 자격 증명 모음 이름으로 hello에:
+다음으로 [New-AzureRmKeyVault](/powershell/module/azurerm.keyvault/new-azurermkeyvault)를 사용하여 Key Vault를 만듭니다. 각 Key Vault에는 고유한 이름이 필요하며 모두 소문자여야 합니다. 다음 예제에서 `<mykeyvault>`를 사용자 고유의 Key Vault 이름으로 바꿉니다.
 
 ```powershell
 $keyvaultName="<mykeyvault>"
@@ -60,7 +60,7 @@ New-AzureRmKeyVault -VaultName $keyvaultName `
 ```
 
 ## <a name="generate-a-certificate-and-store-in-key-vault"></a>인증서 생성 및 Key Vault에 저장
-프로덕션 사용을 위해 [Import-AzureKeyVaultCertificate](/powershell/module/azurerm.keyvault/import-azurekeyvaultcertificate)를 사용하여 신뢰할 수 있는 공급자가 서명한 유효한 인증서를 가져와야 합니다. 이 자습서에 대 한 hello 다음 예제와 자체 서명 된 인증서를 생성 하는 방법을 [추가 AzureKeyVaultCertificate](/powershell/module/azurerm.keyvault/add-azurekeyvaultcertificate) 사용 하 여 기본 인증 정책에서 hello는 [ 새 AzureKeyVaultCertificatePolicy](/powershell/module/azurerm.keyvault/new-azurekeyvaultcertificatepolicy)합니다. 
+프로덕션 사용을 위해 [Import-AzureKeyVaultCertificate](/powershell/module/azurerm.keyvault/import-azurekeyvaultcertificate)를 사용하여 신뢰할 수 있는 공급자가 서명한 유효한 인증서를 가져와야 합니다. 이 자습서의 다음 예제는 [New-AzureKeyVaultCertificatePolicy](/powershell/module/azurerm.keyvault/new-azurekeyvaultcertificatepolicy)에서 기본 인증서 정책을 사용하는 자체 서명된 인증서를 [Add-AzureKeyVaultCertificate](/powershell/module/azurerm.keyvault/add-azurekeyvaultcertificate)를 사용하여 생성하는 방법을 보여 줍니다. 
 
 ```powershell
 $policy = New-AzureKeyVaultCertificatePolicy `
@@ -77,13 +77,13 @@ Add-AzureKeyVaultCertificate `
 
 
 ## <a name="create-a-virtual-machine"></a>가상 컴퓨터 만들기
-관리자 사용자 이름 및 암호를 사용 하 여 VM hello 집합 [Get-credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential):
+[Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential)을 사용하여 VM의 관리자 사용자 이름과 암호를 설정합니다.
 
 ```powershell
 $cred = Get-Credential
 ```
 
-이제 만들 수 있는 VM hello [새로 AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm)합니다. hello 다음 예제에서는 운영 체제 hello 구성 hello 필요한 가상 네트워크 구성 요소를 만든 다음 만듭니다 라는 VM *myVM*:
+이제 [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm)을 사용하여 VM을 만들 수 있습니다. 다음 예제에서는 필요한 가상 네트워크 구성 요소, OS 구성을 만든 다음 *myVM*이라는 VM을 만듭니다.
 
 ```powershell
 # Create a subnet configuration
@@ -157,7 +157,7 @@ Add-AzureRmVMNetworkInterface -Id $nic.Id
 # Create virtual machine
 New-AzureRmVM -ResourceGroupName $resourceGroup -Location $location -VM $vmConfig
 
-# Use hello Custom Script Extension tooinstall IIS
+# Use the Custom Script Extension to install IIS
 Set-AzureRmVMExtension -ResourceGroupName $resourceGroup `
     -ExtensionName "IIS" `
     -VMName "myVM" `
@@ -168,11 +168,11 @@ Set-AzureRmVMExtension -ResourceGroupName $resourceGroup `
     -SettingString '{"commandToExecute":"powershell Add-WindowsFeature Web-Server -IncludeManagementTools"}'
 ```
 
-Hello VM toobe 생성에 대 한 몇 가지 분 걸립니다. hello 마지막 단계 사용 하 여 hello Azure 사용자 지정 스크립트 확장 tooinstall hello IIS 웹 서버와 [집합 AzureRmVmExtension](/powershell/module/azurerm.compute/set-azurermvmextension)합니다.
+VM을 만드는 데 몇 분 정도 걸립니다. 마지막 단계는 [Set-AzureRmVmExtension](/powershell/module/azurerm.compute/set-azurermvmextension)을 통해 Azure 사용자 지정 스크립트 확장을 사용하여 IIS 웹 서버를 설치하는 것입니다.
 
 
-## <a name="add-a-certificate-toovm-from-key-vault"></a>키 자격 증명 모음에서 인증서 tooVM 추가
-주요 자격 증명 모음 tooa VM에서에서 tooadd hello 인증서와 인증서의 hello ID를 가져오려면 [Get AzureKeyVaultSecret](/powershell/module/azurerm.keyvault/get-azurekeyvaultsecret)합니다. Hello 인증서 toohello VM 추가와 [추가 AzureRmVMSecret](/powershell/module/azurerm.compute/add-azurermvmsecret):
+## <a name="add-a-certificate-to-vm-from-key-vault"></a>Key Vault에서 VM에 인증서 추가
+Key Vault에서 VM으로 인증서를 추가하려면 [Get-AzureKeyVaultSecret](/powershell/module/azurerm.keyvault/get-azurekeyvaultsecret)을 사용하여 인증서의 ID를 가져옵니다. [Add-AzureRmVMSecret](/powershell/module/azurerm.compute/add-azurermvmsecret)을 사용하여 VM에 인증서를 추가합니다.
 
 ```powershell
 $certURL=(Get-AzureKeyVaultSecret -VaultName $keyvaultName -Name "mycert").id
@@ -185,8 +185,8 @@ Update-AzureRmVM -ResourceGroupName $resourceGroup -VM $vm
 ```
 
 
-## <a name="configure-iis-toouse-hello-certificate"></a>IIS toouse hello 인증서 구성
-사용 하 여 사용자 지정 스크립트 확장을 사용 하 여 다시 hello [집합 AzureRmVMExtension](/powershell/module/azurerm.compute/set-azurermvmextension) tooupdate hello IIS 구성 합니다. 이 업데이트는 hello 인증서 키 자격 증명 모음 tooIIS에서 삽입을 적용 하 고 hello 웹 바인딩을 구성 합니다.
+## <a name="configure-iis-to-use-the-certificate"></a>인증서를 사용하도록 IIS 구성
+다시 [Set-AzureRmVMExtension](/powershell/module/azurerm.compute/set-azurermvmextension)을 통해 사용자 지정 스크립트 확장을 사용하여 IIS 구성을 업데이트합니다. 이 업데이트는 Key Vault에서 가져온 인증서를 IIS에 적용하고 웹 바인딩을 구성합니다.
 
 ```powershell
 $PublicSettings = '{
@@ -205,18 +205,18 @@ Set-AzureRmVMExtension -ResourceGroupName $resourceGroup `
 ```
 
 
-### <a name="test-hello-secure-web-app"></a>Hello 보안 웹 응용 프로그램 테스트
-Hello를 사용 하 여 VM의 공용 IP 주소 가져오기 [Get AzureRmPublicIPAddress](/powershell/resourcemanager/azurerm.network/get-azurermpublicipaddress)합니다. hello 다음 예제에서는 가져옵니다 hello IP 주소를 `myPublicIP` 앞에서 만든:
+### <a name="test-the-secure-web-app"></a>보안 웹앱 테스트
+[Get-AzureRmPublicIPAddress](/powershell/resourcemanager/azurerm.network/get-azurermpublicipaddress)를 사용하여 VM의 공용 IP 주소를 가져옵니다. 다음 예제에서는 앞서 만든 `myPublicIP`의 IP 주소를 가져옵니다.
 
 ```powershell
 Get-AzureRmPublicIPAddress -ResourceGroupName $resourceGroup -Name "myPublicIP" | select "IpAddress"
 ```
 
-웹 브라우저를 열고 입력 수 이제 `https://<myPublicIP>` hello 주소 표시줄에 있습니다. 자체 서명 된 인증서를 사용 하는 경우 tooaccept hello 보안 경고 선택 **세부 정보** 차례로 **toohello 웹 페이지에서 이동**:
+이제 웹 브라우저를 열고 주소 표시줄에 `https://<myPublicIP>`를 입력할 수 있습니다. 자체 서명된 인증서를 사용하는 경우 보안 경고를 받으려면 **세부 정보**, **웹 페이지로 이동**을 차례로 선택합니다.
 
 ![웹 브라우저 보안 경고 허용](./media/tutorial-secure-web-server/browser-warning.png)
 
-보안된 IIS 웹 사이트 hello 다음 예제와 같이 표시 됩니다.
+그러면 보안 IIS 웹 사이트가 다음 예제와 같이 표시됩니다.
 
 ![실행 중인 보안 IIS 사이트 보기](./media/tutorial-secure-web-server/secured-iis.png)
 
@@ -227,11 +227,11 @@ Get-AzureRmPublicIPAddress -ResourceGroupName $resourceGroup -Name "myPublicIP" 
 
 > [!div class="checklist"]
 > * Azure Key Vault 만들기
-> * 생성 또는 인증서 toohello 주요 자격 증명 모음 업로드
-> * VM을 만들고 hello IIS 웹 서버 설치
-> * Hello VM hello 인증서 삽입 및을 SSL 바인딩과 함께 IIS를 구성 합니다.
+> * Key Vault에 인증서 생성 또는 업로드
+> * VM 만들기 및 IIS 웹 서버 설치
+> * VM에 인증서 삽입 및 SSL 바인딩으로 IIS 구성
 
-가상 컴퓨터 스크립트 샘플을 미리 만들어진이 링크 toosee를 따릅니다.
+미리 빌드된 가상 컴퓨터 스크립트 샘플을 보려면 이 링크를 따릅니다.
 
 > [!div class="nextstepaction"]
 > [Windows 가상 컴퓨터 스크립트 샘플 ](./powershell-samples.md)

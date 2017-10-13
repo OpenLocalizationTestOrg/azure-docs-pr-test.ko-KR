@@ -1,6 +1,6 @@
 ---
-title: "Azure 리소스 관리자 템플릿을 사용 하 여 aaaCreate Azure 서비스 버스 리소스 | Microsoft Docs"
-description: "서비스 버스 리소스의 Azure 리소스 관리자 템플릿 tooautomate hello 생성을 사용 하 여"
+title: "Azure Resource Manager 템플릿을 사용하여 Azure Service Bus 리소스 만들기 | Microsoft Docs"
+description: "Azure Resource Manager 템플릿을 사용하여 자동으로 서비스 버스 리소스 만들기"
 services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 08/07/2017
 ms.author: sethm
-ms.openlocfilehash: e539902cae307b63ae7c332580e2064761331ec5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c8142d8edfd3a527b13d655bac21acf5332f2d14
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="create-service-bus-resources-using-azure-resource-manager-templates"></a>Azure Resource Manager 템플릿을 사용하여 서비스 버스 리소스 만들기
 
-이 문서에서는 설명 방법을 toocreate 및 Azure 리소스 관리자 템플릿, PowerShell 및 hello 서비스 버스 리소스 공급자를 사용 하 여 서비스 버스 리소스를 배포 합니다.
+이 문서에서는 Azure Resource Manager 템플릿, PowerShell 및 Service Bus 리소스 공급자를 사용하여 Service Bus 리소스를 만들어 배포하는 방법을 설명합니다.
 
-Azure 리소스 관리자 템플릿을 사용 솔루션 및 toospecify 매개 변수 및 변수를 사용 하면 다양 한 환경에 대 한 tooinput 값에 대 한 리소스 toodeploy hello를 정의할 수 있습니다. JSON 및 배포에 대 한 tooconstruct 값을 사용할 수 있는 식의 hello 템플릿은 구성 됩니다. Azure 리소스 관리자 템플릿 및 hello 템플릿 형식에 대 한 내용은 작성에 대 한 자세한 내용은 참조 [구조 및 Azure 리소스 관리자 템플릿 구문](../azure-resource-manager/resource-group-authoring-templates.md)합니다.
+Azure Resource Manager 템플릿을 통해 솔루션에 사용할 리소스를 정의하고, 여러 환경의 값을 입력하는 데 사용할 수 있는 변수 및 매개 변수를 지정합니다. 템플릿은 배포에 대한 값을 생성하는 데 사용할 수 있는 식과 JSON으로 구성됩니다. Azure Resource Manager 템플릿 작성에 대한 자세한 내용과 템플릿 형식에 대한 논의는 [Azure Resource Manager 템플릿의 구조 및 구문](../azure-resource-manager/resource-group-authoring-templates.md)을 참조하세요.
 
 > [!NOTE]
-> 이 문서 표시의 예제를 어떻게 hello toouse Azure 리소스 관리자 toocreate 서비스 버스 네임 스페이스 및 메시징 엔터티 (큐). 다른 서식 파일 예제에 대 한 방문 hello [Azure 빠른 시작 템플릿 갤러리] [ Azure Quickstart Templates gallery] "서비스 버스."에 대 한 검색
+> 이 문서의 예제에서는 Azure Resource Manager를 사용하여 서비스 버스 네임스페이스와 메시징 엔터티(큐)를 만드는 방법을 보여 줍니다. 다른 템플릿 예제는 [Azure 빠른 시작 템플릿 갤러리][Azure Quickstart Templates gallery]를 방문하고 "Service Bus"를 검색하세요.
 >
 >
 
 ## <a name="service-bus-resource-manager-templates"></a>Service Bus Resource Manager 템플릿
 
-이러한 Service Bus Azure Resource Manager 템플릿은 다운로드하여 배포할 수 있습니다. Hello 다음 GitHub에 대 한 링크 toohello 템플릿으로 개에 대 한 세부 정보에 대 한 링크를 클릭 합니다.
+이러한 Service Bus Azure Resource Manager 템플릿은 다운로드하여 배포할 수 있습니다. 각각에 대한 자세한 내용은 GitHub의 템플릿에 대한 링크가 포함된 다음 링크를 클릭하세요.
 
 * [서비스 버스 네임스페이스 만들기](service-bus-resource-manager-namespace.md)
 * [큐가 있는 서비스 버스 네임스페이스 만들기](service-bus-resource-manager-namespace-queue.md)
@@ -43,25 +43,25 @@ Azure 리소스 관리자 템플릿을 사용 솔루션 및 toospecify 매개 �
 
 ## <a name="deploy-with-powershell"></a>PowerShell을 사용하여 배포 
 
-hello 다음 절차에서는 Azure 리소스 관리자 템플릿을 toouse PowerShell toodeploy를 만드는 방법을 **표준** 서비스 버스 네임 스페이스 및 해당 네임 스페이스 내에서 큐를 계층입니다. Hello을 기반으로이 예제는 [큐와 서비스 버스 네임 스페이스 만들기](https://github.com/Azure/azure-quickstart-templates/tree/master/201-servicebus-create-queue) 템플릿. hello 대략적인 워크플로 다음과 같습니다.
+다음 절차에서는 **표준** 계층 Service Bus 네임스페이스와, 네임스페이스 안의 큐를 만드는 Azure Resource Manager 템플릿을 PowerShell을 사용하여 배포하는 방법을 설명합니다. 이 예제는 [큐가 있는 Service Bus 네임스페이스 만들기](https://github.com/Azure/azure-quickstart-templates/tree/master/201-servicebus-create-queue) 템플릿을 기초로 합니다. 대략적인 워크플로 다음과 같습니다.
 
 1. PowerShell을 설치합니다.
-2. Hello 템플릿 및 매개 변수 파일 (옵션)를 만듭니다.
-3. PowerShell에서 tooyour Azure 계정에에서 로그인 합니다.
+2. 템플릿 및 매개 변수 파일(옵션)을 만듭니다. 
+3. PowerShell에서 Azure 계정에 로그인합니다.
 4. 새 리소스 그룹이 아직 없으면 만듭니다.
-5. Hello 배포를 테스트 합니다.
-6. 원하는 경우 hello 배포 모드를 설정 합니다.
-7. Hello 템플릿을 배포 합니다.
+5. 배포를 테스트합니다.
+6. 원하는 경우 배포 모드를 설정합니다.
+7. 템플릿을 배포합니다.
 
 Azure Resource Manager 배포 템플릿에 대한 모든 내용은 [Azure Resource Manager 템플릿으로 리소스 배포][Deploy resources with Azure Resource Manager templates]를 참조하세요.
 
 ### <a name="install-powershell"></a>PowerShell 설치 
 
-Hello 지침에 따라 Azure PowerShell 설치 [Azure PowerShell 시작](/powershell/azure/get-started-azureps)합니다.
+[Azure PowerShell 시작하기](/powershell/azure/get-started-azureps)의 지침을 따라서 Azure PowerShell을 설치합니다.
 
 ### <a name="create-a-template"></a>템플릿 만들기
 
-복제 또는 복사 hello [201-servicebus--큐 만들기](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.json) GitHub에서 템플릿:
+GitHub에서 [201-servicebus-create-queue](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.json) 템플릿을 복제 또는 복사합니다.
 
 ```json
 {
@@ -71,20 +71,20 @@ Hello 지침에 따라 Azure PowerShell 설치 [Azure PowerShell 시작](/powers
         "serviceBusNamespaceName": {
             "type": "string",
             "metadata": {
-                "description": "Name of hello Service Bus namespace"
+                "description": "Name of the Service Bus namespace"
             }
         },
         "serviceBusQueueName": {
             "type": "string",
             "metadata": {
-                "description": "Name of hello Queue"
+                "description": "Name of the Queue"
             }
         },
         "serviceBusApiVersion": {
             "type": "string",
             "defaultValue": "2015-08-01",
             "metadata": {
-                "description": "Service Bus ApiVersion used by hello template"
+                "description": "Service Bus ApiVersion used by the template"
             }
         }
     },
@@ -131,7 +131,7 @@ Hello 지침에 따라 Azure PowerShell 설치 [Azure PowerShell 시작](/powers
 
 ### <a name="create-a-parameters-file-optional"></a>매개 변수 파일 만들기(옵션)
 
-toouse 선택적 매개 변수 파일을 복사 hello [201-servicebus--큐 만들기](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.parameters.json) 파일입니다. Hello 값의 대체 `serviceBusNamespaceName` hello 서비스 버스 네임 스페이스의 hello 이름으로이 배포에 toocreate을 hello 값의 대체 `serviceBusQueueName` toocreate hello 큐의 hello 이름으로 원하는 합니다.
+옵션인 매개 변수 파일을 사용하려면 [201-servicebus-create-queue](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.parameters.json) 파일을 복사합니다. `serviceBusNamespaceName` 값을 이 배포에 만들려는 서비스 버스 네임스페이스의 이름으로 바꾸고, `serviceBusQueueName` 값을 만들려는 큐의 이름으로 바꿉니다.
 
 ```json
 {
@@ -151,37 +151,37 @@ toouse 선택적 매개 변수 파일을 복사 hello [201-servicebus--큐 만�
 }
 ```
 
-자세한 내용은 참조 hello [매개 변수](../azure-resource-manager/resource-group-template-deploy.md#parameter-files) 항목입니다.
+자세한 내용은 [매개 변수](../azure-resource-manager/resource-group-template-deploy.md#parameter-files) 항목을 참조하세요.
 
-### <a name="log-in-tooazure-and-set-hello-azure-subscription"></a>TooAzure를 로그인 하 고 hello Azure 구독 설정
+### <a name="log-in-to-azure-and-set-the-azure-subscription"></a>Azure에 로그인하고 Azure 구독 설정
 
-PowerShell 프롬프트에서 다음 명령을 hello를 실행 합니다.
+PowerShell 프롬프트에서 다음 명령을 실행합니다.
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-Tooyour Azure 계정에 증명된 toolog 됩니다. 로그온 한 후 다음 명령 tooview hello를 사용할 수 있는 구독 실행 합니다.
+Azure 계정에 로그온하라는 메시지가 표시됩니다. 로그온한 후 다음 명령을 실행하여 사용 가능한 구독을 확인합니다.
 
 ```powershell
 Get-AzureRMSubscription
 ```
 
-이 명령은 사용 가능한 Azure 구독 목록을 반환합니다. Hello 다음 명령을 실행 하 여 hello에 대 한 구독 현재 세션을 선택 합니다. 대체 `<YourSubscriptionId>` 원하는 toouse hello Azure 구독에 대 한 GUID hello로 합니다.
+이 명령은 사용 가능한 Azure 구독 목록을 반환합니다. 다음 명령을 실행하여 현재 세션에 대한 구독을 선택합니다. `<YourSubscriptionId>`는 사용할 Azure 구독의 GUID로 바꿉니다.
 
 ```powershell
 Set-AzureRmContext -SubscriptionID <YourSubscriptionId>
 ```
 
-### <a name="set-hello-resource-group"></a>Hello 리소스 그룹 설정
+### <a name="set-the-resource-group"></a>리소스 그룹 설정
 
-기존 리소스 그룹에서 hello로 새 리소스 그룹을 만들 수 없는 경우 * * 새로 AzureRmResourceGroup * * 명령입니다. Hello 이름 hello 리소스 그룹 및 toouse 원하는 위치를 제공 합니다. 예:
+기존 리소스 그룹이 없는 경우 **New-AzureRmResourceGroup ** 명령을 사용하여 새 리소스 그룹을 만듭니다. 사용할 리소스 그룹의 이름과 위치를 입력합니다. 예:
 
 ```powershell
 New-AzureRmResourceGroup -Name MyDemoRG -Location "West US"
 ```
 
-성공 하면 hello 새 리소스 그룹의 요약이 표시 됩니다.
+성공하면 새 리소스 그룹에 대한 요약이 표시됩니다.
 
 ```powershell
 ResourceGroupName : MyDemoRG
@@ -191,44 +191,44 @@ Tags              :
 ResourceId        : /subscriptions/<GUID>/resourceGroups/MyDemoRG
 ```
 
-### <a name="test-hello-deployment"></a>Hello 배포 테스트
+### <a name="test-the-deployment"></a>배포 테스트
 
-Hello를 실행 하 여 배포를 확인 `Test-AzureRmResourceGroupDeployment` cmdlet. Hello 배포를 테스트할 때는 하 듯 hello 배포를 실행할 때 매개 변수를 제공 합니다.
-
-```powershell
-Test-AzureRmResourceGroupDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json
-```
-
-### <a name="create-hello-deployment"></a>Hello 배포 만들기
-
-toocreate hello 새 배포를 hello 실행 `New-AzureRmResourceGroupDeployment` cmdlet hello 필요한 매개 변수 대화 상자가 나타나면를 제공 합니다. hello 매개 변수, 리소스 그룹 및 hello 경로 또는 URL toohello 템플릿 파일의 hello 이름이 배포에 대 한 이름을 포함 합니다. 경우 hello **모드** 매개 변수를 지정 하지 않으면 기본값인 hello **증분** 사용 됩니다. 자세한 내용은 [증분 및 전체 배포](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments)를 참조하세요.
-
-안녕하세요 명령 프롬프트에 다음 hello PowerShell 창에서 세 hello 매개 변수:
+`Test-AzureRmResourceGroupDeployment` cmdlet을 실행하여 배포의 유효성을 검사합니다. 배포를 테스트할 때는 배포를 실행할 때처럼 정확하게 매개 변수를 제공합니다.
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json
+Test-AzureRmResourceGroupDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json
 ```
 
-toospecify 매개 변수 파일 대신, 다음 명령을 hello를 사용 합니다.
+### <a name="create-the-deployment"></a>배포 만들기
+
+새 배포를 만들려면 `New-AzureRmResourceGroupDeployment` cmdlet을 실행하고 메시지가 표시되면 필요한 매개 변수를 입력합니다. 매개 변수에는 배포 이름, 리소스 그룹 이름 및 템플릿 파일의 경로 또는 URL이 포함됩니다. **Mode** 매개 변수가 지정되지 않은 경우 기본값 **Incremental**이 사용됩니다. 자세한 내용은 [증분 및 전체 배포](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments)를 참조하세요.
+
+다음 명령은 PowerShell 창에서 세 매개 변수의 입력을 요청합니다.
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json -TemplateParameterFile <path tooparameters file>\azuredeploy.parameters.json
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json
 ```
 
-Hello 배포 cmdlet을 실행 하는 경우에 인라인 매개 변수를 사용할 수 있습니다. hello 명령은 다음과 같습니다.
+그 대신에 매개 변수 파일을 지정하려면 다음 명령을 사용합니다.
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json -parameterName "parameterValue"
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json -TemplateParameterFile <path to parameters file>\azuredeploy.parameters.json
 ```
 
-toorun는 [완료](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments) 배포, 집합 hello **모드** 매개 변수가 너무**완료**:
+배포 cmdlet을 실행하면 인라인 매개 변수를 사용할 수도 있습니다. 이 명령은 다음과 같습니다.
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -Mode Complete -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json -parameterName "parameterValue"
 ```
 
-### <a name="verify-hello-deployment"></a>Hello 배포 확인
-Hello 리소스를 성공적으로 배포 하면 hello 배포의 요약 정보 hello PowerShell 창에 표시 됩니다.
+[전체](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments) 배포를 실행하려면 **Mode** 매개 변수를 **Complete**로 설정합니다.
+
+```powershell
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -Mode Complete -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json
+```
+
+### <a name="verify-the-deployment"></a>배포 확인
+리소스가 성공적으로 배포되면 배포의 요약이 PowerShell 창에 표시됩니다.
 
 ```powershell
 DeploymentName    : MyDemoDeployment
@@ -247,7 +247,7 @@ Parameters        :
 ```
 
 ## <a name="next-steps"></a>다음 단계
-이제는 Azure 리소스 관리자 템플릿을 배포 하기 위한 명령과 hello 기본 워크플로 살펴보았습니다. 더 자세한 정보에 대 한 링크를 따라 hello 방문.
+이제 Azure Resource Manager 템플릿 배포를 위한 기본 워크플로와 명령이 표시됩니다. 자세한 내용은 다음 링크를 방문하세요.
 
 * [Azure Resource Manager 개요][Azure Resource Manager overview]
 * [Resource Manager 템플릿과 Azure PowerShell로 리소스 배포][Deploy resources with Azure Resource Manager templates]

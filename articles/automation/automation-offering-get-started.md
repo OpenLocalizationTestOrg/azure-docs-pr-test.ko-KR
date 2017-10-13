@@ -1,9 +1,9 @@
 ---
-title: "Azure 자동화 aaa 시작 | Microsoft Docs"
-description: "이 문서에서는 Azure Marketplace에서 제공 하는 준비 tooonboard hello hello 디자인 및 구현 세부 정보를 검토 하 여 Azure 자동화 서비스의 개요를 제공 합니다."
+title: "Azure Automation 시작 | Microsoft Docs"
+description: "이 문서에서는 Azure Marketplace에서 제공하는 제품을 등록하기 위한 준비 과정에서 설계 및 구현 세부 정보를 검토함으로써 Azure Automation 서비스에 대해 간략히 설명합니다."
 services: automation
 documentationcenter: 
-author: mgoedtel
+author: eslesar
 manager: carmonm
 editor: 
 ms.assetid: 
@@ -12,39 +12,39 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 08/18/2017
+ms.date: 08/31/2017
 ms.author: magoedte
-ms.openlocfilehash: 434e8ea28c55ff9bda1d2e46a7a6b8378a3baa0a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fad13053895c5d6e3c41835fea3cf0bdd3380cd4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="getting-started-with-azure-automation"></a>Azure Automation 시작
 
-이 시작된 가이드에서는 Azure 자동화의 핵심 개념 관련된 toohello 배포를 소개합니다. 이 가이드에서는 이해 하는 데는 Azure에서 새 tooAutomation 하거나 System Center Orchestrator와 같은 자동화 워크플로 소프트웨어 사용한 경험이 있는 경우 어떻게 tooprepare 및 온보드 자동화 합니다.  이후에 있습니다 준비 될 toobegin 프로세스 자동화 요구를 지원 하기 위해 runbook을 개발 합니다. 
+이 시작 가이드에서는 Azure Automation 배포와 관련된 핵심 개념을 소개합니다. Azure Automation을 처음 사용하거나 System Center Orchestrator와 같은 자동화 워크플로 소프트웨어를 사용해 보았으면 이 가이드를 통해 Automation을 준비하고 등록하는 방법을 이해할 수 있습니다.  그런 후에는 프로세스 자동화 요구 사항을 지원하기 위해 runbook을 개발할 준비가 됩니다. 
 
 
 ## <a name="automation-architecture-overview"></a>Automation 아키텍처 개요
 
-![Azure 자동화 개요](media/automation-offering-get-started/automation-infradiagram-networkcomms.png)
+![Azure Automation 개요](media/automation-offering-get-started/automation-infradiagram-networkcomms.png)
 
-Azure 자동화는 확장성과 안정성을 다중 테 넌 트를 제공 하는 saas () 응용 프로그램으로는 소프트웨어 환경 tooautomate runbook으로 처리 하 고 구성 변경 내용 tooWindows 및 원하는 상태 구성을 사용 하 여 Linux 시스템 관리 (DSC) Azure, 다른 클라우드 서비스 또는 온-프레미스에 있습니다. Runbook, 자산, 실행 계정과 같은 Automation 계정 내에 포함된 엔터티는 사용자 구독 및 다른 구독 내의 다른 Automation 계정으로부터 격리됩니다.  
+Azure Automation은 Azure, 다른 클라우드 서비스 또는 온-프레미스에서 Runbook을 사용하여 프로세스를 자동화하고 DSC(필요한 상태 구성)를 사용하여 Windows 및 Linux 시스템의 구성 변경 사항을 관리하는 안정적이며 확장성이 있는 다중 테넌트 환경을 제공하는 SaaS(software as a service)입니다. Runbook, 자산, 실행 계정과 같은 Automation 계정 내에 포함된 엔터티는 사용자 구독 및 다른 구독 내의 다른 Automation 계정으로부터 격리됩니다.  
 
-Azure에서 실행하는 Runbook은 Azure PaaS(platform as a service) 가상 컴퓨터에서 호스팅되는 Automation 샌드박스에서 실행됩니다.  Automation 샌드박스는 모듈, 저장소, 메모리, 네트워크 통신, 작업 스트림 등의 Runbook을 실행하는 모든 측면에서 테넌트를 격리합니다. 이 역할 hello 서비스에서 관리 되며 toocontrol 있습니다에 대 한 Azure 또는 Azure 자동화 계정에서 액세스할 수 없습니다.         
+Azure에서 실행하는 Runbook은 Azure PaaS(platform as a service) 가상 컴퓨터에서 호스팅되는 Automation 샌드박스에서 실행됩니다.  Automation 샌드박스는 모듈, 저장소, 메모리, 네트워크 통신, 작업 스트림 등의 Runbook을 실행하는 모든 측면에서 테넌트를 격리합니다. 이 역할은 서비스에 의해 관리되고 사용자가 제어할 Azure 또는 Azure Automation 계정에서 액세스할 수 없습니다.         
 
-하나 이상의 컴퓨터 toorun hello tooautomate hello 배포 및 관리 로컬 데이터 센터 또는 다른 클라우드 서비스는 자동화 계정을 만든 후에 리소스를 지정할 수 있습니다 [하이브리드 Runbook 작업자 (HRW)](automation-hybrid-runbook-worker.md) 역할입니다.  각 HRW 연결 tooa 로그 분석 작업 영역 및 자동화 계정을 사용 하 여 Microsoft Management Agent hello가 필요합니다.  Hello Microsoft 관리 에이전트 유지 관리 로그 분석은 사용 되는 toobootstrap hello 설치 하 고 hello HRW의 hello 기능을 모니터링 합니다.  Azure 자동화에서 수행 하는 runbook 및 hello 명령 toorun의 hello 배달 합니다.
+로컬 데이터 센터 또는 다른 클라우드 서비스에서 리소스의 배포 및 관리를 자동화하려면 Automation 계정을 만든 후 하나 이상의 컴퓨터에서 [HRW(Hybrid Runbook Worker)](automation-hybrid-runbook-worker.md) 역할을 실행하도록 지정할 수 있습니다.  각 HRW에는 Log Analytics 작업 영역 및 Automation 계정에 연결된 Microsoft Management Agent가 필요합니다.  Log Analytics는 설치를 부트스트랩하고 Microsoft Management Agent를 유지 관리하며 HRW의 기능을 모니터링하는 데 사용됩니다.  Runbook 및 Runbook 실행 지침은 Azure Automation에 의해 전달됩니다.
 
-Runbook에 대 한 여러 HRW tooprovide 고가용성을 배포 하 고, 잔액 runbook 작업을 로드 하 고, 특정 작업 또는 환경에 대 한 전용 경우에 따라 수 있습니다.  hello HRW에 Microsoft Monitoring Agent hello TCP 포트 443 통해 hello 자동화 서비스와의 통신을 시작 하 고 인바운드 방화벽 요구 사항은 없습니다.  Hello 환경 내에서 HRW에서 실행 중인 runbook을 해야 하 고 다른 컴퓨터 또는 해당 환경 내에서 서비스에 대 한 hello tooperform 관리 작업을 runbook, 될 수 있습니다 수 hello 다른 포트 runbook에 액세스를 해야 합니다.  Hello 문서 검토 하는 경우 IT 보안 정책을 네트워크 tooconnect toohello 인터넷에서 컴퓨터를 허용 하지 않으므로, [OMS 게이트웨이](../log-analytics/log-analytics-oms-gateway.md), 어떤 HRW toocollect hello에 대 한 프록시의 역할 작업 상태 및 구성 정보를 수신 합니다. 자동화 계정입니다.
+여러 HRW를 배포하여 Runbook에 고가용성을 제공하고, Runbook 작업의 부하를 분산하고, 일부 경우에 특정 워크로드 또는 환경에 대한 전용으로 사용할 수 있습니다.  HRW에서 Microsoft Monitoring Agent는 TCP 포트 443을 통해 Automation 서비스와 통신을 시작하고 인바운드 방화벽 요구 사항은 없습니다.  Runbook이 환경 내의 HRW에서 실행 중이고 Runbook에서 다른 컴퓨터에 대한 관리 작업 또는 환경 내의 서비스를 수행하려는 경우 Runbook이 액세스해야 하는 다른 포트가 있을 수 있습니다.  IT 보안 정책이 네트워크에 있는 컴퓨터를 인터넷에 연결하지 않는 경우 [OMS 게이트웨이](../log-analytics/log-analytics-oms-gateway.md) 문서를 검토합니다. 해당 게이트웨이는 작업 상태를 수집하고 Automation 계정에서 구성 정보를 수신하는 HRW의 프록시 역할을 수행합니다.
 
-Hello hello hello 컴퓨터 로컬 시스템 계정 컨텍스트에서 실행 되는 HRW에서 실행 중인 Runbook은 hello 권장 됨 보안 컨텍스트 hello 로컬 Windows 컴퓨터 관리 작업을 수행할 때. Hello 로컬 컴퓨터 외부의 리소스에 대 한 hello runbook toorun 작업을 하려는 경우에 hello hello runbook에서 액세스 하 고 tooauthenticate hello 외부 리소스로 사용할 수 있는 자동화 계정에서에서 toodefine 보안 자격 증명 자산을 할 수 있습니다. 사용할 수 있습니다 [자격 증명](automation-credentials.md), [인증서](automation-certificates.md), 및 [연결](automation-connections.md) toospecify 자격 증명 허용을 인증할 수 있도록 하는 cmdlet이 포함 된 runbook의 자산입니다.
+HRW에서 실행되는 Runbook은 컴퓨터의 로컬 시스템 계정이라는 컨텍스트에서 실행되며 로컬 Windows 컴퓨터에서 관리 작업을 수행할 때 권장되는 보안 컨텍스트입니다. Runbook이 로컬 컴퓨터 외부에서 리소스에 대한 작업을 실행하려면 Runbook에서 액세스할 수 있는 Automation 계정에서 보안 자격 증명 자산을 정의하고 외부 리소스를 사용하여 인증하는 데 사용할 수도 있습니다. 이를 인증할 수 있도록 자격 증명을 지정할 수 있는 cmdlet과 함께 Runbook의 [자격 증명](automation-credentials.md), [인증서](automation-certificates.md) 및 [연결](automation-connections.md) 자산을 사용할 수 있습니다.
 
-Azure 자동화에 저장 하는 DSC 구성에 직접 적용 된 tooAzure 가상 컴퓨터 수 있습니다. 다른 실제 및 가상 컴퓨터는 hello Azure 자동화 DSC 끌어오기 서버에서 구성을 요청할 수 있습니다.  온-프레미스 물리적 또는 가상 Windows 및 Linux 시스템의 구성, 관리 하기 위한 않아도 toodeploy 모든 인프라 toosupport hello 자동화 DSC 끌어오기 서버에서 자동화 DSC에 의해 관리 되는 각 시스템 toobe에서만 아웃 바운드 인터넷 액세스 TCP 포트 443 toohello OMS 서비스를 통해 통신 합니다.   
+Azure Automation에 저장된 DSC 구성은 Azure 가상 컴퓨터에 직접 적용할 수 있습니다. 기타 물리적 및 가상 컴퓨터는 Azure Automation DSC 풀 서버에서 구성을 요청할 수 있습니다.  온-프레미스 물리적 또는 가상 Windows 및 Linux 시스템의 구성을 관리하려면 OMS 서비스에 TCP 포트 443을 통해 통신하기 때문에 Automation DSC에 의해 관리되는 각 시스템의 아웃바운드 인터넷 액세스인 Automation DSC 끌어오기 서버를 지원하는 인프라를 배포할 필요가 없습니다.   
 
 ## <a name="prerequisites"></a>필수 조건
 
 ### <a name="automation-dsc"></a>자동화 DSC
-Azure 자동화 DSC toomanage 사용 되는 다양 한 일 수 있습니다.
+Azure 자동화 DSC를 다양한 컴퓨터의 관리에 사용할 수 있습니다.
 
 * Windows 또는 Linux를 실행 중인 Azure 가상 컴퓨터(클래식)
 * Windows 또는 Linux를 실행 중인 Azure 가상 컴퓨터
@@ -52,73 +52,73 @@ Azure 자동화 DSC toomanage 사용 되는 다양 한 일 수 있습니다.
 * 온-프레미스 또는 Azure나 AWS 이외의 클라우드에 있는 Windows 실제/가상 컴퓨터
 * 온-프레미스 또는 Azure나 AWS 이외의 클라우드에 있는 Linux 실제/가상 컴퓨터
 
-최신 버전의 WMF 5 hello hello PowerShell DSC에 대 한 에이전트 Windows toobe 수 toocommunicate Azure 자동화에 설치 되어야 합니다. 최신 버전의 hello hello [Linux 용 PowerShell DSC 에이전트](https://www.microsoft.com/en-us/download/details.aspx?id=49150) Linux toobe 수 toocommunicate Azure 자동화에 대 한 설치 해야 합니다.
+Windows용 PowerShell DSC 에이전트가 Azure Automation과 통신하려면 최신 버전의 WMF 5가 설치되어 있어야 합니다. 최신 버전 [Linux용 PowerShell DSC 에이전트](https://www.microsoft.com/en-us/download/details.aspx?id=49150)가 Azure Automation과 통신하려면 Linux용으로 설치되어야 합니다.
 
 ### <a name="hybrid-runbook-worker"></a>Hybrid Runbook Worker  
-컴퓨터 toorun 하이브리드 runbook 작업을 지정 하면,이 컴퓨터 hello 다음이 있어야 합니다.
+하이브리드 Runbook 작업을 실행하는 컴퓨터를 지정할 때 이 컴퓨터에는 다음 항목이 있어야 합니다.
 
 * Windows Server 2012 이상
-* Windows PowerShell 4.0 이상  신뢰성 향상된을 위해 hello 컴퓨터에 Windows PowerShell 5.0을 설치 하는 것이 좋습니다. Hello에서 hello 새 버전을 다운로드할 수 있습니다 [Microsoft 다운로드 센터](https://www.microsoft.com/download/details.aspx?id=50395)
+* Windows PowerShell 4.0 이상  안정성 개선을 위해 컴퓨터에 Windows PowerShell 5.0을 설치하는 것이 좋습니다. [Microsoft 다운로드 센터](https://www.microsoft.com/download/details.aspx?id=50395)에서 새 버전을 다운로드할 수 있습니다.
 * 최소 두 개의 코어
 * 최소 4GB의 RAM
 
-### <a name="permissions-required-toocreate-automation-account"></a>필요한 toocreate 자동화 계정 권한
-이 항목 toocomplete 필요한 사용 권한 및 다음 특정 권한을 hello toocreate 또는 자동화 계정 업데이트 해야 합니다.   
+### <a name="permissions-required-to-create-automation-account"></a>Automation 계정을 만드는 데 필요한 권한
+Automation 계정을 만들거나 업데이트하려면 이 항목을 완료하는 데 필요한 다음과 같은 특정 권한이 있어야 합니다.   
  
-* 순서 toocreate 자동화 계정에에서 AD 사용자 계정의 사용 권한 해당 toohello 소유자 역할을 가진 toobe 추가 tooa 역할 Microsoft.Automation 리소스에 대 한 설명 된 대로 문서의 [Azure 자동화에서 역할 기반 액세스 제어 ](automation-role-based-access-control.md).  
-* Hello 응용 프로그램 등록 설정 너무 설정 되어 있으면**예**, Azure AD 테 넌 트의 관리자가 아닌 사용자 수 [AD 응용 프로그램 등록](../azure-resource-manager/resource-group-create-service-principal-portal.md#check-azure-subscription-permissions)합니다.  Hello 응용 프로그램 등록 설정 너무 설정 되어 있으면**아니요**,이 작업을 수행 하는 hello 사용자는 Azure ad에서 전역 관리자 여야 합니다. 
+* Automation 계정을 만들려면 [Azure Automation에서 역할 기반 액세스 제어](automation-role-based-access-control.md) 문서에 설명된 대로 Microsoft.Automation 리소스에 대한 소유자 역할과 동일한 권한을 가진 역할에 AD 사용자 계정을 추가해야 합니다.  
+* 앱 등록 설정이 **예**로 지정되어 있는 경우 Azure AD 테넌트의 관리자가 아닌 사용자는 [AD 응용 프로그램을 등록](../azure-resource-manager/resource-group-create-service-principal-portal.md#check-azure-subscription-permissions)할 수 있습니다.  앱 등록 설정이 **아니요**로 지정되어 있는 경우 이 작업을 수행하는 사용자는 Azure AD의 전역 관리자여야 합니다. 
 
-가 아닌 hello 구독 Active Directory 인스턴스에서 소속 toohello 전역 관리자/공동 관리자의 역할 hello 구독을 추가 하기 전에 사용자 tooActive 디렉터리에 게스트로 추가 됩니다. 이 경우에는 "없는 사용 권한을 toocreate..." 표시 hello에 경고 **자동화 계정 추가** 블레이드입니다. 먼저 hello 구독 Active Directory 인스턴스에서 제거할 수도 있고 toomake 다시 추가 toohello 전역 관리자/공동 관리자 역할에 추가 된 사용자를 해당 Active Directory에서 전체 사용자입니다. tooverify hello에서 이러한 경우 **Azure Active Directory** hello Azure 포털의에서 창 **사용자 및 그룹**선택, **모든 사용자에 게** 및 hello를 선택한 후 특정 사용자 **프로필**합니다. 값의 hello hello **사용자 유형** hello 사용자 프로필 아래에 특성 같지 해야 **게스트**합니다.
+구독의 전역 관리자/공동 관리자 역할에 추가되기 전에 구독 Active Directory 인스턴스의 멤버가 아닌 경우 Active Directory에 게스트로 추가됩니다. 이 상황에서는 “만들 수 있는 사용 권한이 없습니다…”라는 메시지를 받습니다. **Automation 계정 추가** 블레이드의 경고. 전역 관리자/공동 관리자 역할에 처음 추가된 사용자는 구독 Active Directory 인스턴스에서 제거한 다음 다시 추가하여 Active Directory의 완전한 사용자로 만들 수 있습니다. Azure Portal의 **Azure Active Directory** 창에서 이 상황을 확인하려면 **사용자 및 그룹**을 선택한 다음 **모든 사용자**를 선택하거나 특정 사용자를 선택한 후 **프로필**을 선택합니다. 사용자 프로필에서 **사용자 유형** 속성의 값은 **Guest**와 같지 않아야 합니다.
 
 ## <a name="authentication-planning"></a>인증 계획
-Azure 자동화 하면 tooautomate 작업 리소스에 대 한 다른 클라우드 공급자와 azure에서 온-프레미스에서.  Runbook tooperform 위해에서 필요한 작업을 있어야 hello 리소스에 액세스 권한을 toosecurely hello 구독 내에서 필요한 hello 최소의 권한을 가진 합니다.  
+Azure Automation을 사용하여 Azure, 온-프레미스 및 다른 클라우드 공급자의 리소스에 대해 작업을 자동화할 수 있습니다.  Runbook이 필요한 작업을 수행하려면 구독 내에서 최소의 권한으로 리소스에 안전하게 액세스할 수 있는 권한이 있어야 합니다.  
 
 ### <a name="what-is-an-automation-account"></a>Automation 계정이란? 
-Hello Azure cmdlet을 사용 하 여 Azure 자동화에서 리소스에 대해 수행 하는 모든 hello 자동화 작업 tooAzure Azure Active Directory 조직 id 자격 증명 기반 인증을 사용 하 여 인증 합니다.  자동화 계정을 toosign toohello 포털 tooconfigure에서 사용 하 고 Azure 리소스를 사용 하 여 hello 계정와에서 분리 됩니다.  계정에 포함 된 자동화 리소스 hello 다음과 같습니다.
+Azure Automation에서 Azure cmdlet을 사용하여 리소스에 대해 수행하는 모든 자동화 작업은 Azure Active Directory 조직 ID 자격 증명 기반 인증을 사용하여 Azure에 인증합니다.  Automation 계정을 포털에 로그인하는 데 사용한 계정과 분리하여 Azure 리소스를 구성하고 사용합니다.  계정에 포함된 Automation 리소스는 다음과 같습니다.
 
 * **인증서** - runbook 또는 DSC 구성의 인증에 사용되는 인증서를 포함하거나 추가합니다.
-* **연결** -인증 및 구성 필요한 정보 tooconnect tooan 외부 서비스 또는 응용 프로그램에서 runbook 또는 DSC 구성을 포함 합니다.
-* **자격 증명** -사용자 이름 및 암호 필요 같은 보안 자격 증명을 포함 하는 PSCredential 개체 runbook 또는 DSC 구성에서 tooauthenticate 합니다.
-* **통합 모듈** -는 runbook 및 DSC 구성 내에서 cmdlet의 Azure 자동화 계정 toomake 사용에 포함 된 PowerShell 모듈입니다.
+* **연결** - runbook 또는 DSC 구성에서 외부 서비스 또는 응용 프로그램에 연결하는 데 필요한 인증 및 구성 정보를 포함합니다.
+* **자격 증명** - runbook 또는 DSC 구성에서 인증하는 데 필요한 사용자 이름 및 암호와 같은 보안 자격 증명이 포함된 PSCredential 개체입니다.
+* **통합 모듈** - runbook 및 DSC 구성 내에서 cmdlet을 사용할 수 있도록 Azure Automation 계정에 포함된 PowerShell 모듈입니다.
 * **일정** - 반복되는 빈도를 포함하여 지정된 시간에 runbook을 시작하거나 중지하는 일정을 포함합니다.
 * **변수** - runbook 또는 DSC 구성에서 사용할 수 있는 값을 포함합니다.
-* **DSC 구성** -PowerShell 스크립트를 설명 하는 방법을 tooconfigure 운영 체제 기능 또는 설정 또는 Windows 또는 Linux 컴퓨터에 응용 프로그램을 설치 합니다.  
+* **DSC 구성** - 운영 체제 기능을 구성하거나 Windows 또는 Linux 컴퓨터에 응용 프로그램을 설정하거나 설치하는 방법을 설명하는 PowerShell 스크립트입니다.  
 * **Runbook** - Windows PowerShell을 기반으로 하는 Azure Automation에서 자동화된 프로세스 일부를 수행하는 일단의 작업입니다.    
 
-각 자동화 계정의 자동화 리소스 hello 단일 Azure 지역과 연관 되어 있지만 자동화 계정은 구독에서 모든 hello 리소스를 관리할 수 있습니다. 데이터와 리소스 toobe 격리 tooa 특정 지역을 필요로 하는 정책이 있는 경우 자동화 계정을 다른 지역에 만듭니다.
+각 Automation 계정의 Automation 리소스는 단일 Azure 지역과 연결되지만 Automation 계정은 구독 내 모든 리소스를 관리할 수 있습니다. 데이터 및 리소스를 특정 지역으로 격리해야 하는 정책이 있는 경우 여러 지역에서 Automation 계정을 만듭니다.
 
 > [!NOTE]
-> 자동화 계정 및 hello 리소스를 포함 하는 hello Azure 포털에서에서 만들어진, hello Azure 클래식 포털에에서 액세스할 수 없습니다. 이러한 계정 또는 Windows PowerShell을 사용 하 여 해당 리소스 toomanage를 원하는 경우 hello Azure 리소스 관리자 모듈을 사용 해야 합니다.
+> Azure Portal에서 작성된 Automation 계정 및 Automation 계정이 포함하는 리소스는 Azure 클래식 포털에서 액세스할 수 없습니다. 이러한 계정 또는 해당 리소스를 Windows PowerShell을 사용하여 관리하려는 경우 Azure 리소스 관리자 모듈을 사용해야 합니다.
 > 
 
-Hello Azure 포털에서에서 자동화 계정을 만들면 두 인증 엔터티에 자동으로 만듭니다.
+Azure Portal에서 Automation 계정을 만들 경우 두 개의 인증 엔터티를 자동으로 만듭니다.
 
-* 실행 계정 이 계정은 Azure AD(Azure Active Directory)의 서비스 주체 및 인증서를 만듭니다. 또한 hello 참가자 역할 기반 액세스 제어 (RBAC) runbook을 사용 하 여 리소스 관리자 리소스를 관리 하는 할당 합니다.
-* 클래식 실행 계정 이 계정에 runbook을 사용 하 여 사용 되는 toomanage 클래식 리소스는 관리 인증서를 업로드 합니다.
+* 실행 계정 이 계정은 Azure AD(Azure Active Directory)의 서비스 주체 및 인증서를 만듭니다. 또한 Runbook을 사용하여 Resource Manager 리소스를 관리하는 참가자 역할 기반 액세스 제어(RBAC)를 할당합니다.
+* 클래식 실행 계정 이 계정은 Runbook을 사용하여 클래식 리소스를 관리하는 데 사용되는 관리 인증서를 업로드합니다.
 
-역할 기반 액세스 제어 작업 tooan Azure AD 사용자 계정 및 계정으로 실행을 허용 하는 Azure 리소스 관리자 toogrant은 사용할 수 있게 하 고 해당 서비스 보안 주체를 인증 합니다.  읽기 [Azure 자동화 문서에서 역할 기반 액세스 제어](automation-role-based-access-control.md) toohelp 자세한 정보에 대 한 자동화 권한 관리를 위한 모델을 개발 합니다.  
+Azure Resource Manager에서 역할 기반 액세스 제어를 사용하여 Azure AD 사용자 계정 및 실행 계정에 허용된 작업을 수락하고 서비스 주체를 인증할 수 있습니다.  Automation 사용 권한 관리 모델을 개발하는 방법에 대한 자세한 내용은 [Azure Automation에서 역할 기반 액세스 제어 문서](automation-role-based-access-control.md)를 참조하세요.  
 
 #### <a name="authentication-methods"></a>인증 방법
-hello 다음 표에 요약 되어 Azure 자동화에서 지 원하는 각 환경에 대 한 hello 다른 인증 방법을 사용 합니다.
+다음 표에는 Azure Automation에서 지원하는 각 환경에 대한 다양한 인증 방법이 요약되어 있습니다.
 
 | 메서드 | Environment 
 | --- | --- | 
 | Azure 실행 또는 클래식 실행 계정 |Azure Resource Manager 및 Azure 클래식 배포 |  
 | Azure AD 사용자 계정 |Azure Resource Manager 및 Azure 클래식 배포 |  
-| Windows 인증 |로컬 데이터 센터 또는 hello Hybrid Runbook Worker를 사용 하 여 다른 클라우드 공급자 |  
+| Windows 인증 |Hybrid Runbook Worker를 사용하는 로컬 데이터 센터 또는 다른 클라우드 공급자 |  
 | AWS 자격 증명 |Amazon 웹 서비스 |  
 
-Hello에서 **어떻게 to\Authentication 및 보안** 섹션 tooconfigure 인증 된 기존 하거나 해당 환경에 대 한 개요 및 구현 단계를 제공 하는 문서를 지 원하는 하거나 새 계정을 해당 환경에 사용 되는 전용입니다.  Azure 계정으로 실행 하는 hello 및 기존 실행 계정에 대 한 항목을 hello [업데이트 자동화 실행 계정을](automation-create-runas-account.md) 방법을 tooupdate 기존 자동화 계정으로 실행 하는 hello로는 hello 포털 또는 되지 않은 경우 PowerShell을 사용 하 여을 계정 설명 원래 계정으로 실행 또는 클래식 계정으로 실행 계정으로 구성 합니다. Toocreate 실행 하 고 기본 실행 계정을 엔터프라이즈 인증 기관 (CA)에서 발급 한 인증서를 검토 toocreate hello를 사용 하 여 계정을 어떻게 문서 toolearn이이 구성 합니다.     
+**인증 및 보안 방법** 섹션에는 이러한 환경에 대해 기존 계정 또는 새 계정을 사용하여 해당 환경에 대한 인증을 구성하기 위한 개요 및 구현 단계를 제공하는 문서가 있습니다.  Azure 실행 계정 및 클래식 실행 계정과 관련하여 원래 실행 계정 또는 클래식 실행 계정으로 구성되지 않은 경우 [Automation 실행 계정 업데이트](automation-create-runas-account.md) 항목에서 포털 또는 PowerShell을 사용하여 기존 Automation 계정을 실행 계정으로 업데이트하는 방법을 설명합니다. 엔터프라이즈 CA(인증 기관)에서 발급한 인증서로 실행 계정 및 클래식 실행 계정을 만들려면 이 문서를 검토하여 이 구성을 사용하여 계정을 만드는 방법에 대해 알아봅니다.     
  
 ## <a name="network-planning"></a>네트워크 계획
-Hello Hybrid Runbook Worker tooconnect tooand 레지스터와 Microsoft OMS Operations Management Suite ()에 대 한 액세스 toohello 포트 번호가 있어야 하 고 hello Url 아래에서 설명 합니다.  이 또한 toohello [포트 및에 필요한 Url hello Microsoft Monitoring Agent](../log-analytics/log-analytics-windows-agents.md#network) tooconnect tooOMS 합니다. Hello 에이전트와 hello OMS 서비스 간의 통신에 프록시 서버를 사용 하는 경우 hello 적절 한 리소스를 액세스할 수 있는 tooensure를 해야 합니다. 방화벽 toorestrict 액세스 toohello 인터넷을 사용 하는 경우 방화벽 toopermit 액세스 tooconfigure 해야 있습니다.
+Hybrid Runbook Worker를 사용하여 Microsoft Operations Management Suite(OMS)에 연결하고 등록하려면 아래 설명된 포트 번호 및 URL에 대한 액세스 권한이 있어야 합니다.  [Microsoft Monitoring Agent에 필요한 포트 및 URL](../log-analytics/log-analytics-windows-agents.md#network) 외에도 OMS에 연결합니다. 에이전트와 OMS 서비스 간의 통신에 프록시 서버를 사용하는 경우 적절한 리소스에 액세스할 수 있는지 확인해야 합니다. 방화벽을 사용하여 인터넷에 대한 액세스를 제한하는 경우 액세스를 허용하도록 방화벽을 구성해야 합니다.
 
-아래 목록 hello 포트 및 자동화 Hybrid Runbook Worker toocommunicate hello에 필요한 Url hello 정보입니다.
+아래 정보는 Hybrid Runbook Worker에서 Automation과 통신하는 데 필요한 포트 및 URL을 나열합니다.
 
 * 포트: 아웃바운드 인터넷 액세스에는 TCP 443만 필요
 * 글로벌 URL: *.azure-automation.net
 
-특정 지역에 대해 정의 된 자동화 계정이 있는 경우 해당 지역의 데이터 센터와 toorestrict 통신 hello 다음 표에서 hello DNS 레코드 각 지역에 대 한.
+특정 지역에 대해 정의된 Automation 계정이 있고 해당 지역의 데이터 센터와 통신을 제한하려는 경우 다음 표에서는 각 지역에 대한 DNS 레코드를 제공합니다.
 
 | **지역** | **DNS 레코드** |
 | --- | --- |
@@ -135,60 +135,59 @@ Hello Hybrid Runbook Worker tooconnect tooand 레지스터와 Microsoft OMS Oper
 | 영국 남부 | uks-jobruntimedata-prod-su1.azure-automation.net |
 | 미국 정부 버지니아 | usge-jobruntimedata-prod-su1.azure-automation.us |
 
-목록이 이름 대신 IP 주소에 대 한 다운로드 하 여 검토 hello [Azure 데이터 센터 IP 주소](https://www.microsoft.com/download/details.aspx?id=41653) hello Microsoft 다운로드 센터에서에서 xml 파일입니다. 
+이름 대신 IP 주소 목록을 보려면 Microsoft 다운로드 센터에서 [Azure 데이터 센터 IP 주소](https://www.microsoft.com/download/details.aspx?id=41653) xml 파일을 다운로드하여 검토하세요. 
 
 > [!NOTE]
-> 이 파일에는 hello IP 주소 범위 (계산, SQL 및 저장소 범위) hello Microsoft Azure 데이터 센터에서에서 사용 되는 포함 되어 있습니다. 현재 배포 된 hello 범위 및 모든 이후 변경 toohello IP 범위를 반영 하는 업데이트 된 파일 매주 게시 됩니다. 최소한 한 주에 대 한 hello 파일에 표시 되는 새 범위가 hello 데이터 센터에서 사용 되지 않습니다. 다운로드 hello 새 xml 파일 매주 하 고 사이트에 hello 필요한 변경을 수행 하십시오 toocorrectly Azure에서 실행 되는 서비스를 식별 합니다. Express 경로 사용자 tooupdate hello BGP 광고 hello Azure 공간의 각 월의 첫째 주를 사용 하는이 파일을 발견할 수 있습니다. 
+> 이 파일에는 Microsoft Azure 데이터 센터에서 사용되는 IP 주소 범위(Compute, SQL 및 Storage 범위 포함)가 포함되어 있습니다. 현재 배포된 범위와 향후 예정된 IP 범위 변경 내용을 반영하는 업데이트 파일이 매주 게시됩니다. 파일에 표시되는 새 범위는 적어도 1주일 동안 데이터 센터에서 사용되지 않습니다. Azure에서 실행되는 서비스를 정확하게 식별할 수 있도록 매주 새로운 xml 파일을 다운로드하고 사이트에서 필요한 변경 작업을 수행하세요. ExpressRoute 사용자는 각 달의 첫 번째 주에 Azure 공간의 BGP 광고를 업데이트하는 데 이 파일이 사용되는 것을 보게 될 수도 있습니다. 
 > 
 
 ## <a name="creating-an-automation-account"></a>Automation 계정 만들기
 
-여러 가지 방법으로 hello Azure 포털에서에서 자동화 계정을 만들 수 있습니다.  다음 표에서 hello 각 유형의 배포 환경 및 이들 간의 차이 소개 합니다.  
+여러 가지 방법으로 Azure Portal에서 Automation 계정을 만들 수 있습니다.  다음 표에서는 각 유형의 배포 환경 및 이들 간의 차이점을 소개합니다.  
 
 |메서드 | 설명 |
 |-------|-------------|
-| Hello Marketplace에서에서 자동화 및 제어를 선택 합니다. | 자동화 계정 및 OMS 작업 영역 만듭니다 되는 제품 연결 tooone 동일한 리소스 그룹 및 지역에서 다른 hello 합니다.  OMS와의 통합 또한 toomonitor 로그 분석을 사용 하는 hello 이점은 포함 및 시간에 따라 runbook 작업 상태 및 작업 스트림 분석 및 tooescalate 고급 기능을 활용 하거나 문제를 조사 합니다. 기본적으로 활성화 되 hello 변경 내용 추적 및 업데이트 관리 솔루션을 배포 hello도 제공 합니다. |
-| Hello Marketplace에서에서 자동화를 선택 합니다. | OMS 작업 영역 연결된 tooan 아니며 hello 자동화 및 제어를에서 사용 가능한 솔루션을 포함 하지 않는 새로운 또는 기존 리소스 그룹의 자동화 계정을 만듭니다. TooAutomation 소개 하는 기본 구성을 이므로 toowrite runbook, DSC 구성 및 사용 하 여 hello hello 서비스의 기능에 어떻게 방법을 알 수 있습니다. |
-| 선택한 관리 솔루션 | – 솔루션을 선택 하는 경우  **[업데이트 관리](../operations-management-suite/oms-solution-update-management.md)**,  **[업무 외 시간 동안 시작/중지 Vm](automation-solution-vm-management.md)**, 또는  **[ 변경 내용 추적을](../log-analytics/log-analytics-change-tracking.md)**  tooselect 기존 자동화 하 고 OMS 작업 영역에서 메시지를 표시 하거나 구독에 배포 된 hello 솔루션 toobe에 필요한 두 옵션 toocreate hello를 제안 하는 것입니다. |
+| Marketplace에서 Automation 및 컨트롤 선택 | 제품을 사용하여 동일한 리소스 그룹 및 지역에서 서로 연결된 Automation 계정 및 OMS 작업 영역을 모두 만듭니다.  OMS와 통합하면 Log Analytics를 사용하여 시간이 지남에 따라 Runbook 작업 상태 및 작업 스트림을 모니터링 및 분석하고 고급 기능을 활용하여 문제를 보고하거나 조사할 수 있는 이점이 있습니다. 또한 기본적으로 사용되는 변경 내용 추적 및 업데이트 관리 솔루션도 배포합니다. |
+| Marketplace에서 Automation 선택 | OMS 작업 영역에 연결되지 않고 Automation 및 컨트롤 제품에서 사용 가능한 솔루션을 포함하지 않는 새로운 또는 기존 리소스 그룹에서 Automation 계정을 만듭니다. Automation를 소개하는 기본 구성이며 이를 통해 Runbook, DSC 구성을 작성하고 서비스의 기능을 사용하는 방법을 알아볼 수 있습니다. |
+| 선택한 관리 솔루션 | 솔루션 – **[업데이트 관리](../operations-management-suite/oms-solution-update-management.md)**, **[몇 시간 동안 VM 시작/중지](automation-solution-vm-management.md)** 또는 **[변경 내용 추적](../log-analytics/log-analytics-change-tracking.md)**을 선택하는 경우 기존 Automation 및 OMS 작업 영역을 선택하라는 메시지가 표시되거나 구독에서 배포할 솔루션의 필요에 따라 모두 만드는 옵션을 제공합니다. |
 
-이 항목에서는 온 보 딩 hello 자동화 및 제어를 제공 함으로써 자동화 계정 및 OMS 작업 영역을 만드는 과정을 안내 합니다.  독립 실행형 테스트 또는 toopreview hello 서비스 검토 hello 다음 문서에 대 한 자동화 계정 toocreate [독립 실행형 자동화 계정 만들기](automation-create-standalone-account.md)합니다.  
+이 항목에서는 Automation 및 컨트롤 제품을 등록하여 Automation 계정 및 OMS 작업 영역을 만드는 방법을 설명합니다.  테스트하기 위해 독립 실행형 Automation 계정을 만들거나 서비스를 미리 보려면 다음 [독립 실행형 Automation 계정 만들기](automation-create-standalone-account.md) 문서를 검토합니다.  
 
 ### <a name="create-automation-account-integrated-with-oms"></a>OMS와 통합된 Automation 계정 만들기
-hello는 메서드 tooonboard를 자동화 hello Marketplace에서에서 hello 자동화 및 제어 제품을 선택 하 여는 것이 좋습니다.  자동화 계정을 만들고 hello 통합 솔루션을 비롯 한 hello 옵션 tooinstall hello 관리 hello 제품과 함께 제공 되는 OMS 작업 영역을 설정 합니다.  
+Automation을 등록하려면 Marketplace에서 Automation 및 컨트롤 제품을 선택하는 것이 좋습니다.  그러면 Automation 계정을 만들고 제품에 사용할 수 있는 관리 솔루션을 설 하는 옵션을 포함하는 OMS 작업 영역과 통합을 설정할 수 있습니다.  
 
-1. Hello 구독 관리자 역할의 멤버 및 hello 구독의 공동 관리자 인 계정으로 Azure 포털 toohello에 로그인 합니다.
+1. 구독 관리자 역할의 멤버이자 구독의 공동 관리자인 계정으로 Azure Portal에 로그인합니다.
 
 2. **새로 만들기**를 클릭합니다.<br><br> ![Azure Portal에서 새 옵션을 선택합니다.](media/automation-offering-get-started/automation-portal-martketplacestart.png)<br>  
 
-3. 검색할 **자동화** 다음 hello에 검색 결과 선택 하 고 **자동화 및 제어*** 합니다.<br><br> ![Marketplace에서 Automation 및 컨트롤을 검색하고 선택합니다](media/automation-offering-get-started/automation-portal-martketplace-select-automationandcontrol.png).<br>   
+3. **Automation**을 검색한 다음 검색 결과에서 **Automation 및 컨트롤***을 선택합니다.<br><br> ![Marketplace에서 Automation 및 컨트롤을 검색하고 선택합니다](media/automation-offering-get-started/automation-portal-martketplace-select-automationandcontrol.png).<br>   
 
-4. Hello 제공에 대 한 설명을 hello를 읽은 후 클릭 **만들기**합니다.  
+4. 제품에 대한 설명을 읽은 후에 **만들기**를 클릭합니다.  
 
-5. Hello에 **자동화 및 제어** 설정 블레이드에서 **OMS 작업 영역**합니다.  Hello에 **OMS 작업 영역** 블레이드에서 hello 자동화 계정을 동일한 Azure 구독에이 OMS 작업 영역 연결 toohello를 선택 하거나 OMS 작업 영역을 만듭니다.  OMS 작업 영역 경우 선택 **새 작업 영역 만들기** hello에 **OMS 작업 영역** 블레이드 hello 다음을 수행 합니다. 
-   - 새 hello에 대 한 이름을 지정 **OMS 작업 영역**합니다.
-   - 선택 된 **구독** toolink hello 기본 선택 된 적절 하지 않은 경우 tooby hello 드롭 다운 목록에서 선택 합니다.
+5. **Automation 및 컨트롤** 설정 블레이드에서 **OMS 작업 영역**을 선택합니다.  **OMS 작업 영역** 블레이드에서 Automation 계정이 있는 동일한 Azure 구독에 연결된 OMS 작업 영역을 선택하거나 OMS 작업 영역을 새로 만듭니다.  OMS 작업 영역이 없으면 **새 작업 영역 만들기**를 선택하고 **OMS 작업 영역** 블레이드에서 다음을 수행합니다. 
+   - 새 **OMS 작업 영역**에 대한 이름을 지정합니다.
+   - 기본으로 선택된 값이 적절하지 않으면 드롭다운 목록에서 선택하여 연결할 **구독**을 선택합니다.
    - **리소스 그룹**의 경우, 리소스 그룹을 만들거나 기존 리소스 그룹을 선택할 수 있습니다.  
-   - **위치**를 선택합니다.  현재는 사용할 수 있는 유일한 위치 hello **오스트레일리아 남동부**, **미국 동부**, **동남 아시아**, **중앙 미국 서 부**, 및  **서 부 유럽**합니다.
-   - **가격 책정 계층**을 선택합니다.  두 계층에 hello 솔루션 프린터가: 해제 하 고 노드 (OMS) 당 계층입니다.  hello 무료 계층에서는 hello 매일, 보존 기간 및 runbook 작업 런타임 분 수집 된 데이터 양을 제한 합니다.  매일 수집 되는 데이터의 hello 금액에 hello 노드 (OMS) 당 계층 제한을 않아도 됩니다.  
-   - **Automation 계정**을 선택합니다.  필요한 모르는 새로운 OMS 작업 영역을 만드는 경우 tooalso hello 새로운 OMS 작업 영역 이전에 지정한 Azure 구독, 리소스 그룹 및 영역을 포함 하 여와 연결 된 자동화 계정 만들기.  선택할 수 있습니다 **자동화 계정 만들기** hello에 **자동화 계정** 블레이드를 hello 다음을 제공 합니다. 
-  - Hello에 **이름** 필드의 자동화 계정 hello hello 이름을 입력 합니다.
+   - **위치**를 선택합니다.  자세한 내용은 [Azure Automation을 사용할 수 있는 지역](https://azure.microsoft.com/regions/services/)을 참조하세요.  솔루션은 체험 계층 및 노드당(OMS) 계층이라는 두 가지 계층으로 제공됩니다.  무료 계층은 하루에 수집되는 데이터의 양, 보존 기간 및 Runbook 작업 런타임 시간(분)이 제한됩니다.  노드당(OMS) 계층은 하루에 수집할 수 있는 데이터의 양이 제한되지 않습니다.  
+   - **Automation 계정**을 선택합니다.  OMS 작업 영역을 새로 만드는 경우, Azure 구독, 리소스 그룹 및 지역을 비롯하여 앞서 지정한 새 OMS 작업 영역과 연결되는 Automation 계정도 만들어야 합니다.  **Automation 계정 만들기**을 선택하고 **Automation 계정** 블레이드에서 다음을 제공합니다. 
+  - **이름** 필드에서 Automation 계정의 이름을 입력합니다.
 
-    다른 모든 옵션 hello OMS 작업 영역이 선택에 따라 자동으로 채워진 및 이러한 옵션을 수정할 수 없습니다.  Azure 계정으로 실행 계정은 hello 제공에 대 한 hello 기본 인증 방법입니다.  클릭 한 후 **확인**hello 구성 옵션은 유효성을 검사 하 고 hello 자동화 계정이 생성 됩니다.  진행률을 추적할 수 있습니다 **알림** hello 메뉴에서 합니다. 
+    다른 모든 옵션은 선택한 OMS 작업 영역을 기반으로 자동으로 채워지며 이러한 옵션은 수정할 수 없습니다.  Azure 실행 계정은 제품에 대한 기본 인증 방법입니다.  **확인**을 클릭하면 구성 옵션의 유효성이 검사되고 Automation 계정이 생성됩니다.  메뉴의 **알림**에서 진행 상황을 추적할 수 있습니다. 
 
-    그렇지 않으면, 기존 Automation 실행 계정을 선택합니다.  선택한 hello 계정 연결된 tooanother OMS 작업 영역 일 수 없습니다, 그리고 hello 블레이드에서 알림 메시지가 표시 되는 그렇지 않은 경우.  이미 연결 되어 다른 자동화 계정으로 실행 계정을 tooselect 필요 하거나 만드십시오.
+    그렇지 않으면, 기존 Automation 실행 계정을 선택합니다.  선택한 계정은 다른 OMS 작업 영역에 미리 연결되어 있을 수 없습니다. 연결된 경우 알림 메시지가 블레이드에 표시됩니다.  이미 연결되어 있다면 다른 Automation 실행 계정을 선택하거나 계정을 만들어야 합니다.
 
-    필요한 hello 정보를 완료 한 후 클릭 **만들기**합니다.  hello 정보를 확인 하 고 hello 자동화 계정 및 실행 계정을 생성 됩니다.  Toohello 반환될지 **OMS 작업 영역** 블레이드 자동으로 합니다.  
+    필요한 정보를 완료한 후에 **만들기**를 클릭합니다.  정보를 확인하고 Automation 계정 및 실행 계정을 만듭니다.  **OMS 작업 영역** 블레이드에 자동으로 돌아갑니다.  
 
-6. Hello에 hello 필요한 정보를 제공한 후 **OMS 작업 영역** 블레이드에서 클릭 **만들기**합니다.  Hello 정보를 확인 하 고 hello 작업 영역이 만들어진, 아래에서 진행률을 추적할 수 있습니다 **알림** hello 메뉴에서 합니다.  Toohello 반환될지 **솔루션 추가** 블레이드입니다.  
+6. **OMS 작업 영역** 블레이드에서 필요한 정보를 제공한 후에 **만들기**를 클릭합니다.  정보가 확인되고 작업 영역이 만들어지는 동안 메뉴의 **알림**에서 진행 상황을 추적할 수 있습니다.  **솔루션 추가** 블레이드가 다시 열립니다.  
 
-7. Hello에 **자동화 및 제어** 설정 블레이드에서 tooinstall hello 권장 미리 선택 된 솔루션을 것인지 확인 합니다. 선택을 취소한 경우 나중에 개별적으로 설치할 수 있습니다.  
+7. **Automation 및 컨트롤** 설정 블레이드에서 권장된 미리 선택된 솔루션을 설치할 것인지 확인합니다. 선택을 취소한 경우 나중에 개별적으로 설치할 수 있습니다.  
 
-8. 클릭 **만들기** tooproceed 온 보 딩 자동화 및 OMS 작업 영역입니다. 모든 설정 유효성을 검사 하 고 구독에서 제공 하는 toodeploy hello를 시도 합니다.  이 프로세스는 몇 가지 걸릴 수 초 toocomplete 하 고 아래에서 해당 진행률을 추적할 수 **알림** hello 메뉴에서 합니다. 
+8. **만들기**를 클릭하여 Automation 및 OMS 작업 영역 등록을 진행합니다. 모든 설정에 대한 유효성을 검사하면 구독 내에 제품을 배포하려고 합니다.  이 프로세스를 완료하려면 몇 초 정도가 소요되며 메뉴의 **알림**에서 진행 상황을 추적할 수 있습니다. 
 
-Hello 제공 등록 된 후에 runbook, 작업 hello로 사용 하도록 설정한 관리 솔루션 만들기를 시작, 배포 수 있습니다는 [하이브리드 Runbook 작업자](automation-hybrid-runbook-worker.md) 역할 또는 작업 시작 [로그 분석](https://docs.microsoft.com/azure/log-analytics) 클라우드 또는 온-프레미스 환경에서 리소스에 의해 생성 된 toocollect 데이터입니다.   
+제품이 등록된 후에는 runbook을 만들고, 사용하도록 설정된 관리 솔루션으로 작업하며, [Hybrid Runbook Worker](automation-hybrid-runbook-worker.md) 역할을 배포할 수 있거나 [Log Analytics](https://docs.microsoft.com/azure/log-analytics)를 통해 클라우드 또는 온-프레미스 환경의 리소스에서 생성한 데이터를 수집할 수 있습니다.   
 
 ## <a name="next-steps"></a>다음 단계
 * [Azure Automation 실행 계정 인증 테스트](automation-verify-runas-authentication.md)를 검토하여 새 Automation 계정이 Azure 리소스에 대해 인증할 수 있는지 확인할 수 있습니다.
-* runbook을 만드는 것부터 시작 tooget, hello를 먼저 검토 [자동화 runbook 형식](automation-runbook-types.md) 작성을 시작 하기 전에 지원 잠금과 고려 사항입니다.
+* Runbook을 만들기 시작하려면 먼저 지원되는 [Automation runbook 형식](automation-runbook-types.md) 및 관련 고려 사항을 검토합니다.
 
 

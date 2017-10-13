@@ -1,6 +1,6 @@
 ---
-title: "Azure Application Insights에 대 한 aaaSet 미리 보기 환경 설정 | Microsoft Docs"
-description: "hello Azure Application Insights 개발 팀에서는 새 환경을 제공 합니다. 원하는 어떤 새로운 환경을 toopreview hello Azure 포털에서에서 설정할 수 있습니다."
+title: "Azure Application Insights에 대한 미리 보기 기본 설정 지정 | Microsoft Docs"
+description: "Azure Application Insights 개발 팀에서는 새 환경을 제공합니다. Azure Portal에서 미리 보려는 새로운 환경을 설정할 수 있습니다."
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -11,25 +11,25 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 06/1/2017
+ms.date: 06/01/2017
 ms.author: bwren
-ms.openlocfilehash: 04a1d763bd706a9cc050d72512a8ca405f980dc4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d3929698cb3f3520b838bcaf88da6dca0c93c806
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="preview-upcoming-changes-tooazure-application-insights"></a>미리 보기 예정 된 변경 tooAzure Application Insights 
+# <a name="preview-upcoming-changes-to-azure-application-insights"></a>Azure Application Insights에 예정 된 변경 내용 미리 보기 
 
-Application Insights는 자주 새로운 기능을 릴리스합니다. 이러한 향상 된 기능 toosee 미리 보기를 사용 하도록 하려는 경우 hello 응용 프로그램 통찰력 미리 보기 블레이드에서 서명할 수 있습니다.  hello 개발 팀에서는 새로운 기능의 미리 보기 사용할 수 있는 제한적으로 tooall 사용자가 릴리스하기 전에 합니다. 
+Application Insights는 자주 새로운 기능을 릴리스합니다. 이러한 향상된 기능의 미리 보기를 보려는 경우 Application Insights 미리 보기 블레이드에서 등록할 수 있습니다.  개발 팀에서는 모든 사용자에게 릴리스하기 전에 제한적인 방식으로 사용할 수 있는 새로운 기능의 미리 보기를 만듭니다. 
 
-hello 다음 이미지에서는 방법을 tooset 미리 보기 기본 설정 합니다.
+다음 그림에서는 미리 보기 기본 설정을 지정하는 방법을 보여 줍니다.
 
 ![Application Insights 미리 보기 블레이드](./media/app-insights-preview/preview.png)
 
 ## <a name="set-preferences"></a>기본 설정 지정
 
-Hello 미리 보기 블레이드에서 hello 다음 미리 보기를 확인할 때에 대 한 옵션에서에서 선택할 수 있습니다.
+미리 보기 블레이드에서 언제 미리 보기를 표시할지 다음 옵션 중에서 선택할 수 있습니다.
 
 - 항상: 사용 가능한 즉시 미리 보기 환경을 표시합니다.
 - 자동: Microsoft가 계정에게 권장하는 미리 보기 환경을 표시합니다. 

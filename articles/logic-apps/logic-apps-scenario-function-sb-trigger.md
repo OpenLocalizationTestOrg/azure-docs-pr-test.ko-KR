@@ -1,6 +1,6 @@
 ---
-title: "aaaScenario-Azure 함수 및 Azure 서비스 버스를 사용 하 여 논리 앱 트리거 | Microsoft Docs"
-description: "Azure 함수 및 Azure 서비스 버스를 사용 하 여 함수 tootrigger 논리 앱 만들기"
+title: "시나리오 - Azure Functions 및 Azure Service Bus를 사용하여 논리 앱 트리거 | Microsoft Docs"
+description: "Azure Functions 및 Azure Service Bus를 사용하여 논리 앱을 트리거하는 함수 만들기"
 services: logic-apps,functions
 documentationcenter: .net,nodejs,java
 author: jeffhollan
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 05/23/2016
 ms.author: LADocs; jehollan
-ms.openlocfilehash: a7b78ebcfe492eee2e08ceeae6b9c5f8ed4717bb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 088f10bc32dd492f82f0a10a7e5829e76f588758
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="scenario-trigger-a-logic-app-with-azure-functions-and-azure-service-bus"></a>시나리오: Azure Functions 및 Azure Service Bus를 사용하여 논리 앱 트리거
 
-장기 실행 수신기 또는 작업 toodeploy 필요할 때 논리 앱에 대 한 Azure 기능 toocreate 트리거를 사용할 수 있습니다. 예를 들어, 큐에서 수신 대기하고 있다가 푸시 트리거로 즉시 논리 앱을 실행하는 함수를 만들 수 있습니다.
+Azure Functions로 장기 실행 수신기 또는 작업을 배포하는 데 필요한 논리 앱용 트리거를 만들 수 있습니다. 예를 들어, 큐에서 수신 대기하고 있다가 푸시 트리거로 즉시 논리 앱을 실행하는 함수를 만들 수 있습니다.
 
-## <a name="build-hello-logic-app"></a>Hello 논리 앱 빌드
-이 예제에서는 함수 toobe 트리거되는 각 논리 앱에 대해 실행 해야 합니다. 먼저, HTTP 요청 트리거가 있는 논리 앱을 만듭니다. hello 함수 큐 메시지를 받을 때마다 해당 끝점을 호출 합니다.  
+## <a name="build-the-logic-app"></a>논리 앱 빌드
+이 예에는 트리거할 필요가 있는 각 논리 앱에 대해 실행되는 함수가 있습니다. 먼저, HTTP 요청 트리거가 있는 논리 앱을 만듭니다. 이 함수는 큐 메시지를 수신할 때마다 끝점을 호출합니다.  
 
 1. 논리 앱을 만듭니다.
-2. 선택 hello **수동-HTTP 요청을 받으면** 트리거.
-   와 같은 도구를 사용 하 여 hello 큐 메시지와 함께 JSON 스키마 toouse를 지정할 수는 필요에 따라 [jsonschema.net](http://jsonschema.net)합니다. Hello 트리거에서 hello 스키마를 붙여 넣습니다. 스키마는 hello 모양의 hello 데이터 및 흐름 속성 hello 워크플로 통해 보다 쉽게 이해 하는 hello 디자이너 데 도움이 됩니다.
-2. 큐 메시지를 받은 후 toooccur 되도록 추가 단계를 추가 합니다. 예를 들어, Office 365로 이메일을 전송합니다.  
-3. Hello 트리거 toothis 논리 앱 hello 논리 앱 toogenerate hello 콜백 URL을 저장 합니다. hello URL hello 트리거 카드에 표시 됩니다.
+2. **수동 – HTTP 요청을 받은 경우** 트리거를 선택합니다.
+   또는, [jsonschema.net](http://jsonschema.net)과 같은 도구로 큐 메시지와 함께 사용할 JSON 스키마를 지정할 수 있습니다. 트리거에 스키마를 붙여넣습니다. 스키마는 디자이너가 데이터의 형태를 이해하고 워크플로에서 속성이 쉽게 흐를 수 있도록 도와줍니다.
+2. 큐 메시지를 수신한 후 실행하기를 원하는 추가 절차를 추가합니다. 예를 들어, Office 365로 이메일을 전송합니다.  
+3. 논리 앱을 저장하여 이 논리 앱에 트리거에 대한 콜백 URL을 생성합니다. URL은 트리거 카드에 표시됩니다.
 
-![hello 트리거 카드에 hello 콜백 URL 표시][1]
+![트리거 카드에 나타나는 콜백 URL][1]
 
-## <a name="build-hello-function"></a>Hello 함수를 작성 합니다.
-다음으로 역할을 hello 트리거 toohello 큐에서 수신 하는 함수를 만들어야 합니다.
+## <a name="build-the-function"></a>함수 빌드
+다음으로 트리거로 작동하고 큐에 수신 대기하는 함수를 만들어야 합니다.
 
-1. Hello에 [Azure 함수 포털](https://functions.azure.com/signin)을 선택 **새 함수**를 클릭 한 hello **ServiceBusQueueTrigger-C#** 서식 파일입니다.
+1. [Azure Functions 포털](https://functions.azure.com/signin)에서 **새 함수**를 선택한 다음 **ServiceBusQueueTrigger - C#** 템플릿을 선택합니다.
    
     ![Azure Functions 포털][2]
-2. Hello 연결 toohello 서비스 버스 큐를 사용 하 여 Azure 서비스 버스 SDK hello 구성 `OnMessageReceive()` 수신기입니다.
-3. 기본 함수 toocall hello 논리가 응용 프로그램 끝점 (앞에서 만든)을 트리거로 hello 큐 메시지를 사용 하 여 작성 합니다. 함수의 전체 예제는 다음과 같습니다. 사용 하 여 hello 예제는 `application/json` 메시지 콘텐츠 형식에 필요한 만큼이 유형을 변경할 수 있습니다.
+2. Service Bus 큐에 대한 연결이 Azure Service Bus SDK `OnMessageReceive()` 수신기를 사용하도록 구성합니다.
+3. 큐 메시지를 트리거로 사용하여 (앞서 만든) 논리 앱 끝점을 호출하는 기본 함수를 작성합니다. 함수의 전체 예제는 다음과 같습니다. 이 예제는 `application/json` 메시지 콘텐츠 형식을 사용하지만 필요에 따라 변경할 수 있습니다.
    
    ```
    using System;
@@ -63,7 +63,7 @@ ms.lasthandoff: 10/06/2017
    }
    ```
 
-tootest와 같은 도구를 통해 큐 메시지 추가 [서비스 버스 탐색기](https://github.com/paolosalvatori/ServiceBusExplorer)합니다. Hello 함수 hello 메시지를 받은 후에 즉시 실행 하는 hello 논리 앱을 참조 하십시오.
+테스트를 하려면 [서비스 버스 탐색기](https://github.com/paolosalvatori/ServiceBusExplorer)등의 도구로 큐 메시지를 추가합니다. 함수가 메시지를 받는 즉시 논리 앱이 실행되는지 확인합니다.
 
 <!-- Image References -->
 [1]: ./media/logic-apps-scenario-function-sb-trigger/manualtrigger.png

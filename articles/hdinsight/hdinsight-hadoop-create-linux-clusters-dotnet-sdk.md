@@ -1,6 +1,6 @@
 ---
-title: ".NET-Azure HDInsight를 사용 하 여 aaaCreate Hadoop 클러스터 | Microsoft Docs"
-description: "HDInsight를 사용 하 여에 대 한 linux의 toocreate Hadoop, HBase, 스톰, 또는 Spark 클러스터 HDInsight.NET SDK hello 하는 방법에 대해 알아봅니다."
+title: ".NET를 사용하여 Hadoop 클러스터 만들기 - Azure HDInsight | Microsoft Docs"
+description: "HDInsight .NET SDK를 사용하여 Linux 기반 HDInsight에서 Hadoop, HBase, Storm 또는 Spark 클러스터를 만드는 방법을 알아봅니다."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -16,21 +16,21 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/17/2017
 ms.author: jgao
-ms.openlocfilehash: 9460b0d27143c97860b3540fcec26851d755aa28
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ccd3a0c777510e0694170b2f9acc8da0e7dcde9b
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="create-linux-based-clusters-in-hdinsight-using-hello-net-sdk"></a>Hello.NET SDK를 사용 하 여 HDInsight의 Linux 기반 클러스터를 만들려면
+# <a name="create-linux-based-clusters-in-hdinsight-using-the-net-sdk"></a>.NET SDK를 사용하여 HDInsight에서 Linux 기반 클러스터 만들기
 
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
 
-사용 하 여 Azure HDInsight 클러스터에서 Hadoop 클러스터 toocreate.NET SDK hello 하는 방법에 대해 알아봅니다.
+.NET SDK를 사용하여 Azure HDInsight 클러스터에서 Hadoop 클러스터를 만드는 방법을 알아봅니다.
 
 > [!IMPORTANT]
-> 이 문서의 단계 hello 하나의 작업자 노드 클러스터를 만듭니다. 32 개 이상의 작업자 노드 클러스터 만들기 또는 hello 클러스터를 만든 후 확장 하 여 계획 이라면 tooselect 적어도 8 개 코어 및 14GB ram에 헤드 노드 크기 해야 합니다.
+> 이 문서의 단계에서는 하나의 작업자 노드가 있는 클러스터를 만듭니다. 클러스터 만들기에서 또는 클러스터를 만든 후 확장하여 32개 이상의 작업자 노드를 계획하는 경우 최소한 코어 8개와 14GB RAM을 가진 헤드 노드 크기를 선택해야 합니다.
 >
 > 노드 크기 및 관련된 비용에 대한 자세한 내용은 [HDInsight 가격 책정](https://azure.microsoft.com/pricing/details/hdinsight/)을 참조하세요.
 
@@ -46,8 +46,8 @@ ms.lasthandoff: 10/06/2017
 
 1. Visual Studio 2017을 엽니다.
 2. 새 Visual C# 콘솔 응용 프로그램을 만듭니다.
-3. Hello에서 **도구** 메뉴를 클릭 하 여 **NuGet 패키지 관리자**, 클릭 하 고 **패키지 관리자 콘솔**합니다.
-4. Hello 다음 hello 콘솔 tooinstall hello 패키지에서 명령을 실행 합니다.
+3. **도구** 메뉴에서 **NuGet 패키지 관리자**, **패키지 관리자 콘솔**을 차례로 클릭합니다.
+4. 콘솔에서 다음 명령을 실행하여 패키지를 설치합니다.
 
     ```powershell
     Install-Package Microsoft.Rest.ClientRuntime.Azure.Authentication -Pre
@@ -55,8 +55,8 @@ ms.lasthandoff: 10/06/2017
     Install-Package Microsoft.Azure.Management.HDInsight
     ```
 
-    이 명령은.NET 라이브러리 및 참조 toothem toohello 현재 Visual Studio 프로젝트를 추가 합니다.
-5. 솔루션 탐색기에서 두 번 클릭 **Program.cs** tooopen, 코드를 다음 hello를 붙여 넣고 hello 변수에 대 한 값을 제공 합니다.
+    .NET 라이브러리 및 이에 대한 참조가 현재 Visual Studio 프로젝트에 추가됩니다.
+5. 솔루션 탐색기에서 **Program.cs** 를 두 번 클릭하여 열고 다음 코드를 붙여 넣은 후 변수의 값을 제공합니다.
 
     ```csharp
     using System;
@@ -77,7 +77,7 @@ ms.lasthandoff: 10/06/2017
             private const string SubscriptionId = "<Your Azure Subscription ID>";
             // Replace with your AAD tenant ID if necessary
             private const string TenantId = UserTokenProvider.CommonTenantId; 
-            // This is hello GUID for hello PowerShell client. Used for interactive logins in this example.
+            // This is the GUID for the PowerShell client. Used for interactive logins in this example.
             private const string ClientId = "1950a258-227b-4e31-a9cf-717495945fc2";
 
             private const string ExistingResourceGroupName = "<Enter Resource Group Name>";
@@ -87,7 +87,7 @@ ms.lasthandoff: 10/06/2017
 
             private const string NewClusterName = "<Enter HDInsight Cluster Name>";
             private const int NewClusterNumNodes = 2;
-            private const string NewClusterLocation = "EAST US 2";     // Must be hello same as hello default Storage account
+            private const string NewClusterLocation = "EAST US 2";     // Must be the same as the default Storage account
             private const OSType NewClusterOSType = OSType.Linux;
             private const string NewClusterType = "Hadoop";
             private const string NewClusterVersion = "3.5";
@@ -105,11 +105,11 @@ ms.lasthandoff: 10/06/2017
                 WVfu15kKyY8YAiynVbdV51EB0SZaSLdMZkZQ81xi4DDtCZD7qvdtWEFwLa+EHdkd
                 pzO36Mtev5XvseLQqzXzZ6aVBdlXoppGHXkoGHAMNOtEWRXpAUtEccjpATsaZhQR
                 zZdZlzHduhM10ofS4YOYBADt9JohporbQVHM5w6qUhIgyiPo7w==
-                ---- END SSH2 PUBLIC KEY ----"; //replace hello public key with your own
+                ---- END SSH2 PUBLIC KEY ----"; //replace the public key with your own
 
             static void Main(string[] args)
             {
-                System.Console.WriteLine("Creating a cluster.  hello process takes 10 too20 minutes ...");
+                System.Console.WriteLine("Creating a cluster.  The process takes 10 to 20 minutes ...");
 
                 // Authenticate and get a token
                 var authToken = GetTokenCloudCredentials(TenantId, ClientId, SubscriptionId);
@@ -118,7 +118,7 @@ ms.lasthandoff: 10/06/2017
                 // Get an HDInsight management client
                 _hdiManagementClient = new HDInsightManagementClient(authToken);
 
-                // Set parameters for hello new cluster
+                // Set parameters for the new cluster
                 var parameters = new ClusterCreateParameters
                 {
                     ClusterSizeInNodes = NewClusterNumNodes,
@@ -127,11 +127,11 @@ ms.lasthandoff: 10/06/2017
                     OSType = NewClusterOSType,
                     Version = NewClusterVersion,
 
-                    // Use an Azure storage account as hello default storage
+                    // Use an Azure storage account as the default storage
                     DefaultStorageInfo = new AzureStorageInfo(ExistingStorageName, ExistingStorageKey, ExistingBlobContainer),
 
-                    // Is hello cluster type RServer? If so, you can set hello EdgeNodeSize.
-                    // Otherwise, hello default VM size is used.
+                    // Is the cluster type RServer? If so, you can set the EdgeNodeSize.
+                    // Otherwise, the default VM size is used.
                     //EdgeNodeSize = "Standard_D12_v2",
 
                     Password = NewClusterPassword,
@@ -142,7 +142,7 @@ ms.lasthandoff: 10/06/2017
                     //SshPublicKey = NewClusterSshPublicKey
                 };
 
-                // Is hello cluster type RServer? If so, add hello RStudio configuration option.
+                // Is the cluster type RServer? If so, add the RStudio configuration option.
                 /*
                 parameters.Configurations.Add(
                     "rserver",
@@ -153,15 +153,15 @@ ms.lasthandoff: 10/06/2017
                 );
                 */
 
-                // Create hello cluster
+                // Create the cluster
                 _hdiManagementClient.Clusters.Create(ExistingResourceGroupName, NewClusterName, parameters);
 
-                System.Console.WriteLine("hello cluster has been created. Press ENTER toocontinue ...");
+                System.Console.WriteLine("The cluster has been created. Press ENTER to continue ...");
                 System.Console.ReadLine();
             }
 
             /// <summary>
-            /// Authenticate tooan Azure subscription and retrieve an authentication token
+            /// Authenticate to an Azure subscription and retrieve an authentication token
             /// </summary>
             static TokenCloudCredentials GetTokenCloudCredentials(string TenantId, string ClientId, string SubscriptionId)
             {
@@ -181,29 +181,29 @@ ms.lasthandoff: 10/06/2017
             /// <param name="authToken">An authentication token for your Azure subscription</param>
             static void EnableHDInsight(TokenCloudCredentials authToken)
             {
-                // Create a client for hello Resource manager and set hello subscription ID
+                // Create a client for the Resource manager and set the subscription ID
                 var resourceManagementClient = new ResourceManagementClient(new TokenCredentials(authToken.Token));
                 resourceManagementClient.SubscriptionId = SubscriptionId;
-                // Register hello HDInsight provider
+                // Register the HDInsight provider
                 var rpResult = resourceManagementClient.Providers.Register("Microsoft.HDInsight");
             }
         }
     }
     ```
 
-6. Hello 클래스 멤버 값을 대체 합니다.
-7. 키를 눌러 **F5** toorun hello 응용 프로그램입니다. 콘솔 창이 열리고 hello 응용 프로그램의 hello 상태를 표시 합니다. 하면 Azure 계정 자격 증명된 tooenter 됩니다. 걸릴 수 있습니다 몇 분 toocreate HDInsight 클러스터를 일반적으로 약 15입니다.
+6. 클래스 멤버 값을 대체합니다.
+7. **F5** 키를 눌러 응용 프로그램을 실행합니다. 콘솔 창이 열리고 응용 프로그램의 상태가 표시되며 또한 Azure 계정 자격 증명을 입력하라는 메시지가 표시됩니다. Azure 계정 자격 증명을 입력하라는 메시지가 표시됩니다. 일반적으로 15분 정도입니다.
 
 ## <a name="use-bootstrap"></a>부트스트랩 사용
 
-부트스트랩을 사용 하 여 hello 클러스터 만들기 중 추가 설정을 구성할 수 있습니다.  자세한 내용은 [부트스트랩을 사용하여 HDInsight 클러스터 사용자 지정](hdinsight-hadoop-customize-cluster-bootstrap.md)을 참조하세요.
+부트스트랩을 사용하여 클러스터를 만드는 중에 추가 설정을 구성할 수 있습니다.  자세한 내용은 [부트스트랩을 사용하여 HDInsight 클러스터 사용자 지정](hdinsight-hadoop-customize-cluster-bootstrap.md)을 참조하세요.
 
-Hello 샘플에서 수정 [클러스터를 만들어](#create-clusters) tooconfigure 하이브 설정:
+[클러스터 만들기](#create-clusters) 에서 샘플을 수정하여 하이브 설정을 구성합니다.
 
 ```csharp
 static void Main(string[] args)
 {
-    System.Console.WriteLine("Creating a cluster.  hello process takes 10 too20 minutes ...");
+    System.Console.WriteLine("Creating a cluster.  The process takes 10 to 20 minutes ...");
 
     // Authenticate and get a token
     var authToken = GetTokenCloudCredentials(TenantId, ClientId, SubscriptionId);
@@ -212,7 +212,7 @@ static void Main(string[] args)
     // Get an HDInsight management client
     _hdiManagementClient = new HDInsightManagementClient(authToken);
 
-    // Set parameters for hello new cluster
+    // Set parameters for the new cluster
     var extendedParameters = new ClusterCreateParametersExtended
     {
         Location = NewClusterLocation,
@@ -281,7 +281,7 @@ static void Main(string[] args)
             {
                 UserName = NewClusterSshUserName,
                 Password = NewClusterSshPassword //,
-                // When use a SSH pulbic key, make sure tooremove comments, headers and trailers, and concatenate hello key into one line 
+                // When use a SSH pulbic key, make sure to remove comments, headers and trailers, and concatenate the key into one line 
                 //SshProfile = new SshProfile
                 //{
                 //    SshPublicKeys = sshPublicKeys
@@ -318,7 +318,7 @@ static void Main(string[] args)
 
     _hdiManagementClient.Clusters.Create(ExistingResourceGroupName, NewClusterName, extendedParameters);
 
-    System.Console.WriteLine("hello cluster has been created. Press ENTER toocontinue ...");
+    System.Console.WriteLine("The cluster has been created. Press ENTER to continue ...");
     System.Console.ReadLine();
 }
 ```
@@ -327,12 +327,12 @@ static void Main(string[] args)
 
 스크립트 동작을 사용하여 클러스터를 만드는 중에 추가 설정을 구성할 수 있습니다.  자세한 내용은 [스크립트 작업을 사용하여 Linux 기반 HDInsight 클러스터 사용자 지정](hdinsight-hadoop-customize-cluster-linux.md)을 참조하세요.
 
-Hello 샘플에서 수정 [클러스터를 만들어](#create-clusters) toocall 스크립트 동작 tooinstall r:
+[클러스터 만들기](#create-clusters) 에서 샘플을 수정하여 R:를 설치하는 스크립트 작업을 호출합니다.
 
 ```csharp
 static void Main(string[] args)
 {
-    System.Console.WriteLine("Creating a cluster.  hello process takes 10 too20 minutes ...");
+    System.Console.WriteLine("Creating a cluster.  The process takes 10 to 20 minutes ...");
 
     // Authenticate and get a token
     var authToken = GetTokenCloudCredentials(TenantId, ClientId, SubscriptionId);
@@ -341,7 +341,7 @@ static void Main(string[] args)
     // Get an HDInsight management client
     _hdiManagementClient = new HDInsightManagementClient(authToken);
 
-    // Set parameters for hello new cluster
+    // Set parameters for the new cluster
     var parameters = new ClusterCreateParameters
     {
         ClusterSizeInNodes = NewClusterNumNodes,
@@ -366,7 +366,7 @@ static void Main(string[] args)
 
     _hdiManagementClient.Clusters.Create(ExistingResourceGroupName, NewClusterName, parameters);
 
-    System.Console.WriteLine("hello cluster has been created. Press ENTER toocontinue ...");
+    System.Console.WriteLine("The cluster has been created. Press ENTER to continue ...");
     System.Console.ReadLine();
 }
 ```
@@ -376,7 +376,7 @@ static void Main(string[] args)
 HDInsight 클러스터를 만드는 동안 문제가 발생할 경우 [액세스 제어 요구 사항](hdinsight-administer-use-portal-linux.md#create-clusters)을 참조하세요.
 
 ## <a name="next-steps"></a>다음 단계
-HDInsight 클러스터를 성공적으로 만든 toolearn 방법을 따르는 hello를 사용 하 여 클러스터와 toowork 합니다. 
+HDInsight 클러스터를 성공적으로 만들었으므로 다음을 사용하여 클러스터 작업을 수행하는 방법을 알아봅니다. 
 
 ### <a name="hadoop-clusters"></a>Hadoop 클러스터
 * [HDInsight에서 Hive 사용](hdinsight-use-hive.md)
@@ -396,7 +396,7 @@ HDInsight 클러스터를 성공적으로 만든 toolearn 방법을 따르는 he
 * [Scala를 사용하여 독립 실행형 응용 프로그램 만들기](hdinsight-apache-spark-create-standalone-application.md)
 * [Livy를 사용하여 Spark 클러스터에서 원격으로 작업 실행](hdinsight-apache-spark-livy-rest-interface.md)
 * [BI와 Spark: BI 도구와 함께 HDInsight에서 Spark를 사용하여 대화형 데이터 분석 수행](hdinsight-apache-spark-use-bi-tools.md)
-* [Spark와 기계 학습: HDInsight toopredict 음식 검사 결과에 사용 하 여 Spark](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [기계 학습과 Spark: 음식 검사 결과를 예측하는 데 HDInsight의 Spark 사용](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark 스트리밍: HDInsight에서 Spark를 사용하여 실시간 스트리밍 응용 프로그램 빌드](hdinsight-apache-spark-eventhub-streaming.md)
 
 ### <a name="run-jobs"></a>작업 실행

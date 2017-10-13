@@ -1,6 +1,6 @@
 ---
-title: "Azure AD tooan 갤러리 응용 프로그램 프로 비전 aaaHow tooconfigure 사용자 | Microsoft Docs"
-description: "다양 한 사용자 계정을 프로 비전 하 고 hello Azure AD 응용 프로그램 갤러리에에서 이미 나열 되어 tooapplications 프로 비전 해제 신속 하 게 구성 하는 방법"
+title: "Azure AD 갤러리 응용 프로그램에 대해 사용자 프로비전을 구성하는 방법 | Microsoft Docs"
+description: "Azure AD 응용 프로그램 갤러리에 이미 나열된 응용 프로그램에 대해 다양한 사용자 계정 프로비전 및 프로비전 해제를 빠르게 구성하는 방법"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,42 +13,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 2c28e59a3ac8f221ed93b2f6b0b1221f7604af23
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2e38fcb30ea7632339a3ba8815a536872cfcc69e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooconfigure-user-provisioning-tooan-azure-ad-gallery-application"></a>어떻게 tooconfigure 사용자 Azure AD tooan 갤러리 응용 프로그램을 프로 비전
+# <a name="how-to-configure-user-provisioning-to-an-azure-ad-gallery-application"></a>Azure AD 갤러리 응용 프로그램에 대해 사용자 프로비전을 구성하는 방법
 
-*사용자 계정 프로 비전* hello 행위 만들기, 업데이트 및/또는 응용 프로그램의 로컬 사용자 프로필 저장소에 사용자 계정 레코드를 사용 하지 않도록 설정 합니다. 대부분의 클라우드 및 SaaS 응용 프로그램 자체 로컬 사용자 프로필 저장소에 hello 사용자 역할 및 사용 권한을 저장 하 고 해당 로컬 저장소에는 이러한 사용자 레코드의 현재 상태는 *필요한* single sign-on 및 액세스 toowork에 대 한 합니다.
+*사용자 계정 프로비전*은 응용 프로그램의 로컬 사용자 프로필 저장소에 사용자 계정 레코드를 생성, 업데이트 및/또는 비활성화하는 작업입니다. 대부분의 클라우드 및 SaaS 응용 프로그램은 고유한 로컬 사용자 프로필 저장소에 사용자 역할 및 권한을 저장하고, 로컬 저장소의 그러한 사용자 레코드의 존재는 Single Sign-On 및 작업에 대한 액세스를 위해 *필요*합니다.
 
-Azure 포털 hello에 hello **프로 비전** hello 왼쪽된 탐색 창에서 탭에 엔터프라이즈 응용 프로그램에서 해당 앱에 대해 지원 되는 어떤 프로 비전 모드를 표시 합니다. 다음 두 값 중 하나일 수 있습니다.
+Azure Portal에서 엔터프라이즈 앱에 대한 왼쪽 탐색 창의 **프로비전** 탭에는 해당 앱에 대해 지원되는 프로비전 모드가 표시됩니다. 다음 두 값 중 하나일 수 있습니다.
 
 ## <a name="configuring-an-application-for-manual-provisioning"></a>수동 프로비전에 대한 응용 프로그램 구성
 
-*수동* 프로 비전 해당 응용 프로그램에서 제공 하는 hello 메서드를 사용 하 여 수동으로 사용자 계정을 만들어야 함을 의미 합니다. 해당 앱의 관리 포털에 로그인하고 웹 기반 사용자 인터페이스를 사용하여 사용자를 추가한다는 의미일 수 있습니다. 또는 해당 응용 프로그램에서 제공하는 메커니즘을 사용하여 사용자 계정 세부 정보를 스프레드시트에 업로드한다는 의미일 수 있습니다. 설명서 hello 제공 hello 앱 또는 연락처 hello 앱 개발자 toodetermine wat 메커니즘을 사용할 수 있습니다.
+*수동* 프로비전이란 사용자 계정을 해당 앱에서 제공하는 방법을 사용하여 수동으로 만들어야 한다는 의미입니다. 해당 앱의 관리 포털에 로그인하고 웹 기반 사용자 인터페이스를 사용하여 사용자를 추가한다는 의미일 수 있습니다. 또는 해당 응용 프로그램에서 제공하는 메커니즘을 사용하여 사용자 계정 세부 정보를 스프레드시트에 업로드한다는 의미일 수 있습니다. 앱에서 제공한 설명서를 참조하거나 앱 개발자에게 문의하여 사용할 수 있는 메커니즘을 확인하세요.
 
-수동 모드 hello 나타나는지 지정된 된 응용 프로그램에 대 한 자동 Azure AD 커넥터를 프로 비전을 이미 만들었다고 hello 앱에 대 한 아직 의미 합니다. 또는 hello 앱은 하지 지원 hello 필수 사용자 관리 API는 toobuild에 대 한 자동화 된 프로비저닝 커넥터 것을 의미 합니다.
+해당 응용 프로그램에 대해 수동 모드만 표시되는 경우 해당 앱에 대해 자동 Azure AD 프로비전 커넥터가 아직 생성되지 않았음을 의미합니다. 또는 앱에서 자동화된 프로비전 커넥터를 빌드하는 필수 구성 요소 사용자 관리 API를 지원하지 않음을 의미합니다.
 
-지정된 된 앱에 대 한 자동 프로 비전 toorequest 지원, 원하는 경우에 요청을 채울 수 <http://aka.ms/aadapprequest>합니다.
+해당 앱에 대해 자동 프로비전 지원을 요청하려면 <http://aka.ms/aadapprequest>에서 요청 양식을 작성하세요.
 
 ## <a name="configuring-an-application-for-automatic-provisioning"></a>자동 프로비전에 대한 응용 프로그램 구성
 
-*자동*이란 Azure AD 프로비전 커넥터가 이 응용 프로그램에 대해 개발되었음을 의미합니다. Azure AD 서비스 및 작동 방법을 프로 비전 hello에 대 한 자세한 내용은 참조 [자동화 사용자 프로 비전 및 프로 비전 해제 tooSaaS Azure Active Directory와 응용 프로그램](https://docs.microsoft.com/azure/active-directory/active-directory-saas-app-provisioning)합니다.
+*자동*이란 Azure AD 프로비전 커넥터가 이 응용 프로그램에 대해 개발되었음을 의미합니다. Azure AD 프로비전 서비스 및 작동 방식에 대한 자세한 내용은 [Azure Active Directory를 사용하여 SaaS 응용 프로그램의 사용자를 자동으로 프로비전 및 프로비전 해제](https://docs.microsoft.com/azure/active-directory/active-directory-saas-app-provisioning)를 참조하세요.
 
-Tooprovision 특정 사용자 및 그룹 tooan 응용 프로그램 참조 하는 방법에 대 한 자세한 내용은 [엔터프라이즈 앱에 대 한 사용자 계정 프로 비전 관리](https://docs.microsoft.com/azure/active-directory/active-directory-enterprise-apps-manage-provisioning)합니다.
+특정 사용자 및 그룹을 응용 프로그램에 프로비저닝하는 방법에 대한 자세한 내용은 [엔터프라이즈 앱에 대한 사용자 계정 프로비전 관리](https://docs.microsoft.com/azure/active-directory/active-directory-enterprise-apps-manage-provisioning)를 참조하세요.
 
-실제 단계 필요한 tooenable hello 및 구성 자동 프로 비전 hello 응용 프로그램에 따라 달라 집니다.
+자동 프로비전을 사용하도록 설정하고 구성하는 데 필요한 실제 단계는 응용 프로그램에 따라 달라집니다.
 
 >[!NOTE]
->설치 프로그램을 응용 프로그램에 대 한 프로비저닝 자습서 특정 toosetting hello 및 hello 앱과 Azure AD toocreate hello 프로비저닝 연결 해당 단계 tooconfigure 다음 검색 하 여 시작 해야 합니다. 
+>응용 프로그램의 프로비전 설정에 관한 설정 자습서를 찾아 해당 단계에 따라 앱 및 Azure AD를 구성하여 프로비전 연결을 생성해야 합니다. 
 >
 >
 
-응용 프로그램 자습서를 찾을 수 있습니다 [방법에 대 한 자습서의 목록 tooIntegrate SaaS 앱 Azure Active Directory와](https://docs.microsoft.com/azure/active-directory/active-directory-saas-tutorial-list)합니다.
+앱 자습서는 [Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록](https://docs.microsoft.com/azure/active-directory/active-directory-saas-tutorial-list)에서 찾을 수 있습니다.
 
-Tooreview 수 프로 비전을 설정 하는 경우에 중요 한 사항은 tooconsider 및 hello 특성 매핑 및 Azure AD toohello 응용 프로그램에서 어떤 사용자 (또는 그룹) 속성 흐름을 정의 하는 워크플로 구성 합니다. Hello "일치 하는 속성"을 설정 사용된 toouniquely 수 식별 및 사용자/그룹 hello 두 시스템 간에 일치 합니다. 이 중요한 프로세스에 대한 자세한 정보
+프로비전을 설정할 때 고려해야 할 중요한 사항은 Azure AD에서 응용 프로그램으로 이동하는 사용자(또는 그룹)를 정의하는 특성 매핑 및 워크플로를 검토하고 구성하는 것입니다. 여기에는 두 시스템 간 사용자/그룹을 고유하게 식별하고 일치하는 데 사용되는 “일치하는 속성” 설정이 포함됩니다. 이 중요한 프로세스에 대한 자세한 정보
 
 ## <a name="next-steps"></a>다음 단계
 [Azure Active Directory에서 SaaS 응용 프로그램에 대한 사용자 프로비전 특성 매핑 사용자 지정](https://docs.microsoft.com/azure/active-directory/active-directory-saas-customizing-attribute-mappings)

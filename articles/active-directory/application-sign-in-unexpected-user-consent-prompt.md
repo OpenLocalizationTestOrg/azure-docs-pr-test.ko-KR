@@ -1,6 +1,6 @@
 ---
-title: "aaaUnexpected 동의 확인 프롬프트 tooan 응용 프로그램에 로그인 할 때 | Microsoft Docs"
-description: "어떻게 응용 프로그램에 대 한 동의 확인 프롬프트를 표시 하는 경우 tootroubleshoot 통합 한 예기치 않은 Azure AD와"
+title: "응용 프로그램에 로그인할 때 예기치 않은 동의 확인 프롬프트 | Microsoft Docs"
+description: "예기치 않게 사용자에게 Azure AD와 통합한 응용 프로그램에 대한 동의 확인 프롬프트를 표시하는 경우 문제를 해결하는 방법"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,38 +13,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 32b7a5e6256faee0dcfe2e1644da3d3428812d35
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e5b823e1251a7221f73efe6838d439f827f9665d
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="unexpected-consent-prompt-when-signing-in-tooan-application"></a>Tooan 응용 프로그램에 로그인 할 때 예기치 않은 동의 확인 프롬프트
+# <a name="unexpected-consent-prompt-when-signing-in-to-an-application"></a>응용 프로그램에 로그인할 때 예기치 않은 동의 확인 프롬프트
 
-Azure Active Directory와 통합 하는 많은 응용 프로그램 사용 권한 toovarious 리소스 순서 toorun에 필요 합니다. 이러한 리소스는 Azure Active Directory와도 통합 되어 때 hello Azure AD를 사용 하 여 요청에 사용 권한을 tooaccess 동의 프레임 워크 것입니다. 
+Azure Active Directory와 통합되는 많은 응용 프로그램을 실행하기 위해 다양한 리소스에 대한 권한이 필요합니다. 또한 이러한 리소스가 Azure Active Directory와 통합되면 Azure AD 동의 프레임워크를 사용하여 액세스하기 위한 사용 권한을 요청합니다. 
 
-따라서 표시 된 hello 처음으로 응용 프로그램을 사용 하는 한 번 종종 동의 확인 됩니다. 
+이로 인해 처음으로 응용 프로그램을 사용할 때 동의 확인 프롬프트가 표시되며 이 작업은 한 번만 수행하면 됩니다. 
 
 ## <a name="scenarios-in-which-users-see-consent-prompts"></a>사용자에게 동의 확인 프롬프트를 표시하는 시나리오
 
 다양한 시나리오에서 추가 프롬프트를 예상할 수 있습니다.
 
-* hello hello 응용 프로그램에 필요한 사용 권한 집합이 변경 되었습니다.
+* 응용 프로그램에 필요한 일련의 사용 권한이 변경되었습니다.
 
-* 이제 다른 (비관리자) 사용자가 사용 하는 hello 응용 프로그램 hello에 대 한 처음으로 사용할 수 없어서 관리자로 hello 동의한 사용자에 원래 toohello 응용 프로그램입니다.
+* 원래 응용 프로그램에 동의한 사용자는 관리자가 아니었고 지금 (관리자가 아닌) 다른 사용자는 응용 프로그램을 처음으로 사용합니다.
 
-* hello 동의한 사용자에 원래 toohello 응용 프로그램 관리자는 했지만에-를 대신 하 여 hello 전체 조직을 동의 하지 않을 않았습니다.
+* 원래 응용 프로그램에 동의한 사용자는 관리자였지만 전체 조직을 대신하여 동의하지는 않았습니다.
 
-* hello 응용 프로그램을 사용 하 여 [증분 및 동적 동의](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-compare#incremental-and-dynamic-consent) 승인을 처음 후 toorequest 추가 권한이 있습니다. 이것은 추가 응용 프로그램의 선택적 기능이 초기 기능에 필요한 것 이상의 권한을 필요로 할 경우에 종종 사용됩니다.
+* 응용 프로그램에서 [증분 및 동적 동의](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-compare#incremental-and-dynamic-consent)를 사용하여 처음으로 동의를 받은 후에 추가 권한을 요청합니다. 이것은 추가 응용 프로그램의 선택적 기능이 초기 기능에 필요한 것 이상의 권한을 필요로 할 경우에 종종 사용됩니다.
 
 * 동의가 처음에 부여된 후에 해지되었습니다.
 
-* hello 개발자가 사용 될 때마다 hello 응용 프로그램 toorequire 동의 확인 프롬프트를 구성 (참고:이 가장 좋은 방법은).
+* 개발자는 동의를 사용할 때마다 동의 확인 프롬프트를 요구하도록 응용 프로그램을 구성했습니다(참고: 최선의 방법은 아님).
 
 ## <a name="next-steps"></a>다음 단계
 
 -   [Azure Active Directory에서 앱, 사용 권한 및 동의(v1.0 끝점)](https://docs.microsoft.com/azure/active-directory/active-directory-apps-permissions-consent)
 
--   [범위, 권한 및 hello Azure Active Directory (v2.0 끝점)에 동의](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-scopes)
+-   [Azure Active Directory의 범위, 사용 권한 및 동의(v2.0 끝점)](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-scopes)
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Visual Studio MVC 프로젝트에서 Azure AD와 시작 됨 aaaGet | Microsoft Docs"
-description: "연결 된 서비스 MVC 프로젝트에서 Azure Active Directory를 사용 하 여 Visual Studio를 사용 하 여 Azure AD를 만드는 tooor 연결한 후 tooget을 시작 하는 방법"
+title: "Visual Studio MVC 프로젝트에서 Azure AD 시작 | Microsoft Docs"
+description: "Visual Studio 연결 서비스를 사용하여 Azure AD를 만들거나 연결한 후에 MVC 프로젝트에 Azure Active Directory를 사용하여 시작하는 방법입니다."
 services: active-directory
 documentationcenter: 
 author: kraigb
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 03/01/2017
 ms.author: kraigb
 ms.custom: aaddev
-ms.openlocfilehash: 807824dd6e4e57e443f8a7322cf2e5326384316d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c4d49cfc9887e422b3eaed2b96348c99eca48881
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="getting-started-with-azure-active-directory-and-visual-studio-connected-services-mvc-projects"></a>Azure Active Directory 및 Visual Studio 연결 서비스 시작(MVC 프로젝트)
 > [!div class="op_single_selector"]
@@ -28,11 +28,11 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-## <a name="requiring-authentication-tooaccess-controllers"></a>인증 tooaccess 컨트롤러 필요
-프로젝트의 모든 컨트롤러 hello로 표시 된 **Authorize** 특성입니다. 이 특성에는 이러한 컨트롤러에 액세스 하기 전에 인증 하는 hello 사용자 toobe가 필요 합니다. 익명으로 액세스할 tooallow hello 컨트롤러 toobe hello 컨트롤러에서이 특성을 제거 합니다. 보다 세부적인 수준에서 tooset hello 사용 하려는 경우 toohello 컨트롤러 클래스를 적용 하는 대신 권한 부여를 사용 하는 hello 특성 tooeach 메서드에 적용 됩니다.
+## <a name="requiring-authentication-to-access-controllers"></a>컨트롤러에 액세스하려면 인증 필요
+프로젝트의 모든 컨트롤러는 **Authorize** 특성으로 표시되었습니다. 이 특성으로 인해 사용자가 인증해야만 이러한 컨트롤러에 액세스할 수 있습니다. 컨트롤러에 익명으로 액세스할 수 있도록 하려면 컨트롤러에서 이 특성을 제거하세요. 더 세부적인 수준에서 권한을 설정하려면 특성을 컨트롤러 클래스에 적용하는 대신 인증이 필요한 각 메서드에 적용하세요.
 
 ## <a name="adding-signin--signout-controls"></a>SignIn/SignOut 컨트롤 추가
-tooadd hello SignIn/SignOut tooyour 보기를 제어, hello를 사용할 수 있습니다 **_LoginPartial.cshtml** 부분 뷰 tooadd hello 기능 tooone 보기. Hello 기능 추가 toohello 표준의 예로 **_Layout.cshtml** 보기. (참고 hello에서에서 마지막 요소 hello div 클래스 navbar 축소 포함):
+뷰에 SignIn/SignOut 컨트롤을 추가하려면 **_LoginPartial.cshtml** 부분 뷰를 사용하여 뷰 중 하나에 기능을 추가할 수 있습니다. 다음은 표준 **_Layout.cshtml** 뷰에 추가한 기능의 예입니다. (navbar-collapse 클래스가 포함된 div의 마지막 요소를 확인):
 
 <pre>
     &lt;!DOCTYPE html&gt; 

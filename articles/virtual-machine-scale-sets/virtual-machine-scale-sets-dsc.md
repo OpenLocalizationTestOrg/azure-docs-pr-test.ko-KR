@@ -1,6 +1,6 @@
 ---
-title: "aaaUsing 원하는 상태 구성 된 가상 컴퓨터 크기 집합 | Microsoft Docs"
-description: "가상 컴퓨터 크기 집합을 사용 하 여 Azure DSC 확장 hello로"
+title: "가상 컴퓨터 확장 집합에 필요한 상태 구성 사용 | Microsoft Docs"
+description: "Azure DSC 확장에 가상 컴퓨터 확장 집합 사용"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: zjalexander
@@ -16,17 +16,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: na
 ms.date: 04/05/2017
 ms.author: zachal
-ms.openlocfilehash: a35f1ca6700aa4889978032aa512882db50d6573
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b61b0acf3072569ab733a13defb465c921d26187
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="using-virtual-machine-scale-sets-with-hello-azure-dsc-extension"></a>가상 컴퓨터 크기 집합을 사용 하 여 Azure DSC 확장 hello로
-[가상 컴퓨터 크기 집합](virtual-machine-scale-sets-overview.md) hello와 함께 사용할 수 [Azure 구성 DSC (필요한 상태)](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 확장 처리기입니다. 가상 컴퓨터 크기 집합 다 수의 가상 컴퓨터 관리 고 수 탄력적으로 확장 및 축소 응답 tooload에 방식으로 toodeploy를 제공 합니다. DSC는은 때문에 hello 프로덕션 소프트웨어 실행 되 고 온라인으로 사용 되는 tooconfigure hello Vm입니다.
+# <a name="using-virtual-machine-scale-sets-with-the-azure-dsc-extension"></a>Azure DSC 확장에 가상 컴퓨터 확장 집합 사용
+[Azure DSC(필요한 상태 구성)](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 확장 처리기에 [Virtual Machine Scale Sets](virtual-machine-scale-sets-overview.md)를 사용할 수 있습니다. 가상 컴퓨터 확장 집합은 많은 수의 가상 컴퓨터를 배포 및 관리하는 방법을 제공하며 부하에 따라 탄력적으로 확장 및 축소될 수 있습니다. DSC는 VM이 온라인으로 전환되어 프로덕션 소프트웨어를 실행하도록 VM을 구성하는 데 사용합니다.
 
-## <a name="differences-between-deploying-toovirtual-machines-and-virtual-machine-scale-sets"></a>TooVirtual 컴퓨터 및 가상 컴퓨터 크기 집합 배포의 차이점
-가상 컴퓨터 크기 집합에 대 한 기본 서식 파일 구조 hello 단일 VM 간에 약간 차이가 있습니다. 특히, 단일 VM hello "virtualMachines" 노드 아래에 확장을 배포합니다. 없는 "extensions" 유형의 항목 DSC toohello 서식 파일은 추가 하는 위치
+## <a name="differences-between-deploying-to-virtual-machines-and-virtual-machine-scale-sets"></a>Virtual Machines 및 Virtual Machine Scale Sets에 대한 배포 간의 차이점
+가상 컴퓨터 확장 집합에 대한 기본 템플릿 구조는 단일 VM과 약간 다릅니다. 특히, 단일 VM은 확장을 "virtualMachines" 노드 아래에 배포합니다. DSC가 템플릿에 추가된 "extensions" 유형의 항목이 있습니다.
 
 ```
 "resources": [
@@ -65,7 +65,7 @@ ms.lasthandoff: 10/06/2017
       ]
 ```
 
-가상 컴퓨터 크기 조정 설정 노드 "extensionProfile" 특성 "VirtualMachineProfile" hello로 "속성" 섹션을 있습니다. "extensions" 아래에 DSC가 추가됩니다.
+가상 컴퓨터 확장 집합 노드에는 "VirtualMachineProfile", "extensionProfile" 특성을 포함하는 "properties" 섹션이 있습니다. "extensions" 아래에 DSC가 추가됩니다.
 
 ```
 "extensionProfile": {
@@ -97,14 +97,14 @@ ms.lasthandoff: 10/06/2017
 ```
 
 ## <a name="behavior-for-a-virtual-machine-scale-set"></a>가상 컴퓨터 확장 집합의 동작
-가상 컴퓨터 크기 집합에 대 한 hello 동작은 단일 VM에 대 한 동일한 toohello 동작입니다. 새 VM이 만들어지면 DSC 확장 hello로 자동으로 구축 됩니다. 최신 버전의 hello WMF hello 확장에 필요한 경우 온라인 상태로 만들기 전에 hello VM 다시 부팅 합니다. 온라인 상태 이면 되 면 hello DSC 구성.zip을 다운로드 하 고 hello VM에서 프로 비전 합니다. 자세한 내용은에서 확인할 수 있습니다 [Azure DSC 확장 개요 hello](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다.
+가상 컴퓨터 확장 집합의 동작은 단일 VM의 동작과 동일합니다. 새 VM을 만들 때 DSC 확장으로 자동으로 프로비전됩니다. 확장에 최신 버전의 WMF가 필요한 경우 확장을 온라인으로 전환하려면 VM을 다시 부팅합니다. 온라인 상태이면 DSC 구성.zip을 다운로드하고 VM에 프로비전합니다. 자세한 내용은 [Azure DSC 확장 개요](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)에서 확인할 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
-Hello 검사 [hello DSC 확장에 대 한 Azure Resource Manager 템플릿](../virtual-machines/windows/extensions-dsc-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다.
+[DSC 확장에 대한 Azure Resource Manager 템플릿](../virtual-machines/windows/extensions-dsc-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)을 검토합니다.
 
-자세한 내용은 방법 hello [DSC 확장 자격 증명을 안전 하 게 처리](../virtual-machines/windows/extensions-dsc-credentials.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다. 
+[DSC 확장이 자격 증명을 안전하게 처리](../virtual-machines/windows/extensions-dsc-credentials.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)하는 방법을 알아봅니다. 
 
-Hello Azure DSC 확장 처리기에 대 한 자세한 내용은 참조 하십시오. [소개 toohello Azure 필요한 상태 구성 확장 처리기](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다. 
+Azure DSC 확장 처리기에 대한 자세한 내용은 [Azure 필요한 상태 구성 확장 처리기 소개](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)를 참조하세요. 
 
-PowerShell DSC에 대 한 자세한 내용은 [hello PowerShell 설명서 센터를 방문](https://msdn.microsoft.com/powershell/dsc/overview)합니다. 
+PowerShell DSC에 대한 자세한 내용은 [PowerShell 설명서 센터를 방문하세요](https://msdn.microsoft.com/powershell/dsc/overview). 
 

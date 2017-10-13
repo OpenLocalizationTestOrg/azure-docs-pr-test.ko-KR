@@ -1,6 +1,6 @@
 ---
-title: "aaaDecode AS2 메시지-Azure 논리 앱 | Microsoft Docs"
-description: "Azure 논리 앱에 대 한 toouse hello 엔터프라이즈 통합 팩의에서 AS2 디코더에서 hello 하는 방법"
+title: "AS2 메시지 디코딩 - Azure Logic Apps | Microsoft Docs"
+description: "Azure Logic Apps의 엔터프라이즈 통합 팩에 포함된 AS2 디코더를 사용하는 방법"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: padmavc
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/27/2016
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 2406e5ec68e0906700fad97d60cb83ef0d106cd6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a7920b2509fe368c6f7d55e17fe0bf0020c4562c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="decode-as2-messages-for-azure-logic-apps-with-hello-enterprise-integration-pack"></a>엔터프라이즈 통합 팩 hello로 Azure 논리 앱에 대 한 AS2 메시지를 디코딩 
+# <a name="decode-as2-messages-for-azure-logic-apps-with-the-enterprise-integration-pack"></a>엔터프라이즈 통합 팩이 포함된 Azure Logic Apps에 대한 AS2 메시지 디코딩 
 
-tooestablish 보안 및 메시지를 전송 하는 동안 안정성 hello 디코딩할 AS2 메시지 연결선을 사용 합니다. 이 커넥터에서는 MDN(메시지 처리 알림)을 통해 디지털 서명, 암호 해독 및 승인을 제공합니다.
+메시지를 전송하는 동안 보안 및 안정성을 설정하려면 AS2 메시지 디코딩 커넥터를 사용합니다. 이 커넥터에서는 MDN(메시지 처리 알림)을 통해 디지털 서명, 암호 해독 및 승인을 제공합니다.
 
 ## <a name="before-you-start"></a>시작하기 전에
 
-다음은 필요한 hello 항목입니다.
+필요한 항목은 다음과 같습니다.
 
 * Azure 계정의 경우 [무료 계정](https://azure.microsoft.com/free)
-* [통합 계정](logic-apps-enterprise-integration-create-integration-account.md)이 이미 정의되고 Azure 구독과 연결되었습니다. 통합 계정 toouse hello 디코딩할 AS2 메시지 연결선이 있어야 합니다.
+* [통합 계정](logic-apps-enterprise-integration-create-integration-account.md)이 이미 정의되고 Azure 구독과 연결되었습니다. AS2 메시지 디코딩 커넥터를 사용하는 통합 계정이 있어야 합니다.
 * 통합 계정에 이미 정의된 둘 이상의 [파트너](logic-apps-enterprise-integration-partners.md)
 * 통합 계정에 이미 정의된 [AS2 규약](logic-apps-enterprise-integration-as2.md)
 
@@ -37,13 +37,13 @@ tooestablish 보안 및 메시지를 전송 하는 동안 안정성 hello 디코
 
 1. [논리 앱 만들기](../logic-apps/logic-apps-create-a-logic-app.md)
 
-2. hello 디코딩할 AS2 메시지 연결선 요청 트리거와 마찬가지로 논리 앱을 시작 하는 트리거를 추가 해야 하므로 트리거, 되어 있지 않습니다. Hello 논리가 응용 프로그램 디자이너에서에서 트리거를 추가 하 고 작업 tooyour 논리 앱을 추가 합니다.
+2. AS2 메시지 디코딩 커넥터에는 트리거가 없으므로 요청 트리거와 마찬가지로 논리 앱을 시작하는 트리거를 추가해야 합니다. Logic App Designer에서 트리거를 추가하고 작업을 논리 앱에 추가합니다.
 
-3.  Hello 검색 상자에 필터에 대 한 "AS2"를 입력 합니다. **AS2 – AS2 메시지 디코딩**을 선택합니다.
+3.  검색 상자에서 필터에 "AS2"를 입력합니다. **AS2 – AS2 메시지 디코딩**을 선택합니다.
    
     !["AS2" 검색](media/logic-apps-enterprise-integration-as2-decode/as2decodeimage1.png)
 
-4. 직접 만들지 않은 경우 이전에 모든 연결이 tooyour 통합 계정, 메시지가 toocreate 지금 연결 합니다. 사용자의 연결 이름을 지정 하 고 원하는 tooconnect hello 통합 계정을 선택 합니다.
+4. 이전에 통합 계정에 연결을 만들지 않은 경우 이제 해당 연결을 만들라는 메시지가 나타납니다. 연결의 이름을 지정하고 연결하려는 통합 계정을 선택합니다.
    
     ![통합 연결 만들기](media/logic-apps-enterprise-integration-as2-decode/as2decodeimage2.png)
 
@@ -52,13 +52,13 @@ tooestablish 보안 및 메시지를 전송 하는 동안 안정성 hello 디코
     | 속성 | 세부 정보 |
     | --- | --- |
     | 연결 이름 * |연결의 이름을 입력합니다. |
-    | 통합 계정 * |통합 계정의 이름을 입력합니다. 통합 계정 및 논리 앱 hello에 있는지 확인 동일한 Azure 위치입니다. |
+    | 통합 계정 * |통합 계정의 이름을 입력합니다. 통합 계정 및 논리 앱이 동일한 Azure 위치에 있어야 합니다. |
 
-5.  완료 되 면 연결 정보가 이와 유사한 toothis 예가 표시 됩니다. 연결을 만드는 toofinish 선택 **만들기**합니다.
+5.  완료되면 연결 정보는 이 예제와 유사해야 합니다. 연결 만들기를 완료하려면 **만들기**를 선택합니다.
 
     ![통합 연결 세부 정보](media/logic-apps-enterprise-integration-as2-decode/as2decodeimage3.png)
 
-6. 연결을 만든 후이 예제에 나와 있는 것 처럼, 선택 **본문** 및 **헤더** hello에서 출력을 요청 합니다.
+6. 이 예제와 같이 연결을 만든 후에 요청 출력에서 **본문** 및 **헤더**를 선택합니다.
    
     ![통합 연결 생성](media/logic-apps-enterprise-integration-as2-decode/as2decodeimage4.png) 
 
@@ -68,27 +68,27 @@ tooestablish 보안 및 메시지를 전송 하는 동안 안정성 hello 디코
 
 ## <a name="as2-decoder-details"></a>AS2 디코더 세부 정보
 
-hello AS2 디코딩 커넥터 이러한 작업을 수행합니다. 
+AS2 디코딩 커넥터는 다음과 같은 태스크를 수행합니다. 
 
 * AS2/HTTP 헤더 처리
-* (구성 된 경우) hello 서명을 확인합니다
-* Hello 메시지 암호를 해독 (구성 된 경우)
-* Hello 메시지 압축을 푸는 (구성 된 경우)
-* Hello 원래 아웃 바운드 메시지와 함께 수신된 된 MDN을 조정합니다.
-* 업데이트 되 고 hello 비 거부 데이터베이스에 있는 레코드를 상호 연결
+* 서명 확인(구성된 경우)
+* 메시지 암호 해독(구성된 경우)
+* 메시지 압축 해제(구성된 경우)
+* 원본 아웃바운드 메시지와 함께 수신된 MDN 조정
+* 부인 방지 데이터베이스에서 레코드 업데이트 및 연결
 * AS2 상태 보고에 대한 레코드 작성
-* hello 출력 페이로드 내용이 base64 인코딩
-* 하는지를 결정 합니다. MDN이 필요한, 및 여부 hello MDN이 동기 해야 AS2 규약에서 구성에 비동기 따라
+* 출력 페이로드 콘텐츠는 base64로 인코딩됨
+* MDN이 필요한지 여부 및 MDN을 AS2 규약의 구성에 따라 동기화해야 하는지 또는 비동기화해야 하는지 결정
 * (규약 구성에 따라)동기 또는 비동기 MDN 생성
-* Hello MDN에 hello 상관 관계 토큰 및 속성을 설정합니다.
+* MDN에 대한 상관 관계 토큰과 속성 설정
 
 ## <a name="try-this-sample"></a>이 샘플 사용해보기
 
-완벽 하 게 작동 논리 앱과 샘플 AS2 시나리오의 배포 tootry 참조 hello [AS2 논리 앱 템플릿 및 시나리오](https://azure.microsoft.com/documentation/templates/201-logic-app-as2-send-receive/)합니다.
+완벽하게 작동하는 논리 앱 및 샘플 AS2 시나리오를 배포하려면 [AS2 논리 앱 템플릿 및 시나리오](https://azure.microsoft.com/documentation/templates/201-logic-app-as2-send-receive/)를 참조하세요.
 
-## <a name="view-hello-swagger"></a>Hello swagger 보기
-Hello 참조 [세부 정보를 swagger](/connectors/as2/)합니다. 
+## <a name="view-the-swagger"></a>swagger 보기
+[swagger 정보](/connectors/as2/)를 참조하세요. 
 
 ## <a name="next-steps"></a>다음 단계
-[엔터프라이즈 통합 팩 hello에 대 한 자세한 정보](logic-apps-enterprise-integration-overview.md) 
+[엔터프라이즈 통합 팩에 대해 자세히 알아보기](logic-apps-enterprise-integration-overview.md) 
 

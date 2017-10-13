@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 2a0d8a599cf84cd6530bdbb24951156510d2cf3f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e8321c3d16253226a5931cacbce6fa5d50b697bd
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-ad-connect-special-considerations-for-instances"></a>Azure AD Connect: 인스턴스에 대한 특별한 고려 사항
-Azure AD의 전세계 인스턴스 hello와 azure AD Connect은 가장 많이 사용 및 Office 365 합니다. 그러나 다른 인스턴스도 있고 URL 및 기타 특별한 고려 사항에 대한 다른 요구 사항을 포함합니다.
+Azure AD Connect는 Azure AD 및 Office 365의 전세계 인스턴스로 가장 많이 사용됩니다. 그러나 다른 인스턴스도 있고 URL 및 기타 특별한 고려 사항에 대한 다른 요구 사항을 포함합니다.
 
 ## <a name="microsoft-cloud-germany"></a>Microsoft 클라우드 독일
-hello [Microsoft 클라우드 독일](http://www.microsoft.de/cloud-deutschland) 독일어 데이터 트러스티 운영 되는 전체 클라우드입니다.
+[Microsoft 클라우드 독일](http://www.microsoft.de/cloud-deutschland) 은 독일 데이터 트러스티에서 운영하는 독립 클라우드입니다.
 
-| 프록시 서버에서 Url tooopen |
+| 프록시 서버에서 열린 URL |
 | --- |
 | \*.microsoftonline.de |
 | \*.windows.net |
 | +인증서 해지 목록 |
 
-Tooyour Azure AD 테 넌 트에 로그인 할 때 hello onmicrosoft.de 도메인의 계정을 사용 해야 합니다.
+Azure AD 테넌트에 로그인할 경우 onmicrosoft.de 도메인의 계정을 사용해야 합니다.
 
-Hello Microsoft 클라우드 독일에 현재 존재 하는 기능은:
+Microsoft 클라우드 독일에 현재 표시되지 않는 기능은 다음과 같습니다.
 
 * **Azure AD Connect Health**를 사용할 수 없습니다.
 * **자동 업데이트**를 사용할 수 없습니다.
@@ -42,25 +42,25 @@ Hello Microsoft 클라우드 독일에 현재 존재 하는 기능은:
 * 다른 Azure AD Premium 서비스를 사용할 수 없습니다.
 
 ## <a name="microsoft-azure-government-cloud"></a>Microsoft Azure Government 클라우드
-hello [Microsoft Azure Government 클라우드](https://azure.microsoft.com/features/gov/) 미국 정부에 대 한 클라우드입니다.
+[Microsoft Azure Government 클라우드](https://azure.microsoft.com/features/gov/) 는 미국 정부를 위한 클라우드입니다.
 
-이 클라우드는 DirSync의 이전 버전에서 지원되어 왔습니다. Azure AD Connect의 1.1.180 빌드에서 hello 차세대 hello 클라우드 사용할 수 있습니다. 이 세대 미국 전용 기반된 끝점을 사용 하는 있고 프록시 서버에서 다른 Url tooopen 목록이 있습니다.
+이 클라우드는 DirSync의 이전 버전에서 지원되어 왔습니다. Azure AD Connect의 1.1.180 빌드에서 차세대 클라우드가 지원됩니다. 이 차세대 클라우드는 미국 전용 기반 끝점을 사용하고 프록시 서버에서 열린 URL의 다른 목록이 있습니다.
 
-| 프록시 서버에서 Url tooopen |
+| 프록시 서버에서 열린 URL |
 | --- |
 | \*.microsoftonline.com |
 | \*.microsoftonline.us |
 | \*.gov.us.microsoftonline.com |
 | +인증서 해지 목록 |
 
-Azure AD Connect 수 없으면 tooautomatically 검색 된 Azure AD 테 넌 트 hello 정부 클라우드에 있어야 합니다. 대신 tootake hello Azure AD Connect를 설치할 때 작업을 수행 해야 합니다.
+Azure AD Connect는 Azure AD 테넌트가 Government 클라우드에 있음을 자동으로 검색할 수 없습니다. Azure AD Connect를 설치하는 경우 대신 다음 작업을 수행해야 합니다.
 
-1. Hello Azure AD Connect 설치를 시작 합니다.
-2. Hello 첫 번째 페이지 tooaccept hello EULA는 것을 표시 하는 경우 계속 하지 마십시오 두려면 hello 설치 마법사를 실행 합니다.
-3. Regedit를 시작 하 고 hello 레지스트리 키 변경 `HKLM\SOFTWARE\Microsoft\Azure AD Connect\AzureInstance` toohello 값 `2`합니다.
-4. 로 돌아가려면 toohello Azure AD Connect 설치 마법사, hello EULA에 동의 및 계속 합니다. 설치 하는 동안 확인 되었는지 toouse hello **사용자 지정 구성** 설치 경로 (및 Express 설치가 아닌). 그 hello 설치를 정상적으로 계속 합니다.
+1. Azure AD Connect 설치를 시작합니다.
+2. EULA를 허용하는 첫 번째 페이지가 표시되면 진행을 멈추고 설치 마법사가 실행되도록 합니다.
+3. regedit을 시작하고 레지스트리 키 `HKLM\SOFTWARE\Microsoft\Azure AD Connect\AzureInstance`을 `2` 값으로 변경합니다.
+4. Azure AD Connect 설치 마법사로 다시 이동하여 EULA에 동의하고 계속합니다. 설치하는 동안 (Express 설치가 아닌) **사용자 지정 구성** 설치 경로를 사용해야 합니다. 그런 다음 일반적인 설치를 계속합니다.
 
-현재에 없는 hello Microsoft Azure Government 클라우드 기능:
+Microsoft Azure Government 클라우드에 현재 표시되지 않는 기능은 다음과 같습니다.
 
 * **Azure AD Connect Health**를 사용할 수 없습니다.
 * **자동 업데이트**를 사용할 수 없습니다.

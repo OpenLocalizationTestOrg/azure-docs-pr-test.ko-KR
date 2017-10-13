@@ -1,7 +1,7 @@
 > [!IMPORTANT]
-> Azure PowerShell 및 Azure CLI hello를 통해 Azure 서비스 관리자 (ASM)를 사용 하 여 HDInsight 리소스 관리에 대 한 지원이 **사용 되지 않는** 2017 년 1 월 1에서 제거 되었습니다. 이 문서 사용 hello 새 Azure PowerShell cmdlet 및 Azure 리소스 관리자와 함께 작동 하는 Azure CLI 명령을 hello 안내 합니다.
+> Azure PowerShell 및 Azure CLI를 통해 ASM(Azure Service Manager)을 사용하여 HDInsight 리소스를 관리하는 지원은 더 이상 **사용되지 않으며** 2017년 1월 1일에 제거되었습니다. 이 문서의 단계에서는 Azure Resource Manager를 사용하는 새 Azure PowerShell Cmdlet 및 Azure CLI 명령을 사용합니다.
 > 
-> Hello에 hello 단계를 따라 [설치 Azure CLI를 구성 하 고](../articles/cli-install-nodejs.md) 및 [설치 Azure PowerShell을 구성 하 고](/powershell/azureps-cmdlets-docs) tooinstall hello 최신 버전을 아티클 합니다. 수정 toobe toouse hello에 대 한 새로운 cmdlet 또는 새 CLI 명령이 필요로 하는 기존 스크립트를 사용 하도록 설정한 경우 참조 [HDInsight 클러스터에 대 한 마이그레이션 tooAzure 리소스 관리자 기반 개발 도구](../articles/hdinsight/hdinsight-hadoop-development-using-azure-resource-manager.md)합니다.
+> [Azure CLI 설치 및 구성](../articles/cli-install-nodejs.md) 및 [Azure PowerShell 설치 및 구성](/powershell/azureps-cmdlets-docs) 문서의 단계를 따라 최신 버전을 설치합니다. 새 cmdlet 또는 새 CLI 명령을 사용하도록 수정해야 하는 기존 스크립트가 있는 경우 [HDInsight 클러스터에 대한 Azure Resource Manager 기반 개발 도구로 마이그레이션](../articles/hdinsight/hdinsight-hadoop-development-using-azure-resource-manager.md)을 참조하세요.
 > 
 > 
 

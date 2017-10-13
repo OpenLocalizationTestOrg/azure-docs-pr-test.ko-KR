@@ -1,6 +1,6 @@
 ---
-title: "VM에서 Java 응용 프로그램 aaaCompute를 많이 사용 | Microsoft Docs"
-description: "다른 Java 응용 프로그램에서 계산 집약적인 Java 응용 프로그램을 실행 하는 Azure 가상 컴퓨터 toocreate 수 모니터링 하는 방법을 알아봅니다."
+title: "VM의 계산 집약적인 Java 응용 프로그램 | Microsoft Docs"
+description: "다른 Java 응용 프로그램에 의해 모니터링될 수 있는 계산 집약적인 Java 응용 프로그램을 실행하는 가상 컴퓨터를 만드는 방법에 대해 알아봅니다."
 services: virtual-machines-windows
 documentationcenter: java
 author: rmcmurray
@@ -15,104 +15,104 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: 02a198802a8d78bd444cd5a9197a78cb94f48e3b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8c51c0bb37e25ad61fe58a85dd641dabe0a1958c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toorun-a-compute-intensive-task-in-java-on-a-virtual-machine"></a>Toorun 계산 집약적인 java에서 가상 컴퓨터에서 작업 하는 방법
+# <a name="how-to-run-a-compute-intensive-task-in-java-on-a-virtual-machine"></a>가상 컴퓨터에서 Java로 계산 집약적인 작업을 실행하는 방법
 > [!IMPORTANT] 
-> Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다. 이 문서에서는 hello 클래식 배포 모델을 사용 하 여 설명 합니다. 대부분의 새로운 배포 hello 리소스 관리자 모델을 사용 하는 것이 좋습니다.
+> Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다. 이 문서에서는 클래식 배포 모델 사용에 대해 설명합니다. 새로운 배포는 대부분 리소스 관리자 모델을 사용하는 것이 좋습니다.
 
-Azure 가상 컴퓨터 toohandle 계산 집약적인 작업을 사용할 수 있습니다. 예를 들어 가상 컴퓨터 작업을 처리 하 고 결과 tooclient 컴퓨터 또는 모바일 응용 프로그램 배달 수입니다. 이 문서를 읽은 후 다른 Java 응용 프로그램에서 계산 집약적인 Java 응용 프로그램을 실행 하는 가상 컴퓨터 toocreate 수 모니터링 하는 방법을 이해를 해야 합니다.
+Azure에서 가상 컴퓨터를 사용하여 계산 집약적인 작업을 처리할 수 있습니다. 예를 들어 가상 컴퓨터는 작업을 처리하고 그 결과를 클라이언트 컴퓨터 또는 모바일 응용 프로그램에 제공할 수 있습니다. 이 문서를 읽고 나면 다른 Java 응용 프로그램에 의해 모니터링될 수 있는 계산 집약적인 Java 응용 프로그램을 실행하는 가상 컴퓨터를 만드는 방법을 이해할 수 있게 됩니다.
 
-이 자습서에서는 toocreate Java 콘솔 응용 프로그램 라이브러리 tooyour Java 응용 프로그램을 가져올 수 및 Java 보관 파일 (JAR)를 생성할 수 있습니다 어떻게 알고 가정 합니다. Microsoft Azure에 대한 지식은 없는 것으로 가정합니다.
+이 자습서에서는 사용자가 Java 콘솔 응용 프로그램을 만드는 방법을  알고 있으며 라이브러리를 Java 응용 프로그램으로 가져오고 Java 아카이브(JAR)를 생성할 수 있다고 가정합니다. Microsoft Azure에 대한 지식은 없는 것으로 가정합니다.
 
 다음 내용을 배웁니다.
 
-* 어떻게 toocreate Java 개발 키트 (JDK)와 가상 컴퓨터를 이미 설치 되었습니다.
-* 어떻게 tooremotely tooyour 가상 컴퓨터에 로그인 합니다.
-* 어떻게 toocreate 서비스 버스 네임 스페이스입니다.
-* 어떻게 toocreate 계산 집약적인 작업을 수행 하는 Java 응용 프로그램입니다.
-* 어떻게 toocreate 모니터링 하는 Java 응용 프로그램 hello hello 계산 집약적인 작업의 진행 상황입니다.
-* 어떻게 toorun hello Java 응용 프로그램입니다.
-* 어떻게 toostop hello Java 응용 프로그램입니다.
+* Java 개발 키트(JDK)가 이미 설치된 가상 컴퓨터를 만드는 방법
+* 가상 컴퓨터에 원격으로 로그인하는 방법
+* 서비스 버스 네임스페이스를 만드는 방법
+* 계산 집약적인 작업을 수행하는 Java 응용 프로그램을 만드는 방법
+* 계산 집약적인 작업의 진행 상황을 모니터링하는 Java 응용 프로그램을 만드는 방법
+* Java 응용 프로그램을 실행하는 방법
+* Java 응용 프로그램을 중지하는 방법
 
-이 자습서는 hello 계산 집약적인 작업에 대 한 hello 외판원 문제를 사용 합니다. hello 다음은 hello Java 응용 프로그램 실행 중인 hello 계산 집약적인 작업의 예입니다.
+이 자습서에서는 계산 집약적인 작업으로 순회 외판원 문제를 사용합니다. 다음은 계산 집약적인 작업을 실행하는 Java 응용 프로그램의 예제입니다.
 
 ![순회 외판원 문제 해 찾기][solver_output]
 
-hello 다음은 hello Java 응용 프로그램 모니터링 hello 계산 집약적인 작업의 예입니다.
+다음은 계산 집약적인 작업을 모니터링하는 Java 응용 프로그램의 예제입니다.
 
 ![순회 외판원 문제 클라이언트][client_output]
 
 [!INCLUDE [create-account-and-vms-note](../../../../includes/create-account-and-vms-note.md)]
 
-## <a name="toocreate-a-virtual-machine"></a>toocreate 가상 컴퓨터
-1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
+## <a name="to-create-a-virtual-machine"></a>가상 컴퓨터를 만드는 방법
+1. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인합니다.
 2. **새로 만들기**를 클릭하고 **계산**, **가상 컴퓨터**, **갤러리에서**를 차례로 클릭합니다.
-3. Hello에 **가상 컴퓨터 이미지 선택** 대화 상자에서 **JDK 7 Windows Server 2012**합니다.
-   **JDK 6 Windows Server 2012** 는 아직 JDK 7에서 준비 toorun 없는 레거시 응용 프로그램이 있는 경우.
+3. **가상 컴퓨터 이미지 선택** 대화 상자에서 **JDK 7 Windows Server 2012**를 선택합니다.
+   **JDK 6 Windows Server 2012** 는 아직 JDK 7에서 실행할 준비가 되지 않은 레거시 응용 프로그램이 있는 경우에 사용 가능합니다.
 4. **다음**을 누릅니다.
-5. Hello에 **가상 컴퓨터 구성** 대화 상자:
-   1. Hello 가상 컴퓨터에 대 한 이름을 지정 합니다.
-   2. Hello 크기 toouse hello 가상 컴퓨터를 지정 합니다.
-   3. Hello에 hello 관리자에 대 한 이름을 입력 **사용자 이름** 필드입니다. 이 암호 이름 및 hello 옆에 입력 하면, toohello 가상 컴퓨터에 원격으로 로그인 할 때 사용 합니다.
-   4. Hello에 암호를 입력 **새 암호** 필드를 다시 hello에 입력 **확인** 필드입니다. 이것이 hello 관리자 계정 암호입니다.
+5. **가상 컴퓨터 구성** 대화 상자에서 다음을 수행합니다.
+   1. 가상 컴퓨터의 이름을 지정합니다.
+   2. 가상 컴퓨터에 사용할 크기를 지정합니다.
+   3. **사용자 이름** 필드에 관리자의 이름을 입력합니다. 입력하는 이름 및 암호는 나중에 가상 컴퓨터에 원격으로 로그인할 때 사용합니다.
+   4. **새 암호** 필드에 암호를 입력하고 **확인** 필드에 다시 입력합니다. 이 암호는 관리자 계정 암호입니다.
    5. **다음**을 누릅니다.
-6. Hello에 다음 **가상 컴퓨터 구성** 대화 상자:
-   1. 에 대 한 **클라우드 서비스**, hello 기본값을 사용 하 여 **새 클라우드 서비스를 만들**합니다.
-   2. 값에 대 한 hello **클라우드 서비스 DNS 이름** cloudapp.net에서 고유 해야 합니다. 필요한 경우 Azure에서 고유한 이름이 되도록 수정합니다.
+6. 다음 **가상 컴퓨터 구성** 대화 상자에서 다음을 수행합니다.
+   1. **클라우드 서비스**의 경우 기본값인 **새 클라우드 서비스 만들기**를 사용합니다.
+   2. **클라우드 서비스 DNS 이름** 값은 cloudapp.net에서 고유해야 합니다. 필요한 경우 Azure에서 고유한 이름이 되도록 수정합니다.
    3. 지역, 선호도 그룹 또는 가상 네트워크를 지정합니다. 이 자습서에서는 지역(예: **미국 서부**)을 지정합니다.
    4. **저장소 계정** 상자에서 **자동으로 생성된 저장소 계정 사용**을 선택합니다.
    5. **가용성 집합**에서 **(없음)**을 선택합니다.
    6. **다음**을 누릅니다.
-7. 최종 hello에 **가상 컴퓨터 구성** 대화 상자:
-   1. Hello 기본 끝점 항목을 수락 합니다.
-   2. 페이지 맨 아래에 있는 **완료**을 참조하세요.
+7. 마지막 **가상 컴퓨터 구성** 대화 상자에서 다음을 수행합니다.
+   1. 기본 끝점 항목을 그대로 사용합니다.
+   2. **완료**를 클릭합니다.
 
-## <a name="tooremotely-log-in-tooyour-virtual-machine"></a>tooremotely 로그인 tooyour 가상 컴퓨터
-1. Toohello 로그온 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
+## <a name="to-remotely-log-in-to-your-virtual-machine"></a>가상 컴퓨터에 원격으로 로그인하는 방법
+1. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그온합니다.
 2. **가상 컴퓨터**를 클릭합니다.
-3. Hello 하려는 toolog에 hello 가상 컴퓨터 이름을 클릭 합니다.
-4. **Connect**를 클릭합니다.
-5. 필요한 tooconnect toohello 가상 컴퓨터로 toohello 표시 되는 메시지에 응답 합니다. Hello 관리자 이름 및 암호에 대 한 메시지가 표시 되 면 hello 가상 컴퓨터를 만들 때 제공한 hello 값을 사용 합니다.
+3. 로그인할 가상 컴퓨터의 이름을 클릭합니다.
+4. **연결**을 클릭합니다.
+5. 가상 컴퓨터에 연결해야 한다는 메시지에 응답합니다. 관리자 이름 및 암호를 묻는 메시지가 표시되면 가상 컴퓨터를 만들 때 제공한 값을 사용하십시오.
 
-해당 hello Azure 서비스 버스 기능 hello Baltimore CyberTrust 루트 인증서 toobe JRE의의 일부로 설치 해야 **cacerts** 저장 합니다. 이 인증서가 자동으로 환경 JRE (Java Runtime)이이 자습서에서 사용 하는 hello에 포함 됩니다. 경우 않아도이 인증서에 프로그램 JRE **cacerts** 저장소를 참조 하십시오 [Java CA 인증서 저장소 인증서 toohello 추가] [ add_ca_cert] 추가에 대 한 내용은 (으로 에 대 한 정보, cacerts 저장소에 hello 인증서 보기)
+Azure 서비스 버스 기능을 사용하려면 Baltimore CyberTrust 루트 인증서가 JRE의 **cacerts** 저장소의 일부로 설치되어야 합니다. 이 인증서는 본 자습서에서 사용하는 JRE(Java Runtime Environment)에 자동으로 포함되어 있습니다. 이 인증서가 JRE **cacerts** 저장소에 없는 경우, [Java CA 인증서 저장소에 인증서 추가][add_ca_cert]에서 인증서 추가에 대한 내용 및 cacerts 저장소의 인증서 보기에 대한 정보를 참조하십시오.
 
-## <a name="how-toocreate-a-service-bus-namespace"></a>어떻게 toocreate 서비스 버스 네임 스페이스
-Azure에서 서비스 버스를 사용 하 여 toobegin 큐, 서비스 네임 스페이스를 먼저 만들어야 합니다. 서비스 네임스페이스는 응용 프로그램 내에서 서비스 버스 리소스의 주소를 지정하기 위한 범위 컨테이너를 제공합니다.
+## <a name="how-to-create-a-service-bus-namespace"></a>서비스 버스 네임스페이스를 만드는 방법
+Azure에서 서비스 버스 큐 사용을 시작하려면 먼저 서비스 네임스페이스를 만들어야 합니다. 서비스 네임스페이스는 응용 프로그램 내에서 서비스 버스 리소스의 주소를 지정하기 위한 범위 컨테이너를 제공합니다.
 
-서비스 네임 스페이스 toocreate:
+서비스 네임스페이스를 만들려면
 
-1. Toohello 로그온 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
-2. Hello hello Azure 클래식 포털의 왼쪽 아래 탐색 창에서 **서비스 버스, 액세스 제어 및 Caching**합니다.
-3. Hello hello Azure 클래식 포털의 왼쪽 창에서 클릭 hello **서비스 버스** 노드를 hello를 클릭 한 다음 **새로** 단추입니다.  
+1. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그온합니다.
+2. Azure 클래식 포털의 왼쪽 하단 탐색 창에서 **Service Bus, 액세스 제어 및 캐시**를 클릭합니다.
+3. Azure 클래식 포털의 왼쪽 상단 창에서 **Service Bus** 노드 및 **새로 만들기** 버튼을 차례로 클릭합니다.  
    ![서비스 버스 노드 스크린샷][svc_bus_node]
-4. Hello에 **새 서비스 Namespace를 만들** 대화 상자에 입력 한 **Namespace**, toomake를 고유한 지 클릭 하 고는 **가용성 확인** 단추 합니다.  
+4. **새 서비스 네임스페이스 만들기** 대화 상자에서 **네임스페이스**를 입력한 후 네임스페이스가 중복되지 않는지 확인하기 위해 **중복 확인** 단추를 클릭합니다.  
    ![새 네임스페이스 만들기 스크린샷][create_namespace]
-5. 된 hello 네임 스페이스 이름을 사용할 수 있는지 확인 한 후, 국가 또는 지역 하면 네임 스페이스를 호스팅해야 및 hello를 클릭 한 다음 선택 **만들 Namespace** 단추입니다.  
+5. 네임스페이스 이름이 사용 가능한지 확인한 후 해당 네임스페이스를 호스트할 국가 또는 지역을 선택한 다음, **Create Namespace** 단추를 클릭합니다.  
    
-   hello 네임 스페이스를 만든 후 hello Azure 클래식 포털에에서 나타납니다 걸리고 순간 tooactivate 합니다. Hello 상태가 될 때까지 기다립니다 **활성** hello 다음 단계를 계속 합니다.
+   생성된 네임스페이스는 Azure 클래식 포털에 나타나며, 잠시후에 활성화 됩니다. 다음 단계를 계속하기 전에 **활성** 상태가 될 때까지 기다리십시오.
 
-## <a name="obtain-hello-default-management-credentials-for-hello-namespace"></a>Hello 기본 관리 자격 증명을 가져올 hello 네임 스페이스에 대 한
-Hello 새 네임 스페이스에 큐를 만들 때 처럼 순서 tooperform 관리 작업에는 네임 스페이스에 대 한 tooobtain hello 관리 자격 증명이 필요 합니다.
+## <a name="obtain-the-default-management-credentials-for-the-namespace"></a>네임스페이스에 대한 기본 관리 자격 증명 얻기
+새 네임스페이스에 대해 큐 만들기 등의 관리 작업을 수행하려면 네임스페이스에 대한 관리 자격 증명을 받아야 합니다.
 
-1. Hello 왼쪽된 탐색 창에서 클릭 hello **서비스 버스** 노드를 사용 가능한 네임 스페이스는 hello 목록을 표시 합니다.
+1. 왼쪽 탐색 창에서 **서비스 버스** 노드를 클릭하여 사용 가능한 네임스페이스 목록을 표시합니다.
    ![사용 가능한 네임스페이스 스크린샷][avail_namespaces]
-2. 표시 된 hello 목록에서 방금 만든 hello 네임 스페이스를 선택 합니다.
+2. 표시된 목록에서 방금 만든 네임스페이스를 선택합니다.
    ![네임스페이스 목록 스크린샷][namespace_list]
-3. 오른쪽 hello **속성** 창 새 네임 스페이스에 대 한 hello 속성을 나열 합니다.
+3. 오른쪽 **속성** 창에 새 네임스페이스의 속성이 나열됩니다.
    ![속성 창 스크린샷][properties_pane]
-4. hello **기본 키** 숨겨집니다. Hello 클릭 **보기** toodisplay hello에 대 한 보안 자격 증명을 단추입니다.
+4. **기본 키** 가 숨겨져 있습니다. **보기** 단추를 클릭하여 보안 자격 증명을 표시합니다.
    ![기본 키 스크린샷][default_key]
-5. Hello 메모 **기본 발급자** 및 hello **기본 키** tooperform 작업 아래에이 정보를 사용 하 여 네임 스페이스와 됩니다.
+5. **기본 발급자** 및 **기본 키**를 기록해 둡니다. 이 정보는 아래에서 네임스페이스 관련 작업을 수행하는 데 사용됩니다.
 
-## <a name="how-toocreate-a-java-application-that-performs-a-compute-intensive-task"></a>어떻게 toocreate 계산 집약적인 작업을 수행 하는 Java 응용 프로그램
-1. 개발 컴퓨터에서 (없는 만든 toobe hello 가상 컴퓨터)을 다운로드 hello [Azure SDK for Java](https://azure.microsoft.com/develop/java/)합니다.
-2. 이 섹션의 hello 끝에 hello 예제 코드를 사용 하 여 Java 콘솔 응용 프로그램을 만듭니다. 이 자습서에서는 **TSPSolver.java** hello Java 파일 이름입니다. Hello 수정 **프로그램\_서비스\_버스\_네임 스페이스**, **프로그램\_서비스\_버스\_소유자**, 및 **프로그램\_서비스\_버스\_키** 자리 표시자 toouse 서비스 버스 **네임 스페이스**, **기본 발급자** 및  **기본 키** 값을 각각.
-3. 후 코딩, 내보내기 hello 응용 프로그램 tooa runnable Java 보관 파일 (JAR) 및 패키지 hello 필요 hello에 라이브러리 JAR을 생성 합니다. 이 자습서에서는 **TSPSolver.jar** 생성 hello JAR 이름으로 합니다.
+## <a name="how-to-create-a-java-application-that-performs-a-compute-intensive-task"></a>계산 집약적인 작업을 수행하는 Java 응용 프로그램을 만드는 방법
+1. 개발 컴퓨터(직접 생성한 가상 컴퓨터일 필요는 없음)에서 [Java용 Azure SDK](https://azure.microsoft.com/develop/java/)를 다운로드합니다.
+2. 이 섹션의 끝부분에 있는 예제 코드를 사용하여 Java 콘솔 응용 프로그램을 만듭니다. 이 자습서에서는 Java 파일 이름으로 **TSPSolver.java** 를 사용합니다. **your\_service\_bus\_namespace**, **your\_service\_bus\_owner** 및 **your\_service\_bus\_key** 자리 표시자를 각각 Service Bus **네임스페이스**, **기본 발급자** 및 **기본 키** 값을 사용하도록 수정합니다.
+3. 코딩 후에 응용 프로그램을 실행 가능한 Java 아카이브(JAR)로 내보내고 필요한 라이브러리를 생성된 JAR 안에 패키징합니다. 이 자습서에서는 생성된 JAR 이름으로 **TSPSolver.jar** 을 사용합니다.
 
 <p/>
 
@@ -131,7 +131,7 @@ Hello 새 네임 스페이스에 큐를 만들 때 처럼 순서 tooperform 관�
 
     public class TSPSolver {
 
-        //  Value specifying how often tooprovide an update toohello console.
+        //  Value specifying how often to provide an update to the console.
         private static long loopCheck = 100000000;  
 
         private static long nTimes = 0, nLoops=0;
@@ -235,12 +235,12 @@ Hello 새 네임 스페이스에 큐를 만들 때 처럼 순서 tooperform 관�
 
                 service = ServiceBusService.create(config);
 
-                int numCities = 10;  // Use as hello default, if no value is specified at command line.
+                int numCities = 10;  // Use as the default, if no value is specified at command line.
                 if (args.length != 0)
                 {
                     if (args[0].toLowerCase().compareTo("createqueue")==0)
                     {
-                        // No processing toooccur other than creating hello queue.
+                        // No processing to occur other than creating the queue.
                         QueueInfo queueInfo = new QueueInfo("TSPQueue");
 
                         service.createQueue(queueInfo);
@@ -252,7 +252,7 @@ Hello 새 네임 스페이스에 큐를 만들 때 처럼 순서 tooperform 관�
 
                     if (args[0].toLowerCase().compareTo("deletequeue")==0)
                     {
-                        // No processing toooccur other than deleting hello queue.
+                        // No processing to occur other than deleting the queue.
                         service.deleteQueue("TSPQueue");
 
                         System.out.println("Queue named TSPQueue was deleted.");
@@ -261,7 +261,7 @@ Hello 새 네임 스페이스에 큐를 만들 때 처럼 순서 tooperform 관�
                     }
 
                     // Neither creating or deleting a queue.
-                    // Assume hello value passed in is hello number of cities toosolve.
+                    // Assume the value passed in is the number of cities to solve.
                     numCities = Integer.valueOf(args[0]);  
                 }
 
@@ -299,9 +299,9 @@ Hello 새 네임 스페이스에 큐를 만들 때 처럼 순서 tooperform 관�
 
 
 
-## <a name="how-toocreate-a-java-application-that-monitors-hello-progress-of-hello-compute-intensive-task"></a>어떻게 toocreate 모니터링 하는 Java 응용 프로그램 hello hello 계산 집약적인 작업의 진행 상황
-1. 개발 컴퓨터에서이 섹션의 hello 끝에 hello 예제 코드를 사용 하 여 Java 콘솔 응용 프로그램을 만듭니다. 이 자습서에서는 **TSPClient.java** hello Java 파일 이름입니다. 에서 설명한 것 처럼 수정 hello **프로그램\_서비스\_버스\_네임 스페이스**, **프로그램\_서비스\_버스\_소유자**, 및 **프로그램\_서비스\_버스\_키** 자리 표시자 toouse 서비스 버스 **네임 스페이스**, **기본 발급자**및 **기본 키** 값을 각각.
-2. Hello 응용 프로그램 tooa 내보내기 실행 가능한 JAR 및 패키지 hello hello에 라이브러리 생성 JAR 필요 합니다. 이 자습서에서는 **TSPClient.jar** 생성 hello JAR 이름으로 합니다.
+## <a name="how-to-create-a-java-application-that-monitors-the-progress-of-the-compute-intensive-task"></a>계산 집약적인 작업의 진행 상황을 모니터링하는 Java 응용 프로그램을 만드는 방법
+1. 개발 컴퓨터에서 이 섹션의 끝부분에 있는 예제 코드를 사용하여 Java 콘솔 응용 프로그램을 만듭니다. 이 자습서에서는 Java 파일 이름으로 **TSPClient.java** 를 사용합니다. **your\_service\_bus\_namespace**, **your\_service\_bus\_owner** 및 **your\_service\_bus\_key** 자리 표시자를 각각 Service Bus **네임스페이스**, **기본 발급자** 및 **기본 키** 값을 사용하도록 수정합니다.
+2. 응용 프로그램을 실행 가능한 JAR로 내보내고 필요한 라이브러리를 생성된 JAR 안에 패키징합니다. 이 자습서에서는 생성된 JAR 이름으로 **TSPClient.jar** 을 사용합니다.
 
 <p/>
 
@@ -340,7 +340,7 @@ Hello 새 네임 스페이스에 큐를 만들 때 처럼 순서 tooperform 관�
 
                     BrokeredMessage message;
 
-                    int waitMinutes = 3;  // Use as hello default, if no value is specified at command line.
+                    int waitMinutes = 3;  // Use as the default, if no value is specified at command line.
                     if (args.length != 0)
                     {
                         waitMinutes = Integer.valueOf(args[0]);  
@@ -366,7 +366,7 @@ Hello 새 네임 스페이스에 큐를 만들 때 처럼 순서 tooperform 관�
                         if (null != message && null != message.getMessageId())
                         {
 
-                            // Display hello queue message.
+                            // Display the queue message.
                             byte[] b = new byte[200];
 
                             System.out.print("From queue: ");
@@ -383,7 +383,7 @@ Hello 새 네임 스페이스에 큐를 만들 때 처럼 순서 tooperform 관�
                             System.out.println();
                             if (s.compareTo("Complete") == 0)
                             {
-                                // No more processing toooccur.
+                                // No more processing to occur.
                                 date = new Date();
                                 System.out.println("Finished at " + dateFormat.format(date) + ".");
                                 break;
@@ -391,7 +391,7 @@ Hello 새 네임 스페이스에 큐를 만들 때 처럼 순서 tooperform 관�
                         }
                         else
                         {
-                            // hello queue is empty.
+                            // The queue is empty.
                             System.out.println("Queue is empty. Sleeping for another " + waitString);
                             Thread.sleep(60000 * waitMinutes);
                         }
@@ -415,14 +415,14 @@ Hello 새 네임 스페이스에 큐를 만들 때 처럼 순서 tooperform 관�
 
     }
 
-## <a name="how-toorun-hello-java-applications"></a>어떻게 toorun hello Java 응용 프로그램
-첫 번째 toocreate hello 큐 다음 toosolve hello 현재 최상의 경로 toohello 서비스 버스 큐를 추가 하는 여행 Saleseman 문제 hello hello 계산 집약적인 응용 프로그램을 실행 합니다. Hello 하는 동안 계산 집약적인 응용 프로그램은 실행 (또는 나중에) hello 서비스 버스 큐에서 실행된 hello 클라이언트 toodisplay 결과.
+## <a name="how-to-run-the-java-applications"></a>Java 응용 프로그램을 실행하는 방법
+계산 집약적인 응용 프로그램을 실행하여 먼저 큐를 만든 후에 순회 외판원 문제를 해결합니다. 그러면 현 시점에서의 최상의 경로가 서비스 버스 큐에 추가됩니다. 계산 집약적인 응용 프로그램이 실행 중인 동안 또는 실행된 이후에 클라이언트를 실행하여 서비스 버스 큐에서 가져온 결과를 표시합니다.
 
-### <a name="toorun-hello-compute-intensive-application"></a>toorun hello 계산 집약적인 응용 프로그램
-1. Tooyour 가상 컴퓨터에 로그온 합니다.
+### <a name="to-run-the-compute-intensive-application"></a>계산 집약적인 응용 프로그램을 실행하려면
+1. 가상 컴퓨터에 로그온합니다.
 2. 응용 프로그램을 실행할 폴더(예: **c:\TSP**를 만듭니다.
-3. 복사 **TSPSolver.jar** 너무**c:\TSP**,
-4. 라는 파일을 만들어 **c:\TSP\cities.txt** 내용을 따라 hello로 합니다.
+3. **TSPSolver.jar**를 **c:\TSP**에 복사합니다.
+4. 다음과 같은 콘텐츠가 포함된 **c:\TSP\cities.txt** 파일을 만듭니다.
    
         City_1, 1002.81, -1841.35
         City_2, -953.55, -229.6
@@ -474,44 +474,44 @@ Hello 새 네임 스페이스에 큐를 만들 때 처럼 순서 tooperform 관�
         City_48, 363.68, 768.21
         City_49, -120.3, -463.13
         City_50, 588.51, 679.33
-5. 명령 프롬프트에서 디렉터리 tooc:\TSP를 변경 합니다.
-6. Hello JRE bin 폴더는 hello PATH 환경 변수를 확인 합니다.
-7. Hello TSP solver 순열을 실행 하기 전에 toocreate hello 서비스 버스 큐를 필요 합니다. 다음 명령 toocreate hello 서비스 버스 큐 hello를 실행 합니다.
+5. 명령 프롬프트에서 디렉터리를 c:\TSP로 변경합니다.
+6. JRE의 bin 폴더가 PATH 환경 변수에 포함되어 있는지 확인합니다.
+7. TSP 해 찾기 순열을 실행하기 전에 서비스 버스 큐를 먼저 만들어야 합니다. 다음 명령을 실행하여 서비스 버스 큐를 만듭니다.
    
         java -jar TSPSolver.jar createqueue
-8. Hello 큐를 만든 했으므로 hello TSP solver 순열을 실행할 수 있습니다. 예를 들어 hello 명령 toorun hello solver 8 도시에 대 한 다음를 실행 합니다.
+8. 큐가 만들어졌으므로 이제 TSP 해 찾기 순열을 실행할 수 있습니다. 예를 들어 다음 명령을 실행하여 8개 도시에 대해 해 찾기를 실행합니다.
    
         java -jar TSPSolver.jar 8
    
-   숫자를 지정하지 않으면 10개 도시에 대해 실행됩니다. Hello solver 현재 가장 짧은 경로 발견 하는 대로 추가 됩니다에 toohello 큐.
+   숫자를 지정하지 않으면 10개 도시에 대해 실행됩니다. 해 찾기에서 현재의 최단 경로를 찾으면 해당 경로가 큐에 추가됩니다.
 
 > [!NOTE]
-> 더 큰 hello hello 번호 지정 하는, 긴 hello solver hello 실행 됩니다. 예를 들어 14개 도시에 대해 실행하면 몇 분이 걸릴 수 있고, 15개 도시에 대해 실행하면 몇 시간이 소요될 수 있습니다. 런타임 (최종적 몇 주, 월 및 연도) 일 too16 또는 도시를 더 증가 될 수 있습니다. Toohello 급증 hello 수 도시 증가로 해 hello 찾기 평가 순열의 hello 수 때문입니다.
+> 지정한 숫자가 클수록 해 찾기 실행 시간이 길어집니다. 예를 들어 14개 도시에 대해 실행하면 몇 분이 걸릴 수 있고, 15개 도시에 대해 실행하면 몇 시간이 소요될 수 있습니다. 도시를 16개 이상으로 늘리면 며칠 동안 더 나아가 수주, 수개월, 수년에 걸쳐 실행될 수도 있습니다. 이는 도시의 수가 증가함에 따라 해 찾기에 의해 평가되는 순열의 수가 급증하기 때문입니다.
 > 
 > 
 
-### <a name="how-toorun-hello-monitoring-client-application"></a>어떻게 toorun hello 모니터링 클라이언트 응용 프로그램
-1. Hello 클라이언트 응용 프로그램을 실행할 tooyour 컴퓨터에 로그온 합니다. 필요 하지 않습니다 toobe hello hello를 실행 하는 동일한 컴퓨터 **TSPSolver** 울 수 있지만 응용 프로그램입니다.
+### <a name="how-to-run-the-monitoring-client-application"></a>모니터링하는 클라이언트 응용 프로그램을 실행하는 방법
+1. 클라이언트 응용 프로그램을 실행할 컴퓨터에 로그온합니다. 이 컴퓨터가 **TSPSolver** 응용 프로그램을 실행하는 컴퓨터와 같을 수도 있지만 반드시 같아야 하는 것은 아닙니다.
 2. 응용 프로그램을 실행할 폴더(예: **c:\TSP**를 만듭니다.
-3. 복사 **TSPClient.jar** 너무**c:\TSP**,
-4. Hello JRE bin 폴더는 hello PATH 환경 변수를 확인 합니다.
-5. 명령 프롬프트에서 디렉터리 tooc:\TSP를 변경 합니다.
-6. Hello 다음 명령을 실행 합니다.
+3. **TSPClient.jar**를 **c:\TSP**에 복사합니다.
+4. JRE의 bin 폴더가 PATH 환경 변수에 포함되어 있는지 확인합니다.
+5. 명령 프롬프트에서 디렉터리를 c:\TSP로 변경합니다.
+6. 다음 명령을 실행합니다.
    
         java -jar TSPClient.jar
    
-    필요에 따라 명령줄 인수를 전달 하 여 hello 큐를 확인 하는 중 사이의 분 toosleep hello 수를 지정 합니다. hello hello 큐를 확인 하기 위한 기본 절전 모드 시간은 3 분, 명령줄 인수를 전달 하지 너무 경우 사용 되는**TSPClient**합니다. 예를 들어 hello 대기 간격에 대 한 원하는 toouse 다른 값을 1 분 hello 다음 명령을 실행 합니다.
+    큐를 점검하는 시점 사이의 대기 시간(분)을 명령줄 인수로 전달하여 지정할 수도 있습니다. 큐 점검을 위한 기본 대기 기간은 3분이며, **TSPClient**로 명령줄 인수가 전달되지 않을 경우 이 값이 사용됩니다. 대기 간격으로 다른 값(예: 1분)을 사용하고 싶으면 다음 명령을 실행합니다.
    
         java -jar TSPClient.jar 1
    
-    클라이언트 hello "완료"의 큐 메시지를 발견할 때까지 실행 됩니다. 참고 hello 클라이언트를 실행 하지 않고 hello solver 여러 번을 실행 하면 toorun hello 클라이언트 여러 번 toocompletely 빈 hello 큐를 할 수 있습니다. 또는 hello 큐를 삭제 한 후 다시 만들 수 있습니다. hello 다음 실행 toodelete hello 큐 **TSPSolver** (하지 **TSPClient**) 명령입니다.
+    클라이언트는 "완료"라는 큐 메시지가 확인될 때까지 실행됩니다. 클라이언트를 실행하지 않은 상태로 해 찾기를 여러 번 실행하는 경우, 큐를 완전히 비우기 위해 클라이언트를 여러 번 실행해야 할 수도 있습니다. 또는 큐를 삭제한 후 큐를 다시 만들 수도 있습니다. 큐를 삭제하려면 다음 **TSPSolver**(**TSPClient** 아님) 명령을 실행합니다.
    
         java -jar TSPSolver.jar deletequeue
    
-    hello solver 모든 경로 검사를 완료 될 때까지 실행 됩니다.
+    모든 경로에 대한 조사를 마칠 때까지 해 찾기가 실행됩니다.
 
-## <a name="how-toostop-hello-java-applications"></a>어떻게 toostop hello Java 응용 프로그램
-Hello solver와 클라이언트 응용 프로그램에 대 한 누르면 **Ctrl + C** tooexit tooend 이전 toonormal 완료 하려는 경우.
+## <a name="how-to-stop-the-java-applications"></a>Java 응용 프로그램을 중지하는 방법
+해 찾기 및 클라이언트 응용 프로그램을 정상적인 완료 이전에 종료하고 싶으면 **Ctrl+C** 를 누르면 됩니다.
 
 [solver_output]:media/java-run-compute-intensive-task/WA_JavaTSPSolver.png
 [client_output]:media/java-run-compute-intensive-task/WA_JavaTSPClient.png

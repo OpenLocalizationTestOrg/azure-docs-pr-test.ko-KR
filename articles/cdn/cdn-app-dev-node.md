@@ -1,6 +1,6 @@
 ---
-title: "Node.js 용 aaaGet hello Azure CDN SDK 시작 | Microsoft Docs"
-description: "자세한 내용은 방법 toowrite Node.js 응용 프로그램 toomanage Azure CDN 합니다."
+title: "Node.js용 Azure CDN SDK 시작하기 | Microsoft Docs"
+description: "Node.js 응용 프로그램을 작성하여 Azure CDN을 관리하는 방법에 대해 알아봅니다."
 services: cdn
 documentationcenter: nodejs
 author: zhangmanling
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 6c805e5fb8e0b471e8b248cb2f4b29efd6c85940
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 46ae8cd9775432d126cbde856c1fb06ea319297e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="get-started-with-azure-cdn-development"></a>Azure CDN 개발 시작
 > [!div class="op_single_selector"]
@@ -27,34 +27,34 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Hello를 사용할 수 있습니다 [Node.js 용 Azure CDN SDK](https://www.npmjs.com/package/azure-arm-cdn) tooautomate CDN 프로필 및 끝점의 생성 및 관리 합니다.  이 자습서는 몇몇 hello 사용할 수 있는 작업을 보여 주는 간단한 Node.js 콘솔 응용 프로그램의 hello 만들기를 안내 합니다.  이 자습서는 만들어지지 toodescribe hello Azure CDN SDK의 모든 측면 Node.js 용 자세히 설명에서 합니다.
+[Node.js용 Azure CDN SDK](https://www.npmjs.com/package/azure-arm-cdn) 를 사용하여 CDN 프로필과 끝점의 생성 및 관리를 자동화할 수 있습니다.  이 자습서에서는 여러 가지 사용 가능한 작업을 보여주는 간단한 Node.js 콘솔 응용 프로그램을 살펴봅니다.  이 자습서는 Node.js용 Azure CDN SDK의 모든 측면을 상세하게 설명하지 않습니다.
 
-toocomplete 이미 있어야이 자습서에서는 [Node.js](http://www.nodejs.org) **4.x.x** 또는 이상이 설치 및 구성 합니다.  Toocreate Node.js 응용 프로그램을 원하는 텍스트 편집기를 사용할 수 있습니다.  toowrite 사용이 자습서에서는 [Visual Studio Code](https://code.visualstudio.com)합니다.  
+이 자습서를 완료하려면 [Node.js](http://www.nodejs.org) **4.x.x** 이상을 설치하고 구성해야 합니다.  원하는 텍스트 편집기를 사용하여 Node.js 응용 프로그램을 만들 수 있습니다.  이 자습서를 작성하려면 [Visual Studio 코드](https://code.visualstudio.com)를 사용합니다.  
 
 > [!TIP]
-> hello [이 자습서에서 완성 된 프로젝트](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74) MSDN에서 다운로드할 수 있습니다.
+> [이 자습서에서 완성된 프로젝트](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74) 는 MSDN에서 다운로드할 수 있습니다.
 > 
 > 
 
 [!INCLUDE [cdn-app-dev-prep](../../includes/cdn-app-dev-prep.md)]
 
 ## <a name="create-your-project-and-add-npm-dependencies"></a>프로젝트 만들기 및 NPM 종속성 추가
-우리의 CDN 프로필에 대 한 리소스 그룹을 만들고이 Azure AD 응용 프로그램 사용 권한 toomanage CDN 프로필 및 해당 그룹 내에서 끝점을 지정 했 म, 했으므로 응용 프로그램을 만들기 시작할 수 있습니다.
+CDN 프로필용 리소스 그룹을 만들고 해당 그룹에서 CDN 프로필과 끝점을 관리하기 위한 Azure AD 응용 프로그램 권한을 부여했으므로, 응용 프로그램을 만들 수 있습니다.
 
-폴더 toostore 응용 프로그램을 만듭니다.  현재 경로에 hello Node.js 도구와 함께 콘솔에서 현재 위치 toothis 새 폴더를 설정 하 고 실행 하 여 프로젝트를 초기화 합니다.
+응용 프로그램을 저장할 폴더를 만듭니다.  현재 경로에 있는 Node.js 도구를 포함한 콘솔에서 새 폴더에 현재 위치를 설정하고 다음을 실행하여 프로젝트를 초기화합니다.
 
     npm init
 
-그러면 됩니다는 일련의 질문 tooinitialize 프로젝트를 표시 합니다.  **진입점**의 경우 이 자습서에서는 *app.js*를 사용합니다.  다음 예제는 hello 내 다른 선택 항목을 볼 수 있습니다.
+그런 다음 프로젝트를 초기화하는 일련의 질문이 나타납니다.  **진입점**의 경우 이 자습서에서는 *app.js*를 사용합니다.  다음 예제에서 다른 선택 항목을 볼 수 있습니다.
 
 ![NPM init 출력](./media/cdn-app-dev-node/cdn-npm-init.png)
 
-프로젝트는 *packages.json* 파일을 사용하여 초기화됩니다.  프로젝트 진행 NPM 패키지에 포함 된 일부 Azure 라이브러리 toouse를 하려고 합니다.  Hello (ms rest azure) Node.js 용 Azure 클라이언트 런타임 및 hello (azure arm cd) Node.js 용 Azure CDN 클라이언트 라이브러리를 사용 합니다.  종속성으로 해당 toohello 프로젝트를 추가 해 보겠습니다.
+프로젝트는 *packages.json* 파일을 사용하여 초기화됩니다.  이 프로젝트에서는 NPM 패키지에 포함된 일부 Azure 라이브러리를 사용할 것입니다.  Node.js용 Azure 클라이언트 런타임(ms-rest-azure) 및 Node.js용 Azure CDN 클라이언트 라이브러리(azure-arm-cd)를 사용할 것입니다.  해당 사항을 종속성으로 프로젝트에 추가하겠습니다.
 
     npm install --save ms-rest-azure
     npm install --save azure-arm-cdn
 
-패키지 작업을 마쳤으면 hello 후 설치를 hello *package.json* 파일은 유사한 toothis 예 (버전 번호가 달라질 수 있습니다) 표시 됩니다.
+패키지 설치가 완료된 후에 *package.json* 파일은 이 예제와 유사하게 표시됨(버전 번호가 달라질 수 있음):
 
 ``` json
 {
@@ -74,18 +74,18 @@ toocomplete 이미 있어야이 자습서에서는 [Node.js](http://www.nodejs.o
 }
 ```
 
-마지막으로, 텍스트 편집기를 사용 하 여 빈 텍스트 파일을 만들고 저장으로 우리의 프로젝트 폴더의 hello 루트에서 *app.js*합니다.  이제 준비 toobegin 코드를 작성 합니다.
+마지막으로 텍스트 편집기를 사용하여 빈 텍스트 파일을 만들고 프로젝트 폴더의 루트에 *app.js*로 저장합니다.  이제 코드 작성을 시작할 준비가 되었습니다.
 
 ## <a name="requires-constants-authentication-and-structure"></a>requires, 상수, 인증 및 구조
-와 *app.js* 편집기에서 열고, hello 작성이 프로그램의 기본 구조입니다.
+편집기에서 열린 *app.js* 를 사용하여 작성된 프로그램의 기본 구조를 살펴보겠습니다.
 
-1. Hello 다음과 같이 hello 위쪽 우리의 NPM 패키지에 대 한 "필요" hello를 추가 합니다.
+1. 다음을 사용하여 위쪽에 있는 NPM 패키지에 "requires"를 추가합니다.
    
     ``` javascript
     var msRestAzure = require('ms-rest-azure');
     var cdnManagementClient = require('azure-arm-cdn');
     ```
-2. 이 메서드는 사용 하 여 일부 상수 toodefine 필요 합니다.  Hello 다음을 추가 합니다.  수 있는지 tooreplace hello를 포함 하 여 hello 자리 표시자  **&lt;꺾쇠 괄호&gt;**, 필요에 따라 고유한 값으로.
+2. 메서드가 사용할 몇 가지 상수를 정의해야 합니다.  다음을 추가합니다.  **&lt;꺽쇠 괄호&gt;**를 포함한 자리 표시자를 필요에 따라 고유 값으로 교체합니다.
    
     ``` javascript
     //Tenant app constants
@@ -98,7 +98,7 @@ toocomplete 이미 있어야이 자습서에서는 [Node.js](http://www.nodejs.o
     const resourceGroupName = "CdnConsoleTutorial";
     const resourceLocation = "<YOUR PREFERRED AZURE LOCATION, SUCH AS Central US>";
     ```
-3. 다음으로 hello CDN 관리 클라이언트를 인스턴스화하고 알아보고이 자격 증명 지정 하겠습니다.
+3. 다음으로 CDN 관리 클라이언트를 인스턴스화하고 자격 증명을 제공합니다.
    
     ``` javascript
     var credentials = new msRestAzure.ApplicationTokenCredentials(clientId, tenantId, clientSecret);
@@ -108,7 +108,7 @@ toocomplete 이미 있어야이 자습서에서는 [Node.js](http://www.nodejs.o
     개별 사용자 인증을 사용한다면 다음 두 줄은 약간 다르게 표시됩니다.
    
    > [!IMPORTANT]
-   > 서비스 사용자 대신 toohave 개별 사용자 인증을 선택 하는 경우에이 코드 예제를 사용 합니다.  신중 하 게 tooguard 개별 사용자 자격 증명 되며 비밀로 유지 하세요.
+   > 서비스 주체가 아닌 개별 사용자 인증을 사용할 경우에만 다음 코드 샘플을 사용하세요.  개별 사용자 자격 증명을 보호하고 보안 상태를 유지하도록 주의합니다.
    > 
    > 
    
@@ -118,8 +118,8 @@ toocomplete 이미 있어야이 자습서에서는 [Node.js](http://www.nodejs.o
     var cdnClient = new cdnManagementClient(credentials, subscriptionId);
     ```
    
-    있는지 tooreplace hello 항목 이어야  **&lt;꺾쇠 괄호&gt;**  hello로 정보를 수정 합니다.  에 대 한 `<redirect URI>`, hello 리디렉션 hello 응용 프로그램을 Azure AD에 등록할 때 입력 한 URI를 사용 합니다.
-4. Node.js 콘솔 응용 프로그램 일부 명령줄 매개 변수가 tootake 진행 됩니다.  적어도 하나의 매개 변수가 전달되었는지 유효성을 검사해 보겠습니다.
+    올바른 정보로 **&lt;꺾쇠 괄호&gt;**의 항목을 교체해야 합니다.  `<redirect URI>`의 경우 Azure AD에서 응용 프로그램을 등록할 때 입력한 리디렉션 URI를 사용합니다.
+4. Node.js 콘솔 응용 프로그램에서는 몇 가지 명령줄 매개 변수를 사용하려고 합니다.  적어도 하나의 매개 변수가 전달되었는지 유효성을 검사해 보겠습니다.
    
    ```javascript
    //Collect command-line parameters
@@ -133,7 +133,7 @@ toocomplete 이미 있어야이 자습서에서는 [Node.js](http://www.nodejs.o
        process.exit(1);
    }
    ```
-5. 전달 된 매개 변수에 대해 tooother 기능 여기서 분기에서는 프로그램의 주요 부분 toohello를 고려해 야 합니다.
+5. 그래서 프로그램의 주요 부분을 살펴보고 여기서 전달된 매개 변수에 따라 다른 기능으로 갈라집니다.
    
     ```javascript
     switch(parms[0].toLowerCase())
@@ -159,7 +159,7 @@ toocomplete 이미 있어야이 자습서에서는 [Node.js](http://www.nodejs.o
             process.exit(1);
     }
     ```
-6. 이 프로그램의 여러 위치에서 toomake hello 오른쪽 매개 변수 개수에 전달 하 고 올바른 표시 되지 않는 경우 일부 도움말을 표시 해야 합니다.  만들어 보겠습니다 함수 toodo입니다.
+6. 프로그램의 여러 위치에서 매개 변수의 적합한 수를 전달하도록 하고 올바르지 않은 경우 도움말을 표시합니다.  작업을 수행할 함수를 만들어 보겠습니다.
    
    ```javascript
    function requireParms(parmCount) {
@@ -197,7 +197,7 @@ toocomplete 이미 있어야이 자습서에서는 [Node.js](http://www.nodejs.o
        }
    }
    ```
-7. 마지막으로, 하므로, 메서드 toocall 작업이 완료 되 면 다시 hello CDN 관리 클라이언트에 사용할 예정 hello 함수는 비동기입니다.  Hello 출력 hello CDN 관리 클라이언트 (있는 경우)을에서 표시 하 고 hello 프로그램을 정상적으로 종료할 수 있는 파일을 만들어 보겠습니다.
+7. 마지막으로 CDN 관리 클라이언트에서 사용하는 기능은 비동기이므로 작업이 완료되면 콜백할 메서드가 필요합니다.  CDN 관리 클라이언트(있는 경우)의 출력을 표시하고 프로그램을 정상적으로 종료할 수 있는 파일을 만들어 보겠습니다.
    
     ```javascript
     function callback(err, result, request, response) {
@@ -211,10 +211,10 @@ toocomplete 이미 있어야이 자습서에서는 [Node.js](http://www.nodejs.o
     }
     ```
 
-를 hello이 프로그램의 기본 구조를 작성 했으므로에서는 매개 변수에 따라 호출 된 hello 함수 만들어야 합니다.
+이제 프로그램의 기본 구조가 작성되었으므로 매개 변수에 따라 호출된 함수를 만들어야 합니다.
 
 ## <a name="list-cdn-profiles-and-endpoints"></a>CDN 프로필 및 끝점 목록화하기
-기존 프로필 및 끝점 우리의 코드 toolist부터 시작 하겠습니다.  코드 주석 각 매개 변수 방향은 알 수 있도록 예상 hello 구문을 제공 합니다.
+기존 프로필 및 끝점을 나열하는 코드부터 살펴 보겠습니다.  나의 코드 주석이 각 매개 변수가 이동할 위치를 알 수 있도록 예상되는 구문을 제공합니다.
 
 ```javascript
 // list profiles
@@ -242,7 +242,7 @@ function cdnList(){
 ```
 
 ## <a name="create-cdn-profiles-and-endpoints"></a>CDN 프로필 및 끝점 만들기
-다음으로 hello 함수 toocreate 프로필 및 끝점 작성 합니다.
+다음으로 프로필 및 끝점을 만드는 함수를 작성합니다.
 
 ```javascript
 function cdnCreate() {
@@ -294,7 +294,7 @@ function cdnCreateEndpoint() {
 ```
 
 ## <a name="purge-an-endpoint"></a>끝점 삭제
-Hello 끝점이 만들어졌으며 라고 가정할 경우 일반적인 작업 tooperform 프로그램에서 원하는 수 있는지는 제거 우리의 끝점의 콘텐츠입니다.
+끝점을 만들었을 경우, 프로그램에서 흔히 수행하는 작업은 끝점의 콘텐츠를 삭제하는 것입니다.
 
 ```javascript
 // purge <profile name> <endpoint name> <path>
@@ -307,7 +307,7 @@ function cdnPurge() {
 ```
 
 ## <a name="delete-cdn-profiles-and-endpoints"></a>CDN 프로필 및 끝점 삭제
-hello 마지막 함수를 포함할 예정 끝점 및 프로필을 삭제 합니다.
+포함된 마지막 함수는 끝점 및 프로필을 삭제합니다.
 
 ```javascript
 function cdnDelete() {
@@ -335,11 +335,11 @@ function cdnDelete() {
 }
 ```
 
-## <a name="running-hello-program"></a>Hello 프로그램 실행
-이제 당사의 즐겨 찾는 디버거를 사용 하 여이 Node.js 프로그램 실행 또는 hello 콘솔.
+## <a name="running-the-program"></a>프로그램 실행
+이제 선호하는 디버거를 사용하거나 콘솔에서 Node.js 프로그램을 실행할 수 있습니다.
 
 > [!TIP]
-> Visual Studio Code 디버거를 사용 중인 tooset 사용자 환경 toopass hello 명령줄 매개 변수에서를 구성 해야 합니다.  Visual Studio 코드 작업을 위해 hello **lanuch.json** 파일입니다.  명명 된 속성을 찾습니다 **args** 비슷한 toothis 나타나도록 매개 변수를 문자열 값의 배열을 추가 하 고: `"args": ["list", "profiles"]`합니다.
+> Visual Studio 코드를 디버거로 사용하는 경우 사용자 환경을 설정하여 명령줄 매개 변수를 전달해야 합니다.  Visual Studio 코드는 **lanuch.json** 파일에서 이를 수행합니다.  **args**라는 속성을 찾고 다음과 유사하게 표시되도록 사용자 매개 변수에 대한 문자열 값의 배열을 추가합니다. `"args": ["list", "profiles"]`.
 > 
 > 
 
@@ -360,11 +360,11 @@ function cdnDelete() {
 ![프로필 삭제](./media/cdn-app-dev-node/cdn-delete-profile.png)
 
 ## <a name="next-steps"></a>다음 단계
-이 연습에서 완료 하는 hello 프로젝트 toosee [hello 샘플 다운로드](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74)합니다.
+이 연습에서 작성된 프로젝트를 보려면 [샘플을 다운로드하세요](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74).
 
-hello 보기 hello Node.js 용 Azure CDN SDK에 대 한 toosee hello 참조 [참조](http://azure.github.io/azure-sdk-for-node/azure-arm-cdn/latest/)합니다.
+Node.js용 Azure CDN SDK에 대한 참조를 보려면 [참조](http://azure.github.io/azure-sdk-for-node/azure-arm-cdn/latest/)를 봅니다.
 
-Node.js, 보기 hello에 대 한 hello Azure SDK에 대 한 toofind 추가 설명서 [참조 전체](http://azure.github.io/azure-sdk-for-node/)합니다.
+Node.js용 Azure SDK에 대한 추가 설명서를 찾으려면 [전체 참조](http://azure.github.io/azure-sdk-for-node/)를 봅니다.
 
 [PowerShell](cdn-manage-powershell.md)을 사용하여 CDN 리소스를 관리합니다.
 

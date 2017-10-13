@@ -1,6 +1,6 @@
 ---
-title: "Azure 클라우드에서 aaaDocker 컨테이너 호스팅 | Microsoft Docs"
-description: "Azure 컨테이너 서비스 방식으로 toosimplify hello 만들기, 구성 및 관리는 미리 구성 된 toorun 컨테이너 화 가능한 응용 프로그램이 있는 가상 컴퓨터의 클러스터를 제공 합니다."
+title: "Azure 클라우드에서 Docker 컨테이너 호스트 | Microsoft Docs"
+description: "Azure 컨테이너 서비스는 컨테이너화된 응용 프로그램을 실행하는 미리 구성된 가상 컴퓨터의 클러스터를 간단히 만들고 구성하고 관리하는 방법을 제공합니다."
 services: container-service
 documentationcenter: 
 author: rgardler
@@ -10,38 +10,38 @@ tags: acs, azure-container-service
 keywords: "Docker, 컨테이너, 마이크로 서비스, Mesos, Azure"
 ms.service: container-service
 ms.devlang: na
-ms.topic: quickstart
+ms.topic: overview
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/01/2017
 ms.author: rogardle
 ms.custom: H1Hack27Feb2017, mvc
-ms.openlocfilehash: 46a0071a7497a3ff44d75413b49f1d06f844c446
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3e263b88bf6afe652e06bd8cc109c98a17269cae
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="introduction-toodocker-container-hosting-solutions-with-azure-container-service"></a>Azure 컨테이너 서비스를 사용 하 여 솔루션을 호스팅 소개 tooDocker 컨테이너 
-Azure 컨테이너 서비스 간단 하 게 드립니다 toocreate 구성 하 고 미리 구성 된 toorun 컨테이너 화 가능한 응용 프로그램이 있는 가상 컴퓨터의 클러스터를 관리 합니다. Azure 컨테이너 서비스는 일반적인 오픈 소스 예약 및 오케스트레이션 도구의 최적화된 구성을 사용합니다. Toouse 있습니다를 통해 기존 기술을 사용 하면이 커뮤니티 전문, toodeploy 크기가 크고 점점 본문에 대해 하 고 Microsoft Azure에서 컨테이너 기반 응용 프로그램을 관리 합니다.
+# <a name="introduction-to-docker-container-hosting-solutions-with-azure-container-service"></a>Azure Container Service를 사용한 Docker 컨테이너 호스팅 소개 
+Azure 컨테이너 서비스를 사용하면 컨테이너화된 응용 프로그램을 실행하는 미리 구성된 가상 컴퓨터의 클러스터를 보다 간편하게 만들고 구성하고 관리할 수 있습니다. Azure 컨테이너 서비스는 일반적인 오픈 소스 예약 및 오케스트레이션 도구의 최적화된 구성을 사용합니다. 이를 통해 기존 기술을 사용하거나 크고 확장된 커뮤니티 전문 지식의 본문을 이용하여 Microsoft Azure의 컨테이너 기반 응용 프로그램을 배포하고 관리할 수 있습니다.
 
-![Azure 컨테이너 서비스를 통해 toomanage 컨테이너 화 가능한 응용 프로그램 Azure에서 여러 호스트에 있습니다.](./media/acs-intro/acs-cluster-new.png)
+![Azure 컨테이너 서비스는 Azure의 여러 호스트에서 컨테이너화된 응용 프로그램을 관리하는 방법을 제공합니다.](./media/acs-intro/acs-cluster-new.png)
 
-Azure 컨테이너 서비스는 hello Docker 컨테이너 형식 tooensure 응용 프로그램 컨테이너가 완전히 이식 가능를 활용 합니다. 또한 컨테이너의 이러한 응용 프로그램 toothousands 또는 짝수 수만 확장할 수 있도록 선택 하는 풀 마라톤 및 DC/OS, docker는 Docker Swarm 또는 Kubernetes 지원 합니다.
+Azure 컨테이너 서비스는 Docker 컨테이너 형식을 활용하여 응용 프로그램 컨테이너가 완전히 이식 가능한지 확인합니다. 또한 Marathon 및 DC/OS, Docker Swarm 또는 Kubernetes 중에서 선택하여 이러한 응용 프로그램을 수천 또는 수만 개의 컨테이너로 확장할 수 있습니다.
 
-Azure 컨테이너 서비스를 사용 하면 응용 프로그램 이식성-hello 오케스트레이션 계층에서 이식성을 포함 하 여 그대로 유지 하면서 Azure의 엔터프라이즈급 기능을 걸릴 수 있습니다.
+Azure 컨테이너 서비스를 사용하면 오케스트레이션 계층의 이식성을 포함하여 응용 프로그램 이식성을 유지하면서 Azure의 엔터프라이즈급 기능을 활용할 수 있습니다.
 
 ## <a name="using-azure-container-service"></a>Azure 컨테이너 서비스 사용
-Azure 컨테이너 서비스와 이러한 목표는 오픈 소스 도구와 기술을 담아 고객 사이에서 인기 오늘을 통해 tooprovide 컨테이너 호스팅 환경입니다. toothis 끝 (DC/OS, docker는 Docker Swarm 또는 Kubernetes) 하 여 선택한 orchestrator에 대 한 hello 표준 API 끝점 공개 했습니다. 이러한 끝점을 사용 하 여 toothose 끝점 통신의 대상이 될 수 있는 모든 소프트웨어를 활용할 수 있습니다. 예를 들어 hello docker는 Docker Swarm 끝점의 경우 hello toouse hello Docker CLI (명령줄 인터페이스)를 선택할 수 있습니다. DC/OS 용 hello DCOS CLI를 선택할 수 있습니다. Kubernetes의 경우 `kubectl`을 선택할 수 있습니다.
+Azure 컨테이너 서비스를 사용하는 우리의 목표는 현재 우리 고객들 사이에서 인기 있는 오픈 소스 도구 및 기술을 사용하여 컨테이너 호스팅 환경을 제공하는 것입니다. 이를 위해 사용자가 선택한 Orchestrator에 대한 표준 API 끝점을 노출합니다(DC/OS, Docker Swarm 또는 Kubernetes). 이러한 끝점을 사용하면 해당 끝점과 통신할 수 있는 모든 소프트웨어를 활용할 수 있습니다. 예를 들어 Docker Swarm 끝점의 경우 Docker CLI(명령줄 인터페이스)를 사용하도록 선택할 수 있고 DC/OS의 경우 DCOS CLI를 선택할 수 있습니다. Kubernetes의 경우 `kubectl`을 선택할 수 있습니다.
 
 ## <a name="creating-a-docker-cluster-by-using-azure-container-service"></a>Azure 컨테이너 서비스를 사용하여 Docker 클러스터 만들기
-Azure 컨테이너 서비스를 사용 하 여 toobegin hello 포털을 통해 Azure 컨테이너 서비스 클러스터를 배포할 (마켓플레이스 검색 hello에 대 한 **Azure 컨테이너 서비스**), Azure 리소스 관리자 템플릿을 사용 하 여 ([Docker Swarm](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm), [DC/OS](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos), 또는 [Kubernetes](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes)), 또는 hello로 [Azure CLI 2.0](container-service-create-acs-cluster-cli.md)합니다. hello 제공 퀵 스타트 서식 파일 수정된 tooinclude 추가 또는 고급 Azure 구성 될 수 있습니다. 자세한 내용은 [Azure Container Service 클러스터 배포](container-service-deployment.md)를 참조하세요.
+Azure Container Service를 사용하기 시작하려면 포털을 통해(**Azure Container Service**에 대한 Marketplace 검색) Azure Resource Manager 템플릿([Docker Swarm](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm), [DC/OS](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos) 또는 [Kubernetes](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes))을 사용하거나 [Azure CLI 2.0](container-service-create-acs-cluster-cli.md)을 사용하여 Azure Container Service 클러스터를 배포합니다. 추가 또는 고급 Azure 구성을 포함하도록 제공된 빠른 시작 템플릿을 수정할 수 있습니다. 자세한 내용은 [Azure Container Service 클러스터 배포](container-service-deployment.md)를 참조하세요.
 
 ## <a name="deploying-an-application"></a>응용 프로그램 배포
 Azure Container Service는 오케스트레이션을 위해 Docker Swarm, DC/OS 또는 Kubernetes 옵션을 제공합니다. 응용 프로그램을 배포하는 방법은 선택한 Orchestrator에 따라 달라집니다.
 
 ### <a name="using-dcos"></a>DC/OS 사용
-DC/OS는 hello Apache Mesos 분산된 시스템 커널 기반 운영 체제를 배포 합니다. Apache Mesos hello Apache 소프트웨어 Foundation에 있는 컴퓨터의 목록과 hello 중 일부 [에서 가장 큰 이름을 IT](http://mesos.apache.org/documentation/latest/powered-by-mesos/) 사용자 및 참가자입니다.
+DC/OS는 Apache Mesos 분산 시스템 커널을 기반으로 운영 체제를 배포합니다. Apache Mesos는 Apache Software Foundation에 들어있고 [IT 업계에서 가장 유명한 기업](http://mesos.apache.org/documentation/latest/powered-by-mesos/) 일부를 사용자 및 참가자로 나열합니다.
 
 ![에이전트 및 마스터가 표시된 DC/OS에 대해 구성된 Azure Container Service.](media/acs-intro/dcos.png)
 
@@ -55,25 +55,25 @@ DC/OS 및 Apache Mesos는 다음과 같은 인상적인 기능 집합을 포함�
 * 새로운 병렬 응용 프로그램을 개발하기 위한 Java, Python 및 C++ API
 * 클러스터 상태를 볼 수 있는 웹 UI
 
-Azure 컨테이너 서비스에서 실행 중인 DC/OS는 기본적으로 작업을 예약 하기 위한 hello 마라톤 오케스트레이션 플랫폼을 포함 됩니다. 그러나 hello ACS의 DC/OS 배포에 포함 된 hello Mesosphere Universe tooyour 서비스를 추가할 수 있는 서비스입니다. Hello Universe에서에서 서비스에는 Spark, Hadoop, Cassandra, 및 등 포함 됩니다.
+기본적으로 Azure 컨테이너 서비스에서 실행 중인 DC/OS에는 워크로드를 예약하기 위한 Marathon 오케스트레이션 플랫폼이 포함되어 있습니다. 그러나 ACS의 DC/OS 배포에는 서비스에 추가할 수 있는 서비스의 Mesosphere Universe가 포함되어 있습니다. Universe의 서비스에는 Spark, Hadoop, Cassandra 등이 포함되어 있습니다.
 
 ![Azure 컨테이너 서비스의 DC/OS Universe](media/dcos/universe.png)
 
 #### <a name="using-marathon"></a>Marathon 사용
-풀 마라톤은 클러스터 전체 init 및 cgroups-또는 hello 경우 Docker로 포맷 된 컨테이너 Azure 컨테이너 서비스의 서비스 제어 시스템입니다. Marathon은 응용 프로그램을 배포할 수 있는 웹 UI를 제공합니다. 사용자는 배포 시 DNS\_PREFIX 및 REGION이 모두 정의된 `http://DNS_PREFIX.REGION.cloudapp.azure.com`과 유사한 URL에서 웹 UI에 액세스할 수 있습니다. 물론, 사용자는 자체 DNS 이름을 제공할 수도 있습니다. Hello 마라톤 웹 UI를 사용 하 여 컨테이너의 실행에 대 한 자세한 내용은 참조 하십시오. [hello 마라톤 웹 UI 통해 DC/OS 컨테이너 관리](container-service-mesos-marathon-ui.md)합니다.
+Marathon은 cgroups의 서비스 또는 Docker 형식의 컨테이너(Azure 컨테이너 서비스의 경우)에 대한 클러스터 전체 초기화 및 제어 시스템입니다. Marathon은 응용 프로그램을 배포할 수 있는 웹 UI를 제공합니다. 사용자는 배포 시 DNS\_PREFIX 및 REGION이 모두 정의된 `http://DNS_PREFIX.REGION.cloudapp.azure.com`과 유사한 URL에서 웹 UI에 액세스할 수 있습니다. 물론, 사용자는 자체 DNS 이름을 제공할 수도 있습니다. Marathon 웹 UI를 사용하여 컨테이너를 실행하는 방법에 대한 자세한 내용은 [Marathon 웹 UI를 통한 DC/OS 컨테이너 관리](container-service-mesos-marathon-ui.md)를 참조하세요.
 
 ![Marathon 응용 프로그램 목록](media/dcos/marathon-applications-list.png)
 
-또한 풀 마라톤와 통신 하기 위한 hello REST Api를 사용할 수 있습니다. 각 도구에 사용할 수 있는 여러 클라이언트 라이브러리가 있습니다. 다양 한 언어-를 포함 하 고 물론, 모든 언어에서 hello HTTP 프로토콜을 사용할 수 있습니다. 또한 인기 있는 다양한 DevOps 도구는 Marathon에 대한 지원을 제공합니다. Azure 컨테이너 서비스 클러스터를 사용하여 작업하는 경우 운영 팀에 최대의 유연성을 제공합니다. Hello 마라톤 REST API를 사용 하 여 컨테이너의 실행에 대 한 자세한 내용은 참조 하십시오. [hello 마라톤 REST API를 통해 DC/OS 컨테이너 관리](container-service-mesos-marathon-rest.md)합니다.
+또한 Marathon과 통신하기 위해 REST API를 사용할 수 있습니다. 각 도구에 사용할 수 있는 여러 클라이언트 라이브러리가 있습니다. 이러한 라이브러리는 다양한 언어를 지원할 뿐만 아닐라 모든 언어로 된 HTTP 프로토콜을 사용할 수 있습니다. 또한 인기 있는 다양한 DevOps 도구는 Marathon에 대한 지원을 제공합니다. Azure 컨테이너 서비스 클러스터를 사용하여 작업하는 경우 운영 팀에 최대의 유연성을 제공합니다. Marathon REST API를 사용하여 컨테이너를 실행하는 방법에 대한 자세한 내용은 [Marathon REST API를 통한 DC/OS 컨테이너 관리](container-service-mesos-marathon-rest.md)를 참조하세요.
 
 ### <a name="using-docker-swarm"></a>Docker Swarm 사용
-Docker Swarm은 Docker에 대한 네이티브 클러스터링을 제공합니다. Docker는 Docker Swarm 사용 되므로 표준 Docker API hello, 이미 Docker 디먼을와 통신 하는 모든 도구 Azure 컨테이너 서비스에서 웜 tootransparently 눈금 toomultiple 호스트를 사용할 수 있습니다.
+Docker Swarm은 Docker에 대한 네이티브 클러스터링을 제공합니다. Docker Swarm은 표준 Docker API를 준수하므로 이미 Docker 데몬과 통신하는 모든 도구에서 Swarm을 사용하여 Azure 컨테이너 서비스의 여러 호스트에 대해 투명하게 크기를 조정할 수 있습니다.
 
-![Azure 컨테이너 서비스 toouse 웜을 구성합니다.](media/acs-intro/acs-swarm2.png)
+![Swarm을 사용하도록 구성된 Azure Container Service.](media/acs-intro/acs-swarm2.png)
 
 [!INCLUDE [container-service-swarm-mode-note](../../../includes/container-service-swarm-mode-note.md)]
 
-웜 클러스터에서 컨테이너 관리를 위한 지원 되는 도구를 포함 하지만 hello 다음으로 제한 되지 않습니다.
+Swarm 클러스터의 컨테이너를 관리하기 위해 지원된 도구를 포함하지만 다음으로 제한되지 않습니다.
 
 * Dokku
 * Docker CLI 및 Docker Compose
@@ -81,9 +81,9 @@ Docker Swarm은 Docker에 대한 네이티브 클러스터링을 제공합니다
 * Jenkins
 
 ### <a name="using-kubernetes"></a>Kubernetes 사용
-Kubernetes는 인기 있는 프로덕션급 오픈 소스 컨테이너 오케스트레이터 도구입니다. Kubernetes는 컨테이너화된 응용 프로그램의 배포, 크기 조정 및 관리를 자동화합니다. 있기 때문에 오픈 소스 솔루션 hello 오픈 소스 커뮤니티를 통해 생성, Azure 컨테이너 서비스에 원활 하 게 실행 되며 Azure 컨테이너 서비스에서 크기 조정에 사용 되는 toodeploy 컨테이너 될 수 있습니다.
+Kubernetes는 인기 있는 프로덕션급 오픈 소스 컨테이너 오케스트레이터 도구입니다. Kubernetes는 컨테이너화된 응용 프로그램의 배포, 크기 조정 및 관리를 자동화합니다. Kubernetes는 오픈 소스 솔루션이며 오픈 소스 커뮤니티에서 구동하므로 Azure Container Service에서 원활하게 실행되며 이 서비스에서 컨테이너를 대규모로 배포하는 데 사용할 수 있습니다.
 
-![Azure 컨테이너 서비스 toouse Kubernetes를 구성합니다.](media/acs-intro/kubernetes.png)
+![Kubernetes를 사용하도록 구성된 Azure Container Service.](media/acs-intro/kubernetes.png)
 
 여기에는 다음과 같이 풍부한 기능들이 포함되어 있습니다.
 * 수평적 크기 조정
@@ -99,7 +99,7 @@ Azure Container Service 시작(101):
 >
 >
 
-구성 응용 프로그램에서 사용 하 여 hello Azure 컨테이너 서비스 (빌드 2016)
+Azure Container Service를 사용하여 응용 프로그램 빌드(빌드 2016)
 
 > [!VIDEO https://channel9.msdn.com/Events/Build/2016/B822/player]
 >
@@ -107,4 +107,4 @@ Azure Container Service 시작(101):
 
 ## <a name="next-steps"></a>다음 단계
 
-Hello를 사용 하 여 컨테이너 서비스 클러스터 배포 [포털](container-service-deployment.md) 또는 [Azure CLI 2.0](container-service-create-acs-cluster-cli.md)합니다.
+[포털](container-service-deployment.md) 또는 [Azure CLI 2.0](container-service-create-acs-cluster-cli.md)을 사용하여 컨테이너 서비스 클러스터 배포.

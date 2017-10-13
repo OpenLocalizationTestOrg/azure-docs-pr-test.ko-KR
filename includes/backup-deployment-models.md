@@ -1,4 +1,4 @@
-hello Azure 백업 서비스에는 두 가지 유형의 자격 증명 모음-hello 백업 자격 증명 모음 및 hello 복구 서비스 자격 증명 모음에 있습니다. hello 백업 자격 증명 모음 먼저 도착 합니다. 다음 복구 서비스 자격 증명 모음에 hello toosupport 확장 hello 리소스 관리자 배포와 함께 제공 되었습니다. Microsoft에서는 클래식 배포가 특별히 필요한 경우가 아니면 Resource Manager 배포를 사용하도록 권장합니다.
+Azure Backup 서비스에는 Backup 자격 증명 모음과 Recovery Services 자격 증명 모음의 두 가지 자격 증명 모음 유형이 있습니다. Backup 자격 증명 모음을 먼저 제공했습니다. 그런 다음 Recovery Services 자격 증명 모음에서 확장된 Resource Manager 배포가 지원됩니다. Microsoft에서는 클래식 배포가 특별히 필요한 경우가 아니면 Resource Manager 배포를 사용하도록 권장합니다.
 
 | **배포웹사이트를** | **포털** | **자격 증명 모음** |
 | --- | --- | --- |
@@ -6,7 +6,7 @@ hello Azure 백업 서비스에는 두 가지 유형의 자격 증명 모음-hel
 | 리소스 관리자 |[Azure](https://portal.azure.com) |복구 서비스 |
 
 > [!NOTE]
-> 백업 자격 증명 모음을 사용하여 Resource Manager에서 배포한 솔루션을 보호할 수는 없습니다. 그러나 복구 서비스를 사용할 수 있습니다 tooprotect 일반적 배포 된 서버 및 Vm을 자격 증명 모음입니다.  
+> 백업 자격 증명 모음을 사용하여 Resource Manager에서 배포한 솔루션을 보호할 수는 없습니다. 그러나 복구 서비스 자격 증명 모음을 사용하면 클래식 방식으로 배포한 서버와 VM을 보호할 수는 있습니다.  
 > 
 > 
 

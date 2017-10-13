@@ -1,5 +1,5 @@
 ---
-title: "태그에 대 한 리소스 정책을 aaaAzure | Microsoft Docs"
+title: "태그에 대한 Azure 리소스 정책 | Microsoft Docs"
 description: "리소스에서 태그를 관리하기 위한 리소스 정책의 예제 제공"
 services: azure-resource-manager
 documentationcenter: na
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: tomfitz
-ms.openlocfilehash: 5a5b3d5ed52b47544b397694b9da0070f61b1faf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 469bd8d637337e5900ea84c6bfaf88064695fb7e
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="apply-resource-policies-for-tags"></a>태그에 대한 리소스 정책 적용
 
-이 항목에서는 일반적인 정책 규칙 tooensure 일관성 있게 사용 태그의 리소스에 적용할 수 있습니다.
+이 항목에서는 리소스에서 태그의 일관된 사용을 확인하는 데 적용할 수 있는 일반적인 정책 규칙을 제공합니다.
 
-태그 정책 tooa 리소스 그룹이 나 기존 리소스를 사용 하 여 구독에 적용 해도 hello 정책 toothose 리소스 소급 적용 되지 않습니다. 해당 리소스에 대해 tooenforce hello 정책 기존 리소스는 업데이트 toohello를 트리거합니다. 이 문서는 업데이트를 트리거하기 위해 PowerShell 예제를 포함합니다.
+기존 리소스를 사용하는 리소스 그룹 또는 구독에 태그 정책을 적용하면 해당 리소스에 정책을 소급 적용하지 않습니다. 해당 리소스에 대한 정책을 적용하려면 기존 리소스에 대한 업데이트를 트리거합니다. 이 문서는 업데이트를 트리거하기 위해 PowerShell 예제를 포함합니다.
 
 ## <a name="ensure-all-resources-in-a-resource-group-have-a-tagvalue"></a>리소스 그룹의 모든 리소스에 태그/값이 있는지 확인
 
-일반적으로 리소스 그룹의 모든 리소스에 특정 태그 및 값이 있어야 합니다. 이 요구 사항은 부서별로 필요한 tootrack 비용은 경우가 많습니다. hello 다음 조건이 충족 되어야 합니다.
+일반적으로 리소스 그룹의 모든 리소스에 특정 태그 및 값이 있어야 합니다. 이 요구 사항은 부서별로 비용을 추적하는 데 종종 필요합니다. 다음 조건이 충족되어야 합니다.
 
-* hello 필요한 태그 및 값 추가 toonew 하며 hello 태그 되지 않은 리소스를 업데이트 합니다.
-* hello 필수 태그 및 모든 기존 리소스에서 값을 제거할 수 없습니다.
+* 필수 태그 및 값은 태그가 없는 신규 및 업데이트된 리소스에 추가됩니다.
+* 기존 리소스에서 필수 태그 및 값을 제거할 수 없습니다.
 
-두 개의 기본 제공 정책 tooa 리소스 그룹을 적용 하 여 요구이 사항을 충족할 수 있습니다.
+두 가지 기본 제공 정책을 리소스 그룹에 적용하여 이 요구 사항을 달성합니다.
 
 | ID | 설명 |
 | ---- | ---- |
-| 2a0e14a6-b0a6-4fab-991a-187a4f81c498 | Hello 사용자가 지정 되지 않은 경우 필요한 태그 및 값이 기본값으로 적용 됩니다. |
+| 2a0e14a6-b0a6-4fab-991a-187a4f81c498 | 사용자가 지정하지 않으면 필수 태그와 해당 기본값을 적용합니다. |
 | 1e30110a-5ceb-460c-a204-c1c3969c6d62 | 필수 태그와 해당 값을 적용합니다. |
 
 ### <a name="powershell"></a>PowerShell
 
-PowerShell 스크립트 뒤 hello hello 두 가지 기본 제공 정책 정의 tooa 리소스 그룹에 할당 합니다. Hello 스크립트를 실행 하기 전에 모든 필수 태그 toohello 리소스 그룹을 할당 합니다. Hello 리소스 그룹의 각 태그는 hello 그룹에 hello 리소스가 필요 합니다. 구독에서 tooassign tooall 리소스 그룹 hello를 제공 하지 않으면 `-Name` hello 리소스 그룹을 가져올 때 매개 변수입니다.
+다음 PowerShell 스크립트는 리소스 그룹에 두 가지 기본 제공 정책 정의를 할당합니다. 스크립트를 실행하기 전에 리소스 그룹에 모든 필수 태그를 할당합니다. 리소스 그룹의 각 태그는 그룹에 있는 리소스에 필요합니다. 사용자 구독의 모든 리소스 그룹에 할당하려면 리소스 그룹을 가져올 때 `-Name` 매개 변수를 제공하지 마세요.
 
 ```powershell
 $appendpolicy = Get-AzureRmPolicyDefinition | Where-Object {$_.Name -eq '2a0e14a6-b0a6-4fab-991a-187a4f81c498'}
@@ -62,7 +62,7 @@ foreach($rg in $rgs)
 }
 ```
 
-Hello 정책을 할당 한 후 기존 리소스 tooenforce hello 태그 정책을 추가 하는 업데이트 tooall를 트리거할 수 있습니다. hello 다음 스크립트를 유지 hello 리소스에 존재 하는 다른 태그:
+정책을 할당한 후에는 모든 기존 리소스에 업데이트를 트리거하여 추가한 태그 정책을 적용합니다. 다음 스크립트는 리소스에 존재하는 다른 태그를 유지합니다.
 
 ```powershell
 $group = Get-AzureRmResourceGroup -Name "ExampleGroup" 
@@ -81,7 +81,7 @@ foreach($r in $resources)
 ```
 
 ## <a name="require-tags-for-a-resource-type"></a>리소스 유형에 대한 태그 요구
-다음 예제는 hello toonest 논리 연산자 toorequire 응용 프로그램 (이 경우 저장소 계정)에 지정 된 리소스 형식에 대 한 태그 하는 방법을 보여 줍니다.
+아래 예제에서는 특정 리소스 유형(이 경우, 저장소 계정)에만 응용 프로그램 태그를 요구하도록 논리 연산자를 중첩하는 방법을 보여 줍니다.
 
 ```json
 {
@@ -106,7 +106,7 @@ foreach($r in $resources)
 ```
 
 ## <a name="require-tag"></a>태그 요구
-hello 다음 정책을 요청 거부 (모든 값을 적용할 수 있습니다.) "costCenter" 키를 포함 하는 태그 되지 않은:
+아래 정책은 "costCenter" 키(모든 값을 적용할 수 있음)를 포함하고 있는 태그가 없는 요청을 거부합니다.
 
 ```json
 {
@@ -123,7 +123,7 @@ hello 다음 정책을 요청 거부 (모든 값을 적용할 수 있습니다.)
 ```
 
 ## <a name="next-steps"></a>다음 단계
-* 한 정책 규칙 (에서처럼 앞 예제는 hello)를 정의한 후 toocreate hello 정책 정의 필요 하 고 tooa 범위 할당 합니다. 구독, 리소스 그룹 또는 리소스 hello 범위 될 수 있습니다. hello 포털을 통해 tooassign 정책 참조 [사용 하 여 Azure 포털 tooassign 리소스 정책을 관리 하 고](resource-manager-policy-portal.md)합니다. REST API, PowerShell 또는 Azure CLI를 통해 tooassign 정책을 참조 [지정 하 고 스크립트를 통해 정책을 관리할](resource-manager-policy-create-assign.md)합니다.
-* 소개 tooresource 정책에 대 한 참조 [리소스 정책 개요](resource-manager-policy.md)합니다.
-* 기업에서는 리소스 관리자 tooeffectively 사용 방법에 대 한 지침에 대 한 구독을 관리, 참조 [Azure enterprise 스 캐 폴드-규범적인 구독 거 버 넌 스](resource-manager-subscription-governance.md)합니다.
+* 앞의 예제와 표시된 바와 같이 정책 규칙을 정의한 후에는 정책 정의를 만들고 범위에 할당해야 합니다. 범위는 구독, 리소스 그룹 또는 리소스일 수 있습니다. 포털을 통해 정책을 할당하려면 [Azure Portal을 사용하여 리소스 정책 할당 및 관리](resource-manager-policy-portal.md)를 참조하세요. REST API, PowerShell 또는 Azure CLI를 통해 정책을 할당하려면 [스크립트를 통해 정책 할당 및 관리](resource-manager-policy-create-assign.md)를 참조하세요.
+* 리소스 정책에 대한 소개는 [리소스 정책 개요](resource-manager-policy.md)를 참조하세요.
+* 엔터프라이즈에서 리소스 관리자를 사용하여 구독을 효과적으로 관리할 수 있는 방법에 대한 지침은 [Azure 엔터프라이즈 스캐폴드 - 규범적 구독 거버넌스](resource-manager-subscription-governance.md)를 참조하세요.
 

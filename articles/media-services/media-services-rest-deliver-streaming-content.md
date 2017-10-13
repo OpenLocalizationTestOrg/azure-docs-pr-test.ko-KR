@@ -1,6 +1,6 @@
 ---
-title: "REST를 사용 하 여 aaaPublish Azure 미디어 서비스 콘텐츠"
-description: "자세한 내용은 어떻게 toocreate는 로케이터를 사용 하는 toobuild 스트리밍 URL입니다. hello 코드 REST API를 사용합니다."
+title: "REST를 사용하여 Azure Media Services 콘텐츠 게시"
+description: "스트리밍 URL을 작성하는 데 사용되는 로케이터를 만드는 방법에 대해 알아봅니다. REST API를 사용하는 코드입니다."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: f849e21b3103b9b33bc652e886b2016ea495b19a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d1e0a112040f6aa4cfa9e8c323507b1c0a223f3e
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="publish-azure-media-services-content-using-rest"></a>REST를 사용하여 Azure Media Services 콘텐츠 게시
 > [!div class="op_single_selector"]
@@ -29,40 +29,40 @@ ms.lasthandoff: 10/06/2017
 > 
 
 ## <a name="overview"></a>개요
-적응 비트 전송률 MP4 집합은 주문형 스트리밍 로케이터를 만들고 스트리밍 URL을 작성하여 스트리밍할 수 있습니다. hello [자산 인코딩](media-services-rest-encode-asset.md) 항목을 적응 비트 전송률 MP4 tooencode 설정 하는 방법을 보여 줍니다. 콘텐츠가 암호화되어 있는 경우 [이 항목](media-services-rest-configure-asset-delivery-policy.md) 에서 설명하는 대로 자산 배달 정책을 구성한 후에 로케이터를 만듭니다. 
+적응 비트 전송률 MP4 집합은 주문형 스트리밍 로케이터를 만들고 스트리밍 URL을 작성하여 스트리밍할 수 있습니다. [자산 인코딩](media-services-rest-encode-asset.md) 항목에서는 적응 비트 전송률 MP4 집합으로 인코딩하는 방법을 설명합니다. 콘텐츠가 암호화되어 있는 경우 [이 항목](media-services-rest-configure-asset-delivery-policy.md) 에서 설명하는 대로 자산 배달 정책을 구성한 후에 로케이터를 만듭니다. 
 
-또한 스트리밍 로케이터 toobuild Url 점진적으로 다운로드할 수 있는 지점 tooMP4 파일을 하는 요청 시 사용할 수 있습니다.  
+주문형 스트리밍 로케이터는 점진적으로 다운로드할 수 있는 MP4 파일을 가리키는 URL을 작성하는 데 사용할 수도 있습니다.  
 
-이 항목 방법을 보여 줍니다 toocreate OnDemand 스트리밍 로케이터에 주문 toopublish 자산인 부드러운 스트리밍, MPEG DASH 및 HLS 스트리밍 Url을 빌드합니다. 핫 toobuild 점진적 다운로드 Url도 표시 됩니다.
+이 항목에서는 자산을 게시하고 부드러운 MPEG DASH 및 HLS 스트리밍 URL을 작성하기 위해 OnDemand 스트리밍 로케이터를 만드는 방법을 설명합니다. 또한 점진적 다운로드 URL을 작성하는 핫을 보여 줍니다.
 
-hello [다음](#types) 섹션에서는 hello 해당 값은 사용 되는 열거형 형식 hello REST 호출 합니다.   
+[다음](#types) 섹션에서는 REST 호출에 사용되는 값을 가진 열거형 유형을 보여 줍니다.   
 
 > [!NOTE]
 > 미디어 서비스에서 엔터티에 액세스할 때는 HTTP 요청에서 구체적인 헤더 필드와 값을 설정해야 합니다. 자세한 내용은 [미디어 서비스 REST API 개발 설정](media-services-rest-how-to-use.md)을 참조하세요.
 > 
 
-## <a name="connect-toomedia-services"></a>TooMedia 서비스 연결
+## <a name="connect-to-media-services"></a>미디어 서비스에 연결
 
-AMS API를 참조 하는 tooconnect toohello 방법에 대 한 내용은 [Azure AD 인증 액세스 hello Azure 미디어 서비스 API](media-services-use-aad-auth-to-access-ams-api.md)합니다. 
+AMS API에 연결하는 방법에 대한 자세한 내용은 [Azure AD 인증을 사용하여 Azure Media Services API 액세스](media-services-use-aad-auth-to-access-ams-api.md)를 참조하세요. 
 
 >[!NOTE]
->Toohttps://media.windows.net을 성공적으로 연결한 후 다른 Media Services URI를 지정 하는 301 리디렉션을 받게 됩니다. 후속 호출 toohello 해야 새 URI입니다.
+>https://media.windows.net에 연결하면 다른 미디어 서비스 URI를 지정하는 301 리디렉션을 받게 됩니다. 사용자는 새 URI에 대한 후속 호출을 해야 합니다.
 
 ## <a name="create-an-ondemand-streaming-locator"></a>주문형 스트리밍 로케이터 만들기
-toocreate hello OnDemand 스트리밍 로케이터를 살펴보고 toodo hello 다음 필요한 Url:
+주문형 스트리밍 로케이터를 만들고 URL을 가져오려면 다음을 수행해야 합니다.
 
-1. Hello 콘텐츠 암호화 되어 있으면 액세스 정책을 정의 합니다.
+1. 콘텐츠가 암호화되어 있는 경우 액세스 정책을 정의합니다.
 2. 주문형 스트리밍 로케이터를 만듭니다.
-3. Toostream 하려는 경우 스트리밍 매니페스트 파일 (.ism) hello 자산에 hello를 가져옵니다. 
+3. 스트리밍하려는 경우 자산의 스트리밍 매니페스트 파일(.ism)을 가져옵니다. 
    
-   Tooprogressively 다운로드 하려는 경우에 hello 자산에서 MP4 파일의 hello 이름을 가져옵니다. 
-4. Url toohello 매니페스트 파일 또는 MP4 파일을 빌드하십시오. 
+   점진적으로 다운로드하려는 경우 자산의 MP4 파일의 이름을 가져옵니다. 
+4. 매니페스트 파일 또는 MP4 파일에 URL을 작성합니다. 
 5. 쓰기 또는 삭제 권한을 포함하는 AccessPolicy를 사용하여 스트리밍 로케이터를 만들 수 없습니다.
 
 ### <a name="create-an-access-policy"></a>액세스 정책 만들기
 
 >[!NOTE]
->다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다. Hello를 사용 해야 항상 사용 하는 경우 동일한 정책 ID hello 동일 일 / 액세스 하는 로케이터가 있는 원위치에서 의도 한 tooremain 오랜 시간 동안 (비-업로드 정책)는에 대 한 예를 들어 정책을 사용 권한. 자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.
+>다른 AMS 정책(예: 로케이터 정책 또는 ContentKeyAuthorizationPolicy의 경우)은 1,000,000개의 정책으로 제한됩니다. 항상 같은 날짜/액세스 권한을 사용하는 경우(예: 비 업로드 정책처럼 오랫동안 배치되는 로케이터에 대한 정책) 동일한 정책 ID를 사용해야 합니다. 자세한 내용은 [이 항목](media-services-dotnet-manage-entities.md#limit-access-policies) 을 참조하세요.
 
 요청:
 
@@ -100,7 +100,7 @@ toocreate hello OnDemand 스트리밍 로케이터를 살펴보고 toodo hello �
     {"odata.metadata":"https://media.windows.net/api/$metadata#AccessPolicies/@Element","Id":"nb:pid:UUID:69c80d98-7830-407f-a9af-e25f4b0d3e5f","Created":"2015-02-18T06:52:09.8862191Z","LastModified":"2015-02-18T06:52:09.8862191Z","Name":"access policy","DurationInMinutes":43200.0,"Permissions":1}
 
 ### <a name="create-an-ondemand-streaming-locator"></a>주문형 스트리밍 로케이터 만들기
-지정 된 자산 hello 및 자산 정책에 대 한 hello 로케이터를 만듭니다.
+지정된 자산 및 자산 정책에 대한 로케이터를 만듭니다.
 
 요청:
 
@@ -138,7 +138,7 @@ toocreate hello OnDemand 스트리밍 로케이터를 살펴보고 toodo hello �
     {"odata.metadata":"https://media.windows.net/api/$metadata#Locators/@Element","Id":"nb:lid:UUID:be245661-2bbd-4fc6-b14f-9cf9a1492e5e","ExpirationDateTime":"2015-03-20T06:34:47.267872+00:00","Type":2,"Path":"http://amstest1.streaming.mediaservices.windows.net/be245661-2bbd-4fc6-b14f-9cf9a1492e5e/","BaseUri":"http://amstest1.streaming.mediaservices.windows.net","ContentAccessComponent":"be245661-2bbd-4fc6-b14f-9cf9a1492e5e","AccessPolicyId":"nb:pid:UUID:1480030d-c481-430a-9687-535c6a5cb272","AssetId":"nb:cid:UUID:cc1e445d-1500-80bd-538e-f1e4b71b465e","StartTime":"2015-02-18T06:34:47.267872+00:00","Name":null}
 
 ### <a name="build-streaming-urls"></a>스트리밍 URL 작성
-사용 하 여 hello **경로** 부드러운 스트리밍, HLS 및 MPEG DASH Url hello 로케이터 toobuild hello hello 만든 후 반환 된 값입니다. 
+로케이터를 만든 후 반환된 **경로** 값을 사용하여 부드러운 HLS 및 MPEG DASH URL을 작성합니다. 
 
 부드러운 스트리밍: **경로** + 매니페스트 파일 이름 + "/manifest"
 
@@ -161,7 +161,7 @@ DASH: **경로** + 매니페스트 파일 이름 + "/ manifest(format=mpd-time-c
 
 
 ### <a name="build-progressive-download-urls"></a>점진적 다운로드 URL 작성
-사용 하 여 hello **경로** hello hello toobuild hello 점진적 다운로드 URL locator 만든 후 반환 된 값입니다.   
+로케이터를 만든 후 반환된 **경로** 값을 사용하여 점진적 다운로드 URL을 작성합니다.   
 
 URL: **경로** + 자산 파일 mp4 이름
 

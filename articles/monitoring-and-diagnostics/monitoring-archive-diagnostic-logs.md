@@ -1,6 +1,6 @@
 ---
-title: "Azure 진단 로그 aaaArchive | Microsoft Docs"
-description: "어떻게 tooarchive 프로그램 Azure 로그 진단 로그를 저장소 계정에 대 한 장기 보존을 위해에 대해 알아봅니다."
+title: "Azure 진단 로그 보관 | Microsoft Docs"
+description: "저장소 계정에 장기 보존을 위해 Azure 진단 로그를 보관하는 방법에 대해 알아봅니다."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: johnkem
-ms.openlocfilehash: bc9edbd3a649023a728b7fe77130dba2b6e6370d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dbc5f89001dcb6cd1ab061cb0a9632e4e5d2c1c7
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="archive-azure-diagnostic-logs"></a>Azure 진단 로그 보관
-CLI hello Azure 포털, PowerShell Cmdlet을 사용 하거나 REST API tooarchive 하는 방법 알아보겠습니다이 문서에서는 프로그램 [Azure 진단 로그](monitoring-overview-of-diagnostic-logs.md) 저장소 계정에 있습니다. 이 옵션은 감사, 정적 분석 또는 백업에 대 한 선택적 보존 정책을 사용 하 여 진단 기록 tooretain 원하는 경우에 유용 합니다. 저장소 계정 hello이 없는 toobe hello hello 설정을 구성 하는 hello 사용자에 게 적합 한 RBAC 액세스 tooboth 구독으로 로그를 내보내는 hello 리소스와 같은 구독 합니다.
+이 문서에서는 Azure Portal, PowerShell Cmdlet, CLI 또는 REST API를 사용하여 저장소 계정에서 [Azure 진단 로그](monitoring-overview-of-diagnostic-logs.md)를 보관하는 방법을 보여 줍니다. 이 옵션은 감사, 정적 분석 또는 백업을 위해 옵션 보존 정책으로 진단 로그를 유지하려는 경우에 유용합니다. 설정을 구성하는 사용자가 두 구독에 대한 적절한 RBAC 액세스를 가진 경우 저장소 계정은 로그를 내보내는 리소스와 동일한 구독을 가지고 있지 않아도 됩니다.
 
 ## <a name="prerequisites"></a>필수 조건
-시작 하기 전에 해야 너무[저장소 계정 만들기](../storage/storage-create-storage-account.md) toowhich 진단 로그를 보관할 수 있습니다. Toomonitoring 데이터 액세스를 더 잘 제어할 수 있도록에 저장 된 다른, 비 모니터링 데이터가 있는 기존 저장소 계정을 사용 하지 않는 것이 좋습니다. 그러나 또한 보관 하는 경우 작업 로그 및 진단 메트릭은 tooa 저장소 계정, 사항이 감지 toouse 해당 저장소 계정에 진단 로그에 tookeep 모든 모니터링 데이터를 중앙 위치에. hello 사용 하는 저장소 계정에는 일반적인 용도의 스토리지 계정, blob 저장소 계정 이어야 합니다.
+시작하기 전에 진단 로그를 보관할 수 있는 [저장소 계정을 만들어야](../storage/storage-create-storage-account.md) 합니다. 모니터링 데이터에 대한 액세스를 보다 잘 제어할 수 있도록 다른 비 모니터링 데이터가 저장된 기존 저장소 계정을 사용하지 않는 것이 좋습니다. 그러나 저장소 계정에 대한 활동 로그 및 진단 메트릭을 보관하는 경우 중앙 위치에서 모든 모니터링 데이터를 유지하도록 진단 로그에 대해 해당 저장소 계정을 사용하는 것이 합리적일 수 있습니다. 사용하는 저장소 계정은 Blob 저장소 계정이 아닌 범용 저장소 계정이어야 합니다.
 
 ## <a name="diagnostic-settings"></a>진단 설정
-tooarchive 아래 hello 방법 중 하나를 사용 하 여 진단 로그, 설정한 한 **진단 설정** 특정 리소스에 대 한 합니다. 메트릭 데이터 전송 (저장소 계정, 이벤트 허브 네임 스페이스 또는 로그 분석) tooa 대상 및 리소스에 대 한 진단 설정을 hello 범주의 로그를 정의 합니다. 또한 각 로그 범주와 저장소 계정에 저장 된 메트릭 데이터의 이벤트에 대 한 hello 보존 정책 (tooretain 일 수)을 정의 합니다. Toozero 보존 정책이 설정 되어 해당 로그 범주에 대 한 이벤트는 무기한 저장 (즉, toosay 영원히). 그렇지 않은 경우 보존 정책은 1에서 2147483647 사이의 숫자일 수 있습니다. [진단 설정에 대한 자세한 내용은 여기에서 확인할 수 있습니다](monitoring-overview-of-diagnostic-logs.md#resource-diagnostic-settings). 보존 정책이 적용 된 매일 많으면 hello 때 종료 시간 (UTC)는 이제 hello 보존 정책을 불가능 hello 날짜 로부터 기록 되므로 삭제 됩니다. 예를 들어 1 일의 보존 정책의 설치한 경우 hello 하루의 오늘 hello 시작 부분에 hello hello 이틀 전에서에서 로그 삭제 됩니다.
+다음 방법 중 하나를 사용하여 진단 로그를 보관하려면 특정 리소스에 대한 **진단 설정**을 지정합니다. 리소스에 대한 진단 설정은 대상에 전송되는 로그 및 메트릭 데이터의 범주를 정의합니다(저장소 계정, Event Hubs 네임스페이스 또는 Log Analytics). 또한 저장소 계정에 저장되는 각 로그 범주 및 메트릭 데이터의 이벤트에 대한 보존 정책(보존할 일 수)을 정의합니다. 보존 정책이 0으로 설정된 경우 해당 로그 범주에 대한 이벤트는 무기한으로(즉, 영원히) 저장됩니다. 그렇지 않은 경우 보존 정책은 1에서 2147483647 사이의 숫자일 수 있습니다. [진단 설정에 대한 자세한 내용은 여기에서 확인할 수 있습니다](monitoring-overview-of-diagnostic-logs.md#resource-diagnostic-settings). 보존 정책은 매일 적용되므로 하루의 마지막에(UTC) 보존 정책이 지난 날의 로그가 삭제됩니다. 예를 들어, 하루의 보존 정책이 있는 경우 오늘 날짜가 시작될 때 하루 전의 로그가 삭제됩니다.
 
-## <a name="archive-diagnostic-logs-using-hello-portal"></a>Hello 포털을 사용 하 여 진단 로그를 보관
-1. Hello 포털 tooAzure 모니터를 탐색 하 고 클릭 **진단 설정**
+## <a name="archive-diagnostic-logs-using-the-portal"></a>포털을 사용하여 진단 로그 보관
+1. 포털에서 Azure Monitor로 이동하고 **진단 설정**을 클릭합니다.
 
     ![Azure Monitor의 모니터링 섹션](media/monitoring-archive-diagnostic-logs/diagnostic-settings-blade.png)
 
-2. 필요에 따라 리소스 그룹 또는 리소스 유형으로 hello 목록을 필터링 하려는 진단 설정 tooset hello 리소스 클릭 합니다.
+2. 필요에 따라 리소스 그룹 또는 리소스 종류를 기준으로 목록을 필터링합니다. 그런 다음 진단 설정을 지정하려는 리소스를 클릭합니다.
 
-3. 선택한 hello 리소스에 설정이 없는 있으면 증명된 toocreate 설정 됩니다. “진단 켜기”를 클릭합니다.
+3. 선택한 리소스에 설정이 없는 경우, 설정을 만들라는 메시지가 표시됩니다. “진단 켜기”를 클릭합니다.
 
    ![진단 설정 추가 - 기존 설정 없음](media/monitoring-archive-diagnostic-logs/diagnostic-settings-none.png)
 
-   Hello 리소스에 대 한 기존 설정을 없을 경우이 리소스에서 이미 구성 되어 있는 설정 목록이 표시 됩니다. “진단 설정 추가”를 클릭합니다.
+   리소스에 기존 설정이 있는 경우 이 리소스에 이미 구성된 설정의 목록이 표시됩니다. “진단 설정 추가”를 클릭합니다.
 
    ![진단 설정 추가 - 기존 설정](media/monitoring-archive-diagnostic-logs/diagnostic-settings-multiple.png)
 
-3. 사용자 설정 이름을 지정 하 고 hello 확인란에 대 한 **tooStorage 계정 내보내기**, 저장소 계정을 선택 합니다. Hello를 사용 하 여 다양 한 일 tooretain 이러한 로그를 필요에 따라 설정 **보존 (일)** 슬라이더 합니다. 0 일의 보존 hello 로그를 무기한으로 저장 합니다.
+3. 설정에 이름을 지정하고  **계정에 내보내기** 확인란을 선택한 다음 저장소 계정을 선택합니다. 필요에 따라 **보존(일)** 슬라이더를 사용하여 이러한 로그를 유지할 일 수를 설정합니다. 0일의 보존은 로그를 무기한 저장합니다.
    
    ![진단 설정 추가 - 기존 설정](media/monitoring-archive-diagnostic-logs/diagnostic-settings-configure.png)
     
 4. **Save**를 클릭합니다.
 
-몇 분 후 hello 새 설정이이 리소스에 대 한 설정의 목록에 표시 되며 진단 로그 보관 된 toothat 저장소 계정으로 새 이벤트 데이터를 생성 합니다.
+몇 분 후 새 설정이 이 리소스에 대한 설정 목록에 표시되고, 새 이벤트 데이터가 생성되는 즉시 진단 로그가 해당 저장소 계정에 보관됩니다.
 
 ## <a name="archive-diagnostic-logs-via-azure-powershell"></a>Azure PowerShell을 통한 진단 로그 보관
 ```
@@ -59,30 +59,30 @@ Set-AzureRmDiagnosticSetting -ResourceId /subscriptions/s1id1234-5679-0123-4567-
 
 | 속성 | 필수 | 설명 |
 | --- | --- | --- |
-| ResourceId |예 |진단 설정을 tooset 원하는 hello 리소스의 리소스 ID입니다. |
-| StorageAccountId |아니요 |Hello 저장소 계정 toowhich 진단 로그의 리소스 ID는 저장 해야 합니다. |
-| 범주 |아니요 |쉼표로 구분 된 목록 로그 범주 tooenable입니다. |
+| ResourceId |예 |진단 설정을 설정하려는 리소스의 리소스 ID입니다. |
+| StorageAccountId |아니요 |진단 로그를 저장할 저장소 계정의 리소스 ID입니다. |
+| 범주 |아니요 |활성화할 로그 범주의 쉼표로 구분된 목록입니다. |
 | 사용 |예 |이 리소스에 대한 진단 활성화 여부를 나타내는 부울입니다. |
 | RetentionEnabled |아니요 |이 리소스에 대한 보존 정책 활성화 여부를 나타내는 부울입니다. |
-| RetentionInDays |아니요 |이벤트를 유지해야 하는 일 수는 1에서 2147483647 사이입니다. 값이 0 hello 로그를 무기한으로 저장 합니다. |
+| RetentionInDays |아니요 |이벤트를 유지해야 하는 일 수는 1에서 2147483647 사이입니다. 0 값은 로그를 무기한 저장합니다. |
 
-## <a name="archive-diagnostic-logs-via-hello-cross-platform-cli"></a>플랫폼 간 CLI hello 통해 진단 로그 보관
+## <a name="archive-diagnostic-logs-via-the-cross-platform-cli"></a>플랫폼 간 CLI를 통한 진단 로그 보관
 ```
 azure insights diagnostic set --resourceId /subscriptions/s1id1234-5679-0123-4567-890123456789/resourceGroups/testresourcegroup/providers/Microsoft.Network/networkSecurityGroups/testnsg --storageId /subscriptions/s1id1234-5679-0123-4567-890123456789/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage –categories networksecuritygroupevent,networksecuritygrouprulecounter --enabled true
 ```
 
 | 속성 | 필수 | 설명 |
 | --- | --- | --- |
-| ResourceId |예 |진단 설정을 tooset 원하는 hello 리소스의 리소스 ID입니다. |
-| storageId |아니요 |Hello 저장소 계정 toowhich 진단 로그의 리소스 ID는 저장 해야 합니다. |
-| 범주 |아니요 |쉼표로 구분 된 목록 로그 범주 tooenable입니다. |
+| ResourceId |예 |진단 설정을 설정하려는 리소스의 리소스 ID입니다. |
+| storageId |아니요 |진단 로그를 저장할 Storage 계정의 리소스 ID입니다. |
+| 범주 |아니요 |활성화할 로그 범주의 쉼표로 구분된 목록입니다. |
 | 사용 |예 |이 리소스에 대한 진단 활성화 여부를 나타내는 부울입니다. |
 
-## <a name="archive-diagnostic-logs-via-hello-rest-api"></a>Hello REST API를 통해 진단 로그 보관
-[이 문서를 참조 하십시오.](https://docs.microsoft.com/rest/api/monitor/servicediagnosticsettings) hello Azure 모니터 REST API를 사용 하 여 진단 설정을 설정 하는 방법에 대 한 내용은 합니다.
+## <a name="archive-diagnostic-logs-via-the-rest-api"></a>REST API를 통한 진단 로그 보관
+Azure Monitor REST API를 사용하여 진단 설정을 설정할 수는 방법에 대한 내용은 [이 문서를 참조](https://docs.microsoft.com/rest/api/monitor/servicediagnosticsettings)하세요.
 
-## <a name="schema-of-diagnostic-logs-in-hello-storage-account"></a>Hello 저장소 계정에 진단 로그의 스키마
-한 아카이브를 설정한 후 사용 하도록 설정한 hello 로그 범주 중 하나에서 이벤트가 발생 하는 즉시 hello 저장소 계정에서 저장소 컨테이너가 만들어집니다. hello 컨테이너 내 blob hello 진단 로그에서 동일한 형식 hello 및 hello 활동 로그를 따릅니다. 이러한 blob의 hello 구조는.
+## <a name="schema-of-diagnostic-logs-in-the-storage-account"></a>저장소 계정의 진단 로그 스키마
+보관을 설정한 후 활성화한 로그 범주 중 하나에서 이벤트가 발생하는 즉시 저장소 계정에 저장소 컨테이너가 만들어집니다. 컨테이너 내의 Blob은 진단 로그 및 활동 로그와 동일한 형식을 따릅니다. 해당 Blob의 구조는 다음과 같습니다.
 
 > insights-logs-{log category name}/resourceId=/SUBSCRIPTIONS/{subscription ID}/RESOURCEGROUPS/{resource group name}/PROVIDERS/{resource provider name}/{resource type}/{resource name}/y={four-digit numeric year}/m={two-digit numeric month}/d={two-digit numeric day}/h={two-digit 24-hour clock hour}/m=00/PT1H.json
 > 
@@ -100,9 +100,9 @@ azure insights diagnostic set --resourceId /subscriptions/s1id1234-5679-0123-456
 > 
 > 
 
-각 PT1H.json blob hello blob URL에 지정 된 hello 시간 이내에 발생 한 이벤트의 JSON blob에 포함 (예를 들어, h = 12). 현재 시간 hello 하는 동안 이벤트는 나타나는 순서 대로 추가 toohello PT1H.json 파일입니다. 분 값 hello (m 00 =)는 항상 00, 이후 진단 로그 이벤트 1 시간 마다 각 blob으로 나뉩니다.
+각 PT1H.json Blob은 Blob URL에 지정된 시간 내에서 발생한 이벤트의 JSON Blob을 포함합니다(예: h=12). 현재 시간 동안 이벤트는 발생하는 순서대로 PT1H.json 파일에 추가됩니다. 진단 로그 이벤트는 시간당 개별 Blob으로 나뉘므로 분 값(m=00)은 항상 00입니다.
 
-Hello PT1H.json 파일 내에서 각 이벤트는이 형식에 따라 레코드"hello" 배열에 저장 됩니다.
+PT1H.json 파일 내에서 각 이벤트는 이 형식에 따라 "레코드" 배열에 저장됩니다.
 
 ```
 {
@@ -129,18 +129,18 @@ Hello PT1H.json 파일 내에서 각 이벤트는이 형식에 따라 레코드"
 
 | 요소 이름 | 설명 |
 | --- | --- |
-| 실시간 |Hello Azure 서비스 처리 hello에서 hello 이벤트가 생성 된 시점의 타임 스탬프는 해당 하는 hello 이벤트를 요청 합니다. |
-| resourceId |Hello의 리소스 ID 리소스를 저하 됩니다. |
-| operationName |Hello 작업의 이름입니다. |
-| 카테고리 |Hello 이벤트의 로그 범주입니다. |
-| properties |설정 `<Key, Value>` hello 이벤트의 hello 세부 정보를 설명 하는 쌍 (예: 사전). |
+| 실시간 |이벤트에 해당하는 요청을 처리한 Azure 서비스에 의해 이벤트가 생성된 타임스탬프입니다. |
+| resourceId |영향을 받는 리소스의 리소스 ID입니다. |
+| operationName |작업의 이름입니다. |
+| 카테고리 |이벤트의 로그 범주입니다. |
+| properties |이벤트에 대한 세부 정보를 설명하는 `<Key, Value>` 쌍의 집합(즉, 사전)입니다. |
 
 > [!NOTE]
-> hello 속성 및 해당 속성의 사용 현황 hello 리소스에 따라 달라질 수 있습니다.
+> 해당 속성의 속성 및 사용은 리소스에 따라 달라질 수 있습니다.
 > 
 > 
 
 ## <a name="next-steps"></a>다음 단계
 * [분석을 위한 Blob 다운로드](../storage/storage-dotnet-how-to-use-blobs.md)
-* [스트림 진단 tooan 이벤트 허브 네임 스페이스를 기록합니다.](monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [Event Hubs 네임스페이스로 진단 로그 스트림](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 * [진단 로그에 대해 자세히 알아보기](monitoring-overview-of-diagnostic-logs.md)

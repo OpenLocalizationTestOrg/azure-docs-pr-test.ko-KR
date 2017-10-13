@@ -1,5 +1,5 @@
 ---
-title: "Azure Analysis Services에서 지원 되는 aaaData 원본 | Microsoft Docs"
+title: "Azure Analysis Services에서 지원되는 데이터 원본 | Microsoft Docs"
 description: "Azure Analysis Services의 데이터 모델에 지원되는 데이터 원본에 대해 설명합니다."
 services: analysis-services
 documentationcenter: 
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: owend
-ms.openlocfilehash: 2902d7d3c3bcf086419822fa826193bd247bde61
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8bd6c3b5a923ce2f3cd0f60af82e59c5cc27cbb4
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="data-sources-supported-in-azure-analysis-services"></a>Azure Analysis Services에서 지원되는 데이터 원본
-Azure Analysis Services 서버 hello 클라우드 및 온-프레미스 조직에서 toodata 원본 연결을 지원합니다. 지원 되는 데이터 원본은 추가로 hello 항상 추가 되 고 됩니다. 자주 확인하세요. 
+Azure Analysis Services는 조직의 클라우드 및 온-프레미스 데이터 원본에 대한 연결을 지원합니다. 지원되는 데이터 원본이 항상 추가되고 있습니다. 자주 확인하세요. 
 
-데이터 원본 hello는 현재 지원 됩니다.
+현재 지원되는 데이터 원본은 다음과 같습니다.
 
 | 클라우드  |
 |---|
@@ -46,15 +46,15 @@ Azure Analysis Services 서버 hello 클라우드 및 온-프레미스 조직에
 \* 테이블 형식 1400 모델에만 해당합니다. 
 
 > [!IMPORTANT]
-> Tooon 온-프레미스 데이터 원본을 사용 하려면 연결 된 [온-프레미스 데이터 게이트웨이](analysis-services-gateway.md) 사용자 환경에서 컴퓨터에 설치 합니다.
+> 온-프레미스 데이터 원본에 연결하려면 사용 중인 환경의 컴퓨터에 [온-프레미스 데이터 게이트웨이](analysis-services-gateway.md)가 설치되어 있어야 합니다.
 
 ## <a name="data-providers"></a>데이터 공급자
 
-Azure Analysis Services에서 데이터 모델 toocertain 데이터 원본에 연결할 때 서로 다른 데이터 공급자를 필요할 수 있습니다. 경우에 따라 테이블 형식 모델 SQL Server Native Client (SQLNCLI11)와 같은 네이티브 공급자를 사용 하 여 toodata 원본 연결 오류를 반환할 수 있습니다.
+특정 데이터 원본에 연결할 때 Azure Analysis Service의 데이터 모델은 서로 다른 데이터 공급자가 필요할 수 있습니다. 경우에 따라 SQL Server Native Client(SQLNCLI11)와 같은 네이티브 공급자를 사용하여 데이터 원본에 연결하는 테이블 형식 모델은 오류를 반환할 수 있습니다.
 
-Tooa 클라우드 데이터를 연결 하는 데이터 모델에 대 한 Azure SQL 데이터베이스 같은 원본, SQLOLEDB 이외의 네이티브 공급자를 사용 하면 오류 메시지가 표시 될 수 있습니다: **"hello provider 'SQLNCLI11.1' 등록 되지 않았습니다."** 네이티브 공급자를 사용 하는 경우 DirectQuery 모델 tooon 온-프레미스 데이터 원본 연결에 있는 경우 오류 메시지가 표시 될 수 있습니다 또는: **"OLE DB 행 집합을 만드는 오류가 발생 했습니다. 'LIMIT' 가까이에 잘못된 구문이 있습니다."**라는 오류 메시지가 나타날 수 있습니다.
+Azure SQL Database 같은 클라우드 데이터 원본에 연결되는 데이터 모델의 경우 SQLOLEDB 이외의 네이티브 공급자를 사용하면 **"'SQLNCLI11.1'은 등록되지 않은 공급자입니다."**라는 오류 메시지가 나타날 수 있습니다. 또는 온-프레미스 데이터 원본에 DirectQuery 모델을 연결한 경우, 네이티브 공급자를 사용하는 경우 **"OLE DB 행 집합을 만드는 데 오류가 발생했습니다. 'LIMIT' 가까이에 잘못된 구문이 있습니다."**라는 오류 메시지가 나타날 수 있습니다.
 
-데이터 원본 공급자에 따라 hello hello 클라우드 또는 온-프레미스에 연결 toodata 소스는 경우 메모리 내 또는 DirectQuery 데이터 모델에 대 한 지원 됩니다.
+다음 데이터 원본 공급자는 클라우드 또는 온-프레미스의 데이터 원본에 연결할 경우 메모리 내 또는 직접 쿼리 데이터 모델에 지원됩니다.
 
 ### <a name="cloud"></a>클라우드
 | **데이터 원본** | **메모리 내** | **DirectQuery** |
@@ -79,16 +79,16 @@ Tooa 클라우드 데이터를 연결 하는 데이터 모델에 대 한 Azure S
 > 
 > 
 
-온-프레미스 SQL Server Analysis Services 테이블 형식 모델 tooAzure Analysis Services를 마이그레이션하는 경우 필요한 toochange hello 공급자 수 있습니다.
+온-프레미스 SQL Server Analysis Services 테이블 형식 모델을 Azure Analysis Services로 마이그레이션하는 경우 공급자를 변경해야 할 수도 있습니다.
 
-**toospecify 데이터 원본 공급자**
+**데이터 원본 공급자를 지정하려면**
 
 1. SSDT > **테이블 형식 모델 탐색기** > **데이터 원본**에서 데이터 원본 연결을 마우스 오른쪽 단추로 클릭한 다음 **데이터 원본 편집**을 클릭합니다.
-2. **연결 편집**, 클릭 **고급** tooopen hello 사전 속성 창.
-3. **고급 속성 설정** > **공급자**, 선택 hello 적절 한 공급자가 다음 합니다.
+2. **연결 편집**에서 **고급**을 클릭하여 고급 속성 창을 엽니다.
+3. **고급 속성 설정** > **공급자**에서 적절한 공급자를 선택합니다.
 
 ## <a name="impersonation"></a>가장
-경우에 따라 필요한 toospecify 다른 가장 계정 수도 있습니다. SSDT 또는 SSMS에서 가장 계정을 지정할 수 있습니다.
+경우에 따라 다른 가장 계정을 지정해야 할 수도 있습니다. SSDT 또는 SSMS에서 가장 계정을 지정할 수 있습니다.
 
 온-프레미스 데이터 원본의 경우:
 
@@ -100,6 +100,6 @@ Tooa 클라우드 데이터를 연결 하는 데이터 모델에 대 한 Azure S
 * SQL 인증을 사용하는 경우 가장은 서비스 계정이어야 합니다.
 
 ## <a name="next-steps"></a>다음 단계
-온-프레미스 데이터 소스를 설정한 경우 수 있는지 tooinstall hello [온-프레미스 게이트웨이](analysis-services-gateway.md)합니다.   
-SSDT 또는 SSMS에서 서버 관리에 대 한 더 toolearn 참조 [서버를 관리할](analysis-services-manage.md)합니다.
+온-프레미스 데이터 원본이 있는 경우 [온-프레미스 게이트웨이](analysis-services-gateway.md)를 설치해야 합니다.   
+SSDT 또는 SSMS에서 서버를 관리하는 방법에 대해 알아보려면 [사용자 서버 관리](analysis-services-manage.md)를 참조하세요.
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy 프로그램 첫 번째 앱 tooCloud Microsoft Azure에서 대장간 | Microsoft Docs"
-description: "응용 프로그램 tooCloud 대장간 Azure에서 배포"
+title: "Microsoft Azure의 Cloud Foundry에 첫 번째 앱 배포 | Microsoft Docs"
+description: "Azure의 Cloud Foundry에 응용 프로그램 배포"
 services: virtual-machines-linux
 documentationcenter: 
 author: seanmck
@@ -16,136 +16,136 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 06/14/2017
 ms.author: seanmck
-ms.openlocfilehash: 878da38f6eabe32a339f02aa0ead811d6e5af9a8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b617127fc0a3f8dcae293e356ea669edcfa5deff
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="deploy-your-first-app-toocloud-foundry-on-microsoft-azure"></a>Microsoft Azure에서 대장간 첫 번째 앱 tooCloud 프로그램 배포
+# <a name="deploy-your-first-app-to-cloud-foundry-on-microsoft-azure"></a>Microsoft Azure의 Cloud Foundry에 첫 번째 앱 배포
 
-[Cloud Foundry](http://cloudfoundry.org)는 Microsoft Azure에서 사용할 수 있는 인기 있는 오픈 소스 응용 프로그램 플랫폼입니다. 이 문서에서는 보여줍니다 어떻게 toodeploy 및 Azure 환경에서 클라우드 대장간에서 응용 프로그램을 관리 합니다.
+[Cloud Foundry](http://cloudfoundry.org)는 Microsoft Azure에서 사용할 수 있는 인기 있는 오픈 소스 응용 프로그램 플랫폼입니다. 이 문서에서는 Azure 환경에서 Cloud Foundry의 응용 프로그램을 배포 및 관리하는 방법을 보여 줍니다.
 
 ## <a name="create-a-cloud-foundry-environment"></a>Cloud Foundry 환경 만들기
 
 Azure에 Cloud Foundry 환경을 만들기 위한 여러 가지 옵션이 있습니다.
 
-- 사용 하 여 hello [중요 클라우드 대장간 제안] [ pcf-azuremarketplace] hello Azure 마켓플레이스 toocreate PCF Ops Manager 및 Service Broker Azure hello를 포함 하는 표준 환경에에서 있습니다. 찾을 수 있습니다 [지침을 완료] [ pcf-azuremarketplace-pivotaldocs] hello 마켓플레이스를 배포 하기 위한 hello 중요 설명서에에서 제공 합니다.
+- Azure Marketplace에서 [Pivotal Cloud Foundry 제품][pcf-azuremarketplace]을 사용하여 PCF Ops Manager 및 Azure Service Broker를 포함하는 표준 환경을 만듭니다. Pivotal 설명서에서 마켓플레이스 제품을 배포하기 위한 [전체 지침][pcf-azuremarketplace-pivotaldocs]을 찾을 수 있습니다.
 - [Pivotal Cloud Foundry를 수동으로 배포][pcf-custom]하여 사용자 지정된 환경을 만듭니다.
-- [Hello 오픈 소스 클라우드 대장간 패키지를 직접 배포] [ oss-cf-bosh] 를 설정 하 여 한 [BOSH](http://bosh.io) hello 클라우드 대장간 환경의 hello 배포를 조정 하는 VM 감독 합니다.
+- [BOSH](http://bosh.io) 디렉터, Cloud Foundry 환경의 배포를 조정하는 VM을 설정하여 [오픈 소스 Cloud Foundry 패키지를 직접 배포][oss-cf-bosh]합니다.
 
 > [!IMPORTANT] 
-> Hello Azure Marketplace에서에서 PCF를 배포 하는 경우 hello SYSTEMDOMAINURL 메모 및 tooaccess hello hello 마켓플레이스 배포 가이드에 설명 되어 있는 중요 응용 프로그램 관리자 hello 관리자 자격 증명이 필요 합니다. 이 자습서에서는 필요한 toocomplete 됩니다. 마켓플레이스 배포 hello SYSTEMDOMAINURL hello 양식 https://system가 있습니다. *ip 주소*. cf.pcfazure.com 합니다.
+> Azure Marketplace에서 PCF를 배포하는 경우 Pivotal 앱 관리자에 액세스하는 데 필요한 SYSTEMDOMAINURL 및 관리자 자격 증명을 적어 둡니다. 둘은 마켓플레이스 배포 가이드에 설명되어 있습니다. 이 자습서를 완료하는 데 필요합니다. 마켓플레이스 배포의 경우 SYSTEMDOMAINURL은 https://system.*ip-address*.cf.pcfazure.com 양식입니다.
 
-## <a name="connect-toohello-cloud-controller"></a>Toohello 클라우드 컨트롤러를 연결 합니다.
+## <a name="connect-to-the-cloud-controller"></a>Cloud Controller에 연결
 
-hello 클라우드 컨트롤러는 배포 하 고 응용 프로그램 관리에 대 한 hello 대 한 주 진입점 지점 tooa 클라우드 대장간 환경입니다. hello 코어 클라우드 컨트롤러 API (CCAPI)는 REST API, 이지만 다양 한 도구를 통해 액세스할 수 있습니다. Hello를 통해 상호 작용 우리는 경우 [클라우드 대장간 CLI][cf-cli]합니다. Windows, Linux, MacOS 등 또는에 hello CLI를 설치할 수 있지만 것도 가능 하다 hello에 미리 설치 된 tooinstall 하지 않으려면 [Azure 클라우드 셸][cloudshell-docs]합니다.
+Cloud Controller는 응용 프로그램 배포 및 관리를 위한 Cloud Foundry 환경에 대한 기본 진입점입니다. 핵심 CCAPI(Cloud Controller API)는 REST API이지만 다양한 도구를 통해 액세스할 수 있습니다. 이 경우 [Cloud Foundry CLI][cf-cli]를 통해 상호 작용합니다. Linux, MacOS 또는 Windows에 CLI를 설치할 수 있지만 전혀 설치하지 않으려는 경우 [Azure Cloud Shell][cloudshell-docs]에 사전 설치할 수 있습니다.
 
-앞에 추가 되는, toolog `api` toohello hello 마켓플레이스 배포에서 얻은 SYSTEMDOMAINURL 합니다. Hello도 포함 해야 hello 기본 배포는 자체 서명 된 인증서를 사용 하므로 `skip-ssl-validation` 전환 합니다.
+로그인하려면 마켓플레이스 배포에서 가져온 SYSTEMDOMAINURL 앞에 `api`를 추가합니다. 기본 배포는 자체 서명된 인증서를 사용하므로 `skip-ssl-validation` 스위치를 포함해야 합니다.
 
 ```bash
 cf login -a https://api.SYSTEMDOMAINURL --skip-ssl-validation
 ```
 
-Toohello 클라우드 컨트롤러에에서 증명된 toolog 됩니다. Hello 마켓플레이스 배포 단계에서 복사한 hello 관리자 계정 자격 증명을 사용 합니다.
+Cloud Controller에 로그인하라는 메시지가 표시됩니다. 마켓플레이스 배포 단계에서 얻은 관리자 계정 자격 증명을 사용합니다.
 
-클라우드 대장간 제공 *조직* 및 *공간* 네임 스페이스 tooisolate hello 팀과 공유 배포 내에서 환경으로 합니다. hello PCF 마켓플레이스 배포 포함 hello 기본 *시스템* org 및 공백 집합 toocontain 같은 hello 자동 크기 조정 서비스 및 hello Azure service broker의 hello 기본 구성 요소를 생성 합니다. 지금은 hello 선택 *시스템* 공간입니다.
+Cloud Foundry는 네임스페이스로 *조직* 및 *공간*을 제공하여 공유 배포 내에서 팀과 환경을 격리합니다. PCF 마켓플레이스 배포는 기본 *시스템* 조직 및 자동 크기 조정 서비스 및 Azure Service Broker와 같은 기본 구성 요소를 포함하도록 만들어진 공간 집합을 포함합니다. 현재로는 *시스템* 공간을 선택합니다.
 
 
 ## <a name="create-an-org-and-space"></a>조직 및 공간 만들기
 
-입력 하는 경우 `cf apps`, hello 시스템 조직 내에서 hello 시스템 공간에 배포 된 시스템 응용 프로그램 집합 표시 
+`cf apps`를 입력하는 경우 시스템 조직 내에서 시스템 공간에 배포된 시스템 응용 프로그램 집합이 표시됩니다. 
 
-Hello를 유지 해야 *시스템* 시스템 응용 프로그램에 대 한 예약 org 만드세요 org 및 공간 toohouse 샘플 응용 프로그램입니다.
+조직 및 공간을 만들어 샘플 응용 프로그램을 저장하도록 시스템 응용 프로그램에 대해 예약된 *시스템* 조직을 유지해야 합니다.
 
 ```bash
 cf create-org myorg
 cf create-space dev -o myorg
 ```
 
-Hello 대상 명령 tooswitch toohello 새 조직 및 공간을 사용 합니다.
+대상 명령을 사용하여 새 조직 및 공간으로 전환합니다.
 
 ```bash
 cf target -o testorg -s dev
 ```
 
-이제 응용 프로그램을 배포 하면 hello 새 조직 및 공간에서 자동으로 생성 됩니다. 현재 tooconfirm hello 새 org/공간에 앱이 없습니다. 입력 `cf apps` 다시 합니다.
+이제 응용 프로그램을 배포할 때 새 조직 및 공간에 자동으로 만들어집니다. 현재 새 조직/공간에 앱이 없는지 확인하려면 `cf apps`를 다시 입력합니다.
 
 > [!NOTE] 
-> 조직 및 공백 및 역할 기반 액세스 제어 (RBAC)에 사용할 수 있습니다 어떻게 하는 방법에 대 한 자세한 내용은 참조 hello [클라우드 대장간 설명서][cf-orgs-spaces-docs]합니다.
+> 조직과 공간 및 RBAC(역할 기반 액세스 제어)에 사용할 수 있는 방법에 대한 자세한 내용 [Cloud Foundry 설명서][cf-orgs-spaces-docs]를 참조하세요.
 
 ## <a name="deploy-an-application"></a>응용 프로그램 배포
 
-Java로 작성 되 고 hello에 따라 Hello ' 봄 ' 클라우드를 호출 하는 샘플 클라우드 대장간 응용 프로그램 사용 [Spring Framework](http://spring.io) 및 [스프링 부팅](http://projects.spring.io/spring-boot/)합니다.
+Java로 작성되며 [Spring Framework](http://spring.io) 및 [Spring Boot](http://projects.spring.io/spring-boot/)를 기반으로 하는 Hello Spring Cloud라는 샘플 Cloud Foundry 응용 프로그램을 사용해 봅시다.
 
-### <a name="clone-hello-hello-spring-cloud-repository"></a>Hello Hello 스프링 클라우드 리포지토리 복제
+### <a name="clone-the-hello-spring-cloud-repository"></a>Hello Spring Cloud 리포지토리 복제
 
-hello Hello 스프링 클라우드 샘플 응용 프로그램은 GitHub에서 사용할 수 있습니다. Tooyour 환경을 복제 하 고 hello 새 디렉터리로 변경 합니다.
+Hello Spring Cloud 샘플 응용 프로그램은 GitHub에서 사용할 수 있습니다. 사용자 환경에 복제하고 새 디렉터리로 변경합니다.
 
 ```bash
 git clone https://github.com/cloudfoundry-samples/hello-spring-cloud
 cd hello-spring-cloud
 ```
 
-### <a name="build-hello-application"></a>Hello 응용 프로그램 빌드
+### <a name="build-the-application"></a>응용 프로그램 빌드
 
-사용 하 여 빌드 hello 앱 [Apache Maven](http://maven.apache.org)합니다.
+[Apache Maven](http://maven.apache.org)을 사용하여 앱을 빌드합니다.
 
 ```bash
 mvn clean package
 ```
 
-### <a name="deploy-hello-application-with-cf-push"></a>Cf 푸시를 통한 hello 응용 프로그램 배포
+### <a name="deploy-the-application-with-cf-push"></a>cf 밀어넣기로 응용 프로그램 배포
 
-대부분 응용 프로그램 tooCloud 대장간을 배포할 수 있습니다 hello를 사용 하 여 `push` 명령:
+`push` 명령을 사용하여 대부분의 응용 프로그램을 Cloud Foundry에 배포할 수 있습니다.
 
 ```bash
 cf push
 ```
 
-때 있습니다 *푸시* 응용 프로그램을 클라우드 대장간 hello 유형의 응용 프로그램 (이 경우 Java 응용 프로그램에서)를 검색 하 고 해당 종속성 (이 경우 hello Spring framework)을에서 식별 합니다. 다음 패키지 모든 toorun 코드 라고 하는 독립 실행형 컨테이너 이미지에 필요한는 *드롭릿*합니다. 마지막으로, 클라우드 대장간 일정 hello 사용자 환경에서 사용할 수 있는 컴퓨터 중 하나에서 응용 프로그램 hello 및 위치에 도달할 수, hello 명령의 hello 출력에서 제공 되는 URL을 만듭니다.
+응용 프로그램을 *밀어넣는* 경우 Cloud Foundry는 응용 프로그램의 유형을 검색하고(이 경우 Java 앱) 해당 종속성을 식별합니다(이 경우 Spring framework). 그런 다음 코드를 *드롭릿*으로 알려진 독립 실행형 컨테이너 이미지로 실행하는 데 필요한 모든 요소를 패키지합니다. 마지막으로 Cloud Foundry는 사용자 환경에서 사용할 수 있는 컴퓨터 중 하나에서 응용 프로그램을 예약하고 접근할 수 있는 URL을 만듭니다. 이는 명령의 출력에서 제공됩니다.
 
 ![cf 밀어넣기 명령의 출력][cf-push-output]
 
-toosee hello hello 스프링 클라우드 응용 프로그램을 브라우저에서 제공 하는 개방형 hello URL:
+hello-spring-cloud 응용 프로그램을 보려면 브라우저에서 제공된 URL을 엽니다.
 
 ![Hello Spring Cloud용 기본 UI][hello-spring-cloud-basic]
 
 > [!NOTE] 
-> toolearn 처리 과정에 대 한 자세한 `cf push`, 참조 [응용 프로그램 준비 된] [ cf-push-docs] hello 클라우드 대장간 설명서에에서 있습니다.
+> `cf push` 처리 과정에 대한 자세한 내용을 보려면 Cloud Foundry 설명서에서 [응용 프로그램 준비 방법][cf-push-docs]을 참조하세요.
 
 ## <a name="view-application-logs"></a>응용 프로그램 로그 보기
 
-이름을 사용 하 여 응용 프로그램에 대 한 hello 클라우드 대장간 CLI tooview 로그를 사용할 수 있습니다.
+Cloud Foundry CLI를 사용하여 해당 이름으로 응용 프로그램에 대한 로그를 볼 수 있습니다.
 
 ```bash
 cf logs hello-spring-cloud
 ```
 
-기본적으로 hello 로깅합니다 명령을 사용 하 여 *꼬리*, 작성 된 대로 새 로그를 보여 주는 합니다. toosee 새 로그 표시 hello 브라우저에서 hello hello 스프링 클라우드 앱을 새로 고칩니다.
+기본적으로 로그 명령은 작성된 대로 새 로그를 보여 주는 *비상 로그*를 사용합니다. 표시되는 새 로그를 보려면 브라우저에서 hello-spring-cloud 앱을 새로 고칩니다.
 
-이미 작성 tooview 로그 추가 hello `recent` 전환:
+이미 작성된 로그를 보려면 `recent` 스위치를 추가합니다.
 
 ```bash
 cf logs --recent hello-spring-cloud
 ```
 
-## <a name="scale-hello-application"></a>배율 hello 응용 프로그램
+## <a name="scale-the-application"></a>응용 프로그램 크기 조정
 
-기본적으로 `cf push`만 응용 프로그램의 단일 인스턴스를 만듭니다. tooensure 고가용성 및 높은 처리량을 위한 확장 가능 응용 프로그램의 인스턴스가 둘 이상 toorun 일반적으로 원하는 합니다. Hello를 사용 하 여 이미 배포 된 응용 프로그램을 쉽게 확장할 수 있습니다 `scale` 명령:
+기본적으로 `cf push`만 응용 프로그램의 단일 인스턴스를 만듭니다. 고가용성을 보장하고 높은 처리량을 위해 규모 확장을 활성화하려면 일반적으로 응용 프로그램의 둘 이상의 인스턴스를 실행합니다. `scale` 명령을 사용하여 이미 배포된 응용 프로그램을 쉽게 확장할 수 있습니다.
 
 ```bash
 cf scale -i 2 hello-spring-cloud
 ```
 
-실행 중인 hello `cf app` 명령 hello 응용 프로그램에 클라우드 대장간은 hello 응용 프로그램의 다른 인스턴스를 만드는 것을 표시 합니다. Hello 응용 프로그램 시작 된 후 클라우드 대장간 부하 분산 트래픽 tooit를 자동으로 시작 합니다.
+응용 프로그램에서 `cf app` 명령을 실행하면 Cloud Foundry가 응용 프로그램의 다른 인스턴스를 만들고 있음을 보여 줍니다. 응용 프로그램이 시작된 후 Cloud Foundry는 트래픽 부하 분산을 자동으로 시작합니다.
 
 
 ## <a name="next-steps"></a>다음 단계
 
-- [읽기 hello 클라우드 대장간 설명서][cloudfoundry-docs]
-- [클라우드 대장간에 대 한 hello Visual Studio Team Services 플러그 인을 설정 합니다.][vsts-plugin]
-- [클라우드 대장간에 대 한 로그 분석 노즐 Microsoft hello를 구성 합니다.][loganalytics-nozzle]
+- [Cloud Foundry 설명서 읽기][cloudfoundry-docs]
+- [Cloud Foundry용 Visual Studio Team Services 플러그인 설정][vsts-plugin]
+- [Cloud Foundry용 Microsoft Log Analytics 노즐 구성][loganalytics-nozzle]
 
 <!-- LINKS -->
 

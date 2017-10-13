@@ -1,5 +1,5 @@
 ---
-title: "예 – aaaDMZ DMZ tooprotect 방화벽과 Nsg로 응용 프로그램을 작성 | Microsoft Docs"
+title: "DMZ 예제 - 방화벽 및 NSG로 응용 프로그램을 보호하는 DMZ 빌드 | Microsoft Docs"
 description: "방화벽 및 NSG(네트워크 보안 그룹)를 사용하여 DMZ 빌드"
 services: virtual-network
 documentationcenter: na
@@ -14,228 +14,228 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/01/2016
 ms.author: jonor;sivae
-ms.openlocfilehash: 18f116dc3897567bff14a509ae8c13f449182bfb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cc0e8a3fa749eb2e6f65ef92c2d3cb404cfc8bc0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="example-2--build-a-dmz-tooprotect-applications-with-a-firewall-and-nsgs"></a>예제 2 – DMZ tooprotect 방화벽과 Nsg로 응용 프로그램을 작성
-[Toohello 보안 모범 사례 페이지 경계를 반환 합니다.][HOME]
+# <a name="example-2--build-a-dmz-to-protect-applications-with-a-firewall-and-nsgs"></a>예 2 - 방화벽 및 NSG로 응용 프로그램을 보호하는 DMZ 빌드
+[보안 경계 모범 사례 페이지로 돌아가기][HOME]
 
-이 예에서는 방화벽, 4개의 Windows Server 및 네트워크 보안 그룹이 포함된 DMZ를 만듭니다. 그는 또한 안내 각각 hello 관련 명령 tooprovide의 각 단계에 대 한 깊은 이해가. 이기도 한 트래픽 시나리오 섹션 tooprovide 심층 분석 하는 단계별 트래픽 hello 계층의 철저 한 방어 기능을 통해 진행 방법 hello DMZ 합니다. 마지막으로 hello references 섹션에는 전체 코드 hello 및 명령 toobuild이 환경 tootest 및 다양 한 시나리오와 실험입니다. 
+이 예에서는 방화벽, 4개의 Windows Server 및 네트워크 보안 그룹이 포함된 DMZ를 만듭니다. 또한 각 단계를 자세히 이해할 수 있도록 각각의 관련 명령에 대해 안내합니다. 트래픽 시나리오 섹션에서는 DMZ에서 방어 계층을 진행하는 방법에 대한 심층적인 단계별 설명도 제공합니다. 마지막으로, 참조 섹션에서는 다양한 시나리오를 사용하여 테스트 및 실험하기 위한 환경을 구축하는 전체 코드와 지침을 제공합니다. 
 
 ![NVA NSG와 인바운드 DMZ][1]
 
 ## <a name="environment-description"></a>환경 설명
-이 예제는 hello 다음을 포함 하는 구독:
+이 예에서는 다음을 포함하는 구독이 있습니다.
 
 * 두 클라우드 서비스: "FrontEnd001" 및 "BackEnd001"
 * "FrontEnd" 및 "BackEnd"의 두 서브넷을 포함하는 가상 네트워크 "CorpNetwork"
-* 적용 된 tooboth 서브넷은 단일 네트워크 보안 그룹
-* 이 예제에서는 Barracuda NextGen 방화벽에서 네트워크 가상 어플라이언스 toohello 프런트 엔드 서브넷 연결
+* 서브넷 모두에 적용되는 단일 네트워크 보안 그룹
+* 네트워크 가상 어플라이언스(이 예제의 경우 프런트 엔드 서브넷에 연결된 Barracuda NextGen Firewall)
 * 응용 프로그램 웹 서버("IIS01")를 나타내는 Windows 서버
 * 응용 프로그램 백 엔드 서버("AppVM01", "AppVM02")를 나타내는 두 Windows 서버
-* DNS 서버("DNS01")를 나타내는 Windows Server
+* DNS 서버("DNS01")를 나타내는 Windows 서버
 
 > [!NOTE]
-> 이 예제에서는 다양 한 다른 네트워크 가상 어플라이언스를이 예제에 사용 될 수는 hello Barracuda NextGen 방화벽을 사용 하지만 합니다.
+> 이 예제에서는 Barracuda NextGen Firewall을 사용하지만 이 예제에 다른 네트워크 가상 어플라이언스를 사용해도 됩니다.
 > 
 > 
 
-아래 hello references 섹션에는 PowerShell 스크립트를 위에서 설명한 hello 환경의 대부분 빌드됩니다 있습니다. 건물 hello Vm 및 가상 네트워크를 hello 예제 스크립트에 의해 수행 하지만이 문서에 자세히 설명에서 하지 설명 되어 있습니다.
+아래 참조 섹션에는 위에서 설명한 대부분의 환경을 빌드할 PowerShell 스크립트가 나와 있습니다. VM 및 가상 네트워크 구축은 예제 스크립트로 수행하지만 이 문서에서는 자세히 설명하지 않습니다.
 
-toobuild hello 환경:
+환경을 구축하려면
 
-1. Hello 네트워크 구성 xml 파일 (이름, 위치 및 IP 주소 toomatch hello 주어진 시나리오에 업데이트) hello references 섹션에 포함 된 저장
-2. Hello 스크립트 toomatch hello 환경 hello 스크립트의 update hello 사용자 변수는 toobe (구독, 서비스 이름 등)에 대해 실행
-3. PowerShell에서 hello 스크립트를 실행 합니다.
+1. 참조 섹션에 포함된 네트워크 구성 xml 파일 저장(지정된 시나리오에 맞게 이름, 위치, IP 주소로 업데이트됨)
+2. 스크립트의 사용자 변수를 스크립트를 실행할 환경에 맞게 업데이트(구독, 서비스 이름 등)
+3. PowerShell에서 스크립트 실행
 
-**참고**: hello PowerShell 스크립트에서에서 표시 하는 hello 지역 hello 네트워크 구성 xml 파일에서 표시 하는 hello 지역 일치 해야 합니다.
+**참고**: PowerShell 스크립트에 표시된 영역은 네트워크 구성 xml 파일에 표시된 영역과 일치해야 합니다.
 
-Hello 스크립트가 성공적으로 실행 되 면 이후 스크립트 단계를 수행 하는 hello는 사용할 수 있습니다.
+스크립트를 성공적으로 실행하면 다음과 같은 사후 스크립트 단계를 수행할 수 있습니다.
 
-1. 이 이라는 hello 섹션에서 설명 되 hello 방화벽 규칙을 설정,: 방화벽 규칙입니다.
-2. 필요에 따라 hello references 섹션에는 두 개의 스크립트 tooset hello 웹 서버와이 DMZ 구성을 테스트 하는 간단한 웹 응용 프로그램 tooallow와 응용 프로그램 서버.
+1. 방화벽 규칙을 설정합니다(아래 방화벽 규칙 섹션에서 설명).
+2. 또는 참조 섹션의 두 스크립트를 사용하여 간단한 웹 응용 프로그램을 사용하는 웹 서버와 앱 서버를 설정하여 이 DMZ 구성을 이용한 테스트를 허용합니다.
 
-hello 다음 섹션에서는 대부분의 hello 스크립트 문 상대 tooNetwork 보안 그룹을 설명 합니다.
+다음 섹션에서는 네트워크 보안 그룹과 관련된 대부분의 스크립트 문에 대해 설명합니다.
 
 ## <a name="network-security-groups-nsg"></a>네트워크 보안 그룹(NSG)
 이 예에서는 NSG 그룹을 빌드한 후 6개의 규칙과 함께 로드합니다. 
 
 > [!TIP]
-> 일반적으로 특정 "Allow" 규칙을 먼저 만든 하 고 보다 일반적인 "거부" 규칙을 마지막 hello 안됩니다. 우선 순위가 할당 된 hello는 규칙이 먼저 평가 결정 합니다. 트래픽 tooapply tooa 특정 규칙 발견 되 면 더 이상 규칙이 평가 됩니다. NSG 규칙의 hello에 적용할 수 측면에서 볼 hello hello 서브넷의 인바운드 또는 아웃 바운드 방향입니다.
+> 일반적으로 특정 "허용" 규칙을 먼저 만든 후 보다 일반적인 "거부" 규칙을 만들어야 합니다. 할당된 우선순위에 따라 먼저 평가할 규칙이 결정됩니다. 특정 규칙에 적용할 트래픽이 발견되면 규칙을 더 이상 평가하지 않습니다. NSG 규칙은 인바운드 또는 아웃바운드 방향으로 적용할 수 있습니다(서브넷 관점에서).
 > 
 > 
 
-선언적 규칙에 따라 hello 인바운드 트래픽에 대 한 빌드 중인:
+선언적으로 인바운드 트래픽에 대해 다음 규칙이 빌드됩니다.
 
 1. 내부 DNS 트래픽(포트 53) 허용됨
-2. RDP 트래픽 (포트 3389 hello 인터넷 tooany VM에서 에서) 허용 됩니다.
-3. Hello 인터넷 toohello NVA (방화벽)에서 HTTP 트래픽 (포트 80)가 허용
-4. (모든 포트) IIS01 tooAppVM1에서 모든 트래픽을 허용합니다
-5. 전체 VNet (두 서브넷)에서 거부 된 hello 인터넷 toohello에서 모든 트래픽 (모든 포트)
-6. Hello 프런트 엔드 서브넷 toohello 백 엔드 서브넷에서 모든 트래픽 (모든 포트) 거부 되었습니다.
+2. 인터넷에서 모든 VM으로 RDP 트래픽(포트 3389) 허용됨
+3. 인터넷에서 NVA(방화벽)로 HTTP 트래픽(포트 80) 허용됨
+4. IIS01에서 AppVM1로 모든 트래픽(모든 포트) 허용됨
+5. 인터넷에서 전체 VNet(두 서브넷)으로 모든 트래픽(모든 포트) 거부됨
+6. 프런트 엔드 서브넷에서 백 엔드 서브넷으로 모든 트래픽(모든 포트) 거부됨
 
-이러한 규칙 바인딩된 tooeach 서브넷이 있는 HTTP 요청을 한 hello 인터넷 toohello 웹 서버에서 바인딩된 경우 모두 규칙 3 (허용)이 고 5 (거부) 적용 하는 것을 히 규칙 3 보다 우선 순위가 규칙 5는 하지 고려해 야 하 고 적용 됩니다. 따라서 toohello 방화벽 hello HTTP 요청 허용 합니다. 동일한 트래픽이 해당 tooreach hello DNS01 서버를 시도 하 고, 규칙 5 (거부) hello 첫 번째 tooapply 및 hello 트래픽 toopass toohello 서버 허용 되지 않는 것입니다. (제외 규칙 1 및 4에서에서 허용 된 트래픽) toohello 백 엔드 서브넷 통하게에서 6 (거부) 블록 hello 프런트 엔드 서브넷 규칙, hello 백 엔드 네트워크 보호는 공격자가 손상 hello에서 웹 응용 프로그램 hello 프런트 엔드, hello 공격자가 있을 경우 제한 된 액세스 toohello 백 엔드 "보호" (만 hello AppVM01 서버에서 노출 tooresources) 네트워크.
+각 서브넷에 바인딩된 이러한 규칙에서는 HTTP 요청이 인터넷에서 웹 서버로 인바운드되는 경우 규칙 3(허용) 및 5(거부)가 모두 적용되지만 규칙 3이 우선순위가 높기 때문에 규칙 3만 적용되고 규칙 5는 진행되지 않습니다. 따라서 방화벽에 대해 HTTP 요청이 허용됩니다. 동일한 트래픽이 DNS01 서버에 도달하려고 시도하는 경우 규칙 5(거부)는 가장 먼저 적용되며 트래픽을 서버에 전달할 수 없습니다. 규칙 6(거부)은 프런트 엔드 서브넷이 백 엔드 서브넷과 통신을 차단합니다(규칙 1 및 4에서 허용된 트래픽 제외)하여 공격자가 프런트 엔드에서 웹 응용 프로그램을 손상시키는 경우 공격자의 "보호된" 백 엔드 네트워크(AppVM01 서버에서 노출되는 리소스만)에 대한 액세스가 제한되므로 백 엔드 네트워크를 보호합니다.
 
-Toohello 아웃 트래픽을 허용 하는 기본 아웃 바운드 규칙이 인터넷 합니다. 이 예에서는 아웃바운드 트래픽을 허용하고 아웃바운드 규칙을 수정하지 않습니다. 양방향에서 트래픽 아래로 toolock, 사용자 정의 된 라우팅 필수가, hello에서 찾을 수 있는 다른 예에 대해서는이 [주요 보안 경계 문서][HOME]합니다.
+인터넷으로 트래픽을 허용하는 기본 아웃바운드 규칙이 있습니다. 이 예에서는 아웃바운드 트래픽을 허용하고 아웃바운드 규칙을 수정하지 않습니다. 양방향에서 트래픽을 잠그려면 사용자 정의 라우팅이 필요하며 [기본 보안 경계 문서][HOME]에 있는 다양한 예에서 이에 대해 살펴봅니다.
 
-위의 설명 hello NSG 규칙에서 매우 유사한 toohello NSG 규칙은 [예제 1-Nsg 간단한 DMZ 빌드][Example1]합니다. 자세히 살펴보려면 각 NSG 규칙 및 해당 특성에 대 한 해당 문서의 hello NSG 설명을 검토 하십시오.
+위에서 설명한 NSG 규칙은 [예 1 - NSG를 사용하여 간단한 DMZ 빌드][Example1]의 NSG 규칙과 매우 유사합니다. 이 문서의 NSG 설명을 검토하여 각 NSG 규칙 및 해당 특성에 대해 자세히 살펴봅니다.
 
 ## <a name="firewall-rules"></a>방화벽 규칙
-관리 클라이언트에서는 toobe PC toomanage hello 방화벽에 설치 되어 있어야 하 고 필요한 hello 구성을 만듭니다. 어떻게 toomanage hello 장치에 hello 설명서 방화벽 (또는 다른 NVA)에서 공급 업체를 참조 하십시오. 이 섹션의 나머지 부분은 hello hello 공급 업체 관리 클라이언트 (즉, 하지 hello Azure 포털 또는 PowerShell)를 통해 자체 hello 방화벽의 hello 구성에 설명 합니다.
+관리 클라이언트를 PC에 설치하여 방화벽을 관리하고 필요에 따라 구성을 만들어야 합니다. 장치를 관리하는 방법은 방화벽(또는 다른 NVA) 공급업체의 설명서를 참조하세요. 이 섹션의 나머지 부분에서는 공급업체 관리 클라이언트(예: Azure 포털 또는 PowerShell 아님)를 통한 방화벽 자체 구성에 대해 설명합니다.
 
-클라이언트 다운로드 및 연결 toohello Barracuda이 예에서 사용에 대 한 지침은 여기: [Barracuda NG 관리자](https://techlib.barracuda.com/NG61/NGAdmin)
+이 예에 사용된 클라이언트 다운로드 및 Barracuda 연결에 대한 지침은 [Barracuda NG Admin](https://techlib.barracuda.com/NG61/NGAdmin)
 
-Hello 방화벽에서 전달 규칙 toobe 생성 해야 합니다. 하나의 전달 NAT 규칙은이 예에서는 인터넷 트래픽 inbound toohello 방화벽 및 웹 서버 toohello 라우트, 하므로 필요 합니다. 이 예제에서는 hello에 사용 된 Barracuda NextGen 방화벽 hello에 규칙 것 대상 NAT 규칙 ("Dst NAT") toopass이이 트래픽을입니다.
+방화벽에서 전달 규칙을 만들어야 합니다. 이 예에서는 인터넷 트래픽 인바운드를 방화벽으로 라우팅한 후 웹 서버로 라우팅하므로 하나의 전달 NAT 규칙만 필요합니다. 이 예제에 사용된 Barracuda NextGen Firewall에서 규칙은 이 트래픽을 전달하기 위한 대상 NAT 규칙("Dst NAT")입니다.
 
-toocreate hello 다음 규칙 (또는 기존 기본 규칙 확인) hello Operational 구성 섹션에서 규칙 집합을 toohello 구성 탭 이동 hello Barracuda NG 관리 클라이언트 대시보드를 시작 합니다. 표 호출 하 여 "Main 규칙" hello 방화벽에 대 한 규칙 활성화 및 비활성화 된 기존 hello를 표시 됩니다. Hello 오른쪽 상단의이 눈금은 작은 녹색 "+" 단추를 클릭이 toocreate 새 규칙 (참고: 방화벽 "잠겨" 변경에 대 한 단추를 "잠글"으로 표시 하 고는 없습니다 toocreate 또는 규칙 편집을 클릭 표시 되 면이 단추 너무 "잠금 해제" hello, ruleset 편집). 기존 규칙 tooedit을 원한다 해당 규칙을 선택, 마우스 오른쪽 단추로 클릭 하 고 편집할 규칙을 선택 합니다.
+다음 규칙을 만들거나 기존 기본 규칙을 확인하려면 Barracuda NG Admin 클라이언트 대시보드에서 시작하여 구성 탭으로 이동한 후 작동 구성 섹션에서 규칙 집합을 클릭합니다. "Main Rules"라는 그리드에 방화벽에 대해 기존 활성 및 비활성화된 규칙이 표시됩니다. 이 그리드의 오른쪽 위 모서리에 작은 녹색 "+" 단추를 클릭하여 새 규칙을 만듭니다(참고: 방화벽은 변경에 대해 "잠금" 상태일 수 있으며 "잠금" 단추가 표시되고 규칙을 만들거나 편집할 수 없는 경우 이 단추를 클릭하여 규칙 집합을 "잠금 해제"하고 편집을 허용합니다). 기존 규칙을 편집하려는 경우 해당 규칙을 선택하고 마우스 오른쪽 단추를 클릭한 후 규칙 편집을 선택합니다.
 
 새 규칙을 만들고 "WebTraffic"과 같은 이름을 제공합니다. 
 
-hello 대상 NAT 규칙 아이콘은 다음과 같습니다: ![대상 NAT 아이콘][2]
+대상 NAT 규칙 아이콘은 다음과 같습니다: ![대상 NAT 아이콘][2]
 
-자체 hello 규칙 모양은 다음과 같습니다.
+규칙 자체는 다음과 같이 표시됩니다.
 
 ![방화벽 규칙][3]
 
-여기 적중 hello 방화벽 tooreach HTTP (포트 80 또는 443을 HTTPS)을 시도 하는 모든 인바운드 주소 전송 방화벽의 "DHCP1 로컬 IP" 인터페이스 및 리디렉션된 toohello hello 10.0.1.5의 IP 주소와 웹 서버 hello 합니다. 포트 80 및 포트 80에서 진행 중인 toohello 웹 서버에서 들어오는 hello 트래픽 이후 포트 변경 안 함이 필요 했습니다. 그러나 hello 대상 목록 했을 수 10.0.1.5:8080 포트 8080 따라서 변환에 웹 서버 수신 대기 하는 경우 인바운드 포트 80 hello 웹 서버에서 방화벽 tooinbound 포트 8080 hello hello 합니다.
+여기서 HTTP(포트 80 또는 HTTPS인 경우 443)에 도달하려고 시도하는 방화벽을 호출하는 모든 인바운드 주소는 방화벽의 "DHCP1 로컬 IP" 인터페이스로 전송되고 IP 주소 10.0.1.5의 웹 서버로 리디렉션됩니다. 트래픽이 포트 80에서 들어오고 포트 80에서 웹 서버로 나가므로 포트 변경이 필요하지 않습니다. 그러나 웹 서버가 포트 8080을 수신 대기하는 경우 대상 목록은 10.0.1.5:8080일 수 있으므로 방화벽에서 인바운드 포트 80을 웹 서버에서 인바운드 포트 8080으로 변환합니다.
 
-연결 방법은 해야도 수 표시를 hello 인터넷에서에서 대상 규칙 hello에 대 한 "동적 SNAT"는 가장 적합 합니다. 
+연결 방법을 나타내야 하며 인터넷의 대상 규칙에 대해 "동적 SNAT"가 가장 적합합니다. 
 
-하나의 규칙만 만들어지지만 우선순위가 바르게 설정되는 것이 중요합니다. Hello 방화벽에 대 한 모든 규칙의 hello 그리드에서 ("hello"BLOCKALL"규칙) 아래 hello 아래쪽에 새이 규칙은에 발생 하지 않습니다. 웹 트래픽에 대 한 hello 새로 만든 규칙 hello BLOCKALL 규칙 보다 높은 지 확인 합니다.
+하나의 규칙만 만들어지지만 우선순위가 바르게 설정되는 것이 중요합니다. 방화벽의 모든 규칙에 대한 그리드에서 이 새로운 규칙은 맨 아래("BLOCKALL" 규칙 아래)에 있으며 진행되지 않습니다. 웹 트래픽에 대해 새로 만든 규칙이 BLOCKALL 규칙 위에 있는지 확인합니다.
 
-해야 hello 규칙을 만든 후 toohello 방화벽 푸시되 며 다음 처리 되 고 활성화, 이렇게 하지 않으면 hello 규칙 변경 내용이 적용 되지 것입니다. hello 푸시 및 활성화 프로세스는 hello 다음 섹션에 설명 되어 있습니다.
+규칙을 만들었으면 방화벽에 푸시한 후 활성화해야 합니다. 이 작업을 수행하지 않으면 규칙 변경이 적용되지 않습니다. 푸시 및 활성화 프로세스는 다음 섹션에서 설명됩니다.
 
 ## <a name="rule-activation"></a>규칙 활성화
-Hello로 ruleset tooadd이이 규칙을 수정 hello ruleset 해야 toohello 방화벽을 업로드 하 고 활성화 합니다.
+이 규칙을 추가하도록 규칙 집합을 수정하고 규칙 집합을 방화벽에 업로드하고 활성화해야 합니다.
 
 ![방화벽 규칙 활성화][4]
 
-Hello 관리 클라이언트의 오른쪽 상단 모서리 hello 단추의 클러스터가 됩니다. Hello "보낼 변경" 단추 toosend hello 수정 규칙 toohello 방화벽 클릭 hello "활성화" 단추를 클릭 합니다.
+관리 클라이언트의 오른쪽 위 모서리에 단추 클러스터가 있습니다. "변경 내용 보내기" 단추를 클릭하여 규칙을 방화벽으로 전송한 다음 "활성화" 단추를 클릭합니다.
 
-이 예에서는 환경 구축 hello 방화벽 규칙 집합의 정품 인증의 hello 완료 되었습니다. 필요에 따라 hello에 hello 후 빌드 스크립트 참조 섹션 수 실행 tooadd 아래의 트래픽 시나리오는 응용 프로그램 toothis 환경 tootest hello 합니다.
+방화벽 규칙 집합을 활성화하면 이 예제 환경 빌드가 완료된 것입니다. 필요에 따라 참조 섹션의 빌드 후 스크립트를 실행하여 응용 프로그램을 이 환경에 추가하고 아래 트래픽 시나리오를 테스트할 수 있습니다.
 
 > [!IMPORTANT]
-> 것이 중요 한 toorealize는 직접 hello 웹 서버를 하지 적중지 것입니다. 브라우저에서 FrontEnd001.CloudApp.Net HTTP 페이지를 요청 하면이 트래픽을 toohello 방화벽 하지 hello hello HTTP 끝점 (포트 80) 전달 웹 서버입니다. 다음 방화벽 hello toohello 웹 서버를 요청 하는 Nat 위에서 만든 toohello 규칙에 따라 합니다.
+> 웹 서버를 직접 호출하지 않는다는 것을 깨닫는 것이 중요합니다. 브라우저가 FrontEnd001.CloudApp.Net에서 HTTP 페이지를 요청하면 HTTP 끝점(포트 80)이 이 트래픽을 웹 서버가 아닌 방화벽에 전달합니다. 방화벽 다음에는 위에서 만든 규칙에 따라 웹 서버로 요청을 NAT합니다.
 > 
 > 
 
 ## <a name="traffic-scenarios"></a>트래픽 시나리오
-#### <a name="allowed-web-tooweb-server-through-firewall"></a>(사용 가능) 웹 tooWeb 방화벽을 통해 서버
+#### <a name="allowed-web-to-web-server-through-firewall"></a>(허용) 방화벽을 통해 웹 - 웹 서버
 1. 인터넷 사용자가 FrontEnd001.CloudApp.Net에서 HTTP 페이지를 요청합니다(인터넷 연결 클라우드 서비스).
-2. 포트 80 toofirewall 10.0.1.4:80에서 로컬 인터페이스에 대 한 열린 끝점을 통해 클라우드 서비스 전달 트래픽
-3. 프런트 엔드 서브넷에서 인바운드 규칙 처리를 시작합니다.
-   1. Toonext 규칙 이동 NSG 규칙 1 (DNS)를 적용 하지 않습니다.
-   2. Toonext 규칙 이동 NSG 규칙 2 (RDP)를 적용 하지 않습니다.
-   3. NSG 규칙 3 (인터넷 tooFirewall)은 적용, 트래픽은 허용, 중지 규칙 처리
-4. 트래픽은 hello 방화벽 (10.0.1.4)의 내부 IP 주소에 도달
-5. 이 포트 80 트래픽, toohello 웹 서버 IIS01 리디렉션합니다 방화벽 전달 규칙 참조
-6. IIS01 웹 트래픽에 대 한 수신이 요청을 수신 하 고 hello 요청 처리를 시작합니다
-7. IIS01 정보 AppVM01에 SQL Server hello를 요청
-8. 프런트 엔드 서브넷에 아웃바운드 규칙이 없고 트래픽이 허용됩니다.
-9. 인바운드 규칙 처리를 시작 하는 hello 백 엔드 서브넷:
-   1. Toonext 규칙 이동 NSG 규칙 1 (DNS)를 적용 하지 않습니다.
-   2. Toonext 규칙 이동 NSG 규칙 2 (RDP)를 적용 하지 않습니다.
-   3. Toonext 규칙 이동 NSG 규칙 3 (인터넷 tooFirewall) 적용 되지 않습니다
-   4. NSG 규칙 4 (IIS01 tooAppVM01)은 적용, 트래픽은 허용, 중지 규칙 처리
-10. AppVM01 hello SQL 쿼리를 받아 응답
-11. 백 엔드 서브넷 hello 응답 hello에 대 한 없는 아웃 바운드 규칙은 사용할 수 있기 때문
-12. 프런트 엔드 서브넷에서 인바운드 규칙 처리를 시작합니다.
-    1. 사용자에 게 적용 hello NSG 규칙 중 tooInbound 트래픽을 hello 백 엔드 서브넷 toohello 프런트 엔드 서브넷에서 적용 되는 NSG 규칙이 없습니다.
-    2. 서브넷 간의 트래픽을 허용 하는 hello 기본 시스템 규칙이이 트래픽을 하면 hello 트래픽이 허용 됩니다.
-13. hello IIS 서버 hello SQL 응답을 수신 하 고 hello HTTP 응답을 완료 및 toohello 요청자에 게 보냅니다.
-14. Hello 방화벽에 대 한 hello 응답 대상 (처음)은 hello 방화벽에서 NAT 세션 이므로,
-15. hello 방화벽 hello 응답 hello 웹 서버에서에서 주고 받는 백 toohello 인터넷 사용자
-16. 이어서 hello 프런트 엔드 서브넷 hello 응답에 아웃 바운드 규칙이 없습니다 허용 되 고 hello 인터넷 사용자 hello 웹 페이지 요청을 받습니다.
+2. 클라우드 서비스는 포트 80에서 열린 끝점을 통해 10.0.1.4:80에서 방화벽 로컬 인터페이스로 트래픽을 전달합니다.
+3. 프런트엔드 서브넷은 인바운드 규칙 처리를 시작합니다.
+   1. NSG 규칙 1(DNS)이 적용되지 않고 다음 규칙으로 이동합니다.
+   2. NSG 규칙 2(RDP)가 적용되지 않고 다음 규칙으로 이동합니다.
+   3. NSG 규칙 3(인터넷에서 방화벽으로)이 적용되고 트래픽이 허용되며 규칙 처리를 중지합니다.
+4. 트래픽이 방화벽의 내부 IP 주소를 호출합니다(10.0.1.4).
+5. 방화벽 전달 규칙은 이것이 포트 80 트래픽인 것을 확인하고 웹 서버 IIS01로 리디렉션합니다.
+6. IIS01이 웹 트래픽을 수신 대기하고 이 요청을 수신하며 요청 처리를 시작합니다.
+7. IIS01은 AppVM01에서 SQL Server에 정보를 요청합니다.
+8. 프런트엔드 서브넷에 아웃바운드 규칙이 없고 트래픽이 허용됩니다.
+9. 백 엔드 서브넷이 인바운드 규칙 처리를 시작합니다.
+   1. NSG 규칙 1(DNS)이 적용되지 않고 다음 규칙으로 이동합니다.
+   2. NSG 규칙 2(RDP)가 적용되지 않고 다음 규칙으로 이동합니다.
+   3. NSG 규칙 3(인터넷에서 방화벽으로)이 적용되지 않고 다음 규칙으로 이동합니다.
+   4. NSG 규칙 4(IIS01에서 AppVM01로)가 적용되고 트래픽이 허용되며 규칙 처리를 중지합니다.
+10. AppVM01은 SQL 쿼리를 수신하고 응답합니다.
+11. 백 엔드 서브넷에 아웃바운드 규칙이 없으므로 응답이 허용됩니다.
+12. 프런트엔드 서브넷은 인바운드 규칙 처리를 시작합니다.
+    1. 백 엔드 서브넷에서 프런트엔드 서브넷으로 인바운드 트래픽에 적용되는 NSG 규칙이 없으므로 NSG 규칙이 적용되지 않습니다.
+    2. 서브넷 간의 트래픽을 허용하는 기본 시스템 규칙이 이 트래픽을 허용하므로 트래픽이 허용됩니다.
+13. IIS 서버는 SQL 응답을 수신하고 HTTP 응답을 완료하여 요청자에게 보냅니다.
+14. 방화벽으로부터 NAT 세션이므로 응답 대상(처음)은 방화벽을 위한 것입니다.
+15. 방화벽은 웹 서버로부터 응답을 받아 인터넷 사용자에게 다시 전달합니다.
+16. 응답이 허용되는 프런트엔드 서브넷에 아웃바운드 규칙이 없으므로 인터넷 사용자는 요청된 웹 페이지를 수신합니다.
 
-#### <a name="allowed-rdp-toobackend"></a>(사용 가능) RDP tooBackend
-1. 인터넷에서 서버 관리자 요청 BackEnd001.CloudApp.Net:xxxxx 여기서 xxxxx는 RDP tooAppVM01 hello 임의로 할당 된 포트 번호에서 RDP 세션 tooAppVM01 (hello 할당 된 포트를 찾을 수 hello Azure 포털에서 또는 PowerShell을 통해)
-2. 방화벽은 hello FrontEnd001.CloudApp.Net 주소 에서만 수신 대기 하는 hello, 이후이 트래픽 흐름에 포함 되지 않은
+#### <a name="allowed-rdp-to-backend"></a>(허용) RDP - 백 엔드
+1. 인터넷의 서버 관리자는 BackEnd001.CloudApp.Net:xxxxx에서 AppVM01에 대해 RDP 세션을 요청합니다.여기서 xxxxx는 RDP에 대해 AppVM01로 임의로 할당된 포트 번호입니다(할당된 포트는 Azure 포털 또는 PowerShell을 통해 확인할 수 있음).
+2. 방화벽은 FrontEnd001.CloudApp.Net 주소만 수신 대기하므로 이 트래픽 흐름에는 포함되지 않습니다.
 3. 백 엔드 서브넷이 인바운드 규칙 처리를 시작합니다.
-   1. Toonext 규칙 이동 NSG 규칙 1 (DNS)를 적용 하지 않습니다.
+   1. NSG 규칙 1(DNS)이 적용되지 않고 다음 규칙으로 이동합니다.
    2. NSG 규칙 2(RDP)가 적용되고 트래픽이 허용되며 규칙 처리를 중지합니다.
 4. 아웃바운드 규칙이 없는 경우 기본 규칙이 적용되고 반환 트래픽이 허용됩니다.
 5. RDP 세션이 사용하도록 설정됩니다.
 6. AppVM01에서 사용자 이름과 암호를 묻습니다.
 
 #### <a name="allowed-web-server-dns-lookup-on-dns-server"></a>(허용) DNS 서버에서 웹 서버 DNS 조회
-1. 웹 www.data.gov 하지만 요구 tooresolve hello 주소에서 데이터 피드 IIS01, 서버 요구 사항입니다.
-2. hello 네트워크 구성을 DNS01 hello VNet 목록에 대 한 (hello 백 엔드 서브넷에 10.0.2.4) hello 주 DNS 서버로 IIS01 보냅니다 hello DNS 요청 tooDNS01
+1. 웹 서버인 IIS01은 www.data.gov에서 데이터 피드를 요구하지만 주소를 확인해야 합니다.
+2. VNet에 대한 네트워크 구성에서 DNS01(백 엔드 서브넷에서 10.0.2.4)을 주 DNS 서버로 나열하며 IIS01은 DNS01로 DNS 요청을 보냅니다.
 3. 프런트 엔드 서브넷에 아웃바운드 규칙이 없고 트래픽이 허용됩니다.
 4. 백 엔드 서브넷이 인바운드 규칙 처리를 시작합니다.
    1. NSG 규칙 1(DNS)이 적용되고 트래픽이 허용되며 규칙 처리를 중지합니다.
-5. DNS 서버 hello 요청 수신
-6. DNS 서버 캐시 hello 주소 없고 루트 DNS 서버 hello에 요청 인터넷
+5. DNS 서버는 요청을 수신합니다.
+6. DNS 서버에는 캐시된 주소가 없고 인터넷에서 루트 DNS 서버를 요청합니다.
 7. 백 엔드 서브넷에 아웃바운드 규칙이 없고 트래픽이 허용됩니다.
-8. 이 세션은 내부적으로 시작 된 이후 인터넷 DNS 서버 응답을 hello 응답이 허용
-9. DNS 서버 hello 응답을 캐시 및 toohello 초기 요청 백 tooIIS01 이벤트에 응답
+8. 이 세션은 내부적으로 시작되었으므로 인터넷 DNS 서버가 응답하고 응답이 허용됩니다.
+9. DNS 서버는 응답을 캐시하고 IIS01에 대한 초기 요청에 다시 응답합니다.
 10. 백 엔드 서브넷에 아웃바운드 규칙이 없고 트래픽이 허용됩니다.
-11. 프런트 엔드 서브넷에서 인바운드 규칙 처리를 시작합니다.
-    1. 사용자에 게 적용 hello NSG 규칙 중 tooInbound 트래픽을 hello 백 엔드 서브넷 toohello 프런트 엔드 서브넷에서 적용 되는 NSG 규칙이 없습니다.
-    2. hello 트래픽이 허용 됩니다 서브넷 간의 트래픽을 허용 하는 hello 기본 시스템 규칙이이 트래픽은 허용
-12. IIS01은 DNS01에서 hello 응답을 받습니다.
+11. 프런트엔드 서브넷은 인바운드 규칙 처리를 시작합니다.
+    1. 백 엔드 서브넷에서 프런트 엔드 서브넷으로 인바운드 트래픽에 적용되는 NSG 규칙이 없으므로 NSG 규칙이 적용되지 않습니다.
+    2. 서브넷 간의 트래픽을 허용하는 기본 시스템 규칙에서 이 트래픽을 허용하므로 트래픽이 허용됩니다.
+12. IIS01은 DNS01에서 응답을 수신합니다.
 
 #### <a name="allowed-web-server-access-file-on-appvm01"></a>(허용) AppVM01에서 웹 서버가 파일 액세스
 1. IIS01은 AppVM01에서 파일을 요청합니다.
 2. 프런트 엔드 서브넷에 아웃바운드 규칙이 없고 트래픽이 허용됩니다.
-3. 인바운드 규칙 처리를 시작 하는 hello 백 엔드 서브넷:
-   1. Toonext 규칙 이동 NSG 규칙 1 (DNS)를 적용 하지 않습니다.
-   2. Toonext 규칙 이동 NSG 규칙 2 (RDP)를 적용 하지 않습니다.
-   3. Toonext 규칙 이동 NSG 규칙 3 (인터넷 tooFirewall) 적용 되지 않습니다
-   4. NSG 규칙 4 (IIS01 tooAppVM01)은 적용, 트래픽은 허용, 중지 규칙 처리
-4. AppVM01은 hello 요청을 받아 파일 (액세스 권한이 부여 가정)를 사용 하 여 응답
-5. 백 엔드 서브넷 hello 응답 hello에 대 한 없는 아웃 바운드 규칙은 사용할 수 있기 때문
-6. 프런트 엔드 서브넷에서 인바운드 규칙 처리를 시작합니다.
-   1. 사용자에 게 적용 hello NSG 규칙 중 tooInbound 트래픽을 hello 백 엔드 서브넷 toohello 프런트 엔드 서브넷에서 적용 되는 NSG 규칙이 없습니다.
-   2. 서브넷 간의 트래픽을 허용 하는 hello 기본 시스템 규칙이이 트래픽을 하면 hello 트래픽이 허용 됩니다.
-7. hello IIS 서버 hello 파일 수신
+3. 백 엔드 서브넷이 인바운드 규칙 처리를 시작합니다.
+   1. NSG 규칙 1(DNS)이 적용되지 않고 다음 규칙으로 이동합니다.
+   2. NSG 규칙 2(RDP)가 적용되지 않고 다음 규칙으로 이동합니다.
+   3. NSG 규칙 3(인터넷에서 방화벽으로)이 적용되지 않고 다음 규칙으로 이동합니다.
+   4. NSG 규칙 4(IIS01에서 AppVM01로)가 적용되고 트래픽이 허용되며 규칙 처리를 중지합니다.
+4. AppVM01이 요청을 받아 파일로 응답합니다(액세스 권한이 부여된 것으로 가정).
+5. 백 엔드 서브넷에 아웃바운드 규칙이 없으므로 응답이 허용됩니다.
+6. 프런트엔드 서브넷은 인바운드 규칙 처리를 시작합니다.
+   1. 백 엔드 서브넷에서 프런트엔드 서브넷으로 인바운드 트래픽에 적용되는 NSG 규칙이 없으므로 NSG 규칙이 적용되지 않습니다.
+   2. 서브넷 간의 트래픽을 허용하는 기본 시스템 규칙이 이 트래픽을 허용하므로 트래픽이 허용됩니다.
+7. IIS 서버가 파일을 수신합니다.
 
-#### <a name="denied-web-direct-tooweb-server"></a>(거부 됨) 직접 tooWeb 웹 서버
-웹 서버 hello, IIS01, 및 hello 방화벽 이후는 hello에 동일한 클라우드 서비스를 공유 hello 동일한 공용 IP 주소입니다. 모든 HTTP 트래픽을 전송할 것 따라서 toohello 방화벽입니다. Hello 요청이 성공적으로 제공 될 것 동안 이동할 수 없습니다 웹 서버 toohello 전달 것을 직접을 정상적으로 hello를 통해 방화벽 먼저 합니다. 참조 hello hello 트래픽 흐름에 대 한이 섹션의 첫 번째 시나리오입니다.
+#### <a name="denied-web-direct-to-web-server"></a>(거부) 웹에서 웹 서버로 직접
+웹 서버인 IIS01과 방화벽은 동일한 클라우드 서비스에 있으므로 동일한 공용 연결 IP 주소를 공유합니다. 따라서 HTTP 트래픽은 방화벽에 전달됩니다. 요청은 성공적으로 처리되지만 웹 서버로 직접 이동할 수 없으며 지정된 대로 방화벽을 통해 먼저 전달됩니다. 트래픽 흐름은 이 섹션의 첫 번째 시나리오를 참조하세요.
 
-#### <a name="denied-web-toobackend-server"></a>(거부 됨) 웹 tooBackend 서버
-1. 인터넷 사용자가 tooaccess hello BackEnd001.CloudApp.Net 서비스를 통해 AppVM01에 있는 파일
-2. 파일 공유에 대 한 열린 끝점을 하나도 있을 경우이 hello 클라우드 서비스에 전달 하는 한 hello 서버에 도달 하지
-3. NSG 규칙 5 (인터넷 tooVNet)이이 트래픽을 차단는 몇 가지 이유로 hello 끝점 열려 인 경우
+#### <a name="denied-web-to-backend-server"></a>(거부) 웹 - 백 엔드 서버
+1. 인터넷 사용자가 BackEnd001.CloudApp.Net 서비스를 통해 AppVM01에서 파일에 액세스하려고 합니다.
+2. 파일 공유를 위해 열린 끝점이 없으므로 클라우드 서비스를 전달하지 않고 서버에 도달하지 않습니다.
+3. 어떤 이유로 끝점이 열린 경우 NSG 규칙 5(인터넷에서 VNet으로)가 이 트래픽을 차단합니다.
 
 #### <a name="denied-web-dns-lookup-on-dns-server"></a>(거부) DNS 서버에서 웹 DNS 조회
-1. 인터넷 사용자가 toolookup hello BackEnd001.CloudApp.Net 서비스를 통해 DNS01에 내부 DNS 레코드
-2. DNS에 대 한 열린 끝점을 하나도 있을 경우이 hello 클라우드 서비스에 전달 하는 한 hello 서버에 도달 하지
-3. NSG 규칙 5 (인터넷 tooVNet)이이 트래픽을 차단는 몇 가지 이유로 hello 끝점 열려 있던 경우 (참고: 규칙 1 (DNS) 같은 두 가지 이유로 적용 되지 않습니다, 첫 번째 hello 소스 주소는 인터넷을 hello,이 규칙은 toohello 적용 됩니다. 또한 지역 VNet으로 hello 원본 이 트래픽이 거부 하지 않습니다 것 이므로 허용 규칙)
+1. 인터넷 사용자가 BackEnd001.CloudApp.Net 서비스를 통해 DNS01에서 내부 DNS 레코드를 조회하려고 합니다.
+2. DNS를 위해 열린 끝점이 없으므로 클라우드 서비스를 전달하지 않고 서버에 도달하지 않습니다.
+3. 어떤 이유로 끝점이 열린 경우 NSG 규칙 5(인터넷에서 VNet으로)가 이 트래픽을 차단합니다(참고: 규칙 1(DNS)은 두 가지 이유로 적용되지 않습니다. 첫째, 원본 주소가 인터넷입니다. 이 규칙은 로컬 VNet에만 원본으로 적용됩니다. 또한 이는 허용 규칙이므로 트래픽을 거부하지 않습니다.)
 
-#### <a name="denied-web-toosql-access-through-firewall"></a>(거부 됨) 방화벽을 통해 웹 tooSQL 액세스
+#### <a name="denied-web-to-sql-access-through-firewall"></a>(거부) 방화벽을 통해 웹에서 SQL 액세스
 1. 인터넷 사용자가 FrontEnd001.CloudApp.Net에서 SQL 데이터를 요청합니다(인터넷 연결 클라우드 서비스).
-2. SQL에 대 한 열린 끝점을 하나도 있을 경우이 hello 클라우드 서비스에 전달 하는 고 hello 방화벽에 도달 하지 않습니다.
-3. 어떤 이유로 끝점 열려 있던 hello 프런트 엔드 서브넷 인바운드 규칙 처리를 시작 합니다.
-   1. Toonext 규칙 이동 NSG 규칙 1 (DNS)를 적용 하지 않습니다.
-   2. Toonext 규칙 이동 NSG 규칙 2 (RDP)를 적용 하지 않습니다.
-   3. NSG 규칙 2 (인터넷 tooFirewall)은 적용, 트래픽은 허용, 중지 규칙 처리
-4. 트래픽은 hello 방화벽 (10.0.1.4)의 내부 IP 주소에 도달
-5. SQL에 대 한 전달 규칙에 방화벽 및 삭제 합니다. hello 트래픽
+2. SQL을 위해 열린 끝점이 없으므로 클라우드 서비스를 전달하지 않고 방화벽에 도달하지 않습니다.
+3. 어떤 이유로 끝점이 열린 경우 프런트엔드 서브넷이 인바운드 규칙 처리를 시작합니다.
+   1. NSG 규칙 1(DNS)이 적용되지 않고 다음 규칙으로 이동합니다.
+   2. NSG 규칙 2(RDP)가 적용되지 않고 다음 규칙으로 이동합니다.
+   3. NSG 규칙 2(인터넷에서 방화벽으로)이 적용되고 트래픽이 허용되며 규칙 처리를 중지합니다.
+4. 트래픽이 방화벽의 내부 IP 주소를 호출합니다(10.0.1.4).
+5. 방화벽에는 SQL에 대한 전달 규칙이 없고 트래픽을 삭제합니다.
 
 ## <a name="conclusion"></a>결론
-이 방법은 방화벽 응용 프로그램을 보호 하 고 hello 백 엔드 서브넷 인바운드 트래픽에서 격리의 비교적 간단 합니다.
+이 방법은 방화벽으로 응용 프로그램을 보호하고 백 엔드 서브넷을 인바운드 트래픽과 격리하는 비교적 직접적인 방법입니다.
 
 네트워크 보안 경계에 대한 더 많은 예와 개요는 [여기][HOME]에서 찾을 수 있습니다.
 
 ## <a name="references"></a>참조
 ### <a name="main-script-and-network-config"></a>기본 스크립트 및 네트워크 구성
-PowerShell 스크립트 파일에 hello 전체 스크립트를 저장 합니다. Hello 네트워크 구성 "NetworkConf2.xml" 라는 파일에 저장 합니다.
-필요에 따라 hello 사용자 정의 변수를 수정 합니다. Hello 스크립트를 실행 한 다음 위의 hello 방화벽 규칙 설정 지침을 따릅니다.
+PowerShell 스크립트 파일에 전체 스크립트를 저장합니다. 네트워크 구성을 "NetworkConf2.xml"이라는 파일에 저장합니다.
+필요에 따라 사용자 정의 변수를 수정합니다. 스크립트를 실행한 다음 위의 방화벽 규칙 설정 지침을 따릅니다.
 
 #### <a name="full-script"></a>전체 스크립트
-이 스크립트는 hello 사용자 정의 변수를 기반 합니다.
+이 스크립트는 사용자 정의 변수를 기반으로 합니다.
 
-1. Tooan Azure 구독 연결
+1. Azure 구독에 연결
 2. 새 저장소 계정 만들기
-3. VNet을 새로 만들고 hello 네트워크 구성 파일에 정의 된 대로 두 서브넷
+3. 네트워크 구성 파일에 정의된 대로 새 VNet 및 두 서브넷 만들기
 4. 4개의 Windows Server VM 빌드
 5. 다음을 포함하여 NSG 구성
    * NSG 만들기
    * 규칙으로 채우기
-   * 바인딩 hello NSG toohello 적절 한 서브넷
+   * 적절한 서브넷에 대해 NSG 바인딩
 
 이 PowerShell 스크립트를 인터넷 연결된 PC 또는 서버에서 로컬로 실행해야 합니다.
 
@@ -254,20 +254,20 @@ PowerShell 스크립트 파일에 hello 전체 스크립트를 저장 합니다.
        - Two new cloud services
        - Two Subnets (FrontEnd and BackEnd subnets)
        - A Network Virtual Appliance (NVA), in this case a Barracuda NextGen Firewall
-       - One server on hello FrontEnd Subnet (plus hello NVA on hello FrontEnd subnet)
-       - Three Servers on hello BackEnd Subnet
-       - Network Security Groups tooallow/deny traffic patterns as declared
+       - One server on the FrontEnd Subnet (plus the NVA on the FrontEnd subnet)
+       - Three Servers on the BackEnd Subnet
+       - Network Security Groups to allow/deny traffic patterns as declared
 
-      Before running script, ensure hello network configuration file is created in
-      hello directory referenced by $NetworkConfigFile variable (or update the
-      variable tooreflect hello path and file name of hello config file being used).
+      Before running script, ensure the network configuration file is created in
+      the directory referenced by $NetworkConfigFile variable (or update the
+      variable to reflect the path and file name of the config file being used).
 
      .Notes
       Security requirements are different for each use case and can be addressed in a
       myriad of ways. Please be sure that any sensitive data or applications are behind
-      hello appropriate layer(s) of protection. This script serves as an example of some
-      of hello techniques that can be used, but should not be used for all scenarios. You
-      are responsible tooassess your security needs and hello appropriate protections
+      the appropriate layer(s) of protection. This script serves as an example of some
+      of the techniques that can be used, but should not be used for all scenarios. You
+      are responsible to assess your security needs and the appropriate protections
       needed, and then effectively implement those protections.
 
       FrontEnd Service (FrontEnd subnet 10.0.1.0/24)
@@ -282,7 +282,7 @@ PowerShell 스크립트 파일에 hello 전체 스크립트를 저장 합니다.
     #>
 
     # Fixed Variables
-        $LocalAdminPwd = Read-Host -Prompt "Enter Local Admin Password toobe used for all VMs"
+        $LocalAdminPwd = Read-Host -Prompt "Enter Local Admin Password to be used for all VMs"
         $VMName = @()
         $ServiceName = @()
         $VMFamily = @()
@@ -292,8 +292,8 @@ PowerShell 스크립트 파일에 hello 전체 스크립트를 저장 합니다.
         $VMIP = @()
 
     # User Defined Global Variables
-      # These should be changes tooreflect your subscription and services
-      # Invalid options will fail in hello validation section
+      # These should be changes to reflect your subscription and services
+      # Invalid options will fail in the validation section
 
       # Subscription Access Details
         $subID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
@@ -323,17 +323,17 @@ PowerShell 스크립트 파일에 hello 전체 스크립트를 저장 합니다.
         $NSGName = "MyVNetSG"
 
     # User Defined VM Specific Config
-        # Note: tooensure proper NSG Rule creation later in this script:
-        #       - hello Web Server must be VM 1
-        #       - hello AppVM1 Server must be VM 2
-        #       - hello DNS server must be VM 4
+        # Note: To ensure proper NSG Rule creation later in this script:
+        #       - The Web Server must be VM 1
+        #       - The AppVM1 Server must be VM 2
+        #       - The DNS server must be VM 4
         #
-        #       Otherwise hello NSG rules in hello last section of this
-        #       script will need toobe changed toomatch hello modified
-        #       VM array numbers ($i) so hello NSG Rule IP addresses
-        #       are aligned toohello associated VM IP addresses.
+        #       Otherwise the NSG rules in the last section of this
+        #       script will need to be changed to match the modified
+        #       VM array numbers ($i) so the NSG Rule IP addresses
+        #       are aligned to the associated VM IP addresses.
 
-        # VM 0 - hello Network Virtual Appliance (NVA)
+        # VM 0 - The Network Virtual Appliance (NVA)
           $VMName += "myFirewall"
           $ServiceName += $FrontEndService
           $VMFamily += "Firewall"
@@ -342,7 +342,7 @@ PowerShell 스크립트 파일에 hello 전체 스크립트를 저장 합니다.
           $SubnetName += $FESubnet
           $VMIP += "10.0.1.4"
 
-        # VM 1 - hello Web Server
+        # VM 1 - The Web Server
           $VMName += "IIS01"
           $ServiceName += $FrontEndService
           $VMFamily += "Windows"
@@ -351,7 +351,7 @@ PowerShell 스크립트 파일에 hello 전체 스크립트를 저장 합니다.
           $SubnetName += $FESubnet
           $VMIP += "10.0.1.5"
 
-        # VM 2 - hello First Appliaction Server
+        # VM 2 - The First Appliaction Server
           $VMName += "AppVM01"
           $ServiceName += $BackEndService
           $VMFamily += "Windows"
@@ -360,7 +360,7 @@ PowerShell 스크립트 파일에 hello 전체 스크립트를 저장 합니다.
           $SubnetName += $BESubnet
           $VMIP += "10.0.2.5"
 
-        # VM 3 - hello Second Appliaction Server
+        # VM 3 - The Second Appliaction Server
           $VMName += "AppVM02"
           $ServiceName += $BackEndService
           $VMFamily += "Windows"
@@ -369,7 +369,7 @@ PowerShell 스크립트 파일에 hello 전체 스크립트를 저장 합니다.
           $SubnetName += $BESubnet
           $VMIP += "10.0.2.6"
 
-        # VM 4 - hello DNS Server
+        # VM 4 - The DNS Server
           $VMName += "DNS01"
           $ServiceName += $BackEndService
           $VMFamily += "Windows"
@@ -395,8 +395,8 @@ PowerShell 스크립트 파일에 hello 전체 스크립트를 저장 합니다.
         Else {Write-Host "Creating Storage Account" -ForegroundColor Cyan 
               New-AzureStorageAccount -Location $DeploymentLocation -StorageAccountName $StorageAccountName}
 
-      # Update Subscription Pointer tooNew Storage Account
-        Write-Host "Updating Subscription Pointer tooNew Storage Account" -ForegroundColor Cyan 
+      # Update Subscription Pointer to New Storage Account
+        Write-Host "Updating Subscription Pointer to New Storage Account" -ForegroundColor Cyan 
         Set-AzureSubscription –SubscriptionId $subID -CurrentStorageAccountName $StorageAccountName -ErrorAction Stop
 
     # Validation
@@ -407,28 +407,28 @@ PowerShell 스크립트 파일에 hello 전체 스크립트를 저장 합니다.
          $FatalError = $true}
 
     If (Test-AzureName -Service -Name $FrontEndService) { 
-        Write-Host "hello FrontEndService service name is already in use, please pick a different service name." -ForegroundColor Yellow
+        Write-Host "The FrontEndService service name is already in use, please pick a different service name." -ForegroundColor Yellow
         $FatalError = $true}
-    Else { Write-Host "hello FrontEndService service name is valid for use." -ForegroundColor Green}
+    Else { Write-Host "The FrontEndService service name is valid for use." -ForegroundColor Green}
 
     If (Test-AzureName -Service -Name $BackEndService) { 
-        Write-Host "hello BackEndService service name is already in use, please pick a different service name." -ForegroundColor Yellow
+        Write-Host "The BackEndService service name is already in use, please pick a different service name." -ForegroundColor Yellow
         $FatalError = $true}
-    Else { Write-Host "hello BackEndService service name is valid for use." -ForegroundColor Green}
+    Else { Write-Host "The BackEndService service name is valid for use." -ForegroundColor Green}
 
     If (-Not (Test-Path $NetworkConfigFile)) { 
-        Write-Host 'hello network config file was not found, please update hello $NetworkConfigFile variable toopoint toohello network config xml file.' -ForegroundColor Yellow
+        Write-Host 'The network config file was not found, please update the $NetworkConfigFile variable to point to the network config xml file.' -ForegroundColor Yellow
         $FatalError = $true}
-    Else { Write-Host "hello network config file was found" -ForegroundColor Green
+    Else { Write-Host "The network config file was found" -ForegroundColor Green
             If (-Not (Select-String -Pattern $DeploymentLocation -Path $NetworkConfigFile)) {
-                Write-Host 'hello deployment location was not found in hello network config file, please check hello network config file tooensure hello $DeploymentLocation varible is correct and hello netowrk config file matches.' -ForegroundColor Yellow
+                Write-Host 'The deployment location was not found in the network config file, please check the network config file to ensure the $DeploymentLocation varible is correct and the netowrk config file matches.' -ForegroundColor Yellow
                 $FatalError = $true}
-            Else { Write-Host "hello deployment location was found in hello network config file." -ForegroundColor Green}}
+            Else { Write-Host "The deployment location was found in the network config file." -ForegroundColor Green}}
 
     If ($FatalError) {
-        Write-Host "A fatal error has occured, please see hello above messages for more information." -ForegroundColor Red
+        Write-Host "A fatal error has occured, please see the above messages for more information." -ForegroundColor Red
         Return}
-    Else { Write-Host "Validation passed, now building hello environment." -ForegroundColor Green}
+    Else { Write-Host "Validation passed, now building the environment." -ForegroundColor Green}
 
     # Create VNET
         Write-Host "Creating VNET" -ForegroundColor Cyan 
@@ -450,16 +450,16 @@ PowerShell 스크립트 파일에 hello 전체 스크립트를 저장 합니다.
                     Set-AzureSubnet  –SubnetNames $SubnetName[$i] | `
                     Set-AzureStaticVNetIP -IPAddress $VMIP[$i] | `
                     New-AzureVM –ServiceName $ServiceName[$i] -VNetName $VNetName -Location $DeploymentLocation
-                # Set up all hello EndPoints we'll need once we're up and running
-                # Note: Web traffic goes through hello firewall, so we'll need tooset up a HTTP endpoint.
-                #       Also, hello firewall will be redirecting web traffic tooa new IP and Port in a
-                #       forwarding rule, so hello HTTP endpoint here will have hello same public and local
-                #       port and hello firewall will do hello NATing and redirection as declared in the
+                # Set up all the EndPoints we'll need once we're up and running
+                # Note: Web traffic goes through the firewall, so we'll need to set up a HTTP endpoint.
+                #       Also, the firewall will be redirecting web traffic to a new IP and Port in a
+                #       forwarding rule, so the HTTP endpoint here will have the same public and local
+                #       port and the firewall will do the NATing and redirection as declared in the
                 #       firewall rule.
                 Add-AzureEndpoint -Name "MgmtPort1" -Protocol tcp -PublicPort 801  -LocalPort 801  -VM (Get-AzureVM -ServiceName $ServiceName[$i] -Name $VMName[$i]) | Update-AzureVM
                 Add-AzureEndpoint -Name "MgmtPort2" -Protocol tcp -PublicPort 807  -LocalPort 807  -VM (Get-AzureVM -ServiceName $ServiceName[$i] -Name $VMName[$i]) | Update-AzureVM
                 Add-AzureEndpoint -Name "HTTP"      -Protocol tcp -PublicPort 80   -LocalPort 80   -VM (Get-AzureVM -ServiceName $ServiceName[$i] -Name $VMName[$i]) | Update-AzureVM
-                # Note: A SSH endpoint is automatically created on port 22 when hello appliance is created.
+                # Note: A SSH endpoint is automatically created on port 22 when the appliance is created.
                 }
             Else
                 {
@@ -476,65 +476,65 @@ PowerShell 스크립트 파일에 hello 전체 스크립트를 저장 합니다.
         }
 
     # Configure NSG
-        Write-Host "Configuring hello Network Security Group (NSG)" -ForegroundColor Cyan
+        Write-Host "Configuring the Network Security Group (NSG)" -ForegroundColor Cyan
 
-      # Build hello NSG
-        Write-Host "Building hello NSG" -ForegroundColor Cyan
+      # Build the NSG
+        Write-Host "Building the NSG" -ForegroundColor Cyan
         New-AzureNetworkSecurityGroup -Name $NSGName -Location $DeploymentLocation -Label "Security group for $VNetName subnets in $DeploymentLocation"
 
       # Add NSG Rules
-        Write-Host "Writing rules into hello NSG" -ForegroundColor Cyan
+        Write-Host "Writing rules into the NSG" -ForegroundColor Cyan
         Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Enable Internal DNS" -Type Inbound -Priority 100 -Action Allow `
             -SourceAddressPrefix VIRTUAL_NETWORK -SourcePortRange '*' `
             -DestinationAddressPrefix $VMIP[4] -DestinationPortRange '53' `
             -Protocol *
 
-        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Enable RDP too$VNetName VNet" -Type Inbound -Priority 110 -Action Allow `
+        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Enable RDP to $VNetName VNet" -Type Inbound -Priority 110 -Action Allow `
             -SourceAddressPrefix INTERNET -SourcePortRange '*' `
             -DestinationAddressPrefix VIRTUAL_NETWORK -DestinationPortRange '3389' `
             -Protocol *
 
-        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Enable Internet too$($VMName[0])" -Type Inbound -Priority 120 -Action Allow `
+        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Enable Internet to $($VMName[0])" -Type Inbound -Priority 120 -Action Allow `
             -SourceAddressPrefix Internet -SourcePortRange '*' `
             -DestinationAddressPrefix $VMIP[0] -DestinationPortRange '*' `
             -Protocol *
 
-        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Enable $($VMName[1]) too$($VMName[2])" -Type Inbound -Priority 130 -Action Allow `
+        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Enable $($VMName[1]) to $($VMName[2])" -Type Inbound -Priority 130 -Action Allow `
             -SourceAddressPrefix $VMIP[1] -SourcePortRange '*' `
             -DestinationAddressPrefix $VMIP[2] -DestinationPortRange '*' `
             -Protocol *
 
-        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Isolate hello $VNetName VNet from hello Internet" -Type Inbound -Priority 140 -Action Deny `
+        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Isolate the $VNetName VNet from the Internet" -Type Inbound -Priority 140 -Action Deny `
             -SourceAddressPrefix INTERNET -SourcePortRange '*' `
             -DestinationAddressPrefix VIRTUAL_NETWORK -DestinationPortRange '*' `
             -Protocol *
 
-        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Isolate hello $FESubnet subnet from hello $BESubnet subnet" -Type Inbound -Priority 150 -Action Deny `
+        Get-AzureNetworkSecurityGroup -Name $NSGName | Set-AzureNetworkSecurityRule -Name "Isolate the $FESubnet subnet from the $BESubnet subnet" -Type Inbound -Priority 150 -Action Deny `
             -SourceAddressPrefix $FEPrefix -SourcePortRange '*' `
             -DestinationAddressPrefix $BEPrefix -DestinationPortRange '*' `
             -Protocol *
 
-        # Assign hello NSG toohello Subnets
-            Write-Host "Binding hello NSG tooboth subnets" -ForegroundColor Cyan
+        # Assign the NSG to the Subnets
+            Write-Host "Binding the NSG to both subnets" -ForegroundColor Cyan
             Set-AzureNetworkSecurityGroupToSubnet -Name $NSGName -SubnetName $FESubnet -VirtualNetworkName $VNetName
             Set-AzureNetworkSecurityGroupToSubnet -Name $NSGName -SubnetName $BESubnet -VirtualNetworkName $VNetName
 
     # Optional Post-script Manual Configuration
       # Configure Firewall
-      # Install Test Web App (Run Post-Build Script on hello IIS Server)
-      # Install Backend resource (Run Post-Build Script on hello AppVM01)
+      # Install Test Web App (Run Post-Build Script on the IIS Server)
+      # Install Backend resource (Run Post-Build Script on the AppVM01)
       Write-Host
       Write-Host "Build Complete!" -ForegroundColor Green
       Write-Host
       Write-Host "Optional Post-script Manual Configuration Steps" -ForegroundColor Gray
       Write-Host " - Configure Firewall" -ForegroundColor Gray
-      Write-Host " - Install Test Web App (Run Post-Build Script on hello IIS Server)" -ForegroundColor Gray
-      Write-Host " - Install Backend resource (Run Post-Build Script on hello AppVM01)" -ForegroundColor Gray
+      Write-Host " - Install Test Web App (Run Post-Build Script on the IIS Server)" -ForegroundColor Gray
+      Write-Host " - Install Backend resource (Run Post-Build Script on the AppVM01)" -ForegroundColor Gray
       Write-Host
 
 
 #### <a name="network-config-file"></a>네트워크 구성 파일
-업데이트 된 위치와이 xml 파일을 저장 하 고 hello 링크 toothis toohello $NetworkConfigFile 변수 위의 hello 스크립트에서 파일을 추가 합니다.
+업데이트된 위치로 이 xml 파일을 저장하고 이 파일에 대한 링크를 위의 스크립트에 있는 $NetworkConfigFile 변수에 추가합니다.
 
     <NetworkConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/ServiceHosting/2011/07/NetworkConfiguration">
       <VirtualNetworkConfiguration>
@@ -567,7 +567,7 @@ PowerShell 스크립트 파일에 hello 전체 스크립트를 저장 합니다.
     </NetworkConfiguration>
 
 #### <a name="sample-application-scripts"></a>샘플 응용 프로그램 스크립트
-Hello 링크에 제공 된다는이 및 다른 DMZ 예제는 예제 응용 프로그램 tooinstall 원하면: [샘플 응용 프로그램 스크립트][SampleApp]
+이에 대한 샘플 응용 프로그램 및 기타 DMZ 예제를 설치하는 방법은 다음 링크를 통해 제공됩니다. [샘플 응용 프로그램 스크립트][SampleApp]
 
 <!--Image References-->
 [1]: ./media/virtual-networks-dmz-nsg-fw-asm/example2design.png "NSG와 인바운드 DMZ"

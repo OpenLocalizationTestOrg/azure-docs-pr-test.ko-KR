@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Active Directory 하이브리드 id 디자인 고려 사항-디렉터리 동기화 요구 사항을 결정 | Microsoft Docs"
-description: "사이의 모든 hello 사용자를 동기화 하는 데 필요한 요구 사항을 식별 내부와 클라우드 hello 엔터프라이즈에 대 한 on = 합니다."
+title: "Azure Active Directory 하이브리드 ID 디자인 고려 사항 - 디렉터리 동기화 요구 사항 확인 | Microsoft Docs"
+description: "기업에 대한 온-프레미스와 클라우드 사이의 모든 사용자를 동기화하는 데 필요한 요구 사항을 식별합니다."
 documentationcenter: 
 services: active-directory
 author: billmath
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 6646e3792c65f37c3d62eecdb6c6f3bd257f04f1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5ef87e606f055359ca325befd6048353ce57ca2b
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="determine-directory-synchronization-requirements"></a>디렉터리 동기화 요구 사항 결정
-모두 동기화는 온-프레미스 id에 따라 hello 클라우드에서 id 사용자에 게 제공 됩니다. 인증 또는 페더레이션된 인증에 대 한 동기화 된 계정을 사용 합니다, 여부 hello 사용자 toohave hello 클라우드에서 id를 계속 해야 합니다.  이 id는 toobe 유지 관리 하 고 정기적으로 업데이트 해야 합니다.  hello 업데이트 제목 변경 toopassword 변경 된 내용에서 다양 한 형태를 걸릴 수 있습니다.  
+동기화는 해당 온-프레미스 ID에 기반하여 클라우드에서 사용자에게 ID를 제공하는 모든 작업입니다. 인증에 대해 동기화된 계정 또는 페더레이션된 인증을 사용하는지와 무관하게 사용자는 클라우드에서 ID가 필요합니다.  이 ID는 정기적으로 유지 관리하고 업데이트해야 합니다.  업데이트는 제목 변경에서 암호 변경까지 다양한 형태일 수 있습니다.  
 
-Hello 조직에서는 온-프레미스 id 솔루션 및 사용자 요구 사항 평가 하 여 시작 합니다. 이 평가 중요 한 toodefine hello 기술 요구 사항에 사용자 id는 생성 및 hello 클라우드에서 유지 관리 방법을 합니다.  하지만 대부분의 조직에 대 한 Active Directory는 온-프레미스 및에서 사용자에 게 hello 온-프레미스 디렉터리에서 동기화 되도록, 일부 경우에이 되지 것입니다 hello 대/소문자입니다.  
+조직 온-프레미스 ID 솔루션 및 사용자 요구 사항을 평가하여 시작합니다. 이 평가판은 사용자 ID가 클라우드에서 생성되고 유지 관리되는 방법에 대한 기술 요구 사항을 정의하는 데 중요합니다.  대부분의 조직의 경우 Active Directory는 온-프레미스이며 사용자가 동기화하는 온-프레미스 디렉터리이지만 경우에 따라 다를 수 있습니다.  
 
-다음 질문 있는지 tooanswer hello를 확인 합니다.
+다음 질문에 답변하세요.
 
 * AD 포리스트가 하나 또는 다수가 있거나 없습니까?
   
@@ -36,35 +36,35 @@ Hello 조직에서는 온-프레미스 id 솔루션 및 사용자 요구 사항 
 * 현재 동기화 도구 온-프레미스가 있습니까?
   
   * 그렇다면 사용자에게 ID의 가상 디렉터리/통합이 있습니까?
-* 모든 다른 디렉터리 온-프레미스 toosynchronize (예: LDAP 디렉터리, HR 데이터베이스 등)을 지정 하 고 있습니까?
-  * 모든 GALSync를 수행 하는 toobe 예정 입니까?
-  * 조직의 Upn의 hello 현재 상태는 무엇입니까? 
+* 동기화하려는 다른 디렉터리 온-프레미스(예: LDAP 디렉터리, HR 데이터베이스 등)가 있습니까?
+  * GALSync를 수행할 것입니까?
+  * 조직에서 UPN의 현재 상태는 무엇입니까? 
   * 사용자가 인증하는 다른 디렉터리가 있습니까?
   * 회사는 Microsoft Exchange를 사용합니까?
     * 하이브리드 Exchange를 배포할 계획입니까?
 
-동기화 요구 사항에 대 한 아이디어를가지고 이러한 요구 사항을 도구는 hello 올바른 하나의 toomeet toodetermine 할 수 있습니다.  Microsoft는 여러 가지 도구 tooaccomplish 디렉터리 통합 및 동기화를 제공합니다.  Hello 참조 [하이브리드 Id 디렉터리 통합 도구 비교 표](active-directory-hybrid-identity-design-considerations-tools-comparison.md) 자세한 정보에 대 한 합니다. 
+이제 동기화 요구 사항을 이해했으므로 이러한 요구 사항을 만족하기에 알맞은 도구를 결정해야 합니다.  Microsoft는 디렉터리 통합 및 동기화를 수행하기 위한 여러 도구를 제공합니다.  자세한 내용은 [하이브리드 ID 디렉터리 통합 도구 비교표](active-directory-hybrid-identity-design-considerations-tools-comparison.md) 를 참조하세요. 
 
-동기화 요구 사항 및 귀사에 대 한이 수행 합니다 hello 도구를가지고는 이러한 디렉터리 서비스를 사용 하는 tooevaluate hello 응용 프로그램이 필요 합니다. 이 평가 toodefine hello 기술 요구 사항 toointegrate 이러한 응용 프로그램 toohello 클라우드 중요 합니다. 다음 질문 있는지 tooanswer hello를 확인 합니다.
+이제 동기화 요구 사항을 확인하고 회사에 대해 이를 수행하는 도구를 가지고 있으므로 이러한 디렉터리 서비스를 사용하는 응용 프로그램을 평가해야 합니다. 이 평가판은 클라우드에 이러한 응용 프로그램을 통합하는 기술 요구 사항을 정의하는 데 중요합니다. 다음 질문에 답변하세요.
 
-* 이 응용 프로그램 이동된 toohello 되어야 클라우드와 hello 디렉터리 사용?
-* 이러한 응용 프로그램이 성공적으로 사용할 수 있도록 동기화 toobe toohello 클라우드를 필요로 하는 특별 한 특성이 있습니까?
-* 이러한 응용 프로그램 toobe tootake 활용 클라우드 인증을 다시 작성 해야 합니까?
-* 이러한 응용 프로그램 계속 toolive 온-프레미스 사용자가 액세스 하는 동안 hello 클라우드 id를 사용 하 시겠습니까?
+* 이러한 응용 프로그램이 클라우드로 이동되고 디렉터리를 사용합니까?
+* 클라우드로 동기화되어야 하는 특수한 특성 사항이 있으므로 이러한 응용 프로그램이 특성을 성공적으로 사용할 수 있습니까?
+* 이러한 응용 프로그램은 클라우드 인증을 활용하기 위해 다시 작성해야 합니까?
+* 사용자가 클라우드 ID를 사용하여 액세스하는 동안 이러한 응용 프로그램은 계속 온-프레미스에서 작동합니까?
 
-Toodetermine hello 보안 요구 사항 및 제약 조건 디렉터리 동기화를 해야합니다. 이 평가 중요 한 tooget 순서 toocreate에 필요 하 고 hello 클라우드에서 사용자의 id를 유지 하는 hello 요구 사항 목록입니다. 다음 질문 있는지 tooanswer hello를 확인 합니다.
+또한 보안 요구 사항 및 제약 조건 디렉터리 동기화를 결정해야 합니다. 이 평가판은 클라우드에서 사용자의 ID를 만들고 유지하기 위해 필요한 요구 사항 목록을 가져오는 데 중요합니다. 다음 질문에 답변하세요.
 
-* Hello 동기화 서버 배치 될 위치?
+* 동기화 서버는 어디에 배치됩니까?
 * 가입된 도메인입니까?
-* Hello 서버 DMZ와 같은 방화벽 뒤에 제한 된 네트워크에 배치 됩니다.
-  * 가 수 tooopen hello 필수 방화벽 포트 toosupport 동기화 수 있습니까?
-* 동기화 서버 hello에 대 한 재해 복구 계획 했습니까?
-* Hello와 toosynch 원하는 포리스트 전반에 대 한 올바른 권한이 있는 계정의 있습니까?
-  * 회사가이 질문에 대 한 hello 대답을 알고 하지 않는 경우 hello 섹션 "암호 동기화에 대 한 사용 권한" hello 문서를 검토 [Azure Active Directory 동기화 서비스 설치 hello](https://msdn.microsoft.com/library/azure/dn757602.aspx#BKMK_CreateAnADAccountForTheSyncService) 이미 있는지 확인 하 고는 이러한 사용 권한이 있는 계정 또는 하나 toocreate 해야 합니다.
-* 다중 포리스트 동기화 있을 경우 hello 동기화 서버 수 tooget tooeach 포리스트?
+* DMZ와 같은 방화벽 뒤에 제한된 네트워크에 서버가 위치합니까?
+  * 동기화를 지원하기 위해 필요한 방화벽 포트를 열 수 있습니까?
+* 동기화 서버에 대한 재해 복구 계획이 있습니까?
+* 동기화하려는 모든 포리스트에 대한 올바른 사용 권한이 있는 계정이 있습니까?
+  * 회사가 이 질문에 대한 대답을 모르는 경우 [Azure Active Directory 동기화 서비스 설치](https://msdn.microsoft.com/library/azure/dn757602.aspx#BKMK_CreateAnADAccountForTheSyncService) 문서에서 "암호 동기화에 대한 사용 권한" 섹션을 검토하고 이러한 사용 권한이 있는 계정이 이미 있는지 혹은 하나를 만들어야 할지를 결정합니다.
+* 다중 포리스트 동기화가 있는 경우 동기화 서버가 각 포리스트에 도달할 수 있습니까?
 
 > [!NOTE]
-> 각 응답 tootake 메모 있는지를 확인 하 고 hello 응답 hello 도입한 이유를 이해 합니다. [사고 대응 요구 사항 결정](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md) 에서는 사용할 수 있는 hello 옵션을 살펴봅니다. 질문에 답변함으로써 비즈니스 요구 사항에 가장 적합한 옵션을 선택할 수 있습니다.
+> 각 답변을 주목하고 답변 이유를 이해해야 합니다. [사고 대응 요구 사항 결정](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md) 은 사용할 수 있는 옵션을 검토합니다. 질문에 답변함으로써 비즈니스 요구 사항에 가장 적합한 옵션을 선택할 수 있습니다.
 > 
 > 
 

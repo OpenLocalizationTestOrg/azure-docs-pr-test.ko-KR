@@ -1,6 +1,6 @@
 ---
-title: "aaaReliable 서비스 WCF 통신 스택을 | Microsoft Docs"
-description: "서비스 패브릭에서 hello 기본 제공 WCF 통신 스택을 신뢰할 수 있는 서비스에 대 한 클라이언트-서비스 WCF 통신을 제공합니다."
+title: "Reliable Services WCF 통신 스택 | Microsoft Docs"
+description: "서비스 패브릭의 기본 제공 WCF 통신 스택은 Reliable Services를 위한 클라이언트-서비스 WCF 통신을 제공합니다."
 services: service-fabric
 documentationcenter: .net
 author: BharatNarasimman
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 06/07/2017
 ms.author: bharatn
-ms.openlocfilehash: 7feebef4d46a6ae66d05129f47f9b5911e82aec9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7037620ebdc26a9f18531064bf45d058f5060e39
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="wcf-based-communication-stack-for-reliable-services"></a>Reliable Services에 대한 WCF 기반 통신 스택
-hello 신뢰할 수 있는 서비스 프레임 워크에서는 서비스 작성자 toochoose hello 통신 스택을 서비스에 대 한 toouse 싶어한다는 합니다. Hello 통해 자신이 선택한 hello 통신 스택을에 연결할 수 **ICommunicationListener** hello에서 반환 된 [CreateServiceReplicaListeners 또는 CreateServiceInstanceListeners](service-fabric-reliable-services-communication.md) 메서드. hello framework toouse WCF 기반 통신 하려는 서비스 작성자를 위한 Windows Communication Foundation (WCF) hello에 따라 hello 통신 스택 구현을 제공 합니다.
+Reliable Services 프레임워크를 사용하면 서비스 작성자가 서비스에 사용하려는 통신 스택을 결정할 수 있습니다. 선택한 통신 스택을 **CreateServiceReplicaListeners 또는 CreateServiceInstanceListeners** 메서드에서 반환되는 [ICommunicationListener](service-fabric-reliable-services-communication.md) 를 통해 플러그인할 수 있습니다. 이 프레임워크는 WCF 기반 통신을 사용하려는 서비스 작성자를 위한 WCF(Windows Communication Foundation) 기반 통신 스택 구현을 제공합니다.
 
 ## <a name="wcf-communication-listener"></a>WCF 통신 수신기
-hello WCF 관련 구현 **ICommunicationListener** hello 제공한 **Microsoft.ServiceFabric.Services.Communication.Wcf.Runtime.WcfCommunicationListener** 클래스입니다.
+**ICommunicationListener**의 WCF 관련 구현은 **Microsoft.ServiceFabric.Services.Communication.Wcf.Runtime.WcfCommunicationListener** 클래스에서 제공됩니다.
 
 서비스 계약의 형식이 있다고 가정합니다 `ICalculator`
 
@@ -37,7 +37,7 @@ public interface ICalculator
 }
 ```
 
-Hello 서비스 hello 방식으로 다음에서 WCF 통신 수신기를 만들 수 했습니다.
+다음과 같은 방식으로 서비스에서 WCF 통신 수신기를 만들 수 있습니다.
 
 ```csharp
 
@@ -48,13 +48,13 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
             wcfServiceObject:this,
             serviceContext:context,
             //
-            // hello name of hello endpoint configured in hello ServiceManifest under hello Endpoints section
-            // that identifies hello endpoint that hello WCF ServiceHost should listen on.
+            // The name of the endpoint configured in the ServiceManifest under the Endpoints section
+            // that identifies the endpoint that the WCF ServiceHost should listen on.
             //
             endpointResourceName: "WcfServiceEndpoint",
 
             //
-            // Populate hello binding information that you want hello service toouse.
+            // Populate the binding information that you want the service to use.
             //
             listenerBinding: WcfUtility.CreateTcpListenerBinding()
         )
@@ -63,8 +63,8 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 
 ```
 
-## <a name="writing-clients-for-hello-wcf-communication-stack"></a>WCF 통신 스택 hello에 대 한 클라이언트를 작성합니다.
-WCF, hello 프레임 워크를 사용 하 여 서비스와 toocommunicate 제공 하는 클라이언트를 작성 하기 위한 **WcfClientCommunicationFactory**의 WCF 관련 hello 구현인 [ClientCommunicationFactoryBase](service-fabric-reliable-services-communication.md).
+## <a name="writing-clients-for-the-wcf-communication-stack"></a>WCF 통신 스택에 대한 클라이언트 작성
+WCF를 사용하여 서비스와 통신하는 클라이언트를 작성하는 경우 이 프레임워크에서는 **ClientCommunicationFactoryBase**의 WCF 특정 구현인 [WcfClientCommunicationFactory](service-fabric-reliable-services-communication.md)를 제공합니다.
 
 ```csharp
 
@@ -76,7 +76,7 @@ public WcfCommunicationClientFactory(
     object callback = null);
 ```
 
-WCF 통신 채널을 hello hello에서 액세스할 수 **WcfCommunicationClient** hello에서 만든 **WcfCommunicationClientFactory**합니다.
+WCF 통신 채널은 **WcfCommunicationClientFactory**에서 만든 **WcfCommunicationClient**에서 액세스될 수 있습니다.
 
 ```csharp
 
@@ -90,7 +90,7 @@ public class WcfCommunicationClient : ServicePartitionClient<WcfCommunicationCli
 
 ```
 
-클라이언트 코드는 hello를 사용할 수 있는 **WcfCommunicationClientFactory** hello 함께 **WcfCommunicationClient** 구현 하는 **ServicePartitionClient** toodetermine 서비스 끝점을 hello 및 hello 서비스와 통신 합니다.
+클라이언트 코드는 **ServicePartitionClient**를 구현하는 **WcfCommunicationClient**와 함께 **WcfCommunicationClientFactory**를 사용하여 서비스 끝점을 결정하고 서비스와 통신할 수 있습니다.
 
 ```csharp
 // Create binding
@@ -102,7 +102,7 @@ var wcfClientFactory = new WcfCommunicationClientFactory<ICalculator>
     (clientBinding: binding, servicePartitionResolver: partitionResolver);
 
 //
-// Create a client for communicating with hello ICalculator service that has been created with the
+// Create a client for communicating with the ICalculator service that has been created with the
 // Singleton partition scheme.
 //
 var calculatorServiceCommunicationClient =  new WcfCommunicationClient(
@@ -111,14 +111,14 @@ var calculatorServiceCommunicationClient =  new WcfCommunicationClient(
                 ServicePartitionKey.Singleton);
 
 //
-// Call hello service tooperform hello operation.
+// Call the service to perform the operation.
 //
 var result = calculatorServiceCommunicationClient.InvokeWithRetryAsync(
                 client => client.Channel.Add(2, 3)).Result;
 
 ```
 > [!NOTE]
-> hello 기본 ServicePartitionResolver hello 클라이언트 hello 서비스와 동일한 클러스터에서 실행 중인 가정 합니다. 않은 경우 하지 hello, ServicePartitionResolver 개체를 만들고 hello 클러스터 연결 끝점에 전달 합니다.
+> 기본 ServicePartitionResolver는 클라이언트가 서비스와 동일한 클러스터에서 실행되고 있다고 가정합니다. 그렇지 않은 경우 ServicePartitionResolver 개체를 만들고 클러스터 연결 끝점에 전달합니다.
 > 
 > 
 

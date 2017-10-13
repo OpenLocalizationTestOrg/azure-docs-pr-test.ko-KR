@@ -1,6 +1,6 @@
 ---
-title: "마켓플레이스 hello에 대 한 솔루션 템플릿을 제공 aaaTesting | Microsoft Docs"
-description: "어떻게 tootest 솔루션 템플릿을 시 제공 hello Azure 마켓플레이스를 이해 합니다."
+title: "Marketplace용 솔루션 템플릿 제품 테스트 | Microsoft Docs"
+description: "Azure 마켓플레이스에 대한 솔루션 템플릿 제품을 테스트하는 방법을 이해합니다."
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/04/2015
 ms.author: hascipio; v-divte
-ms.openlocfilehash: 9c195c465d2fc6aa349e4bbcc348e5325f32850d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: da1fc4713fd1d832c7ba91226f72cbef63b241bc
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="test-your-solution-template-offer-in-staging"></a>준비 단계에서 솔루션 템플릿 제품 테스트
-개인 테스트 하 고 tooproduction 푸시하기 전에 해당 기능을 확인 수 "샌드박스"에 있는 제품을 배포 하는 수단을 준비 합니다. hello 제공이 배포 tooa 고객과 마찬가지로 준비에 나타납니다. 제안을 푸시 인증 된 toobe toostaging 이어야 합니다.
+준비 단계에서는 제품을 프로덕션에 게시하기 전에 개인 "샌드박스"에 배포하여 기능을 테스트 및 확인할 수 있습니다. 그러면 제안은 배포한 고객에게 표시되는 것처럼 스테이징으로 표시됩니다. 제품이 준비 단계에 푸시되려면 인증되어야 합니다.
 
-보고 하 고 테스트할 수 hello 행사를 준비 하는 후 hello에서 hello 제공 [Azure 포털](https://portal.azure.com/)합니다.
+제품이 준비되면 [Azure 포털](https://portal.azure.com/)에서 제품을 보고 테스트할 수 있습니다.
 
-제안 toostaging toopush 아래 hello 단계를 수행 하 고 hello 테스트할 [Azure 포털](https://portal.azure.com/):
+제품을 준비 단계에 푸시하고 [Azure 포털](https://portal.azure.com/)에서 테스트하려면 아래 단계를 수행하세요.
 
-1. Toohello 이동 [게시 포털](https://publish.windowsazure.com) > **솔루션 템플릿을** 탭 > 제안을 > **게시** > **tooStaging 푸시** .
-2. Toopreview를 사용 하 고 제안을 테스트 됩니다는 hello Azure 구독 목록을 제공 합니다.
-3. Hello 이전 단계에서 사용 하는 hello 구독 ID를 사용 하 여 toohello Azure preview 포털에 로그인 합니다.
-4. 아래에 언급 된 hello 지점에서 hello Azure 미리 보기 포털에서 하나 이상의 테스트를 수행 합니다.
-   * 콘텐츠를 마케팅에 표시 되는지 올바르게 hello Azure 마켓플레이스 있는지 확인 합니다.
-   * Hello 토폴로지의 종단 간 배포 합니다.
+1. [포털 게시](https://publish.windowsazure.com) > **솔루션 템플릿** 탭 -> 제품 -> **게시** > **준비 단계로 푸시**로 이동합니다.
+2. 제품 미리 보기 및 테스트를 위해 사용할 Azure 구독 목록을 제공합니다.
+3. 이전 단계에서 사용한 구독 ID를 사용하여 Azure Preview 포털에 로그인합니다.
+4. 아래 언급된 지점에 있는 Azure Preview 포털에서 테스트를 한 번 이상 수행합니다.
+   * 마케팅 콘텐츠가 Azure 마켓플레이스에 올바르게 표시되는지 확인합니다.
+   * 토폴로지의 종단간 배포
    * 성능 테스트 및 스트레스 테스트 수행
-   * 토폴로지에 toohello 모범 사례에 부합 하는지 확인 합니다.
+   * 토폴로지가 모범 사례에 부합하는지 확인합니다.
 
 ## <a name="next-steps"></a>다음 단계
-Hello 결과 만족 하는 경우 다음 단계에서 게시 toohello 최종 제품을 계속 진행할 수 있습니다 **4 단계**: [배포 하 여 제안을 toohello 마켓플레이스](marketplace-publishing-push-to-production.md)합니다. 그렇지 않은 경우 제품을 변경하고 다시 인증 요청을 합니다.
+결과에 만족하면 최종 제품 게시 단계인 **4단계**: [마켓플레이스에 제품 배포](marketplace-publishing-push-to-production.md)로 진행하면 됩니다. 그렇지 않은 경우 제품을 변경하고 다시 인증 요청을 합니다.
 
 > [!NOTE]
 > 마케팅 콘텐츠를 변경한 경우에는 인증이 필요하지 않습니다.
 > 
 > 
 
-참조 [시작: 어떻게 제공 toohello Azure 마켓플레이스 toopublish](marketplace-publishing-getting-started.md) 가이드 tooall 게시자 작업에 대 한 합니다.
+모든 게시자 작업에 대한 지침은 [시작: Azure 마켓플레이스를 제공하는 서비스를 게시하는 방법](marketplace-publishing-getting-started.md) 을 참조하세요.
 

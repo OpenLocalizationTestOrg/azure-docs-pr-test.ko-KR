@@ -1,6 +1,6 @@
 ---
-title: "Vm (클래식)-Azure 포털에 대 한 aaaConfigure 개인 IP 주소 | Microsoft Docs"
-description: "Tooconfigure 개인 IP 주소를 사용 하 여 가상 컴퓨터 (클래식)에 대 한 Azure 포털을 hello 하는 방법에 대해 알아봅니다."
+title: "VM(클래식)에 대한 개인 IP 주소 구성 - Azure Portal | Microsoft Docs"
+description: "Azure Portal을 사용하여 가상 컴퓨터(클래식)에 대한 개인 IP 주소를 구성하는 방법을 알아봅니다."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,13 +16,13 @@ ms.workload: infrastructure-services
 ms.date: 02/04/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: df4bfa6768fc9e66db89785b633ffdb0274dbc46
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bde6de3495c2909b63b1f85e420a4ff5e7ac2c1a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="configure-private-ip-addresses-for-a-virtual-machine-classic-using-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여 가상 컴퓨터 (클래식)에 대 한 개인 IP 주소를 구성 합니다.
+# <a name="configure-private-ip-addresses-for-a-virtual-machine-classic-using-the-azure-portal"></a>Azure Portal을 사용하여 가상 컴퓨터(클래식)에 대한 개인 IP 주소 구성
 
 [!INCLUDE [virtual-networks-static-private-ip-selectors-classic-include](../../includes/virtual-networks-static-private-ip-selectors-classic-include.md)]
 
@@ -30,55 +30,55 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-이 문서에서는 hello 클래식 배포 모델에 설명 합니다. 수도 있습니다 [hello 리소스 관리자 배포 모델에서 정적 개인 IP 주소 관리](virtual-networks-static-private-ip-arm-pportal.md)합니다.
+이 문서에서는 클래식 배포 모델에 대해 설명합니다. [리소스 관리자 배포 모델에서 정적 개인 IP 주소를 관리](virtual-networks-static-private-ip-arm-pportal.md)할 수도 있습니다.
 
 [!INCLUDE [virtual-networks-static-ip-scenario-include](../../includes/virtual-networks-static-ip-scenario-include.md)]
 
-다음 hello 샘플 단계를 이미 만든 단순한 환경을 기대 합니다. 이 문서에 표시 된 대로 toorun hello 단계를 원하는 경우 먼저 hello 테스트 환경을 구축에 설명 된 [vnet을 만든](virtual-networks-create-vnet-classic-pportal.md)합니다.
+아래 샘플에는 이미 만들어져 있는 단순한 환경이 필요합니다. 이 문서에 표시된 대로 단계를 실행하려는 경우 먼저 [vnet 만들기](virtual-networks-create-vnet-classic-pportal.md)에 설명된 테스트 환경을 구축합니다.
 
-## <a name="how-toospecify-a-static-private-ip-address-when-creating-a-vm"></a>어떻게 toospecify 정적 개인 IP 주소는 VM을 만들 때
-toocreate 라는 VM *DNS01* hello에 *프런트 엔드* 라는 VNet의 서브넷 *TestVNet* 의 정적 개인 ip *192.168.1.101*, 아래의 hello 단계를 수행 합니다.
+## <a name="how-to-specify-a-static-private-ip-address-when-creating-a-vm"></a>VM을 만들 때 정적 개인 IP 주소를 지정하는 방법
+*192.168.1.101*의 정적 개인 IP 주소를 사용하여 *TestVNet*이라는 VNet의 *FrontEnd* 서브넷에 *DNS01*이라는 VM을 만들려면 다음 단계를 따르세요.
 
-1. 브라우저에서 toohttp://portal.azure.com를 탐색 하 고, 필요한 경우 Azure 계정을 사용해 합니다.
-2. 클릭 **새로** > **계산** > **Windows Server 2012 R2 Datacenter**, 해당 hello 확인 **배포모델선택** 목록 표시 이미 **클래식**, 클릭 하 고 **만들기**합니다.
+1. 브라우저에서 http://portal.azure.com으로 이동하고, 필요한 경우 Azure 계정으로 로그인합니다.
+2. **새로 만들기** > **계산** > **Windows Server 2012 R2 Datacenter**를 클릭하고 **배포 모델 선택** 목록에 **클래식**이 이미 표시되는지 확인한 후 **만들기**를 클릭합니다.
    
     ![Azure 포털에서 VM 만들기](./media/virtual-networks-static-ip-classic-pportal/figure01.png)
-3. Hello에 **VM 만들기** 블레이드에서 만든 hello VM toobe hello 이름 입력 (*DNS01* 시나리오에서), 로컬 관리자 계정 및 암호 hello 합니다.
+3. **VM 만들기** 블레이드에서 만들 VM의 이름(이 시나리오에서는*DNS01* ), 로컬 관리자 계정 및 암호를 입력합니다.
    
     ![Azure 포털에서 VM 만들기](./media/virtual-networks-static-ip-classic-pportal/figure02.png)
-4. **옵션 구성** > **네트워크** > **Virtual Network**를 클릭하고 **TestVNet**을 클릭합니다. 경우 **TestVNet** 를 사용할 수 없으면 hello를 사용 하 고 있는지 확인 *중앙 미국* 위치 hello이이 문서의 시작 부분에 설명 된 hello 테스트 환경을 만들 수 있습니다.
+4. **옵션 구성** > **네트워크** > **Virtual Network**를 클릭하고 **TestVNet**을 클릭합니다. **TestVNet** 을 사용할 수 없는 경우 *미국 중부* 위치를 사용 중이고 이 문서의 시작 부분에서 설명한 테스트 환경을 만들었는지 확인합니다.
    
     ![Azure 포털에서 VM 만들기](./media/virtual-networks-static-ip-classic-pportal/figure03.png)
-5. Hello에 **네트워크** 블레이드에서 현재 선택 된 확인 되었는지 hello 서브넷은 *프런트 엔드*, 클릭 **IP 주소**아래 **IP주소할당** 클릭 **정적**, 다음을 입력 하 고 *192.168.1.101* 에 대 한 **IP 주소** 아래와 같이 합니다.
+5. **네트워크** 블레이드에서 현재 선택된 서브넷이 *FrontEnd*인지 확인하고 **IP 주소 할당** 아래에서 **IP 주소**를 클릭하고 **정적**을 클릭한 후 아래와 같이 **IP 주소**에 대해 *192.168.1.101*을 입력합니다.
    
     ![Azure 포털에서 VM 만들기](./media/virtual-networks-static-ip-classic-pportal/figure04.png)    
-6. 클릭 **확인** hello에 **IP 주소** 블레이드에서 클릭 **확인** hello에 **네트워크** 블레이드에서 하 고 클릭 **확인**hello에 **선택적 구성** 블레이드입니다.
-7. Hello에 **VM 만들기** 블레이드에서 클릭 **만들기**합니다. 공지 hello 타일 아래에 대시보드를 표시 합니다.
+6. **IP 주소** 블레이드에서 **확인**을 클릭한 후 **네트워크** 블레이드에서 **확인**을 클릭하고 **옵션 구성** 블레이드에서 **확인**을 클릭합니다.
+7. **VM 만들기** 블레이드에서 **만들기**를 클릭합니다. 대시보드에 아래 타일이 표시되는지 확인합니다.
    
     ![Azure 포털에서 VM 만들기](./media/virtual-networks-static-ip-classic-pportal/figure05.png)
 
-## <a name="how-tooretrieve-static-private-ip-address-information-for-a-vm"></a>어떻게 tooretrieve 정적 개인 IP 주소는 VM에 대 한 정보
-tooview hello 정적 개인 IP 주소 정보 hello에 대 한 위의 hello 단계를 사용 하 여 만든 VM 아래 hello 단계를 실행 합니다.
+## <a name="how-to-retrieve-static-private-ip-address-information-for-a-vm"></a>VM의 정적 개인 IP 주소 정보를 검색하는 방법
+위의 단계를 사용하여 만든 VM에 대한 정적 개인 IP 주소를 보려면 아래 단계를 실행합니다.
 
-1. Hello Azure Azure 포털에서 클릭 **모두 찾아보기** > **가상 컴퓨터 (클래식)** > **DNS01**  >   **모든 설정이** > **IP 주소** IP 주소 할당 및 IP 주소 아래와 같이 hello를 확인 합니다.
+1. Azure Portal에서 **모두 찾아보기** > **가상 컴퓨터(클래식)** > **DNS01All** > **모든 설정** > **IP 주소**를 클릭하고 아래와 같이 IP 주소 할당 및 IP 주소를 확인합니다.
    
     ![Azure 포털에서 VM 만들기](./media/virtual-networks-static-ip-classic-pportal/figure06.png)
 
-## <a name="how-tooremove-a-static-private-ip-address-from-a-vm"></a>어떻게 tooremove 정적 개인 IP는 VM에서을 해결합니다
-tooremove hello 정적 개인 IP 주소에서 VM을 위에서 만든 hello는 아래의 hello 단계를 수행 합니다.
+## <a name="how-to-remove-a-static-private-ip-address-from-a-vm"></a>VM에서 정적 개인 IP 주소를 제거하는 방법
+위에서 만든 VM에서 정적 개인 IP 주소를 제거하려면 다음 단계를 수행합니다.
 
-1. Hello에서 **IP 주소** 위에 표시 된 블레이드 클릭 **동적** 의 오른쪽 toohello **IP 주소 할당**, 클릭 **저장**, 한 다음 클릭 **예**합니다.
+1. 위에 표시된 **IP 주소** 블레이드에서 **IP 주소 할당** 오른쪽에서 **동적**을 클릭한 후 **저장**, **예**를 차례로 클릭합니다.
    
     ![Azure 포털에서 VM 만들기](./media/virtual-networks-static-ip-classic-pportal/figure07.png)
 
-## <a name="how-tooadd-a-static-private-ip-address-tooan-existing-vm"></a>정적 개인 IP tooadd tooan 기존 VM을 처리 하는 방법
-아래의 hello 단계를 수행 하는 tooadd는 정적 개인 IP 주소 toohello 위의 hello 단계를 사용 하 여 만든 VM:
+## <a name="how-to-add-a-static-private-ip-address-to-an-existing-vm"></a>기존 VM에 정적 개인 IP 주소를 추가하는 방법
+위의 단계를 사용하여 만든 VM에 정적 개인 IP 주소를 추가하려면 다음 단계를 따르세요.
 
-1. Hello에서 **IP 주소** 위에 표시 된 블레이드 클릭 **정적** 의 오른쪽 toohello **IP 주소 할당**합니다.
+1. 위에 표시된 **IP 주소** 블레이드에서 **IP 주소 할당** 오른쪽에서 **정적**을 클릭합니다.
 2. **IP 주소**에 *192.168.1.101*을 입력하고 **저장**을 클릭한 후 **예**를 클릭합니다.
 
 ## <a name="next-steps"></a>다음 단계
 * [예약된 공용 IP](virtual-networks-reserved-public-ip.md) 주소에 대해 알아봅니다.
 * [ILPIP(인스턴스 수준 공용 IP)](virtual-networks-instance-level-public-ip.md) 주소에 대해 알아봅니다.
-* Hello 참조 [예약 된 IP REST Api](https://msdn.microsoft.com/library/azure/dn722420.aspx)합니다.
+* [예약된 IP REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx)를 참조합니다.
 

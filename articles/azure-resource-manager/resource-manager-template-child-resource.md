@@ -1,6 +1,6 @@
 ---
-title: "Azure 서식 파일에 자식 리소스 aaaDefine | Microsoft Docs"
-description: "리소스 종류 및 Azure 리소스 관리자 템플릿에 자식 리소스에 대 한 이름을 tooset hello 하는 방법을 보여 줍니다."
+title: "Azure 템플릿에 자식 리소스 정의 | Microsoft Docs"
+description: "Azure Resource Manager 템플릿에서 자식 리소스의 리소스 유형 및 이름을 설정하는 방법을 보여 줍니다."
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: c502c589100d7ae864d7fb01b5ba10ddfaf92592
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5b6ce5526f354008eb4a697deec737876f22391f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="set-name-and-type-for-child-resource-in-resource-manager-template"></a>Resource Manager 템플릿에서 자식 리소스의 이름 및 유형 설정
-서식 파일을 만들 때 자주 tooinclude 자식 리소스 관련된 tooa 부모 리소스에 필요 합니다. 예를 들어 템플릿에 SQL Server 및 데이터베이스가 포함될 수 있습니다. hello SQL 서버 hello 부모 리소스와 hello 데이터베이스가 hello 자식 리소스가 있습니다. 
+템플릿을 만들 때는 부모 리소스와 관련된 자식 리소스를 포함해야 하는 경우가 자주 있습니다. 예를 들어 템플릿에 SQL Server 및 데이터베이스가 포함될 수 있습니다. SQL Server는 부모 리소스이며 데이터베이스는 자식 리소스입니다. 
 
-hello hello 자식 리소스 종류의 형식은 다음과 같습니다.`{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`
+자식 리소스 유형의 형식은 다음과 같습니다. `{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`
 
-hello hello 자식 리소스 이름의 형식은 다음과 같습니다.`{parent-resource-name}/{child-resource-name}`
+자식 리소스 이름의 형식은 다음과 같습니다. `{parent-resource-name}/{child-resource-name}`
 
-그러나 hello 형식 및 서식 파일의 이름을 따라 다르게 hello 부모 리소스 내에 중첩 되어 있는지 여부 또는 자체적으로 hello 최상위 수준에서 지정 합니다. 이 항목에서는 두 toohandle 접근 하는 방법을 보여 줍니다.
+그러나 부모 리소스 내에 중첩되어 있는지, 자체적으로 최상위 수준에 있는지에 따라 템플릿에 종류와 이름을 다르게 지정합니다. 이 항목에서는 두 가지 방법을 처리하는 방법을 모두 보여 줍니다.
 
-정규화 된 참조 tooa 리소스를 생성할 때는 hello 순서 toocombine hello 형식에서 세그먼트 및 이름이 hello 2의 연결을 단순히 않습니다.  대신, hello 네임 스페이스 후의 시퀀스를 사용 하 여 *유형/이름이* 구체적인 toomost 특정 쌍:
+리소스에 대한 정규화된 참조를 생성할 때 형식과 이름으로 세그먼트를 결합하는 순서는 단순히 두 항목의 연결이 아닙니다.  대신, 네임스페이스 뒤에 구체성이 낮은 순으로 *형식/이름* 쌍의 시퀀스를 사용합니다.
 
 ```json
 {resource-provider-namespace}/{parent-resource-type}/{parent-resource-name}[/{child-resource-type}/{child-resource-name}]*
@@ -40,7 +40,7 @@ hello hello 자식 리소스 이름의 형식은 다음과 같습니다.`{parent
 `Microsoft.Compute/virtualMachines/myVM/extensions/myExt`는 올바릅니다. `Microsoft.Compute/virtualMachines/extensions/myVM/myExt`는 올바르지 않습니다.
 
 ## <a name="nested-child-resource"></a>중첩된 자식 리소스
-hello 가장 쉬운 방법은 toodefine 자식 리소스는 toonest hello 부모 리소스 내에서. hello 다음 예제에서는 SQL server에서 내에 중첩 된 SQL 데이터베이스
+자식 리소스를 정의하는 가장 쉬운 방법은 부모 리소스 내에 중첩시키는 것입니다. 다음 예제에서는 SQL Server 내에 중첩된 SQL Database를 보여 줍니다.
 
 ```json
 {
@@ -59,10 +59,10 @@ hello 가장 쉬운 방법은 toodefine 자식 리소스는 toonest hello 부모
 }
 ```
 
-Hello 자식 리소스에 대 한 hello 유형이 설정 되어 너무`databases` 하지만 해당 전체 리소스 형식이 `Microsoft.Sql/servers/databases`합니다. 그러지 않으면 `Microsoft.Sql/servers/` hello 부모 리소스 종류에서 가정 합니다. hello 자식 리소스 이름이 너무 설정`exampledatabase` hello 전체 이름 hello 부모 이름이 포함 됩니다. 그러지 않으면 `exampleserver` hello 부모 리소스에서 가정 합니다.
+자식 리소스의 유형은 `databases`로 설정되지만 전체 리소스 유형은 `Microsoft.Sql/servers/databases`입니다. `Microsoft.Sql/servers/`는 입력하지 않습니다. 부모 리소스 유형에서 유추되기 때문입니다. 자식 리소스 이름은 `exampledatabase`로 설정되지만 전체 이름에는 부모 이름이 포함됩니다. `exampleserver`는 입력하지 않습니다. 부모 리소스에서 유추되기 때문입니다.
 
 ## <a name="top-level-child-resource"></a>최상위 자식 리소스
-Hello 최상위 수준 hello 자식 리소스를 정의할 수 있습니다. Hello 부모 리소스 hello에 배포 되지 않은 경우이 방법을 사용할 수 있습니다 동일한 템플릿이나 toouse를 원하는 경우 `copy` toocreate 여러 자식 리소스입니다. 이 방법에서는 hello 전체 리소스 종류를 제공 하 고 hello 자식 리소스 이름에 hello 부모 리소스 이름을 포함 해야 합니다.
+최상위 수준에 자식 리소스를 정의할 수 있습니다. 부모 리소스가 동일한 템플릿에 배포되지 않은 경우 `copy`를 사용하여 여러 자식 리소스를 만들려는 경우 이 방법을 사용할 수 있습니다. 이 방법을 사용하는 경우 전체 리소스 유형을 입력하고 자식 리소스 이름에 부모 리소스 이름을 포함해야 합니다.
 
 ```json
 {
@@ -81,8 +81,8 @@ Hello 최상위 수준 hello 자식 리소스를 정의할 수 있습니다. Hel
 }
 ```
 
-hello 데이터베이스는 hello hello 서식 파일에 동일한 수준에 정의 된 경우에 자식 리소스 toohello 서버.
+데이터베이스는 템플릿의 동일한 수준에 정의되어 있더라도 서버의 자식 리소스입니다.
 
 ## <a name="next-steps"></a>다음 단계
-* 방법에 대 한 권장 사항에 대 한 toocreate 템플릿 참조 [Azure 리소스 관리자 템플릿 만들기에 대 한 유용한](resource-manager-template-best-practices.md)합니다.
+* 템플릿 작성 방법에 대한 권장 사항은 [Azure Resource Manager 템플릿 생성 모범 사례](resource-manager-template-best-practices.md)를 참조하세요.
 * 여러 자식 리소스를 만드는 예제는 [Azure Resource Manager 템플릿에서 리소스의 여러 인스턴스 배포](resource-group-create-multiple.md)를 참조하세요.

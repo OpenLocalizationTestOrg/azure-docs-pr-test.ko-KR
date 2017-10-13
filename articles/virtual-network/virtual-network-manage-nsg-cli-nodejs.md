@@ -1,6 +1,6 @@
 ---
-title: "aaaManage 네트워크 보안 그룹-Azure CLI 1.0 | Microsoft Docs"
-description: "Toomanage 네트워크 보안 그룹을 사용 하 여 Azure CLI (명령줄 인터페이스) 1.0 hello 하는 방법에 대해 알아봅니다."
+title: "네트워크 보안 그룹 관리 - Azure CLI 1.0 | Microsoft Docs"
+description: "Azure CLI(명령줄 인터페이스) 1.0을 사용하여 네트워크 보안 그룹을 관리하는 방법에 대해 알아봅니다."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,25 +15,25 @@ ms.workload: infrastructure-services
 ms.date: 02/21/2017
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 9a429f947abbcb5fa6adb40c84504f68efd5e20e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2e53c3ff2ffbef95d6b72ca6afb3b4de377f0389
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="manage-network-security-groups-using-hello-azure-cli-10"></a>Hello Azure CLI 1.0을 사용 하 여 네트워크 보안 그룹 관리
+# <a name="manage-network-security-groups-using-the-azure-cli-10"></a>Azure CLI 1.0을 사용하여 네트워크 보안 그룹 관리
 
-## <a name="cli-versions-toocomplete-hello-task"></a>CLI 버전 toocomplete hello 작업 
+## <a name="cli-versions-to-complete-the-task"></a>태스크를 완료하기 위한 CLI 버전 
 
-Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행할 수 있습니다. 
+다음 CLI 버전 중 하나를 사용하여 태스크를 완료할 수 있습니다. 
 
-- [Azure CLI 1.0](#View-existing-NSGs) – hello 클래식 및 리소스 관리 배포 모델에 대 한 우리의 CLI 
-- [Azure CLI 2.0](virtual-network-manage-nsg-arm-cli.md) -우리의 차세대 CLI hello 리소스 관리 배포 모델 (이 문서)
+- [Azure CLI 1.0](#View-existing-NSGs) - 클래식 및 리소스 관리 배포 모델용 CLI 
+- [Azure CLI 2.0](virtual-network-manage-nsg-arm-cli.md) - 리소스 관리 배포 모델용 차세대 CLI(이 문서)
 
 [!INCLUDE [virtual-network-manage-nsg-intro-include.md](../../includes/virtual-network-manage-nsg-intro-include.md)]
 
 > [!NOTE]
-> Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../azure-resource-manager/resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다. 이 문서에서는 Microsoft hello 클래식 배포 모델 대신 대부분의 새 배포에 권장 하는 hello 리소스 관리자 배포 모델을 사용 하 여 설명 합니다.
+> Azure에는 리소스를 만들고 작업하는 [Resource Manager와 클래식](../azure-resource-manager/resource-manager-deployment-model.md)이라는 두 가지 배포 모델이 있습니다. 이 문서에서는 Resource Manager 배포 모델 사용을 설명하며 Microsoft에서는 대부분의 새로운 배포에 대해 클래식 배포 모델 대신 이 모델을 사용하도록 권장합니다.
 > 
 
 [!INCLUDE [virtual-network-manage-nsg-arm-scenario-include.md](../../includes/virtual-network-manage-nsg-arm-scenario-include.md)]
@@ -44,7 +44,7 @@ Hello CLI 버전을 다음 중 하나를 사용 하 여 hello 작업을 수행�
 기존 NSG를 보고 기존 NSG에 대한 규칙을 검색하며 NSG가 연결된 리소스에 대해 알아볼 수 있습니다.
 
 ### <a name="view-existing-nsgs"></a>기존 NSG 보기
-Nsg hello 실행은 특정 리소스 그룹의 tooview hello 목록 `azure network nsg list` 아래와 같이 명령입니다.
+특정 리소스 그룹에 있는 NSG 목록을 보려면 아래와 같이 `azure network nsg list` 명령을 실행합니다.
 
 ```azurecli
 azure network nsg list --resource-group RG-NSG
@@ -53,7 +53,7 @@ azure network nsg list --resource-group RG-NSG
 예상 출력:
 
     info:    Executing command network nsg list
-    + Getting hello network security groups
+    + Getting the network security groups
     data:    Name          Location
     data:    ------------  --------
     data:    NSG-BackEnd   westus
@@ -61,7 +61,7 @@ azure network nsg list --resource-group RG-NSG
     info:    network nsg list command OK
 
 ### <a name="list-all-rules-for-an-nsg"></a>NSG에 대한 모든 규칙 나열
-명명 된 NSG의 tooview hello 규칙 **NSG 프런트 엔드**실행 hello `azure network nsg show` 아래와 같이 명령입니다. 
+**NSG-FrontEnd**로 명명된 NSG의 규칙을 보려면 아래와 같이 `azure network nsg show` 명령을 실행합니다. 
 
 ```azurecli
 azure network nsg show --resource-group RG-NSG --name NSG-FrontEnd
@@ -70,7 +70,7 @@ azure network nsg show --resource-group RG-NSG --name NSG-FrontEnd
 예상 출력:
 
     info:    Executing command network nsg show
-    + Looking up hello network security group "NSG-FrontEnd"
+    + Looking up the network security group "NSG-FrontEnd"
     data:    Id                              : /subscriptions/[Subscription Id]/resourceGroups/RG-NSG/providers/Microsoft.Network/networkSecurityGroups/NSG-FrontEnd
     data:    Name                            : NSG-FrontEnd
     data:    Type                            : Microsoft.Network/networkSecurityGroups
@@ -91,18 +91,18 @@ azure network nsg show --resource-group RG-NSG --name NSG-FrontEnd
     info:    network nsg show command OK
 
 > [!NOTE]
-> 사용할 수도 있습니다 `azure network nsg rule list --resource-group RG-NSG --nsg-name NSG-FrontEnd` hello에서 toolist hello 규칙 **NSG 프런트 엔드** NSG 합니다.
+> 또한 `azure network nsg rule list --resource-group RG-NSG --nsg-name NSG-FrontEnd`을 사용하여 **NSG-FrontEnd** NSG에서 규칙을 나열할 수 있습니다.
 >
 
 ### <a name="view-nsg-associations"></a>NSG 연결 보기
 
-tooview 어떤 리소스 hello **NSG 프런트 엔드** NSG는 연결 된를 실행 하는 hello `azure network nsg show` 아래와 같이 명령입니다. 차이점은 hello hello 사용에만 해당 hello 확인 **-json** 매개 변수입니다.
+**NSG-FrontEnd** NSG가 연결된 리소스를 보려면 아래와 같이 `azure network nsg show` 명령을 실행합니다. 유일한 차이점은 **--json** 매개 변수를 사용하는 것입니다.
 
 ```azurecli
 azure network nsg show --resource-group RG-NSG --name NSG-FrontEnd --json
 ```
 
-Hello에 대 한 확인 **networkInterfaces** 및 **서브넷** 아래와 같이 속성:
+아래와 같이 **NetworkInterfaces** 및 **서브넷** 속성을 찾아봅니다.
 
     "networkInterfaces": [],
     ...
@@ -113,19 +113,19 @@ Hello에 대 한 확인 **networkInterfaces** 및 **서브넷** 아래와 같이
     ],
     ...
 
-NSG가 hello tooany Nic (네트워크 인터페이스), 연결 된 위의 hello 예제 이며 라는 관련된 tooa 서브넷 **프런트 엔드**합니다.
+위의 예에서 NSG는 NIC(네트워크 인터페이스)에 연결되지 않고 **FrontEnd**라는 서브넷에 연결됩니다.
 
 ## <a name="manage-rules"></a>규칙 관리
-기존 NSG 규칙 tooan 추가, 기존 규칙을 편집 하 고 규칙을 제거할 수 있습니다.
+기존 NSG에 규칙을 추가하고 기존 규칙을 편집하며 규칙을 제거할 수 있습니다.
 
 ### <a name="add-a-rule"></a>규칙 추가
-tooadd 허용 하는 규칙 **인바운드** 트래픽 tooport **443** 모든 컴퓨터 toohello에서 **NSG 프런트 엔드** NSG를 hello 다음 명령을 입력 합니다.
+컴퓨터에서 **NSG-FrontEnd** NSG에 포트 **443**에 대한 **인바운드** 트래픽을 허용하는 규칙을 추가하려면 다음 명령을 입력합니다.
 
 ```azurecli
 azure network nsg rule create --resource-group RG-NSG \
     --nsg-name NSG-FrontEnd \
     --name allow-https \
-    --description "Allow access tooport 443 for HTTPS" \
+    --description "Allow access to port 443 for HTTPS" \
     --protocol Tcp \
     --source-address-prefix * \
     --source-port-range * \
@@ -139,14 +139,14 @@ azure network nsg rule create --resource-group RG-NSG \
 예상 출력:
 
     info:    Executing command network nsg rule create
-    + Looking up hello network security rule "allow-https"
+    + Looking up the network security rule "allow-https"
     + Creating a network security rule "allow-https"
-    + Looking up hello network security group "NSG-FrontEnd"
+    + Looking up the network security group "NSG-FrontEnd"
     data:    Id                              : /subscriptions/[Subscription Id]/resourceGroups/RG-NSG/providers/Microsoft.Network/networkSecurityGroups/NSG-FrontEnd/securityRules/allow-https
     data:    Name                            : allow-https
     data:    Type                            : Microsoft.Network/networkSecurityGroups/securityRules
     data:    Provisioning state              : Succeeded
-    data:    Description                     : Allow access tooport 443 for HTTPS
+    data:    Description                     : Allow access to port 443 for HTTPS
     data:    Source IP                       : *
     data:    Source Port                     : *
     data:    Destination IP                  : *
@@ -158,7 +158,7 @@ azure network nsg rule create --resource-group RG-NSG \
     info:    network nsg rule create command OK
 
 ### <a name="change-a-rule"></a>규칙 변경
-tooallow 위에서 만든 toochange hello 규칙 hello에서 트래픽 인바운드 **인터넷** 만, 런타임 hello 다음 명령을:
+**인터넷**에서 인바운드 트래픽을 허용하도록 위에서 만든 규칙을 변경하려면 다음 명령을 실행합니다.
 
 ```azurecli
 azure network nsg rule set --resource-group RG-NSG \
@@ -170,14 +170,14 @@ azure network nsg rule set --resource-group RG-NSG \
 예상 출력:
 
     info:    Executing command network nsg rule set
-    + Looking up hello network security group "NSG-FrontEnd"
+    + Looking up the network security group "NSG-FrontEnd"
     + Setting a network security rule "allow-https"
-    + Looking up hello network security group "NSG-FrontEnd"
+    + Looking up the network security group "NSG-FrontEnd"
     data:    Id                              : /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/RG-NSG/providers/Microsoft.Network/networkSecurityGroups/NSG-FrontEnd/securityRules/allow-https
     data:    Name                            : allow-https
     data:    Type                            : Microsoft.Network/networkSecurityGroups/securityRules
     data:    Provisioning state              : Succeeded
-    data:    Description                     : Allow access tooport 443 for HTTPS
+    data:    Description                     : Allow access to port 443 for HTTPS
     data:    Source IP                       : Internet
     data:    Source Port                     : *
     data:    Destination IP                  : *
@@ -189,7 +189,7 @@ azure network nsg rule set --resource-group RG-NSG \
     info:    network nsg rule set command OK
 
 ### <a name="delete-a-rule"></a>규칙 삭제
-위에서 만든 toodelete hello 규칙은 hello 다음 명령을 실행 합니다.
+위에서 만든 규칙을 삭제하려면 다음 명령을 실행합니다.
 
 ```azurecli
 azure network nsg rule delete --resource-group RG-NSG \
@@ -199,21 +199,21 @@ azure network nsg rule delete --resource-group RG-NSG \
 ```
 
 > [!NOTE]
-> hello `--quiet` 매개 변수를 사용 하면 tooconfirm hello 삭제 필요 하지 않습니다.
+> `--quiet` 매개 변수를 사용하면 삭제를 확인하지 않아도 됩니다.
 >
 
 예상 출력:
 
     info:    Executing command network nsg rule delete
-    + Looking up hello network security group "NSG-FrontEnd"
+    + Looking up the network security group "NSG-FrontEnd"
     + Deleting network security rule "allow-https"
     info:    network nsg rule delete command OK
 
 ## <a name="manage-associations"></a>연결 관리
-NSG toosubnets 및 Nic를 연결할 수 있습니다. 또한 연결된 모든 리소스에서 NSG를 분리할 수 있습니다.
+NSG를 서브넷 및 NIC에 연결할 수 있습니다. 또한 연결된 모든 리소스에서 NSG를 분리할 수 있습니다.
 
-### <a name="associate-an-nsg-tooa-nic"></a>NSG tooa NIC에 연결
-tooassociate hello **NSG 프런트 엔드** NSG toohello **TestNICWeb1** NIC를 hello 다음 명령을 실행 합니다.
+### <a name="associate-an-nsg-to-a-nic"></a>NIC에 NSG 연결
+**NSG-FrontEnd** NSG를 **TestNICWeb1** NIC에 연결하려면 다음 명령을 실행합니다.
 
 ```azurecli
 azure network nic set --resource-group RG-NSG \
@@ -224,10 +224,10 @@ azure network nic set --resource-group RG-NSG \
 예상 출력:
 
     info:    Executing command network nic set
-    + Looking up hello network interface "TestNICWeb1"
-    + Looking up hello network security group "NSG-FrontEnd"
+    + Looking up the network interface "TestNICWeb1"
+    + Looking up the network security group "NSG-FrontEnd"
     + Updating network interface "TestNICWeb1"
-    + Looking up hello network interface "TestNICWeb1"
+    + Looking up the network interface "TestNICWeb1"
     data:    Id                              : /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/RG-NSG/providers/Microsoft.Network/networkInterfaces/TestNICWeb1
     data:    Name                            : TestNICWeb1
     data:    Type                            : Microsoft.Network/networkInterfaces
@@ -250,22 +250,22 @@ azure network nic set --resource-group RG-NSG \
 
 ### <a name="dissociate-an-nsg-from-a-nic"></a>NIC에서 NSG 분리
 
-toodissociate hello **NSG 프런트 엔드** hello에서 NSG **TestNICWeb1** NIC를 hello 다음 명령을 실행 합니다.
+**NSG-FrontEnd** NSG를 **TestNICWeb1** NIC에서 분리하려면 다음 명령을 실행합니다.
 
 ```azurecli
 azure network nic set --resource-group RG-NSG --name TestNICWeb1 --network-security-group-id ""
 ```
 
 > [!NOTE]
-> 공지 hello "" hello에 대 한 (비어 있음) 값 `network-security-group-id` 매개 변수입니다. 연결 tooan NSG를 제거 하는 방법입니다. 작업할 수 없는 hello로 동일 hello `network-security-group-name` 매개 변수입니다.
+> `network-security-group-id` 매개 변수에 대한 ""(비어 있음) 값에 유의합니다. NSG에 대한 연결을 제거하는 방법입니다. `network-security-group-name` 매개 변수로 동일하게 수행할 수 없습니다.
 > 
 
 예상된 결과:
 
     info:    Executing command network nic set
-    + Looking up hello network interface "TestNICWeb1"
+    + Looking up the network interface "TestNICWeb1"
     + Updating network interface "TestNICWeb1"
-    + Looking up hello network interface "TestNICWeb1"
+    + Looking up the network interface "TestNICWeb1"
     data:    Id                              : /subscriptions/[Subscription Id]/resourceGroups/RG-NSG/providers/Microsoft.Network/networkInterfaces/TestNICWeb1
     data:    Name                            : TestNICWeb1
     data:    Type                            : Microsoft.Network/networkInterfaces
@@ -286,7 +286,7 @@ azure network nic set --resource-group RG-NSG --name TestNICWeb1 --network-secur
     info:    network nic set command OK
 
 ### <a name="dissociate-an-nsg-from-a-subnet"></a>서브넷에서 NSG 분리
-toodissociate hello **NSG 프런트 엔드** hello에서 NSG **프런트 엔드** 서브넷 hello 다음 명령을 실행 합니다.
+**NSG-FrontEnd** NSG를 **FrontEnd** 서브넷에서 분리하려면 다음 명령을 실행합니다.
 
 ```azurecli
 azure network vnet subnet set --resource-group RG-NSG \
@@ -298,9 +298,9 @@ azure network vnet subnet set --resource-group RG-NSG \
 예상 출력:
 
     info:    Executing command network vnet subnet set
-    + Looking up hello subnet "FrontEnd"
+    + Looking up the subnet "FrontEnd"
     + Setting subnet "FrontEnd"
-    + Looking up hello subnet "FrontEnd"
+    + Looking up the subnet "FrontEnd"
     data:    Id                              : /subscriptions/[Subscription Id]/resourceGroups/RG-NSG/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/FrontEnd
     data:    Type                            : Microsoft.Network/virtualNetworks/subnets
     data:    ProvisioningState               : Succeeded
@@ -312,8 +312,8 @@ azure network vnet subnet set --resource-group RG-NSG \
     data:
     info:    network vnet subnet set command OK
 
-### <a name="associate-an-nsg-tooa-subnet"></a>NSG tooa 서브넷 연결
-tooassociate hello **NSG 프런트 엔드** NSG toohello **FronEnd** 서브넷에 hello 다음 명령을 다시 실행 합니다.
+### <a name="associate-an-nsg-to-a-subnet"></a>서브넷에 NSG 연결
+**NSG-FrontEnd** NSG를 **FrontEnd** 서브넷에 다시 연결하려면 다음 명령을 실행합니다.
 
 ```azurecli
 azure network vnet subnet set --resource-group RG-NSG \
@@ -323,16 +323,16 @@ azure network vnet subnet set --resource-group RG-NSG \
 ```
 
 > [!NOTE]
-> hello 위의 명령에만 작동 하기 때문에 hello **NSG 프런트 엔드** hello에 NSG가 hello 가상 네트워크와 동일한 리소스 그룹 **TestVNet**합니다. Toouse hello hello NSG 다른 리소스 그룹에 포함 된 경우에 필요 `--network-security-group-id` 매개 변수 대신 NSG hello에 대 한 hello 전체 id를 제공 합니다. 실행 하 여 hello id를 검색할 수 있습니다 `azure network nsg show --resource-group RG-NSG --name NSG-FrontEnd --json` hello를 찾아 **id** 속성입니다. 
+> **NSG-FrontEnd** NSG가 **TestVNet** 가상 네트워크와 동일한 리소스 그룹에 있는 경우 위의 명령이 작동합니다. NSG가 다른 리소스 그룹에 있으면 대신 `--network-security-group-id` 매개 변수를 사용하고 NSG에 대한 전체 ID를 제공해야 합니다. `azure network nsg show --resource-group RG-NSG --name NSG-FrontEnd --json`을 실행하며 **id** 속성을 찾아 보아 id를 검색할 수 있습니다. 
 > 
 
 예상 출력:
 
         info:    Executing command network vnet subnet set
-        + Looking up hello subnet "FrontEnd"
-        + Looking up hello network security group "NSG-FrontEnd"
+        + Looking up the subnet "FrontEnd"
+        + Looking up the network security group "NSG-FrontEnd"
         + Setting subnet "FrontEnd"
-        + Looking up hello subnet "FrontEnd"
+        + Looking up the subnet "FrontEnd"
         data:    Id                              : /subscriptions/[Subscription Id]/resourceGroups/RG-NSG/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/FrontEnd
         data:    Type                            : Microsoft.Network/virtualNetworks/subnets
         data:    ProvisioningState               : Succeeded
@@ -346,12 +346,12 @@ azure network vnet subnet set --resource-group RG-NSG \
         info:    network vnet subnet set command OK
 
 ## <a name="delete-an-nsg"></a>NSG 삭제
-NSG tooany 리소스를 연결 되지 않은 경우에 삭제할 수 있습니다. NSG를 toodelete는 아래의 hello 단계를 수행 합니다.
+리소스에 연결되지 않은 경우 NSG를 삭제할 수 있습니다. NSG를 삭제하려면 다음 단계를 수행합니다.
 
-1. toocheck hello 리소스 관련 tooan NSG를 hello 실행 `azure network nsg show` 에서처럼 [보기 Nsg 연결](#View-NSGs-associations)합니다.
-2. Hello NSG 연결된 tooany Nic 이면 hello 실행 `azure network nic set` 에서처럼 [NIC에서 NSG를 분리](#Dissociate-an-NSG-from-a-NIC) 각 NIC.에 대 한 
-3. Hello NSG 연결된 tooany 서브넷 이면 hello 실행 `azure network vnet subnet set` 에서처럼 [서브넷에서 NSG를 분리](#Dissociate-an-NSG-from-a-subnet) 각 서브넷에 대 한 합니다.
-4. toodelete hello NSG hello 다음 명령을 실행 합니다.
+1. NSG에 연결된 리소스를 확인하려면 [NSG 연결 보기](#View-NSGs-associations)에서처럼 `azure network nsg show`을 실행합니다.
+2. NSG가 NIC에 연결된 경우 각 NIC에 대한 [NIC에서 NSG 분리](#Dissociate-an-NSG-from-a-NIC)에서처럼 `azure network nic set`을 실행합니다. 
+3. NSG가 서브넷에 연결된 경우 각 서브넷에 대한 [서브넷에서 NSG 분리](#Dissociate-an-NSG-from-a-subnet)에서처럼 `azure network vnet subnet set`을 실행합니다.
+4. NSG를 삭제하려면 다음 명령을 실행합니다.
 
     ```azurecli
     azure network nsg delete --resource-group RG-NSG --name NSG-FrontEnd --quiet
@@ -360,7 +360,7 @@ NSG tooany 리소스를 연결 되지 않은 경우에 삭제할 수 있습니�
     예상 출력:
 
         info:    Executing command network nsg delete
-        + Looking up hello network security group "NSG-FrontEnd"
+        + Looking up the network security group "NSG-FrontEnd"
         + Deleting network security group "NSG-FrontEnd"
         info:    network nsg delete command OK
 

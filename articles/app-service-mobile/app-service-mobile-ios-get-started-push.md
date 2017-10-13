@@ -1,6 +1,6 @@
 ---
-title: "aaaAdd 푸시 알림을 tooiOS Azure 모바일 앱과 앱"
-description: "Azure 모바일 앱 toosend toouse 밀어넣기 알림 tooyour iOS 앱에 알아봅니다."
+title: "Azure 모바일 앱을 사용하여 iOS 앱에 푸시 알림 추가"
+description: "Azure 모바일 앱을 사용하여 iOS 앱에 푸시 알림을 보내는 방법에 대해 알아봅니다."
 services: app-service\mobile
 documentationcenter: ios
 manager: syntaxc4
@@ -14,21 +14,21 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: glenga
-ms.openlocfilehash: 11588c56bc8987a71257dbad4fcdebf1b3209b1b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 08a8c35b89386bd0dbe7bba406a6985a5a0d7eb8
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="add-push-notifications-tooyour-ios-app"></a>푸시 알림을 tooyour iOS 앱 추가
+# <a name="add-push-notifications-to-your-ios-app"></a>iOS 앱에 푸시 알림 추가
 [!INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
 ## <a name="overview"></a>개요
-이 자습서에서는 푸시 알림을 toohello 추가한 [iOS 빠른 시작] 프로젝트 레코드가 삽입 될 때마다 푸시 알림을 toohello 장치 보내집니다.
+이 자습서에서는 푸시 알림을 [iOS 빠른 시작] 프로젝트에 추가하여 레코드가 삽입될 때마다 장치에 푸시 알림이 전송됩니다.
 
-사용 하지 않는 경우 hello 퀵 스타트 서버 프로젝트를 다운로드, 푸시 알림 확장 패키지 hello 필요 합니다. 참조 [Azure 모바일 앱에 대 한 hello.NET 백 엔드 서버 SDK에서 작동](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md) 자세한 정보에 대 한 합니다.
+다운로드한 빠른 시작 서버 프로젝트를 사용하지 않는 경우 푸시 알림 확장 패키지가 필요합니다. 자세한 내용은 [Azure Mobile Apps용 .NET 백 엔드 서버 SDK 사용](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)을 참조하세요.
 
-hello [iOS 시뮬레이터에 푸시 알림을 지원 하지 않는](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/iOS_Simulator_Guide/TestingontheiOSSimulator.html)합니다. 실제 iOS 장치 및 [Apple 개발자 프로그램 멤버 자격](https://developer.apple.com/programs/ios/)이 필요합니다.
+[iOS 시뮬레이터는 푸시 알림을 지원하지 않습니다](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/iOS_Simulator_Guide/TestingontheiOSSimulator.html). 실제 iOS 장치 및 [Apple 개발자 프로그램 멤버 자격](https://developer.apple.com/programs/ios/)이 필요합니다.
 
 ## <a name="configure-hub"></a>알림 허브 구성
 [!INCLUDE [app-service-mobile-configure-notification-hub](../../includes/app-service-mobile-configure-notification-hub.md)]
@@ -36,20 +36,20 @@ hello [iOS 시뮬레이터에 푸시 알림을 지원 하지 않는](https://dev
 ## <a id="register"></a>푸시 알림을 위한 앱 등록
 [!INCLUDE [Enable Apple Push Notifications](../../includes/enable-apple-push-notifications.md)]
 
-## <a name="configure-azure-toosend-push-notifications"></a>Azure toosend 푸시 알림 구성
+## <a name="configure-azure-to-send-push-notifications"></a>푸시 알림을 전송하도록 Azure 구성
 [!INCLUDE [app-service-mobile-apns-configure-push](../../includes/app-service-mobile-apns-configure-push.md)]
 
-## <a id="update-server"></a>업데이트 백 엔드 toosend 푸시 알림
+## <a id="update-server"></a>푸시 알림을 전송하도록 백 엔드 업데이트
 [!INCLUDE [app-service-mobile-dotnet-backend-configure-push-apns](../../includes/app-service-mobile-dotnet-backend-configure-push-apns.md)]
 
-## <a id="add-push"></a>푸시 알림 tooapp 추가
+## <a id="add-push"></a>앱에 푸시 알림 추가
 [!INCLUDE [app-service-mobile-add-push-notifications-to-ios-app.md](../../includes/app-service-mobile-add-push-notifications-to-ios-app.md)]
 
 ## <a id="test"></a>테스트 푸시 알림
 [!INCLUDE [Test Push Notifications in App](../../includes/test-push-notifications-in-app.md)]
 
 ## <a id="more"></a>추가 정보
-* 서식 파일에는 유연성 toosend 플랫폼 간 푸시 및 지역화 된 푸시 제공합니다. [어떻게 tooUse iOS Azure 모바일 앱에 대 한 클라이언트 라이브러리](app-service-mobile-ios-how-to-use-client-library.md#templates) 방법을 보여주는 tooregister 템플릿.
+* 템플릿은 유연성을 제공하여 플랫폼간 푸시 및 지역화된 푸시를 보냅니다. [Azure 모바일 앱용 iOS 클라이언트 라이브러리 사용 방법](app-service-mobile-ios-how-to-use-client-library.md#templates) 은 템플릿을 등록하는 방법을 보여 줍니다.
 
 <!-- Anchors.  -->
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure 트래픽 관리자 지리적 라우팅 유형에 사용 되는 aaaCountry/지역 계층 | Microsoft Docs"
+title: "Azure Traffic Manager 지리적 라우팅 유형에서 사용하는 국가/지역 계층 구조 | Microsoft Docs"
 description: "이 문서에서는 Azure Traffic Manager 지리적 라우팅 유형에서 사용하는 국가/지역 계층 구조를 나열합니다."
 services: traffic-manager
 documentationcenter: 
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/22/2017
 ms.author: kumud
-ms.openlocfilehash: d09fc896951fa1086822d69316468e7a98861591
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 93db099e9e25856e13c398c4a03a5728d178e5dd
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="countryregion-hierarchy-used-by-azure-traffic-manager-for-geographic-traffic-routing-method"></a>지리적 트래픽 라우팅 메소드에 대해 Azure Traffic Manager에서 사용하는 국가/지역 계층 구조
 
-이 문서에서는 hello 국가 지역을 hello에서 사용 하는 나열 **지리** 트래픽 라우팅 방법 Azure 트래픽 관리자의 합니다. [Azure Traffic Manager REST API](https://docs.microsoft.com/rest/api/trafficmanager/)를 호출하여 이 정보를 프로그래밍 방식으로 가져올 수도 있습니다. 
+이 문서에서는 Azure Traffic Manager의 **지리적** 트래픽 라우팅 메서드에서 사용하는 국가 및 지역을 나열합니다. [Azure Traffic Manager REST API](https://docs.microsoft.com/rest/api/trafficmanager/)를 호출하여 이 정보를 프로그래밍 방식으로 가져올 수도 있습니다. 
 
 - WORLD(전 세계)
 
@@ -384,7 +384,7 @@ ms.lasthandoff: 10/06/2017
 
             - US-WY(와이오밍)
 
-        - VC (세인트 빈센트 및 hello 그레나딘)
+        - VC(세인트 빈센트 그레나딘)
 
         - VG(영국령 버진 아일랜드)
 

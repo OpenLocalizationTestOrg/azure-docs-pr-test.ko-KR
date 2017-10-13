@@ -1,6 +1,6 @@
 ---
-title: "Linux 가상 컴퓨터를 사용자 지정 aaaCreate | Microsoft Docs"
-description: "Toocreate hello 포털 사용 하 여 Azure에서 Linux 가상 컴퓨터를 사용자 지정 클래식 배포 모델을 hello 하는 방법에 대해 알아봅니다."
+title: "사용자 지정 Linux 가상 컴퓨터 만들기 | Microsoft Docs"
+description: "클래식 배포 모델을 사용하여 Azure Portal에서 사용자 지정 Linux 가상 컴퓨터를 만드는 방법을 알아봅니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,15 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2017
 ms.author: cynthn
-ms.openlocfilehash: 7591d2bd1fc642a9092f5f77d068c76b9d6ce5f5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 385102662ef46d7eca51d6e5e10ed7aa77bb1a43
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-a-custom-virtual-machine-running-linux"></a>Linux를 실행하는 사용자 지정 가상 컴퓨터 만들기
 > [!IMPORTANT] 
-> Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다. 이 문서에서는 hello 클래식 배포 모델을 사용 하 여 설명 합니다. 대부분의 새로운 배포 hello 리소스 관리자 모델을 사용 하는 것이 좋습니다. 리소스 관리자 hello를 사용 하 여 Linux VM을 만드는 방법에 대 한 모델을 참조 [hello 포털을 사용 하 여 Azure에서 Linux VM을 만들](../quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.
+> Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다. 이 문서에서는 클래식 배포 모델 사용에 대해 설명합니다. 새로운 배포는 대부분 리소스 관리자 모델을 사용하는 것이 좋습니다. Resource Manager 모델을 사용하여 Linux VM을 만드는 방법에 대한 자세한 내용은 [포털을 사용하여 Azure에서 Linux VM 만들기](../quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)를 참조하세요.
 
 [!INCLUDE [virtual-machines-common-classic-createportal](../../../../includes/virtual-machines-common-classic-createportal.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate 하 고 관리할 수 있는 Azure 가상 컴퓨터를 사용 하 여 C# | Microsoft Docs"
-description: "가상 컴퓨터와 해당 지원 리소스를 모두 toodeploy C# 및 Azure 리소스 관리자를 사용 합니다."
+title: "C#을 사용하여 Azure Virtual Machine 만들기 및 관리 | Microsoft Docs"
+description: "C# 및 Azure Resource Manager를 사용하여 가상 컴퓨터 및 모든 지원 리소스를 배포합니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: davidmu
-ms.openlocfilehash: 8beeabde731bbaa25e68d2b9c5abbf71acbe377f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5d9021c2f65b70e36d5ea82992c9fb9d2d6d394a
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="create-and-manage-windows-vms-in-azure-using-c"></a>C#을 사용하여 Azure에서 Windows VM 생성 및 관리 #
 
@@ -27,27 +27,27 @@ ms.lasthandoff: 10/06/2017
 
 > [!div class="checklist"]
 > * Visual Studio 프로젝트 만들기
-> * Hello 패키지 설치
+> * 패키지 설치
 > * 자격 증명 만들기
 > * 리소스 만들기
 > * 관리 작업 수행
 > * 리소스 삭제
-> * Hello 응용 프로그램 실행
+> * 응용 프로그램 실행
 
-다음이 단계 toodo 약 20 분이 필요합니다.
+이러한 단계를 수행하려면 약 20분이 걸립니다.
 
 ## <a name="create-a-visual-studio-project"></a>Visual Studio 프로젝트 만들기
 
-1. [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio)를 아직 설치하지 않았으면 설치합니다. 선택 **.NET 데스크톱 개발** 작업 페이지 hello 되 고 클릭 **설치**합니다. Hello 요약을 볼 수 있습니다는 **.NET Framework 4 4.6 개발 도구** 가 자동으로 선택 됩니다. Visual Studio를 이미 설치한 경우 Visual Studio 시작 관리자 hello를 사용 하 여 hello.NET 작업을 추가할 수 있습니다.
+1. [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio)를 아직 설치하지 않았으면 설치합니다. 작업 페이지에서 **.NET 데스크톱 개발**을 선택한 다음 **설치**를 클릭합니다. 요약에서 **.NET Framework 4 - 4.6 개발 도구**가 자동으로 선택되는 것을 볼 수 있습니다. Visual Studio를 이미 설치한 경우 Visual Studio 시작 관리자를 사용하여 .NET 작업을 추가할 수 있습니다.
 2. Visual Studio에서 **파일** > **새로 만들기** > **프로젝트**를 클릭합니다.
-3. **템플릿** > **Visual C#**선택, **콘솔 응용 프로그램 (.NET Framework)**, 입력 *myDotnetProject* hello 이름에 대 한 프로젝트를 hello 프로젝트의 위치 선택 hello hello 및 클릭 **확인**합니다.
+3. **템플릿** > **Visual C#**에서 **콘솔 앱(.NET Framework)**을 선택하고, 프로젝트의 이름에 *myDotnetProject*를 입력하고 프로젝트의 위치를 선택한 다음 **확인**을 클릭합니다.
 
-## <a name="install-hello-package"></a>Hello 패키지 설치
+## <a name="install-the-package"></a>패키지 설치
 
-NuGet 패키지는 hello 가장 쉬운 방법은 tooinstall hello 라이브러리 할 toofinish 다음이 단계입니다. tooget hello 라이브러리는 Visual Studio에 필요한 다음이 단계를 수행 합니다.
+NuGet 패키지는 이러한 단계를 완료하는데 필요한 라이브러리를 설치하는 가장 쉬운 방법입니다. Visual Studio에서 필요한 라이브러리를 가져오려면 다음 단계를 수행합니다.
 
 1. **도구** > **Nuget 패키지 관리자**를 클릭한 다음 **패키지 관리자 콘솔**을 클릭합니다.
-2. Hello 콘솔에서이 명령을 입력 합니다.
+2. 콘솔에 다음 명령을 입력합니다.
 
     ```
     Install-Package Microsoft.Azure.Management.Fluent
@@ -55,11 +55,11 @@ NuGet 패키지는 hello 가장 쉬운 방법은 tooinstall hello 라이브러�
 
 ## <a name="create-credentials"></a>자격 증명 만들기
 
-이 단계를 시작 하기 전에 액세스 tooan 했는지 확인 [Active Directory 서비스 사용자](../../azure-resource-manager/resource-group-create-service-principal-portal.md)합니다. 이후 단계에서 또한 hello 응용 프로그램 ID, 인증 키 hello 및 필요한 hello 테 넌 트 ID을 기록해 야 합니다.
+이 단계를 시작하기 전에 [Active Directory 서비스 사용자](../../azure-resource-manager/resource-group-create-service-principal-portal.md)에 액세스할 수 있는지 확인합니다. 또한 이후 단계에서 필요한 응용 프로그램 ID, 인증 키 및 테넌트 ID를 기록해 두어야 합니다.
 
-### <a name="create-hello-authorization-file"></a>Hello 권한 부여 파일 만들기
+### <a name="create-the-authorization-file"></a>권한 부여 파일 만들기
 
-1. 솔루션 탐색기에서 *myDotnetProject* > **추가** > **새 항목**을 마우스 오른쪽 단추로 클릭한 다음 *Visual C# 항목*에서 **텍스트 파일**을 선택합니다. 이름 hello 파일 *azureauth.properties*, 클릭 하 고 **추가**합니다.
+1. 솔루션 탐색기에서 *myDotnetProject* > **추가** > **새 항목**을 마우스 오른쪽 단추로 클릭한 다음 *Visual C# 항목*에서 **텍스트 파일**을 선택합니다. 파일 이름을 *azureauth.properties*로 지정하고 **추가**를 클릭합니다.
 2. 다음과 같은 권한 부여 속성을 추가합니다.
 
     ```
@@ -73,18 +73,18 @@ NuGet 패키지는 hello 가장 쉬운 방법은 tooinstall hello 라이브러�
     graphURL=https://graph.windows.net/
     ```
 
-    대체  **&lt;-&gt;**  구독 식별자를 가진  **&lt;응용 프로그램 id&gt;**  Active Directory 응용 프로그램 hello로 식별자,  **&lt;인증 키&gt;**  hello 응용 프로그램 키를 포함 하 고  **&lt;테 넌 트 id&gt;**  hello 테 넌 트와 식별자입니다.
+    **&lt;subscription-id&gt;**를 구독 식별자, **&lt;application-id&gt;**를 Active Directory 응용 프로그램 식별자, **&lt;authentication-key&gt;**를 응용 프로그램 키, **&lt;tenant-id&gt;**를 테넌트 식별자로 바꿉니다.
 
-3. Hello azureauth.properties 파일을 저장 합니다. 
-4. Windows hello 전체 경로 tooauthorization 만든 파일에 있는 AZURE_AUTH_LOCATION 라는 환경 변수를 설정 합니다. 예를 들어 hello 다음 PowerShell 명령을 사용할 수 있습니다.
+3. azureauth.properties 파일을 저장합니다. 
+4. AZURE_AUTH_LOCATION이라는 Windows 환경 변수를 만든 권한 부여 파일의 전체 경로로 설정합니다. 예를 들어 다음과 같은 PowerShell 명령을 사용할 수 있습니다.
 
     ```
     [Environment]::SetEnvironmentVariable("AZURE_AUTH_LOCATION", "C:\Visual Studio 2017\Projects\myDotnetProject\myDotnetProject\azureauth.properties", "User")
     ```
 
-### <a name="create-hello-management-client"></a>Hello 관리 클라이언트 만들기
+### <a name="create-the-management-client"></a>관리 클라이언트 만들기
 
-1. 사용자가 만든 hello 프로젝트에 대 한 hello Program.cs 파일을 열고 hello 파일의 맨 위쪽에 문을 toohello 기존 문을 사용 하 여이 추가 합니다.
+1. 만들었던 프로젝트에 대한 Program.cs 파일을 연 후, 다음 using 문을 파일의 위쪽에 기존 문에 추가합니다.
 
     ```
     using Microsoft.Azure.Management.Compute.Fluent;
@@ -94,7 +94,7 @@ NuGet 패키지는 hello 가장 쉬운 방법은 tooinstall hello 라이브러�
     using Microsoft.Azure.Management.ResourceManager.Fluent.Core;
     ```
 
-2. toocreate hello management 클라이언트에서는이 코드 toohello Main 메서드에 추가 합니다.
+2. 관리 클라이언트를 만들려면 Main 메서드에 다음 코드를 추가합니다.
 
     ```
     var credentials = SdkContext.AzureCredentialsFactory
@@ -109,11 +109,11 @@ NuGet 패키지는 hello 가장 쉬운 방법은 tooinstall hello 라이브러�
 
 ## <a name="create-resources"></a>리소스 만들기
 
-### <a name="create-hello-resource-group"></a>Hello 리소스 그룹 만들기
+### <a name="create-the-resource-group"></a>리소스 그룹 만들기
 
 모든 리소스는 [리소스 그룹](../../azure-resource-manager/resource-group-overview.md)에 포함되어야 합니다.
 
-toospecify 값에 대 한 응용 프로그램 hello 및 hello 리소스 그룹 만들기,이 코드 toohello Main 메서드에 추가 합니다.
+응용 프로그램의 값을 지정하고 리소스 그룹을 만들려면 Main 메서드에 다음 코드를 추가합니다.
 
 ```
 var groupName = "myResourceGroup";
@@ -126,11 +126,11 @@ var resourceGroup = azure.ResourceGroups.Define(groupName)
     .Create();
 ```
 
-### <a name="create-hello-availability-set"></a>Hello 가용성 집합 만들기
+### <a name="create-the-availability-set"></a>가용성 집합 만들기
 
-[가용성 집합](tutorial-availability-sets.md) 쉽게 드립니다 toomaintain hello 가상 컴퓨터 응용 프로그램에서 사용 합니다.
+[가용성 집합](tutorial-availability-sets.md)은 응용 프로그램에서 사용되는 가상 컴퓨터를 쉽게 유지 관리할 수 있도록 합니다.
 
-toocreate hello 가용성 설정,이 코드 toohello Main 메서드에 추가 합니다.
+가용성 집합을 만들려면 Main 메서드에 다음 코드를 추가합니다.
 
 ```
 Console.WriteLine("Creating availability set...");
@@ -141,11 +141,11 @@ var availabilitySet = azure.AvailabilitySets.Define("myAVSet")
     .Create();
 ```
 
-### <a name="create-hello-public-ip-address"></a>Hello 공용 IP 주소 만들기
+### <a name="create-the-public-ip-address"></a>공용 IP 주소 만들기
 
-A [공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) hello 가상 컴퓨터와 필요한 toocommunicate 됩니다.
+[공용 IP 주소](../../virtual-network/virtual-network-ip-addresses-overview-arm.md)는 가상 컴퓨터와 통신하는 데 필요합니다.
 
-hello 가상 컴퓨터용 toocreate hello 공용 IP 주소에이 코드 toohello Main 메서드에 추가 합니다.
+가상 컴퓨터의 공용 IP 주소를 만들려면 Main 메서드에 다음 코드를 추가합니다.
    
 ```
 Console.WriteLine("Creating public IP address...");
@@ -156,11 +156,11 @@ var publicIPAddress = azure.PublicIPAddresses.Define("myPublicIP")
     .Create();
 ```
 
-### <a name="create-hello-virtual-network"></a>Hello 가상 네트워크 만들기
+### <a name="create-the-virtual-network"></a>가상 네트워크 만들기
 
 가상 컴퓨터는 [가상 네트워크](../../virtual-network/virtual-networks-overview.md)의 서브넷에 있어야 합니다.
 
-toocreate는 서브넷과 가상 네트워크에이 코드 toohello Main 메서드에 추가 합니다.
+서브넷 및 가상 네트워크를 만들려면 Main 메서드에 다음 코드를 추가합니다.
 
 ```
 Console.WriteLine("Creating virtual network...");
@@ -172,11 +172,11 @@ var network = azure.Networks.Define("myVNet")
     .Create();
 ```
 
-### <a name="create-hello-network-interface"></a>Hello 네트워크 인터페이스 만들기
+### <a name="create-the-network-interface"></a>네트워크 인터페이스 만들기
 
-가상 컴퓨터에는 hello 가상 네트워크에서 네트워크 인터페이스 toocommunicate가 필요 합니다.
+가상 컴퓨터는 가상 네트워크에서 통신하기 위해 네트워크 인터페이스가 필요합니다.
 
-toocreate 네트워크 인터페이스에이 코드 toohello Main 메서드에 추가 합니다.
+네트워크 인터페이스를 만들려면 Main 메서드에 다음 코드를 추가합니다.
 
 ```
 Console.WriteLine("Creating network interface...");
@@ -190,11 +190,11 @@ var networkInterface = azure.NetworkInterfaces.Define("myNIC")
     .Create();
  ```
 
-### <a name="create-hello-virtual-machine"></a>Hello 가상 컴퓨터 만들기
+### <a name="create-the-virtual-machine"></a>가상 컴퓨터 만들기
 
-리소스를 지 원하는 모든 hello, 만든 가상 컴퓨터를 만들 수 있습니다.
+모든 지원 리소스를 만들었으므로 가상 컴퓨터를 만들 수 있습니다.
 
-toocreate hello 가상 컴퓨터에서이 코드 toohello Main 메서드에 추가 합니다.
+가상 컴퓨터를 만들려면 Main 메서드에 다음 코드를 추가합니다.
 
 ```
 Console.WriteLine("Creating virtual machine...");
@@ -212,11 +212,11 @@ azure.VirtualMachines.Define(vmName)
 ```
 
 > [!NOTE]
-> 이 자습서는 hello Windows Server 운영 체제의 버전을 실행 하는 가상 컴퓨터를 만듭니다. 다른 이미지 선택에 대 한 더 toolearn 참조 [탐색 하 고 Windows PowerShell 및 Azure CLI hello를 사용 하 여 Azure 가상 컴퓨터 이미지 선택](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.
+> 이 자습서는 Windows Server 운영 체제의 버전을 실행하는 가상 컴퓨터를 만듭니다. 기타 이미지 선택에 대해 자세히 알아보려면 [Windows PowerShell 및 Azure CLI를 사용하여 Azure 가상 컴퓨터 탐색 및 선택](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)을 참조하세요.
 > 
 >
 
-Toouse 마켓플레이스 이미지 대신 기존 디스크를 사용 하도록 하려는 경우이 코드를 사용 하세요.
+마켓플레이스 이미지 대신 기존 디스크를 사용하려면 다음 코드를 사용합니다.
 
 ```
 var managedDisk = azure.Disks.Define("myosdisk")
@@ -239,20 +239,20 @@ azure.VirtualMachines.Define("myVM")
 
 ## <a name="perform-management-tasks"></a>관리 작업 수행
 
-가상 컴퓨터의 hello 수명 주기 동안 시작, 중지, 또는 가상 컴퓨터를 삭제 하는 등의 toorun 관리 작업을 할 수 있습니다. 또한 toocreate 코드 tooautomate 반복적 복잡 한 작업을 지정할 수 있습니다.
+가상 컴퓨터의 수명 주기 동안 가상 컴퓨터 시작, 중지 또는 삭제 등의 관리 작업을 실행하려고 할 수 있습니다. 또한 반복적이거나 복잡한 작업을 자동화하는 코드를 만들 수도 있습니다.
 
-Toodo VM hello를 사용 하 여 작업을 해야 하는 경우 해당 형식의 인스턴스 tooget이 필요 합니다.
+VM에서 작업을 수행해야 하는 경우 VM의 인스턴스를 가져와야 합니다.
 
 ```
 var vm = azure.VirtualMachines.GetByResourceGroup(groupName, vmName);
 ```
 
-### <a name="get-information-about-hello-vm"></a>Hello VM에 대 한 정보 가져오기
+### <a name="get-information-about-the-vm"></a>VM 관련 정보 가져오기
 
-이 코드 toohello Main 메서드에 추가 하는 hello 가상 컴퓨터에 대 한 tooget 정보:
+가상 컴퓨터에 대한 정보를 가져오려면 Main 메서드에 다음 코드를 추가합니다.
 
 ```
-Console.WriteLine("Getting information about hello virtual machine...");
+Console.WriteLine("Getting information about the virtual machine...");
 Console.WriteLine("hardwareProfile");
 Console.WriteLine("   vmSize: " + vm.Size);
 Console.WriteLine("storageProfile");
@@ -313,87 +313,87 @@ foreach (InstanceViewStatus stat in vm.InstanceView.Statuses)
     Console.WriteLine("  level: " + stat.Level);
     Console.WriteLine("  displayStatus: " + stat.DisplayStatus);
 }
-Console.WriteLine("Press enter toocontinue...");
+Console.WriteLine("Press enter to continue...");
 Console.ReadLine();
 ```
 
-### <a name="stop-hello-vm"></a>Hello VM 중지
+### <a name="stop-the-vm"></a>VM을 중지합니다.
 
-가상 컴퓨터를 중지 하 고 해당 설정을 모두 그대로 유지 하지만 계속 toobe 유료로 제공, 가상 컴퓨터를 중지 하 고 할당을 취소 하거나 수 있습니다. 가상 컴퓨터를 할당을 해제하면 연결된 모든 리소스의 할당이 취소되고 대금 청구가 끝납니다.
+가상 컴퓨터를 중지하고 해당 설정을 모두 그대로 유지하면 계속 요금이 청구될 수 있습니다. 그렇지 않으려면 가상 컴퓨터를 중지하고 할당을 해제합니다. 가상 컴퓨터를 할당을 해제하면 연결된 모든 리소스의 할당이 취소되고 대금 청구가 끝납니다.
 
-toostop hello 가상 컴퓨터를 할당 취소 하지 않고이 코드 toohello Main 메서드에 추가 합니다.
+할당을 취소하지 않고 가상 컴퓨터를 중지하려면 Main 메서드에 다음 코드를 추가합니다.
 
 ```
 Console.WriteLine("Stopping vm...");
 vm.PowerOff();
-Console.WriteLine("Press enter toocontinue...");
+Console.WriteLine("Press enter to continue...");
 Console.ReadLine();
 ```
 
-Toodeallocate hello 가상 컴퓨터를 하려면 hello 전원 꺼짐 통화 toothis 코드를 변경 합니다.
+가상 컴퓨터의 할당을 취소하려는 경우 PowerOff 호출을 이 코드로 변경합니다.
 
 ```
 vm.Deallocate();
 ```
 
-### <a name="start-hello-vm"></a>Hello VM 시작
+### <a name="start-the-vm"></a>VM 시작
 
-toostart hello 가상 컴퓨터에서이 코드 toohello Main 메서드에 추가 합니다.
+가상 컴퓨터를 시작하려면 Main 메서드에 다음 코드를 추가합니다.
 
 ```
 Console.WriteLine("Starting vm...");
 vm.Start();
-Console.WriteLine("Press enter toocontinue...");
+Console.WriteLine("Press enter to continue...");
 Console.ReadLine();
 ```
 
-### <a name="resize-hello-vm"></a>Hello VM의 크기를 조정합니다
+### <a name="resize-the-vm"></a>VM 크기 조정
 
 가상 컴퓨터의 크기를 결정할 때 배포의 여러 측면을 고려해야 합니다. 자세한 내용은 [VM 크기](sizes.md)를 참조하세요.  
 
-이 코드 toohello Main 메서드에 추가 하는 hello 가상 컴퓨터의 toochange 크기:
+가상 컴퓨터의 크기를 변경하려면 Main 메서드에 다음 코드를 추가합니다.
 
 ```
 Console.WriteLine("Resizing vm...");
 vm.Update()
     .WithSize(VirtualMachineSizeTypes.StandardDS2) 
     .Apply();
-Console.WriteLine("Press enter toocontinue...");
+Console.WriteLine("Press enter to continue...");
 Console.ReadLine();
 ```
 
-### <a name="add-a-data-disk-toohello-vm"></a>데이터 디스크 toohello VM 추가
+### <a name="add-a-data-disk-to-the-vm"></a>VM에 데이터 디스크 추가
 
-tooadd 데이터 디스크 toohello 가상 컴퓨터를이 코드 toohello Main 메서드 tooadd 한 LUN 0이 고 캐싱 유형의 ReadWrite 크기가 2 GB 되는 데이터 디스크를 추가 합니다.
+가상 컴퓨터에 데이터 디스크를 추가하려면 Main 메서드에 다음 코드를 추가하여 크기가 2GB이고 LUN이 0이며 캐싱 형식이 읽기/쓰기인 데이터 디스크를 추가합니다.
 
 ```
-Console.WriteLine("Adding data disk toovm...");
+Console.WriteLine("Adding data disk to vm...");
 vm.Update()
     .WithNewDataDisk(2, 0, CachingTypes.ReadWrite) 
     .Apply();
-Console.WriteLine("Press enter toodelete resources...");
+Console.WriteLine("Press enter to delete resources...");
 Console.ReadLine();
 ```
 
 ## <a name="delete-resources"></a>리소스 삭제
 
-Azure에서 사용 되는 리소스에 대 한 요금이 청구 되므로 항상 것은 더 이상 필요 없는 것이 좋습니다 toodelete 리소스입니다. Toodelete hello 가상 컴퓨터 및 리소스를 지 원하는 모든 hello, 모든 있는 toodo hello 리소스 그룹 삭제 됩니다.
+Azure에서 사용되는 리소스에 대한 요금이 부과되기 때문에, 더 이상 필요하지 않은 리소스를 항상 삭제하는 것이 좋습니다. 가상 컴퓨터 및 모든 지원 리소스를 삭제하려는 경우, 리소스 그룹을 삭제해야 합니다.
 
-toodelete hello 리소스 그룹에서이 코드 toohello Main 메서드에 추가 합니다.
+리소스 그룹을 삭제하려면 Main 메서드에 다음 코드를 추가합니다.
 
 ```
 azure.ResourceGroups.DeleteByName(groupName);
 ```
 
-## <a name="run-hello-application"></a>Hello 응용 프로그램 실행
+## <a name="run-the-application"></a>응용 프로그램 실행
 
-이 콘솔 응용 프로그램 toorun 시작 toofinish에서 완전히에 대 일 분 정도 취해야 합니다. 
+이 콘솔 응용 프로그램을 처음부터 끝까지 완전히 실행하려면 약 5분이 필요합니다. 
 
-1. toorun hello 콘솔 응용 프로그램을 클릭 하 여 **시작**합니다.
+1. 콘솔 응용 프로그램을 실행하려면 **시작**을 클릭합니다.
 
-2. 누르기 전에 **Enter** toostart 삭제 리소스를 가져올 수 있었습니다 몇 분 정도 hello 리소스 tooverify hello 만들기 hello Azure 포털의에서. Hello 배포 상태 toosee hello 배포에 대 한 정보를 클릭 합니다.
+2. **Enter** 키를 눌러 리소스를 삭제하기 전에 Azure Portal에서 리소스 만들기를 확인하는 데에 몇 분이 걸릴 수 있습니다. 배포에 대한 정보를 보려면 배포 상태를 클릭합니다.
 
 ## <a name="next-steps"></a>다음 단계
-* 활용 템플릿 toocreate를 사용 하 여 가상 컴퓨터 정보 hello를 사용 하 여 [C# 및 리소스 관리자 템플릿을 사용 하 여 Azure 가상 컴퓨터 배포](csharp-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다.
-* Hello를 사용 하는 방법에 대 한 자세한 정보 [.NET 용 Azure 라이브러리](https://docs.microsoft.com/dotnet/azure/?view=azure-dotnet)합니다.
+* [C# 및 Resource Manager 템플릿을 사용하여 Azure 가상 컴퓨터 배포](csharp-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)의 정보를 사용하여 가상 컴퓨터를 만드는 데 템플릿을 활용합니다.
+* [.NET용 Azure 라이브러리](https://docs.microsoft.com/dotnet/azure/?view=azure-dotnet) 사용에 대해 자세히 알아봅니다.
 

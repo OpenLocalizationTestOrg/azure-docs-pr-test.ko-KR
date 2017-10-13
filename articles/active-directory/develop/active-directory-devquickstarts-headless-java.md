@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure AD Java 명령줄 시작 | Microsoft Docs"
-description: "어떻게 toobuild Java tooaccess API의에서 사용자가 서명 하는 줄 앱을 명령입니다."
+title: "Azure AD Java 명령줄 시작 | Microsoft Docs"
+description: "API 액세스를 위해 사용자를 로그인하는 Java 명령줄 앱을 빌드하는 방법"
 services: active-directory
 documentationcenter: java
 author: navyasric
@@ -15,51 +15,51 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: 9ba1d1e794928a39ca1f091bd0e6eba57ce3d6aa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 91e4a7b2ac454465d5cce4948a4d5f0b542d2b55
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="using-java-command-line-app-tooaccess-an-api-with-azure-ad"></a>Java 명령줄 응용 프로그램 tooAccess API를 사용 하 여 Azure AD와
+# <a name="using-java-command-line-app-to-access-an-api-with-azure-ad"></a>Azure AD에서 API를 액세스하기 위해 Java 명령줄 앱 사용
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-Azure AD는 단순 하 고 간단 toooutsource 웹 앱의 id 관리, single 로그인 및 로그 아웃 코드 몇 줄만 제공 합니다.  Java 웹 응용 프로그램에서 이렇게 되도록 하려면 Microsoft에서 구현한 커뮤니티 기반 ADAL4J hello 사용 하 여 합니다.
+Azure AD를 사용하면 단순하고 간편하게 웹앱의 ID 관리를 아웃소싱하고 몇 개의 코드 줄만으로 단일 로그인 및 로그아웃을 제공할 수 있습니다.  Java 웹앱에서는 Microsoft에서 구현한 커뮤니티 기반 ADAL4J를 사용하여 이 작업을 수행할 수 있습니다.
 
   다음의 경우 ADAL4J를 사용합니다.
 
-* Hello 사용자 hello id 공급자로 Azure AD를 사용 하 여 hello 앱에 로그인 합니다.
-* Hello 사용자에 대 한 일부 정보를 표시 합니다.
-* Sign hello hello 앱에서 사용자입니다.
+* ID 공급자로 Azure AD를 사용하여 사용자를 앱에 로그인합니다.
+* 사용자에 대한 일부 정보를 표시합니다.
+* 앱에서 사용자를 로그아웃합니다.
 
-이 toodo 순서, 해야 합니다.
+이 작업을 수행하려면 다음 작업이 필요합니다.
 
 1. Azure AD에 응용 프로그램을 등록합니다.
-2. 응용 프로그램 toouse hello ADAL4J 라이브러리를 설정 합니다.
-3. Hello ADAL4J 라이브러리 tooissue 로그인 및 로그 아웃 요청 tooAzure AD 사용 합니다.
-4. Hello 사용자에 대 한 데이터를 출력 합니다.
+2. 앱을 설정하여 ADAL4J 라이브러리를 사용합니다.
+3. ADAL4J 라이브러리를 사용하여 Azure AD에 로그인 및 로그아웃 요청 실행
+4. 사용자에 대한 데이터를 출력합니다.
 
-시작 tooget [hello 응용 프로그램의 기본 정의 다운로드](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/skeleton.zip) 또는 [완료 hello 샘플 다운로드](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect\\/archive/complete.zip)합니다.  어떤 tooregister에 Azure AD 테 넌 트 응용 프로그램 할 수 있습니다.  없는 경우 하나 이미 [자세한 방법을 하나 tooget](active-directory-howto-tenant.md)합니다.
+시작하려면 [앱 기본 사항을 다운로드](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/skeleton.zip)하거나 [완성된 샘플을 다운로드](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect\\/archive/complete.zip)하세요.  응용 프로그램을 등록할 Azure AD 테넌트도 필요합니다.  테넌트가 아직 없는 경우 [가져오는 방법을 알아봅니다](active-directory-howto-tenant.md).
 
 ## <a name="1--register-an-application-with-azure-ad"></a>1.  Azure AD에 응용 프로그램을 등록합니다.
-tooenable 앱 tooauthenticate 사용자가 테 넌 트에 tooregister 새 응용 프로그램을 먼저 필요 합니다.
+앱에서 사용자를 인증할 수 있게 하려면 먼저 새 응용 프로그램을 테넌트에 등록해야 합니다.
 
-1. Toohello 로그인 [Azure 포털](https://portal.azure.com)합니다.
-2. Hello 위쪽 막대에서 계정에 및 hello에서 클릭 **디렉터리** 목록에서 원하는 위치 tooregister 응용 프로그램 hello Active Directory 테 넌 트를 선택 합니다.
-3. 클릭 **더 서비스** 왼쪽 nav hello와 선택 **Azure Active Directory**합니다.
+1. [Azure 포털](https://portal.azure.com)에 로그인합니다.
+2. 오른쪽 위에서 계정을 클릭하고 **디렉터리** 목록에서 응용 프로그램을 등록하려는 Active Directory 테넌트를 선택합니다.
+3. 왼쪽 탐색 창에서 **더 많은 서비스**를 클릭하고 **Azure Active Directory**를 선택합니다.
 4. **앱 등록**을 클릭하고 **추가**를 선택합니다.
-5. Hello 화면에 따라 수행 하 고 새 **웹 응용 프로그램 및/또는 WebAPI**합니다.
-  * hello **이름** 응용 프로그램의 hello 응용 프로그램 tooend-사용자가 설명 합니다
-  * hello **로그온 URL** hello 응용 프로그램의 기본 URL입니다.  hello 스 켈 레 톤의 기본값은 `http://localhost:8080/adal4jsample/`합니다.
-6. 등록을 완료하면 AAD는 앱에 고유한 응용 프로그램 ID를 할당합니다.  이 값이 필요 합니다 hello 다음 섹션의 하므로에서 복사 hello 응용 프로그램 탭 합니다.
-7. Hello에서 **설정** -> **속성** 응용 프로그램에 대 한 페이지를 hello 앱 ID URI를 업데이트 합니다. hello **앱 ID URI** 응용 프로그램에 대 한 고유 식별자입니다.  hello 규칙은 toouse `https://<tenant-domain>/<app-name>`, 예: `http://localhost:8080/adal4jsample/`합니다.
+5. 프롬프트에 따라 새 **웹 응용 프로그램 및/또는 WebAPI**를 만듭니다.
+  * 응용 프로그램의 **이름** 은 최종 사용자에게 응용 프로그램을 설명하는 항목입니다.
+  * **로그온 URL** 은 앱의 기본 URL입니다.  기본값은 `http://localhost:8080/adal4jsample/`입니다.
+6. 등록을 완료하면 AAD는 앱에 고유한 응용 프로그램 ID를 할당합니다.  이 값은 다음 섹션에서 필요하므로 응용 프로그램 탭에서 복사해 둡니다.
+7. 응용 프로그램에 대한 **설정** -> **속성** 페이지에서 앱 ID URI를 업데이트합니다. **앱 ID URI** 는 응용 프로그램의 고유 식별자입니다.  규칙은 `https://<tenant-domain>/<app-name>`(예: `http://localhost:8080/adal4jsample/`)을 사용하는 것입니다.
 
-한 번 응용 프로그램에 대 한 hello 포털에서 만듭니다는 **키** hello에서 **설정** 응용 프로그램에 대 한 페이지를 복사 합니다.  곧 필요합니다.
+앱 포털에서 응용 프로그램의 **설정** 페이지에서 **키**를 만들고 복사해 둡니다.  곧 필요합니다.
 
-## <a name="2-set-up-your-app-toouse-adal4j-library-and-prerequisites-using-maven"></a>2. App toouse ADAL4J 라이브러리 및 Maven을 사용 하 여 필수 구성 요소 설정
-여기서 ADAL4J toouse hello OpenID Connect 인증 프로토콜을 구성 합니다.  ADAL4J tooissue 사용 되는 로그인 및 로그 아웃 요청, hello 사용자의 세션을 관리 되며 다른 작업 간에 hello 사용자에 대 한 정보를 가져옵니다.
+## <a name="2-set-up-your-app-to-use-adal4j-library-and-prerequisites-using-maven"></a>2. Maven을 사용하여 ADAL4J 라이브러리 및 필수 구성 요소를 사용하도록 앱을 설정합니다.
+여기서는 OpenID Connect 인증 프로토콜을 사용하도록 ADAL4J를 구성합니다.  ADAL4J은 로그인 및 로그아웃 요청을 실행하고, 사용자의 세션을 관리하고, 사용자에 대한 정보를 가져오는 데 사용됩니다.
 
-* 프로젝트의 루트 디렉터리를 hello 열거나 만들 `pom.xml` hello 찾습니다 `// TODO: provide dependencies for Maven` hello 다음과 같이 바꿉니다.
+* 프로젝트의 루트 디렉터리에서 `pom.xml`을 열거나 만들고 `// TODO: provide dependencies for Maven`를 찾아서 다음으로 바꿉니다.
 
 ```Java
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -181,10 +181,10 @@ tooenable 앱 tooauthenticate 사용자가 테 넌 트에 tooregister 새 응용
 
 
 
-## <a name="3-create-hello-java-publicclient-file"></a>3. Hello Java PublicClient 파일 만들기
-앞서 설명한 대로 hello hello 로그인 한 사용자에 대 한 Graph API tooget 데이터 사용 합니다. 이 toobe 우리 쉽게에 대해 두 파일 toorepresent 만들어야 우리는 **디렉터리 개체** 및 개별 파일 toorepresent hello **사용자** hello java 개체 지향 패턴 사용할 수 있도록 합니다.
+## <a name="3-create-the-java-publicclient-file"></a>3. Java PublicClient 파일을 만듭니다.
+앞서 설명한 대로 Graph API를 사용하여 로그인한 사용자에 대한 데이터를 가져옵니다. 이 작업을 쉽게 수행하려면 Java의 OO 패턴을 사용할 수 있도록 **디렉터리 개체**를 나타내는 파일과 **사용자**를 나타내는 개별 파일을 모두 만들어야 합니다.
 
-* 파일을 만들 `DirectoryObject.java` 있는 toostore 모든 DirectoryObject (있습니다 느낄 수 있으며 무료 toouse이 나중에 작업을 수행할 수 있습니다 다른 그래프 쿼리에)에 대 한 기본 데이터를 사용 합니다. 아래에서 잘라내고 붙여 넣을 수 있습니다.
+* DirectoryObject에 대한 기본 데이터를 저장하는 데 사용하는 `DirectoryObject.java`라는 파일을 만듭니다.(나중에 수행할 수 있는 다른 Graph 쿼리에 이 파일을 자유롭게 사용할 수 있음) 아래에서 잘라내고 붙여 넣을 수 있습니다.
 
 ```Java
 import java.io.BufferedReader;
@@ -248,24 +248,24 @@ public class PublicClient {
 ```
 
 
-## <a name="compile-and-run-hello-sample"></a>컴파일 및 hello 예제 실행
-Tooyour 루트 디렉터리 외부로 돌려보내는 변경 하 고 다음 명령 toobuild hello 샘플을 사용 하 여 함께 저장 하기만 hello 실행 `maven`합니다. 이 hello ´ ֲ `pom.xml` 파일 종속성에 대 한 직접 작성 합니다.
+## <a name="compile-and-run-the-sample"></a>샘플 컴파일 및 실행
+루트 디렉터리로 다시 변경하고 다음 명령을 실행하여 `maven`을 사용하여 모은 샘플을 빌드합니다. 여기에는 종속성에 대해 작성한 `pom.xml` 파일이 사용됩니다.
 
 `$ mvn package`
 
-이제 `/targets` 디렉터리에 `adal4jsample.war` 파일이 있습니다. Tomcat 컨테이너에는 배포 하 고 hello URL을 방문 수 있습니다. 
+이제 `/targets` 디렉터리에 `adal4jsample.war` 파일이 있습니다. Tomcat 컨테이너에서 해당 파일을 배포하고 URL를 방문할 수 있습니다. 
 
 `http://localhost:8080/adal4jsample/`
 
 > [!NOTE]
-> 것을 매우 쉽게 toodeploy 전쟁 hello 최신 Tomcat 서버와 함께 합니다. 너무 이동한`http://localhost:8080/manager/` 업로드에 hello 지침에 따라 프로그램 ' adal4jsample.war' 파일입니다. 드립니다 autodeploy hello 올바른 끝점을 사용 합니다.
+> 최신 Tomcat 서버를 사용하여 WAR를 쉽게 배포할 수 있습니다. `http://localhost:8080/manager/`로 이동하여 'adal4jsample.war' 파일을 업로드하기 위한 지침을 따릅니다. 올바른 끝점을 사용하여 자동으로 배포합니다.
 > 
 > 
 
 ## <a name="next-steps"></a>다음 단계
-축하합니다. 이제 정상 작동 hello 기능 tooauthenticate 사용자가 있는 Java 응용 프로그램, 안전 하 게 OAuth 2.0을 사용 하 여 웹 Api를 호출 하 고 hello 사용자에 대 한 기본 정보를 얻을 합니다.  아직 하지 않는 이제 경우 hello 시간 toopopulate 사용자로 구성 된 테 넌 트입니다.
+축하합니다. 이제 사용자를 인증하고 OAuth 2.0을 사용하여 Web API를 안전하게 호출하고, 사용자에 대한 기본 정보를 가져올 수 있는 Java 응용 프로그램이 작성되었습니다.  아직 일부 사용자로 테넌트를 채우지 않은 경우 지금 할 수 있습니다.
 
-참조용으로 hello 구성 값) (없이 샘플을 완료 [.zip을 여기로 제공 됩니다](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/complete.zip), 또는 GitHub에서 복제할 수 있습니다.
+참조를 위해 완료된 샘플(사용자 구성 값 제외)이 [여기에 .zip으로 제공](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/complete.zip)되거나 GitHub에서 복제할 수 있습니다.
 
 ```git clone --branch complete https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect.git```
 

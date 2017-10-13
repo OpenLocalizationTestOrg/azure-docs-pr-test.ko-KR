@@ -1,6 +1,6 @@
 ---
-title: "ASP.NET Core Linux Docker 컨테이너 tooa 원격 Docker 호스트 aaaDeploy | Microsoft Docs"
-description: "어떻게 toouse Visual Studio Tools for Docker toodeploy ASP.NET Core 웹 Azure Docker 호스트 Linux VM에서 실행 중인 응용 프로그램 tooa Docker 컨테이너에 알아봅니다"
+title: "원격 Docker 호스트에 ASP.NET Core Linux Docker 컨테이너 배포 | Microsoft Docs"
+description: "Visual Studio Tools for Docker를 사용하여 Azure Docket 호스트 Linux VM에서 실행 중인 Docker 컨테이너에 ASP.NET Core 웹앱을 배포하는 방법에 대해 설명합니다."
 services: azure-container-service
 documentationcenter: .net
 author: mlearned
@@ -14,40 +14,40 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/08/2016
 ms.author: mlearned
-ms.openlocfilehash: 27b0c6420628c73220200bc071b47a4cd89fff58
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4a87ee69f23779bf4f6f5db40bc05edbcfc7668d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="deploy-an-aspnet-container-tooa-remote-docker-host"></a>ASP.NET 컨테이너 tooa 원격 Docker 호스트 배포
+# <a name="deploy-an-aspnet-container-to-a-remote-docker-host"></a>원격 Docker 호스트에 ASP.NET 컨테이너 배포
 ## <a name="overview"></a>개요
-Docker는 경량 컨테이너 엔진 수 있는 몇 가지 방법으로 tooa 가상 컴퓨터와 비슷한 toohost 응용 프로그램 및 서비스를 사용 합니다.
-이 자습서에서는 hello를 사용 하 여 [Visual Studio Tools for Docker](https://docs.microsoft.com/en-us/dotnet/articles/core/docker/visual-studio-tools-for-docker) 확장 toodeploy PowerShell을 사용 하 여 Azure에는 ASP.NET Core 응용 프로그램 tooa Docker 호스트 합니다.
+Docker는 가상 컴퓨터와 몇 가지 측면에서 비슷하며 응용 프로그램과 서비스를 호스트하는 데 사용할 수 있는 간단한 컨테이너 엔진입니다.
+이 자습서에서는 [Visual Studio Tools for Docker](https://docs.microsoft.com/en-us/dotnet/articles/core/docker/visual-studio-tools-for-docker) 확장을 사용하여 Azure에서 PowerShell을 사용하여 Docker 호스트에 ASP.NET Core 앱을 배포하는 단계에 대해 설명합니다.
 
 ## <a name="prerequisites"></a>필수 조건
-hello 다음은 필요한 toocomplete이이 자습서:
+이 자습서를 완료하는 데 필요한 조건은 다음과 같습니다.
 
-* 에 설명 된 대로 Azure Docker 호스트 VM 만들기 [어떻게 toouse docker-Azure 사용한 컴퓨터](virtual-machines/linux/docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* 최신 버전의 hello 설치 [Visual Studio](https://www.visualstudio.com/downloads/)
-* Hello 다운로드 [Microsoft ASP.NET Core 1.0 SDK](https://go.microsoft.com/fwlink/?LinkID=809122)
+* [Azure에서 docker-machine을 사용하는 방법](virtual-machines/linux/docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)의 설명에 따라 Azure Docker 호스트 VM을 만듭니다.
+* 최신 버전의 [Visual Studio](https://www.visualstudio.com/downloads/)를 설치합니다.
+* [Microsoft ASP.NET Core 1.0 SDK](https://go.microsoft.com/fwlink/?LinkID=809122)를 다운로드합니다.
 * [Windows용 Docker](https://docs.docker.com/docker-for-windows/install/)를 설치합니다.
 
 ## <a name="1-create-an-aspnet-core-web-app"></a>1. ASP.NET Core 웹앱 만들기
-hello 다음 단계를 안내해이 자습서에 사용 될 기본 ASP.NET Core 응용 프로그램을 만드는 과정입니다.
+다음 단계에서는 이 자습서에서 사용할 기본적인 ASP.NET Core 앱을 만드는 과정을 안내합니다.
 
 [!INCLUDE [create-aspnet5-app](../includes/create-aspnet5-app.md)]
 
 ## <a name="2-add-docker-support"></a>2. Docker 지원 추가
 [!INCLUDE [create-aspnet5-app](../includes/vs-azure-tools-docker-add-docker-support.md)]
 
-## <a name="3-use-hello-dockertaskps1-powershell-script"></a>3. Hello DockerTask.ps1 PowerShell 스크립트를 사용 하 여
-1. 프로젝트의 PowerShell 프롬프트 toohello 루트 디렉터리를 엽니다. 
+## <a name="3-use-the-dockertaskps1-powershell-script"></a>3. DockerTask.ps1 PowerShell 스크립트 사용
+1. 프로젝트의 루트 디렉터리에 대해 PowerShell 프롬프트를 엽니다. 
    
    ```
    PS C:\Src\WebApplication1>
    ```
-2. 유효성 검사 hello 원격 호스트에서 실행 합니다. 상태 = 실행 중이 표시되어야 합니다. 
+2. 실행 중인 원격 호스트의 유효성을 검사합니다. 상태 = 실행 중이 표시되어야 합니다. 
    
    ```
    docker-machine ls
@@ -55,7 +55,7 @@ hello 다음 단계를 안내해이 자습서에 사용 될 기본 ASP.NET Core 
    MyDockerHost -        azure    Running   tcp://xxx.xxx.xxx.xxx:2376         v1.10.3
    ```
    
-3. 사용 하 여 빌드 hello 앱 hello-빌드 매개 변수
+3. -Build 매개 변수를 사용하여 앱 빌드
    
    ```
    PS C:\Src\WebApplication1> .\Docker\DockerTask.ps1 -Build -Environment Release -Machine mydockerhost
@@ -66,7 +66,7 @@ hello 다음 단계를 안내해이 자습서에 사용 될 기본 ASP.NET Core 
    > ```  
    > 
    > 
-4. Hello 앱을 실행 하면 사용 하 여 hello-실행 매개 변수
+4. -Run 매개 변수를 사용하여 앱 실행
    
    ```
    PS C:\Src\WebApplication1> .\Docker\DockerTask.ps1 -Run -Environment Release -Machine mydockerhost
@@ -78,7 +78,7 @@ hello 다음 단계를 안내해이 자습서에 사용 될 기본 ASP.NET Core 
    > 
    > 
    
-   Docker 완료 되 면 결과 유사한 toohello 다음을 표시 되어야 합니다.
+   docker가 완료되면 다음 화면과 같은 결과가 표시되어야 합니다.
    
    ![앱 보기][3]
 

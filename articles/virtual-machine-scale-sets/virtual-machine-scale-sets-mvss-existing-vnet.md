@@ -1,6 +1,6 @@
 ---
 title: "Azure 확장 집합 템플릿에서 기존 가상 네트워크 참조 | Microsoft Docs"
-description: "가상 a tooadd tooan 기존 Azure 가상 컴퓨터 크기 집합 서식 파일을 네트워크 방법에 대해 알아봅니다"
+description: "기존 Azure Virtual Machine Scale Set 템플릿에 가상 네트워크를 추가하는 방법 알아보기"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gatneil
@@ -15,21 +15,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: negat
-ms.openlocfilehash: c3034b577e17abc4643dc26d7c38ad643fa26322
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 28117d467b491704aed8d45e5eba42530579dfa2
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="add-reference-tooan-existing-virtual-network-in-an-azure-scale-set-template"></a>Azure 확장 집합 템플릿에서 참조 tooan 기존 가상 네트워크 추가
+# <a name="add-reference-to-an-existing-virtual-network-in-an-azure-scale-set-template"></a>Azure 확장 집합 템플릿에 기존 가상 네트워크에 대한 참조 추가
 
-이 문서에서는 어떻게 toomodify hello [실행 가능한 최소 소수 자릿수 템플릿을 설정](./virtual-machine-scale-sets-mvss-start.md) toodeploy 새로 만드는 대신 기존 가상 네트워크에 있습니다.
+이 문서에서는 [실행 가능한 최소 크기 집합 템플릿](./virtual-machine-scale-sets-mvss-start.md)을 수정하여 새 가상 네트워크를 만드는 대신 기존 가상 네트워크에 배포하는 방법을 보여 줍니다.
 
-## <a name="change-hello-template-definition"></a>Hello 템플릿 정의 변경 합니다.
+## <a name="change-the-template-definition"></a>템플릿 정의 변경
 
-이 실행 가능한 최소 소수 자릿수 집합 템플릿을 볼 수 있습니다 [여기](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json), hello에 크기 집합을 기존 가상 네트워크로 배포 하기 위한 우리의 서식 파일을 볼 수 있습니다 및 [여기](https://raw.githubusercontent.com/gatneil/mvss/existing-vnet/azuredeploy.json)합니다. 이 서식 파일 사용 diff toocreate hello를 검토해 보겠습니다 (`git diff minimum-viable-scale-set existing-vnet`) 하나씩:
+실행 가능한 최소 크기 집합 템플릿은 [여기](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json)에 있으며, 기존 가상 네트워크에 크기 집합을 배포하기 위한 템플릿은 [여기](https://raw.githubusercontent.com/gatneil/mvss/existing-vnet/azuredeploy.json)에 있습니다. 이 템플릿(`git diff minimum-viable-scale-set existing-vnet`)을 하나씩 만드는 데 사용되는 diff에 대해 살펴보겠습니다.
 
-먼저 `subnetId` 매개 변수를 추가합니다. 이 문자열 hello 크기 집합 tooidentify hello에 대 한 미리 작성된 된 서브넷에 가상 컴퓨터 toodeploy 허용 hello 눈금 집합 구성에 전달 됩니다. 이 문자열 hello 형식 이어야 합니다: `/subscriptions/<subscription-id>resourceGroups/<resource-group-name>/providers/Microsoft.Network/virtualNetworks/<virtual-network-name>/subnets/<subnet-name>`합니다. Toodeploy hello 눈금을 기존 가상 네트워크 이름의 설정 하는 예를 들어, `myvnet`, 서브넷 `mysubnet`, 리소스 그룹 `myrg`, 구독 및 `00000000-0000-0000-0000-000000000000`, hello subnetId 것: `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet`합니다.
+먼저 `subnetId` 매개 변수를 추가합니다. 이 문자열은 크기 집합 구성에 전달되어 크기 집합에서 미리 만든 서브넷을 식별하여 가상 컴퓨터를 배포할 수 있게 합니다. 이 문자열의 형식은 `/subscriptions/<subscription-id>resourceGroups/<resource-group-name>/providers/Microsoft.Network/virtualNetworks/<virtual-network-name>/subnets/<subnet-name>`이어야 합니다. 예를 들어 `myvnet` 이름, `mysubnet` 서브넷, `myrg` 리소스 그룹 및 `00000000-0000-0000-0000-000000000000` 구독을 사용하여 기존 가상 네트워크에 크기 집합을 배포하려면 subnetId가 `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet`이 됩니다.
 
 ```diff
      },
@@ -42,7 +42,7 @@ ms.lasthandoff: 10/06/2017
    },
 ```
 
-Hello 가상 네트워크 리소스 hello에서 삭제할 수는 다음으로, `resources` 배열, 기존 가상 네트워크를 사용 하는 고 toodeploy 새 필요 하지 않습니다.
+다음으로 기존 가상 네트워크를 사용하고 있고 새 가상 네트워크를 배포할 필요가 없기 때문에 `resources` 배열에서 가상 네트워크 리소스를 삭제할 수 있습니다.
 
 ```diff
    "variables": {},
@@ -70,7 +70,7 @@ Hello 가상 네트워크 리소스 hello에서 삭제할 수는 다음으로, `
 -    },
 ```
 
-가상 네트워크 hello 이미 hello 서식 파일을 배포 하기 전에 hello 눈금에서 dependsOn 절 toohello 가상 네트워크를 설정 없습니다 필요 toospecify 이므로, 합니다. 따라서 다음 줄들을 삭제합니다.
+템플릿을 배포하기 전에 가상 네트워크가 이미 있으므로 크기 집합에서 가상 네트워크로 dependsOn 절을 지정할 필요가 없습니다. 따라서 다음 줄들을 삭제합니다.
 
 ```diff
      {
@@ -86,7 +86,7 @@ Hello 가상 네트워크 리소스 hello에서 삭제할 수는 다음으로, `
          "capacity": 2
 ```
 
-Hello에 마지막으로 전달 `subnetId` hello 사용자가 설정한 매개 변수 (사용 하는 대신 `resourceId` 은 어떤 hello 최소 실행 가능한 소수 자릿수 템플릿을 설정 하는 동일한 배포는 hello에 vnet의 tooget hello id)입니다.
+마지막으로 동일한 배포에서 Vnet의 ID를 얻기 위해 실행 가능한 최소 크기 집합 템플릿에서 수행하는 `resourceId`를 사용하는 대신 사용자가 설정한 `subnetId` 매개 변수를 전달합니다.
 
 ```diff
                        "name": "myIpConfig",

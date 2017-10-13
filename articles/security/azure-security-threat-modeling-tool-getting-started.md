@@ -1,6 +1,6 @@
 ---
-title: "시작 됨-Microsoft 위협 모델링 도구-Azure aaaGetting | Microsoft Docs"
-description: "작업에 hello 위협 모델링 도구를 강조 표시에 대 한 깊은 개요입니다."
+title: "시작 - Microsoft 위협 모델링 도구 - Azure | Microsoft Docs"
+description: "작업에서 위협 모델링 도구를 강조 표시하는 자세한 개요입니다."
 services: security
 documentationcenter: na
 author: RodSan
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: rodsan
-ms.openlocfilehash: 75ef139071e8abd0e743aa17b443a6e353f29372
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2d940b42108948f4cd36a585f1e79def05fe8fd3
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="getting-started-with-hello-threat-modeling-tool"></a>Hello 위협 모델링 도구를 시작 하기
+# <a name="getting-started-with-the-threat-modeling-tool"></a>위협 모델링 도구 시작
 
-hello 클라우드 및 엔터프라이즈 보안 도구 팀으로 무료 올해 초 hello 위협 모델링 도구 미리 보기를 출시  **[다운로드 하려면 클릭](https://aka.ms/tmtpreview)**합니다. 전달 메커니즘의 hello 변경을 통해 toopush hello 최신 향상 및 버그 수정 toocustomers toomaintain 쉽고 사용 하 여 hello 도구를 열 때마다 있습니다.
-이 문서는 hello Microsoft SDL 위협 모델링 접근 시작 hello 과정을 안내 하 고 보안 프로세스의 핵심으로 toouse hello 도구 toodevelop 유용한 위협 모델링 하는 방법을 보여 줍니다.
+클라우드 및 엔터프라이즈 보안 도구 팀은 올해 초 **[클릭하여 다운로드](https://aka.ms/tmtpreview)**로 위협 모델링 도구 미리 보기를 발표했습니다. 전달 메커니즘의 변경을 통해 고객이 도구를 열 때마다 고객에게 최신 기능 향상 및 버그 수정을 푸시하여 유지 관리 및 사용이 쉽도록 할 수 있습니다.
+이 문서는 Microsoft SDL 위협 모델링 접근 방식을 시작하는 과정을 안내하고 도구를 사용하여 보안 프로세스의 핵심으로 위협 모델을 개발하는 방법을 보여 줍니다.
 
-이 문서 hello SDL 위협 모델링 접근의 기존 지식을 기반으로 합니다. 빠른 검토를 위해 참조 너무**[위협 모델링 웹 응용 프로그램](https://msdn.microsoft.com/library/ms978516.aspx)**  및 보관 된 버전의  **[보안 결함을 사용 하 여 확인할 hello 접근 방식을 STRIDE](https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnxzZWN1cmVwcm9ncmFtbWluZ3xneDo0MTY1MmM0ZDI0ZjQ4ZDMy)**  2006의 MSDN 문서를 게시 합니다.
+이 문서는 SDL 위협 모델링 접근 방식의 기존 지식을 기반으로 합니다. 빠른 검토는 **[위협 모델링 웹 응용 프로그램](https://msdn.microsoft.com/library/ms978516.aspx)** 및 2006년에 게시된 보관된 **[STRIDE 접근 방식을 사용하여 보안 결함 파악](https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnxzZWN1cmVwcm9ncmFtbWluZ3xneDo0MTY1MmM0ZDI0ZjQ4ZDMy)** 버전의 MSDN 문서를 참조하세요.
 
-tooquickly 요약, hello 방법은 다이어그램을 만들어 위협을 식별을 완화 하 고 각 완화 유효성을 검사 하는 것입니다. 이 프로세스를 강조 표시하는 다이어그램은 다음과 같습니다.
+신속하게 요약하기 위해 접근 방식은 다이어그램 만들기, 위협 식별, 완화 및 각 완화의 유효성 검사를 포함합니다. 이 프로세스를 강조 표시하는 다이어그램은 다음과 같습니다.
 
 ![SDL 프로세스](./media/azure-security-threat-modeling-tool/sdlapproach.png)
 
-## <a name="starting-hello-threat-modeling-process"></a>Hello 위협 모델링 프로세스를 시작 합니다.
+## <a name="starting-the-threat-modeling-process"></a>위협 모델링 프로세스 시작
 
-Hello 위협 모델링 도구를 시작할 때 hello 그림에 표시 된 대로 몇 가지를 알 수 있습니다.
+위협 모델링 도구를 시작할 때 그림에 표시된 대로 몇 가지를 알 수 있습니다.
 
 ![빈 시작 페이지](./media/azure-security-threat-modeling-tool/tmtstart.png)
 
@@ -41,20 +41,20 @@ Hello 위협 모델링 도구를 시작할 때 hello 그림에 표시 된 대로
 
 | 구성 요소                                   | 세부 정보                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **피드백, 제안 및 문제 단추** | Hello 있습니다 하나  **[MSDN 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=sdlprocess)**  SDL 모든 것에 대 한 합니다. 다른 사용자가 수행 하는 작업을 함께 해결 방법 및 권장 사항을 통해는 영업 기회 tooread를 제공 합니다. 원하는 항목 여전히 찾을 수 없는 경우 메일 tmtextsupport@microsoft.com 우리의 지원 팀 toohelp에 대 한 사용자                                                                                                                            |
-| **모델 만들기**                          | 빈 캔버스 toodraw 있습니다에 대 한 다이어그램을 엽니다. 확인 되었는지 tooselect 템플릿을 원하는 toouse 모델에 대 한                                                                                                                                                                                                                                                                                                                                                                       |
-| **새 모델에 대한 템플릿**                 | 모델을 만들기 전에 어떤 템플릿 toouse를 선택 해야 합니다. 우리의 기본 서식 파일에는 hello Azure 관련 스텐실, 위험, 완화 기능이 포함 된 Azure 위협 모델 템플릿을입니다. 일반 모델에 대 한 hello 드롭 다운 메뉴에서 hello SDL TM 기술 자료를 선택 합니다. Toocreate 서식 파일을 직접 아니면 모든 사용자에 대 한 새 제출 시겠습니까? 체크 아웃 우리의  **[템플릿 리포지토리](https://github.com/Microsoft/threat-modeling-templates)**  GitHub 페이지 toolearn 자세한                              |
-| **모델 열기**                            | <p>이전에 저장된 위협 모델을 엽니다. hello 최근에 열린 모델 기능은 tooopen 가장 최근 파일을 해야 하는 경우 유용 합니다. Hello 선택 영역 위로 마우스를 가져가면 tooopen 모델에는 두 가지 방법 찾을 수 있습니다.</p><p><ul><li>이 컴퓨터에서 열기 - 로컬 저장소를 사용하여 파일을 여는 고전적인 방법</li><li>열기 OneDrive – 팀 OneDrive toosave에서 폴더를 사용 하 여 생산성을 높이고 단일 위치 toohelp 및 공동 작업에 자신의 모든 위협 모델을 공유 합니다.</li></ul></p> |
-| **시작 가이드**                   | 엽니다 hello  **[Microsoft 위협 모델링 도구](./azure-security-threat-modeling-tool.md)**  기본 페이지                                                                                                                                                                                                                                                                                                                                                                                            |
+| **피드백, 제안 및 문제 단추** | SDL의 모든 것에 대한 **[MSDN 포럼](https://social.msdn.microsoft.com/Forums/en-US/home?forum=sdlprocess)**으로 이동합니다. 해결 방법 및 권장 사항과 함께 다른 사용자가 수행하는 작업을 읽을 기회를 줍니다. 원하는 항목을 여전히 찾을 수 없는 경우 지원 팀이 도울 수 있도록 tmtextsupport@microsoft.com으로 전자 메일을 보내 주세요.                                                                                                                            |
+| **모델 만들기**                          | 다이어그램을 그리려면 빈 캔버스를 엽니다. 모델에 사용하려는 템플릿을 선택합니다.                                                                                                                                                                                                                                                                                                                                                                       |
+| **새 모델에 대한 템플릿**                 | 모델을 만들기 전에 사용할 템플릿을 선택해야 합니다. 기본 템플릿은 Azure 위협 모델 템플릿이며 Azure 관련 스텐실, 위협 및 완화를 포함합니다. 일반 모델의 경우 드롭다운 메뉴에서 SDL TM 기술 자료를 선택합니다. 사용자 고유의 템플릿을 만들거나 모든 사용자를 위해 새 템플릿을 제출하시겠습니까? 자세한 내용은 **[템플릿 리포지토리](https://github.com/Microsoft/threat-modeling-templates)** GitHub 페이지를 확인하세요.                              |
+| **모델 열기**                            | <p>이전에 저장된 위협 모델을 엽니다. 최근에 열린 모델 기능은 가장 최근 파일을 열어야 하는 경우 유용합니다. 선택 영역 위로 마우스를 가져가면 두 가지 방법으로 모델을 열 수 있습니다.</p><p><ul><li>이 컴퓨터에서 열기 - 로컬 저장소를 사용하여 파일을 여는 고전적인 방법</li><li>OneDrive에서 열기 - 팀은 OneDrive에서 폴더를 사용하여 생산성 및 공동 작업을 높이도록 단일 위치에 모든 위협 모델을 저장하고 공유할 수 있습니다.</li></ul></p> |
+| **시작 가이드**                   | **[Microsoft 위협 모델링 도구](./azure-security-threat-modeling-tool.md)** 기본 페이지 열기                                                                                                                                                                                                                                                                                                                                                                                            |
 
 ### <a name="template-section"></a>템플릿 섹션
 
 | 구성 요소               | 세부 정보                                                                                                                                                          |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **새 템플릿 만들기** | toobuild 하기 위한 빈 서식 파일을 엽니다. 템플릿을 새로 만드는 응용 프로그램 스트레스 없다면 권장 toobuild 기존 세션에서 |
-| **템플릿 열기**       | 너무 toomake 변경에 대 한 서식 파일을 기존 열립니다.                                                                                                             |
+| **새 템플릿 만들기** | 작성하기 위한 빈 템플릿을 엽니다. 처음부터 템플릿을 작성하는 광범위한 지식이 없는 한 기존 템플릿에서 작성하는 것이 좋습니다. |
+| **템플릿 열기**       | 변경할 수 있도록 기존 템플릿이 열립니다.                                                                                                              |
 
-hello 위협 모델링 도구 팀 tooimprove 도구 기능 및 환경을 지속적으로 작동 합니다. 약간의 차이가 hello 연도의 hello 과정을 통해 수행 될 수 있습니다 하지만 모든 주요 변경 hello 가이드에는 캡슐화 해야 합니다. Tooit 참조 hello 최신 공지를 얻게 tooensure 경우가 많습니다.
+위협 모델링 도구 팀은 도구 기능 및 환경을 향상시키기 위해 지속적으로 노력합니다. 연간 약간의 변경 사항만 발생할 수도 있지만 모든 주요 변경 사항은 이 가이드에서 재작성되어야 합니다. 이를 자주 참조하여 최신 알림을 확인하세요.
 
 ## <a name="building-a-model"></a>모델 작성
 
@@ -64,82 +64,82 @@ hello 위협 모델링 도구 팀 tooimprove 도구 기능 및 환경을 지속�
 - Ricardo(프로그램 관리자) 및
 - Ashish(테스터)
 
-첫 번째 위협 모델 개발의 hello 프로세스를 통해 있다는 것입니다.
+첫 번째 위협 모델 개발 과정을 살펴볼 예정입니다.
 
-> Ricardo: 안녕하세요 적신호, hello 위협 모델 다이어그램에 및 toomake 있는지 원하는 가져온 hello 세부 정보 오른쪽입니다. 살펴보는 데 도움을 주실 수 있으세요?
+> Ricardo: 안녕하세요, Cristina, 저는 위협 모델 다이어그램을 작업했고 세부 정보가 올바른지 확인하고 싶습니다. 살펴보는 데 도움을 주실 수 있으세요?
 > Cristina: 물론입니다. 살펴보겠습니다.
-> Ricardo는 hello 도구 열리고 적신호와 화면을 공유 합니다.
+> Ricardo는 도구를 열고 Cristina와 화면을 공유합니다.
 
 ![기본 위협 모델](./media/azure-security-threat-modeling-tool/basictmt.png)
 
 > Cristina: 네, 간단해 보이지만 단계별로 확인해 볼 수 있을까요?
-> Ricardo: 물론입니다! Hello 분석 결과 다음과 같습니다.
+> Ricardo: 물론입니다! 분석은 다음과 같습니다.
 > - 이 사용자는 엔터티 외부로 그려집니다. - 사각형
-> - 명령을 tooour 웹 서버를 전송 하는-hello 원
-> - hello 웹 서버는 데이터베이스 (두 개의 병렬 선)에 문의
+> - 웹 서버에 명령을 전송합니다. - 원
+> - 웹 서버는 데이터베이스를 컨설팅합니다(두 개의 병렬 선).
 
-Ricardo가 Cristina에게 보여준 것은 DFD, **[데이터 흐름 다이어그램](https://en.wikipedia.org/wiki/Data_flow_diagram)**의 짧은 버전입니다. hello 위협 모델링 도구에는 hello 빨간색 점선, 서로 다른 엔터티가 컨트롤에 있는 tooshow로 표시 된 사용자가 toospecify 신뢰 경계 수 있습니다. 예를 들어 IT 관리자가 Active Directory hello 제어할 이므로 Active Directory 시스템 인증을 위해 필요 합니다.
+Ricardo가 Cristina에게 보여준 것은 DFD, **[데이터 흐름 다이어그램](https://en.wikipedia.org/wiki/Data_flow_diagram)**의 짧은 버전입니다. 위협 모델링 도구를 통해 사용자는 빨간색 점선으로 표시되는 트러스트 경계를 지정하여 제어에 있는 다양한 엔터티를 보여 줄 수 있습니다. 예를 들어 IT 관리자는 인증 목적으로 Active Directory 시스템이 필요하므로 Active Directory는 제어 밖에 있습니다.
 
-> 적신호: 오른쪽 toome를 찾습니다. Hello 위협 어떻습니까?
+> Cristina: 올바르게 보입니다. 위협은 어떻나요?
 > Ricardo: 보여 드리겠습니다.
 
 ## <a name="analyzing-threats"></a>위협 분석
 
-Hello 아이콘 메뉴 선택 항목에서 (파일 돋보기), tooa 목록이 생성 된 위협 hello 위협 모델링 도구가 hello 기본 템플릿을 기반으로 만들어지며 그 호출 hello SDL 접근 방식을 사용 하 여 hello 분석 보기를 클릭 한 후  **[ STRIDE (스푸핑, 변조, 정보 노출, 서비스 거부 및 권한 상승)](https://en.wikipedia.org/wiki/STRIDE_(security))**합니다. hello 개념은 소프트웨어 위협 6 이러한 범주를 사용 하 여 찾을 수 있는 예측 가능한 집합에서 제공 됨입니다.
+아이콘 메뉴 선택 영역에서 분석 보기를 클릭하면(돋보기가 있는 파일) **[STRIDE(스푸핑, 변조, 정보 노출, 서비스 거부 및 권한 상승)](https://en.wikipedia.org/wiki/STRIDE_(security))**라는 SDL 접근 방식을 사용하는 기본 템플릿을 기반으로 위협 모델링 도구에서 발견한 생성된 위협 목록으로 이동합니다. 개념은 소프트웨어는 예측 가능한 위협 집합에서 나온다는 것이며 6가지 범주를 사용하여 찾을 수 있습니다.
 
-이 방법은 달리 각 문을 실행 하 고 창 여 집 보안 잠금 메커니즘에에서 경보 시스템을 추가 하거나 hello 도둑 후 추적 합니다.
+이 접근 방식은 경고 시스템을 추가하거나 도둑이 든 후 추적하기 전에 준비된 잠금 메커니즘이 있는 각 문과 창문을 확인하여 집을 보안하는 것과 같습니다.
 
 ![기본 위협](./media/azure-security-threat-modeling-tool/basicthreats.png)
 
-Ricardo는 hello hello 목록에서 첫 번째 항목을 선택 하 여 시작 합니다. 다음과 같은 상황이 발생합니다.
+Ricardo는 목록에서 첫 번째 항목을 선택하여 시작합니다. 다음과 같은 상황이 발생합니다.
 
-첫째, hello 두 스텐실 간의 상호 작용 hello 향상 되었으며
+첫째, 두 개의 스텐실 간의 상호 작용이 향상되었습니다.
 
 ![상호 작용](./media/azure-security-threat-modeling-tool/interaction.png)
 
-Hello 위협에 대 한 추가 정보를 두 번째 hello 위협 속성 창에 표시
+둘째, 위협에 대한 추가 정보가 위협 속성 창에 나타납니다.
 
 ![상호 작용 정보](./media/azure-security-threat-modeling-tool/interactioninfo.png)
 
-생성 된 hello 위협 디자인의 잠재적 결함을 이해 하는 그 수 있습니다. hello STRIDE 분류를 통해 잠재적인 공격 벡터에 이해할 him, hello 하는 동안 추가 설명 알리는 정확히 어떤에 잘못 된 경우, 잠재적인 방법으로 toomitigate 함께 것입니다. Hello 근거 세부 정보에 편집 가능한 필드 toowrite 노트를 사용 하거나 기관의 저마다에 따라 우선 순위 등급을 변경할 수 그 합니다.
+생성된 위협을 통해 잠재적 디자인 결함을 이해할 수 있습니다. STRIDE 분류를 통해 잠재적인 공격 벡터에 대한 개념을 제공하는 반면 추가 설명은 문제를 완화하는 잠재적인 방법과 함께 문제를 정확하게 알립니다. 편집 가능한 필드를 사용하여 이유에 메모를 자세히 쓰거나 조직의 버그 바에 따라 우선 순위 등급을 변경할 수 있습니다.
 
-Azure 템플릿 뿐만 아니라 문제가 무엇 인지, 뿐만 아니라 방법을 이해 하는 추가 세부 정보 toohelp 사용자가 있는 toofix tooAzure 관련 문서를 설명, 예제 및 하이퍼링크를 추가 하 여 것입니다.
+Azure 템플릿에는 사용자가 문제 뿐만 아니라 Azure 관련 설명서에 설명, 예제 및 하이퍼링크를 추가하여 수정하는 방법을 이해할 수 있도록 하는 추가 정보가 포함되어 있습니다.
 
-hello 설명 hello 중요성을 실제로 그 내용을 인증 메커니즘 tooprevent 사용자가 스푸핑 추가의 첫 번째 위협 toobe hello를 공개 작업 합니다. 몇 분 정도 적신호와 hello 토론에 이러한 원칙을 파악 hello 중요도 액세스 제어 및 역할을 구현 합니다. 구현 된 이러한 있는지 몇 가지 사항 toomake Ricardo 채워집니다.
+설명을 통해 작업할 첫 번째 위협을 공개하여 사용자의 스푸핑을 예방하는 인증 메커니즘 추가의 중요성을 깨달았습니다. Cristina와의 몇 분 정도의 논의로 그들은 액세스 제어 및 작업 구현의 중요성을 이해했습니다. Ricardo는 이러한 것들이 구현되도록 몇 가지 빠른 참고 사항을 채웠습니다.
 
-정보 공개 아래 hello 위협에 Ricardo를, 그 hello 액세스 제어 계획 감사 및 보고서 생성에 대 한 일부 읽기 전용 계정이 필요한 실현 합니다. 그 궁금 있는지 여부를이 새 threat 야 하지만 그 hello 위험할을 그에 따라 표시 되므로 완화 된 hello hello 동일 합니다.
-그 또한 조금 더 정보 공개 문제점에 대 한 생각 고 hello 백업 테이프 tooneed 암호화, hello 운영 팀에 대 한 작업을 진행 되 실현 합니다.
+Ricardo는 정보 공개에 따른 위협을 살펴봤으므로 액세스 제어 계획에 감사 및 보고서 생성을 위한 일부 읽기 전용 계정이 필요한 것을 깨달았습니다. 그는 이것이 새 위협이 되어야 할지 의문스러웠지만 해결 방법은 동일했으므로 그에 따라 위협을 표시했습니다.
+또한 그는 정보 공개에 대해 조금 더 생각했고 백업 테이프에 암호화, 운영 팀에 대한 작업이 필요할 것이라는 것을 깨달았습니다.
 
-위협 tooexisting 완화 또는 보안 인해 적용 되지 않음 toohello 디자인에서는 너무 변경할 수 있습니다 hello 상태 드롭다운 목록에서에서 "해당 사항 없음"입니다. 다른 세 가지 선택 사항이: – 기본 선택 항목인 조사가 필요 – 시작 되지 기본값이 사용 toofollow 항목 및 완화 – 작업에 완벽 하 게 합니다.
+기존 해결 방법 또는 보안 보장은 상태 드롭다운에서 “적용되지 않음”으로 변경될 수 있으므로 위협은 디자인에 적용할 수 없습니다. 세 가지 다른 선택 사항이 있습니다. 시작되지 않음 - 기본 선택 사항, 조사 필요 - 항목을 추적하는 데 사용됨, 완화됨 - 완전히 작업된 후
 
 ## <a name="reports--sharing"></a>보고서 및 공유
 
-Ricardo 적신호를 사용 하 여 hello 목록을 통해 이동 하 고 중요 한 참고 사항 추가 완화/근거, 우선 순위 및 상태 변경, 보고서에는 전체 보고서를 통해 toogo 그에 대 한 보고서를 출력 하는 좋은 보고서 저장-> 만들기-> 그 선택 동료 tooensure hello 적절 한 보안 작업 구현 됩니다.
+Ricardo가 Cristina와 목록을 살펴보고 중요한 참고 사항, 해결 방법/이유, 우선 순위 및 상태 변경 사항을 추가하면 보고서 -> 전체 보고서 만들기 -> 보고서 저장을 선택합니다. 적절한 보안 작업이 구현되었는지 확인하도록 동료와 살펴볼 수 있는 보고서를 출력합니다.
 
 ![상호 작용 정보](./media/azure-security-threat-modeling-tool/report.png)
 
-Ricardo tooshare hello 파일 대신 원하는 경우 그 쉽게 여 그렇게 할 수 기관의 OneDrive 계정에 저장 합니다. 그 hello 문서 링크를 복사 하 고 그의 동료와 공유할 수 그 합니다. 
+Ricardo가 파일을 공유하려는 경우 조직의 OneDrive 계정에 저장하여 쉽게 공유할 수 있습니다. OneDrive 계정에 저장하면 문서 링크를 복사하고 그의 동료와 공유할 수 있습니다. 
 
 ## <a name="threat-modeling-meetings"></a>위협 모델링 회의
 
-Ricardo OneDrive, Ashish, hello 테스터를 사용 하 여 위협 모델 toohis 서 보내면 underwhelmed 되었습니다. Ricardo와 Cristina가 쉽게 손상될 수 있는 몇 가지 중요한 특수한 사례를 놓친 것처럼 보였습니다. 그의 대처는 보수 toothreat 모델입니다.
+Ricardo가 OneDrive를 사용하여 그의 동료에게 그의 위협 모델을 보냈을 때 Ashish, 테스터가 만족하지 못했습니다. Ricardo와 Cristina가 쉽게 손상될 수 있는 몇 가지 중요한 특수한 사례를 놓친 것처럼 보였습니다. 그의 의심은 위협 모델에 대한 보완입니다.
 
-이 시나리오에서는 Ashish hello 위협 모델 처리 후 그 라는 두 개의 위협 모델링 회의 대 한: 한 모임 toosynchronize hello 프로세스와 hello 다이어그램 및 위협 검토 및 승인에 대 한 두 번째 회의 안내 합니다.
+이 시나리오에서 Ashish가 위협 모델을 살펴본 후 두 가지 위협 모델링 회의를 요청했습니다. 첫 번째 회의는 프로세스에 대한 동기화와 다이어그램 검토를 위한 것이며 두 번째 회의는 위협 검토 및 승인을 위한 것입니다.
 
-Hello 첫 번째 회의에서 Ashish hello SDL 위협 모델링 프로세스를 통해 모든 사용자를 검색 하는 10 분 소요 됩니다. 그런 다음 hello 위협 모델 다이어그램을 끌어온 하 고 자세히 설명 하는 시작 합니다. 5분 이내에 누락된 중요한 구성 요소가 확인되었습니다.
+첫 번째 회의에서 Ashish는 모두가 SDL 위협 모델링 프로세스를 살펴보도록 10분을 소요했습니다. 그런 다음 위협 모델 다이어그램을 끌어오고 자세히 설명하기 시작했습니다. 5분 이내에 누락된 중요한 구성 요소가 확인되었습니다.
 
-몇 분 이상 Ashish 되며, Ricardo hello 웹 서버 작성 된 방식을 하는 확장 된 설명은로 가져왔습니다. 회의 tooproceed에 대 한 이상적인 방법 hello 되지 않았기 하지만 모든 사람이 결국 동의 합니다. 초기 hello 불일치 검색 toosave hello 미래에서 시간으로 이동 되었습니다.
+몇 분 후 Ashish와 Ricardo는 웹 서버가 작성된 방식에 대한 확장된 논의를 가졌습니다. 이는 회의를 계속 진행하기 위한 이상적인 방법이 아니었지만 마침내 모두가 초기의 불일치 발견이 나중에 시간을 절약한다는 것에 동의했습니다.
 
-두 번째 회의 연습을 통해 hello 위협 hello 팀 hello와 서명 된 몇 가지 방법으로 tooaddress에 설명 hello 위협 모델에서 해제 합니다. Hello 문서 소스 제어에 체크 인 하며 개발을 계속 합니다.
+두 번째 회의에서 팀은 위협을 살펴보고, 위협을 해결하는 몇 가지 방법을 논의하고 위협 모델을 승인했습니다. 원본 제어에 대한 문서를 확인하고 개발을 계속했습니다.
 
 ## <a name="thinking-about-assets"></a>자산에 대한 고려
 
-위협을 모델링한 일부 독자는 자산에 대해 전혀 다루지 않은 것을 인지했을 것입니다. 많은 소프트웨어 엔지니어 소프트웨어 자산 hello 개념에 이해 하 고 있는 자산 공격자에 관심이 있을 수 보다 더 잘 이해 발견 했습니다.
+위협을 모델링한 일부 독자는 자산에 대해 전혀 다루지 않은 것을 인지했을 것입니다. 우리는 많은 소프트웨어 엔지니어가 자산의 개념 및 공격자가 관심이 있을 수 있는 자산에 대해 이해하는 것보다 그들의 소프트웨어를 더 잘 이해한다는 것을 발견했습니다.
 
-Toothreat 거 집 모델, 패밀리, 대체할 수 없는 사진이 나 중요 한 아트 워크에 대해 생각 하면 시작할 수 있습니다. 아마도 게 손상 될 수 있습니다 및 hello 현재 보안 시스템에 대 한 생각 하면 시작할 수 있습니다. 또는 hello hello 풀 또는 hello 프런트 친구와 같은 물리적 기능을 고려 하 여 시작할 수 있습니다. 이들은 자산, 공격자의 목표가 또는 소프트웨어 디자인에 대 한 유사한 toothinking입니다. 이러한 세 가지 방법 중 하나라도 작동합니다.
+집에 대한 위협 모델을 작성하는 경우 가족, 대체할 수 없는 사진 또는 중요한 아트 워크에 대해 생각하여 시작할 수 있습니다. 아마도 침입할 수 있는 사람과 현재 보안 시스템에 대해 생각하여 시작할 수 있습니다. 또는 수영장 또는 앞 현관과 같은 물리적 기능을 고려하여 시작할 수 있습니다. 이들은 자산, 공격자 또는 소프트웨어 디자인에 대해 생각하는 것과 비슷합니다. 이러한 세 가지 방법 중 하나라도 작동합니다.
 
-여기에 설명 된 것 hello 접근 방식을 toothreat 모델링은 크게 지난 hello에서 수행 하는 Microsoft가 보다 더 간단 합니다. Hello 소프트웨어 디자인 방법은 대부분의 팀에 대해 제대로 작동 하는지 확인 했습니다. 사용자를 포함하길 바랍니다.
+여기에 설명된 위협 모델링에 대한 접근 방식은 이전에 Microsoft가 수행한 것보다 훨씬 간단합니다. 소프트웨어 디자인 방법이 대부분의 팀에 제대로 작동하는 것을 확인했습니다. 사용자를 포함하길 바랍니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-질문, 의견 및 문제를 보내 tootmtextsupport@microsoft.com합니다. **[다운로드](https://aka.ms/tmtpreview)**  hello 위협 모델링 도구 tooget 시작 합니다.
+질문, 의견 및 문제를 tmtextsupport@microsoft.com에 보냅니다. 시작하려면 위협 모델링 도구를 **[다운로드](https://aka.ms/tmtpreview)**하세요.

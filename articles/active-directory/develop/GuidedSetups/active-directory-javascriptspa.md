@@ -1,5 +1,5 @@
 ---
-title: "AD aaaAzure v2 JS SPA 단계별 설치 | Microsoft Docs"
+title: "Azure AD v2 JS SPA 단계별 설치 | Microsoft Docs"
 description: "JavaScript SPA 응용 프로그램이 Azure Active Directory v2 끝점으로 보호되는 액세스 토큰을 필요로 하는 API를 호출하는 방식"
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,11 +15,11 @@ ms.workload: identity
 ms.date: 08/22/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: f9a892990d3d0b4bf9fa9ab1d01ca80478ab32e9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 26354e03a44ddbd8340b805e4898eda8c2e25f2f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 [!INCLUDE [1. Introduction](active-directory-singlepageapp-javascriptspa-introduction.md)]
 [!INCLUDE [2. Setup](active-directory-singlepageapp-javascriptspa-setup.md)]

@@ -1,5 +1,5 @@
 ---
-title: "Azure Application Insights에서 로그 aaaExplore Java 추적 | Microsoft Docs"
+title: "Azure Application Insights에서 Java 추적 로그 탐색 | Microsoft Docs"
 description: "Application Insights에서 검색 Log4J 또는 Logback 추적 검색"
 services: application-insights
 documentationcenter: java
@@ -13,29 +13,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/12/2016
 ms.author: bwren
-ms.openlocfilehash: e5f8e8c67e57753ba7574b97aa96dbb41db00ce1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5baba3deaf58a1a24995c60381592a9c2ffefd81
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="explore-java-trace-logs-in-application-insights"></a>Application Insights에서 Java 추적 로그 탐색
-Log4J 또는 Logback을 사용 중인 경우 (v 1.2 또는 v2.0) 추적을 위한 tooApplication Insights 탐색 하 고 검색 하 수를 자동으로 전송 하 여 추적 로그를 사용할 수 있습니다.
+추적에 Logback 또는 Log4J(v1.2 또는 v2.0)를 사용하는 경우 추적 로그를 탐색 및 검색할 수 있는 Application Insights에 추적 로그를 자동으로 전송할 수 있습니다.
 
-## <a name="install-hello-java-sdk"></a>Hello Java SDK 설치
+## <a name="install-the-java-sdk"></a>Java SDK 설치
 
 아직 수행하지 않은 경우 [Java용 Application Insights SDK][java]를 설치합니다.
 
-(대부분의 hello.xml 구성 파일을 생략할 수 있습니다 하지만 hello 이상 포함 해야, tootrack HTTP 요청 하지 않으려는 경우 `InstrumentationKey` 요소입니다. 또한를 호출 해야 `new TelemetryClient()` tooinitialize hello SDK.)
+HTTP 요청을 추적하지 않으려는 경우 .xml 구성 파일의 대부분을 생략할 수 있지만 적어도 `InstrumentationKey` 요소는 포함해야 합니다. SDK를 초기화하려면 `new TelemetryClient()`도 호출해야 합니다.
 
 
-## <a name="add-logging-libraries-tooyour-project"></a>로깅 라이브러리 tooyour 프로젝트 추가
-*프로젝트에 대 한 적절 한 방법으로 hello를 선택 합니다.*
+## <a name="add-logging-libraries-to-your-project"></a>프로젝트에 로깅 라이브러리 추가
+*프로젝트에 적합한 방법을 선택합니다.*
 
 #### <a name="if-youre-using-maven"></a>Maven을 사용하는 경우...
-Toouse Maven 빌드에 대 한 프로젝트에 이미 설치 되 면 hello 코드 조각을 pom.xml 파일에 다음 중 하나를 병합 합니다.
+빌드에 Maven을 사용하도록 프로젝트가 이미 설정된 경우 pom.xml 파일에 다음 코드 조각을 추가합니다.
 
-그런 다음 hello 프로젝트 종속성을 tooget hello 다운로드 된 이진 파일을 새로 고칩니다.
+그런 다음 프로젝트 종속성을 새로 고쳐 다운로드한 이진을 가져옵니다.
 
 *Logback*
 
@@ -77,9 +77,9 @@ Toouse Maven 빌드에 대 한 프로젝트에 이미 설치 되 면 hello 코�
 ```
 
 #### <a name="if-youre-using-gradle"></a>Gradle을 사용하는 경우...
-Hello 줄 toohello 다음 중 하나를 toouse Gradle 빌드에 대 한 프로젝트에 이미 설치 되 면 하는 경우 추가 `dependencies` 그룹의 build.gradle 파일이에서:
+빌드에 Gradle을 사용하도록 프로젝트가 이미 설정된 경우 다음 줄 중 하나를 build.gradle 파일의 `dependencies` 그룹에 추가합니다.
 
-그런 다음 hello 프로젝트 종속성을 tooget hello 다운로드 된 이진 파일을 새로 고칩니다.
+그런 다음 프로젝트 종속성을 새로 고쳐 다운로드한 이진을 가져옵니다.
 
 **Logback**
 
@@ -101,7 +101,7 @@ Hello 줄 toohello 다음 중 하나를 toouse Gradle 빌드에 대 한 프로�
 ```
 
 #### <a name="otherwise-"></a>기타...
-다운로드 하 고 적절 한 hello 어 펜더를 추출 한 다음 hello 적절 한 라이브러리 tooyour 프로젝트 추가:
+적합한 어펜더를 다운로드 및 추출한 다음 적합한 라이브러리를 프로젝트에 추가합니다.
 
 | 로거 | 다운로드 | 라이브러리 |
 | --- | --- | --- |
@@ -109,8 +109,8 @@ Hello 줄 toohello 다음 중 하나를 toouse Gradle 빌드에 대 한 프로�
 | Log4J v2.0 |[Log4J v2 어펜더를 사용한 SDK](https://aka.ms/qypznq) |applicationinsights-logging-log4j2 |
 | Log4J v1.2 |[Log4J v1.2 어펜더를 사용한 SDK](https://aka.ms/ky9cbo) |applicationinsights-logging-log4j1_2 |
 
-## <a name="add-hello-appender-tooyour-logging-framework"></a>Hello 어 펜더 tooyour 로깅 프레임 워크 추가
-추적, 코드 toohello Log4J 또는 Logback 구성 파일의 병합 hello 관련 조각을 toostart: 
+## <a name="add-the-appender-to-your-logging-framework"></a>로깅 프레임워크에 어펜더 추가
+추적 가져오기를 시작하려면 관련 코드 조각을 Log4J 및 Logback 구성 파일과 병합합니다. 
 
 *Logback*
 
@@ -153,12 +153,12 @@ Hello 줄 toohello 다음 중 하나를 toouse Gradle 빌드에 대 한 프로�
     </root>
 ```
 
-hello Application Insights 어 펜더가 제공 (위의 hello 코드 샘플에 표시)으로 구성 된 모든로 거를 여는 것 뿐 아니라 hello 루트 로거에서 참조할 수 있습니다.
+Application Insights 어펜더는 루트 로거만이 아니라 구성된 모든 로거에 의해 참조될 수 있습니다(위의 코드 샘플에 표시).
 
-## <a name="explore-your-traces-in-hello-application-insights-portal"></a>Hello Application Insights 포털에서 사용자 추적 탐색
-구성한 경우 했으므로 프로젝트 toosend tooApplication Insights 추적, 확인 및 hello에 hello Application Insights 포털에서 이러한 추적을 검색할 수 있습니다 [검색] [ diagnostic] 블레이드입니다.
+## <a name="explore-your-traces-in-the-application-insights-portal"></a>Application Insights 포털에서 추적 탐색
+이제 Application Insights에 추적을 전송하도록 프로젝트를 구성했으며 [검색][diagnostic] 블레이드의 Application Insights 포털에서 이러한 추적을 보고 검색할 수 있습니다.
 
-![Hello Application Insights 포털에서 검색 시작](./media/app-insights-java-trace-logs/10-diagnostics.png)
+![Application Insights 포털에서 검색을 엽니다.](./media/app-insights-java-trace-logs/10-diagnostics.png)
 
 ## <a name="next-steps"></a>다음 단계
 [진단 검색][diagnostic]

@@ -1,9 +1,9 @@
 ---
-title: "API 관리 도메인 간 정책 aaaAzure | Microsoft Docs"
-description: "도메인 간 정책 Azure API 관리에 사용할 수 있는 hello에 알아봅니다."
+title: "Azure API Management 도메인 간 정책 | Microsoft Docs"
+description: "Azure API Management에 사용할 수 있는 도메인 간 정책에 대해 알아봅니다."
 services: api-management
 documentationcenter: 
-author: miaojiang
+author: vladvino
 manager: erikre
 editor: 
 ms.assetid: 7689d277-8abe-472a-a78c-e6d4bd43455d
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: dd5ebfd65b92ebd0c1f589a2bac669a3928d40b3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 05b25ffad4a91859932cd53475d82b11bf3e43e5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="api-management-cross-domain-policies"></a>도메인 정책 간 API 관리
-이 항목에서는 다음 API 관리 정책 hello에 대 한 대 한 참조를 제공 합니다. 정책의 추가 및 구성에 대한 자세한 내용은 [API 관리 정책](http://go.microsoft.com/fwlink/?LinkID=398186)을 참조하세요.  
+이 항목에서는 다음 API Management 정책에 대한 참조를 제공합니다. 정책의 추가 및 구성에 대한 자세한 내용은 [API 관리 정책](http://go.microsoft.com/fwlink/?LinkID=398186)을 참조하세요.  
   
 ##  <a name="CrossDomainPolicies"></a> 도메인 간 정책  
   
--   [도메인 간 호출을 허용](api-management-cross-domain-policies.md#AllowCrossDomainCalls) -Adobe Flash 및 Microsoft Silverlight 브라우저 기반 클라이언트에서 hello API에 액세스할 수 있게 합니다.  
+-   [도메인 간 호출 허용](api-management-cross-domain-policies.md#AllowCrossDomainCalls) - API를 Adobe Flash 및 Microsoft Silverlight 브라우저 기반 클라이언트에서 액세스할 수 있도록 합니다.  
   
--   [CORS](api-management-cross-domain-policies.md#CORS) -브라우저 기반 클라이언트에서 호출 하는 API tooallow 도메인 간 또는 tooan 작업을 지원 크로스-원본 자원 공유 (CORS)를 추가 합니다.  
+-   [CORS](api-management-cross-domain-policies.md#CORS) - CORS(Cross-Origin Resource Sharing) 지원을 작업 또는 API에 추가하여 브라우저 기반 클라이언트의 도메인 간 호출을 허용합니다.  
   
--   [JSONP](api-management-cross-domain-policies.md#JSONP) -JSON with padding (JSONP) 지원 tooan 작업이 추가 하거나는 API tooallow 도메인 간 JavaScript 브라우저 기반 클라이언트에서 호출 합니다.  
+-   [JSONP](api-management-cross-domain-policies.md#JSONP) - 패딩이 있는 JSON(JSONP) 지원을 작업 또는 API에 추가하여 JavaScript 브라우저 기반 클라이언트의 도메인 간 호출을 허용합니다.  
   
 ##  <a name="AllowCrossDomainCalls"></a> 도메인 간 호출 허용  
- 사용 하 여 hello `cross-domain` 정책 toomake hello API Adobe Flash 및 Microsoft Silverlight 브라우저 기반 클라이언트에서 액세스할 수 있습니다.  
+ `cross-domain` 정책을 사용하여 API를 Adobe Flash 및 Microsoft Silverlight 브라우저 기반 클라이언트에서 액세스할 수 있도록 설정합니다.  
   
-### <a name="policy-statement"></a>정책 문  
+### <a name="policy-statement"></a>정책 문:  
   
 ```xml  
 <cross-domain>  
-   <!-Policy configuration is in hello Adobe cross-domain policy file format,   
+   <!-Policy configuration is in the Adobe cross-domain policy file format,   
       see http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html-->  
 </cross-domain>  
 ```  
@@ -57,19 +57,19 @@ ms.lasthandoff: 10/06/2017
   
 |이름|설명|필수|  
 |----------|-----------------|--------------|  
-|cross-domain|루트 요소입니다. 자식 요소 toohello 따라야 [Adobe 도메인 간 정책 파일 사양](http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html)합니다.|예|  
+|cross-domain|루트 요소입니다. 자식 요소는 [Adobe 도메인 간 정책 파일 사양](http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html)을 준수해야 합니다.|예|  
   
-### <a name="usage"></a>사용  
- 이 정책은 hello 정책 뒤에 사용할 수 있습니다 [섹션](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) 및 [범위](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)합니다.  
+### <a name="usage"></a>사용 현황  
+ 이 정책은 다음과 같은 정책 [섹션](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) 및 [범위](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)에서 사용할 수 있습니다.  
   
 -   **정책 섹션:** inbound  
   
 -   **정책 범위:** global  
   
 ##  <a name="CORS"></a> CORS  
- hello `cors` tooan 작업을 지원 크로스-원본 자원 공유 (CORS) 또는 브라우저 기반 클라이언트에서 호출 하는 API tooallow 도메인 간 정책을 추가 합니다.  
+ `cors` 정책은 CORS(Cross-Origin Resource Sharing) 지원을 작업 또는 API에 추가하여 브라우저 기반 클라이언트의 도메인 간 호출을 허용합니다.  
   
- CORS는 브라우저와 서버 toointeract 있으며 tooallow 특정 교차 원본 요청 (예:: 웹 페이지 tooother 도메인에는 JavaScript에서 수행한는 XMLHttpRequests 호출) 여부를 결정 합니다. 따라서 동일 원본의 요청만 허용하는 것보다 유연성이 더 뛰어나며 모든 원본 간 요청을 허용하는 것보다 보안도 더 높아집니다.  
+ CORS를 통해 브라우저와 서버가 상호 작용하여 특정 원본 간 요청(즉, 웹 페이지의 JavaScript에서 다른 도메인으로 실행한 XMLHttpRequests 호출)을 허용할지 여부를 결정할 수 있습니다. 따라서 동일 원본의 요청만 허용하는 것보다 유연성이 더 뛰어나며 모든 원본 간 요청을 허용하는 것보다 보안도 더 높아집니다.  
   
 ### <a name="policy-statement"></a>정책 문:  
   
@@ -90,8 +90,8 @@ ms.lasthandoff: 10/06/2017
 </cors>  
 ```  
   
-### <a name="example"></a>예제  
- 이 예제에서는 사용자 지정 헤더 나 메서드 GET 및 POST 이외의 항목과 같이 toosupport 사전 비행 요청 방법을 보여 줍니다. toosupport 사용자 지정 헤더 및 추가 HTTP 동사를 사용 하 여 hello `allowed-methods` 및 `allowed-headers` hello 다음 예제와 같이 섹션.  
+### <a name="example"></a>예  
+ 이 예제에서는 GET 및 POST 이외의 메서드 또는 사용자 지정 헤더를 비롯하여 사전 요청을 지원하는 방법을 보여 줍니다. 사용자 지정 헤더 및 추가 HTTP 동사를 지원하려면 다음 예제와 같이 `allowed-methods` 및 `allowed-headers` 섹션을 사용하세요.  
   
 ```xml  
 <cors allow-credentials="true">  
@@ -128,46 +128,46 @@ ms.lasthandoff: 10/06/2017
 |이름|설명|필수|기본값|  
 |----------|-----------------|--------------|-------------|  
 |cors|루트 요소입니다.|예|해당 없음|  
-|allowed-origins|포함 `origin` 도메인 간 요청에 대 한 원본을 허용 하는 hello를 설명 하는 요소입니다. `allowed-origins`단일 포함 될 수 있습니다 `origin` 지정 하는 요소 `*` tooallow 모든 원본 또는 하나 이상의 `origin` URI를 포함 하는 요소입니다.|예|해당 없음|  
-|원본|hello 값일 수 하나 `*` tooallow 모든 원본을 또는 단일 원본을 지정 하는 URI입니다. hello URI 구성표, 호스트 및 포트를 포함 해야 합니다.|예|Hello 포트를 URI에서 생략 된 경우 포트 80은 HTTP에 대 한 사용 및 HTTPS에 포트 443 사용 됩니다.|  
-|allowed-methods|GET 또는 POST 이외의 메서드가 허용되는 경우 이 요소가 필요합니다. 포함 `method` hello 지원 HTTP 동사를 지정 하는 요소입니다.|아니요|이 섹션이 없으면 GET 및 POST가 지원됩니다.|  
-|메서드|HTTP 동사를 지정합니다.|하나 이상의 `method` 경우 hello 요소는 필수 `allowed-methods` 섹션은 포함 되어 있습니다.|해당 없음|  
-|allowed-headers|이 요소는 포함 `header` hello 요청에 포함 될 수 있는 hello 헤더의 이름을 지정 하는 요소입니다.|아니요|해당 없음|  
-|expose-headers|이 요소는 포함 `header` hello 클라이언트에서 액세스할 수 있는 hello 헤더의 이름을 지정 하는 요소입니다.|아니요|해당 없음|  
-|머리글|헤더 이름을 지정합니다.|하나 이상의 `header` 요소에 필요한 `allowed-headers` 또는 `expose-headers` hello 섹션은 포함 하는 경우.|해당 없음|  
+|allowed-origins|도메인 간 요청에 대해 허용되는 원본을 설명하는 `origin` 요소를 포함합니다. `allowed-origins`는 모든 원본을 허용하도록 `*`를 지정하는 단일 `origin` 요소 또는 URI를 포함하는 하나 이상의 `origin` 요소를 포함할 수 있습니다.|예|해당 없음|  
+|원본|값은 모든 원본을 허용하는 `*`이거나 단일 원본을 지정하는 URI일 수 있습니다. URI에는 체계, 호스트 및 포트가 포함되어야 합니다.|예|URI에서 포트를 생략하면 HTTP에 포트 80이 사용되고 HTTPS에 포트 443이 사용됩니다.|  
+|allowed-methods|GET 또는 POST 이외의 메서드가 허용되는 경우 이 요소가 필요합니다. 지원되는 HTTP 동사를 지정하는 `method`를 포함합니다.|아니요|이 섹션이 없으면 GET 및 POST가 지원됩니다.|  
+|메서드|HTTP 동사를 지정합니다.|`allowed-methods` 섹션이 있는 경우 하나 이상의 `method` 요소가 필요합니다.|해당 없음|  
+|allowed-headers|이 요소는 요청에 포함할 수 있는 헤더 이름을 지정하는 `header` 요소를 포함합니다.|아니요|해당 없음|  
+|expose-headers|이 요소는 클라이언트가 액세스할 수 있는 헤더 이름을 지정하는 `header` 요소를 포함합니다.|아니요|해당 없음|  
+|머리글|헤더 이름을 지정합니다.|섹션이 있는 경우 `allowed-headers` 또는 `expose-headers`에 하나 이상의 `header` 요소가 필요합니다.|해당 없음|  
   
 ### <a name="attributes"></a>특성  
   
 |이름|설명|필수|기본값|  
 |----------|-----------------|--------------|-------------|  
-|allow-credentials|hello `Access-Control-Allow-Credentials` hello에 대 한 실행 전 응답 헤더 집합 toohello 값이이 특성의 되며 도메인 간 요청에서 hello 클라이언트 기능 toosubmit 자격 증명에 영향을 줍니다.|아니요|false|  
-|preflight-result-max-age|hello `Access-Control-Max-Age` hello에 대 한 실행 전 응답 헤더 집합 toohello 값이이 특성의 되며 hello 사용자 에이전트의 기능 toocache 전 응답에 영향을 줍니다.|아니요|0|  
+|allow-credentials|사전 응답의 `Access-Control-Allow-Credentials` 헤더가 이 특성 값으로 설정되고 도메인 간 요청에서 자격 증명을 제출하는 클라이언트 기능에 영향을 줍니다.|아니요|false|  
+|preflight-result-max-age|사전 응답의 `Access-Control-Max-Age` 헤더가 이 특성 값으로 설정되고 사전 응답을 캐싱하는 사용자 에이전트 기능에 영향을 줍니다.|아니요|0|  
   
-### <a name="usage"></a>사용  
- 이 정책은 hello 정책 뒤에 사용할 수 있습니다 [섹션](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) 및 [범위](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)합니다.  
+### <a name="usage"></a>사용 현황  
+ 이 정책은 다음과 같은 정책 [섹션](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) 및 [범위](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)에서 사용할 수 있습니다.  
   
 -   **정책 섹션:** inbound  
   
 -   **정책 범위:** API, operation  
   
 ##  <a name="JSONP"></a> JSONP  
- hello `jsonp` 정책 안쪽 여백 (JSONP) 지원 tooan 작업이 나 JavaScript 브라우저 기반 클라이언트에서 API tooallow 도메인 간 호출 된 JSON을 추가 합니다. JSONP는 다른 도메인에 서버에서 JavaScript 프로그램 toorequest 데이터에서 사용 하는 방법입니다. Hello에 대 한 액세스 tooweb 페이지를 사용 해야 하는 대부분 웹 브라우저에 의해 적용 하는 hello 제한을 무시 동일한 도메인입니다.  
+ `jsonp` 정책은 패딩이 있는 JSON(JSONP) 지원을 작업 또는 API에 추가하여 JavaScript 브라우저 기반 클라이언트의 도메인 간 호출을 허용합니다. JSONP는 JavaScript 프로그램에서 다른 도메인의 서버로부터 데이터를 요청하는 데 사용하는 메서드입니다. JSONP는 웹 페이지에 대한 액세스 권한이 동일한 도메인 내에 있어야 하는 경우 대부분의 웹 브라우저에서 적용하는 제한을 무시합니다.  
   
-### <a name="policy-statement"></a>정책 문  
+### <a name="policy-statement"></a>정책 문:  
   
 ```xml  
 <jsonp callback-parameter-name="callback function name" />  
 ```  
   
-### <a name="example"></a>예제  
+### <a name="example"></a>예  
   
 ```xml  
 <jsonp callback-parameter-name="cb" />  
 ```  
   
- Hello 콜백 매개 변수 없이 hello 메서드를 호출 하는 경우? cb = XXX (함수 호출 래퍼가) 없이 일반 JSON을 반환 합니다.  
+ 콜백 매개 변수 ?cb=XXX 없이 메서드를 호출하는 경우 일반 JSON(함수 호출 래퍼 없이)이 반환됩니다.  
   
- Hello 콜백 매개 변수를 추가 하는 경우 `?cb=XXX` hello hello 콜백 함수 처럼 원래 JSON 결과 래핑하는 JSONP 결과가 반환 됩니다`XYZ('<json result goes here>');`  
+ 콜백 매개 변수 `?cb=XXX`를 추가한 경우 `XYZ('<json result goes here>');`와 같이 콜백 함수 주위에 원래 JSON 결과를 래핑한 JSONP 결과가 반환됩니다.  
   
 ### <a name="elements"></a>요소  
   
@@ -179,10 +179,10 @@ ms.lasthandoff: 10/06/2017
   
 |이름|설명|필수|기본값|  
 |----------|-----------------|--------------|-------------|  
-|callback-parameter-name|hello 도메인 간 JavaScript 함수 호출 hello 정규화 된 도메인 이름을 접두사로 hello 함수 상주 합니다.|예|해당 없음|  
+|callback-parameter-name|함수가 상주하는 정규화된 도메인 이름이 접두사로 지정된 도메인 간 JavaScript 함수 호출|예|해당 없음|  
   
-### <a name="usage"></a>사용  
- 이 정책은 hello 정책 뒤에 사용할 수 있습니다 [섹션](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) 및 [범위](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)합니다.  
+### <a name="usage"></a>사용 현황  
+ 이 정책은 다음과 같은 정책 [섹션](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) 및 [범위](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)에서 사용할 수 있습니다.  
   
 -   **정책 섹션:** outbound  
   

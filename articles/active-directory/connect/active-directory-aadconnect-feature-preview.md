@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: bcfc710861b19d8f86f094ced0d1c691e0911f08
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cbf8f729d0ebfb271bb0d8702ac043442b42c262
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="more-details-about-features-in-preview"></a>미리 보기 기능에 대한 자세한 내용
-이 항목에서는 toouse 현재 미리 보기에서 기능이 방법에 대해 설명 합니다.
+이 항목에서는 현재 미리 보기 상태인 기능을 사용하는 방법에 대해 설명합니다.
 
 ## <a name="group-writeback"></a>그룹 쓰기 저장
-선택적 기능에서 그룹 쓰기 저장에 대 한 hello 옵션 있습니다 toowriteback **Office 365 그룹** Exchange가 설치 된 tooa 포리스트 합니다. 항상 hello 클라우드에서 마스터 되는 그룹입니다. Exchange 온-프레미스를 사용 하도록 설정한 경우를 작성할 수 있습니다 다시 이러한 그룹 tooon 온-프레미스 사용자가 온-프레미스 Exchange 사서함이 있는 보내고 다음이 그룹의 전자 메일을 받을 수 있습니다.
+선택적 기능의 그룹 쓰기 저장에 대한 옵션을 사용하면 Exchange가 설치된 포리스트로 **Office 365 그룹** 을 쓰기 저장할 수 있습니다. 항상 클라우드에서 마스터되는 그룹입니다. Exchange 온-프레미스가 있는 경우 이러한 그룹을 온-프레미스에 쓰기 저장하여 온-프레미스 Exchange 사서함이 있는 사용자가 이 그룹에서 메일을 보내고 받을 수 있습니다.
 
-Office 365 그룹을 어떻게 toouse을 찾을 수 있습니다에 대 한 자세한 내용은 [여기](http://aka.ms/O365g)합니다.
+Office 365 그룹에 대한 자세한 내용 및 사용 방법은 [여기](http://aka.ms/O365g)를 참조하세요.
 
-Office 365 그룹은 온-프레미스 AD DS에서 배포 그룹으로 표현됩니다. 온-프레미스 Exchange server이 새로운 그룹 유형을 Exchange 2013 누적 업데이트 8 (2015 년 3 월에에서 릴리스됨) 또는 Exchange 2016 toorecognize 이어야 합니다.
+Office 365 그룹은 온-프레미스 AD DS에서 배포 그룹으로 표현됩니다. 이 새 그룹 유형을 인식하려면 온-프레미스 Exchange 서버는 Exchange 2013 누적 업데이트 8(2015년 3월에 릴리스됨) 또는 Exchange 2016이어야 합니다.
 
-**Hello 미리 보기 기간 동안 참고 사항**
+**미리 보기 중 참고**
 
-* hello address book 특성은 현재 hello 미리 보기에 채워지지 않았습니다. 이 특성이 없으면 hello 그룹 hello 전체 주소 목록에에서 표시 되지 않습니다. 가장 쉬운 방법은 toopopulate hello이 특성은 toouse hello Exchange PowerShell cmdlet `update-recipient`합니다.
-* Hello Exchange 스키마를 사용 하 여 포리스트만에 그룹에 대 한 유효한 대상이 됩니다. 없는 교환이 검색 된 다음 그룹 쓰기 저장 경우 가능한 tooenable 합니다.
-* 현재 단일 포리스트 Exchange 조직 배포만 지원합니다. 있는 경우 둘 이상의 Exchange 조직 온-프레미스 사용자 다른 포리스트의 이러한 그룹 tooappear에 대 한 온-프레미스 GALSync 솔루션을 해야 합니다.
-* 보안 그룹 또는 메일 그룹에는 hello 그룹 쓰기 저장 기능을 처리 하지 않습니다.
+* 미리 보기에서 현재 주소록 특성이 채워지지 않습니다. 이 특성이 없으면 그룹이 GAL에 표시되지 않습니다. 이 특성을 채우는 가장 쉬운 방법은 Exchange PowerShell cmdlet `update-recipient`를 사용하는 것입니다.
+* Exchange 스키마가 있는 포리스트만 그룹에 대한 유효한 대상이 됩니다. 검색된 Exchange가 없는 경우, 그룹 쓰기 저장을 사용하도록 설정할 수 없습니다.
+* 현재 단일 포리스트 Exchange 조직 배포만 지원합니다. 둘 이상의 Exchange 조직 온-프레미스가 있는 경우 이러한 그룹을 다른 포리스트에 표시하려면 온-프레미스 GALSync 솔루션이 필요합니다.
+* 그룹 쓰기 저장 기능은 보안 그룹 또는 배포 그룹을 처리하지 않습니다.
 
 > [!NOTE]
-> 구독 tooAzure AD Premium 그룹 쓰기 저장에 필요 합니다.
+> Azure AD Premium에 대한 구독은 그룹 쓰기 저장에 필요합니다.
 > 
 >
 
 ## <a name="user-writeback"></a>사용자 쓰기 저장
 > [!IMPORTANT]
-> hello 사용자 쓰기 저장 미리 보기 기능은 제거 되었습니다 hello 2015 년 8 월 업데이트 tooAzure AD에에서 연결 합니다. 이 기능을 사용하도록 설정한 경우 사용하지 않도록 설정해야 합니다.
+> 사용자 쓰기 저장 미리 보기 기능은 Azure AD Connect 2015년 8월 업데이트에서 제거되었습니다. 이 기능을 사용하도록 설정한 경우 사용하지 않도록 설정해야 합니다.
 >
 >
 

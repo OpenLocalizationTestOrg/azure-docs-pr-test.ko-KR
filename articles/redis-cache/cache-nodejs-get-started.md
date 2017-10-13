@@ -1,5 +1,5 @@
 ---
-title: "Node.js와 함께 Azure Redis Cache aaaHow toouse | Microsoft Docs"
+title: "Azure Redis Cache를 Node.js와 함께 사용하는 방법 | Microsoft 문서"
 description: "Node.js 및 node_redis를 사용하여 Azure Redis Cache를 시작합니다."
 services: redis-cache
 documentationcenter: 
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
 ms.date: 02/10/2017
 ms.author: sdanie
-ms.openlocfilehash: dc8732041d2c4e5793e684e0c80b87a1c9d17f34
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f2c448af24e180db58f3ef3d39e90036dda3f7eb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-azure-redis-cache-with-nodejs"></a>Toouse Azure Redis 캐시 방법 Node.js와 함께
+# <a name="how-to-use-azure-redis-cache-with-nodejs"></a>Azure Redis Cache를 Node.js와 함께 사용하는 방법
 > [!div class="op_single_selector"]
 > * [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
 > * [ASP.NET](cache-web-app-howto.md)
@@ -30,25 +30,25 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Azure Redis 캐시 제공 tooa 안전한 전용된 Redis 캐시, Microsoft에서 관리 액세스 합니다. Microsoft Azure 내의 모든 응용 프로그램에서 캐시에 액세스할 수 있습니다.
+Azure Redis Cache는 Microsoft에서 관리하는 안전한 전용 Redis Cache에 액세스할 수 있게 합니다. Microsoft Azure 내의 모든 응용 프로그램에서 캐시에 액세스할 수 있습니다.
 
-이 항목에서는 tooget Azure Redis Cache를 어떻게 시작 Node.js를 사용 하 여 합니다. Azure Redis Cache를 Node.js와 함께 사용하는 방법에 대한 다른 예는 [Azure 웹 사이트에서 Socket.IO를 사용하여 Node.js 채팅 응용 프로그램 빌드](../app-service-web/web-sites-nodejs-chat-app-socketio.md)를 참조하세요.
+이 항목에서는 Node.js를 사용하여 Azure Redis Cache를 시작하는 방법을 설명합니다. 
 
 ## <a name="prerequisites"></a>필수 조건
 [node_redis](https://github.com/mranney/node_redis) 설치:
 
     npm install redis
 
-이 자습서에서는 [node_redis](https://github.com/mranney/node_redis)를 사용합니다. 다른 Node.js 클라이언트를 사용 하 여의 예에 나열 된 hello Node.js 클라이언트에 대 한 hello 개별 설명서를 참조 [Node.js Redis 클라이언트](http://redis.io/clients#nodejs)합니다.
+이 자습서에서는 [node_redis](https://github.com/mranney/node_redis)를 사용합니다. 다른 Node.js 클라이언트를 사용한 예는 [Node.js Redis 클라이언트](http://redis.io/clients#nodejs)에 나열된 Node.js 클라이언트의 개별 설명서를 참조하세요.
 
 ## <a name="create-a-redis-cache-on-azure"></a>Azure에 Redis 캐시 만들기
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
 
-## <a name="retrieve-hello-host-name-and-access-keys"></a>Hello 호스트 이름 및 액세스 키를 검색 합니다.
+## <a name="retrieve-the-host-name-and-access-keys"></a>호스트 이름 및 액세스 키 검색
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
-## <a name="connect-toohello-cache-securely-using-ssl"></a>SSL을 통해 안전 하 게 toohello 캐시를 연결 합니다.
-최신 빌드를 hello [node_redis](https://github.com/mranney/node_redis) tooAzure Redis Cache를 연결 하기 위한 지원을 제공 SSL을 사용 합니다. 다음 예제는 hello tooconnect tooAzure Redis Cache를 사용 하 여 6380의 SSL 끝점을 hello 하는 방법을 보여 줍니다. 대체 `<name>` 캐시 hello 이름의 및 `<key>` 사용 하 여 기본 또는 보조 키에 설명 된 대로 hello 이전 [hello 호스트 이름 및 액세스 키를 검색](#retrieve-the-host-name-and-access-keys) 섹션.
+## <a name="connect-to-the-cache-securely-using-ssl"></a>SSL을 사용하여 안전하게 캐시에 연결
+[node_redis](https://github.com/mranney/node_redis)의 최신 빌드는 SSL을 사용하여 Azure Redis Cache에 연결을 지원합니다. 다음 예제에서는 6380 SSL 끝점을 사용하여 Azure Redis Cache에 연결하는 방법을 보여줍니다. 이전의 [호스트 이름 및 액세스 키 검색](#retrieve-the-host-name-and-access-keys) 섹션에서 설명된 대로 `<name>`을(를) 캐시의 이름으로 `<key>`을(를) 기본 또는 보조 키로 교체합니다.
 
      var redis = require("redis");
 
@@ -56,12 +56,12 @@ Azure Redis 캐시 제공 tooa 안전한 전용된 Redis 캐시, Microsoft에서
     var client = redis.createClient(6380,'<name>.redis.cache.windows.net', {auth_pass: '<key>', tls: {servername: '<name>.redis.cache.windows.net'}});
 
 > [!NOTE]
-> 새 Azure Redis 캐시 인스턴스에 대 한 hello 비 SSL 포트를 사용 하는 사용할 수 없습니다. SSL을 지원 하지 않는 다른 클라이언트를 사용 하는 경우 참조 [어떻게 tooenable hello 비 SSL 포트](cache-configure.md#access-ports)합니다.
+> 비 SSL 포트는 새 Azure Redis Cache 인스턴스에 대해 사용하지 않도록 설정되어 있습니다. SSL을 지원하지 않는 다른 클라이언트를 사용하는 경우 [비 SSL 포트를 사용하도록 설정하는 방법](cache-configure.md#access-ports)을 참조하세요.
 > 
 > 
 
-## <a name="add-something-toohello-cache-and-retrieve-it"></a>추가 toohello을 캐시 하 고 검색
-다음 예제와 있습니다 tooconnect tooan Azure Redis 캐시 인스턴스를 하 고 저장 하는 방법과 hello 캐시에서 항목을 검색 하는 번호입니다. Redis를 사용 하 여 hello로의 추가 예 [node_redis](https://github.com/mranney/node_redis) 클라이언트 참조 [http://redis.js.org/](http://redis.js.org/)합니다.
+## <a name="add-something-to-the-cache-and-retrieve-it"></a>캐시에 항목 추가 및 검색
+다음 예제에서는 Azure Redis Cache 인스턴스에 연결하여 캐시의 항목을 저장하고 검색하는 방법을 보여줍니다. [node_redis](https://github.com/mranney/node_redis) 클라이언트가 포함된 Redis 사용에 관한 더 많은 예는 [http://redis.js.org/](http://redis.js.org/)를 참조하세요.
 
      var redis = require("redis");
 
@@ -83,6 +83,6 @@ Azure Redis 캐시 제공 tooa 안전한 전용된 Redis 캐시, Microsoft에서
 
 
 ## <a name="next-steps"></a>다음 단계
-* [캐시 진단을 사용 하도록 설정](cache-how-to-monitor.md#enable-cache-diagnostics) 할 수 있도록 [모니터](cache-how-to-monitor.md) hello 캐시의 상태입니다.
-* 읽기 hello 공식 [설명서 Redis](http://redis.io/documentation)합니다.
+* [캐시 진단을 사용](cache-how-to-monitor.md#enable-cache-diagnostics)하도록 설정하면 캐시의 상태를 [모니터링](cache-how-to-monitor.md)할 수 있습니다.
+* 공식 [Redis 설명서](http://redis.io/documentation)를 읽어보세요.
 

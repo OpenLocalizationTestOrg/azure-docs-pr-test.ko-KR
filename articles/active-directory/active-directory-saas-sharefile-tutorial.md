@@ -1,6 +1,6 @@
 ---
 title: "자습서: Citrix ShareFile과 Azure Active Directory 통합 | Microsoft Docs"
-description: "Tooconfigure 단일 로그온 방법을 알아보려면 Azure Active Directory와 Citrix ShareFile 사이입니다."
+description: "Azure Active Directory 및 Citrix ShareFile 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,229 +14,229 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/29/2017
 ms.author: jeedes
-ms.openlocfilehash: d7eaf140e56c40f9f621062849dd8558588ffd1c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b85680104fe4f33638c559b2a12483a2312a4476
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-citrix-sharefile"></a>자습서: Citrix ShareFile과 Azure Active Directory 통합
 
-이 자습서에 설명 어떻게 toointegrate Azure Active Directory (Azure AD)와 Citrix ShareFile 합니다.
+이 자습서에서는 Azure AD(Azure Active Directory)와 Citrix ShareFile을 통합하는 방법에 대해 알아봅니다.
 
-Azure AD와 Citrix ShareFile 통합 이점을 다음 hello로 제공 합니다.
+Citrix ShareFile을 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.
 
-- 액세스 tooCitrix ShareFile을 지닌 Azure AD에서 제어할 수 있습니다.
-- 에 사용자가 tooautomatically get 로그온 tooCitrix ShareFile (Single Sign-on)는 Azure AD 계정으로 설정할 수 있습니다.
-- 하나의 중앙 위치-hello Azure 포털에서 계정을 관리할 수 있습니다.
+- Citrix ShareFile에 대한 액세스 권한이 있는 사용자를 Azure AD에서 제어할 수 있습니다.
+- 사용자가 해당 Azure AD 계정으로 Citrix ShareFile에 자동으로 로그온(Single Sign-on)되도록 설정할 수 있습니다.
+- 단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.
 
-Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.
+Azure AD와 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory의 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.
 
 ## <a name="prerequisites"></a>필수 조건
 
-Citrix ShareFile과 Azure AD 통합 tooconfigure 다음 항목 hello가 필요 합니다.
+Citrix ShareFile과의 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.
 
 - Azure AD 구독
 - Citrix ShareFile Single Sign-On이 설정된 구독
 
 > [!NOTE]
-> 이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.
+> 이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.
 
-이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.
+이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.
 
 - 꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.
 - Azure AD 평가판 환경이 없으면 [1개월 평가판을 얻을](https://azure.microsoft.com/pricing/free-trial/) 수 있습니다.
 
 ## <a name="scenario-description"></a>시나리오 설명
-이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.
+이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.
 
-1. Citrix ShareFile hello 갤러리 추가
+1. 갤러리에서 Citrix ShareFile 추가
 2. Azure AD Single Sign-On 구성 및 테스트
 
-## <a name="add-citrix-sharefile-from-hello-gallery"></a>Citrix ShareFile hello 갤러리 추가
-tooconfigure hello와의 통합 Citrix ShareFile Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 Citrix ShareFile tooadd가 필요합니다.
+## <a name="add-citrix-sharefile-from-the-gallery"></a>갤러리에서 Citrix ShareFile 추가
+Citrix ShareFile의 Azure AD 통합을 구성하려면 갤러리의 Citrix ShareFile을 관리되는 SaaS 앱 목록에 추가해야 합니다.
 
-**hello 갤러리에서 Citrix ShareFile tooadd hello 다음 단계를 수행 합니다.**
+**갤러리에서 Citrix ShareFile을 추가하려면 다음 단계를 수행합니다.**
 
-1. Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다. 
+1. **[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다. 
 
-    ![hello Azure Active Directory 단추][1]
+    ![Azure Active Directory 단추][1]
 
-2. 너무 이동**엔터프라이즈 응용 프로그램**합니다. 이동 하 여 너무**모든 응용 프로그램**합니다.
+2. **엔터프라이즈 응용 프로그램**으로 이동합니다. 그런 후 **모든 응용 프로그램**으로 이동합니다.
 
-    ![hello 엔터프라이즈 응용 프로그램 블레이드][2]
+    ![엔터프라이즈 응용 프로그램 블레이드][2]
     
-3. tooadd 새 응용 프로그램을 클릭 하 여 **새 응용 프로그램** 대화의 hello 위쪽에 단추입니다.
+3. 새 응용 프로그램을 추가하려면 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭합니다.
 
-    ![hello 새 응용 프로그램 단추][3]
+    ![새 응용 프로그램 단추][3]
 
-4. Hello 검색 상자에 입력 **Citrix ShareFile**선택, **Citrix ShareFile** 결과 패널에서 클릭 **추가** tooadd hello 응용 프로그램 단추입니다.
+4. 검색 상자에 **Citrix ShareFile**을 입력하고 결과 패널에서 **Citrix ShareFile**을 선택한 후 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.
 
-    ![Citrix ShareFile hello에 결과 목록](./media/active-directory-saas-sharefile-tutorial/tutorial_sharefile_addfromgallery.png)
+    ![결과 목록에서 Citrix ShareFile](./media/active-directory-saas-sharefile-tutorial/tutorial_sharefile_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성 및 테스트
 
 이 섹션에서는 "Britta Simon"이라는 테스트 사용자를 기반으로 Citrix ShareFile에서 Azure AD Single Sign-On을 구성하고 테스트합니다.
 
-Single sign on toowork에 대 한 Azure AD는 tooknow Citrix ShareFile에 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다. 즉, Azure AD 사용자와 Citrix ShareFile에 hello 관련된 사용자 간 링크 관계를 설정 하는 toobe가 필요 합니다.
+Single Sign-On이 작동하려면 Azure AD에서 Azure AD 사용자에 해당하는 Citrix ShareFile 사용자가 누구인지 알고 있어야 합니다. 즉, Azure AD 사용자와 Citrix ShareFile의 관련 사용자 간에 연결이 형성되어야 합니다.
 
-Citrix ShareFile에 hello hello 값을 할당 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** tooestablish hello 링크 관계입니다.
+Citrix ShareFile에서 Azure AD의 **사용자 이름** 값을 **Username** 값으로 할당하여 링크 관계를 설정합니다.
 
-tooconfigure 및 Citrix ShareFile과 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.
+Citrix ShareFile에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.
 
-1. **[Azure AD Single Sign-on 구성](#configure-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.
-2. **[Azure AD 테스트를 만들고](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.
-3. **[Citrix ShareFile 테스트 사용자 만들기](#create-a-citrix-sharefile-test-user)**  -toohave Britta Simon 표현인 연결 된 toohello Azure AD 사용자의 Citrix ShareFile에 해당 하는 도구입니다.
-4. **[Azure AD hello 테스트 사용자를 할당](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.
-5. **[Single sign on 테스트](#test-single-sign-on)**  -tooverify 구성 works를 hello 여부.
+1. **[Azure AD Single Sign-On 구성](#configure-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.
+2. **[Azure AD 테스트 사용자 만들기](#create-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.
+3. **[Citrix ShareFile 테스트 사용자 만들기](#create-a-citrix-sharefile-test-user)** - Britta Simon의 Azure AD 표현과 연결된 해당 사용자를 Citrix ShareFile에 만듭니다.
+4. **[Azure AD 테스트 사용자 할당](#assign-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.
+5. **[Single Sign-On 테스트](#test-single-sign-on)** - 구성이 작동하는지 여부를 확인합니다.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성
 
-이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 Citrix ShareFile 응용 프로그램에서 single sign on 구성 합니다.
+이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 Citrix ShareFile 응용 프로그램에서 Single Sign-On을 구성합니다.
 
-**Azure AD tooconfigure single sign on와 Citrix ShareFile hello 다음 단계를 수행 합니다.**
+**Citrix ShareFile에서 Azure AD Single Sign-on을 구성하려면 다음 단계를 수행합니다.**
 
-1. Hello hello에 Azure 포털에서에서 **Citrix ShareFile** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.
+1. Azure Portal의 **Citrix ShareFile** 응용 프로그램 통합 페이지에서 **Single sign-on**을 클릭합니다.
 
     ![Single Sign-On 구성 링크][4]
 
-2. Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.
+2. **Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택하여 Single Sign-On을 사용하도록 설정합니다.
  
     ![Single Sign-On 대화 상자](./media/active-directory-saas-sharefile-tutorial/tutorial_sharefile_samlbase.png)
 
-3. Hello에 **Citrix ShareFile 도메인 및 Url** 섹션를 hello 다음 단계를 수행 합니다.
+3. **Citrix ShareFile 도메인 및 URL** 섹션에서 다음 단계를 수행합니다.
 
     ![Citrix ShareFile 도메인 및 URL Single Sign-On 정보](./media/active-directory-saas-sharefile-tutorial/tutorial_sharefile_url.png)
     
-    Hello에 **로그온 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<tenant-name>.sharefile.com/saml/login`
+    **로그온 URL** 텍스트 상자에서 다음 패턴으로 URL을 입력합니다. `https://<tenant-name>.sharefile.com/saml/login`
 
     > [!NOTE] 
-    > 이 값은 실제 값이 아닙니다. Hello로이 값을 업데이트 합니다. 실제 로그온 URL입니다. 연락처 [Citrix ShareFile 클라이언트 지원 팀](https://www.citrix.co.in/products/sharefile/support.html) tooget이이 값입니다. 
+    > 이 값은 실제 값이 아닙니다. 이 값을 실제 로그온 URL로 업데이트합니다. 이 값을 얻으려면 [Citrix ShareFile 클라이언트 지원 팀](https://www.citrix.co.in/products/sharefile/support.html)에 문의하세요. 
 
-4. Hello에 **SAML 서명 인증서** 섹션에서 클릭 **인증서 (Base64)** hello 인증서 파일을 컴퓨터에 저장 합니다.
+4. **SAML 서명 인증서** 섹션에서 **인증서(Base64)**를 클릭한 후 컴퓨터에 인증서 파일을 저장합니다.
 
-    ![hello 인증서 다운로드 링크](./media/active-directory-saas-sharefile-tutorial/tutorial_sharefile_certificate.png) 
+    ![인증서 다운로드 링크](./media/active-directory-saas-sharefile-tutorial/tutorial_sharefile_certificate.png) 
 
 5. **저장** 단추를 클릭합니다.
 
     ![Single Sign-On 구성 저장 단추](./media/active-directory-saas-sharefile-tutorial/tutorial_general_400.png)
 
-6. Hello에 **Citrix ShareFile 구성** 섹션에서 클릭 **Citrix ShareFile 구성** tooopen **sign on 구성** 창. 복사 hello **Sign-Out URL, SAML 엔터티 ID, 및 SAML Single Sign-on 서비스 URL** hello에서 **빠른 참조 섹션.**
+6. **Citrix ShareFile 구성** 섹션에서 **Citrix ShareFile 구성**을 클릭하여 **로그온 구성** 창을 엽니다. **빠른 참조 섹션**에서 **로그아웃 URL, SAML 엔터티 ID 및 SAML Single Sign-On 서비스 URL**을 복사합니다.
 
     ![Citrix ShareFile 구성](./media/active-directory-saas-sharefile-tutorial/tutorial_sharefile_configure.png) 
 
 7. 다른 웹 브라우저 창에서 **Citrix ShareFile** 회사 사이트에 관리자로 로그인합니다.
 
-8. 도구 모음의 hello hello 위쪽에 클릭 **Admin**합니다.
+8. 위쪽에 도구 모음에서 **관리자**를 클릭합니다.
 
-9. Hello 왼쪽된 탐색 창에서 선택 **구성 Single Sign-on**합니다.
+9. 왼쪽 탐색 창에서 **Single Sign-On 구성**을 선택합니다.
    
     ![계정 관리](./media/active-directory-saas-sharefile-tutorial/ic773627.png "계정 관리")
 
-10. Hello에 **Single Sign-on / SAML 2.0 구성** 대화 상자 페이지에서 **기본 설정**, hello 다음 단계를 수행 합니다.
+10. **기본 설정**의 **Single Sign-on/SAML 2.0 구성** 대화 상자 페이지에서 다음 단계를 수행 합니다.
    
     ![Single Sign-On](./media/active-directory-saas-sharefile-tutorial/ic773628.png "Single Sign-On")
    
     a. **SAML 사용**을 클릭합니다.
     
-    b. **IDP 발급자 / 엔터티 ID** 붙여넣기 hello 값의 텍스트 상자 **SAML 엔터티 ID** Azure 포털에서 복사한입니다.
+    b. Azure Portal에서 복사한 **SAML 엔터티 ID** 값을 **IDP 발급자/엔터티 ID** 텍스트 상자에 붙여넣습니다.
 
-    c. 클릭 **변경** 다음 toohello **X.509 인증서** 필드에서 다운로드 한 hello 인증서를 업로드 한 다음 Azure 포털 hello 합니다.
+    c. **X.509 인증서** 필드 옆의 **변경**을 클릭한 다음 Azure Portal에서 다운로드한 인증서를 업로드합니다.
     
-    d. **로그인 URL** 붙여넣기 hello 값의 텍스트 상자 **SAML Single Sign-on 서비스 URL** Azure 포털에서 복사한입니다.
+    d. Azure Portal에서 복사한 **SAML Single Sign-On 서비스 URL** 값을 **로그인 URL** 텍스트 상자에 붙여넣습니다.
     
-    e. **로그 아웃 URL** 붙여넣기 hello 값의 텍스트 상자 **Sign-Out URL** Azure 포털에서 복사한입니다.
+    e. Azure Portal에서 복사한 **로그아웃 URL** 값을 **로그아웃 URL** 텍스트 상자에 붙여넣습니다.
 
-11. 클릭 **저장** hello Citrix ShareFile 관리 포털에 있습니다.
+11. Citrix ShareFile 관리 포털에서 **저장** 을 클릭합니다.
 
 > [!TIP]
-> 이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!  Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션. 자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)
+> 이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.  **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다. 포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Azure AD 테스트 사용자 만들기
 
-이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.
+이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.
 
    ![Azure AD 테스트 사용자 만들기][100]
 
-**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**
+**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**
 
-1. Hello hello 왼쪽된 창에서 Azure 포털에서에서 클릭 hello **Azure Active Directory** 단추입니다.
+1. Azure Portal의 왼쪽 창에서 **Azure Active Directory** 단추를 클릭합니다.
 
-    ![hello Azure Active Directory 단추](./media/active-directory-saas-sharefile-tutorial/create_aaduser_01.png)
+    ![Azure Active Directory 단추](./media/active-directory-saas-sharefile-tutorial/create_aaduser_01.png)
 
-2. 사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹**, 클릭 하 고 **모든 사용자가**합니다.
+2. 사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭합니다.
 
-    !["사용자 및 그룹" hello 및 "모든 사용자" 링크](./media/active-directory-saas-sharefile-tutorial/create_aaduser_02.png)
+    !["사용자 및 그룹" 및 "모든 사용자" 링크](./media/active-directory-saas-sharefile-tutorial/create_aaduser_02.png)
 
-3. tooopen hello **사용자** 대화 상자를 클릭 **추가** hello hello 맨 **모든 사용자에 게** 대화 상자.
+3. **사용자** 대화 상자를 열려면 **모든 사용자** 대화 상자 위쪽에서 **추가**를 클릭합니다.
 
-    ![hello 추가 단추](./media/active-directory-saas-sharefile-tutorial/create_aaduser_03.png)
+    ![추가 단추](./media/active-directory-saas-sharefile-tutorial/create_aaduser_03.png)
 
-4. Hello에 **사용자** 대화 상자를 hello 다음 단계를 수행 합니다.
+4. **사용자** 대화 상자에서 다음 단계를 수행합니다.
 
-    ![hello 사용자 대화 상자](./media/active-directory-saas-sharefile-tutorial/create_aaduser_04.png)
+    ![사용자 대화 상자](./media/active-directory-saas-sharefile-tutorial/create_aaduser_04.png)
 
-    a. Hello에 **이름** 상자에서 입력 **BrittaSimon**합니다.
+    a. **이름** 상자에 **BrittaSimon**을 입력합니다.
 
-    b. Hello에 **사용자 이름** 상자의 사용자 Britta Simon의 hello 전자 메일 주소를 입력 합니다.
+    b. **사용자 이름** 상자에 사용자인 Britta Simon의 전자 메일 주소를 입력합니다.
 
-    c. 선택 hello **암호 표시** 확인란을 선택한 다음 hello에 표시 되는 hello 값 기록 **암호** 상자입니다.
+    c. **암호 표시** 확인란을 선택한 다음 **암호** 상자에 표시된 값을 적어둡니다.
 
     d. **만들기**를 클릭합니다.
  
 ### <a name="create-a-citrix-sharefile-test-user"></a>Citrix ShareFile 테스트 사용자 만들기
 
-Tooenable Azure AD 사용자가 toolog Citrix ShareFile에 주문 하 고에서 Citrix ShareFile에 이들 프로 비전 해야 합니다. Hello Citrix ShareFile의 경우에서 프로 비전은 수동 작업입니다.
+Azure AD 사용자가 Citrix ShareFile에 로그인할 수 있도록 하려면 Citrix ShareFile로 프로비전되어야 합니다. Citrix ShareFile의 경우 프로비전은 수동 작업입니다.
 
-**tooprovision 사용자 계정을 hello 다음 단계를 수행 합니다.**
+**사용자 계정을 프로비전하려면 다음 단계를 수행합니다.**
 
-1. Tooyour 로그인 **Citrix ShareFile** 테 넌 트입니다.
+1. **Citrix ShareFile** 테넌트에 로그인합니다.
 
 2. **사용자 관리 \> 사용자 홈 관리 \> + 직원 만들기**를 클릭합니다.
    
    ![직원 만들기](./media/active-directory-saas-sharefile-tutorial/IC781050.png "직원 만들기")
 
-3. Hello에 **기본 정보** 섹션에서 아래 단계를 수행 합니다.
+3. **기본 정보** 섹션에서 다음 단계를 수행합니다.
    
    ![기본 정보](./media/active-directory-saas-sharefile-tutorial/IC799951.png "기본 정보")
    
-   a. Hello에 **전자 메일 주소** textbox로 Britta Simon의 hello 전자 메일 주소를 입력  **brittasimon@contoso.com** 합니다.
+   a. **이메일 주소** 텍스트 상자에 Britta Simon의 전자 메일 주소를 **brittasimon@contoso.com**으로 입력합니다.
    
-   b. Hello에 **이름** 텍스트 상자에 **이름** 의 사용자에 게 **Britta**합니다.
+   b. **이름** 텍스트 상자에 사용자의 **이름**을 **Britta**로 입력합니다.
    
-   c. Hello에 **성** 텍스트 상자에 **성** 의 사용자에 게 **Simon**합니다.
+   c. **성** 텍스트 상자에 사용자의 **성**을 **Simon**으로 입력합니다.
 
 4. **사용자 추가**를 클릭합니다.
   
    >[!NOTE]
-   >hello Azure AD 계정 보유자는 전자 메일을 받게 되 고 링크 tooconfirm 자신의 계정을 활성화 되기 전에 수행 됩니다. 다른 Citrix ShareFile 사용자 계정 만들기 도구를 사용할 수 있습니다 또는 Azure AD 사용자 계정을 Citrix ShareFile tooprovision에서 제공 된 Api입니다.
+   >Azure AD 계정 보유자에게 이메일이 발송되며 여기에 포함된 링크를 클릭하여 계정을 확인하면 계정이 활성화됩니다. 다른 Citrix ShareFile 사용자 계정 생성 도구 또는 Citrix ShareFile에서 제공한 API를 사용하여 Azure AD 사용자 계정을 프로비전할 수도 있습니다.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Azure AD hello 테스트 사용자를 할당 합니다.
+### <a name="assign-the-azure-ad-test-user"></a>Azure AD 테스트 사용자 할당
 
-이 섹션에서는 액세스 tooCitrix ShareFile을 부여 하 여 Azure에서 single sign-on Britta Simon toouse를 사용 합니다.
+이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 Citrix ShareFile에 대한 액세스 권한을 부여합니다.
 
-![Hello 사용자 역할 할당][200] 
+![사용자 역할 할당][200] 
 
-**tooassign Britta Simon tooCitrix ShareFile hello 다음 단계를 수행 합니다.**
+**Citrix ShareFile에 Britta Simon을 할당하려면 다음 단계를 수행합니다.**
 
-1. Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.
+1. Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.
 
     ![사용자 할당][201] 
 
-2. Hello 응용 프로그램 목록에서 선택 **Citrix ShareFile**합니다.
+2. 응용 프로그램 목록에서 **Citrix ShareFile**을 선택합니다.
 
-    ![hello hello 응용 프로그램 목록에서 Citrix ShareFile 링크](./media/active-directory-saas-sharefile-tutorial/tutorial_sharefile_app.png)  
+    ![응용 프로그램 목록의 Citrix ShareFile 링크](./media/active-directory-saas-sharefile-tutorial/tutorial_sharefile_app.png)  
 
-3. Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.
+3. 왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.
 
-    ![hello "사용자 및 그룹" 링크][202]
+    !["사용자 및 그룹" 링크][202]
 
 4. **추가** 단추를 클릭합니다. 그런 후 **할당 추가** 대화 상자에서 **사용자 및 그룹**을 선택합니다.
 
-    ![hello 할당 추가 창][203]
+    ![할당 추가 창][203]
 
-5. **사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.
+5. **사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.
 
 6. **사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.
 
@@ -244,14 +244,14 @@ Tooenable Azure AD 사용자가 toolog Citrix ShareFile에 주문 하 고에서 
     
 ### <a name="test-single-sign-on"></a>Single Sign-On 테스트
 
-이 섹션에서는 Azure AD single sign on 구성 hello 액세스 패널을 사용 하 여 테스트할 수 있습니다.
+이 섹션에서는 액세스 패널을 사용하여 Azure AD Single Sign-On 구성을 테스트합니다.
 
-Hello Citrix ShareFile hello 액세스 패널에서에서 타일을 클릭할 때 자동으로 로그온 tooyour Citrix ShareFile 응용 프로그램을 구해야 합니다.
-액세스 패널에 대 한 자세한 내용은 참조 [액세스 패널 소개 toohello](active-directory-saas-access-panel-introduction.md)합니다. 
+액세스 패널에서 Citrix ShareFile 타일을 클릭하면 Citrix ShareFile 응용 프로그램에 자동으로 로그온됩니다.
+액세스 패널에 대한 자세한 내용은 [액세스 패널 소개](active-directory-saas-access-panel-introduction.md)를 참조하세요. 
 
 ## <a name="additional-resources"></a>추가 리소스
 
-* [방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와](active-directory-saas-tutorial-list.md)
+* [Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록](active-directory-saas-tutorial-list.md)
 * [Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?](active-directory-appssoaccess-whatis.md)
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure 미디어 인코더 표준를 사용 하 여 자산 aaaHow tooencode | Microsoft Docs"
-description: "Azure 미디어 서비스에서 미디어 인코더 표준 tooencode 미디어 toouse 콘텐츠 하는 방법에 대해 알아봅니다. REST API를 사용하는 코드 샘플입니다."
+title: "Media Encoder Standard를 사용하여 Azure 자산을 인코딩하는 방법 | Microsoft Docs"
+description: "Media Encoder Standard를 사용하여 Azure Media Services에서 미디어 콘텐츠를 인코드하는 방법에 대해 알아봅니다. REST API를 사용하는 코드 샘플입니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: b766bafded7ee98eda3e6ef149c31d5d8fe406fc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 796f3b5a4dd56a0160986600cbbcf38faf8add56
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-tooencode-an-asset-by-using-media-encoder-standard"></a>어떻게 tooencode 미디어 인코더 표준를 사용 하 여 자산
+# <a name="how-to-encode-an-asset-by-using-media-encoder-standard"></a>Media Encoder Standard를 사용하여 자산을 인코딩하는 방법
 > [!div class="op_single_selector"]
 > * [.NET](media-services-dotnet-encode-with-media-encoder-standard.md)
 > * [REST (영문)](media-services-rest-encode-asset.md)
@@ -29,45 +29,45 @@ ms.lasthandoff: 10/06/2017
 >
 
 ## <a name="overview"></a>개요
-hello 인터넷을 통해 디지털 비디오 toodeliver hello 미디어를 압축 해야 합니다. 디지털 비디오 파일에는 큰 있으며 수 너무 큰 toodeliver hello 인터넷을 통해 또는 고객의 장치 toodisplay에 대 한 제대로. 인코딩은 고객이 미디어를 볼 수 있도록 비디오 및 오디오를 압축의 hello 프로세스입니다.
+인터넷을 통해 디지털 비디오를 배달하려면 미디어를 압축해야 합니다. 디지털 비디오 파일은 대용량이기 때문에 인터넷을 통해 전달하거나 고객의 장치에서 제대로 표시하지 못할 수 있습니다. 인코딩은 고객이 미디어를 볼 수 있도록 비디오 및 오디오를 압축하는 과정입니다.
 
-인코딩 작업은 Azure 미디어 서비스에서 hello 가장 일반적인 처리 작업 중 하나입니다. 하나의 인코딩 tooanother에서 인코딩 작업 tooconvert 미디어 파일을 만듭니다. 인코드할 때는 hello 미디어 서비스 기본 제공 인코더 (미디어 인코더 표준)를 사용할 수 있습니다. 또한 Media Services 파트너가 제공하는 인코더를 사용할 수 있습니다. 타사 인코더는 hello Azure 마켓플레이스를 통해 사용할 수 있습니다. 인코더에 대해 정의 된 사전 설정된 문자열을 사용 하 여 또는 미리 설정 된 구성 파일을 사용 하 여 인코딩 태스크의 hello 세부 정보를 지정할 수 있습니다. 를 사용할 수 있는 사전 설정 toosee hello 유형을 참조 [미디어 인코더 표준의 태스크 사전 설정](http://msdn.microsoft.com/library/mt269960)합니다.
+인코딩 작업은 Azure Media Services에서 가장 일반적인 처리 작업 중 하나입니다. 인코딩 작업을 만들어 한 인코딩에서 다른 인코딩으로 미디어 파일을 변환합니다. 인코드할 때는 미디어 서비스 기본 제공 인코더(미디어 인코더 표준)를 사용할 수 있습니다. 또한 Media Services 파트너가 제공하는 인코더를 사용할 수 있습니다. 타사 인코더는 Azure Marketplace를 통해 사용할 수 있습니다. 인코더에 정의된 미리 설정 문자열을 사용하여 또는 미리 설정 구성 파일을 사용하여 인코딩 작업의 세부 정보를 지정할 수 있습니다. 사용할 수 있는 미리 설정 유형을 보려면 [Media Encoder Standard에 대한 작업 미리 설정](http://msdn.microsoft.com/library/mt269960)을 참조하세요.
 
-각 작업 하나를 사용할 수 또는 더 많은 작업 하는 처리가 hello 유형에 따라 tooaccomplish. Hello REST API를 통해 다음 두 가지 방법 중 하나에서 작업 및 관련된 작업을 만들 수 있습니다.
+각 작업을 수행하려는 처리 유형에 따라 하나 이상의 작업을 가질 수 있습니다. REST API를 통해 다음 두 가지 방법 중 하나로 작업 및 관련된 작업을 만들 수 있습니다.
 
-* 작업에는 작업 엔터티에 대해 hello 작업 탐색 속성을 통해 인라인으로 정의할된 수 있습니다.
+* 작업 엔터티에 대한 작업 탐색 속성을 통해 인라인으로 작업을 정의할 수 있습니다.
 * OData 배치 처리 사용.
 
-항상 원본 파일을 적응 비트 전송률 MP4 집합을 인코딩한 다음 hello 집합 toohello 원하는 형식을 사용 하 여 변환 하는 것이 좋습니다 [동적 패키징](media-services-dynamic-packaging-overview.md)합니다.
+항상 원본 파일을 적응 비트 전송률 MP4 집합으로 인코딩한 다음 [동적 패키징](media-services-dynamic-packaging-overview.md)을 사용하여 원하는 형식으로 집합을 변환하는 것이 좋습니다.
 
-출력 자산이 저장소 암호화 이면 hello 자산 배달 정책을 구성 해야 합니다. 자세한 내용은 [자산 배달 정책 구성](media-services-rest-configure-asset-delivery-policy.md)을 참조하세요.
+출력 자산이 암호화된 저장소인 경우 자산 배달 정책을 구성해야 합니다. 자세한 내용은 [자산 배달 정책 구성](media-services-rest-configure-asset-delivery-policy.md)을 참조하세요.
 
 ## <a name="considerations"></a>고려 사항
 
 미디어 서비스에서 엔터티에 액세스할 때는 HTTP 요청에서 구체적인 헤더 필드와 값을 설정해야 합니다. 자세한 내용은 [미디어 서비스 REST API 개발 설정](media-services-rest-how-to-use.md)을 참조하세요.
 
-정확 하 게 미디어 프로세서의 id입니다.를 hello가 참조 하는 미디어 프로세서를 시작 하기 전에 확인 자세한 내용은 [미디어 프로세서 가져오기](media-services-rest-get-media-processor.md)를 참조하세요.
+미디어 프로세서 참조를 시작하기 전에 올바른 미디어 프로세서 ID를 가지고 있는지 확인하십시오. 자세한 내용은 [미디어 프로세서 가져오기](media-services-rest-get-media-processor.md)를 참조하세요.
 
-## <a name="connect-toomedia-services"></a>TooMedia 서비스 연결
+## <a name="connect-to-media-services"></a>미디어 서비스에 연결
 
-AMS API를 참조 하는 tooconnect toohello 방법에 대 한 내용은 [Azure AD 인증 액세스 hello Azure 미디어 서비스 API](media-services-use-aad-auth-to-access-ams-api.md)합니다. 
+AMS API에 연결하는 방법에 대한 자세한 내용은 [Azure AD 인증을 사용하여 Azure Media Services API 액세스](media-services-use-aad-auth-to-access-ams-api.md)를 참조하세요. 
 
 >[!NOTE]
->Toohttps://media.windows.net을 성공적으로 연결한 후 다른 Media Services URI를 지정 하는 301 리디렉션을 받게 됩니다. 후속 호출 toohello 해야 새 URI입니다.
+>https://media.windows.net에 연결하면 다른 미디어 서비스 URI를 지정하는 301 리디렉션을 받게 됩니다. 사용자는 새 URI에 대한 후속 호출을 해야 합니다.
 
 ## <a name="create-a-job-with-a-single-encoding-task"></a>작업을 단일 인코딩 작업으로 만들기
 > [!NOTE]
-> 미디어 서비스 REST API hello로 작업할 때 hello 다음 고려 사항이 적용 됩니다.
+> Media Services REST API를 사용할 때는 다음 사항을 고려해야 합니다.
 >
 > 미디어 서비스에서 엔터티에 액세스할 때는 HTTP 요청에서 구체적인 헤더 필드와 값을 설정해야 합니다. 자세한 내용은 [Media Services REST API 개발 설정](media-services-rest-how-to-use.md)을 참조하세요.
 >
-> Toohttps://media.windows.net을 성공적으로 연결한 후 다른 Media Services URI를 지정 하는 301 리디렉션을 받게 됩니다. 후속 호출 toohello 해야 새 URI입니다. AMS API를 참조 하는 tooconnect toohello 방법에 대 한 내용은 [Azure AD 인증 액세스 hello Azure 미디어 서비스 API](media-services-use-aad-auth-to-access-ams-api.md)합니다.
+> https://media.windows.net에 연결하면 다른 미디어 서비스 URI를 지정하는 301 리디렉션을 받게 됩니다. 사용자는 새 URI에 대한 후속 호출을 해야 합니다. AMS API에 연결하는 방법에 대한 자세한 내용은 [Azure AD 인증을 사용하여 Azure Media Services API 액세스](media-services-use-aad-auth-to-access-ams-api.md)를 참조하세요.
 >
-> 때 JSON를 사용 하 고 toouse hello 지정 **__metadata** hello를 설정 해야 합니다 (예를 들어 tooreferences 연결된 된 개체), hello 요청에는 키워드 **Accept** 헤더 너무[자세한 JSON 형식 ](http://www.odata.org/documentation/odata-version-3-0/json-verbose-format/): 수락: 응용 프로그램/json; odata = 세부 정보 표시 합니다.
+> JSON을 사용하고 요청(예: 연결된 개체 참조)에서 **__metadata** 키워드를 사용하도록 지정할 때 **Accept** 헤더를 [JSON 자세한 정보 표시 형식](http://www.odata.org/documentation/odata-version-3-0/json-verbose-format/)(Accept: application/json;odata=verbose)으로 설정해야 합니다.
 >
 >
 
-다음 예제는 hello 있습니다 설정 방법을 보여 줍니다 toocreate 및 post 작업 인 작업 tooencode 비디오 특정 해상도 및 품질에 있습니다. Media Encoder Standard로 인코딩할 때 [여기](http://msdn.microsoft.com/library/mt269960)에 지정된 작업 구성 기본 설정을 사용할 수 있습니다.
+다음 예제에서는 특정 해상도와 품질로 비디오를 인코딩하기 위해 하나의 작업 집합으로 작업을 만들어 게시하는 방법을 보여 줍니다. Media Encoder Standard로 인코딩할 때 [여기](http://msdn.microsoft.com/library/mt269960)에 지정된 작업 구성 기본 설정을 사용할 수 있습니다.
 
 요청:
 
@@ -89,27 +89,27 @@ AMS API를 참조 하는 tooconnect toohello 방법에 대 한 내용은 [Azure 
 
     . . .
 
-### <a name="set-hello-output-assets-name"></a>Hello 출력 자산의 이름 설정
-다음 예제는 hello tooset assetName 특성을 hello 하는 방법을 보여 줍니다.
+### <a name="set-the-output-assets-name"></a>출력 자산 이름 설정
+다음 예제에서는 assetName 특성을 설정하는 방법을 보여 줍니다.
 
     { "TaskBody" : "<?xml version=\"1.0\" encoding=\"utf-8\"?><taskBody><inputAsset>JobInputAsset(0)</inputAsset><outputAsset assetName=\"CustomOutputAssetName\">JobOutputAsset(0)</outputAsset></taskBody>"}
 
 ## <a name="considerations"></a>고려 사항
-* TaskBody 속성, 입력 또는 출력 자산 hello 작업에서 사용 되는 리터럴 XML toodefine hello 번호를 사용 해야 합니다. hello 작업 항목 XML hello에 대 한 hello XML 스키마 정의 포함합니다.
-* TaskBody 정의 hello에 대 한 각 내부 값 <inputAsset> 및 <outputAsset> JobInputAsset(value) 또는 JobOutputAsset(value)로 설정 되어야 합니다.
+* TaskBody 속성은 리터럴 XML을 사용하여 작업에서 사용되는 입력이나 출력 수를 정의해야 합니다. 작업 항목은 해당 XML에 대한 XML 스키마 정의를 포함합니다.
+* TaskBody 정의에서 <inputAsset> 및 <outputAsset>에 대한 각각의 내부 값은 JobInputAsset(value) 또는 JobOutputAsset(value)으로 설정되어야 합니다.
 * 작업 출력 자산은 여러 개일 수 있습니다. 작업에서 하나의 JobOutputAsset(x)을 작업 출력으로 한 번만 사용할 수 있습니다.
 * JobInputAsset 또는 JobOutputAsset을 작업의 입력 자산으로 지정할 수 있습니다.
 * 작업은 주기를 형성해서는 안됩니다.
-* tooJobInputAsset 또는 JobOutputAsset을 전달 하는 hello value 매개 변수는 자산에 대 한 hello 인덱스 값을 나타냅니다. 실제 자산은 hello hello InputMediaAssets 및 OutputMediaAssets 탐색 속성 hello job 엔터티 정의에서 정의 됩니다.
-* 미디어 서비스는 OData v 3에서 빌드되므로 hello 개별 자산은 hello InputMediaAssets 및 OutputMediaAssets 탐색 속성 컬렉션을 통해 참조 되는 "__metadata: uri" 이름-값 쌍입니다.
-* InputMediaAssets는 tooone 또는 미디어 서비스에서 만든 자세한 자산에 매핑합니다. Outputmediaasset은 hello 시스템에 의해 생성 됩니다. 기존 자산을 참조하지 않습니다.
-* Outputmediaasset은 hello assetName 특성을 사용 하 여 이름을 지정할 수 있습니다. 이 특성이 없으면 경우 OutputMediaAsset hello의 hello 이름을 hello의 hello 내부 텍스트 값은 <outputAsset> 요소는 hello 작업 이름 값 또는 hello 작업 Id 값 (hello 경우 hello 이름 속성이 정의 되지 않습니다)의 접미사를 사용 합니다. 예를 들어 assetName에 대 한 값을 설정 하는 경우 너무 "Sample" 다음 hello OutputMediaAsset 이름 속성은 너무 "Sample." 그러나 assetName에 대 한 값을 설정 하지 않은 했지만 hello 작업 이름을 설정할가 너무 "NewJob" hello OutputMediaAsset 이름은 수 "JobOutputAsset (값) _NewJob"입니다.
+* JobInputAsset 또는 JobOutputAsset에 전달하는 값 매개변수는 자산에 대한 인덱스 값을 나타냅니다. 실제 자산은 작업 엔터티 정의에 있는 InputMediaAssets 및 OutputMediaAssets 탐색 속성에 정의됩니다.
+* Media Services는 OData v 3를 기반으로 하기 때문에 InputMediaAssets 및 OutputMediaAssets 탐색 속성 컬렉션에 있는 개별 자산은 "__metadata : uri" 이름 값 쌍으로 참조됩니다.
+* InputMediaAsset은 Media Services에서 만든 하나 이상의 자산에 매핑됩니다. OutputMediaAsset은 시스템에 의해 생성됩니다. 기존 자산을 참조하지 않습니다.
+* OutputMediaAsset은 assetName 특성을 사용하여 명명할 수 있습니다. 이 특성이 없을 경우 OutputMediaAsset의 이름은 <outputAsset> 요소의 내부 텍스트 값이 작업 이름 값 또는 작업 Id 값(이름 속성이 정의되어 있지 않은 경우)의 접미사를 갖는 어떤 것이든 가능합니다. 예를 들어, assetName에 대한 값을 "Sample"로 설정하는 경우 OutputMediaAsset 이름 속성은 "Sample"로 설정됩니다. 하지만 assetName에 대한 값은 설정하지 않았지만 작업 이름을 "NewJob"으로 설정한 경우 OutputMediaAsset 이름은 "JobOutputAsset(값)_NewJob"이 됩니다.
 
 ## <a name="create-a-job-with-chained-tasks"></a>연결된 작업으로 작업 만들기
-대부분의 응용 프로그램 시나리오에서 개발자는 toocreate 일련의 처리 작업을 원합니다. 미디어 서비스에서 일련의 연결된 작업을 만들 수 있습니다. 각 작업은 서로 다른 처리 단계를 수행하고 다양한 미디어 프로세서를 사용할 수 있습니다. 연결 된 hello 작업 hello 자산에 대해 작업의 선형 시퀀스를 수행 하는 하나 이상의 태스크 tooanother에서 자산을 전달 수 있습니다. 그러나 작업에서 수행 하는 hello 작업 시퀀스에 필요한 toobe 않습니다. Hello에 연결 된 연결 된 작업을 만들 때 **ITask** 개체에는 단일 만들어집니다 **IJob** 개체입니다.
+대부분의 응용 프로그램 시나리오에서는 개발자가 일련의 처리 작업을 만들려고 합니다. 미디어 서비스에서 일련의 연결된 작업을 만들 수 있습니다. 각 작업은 서로 다른 처리 단계를 수행하고 다양한 미디어 프로세서를 사용할 수 있습니다. 연결된 작업은 한 작업에서 다른 작업으로 자산을 전달하여 자산에 대한 선형 시퀀스 작업을 수행할 수 있습니다. 그러나 작업에서 수행된 작업은 시퀀스에 있을 필요가 없습니다. 연결된 작업을 만들면 연결된 **ITask** 개체는 단일 **IJob** 개체에 만들어집니다.
 
 > [!NOTE]
-> 현재 작업은 작업당 30개로 제한됩니다. 30 개 이상의 작업 toochain 해야 할 경우 둘 이상의 작업 toocontain hello 작업을 만듭니다.
+> 현재 작업은 작업당 30개로 제한됩니다. 30개 이상의 작업을 연결해야 하는 경우 둘 이상의 작업을 만들어 작업을 연결합니다.
 >
 >
 
@@ -147,13 +147,13 @@ AMS API를 참조 하는 tooconnect toohello 방법에 대 한 내용은 [Azure 
 
 
 ### <a name="considerations"></a>고려 사항
-tooenable 작업 체인:
+작업 체인을 사용하려면,
 
 * 작업에 작업이 2개 이상 있어야 합니다.
-* 해당 입력이 hello 출력 hello 작업에서 다른 작업의 작업을 하나 이상 있어야 합니다.
+* 작업에서 입력이 다른 작업의 출력인 작업이 하나 이상 있어야 합니다.
 
 ## <a name="use-odata-batch-processing"></a>OData 배치 처리 사용
-다음 예제는 hello 작업 및 작업 toouse OData 일괄 처리 toocreate 처리 하는 방법을 보여 줍니다. 일괄 처리에 대한 정보는 [Open Data Protocol(OData) 일괄 처리](http://www.odata.org/documentation/odata-version-3-0/batch-processing/)를 참조하세요.
+다음 예제에서는 OData 배치 처리를 사용하여 작업 및 태스크를 만드는 방법을 보여줍니다. 일괄 처리에 대한 정보는 [Open Data Protocol(OData) 일괄 처리](http://www.odata.org/documentation/odata-version-3-0/batch-processing/)를 참조하세요.
 
     POST https://media.windows.net/api/$batch HTTP/1.1
     DataServiceVersion: 1.0;NetFx
@@ -214,9 +214,9 @@ tooenable 작업 체인:
 
 
 ## <a name="create-a-job-by-using-a-jobtemplate"></a>JobTemplate을 사용하여 작업 만들기
-작업, JobTemplate toospecify hello 기본 작업 사전 설정, 사용 또는 작업 tooset hello 순서의 공통 집합을 사용 하 여 여러 자산을 처리할 수 있습니다.
+작업의 공통 집합을 사용하여 여러 자산을 처리할 때 JobTemplates를 사용하여 기본 작업 사전 설정을 지정하거나 작업 순서를 설정할 수 있습니다.
 
-다음 예제는 hello toocreate JobTemplate은 TaskTemplate와 인라인을 정의 하는 방법을 보여 줍니다. TaskTemplate hello hello MediaProcessor tooencode hello 자산 파일으로 미디어 인코더 표준 hello를 사용합니다. 그러나 다른 Mediaprocessor도 사용할 수 있습니다.
+다음 예제는 TaskTemplate 정의된 인라인이 있는 JobTemplate을 만드는 방법을 보여 줍니다. TaskTemplate은 Media Encoder Standard를 MediaProcessor로 사용하여 자산 파일을 인코딩합니다. 그러나 다른 Mediaprocessor도 사용할 수 있습니다.
 
     POST https://media.windows.net/API/JobTemplates HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -232,18 +232,18 @@ tooenable 작업 체인:
 
 
 > [!NOTE]
-> 다른 미디어 서비스 엔터티를 달리 각 TaskTemplate에 대 한 새 GUID 식별자를 정의 하 고 요청 본문에 hello taskTemplateId 및 Id 속성에 저장 해야 합니다. hello 콘텐츠 식별 구성표 Azure 미디어 서비스 엔터티 식별에 설명 된 hello 체계를 따라야 합니다. 또한 JobTemplates는 업데이트할 수 없습니다. 대신 업데이트된 변경 사항으로 새로운 템플릿을 만들어야 합니다.
+> 다른 미디어 서비스 엔터티와 달리, 각 TaskTemplate에 대한 새 GUID 식별자를 정의하고 요청 본문의 taskTemplateId 및 Id 속성에 배치해야 합니다. 콘텐츠 식별 구성표는 Azure 미디어 서비스 엔터티 식별에 설명된 구성표를 따라야 합니다. 또한 JobTemplates는 업데이트할 수 없습니다. 대신 업데이트된 변경 사항으로 새로운 템플릿을 만들어야 합니다.
 >
 >
 
-성공 하면 다음 응답 hello 반환 됩니다.
+성공하면 다음 응답이 반환됩니다.
 
     HTTP/1.1 201 Created
 
     . . .
 
 
-hello 방법을 예제와 다음 toocreate JobTemplate Id를 참조 하는 작업:
+다음 예제에서는 JobTemplate Id를 참조하는 작업을 만드는 방법을 보여 줍니다.
 
     POST https://media.windows.net/API/Jobs HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -258,7 +258,7 @@ hello 방법을 예제와 다음 toocreate JobTemplate Id를 참조 하는 작�
     {"Name" : "NewTestJob", "InputMediaAssets" : [{"__metadata" : {"uri" : "https://media.windows.net/api/Assets('nb%3Acid%3AUUID%3A3f1fe4a2-68f5-4190-9557-cd45beccef92')"}}], "TemplateId" : "nb:jtid:UUID:15e6e5e6-ac85-084e-9dc2-db3645fbf0aa"}
 
 
-성공 하면 다음 응답 hello 반환 됩니다.
+성공하면 다음 응답이 반환됩니다.
 
     HTTP/1.1 201 Created
 
@@ -273,7 +273,7 @@ hello 방법을 예제와 다음 toocreate JobTemplate Id를 참조 하는 작�
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-steps"></a>다음 단계
-배웠으므로 toocreate 자산, 작업 tooencode 확인 하려면 어떻게 해야 [toocheck 미디어 서비스를 사용 하 여 진행률을 작업 하는 방법을](media-services-rest-check-job-progress.md)합니다.
+자산을 인코드하는 작업을 만드는 방법을 알았으니 이제 [Media Services를 사용하여 작업 진행 상태를 확인하는 방법](media-services-rest-check-job-progress.md)을 살펴보겠습니다.
 
 ## <a name="see-also"></a>참고 항목
 [미디어 프로세서 가져오기](media-services-rest-get-media-processor.md)

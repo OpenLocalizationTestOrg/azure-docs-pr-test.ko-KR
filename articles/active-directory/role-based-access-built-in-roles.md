@@ -1,6 +1,6 @@
 ---
-title: "aaaActions NotActions-Azure 역할 기반 액세스 제어 (RBAC) | Microsoft Docs"
-description: "이 항목에서는 역할 기반 액세스 제어 (RBAC)에 대 한 역할에 기본 제공 hello를 설명 합니다. hello 역할은 지속적으로 추가, 따라서 검사 hello 설명서 새로 고침 합니다."
+title: "Actions 및 NotActions - Azure RBAC(역할 기반 액세스 제어) | Microsoft Docs"
+description: "이 항목에서는 역할 기반 액세스 제어(RBAC)에 대한 기본 제공 역할에 대해 설명합니다. 역할은 지속적으로 추가되므로 설명서가 최신 상태인지 확인합니다."
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -16,35 +16,35 @@ ms.date: 06/28/2017
 ms.author: andredm
 ms.reviewer: 
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 0a4ef9923fe05ec38e968534951911eaa4440b88
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9a5de00793621cfdecea887c53a22d482a25d1b8
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="built-in-roles-for-azure-role-based-access-control"></a>Azure 역할 기반 액세스 제어의 기본 제공 역할
-Azure 역할 기반 액세스 제어 (RBAC) toousers, 그룹 및 서비스에 할당 될 수 있는 기본 제공 역할을 수행 하는 hello 함께 제공 됩니다. 기본 제공 역할의 hello 정의 수정할 수 없습니다. 만들 수 있습니다 [사용자 지정 역할에서 Azure RBAC](role-based-access-control-custom-roles.md) toofit hello 조직의 특정 요구 합니다.
+Azure 역할 기반 액세스 제어(RBAC)에는 사용자, 그룹 및 서비스에 할당할 수 있는 다음 기본 제공 역할이 포함되었습니다. 기본 제공 역할의 정의는 수정할 수 없습니다. 그러나 조직의 특정 요구 사항에 맞게 [Azure RBAC에서 사용자 지정 역할](role-based-access-control-custom-roles.md) 을 만들 수 있습니다.
 
 ## <a name="roles-in-azure"></a>Azure의 역할
-hello 다음 표에서 간략 한 설명의 hello 기본 제공 역할입니다. Hello 역할 이름 toosee hello 요소의 세부 목록을 클릭 **동작** 및 **notactions** hello 역할에 대 한 합니다. hello **동작** 속성 hello Azure 리소스에 허용 되는 작업을 지정 합니다. 작업 문자열에는 와일드카드 문자를 사용할 수 있습니다. hello **notactions** 속성 hello 허용 되는 작업에서에서 제외 되는 hello 동작을 지정 합니다.
+다음 테이블은 기본 제공 역할을 간략하게 설명합니다. 역할 이름을 클릭하면 역할에 대한 **작업** 및 **작업 안 함** 목록을 자세히 볼 수 있습니다. **작업** 속성은 Azure 리소스에 허용되는 작업을 지정합니다. 작업 문자열에는 와일드카드 문자를 사용할 수 있습니다. **작업 안 함** 속성은 허용된 작업에서 제외되는 작업을 지정합니다.
 
-hello 동작은 지정 된 리소스 종류에서 수행할 수 있는 작업의 유형을 정의 합니다. 예:
-- **쓰기** 있습니다 tooperform PUT, POST, PATCH, 및 삭제 작업 수 있습니다.
-- **읽기** tooperform GET 작업을 사용 합니다.
+이 동작은 지정된 리소스 형식에 대해 수행할 수 있는 작업의 유형을 정의합니다. 예:
+- **쓰기**를 사용하여 PUT, POST, PATCH 및 DELETE 작업을 수행할 수 있습니다.
+- **읽기**를 사용하여 GET 작업을 수행할 수 있습니다.
 
-이 문서는 현재 존재 하는 hello 서로 다른 역할을 다룹니다. 그러나 역할 tooa 사용자를 할당 하면 hello 범위를 정의 하 여 허용 되는 작업을 추가로 제한할 수 있습니다. Toomake 사용자 하려는 웹 사이트 참가자 한 리소스 그룹에 대해서만 하는 경우에 유용 합니다.
+이 문서에서는 현재 존재하는 다양한 역할만 소개합니다. 그렇지만 사용자에게 역할을 할당할 때 범위를 정의하여 허용되는 동작을 추가로 제한할 수 있습니다. 이러한 기능은 누군가를 단일 리소스 그룹에 대해서만 웹 사이트 참가자로 지정하려는 경우에 유용합니다.
 
 > [!NOTE]
-> hello Azure 역할 정의 계속 해 서 발전 합니다. 최대한 toodate 작동으로 유지 되는이 문서 있지만 찾을 수 있습니다 항상 hello 역할 정의 최신 Azure PowerShell에서 합니다. 사용 하 여 hello [Get AzureRmRoleDefinition](/powershell/module/azurerm.resources/get-azurermroledefinition) cmdlet toolist 모든 현재 역할입니다. 사용 하 여 특정 역할 tooa 알아볼 수 `(get-azurermroledefinition "<role name>").actions` 또는 `(get-azurermroledefinition "<role name>").notactions` 에 해당 합니다. 사용 하 여 [Get AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) 특정 Azure 리소스 공급자의 toolist 작업 합니다.
+> Azure 역할 정의는 끊임없이 진화하고 있습니다. 이 문서는 가능한 최신 상태로 유지되지만 Azure PowerShell에서 항상 최신 역할 정의를 확인할 수 있습니다. 현재의 모든 역할을 나열하려면 [Get-AzureRmRoleDefinition](/powershell/module/azurerm.resources/get-azurermroledefinition) cmdlet을 사용합니다. `(get-azurermroledefinition "<role name>").actions` 또는 `(get-azurermroledefinition "<role name>").notactions`를 적절히 사용하여 특정 역할을 자세히 알아볼 수 있습니다. 특정 Azure 리소스 공급자의 작업을 나열하려면 [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation)을 사용합니다.
 
 
 | 역할 이름 | 설명 |
 | --- | --- |
-| [API 관리 서비스 참여자](#api-management-service-contributor) |Hello Api 및 API 관리 서비스를 관리할 수 있습니다. |
-| [API Management 서비스 운영자 역할](#api-management-service-operator-role) | API 관리 서비스 지만 하지 hello 자체 Api 관리할 수 있습니다. |
-| [Azure API Management 읽기 권한자 역할](#api-management-service-reader-role) | 읽기 전용 액세스 tooAPI 관리 서비스 및 Api |
+| [API 관리 서비스 참여자](#api-management-service-contributor) |API Management 서비스 및 API를 관리할 수 있음 |
+| [API Management 서비스 운영자 역할](#api-management-service-operator-role) | API 자체가 아닌 API Management 서비스를 관리할 수 있음 |
+| [Azure API Management 읽기 권한자 역할](#api-management-service-reader-role) | API Management 서비스 및 API에 대한 읽기 전용 액세스 |
 | [Application Insights 구성 요소 참여자](#application-insights-component-contributor) |Application Insights 구성 요소를 관리할 수 있음 |
-| [자동화 운영자](#automation-operator) |수 toostart 중지, 일시 중단 하 고 작업을 다시 시작 |
+| [자동화 운영자](#automation-operator) |작업을 시작, 중지, 일시 중단 및 다시 시작할 수 있음 |
 | [백업 참여자](#backup-contributor) | Recovery Services 자격 증명 모음에서 백업을 관리할 수 있습니다. |
 | [백업 운영자](#backup-operator) | Recovery Services 자격 증명 모음에서 백업 제거를 제외한 백업 관리를 수행할 수 있습니다. |
 | [백업 읽기 권한자](#backup-reader) | 모든 백업 관리 서비스를 볼 수 있습니다.  |
@@ -73,20 +73,20 @@ hello 동작은 지정 된 리소스 종류에서 수행할 수 있는 작업의
 | [Site Recovery 운영자](#site-recovery-operator) | Recovery Services 자격 증명 모음에서 장애 조치(failover) 및 장애 복구(failback) 작업 Site Recovery를 관리할 수 있음 |
 | [Site Recovery 구독자](#site-recovery-reader) | 모든 Site Recovery 관리 작업을 볼 수 있음  |
 | [SQL DB 참여자](#sql-db-contributor) |해당 보안 관련 정책을 제외한 SQL 데이터베이스를 관리할 수 있음 |
-| [SQL 보안 관리자](#sql-security-manager) |SQL server 및 데이터베이스의 hello 보안 관련 정책을 관리할 수 있습니다. |
+| [SQL 보안 관리자](#sql-security-manager) |SQL 서버 및 데이터베이스의 보안 관련 정책을 관리할 수 있음 |
 | [SQL Server 참여자](#sql-server-contributor) |해당 보안 관련 정책을 제외한 SQL Server 및 데이터베이스를 관리할 수 있음 |
 | [클래식 저장소 계정 참여자](#classic-storage-account-contributor) |클래식 저장소 계정을 관리할 수 있음 |
 | [저장소 계정 참여자](#storage-account-contributor) |저장소 계정을 관리할 수 있음 |
 | [지원 요청 참가자](#support-request-contributor) | 지원 요청을 만들고 관리할 수 있음 |
-| [사용자 액세스 관리자](#user-access-administrator) |사용자 액세스 tooAzure 리소스를 관리할 수 있습니다. |
-| [클래식 가상 컴퓨터 참여자](#classic-virtual-machine-contributor) |클래식 가상 컴퓨터 하지만 hello 가상 네트워크가 아니라 또는 연결 된 저장소 계정 toowhich 관리할 수 있습니다. |
-| [가상 컴퓨터 참여자](#virtual-machine-contributor) |하지 hello 가상 네트워크 또는 저장소 계정 toowhich 연결 되어 있지만 가상 컴퓨터를 관리할 수 있습니다. |
+| [사용자 액세스 관리자](#user-access-administrator) |Azure 리소스에 대한 사용자 액세스를 관리할 수 있음 |
+| [클래식 가상 컴퓨터 참여자](#classic-virtual-machine-contributor) |클래식 가상 컴퓨터를 관리할 수 있으나 여기에 연결된 가상 네트워크 또는 저장소 계정은 관리할 수 없음 |
+| [가상 컴퓨터 참여자](#virtual-machine-contributor) |가상 컴퓨터를 관리할 수 있으나 여기에 연결된 가상 네트워크 또는 저장소 계정은 관리할 수 없음 |
 | [클래식 네트워크 참여자](#classic-network-contributor) |클래식 가상 네트워크 및 예약된 IP를 관리할 수 있음 |
 | [웹 계획 참여자](#web-plan-contributor) |웹 계획을 관리할 수 있음 |
-| [웹 사이트 참여자](#website-contributor) |웹 사이트를 관리할 수 있지만 연결 된 웹 계획 toowhich 하지 hello |
+| [웹 사이트 참여자](#website-contributor) |웹 사이트를 관리할 수 있으나 여기에 연결된 웹 계획은 관리할 수 없음 |
 
 ## <a name="role-permissions"></a>역할 권한
-hello ´ ֲ ַ hello 특정 사용 권한을 tooeach 역할을 부여 합니다. 여기에는 권한을 부여하는 **작업**과 권한을 제한하는 **작업 안 함**이 포함될 수 있습니다.
+다음 표에서는 각 역할에 부여되는 특정 권한에 대해 설명합니다. 여기에는 권한을 부여하는 **작업**과 권한을 제한하는 **작업 안 함**이 포함될 수 있습니다.
 
 ### <a name="api-management-service-contributor"></a>API 관리 서비스 참여자
 API 관리 서비스를 관리할 수 있음
@@ -96,7 +96,7 @@ API 관리 서비스를 관리할 수 있음
 | Microsoft.ApiManagement/Service/* |API Management 서비스 만들기 및 관리 |
 | Microsoft.Authorization/*/read |읽기 권한 부여 |
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |역할 및 역할 할당 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
@@ -107,16 +107,16 @@ API 관리 서비스를 관리할 수 있음
 | **actions** |  |
 | --- | --- |
 | Microsoft.ApiManagement/Service/*/read | API Management 서비스 인스턴스 읽기 |
-| Microsoft.ApiManagement/Service/backup/action | API 관리 서비스에서 저장소 계정을 제공 하는 사용자 지정 된 컨테이너 toohello 백업 |
+| Microsoft.ApiManagement/Service/backup/action | 사용자가 제공한 저장소 계정의 지정된 컨테이너로 API Management 서비스 백업 |
 | Microsoft.ApiManagement/Service/delete | API Management 서비스 인스턴스 삭제 |
 | Microsoft.ApiManagement/Service/managedeployments/action | SKU/단위 변경, API Management 서비스의 지역별 배포를 추가 또는 제거 |
 | Microsoft.ApiManagement/Service/read | API Management 서비스 인스턴스에 대한 메타데이터 읽기 |
-| Microsoft.ApiManagement/Service/restore/action | 저장소 계정을 제공 하는 사용자 지정된 컨테이너 hello에서에서 API 관리 서비스를 복원 합니다. |
+| Microsoft.ApiManagement/Service/restore/action | 사용자가 제공한 저장소 계정의 지정된 컨테이너에서 API Management 서비스 복원 |
 | Microsoft.ApiManagement/Service/updatehostname/action | API Management 서비스에 대한 사용자 지정 도메인 이름 설정, 업데이트 또는 제거 |
 | Microsoft.ApiManagement/Service/write | API Management 서비스의 새 인스턴스 만들기 |
 | Microsoft.Authorization/*/read |읽기 권한 부여 |
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |역할 및 역할 할당 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
@@ -130,7 +130,7 @@ API 관리 서비스를 관리할 수 있음
 | Microsoft.ApiManagement/Service/read | API Management 서비스 인스턴스에 대한 메타데이터 읽기 |
 | Microsoft.Authorization/*/read |읽기 권한 부여 |
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |역할 및 역할 할당 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
@@ -144,13 +144,13 @@ Application Insights 구성 요소를 관리할 수 있음
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
 | Microsoft.Insights/components/* |Insights 구성 요소 만들기 및 관리 |
 | Microsoft.Insights/webtests/* |웹 테스트 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
 
 ### <a name="automation-operator"></a>자동화 운영자
-수 toostart 중지, 일시 중단 하 고 작업을 다시 시작
+작업을 시작, 중지, 일시 중단 및 다시 시작할 수 있음
 
 | **actions** |  |
 | --- | --- |
@@ -168,13 +168,13 @@ Application Insights 구성 요소를 관리할 수 있음
 | Microsoft.Automation/automationAccounts/schedules/read |자동화 계정 일정 읽기 |
 | Microsoft.Automation/automationAccounts/schedules/write |자동화 계정 일정 쓰기 |
 | Microsoft.Insights/components/* |Insights 구성 요소 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
 
 ### <a name="backup-contributor"></a>백업 참여자
-복구 서비스 자격 증명 모음 만들기 및 액세스 tooothers 제공 제외 하 고 모든 백업 관리 동작을 관리할 수 있습니다.
+Recovery Services 자격 증명 모음 생성 및 다른 사용자에게 액세스 권한 부여를 제외한 모든 백업 관리 작업을 관리할 수 있습니다.
 
 | **actions** | |
 | --- | --- |
@@ -183,14 +183,14 @@ Application Insights 구성 요소를 관리할 수 있음
 | Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/* | Recovery Services 자격 증명 모음의 백업 패브릭 내에서 백업 컨테이너 만들기 및 관리 |
 | Microsoft.RecoveryServices/Vaults/backupJobs/* | 백업 작업 만들기 및 관리 |
 | Microsoft.RecoveryServices/Vaults/backupJobsExport/action | 백업 작업을 Excel로 내보내기 |
-| Microsoft.RecoveryServices/Vaults/backupManagementMetaData/* | 만들기 및 관리 메타 데이터 관련 toobackup 관리 |
+| Microsoft.RecoveryServices/Vaults/backupManagementMetaData/* | 백업 관리와 관련된 메타데이터 만들기 및 관리 |
 | Microsoft.RecoveryServices/Vaults/backupOperationResults/* | 백업 관리 작업의 결과 만들기 및 관리 |
 | Microsoft.RecoveryServices/Vaults/backupPolicies/* | 백업 정책 만들기 및 관리 |
 | Microsoft.RecoveryServices/Vaults/backupProtectableItems/* | 백업할 수 있는 항목 만들기 및 관리 |
 | Microsoft.RecoveryServices/Vaults/backupProtectedItems/* | 백업한 항목 만들기 및 관리 |
 | Microsoft.RecoveryServices/Vaults/backupProtectionContainers/* | 백업 항목을 보유하는 컨테이너 만들기 및 관리 |
-| Microsoft.RecoveryServices/Vaults/certificates/* | 만들기 및 복구 서비스 자격 증명 모음에 인증서 관련된 toobackup 관리 |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/* | 만들기 및 관리와 관련 된 확장된 정보 toovault |
+| Microsoft.RecoveryServices/Vaults/certificates/* | Recovery Services 자격 증명 모음의 백업과 관련된 인증서 만들기 및 관리 |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/* | 자격 증명 모음과 관련된 확장 정보 만들기 및 관리 |
 | Microsoft.RecoveryServices/Vaults/read | Recovery Services 자격 증명 모음 읽기 |
 | Microsoft.RecoveryServices/Vaults/refreshContainers/* | 새로 만든 컨테이너를 가져오기 위한 검색 작업 관리 |
 | Microsoft.RecoveryServices/Vaults/registeredIdentities/* | 등록된 ID 만들기 및 관리 |
@@ -201,7 +201,7 @@ Application Insights 구성 요소를 관리할 수 있음
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
 
 ### <a name="backup-operator"></a>백업 운영자
-자격 증명 모음 만들기, 백업 제거 및 액세스 tooothers 제공를 제외한 모든 백업 관리 동작을 관리할 수 있습니다.
+자격 증명 모음 생성, 백업 제거 및 다른 사용자에게 액세스 권한 부여를 제외한 모든 백업 관리 작업을 관리할 수 있습니다.
 
 | **actions** | |
 | --- | --- |
@@ -218,21 +218,21 @@ Application Insights 구성 요소를 관리할 수 있음
 | Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/read | 백업 항목을 보유하는 컨테이너 읽기 |
 | Microsoft.RecoveryServices/Vaults/backupJobs/* | 백업 작업 만들기 및 관리 |
 | Microsoft.RecoveryServices/Vaults/backupJobsExport/action | 백업 작업을 Excel로 내보내기 |
-| Microsoft.RecoveryServices/Vaults/backupManagementMetaData/read | 메타 데이터 읽기 관련 toobackup 관리 |
+| Microsoft.RecoveryServices/Vaults/backupManagementMetaData/read | 백업 관리와 관련된 메타데이터 읽기 |
 | Microsoft.RecoveryServices/Vaults/backupOperationResults/* | 백업 관리 작업의 결과 만들기 및 관리 |
 | Microsoft.RecoveryServices/Vaults/backupPolicies/operationResults/read | 백업 정책에 대해 수행된 작업의 결과 읽기 |
 | Microsoft.RecoveryServices/Vaults/backupPolicies/read | 백업 정책 읽기 |
 | Microsoft.RecoveryServices/Vaults/backupProtectableItems/* | 백업할 수 있는 항목 만들기 및 관리 |
 | Microsoft.RecoveryServices/Vaults/backupProtectedItems/read | 백업된 항목 읽기 |
 | Microsoft.RecoveryServices/Vaults/backupProtectionContainers/read | 백업 항목을 보유하는 백업된 컨테이너 읽기 |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/read | 읽기 확장 정보 관련 toovault |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/write | 확장 쓰기 정보 관련 toovault |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/read | 자격 증명 모음과 관련된 확장된 정보 읽기 |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/write | 자격 증명 모음과 관련된 확장된 정보 쓰기 |
 | Microsoft.RecoveryServices/Vaults/read | Recovery Services 자격 증명 모음 읽기 |
 | Microsoft.RecoveryServices/Vaults/refreshContainers/* | 새로 만든 컨테이너를 가져오기 위한 검색 작업 관리 |
-| Microsoft.RecoveryServices/Vaults/registeredIdentities/operationResults/read | Hello 자격 증명 모음의 등록 된 항목에 대해 수행 하는 작업 결과 읽기 |
-| Microsoft.RecoveryServices/Vaults/registeredIdentities/read | Hello 자격 증명 모음의 등록 된 항목 읽기 |
-| Microsoft.RecoveryServices/Vaults/registeredIdentities/write | 등록 된 항목 toovault 작성 |
-| Microsoft.RecoveryServices/Vaults/usages/read | 복구 서비스 자격 증명 모음 hello 읽기 사용 |
+| Microsoft.RecoveryServices/Vaults/registeredIdentities/operationResults/read | 자격 증명 모음의 등록된 항목에 대해 수행된 작업의 결과 읽기 |
+| Microsoft.RecoveryServices/Vaults/registeredIdentities/read | 자격 증명 모음의 등록된 항목 읽기 |
+| Microsoft.RecoveryServices/Vaults/registeredIdentities/write | 자격 증명 모음에 등록된 항목 쓰기 |
+| Microsoft.RecoveryServices/Vaults/usages/read | Recovery Services 자격 증명 모음의 사용 현황 읽기 |
 | Microsoft.Resources/deployments/* | 리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read | 리소스 그룹 읽기 |
 | Microsoft.Storage/storageAccounts/read | 저장소 계정 읽기 |
@@ -252,18 +252,18 @@ Recovery Services 자격 증명 모음의 백업 관리를 모니터링할 수 �
 | Microsoft.RecoveryServices/Vaults/backupJobs/operationResults/read  | 백업 작업의 결과 읽기 |
 | Microsoft.RecoveryServices/Vaults/backupJobs/read  | 백업 작업 읽기 |
 | Microsoft.RecoveryServices/Vaults/backupJobsExport/action | 백업 작업을 Excel로 내보내기 |
-| Microsoft.RecoveryServices/Vaults/backupManagementMetaData/read  | 메타 데이터 읽기 관련 toobackup 관리 |
+| Microsoft.RecoveryServices/Vaults/backupManagementMetaData/read  | 백업 관리와 관련된 메타데이터 읽기 |
 | Microsoft.RecoveryServices/Vaults/backupOperationResults/read  | 백업 관리 작업 결과 읽기 |
 | Microsoft.RecoveryServices/Vaults/backupPolicies/operationResults/read  | 백업 정책에 대해 수행된 작업의 결과 읽기 |
 | Microsoft.RecoveryServices/Vaults/backupPolicies/read  | 백업 정책 읽기 |
 | Microsoft.RecoveryServices/Vaults/backupProtectedItems/read  |  백업된 항목 읽기 |
 | Microsoft.RecoveryServices/Vaults/backupProtectionContainers/read  | 백업 항목을 보유하는 백업된 컨테이너 읽기 |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/read  | 읽기 확장 정보 관련 toovault |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/read  | 자격 증명 모음과 관련된 확장된 정보 읽기 |
 | Microsoft.RecoveryServices/Vaults/read  | Recovery Services 자격 증명 모음 읽기 |
 | Microsoft.RecoveryServices/Vaults/refreshContainers/read  | 새로 만든 컨테이너를 가져오기 위한 검색 작업의 결과 읽기 |
-| Microsoft.RecoveryServices/Vaults/registeredIdentities/operationResults/read  | Hello 자격 증명 모음의 등록 된 항목에 대해 수행 하는 작업 결과 읽기 |
-| Microsoft.RecoveryServices/Vaults/registeredIdentities/read  | Hello 자격 증명 모음의 등록 된 항목 읽기 |
-| Microsoft.RecoveryServices/Vaults/usages/read  |  복구 서비스 자격 증명 모음 hello 읽기 사용 |
+| Microsoft.RecoveryServices/Vaults/registeredIdentities/operationResults/read  | 자격 증명 모음의 등록된 항목에 대해 수행된 작업의 결과 읽기 |
+| Microsoft.RecoveryServices/Vaults/registeredIdentities/read  | 자격 증명 모음의 등록된 항목 읽기 |
+| Microsoft.RecoveryServices/Vaults/usages/read  |  Recovery Services 자격 증명 모음의 사용 현황 읽기 |
 
 ### <a name="billing-reader"></a>청구 읽기 권한자
 대금 청구 정보를 볼 수 있음
@@ -282,7 +282,7 @@ BizTalk 서비스를 관리할 수 있음
 | Microsoft.Authorization/*/read |역할 및 역할 할당 읽기 |
 | Microsoft.BizTalkServices/BizTalk/* |BizTalk 서비스 만들기 및 관리 |
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
@@ -294,7 +294,7 @@ ClearDB MySQL 데이터베이스를 관리할 수 있음
 | --- | --- |
 | Microsoft.Authorization/*/read |역할 및 역할 할당 읽기 |
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
@@ -320,7 +320,7 @@ ClearDB MySQL 데이터베이스를 관리할 수 있음
 | Microsoft.Authorization/*/read |역할 및 역할 할당 읽기 |
 | Microsoft.DataFactory/dataFactories/* |데이터 팩터리 및 그 안에 포함된 자식 리소스를 만들고 관리합니다. |
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
@@ -331,13 +331,13 @@ ClearDB MySQL 데이터베이스를 관리할 수 있음
 | **actions** |  |
 | --- | --- |
 | Microsoft.Authorization/*/read |역할 및 역할 할당 읽기 |
-| Microsoft.Compute/availabilitySets/read |가용성 집합의 hello 속성 읽기 |
-| Microsoft.Compute/virtualMachines/*/read |가상 컴퓨터 (VM 크기, 런타임 상태, VM 확장 등)의 hello 속성 읽기 |
+| Microsoft.Compute/availabilitySets/read |가용성 집합의 속성 읽기 |
+| Microsoft.Compute/virtualMachines/*/read |가상 컴퓨터(VM 크기, 런타임 상태, VM 확장 등)의 속성 읽기 |
 | Microsoft.Compute/virtualMachines/deallocate/action |가상 컴퓨터 할당 취소 |
-| Microsoft.Compute/virtualMachines/read |가상 컴퓨터의 hello 속성 읽기 |
+| Microsoft.Compute/virtualMachines/read |가상 컴퓨터의 속성 읽기 |
 | Microsoft.Compute/virtualMachines/restart/action |가상 컴퓨터 다시 시작 |
 | Microsoft.Compute/virtualMachines/start/action |가상 컴퓨터 시작 |
-| Microsoft.DevTestLab/*/read |랩의 hello 속성 읽기 |
+| Microsoft.DevTestLab/*/read |랩의 속성 읽기 |
 | Microsoft.DevTestLab/labs/createEnvironment/action |랩 환경 만들기 |
 | Microsoft.DevTestLab/labs/formulas/delete |수식 삭제 |
 | Microsoft.DevTestLab/labs/formulas/read |수식 읽기 |
@@ -345,11 +345,11 @@ ClearDB MySQL 데이터베이스를 관리할 수 있음
 | Microsoft.DevTestLab/labs/policySets/evaluatePolicies/action |랩 정책 평가 |
 | Microsoft.Network/loadBalancers/backendAddressPools/join/action |부하 분산 장치 백 엔드 주소 풀 연결 |
 | Microsoft.Network/loadBalancers/inboundNatRules/join/action |부하 분산 장치 인바운드 NAT 규칙 연결 |
-| Microsoft.Network/networkInterfaces/*/read |네트워크 인터페이스의 hello 속성 읽기 (예를 들어 모든 hello에 대 한 부하 분산 장치는 hello이 네트워크 인터페이스의 일부인) |
-| Microsoft.Network/networkInterfaces/join/action |가상 컴퓨터 tooa 네트워크 인터페이스를 조인 합니다. |
+| Microsoft.Network/networkInterfaces/*/read |네트워크 인터페이스(예: 네트워크 인터페이스의 일부인 모든 부하 분산 장치)의 속성 읽기 |
+| Microsoft.Network/networkInterfaces/join/action |네트워크 인터페이스에 가상 컴퓨터 연결 |
 | Microsoft.Network/networkInterfaces/read |네트워크 인터페이스 읽기 |
 | Microsoft.Network/networkInterfaces/write |네트워크 인터페이스 작성 |
-| Microsoft.Network/publicIPAddresses/*/read |공용 IP 주소를의 hello 속성 읽기 |
+| Microsoft.Network/publicIPAddresses/*/read |공용 IP 주소의 속성 읽기 |
 | Microsoft.Network/publicIPAddresses/join/action |공용 IP 주소 연결 |
 | Microsoft.Network/publicIPAddresses/read |네트워크 공용 IP 주소 읽기 |
 | Microsoft.Network/virtualNetworks/subnets/join/action |가상 네트워크 연결 |
@@ -366,7 +366,7 @@ DNS 영역 및 레코드를 관리할 수 있음
 | Microsoft.Authorization/\*/read |역할 및 역할 할당 읽기 |
 | Microsoft.Insights/alertRules/\* |경고 규칙 만들기 및 관리 |
 | Microsoft.Network/dnsZones/\* |DNS 영역 및 레코드 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스 읽기 hello 상태 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/\* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/\* |지원 티켓 만들기 및 관리 |
@@ -379,7 +379,7 @@ Azure Cosmos DB 계정을 관리할 수 있음
 | Microsoft.Authorization/*/read |역할 및 역할 할당 읽기 |
 | Microsoft.DocumentDb/databaseAccounts/* |DocumentDB 계정 만들기 및 관리 |
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
@@ -392,7 +392,7 @@ Azure Cosmos DB 계정을 관리할 수 있음
 | Microsoft.Authorization/*/read |역할 및 역할 할당 읽기 |
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
 | Microsoft.IntelligentSystems/accounts/* |지능형 시스템 계정 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
@@ -415,11 +415,11 @@ Azure Cosmos DB 계정을 관리할 수 있음
 | Microsoft.Insights/AlertRules/* |경고 규칙 읽기/쓰기/삭제 |
 | Microsoft.Insights/components/* |Application Insights 구성 요소 읽기/쓰기/삭제 |
 | Microsoft.Insights/DiagnosticSettings/* |진단 설정 읽기/쓰기/삭제 |
-| Microsoft.Insights/eventtypes/* |구독에서 활동 로그 이벤트(관리 이벤트)를 나열합니다. 이 권한은 해당 tooboth 프로그래밍 및 포털 액세스 toohello 활동 로그입니다. |
-| Microsoft.Insights/LogDefinitions/* |이 권한은 tooActivity 로그 hello 포털을 통해 액세스 해야 하는 사용자에 대 한 필요한입니다. 활동 로그의 로그 범주를 나열합니다. |
+| Microsoft.Insights/eventtypes/* |구독에서 활동 로그 이벤트(관리 이벤트)를 나열합니다. 이 권한은 활동 로그에 대한 프로그래밍 방식 및 포털 액세스 모두에 적용 가능합니다. |
+| Microsoft.Insights/LogDefinitions/* |이 권한은 사용자 포털을 통해 활동 로그에 액세스해야 하는 사용자에게 필요합니다. 활동 로그의 로그 범주를 나열합니다. |
 | Microsoft.Insights/MetricDefinitions/* |메트릭 정의(리소스에 사용 가능한 메트릭 형식 목록)를 읽습니다. |
 | Microsoft.Insights/Metrics/* |리소스에 대한 메트릭을 읽습니다. |
-| Microsoft.Insights/Register/Action |Hello Microsoft.Insights 공급자를 등록 합니다. |
+| Microsoft.Insights/Register/Action |Microsoft Insights 공급자 등록 |
 | Microsoft.Insights/webtests/* |Application Insights 웹 테스트 읽기/쓰기/삭제 |
 | Microsoft.OperationalInsights/workspaces/intelligencepacks/* |Log Analytics 솔루션 팩 읽기/쓰기/삭제 |
 | Microsoft.OperationalInsights/workspaces/savedSearches/* |Log Analytics의 저장된 검색 읽기/쓰기/삭제 |
@@ -435,7 +435,7 @@ Azure Cosmos DB 계정을 관리할 수 있음
 | Microsoft.Authorization/*/read |역할 및 역할 할당 읽기 |
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
 | Microsoft.Network/* |네트워크 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
@@ -447,7 +447,7 @@ New Relic 응용 프로그램 성능 관리 계정 및 응용 프로그램을 �
 | --- | --- |
 | Microsoft.Authorization/*/read |역할 및 역할 할당 읽기 |
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
@@ -475,7 +475,7 @@ Redis 캐시를 관리할 수 있음
 | Microsoft.Authorization/*/read |역할 및 역할 할당 읽기 |
 | Microsoft.Cache/redis/* |Redis 캐시 만들기 및 관리 |
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
@@ -487,7 +487,7 @@ Redis 캐시를 관리할 수 있음
 | --- | --- |
 | Microsoft.Authorization/*/read |역할 및 역할 할당 읽기 |
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Scheduler/jobcollections/* |스케줄러 작업 컬렉션 만들기 및 관리 |
@@ -500,7 +500,7 @@ Redis 캐시를 관리할 수 있음
 | --- | --- |
 | Microsoft.Authorization/*/read |역할 및 역할 할당 읽기 |
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Search/searchServices/* |검색 서비스 만들기 및 관리 |
@@ -516,23 +516,23 @@ Redis 캐시를 관리할 수 있음
 | Microsoft.ClassicCompute/virtualMachines/*/write |가상 컴퓨터에 대한 구성 작성 |
 | Microsoft.ClassicNetwork/*/read |클래식 네트워크에 대한 구성 정보 읽기 |
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Security/* |보안 구성 요소 및 정책 만들기 및 관리 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
 
 ### <a name="site-recovery-contributor"></a>Site Recovery 참가자
-복구 서비스 자격 증명 모음 만들기 및 액세스 tooother 사용자 권한 할당을 제외한 모든 사이트 복구 관리 작업을 관리할 수 있습니다.
+Recovery Services 자격 증명 모음 생성 및 다른 사용자에게 액세스 권한 부여를 제외한 모든 Site Recovery 관리 작업을 관리할 수 있음
 
 | **actions** | |
 | --- | --- |
 | Microsoft.Authorization/*/read | 역할 및 역할 할당 읽기 |
 | Microsoft.Insights/alertRules/* | 경고 규칙 만들기 및 관리 |
 | Microsoft.Network/virtualNetworks/read | 가상 네트워크 읽기 |
-| Microsoft.RecoveryServices/Vaults/certificates/write | Hello 자격 증명 모음 자격 증명 인증서 업데이트 |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/* | 만들기 및 관리와 관련 된 확장된 정보 toovault |
-| Microsoft.RecoveryServices/Vaults/monitoringAlerts/*  | Hello 복구 서비스 자격 증명 모음에 대 한 경고 읽기 |
+| Microsoft.RecoveryServices/Vaults/certificates/write | 자격 증명 모음 자격 증명 인증서 업데이트 |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/* | 자격 증명 모음과 관련된 확장 정보 만들기 및 관리 |
+| Microsoft.RecoveryServices/Vaults/monitoringAlerts/*  | Recovery Services 자격 증명 모음에 대한 경고 읽기 |
 | Microsoft.RecoveryServices/Vaults/monitoringConfigurations/ notificationConfiguration/read  | Recovery Services 자격 증명 모음 알림 구성 읽기 |
 | Microsoft.RecoveryServices/Vaults/read | Recovery Services 자격 증명 모음 읽기 |
 | Microsoft.RecoveryServices/Vaults/refreshContainers/read | 새로 만든 컨테이너를 가져오기 위한 검색 작업 관리 |
@@ -546,22 +546,22 @@ Redis 캐시를 관리할 수 있음
 | Microsoft.RecoveryServices/Vaults/storageConfig/* | Recovery Services 자격 증명 모음의 저장소 구성 만들기 및 관리 |
 | Microsoft.RecoveryServices/Vaults/tokenInfo/read | Recovery Services 자격 증명 모음 토큰 정보 읽기 |
 | Microsoft.RecoveryServices/Vaults/usages/read | Recovery Services 자격 증명 모음 사용 정보 읽기 |
-| Microsoft.ResourceHealth/availabilityStatuses/read | Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read | 리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* | 리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read | 리소스 그룹 읽기 |
 | Microsoft.Storage/storageAccounts/read | 저장소 계정 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
 
 ### <a name="site-recovery-operator"></a>Site Recovery 운영자
-장애 조치 및 장애 복구를 수 있지만 다른 사이트 복구 관리 작업을 수행할 또는 안 tooother 사용자 액세스 권한을 할당합니다
+장애 조치(failover) 및 장애 복구(failback)는 가능하지만 다른 Site Recovery 관리 작업을 수행하거나 다른 사용자에게 액세스 권한을 할당할 수는 없음
 
 | **actions** | |
 | --- | --- |
 | Microsoft.Authorization/*/read | 역할 및 역할 할당 읽기 |
 | Microsoft.Insights/alertRules/* | 경고 규칙 만들기 및 관리 |
 | Microsoft.Network/virtualNetworks/read | 가상 네트워크 읽기 |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/read | 읽기 확장 정보 관련 toovault |
-| Microsoft.RecoveryServices/Vaults/monitoringAlerts/*  | Hello 복구 서비스 자격 증명 모음에 대 한 경고 읽기 |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/read | 자격 증명 모음과 관련된 확장된 정보 읽기 |
+| Microsoft.RecoveryServices/Vaults/monitoringAlerts/*  | Recovery Services 자격 증명 모음에 대한 경고 읽기 |
 | Microsoft.RecoveryServices/Vaults/monitoringConfigurations/ notificationConfiguration/read  | Recovery Services 자격 증명 모음 알림 구성 읽기 |
 | Microsoft.RecoveryServices/Vaults/read | Recovery Services 자격 증명 모음 읽기 |
 | Microsoft.RecoveryServices/Vaults/refreshContainers/read | 새로 만든 컨테이너를 가져오기 위한 검색 작업 관리 |
@@ -569,7 +569,7 @@ Redis 캐시를 관리할 수 있음
 | Microsoft.RecoveryServices/Vaults/registeredIdentities/read | 리소스에 대해 등록된 컨테이너 읽기 |
 | Microsoft.RecoveryServices/vaults/replicationAlertSettings/read | 복제 경고 설정 읽기 |
 | Microsoft.RecoveryServices/vaults/replicationEvents/read | 복제 이벤트 읽기 |
-| Microsoft.RecoveryServices/vaults/replicationFabrics/checkConsistency/action | Hello 패브릭의 일관성 검사 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/checkConsistency/action | 패브릭의 일관성 검사 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/read | 복제 패브릭 읽기 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/ reassociateGateway/action | 복제 게이트웨이 다시 연결 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/renewcertificate/action | 복제 패브릭 인증서 갱신 |
@@ -587,7 +587,7 @@ Redis 캐시를 관리할 수 있음
 | Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/testFailover/action | 보호된 항목에 대해 테스트 장애 조치(failover) 시작 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/ testFailoverCleanup/action | 테스트 장애 조치(failover) 정리 시작 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/ unplannedFailover/action | 보호된 항목에 대해 계획되지 않은 장애 조치(failover) 시작 |
-| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/ updateMobilityService/action | Hello 모바일 서비스 업데이트 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/ updateMobilityService/action | 모바일 서비스 업데이트 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectionContainerMappings/read | 보호 컨테이너 매핑 읽기 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationRecoveryServicesProviders/read | Recovery Services 공급자 읽기 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationRecoveryServicesProviders/refreshProvider/action | Recovery Services 공급자 새로 고침 |
@@ -606,7 +606,7 @@ Redis 캐시를 관리할 수 있음
 | Microsoft.RecoveryServices/Vaults/storageConfig/read | Recovery Services 자격 증명 모음의 저장소 구성 읽기 |
 | Microsoft.RecoveryServices/Vaults/tokenInfo/read | Recovery Services 자격 증명 모음 토큰 정보 읽기 |
 | Microsoft.RecoveryServices/Vaults/usages/read | Recovery Services 자격 증명 모음 사용 정보 읽기 |
-| Microsoft.ResourceHealth/availabilityStatuses/read | Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read | 리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* | 리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read | 리소스 그룹 읽기 |
 | Microsoft.Storage/storageAccounts/read | 저장소 계정 읽기 |
@@ -618,8 +618,8 @@ Recovery Services 자격 증명 모음의 Site Recovery 상태를 모니터링�
 | **actions** | |
 | --- | --- |
 | Microsoft.Authorization/*/read | 역할 및 역할 할당 읽기 |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/read  | 읽기 확장 정보 관련 toovault |
-| Microsoft.RecoveryServices/Vaults/monitoringAlerts/read  | Hello 복구 서비스 자격 증명 모음에 대 한 경고 읽기 |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/read  | 자격 증명 모음과 관련된 확장된 정보 읽기 |
+| Microsoft.RecoveryServices/Vaults/monitoringAlerts/read  | Recovery Services 자격 증명 모음에 대한 경고 읽기 |
 | Microsoft.RecoveryServices/Vaults/monitoringConfigurations/ notificationConfiguration/read  | Recovery Services 자격 증명 모음 알림 구성 읽기 |
 | Microsoft.RecoveryServices/Vaults/read  | Recovery Services 자격 증명 모음 읽기 |
 | Microsoft.RecoveryServices/Vaults/refreshContainers/read  | 새로 만든 컨테이너를 가져오기 위한 검색 작업 관리 |
@@ -654,7 +654,7 @@ Recovery Services 자격 증명 모음의 Site Recovery 상태를 모니터링�
 | --- | --- |
 | Microsoft.Authorization/*/read |역할 및 역할 할당 읽기 |
 | Microsoft.Insights/alertRules/* |경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Sql/servers/databases/* |SQL 데이터베이스 만들기 및 관리 |
@@ -672,13 +672,13 @@ Recovery Services 자격 증명 모음의 Site Recovery 상태를 모니터링�
 | Microsoft.Sql/servers/databases/securityMetrics/* |보안 메트릭을 편집할 수 없음 |
 
 ### <a name="sql-security-manager"></a>SQL 보안 관리자
-SQL server 및 데이터베이스의 hello 보안 관련 정책을 관리할 수 있습니다.
+SQL 서버 및 데이터베이스의 보안 관련 정책을 관리할 수 있음
 
 | **actions** |  |
 | --- | --- |
 | Microsoft.Authorization/*/read |Microsoft 권한 부여 읽기 |
 | Microsoft.Insights/alertRules/* |Insights 경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Sql/servers/auditingPolicies/* |SQL 서버 감사 정책 만들기 및 관리 |
@@ -705,7 +705,7 @@ SQL server 및 데이터베이스의 hello 보안 관련 정책을 관리할 수
 | --- | --- |
 | Microsoft.Authorization/*/read |읽기 권한 부여 |
 | Microsoft.Insights/alertRules/* |Insights 경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Sql/servers/* |SQL 서버 만들기 및 관리 |
@@ -732,27 +732,27 @@ SQL server 및 데이터베이스의 hello 보안 관련 정책을 관리할 수
 | Microsoft.Authorization/*/read |읽기 권한 부여 |
 | Microsoft.ClassicStorage/storageAccounts/* |저장소 계정 만들기 및 관리 |
 | Microsoft.Insights/alertRules/* |Insights 경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
 
 ### <a name="storage-account-contributor"></a>저장소 계정 참여자
-수 저장소 계정을 관리 있지만 toothem 액세스할 수도 있습니다.
+저장소 계정을 관리할 수 있지만 액세스할 수 없습니다.
 
 | **actions** |  |
 | --- | --- |
 | Microsoft.Authorization/*/read |모든 권한 부여 읽기 |
 | Microsoft.Insights/alertRules/* |Insights 경고 규칙 만들기 및 관리 |
 | Microsoft.Insights/diagnosticSettings/* |진단 설정 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Storage/storageAccounts/* |저장소 계정 만들기 및 관리 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
 
 ### <a name="support-request-contributor"></a>지원 요청 참가자
-만들고 hello 구독 범위에서 지원 티켓을 관리할 수 있습니다.
+구독 범위에서 지원 티켓을 만들고 관리할 수 있음
 
 | **actions** |  |
 | --- | --- |
@@ -761,7 +761,7 @@ SQL server 및 데이터베이스의 hello 보안 관련 정책을 관리할 수
 | Microsoft.Resources/subscriptions/resourceGroups/read | 역할 및 역할 할당 읽기 |
 
 ### <a name="user-access-administrator"></a>사용자 액세스 관리자
-사용자 액세스 tooAzure 리소스를 관리할 수 있습니다.
+Azure 리소스에 대한 사용자 액세스를 관리할 수 있음
 
 | **actions** |  |
 | --- | --- |
@@ -770,7 +770,7 @@ SQL server 및 데이터베이스의 hello 보안 관련 정책을 관리할 수
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
 
 ### <a name="classic-virtual-machine-contributor"></a>클래식 가상 컴퓨터 참여자
-클래식 가상 컴퓨터 하지만 hello 가상 네트워크가 아니라 또는 연결 된 저장소 계정 toowhich 관리할 수 있습니다.
+클래식 가상 컴퓨터를 관리할 수 있으나 여기에 연결된 가상 네트워크 또는 저장소 계정은 관리할 수 없음
 
 | **actions** |  |
 | --- | --- |
@@ -787,13 +787,13 @@ SQL server 및 데이터베이스의 hello 보안 관련 정책을 관리할 수
 | Microsoft.ClassicStorage/storageAccounts/listKeys/action |저장소 계정 키 나열 |
 | Microsoft.ClassicStorage/storageAccounts/read |클래식 저장소 계정 읽기 |
 | Microsoft.Insights/alertRules/* |Insights 경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
 
 ### <a name="virtual-machine-contributor"></a>가상 컴퓨터 참여자
-하지 hello 가상 네트워크 또는 저장소 계정 toowhich 연결 되어 있지만 가상 컴퓨터를 관리할 수 있습니다.
+가상 컴퓨터를 관리할 수 있으나 여기에 연결된 가상 네트워크 또는 저장소 계정은 관리할 수 없음
 
 | **actions** |  |
 | --- | --- |
@@ -816,7 +816,7 @@ SQL server 및 데이터베이스의 hello 보안 관련 정책을 관리할 수
 | Microsoft.Network/publicIPAddresses/read |네트워크 공용 IP 주소 읽기 |
 | Microsoft.Network/virtualNetworks/read |가상 네트워크 읽기 |
 | Microsoft.Network/virtualNetworks/subnets/join/action |가상 네트워크 서브넷 연결 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Storage/storageAccounts/listKeys/action |저장소 계정 키 나열 |
@@ -831,7 +831,7 @@ SQL server 및 데이터베이스의 hello 보안 관련 정책을 관리할 수
 | Microsoft.Authorization/*/read |읽기 권한 부여 |
 | Microsoft.ClassicNetwork/* |클래식 네트워크 만들기 및 관리 |
 | Microsoft.Insights/alertRules/* |Insights 경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
@@ -843,32 +843,32 @@ SQL server 및 데이터베이스의 hello 보안 관련 정책을 관리할 수
 | --- | --- |
 | Microsoft.Authorization/*/read |읽기 권한 부여 |
 | Microsoft.Insights/alertRules/* |Insights 경고 규칙 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
 | Microsoft.Web/serverFarms/* |서버 팜 만들기 및 관리 |
 
 ### <a name="website-contributor"></a>웹 사이트 참여자
-웹 사이트를 관리할 수 있지만 연결 된 웹 계획 toowhich 하지 hello
+웹 사이트를 관리할 수 있으나 여기에 연결된 웹 계획은 관리할 수 없음
 
 | **actions** |  |
 | --- | --- |
 | Microsoft.Authorization/*/read |읽기 권한 부여 |
 | Microsoft.Insights/alertRules/* |Insights 경고 규칙 만들기 및 관리 |
 | Microsoft.Insights/components/* |Insights 구성 요소 만들기 및 관리 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |Hello 리소스의 상태를 읽기 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |리소스 상태 읽기 |
 | Microsoft.Resources/deployments/* |리소스 그룹 배포 만들기 및 관리 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |리소스 그룹 읽기 |
 | Microsoft.Support/* |지원 티켓 만들기 및 관리 |
 | Microsoft.Web/certificates/* |웹 사이트 인증서 만들기 및 관리 |
-| Microsoft.Web/listSitesAssignedToHostName/read |읽기 사이트 할당 tooa 호스트 이름 |
+| Microsoft.Web/listSitesAssignedToHostName/read |호스트 이름에 할당된 사이트 읽기 |
 | Microsoft.Web/serverFarms/join/action |서버 팜 연결 |
 | Microsoft.Web/serverFarms/read |서버 팜 읽기 |
-| Microsoft.Web/sites/* |만들기 및 관리 웹 사이트 (사이트 만들기도 필요 쓰기 권한을 toohello 앱 서비스 계획에 연결) |
+| Microsoft.Web/sites/* |웹 사이트 만들기 및 관리(사이트 만들기도 관련 App Service 계획에 대한 쓰기 권한이 필요) |
 
 ## <a name="see-also"></a>참고 항목
-* [역할 기반 액세스 제어](role-based-access-control-configure.md): RBAC hello Azure 포털을에서 시작 합니다.
-* [사용자 정의 역할에서 Azure RBAC](role-based-access-control-custom-roles.md): 사용자의 액세스 요구 하는 사용자 지정 역할 toofit toocreate 방법을 알아봅니다.
+* [역할 기반 액세스 제어](role-based-access-control-configure.md): Azure 포털에서 RBAC를 통해 시작합니다.
+* [Azure RBAC에서 사용자 지정 역할](role-based-access-control-custom-roles.md): 액세스 요구 사항에 맞게 사용자 지정 역할을 만드는 방법에 대해 알아봅니다.
 * [액세스 변경 기록 보고서 만들기](role-based-access-control-access-change-history-report.md): RBAC에서 역할 할당 변경을 추적합니다.
 * [역할 기반 액세스 제어 문제 해결](role-based-access-control-troubleshooting.md): 일반적인 문제를 수정하기 위한 제안 사항을 봅니다.

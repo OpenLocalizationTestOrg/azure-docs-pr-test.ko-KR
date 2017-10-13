@@ -1,6 +1,6 @@
 ---
 title: "Azure AD Connect 동기화: 실수로 인한 삭제 방지 | Microsoft Docs"
-description: "이 항목에서는 hello 설명 Azure AD Connect에서 실수로 삭제 (실수로 인 한 삭제를 방지) 기능을 방지 합니다."
+description: "이 항목에서는 Azure AD Connect의 실수로 인한 삭제 방지 기능을 설명합니다."
 services: active-directory
 documentationcenter: 
 author: AndKjell
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 159597f8354806fcaea1430e0ff84956338592a4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a33fb729cff5007e40820af696cfec823a3ecfde
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-ad-connect-sync-prevent-accidental-deletes"></a>Azure AD Connect 동기화: 실수로 인한 삭제 방지
-이 항목에서는 hello 설명 Azure AD Connect에서 실수로 삭제 (실수로 인 한 삭제를 방지) 기능을 방지 합니다.
+이 항목에서는 Azure AD Connect의 실수로 인한 삭제 방지 기능을 설명합니다.
 
-실수로 방지 Azure AD Connect를 설치 하는 경우 기본적으로 활성화 되어 삭제 및 구성 된 toonot 500 개 이상의 삭제를 사용 하 여 한 내보내기 허용 합니다. 이 기능은 설계 된 tooprotect 실수로 구성에서 변경 되 고 많은 사용자 및 기타 개체에 영향을 주므로 tooyour 온-프레미스 디렉터리를 변경 합니다.
+Azure AD Connect를 설치하면 실수로 인한 삭제 방지가 기본적으로 사용되며 삭제 수가 500개를 초과하는 내보내기를 허용하지 않도록 구성됩니다. 이 기능은 다수의 사용자 및 다른 개체에 영향을 주는 실수에 의한 구성 변경 및 온-프레미스 디렉터리 변경을 방지하기 위한 것입니다.
 
 ## <a name="what-is-prevent-accidental-deletes"></a>실수로 인한 삭제를 방지하는 기능
 다수의 삭제가 다음을 포함하는 경우의 일반적인 시나리오입니다.
 
-* 쪽 변경[필터링](active-directory-aadconnectsync-configure-filtering.md) 여기서 전체 [OU](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering) 또는 [도메인](active-directory-aadconnectsync-configure-filtering.md#domain-based-filtering) 선택 하지 않으면 합니다.
+* 전체 [OU](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering) 또는 [도메인](active-directory-aadconnectsync-configure-filtering.md#domain-based-filtering)을 선택하지 않은 [필터링](active-directory-aadconnectsync-configure-filtering.md)으로 변경합니다.
 * OU의 모든 개체가 삭제됩니다.
-* OU 이름이 때문에 모든 개체는 동기화의 범위를 벗어나지만 toobe 간주 됩니다.
+* OU 이름이 변경되면 OU의 모든 개체가 동기화 범위를 벗어난 것으로 간주됩니다.
 
-PowerShell과 함께 hello 기본값 500 개의 개체를 변경할 수 있습니다를 사용 하 여 `Enable-ADSyncExportDeletionThreshold`합니다. 조직의이 값 toofit hello 크기를 구성 해야 합니다. Hello 동기화 스케줄러에 30 분 마다 실행 되므로 hello 값은 30 분 내에서 볼 삭제 hello 수입니다.
+기본값인 500개 개체는 PowerShell에서 `Enable-ADSyncExportDeletionThreshold`를 사용하여 변경할 수 있습니다. 조직의 규모에 맞게 이 값을 구성해야 합니다. 동기화 스케줄러가 30분마다 실행되므로 이 값은 30분 내에 표시되는 삭제 수입니다.
 
-있는 경우 너무 많은 스테이징 된 삭제가 toobe hello 내보내기 중단 되 고 전자 메일을 받게 다음과 같이 다음 tooAzure 광고를 내보냅니다.
+Azure AD로 내보내도록 스테이징된 삭제 수가 너무 많을 경우 내보내기가 중지되며 다음과 같은 메일을 받게 됩니다.
 
 ![실수로 인한 삭제 방지 메일](./media/active-directory-aadconnectsync-feature-prevent-accidental-deletes/email.png)
 
-> *안녕하세요. (기술 담당자). Hello Id 동기화 서비스 (시간) hello 수가 삭제 hello 구성된 삭제 임계값 (조직 이름)을 초과 했음을 검색 했습니다. 총 (개수)개 개체가 이 ID 동기화 실행에서 삭제를 위해 전송되었습니다. 이 도달 하거나 (number) 개체의 hello 구성 삭제 임계값을 초과 합니다. ु म ी tooprovide 확인 이러한 삭제 되어야 하는 처리 진행 됩니다. 이 전자 메일 메시지에 나열 된 hello 오류에 대 한 자세한 내용은 실수로 인 한 삭제를 방지 하는 hello를 참조 하십시오.*
+> *안녕하세요. (기술 담당자). (시간)에 ID 동기화 서비스에서 삭제 수가 (조직 이름)에 대해 구성된 삭제 임계값을 초과했음을 검색했습니다. 총 (개수)개 개체가 이 ID 동기화 실행에서 삭제를 위해 전송되었습니다. 이는 구성된 삭제 임계값인 (개수)개 개체에 도달했거나 초과했습니다. 진행하기 전에 사용자가 이러한 삭제가 처리되어야 한다는 확인을 제공해야 합니다. 이 메일 메시지에 나열된 오류에 대한 자세한 내용은 실수로 인한 삭제 방지를 참조하세요.*
 >
 > 
 
-Hello 상태를 확인할 수도 있습니다 `stopped-deletion-threshold-exceeded` hello에서 볼 때 **동기화 서비스 관리자** hello 내보낸 프로필에 대 한 UI입니다.
+또한 프로파일 내보내기에 대한 **Synchronization Service Manager** UI를 찾아보면 `stopped-deletion-threshold-exceeded` 상태를 볼 수 있습니다.
 ![실수로 인한 삭제 방지 동기화 서비스 관리자 UI](./media/active-directory-aadconnectsync-feature-prevent-accidental-deletes/syncservicemanager.png)
 
-예상된 경우가 아니라면 조사하여 수정 작업을 수행합니다. 개체가 toobe 삭제에 대 한 toosee 다음 hello지 않습니다.
+예상된 경우가 아니라면 조사하여 수정 작업을 수행합니다. 삭제되는 개체를 확인하려면 다음을 수행합니다.
 
-1. 시작 **동기화 서비스** hello 시작 메뉴에서에서 합니다.
-2. 너무 이동**커넥터**합니다.
-3. 형식과 선택 hello 커넥터 **Azure Active Directory**합니다.
-4. 아래 **동작** toohello 오른쪽, 선택 **커넥터 공간 검색**합니다.
-5. 팝업 hello에 **범위**선택, **연결이 끊어진 이후** 고 hello 과거의 시간을 선택 합니다. **검색**을 클릭합니다. 이 페이지에서는 toobe 삭제에 대 한 모든 개체의 뷰를 제공 합니다. 각 항목을 클릭 하 여 hello 개체에 대 한 추가 정보를 얻을 수 있습니다. 클릭할 수도 있습니다 **열 설정** tooadd 추가 특성 toobe hello 표에 표시 합니다.
+1. 시작 메뉴에서 **동기화 서비스** 를 시작합니다.
+2. **커넥터**로 이동합니다.
+3. **Azure Active Directory**유형의 커넥터를 선택합니다.
+4. 오른쪽에 있는 **작업**에서 **커넥터 공간 검색**을 선택합니다.
+5. **범위** 아래의 팝업에서 **다음 이후 연결이 끊어짐**을 선택하고 과거 시간을 선택합니다. **검색**을 클릭합니다. 이 페이지는 삭제되는 모든 개체의 보기를 제공합니다. 각 항목을 클릭하면 개체에 대한 추가 정보를 얻을 수 있습니다. **열 설정**을 클릭하여 그리드에 표시되는 특성을 더 추가할 수도 있습니다.
 
 ![커넥터 공간 검색](./media/active-directory-aadconnectsync-feature-prevent-accidental-deletes/searchcs.png)
 
-원하는 경우 모든 hello 삭제 한 다음 수행 hello 다음:
+모든 삭제를 진행하려면 다음을 수행합니다.
 
-1. tooretrieve hello 현재 삭제 임계값을 hello PowerShell cmdlet을 실행 `Get-ADSyncExportDeletionThreshold`합니다. Azure AD 전역 관리자 계정 및 암호를 제공합니다. hello 기본값은 500입니다.
-2. tootemporarily이이 보호를 사용 하지 않도록 설정 하 고 이러한 삭제 통과, hello PowerShell cmdlet을 실행 하도록: `Disable-ADSyncExportDeletionThreshold`합니다. Azure AD 전역 관리자 계정 및 암호를 제공합니다.
+1. 현재 삭제 임계값을 검색하려면 PowerShell cmdlet `Get-ADSyncExportDeletionThreshold`를 실행합니다. Azure AD 전역 관리자 계정 및 암호를 제공합니다. 기본값은 500입니다.
+2. 일시적으로 이 보호를 해제하고 삭제를 진행할 수 있도록 하려면 PowerShell cmdlet `Disable-ADSyncExportDeletionThreshold`를 실행합니다. Azure AD 전역 관리자 계정 및 암호를 제공합니다.
    ![자격 증명](./media/active-directory-aadconnectsync-feature-prevent-accidental-deletes/credentials.png)
-3. Azure Active Directory Connector가 선택 된 hello로 hello 작업을 선택 **실행** 선택 **내보내기**합니다.
-4. hello 보호 toore 사용, hello PowerShell cmdlet을 실행: `Enable-ADSyncExportDeletionThreshold -DeletionThreshold 500`합니다. 500 hello 현재 삭제 임계값을 검색할 때 자신이 hello 값으로 대체 합니다. Azure AD 전역 관리자 계정 및 암호를 제공합니다.
+3. Azure Active Directory Connector를 선택한 상태로 **실행** 작업, **내보내기**를 차례로 선택합니다.
+4. 보호를 다시 사용하도록 설정하려면 PowerShell cmdlet `Enable-ADSyncExportDeletionThreshold -DeletionThreshold 500`를 실행합니다. 현재 삭제 임계값을 검색할 때 500을 알게 된 값으로 바꿉니다. Azure AD 전역 관리자 계정 및 암호를 제공합니다.
 
 ## <a name="next-steps"></a>다음 단계
 **개요 항목**

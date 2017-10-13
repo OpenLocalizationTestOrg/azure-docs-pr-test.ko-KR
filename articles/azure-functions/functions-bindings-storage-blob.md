@@ -1,10 +1,10 @@
 ---
-title: "aaaAzure 함수 Blob 저장소 바인딩 | Microsoft Docs"
-description: "Toouse Azure 저장소의 트리거 방법 및 Azure 함수에서 바인딩 이해 합니다."
+title: "Azure Functions Blob Storage 바인딩 | Microsoft Docs"
+description: "Azure Functions에서 Azure Storage 트리거 및 바인딩을 사용하는 방법을 파악합니다."
 services: functions
 documentationcenter: na
 author: lindydonna
-manager: erikre
+manager: cfowler
 editor: 
 tags: 
 keywords: "Azure Functions, 함수, 이벤트 처리, 동적 계산, 서버를 사용하지 않는 아키텍처"
@@ -16,16 +16,16 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: glenga
-ms.openlocfilehash: cef44bd2154d0b97cca9220b6c5024a5b620c80d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b123578dbac48018f674f85ec923e4c6e65fb9f8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-functions-blob-storage-bindings"></a>Azure Functions Blob Storage 바인딩
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-이 문서에서는 설명 어떻게 tooconfigure 정보와 Azure 함수에서 Azure Blob 저장소 바인딩을 사용 하는 작업입니다. Azure Functions는 Azure Blob Storage에 대한 트리거, 입력 및 출력 바인딩을 지원합니다. 모든 바인딩에서 사용할 수 있는 기능은 [Azure Functions 트리거 및 바인딩 개념](functions-triggers-bindings.md)을 참조하세요.
+이 문서에서는 Azure Functions에서 Azure Blob Storage 바인딩을 구성하고 사용하는 방법을 설명합니다. Azure Functions는 Azure Blob Storage에 대한 트리거, 입력 및 출력 바인딩을 지원합니다. 모든 바인딩에서 사용할 수 있는 기능은 [Azure Functions 트리거 및 바인딩 개념](functions-triggers-bindings.md)을 참조하세요.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
@@ -37,25 +37,25 @@ ms.lasthandoff: 10/06/2017
 <a name="storage-blob-trigger"></a>
 ## <a name="blob-storage-triggers-and-bindings"></a>Blob Storage 트리거 및 바인딩
 
-함수 코드는 hello Azure Blob 저장소 트리거를 사용 하 여 신규 또는 업데이트 된 blob 검색 되 면 호출 됩니다. 입력된 toohello 함수 hello blob 콘텐츠가 제공 됩니다.
+Azure Blob Storage 트리거를 사용하면 새 Blob 또는 업데이트된 Blob이 검색되었을 때 함수 코드가 호출됩니다. Blob 내용은 함수의 입력으로 제공됩니다.
 
-Hello를 사용 하 여 blob 저장소 트리거를 정의한 다음 **통합** hello 함수 포털에서 탭 합니다. hello 포털에서는 다음 hello에 정의 된 hello **바인딩** 섹션 *function.json*:
+Functions 포털에서 **통합** 탭을 사용하여 Blob Storage 트리거를 정의합니다. 이 포털에서는 *function.json*의 **bindings** 섹션에 다음 정의를 만듭니다.
 
 ```json
 {
-    "name": "<hello name used tooidentify hello trigger data in your code>",
+    "name": "<The name used to identify the trigger data in your code>",
     "type": "blobTrigger",
     "direction": "in",
-    "path": "<container toomonitor, and optionally a blob name pattern - see below>",
+    "path": "<container to monitor, and optionally a blob name pattern - see below>",
     "connection": "<Name of app setting - see below>"
 }
 ```
 
-Blob 입력 및 출력 바인딩을 사용 하 여 정의 `blob` hello 바인딩 형식으로:
+Blob 입력 및 출력 바인딩은 `blob`을 바인딩 형식으로 사용하여 정의됩니다.
 
 ```json
 {
-  "name": "<hello name used tooidentify hello blob input in your code>",
+  "name": "<The name used to identify the blob input in your code>",
   "type": "blob",
   "direction": "in", // other supported directions are "inout" and "out"
   "path": "<Path of input blob - see below>",
@@ -63,38 +63,38 @@ Blob 입력 및 출력 바인딩을 사용 하 여 정의 `blob` hello 바인딩
 },
 ```
 
-* hello `path` 바인딩 식 및 필터 매개 변수 속성은 지원 합니다. [이름 패턴](#pattern)을 참조하세요.
-* hello `connection` 저장소 연결 문자열을 포함 하는 응용 프로그램 설정의 hello 이름을 포함 해야 합니다. Hello Azure 포털에서에서 hello의 표준 편집기 hello **통합** 탭 저장소 계정을 선택할 때 응용 프로그램 설정을 구성 합니다.
+* `path` 속성은 바인딩 식 및 필터 매개 변수를 지원합니다. [이름 패턴](#pattern)을 참조하세요.
+* `connection` 속성은 저장소 연결 문자열을 포함하는 앱 설정의 이름을 포함해야 합니다. Azure Portal에서 **통합** 탭에 있는 표준 편집기는 저장소 계정을 선택하는 경우 이 앱 설정을 구성합니다.
 
 > [!NOTE]
-> Blob 트리거 소비 계획을 사용 하는 경우에 있을 수 있습니다 켜기 tooa 10 분 지연 함수 앱이 유휴 내려갔습니다 후 새 blob을 처리 합니다. Hello 함수 응용 프로그램을 실행 한 후 blob 즉시 처리 됩니다. 이 초기 tooavoid 지연 hello 다음 옵션 중 하나를 고려 하십시오.
+> 소비 계획에서 Blob 트리거를 사용하는 경우 함수 앱이 유휴 상태가 된 후 새 Blob을 처리하는 데 최대 10분이 지연될 수 있습니다. 함수 앱이 실행된 후에는 Blob이 즉시 처리됩니다. 이 초기 지연을 방지하려면 다음 옵션 중 하나를 고려합니다.
 > - 무중단이 사용되는 App Service 계획을 사용합니다.
-> - 예: hello blob 이름을 포함 하는 큐 메시지 처리, 다른 메커니즘 tootrigger hello blob을 사용 합니다. 예를 들어 [Blob 입력 바인딩을 사용하여 큐 트리거](#input-sample)를 참조하세요.
+> - Blob 이름을 포함하는 큐 메시지와 같은 다른 메커니즘을 사용하여 Blob 처리를 트리거합니다. 예를 들어 [Blob 입력 바인딩을 사용하여 큐 트리거](#input-sample)를 참조하세요.
 
 <a name="pattern"></a>
 
 ### <a name="name-patterns"></a>이름 패턴
-Hello에 blob 이름 패턴을 지정할 수 있습니다 `path` 속성 필터 또는 바인딩 식이 될 수 있습니다. [바인딩 식 및 패턴](functions-triggers-bindings.md#binding-expressions-and-patterns)을 참조하세요.
+`path` 속성에서 Blob 이름 패턴을 지정할 수 있으며, 이는 필터 또는 바인딩 식일 수 있습니다. [바인딩 식 및 패턴](functions-triggers-bindings.md#binding-expressions-and-patterns)을 참조하세요.
 
-예를 들어 toofilter tooblobs hello 문자열 "원래"로 시작 하는 정의 다음 hello를 사용 합니다. 이 경로 라는 blob를 찾습니다 *원래 Blob1.txt* hello에 *입력* 컨테이너 및 hello hello 값 `name` 함수 코드에서 변수는 `Blob1`합니다.
+예를 들어 문자열 "original"로 시작하는 Blob을 필터링하려면 다음 정의를 사용합니다. 이 경로에는 *input* 컨테이너에 *original-Blob1.txt*라는 Blob이 있으며 함수 코드에 있는 `name` 변수의 값은 `Blob1`입니다.
 
 ```json
 "path": "input/original-{name}",
 ```
 
-toobind toohello blob 파일 이름과 확장명을 별도로 두 개의 패턴을 사용합니다. 이 경로 또한 라는 blob 찾습니다 *원래 Blob1.txt*, 및의 hello hello 값 `blobname` 및 `blobextension` 함수 코드에서 변수는 *원래 Blob1* 및 *txt*.
+Blob 파일 이름 및 확장명에 별도로 바인딩하려면 두 가지 패턴을 사용합니다. 또한 이 경로에는 *original-Blob1.txt*라는 Blob이 있으며 함수 코드에 있는 `blobname` 및 `blobextension` 변수의 값은 *original-Blob1* 및 *txt*입니다.
 
 ```json
 "path": "input/{blobname}.{blobextension}",
 ```
 
-Hello 파일 확장명에 대 한 고정된 값을 사용 하 여 hello 파일 유형의 blob 제한할 수 있습니다. 예를 들어, tootrigger.png 파일에 대해서만 사용 하 여 hello 패턴:
+파일 확장명에 고정된 값을 사용하여 Blob의 파일 형식을 제한할 수 있습니다. 예를 들어 .png 파일에 대해서만 트리거하려면 다음 패턴을 사용합니다.
 
 ```json
 "path": "samples/{name}.png",
 ```
 
-중괄호는 이름 패턴에서 특수 문자입니다. 중괄호 hello 이름에 포함 된 toospecify blob 이름은 중괄호 2 개를 사용 하 여 hello 중괄호를 이스케이프 확인할 수 있습니다. hello 다음 예제에서는 찾습니다 라는 blob *{20140101}-soundfile.mp3* hello에 *이미지* 컨테이너 및 hello `name` hello 함수 코드에서 변수 값이  *soundfile.mp3*합니다. 
+중괄호는 이름 패턴에서 특수 문자입니다. 이름에 중괄호가 있는 Blob 이름을 지정하려면 중괄호 두 개를 사용하여 중괄호를 이스케이프합니다. 다음 예제에는 *images* 컨테이너에 *{20140101}-soundfile.mp3*라는 Blob이 있으며 함수 코드에 있는 `name` 변수 값은 *soundfile.mp3*입니다. 
 
 ```json
 "path": "images/{{20140101}}-{name}",
@@ -102,50 +102,50 @@ Hello 파일 확장명에 대 한 고정된 값을 사용 하 여 hello 파일 �
 
 ### <a name="trigger-metadata"></a>트리거 메타데이터
 
-hello blob 트리거는 여러 가지 메타 데이터 속성을 제공합니다. 이러한 속성을 다른 바인딩에서 바인딩 식의 일부로 사용하거나 코드에서 매개 변수로 사용할 수 있습니다. 이러한 값은 hello와 동일한 의미 체계 [CloudBlob](https://docs.microsoft.com/en-us/dotnet/api/microsoft.windowsazure.storage.blob.cloudblob?view=azure-dotnet)합니다.
+Blob 트리거는 몇 가지 메타데이터 속성을 제공합니다. 이러한 속성을 다른 바인딩에서 바인딩 식의 일부로 사용하거나 코드에서 매개 변수로 사용할 수 있습니다. 이러한 값은 [CloudBlob](https://docs.microsoft.com/en-us/dotnet/api/microsoft.windowsazure.storage.blob.cloudblob?view=azure-dotnet)과 동일한 의미 체계를 가집니다.
 
-- **BlobTrigger**. `string`을 입력합니다. hello 트리거 blob 경로
-- **Uri**. `System.Uri`을 입력합니다. hello 기본 위치에 대 한 hello blob의 URI입니다.
-- **Properties**. `Microsoft.WindowsAzure.Storage.Blob.BlobProperties`을 입력합니다. blob의 시스템 속성 hello 합니다.
-- **Metadata**. `IDictionary<string,string>`을 입력합니다. hello hello blob에 대 한 사용자 정의 메타 데이터입니다.
+- **BlobTrigger**. `string`을 입력합니다. Blob 트리거 경로
+- **Uri**. `System.Uri`을 입력합니다. 기본 위치에 대한 Blob의 URI입니다.
+- **Properties**. `Microsoft.WindowsAzure.Storage.Blob.BlobProperties`을 입력합니다. Blob의 시스템 속성입니다.
+- **Metadata**. `IDictionary<string,string>`을 입력합니다. Blob에 대한 사용자 정의 메타데이터입니다.
 
 <a name="receipts"></a>
 
 ### <a name="blob-receipts"></a>Blob 수신 확인
-런타임 하면 blob 트리거 함수에 대 한 두 번 이상 호출 가져옵니다 hello Azure 함수 hello 동일한 신규 또는 업데이트 된 blob입니다. 유지 toodetermine 특정된 blob 버전 처리 된 경우, *수령액 blob*합니다.
+Azure Functions 런타임은 동일한 새 Blob 또는 업데이트된 Blob에 대해 Blob 트리거 함수가 두 번 이상 호출되지 않도록 합니다. 지정된 Blob 버전이 처리되었는지 확인하려면 *Blob 수신 확인*을 유지 관리합니다.
 
-기능 저장소를 azure blob 라는 컨테이너에 수신 확인 *azure webjobs 호스트* hello 함수 앱에 대 한 Azure 저장소 계정에서에서 (hello 응용 프로그램 설정으로 정의 된 `AzureWebJobsStorage`). Blob 수신 확인에는 다음 정보는 hello에 있습니다.
+Azure Functions는 사용자 함수 앱에서 사용하는(`AzureWebJobsStorage` 앱 설정에서 지정됨) Azure Storage 계정의 *azure-webjobs-hosts*라는 컨테이너에 Blob 수신 확인을 저장합니다. Blob 수신 확인에는 다음 정보가 포함됩니다.
 
-* hello 함수를 트리거 ("*&lt;함수 응용 프로그램 이름 >*합니다. 함수입니다.  *&lt;함수 이름 >*", 예:"MyFunctionApp.Functions.CopyBlob")
-* hello 컨테이너 이름
-* hello blob 유형 ("BlockBlob" 또는 "PageBlob")
-* hello blob 이름
-* hello ETag (예: blob 버전 식별자: "0x8D1DC6E70A277EF")
+* 트리거된 함수("*&lt;함수 앱 이름>*.Functions.*&lt;함수 이름>*", 예: "MyFunctionApp.Functions.CopyBlob")
+* 컨테이너 이름
+* Blob 유형("BlockBlob" 또는 "PageBlob")
+* Blob 이름
+* ETag(Blob 버전 식별자, 예: "0x8D1DC6E70A277EF")
 
-hello에서 해당 blob에 대 한 hello blob 확인을 삭제 하는 blob의 tooforce 재처리 *azure webjobs 호스트* 컨테이너 수동으로 합니다.
+Blob을 강제로 처리하려면 *azure-webjobs-hosts* 컨테이너에서 해당 Blob에 대한 Blob 수신 확인을 수동으로 삭제하면 됩니다.
 
 <a name="poison"></a>
 
 ### <a name="handling-poison-blobs"></a>포이즌 Blob 처리
 지정된 Blob에 대한 Blob 트리거 함수가 실패한 경우 Azure Functions는 기본적으로 총 5번 해당 함수를 다시 시도합니다. 
 
-모든 5 시도 실패 하는 경우 Azure 함수 추가 라는 메시지 tooa 저장소 큐 *webjobs-blobtrigger-포이즌*합니다. 포이즌 blob에 대 한 hello 큐 메시지는 hello 다음과 같은 속성을 포함 하는 JSON 개체:
+5번 모두 실패한 경우 Azure Functions는 *webjobs-blobtrigger-poison*이라는 저장소 큐에 메시지를 추가합니다. 포이즌 Blob에 대한 큐 메시지는 다음 속성을 포함하는 JSON 개체입니다.
 
-* FunctionId (hello 형태로 표시  *&lt;함수 응용 프로그램 이름 >*합니다. 함수입니다.  *&lt;함수 이름 >*)
+* FunctionId(형식에서 *&lt;함수 앱 이름>*.Functions.*&lt;함수 이름>*)
 * BlobType("BlockBlob" 또는 "PageBlob")
 * ContainerName
 * BlobName
 * ETag(Blob 버전 식별자, 예: "0x8D1DC6E70A277EF")
 
 ### <a name="blob-polling-for-large-containers"></a>큰 컨테이너에 대한 Blob 폴링
-모니터링 되 고 hello blob 컨테이너에 10, 000 개 이상의 blob이 있으면 런타임 검사 hello 함수 파일 toowatch 새롭거나 변경 된 blob에 대 한 로그입니다. 이 프로세스는 실시간으로 하지 않습니다. 함수 수 트리거되지 몇 분까지 또는 그 이상 hello blob가 생성 한 후 합니다. 또한 [저장소 로그는 "최선을 다해" 생성됩니다](/rest/api/storageservices/About-Storage-Analytics-Logging). 하지만 모든 이벤트가 캡처되는 것은 아닙니다. 경우에 따라 로그가 누락될 수 있습니다. 더 빠르거나 안정적인 blob 처리를 필요로 하는 경우 만드십시오는 [큐 메시지](../storage/queues/storage-dotnet-how-to-use-queues.md) hello blob를 만들 때. 그런 다음 사용 하는 [큐 트리거](functions-bindings-storage-queue.md) blob 트리거 tooprocess hello blob 대신 합니다.
+모니터링 중인 Blob 컨테이너에 10,000개 이상의 Blob이 포함된 경우 Functions 런타임은 로그 파일을 스캔하여 새롭거나 변경된 Blob을 확인합니다. 이 프로세스는 실시간으로 하지 않습니다. Blob을 만든 후 몇 분이 경과할 때까지 함수가 트리거되지 않을 수도 있습니다. 또한 [저장소 로그는 "최선을 다해" 생성됩니다](/rest/api/storageservices/About-Storage-Analytics-Logging). 하지만 모든 이벤트가 캡처되는 것은 아닙니다. 경우에 따라 로그가 누락될 수 있습니다. 더 빠르거나 안정적인 Blob 처리가 필요한 경우 Blob을 만들 때 [큐 메시지](../storage/queues/storage-dotnet-how-to-use-queues.md)를 만드는 것이 좋습니다. 그런 다음 Blob 트리거 대신 [큐 트리거](functions-bindings-storage-queue.md)를 사용하여 Blob을 처리합니다.
 
 <a name="triggerusage"></a>
 
 ## <a name="using-a-blob-trigger-and-input-binding"></a>Blob 트리거 및 입력 바인딩 사용
-.NET 함수에서와 같은 메서드 매개 변수를 사용 하 여 hello blob 데이터에 액세스 `Stream paramName`합니다. 여기에서 `paramName` hello에 지정 된 hello 값인 [트리거 구성](#trigger)합니다. Node.js 함수에서 액세스 hello blob 데이터를 사용 하 여 입력 `context.bindings.<name>`합니다.
+.NET 함수에서는 `Stream paramName`과 같은 메서드 매개 변수를 사용하여 Blob 데이터에 액세스합니다. 여기에서 `paramName`은 [트리거 구성](#trigger)에서 지정한 값입니다. Node.js 함수에서는 `context.bindings.<name>`을 사용하여 입력 Blob 데이터에 액세스합니다.
 
-.NET에서는 hello 형식의 tooany hello 목록 아래에 바인딩할 수 있습니다. 입력 바인딩으로 사용되는 경우 이러한 형식 중 일부에는 *function.json*에서 `inout` 바인딩 방향이 필요합니다. 고급 편집기 hello를 사용 해야 하므로이 방향 hello 표준 편집기에서 지원 되지 않습니다.
+.NET에서는 아래 목록의 형식 중 하나에 바인딩할 수 있습니다. 입력 바인딩으로 사용되는 경우 이러한 형식 중 일부에는 *function.json*에서 `inout` 바인딩 방향이 필요합니다. 이 방향은 표준 편집기에서 지원되지 않으므로 고급 편집기를 사용해야 합니다.
 
 * `TextReader`
 * `Stream`
@@ -154,10 +154,10 @@ hello에서 해당 blob에 대 한 hello blob 확인을 삭제 하는 blob의 to
 * `CloudPageBlob`("inout" 바인딩 방향 필요)
 * `CloudAppendBlob`("inout" 바인딩 방향 필요)
 
-텍스트 blob 예상 되는 경우 바인딩할 수도 있습니다 tooa.NET `string` 유형입니다. 이 hello blob 크기가 작으면 hello 전체 blob 콘텐츠가 메모리에 로드 될 때에 권장 됩니다. 일반적으로 선호 toouse을가 `Stream` 또는 `CloudBlockBlob` 유형입니다.
+텍스트 Blob이 필요한 경우 .NET `string` 형식에 바인딩할 수도 있습니다. 전체 Blob 내용이 메모리에 로드되므로 이는 Blob 크기가 작은 경우에만 권장됩니다. 일반적으로 `Stream` 또는 `CloudBlockBlob` 형식을 사용하는 것이 좋습니다.
 
 ## <a name="trigger-sample"></a>트리거 샘플
-Blob 저장소 트리거를 정의 하는 function.json 다음 hello 있다고 가정 합니다.
+Blob Storage 트리거를 정의하는 다음과 같은 function.json이 있다고 가정합니다.
 
 ```json
 {
@@ -174,7 +174,7 @@ Blob 저장소 트리거를 정의 하는 function.json 다음 hello 있다고 �
 }
 ```
 
-Toohello 모니터링 대상된 컨테이너에 추가 된 각 blob의 hello 내용을 기록 하는 hello 언어 관련 샘플을 참조 하십시오.
+모니터링되는 컨테이너에 추가된 각 Blob의 콘텐츠를 기록하는 언어별 샘플을 참조하세요.
 
 * [C#](#triggercsharp)
 * [Node.JS](#triggernodejs)
@@ -192,7 +192,7 @@ public static void Run(Stream myBlob, TraceWriter log)
 ```
 
 ```cs
-// Blob trigger binding tooa CloudBlockBlob
+// Blob trigger binding to a CloudBlockBlob
 #r "Microsoft.WindowsAzure.Storage"
 
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -218,9 +218,9 @@ module.exports = function(context) {
 
 ## <a name="using-a-blob-output-binding"></a>Blob 출력 바인딩 사용
 
-.NET 함수에서 사용 해야는 `out string` 매개 변수 함수 서명 또는 hello 목록 다음의 hello 형식 중 하나를 사용 합니다. 에서는 Node.js 함수를 사용 하 여 hello 출력 blob 액세스 `context.bindings.<name>`합니다.
+.NET 함수에서는 함수 서명에 `out string` 매개 변수를 사용하거나, 다음 목록의 형식 중 하나를 사용해야 합니다. Node.js 함수에서 `context.bindings.<name>`을 사용하여 출력 Blob 데이터에 액세스합니다.
 
-.NET 함수 hello 유형만의 tooany를 출력할 수 있습니다.
+.NET 함수에서는 다음 형식으로 출력할 수 있습니다.
 
 * `out string`
 * `TextWriter`
@@ -233,7 +233,7 @@ module.exports = function(context) {
 <a name="input-sample"></a>
 
 ## <a name="queue-trigger-with-blob-input-and-output-sample"></a>Blob 입력 및 출력이 있는 큐 트리거 샘플
-정의 하는 hello function.json 다음 가정는 [큐 저장소 트리거](functions-bindings-storage-queue.md), blob 저장소 입력 및 blob 저장소에 출력 합니다. Hello 공지 hello 사용 `queueTrigger` 메타 데이터 속성입니다. hello blob 입력 및 출력에 `path` 속성:
+[Queue Storage 트리거](functions-bindings-storage-queue.md), Blob Storage 입력 및 Blob Storage 출력을 정의하는 다음과 같은 function.json이 있다고 가정합니다. `queueTrigger` 메타데이터 속성이 Blob 입력 및 출력 `path` 속성에 사용된 것을 볼 수 있습니다.
 
 ```json
 {
@@ -264,7 +264,7 @@ module.exports = function(context) {
 }
 ``` 
 
-Hello 입력된 blob toohello 출력 blob를 복사 하는 hello 언어 관련 샘플을 참조 하십시오.
+출력 Blob에 입력 Blob을 복사하는 언어별 샘플을 참조하세요.
 
 * [C#](#incsharp)
 * [Node.JS](#innodejs)
@@ -274,7 +274,7 @@ Hello 입력된 blob toohello 출력 blob를 복사 하는 hello 언어 관련 �
 ### <a name="blob-binding-example-in-c"></a>C#의 Blob 바인딩 예 #
 
 ```cs
-// Copy blob from input toooutput, based on a queue trigger
+// Copy blob from input to output, based on a queue trigger
 public static void Run(string myQueueItem, Stream myInputBlob, out string myOutputBlob, TraceWriter log)
 {
     log.Info($"C# Queue trigger function processed: {myQueueItem}");
@@ -287,7 +287,7 @@ public static void Run(string myQueueItem, Stream myInputBlob, out string myOutp
 ### <a name="blob-binding-example-in-nodejs"></a>Node.js의 Blob 바인딩 예
 
 ```javascript
-// Copy blob from input toooutput, based on a queue trigger
+// Copy blob from input to output, based on a queue trigger
 module.exports = function(context) {
     context.log('Node.js Queue trigger function processed', context.bindings.myQueueItem);
     context.bindings.myOutputBlob = context.bindings.myInputBlob;

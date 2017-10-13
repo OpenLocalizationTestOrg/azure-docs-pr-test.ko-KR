@@ -1,6 +1,6 @@
 ---
-title: aaastore-sendgrid-java-how-to-send-email-example
-description: "Toosend 메일 Azure 배포의 Java에서 SendGrid를 사용 하는 방법"
+title: store-sendgrid-java-how-to-send-email-example
+description: "Azure 배포에서 Java의 SendGrid를 사용하여 메일을 보내는 방법"
 services: 
 documentationcenter: java
 author: thinkingserious
@@ -14,33 +14,33 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 10/30/2014
 ms.author: vibhork;dominic.may@sendgrid.com;elmer.thomas@sendgrid.com
-ms.openlocfilehash: 51fde1fc71467f8252532b30d2f87856ec25067b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d80d7d9c54bad12a4d26d8623eeccdf9bc2a743a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toosend-email-using-sendgrid-from-java-in-an-azure-deployment"></a>어떻게 tooSend 전자 메일 Azure 배포의 Java에서 SendGrid를 사용 하 여
-hello 다음 예제에서는 하면 Azure에서 호스팅되는 웹 페이지에서 SendGrid toosend 보내는 전자 메일을 사용 하는 방법 다음 스크린 샷에서 hello와 같이 hello 결과 응용 프로그램에 hello 사용자에 게 전자 메일 값 라는 메시지가 나타납니다.
+# <a name="how-to-send-email-using-sendgrid-from-java-in-an-azure-deployment"></a>Azure 배포에서 Java의 SendGrid를 사용하여 메일을 보내는 방법
+다음 예제는 Azure에 호스트된 웹 페이지에서 SendGrid를 사용하여 전자 메일을 보내는 방법을 보여 줍니다. 다음 스크린샷에 표시된 것처럼, 응용 프로그램에서 사용자에게 전자 메일 값을 묻습니다.
 
 ![전자 메일 양식][emailform]
 
-전자 메일으로 인해 발생 하는 hello 스크린 샷 다음 비슷한 toohello 보입니다.
+이에 따라 나타나는 메일은 다음 스크린샷과 모양이 비슷합니다.
 
 ![전자 메일 메시지][emailsent]
 
-Toodo hello 다음 해야이 항목의 toouse hello 코드:
+이 항목에서 코드를 사용하려면 다음을 수행해야 합니다.
 
-1. 가져올에서 javax.mail Jar 예를 들어 hello <http://www.oracle.com/technetwork/java/javamail/index.html>합니다.
-2. Hello Jar tooyour Java 빌드 경로 추가 합니다.
-3. Eclipse toocreate이 Java 응용 프로그램 사용 중인 경우에 Eclipse의 배포 어셈블리 기능을 사용 하 여 응용 프로그램 배포 파일 (WAR)에서 hello SendGrid 라이브러리를 포함할 수 있습니다. 이 Java 응용 프로그램 Eclipse toocreate을 사용 하지 않는 경우 확인 hello 라이브러리 hello 내에 포함 됩니다. 응용 프로그램의 Java 응용 프로그램에서는, 및 추가 된 toohello 클래스 경로와 동일한 Azure 역할을 합니다.
+1. javax.mail JAR을 예를 들어 <http://www.oracle.com/technetwork/java/javamail/index.html>(영문)에서 가져옵니다.
+2. Java 빌드 경로에 JAR을 추가합니다.
+3. Eclipse를 사용하여 이 Java 응용 프로그램을 만드는 경우, Eclipse의 배포 어셈블리 기능을 사용하여 응용 프로그램 배포 파일(WAR)에 SendGrid 라이브러리를 포함시킵니다. Eclipse를 사용하지 않고 이 Java 응용 프로그램을 만드는 경우, 같은 Azure 역할 내에 이 라이브러리가 Java 응용 프로그램으로 포함되어 있으며 응용 프로그램의 클래스 경로에 추가되어 있는지 확인합니다.
 
-사용자 고유의 SendGrid 사용자 이름 및 암호, toobe 수 toosend hello 전자 메일도 있어야 합니다. SendGrid, 시작 tooget 참조 [toosend Java에서 SendGrid를 사용 하 여 전자 메일 방법](store-sendgrid-java-how-to-send-email.md)합니다.
+또한 고유한 SendGrid 사용자 이름 및 암호가 있어야 전자 메일을 보낼 수 있습니다. SendGrid를 시작하려면 [Java의 SendGrid를 사용하여 전자 메일을 보내는 방법](store-sendgrid-java-how-to-send-email.md)을 참조하십시오.
 
-Hello에 대 한 정보를 익히는 또한 [Eclipse에서 Azure 용 Hello World 응용 프로그램을 만드는](http://msdn.microsoft.com/library/windowsazure/hh690944), 또는 Eclipse를 사용 하지 않는 경우 Azure에서 Java 응용 프로그램을 호스트에 대 한 다른 기술로 것이 좋습니다.
+또한 [Eclipse에서 Azure용 Hello World 응용 프로그램 만들기](http://msdn.microsoft.com/library/windowsazure/hh690944)(영문)에 나온 정보나 Eclipse를 사용하지 않는 경우 Azure에서 Java 응용 프로그램을 호스트하는 다른 기술을 익히는 것이 좋습니다.
 
 ## <a name="create-a-web-form-for-sending-email"></a>전자 메일을 보내기 위한 웹 양식 만들기
-코드 다음 hello toocreate 웹 메일 전송을 위한 tooretrieve 사용자 데이터를 형성 하는 방법을 보여 줍니다. 이 콘텐츠를 위해 hello JSP 파일의 이름은 **emailform.jsp**합니다.
+다음 코드는 전자 메일을 보내기 위해 웹 양식을 만들고 사용자 데이터를 검색하는 방법을 보여 줍니다. 이 내용에서 JSP 파일의 이름은 **emailform.jsp**입니다.
 
     <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
         pageEncoding="ISO-8859-1" %>
@@ -95,8 +95,8 @@ Hello에 대 한 정보를 익히는 또한 [Eclipse에서 Azure 용 Hello World
     </body>
     </html>
 
-## <a name="create-hello-code-toosend-hello-email"></a>Hello 코드 toosend hello 전자 메일 만들기
-hello emailform.jsp에서 hello 양식을 완료 하면 라고 하는 다음 코드 hello 전자 메일 메시지를 만들고 보냅니다. 이 콘텐츠를 위해 hello JSP 파일의 이름은 **sendemail.jsp**합니다.
+## <a name="create-the-code-to-send-the-email"></a>전자 메일을 보내는 코드 만들기
+다음 코드는 emailform.jsp에서 양식을 완료하면 호출되어 전자 메일 메시지를 만들고 보냅니다. 이 내용에서 JSP 파일의 이름은 **sendemail.jsp**입니다.
 
     <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
         pageEncoding="ISO-8859-1" import="javax.activation.*, javax.mail.*, javax.mail.internet.*, java.util.Date, java.util.Properties" %>
@@ -126,7 +126,7 @@ hello emailform.jsp에서 hello 양식을 완료 하면 라고 하는 다음 코
      try
      {
 
-         // hello SendGrid SMTP server.
+         // The SendGrid SMTP server.
          String SMTP_HOST_NAME = "smtp.sendgrid.net";
 
          Properties properties;
@@ -139,24 +139,24 @@ hello emailform.jsp에서 hello 양식을 완료 하면 라고 하는 다음 코
          properties.put("mail.smtp.port", 587);
          properties.put("mail.smtp.auth", "true");
 
-         // Display hello email fields entered by hello user. 
+         // Display the email fields entered by the user. 
          out.println("Value entered for email Subject: " + request.getParameter("emailSubject") + "<br/>");        
          out.println("Value entered for email      To: " + request.getParameter("emailTo") + "<br/>");
          out.println("Value entered for email    From: " + request.getParameter("emailFrom") + "<br/>");
          out.println("Value entered for email    Text: " + "<br/>" + request.getParameter("emailText") + "<br/>");
 
-         // Create hello authenticator object.
+         // Create the authenticator object.
          Authenticator authenticator = new SMTPAuthenticator();
 
-         // Create hello mail session object.
+         // Create the mail session object.
          Session mailSession;
          mailSession = Session.getDefaultInstance(properties, authenticator);
 
-         // Display debug information toostdout, useful when using the
+         // Display debug information to stdout, useful when using the
          // compute emulator during development.
          mailSession.setDebug(true);
 
-         // Create hello message and message part objects.
+         // Create the message and message part objects.
          MimeMessage message;
          Multipart multipart;
          MimeBodyPart messagePart; 
@@ -168,25 +168,25 @@ hello emailform.jsp에서 hello 양식을 완료 하면 라고 하는 다음 코
          messagePart.setContent(request.getParameter("emailText"), "text/html");
          multipart.addBodyPart(messagePart);            
 
-         // Specify hello email To, From, Subject and Content. 
+         // Specify the email To, From, Subject and Content. 
          message.setFrom(new InternetAddress(request.getParameter("emailFrom")));
          message.addRecipient(Message.RecipientType.TO, new InternetAddress(request.getParameter("emailTo")));
          message.setSubject(request.getParameter("emailSubject")); 
          message.setContent(multipart);
 
-         // Uncomment hello following if you want tooadd a footer.
+         // Uncomment the following if you want to add a footer.
          // message.addHeader("X-SMTPAPI", "{\"filters\": {\"footer\": {\"settings\": {\"enable\":1,\"text/html\": \"<html>This is my <b>email footer</b>.</html>\"}}}}");
 
-         // Uncomment hello following if you want tooenable click tracking.
+         // Uncomment the following if you want to enable click tracking.
          // message.addHeader("X-SMTPAPI", "{\"filters\": {\"clicktrack\": {\"settings\": {\"enable\":1}}}}");
 
          Transport transport;
          transport = mailSession.getTransport();
-         // Connect hello transport object.
+         // Connect the transport object.
          transport.connect();
-         // Send hello message.
+         // Send the message.
          transport.sendMessage(message,  message.getRecipients(Message.RecipientType.TO));
-         // Close hello connection.
+         // Close the connection.
          transport.close();
 
         out.println("<p>Email processing completed.</p>");
@@ -203,18 +203,18 @@ hello emailform.jsp에서 hello 양식을 완료 하면 라고 하는 다음 코
     </body>
     </html>
 
-또한 toosending hello 전자 메일 emailform.jsp 제공 hello 사용자;에 대 한 결과 예는 다음 스크린 샷에서 hello:
+emailform.jsp는 전자 메일을 보낼 뿐만 아니라 사용자에게 결과를 제공합니다. 예를 들어 다음 스크린샷과 같습니다.
 
 ![메일 보내기 결과][emailresult]
 
 ## <a name="next-steps"></a>다음 단계
-배포 응용 프로그램 toohello 계산 에뮬레이터 및 hello 형태로 emailform.jsp를 실행 하는 브라우저 내에서 값을 입력, 클릭 **이 전자 메일을 보낼**, 다음 sendemail.jsp에서 결과 표시 합니다.
+계산 에뮬레이터에 응용 프로그램을 배포하고 브라우저 내에서 emailform.jsp를 실행한 후, 양식에 값을 입력하고 **Send this email**클릭한 다음 sendemail.jsp의 결과를 표시합니다.
 
-이 코드는 tooshow 제공한 있습니다 어떻게 toouse Azure에서 Java에서 SendGrid 합니다. 프로덕션 환경에서 tooAzure를 배포 하기 전에 tooadd 자세한 오류 처리 또는 다른 기능을 할 수 있습니다. 예: 
+이 코드는 Azure의 Java에서 SendGrid를 사용하는 방법을 보여 줍니다. Azure를 프로덕션에 배포하기 전에 더 많은 오류 처리 또는 기타 기능을 추가할 수 있습니다. 예를 들면 다음과 같습니다. 
 
-* Web form을 사용 하는 대신 Azure 저장소 blob 또는 SQL 데이터베이스 toostore 전자 메일 주소 및 전자 메일 메시지를 사용할 수 있습니다. Java에서 Azure 저장소 blob을 사용 하는 방법에 대 한 정보를 참조 하십시오. [어떻게 tooUse hello Java에서 Blob 저장소 서비스](https://azure.microsoft.com/develop/java/how-to-guides/blob-storage/)합니다. Java에서 SQL 데이터베이스 사용에 대한 내용은 [Java에서 SQL 데이터베이스 사용](https://azure.microsoft.com/develop/java/how-to-guides/using-sql-azure-in-java/)(영문)을 참조하십시오.
-* 사용할 수 있습니다 `RoleEnvironment.getConfigurationSettings` tooretrieve hello SendGrid 사용자 이름 및 암호를 사용 하는 대신 배포의 구성 설정 로부터 웹 양식 tooretrieve 값을 hello 합니다. Hello에 대 한 내용은 `RoleEnvironment` 클래스를 참조 하십시오. [JSP에서 Azure 서비스 런타임 라이브러리를 사용 하 여 hello](http://msdn.microsoft.com/library/windowsazure/hh690948) 및 hello Azure 서비스 런타임 패키지 설명서에서 <http://dl.windowsazure.com/javadoc>.
-* Java에서 SendGrid를 사용 하는 방법에 대 한 자세한 내용은 참조 [toosend Java에서 SendGrid를 사용 하 여 전자 메일 방법](store-sendgrid-java-how-to-send-email.md)합니다.
+* 웹 양식을 사용하는 대신 Azure 저장소 Blob 또는 SQL 데이터베이스를 사용하여 전자 메일 주소 및 전자 메일 메시지를 저장할 수 있습니다. Java에서 Azure 저장소 Blob 사용에 대한 내용은 [Java에서 Blob 저장소 서비스를 사용하는 방법](https://azure.microsoft.com/develop/java/how-to-guides/blob-storage/)(영문)을 참조하십시오. Java에서 SQL 데이터베이스 사용에 대한 내용은 [Java에서 SQL 데이터베이스 사용](https://azure.microsoft.com/develop/java/how-to-guides/using-sql-azure-in-java/)(영문)을 참조하십시오.
+* 웹 양식을 사용하여 검색하는 대신, `RoleEnvironment.getConfigurationSettings` 를 사용하여 배포의 구성 설정에서 SendGrid 사용자 이름 및 암호를 검색할 수 있습니다. `RoleEnvironment` 클래스에 대한 자세한 내용은 [JSP에서 Azure 서비스 런타임 라이브러리 사용](http://msdn.microsoft.com/library/windowsazure/hh690948)(영문) 및 Azure 서비스 런타임 패키지 설명서(<http://dl.windowsazure.com/javadoc>)(영문)를 참조하세요.
+* Java의 SendGrid 사용에 대한 자세한 내용은 [Java의 SendGrid를 사용하여 전자 메일을 보내는 방법](store-sendgrid-java-how-to-send-email.md)을 참조하십시오.
 
 [emailform]: ./media/store-sendgrid-java-how-to-send-email-example/SendGridJavaEmailform.jpg
 [emailsent]: ./media/store-sendgrid-java-how-to-send-email-example/SendGridJavaEmailSent.jpg

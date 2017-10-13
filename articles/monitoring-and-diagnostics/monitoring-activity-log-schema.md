@@ -1,6 +1,6 @@
 ---
-title: "활동 로그 이벤트 스키마 aaaAzure | Microsoft Docs"
-description: "Hello 활동 로그에 내보낸 데이터에 대 한 hello 이벤트 스키마 이해"
+title: "Azure 활동 로그 이벤트 스키마 | Microsoft 문서"
+description: "활동 로그로 내보내는 데이터의 이벤트 스키마에 대해 설명합니다."
 author: johnkemnetz
 manager: robb
 services: monitoring-and-diagnostics
@@ -12,17 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: johnkem
-ms.openlocfilehash: dfece949a20a4d9b4e8a4d488c1c34842d87d586
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a4ceb822e0ec3e1c1dc31ece1db761834e795f6c
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-activity-log-event-schema"></a>Azure 활동 로그 이벤트 스키마
-hello **Azure 활동 로그** Azure에서 발생 한 모든 구독 수준 이벤트에 대 한 정보를 제공 하는 로그입니다. 이 문서에서는 데이터의 범주별 hello 이벤트 스키마를 설명 합니다.
+**Azure 활동 로그**는 Azure에서 발생한 모든 구독 수준 이벤트에 대한 정보를 제공하는 로그입니다. 이 문서에서는 데이터 범주별 이벤트 스키마에 대해 설명합니다.
 
 ## <a name="administrative"></a>관리
-이 범주에 모든 hello 레코드 만들기, 업데이트, 삭제 및 작업 작업이 리소스 관리자를 통해 수행 합니다. 이 범주에 표시 되는 이벤트 유형을 포함 하는 hello의 예로 "가상 컴퓨터 만들기" 및 "삭제" 네트워크 보안 그룹 사용자가 수행한 동작 또는 리소스 관리자를 사용 하 여 응용 프로그램은 특정 리소스 종류에 대 한 작업으로 모델링 됩니다. Hello 작업 유형이 hello 시작과 성공의 hello 레코드를 삭제 또는 동작을 작성 하거나 hello 관리 범주에 해당 작업의 실패 기록 됩니다. 구독에 변경 내용을 toorole 기반 액세스 제어를 관리 범주 hello 포함 됩니다.
+이 범주에는 Resource Manager를 통해 수행한 모든 만들기, 업데이트, 삭제 및 동작 작업의 레코드가 포함되어 있습니다. 이 범주에 표시되는 이벤트의 유형의 예로는 "가상 컴퓨터 만들기", "네트워크 보안 그룹 삭제" 등이 있습니다. 사용자나 응용 프로그램이 Resource Manager를 사용하여 취하는 모든 동작은 특정 리소스 종류에 대한 작업으로 모델링됩니다. 작업 유형이 쓰기, 삭제 또는 동작이면 해당 작업의 시작 및 성공이나 실패 레코드가 모두 관리 범주에 기록됩니다. 관리 범주에는 구독의 역할 기반 액세스 제어 변경 내용도 포함됩니다.
 
 ### <a name="sample-event"></a>샘플 이벤트
 ```json
@@ -102,29 +102,29 @@ hello **Azure 활동 로그** Azure에서 발생 한 모든 구독 수준 이벤
 ### <a name="property-descriptions"></a>속성 설명
 | 요소 이름 | 설명 |
 | --- | --- |
-| 권한 부여 |Hello 이벤트의 RBAC 속성의 blob입니다. 일반적으로 hello "action", "role" 및 "범위" 속성이 포함 됩니다. |
-| caller |Hello 작업, UPN 클레임 또는 SPN 클레임 가용성에 따라 수행한 hello 사용자의 전자 메일 주소입니다. |
-| channels |Hello 다음 값 중 하나: "Admin", "작업이" |
-| claims |Active Directory tooauthenticate hello 사용자 또는 응용 프로그램 tooperform에서 리소스 관리자에서이 작업을 사용 하는 hello JWT 토큰입니다. |
-| CorrelationId |일반적으로 hello 문자열 형식의 GUID입니다. CorrelationId를 공유 하는 이벤트가 속하는지 toohello 같은 uber 작업 합니다. |
+| authorization |이벤트의 RBAC 속성 Blob입니다. 일반적으로 "action", "role" 및 "scope" 속성이 포함됩니다. |
+| caller |가용성을 기반으로 작업, UPN 클레임 또는 SPN 클레임을 수행한 사용자의 메일 주소입니다. |
+| channels |"Admin", "Operation" 값 중 하나여야 합니다. |
+| claims |Resource Manager에서 이 작업을 수행하기 위해 사용자 또는 응용 프로그램을 인증하는 데 Active Directory에서 사용하는 JWT 토큰입니다. |
+| CorrelationId |일반적으로 문자열 형식의 GUID입니다. 동일한 uber 작업에 속하는 correlationId를 공유하는 이벤트입니다. |
 | 설명 |이벤트의 정적 텍스트 설명입니다. |
 | eventDataId |이벤트의 고유 식별자입니다. |
-| httpRequest |Http 요청 번호를 설명 하는 blob입니다. 일반적으로 "clientRequestId" hello, "clientIpAddress" 및 "방법" (HTTP 메서드입니다 같습니다. HTTP 메서드) 포함. |
-| level |Hello 이벤트의 수준입니다. Hello 다음 값 중 하나: "Critical", "Error", "Warning", "Informational" 및 "Verbose" |
-| resourceGroupName |Hello에 대 한 hello 리소스 그룹의 이름을 리소스를 저하 됩니다. |
-| resourceProviderName |리소스의 영향을 hello에 대 한 hello 리소스 공급자의 이름 |
-| resourceId |Hello의 리소스 id 리소스를 저하 됩니다. |
-| operationId |Hello 해당 하는 이벤트 tooa 단일 작업 간에 공유 하는 GUID입니다. |
-| operationName |Hello 작업의 이름입니다. |
-| properties |설정 `<Key, Value>` hello 이벤트의 hello 세부 정보를 설명 하는 쌍 (즉, 사전). |
-| status |Hello 연산의 hello 상태를 설명 하는 문자열입니다. 일반적인 값: Started, In Progress, Succeeded, Failed, Active, Resolved. |
-| subStatus |Hello hello 해당 REST 호출의 HTTP 상태 코드는 일반적으로 있지만 이러한 공통 값과 같은 하위 상태를 설명 하는 다른 문자열을 포함할 수도 있습니다: 확인 (HTTP 상태 코드: 200) 작성 (HTTP 상태 코드: 201) 허용 되는, (HTTP 상태 코드: 202), 아니요 콘텐츠 (HTTP 상태 코드: 204), 잘못 된 요청 (HTTP 상태 코드: 400), 찾을 수 없음 (HTTP 상태 코드: 404), 충돌 (HTTP 상태 코드: 409), 내부 서버 오류 (HTTP 상태 코드: 500), 서비스 사용할 수 없음 (HTTP 상태 코드: 503), 게이트웨이 시간 초과 (HTTP 상태 코드: 504). |
-| eventTimestamp |Hello Azure 서비스 처리 hello에서 hello 이벤트가 생성 된 시점의 타임 스탬프는 해당 하는 hello 이벤트를 요청 합니다. |
-| submissionTimestamp |Hello 이벤트를 쿼리 하기 위해 사용할 수 있게 하는 경우 타임 스탬프입니다. |
+| httpRequest |Http 요청을 설명하는 Blob입니다. 일반적으로 "clientRequestId", "clientIpAddress" 및 "method"(PUT 등의 HTTP 메서드) 포함. |
+| 최소 수준 |이벤트의 수준입니다. 다음 값 중 하나: “Critical”, “Error”, “Warning”, “Informational” 및 “Verbose” |
+| resourceGroupName |영향을 받는 리소스의 리소스 그룹 이름입니다. |
+| resourceProviderName |영향을 받는 리소스의 리소스 공급자 이름입니다. |
+| resourceId |영향을 받는 리소스의 리소스 ID입니다. |
+| operationId |단일 작업에 해당하는 이벤트 간에 공유되는 GUID입니다. |
+| operationName |작업의 이름입니다. |
+| properties |이벤트에 대한 세부 정보를 설명하는 `<Key, Value>` 쌍의 집합(즉, 사전)입니다. |
+| status |작업의 상태를 설명하는 문자열. 일반적인 값: Started, In Progress, Succeeded, Failed, Active, Resolved. |
+| subStatus |일반적으로 해당 REST 호출의 HTTP 상태 코드이지만 다음과 같이 하위 상태를 설명하는 다른 문자열을 포함할 수 있습니다. 예를 들어 이러한 일반적인 값은 다음과 같습니다. OK(HTTP 상태 코드: 200), Created(HTTP 상태 코드: 201), Accepted(HTTP 상태 코드: 202), No Content(HTTP 상태 코드: 204), Bad Request(HTTP 상태 코드: 400), Not Found(HTTP 상태 코드: 404), Conflict(HTTP 상태 코드: 409), Internal Server Error(HTTP 상태 코드: 500), Service Unavailable(HTTP 상태 코드:503), Gateway Timeout(HTTP 상태 코드: 504). |
+| eventTimestamp |이벤트에 해당하는 요청을 처리한 Azure 서비스에 의해 이벤트가 생성된 타임스탬프입니다. |
+| submissionTimestamp |이벤트를 쿼리할 수 있게 되는 타임스탬프입니다. |
 | subscriptionId |Azure 구독 ID입니다. |
 
 ## <a name="service-health"></a>서비스 상태
-이 범주에는 Azure에서 발생 한 모든 서비스 상태 문제의 hello 레코드에 포함 합니다. Hello 유형의이 범주에 표시 되는 이벤트의 예로 "미국 동부에서 SQL Azure 가동 중지 시간이 발생 합니다." 서비스 상태 이벤트를 가져오는 다섯 가지 종류의: 필요한 작업, 복구 지원, 인시던트, 유지 관리, 정보 또는 보안을 hello 이벤트에 의해 영향을 받게 hello 구독에는 리소스를 사용할 경우에 표시 하 고 있습니다.
+이 범주에는 Azure에서 발생한 모든 서비스 상태 관련 인시던트의 레코드가 포함됩니다. 이 범주에 표시되는 이벤트 유형의 예로는 "미국 동부의 SQL Azure가 가동 중지 상태입니다." 등이 있습니다. 서비스 상태 이벤트는 작업 필요, 복구 지원, 인시던트, 유지 관리, 정보 또는 보안의 5가지 중 하나이며 구독에 이벤트의 영향을 받는 리소스가 있는 경우에만 표시됩니다.
 
 ### <a name="sample-event"></a>샘플 이벤트
 ```json
@@ -168,13 +168,13 @@ hello **Azure 활동 로그** Azure에서 발생 한 모든 구독 수준 이벤
     "title": "Network Infrastructure - UK South",
     "service": "Service Fabric",
     "region": "UK South",
-    "communication": "Starting at approximately 21:41 UTC on 20 Jul 2017, a subset of customers in UK South may experience degraded performance, connectivity drops or timeouts when accessing their Azure resources hosted in this region. Engineers are investigating underlying Network Infrastructure issues in this region. Impacted services may include, but are not limited tooApp Services, Automation, Service Bus, Log Analytics, Key Vault, SQL Database, Service Fabric, Event Hubs, Stream Analytics, Azure Data Movement, API Management, and Azure Search. Multiple engineering teams are engaged in multiple workflows toomitigate hello impact. hello next update will be provided in 60 minutes, or as events warrant.",
+    "communication": "Starting at approximately 21:41 UTC on 20 Jul 2017, a subset of customers in UK South may experience degraded performance, connectivity drops or timeouts when accessing their Azure resources hosted in this region. Engineers are investigating underlying Network Infrastructure issues in this region. Impacted services may include, but are not limited to App Services, Automation, Service Bus, Log Analytics, Key Vault, SQL Database, Service Fabric, Event Hubs, Stream Analytics, Azure Data Movement, API Management, and Azure Search. Multiple engineering teams are engaged in multiple workflows to mitigate the impact. The next update will be provided in 60 minutes, or as events warrant.",
     "incidentType": "Incident",
     "trackingId": "NA0F-BJG",
     "impactStartTime": "2017-07-20T21:41:00.0000000Z",
     "impactedServices": "[{\"ImpactedRegions\":[{\"RegionName\":\"UK South\"}],\"ServiceName\":\"Service Fabric\"}]",
     "defaultLanguageTitle": "Network Infrastructure - UK South",
-    "defaultLanguageContent": "Starting at approximately 21:41 UTC on 20 Jul 2017, a subset of customers in UK South may experience degraded performance, connectivity drops or timeouts when accessing their Azure resources hosted in this region. Engineers are investigating underlying Network Infrastructure issues in this region. Impacted services may include, but are not limited tooApp Services, Automation, Service Bus, Log Analytics, Key Vault, SQL Database, Service Fabric, Event Hubs, Stream Analytics, Azure Data Movement, API Management, and Azure Search. Multiple engineering teams are engaged in multiple workflows toomitigate hello impact. hello next update will be provided in 60 minutes, or as events warrant.",
+    "defaultLanguageContent": "Starting at approximately 21:41 UTC on 20 Jul 2017, a subset of customers in UK South may experience degraded performance, connectivity drops or timeouts when accessing their Azure resources hosted in this region. Engineers are investigating underlying Network Infrastructure issues in this region. Impacted services may include, but are not limited to App Services, Automation, Service Bus, Log Analytics, Key Vault, SQL Database, Service Fabric, Event Hubs, Stream Analytics, Azure Data Movement, API Management, and Azure Search. Multiple engineering teams are engaged in multiple workflows to mitigate the impact. The next update will be provided in 60 minutes, or as events warrant.",
     "stage": "Active",
     "communicationId": "636361902146035247",
     "version": "0.1.1"
@@ -185,34 +185,34 @@ hello **Azure 활동 로그** Azure에서 발생 한 모든 구독 수준 이벤
 ### <a name="property-descriptions"></a>속성 설명
 요소 이름 | 설명
 -------- | -----------
-channels | Hello 다음 값 중 하나: "Admin", "작업이"
-CorrelationId | 일반적으로 hello 문자열 형식의 GUID입니다. 같은 uber 작업 대개 공유 toohello 속하는 이벤트는 같은 correlationId hello 합니다.
-설명 | Hello 이벤트의 설명입니다.
-eventDataId | hello 이벤트의 고유 식별자입니다.
-eventName | hello 제목 hello 이벤트입니다.
-level | Hello 이벤트의 수준입니다. Hello 다음 값 중 하나: "Critical", "Error", "Warning", "Informational" 및 "Verbose"
-resourceProviderName | 리소스의 영향을 hello에 대 한 hello 리소스 공급자의 이름. 알 수 없는 경우 null로 설정됩니다.
-resourceType| hello hello의 리소스 유형의 리소스를 저하 됩니다. 알 수 없는 경우 null로 설정됩니다.
+channels | “Admin”, “Operation” 값 중 하나입니다.
+CorrelationId | 일반적으로 문자열 형식의 GUID입니다. 동일한 uber 작업에 속하는 이벤트는 일반적으로 동일한 correlationId를 공유합니다.
+설명 | 이벤트의 설명입니다.
+eventDataId | 이벤트의 고유 식별자입니다.
+eventName | 이벤트의 제목입니다.
+level | 이벤트의 수준입니다. 다음 값 중 하나: “Critical”, “Error”, “Warning”, “Informational” 및 “Verbose”
+resourceProviderName | 영향을 받는 리소스의 리소스 공급자 이름입니다. 알 수 없는 경우 null로 설정됩니다.
+resourceType| 영향을 받는 리소스의 리소스 형식입니다. 알 수 없는 경우 null로 설정됩니다.
 subStatus | 서비스 상태 이벤트의 경우 대개 null입니다.
-eventTimestamp | Hello 로그 이벤트를 생성 되었고 toohello 활동 로그를 전송 하는 경우 타임 스탬프입니다.
-submissionTimestamp |   Hello 활동 로그에서에서 제공 된 hello 이벤트 타임 스탬프입니다.
-subscriptionId | 이 이벤트가 기록 되는 Azure 구독을 hello 합니다.
-status | Hello 연산의 hello 상태를 설명 하는 문자열입니다. 일반적인 값으로는 Active, Resolved 등이 있습니다.
-operationName | Hello 작업의 이름입니다. 보통 Microsoft.ServiceHealth/incident/action입니다.
+eventTimestamp | 로그 이벤트가 생성되어 활동 로그로 제출된 시간의 타임스탬프입니다.
+submissionTimestamp |   활동 로그에서 이벤트를 사용할 수 있게 된 시간의 타임스탬프입니다.
+subscriptionId | 이 이벤트가 로깅된 Azure 구독입니다.
+status | 작업의 상태를 설명하는 문자열. 일반적인 값으로는 Active, Resolved 등이 있습니다.
+operationName | 작업의 이름입니다. 보통 Microsoft.ServiceHealth/incident/action입니다.
 카테고리 | "ServiceHealth"
-resourceId | Hello의 리소스 id의 리소스에 영향을 알 수 있는 경우. 확인되지 않은 경우에는 구독 ID가 제공됩니다.
-Properties.title | 이 통신에 대 한 hello 지역화 된 제목입니다. 영어는 hello 기본 언어입니다.
-Properties.communication | hello는 hello 통신할 때 HTML 태그의 세부 정보를 지역화 합니다. 영어는 hello 기본값입니다.
+resourceId | 영향을 받는 리소스의 리소스 ID(확인된 경우)입니다. 확인되지 않은 경우에는 구독 ID가 제공됩니다.
+Properties.title | 이 통신에 대한 지역화된 제목입니다. 기본 언어는 영어입니다.
+Properties.communication | HTML 태그와 통신에 대한 지역화된 세부 정보입니다. 기본값은 영어입니다.
 Properties.incidentType | 가능한 값: AssistedRecovery, ActionRequired, Information, Incident, Maintenance, Security
-Properties.trackingId | 이 이벤트와 연결 된 hello 인시던트를 식별 합니다. 이 toocorrelate hello 이벤트 관련된 tooan 인시던트에 사용 합니다.
-Properties.impactedServices | Hello 서비스 및 hello 인시던트의 영향을 미치는 영역을 설명 하는 이스케이프 된 JSON blob입니다. 각각 ServiceName과 ImpactedRegions 목록을 포함하는 서비스 목록으로, 각 ImpactedRegions에는 RegionName이 포함됩니다.
-Properties.defaultLanguageTitle | 영어로 hello 통신
-Properties.defaultLanguageContent | html 태그 또는 일반 텍스트 영어로 hello 통신
+Properties.trackingId | 이 이벤트가 연결된 인시던트를 식별합니다. 인시던트와 관련된 이벤트를 상호 연결할 때 사용합니다.
+Properties.impactedServices | 인시던트에 의해 영향을 받는 서비스 및 지역을 설명하는 이스케이프된 JSON Blob입니다. 각각 ServiceName과 ImpactedRegions 목록을 포함하는 서비스 목록으로, 각 ImpactedRegions에는 RegionName이 포함됩니다.
+Properties.defaultLanguageTitle | 통신은 영어로 이루어집니다.
+Properties.defaultLanguageContent | 영어로 통신은 html 태그 또는 일반 텍스트로 수행됩니다.
 Properties.stage | AssistedRecovery, ActionRequired, Information, Incident, Security에 대해 가능한 값: Active, Resolved. Maintenance에 대해 가능한 값: Active, Planned, InProgress, Canceled, Rescheduled, Resolved, Complete
-Properties.communicationId | 이 이벤트는 연결 된 hello 통신 합니다.
+Properties.communicationId | 이 이벤트가 연결된 통신입니다.
 
 ## <a name="alert"></a>경고
-이 범주는 hello 레코드의 Azure 경고의 모든 정품 인증을 포함합니다. Hello 유형의이 범주에 표시 되는 이벤트의 예로 "CPU (%)에서 myVM은 되었으며 80 hello에 대 한 지난 5 분" 다수의 Azure 시스템에서 경고 개념이 사용됩니다. 일종의 규칙을 정의하여 조건이 해당 규칙과 일치하면 알림을 수신할 수 있습니다. 될 때마다 지원 되는 Azure 경고 유형 '활성화,' 또는 hello 조건이 충족된 toogenerate 알림을, hello 정품 인증에 대 한 기록을 hello 활동 로그의 toothis 범주 푸시됩니다.
+이 범주에는 모든 Azure 경고 활성화의 레코드가 포함됩니다. 이 범주에 표시되는 이벤트 유형의 예로는 "지난 5분 동안 myVM의 CPU 사용률이 80%를 초과했습니다." 등이 있습니다. 다수의 Azure 시스템에서 경고 개념이 사용됩니다. 일종의 규칙을 정의하여 조건이 해당 규칙과 일치하면 알림을 수신할 수 있습니다. 지원되는 Azure 경고 유형이 '활성화'되거나 알림 생성을 위한 조건이 충족될 때마다 활성화 레코드도 이 활동 로그 범주로 푸시됩니다.
 
 ### <a name="sample-event"></a>샘플 이벤트
 
@@ -224,7 +224,7 @@ Properties.communicationId | 이 이벤트는 연결 된 hello 통신 합니다.
     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/spn": "Microsoft.Insights/alertRules"
   },
   "correlationId": "/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/microsoft.insights/alertrules/myalert/incidents/L3N1YnNjcmlwdGlvbnMvZGY2MDJjOWMtN2FhMC00MDdkLWE2ZmItZWIyMGM4YmQxMTkyL3Jlc291cmNlR3JvdXBzL0NzbUV2ZW50RE9HRk9PRC1XZXN0VVMvcHJvdmlkZXJzL21pY3Jvc29mdC5pbnNpZ2h0cy9hbGVydHJ1bGVzL215YWxlcnQwNjM2MzYyMjU4NTM1MjIxOTIw",
-  "description": "'Disk read LessThan 100000 ([Count]) in hello last 5 minutes' has been resolved for CloudService: myResourceGroup/Production/Event.BackgroundJobsWorker.razzle (myResourceGroup)",
+  "description": "'Disk read LessThan 100000 ([Count]) in the last 5 minutes' has been resolved for CloudService: myResourceGroup/Production/Event.BackgroundJobsWorker.razzle (myResourceGroup)",
   "eventDataId": "149d4baf-53dc-4cf4-9e29-17de37405cd9",
   "eventName": {
     "value": "Alert",
@@ -280,52 +280,52 @@ Properties.communicationId | 이 이벤트는 연결 된 hello 통신 합니다.
 | --- | --- |
 | caller | Always Microsoft.Insights/alertRules |
 | channels | 항상 "Admin, Operation"입니다. |
-| claims | Hello SPN (서비스 사용자 이름) 또는 리소스에 대 한 형식의 hello 경고 엔진이 사용 하 여 JSON blob입니다. |
-| CorrelationId | Hello 문자열 형식의 GUID입니다. |
-| 설명 |Hello 경고 이벤트의 정적 텍스트 설명입니다. |
-| eventDataId |Hello 경고 이벤트의 고유 식별자입니다. |
-| level |Hello 이벤트의 수준입니다. Hello 다음 값 중 하나: "Critical", "Error", "Warning", "Informational" 및 "Verbose" |
-| resourceGroupName |Hello에 대 한 hello 리소스 그룹의 이름을 메트릭 경고 이면 리소스는 영향을 받습니다. 다른 경고 유형에 대 한 자체 hello 경고가 포함 된 hello 리소스 그룹의 hello 이름입니다. |
-| resourceProviderName |Hello에 대 한 hello 리소스 공급자의 이름 메트릭 경고 이면 리소스는 영향을 받습니다. 다른 경고 유형에 대 한 자체 hello 경고에 대 한 hello 리소스 공급자의 hello 이름입니다. |
-| resourceId | Hello에 대 한 hello 리소스 ID의 이름 메트릭 경고 이면 리소스는 영향을 받습니다. 다른 경고 유형에 대 한 hello 경고 리소스 자체의 hello 리소스 ID입니다. |
-| operationId |Hello 해당 하는 이벤트 tooa 단일 작업 간에 공유 하는 GUID입니다. |
-| operationName |Hello 작업의 이름입니다. |
-| properties |설정 `<Key, Value>` hello 이벤트의 hello 세부 정보를 설명 하는 쌍 (즉, 사전). |
-| status |Hello 연산의 hello 상태를 설명 하는 문자열입니다. 일반적인 값: Started, In Progress, Succeeded, Failed, Active, Resolved. |
+| claims | 경고 엔진의 SPN(서비스 사용자 이름) 또는 리소스 종류가 포함된 JSON Blob입니다. |
+| CorrelationId | 문자열 형식의 GUID입니다. |
+| 설명 |경고 이벤트의 정적 텍스트 설명입니다. |
+| eventDataId |경고 이벤트의 고유 식별자입니다. |
+| level |이벤트의 수준입니다. 다음 값 중 하나: “Critical”, “Error”, “Warning”, “Informational” 및 “Verbose” |
+| resourceGroupName |메트릭 경고의 경우 영향을 받는 리소스의 리소스 그룹 이름입니다. 기타 경고 유형의 경우에는 경고 자체가 포함된 리소스 그룹의 이름입니다. |
+| resourceProviderName |메트릭 경고의 경우 영향을 받는 리소스의 리소스 공급자 이름입니다. 기타 경고 유형의 경우에는 경고 자체의 리소스 공급자 이름입니다. |
+| resourceId | 메트릭 경고의 경우 영향을 받는 리소스의 리소스 ID 이름입니다. 기타 경고 유형의 경우에는 경고 리소스 자체의 리소스 ID입니다. |
+| operationId |단일 작업에 해당하는 이벤트 간에 공유되는 GUID입니다. |
+| operationName |작업의 이름입니다. |
+| properties |이벤트에 대한 세부 정보를 설명하는 `<Key, Value>` 쌍의 집합(즉, 사전)입니다. |
+| status |작업의 상태를 설명하는 문자열. 일반적인 값: Started, In Progress, Succeeded, Failed, Active, Resolved. |
 | subStatus | 경고의 경우 대개 null입니다. |
-| eventTimestamp |Hello Azure 서비스 처리 hello에서 hello 이벤트가 생성 된 시점의 타임 스탬프는 해당 하는 hello 이벤트를 요청 합니다. |
-| submissionTimestamp |Hello 이벤트를 쿼리 하기 위해 사용할 수 있게 하는 경우 타임 스탬프입니다. |
+| eventTimestamp |이벤트에 해당하는 요청을 처리한 Azure 서비스에 의해 이벤트가 생성된 타임스탬프입니다. |
+| submissionTimestamp |이벤트를 쿼리할 수 있게 되는 타임스탬프입니다. |
 | subscriptionId |Azure 구독 ID입니다. |
 
 ### <a name="properties-field-per-alert-type"></a>경고 유형별 속성 필드
-hello 속성 필드 hello 경고 이벤트의 hello 소스에 따라 다른 값이 포함 됩니다. 일반적으로 사용되는 두 경고 이벤트 공급자는 활동 로그 경고와 메트릭 경고입니다.
+속성 필드에는 경고 이벤트의 원본에 따라 다른 값이 포함됩니다. 일반적으로 사용되는 두 경고 이벤트 공급자는 활동 로그 경고와 메트릭 경고입니다.
 
 #### <a name="properties-for-activity-log-alerts"></a>활동 로그 경고의 속성
 | 요소 이름 | 설명 |
 | --- | --- |
-| properties.subscriptionId | hello 활성화이 활동 로그 경고 규칙 toobe를 일으킨 hello 활동 로그 이벤트를 구독 ID입니다. |
-| properties.eventDataId | 활성화 되는이 활동 로그 경고 규칙 toobe를 일으킨 hello 활동 로그 이벤트에서 hello 이벤트 데이터 ID입니다. |
-| properties.resourceGroup | hello 리소스 그룹에서 활성화 되는이 활동 로그 경고 규칙 toobe를 일으킨 hello 활동 로그 이벤트. |
-| properties.resourceId | 활성화 되는이 활동 로그 경고 규칙 toobe를 일으킨 hello 활동 로그 이벤트에서 hello 리소스 ID입니다. |
-| properties.eventTimestamp | 활성화 되는이 활동 로그 경고 규칙 toobe를 일으킨 hello 활동 로그 이벤트의 hello 이벤트 타임 스탬프입니다. |
-| properties.operationName | 활성화 되는이 활동 로그 경고 규칙 toobe를 일으킨 hello 활동 로그 이벤트 hello 작업 이름입니다. |
-| properties.status | 활성화 되는이 활동 로그 경고 규칙 toobe를 일으킨 hello 활동 로그 이벤트에서 hello 상태입니다.|
+| properties.subscriptionId | 이 활동 로그 경고 규칙을 활성화한 활동 로그 이벤트의 구독 ID입니다. |
+| properties.eventDataId | 이 활동 로그 경고 규칙을 활성화한 활동 로그 이벤트의 이벤트 데이터 ID입니다. |
+| properties.resourceGroup | 이 활동 로그 경고 규칙을 활성화한 활동 로그 이벤트의 리소스 그룹입니다. |
+| properties.resourceId | 이 활동 로그 경고 규칙을 활성화한 활동 로그 이벤트의 리소스 ID입니다. |
+| properties.eventTimestamp | 이 활동 로그 경고 규칙을 활성화한 활동 로그 이벤트의 이벤트 타임스탬프입니다. |
+| properties.operationName | 이 활동 로그 경고 규칙을 활성화한 활동 로그 이벤트의 작업 이름입니다. |
+| properties.status | 이 활동 로그 경고 규칙을 활성화한 활동 로그 이벤트의 상태입니다.|
 
 #### <a name="properties-for-metric-alerts"></a>메트릭 경고의 속성
 | 요소 이름 | 설명 |
 | --- | --- |
-| properties.RuleUri | Hello 메트릭 경고 규칙 자체의 리소스 ID입니다. |
-| properties.RuleName | hello 메트릭 경고 규칙의 hello 이름입니다. |
-| properties.RuleDescription | hello 경고 규칙에 정의 된) (대로 hello 메트릭 경고 규칙의 hello 설명입니다. |
-| properties.Threshold | hello 임계값 hello 메트릭 경고 규칙의 hello 평가에 사용 된입니다. |
-| properties.WindowSizeInMinutes | hello 메트릭 경고 규칙의 hello 평가에 사용 된 hello 창 크기입니다. |
-| properties.Aggregation | hello 메트릭 경고 규칙에 정의 된 hello 집계 유형입니다. |
-| properties.Operator | hello 메트릭 경고 규칙의 hello 평가에 사용 된 hello 조건부 연산자입니다. |
-| properties.MetricName | hello hello 메트릭 경고 규칙의 hello 평가에 사용 된 hello 메트릭의 메트릭 이름입니다. |
-| properties.MetricUnit | hello hello 메트릭 경고 규칙의 hello 평가에 사용 된 hello 메트릭의 메트릭 단위입니다. |
+| properties.RuleUri | 메트릭 경고 규칙 자체의 리소스 ID입니다. |
+| properties.RuleName | 메트릭 경고 규칙의 이름입니다. |
+| properties.RuleDescription | 경고 규칙에 정의된 메트릭 경고 규칙의 설명입니다. |
+| properties.Threshold | 메트릭 경고 규칙의 평가에 사용되는 임계값입니다. |
+| properties.WindowSizeInMinutes | 메트릭 경고 규칙의 평가에 사용되는 창 크기입니다. |
+| properties.Aggregation | 메트릭 경고 규칙에 정의된 집계 유형입니다. |
+| properties.Operator | 메트릭 경고 규칙의 평가에 사용되는 조건부 연산자입니다. |
+| properties.MetricName | 메트릭 경고 규칙의 평가에 사용되는 메트릭의 이름입니다. |
+| properties.MetricUnit | 메트릭 경고 규칙의 평가에 사용되는 메트릭의 메트릭 단위입니다. |
 
 ## <a name="autoscale"></a>Autoscale
-이 범주에는 구독에 정의 된 자동 크기 조정 설정에 따라 hello 자동 크기 조정 엔진의 모든 이벤트 관련된 toohello 연산의 hello 레코드에 포함 합니다. Hello 유형의이 범주에 표시 되는 이벤트의 예로 "자동 크기 조정 수직 확장 작업이 실패 했습니다.." 자동 크기 조정을 사용 하 여 자동으로 확장 하거나 수의 크기를 조정 hello는 지원 되는 리소스 형식에 있는 인스턴스의 수는 자동 크기 조정 설정을 사용 하 여 날짜 및/또는 부하 (메트릭) 데이터는 시간에 따라 합니다. Hello 조건이 충족 되 면 tooscale 위나 아래로 시작 hello 및 성공 또는 실패 한 이벤트는이 범주에 기록 됩니다.
+이 범주에는 구독에서 정의한 자동 크기 조정 설정을 기준으로 하는 자동 크기 조정 엔진 작업 관련 이벤트의 레코드가 포함됩니다. 이 범주에 표시되는 이벤트 유형의 예로는 "자동 크기 조정 강화 동작이 실패했습니다." 등이 있습니다 자동 크기 조정을 사용하면 자동 크기 조정 설정을 사용하여 시간 및/또는 로드(메트릭) 데이터를 기준으로 지원되는 리소스 종류의 인스턴스 수를 자동으로 규모 확장하거나 규모 감축할 수 있습니다. 강화 또는 규모 축소 조건이 충족되면 시작 이벤트와 성공 또는 실패 이벤트가 이 범주에 기록됩니다.
 
 ### <a name="sample-event"></a>샘플 이벤트
 ```json
@@ -336,7 +336,7 @@ hello 속성 필드 hello 경고 이벤트의 hello 소스에 따라 다른 값�
     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/spn": "Microsoft.Insights/autoscaleSettings"
   },
   "correlationId": "fc6a7ff5-ff68-4bb7-81b4-3629212d03d0",
-  "description": "hello autoscale engine attempting tooscale resource '/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource' from 3 instances count too2 instances count.",
+  "description": "The autoscale engine attempting to scale resource '/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource' from 3 instances count to 2 instances count.",
   "eventDataId": "a5b92075-1de9-42f1-b52e-6f3e4945a7c7",
   "eventName": {
     "value": "AutoscaleAction",
@@ -364,7 +364,7 @@ hello 속성 필드 hello 경고 이벤트의 hello 소스에 따라 다른 값�
     "localizedValue": "Microsoft.Insights/AutoscaleSettings/Scaledown/Action"
   },
   "properties": {
-    "Description": "hello autoscale engine attempting tooscale resource '/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource' from 3 instances count too2 instances count.",
+    "Description": "The autoscale engine attempting to scale resource '/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource' from 3 instances count to 2 instances count.",
     "ResourceName": "/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource",
     "OldInstancesCount": "3",
     "NewInstancesCount": "2",
@@ -389,28 +389,28 @@ hello 속성 필드 hello 경고 이벤트의 hello 소스에 따라 다른 값�
 | --- | --- |
 | caller | 항상 Microsoft.Insights/autoscaleSettings입니다. |
 | channels | 항상 "Admin, Operation"입니다. |
-| claims | Hello hello 자동 크기 조정 엔진의 SPN (서비스 사용자 이름) 또는 리소스 유형 사용 하 여 JSON blob입니다. |
-| CorrelationId | Hello 문자열 형식의 GUID입니다. |
-| 설명 |Hello 자동 크기 조정 이벤트의 정적 텍스트 설명입니다. |
-| eventDataId |Hello 자동 크기 조정 이벤트의 고유 식별자입니다. |
-| level |Hello 이벤트의 수준입니다. Hello 다음 값 중 하나: "Critical", "Error", "Warning", "Informational" 및 "Verbose" |
-| resourceGroupName |Hello 자동 크기 조정 설정에 대 한 hello 리소스 그룹의 이름입니다. |
-| resourceProviderName |Hello 자동 크기 조정 설정에 대 한 hello 리소스 공급자의 이름입니다. |
-| resourceId |Hello 자동 크기 조정 설정의 리소스 id입니다. |
-| operationId |Hello 해당 하는 이벤트 tooa 단일 작업 간에 공유 하는 GUID입니다. |
-| operationName |Hello 작업의 이름입니다. |
-| properties |설정 `<Key, Value>` hello 이벤트의 hello 세부 정보를 설명 하는 쌍 (즉, 사전). |
-| properties.Description | 어떤 hello 자동 크기 조정 엔진에 수행 되 던의 자세한 설명입니다. |
-| properties.ResourceName | 리소스의 영향을 hello의 리소스 ID (리소스 크기 조정 작업이 수행 되 고 있는 hello에 hello) |
-| properties.OldInstancesCount | hello hello 자동 크기 조정 작업 전에 인스턴스 수에 적용이 될 합니다. |
-| properties.NewInstancesCount | hello 자동 크기 조정 작업에 적용 될 후 인스턴스의 hello 수입니다. |
-| properties.LastScaleActionTime | hello 자동 크기 조정 작업이 발생 했을 때의 타임 스탬프를 hello입니다. |
-| status |Hello 연산의 hello 상태를 설명 하는 문자열입니다. 일반적인 값: Started, In Progress, Succeeded, Failed, Active, Resolved. |
+| claims | 자동 크기 조정 엔진의 SPN(서비스 사용자 이름) 또는 리소스 종류가 포함된 JSON Blob입니다. |
+| CorrelationId | 문자열 형식의 GUID입니다. |
+| 설명 |자동 크기 조정 이벤트의 정적 텍스트 설명입니다. |
+| eventDataId |자동 크기 조정 이벤트의 고유 식별자입니다. |
+| level |이벤트의 수준입니다. 다음 값 중 하나: “Critical”, “Error”, “Warning”, “Informational” 및 “Verbose” |
+| resourceGroupName |자동 크기 조정 설정의 리소스 그룹 이름입니다. |
+| resourceProviderName |자동 크기 조정 설정의 리소스 공급자 이름입니다. |
+| resourceId |자동 크기 조정 설정의 리소스 ID입니다. |
+| operationId |단일 작업에 해당하는 이벤트 간에 공유되는 GUID입니다. |
+| operationName |작업의 이름입니다. |
+| properties |이벤트에 대한 세부 정보를 설명하는 `<Key, Value>` 쌍의 집합(즉, 사전)입니다. |
+| properties.Description | 자동 크기 조정 엔진이 수행 중이었던 작업의 자세한 설명입니다. |
+| properties.ResourceName | 영향을 받는 리소스(크기 조정 동작을 수행 중이었던 리소스)의 리소스 ID입니다. |
+| properties.OldInstancesCount | 자동 크기 조정 동작이 적용되기 전의 인스턴스 수입니다. |
+| properties.NewInstancesCount | 자동 크기 조정 동작이 적용된 후의 인스턴스 수입니다. |
+| properties.LastScaleActionTime | 자동 크기 조정이 수행된 시간의 타임스탬프입니다. |
+| status |작업의 상태를 설명하는 문자열. 일반적인 값: Started, In Progress, Succeeded, Failed, Active, Resolved. |
 | subStatus | 자동 크기 조정의 경우 대개 null입니다. |
-| eventTimestamp |Hello Azure 서비스 처리 hello에서 hello 이벤트가 생성 된 시점의 타임 스탬프는 해당 하는 hello 이벤트를 요청 합니다. |
-| submissionTimestamp |Hello 이벤트를 쿼리 하기 위해 사용할 수 있게 하는 경우 타임 스탬프입니다. |
+| eventTimestamp |이벤트에 해당하는 요청을 처리한 Azure 서비스에 의해 이벤트가 생성된 타임스탬프입니다. |
+| submissionTimestamp |이벤트를 쿼리할 수 있게 되는 타임스탬프입니다. |
 | subscriptionId |Azure 구독 ID입니다. |
 
 ## <a name="next-steps"></a>다음 단계
-* [활동 로그 (이전의 감사 로그) hello에 대 한 자세한 정보](monitoring-overview-activity-logs.md)
-* [Hello Azure 활동 로그 tooEvent 허브 스트림](monitoring-stream-activity-logs-event-hubs.md)
+* [활동 로그(이전의 감사 로그)에 대해 자세히 알아보기](monitoring-overview-activity-logs.md)
+* [Azure 활동 로그를 Event Hubs로 스트림](monitoring-stream-activity-logs-event-hubs.md)

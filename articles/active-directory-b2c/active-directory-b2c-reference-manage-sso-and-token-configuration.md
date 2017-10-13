@@ -12,17 +12,17 @@ ms.topic: article
 ms.devlang: na
 ms.date: 05/02/2017
 ms.author: sama
-ms.openlocfilehash: b65271a22c77ea41eeec2126e4a3ad24364edd17
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8f5703d15766f221517cd89352d41685652d32d6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-b2c-manage-sso-and-token-customization-with-custom-policies"></a>Azure Active Directory B2C: 사용자 지정 정책을 사용하여 SSO 및 토큰 사용자 지정 관리
-사용자 지정 정책을 사용 하 여 기본 제공 정책을 통해 같은 제어할 토큰, 세션 및 (SSO) 구성 로그온 단일 hello를 제공 합니다.  각 설정, toolearn hello 설명서를 참조 하십시오 [여기](#active-directory-b2c-token-session-sso)합니다.
+사용자 지정 정책을 사용하면 토큰, 세션 및 SSO(Single Sign-On) 구성에 대해 기본 정책을 통할 때와 동일한 제어가 제공됩니다.  각 설정에 대해 알아보려면 [여기](#active-directory-b2c-token-session-sso) 설명서를 참조하세요.
 
 ## <a name="token-lifetimes-and-claims-configuration"></a>토큰 수명 및 클레임 구성
-사용자 토큰 수명에 toochange hello 설정 해야 tooadd는 `<ClaimsProviders>` 요소 tooimpact hello 정책 hello 신뢰 당사자 파일에서 원하는 합니다.  hello `<ClaimsProviders>` hello의 자식 이며 `<TrustFrameworkPolicy>`합니다.  내부 사용자 토큰 수명에 영향을 주는 tooput hello 정보가 필요 합니다.  hello XML은 다음과 같습니다.
+토큰 수명에 대한 설정을 변경하려면 영향을 줄 정책의 신뢰 당사자 파일에 `<ClaimsProviders>` 요소를 추가해야 합니다.  `<ClaimsProviders>` 요소는 `<TrustFrameworkPolicy>`의 자식 요소입니다.  이 안에 토큰 수명에 영향을 주는 정보를 입력해야 합니다.  XML은 다음과 같이 표시됩니다.
 
 ```XML
 <ClaimsProviders>
@@ -44,28 +44,28 @@ ms.lasthandoff: 10/06/2017
 </ClaimsProviders>
 ```
 
-**액세스 토큰 수명** hello 액세스 토큰 수명 hello 내 hello 값을 수정 하 여 변경할 수 있습니다 `<Item>` hello 키로 = "token_lifetime_secs" 시간 (초)에 있습니다.  기본 제공 hello 기본값은 3600 초 (60 분)입니다.
+**액세스 토큰 수명** `<Item>` 안의 값을 Key="token_lifetime_secs"(초)로 수정하여 액세스 토큰 수명을 변경할 수 있습니다.  기본 제공되는 기본값은 3600초(60분)입니다.
 
-**ID 토큰 수명** hello ID 토큰 수명 hello 내 hello 값을 수정 하 여 변경할 수 있습니다 `<Item>` hello 키로 = "id_token_lifetime_secs" 시간 (초)에 있습니다.  기본 제공 hello 기본값은 3600 초 (60 분)입니다.
+**ID 토큰 수명** `<Item>` 안의 값을 Key="id_token_lifetime_secs"(초)로 수정하여 ID 토큰 수명을 변경할 수 있습니다.  기본 제공되는 기본값은 3600초(60분)입니다.
 
-**토큰 수명 새로 고침** hello 새로 고침 토큰 수명 hello 내 hello 값을 수정 하 여 변경할 수 있습니다 `<Item>` hello 키로 = "refresh_token_lifetime_secs" 시간 (초)에 있습니다.  기본 제공 hello 기본값은 1209600 초 (14 일)입니다.
+**새로 고침 토큰 수명** `<Item>` 안의 값을 Key="refresh_token_lifetime_secs"(초)로 수정하여 새로 고침 토큰 수명을 변경할 수 있습니다.  기본 제공되는 기본값은 1209600초(14일)입니다.
 
-**슬라이딩 창 수명 토큰 새로 고침** tooset 슬라이딩 창 수명 tooyour 새로 고침 토큰을 원하는 경우 내부 hello 값 수정 `<Item>` hello 키로 = "rolling_refresh_token_lifetime_secs" 시간 (초)에 있습니다.  hello에 기본 제공 기본값이 7776000 (90 일)입니다.  Tooenfore 않으려면는와이 줄을 바꿉니다 슬라이딩 창 수명:
+**새로 고침 토큰 슬라이딩 윈도우 수명** 새로 고침 토큰에 대한 슬라이딩 윈도우 수명을 설정하려면 `<Item>` 안의 값을 Key="rolling_refresh_token_lifetime_secs"(초)로 수정합니다.  기본 제공되는 기본값은 7776000초(90일)입니다.  슬라이딩 윈도우 수명을 적용하지 않으려면 이 줄을 다음으로 바꿉니다.
 ```XML
 <Item Key="allow_infinite_rolling_refresh_token">True</Item>
 ```
 
-**(Iss) 발급자 클레임** toochange hello (iss) 발급자 클레임 hello 내 hello 값을 수정, `<Item>` hello 키로 = "IssuanceClaimPattern"입니다.  hello 적용 가능한 값은 `AuthorityAndTenantGuid` 및 `AuthorityWithTfp`합니다.
+**발급자(iss) 클레임** 발급자(iss) 클레임을 변경하려면 `<Item>` 안의 값을 Key="IssuanceClaimPattern"으로 수정합니다.  적용 가능한 값은 `AuthorityAndTenantGuid` 및 `AuthorityWithTfp`입니다.
 
-**설정 정책 ID를 나타내는 클레임** 이 값을 설정 하기 위한 hello 옵션은 TFP (신뢰 프레임 워크 정책) 및 ACR (인증 컨텍스트 참조).  
-에서는이이 tooTFP toodo를 설정 하는 것, hello 확인 `<Item>` hello 키로 = "AuthenticationContextReferenceClaimPattern" 있으며 hello 값이 `None`합니다.
+**정책 ID를 나타내는 클레임 설정** 이 값을 설정하기 위한 옵션은 TFP(보안 프레임워크 정책) 및 ACR(인증 컨텍스트 참조)입니다.  
+TFP로 설정하는 것이 좋으며 이렇게 하려면 Key="AuthenticationContextReferenceClaimPattern"인 `<Item>`이 존재하고 값이 `None`인지 확인합니다.
 `<OutputClaims>` 항목에서 이 요소를 추가합니다.
 ```XML
 <OutputClaim ClaimTypeReferenceId="trustFrameworkPolicy" Required="true" DefaultValue="{policy}" />
 ```
-ACR를 hello 제거 `<Item>` hello 키로 = "AuthenticationContextReferenceClaimPattern"입니다.
+ACR의 경우 Key="AuthenticationContextReferenceClaimPattern"인 `<Item>`을 제거합니다.
 
-**제목 (sub) 클레임** 이 옵션은 기본적으로, tooObjectID tooswitch 원하는 경우이 너무`Not Supported`, 다음 hello지 않습니다:
+**주체(sub) 클레임** 이 옵션은 기본적으로 ObjectID입니다. 이 값을 `Not Supported`로 전환하려면 다음을 수행합니다.
 
 다음 줄을 
 ```XML
@@ -77,7 +77,7 @@ ACR를 hello 제거 `<Item>` hello 키로 = "AuthenticationContextReferenceClaim
 ```
 
 ## <a name="session-behavior-and-sso"></a>세션 동작 및 SSO
-toochange 세션 동작 및 SSO 구성 tooadd 해야는 `<UserJourneyBehaviors>` 요소 hello 내의 요소 `<RelyingParty>` 요소입니다.  hello `<UserJourneyBehaviors>` 요소 바로 뒤에 붙여야 hello `<DefaultUserJourney>`합니다.  내부에 hello 프로그램 `<UserJourneyBehavors>` 요소는 다음과 같이 표시 됩니다.
+세션 동작 및 SSO 구성을 변경하려면 `<RelyingParty>` 요소 내에 `<UserJourneyBehaviors>` 요소를 추가해야 합니다.  `<UserJourneyBehaviors>` 요소 바로 뒤에는 `<DefaultUserJourney>`가 나와야 합니다.  `<UserJourneyBehavors>` 요소 내부는 다음과 같아야 합니다.
 
 ```XML
 <UserJourneyBehaviors>
@@ -86,8 +86,8 @@ toochange 세션 동작 및 SSO 구성 tooadd 해야는 `<UserJourneyBehaviors>`
    <SessionExpiryInSeconds>86400</SessionExpiryInSeconds>
 </UserJourneyBehaviors>
 ```
-**Single sign-on (SSO) 구성** 의 toomodify hello 값이 필요한 toochange hello single sign on 구성, `<SingleSignOn>`합니다.  hello 적용 가능한 값은 `Tenant`, `Application`, `Policy` 및 `Disabled`합니다. 
+**SSO(Single Sign-On) 구성** SSO(Single Sign-On) 구성을 변경하려면 `<SingleSignOn>` 값을 수정해야 합니다.  적용 가능한 값은 `Tenant`, `Application`, `Policy` 및 `Disabled`입니다. 
 
-**웹 응용 프로그램 세션 수명 (분)** toochange hello hello 웹 응용 프로그램의 hello toomodify 값이 필요한 세션 수명 `<SessionExpiryInSeconds>` 요소입니다.  기본 제공 정책에서 hello 기본값은 86, 400 초 (1440 분)입니다.
+**웹앱 세션 수명(분)** 웹앱 세션 수명을 변경하려면 `<SessionExpiryInSeconds>` 요소의 값을 수정해야 합니다.  기본 제공 정책의 기본값은 86400초(1440분)입니다.
 
-**웹 앱에 대 한 세션 제한 시간** 의 toomodify hello 값이 필요한 toochange hello 웹 응용 프로그램 세션 제한 시간 `<SessionExpiryType>`합니다.  hello 적용 가능한 값은 `Absolute` 및 `Rolling`합니다.
+**웹앱 세션 시간 제한** 웹앱 세션 시간 제한을 변경하려면 `<SessionExpiryType>` 값을 수정해야 합니다.  적용 가능한 값은 `Absolute` 및 `Rolling`입니다.

@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Suite에서 사용자 지정 규칙 aaaCreate | Microsoft Docs"
-description: "어떻게 toocreate IoT Suite에서 사용자 지정 규칙 솔루션 미리 구성 됩니다."
+title: "Azure IoT Suite에 사용자 지정 규칙 만들기 | Microsoft Docs"
+description: "미리 구성된 IoT Suite 솔루션에서 사용자 지정 규칙을 만드는 방법"
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,56 +15,56 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 6c5bb2ca54f3f17b99ad482e727c8e9fa28d7fe5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d58c27234ea05a82aaa3e8d72f70c1449980df09
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="create-a-custom-rule-in-hello-remote-monitoring-preconfigured-solution"></a>미리 구성 된 솔루션 모니터링 원격 hello에 사용자 지정 규칙을 만들려면
+# <a name="create-a-custom-rule-in-the-remote-monitoring-preconfigured-solution"></a>미리 구성된 원격 모니터링 솔루션에서 사용자 지정 규칙 만들기
 
 ## <a name="introduction"></a>소개
 
-미리 구성 하는 hello 솔루션에서 구성할 수 있습니다 [장치 특정 임계값에 도달할 때는 원격 분석을 트리거하는 규칙의 값][lnk-builtin-rule]합니다. [동적 원격 분석을 사용 하 여 원격 미리 구성 된 솔루션을 모니터링 하는 hello로] [ lnk-dynamic-telemetry] 와 같은 사용자 지정 원격 분석 값을 추가 하는 방법을 설명 *ExternalTemperature* tooyour 솔루션입니다. 이 문서에서는 솔루션에서 동적 원격 분석을 위한 사용자 지정 규칙 toocreate 형식 하는 방법입니다.
+미리 구성된 솔루션에서 [장치에 대한 원격 분석 값이 특정 임계값에 도달할 때 트리거되는 규칙][lnk-builtin-rule]을 구성할 수 있습니다. [원격 모니터링 사전 구성 솔루션으로 동적 원격 분석 사용][lnk-dynamic-telemetry]에서는 *ExternalTemperature*와 같은 사용자 지정 원격 분석 값을 솔루션에 추가하는 방법을 설명합니다. 이 문서에서는 솔루션에 동적 원격 분석 형식에 대한 사용자 지정 규칙을 만드는 방법을 보여 줍니다.
 
-이 자습서에서는 간단한 Node.js 시뮬레이션 된 장치 toogenerate 동적 원격 분석 toosend toohello 미리 구성 된 솔루션 백 엔드를 사용 합니다. Hello에 다음 사용자 지정 규칙을 추가 **RemoteMonitoring** Visual Studio 솔루션 및 Azure 구독에이 사용자 지정 된 백 엔드 tooyour를 배포 합니다.
+이 자습서에서는 간단한 Node.js 시뮬레이트 장치를 사용하여 미리 구성된 솔루션 백 엔드로 보낼 동적 원격 분석을 생성합니다. 그런 후 **RemoteMonitoring** Visual Studio 솔루션에서 사용자 지정 규칙을 추가하고 사용자 지정된 이 백 엔드를 Azure 구독에 배포합니다.
 
-toocomplete 해야이 자습서에서는:
+이 자습서를 완료하려면 다음이 필요합니다.
 
 * 활성 Azure 구독. 계정이 없는 경우 몇 분 만에 무료 평가판 계정을 만들 수 있습니다. 자세한 내용은 [Azure 무료 평가판][lnk_free_trial]을 참조하세요.
-* [Node.js] [ lnk-node] 버전 0.12.x 또는 이후 toocreate 시뮬레이션된 된 장치.
-* Visual Studio 2015 또는 Visual Studio 2017 toomodify hello 미리 구성 된 솔루션 다시 새 규칙 끝나야 합니다.
+* 시뮬레이트된 장치를 만들기 위한 [Node.js][lnk-node] 버전 0.12.x 이상
+* 새 규칙으로 미리 구성된 솔루션 백 엔드를 수정하기 위한 Visual Studio 2015 또는 Visual Studio 2017
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
-배포에 대해 선택한 hello 솔루션 이름을 기록해 둡니다. 이 솔루션은 이 자습서의 뒷부분에서 필요합니다.
+배포를 위해 선택한 솔루션 이름을 기록해 둡니다. 이 솔루션은 이 자습서의 뒷부분에서 필요합니다.
 
 [!INCLUDE [iot-suite-send-external-temperature](../../includes/iot-suite-send-external-temperature.md)]
 
-보내는 지 확인 한 경우 hello Node.js 콘솔 응용 프로그램을 중지할 수 있습니다 **ExternalTemperature** 원격 분석 toohello 미리 솔루션을 구성 합니다. 다시 실행 하면이 Node.js 콘솔 응용 프로그램 hello 사용자 지정 규칙 toohello 솔루션을 추가한 후 때문에 hello 콘솔 창을 열어 둡니다.
+**ExternalTemperature** 원격 분석을 미리 구성된 솔루션으로 전송하는지 확인한 다음 Node.js 콘솔 앱을 중지할 수 있습니다. 솔루션에 사용자 지정 규칙을 추가한 후에 이 Node.js 콘솔 앱을 다시 실행하게 되므로 콘솔 창을 열어 둡니다.
 
 ## <a name="rule-storage-locations"></a>규칙 저장소 위치
 
 규칙에 대한 정보는 다음 두 위치에 유지됩니다.
 
-* **DeviceRulesNormalizedTable** 테이블-이 테이블에 저장 한 정규화 된 참조 toohello 규칙 hello 솔루션 포털에서 정의 합니다. Hello 솔루션 포털 장치 규칙을 표시 하는 경우 경우이 테이블 hello 규칙 정의 대 한 쿼리 합니다.
-* **DeviceRules** – blob이이 blob 저장 장치를 등록 하 고 참조 입력된 toohello Azure 스트림 분석 작업으로 정의 된 모든에 대해 정의 된 모든 hello 규칙입니다.
+* **DeviceRulesNormalizedTable** 테이블 - 이 테이블은 솔루션 포털에서 정의된 규칙에 대한 정규화된 참조를 저장합니다. 솔루션 포털에 장치 규칙이 표시되면 이 테이블에서 규칙 정의를 쿼리합니다.
+* **DeviceRules** blob - 이 blob은 등록된 모든 장치에 대해 정의된 모든 규칙을 저장하며 Azure Stream Analytics 작업에 대한 참조 입력으로 정의됩니다.
  
-Hello 솔루션 포털에서 새 규칙을 정의 하거나 기존 규칙을 업데이트할 때 hello 테이블 및 blob를 모두 업데이트 tooreflect hello 변경 내용이 있습니다. hello 규칙 정의 hello 포털에 표시 되는 hello 테이블 저장소와 정의 hello 스트림 분석 작업에서 참조 하는 hello blob에서 제공 하는 hello 규칙에서 제공 됩니다. 
+기존 규칙을 업데이트하거나 솔루션 포털에서 새 규칙을 정의하는 경우 변경 내용을 반영하도록 테이블 및 blob이 모두 업데이트됩니다. 포털에 표시된 규칙 정의는 테이블 저장소에서 가져오며, Stream Analytics 작업에서 참조되는 규칙 정의는 blob에서 가져옵니다. 
 
-## <a name="update-hello-remotemonitoring-visual-studio-solution"></a>Hello RemoteMonitoring Visual Studio 솔루션을 업데이트 합니다.
+## <a name="update-the-remotemonitoring-visual-studio-solution"></a>RemoteMonitoring Visual Studio 솔루션 업데이트
 
-hello 다음 단계 보여 어떻게 toomodify hello RemoteMonitoring Visual Studio 솔루션 tooinclude hello를 사용 하는 새 규칙 **ExternalTemperature** hello 시뮬레이션 된 장치에서 전송 하는 원격 분석:
+다음 단계에서는 시뮬레이트된 장치에서 전송된 **ExternalTemperature** 원격 분석을 사용하는 새 규칙을 포함하도록 RemoteMonitoring Visual Studio 솔루션을 수정하는 방법을 보여 줍니다.
 
-1. 경우 있습니다 아직 수행 하지 않은 복제 hello 따라서 **azure iot-원격 액세스 모니터링** 다음 Git 명령을 hello를 사용 하 여 로컬 컴퓨터의 저장소 tooa 적합 한 위치:
+1. **azure-iot-remote-monitoring** 리포지토리를 로컬 컴퓨터의 적절한 위치로 복제하지 않은 경우 다음 Git 명령을 사용하여 지금 수행합니다.
 
     ```
     git clone https://github.com/Azure/azure-iot-remote-monitoring.git
     ```
 
-2. Visual Studio에서 hello RemoteMonitoring.sln 파일 hello의 로컬 복사본을 엽니다 **azure iot-원격 액세스 모니터링** 저장소입니다.
+2. Visual Studio에서 **azure-iot-remote-monitoring** 리포지토리의 로컬 복사본에서 RemoteMonitoring.sln 파일을 엽니다.
 
-3. Infrastructure\Models\DeviceRuleBlobEntity.cs hello 파일을 열고 추가 된 **ExternalTemperature** 속성을 다음과 같이 합니다.
+3. Infrastructure\Models\DeviceRuleBlobEntity.cs 파일을 열고 다음과 같이 **ExternalTemperature** 속성을 추가합니다.
 
     ```csharp
     public double? Temperature { get; set; }
@@ -72,7 +72,7 @@ hello 다음 단계 보여 어떻게 toomodify hello RemoteMonitoring Visual Stu
     public double? ExternalTemperature { get; set; }
     ```
 
-4. Hello 같은 파일에서 추가 된 **ExternalTemperatureRuleOutput** 속성을 다음과 같이 합니다.
+4. 같은 파일에 다음과 같이 **ExternalTemperatureRuleOutput** 속성을 추가합니다.
 
     ```csharp
     public string TemperatureRuleOutput { get; set; }
@@ -80,7 +80,7 @@ hello 다음 단계 보여 어떻게 toomodify hello RemoteMonitoring Visual Stu
     public string ExternalTemperatureRuleOutput { get; set; }
     ```
 
-5. Hello 파일 Infrastructure\Models\DeviceRuleDataFields.cs 열고 hello 다음 추가 **ExternalTemperature** hello 기존 속성 **습도** 속성:
+5. Infrastructure\Models\DeviceRuleDataFields.cs 파일을 열고, 기존 **Humidity** 속성 뒤에 다음 **ExternalTemperature** 속성을 추가합니다.
 
     ```csharp
     public static string ExternalTemperature
@@ -89,7 +89,7 @@ hello 다음 단계 보여 어떻게 toomodify hello RemoteMonitoring Visual Stu
     }
     ```
 
-6. 동일한 파일 hello 하 hello 업데이트 **_availableDataFields** 메서드 tooinclude **ExternalTemperature** 다음과 같습니다.
+6. 동일한 파일에서 다음과 같이 **ExternalTemperature**를 포함하도록 **_availableDataFields** 메서드를 업데이트합니다.
 
     ```csharp
     private static List<string> _availableDataFields = new List<string>
@@ -98,7 +98,7 @@ hello 다음 단계 보여 어떻게 toomodify hello RemoteMonitoring Visual Stu
     };
     ```
 
-7. Hello 파일 Infrastructure\Repository\DeviceRulesRepository.cs을 열고 hello 수정 **BuildBlobEntityListFromTableRows** 메서드를 다음과 같이 합니다.
+7. Infrastructure\Repository\DeviceRulesRepository.cs 파일을 열고 다음과 같이 **BuildBlobEntityListFromTableRows** 메서드를 수정합니다.
 
     ```csharp
     else if (rule.DataField == DeviceRuleDataFields.Humidity)
@@ -113,29 +113,29 @@ hello 다음 단계 보여 어떻게 toomodify hello RemoteMonitoring Visual Stu
     }
     ```
 
-## <a name="rebuild-and-redeploy-hello-solution"></a>다시 작성 한 hello 솔루션 다시 배포 합니다.
+## <a name="rebuild-and-redeploy-the-solution"></a>솔루션을 다시 빌드하고 다시 배포합니다.
 
-이제 업데이트 hello 솔루션 tooyour Azure 구독을 배포할 수 있습니다.
+이제 업데이트된 솔루션을 Azure 구독에 배포할 수 있습니다.
 
-1. 관리자 권한 명령 프롬프트를 열고 toohello 루트 hello azure iot-원격 액세스 모니터링 저장소의 로컬 복사본을 이동 합니다.
+1. 관리자 권한 명령 프롬프트를 열고 azure-iot-remote-monitoring 리포지토리의 로컬 복사본 루트로 이동합니다.
 
-2. toodeploy hello 명령 대체 하 여 다음을 실행 하 여 업데이트 된 솔루션을 **{배포 이름}** 이전에 기록한 미리 구성 된 솔루션 배포의 hello 이름의:
+2. 업데이트된 솔루션을 배포하려면 **{deployment name}**을 이전에 적어둔 미리 구성된 솔루션 배포의 이름으로 바꾸어 다음 명령을 실행합니다.
 
     ```
     build.cmd cloud release {deployment name}
     ```
 
-## <a name="update-hello-stream-analytics-job"></a>Hello 스트림 분석 작업 업데이트
+## <a name="update-the-stream-analytics-job"></a>Stream Analytics 작업 업데이트
 
-Hello 배포 완료 되 면 hello 스트림 분석 작업 toouse hello 새 규칙 정의 업데이트할 수 있습니다.
+배포가 완료되면 새 규칙 정의를 사용하도록 Stream Analytics 작업을 업데이트할 수 있습니다.
 
-1. Hello Azure 포털에서에서 미리 구성 된 솔루션 리소스를 포함 하는 toohello 리소스 그룹을 이동 합니다. 이 리소스 그룹에 이름과 같은 이름을 지정 하는 hello hello 배포 하는 동안 솔루션 hello 합니다.
+1. Azure Portal에서 미리 구성된 솔루션 리소스를 포함하는 리소스 그룹으로 이동합니다. 이 리소스 그룹은 배포하는 동안 솔루션에 대해 지정한 동일한 이름을 갖습니다.
 
-2. {배포 이름} toohello 탐색-규칙 스트림 분석 작업 합니다. 
+2. {배포 이름}-규칙 Stream Analytics 작업으로 이동합니다. 
 
-3. 클릭 **중지** toostop hello 스트림 분석 작업의 실행 합니다. (기다려야 hello 쿼리를 편집 하려면 먼저 작업 toostop 스트리밍 hello에 대 한).
+3. **중지**를 클릭하여 Stream Analytics 작업 실행을 중지합니다. (쿼리를 편집하려면 스트리밍 작업이 중지될 때까지 기다려야 합니다.)
 
-4. **쿼리**를 클릭합니다. Hello 쿼리 tooinclude hello 편집 **선택** 문을 **ExternalTemperature**합니다. hello 다음 샘플 쿼리를 보여 줍니다 hello 전체 hello로 새 **선택** 문:
+4. **쿼리**를 클릭합니다. **ExternalTemperature**에 대한 **SELECT** 문을 포함하도록 쿼리를 편집합니다. 다음 샘플에서는 새 **SELECT** 문을 사용하는 완전한 쿼리를 보여 줍니다.
 
     ```
     WITH AlarmsData AS 
@@ -190,39 +190,39 @@ Hello 배포 완료 되 면 hello 스트림 분석 작업 toouse hello 새 규�
     FROM AlarmsData
     ```
 
-5. 클릭 **저장** toochange hello 규칙 쿼리를 업데이트 합니다.
+5. **저장**을 클릭하여 업데이트된 규칙 쿼리를 변경합니다.
 
-6. 클릭 **시작** toostart hello 스트림 분석 작업을 다시 실행 합니다.
+6. **시작**을 클릭하여 Stream Analytics 작업 실행을 다시 시작합니다.
 
-## <a name="add-your-new-rule-in-hello-dashboard"></a>Hello 대시보드에 새 규칙 추가
+## <a name="add-your-new-rule-in-the-dashboard"></a>대시보드에서 새 규칙 추가
 
-이제 hello를 추가할 수 있습니다 **ExternalTemperature** hello 솔루션 대시보드에 규칙 tooa 장치입니다.
+이제 솔루션 대시보드의 장치에 **ExternalTemperature** 규칙을 추가할 수 있습니다.
 
-1. Toohello 솔루션 포털을 탐색 합니다.
+1. 솔루션 포털로 이동합니다.
 
-2. Toohello 이동 **장치** 패널입니다.
+2. **장치** 패널로 이동합니다.
 
-3. 장치를 찾을 hello 사용자 지정을 만들었으므로 보내는 **ExternalTemperature** 원격 분석 및 hello에 **장치 세부 정보** 에서 **규칙 추가**합니다.
+3. **ExternalTemperature** 원격 분석을 전송하는 사용자 지정 장치를 찾은 후 **장치 세부 정보** 패널에서 **규칙 추가**를 클릭합니다.
 
 4. **데이터 필드**에서 **ExternalTemperature**를 선택합니다.
 
-5. 설정 **임계값** too56 합니다. 그런 후 **규칙 저장 및 보기**를 클릭합니다.
+5. **임계값**을 56으로 설정합니다. 그런 후 **규칙 저장 및 보기**를 클릭합니다.
 
-6. Toohello 대시보드 tooview hello 경보 기록을 반환 합니다.
+6. 대시보드로 돌아가 경보 기록을 확인합니다.
 
-7. 열린 상태로 hello 콘솔 창에 hello Node.js 콘솔 앱 toobegin 보내기 시작 **ExternalTemperature** 원격 분석 데이터.
+7. 열어 둔 콘솔 창에서 Node.js 콘솔 앱을 시작하여 **ExternalTemperature** 원격 분석 데이터 전송을 시작합니다.
 
-8. 해당 hello 확인 **경보 기록** 표에서 hello 새 규칙이 트리거되면 새 경보를 보여 줍니다.
+8. **경보 기록** 테이블에는 새 규칙이 트리거될 때 새 경보가 표시됩니다.
  
 ## <a name="additional-information"></a>추가 정보
 
-변경 hello 연산자  **>**  더 복잡 하 고이 자습서에 설명 된 hello 단계를 벗어납니다. Hello 스트림 분석 작업 toouse 원하는 모든 연산자를 변경할 수는 있지만, 더 복잡 한 작업은 hello 솔루션 포털에서 해당 연산자를 반영 합니다. 
+연산자  **>** 을 변경하는 것은 좀 더 복잡하여 이 자습서에서 다루지 않습니다. 원하는 연산자를 사용하도록 Stream Analytics 작업을 변경할 수는 있으나 솔루션 포털에서 해당 연산자를 적용하는 것이 더 복잡한 작업입니다. 
 
 ## <a name="next-steps"></a>다음 단계
-이제 살펴보았으므로 어떻게 toocreate 사용자 지정 규칙에 대해 알 수 있습니다 더 hello 미리 구성 된 솔루션:
+사용자 지정 규칙을 만드는 방법을 살펴보았으므로 이제 미리 구성된 솔루션에 대해 자세히 알아볼 수 있습니다.
 
-- [논리 앱 tooyour Azure IoT Suite 원격 모니터링 미리 구성 된 솔루션에 연결][lnk-logic-app]
-- [솔루션을 미리 구성 된 장치 정보 메타 데이터에서 원격 모니터링 hello][lnk-devinfo]합니다.
+- [미리 구성된 Azure IoT Suite 원격 모니터링 솔루션에 논리 앱 연결][lnk-logic-app]
+- [미리 구성된 원격 모니터링 솔루션의 장치 정보 메타데이터][lnk-devinfo].
 
 [lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
 

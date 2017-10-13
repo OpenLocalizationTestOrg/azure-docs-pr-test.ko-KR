@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooenable ADAL을 사용 하 여 iOS에서 응용 프로그램 간 SSO | Microsoft Docs"
-description: "어떻게 toouse hello 기능을 응용 프로그램에서 Single Sign On ADAL SDK tooenable hello 합니다. "
+title: "ADAL을 사용하여 iOS에서 앱 간 SSO를 사용하도록 설정하는 방법 | Microsoft Docs"
+description: "ADAL SDK의 기능을 사용하여 응용 프로그램에서 Single Sign On을 활성화하는 방법입니다. "
 services: active-directory
 documentationcenter: 
 author: brandwe
@@ -15,20 +15,20 @@ ms.topic: article
 ms.date: 04/07/2017
 ms.author: brandwe
 ms.custom: aaddev
-ms.openlocfilehash: b7b4389a8dcd956211ffa1aaa431aaf21ded8961
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 73b8ed7e6a153a0790f7eae9bd51bb2e554ae72e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooenable-cross-app-sso-on-ios-using-adal"></a>어떻게 tooenable ADAL을 사용 하 여 iOS에서 응용 프로그램 간 SSO
-사용자가 tooenter 자격 증명을 한 번만 필요 하 고 응용 프로그램에서 자동으로 회사 자격 증명을 갖게 있도록 Single Sign-on (SSO)를 제공 하 이제에서 예상 하는 고객 합니다. hello 어려움 작은 화면에 종종 시간 전화 통화 또는 문자로 전송 코드와 같은 추가 요소 (2FA)와 함께 자신의 사용자 이름과 암호를 입력 하는 경우 사용자 빠른 불만에 결과 toodo이 제품에 대 한 번 이상 있습니다.
+# <a name="how-to-enable-cross-app-sso-on-ios-using-adal"></a>ADAL을 사용하여 iOS에서 앱 간 SSO를 사용하도록 설정하는 방법
+사용자가 자격 증명을 한 번만 입력하고 응용 프로그램에서 자동으로 작동되도록 SSO(Single Sign-on)를 제공하는 것은 이제 고객에게 필요합니다. 종종 전화 통화 또는 문자로 전송하는 코드와 같은 추가 요소(2FA)로 결합된 작은 화면에서 자신의 사용자 이름 및 암호를 입력하는 어려움은 사용자가 제품에 대해 이를 한 번 이상 수행해야 하는 경우 빠른 불만족을 가져 옵니다.
 
-또한 Microsoft 계정 또는 office 365에서 작업 계정과 같은 다른 응용 프로그램이 사용할 수 있는 id 플랫폼에 적용 하면 고객이 자신의 모든 응용 프로그램에서 이러한 자격 증명 toobe 사용 가능한 toouse hello 공급 업체 관계 없이 예상 합니다.
+또한 다른 응용 프로그램이 office365에서 Microsoft 계정 또는 회사 계정을 사용할 수 있는 ID 플랫폼을 적용하는 경우 고객은 공급 업체에 관계 없이 모든 응용 프로그램에서 자격 증명을 사용할 수 있기를 기대합니다.
 
-hello 우리의 Microsoft Identity Sdk와 함께 Microsoft Id 플랫폼 모든이 하드 작업을 수행 하 고 기능 toodelight SSO 하거나 응용 프로그램 또는 사용자 고유의 도구 모음 내에서 사용 하는 고객을 hello 제공 브로커 기능 및 인증자 hello 전체 장치에서 응용 프로그램
+Microsoft ID SDK와 함께 Microsoft ID 플랫폼은 이 모든 어려운 작업을 수행하며 자체 응용 프로그램 제품 내의 SSO 또는 전체 장치에서 브로커 기능 및 Authenticator 응용 프로그램으로 고객을 만족시키는 기능을 제공합니다.
 
-이 연습에서는 열에 표시 방법을 tooconfigure 우리의 SDK 응용 프로그램 tooprovide 내에서이 혜택 tooyour 고객 합니다.
+이 연습에서는 고객에게 이 혜택을 제공하도록 응용 프로그램 내에서 SDK를 구성하는 방법을 알려줍니다.
 
 이 연습은 다음에 적용됩니다.
 
@@ -37,36 +37,36 @@ hello 우리의 Microsoft Identity Sdk와 함께 Microsoft Id 플랫폼 모든�
 * Azure Active Directory B2B
 * Azure Active Directory 조건부 액세스
 
-위의 hello 문서 너무 방법을 알고 있는 것으로 가정[Azure Active Directory에 대 한 hello 레거시 포털에서 응용 프로그램을 프로 비전](active-directory-how-to-integrate.md) hello로 응용 프로그램 통합 및 [Microsoft Identity iOS SDK](https://github.com/AzureAD/azure-activedirectory-library-for-objc)합니다.
+이전 문서는 [Azure Active Directory에 대한 레거시 포털에서 응용 프로그램을 프로비전](active-directory-how-to-integrate.md)하는 방법을 알고 있으며 응용 프로그램을 [Microsoft ID iOS SDK](https://github.com/AzureAD/azure-activedirectory-library-for-objc)와 통합했다고 가정합니다.
 
-## <a name="sso-concepts-in-hello-microsoft-identity-platform"></a>Microsoft Id 플랫폼 hello에 대 한 SSO 개념
+## <a name="sso-concepts-in-the-microsoft-identity-platform"></a>Microsoft ID 플랫폼의 SSO 개념
 ### <a name="microsoft-identity-brokers"></a>Microsoft ID Broker
-Microsoft hello 여러 공급 업체의 응용 프로그램 전체에서 자격 증명의 브리징에 대 한 허용 하는 모든 모바일 플랫폼에 대 한 응용 프로그램을 제공 하 고 어디에서 단일 안전한 곳을 필요로 하는 특별 한 향상 된 기능에 대 한 허용 toovalidate 자격 증명입니다. 이를 **브로커**라고 합니다. IOS 및 Android에서 이러한 브로커는 고객에 독립적으로 설치 하거나 해당 직원에 대 한 일부 또는 모두 hello 장치를 관리 하는 회사에서 장치 toohello 푸시할 수는 다운로드 가능한 응용 프로그램을 통해 제공 됩니다. 이러한 브로커 일부 응용 프로그램 및 IT 관리자의 필요에 따라 hello 전체 장치에 대 한 관리 보안을 지원 합니다. Windows에서 기술적으로 웹 인증 브로커 hello 라고 toohello 운영 체제에서 기본적으로 제공 하는 계정 선택 하 여이 기능을 제공 합니다.
+Microsoft는 다른 공급 업체의 응용 프로그램에서 자격 증명의 브리징을 허용하고 자격 증명을 확인하는 위치에서 단일 보안 위치가 필요한 특수한 향상된 기능을 허용하는 모든 모바일 플랫폼에 대한 응용 프로그램을 제공합니다. 이를 **브로커**라고 합니다. iOS 및 Android에서 해당 브로커는 고객이 독립적으로 설치하거나 해당 직원에 대한 일부 또는 모든 장치를 관리하는 회사에서 장치에 푸시할 수 있는 다운로드 가능한 응용 프로그램을 통해 제공됩니다. 이러한 브로커는 일부 응용 프로그램 또는 IT 관리자가 원하는 기능에 따라 전체 장치에 대해서만 보안 관리를 지원합니다. Windows에서 이 기능은 기술적으로 웹 인증 브로커로 알려진 운영 체제에 기본적으로 제공된 계정 선택기로 제공됩니다.
 
-방법에 대 한 자세한 내용은 이러한 브로커 및 방법을 고객에 게 표시 될 수 하 hello Microsoft Id 플랫폼에 대 한 읽기에 대 한 자신의 로그인 흐름에 사용 합니다.
+이러한 브로커를 사용하는 방법 및 고객이 Microsoft ID 플랫폼에 대한 로그인 흐름에서 이를 보는 방법을 이해하려면 자세한 내용을 읽어 보세요.
 
 ### <a name="patterns-for-logging-in-on-mobile-devices"></a>모바일 장치에 로그인하기 위한 패턴
-장치에 대 한 액세스 toocredentials hello Microsoft Identity 플랫폼에 대 한 두 가지 기본 패턴을 따릅니다.
+장치에서 자격 증명에 대한 액세스는 Microsoft ID 플랫폼에 대해 두 가지 기본 패턴을 따릅니다.
 
 * 비 브로커 지원 로그인
 * 브로커 지원 로그인
 
 #### <a name="non-broker-assisted-logins"></a>비 브로커 지원 로그인
-비 브로커 보조 로그인은 hello 응용 프로그램을 사용 하 여 인라인으로 발생 하지 않으며 해당 응용 프로그램에 대 한 hello 장치에서 hello 로컬 저장소를 사용 하는 로그인 환경을 제공 합니다. 이 저장소는 응용 프로그램 간에 공유 될 수 있습니다 하지만 hello 자격 증명이 밀접 하 게 toohello 응용 프로그램 또는 제품군이 자격 증명을 사용 하는 앱입니다. 경험해 본 있다면 대개이 많은 모바일 응용 프로그램에서 사용자 이름 및 hello 응용 프로그램 자체 내에 암호를 입력 합니다.
+비 브로커 지원 로그인은 응용 프로그램과 함께 인라인을 발생하고 해당 응용 프로그램에 대한 장치에서 로컬 저장소를 사용하는 로그인 환경입니다. 이 저장소는 응용 프로그램 간에 공유될 수 있지만 자격 증명은 해당 자격 증명을 사용하는 앱 또는 앱의 제품군에 밀접하게 바인딩됩니다. 응용 프로그램 자체 내에서 사용자 이름 및 암호를 입력하는 경우 많은 모바일 응용 프로그램에서 이를 경험할 가능성이 가장 큽니다.
 
-이러한 로그인 hello 이점을 뒤에
+이러한 로그인은 다음과 같은 이점이 있습니다.
 
-* Hello 응용 프로그램 내 사용자 환경이 있습니다.
-* Hello로 서명 된 응용 프로그램에서 자격 증명을 공유할 수 동일한 인증서를 응용 프로그램 single sign on 환경을 tooyour 제품군을 제공 합니다.
-* 로깅 hello 환경 전체에 제어를 이전 및 이후 로그인 toohello 응용 프로그램에 제공 됩니다.
+* 사용자 환경은 응용 프로그램 내에 완전히 존재합니다.
+* 응용 프로그램 제품군에 Single Sign-On 환경을 제공하여 동일한 인증서로 서명하는 응용 프로그램에서 자격 증명을 공유할 수 있습니다.
+* 로그인 환경 주위의 제어는 로그인 이전 및 이후에 응용 프로그램에 제공됩니다.
 
-이러한 로그인 있어야 hello 다음 단점이 있습니다.
+이러한 로그인은 다음과 같은 단점이 있습니다.
 
 * 사용자는 Microsoft ID를 사용하는 모든 앱이 아닌 응용 프로그램이 구성한 해당 Microsoft ID 간에서만 Single Sign-On을 경험할 수 있습니다.
-* 응용 프로그램을 사용 하 여 hello InTune 제품군 또는 조건부 액세스 등의 고급 비즈니스 기능으로 사용할 수 없습니다.
+* 조건부 액세스와 같은 고급 비즈니스 기능과 함께 응용 프로그램을 사용하거나 InTune 제품군을 사용할 수 없습니다.
 * 응용 프로그램은 비즈니스 사용자에 대한 인증서 기반 인증을 지원할 수 없습니다.
 
-Microsoft Identity Sdk hello 프로그램 응용 프로그램 tooenable SSO의 hello 공유 저장소에서 작동 하는 방법에 대 한 표현을 다음과 같습니다.
+Microsoft ID SDK가 응용 프로그램의 공유 저장소와 작업하여 SSO를 활성화하는 방법에 대한 표현은 다음과 같습니다.
 
 ```
 +------------+ +------------+  +-------------+
@@ -83,35 +83,35 @@ Microsoft Identity Sdk hello 프로그램 응용 프로그램 tooenable SSO의 h
 ```
 
 #### <a name="broker-assisted-logins"></a>브로커 지원 로그인
-Broker 기반 로그인에는 hello 저장 및 hello 브로커 tooshare 자격 증명의 보안을 사용 하 여 hello Microsoft Id 플랫폼을 적용 하는 hello 장치에서 모든 응용 프로그램 사이의 hello broker 응용 프로그램 내에서 발생 하는 로그인 환경이 되어 있습니다. 이 응용 프로그램의 hello 브로커 toosign 사용자가 사용 한다는 것을 의미 합니다. IOS 및 Android에서 이러한 브로커는 고객에 독립적으로 설치 하거나 해당 사용자에 대 한 hello 장치를 관리 하는 회사에서 장치 toohello 푸시할 수는 다운로드 가능한 응용 프로그램을 통해 제공 됩니다. 이러한 유형의 응용 프로그램의 예는 iOS에서 hello Microsoft Authenticator 응용 프로그램입니다. Windows 웹 인증 브로커 hello 라고 기술적으로 toohello 운영 체제에서 기본적으로 제공 하는 계정 선택 하 여이 기능을 제공 합니다.
-hello 경험 플랫폼에 따라 다르며 하며 중단 toousers 수 되지 않은 경우 올바르게 관리 합니다. 익숙한 아마도 가장이 패턴 hello Facebook 응용 프로그램이 설치 된 다른 응용 프로그램에서 Facebook Connect를 사용 하는 경우. hello Microsoft Identity 플랫폼 사용 하 여 hello 같은 패턴입니다.
+브로커 지원 로그인은 브로커 응용 프로그램 내에서 발생하고 Microsoft ID 플랫폼을 적용하는 장치의 모든 응용 프로그램에서 자격 증명을 공유하도록 브로커의 저장소와 보안을 사용하는 로그인 환경입니다. 즉, 응용 프로그램은 사용자가 로그인하도록 브로커를 사용합니다. iOS 및 Android에서 해당 브로커는 고객이 독립적으로 설치하거나 사용자에 대한 장치를 관리하는 회사에서 장치에 푸시할 수 있는 다운로드 가능한 응용 프로그램을 통해 제공됩니다. 이 응용 프로그램 유형의 예는 iOS에서 Microsoft Authenticator 응용 프로그램입니다. Windows에서 이 기능은 기술적으로 웹 인증 브로커로 알려진 운영 체제에 기본적으로 제공된 계정 선택기로 제공됩니다.
+환경은 플랫폼별로 다르며 올바르게 관리되지 않는 경우 사용자에게 작업 중단이 발생할 수 있습니다. Facebook 응용 프로그램을 설치하고 다른 응용 프로그램에서 Facebook Connect를 사용하는 경우 아마도 이 패턴과 가장 친숙할 것입니다. Microsoft ID 플랫폼은 동일한 패턴을 사용합니다.
 
-IOS에 대 한이 인해 tooa "전환" 애니메이션 전송 대상에 응용 프로그램 toohello 백그라운드 hello Microsoft Authenticator 응용 프로그램 사용자 tooselect hello에 대 한 toohello 전경 제공 사용한 toosign 만족할 만한 계정.  
+iOS의 경우 이는 Microsoft Authenticator 응용 프로그램이 사용자가 로그인하려는 계정을 선택하도록 포그라운드로 오는 동안 응용 프로그램이 백그라운드로 전송되는 "전환" 애니메이션이 됩니다.  
 
-Android 및 Windows hello 계정에 대 한 선택은 덜 중단 toohello 사용자는 응용 프로그램 맨 위에 표시 됩니다.
+Android 및 Windows의 경우 계정 선택기가 사용자에게 덜 방해가 되는 응용 프로그램 맨 위에 표시됩니다.
 
-#### <a name="how-hello-broker-gets-invoked"></a>Hello broker가 호출 하는 방법
-호환 되는 broker hello Microsoft Authenticator 응용 프로그램, Microsoft Identity Sdk hello가 자동으로 같은 hello 장치가에 설치 된 경우에 사용자 toolog에서 모든 계정을 사용 하 여 만들려는 되었음을 나타낼 때 사용자에 대 한 hello 브로커 호출 작업 hello 수행 hello Microsoft Identity 플랫폼입니다. 이 계정은 개인 Microsoft 계정, 회사 또는 학교 계정 또는 B2C 및 B2B 제품을 사용하여 Azure에 제공 및 호스트하는 계정일 수 있습니다. 
+#### <a name="how-the-broker-gets-invoked"></a>브로커를 호출하는 방법
+호환되는 브로커가 Microsoft Authenticator 응용 프로그램과 마찬가지로 장치에 설치된 경우 Microsoft ID SDK는 사용자가 Microsoft ID 플랫폼에서 계정을 사용하여 로그인하려는 것을 나타내는 경우 브로커 호출 작업을 자동으로 수행합니다. 이 계정은 개인 Microsoft 계정, 회사 또는 학교 계정 또는 B2C 및 B2B 제품을 사용하여 Azure에 제공 및 호스트하는 계정일 수 있습니다. 
 
- #### <a name="how-we-ensure-hello-application-is-valid"></a>올바른지 hello 응용 프로그램 인지 확인 하는 방법
+ #### <a name="how-we-ensure-the-application-is-valid"></a>응용 프로그램이 유효한지 확인하는 방법
  
- 응용 프로그램 호출 hello 브로커 hello 필요 tooensure hello id가 중요 한 toohello 보안에서 지원 되는 broker 로그인을 제공 합니다. IOS 나 Android 악성 응용 프로그램이 "스푸핑"는 올바른 응용 프로그램의 식별자를 업데이트 하 고 hello 합법적인 응용 프로그램을 위한 hello 토큰을 수신할 수 있습니다 하므로 지정된 된 응용 프로그램에 대해서만 사용할 수 있는 고유 식별자를 적용 합니다. 런타임 시 hello 오른쪽 응용 프로그램과 알립니다 항상 tooensure, 반드시 hello 개발자 tooprovide 사용자 지정 redirectURI Microsoft와 응용 프로그램을 등록할 때 합니다. **개발자가 이 리디렉션 URI를 만드는 방법은 아래에 자세히 설명되어 있습니다.** 이 사용자 지정 redirectURI hello hello 응용 프로그램의 번들 ID가 포함 되어 및 hello Apple 앱 스토어에 의해 toobe 고유 toohello 응용 프로그램을 보장 됩니다. 응용 프로그램 호출 hello 브로커 hello 브로커 hello iOS를 요청할 때 사용 하 여 번들 ID를 호출한 hello 브로커를 hello 시스템 tooprovide 운영 합니다. 이 번들 ID tooMicrosoft hello 호출 tooour id 시스템에서 제공 하는 hello broker 합니다. Hello hello 응용 프로그램의 번들 ID에 등록 하는 동안 번들 ID가 toous hello 개발자가 제공 하는 hello와 일치 하지 않으면, 우리에서 액세스를 거부할 toohello 토큰 hello 리소스 hello 응용 프로그램이 요청에 대 한 합니다. 이 검사는 hello 개발자가 등록 된 hello 응용 프로그램이 토큰 수신 되는지 확인 합니다.
+ 브로커를 호출하는 응용 프로그램의 ID를 확인하는 것은 브로커 지원 로그인에 제공하는 보안에 중요합니다. iOS와 Android 모두 제공된 응용 프로그램에만 유효한 고유한 식별자를 적용하지 않으므로 악의적 응용 프로그램은 합법적인 응용 프로그램의 ID를 “스푸핑"하고 합법적인 응용 프로그램을 의미하는 토큰을 받을 수도 있습니다. 런타임 시 적절한 응용 프로그램으로 항상 통신하고 있음을 확인하기 위해 Microsoft에 해당 응용 프로그램을 등록할 때 개발자에게 사용자 지정 redirectURI를 요청합니다. **개발자가 이 리디렉션 URI를 만드는 방법은 아래에 자세히 설명되어 있습니다.** 이 사용자 지정 redirectURI는 응용 프로그램의 번들 ID를 포함하고 Apple 앱 스토어에서 응용 프로그램에 고유하도록 보장됩니다. 응용 프로그램이 브로커를 호출하면 브로커는 iOS 운영 체제에 브로커를 호출한 번들 ID를 제공하도록 요청합니다. 브로커는 ID 시스템에 대한 호출에서 Microsoft에 이 번들 ID를 제공합니다. 응용 프로그램의 번들 ID가 등록하는 동안 개발자가 제공한 번들 ID와 일치하지 않는 경우 응용 프로그램이 요청하는 리소스를 위한 토큰에 대한 액세스를 거부합니다. 이러한 확인을 통해 개발자가 등록한 응용 프로그램만 토큰을 받습니다.
 
-**hello 개발자는 Microsoft Identity SDK hello hello 브로커를 호출 하거나 hello 비 브로커 보조 흐름을 사용 하는 경우 hello 선택을 있습니다.** 그러나 하지 toouse hello 브로커 기반 흐름을 선택 하는 hello 개발자의 경우 이러한 hello의 이점을 잃게 SSO 자격 증명을 사용 하 여 해당 hello 사용자 hello 장치에 이미 추가한 수 없고을 Microsoft 비즈니스 기능과 함께 사용 하는 응용 프로그램 조건부 액세스, Intune 관리 기능 및 인증서 기반 인증 같은 고객을 제공합니다.
+**개발자는 Microsoft ID SDK가 브로커를 호출할지 비 브로커 지원 흐름을 사용할지를 선택할 수 있습니다.** 그러나 개발자가 브로커 지원 흐름을 사용하지 않도록 선택하는 경우 사용자가 장치에 이미 추가했으며 조건부 액세스, Intune 관리 기능 및 인증서 기반 인증과 같은 Microsoft가 고객에게 제공하는 비즈니스 기능으로 응용 프로그램이 사용되는 것을 예방하는 SSO 자격 증명 사용의 이점을 잃게 됩니다.
 
-이러한 로그인 hello 이점을 뒤에
+이러한 로그인은 다음과 같은 이점이 있습니다.
 
-* Hello 공급 업체에 관계 없이 자신의 모든 응용 프로그램에 SSO를 경험 하는 사용자입니다.
-* 응용 프로그램 조건부 액세스 등의 고급 비즈니스 기능을 사용 하거나 제품 hello InTune 그룹을 사용할 수 있습니다.
+* 사용자는 공급 업체에 관계 없이 모든 응용 프로그램에서 SSO를 경험합니다.
+* 응용 프로그램은 조건부 액세스와 같은 고급 비즈니스 기능을 사용하거나 InTune 제품군을 사용할 수 있습니다.
 * 응용 프로그램은 비즈니스 사용자에 대한 인증서 기반 인증을 지원할 수 있습니다.
-* 훨씬 더 안전한 로그인 환경의 hello broker 응용 프로그램 추가 보안 알고리즘 및 암호화가 hello hello 응용 프로그램 및 hello 사용자 신원을 확인 합니다.
+* 응용 프로그램 및 사용자의 ID로서 더 안전한 로그인 환경은 추가 보안 알고리즘 및 암호화로 브로커 응용 프로그램에 의해 확인됩니다.
 
-이러한 로그인 있어야 hello 다음 단점이 있습니다.
+이러한 로그인은 다음과 같은 단점이 있습니다.
 
-* IOS에서 hello 사용자 자격 증명을 선택 하는 동안 응용 프로그램의 환경이 전환 됩니다.
-* 응용 프로그램 내에서 고객에 대 한 hello 기능 toomanage hello 로그인의 손실 발생 합니다.
+* iOS에서 사용자는 자격 증명을 선택하는 동안 응용 프로그램의 환경 밖으로 전환됩니다.
+* 응용 프로그램 내에서 고객에 대한 로그인 환경을 관리하는 기능이 손실됩니다.
 
-Hello Microsoft Identity Sdk 작업 hello로 응용 프로그램 tooenable SSO broker 하는 방법에 대 한 표현을 다음과 같습니다.
+Microsoft ID SDK가 브로커 응용 프로그램과 작업하여 SSO를 활성화하는 방법에 대한 표현은 다음과 같습니다.
 
 ```
 +------------+ +------------+   +-------------+
@@ -137,28 +137,28 @@ Hello Microsoft Identity Sdk 작업 hello로 응용 프로그램 tooenable SSO b
               +-------------+
 ```
 
-이 배경 정보를 갖춘 있어야 수 toobetter 이해 하 고 hello Microsoft Id 플랫폼 및 Sdk를 사용 하 여 응용 프로그램 내에서 SSO를 구현 합니다.
+이 배경 정보를 사용하여 Microsoft ID 플랫폼 및 SDK를 사용하여 응용 프로그램 내에서 SSO를 더 잘 이해하고 구현할 수 있어야 합니다.
 
 ## <a name="enabling-cross-app-sso-using-adal"></a>ADAL을 사용하여 앱 간 SSO 활성화
-Hello ADAL iOS SDK 사용 여기에:
+여기에서 ADAL iOS SDK를 사용하여 다음 작업을 수행합니다.
 
 * 앱 제품군에 대한 비 브로커 지원 SSO 설정
 * 브로커 지원 SSO에 대한 지원 설정
 
 ### <a name="turning-on-sso-for-non-broker-assisted-sso"></a>비 브로커 지원 SSO에 대한 SSO 설정
-비 브로커 보조 SSO 응용 프로그램 전반에 대 한 Microsoft Identity Sdk hello SSO의 hello 복잡성 많이를 관리 합니다. Hello 캐시에 hello 올바른 사용자를 찾아서 tooquery 있습니다에 대 한 로그인된 사용자의 목록을 유지 관리 포함 됩니다.
+응용 프로그램에서 비 브로커 지원 SSO의 경우 Microsoft ID SDK는 SSO의 복잡성을 관리합니다. 캐시에서 올바른 사용자를 찾고 쿼리할 로그인된 사용자의 목록을 유지 관리하는 것을 포함합니다.
 
-다음 toodo hello 필요를 소유 하는 응용 프로그램 전체에서 SSO tooenable:
+소유하고 있는 응용 프로그램에서 SSO를 활성화하려면 다음을 수행해야 합니다.
 
-1. 모든 사용자 응용 프로그램 사용자 hello 같은 클라이언트 ID 또는 id입니다. 응용 프로그램 확인
-2. 모든 키 집합을 공유할 수 있도록 Apple에서 인증서 같은 서명 하 여 응용 프로그램 공유 hello 확인
-3. 요청 각 응용 프로그램에 대 한 동일한 키 집합 자격 hello 합니다.
-4. Microsoft Identity Sdk hello에 대 한 hello 공유 키 집합 toouse 제공할 수 있습니다.
+1. 모든 응용 프로그램 사용자가 동일한 클라이언트 ID 또는 응용 프로그램 ID인지 확인합니다.
+2. 모든 응용 프로그램이 키 집합을 공유할 수 있도록 Apple에서 동일한 서명 인증서를 공유하는지 확인합니다.
+3. 각 응용 프로그램에 대한 동일한 키 집합 권한 부여를 요청합니다.
+4. Microsoft ID SDK에 사용했으면 하는 공유 키 집합을 제공합니다.
 
-#### <a name="using-hello-same-client-id--application-id-for-all-hello-applications-in-your-suite-of-apps"></a>동일한 클라이언트 ID를 hello를 사용 하 여 / 응용 프로그램의 응용 프로그램 도구 모음에 모든 hello에 대 한 응용 프로그램 ID
-Microsoft Identity 플랫폼 tooknow hello에 대 한 응용 프로그램에서 tooshare 토큰 수 있는지, 각 응용 프로그램이 있어야 tooshare hello 같은 클라이언트 ID 또는 응용 프로그램 id입니다. Hello 포털에서 첫 번째 응용 프로그램을 등록할 때 tooyou 제공한 hello 고유 식별자입니다.
+#### <a name="using-the-same-client-id--application-id-for-all-the-applications-in-your-suite-of-apps"></a>앱 제품군에서 모든 응용 프로그램에 대한 동일한 클라이언트 ID / 응용 프로그램 ID 사용
+Microsoft ID 플랫폼이 응용 프로그램에서 토큰을 공유하도록 허용하는지 알려면 각 응용 프로그램은 동일한 클라이언트 ID 또는 응용 프로그램 ID를 공유해야 합니다. 포털에 첫 번째 응용 프로그램을 등록했던 경우에 제공된 고유 식별자입니다.
 
-다양 한 앱 식별 하는 방법 할까요 toohello Microsoft Id 서비스를 사용 하는 경우 hello 동일한 응용 프로그램 id입니다. hello 대답이 hello로 **리디렉션 Uri**합니다. 각 응용 프로그램에는 hello 등록 포털에 등록 한 리디렉션 Uri 여러 개 있을 수 있습니다. 제품의 각 앱은 다른 리디렉션 URI를 갖습니다. 표시되는 모양의 예는 다음과 같습니다.
+동일한 응용 프로그램 ID를 사용하는 경우 다른 앱을 Microsoft ID 서비스에 식별하는 방법을 궁금해 할 수 있습니다. **리디렉션 URI**를 사용하면 됩니다. 각 응용 프로그램에는 등록 포털에 등록한 여러 개의 리디렉션 URI가 있을 수 있습니다. 제품의 각 앱은 다른 리디렉션 URI를 갖습니다. 표시되는 모양의 예는 다음과 같습니다.
 
 App1 리디렉션 URI: `x-msauth-mytestiosapp://com.myapp.mytestapp`
 
@@ -168,7 +168,7 @@ App3 리디렉션 URI: `x-msauth-mytestiosapp://com.myapp.mytestapp3`
 
 ....
 
-아래에 중첩 된 이러한 동일한 클라이언트 ID를 hello / 응용 프로그램 ID 및 조회에 따라 hello에 대 한 리디렉션 URI SDK 구성에서 toous을 반환 합니다.
+이는 동일한 클라이언트 ID / 응용 프로그램 ID 아래에 중첩되며 SDK 구성에서 우리에게 반환하는 리디렉션 URI에 따라 조회됩니다.
 
 ```
 +-------------------+
@@ -194,12 +194,12 @@ App3 리디렉션 URI: `x-msauth-mytestiosapp://com.myapp.mytestapp3`
 ```
 
 
-*이러한 리디렉션 Uri의 형식은 hello는 아래 설명 되어 있습니다. 이 경우 이러한 해야 다음과 같은 hello 위의 toosupport hello broker 싶지 않다면 모든 리디렉션 URI를 사용할 수 있습니다.*
+*이러한 리디렉션 URI의 형식은 아래에 설명되어 있습니다. 브로커를 지원하려고 하는 한 모든 리디렉션 URI를 사용할 수 있습니다. 이 경우 위와 같이 표시되어야 합니다.*
 
 #### <a name="create-keychain-sharing-between-applications"></a>응용 프로그램 간에 공유되는 키 집합 만들기
-이 문서의 hello 범위를 벗어납니다 키 집합 공유를 사용 하 고 Apple에서 해당 문서에 포함 [기능 추가](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html)합니다. 중요 한 것은 호출 하 여 키 집합 toobe 원하는 결정 하 고 모든 응용 프로그램에서 해당 기능을 추가 합니다.
+키 집합 공유 활성화는 이 문서의 범위를 벗어나며 Apple에서 해당 문서 [기능 추가](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html)에 포함됩니다. 중요한 것은 사용자가 키 집합이 불리는 이름을 결정하는 것과 모든 응용 프로그램에 해당 기능을 추가하는 것입니다.
 
-설정 제대로 권리가 부여 받은 프로젝트 디렉터리에 파일 나타나야 않은 경우 `entitlements.plist` hello 다음 처럼 보이는 항목을 포함 하 합니다.
+올바르게 설정된 권한 부여를 가진 경우 다음처럼 보이는 항목이 포함된 `entitlements.plist` 의 자격 있는 프로젝트 디렉터리에 파일이 보입니다.
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -215,43 +215,43 @@ App3 리디렉션 URI: `x-msauth-mytestiosapp://com.myapp.mytestapp3`
 </plist>
 ```
 
-각 응용 프로그램에서 사용 하도록 설정 하는 hello 키 집합 자격 있고 준비 toouse SSO는 후 Microsoft Identity SDK hello에 대 한 키 체인 설정에 따라 hello를 사용 하 여 프로그램 `ADAuthenticationSettings` 설정은 다음 hello로:
+각 응용 프로그램에서 키 집합 권한 부여를 활성화하면 SSO를 사용할 준비가 되었으며 다음 설정으로 `ADAuthenticationSettings` 에서 다음 설정을 사용하여 Microsoft ID SDK에 키 집합에 대해 제공합니다.
 
 ```
 defaultKeychainSharingGroup=@"com.myapp.mycache";
 ```
 
 > [!WARNING]
-> 응용 프로그램에서 키 집합을 공유 하는 경우 모든 응용 프로그램 사용자를 삭제 하거나 나빠지는 지 응용 프로그램에서 모든 hello 토큰을 삭제할 수 있습니다. 이 hello 토큰 toodo 백그라운드 작업을 사용 하는 응용 프로그램의 경우에 특히 재해로입니다. 모든에 특히 주의 이어야 한다는 의미는 키 집합 공유 hello Microsoft Identity Sdk를 통해 작업을 제거 합니다.
+> 응용 프로그램에서 키 집합을 공유하는 경우 모든 응용 프로그램은 사용자를 삭제하거나 더 심한 경우 응용 프로그램에서 모든 토큰을 삭제할 수 있습니다. 백그라운드 작업을 하기 위해 토큰을 사용하는 응용 프로그램이 있는 경우에 특히 미치는 영향이 커집니다. 키 집합을 공유하면 Microsoft ID SDK를 통한 모든 제거 작업에 특히 주의해야 합니다.
 > 
 > 
 
-이것으로 끝입니다. 이제 Microsoft Identity SDK hello 응용 프로그램에서 자격 증명을 공유 합니다. hello 사용자 목록도 응용 프로그램 인스턴스 간에 공유 됩니다.
+이것으로 끝입니다. 이제 Microsoft ID SDK는 모든 응용 프로그램에서 자격 증명을 공유합니다. 사용자 목록도 응용 프로그램 인스턴스 간에 공유됩니다.
 
 ### <a name="turning-on-sso-for-broker-assisted-sso"></a>브로커 지원 SSO에 대한 SSO 설정
-응용 프로그램 toouse hello 장치에 설치 되어 있는 모든 broker에 대 한 기능 hello **기본적으로 해제 되어**합니다. 순서로 toouse 응용 프로그램 hello 브로커와 몇 가지 추가 구성을 변경 하 고 일부 코드 tooyour 응용 프로그램을 추가 합니다.
+장치에 설치되어 있는 모든 브로커를 사용하는 응용 프로그램에 대한 기능은 **기본적으로 해제되어**있습니다. 브로커와 함께 응용 프로그램을 사용하려면 몇 가지 추가 구성을 수행하고 응용 프로그램에 코드를 추가해야 합니다.
 
-hello 단계 toofollow가 됩니다.
+수행할 단계는 다음과 같습니다.
 
-1. 응용 프로그램 코드의 호출 toohello MS SDK에서에서 broker 모드를 사용 하도록 설정 합니다.
-2. 새 리디렉션 URI를 해당 tooboth hello 앱 및 앱 등록을 제공 합니다.
+1. MS SDK에 대한 응용 프로그램 코드의 호출에서 브로커 모드를 활성화합니다.
+2. 새 리디렉션 URI를 설정하고 앱과 앱 등록에 이를 제공합니다.
 3. URL 구성표 등록.
-4. iOS9 지원: 권한 tooyour info.plist 파일을 추가 합니다.
+4. iOS9 지원: info.plist 파일에 권한을 추가합니다.
 
 #### <a name="step-1-enable-broker-mode-in-your-application"></a>1단계: 응용 프로그램에서 브로커 모드 활성화
-"hello"컨텍스트 또는 인증 개체의 초기 설정을 만들 때 응용 프로그램 toouse hello broker 프로그램에 대 한 hello 기능이 켜 집니다. 코드에서 자격 증명 형식을 설정하여 이 작업을 수행합니다.
+"컨텍스트" 또는 인증 개체의 초기 설정을 만들 때 브로커를 사용하는 응용 프로그램에 대한 기능은 설정되어 있습니다. 코드에서 자격 증명 형식을 설정하여 이 작업을 수행합니다.
 
 ```
-/*! See hello ADCredentialsType enumeration definition for details */
+/*! See the ADCredentialsType enumeration definition for details */
 @propertyADCredentialsType credentialsType;
 ```
-hello `AD_CREDENTIALS_AUTO` 설정을 사용 하면 toohello 브로커 아웃 hello Microsoft Identity SDK tootry toocall `AD_CREDENTIALS_EMBEDDED` hello Microsoft Identity SDK에서 toohello 브로커 호출 되지 것입니다.
+`AD_CREDENTIALS_AUTO` 설정을 사용하면 Microsoft ID SDK는 브로커에 호출하려고 시도할 수 있으며 `AD_CREDENTIALS_EMBEDDED`은(는) Microsoft ID SDK가 브로커에 호출할 수 없도록 합니다.
 
 #### <a name="step-2-registering-a-url-scheme"></a>2단계: URL 구성표 등록
-hello Microsoft Identity 플랫폼 Url tooinvoke hello 브로커와 다음 반환 컨트롤 뒤로 tooyour 응용 프로그램을 사용합니다. toofinish URL 체계 해야 해당 왕복 등록 응용 프로그램에 대 한 해당 hello Microsoft Identity 플랫폼에 대 한 알게 됩니다. 이 수 또한 tooany 기타 응용 프로그램 스키마의 응용 프로그램에 이전에 등록 될 수 있습니다.
+Microsoft ID 플랫폼은 URL을 사용하여 브로커를 호출한 다음 응용 프로그램에 제어를 다시 반환합니다. 해당 왕복을 완료하려면 Microsoft ID 플랫폼이 아는 응용 프로그램에 등록된 URL 구성표가 필요합니다. 이전에 응용 프로그램에 이미 등록했을 수 있는 다른 앱 구성표 외에도 될 수 있습니다.
 
 > [!WARNING]
-> Hello hello를 사용 하 여 다른 앱의 URL 구성표 상당히 고유 toominimize hello 가능성을 만드는 것이 좋습니다 동일한 URL 구성표입니다. Apple는 hello 앱 스토어에 등록 된 URL 스키마의 hello 고유성을 적용 하지 않습니다.
+> 다른 앱이 동일한 URL 구성표를 사용할 가능성을 최소화하기 위해 URL 구성표를 매우 고유하게 만드는 것이 좋습니다. Apple은 앱 스토어에 등록된 URL 구성표의 고유성을 적용하지 않습니다.
 > 
 > 
 
@@ -274,25 +274,25 @@ hello Microsoft Identity 플랫폼 Url tooinvoke hello 브로커와 다음 반�
 ```
 
 #### <a name="step-3-establish-a-new-redirect-uri-with-your-url-scheme"></a>3단계: URL 구성표와 함께 새 리디렉션 URI 설정
-에 항상 반환 hello 자격 증명 토큰 toohello 올바른 응용 프로그램 순서 tooensure, toomake म 콜백할 tooyour 응용 프로그램 iOS 운영 체제 hello 하는 방식으로 확인할 수 있는지 필요 합니다. hello iOS 운영 체제 보고서 toohello Microsoft broker 응용 프로그램 hello 메서드를 호출 하는 hello 응용 프로그램의 번들 ID입니다. 불량 응용 프로그램에서 이를 스푸핑할 수 없습니다. 따라서 활용 하 여이 hello hello 토큰 toohello 올바른 응용 프로그램으로 반환 됨 우리의 broker 응용 프로그램 tooensure의 URI와 함께 합니다. 필요 하면 tooestablish이 고유 리디렉션 URI를 모두 설정 하 여 응용 프로그램에서 리디렉션 URI로 우리의 개발자 포털에서.
+올바른 응용 프로그램에 자격 증명 토큰을 항상 반환하는지 확인하려면 iOS 운영 체제에서 확인할 수 있는 방식으로 응용 프로그램에 다시 호출하는지 확인해야 합니다. iOS 운영 체제는 호출하는 응용 프로그램의 번들 ID를 Microsoft 브로커 응용 프로그램에 보고합니다. 불량 응용 프로그램에서 이를 스푸핑할 수 없습니다. 따라서 토큰이 올바른 응용 프로그램에 반환되는지 확인하도록 브로커 응용 프로그램의 URI와 함께 활용합니다. 이 고유한 리디렉션 URI를 응용 프로그램 및 개발자 포털에서 리디렉션 URI로 설정해야 합니다.
 
-Hello 적절 한 형태의 사용자 리디렉션 URI 이어야 합니다.
+리디렉션 URI는 다음의 적절한 형식이어야 합니다.
 
 `<app-scheme>://<your.bundle.id>`
 
 예: *x-msauth-mytestiosapp://com.myapp.mytestapp*
 
-이 리디렉션 URI toobe hello를 사용 하 여 응용 프로그램 등록에 지정 된 필요한 [Azure 포털](https://portal.azure.com/)합니다. Azure AD 앱 등록에 대한 자세한 내용은 [Azure Active Directory와 통합](active-directory-how-to-integrate.md)을 참조하세요.
+[Azure Portal](https://portal.azure.com/)을 사용하여 앱 등록에 이 리디렉션 URI를 지정해야 합니다. Azure AD 앱 등록에 대한 자세한 내용은 [Azure Active Directory와 통합](active-directory-how-to-integrate.md)을 참조하세요.
 
-##### <a name="step-3a-add-a-redirect-uri-in-your-app-and-dev-portal-toosupport-certificate-based-authentication"></a>3a 단계: 응용 프로그램 및 개발자 포털 toosupport 인증서 기반 인증의 리디렉션 URI 추가
-두 번째 "msauth" toosupport 인증서 기반 인증에 응용 프로그램 및 hello 등록 toobe 필요 [Azure 포털](https://portal.azure.com/) tooadd 원할 경우 toohandle 인증서 인증을 지 원하는 응용 프로그램에서 합니다.
+##### <a name="step-3a-add-a-redirect-uri-in-your-app-and-dev-portal-to-support-certificate-based-authentication"></a>3a단계: 인증서 기반 인증을 지원하도록 앱 및 개발자 포털에 리디렉션 URI 추가
+인증서 기반 인증을 지원하기 위해 응용 프로그램에 해당 지원을 추가하려는 경우 두 번째 "msauth"를 응용 프로그램 및 [Azure Portal](https://portal.azure.com/)에 등록하여 인증서 인증을 처리해야 합니다.
 
 `msauth://code/<broker-redirect-uri-in-url-encoded-form>`
 
 예: *msauth://code/x-msauth-mytestiosapp%3A%2F%2Fcom.myapp.mytestapp*
 
-#### <a name="step-4-ios9-add-a-configuration-parameter-tooyour-app"></a>4 단계: iOS9: 구성 매개 변수 tooyour 앱 추가
-ADAL 사용 – canOpenURL: toocheck hello 브로커 hello 장치에 설치 된 경우. iOS 9에서 Apple은 응용 프로그램에서 쿼리할 수 있는 구성표를 잠궜습니다. tooadd "msauth" toohello LSApplicationQueriesSchemes 섹션 해야 프로그램 `info.plist file`합니다.
+#### <a name="step-4-ios9-add-a-configuration-parameter-to-your-app"></a>4단계: iOS9: 앱에 구성 매개 변수 추가
+ADAL은 canOpenURL을 사용하여 브로커가 장치에 설치되어 있는지 확인합니다. iOS 9에서 Apple은 응용 프로그램에서 쿼리할 수 있는 구성표를 잠궜습니다. `info.plist file`의 LSApplicationQueriesSchemes 섹션에 "Msauth"를 추가해야 합니다.
 
 <key>LSApplicationQueriesSchemes</key>
 
@@ -300,5 +300,5 @@ ADAL 사용 – canOpenURL: toocheck hello 브로커 hello 장치에 설치 된 
 </array>
 
 ### <a name="youve-configured-sso"></a>SSO를 구성했습니다.
-이제 Microsoft Identity SDK hello에서는 자동으로 응용 프로그램에서 자격 증명을 공유를 자신의 장치에 표시 되지 않으면 hello 브로커를 호출 합니다.
+이제 Microsoft ID SDK는 자동으로 응용 프로그램에서 자격 증명을 공유하고 장치에 있는 경우 브로커를 호출합니다.
 

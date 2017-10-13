@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tootag Azure Linux 가상 컴퓨터 | Microsoft Docs"
-description: "Hello 리소스 관리자 배포 모델을 사용 하 여 Azure에서 만든 Azure Linux 가상 컴퓨터는 태그를 지정 하는 방법을 알아봅니다."
+title: "Azure Linux 가상 컴퓨터에 태그를 지정하는 방법 | Microsoft Docs"
+description: "Resource Manager 배포 모델을 사용하여 만든 Azure Linux 가상 컴퓨터에 태그를 지정하는 방법을 알아봅니다."
 services: virtual-machines-linux
 documentationcenter: 
 author: mmccrory
@@ -15,43 +15,43 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 02/28/2017
 ms.author: memccror
-ms.openlocfilehash: 0e99ea66a87b7e00eb21a2f72dd2bce8673778dd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f643001c85e127ae39e9869ffdc689bcac232ccb
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tootag-a-linux-virtual-machine-in-azure"></a>어떻게 tootag Azure에서 Linux 가상 컴퓨터
-이 문서에서는 다양 한 방법 tootag hello 리소스 관리자 배포 모델을 통해 Azure에서 Linux 가상 컴퓨터를 설명 합니다. 태그는 리소스 또는 리소스 그룹에 직접 배치할 수 있는 사용자 정의 키/값 쌍입니다. 현재 azure 리소스 및 리소스 그룹 당 too15 태그를 지원합니다. 태그 생성 hello 시 리소스에 배치 될 수 있습니다 또는 tooan 기존 리소스를 추가 합니다. 하십시오 note, hello 리소스 관리자 배포 모델만을 통해 생성 된 리소스에 대 한 태그는 지원 합니다.
+# <a name="how-to-tag-a-linux-virtual-machine-in-azure"></a>Azure에서 Linux 가상 컴퓨터에 태그를 지정하는 방법
+이 문서에서는 리소스 관리자 배포 모델을 통해 Azure의 Linux 가상 컴퓨터에 태그를 지정하는 다양한 방법에 대해 설명합니다. 태그는 리소스 또는 리소스 그룹에 직접 배치할 수 있는 사용자 정의 키/값 쌍입니다. Azure는 현재 리소스 및 리소스 그룹당 최대 15개의 태그를 지원합니다. 태그를 만들 때 리소스에 배치하거나 기존 리소스에 추가할 수 있습니다. 태그는 리소스 관리자 배포 모델을 통해 만든 리소스에 대해서만 지원됩니다.
 
 [!INCLUDE [virtual-machines-common-tag](../../../includes/virtual-machines-common-tag.md)]
 
 ## <a name="tagging-with-azure-cli"></a>Azure CLI를 사용하여 태그 지정
-toobegin, [설치 및 구성 hello Azure CLI](../../xplat-cli-azure-resource-manager.md) 리소스 관리자 모드에 있는지 확인 하 고 (`azure config mode arm`).
+시작하려면 [Azure CLI를 설치 및 구성](../../xplat-cli-azure-resource-manager.md)하고 Resource Manager 모드(`azure config mode arm`)에 있는지 확인합니다.
 
-Hello 태그를 포함 하 여,이 명령을 사용 하 여 지정 된 가상 컴퓨터에 대 한 모든 속성을 볼 수 있습니다.
+다음 명령을 사용하여 태그를 비롯한 지정된 가상 컴퓨터의 모든 속성을 볼 수 있습니다.
 
         azure vm show -g MyResourceGroup -n MyTestVM
 
-hello Azure CLI를 통해 새 VM 태그 tooadd hello를 사용할 수 있습니다 `azure vm set` hello 태그 매개 변수와 함께 명령 **-t**:
+Azure CLI를 통해 새 VM 태그를 추가하려면 태그 매개 변수 **-t**와 함께 `azure vm set` 명령을 사용할 수 있습니다.
 
         azure vm set -g MyResourceGroup -n MyTestVM –t myNewTagName1=myNewTagValue1;myNewTagName2=myNewTagValue2
 
-모든 tooremove 태그 hello를 사용할 수 있습니다 **– T** hello에 대 한 매개 변수 `azure vm set` 명령입니다.
+`azure vm set` 명령에 **–T** 매개 변수를 사용하여 모든 태그를 제거할 수 있습니다.
 
         azure vm set – g MyResourceGroup –n MyTestVM -T
 
 
-태그 tooour 리소스 Azure CLI 적용 하 고 포털 hello, 살펴보겠습니다는 hello 사용량 세부 정보 toosee hello 태그 hello 청구 포털에서입니다.
+Azure CLI 및 포털을 통해 리소스에 태그를 적용했으므로 이제 사용량 세부 정보를 확인하여 청구 포털에서 태그를 살펴보겠습니다.
 
 [!INCLUDE [virtual-machines-common-tag-usage](../../../includes/virtual-machines-common-tag-usage.md)]
 
 ## <a name="next-steps"></a>다음 단계
-* Azure 리소스 태그에 대 한 자세한 toolearn 참조 [Azure 리소스 관리자 개요] [ Azure Resource Manager Overview] 및 [tooorganize 태그를 사용 하 여 Azure 리소스] [ Using Tags tooorganize your Azure Resources].
-* toosee 태그 수 Azure 리소스의 사용을 관리 하는 방법 참조 [Azure 청구서 이해] [ Understanding your Azure Bill] 및 [Microsoft Azure 리소스 소비량에 대 한 이해력] [Gain insights into your Microsoft Azure resource consumption].
+* Azure 리소스에 태그를 지정하는 방법에 대한 자세한 내용은 [Azure Resource Manager 개요][Azure Resource Manager Overview] 및 [태그를 사용하여 Azure 리소스 구성][Using Tags to organize your Azure Resources]을 참조하세요.
+* 태그로 Azure 리소스의 사용을 관리하는 방법은 [Azure 청구서 이해][Understanding your Azure Bill] 및 [Microsoft Azure 리소스 소비에 대한 정보 얻기][Gain insights into your Microsoft Azure resource consumption]를 참조하세요.
 
 [Azure CLI environment]: ../../azure-resource-manager/xplat-cli-azure-resource-manager.md
 [Azure Resource Manager Overview]: ../../azure-resource-manager/resource-group-overview.md
-[Using Tags tooorganize your Azure Resources]: ../../azure-resource-manager/resource-group-using-tags.md
+[Using Tags to organize your Azure Resources]: ../../azure-resource-manager/resource-group-using-tags.md
 [Understanding your Azure Bill]: ../../billing/billing-understand-your-bill.md
 [Gain insights into your Microsoft Azure resource consumption]: ../../billing/billing-usage-rate-card-overview.md

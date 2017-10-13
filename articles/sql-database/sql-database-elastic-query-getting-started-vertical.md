@@ -1,6 +1,6 @@
 ---
-title: "데이터베이스 간 쿼리 (수직 분할) aaaGet 시작 | Microsoft Docs"
-description: "수직 분할 데이터베이스를 어떻게 사용 하 여 toouse 탄력적 데이터베이스 쿼리"
+title: "데이터베이스 간 쿼리 시작(수직 분할) | Microsoft Docs"
+description: "수직 분할 데이터베이스에서 탄력적 데이터베이스 쿼리를 사용하는 방법"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2016
 ms.author: torsteng
-ms.openlocfilehash: 9e6183268e8bf87e3ac28f502711fcc05a7a3f52
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 17158c4960e9ba9251524659c90af9aec1316774
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="get-started-with-cross-database-queries-vertical-partitioning-preview"></a>데이터베이스 간 쿼리 시작(수직 분할)(미리 보기)
-Azure SQL 데이터베이스 탄력적 데이터베이스 쿼리 (미리 보기) 사용 하면 단일 연결 지점을 사용 하 여 여러 데이터베이스에 걸쳐 있는 toorun T-SQL 쿼리가 있습니다. 이 항목은 너무 적용[데이터베이스 수직 분할](sql-database-elastic-query-vertical-partitioning.md)합니다.  
+Azure SQL 데이터베이스에 탄력적 데이터베이스 쿼리 (미리 보기)를 사용 하면 단일 연결 지점을 사용하여 여러 데이터베이스에 걸쳐 있는 T-SQL 쿼리를 실행할 수 있습니다. 이 항목은 [데이터베이스 수직 분할](sql-database-elastic-query-vertical-partitioning.md)에 적용됩니다.  
 
-완료 되 면 됩니다: 방법을 tooconfigure 및 Azure SQL 데이터베이스 tooperform 사용 하 여 쿼리를 포괄 하는 여러 관련 된 데이터베이스에 알아봅니다. 
+완료되면 여러 관계형 데이터베이스에 걸쳐 있는 쿼리를 수행 하는 Azure SQL 데이터베이스를 사용과 구성방법을 알아봅니다. 
 
-Hello 탄력적 데이터베이스 쿼리 기능에 대 한 자세한 내용은 참조 하십시오 [Azure SQL 데이터베이스 탄력적 데이터베이스 쿼리 개요](sql-database-elastic-query-overview.md)합니다. 
+탄력적 데이터베이스 쿼리 기능에 대한 자세한 내용은 [Azure SQL Database 탄력적 데이터베이스 쿼리 개요](sql-database-elastic-query-overview.md)를 참조하세요. 
 
 ## <a name="prerequisites"></a>필수 조건
 
-사용자는 모든 외부 데이터 원본 ALTER 권한이 있어야 합니다. 이 사용 권한은 hello ALTER DATABASE 권한이 포함 되어 있습니다. ALTER ANY EXTERNAL DATA SOURCE 권한은 필요한 toorefer toohello 데이터 원본으로 사용 합니다.
+사용자는 모든 외부 데이터 원본 ALTER 권한이 있어야 합니다. 이 사용 권한은 ALTER DATABASE 권한에 포함됩니다. 기본 데이터 원본을 참조하기 위해 ALTER ANY EXTERNAL DATA SOURCE 권한이 필요합니다.
 
-## <a name="create-hello-sample-databases"></a>Hello 예제 데이터베이스 만들기
-두 개의 데이터베이스 toocreate 필요와 toostart, **고객** 및 **Orders**, 동일한 또는 다른 논리 서버 hello에 합니다.   
+## <a name="create-the-sample-databases"></a>샘플 데이터베이스 만들기
+먼저 동일하거나 다른 논리적 서버에 있는 이름이 **고객** 및 **주문**인 두 데이터베이스를 만들어야 합니다.   
 
-Hello에 쿼리를 다음과 같은 hello 실행 **Orders** 데이터베이스 toocreate hello **OrderInformation** hello 예제 데이터 테이블 및 입력 합니다. 
+**주문** 데이터베이스에서 다음 쿼리를 실행하여 **주문 정보** 테이블을 만들고 샘플 데이터를 입력합니다. 
 
     CREATE TABLE [dbo].[OrderInformation]( 
         [OrderID] [int] NOT NULL, 
@@ -46,7 +46,7 @@ Hello에 쿼리를 다음과 같은 hello 실행 **Orders** 데이터베이스 t
     INSERT INTO [dbo].[OrderInformation] ([OrderID], [CustomerID]) VALUES (321, 1) 
     INSERT INTO [dbo].[OrderInformation] ([OrderID], [CustomerID]) VALUES (564, 8) 
 
-이제, 다음 hello에 대 한 쿼리를 실행 **고객** 데이터베이스 toocreate hello **CustomerInformation** hello 예제 데이터 테이블 및 입력 합니다. 
+이제 **고객** 데이터베이스에서 다음 쿼리를 실행하여 **고객 정보** 테이블을 만들고 샘플 데이터를 입력합니다. 
 
     CREATE TABLE [dbo].[CustomerInformation]( 
         [CustomerID] [int] NOT NULL, 
@@ -61,18 +61,18 @@ Hello에 쿼리를 다음과 같은 hello 실행 **Orders** 데이터베이스 t
 ## <a name="create-database-objects"></a>데이터베이스 개체 만들기
 ### <a name="database-scoped-master-key-and-credentials"></a>데이터베이스 범위 마스터 키 및 자격 증명
 1. SQL Server Management Studio 또는 Visual Studio의 SQL Server Data Tools를 엽니다.
-2. Toohello Orders 데이터베이스를 연결 하 고 다음 T-SQL 명령을 hello를 실행 합니다.
+2. 주문 데이터베이스에 연결하고 T-SQL 명령을 실행 합니다.
    
         CREATE MASTER KEY ENCRYPTION BY PASSWORD = '<password>'; 
         CREATE DATABASE SCOPED CREDENTIAL ElasticDBQueryCred 
         WITH IDENTITY = '<username>', 
         SECRET = '<password>';  
    
-    hello "username" 및 "password" hello username 있어야 하 고 암호 hello 고객 데이터베이스에 toologin를 사용 합니다.
+    “사용자 이름”과 “암호”는 고객 데이터베이스 로그인에 사용되는 사용자 이름과 암호여야 합니다.
     탄력적 쿼리를 통해 Azure Active Directory를 사용한 인증은 현재 지원되지 않습니다.
 
 ### <a name="external-data-sources"></a>외부 데이터 원본
-외부 데이터 원본, toocreate hello hello Orders 데이터베이스에서 다음 명령을 실행 합니다. 
+외부 데이터 소스를 만들려면 주문 데이터베이스에서 다음 명령을 실행 합니다. 
 
     CREATE EXTERNAL DATA SOURCE MyElasticDBQueryDataSrc WITH 
         (TYPE = RDBMS, 
@@ -82,7 +82,7 @@ Hello에 쿼리를 다음과 같은 hello 실행 **Orders** 데이터베이스 t
     ) ;
 
 ### <a name="external-tables"></a>외부 테이블
-Hello hello CustomerInformation 테이블 정의 일치 하는 hello Orders 데이터베이스에 외부 테이블을 만듭니다.
+주문 데이터베이스에서 고객 정보 테이블의 정의와 일치하는 외부 테이블을 만듭니다. 
 
     CREATE EXTERNAL TABLE [dbo].[CustomerInformation] 
     ( [CustomerID] [int] NOT NULL, 
@@ -92,7 +92,7 @@ Hello hello CustomerInformation 테이블 정의 일치 하는 hello Orders 데�
     ( DATA_SOURCE = MyElasticDBQueryDataSrc) 
 
 ## <a name="execute-a-sample-elastic-database-t-sql-query"></a>탄력적 데이터베이스 T-SQL쿼리 샘플 실행
-외부 데이터 원본 및 외부 테이블을 정의 하 고 나면 T-SQL tooquery를 외부 테이블 이제 사용할 수 있습니다. Hello Orders 데이터베이스에서이 쿼리를 실행 합니다. 
+외부 데이터 원본 및 외부 테이블을 정의한 후에는 T-SQL을 사용하여 외부 테이블을 쿼리할 수 있습니다. 주문 데이터베이스에 다음 쿼리를 실행합니다. 
 
     SELECT OrderInformation.CustomerID, OrderInformation.OrderId, CustomerInformation.CustomerName, CustomerInformation.Company 
     FROM OrderInformation 
@@ -100,7 +100,7 @@ Hello hello CustomerInformation 테이블 정의 일치 하는 hello Orders 데�
     ON CustomerInformation.CustomerID = OrderInformation.CustomerID 
 
 ## <a name="cost"></a>비용
-현재 hello 탄력적 데이터베이스 쿼리 기능은 Azure SQL 데이터베이스의 hello 비용에 포함 됩니다.  
+현재 Azure SQL 데이터베이스 가격에는 탄력적 데이터베이스 쿼리 기능이 포함되어 있습니다.  
 
 가격 정보는 [SQL 데이터베이스 가격 정보](https://azure.microsoft.com/pricing/details/sql-database)를 참조하세요. 
 

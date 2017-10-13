@@ -1,5 +1,5 @@
 ---
-title: "aaaPause, 다시 시작 하 고 확장할 수 있는 Azure SQL 데이터 웨어하우스에 저장 된 상태의 | Microsoft Docs"
+title: "Azure SQL Data Warehouse의 REST를 사용한 일시 중지, 다시 시작, 크기 조정 | Microsoft Docs"
 description: "REST, T-SQL 및 PowerShell을 통해 SQL Data Warehouse에서 계산 능력을 관리합니다."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: manage
 ms.date: 07/25/2017
 ms.author: elbutter
-ms.openlocfilehash: fc867febb118fb5c86c2637a41b232076021b95d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 24e43205c0c562fca9b1c2c0e5eed4da54e17ed7
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="manage-compute-power-in-azure-sql-data-warehouse-rest"></a>Azure SQL Data Warehouse의 계산 능력 관리(REST)
 > [!div class="op_single_selector"]
@@ -37,7 +37,7 @@ ms.lasthandoff: 10/06/2017
 ## <a name="scale-compute-power"></a>계산 능력 크기 조정
 [!INCLUDE [SQL Data Warehouse scale DWUs description](../../includes/sql-data-warehouse-scale-dwus-description.md)]
 
-toochange hello dwu로 사용 하 여 hello [만들기 또는 업데이트 데이터베이스] [ Create or Update Database] REST API입니다. hello 다음 예제에서는 설정 hello 서비스 수준 목표 tooDW1000 hello MySQLDW 호스팅되는 데이터베이스에 대 한 서버 MyServer에서 합니다. hello 서버 이름이 ResourceGroup1 Azure 리소스 그룹에 있습니다.
+DWU를 변경하려면 [데이터베이스 생성 또는 업데이트][Create or Update Database] REST API를 사용합니다. 다음 예제에서는 MyServer에서 호스팅되는 MySQLDW 데이터베이스에 대한 서비스 수준 목표를 DW1000으로 설정합니다. 서버는 이름이 ResourceGroup1인 Azure 리소스 그룹 내에 있습니다.
 
 ```
 PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Sql/servers/{server-name}/databases/{database-name}?api-version=2014-04-01-preview HTTP/1.1
@@ -55,7 +55,7 @@ Content-Type: application/json; charset=UTF-8
 ## <a name="pause-compute"></a>계산 일시 중지
 [!INCLUDE [SQL Data Warehouse pause description](../../includes/sql-data-warehouse-pause-description.md)]
 
-toopause 데이터베이스를 사용 하 여 hello [일시 중지 데이터베이스] [ Pause Database] REST API입니다. hello 다음 중지 하는 예제 Server01 라는 서버에서 호스팅되는 Database02 라는 데이터베이스입니다. hello 서버 이름이 ResourceGroup1 Azure 리소스 그룹에 있습니다.
+데이터베이스를 일시 중지하려면 [데이터베이스 일시 중지][Pause Database] REST API를 사용합니다. 다음 예에서는 Server01 서버에서 호스트하는 이름이 Database02인 데이터베이스를 일시 중지합니다. 서버는 이름이 ResourceGroup1인 Azure 리소스 그룹 내에 있습니다.
 
 ```
 POST https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Sql/servers/{server-name}/databases/{database-name}/pause?api-version=2014-04-01-preview HTTP/1.1
@@ -66,7 +66,7 @@ POST https://management.azure.com/subscriptions/{subscription-id}/resourceGroups
 ## <a name="resume-compute"></a>계산 다시 시작
 [!INCLUDE [SQL Data Warehouse resume description](../../includes/sql-data-warehouse-resume-description.md)]
 
-toostart 데이터베이스를 사용 하 여 hello [이력서 데이터베이스] [ Resume Database] REST API입니다. hello 다음 예제에서는 시작 라는 Database02 Server01 라는 서버에서 호스트 데이터베이스입니다. hello 서버 이름이 ResourceGroup1 Azure 리소스 그룹에 있습니다. 
+데이터베이스를 시작하려면 [데이터베이스 다시 시작][Resume Database] REST API를 사용합니다. 다음 예에서는 Server01 서버에서 호스팅되는 이름이 Database02인 데이터베이스를 시작합니다. 서버는 이름이 ResourceGroup1인 Azure 리소스 그룹 내에 있습니다. 
 
 ```
 POST https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Sql/servers/{server-name}/databases/{database-name}/resume?api-version=2014-04-01-preview HTTP/1.1

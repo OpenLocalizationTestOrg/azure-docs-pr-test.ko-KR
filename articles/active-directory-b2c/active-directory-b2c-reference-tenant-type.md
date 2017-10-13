@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C: 지역 가용성 및 데이터 상주 | Microsoft Docs"
-description: "Azure Active Directory B2C 테 넌 트의 hello 형식에 대 한 항목"
+description: "Azure Active Directory B2C 테넌트 유형에 대한 항목"
 services: active-directory-b2c
 documentationcenter: 
 author: gsacavdm
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/10/2017
 ms.author: gsacavdm
-ms.openlocfilehash: d382921fe9d62183b6d52c47d62f952dabd116c4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: facd66f0324e382ea7609a035de8129ba433846f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-b2c-region-availability--data-residency"></a>Azure Active Directory B2C: 지역 가용성 및 데이터 상주
-지역 가용성과 데이터 상주는 Azure의 hello 나머지에서 AD B2C tooAzure 다르게 적용 되는 두 개의 매우 다른 개념입니다. 이 문서 hello 차이점 개념을 설명 하 고와 Azure AD B2C tooAzure를 적용 하는 방법을 비교 합니다.
+지역 가용성 및 데이터 상주는 나머지 Azure에서 Azure AD B2C에 다르게 적용되는 두 가지 매우 다른 개념입니다. 이 문서에서는 이러한 두 개념의 차이점을 설명하고 이러한 개념이 Azure 및 Azure AD B2C에 적용되는 방식을 비교합니다.
 
 ## <a name="summary"></a>요약
-Azure AD B2C은 **일반적으로 사용할 수 있는 전 세계** hello 옵션에 대 한 **미국이 나 유럽 데이터 상주**합니다.
+Azure AD B2C는 **미국 또는 유럽의 데이터 상주**에 대한 옵션을 통해 **일반적으로 전 세계에서 사용할 수 있습니다**.
 
 ## <a name="concepts"></a>개념
-* **지역 가용성** toowhere 참조는 서비스를 사용 하기 위해 사용할 수 있습니다.
-* **데이터 상주** 참조 toowhere 사용자 데이터가 저장 됩니다.
+* **지역 가용성**은 서비스를 사용할 수 있는 위치를 나타냅니다.
+* **데이터 상주**는 사용자 데이터가 저장된 위치를 나타냅니다.
 
 ## <a name="region-availability"></a>지역 가용성
-Azure AD B2C 제공 되며, 전 세계 hello Azure 공용 클라우드를 통해 
+Azure AD B2C는 Azure 공용 클라우드를 통해 전 세계에서 사용할 수 있습니다. 
 
-이 점에서 차이가 hello 모델 데이터 상주 가용성 연결 하는 대부분의 다른 Azure 서비스 수행 합니다. 두 Azure에서이 예제를 확인할 수 [제품 사용 가능한 하 여 지역](https://azure.microsoft.com/regions/services/) 페이지와 hello [Active Directory B2C 가격 계산기](https://azure.microsoft.com/pricing/details/active-directory-b2c/)합니다.
+이것은 가용성과 데이터 상주를 결합하는 대부분의 다른 Azure 서비스가 따르는 모델과 다릅니다. Azure의 [지역별 사용 가능한 제품](https://azure.microsoft.com/regions/services/) 페이지 및 [Azure Active Directory B2C 가격](https://azure.microsoft.com/pricing/details/active-directory-b2c/)에서 이와 같은 예제를 확인할 수 있습니다.
 
 ## <a name="data-residency"></a>데이터 상주
 Azure AD B2C는 사용자 데이터를 미국 또는 유럽에 저장합니다.
@@ -42,23 +42,23 @@ Azure AD B2C는 사용자 데이터를 미국 또는 유럽에 저장합니다.
 
 ![미리 보기 테넌트의 스크린 샷](./media/active-directory-b2c-reference-tenant-type/data-residency-b2c-tenant.png)
 
-데이터가 다음 국가/지역의 hello에 대 한 hello 미국에 있습니다.
+다음 국가/지역의 경우 데이터는 미국에 상주합니다.
 
 > 미국, 캐나다, 코스타리카, 도미니카 공화국, 엘살바도르, 과테말라, 멕시코, 파나마, 푸에르토리코, 트리니다드토바고
 
-국가/지역의 다음 hello에 대 한 데이터가 유럽에 있습니다.
+다음 국가/지역의 경우 데이터는 유럽에 상주합니다.
 
 > 알제리, 오스트리아, 아제르바이잔, 바레인, 벨로루시, 벨기에, 불가리아, 크로아티아, 키프로스, 체코, 덴마크, 이집트, 에스토니아, 핀란드, 프랑스, 독일, 그리스, 헝가리, 아이슬란드, 아일랜드, 이스라엘, 이탈리아, 요르단, 카자흐스탄, 케냐, 쿠웨이트, 라트비아, 레바논, 리히텐슈타인, 리투아니아, 룩셈부르크, 마케도니아(FYROM), 몰타, 몬테네그로, 모로코, 네덜란드, 나이지리아, 노르웨이, 오만, 파키스탄, 폴란드, 포르투갈, 카타르, 루마니아, 러시아, 사우디아라비아, 세르비아, 슬로바키아, 슬로베니아, 남아프리카 공화국, 스페인, 스웨덴, 스위스, 튀니지, 터키, 우크라이나 아랍에미리트 및 영국.
 
-hello 나머지 국가/지역에서 hello 프로세스 toohello 목록에 추가 되는 합니다.  지금은 Azure AD B2C hello 국가/지역 위의 중 하나를 선택 하 여 사용할 수 있습니다.
+나머지 국가/지역은 목록에 추가되고 있습니다.  이제 위의 국가/지역을 선택하여 Azure AD B2C를 사용할 수 있습니다.
 
 > 아프가니스탄, 아르헨티나, 오스트레일리아, 브라질, 칠레, 콜롬비아, 에콰도르, 홍콩 특별 행정구, 인도, 인도네시아, 이라크, 일본, 한국, 말레이시아, 뉴질랜드, 파라과이, 페루, 필리핀, 싱가포르, 스리랑카, 대만, 태국, 우루과이 및 베네수엘라.
 
 ## <a name="preview-tenant"></a>미리 보기 테넌트
-Azure AD B2C 미리 보기 기간 동안 B2C 테넌트를 만든 경우 **테넌트 유형**은 **미리 보기 테넌트**라고 할 가능성이 있습니다. Hello 대/소문자 인 경우 개발 및 테스트 목적에 대해서만 하 고 프로덕션 응용 프로그램에 대해 테 넌 트를 사용 해야 합니다.
+Azure AD B2C 미리 보기 기간 동안 B2C 테넌트를 만든 경우 **테넌트 유형**은 **미리 보기 테넌트**라고 할 가능성이 있습니다. 이런 경우 테넌트를 개발 및 테스트 목적에만 사용하고 프로덕션 앱용으로 사용하지 말아야 합니다.
 
 > [!IMPORTANT]
-> B2C 테 넌 트 tooa 프로덕션 규모 B2C 테 넌 트 미리 보기에서 마이그레이션 경로가 없습니다. 미리 보기 B2C 테 넌 트를 삭제 하는 경우 알려진 문제 및 재생성이 다음 프로덕션 규모 B2C 테 넌 트에서 hello 동일한 도메인 이름입니다. Toocreate 다른 도메인 이름의 프로덕션 규모 B2C 테 넌 트를 해야합니다.
+> 미리 보기 B2C 테넌트로부터 프로덕션 규모 B2C 테넌트로의 마이그레이션 경로가 없습니다. 미리 보기 B2C 테넌트를 삭제하고 동일한 도메인 이름으로 프로덕션 규모 B2C 테넌트를 다시 만들어야 하는 경우 알려진 문제가 발생합니다. 다른 도메인 이름으로 프로덕션 규모 B2C 테넌트를 만들어야 합니다.
 
 
 ![미리 보기 테넌트의 스크린 샷](./media/active-directory-b2c-reference-tenant-type/preview-b2c-tenant.png)

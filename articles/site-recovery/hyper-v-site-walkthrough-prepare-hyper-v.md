@@ -1,6 +1,6 @@
 ---
-title: "aaaPrepare Hyper-v (System Center VMM) 없이 복제 tooAzure에 대 한 호스트 | Microsoft Docs"
-description: "Hyper-v tooprepare Azure Site Recovery를 사용 하 여 복제 tooAzure를 호스트 하는 방법을 설명 합니다."
+title: "Azure로 Hyper-V 호스트(System Center VMM 없음) 복제 준비 | Microsoft Docs"
+description: "Azure Site Recovery를 사용하여 Azure로 Hyper-V 호스트 복제를 준비하는 방법 설명"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/22/2017
 ms.author: raynew
-ms.openlocfilehash: 714b229d5efbd66a9844bd09e36ac3f69919a6bb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f9bcaa8e55be6e8fddaf88ebc3f18f5dbb2811e4
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="step-6-prepare-hyper-v-hosts-for-replication-tooazure"></a>6 단계: 복제 tooAzure Hyper-v 호스트 준비
+# <a name="step-6-prepare-hyper-v-hosts-for-replication-to-azure"></a>6단계: Azure로 Hyper-V 호스트 복제 준비
 
-Azure Site Recovery와이 문서 tooprepare 온-프레미스 Hyper-v 호스트 toointeract에 hello 지침을 사용 합니다.
+Azure Site Recovery와 상호 작용하는 온-프레미스 Hyper-V 호스트를 준비하려면 이 문서의 지침을 사용합니다.
 
-이 문서를 읽은 후 hello 맨 아래에 모든 메모를 게시 하거나 hello에 대 한 기술적 질문 [Azure 복구 서비스 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)합니다.
+이 문서를 읽은 후에는 하단에서 의견을 게시하거나 [Azure Recovery Services 포럼](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)에서 기술적인 질문을 합니다.
 
 
 ## <a name="prepare-hosts"></a>호스트 준비
 
-- Hello Hyper-v 호스트 hello를 충족 하는지 확인 [필수 구성 요소](site-recovery-prereq.md#disaster-recovery-of-hyper-v-vms-to-azure-no-vmm)합니다.
-- Hello 호스트 필요한 hello Url에 액세스할 수 있는지 확인 합니다.
+- Hyper-V 호스트가 [필수 구성 요소](site-recovery-prereq.md#disaster-recovery-of-hyper-v-vms-to-azure-no-vmm)를 충족하는지 확인합니다.
+- 호스트가 필요한 URL에 액세스할 수 있는지 확인합니다.
 
     [!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]
     
-- IP 주소를 기준으로 방화벽 규칙을 사용 하는 경우 통신 tooAzure를 허용 하는지 확인 합니다.
-- Hello 허용 [Azure 데이터 센터 IP 범위](https://www.microsoft.com/download/confirmation.aspx?id=41653), 및 hello HTTPS (443) 포트입니다.
-- West US (액세스 제어 및 Id 관리에 사용) 및 hello 구독의 Azure 지역에 대 한 IP 주소 범위를 허용 합니다.
+- IP 주소 기반 방화벽 규칙이 있는 경우 해당 규칙이 Azure와의 통신을 허용하는지 확인합니다.
+- [Azure 데이터 센터 IP 범위](https://www.microsoft.com/download/confirmation.aspx?id=41653) 및 HTTPS(443) 포트를 허용합니다.
+- 구독하는 Azure 지역과 미국 서부에 해당하는 IP 주소 범위를 허용하세요(Access Control 및 ID 관리에 사용됨).
 
-사이트 복구를 배포 하는 동안 tooreplicate tooa 하이퍼-V 사이트를 사용할 Vm을 포함 하는 Hyper-v 호스트를 추가 합니다. 사이트 복구 공급자 hello 및 복구 서비스 에이전트는 각 호스트에 설치 됩니다. hello 하이퍼-V 사이트 hello 복구 서비스 자격 증명 모음에 등록 됩니다.
+Site Recovery를 배포하는 동안 복제할 VM을 포함하는 Hyper-V 호스트를 Hyper-V 사이트에 추가합니다. Site Recovery 공급자 및 Recovery Services 에이전트가 각 호스트에 설치됩니다. Hyper-V 사이트가 Recovery Services 자격 증명 모음에 등록됩니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-너무 이동[7 단계: 자격 증명 모음 만들기](hyper-v-site-walkthrough-create-vault.md)
+[7단계: 자격 증명 모음 만들기](hyper-v-site-walkthrough-create-vault.md)로 이동합니다.
 

@@ -1,9 +1,9 @@
 ---
-title: "aaaCreate 인터넷 연결 부하 분산 장치-Azure CLI | Microsoft Docs"
-description: "Toocreate는 인터넷 연결 부하 분산 장치에 리소스 관리자를 사용 하 여 Azure CLI hello 하는 방법에 대해 알아봅니다"
+title: "인터넷 연결 부하 분산 장치 만들기 - Azure CLI | Microsoft Docs"
+description: "Azure CLI를 사용하여 Resource Manager에서 인터넷 연결 부하 분산 장치를 만드는 방법에 대해 알아봅니다."
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 editor: 
 tags: azure-resource-manager
@@ -13,15 +13,15 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
+ms.date: 09/25/2017
 ms.author: kumud
-ms.openlocfilehash: cadb5edb3b4a4e2f0813109d027eaafdc7ef7303
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ba36b7f6d2ae3cc4d63829ffb757ff7b311e467b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="creating-an-internet-load-balancer-using-hello-azure-cli"></a>Hello Azure CLI를 사용 하 여 인터넷 부하 분산 장치 만들기
+# <a name="creating-an-internet-load-balancer-using-the-azure-cli"></a>Azure CLI를 사용하여 인터넷 부하 분산 장치 만들기
 
 > [!div class="op_single_selector"]
 > * [포털](../load-balancer/load-balancer-get-started-internet-portal.md)
@@ -29,32 +29,35 @@ ms.lasthandoff: 10/06/2017
 > * [Azure CLI](../load-balancer/load-balancer-get-started-internet-arm-cli.md)
 > * [템플릿](../load-balancer/load-balancer-get-started-internet-arm-template.md)
 
+
+[!INCLUDE [load-balancer-basic-sku-include.md](../../includes/load-balancer-basic-sku-include.md)]
+
 [!INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-이 문서에서는 hello 리소스 관리자 배포 모델에 설명 합니다. 수도 있습니다 [toocreate 인터넷 연결 부하 분산 장치 클래식 배포를 사용 하는 방법에 대해 알아봅니다](load-balancer-get-started-internet-classic-portal.md)
+이 문서에서는 리소스 관리자 배포 모델에 대해 설명합니다. 또한 [클래식 배포를 사용하여 인터넷 연결 부하 분산 장치를 만드는 방법을 배울 수 있습니다](load-balancer-get-started-internet-classic-portal.md)
 
 [!INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
 
-## <a name="deploying-hello-solution-using-hello-azure-cli"></a>Hello Azure CLI를 사용 하 여 hello 솔루션 배포
+## <a name="deploying-the-solution-using-the-azure-cli"></a>Azure CLI를 사용하여 솔루션 배포
 
-단계를 수행 하는 hello toocreate 인터넷 연결 부하 분산 장치 CLI Azure 리소스 관리자를 사용 하는 방법을 보여 줍니다. Azure 리소스 관리자와 각 리소스를 만들고 개별적으로 구성한 다음 준비 toocreate 리소스.
+다음 단계에서는 CLI와 함께 Azure Resource Manager를 사용하여 인터넷 연결 부하 분산 장치를 만드는 방법을 보여 줍니다. Azure Resource Manager를 사용하면 각 리소스가 개별적으로 생성되고 구성된 다음, 함께 사용되어 리소스를 만듭니다.
 
-만들고 해야 개체 toodeploy 부하 분산 장치 뒤 hello 구성:
+부하 분산 장치를 배포하려면 다음 개체를 만들고 구성해야 합니다.
 
 * 프런트 엔드 IP 구성 - 들어오는 네트워크 트래픽에 대한 공용 IP 주소를 포함합니다.
-* 백 엔드 주소 풀-hello hello 부하 분산 장치에서 가상 컴퓨터 tooreceive 네트워크 트래픽에 대 한 Nic (네트워크 인터페이스)를 포함 합니다.
-* 부하 분산 규칙-hello 백 엔드 주소 풀의 부하 분산 장치 tooport hello에 공용 포트 매핑 규칙을 포함 합니다.
-* 인바운드 NAT 규칙-hello hello 백 엔드 주소 풀에서 특정 가상 컴퓨터에 대 한 부하 분산 장치 tooa 포트에 공용 포트 매핑 규칙을 포함 합니다.
-* 프로브-hello 백 엔드 주소 풀에 있는 가상 컴퓨터 인스턴스의 사용 된 검색 toocheck 가용성 상태를 포함 합니다.
+* 백 엔드 주소 풀 - 부하 분산 장치의 네트워크 트래픽을 받는 가상 컴퓨터에 대한 NIC(네트워크 인터페이스)를 포함합니다.
+* 부하 분산 규칙 - 백 엔드 주소 풀에 있는 포트에 부하 분산 장치의 공용 포트를 매핑하는 규칙을 포함합니다.
+* 인바운드 NAT 규칙 - 백 엔드 주소 풀에 있는 특정 가상 컴퓨터에 대한 포트에 부하 분산 장치의 공용 포트를 매핑하는 규칙을 포함합니다.
+* 프로브 - 백 엔드 주소 풀의 가상 컴퓨터 인스턴스의 가용성을 확인하는 데 사용하는 상태 프로브를 포함합니다.
 
 자세한 내용은 [부하 분산 장치에 대한 Azure Resource Manager 지원](load-balancer-arm.md)을 참조하세요.
 
-## <a name="set-up-cli-toouse-resource-manager"></a>CLI toouse 리소스 관리자 설정
+## <a name="set-up-cli-to-use-resource-manager"></a>Resource Manager를 사용하도록 CLI 설치
 
-1. Azure CLI 처음 사용 하는 경우 참조 [설치 및 구성 hello Azure CLI](../cli-install-nodejs.md) Azure 계정 및 구독을 선택 하면 toohello 포인트 hello 지침을 따릅니다.
-2. Hello 실행 **azure 구성 모드** 명령 tooswitch tooResource 관리자 모드에서는 다음과 같이 합니다.
+1. Azure CLI를 처음 사용하는 경우 [Azure CLI 설치 및 구성](../cli-install-nodejs.md) 을 참조하고 Azure 계정 및 구독을 선택하는 부분까지 관련 지침을 따릅니다.
+2. 아래와 같이 **azure config mode** 명령을 실행하여 리소스 관리자 모드로 전환합니다.
 
     ```azurecli
         azure config mode arm
@@ -64,9 +67,9 @@ ms.lasthandoff: 10/06/2017
 
         info:    New mode is arm
 
-## <a name="create-a-virtual-network-and-a-public-ip-address-for-hello-front-end-ip-pool"></a>가상 네트워크 및 hello 프런트 엔드 IP 풀에 대 한 공용 IP 주소 만들기
+## <a name="create-a-virtual-network-and-a-public-ip-address-for-the-front-end-ip-pool"></a>프런트 엔드 IP 풀에 대한 공용 IP 주소 및 가상 네트워크 만들기
 
-1. 명명 된 가상 네트워크 (VNet) 만들기 *NRPVnet* 라는 리소스 그룹을 사용 하 여 hello 미국 동부 위치에 *NRPRG*합니다.
+1. *NRPRG*라는 리소스 그룹을 사용하여 미국 동부 위치에 *NRPVnet*이라는 가상 네트워크(VNet)를 만듭니다.
 
     ```azurecli
         azure network vnet create NRPRG NRPVnet eastUS -a 10.0.0.0/16
@@ -78,34 +81,34 @@ ms.lasthandoff: 10/06/2017
         azure network vnet subnet create NRPRG NRPVnet NRPVnetSubnet -a 10.0.0.0/24
     ```
 
-2. 명명 된 공용 IP 주소 만들기 *NRPPublicIP* toobe DNS 이름 사용 하 여 프런트 엔드 IP 풀에서 사용 하는 *loadbalancernrp.eastus.cloudapp.azure.com*. 아래 hello 명령을 hello 정적 할당 형식을 사용 하 고 4 분의 유휴 시간 제한입니다.
+2. DNS 이름이 *loadbalancernrp.eastus.cloudapp.azure.com*인 프런트 엔드 IP 풀에서 사용할 *NRPPublicIP*라는 공용 IP 주소를 만듭니다. 아래 명령은 정적 할당 형식 및 4분의 유휴 상태 시간 제한을 사용합니다.
 
     ```azurecli
         azure network public-ip create -g NRPRG -n NRPPublicIP -l eastus -d loadbalancernrp -a static -i 4
     ```
 
    > [!IMPORTANT]
-   > hello 부하 분산 장치는 FQDN으로 hello 공용 IP의 도메인 레이블을 hello를 사용 합니다. 이 부하 분산 장치 정규화 된 도메인 이름 (FQDN) hello으로 hello 클라우드 서비스를 사용 하는 클래식 배포에서 변경 된 사항입니다.
-   > 이 예제에서는 hello FQDN은 *loadbalancernrp.eastus.cloudapp.azure.com*합니다.
+   > 부하 분산 장치는 공용 IP의 도메인 레이블을 FQDN으로 사용합니다. 이는 부하 분산 장치 FQDN(정규화된 도메인 이름)으로 클라우드 서비스를 사용하는 클래식 배포의 변경입니다.
+   > 이 예제에서는 FQDN이 *loadbalancernrp.eastus.cloudapp.azure.com*입니다.
 
 ## <a name="create-a-load-balancer"></a>부하 분산 장치 만들기
 
-hello 다음 명령은 명명 된 부하 분산 장치 *NRPlb* hello에 *NRPRG* hello의 리소스 그룹 *미국 동부* 는 Azure 위치입니다.
+다음 명령은 *미국 동부* Azure 위치의 *NRPRG* 리소스 그룹에 *NRPlb*라는 부하 분산 장치를 만듭니다.
 
     ```azurecli
     azure network lb create NRPRG NRPlb eastus
     ```
 
 ## <a name="create-a-front-end-ip-pool-and-a-backend-address-pool"></a>프런트 엔드 IP 풀 및 백 엔드 주소 풀 만들기
-이 방법을 보여 주는이 예제 toocreate hello 프런트 엔드 IP 풀을 hello hello 들어오는 네트워크 트래픽을 받는 부하 분산 장치 백 엔드 IP 풀 hello 프런트 엔드 풀에서 hello 부하 분산 된 네트워크 트래픽을 전송 하는 위치를 hello 합니다.
+이 예제에서는 부하 분산 장치에 들어오는 네트워크 트래픽을 수신하는 프런트 엔드 IP 풀 및 프런트 엔드 풀이 부하 분산된 네트워크 트래픽을 보내는 백 엔드 IP 풀을 만드는 방법을 설명합니다.
 
-1. Hello 부하 분산 장치 및 hello 이전 단계에서 만든 hello 공용 IP를 연결 하는 프런트 엔드 IP 풀을 만듭니다.
+1. 이전 단계에서 만든 공용 IP를 연결하는 프런트 엔드 IP 풀 및 부하 분산 장치를 만듭니다.
 
     ```azurecli
         azure network lb frontend-ip create nrpRG NRPlb NRPfrontendpool -i nrppublicip
     ```
 
-2. Tooreceive 들어오는 트래픽을 hello 프런트 엔드 IP 풀에서 사용 하는 백 엔드 주소 풀을 설정 합니다.
+2. 프런트 엔드 IP 풀에서 들어오는 트래픽을 받는 데 사용되는 백 엔드 주소 풀을 설정합니다.
 
     ```azurecli
         azure network lb address-pool create NRPRG NRPlb NRPbackendpool
@@ -113,16 +116,16 @@ hello 다음 명령은 명명 된 부하 분산 장치 *NRPlb* hello에 *NRPRG* 
 
 ## <a name="create-lb-rules-nat-rules-and-probe"></a>LB 규칙, NAT 규칙 및 프로브 만들기
 
-이 예제는 hello 다음 항목을 만듭니다.
+이 예제에서는 다음 항목을 만듭니다.
 
-* NAT 규칙 tootranslate 포트 21 tooport 22에서 들어오는 모든 트래픽을<sup>1</sup>
-* NAT 규칙 tootranslate 포트 23 tooport 22에서 들어오는 모든 트래픽을
-* 부하 분산 장치 규칙 toobalance hello에 포트 80 tooport 80에 들어오는 모든 트래픽을 hello 백 엔드 풀에서 해결합니다.
-* 명명 된 페이지에는 프로브 규칙 toocheck hello 상태 상태 *HealthProbe.aspx*합니다.
+* 포트 21~포트 22에서 들어오는 모든 트래픽을 변환하는 NAT 규칙<sup>1</sup>
+* 포트 23~포트 22에서 들어오는 모든 트래픽을 변환하는 NAT 규칙
+* 포트 80~포트 80에서 들어오는 모든 트래픽을 백 엔드 풀에 있는 주소로 분산하는 부하 분산 장치 규칙입니다.
+* *HealthProbe.aspx*라는 페이지에 대한 상태를 확인할 프로브 규칙입니다.
 
-<sup>1</sup> NAT 규칙은 hello 부하 분산 장치 뒤에 있는 특정 가상 컴퓨터 인스턴스 관련된 tooa 합니다. 21 포트에 도착 하는 hello 네트워크 트래픽은 22이 NAT 규칙와 연결 된 포트에서 tooa 특정 가상 컴퓨터를 전송 됩니다. NAT 규칙에 대한 프로토콜(UDP 또는 TCP)을 지정해야 합니다. 두 프로토콜을 모두 안 toohello 동일한 포트를 할당 합니다.
+<sup>1</sup> NAT 규칙은 부하 분산 장치 뒤에 특정 가상 컴퓨터 인스턴스와 관련이 있습니다. 포트 21에 도착하는 네트워크 트래픽은 이 NAT 규칙과 연결된 포트 22의 특정 가상 컴퓨터에 보내집니다. NAT 규칙에 대한 프로토콜(UDP 또는 TCP)을 지정해야 합니다. 두 프로토콜을 모두 동일한 포트에 할당할 수 없습니다.
 
-1. Hello NAT 규칙을 만듭니다.
+1. NAT 규칙을 만듭니다.
 
     ```azurecli
         azure network lb inbound-nat-rule create --resource-group nrprg --lb-name nrplb --name ssh1 --protocol tcp --frontend-port 21 --backend-port 22
@@ -150,8 +153,8 @@ hello 다음 명령은 명명 된 부하 분산 장치 *NRPlb* hello에 *NRPRG* 
     예상 출력:
 
         info:    Executing command network lb show
-        + Looking up hello load balancer "nrplb"
-        + Looking up hello public ip "NRPPublicIP"
+        + Looking up the load balancer "nrplb"
+        + Looking up the public ip "NRPPublicIP"
         data:    Id                              : /subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb
         data:    Name                            : nrplb
         data:    Type                            : Microsoft.Network/loadBalancers
@@ -210,9 +213,9 @@ hello 다음 명령은 명명 된 부하 분산 장치 *NRPlb* hello에 *NRPRG* 
 
 ## <a name="create-nics"></a>NIC 만들기
 
-Toocreate nic가 필요 (또는 기존 템플릿을 수정할)와 tooNAT 규칙, 부하 분산 장치 규칙 및 프로브에 연결 합니다.
+NIC를 만들고(또는 기존 NIC 수정) NAT 규칙, 부하 분산 장치 규칙 및 프로브에 연결해야 합니다.
 
-1. 명명 된 NIC를 만들고 *lb nic1 수*, hello와 연결 *rdp1* NAT 규칙을 hello *NRPbackendpool* 백 엔드 주소 풀입니다.
+1. *lb-nic1-be*라는 NIC를 만들고 *rdp1* NAT 규칙 및 *NRPbackendpool* 백 엔드 주소 풀과 연결합니다.
 
     ```azurecli
         azure network nic create --resource-group nrprg --name lb-nic1-be --subnet-name nrpvnetsubnet --subnet-vnet-name nrpvnet --lb-address-pool-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/backendAddressPools/NRPbackendpool" --lb-inbound-nat-rule-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/inboundNatRules/rdp1" eastus
@@ -221,10 +224,10 @@ Toocreate nic가 필요 (또는 기존 템플릿을 수정할)와 tooNAT 규칙,
     예상 출력:
 
         info:    Executing command network nic create
-        + Looking up hello network interface "lb-nic1-be"
-        + Looking up hello subnet "nrpvnetsubnet"
+        + Looking up the network interface "lb-nic1-be"
+        + Looking up the subnet "nrpvnetsubnet"
         + Creating network interface "lb-nic1-be"
-        + Looking up hello network interface "lb-nic1-be"
+        + Looking up the network interface "lb-nic1-be"
         data:    Id                              : /subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/networkInterfaces/lb-nic1-be
         data:    Name                            : lb-nic1-be
         data:    Type                            : Microsoft.Network/networkInterfaces
@@ -244,60 +247,60 @@ Toocreate nic가 필요 (또는 기존 템플릿을 수정할)와 tooNAT 규칙,
         data:
         info:    network nic create command OK
 
-2. 명명 된 NIC를 만들고 *lb nic2 수*, hello와 연결 *rdp2* NAT 규칙을 hello *NRPbackendpool* 백 엔드 주소 풀입니다.
+2. *lb-nic2-be*라는 NIC를 만들고 *rdp2* NAT 규칙 및 *NRPbackendpool* 백 엔드 주소 풀과 연결합니다.
 
     ```azurecli
         azure network nic create --resource-group nrprg --name lb-nic2-be --subnet-name nrpvnetsubnet --subnet-vnet-name nrpvnet --lb-address-pool-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/backendAddressPools/NRPbackendpool" --lb-inbound-nat-rule-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/inboundNatRules/rdp2" eastus
     ```
 
-3. 라는 가상 컴퓨터 (VM) 만들기 *web1*, hello 라는 NIC에 연결할 *lb nic1 수*합니다. 저장소 계정 이라는 *web1nrp* 아래 hello 명령을 실행 하기 전에 생성 합니다.
+3. *web1*이라는 VM(가상 컴퓨터)을 만들고 *lb-nic1-be*라는 NIC에 연결합니다. *web1nrp* 라는 저장소 계정은 아래 명령을 실행하기 전에 만들어졌습니다.
 
     ```azurecli
         azure vm create --resource-group nrprg --name web1 --location eastus --vnet-name nrpvnet --vnet-subnet-name nrpvnetsubnet --nic-name lb-nic1-be --availset-name nrp-avset --storage-account-name web1nrp --os-type Windows --image-urn MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:4.0.20150825
     ```
 
     > [!IMPORTANT]
-    > Vm에서 부하 분산 장치 필요 toobe에 hello 동일한 가용성 집합입니다. 사용 하 여 `azure availset create` toocreate 한 가용성 집합입니다.
+    > 부하 분산 장치의 VM은 동일한 가용성 집합에 있어야 합니다. `azure availset create` 을(를) 사용하여 가용성 집합을 만듭니다.
 
-    hello 출력은 비슷한 toohello 다음 됩니다.
+    다음과 유사하게 출력되어야 합니다.
 
         info:    Executing command vm create
-        + Looking up hello VM "web1"
+        + Looking up the VM "web1"
         Enter username: azureuser
         Enter password for azureuser: *********
         Confirm password: *********
-        info:    Using hello VM Size "Standard_A1"
-        info:    hello [OS, Data] Disk or image configuration requires storage account
-        + Looking up hello storage account web1nrp
-        + Looking up hello availability set "nrp-avset"
+        info:    Using the VM Size "Standard_A1"
+        info:    The [OS, Data] Disk or image configuration requires storage account
+        + Looking up the storage account web1nrp
+        + Looking up the availability set "nrp-avset"
         info:    Found an Availability set "nrp-avset"
-        + Looking up hello NIC "lb-nic1-be"
+        + Looking up the NIC "lb-nic1-be"
         info:    Found an existing NIC "lb-nic1-be"
-        info:    Found an IP configuration with virtual network subnet id "/subscriptions/####################################/resourceGroups/NRPRG/providers/Microsoft.Network/virtualNetworks/NRPVnet/subnets/NRPVnetSubnet" in hello NIC "lb-nic1-be"
+        info:    Found an IP configuration with virtual network subnet id "/subscriptions/####################################/resourceGroups/NRPRG/providers/Microsoft.Network/virtualNetworks/NRPVnet/subnets/NRPVnetSubnet" in the NIC "lb-nic1-be"
         info:    This is a NIC without publicIP configured
         + Creating VM "web1"
         info:    vm create command OK
 
     > [!NOTE]
-    > hello 정보 메시지 **publicIP 구성 하지 않고 NIC 이것이** 만들어지므로 hello NIC tooInternet hello 부하 분산 장치 공용 IP 주소를 사용 하 여 연결 하는 hello 부하 분산 장치에 대 한 필요 합니다.
+    > 부하 분산 장치에 대해 만든 NIC가 부하 분산 장치 공용 IP 주소를 사용하여 인터넷에 연결되기 때문에 정보 메시지 **publicIP 구성 없는 NIC입니다** 가 나타납니다.
 
-    Hello 이후 *lb nic1 수* hello와 연결 된 NIC *rdp1* NAT 규칙을 너무 연결할 수 있습니다*web1* 3441 hello 부하 분산 장치에 포트를 통해 RDP를 사용 합니다.
+    *lb-nic1-be* NIC는 *rdp1* NAT 규칙에 연결되어 있으므로 부하 분산 장치의 포트 3441을 통해 RDP를 사용하여 *web1*에 연결할 수 있습니다.
 
-4. 라는 가상 컴퓨터 (VM) 만들기 *web2*, hello 라는 NIC에 연결할 *lb nic2 수*합니다. 저장소 계정 이라는 *web1nrp* 아래 hello 명령을 실행 하기 전에 생성 합니다.
+4. *web2*라는 VM(가상 컴퓨터)을 만들고 *lb-nic2-be*라는 NIC에 연결합니다. *web1nrp* 라는 저장소 계정은 아래 명령을 실행하기 전에 만들어졌습니다.
 
     ```azurecli
         azure vm create --resource-group nrprg --name web2 --location eastus --vnet-name nrpvnet --vnet-subnet-name nrpvnetsubnet --nic-name lb-nic2-be --availset-name nrp-avset --storage-account-name web2nrp --os-type Windows --image-urn MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:4.0.20150825
     ```
 
 ## <a name="update-an-existing-load-balancer"></a>기존 부하 분산 장치 업데이트
-기존 부하 분산 장치를 참조하는 규칙을 추가할 수 있습니다. Hello 다음 예제는 새 부하 분산 장치 규칙 tooan 기존 부하 분산 장치 추가 **NRPlb**
+기존 부하 분산 장치를 참조하는 규칙을 추가할 수 있습니다. 다음 예제에서는 새 부하 분산 장치 규칙은 기존 부하 분산 장치 **NRPlb**
 
 ```azurecli
 azure network lb rule create --resource-group nrprg --lb-name nrplb --name lbrule2 --protocol tcp --frontend-port 8080 --backend-port 8051 --frontend-ip-name frontendnrppool --backend-address-pool-name NRPbackendpool
 ```
 
 ## <a name="delete-a-load-balancer"></a>부하 분산 장치 삭제
-명령 tooremove 부하 분산 장치 뒤 hello를 사용 합니다.
+다음 명령을 사용하여 부하 분산 장치 제거:
 
 ```azurecli
 azure network lb delete --resource-group nrprg --name nrplb

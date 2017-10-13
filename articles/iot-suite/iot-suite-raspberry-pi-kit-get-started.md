@@ -1,6 +1,6 @@
 ---
-title: "aaaConnect 라스베리 Pi tooAzure IoT Suite | Microsoft Docs"
-description: "Node.js 또는 C toohelp 하는 방법을 배웁니다 toouse hello 라스베리 Pi 3에 대 한 Microsoft Azure IoT 시작 키트 hello IoT Suite 모니터링 솔루션 원격 hello를 사용 하 여 자습서입니다. 원격 분석을 시뮬레이트하거나, 실제 센서를 사용하거나, 원격 펌웨어 업데이트를 사용하도록 설정하는 자습서를 선택할 수 있습니다."
+title: "Raspberry Pi를 Azure IoT Suite에 연결 | Microsoft Docs"
+description: "Node.js 또는 C를 사용하여 Raspberry Pi 3용 Microsoft Azure IoT 스타터 키트 및 IoT Suite 원격 모니터링 솔루션을 사용하는 방법을 배우도록 도와주는 자습서입니다. 원격 분석을 시뮬레이트하거나, 실제 센서를 사용하거나, 원격 펌웨어 업데이트를 사용하도록 설정하는 자습서를 선택할 수 있습니다."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/26/2017
 ms.author: dobett
-ms.openlocfilehash: a085967ea63e3b0abfe5d10579ba181273a0502c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: eaa6a21a08bd9068b5335a8167f54c2aa387e0e5
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="connect-your-microsoft-azure-iot-raspberry-pi-3-starter-kit-toohello-remote-monitoring-solution"></a>Microsoft Azure IoT 라스베리 Pi 3 시작 키트 toohello 원격 모니터링 솔루션 연결
+# <a name="connect-your-microsoft-azure-iot-raspberry-pi-3-starter-kit-to-the-remote-monitoring-solution"></a>Microsoft Azure IoT Raspberry Pi 3 스타터 키트를 원격 모니터링 솔루션에 연결
 
-이 섹션의 자습서에서는 hello 문의할 어떻게 tooconnect는 라스베리 Pi 3 장치 toohello 원격 모니터링 솔루션입니다. Hello 자습서 적절 한 tooyour 기본 프로그래밍 언어 및 hello 라스베리 Pi와 함께 사용할 수 있는 hello 센서 하드웨어 toouse 했는지 여부를 선택 합니다.
+이 섹션의 자습서에서는 원격 모니터링 솔루션에 Raspberry Pi 3 장치를 연결하는 방법을 배울 수 있습니다. 원하는 프로그래밍 언어 및 Raspberry Pi에서 센서 하드웨어를 함께 사용할 수 있는지 여부에 따라 자습서를 선택하세요.
 
-## <a name="hello-tutorials"></a>hello 자습서
+## <a name="the-tutorials"></a>자습서
 
 | 자습서 | 참고 사항 | 언어 |
 | -------- | ----- | --------- |
 | 시뮬레이트된 원격 분석(기본)| 센서 데이터를 시뮬레이트합니다. 독립 실행형 Raspberry Pi를 사용합니다. | [C][lnk-c-simulator], [Node.js][lnk-node-simulator] |
-| 실제 센서(중간) | BME280 센서에서 사용 하 여 데이터 tooyour 라스베리 Pi를 연결 합니다. | [C][lnk-c-basic], [Node.js][lnk-node-basic] |
-| 펌웨어 업데이트 구현(고급)| BME280 센서에서 사용 하 여 데이터 tooyour 라스베리 Pi를 연결 합니다. Raspberry Pi에서 원격 펌웨어 업데이트를 사용하도록 설정합니다. | [C][lnk-c-advanced], [Node.js][lnk-node-advanced] |
+| 실제 센서(중간) | Raspberry Pi에 연결된 BME280 센서의 데이터를 사용합니다. | [C][lnk-c-basic], [Node.js][lnk-node-basic] |
+| 펌웨어 업데이트 구현(고급)| Raspberry Pi에 연결된 BME280 센서의 데이터를 사용합니다. Raspberry Pi에서 원격 펌웨어 업데이트를 사용하도록 설정합니다. | [C][lnk-c-advanced], [Node.js][lnk-node-advanced] |
 
 ## <a name="next-steps"></a>다음 단계
 
-Hello 방문 [Azure IoT 개발자 센터](https://azure.microsoft.com/develop/iot/) 에 더 많은 샘플 및 Azure IoT에 대 한 설명서입니다.
+Azure IoT에 대한 추가 샘플 및 설명서를 보려면 [Azure IoT 개발자 센터](https://azure.microsoft.com/develop/iot/)를 방문하세요.
 
 [lnk-node-simulator]: iot-suite-raspberry-pi-kit-node-get-started-simulator.md
 [lnk-node-basic]: iot-suite-raspberry-pi-kit-node-get-started-basic.md

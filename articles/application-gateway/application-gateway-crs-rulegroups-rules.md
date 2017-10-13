@@ -1,9 +1,9 @@
 ---
-title: "aaaAzure 응용 프로그램 게이트웨이 웹 응용 프로그램 방화벽 CRS 규칙 그룹 및 규칙 | Microsoft Docs"
+title: "Azure Application Gateway 웹 응용 프로그램 방화벽 CRS 규칙 그룹 및 규칙 | Microsoft Docs"
 description: "이 페이지는 웹 응용 프로그램 방화벽 CRS 규칙 그룹 및 규칙에 대한 정보를 제공합니다."
 documentationcenter: na
 services: application-gateway
-author: georgewallace
+author: davidmu1
 manager: timlt
 editor: tysonn
 ms.assetid: e5ea5cf9-3b41-4b85-a12c-e758bff7f3ec
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.custom: 
 ms.workload: infrastructure-services
 ms.date: 03/28/2017
-ms.author: gwallace
-ms.openlocfilehash: 6be139847392baeb235bc48b079335c1e0d8287b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: davidmu
+ms.openlocfilehash: 9265be4ac4258115c9302189d84b20e4894d42bb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="list-of-web-application-firewall-crs-rule-groups-and-rules-offered"></a>제공되는 웹 응용 프로그램 방화벽 CRS 규칙 그룹 및 규칙 목록
 
-Application Gateway WAF(웹 응용 프로그램 방화벽)는 일반적인 취약점 및 악용 사례로부터 웹 응용 프로그램을 보호합니다. 이 2.2.9 퀵 또는 3.0 hello OWASP 코어 규칙 집합에 따라 정의 된 규칙을 통해 수행 됩니다. 이러한 규칙은 규칙별로 해제할 수 있습니다. 이 문서는 hello 현재 규칙 및 제공 하는 규칙 집합을 포함 합니다.
+Application Gateway WAF(웹 응용 프로그램 방화벽)는 일반적인 취약점 및 악용 사례로부터 웹 응용 프로그램을 보호합니다. 이러한 보호는 OWASP 핵심 규칙 집합 2.2.9 또는 3.0을 기반으로 정의된 규칙을 통해 수행됩니다. 이러한 규칙은 규칙별로 해제할 수 있습니다. 이 문서에는 현재 제공되는 규칙 및 규칙 집합이 포함되어 있습니다.
 
-다음 표에서 hello은 hello 규칙 그룹 및 웹 응용 프로그램 방화벽이 설치 된 응용 프로그램 게이트웨이 사용 하는 경우 사용할 수 있는 규칙입니다.  각 테이블은 특정 CRS 버전에 대 한 규칙 그룹의 hello 규칙을 나타냅니다.
+다음 테이블은 Application Gateway를 웹 응용 프로그램 방화벽과 사용할 때 제공되는 규칙 그룹 및 규칙입니다.  각 테이블은 특정 CRS 버전의 규칙 그룹에서 찾을 수 있는 규칙을 나타냅니다.
 
 ##<a name="owasp30"></a> OWASP_3.0
 
@@ -110,7 +110,7 @@ Application Gateway WAF(웹 응용 프로그램 방화벽)는 일반적인 취�
 |920011|규칙 920011|
 |920012|규칙 920012|
 |920100|잘못된 HTTP 요청 줄|
-|920130|Tooparse 요청 본문에 실패 했습니다.|
+|920130|요청 본문을 구문 분석하지 못했습니다.|
 |920140|다중 파트 요청 본문의 엄격한 유효성 검사 실패 =     PE %@{REQBODY_PROCESSOR_ERROR}     BQ %@{MULTIPART_BOUNDARY_QUOTED}     BW %@{MULTIPART_BOUNDARY_WHITESPACE}     DB %@{MULTIPART_DATA_BEFORE}     DA %@{MULTIPART_DATA_AFTER}     HF %@{MULTIPART_HEADER_FOLDING}     LF %@{MULTIPART_LF_LINE}     SM %@{MULTIPART_SEMICOLON_MISSING}     IQ %@{MULTIPART_INVALID_QUOTING}     IH %@{MULTIPART_INVALID_HEADER_FOLDING}     FLE %@{MULTIPART_FILE_LIMIT_EXCEEDED}|
 |920160|콘텐츠-길이 HTTP 헤더가 숫자가 아닙니다.|
 |920170|본문 콘텐츠를 통한 GET 또는 HEAD 요청.|
@@ -342,7 +342,7 @@ Application Gateway WAF(웹 응용 프로그램 방화벽)는 일반적인 취�
 |---|---|
 |960911|잘못된 HTTP 요청 줄|
 |981227|Apache 오류 = 요청에 잘못된 URI가 있습니다.|
-|960912|Tooparse 요청 본문에 실패 했습니다.|
+|960912|요청 본문을 구문 분석하지 못했습니다.|
 |960914|다중 파트 요청 본문의 엄격한 유효성 검사 실패 =     PE %@{REQBODY_PROCESSOR_ERROR}     BQ %@{MULTIPART_BOUNDARY_QUOTED}     BW %@{MULTIPART_BOUNDARY_WHITESPACE}     DB %@{MULTIPART_DATA_BEFORE}     DA %@{MULTIPART_DATA_AFTER}     HF %@{MULTIPART_HEADER_FOLDING}     LF %@{MULTIPART_LF_LINE}     SM %@{MULTIPART_SEMICOLON_MISSING}     IQ %@{MULTIPART_INVALID_QUOTING}     IH %@{MULTIPART_INVALID_HEADER_FOLDING}     FLE %@{MULTIPART_FILE_LIMIT_EXCEEDED}|
 |960915|다중 파트 파서가 일치하지 않을 수도 있는 경계를 감지했습니다.|
 |960016|콘텐츠-길이 HTTP 헤더가 숫자가 아닙니다.|
@@ -400,9 +400,9 @@ Application Gateway WAF(웹 응용 프로그램 방화벽)는 일반적인 취�
 
 |RuleId|설명|
 |---|---|
-|990002|요청에 보안 스캐너를 검색 한 hello 사이트 나타냅니다.|
-|990901|요청에 보안 스캐너를 검색 한 hello 사이트 나타냅니다.|
-|990902|요청에 보안 스캐너를 검색 한 hello 사이트 나타냅니다.|
+|990002|요청에 보안 스캐너가 사이트를 스캔한 것으로 표시됨|
+|990901|요청에 보안 스캐너가 사이트를 스캔한 것으로 표시됨|
+|990902|요청에 보안 스캐너가 사이트를 스캔한 것으로 표시됨|
 |990012|악의적인 웹 사이트 크롤러|
 
 ### <a name="crs40"></a> crs_40_generic_attacks
@@ -592,6 +592,6 @@ Application Gateway WAF(웹 응용 프로그램 방화벽)는 일반적인 취�
 
 ## <a name="next-steps"></a>다음 단계
 
-Toodisable WAF 방문 하 여 규칙의 방식에 대해 알아봅니다: [WAF 사용자 지정 규칙](application-gateway-customize-waf-rules-portal.md)
+[WAF 규칙 사용자 지정](application-gateway-customize-waf-rules-portal.md)을 방문하여 WAF 규칙을 사용하지 않도록 설정하는 방법을 알아봅니다.
 
 [1]: ./media/application-gateway-integration-security-center/figure1.png

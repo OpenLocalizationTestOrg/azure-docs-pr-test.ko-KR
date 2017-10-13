@@ -1,6 +1,6 @@
 ---
-title: "aaaNotification 허브 주요 속보 자습서-iOS"
-description: "자세한 방법을 toouse Azure 서비스 버스 알림 허브 toosend 뉴스 알림 tooiOS 장치를 중단 합니다."
+title: "알림 허브 속보 자습서 - iOS"
+description: "Azure 서비스 버스 알림 허브를 사용하여 iOS 장치에 최신 뉴스 알림을 보내는 방법에 대해 알아봅니다."
 services: notification-hubs
 documentationcenter: ios
 author: ysxu
@@ -14,38 +14,38 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: 763b80b5ffed238b351d95bd3d6a96cb914f53cd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dc47250db6fb3a2853dae24e02bda236154d93fb
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-notification-hubs-toosend-breaking-news"></a>알림 허브 toosend 최신 뉴스를 사용 하 여
+# <a name="use-notification-hubs-to-send-breaking-news"></a>알림 허브를 사용하여 속보 보내기
 [!INCLUDE [notification-hubs-selector-breaking-news](../../includes/notification-hubs-selector-breaking-news.md)]
 
 ## <a name="overview"></a>개요
-이 항목에서는 toouse Azure 알림 허브 toobroadcast 주요 뉴스 알림 tooan iOS 앱. 완료 되 면에 관심이 있는 뉴스 범주 파괴 수 tooregister 수 및 해당 범주에 대 한 푸시 알림을 수신 합니다. 이 시나리오는 알림을 그 예: RSS 수집기, 음악 팬 속도 등에 대 한 앱에 대 한 관심 선언 이전에 사용자의 전송 toobe toogroups 있는 많은 응용 프로그램에 대 한 일반적인 패턴입니다.
+이 항목에서는 Azure 알림 허브를 사용하여 iOS 앱에 속보 알림을 브로드캐스트하는 방법을 보여 줍니다. 완료하면, 관심이 있는 속보 범주를 등록하고 해당 범주의 푸시 알림만 받을 수 있습니다. 이 시나리오는 RSS 수집기, 음악 애호가를 위한 앱 등 이전에 관심을 보인 사용자 그룹에 알림을 보내야 하는 많은 앱에 공통된 패턴입니다.
 
-브로드캐스트 시나리오 하나 이상 포함 하 여 설정 된 *태그* hello 알림 허브의 등록을 만들 때. 알림을 tooa 태그를 보내면 hello 태그에 대 한 모든 장치를 등록 한 hello 알림을 받게 됩니다. 태그는 단순히 문자열을 하기 때문에 미리 프로 비전 toobe를 갖지 않습니다. 태그에 대 한 자세한 내용은 참조 너무[알림 허브 라우팅 및 태그 식](notification-hubs-tags-segment-push-message.md)합니다.
+브로드캐스트 시나리오를 사용하려면 알림 허브에서 등록을 만들 때 하나 이상의 *태그*를 포함하면 됩니다. 태그에 알림이 전송되면 태그에 대해 등록된 모든 장치에서 알림을 받게 됩니다. 태그는 단순히 문자열이므로 사전에 프로비전해야 할 필요가 없습니다. 태그에 대한 자세한 내용은 [알림 허브 라우팅 및 태그 식](notification-hubs-tags-segment-push-message.md)을 참조하세요.
 
 ## <a name="prerequisites"></a>필수 조건
-이 항목에서는에서 만든 hello 앱 [알림 허브 시작][get-started]합니다. 이 자습서를 시작하기 전에 먼저 [Notification Hubs 시작][get-started]을 완료해야 합니다.
+이 항목은 [Notification Hubs 시작][get-started]에서 만든 앱을 기반으로 합니다. 이 자습서를 시작하기 전에 먼저 [Notification Hubs 시작][get-started]을 완료해야 합니다.
 
-## <a name="add-category-selection-toohello-app"></a>범주 선택 toohello 앱 추가
-hello 첫 번째 단계는 tooadd hello UI 요소 tooyour 기존 스토리 보드 hello 사용자 tooselect 범주 tooregister 수 있도록 합니다. 사용자가 선택한 hello 범주 hello 장치에 저장 됩니다. Hello 앱이 시작 되 면 태그로 hello 선택한 범주와 알림 허브에 장치 등록이 만들어집니다.
+## <a name="add-category-selection-to-the-app"></a>앱에 범주 선택 추가
+첫 번째 단계는 기존의 스토리보드에 사용자가 등록할 범주를 선택할 수 있도록 하는 UI 요소를 추가하는 것입니다. 사용자가 선택한 범주는 장치에 저장됩니다. 앱을 시작하면 장치 등록이 선택한 범주와 함께 태그로서 알림 허브에 생성됩니다.
 
-1. 프로그램 MainStoryboard_iPhone.storyboard hello 개체 라이브러리에서 다음과 같은 구성 요소가 hello를 추가 합니다.
+1. MainStoryboard_iPhone.storyboard의 개체 라이브러리에서 다음 구성 요소를 추가합니다.
    
    * "Breaking News" 텍스트가 포함된 레이블
    * "World", "Politics", "Business", "Technology", "Science", "Sports" 범주 텍스트가 포함된 레이블
-   * 각 스위치를 설정 하는 범주를 하나씩 6 개의 스위치 **상태** toobe **오프** 기본적으로 합니다.
+   * 범주당 하나씩인 6개의 스위치는 각 스위치 **상태**를 기본적으로 **Off(꺼짐)**가 되도록 설정합니다.
    * "Subscribe" 단추
      
      스토리보드는 다음과 같이 표시됩니다.
      
      ![][3]
-2. Hello 도우미 편집기에서 모든 hello 스위치에 대해 콘센트 만들고 "WorldSwitch" 전화할 "PoliticsSwitch", "BusinessSwitch", "TechnologySwitch", "ScienceSwitch", "SportsSwitch"
-3. "subscribe" 단추에 대한 동작을 만듭니다. 프로그램 ViewController.h hello 다음을 포함 되어야 합니다.
+2. 단말기 편집기에서 모든 스위치에 대한 콘센트를 만든 다음 "WorldSwitch", "PoliticsSwitch", "BusinessSwitch", "TechnologySwitch", "ScienceSwitch", "SportsSwitch"로 지정합니다.
+3. "subscribe" 단추에 대한 동작을 만듭니다. ViewController.h에는 다음이 포함되어 있어야 합니다.
    
         @property (weak, nonatomic) IBOutlet UISwitch *WorldSwitch;
         @property (weak, nonatomic) IBOutlet UISwitch *PoliticsSwitch;
@@ -55,7 +55,7 @@ hello 첫 번째 단계는 tooadd hello UI 요소 tooyour 기존 스토리 보�
         @property (weak, nonatomic) IBOutlet UISwitch *SportsSwitch;
    
         - (IBAction)subscribe:(id)sender;
-4. `Notifications`라는 새 **Cocoa Touch 클래스**를 만듭니다. Hello 코드 hello 파일 Notifications.h의 hello 인터페이스 섹션에 다음을 복사 합니다.
+4. `Notifications`라는 새 **Cocoa Touch 클래스**를 만듭니다. 다음 코드를 Notifications.h 파일의 인터페이스 섹션에 복사합니다.
    
         @property NSData* deviceToken;
    
@@ -67,10 +67,10 @@ hello 첫 번째 단계는 tooadd hello UI 요소 tooyour 기존 스토리 보�
         - (NSSet*)retrieveCategories;
    
         - (void)subscribeWithCategories:(NSSet*)categories completion:(void (^)(NSError *))completion;
-5. 다음 가져오기 지시문 tooNotifications.m hello를 추가 합니다.
+5. 다음 import 지시문을 Notifications.m에 추가합니다.
    
         #import <WindowsAzureMessaging/WindowsAzureMessaging.h>
-6. Hello 코드 hello 파일 Notifications.m의 hello 구현 섹션에서 다음을 복사 합니다.
+6. 다음 코드를 Notifications.m 파일의 구현 섹션에 복사합니다.
    
         SBNotificationHub* hub;
    
@@ -111,34 +111,34 @@ hello 첫 번째 단계는 tooadd hello UI 요소 tooyour 기존 스토리 보�
 
 
 
-    이 클래스는 toostore 로컬 저장소를 사용 하 여 하 고이 장치를 받을 뉴스의 hello 범주를 검색 합니다. 또한 사용 하 여 이러한 범주에 대 한 메서드 tooregister을 포함 한 [템플릿](notification-hubs-templates-cross-platform-push-messages.md) 등록 합니다.
+    이 클래스는 로컬 저장소를 사용하여 이 장치에서 받을 뉴스의 범주를 저장하고 검색합니다. 또한 [템플릿](notification-hubs-templates-cross-platform-push-messages.md) 등록을 사용하여 이러한 범주에 등록하는 메서드도 포함되어 있습니다.
 
-1. Hello AppDelegate.h 파일에서 Notifications.h에 대 한 import 문을 추가 하 고 hello 알림 클래스의 인스턴스에 대 한 속성을 추가 합니다.
+1. AppDelegate.h 파일에서 Notifications.h에 대한 import 문을 추가하고 알림 클래스의 인스턴스에 대한 속성을 추가합니다.
    
         #import "Notifications.h"
    
         @property (nonatomic) Notifications* notifications;
-2. Hello에 **didFinishLaunchingWithOptions** AppDelegate.m에서 메서드 hello hello 메서드 시작 시 hello 코드 tooinitialize hello 알림을 인스턴스를 추가 합니다.  
+2. AppDelegate.m의 **didFinishLaunchingWithOptions** 메서드에서 메서드 시작 부분에 알림 인스턴스를 초기화하는 코드를 추가합니다.  
    
-    `HUBNAME`및 `HUBLISTENACCESS` (hubinfo.h에 정의 됨)은 hello 이미 `<hub name>` 및 `<connection string with listen access>` 와 알림 허브 이름 및 hello 연결 문자열에 대 한 자리 표시자 *DefaultListenSharedAccessSignature*이전에 얻은입니다
+    `HUBNAME`과 `HUBLISTENACCESS`(hubinfo.h에 정의됨)는 `<hub name>` 및 `<connection string with listen access>` 자리 표시자를 알림 허브 이름과 앞서 얻었던 *DefaultListenSharedAccessSignature*의 연결 문자열로 바꿉니다.
    
         self.notifications = [[Notifications alloc] initWithConnectionString:HUBLISTENACCESS HubName:HUBNAME];
    
    > [!NOTE]
-   > 클라이언트 응용 프로그램과 함께 배포 되는 자격 증명에 일반적으로 안전 하지 않으므로 클라이언트 응용 프로그램과 함께 수신 액세스에 대 한 hello 키만 배포 해야 합니다. 알림, 하지만 기존 등록에 대 한 응용 프로그램 tooregister 프로그램을 수정할 수 없는 액세스 활성화를 수신 하 고 알림을 보낼 수 없습니다. hello 전체 액세스 키를 사용 하 여 보안 된 백 엔드 서비스 알림을 전송 하 고 기존 등록을 변경 합니다.
+   > 클라이언트 앱과 함께 배포되는 자격 증명은 일반적으로 안전하지 않기 때문에 클라이언트 앱과 함께 listen access용 키만 배포해야 합니다. Listen access를 통해 앱에서 알림을 등록할 수 있지만, 기존 등록을 수정할 수 없으며 알림을 전송할 수도 없습니다. 안전한 백 엔드 서비스에서 알림을 보내고 기존 등록을 변경하는 데에는 모든 권한 키가 사용됩니다.
    > 
    > 
-3. Hello에 **didRegisterForRemoteNotificationsWithDeviceToken** AppDelegate.m에서 메서드 코드 toopass hello 장치 토큰 toohello 알림을 클래스 다음 hello hello 코드 hello 메서드를 바꿉니다. hello 알림을 클래스 hello hello 범주를 사용 하 여 알림을 등록을 수행 합니다. Hello 이라고 hello 사용자 범주를 선택할 변경 되 면 `subscribeWithCategories` 응답 toohello에서 메서드 **구독** 단추 tooupdate 해당 합니다.
+3. AppDelegate.m의 **didRegisterForRemoteNotificationsWithDeviceToken** 메서드에서 메서드의 코드를 다음 코드로 바꿔 알림 클래스에 장치 토큰을 전달합니다. 알림 클래스는 범주를 사용하여 알림에 대해 등록을 수행합니다. 사용자가 범주 선택 항목을 변경하는 경우 **구독** 단추에 대한 응답으로 `subscribeWithCategories` 메서드를 호출하여 범주 선택 항목을 업데이트합니다.
    
    > [!NOTE]
-   > 를 언제 든 지 hello 푸시 알림 서비스 APNS (Apple)에서 할당 하는 hello 장치 토큰 변경 수 때문에 등록 해야 알림에 대 한 자주 tooavoid 알림 오류가 발생 했습니다. 이 예제에서는 hello 이러한 앱이 시작 될 때마다 알림을 등록 합니다. 자주 실행 되는 응용 프로그램의 경우 하루에 한 번 이상 건너뛸 수 있습니다 아마도 등록 toopreserve 대역폭 hello 이전 등록 이후 1 일 미만 경과한 경우.
+   > APNS(Apple Push Notification Service)에서 할당하는 장치 토큰은 언제든지 변경될 수 있으므로 알림 실패를 피하려면 알림을 자주 등록해야 합니다. 이 예제에서는 앱이 시작될 때마다 알림을 등록합니다. 자주(하루 두 번 이상) 실행되는 앱에서는 이전 등록 이후 만 하루가 지나지 않은 경우 대역폭 유지를 위한 등록을 건너뛸 수 있습니다.
    > 
    > 
    
         self.notifications.deviceToken = deviceToken;
    
-        // Retrieves hello categories from local storage and requests a registration for these categories
-        // each time hello app starts and performs a registration.
+        // Retrieves the categories from local storage and requests a registration for these categories
+        // each time the app starts and performs a registration.
    
         NSSet* categories = [self.notifications retrieveCategories];
         [self.notifications subscribeWithCategories:categories completion:^(NSError* error) {
@@ -147,9 +147,9 @@ hello 첫 번째 단계는 tooadd hello UI 요소 tooyour 기존 스토리 보�
             }
         }];
 
-    이 시점에서 있습니다 수 있어야 다른 코드 hello에 **didRegisterForRemoteNotificationsWithDeviceToken** 메서드.
+    이때 **didRegisterForRemoteNotificationsWithDeviceToken** 메서드에 다른 코드가 없어야 합니다.
 
-1. hello 다음 방법 이미 있는 것은 AppDelegate.m에 hello 완료 [알림 허브 시작] [ get-started] 자습서입니다.  그렇지 않은 경우 메서드를 추가합니다.
+1. 다음 방법 이미 있어야 AppDelegate.m 완료는 [알림 허브 시작] [ get-started] 자습서입니다.  그렇지 않은 경우 메서드를 추가합니다.
    
     -(void) MessageBox:(NSString *) 제목 메시지:(NSString *) messageText {
    
@@ -160,8 +160,8 @@ hello 첫 번째 단계는 tooadd hello UI 요소 tooyour 기존 스토리 보�
    
    * 응용 프로그램 (void):(UIApplication *) 응용 프로그램 didReceiveRemoteNotification: (NSDictionary *) 사용자 정보 {NSLog (@"% @", 사용자 정보);   [메시지 자체 MessageBox:@"Notification": [[사용자 정보 objectForKey:@"aps"] valueForKey:@"alert"]]; }
    
-   이 메서드는 간단한 표시 하 여 hello 응용 프로그램을 실행 하는 경우 수신 하는 알림을 처리 **UIAlert**합니다.
-2. ViewController.m, hello에 코드를 다음 AppDelegate.h 및 복사 hello에 대 한 import 문을 추가 XCode에서 생성 된 **구독** 메서드. 이 코드는 hello 알림을 등록 toouse hello 새 범주 태그가 hello 사용자 인터페이스에서 hello 사용자가 선택한 업데이트 됩니다.
+   이 메서드는 단일 **UIAlert**를 표시하여 앱이 실행 중일 때 수신된 알림을 처리합니다.
+2. ViewController.m에서 AppDelegate.h에 대해 import 문을 추가하고 다음 코드를 XCode 생성 **구독** 메서드에 복사합니다. 이 코드는 사용자 인터페이스에서 사용자가 선택한 새 범주 태그를 사용하도록 알림 등록을 업데이트합니다.
    
        ```
        #import "Notifications.h"
@@ -186,10 +186,10 @@ hello 첫 번째 단계는 tooadd hello UI 요소 tooyour 기존 스토리 보�
            }
        }];
    
-   이 메서드가 만드는 **NSMutableArray** 의 범주 및 사용 하 여 hello **알림** hello 로컬 저장소 및 레지스터 hello 해당 태그와 알림 허브에에서 클래스 toostore hello 목록입니다. 범주 변경 되 면 hello 등록 hello 새 범주와 다시 만들어집니다.
-3. ViewController.m, 추가 hello에서 코드 다음 hello **viewDidLoad** hello 이전에 저장 된 범주에 따라 메서드 tooset hello 사용자 인터페이스입니다.
+   이 메서드는 범주의 **NSMutableArray**를 만들고 **Notifications** 클래스를 사용하여, 로컬 저장소에 목록을 저장하고 알림 허브에 해당 태그를 등록합니다. 범주가 변경되면 새 범주로 등록이 다시 생성됩니다.
+3. ViewController.m에서 **viewDidLoad** 메서드에 다음 코드를 추가하여 이전에 저장한 범주를 기반으로 사용자 인터페이스를 설정합니다.
 
-        // This updates hello UI on startup based on hello status of previously saved categories.
+        // This updates the UI on startup based on the status of previously saved categories.
 
         Notifications* notifications = [(AppDelegate*)[[UIApplication sharedApplication]delegate] notifications];
 
@@ -204,17 +204,17 @@ hello 첫 번째 단계는 tooadd hello UI 요소 tooyour 기존 스토리 보�
 
 
 
-이제 hello 앱 hello 알림 허브와 장치 사용 되는 로컬 저장소 tooregister hello에에서 범주 집합에를 저장할 수 hello 앱 시작 될 때마다 합니다.  hello 사용자 런타임에 범주의 hello 선택을 변경 하 고 hello를 클릭 하 **구독** hello 장치에 대 한 메서드 tooupdate hello 등록 합니다. 다음으로 hello 앱 toosend hello 알림을 hello 앱 자체에서 직접 주요 업데이트 합니다.
+이제 앱은 앱이 시작할 때마다 알림 허브에 등록하는 데 사용한 장치 로컬 저장소에 범주 집합을 저장할 수 있습니다.  사용자는 런타임 시 범주 선택 사항을 변경하고 **구독** 메서드를 클릭하여 장치에 대한 등록을 업데이트할 수 있습니다. 다음으로, 앱 자체에서 직접 속보 알림을 보내도록 앱을 업데이트합니다.
 
 ## <a name="optional-sending-tagged-notifications"></a>(선택 사항) 태그가 지정된 알림 보내기
-액세스 tooVisual Studio가 없는 경우 toohello 다음 섹션 건너뛰고 hello 앱 자체에서 알림을 보낼 수 있습니다. Hello에서 hello 적절 한 템플릿 알림을 보낼 수도 있습니다 [Azure 클래식 포털] hello 디버그 탭을 사용 하 여 알림 허브에 대 한 합니다. 
+Visual Studio에 액세스할 수 없는 경우 다음 섹션으로 건너뛰고 앱 자체에서 알림을 보낼 수 있습니다. 또한 알림 허브에 대한 디버그 탭을 사용하여 [Azure 클래식 포털] 에서 적절한 템플릿 알림을 보낼 수 있습니다. 
 
 [!INCLUDE [notification-hubs-send-categories-template](../../includes/notification-hubs-send-categories-template.md)]
 
-## <a name="optional-send-notifications-from-hello-device"></a>(선택 사항) Hello 장치에서 알림을 보내는합니다
-알림을 보낼 백 엔드 서비스에 의해 일반적으로 하지만 hello 앱에서 직접 최신 알림을 보낼 수 있습니다. toodo hello 업데이트할 것이 `SendNotificationRESTAPI` hello에 정의한 메서드 [알림 허브 시작] [ get-started] 자습서입니다.
+## <a name="optional-send-notifications-from-the-device"></a>(선택 사항) 장치에서 알림 보내기
+일반적으로 백 엔드 서비스에서 알림을 보내지만 속보 알림은 앱 자체에서 직접 보낼 수 있습니다. 이 업데이트 될 작업을 수행 하는 `SendNotificationRESTAPI` 에 정의한 메서드는 [알림 허브 시작] [ get-started] 자습서입니다.
 
-1. ViewController.m 업데이트 hello에 `SendNotificationRESTAPI` 메서드로 뒤 hello 범주 태그에 대 한 매개 변수를 허용 하 고 적절 한 hello 보냅니다 있도록 [템플릿](notification-hubs-templates-cross-platform-push-messages.md) 알림입니다.
+1. ViewController.m에서 범주 태그에 대한 매개 변수를 허용하고 적절한 [템플릿](notification-hubs-templates-cross-platform-push-messages.md) 알림을 보내도록 다음과 같이 `SendNotificationRESTAPI` 메서드를 업데이트합니다.
    
         - (void)SendNotificationRESTAPI:(NSString*)categoryTag
         {
@@ -223,18 +223,18 @@ hello 첫 번째 단계는 tooadd hello UI 요소 tooyour 기존 스토리 보�
    
             NSString *json;
    
-            // Construct hello messages REST endpoint
+            // Construct the messages REST endpoint
             NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/messages/%@", HubEndpoint,
                                                HUBNAME, API_VERSION]];
    
-            // Generated hello token toobe used in hello authorization header.
+            // Generated the token to be used in the authorization header.
             NSString* authorizationToken = [self generateSasToken:[url absoluteString]];
    
-            //Create hello request tooadd hello template notification message toohello hub
+            //Create the request to add the template notification message to the hub
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
             [request setHTTPMethod:@"POST"];
    
-            // Add hello category as a tag
+            // Add the category as a tag
             [request setValue:categoryTag forHTTPHeaderField:@"ServiceBusNotification-Tags"];
    
             // Template notification
@@ -247,13 +247,13 @@ hello 첫 번째 단계는 tooadd hello UI 요소 tooyour 기존 스토리 보�
             // JSON Content-Type
             [request setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
    
-            //Authenticate hello notification message POST request with hello SaS token
+            //Authenticate the notification message POST request with the SaS token
             [request setValue:authorizationToken forHTTPHeaderField:@"Authorization"];
    
-            //Add hello notification message body
+            //Add the notification message body
             [request setHTTPBody:[json dataUsingEncoding:NSUTF8StringEncoding]];
    
-            // Send hello REST request
+            // Send the REST request
             NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                {
@@ -272,7 +272,7 @@ hello 첫 번째 단계는 tooadd hello UI 요소 tooyour 기존 스토리 보�
    
             [dataTask resume];
         }
-2. ViewController.m 업데이트 hello에 **알림 보내기** 뒤에 오는 hello 코드에 나와 있는 것 처럼 동작 합니다. 개별적으로 각 태그를 사용 하 여 hello 알림을 보내도록 되 고 toomultiple 플랫폼을 보냅니다 되도록.
+2. ViewController.m에서 다음 코드에 표시된 것처럼 **알림 보내기** 작업을 업데이트합니다. 그러면 개별적으로 각 태그를 사용하여 알림을 보내고 여러 플랫폼으로 보냅니다.
 
         - (IBAction)SendNotificationMessage:(id)sender
         {
@@ -281,7 +281,7 @@ hello 첫 번째 단계는 tooadd hello UI 요소 tooyour 기존 스토리 보�
             NSArray* categories = [NSArray arrayWithObjects: @"World", @"Politics", @"Business",
                                     @"Technology", @"Science", @"Sports", nil];
 
-            // Lets send hello message as breaking news for each category tooWNS, GCM, and APNS
+            // Lets send the message as breaking news for each category to WNS, GCM, and APNS
             // using a template.
             for(NSString* category in categories)
             {
@@ -293,23 +293,23 @@ hello 첫 번째 단계는 tooadd hello UI 요소 tooyour 기존 스토리 보�
 
 1. 프로젝트를 다시 빌드하고 빌드 오류가 없는지 확인합니다.
 
-## <a name="run-hello-app-and-generate-notifications"></a>Hello 앱을 실행 하 고 알림 생성
-1. 키를 눌러 hello 단추 toobuild hello 프로젝트를 실행 하 고 hello 응용 프로그램을 시작 합니다. 몇 가지 주요 뉴스 옵션 toosubscribe tooand를 선택 하 고 hello 키를 누릅니다 **Subscribe** 단추입니다. 알림을 구독 하는 hello 나타내는 대화 상자가 표시 됩니다.
+## <a name="run-the-app-and-generate-notifications"></a>앱 실행 및 알림 생성
+1. 실행 단추를 눌러 프로젝트를 빌드하고 앱을 시작합니다. 구독할 속보 옵션을 선택하고 **구독** 단추를 누릅니다. 알림 구독을 나타내는 대화 상자가 표시됩니다.
    
     ![][1]
    
-    선택 하는 경우 **Subscribe**, 앱 변환 hello 선택한 범주 태그에 hello 및 hello 알림 허브에서 선택 하는 hello 태그에 대 한 새 장치 등록을 요청 합니다.
-2. 주요 뉴스 누릅니다 hello 송신할 메시지 toobe 입력 **알림 보내기** 단추입니다. 또는 hello.NET 콘솔 응용 프로그램 toogenerate 알림을 실행 합니다.
+    **구독**을 선택하면 앱은 선택한 범주를 태그로 변환하고 알림 허브에서 선택한 태그에 대한 새로운 장치 등록을 요청합니다.
+2. 속보로 보낼 메시지를 입력하고 **알림 보내기** 단추를 누릅니다. 또는 .NET 콘솔 앱을 실행하여 알림을 생성합니다.
    
     ![][2]
-3. 각 구독 장치 toobreaking 뉴스 hello 최신 알림을 방금 전송 받은 받게 됩니다.
+3. 속보를 구독하는 각 장치에서 방금 보낸 속보 알림을 받게 됩니다.
 
 ## <a name="next-steps"></a>다음 단계
-이 자습서에서는 이전에 배운 것 어떻게 toobroadcast 최신 뉴스 범주별으로 보여 줍니다. 기타 고급 알림 허브 시나리오를 강조 표시 하는 자습서를 따라 hello 중 하나를 완료 하는 것이 좋습니다.
+이 자습서에서는 범주별로 속보를 브로드캐스트하는 방법에 대해 알아보았습니다. 이제 기타 고급 알림 허브 시나리오를 다루는 다음 자습서 중 하나를 완료해 보세요.
 
-* **[알림 허브 지역화 toobroadcast 주요 뉴스를 사용 하 여]**
+* **[Notification Hubs를 사용하여 지역화된 속보 브로드캐스트]**
   
-    뉴스 앱 tooenable 보내는 주요 tooexpand hello 알림을 지역화 하는 방법에 대해 알아봅니다.
+    지역화된 알림을 보낼 수 있도록 속보 앱을 확장하는 방법에 대해 알아보세요.
 
 <!-- Images. -->
 [1]: ./media/notification-hubs-ios-send-breaking-news/notification-hub-breakingnews-subscribed.png
@@ -325,10 +325,10 @@ hello 첫 번째 단계는 tooadd hello UI 요소 tooyour 기존 스토리 보�
 
 <!-- URLs. -->
 [How To: Service Bus Notification Hubs (iOS Apps)]: http://msdn.microsoft.com/library/jj927168.aspx
-[알림 허브 지역화 toobroadcast 주요 뉴스를 사용 하 여]: notification-hubs-ios-xplat-localized-apns-push-notification.md
+[Notification Hubs를 사용하여 지역화된 속보 브로드캐스트]: notification-hubs-ios-xplat-localized-apns-push-notification.md
 [Mobile Service]: /develop/mobile/tutorials/get-started
 [Notify users with Notification Hubs]: notification-hubs-aspnet-backend-ios-notify-users.md
 [Notification Hubs Guidance]: http://msdn.microsoft.com/library/dn530749.aspx
-[Notification Hubs How-toofor iOS]: http://msdn.microsoft.com/library/jj927168.aspx
+[Notification Hubs How-To for iOS]: http://msdn.microsoft.com/library/jj927168.aspx
 [get-started]: /manage/services/notification-hubs/get-started-notification-hubs-ios/
 [Azure 클래식 포털]: https://manage.windowsazure.com

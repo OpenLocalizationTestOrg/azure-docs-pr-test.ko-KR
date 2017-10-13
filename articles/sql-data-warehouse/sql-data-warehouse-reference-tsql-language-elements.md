@@ -1,6 +1,6 @@
 ---
-title: "데이터 웨어하우스 TRANSACT-SQL 언어 요소 aaaSQL | Microsoft Docs"
-description: "SQL 데이터 웨어하우스에 대 한 사용 되는 hello TRANSACT-SQL 언어 요소에 대 한 링크 tooreference 콘텐츠의 목록입니다."
+title: "SQL Data Warehouse Transact-SQL 언어 요소 | Microsoft Docs"
+description: "SQL 데이터 웨어하우스에 사용되는 TRANSACT-SQL 언어 요소에 대한 참조 내용에 대한 링크 목록입니다."
 services: sql-data-warehouse
 documentationcenter: NA
 author: kevinvngo
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: reference
 ms.date: 10/31/2016
 ms.author: kevin;barbkess
-ms.openlocfilehash: db7500b2a1f69a9e3dccddafd27a9cd0d95f9baf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7a20cd8f3c2f304d12a49755dbe6e04f9b1d36df
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="language-elements"></a>언어 요소
 ## <a name="core-elements"></a>핵심 요소
@@ -57,7 +57,7 @@ ms.lasthandoff: 10/06/2017
 * [/ (나누기)](https://msdn.microsoft.com/library/ms175009.aspx)
 * [모듈로](https://msdn.microsoft.com/library/ms190279.aspx)
 
-## <a name="wildcard-characters-toomatch"></a>와일드 카드 문자 toomatch
+## <a name="wildcard-characters-to-match"></a>일치하는 와일드 카드 문자
 * [= (같음)](https://msdn.microsoft.com/library/ms175118.aspx)
 * [> (다음보다 큼)](https://msdn.microsoft.com/library/ms178590.aspx)
 * [< (다음보다 적음)](https://msdn.microsoft.com/library/ms179873.aspx)

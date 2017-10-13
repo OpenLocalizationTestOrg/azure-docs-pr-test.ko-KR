@@ -1,5 +1,5 @@
 ---
-title: "Azure 가상 컴퓨터 크기 집합에 대 한 aaaNetworking | Microsoft Docs"
+title: "Azure 가상 컴퓨터 확장 집합에 대한 네트워킹 | Microsoft Docs"
 description: "Azure 가상 컴퓨터 확장 집합에 대한 네트워킹 구성 속성을 설명합니다."
 services: virtual-machine-scale-sets
 documentationcenter: 
@@ -15,20 +15,20 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/17/2017
 ms.author: guybo
-ms.openlocfilehash: ef3f0cfe648d2195c051a73987e654f0e15d13bf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a8520c6d8962cc362fc935f6b515a299c0ce75b3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="networking-for-azure-virtual-machine-scale-sets"></a>Azure 가상 컴퓨터 확장 집합에 대한 네트워킹
 
-Hello 포털을 통해 설정 하는 Azure 가상 컴퓨터 크기를 배포할 때 특정 네트워크 속성은 기본적으로, 예를 들어 있는 Azure 부하 분산 장치 인바운드 NAT 규칙입니다. 이 문서에서는 더 높은 수준의 일부 hello 눈금으로 구성할 수 있는 네트워킹 기능 toouse 설정 하는 방법을 설명 합니다.
+포털을 통해 Azure 가상 컴퓨터 확장 집합을 배포하면 인바운드 NAT 규칙이 있는 Azure Load Balancer와 같은 특정 네트워크 속성이 기본값으로 설정됩니다. 이 문서에서는 확장 집합을 사용하여 구성할 수 있는 고급 네트워킹 기능 중 일부를 사용하는 방법에 대해 설명합니다.
 
-모든 Azure 리소스 관리자 템플릿을 사용 하 여이 문서에서 다루는 hello 기능을 구성할 수 있습니다. Azure CLI 및 PowerShell 예제도 선택한 기능에 포함되어 있습니다. CLI 2.10 및 PowerShell 4.2.0 이상을 사용합니다.
+이 문서에서 다루는 모든 기능은 Azure Resource Manager 템플릿을 사용하여 구성할 수 있습니다. Azure CLI 및 PowerShell 예제도 선택한 기능에 포함되어 있습니다. CLI 2.10 및 PowerShell 4.2.0 이상을 사용합니다.
 
 ## <a name="accelerated-networking"></a>가속 네트워킹
-Azure [네트워킹 Accelerated](../virtual-network/virtual-network-create-vm-accelerated-networking.md) 단일 루트 I/O 가상화 (SR-IOV) tooa 가상 컴퓨터를 사용 하 여 네트워크 성능을 개선 합니다. toouse accelerated 크기 집합와 네트워킹, 너무 enableAcceleratedNetworking 설정**true** 에 크기 집합 Networkinterfaceconfiguration 설정에서 합니다. 예:
+Azure [가속 네트워킹](../virtual-network/virtual-network-create-vm-accelerated-networking.md)에서는 가상 컴퓨터에 대한 SR-IOV(단일 루트 I/O 가상화)를 활성화하여 네트워킹 성능을 향상시킵니다. 확장 집합에서 가속 네트워킹을 사용하려면 확장 집합의 networkInterfaceConfigurations 설정에서 enableAcceleratedNetworking을 **true**로 설정합니다. 예:
 ```json
 "networkProfile": {
     "networkInterfaceConfigurations": [
@@ -47,7 +47,7 @@ Azure [네트워킹 Accelerated](../virtual-network/virtual-network-create-vm-ac
 ```
 
 ## <a name="create-a-scale-set-that-references-an-existing-azure-load-balancer"></a>기존 Azure Load Balancer를 참조하는 확장 집합 만들기
-크기 집합 hello Azure 포털을 사용 하 여 만들어지면 새 부하 분산 장치는 대부분의 구성 옵션에 대 한 생성 됩니다. 기존 부하 분산 장치는 tooreference 크기 집합을 만들면 이렇게 하려면 CLI를 사용 하 여 합니다. hello 다음 스크립트 예에서는 다음 부하 분산 장치를 만들고 참조 하는 확장 집합을 만듭니다.
+Azure Portal을 사용하여 확장 집합을 만들면 대부분의 구성 옵션에 대해 새 부하 분산 장치가 만들어집니다. 기존 부하 분산 장치를 참조해야 하는 확장 집합을 만드는 경우 CLI를 사용하여 이 작업을 수행할 수 있습니다. 다음 예제 스크립트에서는 부하 분산 장치를 만든 다음 이를 참조하는 확장 집합을 만듭니다.
 ```bash
 az network lb create -g lbtest -n mylb --vnet-name myvnet --subnet mysubnet --public-ip-address-allocation Static --backend-pool-name mybackendpool
 
@@ -56,14 +56,14 @@ az vmss create -g lbtest -n myvmss --image Canonical:UbuntuServer:16.04-LTS:late
 ```
 
 ## <a name="configurable-dns-settings"></a>구성 가능한 DNS 설정
-기본적으로 크기 집합의 hello VNET 서브넷에서 생성 된 hello 특정 DNS 설정에서 수행 합니다. 그러나 수 크기 직접 집합에 대 한 hello DNS 설정을 구성 합니다.
+기본적으로 확장 집합은 생성한 VNET 및 서브넷의 특정 DNS 설정을 사용하지만, 확장 집합에 대한 DNS 설정을 직접 구성할 수 있습니다.
 ~
 ### <a name="creating-a-scale-set-with-configurable-dns-servers"></a>구성 가능한 DNS 서버가 포함된 확장 집합 만들기
-눈금 설정 CLI 2.0을 사용 하 여 사용자 지정 DNS 구성을 toocreate 추가 hello **-dns 서버** 인수 toohello **vmss 만들** 서버 ip 주소를 구분 하는 명령, 공간입니다. 예:
+CLI 2.0을 사용하여 사용자 지정 DNS 구성이 포함된 확장 집합을 만들려면 **vmss create** 명령에 **--dns-servers** 인수를 추가한 다음 공백으로 구분된 서버 IP 주소를 추가합니다. 예:
 ```bash
 --dns-servers 10.0.0.6 10.0.0.5
 ```
-Azure 템플릿에서 tooconfigure 사용자 지정 DNS 서버는 dnsSettings 속성 toohello 크기 집합 Networkinterfaceconfiguration 섹션을 추가 합니다. 예:
+Azure 템플릿에서 사용자 지정 DNS 서버를 구성하려면 networkInterfaceConfigurations 확장 집합 섹션에 dnsSettings 속성을 추가합니다. 예:
 ```json
 "dnsSettings":{
     "dnsServers":["10.0.0.6", "10.0.0.5"]
@@ -71,9 +71,9 @@ Azure 템플릿에서 tooconfigure 사용자 지정 DNS 서버는 dnsSettings �
 ```
 
 ### <a name="creating-a-scale-set-with-configurable-virtual-machine-domain-names"></a>구성 가능한 가상 컴퓨터 도메인 이름이 포함된 확장 집합 만들기
-소수 CLI 2.0을 사용 하 여 가상 컴퓨터에 대 한 사용자 지정 DNS 이름으로 설정 하는 toocreate 추가 hello **도메인 이름-vm** 인수 toohello **vmss 만들** 명령, hello 도메인 이름을 나타내는 문자열입니다.
+CLI 2.0을 사용하여 가상 컴퓨터에 대한 사용자 지정 DNS 이름이 포함된 확장 집합을 만들려면 **vmss create** 명령에 **--vm-domain-name** 인수를 추가한 다음 도메인 이름을 나타내는 문자열을 추가합니다.
 
-Azure 템플릿에서 tooset hello 도메인 이름을 추가 **dnsSettings** 속성 toohello 크기 집합 **networkInterfaceConfigurations** 섹션. 예:
+Azure 템플릿에서 도메인 이름을 설정하려면 **networkInterfaceConfigurations** 확장 집합 섹션에 **dnsSettings** 속성을 추가합니다. 예:
 
 ```json
 "networkProfile": {
@@ -105,20 +105,20 @@ Azure 템플릿에서 tooset hello 도메인 이름을 추가 **dnsSettings** �
 }
 ```
 
-hello 폼을 다음에 개별 가상 컴퓨터 dns 이름에 대 한 hello 출력이 합니다. 
+개별 가상 컴퓨터 DNS 이름의 출력 형식은 다음과 같습니다. 
 ```
 <vm><vmindex>.<specifiedVmssDomainNameLabel>
 ```
 
 ## <a name="public-ipv4-per-virtual-machine"></a>가상 컴퓨터당 공용 IPv4
-일반적으로 Azure 확장 집합 가상 컴퓨터에는 자체의 공용 IP 주소가 필요하지 않습니다. 대부분의 시나리오에 대 한 경제적이 고 안전한 tooassociate 공용 IP 주소 tooa 부하 분산 장치 또는 tooan 개별 가상 컴퓨터 (즉, jumpbox) (예: 전자 필요에 따라 들어오는 tooscale 집합 가상 컴퓨터 연결을 라우팅합니다 되었기 인바운드 NAT 규칙)입니다.
+일반적으로 Azure 확장 집합 가상 컴퓨터에는 자체의 공용 IP 주소가 필요하지 않습니다. 대부분의 시나리오에서는 공용 IP 주소를 부하 분산 장치 또는 개별 가상 컴퓨터(즉, 점프박스)에 연결한 다음, 필요에 따라 들어오는 연결을 확장 집합 가상 컴퓨터로 라우팅하는(예: 인바운드 NAT 규칙을 통해) 것이 보다 경제적이며 안전합니다.
 
-그러나 일부 시나리오 필요가 크기 집합 가상 컴퓨터 toohave 자신의 공용 IP 주소입니다. 예로 게임, 콘솔 게임 물리 처리를 수행 하는 직접 연결 tooa 클라우드 가상 컴퓨터 toomake 필요한 부분입니다. 또 다른 예로 가상 컴퓨터 toomake 외부 연결 tooone 이곳 다른 지역에 배포 된 데이터베이스에 걸쳐 있습니다.
+그러나 일부 시나리오의 경우 확장 집합 가상 컴퓨터에는 자체의 공용 IP 주소가 필요합니다. 게임 물리 처리를 수행하는 클라우드 가상 컴퓨터에 콘솔을 직접 연결해야 하는 게임이 그 예입니다. 또 다른 예로 가상 컴퓨터가 분산된 데이터베이스의 여러 지역에서 서로를 외부 연결해야 하는 경우가 있습니다.
 
 ### <a name="creating-a-scale-set-with-public-ip-per-virtual-machine"></a>가상 컴퓨터별 공용 IP가 포함된 확장 집합 만들기
-CLI 2.0는 공용 IP 주소 tooeach 가상 컴퓨터를 할당 하는 크기 집합 toocreate 추가 hello **-vm 당 공용 ip** 매개 변수 toohello **vmss 만들** 명령입니다. 
+CLI 2.0을 사용하여 각 가상 컴퓨터에 공용 IP 주소를 할당하는 확장 집합을 만들려면 **vmss create** 명령에 **--public-ip-per-vm** 매개 변수를 추가합니다. 
 
-크기는 Azure 템플릿을 사용 하 여 집합 toocreate hello Microsoft.Compute/virtualMachineScaleSets 리소스의 hello API 버전 이상 인지 확인 **2017-03-30**를 추가 하 고는 **publicIpAddressConfiguration**JSON 속성 toohello 비율이 ipConfigurations 섹션을 설정 합니다. 예:
+Azure 템플릿을 사용하여 확장 집합을 만들려면 Microsoft.Compute/virtualMachineScaleSets 리소스의 API 버전이 적어도 **2017-03-30**인지 확인하고, ipConfigurations 확장 집합 섹션에 **publicIpAddressConfiguration** JSON 속성을 추가합니다. 예:
 
 ```json
 "publicIpAddressConfiguration": {
@@ -130,22 +130,22 @@ CLI 2.0는 공용 IP 주소 tooeach 가상 컴퓨터를 할당 하는 크기 집
 ```
 템플릿 예제: [201-vmss-public-ip-linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-public-ip-linux)
 
-### <a name="querying-hello-public-ip-addresses-of-hello-virtual-machines-in-a-scale-set"></a>눈금의 hello 가상 컴퓨터의 주소 집합을 쿼리 하는 hello 공용 IP
-toolist hello 공용 IP 주소 할당 tooscale CLI 2.0을 사용 하 여 집합 가상 컴퓨터, hello를 사용 하 여 **az vmss 목록-인스턴스-공용-ip** 명령입니다.
+### <a name="querying-the-public-ip-addresses-of-the-virtual-machines-in-a-scale-set"></a>확장 집합에 있는 가상 컴퓨터의 공용 IP 주소 쿼리
+CLI 2.0을 사용하여 확장 집합 가상 컴퓨터에 할당된 공용 IP 주소를 나열하려면 **az vmss list-instance-public-ips** 명령을 사용합니다.
 
-toolist 크기 PowerShell을 사용 하 여 공용 IP 주소 집합, hello를 사용 하 여 _Get AzureRmPublicIpAddress_ 명령입니다. 예:
+PowerShell을 사용하여 확장 집합 공용 IP 주소를 나열하려면 _Get-AzureRmPublicIpAddress_ 명령을 사용합니다. 예:
 ```PowerShell
 PS C:\> Get-AzureRmPublicIpAddress -ResourceGroupName myrg -VirtualMachineScaleSetName myvmss
 ```
 
-Hello 공용 IP 주소 구성의 hello 리소스 id를 직접 참조 하 여 쿼리 hello 공용 IP 주소 수도 있습니다. 예:
+공용 IP 주소 구성의 리소스 ID를 직접 참조하여 공용 IP 주소를 조회할 수도 있습니다. 예:
 ```PowerShell
 PS C:\> Get-AzureRmPublicIpAddress -ResourceGroupName myrg -Name myvmsspip
 ```
 
-tooquery hello 공용 IP 주소 할당 tooscale hello를 사용 하 여 집합 가상 컴퓨터 [Azure 리소스 탐색기](https://resources.azure.com), Azure REST API 버전으로 hello 또는 **2017-03-30** 이상.
+확장 집합 가상 컴퓨터에 할당된 공용 IP 주소를 쿼리하려면 [Azure Resource Explorer](https://resources.azure.com) 또는 **2017-03-30** 버전 이상의 Azure REST API를 사용합니다.
 
-hello tooview 크기 hello 리소스 탐색기를 사용 하 여 집합에 대 한 공용 IP 주소 확인 **publicipaddresses** 크기 집합 섹션. 예: https://resources.azure.com/subscriptions/_your_sub_id_/resourceGroups/_your_rg_/providers/Microsoft.Compute/virtualMachineScaleSets/_your_vmss_/publicipaddresses
+Resource Explorer를 사용하여 확장 집합에 대한 공용 IP 주소를 보려면 확장 집합 아래의 **publicipaddresses** 섹션을 살펴봅니다. 예: https://resources.azure.com/subscriptions/_your_sub_id_/resourceGroups/_your_rg_/providers/Microsoft.Compute/virtualMachineScaleSets/_your_vmss_/publicipaddresses
 
 ```
 GET https://management.azure.com/subscriptions/{your sub ID}/resourceGroups/{RG name}/providers/Microsoft.Compute/virtualMachineScaleSets/{scale set name}/publicipaddresses?api-version=2017-03-30
@@ -190,10 +190,10 @@ GET https://management.azure.com/subscriptions/{your sub ID}/resourceGroups/{RG 
 ```
 
 ## <a name="multiple-ip-addresses-per-nic"></a>NIC당 여러 IP 주소
-모든 NIC 연결 tooa VM 크기 집합의 연결 된 하나 이상의 IP 구성을 가질 수 있습니다. 각 구성에는 하나의 개인 IP 주소가 할당됩니다. 각 구성에는 연결된 하나의 공용 IP 주소 리소스가 있을 수도 있습니다. toounderstand IP 주소 수 tooa NIC를 할당할 수는 Azure 구독에서 사용할 수 있습니다 하는 공용 IP 주소 수가 너무 참조[Azure 제한을](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits)합니다.
+확장 집합의 VM에 연결된 모든 NIC에는 하나 이상의 IP 구성이 연결되어 있습니다. 각 구성에는 하나의 개인 IP 주소가 할당됩니다. 각 구성에는 연결된 하나의 공용 IP 주소 리소스가 있을 수도 있습니다. NIC에 할당할 수 있는 IP 주소 수와 Azure 구독에서 사용할 수 있는 공용 IP 주소 수를 이해하려면 [Azure 제한](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits)을 참조하세요.
 
 ## <a name="multiple-nics-per-virtual-machine"></a>가상 컴퓨터당 여러 NIC
-컴퓨터 크기에 따라 가상 컴퓨터당 too8 Nic를 만들 수 있습니다. 컴퓨터당 Nic의 hello 최대 수는 hello에서 사용할 수 있는 [VM 크기 문서](../virtual-machines/windows/sizes.md)합니다. hello 다음 예제는 여러 NIC 항목 및 가상 컴퓨터 마다 여러 공용 Ip를 보여 주는 네트워크 프로필을 설정 하는 소수 자릿수:
+컴퓨터 크기에 따라 가상 컴퓨터당 최대 8개 NIC를 포함할 수 있습니다. 컴퓨터당 최대 NIC 수는 [VM 크기 문서](../virtual-machines/windows/sizes.md)에서 확인할 수 있습니다. 다음 예제는 가상 컴퓨터마다 여러 개의 NIC 항목과 여러 개의 공용 IP를 보여 주는 확장 집합 네트워크 프로필입니다.
 ```json
 "networkProfile": {
     "networkInterfaceConfigurations": [
@@ -266,7 +266,7 @@ GET https://management.azure.com/subscriptions/{your sub ID}/resourceGroups/{RG 
 ```
 
 ## <a name="nsg-per-scale-set"></a>확장 집합당 NSG
-네트워크 보안 그룹 tooa 크기 집합 hello 눈금의 참조 toohello 네트워크 인터페이스 구성 섹션을 추가 하 여 가상 컴퓨터 속성을 설정 하는 직접 적용할 수 있습니다.
+네트워크 보안 그룹은 확장 집합 가상 컴퓨터 속성의 네트워크 인터페이스 구성 섹션에 참조를 추가하여 확장 집합에 직접 적용할 수 있습니다.
 
 예: 
 ```
@@ -306,4 +306,4 @@ GET https://management.azure.com/subscriptions/{your sub ID}/resourceGroups/{RG 
 ```
 
 ## <a name="next-steps"></a>다음 단계
-Azure 가상 네트워크에 대 한 자세한 내용은 참조 너무[이 설명서](../virtual-network/virtual-networks-overview.md)합니다.
+Azure 가상 네트워크에 대한 자세한 내용은 [이 설명서](../virtual-network/virtual-networks-overview.md)를 참조하세요.

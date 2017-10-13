@@ -1,6 +1,6 @@
 ---
-title: "Azure HDinsight를 사용 하 여 HDFS aaaTroubleshoot | Microsoft Docs"
-description: "HDFS 및 Azure HDInsight 작업에 대 한 toocommon 질문을 답변을 가져옵니다."
+title: "Azure HDInsight를 사용한 HDFS 문제 해결 | Microsoft Docs"
+description: "HDFS 및 Azure HDInsight 작업에 대한 일반적인 질문에 답합니다."
 keywords: "Azure HDInsight HDFS, FAQ, 문제 해결 가이드, 일반적인 질문"
 services: Azure HDInsight
 documentationcenter: na
@@ -15,25 +15,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/7/2017
 ms.author: arijitt
-ms.openlocfilehash: f5adec6879c947fcff82112e95d9d0303592c834
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 58f3d160c1f2a32025b706f10863e0055d67bfcd
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="troubleshoot-hdfs-by-using-azure-hdinsight"></a>Azure HDInsight를 사용한 HDFS 문제 해결
 
-Apache Ambari에 Hadoop 분산 파일 시스템 (HDFS) 페이로드를 작업할 때 hello 상위 문제와 그 해결 방법에 알아봅니다.
+Apache Ambari에서 HDFS(Hadoop 분산 파일 시스템) 페이로드를 사용할 때의 주요 문제 및 해결 방법을 알아봅니다.
 
-## <a name="how-do-i-access-local-hdfs-from-inside-a-cluster"></a>액세스 하려면 어떻게 합니까 클러스터 내에서 로컬 HDFS hello
+## <a name="how-do-i-access-local-hdfs-from-inside-a-cluster"></a>클러스터 내부에서 로컬 HDFS에 액세스하는 방법
 
 ### <a name="issue"></a>문제
 
-로컬 HDFS 대신 명령 줄 및 응용 프로그램 코드를 Azure Blob 저장소 또는 내부 Azure 데이터 레이크 저장소에서 사용 하 여 hello 액세스 hello hello HDInsight 클러스터입니다.   
+HDInsight 클러스터 내에서 Azure Blob Storage 또는 Azure Data Lake Store를 사용하는 대신, 명령줄 및 응용 프로그램 코드에서 로컬 HDFS에 액세스합니다.   
 
 ### <a name="resolution-steps"></a>해결 단계:
 
-1. Hello 명령 프롬프트에서 사용 하 여 `hdfs dfs -D "fs.default.name=hdfs://mycluster/" ...` 다음 명령을 hello와 같이 문자 그대로:
+1. 다음 명령과 같이 명령 프롬프트에서 `hdfs dfs -D "fs.default.name=hdfs://mycluster/" ...`를 그대로 사용합니다.
 
     ```apache
     hdiuser@hn0-spark2:~$ hdfs dfs -D "fs.default.name=hdfs://mycluster/" -ls /
@@ -43,7 +43,7 @@ Apache Ambari에 Hadoop 분산 파일 시스템 (HDFS) 페이로드를 작업할
     drwx------   - hdiuser hdfs          0 2016-11-10 22:22 /user
     ```
 
-2. 소스 코드에서 URI hello를 사용 하 여 `hdfs://mycluster/` hello 다음 예제 응용 프로그램에서와 같이 문자 그대로:
+2. 다음 예제 응용 프로그램과 같이 소스 코드에서 URI `hdfs://mycluster/`를 그대로 사용합니다.
 
     ```csharp
     import java.io.IOException;
@@ -68,7 +68,7 @@ Apache Ambari에 Hadoop 분산 파일 시스템 (HDFS) 페이로드를 작업할
     }
     ```
 
-3. 실행된 hello 컴파일된.jar 파일 (예를 들어 라는 파일 `java-unit-tests-1.0.jar`) 다음 명령을 hello로 hello HDInsight 클러스터:
+3. 다음 명령을 사용하여 HDInsight 클러스터에서 컴파일된 .jar 파일(예: `java-unit-tests-1.0.jar`)을 실행합니다.
 
     ```apache
     hdiuser@hn0-spark2:~$ hadoop jar java-unit-tests-1.0.jar JavaUnitTests
@@ -83,23 +83,23 @@ Apache Ambari에 Hadoop 분산 파일 시스템 (HDFS) 페이로드를 작업할
 
 ### <a name="issue"></a>문제
 
-hello hello HDInsight 클러스터에서 안전 모드로 로컬 HDFS 고정 됩니다.   
+HDInsight 클러스터에서 안전 모드를 사용하면 로컬 HDFS가 중단됩니다.   
 
 ### <a name="detailed-description"></a>자세한 설명
 
-오류는 hello 다음 HDFS 명령을 실행할 때 발생 합니다.
+다음 HDFS 명령을 실행할 때 오류가 발생합니다.
 
 ```apache
 hdfs dfs -D "fs.default.name=hdfs://mycluster/" -mkdir /temp
 ```
 
-Hello hello 명령을 실행할 때 다음 오류가 표시 됩니다.
+이 명령을 실행할 때 다음과 같은 오류가 표시됩니다.
 
 ```apache
 hdiuser@hn0-spark2:~$ hdfs dfs -D "fs.default.name=hdfs://mycluster/" -mkdir /temp
 17/04/05 16:20:52 WARN retry.RetryInvocationHandler: Exception while invoking ClientNamenodeProtocolTranslatorPB.mkdirs over hn0-spark2.2oyzcdm4sfjuzjmj5dnmvscjpg.dx.internal.cloudapp.net/10.0.0.22:8020. Not retrying because try once and fail.
 org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.hdfs.server.namenode.SafeModeException): Cannot create directory /temp. Name node is in safe mode.
-It was turned on manually. Use "hdfs dfsadmin -safemode leave" tooturn safe mode off.
+It was turned on manually. Use "hdfs dfsadmin -safemode leave" to turn safe mode off.
         at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkNameNodeSafeMode(FSNamesystem.java:1359)
         at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.mkdirs(FSNamesystem.java:4010)
         at org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.mkdirs(NameNodeRpcServer.java:1102)
@@ -149,11 +149,11 @@ mkdir: Cannot create directory /temp. Name node is in safe mode.
 
 ### <a name="probable-cause"></a>가능한 원인:
 
-hello HDInsight 클러스터 된 노드가 거의 tooa 축소 합니다. 노드 수가 hello 아래 되었거나 toohello HDFS 복제 요소를 닫습니다.
+HDInsight 클러스터 규모가 매우 적은 수의 노드로 축소되었습니다. 노드 수가 HDFS 복제 계수보다 낮거나 이 계수에 가깝습니다.
 
 ### <a name="resolution-steps"></a>해결 단계: 
 
-1. 다음 명령을 hello를 사용 하 여 hello HDInsight 클러스터에서의 HDFS hello 상태를 가져오기:
+1. 다음 명령을 사용하여 HDInsight 클러스터에서 HDFS 상태를 가져옵니다.
 
     ```apache
     hdfs dfsadmin -D "fs.default.name=hdfs://mycluster/" -report
@@ -194,14 +194,14 @@ hello HDInsight 클러스터 된 노드가 거의 tooa 축소 합니다. 노드 
     ...
     ```
 
-2. Hello 다음 명령을 사용 하 여 hello HDInsight 클러스터에서 HDFS의 hello 무결성을 검사 합니다.
+2. 다음 명령을 사용하여 HDInsight 클러스터에서 HDFS의 무결성을 확인합니다.
 
     ```apache
     hdiuser@hn0-spark2:~$ hdfs fsck -D "fs.default.name=hdfs://mycluster/" /
     ```
 
     ```apache
-    Connecting toonamenode via http://hn0-spark2.2oyzcdm4sfjuzjmj5dnmvscjpg.dx.internal.cloudapp.net:30070/fsck?ugi=hdiuser&path=%2F
+    Connecting to namenode via http://hn0-spark2.2oyzcdm4sfjuzjmj5dnmvscjpg.dx.internal.cloudapp.net:30070/fsck?ugi=hdiuser&path=%2F
     FSCK started by hdiuser (auth:SIMPLE) from /10.0.0.22 for path / at Wed Apr 05 16:40:28 UTC 2017
     ....................................................................................................
 
@@ -224,10 +224,10 @@ hello HDInsight 클러스터 된 노드가 거의 tooa 축소 합니다. 노드 
     Number of racks:               1
     FSCK ended at Wed Apr 05 16:40:28 UTC 2017 in 187 milliseconds
 
-    hello filesystem under path '/' is HEALTHY
+    The filesystem under path '/' is HEALTHY
     ```
 
-3. 없는 없거나 손상 under-복제 된 블록 또는 해당 블록을 무시할 수 있는지를 확인 하는 경우 안전 모드에서 명령 tootake hello 이름 노드 다음에 오는 hello를 실행 합니다.
+3. 복제된 블록에서 누락되었거나 손상된 부분이 없거나 해당 블록을 무시할 수 있다고 판단되면 다음 명령을 실행하여 이름 노드를 안전 모드에서 제거합니다.
 
     ```apache
     hdfs dfsadmin -D "fs.default.name=hdfs://mycluster/" -safemode leave

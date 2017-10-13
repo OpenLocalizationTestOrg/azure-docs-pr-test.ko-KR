@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB에 대 한 aaaProvision 처리량 | Microsoft Docs"
-description: "프로그램 Azure Cosmos DB containsers, 컬렉션, 그래프 및 테이블에 대 한 처리량 tooset 프로 비전 하는 방법을 알아봅니다."
+title: "Azure Cosmos DB에 대한 처리량 프로비전 | Microsoft Docs"
+description: "Azure Cosmos DB 컨테이너, 컬렉션, 그래프 및 테이블에 대해 프로비전된 처리량을 설정하는 방법을 알아봅니다."
 services: cosmos-db
 author: mimig1
 manager: jhubbard
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/12/2017
 ms.author: mimig
-ms.openlocfilehash: c143f4aace466b7109168a50e2eb80ddeca6400e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d541bb19ba7e5ecb44c9fe91b1e232d4d9c2170e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="set-throughput-for-azure-cosmos-db-containers"></a>Azure Cosmos DB 컨테이너에 대한 처리량 설정
 
-Hello Azure 포털에서에서 사용자 Azure Cosmos DB 컨테이너에 대 한 처리량을 설정 하거나 hello client Sdk를 사용 하 여 수 있습니다. 
+Azure Portal 또는 클라이언트 SDK를 사용하여 Azure Cosmos DB 컨테이너에 대한 처리량을 설정할 수 있습니다. 
 
-다음 표에서 hello 컨테이너에 사용할 수 있는 hello 처리량을 보여 줍니다.
+다음 테이블에는 컨테이너에 사용할 수 있는 처리량이 나열되어 있습니다.
 
 <table border="0" cellspacing="0" cellpadding="0">
     <tbody>
@@ -46,43 +46,43 @@ Hello Azure 포털에서에서 사용자 Azure Cosmos DB 컨테이너에 대 한
     </tbody>
 </table>
 
-## <a name="tooset-hello-throughput-by-using-hello-azure-portal"></a>hello Azure 포털을 사용 하 여 tooset hello 처리량
+## <a name="to-set-the-throughput-by-using-the-azure-portal"></a>Azure Portal을 사용하여 처리량을 설정하려면
 
-1. 새 창에서 열고 hello [Azure 포털](https://portal.azure.com)합니다.
-2. Hello 왼쪽된 모음에서 **Azure Cosmos DB**, 하거나 클릭 **더 서비스** hello 맨 아래에 다음 스크롤하여 너무**데이터베이스**, 클릭 하 고 **Azure Cosmos DB**.
+1. 새 창에서 [Azure Portal](https://portal.azure.com)을 엽니다.
+2. 왼쪽 모음에서 **Azure Cosmos DB**를 클릭하거나 맨 아래에서 **더 많은 서비스**를 클릭한 다음 **데이터베이스**로 스크롤하고 **Azure Cosmos DB**를 클릭합니다.
 3. Cosmos DB 계정을 선택합니다.
-4. Hello 새 창에서 클릭 **데이터 탐색기 (미리 보기)** hello 탐색 메뉴에 있습니다.
-5. Hello 새 창에서 데이터베이스와 컨테이너를 확장 한 다음 클릭 **배율 및 설정**합니다.
-6. Hello 새 창에서 hello에 hello 새 처리량 값을 입력 **처리량** 상자를 선택한 다음 클릭 **저장**합니다.
+4. 새 창의 탐색 메뉴에서 **데이터 탐색기(미리 보기)**를 클릭합니다.
+5. 새 창에서 데이터베이스와 컨테이너를 확장하고 **배율 및 설정**을 클릭합니다.
+6. 새 창에서 **처리량** 상자에 새 처리량 값을 입력하고 **저장**을 클릭합니다.
 
 <a id="set-throughput-sdk"></a>
 
-## <a name="tooset-hello-throughput-by-using-hello-documentdb-api-for-net"></a>.NET 용 hello DocumentDB API를 사용 하 여 tooset hello 처리량
+## <a name="to-set-the-throughput-by-using-the-documentdb-api-for-net"></a>DocumentDB API for .NET을 사용하여 처리량을 설정하려면
 
 ```C#
-//Fetch hello resource toobe updated
+//Fetch the resource to be updated
 Offer offer = client.CreateOfferQuery()
     .Where(r => r.ResourceLink == collection.SelfLink)    
     .AsEnumerable()
     .SingleOrDefault();
 
-// Set hello throughput toohello new value, for example 12,000 request units per second
+// Set the throughput to the new value, for example 12,000 request units per second
 offer = new OfferV2(offer, 12000);
 
-//Now persist these changes toohello database by replacing hello original resource
+//Now persist these changes to the database by replacing the original resource
 await client.ReplaceOfferAsync(offer);
 ```
 
 ## <a name="throughput-faq"></a>처리량 FAQ
 
-**내 처리량 tooless 400RU/s 보다를 설정할 수 있습니까?**
+**내 처리량을 400RU/s 미만으로 설정할 수 있나요?**
 
-400RU/s는 hello 최소 처리량 (2500 000RU/s는 분할 된 컬렉션에 대 한 최소 hello) Cosmos DB 단일 파티션 컬렉션에 사용할 수 있습니다. 단위 000RU/s 간격 100 개에 설정 되어 있지만 처리량 설정할 수 없습니다 too100 000RU/s 이나 값 400RU/s 보다 작은 요청 합니다. 비용 효율적인 메서드 toodevelop 찾고 Cosmos DB를 테스트 하는 경우 무료 hello를 사용할 수 있습니다 [Azure Cosmos DB 에뮬레이터](local-emulator.md), 비용 없이 로컬로 배포할 수 있는 합니다. 
+Cosmos DB 단일 파티션 컬렉션에서 사용할 수 있는 최소 처리량은 400RU/s이고 분할된 컬렉션에 대한 최소값은 2500RU/s입니다. 요청 단위는 100RU/s 간격으로 설정되어 있지만 처리량은 100RU/s 또는 400RU/s 미만인 값으로 설정할 수 없습니다. Cosmos DB를 개발하고 테스트하는 비용 효과적인 방법을 찾으려는 경우 비용 없이 로컬에 배포할 수 있는 [Azure Cosmos DB 에뮬레이터](local-emulator.md)를 사용할 수 있습니다. 
 
-**Hello MongoDB API를 사용 하 여 througput를 설정 하려면 어떻게 해야 합니까?**
+**MongoDB API를 사용하여 처리량을 설정하려면 어떻게 해야 하나요?**
 
-MongoDB API 확장 tooset 처리량 되지 않습니다. hello 좋습니다 toouse hello DocumentDB API와 같이 [.NET에 대 한 hello DocumentDB API를 사용 하 여 tooset hello 처리량](#set-throughput-sdk)합니다.
+처리량을 설정할 수 있는 MongoDB API 확장은 없습니다. [DocumentDB API for .NET을 사용하여 처리량을 설정하려면](#set-throughput-sdk)에 나와 있는 대로 DocumentDB API를 사용하는 것이 좋습니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-프로 비전 및 Cosmos DB와 함께 진행 중인 지구 단위에 대해 자세히 toolearn 참조 [분할과 Cosmos DB와 함께 크기 조정](partition-data.md)합니다.
+Cosmos DB를 사용하여 프로비전을 수행하고 대규모로 크기를 조정하려면 [Cosmos DB로 분할 및 크기 조정](partition-data.md)을 참조하세요.

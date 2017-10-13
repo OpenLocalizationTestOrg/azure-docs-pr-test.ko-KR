@@ -1,6 +1,6 @@
 ---
-title: "Mahout HDInsight PowerShell-Azure에서에서 사용 하 여 aaaGenerate 권장 사항 | Microsoft Docs"
-description: "Toouse HDInsight (Hadoop)로 toogenerate 영화 권장 구성을 라이브러리 클라이언트에서 실행 되는 PowerShell 스크립트에서 학습 하는 Apache Mahout 컴퓨터 hello 하는 방법에 대해 알아봅니다."
+title: "PowerShell에서 Mahout HDInsight를 사용하여 추천 생성 - Azure | Microsoft Docs"
+description: "Apache Mahout Machine Learning 라이브러리를 사용하여 클라이언트에서 실행 중인 PowerShell에서 HDInsight(Hadoop)로 영화 추천을 생성하는 방법을 알아봅니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,51 +16,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: larryfr
-ms.openlocfilehash: 675a2cd8ecaf7fc797d6cd094e4e58f9aca7ed92
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 934de9ca2df48b29ef7a56d5729d59d77875ea7b
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="generate-movie-recommendations-by-using-apache-mahout-with-hadoop-in-hdinsight-powershell"></a>HDInsight(PowerShell)의 Hadoop 및 Apache Mahout을 사용하여 영화 추천 생성
 
 [!INCLUDE [mahout-selector](../../includes/hdinsight-selector-mahout.md)]
 
-자세한 내용은 방법 toouse hello [Apache Mahout](http://mahout.apache.org) Azure HDInsight toogenerate 영화 권장 사항이 포함 된 시스템 학습 라이브러리입니다. 이 문서에 hello 예제는 Azure PowerShell toorun Mahout 작업 합니다.
+Azure HDInsight에서 [Apache Mahout](http://mahout.apache.org) 기계 학습 라이브러리를 사용하여 영화 추천을 생성하는 방법에 대해 알아봅니다. 이 문서의 예제는 Azure PowerShell을 사용하여 Mahout 작업을 실행합니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
 * Linux 기반 HDInsight 클러스터입니다. HDInsight 클러스터 만들기에 대한 자세한 내용은 [HDInsight에서 Linux 기반 Hadoop 사용 시작][getstarted]을 참조하세요.
 
 > [!IMPORTANT]
-> Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+> Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 
 * [Azure PowerShell](/powershell/azure/overview)
 
 ## <a name="recommendations"></a>Azure PowerShell을 사용하여 추천 생성
 
 > [!WARNING]
-> 이 섹션의 작업 hello Azure PowerShell을 사용 하 여 작동 합니다. 많은 Mahout와 함께 제공 되는 hello 클래스의 작동 하지 않습니다 현재 Azure PowerShell을 사용 합니다. 목록이 Azure PowerShell과 함께 작동 하지 않는 클래스에 대 한 참조 hello [문제 해결](#troubleshooting) 섹션.
+> 이 섹션의 작업은 Azure PowerShell을 사용하여 실행합니다. Mahout에 제공되는 대부분의 클래스는 현재 Azure PowerShell에서 작동하지 않습니다. Azure PowerShell에서 작동하지 않는 클래스의 목록은 [문제 해결](#troubleshooting) 섹션을 참조하세요.
 >
-> SSH tooconnect tooHDInsight 및 실행된 Mahout 예제를 사용 하 여 hello 클러스터에서 직접의 예제를 보려면 [Mahout 및 HDInsight SSH () 사용 하 여 영화 권장 구성 생성](hdinsight-hadoop-mahout-linux-mac.md)합니다.
+> SSH를 사용하여 HDInsight에 연결하고 클러스터에서 Mahout 예제를 직접 실행하는 예제의 경우 [Mahout 및 HDInsight (SSH)를 사용하여 영화 추천 생성](hdinsight-hadoop-mahout-linux-mac.md)을 참조하세요.
 
-Mahout에서 제공 하는 hello 함수 중 하나에 추천 엔진입니다. 이 엔진 hello 형식의의 데이터를 수용 `userID`, `itemId`, 및 `prefValue` (hello hello 항목에 대 한 사용자 기본 설정). Mahout은 hello 데이터 toodetermine 사용자 사용된 toomake 권장 될 수 있는 유사한 항목 기본 설정을 사용 합니다.
+Mahout에서 제공하는 기능 중 하나가 추천 엔진입니다. 이 엔진은 `userID`, `itemId` 및 `prefValue`(항목에 대한 사용자 선호도) 형식의 데이터를 허용합니다. Mahout은 데이터를 사용하여 특정 품목에 대한 선호도를 가진 사용자를 결정합니다. 이 결과는 추천에 사용할 수 있습니다.
 
-hello 다음 예제는 hello 권장 프로세스의 작동 방식을 단순화 연습:
+다음 예제는 추천 프로세스가 작동하는 방식을 간단히 요약한 것입니다.
 
-* **동시 발생**: Joe, Alice와 Bob 모든 좋아하는 *별 전쟁*, *제국 공격 다시 hello*, 및 *hello 제다이 반환*합니다. Mahout은 사용자도 이러한 동영상 같은 다른 두 hello 있는지 확인 합니다.
+* **동시 발생**: Joe, Alice 및 Bob은 모두 *스타워즈*, *제국의 역습* 및 *제다이의 귀환*을 좋아합니다. Mahout은 이러한 영화 중 하나를 좋아하면서 다른 두 개도 좋아하는 사용자를 확인합니다.
 
-* **동시 발생**: Alice와 Bob도 빴 *Phantom의 위협 hello*, *hello 복제본의 공격*, 및 *Sith hello의 복수*합니다. Mahout은 hello 이전 세 영화도 좋아 한 사용자가 이러한 동영상 등 차단 하는 것을 결정 합니다.
+* **동시 발생**: Bob 및 Alice는 *보이지 않는 위협*, *클론의 습격* 및 *시스의 복수*도 좋아합니다. Mahout은 이전의 3개 영화를 좋아하는 사용자가 이러한 영화도 좋아하는지를 판단합니다.
 
-* **유사성 권장**: 때문에 Joe 처음 세 개의 영화 hello 빴, Mahout 영화에서 마음 비슷한 기본 설정과 다른 보이지만 Joe에 (빴/등급) 조사 하지 합니다. Mahout 권장 하는 경우에 *Phantom의 위협 hello*, *hello 복제본의 공격*, 및 *Sith hello의 복수*합니다.
+* **유사성 추천**: Joe가 첫 3개 영화를 좋아하므로, Mahout은 유사한 선호도를 가진 다른 사람이 좋아하지만 Joe는 본(좋아하거나 평가한) 적이 없는 영화를 검색합니다. 이 경우 Mahout은 *보이지 않는 위협*, *클론의 습격* 및 *시스의 복수*를 추천합니다.
 
-### <a name="understanding-hello-data"></a>Hello 데이터 이해
+### <a name="understanding-the-data"></a>데이터 이해
 
-[GroupLens Research][movielens]에서 Mahout과 호환되는 형식으로 영화에 대한 평가 데이터를 제공합니다. 클러스터에 대 한 hello 기본 저장소에서이 데이터를 사용할 `/HdiSamples//HdiSamples/MahoutMovieData`합니다.
+[GroupLens Research][movielens]에서 Mahout과 호환되는 형식으로 영화에 대한 평가 데이터를 제공합니다. 이 데이터는 클러스터의 기본 저장소인 `/HdiSamples//HdiSamples/MahoutMovieData`에서 사용할 수 있습니다.
 
-두 개의 파일이 `moviedb.txt` (hello 영화에 대 한 정보) 및 `user-ratings.txt`합니다. hello `user-ratings.txt` 분석 하는 동안 파일을 사용 합니다. hello `moviedb.txt` 파일은 사용 되는 tooprovide 알기 쉬운 텍스트 hello hello 분석 결과 표시 합니다.
+`moviedb.txt`(영화 정보) 및 `user-ratings.txt`의 두 가지 파일이 있습니다. `user-ratings.txt` 파일은 분석 중 사용됩니다. `moviedb.txt` 파일은 분석 결과를 표시할 때 사용자에게 친숙한 텍스트를 제공하는 데 사용됩니다.
 
-hello 사용자 ratings.txt에 포함 된 데이터의 구조는의 `userID`, `movieID`, `userRating`, 및 `timestamp`, 각 사용자 등급 동영상을 지정 하는 방식을 높은 우리 지시 합니다. Hello 데이터의 예는 다음과 같습니다.
+user-ratings.txt에 포함된 데이터의 구조는 `userID`, `movieID`, `userRating` 및 `timestamp`이며, 각 사용자의 영화 등급 평가를 보여 줍니다. 다음은 데이터의 예제입니다.
 
     196    242    3    881250949
     186    302    3    891717742
@@ -68,44 +68,44 @@ hello 사용자 ratings.txt에 포함 된 데이터의 구조는의 `userID`, `m
     244    51    2    880606923
     166    346    1    886397596
 
-### <a name="run-hello-job"></a>Hello 작업 실행
+### <a name="run-the-job"></a>작업 실행
 
-Windows PowerShell 스크립트 toorun hello 영화 데이터로 hello Mahout 추천 엔진을 사용 하는 작업을 수행 하는 hello를 사용 합니다.
-
-> [!NOTE]
-> 이 파일에 대 한 정보를 사용 하는 tooconnect tooyour HDInsight 클러스터와 실행된 작업 메시지 표시 합니다. 작업 toocomplete hello에 대 일 분 정도 걸릴 하 고 hello output.txt 라는 파일을 다운로드 될 수 있습니다.
-
-[!code-powershell[main](../../powershell_scripts/hdinsight/mahout/use-mahout.ps1?range=5-98)]
+다음 Windows PowerShell 스크립트를 사용하여 영화 데이터로 Mahout 추천 엔진을 사용하는 작업을 실행합니다.
 
 > [!NOTE]
-> Mahout 작업 hello 작업을 처리 하는 동안 만든 임시 데이터를 제거 하지 않습니다. hello `--tempDir` 매개 변수는 특정 디렉터리로 hello 예제 작업 tooisolate hello 임시 파일에 지정 됩니다.
+> 이 파일은 HDInsight 클러스터에 연결하고 작업을 실행하는 데 사용하는 정보를 안내합니다. 작업을 완료하고 output.txt 파일을 다운로드하는 데 몇 분이 걸립니다.
 
-hello Mahout 작업 hello 출력 tooSTDOUT 반환 하지 않습니다. 대신 저장 hello 지정한 출력 디렉터리에 **파트-r-00000**합니다. hello 스크립트이 파일 다운로드 하 여이 너무**output.txt 라는** hello 워크스테이션에서 현재 디렉터리에 있습니다.
+[!code-powershell[기본](../../powershell_scripts/hdinsight/mahout/use-mahout.ps1?range=5-98)]
 
-hello 다음 텍스트는이 파일의 hello 콘텐츠의 예입니다.
+> [!NOTE]
+> Mahout 작업은 작업을 처리하는 동안 생성된 임시 데이터를 제거하지 않습니다. 이 `--tempDir` 매개 변수는 쉽게 삭제할 수 있도록 임시 파일을 특정 디렉터리로 분리하기 위해 예제 작업에서 지정되었습니다.
+
+Mahout 작업은 STDOUT로 출력을 반환하지 않습니다. 대신 지정된 출력 디렉터리에 **part-r-00000**으로 저장합니다. 이 스크립트는 이 파일을 워크스테이션의 현재 디렉터리에서 **output.txt** 에 다운로드합니다.
+
+다음 텍스트는 이 파일의 내용에 대한 예제입니다.
 
     1    [234:5.0,347:5.0,237:5.0,47:5.0,282:5.0,275:5.0,88:5.0,515:5.0,514:5.0,121:5.0]
     2    [282:5.0,210:5.0,237:5.0,234:5.0,347:5.0,121:5.0,258:5.0,515:5.0,462:5.0,79:5.0]
     3    [284:5.0,285:4.828125,508:4.7543354,845:4.75,319:4.705128,124:4.7045455,150:4.6938777,311:4.6769233,248:4.65625,272:4.649266]
     4    [690:5.0,12:5.0,234:5.0,275:5.0,121:5.0,255:5.0,237:5.0,895:5.0,282:5.0,117:5.0]
 
-hello 첫 번째 열은 hello `userID`합니다. hello에 포함 된 값 ' [' 및 ']'은 `movieId`:`recommendationScore`합니다.
+첫 번째 열은 `userID`입니다. '[' 및 ']'에 포함된 값은 `movieId`:`recommendationScore`입니다.
 
-hello 스크립트 다운로드 hello `moviedb.txt` 및 `user-ratings.txt` 필요한 tooformat hello 출력 toobe 더 쉽게 읽을 수 있는 파일입니다.
+또한 스크립트는 출력의 가독성을 개선하도록 서식 지정하는 데 필요한 `moviedb.txt` 및 `user-ratings.txt` 파일을 다운로드합니다.
 
-### <a name="view-hello-output"></a>Hello 출력 보기
+### <a name="view-the-output"></a>출력 보기
 
-Hello 생성 된 출력 수는 있지만 확인 응용 프로그램에서 사용 하기 위해, 사용자에 게 친숙있지 않습니다. hello `moviedb.txt` 서버 hello에서 사용 되는 tooresolve hello 될 수 있습니다 `movieId` tooa 영화 이름입니다. 영화 이름의 PowerShell 스크립트 toodisplay 권장 사항을 따르면 hello를 사용 합니다.
+생성된 출력을 응용 프로그램에서 사용할 수 있긴 하지만 사용자에게 친숙한 형식은 아닙니다. 서버의 `moviedb.txt`를 사용하여 영화 이름으로 `movieId`를 분석할 수 있습니다. 다음 PowerShell 스크립트를 사용하여 영화 이름과 함께 추천 항목을 표시합니다.
 
-[!code-powershell[main](../../powershell_scripts/hdinsight/mahout/use-mahout.ps1?range=106-180)]
+[!code-powershell[기본](../../powershell_scripts/hdinsight/mahout/use-mahout.ps1?range=106-180)]
 
-사용자에 게 친숙 한 형태로 표시 명령 toodisplay hello 권장 사항을 따르면 hello를 사용 합니다. 
+다음 명령을 사용하여 사용자에게 친숙한 형식으로 추천 정보를 표시합니다. 
 
 ```powershell
 .\show-recommendation.ps1 -userId 4 -userDataFile .\user-ratings.txt -movieFile .\moviedb.txt -recommendationFile .\output.txt
 ```
 
-hello는 텍스트 다음 비슷한 toohello 출력:
+다음 텍스트와 유사하게 출력됩니다.
 
     Reading movies descriptions
     Reading rated movies
@@ -114,7 +114,7 @@ hello는 텍스트 다음 비슷한 toohello 출력:
     ---------------------------
     Movie                                    Rating
     -----                                    ------
-    Devil's Own, hello (1997)                  1
+    Devil's Own, The (1997)                  1
     Alien: Resurrection (1997)               3
     187 (1997)                               2
     (lines ommitted)
@@ -127,8 +127,8 @@ hello는 텍스트 다음 비슷한 toohello 출력:
     -----                                    -----
     Good Will Hunting (1997)                 4.6504064
     Swingers (1996)                          4.6862745
-    Wings of hello Dove, hello (1997)            4.6666665
-    People vs. Larry Flynt, hello (1996)       4.834559
+    Wings of the Dove, The (1997)            4.6666665
+    People vs. Larry Flynt, The (1996)       4.834559
     Everyone Says I Love You (1996)          4.707071
     Secrets & Lies (1996)                    4.818182
     That Thing You Do! (1996)                4.75
@@ -140,12 +140,12 @@ hello는 텍스트 다음 비슷한 toohello 출력:
 
 ### <a name="cannot-overwrite-files"></a>파일을 덮어쓸 수 없음
 
-Mahout 작업은 처리 중 생성된 임시 파일을 정리하지 않습니다. 또한 hello 작업은 기존 출력 파일을 덮어쓰지 않습니다.
+Mahout 작업은 처리 중 생성된 임시 파일을 정리하지 않습니다. 또한 이 작업은 기존 출력 파일을 덮어쓰지 않습니다.
 
-tooavoid 오류 Mahout 작업을 실행할 때 실행 간에 임시 및 출력 파일을 삭제 합니다. 만든 tooremove hello 파일 hello로이 문서의 이전 스크립트는 PowerShell 스크립트 뒤 hello 사용:
+Mahout 작업을 실행할 때 오류를 방지하려면 실행 사이에 임시 및 출력 파일을 삭제하세요. 이 문서의 이전 스크립트에서 생성된 파일을 제거하려면 다음 PowerShell 스크립트를 사용합니다.
 
 ```powershell
-# Login tooyour Azure subscription
+# Login to your Azure subscription
 # Is there an active Azure subscription?
 $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
 if(-not($sub))
@@ -154,10 +154,10 @@ if(-not($sub))
 }
 
 # Get cluster info
-$clusterName = Read-Host -Prompt "Enter hello HDInsight cluster name"
-$creds=Get-Credential -Message "Enter hello login for hello cluster"
+$clusterName = Read-Host -Prompt "Enter the HDInsight cluster name"
+$creds=Get-Credential -Message "Enter the login for the cluster"
 
-#Get hello cluster info so we can get hello resource group, storage, etc.
+#Get the cluster info so we can get the resource group, storage, etc.
 $clusterInfo = Get-AzureRmHDInsightCluster -ClusterName $clusterName
 $resourceGroup = $clusterInfo.ResourceGroup
 $storageAccountName = $clusterInfo.DefaultStorageAccount.split('.')[0]
@@ -166,20 +166,20 @@ $storageAccountKey = (Get-AzureRmStorageAccountKey `
     -Name $storageAccountName `
 -ResourceGroupName $resourceGroup)[0].Value
 
-#Create a storage context and upload hello file
+#Create a storage context and upload the file
 $context = New-AzureStorageContext `
     -StorageAccountName $storageAccountName `
     -StorageAccountKey $storageAccountKey
 
 #Azure PowerShell can't delete blobs using wildcard,
-#so have tooget a list and delete one at a time
-# Start with hello output
+#so have to get a list and delete one at a time
+# Start with the output
 $blobs = Get-AzureStorageBlob -Container $container -Context $context -Prefix "example/out"
 foreach($blob in $blobs)
 {
     Remove-AzureStorageBlob -Blob $blob.Name -Container $container -context $context
 }
-# Next hello temp files
+# Next the temp files
 $blobs = Get-AzureStorageBlob -Container $container -Context $context -Prefix "example/temp"
 foreach($blob in $blobs)
 {
@@ -189,7 +189,7 @@ foreach($blob in $blobs)
 
 ### <a name="nopowershell"></a>Azure PowerShell에서 작동하지 않는 클래스
 
-아래의 클래스가 hello를 사용 하는 mahout 작업이 Windows PowerShell에서 사용 될 때 다양 한 오류 메시지를 반환 합니다.
+Windows PowerShell에서 사용하는 경우 다음 클래스를 사용하는 Mahout 작업은 다양한 오류 메시지를 반환합니다.
 
 * org.apache.mahout.utils.clustering.ClusterDumper
 * org.apache.mahout.utils.SequenceFileDumper
@@ -208,11 +208,11 @@ foreach($blob in $blobs)
 * org.apache.mahout.classifier.sequencelearning.hmm.RandomSequenceGenerator
 * org.apache.mahout.classifier.df.tools.Describe
 
-이러한 클래스를 사용 하는 toorun 작업 SSH를 사용 하 여 toohello HDInsight 클러스터에 연결 하 고 hello 명령줄에서 hello 작업을 실행 합니다. SSH toorun Mahout 작업을 사용 하 여 예제를 보려면 [Mahout 및 HDInsight SSH () 사용 하 여 영화 권장 구성 생성](hdinsight-hadoop-mahout-linux-mac.md)합니다.
+이러한 클래스를 사용하는 작업을 실행하려면 SSH를 사용하여 HDInsight 클러스터에 연결하고 명령줄에서 작업을 실행하세요. SSH를 사용하여 Mahout 작업을 실행하는 예제는 [Mahout 및 HDInsight(SSH)를 사용하여 영화 추천 생성](hdinsight-hadoop-mahout-linux-mac.md)을 참조하세요.
 
 ## <a name="next-steps"></a>다음 단계
 
-배웠습니다 했으므로 toouse Mahout, HDInsight의 데이터로 작업 하는 다른 방법을 검색 하는 방법을:
+이제 Mahout을 사용하는 방법을 배웠으므로 HDInsight에서 데이터로 작업하는 다른 방법을 검색합니다.
 
 * [HDInsight에서 Hive 사용](hdinsight-use-hive.md)
 * [HDInsight에서 Pig 사용](hdinsight-use-pig.md)

@@ -1,5 +1,5 @@
 ---
-title: "Azure Application Insights에서 aaaUser, 세션 및 이벤트 분석 | Microsoft docs"
+title: "Azure Application Insights의 사용자, 세션 및 이벤트 분석 | Microsoft Docs"
 description: "웹앱의 사용자 인구 통계 분석입니다."
 services: application-insights
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 05/03/2017
 ms.author: bwren
-ms.openlocfilehash: 152ab90e9a25c03087d3ebbde1263ec72acb227e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b154a01d1690bff4950ebc1ff5a5b89894d4d111
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="users-sessions-and-events-analysis-in-application-insights"></a>Application Insights의 사용자, 세션 및 이벤트 분석
 
@@ -24,49 +24,49 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="get-started"></a>시작
 
-Hello 사용자, 세션 또는 이벤트 블레이드 hello Application Insights 포털에서에서 데이터를 아직 표시 되지 않으면 [tooget hello 사용량 도구를 시작 하는 방법에 대해 알아봅니다](app-insights-usage-overview.md)합니다.
+Application Insights 포털에 사용자, 세션 또는 이벤트 블레이드에서 아직 데이터가 표시되지 않으면 [사용 도구 시작 방법을 알아봅니다](app-insights-usage-overview.md).
 
-## <a name="hello-users-sessions-and-events-segmentation-tool"></a>hello 사용자, 세션 및 이벤트 조각화 도구
+## <a name="the-users-sessions-and-events-segmentation-tool"></a>사용자, 세션 및 이벤트 구분 도구
 
-동일한 도구 tooslice 분리 및 분할에서에서 원격 분석 세 가지 관점에서 웹 응용 프로그램을 hello 블레이드를 사용 하는 hello 사용 중 3 개. 를 필터링 및 hello 데이터 분할 hello 상대 사용의 다른 페이지 및 기능에 대 한 통찰력을 열 수 있습니다.
+이러한 세 가지 사용 블레이드는 동일한 도구를 사용하여 3가지 관점에서 웹앱의 원격 분석을 분할 및 분석합니다. 데이터를 필터링하고 분할하여 여러 다른 페이지 및 기능의 상대적 사용을 이해할 수 있습니다.
 
 * **사용자 도구**: 사용자의 앱 및 해당 기능을 사용한 사람의 수.  사용자 수는 브라우저 쿠키에 저장되는 익명 ID를 사용하여 계산합니다. 여러 브라우저 또는 컴퓨터를 사용하는 한 사람은 둘 이상의 사용자로 계산됩니다.
 * **세션 도구**: 앱의 특정 페이지 및 기능을 포함하는 사용자 활동 세션의 수. 사용자의 비활동 상태가 30분 경과된 이후 또는 연속해서 24시간 사용한 후에 세션 수가 계산됩니다.
 * **이벤트 도구**: 앱의 특정 페이지 및 기능이 사용되는 빈도. 사용자가 [앱을 계측](app-insights-javascript.md)한 경우 페이지 보기 횟수는 브라우저가 앱에서 페이지를 로드할 때 계산됩니다. 
 
-    사용자 지정 이벤트는 주로 사용자 상호 작용 하는 단추를 클릭 하거나 일부 작업의 완료를 hello와 같은 응용 프로그램에서 발생 하는 것에 대 한 항목을 나타냅니다. 코드에에서 삽입할 앱 너무[사용자 지정 이벤트를 생성](app-insights-api-custom-events-metrics.md#trackevent)합니다.
+    사용자 지정 이벤트는 앱에서 어떤 동작이 한 번 발생하는 경우를 나타냅니다. 주로 단추 클릭 또는 특정 작업 완료 등과 같은 사용자 상호 작용이 여기에 해당합니다. 앱에 [사용자 지정 이벤트를 생성](app-insights-api-custom-events-metrics.md#trackevent)하는 코드를 삽입합니다.
 
 ![사용 도구](./media/app-insights-usage-segmentation/users.png)
 
 ## <a name="querying-for-certain-users"></a>특정 사용자에 대해 쿼리 
 
-Hello 위쪽 hello 사용자 도구에 hello 쿼리 옵션을 조정 하 여 서로 다른 사용자 그룹을 탐색 합니다. 
+사용자 도구 맨 위에 있는 쿼리 옵션을 조정하여 다른 사용자 그룹을 탐색합니다. 
 
 * 사용한 사람: 사용자 지정 이벤트 및 페이지 보기를 선택합니다. 
 * 기간: 시간 범위를 선택합니다. 
-* : 하 여 일정 시간 동안 또는 브라우저 또는 도시와 같은 다른 속성 데이터를 toobucket hello 하는 방법을 선택 합니다. 
-* 분할에: toosplit 또는 세그먼트 hello 데이터 속성을 선택 합니다. 
-* 필터 추가: hello 쿼리 toocertain 사용자, 세션 또는 브라우저 또는 도시 등의 속성을 기준으로 이벤트를 제한 합니다. 
+* 기준: 기간 또는 기타 속성(예: 브라우저 또는 도시) 중에서 데이터를 버킷팅하는 방법을 선택합니다. 
+* 분할 기준: 데이터를 분할하거나 분리하는 기준 속성을 선택합니다. 
+* 필터 추가: 속성(예: 브라우저 또는 도시)을 기준으로 특정 사용자, 세션 또는 이벤트로 쿼리를 제한합니다. 
  
 ## <a name="saving-and-sharing-reports"></a>보고서 저장 및 공유 
-Hello 공유 보고서 섹션의에서 모든 액세스 toothis Application Insights 리소스를 가진 다른 사용자와 공유 하거나 hello 내 보고서 섹션의 두 개인 정당한 tooyou, 사용자가 보고서를 저장할 수 있습니다.  
+사용자 보고서를 내 보고서 섹션에서 사용자 본인만 볼 수 있게 저장하거나, 공유 보고서 섹션에서 이 Application Insights 리소스에 액세스할 수 있는 모든 사용자와 공유할 수 있습니다.  
  
-보고서 저장 또는 속성을 편집 하는 동안 보고서는 지속적으로 "현재 상대 시간 범위" toosave 시간의 일부 고정된 크기를 다시 살펴보자면, 데이터 새로 고침을 선택 합니다.  
+보고서를 저장하거나 해당 속성을 편집하는 동안 "현재 상대 시간 범위"를 선택하여 보고서를 저장하면 정해진 시간 이전으로 돌아가 데이터가 계속 새로 고쳐집니다.  
  
-"현재 절대 시간 범위" toosave 고정된 데이터 집합을 사용 하 여 보고서를 선택 합니다. Application Insights에서 데이터는 90 일 이상 된 절대 시간 범위를 사용 하 여 보고서 이후 경과한 경우 저장 하므로 90 일 동안만 저장 점을 염두에 hello 보고서를 빈 상태로 표시 됩니다. 
+"현재 절대 시간 범위"를 선택하여 고정된 데이터 집합을 포함하는 보고서를 저장합니다. Application Insights의 데이터는 90일 동안만 저장되므로 절대 시간 범위가 지정된 보고서를 저장하고 90일이 경과되면 보고서는 빈 상태로 나타납니다. 
  
 ## <a name="example-instances"></a>예제 인스턴스
 
-hello 인스턴스 "예" 섹션에서는 몇 가지 개별 사용자, 세션 또는 hello 현재 쿼리를 통해 일치 하는 이벤트에 대 한 정보를 보여 줍니다. 또한 tooaggregates에서 개인의 hello 동작 하는 방법과 고려 실제로 사용자 응용 프로그램의 사용 방법에 대 한 통찰력을 제공할 수 있습니다. 
+예제 인스턴스 섹션에서는 현재 쿼리와 일치하는 일부 개별 사용자, 세션 또는 이벤트에 대한 정보를 보여 줍니다. 집계 외에, 개인의 동작을 고려하고 탐색하면 사람들이 실제로 앱을 사용하는 방식을 이해할 수 있게 됩니다. 
  
 ## <a name="insights"></a>자세한 정보 
 
-hello Insights 사이드바 공용 속성을 공유 하는 사용자의 큰 클러스터를 보여 줍니다. 이러한 클러스터는 사람들이 사용자의 앱을 사용하는 방식에 대한 놀라운 추세를 보여 줄 수 있습니다. 예를 들어, 모든 응용 프로그램의 hello 사용의 40%는 하나의 기능을 사용 하는 사용자에서 제공 합니다.  
+자세한 정보 사이드바에는 공통 속성을 공유하는 대규모 사용자 클러스터가 표시됩니다. 이러한 클러스터는 사람들이 사용자의 앱을 사용하는 방식에 대한 놀라운 추세를 보여 줄 수 있습니다. 예를 들어 모든 앱 사용의 40%를 단일 기능을 사용하는 사람들이 반영할 것일 수 있습니다.  
 
 
 ## <a name="next-steps"></a>다음 단계
-- tooenable 사용 경험을 보내기 시작 [사용자 지정 이벤트](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent) 또는 [페이지 보기](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views)합니다.
-- 사용자 지정 이벤트 또는 페이지 뷰 탐색 hello 사용 도구 toolearn 이미 보낼 사용자 서비스를 사용할 방법.
+- 사용 현황 환경을 활성화하려면 [사용자 지정 이벤트](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent) 또는 [페이지 보기](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views) 보내기를 시작합니다.
+- 사용자 지정 이벤트 또는 페이지 보기를 이미 보낸 경우 사용자가 서비스를 사용하는 방법에 대해 알아보려면 사용 현황 도구를 살펴봅니다.
     - [깔때기](usage-funnels.md)
     - [보존](app-insights-usage-retention.md)
     - [사용자 흐름](app-insights-usage-flows.md)

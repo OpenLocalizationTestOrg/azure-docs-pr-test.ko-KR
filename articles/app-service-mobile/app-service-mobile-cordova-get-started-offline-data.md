@@ -1,6 +1,6 @@
 ---
-title: "Azure 모바일 응용 프로그램 (Cordova)에 대 한 오프 라인 동기화 aaaEnable | Microsoft Docs"
-description: "자세한 내용은 방법 toouse 앱 서비스 모바일 앱 toocache 및 동기화 오프 라인 데이터 Cordova 응용 프로그램에서"
+title: "Azure 모바일 앱에 대해 오프라인 동기화 사용(Cordova) | Microsoft Docs"
+description: "앱 서비스 모바일 앱을 사용하여 Cordova 응용 프로그램에서 오프라인 데이터를 캐시 및 동기화하는 방법을 알아봅니다."
 documentationcenter: cordova
 author: ggailey777
 manager: syntaxc4
@@ -14,36 +14,36 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/30/2016
 ms.author: glenga
-ms.openlocfilehash: 4e6ae96c3d96dac8ebb3749354b83a04686831b7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 45e80ca672dfdb6defc6e5c1aac3d29f5479125c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="enable-offline-sync-for-your-cordova-mobile-app"></a>Cordova 모바일 앱에 대해 오프라인 동기화 사용
 [!INCLUDE [app-service-mobile-selector-offline](../../includes/app-service-mobile-selector-offline.md)]
 
-이 자습서에서는 Cordova에 대 한 Azure 모바일 앱의 hello 오프 라인 동기화 기능을 소개 합니다. 오프 라인 동기화 허용 모바일 앱과 함께 최종 사용자가 toointeract&mdash;보기, 추가 또는 데이터 수정&mdash;네트워크 연결이 없는 경우에 합니다. 변경 내용은 로컬 데이터베이스에 저장됩니다.  Hello 장치를 다시 온라인 상태가 되 면 이러한 변경 내용은 hello 원격 서비스와 동기화 됩니다.
+이 자습서에서는 Cordova용 Azure 모바일 앱의 오프라인 동기화 기능을 소개합니다. 오프라인 동기화를 사용하면 최종 사용자는 네트워크에 연결되어 있지 않을 때도 모바일 앱&mdash;데이터 보기, 추가 또는 수정&mdash;과 같은 상호 작용을 수행할 수 있습니다. 변경 내용은 로컬 데이터베이스에 저장됩니다.  장치가 다시 온라인 상태가 되면 이러한 변경 내용이 원격 서비스와 동기화됩니다.
 
-모바일 앱을 완료할 때 만드는 자습서를 hello에 대 한이 자습서 hello Cordova 퀵 스타트 솔루션 기반 [Apache Cordova 퀵 스타트]합니다. 이 자습서에서는 hello 퀵 스타트 솔루션 tooadd 오프 라인 기능 Azure 모바일 앱의 업데이트합니다.  Hello 오프 라인 관련 코드가 hello 앱에도 강조 표시합니다.
+이 자습서는 [Apache Cordova 빠른 시작]자습서를 완료할 때 만든 모바일 앱에 대한 Cordova 빠른 시작 솔루션을 기반으로 합니다. 이 자습서에서는 빠른 시작 솔루션을 업데이트하여 Azure Mobile Apps의 오프라인 기능을 추가합니다.  또한 앱에서 오프라인 관련 코드를 중점적으로 다루겠습니다.
 
-hello 항목을 참조 하는 hello 오프 라인 동기화 기능에 대해 자세히 toolearn [Azure 모바일 앱에서 데이터 동기화를 오프 라인]합니다. API 사용의 자세한 참조 hello [API 설명서](https://azure.github.io/azure-mobile-apps-js-client)합니다.
+오프라인 동기화 기능에 대한 자세한 내용은 [증분 동기화]항목을 참조하세요. API 사용에 대한 자세한 내용은 [API 설명서](https://azure.github.io/azure-mobile-apps-js-client)를 참조하세요.
 
-## <a name="add-offline-sync-toohello-quickstart-solution"></a>오프 라인 동기화 toohello 퀵 스타트 솔루션 추가
-hello 오프 라인 동기화 코드 toohello 앱을 추가 되어야 합니다. 오프 라인 동기화 hello cordova sqlite 저장소 플러그 인을 자동으로 가져옵니다 추가 tooyour 앱 hello Azure 모바일 앱 플러그 인 hello 프로젝트에 포함 된 경우 필요 합니다. hello 퀵 스타트 프로젝트는 모두 이러한 플러그인을 포함 합니다.
+## <a name="add-offline-sync-to-the-quickstart-solution"></a>오프라인 동기화를 빠른 시작 솔루션에 추가
+오프라인 동기화 코드를 앱에 추가해야 합니다. 오프라인 동기화에는 cordova-sqlite-storage 플러그 인이 필요하며 이는 Azure 모바일 앱 플러그 인이 프로젝트에 포함될 때 앱에 자동으로 추가됩니다. 빠른 시작 프로젝트에는 이러한 플러그 인이 모두 포함됩니다.
 
-1. Visual Studio의 솔루션 탐색기에서 index.js 열고 hello 코드 다음 바꾸기
+1. Visual Studio의 솔루션 탐색기에서 index.js를 열고 다음 코드를 이 코드로 
 
-        var client,            // Connection toohello Azure Mobile App backend
-           todoItemTable;      // Reference tooa table endpoint on backend
+        var client,            // Connection to the Azure Mobile App backend
+           todoItemTable;      // Reference to a table endpoint on backend
 
     바꿉니다.
 
-        var client,            // Connection toohello Azure Mobile App backend
-           todoItemTable,      // Reference tooa table endpoint on backend
-           syncContext;        // Reference toooffline data sync context
+        var client,            // Connection to the Azure Mobile App backend
+           todoItemTable,      // Reference to a table endpoint on backend
+           syncContext;        // Reference to offline data sync context
 
-2. 코드 다음 hello를 다음으로 바꿉니다.
+2. 다음으로 다음 코드를
 
         client = new WindowsAzure.MobileServiceClient('http://yourmobileapp.azurewebsites.net');
 
@@ -62,149 +62,149 @@ hello 오프 라인 동기화 코드 toohello 앱을 추가 되어야 합니다.
           }
         });
 
-        // Get hello sync context from hello client
+        // Get the sync context from the client
         syncContext = client.getSyncContext();
 
-    hello 이전 코드 추가 hello 로컬 저장소를 초기화 및 사용 되는 hello 열 값과 일치 하는 로컬 테이블을 정의 하면 Azure에서 백 엔드 합니다. (않아도 tooinclude이이 코드의 모든 열 값입니다.)  hello `version` 필드 hello 모바일 백 엔드가 유지 관리 하 고 충돌 해결에 사용 됩니다.
+    이전 코드를 추가하면 로컬 저장소를 초기화하고 Azure 백 엔드에서 사용되는 열 값과 일치하는 로컬 테이블을 정의합니다. (이 코드에 모든 열 값을 포함할 필요가 없습니다.)  `version` 필드는 모바일 백 엔드에 의해 유지 관리되며 충돌 해결에 사용됩니다.
 
-    호출 하 여 참조 toohello 동기화 컨텍스트를 가져올 **getSyncContext**합니다. hello 동기화 상황에 맞는 사용 하면 추적 하 고 클라이언트 응용 프로그램은 수정 될 때 모든 테이블의 변경 내용 밀어넣기 테이블 관계 보존 `.push()` 라고 합니다.
+    **getSyncContext**를 호출하여 동기화 컨텍스트에 대한 참조를 가져옵니다. 동기화 컨텍스트를 사용하면 모든 테이블의 변경 내용을 추적하고 밀어넣어서 테이블 관계를 보존할 수 있습니다. `.push()`를 호출하는 경우 클라이언트 앱을 수정합니다.
 
-3. Hello 응용 프로그램 URL tooyour 모바일 앱 응용 프로그램 URL을 업데이트 합니다.
+3. 응용 프로그램 URL을 모바일 앱 응용 프로그램 URL로 업데이트합니다.
 
 4. 다음으로 이 코드를
 
-        todoItemTable = client.getTable('todoitem'); // todoitem is hello table name
+        todoItemTable = client.getTable('todoitem'); // todoitem is the table name
 
     바꿉니다.
 
-        // Initialize hello sync context with hello store
+        // Initialize the sync context with the store
         syncContext.initialize(store).then(function () {
 
-        // Get hello local table reference.
+        // Get the local table reference.
         todoItemTable = client.getSyncTable('todoitem');
 
         syncContext.pushHandler = {
             onConflict: function (pushError) {
-                // Handle hello conflict.
+                // Handle the conflict.
                 console.log("Sync conflict! " + pushError.getError().message);
-                // Update failed, revert tooserver's copy.
+                // Update failed, revert to server's copy.
                 pushError.cancelAndDiscard();
               },
               onError: function (pushError) {
-                  // Handle hello error
-                  // In hello simulated offline state, you get "Sync error! Unexpected connection failure."
+                  // Handle the error
+                  // In the simulated offline state, you get "Sync error! Unexpected connection failure."
                   console.log("Sync error! " + pushError.getError().message);
               }
         };
 
-        // Call a function tooperform hello actual sync
+        // Call a function to perform the actual sync
         syncBackend();
 
-        // Refresh hello todoItems
+        // Refresh the todoItems
         refreshDisplay();
 
-        // Wire up hello UI Event Handler for hello Add Item
+        // Wire up the UI Event Handler for the Add Item
         $('#add-item').submit(addItemHandler);
         $('#refresh').on('click', refreshDisplay);
 
-    hello 앞의 코드 hello 동기화 컨텍스트를 초기화를 호출 합니다 (getTable) 대신 getSyncTable tooget 참조 toohello 로컬 테이블.
+    이전 코드에서 동기화 컨텍스트를 초기화하고 getSyncTable(getTable 대신)을 호출하여 로컬 테이블에 대한 참조를 가져옵니다.
 
-    이 코드에서는 hello 로컬 데이터베이스 모두에 대 한 만들기, 읽기, 업데이트 및 삭제 (CRUD) 테이블 작업 합니다.
+    이 코드는 모든 만들기, 읽기, 업데이트 및 삭제(CRUD) 테이블 작업에 대해 로컬 저장소 데이터베이스를 사용합니다.
 
-    이 샘플에서는 동기화 충돌의 간단한 오류를 처리합니다. 실제 응용 프로그램 처리 하는 것 hello 네트워크 상태, 서버 충돌 등과 같은 다양 한 오류입니다. 코드 예제를 보려면 참조 hello [오프 라인 동기화 샘플]합니다.
+    이 샘플에서는 동기화 충돌의 간단한 오류를 처리합니다. 실제 응용 프로그램에서는 네트워크 상태, 서버 충돌 및 기타와 같은 다양한 오류를 처리합니다. 코드 예제는 [오프라인 동기화 샘플]을 참조하세요.
 
-5. 다음으로,이 함수 tooperform hello 실제 동기화를 추가 합니다.
+5. 다음으로, 이 함수를 추가하여 실제 동기화를 수행합니다.
 
         function syncBackend() {
 
-          // Sync local store tooAzure table when app loads, or when login complete.
+          // Sync local store to Azure table when app loads, or when login complete.
           syncContext.push().then(function () {
               // Push completed
 
           });
 
-          // Pull items from hello Azure table after syncing tooAzure.
+          // Pull items from the Azure table after syncing to Azure.
           syncContext.pull(new WindowsAzure.Query('todoitem'));
         }
 
-    Toopush toohello 모바일 앱 백 엔드를 호출 하 여 변경 될 때 결정 **syncContext.push()**합니다. 예를 들어, 호출할 수 있습니다 **syncBackend** 단추 이벤트 처리기 동률된 tooa 동기화 단추에 있습니다.
+    **syncContext.push()**를 호출하여 모바일 앱 백 엔드에 대한 변경 내용을 푸시할 시점을 결정합니다. 예를 들어 동기화 단추에 연결된 단추 이벤트 처리기에서 **syncBackend**를 호출할 수 있습니다.
 
 ## <a name="offline-sync-considerations"></a>오프라인 동기화 고려 사항
 
-Hello 샘플에서 hello **푸시** 방식의 **syncContext** 로그인에 대 한 콜백 함수 hello에서에서 응용 프로그램 시작에만 호출 됩니다.  실제 응용 프로그램에서이 동기화 기능을 수동으로 트리거할 또는 hello 네트워크 상태가 변경 될 때 할 수도 있습니다.
+이 샘플에서 **syncContext**의 **푸시** 메서드는 로그인의 콜백 함수에서 앱 시작 시에만 호출됩니다.  실제 응용 프로그램에서는 네트워크 상태가 변경될 때 수동으로 트리거되는 이 동기화 기능을 만들 수도 있습니다.
 
-끌어오기 보류 중이 있는 테이블에 대해 실행 된 로컬에서 업데이트 밀어넣기를 가져오는 작업을 자동으로 트리거 hello 컨텍스트별 추적 합니다. 생략할 수 새로 고침,를 추가 하 고이 샘플에 있는 항목을 완료 하는 경우 명시적 hello **푸시** 중복 될 수 있으므로 호출 합니다.
+끌어오기가 컨텍스트에 의해 추적되는 로컬 업데이트를 보류 중인 테이블에 대해 실행되는 경우 끌어오기 작업은 자동으로 푸시를 트리거합니다. 이 샘플에서 항목을 새로 고침, 추가 및 완료하는 경우 명시적인 **push** 호출이 중복될 수 있으므로 생략할 수 있습니다.
 
-Hello 원격 todoItem 테이블의 모든 레코드를 제공 하는 hello 코드에서 쿼리, 것 뿐만 아니라 가능한 toofilter 레코드는 쿼리 id 및 쿼리를 전달 하 여 너무**푸시**합니다. 자세한 내용은 hello 섹션을 참조 하십시오. *증분 동기화* 에 [Azure 모바일 앱에서 데이터 동기화를 오프 라인]합니다.
+제공된 코드에서 원격 todoItem 테이블에 있는 모든 레코드를 쿼리하지만 쿼리 ID 및 쿼리를 **푸시**로 전달하여 레코드를 필터링할 수도 있습니다. 자세한 내용은 *Azure 모바일 앱에서 오프라인 데이터 동기화* 에서 [증분 동기화]섹션을 참조하세요.
 
 ## <a name="optional-disable-authentication"></a>(선택 사항)인증 사용 안 함
 
-하지 않는 tooset 오프 라인 동기화를 테스트 하기 전에 인증을, 로그인에 대 한 hello 콜백 함수를 주석 처리 하지만 내부에서 코드를 hello 둡니다 hello 콜백 함수 주석 처리가 제거 합니다.  Hello 로그인 줄을 주석 후 hello 코드가 따릅니다.
+오프라인 동기화를 테스트하기 전에 인증을 설정하지 않으려는 경우 로그인의 호출 함수를 주석 처리하지만 호출 함수 내에 있는 코드의 주석 처리를 제거합니다.  로그인 줄을 주석 처리한 후 코드는 다음과 같습니다.
 
-      // Login toohello service.
+      // Login to the service.
       // client.login('twitter')
       //    .then(function () {
         syncContext.initialize(store).then(function () {
-          // Leave hello rest of hello code in this callback function  uncommented.
+          // Leave the rest of the code in this callback function  uncommented.
                 ...
         });
       // }, handleError);
 
-이제 hello 앱와 동기화 hello Azure 백 엔드 hello 응용 프로그램을 실행 하는 경우.
+이제 앱을 실행하면 Azure 백 엔드와 동기화합니다.
 
-## <a name="run-hello-client-app"></a>Hello 클라이언트 앱 실행
-이제 사용 하도록 설정 하는 오프 라인 동기화를 hello 로컬 저장소 데이터베이스를 채우는 각 플랫폼에서 hello 클라이언트 응용 프로그램을 한 번 이상 실행할 수 있습니다. 나중 오프 라인 시나리오를 시뮬레이션 하 고 hello 앱 오프 라인 상태인 동안 hello 로컬 저장소의 hello 데이터를 수정 합니다.
+## <a name="run-the-client-app"></a>클라이언트 앱을 실행합니다.
+오프라인 동기화를 사용하도록 설정하면 각 플랫폼에서 클라이언트 응용 프로그램을 한 번 이상 실행하여 로컬 저장소 데이터베이스를 채울 수 있습니다. 나중에 앱이 오프라인인 동안 오프라인 시나리오를 시뮬레이션하고 로컬 저장소에 있는 데이터를 수정합니다.
 
-## <a name="optional-test-hello-sync-behavior"></a>(선택 사항) Hello 동기화 동작 테스트
-이 섹션에서는 백 엔드에 대 한 잘못 된 응용 프로그램 URL을 사용 하 여 hello 클라이언트 프로젝트 toosimulate 오프 라인 시나리오를 수정 합니다. 를 추가 하거나 데이터 항목을 변경 하는 경우 이러한 변경 내용은 로컬 저장소에 보관 됩니다 있지만 hello 연결이 다시 설정 될 때까지 동기화 된 toohello 백 엔드 데이터 저장소 되지는 않습니다.
+## <a name="optional-test-the-sync-behavior"></a>(선택 사항)동기화 동작 테스트
+이 섹션에서 백 엔드에 잘못된 응용 프로그램 URL을 사용하여 오프라인 시나리오를 시뮬레이트하도록 클라이언트 프로젝트를 수정합니다. 데이터 항목을 추가하거나 변경하는 경우 이러한 변경 내용은 로컬 저장소에 보관되지만 연결이 다시 설정될 때까지 백 엔드 데이터 저장소에 동기화되지 않습니다.
 
-1. 솔루션 탐색기 hello hello index.js 프로젝트 파일을 열고 hello 응용 프로그램 URL toopoint 코드 다음 hello와 같은 잘못 된 URL로 변경:
+1. 솔루션 탐색기에서 index.js 프로젝트 파일을 열고 다음 코드와 같은 잘못된 URL을 가리키는 응용 프로그램 URL을 변경합니다.
 
         client = new WindowsAzure.MobileServiceClient('http://yourmobileapp.azurewebsites.net-fail');
 
-2. Index.html에서 CSP hello 업데이트 `<meta>` 요소 hello 같은 잘못 된 URL입니다.
+2. index.html에서 동일하게 잘못된 URL을 포함하는 CSP `<meta>` 요소를 업데이트합니다.
 
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: http://yourmobileapp.azurewebsites.net-fail; style-src 'self'; media-src *">
 
-3. 빌드 및 hello 클라이언트 응용 프로그램을 실행 및 확인 hello 앱에서 로그인 한 후 백 엔드 hello와 동기화 하려고 할 때 예외가 hello 콘솔에 기록 됩니다. 추가 하는 모든 새 항목 toohello 모바일 백 엔드를 푸시 될 때까지 hello 로컬 저장소에만 존재 합니다. hello 클라이언트 응용 프로그램 연결된 toohello 백 엔드는 처럼 동작 합니다.
+3. 클라이언트 앱을 빌드 및 실행하면 앱이 로그인한 후에 백 엔드와 동기화하려는 경우 예외가 콘솔에 로그인됩니다. 추가한 새 항목은 모바일 백 엔드에 푸시할 때까지 로컬 저장소에만 있습니다. 클라이언트 앱은 백 엔드에 연결된 것처럼 동작합니다.
 
-4. Hello 응용 프로그램을 닫고 tooverify hello 새 항목이 만든 지속형된 toohello 로컬 저장소 지 다시 시작 합니다.
+4. 앱을 닫았다가 다시 시작하여 만든 새 항목이 로컬 저장소에 유지되는지 확인합니다.
 
-5. (선택 사항) Visual Studio tooview hello 데이터 hello 백 엔드 데이터베이스에 변경 되지 않은 Azure SQL 데이터베이스 테이블 toosee 프로그램을 사용 합니다.
+5. (선택 사항) Azure SQL 데이터베이스 테이블을 보는 Visual Studio를 사용하여 백 엔드 데이터베이스에서 데이터가 변경되지 않았음을 확인합니다.
 
-    Visual Studio에서 **서버 탐색기**를 엽니다. tooyour 데이터베이스 이동 **Azure**->**SQL 데이터베이스**합니다. 데이터베이스를 마우스 오른쪽 단추로 클릭하고 **SQL Server 개체 탐색기에서 열기**를 선택합니다. 이제 tooyour SQL 데이터베이스 테이블 및 해당 콘텐츠를 이동할 수 있습니다.
+    Visual Studio에서 **서버 탐색기**를 엽니다. **Azure**->**SQL Databases**에 있는 데이터베이스로 이동합니다. 데이터베이스를 마우스 오른쪽 단추로 클릭하고 **SQL Server 개체 탐색기에서 열기**를 선택합니다. 이제 SQL 데이터베이스 테이블 및 콘텐츠를 찾아볼 수 있습니다.
 
-## <a name="optional-test-hello-reconnection-tooyour-mobile-backend"></a>(선택 사항) Hello 재연결 tooyour 모바일 백 엔드를 테스트 합니다.
+## <a name="optional-test-the-reconnection-to-your-mobile-backend"></a>(선택 사항)모바일 백 엔드에 대한 다시 연결 테스트
 
-이 섹션에서는 hello 앱 toohello 수 모바일 백을 온라인 상태로 돌아오는 hello 앱을 시뮬레이션에 다시 연결 합니다. 에 로그인 할 때 데이터는 동기화 된 tooyour 모바일 백 엔드입니다.
+이 섹션에서는 앱을 모바일 백 엔드에 다시 연결하여 다시 온라인 상태로 전환되는 앱을 시뮬레이트합니다. 로그인할 때 데이터가 모바일 백 엔드에 동기화됩니다.
 
-1. Index.js를 다시 열고 하 고 hello 응용 프로그램 URL을 복원 합니다.
-2. Index.html을 다시 열고 hello CSP에에서 hello 응용 프로그램 URL을 수정 `<meta>` 요소입니다.
-3. 다시 작성 하 고 hello 클라이언트 응용 프로그램을 실행 합니다. hello 앱 로그인 후 hello 모바일 앱 백 엔드와 toosync을 시도합니다. 예외가 발생 하지 않을 hello 디버그 콘솔 로그인 되어 있는지 확인 합니다.
-4. (선택 사항) 보기 hello SQL Server 개체 탐색기 또는 Fiddler와 같은 나머지 도구를 사용 하 여 데이터를 업데이트 합니다. 공지 hello 데이터 hello 백 엔드 데이터베이스 hello 로컬 저장소와 동기화 되었습니다.
+1. index.js를 다시 열고 응용 프로그램 URL을 복원합니다.
+2. index.html을 다시 열고 CSP `<meta>` 요소에서 응용 프로그램 URL을 수정합니다.
+3. 클라이언트 앱을 다시 빌드하고 실행합니다. 로그인한 후에 앱이 모바일 앱 백 엔드와 동기화하려고 합니다. 디버그 콘솔에 기록된 예외가 없는지 확인합니다.
+4. (선택 사항) SQL Server 개체 탐색기 또는 Fiddler와 같은 REST 도구를 사용하여 업데이트된 데이터를 봅니다. 백 엔드 데이터베이스와 로컬 저장소의 데이터가 동기화된 것을 확인합니다.
 
-    고 hello 데이터 hello 데이터베이스 hello 로컬 저장소와 동기화 된 앱 끊어져도 추가한 hello 항목이 포함 됩니다.
+    데이터베이스와 로컬 저장소 간에 데이터가 동기화되었으며 앱의 연결이 끊어진 동안 추가한 항목을 포함합니다.
 
 ## <a name="additional-resources"></a>추가 리소스
-* [Azure 모바일 앱에서 데이터 동기화를 오프 라인]
+* [증분 동기화]
 * [Visual Studio Tools for Apache Cordova]
 
 ## <a name="next-steps"></a>다음 단계
-* Hello에 대 한 충돌 해결 등의 오프 라인 동기화 기능을 더 높은 수준의 검토 [오프 라인 동기화 샘플]
-* Hello 오프 라인 동기화 hello에 대 한 API 참조 검토 [API 설명서](https://azure.github.io/azure-mobile-apps-js-client)합니다.
+* [오프라인 동기화 샘플]에서 충돌 해결과 같은 고급 오프라인 동기화 기능 검토
+* [API 설명서](https://azure.github.io/azure-mobile-apps-js-client)에서 오프라인 동기화 API 참조를 검토합니다.
 
 <!-- ##Summary -->
 
 <!-- Images -->
 
 <!-- URLs. -->
-[Apache Cordova 퀵 스타트]: app-service-mobile-cordova-get-started.md
-[오프 라인 동기화 샘플]: https://github.com/Azure-Samples/app-service-mobile-cordova-client-conflict-handling
-[Azure 모바일 앱에서 데이터 동기화를 오프 라인]: app-service-mobile-offline-data-sync.md
+[Apache Cordova 빠른 시작]: app-service-mobile-cordova-get-started.md
+[오프라인 동기화 샘플]: https://github.com/Azure-Samples/app-service-mobile-cordova-client-conflict-handling
+[증분 동기화]: app-service-mobile-offline-data-sync.md
 [Cloud Cover: Offline Sync in Azure Mobile Services]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
 [Adding Authentication]: app-service-mobile-cordova-get-started-users.md
 [authentication]: app-service-mobile-cordova-get-started-users.md
-[Work with hello .NET backend server SDK for Azure Mobile Apps]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
+[Work with the .NET backend server SDK for Azure Mobile Apps]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Visual Studio Community 2015]: http://www.visualstudio.com/
 [Visual Studio Tools for Apache Cordova]: https://www.visualstudio.com/en-us/features/cordova-vs.aspx
 [Apache Cordova SDK]: app-service-mobile-cordova-how-to-use-client-library.md

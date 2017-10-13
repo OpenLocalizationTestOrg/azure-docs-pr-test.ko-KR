@@ -1,6 +1,6 @@
 ---
-title: "aaaConnect 라스베리 Pi tooAzure IoT Suite Node.js를 사용 하 여 실제 센서와 | Microsoft Docs"
-description: "Hello 라스베리 Pi 3에 대 한 Microsoft Azure IoT 시작 키트 hello와, Azure IoT Suite를 사용 합니다. Node.js tooconnect 프로그램 라스베리 Pi toohello 원격 모니터링 솔루션을 사용 하 고 toohello 클라우드 센서에서 원격 분석을 전송 toomethods hello 솔루션 대시보드에서 호출에 응답 합니다."
+title: "실제 센서에서 Node.js를 사용하여 Azure IoT Suite에 Raspberry Pi 연결 | Microsoft Docs"
+description: "Raspberry Pi 3 및 Azure IoT Suite에 Microsoft Azure IoT 스타터 키트를 사용합니다. Node.js를 사용하여 Raspberry Pi를 원격 모니터링 솔루션에 연결하고, 센서의 원격 분석을 클라우드로 전송하고, 솔루션 대시보드에서 호출된 메서드에 응답합니다."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -14,123 +14,123 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: 7ffb4a7a8c04b424a1f29170f4739d89f39a2429
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 91546157cc8eabf68706391ce706038d8dc5f82d
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="connect-your-raspberry-pi-3-toohello-remote-monitoring-solution-and-send-telemetry-from-a-real-sensor-using-nodejs"></a>원격 모니터링 솔루션 라스베리 Pi 3 toohello 사용자 연결 및 Node.js를 사용 하 여 실제 센서에서 원격 분석 전송
+# <a name="connect-your-raspberry-pi-3-to-the-remote-monitoring-solution-and-send-telemetry-from-a-real-sensor-using-nodejs"></a>Raspberry Pi 3를 원격 모니터링 솔루션에 연결하고 Node.js를 사용하여 실제 센서에서 원격 분석 전송
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-selector](../../includes/iot-suite-raspberry-pi-kit-selector.md)]
 
-이 자습서에서는 어떻게 toouse hello Microsoft Azure IoT 시작 키트 toodevelop 라스베리 Pi 3에 대 한 hello 클라우드와 통신할 수 있는 온도 및 습도 판독기입니다. hello 자습서를 사용합니다.
+이 자습서에서는 Raspberry Pi 3에용 Microsoft Azure IoT 스타터 키트를 사용하여 클라우드와 통신할 수 있는 온도 및 습도 판독기를 개발하는 방법을 보여 줍니다. 이 자습서에서는 다음을 사용하여 작업을 수행합니다.
 
-- Raspbian OS 프로그래밍 언어를 Node.js hello 및 Node.js tooimplement 샘플 장치에 대 한 Microsoft Azure IoT SDK hello 합니다.
-- hello IoT Suite 원격 모니터링 솔루션 hello 클라우드 기반 백 엔드 응용 프로그램으로 미리 구성 합니다.
+- Raspbian OS, Node.js 프로그래밍 언어 및 Node.js용 Microsoft Azure IoT SDK를 사용하여 샘플 장치를 구현합니다.
+- 클라우드 기반 백 엔드로 미리 구성된 IoT Suite 원격 모니터링 솔루션
 
 ## <a name="overview"></a>개요
 
-이 자습서의 단계를 수행 하는 hello를 완료 합니다.
+이 자습서에서는 다음 단계를 완료합니다.
 
-- Hello 원격 모니터링 미리 구성 된 솔루션 tooyour Azure 구독의 인스턴스를 배포 합니다. 이 단계에서는 여러 Azure 서비스를 자동으로 배포하고 구성합니다.
-- 설정 하면 장치 및 센서 toocommunicate 컴퓨터 및 hello와 원격 솔루션 모니터링 합니다.
-- Hello 샘플 장치 코드 tooconnect toohello 원격 모니터링 솔루션을 업데이트 하 고 hello 솔루션 대시보드에서 볼 수 있는 원격 분석을 보냅니다.
+- Azure 구독에서 미리 구성된 원격 모니터링 솔루션의 인스턴스를 배포합니다. 이 단계에서는 여러 Azure 서비스를 자동으로 배포하고 구성합니다.
+- 사용자 컴퓨터 및 원격 모니터링 솔루션과 통신하도록 장치 및 센서를 설정합니다.
+- 샘플 장치 코드를 업데이트하여 원격 모니터링 솔루션에 연결하고 솔루션 대시보드에서 볼 수 있는 원격 분석을 보냅니다.
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-prerequisites](../../includes/iot-suite-raspberry-pi-kit-prerequisites.md)]
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
 > [!WARNING]
-> 원격 hello 솔루션 프로 비전 한 일련의 Azure 구독에서 Azure 서비스를 모니터링합니다. hello 배포 실제 엔터프라이즈 아키텍처를 반영합니다. 종료 되었음을 tooavoid 불필요 한 Azure 사용료가 부과 azureiotsuite.com에 hello 미리 구성 된 솔루션의 인스턴스를 삭제 합니다. 미리 구성 된 솔루션을 다시 hello 필요, 있습니다 쉽게 다시 만들 수 있습니다. Hello 원격 솔루션 실행을 모니터링 하는 동안 소비 감소 하는 방법에 대 한 자세한 내용은 참조 [데모 목적에 대 한 솔루션을 미리 구성 된 Azure IoT Suite 구성][lnk-demo-config]합니다.
+> 원격 모니터링 솔루션은 Azure 구독에서 Azure 서비스 집합을 프로비전합니다. 배포는 실제 엔터프라이즈 아키텍처를 반영합니다. 불필요한 Azure 사용료가 부과되지 않도록 하려면 배포가 완료된 후 azureiotsuite.com에서 미리 구성된 솔루션 인스턴스를 삭제합니다. 미리 구성된 솔루션이 다시 필요하면 쉽게 다시 만들 수 있습니다. 원격 모니터링 솔루션이 실행되는 동안 소비를 감소하는 방법에 대한 자세한 내용은 [데모 목적으로 미리 구성된 Azure IoT Suite 솔루션 구성][lnk-demo-config]을 참조하세요.
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-view-solution](../../includes/iot-suite-raspberry-pi-kit-view-solution.md)]
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-prepare-pi](../../includes/iot-suite-raspberry-pi-kit-prepare-pi.md)]
 
-## <a name="download-and-configure-hello-sample"></a>다운로드 하 고 hello 샘플 구성
+## <a name="download-and-configure-the-sample"></a>샘플 다운로드 및 구성
 
-이제 다운로드 하 고 라스베리 원주율 hello 원격 모니터링 클라이언트 응용 프로그램을 구성할 수 있습니다.
+이제 Raspberry Pi에서 원격 모니터링 클라이언트 응용 프로그램을 다운로드하고 구성할 수 있습니다.
 
 ### <a name="install-nodejs"></a>Node.js 설치
 
-Raspberry Pi에 Node.js를 설치합니다. Node.js 용 IoT SDK hello 0.11.5 이상 버전의 Node.js 필요합니다. hello 다음 단계 방법을 보여 줍니다 라스베리 원주율 tooinstall Node.js v6.10.2:
+Raspberry Pi에 Node.js를 설치합니다. Node.js용 IoT SDK에는 Node.js 0.11.5 이상 버전의 Node.js가 필요합니다. 다음 단계에서는 Raspberry Pi에 Node.js v6.10.2를 설치하는 방법을 보여 줍니다.
 
-1. 다음 명령은 tooupdate hello 라스베리 Pi를 사용 합니다.
+1. 다음 명령을 사용하여 Raspberry Pi를 업데이트합니다.
 
     ```sh
     sudo apt-get update
     ```
 
-1. 다음 명령은 toodownload hello Node.js 바이너리 tooyour 라스베리 Pi hello를 사용 합니다.
+1. 다음 명령을 사용하여 Raspberry Pi에 Node.js 이진 파일을 다운로드합니다.
 
     ```sh
     wget https://nodejs.org/dist/v6.10.2/node-v6.10.2-linux-armv7l.tar.gz
     ```
 
-1. 사용 하 여 hello 다음 명령 tooinstall hello 이진 파일을 사용할 수 있습니다.
+1. 다음 명령을 사용하여 이진 파일을 설치합니다.
 
     ```sh
     sudo tar -C /usr/local --strip-components 1 -xzf node-v6.10.2-linux-armv7l.tar.gz
     ```
 
-1. Node.js v6.10.2를 성공적으로 설치한 명령 tooverify 다음 hello를 사용 합니다.
+1. 다음 명령을 사용하여 Node.js v6.10.2를 성공적으로 설치했는지 확인합니다.
 
     ```sh
     node --version
     ```
 
-### <a name="clone-hello-repositories"></a>Hello 리포지토리 복제
+### <a name="clone-the-repositories"></a>리포지토리 복제
 
-아직 이미 하지 않은 경우 복제 hello를 실행 하 여 저장소 hello 나오는 명령에 Pi에 필요 합니다.
+아직 해당 작업을 수행하지 않은 경우 Pi에서 다음 명령을 실행하여 필요한 리포지토리를 복제합니다.
 
 ```sh
 cd ~
 git clone --recursive https://github.com/Azure-Samples/iot-remote-monitoring-node-raspberrypi-getstartedkit.git`
 ```
 
-### <a name="update-hello-device-connection-string"></a>Hello 장치 연결 문자열 업데이트
+### <a name="update-the-device-connection-string"></a>장치 연결 문자열 업데이트
 
-Hello open hello 샘플 소스 파일 **nano** hello 다음 명령을 사용 하 여 편집기:
+다음 명령을 사용하여 **nano** 편집기에서 샘플 원본 파일을 엽니다.
 
 ```sh
 nano ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/basic/remote_monitoring.js
 ```
 
-Hello 줄을 찾습니다.
+다음과 같은 줄을 찾습니다.
 
 ```javascript
 var connectionString = 'HostName=[Your IoT hub name].azure-devices.net;DeviceId=[Your device id];SharedAccessKey=[Your device key]';
 ```
 
-Hello 장치와 IoT 허브 정보를 만들고이 자습서의 시작 부분 hello에 저장 된 hello 자리 표시자 값을 바꿉니다. 변경 내용을 저장 (**Ctrl-O**, **Enter**) 및 exit hello 편집기 (**Ctrl-X**).
+자리 표시자 값을 이 자습서를 시작할 때 만들어 저장한 장치 및 IoT Hub 정보로 바꿉니다. 변경 내용을 저장하고(**Ctrl-O**, **Enter**) 편집기를 종료합니다(**Ctrl-X**).
 
-## <a name="run-hello-sample"></a>Hello 예제 실행
+## <a name="run-the-sample"></a>샘플 실행
 
-실행된 hello 다음 tooinstall hello hello 샘플에 대 한 필수 구성 요소 패키지가 명령:
+다음 명령을 실행하여 이 샘플에 대한 필수 구성 요소 패키지를 설치합니다.
 
 ```sh
 cd ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/basic
 npm install
 ```
 
-이제 라스베리 Pi hello에 hello 샘플 프로그램을 실행할 수 있습니다. Hello 명령을 입력 합니다.
+이제 Raspberry Pi에서 샘플 프로그램을 실행할 수 있습니다. 다음 명령을 입력합니다.
 
 ```sh
 sudo node ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/basic/remote_monitoring.js
 ```
 
-hello 다음 샘플 출력은 hello 라스베리 Pi hello 명령 프롬프트에서 참조 하는 hello 출력 예입니다.
+다음 샘플 출력은 Raspberry Pi의 명령 프롬프트에 표시되는 출력의 예입니다.
 
 ![Raspberry Pi 앱의 출력][img-raspberry-output]
 
-키를 눌러 **Ctrl-c** 언제 든 지 tooexit hello 프로그램입니다.
+**Ctrl+C**를 눌러 언제든지 프로그램을 종료합니다.
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-view-telemetry](../../includes/iot-suite-raspberry-pi-kit-view-telemetry.md)]
 
 ## <a name="next-steps"></a>다음 단계
 
-Hello 방문 [Azure IoT 개발자 센터](https://azure.microsoft.com/develop/iot/) 에 더 많은 샘플 및 Azure IoT에 대 한 설명서입니다.
+Azure IoT에 대한 추가 샘플 및 설명서를 보려면 [Azure IoT 개발자 센터](https://azure.microsoft.com/develop/iot/)를 방문하세요.
 
 [img-raspberry-output]: ./media/iot-suite-raspberry-pi-kit-node-get-started-basic/app-output.png
 

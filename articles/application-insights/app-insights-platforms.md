@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 09/01/2016
 ms.author: bwren
-ms.openlocfilehash: 14b363c934a018ce72be97d1a0b74a6c2210656e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d49ad2ff584f42c0e4732a5cff60d23cdf631512
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="developer-analytics-languages-platforms-and-integrations"></a>개발자 분석: 언어, 플랫폼 및 통합
 이러한 항목은 타사에서 제공하는 구현을 포함하여 이미 알고 있는 [Application Insights](app-insights-overview.md) 의 구현입니다.
@@ -26,9 +26,9 @@ ms.lasthandoff: 10/06/2017
 * [C#|VB (.NET)](app-insights-asp-net.md)
 * [Java](app-insights-java-get-started.md)
 * [JavaScript 웹 페이지](app-insights-javascript.md)
+* [Node.JS](app-insights-nodejs.md)
 
 ## <a name="languages---community-supported"></a>언어 - 커뮤니티 지원
-* [Node.JS](https://github.com/Microsoft/ApplicationInsights-node.js)
 * [PHP](https://github.com/Microsoft/ApplicationInsights-PHP)
 * [Python](https://pypi.python.org/pypi/applicationinsights/0.1.0)
 * [Ruby](https://rubygems.org/gems/application_insights)
@@ -82,4 +82,4 @@ ms.lasthandoff: 10/06/2017
 * [Stream Analytics](app-insights-export-power-bi.md)
 
 ## <a name="projects"></a> 사용자 고유의 SDK를 빌드합니다
-언어 또는 플랫폼에 대 한 SDK, 싶으십니까 아직 없는 경우 하나 toobuild? Hello 기존 hello에 나열 된 Sdk의 hello 코드 살펴보기 [GitHub에서 Application Insights SDK 프로젝트](https://github.com/Microsoft/AppInsights-Home)합니다.
+아직 사용자 언어나 플랫폼에 대한 SDK가 없다면 빌드하고자 합니까? [GitHub에서 Application Insights SDK 프로젝트](https://github.com/Microsoft/AppInsights-Home)에 나열된 기존 SDK의 코드를 살펴보십시오.

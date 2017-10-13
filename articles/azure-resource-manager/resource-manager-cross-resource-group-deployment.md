@@ -1,6 +1,6 @@
 ---
-title: "Azure 리소스 toomultiple 리소스 그룹 aaaDeploy | Microsoft Docs"
-description: "배포 하는 동안 Azure 리소스가 두 개 이상 tootarget 그룹화 하는 방법을 보여 줍니다."
+title: "여러 리소스 그룹에 Azure 리소스 배포 | Microsoft Docs"
+description: "배포 중에 둘 이상의 Azure 리소스 그룹을 대상으로 지정하는 방법을 보여 줍니다."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -13,21 +13,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/15/2017
 ms.author: tomfitz
-ms.openlocfilehash: 93a39a26e0ca18dfcb5c6e8de95c38a64186d6de
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d8b041213b269775175a810e585103d3c538557f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="deploy-azure-resources-toomore-than-one-resource-group"></a>Azure 리소스 toomore 보다 한 리소스 그룹 배포
+# <a name="deploy-azure-resources-to-more-than-one-resource-group"></a>둘 이상의 리소스 그룹에 Azure 리소스 배포
 
-일반적으로 모든 hello 리소스 템플릿 tooa 단일 리소스 그룹에 배포 합니다. 그러나 함께 toodeploy 리소스 집합을 원하는 하지만 다른 리소스 그룹에 배치 하는 시나리오가 있습니다. 예를 들어 toodeploy hello 백업 가상 컴퓨터가 Azure Site Recovery tooa 별도 리소스 그룹 및 위치에 대 한 좋습니다. 리소스 관리자 hello 부모 서식 파일에 사용 되는 hello 리소스 그룹 보다 toouse 중첩 템플릿 tootarget 여러 리소스 그룹이 있습니다.
+일반적으로 단일 리소스 그룹에 템플릿의 모든 리소스를 배포합니다. 그러나 일단의 리소스를 함께 배포하고 다른 리소스 그룹에 배치하려는 시나리오가 있습니다. 예를 들어 Azure Site Recovery의 백업 가상 컴퓨터를 별도의 리소스 그룹과 위치에 배포할 수 있습니다. Resource Manager를 사용하면 중첩된 템플릿을 사용하여 부모 템플릿에 사용된 리소스 그룹과 다른 리소스 그룹을 대상으로 지정할 수 있습니다.
 
-hello 리소스 그룹에는 hello 응용 프로그램에 대 한 hello 수명 주기 컨테이너 및 리소스의 컬렉션입니다. Hello 템플릿 외부에서 hello 리소스 그룹을 만들고 배포 중 리소스 그룹 tootarget hello를 지정 합니다. 소개 tooresource 그룹에 대 한 참조 [Azure 리소스 관리자 개요](resource-group-overview.md)합니다.
+리소스 그룹은 응용 프로그램 및 해당 리소스 컬렉션에 대한 수명 주기 컨테이너입니다. 템플릿 외부에서 리소스 그룹을 만들고 배포 중에 대상으로 지정할 리소스 그룹을 지정합니다. 리소스 그룹에 대한 소개는 [Azure Resource Manager 개요](resource-group-overview.md)를 참조하세요.
 
 ## <a name="example-template"></a>예제 템플릿
 
-tootarget 다른 리소스를 배포 하는 동안 중첩 또는 연결 된 서식 파일을 사용 해야 합니다. hello `Microsoft.Resources/deployments` 리소스 종류 제공는 `resourceGroup` 매개 변수를 사용 toospecify hello에 대 한 다른 리소스 그룹 배포를 중첩 합니다. Hello 배포를 실행 하기 전에 모든 hello 리소스 그룹이 있어야 합니다. hello 다음 예제에서는 배포 배포 하는 동안 지정 된 hello 리소스 그룹에 각각 하나씩 두 개의 저장소 계정-리소스 그룹에 하나 `crossResourceGroupDeployment`:
+다른 리소스를 대상으로 지정하려면 배포 중에 중첩되거나 연결된 템플릿을 사용해야 합니다. `Microsoft.Resources/deployments` 리소스 형식은 중첩된 배포에 다른 리소스 그룹을 지정할 수 있는 `resourceGroup` 매개 변수를 제공합니다. 모든 리소스 그룹은 배포를 실행하기 전에 존재해야 합니다. 다음 예제에서는 배포 중에 지정한 리소스 그룹 및 `crossResourceGroupDeployment`이라는 리소스 그룹에 각각 하나씩 두 개의 저장소 계정을 배포합니다.
 
 ```json
 {
@@ -83,11 +83,11 @@ tootarget 다른 리소스를 배포 하는 동안 중첩 또는 연결 된 서�
 }
 ```
 
-설정한 경우 `resourceGroup` 존재 하지 않는 리소스 그룹의 이름을 toohello hello 배포에 실패 합니다. 에 대 한 값을 제공 하지 않으면 `resourceGroup`, hello 부모 리소스 그룹 리소스 관리자를 사용 합니다.  
+`resourceGroup`을 존재하지 않는 리소스 그룹의 이름으로 설정하면 배포에 실패합니다. `resourceGroup` 값을 제공하지 않으면 Resource Manager에서 부모 리소스 그룹을 사용합니다.  
 
-## <a name="deploy-hello-template"></a>Hello 템플릿을 배포합니다
+## <a name="deploy-the-template"></a>템플릿 배포
 
-toodeploy hello 예제 서식 파일을 hello 포털, Azure PowerShell 또는 Azure CLI를 사용할 수 있습니다. Azure PowerShell 또는 Azure CLI의 경우 2017년 5월 이후의 릴리스를 사용해야 합니다. hello 예제 이라는 파일로 hello 서식 파일을 로컬로 저장 한 가정 **crossrgdeployment.json**합니다.
+예제 템플릿을 배포하려면 포털, Azure PowerShell 또는 Azure CLI를 사용할 수 있습니다. Azure PowerShell 또는 Azure CLI의 경우 2017년 5월 이후의 릴리스를 사용해야 합니다. 예제에서는 템플릿을 **crossrgdeployment.json**이라는 이름의 파일로 로컬로 저장한다고 가정합니다.
 
 PowerShell의 경우:
 
@@ -117,9 +117,9 @@ az group deployment create \
 
 ## <a name="use-resourcegroup-function"></a>resourceGroup() 함수 사용
 
-에 대 한 교차 리소스 그룹 배포 hello [resouceGroup() 함수](resource-group-template-functions-resource.md#resourcegroup) hello 중첩 된 서식 파일을 지정 하는 방법에 따라 다르게을 해결 합니다. 
+교차 리소스 그룹 배포를 위해 [resouceGroup() 함수](resource-group-template-functions-resource.md#resourcegroup)는 중첩 템플릿 지정 방식에 따라 다르게 확인됩니다. 
 
-다른 서식 파일에서 한 템플릿을 포함 한 경우 hello 중첩 된 템플릿에서 resouceGroup() toohello 부모 리소스 그룹을 확인 합니다. 포함 된 템플릿 형식에 따라 hello를 사용 합니다.
+하나의 템플릿을 다른 템플릿 내에 포함하는 경우 중첩 템플릿의 resouceGroup()가 부모 리소스 그룹으로 확인됩니다. 포함된 템플릿은 다음 형식을 사용합니다.
 
 ```json
 "apiVersion": "2017-05-10",
@@ -130,12 +130,12 @@ az group deployment create \
     "mode": "Incremental",
     "template": {
         ...
-        resourceGroup() refers tooparent resource group
+        resourceGroup() refers to parent resource group
     }
 }
 ```
 
-Tooa 별도 서식 파일을 연결 하면 연결 된 템플릿의 hello resouceGroup() toohello 중첩된 리소스 그룹을 해결 합니다. 연결 된 템플릿 형식에 따라 hello를 사용 합니다.
+별도의 템플릿에 연결하는 경우 연결된 템플릿의 resouceGroup()가 중첩된 리소스 그룹으로 확인됩니다. 연결된 템플릿은 다음 형식을 사용합니다.
 
 ```json
 "apiVersion": "2017-05-10",
@@ -146,13 +146,13 @@ Tooa 별도 서식 파일을 연결 하면 연결 된 템플릿의 hello resouce
     "mode": "Incremental",
     "templateLink": {
         ...
-        resourceGroup() in linked template refers toolinked resource group
+        resourceGroup() in linked template refers to linked resource group
     }
 }
 ```
 
 ## <a name="next-steps"></a>다음 단계
 
-* 템플릿에 toodefine 매개 변수를 확인 하려면 어떻게 toounderstand [hello 구조 및 Azure 리소스 관리자 템플릿 구문을 이해](resource-group-authoring-templates.md)합니다.
+* 템플릿에서 매개 변수를 정의하는 방법을 이해하려면 [Azure Resource Manager 템플릿의 구조 및 구문 이해](resource-group-authoring-templates.md)를 참조하세요.
 * 일반적인 배포 오류를 해결하는 방법은 [Azure Resource Manager를 사용한 일반적인 Azure 배포 오류 해결](resource-manager-common-deployment-errors.md)을 참조하세요.
 * SAS 토큰이 필요한 템플릿을 배포하는 데 관한 내용은 [SAS 토큰으로 개인 템플릿 배포](resource-manager-powershell-sas-token.md)를 참조하세요.

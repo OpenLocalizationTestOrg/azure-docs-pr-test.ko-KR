@@ -1,5 +1,5 @@
 ---
-title: "SQL 데이터 웨어하우스에 aaaBuild 통합 솔루션 | Microsoft Docs"
+title: "SQL Data Warehouse와 통합된 솔루션 구축 | Microsoft Docs"
 description: "SQL 데이터 웨어하우스와 통합된 솔루션과 파트너 및 도구 "
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,52 +15,52 @@ ms.workload: data-services
 ms.custom: integrate
 ms.date: 10/31/2016
 ms.author: martinle;barbkess
-ms.openlocfilehash: c8a4202dd84305bea4e4c2faf0e4791d026e794f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d407c29f99fd7537590ec787febd84a9e3f4f353
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="leverage-other-services-with-sql-data-warehouse"></a>SQL 데이터 웨어하우스와 함께 기타 서비스 활용
-또한 tooits 핵심 기능, SQL 데이터 웨어하우스 사용자 tooleverage 옆 Azure의 다른 서비스 hello 다양 합니다.  특히, 우리 현재 단계를 수행 하 toodeeply hello 다음와 통합:
+사용자는 SQL 데이터 웨어하우스를 통해 핵심 기능 외에도, Azure에서 다양한 기타 서비스를 함께 활용할 수 있습니다.  특히 다음과 긴밀하게 통합하는 단계를 현재 진행했습니다.
 
 * Power BI
 * Azure 데이터 팩터리
 * Azure 기계 학습
-* Azure Stream Analytics
+* Azure 스트림 분석
 
-Hello Azure 에코 시스템에서 더 많은 서비스와 tooconnect을 노력 하 고 있습니다.
+Azure 에코시스템에서 더 많은 서비스가 연결되도록 노력하고 있습니다.
 
 ## <a name="power-bi"></a>Power BI
-Power BI 통합을 사용 하면 hello 동적 보고 데이터 웨어하우스의 SQL tooleverage hello 계산 능력 및 Power BI의 시각화가 있습니다. Power BI 통합에는 현재 다음이 포함됩니다.
+Power BI 통합을 통해 Power BI의 동적 보고 및 시각화와 더불어 SQL 데이터 웨어하우스의 계산 능력의 활용도를 높일 수 있습니다. Power BI 통합에는 현재 다음이 포함됩니다.
 
 * **직접 연결**: SQL 데이터 웨어하우스에 대해 논리적 푸시다운을 통한 보다 고급 연결.  더 큰 규모를 더욱 빠르게 분석합니다.
-* **Power BI에서 열기**: hello 'Power BI에서 열기' 단추 인스턴스 정보 tooPower BI, 더 원활한 연결 범위를 전달 합니다.
+* **Power BI에서 열기**: 'Power BI에서 열기' 단추를 통해 인스턴스 정보를 Power BI에 전달하여 보다 원활한 연결이 가능합니다.
 
-참조 [Power BI와 통합](sql-data-warehouse-integrate-power-bi.md) 또는 hello [Power BI 설명서](http://blogs.msdn.com/b/powerbi/archive/2015/06/24/exploring-azure-sql-data-warehouse-with-power-bi.aspx) 자세한 정보에 대 한 합니다.
+자세한 내용은 [Power BI와 통합](sql-data-warehouse-integrate-power-bi.md) 또는 [Power BI 설명서](http://blogs.msdn.com/b/powerbi/archive/2015/06/24/exploring-azure-sql-data-warehouse-with-power-bi.aspx)를 참조하세요.
 
 ## <a name="azure-data-factory"></a>Azure 데이터 팩터리
-Azure 데이터 팩터리 파이프라인 복잡 한 추출 로드 하는 관리 되는 플랫폼 toocreate를 사용자에 게 제공 합니다.  Azure Data Factory와 SQL 데이터 웨어하우스 통합 hello 다음이 포함 됩니다.
+Azure 데이터 팩터리는 복잡한 추출-로드 파이프라인을 만들 수 있는 관리되는 플랫폼을 사용자에게 제공합니다.  Azure 데이터 팩터리와 SQL 데이터 웨어하우스의 통합에는 다음이 포함됩니다.
 
-* **저장 프로시저**: hello SQL 데이터 웨어하우스에서 저장된 프로시저 실행을 조정 합니다.
-* **복사**: SQL 데이터 웨어하우스를 사용 하 여 ADF toomove 데이터입니다.  이 작업 ADF의 표준 데이터 이동 메커니즘을 사용할 수 또는 hello에서 PolyBase에 설명 합니다. 
+* **저장 프로시저**: SQL 데이터 웨어하우스에서 저장 프로시저의 실행을 오케스트레이션합니다.
+* **복사**: ADF를 사용하여 SQL 데이터 웨어하우스로 데이터를 이동합니다.  이 작업에서는 백그라운드에서 ADF의 표준 데이터 이동 메커니즘 또는 PolyBase가 사용될 수 있습니다. 
 
-참조 [Azure Data Factory와 통합](sql-data-warehouse-integrate-azure-data-factory.md) 또는 hello [Azure Data Factory 설명서](https://azure.microsoft.com/documentation/services/data-factory/) 자세한 정보에 대 한 합니다.
+자세한 내용은 [Azure Data Factory와 통합](sql-data-warehouse-integrate-azure-data-factory.md) 또는 [Azure Data Factory 설명서](https://azure.microsoft.com/documentation/services/data-factory/)를 참조하세요.
 
 ## <a name="azure-machine-learning"></a>Azure 기계 학습
-Azure 기계 학습 toocreate 다양 한 예측 도구를 활용 하는 복잡 한 모델 사용자가 수 있는 완전히 관리 되는 분석 서비스입니다.  SQL 데이터 웨어하우스 기능을 수행 하는 hello는 소스와 이러한 모델에 대 한 대상으로 지원 됩니다.
+Azure 기계 학습은 사용자가 다양한 예측 도구를 활용하여 복잡한 모델을 만들 수 있는 완전히 관리되는 분석 서비스입니다.  SQL 데이터 웨어하우스는 다음 기능을 포함하는 이러한 모델에 대한 소스 및 대상으로 지원됩니다.
 
 * **데이터 읽기:** SQL 데이터 웨어하우스에 대해 T-SQL을 사용하는 규모에 따른 드라이브 모델입니다.
-* **데이터 쓰기:** 모든 모델에서 변경 내용을 커밋합니다 tooSQL 데이터 웨어하우스를 백업 합니다.
+* **데이터 쓰기:** 모델에서 SQL 데이터 웨어하우스로 변경 사항을 뒤로 커밋합니다.
 
-참조 [Azure 기계 학습와 통합](sql-data-warehouse-integrate-azure-machine-learning.md) 또는 hello [Azure 기계 학습 설명서](https://azure.microsoft.com/services/machine-learning/) 자세한 정보에 대 한 합니다.
+자세한 내용은 [Azure Machine Learning과 통합](sql-data-warehouse-integrate-azure-machine-learning.md) 또는 [Azure Machine Learning 설명서](https://azure.microsoft.com/services/machine-learning/)를 참조하세요.
 
-## <a name="azure-stream-analytics"></a>Azure Stream Analytics
-Azure 스트림 분석은 Azure 이벤트 허브에서 생성된 이벤트 데이터를 처리 및 사용하기 위한 복잡하고 완전히 관리되는 인프라입니다.  SQL 데이터 웨어하우스 통합 데이터 toobe 효과적으로 처리 되 고 분석 더 많은 고급 깊은 사용 하도록 설정 하는 관계형 데이터와 함께 저장, 스트리밍에 대 한 가능 합니다.  
+## <a name="azure-stream-analytics"></a>Azure 스트림 분석
+Azure 스트림 분석은 Azure 이벤트 허브에서 생성된 이벤트 데이터를 처리 및 사용하기 위한 복잡하고 완전히 관리되는 인프라입니다.  SQL 데이터 웨어하우스와 통합을 통해 스트리밍 데이터를 효과적으로 처리하고 관계형 데이터와 함께 저장하여 보다 심도있는 고급 분석이 가능합니다.  
 
-* **작업 출력:** 송신 출력을 스트림 분석 작업 tooSQL 데이터 웨어하우스에 직접 합니다.
+* **작업 출력:** 스트림 분석 작업에서 SQL 데이터 웨어하우스로 출력을 직접 보냅니다.
 
-참조 [와 Azure 스트림 분석 통합](sql-data-warehouse-integrate-azure-stream-analytics.md) 또는 hello [Azure 스트림 분석 설명서](https://azure.microsoft.com/documentation/services/stream-analytics/) 자세한 정보에 대 한 합니다.
+자세한 내용은 [Azure Stream Analytics와 통합](sql-data-warehouse-integrate-azure-stream-analytics.md) 또는 [Azure Stream Analytics 설명서](https://azure.microsoft.com/documentation/services/stream-analytics/)를 참조하세요.
 
 <!--Image references-->
 

@@ -1,6 +1,6 @@
 ---
-title: "hello Azure 포털을 사용 하 여 온-프레미스 인코더를 사용 하 여 aaaLive 스트림을 | Microsoft Docs"
-description: "이 자습서에서는 hello 통과 배달에 대해 구성 하는 채널을 만드는 과정을 안내 합니다."
+title: "Azure Portal을 사용하여 온-프레미스 인코더로 라이브 스트림 | Microsoft Docs"
+description: "이 자습서에서는 통과 배달을 위해 구성된 채널을 만드는 단계를 안내합니다."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,135 +14,135 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: 1fb341e022f66f33903e13e07d3e84c0216cad77
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6939e3b31c3c1b514df4c559c2d9408fce122a4e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooperform-live-streaming-with-on-premises-encoders-using-hello-azure-portal"></a>어떻게를 통해 라이브 스트리밍 tooperform 온-프레미스 인코더 hello Azure 포털을 사용 하 여
+# <a name="how-to-perform-live-streaming-with-on-premises-encoders-using-the-azure-portal"></a>Azure Portal을 사용하여 온-프레미스 인코더로 라이브 스트림을 수행하는 방법
 > [!div class="op_single_selector"]
 > * [포털](media-services-portal-live-passthrough-get-started.md)
 > * [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
-> * [REST (영문)](https://docs.microsoft.com/rest/api/media/operations/channel)
+> * [REST](https://docs.microsoft.com/rest/api/media/operations/channel)
 > 
 > 
 
-이 자습서에서는 Azure 포털 toocreate hello를 사용 하 여 hello 단계는 **채널** 하도록 구성 되어 있는 통과 배달 합니다. 
+이 자습서에서는 Azure 포털을 사용하여 통과 배달을 위해 구성된 **채널** 을 만드는 단계를 안내합니다. 
 
-## <a name="prerequisites"></a>필수 조건
-hello 다음은 필요한 toocomplete hello 자습서입니다.
+## <a name="prerequisites"></a>선행 조건
+자습서를 완료하는 데 필요한 조건은 다음과 같습니다.
 
 * Azure 계정. 자세한 내용은 [Azure 평가판](https://azure.microsoft.com/pricing/free-trial/)을 참조하세요. 
-* Media Services 계정. 미디어 서비스 계정 toocreate 참조 [어떻게 tooCreate Media Services 계정을](media-services-portal-create-account.md)합니다.
+* Media Services 계정. Media Services 계정을 만들려면 [Media Services 계정을 만드는 방법](media-services-portal-create-account.md)을 참조하세요.
 * 웹캠. 예를 들어, [Telestream Wirecast encoder](http://www.telestream.net/wirecast/overview.htm)
 
-다음 문서 tooreview hello이 가장 좋습니다.
+다음 문서를 검토하는 것이 좋습니다.
 
 * [Azure 미디어 서비스 RTMP 지원 및 라이브 인코더](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)
 * [Azure 미디어 서비스를 사용하는 라이브 스트리밍 개요](media-services-manage-channels-overview.md)
 * [다중 비트 전송률 스트림을 만드는 온-프레미스 인코더를 사용한 라이브 스트리밍](media-services-live-streaming-with-onprem-encoders.md)
 
 ## <a id="scenario"></a>일반적인 라이브 스트리밍 시나리오
-hello 다음 단계에서는 일반적인 라이브 스트리밍 응용 프로그램을 만드는 통과 배달에 대해 구성 된 채널을 사용 하는 것과 관련 된 작업. 이 자습서에서는 어떻게 toocreate 통과 채널 및 라이브 이벤트 및 관리 합니다.
+다음 단계에서는 통과 배달을 위해 구성된 채널을 사용하는 일반적인 라이브 스트리밍 응용 프로그램을 만드는 것과 관련된 작업에 대해 설명합니다. 이 자습서에는 통과 채널 및 라이브 이벤트를 생성 및 관리하는 방법을 보여 줍니다.
 
 >[!NOTE]
->스트리밍 끝점 toostream 콘텐츠 원하는 hello hello에 있는지 확인 **실행** 상태입니다. 
+>콘텐츠를 스트리밍하려는 스트리밍 끝점이 **실행** 상태에 있는지 확인합니다. 
     
-1. 비디오 카메라 tooa 컴퓨터에 연결 합니다. 다중 비트 전송률 RTMP 또는 조각화된 MP4 스트림을 출력하는 온-프레미스 라이브 인코더를 실행 및 구성합니다. 자세한 내용은 [Azure 미디어 서비스 RTMP 지원 및 라이브 인코더](http://go.microsoft.com/fwlink/?LinkId=532824)를 참조하세요.
+1. 비디오 카메라를 컴퓨터에 연결합니다. 다중 비트 전송률 RTMP 또는 조각화된 MP4 스트림을 출력하는 온-프레미스 라이브 인코더를 실행 및 구성합니다. 자세한 내용은 [Azure 미디어 서비스 RTMP 지원 및 라이브 인코더](http://go.microsoft.com/fwlink/?LinkId=532824)를 참조하세요.
    
     이 단계는 채널을 만든 후에도 수행할 수 있습니다.
 2. 통과 채널을 만들고 시작합니다.
-3. 검색 hello 채널 수집 URL입니다. 
+3. 채널 수집 URL을 검색합니다. 
    
-    hello 수집 URL hello 라이브 인코더 toosend hello 스트림 toohello 채널에서 사용 됩니다.
-4. Hello 채널 미리 보기 URL을 검색 합니다. 
+    수집 URL은 스트림을 채널로 보내기 위해 라이브 인코더를 통해 사용됩니다.
+4. 채널 미리 보기 URL을 검색합니다. 
    
-    이 URL tooverify 채널이 라이브 스트림을 hello을 수신 하 고 제대로 사용 합니다.
+    이 URL을 사용하여 채널이 라이브 스트림을 제대로 받고 있는지 확인합니다.
 5. 라이브 이벤트/프로그램을 만듭니다. 
    
-    Azure 포털을 hello를 사용 하 여, 하는 경우 라이브 이벤트를 만들면 자산도 만들어집니다. 
+    Azure 포털을 사용하는 경우 라이브 이벤트를 만들면 자산도 만들어집니다. 
 
-6. 스트리밍 및 보관 준비 toostart 있을 때는 hello 이벤트/프로그램을 시작 합니다.
-7. 필요에 따라 hello 라이브 인코더에 신호를 받은 toostart 광고 수 있습니다. hello 광고 hello 출력 스트림에 삽입 됩니다.
-8. Toostop 스트리밍 및 보관 hello 이벤트 원할 때마다 hello 이벤트/프로그램을 중지 합니다.
-9. Hello 이벤트/프로그램을 삭제 합니다 (및 필요에 따라 hello 자산을 삭제) 합니다.     
+6. 스트리밍 및 보관을 시작할 준비가 되었으면 이벤트/프로그램을 시작합니다.
+7. 필요에 따라 라이브 인코더는 광고를 시작하라는 신호를 받을 수 있습니다. 광고는 출력 스트림에 삽입됩니다.
+8. 이벤트 스트리밍 및 보관을 중지할 때마다 이벤트/프로그램을 중지합니다.
+9. 이벤트/프로그램을 삭제하고 필요에 따라 자산을 삭제합니다.     
 
 > [!IMPORTANT]
-> 검토 하십시오 [다중 비트 전송률 스트림을 만들 수 있는 온-프레미스 인코더를 통해 라이브 스트리밍](media-services-live-streaming-with-onprem-encoders.md) toolearn 개념 및 고려 사항에 대 한 온-프레미스 인코더 및 통과 채널 toolive 스트리밍 관련 됩니다.
+> 온-프레미스 인코더 및 통과 채널을 사용한 라이브 스트리밍과 관련된 개념 및 고려 사항에 대해 알아보려면 [다중 비트 전송률 스트림을 만드는 온-프레미스 인코더를 사용한 라이브 스트리밍](media-services-live-streaming-with-onprem-encoders.md)을 검토하세요.
 > 
 > 
 
-## <a name="tooview-notifications-and-errors"></a>tooview 알림 및 오류
-Tooview 알림을 발생 한 오류로 인해 hello 하 여 Azure 포털을 hello 알림 아이콘을 클릭 합니다.
+## <a name="to-view-notifications-and-errors"></a>알림 및 오류를 보려면
+Azure 포털에서 생성된 알림 및 오류를 보려면 알림 아이콘을 클릭합니다.
 
-![알림](./media/media-services-portal-passthrough-get-started/media-services-notifications.png)
+![공지](./media/media-services-portal-passthrough-get-started/media-services-notifications.png)
 
 ## <a name="create-and-start-pass-through-channels-and-events"></a>통과 채널 및 이벤트 만들기 및 시작
-채널은 toocontrol hello 게시 및 저장 라이브 스트림의 세그먼트의 수 있는 이벤트/프로그램와 관련이 있습니다. 채널은 이벤트를 관리합니다. 
+채널은 라이브 스트림에서 세그먼트의 게시 및 저장소를 제어할 수 있는 이벤트/프로그램과 연결되어 있습니다. 채널은 이벤트를 관리합니다. 
 
-시간을 기록 하는 hello 콘텐츠 tooretain hello 프로그램에 대 한 hello 설정 하 여 hello 수를 지정할 수 **보관 창** 길이입니다. 이 값은 최소 5 분 tooa 최대 25 시간에서에서 설정할 수 있습니다. 보관 창 길이는 클라이언트 hello 현재 라이브 위치에서 시간에 다시 검색할 수 있는 시간을 최대한 hello 따라 결정 됩니다. 이벤트 hello 지정 된 시간 동안, 실행할 수는 있지만 hello 창 길이 보다 늦는 콘텐츠 계속 삭제 됩니다. 또한이 속성의이 값이 시간 hello 클라이언트 매니페스트가 증가할 수를 결정 합니다.
+**보관 창** 길이를 설정하여 프로그램에 대해 기록된 콘텐츠를 유지할 시간을 지정할 수 있습니다. 이 값은 최소 5분에서 최대 25시간 사이로 설정할 수 있습니다. 또한 보관 창 길이는 클라이언트가 현재 라이브 위치에서 이전 시간을 검색할 수 있는 최대 시간을 나타냅니다. 이벤트는 지정된 시간 동안 실행되지만 기간 길이보다 늦는 콘텐츠는 계속 삭제됩니다. 또한 이 속성의 값은 클라이언트 매니페스트가 증가할 수 있는 길이를 결정합니다.
 
-각 이벤트는 자산에 연결됩니다. toopublish hello 이벤트 hello 연결 된 자산에 대 한 OnDemand 로케이터를 만들어야 합니다. 이 로케이터 toobuild tooyour 클라이언트를 제공할 수 있는 스트리밍 URL을 사용 하도록 설정 합니다.
+각 이벤트는 자산에 연결됩니다. 이벤트를 게시하려면 연결된 자산에 대한 주문형 로케이터를 만들어야 합니다. 이 로케이터가 있으면 클라이언트에 제공할 수 있는 스트리밍 URL을 빌드할 수 있습니다.
 
-채널에서는 toothree hello 여러 보관 본을 만들 수 있도록 이벤트 동시에 실행 가능한 최대 지원 같은 들어오는 스트림을 합니다. 이렇게 하면 필요에 따라 이벤트의 다른 부분 toopublish 및 보관 있습니다. 예를 들어 비즈니스 요구 사항 tooarchive 6 시간의 프로그램에서 나 toobroadcast만 마지막 10 분입니다. tooaccomplish이, 두 개의 동시 실행 프로그램을 toocreate 필요 합니다. 한 프로그램 tooarchive 6 시간의 이벤트 hello 설정 되어 있지만 hello 프로그램 게시 되지 않습니다. hello 다른 프로그램은 집합 tooarchive 10 분 동안 되며이 프로그램이 게시 됩니다.
+채널은 동시 실행 이벤트를 최대 세 개까지 지원하므로 동일한 들어오는 스트림의 보관 파일을 여러 개 만들 수 있습니다. 따라서 이벤트의 여러 부분을 필요에 따라 게시하고 보관할 수 있습니다. 예를 들어 비즈니스 요구 사항에 따라 6시간의 프로그램을 보관하고 마지막 10분만 브로드캐스트해야 할 수 있습니다. 이렇게 하려면 두 개의 동시 실행 프로그램을 만들어야 합니다. 한 프로그램은 6시간의 이벤트를 보관하도록 설정하고 프로그램은 게시하지 않습니다. 다른 프로그램은 10분 동안을 보관하도록 설정하고 프로그램을 게시합니다.
 
 기존 라이브 이벤트를 다시 사용해서는 안 됩니다. 대신, 각 이벤트에 대해 새 이벤트를 만들고 시작합니다.
 
-스트리밍 및 보관 준비 toostart 있을 때는 hello 이벤트를 시작 합니다. Toostop 스트리밍 및 보관 hello 이벤트 원할 때마다 hello 프로그램을 중지 합니다. 
+스트리밍 및 보관을 시작할 준비가 되었으면 이벤트를 시작합니다. 이벤트 스트리밍 및 보관을 중지할 때마다 프로그램을 중지 합니다. 
 
-toodelete 보관 된 콘텐츠 중지 되어 hello 이벤트를 삭제 하 고 hello 관련된 자산을 삭제 합니다. 이벤트에 의해 사용 되는 경우 자산을 삭제할 수 없습니다. hello 이벤트를 먼저 삭제 해야 합니다. 
+보관된 콘텐츠를 삭제하려면 이벤트를 중단 및 삭제한 다음 연결된 자산을 삭제합니다. 자산을 이벤트에서 사용하는 경우 삭제할 수 없습니다. 이벤트를 먼저 삭제해야 합니다. 
 
-중지 하 고 hello 이벤트를 삭제 한 후에 사용자가 hello는 사용 될 수 toostream 보관 된 콘텐츠를 주문형 비디오로에 대 한 hello 자산을 삭제 하지 마십시오.
+이벤트를 중단 및 삭제한 다음에도 자산을 삭제하지 않는 한 사용자는 주문형 비디오로 보관된 콘텐츠를 스트림할 수 있습니다.
 
-수행 tooretain hello 보관 된 콘텐츠, 하지만 스트리밍에 사용할 수 없는, hello 스트리밍 로케이터를 삭제 합니다.
+보관된 콘텐츠를 보관하려는데 스트리밍에 사용할 수 있는 콘텐츠가 없는 경우 스트리밍 로케이터를 삭제합니다.
 
-### <a name="toouse-hello-portal-toocreate-a-channel"></a>toouse hello 포털 toocreate 채널
-이 섹션에서는 어떻게 toouse hello **빠른 생성** 옵션 toocreate 채널을 통과 합니다.
+### <a name="to-use-the-portal-to-create-a-channel"></a>포털을 사용하여 채널을 만들려면
+이 섹션에서는 통과 채널을 만들기 위해 **빠른 생성** 옵션을 사용하는 방법을 보여 줍니다.
 
 통과 채널에 대한 자세한 내용은 [다중 비트 전송률 스트림을 만드는 온-프레미스 인코더를 사용한 라이브 스트리밍](media-services-live-streaming-with-onprem-encoders.md)을 참조하세요.
 
-1. Hello에 [Azure 포털](https://portal.azure.com/)를 Azure 미디어 서비스 계정을 선택 합니다.
-2. Hello에 **설정** 창 클릭 **라이브 스트리밍**합니다. 
+1. [Azure Portal](https://portal.azure.com/)에서 Azure Media Services 계정을 선택합니다.
+2. **설정** 창에서 **라이브 스트리밍**을 클릭합니다. 
    
     ![시작](./media/media-services-portal-passthrough-get-started/media-services-getting-started.png)
    
-    hello **라이브 스트리밍을** 창이 나타납니다.
-3. 클릭 **빠른 생성** toocreate RTMP hello로 통과 채널 수집 프로토콜입니다.
+    **라이브 스트리밍** 창이 나타납니다.
+3. **빠른 생성** 을 클릭하여 RTMP 수집 프로토콜로 통과 채널을 만듭니다.
    
-    hello **새 채널 만들기** 창이 나타납니다.
-4. 이름을 hello 새 채널을 지정 하 고 클릭 **만들기**합니다. 
+    **새 채널 만들기** 창이 나타납니다.
+4. 새 채널 이름을 지정하고 **만들기**를 클릭합니다. 
    
-    그러면 생성 통과 채널 hello RTMP 수집 프로토콜입니다.
+    그러면 RTMP 수집 프로토콜을 사용하여 통과 채널이 만들어집니다.
 
 ## <a name="create-events"></a>이벤트 생성
-1. 원하는 tooadd 이벤트 채널 toowhich를 선택 합니다.
+1. 이벤트를 추가하려는 채널을 선택합니다.
 2. **라이브 이벤트** 단추를 누릅니다.
 
 ![행사](./media/media-services-portal-passthrough-get-started/media-services-create-events.png)
 
 ## <a name="get-ingest-urls"></a>수집 URL 가져오기
-가져올 수 있습니다 hello 채널을 만든 후 수집 toohello 라이브 인코더 제공할 Url입니다. hello 인코더에서 이러한 Url tooinput 라이브 스트림을 사용 합니다.
+채널을 만든 후 라이브 인코더에 제공할 수집 URL을 가져올 수 있습니다. 인코더는 이러한 URL을 사용하여 라이브 스트림을 입력합니다.
 
 ![생성일](./media/media-services-portal-passthrough-get-started/media-services-channel-created.png)
 
-## <a name="watch-hello-event"></a>조사식 hello 이벤트
-toowatch hello 이벤트 클릭 **조사식** 스트리밍 URL Azure 포털 또는 복사 hello hello와 원하는 플레이어를 사용 합니다. 
+## <a name="watch-the-event"></a>이벤트 보기
+이벤트를 보려면 Azure 포털에서 **조사식** 을 클릭하거나 스트리밍 URL을 복사하고 선택한 플레이어를 사용합니다. 
 
 ![생성일](./media/media-services-portal-passthrough-get-started/media-services-default-event.png)
 
-라이브 이벤트는 자동으로 중지 될 때 변환 된 tooon 주문형 콘텐츠를 가져옵니다.
+라이브 이벤트는 중지될 때 주문형 콘텐츠로 자동으로 변환합니다.
 
 ## <a name="clean-up"></a>정리
 통과 채널에 대한 자세한 내용은 [다중 비트 전송률 스트림을 만드는 온-프레미스 인코더를 사용한 라이브 스트리밍](media-services-live-streaming-with-onprem-encoders.md)을 참조하세요.
 
-* 모든 이벤트/hello 채널에서 프로그램을 중지 하는 경우에 채널을 중지할 수 있습니다.  Hello 채널 중지 되 고 나면 비용이 발생 하지는 않습니다. Toostart 필요한 경우 다시 것은 hello 동일 수집 URL tooreconfigure 인코더 필요 하지 않습니다.
-* Hello 채널에서 모든 라이브 이벤트를 삭제 하는 경우에 채널을 삭제할 수 있습니다.
+* 채널에 있는 모든 이벤트/프로그램이 중지되었을 때만 채널을 중지할 수 있습니다.  채널이 중지되면 요금이 발생하지 않습니다. 채널을 다시 시작해야 하는 경우 채널의 수집 URL은 동일하므로 인코더를 다시 구성하지 않아도 됩니다.
+* 채널에 있는 모든 이벤트가 삭제되었을 때만 채널을 삭제할 수 있습니다.
 
 ## <a name="view-archived-content"></a>보관된 콘텐츠 보기
-중지 하 고 hello 이벤트를 삭제 한 후에 사용자가 hello는 사용 될 수 toostream 보관 된 콘텐츠를 주문형 비디오로에 대 한 hello 자산을 삭제 하지 마십시오. 이벤트에 의해 사용 되는 경우 자산을 삭제할 수 없습니다. hello 이벤트를 먼저 삭제 해야 합니다. 
+이벤트를 중단 및 삭제한 다음에도 자산을 삭제하지 않는 한 사용자는 주문형 비디오로 보관된 콘텐츠를 스트림할 수 있습니다. 자산을 이벤트에서 사용하는 경우 삭제할 수 없습니다. 이벤트를 먼저 삭제해야 합니다. 
 
-toomanage 자산, 선택 **설정** 클릭 **자산**합니다.
+자산을 관리하려면 **설정**을 선택하고 **자산**을 클릭합니다.
 
 ![자산](./media/media-services-portal-passthrough-get-started/media-services-assets.png)
 

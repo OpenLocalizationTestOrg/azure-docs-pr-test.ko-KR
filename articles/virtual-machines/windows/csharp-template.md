@@ -1,6 +1,6 @@
 ---
-title: "C# 및 리소스 관리자 템플릿을 사용 하 여 VM a aaaDeploy | Microsoft Docs"
-description: "리소스 관리자 템플릿 toodeploy Azure VM toohow toouse C#에 대해 알아봅니다."
+title: "C# 및 Resource Manager 템플릿을 사용하여 VM 배포 | Microsoft Docs"
+description: "C# 및 Resource Manager 템플릿을 사용하여 Azure VM을 배포하는 방법에 대해 알아봅니다."
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -15,47 +15,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: davidmu
-ms.openlocfilehash: 91d470228cfeed72336b488ffef4dfbb25bc3a40
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bd1c860db026f948202cd1f3aa763b4547c597b4
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="deploy-an-azure-virtual-machine-using-c-and-a-resource-manager-template"></a>C# 및 Resource Manager 템플릿을 사용하여 Azure 가상 컴퓨터 배포
-이 문서에서는 C#을 사용 하는 Azure 리소스 관리자 템플릿 toodeploy 합니다. 만든 hello 템플릿을 단일 서브넷으로 새 가상 네트워크에서 Windows Server를 실행 하는 단일 가상 컴퓨터를 배포 합니다.
+이 문서에서는 C#을 사용하여 Azure Resource Manager 템플릿을 배포하는 방법을 보여줍니다. 만든 템플릿은 단일 서브넷을 사용하는 새 가상 네트워크에서 Windows Server를 실행하는 단일 가상 컴퓨터를 배포합니다.
 
-에 대 한 자세한 설명은 hello 가상 컴퓨터 리소스를 참조 하세요. [가상 컴퓨터는 Azure 리소스 관리자 템플릿](template-description.md)합니다. 서식 파일의 모든 hello 리소스에 대 한 자세한 내용은 참조 [Azure 리소스 관리자 템플릿 연습](../../azure-resource-manager/resource-manager-template-walkthrough.md)합니다.
+가상 컴퓨터 리소스에 대한 자세한 설명은 [Azure Resource Manager 템플릿의 가상 컴퓨터](template-description.md)를 참조하세요. 템플릿에 있는 모든 리소스에 대한 자세한 내용은 [Azure Resource Manager 템플릿 연습](../../azure-resource-manager/resource-manager-template-walkthrough.md)을 참조하세요.
 
-다음이 단계 toodo 약 10 분이 필요합니다.
+이러한 단계를 수행하려면 약 10분이 걸립니다.
 
 ## <a name="create-a-visual-studio-project"></a>Visual Studio 프로젝트 만들기
 
-이 단계에서는 수 있도록 Visual Studio가 설치 및 콘솔 응용 프로그램 사용 toodeploy hello 템플릿을 만들 있습니다.
+이 단계에서는 Visual Studio가 설치되어 있는지 확인하고 템플릿을 배포하는 데 사용하는 콘솔 응용 프로그램을 만듭니다.
 
-1. [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio)를 아직 설치하지 않았으면 설치합니다. 선택 **.NET 데스크톱 개발** 작업 페이지 hello 되 고 클릭 **설치**합니다. Hello 요약을 볼 수 있습니다는 **.NET Framework 4 4.6 개발 도구** 가 자동으로 선택 됩니다. Visual Studio를 이미 설치한 경우 Visual Studio 시작 관리자 hello를 사용 하 여 hello.NET 작업을 추가할 수 있습니다.
+1. [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio)를 아직 설치하지 않았으면 설치합니다. 작업 페이지에서 **.NET 데스크톱 개발**을 선택한 다음 **설치**를 클릭합니다. 요약에서 **.NET Framework 4 - 4.6 개발 도구**가 자동으로 선택되는 것을 볼 수 있습니다. Visual Studio를 이미 설치한 경우 Visual Studio 시작 관리자를 사용하여 .NET 작업을 추가할 수 있습니다.
 2. Visual Studio에서 **파일** > **새로 만들기** > **프로젝트**를 클릭합니다.
-3. **템플릿** > **Visual C#**선택, **콘솔 응용 프로그램 (.NET Framework)**, 입력 *myDotnetProject* hello 이름에 대 한 프로젝트를 hello 프로젝트의 위치 선택 hello hello 및 클릭 **확인**합니다.
+3. **템플릿** > **Visual C#**에서 **콘솔 앱(.NET Framework)**을 선택하고, 프로젝트의 이름에 *myDotnetProject*를 입력하고 프로젝트의 위치를 선택한 다음 **확인**을 클릭합니다.
 
-## <a name="install-hello-packages"></a>Hello 패키지 설치
+## <a name="install-the-packages"></a>패키지 설치
 
-NuGet 패키지는 hello 가장 쉬운 방법은 tooinstall hello 라이브러리 할 toofinish 다음이 단계입니다. tooget hello 라이브러리는 Visual Studio에 필요한 다음이 단계를 수행 합니다.
+NuGet 패키지는 이러한 단계를 완료하는데 필요한 라이브러리를 설치하는 가장 쉬운 방법입니다. Visual Studio에서 필요한 라이브러리를 가져오려면 다음 단계를 수행합니다.
 
 1. **도구** > **Nuget 패키지 관리자**를 클릭한 다음 **패키지 관리자 콘솔**을 클릭합니다.
-2. Hello 콘솔에서 다음이 명령을 입력 합니다.
+2. 콘솔에서 다음이 명령을 입력합니다.
 
     ```
     Install-Package Microsoft.Azure.Management.Fluent
     Install-Package WindowsAzure.Storage
     ```
 
-## <a name="create-hello-files"></a>Hello 파일 만들기
+## <a name="create-the-files"></a>파일 만들기
 
-이 단계에서는 hello 리소스를 배포 하는 템플릿 파일 및 매개 변수 값 toohello 서식 파일을 제공 하는 매개 변수 파일을 만듭니다. 권한 부여 되는 파일을 사용 하는 tooperform Azure 리소스 관리자 작업을 만들 수도 있습니다.
+이 단계에서는 리소스를 배포하는 템플릿 파일과 템플릿에 매개 변수 값을 제공하는 매개 변수 파일을 만듭니다. 또한 Azure Resource Manager 작업을 수행하는 데 사용되는 권한 부여 파일을 만듭니다.
 
-### <a name="create-hello-template-file"></a>Hello 서식 파일 만들기
+### <a name="create-the-template-file"></a>템플릿 파일 만들기
 
-1. 솔루션 탐색기에서 *myDotnetProject* > **추가** > **새 항목**을 마우스 오른쪽 단추로 클릭한 다음 *Visual C# 항목*에서 **텍스트 파일**을 선택합니다. 이름 hello 파일 *CreateVMTemplate.json*, 클릭 하 고 **추가**합니다.
-2. 이 JSON 코드 toohello 만든 파일을 추가 합니다.
+1. 솔루션 탐색기에서 *myDotnetProject* > **추가** > **새 항목**을 마우스 오른쪽 단추로 클릭한 다음 *Visual C# 항목*에서 **텍스트 파일**을 선택합니다. 파일 이름을 *CreateVMTemplate.json*으로 지정하고 **추가**를 클릭합니다.
+2. 만든 파일에 이 JSON 코드를 추가합니다.
 
     ```json
     {
@@ -160,14 +160,14 @@ NuGet 패키지는 hello 가장 쉬운 방법은 tooinstall hello 라이브러�
     }
     ```
 
-3. Hello CreateVMTemplate.json 파일을 저장 합니다.
+3. CreateVMTemplate.json 파일을 저장합니다.
 
-### <a name="create-hello-parameters-file"></a>Hello 매개 변수 파일 만들기
+### <a name="create-the-parameters-file"></a>매개 변수 파일 만들기
 
-toospecify hello 서식 파일에 정의 된 hello 리소스 매개 변수 값을 hello 값을 포함 하는 매개 변수 파일을 만듭니다.
+템플릿에 정의된 리소스 매개 변수의 값을 지정하려면 값이 들어 있는 매개 변수 파일을 만듭니다.
 
-1. 솔루션 탐색기에서 *myDotnetProject* > **추가** > **새 항목**을 마우스 오른쪽 단추로 클릭한 다음 *Visual C# 항목*에서 **텍스트 파일**을 선택합니다. 이름 hello 파일 *Parameters.json*, 클릭 하 고 **추가**합니다.
-2. 이 JSON 코드 toohello 만든 파일을 추가 합니다.
+1. 솔루션 탐색기에서 *myDotnetProject* > **추가** > **새 항목**을 마우스 오른쪽 단추로 클릭한 다음 *Visual C# 항목*에서 **텍스트 파일**을 선택합니다. 파일 이름을 *Parameters.json*으로 지정하고 **추가**를 클릭합니다.
+2. 만든 파일에 이 JSON 코드를 추가합니다.
 
     ```json
     {
@@ -180,13 +180,13 @@ toospecify hello 서식 파일에 정의 된 hello 리소스 매개 변수 값�
     }
     ```
 
-4. Hello Parameters.json 파일을 저장 합니다.
+4. Parameters.json 파일을 저장합니다.
 
-### <a name="create-hello-authorization-file"></a>Hello 권한 부여 파일 만들기
+### <a name="create-the-authorization-file"></a>권한 부여 파일 만들기
 
-서식 파일을 배포 하려면 먼저 액세스 tooan 있는지 확인 [Active Directory 서비스 사용자](../../resource-group-authenticate-service-principal.md)합니다. Hello 서비스 보안 주체에서 요청 tooAzure 리소스 관리자를 인증 하기 위한 토큰을 획득 합니다. Hello 응용 프로그램 ID, 인증 키 hello 및는 hello 권한 부여 파일에 필요한 hello 테 넌 트 ID를도 기록해 야 합니다.
+템플릿을 배포하기 전에 [Active Directory 서비스 사용자](../../resource-group-authenticate-service-principal.md)에 액세스할 수 있는지 확인합니다. 서비스 주체에서 Azure Resource Manager에서 요청을 인증받기 위한 토큰을 얻을 수 있습니다. 또한 권한 부여 파일에서 필요한 응용 프로그램 ID, 인증 키 및 테넌트 ID를 기록해 두어야 합니다.
 
-1. 솔루션 탐색기에서 *myDotnetProject* > **추가** > **새 항목**을 마우스 오른쪽 단추로 클릭한 다음 *Visual C# 항목*에서 **텍스트 파일**을 선택합니다. 이름 hello 파일 *azureauth.properties*, 클릭 하 고 **추가**합니다.
+1. 솔루션 탐색기에서 *myDotnetProject* > **추가** > **새 항목**을 마우스 오른쪽 단추로 클릭한 다음 *Visual C# 항목*에서 **텍스트 파일**을 선택합니다. 파일 이름을 *azureauth.properties*로 지정하고 **추가**를 클릭합니다.
 2. 다음과 같은 권한 부여 속성을 추가합니다.
 
     ```
@@ -200,18 +200,18 @@ toospecify hello 서식 파일에 정의 된 hello 리소스 매개 변수 값�
     graphURL=https://graph.windows.net/
     ```
 
-    대체  **&lt;-&gt;**  구독 식별자를 가진  **&lt;응용 프로그램 id&gt;**  Active Directory 응용 프로그램 hello로 식별자,  **&lt;인증 키&gt;**  hello 응용 프로그램 키를 포함 하 고  **&lt;테 넌 트 id&gt;**  hello 테 넌 트와 식별자입니다.
+    **&lt;subscription-id&gt;**를 구독 식별자, **&lt;application-id&gt;**를 Active Directory 응용 프로그램 식별자, **&lt;authentication-key&gt;**를 응용 프로그램 키, **&lt;tenant-id&gt;**를 테넌트 식별자로 바꿉니다.
 
-3. Hello azureauth.properties 파일을 저장 합니다.
-4. 예를 들어 다음 PowerShell 명령을 사용 하 여 hello을 windows hello 전체 경로 tooauthorization 만든 파일에 있는 AZURE_AUTH_LOCATION 라는 환경 변수 설정:
+3. azureauth.properties 파일을 저장합니다.
+4. AZURE_AUTH_LOCATION이라는 Windows 환경 변수를 만든 권한 부여 파일의 전체 경로로 설정합니다. 예를 들어 다음 PowerShell 명령을 사용할 수 있습니다.
 
     ```
     [Environment]::SetEnvironmentVariable("AZURE_AUTH_LOCATION", "C:\Visual Studio 2017\Projects\myDotnetProject\myDotnetProject\azureauth.properties", "User")
     ```
     
-## <a name="create-hello-management-client"></a>Hello 관리 클라이언트 만들기
+## <a name="create-the-management-client"></a>관리 클라이언트 만들기
 
-1. 사용자가 만든 hello 프로젝트에 대 한 hello Program.cs 파일을 열고 hello 파일의 맨 위쪽에 문을 toohello 기존 문을 사용 하 여이 추가 합니다.
+1. 만들었던 프로젝트에 대한 Program.cs 파일을 연 후, 다음 using 문을 파일의 위쪽에 기존 문에 추가합니다.
 
     ```
     using Microsoft.Azure.Management.Compute.Fluent;
@@ -223,7 +223,7 @@ toospecify hello 서식 파일에 정의 된 hello 리소스 매개 변수 값�
     using Microsoft.WindowsAzure.Storage.Blob;
     ```
 
-2. toocreate hello management 클라이언트에서는이 코드 toohello Main 메서드에 추가 합니다.
+2. 관리 클라이언트를 만들려면 다음 코드를 Main 메서드에 추가합니다.
 
     ```
     var credentials = SdkContext.AzureCredentialsFactory
@@ -238,7 +238,7 @@ toospecify hello 서식 파일에 정의 된 hello 리소스 매개 변수 값�
 
 ## <a name="create-a-resource-group"></a>리소스 그룹 만들기
 
-hello 응용 프로그램에 대 한 toospecify 값 toohello Main 메서드에 코드를 추가 합니다.
+응용 프로그램에 대한 값을 지정하려면 다음 코드를 Main 메서드에 추가합니다.
 
 ```
 var groupName = "myResourceGroup";
@@ -251,9 +251,9 @@ var resourceGroup = azure.ResourceGroups.Define(groupName)
 
 ## <a name="create-a-storage-account"></a>저장소 계정 만들기
 
-hello 템플릿 및 매개 변수는 Azure의 저장소 계정에서 배포 됩니다. 이 단계에서는 hello 계정을 만들고 hello 파일을 업로드 합니다. 
+템플릿 및 매개 변수는 Azure의 저장소 계정에서 배포됩니다. 이 단계에서는 계정을 만들고 파일을 업로드합니다. 
 
-toocreate 계정 hello,이 코드 toohello Main 메서드에 추가 합니다.
+계정을 만들려면 Main 메서드에 다음 코드를 추가합니다.
 
 ```
 string storageAccountName = SdkContext.RandomResourceName("st", 10);
@@ -289,11 +289,11 @@ var paramblob = container.GetBlockBlobReference("Parameters.json");
 paramblob.UploadFromFile("..\\..\\Parameters.json");
 ```
 
-## <a name="deploy-hello-template"></a>Hello 템플릿을 배포합니다
+## <a name="deploy-the-template"></a>템플릿 배포
 
-Hello 템플릿 및 생성 된 hello 저장소 계정에서 매개 변수를 배포 합니다. 
+만든 저장소 계정에서 템플릿 및 매개 변수를 배포합니다. 
 
-toodeploy hello 서식 파일을이 코드 toohello Main 메서드에 추가 합니다.
+템플릿을 배포하려면 Main 메서드에 다음 코드를 추가합니다.
 
 ```
 var templatePath = "https://" + storageAccountName + ".blob.core.windows.net/templates/CreateVMTemplate.json";
@@ -304,28 +304,28 @@ var deployment = azure.Deployments.Define("myDeployment")
     .WithParametersLink(paramPath, "1.0.0.0")
     .WithMode(Microsoft.Azure.Management.ResourceManager.Fluent.Models.DeploymentMode.Incremental)
     .Create();
-Console.WriteLine("Press enter toodelete hello resource group...");
+Console.WriteLine("Press enter to delete the resource group...");
 Console.ReadLine();
 ```
 
-## <a name="delete-hello-resources"></a>Hello 리소스 삭제
+## <a name="delete-the-resources"></a>리소스 삭제
 
-Azure에서 사용 되는 리소스에 대 한 요금이 청구 되므로 항상 것은 더 이상 필요 없는 것이 좋습니다 toodelete 리소스입니다. 각 리소스는 리소스 그룹에서 별도로 toodelete을 필요 하지 않습니다. Hello 리소스 그룹을 삭제 하 고 모든 리소스를 자동으로 삭제 됩니다. 
+Azure에서 사용되는 리소스에 대한 요금이 부과되기 때문에, 더 이상 필요하지 않은 리소스를 항상 삭제하는 것이 좋습니다. 리소스 그룹에서 각 리소스를 개별적으로 삭제할 필요가 없습니다. 리소스 그룹을 삭제하면 모든 해당 리소스가 자동으로 삭제됩니다. 
 
-toodelete hello 리소스 그룹에서이 코드 toohello Main 메서드에 추가 합니다.
+리소스 그룹을 삭제하려면 Main 메서드에 다음 코드를 추가합니다.
 
 ```
 azure.ResourceGroups.DeleteByName(groupName);
 ```
 
-## <a name="run-hello-application"></a>Hello 응용 프로그램 실행
+## <a name="run-the-application"></a>응용 프로그램 실행
 
-이 콘솔 응용 프로그램 toorun 시작 toofinish에서 완전히에 대 일 분 정도 취해야 합니다. 
+이 콘솔 응용 프로그램을 처음부터 끝까지 완전히 실행하려면 약 5분이 필요합니다. 
 
-1. toorun hello 콘솔 응용 프로그램을 클릭 하 여 **시작**합니다.
+1. 콘솔 응용 프로그램을 실행하려면 **시작**을 클릭합니다.
 
-2. 누르기 전에 **Enter** toostart 삭제 리소스를 가져올 수 있었습니다 몇 분 정도 hello 리소스 tooverify hello 만들기 hello Azure 포털의에서. Hello 배포 상태 toosee hello 배포에 대 한 정보를 클릭 합니다.
+2. **Enter** 키를 눌러 리소스를 삭제하기 전에 Azure Portal에서 리소스 만들기를 확인하는 데에 몇 분이 걸릴 수 있습니다. 배포에 대한 정보를 보려면 배포 상태를 클릭합니다.
 
 ## <a name="next-steps"></a>다음 단계
-* 다음 단계에서 toolook 것 hello 배포 문제가 있는 경우 [Azure 리소스 관리자와 일반적인 Azure 배포 오류 문제 해결](../../resource-manager-common-deployment-errors.md)합니다.
-* 자세한 내용은 방법 toodeploy 가상 컴퓨터 및 지원 리소스를 검토 하 여 [배포는 Azure 가상 컴퓨터를 사용 하 여 C#](csharp.md)합니다.
+* 배포에 문제가 있는 경우 [Azure Resource Manager를 사용한 일반적인 Azure 배포 오류 해결](../../resource-manager-common-deployment-errors.md)을 살펴봅니다.
+* [C#를 사용하여 Azure Virtual Machine 배포](csharp.md)를 검토하여 가상 컴퓨터 및 지원 리소스 배포 방법에 대해 알아 봅니다.

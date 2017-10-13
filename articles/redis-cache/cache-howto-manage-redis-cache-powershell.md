@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell을 사용한 Azure Redis Cache aaaManage | Microsoft Docs"
-description: "자세한 내용은 방법 tooperform Azure PowerShell을 사용 하 여 Azure Redis 캐시에 대 한 관리 작업입니다."
+title: "Azure PowerShell을 사용하여 Azure Redis Cache 관리 | Microsoft Docs"
+description: "Azure PowerShell을 사용하여 Azure Redis Cache에 대한 관리 작업을 수행하는 방법을 알아봅니다."
 services: redis-cache
 documentationcenter: 
 author: steved0x
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: sdanie
-ms.openlocfilehash: 1d526ce65c4bc05345cd6c3ff370211ed562cab4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0a5c95eab3fd01f611fc049e80c5c506857e0b81
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="manage-azure-redis-cache-with-azure-powershell"></a>Azure PowerShell을 사용하여 Azure Redis Cache 관리
 > [!div class="op_single_selector"]
@@ -27,51 +27,51 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-이 항목에서는 방식과 tooperform 공통 작업 만들기와 같은, 업데이트 및 사용자의 Azure Redis Cache 인스턴스가 어떻게 확장 tooregenerate 선택 키와 방법을 캐시에 대 한 tooview 정보입니다. Azure Redis Cache PowerShell cmdlet의 전체 목록은 [Azure Redis Cache cmdlet](https://msdn.microsoft.com/library/azure/mt634513.aspx)을 참조하세요.
+이 항목에서는 Azure Redis Cache 인스턴스 만들기, 업데이트 및 크기 조정과 같은 일반적인 작업을 수행하고 액세스 키를 다시 생성하며 캐시에 대한 정보를 보는 방법을 보여줍니다. Azure Redis Cache PowerShell cmdlet의 전체 목록은 [Azure Redis Cache cmdlet](https://msdn.microsoft.com/library/azure/mt634513.aspx)을 참조하세요.
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
 
-Hello 클래식 배포 모델에 대 한 자세한 내용은 참조 [Azure 리소스 관리자 및 클래식 배포: 배포 모델을 이해 하 고 리소스 상태를 hello](../azure-resource-manager/resource-manager-deployment-model.md#classic-deployment-characteristics)합니다.
+두 배포 모델에 대한 자세한 내용은 [Azure Resource Manager 및 클래식 배포: 배포 모델 및 리소스 상태 이해](../azure-resource-manager/resource-manager-deployment-model.md#classic-deployment-characteristics)를 참조하세요.
 
 ## <a name="prerequisites"></a>필수 조건
-Azure PowerShell을 이미 설치한 경우 Azure PowerShell 버전 1.0.0 이상이 있어야 합니다. Hello hello Azure PowerShell 명령 프롬프트에서이 명령을 사용 하 여 설치 된 Azure PowerShell 버전을 확인할 수 있습니다.
+Azure PowerShell을 이미 설치한 경우 Azure PowerShell 버전 1.0.0 이상이 있어야 합니다. Azure PowerShell 명령 프롬프트에서 다음 명령을 사용하여 설치한 Azure PowerShell의 버전을 확인할 수 있습니다.
 
     Get-Module azure | format-table version
 
 
-첫째, tooAzure이이 명령 사용 하 여 로그인 해야 합니다.
+먼저 다음 명령을 사용하여 Azure에 로그인해야 합니다.
 
     Login-AzureRmAccount
 
-Microsoft Azure 로그인 hello 대화 상자에서 Azure 계정 및 암호의 hello 전자 메일 주소를 지정 합니다.
+Microsoft Azure 로그인 대화 상자에서 Azure 계정의 전자 메일 주소 및 해당 암호를 지정합니다.
 
-다음으로, 여러 Azure 구독이 있는 경우 해야 tooset Azure 구독. 현재 구독 목록이 toosee이이 명령을 실행 합니다.
+다음으로, 여러 Azure 구독이 있는 경우 Azure 구독을 설정해야 합니다. 현재 구독 목록을 보려면 다음 명령을 실행합니다.
 
     Get-AzureRmSubscription | sort SubscriptionName | Select SubscriptionName
 
-toospecify hello 구독을 hello 다음 명령을 실행 합니다. 다음 예제는 hello, hello 구독 이름은 `ContosoSubscription`합니다.
+구독을 지정하려면 다음 명령을 실행합니다. 다음 예제에서 구독 이름은 `ContosoSubscription`입니다.
 
     Select-AzureRmSubscription -SubscriptionName ContosoSubscription
 
-Azure 리소스 관리자와 Windows PowerShell을 사용할 수 있습니다, 전에 hello 다음을 해야 합니다.
+Azure 리소스 관리자에서 Windows PowerShell을 사용하려면 다음이 필요합니다.
 
-* Windows PowerShell, 버전 3.0 또는 4.0. toofind hello 버전의 Windows PowerShell, 유형:`$PSVersionTable` 의 hello 값을 확인 하 고 `PSVersion` 3.0 또는 4.0가 있습니다. 호환 되는 버전 tooinstall 참조 [Windows Management Framework 3.0](http://www.microsoft.com/download/details.aspx?id=34595) 또는 [Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855)합니다.
+* Windows PowerShell, 버전 3.0 또는 4.0. Windows PowerShell 버전을 확인하려면 `$PSVersionTable`을 입력하고 `PSVersion` 값이 3.0 또는 4.0인지를 확인합니다. 호환 버전을 설치하려면 [Windows Management Framework 3.0](http://www.microsoft.com/download/details.aspx?id=34595) 또는 [Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855)을 참조하세요.
 
-tooget은 hello Get-help cmdlet 사용 하 여가이 자습서에 나와 있는 모든 cmdlet에 대 한 도움말을 자세히 설명 합니다.
+이 자습서에 나오는 cmdlet에 대한 자세한 도움말을 보려면 Get-Help cmdlet을 사용합니다.
 
     Get-Help <cmdlet-name> -Detailed
 
-예를 들어 hello에 대 한 도움말을 tooget `New-AzureRmRedisCache` cmdlet, 유형:
+예를 들어 `New-AzureRmRedisCache` cmdlet에 대한 도움말을 보려면 다음과 같이 입력합니다.
 
     Get-Help New-AzureRmRedisCache -Detailed
 
-### <a name="how-tooconnect-tooother-clouds"></a>어떻게 tooconnect tooother 클라우드
-환경에는 기본 hello Azure로 `AzureCloud`이며 나타냅니다 hello 글로벌 Azure 클라우드 인스턴스. tooconnect tooa 다른 인스턴스를 사용 하 여 hello `Add-AzureRmAccount` hello로 명령을 `-Environment` 또는-`EnvironmentName` hello 원하는 환경 또는 환경 이름이 명령줄 스위치입니다.
+### <a name="how-to-connect-to-other-clouds"></a>다른 클라우드에 연결하는 방법
+기본적으로 Azure 환경은 글로벌 Azure 클라우드 인스턴스를 나타내는 `AzureCloud`입니다. 다른 인스턴스에 연결하려면 원하는 환경 또는 환경 이름을 사용하여 `-Environment` 또는 -`EnvironmentName` 명령줄 스위치와 함께 `Add-AzureRmAccount` 명령을 사용합니다.
 
-toosee hello 목록이 hello를 실행 하는 사용 가능한 환경 `Get-AzureRmEnvironment` cmdlet.
+사용 가능한 환경 목록을 보려면 `Get-AzureRmEnvironment` cmdlet을 실행합니다.
 
-### <a name="tooconnect-toohello-azure-government-cloud"></a>tooconnect toohello Azure Government 클라우드
-tooconnect toohello Azure Government 클라우드 hello 다음 명령 중 하나를 사용 합니다.
+### <a name="to-connect-to-the-azure-government-cloud"></a>Azure Government 클라우드를 연결하려면
+Azure Government 클라우드를 연결하려면 다음 명령 중 하나를 사용합니다.
 
     Add-AzureRMAccount -EnvironmentName AzureUSGovernment
 
@@ -79,15 +79,15 @@ tooconnect toohello Azure Government 클라우드 hello 다음 명령 중 하나
 
     Add-AzureRmAccount -Environment (Get-AzureRmEnvironment -Name AzureUSGovernment)
 
-hello Azure Government 클라우드에서에서 캐시 toocreate hello 다음 위치 중 하나를 사용 합니다.
+Azure Government 클라우드 내에 캐시를 만들려면 다음 위치 중 하나를 사용합니다.
 
 * USGov 버지니아
 * 미국 정부 아이오와
 
-Hello Azure Government 클라우드에 대 한 자세한 내용은 참조 하십시오. [Microsoft Azure Government](https://azure.microsoft.com/features/gov/) 및 [Microsoft Azure Government 개발자 가이드](../azure-government-developer-guide.md)합니다.
+Azure Government 클라우드에 대한 자세한 내용은 [Microsoft Azure Government](https://azure.microsoft.com/features/gov/) 및 [Microsoft Azure Government 개발자 가이드](../azure-government-developer-guide.md)를 참조하세요.
 
-### <a name="tooconnect-toohello-azure-china-cloud"></a>tooconnect toohello Azure 중국 클라우드
-tooconnect toohello Azure 중국 클라우드 hello 다음 명령 중 하나를 사용 합니다.
+### <a name="to-connect-to-the-azure-china-cloud"></a>Azure 중국 클라우드에 연결하려면
+Azure 중국 클라우드에 연결하려면 다음 명령 중 하나를 사용합니다.
 
     Add-AzureRMAccount -EnvironmentName AzureChinaCloud
 
@@ -95,15 +95,15 @@ tooconnect toohello Azure 중국 클라우드 hello 다음 명령 중 하나를 
 
     Add-AzureRmAccount -Environment (Get-AzureRmEnvironment -Name AzureChinaCloud)
 
-hello Azure 중국 클라우드에서에서 캐시 toocreate hello 다음 위치 중 하나를 사용 합니다.
+Azure 중국 클라우드에서 캐시를 만들려면 다음 위치 중 하나를 사용합니다.
 
 * 중국 동부
 * 중국 북부
 
-Hello Azure 중국 클라우드에 대 한 자세한 내용은 참조 하십시오. [중국의 21Vianet에서에서 운영 되는 Azure에 대 한 AzureChinaCloud](http://www.windowsazure.cn/)합니다.
+Azure 중국 클라우드에 대한 자세한 내용은 [중국 21Vianet에서 운영하는 Azure용 AzureChinaCloud](http://www.windowsazure.cn/)를 참조하세요.
 
-### <a name="tooconnect-toomicrosoft-azure-germany"></a>tooconnect tooMicrosoft Azure 독일
-tooconnect tooMicrosoft Azure 독일 hello 다음 명령 중 하나를 사용 합니다.
+### <a name="to-connect-to-microsoft-azure-germany"></a>Microsoft Azure Germany에 연결하려면
+Microsoft Azure Germany에 연결하려면 다음 명령 중 하나를 사용합니다.
 
     Add-AzureRMAccount -EnvironmentName AzureGermanCloud
 
@@ -112,7 +112,7 @@ tooconnect tooMicrosoft Azure 독일 hello 다음 명령 중 하나를 사용 �
 
     Add-AzureRmAccount -Environment (Get-AzureRmEnvironment -Name AzureGermanCloud)
 
-Microsoft Azure 독일의 캐시 toocreate hello 다음 위치 중 하나를 사용 합니다.
+Microsoft Azure Germany에서 캐시를 만들려면 다음 위치 중 하나를 사용합니다.
 
 * 독일 중부
 * 독일 북동부
@@ -120,51 +120,51 @@ Microsoft Azure 독일의 캐시 toocreate hello 다음 위치 중 하나를 사
 Microsoft Azure Germany에 대한 자세한 내용은 [Microsoft Azure Germany](https://azure.microsoft.com/overview/clouds/germany/)를 참조하세요.
 
 ### <a name="properties-used-for-azure-redis-cache-powershell"></a>Azure Redis Cache PowerShell에 사용되는 속성
-다음 표에 hello 속성과 자주 사용 되는 매개 변수를 만들고 Azure PowerShell을 사용 하 여 Azure Redis 캐시 인스턴스를 관리 하는 경우에 대 한 설명을 포함 합니다.
+다음 표에서는 Azure PowerShell을 사용하여 Azure Redis Cache 인스턴스를 만들고 관리할 때 자주 사용되는 매개 변수에 대한 속성 및 설명을 포함합니다.
 
 | 매개 변수 | 설명 | 기본값 |
 | --- | --- | --- |
-| 이름 |Hello 캐시의 이름 | |
-| 위치 |Hello 캐시의 위치 | |
-| ResourceGroupName |어떤 toocreate hello 캐시에 리소스 그룹 이름 | |
-| 크기 |hello hello 캐시 크기입니다. 유효한 값: P1, P2, P3, P4, C0, C1, C2, C3, C4, C5, C6, 250MB, 1GB, 2.5GB, 6GB, 13GB, 26GB, 53GB |1GB |
-| ShardCount |클러스터링을 사용 프리미엄 캐시를 만들 때 분할 영역 toocreate hello 수입니다. 유효한 값: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 | |
-| SKU |Hello hello 캐시의 SKU를 지정합니다. 유효한 값: 기본, 표준, 프리미엄 |표준 |
-| RedisConfiguration |Redis 구성 설정을 지정합니다. 각 설정에 대 한 자세한 내용은 hello 다음을 참조 하십시오. [RedisConfiguration 속성](#redisconfiguration-properties) 테이블입니다. | |
-| EnableNonSslPort |Hello 비 SSL 포트를 사용 하는지 여부를 나타냅니다. |False |
+| Name |캐시의 이름 | |
+| 위치 |캐시의 위치 | |
+| ResourceGroupName |캐시를 만들 리소스 그룹 이름 | |
+| 크기 |캐시의 크기. 유효한 값: P1, P2, P3, P4, C0, C1, C2, C3, C4, C5, C6, 250MB, 1GB, 2.5GB, 6GB, 13GB, 26GB, 53GB |1GB |
+| ShardCount |클러스터링을 사용하는 프리미엄 캐시를 만들 때 만들 분할된 데이터베이스 수. 유효한 값: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 | |
+| SKU |캐시의 SKU를 지정합니다. 유효한 값: 기본, 표준, 프리미엄 |표준 |
+| RedisConfiguration |Redis 구성 설정을 지정합니다. 각 설정에 대한 자세한 내용은 다음 [RedisConfiguration 속성](#redisconfiguration-properties) 테이블을 참조하세요. | |
+| EnableNonSslPort |비 SSL 포트를 사용하는지 여부를 나타냅니다. |False |
 | MaxMemoryPolicy |이 매개 변수는 더 이상 사용되지 않으며 대신 RedisConfiguration을 사용합니다. | |
-| StaticIP |VNET에서 캐시를 호스팅하는 경우 hello 캐시에 대 한 hello 서브넷에 고유한 IP 주소를 지정 합니다. 을 지정 하지 않으면 하나는 선택 됩니다 hello 서브넷에서. | |
-| 서브넷 |VNET에서 캐시를 호스팅하는 경우 어떤 toodeploy hello 캐시 hello hello 서브넷 이름을 지정 합니다. | |
-| VirtualNetwork |hello 리소스 ID를 지정 하는 VNET에서 캐시를 호스팅하는 경우에 어떤 toodeploy hello 캐시에는 VNET hello 합니다. | |
-| KeyType |액세스 키를 지정 합니다. 액세스 키를 갱신할 때 tooregenerate 합니다. 유효한 값: 주, 보조 | |
+| StaticIP |VNET에서 캐시를 호스팅하는 경우 서브넷에서 캐시에 대한 고유 IP 주소를 지정합니다. 제공되지 않으면 하나의 IP 주소가 서브넷에서 자동으로 선택됩니다. | |
+| 서브넷 |VNET에서 캐시를 호스팅하는 경우에 캐시를 배포할 서브넷의 이름을 지정합니다. | |
+| VirtualNetwork |VNET에서 캐시를 호스팅하는 경우에 캐시를 배포할 VNET의 리소스 ID를 지정합니다. | |
+| KeyType |액세스 키를 갱신할 때 다시 생성할 액세스 키를 지정합니다. 유효한 값: 주, 보조 | |
 
 ### <a name="redisconfiguration-properties"></a>RedisConfiguration 속성
 | 속성 | 설명 | 가격 책정 계층 |
 | --- | --- | --- |
 | rdb-backup-enabled |[Redis 데이터 지속성](cache-how-to-premium-persistence.md) 사용 여부 |프리미엄 전용 |
-| rdb-storage-connection-string |연결 문자열 toohello 저장소 계정에 대 한 hello [Redis 데이터 지 속성](cache-how-to-premium-persistence.md) |프리미엄 전용 |
-| rdb-backup-frequency |백업 빈도 대 한 hello [Redis 데이터 지 속성](cache-how-to-premium-persistence.md) |프리미엄 전용 |
-| maxmemory-reserved |Hello 구성 [예약 되는 메모리](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) 캐시 되지 않은 프로세스에 대 한 |표준 및 프리미엄 |
-| maxmemory-policy |Hello 구성 [의 제거 정책](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) hello 캐시에 대 한 |모든 가격 책정 계층 |
+| rdb-storage-connection-string |[Redis 데이터 지속성](cache-how-to-premium-persistence.md) |프리미엄 전용 |
+| rdb-backup-frequency |[Redis 데이터 지속성](cache-how-to-premium-persistence.md) |프리미엄 전용 |
+| maxmemory-reserved |비 캐시 프로세스를 위해 [예약되는 메모리](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) 를 구성합니다 |표준 및 프리미엄 |
+| maxmemory-policy |캐시에 대한 [제거 정책](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) 을 구성합니다 |모든 가격 책정 계층 |
 | notify-keyspace-events |[Keyspace 알림](cache-configure.md#keyspace-notifications-advanced-settings) |표준 및 프리미엄 |
 | hash-max-ziplist-entries |작은 집계 데이터 형식에 대한 [메모리 최적화](http://redis.io/topics/memory-optimization) 구성 |표준 및 프리미엄 |
 | hash-max-ziplist-value |작은 집계 데이터 형식에 대한 [메모리 최적화](http://redis.io/topics/memory-optimization) 구성 |표준 및 프리미엄 |
 | set-max-intset-entries |작은 집계 데이터 형식에 대한 [메모리 최적화](http://redis.io/topics/memory-optimization) 구성 |표준 및 프리미엄 |
 | zset-max-ziplist-entries |작은 집계 데이터 형식에 대한 [메모리 최적화](http://redis.io/topics/memory-optimization) 구성 |표준 및 프리미엄 |
 | zset-max-ziplist-value |작은 집계 데이터 형식에 대한 [메모리 최적화](http://redis.io/topics/memory-optimization) 구성 |표준 및 프리미엄 |
-| 데이터베이스 |Hello 데이터베이스 수를 구성합니다. 이 속성은 캐시 만들기에서만 구성할 수 있습니다. |표준 및 프리미엄 |
+| 데이터베이스 |데이터베이스 수를 구성합니다. 이 속성은 캐시 만들기에서만 구성할 수 있습니다. |표준 및 프리미엄 |
 
-## <a name="toocreate-a-redis-cache"></a>toocreate Redis 캐시
-Hello를 사용 하 여 새 Azure Redis Cache 인스턴스가 만들어지지 [새로 AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) cmdlet.
+## <a name="to-create-a-redis-cache"></a>Redis Cache를 만들려면
+[New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) cmdlet을 사용하여 새 Azure Redis Cache 인스턴스를 만듭니다.
 
 > [!IMPORTANT]
-> hello 처음 hello Azure 포털을 사용 하 여 구독에서 Redis cache를 만들 때 hello 포털 등록 hello `Microsoft.Cache` 해당 구독에 대 한 네임 스페이스입니다. 사용 하려는 경우 toocreate hello PowerShell을 사용 하 여 구독에서 캐시를 먼저 Redis, 다음 명령을; hello를 사용 하 여 해당 네임 스페이스를 먼저 등록 해야 합니다. 그렇지 않으면 cmdlet과 같은 `New-AzureRmRedisCache` 및 `Get-AzureRmRedisCache` 실패 합니다.
+> Azure 포털을 사용하여 구독에 처음으로 Redis 캐시를 만들 때 포털은 해당 구독에 대해 `Microsoft.Cache` 네임스페이스를 등록합니다. PowerShell을 사용하여 구독에서 첫 번째 Redis 캐시를 만드는 경우, 먼저 다음 명령을 사용하여 해당 네임스페이스를 등록해야 하며 그렇지 않은 경우 `New-AzureRmRedisCache` 및 `Get-AzureRmRedisCache`의 cmdlet이 실패합니다.
 > 
 > `Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.Cache"`
 > 
 > 
 
-사용 가능한 매개 변수 목록과 해당 설명을 보려면에 대 한 toosee `New-AzureRmRedisCache`실행 hello 다음 명령을 합니다.
+`New-AzureRmRedisCache`에 대해 사용 가능한 매개 변수 및 해당 설명에 대한 목록을 보려면 다음 명령을 실행합니다.
 
     PS C:\> Get-Help New-AzureRmRedisCache -detailed
 
@@ -183,31 +183,31 @@ Hello를 사용 하 여 새 Azure Redis Cache 인스턴스가 만들어지지 [�
 
 
     DESCRIPTION
-        hello New-AzureRmRedisCache cmdlet creates a new redis cache.
+        The New-AzureRmRedisCache cmdlet creates a new redis cache.
 
 
     PARAMETERS
         -Name <String>
-            Name of hello redis cache toocreate.
+            Name of the redis cache to create.
 
         -ResourceGroupName <String>
-            Name of resource group in which toocreate hello redis cache.
+            Name of resource group in which to create the redis cache.
 
         -Location <String>
-            Location in which toocreate hello redis cache.
+            Location in which to create the redis cache.
 
         -RedisVersion <String>
             RedisVersion is deprecated and will be removed in future release.
 
         -Size <String>
-            Size of hello redis cache. hello default value is 1GB or C1. Possible values are P1, P2, P3, P4, C0, C1, C2, C3,
+            Size of the redis cache. The default value is 1GB or C1. Possible values are P1, P2, P3, P4, C0, C1, C2, C3,
             C4, C5, C6, 250MB, 1GB, 2.5GB, 6GB, 13GB, 26GB, 53GB.
 
         -Sku <String>
-            Sku of redis cache. hello default value is Standard. Possible values are Basic, Standard and Premium.
+            Sku of redis cache. The default value is Standard. Possible values are Basic, Standard and Premium.
 
         -MaxMemoryPolicy <String>
-            hello 'MaxMemoryPolicy' setting has been deprecated. Please use 'RedisConfiguration' setting tooset
+            The 'MaxMemoryPolicy' setting has been deprecated. Please use 'RedisConfiguration' setting to set
             MaxMemoryPolicy. e.g. -RedisConfiguration @{"maxmemory-policy" = "allkeys-lru"}
 
         -RedisConfiguration <Hashtable>
@@ -216,14 +216,14 @@ Hello를 사용 하 여 새 Azure Redis Cache 인스턴스가 만들어지지 [�
             hash-max-ziplist-value, set-max-intset-entries, zset-max-ziplist-entries, zset-max-ziplist-value, databases.
 
         -EnableNonSslPort <Boolean>
-            EnableNonSslPort is used by Azure Redis Cache. If no value is provided, hello default value is false and the
+            EnableNonSslPort is used by Azure Redis Cache. If no value is provided, the default value is false and the
             non-SSL port will be disabled. Possible values are true and false.
 
         -ShardCount <Integer>
-            hello number of shards toocreate on a Premium Cluster Cache.
+            The number of shards to create on a Premium Cluster Cache.
 
         -VirtualNetwork <String>
-            hello exact ARM resource ID of hello virtual network toodeploy hello redis cache in. Example format: /subscriptions/{
+            The exact ARM resource ID of the virtual network to deploy the redis cache in. Example format: /subscriptions/{
             subid}/resourceGroups/{resourceGroupName}/providers/Microsoft.ClassicNetwork/VirtualNetworks/{vnetName}
 
         -Subnet <String>
@@ -233,38 +233,38 @@ Hello를 사용 하 여 새 Azure Redis Cache 인스턴스가 만들어지지 [�
             Required when deploying a redis cache inside an existing Azure Virtual Network.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-toocreate hello 다음 명령을 실행 합니다. 기본 매개 변수가 있는 캐시 합니다.
+기본 매개 변수로 캐시를 만들려면 다음 명령을 실행합니다.
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US"
 
-`ResourceGroupName``Name`, 및 `Location` 필수 매개 변수가 있지만 hello 나머지는 선택 사항이 며 기본값이 지정 합니다. Hello 지정 된 이름, 위치 및 크기와 사용 하지 않도록 설정 하는 hello 비 SSL 포트에에서 1GB 있는 리소스 그룹으로 표준 SKU Azure Redis 캐시 인스턴스를 만듭니다 hello 이전 명령을 실행 합니다.
+`ResourceGroupName`, `Name` 및 `Location`은 필수 매개 변수이지만 나머지는 선택 사항이며 기본값을 포함합니다. 이전 명령을 실행하면 지정된 이름, 위치 및 리소스 그룹으로 크기 1GB의 표준 SKU Azure Redis Cache 인스턴스가 비 SSL 포트가 비활성화된 상태로 만들어집니다. 
 
-P1 (6GB-60GB), P2 (13 GB-130 기가바이트)의 크기를 지정 하는 프리미엄 캐시 toocreate P3 (26GB-260 기가바이트) 또는 P4 (53GB 530 10GB). hello를 사용 하 여 분할 영역 수를 지정 하는 클러스터링, tooenable `ShardCount` 매개 변수입니다. hello 다음 만드는 예제 P1 프리미엄 캐시 3 분할 된 데이터베이스입니다. P1 프리미엄 캐시의 크기를 6GB는 하며 세 가지 분할 영역 hello 전체 크기를 지정 했기 때문 18 GB (3 x 6 GB)
+프리미엄 캐시를 만들려면 P1(6GB - 60GB), P2(13GB - 130GB), P3(26GB - 260GB) 또는 P4(53GB - 530GB) 크기를 지정합니다. 클러스터링을 사용하려면 `ShardCount` 매개 변수를 사용하여 분할된 데이터베이스 수를 지정합니다. 다음 예제에서는 3개의 분할된 데이터베이스가 있는 P1 프리미엄 캐시를 만듭니다. P1 프리미엄 캐시는 6GB 크기이고 3개의 분할된 데이터베이스를 지정했으므로 총 크기는 18GB(3 x 6GB)입니다.
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US" -Sku Premium -Size P1 -ShardCount 3
 
-hello에 대 한 toospecify 값 `RedisConfiguration` 매개 변수를 내부 hello 값 묶습니다 `{}` 으로 키/값 쌍 같은 `@{"maxmemory-policy" = "allkeys-random", "notify-keyspace-events" = "KEA"}`합니다. hello 다음 예제에서는 캐시를 만든 표준 1GB와 `allkeys-random` 구성 된 최대 메모리 정책 및 키 스페이스 알림 `KEA`합니다. 자세한 내용은 [Keyspace 알림(고급 설정)](cache-configure.md#keyspace-notifications-advanced-settings) 및 [메모리 정책](cache-configure.md#memory-policies)을 참조하세요.
+`RedisConfiguration` 매개 변수에 대한 값을 지정하려면 `@{"maxmemory-policy" = "allkeys-random", "notify-keyspace-events" = "KEA"}`처럼 키/값 쌍으로 값을 `{}`로 묶습니다. 다음 예제에서는 `allkeys-random` 최대 정책을 사용하고 `KEA`의 keyspace 알림이 구성된 표준 1GB 캐시를 만듭니다. 자세한 내용은 [Keyspace 알림(고급 설정)](cache-configure.md#keyspace-notifications-advanced-settings) 및 [메모리 정책](cache-configure.md#memory-policies)을 참조하세요.
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US" -RedisConfiguration @{"maxmemory-policy" = "allkeys-random", "notify-keyspace-events" = "KEA"}
 
 <a name="databases"></a>
 
-## <a name="tooconfigure-hello-databases-setting-during-cache-creation"></a>캐시 만들기 중에 설정 tooconfigure hello 데이터베이스
-hello `databases` 캐시 만들기 중에 설정을 구성할 수 있습니다. hello 다음 예제에서는 프리미엄 P3 hello를 사용 하 여 48 데이터베이스와 함께 (26GB) 캐시 [새로 AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) cmdlet.
+## <a name="to-configure-the-databases-setting-during-cache-creation"></a>캐시를 만드는 동안 데이터베이스 설정을 구성하려면
+`databases` 설정은 캐시를 만드는 동안에만 구성할 수 있습니다. 다음 예제에서는 [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) cmdlet를 사용하여 48 데이터베이스로 프리미엄 P3 (26 GB) 캐시를 만듭니다.
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US" -Sku Premium -Size P3 -RedisConfiguration @{"databases" = "48"}
 
-Hello에 대 한 자세한 내용은 `databases` 속성 참조 [기본 Azure Redis Cache 서버 구성](cache-configure.md#default-redis-server-configuration)합니다. Hello를 사용 하 여 캐시를 만드는 방법에 대 한 자세한 내용은 [새로 AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) cmdlet hello 이전 참조 [toocreate Redis Cache](#to-create-a-redis-cache) 섹션.
+`databases` 속성에 대한 자세한 내용은 [기본 Azure Redis Cache 서버 구성](cache-configure.md#default-redis-server-configuration)을 참조하세요. [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) cmdlet를 사용하여 캐시를 만드는 방법에 대한 자세한 내용은 이전의 [Redis 캐시 만들려면](#to-create-a-redis-cache) 섹션을 참조하세요.
 
-## <a name="tooupdate-a-redis-cache"></a>tooupdate Redis 캐시
-Azure Redis 캐시 인스턴스가 hello를 사용 하 여 업데이트 됩니다 [집합 AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634518.aspx) cmdlet.
+## <a name="to-update-a-redis-cache"></a>Redis Cache를 업데이트하려면
+[Set-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634518.aspx) cmdlet을 사용하여 Azure Redis Cache 인스턴스를 업데이트합니다.
 
-사용 가능한 매개 변수 목록과 해당 설명을 보려면에 대 한 toosee `Set-AzureRmRedisCache`실행 hello 다음 명령을 합니다.
+`Set-AzureRmRedisCache`에 대해 사용 가능한 매개 변수 및 해당 설명에 대한 목록을 보려면 다음 명령을 실행합니다.
 
     PS C:\> Get-Help Set-AzureRmRedisCache -detailed
 
@@ -280,24 +280,24 @@ Azure Redis 캐시 인스턴스가 hello를 사용 하 여 업데이트 됩니�
         <Integer>] [<CommonParameters>]
 
     DESCRIPTION
-        hello Set-AzureRmRedisCache cmdlet sets redis cache parameters.
+        The Set-AzureRmRedisCache cmdlet sets redis cache parameters.
 
     PARAMETERS
         -Name <String>
-            Name of hello redis cache tooupdate.
+            Name of the redis cache to update.
 
         -ResourceGroupName <String>
-            Name of hello resource group for hello cache.
+            Name of the resource group for the cache.
 
         -Size <String>
-            Size of hello redis cache. hello default value is 1GB or C1. Possible values are P1, P2, P3, P4, C0, C1, C2, C3,
+            Size of the redis cache. The default value is 1GB or C1. Possible values are P1, P2, P3, P4, C0, C1, C2, C3,
             C4, C5, C6, 250MB, 1GB, 2.5GB, 6GB, 13GB, 26GB, 53GB.
 
         -Sku <String>
-            Sku of redis cache. hello default value is Standard. Possible values are Basic, Standard and Premium.
+            Sku of redis cache. The default value is Standard. Possible values are Basic, Standard and Premium.
 
         -MaxMemoryPolicy <String>
-            hello 'MaxMemoryPolicy' setting has been deprecated. Please use 'RedisConfiguration' setting tooset
+            The 'MaxMemoryPolicy' setting has been deprecated. Please use 'RedisConfiguration' setting to set
             MaxMemoryPolicy. e.g. -RedisConfiguration @{"maxmemory-policy" = "allkeys-lru"}
 
         -RedisConfiguration <Hashtable>
@@ -306,48 +306,48 @@ Azure Redis 캐시 인스턴스가 hello를 사용 하 여 업데이트 됩니�
             hash-max-ziplist-value, set-max-intset-entries, zset-max-ziplist-entries, zset-max-ziplist-value.
 
         -EnableNonSslPort <Boolean>
-            EnableNonSslPort is used by Azure Redis Cache. hello default value is null and no change will be made toothe
+            EnableNonSslPort is used by Azure Redis Cache. The default value is null and no change will be made to the
             currently configured value. Possible values are true and false.
 
         -ShardCount <Integer>
-            hello number of shards toocreate on a Premium Cluster Cache.
+            The number of shards to create on a Premium Cluster Cache.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-hello `Set-AzureRmRedisCache` cmdlet과 같은 사용된 tooupdate 속성 수 `Size`, `Sku`, `EnableNonSslPort`, 및 hello `RedisConfiguration` 값입니다. 
+`Size`, `Sku`, `EnableNonSslPort`의 속성과 `RedisConfiguration` 값을 업데이트하는 데 `Set-AzureRmRedisCache` cmdlet을 사용할 수 있습니다. 
 
-hello 업데이트 hello에 대 한 hello Redis 캐시 maxmemory 정책 다음 명령은 이름이 myCache입니다.
+다음 명령은 myCache라는 Redis Cache에 대한 maxmemory-policy를 업데이트합니다.
 
     Set-AzureRmRedisCache -ResourceGroupName "myGroup" -Name "myCache" -RedisConfiguration @{"maxmemory-policy" = "allkeys-random"}
 
 <a name="scale"></a>
 
-## <a name="tooscale-a-redis-cache"></a>tooscale Redis 캐시
-`Set-AzureRmRedisCache`사용 되는 tooscale 때 hello Azure Redis 캐시 인스턴스 수 `Size`, `Sku`, 또는 `ShardCount` 속성이 수정 됩니다. 
+## <a name="to-scale-a-redis-cache"></a>Redis Cache의 크기를 조정하려면
+`Size`, `Sku` 또는 `ShardCount` 속성이 수정될 때 Azure Redis Cache 인스턴스 크기를 조정하는 데 `Set-AzureRmRedisCache`를 사용할 수 있습니다. 
 
 > [!NOTE]
-> PowerShell을 사용 하 여 캐시 크기 조정 주체 toohello 동일한 제한을 이며 캐시에서 크기 조정 지침 hello Azure 포털. Tooa 다른 제한 사항에 따라 hello로 가격 책정 계층을 확장할 수 있습니다.
+> PowerShell을 사용하여 캐시 크기를 조정할 경우 Azure 포털에서 캐시 크기를 조정할 때와 동일한 한도 및 지침이 적용됩니다. 다른 가격 책정 계층으로 크기를 조정할 수 있지만 다음과 같은 제한 사항이 있습니다.
 > 
-> * 더 높은 가격 책정 계층 tooa 더 낮은 가격 책정 계층에서에서 확장할 수는 없습니다.
-> * 업그레이드할 수 없는 **프리미엄** tooa 아래로 캐시 **표준** 또는 **기본** 캐시 합니다.
-> * 업그레이드할 수 없는 **표준** tooa 아래로 캐시 **기본** 캐시 합니다.
-> * 확장할 수는 **기본** tooa 캐시 **표준** 캐시 있지만 hello hello 크기를 변경할 수 없습니다 동시 합니다. 크기를 다르게 해야 할 경우에 크기 조정 작업의 후속 toohello 원하는 크기를 수행할 수 있습니다.
-> * 업그레이드할 수 없는 **기본** 캐시 직접 tooa **프리미엄** 캐시 합니다. 확장 해야 **기본** 너무**표준** 한 크기 조정 작업에서 **표준** 너무**프리미엄** 후속 배율 작업입니다.
-> * toohello 아래로 더 큰 크기를 확장할 수 없으며 **C0 (250MB)** 크기입니다.
+> * 높은 가격 책정 계층에서 낮은 가격 책정 계층으로 크기를 조정할 수 없습니다.
+> * **프리미엄** 캐시에서 **표준** 또는 **기본** 캐시로 축소할 수 없습니다.
+> * **표준** 캐시에서 **기본** 캐시로 축소할 수 없습니다.
+> * **기본** 캐시에서 **표준** 캐시로 크기를 조정할 수 있지만 동시에 크기를 변경할 수는 없습니다. 다른 크기가 필요한 경우 후속 크기 조정 작업을 통해 원하는 크기로 조정할 수 있습니다.
+> * **기본** 캐시에서 바로 **프리미엄** 캐시로 확장할 수 없습니다. 크기 조정 작업을 통해 **기본**에서 **표준**으로 확장한 다음, 후속 크기 조정 작업을 통해 **표준**에서 **프리미엄**으로 확장해야 합니다.
+> * 더 큰 크기에서 **C0(250MB)** 크기로 축소할 수 없습니다.
 > 
-> 자세한 내용은 참조 [어떻게 tooScale Azure Redis 캐시](cache-how-to-scale.md)합니다.
+> 자세한 내용은 [Azure Redis Cache 크기를 조정하는 방법](cache-how-to-scale.md)을 참조하세요.
 > 
 > 
 
-hello 다음 예제에서는 어떻게 tooscale 캐시 라는 `myCache` tooa 2.5 g B 캐시 합니다. 이 명령은 기본 또는 표준 캐시 둘 다에 적용할 수 있습니다.
+다음 예제에서는 `myCache` 라는 캐시를 2.5GB 캐시로 크기를 조정하는 방법을 보여 줍니다. 이 명령은 기본 또는 표준 캐시 둘 다에 적용할 수 있습니다.
 
     Set-AzureRmRedisCache -ResourceGroupName myGroup -Name myCache -Size 2.5GB
 
-이 명령이 실행 된 후에 hello 캐시의 hello 상태가 반환 됩니다 (유사한 toocalling `Get-AzureRmRedisCache`). 해당 hello 참고 `ProvisioningState` 은 `Scaling`합니다.
+이 명령을 실행하면 캐시 상태가 반환됩니다( `Get-AzureRmRedisCache`호출과 유사). 여기서 `ProvisioningState`는 `Scaling`입니다.
 
     PS C:\> Set-AzureRmRedisCache -Name myCache -ResourceGroupName myGroup -Size 2.5GB
 
@@ -376,14 +376,14 @@ hello 다음 예제에서는 어떻게 tooscale 캐시 라는 `myCache` tooa 2.5
     TenantSettings     : {}
     ShardCount         :
 
-Hello 크기 조정 작업이 완료 되 면 hello `ProvisioningState` 쪽 변경`Succeeded`합니다. Toomake 후속 있는 크기 조정 작업에서 기본 tooStandard 변경 등 다음 hello 크기를 변경 해야 할 경우 hello 이전 작업이 완료 되거나 오류 유사한 toohello 다음 수신 될 때까지 기다려야 합니다.
+크기 조정 작업이 완료되면 `ProvisioningState`는 `Succeeded`로 바뀝니다. 기본에서 표준으로 변경 후 크기 변경과 같은 후속 크기 조정 작업을 수행해야 하는 경우 이전 작업이 완료될 때까지 대기해야 하며 그렇지 않은 경우 다음과 같은 오류가 발생합니다.
 
-    Set-AzureRmRedisCache : Conflict: hello resource '...' is not in a stable state, and is currently unable tooaccept hello update request.
+    Set-AzureRmRedisCache : Conflict: The resource '...' is not in a stable state, and is currently unable to accept the update request.
 
-## <a name="tooget-information-about-a-redis-cache"></a>Redis 캐시에 대 한 tooget 정보
-Hello를 사용 하 여 캐시에 대 한 정보를 검색할 수 [Get AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634514.aspx) cmdlet.
+## <a name="to-get-information-about-a-redis-cache"></a>Redis Cache에 대한 정보를 가져오려면
+[Get-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634514.aspx) cmdlet을 사용하여 캐시에 대한 정보를 검색할 수 있습니다.
 
-사용 가능한 매개 변수 목록과 해당 설명을 보려면에 대 한 toosee `Get-AzureRmRedisCache`실행 hello 다음 명령을 합니다.
+`Get-AzureRmRedisCache`에 대해 사용 가능한 매개 변수 및 해당 설명에 대한 목록을 보려면 다음 명령을 실행합니다.
 
     PS C:\> Get-Help Get-AzureRmRedisCache -detailed
 
@@ -391,46 +391,46 @@ Hello를 사용 하 여 캐시에 대 한 정보를 검색할 수 [Get AzureRmRe
         Get-AzureRmRedisCache
 
     SYNOPSIS
-        Gets details about a single cache or all caches in hello specified resource group or all caches in hello current
+        Gets details about a single cache or all caches in the specified resource group or all caches in the current
         subscription.
 
     SYNTAX
         Get-AzureRmRedisCache [-Name <String>] [-ResourceGroupName <String>] [<CommonParameters>]
 
     DESCRIPTION
-        hello Get-AzureRmRedisCache cmdlet gets hello details about a cache or caches depending on input parameters. If both
+        The Get-AzureRmRedisCache cmdlet gets the details about a cache or caches depending on input parameters. If both
         ResourceGroupName and Name parameters are provided then Get-AzureRmRedisCache will return details about the
         specific cache name provided.
 
-        If only ResourceGroupName is provided than it will return details about all caches in hello specified resource group.
+        If only ResourceGroupName is provided than it will return details about all caches in the specified resource group.
 
-        If no parameters are given than it will return details about all caches hello current subscription.
+        If no parameters are given than it will return details about all caches the current subscription.
 
     PARAMETERS
         -Name <String>
-            hello name of hello cache. When this parameter is provided along with ResourceGroupName, Get-AzureRmRedisCache
-            returns hello details for hello cache.
+            The name of the cache. When this parameter is provided along with ResourceGroupName, Get-AzureRmRedisCache
+            returns the details for the cache.
 
         -ResourceGroupName <String>
-            hello name of hello resource group that contains hello cache or caches. If ResourceGroupName is provided with Name
-            then Get-AzureRmRedisCache returns hello details of hello cache specified by Name. If only hello ResourceGroup
-            parameter is provided, then details for all caches in hello resource group are returned.
+            The name of the resource group that contains the cache or caches. If ResourceGroupName is provided with Name
+            then Get-AzureRmRedisCache returns the details of the cache specified by Name. If only the ResourceGroup
+            parameter is provided, then details for all caches in the resource group are returned.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-hello 현재 구독에서 모든 캐시에 대 한 정보 tooreturn 실행 `Get-AzureRmRedisCache` 매개 변수 없이 합니다.
+현재 구독의 모든 캐시에 대한 정보를 반환하려면 매개 변수 없이 `Get-AzureRmRedisCache`를 실행합니다.
 
     Get-AzureRmRedisCache
 
-특정 리소스 그룹의 모든 캐시에 대 한 정보 tooreturn 실행 `Get-AzureRmRedisCache` hello로 `ResourceGroupName` 매개 변수입니다.
+특정 리소스 그룹의 모든 캐시에 대한 정보를 반환하려면 `ResourceGroupName` 매개 변수와 함께 `Get-AzureRmRedisCache`를 실행합니다.
 
     Get-AzureRmRedisCache -ResourceGroupName myGroup
 
-특정 캐시에 대 한 정보 tooreturn 실행 `Get-AzureRmRedisCache` hello로 `Name` hello 캐시 및 hello의 hello 이름을 포함 하는 매개 변수 `ResourceGroupName` 해당 캐시를 포함 하는 hello 리소스 그룹과 매개 변수입니다.
+특정 캐시에 대한 정보를 반환하려면 캐시 이름을 포함하는 `Name` 매개 변수와 해당 캐시를 포함하는 리소스 그룹이 있는 `ResourceGroupName` 매개 변수와 함께 `Get-AzureRmRedisCache`를 실행합니다.
 
     PS C:\> Get-AzureRmRedisCache -Name myCache -ResourceGroupName myGroup
 
@@ -456,10 +456,10 @@ hello 현재 구독에서 모든 캐시에 대 한 정보 tooreturn 실행 `Get-
     TenantSettings     : {}
     ShardCount         :
 
-## <a name="tooretrieve-hello-access-keys-for-a-redis-cache"></a>Redis cache에 대해 tooretrieve hello 선택 키
-캐시에 대 한 hello 선택 키 tooretrieve hello를 사용할 수 있습니다 [Get AzureRmRedisCacheKey](https://msdn.microsoft.com/library/azure/mt634516.aspx) cmdlet.
+## <a name="to-retrieve-the-access-keys-for-a-redis-cache"></a>Redis Cache에 대한 액세스 키를 검색하려면
+캐시에 대한 액세스 키를 검색하려면 [Get-AzureRmRedisCacheKey](https://msdn.microsoft.com/library/azure/mt634516.aspx) cmdlet을 사용하면 됩니다.
 
-사용 가능한 매개 변수 목록과 해당 설명을 보려면에 대 한 toosee `Get-AzureRmRedisCacheKey`실행 hello 다음 명령을 합니다.
+`Get-AzureRmRedisCacheKey`에 대해 사용 가능한 매개 변수 및 해당 설명에 대한 목록을 보려면 다음 명령을 실행합니다.
 
     PS C:\> Get-Help Get-AzureRmRedisCacheKey -detailed
 
@@ -467,39 +467,39 @@ hello 현재 구독에서 모든 캐시에 대 한 정보 tooreturn 실행 `Get-
         Get-AzureRmRedisCacheKey
 
     SYNOPSIS
-        Gets hello accesskeys for hello specified redis cache.
+        Gets the accesskeys for the specified redis cache.
 
 
     SYNTAX
         Get-AzureRmRedisCacheKey -Name <String> -ResourceGroupName <String> [<CommonParameters>]
 
     DESCRIPTION
-        hello Get-AzureRmRedisCacheKey cmdlet gets hello access keys for hello specified cache.
+        The Get-AzureRmRedisCacheKey cmdlet gets the access keys for the specified cache.
 
     PARAMETERS
         -Name <String>
-            Name of hello redis cache.
+            Name of the redis cache.
 
         -ResourceGroupName <String>
-            Name of hello resource group for hello cache.
+            Name of the resource group for the cache.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-캐시에 호출 hello에 대 한 키 tooretrieve hello `Get-AzureRmRedisCacheKey` cmdlet 및 캐시의 hello 이름에는 통과 hello hello 캐시를 포함 하는 hello 리소스 그룹의 이름입니다.
+캐시에 대한 키를 검색하려면 `Get-AzureRmRedisCacheKey` cmdlet을 호출하고 캐시 이름과 해당 캐시를 포함하는 리소스 그룹 이름을 전달합니다.
 
     PS C:\> Get-AzureRmRedisCacheKey -Name myCache -ResourceGroupName myGroup
 
     PrimaryKey   : b2wdt43sfetlju4hfbryfnregrd9wgIcc6IA3zAO1lY=
     SecondaryKey : ABhfB757JgjIgt785JgKH9865eifmekfnn649303JKL=
 
-## <a name="tooregenerate-access-keys-for-your-redis-cache"></a>Redis 캐시에 대 한 tooregenerate 선택 키
-캐시에 대 한 hello 선택 키 tooregenerate hello를 사용할 수 있습니다 [새로 AzureRmRedisCacheKey](https://msdn.microsoft.com/library/azure/mt634512.aspx) cmdlet.
+## <a name="to-regenerate-access-keys-for-your-redis-cache"></a>Redis Cache에 대한 액세스 키를 다시 생성하려면
+캐시에 대한 액세스 키를 다시 생성하려면 [New-AzureRmRedisCacheKey](https://msdn.microsoft.com/library/azure/mt634512.aspx) cmdlet을 사용하면 됩니다.
 
-사용 가능한 매개 변수 목록과 해당 설명을 보려면에 대 한 toosee `New-AzureRmRedisCacheKey`실행 hello 다음 명령을 합니다.
+`New-AzureRmRedisCacheKey`에 대해 사용 가능한 매개 변수 및 해당 설명에 대한 목록을 보려면 다음 명령을 실행합니다.
 
     PS C:\> Get-Help New-AzureRmRedisCacheKey -detailed
 
@@ -507,49 +507,49 @@ hello 현재 구독에서 모든 캐시에 대 한 정보 tooreturn 실행 `Get-
         New-AzureRmRedisCacheKey
 
     SYNOPSIS
-        Regenerates hello access key of a redis cache.
+        Regenerates the access key of a redis cache.
 
     SYNTAX
         New-AzureRmRedisCacheKey -Name <String> -ResourceGroupName <String> -KeyType <String> [-Force] [<CommonParameters>]
 
     DESCRIPTION
-        hello New-AzureRmRedisCacheKey cmdlet regenerate hello access key of a redis cache.
+        The New-AzureRmRedisCacheKey cmdlet regenerate the access key of a redis cache.
 
     PARAMETERS
         -Name <String>
-            Name of hello redis cache.
+            Name of the redis cache.
 
         -ResourceGroupName <String>
-            Name of hello resource group for hello cache.
+            Name of the resource group for the cache.
 
         -KeyType <String>
-            Specifies whether tooregenerate hello primary or secondary access key. Possible values are Primary or Secondary.
+            Specifies whether to regenerate the primary or secondary access key. Possible values are Primary or Secondary.
 
         -Force
-            When hello Force parameter is provided, hello specified access key is regenerated without any confirmation prompts.
+            When the Force parameter is provided, the specified access key is regenerated without any confirmation prompts.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-캐시에서 호출 hello tooregenerate hello 기본 또는 보조 키 `New-AzureRmRedisCacheKey` cmdlet 및 hello 전달 리소스 그룹 이름을 지정 하 고 지정 `Primary` 또는 `Secondary` hello에 대 한 `KeyType` 매개 변수입니다. 다음 예제는 hello에 캐시에 대 한 hello 보조 액세스 키 다시 생성 됩니다.
+캐시에 대한 주 및 보조 키를 다시 생성하려면 `New-AzureRmRedisCacheKey` cmdlet을 호출하고 이름, 리소스 그룹을 전달하고 `KeyType` 매개 변수에 대해 `Primary` 또는 `Secondary`를 지정합니다. 다음 예제에서는 캐시에 대한 보조 액세스 키가 다시 생성됩니다.
 
     PS C:\> New-AzureRmRedisCacheKey -Name myCache -ResourceGroupName myGroup -KeyType Secondary
 
     Confirm
-    Are you sure you want tooregenerate Secondary key for redis cache 'myCache'?
+    Are you sure you want to regenerate Secondary key for redis cache 'myCache'?
     [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): Y
 
 
     PrimaryKey   : b2wdt43sfetlju4hfbryfnregrd9wgIcc6IA3zAO1lY=
     SecondaryKey : c53hj3kh4jhHjPJk8l0jji785JgKH9865eifmekfnn6=
 
-## <a name="toodelete-a-redis-cache"></a>toodelete Redis 캐시
-Redis cache toodelete hello를 사용 하 여 [제거 AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634515.aspx) cmdlet.
+## <a name="to-delete-a-redis-cache"></a>Redis Cache를 삭제하려면
+Redis Cache를 삭제하려면 [Remove-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634515.aspx) cmdlet을 사용합니다.
 
-사용 가능한 매개 변수 목록과 해당 설명을 보려면에 대 한 toosee `Remove-AzureRmRedisCache`실행 hello 다음 명령을 합니다.
+`Remove-AzureRmRedisCache`에 대해 사용 가능한 매개 변수 및 해당 설명에 대한 목록을 보려면 다음 명령을 실행합니다.
 
     PS C:\> Get-Help Remove-AzureRmRedisCache -detailed
 
@@ -563,46 +563,46 @@ Redis cache toodelete hello를 사용 하 여 [제거 AzureRmRedisCache](https:/
         Remove-AzureRmRedisCache -Name <String> -ResourceGroupName <String> [-Force] [-PassThru] [<CommonParameters>
 
     DESCRIPTION
-        hello Remove-AzureRmRedisCache cmdlet removes a redis cache if it exists.
+        The Remove-AzureRmRedisCache cmdlet removes a redis cache if it exists.
 
     PARAMETERS
         -Name <String>
-            Name of hello redis cache tooremove.
+            Name of the redis cache to remove.
 
         -ResourceGroupName <String>
-            Name of hello resource group of hello cache tooremove.
+            Name of the resource group of the cache to remove.
 
         -Force
-            When hello Force parameter is provided, hello cache is removed without any confirmation prompts.
+            When the Force parameter is provided, the cache is removed without any confirmation prompts.
 
         -PassThru
-            By default Remove-AzureRmRedisCache removes hello cache and does not return any value. If hello PassThru par
-            is provided then Remove-AzureRmRedisCache returns a boolean value indicating hello success of hello operatio
+            By default Remove-AzureRmRedisCache removes the cache and does not return any value. If the PassThru par
+            is provided then Remove-AzureRmRedisCache returns a boolean value indicating the success of the operatio
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-다음 예제는 hello에서 명명 된 캐시 hello `myCache` 제거 됩니다.
+다음 예제에서는 캐시 이름 `myCache` 가 제거됩니다.
 
     PS C:\> Remove-AzureRmRedisCache -Name myCache -ResourceGroupName myGroup
 
     Confirm
-    Are you sure you want tooremove redis cache 'myCache'?
+    Are you sure you want to remove redis cache 'myCache'?
     [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): Y
 
 
-## <a name="tooimport-a-redis-cache"></a>tooimport Redis 캐시
-Hello를 사용 하 여 Azure Redis Cache 인스턴스로 데이터를 가져올 수 있습니다 `Import-AzureRmRedisCache` cmdlet.
+## <a name="to-import-a-redis-cache"></a>Redis Cache를 가져오려면
+`Import-AzureRmRedisCache` cmdlet을 사용하여 Azure Redis Cache 인스턴스에 데이터를 가져올 수 있습니다.
 
 > [!IMPORTANT]
 > 가져오기/내보내기는 [프리미엄 계층](cache-premium-tier-intro.md) 캐시에만 제공됩니다. 가져오기/내보내기에 대한 자세한 내용은 [Azure Redis Cache에서 데이터 가져오기 및 내보내기](cache-how-to-import-export-data.md)를 참조하세요.
 > 
 > 
 
-사용 가능한 매개 변수 목록과 해당 설명을 보려면에 대 한 toosee `Import-AzureRmRedisCache`실행 hello 다음 명령을 합니다.
+`Import-AzureRmRedisCache`에 대해 사용 가능한 매개 변수 및 해당 설명에 대한 목록을 보려면 다음 명령을 실행합니다.
 
     PS C:\> Get-Help Import-AzureRmRedisCache -detailed
 
@@ -610,7 +610,7 @@ Hello를 사용 하 여 Azure Redis Cache 인스턴스로 데이터를 가져올
         Import-AzureRmRedisCache
 
     SYNOPSIS
-        Import data from blobs tooAzure Redis Cache.
+        Import data from blobs to Azure Redis Cache.
 
 
     SYNTAX
@@ -619,50 +619,50 @@ Hello를 사용 하 여 Azure Redis Cache 인스턴스로 데이터를 가져올
 
 
     DESCRIPTION
-        hello Import-AzureRmRedisCache cmdlet imports data from hello specified blobs into Azure Redis Cache.
+        The Import-AzureRmRedisCache cmdlet imports data from the specified blobs into Azure Redis Cache.
 
 
     PARAMETERS
         -Name <String>
-            hello name of hello cache.
+            The name of the cache.
 
         -ResourceGroupName <String>
-            hello name of hello resource group that contains hello cache.
+            The name of the resource group that contains the cache.
 
         -Files <String[]>
-            SAS urls of blobs whose content should be imported into hello cache.
+            SAS urls of blobs whose content should be imported into the cache.
 
         -Format <String>
-            Format for hello blob.  Currently "rdb" is hello only supported, with other formats expected in hello future.
+            Format for the blob.  Currently "rdb" is the only supported, with other formats expected in the future.
 
         -Force
-            When hello Force parameter is provided, import will be performed without any confirmation prompts.
+            When the Force parameter is provided, import will be performed without any confirmation prompts.
 
         -PassThru
-            By default Import-AzureRmRedisCache imports data in cache and does not return any value. If hello PassThru
-            parameter is provided then Import-AzureRmRedisCache returns a boolean value indicating hello success of the
+            By default Import-AzureRmRedisCache imports data in cache and does not return any value. If the PassThru
+            parameter is provided then Import-AzureRmRedisCache returns a boolean value indicating the success of the
             operation.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 
-hello 다음 명령에서에서 데이터를 가져옵니다 Azure Redis 캐시로 hello SAS uri로 지정 된 hello blob입니다.
+다음 명령은 SAS URI가 지정한 Blob에서 Azure Redis Cache에 데이터를 가져옵니다.
 
     PS C:\>Import-AzureRmRedisCache -ResourceGroupName "resourceGroupName" -Name "cacheName" -Files @("https://mystorageaccount.blob.core.windows.net/mycontainername/blobname?sv=2015-04-05&sr=b&sig=caIwutG2uDa0NZ8mjdNJdgOY8%2F8mhwRuGNdICU%2B0pI4%3D&st=2016-05-27T00%3A00%3A00Z&se=2016-05-28T00%3A00%3A00Z&sp=rwd") -Force
 
-## <a name="tooexport-a-redis-cache"></a>tooexport Redis 캐시
-Azure Redis Cache 인스턴스에서 hello를 사용 하 여 데이터를 내보낼 수 `Export-AzureRmRedisCache` cmdlet.
+## <a name="to-export-a-redis-cache"></a>Redis Cache를 내보내려면
+`Export-AzureRmRedisCache` cmdlet을 사용하여 Azure Redis Cache 인스턴스에서 데이터를 내보낼 수 있습니다.
 
 > [!IMPORTANT]
 > 가져오기/내보내기는 [프리미엄 계층](cache-premium-tier-intro.md) 캐시에만 제공됩니다. 가져오기/내보내기에 대한 자세한 내용은 [Azure Redis Cache에서 데이터 가져오기 및 내보내기](cache-how-to-import-export-data.md)를 참조하세요.
 > 
 > 
 
-사용 가능한 매개 변수 목록과 해당 설명을 보려면에 대 한 toosee `Export-AzureRmRedisCache`실행 hello 다음 명령을 합니다.
+`Export-AzureRmRedisCache`에 대해 사용 가능한 매개 변수 및 해당 설명에 대한 목록을 보려면 다음 명령을 실행합니다.
 
     PS C:\> Get-Help Export-AzureRmRedisCache -detailed
 
@@ -670,7 +670,7 @@ Azure Redis Cache 인스턴스에서 hello를 사용 하 여 데이터를 내보
         Export-AzureRmRedisCache
 
     SYNOPSIS
-        Exports data from Azure Redis Cache tooa specified container.
+        Exports data from Azure Redis Cache to a specified container.
 
 
     SYNTAX
@@ -679,51 +679,51 @@ Azure Redis Cache 인스턴스에서 hello를 사용 하 여 데이터를 내보
 
 
     DESCRIPTION
-        hello Export-AzureRmRedisCache cmdlet exports data from Azure Redis Cache tooa specified container.
+        The Export-AzureRmRedisCache cmdlet exports data from Azure Redis Cache to a specified container.
 
 
     PARAMETERS
         -Name <String>
-            hello name of hello cache.
+            The name of the cache.
 
         -ResourceGroupName <String>
-            hello name of hello resource group that contains hello cache.
+            The name of the resource group that contains the cache.
 
         -Prefix <String>
-            Prefix toouse for blob names.
+            Prefix to use for blob names.
 
         -Container <String>
             SAS url of container where data should be exported.
 
         -Format <String>
-            Format for hello blob.  Currently "rdb" is hello only supported, with other formats expected in hello future.
+            Format for the blob.  Currently "rdb" is the only supported, with other formats expected in the future.
 
         -PassThru
-            By default Export-AzureRmRedisCache does not return any value. If hello PassThru parameter is provided
-            then Export-AzureRmRedisCache returns a boolean value indicating hello success of hello operation.
+            By default Export-AzureRmRedisCache does not return any value. If the PassThru parameter is provided
+            then Export-AzureRmRedisCache returns a boolean value indicating the success of the operation.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 
-hello 다음 명령은 데이터에서에서 내보냅니다 hello SAS uri로 지정 된 hello 컨테이너로 Azure Redis Cache 인스턴스.
+다음 명령은 Azure Redis Cache 인스턴스에서 SAS uri가 지정한 컨테이너로 데이터를 내보냅니다.
 
         PS C:\>Export-AzureRmRedisCache -ResourceGroupName "resourceGroupName" -Name "cacheName" -Prefix "blobprefix"
         -Container "https://mystorageaccount.blob.core.windows.net/mycontainer?sv=2015-04-05&sr=c&sig=HezZtBZ3DURmEGDduauE7
         pvETY4kqlPI8JCNa8ATmaw%3D&st=2016-05-27T00%3A00%3A00Z&se=2016-05-28T00%3A00%3A00Z&sp=rwdl"
 
-## <a name="tooreboot-a-redis-cache"></a>tooreboot Redis 캐시
-Azure Redis 캐시 인스턴스의 hello를 사용 하 여 다시 부팅할 수 `Reset-AzureRmRedisCache` cmdlet.
+## <a name="to-reboot-a-redis-cache"></a>Redis Cache를 재부팅하려면
+`Reset-AzureRmRedisCache` cmdlet을 사용하여 Azure Redis Cache 인스턴스를 재부팅할 수 있습니다.
 
 > [!IMPORTANT]
 > 재부팅은 [프리미엄 계층](cache-premium-tier-intro.md) 캐시에만 사용할 수 있습니다. 캐시를 재부팅하는 방법에 대한 자세한 내용은 [캐시 관리 - 재부팅](cache-administration.md#reboot)을 참조하세요.
 > 
 > 
 
-사용 가능한 매개 변수 목록과 해당 설명을 보려면에 대 한 toosee `Reset-AzureRmRedisCache`실행 hello 다음 명령을 합니다.
+`Reset-AzureRmRedisCache`에 대해 사용 가능한 매개 변수 및 해당 설명에 대한 목록을 보려면 다음 명령을 실행합니다.
 
     PS C:\> Get-Help Reset-AzureRmRedisCache -detailed
 
@@ -740,49 +740,49 @@ Azure Redis 캐시 인스턴스의 hello를 사용 하 여 다시 부팅할 수 
 
 
     DESCRIPTION
-        hello Reset-AzureRmRedisCache cmdlet reboots hello specified node(s) of an Azure Redis Cache instance.
+        The Reset-AzureRmRedisCache cmdlet reboots the specified node(s) of an Azure Redis Cache instance.
 
 
     PARAMETERS
         -Name <String>
-            hello name of hello cache.
+            The name of the cache.
 
         -ResourceGroupName <String>
-            hello name of hello resource group that contains hello cache.
+            The name of the resource group that contains the cache.
 
         -RebootType <String>
-            Which node tooreboot. Possible values are "PrimaryNode", "SecondaryNode", "AllNodes".
+            Which node to reboot. Possible values are "PrimaryNode", "SecondaryNode", "AllNodes".
 
         -ShardId <Integer>
-            Which shard tooreboot when rebooting a premium cache with clustering enabled.
+            Which shard to reboot when rebooting a premium cache with clustering enabled.
 
         -Force
-            When hello Force parameter is provided, reset will be performed without any confirmation prompts.
+            When the Force parameter is provided, reset will be performed without any confirmation prompts.
 
         -PassThru
-            By default Reset-AzureRmRedisCache does not return any value. If hello PassThru parameter is provided
-            then Reset-AzureRmRedisCache returns a boolean value indicating hello success of hello operation.
+            By default Reset-AzureRmRedisCache does not return any value. If the PassThru parameter is provided
+            then Reset-AzureRmRedisCache returns a boolean value indicating the success of the operation.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 
-hello 다음 명령을 다시 부팅 지정 hello의 두 노드 모두 캐시 합니다.
+다음 명령은 지정된 캐시의 두 노드를 모두 재부팅합니다.
 
         PS C:\>Reset-AzureRmRedisCache -ResourceGroupName "resourceGroupName" -Name "cacheName" -RebootType "AllNodes"
         -Force
 
 
 ## <a name="next-steps"></a>다음 단계
-Azure를 통해 Windows PowerShell 사용에 대 한 더 toolearn hello 다음 리소스를 참조 하십시오.
+Azure에서 Windows PowerShell 사용에 대한 자세한 내용은 다음 리소스를 참조하십시오.
 
 * [MSDN에 있는 Azure Redis Cache cmdlet 설명서](https://msdn.microsoft.com/library/azure/mt634513.aspx)
-* [Azure 리소스 관리자 Cmdlet](http://go.microsoft.com/fwlink/?LinkID=394765): hello Azure 리소스 관리자 모듈의 toouse hello cmdlet에 알아봅니다.
-* [Toomanage Azure 리소스 그룹 리소스를 사용 하 여](../azure-resource-manager/resource-group-template-deploy-portal.md): 자세한 방법을 toocreate hello Azure 포털에서에서 리소스 그룹 및 관리 합니다.
+* [Azure Resource Manager Cmdlet](http://go.microsoft.com/fwlink/?LinkID=394765): Azure Resource Manager 모듈에서 cmdlet을 사용하는 방법을 알아봅니다.
+* [리소스 그룹을 사용하여 Azure 리소스 관리](../azure-resource-manager/resource-group-template-deploy-portal.md): Azure 포털에서 리소스 그룹을 만들고 관리하는 방법에 대해 알아봅니다.
 * [Azure 블로그](http://blogs.msdn.com/windowsazure): Azure의 새로운 기능에 대해 알아봅니다.
 * [Windows PowerShell 블로그](http://blogs.msdn.com/powershell): Windows PowerShell의 새로운 기능에 대해 알아봅니다.
-* ["Hey, Scripting Guy!" 블로그](http://blogs.technet.com/b/heyscriptingguy/): hello Windows PowerShell 커뮤니티에서에서 실제 팁과 요령을 가져옵니다.
+* ["Hey, Scripting Guy!" 블로그](http://blogs.technet.com/b/heyscriptingguy/): Windows PowerShell 커뮤니티에서 실제 팁과 요령을 확인합니다.
 

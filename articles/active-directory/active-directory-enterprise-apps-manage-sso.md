@@ -1,9 +1,9 @@
 ---
-title: "hello Azure Active Directory에서에서 엔터프라이즈 응용 프로그램에 대 한 관리 로그온 aaaSingle | Microsoft Docs"
-description: "Toomanage single sign-on 엔터프라이즈 응용 프로그램을 사용 하 여 Azure Active Directory hello 하는 방법에 대해 알아봅니다"
+title: "Azure Active Directory에서 엔터프라이즈 앱에 대한 Single Sign-On 관리 | Microsoft Docs"
+description: "Azure Active Directory 응용 프로그램 갤러리에서 조직 내 엔터프라이즈 앱에 대한 Single Sign-On 설정 관리"
 services: active-directory
 documentationcenter: 
-author: asmalser
+author: curtand
 manager: femila
 editor: 
 ms.assetid: bcc954d3-ddbe-4ec2-96cc-3df996cbc899
@@ -12,86 +12,85 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 07/26/2017
-ms.author: asmalser
-ms.openlocfilehash: b0a8e622ab10517b7b69f786406b6e9b9f2e7eaa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.date: 09/19/2017
+ms.author: curtand
+ms.reviewer: asmalser
+ms.openlocfilehash: 882180a553fffee05a612cf70ddd9a0f30108415
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="managing-single-sign-on-for-enterprise-apps"></a>엔터프라이즈 앱에 대한 Single Sign-On 관리
-> [!div class="op_single_selector"]
-> * [Azure 포털](active-directory-enterprise-apps-manage-sso.md)
-> * [Azure 클래식 포털](active-directory-sso-integrate-saas-apps.md)
-> 
 
-이 문서에서는 설명 방법을 toouse hello [Azure 포털](https://portal.azure.com) toomanage single sign on 설정 엔터프라이즈 응용 프로그램에 대 한 합니다. 엔터프라이즈 앱은 조직 내에서 배포 및 사용되는 앱입니다. 이 문서에는 hello에서 추가 된 tooapps 특히 적용 됩니다. [Azure Active Directory 응용 프로그램 갤러리](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)합니다. 
+이 문서에서는 [Azure Portal](https://portal.azure.com)을 사용하여 엔터프라이즈 응용 프로그램에 대한 Single Sign-On 설정을 관리하는 방법을 설명합니다. 엔터프라이즈 앱은 조직 내에서 배포 및 사용되는 앱입니다. 이 문서는 [Azure Active Directory 응용 프로그램 갤러리](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)에서 추가된 앱에 특별히 적용됩니다. 
 
-## <a name="finding-your-apps-in-hello-portal"></a>Hello 포털에서 앱 찾기
-Single sign on 설정 되어 있는 모든 엔터프라이즈 응용 프로그램 확인 및 hello Azure 포털에서에서 관리할 수 있습니다. hello 응용 프로그램에 hello 있습니다 **더 서비스** &gt; **엔터프라이즈 응용 프로그램** hello 포털의 섹션입니다. 
+## <a name="finding-your-apps-in-the-portal"></a>포털에서 앱 찾기
+Single Sign-On에 대해 설정되어 있는 모든 엔터프라이즈 앱은 Azure Portal에서 보고 관리할 수 있습니다. 응용 프로그램은 포털의 **추가 서비스** &gt; **엔터프라이즈 응용 프로그램** 섹션에서 찾을 수 있습니다. 
 
 ![엔터프라이즈 응용 프로그램 블레이드][1]
 
-선택 **모든 응용 프로그램** tooview 구성 된 모든 앱의 목록입니다. 응용 프로그램을 선택 하면 해당 앱에 대 한 보고서를 볼 수 있습니다 하 고 다양 한 설정 관리할 수 있는 해당 앱에 대 한 hello 리소스 블레이드를 로드 합니다.
+**모든 응용 프로그램**을 선택하여 구성된 모든 앱의 목록을 봅니다. 앱을 선택하면 해당 앱에 대한 리소스가 표시되며 여기에서 해당 앱에 대한 보고서를 볼 수 있고 다양한 설정을 관리할 수 있습니다.
 
-toomanage single sign on 설정, 선택 **Single sign on**합니다.
+Single Sign-On 설정을 관리하려면 **Single Sign-On**을 선택합니다.
 
 ![응용 프로그램 리소스 블레이드][2]
 
 ## <a name="single-sign-on-modes"></a>Single Sign-On 모드
-hello **Single sign on** 블레이드로 시작 하는 **모드** 메뉴 hello single sign on 모드 toobe 구성 되어 있습니다. hello 사용할 수 있는 옵션은 다음과 같습니다.
+**Single Sign-On**은 Single Sign-On 모드를 구성할 수 있는 **모드** 메뉴로 시작합니다. 사용 가능한 옵션은 다음과 같습니다.
 
-* **SAML 기반 로그온** -이 옵션은 hello SAML 2.0 프로토콜을 사용 하 여 Azure Active Directory와 전체 페더레이션 single sign on hello 응용 프로그램이 지 원하는 경우 사용할 수 있습니다.
+* **SAML 기반 로그온** - 응용 프로그램에서 SAML 2.0 프로토콜, WS-Federation 또는 OpenID 연결 프로토콜을 사용하여 Azure Active Directory로 전체 페더레이션된 Single Sign-On을 지원하는 경우에 사용할 수 있습니다.
 * **암호 기반 로그온** - 이 옵션은 Azure AD가 이 응용 프로그램에 대해 입력하는 암호 양식을 지원하는 경우 사용할 수 있습니다.
-* **기호에 있는 연결 된** -이전에 "기존 single sign on",이 옵션을 사용 하면 관리자가 tooplace 링크 toothis 응용 프로그램에서 해당 사용자의 Azure AD 액세스 패널 또는 Office 365 응용 프로그램 실행 프로그램입니다.
+* **연결된 로그온** - 이전에 “기존 Single Sign-On”이었던 이 옵션을 사용하면 관리자가 해당 사용자의 Azure AD 액세스 패널 또는 Office 365 응용 프로그램 시작 관리자에서 이 응용 프로그램에 대한 링크를 배치할 수 있습니다.
 
 이러한 모드에 대한 자세한 내용은 [Azure Active Directory에서 Single Sign-On이 작동하는 방식](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work)을 참조하세요.
 
 ## <a name="saml-based-sign-on"></a>SAML 기반 로그온
-hello **SAML 기반 로그온** 옵션 4 개 섹션에서 나누어져 있는 블레이드를 표시 합니다.
+**SAML 기반 로그온** 옵션은 4개의 섹션으로 나뉩니다.
 
 ### <a name="domains-and-urls"></a>도메인 및 URL
-이 hello 응용 프로그램 도메인 및 Url에 대 한 모든 세부 정보 tooyour Azure AD 디렉터리를 추가 됩니다. 모든 입력 toomake single sign on 작업 앱 hello 화면에 직접 표시 hello를 선택 하 여 모든 선택적 입력을 볼 수 있지만 필요한 **고급 URL 설정 표시** 확인란을 선택 합니다. 지원 되는 입력 hello 전체 목록에는 다음이 포함 됩니다.
+여기에서 응용 프로그램의 도메인 및 URL에 대한 모든 세부 정보가 Azure AD 디렉터리에 추가됩니다. Single Sign-On 작업 앱을 만드는 데 필요한 모든 입력이 화면에 직접 표시되지만 모든 선택 사항 입력은 **Show advanced URL settings** (고급 URL 설정 표시) 확인란을 선택하여 볼 수 있습니다. 지원되는 입력의 전체 목록에는 다음이 포함됩니다.
 
-* **로그온 URL** hello 사용자가 응용 프로그램에서 toosign toothis 위치 – 합니다. Hello 응용 프로그램은 단일 공급자가 시작한 로그온 하는 구성 된 tooperform 서비스 hello 서비스 공급자가 필요한 hello는 사용자가 toothis URL, 다음 리디렉션 tooAzure AD tooauthenticate 및 로그인에 사용자를 hello 합니다. 이 필드는 채워집니다 경우 Azure AD는이 URL toolaunch hello 응용 프로그램에서 Office 365 및 Azure AD 액세스 패널 hello를 사용 합니다. 이 필드를 생략 하면 다음 Azure AD id 공급자를 대신 수행 하는 경우-시작 된 로그온 hello 앱 시작 시 hello Azure AD 또는 Office 365, Azure AD 액세스 패널 hello에서에서 single sign on URL입니다.
-* **식별자** -구성 되는 단일 로그온에 대 한이 URI hello 응용 프로그램을 고유 하 게 식별 해야 합니다. 이 값은 Azure AD는 hello SAML 토큰의 대상 그룹 매개 변수를 hello로 백 tooapplication를 보냅니다 및 hello 응용 프로그램은 예상된 toovalidate hello 값 것입니다. 이 값은 또한 hello 응용 프로그램에서 제공 하는 SAML 메타 데이터에 엔터티 ID hello로 나타납니다.
-* **회신 URL** -hello 회신 URL은 hello 응용 프로그램이 tooreceive hello SAML 토큰을 예상 하는 위치입니다. 또한 참조 tooas hello 서비스 ACS (Assertion Consumer) URL입니다. 이러한 입력 된 다음 tooproceed toohello 다음 화면을 클릭 합니다. 이 화면 어떤 요구 toobe에 구성 된 응용 프로그램 쪽 tooenable hello 것 tooaccept Azure AD에서 SAML 토큰에 대 한 정보를 제공 합니다.
-* **릴레이 상태** -hello 릴레이 상태가 인증이 완료 된 후 사용자 hello tooredirect는 여기서 hello 응용 프로그램에 지시 하는 데 도움이 되는 선택적 매개 변수입니다. 하지만 일반적으로 hello 값이 올바른 URL이 hello 응용 프로그램에서 일부 응용 프로그램에서이 필드를 다르게 사용 (hello 응용 프로그램의 단일 로그인에 대 한 자세한 내용은 설명서 참조). hello 기능 tooset hello 릴레이 상태가 고유 toohello 새 Azure 포털을가 하는 새로운 기능입니다.
+* **로그온 URL** – 사용자가 이 응용 프로그램에 로그인하는 위치입니다. 응용 프로그램이 서비스 공급자에서 시작된 Single Sign-On을 수행하도록 구성되면 사용자가 이 URL을 열 경우 서비스 공급자는 사용자를 인증하고 로그인하기 위해 Azure AD로 리디렉션합니다. 
+  * 이 필드가 채워지면 Azure AD는 URL을 사용하여 Office 365 및 Azure AD 액세스 패널에서 응용 프로그램을 시작합니다.
+  * 이 필드가 생략되면 해당 앱이 Office 365, Azure AD 액세스 패널 또는 Azure AD Single Sign-On URL에서 시작할 경우 Azure AD는 ID 공급자에서 시작된 로그인을 대신 수행합니다.
+* **식별자** - 이 URI는 구성될 Single Sign-On에 대해 응용 프로그램을 고유하게 식별해야 합니다. 이는 Azure AD가 SAML 토큰의 대상 매개 변수로서 응용 프로그램에 다시 전송하는 값이며, 응용 프로그램의 유효성을 검사하게 됩니다. 또한 이 값은 응용 프로그램에서 제공하는 모든 SAML 메타데이터 내에서 엔터티 ID로 표시됩니다.
+* **회신 URL** - 회신 URL은 응용 프로그램이 SAML 토큰을 수신해야 하는 위치입니다. 이 URL은 ACS(Assertion Consumer Service) URL이라고도 합니다. 이러한 내용을 입력한 후에 다음을 클릭하여 다음 화면으로 진행합니다. 이 화면은 응용 프로그램쪽에서 구성되어야 하는 사항에 대한 정보를 제공하여 Azure AD에서 SAML 토큰을 수락하도록 설정합니다.
+* **릴레이 상태** - 릴레이 상태는 인증이 완료된 후 사용자를 리디렉션할 위치를 응용 프로그램에 알릴 수 있는 선택적 매개 변수입니다. 일반적으로 해당 값은 응용 프로그램에서 유효한 URL이지만 일부 응용 프로그램은 이 필드를 다르게 사용합니다(자세한 내용은 앱의 Single Sign-On 설명서 참조). 릴레이 상태를 설정하는 기능은 새 Azure Portal에 고유한 새 기능입니다.
 
 ### <a name="user-attributes"></a>사용자 특성
-여기서 관리자를 볼 수와 편집 hello 특성을 Azure AD에서 발행 toohello 응용 프로그램 사용자가 각 hello SAML 토큰에 전송 된 로그인입니다.
+여기에서 관리자는 사용자 로그인마다 Azure AD가 응용 프로그램에 발행하는 SAML 토큰에서 전송되는 특성을 보고 편집할 수 있습니다.
 
-지원 되는 편집 가능한 특성은 hello hello **사용자 식별자** 특성입니다. 이 특성의 값 hello는 hello 응용 프로그램 내에서 각 사용자를 고유 하 게 식별 하는 Azure AD의 hello 필드입니다. 예를 들어 hello 앱에서 "전자 메일 주소" hello hello 사용자 이름 및 고유 식별자로 사용 하 여 배포 된 경우 다음 hello 값은 설정 됩니다 toohello "user.mail" 필드에 Azure AD.
+편집 가능하며 지원되는 유일한 특성은 **사용자 ID** 특성입니다. 이 특성의 값은 응용 프로그램 내에서 각 사용자를 고유하게 식별하는 Azure AD의 필드입니다. 예를 들어 "메일 주소"를 사용자 이름 및 고유 식별자로 사용하여 앱이 배포된 경우 해당 값은 Azure AD의 "user.mail" 필드로 설정됩니다.
 
 ### <a name="saml-signing-certificate"></a>SAML 서명 인증서
-이 섹션에는 Azure AD toosign hello SAML 발급 된 토큰을 인증 하는 각 타임 hello 사용자 toohello 응용 프로그램에서는 hello 인증서의 hello 세부 표시 합니다. Hello 현재 인증서 toobe 검사 hello 만료 날짜를 포함 하 여의 hello 속성 수 있습니다.
+이 섹션에서는 Azure AD가 사용자 인증마다 응용 프로그램에 발급된 SAML 토큰을 서명하는 데 사용하는 인증서의 세부 정보를 보여 줍니다. 이를 통해 만료 날짜를 포함하여 현재 인증서의 속성을 검사할 수 있습니다.
 
 ### <a name="application-configuration"></a>응용 프로그램 구성
-hello 최종 섹션에서는 hello 설명서 및/또는 컨트롤 필요한 tooconfigure hello 응용 프로그램 자체 toouse Azure Active Directory를 id 공급자로 합니다.
+마지막 섹션에서는 Azure Active Directory를 ID 공급자로 사용하도록 응용 프로그램 자체를 구성하는 데 필요한 설명서 및/또는 컨트롤을 제공합니다.
 
-hello **응용 프로그램 구성** 플라이 아웃 메뉴 hello 응용 프로그램을 구성 하기 위한 새 간결 하 고 포함 된 지침을 제공 합니다. 다른 새 기능 고유 toohello 새 Azure 포털입니다.
+**응용 프로그램 구성** 플라이아웃 메뉴에서 응용 프로그램을 구성하기 위해 포함된 간결한 새 지침을 제공합니다. 이는 새 Azure Portal에 고유한 또 다른 새 기능입니다.
 
 > [!NOTE]
-> 포함 된 설명서의 전체 예제는 hello Salesforce.com 응용 프로그램을 참조 하십시오. 추가 앱에 대한 설명서는 계속 추가됩니다.
+> 포함된 설명서의 전체 예제를 보려면 Salesforce.com 응용 프로그램을 참조하세요. 추가 앱에 대한 설명서는 계속 추가됩니다.
 > 
 > 
 
 ![포함된 문서][3]
 
 ## <a name="password-based-sign-on"></a>암호 기반 로그온
-암호 기반 SSO 모드 및 선택 hello 응용 프로그램에 대 한 지원 되는 경우을 선택 하면 hello **저장** 즉시 toodo 구성 암호 기반 SSO 합니다. 암호 기반 SSO를 배포하는 방법은 [Azure Active Directory에서 Single Sign-On이 작동하는 방식](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work)을 참조하세요.
+응용 프로그램을 지원하는 경우 암호 기반 SSO 모드를 선택하고 **저장** 을 선택하면 즉시 구성되어 암호 기반 SSO를 수행합니다. 암호 기반 SSO를 배포하는 방법은 [Azure Active Directory에서 Single Sign-On이 작동하는 방식](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work)을 참조하세요.
 
 ![암호 기반 로그온][4]
 
 ## <a name="linked-sign-on"></a>연결된 로그온
-Hello 응용 프로그램에 대 한 지원 되는 경우 연결 된 hello SSO 모드를 선택 하면 있습니다 tooenter hello URL을 hello Azure AD 액세스 패널 또는 Office 365 tooredirect toowhen을 클릭 하 여이 응용 프로그램입니다. 연결된 SSO(이전의 "기존 SSO")에 대한 자세한 내용은 [Azure Active Directory에서 Single Sign-On이 작동하는 방식](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work)을 참조하세요.
+응용 프로그램을 지원하는 경우 연결된 SSO 모드를 선택하면 사용자가 이 앱을 클릭할 때 Azure AD 액세스 패널 또는 Office 365가 리디렉션하는 URL을 입력할 수 있습니다. 연결된 SSO(이전의 "기존 SSO")에 대한 자세한 내용은 [Azure Active Directory에서 Single Sign-On이 작동하는 방식](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work)을 참조하세요.
 
 ![연결된 로그온][5]
 
 ##<a name="feedback"></a>사용자 의견
 
-Azure AD 환경 개선 hello를 사용 하 여 원하는 하시기 바랍니다. 들어오는 hello 피드백을 유지 하세요! Hello에 피드백 및 개선 위한 아이디어 게시 **관리자 포털** 섹션 우리의 [피드백 포럼](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal)합니다.  에서는 매일 멋진 새로운 기능을 작성 하는 방법에 대 한 기대 하는 및 사용 하 여 지침 tooshape 다음에 빌드 정의 합니다.
+향상된 Azure AD 환경 사용이 사용자의 마음에 들기를 바랍니다. 사용자 의견을 계속 보내주세요! [피드백 포럼](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal)의 **관리자 포털Admin Portal** 섹션에서 개선을 위한 의견과 아이디어를 게시합니다.  매일 멋진 새로운 기능을 구축하는 방법을 기대하며, 사용자의 지침에 따라 다음에 구축할 기능을 구체화하고 정의하겠습니다.
 
 [1]: ./media/active-directory-enterprise-apps-manage-sso/enterprise-apps-blade.PNG
 [2]: ./media/active-directory-enterprise-apps-manage-sso/enterprise-apps-sso-blade.PNG

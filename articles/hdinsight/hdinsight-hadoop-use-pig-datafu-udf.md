@@ -1,5 +1,5 @@
 ---
-title: "Azure HDInsight Pig와 DataFu aaaUse | Microsoft Docs"
+title: "HDInsight에서 Pig와 함께 DataFu 사용 - Azure | Microsoft Docs"
 description: "DataFu는 Hadoop과 함께 사용하기 위한 라이브러리의 컬렉션입니다. HDInsight 클러스터에서 Pig와 함께 DataFu를 사용하는 방법에 대해 알아봅니다."
 services: hdinsight
 documentationcenter: 
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: 357ad8f9694cc590115289877e752bdd242bdadc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4de55f5f6c5605e9c6c8dd7ccac902b811d1b062
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="use-datafu-with-pig-on-hdinsight"></a>HDInsight에서 pig와 함께 DataFu 사용
 
-자세한 내용은 방법 toouse HDInsight와 DataFu 합니다. DataFu는 Hadoop에서 Pig와 함께 사용하기 위한 오픈 소스 라이브러리의 컬렉션입니다.
+HDInsight과 함께 DataFu를 사용하는 방법에 대해 알아봅니다. DataFu는 Hadoop에서 Pig와 함께 사용하기 위한 오픈 소스 라이브러리의 컬렉션입니다.
 
 ## <a name="prerequisites"></a>필수 조건
 
@@ -32,7 +32,7 @@ ms.lasthandoff: 10/06/2017
 * Azure HDInsight 클러스터(Linux 또는 Windows 기반)
 
   > [!IMPORTANT]
-  > Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+  > Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 
 * [HDInsight에서 Pig 사용](hdinsight-use-pig.md)
 
@@ -43,43 +43,43 @@ ms.lasthandoff: 10/06/2017
 >
 > Windows 기반 또는 Linux 기반 클러스터 버전 3.3 이상 클러스터를 사용하는 경우 이 섹션을 건너뛸 수 있습니다.
 
-DataFu 다운로드 하 고 hello Maven 저장소에서 설치할 수 있습니다. 다음 단계 tooadd DataFu tooyour HDInsight 클러스터 hello를 사용 합니다.
+Maven 리포지토리에서 DataFu를 다운로드하고 설치할 수 있습니다. 다음 단계를 따라 DataFu를 HDInsight 클러스터에 추가합니다.
 
-1. SSH를 사용 하 여 tooyour Linux 기반 HDInsight 클러스터를 연결 합니다. 자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
+1. SSH를 사용하여 Linux 기반 HDInsight 클러스터에 연결합니다. 자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
 
-2. 다음 명령은 toodownload hello DataFu jar 파일 hello wget 유틸리티를 사용 하 여 hello를 사용 하 여 복사 하 브라우저 toobegin hello 다운로드가에 hello 링크를 붙여 넣습니다.
+2. 다음 명령을 사용하여 wget 유틸리티를 사용하여 DataFu jar 파일을 다운로드하거나 브라우저에 링크를 복사하여 붙여 넣어 다운로드를 시작합니다.
 
     ```
     wget http://central.maven.org/maven2/com/linkedin/datafu/datafu/1.2.0/datafu-1.2.0.jar
     ```
 
-3. HDInsight 클러스터에 대 한 hello 파일 toodefault 저장소를 다음으로 업로드 합니다. Hello 파일을 기본 배치 저장소를 사용 하면 사용 가능한 tooall 노드 hello 클러스터의 합니다.
+3. 그런 다음 HDInsight 클러스터의 기본 저장소에 파일을 업로드합니다. 기본 저장소에 파일을 배치하면 클러스터의 모든 노드에 사용할 수 있습니다.
 
     ```
     hdfs dfs -put datafu-1.2.0.jar /example/jars
     ```
 
     > [!NOTE]
-    > hello 이전 명령 저장에 hello jar `/example/jars` 이 디렉터리 hello 클러스터 저장소에 이미 있습니다. HDInsight 클러스터 저장소에 원하는 모든 위치를 사용할 수 있습니다.
+    > 이전 명령은 이 디렉터리가 클러스터 저장소에 이미 존재하기 때문에 jar 파일을 `/example/jars`에 저장합니다. HDInsight 클러스터 저장소에 원하는 모든 위치를 사용할 수 있습니다.
 
 ## <a name="use-datafu-with-pig"></a>Pig와 함께 DataFu 사용
 
-이 섹션의 단계 hello Pig를 사용 하 여 HDInsight의 익숙한 가정 합니다. HDInsight와 함께 Pig 사용에 대한 자세한 내용은 [Pig와 함께 HDInsight 사용](hdinsight-use-pig.md)을 참조하세요.
+이 섹션의 단계에서는 HDInsight에서 Pig 사용에 익숙하다고 가정합니다. HDInsight와 함께 Pig 사용에 대한 자세한 내용은 [Pig와 함께 HDInsight 사용](hdinsight-use-pig.md)을 참조하세요.
 
 > [!IMPORTANT]
-> Hello 단계를 사용 하 여 hello 이전 단원의 DataFu를 수동으로 설치한 경우이 사용 하기 전에 등록 해야 합니다.
+> 이전 섹션의 단계에 따라 DataFu를 수동으로 설치한 경우 사용하기 전에 등록해야 합니다.
 >
 > * 클러스터에서 Azure Storage를 사용하는 경우 `wasb://` 경로를 사용합니다. 예: `register wasb:///example/jars/datafu-1.2.0.jar`.
 >
 > * 클러스터에서 Azure Data Lake Store를 사용하는 경우 `adl://` 경로를 사용합니다. 예: `register adl://home/example/jars/datafu-1.2.0.jar`
 
-종종 DataFu 함수에 대한 별칭을 정의합니다. hello 다음 예제에서는 정의의 별칭 `SHA`:
+종종 DataFu 함수에 대한 별칭을 정의합니다. 다음 예제에서는 `SHA`의 별칭을 정의합니다.
 
 ```piglatin
 DEFINE SHA datafu.pig.hash.SHA();
 ```
 
-그런 다음 hello 입력된 데이터에 대 한 라틴 Pig 스크립트 toogenerate 해시에서에서이 별칭을 사용할 수 있습니다. 예를 들어 hello 다음 코드 hello 위치 hello 입력된 데이터에는 해시 값으로 바꿉니다.
+그러면 이 별칭을 Pig Latin 스크립트에서 사용하여 입력 데이터에 대한 해시를 생성할 수 있습니다. 예를 들어 다음 코드는 입력 데이터의 위치를 해시 값으로 대체합니다.
 
 ```piglatin
 raw = LOAD '/HdiSamples/HdiSamples/SensorSampleData/building/building.csv' USING
@@ -93,7 +93,7 @@ mask = FOREACH raw GENERATE int1, id1, int2, id2, SHA(location);
 DUMP mask;
 ```
 
-다음 출력 hello이 발생 합니다.
+다음 출력이 생성됩니다.
 
     (1,M1,25,AC1000,aa5ab35a9174c2062b7f7697b33fafe5ce404cf5fecf6bfbbf0dc96ba0d90046)
     (2,M2,27,FN39TG,7a1ca4ef7515f7276bae7230545829c27810c9d9e98ab2c06066bee6270d5153)
@@ -118,7 +118,7 @@ DUMP mask;
 
 ## <a name="next-steps"></a>다음 단계
 
-DataFu 또는 Pig에 대 한 자세한 내용은 다음 문서는 hello를 참조 하세요.
+DataFu 또는 Pig에 대한 자세한 내용은 다음 문서를 참조하세요.
 
 * [Apache DataFu Pig 가이드](http://datafu.incubator.apache.org/docs/datafu/guide.html)
 * [HDInsight에서 Pig 사용](hdinsight-use-pig.md)

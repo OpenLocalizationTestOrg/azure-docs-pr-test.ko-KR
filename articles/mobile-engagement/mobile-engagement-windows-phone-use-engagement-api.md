@@ -1,6 +1,6 @@
 ---
-title: "Windows Phone Silverlight에서 Engagement API aaaHow tooUse hello"
-description: "TooUse는 Windows Phone Silverlight에서 Engagement API hello 하는 방법"
+title: "Windows Phone Silverlight에서 Engagement API를 사용하는 방법"
+description: "Windows Phone Silverlight에서 Engagement API를 사용하는 방법"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 1e84be95cc910be7f1227b4ae60eb483a1939284
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ec8b6c13ea052c8063dfde4321cdd286ab6cb817
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-hello-engagement-api-on-windows-phone-silverlight"></a>TooUse는 Windows Phone Silverlight에서 Engagement API hello 하는 방법
-이 문서는 추가 기능 toohello 문서 [방법을 Windows Phone Silverlight 앱에서 Mobile Engagement toointegrate](mobile-engagement-windows-phone-integrate-engagement.md)합니다. 어떻게 toouse hello Engagement API tooreport 응용 프로그램 통계에 대 한 깊이 세부 정보에 제공 합니다.
+# <a name="how-to-use-the-engagement-api-on-windows-phone-silverlight"></a>Windows Phone Silverlight에서 Engagement API를 사용하는 방법
+이 문서는 [Windows Phone Silverlight 앱에 Mobile Engagement를 통합하는 방법](mobile-engagement-windows-phone-integrate-engagement.md) 문서를 보완하는 추가 문서로, Engagement API를 사용하여 응용 프로그램 통계를 보고하는 방법을 자세히 설명합니다.
 
-응용 프로그램의 세션, 활동, 충돌 및 기술 정보 Engagement tooreport 원하는 경우 가장 간단한 hello toomake 모든를 방식으로 프로그램 `PhoneApplicationPage` hello에서 하위 클래스 상속 `EngagementPage` 클래스입니다.
+Engagement에서 응용 프로그램 세션, 활동, 작동 중단, 기술 정보만 보고하도록 하려는 경우 가장 간단한 방법은 모든 `PhoneApplicationPage` 서브클래스가 `EngagementPage` 클래스에서 상속하도록 지정하는 것입니다.
 
-예를 들어 tooreport 응용 프로그램에 대 한 특정 이벤트, 오류 및 작업, 필요한 경우 더 많은 toodo 하려는 경우 또는 tooreport 응용 프로그램의 활동에에서 있으면 다른 방식으로 hello hello에 구현 하는 보다 `EngagementPage` toouse hello 필요 클래스 API 계약입니다.
+응용 프로그램 관련 이벤트, 오류, 작업을 보고하는 등 추가 작업을 수행하려는 경우 또는 `EngagementPage` 클래스에서 구현되는 것과는 다른 방식으로 응용 프로그램 활동을 보고해야 하는 경우에는 Engagement API를 사용해야 합니다.
 
-hello Engagement API에서 제공 hello `EngagementAgent` 클래스입니다. 통해 toothose 메서드에 액세스할 수 있습니다 `EngagementAgent.Instance`합니다.
+Engagement API는 `EngagementAgent` 클래스를 통해 제공됩니다. 해당 메서드는 `EngagementAgent.Instance`을(를) 통해 액세스할 수 있습니다.
 
-Hello 에이전트 모듈 초기화 되지 않은 경우에에 각 호출 toohello API 지연 되 고 hello 에이전트를 사용할 수 있는 경우 다시 실행 됩니다.
+에이전트 모듈이 초기화되지 않은 경우에도 각 API 호출은 연기되며 에이전트를 사용할 수 있게 되면 다시 실행됩니다.
 
 ## <a name="engagement-concepts"></a>Engagement 개념
-다음 부분 hello hello Windows Phone 플랫폼에 대 한 hello Mobile Engagement 개념을 구체화 합니다.
+다음 요소는 Windows Phone 플랫폼과 관련된 Mobile Engagement 개념을 구체화합니다.
 
 ### <a name="session-and-activity"></a>`Session` 및 `Activity`
-*활동* toosay hello 된 hello 응용 프로그램의 한 페이지는 주로 *활동* hello 페이지가 표시 되 고 hello 페이지를 닫을 때 중지 될 때 시작: hello 좋다고 때 hello SDK 서비스는 hello를 사용 하 여 통합 된 `EngagementPage` 클래스입니다.
+*작업*은 일반적으로 단일 응용 프로그램 페이지와 연결됩니다. 즉 *작업*은 페이지를 표시하면 시작되며 페이지를 닫으면 중지됩니다. `EngagementPage` 클래스를 사용하여 Engagement SDK를 통합하는 경우 이러한 방식이 사용됩니다.
 
-하지만 *활동* hello Engagement API를 사용 하 여 수동으로 제어할 수도 있습니다. 이렇게 하면 toosplit 지정한 페이지에 대 한 자세한 내용은 hello 사용 현황 (예: tooknown 얼마나 자주 및이 페이지 안에 대화 상자 사용 되는 시간)이이 페이지의 여러 하위 부분 tooget 있습니다.
+하지만 Engagement API를 사용하여 *활동* 을 수동으로 제어할 수도 있습니다. 이렇게 하면 지정된 페이지를 여러 하위 부분으로 분할하여 해당 페이지의 사용에 대해 더 많은 세부 정보(예: 이 페이지 내에서 대화 상자를 사용하는 빈도와 기간)를 확인할 수 있습니다.
 
 ## <a name="reporting-activities"></a>활동 보고
 ### <a name="user-starts-a-new-activity"></a>사용자가 새 활동을 시작함
 #### <a name="reference"></a>참조
             void StartActivity(string name, Dictionary<object, object> extras = null)
 
-Toocall 필요한 `StartActivity()` 각 시간 hello 사용자 동작을 변경 합니다. 첫 번째 호출 toothis 함수 hello 새 사용자 세션을 시작 합니다.
+사용자 활동이 변경될 때마다 `StartActivity()` 을(를) 호출해야 합니다. 이 함수를 처음 호출하면 새 사용자 세션이 시작됩니다.
 
 > [!IMPORTANT]
-> hello SDK hello 응용 프로그램이 닫힐 때 자동으로 hello EndActivity 메서드를 호출 합니다. 따라서 좋습니다 toocall hello StartActivity 메서드 hello 사용자 변경 및 hello이이 메서드를 호출 하는 이후 EndActivity 메서드 강제로 hello 현재 세션 toobe tooNEVER 호출의 hello 작업이 종료 될 때마다 합니다.
+> 응용 프로그램을 닫을 때 SDK는 EndActivity 메서드를 자동으로 호출합니다. 따라서 사용자 활동이 변경될 때마다 StartActivity 메서드를 호출하는 것이 좋으며 EndActivity 메서드는 호출하지 않는 것이 좋습니다. EndActivity 메서드를 호출하면 현재 세션이 강제로 종료되기 때문입니다.
 > 
 > 
 
-#### <a name="example"></a>예제
+#### <a name="example"></a>예
             EngagementAgent.Instance.StartActivity("main", new Dictionary<object, object>() {{"example", "data"}});
 
 ### <a name="user-ends-his-current-activity"></a>사용자가 현재 활동을 종료함
 #### <a name="reference"></a>참조
             void EndActivity()
 
-Toocall 필요한 `EndActivity()` hello 사용자 자신의 마지막 활동을 완료 하는 때 한 번 이상. 이 hello Engagement SDK hello 사용자가 현재 유휴 및 hello 사용자 세션에 필요 하며 toobe 닫힌 hello 세션 시간 제한 한 번 만료 됩니다를 통해 알립니다 (호출 하는 경우 `StartActivity()` hello 세션 계속 단순히 hello 세션 제한 시간 만료 되기 전에).
+사용자가 마지막 활동을 완료하면 `EndActivity()`을(를) 한 번 이상 호출해야 합니다. 이 작업은 Engagement SDK에 사용자가 현재 유휴 상태이며, 세션 제한 시간이 만료되면 사용자 세션을 종료해야 한다는 것을 알립니다. 세션 제한 시간이 만료되기 전에 `StartActivity()`을(를) 호출하는 경우 세션이 계속됩니다.
 
 #### <a name="example"></a>예제
             EngagementAgent.Instance.EndActivity();
@@ -68,12 +68,12 @@ Toocall 필요한 `EndActivity()` hello 사용자 자신의 마지막 활동을 
 #### <a name="reference"></a>참조
             void StartJob(string name, Dictionary<object, object> extras = null)
 
-시간 동안 hello 작업 tootrack의 작업을 사용할 수 있습니다.
+작업을 사용하여 일정 기간 동안의 특정 태스크를 추적할 수 있습니다.
 
-#### <a name="example"></a>예제
+#### <a name="example"></a>예
             // An upload begins...
 
-            // Set hello extras
+            // Set the extras
             var extras = new Dictionary<object, object>();
             extras.Add("title", "avatar");
             extras.Add("type", "image");
@@ -84,11 +84,11 @@ Toocall 필요한 `EndActivity()` hello 사용자 자신의 마지막 활동을 
 #### <a name="reference"></a>참조
             void EndJob(string name)
 
-추적 작업에 의해 작업이 종료 되는 즉시 hello 작업 이름을 제공 하 여이 작업에 대 한 hello 작업 끝 메서드를 호출 해야 합니다.
+작업에 의해 추적되는 태스크가 종료되는 즉시 해당 작업에 대해 작업 이름을 제공하여 EndJob 메서드를 호출해야 합니다.
 
-#### <a name="example"></a>예제
-            // In hello previous section, we started an upload tracking with a job
-            // Then, hello upload ends
+#### <a name="example"></a>예
+            // In the previous section, we started an upload tracking with a job
+            // Then, the upload ends
 
             EngagementAgent.Instance.EndJob("uploadData");
 
@@ -103,18 +103,18 @@ Toocall 필요한 `EndActivity()` hello 사용자 자신의 마지막 활동을 
 #### <a name="reference"></a>참조
             void SendEvent(string name, Dictionary<object, object> extras = null)
 
-독립 실행형 이벤트 세션의 hello 컨텍스트 외부에서 발생할 수 있습니다.
+독립 실행형 이벤트는 세션의 컨텍스트 외부에서 발생할 수 있습니다.
 
-#### <a name="example"></a>예제
+#### <a name="example"></a>예
             EngagementAgent.Instance.SendEvent("event", extra);
 
 ### <a name="session-events"></a>세션 이벤트
 #### <a name="reference"></a>참조
             void SendSessionEvent(string name, Dictionary<object, object> extras = null)
 
-세션 이벤트는 세션 동안 사용자가 수행 하는 일반적으로 사용 되는 tooreport hello 작업입니다.
+세션 이벤트는 일반적으로 사용자가 세션 중에 수행하는 동작을 보고하는 데 사용됩니다.
 
-#### <a name="example"></a>예제
+#### <a name="example"></a>예
 **데이터 제외:**
 
             EngagementAgent.Instance.SendSessionEvent("sessionEvent");
@@ -133,9 +133,9 @@ Toocall 필요한 `EndActivity()` hello 사용자 자신의 마지막 활동을 
 #### <a name="reference"></a>참조
             void SendJobEvent(string eventName, string jobName, Dictionary<object, object> extras = null)
 
-작업 이벤트는 일반적으로 사용 되는 tooreport hello 동작 하는 동안 사용자가 수행 합니다.
+작업 이벤트는 일반적으로 사용자가 작업 중에 수행하는 동작을 보고하는 데 사용됩니다.
 
-#### <a name="example"></a>예제
+#### <a name="example"></a>예
             EngagementAgent.Instance.SendJobEvent("eventName", "jobName", extras);
 
 ## <a name="reporting-errors"></a>오류 보고
@@ -149,31 +149,31 @@ Toocall 필요한 `EndActivity()` hello 사용자 자신의 마지막 활동을 
 #### <a name="reference"></a>참조
             void SendError(string name, Dictionary<object, object> extras = null)
 
-반대 toosession 오류 세션의 hello 컨텍스트 외부에서 독립 실행형 오류가 발생할 수 있습니다.
+세션 오류와 달리 독립 실행형 오류는 세션의 컨텍스트 외부에서 발생할 수 있습니다.
 
-#### <a name="example"></a>예제
+#### <a name="example"></a>예
             EngagementAgent.Instance.SendError("errorName", extras);
 
 ### <a name="session-errors"></a>세션 오류
 #### <a name="reference"></a>참조
             void SendSessionError(string name, Dictionary<object, object> extras = null)
 
-세션 오류는 일반적으로 사용 되는 tooreport hello 오류 hello 사용자 세션 동안 영향입니다.
+세션 오류는 일반적으로 세션 중에 사용자에게 영향을 주는 오류를 보고하는 데 사용됩니다.
 
-#### <a name="example"></a>예제
+#### <a name="example"></a>예
             EngagementAgent.Instance.SendSessionError("errorName", extra);
 
 ### <a name="job-errors"></a>작업 오류
 #### <a name="reference"></a>참조
             void SendJobError(string errorName, string jobName, Dictionary<object, object> extras = null)
 
-오류 되지 않고 작업을 실행 하는 관련된 tooa 수 toohello 현재 사용자 세션 관련 됩니다.
+오류는 현재 사용자 세션이 아닌 실행 중인 작업에 관련될 수 있습니다.
 
-#### <a name="example"></a>예제
+#### <a name="example"></a>예
             EngagementAgent.Instance.SendJobError("errorName", "jobname", extra);
 
 ## <a name="reporting-crashes"></a>작동 중단 보고
-hello 에이전트 충돌와 두 개의 메서드 toodeal를 제공합니다.
+에이전트는 작동 중단을 처리하는 두 가지 방법을 제공합니다.
 
 ### <a name="send-an-exception"></a>예외 보내기
 #### <a name="reference"></a>참조
@@ -184,26 +184,26 @@ hello 에이전트 충돌와 두 개의 메서드 toodeal를 제공합니다.
 
             EngagementAgent.Instance.SendCrash(aCatchedException);
 
-Hello에 대 한 선택적 매개 변수 tooterminate hello engagement 세션을 사용할 수도 있습니다 동시 hello 크래시를 보내는 것 보다 합니다. toodo를 호출 합니다.
+또한 선택적 매개 변수를 사용하여 작동 중단을 보냄과 동시에 Engagement 세션을 종료할 수도 있습니다. 이렇게 하려면 다음을 호출합니다.
 
             EngagementAgent.Instance.SendCrash(new Exception("example"), terminateSession: true);
 
-이렇게 하면 hello 세션 및 작업 닫힙니다 hello 크래시 보내는 직후 합니다.
+이 경우 작동 중단을 보낸 직후에 세션과 작업이 닫힙니다.
 
 ### <a name="send-an-unhandled-exception"></a>처리되지 않은 예외 보내기
 #### <a name="reference"></a>참조
             void SendCrash(ApplicationUnhandledExceptionEventArgs e)
 
-또한 engagement 메서드 toosend 처리 되지 않은 예외를 제공합니다. Hello silverlight UnhandledException 이벤트 처리기 내에서 사용할 때 특히 유용 합니다.
+Engagement에서는 처리되지 않은 예외를 보내는 방법도 제공합니다. 이 방법은 Silverlight UnhandledException 이벤트 처리기 내에서 사용하는 경우 특히 유용합니다.
 
-이 방법은 **항상** 호출 된 후 hello engagement 세션 및 작업을 종료 합니다.
+이 방법을 사용하는 경우 **항상** Engagement 세션과 작업이 호출된 후에 종료됩니다.
 
 #### <a name="example"></a>예제
-Tooimplement를 사용할 수 있습니다 (특히 경우 hello 자동 충돌 보고 서비스의 기능을 사용 하지 않도록 설정한) 자신만 UnhandledException 처리기입니다. 예를 들어 hello에에서 `Application_UnhandledException` hello 방식의 `App.xaml.cs` 파일:
+위에서 설명한 방법을 사용하여 UnhandledException 처리기를 직접 구현할 수 있습니다. 특히 Engagement의 자동 작동 중단 보고 기능을 사용하지 않도록 설정한 경우 이러한 처리기를 사용할 수 있습니다. 예를 들어 `App.xaml.cs` 파일의 `Application_UnhandledException` 메서드에서 해당 처리기를 구현할 수 있습니다.
 
             // In your App.xaml.cs file
 
-            // Code tooexecute on Unhandled Exceptions
+            // Code to execute on Unhandled Exceptions
             private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
             {
               // your own code
@@ -215,15 +215,15 @@ Tooimplement를 사용할 수 있습니다 (특히 경우 hello 자동 충돌 �
 ### <a name="reference"></a>참조
             void OnActivated(ActivatedEventArgs e)
 
-Hello 사용자 컨트롤에서 벗어나면 앞으로 응용 프로그램 hello Deactivated 이벤트 발생 한 후 hello 운영 체제는 유휴 상태가 tooput hello 응용 프로그램을 시도 합니다. 그런 다음 hello 응용 프로그램 삭제 표시 됩니다. 이 프로세스에서 응용 프로그램 종료 되지만 hello 상태 hello 응용 프로그램과 hello hello 응용 프로그램 내에서 개별 페이지에 대 한 일부 데이터 보존 됩니다.
+사용자가 정방향 탐색을 통해 응용 프로그램에서 벗어나면 Deactivated 이벤트가 발생하며, 운영 체제는 응용 프로그램을 유휴 상태로 설정하려고 합니다. 그리고 나면 응용 프로그램에 삭제 표식이 설정됩니다. 이 프로세스에서 응용 프로그램은 종료되지만 응용 프로그램 상태에 대한 일부 데이터와 응용 프로그램 내의 개별 페이지는 보존됩니다.
 
-Tooinsert 있는 `EngagementAgent.Instance.OnActivated(e)` hello에 `Application_Activated` hello App.xaml.cs 파일 tooreset hello hello 응용 프로그램 삭제 표시 됨으로 되었을 때 Engagement 에이전트에서에서 메서드.
+응용 프로그램에 삭제 표식이 설정된 경우 Engagement 에이전트를 다시 설정하려면 App.xaml.cs 파일에서 `Application_Activated` 메서드에 `EngagementAgent.Instance.OnActivated(e)`을(를) 삽입해야 합니다.
 
-### <a name="example"></a>예제
+### <a name="example"></a>예
             // Inside your App.xaml.cs file
 
-            // Code tooexecute when hello application is activated (brought tooforeground)
-            // This code will not execute when hello application is first launched
+            // Code to execute when the application is activated (brought to foreground)
+            // This code will not execute when the application is first launched
             private void Application_Activated(object sender, ActivatedEventArgs e)
             {
               EngagementAgent.Instance.OnActivated(e);
@@ -232,14 +232,14 @@ Tooinsert 있는 `EngagementAgent.Instance.OnActivated(e)` hello에 `Application
 ## <a name="device-id"></a>장치 ID
             String GetDeviceId()
 
-이 메서드를 호출 하 여 hello engagement 장치 id를 얻을 수 있습니다.
+이 메서드를 호출하여 Engagement 장치 ID를 가져올 수 있습니다.
 
 ## <a name="extras-parameters"></a>extras 매개 변수
-임의의 데이터에 연결 된 tooan 이벤트, 오류, 작업 또는 작업 가능 합니다. 사전을 사용하여 이러한 데이터를 구조화할 수 있습니다. 모든 형식의 키와 값을 사용할 수 있습니다.
+이벤트, 오류, 활동 또는 작업에 임의 데이터를 연결할 수 있습니다. 사전을 사용하여 이러한 데이터를 구조화할 수 있습니다. 모든 형식의 키와 값을 사용할 수 있습니다.
 
-기타 데이터 tooinsert 추가 기능에서 사용자 정의 형식을 선택 해야 하므로 tooadd이이 형식에 대 한 데이터 계약 직렬화 됩니다.
+extras 데이터는 serialize되므로 원하는 형식을 extras에 삽입하려면 해당 형식용 데이터 계약을 추가해야 합니다.
 
-### <a name="example"></a>예제
+### <a name="example"></a>예
 아래 예제에서는 "Person"이라는 새 클래스를 만듭니다.
 
             using System.Runtime.Serialization;
@@ -273,7 +273,7 @@ Tooinsert 있는 `EngagementAgent.Instance.OnActivated(e)` hello에 `Application
               }
             }
 
-그런 다음 추가 됩니다 한 `Person` 인스턴스 tooan 추가 합니다.
+그런 다음 `Person` 인스턴스를 extras에 추가합니다.
 
             Person person = new Person("Engagement Haddock", 51);
             var extras = new Dictionary<object, object>();
@@ -282,28 +282,28 @@ Tooinsert 있는 `EngagementAgent.Instance.OnActivated(e)` hello에 `Application
             EngagementAgent.Instance.SendEvent("Event", extras);
 
 > [!WARNING]
-> 다른 형식의 개체를 두면 해당 tostring () 메서드 구현된 tooreturn 사람이 읽을 수 있는 문자열 인지 확인 합니다.
+> 다른 형식의 개체를 추가할 때는 사용자가 읽을 수 있는 문자열을 반환하도록 해당 ToString() 메서드를 구현해야 합니다.
 > 
 > 
 
 ### <a name="limits"></a>제한
 #### <a name="keys"></a>구성
-각 키 hello 개체에 hello 다음 정규식 일치 해야 합니다.
+개체의 각 키는 다음 정규식과 일치해야 합니다.
 
 `^[a-zA-Z][a-zA-Z_0-9]*$`
 
 즉, 키는 하나 이상의 문자로 시작해야 하며 그 뒤에 문자, 숫자 또는 밑줄(\_)이 붙어야 합니다.
 
 #### <a name="size"></a>크기
-추가 항목은 너무 제한**1024** 호출당 문자.
+extras는 호출당 **1024** 자로 제한됩니다.
 
 ## <a name="reporting-application-information"></a>응용 프로그램 정보 보고
 ### <a name="reference"></a>참조
             void SendAppInfo(Dictionary<object, object> appInfos)
 
-수동으로 hello SendAppInfo() 함수를 사용 하 여 정보 (또는 다른 응용 프로그램 관련 정보가) 추적을 보고할 수 있습니다.
+SendAppInfo() 함수를 사용하면 추적 정보 또는 기타 응용 프로그램 관련 정보를 수동으로 보고할 수 있습니다.
 
-이러한 정보를 점진적으로 보낼 수 있는 참고: 지정된 된 장치에 대 한 지정된 된 키에 대 한 최신 값 hello만 유지 됩니다. 이벤트, 기타 같이 사전을 사용 하 여\<개체, 개체\> tooattach 내용은 합니다.
+이러한 정보는 증분 방식으로 보낼 수 있습니다. 그러면 특정 장치에 대해 지정한 키의 최신 값만 보관됩니다. 이벤트 추가 항목과 마찬가지로 Dictionary\<object, object\>를 사용하여 정보를 연결합니다.
 
 ### <a name="example"></a>예제
             Dictionary<object, object> appInfo = new Dictionary<object, object>()
@@ -316,23 +316,23 @@ Tooinsert 있는 `EngagementAgent.Instance.OnActivated(e)` hello에 `Application
 
 ### <a name="limits"></a>제한
 #### <a name="keys"></a>구성
-각 키 hello 개체에 hello 다음 정규식 일치 해야 합니다.
+개체의 각 키는 다음 정규식과 일치해야 합니다.
 
 `^[a-zA-Z][a-zA-Z_0-9]*$`
 
 즉, 키는 하나 이상의 문자로 시작해야 하며 그 뒤에 문자, 숫자 또는 밑줄(\_)이 붙어야 합니다.
 
 #### <a name="size"></a>크기
-응용 프로그램 정보는 너무 제한적**1024** 호출당 문자.
+응용 프로그램 정보는 호출당 **1024** 자로 제한됩니다.
 
-Hello 앞의 예제 JSON 전송 toohello 서버 hello 44 자입니다.
+위의 예제에서 서버로 전송된 JSON의 길이는 44자입니다.
 
             {"subscription":"2013-12-07","premium":"true"}
 
 ## <a name="logging"></a>로깅
 ### <a name="enable-logging"></a>로깅 사용
-hello SDK hello IDE 콘솔에서 구성 된 tooproduce 테스트 로그 수 있습니다.
-이러한 로그는 기본적으로 활성화되지 않습니다. toocustomize이, 업데이트 hello 속성 `EngagementAgent.Instance.TestLogEnabled` hello에서 사용할 수 있는 hello 값의 tooone `EngagementTestLogLevel` 열거형 예를 들어:
+SDK는 IDE 콘솔에서 테스트 로그를 생성하도록 구성될 수 있습니다.
+이러한 로그는 기본적으로 활성화되지 않습니다. 이를 사용자 지정하려면 속성 `EngagementAgent.Instance.TestLogEnabled`를 `EngagementTestLogLevel` 열거형에서 사용 가능한 값 중 하나로 업데이트합니다. 예를 들어 다음과 같습니다.
 
             EngagementAgent.Instance.TestLogLevel = EngagementTestLogLevel.Verbose;
             EngagementAgent.Instance.Init();

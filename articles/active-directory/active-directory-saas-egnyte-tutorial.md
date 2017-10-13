@@ -1,6 +1,6 @@
 ---
 title: "자습서: Egnyte와 Azure Active Directory 통합 | Microsoft Docs"
-description: "Tooconfigure 단일 로그온 방법을 알아보려면 Azure Active Directory와 Egnyte 사이입니다."
+description: "Azure Active Directory와 Egnyte 간에 Single Sign-On을 구성하는 방법에 대해 알아봅니다."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,109 +13,109 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/18/2017
 ms.author: jeedes
-ms.openlocfilehash: d86fa28a1e7b23474cb76c08aef8539acadaf24d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 62d01333b61e73c83588d2d1701c0c300df4ab1c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-egnyte"></a>자습서: Egnyte와 Azure Active Directory 통합
 
-이 자습서에 설명 어떻게 toointegrate Azure Active Directory (Azure AD)와 Egnyte 합니다.
+이 자습서에서는 Azure AD(Azure Active Directory)와 Egnyte를 통합하는 방법에 대해 알아봅니다.
 
-Azure AD와 Egnyte 통합 이점을 다음 hello로 제공 합니다.
+Egnyte를 Azure AD와 통합하면 다음과 같은 이점이 제공됩니다.
 
-- 액세스 tooEgnyte을 지닌 Azure AD에서 제어할 수 있습니다.
-- 프로그램 사용자 tooautomatically get 로그온 tooEgnyte (Single Sign-on)와 Azure AD 계정 사용 하도록 설정할 수 있습니다.
-- 하나의 중앙 위치-hello Azure 포털에서에서 사용자 계정을 관리할 수 있습니다.
+- Egnyte에 대한 액세스 권한이 있는 사용자를 Azure AD에서 제어할 수 있습니다.
+- 사용자가 해당 Azure AD 계정으로 Egnyte에 자동으로 로그온(Single Sign-on)되도록 설정할 수 있습니다.
+- 단일 중앙 위치인 Azure Portal에서 계정을 관리할 수 있습니다.
 
-Azure AD와 SaaS 앱 통합에 대 한 자세한 내용은 tooknow을 원하는 경우 참조 [응용 프로그램 액세스 및 single sign on Azure Active directory 란](active-directory-appssoaccess-whatis.md)합니다.
+Azure AD와 SaaS 앱 통합에 대한 자세한 내용은 [Azure Active Directory의 응용 프로그램 액세스 및 Single Sign-On이란 무엇인가요?](active-directory-appssoaccess-whatis.md)를 참조하세요.
 
 ## <a name="prerequisites"></a>필수 조건
 
-Egnyte와 Azure AD 통합 tooconfigure 다음 항목 hello가 필요 합니다.
+Egnyte와 Azure AD 통합을 구성하려면 다음 항목이 필요합니다.
 
 - Azure AD 구독
 - Egnyte Single Sign-on이 설정된 구독
 
 > [!NOTE]
-> 이 자습서의 단계를 tootest hello를 권장 하지는 않습니다 프로덕션 환경을 사용 합니다.
+> 이 자습서의 단계를 테스트하기 위해 프로덕션 환경을 사용하는 것은 바람직하지 않습니다.
 
-이 자습서의 tootest hello 단계, 이러한 권장 사항을 따라야 합니다.
+이 자습서의 단계를 테스트하려면 다음 권장 사항을 준수해야 합니다.
 
 - 꼭 필요한 경우가 아니면 프로덕션 환경을 사용하지 마세요.
 - Azure AD 평가판 환경이 없으면 [여기](https://azure.microsoft.com/pricing/free-trial/)에서 1개월 평가판을 얻을 수 있습니다.
 
 ## <a name="scenario-description"></a>시나리오 설명
-이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명 된 hello 시나리오 두 가지 주요 구성 요소로 이루어져 있습니다.
+이 자습서에서는 테스트 환경에서 Azure AD Single Sign-On을 테스트 합니다. 이 자습서에 설명된 시나리오는 다음 두 가지 주요 구성 요소로 이루어져 있습니다.
 
-1. Egnyte는 hello 갤러리 추가
+1. 갤러리에서 Egnyte 추가
 2. Azure AD Single Sign-on 구성 및 테스트
 
-## <a name="adding-egnyte-from-hello-gallery"></a>Egnyte는 hello 갤러리 추가
-tooconfigure hello와의 통합 Egnyte Azure AD로 관리 되는 SaaS 앱의 hello 갤러리 tooyour 목록에서 Egnyte tooadd가 필요합니다.
+## <a name="adding-egnyte-from-the-gallery"></a>갤러리에서 Egnyte 추가
+Egnyte의 Azure AD 통합을 구성하려면 갤러리의 Egnyte를 관리되는 SaaS 앱 목록에 추가해야 합니다.
 
-**Egnyte hello 갤러리에서 tooadd hello 다음 단계를 수행 합니다.**
+**갤러리에서 Egnyte를 추가하려면 다음 단계를 수행합니다.**
 
-1. Hello에  **[Azure 포털](https://portal.azure.com)**, 왼쪽된 탐색 패널 hello, 클릭 **Azure Active Directory** 아이콘입니다. 
+1. **[Azure Portal](https://portal.azure.com)**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다. 
 
     ![Active Directory][1]
 
-2. 너무 이동**엔터프라이즈 응용 프로그램**합니다. 이동 하 여 너무**모든 응용 프로그램**합니다.
+2. **엔터프라이즈 응용 프로그램**으로 이동합니다. 그런 후 **모든 응용 프로그램**으로 이동합니다.
 
     ![응용 프로그램][2]
     
-3. tooadd 새 응용 프로그램을 클릭 하 여 **새 응용 프로그램** 대화의 hello 위쪽에 단추입니다.
+3. 새 응용 프로그램을 추가하려면 대화 상자 맨 위 있는 **새 응용 프로그램** 단추를 클릭합니다.
 
     ![응용 프로그램][3]
 
-4. Hello 검색 상자에 입력 **Egnyte**합니다.
+4. 검색 상자에 **Egnyte**를 입력합니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-egnyte-tutorial/tutorial_egnyte_search.png)
 
-5. Hello 결과 패널에서 선택 **Egnyte**, 클릭 하 고 **추가** tooadd hello 응용 프로그램 단추입니다.
+5. 결과 패널에서 **Egnyte**를 선택하고 **추가** 단추를 클릭하여 응용 프로그램을 추가합니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-egnyte-tutorial/tutorial_egnyte_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Azure AD Single Sign-on 구성 및 테스트
 이 섹션에서는 “Britta Simon”이라는 테스트 사용자를 기반으로 Egnyte에서 Azure AD Single Sign-On을 구성하고 테스트합니다.
 
-Single sign on toowork에 대 한 Azure AD는 tooknow Egnyte에 어떤 hello 테이블에 해당 사용자가 Azure AD에서 tooa 사용자 필요 합니다. 즉, Azure AD 사용자와 Egnyte에 hello 관련된 사용자 간 링크 관계를 설정 하는 toobe가 필요 합니다.
+Single Sign-On이 작동하려면 Azure AD에서 Azure AD 사용자에 해당하는 Egnyte 사용자가 누구인지 알고 있어야 합니다. 즉, Azure AD 사용자와 Egnyte의 관련 사용자 간에 연결이 형성되어야 합니다.
 
-Egnyte에 hello hello 값을 할당 **사용자 이름** hello의 hello 값으로 Azure AD에서 **Username** tooestablish hello 링크 관계입니다.
+Egnyte에서 Azure AD의 **사용자 이름** 값을 **Username** 값으로 할당하여 링크 관계를 설정합니다.
 
-tooconfigure와 Egnyte 사용 하 여 Azure AD에서 single sign-on 테스트 구성 요소를 다음 toocomplete hello가 필요 합니다.
+Egnyte에서 Azure AD Single Sign-On을 구성하고 테스트하려면 다음 구성 요소를 완료해야 합니다.
 
-1. **[Azure AD Single Sign-on 구성](#configuring-azure-ad-single-sign-on)**  -tooenable 사용자 toouse이이 기능입니다.
-2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign on Britta Simon 사용 합니다.
-3. **[Egnyte 테스트 사용자 만들기](#creating-an-egnyte-test-user)**  -toohave Britta Simon 사용자의 연결 된 Azure AD toohello 표현인 Egnyte에 해당 하는 도구입니다.
-4. **[Azure AD hello 테스트 사용자를 할당](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD에서 single sign-on입니다.
-5. **[Single Sign-on 테스트](#testing-single-sign-on)**  -tooverify 구성 works를 hello 여부.
+1. **[Azure AD Single Sign-On 구성](#configuring-azure-ad-single-sign-on)** - 사용자가 이 기능을 사용할 수 있도록 합니다.
+2. **[Azure AD 테스트 사용자 만들기](#creating-an-azure-ad-test-user)** - Britta Simon으로 Azure AD Single Sign-On을 테스트하는 데 사용합니다.
+3. **[Egnyte 테스트 사용자 만들기](#creating-an-egnyte-test-user)** - Britta Simon의 Azure AD 표현과 연결된 해당 사용자를 Egnyte에 만듭니다.
+4. **[Azure AD 테스트 사용자 할당](#assigning-the-azure-ad-test-user)** - Britta Simon이 Azure AD Single Sign-on을 사용할 수 있도록 합니다.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - 구성이 작동하는지 확인합니다.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Azure AD Single Sign-On 구성
 
-이 섹션에서는 Azure AD에서 single sign-on hello Azure 포털에서에서 설정 및 Egnyte 응용 프로그램에서 single sign on 구성 합니다.
+이 섹션에서는 Azure Portal에서 Azure AD Single Sign-On을 사용하도록 설정하고 Egnyte 응용 프로그램에서 Single Sign-On을 구성합니다.
 
-**Azure AD tooconfigure single sign on와 Egnyte를 hello 다음 단계를 수행 합니다.**
+**Egnyte에서 Azure AD Single Sign-On을 구성하려면 다음 단계를 수행합니다.**
 
-1. Hello hello에 Azure 포털에서에서 **Egnyte** 응용 프로그램 통합 페이지에서 클릭 **Single sign on**합니다.
+1. Azure Portal의 **Egnyte** 응용 프로그램 통합 페이지에서 **Single Sign-On**을 클릭합니다.
 
     ![Single Sign-on 구성][4]
 
-2. Hello에 **Single sign on** 대화 상자에서 **모드** 으로 **SAML 기반 로그온** tooenable single sign on입니다.
+2. **Single Sign-On** 대화 상자에서 **모드**를 **SAML 기반 로그온**으로 선택하여 Single Sign-On을 사용하도록 설정합니다.
  
     ![Single Sign-on 구성](./media/active-directory-saas-egnyte-tutorial/tutorial_egnyte_samlbase.png)
 
-3. Hello에 **Egnyte 도메인 및 Url** 섹션를 hello 다음 단계를 수행 합니다.
+3. **Egnyte 도메인 및 URL** 섹션에서 다음 단계를 수행합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-egnyte-tutorial/tutorial_egnyte_url.png)
 
-    Hello에 **로그온 URL** 텍스트 상자에 패턴 hello를 사용 하 여 URL:`https://<companyname>.egnyte.com`
+    **로그온 URL** 텍스트 상자에서 다음 패턴으로 URL을 입력합니다. `https://<companyname>.egnyte.com`
 
     > [!NOTE] 
-    > 이 값은 실제 값이 아닙니다. Hello로이 값을 업데이트 합니다. 실제 로그온 URL입니다. 연락처 [Egnyte 클라이언트 지원 팀](https://www.egnyte.com/corp/contact_egnyte.html) tooget이이 값입니다. 
+    > 이 값은 실제 값이 아닙니다. 이 값을 실제 로그온 URL로 업데이트합니다. 이 값을 얻으려면 [Egnyte 클라이언트 지원 팀](https://www.egnyte.com/corp/contact_egnyte.html)에 문의하세요. 
  
-4. Hello에 **SAML 서명 인증서** 섹션에서 클릭 **Certificate(Base64)** hello 인증서 파일을 컴퓨터에 저장 합니다.
+4. **SAML 서명 인증서** 섹션에서 **인증서(Base64)**를 클릭한 후 컴퓨터에 인증서 파일을 저장합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-egnyte-tutorial/tutorial_egnyte_certificate.png) 
 
@@ -123,25 +123,25 @@ tooconfigure와 Egnyte 사용 하 여 Azure AD에서 single sign-on 테스트 �
 
     ![Single Sign-on 구성](./media/active-directory-saas-egnyte-tutorial/tutorial_general_400.png)
 
-6. Hello에 **Egnyte 구성** 섹션에서 클릭 **구성 Egnyte** tooopen **sign on 구성** 창. 복사 hello **SAML 엔터티 ID, 및 SAML Single Sign-on 서비스 URL** hello에서 **빠른 참조 섹션.**
+6. **Egnyte 구성** 섹션에서 **Egnyte 구성**을 클릭하여 **로그온 구성** 창을 엽니다. **빠른 참조 섹션**에서 **SAML 엔터티 ID 및 SAML Single Sign-On 서비스 URL**을 복사합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-egnyte-tutorial/tutorial_egnyte_configure.png) 
 
-7. 다른 웹 브라우저 창에서 관리자 권한으로 tooyour Egnyte 회사 사이트에 로그인 합니다.
+7. 다른 웹 브라우저 창에서 Egnyte 회사 사이트에 관리자로 로그인합니다.
 
 8. **설정**을 클릭합니다.
    
    ![설정](./media/active-directory-saas-egnyte-tutorial/ic787819.png "설정")
 
-9. Hello 메뉴에서 클릭 **설정을**합니다.
+9. 메뉴에서 **설정**을 클릭합니다.
 
    ![설정](./media/active-directory-saas-egnyte-tutorial/ic787820.png "설정")
 
-10. Hello 클릭 **구성** 탭을 클릭 한 다음 **보안**합니다.
+10. **구성**탭을 클릭한 다음 **보안**을 클릭합니다.
 
     ![보안](./media/active-directory-saas-egnyte-tutorial/ic787821.png "보안")
 
-11. Hello에 **Single Sign On 인증** 섹션를 hello 다음 단계를 수행 합니다.
+11. **Single Sign-On 인증** 섹션에서 다음 단계를 수행합니다.
 
     ![Single Sign On 인증](./media/active-directory-saas-egnyte-tutorial/ic787822.png "Single Sign On 인증")   
     
@@ -149,11 +149,11 @@ tooconfigure와 Egnyte 사용 하 여 Azure AD에서 single sign-on 테스트 �
    
     b. **ID 공급자**로 **AzureAD**를 선택합니다.
    
-    c. 붙여넣기 **SAML Single Sign-on 서비스 URL** hello에 Azure 포털에서 복사 **Id 공급자 로그인 URL** 텍스트 상자에 붙여넣습니다.
+    c. Azure Portal에서 복사한 **SAML Single Sign-On 서비스 URL**을 **ID 공급자 로그인 URL** 텍스트 상자에 붙여넣습니다.
    
-    d. 붙여넣기 **SAML 엔터티 ID** hello에 Azure 포털에서 복사한 있는 **Id 공급자 엔터티 ID** 텍스트 상자에 붙여넣습니다.
+    d. Azure Portal에서 복사한 **SAML 엔터티 ID**를 **ID 공급자 엔터티 ID** 텍스트 상자에 붙여넣습니다.
       
-    e. 콘텐츠를 클립보드에 복사 hello Azure 포털에서 다운로드 한 메모장에서 e-64로 인코딩된 인증서를 열고 toohello 붙여 **Id 공급자 인증서** 텍스트 상자에 붙여넣습니다.
+    e. Azure Portal에서 다운로드한 base-64로 인코딩된 인증서를 메모장에서 열고, 콘텐츠를 클립보드에 복사한 다음, **ID 공급자 인증서** 텍스트 상자에 붙여넣습니다.
    
     f. **기본 사용자 매핑**으로 **전자 메일 주소**를 선택합니다.
    
@@ -162,87 +162,87 @@ tooconfigure와 Egnyte 사용 하 여 Azure AD에서 single sign-on 테스트 �
     h. **Save**를 클릭합니다.
 
 > [!TIP]
-> 이제 hello 내이 지침의 간결한 버전을 읽을 수 [Azure 포털](https://portal.azure.com)hello 앱을 설정 하는 반면,!  Hello에서이 앱을 추가한 후 **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 hello를 클릭 하기만 하면 **Single Sign On** 탭 및 액세스 hello 포함 hello 통해 설명서  **구성** hello 아래쪽 섹션. 자세한 내용은 여기에 포함 된 설명서 기능 hello에 대 한: [Azure AD 설명서 포함]( https://go.microsoft.com/fwlink/?linkid=845985)
+> 이제 앱을 설정하는 동안 [Azure Portal](https://portal.azure.com) 내에서 이러한 지침의 간결한 버전을 읽을 수 있습니다.  **Active Directory > 엔터프라이즈 응용 프로그램** 섹션에서 이 앱을 추가한 후에는 **Single Sign-On** 탭을 클릭하고 맨 아래에 있는 **구성** 섹션을 통해 포함된 설명서에 액세스하면 됩니다. 포함된 설명서 기능에 대한 자세한 내용은 [Azure AD 포함된 설명서]( https://go.microsoft.com/fwlink/?linkid=845985)에서 확인할 수 있습니다.
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Azure AD 테스트 사용자 만들기
-이 섹션의 hello 목표 toocreate hello Britta Simon를 호출 하는 Azure 포털의에서 테스트 사용자를입니다.
+이 섹션의 목적은 Azure Portal에서 Britta Simon이라는 테스트 사용자를 만드는 것입니다.
 
 ![Azure AD 사용자 만들기][100]
 
-**toocreate Azure AD에서 테스트 사용자 hello 다음 단계를 수행 합니다.**
+**Azure AD에서 테스트 사용자를 만들려면 다음 단계를 수행하세요.**
 
-1. Hello에 **Azure 포털**, 왼쪽된 탐색 창의 hello, 클릭 **Azure Active Directory** 아이콘입니다.
+1. **Azure Portal**의 왼쪽 탐색 창에서 **Azure Active Directory** 아이콘을 클릭합니다.
 
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-egnyte-tutorial/create_aaduser_01.png) 
 
-2. 사용자, toodisplay hello 목록을 이동 너무**사용자 및 그룹** 클릭 **모든 사용자에 게**합니다.
+2. 사용자 목록을 표시하려면 **사용자 및 그룹**으로 이동한 후 **모든 사용자**를 클릭합니다.
     
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-egnyte-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **사용자** 대화 상자를 클릭 하 여 **추가** hello 대화의 hello 상단에서 합니다.
+3. **사용자** 대화 상자를 열려면 대화 상자 위쪽에서 **추가**를 클릭합니다.
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-egnyte-tutorial/create_aaduser_03.png) 
 
-4. Hello에 **사용자** 대화 상자 페이지를 hello 다음 단계를 수행 합니다.
+4. **사용자** 대화 상자 페이지에서 다음 단계를 수행합니다.
  
     ![Azure AD 테스트 사용자 만들기](./media/active-directory-saas-egnyte-tutorial/create_aaduser_04.png) 
 
-    a. Hello에 **이름** 텍스트 상자에 **BrittaSimon**합니다.
+    a. **이름** 텍스트 상자에 **BrittaSimon**을 입력합니다.
 
-    b. Hello에 **사용자 이름** 텍스트 형식 hello **전자 메일 주소** BrittaSimon의 합니다.
+    b. **사용자 이름** 텍스트 상자에 BrittaSimon의 **전자 메일 주소**를 입력합니다.
 
-    c. 선택 **암호 표시** hello hello 값 기록 **암호**합니다.
+    c. **암호 표시**를 선택하고 **암호** 값을 적어둡니다.
 
     d. **만들기**를 클릭합니다.
  
 ### <a name="creating-an-egnyte-test-user"></a>Egnyte 테스트 사용자 만들기
 
-tooenable Azure AD 사용자가 toolog tooEgnyte에서 프로 비전 해야 Egnyte에 있습니다. Hello Egnyte의 경우에서 프로 비전은 수동 작업입니다.
+Azure AD 사용자가 Egnyte에 로그인할 수 있도록 하려면 Egnyte로 프로비전되어야 합니다. Egnyte의 경우 프로비전은 수동 작업입니다.
 
-**사용자 계정 수행 tooprovision hello 다음 단계:**
+**사용자 계정을 프로비전하려면 다음 단계를 수행합니다.**
 
-1. Tooyour 로그인 **Egnyte** 회사 사이트에서 관리자 권한으로 로그인 합니다.
+1. **Egnyte** 회사 사이트에 관리자 권한으로 로그인합니다.
 
-2. 너무 이동**설정 \> 사용자 및 그룹**합니다.
+2. **설정 \> 사용자 및 그룹**으로 이동합니다.
 
-3. 클릭 **새 사용자 추가**, 다음 hello 유형을 선택 하 고 원하는 tooadd 사용자의 합니다.
+3. **새 사용자 추가**를 클릭한 다음 추가하려는 사용자의 유형을 선택합니다.
    
    ![사용자](./media/active-directory-saas-egnyte-tutorial/ic787824.png "사용자")
 
-4. Hello에 **새 표준 사용자** 섹션를 hello 다음 단계를 수행 합니다.
+4. **새 표준 사용자** 섹션에서 다음 단계를 수행합니다.
    
    ![새 표준 사용자](./media/active-directory-saas-egnyte-tutorial/ic787825.png "새 표준 사용자")   
 
-   a. 형식 hello **전자 메일**, **Username**, 및 tooprovision 하려는 유효한 Azure Active Directory 계정의 기타 세부 정보입니다.
+   a. 프로비전하려는 유효한 Azure Active Directory 계정의 **전자 메일**, **사용자 이름** 및 다른 세부 정보를 입력합니다.
    
    b. **Save**를 클릭합니다.
     
     >[!NOTE]
-    >hello Azure Active Directory 계정 소유자는 알림 메일을 받게 됩니다.
+    >Azure Active Directory 계정 소유자는 알림 전자 메일을 받습니다.
     >
 
 >[!NOTE]
->다른 Egnyte 사용자 계정 만들기 도구를 사용할 수 있습니다 또는 AAD 사용자 계정을 tooprovision Egnyte에서 제공 된 Api입니다.
+>다른 Egnyte 사용자 계정 생성 도구 또는 Egnyte가 제공한 API를 사용하여 AAD 사용자 계정을 프로비전할 수 있습니다.
 > 
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Azure AD hello 테스트 사용자를 할당합니다.
+### <a name="assigning-the-azure-ad-test-user"></a>Azure AD 테스트 사용자 할당
 
-이 섹션에서는 tooEgnyte 액세스 권한을 부여 하 여 Azure에서 single sign-on Britta Simon toouse를 사용 합니다.
+이 섹션에서는 Azure Single Sign-On을 사용할 수 있도록 Britta Simon에게 Egnyte에 대한 액세스 권한을 부여합니다.
 
 ![사용자 할당][200] 
 
-**tooassign Britta Simon tooEgnyte hello 다음 단계를 수행 합니다.**
+**Britta Simon을 Egnyte에 할당하려면 다음 단계를 수행합니다.**
 
-1. Hello Azure 포털에서에서 hello 응용 프로그램 보기를 열고 다음 toohello 디렉터리 보기를 탐색 및 너무 이동**엔터프라이즈 응용 프로그램** 클릭 **모든 응용 프로그램**합니다.
+1. Azure Portal에서 응용 프로그램 보기를 연 다음 디렉터리 보기로 이동하고 **엔터프라이즈 응용 프로그램**으로 이동한 후 **모든 응용 프로그램**을 클릭합니다.
 
     ![사용자 할당][201] 
 
-2. Hello 응용 프로그램 목록에서 선택 **Egnyte**합니다.
+2. 응용 프로그램 목록에서 **Egnyte**를 선택합니다.
 
     ![Single Sign-on 구성](./media/active-directory-saas-egnyte-tutorial/tutorial_egnyte_app.png) 
 
-3. Hello hello 왼쪽 메뉴를 클릭 **사용자 및 그룹**합니다.
+3. 왼쪽 메뉴에서 **사용자 및 그룹**을 클릭합니다.
 
     ![사용자 할당][202] 
 
@@ -250,7 +250,7 @@ tooenable Azure AD 사용자가 toolog tooEgnyte에서 프로 비전 해야 Egny
 
     ![사용자 할당][203]
 
-5. **사용자 및 그룹** 대화 상자에서 **Britta Simon** hello 사용자 목록에 있습니다.
+5. **사용자 및 그룹** 대화 상자의 사용자 목록에서 **Britta Simon**을 선택합니다.
 
 6. **사용자 및 그룹** 대화 상자에서 **선택** 단추를 클릭합니다.
 
@@ -258,14 +258,14 @@ tooenable Azure AD 사용자가 toolog tooEgnyte에서 프로 비전 해야 Egny
     
 ### <a name="testing-single-sign-on"></a>Single Sign-On 테스트
 
-이 섹션에서는 Azure AD single sign on 구성 hello 액세스 패널을 사용 하 여 테스트할 수 있습니다.
+이 섹션에서는 액세스 패널을 사용하여 Azure AD Single Sign-On 구성을 테스트합니다.
 
-Hello 액세스 패널에서에서 hello Egnyte 타일을 클릭할 때 자동으로 로그온 tooyour Egnyte 응용 프로그램을 구해야 합니다.
-액세스 패널 hello에 대 한 자세한 내용은 참조 [액세스 패널 소개 toohello](active-directory-saas-access-panel-introduction.md)합니다. 
+액세스 패널에서 Egnyte 타일을 클릭하면 Egnyte 응용 프로그램에 자동으로 로그온됩니다.
+액세스 패널에 대한 자세한 내용은 [액세스 패널 소개](active-directory-saas-access-panel-introduction.md)를 참조하세요. 
 
 ## <a name="additional-resources"></a>추가 리소스
 
-* [방법에 대 한 자습서 목록 tooIntegrate SaaS 앱 Azure Active Directory와](active-directory-saas-tutorial-list.md)
+* [Azure Active Directory와 SaaS Apps를 통합하는 방법에 대한 자습서 목록](active-directory-saas-tutorial-list.md)
 * [Azure Active Directory로 응용 프로그램 액세스 및 Single Sign-On이란 무엇입니까?](active-directory-appssoaccess-whatis.md)
 
 

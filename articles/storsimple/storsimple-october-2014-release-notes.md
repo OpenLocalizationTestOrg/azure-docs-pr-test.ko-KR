@@ -1,6 +1,6 @@
 ---
-title: "8000 aaaStorSimple 업데이트 0.1 릴리스 정보 | Microsoft Docs"
-description: "Hello 새로운 기능 및 수정 프로그램, 미해결 문제 및 가능한 해결 방법을 설명 hello에 대 한 2014 년 10 월 Microsoft Azure StorSimple 릴리스 (업데이트 0.1)."
+title: "StorSimple 8000 업데이트 0.1 릴리스 정보 | Microsoft Docs"
+description: "2014년 10월 Microsoft Azure StorSimple 릴리스(업데이트 0.1)에 대한 새 기능 및 수정 사항, 미해결 문제 및 해결 방법을 설명합니다."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,84 +14,84 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 09/21/2016
 ms.author: alkohli
-ms.openlocfilehash: 684e31cb0b356ec59a9d6c245e5d2bc062cc4f0d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4dfd3973593a94adfc15a6e15d69c697e13998af
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="storsimple-8000-series-update-01-release-notes--october-2014"></a>StorSimple 8000 시리즈 업데이트 0.1 릴리스 정보-2014 년 10 월
 ## <a name="overview"></a>개요
-hello 다음 릴리스 정보는 StorSimple 8000 시리즈 업데이트 0.1 2014 년 10 월에에서 출시에 대 한 hello 중요 한 미해결 문제를 식별 합니다. 또한이 릴리스에 포함 된 펌웨어 업데이트 및 hello StorSimple 소프트웨어 목록이 포함 됩니다. Hello StorSimple 8000 시리즈 릴리스 버전으로 2014 년 7 월에서에서 일반적으로 제공 된 및 toosoftware 버전 6.3.9600.17312에 해당 하는 후 첫 번째 릴리스에서 hello입니다.  
+다음 릴리스 정보는 2014년 10월에 출시된 StorSimple 8000 시리즈 업데이트 0.1에 대한 중요한 미해결 문제를 식별합니다. 또한 이 릴리스에 포함된 StorSimple 소프트웨어 및 펌웨어 업데이트의 목록을 포함합니다. 일반적으로 StorSimple 8000 시리즈 릴리스 버전이 2014년 7월에 사용할 수 있게 변경된 후 첫 번째 릴리스이며 소프트웨어 버전 6.3.9600.17312에 해당합니다.  
 
-검색할 hello 장치를 설치한 후에 즉시 사용 가능한 업데이트를 적용 하는 것이 좋습니다. 자동 업데이트 toodownload 설정 수 있고 릴리스될 때 Microsoft에서 우선 순위가 높은 업데이트를 설치할 수도 있습니다. 자세한 내용은 참조 방법을 너무[StorSimple 장치 업데이트](storsimple-update-device.md)합니다.  
+장치를 설치한 후 즉시 사용 가능한 업데이트를 스캔하고 적용하는 것이 좋습니다. 출시되는 즉시 Microsoft에서 중요한 업데이트를 다운로드하고 설치하는 자동 업데이트를 켤 수도 있습니다. 자세한 내용은 [StorSimple 장치를 업데이트](storsimple-update-device.md)하는 방법을 참조하세요.  
 
-StorSimple 솔루션에 hello 업데이트를 배포 하기 전에 hello 릴리스 정보에 포함 된 hello 정보를 검토 하십시오.  
+StorSimple 솔루션에 업데이트를 배포하기 전에 릴리스 정보에 포함된 정보를 검토하십시오.  
 
 > [!IMPORTANT]
-> * StorSimple tooinstall hello 년 10 월 업데이트에 대 한 hello StorSimple Manager 서비스 및 Windows PowerShell이 아닌를 사용 합니다.  
-> * hello 업데이트에는 일반적으로 약 3 시간 toocomplete 적용.  
-> * hello StorSimple 10 월 릴리스에 모든 업데이트 toohello StorSimple 가상 장치입니다. 최근 보안 픽스를 비롯 한 모든 사용 가능한 Windows 업데이트를 적용할 수 있습니다 하지만 hello 가상 장치에 대 한 버전의 변경을 표시 되지 않습니다.  
+> * StorSimple용 Windows PowerShell이 아닌 StorSimple 관리자 서비스를 사용하여 10월 업데이트를 설치합니다.  
+> * 일반적으로 업데이트를 완료하려면 약 3시간이 소요됩니다.  
+> * StorSimple의 10월 릴리스는 StorSimple 가상 장치에 대한 업데이트가 포함되지 않습니다. 최근 보안 수정사항을 포함하여 사용 가능한 Windows 업데이트를 적용할 수 있지만 가상 장치의 버전에서 변경 내용을 볼 수 없습니다.  
 > 
 > 
 
-다음 필수 구성 요소 hello 있는지 확인 met 이전 tooupdating StorSimple 장치 됩니다.  
+StorSimple 장치를 업데이트 하기 전에 다음 필수 조건이 충족되는지 확인합니다.  
 
-* 업데이트를 검색하기 전에 두 장치 컨트롤러가 모두 실행되고 있는지 확인합니다. 컨트롤러 중 하나가 실행 되지 않는 경우 hello 검색이 실패 합니다. hello 컨트롤러는 정상 상태에 있는 tooverify 너무 이동**하드웨어 상태** hello에서 **유지 관리** 페이지. **주의가 필요한**구성 요소가 있는 경우, 더 진행하기 전에 Microsoft 지원에 문의합니다.  
-* 두 컨트롤러 0의 고정된 Ip과 컨트롤러 1 라우팅 가능 하 고 hello 업데이트 toohello 장치를 서비스에 대해 사용 되는 이러한 toohello 인터넷을 연결할 수 있는지 확인 합니다. Hello를 사용할 수 있습니다 [Test-connection cmdlet](https://technet.microsoft.com/library/hh849808.aspx) tooping 컨트롤러 hello tooverify outlook.com과 같은 hello 네트워크 외부의 알려진된 주소 연결 toohello 네트워크 외부에 있습니다.  
-* 아웃 바운드 포트 아웃 바운드 통신에 대 한 StorSimple 장치에서 사용할 수 있는 해당 hello 필수 확인 합니다. 자세한 내용은 참조 hello [StorSimple 장치의 네트워킹 요구 사항](storsimple-system-requirements.md#networking-requirements-for-your-storsimple-device)합니다.  
-* Hello 장치 소프트웨어 버전 6.3.9600.17312 (2014 년 10 월 업데이트) 보다 오래 된 경우 hello 업데이트를 시작 하기 전에 사용 하는 경우 hello 데이터 2 및 Data 3 포트를 사용 하지 않도록 설정 합니다. 데이터 2 hello 또는 데이터 3 포트를 hello 업데이트를 적용할 때 사용 된를 두면 복구 모드로 장치 컨트롤러 toogo를 발생할 수 있습니다. Hello 네트워크 인터페이스를 해제 하면 모든 hello 연결 된 볼륨을 오프 라인으로 설정한 및 hello hello 업데이트 기간에 대 한 hello I/O가 중단 note 하십시오.  
+* 업데이트를 검색하기 전에 두 장치 컨트롤러가 모두 실행되고 있는지 확인합니다. 둘 중 한 컨트롤러라도 실행되지 않는 경우 검색에 실패합니다. 컨트롤러가 정상 상태에 있는지 확인하려면 **유지 관리** 페이지의 **하드웨어 상태**로 이동합니다. **주의가 필요한**구성 요소가 있는 경우, 더 진행하기 전에 Microsoft 지원에 문의합니다.  
+* 두 컨트롤러 0 및 컨트롤러 1에 대해 고정된 IP를 라우팅할 수 있고 장치에 대한 업데이트를 제공하기 위해 이 IP를 사용하면 인터넷에 연결할 수 있는지 확인합니다. [연결 테스트 cmdlet](https://technet.microsoft.com/library/hh849808.aspx) 을 사용하여  outlook.com과 같이 알려진 외부 주소를 ping하고 컨트롤러가 외부 네트워크에 연결되어있는지 확인할 수 있습니다.  
+* 필요한 아웃바운드 포트를 아웃바운드 통신을 위한 StorSimple 장치에서 사용할 수 있는지 확인합니다. 자세한 내용은 [StorSimple 장치에 대한 네트워킹 요구 사항](storsimple-system-requirements.md#networking-requirements-for-your-storsimple-device)을 참조하세요.  
+* 장치 소프트웨어 버전이 6.3.9600.17312(2014년 10월 업데이트) 보다 오래된 경우, 업데이트를 시작하기 전에 데이터 2 및 데이터 3 포트를 사용하지 않도록 설정합니다(사용하도록 설정되었던 경우). 업데이트를 적용하는 경우 데이터 2 또는 데이터 3 포트를 사용 가능하도록 두면, 장치 컨트롤러가 복구 모드로 전환될 수 있습니다. 네트워크 인터페이스를 해제하면 연결된 모든 볼륨이 오프라인으로 전환되며 업데이트 기간 동안에 I/O가 중단된다는 점에 주의하세요.  
 
-## <a name="whats-new-in-hello-october-release"></a>Hello 년 10 월 릴리스의 새로운 기능
-이 업데이트에 향상 된 기능을 수행 하는 hello를 포함 합니다.
+## <a name="whats-new-in-the-october-release"></a>10월 릴리스의 새로운 기능
+이 업데이트는 다음 향상된 기능을 포함합니다.
 
-* 이제 장치 컨트롤러 hello StorSimple 관리자 서비스 UI toomanage를 사용할 수 있습니다. 다시 시작, 종료, 컨트롤러에서 설정 하거나는 hello 관리 작업에 포함 합니다. 자세한 내용은 이동 너무[관리 StorSimple 장치 컨트롤러](storsimple-manage-device-controller.md)합니다.  
-* Tooday 주 및 일 시간 조합에 따라 WAN 대역폭 할당을 예약할 수 있습니다. 이렇게 하면 toomake를 효과적으로 사용할 WAN 대역폭 사용량이 적은 시간 동안 있습니다. 다른 볼륨 컨테이너에 대해 다른 대역폭 템플릿이 허용됩니다. 자세한 내용은 이동 너무[StorSimple 대역폭 템플릿 관리](storsimple-manage-bandwidth-templates.md)합니다.  
-* Tooproactively hello 관리자 및 다른 사용자가 기존 또는 향후 수 있는 문제를 알리는 전자 메일 알림을 구성할 수 있습니다. 자세한 내용은 이동 너무[경고 설정을 구성할](storsimple-manage-alerts.md#configure-alert-settings)합니다.  
+* 이제 StorSimple Manager 서비스 UI를 사용하여 장치 컨트롤러를 관리할 수 있습니다. 관리 작업에는 시스템 종료, 다시 시작 또는 컨트롤러 켜기가 포함됩니다. 자세한 내용을 보려면 [StorSimple 장치 컨트롤러 관리](storsimple-manage-device-controller.md)로 이동합니다.  
+* 요일 및 시간의 조합에 따라 WAN 대역폭 할당을 예약할 수 있습니다. 이렇게 하면 사용량이 적은 시간에 WAN 대역폭을 더 잘 이용할 수 있습니다. 다른 볼륨 컨테이너에 대해 다른 대역폭 템플릿이 허용됩니다. 자세한 내용을 보려면 [StorSimple 대역폭 템플릿 관리](storsimple-manage-bandwidth-templates.md)로 이동합니다.  
+* 관리자 및 다른 기존 또는 가능한 예정된 문제를 사전에 알리도록 메일 알림을 구성할 수 있습니다. 자세한 내용은 [경고 설정 구성](storsimple-manage-alerts.md#configure-alert-settings)으로 이동합니다.  
 
-## <a name="issues-fixed-in-hello-october-release"></a>Hello 년 10 월 릴리스에서 해결 된 문제
-hello 다음 표에서이 업데이트에서 해결 된 문제에 대 한 요약 합니다.  
+## <a name="issues-fixed-in-the-october-release"></a>10월 릴리스에서 해결된 문제
+다음 표에서 이 업데이트에서 해결된 문제를 간략하게 설명합니다.  
 
-| 아니요. | 기능 | 문제 | Toophysical 장치를 적용 됩니다. | Toovirtual 장치를 적용 됩니다. |
+| 번호 | 기능 | 문제 | 실제 장치에 적용 | 가상 장치에 적용 |
 | --- | --- | --- | --- | --- |
-| 1 |네트워크 인터페이스 |Hello 이전에 해제, hello 네트워크 인터페이스 DATA 2 및 DATA 3 hello 소프트웨어에서 교체 되었습니다. 이 업데이트에서 수정되었습니다. Hello 설정의 선택을 취소 하 고 hello 업데이트를 설치 하기 전에 이러한 네트워크 인터페이스를 사용 하지 않도록 설정 하세요. Hello 업데이트를 설치 하면 tooreconfigure 이러한 인터페이스를 해야 합니다. |예 |아니요 |
-| 2 |지원 패키지 |Hello 이전 릴리스에서 hello Windows PowerShell을 실행 한 경우 **Export-hcssupportpackage** cmdlet tooretrieve hello bmc (베이스 보드 관리 컨트롤러가) 로그, hello 작업에 따라 경고 hello로 실패 했습니다: "hello 작업이이 컨트롤러에 성공 했지만 toohello 다음 인해 hello 피어 컨트롤러에 실패 했습니다. 오류입니다. 확인 하십시오 hello 피어가 정상 상태 인지 여부 hello 현재 노드 toohello 피어를 연결할 수 있습니다. " 이제 이 문제는 해결되었습니다. |예 |아니요 |
-| 3 |장치 장애 조치 |Hello 이전 릴리스에서 데이터가 불일치할 가능성이 경우 있었습니다는 **백업을 검색할** 장치 장애 조치 중 작업이 실패 했습니다. 이제 이 문제는 해결되었습니다. |예 |아니요 |
-| 4 |장치 장애 조치 |Hello 이전에 해제, 장치 장애 조치 후 백업은 표시 되었지만 연결 된 볼륨 컨테이너 hello hello 대상 장치에 표시 되지 않았습니다. 이제 이 문제는 해결되었습니다. |예 |아니요 |
-| 5 |장치 장애 조치 |Hello 이전 릴리스에서 클라우드 연결 문제가 없는 경우 toodata 불일치를 초래할 수 있는 hello 레지스트리 복원 작업 중의 클라우드 백업 hello 열거에 버그가 했습니다. |예 |아니요 |
-| 6 |펌웨어 업데이트 |이전 릴리스에서 hello hello 장치 펌웨어 업데이트 작업이 실패 하 고 hello cmdlet 인식할 수 없습니다. 해당 hello 업데이트가 실패 했다는 오류가 표시 됩니다. hello 그러면 컨트롤러가 복구 모드로 합니다. 이제 이 문제는 해결되었습니다. |예 |아니요 |
-| 7 |설치 |Hello 장치 하지 이미지가 올바르게 생성 하는 동안 설치로 인 한 오류 이제 수정 되었습니다. |예 |아니요 |
-| 8 |공장 재설정 |이제 공장 재설정을 위한 펌웨어 확인 hello를 선택적으로 건너뛸 수 있습니다. 이 hello 이전 릴리스에서 변경 합니다. |예 |아니요 |
-| 9 |공장 재설정 |Hello 이전 릴리스에서 공장 재설정 cmdlet 실행 시 일부 하드웨어 구성 요소에 대해서만 펌웨어 버전을 확인 적용 되었습니다. 추가 펌웨어 확인을 수행한 후 hello hello 재설정 toofail 될 수 있는 hello 프로세스의 첫 번째 다시 부팅 합니다. 이 문제를이 수정 하면 hello 공장 재설정 cmdlet을 실행 하 고 첫 번째 시스템 다시 부팅 hello 하기 전에 모든 hello 펌웨어 검사를 수행 합니다. |예 |아니요 |
-| 10 |저장소 계정 키 회전 |hello **Invoke-hcsmservicedataencryptionkeychange** cmdlet 프롬프트 hello 사용자 tooenter hello 서비스 데이터 암호화 키 이제 toorotate hello 저장소 계정 키를 사용 합니다. 이 서비스 데이터 암호화 키가 인라인 매개 변수로 전달 하는 hello에는 hello 이전 릴리스에서 변경 합니다. |예 |아니요 |
-| 11 |24시간 내에 장애 복구 |재해 복구 시 hello hello 원본 장치 정리가 정상적으로 장애 복구 toofail에서는 발생 하지 않았으며 합니다. 이 릴리스에서 수정되었습니다. |예 |아니요 |
+| 1 |네트워크 인터페이스 |이전 릴리스에서 네트워크 인터페이스 데이터 2 및 데이터 3은 소프트웨어에서 전환되었습니다. 이 업데이트에서 수정되었습니다. 업데이트를 설치하기 전에 설정을 취소하고  이 네트워크 인터페이스를 사용하지 않도록 설정합니다. 업데이트를 설치한 후 이 인터페이스를 다시 구성해야 합니다. |예 |아니요 |
+| 2 |지원 패키지 |이전 릴리스에서 Windows PowerShell **Export-HcsSupportPackage** cmdlet을 실행하여 BMC(베이스 보드 관리 컨트롤러) 로그를 검색하면, 다음 경고와 함께 작업이 실패했습니다. "작업이 이 컨트롤러에서 성공했지만 다음 오류 때문에 피어 컨트롤러에서 실패했습니다. 피어가 정상인지 여부 및 현재 노드가 피어에 연결할 수 있는지 여부를 확인하세요. " 이제 이 문제는 해결되었습니다. |예 |아니요 |
+| 3 |장치 장애 조치 |이전 릴리스에서는 장치 장애 조치 중 **백업 검색** 작업이 실패하면 데이터가 불일치되는 경우가 있었습니다. 이제 이 문제는 해결되었습니다. |예 |아니요 |
+| 4 |장치 장애 조치 |장치 장애 조치 후 이전 릴리스에서 백업을 표시 되었지만 연결 된 볼륨 컨테이너 대상 장치에 제공 되지 않았습니다. 이제 이 문제는 해결되었습니다. |예 |아니요 |
+| 5 |장치 장애 조치 |이전 릴리스에서는 클라우드 연결에 문제가 있는 경우 데이터 불일치가 잠재적으로 발생할 수 있는 레지스트리 복원 작업 중의 클라우드 백업 열거에 버그가 있었습니다. |예 |아니요 |
+| 6 |펌웨어 업데이트 |이전 릴리스에서는, 장치 펌웨어 업데이트 작업이 실패하고 cmdlet을 인식할 수 없어 결과적으로 업데이트가 실패했음을 나타내는 오류를 표시합니다. 그런 다음 컨트롤러가 다음 복구 모드로 이동했었습니다. 이제 이 문제는 해결되었습니다. |예 |아니요 |
+| 7 |설치 |이제 설치 중 장치가 올바르게 이미징되지 않아 발생하는 오류가 해결되었습니다. |예 |아니요 |
+| 8 |공장 재설정 |이제 공장 재설정에 대한 펌웨어 검사를 선택적으로 건너뛸 수 있습니다. 이전 릴리스의 변경 내용입니다. |예 |아니요 |
+| 9 |공장 재설정 |이전 릴리스에서는 공장 재설정 cmdlet이 실행되면, 펌웨어 버전 검사가 일부 하드웨어 구성 요소에 대해서만 이루어졌습니다. 프로세스에서 첫 번째 다시 부팅 후 추가 펌웨어 확인이 수행되며, 이로 인해 재설정이 실패합니다. 이 수정 프로그램은 첫번째 시스템을 다시 부팅하기 전에 공장 재설정 cmdlet가 실행되면 모든 펌웨어가 작성되는지 확인합니다. |예 |아니요 |
+| 10 |저장소 계정 키 회전 |저장소 계정 키를 회전하는 데 사용된 **Invoke-HcsmServiceDataEncryptionKeyChange** cmdlet은 이제 서비스 데이터 암호화 키를 입력하라는 메시지를 사용자에게 표시합니다. 서비스 데이터 암호화 키를 인라인 매개 변수로 전달했던 이전 릴리스와 다른 변경 내용입니다. |예 |아니요 |
+| 11 |24시간 내에 장애 복구 |재해 복구하는 동안 소스 장치에서의 정리가 명확하게 작동하지 않아 장애 복구에 실패합니다. 이 릴리스에서 수정되었습니다. |예 |아니요 |
 
-## <a name="known-issues-in-hello-october-release"></a>Hello 년 10 월 릴리스의 알려진된 문제
-다음 표에서 hello이이 릴리스의 알려진된 문제에에서 대 한 요약을 제공 합니다.
+## <a name="known-issues-in-the-october-release"></a>10월 릴리스의 알려진 문제
+다음 표에서 이 릴리스의 알려진 문제를 간략하게 설명합니다.
 
-| 아니요. | 기능 | 문제 | 주석/해결 방법 | Toophysical 장치를 적용 됩니다. | Toovirtual 장치를 적용 됩니다. |
+| 번호 | 기능 | 문제 | 주석/해결 방법 | 실제 장치에 적용 | 가상 장치에 적용 |
 | --- | --- | --- | --- | --- | --- |
-| 1 |공장 재설정 |경우에 따라 공장 재설정을 수행할 때 StorSimple 장치 hello 남아 있을 수 있습니다 및이 메시지를 표시: **재설정 toofactory가 진행 중인 (8 단계)**합니다. 이 hello cmdlet이 진행 중일 동안 CTRL + C를 누르면 발생 합니다. |공장 재설정을 시작한 후 CTRL+C를 누르지 마세요. 이미 이 상태에 있다면 다음 단계에 대해 Microsoft 지원에 문의하세요. |예 |아니요 |
-| 2 |공장 재설정 |GA tooOctober 2014 릴리스의 업데이트는 StorSimple 장치 공장 재설정 하지 마세요. |이 작업은 패치를 설치하는 경우에만 작동합니다. 이 필수 패치를 tooget Microsoft 지원에 문의 하십시오. |예 |아니요 |
-| 3 |디스크 쿼럼 |경우에 따라에서 hello 대부분의 디스크 8600 장치의 EBOD 인클로저에 hello 끊어져서 디스크 쿼럼이 없게 하는 경우 다음 hello 저장소 풀이 오프 라인 상태가 됩니다. Hello 디스크가 다시 연결 하는 경우에 오프 라인으로 유지 됩니다. |Tooreboot hello 장치가 필요 합니다. Hello 문제가 지속 되 면 Microsoft 지원에 다음 단계에 문의 하세요. |예 |아니요 |
-| 4 |클라우드 스냅숏 실패 |클라우드 스냅숏 드물게에서 hello 오류가 발생할 수 있습니다 **최대 백업 한계 도달**합니다. Hello에서 온라인 복제가 255 개를 초과 하는 경우이 경고가 발생 hello에서 동일한 장치 삭제 된 동일한 원래 볼륨입니다. | |예 |예 |
-| 5 |잘못된 컨트롤러 ID |컨트롤러가 교체되면 컨트롤러 0이 컨트롤러 1로 표시될 수 있습니다. 컨트롤러 교체 하는 동안 hello 이미지 hello 피어 노드에서 로드 되 면 hello 컨트롤러 ID 수 처음으로 나타나도록 hello 피어 컨트롤러의 id입니다. 드문 경우에 시스템을 다시 부팅한 후 이 동작이 나타날 수도 있습니다. |별도의 작업이 필요하지 않습니다. 이 경우 hello 컨트롤러 교체를 완료 한 후 자체적으로 해결 됩니다. |예 |아니요 |
-| 6 |장치 모니터링 차트 |StorSimple Manager 서비스 hello, 기본 hello 장치 모니터링 차트가 작동 하지 않습니다 또는 hello 장치에 대 한 hello 프록시 서버 구성에서 NTLM 인증을 사용 합니다. |StorSimple Manager 서비스로 등록 인증을 tooNONE 설정 되므로 hello 장치에 대 한 hello 웹 프록시 구성을 수정 합니다. toodo StorSimple Set-hcswebproxy cmdlet에 대 한 실행된 hello hello Windows PowerShell이 합니다. |예 |예 |
-| 7 |저장소 계정 |Hello 저장소 서비스 toodelete hello 저장소 계정을 사용 하는 지원 되지 않는 시나리오입니다. 이렇게 하면 tooa 상황 사용자 데이터를 검색할 수 없습니다. | |예 |예 |
-| 8 |장치 장애 조치 |다중에서 동일한 원본 장치 toodifferent 대상 장치는 지원 되지 않습니다 hello는 볼륨 컨테이터의 장애 조치 합니다. |단일 데드 장치 toomultiple 장치에서 장애 조치에는 먼저 장애 장치 조치 hello 장치의 hello 볼륨 컨테이너가 데이터 소유권을 잃게 생성 됩니다. 이러한 장애 조치 후 이러한 볼륨 컨테이너 나타나거나 hello Azure 클래식 포털에서에서 볼 때 다르게 동작 합니다. |예 |아니요 |
-| 9 |설치 |SharePoint 용 StorSimple 어댑터를 하는 동안 필요한 tooprovide hello 설치 toofinish 위해에서 장치 IP 성공적으로 합니다. | |예 |아니요 |
-| 10 |웹 프록시 |웹 프록시 구성에 있으면 hello로는 HTTPS 프로토콜을 지정 다음 장치를 서비스 통신 영향을 받고 hello 장치는 오프 라인 상태가 유지 됩니다. 지원 패키지도 장치에서 많은 리소스를 소모 hello 프로세스에서 생성 됩니다. |지정한 프로토콜이 hello으로 hello 웹 프록시 URL에 HTTP 있는지 확인 합니다. 방법에 대 한 자세한 내용은 너무[장치에 대 한 웹 프록시 구성](storsimple-configure-web-proxy.md)합니다. |예 |아니요 |
-| 11 |웹 프록시 |구성 하 고 등록된 된 장치에서 웹 프록시를 사용 하는 경우 장치에서 toorestart hello 활성 컨트롤러가 필요 합니다. | |예 |아니요 |
-| 12 |긴 클라우드 대기 시간 및 많은 I/O 작업 |StorSimple 장치 매우 긴 클라우드 대기 시간 (초) 및 높은 수준의 I/O 작업의 조합을 발견 하면 hello 장치 볼륨 상태가 저하 및 hello I/o "장치가 준비 되지 않음" 오류가 발생할 수 있습니다. |Toomanually 재부팅 hello 장치 컨트롤러 필요 하거나이 상황에서 장치 장애 조치 toorecover를 수행 합니다. |예 |아니요 |
+| 1 |공장 재설정 |일부 경우에 공장 재설정을 수행하면 StorSimple 장치가 중단될 수 있으며 **공장 기본 설정으로 재설정 진행 중(8단계)**메시지를 표시할 수 있습니다. cmdlet가 진행 중인 동안 CTRL+C를 누르면 발생합니다. |공장 재설정을 시작한 후 CTRL+C를 누르지 마세요. 이미 이 상태에 있다면 다음 단계에 대해 Microsoft 지원에 문의하세요. |예 |아니요 |
+| 2 |공장 재설정 |GA에서 2014년 10월 릴리스까지 업데이트된 StorSimple 장치를 공장 기본 설정으로 재설정하지 마세요. |이 작업은 패치를 설치하는 경우에만 작동합니다. 이 필수 패치를 얻으려면 Microsoft 지원에 문의하세요. |예 |아니요 |
+| 3 |디스크 쿼럼 |드문 경우에 8600 장치의 EBOD 인클로저에 있는 대부분의 디스크의 연결이 끊겨 디스크 쿼럼이 없는 경우, 저장소 풀이 오프라인 상태가 됩니다. 디스크가 다시 연결되더라도 오프라인 상태로 유지됩니다. |장치를 다시 부팅해야 합니다. 문제가 지속되면 다음 단계에 대해 Microsoft 지원에 문의하세요. |예 |아니요 |
+| 4 |클라우드 스냅숏 실패 |드문 경우에 클라우드 스냅숏이 **최대 백업 한계에 도달했습니다**라는 오류와 함께 실패할 수 있습니다. 삭제된 볼륨과 동일한 원래 볼륨에서 동일한 장치에 255개의 온라인 복제가 초과하는 경우 발생합니다. | |예 |예 |
+| 5 |잘못된 컨트롤러 ID |컨트롤러가 교체되면 컨트롤러 0이 컨트롤러 1로 표시될 수 있습니다. 컨트롤러 교체 중, 이미지가 피어 노드에서 로드되면 컨트롤러 ID는 처음에 피어 컨트롤러의 ID로 표시될 수 있습니다. 드문 경우에 시스템을 다시 부팅한 후 이 동작이 나타날 수도 있습니다. |별도의 작업이 필요하지 않습니다. 컨트롤러 교체를 완료 한 후 이 상황이 저절로 해결됩니다. |예 |아니요 |
+| 6 |장치 모니터링 차트 |StorSimple 관리자 서비스에서 해당 장치에 대한 프록시 서버 구성에서 기본 또는 NTLM 인증이 사용되면 장치 모니터링 차트가 동작하지 않습니다. |인증이 NONE으로 설정되도록 StorSimple 관리자 서비스와 함께 등록된 장치에 대한 웹 프록시 구성을 수정합니다. 수정하려면 StorSimple Set-HcsWebProxy cmdlet에 대해 Windows PowerShell을 실행합니다. |예 |예 |
+| 7 |저장소 계정 |저장소 계정 삭제에 저장소 서비스를 사용하는 것은 지원되지 않는 시나리오입니다. 이렇게 되면 사용자 데이터를 검색할 수 없게 됩니다. | |예 |예 |
+| 8 |장치 장애 조치 |동일한 원본 장치에서 다른 대상 장치로의 볼륨 컨테이너의 다중 장애 조치는 지원되지 않습니다. |단일 데드 장치에서 여러 장치로의 장애 조치로 첫 번째 장애 조치된 장치의 볼륨 컨테이너에서 데이터 소유권이 손실됩니다. 이러한 장애 조치 후 Azure 클래식 포털에서 볼 때 이 볼륨 컨테이너가 나타나거나 다르게 동작합니다. |예 |아니요 |
+| 9 |설치 |SharePoint용 StorSimple 어댑터 설치 중, 성공적으로 설치를 완료하려면 장비 IP를 입력해야 합니다. | |예 |아니요 |
+| 10 |웹 프록시 |웹 프록시 구성에 지정된 프로토콜로 HTTPS가 있는 경우, 장치 대 서비스의 통신에 영향을 줄 수 있으며 장치는 오프라인 상태가 됩니다. 지원 패키지는 장치에서 중요한 리소스를 소모하는 프로세스에도 생성됩니다. |웹 프록시 URL에 지정된 프로토콜로 HTTP가 있는지 확인합니다. [장치에 대한 웹 프록시 구성](storsimple-configure-web-proxy.md)방법에 대한 자세한 내용. |예 |아니요 |
+| 11 |웹 프록시 |등록된 장치에서 웹 프록시를 구성하고 사용하는 경우, 장치에서 활성 컨트롤러를 다시 시작해야 합니다. | |예 |아니요 |
+| 12 |긴 클라우드 대기 시간 및 많은 I/O 작업 |StorSimple 장치에서 클라우드 대기 시간(초 순서)이 매우 길고 I/O 워크로드가 많으면 장치 볼륨의 성능이 저하되며 "장치가 준비 되지 않았습니다"라는 오류와 함께 I/O가 실패할 수 있습니다. |이 상황에서 복구하려면 수동으로 장치 컨트롤러를 다시 부팅하거나 장치 장애 조치를 수행해야 합니다. |예 |아니요 |
 
-## <a name="physical-device-updates-in-hello-october-release"></a>Hello 년 10 월 릴리스에서 물리적 장치 업데이트
-이러한 업데이트를 적용된 tooa 물리적 장치 소프트웨어 버전 hello too6.3.9600.17312를 변경 됩니다. 이러한 릴리스 정보를 지정 하지 않으면 hello StorSimple 장치의 tooall 모델을 적용 합니다. 이 업데이트에 대한 자세한 내용은 [2014년 10월 Microsoft Azure StorSimple 어플라이언스용 실제 어플라이언스 소프트웨어 업데이트](http://support.microsoft.com/kb/2986997)를 참조하세요.  
+## <a name="physical-device-updates-in-the-october-release"></a>10월 릴리스의 물리적 장치 업데이트
+이러한 업데이트를 실제 장치에 적용하는 경우 소프트웨어 버전은 6.3.9600.17312로 변경됩니다. 따로 지정한 경우가 아니면 이 릴리스 정보는 StorSimple 장치의 모든 모델에 적용됩니다. 이 업데이트에 대한 자세한 내용은 [2014년 10월 Microsoft Azure StorSimple 어플라이언스용 실제 어플라이언스 소프트웨어 업데이트](http://support.microsoft.com/kb/2986997)를 참조하세요.  
 
-## <a name="serial-attached-scsi-sas-controller-and-firmware-updates-in-hello-october-release"></a>Serial attached SCSI (SAS) 컨트롤러 및 펌웨어 업데이트 hello 년 10 월 릴리스에서
-이 릴리스는 hello 드라이버 및 물리적 장치의 SAS 컨트롤러 hello에 hello 펌웨어를 업데이트합니다. Hello SAS 컨트롤러 업데이트에 대 한 자세한 내용은 참조 [Microsoft Azure StorSimple 어플라이언스의 LSI SAS 컨트롤러용 2014 년 10 월 업데이트](http://support.microsoft.com/kb/2987020)합니다.   
+## <a name="serial-attached-scsi-sas-controller-and-firmware-updates-in-the-october-release"></a>10월 릴리스의 SAS(Serial attached SCSI) 컨트롤러 및 펌웨어 업데이트
+이 릴리스는 물리적 장치의 SAS 컨트롤러에서 드라이버 및 펌웨어를 업데이트합니다. SAS 컨트롤러 업데이트에 대한 자세한 내용은 [Microsoft Azure StorSimple 어플라이언스 LSI SAS 컨트롤러에 대한 2014년 10월 업데이트](http://support.microsoft.com/kb/2987020)를 참조하세요.   
 
-이 버전에는 hello 장치 하드웨어 구성 요소의 안정성 문제를 해결 하는 누적 펌웨어 업데이트도를 적용 됩니다. Hello 펌웨어 업데이트에 대 한 자세한 내용은 참조 [Microsoft Azure StorSimple 어플라이언스 용 2014 년 10 월 펌웨어 업데이트](http://support.microsoft.com/kb/2987015)합니다.  
+이 릴리스에는 장치 하드웨어 구성 요소와 안정성 문제를 해결하는 누적 펌웨어 업데이트도 적용됩니다. 펌웨어 업데이트에 대한 자세한 내용은 [Microsoft Azure StorSimple 어플라이언스용 2014년 10월 펌웨어 업데이트](http://support.microsoft.com/kb/2987015)를 참조하세요.  
 
-## <a name="virtual-device-updates-in-hello-october-release"></a>Hello 년 10 월 릴리스에서 가상 장치 업데이트
-이 릴리스에서 hello 가상 장치에 대 한 업데이트 합니다. 이 업데이트를 적용 하는 경우에 가상 장치의 소프트웨어 버전 hello 변경 되지 않습니다.
+## <a name="virtual-device-updates-in-the-october-release"></a>10월 릴리스의 가상 장치 업데이트
+이 릴리스에는 가상 장치에 대한 업데이트는 포함되지 않습니다. 이 업데이트를 적용해도 가상 장치의 소프트웨어 버전은 변경되지 않습니다.
 

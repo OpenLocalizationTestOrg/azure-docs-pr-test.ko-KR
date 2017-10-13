@@ -1,6 +1,6 @@
 ---
-title: .net Contentkey aaaCreate
-description: "보안을 제공 하는 콘텐츠 키를 toocreate tooAssets를 액세스 하는 방법에 대해 알아봅니다."
+title: ".NET을 사용하여 Contentkey 만들기"
+description: "자산에 대한 보안 액세스를 제공하는 콘텐츠 키를 만드는 방법에 대해 알아봅니다."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 35909c64e8393e228be75c464a034ffc40122952
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3280a6fcde59bae360da7cb9fea4bb649f984e43
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-contentkeys-with-net"></a>.NET을 사용하여 Contentkey 만들기
 > [!div class="op_single_selector"]
@@ -27,28 +27,28 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-미디어 서비스 toocreate 있으며 암호화 된 자산을 배달 합니다. A **ContentKey** 보안 액세스 tooyour 제공 **자산**s입니다. 
+미디어 서비스를 사용하면 암호화된 자산을 만들어서 제공할 수 있습니다. **ContentKey**는 **자산**에 대한 보안 액세스를 제공합니다. 
 
-새 자산을 만드는 경우 (예를 들어 하기 전에 [파일 업로드](media-services-dotnet-upload-files.md)), hello 다음 암호화 옵션을 지정할 수 있습니다: **StorageEncrypted**, **CommonEncryptionProtected**, 또는 **EnvelopeEncryptionProtected**합니다. 
+새 자산을 만들 때(예: [파일 업로드](media-services-dotnet-upload-files.md) 전) **StorageEncrypted**, **CommonEncryptionProtected** 또는 **EnvelopeEncryptionProtected** 암호화 옵션을 지정할 수 있습니다. 
 
-Tooyour 클라이언트를 자산을 배달 하는 경우 다음을 할 수 있습니다 [자산 toobe 동적으로 암호화에 대 한 구성](media-services-dotnet-configure-asset-delivery-policy.md) hello 다음 두 가지 암호화 중 하 나와: **DynamicEnvelopeEncryption** 또는  **DynamicCommonEncryption**합니다.
+클라이언트에 자산을 제공할 때 **DynamicEnvelopeEncryption** 또는 **DynamicCommonEncryption** 암호화 중 하나를 사용하여 [자산이 동적으로 암호화되도록 구성](media-services-dotnet-configure-asset-delivery-policy.md)할 수 있습니다.
 
-암호화 된 자산에 연결 된 toobe가 **ContentKey**s입니다. 이 문서에서는 설명 방법을 toocreate 콘텐츠 키입니다.
+암호화된 자산은 **ContentKey**와 연관되어야 합니다. 이 문서에서는 콘텐츠 키를 만드는 방법을 설명합니다.
 
 > [!NOTE]
-> 새로 만들 때 **StorageEncrypted** 사용 하 여 자산 hello 미디어 서비스.NET SDK hello **ContentKey** 가 자동으로 만들어지고 hello 자산에 연결 됩니다.
+> Media Services .NET SDK를 사용하여 새 **StorageEncrypted** 자산을 만들 때, **ContentKey**가 자동으로 생성되며 해당 자산과 연결됩니다.
 > 
 > 
 
 ## <a name="contentkeytype"></a>ContentKeyType
-콘텐츠를 만들 때 설정 해야 하는 hello 값 중 하나 키는 hello 콘텐츠 키 형식입니다. Hello 다음 값 중 하나를 선택 합니다. 
+콘텐츠 키를 만들 때 설정해야 하는 값 중 하나가 콘텐츠 키 유형입니다. 다음 값 중 하나를 선택합니다. 
 
     public enum ContentKeyType
     {
         /// <summary>
         /// Specifies a content key for common encryption.
         /// </summary>
-        /// <remarks>This is hello default value.</remarks>
+        /// <remarks>This is the default value.</remarks>
         CommonEncryption = 0,
 
         /// <summary>
@@ -68,7 +68,7 @@ Tooyour 클라이언트를 자산을 배달 하는 경우 다음을 할 수 있�
     }
 
 ## <a id="envelope_contentkey"></a>봉투 유형의 ContentKey 만들기
-hello 다음 코드 조각에서는 hello 봉투 암호화 형식의 콘텐츠 키입니다. 그런 다음 hello 키 hello 지정 된 자산에 연결합니다.
+다음 코드 조각은 봉투 암호화 유형의 콘텐츠 키를 만듭니다. 그런 다음 키를 지정된 자산과 연결합니다.
 
     static public IContentKey CreateEnvelopeTypeContentKey(IAsset asset)
     {
@@ -105,7 +105,7 @@ hello 다음 코드 조각에서는 hello 봉투 암호화 형식의 콘텐츠 �
 
 
 ## <a id="common_contentkey"></a>일반 유형의 ContentKey 만들기
-hello 다음 코드 조각에서는 hello 일반 암호화 종류의 콘텐츠 키입니다. 그런 다음 hello 키 hello 지정 된 자산에 연결합니다.
+다음 코드 조각은 일반 암호화 유형의 콘텐츠 키를 만듭니다. 그런 다음 키를 지정된 자산과 연결합니다.
 
     static public IContentKey CreateCommonTypeContentKey(IAsset asset)
     {
@@ -119,7 +119,7 @@ hello 다음 코드 조각에서는 hello 일반 암호화 종류의 콘텐츠 �
                                 "ContentKey",
                                 ContentKeyType.CommonEncryption);
 
-        // Associate hello key with hello asset.
+        // Associate the key with the asset.
         asset.ContentKeys.Add(key);
 
         return key;

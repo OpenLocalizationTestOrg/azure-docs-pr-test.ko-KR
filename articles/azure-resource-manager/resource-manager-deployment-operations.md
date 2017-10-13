@@ -1,6 +1,6 @@
 ---
-title: "Azure 리소스 관리자와 aaaDeployment 작업 | Microsoft Docs"
-description: "Tooview Azure 리소스 관리자 배포 작업과 hello 하는 방법을 설명 합니다. 포털, PowerShell, Azure CLI 및 REST API입니다."
+title: "Azure Resource Manager를 사용한 배포 작업 | Microsoft Docs"
+description: "포털, PowerShell, Azure CLI 및 REST API를 사용하여 Azure Resource Manager 배포 작업을 확인하는 방법을 설명합니다."
 services: azure-resource-manager,virtual-machines
 documentationcenter: 
 tags: top-support-issue
@@ -15,65 +15,65 @@ ms.tgt_pltfrm: vm-multiple
 ms.workload: infrastructure
 ms.date: 01/13/2017
 ms.author: tomfitz
-ms.openlocfilehash: ba4823ca73caca83dfc07c99d736344ef8b7b54d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fb6b3b357fd1f66184e480115a9c863ba31ac193
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="view-deployment-operations-with-azure-resource-manager"></a>Azure Resource Manager를 사용한 배포 작업 보기
 
 
-Hello Azure 포털을 통해 배포에 대 한 hello 작업을 볼 수 있습니다. 이 문서에서는 보기에 실패 한 작업 하므로 배포 하는 동안 오류가 발생를 받은 있을 경우 hello 작업 보기에 가장 관심이 수 있습니다. hello 포털 tooeasily 찾기 hello 오류 사용할 수 있는 인터페이스를 제공 하 고 잠재적 수정 사항을 결정 합니다.
+Azure 포털을 통해 배포에 대한 작업을 볼 수 있습니다. 배포 중에 오류가 나타날 때 작업을 보는 데 가장 많은 관심을 가질 수 있으므로 이 문서에서는 실패한 작업을 보는 것에 대해 중점적으로 설명합니다. 포털은 쉽게 오류를 찾고 잠재적 해결 방법을 확인할 수 있는 인터페이스를 제공합니다.
 
 [!INCLUDE [resource-manager-troubleshoot-introduction](../../includes/resource-manager-troubleshoot-introduction.md)]
 
 ## <a name="portal"></a>포털
-toosee hello 배포 작업 단계를 수행 하는 hello를 사용 합니다.
+배포 작업을 확인하려면 다음 단계를 사용합니다.
 
-1. Hello 배포와 관련 된 hello 리소스 그룹에 대 한 hello 마지막 배포의 hello 상태를 확인 합니다. 자세한 내용은이 상태 tooget를 선택할 수 있습니다.
+1. 배포에 관련된 리소스 그룹에 대해 마지막 배포의 상태를 확인합니다. 이 상태를 선택하여 자세한 내용을 확인할 수 있습니다.
    
     ![배포 상태](./media/resource-manager-deployment-operations/deployment-status.png)
-2. Hello 최근 배포 기록을 표시 합니다. 실패 한 hello 배포를 선택 합니다.
+2. 최근 배포 기록이 표시됩니다. 실패한 배포를 선택합니다.
    
     ![배포 상태](./media/resource-manager-deployment-operations/select-deployment.png)
-3. Hello 링크 toosee 이유에 대 한 설명 hello 배포 실패를 선택 합니다. 아래 hello 이미지 hello DNS 레코드 고유 하지 않습니다.  
+3. 배포에 실패한 이유에 대한 설명을 보려면 링크를 선택하세요. 아래 이미지에서 DNS 레코드는 고유하지 않습니다.  
    
     ![실패한 배포 보기](./media/resource-manager-deployment-operations/view-error.png)
    
-    이 오류 메시지는 하면 지원할 수 있어야 하며 toobegin 문제를 해결 합니다. 그러나 작업이 완료 된에 대 한 자세한 내용은 필요한 경우 단계를 수행 하는 hello와 같이 hello 작업 볼 수 있습니다.
-4. Hello에서 모든 hello 배포 작업을 볼 수 있습니다 **배포** 블레이드입니다. 모든 작업 toosee 자세한 세부 정보를 선택 합니다.
+    이 오류 메시지는 문제 해결을 시작하는 데 충분합니다. 그러나 어떤 작업이 완료되었는지에 대한 추가 정보가 필요한 경우 다음 단계에 표시된 대로 작업을 볼 수 있습니다.
+4. **배포** 블레이드에서 모든 배포 작업을 볼 수 있습니다. 보다 자세한 정보를 확인하려면 원하는 작업을 선택합니다.
    
     ![작업 보기](./media/resource-manager-deployment-operations/view-operations.png)
    
-    이 경우 hello 저장소 계정, 가상 네트워크 및 가용성 집합 성공적으로 만들어졌는지 확인할 수 있습니다. hello 공용 IP 주소 실패 했으며, 기타 리소스를 시도 하지 않았습니다.
-5. 선택 하 여 hello 배포에 대 한 이벤트를 볼 수 있습니다 **이벤트**합니다.
+    이 경우 저장소 계정, 가상 네트워크 및 가용성 집합이 성공적으로 만들어진 것을 확인할 수 있습니다. 공용 IP 주소가 실패했고 다른 리소스를 시도하지 않았습니다.
+5. **이벤트**를 선택하여 배포에 대한 이벤트를 볼 수 있습니다.
    
     ![이벤트 보기](./media/resource-manager-deployment-operations/view-events.png)
-6. Hello 배포에 대 한 모든 hello 이벤트를 보고 자세한 내용을 보려면 하나를 선택 합니다. 상관 관계 Id를 너무 hello를 확인 합니다. 배포 기술 지원 tootroubleshoot 작업할 때이 값은 유용할 수 있습니다.
+6. 배포에 대한 모든 이벤트가 표시되면 하나 이상의 세부 정보를 선택합니다. 상관 관계 ID도 확인합니다. 이 값은 배포 문제를 해결하기 위해 기술 지원부와 협력할 때 유용할 수 있습니다.
    
     ![이벤트 보기](./media/resource-manager-deployment-operations/see-all-events.png)
 
 ## <a name="powershell"></a>PowerShell
-1. tooget hello를 사용 하 여 hello 배포의 전반적인 상태 **Get AzureRmResourceGroupDeployment** 명령입니다. 
+1. 배포의 전반적인 상태를 가져오려면 **Get-AzureRmResourceGroupDeployment** 명령을 사용합니다. 
 
   ```powershell
   Get-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup
   ```
 
-   또는 실패 한 배포에 대 한 hello 결과 필터링 할 수 있습니다.
+   또는 실패한 배포에 대해서만 결과를 필터링할 수 있습니다.
 
   ```powershell
   Get-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup | Where-Object ProvisioningState -eq Failed
   ```
    
-2. 각 배포에는 여러 작업이 포함되어 있습니다. 각 작업 hello 배포 프로세스의 단계를 나타냅니다. 배포와 무엇이 잘못 되었는지 toodiscover, 일반적으로 필요한 hello 배포 작업에 대 한 toosee 세부 정보입니다. Hello 작업과의 hello 상태를 확인할 수 **Get AzureRmResourceGroupDeploymentOperation**합니다.
+2. 각 배포에는 여러 작업이 포함되어 있습니다. 각 작업은 배포 프로세스의 단계를 나타냅니다. 배포에서 무엇이 잘못 되었는지 검색하려면 일반적으로 배포 작업에 대한 세부 정보를 확인해야 합니다. **Get-AzureRmResourceGroupDeploymentOperation**을 사용하여 작업의 상태를 확인할 수 있습니다.
 
   ```powershell 
   Get-AzureRmResourceGroupDeploymentOperation -ResourceGroupName ExampleGroup -DeploymentName vmDeployment
   ```
 
-    각 형식에 따라 hello에 여러 작업을 반환 합니다.
+    여러 작업이 각각 다음과 같은 형식으로 반환됩니다.
 
   ```powershell
   Id             : /subscriptions/{guid}/resourceGroups/ExampleGroup/providers/Microsoft.Resources/deployments/Microsoft.Template/operations/A3EB2DA598E0A780
@@ -85,13 +85,13 @@ toosee hello 배포 작업 단계를 수행 하는 hello를 사용 합니다.
                    serviceRequestId:0196828d-8559-4bf6-b6b8-8b9057cb0e23...}
   ```
 
-3. tooget 실패 한 작업에 대 한 자세한 내용은 사용 하는 작업에 대 한 hello 속성 검색 **실패** 상태입니다.
+3. 실패한 작업에 대한 자세한 정보를 얻으려면 상태가 **Failed** 인 작업에 대한 속성을 검색합니다.
 
   ```powershell
   (Get-AzureRmResourceGroupDeploymentOperation -DeploymentName Microsoft.Template -ResourceGroupName ExampleGroup).Properties | Where-Object ProvisioningState -eq Failed
   ```
    
-    실패 한 작업 형식에 따라 hello 각 하나씩 hello 모두 반환 됩니다.
+    모든 실패한 작업이 각각 다음과 같은 형식으로 반환됩니다.
 
   ```powershell
   provisioningOperation : Create
@@ -107,8 +107,8 @@ toosee hello 배포 작업 단계를 수행 하는 hello를 사용 합니다.
                           resourceType=Microsoft.Network/publicIPAddresses; resourceName=myPublicIP}
   ```
 
-    Hello serviceRequestId 및 hello 작업에 대 한 hello trackingId note 합니다. hello serviceRequestId 배포 기술 지원 tootroubleshoot 작업할 때 유용할 수 있습니다. 특정 작업에 다음 단계 toofocus hello hello trackingId을 사용 합니다.
-4. 특정 실패 한 작업에 다음 명령을 사용 하 여 hello의 tooget hello 상태 메시지:
+    작업의 serviceRequestId 및 trackingId를 확인하세요. serviceRequestId는 기술 지원과 함께 배포 문제를 해결할 때 유용할 수 있습니다. 특정 작업에 집중하기 위해 trackingId는 다음 단계에서 사용할 예정입니다.
+4. 특정 실패한 작업에 대한 상태 메시지를 얻으려면 다음 명령을 사용합니다.
 
   ```powershell
   ((Get-AzureRmResourceGroupDeploymentOperation -DeploymentName Microsoft.Template -ResourceGroupName ExampleGroup).Properties | Where-Object trackingId -eq f4ed72f8-4203-43dc-958a-15d041e8c233).StatusMessage.error
@@ -121,9 +121,9 @@ toosee hello 배포 작업 단계를 수행 하는 hello를 사용 합니다.
   ----           -------                                                                        -------
   DnsRecordInUse DNS record dns.westus.cloudapp.azure.com is already used by another public IP. {}
   ```
-4. Azure의 모든 배포 작업에는 요청 및 응답 콘텐츠가 포함됩니다. 콘텐츠를 요청 하는 hello는 보낸 사항 tooAzure 배포 하는 동안 (예를 들어 VM을 만드는 OS 디스크 및 기타 리소스). hello 응답 콘텐츠 배포 요청에서 다시 전송 될 Azure는 합니다. 배포 하는 동안 사용할 수 있습니다 **DeploymentDebugLogLevel** hello 요청 및/또는 응답 매개 변수의 toospecify hello 로그에 유지 됩니다. 
+4. Azure의 모든 배포 작업에는 요청 및 응답 콘텐츠가 포함됩니다. 요청 콘텐츠는 배포하는 동안 Azure에 보낸 콘텐츠입니다(예: VM, OS 디스크 및 기타 리소스). 응답 콘텐츠는 Azure가 배포 요청에서 다시 보낸 콘텐츠입니다. 배포하는 동안 **DeploymentDebugLogLevel** 매개 변수를 사용하여 요청 및/또는 응답을 로그에 보존하도록 지정할 수 있습니다. 
 
-  Hello 로그에서 해당 정보를 가져오고 hello 다음 PowerShell 명령을 사용 하 여 로컬로 저장 합니다.
+  로그에서 해당 정보를 가져오고 다음 PowerShell 명령을 사용하여 로컬에 저장합니다.
 
   ```powershell
   (Get-AzureRmResourceGroupDeploymentOperation -DeploymentName "TestDeployment" -ResourceGroupName "Test-RG").Properties.request | ConvertTo-Json |  Out-File -FilePath <PathToFile>
@@ -133,13 +133,13 @@ toosee hello 배포 작업 단계를 수행 하는 hello를 사용 합니다.
 
 ## <a name="azure-cli"></a>Azure CLI
 
-1. 가져오기 hello로 배포의 전반적인 상태를 hello **으로 azure 그룹 배포 쇼** 명령입니다.
+1. **azure group deployment show** 명령을 사용하여 배포의 전반적인 상태를 가져옵니다.
 
   ```azurecli
   azure group deployment show --resource-group ExampleGroup --name ExampleDeployment --json
   ```
   
-  값을 반환 하는 hello 중 하나는 hello **correlationId**합니다. 이 값은 사용 tootrack 관련 이벤트, 하며 수 할 때 도움이 작동 기술 지원 tootroubleshoot으로 배포 합니다.
+  반환되는 값 중 하나는 **correlationId**입니다. 이 값은 관련 이벤트를 추적하는 데 사용되며 기술 지원과 함께 배포 문제를 해결할 때 유용할 수 있습니다.
 
   ```azurecli
   "properties": {
@@ -147,7 +147,7 @@ toosee hello 배포 작업 단계를 수행 하는 hello를 사용 합니다.
     "correlationId": "4002062a-a506-4b5e-aaba-4147036b771a",
   ```
 
-2. 배포의 경우 toosee hello 작업을 사용 합니다.
+2. 배포의 작업을 보려면 다음을 사용합니다.
 
   ```azurecli
   azure group deployment operation list --resource-group ExampleGroup --name ExampleDeployment --json
@@ -155,13 +155,13 @@ toosee hello 배포 작업 단계를 수행 하는 hello를 사용 합니다.
 
 ## <a name="rest"></a>REST (영문)
 
-1. Hello로 배포 하는 방법에 대 한 정보를 가져올 [템플릿 배포에 대 한 정보를 가져올](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_Get) 작업 합니다.
+1. [템플릿 배포에 대한 정보 가져오기](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_Get) 작업을 사용하여 배포에 대한 정보를 가져옵니다.
 
   ```http
   GET https://management.azure.com/subscriptions/{subscription-id}/resourcegroups/{resource-group-name}/providers/microsoft.resources/deployments/{deployment-name}?api-version={api-version}
   ```
 
-    Hello에 대 한 응답, 특히 눈여겨 hello **provisioningState**, **correlationId**, 및 **오류** 요소입니다. hello **correlationId** 사용 tootrack 관련 이벤트, 하며 수 할 때 도움이 작동 기술 지원 tootroubleshoot으로 배포 합니다.
+    응답에서 **provisioningState** , **correlationId** 및 **error** 요소에 특히 유의합니다. **correlationId** 는 관련 이벤트를 추적하는 데 사용되며 기술 지원과 함께 배포 문제를 해결할 때 유용할 수 있습니다.
 
   ```json
   { 
@@ -178,13 +178,13 @@ toosee hello 배포 작업 단계를 수행 하는 hello를 사용 합니다.
   }
   ```
 
-2. Hello 사용 하 여 배포 작업에 대 한 정보를 가져올 [모든 템플릿 배포 작업 나열](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_List) 작업 합니다. 
+2. [모든 템플릿 배포 작업 나열](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_List) 작업을 사용하여 배포 작업에 대한 정보를 가져오세요. 
 
   ```http
   GET https://management.azure.com/subscriptions/{subscription-id}/resourcegroups/{resource-group-name}/providers/microsoft.resources/deployments/{deployment-name}/operations?$skiptoken={skiptoken}&api-version={api-version}
   ```
    
-    hello에 지정 된 내용에 따라 요청 및/또는 응답 정보를 포함 하는 hello 응답 **debugSetting** 배포 중에 속성입니다.
+    응답에는 배포 중에 **debugSetting** 속성에 지정하는 설정을 기준으로 요청 및/또는 응답 정보가 포함됩니다.
 
   ```json
   {
@@ -213,7 +213,7 @@ toosee hello 배포 작업 단계를 수행 하는 hello를 사용 합니다.
 
 
 ## <a name="next-steps"></a>다음 단계
-* 특정 배포 오류를 확인 하는 데 도움이 필요 하면 참조 [리소스 tooAzure Azure 리소스 관리자를 배포할 때 일반적인 오류를 해결](resource-manager-common-deployment-errors.md)합니다.
-* toolearn hello 활동 사용에 대 한 로그 toomonitor 다른 유형의 작업에서 참조 [활동 보기 로그 toomanage Azure 리소스](resource-group-audit.md)합니다.
-* toovalidate를 실행 하기 전에 배포 참조 [Azure 리소스 관리자 템플릿 사용 하 여 리소스 그룹 배포](resource-group-template-deploy.md)합니다.
+* 특정 배포 오류에 대한 도움말은 [Azure Resource Manager를 사용하여 Azure에 리소스를 배포할 때 발생한 일반적인 오류 해결](resource-manager-common-deployment-errors.md)을 참조하세요.
+* 활동 로그를 사용하여 다른 유형의 작업을 모니터링하는 방법에 대해 알아보려면 [활동 로그를 보고 Azure 리소스 관리](resource-group-audit.md)를 참조하세요.
+* 실행하기 전에 배포의 유효성을 검사하려면 [Azure Resource Manager 템플릿을 사용하여 리소스 그룹 배포](resource-group-template-deploy.md)를 참조하세요.
 

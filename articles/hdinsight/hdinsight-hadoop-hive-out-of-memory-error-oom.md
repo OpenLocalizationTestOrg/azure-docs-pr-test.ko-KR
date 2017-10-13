@@ -1,6 +1,6 @@
 ---
-title: "메모리 부족 오류 Azure HDInsight의 Hive aaaFix | Microsoft Docs"
-description: "HDInsight에서 Hive 메모리 부족 오류를 수정합니다. hello 고객 시나리오는 많은 큰 테이블 간에 쿼리입니다."
+title: "Azure HDInsight에서 Hive 메모리 부족 오류 수정 | Microsoft Docs"
+description: "HDInsight에서 Hive 메모리 부족 오류를 수정합니다. 고객 시나리오는 많은 대형 테이블 간 쿼리입니다."
 keywords: "메모리 부족 오류, OOM, Hive 설정"
 services: hdinsight
 documentationcenter: 
@@ -16,15 +16,15 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/17/2017
 ms.author: jgao
-ms.openlocfilehash: 00a12969322c1e74434ba6593ffd098f342edd84
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: da1247070ade11f78b505524f5e970e18eb16d10
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="fix-a-hive-out-of-memory-error-in-azure-hdinsight"></a>Azure HDInsight에서 Hive 메모리 부족 오류 수정
 
-자세한 내용은 방법 toofix 메모리 부족 오류 하이브 하이브 메모리 설정을 구성 하 여 큰 테이블을 처리할 때.
+Hive 메모리 설정을 구성하여 큰 테이블을 처리할 때 Hive 메모리 부족 오류를 수정하는 방법에 대해 알아봅니다.
 
 ## <a name="run-hive-query-against-large-tables"></a>큰 테이블에서 Hive 쿼리 실행
 
@@ -48,16 +48,16 @@ ms.lasthandoff: 10/06/2017
 
 이 쿼리의 미묘한 차이는 다음과 같습니다.
 
-* T 1은 별칭 tooa 큰 테이블, TABLE1 많은 문자열 열 형식입니다.
+* T1은 큰 테이블 TABLE1에 대한 별칭이고 여기에는 많은 STRING 열 형식이 있습니다.
 * 다른 테이블은 크지는 않지만 많은 열을 포함합니다.
 * 모든 테이블은 서로 조인되며 TABLE1 및 기타 테이블의 여러 열과 조인되기도 합니다.
 
-hello 하이브 쿼리는 toofinish를 26 분 24 노드 A3 HDInsight 클러스터에 걸렸습니다. 경고 메시지에 따라 고객 알지 못하게 hello을 hello:
+Hive 쿼리를 완료하는 데는 24 노드 A3 HDInsight 클러스터에서 26분이 소요되었습니다. 고객은 다음과 같은 경고 메시지를 보게 됩니다.
 
     Warning: Map Join MAPJOIN[428][bigTable=?] in task 'Stage-21:MAPRED' is a cross product
     Warning: Shuffle Join JOIN[8][tables = [t1933775, t1932766]] in Stage 'Stage-4:MAPRED' is a cross product
 
-Hello Tez 실행 엔진을 사용 합니다. hello 동일한 쿼리를 15 분 동안 실행 하 고 다음 hello 다음 오류가 발생 했습니다.
+Tez 실행 엔진을 사용하여 동일한 쿼리가 15분만에 실행되었고 다음과 같은 오류가 발생합니다.
 
     Status: Failed
     Vertex failed, vertexName=Map 5, vertexId=vertex_1443634917922_0008_1_05, diagnostics=[Task failed, taskId=task_1443634917922_0008_1_05_000006, diagnostics=[TaskAttempt 0 failed, info=[Error: Failure while running task:java.lang.RuntimeException: java.lang.OutOfMemoryError: Java heap space
@@ -83,45 +83,45 @@ Hello Tez 실행 엔진을 사용 합니다. hello 동일한 쿼리를 15 분 �
         at java.lang.Thread.run(Thread.java:745)
     Caused by: java.lang.OutOfMemoryError: Java heap space
 
-hello 오류에는 더 큰 가상 컴퓨터 (예를 들어 D12)를 사용할 때 유지 됩니다.
+이 오류는 보다 큰 가상 컴퓨터를 사용할 때 유지됩니다(예: D12).
 
 
-## <a name="debug-hello-out-of-memory-error"></a>메모리 부족 오류 hello 디버그
+## <a name="debug-the-out-of-memory-error"></a>메모리 부족 오류 디버깅
 
-지원 하 고 엔지니어링 팀을 함께 hello 메모리 부족 오류를 일으키는 hello 문제 중 하나는 되었다는 걸 발견 한 [알려진 Apache JIRA hello에 설명 된 문제](https://issues.apache.org/jira/browse/HIVE-8306):
+당사의 지원 및 엔지니어링 팀은 메모리 부족 오류를 발생시킨 문제 중 하나가 [Apache JIRA에 설명된 알려진 문제](https://issues.apache.org/jira/browse/HIVE-8306)라는 것을 발견했습니다.
 
-    When hive.auto.convert.join.noconditionaltask = true we check noconditionaltask.size and if hello sum  of tables sizes in hello map join is less than noconditionaltask.size hello plan would generate a Map join, hello issue with this is that hello calculation doesnt take into account hello overhead introduced by different HashTable implementation as results if hello sum of input sizes is smaller than hello noconditionaltask size by a small margin queries will hit OOM.
+    When hive.auto.convert.join.noconditionaltask = true we check noconditionaltask.size and if the sum  of tables sizes in the map join is less than noconditionaltask.size the plan would generate a Map join, the issue with this is that the calculation doesnt take into account the overhead introduced by different HashTable implementation as results if the sum of input sizes is smaller than the noconditionaltask size by a small margin queries will hit OOM.
 
-hello **hive.auto.convert.join.noconditionaltask** hello hive-site.xml 파일 너무 설정 되었으며**true**:
+hive-site.xml 파일을 살펴보면 **hive.auto.convert.join.noconditionaltask**가 **true**로 설정되어 있습니다.
 
     <property>
         <name>hive.auto.convert.join.noconditionaltask</name>
         <value>true</value>
         <description>
-              Whether Hive enables hello optimization about converting common join into mapjoin based on hello input file size.
-              If this parameter is on, and hello sum of size for n-1 of hello tables/partitions for a n-way join is smaller than the
-              specified size, hello join is directly converted tooa mapjoin (there is no conditional task).
+              Whether Hive enables the optimization about converting common join into mapjoin based on the input file size.
+              If this parameter is on, and the sum of size for n-1 of the tables/partitions for a n-way join is smaller than the
+              specified size, the join is directly converted to a mapjoin (there is no conditional task).
         </description>
       </property>
 
-가능성이 맵 조인 원인은 hello hello Java 힙 공간이의 우리의 메모리 오류가 발생 합니다. Hello 블로그 게시물에 설명 된 대로 [HDInsight의 Hadoop Yarn 메모리 설정을](http://blogs.msdn.com/b/shanyu/archive/2014/07/31/hadoop-yarn-memory-settings-in-hdinsigh.aspx)실행 엔진은 사용 된 hello 사용 되는 힙 공간 Tez toohello Tez 컨테이너를 실제로 속해 있는 경우, 합니다. 다음 이미지 설명 하는 hello Tez 컨테이너 메모리 hello를 참조 하십시오.
+Map Join이 Java 힙 공간 메모리 부족 오류의 원인일 가능성이 있습니다. 블로그 게시물 [HDInsight에서 Hadoop Yarn 메모리 설정](http://blogs.msdn.com/b/shanyu/archive/2014/07/31/hadoop-yarn-memory-settings-in-hdinsigh.aspx)에 설명된 것처럼 Tez 실행 엔진을 사용할 때 사용된 힙 엔진은 실제로 Tez 컨테이너에 속합니다. Tez 컨테이너 메모리를 설명하는 다음 이미지를 참조하세요.
 
 ![Tez 컨테이너 메모리 다이어그램: Hive 메모리 부족 오류](./media/hdinsight-hadoop-hive-out-of-memory-error-oom/hive-out-of-memory-error-oom-tez-container-memory.png)
 
-다음 두 가지 메모리 설정을 hello hello 힙에 대 한 hello 컨테이너 메모리 정의 hello 블로그 게시물에서 알 수 있듯이: **hive.tez.container.size** 및 **hive.tez.java.opts**합니다. 경험에 따르면에서 메모리 부족 예외 hello가 아닙니다 hello 컨테이너 크기가 너무 작습니다. Java 힙 크기 (hive.tez.java.opts) hello 너무 작습니다.을 의미 합니다. 메모리 부족 나타날 때마다 tooincrease 시도할 수 있음 **hive.tez.java.opts**합니다. 필요한 경우 tooincrease 해야할 **hive.tez.container.size**합니다. hello **java.opts** 설정은 되어야 약 80%의 **container.size**합니다.
+블로그 게시물에서 알 수 있듯이 **hive.tez.container.size** 및 **hive.tez.java.opts**의 두 가지 메모리 설정이 힙의 컨테이너 메모리를 정의합니다. 경험에 따르면 메모리 부족 예외가 발생했다고 해서 컨테이너 크기가 너무 작은 것은 아닙니다. Java 힙 크기(hive.tez.java.opts)가 너무 작은 것입니다. 메모리 부족이 표시될 때마다 **hive.tez.java.opts**를 늘려볼 수 있습니다. 필요한 경우 **hive.tez.container.size**를 늘려야 할 수도 있습니다. **java.opts** 설정은 **container.size**의 80% 정도여야 합니다.
 
 > [!NOTE]
-> hello 설정을 **hive.tez.java.opts** 보다 항상 작아야 **hive.tez.container.size**합니다.
+> **hive.tez.java.opts** 설정은 항상 **hive.tez.container.size**보다 작아야 합니다.
 > 
 > 
 
-D12 컴퓨터에 28GB 메모리에 있으므로 우리 toouse 10GB (10240 MB)의 컨테이너 크기를 결정 하 고 할당 80 %toojava.opts:
+D12 컴퓨터에 28GB 메모리가 있으므로 10GB(10240MB)의 컨테이너 크기를 사용하고 java.opts에 80%를 할당하기로 했습니다.
 
     SET hive.tez.container.size=10240
     SET hive.tez.java.opts=-Xmx8192m
 
-Hello 새 설정을 사용 하 여 hello 쿼리 아래에서 10 분 후에 성공적으로 실행 했습니다.
+새로운 설정에 따라 쿼리는 10분 이내에 성공적으로 실행됩니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-OOM 오류가 반드시 의미 hello 컨테이너 크기가 너무 작습니다. 대신, hello 힙 크기 증가 하 고 hello 컨테이너 메모리 크기의 80% 이상 있도록 hello 메모리 설정을 구성 해야 합니다. Hive 쿼리 최적화는 [HDInsight에서 Hadoop에 대한 Hive 쿼리 최적화](hdinsight-hadoop-optimize-hive-query.md)를 참조하세요.
+OOM 오류가 발생했다고 해서 반드시 컨테이너 크기가 너무 작은 것은 아닙니다. 대신, 힙 크기가 컨테이너 메모리 크기의 80% 이상이 되도록 늘려서 메모리 설정을 구성해야 합니다. Hive 쿼리 최적화는 [HDInsight에서 Hadoop에 대한 Hive 쿼리 최적화](hdinsight-hadoop-optimize-hive-query.md)를 참조하세요.

@@ -1,6 +1,6 @@
 ---
-title: "Redis Cache에 웹 앱 aaaHow toocreate | Microsoft Docs"
-description: "자세한 내용은 방법 toocreate Redis Cache에 웹 앱"
+title: "Redis Cache를 사용하여 웹앱을 만드는 방법 | Microsoft 문서"
+description: "Redis Cache를 사용하여 웹앱을 만드는 방법 알아보기"
 services: redis-cache
 documentationcenter: 
 author: steved0x
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 05/09/2017
 ms.author: sdanie
-ms.openlocfilehash: d3e6df97b06fdf9032570dc360944be4bd7715de
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 21dc87b3e8c26bfbda36202b31b3b4d44be32179
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toocreate-a-web-app-with-redis-cache"></a>어떻게 toocreate Redis Cache에 웹 앱
+# <a name="how-to-create-a-web-app-with-redis-cache"></a>Redis Cache를 사용하여 웹앱을 만드는 방법
 > [!div class="op_single_selector"]
 > * [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
 > * [ASP.NET](cache-web-app-howto.md)
@@ -30,77 +30,77 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-이 자습서에서는 어떻게 toocreate Visual Studio 2017을 사용 하 여 Azure 앱 서비스에서 ASP.NET 웹 응용 프로그램 tooa 웹 앱 및 배포 합니다. hello 샘플 응용 프로그램 데이터베이스의 통계를 팀의 목록을 표시 하 고 다양 한 방법 toouse Azure Redis Cache toostore 보여주며, hello 캐시에서 데이터를 검색 합니다. Hello 자습서를 완료 하면 실행 중인 웹 응용 프로그램이 Azure에서 읽고 tooa 데이터베이스, Azure Redis Cache로 최적화 하 고 호스트 해야 합니다.
+이 자습서에서는 Visual Studio 2017을 사용하여 Azure App Service에서 ASP.NET 웹 응용 프로그램을 만들고 웹앱에 배포하는 방법을 보여 줍니다. 샘플 응용 프로그램은 데이터베이스에서 팀 통계 목록을 표시하고 Azure Redis Cache를 사용하여 캐시에서 데이터를 저장 및 검색하는 여러 가지 방법을 보여 줍니다. 이 자습서를 완료하면 Azure Redis Cache에 최적화되고 Azure에서 호스팅되며 데이터베이스에 읽고 쓰는 실행 웹앱을 갖게 됩니다.
 
 다음 내용을 배웁니다.
 
-* 어떻게 toocreate ASP.NET MVC 5는 Visual Studio에서 응용 프로그램 웹입니다.
-* 어떻게 tooaccess 데이터베이스의에서 데이터를 Entity Framework를 사용 합니다.
-* 어떻게 tooimprove 데이터 처리량 하 고 저장 하 고 Azure Redis Cache를 사용 하 여 데이터를 검색 하 여 데이터베이스 로드를 줄입니다.
-* Redis toouse 집합 tooretrieve hello 상위 5 팀 정렬 하는 방법.
-* 어떻게 tooprovision hello 리소스 관리자 템플릿을 사용 하 여 hello 응용 프로그램에 대 한 Azure 리소스입니다.
-* 어떻게 toopublish Visual Studio를 사용 하 여 응용 프로그램 tooAzure hello 합니다.
+* Visual Studio에서 ASP.NET MVC 5 웹 응용 프로그램을 만드는 방법.
+* Entity Framework를 사용하여 데이터베이스에서 데이터에 액세스하는 방법.
+* Azure Redis Cache를 사용하여 데이터를 저장 및 검색하여 데이터 처리 능력을 개선하고 데이터베이스 부하를 줄이는 방법.
+* Redis 정렬된 집합을 사용하여 상위 5개 팀을 검색하도록 설정하는 방법.
+* Resource Manager 템플릿을 사용하여 응용 프로그램에 대한 Azure 리소스를 프로비전하는 방법.
+* Visual Studio를 사용하여 응용 프로그램을 Azure에 게시하는 방법.
 
 ## <a name="prerequisites"></a>필수 조건
-toocomplete hello 자습서 hello 다음 필수 구성 요소가 있어야 합니다.
+자습서를 완료하려면 다음 필수 구성 요소가 있어야 합니다.
 
 * [Azure 계정](#azure-account)
-* [Azure SDK for.NET hello로 visual Studio 2017](#visual-studio-2017-with-the-azure-sdk-for-net)
+* [.NET용 Azure SDK 포함 Visual Studio 2017](#visual-studio-2017-with-the-azure-sdk-for-net)
 
 ### <a name="azure-account"></a>Azure 계정
-Azure 계정 toocomplete hello 자습서가 필요합니다. 다음을 수행할 수 있습니다.
+이 자습서를 완료하려면 Azure 계정이 있어야 합니다. 다음을 수행할 수 있습니다.
 
-* [Azure 계정을 무료로 개설할 수 있습니다](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero). Azure 서비스를 유료 아웃 사용된 tootry 일 수 있는 크레딧을 얻게. Hello 크레딧을 모두 사용 된 후에 hello 계정을 유지 하 고 무료 Azure 서비스 및 기능을 사용할 수 있습니다.
+* [Azure 계정을 무료로 개설할 수 있습니다](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero). 유료 Azure 서비스를 사용해볼 수 있는 크레딧을 받게 됩니다. 크레딧을 모두 사용한 후에도 계정을 유지하고 무료 Azure 서비스 및 기능을 사용할 수 있습니다.
 * [Visual Studio 구독자 혜택 활성화](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=redis_cache_hero) MSDN 구독은 유료 Azure 서비스에 사용할 수 있는 크레딧을 매달 제공합니다.
 
-### <a name="visual-studio-2017-with-hello-azure-sdk-for-net"></a>Azure SDK for.NET hello로 visual Studio 2017
-hello 자습서 용으로 작성 된 Visual Studio 2017 hello로 [Azure SDK for.NET](https://www.visualstudio.com/news/releasenotes/vs2017-relnotes#azuretools)합니다. Azure SDK 2.9.5 hello hello Visual Studio 설치 관리자 포함 되어 있습니다.
+### <a name="visual-studio-2017-with-the-azure-sdk-for-net"></a>.NET용 Azure SDK 포함 Visual Studio 2017
+자습서는 [Azure SDK for.NET](https://www.visualstudio.com/news/releasenotes/vs2017-relnotes#azuretools)이 포함된 Visual Studio 2017을 기준으로 작성되었습니다. Azure SDK 2.9.5에는 Visual Studio 설치 관리자가 포함되어 있습니다.
 
-Visual Studio 2015를가지고 있는 경우 참고할 수 hello로 hello 자습서 [Azure SDK for.NET](../dotnet-sdk.md) 2.8.2 이상. [다운로드 Visual Studio 2015 용 여기 최신 Azure SDK을 hello](http://go.microsoft.com/fwlink/?linkid=518003)합니다. Visual Studio는 아직 없는 경우 hello SDK로 자동으로 설치 됩니다. 일부 화면이이 자습서의 예제는 hello 나오는 그림에서 다르게 보일 수 있습니다.
+Visual Studio 2015가 설치된 경우 [Azure SDK for.NET](../dotnet-sdk.md) 2.8.2 이상을 포함한 자습서를 따를 수 있습니다. [여기서 Visual Studio 2015용 최신 Azure SDK를 다운로드](http://go.microsoft.com/fwlink/?linkid=518003)합니다. SDK가 없는 경우 Visual Studio는 SDK와 함께 자동으로 설치됩니다. 일부 화면이 이 자습서에 표시된 그림과 다르게 보일 수 있습니다.
 
-Visual Studio 2013를 설정한 경우 다음을 할 수 있습니다 [다운로드 Visual Studio 2013 용 최신 Azure SDK hello](http://go.microsoft.com/fwlink/?LinkID=324322)합니다. 일부 화면이이 자습서의 예제는 hello 나오는 그림에서 다르게 보일 수 있습니다.
+Visual Studio 2013이 있는 경우 [최신 Visual Studio 2013용 Azure SDK를 다운로드](http://go.microsoft.com/fwlink/?LinkID=324322)할 수 있습니다. 일부 화면이 이 자습서에 표시된 그림과 다르게 보일 수 있습니다.
 
-## <a name="create-hello-visual-studio-project"></a>Hello Visual Studio 프로젝트 만들기
+## <a name="create-the-visual-studio-project"></a>Visual Studio 프로젝트 만들기
 1. Visual Studio를 열고 **파일**, **새로 만들기**, **프로젝트**를 클릭합니다.
-2. Hello 확장 **Visual C#** hello에 대 한 노드 **템플릿** 목록에서 **클라우드**를 클릭 하 고 **ASP.NET 웹 응용 프로그램**합니다. **.NET Framework 4.5.2** 이상이 선택되었는지 확인합니다.  형식 **ContosoTeamStats** hello에 **이름** 텍스트 상자를 클릭 하 고 **확인**합니다.
+2. **템플릿** 목록에서 **Visual C#** 노드를 확장하고 **클라우드**를 선택한 다음 **ASP.NET 웹 응용 프로그램**을 클릭합니다. **.NET Framework 4.5.2** 이상이 선택되었는지 확인합니다.  **이름** 텍스트 상자에 **ContosoTeamStats**를 입력하고 **확인**을 클릭합니다.
    
     ![프로젝트 만들기][cache-create-project]
-3. 선택 **MVC** hello 프로젝트 형식을 합니다. 
+3. 프로젝트 유형으로 **MVC** 를 선택합니다. 
 
-    되도록 **인증 안 함** hello에 대 한 지정 된 **인증** 설정 합니다. Visual Studio의 버전을 따라 hello 기본 toosomething 다른 설정할 수 있습니다. toochange, 클릭 **인증 변경** 선택 **인증 안 함**합니다.
+    **인증** 설정에 **인증 없음**을 지정했는지 확인합니다. Visual Studio의 버전에 따라 다른 기본값을 설정할 수 있습니다. 변경하려면 **인증 변경**을 클릭하고 **인증 없음**을 선택합니다.
 
-    Hello의 선택을 취소 하는 경우 Visual Studio 2015와 함께, **hello 클라우드의 호스트에에서** 확인란을 선택 합니다. 살펴볼 [프로 비전 hello Azure 리소스](#provision-the-azure-resources) 및 [hello 응용 프로그램 tooAzure 게시](#publish-the-application-to-azure) hello 자습서의 이후 단계에서 합니다. 그대로 유지 되므로 Visual Studio에서 앱 서비스 웹 응용 프로그램을 프로 비전에 대 한 예제 **hello 클라우드의 호스트에에서** 참조 옵션을 선택 [Azure 앱 서비스에서 ASP.NET 및 Visual Studio를 사용 하 여 웹 응용 프로그램 시작](../app-service-web/app-service-web-get-started-dotnet.md)합니다.
+    Visual Studio 2015에서 수행하는 경우 **클라우드에서 호스트** 확인란을 선택 취소합니다. 자습서의 이후 단계에서는 [Azure 리소스를 프로비전](#provision-the-azure-resources)하고 [응용 프로그램을 Azure에 게시](#publish-the-application-to-azure)합니다. **클라우드에서 호스트** 를 선택된 채로 두고 Visual Studio에서 앱 서비스 웹앱을 프로비전하는 예제는 [ASP.NET 및 Visual Studio를 사용하여 Azure 앱 서비스에서 웹앱 시작하기](../app-service/app-service-web-get-started-dotnet.md)를 참조하세요.
    
     ![프로젝트 템플릿 선택][cache-select-template]
-4. 클릭 **확인** toocreate hello 프로젝트.
+4. **확인** 을 클릭하여 프로젝트를 만듭니다.
 
-## <a name="create-hello-aspnet-mvc-application"></a>Hello ASP.NET MVC 응용 프로그램 만들기
-Hello 자습서의이 섹션에서는 데이터베이스에서 팀 통계를 표시 하는 hello 기본 응용 프로그램을 만듭니다.
+## <a name="create-the-aspnet-mvc-application"></a>ASP.NET MVC 응용 프로그램 만들기
+자습서의 이 섹션에서는 데이터베이스에서 팀 통계를 읽고 표시하는 기본 응용 프로그램을 만듭니다.
 
-* [Hello Entity Framework NuGet 패키지를 추가 합니다.](#add-the-entity-framework-nuget-package)
-* [Hello 모델 추가](#add-the-model)
-* [Hello 컨트롤러 추가](#add-the-controller)
-* [Hello 보기 구성](#configure-the-views)
+* [Entity Framework NuGet 패키지 추가](#add-the-entity-framework-nuget-package)
+* [모델 추가](#add-the-model)
+* [컨트롤러 추가](#add-the-controller)
+* [보기 구성](#configure-the-views)
 
-### <a name="add-hello-entity-framework-nuget-package"></a>Hello Entity Framework NuGet 패키지를 추가 합니다.
+### <a name="add-the-entity-framework-nuget-package"></a>Entity Framework NuGet 패키지 추가
 
-1. 클릭 **NuGet 패키지 관리자**, **패키지 관리자 콘솔** hello에서 **도구** 메뉴.
-2. 실행 hello 다음 hello에서 명령을 **패키지 관리자 콘솔** 창.
+1. **도구** 메뉴에서 **NuGet 패키지 관리자**, **패키지 관리자 콘솔**을 차례로 클릭합니다.
+2. **패키지 관리자 콘솔** 창에서 다음 명령을 실행합니다.
     
     ```
     Install-Package EntityFramework
     ```
 
-이 패키지에 대 한 자세한 내용은 참조 hello [EntityFramework](https://www.nuget.org/packages/EntityFramework/) NuGet 페이지.
+이 패키지에 대한 자세한 내용은 [EntityFramework](https://www.nuget.org/packages/EntityFramework/) NuGet 페이지를 참조하세요.
 
-### <a name="add-hello-model"></a>Hello 모델 추가
+### <a name="add-the-model"></a>모델 추가
 1. **솔루션 탐색기**에서 **모델**을 마우스 오른쪽 단추로 클릭하고 **추가**, **클래스**를 선택합니다. 
    
     ![모델 추가][cache-model-add-class]
-2. 입력 `Team` hello 클래스 이름 및 클릭에 대 한 **추가**합니다.
+2. 클래스 이름으로 `Team` 을 입력하고 **추가**를 클릭합니다.
    
     ![모델 클래스 추가][cache-model-add-class-dialog]
-3. Hello 대체 `using` hello 위쪽 hello에 문을 `Team.cs` hello 다음과 같이 파일 `using` 문.
+3. `Team.cs` 파일의 위쪽에 있는 `using` 문을 다음 `using` 문으로 바꿉니다.
 
     ```c#
     using System;
@@ -110,7 +110,7 @@ Hello 자습서의이 섹션에서는 데이터베이스에서 팀 통계를 표
     ```
 
 
-1. Hello의 hello 정의 바꿉니다 `Team` 다음 업데이트 된 포함 된 코드 조각 hello 사용 하 여 클래스 `Team` 클래스 정의 뿐만 아니라 다른 Entity Framework 도우미 클래스입니다. Hello 코드 첫 번째 접근 방식 tooEntity이이 자습서에 사용 되는 프레임 워크에 대 한 자세한 내용은 참조 하십시오. [코드 첫 번째 tooa 새 데이터베이스](https://msdn.microsoft.com/data/jj193542)합니다.
+1. `Team` 클래스의 정의를 업데이트된 `Team` 클래스 정의뿐만 아니라 몇몇 다른 Entity Framework 도우미 클래스도 포함하고 있는 다음 코드 조각으로 바꿉니다. 이 자습서에 사용되는 Entity Framework에 대한 Code First 접근방식에 대한 자세한 내용은 [새 데이터베이스에 대한 Code First](https://msdn.microsoft.com/data/jj193542)를 참조하세요.
 
     ```c#
     public class Team
@@ -182,10 +182,10 @@ Hello 자습서의이 섹션에서는 데이터베이스에서 팀 통계를 표
     ```
 
 
-1. **솔루션 탐색기**를 두 번 클릭 **web.config** tooopen 것입니다.
+1. **솔루션 탐색기**에서 **web.config**를 두 번 클릭하여 엽니다.
    
     ![Web.config][cache-web-config]
-2. Hello 다음 추가 `connectionStrings` 섹션. hello 연결 문자열의 이름으로 hello hello는 Entity Framework 데이터베이스 컨텍스트 클래스의 hello 이름과 같아야 합니다. `TeamContext`합니다.
+2. 다음 `connectionStrings` 섹션을 추가합니다. 연결 문자열의 이름은 `TeamContext`인 Entity Framework 데이터베이스 컨텍스트 클래스의 이름과 일치해야 합니다.
 
     ```xml
     <connectionStrings>
@@ -193,7 +193,7 @@ Hello 자습서의이 섹션에서는 데이터베이스에서 팀 통계를 표
     </connectionStrings>
     ```
 
-    새 hello를 추가할 수 있습니다 `connectionStrings` 섹션 뒤에 오도록 `configSections`hello 다음 예제에에서 나온 것 처럼 합니다.
+    새 `connectionStrings` 섹션을 추가하여 다음 예제와 같이 `configSections` 뒤에 오도록 할 수 있습니다.
 
     ```xml
     <configuration>
@@ -208,23 +208,23 @@ Hello 자습서의이 섹션에서는 데이터베이스에서 팀 통계를 표
       ```
 
     > [!NOTE]
-    > 연결 문자열에는 Visual Studio의 hello 버전에 따라 다를 수 있습니다 및 SQL Server Express edition toocomplete hello 자습서를 사용 합니다. hello web.config 템플릿을 설치, 구성 된 toomatch 여야 하며 포함 될 수 있습니다 `Data Source` 항목 같은 `(LocalDB)\v11.0` (SQL Server Express 2012)에서 또는 `Data Source=(LocalDB)\MSSQLLocalDB` (SQL Server Express 2014에서 이상 버전). 연결 문자열 및 SQL Express 버전에 대한 자세한 내용은 [SQL Server 2016 Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-2016-express-localdb)를 참조하세요.
+    > 연결 문자열은 자습서를 작성하는 데 사용된 Visual Studio 및 SQL Server Express 버전에 따라 다를 수 있습니다. 설치에 맞게 Web.config 템플릿을 구성해야 하며 `(LocalDB)\v11.0`(SQL Server Express 2012에서) 또는 `Data Source=(LocalDB)\MSSQLLocalDB`(SQL Server Express 2014 이상에서)와 같은 `Data Source` 항목이 포함될 수 있습니다. 연결 문자열 및 SQL Express 버전에 대한 자세한 내용은 [SQL Server 2016 Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-2016-express-localdb)를 참조하세요.
 
-### <a name="add-hello-controller"></a>Hello 컨트롤러 추가
-1. 키를 눌러 **F6** toobuild hello 프로젝트. 
-2. **솔루션 탐색기**를 마우스 오른쪽 단추로 클릭 hello **컨트롤러** 폴더 선택 **추가**, **컨트롤러**합니다.
+### <a name="add-the-controller"></a>컨트롤러 추가
+1. **F6** 을 눌러 프로젝트를 빌드합니다. 
+2. **솔루션 탐색기**에서 **컨트롤러** 폴더를 마우스 오른쪽 단추로 클릭하고 **추가**, **컨트롤러**를 클릭합니다.
    
     ![컨트롤러 추가][cache-add-controller]
-3. **Entity Framework를 사용하여 보기가 포함된 MVC 5 컨트롤러**를 선택하고 **추가**를 클릭합니다. 클릭 한 후 오류가 발생 하는 경우 **추가**, hello 프로젝트를 먼저 작성 한을 확인 합니다.
+3. **Entity Framework를 사용하여 보기가 포함된 MVC 5 컨트롤러**를 선택하고 **추가**를 클릭합니다. **추가**를 클릭한 후 오류가 발생하면 먼저 프로젝트를 빌드했는지 확인합니다.
    
     ![컨트롤러 클래스 추가][cache-add-controller-class]
-4. 선택 **팀 (ContosoTeamStats.Models)** hello에서 **모델 클래스** 드롭 다운 목록입니다. 선택 **TeamContext (ContosoTeamStats.Models)** hello에서 **데이터 컨텍스트 클래스가** 드롭 다운 목록입니다. 형식 `TeamsController` hello에 **컨트롤러** 이름 텍스트 상자 (것 채워지지 않는 경우 자동으로). 클릭 **추가** toocreate 컨트롤러 클래스 hello 및 hello 기본 보기를 추가 합니다.
+4. **모델 클래스** 드롭다운 목록에서 **팀(ContosoTeamStats.Models)**을 선택합니다. **데이터 컨텍스트 클래스** 드롭다운 목록에서 **TeamContext(ContosoTeamStats.Models)**를 선택합니다. **컨트롤러** 이름 텍스트 상자에 `TeamsController`를 입력합니다(자동으로 채워지지 않은 경우). **추가** 를 클릭하여 컨트롤러 클래스를 만들고 기본 보기를 추가합니다.
    
     ![컨트롤러 구성][cache-configure-controller]
-5. **솔루션 탐색기**를 확장 하 고 **Global.asax** 두 번 클릭 하 고 **Global.asax.cs** tooopen 것입니다.
+5. **솔루션 탐색기**에서 **Global.asax**를 확장하고 **Global.asax.cs**를 두 번 클릭하여 엽니다.
    
     ![Global.asax.cs][cache-global-asax]
-6. Hello 다음 두 개의 추가 `using` hello hello 다른 파일의 hello 위쪽에서 문을 `using` 문.
+6. 파일의 위쪽에 있는 다음 두 `using` 문을 다른 `using` 문 아래에 추가합니다.
 
     ```c#
     using System.Data.Entity;
@@ -232,7 +232,7 @@ Hello 자습서의이 섹션에서는 데이터베이스에서 팀 통계를 표
     ```
 
 
-1. 다음 코드의 hello hello 끝에 줄을 hello 추가 `Application_Start` 메서드.
+1. 다음 코드 줄을 `Application_Start` 메서드의 끝에 추가합니다.
 
     ```c#
     Database.SetInitializer<TeamContext>(new TeamInitializer());
@@ -242,7 +242,7 @@ Hello 자습서의이 섹션에서는 데이터베이스에서 팀 통계를 표
 1. **솔루션 탐색기**에서 `App_Start`를 확장하고 `RouteConfig.cs`를 두 번 클릭합니다.
    
     ![RouteConfig.cs][cache-RouteConfig-cs]
-2. 대체 `controller = "Home"` hello hello에서 코드 다음에 `RegisterRoutes` 메서드 `controller = "Teams"` hello 다음 예제와 같이 합니다.
+2. 다음 예제와 같이 `RegisterRoutes` 메서드의 다음 코드에 있는 `controller = "Home"`을 `controller = "Teams"`로 바꿉니다.
 
     ```c#
     routes.MapRoute(
@@ -253,55 +253,55 @@ Hello 자습서의이 섹션에서는 데이터베이스에서 팀 통계를 표
     ```
 
 
-### <a name="configure-hello-views"></a>Hello 보기 구성
-1. **솔루션 탐색기**, hello 확장 **뷰** 폴더를 선택한 다음 hello **Shared** 폴더를 찾아 두 번 클릭 **_Layout.cshtml**합니다. 
+### <a name="configure-the-views"></a>보기 구성
+1. **솔루션 탐색기**에서 **보기** 폴더, **공유** 폴더를 차례로 확장하고 **_Layout.cshtml**를 두 번 클릭합니다. 
    
     ![_Layout.cshtml][cache-layout-cshtml]
-2. Hello의 hello 내용을 변경 `title` 요소 및 바꾸기 `My ASP.NET Application` 와 `Contoso Team Stats` hello 다음 예제와 같이 합니다.
+2. 다음 예제와 같이 `title` 요소의 내용을 변경하고 `My ASP.NET Application`을 `Contoso Team Stats`로 바꿉니다.
 
     ```html
     <title>@ViewBag.Title - Contoso Team Stats</title>
     ```
 
 
-1. Hello에 `body` 섹션에서 hello를 먼저 업데이트 `Html.ActionLink` 문과 바꾸기 `Application name` 와 `Contoso Team Stats` 바꾸고 `Home` 와 `Teams`합니다.
+1. `body` 섹션에서 첫 번째 `Html.ActionLink` 문을 업데이트하고 `Application name`을 `Contoso Team Stats`로 바꾸고 `Home`을 `Teams`로 바꿉니다.
    
    * 이전: `@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })`
    * 이후: `@Html.ActionLink("Contoso Team Stats", "Index", "Teams", new { area = "" }, new { @class = "navbar-brand" })`
      
      ![코드 변경 내용][cache-layout-cshtml-code]
-2. 키를 눌러 **Ctrl + f 5** hello 응용 프로그램 toobuild 및 실행 합니다. 이 버전의 hello 응용 프로그램 hello 데이터베이스에서 직접 hello 결과 읽습니다. 참고 hello **새로 만들기**, **편집**, **세부 정보**, 및 **삭제** 자동으로 된 동작은 hello 여 toohello 응용 프로그램을 추가 **Entity Framework를 사용 하 여 뷰를 포함 된 MVC 5 컨트롤러** 스 캐 폴드 합니다. Hello hello 자습서의 다음 섹션에서 Redis Cache toooptimize hello 데이터 액세스 및 추가 기능을 제공 toohello 응용 프로그램을 추가 합니다.
+2. **Ctrl+F5** 키를 눌러 응용 프로그램을 빌드 및 실행합니다. 이 버전의 응용 프로그램이 데이터베이스에서 직접 결과를 읽습니다. 참고로 **새로 만들기**, **편집**, **세부 정보** 및 **삭제** 작업은 응용 프로그램에 **Entity Framework를 사용하는 보기 포함 MVC 5 컨트롤러** 스캐폴드에 의해 자동으로 추가되었습니다. 자습서의 다음 섹션에서는 데이터 액세스를 최적화하고 응용 프로그램에 추가 기능을 제공하기 위해 Redis Cache를 추가합니다.
 
 ![시작 응용 프로그램][cache-starter-application]
 
-## <a name="configure-hello-application-toouse-redis-cache"></a>Hello 응용 프로그램 toouse Redis 캐시 구성
-Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 구성 및 Azure Redis Cache 인스턴스에서 hello를 사용 하 여 Contoso 팀 통계를 검색 합니다 [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis) 캐시 클라이언트입니다.
+## <a name="configure-the-application-to-use-redis-cache"></a>Redis Cache를 사용하도록 응용 프로그램 구성
+자습서의 이 섹션에서는 [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis) 캐시 클라이언트를 사용하여 Azure Redis Cache 인스턴스에서 Contoso 팀 통계를 저장 및 검색하도록 샘플 응용 프로그램을 구성합니다.
 
-* [Hello 응용 프로그램 toouse StackExchange.Redis 구성](#configure-the-application-to-use-stackexchangeredis)
-* [Hello TeamsController 클래스 tooreturn 결과 hello 캐시 또는 hello 데이터베이스에서 업데이트](#update-the-teamscontroller-class-to-return-results-from-the-cache-or-the-database)
-* [Hello 만들기, 편집, 업데이트 및 삭제 작업 hello 캐시와 toowork 메서드](#update-the-create-edit-and-delete-methods-to-work-with-the-cache)
-* [Hello 팀 인덱스 뷰 toowork hello 캐시 업데이트](#update-the-teams-index-view-to-work-with-the-cache)
+* [StackExchange.Redis를 사용하도록 응용 프로그램 구성](#configure-the-application-to-use-stackexchangeredis)
+* [캐시 또는 데이터베이스에서 결과를 반환하도록 TeamsController 클래스 업데이트](#update-the-teamscontroller-class-to-return-results-from-the-cache-or-the-database)
+* [캐시로 작업하도록 Create, Edit 및 Delete 메서드 업데이트](#update-the-create-edit-and-delete-methods-to-work-with-the-cache)
+* [캐시로 작업하도록 팀 인덱스 보기 업데이트](#update-the-teams-index-view-to-work-with-the-cache)
 
-### <a name="configure-hello-application-toouse-stackexchangeredis"></a>Hello 응용 프로그램 toouse StackExchange.Redis 구성
-1. tooconfigure hello StackExchange.Redis NuGet 패키지를 사용 하 여 Visual Studio에서 클라이언트 응용 프로그램 클릭 **NuGet 패키지 관리자**, **패키지 관리자 콘솔** hello에서 **도구** 메뉴.
-2. 실행 hello 다음 hello에서 명령을 `Package Manager Console` 창.
+### <a name="configure-the-application-to-use-stackexchangeredis"></a>StackExchange.Redis를 사용하도록 응용 프로그램 구성
+1. StackExchange.Redis NuGet 패키지를 사용하여 Visual Studio에서 클라이언트 응용 프로그램을 구성하려면 **도구** 메뉴에서 **NuGet 패키지 관리자**, **패키지 관리자 콘솔**을 클릭합니다.
+2. `Package Manager Console` 창에서 다음 명령을 실행합니다.
     
     ```
     Install-Package StackExchange.Redis
     ```
    
-    NuGet 패키지가 다운로드 되 고 추가 하는 hello hello hello StackExchange.Redis 캐시 클라이언트를 사용한 프로그램 클라이언트 응용 프로그램 tooaccess Azure Redis Cache에 대 한 어셈블리 참조가 필요 합니다. 강력한 이름의 버전의 hello toouse 것을 선호 하는 경우 `StackExchange.Redis` 클라이언트 라이브러리, 설치 hello `StackExchange.Redis.StrongName` 패키지 합니다.
-3. **솔루션 탐색기**, hello 확장 **컨트롤러** 폴더를 두 번 클릭 **TeamsController.cs** tooopen 것입니다.
+    NuGet 패키지는 클라이언트 응용 프로그램이 StackExchange.Redis 캐시 클라이언트를 사용하여 Azure Redis 캐시에 액세스하는 는 데 필요한 어셈블리 참조를 다운로드하고 추가합니다. 강력한 이름의 `StackExchange.Redis` 클라이언트 라이브러리 버전을 사용하려는 경우 `StackExchange.Redis.StrongName` 패키지를 설치합니다.
+3. **솔루션 탐색기**에서 **컨트롤러** 폴더를 확장하고 **TeamsController.cs**를 두 번 클릭하여 엽니다.
    
     ![팀 컨트롤러][cache-teamscontroller]
-4. 다음 두 개의 hello 추가 `using` 문을 너무**TeamsController.cs**합니다.
+4. **TeamsController.cs**에 다음 두 `using` 문을 추가합니다.
 
     ```c#   
     using System.Configuration;
     using StackExchange.Redis;
     ```
 
-5. 다음 두 개의 속성 toohello hello 추가 `TeamsController` 클래스입니다.
+5. `TeamsController` 클래스에 다음 두 속성을 추가합니다.
 
     ```c#   
     // Redis Connection string info
@@ -320,9 +320,9 @@ Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 
     }
     ```
 
-6. 라는 컴퓨터에서 파일을 만들 `WebAppPlusCacheAppSecrets.config` toocheck 결정 해야 샘플 응용 프로그램의 hello 소스 코드를 사용 하 여 체크지 않습니다 하는 위치에 배치 위치에서. 이 예제에서는 hello에 `AppSettingsSecrets.config` 파일은 `C:\AppSecrets\WebAppPlusCacheAppSecrets.config`합니다.
+6. 컴퓨터에 `WebAppPlusCacheAppSecrets.config` 라는 파일을 만들고 이 파일을 다른 위치에서 체크인하기로 결정한 경우 샘플 응용 프로그램의 소스 코드에서 체크인하지 않을 위치에 배치합니다. 이 예제에서 `AppSettingsSecrets.config` 파일은 `C:\AppSecrets\WebAppPlusCacheAppSecrets.config`에 위치합니다.
    
-    Hello 편집 `WebAppPlusCacheAppSecrets.config` 파일을 hello 다음 내용을 추가 합니다. Hello 응용 프로그램을 로컬로 실행 하는 경우이 정보는 사용 되는 tooconnect tooyour Azure Redis Cache 인스턴스입니다. Hello 자습서의 뒷부분에 나오는 Azure Redis 캐시 인스턴스를 프로 비전 하 고 hello 캐시 이름 및 암호를 업데이트 합니다. Toorun hello 샘플 응용 프로그램 않을 계획 이라면 로컬로이 파일의 hello 만들기를 건너뛸 수 있습니다 및 tooAzure hello 응용 프로그램을 배포 하는 경우 때문에 hello 파일을 참조 하는 hello 후속 단계 hello 응용 프로그램에서 연결 정보를 캐시 하는 hello 검색 이 파일에서가 아니라 및 hello 웹 앱에 대 한 설정입니다. Hello 이후 `WebAppPlusCacheAppSecrets.config` 배포 되지 않은 응용 프로그램과 함께 tooAzure, 필요 없는 toorun hello 응용 프로그램을 로컬 하려는 경우가 아니면 합니다.
+    `WebAppPlusCacheAppSecrets.config` 파일을 편집하여 다음 내용을 추가합니다. 응용 프로그램을 로컬로 실행하는 경우 이 정보는 Azure Redis Cache 인스턴스를 연결하는 데 사용됩니다. 이 자습서의 뒷부분에서는 Azure Redis Cache 인스턴스를 프로비전하고 캐시 이름 및 암호를 업데이트합니다. 샘플 응용 프로그램을 로컬로 실행할 계획이 아닌 경우, Azure에 배포할 때 응용 프로그램이 이 파일이 아닌 웹앱에 대한 앱 설정에서 캐시 연결 정보를 검색하므로 이 파일 만들기 및 해당 파일을 참조하는 이후 단계를 건너뛸 수 있습니다. `WebAppPlusCacheAppSecrets.config` 는 응용 프로그램과 함께Azure에 배포되지 않으므로 응용 프로그램을 로컬로 실행하려는 경우가 아니면 필요하지 않습니다.
 
     ```xml
     <appSettings>
@@ -331,32 +331,32 @@ Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 
     ```
 
 
-1. **솔루션 탐색기**를 두 번 클릭 **web.config** tooopen 것입니다.
+1. **솔루션 탐색기**에서 **web.config**를 두 번 클릭하여 엽니다.
    
     ![Web.config][cache-web-config]
-2. Hello 다음 추가 `file` toohello 특성 `appSettings` 요소입니다. 다른 파일 이름 또는 위치를 사용 하는 경우 hello 예제에 표시 된 것과 hello에 대 한 해당 값으로 대체 합니다.
+2. 다음 `file` 속성을 `appSettings` 요소에 추가합니다. 다른 파일 이름 또는 위치를 사용한 경우, 예제에 나타난 값을 해당 값으로 대체합니다.
    
    * 이전: `<appSettings>`
    * 이후: ` <appSettings file="C:\AppSecrets\WebAppPlusCacheAppSecrets.config">`
      
-   hello에서 hello 태그와 hello 외부 파일의 hello 내용을 병합 하는 hello ASP.NET 런타임 `<appSettings>` 요소입니다. hello 형식의 hello 지정 된 파일을 찾을 수 없는 경우 hello 파일 특성을 무시 합니다. 비밀 내용 (연결 문자열 tooyour 캐시 hello) hello 응용 프로그램에 대 한 hello 소스 코드의 일부분으로 포함 되지 않습니다. 웹 앱 tooAzure를 배포할 때 hello `WebAppPlusCacheAppSecrests.config` (즉, 대상) 파일을 배포 되지 않습니다. 여러 가지 방법으로 toospecify 이러한 암호 Azure이 고이 자습서에서 사용 하도록 구성 된 자동으로 있습니다 때 있습니다 [프로 비전 할 Azure 리소스 hello](#provision-the-azure-resources) 이후 자습서 단계에서 합니다. Azure에서 암호 사용에 대 한 자세한 내용은 참조 [암호 및 기타 중요 한 데이터 tooASP.NET 및 Azure 앱 서비스 배포에 대 한 유용한](http://www.asp.net/identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure)합니다.
+   ASP.NET 런타임은 외부 파일의 내용을 `<appSettings>` 요소의 태그와 병합합니다. 지정된 파일을 찾을 수 없는 경우 런타임에서 파일 특성을 무시합니다. 암호(캐시에 대한 연결 문자열)는 응용 프로그램에 대 한 소스 코드의 일부분으로 포함되지 않습니다. Azure에 웹앱을 배포하는 경우 `WebAppPlusCacheAppSecrests.config` 파일은 배포되지 않습니다(즉, 원하는 상태임). Azure에서 이러한 암호를 지정하는 여러 가지 방법이 있으며 이 자습서에서는 이후 단계에서 [Azure 리소스를 프로비전](#provision-the-azure-resources) 할 때 암호가 자동으로 구성됩니다. Azure에서 암호로 작업에 대한 자세한 내용은 [ASP.NET 및 Azure 앱 서비스에 암호 및 기타 중요한 데이터 배포를 위한 모범 사례](http://www.asp.net/identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure)를 참조하세요.
 
-### <a name="update-hello-teamscontroller-class-tooreturn-results-from-hello-cache-or-hello-database"></a>Hello TeamsController 클래스 tooreturn 결과 hello 캐시 또는 hello 데이터베이스에서 업데이트
-이 샘플에서는 팀 통계 또는 hello 캐시 hello 데이터베이스에서 검색할 수 있습니다. 팀 통계로 직렬화 된 hello 캐시에 저장 된 `List<Team>`, Redis 데이터 형식을 사용 하 여 정렬 된 집합으로도 합니다. 정렬된 집합에서 항목을 검색하는 경우 일부 또는 모두 검색하거나 특정 항목을 쿼리할 수 있습니다. 이 샘플에서 hello 상위 5 개 팀을 기준으로 wins의 수에 대 한 hello 정렬 된 집합을 쿼리할 수 있습니다.
+### <a name="update-the-teamscontroller-class-to-return-results-from-the-cache-or-the-database"></a>캐시 또는 데이터베이스에서 결과를 반환하도록 TeamsController 클래스 업데이트
+이 샘플에서는 데이터베이스 또는 캐시에서 팀 통계를 검색할 수 있습니다. 팀 통계는 직렬화된 `List<Team>`으로 캐시에 저장되며 Redis 데이터 유형을 사용하여 정렬된 집합으로도 저장됩니다. 정렬된 집합에서 항목을 검색하는 경우 일부 또는 모두 검색하거나 특정 항목을 쿼리할 수 있습니다. 이 샘플에서는 정렬된 집합에서 승리 횟수 순으로 상위 5개 팀을 쿼리합니다.
 
 > [!NOTE]
-> 순서 toouse Azure Redis Cache에에서 hello 캐시의 여러 형식에 필요한 toostore hello 팀 통계는 없습니다. 이 자습서에서는 여러 개의 형식 toodemonstrate 일부 hello 다양 한 방법 및 다른 데이터 형식의 toocache 데이터를 사용할 수 있습니다.
+> Azure Redis Cache를 사용하려는 경우 여러 형식의 팀 통계를 캐시에 저장할 필요가 없습니다. 이 자습서에서는 여러 형식을 사용하여 데이터를 캐시하는 데 사용할 수 있는 몇 가지 방법 및 여러 가지 데이터 형식을 보여 줍니다.
 > 
 > 
 
-1. Hello 다음 추가 `using` 문 toohello `TeamsController.cs` 다른 hello로 hello 위쪽 파일 `using` 문.
+1. 다음 `using` 문을 다른 `using` 문과 함께 위쪽의 `TeamsController.cs` 파일에 추가합니다.
 
     ```c#   
     using System.Diagnostics;
     using Newtonsoft.Json;
     ```
 
-2. Hello 현재 대체 `public ActionResult Index()` 구현을 다음 hello로 메서드를 구현 합니다.
+2. 현재 `public ActionResult Index()` 메서드 구현을 다음 구현으로 바꿉니다.
 
     ```c#
     // GET: Teams
@@ -370,16 +370,16 @@ Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 
                 PlayGames();
                 break;
 
-            case "clearCache": // Clear hello results from hello cache.
+            case "clearCache": // Clear the results from the cache.
                 ClearCachedTeams();
                 break;
 
-            case "rebuildDB": // Rebuild hello database with sample data.
+            case "rebuildDB": // Rebuild the database with sample data.
                 RebuildDB();
                 break;
         }
 
-        // Measure hello time it takes tooretrieve hello results.
+        // Measure the time it takes to retrieve the results.
         Stopwatch sw = Stopwatch.StartNew();
 
         switch(resultType)
@@ -388,15 +388,15 @@ Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 
                 teams = GetFromSortedSet();
                 break;
 
-            case "teamsSortedSetTop5": // Retrieve hello top 5 teams from hello sorted set.
+            case "teamsSortedSetTop5": // Retrieve the top 5 teams from the sorted set.
                 teams = GetFromSortedSetTop5();
                 break;
 
-            case "teamsList": // Retrieve teams from hello cached List<Team>.
+            case "teamsList": // Retrieve teams from the cached List<Team>.
                 teams = GetFromList();
                 break;
 
-            case "fromDB": // Retrieve results from hello database.
+            case "fromDB": // Retrieve results from the database.
             default:
                 teams = GetFromDB();
                 break;
@@ -405,7 +405,7 @@ Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 
         sw.Stop();
         double ms = sw.ElapsedTicks / (Stopwatch.Frequency / (1000.0));
 
-        // Add hello elapsed time of hello operation toohello ViewBag.msg.
+        // Add the elapsed time of the operation to the ViewBag.msg.
         ViewBag.msg += " MS: " + ms.ToString();
 
         return View(teams);
@@ -413,9 +413,9 @@ Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 
     ```
 
 
-1. 다음 세 가지 메서드 toohello hello 추가 `TeamsController` 클래스 tooimplement hello `playGames`, `clearCache`, 및 `rebuildDB` hello에서 동작 유형에 switch 문 hello 이전 코드 조각에 추가 합니다.
+1. 이전 코드 조각에 추가된 switch 문에서 `playGames`, `clearCache` 및 `rebuildDB` 작업을 구현하기 위해 다음 세 가지 메서드를 `TeamsController` 클래스에 추가합니다.
    
-    hello `PlayGames` 의 게임 시즌 시뮬레이션 하 여 hello 팀 통계를 업데이트 하는 메서드, 저장 결과 toohello 데이터베이스 hello 및 지웁니다 hello hello 캐시에서 데이터에 이제 오래 된 항목입니다.
+    `PlayGames` 메서드는 게임 시즌을 시뮬레이션하여 팀 통계를 업데이트하고 결과를 데이터베이스에 저장하고 이제 만료된 데이터를 캐시에서 지웁니다.
 
     ```c#
     void PlayGames()
@@ -434,13 +434,13 @@ Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 
     }
     ```
 
-    hello `RebuildDB` 메서드 다시 초기화 hello hello 기본 설정 된 데이터베이스를 팀,에 대 한 통계를 생성 하 고 지웁니다 hello hello 캐시에서 데이터에 이제 오래 된 항목입니다.
+    `RebuildDB` 메서드는 데이터베이스를 기본 팀 집합으로 다시 초기화하고 그에 대한 통계를 생성하고 이제 만료된 데이터를 캐시에서 지웁니다.
 
     ```c#
     void RebuildDB()
     {
         ViewBag.msg += "Rebuilding DB. ";
-        // Delete and re-initialize hello database with sample data.
+        // Delete and re-initialize the database with sample data.
         db.Database.Delete();
         db.Database.Initialize(true);
 
@@ -449,7 +449,7 @@ Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 
     }
     ```
 
-    hello `ClearCachedTeams` 메서드 hello 캐시에서 모든 캐시 된 팀 통계를 제거 합니다.
+    `ClearCachedTeams` 메서드는 캐시된 모든 팀 통계를 캐시에서 제거합니다.
 
     ```c#
     void ClearCachedTeams()
@@ -462,9 +462,9 @@ Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 
     ```
 
 
-1. 다음 네 가지 메서드가 toohello hello 추가 `TeamsController` 클래스 tooimplement hello hello 캐시 및 hello 데이터베이스에서 hello 팀 통계를 검색 하는 다양 한 방법입니다. 이러한 각 방법의 반환을 `List<Team>` hello 보기 하 여 다음 표시 되는 합니다.
+1. 캐시 및 데이터베이스에서 팀 통계를 검색하는 여러 가지 방법을 구현하기 위해 다음 네 가지 메서드를 `TeamsController` 클래스에 추가합니다. 이러한 각 메서드는 `List<Team>` 를 반환하며 이는 보기에 의해 표시됩니다.
    
-    hello `GetFromDB` 메서드 hello 데이터베이스에서 hello 팀 통계를 읽습니다.
+    `GetFromDB` 메서드는 팀 통계를 데이터베이스에서 읽습니다.
    
     ```c#
     List<Team> GetFromDB()
@@ -478,7 +478,7 @@ Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 
     }
     ```
 
-    hello `GetFromList` 메서드는 serialize 된으로 캐시에서 hello 팀 통계를 읽기 `List<Team>`합니다. 캐시 누락 이면 hello 팀 통계 hello 데이터베이스에서 읽은 업데이트 하 고에 hello 캐시에 저장 됩니다. 이 샘플에서 JSON.NET serialization tooserialize hello.NET 개체 tooand hello 캐시에서 사용 합니다. 자세한 내용은 참조 [toowork.NET과 함께 Azure Redis Cache에서 개체를 어떻게](cache-dotnet-how-to-use-azure-redis-cache.md#work-with-net-objects-in-the-cache)합니다.
+    `GetFromList` 메서드는 팀 통계를 직렬화된 `List<Team>`으로 캐시에서 읽습니다. 캐시 누락이 있는 경우 팀 통계를 데이터베이스에서 읽은 후 다음에 캐시에 저장합니다. 이 샘플에서는 JSON.NET 직렬화를 사용하여 .NET 개체를 캐시에 대해 직렬화합니다. 자세한 내용은 [Azure Redis Cache에서 .NET 개체로 작업하는 방법](cache-dotnet-how-to-use-azure-redis-cache.md#work-with-net-objects-in-the-cache)을 참조하세요.
 
     ```c#
     List<Team> GetFromList()
@@ -499,21 +499,21 @@ Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 
             // Get from database and store in cache
             teams = GetFromDB();
 
-            ViewBag.msg += "Storing results toocache. ";
+            ViewBag.msg += "Storing results to cache. ";
             cache.StringSet("teamsList", JsonConvert.SerializeObject(teams));
         }
         return teams;
     }
     ```
 
-    hello `GetFromSortedSet` 메서드는 캐시 된 정렬 된 집합에서 hello 팀 통계를 읽습니다. 캐시 누락 이면 hello 팀 통계 hello 데이터베이스에서 읽은 업데이트 하 고 정렬 된 집합으로 hello 캐시에 저장 됩니다.
+    `GetFromSortedSet` 메서드는 캐시된 정렬된 집합에서 팀 통계를 읽습니다. 캐시 누락이 있는 경우 팀 통계를 데이터베이스에서 읽은 후 정렬된 집합으로 캐시에 저장합니다.
 
     ```c#
     List<Team> GetFromSortedSet()
     {
         List<Team> teams = null;
         IDatabase cache = Connection.GetDatabase();
-        // If hello key teamsSortedSet is not present, this method returns a 0 length collection.
+        // If the key teamsSortedSet is not present, this method returns a 0 length collection.
         var teamsSortedSet = cache.SortedSetRangeByRankWithScores("teamsSortedSet", order: Order.Descending);
         if (teamsSortedSet.Count() > 0)
         {
@@ -532,10 +532,10 @@ Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 
             // Read from DB
             teams = GetFromDB();
 
-            ViewBag.msg += "Storing results toocache. ";
+            ViewBag.msg += "Storing results to cache. ";
             foreach (var t in teams)
             {
-                Console.WriteLine("Adding toosorted set: {0} - {1}", t.Name, t.Wins);
+                Console.WriteLine("Adding to sorted set: {0} - {1}", t.Name, t.Wins);
                 cache.SortedSetAdd("teamsSortedSet", JsonConvert.SerializeObject(t), t.Wins);
             }
         }
@@ -543,7 +543,7 @@ Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 
     }
     ```
 
-    hello `GetFromSortedSetTop5` 메서드 hello 상위 정렬 hello 캐시에서 5 팀 집합을 읽습니다. Hello 캐시 hello hello 있는지 여부를 확인 하 여 시작 `teamsSortedSet` 키입니다. 이 키가 있는 경우 hello `GetFromSortedSet` 메서드 tooread hello 팀 통계 라 하 고 hello 캐시에 저장 합니다. 다음으로 hello 캐시 된 정렬 된 집합이 쿼리 하는 hello 상위 5 팀 반환 되는 합니다.
+    `GetFromSortedSetTop5` 메서드는 캐시된 정렬된 집합에서 상위 5개 팀을 읽습니다. 먼저 캐시에서 `teamsSortedSet` 키의 유무를 확인합니다. 이 키가 없는 경우 `GetFromSortedSet` 메서드를 호출하여 팀 통계를 읽고 캐시에 저장합니다. 그런 다음 캐시된 정렬된 집합에 대해 반환된 상위 5개 팀을 쿼리합니다.
 
     ```c#
     List<Team> GetFromSortedSetTop5()
@@ -551,19 +551,19 @@ Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 
         List<Team> teams = null;
         IDatabase cache = Connection.GetDatabase();
 
-        // If hello key teamsSortedSet is not present, this method returns a 0 length collection.
+        // If the key teamsSortedSet is not present, this method returns a 0 length collection.
         var teamsSortedSet = cache.SortedSetRangeByRankWithScores("teamsSortedSet", stop: 4, order: Order.Descending);
         if(teamsSortedSet.Count() == 0)
         {
-            // Load hello entire sorted set into hello cache.
+            // Load the entire sorted set into the cache.
             GetFromSortedSet();
 
-            // Retrieve hello top 5 teams.
+            // Retrieve the top 5 teams.
             teamsSortedSet = cache.SortedSetRangeByRankWithScores("teamsSortedSet", stop: 4, order: Order.Descending);
         }
 
         ViewBag.msg += "Retrieving top 5 teams from cache. ";
-        // Get hello top 5 teams from hello sorted set
+        // Get the top 5 teams from the sorted set
         teams = new List<Team>();
         foreach (var team in teamsSortedSet)
         {
@@ -573,14 +573,14 @@ Hello 자습서의이 섹션에서는 샘플 응용 프로그램 toostore hello 
     }
     ```
 
-### <a name="update-hello-create-edit-and-delete-methods-toowork-with-hello-cache"></a>Hello 만들기, 편집, 업데이트 및 삭제 작업 hello 캐시와 toowork 메서드
-hello 스 캐 폴딩 생성 된 코드는이 샘플의 일부 메서드 tooadd 포함 되는 편집 및 팀을 삭제 합니다. 팀 추가, 편집 또는 제거할 때마다 hello 캐시의 hello 데이터가 오래 됨. 수정 하면서 간단한이 섹션에서는 이러한 세 가지 방법 tooclear hello 팀 캐시에 저장 되어 hello 캐시 hello 데이터베이스와 동기화 되지 않습니다.
+### <a name="update-the-create-edit-and-delete-methods-to-work-with-the-cache"></a>캐시로 작업하도록 Create, Edit 및 Delete 메서드 업데이트
+이 샘플의 일부로 생성된 스캐폴딩 코드는 팀을 추가, 편집 및 삭제하는 메서드를 포함하고 있습니다. 팀이 추가, 편집 또는 제거될 때마다 캐시의 데이터가 만료됩니다. 이 섹션에서는 캐시와 데이터베이스의 동기화가 해제되지 않도록 캐시된 팀을 지우도록 이러한 세 가지 메서드를 수정합니다.
 
-1. Toohello 찾아보기 `Create(Team team)` hello에 대 한 메서드 `TeamsController` 클래스입니다. 호출 toohello 추가 `ClearCachedTeams` 메서드를 다음 예제는 hello와 같이 합니다.
+1. `TeamsController` 클래스의 `Create(Team team)` 메서드를 찾아갑니다. 다음 예제와 같이 `ClearCachedTeams` 메서드 호출을 추가합니다.
 
     ```c#
     // POST: Teams/Create
-    // tooprotect from overposting attacks, please enable hello specific properties you want toobind to, for 
+    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -590,8 +590,8 @@ hello 스 캐 폴딩 생성 된 코드는이 샘플의 일부 메서드 tooadd �
         {
             db.Teams.Add(team);
             db.SaveChanges();
-            // When a team is added, hello cache is out of date.
-            // Clear hello cached teams.
+            // When a team is added, the cache is out of date.
+            // Clear the cached teams.
             ClearCachedTeams();
             return RedirectToAction("Index");
         }
@@ -601,11 +601,11 @@ hello 스 캐 폴딩 생성 된 코드는이 샘플의 일부 메서드 tooadd �
     ```
 
 
-1. Toohello 찾아보기 `Edit(Team team)` hello에 대 한 메서드 `TeamsController` 클래스입니다. 호출 toohello 추가 `ClearCachedTeams` 메서드를 다음 예제는 hello와 같이 합니다.
+1. `TeamsController` 클래스의 `Edit(Team team)` 메서드를 찾아갑니다. 다음 예제와 같이 `ClearCachedTeams` 메서드 호출을 추가합니다.
 
     ```c#
     // POST: Teams/Edit/5
-    // tooprotect from overposting attacks, please enable hello specific properties you want toobind to, for 
+    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -615,8 +615,8 @@ hello 스 캐 폴딩 생성 된 코드는이 샘플의 일부 메서드 tooadd �
         {
             db.Entry(team).State = EntityState.Modified;
             db.SaveChanges();
-            // When a team is edited, hello cache is out of date.
-            // Clear hello cached teams.
+            // When a team is edited, the cache is out of date.
+            // Clear the cached teams.
             ClearCachedTeams();
             return RedirectToAction("Index");
         }
@@ -625,7 +625,7 @@ hello 스 캐 폴딩 생성 된 코드는이 샘플의 일부 메서드 tooadd �
     ```
 
 
-1. Toohello 찾아보기 `DeleteConfirmed(int id)` hello에 대 한 메서드 `TeamsController` 클래스입니다. 호출 toohello 추가 `ClearCachedTeams` 메서드를 다음 예제는 hello와 같이 합니다.
+1. `TeamsController` 클래스의 `DeleteConfirmed(int id)` 메서드를 찾아갑니다. 다음 예제와 같이 `ClearCachedTeams` 메서드 호출을 추가합니다.
 
     ```c#
     // POST: Teams/Delete/5
@@ -636,23 +636,23 @@ hello 스 캐 폴딩 생성 된 코드는이 샘플의 일부 메서드 tooadd �
         Team team = db.Teams.Find(id);
         db.Teams.Remove(team);
         db.SaveChanges();
-        // When a team is deleted, hello cache is out of date.
-        // Clear hello cached teams.
+        // When a team is deleted, the cache is out of date.
+        // Clear the cached teams.
         ClearCachedTeams();
         return RedirectToAction("Index");
     }
     ```
 
 
-### <a name="update-hello-teams-index-view-toowork-with-hello-cache"></a>Hello 팀 인덱스 뷰 toowork hello 캐시 업데이트
-1. **솔루션 탐색기**, hello 확장 **뷰** hello 후 폴더를 **팀** 폴더를 찾아 두 번 클릭 **Index.cshtml**합니다.
+### <a name="update-the-teams-index-view-to-work-with-the-cache"></a>캐시로 작업하도록 팀 인덱스 보기 업데이트
+1. **솔루션 탐색기**에서 **보기** 폴더, **팀** 폴더를 차례로 확장한 다음 **Index.cshtml**을 두 번 클릭합니다.
    
     ![Index.cshtml][cache-views-teams-index-cshtml]
-2. Hello 파일의 hello 위쪽 단락 요소 다음에 오는 hello를 찾습니다.
+2. 파일의 위쪽 부근에서 다음 단락 요소를 찾습니다.
    
     ![작업 테이블][cache-teams-index-table]
    
-    이 hello 링크 toocreate 새 팀입니다. 다음 표에 hello hello 단락 요소를 바꿉니다. 이 테이블에는 게임, hello 캐시를 지워 새 시즌 재생 하는 새 팀을 만들기 위한 작업 링크, 다른 여러 형식으로 hello 캐시에서 hello 팀 검색, hello 팀 hello 데이터베이스에서 검색 및 다시 작성 hello 새 예제 데이터를 사용 하 여 데이터베이스입니다.
+    새 팀을 만들 수 있는 링크입니다. 단락 요소를 다음 테이블로 바꿉니다. 이 테이블에는 새 게임 시즌 실행, 캐시 지우기, 여러 형식의 캐시에서 팀 검색, 데이터베이스에서 팀 검색 및 새 샘플 데이터를 사용하여 데이터베이스 다시 빌드를 수행할 수 있는 작업 링크가 있습니다.
 
     ```html
     <table class="table">
@@ -686,125 +686,125 @@ hello 스 캐 폴딩 생성 된 코드는이 샘플의 일부 메서드 tooadd �
     ```
 
 
-1. Hello toohello 맨 아래로 스크롤 **Index.cshtml** 파일을 hello 다음 추가 `tr` 요소 hello 마지막 행 hello에 있도록 마지막 테이블에 hello 파일입니다.
+1. **Index.cshtml** 파일의 아래쪽으로 스크롤하고 다음 `tr` 요소를 파일의 마지막 테이블에서 마지막 행이 되도록 추가합니다.
    
     ```html
     <tr><td colspan="5">@ViewBag.Msg</td></tr>
     ```
    
-    이 행의 hello 값을 표시 `ViewBag.Msg` hello 현재 작업에 대 한 상태 보고서를 포함 합니다. hello `ViewBag.Msg` hello 이전 단계의 hello 작업 링크 중 하나를 클릭할 때 설정 됩니다.   
+    이 행은 현재 작업에 대한 상태 보고서를 포함하는 `ViewBag.Msg` 값을 표시합니다. `ViewBag.Msg`은 이전 단계에서 작업 링크를 클릭할 때 설정됩니다.   
    
     ![상태 메시지][cache-status-message]
-2. 키를 눌러 **F6** toobuild hello 프로젝트.
+2. **F6** 을 눌러 프로젝트를 빌드합니다.
 
-## <a name="provision-hello-azure-resources"></a>프로 비전 hello Azure 리소스
-toohost Azure에서 응용 프로그램을 먼저 프로 비전 해야 hello 응용 프로그램에 필요한 Azure 서비스입니다. 이 자습서에서는 샘플 응용 프로그램 hello Azure 서비스를 수행 하는 hello를 사용 합니다.
+## <a name="provision-the-azure-resources"></a>Azure 리소스를 프로비전
+응용 프로그램을 Azure에서 호스트하려면 먼저 응용 프로그램에 필요한 Azure 서비스를 프로비전해야 합니다. 이 자습서의 샘플 응용 프로그램에서는 다음 Azure 서비스를 사용합니다.
 
 * Azure Redis 캐시(영문)
 * 앱 서비스 웹앱
 * SQL 데이터베이스
 
-toodeploy 이러한 서비스 tooa 기존 또는 새 리소스 그룹을 선택한 다음 hello 클릭 **tooAzure 배포** 단추입니다.
+선택한 새 또는 기존 리소스 그룹에 이러한 서비스를 배포하려면 다음 **Azure에 배포** 단추를 클릭합니다.
 
-[! [TooAzure deploy] [deploybutton]](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-redis-cache-sql-database%2Fazuredeploy.json)
+[![Azure에 배포][deploybutton]](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-redis-cache-sql-database%2Fazuredeploy.json)
 
-이 **tooAzure 배포** 단추 hello를 사용 하 여 [웹 응용 프로그램와 Redis Cache, SQL 데이터베이스를 만들](https://github.com/Azure/azure-quickstart-templates/tree/master/201-web-app-redis-cache-sql-database) [Azure 빠른 시작](https://github.com/Azure/azure-quickstart-templates) 템플릿 tooprovision 이러한 서비스와 집합 hello Azure Redis Cache 연결 문자열 hello에 대 한 hello hello 및 SQL 데이터베이스 응용 프로그램 설정에 대 한 연결 문자열입니다.
+이 **Azure에 배포** 단추는 [Web App 및 Redis Cache 및 SQL Database 만들기](https://github.com/Azure/azure-quickstart-templates/tree/master/201-web-app-redis-cache-sql-database) [Azure 빠른 시작](https://github.com/Azure/azure-quickstart-templates) 템플릿을 사용하여 이러한 서비스를 프로비전하고 SQL Database에 대한 연결 문자열을 설정하고 Azure Redis Cache 연결 문자열에 대한 응용 프로그램 설정을 지정합니다.
 
 > [!NOTE]
 > Azure 계정이 없는 경우 몇 분 만에 [무료 계정을 만들](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero) 수 있습니다.
 > 
 > 
 
-클릭 하 여 hello **tooAzure 배포** 단추 toohello Azure 포털 사용 및 시작 hello hello 서식 파일에서 설명 하는 hello 리소스를 만드는 프로세스입니다.
+**Azure에 배포** 단추를 클릭하면 Azure 포털로 이동하며 템플릿에서 설명한 리소스 만들기 과정을 시작합니다.
 
-![TooAzure 배포][cache-deploy-to-azure-step-1]
+![Deploy to Azure][cache-deploy-to-azure-step-1]
 
-1. Hello에 **기본 사항** 섹션 hello Azure 구독 toouse 하 고 기존 리소스 그룹을 선택 하거나 새 대시보드를 만든 선택한 hello 리소스 그룹 위치를 지정 합니다.
-2. Hello에 **설정** 섹션에서 지정 된 **관리자 로그인** (사용 하지 마십시오 **관리자**), **관리자 로그인 암호**, 및  **데이터베이스 이름**합니다. hello 다른 매개 변수가 구성 되어 있는 무료 앱 서비스 계획과 무료 계층으로 오지 hello SQL 데이터베이스 및 Azure Redis Cache에 대 한 필요한 저렴 한 비용 옵션을 호스팅에 대 한 합니다.
+1. **기본 사항** 섹션에서 사용할 Azure 구독을 선택하고 기존 리소스 그룹을 선택하거나 새 리소스 그룹을 만들고 리소스 그룹 위치를 지정합니다.
+2. **설정** 섹션에서 **관리자 로그인**(**admin** 사용 안 함), **관리자 로그인 암호** 및 **데이터베이스 이름**을 지정합니다. 다른 매개 변수는 무료 앱 서비스 호스팅 계획을 위해 구성되며 더 낮은 비용 옵션은 SQL Database 및 무료 계층으로 제공되지 않는 Azure Redis Cache를 위해 구성됩니다.
 
-    ![TooAzure 배포][cache-deploy-to-azure-step-2]
+    ![Deploy to Azure][cache-deploy-to-azure-step-2]
 
-3. Hello 페이지, 읽기 hello 약관의 toohello 끝 스크롤하여 hello 확인 hello 필요한 설정을 구성한 후 **toohello 약관 위에서 설명한 동의** 확인란을 선택 합니다.
-4. hello 리소스를 프로 비전 toobegin, 클릭 **구매**합니다.
+3. 원하는 설정을 구성한 후 페이지 끝으로 스크롤하여 사용 약관을 읽고 **위에 명시된 사용 약관에 동의함** 확인란을 선택합니다.
+4. 리소스 프로비전을 시작하려면 **구매**를 클릭합니다.
 
-배포의 tooview hello 진행률 hello 알림 아이콘을 클릭 하 고 클릭 **배포 시작**합니다.
+배포의 진행률을 보려면 알림 아이콘을 클릭하고 **배포가 시작됨**을 클릭합니다.
 
 ![배포가 시작됨][cache-deployment-started]
 
-Hello에 배포의 hello 상태를 볼 수 있습니다 **Microsoft.Template** 블레이드입니다.
+**Microsoft.Template** 블레이드에서 배포의 상태를 볼 수 있습니다.
 
-![TooAzure 배포][cache-deploy-to-azure-step-3]
+![Azure에 배포][cache-deploy-to-azure-step-3]
 
-프로 비전 완료 되 면 Visual Studio에서 응용 프로그램 tooAzure 프로그램을 게시할 수 있습니다.
+프로비전이 완료되면 Visual Studio에서 Azure에 응용 프로그램을 게시할 수 있습니다.
 
 > [!NOTE]
-> Hello에 hello를 프로 비전 프로세스 중 발생할 수 있는 모든 오류가 표시 **Microsoft.Template** 블레이드입니다. 일반적인 오류는 너무 많은 SQL 서버 또는 구독에 따라 계획을 호스팅하는 너무 많은 무료 앱 서비스입니다. 모든 오류를 해결 하 고 클릭 하 여 hello 프로세스를 다시 시작 **재배포** hello에 **Microsoft.Template** 블레이드 나 hello **tooAzure 배포** 이 자습서에서는 단추입니다.
+> 프로비전 프로세스 중에 발생할 수 있는 오류는 **Microsoft.Template** 블레이드에 표시됩니다. 일반적인 오류는 너무 많은 SQL 서버 또는 구독에 따라 계획을 호스팅하는 너무 많은 무료 앱 서비스입니다. **Microsoft.Template** 블레이드의 **재배포** 또는 이 자습서의 **Azure에 배포** 단추를 클릭하여 오류를 해결하고 프로세스를 다시 시작합니다.
 > 
 > 
 
-## <a name="publish-hello-application-tooazure"></a>Hello 응용 프로그램 tooAzure 게시
-Hello 자습서의이 단계에서는 응용 프로그램 tooAzure hello를 게시 하 고 hello 클라우드에서 실행 합니다.
+## <a name="publish-the-application-to-azure"></a>응용 프로그램을 Azure에 게시
+자습서의 이 단계에서는 Azure에 응용 프로그램을 게시하고 클라우드에서 실행합니다.
 
-1. 마우스 오른쪽 단추로 클릭 hello **ContosoTeamStats** Visual Studio에서 프로젝트를 마우스 선택 **게시**합니다.
+1. Visual Studio에서 **ContosoTeamStats** 프로젝트를 마우스 오른쪽 단추로 클릭하고 **게시**를 선택합니다.
    
     ![게시][cache-publish-app]
 2. **Microsoft Azure App Service**를 클릭하고 **기존 항목 선택**을 선택한 다음 **게시**를 클릭합니다.
    
     ![게시][cache-publish-to-app-service]
-3. Hello 리소스를 포함 하는 hello 리소스 그룹을 확장 hello Azure 리소스를 작성 하 고 선택 hello 원하는 웹 응용 프로그램을 사용 하는 hello 구독을 선택 합니다. Hello를 사용 하는 경우 **tooAzure 배포** 웹 응용 프로그램 이름으로 시작 하는 단추 **웹 사이트** 뒤에 몇 가지 추가 문자가 있습니다.
+3. Azure 리소스를 만들 때 사용한 구독을 선택하고 리소스가 포함된 리소스 그룹을 확장하고 원하는 Web App을 선택합니다. **Azure에 배포** 단추를 사용한 경우 Web App 이름은 **webSite**로 시작하고 그 다음에 일부 추가 문자를 덧붙입니다.
    
     ![웹앱 선택][cache-select-web-app]
-4. 클릭 **확인** toobegin hello 게시 프로세스입니다. 몇 분 후 게시 프로세스는 hello 및 샘플 응용 프로그램을 실행 하는 hello로 브라우저 시작 합니다. 를 게시 하거나 유효성을 검사할 때 DNS 오류 hello로 프로 비전 프로세스에 대 한 hello hello 응용 프로그램에 대 한 Azure 리소스 최근에 완료 된, 잠시 기다렸다가 다시 시도 하십시오.
+4. **확인**을 클릭하여 게시 프로세스를 시작합니다. 잠시 후 게시 프로세스가 완료되며 실행 중인 샘플 응용 프로그램과 함께 브라우저가 시작됩니다. 유효성 검사 또는 게시를 수행할 때 DNS 오류가 발생하고 응용 프로그램에 대한 Azure 리소스의 프로비저 프로세스가 최근에 완료된 경우 잠시 기다렸다가 다시 시도하세요.
    
     ![캐시 추가됨][cache-added-to-application]
 
-hello 다음 설명 hello 샘플 응용 프로그램에서 각 작업 링크입니다.
+다음 테이블은 샘플 응용 프로그램에서 각 작업 링크를 설명합니다.
 
-| 동작 | 설명 |
+| 작업 | 설명 |
 | --- | --- |
 | 새로 만들기 |새 팀을 만듭니다. |
-| 시즌 재생 |게임, 업데이트 hello 팀 통계 시즌 재생 하 고 팀 데이터 hello 캐시에서 오래 된 모든 선택을 취소 합니다. |
-| 캐시 지우기 |Hello 캐시에서 지우기 hello 팀 통계입니다. |
-| 캐시에서 목록 |Hello 캐시에서 hello 팀 통계를 검색 합니다. 캐시 누락 이면 hello stats hello 데이터베이스에서 로드 하 고에 toohello 캐시를 저장 합니다. |
-| 캐시에서 정렬된 집합 |정렬된 된 집합을 사용 하 여 hello 캐시에서 hello 팀 통계를 검색 합니다. 캐시 누락 이면 hello 데이터베이스에서 hello 통계를 로드 하 고 정렬된 된 집합을 사용 하 여 toohello 캐시를 저장 합니다. |
-| 캐시에서 상위 5개 팀 |정렬된 된 집합을 사용 하 여 hello 캐시에서 hello 상위 5 개 팀을 검색 합니다. 캐시 누락 이면 hello 데이터베이스에서 hello 통계를 로드 하 고 정렬된 된 집합을 사용 하 여 toohello 캐시를 저장 합니다. |
-| DB에서 로드 |Hello 데이터베이스에서 hello 팀 통계를 검색 합니다. |
-| DB 다시 빌드 |Hello 데이터베이스를 다시 작성 하 고 샘플 팀 데이터로 다시 로드 합니다. |
+| 시즌 재생 |게임 시즌을 재생하고 팀 통계를 업데이트하고 만료된 팀 데이터를 캐시에서 지웁니다. |
+| 캐시 지우기 |캐시에서 팀 통계를 지웁니다. |
+| 캐시에서 목록 |캐시에서 팀 통계를 검색합니다. 캐시 누락이 있는 경우 데이터베이스에서 통계를 로드하고 다음에 캐시에 저장합니다. |
+| 캐시에서 정렬된 집합 |정렬된 집합을 사용하여 캐시에서 팀 통계를 검색합니다. 캐시 누락이 있는 경우 데이터베이스에서 통계를 로드하고 정렬된 집합을 사용하여 캐시에 저장합니다. |
+| 캐시에서 상위 5개 팀 |정렬된 집합을 사용하여 캐시에서 상위 5개 팀을 검색합니다. 캐시 누락이 있는 경우 데이터베이스에서 통계를 로드하고 정렬된 집합을 사용하여 캐시에 저장합니다. |
+| DB에서 로드 |데이터베이스에서 팀 통계를 검색합니다. |
+| DB 다시 빌드 |데이터베이스를 다시 빌드하고 샘플 팀 데이터와 함께 다시 로드합니다. |
 | 편집 / 세부 정보 / 삭제 |팀을 편집하고 팀에 대한 세부 정보를 보고 팀을 삭제합니다. |
 
-Hello 동작 중 일부를 클릭 하 고 실험 hello 서로 다른 원본의 hello 데이터를 검색 합니다. 하지: hello 시간이 toocomplete hello hello 데이터베이스와 hello 캐시에서 hello 데이터를 검색 하는 여러 가지의 hello 차이
+일부 작업을 클릭하고 다른 출처의 데이터 검색을 실험합니다. 데이터베이스 및 캐시에서 데이터를 검색하는 여러 방법을 완료하는 데 걸리는 시간 차이는 없습니다.
 
-## <a name="delete-hello-resources-when-you-are-finished-with-hello-application"></a>Hello 응용 프로그램을 사용 하 여 완료 하는 경우 hello 리소스를 삭제 합니다.
-Hello 예제 자습서 응용 프로그램으로 완료 되 면 Azure hello 삭제할 수 있습니다 순서 tooconserve 비용에 사용 되는 리소스 및 리소스. Hello를 사용 하는 경우 **tooAzure 배포** hello 단추 [프로 비전 hello Azure 리소스](#provision-the-azure-resources) 섹션과 모든 리소스 hello에 포함 된 동일한 리소스 그룹을 삭제할 수 있습니다 이러한 함께 하나 hello 리소스 그룹을 삭제 하 여 작업입니다.
+## <a name="delete-the-resources-when-you-are-finished-with-the-application"></a>응용 프로그램을 마쳤으면 리소스를 삭제합니다.
+샘플 자습서 응용 프로그램을 마쳤을 때 비용 및 리소스를 절감하기 위해 사용한 Azure 리소스를 삭제할 수 있습니다. **Azure 리소스** 섹션의 [Azure에 배포](#provision-the-azure-resources) 단추를 사용했고 모든 리소스를 같은 리소스 그룹에 포함시킨 경우 리소스 그룹을 삭제하여 한 번의 작업으로 이들을 모두 삭제할 수 있습니다.
 
-1. Toohello 로그인 [Azure 포털](https://portal.azure.com) 클릭 **리소스 그룹**합니다.
-2. Hello에 리소스 그룹의 유형 hello 이름을 **항목 필터링...**  텍스트 상자에 붙여넣습니다.
-3. 클릭 **중...**  toohello 리소스 그룹의 오른쪽입니다.
+1. [Azure 포털](https://portal.azure.com) 에 로그인하고 **리소스 그룹**을 클릭합니다.
+2. **항목 필터링...** 텍스트 상자에 리소스 그룹의 이름을 입력합니다.
+3. 리소스 그룹 오른쪽의 **...** 을 클릭합니다.
 4. **삭제**를 클릭합니다.
    
     ![삭제][cache-delete-resource-group]
-5. 리소스 그룹을 클릭 하 여의 형식 hello 이름을 **삭제**합니다.
+5. 리소스 그룹의 이름을 입력하고 **삭제**를 클릭합니다.
    
     ![삭제 확인][cache-delete-confirm]
 
-후 몇 분 정도의 hello 리소스 그룹 및 모든 포함 된 리소스가 삭제 됩니다.
+잠시 후 리소스 그룹 및 해당 그룹에 포함된 모든 리소스가 삭제됩니다.
 
 > [!IMPORTANT]
-> 리소스 그룹을 삭제 하면 되돌릴 수 없습니다는 하 고 있는 hello 리소스 그룹을 모든 hello 리소스가 영구적으로 삭제 됩니다. 삭제 하지 않는 실수로 hello 잘못 된 리소스 그룹 또는 리소스 있는지 확인 합니다. 이 예제는 기존 리소스 그룹의 내부 호스팅을 위한 hello 리소스를 만든 경우 각 해당 블레이드에서 개별적으로 각 리소스를 삭제할 수 있습니다.
+> 참고로 리소스 그룹 삭제는 취소할 수 없으며 해당 리소스 그룹 및 해당 그룹 안에 있는 모든 리소스는 영구적으로 삭제됩니다. 잘못된 리소스 그룹 또는 리소스를 자동으로 삭제하지 않도록 해야 합니다. 기존 리소스 그룹 내에 있는 이 샘플을 호스트하기 위한 리소스를 만든 경우 해당 블레이드에서 각 리소스를 개별적으로 삭제할 수 있습니다.
 > 
 > 
 
-## <a name="run-hello-sample-application-on-your-local-machine"></a>로컬 컴퓨터의 hello 샘플 응용 프로그램을 실행 합니다.
-Azure Redis Cache 필요한 컴퓨터에 로컬로 toorun hello 응용 프로그램 데이터는 toocache 인스턴스. 
+## <a name="run-the-sample-application-on-your-local-machine"></a>로컬 컴퓨터에서 샘플 응용 프로그램을 실행합니다.
+응용 프로그램을 로컬로 실행하려면 데이터를 캐시하는 Azure Redis Cache 인스턴스가 필요합니다. 
 
-* Hello 이전 섹션에 설명 된 대로 응용 프로그램 tooAzure에 게시 한 경우에 해당 단계에서 프로 비전 된 hello Azure Redis 캐시 인스턴스를 사용할 수 있습니다.
-* 기존 Azure Redis Cache의 다른 인스턴스를 설정한 경우 사용할 수 있습니다 해당 toorun이이 샘플 로컬로.
-* hello 단계를 수행 toocreate Azure Redis Cache 인스턴스 해야 할 경우 [캐시 만들기](cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache)합니다.
+* 이전 섹션에서 설명한 대로 응용 프로그램을 Azure에 게시한 경우 해당 단계에서 프로비전된 Azure Redis Cache 인스턴스를 사용할 수 있습니다.
+* 다른 기존 Azure Redis Cache 인스턴스가 있는 경우 해당 인스턴스를 사용하여 이 샘플을 로컬로 실행할 수 있습니다.
+* Azure Redis Cache 인스턴스를 만들어야 할 경우 [캐시 만들기](cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache)의 단계를 따를 수 있습니다.
 
-선택 하거나 hello 캐시 toouse 생성 되 면 hello Azure 포털에서에서 toohello 캐시 찾아 hello 검색 [호스트 이름](cache-configure.md#properties) 및 [액세스 키](cache-configure.md#access-keys) 캐시 합니다. 지침은 [Redis Cache 설정 구성](cache-configure.md#configure-redis-cache-settings)을 참조하세요.
+사용할 캐시를 선택하거나 만든 후 Azure Portal에서 캐시를 찾아가고 캐시에 대해 [호스트 이름](cache-configure.md#properties) 및 [선택키](cache-configure.md#access-keys)를 검색합니다. 지침은 [Redis Cache 설정 구성](cache-configure.md#configure-redis-cache-settings)을 참조하세요.
 
-1. 열기 hello `WebAppPlusCacheAppSecrets.config` hello 중에 만들어진 파일 [hello 응용 프로그램 toouse Redis 캐시 구성](#configure-the-application-to-use-redis-cache) hello 원하는 편집기를 사용 하 여이 자습서의 단계입니다.
-2. Hello 편집 `value` 특성 및 바꾸기 `MyCache.redis.cache.windows.net` hello로 [호스트 이름](cache-configure.md#properties) 캐시 hello 중 하나를 지정 하 고 [기본 또는 보조 키](cache-configure.md#access-keys) hello 암호와 캐시 합니다.
+1. 선택한 편집기를 사용하여 [Redis Cache를 사용하도록 응용 프로그램 구성](#configure-the-application-to-use-redis-cache) 단계 중에 만든 `WebAppPlusCacheAppSecrets.config` 파일을 엽니다.
+2. `value` 특성을 편집하고 `MyCache.redis.cache.windows.net`을 캐시의 [호스트 이름](cache-configure.md#properties)으로 바꾸고 캐시의 [기본 또는 보조 키](cache-configure.md#access-keys)를 암호로 지정합니다.
 
     ```xml
     <appSettings>
@@ -813,26 +813,26 @@ Azure Redis Cache 필요한 컴퓨터에 로컬로 toorun hello 응용 프로그
     ```
 
 
-1. 키를 눌러 **Ctrl + f 5** toorun hello 응용 프로그램입니다.
+1. **Ctrl+F5** 를 눌러 응용 프로그램을 실행합니다.
 
 > [!NOTE]
-> Hello 데이터베이스를 포함 하는 hello 응용 프로그램을 로컬로 실행 되 고 hello Redis Cache에서에서 호스팅되는 Azure hello 캐시는 toounder 나타날 수-hello 데이터베이스를 수행 합니다. 최상의 성능을 위해 클라이언트 응용 프로그램을 hello 및 Azure Redis Cache 인스턴스 hello에 있어야 합니다. 동일한 위치입니다. 
+> 데이터베이스를 비롯한 응용 프로그램이 로컬로 실행되고 Redis Cache가 Azure에서 호스트되기 때문에 캐시는 데이터베이스의 성능을 저하시키는 것처럼 나타날 수 있습니다. 최상의 성능을 위해 클라이언트 응용 프로그램 및 Azure Redis Cache 인스턴스가 동일한 위치에 있어야 합니다. 
 > 
 > 
 
 ## <a name="next-steps"></a>다음 단계
-* 에 대 한 자세한 내용은 [Getting Started with ASP.NET MVC 5](http://www.asp.net/mvc/overview/getting-started/introduction/getting-started) hello에 [ASP.NET](http://asp.net/) 사이트입니다.
-* 앱 서비스에서 ASP.NET 웹 응용 프로그램을 만드는의 더 많은 예제를 참조 하십시오. [만들기 및 Azure 앱 서비스에서 ASP.NET 웹 응용 프로그램 배포](https://github.com/Microsoft/HealthClinic.biz/wiki/Create-and-deploy-an-ASP.NET-web-app-in-Azure-App-Service) hello에서 [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 연결 [데모](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/).
-  * Hello HealthClinic.biz 데모에서 자세한 퀵 스타트를 참조 하십시오. [Azure 개발자 도구 퀵 스타트](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)합니다.
-* Hello에 대 한 자세한 [코드 첫 번째 tooa 새 데이터베이스](https://msdn.microsoft.com/data/jj193542) tooEntity이이 자습서에 사용 되는 프레임 워크에 접근 합니다.
-* [Azure 앱 서비스의 웹앱](../app-service-web/app-service-web-overview.md)에 더 자세히 알아봅니다.
-* 너무 방법에 대해 알아봅니다[모니터](cache-how-to-monitor.md) hello Azure 포털에서에서 캐시 합니다.
+* [ASP.NET](http://asp.net/) 사이트에서 [ASP.NET MVC 5로 시작](http://www.asp.net/mvc/overview/getting-started/introduction/getting-started)에 대해 더 자세히 알아봅니다.
+* 앱 서비스에서 ASP.NET 웹앱을 만드는 방법의 더 많은 예제는 [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 Connect [데모](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/)에서 [Azure App Service에서 ASP.NET 웹앱 만들기 및 배포](https://github.com/Microsoft/HealthClinic.biz/wiki/Create-and-deploy-an-ASP.NET-web-app-in-Azure-App-Service)를 참조하세요.
+  * HealthClinic.biz 데모에서 더 빠른 시작은 [Azure 개발자 도구 빠른 시작](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)을 참조하세요.
+* 이 자습서에 사용되는 Entity Framework에 대한 [새 데이터베이스에 Code First](https://msdn.microsoft.com/data/jj193542) 접근방식에 대해 더 자세히 알아봅니다.
+* [Azure 앱 서비스의 웹앱](../app-service/app-service-web-overview.md)에 더 자세히 알아봅니다.
+* Azure 포털에서 캐시를 [모니터링](cache-how-to-monitor.md) 하는 방법을 알아봅니다.
 * Azure Redis Cache 프리미엄 계층 탐색
   
-  * [어떻게 Premium Azure Redis Cache에 대 한 tooconfigure 지 속성](cache-how-to-premium-persistence.md)
-  * [어떻게 tooconfigure Premium Azure Redis Cache에 대 한 클러스터링](cache-how-to-premium-clustering.md)
-  * [프리미엄 Azure Redis Cache에 대 한 tooconfigure 가상 네트워크를 지 원하는 방법](cache-how-to-premium-vnet.md)
-  * Hello 참조 [Azure Redis 캐시 FAQ](cache-faq.md#what-redis-cache-offering-and-size-should-i-use) 크기, 처리량 및 프리미엄 캐시와 대역폭에 대 한 자세한 내용은 합니다.
+  * [프리미엄 Azure Redis Cache에 지속성을 구성하는 방법](cache-how-to-premium-persistence.md)
+  * [프리미엄 Azure Redis Cache에 클러스터링을 구성하는 방법](cache-how-to-premium-clustering.md)
+  * [프리미엄 Azure Redis Cache에 가상 네트워크 지원을 구성하는 방법](cache-how-to-premium-vnet.md)
+  * 프리미엄 캐시에서의 크기, 처리량 및 대역폭에 대한 자세한 내용은 [Azure Redis Cache FAQ](cache-faq.md#what-redis-cache-offering-and-size-should-i-use) 를 참조하세요.
 
 <!-- IMAGES -->
 [cache-starter-application]: ./media/cache-web-app-howto/cache-starter-application.png

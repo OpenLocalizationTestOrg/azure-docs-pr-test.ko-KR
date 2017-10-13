@@ -1,6 +1,6 @@
 ---
-title: "Azure 테이블 저장소에서 Ruby aaaHow toouse | Microsoft Docs"
-description: "Azure 테이블 저장소에는 NoSQL 데이터 저장소를 사용 하 여 hello 클라우드에서 구조화 된 데이터를 저장 합니다."
+title: "Ruby에서 Azure 테이블 저장소를 사용하는 방법 | Microsoft Docs"
+description: "Azure 테이블 저장소, NoSQL 데이터 저장소를 사용하여 클라우드에 구조화된 데이터를 저장합니다."
 services: cosmos-db
 documentationcenter: ruby
 author: mimig1
@@ -14,58 +14,58 @@ ms.devlang: ruby
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: mimig
-ms.openlocfilehash: 2f9eb5a9160b551d6d1d198869787070c402b1d4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 372bc89f75ad4730f0defbf9d6f9f041ae5ce1bf
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-azure-table-storage-from-ruby"></a>어떻게 toouse Ruby에서 Azure 테이블 저장소
+# <a name="how-to-use-azure-table-storage-from-ruby"></a>Ruby에서 Azure 테이블 저장소를 사용하는 방법
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
 [!INCLUDE [storage-table-cosmos-db-langsoon-tip-include](../../includes/storage-table-cosmos-db-langsoon-tip-include.md)]
 
 ## <a name="overview"></a>개요
-이 가이드에서는 tooperform 일반적인 시나리오를 사용 하 여 Azure 테이블 서비스 hello 하는 방법을 알아봅니다. hello 샘플 hello Ruby API를 사용 하 여 기록 됩니다. hello 가이드에서 다루는 시나리오 포함 **생성 하 고 테이블을 삭제, 삽입 및 테이블에서 엔터티를 쿼리**합니다.
+이 가이드에서는 Azure 테이블 서비스를 사용하여 일반 시나리오를 수행하는 방법을 설명합니다. 샘플은 Ruby API를 사용하여 작성되었습니다. **테이블 만들기 및 삭제, 테이블에서 엔터티 삽입 및 쿼리**등의 시나리오를 다룹니다.
 
 [!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-ruby-application"></a>Ruby 응용 프로그램 만들기
-어떻게 toocreate는 Ruby 응용 프로그램 참조 [Azure VM에서 레일 웹 응용 프로그램에 Ruby](../virtual-machines/linux/classic/virtual-machines-linux-classic-ruby-rails-web-app.md)합니다.
+Ruby 응용 프로그램을 만드는 방법에 대한 지침은 [Azure VM의 Ruby on Rails 웹 응용 프로그램](../virtual-machines/linux/classic/virtual-machines-linux-classic-ruby-rails-web-app.md)을 참조하세요.
 
-## <a name="configure-your-application-tooaccess-storage"></a>사용자 응용 프로그램 tooaccess 저장소 구성
-Azure 저장소 toouse toodownload 및 사용 하 여 hello hello 저장소 REST 서비스와 통신 하는 편리한 라이브러리의 집합을 포함 하는 Ruby azure 패키지 해야 합니다.
+## <a name="configure-your-application-to-access-storage"></a>저장소에 액세스하도록 응용 프로그램 구성
+Azure 저장소를 사용하려면 저장소 REST 서비스와 통신하는 편리한 라이브러리 집합이 포함된 Ruby Azure 패키지를 다운로드하여 사용해야 합니다.
 
-### <a name="use-rubygems-tooobtain-hello-package"></a>RubyGems tooobtain hello 패키지 사용
+### <a name="use-rubygems-to-obtain-the-package"></a>RubyGems를 사용하여 패키지 가져오기
 1. **PowerShell**(Windows), **Terminal**(Mac) 또는 **Bash**(Unix)와 같은 명령줄 인터페이스를 사용합니다.
-2. 형식 **보석 설치 azure** hello 명령 창 tooinstall hello 보석 및 종속성의 합니다.
+2. 명령 창에 **gem install azure** 를 입력하여 gem 및 종속성을 설치합니다.
 
-### <a name="import-hello-package"></a>Hello 패키지 가져오기
-원하는 텍스트 편집기를 사용 하 여 hello toohello hello toouse 저장소 이점을 얻을 수 Ruby 파일 맨 뒤를 추가 합니다.
+### <a name="import-the-package"></a>패키지 가져오기
+주로 사용하는 텍스트 편집기에서 저장소를 사용할 Ruby 파일의 맨 위에 다음을 추가합니다.
 
 ```ruby
 require "azure"
 ```
 
 ## <a name="set-up-an-azure-storage-connection"></a>Azure 저장소 연결 설정
-hello azure 모듈 읽힙니다 hello 환경 변수 **AZURE\_저장소\_계정** 및 **AZURE\_저장소\_액세스\_키**정보에 대 한 tooconnect tooyour Azure 저장소 계정이 필요 합니다. 사용 하기 전에 hello 계정 정보를 지정 해야 이러한 환경 변수가 설정 되지 않은 경우 **Azure::TableService** 코드 다음 hello로:
+Azure 모듈은 **AZURE\_STORAGE\_ACCOUNT** 및 **AZURE\_STORAGE\_ACCESS\_KEY** 환경 변수를 읽고 Azure Storage 계정에 연결하는 데 필요한 정보를 확인합니다. 이러한 환경 변수가 설정되지 않으면 **Azure::TableService** 를 사용하기 전에 다음 코드로 계정 정보를 지정해야 합니다.
 
 ```ruby
 Azure.config.storage_account_name = "<your azure storage account>"
 Azure.config.storage_access_key = "<your azure storage access key>"
 ```
 
-tooobtain hello Azure 포털에서에서 기존 또는 리소스 관리자 저장소에서 이러한 값 계정:
+Azure 포털의 클래식 또는 Resource Manager 저장소 계정에서 이러한 값을 가져오려면
 
-1. Toohello 로그인 [Azure 포털](https://portal.azure.com)합니다.
-2. Toouse 사용할 toohello 저장소 계정을 이동 합니다.
-3. Hello 오른쪽에 hello 설정 블레이드에서 클릭 **선택 키**합니다.
-4. 나타나는 hello 액세스 키 블레이드에서 hello 선택 키 1 및 2 선택 키 표시 됩니다. 이 둘 중 하나를 사용할 수 있습니다.
-5. Hello 아이콘 toocopy hello 키 toohello 클립보드로 복사를 클릭 합니다.
+1. [Azure 포털](https://portal.azure.com)에 로그인합니다.
+2. 사용하려는 저장소 계정으로 이동합니다.
+3. 오른쪽의 설정 블레이드에서 **액세스 키**를 클릭합니다.
+4. 나타나는 액세스 키 블레이드에 액세스 키 1 및 액세스 키 2가 표시되어 있습니다. 이 둘 중 하나를 사용할 수 있습니다.
+5. 복사 아이콘을 클릭하여 키를 클립보드에 복사합니다.
 
 ## <a name="create-a-table"></a>테이블 만들기
-hello **Azure::TableService** 개체 테이블 및 엔터티를 사용할 수 있습니다. toocreate 테이블을 사용 하 여 hello **만들\_table()** 메서드. hello 다음 예제에서는 테이블을 만들거나 인화 hello 오류가 있는 경우.
+**Azure::TableService** 개체를 통해 테이블 및 엔터티에 대한 작업을 할 수 있습니다. 테이블을 만들려면 **create\_table()** 메서드를 사용합니다. 다음 예제는 테이블을 만들거나 테이블이 있으면 오류를 출력합니다.
 
 ```ruby
 azure_table_service = Azure::TableService.new
@@ -76,8 +76,8 @@ rescue
 end
 ```
 
-## <a name="add-an-entity-tooa-table"></a>엔터티 tooa 테이블 추가
-먼저 tooadd 엔터티, 엔터티 속성을 정의 하는 해시 개체를 만듭니다. 모든 엔터티에 대해 **PartitionKey** 및 **RowKey**를 지정해야 합니다. 이러한는 hello를 엔터티의 고유 식별자 및 값이 다른 속성 보다 훨씬 빠르게 쿼리할 수 있는 합니다. Azure 저장소를 사용 하 여 **PartitionKey** tooautomatically 많은 저장소 노드를 통해 hello 테이블의 엔터티를 배포 합니다. 엔터티와 동일한 hello **PartitionKey** hello에 저장 된 동일한 노드. hello **RowKey** hello hello 엔터티에 속한 hello 파티션 내에서 고유 ID입니다.
+## <a name="add-an-entity-to-a-table"></a>테이블에 엔터티 추가
+엔터티를 추가하려면 먼저 엔터티 속성을 정의하는 해시 개체를 만듭니다. 모든 엔터티에 대해 **PartitionKey** 및 **RowKey**를 지정해야 합니다. 이 두 키는 엔터티의 고유한 식별자이며, 다른 속성보다 훨씬 더 빠르게 쿼리할 수 있는 값입니다. Azure 저장소는 **PartitionKey** 를 사용하여 여러 저장소 노드를 통해 테이블의 엔터티를 자동으로 분산합니다. **PartitionKey** 가 동일한 엔터티는 동일한 노드에 저장됩니다. **RowKey** 는 엔터티가 속하는 파티션 내에서 엔터티의 고유한 ID입니다.
 
 ```ruby
 entity = { "content" => "test entity",
@@ -86,14 +86,14 @@ azure_table_service.insert_entity("testtable", entity)
 ```
 
 ## <a name="update-an-entity"></a>엔터티 업데이트
-기존 엔터티는 여러 방법을 사용할 수 있는 tooupdate:
+다음과 같은 여러 메서드를 사용하여 기존 엔터티를 업데이트할 수 있습니다.
 
 * **update\_entity():** 기존 엔터티를 바꿔서 업데이트합니다.
-* **병합\_entity():** hello 기존 엔터티에 새 속성 값을 병합 하 여 기존 엔터티를 업데이트 합니다.
+* **merge\_entity():** 새 속성 값을 기존 엔터티에 병합하여 기존 엔터티를 업데이트합니다.
 * **insert\_or\_merge\_entity():** 기존 엔터티를 바꾸어서 업데이트합니다. 엔터티가 없는 경우 새 엔터티를 삽입합니다.
-* **삽입\_또는\_대체\_entity():** hello 기존 엔터티에 새 속성 값을 병합 하 여 기존 엔터티를 업데이트 합니다. 엔터티가 없는 경우 새 엔터티를 삽입합니다.
+* **insert\_or\_replace\_entity():** 새 속성 값을 기존 엔터티에 병합하여 기존 엔터티를 업데이트합니다. 엔터티가 없는 경우 새 엔터티를 삽입합니다.
 
-hello 다음 예제에서는 사용 하 여 엔터티 업데이트 **업데이트\_entity()**:
+다음 예제에서는 **update\_entity()**를 사용하여 엔터티를 업데이트하는 방법을 보여 줍니다.
 
 ```ruby
 entity = { "content" => "test entity with updated content",
@@ -101,10 +101,10 @@ entity = { "content" => "test entity with updated content",
 azure_table_service.update_entity("testtable", entity)
 ```
 
-와 **업데이트\_entity()** 및 **병합\_entity()**hello 업데이트 작업이 실패 hello 엔터티를 업데이트 하는 존재 하지 않는 경우, 합니다. 따라서 이미 존재 하는지 여부에 관계 없이 엔터티 toostore 하려는 경우 대신 사용 해야 **삽입\_또는\_대체\_entity()** 또는 **삽입\_또는 \_병합\_entity()**합니다.
+**update\_entity()** 및 **merge\_entity()**를 사용할 때 업데이트 중인 엔터티가 없는 경우 업데이트 작업이 실패합니다. 따라서 엔터티의 존재 여부에 상관없이 엔터티를 저장하려면 **insert\_or\_replace\_entity()** 또는 **insert\_or\_merge\_entity()**를 대신 사용해야 합니다.
 
 ## <a name="work-with-groups-of-entities"></a>엔터티 그룹 작업
-경우에 따라는 의미 toosubmit 여러 작업 함께 일괄 처리 tooensure에 원자성 hello 서버에서 처리 합니다. tooaccomplish를 먼저 만들어야는 **일괄 처리** 개체를 사용 하 여 hello **실행\_batch()** 메서드를 **TableService**합니다. hello 다음 예제에서는 RowKey 2를 가진 두 엔터티가 및 3 일괄 처리에 제출 엔터티에 대 한 작동 hello 동일한 PartitionKey만 유의 하십시오.
+서버에서 원자성 처리를 수행하도록 여러 작업을 일괄적으로 제출하는 것이 좋은 경우도 있습니다. 이렇게 하려면 먼저 **Batch** 개체를 만든 다음 **TableService**에서 **execute\_batch()** 메서드를 사용합니다. 다음 예제에서는 RowKey 2와 3을 가진 두 엔터티를 일괄 제출하는 방법을 보여 줍니다. 동일한 PartitionKey를 가진 엔터티에 대해서만 작동합니다.
 
 ```ruby
 azure_table_service = Azure::TableService.new
@@ -117,7 +117,7 @@ results = azure_table_service.execute_batch(batch)
 ```
 
 ## <a name="query-for-an-entity"></a>엔터티 쿼리
-테이블을 사용 하 여 hello의 엔터티에 tooquery **가져오기\_entity()** hello 테이블 이름을 전달 하 여 메서드를 **PartitionKey** 및 **RowKey**합니다.
+테이블에서 엔터티를 쿼리하려면 테이블 이름인 **PartitionKey** 및 **RowKey**를 전달하여 **get\_entity()** 메서드를 사용합니다.
 
 ```ruby
 result = azure_table_service.get_entity("testtable", "test-partition-key",
@@ -125,7 +125,7 @@ result = azure_table_service.get_entity("testtable", "test-partition-key",
 ```
 
 ## <a name="query-a-set-of-entities"></a>엔터티 집합 쿼리
-테이블의 엔터티 집합 tooquery 쿼리 해시 개체를 만들고 hello를 사용 하 여 **쿼리\_entities()** 메서드. hello 다음 예제에서는 모든 hello 엔터티 hello로 가져오는 동일한 **PartitionKey**:
+테이블에서 엔터티 집합을 쿼리하려면 쿼리 해시 개체를 만들고 **query\_entities()** 메서드를 사용합니다. 다음 예제에서는 동일한 **PartitionKey**를 가진 엔터티를 모두 가져오는 방법을 보여 줍니다.
 
 ```ruby
 query = { :filter => "PartitionKey eq 'test-partition-key'" }
@@ -133,12 +133,12 @@ result, token = azure_table_service.query_entities("testtable", query)
 ```
 
 > [!NOTE]
-> Hello 결과 집합에는 단일 쿼리 tooreturn에 비해 너무 큰 경우 연속 토큰이 반환 됩니다 사용할 수 있는 tooretrieve의 후속 페이지입니다.
+> 단일 쿼리에서 반환할 결과 집합이 너무 크면 후속 페이지를 가져오는 데 사용할 수 있는 연속 토큰이 반환됩니다.
 >
 >
 
 ## <a name="query-a-subset-of-entity-properties"></a>엔터티 속성 하위 집합 쿼리
-쿼리 tooa 테이블 엔터티의 몇 개의 속성을 검색할 수 있습니다. "프로젝션"이라고 하는 이 기술은 대역폭을 줄이며 특히 큰 엔터티에 대한 쿼리 성능을 향상시킬 수 있습니다. 사용 하 여 hello select 절 및 패스 hello 형태의 hello 원하는 toobring toohello 클라이언트를 통해 속성입니다.
+테이블 쿼리에서는 엔터티에서 일부 속성만 검색할 수 있습니다. "프로젝션"이라고 하는 이 기술은 대역폭을 줄이며 특히 큰 엔터티에 대한 쿼리 성능을 향상시킬 수 있습니다. select 절을 사용하고 가져올 속성의 이름을 클라이언트에 전달합니다.
 
 ```ruby
 query = { :filter => "PartitionKey eq 'test-partition-key'",
@@ -147,14 +147,14 @@ result, token = azure_table_service.query_entities("testtable", query)
 ```
 
 ## <a name="delete-an-entity"></a>엔터티 삭제
-toodelete 엔터티를 사용 하 여 hello **삭제\_entity()** 메서드. Toopass hello 엔터티, hello PartitionKey 및 RowKey hello 엔터티를 포함 하는 hello 테이블의 hello 이름에 필요 합니다.
+엔터티를 삭제하려면 **delete\_entity()** 메서드를 사용합니다. 엔터티, 엔터티의 PartitionKey 및 RowKey가 포함된 테이블의 이름을 전달해야 합니다.
 
 ```ruby
 azure_table_service.delete_entity("testtable", "test-partition-key", "1")
 ```
 
 ## <a name="delete-a-table"></a>테이블 삭제
-toodelete 테이블을 사용 하 여 hello **삭제\_table()** 메서드와의 hello 이름 전달 hello toodelete 테이블입니다.
+테이블을 삭제하려면 **delete\_table()** 메서드를 사용하고 삭제하려는 테이블의 이름을 전달합니다.
 
 ```ruby
 azure_table_service.delete_table("testtable")
@@ -162,6 +162,6 @@ azure_table_service.delete_table("testtable")
 
 ## <a name="next-steps"></a>다음 단계
 
-* [Microsoft Azure 저장소 탐색기](../vs-azure-tools-storage-manage-with-storage-explorer.md) toowork 시각적으로 Windows, macOS 등 및 Linux에서 Azure 저장소 데이터로 사용 하면 Microsoft에서 가능한 독립 실행형 앱입니다.
+* [Microsoft Azure Storage 탐색기](../vs-azure-tools-storage-manage-with-storage-explorer.md)는 Windows, MacOS 및 Linux에서 Azure Storage 데이터로 시각적으로 작업할 수 있도록 해주는 Microsoft의 독립 실행형 무료 앱입니다.
 * [Azure SDK for Ruby](http://github.com/WindowsAzure/azure-sdk-for-ruby) (영문) 리포지토리
 

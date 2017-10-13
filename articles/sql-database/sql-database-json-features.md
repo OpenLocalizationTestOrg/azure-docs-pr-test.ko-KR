@@ -1,6 +1,6 @@
 ---
-title: "SQL 데이터베이스 JSON 기능 aaaAzure | Microsoft Docs"
-description: "Azure SQL 데이터베이스 tooparse, 쿼리 및 개체 JSON (JavaScript Notation) 표기법의 데이터 형식 지정 하면 있습니다."
+title: "Azure SQL Database JSON 기능 | Microsoft Docs"
+description: "Azure SQL 데이터베이스에서는 JSON(JavaScript Object Notation) 표기법으로 데이터 구문 분석, 쿼리 및 서식 지정을 수행할 수 있습니다."
 services: sql-database
 documentationcenter: 
 author: jovanpop-msft
@@ -15,11 +15,11 @@ ms.author: jovanpop
 ms.workload: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
-ms.openlocfilehash: 30a31a1b01482ec276646b6fd6ca0c1f581168d4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 883e661107dd838f5c381cdef2c7f891b9a9389c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="getting-started-with-json-features-in-azure-sql-database"></a>Azure SQL 데이터베이스의 JSON 기능 시작
 Azure SQL 데이터베이스를 사용하면 [JSON](http://www.json.org/) (JavaScript Object Notation) 형식으로 표현된 데이터를 구문 분석 및 쿼리하고 관계형 데이터를 JSON 텍스트로 내보낼 수 있습니다.
@@ -29,16 +29,16 @@ JSON은 최신 웹 및 모바일 응용 프로그램에서 데이터를 교환�
 Azure SQL 데이터베이스를 사용하여 JSON 데이터를 쉽게 사용하고 데이터베이스를 최신 서비스와 통합할 수 있습니다.
 
 ## <a name="overview"></a>개요
-Azure SQL 데이터베이스 hello를 다음 JSON 데이터로 작업 하기 위한 기능을 제공 합니다.
+Azure SQL 데이터베이스는 JSON 데이터를 사용하기 위한 다음과 같은 함수를 제공합니다.
 
 ![JSON 함수](./media/sql-database-json-features/image_1.png)
 
-JSON 텍스트를 설정한 경우에 JSON에서 데이터를 추출 하거나 hello 기본 제공 함수를 사용 하 여 JSON 형식이 제대로 확인 수 있습니다 [JSON_VALUE](https://msdn.microsoft.com/library/dn921898.aspx), [JSON_QUERY](https://msdn.microsoft.com/library/dn921884.aspx), 및 [ISJSON](https://msdn.microsoft.com/library/dn921896.aspx) . hello [JSON_MODIFY](https://msdn.microsoft.com/library/dn921892.aspx) 함수는 JSON 텍스트 내의 값을 업데이트할 수 있습니다. 고급 쿼리 및 분석을 위해 [OPENJSON](https://msdn.microsoft.com/library/dn921885.aspx) 함수는 JSON 개체의 배열을 행 집합을 변환할 수 있습니다. 결과 집합을 반환 하는 hello에서 모든 SQL 쿼리를 실행할 수 있습니다. 마지막으로 관계형 테이블에 저장된 데이터의 형식을 JSON 텍스트로 지정할 수 있는 [FOR JSON](https://msdn.microsoft.com/library/dn921882.aspx) 절이 있습니다.
+JSON 텍스트가 있는 경우 JSON에서 데이터를 추출하거나 기본 제공 함수 [JSON_VALUE](https://msdn.microsoft.com/library/dn921898.aspx), [JSON_QUERY](https://msdn.microsoft.com/library/dn921884.aspx) 및 [ISJSON](https://msdn.microsoft.com/library/dn921896.aspx)을 사용하여 JSON 형식이 제대로 지정되었는지 확인할 수 있습니다. [JSON_MODIFY](https://msdn.microsoft.com/library/dn921892.aspx) 함수를 사용하면 JSON 텍스트 내의 값을 업데이트할 수 있습니다. 고급 쿼리 및 분석을 위해 [OPENJSON](https://msdn.microsoft.com/library/dn921885.aspx) 함수는 JSON 개체의 배열을 행 집합을 변환할 수 있습니다. 모든 SQL 쿼리는 반환된 결과 집합에서 실행할 수 있습니다. 마지막으로 관계형 테이블에 저장된 데이터의 형식을 JSON 텍스트로 지정할 수 있는 [FOR JSON](https://msdn.microsoft.com/library/dn921882.aspx) 절이 있습니다.
 
 ## <a name="formatting-relational-data-in-json-format"></a>관계형 데이터 형식을 JSON으로 지정
-웹 서비스는 hello 데이터베이스에서 데이터 계층 및 json에서 응답을 제공 형식으로 또는 JSON으로 서식이 지정 된 클라이언트 쪽 JavaScript 프레임 워크 또는 데이터를 허용 하는 라이브러리를 사용 하도록 설정한 경우 SQL 쿼리에서 직접 데이터베이스 콘텐츠를 JSON으로 서식을 지정할 수 있습니다. JSON으로 Azure SQL 데이터베이스의 결과 형식을 지정 하는 응용 프로그램 코드를 toowrite 하면 더 이상 일부 JSON serialization 라이브러리 tooconvert 테이블 형식 쿼리 결과 포함 하 고 tooJSON 형식 개체를 serialize 합니다. 대신, Azure SQL 데이터베이스에서 JSON으로 JSON 절 tooformat SQL 쿼리 결과 대 한 hello를 사용 하 고 응용 프로그램에서 직접 사용할 수 있습니다.
+데이터베이스 계층에서 데이터를 가져오고 JSON 형식으로 응답을 제공하는 웹 서비스 또는 JSON으로 형식이 지정된 데이터를 수락하는 클라이언트 쪽 JavaScript 프레임워크나 라이브러리가 있는 경우 SQL 쿼리에서 직접 데이터베이스 콘텐츠 형식을 JSON으로 지정할 수 있습니다. Azure SQL 데이터베이스의 결과 형식을 JSON으로 지정하는 응용 프로그램 코드를 작성하거나, 테이블 형식 쿼리 결과를 변환한 다음 개체를 JSON 형식으로 직렬화하는 JSON 직렬화 라이브러리를 더 이상 포함할 필요가 없습니다. 대신, FOR JSON 절을 사용하여 Azure SQL 데이터베이스에서 SQL 쿼리 결과의 형식을 JSON으로 지정한 후 응용 프로그램에서 직접 사용할 수 있습니다.
 
-다음 예제는 hello, hello Sales.Customer 테이블의 행은 JSON으로 hello FOR JSON 절을 사용 하 여 서식이 지정 된 됩니다.
+다음 예제에서 Sales.Customer 테이블의 행은 FOR JSON 절을 사용하여 JSON으로 형식이 지정됩니다.
 
 ```
 select CustomerName, PhoneNumber, FaxNumber
@@ -46,7 +46,7 @@ from Sales.Customers
 FOR JSON PATH
 ```
 
-hello FOR JSON PATH 절 형식을 JSON 텍스트로 hello hello 쿼리 결과 지정합니다. Hello 셀 값은 JSON 값으로 생성 되지만 열 이름이 키로 사용 됩니다.
+FOR JSON PATH 절은 쿼리의 결과 형식을 JSON 텍스트로 지정합니다. 열 이름은 키로 사용되지만 셀 값은 JSON 값으로 생성됩니다.
 
 ```
 [
@@ -56,9 +56,9 @@ hello FOR JSON PATH 절 형식을 JSON 텍스트로 hello hello 쿼리 결과 �
 ]
 ```
 
-hello 결과 집합은 각 행 별도 JSON 개체가 서식이 있는 JSON 배열로 서식이 지정 됩니다.
+각 행이 별도의 JSON 개체로 형식이 지정될 경우 결과 집합은 JSON 배열로 형식이 지정됩니다.
 
-경로가 나타냅니다 열 별칭의 점 표기법을 사용 하 여 JSON 결과의 hello 출력 형식을 사용자 지정할 수 있습니다. 다음 쿼리에서 hello hello 출력 JSON 형식으로 hello "CustomerName" 키의 hello 이름을 변경 하 고 hello "Contact" 하위 개체에 전화 및 팩스 번호:
+PATH는 열 별칭에 점 표기법을 사용하여 JSON 결과의 출력 형식을 사용자 지정할 수 있음을 나타냅니다. 다음 쿼리는 출력 JSON 형식에서 "CustomerName" 키의 이름을 변경하고 전화번호 및 팩스 번호를 "Contact" 하위 개체에 추가합니다.
 
 ```
 select CustomerName as Name, PhoneNumber as [Contact.Phone], FaxNumber as [Contact.Fax]
@@ -67,7 +67,7 @@ where CustomerID = 931
 FOR JSON PATH, WITHOUT_ARRAY_WRAPPER
 ```
 
-hello 출력이 쿼리는 다음과 같습니다.
+이 쿼리의 출력은 다음과 같습니다.
 
 ```
 {
@@ -79,9 +79,9 @@ hello 출력이 쿼리는 다음과 같습니다.
 }
 ```
 
-이 예제에서는 반환 배열 대신 단일 JSON 개체 hello를 지정 하 여 [WITHOUT_ARRAY_WRAPPER](https://msdn.microsoft.com/library/mt631354.aspx) 옵션입니다. 쿼리 결과로 단일 개체를 반환하는지 알고 있다면 이 옵션을 사용할 수 있습니다.
+이 예제에서는 [WITHOUT_ARRAY_WRAPPER](https://msdn.microsoft.com/library/mt631354.aspx) 옵션을 지정하여 배열 대신 단일 JSON 개체를 반환했습니다. 쿼리 결과로 단일 개체를 반환하는지 알고 있다면 이 옵션을 사용할 수 있습니다.
 
-hello 주의 hello FOR JSON 절은 중첩 된 JSON 개체 또는 배열 형식으로 지정 하 여 데이터베이스에서 복잡 한 계층적 데이터를 반환할 수 있도록 다음 예제 tooinclude 정렬 방법을 toohello 고객 주문 중첩 된 배열에 속해 있는 hello:
+FOR JSON 절의 주 값은 중첩된 JSON 개체 또는 배열로 형식이 지정된 데이터베이스에서 복잡한 계층적 데이터를 반환할 수 있도록 합니다. 다음 예제에서는 Customer에 속하는 Orders를 Orders의 중첩 배열로 포함하는 방법을 보여 줍니다.
 
 ```
 select CustomerName as Name, PhoneNumber as Phone, FaxNumber as Fax,
@@ -94,7 +94,7 @@ FOR JSON AUTO, WITHOUT_ARRAY_WRAPPER
 
 ```
 
-Hello 다음 샘플 출력 에서처럼 tooget 고객 데이터를 별도 쿼리 및 toofetch 관련된 주문 목록이, 보내는 대신 단일 쿼리를 사용 하 여 모든 hello 필요한 데이터를 얻을 수 있습니다.
+Customer 데이터를 가져온 다음 관련 Orders 목록을 인출하는 별도의 쿼리를 전송하는 대신, 다음 샘플 출력에 표시된 대로 단일 쿼리로 필요한 모든 데이터를 가져올 수 있습니다.
 
 ```
 {
@@ -110,7 +110,7 @@ Hello 다음 샘플 출력 에서처럼 tooget 고객 데이터를 별도 쿼리
 ```
 
 ## <a name="working-with-json-data"></a>JSON 데이터 작업
-없는 경우 엄격 하 게 구조화 된 데이터를 복잡 한 하위 개체, 배열 또는 계층적 데이터 또는 데이터 구조가 시간이 지남에 따라 발전 하는 경우 hello JSON 형식은 도와 toorepresent 경우 모든 복잡 한 데이터 구조입니다.
+엄격하게 구조화된 데이터가 없거나, 복잡한 하위 개체, 배열 또는 계층적 데이터가 있거나, 시간이 지나면서 데이터 구조가 변화할 경우 JSON 형식을 사용하면 복잡한 데이터 구조를 나타내는 데 도움이 될 수 있습니다.
 
 JSON은 Azure SQL 데이터베이스에서 다른 문자열 형식처럼 사용할 수 있는 텍스트 형식입니다. JSON 데이터를 표준 NVARCHAR로 전송하거나 저장할 수 있습니다.
 
@@ -128,18 +128,18 @@ AS BEGIN
 END
 ```
 
-이 예에서 사용 된 JSON 데이터 hello hello nvarchar (max) 형식을 사용 하 여 표시 됩니다. JSON이이 테이블에 삽입 여부 hello 다음 예제에에서 표시 된 대로 표준 TRANSACT-SQL 구문을 사용 하 여 hello 저장 프로시저의 인수로 제공 될 수 있습니다.
+이 예제에서 사용되는 JSON 데이터는 NVARCHAR(MAX) 형식을 사용하여 표시됩니다. JSON을 이 테이블에 삽입하거나, 다음 예제와 같이 표준 Transact-SQL 구문을 사용하여 저장 프로시저의 인수로 제공할 수 있습니다.
 
 ```
 EXEC InsertProduct 'Toy car', '{"Price":50,"Color":"White","tags":["toy","children","games"]}'
 ```
 
-Azure SQL 데이터베이스의 문자열 데이터를 사용하는 모든 클라이언트 쪽 언어 또는 라이브러리에서도 JSON 데이터를 사용할 수 있습니다. JSON은 메모리 액세스에 최적화 된 테이블 또는 시스템 버전 테이블 같은 hello NVARCHAR 형식을 지 원하는 모든 테이블에 저장할 수 있습니다. JSON은 hello 데이터베이스 계층 또는 hello 클라이언트 측 코드에는 제약 조건을 제공 하지는 않습니다.
+Azure SQL 데이터베이스의 문자열 데이터를 사용하는 모든 클라이언트 쪽 언어 또는 라이브러리에서도 JSON 데이터를 사용할 수 있습니다. JSON은 메모리 최적화 테이블 또는 시스템 버전 테이블같이 NVARCHAR 형식을 지원하는 모든 테이블에 저장할 수 있습니다. JSON을 사용할 경우 클라이언트 쪽 코드 또는 데이터베이스 계층에 어떤 제약도 적용되지 않습니다.
 
 ## <a name="querying-json-data"></a>JSON 데이터 쿼리
 Azure SQL 테이블에 저장된 JSON으로 형식이 지정된 데이터가 있는 경우 JSON 함수를 통해 SQL 쿼리에서 이 데이터를 사용할 수 있습니다.
 
-Azure SQL 데이터베이스에서 사용할 수 있는 JSON 함수는 JSON으로 형식이 지정된 데이터를 다른 SQL 데이터 형식처럼 처리할 수 있습니다. 쉽게 hello JSON 텍스트에서에서 값을 추출 하 고 JSON 데이터를 사용 하 여 모든 쿼리의 수 있습니다.:
+Azure SQL 데이터베이스에서 사용할 수 있는 JSON 함수는 JSON으로 형식이 지정된 데이터를 다른 SQL 데이터 형식처럼 처리할 수 있습니다. JSON 텍스트에서 쉽게 값을 추출하고 쿼리에서 JSON 데이터를 사용할 수 있습니다.
 
 ```
 select Id, Title, JSON_VALUE(Data, '$.Color'), JSON_QUERY(Data, '$.tags')
@@ -151,13 +151,13 @@ set Data = JSON_MODIFY(Data, '$.Price', 60)
 where Id = 1
 ```
 
-JSON_VALUE 함수 hello hello 데이터 열에 저장 된 JSON 텍스트에서 값을 추출 합니다. 이 함수는 JSON 텍스트 tooextract에서 JavaScript와 유사한 경로 tooreference 값을 사용합니다. SQL 쿼리의 모든 부분에서 추출 된 hello 값을 사용할 수 있습니다.
+JSON_VALUE 함수는 데이터 열에 저장된 JSON 텍스트의 값을 추출합니다. 이 함수는 JavaScript와 비슷한 경로를 사용하여 추출할 JSON 텍스트의 값을 참조합니다. 추출된 값은 SQL 쿼리의 모든 부분에서 사용할 수 있습니다.
 
-hello JSON_QUERY 함수는 비슷한 tooJSON_VALUE입니다. JSON_VALUE와 달리 이 함수는 JSON 텍스트에 배치된 배열 또는 개체와 같은 복잡한 하위 개체를 추출합니다.
+JSON_QUERY 함수는 JSON_VALUE와 비슷합니다. JSON_VALUE와 달리 이 함수는 JSON 텍스트에 배치된 배열 또는 개체와 같은 복잡한 하위 개체를 추출합니다.
 
-hello JSON_MODIFY 함수를 사용 하면 새 값을 이전과 hello 덮어쓰는 비롯 하 여 업데이트 해야 하는 hello JSON 텍스트에 hello 값의 hello 경로 지정할 수 있습니다. 이러한 방식으로 hello 전체 구조 다시 구문 분석 하지 않고 JSON 텍스트를 쉽게 업데이트할 수 있습니다.
+JSON_MODIFY 함수를 사용하여 이전 값을 덮어쓰는 새 값뿐만 아니라 업데이트해야 하는 JSON 텍스트의 값 경로를 지정할 수도 있습니다. 이러한 방식으로 전체 구조를 다시 구문 분석하지 않고 JSON 텍스트를 쉽게 업데이트할 수 있습니다.
 
-표준 텍스트, 저장 된 JSON은 이후 텍스트 열에 저장 된 hello 값 올바르게 서식 지정가 보장 되지 않습니다. JSON 열에 저장 된 텍스트 표준 Azure SQL 데이터베이스 check 제약 조건 및 hello ISJSON 함수를 사용 하 여 올바른 형식 인지를 확인할 수 있습니다.
+JSON은 표준 텍스트로 저장되므로 텍스트 열에 저장된 값의 형식이 올바를 것으로 보장할 수 없습니다. JSON 열에 저장된 텍스트는 표준 Azure SQL 데이터베이스 check 제약 조건 및 ISJSON 함수를 사용하여 올바르게 형식이 지정되었는지 확인할 수 있습니다.
 
 ```
 ALTER TABLE Products
@@ -165,18 +165,18 @@ ALTER TABLE Products
         CHECK (ISJSON(Data) > 0)
 ```
 
-Hello 입력된 텍스트 형식이 제대로 지정 하는 경우 JSON, hello ISJSON 함수 hello 값 1을 반환 합니다. JSON 열이 삽입되거나 업데이트될 때마다 이 제약 조건은 새 텍스트 값이 잘못된 형식의 JSON이 아닌지 확인합니다.
+입력 텍스트가 JSON으로 올바르게 형식이 지정되면 ISJSON 함수는 값 1을 반환합니다. JSON 열이 삽입되거나 업데이트될 때마다 이 제약 조건은 새 텍스트 값이 잘못된 형식의 JSON이 아닌지 확인합니다.
 
 ## <a name="transforming-json-into-tabular-format"></a>JSON을 테이블 형식으로 변환
 Azure SQL 데이터베이스에서는 JSON 컬렉션을 테이블 형식으로 변환하고 JSON 데이터를 로드 또는 쿼리할 수 있습니다.
 
-OPENJSON은 JSON 텍스트를 구문 분석 하는 JSON 개체 배열을 찾아서 hello hello 배열 요소를 반복 하 고 hello 배열의 각 요소에 대 한 hello 출력 결과에 하나의 행을 반환 하는 테이블 반환 함수입니다.
+OPENJSON은 JSON 텍스트를 구문 분석하고, JSON 개체의 배열을 찾고, 배열의 요소를 반복하고, 배열의 각 요소에 대한 출력 결과에 하나의 행을 반환하는 테이블 값 함수입니다.
 
 ![JSON 테이블 형식](./media/sql-database-json-features/image_2.png)
 
-여기서 toolocate hello hello $ (에서 열 수 있는 JSON 배열 지정할 수 있습니다 위의 hello 예제. 주문 경로),이로 인해 어떤 열 반환 해야 하 고 셀로 toofind hello JSON 값 반환 되는 경우.
+위의 예에서 열려야 하는 JSON 배열을 찾을 위치($.Orders 경로), 결과로 반환해야 하는 열 및 셀로 반환될 JSON 값을 찾을 위치를 지정할 수 있습니다.
 
-Hello 사용 하 여 JSON 배열의 변환 수 @orders 변수 행 집합으로이 결과 집합을 분석 하거나 표준 테이블에 행을 삽입 합니다.
+@orders 변수의 JSON 배열을 행 집합으로 변환하거나 이 결과 집합을 분석하거나, 행을 표준 테이블에 삽입할 수 있습니다.
 
 ```
 CREATE PROCEDURE InsertOrders(@orders nvarchar(max))
@@ -194,14 +194,14 @@ AS BEGIN
 
 END
 ```
-JSON 배열로 포맷 하 고 매개 변수 toohello 저장 프로시저를 구문 분석 하 고 hello Orders 테이블에 삽입할 수 있는 그대로 제공 하는 hello 모음 주문입니다.
+JSON 배열로 형식이 지정되고 저장 프로시저에 대한 매개 변수로 제공되는 주문 컬렉션은 구문 분석된 후 Orders 테이블에 삽입될 수 있습니다.
 
 ## <a name="next-steps"></a>다음 단계
-toolearn toointegrate JSON 응용 프로그램에 이러한 리소스를 확인 하는 방법:
+JSON을 응용 프로그램에 통합하는 방법을 알아보려면 다음 리소스를 참조하세요.
 
 * [TechNet 블로그](https://blogs.technet.microsoft.com/dataplatforminsider/2016/01/05/json-in-sql-server-2016-part-1-of-4/)
 * [MSDN 설명서](https://msdn.microsoft.com/library/dn921897.aspx)
 * [Channel 9 비디오](https://channel9.msdn.com/Shows/Data-Exposed/SQL-Server-2016-and-JSON-Support)
 
-toolearn JSON 응용 프로그램에 통합 하기 위한 다양 한 시나리오에 대 한 참조이 hello 데모 [Channel 9 비디오](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/JSON-as-a-bridge-betwen-NoSQL-and-relational-worlds) 프로그램 사용 사례에 일치 하는 시나리오 찾기 또는 [JSON 블로그 게시물](http://blogs.msdn.com/b/sqlserverstorageengine/archive/tags/json/)합니다.
+JSON을 응용 프로그램에 통합하는 다양한 시나리오에 대해 알아보려면 이 [Channel 9 비디오](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/JSON-as-a-bridge-betwen-NoSQL-and-relational-worlds)에서 데모를 참조하거나 [JSON 블로그 게시물](http://blogs.msdn.com/b/sqlserverstorageengine/archive/tags/json/)에서 사용 사례와 일치하는 시나리오 찾아보세요.
 

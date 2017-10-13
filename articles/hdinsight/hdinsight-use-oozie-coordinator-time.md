@@ -1,6 +1,6 @@
 ---
-title: "aaaUse HDInsight의 Hadoop Oozie 코디네이터 시간 기반 | Microsoft Docs"
-description: "빅데이터 서비스인 HDInsight에서 시간 기준 Hadoop Oozie 코디네이터를 사용하는 방법을 알아봅니다. 자세한 방법을 toodefine Oozie 워크플로 및 코디네이터 및 작업을 제출 합니다."
+title: "HDInsight에서 시간 기준 Hadoop Oozie 코디네이터 사용 | Microsoft Docs"
+description: "빅데이터 서비스인 HDInsight에서 시간 기준 Hadoop Oozie 코디네이터를 사용하는 방법을 알아봅니다. 또한 Oozie 워크플로와 코디네이터를 정의하고 작업을 제출하는 방법도 알아봅니다."
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -14,37 +14,38 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/25/2017
+ms.date: 10/04/2017
 ms.author: jgao
-ms.openlocfilehash: aecbb5ee94a4234d1a7768bdb6de2a33508b1e4c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ROBOTS: NOINDEX
+ms.openlocfilehash: 14cd30f4f9ed77dca369452a680d621eb81d5a4e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-time-based-oozie-coordinator-with-hadoop-in-hdinsight-toodefine-workflows-and-coordinate-jobs"></a>Hadoop으로 Oozie 코디네이터 시간 기반을 사용 하 여 HDInsight toodefine 워크플로에서 작업 및 작업
-이 문서에서는 시간에 따라 toodefine 워크플로 및 코디네이터 및 tootrigger 코디네이터 작업 hello 하는 방법을 설명 합니다. 통해 유용한 toogo는 [HDInsight 사용 하 여 Oozie] [ hdinsight-use-oozie] 이 문서를 읽기 전에 합니다. 또한 tooOozie를 예약할 수도 있습니다 Azure 데이터 팩터리를 사용 하 여 작업 합니다. Azure Data Factory toolearn 참조 [Data Factory와 사용 하 여 Pig 및 Hive](../data-factory/data-factory-data-transformation-activities.md)합니다.
+# <a name="use-time-based-oozie-coordinator-with-hadoop-in-hdinsight-to-define-workflows-and-coordinate-jobs"></a>HDInsight에서 Hadoop과 함께 시간 기준 Oozie 코디네이터를 사용하여 워크플로 정의 및 작업 조정
+이 문서에서는 워크플로 및 코디네이터를 정의하는 방법, 시간을 기준으로 코디네이터 작업을 트리거하는 방법을 알아봅니다. 이 문서를 시작하기 전에 [HDInsight에서 Oozie 사용][hdinsight-use-oozie]을 확인하는 것이 도움이 됩니다. Oozie 외에도 Azure 데이터 팩터리를 사용하여 작업을 예약할 수도 있습니다. Azure 데이터 팩터리를 알아보려면 [데이터 팩터리에서 Pig 및 Hive 사용](../data-factory/transform-data.md)을 참조하세요.
 
 > [!NOTE]
-> 이 문서를 사용하려면 Windows 기반 HDInsight 클러스터가 필요합니다. Linux 기반 클러스터에서 시간을 기준으로 작업을 비롯 한 Oozie를 사용 하는 방법은 참조 하십시오. [Hadoop toodefine 및 Linux 기반 HDInsight에서 워크플로 실행을 사용 하 여 Oozie](hdinsight-use-oozie-linux-mac.md)
+> 이 문서를 사용하려면 Windows 기반 HDInsight 클러스터가 필요합니다. Linux 기반 클러스터에서 시간 기준의 작업을 포함하여 Oozie 사용에 대한 자세한 내용은 [Oozie를 Hadoop와 함께 사용하여 Linux 기반 HDInsight 워크플로 정의 및 실행](hdinsight-use-oozie-linux-mac.md)
 
 ## <a name="what-is-oozie"></a>Oozie 정의
-Apache Oozie는 Hadoop 작업을 관리하는 워크플로/코디네이션 시스템입니다. Hello Hadoop 스택와도 통합 되어 하 고 Apache MapReduce Apache Pig, Apache Hive, Sqoop Apache Hadoop 작업을 지원 합니다. 사용 되는 tooschedule 작업은 Java 프로그램 셸 스크립트와 같은 특정 tooa 시스템 수도 있습니다.
+Apache Oozie는 Hadoop 작업을 관리하는 워크플로/코디네이션 시스템입니다. Hadoop 스택과 통합되며 Apache MapReduce, Apache Pig, Apache Hive, Apache Sqoop에 Hadoop 작업을 지원합니다. 또한 Java 프로그램이나 셸 스크립트와 같이 시스템에 고유한 작업을 예약하는 데 사용할 수 있습니다.
 
-hello 다음 그림이 보여줍니다 hello 워크플로 구현 합니다.
+다음 이미지는 사용자가 구현할 워크플로를 보여줍니다:
 
 ![워크플로 다이어그램][img-workflow-diagram]
 
-hello 워크플로 두 개의 작업이 포함 되어 있습니다.
+워크플로에는 두 동작이 포함됩니다:
 
-1. 하이브 작업 log4j 로그 파일에 HiveQL 스크립트 toocount hello 로그 수준 유형의 각 항목을 실행합니다. 예를 들어 [로그 수준] 필드 tooshow hello 유형 및 hello 심각도 포함 된 필드의 줄의 각 log4j 로그 구성 됩니다.
+1. Hive 작업은 log4j 로그 파일에서 각 로그 수준 유형의 수를 계산하는 HiveQL 스크립트를 실행합니다. 각 log4j 로그는 유형과 심각도를 표시하는 [LOG LEVEL] 필드가 포함된 필드의 줄로 구성되어 있습니다. 예를 들면 다음과 같습니다.
 
         2012-02-03 18:35:34 SampleClass6 [INFO] everything normal for id 577725851
         2012-02-03 18:35:34 SampleClass4 [FATAL] system problem at id 1991281254
         2012-02-03 18:35:34 SampleClass3 [DEBUG] detail for id 1304807656
         ...
 
-    hello 하이브 스크립트 출력은 유사 합니다.
+    Hive 스크립트 출력은 다음과 같습니다.
 
         [DEBUG] 434
         [ERROR] 3
@@ -54,86 +55,86 @@ hello 워크플로 두 개의 작업이 포함 되어 있습니다.
         [WARN]  4
 
     Hive에 대한 자세한 내용은 [HDInsight와 함께 Hive 사용][hdinsight-use-hive]을 참조하세요.
-2. Sqoop 작업 hello HiveQL 작업 출력 tooa 테이블을 Azure SQL 데이터베이스에서 내보냅니다. Sqoop에 대한 자세한 내용은 [HDInsight에서 Sqoop 사용][hdinsight-use-sqoop]을 참조하세요.
+2. HiveQL 작업 출력을 Azure SQL 데이터베이스의 테이블에 내보내는 Sqoop 작업. Sqoop에 대한 자세한 내용은 [HDInsight에서 Sqoop 사용][hdinsight-use-sqoop]을 참조하세요.
 
 > [!NOTE]
-> HDInsight 클러스터에서 지원 되 Oozie 버전에 대 한 참조 [HDInsight에서 제공 하는 hello 클러스터 버전의 새로운 기능?] [hdinsight-versions].
+> HDInsight 클러스터에서 지원되는 Oozie 버전에 대해서는 [HDInsight에서 제공하는 클러스터 버전의 새로운 기능][hdinsight-versions]을 참조하세요.
 >
 >
 
 ## <a name="prerequisites"></a>필수 조건
-이 자습서를 시작 하기 전에 hello 다음이 있어야 합니다.
+이 자습서를 시작하기 전에 다음이 있어야 합니다.
 
 * **Azure PowerShell이 포함된 워크스테이션**.
 
     > [!IMPORTANT]
-    > Azure 서비스 관리자를 사용하여 HDInsight 리소스를 관리하는 Azure PowerShell 지원은 더 이상 **지원되지 않고** 2017년 1월 1일에 제거됩니다. Azure 리소스 관리자와 함께 작동 하는이 문서 사용 hello 새 HDInsight cmdlet의 hello 단계입니다.
+    > Azure 서비스 관리자를 사용하여 HDInsight 리소스를 관리하는 Azure PowerShell 지원은 더 이상 **지원되지 않고** 2017년 1월 1일에 제거됩니다. 이 문서의 단계에서는 Azure Resource Manager로 작동하는 새 HDInsight cmdlet을 사용합니다.
     >
-    > Hello 단계에 따라 [설치 Azure PowerShell을 구성 하 고](/powershell/azureps-cmdlets-docs) tooinstall hello 최신 버전의 Azure PowerShell. 해당 필요 toobe Azure 리소스 관리자와 함께 작동 하는 toouse hello 새로운 cmdlet 수정 스크립트가 있는 경우, 참조 [HDInsight 클러스터에 대 한 마이그레이션 tooAzure 리소스 관리자 기반 개발 도구](hdinsight-hadoop-development-using-azure-resource-manager.md) 자세한 정보에 대 한 합니다.
+    > [Azure PowerShell 설치 및 구성](/powershell/azureps-cmdlets-docs) 단계를 수행하여 최신 버전의 Azure PowerShell을 설치합니다. Azure Resource Manager로 작동하는 새로운 cmdlet을 사용하도록 수정해야 하는 스크립트가 있는 경우 자세한 내용은 [HDInsight 클러스터에 대한 Azure Resource Manager 기반 개발 도구에 마이그레이션](hdinsight-hadoop-development-using-azure-resource-manager.md) 을 참조하세요.
 
-* **HDInsight 클러스터**. HDInsight 클러스터를 만드는 방법에 대한 자세한 내용은 [HDInsight 클러스터 만들기][hdinsight-provision] 또는 [HDInsight 시작][hdinsight-get-started]을 참조하세요. Hello 데이터 toogo hello 자습서를 통해 다음이 필요 합니다.
+* **HDInsight 클러스터**. HDInsight 클러스터를 만드는 방법에 대한 자세한 내용은 [HDInsight 클러스터 만들기][hdinsight-provision] 또는 [HDInsight 시작][hdinsight-get-started]을 참조하세요. 자습서를 완료하려면 다음 데이터가 필요합니다.
 
     <table border = "1">
     <tr><th>클러스터 속성</th><th>Windows PowerShell 변수 이름</th><th>값</th><th>설명</th></tr>
-    <tr><td>HDInsight 클러스터 이름</td><td>$clusterName</td><td></td><td>hello HDInsight 클러스터는이 자습서를 실행 합니다.</td></tr>
-    <tr><td>HDInsight 클러스터 사용자 이름</td><td>$clusterUsername</td><td></td><td>hello HDInsight 클러스터 사용자 이름입니다. </td></tr>
-    <tr><td>HDInsight 클러스터 사용자 암호 </td><td>$clusterPassword</td><td></td><td>hello HDInsight 클러스터 사용자 암호입니다.</td></tr>
-    <tr><td>Azure 저장소 계정 이름</td><td>$storageAccountName</td><td></td><td>Azure 저장소 계정 사용할 수 있는 toohello HDInsight 클러스터입니다. 이 자습서에 대 한 hello 클러스터 프로 비전 프로세스 중에 지정한 hello 기본 저장소 계정을 사용 합니다.</td></tr>
-    <tr><td>Azure Blob 컨테이너 이름</td><td>$containerName</td><td></td><td>예를 들어 hello 기본 HDInsight 클러스터 파일 시스템에 사용 되는 hello Azure Blob 저장소 컨테이너를 사용 합니다. 기본적으로 hello hello HDInsight 클러스터와 동일한 이름을 가집니다.</td></tr>
+    <tr><td>HDInsight 클러스터 이름</td><td>$clusterName</td><td></td><td>이 자습서를 실행할 HDInsight 클러스터입니다.</td></tr>
+    <tr><td>HDInsight 클러스터 사용자 이름</td><td>$clusterUsername</td><td></td><td>HDInsight 클러스터 사용자 이름. </td></tr>
+    <tr><td>HDInsight 클러스터 사용자 암호 </td><td>$clusterPassword</td><td></td><td>HDInsight 클러스터 사용자의 암호입니다.</td></tr>
+    <tr><td>Azure 저장소 계정 이름</td><td>$storageAccountName</td><td></td><td>Azure 저장소 계정은 HDInsight 클러스터에서 사용할 수 있습니다. 이 자습서의 경우 클러스터 프로비전 프로세스 도중에 지정된 기본 저장소 계정을 사용합니다.</td></tr>
+    <tr><td>Azure Blob 컨테이너 이름</td><td>$containerName</td><td></td><td>이 예에서는 기본 HDInsight 클러스터 파일 시스템에 사용되는 Azure Blob 저장소 컨테이너를 사용합니다. 기본적으로 컨테이너 이름은 HDInsight 클러스터 이름과 동일합니다.</td></tr>
     </table>
-* **Azure SQL 데이터베이스**입니다. 워크스테이션에서 SQL 데이터베이스 서버 tooallow 액세스 hello에 대 한 방화벽 규칙을 구성 해야 합니다. Azure SQL 데이터베이스를 만들고 hello 방화벽을 구성 하는 방법에 대 한 지침은 [처음 사용 하는 Azure SQL 데이터베이스] [sql 데이터베이스-started]. 이 문서에서는이 자습서에 필요한 hello Azure SQL 데이터베이스 테이블을 만들기 위한 Windows PowerShell 스크립트를 제공 합니다.
+* **Azure SQL 데이터베이스**입니다. 워크스테이션에서 액세스할 수 있도록 SQL 데이터베이스 서버의 방화벽 규칙을 구성해야 합니다. Azure SQL Database 만들기 및 방화벽 구성에 대한 자세한 내용은 [Azure SQL Database 사용 시작][sqldatabase-get-started]을 참조하세요. 이 문서에는 이 자습서에 필요한 Azure SQL 데이터베이스 테이블을 만들기 위한 Windows PowerShell 스크립트가 있습니다.
 
     <table border = "1">
     <tr><th>SQL 데이터베이스 속성</th><th>Windows PowerShell 변수 이름</th><th>값</th><th>설명</th></tr>
-    <tr><td>SQL 데이터베이스 서버 이름</td><td>$sqlDatabaseServer</td><td></td><td>hello SQL 데이터베이스 서버 toowhich Sqoop는 데이터를 내보냅니다. </td></tr>
+    <tr><td>SQL 데이터베이스 서버 이름</td><td>$sqlDatabaseServer</td><td></td><td>Sqoop에서 데이터를 내보낼 SQL 데이터베이스 서버입니다. </td></tr>
     <tr><td>SQL 데이터베이스 로그인 이름</td><td>$sqlDatabaseLogin</td><td></td><td>SQL 데이터베이스 로그인 이름입니다.</td></tr>
     <tr><td>SQL 데이터베이스 로그인 암호</td><td>$sqlDatabaseLoginPassword</td><td></td><td>SQL 데이터베이스 로그인 암호입니다.</td></tr>
-    <tr><td>SQL 데이터베이스 이름</td><td>$sqlDatabaseName</td><td></td><td>hello Azure SQL 데이터베이스 toowhich Sqoop는 데이터를 내보냅니다. </td></tr>
+    <tr><td>SQL 데이터베이스 이름</td><td>$sqlDatabaseName</td><td></td><td>Sqoop에서 데이터를 내보낼 Azure SQL 데이터베이스입니다. </td></tr>
     </table>
 
   > [!NOTE]
-  > 기본적으로 Azure SQL 데이터베이스는 Azure HDInsight 같은 Azure 서비스로부터의 연결을 허용합니다. 이 방화벽 설정을 사용 하지 않으면 hello Azure 포털에서에서 설정 해야 합니다. SQL Database 만들기 및 방화벽 규칙 구성에 대한 지침은 [SQL Database 만들기 및 구성][sqldatabase-get-started]을 참조하세요.
+  > 기본적으로 Azure SQL 데이터베이스는 Azure HDInsight 같은 Azure 서비스로부터의 연결을 허용합니다. 이 방화벽 설정을 사용하지 않도록 설정한 경우 Azure 포털에서 사용하도록 설정해야 합니다. SQL Database 만들기 및 방화벽 규칙 구성에 대한 지침은 [SQL Database 만들기 및 구성][sqldatabase-get-started]을 참조하세요.
 
 > [!NOTE]
-> Hello 테이블의 채우기 hello 값입니다. 이 자습서를 완료하는 데 유용합니다.
+> 테이블의 채우기 값입니다. 이 자습서를 완료하는 데 유용합니다.
 
-## <a name="define-oozie-workflow-and-hello-related-hiveql-script"></a>Oozie 워크플로 정의 및 hello 관련 HiveQL 스크립트
-Oozie 워크플로 정의는 hPDL(XML 프로세스 정의 언어)로 작성되었습니다. hello 기본 워크플로 파일 이름은 *workflow.xml*합니다.  다음 배포 toohello HDInsight 클러스터가이 자습서의 뒷부분에 나오는 Azure PowerShell을 사용 하 여 쿼리하고 hello 워크플로 파일을 로컬로 저장 합니다.
+## <a name="define-oozie-workflow-and-the-related-hiveql-script"></a>Oozie 워크플로 및 관련 HiveQL 스크립트 정의
+Oozie 워크플로 정의는 hPDL(XML 프로세스 정의 언어)로 작성되었습니다. 기본 워크플로 파일 이름은 *workflow.xml*입니다.  워크플로 파일을 로컬로 저장하고 이 자습서의 뒷부분에 나오는 Azure PowerShell을 사용하여 HDInsight 클러스터에 배포합니다.
 
-HiveQL 스크립트 파일을 호출 하는 hello hello 워크플로에서 하이브 동작 합니다. 이 스크립트 파일에는 세 개의 HiveQL 문이 포함되어 있습니다.
+워크플로의 Hive 작업은 HiveQL 스크립트 파일을 호출합니다. 이 스크립트 파일에는 세 개의 HiveQL 문이 포함되어 있습니다.
 
-1. **DROP TABLE 문 hello** 있는 경우 삭제 hello log4j Hive 테이블입니다.
-2. **CREATE TABLE 문 hello** log4j Hive 외부 테이블 hello log4j 로그 파일의 toohello 위치를 가리키는 만듭니다
-3. **hello log4j 로그 파일의 위치를 hello**합니다. hello 필드 구분 기호는 ",". hello 기본 줄 구분은 "\n"입니다. 하이브 외부 테이블 toorun hello Oozie 워크플로 여러 번을 원하는 경우에 hello 원래 위치에서 제거 되 고 사용 되는 tooavoid hello 데이터 파일은.
-4. **hello 덮어쓰기 삽입 문** 에서 각 로그 수준 형식의 hello 발생 수를 세 log4j Hive 테이블 hello와 hello 출력 tooan Azure Blob 저장소 위치를 저장 합니다.
+1. **DROP TABLE 문** 은 log4j Hive 테이블이 있는 경우 이 테이블을 삭제합니다.
+2. **CREATE TABLE 문** 은 log4j 로그 파일 위치를 가리키는 log4j Hive 외부 테이블을 만듭니다;
+3. **log4j Hive 외부 테이블의 위치**입니다. 필드 구분 기호는 ","입니다. 기본 줄 구분 기호는 "\n"입니다. Hive 외부 테이블은 Oozie 워크플로를 여러 번 실행하려는 경우 데이터 파일이 원래 위치에서 제거되지 않도록 하기 위해서 사용됩니다.
+4. **INSERT OVERWRITE 문** 은 log4j Hive 테이블에서 각 로그 수준 유형의 수를 계산하고 그 출력 결과를 Azure Blob 저장소 위치에 저장합니다.
 
 > [!NOTE]
-> 알려진 Hive 경로 문제가 있습니다. Oozie 작업을 제출할 때 이 문제가 발생합니다. hello TechNet Wiki에서 확인할 수 있습니다 hello 문제 해결에 대 한 지침을 hello: [HDInsight Hive 오류: 수 없습니다 toorename][technetwiki-hive-error]합니다.
+> 알려진 Hive 경로 문제가 있습니다. Oozie 작업을 제출할 때 이 문제가 발생합니다. TechNet Wiki에서 문제 해결을 위한 지침을 찾을 수 있습니다: [HDInsight 하이브 오류: 이름을 바꿀 수 없습니다][technetwiki-hive-error].
 
-**toodefine hello HiveQL 스크립트 파일 toobe hello 워크플로 통해 호출**
+**HiveQL 스크립트 파일을 워크플로에서 호출하도록 정의하려면**
 
-1. 콘텐츠를 수행 하는 hello로 텍스트 파일을 만듭니다.
+1. 다음 내용이 포함된 텍스트 파일을 만듭니다.
 
         DROP TABLE ${hiveTableName};
         CREATE EXTERNAL TABLE ${hiveTableName}(t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string) ROW FORMAT DELIMITED FIELDS TERMINATED BY ' ' STORED AS TEXTFILE LOCATION '${hiveDataFolder}';
         INSERT OVERWRITE DIRECTORY '${hiveOutputFolder}' SELECT t4 AS sev, COUNT(*) AS cnt FROM ${hiveTableName} WHERE t4 LIKE '[%' GROUP BY t4;
 
-    Hello 스크립트에 사용 되는 세 개의 변수 가지가 있습니다.
+    스크립트에서 사용되는 3개의 변수가 있습니다.
 
    * ${hiveTableName}
    * ${hiveDataFolder}
    * ${hiveOutputFolder}
 
-     hello 워크플로 정의 파일 (이 자습서에서는 workflow.xml)는 런타임 시 이러한 값 toothis HiveQL 스크립트를 전달 합니다.
-2. Hello 파일으로 저장 **C:\Tutorials\UseOozie\useooziewf.hql** ANSI (ASCII) 인코딩을 사용 하 여 합니다. (텍스트 편집기에서 이 옵션을 제공하지 않는 경우 메모장을 사용하세요.) 이 스크립트 파일에는 hello 자습서의 뒷부분에 나오는 배포 toohello HDInsight 클러스터 됩니다.
+     워크플로 정의 파일(이 자습서에서는 workflow.xml)은 런타임 시 이러한 값을 이 HiveQL 스크립트에 전달합니다.
+2. ANSI(ASCII) 인코딩을 사용하여 파일을 **C:\Tutorials\UseOozie\useooziewf.hql**로 저장하세요. (텍스트 편집기에서 이 옵션을 제공하지 않는 경우 메모장을 사용하세요.) 이 스크립트 파일은 자습서의 뒷부분에 나오는 HDInsight 클러스터에 배포됩니다.
 
-**toodefine 워크플로**
+**워크플로를 정의하려면**
 
-1. 콘텐츠를 수행 하는 hello로 텍스트 파일을 만듭니다.
+1. 다음 내용이 포함된 텍스트 파일을 만듭니다.
 
     ```xml
     <workflow-app name="useooziewf" xmlns="uri:oozie:workflow:0.2">
-        <start too= "RunHiveScript"/>
+        <start to = "RunHiveScript"/>
 
         <action name="RunHiveScript">
             <hive xmlns="uri:oozie:hive-action:0.2">
@@ -188,26 +189,26 @@ HiveQL 스크립트 파일을 호출 하는 hello hello 워크플로에서 하�
     </workflow-app>
     ```
 
-    Hello 워크플로에 정의 된 두 가지 작업이 있습니다. hello 시작 tooaction은 *RunHiveScript*합니다. Hello 매크로 함수를 실행 하는 경우 *확인*, hello 다음 작업은 *RunSqoopExport*합니다.
+    워크플로에 2가지 작업이 정의되어 있습니다. 시작 작업은 *RunHiveScript*입니다. 작업이 *확인*를 실행하면 다음 작업은 *RunSqoopExport*입니다.
 
-    hello RunHiveScript는 여러 변수가 있습니다. Azure PowerShell을 사용 하 여 워크스테이션에서 hello Oozie 작업을 제출 하는 경우에 hello 값을 전달 합니다.
+    RunHiveScript에는 몇 개의 변수가 있습니다. Azure PowerShell을 사용하여 워크스테이션에서 Oozie 작업을 제출할 때 이러한 값을 전달합니다.
 
     워크플로 변수
 
     <table border = "1">
     <tr><th>워크플로 변수</th><th>설명</th></tr>
-    <tr><td>${jobTracker}</td><td>Hello Hadoop 작업 트래커의 hello URL을 지정 합니다. HDInsight 클러스터 버전 3.0 및 2.0에는 <strong>jobtrackerhost:9010</strong>을 사용합니다.</td></tr>
-    <tr><td>${nameNode}</td><td>Hello Hadoop 이름 노드의 hello URL을 지정 합니다. 기본 파일 시스템 wasb hello를 사용 하 여: / / 주소, 예를 들어 <i>wasb: / /&lt;containerName&gt;@&lt;storageAccountName&gt;. blob.core.windows.net</i>합니다.</td></tr>
-    <tr><td>${queueName}</td><td>에 제출할 작업 hello hello 큐 이름을 지정 합니다. <strong>기본값</strong>을 사용합니다.</td></tr>
+    <tr><td>${jobTracker}</td><td>Hadoop 작업 추적기의 URL을 지정합니다. HDInsight 클러스터 버전 3.0 및 2.0에는 <strong>jobtrackerhost:9010</strong>을 사용합니다.</td></tr>
+    <tr><td>${nameNode}</td><td>Hadoop 이름 노드의 URL을 지정합니다. <i>wasb://&lt;containerName&gt;@&lt;storageAccountName&gt;.blob.core.windows.net</i>과 같은 기본 파일 시스템 wasb:// 주소를 사용합니다.</td></tr>
+    <tr><td>${queueName}</td><td>작업을 제출할 큐 이름을 지정합니다. <strong>기본값</strong>을 사용합니다.</td></tr>
     </table>
 
     Hive 작업 변수
 
     <table border = "1">
     <tr><th>Hive 작업 변수</th><th>설명</th></tr>
-    <tr><td>${hiveDataFolder}</td><td>Create Table 하이브 명령 hello에 대 한 hello 소스 디렉터리입니다.</td></tr>
-    <tr><td>${hiveOutputFolder}</td><td>hello 덮어쓰기 삽입 문 hello에 대 한 출력 폴더입니다.</td></tr>
-    <tr><td>${hiveTableName}</td><td>hello log4j 데이터 파일을 참조 하는 hello Hive 테이블의 hello 이름입니다.</td></tr>
+    <tr><td>${hiveDataFolder}</td><td>Hive Create Table 명령의 소스 디렉터리입니다.</td></tr>
+    <tr><td>${hiveOutputFolder}</td><td>INSERT OVERWRITE 문의 출력 폴더입니다.</td></tr>
+    <tr><td>${hiveTableName}</td><td>log4j 데이터 파일을 참조하는 Hive 테이블의 이름입니다.</td></tr>
     </table>
 
     Sqoop 작업 변수
@@ -215,17 +216,17 @@ HiveQL 스크립트 파일을 호출 하는 hello hello 워크플로에서 하�
     <table border = "1">
     <tr><th>Sqoop 작업 변수</th><th>설명</th></tr>
     <tr><td>${sqlDatabaseConnectionString}</td><td>SQL 데이터베이스 연결 문자열입니다.</td></tr>
-    <tr><td>${sqlDatabaseTableName}</td><td>hello Azure SQL 데이터베이스 테이블 toowhere hello 데이터를 내보냅니다.</td></tr>
-    <tr><td>${hiveOutputFolder}</td><td>하이브 덮어쓰기 삽입 문 hello에 대 한 hello 출력 폴더입니다. 이 hello hello Sqoop 내보내기 (내보내기-dir)에 대 한 같은 폴더입니다.</td></tr>
+    <tr><td>${sqlDatabaseTableName}</td><td>데이터를 내보낼 Azure SQL 데이터베이스 테이블입니다.</td></tr>
+    <tr><td>${hiveOutputFolder}</td><td>Hive INSERT OVERWRITE 문의 출력 폴더입니다. 이 폴더는 Sqoop 내보내기(내보내기 디렉터리)와 동일한 폴더입니다.</td></tr>
     </table>
 
-    Oozie 워크플로 및 hello 워크플로 동작을 사용 하는 방법에 대 한 자세한 내용은 참조 [Apache Oozie 4.0 설명서] [ apache-oozie-400] (버전에 대 한 HDInsight 클러스터 3.0) 또는 [Apache Oozie 3.3.2 설명서] [ apache-oozie-332] (버전에 대 한 HDInsight 클러스터 2.1).
+    Oozie 워크플로 및 워크플로 작업 사용에 대한 자세한 내용은 [Apache Oozie 4.0 설명서][apache-oozie-400](HDInsight 클러스터 버전 3.0의 경우) 또는 [Apache Oozie 3.3.2 설명서][apache-oozie-332](HDInsight 클러스터 버전 2.1의 경우)를 참조하세요.
 
-1. Hello 파일으로 저장 **C:\Tutorials\UseOozie\workflow.xml** ANSI (ASCII) 인코딩을 사용 하 여 합니다. (텍스트 편집기에서 이 옵션을 제공하지 않는 경우 메모장을 사용하세요.)
+1. ANSI(ASCII) 인코딩을 사용하여 파일을**C:\Tutorials\UseOozie\workflow.xml**로 저장하세요. (텍스트 편집기에서 이 옵션을 제공하지 않는 경우 메모장을 사용하세요.)
 
-**toodefine 코디네이터**
+**코디네이터를 정의하려면**
 
-1. 콘텐츠를 수행 하는 hello로 텍스트 파일을 만듭니다.
+1. 다음 내용이 포함된 텍스트 파일을 만듭니다.
 
     ```xml
     <coordinator-app name="my_coord_app" frequency="${coordFrequency}" start="${coordStart}" end="${coordEnd}" timezone="${coordTimezone}" xmlns="uri:oozie:coordinator:0.4">
@@ -237,77 +238,77 @@ HiveQL 스크립트 파일을 호출 하는 hello hello 워크플로에서 하�
     </coordinator-app>
     ```
 
-    Hello 정의 파일에 사용 되는 다섯 개의 변수 가지가 있습니다.
+    정의 파일에는 5개의 변수가 사용됩니다.
 
    | 변수 | 설명 |
    | --- | --- |
    | ${coordFrequency} |작업 일시 중지 시간입니다. 빈도는 항상 분 단위로 표시됩니다. |
    | ${coordStart} |작업 시작 시간입니다. |
    | ${coordEnd} |작업 종료 시간입니다. |
-   | ${coordTimezone} |Oozie는 일광 절약 시간제(UTC를 사용하여 일반적으로 표시 됨)없이 고정된 시간대에서 코디네이터 작업을 처리합니다. 이 표준 시간대 hello "Oozie 처리 표준 시간대입니다." 라고 합니다. |
-   | ${wfPath} |hello workflow.xml에 대 한 hello 경로입니다.  Hello 워크플로 파일 이름을 hello 기본 파일 이름 (workflow.xml) 없는 경우에 지정 해야 합니다. |
-2. Hello 파일으로 저장 **C:\Tutorials\UseOozie\coordinator.xml** hello ANSI (ASCII) 인코딩을 사용 하 여 합니다. (텍스트 편집기에서 이 옵션을 제공하지 않는 경우 메모장을 사용하세요.)
+   | ${coordTimezone} |Oozie는 일광 절약 시간제(UTC를 사용하여 일반적으로 표시 됨)없이 고정된 시간대에서 코디네이터 작업을 처리합니다. 해당 시간대는 "Oozie 처리 시간대"라고 합니다. |
+   | ${wfPath} |workflow.xml의 경로입니다.  워크플로 파일 이름이 기본 파일 이름(workflow.xml)이 아닌 경우 기본 파일 이름을 지정해야 합니다. |
+2. ANSI(ASCII) 인코딩을 사용하여 파일을 **C:\Tutorials\UseOozie\coordinator.xml**로 저장하세요. (텍스트 편집기에서 이 옵션을 제공하지 않는 경우 메모장을 사용하세요.)
 
-## <a name="deploy-hello-oozie-project-and-prepare-hello-tutorial"></a>Hello Oozie 프로젝트를 배포 하 고 hello 자습서 준비
-Azure PowerShell 스크립트 tooperform hello 다음을 실행 합니다.
+## <a name="deploy-the-oozie-project-and-prepare-the-tutorial"></a>Oozie 프로젝트 배포 및 자습서 준비
+Azure PowerShell 스크립트를 실행하여 다음을 수행합니다.
 
-* 복사 hello HiveQL 스크립트 (useoozie.hql) tooAzure Blob 저장소, wasb:///tutorials/useoozie/useoozie.hql 합니다.
-* Workflow.xml toowasb:///tutorials/useoozie/workflow.xml를 복사 합니다.
-* Coordinator.xml toowasb:///tutorials/useoozie/coordinator.xml를 복사 합니다.
-* 복사 hello 데이터 파일 (/ example/data/sample.log) toowasb:///tutorials/useoozie/data/sample.log 합니다.
-* Sqoop 내보내기 데이터를 저장할 Azure SQL 데이터베이스 테이블을 만듭니다. hello 테이블 이름이 *log4jLogCount*합니다.
+* HiveQL 스크립트(useoozie.hql)를 Azure Blob Storage wasb:///tutorials/useoozie/useoozie.hql에 복사합니다.
+* workflow.xml을 wasb:///tutorials/useoozie/workflow.xml에 복사합니다.
+* coordinator.xml을 wasb:///tutorials/useoozie/coordinator.xml에 복사합니다.
+* 데이터 파일(/example/data/sample.log)을 wasb:///tutorials/useoozie/data/sample.log에 복사합니다.
+* Sqoop 내보내기 데이터를 저장할 Azure SQL 데이터베이스 테이블을 만듭니다. 테이블 이름은 *log4jLogCount*입니다.
 
 **HDInsight 저장소 이해**
 
-HDInsight는 데이터 저장소로 Azure Blob 저장소를 사용합니다. wasb: / /는 Microsoft의 Azure Blob 저장소에 hello distributed Hadoop 파일 시스템 (HDFS)의 구현입니다. 자세한 내용은 [HDInsight와 함께 Azure Blob Storage 사용][hdinsight-storage]을 참조하십시오.
+HDInsight는 데이터 저장소로 Azure Blob 저장소를 사용합니다. wasb://는 Azure Blob Storage에서 Microsoft의 HDFS(Hadoop 분산 파일 시스템)를 구현합니다. 자세한 내용은 [HDInsight와 함께 Azure Blob Storage 사용][hdinsight-storage]을 참조하십시오.
 
-HDInsight 클러스터를 프로 비전 할 때 Azure Blob 저장소 계정과 해당 계정에서 특정 컨테이너로 지정 됩니다 hello 기본 파일 시스템으로 같은 HDFS. 또한 toothis 저장소 계정을 추가할 수 있습니다 hello에서 추가 저장소 계정을 동일한 Azure 구독 또는 hello 프로 비전 프로세스 중 각기 다른 Azure 구독. 저장소 계정 추가에 대한 지침은 [HDInsight 클러스터 프로비전][hdinsight-provision]을 참조하세요. 이 자습서에 사용 된 toosimplify hello Azure PowerShell 스크립트를 모두 hello 파일이 hello 기본 파일 시스템 컨테이너에 저장 된 위치에 */자습서/useoozie*합니다. 기본적으로이 컨테이너는 hello HDInsight 클러스터 이름을 이름이 hello에 있습니다.
-hello 구문은 다음과 같습니다.
+HDInsight 클러스터를 프로비전할 때 Azure Blob 저장소 계정 및 이 계정에서 오는 특정 컨테이너가 HDFS의 경우와 같이 기본 파일 시스템으로 지정됩니다. 프로비전 프로세스에서는 이 저장소 계정 외에도 동일하거나 다른 Azure 구독의 저장소 계정을 추가할 수 있습니다. 저장소 계정 추가에 대한 지침은 [HDInsight 클러스터 프로비전][hdinsight-provision]을 참조하세요. 이 자습서에 사용된 Azure PowerShell 스크립트를 간소화하려면 모든 파일이 */tutorials/useoozie*에 있는 기본 파일 시스템 컨테이너에 저장되어야 합니다. 기본적으로 이 컨테이너 이름은 HDInsight 클러스터 이름과 동일합니다.
+구문은 다음과 같습니다:
 
     wasb[s]://<ContainerName>@<StorageAccountName>.blob.core.windows.net/<path>/<filename>
 
 > [!NOTE]
-> Hello만 *wasb: / /* 구문을 HDInsight 클러스터 버전 3.0에서에서 사용할 수 있습니다. 이전 hello *asv: / /* 구문을 HDInsight 2.1와 1.6 클러스터에서 사용할 수 있지만 3.0 HDInsight 클러스터에서 지원 되지 않습니다.
+> HDInsight 클러스터 버전 3.0에서는 *wasb://* 구문만 지원됩니다. 이전 *asv://* 구문은 HDInsight 2.1 및 1.6 클러스터에서 지원되지만, HDInsight 3.0 클러스터에서는 지원되지 않습니다.
 >
-> wasb hello: / / 경로 가상 경로입니다. 자세한 내용은 [HDInsight와 함께 Azure Blob Storage 사용][hdinsight-storage]을 참조하십시오.
+> wasb:// 경로는 가상 경로입니다. 자세한 내용은 [HDInsight와 함께 Azure Blob Storage 사용][hdinsight-storage]을 참조하십시오.
 
-Hello 기본 파일 시스템 컨테이너에 저장 된 파일의 Uri (사용 하 고 workflow.xml 예를 들어)를 수행 하는 hello를 사용 하 여 HDInsight에서 액세스할 수 있습니다.
+기본 파일 시스템 컨테이너에 저장된 파일은 다음 URI 중 아무거나 사용하여 HDInsight에서 액세스할 수 있습니다(여기서는 예제로 workflow.xml를 사용합니다).
 
     wasb://mycontainer@mystorageaccount.blob.core.windows.net/tutorials/useoozie/workflow.xml
     wasb:///tutorials/useoozie/workflow.xml
     /tutorials/useoozie/workflow.xml
 
-Hello 저장소 계정에서 직접 tooaccess hello 파일을 원하는 경우 hello blob hello 파일에 대 한 이름은 다음과 같습니다.
+저장소 계정에서 바로 파일에 액세스하려는 경우 파일의 Blob 이름은 다음과 같습니다.
 
     tutorials/useoozie/workflow.xml
 
 **Hive 내부 테이블 및 외부 테이블 이해**
 
-몇 가지 방법으로 하이브 내부 및 외부 테이블에 대 한 tooknow 필요 합니다.
+Hive 내부 테이블 및 외부 테이블에 대해 알아야 할 사항이 몇 가지 있습니다:
 
-* CREATE TABLE 명령을 hello를 내부 테이블에는 관리 되는 테이블이 라고도 만듭니다. hello 기본 컨테이너에서 hello 데이터 파일이 있어야 합니다.
-* CREATE TABLE 명령을 hello hello 데이터 toohello 파일/hive/웨어하우스/이동<TableName> hello 기본 컨테이너의 폴더입니다.
-* CREATE EXTERNAL TABLE 명령 hello 외부 테이블을 만듭니다. hello 기본 컨테이너 외부 hello 데이터 파일이 위치할 수 있습니다.
-* CREATE EXTERNAL TABLE 명령 hello hello 데이터 파일을 이동 하지 않습니다.
-* CREATE EXTERNAL TABLE 명령 hello hello 위치 절에 지정 된 hello 폴더 아래의 하위 폴더도 모두를 허용 하지 않습니다. 이 hello 자습서 hello sample.log 파일의 복사본을 만들어 하는 이유는 hello 이유.
+* CREATE TABLE 명령은 관리되는 테이블이라고도 하는 내부 테이블을 만듭니다. 데이터 파일은 기본 컨테이너에 있어야 합니다.
+* CREATE TABLE 명령은 데이터 파일을 기본 컨테이너의 /hive/warehouse/<TableName> 폴더로 이동합니다.
+* CREATE EXTERNAL TABLE 명령은 외부 테이블을 만듭니다. 데이터 파일은 기본 컨테이너가 아닌 곳에 있을 수 있습니다.
+* CREATE EXTERNAL TABLE 명령은 데이터 파일을 이동하지 않습니다.
+* CREATE EXTERNAL TABLE 명령은 LOCATION 절에 지정된 폴더 아래에 하위 폴더를 허용하지 않습니다. 이 때문에 자습서에서는 sample.log 파일의 복사본을 만듭니다.
 
 자세한 내용은 [HDInsight: Hive 내부 및 외부 테이블 소개][cindygross-hive-tables]를 참조하세요.
 
-**tooprepare hello 자습서**
+**자습서를 준비하려면**
 
-1. Windows PowerShell ISE 열기 hello (hello Windows 8 시작 화면에 입력 **PowerShell_ISE**, 클릭 하 고 **Windows PowerShell ISE**합니다. 자세한 내용은 [Windows 8 및 Windows에서 Windows PowerShell 시작][powershell-start]을 참조하세요.)
-2. Hello 아래쪽 창에 명령 tooconnect tooyour Azure 구독을 다음 hello를 실행 합니다.
+1. Windows PowerShell ISE를 엽니다. (Windows 8 시작 화면에서 **PowerShell_ISE**를 입력한 후 **Windows PowerShell ISE**를 클릭하면 됩니다. 자세한 내용은 [Windows 8 및 Windows에서 Windows PowerShell 시작][powershell-start]을 참조하세요.)
+2. 아래 창에서 다음 명령을 실행하여 Azure 구독에 연결합니다.
 
     ```powershell
     Add-AzureAccount
     ```
 
-    하면 Azure 계정 자격 증명된 tooenter 됩니다. 이 메서드는 구독 연결을 추가 하는 시간이 초과 있으며, 12 시간 후 있습니다 toorun hello cmdlet 다시 있습니다.
+    Azure 계정 자격 증명을 입력하라는 메시지가 표시됩니다. 구독 연결을 추가하는 이 메서드의 시간이 초과하여 12시간 후에는 cmdlet을 다시 실행해야 합니다.
 
    > [!NOTE]
-   > 여러 Azure 구독이 있는 hello 기본 구독이 지원 되지 않으면 원하는 toouse hello 사용 하 여 hello <strong>Select-azuresubscription</strong> cmdlet tooselect 구독 합니다.
+   > 여러 Azure 구독이 있고 기본 구독이 사용하려는 구독이 아닌 경우 <strong>Select-AzureSubscription</strong> cmdlet을 사용하여 구독을 선택합니다.
 
-3. Hello hello 스크립트 창에 스크립트를 다음 복사한 다음 hello 처음 여섯 개의 변수를 설정 합니다.
+3. 다음 스크립트를 스크립트 창에 복사한 다음 처음 6개의 변수를 설정합니다:
 
     ```powershell
     # WASB variables
@@ -321,18 +322,18 @@ Hello 저장소 계정에서 직접 tooaccess hello 파일을 원하는 경우 h
     $sqlDatabaseName = "<SQLDatabaseName>"
     $sqlDatabaseTableName = "log4jLogsCount"
 
-    # Oozie files for hello tutorial
+    # Oozie files for the tutorial
     $hiveQLScript = "C:\Tutorials\UseOozie\useooziewf.hql"
     $workflowDefinition = "C:\Tutorials\UseOozie\workflow.xml"
     $coordDefinition =  "C:\Tutorials\UseOozie\coordinator.xml"
 
-    # WASB folder for storing hello Oozie tutorial files.
-    $destFolder = "tutorials/useoozie"  # Do NOT use hello long path here
+    # WASB folder for storing the Oozie tutorial files.
+    $destFolder = "tutorials/useoozie"  # Do NOT use the long path here
     ```
 
-    참조 hello에 대 한 자세한 설명은 hello 변수, [필수 구성 요소](#prerequisites) 이 자습서의 섹션입니다.
+    변수에 대한 자세한 설명은 이 자습서에서 [필수 조건](#prerequisites) 섹션을 참조하세요.
 
-4. Hello toohello 스크립트 hello 스크립트 창에서 다음을 추가 합니다.
+4. 스크립트 창의 스크립트에 다음을 추가합니다.
 
     ```powershell
     # Create a storage context object
@@ -349,7 +350,7 @@ Hello 저장소 계정에서 직접 tooaccess hello 파일을 원하는 경우 h
 
     function prepareHiveDataFile()
     {
-        Write-Host "Make a copy of hello sample.log file ... " -ForegroundColor Green
+        Write-Host "Make a copy of the sample.log file ... " -ForegroundColor Green
         Start-CopyAzureStorageBlob -SrcContainer $containerName -SrcBlob "example/data/sample.log" -Context $destContext -DestContainer $containerName -destBlob "$destFolder/data/sample.log" -DestContext $destContext
     }
 
@@ -365,7 +366,7 @@ Hello 저장소 계정에서 직접 tooaccess hello 파일을 원하는 경우 h
             )
             )"
 
-        #Create hello log4jLogsCount table
+        #Create the log4jLogsCount table
         Write-Host "Create Log4jLogsCount table ..." -ForegroundColor Green
         $conn = New-Object System.Data.SqlClient.SqlConnection
         $conn.ConnectionString = "Data Source=$sqlDatabaseServer.database.windows.net;Initial Catalog=$sqlDatabaseName;User ID=$sqlDatabaseLogin;Password=$sqlDatabaseLoginPassword;Encrypt=true;Trusted_Connection=false;"
@@ -381,24 +382,24 @@ Hello 저장소 계정에서 직접 tooaccess hello 파일을 원하는 경우 h
     # upload workflow.xml, coordinator.xml, and ooziewf.hql
     uploadOozieFiles;
 
-    # make a copy of example/data/sample.log tooexample/data/log4j/sample.log
+    # make a copy of example/data/sample.log to example/data/log4j/sample.log
     prepareHiveDataFile;
 
     # create log4jlogsCount table on SQL database
     prepareSQLDatabase;
     ```
 
-5. 클릭 **스크립트 실행** 하거나 키를 눌러 **F5** toorun hello 스크립트입니다. hello 출력 비슷합니다 됩니다.
+5. **스크립트 실행**을 클릭하거나 **F5** 키를 눌러 스크립트를 실행합니다. 다음과 유사하게 출력됩니다.
 
     ![자습서 준비 출력][img-preparation-output]
 
-## <a name="run-hello-oozie-project"></a>Hello Oozie 프로젝트 실행
-Azure PowerShell은 Oozie 작업을 정의하는 데 현재 어떤 cmdlet도 제공하지 않습니다. Hello를 사용할 수 있습니다 **Invoke-restmethod** cmdlet tooinvoke Oozie 웹 서비스입니다. hello Oozie 웹 서비스 API는 HTTP 나머지 JSON API. Hello Oozie 웹 서비스 API에 대 한 자세한 내용은 참조 [Apache Oozie 4.0 설명서] [ apache-oozie-400] (버전에 대 한 HDInsight 클러스터 3.0) 또는 [Apache Oozie 3.3.2 설명서] [ apache-oozie-332] (버전에 대 한 HDInsight 클러스터 2.1).
+## <a name="run-the-oozie-project"></a>Oozie 프로젝트 실행
+Azure PowerShell은 Oozie 작업을 정의하는 데 현재 어떤 cmdlet도 제공하지 않습니다. **Invoke-RestMethod** cmdlet을 사용하여 Oozie 웹 서비스를 불러올 수 있습니다. Oozie 웹 서비스 API는 HTTP REST JSON API입니다. Oozie 웹 서비스 API에 대한 자세한 내용은 [Apache Oozie 4.0 설명서][apache-oozie-400](HDInsight 클러스터 버전 3.0의 경우) 또는 [Apache Oozie 3.3.2 설명서][apache-oozie-332](HDInsight 클러스터 버전 2.1의 경우)를 참조하세요.
 
-**toosubmit Oozie 작업**
+**Oozie 작업을 제출하려면**
 
-1. 열기 hello Windows PowerShell ISE (Windows 8 시작 화면에 입력 **PowerShell_ISE**, 클릭 하 고 **Windows PowerShell ISE**합니다. 자세한 내용은 [Windows 8 및 Windows에서 Windows PowerShell 시작][powershell-start]을 참조하세요.)
-2. 그러나 복사 hello 다음 hello 스크립트 창으로 스크립팅 하 고 다음 집합 hello 먼저 14 개의 변수 (건너뛸 **$storageUri**).
+1. Windows PowerShell ISE를 엽니다. (Windows 8 시작 화면에서 **PowerShell_ISE**를 입력한 후에 **Windows PowerShell ISE**를 클릭하면 됩니다. 자세한 내용은 [Windows 8 및 Windows에서 Windows PowerShell 시작][powershell-start]을 참조하세요.)
+2. 다음 스크립트를 스크립트 창에 복사한 후 처음 14개 변수를 설정합니다(하지만 **$storageUri**는 건너뜀).
 
     ```powershell
     #HDInsight cluster variables
@@ -423,7 +424,7 @@ Azure PowerShell은 Oozie 작업을 정의하는 데 현재 어떤 cmdlet도 제
     $coordFrequency = "1440"    # in minutes, 24h x 60m = 1440m
     $coordTimezone = "UTC"    #UTC/GMT
 
-    $oozieWFPath="$storageUri/tutorials/useoozie"  # hello default name is workflow.xml. And you don't need toospecify hello file name.
+    $oozieWFPath="$storageUri/tutorials/useoozie"  # The default name is workflow.xml. And you don't need to specify the file name.
     $waitTimeBetweenOozieJobStatusCheck=10
 
     #Hive action variables
@@ -433,17 +434,17 @@ Azure PowerShell은 Oozie 작업을 정의하는 데 현재 어떤 cmdlet도 제
     $hiveOutputFolder = "$storageUri/tutorials/useoozie/output"
 
     #Sqoop action variables
-    $sqlDatabaseConnectionString = "jdbc:sqlserver://$sqlDatabaseServer.database.windows.net;user=$sqlDatabaseLogin@$sqlDatabaseServer;password=$sqlDatabaseLoginPassword;database=$sqlDatabaseName"
+    $sqlDatabaseConnectionString = "Data Source=$sqlDatabaseServer.database.windows.net;user=$sqlDatabaseLogin@$sqlDatabaseServer;password=$sqlDatabaseLoginPassword;database=$sqlDatabaseName"  
     $sqlDatabaseTableName = "log4jLogsCount"
 
     $passwd = ConvertTo-SecureString $clusterPassword -AsPlainText -Force
     $creds = New-Object System.Management.Automation.PSCredential ($clusterUsername, $passwd)
     ```
 
-    참조 hello에 대 한 자세한 설명은 hello 변수, [필수 구성 요소](#prerequisites) 이 자습서의 섹션입니다.
+    변수에 대한 자세한 설명은 이 자습서에서 [필수 조건](#prerequisites) 섹션을 참조하세요.
 
-    $coordstart 및 $coordend는 hello 워크플로 시작 및 종료 시간입니다. toofind hello UTC/GMT 시간 bing.com에 "utc 시간"을 검색 합니다. hello $coordFrequency toorun hello 워크플로에서 분 단위 빈도입니다.
-3. Hello toohello 스크립트 다음에 추가 합니다. 이 부분 hello Oozie 페이로드를 정의합니다.
+    $coordstart 및 $coordend는 워크플로 시작 시간 및 끝 시간입니다. UTC/GMT 시간을 찾으려면 bing.com에서 "utc time"을 검색하세요. $coordFrequency는 워크플로를 실행할 빈도(분)입니다.
+3. 스크립트에 다음을 추가합니다. 이 부분은 Oozie 페이로드를 정의합니다.
 
     ```powershell
     #OoziePayload used for Oozie web service submission
@@ -541,9 +542,9 @@ Azure PowerShell은 Oozie 작업을 정의하는 데 현재 어떤 cmdlet도 제
     ```
 
    > [!NOTE]
-   > hello 주요한 차이점 비교 toohello 워크플로 제출 페이로드 파일은 hello 변수 **oozie.coord.application.path**합니다. 워크플로 작업을 제출할 때는 대신 **oozie.wf.application.path** 를 사용합니다.
+   > 워크플로 제출 페이로드 파일과 비교할 때 주요 차이점은 **oozie.coord.application.path**변수입니다. 워크플로 작업을 제출할 때는 대신 **oozie.wf.application.path** 를 사용합니다.
 
-4. Hello toohello 스크립트 다음에 추가 합니다. 이 부분 hello Oozie 웹 서비스 상태를 확인합니다.
+4. 스크립트에 다음을 추가합니다. 이 부분은 Oozie 웹 서비스 상태를 검사합니다.
 
     ```powershell
     function checkOozieServerStatus()
@@ -558,19 +559,18 @@ Azure PowerShell은 Oozie 작업을 정의하는 데 현재 어떤 cmdlet도 제
 
         if($oozieServerSatus -notmatch "NORMAL")
         {
-            Write-Host "Oozie server status is $oozieServerSatus...cannot submit Oozie jobs. Check hello server status and re-run hello job."
-            exit 1
+            Write-Host "Oozie server status is $oozieServerSatus...cannot submit Oozie jobs. Check the server status and re-run the job."
         }
     }
     ```
 
-5. Hello toohello 스크립트 다음에 추가 합니다. 이 부분은 Oozie 작업을 만듭니다.
+5. 스크립트에 다음을 추가합니다. 이 부분은 Oozie 작업을 만듭니다.
 
     ```powershell
     function createOozieJob()
     {
         # create Oozie job
-        Write-Host "Sending hello following Payload toohello cluster:" -ForegroundColor Green
+        Write-Host "Sending the following Payload to the cluster:" -ForegroundColor Green
         Write-Host "`n--------`n$OoziePayload`n--------"
         $clusterUriCreateJob = "https://$clusterName.azurehdinsight.net:443/oozie/v2/jobs"
         $response = Invoke-RestMethod -Method Post -Uri $clusterUriCreateJob -Credential $creds -Body $OoziePayload -ContentType "application/xml" -OutVariable $OozieJobName -debug -Verbose
@@ -584,18 +584,18 @@ Azure PowerShell은 Oozie 작업을 정의하는 데 현재 어떤 cmdlet도 제
     ```
 
    > [!NOTE]
-   > 워크플로 작업을 전송 하면 hello 작업이 만들어진 후에 다른 웹 서비스 호출 toostart hello 작업을 해야 합니다. 이 경우 hello 코디네이터 작업 시간에 의해 트리거됩니다. hello 작업이 자동으로 시작 됩니다.
+   > 워크플로 작업을 제출하는 경우 이 작업이 만들어진 후에 시작되도록 다른 웹 서비스를 호출해야 합니다. 이 경우 코디네이터 작업은 시간별로 트리거됩니다. 작업이 자동으로 시작됩니다.
 
-6. Hello toohello 스크립트 다음에 추가 합니다. 이 부분 hello Oozie 작업 상태를 확인합니다.
+6. 스크립트에 다음을 추가합니다. 이 부분은 Oozie 작업 상태를 확인합니다.
 
     ```powershell
     function checkOozieJobStatus($oozieJobId)
     {
         # get job status
-        Write-Host "Sleeping for $waitTimeBetweenOozieJobStatusCheck seconds until hello job metadata is populated in hello Oozie metastore..." -ForegroundColor Green
+        Write-Host "Sleeping for $waitTimeBetweenOozieJobStatusCheck seconds until the job metadata is populated in the Oozie metastore..." -ForegroundColor Green
         Start-Sleep -Seconds $waitTimeBetweenOozieJobStatusCheck
 
-        Write-Host "Getting job status and waiting for hello job toocomplete..." -ForegroundColor Green
+        Write-Host "Getting job status and waiting for the job to complete..." -ForegroundColor Green
         $clusterUriGetJobStatus = "https://$clusterName.azurehdinsight.net:443/oozie/v2/job/" + $oozieJobId + "?show=info"
         $response = Invoke-RestMethod -Method Get -Uri $clusterUriGetJobStatus -Credential $creds
         $jsonResponse = ConvertFrom-Json (ConvertTo-Json -InputObject $response)
@@ -603,7 +603,7 @@ Azure PowerShell은 Oozie 작업을 정의하는 데 현재 어떤 cmdlet도 제
 
         while($JobStatus -notmatch "SUCCEEDED|KILLED")
         {
-            Write-Host "$(Get-Date -format 'G'): $oozieJobId is in $JobStatus state...waiting $waitTimeBetweenOozieJobStatusCheck seconds for hello job toocomplete..."
+            Write-Host "$(Get-Date -format 'G'): $oozieJobId is in $JobStatus state...waiting $waitTimeBetweenOozieJobStatusCheck seconds for the job to complete..."
             Start-Sleep -Seconds $waitTimeBetweenOozieJobStatusCheck
             $response = Invoke-RestMethod -Method Get -Uri $clusterUriGetJobStatus -Credential $creds
             $jsonResponse = ConvertFrom-Json (ConvertTo-Json -InputObject $response)
@@ -614,12 +614,11 @@ Azure PowerShell은 Oozie 작업을 정의하는 데 현재 어떤 cmdlet도 제
         if($JobStatus -notmatch "SUCCEEDED")
         {
             Write-Host "Check logs at http://headnode0:9014/cluster for detais."
-            exit -1
         }
     }
     ```
 
-7. (선택 사항) Hello toohello 스크립트 다음에 추가 합니다.
+7. (선택 사항) 스크립트에 다음을 추가합니다.
 
     ```powershell
     function listOozieJobs()
@@ -646,13 +645,13 @@ Azure PowerShell은 Oozie 작업을 정의하는 데 현재 어떤 cmdlet도 제
 
     function killOozieJob($oozieJobId)
     {
-        Write-Host "Killing hello Oozie job $oozieJobId..." -ForegroundColor Green
-        $clusterUriStartJob = "https://$clusterName.azurehdinsight.net:443/oozie/v2/job/" + $oozieJobId + "?action=kill" #Valid values for hello 'action' parameter are 'start', 'suspend', 'resume', 'kill', 'dryrun', 'rerun', and 'change'.
+        Write-Host "Killing the Oozie job $oozieJobId..." -ForegroundColor Green
+        $clusterUriStartJob = "https://$clusterName.azurehdinsight.net:443/oozie/v2/job/" + $oozieJobId + "?action=kill" #Valid values for the 'action' parameter are 'start', 'suspend', 'resume', 'kill', 'dryrun', 'rerun', and 'change'.
         $response = Invoke-RestMethod -Method Put -Uri $clusterUriStartJob -Credential $creds | Format-Table -HideTableHeaders -debug
     }
     ```
 
-8. Hello toohello 스크립트에 다음을 추가 합니다.
+8. 스크립트에 다음을 추가합니다.
 
     ```powershell
     checkOozieServerStatus
@@ -663,23 +662,23 @@ Azure PowerShell은 Oozie 작업을 정의하는 데 현재 어떤 cmdlet도 제
     # killOozieJob($oozieJobId)
     ```
 
-    Toorun hello에 대 한 추가 기능을 원하는 경우 hello # 기호를 제거 합니다.
-9. HDinsight 클러스터 버전이 2.1인 경우 "https://$clusterName.azurehdinsight.net:443/oozie/v2/"를 "https://$clusterName.azurehdinsight.net:443/oozie/v1/"로 바꿉니다. HDInsight 클러스터 버전 2.1 지원의 버전이 아닌 2 hello 웹 서비스를 수행합니다.
-10. 클릭 **스크립트 실행** 하거나 키를 눌러 **F5** toorun hello 스크립트입니다. hello 출력 비슷합니다 됩니다.
+    추가 함수를 실행하려는 경우 # 기호를 제거합니다.
+9. HDinsight 클러스터 버전이 2.1인 경우 "https://$clusterName.azurehdinsight.net:443/oozie/v2/"를 "https://$clusterName.azurehdinsight.net:443/oozie/v1/"로 바꿉니다. HDInsight 클러스터 버전 2.1은 웹 서비스의 버전 2를 지원하지 않습니다.
+10. **스크립트 실행**을 클릭하거나 **F5** 키를 눌러 스크립트를 실행합니다. 다음과 유사하게 출력됩니다.
 
      ![자습서 실행 워크플로 출력][img-runworkflow-output]
-11. Tooyour SQL 데이터베이스 toosee hello 내보낸 데이터를 연결 합니다.
+11. SQL 데이터베이스에 연결하여 내보낸 데이터를 확인합니다.
 
-**toocheck hello 작업 오류 로그**
+**작업 오류 로그를 검사하려면**
 
-워크플로 tootroubleshoot hello Oozie 로그 파일에 있습니다 C:\apps\dist\oozie-3.3.2.1.3.2.0-05\oozie-win-distro\logs\Oozie.log hello 클러스터 헤드 노드에에서 합니다. RDP에 대 한 자세한 내용은 참조 [관리 HDInsight 클러스터를 사용 하 여 Azure 포털 hello][hdinsight-admin-portal]합니다.
+워크플로 문제를 해결하기 위해 클러스터 headnode에서 C:\apps\dist\oozie-3.3.2.1.3.2.0-05\oozie-win-distro\logs\Oozie.log에 있는 Oozie 로그 파일을 확인할 수 있습니다. RDP에 대한 자세한 내용은 [Azure Portal을 사용하여 HDInsight 클러스터 관리][hdinsight-admin-portal]를 참조하세요.
 
-**toorerun hello 자습서**
+**자습서를 다시 실행하려면**
 
-toorerun hello 워크플로 hello 다음 작업을 수행 해야 합니다.
+워크플로를 다시 실행하려면 다음을 수행해야 합니다:
 
-* Hello 하이브 스크립트 출력 파일을 삭제 합니다.
-* Hello log4jLogsCount 테이블에서 hello 데이터를 삭제 합니다.
+* Hive 스크립트 출력 파일 삭제.
+* log4jLogsCount 테이블의 데이터 삭제.
 
 다음은 사용할 수 있는 Windows PowerShell 스크립트 샘플입니다:
 
@@ -694,12 +693,12 @@ $sqlDatabaseLoginPassword = "<SQLDatabaseLoginPassword>"
 $sqlDatabaseName = "<SQLDatabaseName>"
 $sqlDatabaseTableName = "log4jLogsCount"
 
-Write-host "Delete hello Hive script output file ..." -ForegroundColor Green
+Write-host "Delete the Hive script output file ..." -ForegroundColor Green
 $storageaccountkey = get-azurestoragekey $storageAccountName | %{$_.Primary}
 $destContext = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageaccountkey
 Remove-AzureStorageBlob -Context $destContext -Blob "tutorials/useoozie/output/000000_0" -Container $containerName
 
-Write-host "Delete all hello records from hello log4jLogsCount table ..." -ForegroundColor Green
+Write-host "Delete all the records from the log4jLogsCount table ..." -ForegroundColor Green
 $conn = New-Object System.Data.SqlClient.SqlConnection
 $conn.ConnectionString = "Data Source=$sqlDatabaseServer.database.windows.net;Initial Catalog=$sqlDatabaseName;User ID=$sqlDatabaseLogin;Password=$sqlDatabaseLoginPassword;Encrypt=true;Trusted_Connection=false;"
 $conn.open()
@@ -712,12 +711,12 @@ $conn.close()
 ```
 
 ## <a name="next-steps"></a>다음 단계
-이 자습서에서는 방법에 대해 배웠습니다 toodefine Oozie 워크플로 및 Oozie 코디네이터 라면 및 Oozie 코디네이터 toorun Azure PowerShell을 사용 하 여 작업 하는 방법입니다. 더 toolearn hello 다음 문서를 참조:
+이 자습서에서는 Oozie 워크플로를 정의하는 방법, Oozie 코디네이터 및 Azure PowerShell을 사용하여 Oozie 코디네이터 작업을 실행하는 방법을 알아보았습니다. 자세한 내용은 다음 문서를 참조하세요.
 
 * [HDInsight 시작][hdinsight-get-started]
 * [HDInsight에서 Azure Blob Storage 사용][hdinsight-storage]
 * [Azure PowerShell을 사용하여 HDInsight 클러스터 관리][hdinsight-admin-powershell]
-* [데이터 tooHDInsight 업로드][hdinsight-upload-data]
+* [HDInsight에 데이터 업로드][hdinsight-upload-data]
 * [HDInsight에서 Sqoop 사용][hdinsight-use-sqoop]
 * [HDInsight에서 Hive 사용][hdinsight-use-hive]
 * [HDInsight에서 Pig 사용][hdinsight-use-pig]

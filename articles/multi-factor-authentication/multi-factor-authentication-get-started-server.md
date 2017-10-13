@@ -1,6 +1,6 @@
 ---
-title: "aaaGetting Azure Multi-factor Authentication 서버를 시작 | Microsoft Docs"
-description: "Tooget Azure MFA 서버를 시작 하는 방법을 설명 하는 hello Azure multi-factor authentication 페이지입니다."
+title: "Azure Multi-Factor Authentication 서버 시작하기 | Microsoft Docs"
+description: "Azure MFA 서버 시작 방법을 설명하는 Azure 다단계 인증 페이지입니다."
 services: multi-factor-authentication
 keywords: "인증 서버, Azure Multi Factor Authentication 앱 활성화 페이지, 인증 서버 다운로드"
 documentationcenter: 
@@ -12,27 +12,27 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 08/23/2017
+ms.date: 08/30/2017
 ms.author: joflore
 ms.reviewer: alexwe
 ms.custom: it-pro
-ms.openlocfilehash: 92a6a586eb96375e92a9455ad64e67221001db81
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: df847c370817c0702163b5e22c35c7e4f1d3cfee
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="getting-started-with-hello-azure-multi-factor-authentication-server"></a>Azure Multi-factor Authentication 서버 hello로 시작
+# <a name="getting-started-with-the-azure-multi-factor-authentication-server"></a>Azure Multi-Factor Authentication 서버로 시작하기
 
 <center>![MFA 온-프레미스](./media/multi-factor-authentication-get-started-server/server2.png)</center>
 
-Toouse 온-프레미스 Multi-factor Authentication 서버를 결정 했으므로 출발 합니다. 이 페이지에서는 hello 서버와 온-프레미스 Active directory 설정의 새 설치에 설명 합니다. Hello MFA 서버 설치 이미 있고 tooupgrade 확인 하려는 경우 참조 [toohello 업그레이드 최신 Azure Multi-factor Authentication 서버](multi-factor-authentication-server-upgrade.md)합니다. 방금 hello 웹 서비스 설치에 대 한 내용은 찾고 있는 경우 참조 [배포 hello Azure Multi-factor Authentication 서버 모바일 앱 웹 서비스](multi-factor-authentication-get-started-server-webservice.md)합니다.
+온-프레미스 Multi-Factor Authentication 서버를 사용할지 여부를 결정했으므로 다음으로 진행합니다. 이 페이지에서는 서버를 새롭게 설치하고 이를 온-프레미스 Active Directory를 사용하여 설정하는 것을 다룹니다. MFA 서버가 이미 설치되어 있고 업그레이드를 고려하는 경우 [최신 Azure Multi-Factor Authentication 서버로 업그레이드](multi-factor-authentication-server-upgrade.md)를 참조하세요. 웹 서비스만 설치하는 정보는 [Azure Multi-Factor Authentication 서버 모바일 앱 웹 서비스 배포](multi-factor-authentication-get-started-server-webservice.md)를 참조하세요.
 
 ## <a name="plan-your-deployment"></a>배포 계획
 
-Hello Azure Multi-factor Authentication 서버를 다운로드 하기 전에 부하 및 고가용성 요구 사항 이란에 대해 생각 합니다. 이 정보 toodecide 위치와 방법을 사용 하 여 toodeploy 합니다.
+Azure Multi-Factor Authentication 서버를 다운로드하기 전에 로드 및 고가용성 요구 사항에 대해 알아봅니다. 이 정보를 사용하여 배포 방법 및 위치를 결정합니다.
 
-좋은 지침은 정기적으로 tooauthenticate 원하는 hello 필요한 메모리 양은 사용자 수가 hello에 대 한 합니다.
+필요한 메모리 양에 대한 올바른 지침은 정기적으로 인증해야 하는 사용자의 수입니다.
 
 | 사용자 | RAM |
 | ----- | --- |
@@ -42,38 +42,38 @@ Hello Azure Multi-factor Authentication 서버를 다운로드 하기 전에 부
 | 100,000-200,001 | 16GB |
 | 200,001+ | 32GB |
 
-고가용성을 위해 여러 서버를 tooset 필요 하거나 부하 분산 수행 했습니까? 이 구성을 Azure MFA 서버와 같은 방법으로 tooset의 여러 가지가 있습니다. 첫 번째 Azure MFA 서버를 설치 하면 hello 마스터 됩니다. 서버를 더 하위 수준 해지고 hello 마스터와 사용자 및 구성 작업을 자동으로 동기화 합니다. 그런 다음 주 서버를 구성할 수 있으며 역할 hello rest는 백업 또는 있습니다 모든 hello 서버 간의 부하 분산을 설정할 수 있습니다.
+고가용성 또는 부하 분산을 위해 여러 개의 서버를 설정해야 하는가요? Azure MFA 서버로 이 구성을 설정하는 방법은 여러 가지가 있습니다. 첫 번째로 설치하는 Azure MFA 서버는 마스터 서버가 됩니다. 추가되는 서버는 모두 하위 서버가 되며 사용자와 구성을 마스터 서버와 자동으로 동기화합니다. 그런 다음 하나의 주 서버를 구성하고 나머지 서버를 백업으로 사용하거나 모든 서버 간에 부하 분산을 설정할 수 있습니다.
 
-Azure MFA 서버 마스터 되 면 오프 라인, 하위 서버 hello 계속 프로세스 2 단계 확인 요청 수입니다. 그러나 추가할 수 없는 새 사용자 및 기존 사용자 hello 마스터는 온라인 또는 하위 항목이 승격 될 때까지 해당 설정을 업데이트할 수 없습니다.
+마스터 Azure MFA 서버가 오프라인 상태가 되면 하위 서버에서 2단계 인증 요청을 계속 처리할 수 있습니다. 그러나 새 사용자를 추가할 수 없으며, 마스터가 다시 온라인 상태가 되거나 하위 서버가 승격될 때까지 기존 사용자는 해당 설정을 업데이트할 수 없습니다.
 
 ### <a name="prepare-your-environment"></a>환경 준비
 
-Azure Multi-factor Authentication을 사용 하는 hello 서버 hello 요구 사항을 준수를 충족 해야 합니다.
+Azure Multi-Factor Authentication에 사용 중인 서버가 다음 요구 사항을 충족하는지 확인합니다.
 
 | Azure Multi-Factor Authentication 서버 요구 사항 | 설명 |
 |:--- |:--- |
 | 하드웨어 |<li>200MB의 하드 디스크 공간</li><li>x32 또는 x64 지원 프로세서</li><li>1GB 이상 RAM</li> |
-| 소프트웨어 |<li>Windows Server 2008 이상이 hello 호스트 서버인 경우 운영 체제</li><li>Windows 7 또는 hello 호스트는 클라이언트 OS 증가 하면</li><li>Microsoft .NET 4.0 Framework</li><li>IIS 7.0 또는 설치 하는 경우 큰 hello 사용자 포털 또는 웹 서비스 SDK</li> |
+| 소프트웨어 |<li>Windows Server 2016</li><li>Windows Server 2012 R2</li><li>Windows Server 2012</li><li>Windows Server 2008 R2</li><li>Windows Server 2008, SP1, SP2</li><li>Windows Server 2003 R2</li><li>Windows Server 2003, SP1, SP2</li><li>Windows 10</li><li>Windows 8.1, 모든 버전</li><li>Windows 8, 모든 버전</li><li>Windows 7, 모든 버전</li><li>Windows Vista, 모든 버전, SP1, SP2</li><li>Microsoft .NET 4.0 Framework</li><li>사용자 포털 또는 웹 서비스 SDK를 설치하는 경우 IIS 7.0 이상</li> |
 
 ### <a name="azure-mfa-server-components"></a>Azure MFA 서버 구성 요소
 
 Azure MFA 서버를 구성하는 세 가지 웹 구성 요소가 있습니다.
 
-* 웹 서비스 SDK-통신할 때 다른 구성 요소를 hello 및 hello Azure MFA 응용 프로그램 서버에 설치 되어 사용 하도록 설정
-* 사용자 포털-사용자가 tooenroll Azure Multi-factor Authentication (MFA)를 허용 하 고 자신의 계정을 관리할 수 있는 IIS 웹 사이트입니다.
-* 모바일 앱 웹 서비스-2 단계 인증에 대 한 hello Microsoft Authenticator 앱 처럼 모바일 앱을 사용할 수 있습니다.
+* 웹 서비스 SDK - 다른 구성 요소와 통신을 활성화하고 Azure MFA 응용 프로그램 서버에 설치됩니다.
+* 사용자 포털 - 사용자가 Azure MFA(Multi-Factor Authentication)에 등록하고 해당 계정을 유지 관리할 수 있는 IIS 웹 사이트입니다.
+* 모바일 앱 웹 서비스 - 2단계 인증에 대해 Microsoft Authenticator 앱과 같은 모바일 앱을 사용할 수 있습니다.
 
-Hello에 모든 세 가지 구성 요소를 설치할 수 있습니다 동일한 서버 hello 서버는 인터넷에 연결 하는 경우. 웹 서비스 SDK hello hello Azure MFA 응용 프로그램 서버에 설치 된 hello 구성 요소를 해제 하는 경우 및 hello 사용자 포털 및 모바일 앱 웹 서비스는 인터넷 연결 서버에 설치 됩니다.
+서버를 인터넷에 연결하는 경우 세 가지 구성 요소를 모두 동일한 서버에 설치할 수 있습니다. 구성 요소를 나누는 경우 웹 서비스 SDK는 Azure MFA 응용 프로그램 서버에 설치되고 사용자 포털 및 모바일 앱 웹 서비스는 인터넷 연결 서버에 설치됩니다.
 
 ### <a name="azure-multi-factor-authentication-server-firewall-requirements"></a>Azure Multi-Factor Authentication 방화벽 요구 사항
 
-각 MFA 서버 포트 443 아웃 바운드 toohello 주소 다음에 수 toocommunicate 해야 합니다.
+각 MFA 서버는 다음 주소로 포트 443 아웃바운드에서 통신할 수 있어야 합니다.
 
 * https://pfd.phonefactor.net
 * https://pfd2.phonefactor.net
 * https://css.phonefactor.net
 
-포트 443에서 아웃 바운드 방화벽이 제한 된, hello 다음 IP 주소 범위를 엽니다.
+아웃바운드 방화벽이 포트 443에서 제한되는 경우 다음 IP 주소 범위를 엽니다.
 
 | IP 서브넷 | 네트워크 마스크 | IP 범위 |
 |:---: |:---: |:---: |
@@ -81,7 +81,7 @@ Hello에 모든 세 가지 구성 요소를 설치할 수 있습니다 동일한
 | 134.170.165.0/25 |255.255.255.128 |134.170.165.1 – 134.170.165.126 |
 | 70.37.154.128/25 |255.255.255.128 |70.37.154.129 – 70.37.154.254 |
 
-Hello 이벤트 확인 기능을 사용 하지 않는 경우 사용자가 장치에서 모바일 앱 tooverify를 hello 회사 네트워크에서 사용 하지 않는 hello 범위를 수행 하면 됩니다.
+이벤트 확인 기능을 사용하지 않고 사용자가 모바일 앱을 사용하여 회사 네트워크의 장치에서 확인하지 않는 경우 다음 범위만 필요합니다.
 
 | IP 서브넷 | 네트워크 마스크 | IP 범위 |
 |:---: |:---: |:---: |
@@ -89,10 +89,10 @@ Hello 이벤트 확인 기능을 사용 하지 않는 경우 사용자가 장치
 | 134.170.165.72/29 |255.255.255.248 |134.170.165.72 – 134.170.165.79 |
 | 70.37.154.200/29 |255.255.255.248 |70.37.154.201 – 70.37.154.206 |
 
-## <a name="download-hello-azure-multi-factor-authentication-server"></a>Hello Azure Multi-factor Authentication 서버 다운로드
+## <a name="download-the-azure-multi-factor-authentication-server"></a>Azure Multi-Factor Authentication 서버 다운로드
 
-1. Toohello 로그인 [Azure 포털](https://portal.azure.com) 관리자 권한으로 합니다.
-2. Hello 왼쪽에서 선택 **Active Directory**
+1. 관리자로 [Azure Portal](https://portal.azure.com)에 로그인합니다.
+2. 왼쪽 창에서 **Active Directory**를 선택합니다.
 3. **사용자 및 그룹**을 클릭합니다.
 4. **모든 사용자**를 클릭합니다.
 5. **Multi-Factor Authentication**을 클릭합니다.
@@ -100,69 +100,69 @@ Hello 이벤트 확인 기능을 사용 하지 않는 경우 사용자가 장치
 
    ![서비스 설정 페이지](./media/multi-factor-authentication-get-started-server/servicesettings.png)
 
-6. Hello 서비스 설정 페이지에서 클릭에 hello hello 화면 맨 아래에 **Go toohello 포털**합니다. 새 페이지가 열립니다.
+6. 서비스 설정 페이지의 화면 아래쪽에서 **포털로 이동**을 클릭합니다. 새 페이지가 열립니다.
 7. **다운로드**를 클릭합니다.
-8. Hello 클릭 **다운로드** 연결 하 고 hello 설치 관리자를 저장 합니다.
+8. **다운로드** 링크를 클릭하고 설치 프로그램을 저장합니다.
 
    ![MFA 서버 다운로드](./media/multi-factor-authentication-get-started-server/download4.png)
 
-9. 이 페이지 하므로 계속 열어둡니다 tooit hello 설치 관리자를 실행 한 후 이라고 합니다.
+9. 설치 관리자를 실행한 후 참조할 수 있도록 이 페이지를 열어둡니다.
 
-## <a name="install-and-configure-hello-azure-multi-factor-authentication-server"></a>설치 하 고 hello Azure Multi-factor Authentication 서버를 구성 합니다.
+## <a name="install-and-configure-the-azure-multi-factor-authentication-server"></a>Azure Multi-Factor Authentication 서버 설치 및 구성
 
-다운로드 한 hello 서버를 설치 하 고 구성할 수 있습니다. 해당 hello 서버에 설치 하는 hello 계획 섹션에에서 나열 된 요구 사항을 충족 해야 합니다.
+서버를 다운로드했으므로 이제 서버를 설치하고 구성할 수 있습니다. 설치하려는 서버가 계획 섹션에 나열된 요구 사항을 충족하는지 확인합니다.
 
-1. Hello 실행 파일을 두 번 클릭 합니다.
-2. Hello 설치 폴더 선택 화면에서 해당 hello 폴더가 올바른지 확인 하 고 클릭 **다음**합니다.
-3. Hello 설치가 완료 되 면 클릭 **마침**합니다.  hello 구성 마법사를 시작합니다.
-4. Hello 구성 마법사 시작 화면에서 확인 **Skip을 사용 하 여 hello 인증 구성 마법사** 클릭 **다음**합니다.  hello 마법사가 닫히고 hello 서버를 시작 합니다.
+1. 실행 파일을 두 번 클릭합니다.
+2. 설치 폴더 선택 화면에서 해당 폴더가 정확한지 확인하고 **다음**을 클릭합니다.
+3. 설치가 완료되면 **마침**을 클릭합니다.  구성 마법사가 시작됩니다.
+4. 구성 마법사 시작 화면에서 **인증 구성 마법사를 사용하여 건너뛰기**에 체크 표시하고 **다음**을 클릭합니다.  마법사가 닫히고 서버가 시작됩니다.
 
    ![클라우드](./media/multi-factor-authentication-get-started-server/skip2.png)
 
-5. 다시 hello 페이지 hello 서버에서 다운로드 한 म 클릭 hello **활성화 자격 증명 생성** 단추입니다. 제공 된 hello 상자에 Azure MFA 서버 hello에이 정보를 복사 하 고 클릭 **Activate**합니다.
+5. 서버를 다운로드한 페이지로 돌아가서 **정품 인증 자격 증명 생성** 버튼을 클릭합니다. 이 정보를 제공된 상자의 Azure MFA 서버에 복사하고 **활성화**를 클릭합니다.
 
 ## <a name="send-users-an-email"></a>사용자에게 전자 메일 보내기
 
-tooease 롤아웃, 사용자와 MFA 서버 toocommunicate 허용 합니다. MFA 서버에서 전자 메일 tooinform를 보낼 수에 2 단계 인증에 등록 되어 있습니다.
+출시를 용이하게 하려면 MFA 서버가 사용자와 통신하도록 합니다. MFA 서버는 2단계 인증에 등록되었음을 알리는 전자 메일을 보낼 수 있습니다.
 
-hello 전자 메일을 보내는 2 단계 인증에 대 한 사용자가 구성 하는 방법가 확인 해야 합니다. 예를 들어 hello 회사 디렉터리에서 전화 번호 수 tooimport 인 경우 사용자가 어떤 tooexpect 알 수 있도록 hello 전자 메일 hello 기본 전화 번호를 포함 되어야 합니다. 전화 번호를 가져오지 않으면 또는 사용자가 toouse hello 모바일 응용 프로그램 의도 보냅니다 toocomplete 안내 전자 메일 계정 등록. Hello 전자 메일에 하이퍼링크 toohello Azure Multi-factor Authentication 사용자 포털을 포함 합니다.
+전자 메일을 보내는 작업은 2단계 인증에 사용자를 구성하는 방법으로 결정되어야 합니다. 예를 들어, 회사 디렉터리에서 전화 번호를 가져올 수 있었다면 사용자가 예상하는 것을 알 수 있도록 전자 메일에 기본 전화 번호가 포함되어 있습니다. 전화 번호를 가져오지 않았거나 사용자가 모바일 앱을 사용하려는 경우 해당 계정 등록을 완료하도록 지시하는 이메일을 보냅니다. 전자 메일에 Azure Multi-factor Authentication 사용자 포털에 대한 하이퍼링크를 포함합니다.
 
-hello 전자 메일의 hello 콘텐츠 hello 사용자 (전화 통화, SMS 또는 모바일 앱)에 대해 설정 된 확인의 hello 방법에 따라 달라 집니다.  예를 들어 hello에서 사용자가 경우 필요한 toouse PIN 인증 시 hello 전자 메일 ¿ë à ú으로 어떤 초기 PIN 설정 되었습니다.  사용자가 해당 첫 번째 확인 하는 동안 필요한 toochange PIN 됩니다.
+또한 전자 메일의 내용은 사용자에 대해 설정된 인증 방법(전화 통화, SMS, 모바일 앱)에 따라 달라집니다.  예를 들어 사용자가 인증할 때 PIN을 사용해야 하는 경우 전자 메일은 초기 PIN 설정 내용을 알려줍니다.  사용자는 처음 인증할 때 PIN을 변경해야 합니다.
 
 ### <a name="configure-email-and-email-templates"></a>전자 메일 및 전자 메일 템플릿 구성
 
-이러한 전자 메일을 보내기 위한 hello 설정이 왼쪽된 tooset hello에 hello 전자 메일 아이콘을 클릭 합니다. 이 페이지는 hello를 확인 하 여 메일 서버와 송신 전자 메일의 SMTP hello 정보를 입력할 수 있는 **송신 toousers 전자 메일로** 확인란 합니다.
+왼쪽에 있는 전자 메일 아이콘을 클릭하여 이 전자 메일 보내기에 대한 설정을 설정합니다. 이 페이지에서는 메일 서버의 SMTP 정보를 입력할 수 있으며 **전자 메일을 사용자에게 보내기** 확인란을 선택하여 전자 메일을 보낼 수 있습니다.
 
 ![MFA 서버 전자 메일 구성](./media/multi-factor-authentication-get-started-server/email1.png)
 
-Hello 전자 메일 내용 탭에서 사용할 수 있는 toochoose 있는 hello 전자 메일 템플릿을 볼 수 있습니다. 사용자가 한 tooperform 2 단계 확인을 구성 방식에 따라 하기에 가장 적합 한 hello 템플릿을 선택 합니다.
+전자 메일 내용 탭에서 선택할 수 있는 전자 메일 템플릿을 확인할 수 있습니다. 사용자가 2단계 인증을 수행하도록 구성한 방법에 따라 가장 적합한 템플릿을 선택합니다.
 
 ![MFA 서버 전자 메일 템플릿](./media/multi-factor-authentication-get-started-server/email2.png)
 
 ## <a name="import-users-from-active-directory"></a>Active Directory에서 사용자 가져오기
 
-해당 hello 서버가 설치 되어 이제 tooadd 사용자 해야 합니다. Toocreate 수동으로 Active Directory에서 사용자 가져오기 또는 Active Directory와 자동된 동기화를 구성할 수 있습니다.
+이제 서버가 설치되었으므로 사용자를 추가하려고 합니다. 사용자를 수동으로 만들거나, Active Directory에서 사용자를 가져오거나, Active Directory와 자동 동기화를 구성할 수 있습니다.
 
 ### <a name="manual-import-from-active-directory"></a>Active Directory에서 수동 가져오기
 
-1. Azure MFA 서버 hello hello 왼쪽에서 선택 **사용자**합니다.
-2. Hello 맨 아래에 선택 **Active Directory에서 가져오기**합니다.
-3. 이제 검색할 수 있습니다 하거나 개별 사용자 또는 검색 hello AD 디렉터리에 대 한 Ou에 대 한 해당 사용자와.  이 경우 hello 사용자 OU 지정합니다.
-4. Hello 오른쪽에 있는 모든 hello 사용자를 강조 표시 하 고 클릭 **가져오기**합니다.  성공했음을 알려주는 팝업 메시지가 나타납니다.  닫기 hello 가져오기 창입니다.
+1. Azure MFA 서버의 왼쪽에서 **사용자**를 선택합니다.
+2. 아래쪽에서 **Active Directory에서 가져오기**를 선택합니다.
+3. 이제 개별 사용자를 검색하거나 해당 사용자로 OU에 대한 AD 디렉터리를 검색할 수 있습니다.  이 경우 사용자 OU를 지정합니다.
+4. 오른쪽의 모든 사용자를 강조 표시하고 **가져오기**를 클릭합니다.  성공했음을 알려주는 팝업 메시지가 나타납니다.  가져오기 창을 닫습니다.
 
    ![MFA 서버 사용자 가져오기](./media/multi-factor-authentication-get-started-server/import2.png)
 
 ### <a name="automated-synchronization-with-active-directory"></a>Active Directory와 자동 동기화
 
-1. Azure MFA 서버 hello hello 왼쪽에서 선택 **디렉터리 통합**합니다.
-2. Toohello 이동 **동기화** 탭 합니다.
-3. Hello 맨 아래에 선택 **추가**
-4. Hello에 **동기화 항목 추가** 나타나는 상자 선택 hello 도메인 OU **또는** 보안 그룹, 설정, 방법 기본값 및이 동기화에 대 한 기본 언어는 작업 및 클릭**추가**합니다.
-5. 레이블이 hello 확인란 **Active Directory와 동기화 사용** 선택 하 고는 **동기화 간격** 1 분에서 24 시간 사이입니다.
+1. Azure MFA 서버의 왼쪽에서 **디렉터리 통합**을 선택합니다.
+2. **동기화** 탭으로 이동합니다.
+3. 아래에서 **추가**를 선택합니다.
+4. 나타나는 **동기화 항목 추가** 상자에서 도메인, OU **또는** 보안 그룹, 설정, 메서드 기본값 및 이 동기화 작업의 기본 언어를 선택하고 **추가**를 클릭합니다.
+5. 레이블이 지정된 **Active Directory와 동기화 사용** 확인란을 선택하고 **동기화 간격**을 1분에서 24시간 사이로 선택합니다.
 
-## <a name="how-hello-azure-multi-factor-authentication-server-handles-user-data"></a>Hello Azure Multi-factor Authentication 서버에서 사용자 데이터를 처리 하는 방법
+## <a name="how-the-azure-multi-factor-authentication-server-handles-user-data"></a>Azure Multi-Factor Authentication 서버에서 사용자 데이터를 처리하는 방법
 
-Hello Multi-factor Authentication (MFA) 서버 온-프레미스를 사용 하면 사용자의 데이터는 hello 온-프레미스 서버에 저장 됩니다. 영구 사용자 데이터가 없으며 hello 클라우드에 저장 됩니다. Hello 사용자 2 단계 인증을 수행 하는 경우 MFA 서버 hello 데이터 toohello Azure MFA 클라우드 서비스 tooperform hello 확인을 보냅니다. 이러한 인증 요청 toohello 클라우드 서비스를 보내면 hello 다음 필드 보내집니다 hello 요청 및 로그 hello 고객의 인증/사용 현황 보고서에 사용할 수 있도록 합니다. Hello 필드 중 일부는 선택 사항 이므로 사용 하도록 설정 하거나 hello Multi-factor Authentication 서버 내에서 사용 하지 않도록 설정 수 있습니다. 포트 443 아웃 바운드 통한 SSL/TLS를 사용 하는 hello와 MFA 서버 toohello MFA 클라우드 서비스에서에서 hello 통신 합니다. 이러한 필드는 다음과 같습니다.
+MFA(Multi-Factor Authentication) 서버 온-프레미스를 사용하면 사용자의 데이터가 온-프레미스 서버에 저장됩니다. 영구 사용자 데이터는 클라우드에 저장되지 않습니다. 사용자가 2단계 인증을 수행하면 MFA 서버가 인증을 수행할 Azure MFA 클라우드 서비스에 데이터를 보냅니다. 이러한 인증 요청이 클라우드 서비스에 전송되면 다음 필드가 요청 및 로그에 전송되어 고객의 인증/사용 보고서에서 사용할 수 있게 됩니다. 일부 필드는 선택 사항이므로 Multi-Factor Authentication 서버 내에서 사용하거나 사용하지 않도록 설정할 수 있습니다. MFA 서버에서 MFA 클라우드 서비스로의 통신은 포트 443 아웃바운드를 통해 연결된 SSL/TLS를 사용합니다. 이러한 필드는 다음과 같습니다.
 
 * 고유 ID - 사용자 이름 또는 내부 MFA 서버 ID 
 * 이름과 성(선택 사항)
@@ -175,28 +175,28 @@ Hello Multi-factor Authentication (MFA) 서버 온-프레미스를 사용 하면
 * MFA 서버 IP
 * 클라이언트 IP - 사용 가능한 경우
 
-또한 toohello 위의 필드 hello 확인 결과 (성공/거부) 및 사유 hello 인증 데이터로 저장 되 고 hello 인증/사용 보고서를 통해 사용 가능한도 됩니다.
+위의 필드 외에도 인증 결과(성공/거부) 및 모든 거부 사유는 인증 데이터와 함께 저장되어 인증/사용 보고서를 통해 사용할 수 있습니다.
 
 ## <a name="back-up-and-restore-azure-mfa-server"></a>Azure MFA 서버 백업 및 복원
 
-양호한 백업 한지 확인 하는 모든 시스템으로는 중요 한 단계 tootake입니다.
+백업을 설정하는 것은 모든 시스템에서 수행할 중요한 단계입니다.
 
-Azure MFA 서버를 설치한 tooback hello의 복사본을가지고 있는지 확인 하십시오. **C:\Program Files\multi-factor Authentication Server\Data** hello를 포함 하 여 폴더 **PhoneFactor.pfdata** 파일입니다. 
+Azure MFA 서버를 백업하려면 **PhoneFactor.pfdata** 파일을 포함한 **C:\Program Files\Multi-Factor Authentication Server\Data** 폴더의 복사본을 가지고 있는지 확인합니다. 
 
-경우에는 복원에는 필요한 전체 hello 다음 단계:
+복원이 필요한 경우에 다음 단계를 완료합니다.
 
 1. 새 서버에 Azure MFA 서버를 다시 설치합니다.
-2. 활성화 새 Azure MFA 서버 hello 합니다.
-3. Stop hello **MultiFactorAuth** 서비스입니다.
-4. Hello 덮어쓰기 **PhoneFactor.pfdata** 복사본을 백업 하는 hello로 합니다.
-5. Hello 시작 **MultiFactorAuth** 서비스입니다.
+2. 새 Azure MFA 서버를 활성화합니다.
+3. **MultiFactorAuth** 서비스를 중지합니다.
+4. **PhoneFactor.pfdata**를 백업된 복사본으로 덮어씁니다.
+5. **MultiFactorAuth** 서비스를 시작합니다.
 
-새 서버 hello 지금 실행 되 고 hello 원래 백업 구성 및 사용자 데이터를 사용 합니다.
+이제 원래 백업된 구성 및 사용자 데이터를 사용하여 새 서버가 실행됩니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-- 설정 및 구성 hello [사용자 포털](multi-factor-authentication-get-started-portal.md) 셀프 서비스 사용자에 대 한 합니다.
-- 설정 및 구성 Azure MFA 서버 함께 사용 hello [Active Directory Federation Service](multi-factor-authentication-get-started-adfs.md), [RADIUS 인증](multi-factor-authentication-get-started-server-radius.md), 또는 [LDAP 인증](multi-factor-authentication-get-started-server-ldap.md)합니다.
+- 사용자 셀프 서비스를 위해 [사용자 포털](multi-factor-authentication-get-started-portal.md)을 설정 및 구성합니다.
+- [Active Directory Federation Service](multi-factor-authentication-get-started-adfs.md), [RADIUS 인증](multi-factor-authentication-get-started-server-radius.md) 또는 [LDAP 인증](multi-factor-authentication-get-started-server-ldap.md)을 사용하여 Azure MFA 서버를 설정하고 구성합니다.
 - [RADIUS를 사용하여 원격 데스크톱 게이트웨이 및 Azure Multi-Factor Authentication 서버](multi-factor-authentication-get-started-server-rdg.md)를 설정 및 구성합니다.
-- [Hello Azure Multi-factor Authentication 서버 모바일 앱 웹 서비스를 배포](multi-factor-authentication-get-started-server-webservice.md)합니다.
+- [Azure Multi-Factor Authentication 서버 모바일 앱 웹 서비스 배포](multi-factor-authentication-get-started-server-webservice.md)
 - [Azure Multi-Factor Authentication 및 타사 VPN을 사용한 고급 시나리오](multi-factor-authentication-advanced-vpn-configurations.md)

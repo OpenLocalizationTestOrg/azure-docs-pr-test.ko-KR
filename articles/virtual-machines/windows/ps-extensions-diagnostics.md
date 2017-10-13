@@ -1,8 +1,8 @@
 ---
-title: "Windows VM에서 Azure PowerShell tooenable 진단 aaaUse | Microsoft Docs"
+title: "Azure PowerShell을 사용하여 Windows VM에서 진단을 사용하도록 설정 | Microsoft Docs"
 services: virtual-machines-windows
 documentationcenter: 
-description: "자세한 내용은 방법 toouse Windows를 실행 하는 가상 컴퓨터에서 PowerShell tooenable Azure 진단"
+description: "PowerShell을 사용하여 Windows를 실행하는 가상 컴퓨터에서 Azure 진단을 사용하도록 설정하는 방법에 대해 알아봅니다."
 author: sbtron
 manager: timlt
 editor: 
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2015
 ms.author: saurabh
-ms.openlocfilehash: e945f0de154b5ba600f845f0d577b48e2254573b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d0be4a712657edfc516c5f32e66519f5d9486728
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-powershell-tooenable-azure-diagnostics-in-a-virtual-machine-running-windows"></a>Windows를 실행 하는 가상 컴퓨터에서 PowerShell tooenable Azure 진단을 사용합니다
+# <a name="use-powershell-to-enable-azure-diagnostics-in-a-virtual-machine-running-windows"></a>PowerShell을 사용하여 Windows를 실행하는 가상 컴퓨터에서 Azure 진단을 사용하도록 설정
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-Azure 진단은 hello 배포 된 응용 프로그램에서 진단 데이터 수집을 사용 하면 Azure 내에서 hello 기능입니다. Hello 진단 확장 toocollect 진단 데이터와 같은 응용 프로그램 로그 나 Windows를 실행 하는 Azure 가상 컴퓨터 (VM)에서 성능 카운터를 사용할 수 있습니다. 이 문서에서는 toouse Windows PowerShell tooenable VM에 대 한 진단 확장을 hello 하는 방법을 설명 합니다. 참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview) hello이이 문서에 필요한 필수 구성 요소에 대 한 합니다.
+Azure 진단은 배포된 응용 프로그램에서 진단 데이터를 수집할 수 있도록 하는 Azure 내 기능입니다. 진단 확장을 사용하여 Windows를 실행 중인 Azure 가상 컴퓨터(VM)에서 응용 프로그램 로그 또는 성능 카운터 등과 같은 진단 데이터를 수집할 수 있습니다. 이 문서는 Windows PowerShell을 사용하여 VM에 대해 진단 확장을 사용하도록 설정하는 방법을 설명합니다. 이 문서에 요구되는 필수 조건은 [Azure PowerShell 설치 및 구성하는 방법](/powershell/azure/overview) 을 참조하세요.
 
-## <a name="enable-hello-diagnostics-extension-if-you-use-hello-resource-manager-deployment-model"></a>Hello 리소스 관리자 배포 모델을 사용 하는 경우 hello 진단 확장을 사용 하도록 설정
-Hello 확장 구성 toohello 리소스 관리자 템플릿을 추가 하 여 hello Azure 리소스 관리자 배포 모델을 통해 Windows VM을 만드는 동안 hello 진단 확장을 사용할 수 있습니다. 참조 [hello Azure 리소스 관리자 템플릿을 사용 하 여 Windows 가상 컴퓨터를 모니터링 및 진단을 작성](extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)합니다.
+## <a name="enable-the-diagnostics-extension-if-you-use-the-resource-manager-deployment-model"></a>리소스 관리자 배포 모델을 사용하는 경우 진단 확장을 사용하도록 설정
+Azure 리소스 관리자 배포 모델을 통해 Windows VM을 만드는 동안 리소스 관리자 템플릿에 확장 구성을 추가하여 진단 확장을 사용하도록 설정할 수 있습니다. [Azure Resource Manager를 사용하여 Windows 가상 컴퓨터와 모니터링 및 진단 기능 만들기](extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)를 참조하세요.
 
-hello 리소스 관리자 배포 모델을 통해 생성 된 기존 VM에 tooenable hello 진단 확장을 hello를 사용할 수 있습니다 [집합 AzureRMVMDiagnosticsExtension](/powershell/module/azurerm.compute/set-azurermvmdiagnosticsextension) 아래 표시 된 대로 PowerShell cmdlet입니다.
+리소스 관리자 배포 모델을 통해 만든 기존 VM에서 진단 확장을 사용하도록 설정하려면 아래 표시된 [Set-AzureRMVMDiagnosticsExtension](/powershell/module/azurerm.compute/set-azurermvmdiagnosticsextension) PowerShell cmdlet을 사용합니다.
 
     $vm_resourcegroup = "myvmresourcegroup"
     $vm_name = "myvm"
@@ -37,58 +37,58 @@ hello 리소스 관리자 배포 모델을 통해 생성 된 기존 VM에 tooena
     Set-AzureRmVMDiagnosticsExtension -ResourceGroupName $vm_resourcegroup -VMName $vm_name -DiagnosticsConfigurationPath $diagnosticsconfig_path
 
 
-*$diagnosticsconfig_path* hello에 설명 된 대로 hello 진단 구성을 XML에 포함 된 hello 경로 toohello 파일은 [샘플](#sample-diagnostics-configuration) 아래 합니다.  
+*$diagnosticsconfig_path*는 아래 [샘플](#sample-diagnostics-configuration)에 설명된 XML의 진단 구성이 포함된 파일의 경로입니다.  
 
-Hello 진단 구성 파일을 지정 하는 경우는 **StorageAccount** 저장소 계정 이름 가진 요소가 다음 hello *집합 AzureRMVMDiagnosticsExtension* 스크립트에서 자동으로 hello 설정 진단 확장 toosend 진단 데이터 toothat 저장소 계정입니다. 이 toowork hello 저장소 계정이 필요 합니다.에 toobe hello VM으로 동일한 구독 hello 합니다.
+진단 구성 파일이 저장소 계정 이름으로 **StorageAccount** 요소를 지정할 경우 *Set-AzureRMVMDiagnosticsExtension* 스크립트에서 해당 저장소 계정으로 진단 데이터를 보내도록 진단 확장을 자동으로 설정합니다. 이렇게 작동하려면, 저장소 계정이 VM과 동일한 구독 내에 있어야 합니다.
 
-없는 경우 **StorageAccount** hello에 toopass 필요 hello 진단 구성에 지정 된 *StorageAccountName* toohello cmdlet 매개 변수입니다. 경우 hello *StorageAccountName* hello cmdlet은 항상 hello 매개 변수에서 지정 된 hello 저장소 계정을 사용 하 여를 하지 hello 하나 hello 진단 구성 파일에 지정 된 다음 매개 변수를 지정 합니다.
+진단 구성에 **StorageAccount** 가 지정되지 않은 경우 cmdlet에 *StorageAccountName* 매개 변수를 전달해야 합니다. *StorageAccountName* 매개 변수가 지정된 경우 cmdlet은 항상 진단 구성 파일에 지정된 저장소 계정이 아닌 매개 변수에 지정된 저장소 계정을 사용합니다.
 
-Hello의 hello 진단 저장소 계정 tooexplicitly 필요 hello VM에서에서 다른 구독에는 통과 하면 *StorageAccountName* 및 *StorageAccountKey* toohello cmdlet 매개 변수입니다. hello *StorageAccountKey* 자동으로 쿼리 하 고 hello 진단 확장을 사용 하도록 설정할 때 hello 키 값을 설정할 수 hello cmdlet으로 hello 진단 저장소 계정이 동일한 구독을 hello 매개 변수가 필요 하지 않습니다. 그러나 hello 진단 저장소 계정이 다른 구독에는 hello cmdlet 하지 못할 수 tooget hello 키 자동으로 고 tooexplicitly 필요한 hello 통해 hello 키 지정 *StorageAccountKey* 매개 변수입니다.  
+진단 저장소 계정이 VM과 다른 구독에 있는 경우 *StorageAccountName* 및 *StorageAccountKey* 매개 변수를 cmdlet에 명시적으로 전달해야 합니다. 진단 저장소 계정이 동일한 구독에 있는 경우 진단 확장을 사용하도록 설정하면 cmdlet이 키 값을 자동으로 쿼리하고 설정할 수 있으므로 *StorageAccountKey* 매개 변수가 필요하지 않습니다. 하지만 진단 저장소 계정이 다른 구독에 있는 경우에는 cmdlet이 자동으로 키를 얻지 못할 수 있으며, 사용자가 *StorageAccountKey* 매개 변수를 통해 키를 명시적으로 지정해야 합니다.  
 
     Set-AzureRmVMDiagnosticsExtension -ResourceGroupName $vm_resourcegroup -VMName $vm_name -DiagnosticsConfigurationPath $diagnosticsconfig_path -StorageAccountName $diagnosticsstorage_name -StorageAccountKey $diagnosticsstorage_key
 
-Hello 진단 확장 VM에서 활성화 되 면 hello를 사용 하 여 hello 현재 설정을 가져올 수 있습니다 [Get AzureRMVmDiagnosticsExtension](/powershell/module/azurerm.compute/get-azurermvmdiagnosticsextension) cmdlet.
+VM에서 진단 확장을 사용하도록 설정하면 [Get-AzureRMVmDiagnosticsExtension](/powershell/module/azurerm.compute/get-azurermvmdiagnosticsextension) cmdlet을 사용하여 현재 설정을 가져올 수 있습니다.
 
     Get-AzureRmVMDiagnosticsExtension -ResourceGroupName $vm_resourcegroup -VMName $vm_name
 
-hello cmdlet 반환 *PublicSettings*, hello 진단 구성을 포함 하 합니다. WadCfg 및 xmlCfg의 두 종류의 구성이 지원됩니다. WadCfg는 JSON 구성이며 xmlCfg는 Base64 인코딩 형식의 XML 구성입니다. tooread XML hello, toodecode 필요한 것입니다.
+cmdlet은 *PublicSettings*를 반환하며, 여기에는 진단 구성이 포함됩니다. WadCfg 및 xmlCfg의 두 종류의 구성이 지원됩니다. WadCfg는 JSON 구성이며 xmlCfg는 Base64 인코딩 형식의 XML 구성입니다. XML을 읽으려면 디코딩해야 합니다.
 
     $publicsettings = (Get-AzureRmVMDiagnosticsExtension -ResourceGroupName $vm_resourcegroup -VMName $vm_name).PublicSettings
     $encodedconfig = (ConvertFrom-Json -InputObject $publicsettings).xmlCfg
     $xmlconfig = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($encodedconfig))
     Write-Host $xmlconfig
 
-hello [제거 AzureRMVmDiagnosticsExtension](/powershell/module/azurerm.compute/remove-azurermvmdiagnosticsextension) cmdlet hello VM에서에서 사용 되는 tooremove hello 진단 확장 될 수 있습니다.  
+[Remove-AzureRMVmDiagnosticsExtension](/powershell/module/azurerm.compute/remove-azurermvmdiagnosticsextension) cmdlet을 사용하면 VM에서 진단 확장을 제거할 수 있습니다.  
 
-## <a name="enable-hello-diagnostics-extension-if-you-use-hello-classic-deployment-model"></a>Hello 클래식 배포 모델을 사용 하는 경우 hello 진단 확장을 사용 하도록 설정
-Hello를 사용할 수 있습니다 [집합 AzureVMDiagnosticsExtension](/powershell/module/azure/set-azurevmdiagnosticsextension) cmdlet tooenable hello 클래식 배포 모델을 통해 만든 VM에 진단 확장 합니다. hello 다음 예제에서는 어떻게 toocreate hello 진단 확장이 적용 된 hello 클래식 배포 모델을 통해 새 VM 설정
+## <a name="enable-the-diagnostics-extension-if-you-use-the-classic-deployment-model"></a>클래식 배포 모델을 사용하는 경우 진단 확장을 사용하도록 설정
+[Set-AzureVMDiagnosticsExtension](/powershell/module/azure/set-azurevmdiagnosticsextension) cmdlet을 사용하면 클래식 배포 모델을 통해 만든 VM에서 진단 확장을 사용하도록 설정할 수 있습니다. 다음 예제에서는 클래식 배포 모델을 통해 새 VM을 만들고 진단 확장을 사용하도록 설정하는 방법을 보여줍니다.
 
     $VM = New-AzureVMConfig -Name $VM -InstanceSize Small -ImageName $VMImage
     $VM = Add-AzureProvisioningConfig -VM $VM -AdminUsername $Username -Password $Password -Windows
     $VM = Set-AzureVMDiagnosticsExtension -DiagnosticsConfigurationPath $Config_Path -VM $VM -StorageContext $Storage_Context
     New-AzureVM -Location $Location -ServiceName $Service_Name -VM $VM
 
-hello 클래식 배포 모델을 처음 사용 하 여 hello 통해 생성 된 기존 VM에 tooenable hello 진단 확장 [Get-azurevm](/powershell/module/azure/get-azurevm) cmdlet tooget hello VM 구성 합니다. 그런 다음 hello를 사용 하 여 hello VM 구성 tooinclude hello 진단 확장을 업데이트 [집합 AzureVMDiagnosticsExtension](/powershell/module/azure/set-azurevmdiagnosticsextension) cmdlet. 마지막으로 업데이트 하는 hello 구성 toohello VM 사용 하 여 적용 한 [Update-azurevm](/powershell/module/azure/update-azurevm)합니다.
+클래식 배포 모델을 통해 만든 기존 VM에서 진단 확장을 사용하도록 설정하려면, 우선 [Get-AzureVM](/powershell/module/azure/get-azurevm) cmdlet을 사용하여 VM 구성을 가져옵니다. 그런 다음 [Set-AzureVMDiagnosticsExtension](/powershell/module/azure/set-azurevmdiagnosticsextension) cmdlet을 사용하여 진단 확장을 포함하도록 VM 구성을 업데이트합니다. 마지막으로 [Update-AzureVM](/powershell/module/azure/update-azurevm)을 사용하여 VM에 업데이트된 구성을 적용합니다.
 
     $VM = Get-AzureVM -ServiceName $Service_Name -Name $VM_Name
     $VM_Update = Set-AzureVMDiagnosticsExtension -DiagnosticsConfigurationPath $Config_Path -VM $VM -StorageContext $Storage_Context
     Update-AzureVM -ServiceName $Service_Name -Name $VM_Name -VM $VM_Update.VM
 
 ## <a name="sample-diagnostics-configuration"></a>샘플 진단 구성
-hello 스크립트 위에 hello로 hello 진단 공용 구성에 다음 XML을 사용할 수 있습니다. 이 예제 구성에서는 다양 한 성능 카운터 toohello 진단 저장소 계정에서 hello 응용 프로그램, 보안 및 시스템 채널 hello Windows 이벤트 로그에 오류와 함께 및 오류에서에서 전송 hello 진단 인프라 로그 합니다.
+위의 스크립트를 통해 진단 공용 구성에 다음과 같은 XML을 사용할 수 있습니다. 이 샘플 구성은 Windows 이벤트 로그의 응용 프로그램, 보안 및 시스템 채널 오류 및 진단 인프라 로그의 오류와 함께 다양한 성능 카운터를 저장소 계정으로 전송합니다.
 
-hello 구성 toobe 업데이트 tooinclude hello 다음 항목이 필요합니다.
+다음을 포함하도록 구성을 업데이트해야 합니다.
 
-* hello *resourceID* hello 특성 **메트릭** 요소 toobe hello VM에 대 한 hello 리소스 ID로 업데이트 해야 합니다.
+* *Metrics* 요소의 **resourceID** 특성을 VM의 리소스 ID로 업데이트해야 합니다.
   
-  * hello 리소스 hello 패턴을 사용 하 여 ID를 생성할 수 있습니다: "/ 구독 / {*VM hello로 hello 구독에 대 한 구독 ID*} /resourceGroups/ {*helloVM에대한리소스그룹이름을hello*} / providers/Microsoft.Compute/virtualMachines/ {*VM 이름 hello*} "입니다.
-  * 예를 들어 hello hello VM 실행 되 고 있는 hello 구독에 대 한 구독 ID 인지 **11111111-1111-1111-1111-111111111111**, hello 리소스 그룹에 대 한 리소스 그룹 이름이 hello **MyResourceGroup**, 그리고 hello VM 이름이 **MyWindowsVM**, 다음에 대 한 값을 hello *resourceID* 됩니다:
+  * 리소스 ID는 "/subscriptions/{*VM과 관련된 구독의 구독 ID*}/resourceGroups/{*VM의 리소스 그룹 이름*}/providers/Microsoft.Compute/virtualMachines/{*VM 이름*}"과 같은 패턴을 사용하여 생성할 수 있습니다.
+  * 예를 들어 VM이 실행 중인 구독의 구독 ID가 **11111111-1111-1111-1111-111111111111**이고, 리소스 그룹의 리소스 그룹 이름이 **MyResourceGroup**이고, VM 이름이 **MyWindowsVM**일 경우 *resourceID* 값은 다음과 같습니다.
     
       ```
       <Metrics resourceId="/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/MyResourceGroup/providers/Microsoft.Compute/virtualMachines/MyWindowsVM" >
       ```
-  * 메트릭 성능 카운터에 따라 생성 된 hello 및 메트릭 구성 방법에 대 한 자세한 내용은 참조 하십시오. [저장소의 Azure 진단 메트릭 테이블](extensions-diagnostics-template.md#wadmetrics-tables-in-storage)합니다.
-* hello **StorageAccount** 요소 toobe hello 진단 저장소 계정의 hello 이름으로 업데이트 해야 합니다.
+  * 성능 카운터와 메트릭 구성을 기반으로 메트릭을 생성하는 방법에 대한 자세한 내용은 [Azure Diagnostics metrics table in storage(저장소의 Azure 진단 메트릭 테이블)](extensions-diagnostics-template.md#wadmetrics-tables-in-storage)을 참조하세요.
+* **StorageAccount** 요소를 진단 저장소 계정의 이름으로 업데이트해야 합니다.
   
     ```
     <?xml version="1.0" encoding="utf-8"?>
@@ -179,7 +179,7 @@ hello 구성 toobe 업데이트 tooinclude hello 다음 항목이 필요합니�
             <annotation displayName="Disk free space (MB)" locale="en-us"/>
           </PerformanceCounterConfiguration>
         </PerformanceCounters>
-        <Metrics resourceId="(Update with resource ID for hello VM)" >
+        <Metrics resourceId="(Update with resource ID for the VM)" >
             <MetricAggregation scheduledTransferPeriod="PT1H"/>
             <MetricAggregation scheduledTransferPeriod="PT1M"/>
         </Metrics>
@@ -195,6 +195,6 @@ hello 구성 toobe 업데이트 tooinclude hello 다음 항목이 필요합니�
     ```
 
 ## <a name="next-steps"></a>다음 단계
-* Hello Azure 진단 기능 및 기타 기술 tootroubleshoot 문제 사용에 대 한 추가 지침을 참조 하십시오. [Azure 클라우드 서비스 및 가상 컴퓨터에서 진단 사용](../../cloud-services/cloud-services-dotnet-diagnostics.md)합니다.
-* [진단 구성 스키마](https://msdn.microsoft.com/library/azure/mt634524.aspx) hello hello 진단 확장에 대 한 다양 한 XML 구성 옵션에 대해 설명 합니다.
+* 문제 해결을 위한 Azure 진단 기능 및 기타 기법 사용에 대한 추가 지침은 [Azure 클라우드 서비스 및 가상 컴퓨터에서 진단 사용](../../cloud-services/cloud-services-dotnet-diagnostics.md)을 참조하세요.
+* [진단 구성 스키마](https://msdn.microsoft.com/library/azure/mt634524.aspx) 는 진단 확장에 대한 다양한 XML 구성 옵션을 설명합니다.
 

@@ -1,5 +1,5 @@
 ---
-title: "API 관리 개요 및 키 개념 aaaAzure | Microsoft Docs"
+title: "Azure API Management 개요 및 키 개념 | Microsoft Docs"
 description: "API, 제품, 역할, 그룹 및 기타 API 관리의 주요 개념에 대해 알아봅니다."
 services: api-management
 documentationcenter: 
@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: a77b24b4632d868afa15bd6cf88060982046cb38
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 47358c6c209488d7a12e8afbf7a2d9b3f872f0de
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="what-is-api-management"></a>API 관리란?
-API 관리 Api tooexternal, 파트너 및 해당 데이터 및 서비스의 내부 개발자 toounlock hello 잠재력을 게시 하는 조직은 수 있습니다. 기업 everywhere는 디지털 플랫폼으로 tooextend 자신의 작업을 찾고, 새 채널 만들기, 신규 고객을 찾고 기존 값과 업무 강화 운전 합니다. API 관리 개발자 참여, 비즈니스 통찰력, 분석, 보안 및 보호를 통해 성공적인 API 프로그램 hello 코어 능력 tooensure를 제공합니다.
+API 관리를 사용하여 조직은 외부, 파트너 및 내부의 개발자에게 API를 게시하여 데이터 및 서비스의 잠재성을 활용할 수 있습니다. 모든 곳의 비즈니스는 디지털 플랫폼으로 운영을 확장함으로써 새로운 채널을 생성하고, 새로운 고객을 찾고, 기존 고객과 더 깊은 관계를 구축하고자 합니다. API 관리는 개발자 참여, 비즈니스 통찰력, 분석, 보안과 보호 등을 통해 성공적인 API 프로그램을 보장하는 핵심적인 역량을 제공합니다.
 
-Azure API 관리에 대 한 개요 비디오를 따라 hello를 감시 하 고 toouse API 관리 tooadd 많은 기능 tooyour 액세스 제어를 포함 하 여 API를 평가해 제한, 모니터링, 이벤트 로깅 및 응답을 위해 별도의 최소한의 노력으로 캐시에 대해 알아봅니다.
+Azure API 관리 개요에 관한 다음 비디오를 시청하고 최소한의 작업으로 액세스 제어, 속도 제한, 모니터링, 이벤트 로깅, 응답 캐싱 등 다양한 기능을 API에 추가하기 위해 API 관리를 사용하는 방법을 알아봅니다.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-API-Management-Overview/player]
 > 
 > 
 
-API 관리 toouse 관리자 Api를 만듭니다. 각 API 하나 이상의 작업 구성 되며 tooone 개 이상의 제품에는 각 API를 추가할 수 있습니다. toouse API를 개발자가 해당 API를 포함 하는 tooa 제품 구독 및 다음 hello API의 작업을 적용 될 수 있는 제목 tooany 사용 정책을 호출할 수 있습니다.
+API 관리를 사용하려면 관리자가 API를 만듭니다. 각 API는 하나 이상의 작업으로 구성되며, 각 API는 하나 이상의 제품에 추가할 수 있습니다. API를 사용하려면 개발자는 해당 API가 포함된 제품을 구독합니다. 그런 다음 적용 중인 사용 정책에 따라 API의 작업을 호출할 수 있습니다.
 
 이 항목에서는 API 관리의 주요 개념을 간략하게 설명합니다.
 
 > [!NOTE]
-> 자세한 내용은 참조 hello [클라우드 기반 API 관리: Api 전원 hello을 활용 하 여](http://j.mp/ms-apim-whitepaper) PDF 백서입니다. CITO Research의 API 관리에 대한 이 소개 백서는 다음을 설명합니다. 
+> 자세한 내용은 [클라우드 기반 API 관리: API 기능을 활용](http://j.mp/ms-apim-whitepaper) PDF 백서를 참조하세요. CITO Research의 API 관리에 대한 이 소개 백서는 다음을 설명합니다. 
 > 
 > * 공통 API 요구 사항 및 특징
 > * API 분리 및 외관 제공
@@ -48,61 +48,61 @@ API 관리 toouse 관리자 Api를 만듭니다. 각 API 하나 이상의 작업
 > 
 
 ## <a name="apis"> </a>API 및 작업
-Api는 API 관리 서비스 인스턴스 hello foundation입니다. 각 API에는 사용 가능한 toodevelopers 작업의 집합을 나타냅니다. Hello API를 구현 하는 참조 toohello 백 엔드 서비스를 포함 하는 각 API 및 작업 맵 toohello 작업 hello 백 엔드 서비스에서 구현 합니다. API 관리의 작업은 매우 다양하게 구성할 수 있으며 URL 매핑, 쿼리 및 경로 매개 변수, 요청 및 응답 콘텐츠, 작업 응답 캐싱 등을 더 효율적으로 제어할 수 있습니다. 속도 제한, 할당량 및 제한 정책을 IP hello API 또는 개별 작업 수준에서 구현할 수도 있습니다.
+API는 API 관리 서비스 인스턴스의 기반입니다. 각 API는 개발자가 사용할 수 있는 작업 집합을 나타냅니다. 각 API에는 API를 구현하는 백 엔드 서비스에 대한 참조가 포함되어 있으며, 해당 작업은 백 엔드 서비스에 의해 구현되는 작업에 매핑됩니다. API 관리의 작업은 매우 다양하게 구성할 수 있으며 URL 매핑, 쿼리 및 경로 매개 변수, 요청 및 응답 콘텐츠, 작업 응답 캐싱 등을 더 효율적으로 제어할 수 있습니다. 속도 제한, 할당량 및 IP 제한 정책 또한 API 또는 개별 작업 수준에서 구현할 수 있습니다.
 
-자세한 내용은 참조 [어떻게 toocreate Api] [ How toocreate APIs] 및 [어떻게 tooadd 작업 tooan API][How tooadd operations tooan API]합니다.
+자세한 내용은 [API를 만드는 방법][How to create APIs] 및 [API에 작업을 추가하는 방법][How to add operations to an API]을 참조하세요.
 
 ## <a name="products"> </a> 제품
-제품이 어떻게 Api는 toodevelopers 표시 됩니다. API 관리에서 제품은 하나 이상의 API를 가지며 제목, 설명, 사용 약관 등으로 구성됩니다. 제품은 **개방형** 또는 **보호된** 제품일 수 있습니다. 보호 된 제품에 사용할 수 있습니다, 열려 있는 동안 구독된 toobefore 여야 합니다. 구독 없이 제품을 사용할 수 있습니다. 제품을 개발자가 사용할 수 있게 되면 제품을 게시할 수 있습니다. 게시를 후 볼 수 있습니다 (hello 보호 된 제품의 대/소문자를 구독) 개발자가 있습니다. 구독 승인이 hello 제품 수준에서 구성 및 관리자 승인 필요 하거나 자동으로 승인 됩니다.
+제품은 API가 개발자에게 표시되는 방식입니다. API 관리에서 제품은 하나 이상의 API를 가지며 제목, 설명, 사용 약관 등으로 구성됩니다. 제품은 **개방형** 또는 **보호된** 제품일 수 있습니다. 보호된 제품은 사용하기 전에 구독해야 하는 반면, 개방형 제품은 구독하지 않고 사용할 수 있습니다. 제품을 개발자가 사용할 수 있게 되면 제품을 게시할 수 있습니다. 게시되고 나면 개발자가 볼 수 있습니다(보호된 제품의 경우 구독할 수 있음). 구독 승인은 제품 수준에서 구성되며 관리자 승인을 요구하거나 자동 승인될 수 있습니다.
 
-그룹은 제품 toodevelopers의 사용 되는 toomanage hello 표시 여부입니다. 제품은 가시성 toogroups 부여 및 개발자가 보고 하 고는 속해 있는 표시 toohello 그룹 toohello 제품을 구독 합니다. 
+그룹은 제품을 개발자에게 표시하는 옵션을 관리하는 데 사용됩니다. 제품은 그룹에 대한 표시 여부를 부여하고, 개발자는 자신이 속한 그룹에게 표시되는 제품을 보고 구독할 수 있습니다. 
 
-자세한 내용은 참조 [어떻게 toocreate 및 제품 게시] [ How toocreate and publish a product] 비디오 다음 hello 및 합니다.
+자세한 내용은 [제품을 만들고 게시하는 방법][How to create and publish a product] 및 다음 비디오를 참조하세요.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Using-Products/player]
 > 
 > 
 
 ## <a name="groups"> </a> 그룹
-그룹은 제품 toodevelopers의 사용 되는 toomanage hello 표시 여부입니다. API 관리 hello 변경할 수 없는 시스템 그룹 뒤에 있습니다.
+그룹은 제품을 개발자에게 표시하는 옵션을 관리하는 데 사용됩니다. API 관리에는 다음과 같은 변경할 수 없는 시스템 그룹이 있습니다.
 
-* **관리자** - Azure 구독 관리자가 이 그룹의 구성원입니다. 관리자 API 관리 서비스 인스턴스, 관리 Api, 작업 및 개발자가 사용 하는 제품 hello 만들기.
-* **개발자** - 인증된 개발자 포털 사용자가 이 그룹에 속합니다. 개발자는 Api를 사용 하 여 응용 프로그램을 구축 하는 hello 고객 있습니다. 개발자는 toohello 개발자 포털 액세스 권한이 부여 된 하 고 API의 hello 작업을 호출 하는 응용 프로그램을 빌드합니다.
-* **게스트** -예:이 그룹에는 API 관리 인스턴스 년의 hello 개발자 포털을 방문 하는 잠재 고객의 개발자 포털 사용자가 인증 되지 않은 합니다. Hello 기능 tooview Api와 같은 특정 읽기 전용 액세스를 부여할 수 되지만 호출 하지 않습니다.
+* **관리자** - Azure 구독 관리자가 이 그룹의 구성원입니다. 관리자는 API 관리 서비스 인스턴스를 관리하며 개발자가 사용하는 API, 작업 및 제품을 만듭니다.
+* **개발자** - 인증된 개발자 포털 사용자가 이 그룹에 속합니다. 개발자는 API를 사용하여 응용 프로그램을 빌드하는 고객입니다. 개발자는 개발자 포털에 액세스할 수 있는 권한을 받으며 API의 작업을 호출하는 응용 프로그램을 빌드합니다.
+* **게스트** - API 관리 인스턴스의 개발자 포털을 방문하는 인증되지 않은 개발자 포털 사용자(예: 잠재 고객)가 이 그룹에 속합니다. 예를 들어 API를 볼 수 있지만 호출할 수는 없는 기능과 같이 특정 읽기 전용 액세스 권한을 받을 수 있습니다.
 
-관리자 추가 toothese 시스템 그룹에 사용자 지정 그룹을 만들 수 있습니다 또는 [연결 된 Azure Active Directory 테 넌 트의 외부 그룹을 활용 하 여](api-management-howto-aad.md#how-to-add-an-external-azure-active-directory-group)합니다. 사용자 지정 그룹과 외부 그룹 개발자 가시성 제공 시스템 그룹과 함께 사용할 수 있으며 tooAPI 제품에 액세스 합니다. 예를 들어 특정와 개발자가 파트너 조직 및의 액세스 허용 사용자 지정 그룹 하나 만들 수 있습니다 관련 Api만 포함 된 제품에서 Api toohello 합니다. 사용자는 두 그룹 이상의 구성원이 될 수 있습니다.
+이러한 시스템 그룹 외에도 관리자는 사용자 지정 그룹을 만들거나 [연관된 Azure Active Directory 테넌트에서 외부 그룹을 가져올 수 있습니다](api-management-howto-aad.md#how-to-add-an-external-azure-active-directory-group). 사용자 지정 및 외부 그룹은 시스템 그룹과 함께 사용되어 개발자에게 API 제품에 대한 표시 여부 및 액세스를 제공합니다. 예를 들어, 특정 파트너 조직과 관련된 개발자를 위한 하나의 사용자 지정 그룹을 만들고 관련 API만을 포함한 제품에서 API에 대한 액세스를 허용합니다. 사용자는 두 그룹 이상의 구성원이 될 수 있습니다.
 
-자세한 내용은 참조 [어떻게 toocreate 및 사용 하 여 그룹][How toocreate and use groups]합니다.
+자세한 내용은 [그룹을 만들고 사용하는 방법][How to create and use groups]을 참조하세요.
 
 ## <a name="developers"> </a> 개발자
-개발자는 API 관리 서비스 인스턴스에 hello 사용자 계정을 나타냅니다. Hello에서 등록할 수 또는 개발자가 만들어질 수도 있고 관리자가 toojoin 초대 [개발자 포털][Developer portal]합니다. 각 개발자 하나 이상의 그룹의 구성원이 며 toohello 제품은 가시성 toothose 그룹 권한을 부여 하는 구독 일 수 있습니다.
+개발자는 API 관리 서비스 인스턴스의 사용자 계정을 나타냅니다. 개발자는 관리자가 만들거나 참여하도록 초대할 수 있으며 [개발자 포털][Developer portal]에서 등록할 수도 있습니다. 각 개발자는 하나 이상의 그룹의 구성원이며 해당 그룹에 대한 가시성을 부여하는 제품을 구독할 수 있습니다.
 
-Tooa 제품을 구독 하는 개발자가 기본 및 보조 키를 hello 제품에 대 한 hello 부여 됩니다. 이 키는 hello 제품의 Api 호출할 때 사용 됩니다.
+개발자가 제품을 구독하면 제품의 기본 키 및 보조 키를 부여받습니다. 이 키는 제품의 API를 호출할 때 사용됩니다.
 
-자세한 내용은 참조 [어떻게 toocreate 또는 초대 개발자] [ How toocreate or invite developers] 및 [tooassociate 개발자와 그룹화 하는 방법을][How tooassociate groups with developers]합니다.
+자세한 내용은 [개발자를 만들거나 초대하는 방법][How to create or invite developers] 및 [그룹을 개발자와 연결하는 방법][How to associate groups with developers]을 참조하세요.
 
 ## <a name="policies"> </a> 정책
-정책은 hello 게시자의 구성을 통해 API hello toochange hello 동작을 허용 하는 API 관리의 강력한 기능입니다. 정책은은 API의 응답 또는 hello 요청에서 순차적으로 실행 되는 문 컬렉션 됩니다. 인기 있는 문에 포함 XML tooJSON 및 호출 속도 제한 toorestrict hello 양을 개발자 로부터 들어오는 호출에서 형식 변환 및 다른 많은 정책을 사용할 수 있는 합니다.
+정책은 게시자가 구성을 통해 API의 동작을 변경할 수 있게 하는 API 관리의 강력한 기능입니다. 정책은 API의 요청이나 응답에 따라 순차적으로 실행되는 명령문의 컬렉션입니다. 많이 사용되는 명령문에는 XML에서 JSON으로 형식 변환, 개발자로부터 들어오는 호출의 양을 제한하는 호출 속도 한도 등이 포함되며 다양한 다른 정책도 사용할 수 있습니다.
 
-정책 식은 hello 정책 지정 하지 않는 한 특성 값 또는 hello API 관리 정책에 텍스트 값으로 사용할 수 있습니다. Hello와 같은 일부 정책은 [제어 흐름](https://msdn.microsoft.com/library/azure/dn894085.aspx#choose) 및 [변수 설정](https://msdn.microsoft.com/library/azure/dn894085.aspx#set-variable) 정책은 정책 식을 기반으로 합니다. 자세한 내용은 참조 [고급 정책](https://msdn.microsoft.com/library/azure/dn894085.aspx#AdvancedPolicies), [정책 식을](https://msdn.microsoft.com/library/azure/dn910913.aspx), 조사식 hello 다음 비디오.
+정책이 다르게 지정하지 않는 한 정책 식은 어떤 API 관리 정책에서든 특성 값 또는 텍스트 값으로 사용될 수 있습니다. [제어 흐름](https://msdn.microsoft.com/library/azure/dn894085.aspx#choose) 및 [변수 설정](https://msdn.microsoft.com/library/azure/dn894085.aspx#set-variable) 정책 등의 일부 정책은 정책 식을 기반으로 합니다. 자세한 내용은 [고급 정책](https://msdn.microsoft.com/library/azure/dn894085.aspx#AdvancedPolicies) 및 [정책 식](https://msdn.microsoft.com/library/azure/dn910913.aspx)을 참조하고 다음 비디오를 시청하세요.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Policy-Expressions-in-Azure-API-Management/player]
 > 
 > 
 
-API Management 정책의 전체 목록을 보려면 [정책 참조][Policy reference]를 참조하세요. 정책 사용 및 구성에 대한 자세한 내용은 [API Management 정책][API Management policies]을 참조하세요. 속도 제한 및 할당량 정책을 사용하여 제품을 만드는 방법에 대한 자습서는 [고급 제품 설정을 만들고 구성하는 방법][How create and configure advanced product settings]을 참조하세요. 데모 비디오를 따라 hello를 참조 하십시오.
+API Management 정책의 전체 목록을 보려면 [정책 참조][Policy reference]를 참조하세요. 정책 사용 및 구성에 대한 자세한 내용은 [API Management 정책][API Management policies]을 참조하세요. 속도 제한 및 할당량 정책을 사용하여 제품을 만드는 방법에 대한 자습서는 [고급 제품 설정을 만들고 구성하는 방법][How create and configure advanced product settings]을 참조하세요. 데모는 다음 비디오를 참조하세요.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Rate-Limits-and-Quotas/player]
 > 
 > 
 
 ## <a name="developer-portal"> </a> 개발자 포털
-hello 개발자 포털 개발자 수 Api, 보기 및 호출 작업을 확인 하 고 구독 tooproducts은입니다. 잠재 고객 hello 개발자 포털을 방문할 수 있는 Api 및 작업을 확인 하 고 등록 합니다. 개발자 포털에 대 한 hello URL은 API 관리 서비스 인스턴스에 대 한 hello Azure 클래식 포털에서에서 hello 대시보드에 있습니다.
+개발자 포털은 개발자가 API에 대해 알아보고, 작업을 보고 호출하고, 제품을 구독할 수 있는 곳입니다. 잠재 고객은 개발자 포털을 방문하고 API 및 작업을 보고 등록할 수 있습니다. 개발자 포털의 URL은 Azure 클래식 포털에서 해당 API 관리 서비스 인스턴스에 대한 대시보드에서 찾을 수 있습니다.
 
-사용자 지정 내용을 추가 스타일을 사용자 지정 하 고 브랜드를 추가 하 여 개발자 포털을 가리키도록의 hello 모양과 느낌을 사용자 지정할 수 있습니다.
+사용자 지정 콘텐츠를 추가하고, 스타일을 사용자 지정하고, 브랜딩을 추가하여 개발자 포털의 모양을 사용자 지정할 수 있습니다.
 
-## <a name="api-management-and-hello-api-economy"></a>API 관리 및 hello API 경제
-API 관리, Microsoft Ignite 2015 hello 컨퍼런스에서 프레젠테이션을 다음 조사식 hello에 대 한 자세한 toolearn 합니다.
+## <a name="api-management-and-the-api-economy"></a>API 관리 및 API 경제
+API 관리에 대해 자세히 알아보려면 Microsoft Ignite 2015 conference에서 다음 프레젠테이션을 시청하세요.
 
 > [!VIDEO https://channel9.msdn.com/Events/Ignite/2015/BRK3708/player]
 > 
@@ -115,13 +115,13 @@ API 관리, Microsoft Ignite 2015 hello 컨퍼런스에서 프레젠테이션을
 [Policies]: #policies
 [Developer portal]: #developer-portal
 
-[How toocreate APIs]: api-management-howto-create-apis.md
-[How tooadd operations tooan API]: api-management-howto-add-operations.md
-[How toocreate and publish a product]: api-management-howto-add-products.md
-[How toocreate and use groups]: api-management-howto-create-groups.md
-[How tooassociate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
+[How to create APIs]: api-management-howto-create-apis.md
+[How to add operations to an API]: api-management-howto-add-operations.md
+[How to create and publish a product]: api-management-howto-add-products.md
+[How to create and use groups]: api-management-howto-create-groups.md
+[How to associate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
 [How create and configure advanced product settings]: api-management-howto-product-with-rules.md
-[How toocreate or invite developers]: api-management-howto-create-or-invite-developers.md
+[How to create or invite developers]: api-management-howto-create-or-invite-developers.md
 [Policy reference]: api-management-policy-reference.md
 [API Management policies]: api-management-howto-policies.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance

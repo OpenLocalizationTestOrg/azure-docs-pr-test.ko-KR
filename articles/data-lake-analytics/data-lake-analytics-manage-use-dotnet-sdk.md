@@ -1,6 +1,6 @@
 ---
-title: "Azure.NET SDK를 사용 하 여 Azure Data Lake 분석 aaaManage | Microsoft Docs"
-description: "어떻게 toomanage Data Lake 분석 작업을 데이터 원본, 사용자에 알아봅니다. "
+title: "Azure .NET SDK를 사용하여 Azure Data Lake Analytics 관리 | Microsoft Docs"
+description: "데이터 레이크 분석 작업, 데이터 원본, 사용자를 관리하는 방법에 대해 알아봅니다. "
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/18/2017
 ms.author: saveenr
-ms.openlocfilehash: 98630ba411823644a8bce1f1b0c1331f689cbb0c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0f8a95f96ce4c816dfb9132923faa9a9bf20c205
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="manage-azure-data-lake-analytics-using-azure-net-sdk"></a>Azure .NET SDK를 사용하여 Azure Data Lake Analytics 관리
 [!INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
-어떻게 toomanage Azure Data Lake 분석 계정, 데이터 원본, 사용자 및 사용 하 여 작업 hello Azure.NET SDK에 알아봅니다. 
+Azure .NET SDK를 사용하여 Azure Data Lake Analytics 계정, 데이터 원본, 사용자 및 작업을 관리하는 방법에 대해 알아봅니다. 
 
 ## <a name="prerequisites"></a>필수 조건
 
 * **Visual Studio 2015, Visual Studio 2013 업데이트 4 또는 Visual Studio 2012와 Visual C++ 설치**.
-* **.NET 버전 2.5 이상용 Microsoft Azure SDK**.  Hello를 사용 하 여 설치할 [웹 플랫폼 설치 관리자](http://www.microsoft.com/web/downloads/platform.aspx)합니다.
+* **.NET 버전 2.5 이상용 Microsoft Azure SDK**.  [웹 플랫폼 설치 관리자](http://www.microsoft.com/web/downloads/platform.aspx)를 사용하여 설치합니다.
 * **필요한 NuGet 패키지**
 
 ### <a name="install-nuget-packages"></a>NuGet 패키지 설치
@@ -41,7 +41,7 @@ ms.lasthandoff: 10/06/2017
 |[Microsoft.Azure.Management.ResourceManager](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager)|1.6.0-preview|
 |[Microsoft.Azure.Graph.RBAC](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager)|3.4.0-preview|
 
-다음 명령은 hello로 hello NuGet 명령줄을 통해 이러한 패키지를 설치할 수 있습니다.
+NuGet 명령줄을 통해 다음 명령을 사용하여 이러한 패키지를 설치할 수 있습니다.
 
 ```
 Install-Package -Id Microsoft.Rest.ClientRuntime.Azure.Authentication  -Version 2.3.1
@@ -62,7 +62,7 @@ string clientid = "1950a258-227b-4e31-a9cf-717495945fc2"; // Sample client ID (t
 
 ## <a name="authentication"></a>인증
 
-Data Lake 분석 tooAzure 로그온에 대 한 여러 옵션이 있습니다. hello 다음 코드 조각은의 예가 나와 팝업이 있는 대화형 사용자 인증으로 인증 합니다.
+Azure Data Lake Analytics에 로그온하는 옵션은 여러 가지가 있습니다. 다음 코드 조각은 팝업을 사용한 대화형 사용자 인증의 인증 예를 보여 줍니다.
 
 ``` csharp
 using System;
@@ -100,10 +100,10 @@ public static Program
 }
 ```
 
-소스 코드에 대 한 hello **GetCreds_User_Popup** 인증에 대 한 다른 옵션에 대해서는 설명에 대 한 코드를 hello 및 [데이터 레이크 분석.NET 인증 옵션](https://github.com/Azure-Samples/data-lake-analytics-dotnet-auth-options)
+**GetCreds_User_Popup**의 소스 코드와 인증에 대한 다른 옵션 코드는 [Data Lake Analytics .NET authentication options](https://github.com/Azure-Samples/data-lake-analytics-dotnet-auth-options)(Data Lake Analytics .NET 인증 옵션)에 설명되어 있습니다.
 
 
-## <a name="create-hello-client-management-objects"></a>Hello 클라이언트 관리 개체 만들기
+## <a name="create-the-client-management-objects"></a>클라이언트 관리 개체 만들기
 
 ``` csharp
 var resourceManagementClient = new ResourceManagementClient(armCreds) { SubscriptionId = subid };
@@ -128,7 +128,7 @@ graphClient.TenantID = domain;
 
 ### <a name="create-an-azure-resource-group"></a>Azure 리소스 그룹 만들기
 
-만들어 아직 없는 경우에 Data Lake 분석 구성 요소를 Azure 리소스 그룹 toocreate 있어야 합니다. 인증 자격 증명, 구독 ID 및 위치가 필요합니다. 코드에서 보여 주는 방법을 다음 hello toocreate 리소스 그룹:
+아직 만들지 않은 경우에는 반드시 Azure 리소스 그룹을 만들어 Data Lake Analytics 구성 요소를 만들어야 합니다. 인증 자격 증명, 구독 ID 및 위치가 필요합니다. 다음 코드는 리소스 그룹을 만드는 방법을 보여 줍니다.
 
 ``` csharp
 var resourceGroup = new ResourceGroup { Location = location };
@@ -138,7 +138,7 @@ resourceManagementClient.ResourceGroups.CreateOrUpdate(groupName, rg);
 
 ### <a name="create-a-data-lake-store-account"></a>Data Lake 저장소 계정 만들기
 
-항상 ADLA 계정에는 ADLS 계정이 필요합니다. 하나의 toouse 없는 코드 다음 hello로 하나 만들 수 있습니다.
+항상 ADLA 계정에는 ADLS 계정이 필요합니다. 아직 사용할 ADLS 계정이 없는 경우 다음 코드를 사용하여 만들 수 있습니다.
 
 ``` csharp
 var new_adls_params = new DataLakeStoreAccount(location: _location);
@@ -147,7 +147,7 @@ adlsAccountClient.Account.Create(rg, adls, new_adls_params);
 
 ### <a name="create-a-data-lake-analytics-account"></a>Data Lake 분석 계정 만들기
 
-코드 다음 hello ADLS 계정을 만듭니다.
+다음 코드는 ADLS 계정을 만듭니다.
 
 ``` csharp
 var new_adla_params = new DataLakeAnalyticsAccount()
@@ -205,9 +205,9 @@ if (adlaClient.Account.Exists(rg, adla))
 }
 ```
 
-### <a name="get-hello-default-data-lake-store-account"></a>Hello 기본 데이터 레이크 저장소 계정 가져오기
+### <a name="get-the-default-data-lake-store-account"></a>기본 Data Lake Store 계정 가져오기
 
-모든 Data Lake Analytics 계정에는 기본 Data Lake Store 계정이 필요합니다. 분석 계정에 대 한이 코드 toodetermine hello 기본 저장소 계정을 사용 합니다.
+모든 Data Lake Analytics 계정에는 기본 Data Lake Store 계정이 필요합니다. 다음 코드를 사용하여 Analytics 계정의 기본 Store 계정을 결정합니다.
 
 ``` csharp
 if (adlaClient.Account.Exists(rg, adla))
@@ -219,14 +219,14 @@ if (adlaClient.Account.Exists(rg, adla))
 
 ## <a name="manage-data-sources"></a>데이터 원본 관리
 
-Data Lake 분석에는 현재 데이터 원본 hello를 지원 합니다.
+데이터 레이크 분석은 현재 다음 데이터 원본을 지원합니다.
 
 * [Azure 데이터 레이크 저장소](../data-lake-store/data-lake-store-overview.md)
 * [Azure Storage 계정](../storage/common/storage-introduction.md)
 
-### <a name="link-tooan-azure-storage-account"></a>Tooan Azure 저장소 계정 연결
+### <a name="link-to-an-azure-storage-account"></a>Azure Storage 계정에 대한 링크
 
-링크 tooAzure 저장소 계정을 만들 수 있습니다.
+Azure Storage 계정에 대한 링크를 만들 수 있습니다.
 
 ``` csharp
 string storage_key = "xxxxxxxxxxxxxxxxxxxx";
@@ -264,16 +264,16 @@ if (adls_accounts != null)
 ```
 
 ### <a name="upload-and-download-folders-and-files"></a>폴더 및 파일 업로드 및 다운로드
-Hello 데이터 레이크 저장소 파일 시스템 클라이언트 관리 개체 tooupload를 사용할 수 있으며 개별 파일 또는 폴더 다운로드 Azure tooyour 로컬 컴퓨터에서 다음 메서드는 hello를 사용 하 여:
+Data Lake Store 파일 시스템 클라이언트 관리 개체를 사용하여 다음 메서드를 통해 Azure에서 로컬 컴퓨터로 개별 파일 또는 폴더를 업로드하고 다운로드할 수 있습니다.
 
 - UploadFolder
 - UploadFile
 - DownloadFolder
 - DownloadFile
 
-이러한 방법에 대 한 hello 첫 번째 매개 변수는 hello 이름 hello 원본 경로 hello 대상 경로 대 한 매개 변수가 올 hello 데이터 레이크 저장소 계정입니다.
+이러한 메서드의 첫 번째 매개 변수는 원본 경로 및 대상 경로 매개 변수가 뒤에 나오는 Data Lake Store 계정 이름입니다.
 
-다음 예제는 hello toodownload 폴더에 데이터 레이크 저장소 hello 하는 방법을 보여 줍니다.
+다음 예제는 Data Lake Store에서 폴더를 다운로드하는 방법을 보여 줍니다.
 
 ``` csharp
 adlsFileSystemClient.FileSystem.DownloadFolder(adls, sourcePath, destinationPath);
@@ -295,7 +295,7 @@ using (var memstream = new MemoryStream())
 ```
 
 ### <a name="verify-azure-storage-account-paths"></a>Azure Storage 계정 경로 확인
-hello 다음 코드는 Azure 저장소 계정 (storageAccntName) Data Lake 분석 계정 (analyticsAccountName)에 있는 경우 그리고 확인 컨테이너 (containerName) hello Azure 저장소 계정에 존재 합니다.
+다음 코드에서는 Azure Storage 계정(storageAccntName)이 Data Lake Analytics 계정(analyticsAccountName)에 있는지 및 컨테이너(containerName)가 Azure Storage 계정에 있는지를 확인합니다.
 
 ``` csharp
 string storage_account = "mystorageaccount";
@@ -305,10 +305,10 @@ bool containerExists = adlaClient.Account.StorageContainerExists(rg, adla, stora
 ```
 
 ## <a name="manage-catalog-and-jobs"></a>카탈로그 및 작업 관리
-hello DataLakeAnalyticsCatalogManagementClient 개체는 각 Azure Data Lake 분석 계정에 대해 제공 하는 hello SQL 데이터베이스를 관리 하기 위한 메서드를 제공 합니다. hello DataLakeAnalyticsJobManagementClient toosubmit 메서드를 제공 하 고 U-SQL 스크립트를 사용 하 여 hello 데이터베이스에서 실행 되는 작업을 관리 합니다.
+DataLakeAnalyticsCatalogManagementClient 개체는 각 Azure Data Lake Analytics 계정에 제공된 SQL 데이터베이스를 관리하는 메서드를 제공합니다. DataLakeAnalyticsJobManagementClient는 U-SQL 스크립트를 사용하여 데이터베이스에서 실행되는 작업을 제출하고 관리하는 메서드를 제공합니다.
 
 ### <a name="list-databases-and-schemas"></a>데이터베이스 및 스키마 나열
-Hello 몇 가지 나열할 수 hello 가장 일반적인 데이터베이스와 해당 스키마는 있습니다. hello 다음 코드를 데이터베이스 컬렉션을 가져오고 각 데이터베이스에 대 한 hello 스키마를 열거 합니다.
+나열할 수 있는 항목들 중에서 가장 일반적인 항목이 데이터베이스와 해당 스키마입니다. 다음 코드에서는 데이터베이스 컬렉션을 가져온 다음 각 데이터베이스에 대한 스키마를 열거합니다.
 
 ``` csharp
 var databases = adlaCatalogClient.Catalog.ListDatabases(adla);
@@ -325,7 +325,7 @@ foreach (var db in databases)
 ```
 
 ### <a name="list-table-columns"></a>테이블 열 나열
-hello 다음 코드에서는 어떻게 tooaccess hello 지정된 된 테이블에 데이터 레이크 분석 카탈로그 관리 클라이언트 toolist hello 열이 있는 데이터베이스
+다음 코드에서는 Data Lake Analytics 카탈로그 관리 클라이언트를 통해 데이터베이스에 액세스하여 지정한 테이블의 열을 나열하는 방법을 보여 줍니다.
 
 ``` csharp
 var tbl = adlaCatalogClient.Catalog.GetTable(adla, "master", "dbo", "MyTableName");
@@ -352,7 +352,7 @@ foreach (USqlTableColumn utc in columns)
 ```
 
 ### <a name="list-failed-jobs"></a>실패한 작업 나열
-hello 다음 코드를 나열 실패 한 작업에 대 한 정보입니다.
+다음 코드에서는 실패한 작업에 대한 정보를 나열합니다.
 
 ``` csharp
 var odq = new ODataQuery<JobInformation> { Filter = "result eq 'Failed'" };
@@ -364,7 +364,7 @@ foreach (var j in jobs)
 ```
 
 ### <a name="list-pipelines"></a>파이프라인 나열
-hello 다음 코드를 나열 작업 제출 된 toohello 계정의 각 파이프라인에 대 한 정보입니다.
+다음 코드는 계정에 제출된 작업의 각 파이프라인에 대한 정보를 나열합니다.
 
 ``` csharp
 var pipelines = adlaJobClient.Pipeline.List(adla);
@@ -375,7 +375,7 @@ foreach (var p in pipelines)
 ```
 
 ### <a name="list-recurrences"></a>되풀이 나열
-hello 다음 코드를 나열 작업 제출 된 toohello 계정의 각 되풀이 하는 방법에 대 한 정보입니다.
+다음 코드는 계정에 제출된 작업의 각 되풀이에 대한 정보를 나열합니다.
 
 ``` csharp
 var recurrences = adlaJobClient.Recurrence.List(adla);
@@ -387,13 +387,13 @@ foreach (var r in recurrences)
 
 ## <a name="common-graph-scenarios"></a>일반적인 그래프 시나리오
 
-### <a name="look-up-user-in-hello-aad-directory"></a>Hello AAD 디렉터리에 사용자를 조회
+### <a name="look-up-user-in-the-aad-directory"></a>AAD 디렉터리에서 사용자 조회
 
 ``` csharp
 var userinfo = graphClient.Users.Get( "bill@contoso.com" );
 ```
 
-### <a name="get-hello-objectid-of-a-user-in-hello-aad-directory"></a>Hello AAD 디렉터리에 사용자의 ObjectId hello 가져오기
+### <a name="get-the-objectid-of-a-user-in-the-aad-directory"></a>AAD 디렉터리에서 사용자의 ObjectId 가져오기
 
 ``` csharp
 var userinfo = graphClient.Users.Get( "bill@contoso.com" );
@@ -401,10 +401,10 @@ Console.WriteLine( userinfo.ObjectId )
 ```
 
 ## <a name="manage-compute-policies"></a>계산 정책 관리
-hello DataLakeAnalyticsAccountManagementClient 개체 hello를 관리 하기 위한 메서드가 계산 Data Lake 분석 계정에 대 한 정책을 제공 합니다.
+DataLakeAnalyticsAccountManagementClient 개체는 Data Lake Analytics 계정에 대한 계산 정책을 관리하는 메서드를 제공합니다.
 
 ### <a name="list-compute-policies"></a>계산 정책 나열
-hello 코드 다음에 Data Lake 분석 계정에 대 한 계산 정책의 목록을 검색 합니다.
+다음 코드는 Data Lake Analytics 계정에 대한 계산 정책 목록을 검색합니다.
 
 ``` csharp
 var policies = adlaAccountClient.ComputePolicies.ListByAccount(rg, adla);
@@ -415,7 +415,7 @@ foreach (var p in policies)
 ```
 
 ### <a name="create-a-new-compute-policy"></a>새 계산 정책 만들기
-설정 hello 최대 AUs 사용 가능한 toohello 지정한 사용자 too50 및 hello 최소 작업 우선 순위 too250에 코드 다음 hello Data Lake 분석 계정에 대 한 새 계산 정책을 만듭니다.
+다음 코드는 지정된 사용자가 사용할 수 있는 최대 AU를 50으로, 최소 작업 우선 순위를 250으로 설정하는, Data Lake Analytics 계정에 대한 새 계산 정책을 만듭니다.
 
 ``` csharp
 var userAadObjectId = "3b097601-4912-4d41-b9d2-78672fc2acde";

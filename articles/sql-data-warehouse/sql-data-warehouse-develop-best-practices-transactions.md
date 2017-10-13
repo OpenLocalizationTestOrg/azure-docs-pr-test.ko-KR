@@ -1,5 +1,5 @@
 ---
-title: "SQL 데이터 웨어하우스에 대 한 트랜잭션을 aaaOptimizing | Microsoft Docs"
+title: "SQL Data Warehouse에 대해 트랜잭션 최적화 | Microsoft Docs"
 description: "Azure SQL 데이터 웨어하우스에서 효율적인 트랜잭션 업데이트를 작성하는 모범 사례 가이드"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,36 +15,36 @@ ms.workload: data-services
 ms.custom: t-sql
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 1a821161711db9460b7e10d3cf7ba498d711448b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f9f19d75a37351b3562ce8c2f3629df14c5437c6
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="optimizing-transactions-for-sql-data-warehouse"></a>SQL 데이터 웨어하우스에 대해 트랜잭션 최적화
-이 문서에서는 toooptimize 긴 롤백에 대 한 위험을 최소화 하면서 트랜잭션 코드의 성능을 hello 하는 방법을 설명 합니다.
+이 문서에서는 긴 롤백에 대한 위험을 최소화하면서 트랜잭션 코드의 성능을 최적화하는 방법을 설명합니다.
 
 ## <a name="transactions-and-logging"></a>트랜잭션 및 로깅
-트랜잭션은 관계형 데이터베이스 엔진의 중요한 구성 요소입니다. SQL 데이터 웨어하우스는 데이터를 수정하는 동안 트랜잭션을 사용합니다. 이러한 트랜잭션은 명시적일 수도 있고 암시적일 수도 있습니다. 단일 `INSERT`, `UPDATE` 및 `DELETE` 문은 모두 암시적 트랜잭션의 예입니다. 명시적 트랜잭션을 사용 하는 개발자가 명시적으로 작성 된 `BEGIN TRAN`, `COMMIT TRAN` 또는 `ROLLBACK TRAN` 되며 여러 수정 문을 toobe 단일 원자 단위에 연결 해야 하는 경우 일반적으로 사용 됩니다. 
+트랜잭션은 관계형 데이터베이스 엔진의 중요한 구성 요소입니다. SQL 데이터 웨어하우스는 데이터를 수정하는 동안 트랜잭션을 사용합니다. 이러한 트랜잭션은 명시적일 수도 있고 암시적일 수도 있습니다. 단일 `INSERT`, `UPDATE` 및 `DELETE` 문은 모두 암시적 트랜잭션의 예입니다. 명시적 트랜잭션은 개발자가 `BEGIN TRAN`, `COMMIT TRAN` 또는 `ROLLBACK TRAN`을 사용하여 명시적으로 작성하며, 일반적으로 단일 원자 단위에 여러 수정 문을 연결해야 하는 경우에 사용됩니다. 
 
-Azure SQL 데이터 웨어하우스 변경 toohello 데이터베이스를 트랜잭션 로그를 사용 하 여 커밋합니다. 각 분산에는 고유한 트랜잭션 로그가 있습니다. 트랜잭션 로그 쓰기는 자동입니다. 구성이 필요 없습니다. 그러나이 프로세스는 hello 쓰기를 보장 하는 동안 hello 시스템에는 오버를 헤드가지 않습니다 것입니다. 트랜잭션 측면에서 효율적인 코드를 작성하면 이 영향을 최소화할 수 있습니다. 트랜잭션 측면에서 효율적인 코드는 크게 두 범주로 나눌 수 있습니다.
+Azure SQL 데이터 웨어하우스는 트랜잭션 로그를 사용하여 데이터베이스에 변경 내용을 커밋합니다. 각 분산에는 고유한 트랜잭션 로그가 있습니다. 트랜잭션 로그 쓰기는 자동입니다. 구성이 필요 없습니다. 그러나 이 프로세스는 쓰기를 보장하지만 시스템에 오버헤드가 발생합니다. 트랜잭션 측면에서 효율적인 코드를 작성하면 이 영향을 최소화할 수 있습니다. 트랜잭션 측면에서 효율적인 코드는 크게 두 범주로 나눌 수 있습니다.
 
 * 가능한 최소한의 로깅 구문 활용
-* 장기 실행 트랜잭션 범위가 지정 된 일괄 처리 tooavoid 단 수를 사용 하 여 데이터 처리
-* 지정 된 파티션에서 큰 수정 tooa에 대 한 패턴을 전환 파티션 채택
+* 한 트랜잭션이 오래 실행되지 않도록 범위가 지정된 배치 사용
+* 지정된 파티션에 대규모 수정을 위한 파티션 전환 패턴 사용
 
 ## <a name="minimal-vs-full-logging"></a>최소 로깅 및 전체 로깅 비교
-모든 행 변경의 트랜잭션 로그 tookeep 트랙 hello를 사용 하는 완전히 로그 작업과 달리 익스텐트 할당 및 메타 데이터 변경 내용만 동기화 최소 로그 작업의 추적을 유지 합니다. 따라서 최소 로깅을 포함는 오류 또는 명시적으로 요청할의 hello 이벤트에 필요한 toorollback hello 트랜잭션이 있는 hello 정보만 로깅 (`ROLLBACK TRAN`). 훨씬 덜 hello 트랜잭션 로그에 정보를 추적, 최소 로그 작업에서 비슷한 크기 완전히 기록 된 작업 보다 더 잘 수행 합니다. 또한 더 적은 쓰기 hello 트랜잭션 로그를 이동, 때문에 훨씬 적은 양의 로그 데이터 생성 되 고 하므로 더 많은 I/O 효율적입니다.
+트랜잭션 로그를 사용하여 모든 행 변경을 추적하는 전체 로깅 작업과는 달리, 최소 로깅 작업은 규모 할당 및 메타 데이터 변경 내용만 추적합니다. 따라서 최소 로깅은 장애 발생 시 또는 명시적 요청이 있을 시 트랜잭션을 롤백(`ROLLBACK TRAN`)하는 데 필요한 정보만 로깅합니다. 최소 로깅 작업은 트랜잭션 로그에서 추적하는 정보의 양이 훨씬 적기 때문에 비슷한 크기의 전체 로깅 작업보다 성능이 우수합니다. 뿐만 아니라 트랜잭션 로그에 전달되는 쓰기 작업이 적기 때문에 훨씬 적은 양의 로그 데이터가 생성되고 따라서 I/O가 훨씬 효율적입니다.
 
-만 hello 트랜잭션 보안 제한 toofully 기록 작업을 적용 합니다.
+트랜잭션 안전성 제한은 전체 로깅 작업에만 적용됩니다.
 
 > [!NOTE]
-> 최소 로깅 작업은 명시적 트랜잭션에 참여할 수 있습니다. 할당 구조의 모든 변경 내용을 추적 하는 것이 가능한 tooroll 백 최소 로그 작업입니다. Hello 변경 되어 "최소" toounderstand 기록 반드시 기록 되지 않습니다.
+> 최소 로깅 작업은 명시적 트랜잭션에 참여할 수 있습니다. 할당 구조의 모든 변경 내용이 추적되므로 최소 로깅 작업을 롤백할 수 있습니다. 변경 내용이 전혀 로깅되지 않는 것이 아니라 "최소로" 로깅된다는 점을 이해해야 합니다.
 > 
 > 
 
 ## <a name="minimally-logged-operations"></a>최소 로깅 작업
-hello 다음 작업은 최소한으로 기록 되 고 수 있습니다:
+다음은 최소한으로 로깅 가능한 작업입니다.
 
 * [CTAS][CTAS](CREATE TABLE AS SELECT)
 * INSERT..SELECT
@@ -62,12 +62,12 @@ hello 다음 작업은 최소한으로 기록 되 고 수 있습니다:
 -->
 
 > [!NOTE]
-> 내부 데이터 이동 작업 (예: `BROADCAST` 및 `SHUFFLE`) hello 트랜잭션 보안 제한의 영향을 받지 않습니다.
+> 내부 데이터 이동 작업(예: `BROADCAST` 및 `SHUFFLE`)은 트랜잭션 안전성 제한의 영향을 받지 않습니다.
 > 
 > 
 
 ## <a name="minimal-logging-with-bulk-load"></a>대량 로드를 사용하여 최소 로깅
-`CTAS` 및 `INSERT...SELECT`는 대량 로드 작업입니다. 그러나 hello 대상 테이블 정의 의해 영향을 받는 둘 다 고 hello 부하 시나리오에 따라 달라 집니다. 아래는 대량 작업이 전부 로깅되는지 아니면 최소한으로 로깅되는지를 설명하는 테이블입니다.  
+`CTAS` 및 `INSERT...SELECT`는 대량 로드 작업입니다. 그러나 둘 다 대상 테이블 정의의 영향을 받으며 부하 시나리오에 따라 달라집니다. 아래는 대량 작업이 전부 로깅되는지 아니면 최소한으로 로깅되는지를 설명하는 테이블입니다.  
 
 | 기본 인덱스 | 부하 시나리오 | 로깅 모드 |
 | --- | --- | --- |
@@ -78,22 +78,22 @@ hello 다음 작업은 최소한으로 기록 되 고 수 있습니다:
 | 클러스터형 Clustered 인덱스 |배치 크기는 파티션 정렬 분산당 102,400 이상 |**최소** |
 | 클러스터형 Clustered 인덱스 |배치 크기는 파티션 정렬 분산당 102,400 미만 |전체 |
 
-이므로 로그 작업에 한 쓰기가 tooupdate 보조 또는 비클러스터형 인덱스는 항상 완벽 하 게 됩니다.
+보조 또는 비클러스터형 인덱스를 업데이트하는 모든 쓰기 작업은 항상 전체 로깅됩니다.
 
 > [!IMPORTANT]
-> SQL 데이터 웨어하우스에는 60개의 분산이 있습니다. Tooa 클러스터형 Columnstore 인덱스를 작성할 때 따라서 기록에서는 단일 파티션의 시작 되 고, 일괄 처리 해야 합니다 toocontain 6,144,000 행 또는 더 큰 toobe 최소 및 모든 행은 고르게 분포를 가정 합니다. Hello 테이블이 분할 되 고 삽입 되는 hello 행 파티션 경계에 걸쳐, 다음 할 경우 6,144,000 행도 데이터 분포를 가정 하면 파티션의 경계 수입니다. 각 배포의 각 파티션은 hello 삽입 toobe hello 배포에 최소 로깅에 대 한 hello 수가 102, 400 행 임계값 독립적으로 초과 해야 합니다.
+> SQL 데이터 웨어하우스에는 60개의 분산이 있습니다. 따라서 모든 행이 균등하게 분산되고 단일 파티션에 도착한다고 가정하면, 클러스터형 Columnstore 인덱스에 쓸 때 최소한으로 로깅하려면 배치에 6,144,000개 이상의 행이 포함되어야 합니다. 테이블이 분할되어 있고, 삽입되는 행이 파티션 경계에 걸쳐 있는 경우에는 데이터가 균등하게 분산된다는 가정하에 파티션 경계당 6,144,000개의 행이 필요합니다. 삽입 작업을 분산에 최소한으로 로깅하려면 각 분산의 각 파티션이 행 임계값 102,400을 독립적으로 초과해야 합니다.
 > 
 > 
 
-클러스터형 인덱스가 포함된 비어 있지 않은 테이블로 데이터를 로드하면 전체 로깅 행과 최소 로깅 행이 모두 포함되는 경우가 종종 있습니다. 클러스터형 인덱스는 균형 잡힌 페이지 트리(b-트리)입니다. Hello 페이지에서 다른 트랜잭션이 행을 포함 하는 tooalready 쓰고, 경우 다음이 쓰기 완벽 하 게 기록 됩니다. 그러나 hello 페이지가 비어 있는 경우 다음 hello 쓰기 toothat 페이지 최소한으로 기록 됩니다.
+클러스터형 인덱스가 포함된 비어 있지 않은 테이블로 데이터를 로드하면 전체 로깅 행과 최소 로깅 행이 모두 포함되는 경우가 종종 있습니다. 클러스터형 인덱스는 균형 잡힌 페이지 트리(b-트리)입니다. 쓰여지고 있는 페이지가 이미 다른 트랜잭션의 행을 포함하고 있으면 쓰기 작업이 전체 로깅됩니다. 그러나 페이지가 비어 있으면 해당 페이지에 대한 쓰기 작업이 최소한으로 로깅됩니다.
 
 ## <a name="optimizing-deletes"></a>삭제 최적화
-`DELETE` 는 전체 로깅 작업입니다.  데이터 파티션 또는 테이블에 많은 양의 toodelete 해야 할 경우 대개는 것이 너무`SELECT` tookeep 최소 로그 작업으로 실행 될 수 있는 원하는 hello 데이터입니다.  tooaccomplish이 포함 된 새 테이블을 만들 [CTAS][CTAS]합니다.  생성을 사용 하 여 [이름 바꾸기] [ RENAME] tooswap 여 이전 테이블을 새로 만든 hello 테이블과 아웃 합니다.
+`DELETE` 는 전체 로깅 작업입니다.  테이블 또는 파티션에서 대량의 데이터를 삭제해야 하는 경우 보관하려는 데이터에 대해 최소 로깅 작업으로 실행할 수 있는 `SELECT` 를 사용하는 것이 적절한 경우가 많습니다.  이를 위해서는 [CTAS][CTAS]를 사용하여 새 테이블을 만듭니다.  새 테이블을 만든 후에는 [RENAME][RENAME]을 사용하여 이전 테이블을 새로 만든 테이블로 교체합니다.
 
 ```sql
 -- Delete all sales transactions for Promotions except PromotionKey 2.
 
---Step 01. Create a new table select only hello records we want tookep (PromotionKey 2)
+--Step 01. Create a new table select only the records we want to kep (PromotionKey 2)
 CREATE TABLE [dbo].[FactInternetSales_d]
 WITH
 (    CLUSTERED COLUMNSTORE INDEX
@@ -113,20 +113,20 @@ WHERE    [PromotionKey] = 2
 OPTION (LABEL = 'CTAS : Delete')
 ;
 
---Step 02. Rename hello Tables tooreplace hello 
-RENAME OBJECT [dbo].[FactInternetSales]   too[FactInternetSales_old];
-RENAME OBJECT [dbo].[FactInternetSales_d] too[FactInternetSales];
+--Step 02. Rename the Tables to replace the 
+RENAME OBJECT [dbo].[FactInternetSales]   TO [FactInternetSales_old];
+RENAME OBJECT [dbo].[FactInternetSales_d] TO [FactInternetSales];
 ```
 
 ## <a name="optimizing-updates"></a>업데이트 최적화
-`UPDATE` 는 전체 로깅 작업입니다.  테이블의 행 수가 많은 tooupdate 하거나 파티션에 종종 것이 훨씬 더 효율적 toouse와 같은 작업을 최소 로깅으로 수행 [CTAS] [ CTAS] toodo 하도록 합니다.
+`UPDATE` 는 전체 로깅 작업입니다.  테이블 또는 파티션에서 행을 대량으로 업데이트해야 하는 경우 [CTAS][CTAS] 처럼 최소 로깅 작업을 사용하는 것이 훨씬 효율적일 때가 종종 있습니다.
 
-Hello 전체 테이블 업데이트를 다음 예제에서는 변환 된 tooa 되었습니다 `CTAS` 최소 로깅은 수 있도록 합니다.
+아래 예에서는 최소 로깅이 가능하도록 전체 테이블 업데이트가 `CTAS` 로 변환되었습니다.
 
-이 경우 소급 방식으로 discount amount toohello sales hello 테이블에 추가 하 고:
+이 예에서는 테이블의 판매 금액에 할인 금액을 소급하여 추가하고 있습니다.
 
 ```sql
---Step 01. Create a new table containing hello "Update". 
+--Step 01. Create a new table containing the "Update". 
 CREATE TABLE [dbo].[FactInternetSales_u]
 WITH
 (    CLUSTERED INDEX
@@ -171,31 +171,31 @@ FROM    [dbo].[FactInternetSales]
 OPTION (LABEL = 'CTAS : Update')
 ;
 
---Step 02. Rename hello tables
-RENAME OBJECT [dbo].[FactInternetSales]   too[FactInternetSales_old];
-RENAME OBJECT [dbo].[FactInternetSales_u] too[FactInternetSales];
+--Step 02. Rename the tables
+RENAME OBJECT [dbo].[FactInternetSales]   TO [FactInternetSales_old];
+RENAME OBJECT [dbo].[FactInternetSales_u] TO [FactInternetSales];
 
---Step 03. Drop hello old table
+--Step 03. Drop the old table
 DROP TABLE [dbo].[FactInternetSales_old]
 ```
 
 > [!NOTE]
-> 대규모 테이블을 다시 만들면 SQL 데이터 웨어하우스 워크로드 관리 기능의 이점을 활용할 수 있습니다. 자세한 내용은 hello에 toohello 작업 관리 섹션을 참조 하십시오에 대 한 [동시성] [ concurrency] 문서.
+> 대규모 테이블을 다시 만들면 SQL 데이터 웨어하우스 워크로드 관리 기능의 이점을 활용할 수 있습니다. 자세한 내용은 [동시성][concurrency] 문서의 워크로드 관리 섹션을 참조하세요.
 > 
 > 
 
 ## <a name="optimizing-with-partition-switching"></a>파티션 전환을 사용하여 최적화
-[테이블 파티션][table partition] 내부에서 대규모 수정 작업에 직면하는 경우 파티션 전환 패턴을 사용하는 것이 훨씬 효율적입니다. 경우 hello를 중요 한 데이터를 수정 하 고 hello 파티션을 단순히 반복 하는 여러 개의 파티션이 달성 범위 hello 동일한 결과입니다.
+[테이블 파티션][table partition] 내부에서 대규모 수정 작업에 직면하는 경우 파티션 전환 패턴을 사용하는 것이 훨씬 효율적입니다. 데이터 수정 작업이 대규모이고 여러 파티션에 걸쳐 있는 경우 파티션을 반복해도 동일한 결과를 얻습니다.
 
-hello 단계 tooperform 파티션 전환은 다음과 같습니다.
+파티션 전환을 수행하는 단계는 다음과 같습니다.
 
 1. 빈 외부 파티션 만들기
-2. CTAS에는으로 hello '업데이트'를 수행 합니다.
-3. 테이블을 기존 데이터 toohello hello 외부 전환
-4. Hello 새 데이터의 전환
-5. Hello 데이터 정리
+2. CTAS로 '업데이트' 수행
+3. 기존 데이터를 외부 테이블로 전환
+4. 새 데이터를 내부로 전환
+5. 데이터 정리
 
-그러나 toohelp hello 파티션을 tooswitch 먼저 필요한 toobuild 하나 hello 같은 도우미 프로시저 아래를 확인 합니다. 
+그러나 전환할 파티션을 식별하려면 먼저 아래와 같은 도우미 프로시저를 빌드해야 합니다. 
 
 ```sql
 CREATE PROCEDURE dbo.partition_data_get
@@ -241,12 +241,12 @@ OPTION (LABEL = 'dbo.partition_data_get : CTAS : #ptn_data')
 GO
 ```
 
-이 프로시저 코드 다시 사용을 최대화 하 고 hello 파티션 보다 간단한 예제를 전환 합니다.
+이 프로시저는 코드 재사용률을 최대화하고 파티션 전환 예를 보다 작게 유지합니다.
 
-아래의 hello 코드 루틴 전환 전체 파티션 tooachieve 위에서 언급 한 hello 5 단계를 설명 합니다.
+아래 코드는 위에서 언급한 전체 파티션 전환 루틴을 달성하는 다섯 단계를 보여 줍니다.
 
 ```sql
---Create a partitioned aligned empty table tooswitch out hello data 
+--Create a partitioned aligned empty table to switch out the data 
 IF OBJECT_ID('[dbo].[FactInternetSales_out]') IS NOT NULL
 BEGIN
     DROP TABLE [dbo].[FactInternetSales_out]
@@ -268,7 +268,7 @@ WHERE 1=2
 OPTION (LABEL = 'CTAS : Partition Switch IN : UPDATE')
 ;
 
---Create a partitioned aligned table and update hello data in hello select portion of hello CTAS
+--Create a partitioned aligned table and update the data in the select portion of the CTAS
 IF OBJECT_ID('[dbo].[FactInternetSales_in]') IS NOT NULL
 BEGIN
     DROP TABLE [dbo].[FactInternetSales_in]
@@ -315,29 +315,29 @@ WHERE    OrderDateKey BETWEEN 20020101 AND 20021231
 OPTION (LABEL = 'CTAS : Partition Switch IN : UPDATE')
 ;
 
---Use hello helper procedure tooidentify hello partitions
---hello source table
+--Use the helper procedure to identify the partitions
+--The source table
 EXEC dbo.partition_data_get 'dbo','FactInternetSales',20030101
 DECLARE @ptn_nmbr_src INT = (SELECT ptn_nmbr FROM #ptn_data)
 SELECT @ptn_nmbr_src
 
---hello "in" table
+--The "in" table
 EXEC dbo.partition_data_get 'dbo','FactInternetSales_in',20030101
 DECLARE @ptn_nmbr_in INT = (SELECT ptn_nmbr FROM #ptn_data)
 SELECT @ptn_nmbr_in
 
---hello "out" table
+--The "out" table
 EXEC dbo.partition_data_get 'dbo','FactInternetSales_out',20030101
 DECLARE @ptn_nmbr_out INT = (SELECT ptn_nmbr FROM #ptn_data)
 SELECT @ptn_nmbr_out
 
---Switch hello partitions over
+--Switch the partitions over
 DECLARE @SQL NVARCHAR(4000) = '
-ALTER TABLE [dbo].[FactInternetSales]    SWITCH PARTITION '+CAST(@ptn_nmbr_src AS VARCHAR(20))    +' too[dbo].[FactInternetSales_out] PARTITION '    +CAST(@ptn_nmbr_out AS VARCHAR(20))+';
-ALTER TABLE [dbo].[FactInternetSales_in] SWITCH PARTITION '+CAST(@ptn_nmbr_in AS VARCHAR(20))    +' too[dbo].[FactInternetSales] PARTITION '        +CAST(@ptn_nmbr_src AS VARCHAR(20))+';'
+ALTER TABLE [dbo].[FactInternetSales]    SWITCH PARTITION '+CAST(@ptn_nmbr_src AS VARCHAR(20))    +' TO [dbo].[FactInternetSales_out] PARTITION '    +CAST(@ptn_nmbr_out AS VARCHAR(20))+';
+ALTER TABLE [dbo].[FactInternetSales_in] SWITCH PARTITION '+CAST(@ptn_nmbr_in AS VARCHAR(20))    +' TO [dbo].[FactInternetSales] PARTITION '        +CAST(@ptn_nmbr_src AS VARCHAR(20))+';'
 EXEC sp_executesql @SQL
 
---Perform hello clean-up
+--Perform the clean-up
 TRUNCATE TABLE dbo.FactInternetSales_out;
 TRUNCATE TABLE dbo.FactInternetSales_in;
 
@@ -347,9 +347,9 @@ DROP TABLE #ptn_data
 ```
 
 ## <a name="minimize-logging-with-small-batches"></a>작은 배치를 사용하여 로깅 최소화
-큰 데이터 수정 작업에 대 한 작업의 의미 toodivide hello 작업 tooscope hello 단위로 청크 또는 일괄 처리 하면 됩니다.
+대규모 데이터 수정 작업의 경우 작업을 청크 또는 배치로 나누어서 작업 단위의 범위를 지정하는 것이 더 편할 수 있습니다.
 
-아래는 작업 예제입니다. hello 일괄 처리 크기 tooa trivial 숫자 toohighlight hello 기술을 설정 되었습니다. 실제로 hello 일괄 처리 크기는 훨씬 큰 것입니다. 
+아래는 작업 예제입니다. 방법을 강조하기 위해 배치 크기가 간단한 숫자로 설정되었습니다. 현실에서는 배치 크기가 엄청나게 거대합니다. 
 
 ```sql
 SET NO_COUNT ON;
@@ -408,20 +408,20 @@ END
 ```
 
 ## <a name="pause-and-scaling-guidance"></a>일시 중지 및 크기 조정 지침
-Azure SQL 데이터 웨어하우스를 사용하여 필요에 따라 데이터 웨어하우스를 일시 중지하고, 다시 시작하고, 규모를 조정할 수 있습니다. 일시 중지 하거나 중요 한 toounderstand 모든 진행 중인 트랜잭션은 즉시 종료 되는 SQL 데이터 웨어하우스를 확장 합니다. 모든 열린 트랜잭션이 toobe 일으키는 롤백됩니다. 장기 실행 및 이전에 완료 되지 않은 데이터 수정 작업에 발급 하는 경우 toohello 일시 중지 또는 크기 조정 작업 후이 작업 toobe 실행 취소 해야 합니다. 이 toopause hello 시간에 영향을 줄 또는 Azure SQL 데이터 웨어하우스 데이터베이스를 확장할 수 있습니다. 
+Azure SQL 데이터 웨어하우스를 사용하여 필요에 따라 데이터 웨어하우스를 일시 중지하고, 다시 시작하고, 규모를 조정할 수 있습니다. SQL 데이터 웨어하우스를 일시 중지하거나 규모를 조정하면 진행 중인 모든 트랜잭션이 즉시 종료되고 열려 있는 모든 트랜잭션이 롤백됩니다. 일시 중지 또는 규모 조정 작업을 수행하기 전에 워크로드에서 실행 시간이 길고 불완전한 데이터 수정 작업을 실행하면 이 작업을 실행 취소해야 합니다. 이로 인해 Azure SQL 데이터 웨어하우스 데이터베이스를 일시 중지하거나 크기를 조정하는 데 걸리는 시간이 달라질 수 있습니다. 
 
 > [!IMPORTANT]
 > `UPDATE` 및 `DELETE`는 전체 로깅 작업이므로 이러한 실행 취소/다시 실행 작업이 최소 로깅에 비해 훨씬 오래 걸릴 수 있습니다. 
 > 
 > 
 
-최상의 시나리오 hello 비행 데이터 수정 트랜잭션이 완료 이전 toopausing 또는 크기 조정 SQL 데이터 웨어하우스 toolet입니다. 그러나 이 방법이 불가능할 수 있습니다. 긴 rollback의 toomitigate hello 위험 hello 다음 옵션 중 하나를 고려해 보십시오.
+가장 좋은 시나리오는 진행 중인 데이터 수정 트랜잭션이 완료된 후 SQL 데이터 웨어하우스를 일시 중지하거나 규모를 조정하는 것입니다. 그러나 이 방법이 불가능할 수 있습니다. 긴 롤백의 위험을 완화하기 위해 다음 옵션 중 하나를 고려해 볼 수 있습니다.
 
 * [CTAS][CTAS]를 사용하여 실행 시간이 긴 작업을 다시 작성
-* 청크로; hello 작업 구분 hello 행의 하위 집합에 대 한 작동
+* 작업을 청크로 나누어서 행의 하위 집합에서 작동
 
 ## <a name="next-steps"></a>다음 단계
-참조 [SQL 데이터 웨어하우스에 트랜잭션을] [ Transactions in SQL Data Warehouse] toolearn 격리 수준과 트랜잭션 제한에 대 한 자세한 합니다.  기타 모범 사례의 개요에 대해서는 [SQL Data Warehouse 모범 사례][SQL Data Warehouse Best Practices]를 참조하세요.
+격리 수준 및 트랜잭션 제한에 대해 자세히 알아보려면 [SQL Data Warehouse의 트랜잭션][Transactions in SQL Data Warehouse]을 참조하세요.  기타 모범 사례의 개요에 대해서는 [SQL Data Warehouse 모범 사례][SQL Data Warehouse Best Practices]를 참조하세요.
 
 <!--Image references-->
 

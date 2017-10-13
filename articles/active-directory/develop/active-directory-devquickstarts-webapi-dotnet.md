@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure AD.NET 웹 API 시작 | Microsoft Docs"
-description: "어떻게 toobuild.NET MVC 웹 API는 Azure AD와 통합 인증 및 권한 부여에 대 한 합니다."
+title: "Azure AD .NET Web API 시작 | Microsoft Docs"
+description: "인증 및 권한 부여를 위해 Azure AD와 통합되는 .NET MVC Web API를 빌드하는 방법입니다."
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,63 +15,63 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 91c93e1fe18855f5648076e59e2ccf081eec34bc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f44d75f45073a5d9aa9b1863ed227aba4efcf785
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="help-protect-a-web-api-by-using-bearer-tokens-from-azure-ad"></a>Azure AD에서 전달자 토큰을 사용하여 Web API 보호
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-Tooknow 필요한 tooprotected 리소스 액세스를 제공 하는 응용 프로그램을 빌드하는 경우 어떻게 tooprevent 초래 toothose 리소스에 액세스 합니다.
-Azure Active Directory (Azure AD)을 사용 하면 간단 하 고 간단 하 게 toohelp 단 몇 줄의 코드 함께 OAuth 2.0 전달자 액세스 토큰을 사용 하 여 web API를 보호 합니다.
+보호된 리소스에 액세스할 수 있는 응용 프로그램을 빌드하는 경우 허가되지 않은 액세스로부터 해당 리소스를 보호하는 방법을 알고 있어야 합니다.
+Azure Active Directory(Azure AD)를 사용하면 몇 개의 코드 줄만으로 단순하고 간편하게 OAuth 2.0 Bearer 액세스 토큰을 사용하여 Web API를 보호할 수 있습니다.
 
-ASP.NET 웹 응용 프로그램에서 hello 커뮤니티 기반 OWIN 미들웨어의.NET Framework 4.5에 포함 된 Microsoft 구현 hello를 사용 하 여이 보호를 수행할 수 있습니다. 여기에서는 "tooDo 목록" web API OWIN toobuild입니다.
+ASP.NET 웹앱에서는 .NET Framework 4.5에 포함된 Microsoft에서 구현한 커뮤니티 기반 OWIN 미들웨어를 사용하여 이 작업을 수행할 수 있습니다. 여기서는 "할 일 목록" 웹 API를 작성하는 데 OWIN을 사용합니다.
 
 * 보호되는 API를 지정합니다.
-* Hello 웹 API 호출에 유효한 액세스 토큰이 포함 유효성을 검사 합니다.
+* 웹 API 호출에 유효한 액세스 토큰이 포함되어 있는지 확인합니다.
 
-toobuild hello tooDo 목록 API를 먼저 하도록 설정 해야 합니다.
+To Do List API를 빌드하려면 다음을 먼저 수행해야 합니다.
 
 1. Azure AD에 응용 프로그램을 등록합니다.
-2. Hello 앱 toouse hello OWIN 인증 파이프라인을 설정 합니다.
-3. 클라이언트 응용 프로그램 toocall hello 웹 API를 구성 합니다.
+2. OWIN 인증 파이프라인을 사용하도록 앱을 설정합니다.
+3. Web API를 호출하도록 클라이언트 응용 프로그램을 구성합니다.
 
-시작 tooget [hello 응용 프로그램의 기본 정의 다운로드](https://github.com/AzureADQuickStarts/WebAPI-Bearer-DotNet/archive/skeleton.zip) 또는 [완료 hello 샘플 다운로드](https://github.com/AzureADQuickStarts/WebAPI-Bearer-DotNet/archive/complete.zip)합니다. 각 샘플은 Visual Studio 2013 솔루션입니다. 또한 해야 어떤 tooregister에 Azure AD 테 넌 트 응용 프로그램입니다. 없는 경우 하나 이미 [자세한 방법을 하나 tooget](active-directory-howto-tenant.md)합니다.
+시작하려면 [앱 기본 사항을 다운로드](https://github.com/AzureADQuickStarts/WebAPI-Bearer-DotNet/archive/skeleton.zip)하거나 [완성된 샘플을 다운로드](https://github.com/AzureADQuickStarts/WebAPI-Bearer-DotNet/archive/complete.zip)하세요. 각 샘플은 Visual Studio 2013 솔루션입니다. 응용 프로그램을 등록할 Azure AD 테넌트도 필요합니다. 테넌트가 아직 없는 경우 [가져오는 방법을 알아봅니다](active-directory-howto-tenant.md).
 
 ## <a name="step-1-register-an-application-with-azure-ad"></a>1단계: Azure AD에 응용 프로그램 등록
-toohelp secure 응용 프로그램에 먼저 테 넌 트에 응용 프로그램 toocreate 필요 하 고 Azure AD 몇 가지 중요 한 내용을 제공 합니다.
+응용 프로그램 보안을 유지하려면 먼저 테넌트에서 응용 프로그램을 만들고 몇 가지 중요 정보로 Azure AD를 제공해야 합니다.
 
-1. Toohello 로그인 [Azure 포털](https://portal.azure.com)합니다.
+1. [Azure 포털](https://portal.azure.com)에 로그인합니다.
 
-2. Hello 위쪽 막대에서 계정을 클릭 합니다. Hello에 **디렉터리** 목록 tooregister 원하는 hello Azure AD 테 넌 트 응용 프로그램을 선택 합니다.
+2. 위쪽 막대에서 계정을 클릭합니다. **디렉터리** 목록에서 응용 프로그램을 등록할 Azure AD 테넌트를 선택합니다.
 
-3. 클릭 **더 서비스** 에 hello 왼쪽된 창에서 선택한 후 **Azure Active Directory**합니다.
+3. 왼쪽 창에서 **더 많은 서비스**를 클릭하고 **Azure Active Directory**를 선택합니다.
 
 4. **앱 등록**을 클릭하고 **추가**를 선택합니다.
 
-5. Hello 화면에 따라 수행 하 고 새 **웹 응용 프로그램 및/또는 Web API**합니다.
-  * **이름** 응용 프로그램 toousers에 설명 합니다. 입력 **tooDo 목록 서비스**합니다.
-  * **리디렉션 Uri** 는 구성표 및 문자열 조합 tooreturn 응용 프로그램을 요청 했습니다 모든 토큰을 사용 하 여 Azure AD입니다. 이 값으로 `https://localhost:44321/` 을 입력합니다.
+5. 프롬프트에 따라 새 **웹 응용 프로그램 및/또는 Web API**를 만듭니다.
+  * **이름**은 사용자에게 응용 프로그램을 설명합니다. **To Do List Service**를 입력합니다.
+  * **리디렉션 Uri**는 Azure AD가 앱이 요청한 토큰을 반환하는 데 사용하는 구성표 및 문자열 조합입니다. 이 값으로 `https://localhost:44321/` 을 입력합니다.
 
-6. Hello에서 **설정** -> **속성** 응용 프로그램에 대 한 페이지를 hello 앱 ID URI를 업데이트 합니다. 테넌트별 식별자를 입력합니다. 예를 들어 `https://contoso.onmicrosoft.com/TodoListService`을 입력합니다.
+6. 응용 프로그램에 대한 **설정** -> **속성** 페이지에서 앱 ID URI를 업데이트합니다. 테넌트별 식별자를 입력합니다. 예를 들어 `https://contoso.onmicrosoft.com/TodoListService`을 입력합니다.
 
-7. Hello 구성을 저장 합니다. 또한 필요 하므로 tooregister 클라이언트 응용 프로그램이 곧 hello 포털을 열어를 둡니다.
+7. 구성을 저장합니다. 잠시 후에 클라이언트 응용 프로그램을 등록해야 하므로 포털을 열어둡니다.
 
-## <a name="step-2-set-up-hello-app-toouse-hello-owin-authentication-pipeline"></a>2 단계: hello 앱 toouse hello OWIN 인증 파이프라인 설정
-toovalidate 들어오는 요청 및 토큰을 Azure AD와 응용 프로그램 toocommunicate 프로그램 tooset이 필요 합니다.
+## <a name="step-2-set-up-the-app-to-use-the-owin-authentication-pipeline"></a>2단계: OWIN 인증 파이프라인을 사용하도록 앱 설정
+들어오는 요청 및 토큰 유효성을 검사하려면 Azure AD와 통신하도록 응용 프로그램을 설정해야 합니다.
 
-1. toobegin, hello 솔루션을 열고 hello 패키지 관리자 콘솔을 사용 하 여 hello OWIN 미들웨어 NuGet 패키지 toohello TodoListService 프로젝트를 추가 합니다.
+1. 시작하려면 솔루션을 열고 패키지 관리자 콘솔을 사용하여 OWIN 미들웨어 NuGet 패키지를 TodoListService 프로젝트에 추가합니다.
 
     ```
     PM> Install-Package Microsoft.Owin.Security.ActiveDirectory -ProjectName TodoListService
     PM> Install-Package Microsoft.Owin.Host.SystemWeb -ProjectName TodoListService
     ```
 
-2. OWIN 시작 클래스 toohello TodoListService 프로젝트 라는 추가 `Startup.cs`합니다.  마우스 오른쪽 단추로 클릭 hello 프로젝트를 선택 **추가** > **새 항목**, 검색할 **OWIN**합니다. hello OWIN 미들웨어는 hello를 호출 하는 `Configuration(…)` 메서드 앱이 시작 되는 경우.
+2. OWIN Startup 클래스를 `Startup.cs`라는 TodoListService 프로젝트에 추가합니다.  프로젝트를 마우스 오른쪽 단추로 클릭하고 **새 항목** **추가** > 를 선택한 다음 **OWIN**을 검색합니다. OWIN 미들웨어는 앱이 시작되면 `Configuration(…)` 메서드를 호출합니다.
 
-3. Hello 클래스 선언에도 변경`public partial class Startup`합니다. 다른 파일에서 이 클래스의 일부를 이미 구현했습니다. Hello에 `Configuration(…)` 메서드를 너무 호출할`ConfgureAuth(…)` tooset 웹 앱에 대 한 인증을 합니다.
+3. 클래스 선언을 `public partial class Startup`으로 변경합니다. 다른 파일에서 이 클래스의 일부를 이미 구현했습니다. `Configuration(…)` 메서드에서 `ConfgureAuth(…)`를 호출하여 웹앱에 대한 인증을 설정합니다.
 
     ```C#
     public partial class Startup
@@ -83,7 +83,7 @@ toovalidate 들어오는 요청 및 토큰을 Azure AD와 응용 프로그램 to
     }
     ```
 
-4. 파일 열기 hello `App_Start\Startup.Auth.cs` hello를 구현 하 고 `ConfigureAuth(…)` 메서드. 매개 변수에서 제공 하는 hello `WindowsAzureActiveDirectoryBearerAuthenticationOptions` 좌표 Azure AD와 앱 toocommunicate 프로그램에 대 한 역할을 수행 합니다.
+4. `App_Start\Startup.Auth.cs` 파일을 열고 `ConfigureAuth(…)` 메서드를 구현합니다. `WindowsAzureActiveDirectoryBearerAuthenticationOptions`에 제공하는 매개 변수는 앱이 Azure AD와 통신하기 위한 좌표로 사용됩니다.
 
     ```C#
     public void ConfigureAuth(IAppBuilder app)
@@ -97,7 +97,7 @@ toovalidate 들어오는 요청 및 토큰을 Azure AD와 응용 프로그램 to
     }
     ```
 
-5. 에서는 이제 `[Authorize]` 특성 toohelp 컨트롤러와 JSON 웹 토큰 (JWT) 전달자 인증을 사용 하 여 작업을 보호 합니다. Hello 데코레이팅 `Controllers\TodoListController.cs` authorize 태그를 사용 하 여 클래스입니다. 이렇게 하면 해당 페이지에 액세스 하기 전에 hello 사용자 toosign에서 시작 합니다.
+5. 이제 `[Authorize]` 특성을 사용하여 JSON Web Token(JWT) 전달자 인증으로 컨트롤러 및 작업을 보호할 수 있습니다. authorize 태그를 사용하여 `Controllers\TodoListController.cs` 클래스를 데코레이팅합니다. 이렇게 하면 사용자는 해당 페이지에 액세스하기 전에 강제로 로그인됩니다.
 
     ```C#
     [Authorize]
@@ -105,51 +105,51 @@ toovalidate 들어오는 요청 및 토큰을 Azure AD와 응용 프로그램 to
     {
     ```
 
-    하면 권한 있는 발신자를 성공적으로 중 하나를 호출 hello `TodoListController` Api hello 작업 해야에 액세스할 수 tooinformation hello 호출자에 대 한 합니다. OWIN hello 통해 hello 전달자 토큰에 대 한 액세스 toohello 클레임을 제공 `ClaimsPrincpal` 개체입니다.  
+    권한 있는 호출자가 `TodoListController` API 중 하나를 호출하면 작업은 호출자에 대한 정보에 액세스해야 합니다. OWIN은 `ClaimsPrincpal` 개체를 통해 전달자 토큰 내의 클레임에 액세스할 수 있도록 합니다.  
 
-6. 웹 Api에 대 한 일반적인 요구 사항은 toovalidate hello "범위" hello 토큰에 있는입니다. 이렇게 하면 해당 hello 사용자가 동의 toohello 권한이 필요한 tooaccess hello tooDo 목록 서비스.
+6. 웹 API에 대한 일반적인 요구 사항은 토큰에 있는 "범위"를 확인하는 것입니다. 이렇게 하여 사용자가 To Do List Service에 액세스하는 데 필요한 권한에 동의했음을 확인합니다.
 
     ```C#
     public IEnumerable<TodoItem> Get()
     {
-        // user_impersonation is hello default permission exposed by applications in Azure AD
+        // user_impersonation is the default permission exposed by applications in Azure AD
         if (ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/scope").Value != "user_impersonation")
         {
             throw new HttpResponseException(new HttpResponseMessage {
               StatusCode = HttpStatusCode.Unauthorized,
-              ReasonPhrase = "hello Scope claim does not contain 'user_impersonation' or scope claim not found"
+              ReasonPhrase = "The Scope claim does not contain 'user_impersonation' or scope claim not found"
             });
         }
         ...
     }
     ```
 
-7. 열기 hello `web.config` hello TodoListService 프로젝트의 hello 루트에서 파일을 hello에 구성 값을 입력 `<appSettings>` 섹션.
-  * `ida:Tenant`Azure AD 테 넌 트-예를 들어 contoso.onmicrosoft.com hello 이름이입니다.
-  * `ida:Audience`hello hello Azure 포털에에서 입력 된 hello 응용 프로그램의 앱 ID URI입니다.
+7. TodoListService 프로젝트의 루트에서 `web.config` 파일을 열고 `<appSettings>` 섹션에 구성 값을 입력합니다.
+  * `ida:Tenant`는 Azure AD 테넌트의 이름(예: contoso.onmicrosoft.com)입니다.
+  * `ida:Audience`는 Azure 포털에 입력한 응용 프로그램의 앱 ID URI입니다.
 
-## <a name="step-3-configure-a-client-application-and-run-hello-service"></a>3 단계: 클라이언트 응용 프로그램을 구성 하 고 hello 서비스 실행
-Hello tooDo 목록 서비스 실행에서 하기 전에 Azure AD에서 토큰을 가져오기 고 toohello 서비스 호출을 높일 수 있도록 tooconfigure hello tooDo 목록 클라이언트가 필요 합니다.
+## <a name="step-3-configure-a-client-application-and-run-the-service"></a>3단계: 클라이언트 응용 프로그램 구성 및 서비스 실행
+To Do List Service가 작동하는 것을 보려면 먼저 Azure AD에서 토큰을 가져오고 서비스를 호출할 수 있도록 To Do List Client를 구성해야 합니다.
 
-1. Toohello 돌아가서 [Azure 포털](https://portal.azure.com)합니다.
+1. [Azure Portal](https://portal.azure.com)로 이동합니다.
 
-2. Azure AD 테 넌 트에 새 응용 프로그램을 만들고 선택 **네이티브 클라이언트 응용 프로그램** hello 프롬프트에 있습니다.
-  * **이름** 응용 프로그램 toousers에 설명 합니다.
-  * 입력 `http://TodoListClient/` hello에 대 한 **리디렉션 Uri** 값입니다.
+2. Azure AD 테넌트에 새 응용 프로그램을 만들고 결과 프롬프트에서 **네이티브 클라이언트 응용 프로그램** 을 선택합니다.
+  * **이름**은 사용자에게 응용 프로그램을 설명합니다.
+  * **리디렉션 URI** 값으로 `http://TodoListClient/`를 입력합니다.
 
-3. 등록을 완료 한 후 Azure AD는 고유한 응용 프로그램 ID tooyour 응용 프로그램에 할당 합니다. 이 값이 필요 합니다 hello 다음 단계에서 하므로에서 복사 hello 응용 프로그램 페이지.
+3. 등록을 완료한 후에는 Azure AD가 사용자 앱에 고유한 응용 프로그램 ID를 할당합니다. 이 값은 다음 단계에서 필요하므로 응용 프로그램 페이지에서 복사해 둡니다.
 
-4. Hello에서 **설정** 페이지에서 **필요한 권한**를 선택한 후 **추가**합니다. 찾기 및 hello tooDo 목록 서비스를 선택, 추가 hello **액세스 TodoListService** 에 따른 권한 **위임 된 권한**, 클릭 하 고 **수행**합니다.
+4. **설정** 페이지에서 **필요한 사용 권한**, **추가**를 차례로 선택합니다. To Do List Service를 찾은 후 선택하고 **위임된 사용 권한**에서 **TodoListService 액세스** 사용 권한을 추가한 다음 **완료**를 클릭합니다.
 
-5. Visual Studio에서 열고 `App.config` 에 hello TodoListClient 프로젝트를 선택한 다음 hello에 구성 값을 입력 `<appSettings>` 섹션.
+5. Visual Studio의 TodoListClient 프로젝트에서 `App.config`를 열고 `<appSettings>` 섹션에 구성 값을 입력합니다.
 
-  * `ida:Tenant`Azure AD 테 넌 트-예를 들어 contoso.onmicrosoft.com hello 이름이입니다.
-  * `ida:ClientId`hello Azure 포털에서에서 복사한 hello 응용 프로그램 ID입니다.
-  * `todo:TodoListResourceId`hello hello tooDo hello Azure 포털에에서 입력 된 목록 서비스 응용 프로그램의 앱 ID URI입니다.
+  * `ida:Tenant`는 Azure AD 테넌트의 이름(예: contoso.onmicrosoft.com)입니다.
+  * `ida:ClientId`는 Azure Portal에서 복사한 앱 ID입니다.
+  * `todo:TodoListResourceId`는 Azure Portal에 입력한 To Do List Service 응용 프로그램의 앱 ID URI입니다.
 
 ## <a name="next-steps"></a>다음 단계
-마지막으로, 각 프로젝트를 정리하고 빌드한 후 실행합니다. 아직 하지 않는 경우 이제는 hello 시간 toocreate와 테 넌 트에 새 사용자는 *. onmicrosoft.com 도메인입니다. 해당 사용자와 toohello tooDo 목록 클라이언트에 로그인 하 고 일부 작업 toohello 사용자의 할 일 목록에 추가 합니다.
+마지막으로, 각 프로젝트를 정리하고 빌드한 후 실행합니다. 새 사용자를 아직 만들지 않았으면 *.onmicrosoft.com 도메인을 사용하여 테넌트에 새 사용자를 만들어야 합니다. 해당 사용자로 To Do List 클라이언트에 로그인하고 사용자의 To Do List에 일부 작업을 추가합니다.
 
-구성 값) (없이 hello 완료 샘플은에서 사용할 수 있는 참조를 위해 [GitHub](https://github.com/AzureADQuickStarts/WebAPI-Bearer-DotNet/archive/complete.zip)합니다. 이제 toomore id 시나리오에서 이동할 수 있습니다.
+참조를 위해 완성된 샘플(사용자 구성 값 제외)이 [GitHub](https://github.com/AzureADQuickStarts/WebAPI-Bearer-DotNet/archive/complete.zip)에 제공됩니다. 이제 더 많은 ID 시나리오로 이동할 수 있습니다.
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../../includes/active-directory-devquickstarts-additional-resources.md)]

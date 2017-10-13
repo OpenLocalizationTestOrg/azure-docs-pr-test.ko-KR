@@ -1,5 +1,5 @@
 ---
-title: "PostgreSQL에 대 한 Azure 데이터베이스에서 aaaLimitations | Microsoft Docs"
+title: "PostgreSQL용 Azure 데이터베이스의 제한 사항 | Microsoft Docs"
 description: "PostgreSQL용 Azure 데이터베이스의 제한 사항을 설명합니다."
 services: postgresql
 author: kamathsun
@@ -10,19 +10,19 @@ ms.service: postgresql
 ms.custom: mvc
 ms.topic: article
 ms.date: 06/01/2017
-ms.openlocfilehash: f53dd240e55e0633bc1dfb8ad25e1818fa8ae18c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 38988fc5c0dc05331ea078534cd1a05e9eca2493
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="limitations-in-azure-database-for-postgresql"></a>PostgreSQL용 Azure 데이터베이스의 제한 사항
-PostgreSQL 서비스에 대 한 hello Azure 데이터베이스는 공개 프리뷰 버전입니다. hello 다음 단원에서는 용량 및 hello 데이터베이스 서비스의 기능 제한.
+PostgreSQL용 Azure 데이터베이스 서비스는 공개 미리 보기 상태입니다. 다음 섹션에서는 데이터베이스 서비스의 용량 및 기능 제한에 대해 설명합니다.
 
 ## <a name="service-tier-maximums"></a>서비스 계층 최대값
 PostgreSQL용 Azure 데이터베이스에는 서버를 만들 때 선택할 수 있는 여러 서비스 계층이 있습니다. 자세한 내용은 [각 서비스 계층에서 사용할 수 있는 기능 이해](concepts-service-tiers.md)를 참조하세요.  
 
-최대 수는 연결, 계산 단위 및 각 서비스 계층에 있는 저장소의 hello 서비스 미리 보기 중에 다음과 같이: 
+다음과 같이 서비스 미리 보기 동안 각 서비스 계층에는 연결, Compute 단위 및 저장소의 최대 수가 지정되어 있습니다. 
 
 |                            |                   |
 | :------------------------- | :---------------- |
@@ -40,7 +40,7 @@ PostgreSQL용 Azure 데이터베이스에는 서버를 만들 때 선택할 수 
 | 기본 서비스 계층         | 1TB              |
 | 표준 서비스 계층      | 1TB              |
 
-너무 많은 연결이 도달 하면 hello 다음 오류가 나타날 수 있습니다.
+너무 많은 연결에 도달하면 다음 오류가 나타날 수 있습니다.
 > 오류: 너무 많은 클라이언트가 이미 연결되어 있습니다.
 
 ## <a name="preview-functional-limitations"></a>미리 보기 기능 제한 사항
@@ -56,10 +56,10 @@ PostgreSQL용 Azure 데이터베이스에는 서버를 만들 때 선택할 수 
 - 구독 및 리소스 그룹에서 미리 생성된 서버를 동적으로 이동하는 것은 현재 지원되지 않습니다.
 
 ### <a name="point-in-time-restore"></a>특정 시점 복원
-1.  Toodifferent 서비스 계층 및/또는 계산 단위 및 저장소 크기 복원이 허용 되지 않습니다.
+1.  다른 서비스 계층 및/또는 Compute 단위 및 저장소 크기로 복원할 수 없습니다.
 2.  삭제된 서버를 복원하는 것은 지원되지 않습니다.
 
 ## <a name="next-steps"></a>다음 단계
 - [각 가격 책정 계층에서 사용할 수 있는 기능](concepts-service-tiers.md) 이해
 - [지원되는 PostgreSQL Database 버전](concepts-supported-versions.md) 이해
-- 검토 [어떻게를 tooBack 및 복원 PostgreSQL 사용에 대 한 Azure 데이터베이스의 서버 hello Azure 포털](howto-restore-server-portal.md)
+- [Azure Portal을 사용하여 PostgreSQL용 Azure 데이터베이스에서 서버를 백업 및 복원하는 방법](howto-restore-server-portal.md) 검토

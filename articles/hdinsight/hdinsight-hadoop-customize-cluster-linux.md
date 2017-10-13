@@ -1,6 +1,6 @@
 ---
-title: "스크립트 동작-Azure를 사용 하 여 aaaCustomize HDInsight 클러스터 | Microsoft Docs"
-description: "사용자 지정 구성 요소 스크립트 동작을 사용 하 여 tooLinux 기반 HDInsight 클러스터를 추가 합니다. 스크립트 작업을 사용 하는 toocustomize hello 클러스터 구성 하거나 추가 서비스 및 색상, Solr, 또는 지역와 같은 유틸리티를 추가할 수 있는 Bash 스크립트"
+title: "스크립트 작업을 사용하여 HDInsight 클러스터 사용자 지정 - Azure | Microsoft Docs"
+description: "스크립트 작업을 사용하여 Linux 기반 HDInsight 클러스터에 사용자 지정 구성 요소를 추가합니다. 스크립트 작업은 클러스터 구성을 사용자 지정하거나 다른 서비스 및 유틸리티(예: Hue, Solr 또는 R)를 추가하는 데 사용할 수 있는 Bash 스크립트입니다."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,131 +16,131 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: larryfr
-ms.openlocfilehash: ff22680a8a50b21985f6941f1edaf1dcf863d13f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0c5d00b6cb9f68a1a0e474f81c969eb1b5654c67
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="customize-linux-based-hdinsight-clusters-using-script-action"></a>스크립트 작업을 사용하여 Linux 기반 HDInsight 클러스터 사용자 지정
 
-호출 하는 구성 옵션을 제공 하는 HDInsight **스크립트 동작** hello 클러스터를 사용자 지정 하는 사용자 지정 스크립트를 호출 하 합니다. 이러한 스크립트는 사용 되는 tooinstall 추가 구성 요소 및 구성 설정을 변경 합니다. 스크립트 작업은 클러스터를 만드는 중이거나 만든 후에 사용할 수 있습니다.
+HDInsight는 클러스터를 사용자 지정하는 사용자 지정 스크립트를 호출하는 **스크립트 작업** 이라는 구성 옵션을 제공합니다. 이러한 스크립트는 추가 구성 요소를 설치하고 구성 설정을 변경하는 데 사용합니다. 스크립트 작업은 클러스터를 만드는 중이거나 만든 후에 사용할 수 있습니다.
 
 > [!IMPORTANT]
-> 이미 실행 중인 클러스터에 hello 기능 toouse 스크립트 작업은 Linux 기반 HDInsight 클러스터에 사용할 수만 있습니다.
+> 이미 실행 중인 클러스터에 스크립트 작업을 사용하는 기능은 Linux 기반 HDInsight 클러스터에만 제공됩니다.
 >
-> Linux는 hello 전용 운영 체제 HDInsight 버전 3.4 이상에서 사용 합니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
+> Linux는 HDInsight 버전 3.4 이상에서 사용되는 유일한 운영 체제입니다. 자세한 내용은 [Windows에서 HDInsight 사용 중지](hdinsight-component-versioning.md#hdinsight-windows-retirement)를 참조하세요.
 
-스크립트 동작 HDInsight 응용 프로그램으로 게시 된 toohello Azure 마켓플레이스를 수도 있습니다. 이 문서에 hello 예 중 일부는 HDInsight 응용 프로그램에서 PowerShell 및.NET SDK hello 액션 명령 스크립트를 사용 하 여 설치 하는 방법을 표시 합니다. HDInsight 응용 프로그램에 대 한 자세한 내용은 참조 하십시오. [HDInsight 게시 응용 프로그램을 Azure Marketplace hello로](hdinsight-apps-publish-applications.md)합니다.
+스크립트 작업을 Azure 마켓플레이스에 HDInsight 응용 프로그램으로 게시할 수도 있습니다. 이 문서의 일부 예제는 PowerShell 및.NET SDK의 스크립트 작업 명령을 사용하여 HDInsight 응용 프로그램을 설치하는 방법을 보여 줍니다. HDInsight 응용 프로그램에 대한 자세한 내용은 [Azure 마켓플레이스에 HDInsight 응용 프로그램 게시](hdinsight-apps-publish-applications.md)를 참조하세요.
 
 ## <a name="permissions"></a>권한
 
-도메인에 가입 된 HDInsight 클러스터를 사용 하는 경우 두 Ambari는 권한은 hello 클러스터와 스크립트 동작을 사용 하는 경우 필수입니다.
+도메인 가입 HDInsight 클러스터를 사용하는 경우 클러스터에서 스크립트 동작을 사용할 때는 다음 두 가지 Ambari 권한이 필요합니다.
 
-* **AMBARI 합니다. 실행\_사용자 지정\_명령**: hello Ambari 관리자 역할에는 기본적으로이 권한이 있습니다.
-* **클러스터입니다. 실행\_사용자 지정\_명령**: HDInsight 클러스터 관리자 모두 hello 및 Ambari 관리자는 기본적으로이 권한이 있어야 합니다.
+* **AMBARI.RUN\_CUSTOM\_COMMAND**: Ambari 관리자 역할은 기본적으로 이 권한을 가집니다.
+* **CLUSTER.RUN\_CUSTOM\_COMMAND**: HDInsight 클러스터 관리자와 Ambari 관리자는 기본적으로 이 권한을 가집니다.
 
 도메인 가입 HDInsight에서 권한으로 작업하는 방법에 대한 자세한 내용은 [도메인 가입 HDInsight 클러스터 관리](hdinsight-domain-joined-manage.md)를 참조하세요.
 
-## <a name="access-control"></a>Access Control
+## <a name="access-control"></a>액세스 제어
 
-계정 적어도 있어야 Azure 구독의 관리자/소유자 hello 아니라면 **참가자** hello HDInsight 클러스터를 포함 하는 액세스 toohello 리소스 그룹입니다.
+Azure 구독의 관리자/소유자가 아닌 경우 적어도 HDInsight 클러스터가 포함된 리소스 그룹에 대한 **참여자** 액세스 권한이 있어야 합니다.
 
-또한 이상 있는 사용자는 HDInsight 클러스터를 만드는 경우 **참가자** 액세스 toohello Azure 구독 이전에 등록 해야 HDInsight에 대 한 hello 공급자입니다. 공급자 등록 사용자 만들면 참가자 액세스 toohello 구독과 hello에 대 한 리소스 처음으로 hello 구독에 대해 발생 합니다. [REST를 사용하여 공급자를 등록](https://msdn.microsoft.com/library/azure/dn790548.aspx)하면 리소스를 만들지 않고도 수행될 수 있습니다.
+또한 HDInsight 클러스터를 만드는 경우 Azure 구독에 대한 **참가자** 이상의 액세스 권한이 있는 사용자는 HDInsight에 대한 공급자를 미리 등록해 두어야 합니다. 공급자 등록은 구독에 대해 참가자 액세스가 있는 사용자가 구독에서 처음으로 리소스를 만들 때 이루어집니다. [REST를 사용하여 공급자를 등록](https://msdn.microsoft.com/library/azure/dn790548.aspx)하면 리소스를 만들지 않고도 수행될 수 있습니다.
 
-작업 액세스 관리에 대 한 자세한 내용은 다음 문서는 hello를 참조 하세요.
+액세스 관리 작업에 대한 자세한 내용은 다음 문서를 참조하세요.
 
-* [Hello Azure 포털에에서 대 한 액세스 관리 시작](../active-directory/role-based-access-control-what-is.md)
-* [역할 할당 toomanage tooyour Azure 구독의 리소스에 액세스를 사용 하 여](../active-directory/role-based-access-control-configure.md)
+* [Azure 포털에서 액세스 관리 시작](../active-directory/role-based-access-control-what-is.md)
+* [역할 할당을 사용하여 Azure 구독 리소스에 대한 액세스 관리](../active-directory/role-based-access-control-configure.md)
 
 ## <a name="understanding-script-actions"></a>스크립트 작업 이해
 
-스크립트 동작은 단순히 URI 및 해당 매개 변수를 제공하는 Bash 스크립트입니다. hello 스크립트 hello HDInsight 클러스터의 노드에서 실행 됩니다. hello 다음은 특성 및 스크립트 동작의 기능입니다.
+스크립트 동작은 단순히 URI 및 해당 매개 변수를 제공하는 Bash 스크립트입니다. 이 스크립트는 HDInsight 클러스터의 노드에서 실행됩니다. 다음은 스크립트 작업의 특징 및 기능입니다.
 
-* Hello HDInsight 클러스터에서 액세스할 수 있는 URI에 저장 되어야 합니다. hello 다음 저장소 위치 같습니다.
+* HDInsight 클러스터에서 액세스할 수 있는 URI에 저장되어야 합니다. 가능한 저장소 위치는 다음과 같습니다.
 
-    * **Azure 데이터 레이크 저장소** hello HDInsight 클러스터에서 액세스할 수 있는 계정입니다. HDInsight에서 Azure Data Lake Store를 사용하는 방법에 대한 자세한 내용은 [Azure Data Lake Store에서 HDInsight 클러스터 만들기](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)를 참조하세요.
+    * HDInsight 클러스터에서 액세스할 수 있는 **Azure Data Lake Store** 계정 - HDInsight에서 Azure Data Lake Store를 사용하는 방법에 대한 자세한 내용은 [Azure Data Lake Store에서 HDInsight 클러스터 만들기](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)를 참조하세요.
 
-        데이터 레이크 저장소에 저장 하는 스크립트를 사용할 경우 hello URI 형식은 `adl://DATALAKESTOREACCOUNTNAME.azuredatalakestore.net/path_to_file`합니다.
+        Data Lake Store에 저장된 스크립트를 사용하는 경우 URI 형식은 `adl://DATALAKESTOREACCOUNTNAME.azuredatalakestore.net/path_to_file`입니다.
 
         > [!NOTE]
-        > hello 서비스 보안 주체 HDInsight 사용 하 여 tooaccess Data Lake 저장소에 대 한 읽기 액세스 toohello 스크립트가 있어야 합니다.
+        > HDInsight에서 Data Lake Store에 액세스하는 데 사용하는 서비스 주체에는 스크립트에 대한 읽기 권한이 있어야 합니다.
 
-    * Blob에는 **Azure 저장소 계정** hello HDInsight 클러스터에 대 한 hello 기본 또는 추가 저장소 계정 중 하나입니다. HDInsight은 클러스터를 만드는 동안 저장소 계정에 이러한 유형의 tooboth 액세스 권한이 부여 됩니다.
+    * HDInsight 클러스터에 대한 기본 또는 추가 저장소 계정인 **Azure Storage 계정**의 Blob - HDInsight는 클러스터를 만드는 동안 이러한 두 유형의 저장소 계정 모두에 대해 액세스 권한을 부여받습니다.
 
     * Azure Blob, GitHub, OneDrive, Dropbox 등과 같은 공용 파일 공유 서비스
 
-        예를 들어 Uri 참조 hello [예제 스크립트 작업 스크립트](#example-script-action-scripts) 섹션.
+        URI 예제는 [예제 스크립트 작업 스크립트](#example-script-action-scripts) 섹션을 참조하세요.
 
         > [!WARNING]
-        > HDInsight는 __범용__ Azure Storage 계정만 지원합니다. Hello 현재 지원 하지 않는 __Blob 저장소__ 계정 유형입니다.
+        > HDInsight는 __범용__ Azure Storage 계정만 지원합니다. 현재 __Blob 저장소__ 계정 유형은 지원하지 않습니다.
 
-* 너무 제한 될 수 있습니다**특정 노드 유형에 대해**, 예에서는 헤드 노드 또는 작업자 노드에 대 한 합니다.
+* 헤드 노드 또는 작업자 노드와 같은 **특정 노드 유형에서만 실행**되도록 제한할 수 있습니다.
 
   > [!NOTE]
-  > 프리미엄 HDInsight를 사용할 때는 hello 가장자리 노드에서 hello 스크립트를 사용 해야 함을 지정할 수 있습니다.
+  > HDInsight Premium에서 사용할 경우 스크립트를 에지 노드에서 사용해야 한다고 지정할 수 있습니다.
 
 * **지속형** 또는 **임시** 스크립트일 수 있습니다.
 
-    **지속** hello 스크립트를 실행 한 후 스크립트는 적용 된 tooworker 노드 추가 toohello 클러스터입니다. 예를 들어 hello 클러스터를 확장 하는 경우.
+    **지속형** 스크립트는 스크립트를 실행한 후 클러스터에 추가된 작업자 노드에 적용됩니다. (예: 클러스터 크기를 확장할 경우)
 
-    지속형된 스크립트 변경 내용을 tooanother와 같은 노드 유형이 헤드 노드도 적용할 수 있습니다.
+    지속형 스크립트는 헤드 노드 등의 다른 노드 유형에도 변경 사항을 적용할 수 있습니다.
 
   > [!IMPORTANT]
   > 지속형 스크립트 작업은 고유한 이름이 있어야 합니다.
 
-    **임시** 스크립트는 지속되지 않습니다. 가 hello 스크립트를 실행 한 후 노드 추가 toohello 클러스터 tooworker 적용된 하지 않습니다. 승격할 수 있고 이후에 임시 스크립트 tooa 스크립트를 지 속하거나 지속형된 스크립트 tooan 임시 스크립트 수준을 내립니다.
+    **임시** 스크립트는 지속되지 않습니다. 스크립트를 실행한 후 클러스터에 추가된 작업자 노드에 적용되지 않습니다. 이후에 임시 스크립트를 지속형 스크립트로 승격하거나 지속형 스크립트를 임시 스크립트로 강등할 수 있습니다.
 
   > [!IMPORTANT]
   > 클러스터를 만들 때 사용되는 스크립트 작업은 자동으로 보존됩니다.
   >
   > 사용자가 지속형 스크립트로 지정하더라도 실패하는 스크립트는 보존되지 않습니다.
 
-* 수락할 수 있는 **매개 변수** 에서 사용 하는 hello 스크립트 실행 중입니다.
-* 사용 하 여 실행 **루트 수준 권한을** hello 클러스터 노드에서 합니다.
-* Hello를 통해 사용할 수 있습니다 **Azure 포털**, **Azure PowerShell**, **Azure CLI**, 또는 **HDInsight.NET SDK**
+* 실행 중에 스크립트에서 사용하는 **매개 변수**를 수락할 수 있습니다.
+* 클러스터 노드에서 **루트 수준 권한**으로 실행합니다.
+* **Azure Portal**, **Azure PowerShell**, **Azure CLI** 또는 **HDInsight .NET SDK**를 통해 사용할 수 있습니다.
 
-hello 클러스터는 실행 된 모든 스크립트의 기록을 유지 합니다. hello 기록 올리기 또는 수준 내리기 작업에 대 한 스크립트의 toofind hello ID가 필요 하면 경우에 유용 합니다.
+클러스터는 실행된 모든 스크립트 기록을 보관합니다. 이 기록은 승격 또는 강등 작업에 스크립트의 ID를 찾아야 할 경우에 유용합니다.
 
 > [!IMPORTANT]
-> 자동으로 방법 tooundo 없습니다는 hello 스크립트 작업으로 변경 합니다. Hello 변경 내용이 되돌리는 것 수동으로 하거나 되돌린 해당 하는 스크립트를 제공 합니다.
+> 스크립트 작업을 통해 변경된 내용을 자동으로 취소하는 방법은 없습니다. 변경 사항을 수동으로 되돌리거나 되돌린 스크립트를 제공하세요.
 
 
-### <a name="script-action-in-hello-cluster-creation-process"></a>Hello 클러스터 만들기 프로세스에 스크립트 동작
+### <a name="script-action-in-the-cluster-creation-process"></a>클러스터 만들기 프로세스의 스크립트 작업
 
 클러스터를 만들 때 사용되는 스크립트 작업은 기존 클러스터에서 실행되는 스크립트 작업과 약간 다릅니다.
 
-* hello 스크립트는 **자동으로 지속형**합니다.
-* A **오류** hello 스크립트에 hello 클러스터 만들기 프로세스 toofail 인해 발생할 수 있습니다.
+* 이 스크립트는 **자동으로 보존**됩니다.
+* 스크립트가 **실패**하면 클러스터 만들기 프로세스가 실패할 수 있습니다.
 
-hello 다음 다이어그램에서는 hello 만드는 프로세스 동안 스크립트 작업을 실행할 때 수행 합니다.
+다음 다이어그램에서는 만들기 프로세스 중 스크립트 작업을 실행할 때를 보여줍니다.
 
 ![HDInsight 클러스터 사용자 지정 및 클러스터 만드는 동안의 단계][img-hdi-cluster-states]
 
-hello 스크립트 HDInsight를 구성 하는 동안 실행 됩니다. 이 단계에서 모두에서 동시에 hello 스크립트가 실행 hello 클러스터 hello 노드에서 루트 권한으로 실행 하 고 지정 된 노드에 hello 합니다.
+HDInsight를 구성하는 동안 스크립트가 실행됩니다. 이 단계에서 스크립트는 클러스터에 지정된 모든 노드에서 병렬로 실행되고, 노드에 대한 루트 권한으로 실행됩니다.
 
 > [!NOTE]
-> Hello 스크립트 hello 클러스터 노드에서 루트 수준 권한으로 실행, 되므로 Hadoop 관련 서비스를 포함 한 서비스를 시작 및 중지와 같은 작업을 수행할 수 있습니다. 서비스를 중지 하면 hello Ambari 서비스 및 기타 Hadoop 관련 서비스 되는지 실행 되 고 hello 스크립트 실행이 완료 되기 전에 확인 해야 합니다. 이러한 서비스는 필요한 생성 되는 동안 toosuccessfully hello 상태 및 hello 클러스터의 상태 확인 합니다.
+> 스크립트가 클러스터 노드에서 루트 수준 권한으로 실행되므로 Hadoop 관련 서비스를 포함하여 서비스 중지 및 시작과 같은 작업을 수행할 수 있습니다. 서비스를 중지하는 경우 스크립트 실행이 완료되기 전에 Ambari 서비스 및 기타 Hadoop 관련 서비스가 실행 중인지 확인해야 합니다. 클러스터가 생성되는 동안 클러스터의 상태를 확인하려면 이러한 서비스가 필요합니다.
 
 
-클러스터를 만드는 동안 한 번에 여러 스크립트 작업을 사용할 수 있습니다. 이러한 스크립트는 지정 된 hello 순서로 호출 됩니다.
+클러스터를 만드는 동안 한 번에 여러 스크립트 작업을 사용할 수 있습니다. 이러한 스크립트는 지정된 순서로 호출됩니다.
 
 > [!IMPORTANT]
-> 스크립트 작업은 60분 이내에 완료하지 않으면 시간이 초과됩니다. 클러스터 프로 비전 하는 동안 hello 스크립트는 다른 설치 및 구성 프로세스와 동시에 실행 됩니다. CPU 시간 또는 네트워크 대역폭 등의 리소스에 대 한 경합은 hello 스크립트 tootake 긴 toofinish 개발 환경에서 사용 하지 않고 발생할 수 있습니다.
+> 스크립트 작업은 60분 이내에 완료하지 않으면 시간이 초과됩니다. 클러스터 프로비전 중에 스크립트가 다른 설정 및 구성 프로세스와 동시에 실행됩니다. CPU 시간 또는 네트워크 대역폭 등의 리소스에 대한 경합으로 인해 스크립트 실행이 개발 환경에서보다 더 오래 걸릴 수 있습니다.
 >
-> toominimize hello 하나 toorun hello 스크립트 시간, 다운로드 및 소스에서 응용 프로그램을 컴파일 등의 작업을 방지 합니다. 응용 프로그램을 미리 컴파일 하 고 Azure 저장소의 hello 이진 파일을 저장 합니다.
+> 스크립트 실행 시간을 최소화하려면 다운로드 및 소스에서의 응용 프로그램 컴파일 등과 같은 작업은 실행하지 않습니다. Azure Storage에서 응용 프로그램을 미리 컴파일하고 이진을 저장합니다.
 
 
 ### <a name="script-action-on-a-running-cluster"></a>실행 중인 클러스터의 스크립트 작업
 
-이미 실행 중인 클러스터에서 클러스터를 만드는 스크립트에 실패 하는 동안 사용 되는 작업을 실행 하는 스크립트와는 달리 hello 클러스터 toochange tooa 실패 상태가 자동으로 발생 하지 않습니다. 스크립트가 완료 되 면 hello 클러스터 tooa "실행 중" 상태를 반환 해야 합니다.
+클러스터를 만드는 동안 사용되는 스크립트 작업과 달리, 이미 실행 중인 클러스터에서 실행되는 스크립트가 실패해도 클러스터가 실패 상태로 자동 변경되지 않습니다. 스크립트가 완료되면 클러스터가 "실행 중" 상태로 돌아갈 것입니다.
 
 > [!IMPORTANT]
-> Hello 클러스터 상태가 '실행 중', 경우에 hello 실패 한 스크립트 수을 위반한 것 작업 합니다. 예를 들어 스크립트는 hello 클러스터에 필요한 파일을 삭제 수 없습니다.
+> 클러스터에 ‘실행 중’ 상태인 경우라도 실패한 스크립트가 중단된 것일 수도 있습니다. 예를 들어, 스크립트는 클러스터에서 필요한 파일을 삭제할 수 있습니다.
 >
-> 스크립트 동작 tooyour 클러스터를 적용 하기 전에 스크립트를 수행 하는 작업을 이해 해야 확인 해야 하므로 루트 권한으로 실행 합니다.
+> 스크립트 작업은 루트 권한으로 실행되므로 클러스터에 스크립트 작업을 적용하기 전에 스크립트가 어떤 일을 하는지 정확하게 이해해야 합니다.
 
-Hello 클러스터 상태가 toofrom 변경 스크립트 tooa 클러스터를 적용할 때 **실행** 너무**"승인 됨"**, 다음 **HDInsight 구성**, 한 마지막 너무 다시**실행** 성공적인 스크립트에 대 한 합니다. hello 스크립트 상태 hello 스크립트 동작 기록을 로그인 하 고 hello 스크립트의 성공 또는 실패 여부 정보 toodetermine이를 사용할 수 있습니다. 예를 들어 hello `Get-AzureRmHDInsightScriptActionHistory` PowerShell cmdlet에 사용 되는 tooview hello 상태의 스크립트 일 수 있습니다. 정보 비슷한 toohello를 다음 텍스트를 반환 합니다.
+클러스터에 스크립트를 적용하면 클러스터 상태가 **실행 중**에서 **수락됨**으로 바뀌었다가 다시 **HDInsight 구성**으로 바뀝니다. 그리고 스크립트가 성공하면 다시 **실행 중**으로 바뀝니다. 스크립트 상태는 스크립트 작업 내역에 기록되며, 이 정보를 사용하여 스크립트가 성공했는지 아니면 실패했는지 확인할 수 있습니다. 예를 들어 `Get-AzureRmHDInsightScriptActionHistory` PowerShell cmdlet을 사용하여 스크립트 상태를 볼 수 있습니다. 이 명령은 다음 텍스트와 비슷한 정보를 반환합니다.
 
     ScriptExecutionId : 635918532516474303
     StartTime         : 8/14/2017 7:40:55 PM
@@ -148,22 +148,22 @@ Hello 클러스터 상태가 toofrom 변경 스크립트 tooa 클러스터를 �
     Status            : Succeeded
 
 > [!NOTE]
-> Hello 클러스터를 만든 후 hello 클러스터 사용자 (관리자) 암호 변경 하면,이 클러스터에 대 한 작업을 실행 하는 스크립트 실패할 수 있습니다. 모든 지속형된 스크립트 동작을 해당 대상 작업자 노드가 있는 경우 이러한 스크립트는 hello 클러스터 크기를 조정할 때 실패할 수 있습니다.
+> 클러스터를 만든 후 클러스터 사용자(관리자) 암호를 변경한 경우 이 클러스터를 실행하는 스크립트 작업에 오류가 발생할 수 있습니다. 작업자 노드를 대상으로 하는 지속적인 스크립트 작업이 있는 경우 클러스터 크기 조정 시 이러한 스크립트가 실패할 수 있습니다.
 
 ## <a name="example-script-action-scripts"></a>예제 스크립트 작업 스크립트
 
-스크립트 작업 스크립트는 hello 다음 유틸리티를 통해 사용할 수 있습니다.
+스크립트 작업 스크립트는 다음 유틸리티를 통해 사용할 수 있습니다.
 
-* Azure portal
+* Azure 포털
 * Azure PowerShell
 * Azure CLI
 * HDInsight .NET SDK
 
-HDInsight는 HDInsight 클러스터에서 다음과 같은 구성 요소가 스크립트 tooinstall hello를 제공 합니다.
+HDInsight는 HDInsight 클러스터에서 다음 구성 요소를 설치하는 스크립트를 제공합니다.
 
 | 이름 | 스크립트 |
 | --- | --- |
-| **Azure Storage 계정 추가** |https://hdiconfigactions.blob.core.windows.net/linuxaddstorageaccountv01/add-storage-account-v01.sh. 참조 [추가 저장소 추가 tooan HDInsight 클러스터](hdinsight-hadoop-add-storage.md)합니다. |
+| **Azure Storage 계정 추가** |https://hdiconfigactions.blob.core.windows.net/linuxaddstorageaccountv01/add-storage-account-v01.sh. [HDInsight 클러스터에 추가 저장소 추가](hdinsight-hadoop-add-storage.md)를 참조하세요. |
 | **Hue 설치** |https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-hue-uber-v02.sh. [HDInsight 클러스터에서 Hue 설치 및 사용](hdinsight-hadoop-hue-linux.md)을 참조하세요. |
 | **Presto 설치** |https://raw.githubusercontent.com/hdinsight/presto-hdinsight/master/installpresto.sh. [HDInsight 클러스터에 Presto 설치 및 사용](hdinsight-hadoop-install-presto.md)을 참조하세요. |
 | **Solr 설치** |https://hdiconfigactions.blob.core.windows.net/linuxsolrconfigactionv01/solr-installer-v01.sh. [HDInsight 클러스터에서 Solr 설치 및 사용](hdinsight-hadoop-solr-install-linux.md)을 참조하세요. |
@@ -173,57 +173,57 @@ HDInsight는 HDInsight 클러스터에서 다음과 같은 구성 요소가 스�
 
 ## <a name="use-a-script-action-during-cluster-creation"></a>클러스터를 만드는 동안 스크립트 작업 사용
 
-이 섹션에는 HDInsight 클러스터를 만들 때 작업 스크립트를 사용 하 여 hello 다른 방법을 예제를 제공 합니다.
+이 섹션에는 HDInsight 클러스터를 만들 때 스크립트 작업을 사용할 수 있는 다양한 방법에 대한 예제를 제공합니다.
 
-### <a name="use-a-script-action-during-cluster-creation-from-hello-azure-portal"></a>스크립트 작업을 사용 하 여 hello Azure 포털에서에서 클러스터를 만드는 동안
+### <a name="use-a-script-action-during-cluster-creation-from-the-azure-portal"></a>클러스터를 만드는 동안 Azure 포털에서 스크립트 작업 사용
 
-1. [HDInsight에서 Hadoop 클러스터 만들기](hdinsight-hadoop-provision-linux-clusters.md)에서 설명한 대로 클러스터를 만들기 시작합니다. Hello에 도달 하면 중지 __클러스터 요약__ 섹션.
+1. [HDInsight에서 Hadoop 클러스터 만들기](hdinsight-hadoop-provision-linux-clusters.md)에서 설명한 대로 클러스터를 만들기 시작합니다. __클러스터 요약__ 섹션에 도달하면 중지합니다.
 
-2. Hello에서 __클러스터 요약__ 섹션을 선택 하는 hello __편집__ 에 대 한 링크 __고급 설정__합니다.
+2. __클러스터 요약__ 섹션에서 __고급 설정__에 대한 __편집__ 링크를 선택합니다.
 
     ![고급 설정 링크](./media/hdinsight-hadoop-customize-cluster-linux/advanced-settings-link.png)
 
-3. Hello에서 __고급 설정__ 섹션에서 __스크립트 작업을__합니다. Hello에서 __스크립트 작업을__ 섹션에서 __+ new 전송__
+3. __고급 설정__ 섹션에서 __스크립트 작업__을 선택합니다. __스크립트 작업__ 섹션에서 __+새로운 항목 제출__을 선택합니다.
 
     ![새 스크립트 작업 제출](./media/hdinsight-hadoop-customize-cluster-linux/add-script-action.png)
 
-4. 사용 하 여 hello __스크립트를 선택__ 항목 tooselect 미리 만들어 놓은 스크립트입니다. toouse 사용자 지정 스크립트를 선택 __사용자 지정__ hello 다음 설명과 __이름__ 및 __URI 스크립트를 이용한 적__ 스크립트에 대 한 합니다.
+4. __스크립트 선택__ 항목을 사용하여 미리 만든 스크립트를 선택합니다. 사용자 지정 스크립트를 사용하려면 __사용자 지정__을 선택한 다음 스크립트에 대한 __이름__ 및 __Bash 스크립트 URI__를 입력합니다.
 
-    ![Hello 선택 스크립트 형식으로 스크립트 추가](./media/hdinsight-hadoop-customize-cluster-linux/select-script.png)
+    ![엄선된 스크립트 양식에서 스크립트 추가](./media/hdinsight-hadoop-customize-cluster-linux/select-script.png)
 
-    다음 표에서 hello hello 양식에 hello 요소에 설명 합니다.
+    다음 표에서는 양식의 요소에 대해 설명합니다.
 
     | 속성 | 값 |
     | --- | --- |
-    | 스크립트 선택 | toouse 선택 사용자 지정 스크립트 __사용자 지정__합니다. 그렇지 않은 경우 제공 된 hello 스크립트 중 하나를 선택 합니다. |
-    | 이름 |Hello 스크립트 동작에 대 한 이름을 지정 합니다. |
-    | Bash 스크립트 URI |가 호출 된 toocustomize hello 클러스터 hello URI toohello 스크립트를 지정 합니다. |
-    | Head/Worker/Zookeeper |Hello 노드를 지정 (**h e a d**, **작업자**, 또는 **사육**) hello 사용자 정의 스크립트 실행 됩니다. |
-    | 매개 변수 |Hello 스크립트에 필요한 경우 hello 매개 변수를 지정 합니다. |
+    | 스크립트 선택 | 사용자 소유 스크립트를 사용하려면 __사용자 지정__을 선택합니다. 그렇지 않은 경우 제공된 스크립트 중 하나를 선택합니다. |
+    | 이름 |스크립트 작업의 이름을 지정합니다. |
+    | Bash 스크립트 URI |클러스터를 사용자 지정하기 위해 호출되는 스크립트에 URI를 지정합니다. |
+    | Head/Worker/Zookeeper |사용자 지정 스크립트가 실행되는 노드(**헤드**, **작업자** 또는 **ZooKeeper**)를 지정합니다. |
+    | 매개 변수 |스크립트에 필요한 경우 매개 변수를 지정합니다. |
 
-    사용 하 여 hello __이 스크립트 동작이 계속__ 스크립트 hello 항목 tooensure 작업 크기 조정 하는 동안 적용 됩니다.
+    __이 스크립트 작업을 유지__ 항목을 사용하여 크기 조정 작업 시 스크립트가 적용되도록 합니다.
 
-5. 선택 __만들기__ toosave hello 스크립트입니다. 사용할 수 있습니다 __+ 새 전송__ tooadd 또 다른 스크립트입니다.
+5. __만들기__를 선택하여 스크립트를 저장합니다. 그런 다음 __+ Submit new(새로 제출)__를 사용하여 다른 스크립트를 추가할 수 있습니다.
 
     ![여러 스크립트 작업](./media/hdinsight-hadoop-customize-cluster-linux/multiple-scripts.png)
 
-    Hello를 사용 하 여 스크립트를 추가 마쳤으면 __선택__ 단추를 클릭 한 다음 hello __다음__ 단추 tooreturn toohello __클러스터 요약__ 섹션.
+    스크립트 추가가 완료되면 __선택__ 단추, __다음__ 단추를 차례로 사용하여 __클러스터 요약__ 섹션으로 돌아갑니다.
 
-3. 선택 toocreate hello 클러스터 __만들기__ hello에서 __클러스터 요약__ 선택 합니다.
+3. 클러스터를 만들려면 __클러스터 요약__ 선택 영역에서 __만들기__를 선택합니다.
 
 ### <a name="use-a-script-action-from-azure-resource-manager-templates"></a>Azure 리소스 관리자 템플릿에서 스크립트 작업 사용
 
-이 섹션의 예제 hello toouse Azure 리소스 관리자 템플릿 사용 하 여 작업을 스크립팅 하는 방법을 보여 줍니다.
+이 섹션의 예제는 Azure Resource Manager 템플릿을 통해 스크립트 작업을 사용하는 방법을 설명합니다.
 
 #### <a name="before-you-begin"></a>시작하기 전에
 
-* 워크스테이션 toorun HDInsight Powershell cmdlet을 구성 하는 방법에 대 한 정보를 참조 하십시오. [설치 Azure PowerShell을 구성 하 고](/powershell/azure/overview)합니다.
-* 방법에 대 한 지침은 toocreate 템플릿 참조 [제작 Azure 리소스 관리자 템플릿을](../azure-resource-manager/resource-group-authoring-templates.md)합니다.
+* HDInsight PowerShell cmdlet을 실행하도록 워크스테이션을 구성하는 방법에 대한 자세한 내용은 [Azure PowerShell 설치 및 구성](/powershell/azure/overview)을 참조하세요.
+* 템플릿을 만드는 방법에 대한 지침은 [Azure Resource Manager 템플릿 작성](../azure-resource-manager/resource-group-authoring-templates.md)을 참조하세요.
 * 이전에 리소스 관리자에서 Azure PowerShell을 사용하지 않은 경우 [Azure 리소스 관리자와 함께 Azure PowerShell 사용](../azure-resource-manager/powershell-azure-resource-manager.md)을 참조하세요.
 
 #### <a name="create-clusters-using-script-action"></a>스크립트 작업을 사용하여 클러스터 만들기
 
-1. 컴퓨터에서 수정할 수 있는 템플릿 tooa 위치 hello를 복사 합니다. 이 서식 파일 hello headnodes 및 작업자 클러스터의 노드에서 hello Giraph를 설치합니다. Hello JSON 템플릿을 유효한 것을 확인할 수 있습니다. 템플릿 콘텐츠를 [JSONLint](http://jsonlint.com/), 즉, 온라인 JSON 유효성 검사기 도구에 붙여 넣습니다.
+1. 다음 템플릿을 컴퓨터의 위치에 복사합니다. 이 템플릿은 헤드 노드에 Giraph를 설치하며 클러스터의 작업자 노드도 설치합니다. 또한 JSON 템플릿이 유효한지 확인할 수 있습니다. 템플릿 콘텐츠를 [JSONLint](http://jsonlint.com/), 즉, 온라인 JSON 유효성 검사기 도구에 붙여 넣습니다.
 
             {
             "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -378,21 +378,21 @@ HDInsight는 HDInsight 클러스터에서 다음과 같은 구성 요소가 스�
                 }
             }
         }
-2. Azure PowerShell을 시작 하 고 Azure 계정을 tooyour 로그인 합니다. Hello 명령은 자격 증명을 입력 한 후 계정에 대 한 정보를 반환 합니다.
+2. Azure PowerShell을 시작하고 Azure 계정에 로그인합니다. 자격 증명을 제공하면 사용자 계정에 대한 정보가 반환됩니다.
 
         Add-AzureRmAccount
 
         Id                             Type       ...
         --                             ----
         someone@example.com            User       ...
-3. Hello 구독 ID를 제공 하는 여러 구독이 있는 경우 배포에 대 한 toouse를 백업본 있습니다.
+3. 여러 구독이 있는 경우 배포에 사용할 구독 ID를 제공합니다.
 
         Select-AzureRmSubscription -SubscriptionID <YourSubscriptionId>
 
     > [!NOTE]
-    > 사용할 수 있습니다 `Get-AzureRmSubscription` tooget 각각에 대 한 hello 구독 ID를 포함 하는 사용자 계정과 연결 된 모든 구독의 목록입니다.
+    > `Get-AzureRmSubscription`을 사용하여 계정과 관련한 모든 구독 목록을 가져올 수 있습니다. 여기에는 각 구독에 대한 구독 ID가 포함되어 있습니다.
 
-4. 기본 리소스 그룹이 없는 경우 리소스 그룹을 만듭니다. Hello 이름 hello 리소스 그룹 및 솔루션에 필요한 위치를 제공 합니다. Hello 새 리소스 그룹의 요약이 반환 됩니다.
+4. 기본 리소스 그룹이 없는 경우 리소스 그룹을 만듭니다. 솔루션에 필요한 위치 및 리소스 그룹의 이름을 제공합니다. 새 리소스 그룹에 대한 요약이 반환됩니다.
 
         New-AzureRmResourceGroup -Name myresourcegroup -Location "West US"
 
@@ -406,19 +406,19 @@ HDInsight는 HDInsight 클러스터에서 다음과 같은 구성 요소가 스�
                             *
         ResourceId        : /subscriptions/######/resourceGroups/ExampleResourceGroup
 
-5. toocreate hello를 실행 하 여 리소스 그룹에 대 한 배포 **새로 AzureRmResourceGroupDeployment** 명령 및 hello 필요한 매개 변수를 제공 합니다. hello 매개 변수는 같은 데이터가 hello를 같습니다.
+5. 리소스 그룹에 대한 배포를 만들려면 **New-AzureRmResourceGroupDeployment** 명령을 실행하고 필요한 매개 변수를 제공합니다. 다음 데이터를 포함하는 매개 변수:
 
     * 배포에 사용할 이름
-    * 리소스 그룹의 hello 이름
-    * hello 경로 또는 URL toohello 만든 서식 파일입니다.
+    * 리소스 그룹의 이름
+    * 사용자가 만든 템플릿에 대한 경로 또는 URL입니다.
 
-  템플릿에 매개 변수가 필요한 경우 해당 매개 변수를 전달해야 합니다. 이 경우 hello 클러스터에서 hello 스크립트 동작 tooinstall R 매개 변수가 필요 하지 않습니다.
+  템플릿에 매개 변수가 필요한 경우 해당 매개 변수를 전달해야 합니다. 이 경우 클러스터에서 R을 설치하는 스크립트 작업은 매개 변수가 필요하지 않습니다.
 
         New-AzureRmResourceGroupDeployment -Name mydeployment -ResourceGroupName myresourcegroup -TemplateFile <PathOrLinkToTemplate>
 
-    사용자는 hello 서식 파일에 정의 된 hello 매개 변수에 대 한 증명된 tooprovide 값입니다.
+    템플릿에 정의된 매개 변수에 값을 제공하라는 메시지가 표시됩니다.
 
-1. Hello 리소스 그룹 배포 된 hello 배포의 요약이 표시 됩니다.
+1. 리소스 그룹을 배포한 경우 배포에 대한 요약이 표시됩니다.
 
           DeploymentName    : mydeployment
           ResourceGroupName : myresourcegroup
@@ -427,70 +427,70 @@ HDInsight는 HDInsight 클러스터에서 다음과 같은 구성 요소가 스�
           Mode              : Incremental
           ...
 
-2. 배포에 실패할 경우에 다음 cmdlet tooget 정보 hello 실패에 대 한 hello를 사용할 수 있습니다.
+2. 배포에 실패할 경우 다음 cmdlet을 사용하여 오류에 대한 정보를 가져올 수 있습니다.
 
         Get-AzureRmResourceGroupDeployment -ResourceGroupName myresourcegroup -ProvisioningState Failed
 
 ### <a name="use-a-script-action-during-cluster-creation-from-azure-powershell"></a>클러스터를 만드는 동안 Azure PowerShell에서 스크립트 작업 사용
 
-이 섹션을 사용 하 여 hello [추가 AzureRmHDInsightScriptAction](https://msdn.microsoft.com/library/mt603527.aspx) 스크립트 동작 toocustomize 클러스터를 사용 하 여 cmdlet tooinvoke 스크립트입니다. 계속하기 전에 Azure PowerShell을 설치 및 구성했는지 확인하세요. 워크스테이션 toorun HDInsight PowerShell cmdlet을 구성 하는 방법에 대 한 정보를 참조 하십시오. [설치 Azure PowerShell을 구성 하 고](/powershell/azure/overview)합니다.
+이 섹션에서는 스크립트 작업을 통해 스크립트를 호출하여 클러스터를 사용자 지정하는 [Add-AzureRmHDInsightScriptAction](https://msdn.microsoft.com/library/mt603527.aspx) cmdlet을 사용합니다. 계속하기 전에 Azure PowerShell을 설치 및 구성했는지 확인하세요. HDInsight PowerShell cmdlet을 실행하도록 워크스테이션을 구성하는 방법에 대한 자세한 내용은 [Azure PowerShell 설치 및 구성](/powershell/azure/overview)을 참조하세요.
 
-hello 다음 스크립트에서는 방법을 tooapply PowerShell을 사용 하는 클러스터를 만들 때 스크립트 동작:
+다음 스크립트는 PowerShell을 사용하는 클러스터를 만들 때 스크립트 작업을 적용하는 방법에 대해 보여줍니다.
 
-[!code-powershell[main](../../powershell_scripts/hdinsight/use-script-action/use-script-action.ps1?range=5-90)]
+[!code-powershell[기본](../../powershell_scripts/hdinsight/use-script-action/use-script-action.ps1?range=5-90)]
 
-Hello 클러스터를 만들기 전에 몇 분 정도 걸릴 수 있습니다.
+클러스터가 생성되는 데 몇 분 정도 걸릴 수 있습니다.
 
-### <a name="use-a-script-action-during-cluster-creation-from-hello-hdinsight-net-sdk"></a>스크립트 작업을 사용 하 여 hello HDInsight.NET SDK에서에서 클러스터를 만드는 동안
+### <a name="use-a-script-action-during-cluster-creation-from-the-hdinsight-net-sdk"></a>클러스터를 만드는 동안 HDInsight .NET SDK에서 스크립트 작업 사용
 
-HDInsight.NET SDK hello HDInsight와 보다 쉽게 toowork.NET 응용 프로그램에서 사용 하면 클라이언트 라이브러리를 제공 합니다. 코드 샘플을 보려면 [사용 하 여 HDInsight 클러스터 만들기 Linux 기반 hello.NET SDK](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md#use-script-action)합니다.
+HDInsight .NET SDK는 .NET 응용 프로그램에서 HDInsight로 더 쉽게 작업하도록 지원하는 클라이언트 라이브러리를 제공합니다. 코드 샘플은 [.NET SDK를 사용하여 HDInsight에서 Linux 기반 클러스터 만들기](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md#use-script-action)를 참조하세요.
 
-## <a name="apply-a-script-action-tooa-running-cluster"></a>클러스터 실행 스크립트 동작 tooa 적용
+## <a name="apply-a-script-action-to-a-running-cluster"></a>실행 중인 클러스터에 스크립트 작업 적용
 
-이 섹션에서는 tooapply 클러스터를 실행 하는 작업 tooa를 스크립팅 하는 방법에 대해 알아봅니다.
+이 섹션에서는 실행 중인 클러스터에 스크립트 작업을 적용하는 방법을 알아봅니다.
 
-### <a name="apply-a-script-action-tooa-running-cluster-from-hello-azure-portal"></a>Hello Azure 포털에서에서 클러스터를 실행 하는 스크립트 작업 tooa 적용
+### <a name="apply-a-script-action-to-a-running-cluster-from-the-azure-portal"></a>Azure 포털에서 실행 중인 클러스터에 스크립트 작업 적용
 
-1. Hello에서 [Azure 포털](https://portal.azure.com)를 HDInsight 클러스터를 선택 합니다.
+1. [Azure 포털](https://portal.azure.com)에서 HDInsight 클러스터를 선택합니다.
 
-2. Hello HDInsight 클러스터 개요에서 선택 hello **스크립트 동작** 바둑판식으로 배열입니다.
+2. HDInsight 클러스터 개요에서 **스크립트 작업** 타일을 선택합니다.
 
     ![스크립트 작업 타일](./media/hdinsight-hadoop-customize-cluster-linux/scriptactionstile.png)
 
    > [!NOTE]
-   > 선택할 수도 있습니다 **모든 설정을** 선택한 후 **스크립트 동작** hello 설정 섹션에서에서.
+   > **모든 설정**을 선택한 다음 설정 섹션에서 **스크립트 작업**을 선택할 수도 있습니다.
 
-3. 스크립트 동작 섹션 hello의 hello 위에서 선택 **새 전송**합니다.
+3. 스크립트 작업 섹션 가장 위에서 **새로운 항목 제출**을 선택합니다.
 
-    ![클러스터를 실행 하는 스크립트 tooa 추가](./media/hdinsight-hadoop-customize-cluster-linux/add-script-running-cluster.png)
+    ![실행 중인 클러스터에 스크립트 적용](./media/hdinsight-hadoop-customize-cluster-linux/add-script-running-cluster.png)
 
-4. 사용 하 여 hello __스크립트를 선택__ 항목 tooselect 미리 만들어 놓은 스크립트입니다. toouse 사용자 지정 스크립트를 선택 __사용자 지정__ hello 다음 설명과 __이름__ 및 __URI 스크립트를 이용한 적__ 스크립트에 대 한 합니다.
+4. __스크립트 선택__ 항목을 사용하여 미리 만든 스크립트를 선택합니다. 사용자 지정 스크립트를 사용하려면 __사용자 지정__을 선택한 다음 스크립트에 대한 __이름__ 및 __Bash 스크립트 URI__를 입력합니다.
 
-    ![Hello 선택 스크립트 형식으로 스크립트 추가](./media/hdinsight-hadoop-customize-cluster-linux/select-script.png)
+    ![엄선된 스크립트 양식에서 스크립트 추가](./media/hdinsight-hadoop-customize-cluster-linux/select-script.png)
 
-    다음 표에서 hello hello 양식에 hello 요소에 설명 합니다.
+    다음 표에서는 양식의 요소에 대해 설명합니다.
 
     | 속성 | 값 |
     | --- | --- |
-    | 스크립트 선택 | toouse 선택 사용자 지정 스크립트 __사용자 지정__합니다. 그렇지 않은 경우 제공된 스크립트를 선택합니다. |
-    | 이름 |Hello 스크립트 동작에 대 한 이름을 지정 합니다. |
-    | Bash 스크립트 URI |가 호출 된 toocustomize hello 클러스터 hello URI toohello 스크립트를 지정 합니다. |
-    | Head/Worker/Zookeeper |Hello 노드를 지정 (**h e a d**, **작업자**, 또는 **사육**) hello 사용자 정의 스크립트 실행 됩니다. |
-    | 매개 변수 |Hello 스크립트에 필요한 경우 hello 매개 변수를 지정 합니다. |
+    | 스크립트 선택 | 사용자 소유 스크립트를 사용하려면 __사용자 지정__을 선택합니다. 그렇지 않은 경우 제공된 스크립트를 선택합니다. |
+    | 이름 |스크립트 작업의 이름을 지정합니다. |
+    | Bash 스크립트 URI |클러스터를 사용자 지정하기 위해 호출되는 스크립트에 URI를 지정합니다. |
+    | Head/Worker/Zookeeper |사용자 지정 스크립트가 실행되는 노드(**헤드**, **작업자** 또는 **ZooKeeper**)를 지정합니다. |
+    | 매개 변수 |스크립트에 필요한 경우 매개 변수를 지정합니다. |
 
-    사용 하 여 hello __이 스크립트 동작이 계속__ 항목 toomake 있는지 hello 스크립트 작업을 확장 하는 동안 적용 됩니다.
+    __이 스크립트 작업을 유지__ 항목을 사용하여 크기 조정 작업 시 스크립트가 적용되도록 합니다.
 
-5. 마지막으로 hello를 사용 하 여 **만들기** 단추 tooapply hello 스크립트 toohello 클러스터입니다.
+5. 마지막으로 **만들기** 단추를 사용하여 클러스터에 스크립트를 적용합니다.
 
-### <a name="apply-a-script-action-tooa-running-cluster-from-azure-powershell"></a>Azure PowerShell에서 클러스터를 실행 하는 스크립트 작업 tooa 적용
+### <a name="apply-a-script-action-to-a-running-cluster-from-azure-powershell"></a>Azure PowerShell에서 실행 중인 클러스터에 스크립트 작업 적용
 
-계속하기 전에 Azure PowerShell을 설치 및 구성했는지 확인하세요. 워크스테이션 toorun HDInsight PowerShell cmdlet을 구성 하는 방법에 대 한 정보를 참조 하십시오. [설치 Azure PowerShell을 구성 하 고](/powershell/azure/overview)합니다.
+계속하기 전에 Azure PowerShell을 설치 및 구성했는지 확인하세요. HDInsight PowerShell cmdlet을 실행하도록 워크스테이션을 구성하는 방법에 대한 자세한 내용은 [Azure PowerShell 설치 및 구성](/powershell/azure/overview)을 참조하세요.
 
-hello 다음 예제에서는 어떻게 tooapply 스크립트 동작 tooa 실행 중인 클러스터:
+다음 예제에서는 실행 중인 클러스터에 스크립트 작업을 적용하는 방법을 보여줍니다.
 
-[!code-powershell[main](../../powershell_scripts/hdinsight/use-script-action/use-script-action.ps1?range=105-117)]
+[!code-powershell[기본](../../powershell_scripts/hdinsight/use-script-action/use-script-action.ps1?range=105-117)]
 
-Hello 작업이 완료 되 면 정보 비슷한 toohello를 텍스트 다음 나타납니다.
+작업이 완료되면 다음 텍스트와 유사한 정보가 제공됩니다.
 
     OperationState  : Succeeded
     ErrorMessage    :
@@ -499,31 +499,31 @@ Hello 작업이 완료 되 면 정보 비슷한 toohello를 텍스트 다음 나
     Parameters      :
     NodeTypes       : {HeadNode, WorkerNode}
 
-### <a name="apply-a-script-action-tooa-running-cluster-from-hello-azure-cli"></a>Hello Azure CLI에서에서 클러스터를 실행 하는 스크립트 작업 tooa 적용
+### <a name="apply-a-script-action-to-a-running-cluster-from-the-azure-cli"></a>Azure CLI에서 실행 중인 클러스터에 스크립트 작업 적용
 
-계속 하기 전에 설치 하 고 hello Azure CLI를 구성 했는지 확인 합니다. 자세한 내용은 참조 [설치 hello Azure CLI](../cli-install-nodejs.md)합니다.
+계속하기 전에 Azure CLI를 설치 및 구성했는지 확인하세요. 자세한 내용은 [Azure CLI 설치](../cli-install-nodejs.md)를 참조하세요.
 
 [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
-1. tooswitch tooAzure Resource Manager 모드로, 다음 hello 명령줄에서 명령을 사용 하 여 hello:
+1. Azure Resource Manager 모드로 전환하려면 명령줄에 다음 명령을 사용합니다.
 
         azure config mode arm
 
-2. Hello 다음 tooauthenticate tooyour Azure 구독을 사용 합니다.
+2. 다음 정보를 사용하여 Azure 구독에 인증합니다.
 
         azure login
 
-3. 다음 명령은 tooapply 클러스터를 실행 하는 스크립트 작업 tooa hello를 사용 하 여
+3. 다음 명령을 사용하여 실행 중인 클러스터에 스크립트 작업을 적용합니다.
 
         azure hdinsight script-action create <clustername> -g <resourcegroupname> -n <scriptname> -u <scriptURI> -t <nodetypes>
 
-    이 명령에 대한 매개 변수를 생략한 경우 해당 매개 변수를 묻는 메시지가 나타납니다. 하는 경우 스크립트를 사용 하 여 지정한 hello `-u` 에서는 매개 변수를 지정할 수 있습니다 hello를 통해 `-p` 매개 변수입니다.
+    이 명령에 대한 매개 변수를 생략한 경우 해당 매개 변수를 묻는 메시지가 나타납니다. `-u`와 함께 지정한 스크립트에서 매개 변수를 허용하는 경우 `-p` 매개 변수를 지정할 수 있습니다.
 
-    유효한 노드 형식은 `headnode`, `workernode` 및 `zookeeper`입니다. Hello 스크립트는 노드 유형에 적용된 toomultiple 이어야 하 고, 경우에 hello 형식을 구분 하 여 지정 된 ';'. 예: `-n headnode;workernode`.
+    유효한 노드 형식은 `headnode`, `workernode` 및 `zookeeper`입니다. 스크립트를 여러 노드 형식에 적용해야 하는 경우 세미콜론(';')으로 구분하여 형식을 지정합니다. 예: `-n headnode;workernode`
 
-    toopersist hello 스크립트, 추가 hello `--persistOnSuccess`합니다. 사용 하 여 hello 스크립트를 나중에 유지할 수도 있습니다 `azure hdinsight script-action persisted set`합니다.
+    스크립트를 보존하려면 `--persistOnSuccess`를 추가합니다. 나중에 `azure hdinsight script-action persisted set`을(를) 사용하여 스크립트를 지속할 수도 있습니다.
 
-    Hello 작업이 완료 되 면 출력 유사한 toohello를 텍스트 다음 나타납니다.
+    작업이 완료되면 다음 텍스트와 유사한 출력이 나타납니다.
 
         info:    Executing command hdinsight script-action create
         + Executing Script Action on HDInsight cluster
@@ -533,127 +533,127 @@ Hello 작업이 완료 되 면 정보 비슷한 toohello를 텍스트 다음 나
         data:    Operation ID:  b707b10e-e633-45c0-baa9-8aed3d348c13
         info:    hdinsight script-action create command OK
 
-### <a name="apply-a-script-action-tooa-running-cluster-using-rest-api"></a>REST API를 사용 하 여 클러스터를 실행 하는 스크립트 작업 tooa 적용
+### <a name="apply-a-script-action-to-a-running-cluster-using-rest-api"></a>REST API를 사용하여 실행 중인 클러스터에 스크립트 작업 적용
 
 [실행 중인 클러스터의 스크립트 작업](https://msdn.microsoft.com/library/azure/mt668441.aspx)을 참조하세요.
 
-### <a name="apply-a-script-action-tooa-running-cluster-from-hello-hdinsight-net-sdk"></a>Hello HDInsight.NET SDK에서에서 클러스터를 실행 하는 스크립트 작업 tooa 적용
+### <a name="apply-a-script-action-to-a-running-cluster-from-the-hdinsight-net-sdk"></a>HDInsight .NET SDK에서 실행 중인 클러스터에 스크립트 작업 적용
 
-Hello.NET SDK tooapply 스크립트 tooa 클러스터를 사용 하 여 예제를 보려면 [https://github.com/Azure-Samples/hdinsight-dotnet-script-action](https://github.com/Azure-Samples/hdinsight-dotnet-script-action)합니다.
+.NET SDK를 사용하여 클러스터에 스크립트를 적용하는 예제는 [https://github.com/Azure-Samples/hdinsight-dotnet-script-action](https://github.com/Azure-Samples/hdinsight-dotnet-script-action)에서 확인할 수 있습니다.
 
 ## <a name="view-history-promote-and-demote-script-actions"></a>기록 보기, 스크립트 작업 승격 및 강등
 
-### <a name="using-hello-azure-portal"></a>Hello Azure 포털을 사용 하 여
+### <a name="using-the-azure-portal"></a>Azure 포털 사용
 
-1. Hello에서 [Azure 포털](https://portal.azure.com)를 HDInsight 클러스터를 선택 합니다.
+1. [Azure 포털](https://portal.azure.com)에서 HDInsight 클러스터를 선택합니다.
 
-2. Hello HDInsight 클러스터 개요에서 선택 hello **스크립트 동작** 바둑판식으로 배열입니다.
+2. HDInsight 클러스터 개요에서 **스크립트 작업** 타일을 선택합니다.
 
     ![스크립트 작업 타일](./media/hdinsight-hadoop-customize-cluster-linux/scriptactionstile.png)
 
    > [!NOTE]
-   > 선택할 수도 있습니다 **모든 설정을** 선택한 후 **스크립트 동작** hello 설정 섹션에서에서.
+   > **모든 설정**을 선택한 다음 설정 섹션에서 **스크립트 작업**을 선택할 수도 있습니다.
 
-4. 이 클러스터에 대 한 스크립트의 기록은 hello 스크립트 동작 섹션에 표시 됩니다. 이 정보에는 지속된 스크립트 목록이 포함되어 있습니다. 아래 hello 스크린샷에서 Solr 스크립트 되었습니다.이 클러스터에서 실행 하는 hello를 볼 수 있습니다. hello 스크린 샷 지속형된 스크립트를 표시 하지 않습니다.
+4. 이 클러스터에 대한 스크립트 기록이 스크립트 작업 섹션에 표시됩니다. 이 정보에는 지속된 스크립트 목록이 포함되어 있습니다. 아래 스크린샷을 보시면 Solr 스크립트가 이 클러스터에서 실행되었지만 스크린샷에는 지속된 스크립트가 보이지 않습니다.
 
     ![스크립트 작업 섹션](./media/hdinsight-hadoop-customize-cluster-linux/script-action-history.png)
 
-5. Hello 기록에서 스크립트를 선택 하면이 스크립트에 대 한 hello 속성 섹션을 표시 됩니다. Hello 화면 hello 위에서 hello 스크립트를 다시 실행할 수도 있고 수준을 올릴 수 있습니다.
+5. 기록에서 스크립트를 선택하면 이 스크립트의 속성 섹션이 표시됩니다. 화면 맨 위에서 스크립트를 다시 실행하거나 승격할 수 있습니다.
 
     ![스크립트 작업 속성](./media/hdinsight-hadoop-customize-cluster-linux/promote-script-actions.png)
 
-6. Hello를 사용할 수도 있습니다 **...**  toohello hello 스크립트 동작 섹션 tooperform 동작에 대 한 항목의 오른쪽입니다.
+6. 또한 스크립트 작업 섹션에서 항목 오른쪽에 있는 **...**를 사용하여 작업을 수행할 수도 있습니다.
 
     ![스크립트 작업 ... 사용량](./media/hdinsight-hadoop-customize-cluster-linux/deletepromoted.png)
 
 ### <a name="using-azure-powershell"></a>Azure PowerShell 사용
 
-| Hello 다음을 사용 하는 중... | 너무... |
+| 사용하는 명령 | 수행하는 동작 |
 | --- | --- |
 | Get-AzureRmHDInsightPersistedScriptAction |지속형 스크립트 작업에 대한 정보 검색 |
-| Get-AzureRmHDInsightScriptActionHistory |기록을 스크립트 적용 되는 동작 toohello 클러스터 또는 특정 스크립트에 대 한 세부 정보를 검색 합니다. |
-| Set-AzureRmHDInsightPersistedScriptAction |임시 승격 스크립트 동작 tooa 지속형 스크립트 동작 |
-| Remove-AzureRmHDInsightPersistedScriptAction |지속형된 스크립트 동작 tooan 임시 작업을 강등합니다. |
+| Get-AzureRmHDInsightScriptActionHistory |클러스터에 적용된 스크립트 작업의 기록 또는 특정 스크립트에 대한 세부 정보 검색 |
+| Set-AzureRmHDInsightPersistedScriptAction |임시 스크립트 작업을 지속형 스크립트 작업으로 승격 |
+| Remove-AzureRmHDInsightPersistedScriptAction |지속형 스크립트 작업을 임시 작업으로 강등 |
 
 > [!IMPORTANT]
-> 사용 하 여 `Remove-AzureRmHDInsightPersistedScriptAction` 스크립트에서 수행 하는 hello 동작 실행 취소 하지 않습니다. 이 cmdlet만 hello 지속형된 플래그를 제거합니다.
+> `Remove-AzureRmHDInsightPersistedScriptAction`을 사용해도 스크립트에서 수행한 작업이 실행 취소되지 않습니다. 이 cmdlet만 지속된 플래그를 제거합니다.
 
-다음 예제 스크립트는 hello hello cmdlet toopromote를 사용 하 여 다음 스크립트의 수준을 내리려면 합니다.
+다음 예제 스크립트는 cmdlet을 사용하여 스크립트를 승격한 후 다시 강등하는 방법을 보여줍니다.
 
-[!code-powershell[main](../../powershell_scripts/hdinsight/use-script-action/use-script-action.ps1?range=123-140)]
+[!code-powershell[기본](../../powershell_scripts/hdinsight/use-script-action/use-script-action.ps1?range=123-140)]
 
-### <a name="using-hello-azure-cli"></a>Hello Azure CLI를 사용 하 여
+### <a name="using-the-azure-cli"></a>Azure CLI 사용
 
-| Hello 다음을 사용 하는 중... | 너무... |
+| 사용하는 명령 | 수행하는 동작 |
 | --- | --- |
 | `azure hdinsight script-action persisted list <clustername>` |지속형 스크립트 작업의 목록을 검색합니다. |
 | `azure hdinsight script-action persisted show <clustername> <scriptname>` |특정 지속형 스크립트 작업에 대한 정보를 검색합니다. |
-| `azure hdinsight script-action history list <clustername>` |스크립트 적용 되는 동작 toohello 클러스터의 기록을 검색합니다 |
+| `azure hdinsight script-action history list <clustername>` |클러스터에 적용된 스크립트 작업의 기록을 검색합니다. |
 | `azure hdinsight script-action history show <clustername> <scriptname>` |특정 스크립트 작업에 대한 정보 검색 |
-| `azure hdinsight script action persisted set <clustername> <scriptexecutionid>` |임시 승격 스크립트 동작 tooa 지속형 스크립트 동작 |
-| `azure hdinsight script-action persisted delete <clustername> <scriptname>` |지속형된 스크립트 동작 tooan 임시 작업을 강등합니다. |
+| `azure hdinsight script action persisted set <clustername> <scriptexecutionid>` |임시 스크립트 작업을 지속형 스크립트 작업으로 승격 |
+| `azure hdinsight script-action persisted delete <clustername> <scriptname>` |지속형 스크립트 작업을 임시 작업으로 강등 |
 
 > [!IMPORTANT]
-> 사용 하 여 `azure hdinsight script-action persisted delete` 스크립트에서 수행 하는 hello 동작 실행 취소 하지 않습니다. 이 cmdlet만 hello 지속형된 플래그를 제거합니다.
+> `azure hdinsight script-action persisted delete`을 사용해도 스크립트에서 수행한 작업이 실행 취소되지 않습니다. 이 cmdlet만 지속된 플래그를 제거합니다.
 
-### <a name="using-hello-hdinsight-net-sdk"></a>Hello HDInsight.NET SDK를 사용 하 여
+### <a name="using-the-hdinsight-net-sdk"></a>HDInsight .NET SDK 사용
 
-Hello.NET SDK tooretrieve 스크립트 기록 하는 클러스터에서 사용 하는 예로, 승격 또는 스크립트의 수준을 내리려면, 참조 [https://github.com/Azure-Samples/hdinsight-dotnet-script-action](https://github.com/Azure-Samples/hdinsight-dotnet-script-action)합니다.
+.NET SDK를 사용하여 클러스터에서 스크립트 기록을 검색하거나 스크립트를 승격 또는 강등하는 예제는 [https://github.com/Azure-Samples/hdinsight-dotnet-script-action](https://github.com/Azure-Samples/hdinsight-dotnet-script-action)에서 확인할 수 있습니다.
 
 > [!NOTE]
-> 이 예제에서는 또한 tooinstall HDInsight를 통해 응용 프로그램에서.NET SDK를 hello 하는 방법을 보여 줍니다.
+> 이 예제에서는 .NET SDK를 사용하여 HDInsight 응용 프로그램을 설치하는 방법도 보여 줍니다.
 
 ## <a name="support-for-open-source-software-used-on-hdinsight-clusters"></a>HDInsight 클러스터에서 사용하는 오픈 소스 소프트웨어 지원
 
-Microsoft Azure HDInsight 서비스 hello Hadoop 주위 형성 하는 오픈 소스 기술 프로그램 에코 시스템을 사용 합니다. Microsoft Azure는 오픈 소스 기술에 대한 일반 수준의 지원을 제공합니다. 자세한 내용은 참조 hello **지원 범위** hello 섹션 [Azure 지원 FAQ 웹 사이트](https://azure.microsoft.com/support/faq/)합니다. 기본 제공 구성 요소에 대 한 지원의 수준을 추가로 제공 하는 hello HDInsight 서비스입니다.
+Microsoft Azure HDInsight 서비스는 Hadoop으로 형성된 오픈 소스 기술의 에코시스템을 사용합니다. Microsoft Azure는 오픈 소스 기술에 대한 일반 수준의 지원을 제공합니다. 자세한 내용은 [Azure Support FAQ 웹 사이트](https://azure.microsoft.com/support/faq/)의 **지원 범위** 섹션을 참조하세요. HDInsight 서비스는 기본 제공 구성 요소에 대해 추가 수준의 지원을 제공합니다.
 
-Hello HDInsight 서비스에서에서 사용할 수 있는 오픈 소스 구성 요소는 다음과 같은 두 종류가 있습니다.
+HDInsight 서비스에서 사용할 수 있는 오픈 소스 구성 요소에는 두 가지 유형이 있습니다.
 
-* **기본 제공 구성 요소** -이 구성 요소는 HDInsight 클러스터에 미리 설치 되어 하며 hello 클러스터의 핵심 기능을 제공 합니다. 예를 들어 YARN ResourceManager, hello 하이브 쿼리 언어 (HiveQL) 및 hello Mahout 라이브러리 toothis 범주에 속합니다. 클러스터 구성 요소 전체 목록은 영어로 [HDInsight에서 제공 하는 hello Hadoop 클러스터 버전의 새로운 기능](hdinsight-component-versioning.md)합니다.
-* **사용자 지정 구성 요소** -, hello 클러스터의 사용자로 설치 또는 hello 커뮤니티에서 사용할 수 있거나 사용자가 만든 모든 구성 요소를 작업에 사용 합니다.
+* **기본 제공 구성 요소** - 이러한 구성 요소는 HDInsight 클러스터에 미리 설치 되어 있으며 클러스터의 핵심 기능을 제공합니다. 예를 들어, YARN ResourceManager, Hive 쿼리 언어(HiveQL) 및 Mahout 라이브러리는 이 범주에 속합니다. 클러스터 구성 요소의 전체 목록은 [HDInsight에서 제공하는 Hadoop 클러스터 버전의 새로운 기능](hdinsight-component-versioning.md)에 있습니다.
+* **사용자 지정 구성 요소** - 클러스터의 사용자로서 사용자는 커뮤니티에서 사용 가능한 모든 구성 요소 또는 사용자가 만든 구성 요소를 작업에 설치하거나 사용할 수 있습니다.
 
 > [!WARNING]
-> Hello HDInsight 클러스터와 함께 제공 되는 구성 요소를 완전히 지원 됩니다. Microsoft 지원 tooisolate 주며 toothese 관련된 구성 요소 문제를 해결 합니다.
+> HDInsight 클러스터에 제공되는 구성 요소는 완벽히 지원됩니다. Microsoft 지원은 이러한 구성 요소와 관련된 문제를 격리하고 해결하도록 도와줍니다.
 >
-> 사용자 지정 구성 요소 상업적으로 적절 한 지원 toohelp 수신 하면 toofurther hello 문제를 해결 합니다. Microsoft 지원 수 tooresolve hello 문제 이거나 해당 기술에 대 한 심층 전문 지식이 있는 hello 오픈 소스 기술에 대 한 사용 가능한 채널 tooengage 요청할 수 있습니다. 예를 들어 [HDInsight에 대한 MSDN 포럼](https://social.msdn.microsoft.com/Forums/azure/home?forum=hdinsight), [http://stackoverflow.com](http://stackoverflow.com)과 같은 여러 커뮤니티 사이트를 사용할 수 있습니다. Apache 프로젝트는 [http://apache.org](http://apache.org)에 프로젝트 사이트가 있습니다(예: [Hadoop](http://hadoop.apache.org/)).
+> 사용자 지정 구성 요소는 문제 해결에 도움이 되는 합리적인 지원을 받습니다. Microsoft 지원을 통해 문제를 해결할 수 있습니다. 또는 해당 기술에 대한 전문 지식이 있는 오픈 소스 기술에 대해 사용 가능한 채널에 참여하도록 요청할 수 있습니다. 예를 들어 [HDInsight에 대한 MSDN 포럼](https://social.msdn.microsoft.com/Forums/azure/home?forum=hdinsight), [http://stackoverflow.com](http://stackoverflow.com)과 같은 여러 커뮤니티 사이트를 사용할 수 있습니다. Apache 프로젝트는 [http://apache.org](http://apache.org)에 프로젝트 사이트가 있습니다(예: [Hadoop](http://hadoop.apache.org/)).
 
-HDInsight 서비스 hello toouse 사용자 지정 구성 요소를 여러 가지 방법으로 제공합니다. hello 구성 요소는 사용 되거나 hello 클러스터에 설치 하는 것에 관계 없이 동일한 지원 수준으로 적용 됩니다. hello 다음 목록에서는 설명 hello 가장 일반적인 방법은 사용자 지정 구성 요소를 사용할 수 있도록 하는 HDInsight 클러스터에서:
+HDInsight 서비스는 사용자 지정 구성 요소를 사용하는 여러 방법을 제공합니다. 구성 요소가 클러스터에 사용 및 설치된 방법과 상관없이, 동일한 수준의 지원이 적용됩니다. 다음 목록에는 HDInsight 클러스터에서 사용자 지정 구성 요소를 사용할 수 있는 가장 일반적인 방법이 나와 있습니다.
 
-1. 작업 제출-Hadoop 또는 기타 유형의 작업을 실행 하거나 사용자 지정 구성 요소를 사용 하 여 제출 된 toohello 클러스터가 될 수 있습니다.
+1. 작업 제출 - 사용자 지정 구성 요소를 실행하거나 사용하는 Hadoop 또는 기타 유형의 작업을 클러스터에 제출할 수 있습니다.
 
-2. 클러스터를 만드는 동안 클러스터 사용자 지정-추가 설정과 hello 클러스터 노드에 설치 된 사용자 지정 구성 요소를 지정할 수 있습니다.
+2. 클러스터 사용자 지정 - 클러스터를 만들 때 클러스터 노드에 설치되는 사용자 지정 구성 요소 및 추가 설정을 지정할 수 있습니다.
 
-3. 샘플-인기 있는 사용자 지정 구성 요소, Microsoft 등에 대 한 예제는 hello HDInsight 클러스터에서 이러한 구성 요소를 사용할 수 있는 방법을 제공할 수 있습니다. 이러한 샘플은 지원 없이 제공됩니다.
+3. 샘플 - 인기 있는 사용자 지정 구성 요소의 경우, Microsoft와 다른 사람들이 이러한 구성 요소를 HDInsight 클러스터에서 어떻게 사용할 수 있는지에 대한 샘플을 제공할 수 있습니다. 이러한 샘플은 지원 없이 제공됩니다.
 
 ## <a name="troubleshooting"></a>문제 해결
 
-스크립트 동작에 의해 기록 된 Ambari 웹 UI tooview 정보를 사용할 수 있습니다. 클러스터를 만드는 동안 실패 하면 hello 스크립트 hello 로그 hello 클러스터와 연결 된 hello 기본 저장소 계정에서 사용할 수 있습니다. 이 섹션에서는 이러한 두 옵션을 사용 하 여 tooretrieve hello을 기록 하는 방법을 설명 합니다.
+Ambari 웹 UI를 사용하여 스크립트 작업에서 기록한 정보를 볼 수 있습니다. 또한 클러스터를 만드는 중에 스크립트가 실패할 경우 해당 클러스터와 연결된 기본 저장소 계정에서 로그를 사용할 수도 있습니다. 이 섹션에서는 두 옵션을 모두 사용하여 로그를 검색하는 방법에 대한 정보를 제공합니다.
 
-### <a name="using-hello-ambari-web-ui"></a>Hello Ambari 웹 UI를 사용 하 여
+### <a name="using-the-ambari-web-ui"></a>Ambari 웹 UI 사용
 
-1. 브라우저에서 toohttps://CLUSTERNAME.azurehdinsight.net 이동 합니다. CLUSTERNAME를 HDInsight 클러스터의 hello 이름을 바꿉니다.
+1. 웹 브라우저에서 https://CLUSTERNAME.azurehdinsight.net으로 이동합니다. CLUSTERNAME은 HDInsight 클러스터 이름을 바꿉니다.
 
-    메시지가 표시 되 면 hello 클러스터에 대 한 hello 관리자 계정 이름 (admin) 및 암호를 입력 합니다. Web form의 tooreenter hello에 대 한 관리자 자격 증명을 할 수 있습니다.
+    메시지가 표시되면 클러스터의 관리자 계정 이름(관리자) 및 암호를 입력합니다. 웹 폼에서 관리자 자격 증명을 다시 입력해야 합니다.
 
-2. Hello hello 페이지 위쪽에 hello 모음에서 선택 hello **ops** 항목입니다. Ambari 통해 hello 클러스터에 대해 현재 및 이전 작업의 목록이 표시 됩니다.
+2. 페이지 위쪽의 모음에서 **작업** 항목을 선택합니다. Ambari 통해 클러스터에서 수행된 현재 및 이전 작업의 목록이 표시됩니다.
 
     ![선택한 작업으로 Ambari 웹 UI 모음](./media/hdinsight-hadoop-customize-cluster-linux/ambari-nav.png)
 
-3. 포함 된 찾기 hello 항목 **실행\_customscriptaction** hello에 **작업** 열입니다. 이러한 항목은 hello 스크립트 동작 실행 될 때 만들어집니다.
+3. **작업** 열에 **run\_customscriptaction**이 있는 항목을 찾습니다. 이러한 항목을 스크립트 작업을 실행할 때 생성됩니다.
 
     ![작업의 스크린샷](./media/hdinsight-hadoop-customize-cluster-linux/ambariscriptaction.png)
 
-    tooview hello STDOUT 및 STDERR 출력 hello run\customscriptaction 항목을 선택 하 고 hello 링크를 통해 드릴 다운 합니다. Hello 스크립트를 실행 하는 경우이 출력이 생성 되 고 유용한 정보를 포함할 수 있습니다.
+    STDOUT 및 STDERR 출력을 보려면 이 run\customscriptaction 항목을 선택하고 링크를 통해 드릴다운합니다. 이 출력은 스크립트가 실행될 때 생성되며 유용한 정보를 포함할 수 있습니다.
 
-### <a name="access-logs-from-hello-default-storage-account"></a>Hello 기본 저장소 계정에서 액세스 로그
+### <a name="access-logs-from-the-default-storage-account"></a>기본 저장소 계정에서 로그 액세스
 
-Hello 클러스터 만들기 tooa 스크립트 작업 오류 때문에 실패 하면 hello 로그 hello 클러스터 저장소 계정에서 액세스할 수 있습니다.
+스크립트 작업 오류로 인해 클러스터를 만들 수 없는 경우 로그는 클러스터 저장소 계정에서 액세스할 수 있습니다.
 
-* hello 저장소 로그에서 제공 됩니다 `\STORAGE_ACCOUNT_NAME\DEFAULT_CONTAINER_NAME\custom-scriptaction-logs\CLUSTER_NAME\DATE`합니다.
+* 저장소 로그는 `\STORAGE_ACCOUNT_NAME\DEFAULT_CONTAINER_NAME\custom-scriptaction-logs\CLUSTER_NAME\DATE`에서 제공합니다.
 
     ![작업의 스크린샷](./media/hdinsight-hadoop-customize-cluster-linux/script_action_logs_in_storage.png)
 
-    이 디렉터리 아래의 hello 로그 헤드 노드에, workernode, 및 사육 노드를 개별적으로 구성 됩니다. 일부 사례:
+    이 디렉터리에서는 로그가 헤드 노드, 작업자 노드, Zookeeper 노드에 대해 별도로 구성됩니다. 일부 사례:
 
     * **헤드 노드** - `<uniqueidentifier>AmbariDb-hn0-<generated_value>.cloudapp.net`
 
@@ -661,28 +661,28 @@ Hello 클러스터 만들기 tooa 스크립트 작업 오류 때문에 실패 �
 
     * **Zookeeper 노드** - `<uniqueidentifier>AmbariDb-zk0-<generated_value>.cloudapp.net`
 
-* 모든 stdout 및 stderr hello 해당 호스트의 toohello 저장소 계정에 업로드 합니다. 각 스크립트 동작마다 하나의 **output-\*.txt** 및 **errors-\*.txt**가 있습니다. hello 출력 *.txt 파일 내용이 hello 호스트에서 실행 하는 hello 스크립트의 hello URI에 대 한 정보를 포함 합니다. 예를 들면 다음과 같습니다.
+* 해당 호스트의 모든 stdout 및 stderr은 저장소 계정에 업로드됩니다. 각 스크립트 동작마다 하나의 **output-\*.txt** 및 **errors-\*.txt**가 있습니다. output-*.txt 파일은 호스트에서 실행되는 스크립트의 URI 정보를 포함합니다. 예를 들면 다음과 같습니다.
 
         'Start downloading script locally: ', u'https://hdiconfigactions.blob.core.windows.net/linuxrconfigactionv01/r-installer-v01.sh'
 
-* Hello로 스크립트 작업 클러스터를 만드는 반복 해 서 수 같은 이름입니다. 이러한 경우 hello 날짜 폴더 이름에 따라 hello 관련 로그를 구별할 수 있습니다. 예를 들어 서로 다른 날짜에 만든 클러스터 (mycluster)에 대 한 폴더 구조 hello 로그 항목을 다음 유사한 toohello 나타납니다.
+* 같은 이름으로 반복해서 스크립트 작업 클러스터를 만들 수 있습니다. 이 경우에는 날짜 폴더 이름을 기준으로 관련 로그를 구분할 수 있습니다. 예를 들어, 서로 다른 날짜에 만든 클러스터(mycluster)의 폴더 구조는 다음 로그 항목과 유사하게 나타납니다.
 
     `\STORAGE_ACCOUNT_NAME\DEFAULT_CONTAINER_NAME\custom-scriptaction-logs\mycluster\2015-10-04` `\STORAGE_ACCOUNT_NAME\DEFAULT_CONTAINER_NAME\custom-scriptaction-logs\mycluster\2015-10-05`
 
-* Hello로 스크립트 작업 클러스터를 만드는 경우 이름과 같은 이름을 hello에 동일 날짜, hello 고유한 접두사 tooidentify hello 관련 로그 파일을 사용할 수 있습니다.
+* 같은 날 같은 이름으로 스크립트 작업 클러스터를 만든 경우 고유의 접두사를 사용하여 관련 로그 파일을 식별할 수 있습니다.
 
-* 클러스터 근처 오전 12시 (자정)를 만들 경우 2 일 걸쳐 hello 로그 파일 수입니다. 이러한 경우에 hello에 대 한 두 개의 서로 다른 날짜 폴더 표시 동일한 클러스터입니다.
+* 밤 12시(자정)에 클러스터를 만든 경우 로그 파일이 이틀에 걸쳐 있을 수 있습니다. 이 경우 동일한 클러스터에 대해 서로 다른 두 개의 날짜 폴더가 표시됩니다.
 
-* 업로드 로그 파일 toohello 기본 컨테이너 큰 클러스터를 위해 특별히 too5 분 정도 걸릴 수 있습니다. 따라서 tooaccess hello 로그 하려면 삭제 하면 안 즉시 hello 클러스터 경우 스크립트 작업이 실패 합니다.
+* 기본 컨테이너에 로그 파일을 업로드하는 작업은 특히 대형 클러스터의 경우 최대 5분이 소요됩니다. 따라서 로그에 액세스하려면 스크립트 작업이 실패할 경우 클러스터를 즉시 삭제해서는 안 됩니다.
 
 ### <a name="ambari-watchdog"></a>Ambari 감시
 
 > [!WARNING]
-> Linux 기반 HDInsight 클러스터에 Ambari 감시 (hdinsightwatchdog) hello에 대 한 hello 암호를 변경 하지 마십시오. 이 계정에 대 한 hello 암호를 변경할 hello HDInsight 클러스터에서 hello 기능 toorun 새 스크립트 동작을 중단합니다.
+> Linux 기반 HDInsight 클러스터에서 Ambari Watchdog(hdinsightwatchdog)의 암호를 변경하지 마세요. 이 계정의 암호를 변경하면 HDInsight 클러스터에서 새 스크립트 동작을 실행할 수 없게 됩니다.
 
 ### <a name="cant-import-name-blobservice"></a>이름 BlobService를 가져올 수 없음
 
-__증상__: hello 스크립트 동작이 실패 합니다. Ambari에서 hello 작업을 볼 때 텍스트 비슷한 toohello 다음 오류가 표시 됩니다.
+__증상__: 스크립트 작업이 실패했습니다. Ambari에서 작업을 볼 때 다음 오류와 유사한 텍스트가 표시됩니다.
 
 ```
 Traceback (most recent call list):
@@ -691,33 +691,33 @@ Traceback (most recent call list):
 ImportError: cannot import name BlobService
 ```
 
-__원인__: hello HDInsight 클러스터에 포함 되어 있는 hello Python Azure 저장소 클라이언트를 업그레이드 하는 경우이 오류가 발생 합니다. HDInsight는 Azure Storage 클라이언트 0.20.0을 예상합니다.
+__원인__: 이 오류는 HDInsight 클러스터에 포함된 Python Azure Storage 클러스터를 업그레이드할 경우에 발생합니다. HDInsight는 Azure Storage 클라이언트 0.20.0을 예상합니다.
 
-__해상도__: tooresolve이이 오류를 수동으로 사용 하 여 tooeach 클러스터 노드를 연결 `ssh` 명령 tooreinstall hello 올바른 저장소 클라이언트 버전에 따라 사용 하 여 hello:
+__해결 방법__: 이 오류를 해결하려면 `ssh`를 사용하여 각 클러스터 노드에 수동으로 연결하고 다음 명령을 사용하여 올바른 스토리지 클라이언트 버전을 다시 설치합니다.
 
 ```
 sudo pip install azure-storage==0.20.0
 ```
 
-SSH 사용 하는 연결 toohello 클러스터에 대 한 자세한 내용은 참조 [SSH HDInsight를 사용](hdinsight-hadoop-linux-use-ssh-unix.md)합니다.
+SSH를 사용하여 클러스터에 연결하는 방법에 대한 자세한 내용은 [HDInsight와 함께 SSH 사용](hdinsight-hadoop-linux-use-ssh-unix.md)을 참조하세요.
 
 ### <a name="history-doesnt-show-scripts-used-during-cluster-creation"></a>클러스터를 만드는 동안 기록에 스크립트가 표시되지 않음
 
-2016년 3월 15일 전에 클러스터를 만든 경우에는 스크립트 작업 기록에 항목이 나타나지 않을 수 있습니다. 2016 년 3 월 15 일 후 hello 클러스터 크기를 조정 하면 클러스터를 만드는 동안 사용 하 여 hello 스크립트 기록에 표시 적용 되는 크기 조정 작업 hello의 일환으로 hello 클러스터의 toonew 노드.
+2016년 3월 15일 전에 클러스터를 만든 경우에는 스크립트 작업 기록에 항목이 나타나지 않을 수 있습니다. 2016년 3월 15일 이후에 클러스터의 크기를 조정하면 클러스터를 만들 때 사용되는 스크립트가 기록에 나타납니다. 크기 조정 작업의 일부로 클러스터의 새 노드에 적용되기 때문입니다.
 
 두 가지 예외 사항이 있습니다.
 
 * 클러스터가 2015년 9월 1일 전에 생성되었습니다. 스크립트 작업이 이 날에 도입되었습니다. 따라서 이 날짜 이전에 생성된 클러스터는 클러스터 생성에 스크립트 작업이 사용되지 않았습니다.
 
-* 클러스터를 만드는 동안 여러 스크립트 작업을 사용 하 고 동일한 여러 스크립트에 대 한 이름을 지정 하거나 hello hello를 사용 하는 경우 동일한 이름, 여러 스크립트에 대 한 서로 다른 매개 변수 이지만 동일한 URI입니다. 이러한 경우 hello 다음 오류가 나타날 수 있습니다.
+* 클러스터를 만들 때 여러 스크립트 작업을 사용하고 여러 스크립트에 같은 이름을 사용했거나 여러 스크립트의 이름과 URI는 같지만 매개 변수는 서로 다르게 했습니다. 이 경우에는 다음 오류가 표시됩니다.
 
-    기존 스크립트의 스크립트 이름 tooconflicting 인해이 클러스터에서 동작은 수 없는 새 스크립트를 실행 했습니다. 클러스터 만들기에 제공되는 스크립트 이름이 모두 고유해야 합니다. 크기 조정에 기존 스크립트가 실행됩니다.
+    기존 스크립트에 충돌하는 스크립트 이름이 있으므로 이 클러스터에서 새 스크립트 작업을 실행할 수 없습니다. 클러스터 만들기에 제공되는 스크립트 이름이 모두 고유해야 합니다. 크기 조정에 기존 스크립트가 실행됩니다.
 
 ## <a name="next-steps"></a>다음 단계
 
 * [HDInsight용 스크립트 작업 스크립트 개발](hdinsight-hadoop-script-actions-linux.md)
 * [HDInsight 클러스터에 Solr 설치 및 사용](hdinsight-hadoop-solr-install-linux.md)
 * [HDInsight 클러스터에 Giraph 설치 및 사용](hdinsight-hadoop-giraph-install-linux.md)
-* [추가 저장소 tooan HDInsight 클러스터를 추가 합니다.](hdinsight-hadoop-add-storage.md)
+* [HDInsight 클러스터에 추가 저장소 추가](hdinsight-hadoop-add-storage.md)
 
 [img-hdi-cluster-states]: ./media/hdinsight-hadoop-customize-cluster-linux/HDI-Cluster-state.png "클러스터를 만드는 동안의 단계"

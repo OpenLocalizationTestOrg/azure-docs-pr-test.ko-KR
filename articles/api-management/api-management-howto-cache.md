@@ -1,6 +1,6 @@
 ---
-title: "Azure API 관리에서 tooimprove 성능 캐싱 aaaAdd | Microsoft Docs"
-description: "Tooimprove hello 대기 시간, 대역폭 소비 및 웹 서비스 API 관리 서비스 호출에 대 한 로드 하는 방법에 대해 알아봅니다."
+title: "Azure API Management에서 캐싱을 추가하여 성능 향상 | Microsoft Docs"
+description: "대기 시간, 대역폭 사용 및 API 관리 서비스 호출에 대한 웹 서비스 부하를 개선하는 방법에 대해 알아봅니다."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 056ab7cf788218327e30bd5c028b76e3b1977fb0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 59c595f0d5ce849f44c46fdb6cab0b44d35fffa0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="add-caching-tooimprove-performance-in-azure-api-management"></a>Azure API 관리에서 캐싱 tooimprove 성능을 추가합니다
+# <a name="add-caching-to-improve-performance-in-azure-api-management"></a>Azure API 관리에서 캐싱을 추가하여 성능 향상
 응답 캐싱을 위해 API 관리의 작업을 구성할 수 있습니다. 응답 캐싱은 그다지 사용되지 않는 데이터에 대한 API 대기 시간, 대역폭 사용량 및 웹 서비스 부하를 상당히 줄일 수 있습니다.
 
-이 가이드에서는 tooadd 응답 API에 대 한 캐싱 및 hello 샘플 에코 API 작업에 대 한 정책을 구성 합니다. Hello 작업 동작의 개발자 포털 tooverify 캐싱 hello에서 호출할 수 있습니다.
+이 가이드에서는 API에 대해 응답 캐싱을 추가하고 샘플 Echo API 작업에 대한 정책을 구성하는 방법을 보여 줍니다. 그런 다음 개발자 포털에서 작업을 호출하여 캐싱 작동을 확인할 수 있습니다.
 
 > [!NOTE]
 > 정책 식을 사용하여 키별 캐싱 항목에 대한 자세한 내용은 [Azure API 관리에서 사용자 지정 캐싱](api-management-sample-cache-by-key.md)을 참조하세요.
@@ -31,54 +31,54 @@ ms.lasthandoff: 10/06/2017
 > 
 
 ## <a name="prerequisites"></a>필수 조건
-이 가이드의 단계를 다음 hello를 먼저 API 관리 서비스 인스턴스를 사용 하 여 API와 구성 된 제품 있어야 합니다. API 관리 서비스 인스턴스를 아직 만들지 않은 경우 참조 [API 관리 서비스 인스턴스를 만들] [ Create an API Management service instance] hello에 [Azure API 관리 시작] [ Get started with Azure API Management] 자습서입니다.
+이 가이드의 단계를 수행하기 전에 API와 제품이 구성된 API 관리 서비스 인스턴스가 있어야 합니다. 아직 API Management 서비스 인스턴스를 만들지 않은 경우 [Azure API Management 시작][Get started with Azure API Management] 자습서의 [API Management 서비스 인스턴스 만들기][Create an API Management service instance]를 참조하세요.
 
 ## <a name="configure-caching"> </a>캐싱을 위해 작업 구성
-이 단계에서는 hello 캐싱 hello의 설정을 검토 하 **가져올 리소스 (캐시 됨)** hello 샘플 에코 API의 작동 합니다.
+이 단계에서는 샘플 Echo API의 **GET Resource(캐시됨)** 작업에 대한 캐싱 설정을 검토합니다.
 
 > [!NOTE]
-> 각 API 관리 서비스 인스턴스를 사용 하는 tooexperiment 및 API 관리에 대 한 자세한 내용은 수 있는 에코 API와 미리 구성 된 제공 됩니다. 자세한 내용은 [Azure API Management 시작][Get started with Azure API Management]을 참조하세요.
+> 각 API 관리 서비스 인스턴스는 실험해 보고 API 관리에 대해 알아보는 데 사용할 수 있는 Echo API가 미리 구성되어 제공됩니다. 자세한 내용은 [Azure API Management 시작][Get started with Azure API Management]을 참조하세요.
 > 
 > 
 
-시작 tooget 클릭 **게시자 포털** API 관리 서비스에 대 한 hello Azure 포털의에서. API 관리 게시자 포털 toohello 이동합니다.
+시작하려면 Azure Portal에서 API Management 서비스에 대한 **게시자 포털**을 클릭합니다. API 관리 게시자 포털로 이동됩니다.
 
 ![게시자 포털][api-management-management-console]
 
-클릭 **Api** hello에서 **API 관리** 를 hello 왼쪽, 클릭 한 다음 메뉴 **에코 API**합니다.
+왼쪽의 **API 관리 메뉴**에서 **API**를 클릭한 다음 **Echo API**를 클릭합니다.
 
 ![Echo API][api-management-echo-api]
 
-Hello 클릭 **작업** 탭을 클릭 한 다음 hello **가져올 리소스 (캐시 됨)** hello에서 작업 **작업** 목록입니다.
+**작업** 탭을 클릭한 다음 **작업 목록**에서 **GET Resource(캐시됨)** 작업을 클릭합니다.
 
 ![Echo API 작업][api-management-echo-api-operations]
 
-Hello 클릭 **캐싱** 탭 tooview hello 캐싱이 작업에 대 한 설정입니다.
+**캐싱** 탭을 클릭하여 이 작업에 대한 캐싱 설정을 봅니다.
 
 ![캐싱 탭][api-management-caching-tab]
 
-작업의 경우 선택 hello tooenable 캐싱 **사용** 확인란 합니다. 이 예제에서는 캐싱이 사용됩니다.
+작업에 대한 캐싱을 사용하려면 **사용** 확인란을 선택합니다. 이 예제에서는 캐싱이 사용됩니다.
 
-Hello hello 값에 따라 각 작업 응답은 입력 **쿼리 문자열 매개 변수에 따라 다름** 및 **Vary 헤더에 의해** 필드입니다. 쿼리 문자열 매개 변수 또는 헤더에 따라 여러 응답 toocache 하려는 경우에이 두 필드에 구성할 수 있습니다.
+각 작업 응답은 **쿼리 문자열 매개 변수에 따라 다름** 및 **헤더에 따라 다름** 필드의 값을 기반으로 키가 지정됩니다. 쿼리 문자열 매개 변수 또는 헤더를 기반으로 하여 여러 응답을 캐시하려는 경우 이러한 두 필드에서 응답을 구성할 수 있습니다.
 
-**기간** hello 캐시 된 응답의 hello 만료 간격을 지정 합니다. 이 예제에서는 hello 간격은 **3600** (초)를 해당 tooone 시간입니다.
+**기간** 은 캐싱된 응답의 만료 간격을 지정합니다. 이 예제에서 간격은 1시간에 해당하는 **3600** 초입니다.
 
-첫 번째 요청 toohello hello이 예제에서 구성을 캐싱 hello를 사용 하 여 **가져올 리소스 (캐시 됨)** 작업이 hello 백 엔드 서비스에서 응답을 반환 합니다. 이 응답 캐시 됩니다, 키가 지정 된 hello 지정 된 헤더 및 쿼리 문자열 매개 변수입니다. Toohello 작업 매개 변수를 일치 하는 hello 갖습니다 후속 호출 hello 캐시 기간 간격이 만료 될 때까지 반환 된 응답을 캐시 합니다.
+이 예제에서 캐싱 구성을 사용하면 **GET Resource(캐시됨)** 작업에 대한 첫 번째 요청이 백 엔드 서비스의 응답을 반환합니다. 이 응답은 지정된 헤더 및 쿼리 문자열 매개 변수를 통해 캐시 및 입력됩니다. 일치하는 매개 변수를 사용하는, 작업에 대한 후속 호출은 캐시 기간 간격이 만료될 때까지 캐시된 응답을 반환합니다.
 
-## <a name="caching-policies"></a>검토 hello 캐싱 정책
-이 단계에서는 hello 캐싱 hello에 대 한 설정을 검토 **가져올 리소스 (캐시 됨)** hello 샘플 에코 API의 작동 합니다.
+## <a name="caching-policies"> </a>캐싱 정책 검토
+이 단계에서는 샘플 Echo API의 **GET Resource(캐시됨)** 작업에 대한 캐싱 설정을 검토합니다.
 
-Hello에 대 한 작업에 대 한 캐싱 설정을 구성한 경우 **캐싱** 캐싱 탭 hello 작업에 대 한 정책을 추가 됩니다. 이러한 정책은 확인 및 hello 정책 편집기에서 편집할 수 있습니다.
+**캐싱** 탭에서 작업에 대한 캐싱 설정을 구성한 경우 작업에 대한 캐싱 정책이 추가됩니다. 정책 편집기에서 이러한 정책을 보고 편집할 수 있습니다.
 
-클릭 **정책** hello에서 **API 관리** hello 왼쪽과 선택한 후에 메뉴 **에코 API (캐시 됨) 하는 리소스 가져오기 /** hello에서 **작업**드롭 다운 목록입니다.
+왼쪽의 **API 관리** 메뉴에서 **정책**을 클릭하고 **작업** 드롭다운 목록에서 **Echo API/GET Resource(캐시됨)**를 선택합니다.
 
 ![정책 범위 작업][api-management-operation-dropdown]
 
-그러면이 작업에 대 한 hello 정책 hello 정책 편집기에 표시 됩니다.
+그러면 정책 편집기에 이 작업에 대한 정책이 표시됩니다.
 
 ![API 관리 정책 편집기][api-management-policy-editor]
 
-이 작업에 대 한 hello 정책 정의 된 hello를 사용 하 여 검토 하는 hello 캐싱 구성을 정의 하는 hello 정책을 포함 **캐싱** hello 이전 단계에서 탭 합니다.
+이 작업에 대한 정책 정의에는 이전 단계에서 **캐싱** 탭을 사용하여 검토한 캐싱 구성을 정의하는 정책이 포함됩니다.
 
 ```xml
 <policies>
@@ -98,49 +98,49 @@ Hello에 대 한 작업에 대 한 캐싱 설정을 구성한 경우 **캐싱** 
 ```
 
 > [!NOTE]
-> 캐싱 정책을 hello 정책 편집기에서 변경 내용을 toohello hello에 반영 됩니다 **캐싱** 탭의 작업을 반대로 합니다.
+> 정책 편집기의 캐싱 정책 변경 내용은 작업의 **캐싱** 탭에 반영되며, 그 반대도 가능합니다.
 > 
 > 
 
-## <a name="test-operation"></a>작업 호출 및 hello 캐싱을 테스트
-toosee hello 동작에서 캐싱에서는 작업을 호출할 수 hello hello 개발자 포털에서 합니다. 클릭 **개발자 포털** hello 맨 위 오른쪽 메뉴에 있습니다.
+## <a name="test-operation"> </a>작업 호출 및 캐싱 테스트
+적용 중인 캐싱을 보려면 개발자 포털에서 작업을 호출할 수 있습니다. 오른쪽 위 메뉴에서 **개발자 포털** 을 클릭합니다.
 
 ![개발자 포털][api-management-developer-portal-menu]
 
-클릭 **Api** 에 최상위 메뉴 hello 선택한 후 **에코 API**합니다.
+상단 메뉴에서 **API**를 클릭하고 **Echo API**를 선택합니다.
 
 ![Echo API][api-management-apis-echo-api]
 
-> 구성 하는 하나의 API가 있는 경우 표시 tooyour 계정 Api를 클릭 한 다음 이동 직접 해당 API에 대 한 toohello 작업.
+> API 한 개만 구성했거나 계정에 표시한 경우에는 API를 클릭하면 해당 API에 대한 작업으로 직접 연결됩니다.
 > 
 > 
 
-선택 hello **가져올 리소스 (캐시 됨)** 작업과 클릭 **콘솔을 열고**합니다.
+**GET Resource(캐시됨)** 작업을 선택하고 **콘솔 열기**를 클릭합니다.
 
 ![콘솔 시작][api-management-open-console]
 
-hello 콘솔 hello 개발자 포털에서 직접 tooinvoke 작업을 허용 합니다.
+콘솔을 통해 개발자 포털에서 직접 작업을 호출할 수 있습니다.
 
 ![콘솔][api-management-console]
 
-Hello에 대 한 기본값을 유지 **param1** 및 **매개 변수 2가**합니다.
+**param1** 및 **param2**에 대한 기본값을 그대로 유지합니다.
 
-선택 hello hello에서 원하는 키 **구독 키** 드롭 다운 목록입니다. 계정에 구독이 하나만 있는 경우 이미 선택되어 있습니다.
+**구독 키** 드롭다운 목록에서 원하는 키를 선택합니다. 계정에 구독이 하나만 있는 경우 이미 선택되어 있습니다.
 
-입력 **sampleheader:value1** hello에 **요청 헤더** 입력란.
+**요청 헤더** 입력란에 **sampleheader:value1**을 입력합니다.
 
-클릭 **HTTP Get** hello 메모 응답 헤더를 확인 합니다.
+**HTTP Get** 을 클릭하고 응답 헤더를 기록합니다.
 
-입력 **sampleheader:value2** hello에 **요청 헤더** 텍스트 상자 및 클릭 **HTTP Get**합니다.
+**요청 헤더** 입력란에 **sampleheader:value2**를 입력하고 **HTTP Get**을 클릭합니다.
 
-해당 hello 값을 기록해 둡니다 **sampleheader** 여전히 **value1** hello에 대 한 응답입니다. 일부 다른 값을 사용 하 고는 hello hello 첫 번째 호출에서 캐시 된 응답이 반환 됩니다.
+**sampleheader**의 값은 응답에서 여전히 **value1**입니다. 다른 값을 몇 가지 시도해도 첫 번째 호출에서 캐시된 응답이 반환됩니다.
 
-입력 **25** hello에 **매개 변수 2가** 필드를 선택한 다음 클릭 **HTTP Get**합니다.
+**param2** 필드에 **25**를 입력하고 **HTTP Get**을 클릭합니다.
 
-해당 hello 값을 기록해 둡니다 **sampleheader** hello에 대 한 응답은 이제 **value2**합니다. Hello 작업 결과 쿼리 문자열에 따라 키가 지정 된, 때문에 hello 이전 캐시 된 응답이 반환 되지 않았습니다.
+응답의 **sampleheader** 값은 이제 **value2**입니다. 작업 결과가 쿼리 문자열을 통해 입력되므로, 이전의 캐시된 응답은 반환되지 않았습니다.
 
 ## <a name="next-steps"> </a>다음 단계
-* 캐싱 정책에 대 한 자세한 내용은 참조 [캐싱 정책을] [ Caching policies] hello에 [API 관리 정책 참조][API Management policy reference]합니다.
+* 캐싱 정책에 대한 자세한 내용은 [API Management 정책 참조][API Management policy reference]의 [캐싱 정책][Caching policies]을 참조하세요.
 * 정책 식을 사용하여 키별 캐싱 항목에 대한 자세한 내용은 [Azure API 관리에서 사용자 지정 캐싱](api-management-sample-cache-by-key.md)을 참조하세요.
 
 [api-management-management-console]: ./media/api-management-howto-cache/api-management-management-console.png
@@ -155,10 +155,10 @@ Hello에 대 한 기본값을 유지 **param1** 및 **매개 변수 2가**합니
 [api-management-console]: ./media/api-management-howto-cache/api-management-console.png
 
 
-[How tooadd operations tooan API]: api-management-howto-add-operations.md
-[How tooadd and publish a product]: api-management-howto-add-products.md
+[How to add operations to an API]: api-management-howto-add-operations.md
+[How to add and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: api-management-monitoring.md
-[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
+[Add APIs to a product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Get started with Azure API Management]: api-management-get-started.md
 
@@ -168,6 +168,6 @@ Hello에 대 한 기본값을 유지 **param1** 및 **매개 변수 2가**합니
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
 [Configure an operation for caching]: #configure-caching
-[Review hello caching policies]: #caching-policies
-[Call an operation and test hello caching]: #test-operation
+[Review the caching policies]: #caching-policies
+[Call an operation and test the caching]: #test-operation
 [Next steps]: #next-steps

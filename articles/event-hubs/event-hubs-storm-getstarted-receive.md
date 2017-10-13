@@ -1,5 +1,5 @@
 ---
-title: "Apache Storm를 사용 하 여 Azure 이벤트 허브에서 aaaReceive 이벤트 | Microsoft Docs"
+title: "Apache Storm을 사용하여 Azure Event Hubs에서 이벤트 수신 | Microsoft Docs"
 description: "Apache Storm을 사용하여 Event Hubs에서 수신 시작"
 services: event-hubs
 documentationcenter: 
@@ -14,25 +14,25 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: a0ab860ee8d504a28aac380c504c928f0d6dbc1e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3e15370c7602276ef323708632b324fe05497f41
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="receive-events-from-event-hubs-using-apache-storm"></a>Apache Storm을 사용하여 Event Hubs에서 이벤트 수신
 
-[Apache Storm](https://storm.incubator.apache.org)은 분산된 실시간 계산 시스템으로, 바인딩되지 않은 데이터 스트림의 안정적인 처리를 간소화합니다. 이 섹션에서는 Azure 이벤트 허브 스톰 toouse 이벤트 허브에서 tooreceive 이벤트 spout 하는 방법을 보여 줍니다. Apache Storm을 사용하면 다른 노드에 호스트된 여러 프로세스 간에 이벤트를 분할할 수 있습니다. hello 스톰와 이벤트 허브 통합 단순화 이벤트 소비 검사점을 투명 하 게 설정 하 여 진행 상황을 Storm의 사육 설치를 사용 하 여 영구 검사점 관리 및 이벤트 허브에서 병렬 수신 합니다.
+[Apache Storm](https://storm.incubator.apache.org)은 분산된 실시간 계산 시스템으로, 바인딩되지 않은 데이터 스트림의 안정적인 처리를 간소화합니다. 이 섹션에서는 Azure Event Hubs Storm Spout를 사용하여 Event Hubs에서 이벤트를 수신하는 방법을 보여 줍니다. Apache Storm을 사용하면 다른 노드에 호스트된 여러 프로세스 간에 이벤트를 분할할 수 있습니다. 이벤트 허브와 Storm을 통합하면 Storm의 Zookeeper 설치를 통해 진행률을 투명하게 확인하고 지속적인 검사점을 관리하여 이벤트 사용이 간소화되고 이벤트 허브에서 병렬 수신됩니다.
 
-이벤트 허브에 대 한 자세한 정보에 대 한 패턴을 수신 hello를 참조 하십시오 [이벤트 허브 개요][Event Hubs overview]합니다.
+Event Hubs 수신기 패턴에 대한 자세한 내용은 [Event Hubs 개요][Event Hubs overview]를 참조하세요.
 
 ## <a name="create-project-and-add-code"></a>프로젝트 만들기 및 코드 추가
 
-이 자습서에서는 [HDInsight 스톰] [ HDInsight Storm] 설치와 함께 제공 되 이벤트 허브 spout hello 이미 사용할 수 있습니다.
+이 자습서에서는 이미 사용할 수 있는 이벤트 허브 spout와 함께 제공되는 [HDInsight Storm][HDInsight Storm] 설치를 사용합니다.
 
-1. Hello에 따라 [HDInsight 스톰-시작](../hdinsight/hdinsight-storm-overview.md) 프로시저 toocreate 새 HDInsight tooit 원격 데스크톱을 통해 연결 하 고, 클러스터입니다.
-2. 복사 hello `%STORM_HOME%\examples\eventhubspout\eventhubs-storm-spout-0.9-jar-with-dependencies.jar` 파일 tooyour 로컬 개발 환경입니다. 이 hello 이벤트 스톰 배출구 포함 되어 있습니다.
-3. Hello 명령 tooinstall hello 패키지 hello 로컬 Maven 저장소로 다음을 사용 합니다. 이렇게 하면 이후 단계에서 프로젝트 스톰 hello에 대 한 참조로 tooadd 있습니다.
+1. [HDInsight Storm - 시작 절차](../hdinsight/hdinsight-storm-overview.md)에 따라 새 HDInsight 클러스터를 만들고 원격 데스크톱을 통해 이 클러스터에 연결합니다.
+2. `%STORM_HOME%\examples\eventhubspout\eventhubs-storm-spout-0.9-jar-with-dependencies.jar` 파일을 로컬 개발 환경에 복사합니다. 이 파일에는 events-storm-spout가 포함되어 있습니다.
+3. 다음 명령을 사용하여 패키지를 로컬 Maven 저장소에 설치합니다. 그러면 이후 단계에서 Storm 프로젝트에 참조로 추가할 수 있습니다.
 
     ```shell
     mvn install:install-file -Dfile=target\eventhubs-storm-spout-0.9-jar-with-dependencies.jar -DgroupId=com.microsoft.eventhubs -DartifactId=eventhubs-storm-spout -Dversion=0.9 -Dpackaging=jar
@@ -41,9 +41,9 @@ ms.lasthandoff: 10/06/2017
    
     ![][12]
 5. **Use default Workspace location**(기본 작업 영역 위치 사용)을 선택하고 **다음**을 클릭합니다.
-6. 선택 hello **maven-아키타-빠른 시작** 아키타, 클릭 **다음**
+6. **maven-archetype-quickstart** 원형을 선택하고 **다음**을 클릭합니다.
 7. **GroupId** 및 **ArtifactId**를 삽입하고 **마침**을 클릭합니다.
-8. **pom.xml**, hello에서 종속성을 따라 hello 추가 `<dependency>` 노드.
+8. **pom.xml**에서 `<dependency>` 노드에 다음 종속성을 추가합니다.
 
     ```xml  
     <dependency>
@@ -75,7 +75,7 @@ ms.lasthandoff: 10/06/2017
     </dependency>
     ```
 
-9. Hello에 **src** 폴더를 파일을 만들 **Config.properties** 및 콘텐츠에 따라, hello 대체 복사본 hello `receive rule key` 및 `event hub name` 값:
+9. **src** 폴더에서 **Config.properties**라는 파일을 만들고 다음 콘텐츠를 복사하여 `receive rule key` 및 `event hub name` 값으로 대체합니다.
 
     ```java
     eventhubspout.username = ReceiveRule
@@ -90,8 +90,8 @@ ms.lasthandoff: 10/06/2017
     eventhubspout.checkpoint.interval = 10
     eventhub.receiver.credits = 10
     ```
-    값에 대 한 hello **eventhub.receiver.credits** 이벤트 개수 내용이 toohello 스톰 파이프라인을 릴리스하기 전에 일괄 처리를 결정 합니다. 간단한 hello 위해서이 예제에서는이 값 too10를 설정합니다. 프로덕션 환경에서 일반적으로 설정 해야 toohigher 값이 있습니다. 예를 들어 1024입니다.
-10. 라는 새 클래스를 만들고 **LoggerBolt** 코드 다음 hello로:
+    **eventhub.receiver.credits** 의 값에 따라 이벤트를 Storm 파이프라인으로 릴리스하기 전에 얼마나 많은 수의 이벤트가 일괄 처리되는지 결정됩니다. 간단히 하기 위해 이 예에서는 이 값을 10으로 설정합니다. 프로덕션 환경에서 일반적으로 더 높게(예: 1024) 설정해야 합니다.
+10. 다음 코드를 포함하는 **LoggerBolt** 클래스를 새로 만듭니다.
     
     ```java
     import java.util.Map;
@@ -130,8 +130,8 @@ ms.lasthandoff: 10/06/2017
     }
     ```
     
-    이 스톰 볼트 hello 받은 이벤트 hello 콘텐츠를 기록합니다. 이 수 쉽게 확장할 toostore 튜플은 저장소 서비스에서. hello [HDInsight 센서 분석 자습서] 이와 동일한 접근 방식을 toostore 데이터를 사용 하 여 HBase로 합니다.
-11. 라는 클래스를 만들고 **LogTopology** 코드 다음 hello로:
+    이 Storm 볼트는 수신된 이벤트의 콘텐츠를 기록합니다. 튜플을 저장소 서비스에 저장하도록 간단히 확장할 수 있습니다. [HDInsight 센서 분석 자습서]에서는 동일한 방법을 사용하여 데이터를 HBase에 저장합니다.
+11. 다음 코드를 포함하는 **LogTopology**라는 클래스를 만듭니다.
     
     ```java
     import java.io.FileReader;
@@ -182,9 +182,9 @@ ms.lasthandoff: 10/06/2017
                     namespaceName, entityPath, partitionCount, zkEndpointAddress,
                     checkpointIntervalInSeconds, receiverCredits);
         
-            // set hello number of workers toobe hello same as partition number.
-            // hello idea is toohave a spout and a logger bolt co-exist in one
-            // worker tooavoid shuffling messages across workers in storm cluster.
+            // set the number of workers to be the same as partition number.
+            // the idea is to have a spout and a logger bolt co-exist in one
+            // worker to avoid shuffling messages across workers in storm cluster.
             numWorkers = spoutConfig.getPartitionCount();
         
             if (args.length > 0) {
@@ -235,10 +235,10 @@ ms.lasthandoff: 10/06/2017
     }
     ```
 
-    이 클래스는 hello 속성을 사용 하 여 구성 파일 tooinstantiate hello에에서 새 이벤트 허브 배출구 만듭니다 것입니다. 이 예제에서는 많은 만듭니다 toonote hello hello 이벤트 허브의 파티션 수가으로 작업 순서 toouse hello 최대 병렬 처리 수준에서 해당 이벤트 허브 허용에 spouts 유용 합니다.
+    이 클래스는 새 Event Hubs spout를 만들고, 구성 파일의 속성을 사용하여 spout를 인스턴스화합니다. 이 예에서는 이벤트 허브에서 허용하는 최대 병렬 처리를 사용하기 위해 이벤트 허브의 파티션 수만큼 Spout 작업을 만듭니다.
 
 ## <a name="next-steps"></a>다음 단계
-Hello 다음 링크를 방문 하 여 이벤트 허브에 대 한 자세히 알아볼 수 있습니다.
+Event Hubs에 대한 자세한 내용은 다음 링크를 참조하세요.
 
 * [Event Hubs 개요][Event Hubs overview]
 * [이벤트 허브 만들기](event-hubs-create.md)

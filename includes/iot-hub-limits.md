@@ -1,4 +1,4 @@
-hello 다음 표에 나열 hello 각 서비스 계층 (S1, S2, S3, F1)와 관련 된 hello 제한 합니다. 각 hello 비용에 대 한 내용은 *단위* 각 계층에서 참조 [IoT 허브 가격 책정](https://azure.microsoft.com/pricing/details/iot-hub/)합니다.
+다음 표는 다양한 서비스 계층(S1, S2, S3, F1)과 관련한 한도를 나타냅니다. 각 계층에서 각각의 *단위* 에 대한 비용은 [IoT Hub 가격 책정](https://azure.microsoft.com/pricing/details/iot-hub/)을 참조하세요.
 
 | 리소스 | S1 표준 | S2 표준 | S3 표준 | F1 무료 |
 | --- | --- | --- | --- | --- |
@@ -10,7 +10,7 @@ hello 다음 표에 나열 hello 각 서비스 계층 (S1, S2, S3, F1)와 관련
 > 
 > 
 
-hello 다음 표에 나타난 tooIoT 허브 리소스를 적용 하는 hello 제한.
+다음 표에서는 IoT Hub 리소스에 적용되는 제한을 나열합니다.
 
 | 리소스 | 제한 |
 | --- | --- |
@@ -24,8 +24,8 @@ hello 다음 표에 나타난 tooIoT 허브 리소스를 적용 하는 hello 제
 | 클라우드->장치 메시지의 최대 크기 |64KB |
 | 클라우드->장치 메시지의 최대 TTL |2일 |
 | 클라우드->장치  <br/> 메시지의 최대 전달 수 |100 |
-| 클라우드->장치 메시지에 대한 응답에서 피드백  <br/> 응답 tooa 클라우드-장치 메시지에 |100 |
-| 클라우드->장치 메시지에 대한 응답에서 피드백  <br/> 응답 tooa 클라우드-장치 메시지 |2일 |
+| 클라우드->장치 메시지에 대한 응답에서 피드백  <br/> 메시지의 최대 전달 수 |100 |
+| 클라우드->장치 메시지에 대한 응답에서 피드백  <br/> 메시지의 최대 TTL |2일 |
 | 장치 쌍의 최대 크기 <br/> (태그, reported 속성 및 desired 속성) | 8KB |
 | 장치 쌍 문자열 값의 최대 크기 | 512바이트 |
 | 장치 쌍에서 개체의 최대 깊이 | 5 |
@@ -41,9 +41,9 @@ hello 다음 표에 나타난 tooIoT 허브 리소스를 적용 하는 hello 제
 
 
 > [!NOTE]
-> 현재, 최대 수를 hello tooa 단일 IoT 허브는 500, 000의 장치에 연결할 수 있습니다. 이 제한을 tooincrease을 원하는 경우 문의 [Microsoft 지원](https://azure.microsoft.com/en-us/support/options/)합니다.
+> 현재 단일 IoT hub에 연결할 수는 장치의 최대 수는 500,000개입니다. 이 제한을 높이려면 [Microsoft 지원](https://azure.microsoft.com/en-us/support/options/)에 문의하세요.
 
-hello IoT 허브 서비스 요청을 제한 하는 hello 다음 할당량을 초과 하는 경우:
+다음 할당량이 초과되면 IoT 허브 서비스가 요청을 제한합니다.
 
 | 제한 | 허브 단위 값 |
 | --- | --- |

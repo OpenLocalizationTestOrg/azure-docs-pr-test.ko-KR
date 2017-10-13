@@ -1,6 +1,6 @@
 ---
-title: "Azure 가져오기/내보내기 서비스 REST API aaaUsing hello | Microsoft Docs"
-description: "Azure 가져오기/내보내기 hello를 사용 하기 위한 toofind 리소스 REST API를 모두 방법 tooand 참조 자료를 포함 하 여 서비스 위치에 대해 알아봅니다."
+title: "Azure Import/Export 서비스 REST API 사용 | Microsoft Docs"
+description: "방법 및 참조 자료를 비롯하여 Azure Import/Export 서비스 REST API 사용에 대한 리소스를 찾을 수 있는 위치를 알아봅니다."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: fc7e1007ad632cf6f771c2545644f8de43c8f181
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b780385ad0af34bcb15639683d1aa5d689b38b50
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="using-hello-azure-importexport-service-rest-api"></a>Hello Azure 가져오기/내보내기 서비스 REST API를 사용 하 여
+# <a name="using-the-azure-importexport-service-rest-api"></a>Azure Import/Export 서비스 REST API 사용
 
-hello Microsoft Azure 가져오기/내보내기 서비스는 가져오기/내보내기 작업의 REST API tooenable 프로그래밍 방식 제어를 제공합니다. Hello REST API tooperform hello의 모든 가져오기/내보내기 hello로 수행할 수 있는 작업을 사용할 수 있습니다 [Azure 포털](https://portal.azure.com/)합니다. 또한 REST API tooperform hello hello hello Azure 클래식 포털에서에서 현재 사용할 수 없는 작업의 완료 백분율 쿼리와 같은 특정 세부 작업을 사용할 수 있습니다.
+Microsoft Azure Import/Export 서비스는 내보내기/가져오기 작업을 프로그래밍 방식으로 제어하도록 설정하는 REST API를 노출합니다. REST API를 사용하여 [Azure Portal](https://portal.azure.com/)에서 수행할 수 있는 모든 가져오기/내보내기 작업을 수행할 수 있습니다. 또한 REST API를 사용하여 Azure 클래식 포털에서는 현재 사용할 수 없는 작업 완료 비율을 쿼리하는 등의 특정 세부적인 작업을 수행할 수 있습니다.
 
-참조 [hello Microsoft Azure 가져오기/내보내기 서비스 tooTransfer 데이터 tooBlob 저장소를 사용 하 여](../storage-import-export-service.md) hello 가져오기/내보내기 서비스 및 toouse 클래식 포털 toocreate hello 하 및 가져오기를 관리 하는 방법을 보여 주는 자습서에 대 한 개요 작업 및 내보내기 작업 합니다.
+Import/Export 서비스에 대한 개요 및 클래식 포털을 사용하여 가져오기 및 내보내기 작업을 만들고 관리하는 방법을 보여 주는 자습서는 [Microsoft Azure Import/Export 서비스를 사용하여 데이터를 Blob Storage로 전송](../storage-import-export-service.md)을 참조하세요.
 
 ## <a name="service-endpoints"></a>서비스 끝점
 
-hello Azure 가져오기/내보내기 서비스는 Azure 리소스 관리자 리소스 공급자 고 hello 가져오기/내보내기 작업을 관리 하기 위한 HTTPS 끝점 뒤에 일련의 REST Api를 제공 합니다.
+Azure Import/Export 서비스는 Azure Resource Manager의 리소스 공급자이며 가져오기/내보내기 작업을 관리하기 위해 다음 HTTPS 끝점에서 REST API 집합을 제공합니다.
 
 ```
 https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.ImportExport/jobs/<job-name>
@@ -36,7 +36,7 @@ https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<res
 
 ## <a name="versioning"></a>버전 관리
 
-Toohello 가져오기/내보내기 서비스는 hello를 지정 해야 하는 요청 `api-version` 매개 변수 값을 너무 설정`2016-11-01`합니다.
+Import/Export 서비스에 대한 요청은 `api-version` 매개 변수를 지정하고 해당 값을 `2016-11-01`로 설정해야 합니다.
 
 ## <a name="importexport-service-operations"></a>Import/Export 서비스 작업
 

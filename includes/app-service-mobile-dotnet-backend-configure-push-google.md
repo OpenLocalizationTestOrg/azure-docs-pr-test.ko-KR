@@ -1,23 +1,23 @@
-백 엔드 프로젝트 형식에 맞는 hello 프로시저를 사용 하 여&mdash;어느 [.NET 백 엔드](#dotnet) 또는 [Node.js 백 엔드](#nodejs)합니다.
+백 엔드 프로젝트 형식&mdash;([.NET 백 엔드](#dotnet) 또는[ Node.js 백 엔드](#nodejs))과 일치하는 절차를 사용합니다.
 
 ### <a name="dotnet"></a>.NET 백 엔드 프로젝트
-1. Visual Studio에서 hello 서버 프로젝트를 마우스 오른쪽 단추로 클릭 하 고 클릭 **NuGet 패키지 관리**합니다. `Microsoft.Azure.NotificationHubs`를 검색한 다음 **설치**를 클릭합니다. Hello 알림 허브 클라이언트 라이브러리를 설치합니다.
-2. 안녕하세요 Controllers 폴더에서 TodoItemController.cs 열고 hello 다음 추가 `using` 문:
+1. Visual Studio에서 서버 프로젝트를 마우스 오른쪽 단추로 클릭하고 **NuGet 패키지 관리**를 클릭합니다. `Microsoft.Azure.NotificationHubs`를 검색한 다음 **설치**를 클릭합니다. 알림 허브 클라이언트 라이브러리를 설치합니다.
+2. 컨트롤러 폴더에서 TodoItemController.cs를 열고 다음 `using` 문을 추가합니다.
 
         using Microsoft.Azure.Mobile.Server.Config;
         using Microsoft.Azure.NotificationHubs;
-3. Hello 대체 `PostTodoItem` 메서드 코드 다음 hello로:  
+3. `PostTodoItem` 메서드를 다음 코드로 바꿉니다.  
 
         public async Task<IHttpActionResult> PostTodoItem(TodoItem item)
         {
             TodoItem current = await InsertAsync(item);
-            // Get hello settings for hello server project.
+            // Get the settings for the server project.
             HttpConfiguration config = this.Configuration;
 
             MobileAppSettingsDictionary settings =
                 this.Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
 
-            // Get hello Notification Hubs credentials for hello Mobile App.
+            // Get the Notification Hubs credentials for the Mobile App.
             string notificationHubName = settings.NotificationHubName;
             string notificationHubConnection = settings
                 .Connections[MobileAppSettingsKeys.NotificationHubConnectionString].ConnectionString;
@@ -31,26 +31,26 @@
 
             try
             {
-                // Send hello push notification and log hello results.
+                // Send the push notification and log the results.
                 var result = await hub.SendGcmNativeNotificationAsync(androidNotificationPayload);
 
-                // Write hello success result toohello logs.
+                // Write the success result to the logs.
                 config.Services.GetTraceWriter().Info(result.State.ToString());
             }
             catch (System.Exception ex)
             {
-                // Write hello failure result toohello logs.
+                // Write the failure result to the logs.
                 config.Services.GetTraceWriter()
                     .Error(ex.Message, null, "Push.SendAsync Error");
             }
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }
 
-4. Hello 서버 프로젝트를 다시 게시 합니다.
+4. 서버 프로젝트를 다시 게시합니다.
 
 ### <a name="nodejs"></a>Node.js 백 엔드 프로젝트
-1. 따라서 아직 수행 하지 않은 경우 [hello 퀵 스타트 프로젝트를 다운로드](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#download-quickstart), 하거나 다른 hello를 사용 하 여 [hello Azure 포털에서에서 온라인 편집기](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#online-editor)합니다.
-2. Hello 다음 hello hello todoitem.js 파일의 기존 코드를 바꿉니다.
+1. 아직 수행하지 않은 경우 [빠른 시작 프로젝트를 다운로드](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#download-quickstart)하거나 [Azure Portal에서 온라인 편집기](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#online-editor)를 사용합니다.
+2. todoitem.js 파일의 기존 코드를 다음으로 바꿉니다.
 
         var azureMobileApps = require('azure-mobile-apps'),
         promises = require('azure-mobile-apps/src/utilities/promises'),
@@ -59,22 +59,22 @@
         var table = azureMobileApps.table();
 
         table.insert(function (context) {
-        // For more information about hello Notification Hubs JavaScript SDK,
+        // For more information about the Notification Hubs JavaScript SDK,
         // see http://aka.ms/nodejshubs
         logger.info('Running TodoItem.insert');
 
-        // Define hello GCM payload.
+        // Define the GCM payload.
         var payload = {
             "data": {
                 "message": context.item.text
             }
         };   
 
-        // Execute hello insert.  hello insert returns hello results as a Promise,
-        // Do hello push as a post-execute action within hello promise flow.
+        // Execute the insert.  The insert returns the results as a Promise,
+        // Do the push as a post-execute action within the promise flow.
         return context.execute()
             .then(function (results) {
-                // Only do hello push if configured
+                // Only do the push if configured
                 if (context.push) {
                     // Send a GCM native notification.
                     context.push.gcm.send(null, payload, function (error) {
@@ -85,7 +85,7 @@
                         }
                     });
                 }
-                // Don't forget tooreturn hello results from hello context.execute()
+                // Don't forget to return the results from the context.execute()
                 return results;
             })
             .catch(function (error) {
@@ -95,5 +95,5 @@
 
         module.exports = table;  
 
-    이 새 할 일 항목을 삽입할 때 hello item.text 포함 된 GCM 알림을 보냅니다.
-3. 로컬 컴퓨터에 hello 파일을 편집할 때 hello 서버 프로젝트를 다시 게시 합니다.
+    이는 새 todo 항목이 삽입된 경우 item.text가 포함된 GCM 알림을 보냅니다.
+3. 로컬 컴퓨터에서 파일을 편집할 때 서버 프로젝트를 다시 게시합니다.

@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate fMP4 청크를 생성 하는 Azure 미디어 서비스 인코딩 작업 | Microsoft Docs"
-description: "이 항목에서는 fMP4 생성 되는 인코딩 작업을 분할 하는 toocreate 방법을 보여 줍니다. 이 작업은 사용 되 면 미디어 인코더 표준 hello 또는 미디어 인코더 프리미엄 워크플로 인코더, ISO MP4 파일 대신 fMP4 청크 hello 출력 자산에 포함 됩니다."
+title: "fMP4 청크를 생성하는 Azure Media Services 인코딩 작업 만들기 | Microsoft Docs"
+description: "이 항목에서는 fMP4 청크를 생성하는 인코딩 작업을 만드는 방법을 보여 줍니다. 이 작업을 Media Encoder Standard 또는 Media Encoder Premium 워크플로 인코더와 함께 사용하면 출력 자산에는 ISO MP4 파일 대신 fMP4 청크가 포함됩니다."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 388f3ccb9865b5c4e159af86d5a9ee2f4e3f6120
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 55dca4bcb80e8daab2b4d293a9cc85a087055110
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 #  <a name="create-an-encoding-task-that-generates-fmp4-chunks"></a>fMP4 청크를 생성하는 인코딩 작업 만들기
 
 ## <a name="overview"></a>개요
 
-이 항목에서는 어떻게 생성 하는 인코딩 작업 toocreate 조각난 MP4 (fMP4) 청크 ISO MP4 파일 대신 합니다. toogenerate fMP4 청크를 사용 하 여 hello **미디어 인코더 표준** 또는 **미디어 인코더 프리미엄 워크플로** 인코더 toocreate 인코딩 작업 및도 지정  **AssetFormatOption.AdaptiveStreaming** 이 코드 조각에 나와 있는 것 처럼 옵션:  
+이 항목에서는 ISO MP4 파일 대신 조각화된 MP4(fMP4) 청크를 생성하는 인코딩 작업을 만드는 방법을 보여 줍니다. fMP4 청크를 생성하려면 다음 코드 조각처럼 **Media Encoder Standard** 또는 **Media Encoder Premium 워크플로** 인코더를 사용하여 인코딩 작업을 만들고 **AssetFormatOption.AdaptiveStreaming**을 지정합니다.  
     
     task.OutputAssets.AddNew(@"Output Asset containing fMP4 chunks", 
             options: AssetCreationOptions.None, 
@@ -33,18 +33,18 @@ ms.lasthandoff: 10/06/2017
 
 ## <a id="encoding_with_dotnet"></a>미디어 서비스 .NET SDK를 사용하여 인코딩
 
-다음 코드 예제는 hello 작업을 수행 하는 미디어 서비스.NET SDK tooperform hello를 사용 합니다.
+다음 코드 예제에서는 미디어 서비스 .NET SDK를 사용하여 다음 작업을 수행합니다.
 
 - 인코딩 작업을 만듭니다.
-- 참조 toohello 가져오기 **미디어 인코더 표준** 인코더입니다.
-- 인코딩 작업 toohello 작업을 추가 하 고 toouse hello 지정 **적응 스트리밍** 사전 설정 합니다. 
+- **Media Encoder Standard** 인코더에 대한 참조를 가져옵니다.
+- 작업에 인코딩 작업(task)을 추가하고 **적응 스트리밍** 사전 설정을 사용하도록 지정합니다. 
 - fMP4 청크 및 .ism 파일을 포함할 출력 자산을 만듭니다.
-- 이벤트 처리기 toocheck hello 작업 진행률을 추가 합니다.
-- Hello 작업을 제출 합니다.
+- 작업 진행 상태를 확인할 이벤트 처리기를 추가합니다.
+- 작업을 제출합니다.
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Visual Studio 프로젝트 만들기 및 구성
 
-개발 환경을 설정 하 고에 설명 된 대로 연결 정보를 포함 하는 hello app.config 파일을 채울 [.net 미디어 서비스 개발](media-services-dotnet-how-to-use.md)합니다. 
+개발 환경을 설정하고 [.NET을 사용한 Media Services 환경](media-services-dotnet-how-to-use.md)에 설명된 대로 연결 정보를 사용하여 app.config 파일을 채웁니다. 
 
 #### <a name="example"></a>예제
 
@@ -58,7 +58,7 @@ ms.lasthandoff: 10/06/2017
     {
         class Program
         {
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AADTenantDomain =
             ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -77,7 +77,7 @@ ms.lasthandoff: 10/06/2017
             // Get an uploaded asset.
             var asset = _context.Assets.FirstOrDefault();
 
-            // Encode and generate hello output using hello "Adaptive Streaming" preset.
+            // Encode and generate the output using the "Adaptive Streaming" preset.
             EncodeToAdaptiveBitrateMP4Set(asset);
 
             Console.ReadLine();
@@ -87,8 +87,8 @@ ms.lasthandoff: 10/06/2017
             // Declare a new job.
             IJob job = _context.Jobs.Create("Media Encoder Standard Job");
 
-            // Get a media processor reference, and pass tooit hello name of hello 
-            // processor toouse for hello specific task.
+            // Get a media processor reference, and pass to it the name of the 
+            // processor to use for the specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
             // Create a task
@@ -97,15 +97,15 @@ ms.lasthandoff: 10/06/2017
             "Adaptive Streaming",
             TaskOptions.None);
 
-            // Specify hello input asset toobe encoded.
+            // Specify the input asset to be encoded.
             task.InputAssets.Add(asset);
 
-            // Add an output asset toocontain hello results of hello job. 
+            // Add an output asset to contain the results of the job. 
 
             // This output is specified as AssetCreationOptions.None, which 
-            // means hello output asset is not encrypted. 
-            // It is also specified toouse AssetFormatOption.AdaptiveStreaming, 
-            // which means hello output asset will contain fMP4 chunks.
+            // means the output asset is not encrypted. 
+            // It is also specified to use AssetFormatOption.AdaptiveStreaming, 
+            // which means the output asset will contain fMP4 chunks.
 
             task.OutputAssets.AddNew(@"Output Asset containing fMP4 chunks",
             options: AssetCreationOptions.None,

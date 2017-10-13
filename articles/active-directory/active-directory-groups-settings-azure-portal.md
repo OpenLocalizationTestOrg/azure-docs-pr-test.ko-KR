@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory에서 그룹 속성 aaaManage | Microsoft Docs"
-description: "속성 및 기타 구성 설정을 Azure Active Directory에서 그룹에 대 한 tooedit hello 하는 방법"
+title: "Azure Active Directory에서 그룹 속성 관리 | Microsoft Docs"
+description: "Azure Active Directory에서 그룹에 대한 속성 및 다른 구성 설정을 편집하는 방법"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -16,28 +16,28 @@ ms.date: 08/01/2017
 ms.author: curtand
 ms.reviewer: kairaz.contractor
 ms.custom: H1Hack27Feb2017;it-pro
-ms.openlocfilehash: aa17c62b4824e5c2de8adc1d34cd9618f3e722f0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b4baccafc0a9178223dbf64c664fc34ab9f7f916
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="manage-hello-settings-for-a-group-in-azure-active-directory"></a>Azure Active Directory에서 그룹에 대 한 hello 설정을 관리 합니다.
-이 문서에서는 어떻게 toochange hello Azure Active Directory (Azure AD)의 그룹에 대 한 설정을 설명 합니다.
+# <a name="manage-the-settings-for-a-group-in-azure-active-directory"></a>Azure Active Directory에서 그룹의 설정 관리
+이 문서는 Azure AD(Azure Active Directory)에서 그룹의 설정을 변경하는 방법을 설명합니다.
 
-## <a name="how-do-i-find-and-change-hello-settings"></a>찾기 및 hello 설정을 변경할 어떻게 해야 합니까?
-1. Toohello 로그인 [Azure AD 관리 센터](https://aad.portal.azure.com) hello 디렉터리에 대 한 전역 관리자 인 계정을 사용 합니다.
-2. 선택 **더 많은 서비스**, 입력 **사용자 및 그룹** 에 hello 텍스트 상자를 선택한 후 **Enter**합니다.
+## <a name="how-do-i-find-and-change-the-settings"></a>어떻게 설정을 찾고 변경하나요?
+1. 디렉터리에 대한 전역 관리자인 계정으로 [Azure AD 관리 센터](https://aad.portal.azure.com)에 로그인합니다.
+2. **더 많은 서비스**를 선택하고 텍스트 상자에 **사용자 및 그룹**을 입력한 다음 **Enter**를 선택합니다.
 
    ![사용자 및 그룹 열기 블레이드](./media/active-directory-groups-settings-azure-portal/search-user-management.png)
-3. Hello에 **사용자 및 그룹** 블레이드를 **모든 그룹**합니다.
+3. **사용자 및 그룹** 블레이드에서 **모든 그룹**을 선택합니다.
 
-   ![모든 여 hello 블레이드를 그룹화합니다.](./media/active-directory-groups-settings-azure-portal/view-groups-blade.png)
-4. Hello에 **사용자 및 그룹-모든 그룹** 블레이드에서 그룹을 선택 합니다.
-5. Hello에 **그룹- *groupname***  블레이드를 **속성**합니다.
+   ![모든 그룹 열기 블레이드](./media/active-directory-groups-settings-azure-portal/view-groups-blade.png)
+4. **사용자 및 그룹 - 모든 그룹** 블레이드에서 그룹을 선택합니다.
+5. **그룹 - *groupname*** 블레이드에서 **속성**을 선택합니다.
 
-   ![Hello 속성 블레이드 열기](./media/active-directory-groups-settings-azure-portal/select-group-properties.png)
-6. Hello 그룹에 대 한 속성 변경을 완료 하면 선택 **저장**합니다.    
+   ![속성 블레이드 열기](./media/active-directory-groups-settings-azure-portal/select-group-properties.png)
+6. 그룹의 속성 변경을 마치면 **저장**을 선택합니다.    
 
    ![속성 변경 내용 저장](./media/active-directory-groups-settings-azure-portal/save-group-properties.png)
 

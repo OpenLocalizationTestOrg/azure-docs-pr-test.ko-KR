@@ -1,6 +1,6 @@
 ---
-title: Azure MFA aaaConfigure | Microsoft Docs
-description: "MFA를 다음 어떤 toodo를 설명 하는 hello Azure multi-factor authentication 페이지입니다.  보고서, 사기 행위 경고, 일회성 바이패스, 사용자 지정 음성 메시지, 캐시, 신뢰할 수 있는 ip 및 앱 암호를 포함합니다."
+title: "Azure MFA 구성 | Microsoft Docs"
+description: "MFA로 다음에 수행할 작업을 설명하는 Azure Multi-Factor Authentication 페이지입니다.  보고서, 사기 행위 경고, 일회성 바이패스, 사용자 지정 음성 메시지, 캐시, 신뢰할 수 있는 ip 및 앱 암호를 포함합니다."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -14,173 +14,173 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/21/2017
 ms.author: kgremban
-ms.openlocfilehash: db7d87d95b73fed78d3ce599fd03da9692851663
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9d77b9329116afcf2fdde48d672c95020738138c
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="configure-azure-multi-factor-authentication-settings"></a>Azure Multi-Factor Authentication 구성 설정
-이 문서는 준비하고 실행 중인 Multi-Factor Authentication을 관리하는데 도움이 됩니다.  Azure Multi-factor Authentication을 최대한 활용 tooget hello 수 있는 다양 한 항목을 다룹니다.  모든 버전의 Azure Multi-Factor Authentication에서 이러한 모든 기능을 사용할 수는 없습니다.
+이 문서는 준비하고 실행 중인 Multi-Factor Authentication을 관리하는데 도움이 됩니다.  Azure Multi-Factor Authentication을 최대한 활용할 수 있게 하는 다양한 항목을 설명합니다.  모든 버전의 Azure Multi-Factor Authentication에서 이러한 모든 기능을 사용할 수는 없습니다.
 
 | 기능 | 설명 | 
 |:--- |:--- |
-| [사기 행위 경고](#fraud-alert) |사기 경고를 구성 하 고 사용자가 사기 시도 tooaccess 해당 리소스를 보고할 수 있도록 설정할 수 있습니다. |
-| [일회성 바이패스](#one-time-bypass) |일회성 바이패스는 multi-factor authentication "무시" 하 여 사용자 tooauthenticate를 단일 시간 수 있습니다. |
-| [사용자 지정 음성 메시지](#custom-voice-messages) |사용자 지정 음성 메시지 허용 toouse 고유한 녹음/녹화 또는 multi-factor authentication greetings 합니다. |
-| [캐싱](#caching-in-azure-multi-factor-authentication) |캐싱 사용 tooset 특정 기간 동안 있으므로 하 후속 인증 시도 자동으로 성공 합니다. |
-| [신뢰할 수 있는 IP](#trusted-ips) |관리 되는 또는 페더레이션된 테 넌 트의 관리자는 사용자 hello 회사의 로컬 인트라넷에서 로그인에 대 한 신뢰할 수 있는 Ip toobypass 2 단계 인증을 사용할 수 있습니다. |
-| [앱 암호](#app-passwords) |앱 암호에는 응용을 프로그램 인식 MFA toobypass 다단계 인증 하 고 있는 작업을 계속할 수 있습니다. |
-| [기억된 장치 및 브라우저용 Multi-Factor Authentication 기억](#remember-multi-factor-authentication-for-devices-that-users-trust) |있습니다 tooremember 장치를 일 후 사용자가 MFA를 사용 하 여 로그인 성공적으로 설정 된 시간. |
-| [선택 가능한 확인 방법](#selectable-verification-methods) |사용자가 toouse에 사용할 수 있는 toochoose hello 인증 방법을 있습니다. |
+| [사기 행위 경고](#fraud-alert) |사기 행위 경고를 구성하고 설정하여 사용자가 해당 리소스에 액세스하려는 사기성 시도를 사기를 보고할 수 있습니다. |
+| [일회성 바이패스](#one-time-bypass) |일회성 바이패스로 Multi-Factor Authentication "바이패스"하여 사용자가 단일 시간을 인증할 수 있습니다. |
+| [사용자 지정 음성 메시지](#custom-voice-messages) |사용자 지정 음성 메시지를 사용하면 Multi-Factor Authentication으로 사용자 고유의 녹음/녹화 또는 인사말을 사용할 수 있습니다. |
+| [캐싱](#caching-in-azure-multi-factor-authentication) |캐싱을 사용하면 특정 시간 기간을 설정하여 후속 인증 시도가 자동으로 성공하도록 할 수 있습니다. |
+| [신뢰할 수 있는 IP](#trusted-ips) |관리되거나 페더레이션된 테넌트의 관리자는 회사의 로컬 인트라넷에서 로그인하는 사용자를 위해 2단계 인증을 바이패스하는 신뢰할 수 있는 IP를 사용할 수 있습니다. |
+| [앱 암호](#app-passwords) |앱 암호를 사용하면 MFA를 인식하지 않는 응용 프로그램은 Multi-Factor Authentication를 바이패스하고 계속 작업할 수 있습니다. |
+| [기억된 장치 및 브라우저용 Multi-Factor Authentication 기억](#remember-multi-factor-authentication-for-devices-that-users-trust) |사용자가 MFA를 사용하여 성공적으로 로그인한 후 정해진 일수 동안 장치를 기억할 수 있습니다. |
+| [선택 가능한 확인 방법](#selectable-verification-methods) |사용자가 사용할 수 있는 인증 방법을 선택할 수 있습니다. |
 
-## <a name="access-hello-azure-mfa-management-portal"></a>Hello Azure MFA 관리 포털에 액세스
+## <a name="access-the-azure-mfa-management-portal"></a>Azure MFA 관리 포털에 액세스
 
-이 문서에 포함 된 hello 기능의 hello Azure Multi-factor Authentication 관리 포털에서에서 구성 됩니다. 두 가지 방법으로 tooaccess hello hello Azure 클래식 포털을 통해 MFA 관리 포털. Multi-factor Auth 공급자를 관리 하 여 hello 먼저 됩니다. 두 번째 hello은 hello MFA 서비스 설정을 통해 이루어집니다. 
+이 문서에서 다룬 기능은 Azure Multi-Factor Authentication 관리 포털에서 구성할 수 있습니다. Azure 클래식 포털을 통해 MFA 관리 포털에 액세스하는 방법은 두 가지가 있습니다. 첫 번째는 Multi-Factor Auth 공급자를 직접 관리하여 수행합니다. 두 번째는 MFA 서비스 설정을 통해 수행합니다. 
 
 ### <a name="use-an-authentication-provider"></a>인증 공급자 사용
 
-사용량 기반 MFA에 대 한 Multi-factor Auth 공급자를 사용 하는 경우이 메서드 tooaccess hello 관리 포털을 사용 합니다.
+사용량 기반 MFA에 대한 Multi-Factor Auth 공급자를 사용하는 경우 이 방법을 사용하여 관리 포털에 액세스합니다.
 
-tooaccess hello Azure Multi-factor Auth 공급자를 통해 MFA 관리 포털, 관리자 권한으로 Active Directory 옵션 선택 hello Azure 클래식 포털을 hello에 로그인 합니다. Hello 클릭 **Multi-factor Auth 공급자** 탭 한 다음 디렉터리를 선택 하 고, hello 클릭 **관리** hello 아래쪽 단추입니다.
+Azure Multi-Factor Auth 공급자를 통해 MFA 관리 포털에 액세스하려면 관리자 권한으로 Azure 클래식 포털에 로그인하고 Active Directory 옵션을 선택합니다. **Multi-Factor Auth 공급자** 탭을 클릭한 다음 디렉터리를 선택하고 아래쪽에서 **관리** 단추를 클릭합니다.
 
-### <a name="use-hello-mfa-service-settings-page"></a>Hello MFA 서비스 설정 페이지를 사용 하 여 
+### <a name="use-the-mfa-service-settings-page"></a>MFA 서비스 설정 페이지 사용 
 
-Hello 다음 라이선스 중 하나가 있으면 hello MFA 서비스 설정 페이지를 사용할 수 있습니다.
+다음 라이선스 중 하나가 있으면 MFA 서비스 설정 페이지를 사용할 수 있습니다.
 - Azure MFA
 - Azure AD Premium 
 - Enterprise Mobility + Security
 
-tooaccess는 hello hello 관리자 권한으로 Azure 클래식 포털에 로그인 MFA 서비스 설정 페이지를 통해 MFA 관리 포털을 hello 고 hello Active Directory 옵션을 선택 합니다. 디렉터리를 클릭 하 고 클릭 hello **구성** 탭 합니다. Hello multi-factor authentication 섹션에서 선택 **서비스 설정 관리**합니다. Hello MFA 서비스 설정 페이지의 맨 아래 hello에 hello 클릭 **Go toohello 포털** 링크 합니다.
+MFA 서비스 설정 페이지를 통해 MFA 관리 포털에 액세스하려면 관리자 권한으로 Azure 클래식 포털에 로그인하고 Active Directory 옵션을 선택합니다. 디렉터리를 클릭한 다음 **구성** 탭을 클릭합니다. Multi-Factor Authentication 섹션에서 **서비스 설정 관리**를 선택합니다. MFA 서비스 설정 페이지의 맨 아래에서 **포털로 이동** 링크를 클릭합니다.
 
 
 ## <a name="fraud-alert"></a>사기 행위 경고
-사기 경고를 구성 하 고 사용자가 사기 시도 tooaccess 해당 리소스를 보고할 수 있도록 설정할 수 있습니다.  사용자가 hello 모바일 앱 또는 전화 번호를 통해 사기 행위를 보고할 수 있습니다.
+사기 행위 경고를 구성하고 설정하여 사용자가 해당 리소스에 액세스하려는 사기성 시도를 사기를 보고할 수 있습니다.  사용자가 모바일 앱 또는 자신의 전화를 통해 사기 행위를 보고할 수 있습니다.
 
 ### <a name="set-up-fraud-alert"></a>사기 행위 경고 설정
-1. 이 페이지의 hello 위쪽 hello 지침 당 toohello MFA 관리 포털을 탐색 합니다.
-2. Hello Azure Multi-factor Authentication 관리 포털에서에서 클릭 **설정을** hello 구성 섹션에서.
-3. Hello hello 설정 페이지의 사기 행위 경고 섹션에서 확인 hello **사용자가 toosubmit 사기 경고 허용** 확인란을 선택 합니다.
-4. 선택 **저장** tooapply 변경 내용을 합니다. 
+1. 이 페이지 맨 위에 있는 지침에 따라 MFA 관리 포털로 이동합니다.
+2. Azure Multi-Factor Authentication 관리 포털의 구성 섹션에서 **설정**을 클릭합니다.
+3. 설정 페이지의 사기 경고 섹션에서 허용 사용자를 선택하여 **사기 행위 경고 제출 허용** 확인란을 제출합니다.
+4. **저장**을 선택하여 변경 내용을 적용합니다. 
 
 ### <a name="configuration-options"></a>구성 옵션
 
 - **사기 행위가 보고되면 사용자 차단** - 사용자가 사기 행위를 보고하면 해당 계정은 차단됩니다.
-- **초기 한 인사말 중 사기 행위 tooReport 코드** -사용자가 # tooconfirm 2 단계 인증에 정상적으로 키를 누릅니다. Tooreport 사기 원하는 #를 누르기 전에 코드를 입력 합니다. 이 코드의 기본값은 **0**이지만, 사용자가 지정할 수 있습니다.
+- **초기 인사말 중 사기 행위를 보고할 코드** - 사용자는 2단계 인증을 확인하기 위해 일반적으로 #를 누릅니다. 사기 행위를 보고하려는 경우 #를 누르기 전에 코드를 입력합니다. 이 코드의 기본값은 **0**이지만, 사용자가 지정할 수 있습니다.
 
 > [!NOTE]
-> Microsoft의 기본 음성 인사말 사용자 toopress &#0; toosubmit 사기 행위 경고를 지시합니다. 원하는 toouse 0이 아닌 코드를 기록 하 고 적절 한 지침이 포함 된 사용자 고유의 사용자 지정 음성 인사말과 업로드 해야 합니다.
+> Microsoft의 기본 음성 인사말은 사용자가 사기 행위 경고 제출하기 위해 0# 키를 누르도록 지시합니다. 0이 아닌 코드를 사용하려는 경우 적절한 지침과 함께 고유의 사용자 지정 음성 인사말을 기록하고 업로드해야 합니다.
 
 ![사기 행위 경고 옵션 - 스크린샷](./media/multi-factor-authentication-whats-next/fraud.png)
 
 ### <a name="how-users-report-fraud"></a>사용자가 사기 행위를 보고하는 방법 
-두 가지 방법으로 사기 행위 경고를 보고할 수 있습니다.  통해 또는 hello 모바일 앱 hello 전화를 통해.  
+두 가지 방법으로 사기 행위 경고를 보고할 수 있습니다.  모바일 앱 또는 전화를 통해 보고합니다.  
 
-#### <a name="report-fraud-with-hello-mobile-app"></a>Hello 모바일 앱으로 사기 보고
-1. 유효성 검사 tooyour 전화를 보낼 때 tooopen hello Microsoft Authenticator 앱을 선택 합니다.
-2. 선택 **Deny** hello 알림입니다. 
+#### <a name="report-fraud-with-the-mobile-app"></a>모바일 앱으로 사기 행위 보고
+1. 휴대폰으로 확인 메시지를 전송되면 이를 선택하여 Microsoft Authenticator 앱이 시작됩니다.
+2. 알림에서 **거부**를 선택합니다. 
 3. **사기 행위 보고**를 선택합니다.
-4. Hello 닫기는 응용 프로그램.
+4. 앱을 닫습니다.
 
 #### <a name="report-fraud-with-a-phone"></a>휴대폰으로 사기 행위 보고
-1. 확인 전화가 tooyour 전화에 도달할 경우 전화를 합니다.  
-2. tooreport 사기 (기본값은 0 임) hello 사기 코드를 입력 한 후 # 기호를 hello 합니다. 그러면 사기 행위 경고가 전송되었다는 알림이 표시됩니다.
-3. Hello 통화를 종료 합니다.
+1. 전화로 확인 호출이 들어오면 응답합니다.  
+2. 사기 행위를 보고하려면 사기 행위 코드(기본값은 0)와 # 기호를 입력합니다. 그러면 사기 행위 경고가 전송되었다는 알림이 표시됩니다.
+3. 통화를 종료합니다.
 
 ### <a name="view-fraud-reports"></a>사기 행위 보고 보기
-1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
-2. Hello 왼쪽에서 Active Directory를 선택 합니다.
-3. Hello 위쪽에, 선택 **Multi-factor Auth 공급자** tooshow Multi-factor Auth 공급자 목록이 있습니다.
-4. Multi-factor Auth 공급자를 선택 하 고 클릭 **관리** hello hello 페이지 맨 아래에 있습니다. hello Azure Multi-factor Authentication 관리 포털이 열립니다.
-5. Hello 보고서를 보기에서 Azure Multi-factor Authentication 관리 포털에서 클릭 **사기 행위 경고**합니다.
-6. Hello 보고서에 tooview 한다고 hello 날짜 범위를 지정 합니다. 사용자 이름, 전화 번호 및 hello 사용자의 상태를 지정할 수도 있습니다.
-7. 클릭 **실행** tooshow 사기 행위 경고 보고서. 클릭 **tooCSV 내보내기** tooexport hello 보고서에 들어 있습니다.
+1. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인합니다.
+2. 왼쪽에서 Active Directory를 선택합니다.
+3. 맨 위에서 Multi-Factor Auth 공급자 목록을 표시할 **Multi-Factor Auth 공급자**를 선택합니다.
+4. Multi-factor Auth 공급자를 선택하고 페이지의 맨 아래에 있는 **관리**를 클릭합니다. Azure Multi-Factor Authentication 관리 포털이 열립니다.
+5. Azure Multi-Factor Authentication 관리 포털의 보고서 보기 아래에 **사기 행위 경고**를 클릭합니다.
+6. 보고서에서 보려는 날짜 범위를 지정합니다. 또한 사용자 이름, 전화번호 및 사용자 상태를 지정할 수 있습니다.
+7. **실행**을 클릭하면 사기 행위 경고 보고서가 표시됩니다. 보고서를 내보내려면 **CSV로 내보내기**를 클릭합니다.
 
 ## <a name="one-time-bypass"></a>일회성 바이패스
-일회성 바이패스 2 단계 인증을 수행 하지 않고 사용자 tooauthenticate를 단일 시간 수 있습니다. hello 바이패스는 일시적 이며 지정된 된 수의 시간 (초) 후에 만료 됩니다. 여기서 hello 모바일 앱 또는 전화를 받지 알림 또는 전화 통화의 경우 hello 사용자 hello 필요한 리소스에 액세스할 수 있도록 일회성 바이패스를 사용할 수 있습니다.
+일회성 바이패스를 통해 사용자는 2단계 인증을 수행하지 않고 한 번에 인증할 수 있습니다. 바이패스는 임시적이며 지정된 시간(초) 이후 만료됩니다. 모바일 앱 또는 전화가 알림 또는 전화 통화를 받지 못하는 경우 일회성 바이패스를 사용하여 사용자가 원하는 리소스에 액세스하도록 할 수 있습니다.
 
 ### <a name="create-a-one-time-bypass"></a>일회성 바이패스 만들기
-1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
-2. 이 페이지의 hello 위쪽 hello 지침 당 toohello MFA 관리 포털을 탐색 합니다.
-3. Hello 엄청에 Azure MFA 공급자의 hello 이름을 참조 하는 경우는  **+**  다음 tooit hello 클릭  **+** 합니다. 서로 다른 MFA 서버 복제 그룹 및 hello Azure 기본 그룹 표시 됩니다. Hello 적절 한 그룹을 선택 합니다.
+1. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인합니다.
+2. 이 페이지 맨 위에 있는 지침에 따라 MFA 관리 포털로 이동합니다.
+3. 왼쪽에 옆에 **+**가 있는 Azure MFA 공급자 이름이 보이면 **+**를 클릭합니다. 서로 다른 MFA 서버 복제 그룹 및 Azure 기본 그룹이 표시됩니다. 적절한 그룹을 선택합니다.
 4. 사용자 관리에서 **일회성 바이패스**를 클릭합니다.
-5. Hello 일회성 바이패스 페이지에서 클릭 **새 일회성 바이패스**합니다.
+5. 일회성 바이패스 페이지에서 **새 일회성 바이패스**를 클릭합니다.
 
   ![클라우드](./media/multi-factor-authentication-whats-next/create1.png)
 
-6. Hello 사용자 이름, hello 기간 hello 바이패스 및 hello hello 바이패스 이유를 입력 합니다. **바이패스**를 클릭합니다.
-7. hello 시간 제한 발효 되 즉시 하므로 hello 사용자의 요구 사항을 toosign 전에 hello 일회성 바이패스 만료 합니다. 
+6. 사용자 이름, 바이패스 기간 및 바이패스 이유를 입력합니다. **바이패스**를 클릭합니다.
+7. 시간 제한이 즉시 적용되기 때문에 사용자는 일회성 바이패스가 만료되기 전에 로그인해야 합니다. 
 
-### <a name="view-hello-one-time-bypass-report"></a>보기 hello 일회성 바이패스 보고서
-1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
-2. Hello 왼쪽에서 Active Directory를 선택 합니다.
-3. Hello 위쪽에, 선택 **Multi-factor Auth 공급자** tooshow Multi-factor Auth 공급자 목록이 있습니다.
-4. Multi-factor Auth 공급자를 선택 하 고 클릭 **관리** hello hello 페이지 맨 아래에 있습니다. hello Azure Multi-factor Authentication 관리 포털이 열립니다.
-5. Hello 왼쪽에서 보고서를 보기 아래의 hello Azure Multi-factor Authentication 관리 포털에서 클릭 **일회성 바이패스**합니다.
-6. Hello 보고서에 tooview 한다고 hello 날짜 범위를 지정 합니다. 사용자 이름, 전화 번호 및 hello 사용자의 상태를 지정할 수도 있습니다.
-7. 클릭 **실행** tooshow 바이패스에 대 한 보고서입니다. 클릭 **tooCSV 내보내기** tooexport hello 보고서에 들어 있습니다.
+### <a name="view-the-one-time-bypass-report"></a>일회성 바이패스 보고서 보기
+1. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인합니다.
+2. 왼쪽에서 Active Directory를 선택합니다.
+3. 맨 위에서 Multi-Factor Auth 공급자 목록을 표시할 **Multi-Factor Auth 공급자**를 선택합니다.
+4. Multi-factor Auth 공급자를 선택하고 페이지의 맨 아래에 있는 **관리**를 클릭합니다. Azure Multi-Factor Authentication 관리 포털이 열립니다.
+5. Azure Multi-factor Authentication 관리 포털의 왼쪽, 보고서 보기 아래에서 **일회성 바이패스**를 클릭합니다.
+6. 보고서에서 보려는 날짜 범위를 지정합니다. 또한 사용자 이름, 전화번호 및 사용자 상태를 지정할 수 있습니다.
+7. **실행**을 클릭하면 바이패스 보고서가 표시됩니다. 보고서를 내보내려면 **CSV로 내보내기**를 클릭합니다.
 
 ## <a name="custom-voice-messages"></a>사용자 지정 음성 메시지
-사용자 지정 음성 메시지 허용 toouse 고유한 녹음/녹화 또는 greetings 2 단계 인증에 대 한 합니다. 또한 tooor tooreplace hello Microsoft 레코드에 사용자 지정 음성 메시지를 사용할 수 있습니다.
+사용자 지정 음성 메시지를 사용하면 2단계 인증으로 사용자 고유의 녹음/녹화 또는 인사말을 사용할 수 있습니다. Microsoft 기록을 추가하거나 바꾸는 데 사용자 지정 음성 메시지를 사용할 수 있습니다.
 
 시작하기 전에 다음을 고려하세요.
 
-* 지원 되는 hello 파일 형식은.wav 및.mp3 됩니다.
-* hello 파일 크기 제한은 5MB입니다.
-* 인증 메시지 길이는 20초 미만이어야 합니다. 20 초 보다 긴 메시지 hello 확인 시간이 지나기 전에 hello 사용자에 게 충분 한 시간 toorespond를 제공 하지 않습니다.
+* 지원되는 파일 형식은 .wav 및 .mp3입니다.
+* 파일 크기는 5MB로 제한됩니다.
+* 인증 메시지 길이는 20초 미만이어야 합니다. 20초보다 긴 메시지는 확인 시간이 다 소진되기 전에 사용자가 응답하기에는 시간이 부족합니다.
 
 ### <a name="set-up-a-custom-message"></a>사용자 지정 메시지 설정
 
-사용자 지정 메시지는 두 개의 부분 toocreating 합니다. 첫째, hello 메시지를 업로드 하 고 켜기 사용자.
+사용자 지정 메시지 작성은 두 부분으로 이루어져 있습니다. 첫째, 메시지를 업로드한 다음 사용자를 위해 이를 켭니다.
 
-tooupload 사용자 지정 메시지:
+사용자 지정 메시지를 업로드하려면
 
-1. 지원 되는 hello 파일 형식 중 하나를 사용 하 여 사용자 지정 음성 메시지를 만듭니다.
-2. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
-3. 이 페이지의 hello 위쪽 hello 지침 당 toohello MFA 관리 포털을 탐색 합니다.
-4. Hello Azure Multi-factor Authentication 관리 포털에서에서 클릭 **음성 메시지** hello 구성 섹션에서.
-5. Hello 구성에서: 음성 메시지 페이지를 클릭 **새 음성 메시지**합니다.
+1. 지원되는 파일 형식 중 하나를 사용하여 사용자 지정 음성 메시지 만들기
+2. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인합니다.
+3. 이 페이지 맨 위에 있는 지침에 따라 MFA 관리 포털로 이동합니다.
+4. Azure Multi-Factor Authentication 관리 포털의 구성 섹션에서 **음성 메시지**를 클릭합니다.
+5. 구성: 음성 메시지 페이지에서 **새 음성 메시지**를 클릭합니다.
    ![클라우드](./media/multi-factor-authentication-whats-next/custom1.png)
-6. Hello 구성에서: 새 음성 메시지 페이지 클릭 **사운드 파일 관리**합니다.
+6. 구성: 새 음성 메시지 페이지에서 **사운드 파일 관리**를 클릭합니다.
    ![클라우드](./media/multi-factor-authentication-whats-next/custom2.png)
-7. Hello 구성에서: 사운드 파일 페이지에서 클릭 **사운드 파일 업로드**합니다.
+7. 구성: 사운드 파일 페이지에서 **사운드 파일 업로드**를 클릭합니다.
    ![클라우드](./media/multi-factor-authentication-whats-next/custom3.png)
-8. Hello 구성에서: 사운드 파일 업로드를 클릭 **찾아보기** tooyour 음성 메시지를 이동를 클릭 하 고 **열려**합니다.
+8. 구성: 사운드 파일 업로드에서 **찾아보기**를 클릭하고 음성 메시지로 이동하여 **열기**를 클릭합니다.
 9. 설명을 추가하고 **업로드**를 클릭합니다.
-10. Hello 음성 메시지를 업로드 한 후 메시지 hello 파일을 성공적으로 업로드 했는지 확인 합니다.
+10. 음성 메시지가 업로드되면 메시지가 파일을 성공적으로 업로드했음을 확인합니다.
 
-사용자에 대 한 hello 메시지에 tooturn:
+사용자를 위해 메시지를 켜려면
 
-1. Hello 왼쪽에서 클릭 **음성 메시지**합니다.
-2. Hello 음성 메시지 섹션에서 클릭 **새 음성 메시지**합니다.
-3. Hello 언어 드롭다운 목록에서에서 언어를 선택 합니다.
-4. 이 메시지는 특정 응용 프로그램에 대 한 경우 hello 응용 프로그램 상자에서 지정 합니다.
-5. Hello 메시지 유형 드롭다운 목록에서에서 새 사용자 지정 메시지로 재정의할 메시지 유형을 toobe를 hello를 선택 합니다.
-6. 사운드 파일 드롭 다운 hello에서 업로드 한 사운드 파일이 hello hello 첫 번째 부분에서 선택 합니다.
+1. 왼쪽에서 **음성 메시지**를 클릭합니다.
+2. 음성 메시지 섹션에서 **새 음성 메시지**를 클릭합니다.
+3. 언어 드롭다운 메뉴에서 언어를 선택합니다.
+4. 이 메시지가 특정 응용 프로그램용인 경우 응용 프로그램 상자에서 지정하십시오.
+5. 메시지 유형 드롭다운 목록에서 새 사용자 지정 메시지로 재정의할 메시지 유형을 선택합니다.
+6. 사운드 파일 드롭다운 목록에서 첫 번째 부분에서 업로드한 사운드 파일을 선택합니다.
 7. **만들기**를 클릭합니다. 메시지는 성공적으로 음성 메시지를 만들었음을 확인합니다.
     ![클라우드](./media/multi-factor-authentication-whats-next/custom5.png)</center>
 
 ## <a name="caching-in-azure-multi-factor-authentication"></a>Azure Multi-Factor Authentication에서 캐싱
-캐싱 사용 tooset 특정 기간 동안 있으므로 하 후속 인증 시도 기간 내에 자동으로 성공 합니다. 캐싱 VPN과 같은 온-프레미스 시스템 hello 첫 번째 요청은 진행 중인 동안 많은 확인 요청을 보낼 때 사용 됩니다. 첫 번째 확인 중 hello 성공 hello 사용자 후 hello 후속 요청 toosucceed를 자동으로 허용 합니다. 
+캐싱을 사용하면 특정 시간 기간을 설정하여 해당 시간 내에 후속 인증 시도가 자동으로 성공하도록 할 수 있습니다. 캐싱은 첫 번째 요청이 진행 중인 동안 VPN과 같은 온-프레미스 시스템이 여러 확인 요청을 전송하는 경우 사용됩니다. 사용자가 진행 중인 첫 번째 확인에 성공한 후에 자동으로 후속 요청이 성공할 수 있습니다. 
 
-캐싱은 로그인 tooAzure AD에 사용 되는 의도 된 toobe 하지입니다.
+캐싱은 Azure AD 로그인에 사용하기 위한 것이 아닙니다.
 
 ### <a name="set-up-caching"></a>캐싱 설정 
-1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
-2. 이 페이지의 hello 위쪽 hello 지침 당 toohello MFA 관리 포털을 탐색 합니다.
-3. Hello Azure Multi-factor Authentication 관리 포털에서에서 클릭 **캐싱** hello 구성 섹션에서.
-4. 클릭 **새 캐시** hello 구성 캐싱 페이지에 있습니다.
-5. Hello 캐시 유형 및 hello 캐시 시간 (초)을 선택 합니다. **만들기**를 클릭합니다.
+1. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인합니다.
+2. 이 페이지 맨 위에 있는 지침에 따라 MFA 관리 포털로 이동합니다.
+3. Azure Multi-Factor Authentication 관리 포털의 구성 섹션에서 **캐싱**을 클릭합니다.
+4. 캐싱 구성 페이지에서 **새 캐시**를 클릭합니다.
+5. 캐시 유형 및 캐시 시간(초)을 선택합니다. **만들기**를 클릭합니다.
 
 <center>![클라우드](./media/multi-factor-authentication-whats-next/cache.png)</center>
 
 ## <a name="trusted-ips"></a>신뢰할 수 있는 IP
-신뢰할 수 있는 Ip는 관리 되는 또는 페더레이션된 테 넌 트의 관리자 toobypass 2 단계 인증을 사용할 수 있는 Azure MFA의 기능입니다. Hello 회사의 로컬 인트라넷에서 로그인 하는 사용자에 사용 됩니다. 이 기능은 hello 정식 버전의 무료 버전 관리자를 위한 hello Azure Multi-factor Authentication을 사용할 수 있습니다. Tooget 정식 버전의 Azure Multi-factor Authentication을 hello 하는 방법에 대 한 세부 정보를 참조 하십시오. [Azure Multi-factor Authentication](multi-factor-authentication.md)합니다.
+신뢰할 수 있는 IP는 관리되는 또는 페더레이션된 테넌트의 관리자가 2단계 인증을 바이패스하기 위해 사용할 수 있는 Azure MFA 기능입니다. 이 기능은 회사의 로컬 인트라넷에서 로그인하는 사용자를 위해 사용됩니다. 이 기능은 관리자용 무료 버전이 아닌 Azure Multi-Factor Authentication의 정식 버전에서 사용할 수 있습니다. Azure Multi-Factor Authentication의 정식 버전을 가져오는 방법에 대한 자세한 내용은 [Azure Multi-Factor Authentication](multi-factor-authentication.md)을 참조하세요.
 
 | Azure AD 테넌트의 유형 | 사용 가능한 신뢰할 수 있는 IP 옵션 |
 |:--- |:--- |
-| 관리 |<li>특정 IP 주소 범위 – 관리자는 hello 회사의 인트라넷에서 로그인 하는 사용자에 대 한 2 단계 인증을 바이패스할 수 있는 다양 한 IP 주소를 지정할 수 있습니다.</li> |
-| 페더레이션 |<li>모든 페더레이션 사용자-사용자가 로그인 하는 모든 페더레이션에 hello 내 조직을 우회 하는 AD FS에서 발급 한 클레임을 사용 하 여 2 단계 인증 합니다.</li><br><li>특정 IP 주소 범위 – 관리자는 hello 회사의 인트라넷에서 로그인 하는 사용자에 대 한 2 단계 인증을 바이패스할 수 있는 다양 한 IP 주소를 지정할 수 있습니다. |
+| 관리 |<li>특정 IP 주소 범위 – 관리자는 사용자 회사의 인트라넷에서 로그인하는 사용자에 대해 2단계 인증을 바이패스할 수 있는 IP 주소를 지정할 수 있습니다.</li> |
+| 페더레이션 |<li>모든 페더레이션된 사용자 - 조직 내에서 로그인하는 모든 페더레이션된 사용자는 AD FS에서 발급한 클레임을 사용하여 2단계 인증을 바이패스합니다.</li><br><li>특정 IP 주소 범위 – 관리자는 사용자 회사의 인트라넷에서 로그인하는 사용자에 대해 2단계 인증을 바이패스할 수 있는 IP 주소를 지정할 수 있습니다. |
 
 이 바이패스는 회사의 인트라넷 내부에서만 작동합니다. 
 
@@ -188,57 +188,57 @@ tooupload 사용자 지정 메시지:
 
 신뢰할 수 있는 IP를 사용할 수 없는 경우 브라우저 흐름에 2단계 인증이 필요하고 이전 리치 클라이언트 앱에 앱 암호가 필요합니다. 
 
-신뢰할 수 있는 IP가 사용하도록 설정된 경우 브라우저 흐름에는 2단계 인증이 필요하지 *않습니다.* 앱 암호는 *하지* hello 사용자 이미를 만들지 않았는지 앱 암호는 이전 리치 클라이언트 응용 프로그램의 경우 필요 합니다. 앱 암호를 사용 중인 경우 필요합니다. 
+신뢰할 수 있는 IP가 사용하도록 설정된 경우 브라우저 흐름에는 2단계 인증이 필요하지 *않습니다.* 앱 암호는 사용자가 앱 암호를 아직 만들지 않은 경우, 이전 리치 클라이언트 앱에는 필요하지 *않습니다*. 앱 암호를 사용 중인 경우 필요합니다. 
 
 **회사 네트워크 외부 최종 사용자 환경:**
 
 신뢰할 수 있는 IP 사용 여부에 관계없이 브라우저 흐름에 2단계 인증이 필요하고 이전 리치 클라이언트 앱에 앱 암호가 필요합니다. 
 
-### <a name="tooenable-trusted-ips"></a>tooenable 신뢰할 수 있는 Ip
-1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
-2. 이 문서의 hello 시작 시 hello 지침 당 toohello MFA 서비스 설정 페이지를 이동 합니다.
-3. Trusted ips hello 서비스 설정 페이지는 두 가지 옵션이 있습니다.
+### <a name="to-enable-trusted-ips"></a>신뢰할 수 있는 IP를 활성화하려면
+1. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인합니다.
+2. 이 문서의 시작 부분에 지침에 따라 MFA 서비스 설정 페이지로 이동합니다.
+3. 서비스 설정 페이지의 신뢰할 수 있는 IP에는 두 가지 옵션이 있습니다.
    
-   * **내 인트라넷에서 시작 된 페더레이션된 사용자의 요청에 대 한** – hello 확인란 합니다. AD FS에서 발급 한 클레임을 사용 하 여 hello 회사 네트워크 바이패스 2 단계 인증에서 로그인 하는 모든 페더레이션된 사용자입니다.
-   * **특정 범위의 공용 Ip의 요청에 대 한** – CIDR 표기법을 사용 하 여 제공 하는 hello 텍스트 상자에 hello IP 주소를 입력 합니다. 예를 들어: hello 범위 xxx.xxx.xxx.1 –에서 IP 주소에 대 한 xxx.xxx.xxx.0/24 xxx.xxx.xxx.254 또는 단일 IP 주소에 대 한 xxx.xxx.xxx.xxx/32. Too50 IP 주소 범위를 입력할 수 있습니다. 이러한 IP 주소에서 로그인한 사용자는 2단계 인증을 바이패스합니다.
+   * **내 인트라넷에서 발생하는 페더레이션된 사용자의 요청** - 확인란을 선택합니다. 회사 네트워크에서 로그인 중인 모든 페더레이션된 사용자는 AD FS에서 발급한 클레임을 사용하여 2단계 인증을 바이패스합니다.
+   * **공용 IP 중 특정 범위의 요청** - CIDR 표기법으로 제공된 텍스트 상자에 IP 주소를 입력합니다. 예를 들어 xxx.xxx.xxx.1 – xxx.xxx.xxx.254 범위의 IP 주소에 xxx.xxx.xxx.0/24, 또는 단일 IP 주소에 xxx.xxx.xxx.xxx/32입니다. 최대 50개의 IP 주소 범위를 입력할 수 있습니다. 이러한 IP 주소에서 로그인한 사용자는 2단계 인증을 바이패스합니다.
 4. **Save**를 클릭합니다.
-5. Hello 업데이트를 적용 한 후 클릭 **닫기**합니다.
+5. 업데이트를 적용하면 **닫기**를 클릭합니다.
 
 ![신뢰할 수 있는 IP](./media/multi-factor-authentication-whats-next/trustedips3.png)
 
 ## <a name="app-passwords"></a>앱 암호
-Office 2010 이전 및 Apple 메일 등의 일부 앱은 2단계 인증을 지원하지 않습니다. 구성 된 tooaccept 두 번째 확인 되지 않습니다. toouse 이러한 앱을 기존 암호 대신 "응용 프로그램 암호" toouse 필요 합니다. hello 앱 암호는 hello 응용 프로그램 toobypass 2 단계 인증을 허용 하 고 작업을 계속 합니다.
+Office 2010 이전 및 Apple 메일 등의 일부 앱은 2단계 인증을 지원하지 않습니다. 이들 앱은 두 번째 인증을 허용하도록 구성되어 있지 않습니다. 이러한 앱을 사용하려면 기존의 암호 대신 "앱 암호"를 사용해야 합니다. 앱 암호를 사용하면 응용 프로그램이 2단계 인증을 바이패스하고 작업을 계속할 수 있습니다.
 
 > [!NOTE]
-> Office 2013 클라이언트 hello에 대 한 최신 인증
+> Office 2013 클라이언트에 대한 최신 인증
 > 
-> Office 2013 클라이언트 (Outlook 포함) 및 최신 지원 최신 인증 프로토콜 사용된 toowork 2 단계 확인 하나일 수 있습니다. 이를 사용하면 이러한 클라이언트에 대한 앱 암호는 필요하지 않습니다.  자세한 내용은 [발표된 Office 2013 최신 인증 공개 미리 보기](https://blogs.office.com/2015/03/23/office-2013-modern-authentication-public-preview-announced/)를 참조하세요.
+> Outlook을 포함한 Office 2013 클라이언트 이상의 버전은 최신 인증 프로토콜을 지원하고 2단계 인증과 함께 사용할 수 있습니다. 이를 사용하면 이러한 클라이언트에 대한 앱 암호는 필요하지 않습니다.  자세한 내용은 [발표된 Office 2013 최신 인증 공개 미리 보기](https://blogs.office.com/2015/03/23/office-2013-modern-authentication-public-preview-announced/)를 참조하세요.
 
-### <a name="important-things-tooknow-about-app-passwords"></a>앱 암호에 대 한 중요 한 사항이 tooknow
+### <a name="important-things-to-know-about-app-passwords"></a>앱 암호에 대해 알아야 할 중요 사항
 앱 암호에 대해 알아야 할 중요한 사항 목록은 다음과 같습니다.
 
-* 앱 당 한 번씩 hello 입력된 상자에 앱 암호를 입력 해야 합니다. 사용자가 없습니다 그중에서 tookeep 추적 하 고 때마다를 입력 합니다.
-* hello 실제 암호는 자동으로 생성 하 고 hello 사용자에서 제공 되지 않는 합니다. hello 자동으로 생성 된 암호는 공격자가 tooguess 하기가 더 이며 더 안전 합니다.
+* 앱 암호는 입력 상자에 앱당 한 번씩 입력해야 합니다. 사용자는 암호를 매번 추적하여 입력할 필요가 없습니다.
+* 실제 암호는 자동으로 생성되고 사용자가 제공하지 않습니다. 자동으로 생성된 암호는 공격자가 추측하기 어렵고 더 안전합니다.
 * 사용자당 40개의 암호로 제한되어 있습니다. 
-* 암호를 캐시 하는 hello 조직 id 외부 hello 앱 암호에 알지 이후 실패 하기 시작 하는 데 수 온-프레미스 시나리오에서 사용 하 여 앱을 선택 합니다. 예로 온-프레미스 Exchange 전자 메일 않으며 hello 보관 된 메일은 hello 클라우드입니다. hello 동일한 암호가 작동 하지 않습니다.
-* 다단계 인증이 시작되면 일부 브라우저 이외의 클라이언트에 사용자 암호를 사용할 수 있습니다. 관리 작업에는 앱 암호를 사용할 수 없습니다. 서비스 계정을 강력한 암호 toorun PowerShell 스크립트를 만들고 2 단계 인증에 대 한 해당 계정을 사용 하지 않습니다 확인 합니다.
+* 암호를 캐시하고 온-프레미스 시나리오에서 사용하는 앱은 앱 암호가 조직 ID 외부에서 알려질 수 없으므로 실패할 수도 있습니다. 예제는 온-프레미스에 있는 Exchange 전자 메일이지만 보관된 메일은 클라우드에 있습니다. 동일한 암호는 작동하지 않습니다.
+* 다단계 인증이 시작되면 일부 브라우저 이외의 클라이언트에 사용자 암호를 사용할 수 있습니다. 관리 작업에는 앱 암호를 사용할 수 없습니다. 강력한 암호로 PowerShell 스크립트를 실행할 서비스 계정을 만들고 해당 계정에 2단계 인증을 사용하지 않도록 설정해야 합니다.
 
 > [!WARNING]
-> 앱 암호는 클라이언트가 온-프레미스 및 클라우드 자동 검색 끝점과 통신하는 하이브리드 환경에서는 작동하지 않습니다. 도메인 암호는 필수 tooauthenticate 온-프레미스 및 앱 암호는 필수 tooauthenticate hello 클라우드와 합니다.
+> 앱 암호는 클라이언트가 온-프레미스 및 클라우드 자동 검색 끝점과 통신하는 하이브리드 환경에서는 작동하지 않습니다. 도메인 암호가 온-프레미스를 인증하는 데 필요하고 앱 암호가 클라우드를 사용하여 인증하는 데 필요합니다.
 
 ### <a name="naming-guidance-for-app-passwords"></a>앱 암호에 대한 명명 지침
-앱 암호 이름은 사용 하는 hello 장치를 반영 해야 합니다. 예를 들어 브라우저 이외 앱이 있는 노트북이 있는 경우 Laptop 이름을 딴 앱 암호를 하나 만들고 해당 앱 암호를 사용합니다. 그런 다음 다른 만들 앱 암호 Desktop에 대해 명명 된 hello 데스크톱 컴퓨터에서 동일한 응용 프로그램입니다. 
+앱 암호 이름은 해당 이름이 사용될 장치를 반영해야 합니다. 예를 들어 브라우저 이외 앱이 있는 노트북이 있는 경우 Laptop 이름을 딴 앱 암호를 하나 만들고 해당 앱 암호를 사용합니다. 그런 다음 데스크톱 컴퓨터의 동일한 응용 프로그램에 대해 Desktop 이름을 딴 다른 앱 암호를 만듭니다. 
 
 Microsoft는 응용 프로그램별로 하나의 앱 암호보다는 장치별로 하나의 앱 암호를 만드는 것을 권장합니다.
 
 ### <a name="federated-sso-app-passwords"></a>페더레이션된(SSO) 앱 암호
-Azure AD는 온-프레미스 Windows Server Active Directory Domain Services(AD DS)로 페더레이션(Single Sign-On)을 지원합니다. Azure AD와 페더레이션 조직의 toobe Azure Multi-factor Authentication을 사용 하는 것을 प ् ल ि hello 정보가 중요 합니다. 이 섹션에는 toofederated (SSO) 고객만 적용 됩니다.
+Azure AD는 온-프레미스 Windows Server Active Directory Domain Services(AD DS)로 페더레이션(Single Sign-On)을 지원합니다. 조직이 Azure AD를 사용하여 페더레이션되고 Azure Multi-Factor Authentication을 사용하려는 경우 앱 암호에 대해 정보가 중요합니다. 이 섹션은 페더레이션된 고객(SSO)에게만 적용됩니다.
 
 * Azure AD에서 앱 암호를 확인하기 때문에 페더레이션을 바이패스합니다. 앱 암호를 설정할 때 페더레이션이 능동적으로 사용됩니다.
-* 페더레이션된 (SSO) 사용자에서는 이동 하지 hello 수동 흐름과 달리 IdP (Id 공급자) toohello. hello 암호 hello 조직 id에 저장 됩니다. Hello 사용자가 회사 hello를 완료 하는 경우 해당 정보에 실제 시간에 DirSync를 사용 하 여 tooflow tooorganizational id입니다. 계정 사용 안 함/삭제가 toothree 시간 toosync, Azure AD에 앱 암호 사용 안 함/삭제가 지연를 차지할 수 있습니다.
+* 페더레이션된(SSO) 사용자의 경우 수동 흐름과 달리 ID 공급자(IdP)로 이동하지 않습니다. 암호는 조직 ID에 저장됩니다. 사용자가 회사를 떠나는 경우 해당 정보는 실제 시간으로 DirSync를 사용하는 조직 ID에 유입되어야 합니다. 계정 사용 안 함/삭제 설정은 동기화에 최대 3시간이 걸리며 Azure AD에서 앱 암호의 사용 안 함/삭제가 지연됩니다.
 * 앱 암호를 사용할 경우 온-프레미스 클라이언트 액세스 제어 설정은 적용되지 않습니다.
 * 온-프레미스 인증 로깅/감사 기능은 앱 암호에 사용할 수 없습니다
-* 특정 고급 아키텍처 디자인은 클라이언트와 2단계 인증을 사용하는 경우 조직의 사용자 이름, 암호 및 앱 암호의 조합이 필요할 수 있습니다. 그러나 이것은 인증 위치에 따라 다릅니다. 온-프레미스 인프라에 대해 인증하는 클라이언트의 경우 조직의 사용자 이름과 암호를 사용합니다. Azure AD에 대해 인증 하는 클라이언트 hello 앱 암호를 사용 합니다.
+* 특정 고급 아키텍처 디자인은 클라이언트와 2단계 인증을 사용하는 경우 조직의 사용자 이름, 암호 및 앱 암호의 조합이 필요할 수 있습니다. 그러나 이것은 인증 위치에 따라 다릅니다. 온-프레미스 인프라에 대해 인증하는 클라이언트의 경우 조직의 사용자 이름과 암호를 사용합니다. Azure AD에 대해 인증하는 클라이언트의 경우 앱 암호를 사용합니다.
 
   예를 들어 다음과 같은 인스턴스로 구성된 아키텍처가 있다고 가정합니다.
 
@@ -251,46 +251,46 @@ Azure AD는 온-프레미스 Windows Server Active Directory Domain Services(AD 
 
   이러한 경우 다음 단계를 따라야 합니다.
 
-  * 서명 하는 경우-tooLync를 사용 하 여 조직의 사용자 이름 및 암호.
-  * TooExchange 온라인에 연결 하는 Outlook 클라이언트를 통해 tooaccess hello 주소록을 시도할 때 앱 암호를 사용 합니다.
+  * Lync에 로그인하는 경우 조직의 사용자 이름 및 암호를 사용합니다.
+  * 온라인으로 Exchange에 연결하는 Outlook 클라이언트를 통해 주소록에 액세스하려는 경우 앱 암호를 사용합니다.
 
 ### <a name="allow-app-password-creation"></a>앱 암호 만들기 허용
-기본적으로 사용자가 앱 암호를 만들 수는 없지만 hello 기능을 직접 사용할 수 있습니다. tooallow 사용자 기능 toocreate 앱 암호를 hello, 절차를 수행 하는 hello를 사용 하 여:
+기본적으로 사용자가 앱 암호를 만들 수는 없지만 기능을 직접 사용할 수 있습니다. 사용자가 앱 암호를 만들 수 있으려면 다음 절차를 수행합니다.
 
-1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
-2. 이 문서의 hello 시작 시 hello 지침 당 toohello MFA 서비스 설정 페이지를 이동 합니다.
-3. 다음 너무 hello 라디오 단추를 선택**비 브라우저 앱에 사용자가 toocreate 앱 암호 toosign 허용**합니다.
+1. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인합니다.
+2. 이 문서의 시작 부분에 지침에 따라 MFA 서비스 설정 페이지로 이동합니다.
+3. **사용자가 비 브라우저 앱에 로그인하도록 앱 암호를 만들 수 있습니다** 옆의 라디오 단추가 선택합니다.
 
 ![앱 암호 만들기](./media/multi-factor-authentication-whats-next/trustedips3.png)
 
 ### <a name="create-app-passwords"></a>앱 암호 만들기
-사용자가 초기 등록을 하는 동안 앱 암호를 만들 수 있습니다. Toocreate 앱 암호 수 있게 해 주는 hello 등록 프로세스의 hello 끝에는 옵션을 제공 됩니다.
+사용자가 초기 등록을 하는 동안 앱 암호를 만들 수 있습니다. 등록 프로세스가 앱 암호를 만들 수 있도록 하는 등록 프로세스의 끝에 옵션이 제공됩니다.
 
-사용자는 등록 후 앱 암호를 만들 수도 있습니다. Hello Azure 포털 또는 hello Office 365 포털에서에서 해당 설정을 변경 하 여 hello 앱 암호를 만들 수 있습니다. 사용자에 대한 자세한 내용과 세부 단계는 [Azure Multi-factor Authentication에서 앱 암호란](./end-user/multi-factor-authentication-end-user-app-passwords.md)을 참조하세요.
+사용자는 등록 후 앱 암호를 만들 수도 있습니다. Azure Portal 또는 Office 365 포털에서 해당 설정을 변경하여 앱 암호를 만들 수 있습니다 사용자에 대한 자세한 내용과 세부 단계는 [Azure Multi-factor Authentication에서 앱 암호란](./end-user/multi-factor-authentication-end-user-app-passwords.md)을 참조하세요.
 
 ## <a name="remember-multi-factor-authentication-for-devices-that-users-trust"></a>사용자가 신뢰하는 장치에 대한 Multi-Factor Authentication 기억
-사용자가 신뢰하는 장치 및 브라우저에 대한 Multi-Factor Authentication 기억은 모든 MFA 사용자에 대해 무료로 사용할 수 있는 기능입니다. Multi-factor authentication에서는 사용자가 tooby 패스는 로그인 일 수에 대 한 MFA. 이 기능은 hello 횟수 사용자 hello에서 2 단계 인증을 수행할 수를 최소화 하 여 유용성을 향상 시킵니다. 동일한 장치입니다.
+사용자가 신뢰하는 장치 및 브라우저에 대한 Multi-Factor Authentication 기억은 모든 MFA 사용자에 대해 무료로 사용할 수 있는 기능입니다. 다단계 인증을 통해 사용자는 로그인 후 설정된 며칠 동안 MFA를 바이패스할 수 있습니다. 이 기능은 사용자가 동일한 장치에서 2단계 인증을 수행하는 횟수를 최소화함으로써 유용성을 향상시킬 수 있습니다.
 
-그러나 계정 또는 장치가 손상된 경우 신뢰할 수 있는 장치의 MFA를 기억해두는 것이 보안에 도움이 될 수 있습니다. 회사 계정이 손상 되 또는 신뢰할 수 있는 장치를 분실 하거나 도난당 한 경우 해야 너무[모든 장치에서 Multi-factor Authentication을 복원](multi-factor-authentication-manage-users-and-devices.md#restore-mfa-on-all-remembered-devices-for-a-user)합니다. 이 작업의 모든 장치에 신뢰할 수 있는 hello 상태를 취소 하 고 hello 사용자가 필요한 tooperform 2 단계 확인을 다시 합니다. Hello 지침이 포함 된 자신의 장치에 사용자가 toorestore MFA을 지시할 수 있습니다에 [2 단계 인증에 대 한 설정을 관리](./end-user/multi-factor-authentication-end-user-manage-settings.md#require-two-step-verification-again-on-a-device-youve-marked-as-trusted)
+그러나 계정 또는 장치가 손상된 경우 신뢰할 수 있는 장치의 MFA를 기억해두는 것이 보안에 도움이 될 수 있습니다. 회사 계정이 손상되거나 신뢰할 수 있는 장치를 분실 또는 도난당한 경우 [모든 장치에서 Multi-Factor Authentication을 복원](multi-factor-authentication-manage-users-and-devices.md#restore-mfa-on-all-remembered-devices-for-a-user)해야 합니다. 이 작업은 모든 장치에서 신뢰할 수 있는 상태를 해지하고 사용자는 2단계 인증을 다시 수행해야 합니다. [2단계 인증을 위한 설정 관리](./end-user/multi-factor-authentication-end-user-manage-settings.md#require-two-step-verification-again-on-a-device-youve-marked-as-trusted)의 내용에 따라 사용자에게 자신의 장치에서 MFA를 복원하도록 지시할 수도 있습니다.
 
 ### <a name="how-it-works"></a>작동 방법
 
-Multi-factor Authentication 사용자 체크 hello hello 브라우저에 영구 쿠키를 설정 하 여 작동 기억 "동안 다시 묻지 않음 **X** 일" 상자에 로그인 합니다. hello 않습니다 메시지가 MFA에 대 한 다시 해당 브라우저에서 hello 쿠키가 만료 될 때까지. Hello 사용자에서 다른 브라우저를가 경우 동일한 장치 또는 지웁니다 hello 싱크의 쿠키 증명된 tooverify 다시 됩니다. 
+사용자가 로그인 시 "**X**일 동안 다시 묻지 않음" 상자를 선택한 경우 브라우저에서 영구 쿠키를 설정하여 Multi-Factor Authentication을 작동합니다. 쿠키가 만료될 때까지는 해당 브라우저에서 MFA를 다시 요청하는 메시지가 사용자에게 표시되지 않습니다. 사용자가 동일한 장치에서 다른 브라우저를 열거나 쿠키를 지우는 경우 다시 확인하라는 메시지가 표시됩니다. 
 
-hello "동안 다시 묻지 않음 **X** 일" 최신 인증을 지원 하는지 여부 확인란 비 브라우저 앱에 표시 되지 않습니다. 이러한 앱에서는 1시간마다 새로운 액세스 토큰을 제공하는 새로 고침 토큰을 사용합니다. 새로 고침 토큰의 유효성을 검사 하는 경우 Azure AD hello 구성 된 기간 (일) 내에서 수행 된 hello 마지막 시간 2 단계 인증을 확인 합니다. 
+"**X**일 동안 다시 묻지 않음" 확인란은 최신 인증의 지원 여부에 관계없이 비브라우저 앱에는 표시되지 않습니다. 이러한 앱에서는 1시간마다 새로운 액세스 토큰을 제공하는 새로 고침 토큰을 사용합니다. 새로 고침 토큰의 유효성이 확인되면 Azure AD가 2단계 인증을 수행한 마지막 시간이 구성된 일 수 내에 있는지 확인합니다. 
 
-결론적으로 MFA 신뢰할 수 있는 장치에 기억 hello (요청 하는 일반적으로 때마다) 웹 앱의 인증 수를 줄입니다. 하지만 (요청 하는 일반적으로 90 일 마다) 클라이언트를 최신 인증에 대 한 인증 hello 수 증가 합니다.
+결론적으로 신뢰할 수 있는 장치에서 MFA를 기억하면 웹앱의 인증 횟수가 줄어듭니다(일반적으로는 인증할 때마다 요청). 하지만 최신 인증 클라이언트에서는 인증 횟수가 늘어납니다(일반적으로 90일마다 요청).
 
 > [!NOTE]
->이 기능은 사용자가 Azure MFA 서버 hello 통해 AD FS에 대 한 2 단계 인증 또는 제 3 자 MFA 솔루션을 수행할 때 AD FS의 hello "로그인 유지" 기능을 통해 호환 되지 않습니다. AD FS에서 "로그인 유지"를 선택 하 고도 MFA에 대 한으로 신뢰할 수 있는 장치를 표시 하는 사용자가 하는 경우 hello "기억 MFA" 일 수가 지나면 수 tooverify 되지 합니다. Azure AD는 새로운 2 단계 인증을 요청 하지만 AD FS hello 원래 MFA 클레임 및 2 단계 확인을 다시 수행 하는 대신 날짜와 함께 토큰을 반환 합니다. 이 프로세스에서는 Azure AD 및 AD FS 간의 확인 루프가 해제 설정됩니다. 
+>이 기능은 사용자가 Azure MFA Server 또는 타사 MFA 솔루션을 통해 AD FS에 대해 2단계 인증을 수행할 때 AD FS의 "로그인 유지" 기능과는 호환되지 않습니다. 사용자가 AD FS에서 "로그인 유지"를 선택하고 장치를 MFA에 대해 신뢰할 수 있는 것으로 표시한 경우 "MFA 기억" 일 수가 만료된 후에는 확인할 수 없습니다. Azure AD는 새로운 2단계 인증을 요청하지만 AD FS는 2단계 인증을 다시 수행하는 대신, 원본 MFA 클레임 및 날짜와 함께 토큰을 반환합니다. 이 프로세스에서는 Azure AD 및 AD FS 간의 확인 루프가 해제 설정됩니다. 
 
 ### <a name="enable-remember-multi-factor-authentication"></a>Multi-Factor Authentication 기억 사용
-1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
-2. 이 문서의 hello 시작 시 hello 지침 당 toohello MFA 서비스 설정 페이지를 이동 합니다.
-3. Hello 서비스 설정 페이지에서 사용자 장치 설정 관리, hello 확인 **신뢰 하는 장치에서 사용자가 tooremember 다단계 인증 허용** 상자입니다.
+1. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인합니다.
+2. 이 문서의 시작 부분에 지침에 따라 MFA 서비스 설정 페이지로 이동합니다.
+3. 서비스 설정 페이지의 사용자 장치 설정 관리 아래에서 **사용자가 신뢰하는 장치에 Multi-Factor Authentication을 기억하도록 허용** 상자를 선택합니다.
    ![장치 기억](./media/multi-factor-authentication-whats-next/remember.png)
-4. Hello tooallow hello 신뢰할 수 있는 장치 toobypass 2 단계 인증 일 수를 설정 합니다. hello 기본값은 14 일입니다.
-5. **Save**를 클릭합니다.
+4. 신뢰할 수 있는 장치가 2단계 인증을 바이패스하는 일수를 설정합니다. 기본값은 14일입니다.
+5. **저장**을 클릭합니다.
 6. **닫기**를 클릭합니다.
 
 ### <a name="mark-a-device-as-trusted"></a>장치를 신뢰할 수 있음으로 표시
@@ -300,21 +300,21 @@ hello "동안 다시 묻지 않음 **X** 일" 최신 인증을 지원 하는지 
 ![다시 묻지 않음 - 스크린샷](./media/multi-factor-authentication-whats-next/trusted.png)
 
 ## <a name="selectable-verification-methods"></a>선택 가능한 확인 방법
-사용자에 대해 어떤 인증 방법을 사용할지를 선택할 수 있습니다. 다음 표에서 hello 각 방법의 간략 한 개요를 제공 합니다.
+사용자에 대해 어떤 인증 방법을 사용할지를 선택할 수 있습니다. 다음 표에서는 각 방법의 간략한 개요를 제공합니다.
 
-사용자가 MFA에 대 한 자신의 계정을 등록 하는 경우 사용 하도록 설정한 hello 옵션의 기본 설정된 확인 방법을 선택 합니다. 등록 프로세스에 대 한 hello 지침에 대해서는 [2 단계 인증에 대 한 내 계정 설정](multi-factor-authentication-end-user-first-time.md)
+사용자가 자신의 계정을 MFA를 등록하는 경우 사용하도록 설정한 옵션에서 해당하는 기본 확인 방법을 선택합니다. 등록 프로세스에 대한 지침은 [2단계 인증에 내 계정 설정](multi-factor-authentication-end-user-first-time.md)에서 다룹니다.
 
 | 메서드 | 설명 |
 |:--- |:--- |
-| Toophone 호출 |자동 음성 전화를 겁니다. hello 사용자 답변 hello 호출 및 hello 전화 키패드 tooauthenticate 우물 정자 합니다. 이 전화 번호는 동기화 된 tooon 온-프레미스 Active Directory 없습니다. |
-| 텍스트 메시지 toophone |확인 코드를 포함하는 문자 메시지를 보냅니다. hello 사용자는 증명된 tooeither 회신 toohello 텍스트 메시지 hello 확인 코드 또는 hello 로그인 인터페이스에 tooenter hello 확인 코드입니다. |
-| 모바일 앱을 통한 알림 |푸시 알림 tooyour 휴대폰 이나 등록 된 장치에 보냅니다. hello 사용자 hello 알림을 보면서 선택 **확인** toocomplete 확인 합니다. <br>hello Microsoft Authenticator 앱에 사용할 수 있는 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071), [Android](http://go.microsoft.com/fwlink/?Linkid=825072), 및 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)합니다. |
-| 모바일 앱의 확인 코드 |hello Microsoft Authenticator 앱 30 초 마다 새 OATH 코드를 생성 합니다. hello 사용자가 hello 로그인 인터페이스에이 확인 코드를 입력 합니다.<br>hello Microsoft Authenticator 앱에 사용할 수 있는 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071), [Android](http://go.microsoft.com/fwlink/?Linkid=825072), 및 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)합니다. |
+| 휴대폰에 전화 걸기 |자동 음성 전화를 겁니다. 사용자가 전화를 받고 휴대폰 키패드에서 #을 눌러 인증합니다. 이 전화 번호는 온-프레미스 Active Directory와 동기화되지 않습니다. |
+| 휴대폰에 문자 메시지 전송 |확인 코드를 포함하는 문자 메시지를 보냅니다. 사용자는 확인 코드로 문자 메시지에 응답하거나 또는 로그인 인터페이스에 확인 코드를 입력하도록 요구됩니다. |
+| 모바일 앱을 통한 알림 |휴대폰이나 등록된 장치로 푸시 알림을 보냅니다. 사용자는 알림을 보고 **확인**을 선택하여 인증을 완료합니다. <br>[Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071), [Android](http://go.microsoft.com/fwlink/?Linkid=825072) 및 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073) 장치의 경우 Microsoft Authenticator 앱을 사용할 수 있습니다. |
+| 모바일 앱의 확인 코드 |Microsoft Authenticator 앱은 30초마다 새로운 OATH 확인 코드를 생성합니다. 사용자는 로그인 인터페이스에 이 확인 코드를 입력합니다.<br>[Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071), [Android](http://go.microsoft.com/fwlink/?Linkid=825072) 및 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073) 장치의 경우 Microsoft Authenticator 앱을 사용할 수 있습니다. |
 
-### <a name="how-tooenabledisable-authentication-methods"></a>어떻게 tooenable/사용 안 함 인증 방법
-1. Toohello 로그인 [Azure 클래식 포털](https://manage.windowsazure.com)합니다.
-2. 이 문서의 hello 시작 시 hello 지침 당 toohello MFA 서비스 설정 페이지를 이동 합니다.
-3. Hello 서비스 설정 페이지 확인 옵션 아래 선택/선택 취소할 toouse hello 옵션입니다.
+### <a name="how-to-enabledisable-authentication-methods"></a>인증 방법을 활성화/비활성화하는 방법
+1. [Azure 클래식 포털](https://manage.windowsazure.com)에 로그인합니다.
+2. 이 문서의 시작 부분에 지침에 따라 MFA 서비스 설정 페이지로 이동합니다.
+3. 서비스 설정 페이지의 확인 옵션에서 사용할 옵션을 선택/선택 취소합니다.
    ![확인 옵션](./media/multi-factor-authentication-whats-next/authmethods.png)
 4. **저장**을 클릭합니다.
 5. **닫기**를 클릭합니다.

@@ -1,6 +1,6 @@
 ---
-title: "Azure 관리 캐시 서비스 응용 프로그램 tooRedis-aaaMigrate | Microsoft Docs"
-description: "자세한 내용은 방법 toomigrate 관리 캐시 서비스 및 역할 내 캐시 응용 프로그램 tooAzure Redis 캐시"
+title: "Redis로 Managed Cache Service 응용 프로그램 마이그레이션 - Azure | Microsoft Docs"
+description: "Managed Cache Service 및 In-Role Cache 응용 프로그램을 Azure Redis Cache로 마이그레이션하는 방법에 대해 알아봅니다."
 services: redis-cache
 documentationcenter: na
 author: steved0x
@@ -14,78 +14,78 @@ ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
 ms.date: 05/30/2017
 ms.author: sdanie
-ms.openlocfilehash: bd81722820acf0d2637828fbb6100c723aafeba5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0fbfb945c66926794721f2ce8cc183dac51ecb27
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="migrate-from-managed-cache-service-tooazure-redis-cache"></a>관리 캐시 서비스 tooAzure Redis Cache에서 마이그레이션
-Azure 관리 캐시 서비스 tooAzure Redis Cache를 사용 하는 응용 프로그램을 마이그레이션하는 캐싱 응용 프로그램에 사용 되는 hello 관리 캐시 서비스 기능에 따라 최소한의 변경 tooyour 응용 프로그램으로 수행할 수 있습니다. Hello Api는 hello 정확히 동일한은 유사 하 고, 관리 캐시 서비스 tooaccess 캐시를 사용 하는 기존 코드의 대부분 최소한의 변경으로 다시 사용할 수입니다. 이 항목 변경 내역을 보여 toomake hello 필요한 구성 및 응용 프로그램 toomigrate 관리 캐시 서비스 응용 프로그램 toouse Azure Redis 캐시 하 고 Azure Redis Cache의 hello 기능의 일부만 사용 하는 tooimplement hello 기능 수 있는 방법을 보여 줍니다. 관리 캐시 서비스 캐시 합니다.
+# <a name="migrate-from-managed-cache-service-to-azure-redis-cache"></a>관리된 캐시 서비스에서 Azure Redis Cache로 마이그레이션
+Azure 관리된 캐시 서비스를 Azure Redis Cache에 사용하는 응용 프로그램을 마이그레이션하는 작업은 캐싱 응용 프로그램에서 사용하는 관리된 캐시 서비스 기능에 따라 응용 프로그램을 최소한으로 변경하여 수행할 수 있습니다. API가 정확히 동일하지 않고 유사하며 캐시에 액세스하는 데 관리된 캐시 서비스를 사용하는 기존 코드의 대부분은 변경을 최소화하면서 다시 사용할 수 있습니다. 이 항목에서는 필요한 구성을 만들고 응용 프로그램을 변경하여 관리된 캐시 서비스 응용 프로그램이 Azure Redis Cache를 사용하도록 마이그레이션하는 방법을 보여 줍니다. 그리고 Azure Redis Cache의 기능 일부가 관리된 캐시 서비스 캐시의 기능을 구현하는 데 사용될 수 있는 방법을 보여 줍니다.
 
 >[!NOTE]
->Managed Cache Service와 In-Role Cache는 2016년 11월 30일에 [사용 중지](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/)되었습니다. 원하는 toomigrate tooAzure Redis 캐시 모든 역할 내 캐시의 배포를 설정한 경우이 문서의 hello 단계를 따르면 됩니다.
+>Managed Cache Service와 In-Role Cache는 2016년 11월 30일에 [사용 중지](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/)되었습니다. Azure Redis Cache로 마이그레이션하려는 In-Role Cache 배포가 있는 경우 이 문서의 단계를 따를 수 있습니다.
 
 ## <a name="migration-steps"></a>마이그레이션 단계
-단계를 수행 하는 hello 필요한 toomigrate 관리 캐시 서비스 응용 프로그램 toouse Azure Redis 캐시 됩니다.
+다음 단계에서는 관리된 캐시 서비스 응용 프로그램을 마이그레이션하여 Azure Redis Cache를 사용해야 합니다.
 
-* 관리 캐시 서비스 기능 tooAzure Redis Cache 매핑
+* 관리된 캐시 서비스 기능에서 Azure Redis Cache로 매핑
 * 캐시 제품 선택
 * 캐시 만들기
-* Hello 캐시 클라이언트 구성
-  * Hello 관리 캐시 서비스 구성 제거
-  * Hello StackExchange.Redis NuGet 패키지를 사용 하 여 캐시 클라이언트 구성
+* 캐시 클라이언트 구성
+  * 관리된 캐시 서비스 구성 제거
+  * StackExchange.Redis NuGet 패키지를 사용하여 캐시 클라이언트 구성
 * 관리된 캐시 서비스 코드 마이그레이션
-  * Hello ConnectionMultiplexer 클래스를 사용 하 여 toohello 캐시를 연결 합니다.
-  * 기본 데이터 형식 hello 캐시에 액세스
-  * Hello 캐시에서.NET 개체 사용
-* ASP.NET 세션 상태 및 출력 tooAzure Redis 캐시 캐싱 마이그레이션 
+  * ConnectionMultiplexer 클래스를 사용하여 캐시에 연결
+  * 캐시에 기본 데이터 형식 액세스
+  * 캐시의 .NET 개체 사용
+* Azure Redis Cache로 ASP.NET 세션 상태 및 출력 캐싱 마이그레이션 
 
-## <a name="map-managed-cache-service-features-tooazure-redis-cache"></a>관리 캐시 서비스 기능 tooAzure Redis Cache 매핑
-Azure 관리된 캐시 서비스 및 Azure Redis Cache는 유사하지만 다른 방법으로 해당 기능 일부를 구현합니다. 이 섹션의 몇 가지 hello 차이점에 설명 하 고 Azure Redis Cache에 관리 캐시 서비스의 hello 기능 구현에 대 한 지침을 제공 합니다.
+## <a name="map-managed-cache-service-features-to-azure-redis-cache"></a>관리된 캐시 서비스 기능에서 Azure Redis Cache로 매핑
+Azure 관리된 캐시 서비스 및 Azure Redis Cache는 유사하지만 다른 방법으로 해당 기능 일부를 구현합니다. 이 섹션은 차이점 중 일부를 설명하고 Azure Redis Cache에서 관리된 캐시 서비스의 기능을 구현하는 데 대한 지침을 제공합니다.
 
 | 관리된 캐시 서비스 기능 | 관리된 캐시 서비스 지원 | Azure Redis Cache 지원 |
 | --- | --- | --- |
-| 이름이 지정된 캐시 |기본 캐시가 구성 되어 있으며 hello 표준 및 프리미엄 캐시 기능, 추가 toonine 명명 된 캐시 수 구성할 수 필요 합니다. |Azure Redis cache에 사용 되는 tooimplement 유사한 기능 toonamed 캐시 될 수 있는 (기본값 16) 데이터베이스의 구성 가능한 번호가 없습니다. 자세한 내용은 [Redis 데이터베이스란?](cache-faq.md#what-are-redis-databases) 및 [기본 Redis 서버 구성](cache-configure.md#default-redis-server-configuration)을 참조하세요. |
-| 고가용성 |Hello 표준 및 프리미엄 캐시 기능에 대 한 hello 캐시의 항목에 대 한 고가용성을 제공합니다. 항목이 tooa 오류로 인해 손실 된 경우 hello 캐시의 hello 항목의 백업 복사본을 사용할 수 있습니다. 보조 캐시 toohello 내용이 동기적으로 씁니다. |Hello 표준 및 프리미엄 캐시 기능에서 (각 분할 프리미엄 캐시에서 a가 주/복제본)는 2 개 노드 기본/복제본 구성을 포함 하는 고가용성 ´ ù. 쓰기 toohello 복제본이 비동기적으로 수행 됩니다. 자세한 내용은 [Azure Redis Cache 가격 책정](https://azure.microsoft.com/pricing/details/cache/)을 참조하세요. |
-| 알림 |명명된 된 캐시에서 클라이언트가 tooreceive 비동기 알림을 때 다양 한 캐시 작업이 발생할 수 있습니다. |클라이언트 응용 프로그램이 Redis pub/sub를 사용할 수 또는 [키 스페이스 알림에서](cache-configure.md#keyspace-notifications-advanced-settings) tooachieve 유사한 기능 toonotifications 합니다. |
-| 로컬 캐시 |매우 빠른 액세스에 대 한 hello 클라이언트에서 캐시 된 개체의 복사본을 로컬로 저장합니다. |클라이언트 응용 프로그램 사전 또는 유사한 데이터 구조를 사용 하 여이 기능 tooimplement이 필요 합니다. |
-| 제거 정책 |없음 또는 LRU입니다. hello 기본 정책은 LRU입니다. |Azure Redis Cache 지원 제거 정책에 따라 hello: volatile lru, lru allkeys, volatile 임의 allkeys 임의 volatile ttl, noeviction 합니다. hello 기본 정책은 lru volatile입니다. 자세한 내용은 [기본 Redis 서버 구성](cache-configure.md#default-redis-server-configuration)을 참조하세요. |
-| 만료 정책 |hello 기본 만료 정책은 절대 이며 hello 기본 만료 간격은 10 분입니다. 또한 슬라이딩 및 없음 정책을 사용할 수 있습니다. |기본적으로 hello 캐시에서 항목이 만료 되지 않고, 않지만 캐시 집합 오버 로드를 사용 하 여 쓰기 단위로 만료를 구성할 수 있습니다. 자세한 내용은 참조 [hello 캐시에서 개체를 추가 및 검색 하 고](cache-dotnet-how-to-use-azure-redis-cache.md#add-and-retrieve-objects-from-the-cache)합니다. |
-| 지역 및 태깅 |지역은 캐시된 항목에 대한 하위 그룹입니다. 또한 영역은 태그 라는 추가 설명 문자열로 된 캐시 된 항목의 hello 주석을 지원 합니다. 영역은 해당 지역에서 태그가 지정된 된 항목에 대 한 hello 기능 tooperform 검색 작업을 지원합니다. 영역 내에서 모든 항목이 hello 캐시 클러스터의 단일 노드 내에 배치 됩니다. |Redis cache 이루어지며 단일 노드의 (Redis 클러스터를 사용 하지 않으면) 관리 캐시 서비스 영역의 개념이 hello 적용 되지 않습니다. 검색 지원 및 와일드 카드 연산 redis는 설명 태그 hello 키 이름 내에 포함할 수 고 tooretrieve hello 항목을 나중에 사용 되는 키를 검색할 때 합니다. Redis를 사용하는 태그 지정 솔루션을 구현하는 예는 [Redis로 태그를 지정하는 캐시 구현](http://stackify.com/implementing-cache-tagging-redis/)을 참조하세요. |
-| 직렬화 |관리 되는 캐시는 NetDataContractSerializer, BinaryFormatter 및 사용자 지정 serializer의 hello 사용을 지원합니다. hello 기본값은 NetDataContractSerializer입니다. |hello hello 클라이언트 응용 프로그램 tooserialize.NET 개체의 toohello 클라이언트 응용 프로그램 개발자를 hello serializer의 hello choice가 있는 hello 캐시에 추가 하기 전에 합니다. 자세한 내용 및 예제 코드에 대 한 참조 [hello 캐시에서.NET 개체 사용](cache-dotnet-how-to-use-azure-redis-cache.md#work-with-net-objects-in-the-cache)합니다. |
-| 캐시 에뮬레이터 |관리되는 캐시는 로컬 캐시 에뮬레이터를 제공합니다. |Azure Redis Cache는 에뮬레이터 필요는 없지만 할 수 있습니다 [redis server.exe의 hello MSOpenTech 빌드를 로컬로 실행](cache-faq.md#cache-emulator) tooprovide 에뮬레이터 경험 합니다. |
+| 이름이 지정된 캐시 |기본 캐시는 표준 및 프리미엄 캐시 제품에서 구성됩니다. 원하는 경우 최대 9개의 추가 명명된 캐시가 구성될 수 있습니다. |Azure Redis Cache에는 명명된 캐시와 유사한 기능을 구현하는 데 사용할 수 있는 여러 개의 구성 가능한 데이터베이스(기본 16개)가 있습니다. 자세한 내용은 [Redis 데이터베이스란?](cache-faq.md#what-are-redis-databases) 및 [기본 Redis 서버 구성](cache-configure.md#default-redis-server-configuration)을 참조하세요. |
+| 고가용성 |표준 및 프리미엄 캐시 제품의 캐시에서 항목에 고가용성을 제공합니다. 항목이 오류로 인해 손실된 경우 여전히 캐시에서 항목의 백업 복사본을 사용할 수 있습니다. 보조 캐시에 대한 쓰기는 동기적으로 수행됩니다. |고가용성은 두 개의 노드 기본/복제본 구성(프리미엄 캐시의 각 분할에는 하나의 기본/복제본 쌍이 있음)이 있는 표준 및 프리미엄 캐시 제품에서 사용할 수 있습니다. 복제본에 대한 쓰기는 비동기적으로 수행됩니다. 자세한 내용은 [Azure Redis Cache 가격 책정](https://azure.microsoft.com/pricing/details/cache/)을 참조하세요. |
+| 알림 |명명된 캐시에서 다양한 캐시 작업이 발생할 때 클라이언트가 비동기 알림을 받을 수 있습니다. |클라이언트 응용 프로그램은 Redis 게시/구독 또는 [Keyspace 알림](cache-configure.md#keyspace-notifications-advanced-settings) 을 사용하여 알림에 유사한 기능을 수행할 수 있습니다. |
+| 로컬 캐시 |매우 빠른 액세스를 위해 클라이언트에서 캐시된 개체의 복사본을 로컬로 저장합니다. |클라이언트 응용 프로그램은 사전 또는 유사한 데이터 구조를 사용하여 이 기능을 구현해야 합니다. |
+| 제거 정책 |없음 또는 LRU입니다. 기본 정책이 LRU입니다. |Azure Redis Cache는 다음의 제거 정책을 지원합니다. volatile-lru, allkeys-lru, volatile-random, allkeys-random, volatile-ttl, noeviction. 기본 정책이 volatile-lru입니다. 자세한 내용은 [기본 Redis 서버 구성](cache-configure.md#default-redis-server-configuration)을 참조하세요. |
+| 만료 정책 |기본 만료 정책은 절대이며 기본 만료 시간은 10분입니다. 또한 슬라이딩 및 없음 정책을 사용할 수 있습니다. |기본적으로 캐시의 항목이 만료되지 않지만 만료는 캐시 집합 오버로드를 사용하여 쓰기 단위로 구성할 수 있습니다. 자세한 내용은 [캐시에서 개체 추가 및 검색](cache-dotnet-how-to-use-azure-redis-cache.md#add-and-retrieve-objects-from-the-cache)을 참조하세요. |
+| 지역 및 태깅 |지역은 캐시된 항목에 대한 하위 그룹입니다. 또한 지역은 태그라는 추가 설명 문자열을 사용하여 캐시된 항목의 주석을 지원합니다. 지역은 해당 지역에서 태그가 지정된 항목에 검색 작업을 수행하는 기능을 지원합니다. 지역 내의 모든 항목은 캐시 클러스터의 단일 노드 내에 위치합니다. |Redis Cache는 단일 노드로 이루어지므로(Redis 클러스터를 사용하지 않는 한) 관리된 캐시 서비스 지역의 개념이 적용되지 않습니다. Redis는 키를 검색할 때 검색 및 와일드카드 작업을 지원하므로 설명 태그를 키 이름 내에 포함하고 나중에 항목을 검색하는 데 사용할 수 있습니다. Redis를 사용하는 태그 지정 솔루션을 구현하는 예는 [Redis로 태그를 지정하는 캐시 구현](http://stackify.com/implementing-cache-tagging-redis/)을 참조하세요. |
+| 직렬화 |관리된 캐시는 NetDataContractSerializer, BinaryFormatter 및 사용자 지정 직렬 변환기의 사용을 지원합니다. 기본값은 NetDataContractSerializer입니다. |직렬 변환기의 선택은 클라이언트 응용 프로그램 개발자에게 맡겨지며 캐시에 두기 전에 .NET 개체를 직렬화하는 것은 클라이언트 응용 프로그램의 책임입니다. 자세한 내용 및 샘플 코드는 [캐시의 .NET 개체 작업](cache-dotnet-how-to-use-azure-redis-cache.md#work-with-net-objects-in-the-cache)을 참조하세요. |
+| 캐시 에뮬레이터 |관리되는 캐시는 로컬 캐시 에뮬레이터를 제공합니다. |Azure Redis Cache에는 에뮬레이터가 없지만 [redis-server.exe의 MSOpenTech 빌드를 로컬로 실행](cache-faq.md#cache-emulator) 하여 에뮬레이터 환경을 제공할 수 있습니다. |
 
 ## <a name="choose-a-cache-offering"></a>캐시 제품 선택
-Microsoft Azure Redis Cache는 hello 다음 계층에서에서 제공 됩니다.
+Microsoft Azure Redis 캐시는 다음 계층에서 사용할 수 있습니다.
 
-* **기본** – 단일 노드. Too53 GB 여러 크기입니다.
-* **표준** – 2노드 주/복제본. Too53 GB 여러 크기입니다. 99.9% SLA
-* **프리미엄** – 두 노드 주/복제본와 시작 too10 분할 된 데이터베이스입니다. GB too530 6GB 여러 크기입니다. 모든 표준 계층 기능과 추가적인 [Redis 클러스터](cache-how-to-premium-clustering.md), [Redis 지속성](cache-how-to-premium-persistence.md) 및 [Azure Virtual Network](cache-how-to-premium-vnet.md) 지원이 포함됩니다. 99.9% SLA
+* **기본** – 단일 노드. 최대 53GB까지 여러 개의 크기
+* **표준** – 2노드 주/복제본. 최대 53GB까지 여러 개의 크기 99.9% SLA
+* **프리미엄** – 최대 10개 분할 데이터베이스와 2노드 주/복제본. 6GB ~ 530GB에 이르는 여러 개의 크기 모든 표준 계층 기능과 추가적인 [Redis 클러스터](cache-how-to-premium-clustering.md), [Redis 지속성](cache-how-to-premium-persistence.md) 및 [Azure Virtual Network](cache-how-to-premium-vnet.md) 지원이 포함됩니다. 99.9% SLA
 
-각 계층은 기능과 가격이 다릅니다. hello 기능 나와이 가이드의 뒷부분에 나오는 한 가격 책정에 대 한 자세한 내용은 참조 하십시오. [캐시 가격 정보](https://azure.microsoft.com/pricing/details/cache/)합니다.
+각 계층은 기능과 가격이 다릅니다. 기능에 대해서는 이 가이드의 뒷부분에서 다룹니다. 가격에 대한 자세한 내용은 [캐시 가격 정보](https://azure.microsoft.com/pricing/details/cache/)를 참조하세요.
 
-마이그레이션에 대 한 시작 지점을 이전 처럼 관리 캐시 서비스 캐시의 hello 크기와 일치 하는 toopick hello 크기가 고 응용 프로그램의 hello 요구 사항에 따라 위나 아래로 이동을 확장 합니다. Hello 오른쪽 Azure Redis 캐시 제공 량을 선택에 대 한 자세한 지침을 참조 하십시오. [어떤 Redis 캐시 기능 및 크기 사용 해야 합니까?](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)합니다.
+마이그레이션을 위한 출발점은 이전의 관리된 캐시 서비스 캐시와 일치하는 크기를 선택하는 것입니다. 그런 다음 응용 프로그램의 요구 사항에 따라 크기를 확장하거나 축소합니다. 올바른 Azure Redis Cache 제품을 선택하는 데 대한 자세한 가이드는 [어떤 Redis Cache 제품 및 크기를 사용해야 하나요?](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)를 참조하세요.
 
 ## <a name="create-a-cache"></a>캐시 만들기
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
 
-## <a name="configure-hello-cache-clients"></a>Hello 캐시 클라이언트 구성
-Hello 캐시가 만들어지고 구성 되 면 hello 다음 단계는 tooremove hello 관리 캐시 서비스 구성 및이 hello를 추가 하는 캐시 클라이언트 hello 캐시에 액세스할 수 있도록 hello Azure Redis 캐시 구성 및 참조를 추가 합니다.
+## <a name="configure-the-cache-clients"></a>캐시 클라이언트 구성
+캐시를 만들고 구성하면 다음 단계에서는 관리된 캐시 서비스 구성을 제거하고 추가 Azure Redis Cache 및 참조를 추가하므로 캐시 클라이언트가 캐시에 액세스할 수 있습니다.
 
-* Hello 관리 캐시 서비스 구성 제거
-* Hello StackExchange.Redis NuGet 패키지를 사용 하 여 캐시 클라이언트 구성
+* 관리된 캐시 서비스 구성 제거
+* StackExchange.Redis NuGet 패키지를 사용하여 캐시 클라이언트 구성
 
-### <a name="remove-hello-managed-cache-service-configuration"></a>Hello 관리 캐시 서비스 구성 제거
-Hello 하기 전에 클라이언트 응용 프로그램이 Azure Redis Cache를 hello 기존 관리 캐시 서비스 구성에 대 한 구성 수 및 hello 관리 캐시 서비스 NuGet 패키지를 제거 하 여 어셈블리 참조를 제거 해야 합니다.
+### <a name="remove-the-managed-cache-service-configuration"></a>관리된 캐시 서비스 구성 제거
+클라이언트 응용 프로그램이 Azure Redis Cache에 대해 구성되기 전에 기존 관리된 캐시 서비스 구성 및 어셈블리 참조는 관리된 캐시 서비스 NuGet 패키지의 설치를 취소하여 제거해야 합니다.
 
-toouninstall hello 관리 캐시 서비스 NuGet 패키지에서 hello 클라이언트 프로젝트를 마우스 오른쪽 단추로 클릭 **솔루션 탐색기** 선택 **NuGet 패키지 관리**합니다. 선택 hello **설치 된 패키지** 노드와 형식 W**indowsAzure.Caching** hello에 검색 상자 패키지를 설치 합니다. 선택 **Windows** **Azure 캐시** (또는 **Windows** **Azure Caching** hello NuGet 패키지의 hello 버전에 따라), 클릭 **제거**, 클릭 하 고 **닫기**합니다.
+관리된 캐시 서비스 NuGet 패키지의 설치를 취소하려면 **솔루션 탐색기**에서 클라이언트 프로젝트를 마우스 오른쪽 단추로 클릭하고 **NuGet 패키지 관리**를 선택합니다. **설치된 패키지**를 선택하고 검색 설치된 패키지 상자에 **WindowsAzure.Caching**을 입력합니다. **Windows** **Azure 캐시**(또는 NuGet 패키지의 버전에 따라 **Windows** **Azure 캐싱**)을 선택하고 **제거** 및 **닫기**를 차례로 클릭합니다.
 
 ![Azure 관리된 캐시 서비스 NuGet 패키지 제거](./media/cache-migrate-to-redis/IC757666.jpg)
 
-Hello 관리 캐시 서비스 NuGet 패키지 제거 hello app.config 또는 web.config hello 클라이언트 응용 프로그램의 hello 관리 캐시 서비스 어셈블리와 hello 관리 캐시 서비스 항목을 제거 합니다. 일부 사용자 지정 된 설정을 hello NuGet 패키지를 제거할 때 제거 되지 않을 수 있습니다, 때문에 web.config 또는 app.config를 열고 확인 요소 다음 해당 hello 완전히 제거 됩니다.
+관리된 캐시 서비스 NuGet 패키지의 설치를 취소하면 클라이언트 응용 프로그램의 app.config 또는 web.config에서 관리된 캐시 서비스 어셈블리 및 관리된 캐시 서비스 항목을 제거합니다. NuGet 패키지를 제거하는 경우 일부 사용자 지정된 설정을 제거할 수 없기 때문에 web.config 또는 app.config를 열고 다음 요소가 완전히 제거되었는지 확인합니다.
 
-해당 hello 확인 `dataCacheClients` hello에서 항목이 제거 되 `configSections` 요소입니다. Hello 전체를 제거 하지 마십시오 `configSections` 요소; 방금 제거 hello `dataCacheClients` 항목을 제공 합니다.
+`dataCacheClients` 항목이 `configSections` 요소에서 제거되도록 합니다. 전체 `configSections` 요소를 제거하지 마세요. 표시된 `dataCacheClients` 항목만 제거합니다.
 
 ```xml
 <configSections>
@@ -94,17 +94,17 @@ Hello 관리 캐시 서비스 NuGet 패키지 제거 hello app.config 또는 web
 </configSections>
 ```
 
-해당 hello 확인 `dataCacheClients` 섹션이 제거 됩니다. hello `dataCacheClients` 섹션에는 다음 예제와 비슷한 toohello 됩니다.
+`dataCacheClients` 섹션이 제거되도록 합니다. `dataCacheClients` 섹션은 다음 예제와 비슷합니다.
 
 ```xml
 <dataCacheClients>
   <dataCacheClientname="default">
-    <!--toouse hello in-role flavor of Azure Cache, set identifier toobe hello cache cluster role name -->
-    <!--toouse hello Azure Managed Cache Service, set identifier toobe hello endpoint of hello cache cluster -->
+    <!--To use the in-role flavor of Azure Cache, set identifier to be the cache cluster role name -->
+    <!--To use the Azure Managed Cache Service, set identifier to be the endpoint of the cache cluster -->
     <autoDiscoverisEnabled="true"identifier="[Cache role name or Service Endpoint]"/>
 
     <!--<localCache isEnabled="true" sync="TimeoutBased" objectCount="100000" ttlValue="300" />-->
-    <!--Use this section toospecify security settings for connecting tooyour cache. This section is not required if your cache is hosted on a role that is a part of your cloud service. -->
+    <!--Use this section to specify security settings for connecting to your cache. This section is not required if your cache is hosted on a role that is a part of your cloud service. -->
     <!--<securityProperties mode="Message" sslEnabled="true">
       <messageSecurity authorizationInfo="[Authentication Key]" />
     </securityProperties>-->
@@ -112,31 +112,31 @@ Hello 관리 캐시 서비스 NuGet 패키지 제거 hello app.config 또는 web
 </dataCacheClients>
 ```
 
-Hello 관리 캐시 서비스 구성 제거 되 면 hello 다음 섹션에에서 설명 된 대로 hello 캐시 클라이언트를 구성할 수 있습니다.
+관리된 캐시 서비스 구성이 제거되면 다음 섹션에서 설명한 대로 캐시 클라이언트를 구성할 수 있습니다.
 
-### <a name="configure-a-cache-client-using-hello-stackexchangeredis-nuget-package"></a>Hello StackExchange.Redis NuGet 패키지를 사용 하 여 캐시 클라이언트 구성
+### <a name="configure-a-cache-client-using-the-stackexchangeredis-nuget-package"></a>StackExchange.Redis NuGet 패키지를 사용하여 캐시 클라이언트 구성
 [!INCLUDE [redis-cache-configure](../../includes/redis-cache-configure-stackexchange-redis-nuget.md)]
 
 ## <a name="migrate-managed-cache-service-code"></a>관리된 캐시 서비스 코드 마이그레이션
-hello StackExchange.Redis 캐시 클라이언트에 대 한 hello API와 비슷한 toohello 관리 캐시 서비스입니다. 이 섹션에서는 hello 차이점에 대 한 개요를 제공 합니다.
+StackExchange.Redis 캐시 클라이언트에 대한 API는 관리된 캐시 서비스와 유사합니다. 이 섹션에서는 차이점의 개요를 제공합니다.
 
-### <a name="connect-toohello-cache-using-hello-connectionmultiplexer-class"></a>Hello ConnectionMultiplexer 클래스를 사용 하 여 toohello 캐시를 연결 합니다.
-관리 캐시 서비스에서 연결 toohello 캐시 hello에 의해 처리 된 `DataCacheFactory` 및 `DataCache` 클래스입니다. Azure Redis Cache에서 hello 하 여 이러한 연결을 관리 `ConnectionMultiplexer` 클래스입니다.
+### <a name="connect-to-the-cache-using-the-connectionmultiplexer-class"></a>ConnectionMultiplexer 클래스를 사용하여 캐시에 연결
+관리된 캐시 서비스에서 캐시에 대한 연결은 `DataCacheFactory` 및 `DataCache` 클래스에서 처리됩니다. Azure Redis Cache에서 이러한 연결은 `ConnectionMultiplexer` 클래스로 관리됩니다.
 
-Hello 다음 추가 tooaccess hello 캐시 하려는 모든 파일의 문 toohello top 사용 합니다.
+캐시에 액세스하려는 파일의 상단에 다음 using 문을 추가합니다.
 
 ```c#
 using StackExchange.Redis
 ```
 
-이 네임 스페이스 해결 되지 않으면 수에 설명 된 대로 hello StackExchange.Redis NuGet 패키지를 추가 해야 [hello 캐시 클라이언트 구성](cache-dotnet-how-to-use-azure-redis-cache.md#configure-the-cache-clients)합니다.
+이 네임스페이스가 해결되지 않으면 [캐시 클라이언트 구성](cache-dotnet-how-to-use-azure-redis-cache.md#configure-the-cache-clients)에서 설명한 대로 StackExchange.Redis NuGet 패키지를 추가했는지 확인합니다.
 
 > [!NOTE]
-> Note hello StackExchange.Redis 클라이언트에.NET Framework 4 이상이 필요 합니다.
+> StackExchange.Redis 클라이언트를 사용하려면 .NET Framework 4 이상이 필요합니다.
 > 
 > 
 
-tooconnect tooan Azure Redis Cache 인스턴스 호출 hello 정적 `ConnectionMultiplexer.Connect` 메서드와 hello 끝점과 키를 전달 합니다. 한 가지 방법은 toosharing는 `ConnectionMultiplexer` 응용 프로그램에서 인스턴스가 toohave 비슷한 toohello 다음 예제에서는 연결 된 인스턴스를 반환 하는 정적 속성입니다. 스레드로부터 안전한 방식으로 tooinitialize 연결 하나만 제공 `ConnectionMultiplexer` 인스턴스. 이 예에서 `abortConnect` 연결 toohello 캐시 설정 되지 않으며 경우에 hello 호출은 성공 합니다 즉 집합 toofalse 됩니다. 주요 기능 중 하나 `ConnectionMultiplexer` 를 복원할 수는 자동으로 연결 toohello 캐시 hello 네트워크 문제 또는 다른 원인이 해결 되 면 됩니다.
+Azure Redis Cache 인스턴스에 연결하려면 정적 `ConnectionMultiplexer.Connect` 메서드를 호출하고 끝점 및 키에 전달합니다. 응용 프로그램의 `ConnectionMultiplexer` 인스턴스를 공유하는 방법은 다음 예제와 비슷하게 연결된 인스턴스를 반환하는 정적 속성을 갖는 것입니다. 스레드가 안전하도록 단일 연결된 `ConnectionMultiplexer` 인스턴스를 초기화하는 방법을 제공합니다. 이러한 예에서 `abortConnect` 은 false로 설정되며 이는 캐시에 연결이 설정되지 않은 경우에도 호출이 성공한다는 사실을 의미합니다. `ConnectionMultiplexer` 의 한 가지 주요 기능은 연결 네트워크 문제 또는 다른 원인이 해결되면 캐시에 연결이 자동으로 복원된다는 점입니다.
 
 ```c#
 private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
@@ -153,40 +153,40 @@ public static ConnectionMultiplexer Connection
 }
 ```
 
-hello 캐시 끝점, 키 및 포트에서에서 얻을 수 있습니다 hello **Redis Cache** 블레이드 캐시 인스턴스에 대 한 합니다. 자세한 내용은 [Redis Cache 속성](cache-configure.md#properties)을 참조하세요.
+캐시 끝점, 키 및 포트는 캐시 인스턴스에 대한 **Redis Cache** 블레이드에서 가져올 수 있습니다. 자세한 내용은 [Redis Cache 속성](cache-configure.md#properties)을 참조하세요.
 
-Hello 연결이 설정 되 면 별 참조 toohello Redis cache 데이터베이스 호출 hello `ConnectionMultiplexer.GetDatabase` 메서드. hello에서 반환 된 hello 개체 `GetDatabase` 메서드 경량의 통과 개체 이며 저장 toobe 필요는 없습니다.
+연결이 설정되고 나면 `ConnectionMultiplexer.GetDatabase` 메서드를 호출하여 Redis Cache 데이터베이스에 대한 참조를 반환합니다. `GetDatabase` 메서드에서 반환된 개체는 경량의 통과 개체이며 저장할 필요가 없습니다.
 
 ```c#
 IDatabase cache = Connection.GetDatabase();
 
-// Perform cache operations using hello cache object...
-// Simple put of integral data types into hello cache
+// Perform cache operations using the cache object...
+// Simple put of integral data types into the cache
 cache.StringSet("key1", "value");
 cache.StringSet("key2", 25);
 
-// Simple get of data types from hello cache
+// Simple get of data types from the cache
 string key1 = cache.StringGet("key1");
 int key2 = (int)cache.StringGet("key2");
 ```
 
-hello StackExchange.Redis 클라이언트 hello를 사용 하 여 `RedisKey` 및 `RedisValue` 형식에 액세스 하 고 hello 캐시에 항목을 저장 합니다. 이러한 형식은 문자열을 포함하여 가장 기본적인 언어 형식에 매핑되며 직접 사용되는 경우가 드뭅니다. Redis를 포함 하는 메서드를 사용 합니다 hello 형식을 직접 사용 하지 않을 수 있습니다 하는 동안 문자열 hello 가장 기본적인 종류의 Redis 값 이며 및 많은 종류의 직렬화 된 이진 스트림을 포함 하 여 데이터를 포함할 수 있습니다 및 `String` hello 이름에서. 대부분의 기본 데이터 형식에 대 한 저장 한 hello를 사용 하 여 hello 캐시에서 항목을 검색 `StringSet` 및 `StringGet` 메서드 컬렉션 또는 기타 Redis 데이터 형식을 hello 캐시에 저장 하지 않는 한 합니다. 
+StackExchange.Redis 클라이언트는 캐시의 항목에 액세스하고 저장하는 데 `RedisKey` 및 `RedisValue` 형식을 사용합니다. 이러한 형식은 문자열을 포함하여 가장 기본적인 언어 형식에 매핑되며 직접 사용되는 경우가 드뭅니다. Redis 문자열은 가장 기본적인 종류의 Redis 값이며 직렬화된 이진 스트림을 비롯한 다양한 형식의 데이터를 포함할 수 있습니다. 이 형식을 직접 사용하지 않는 반면 이름에 `String`을 포함하는 메서드를 사용합니다. 가장 기본적인 데이터 형식의 경우 캐시에 컬렉션 또는 기타 Redis 데이터 형식을 저장하지 않는 한 `StringSet` 및 `StringGet` 메서드를 사용하여 캐시에서 항목을 저장하고 검색합니다. 
 
-`StringSet`및 `StringGet` 매우 유사한 toohello 관리 캐시 서비스는 `Put` 및 `Get` 한 가지 큰 메서드를 설정 하 고 hello 캐시로.NET 개체를 가져오려면 먼저 serialize 해야 것 먼저 된 차이입니다. 
+`StringSet` 및 `StringGet`는 관리된 캐시 서비스 `Put` 및 `Get`와 매우 유사합니다. 이러한 결과를 가져오는 한 가지 주요 차이점은 캐시에 .NET 개체를 설정하고 가져오기 전에 먼저 직렬화해야 한다는 것입니다. 
 
-호출할 때 `StringGet`hello 개체가 있는 경우 반환 되는, 및 표시 되지 않는 경우 null이 반환 됩니다. 이 경우 hello 값 hello 원하는 데이터 원본에서 검색할 수 있으며 다음에 사용에 대 한 hello 캐시에 저장. 이 hello 캐시 배제 패턴 이라고 합니다.
+`StringGet` 호출 시 개체가 있으면 반환되고 없으면 null이 반환됩니다. 이 경우에는 원하는 데이터 소스에서 값을 검색하여 이후에 사용할 수 있게 캐시에 저장할 수 있습니다. 이를 캐시 배제 패턴이라고 합니다.
 
-hello 캐시를 사용 하 여 hello에 있는 항목의 toospecify hello 만료 `TimeSpan` 의 매개 변수 `StringSet`합니다.
+캐시에서 항목의 만료를 지정하려면 `StringSet`의 `TimeSpan` 매개 변수를 사용합니다.
 
 ```c#
 cache.StringSet("key1", "value1", TimeSpan.FromMinutes(90));
 ```
 
-Azure Redis Cache는 .NET 개체 및 기본 데이터 형식으로 작업할 수 있지만 .NET 개체를 캐시하려면 먼저 직렬화해야 합니다. Hello 응용 프로그램 개발자의 hello 책임입니다. 유연성 hello 개발자 hello serializer의 hello 선택에 있습니다. 자세한 내용 및 예제 코드에 대 한 참조 [hello 캐시에서.NET 개체 사용](cache-dotnet-how-to-use-azure-redis-cache.md#work-with-net-objects-in-the-cache)합니다.
+Azure Redis Cache는 .NET 개체 및 기본 데이터 형식으로 작업할 수 있지만 .NET 개체를 캐시하려면 먼저 직렬화해야 합니다. 이것은 응용 프로그램 개발자의 책임입니다. 직렬 변환기를 선택할 때 개발자에게 융통성을 제공합니다. 자세한 내용 및 샘플 코드는 [캐시의 .NET 개체 작업](cache-dotnet-how-to-use-azure-redis-cache.md#work-with-net-objects-in-the-cache)을 참조하세요.
 
-## <a name="migrate-aspnet-session-state-and-output-caching-tooazure-redis-cache"></a>ASP.NET 세션 상태 및 출력 tooAzure Redis 캐시 캐싱 마이그레이션
-Azure Redis Cache에는 ASP.NET 세션 상태 및 페이지 출력 캐싱 모두에 공급자가 있습니다. toomigrate hello 관리 캐시 서비스 버전의 이러한 공급자를 사용 하 여 응용 프로그램을 먼저 제거 web.config에서 기존 섹션 hello 고 hello Azure Redis Cache 버전의 hello 공급자를 구성 합니다. 사용 하는 방법은 Azure Redis 캐시 ASP.NET 공급자 hello, 참조 [Azure Redis Cache 용 ASP.NET 세션 상태 공급자](cache-aspnet-session-state-provider.md) 및 [Azure Redis Cache 용 ASP.NET 출력 캐시 공급자](cache-aspnet-output-cache-provider.md)합니다.
+## <a name="migrate-aspnet-session-state-and-output-caching-to-azure-redis-cache"></a>Azure Redis Cache로 ASP.NET 세션 상태 및 출력 캐싱 마이그레이션
+Azure Redis Cache에는 ASP.NET 세션 상태 및 페이지 출력 캐싱 모두에 공급자가 있습니다. 관리된 캐시 서비스 버전의 이러한 공급자를 사용하는 응용 프로그램을 마이그레이션하려면 먼저 web.config에서 기존 섹션을 제거하고 Azure Redis Cache 버전의 공급자를 구성합니다. Azure Redis Cache ASP.NET 공급자를 사용하는 데 대한 지침은 [Azure Redis Cache에 대한 ASP.NET 세션 상태 제공자](cache-aspnet-session-state-provider.md) 및 [Azure Redis Cache에 대한 ASP.NET 출력 캐시 공급자](cache-aspnet-output-cache-provider.md)를 참조하세요.
 
 ## <a name="next-steps"></a>다음 단계
-Hello 탐색 [Azure Redis Cache 설명서](https://azure.microsoft.com/documentation/services/cache/) 자습서, 샘플, 비디오, 등에.
+자습서, 샘플, 비디오, 등은 [Azure Redis Cache 설명서](https://azure.microsoft.com/documentation/services/cache/) 를 탐색합니다.
 

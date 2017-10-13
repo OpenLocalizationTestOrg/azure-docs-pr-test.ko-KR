@@ -1,6 +1,6 @@
 ---
-title: "지점 및 사이트 및 인증서 인증을 사용 하 여 컴퓨터 tooa 가상 네트워크에 연결: Azure 포털 | Microsoft Docs"
-description: "인증서 인증을 사용 하는 지점-사이트 VPN 게이트웨이 연결을 생성 하 여 컴퓨터 tooyour Azure 가상 네트워크를 안전 하 게 연결 합니다. 이 문서 toohello 리소스 관리자 배포 모델에 적용 하 고 hello Azure 포털을 사용 합니다."
+title: "지점 및 사이트 간 및 네이티브 Azure 인증서 인증을 사용하여 Azure Virtual Network에 컴퓨터 연결: Azure Portal| Microsoft Docs"
+description: "인증서 인증을 사용하여 지점 및 사이트 간 VPN 게이트웨이 연결을 만들어 Azure Virtual Network에 안전하게 컴퓨터를 연결합니다. 이 문서는 Resource Manager 배포 모델에 적용되며 Azure Portal을 사용합니다."
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -13,61 +13,70 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 08/10/2017
+ms.date: 09/25/2017
 ms.author: cherylmc
-ms.openlocfilehash: 1419d6b4c160140b62d656b25bd02f6af7fd6655
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fbb3bb5f538d1d26b6fe8d653724d80faf96e277
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="configure-a-point-to-site-connection-tooa-vnet-using-certificate-authentication-azure-portal"></a>지점 및 사이트 연결 tooa VNet 구성 인증서 인증을 사용 하 여: Azure 포털
+# <a name="configure-a-point-to-site-connection-to-a-vnet-using-native-azure-certificate-authentication-azure-portal"></a>네이티브 Azure 인증서 인증을 사용하여 VNet에 지점 및 사이트 간 연결 구성: Azure portal
 
-이 문서 toocreate hello 리소스 관리자 배포 사용 하 여 모델에서 지점 및 사이트 연결 VNet Azure 포털을 hello 하는 방법을 보여 줍니다. 이 구성은 인증서 tooauthenticate hello 클라이언트 연결을 사용 합니다. 또한 서로 다른 배포 도구 또는 배포 모델을 사용 하 여 hello 다음 목록에서에서 다른 옵션을 선택 하 여이 구성을 만들 수 있습니다.
+이 문서에서는 Resource Manager 배포 모델에서 PowerShell을 사용하여 지점 및 사이트 간 연결로 VNet을 만드는 방법을 보여줍니다. 이 구성에서는 인증에 인증서를 사용합니다. 이 구성에서 Azure VPN Gateway는 RADIUS 서버 대신 인증서의 유효성 검사를 수행합니다. 다른 배포 도구 또는 배포 모델을 사용하는 경우 다음 목록에서 별도의 옵션을 선택하여 이 구성을 만들 수도 있습니다.
 
 > [!div class="op_single_selector"]
-> * [Azure 포털](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
+> * [Azure Portal](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
 > * [PowerShell](vpn-gateway-howto-point-to-site-rm-ps.md)
 > * [Azure Portal(클래식)](vpn-gateway-howto-point-to-site-classic-azure-portal.md)
 >
 >
 
-지점 및 사이트 간 (P2S) VPN 게이트웨이 사용 하면 개별 클라이언트 컴퓨터에서 보안 연결 tooyour 가상 네트워크를 만들 수 있습니다. 지점-사이트 VPN 연결은 tooconnect tooyour 가정 이나 회의에서 통신 하는 경우 등의 원격 위치에서 VNet을 원하는 경우에 유용 합니다. P2S VPN tooconnect tooa VNet을 필요로 하는 몇 가지 클라이언트만 있으면 사이트 간 VPN 대신 유용한 솔루션 toouse 이기도 합니다. 
+지점 및 사이트 간(P2S) VPN Gateway를 통해 개별 클라이언트 컴퓨터에서 가상 네트워크에 안전한 연결을 만들 수 있습니다. 지점 및 사이트 간 VPN 연결은 집 또는 회의에서 원격 통신하는 경우와 같이 원격 위치에서 VNet에 연결하려는 경우에 유용합니다. VNet에 연결해야 하는 몇 가지 클라이언트만 있는 경우에 사이트 간 VPN 대신 P2S VPN을 사용하는 것도 유용한 솔루션입니다. P2S VPN 연결은 Windows 및 Mac 장치에서 시작됩니다.
 
-P2S 사용 하 여 hello 소켓 SSTP Secure Tunneling Protocol (), SSL 기반 VPN 프로토콜인 합니다. Hello 클라이언트 컴퓨터에서 시작 하 여 P2S VPN을 연결 됩니다.
+다음 인증 방법은 클라이언트를 연결하는 데 사용할 수 있습니다.
 
-![지점 및 사이트 간 다이어그램](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/point-to-site-connection-diagram.png)
+* RADIUS 서버 - 현재 미리 보기 상태
+* VPN Gateway 네이티브 Azure 인증서 인증
 
-지점 및 사이트 인증서 인증 연결 hello 다음에 필요 합니다.
+이 문서에서는 네이티브 Azure 인증서 인증을 사용하는 인증으로 P2S 구성을 구성하도록 합니다. RADIUS를 사용하여 사용자를 연결하도록 인증하려는 경우 [RADIUS 인증을 사용하는 P2S](point-to-site-how-to-radius-ps.md)를 참조하세요.
+
+![Azure VNet-지점 및 사이트 간 연결 다이어그램에 컴퓨터 연결](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/p2snativeps.png)
+
+P2S 연결을 작동하는 데는 VPN 장치 또는 공용 IP 주소가 필요하지 않습니다. P2S는 SSTP(Secure Socket Tunneling Protocol) 또는 IKEv2를 통한 VPN 연결을 만듭니다.
+
+* SSTP는 Windows 클라이언트 플랫폼에서만 지원되는 SSL 기반 VPN 터널입니다. 이를 통해 방화벽을 통과할 수 있으므로 어디서나 Azure에 연결할 수 있는 이상적인 옵션입니다. 서버 쪽에서 SSTP 버전 1.0, 1.1 및 1.2를 지원하며, 클라이언트에서 사용할 버전을 결정합니다. Windows 8.1 이상에서는 기본적으로 SSTP 버전 1.2를 사용합니다.
+
+* IKEv2 VPN - 표준 기반 IPsec VPN 솔루션입니다. IKEv2 VPN은 Mac 장치(OSX 버전 10.11 이상)에서 연결하는 데 사용할 수 있습니다. IKEv2는 현재 미리 보기로 제공되고 있습니다.
+
+지점 및 사이트 간 네이티브 Azure 인증서 인증 연결을 사용하려면 다음 항목이 필요합니다.
 
 * RouteBased VPN 게이트웨이입니다.
-* hello tooAzure 업로드 된 루트 인증서에 대 한 공개 (키.cer 파일) 키입니다. Hello 인증서를 업로드 한 후 인증서를 신뢰할 수 있는 것으로 간주 됩니다 하 고 인증을 위해 사용 됩니다.
-* Hello 루트 인증서에서 생성 되 고 toohello VNet 연결 하는 각 클라이언트 컴퓨터에 설치 되는 클라이언트 인증서입니다. 클라이언트 인증에 사용됩니다.
-* VPN 클라이언트 구성 패키지. hello VPN 클라이언트 구성 패키지 hello hello 클라이언트 tooconnect toohello VNet에 대 한 필요한 정보를 포함합니다. hello 패키지 hello 기존 VPN 클라이언트는 네이티브 toohello Windows 운영 체제를 구성 합니다. 연결 하는 각 클라이언트 hello 구성 패키지를 사용 하 여 구성 되어야 합니다.
+* Azure에 업로드된 루트 인증서에 대한 공개 키(.cer 파일)입니다. 인증서가 업로드되면 신뢰할 수 있는 인증서로 간주되며 인증에 사용됩니다.
+* 루트 인증서에서 생성되고 VNet에 연결할 각 클라이언트 컴퓨터에 설치된 클라이언트 인증서. 클라이언트 인증에 사용됩니다.
+* VPN 클라이언트 구성 VPN 클라이언트 구성 파일에는 클라이언트를 VNet에 연결하는 데 필요한 정보가 포함됩니다. 파일은 운영 체제에 기본적으로 제공된 기존의 VPN 클라이언트를 구성합니다. 연결되는 각 클라이언트는 구성 파일에서 설정을 사용하여 구성해야 합니다.
 
-지점 및 사이트 간 연결에는 VPN 장치 또는 온-프레미스 공용 IP 주소가 필요하지 않습니다. VPN 연결 hello SSTP (Secure Socket Tunneling Protocol)를 통해 생성 됩니다. Hello 서버 쪽에서 SSTP 버전 1.0, 1.1 및 1.2 지원합니다. 클라이언트 hello 어떤 버전 toouse를 결정합니다. Windows 8.1 이상에서는 기본적으로 SSTP 버전 1.2를 사용합니다.
-
-지점 및 사이트 간 연결에 대 한 자세한 내용은 참조 hello [지점 및 사이트 간 FAQ](#faq) hello이이 문서의 뒷부분에 있습니다.
+지점 및 사이트 간 연결에 대한 자세한 내용은 [지점 및 사이트 간 연결 정보](point-to-site-about.md)를 참조하세요.
 
 #### <a name="example"></a>예제 값
 
-값 toocreate 테스트 환경에 따라 hello를 사용 하거나 toothese 값을 참조할 수 있습니다 toobetter hello이이 문서의 예제에서는 이해:
+다음 값을 사용하여 테스트 환경을 만들거나 이 값을 참조하여 이 문서의 예제를 보다 정확하게 이해할 수 있습니다.
 
 * **VNet 이름:** VNet1
 * **주소 공간:** 192.168.0.0/16<br>이 예제에서는 하나의 주소 공간만 사용합니다. VNet에는 둘 이상의 주소 공간을 포함할 수 있습니다.
 * **서브넷 이름:** FrontEnd
 * **서브넷 주소 범위:** 192.168.1.0/24
-* **구독:** 사용 하 고 있는지 확인 하는 둘 이상의 구독이 있는 경우 hello 올바르다는 것입니다.
+* **구독:** 구독이 2개 이상 있는 경우 올바른 구독을 사용 중인지 확인합니다.
 * **리소스 그룹:** TestRG
 * **위치:** 미국 동부
 * **GatewaySubnet:** 192.168.200.0/24<br>
-* **DNS 서버:** 이름 확인을 위해 toouse 되도록 hello DNS 서버의 IP 주소 (선택 사항).
+* **DNS 서버:**(선택 사항) 이름 확인에 사용할 DNS 서버의 IP 주소.
 * **가상 네트워크 게이트웨이 이름:** VNet1GW
 * **게이트웨이 유형:** VPN
 * **VPN 유형:** 경로 기반
 * **공용 IP 주소 이름:** VNet1GWpip
 * **연결 형식:** 지점 및 사이트 간
-* **클라이언트 주소 풀:** 172.16.201.0/24<br>Toohello VNet이 지점 및 사이트 연결을 사용 하 여 연결 하는 VPN 클라이언트 hello 클라이언트 주소 풀에서 IP 주소를 받습니다.
+* **클라이언트 주소 풀:** 172.16.201.0/24<br>이 지점 및 사이트 간 연결을 사용하여 VNet에 연결되는 VPN 클라이언트는 클라이언트 주소 풀에서 IP 주소를 받습니다.
 
 ## <a name="createvnet"></a>1. 가상 네트워크 만들기
 
@@ -77,13 +86,13 @@ P2S 사용 하 여 hello 소켓 SSTP Secure Tunneling Protocol (), SSL 기반 VP
 
 ## <a name="gatewaysubnet"></a>2. 게이트웨이 서브넷 추가
 
-가상 네트워크 tooa 게이트웨이 연결 하기 전에 먼저 toocreate hello 게이트웨이 서브넷 tooconnect 원하는 가상 네트워크 toowhich hello에 대 한 합니다. hello 게이트웨이 서비스는 hello 게이트웨이 서브넷에 지정 된 hello IP 주소를 사용 합니다. 가능 하면/28 또는/27 CIDR 블록을 사용 하 여 게이트웨이 서브넷을 만든 tooprovide 충분 한 IP tooaccommodate 앞으로 추가 구성 요구 사항을 충족 합니다.
+가상 네트워크를 게이트웨이에 연결하기 전에 먼저 연결하려는 가상 네트워크에 대한 게이트웨이 서브넷을 만들어야 합니다. 게이트웨이 서비스는 게이트웨이 서브넷에 지정된 IP 주소를 사용합니다. 향후 추가적인 구성 요구 사항을 수용하기에 충분한 IP 주소를 제공하도록 가능하면 /28 또는 /27 CIDR 블록을 사용하여 게이트웨이 서브넷을 만듭니다.
 
 [!INCLUDE [vpn-gateway-add-gwsubnet-rm-portal](../../includes/vpn-gateway-add-gwsubnet-p2s-rm-portal-include.md)]
 
 ## <a name="dns"></a>3. DNS 서버 지정(선택 사항)
 
-가상 네트워크를 만든 후에 DNS 서버 toohandle 이름 확인의 hello IP 주소를 추가할 수 있습니다. hello DNS 서버는이 구성에 대 한 선택 사항 이지만 이름 확인 하려는 경우에 필요 합니다. 값을 지정하더라도 새 DNS 서버를 만들지 않습니다. hello DNS 서버 IP 주소 지정 하는 DNS 서버가 있어야에 연결 하는 hello 리소스에 대 한 hello 이름을 확인할 수 있는 합니다. 이 예에서는 개인 IP 주소를 사용 하지만 DNS 서버의 IP 주소 hello 아닌지 가능성이 쉽습니다. 있는지 toouse 고유한 값 이어야 합니다.
+가상 네트워크를 만든 후에 DNS 서버의 IP 주소를 추가하여 이름 확인을 처리할 수 있습니다. DNS 서버는 이 구성에 대해 선택 사항이지만 이름 확인이 필요한 경우 필수 항목입니다. 값을 지정하더라도 새 DNS 서버를 만들지 않습니다. 지정한 DNS 서버는 연결 중인 리소스에 대한 이름을 확인할 수 있는 DNS 서버 IP 주소여야 합니다. 이 예에서는 개인 IP 주소를 사용하지만 DNS 서버의 IP 주소가 아닐 가능성이 높습니다. 고유한 값을 사용해야 합니다. 지정한 값은 P2S 연결 또는 VPN 클라이언트가 아니라 VNet에 배포한 리소스에서 사용됩니다.
 
 [!INCLUDE [vpn-gateway-add-dns-rm-portal](../../includes/vpn-gateway-add-dns-rm-portal-include.md)]
 
@@ -93,9 +102,9 @@ P2S 사용 하 여 hello 소켓 SSTP Secure Tunneling Protocol (), SSL 기반 VP
 
 ## <a name="generatecert"></a>5. 인증서 생성
 
-인증서는 tooa VNet에 지점-사이트 VPN 연결을 통해 연결 하는 Azure tooauthenticate 클라이언트에서 사용 됩니다. 루트 인증서를 가져오고 나면 있습니다 [업로드](#uploadfile) 공개 키 정보 tooAzure hello 합니다. P2S toohello 가상 네트워크를 통해 hello 루트 인증서를 '신뢰할 수 있는' Azure에서 연결에 대 한 간주 다음 됩니다. 또한 hello 신뢰할 수 있는 루트 인증서에서 클라이언트 인증서를 생성 하 고 각 클라이언트 컴퓨터에 설치 합니다. hello 클라이언트 인증서 사용 되는 tooauthenticate hello 클라이언트 때 연결 toohello VNet을 시작 합니다. 
+지점 및 사이트 간 VPN 연결을 통해 VNet에 연결되는 클라이언트를 인증하기 위해 Azure에 의해 인증서가 사용됩니다. 루트 인증서를 얻었으면 Azure에 공개 키 정보를 [업로드](#uploadfile)합니다. 그러면 루트 인증서는 P2S를 통한 가상 네트워크 연결을 위해 Azure에서 '신뢰할 수 있는' 것으로 간주됩니다. 또한 신뢰할 수 있는 루트 인증서에서 클라이언트 인증서를 생성한 후 각 클라이언트 컴퓨터에 인증서를 설치합니다. 클라이언트 인증서는 VNet에 대한 연결을 시작할 때 해당 클라이언트를 인증하는 데 사용됩니다. 
 
-### <a name="getcer"></a>1. Hello 루트 인증서에 대 한 hello.cer 파일을 가져오려면
+### <a name="getcer"></a>1. 루트 인증서용 .cer 파일 가져오기
 
 [!INCLUDE [root-certificate](../../includes/vpn-gateway-p2s-rootcert-include.md)]
 
@@ -103,77 +112,71 @@ P2S 사용 하 여 hello 소켓 SSTP Secure Tunneling Protocol (), SSL 기반 VP
 
 [!INCLUDE [generate-client-cert](../../includes/vpn-gateway-p2s-clientcert-include.md)]
 
-## <a name="addresspool"></a>6. Hello 클라이언트 주소 풀이 추가
+## <a name="addresspool"></a>6. 클라이언트 주소 풀 추가
 
-hello 클라이언트 주소 풀이 지정 하는 개인 IP 주소 범위입니다. 지점-사이트 VPN을 통해 연결 하는 hello 클라이언트는이 범위에서 IP 주소를 받습니다. , 연결 하는 hello 온-프레미스 위치 또는 VNet tooconnect을 hello와 겹치지 않는 개인 IP 주소 범위를 사용 합니다.
+클라이언트 주소 풀은 사용자가 지정한 개인 IP 주소 범위입니다. 지점 및 사이트 간 VPN을 통해 연결하는 클라이언트는 이 범위의 IP 주소를 받습니다. 연결 원본이 되는 온-프레미스 위치 또는 연결 대상이 되는 VNet과 겹치지 않는 개인 IP 주소 범위를 사용합니다.
 
-1. Hello 가상 네트워크 게이트웨이 만든 후 이동 toohello **설정을** hello 가상 네트워크 게이트웨이 페이지의 섹션입니다. Hello에 **설정** 섹션에서 클릭 **지점-사이트 구성** tooopen hello **지점-에-사이트-구성** 페이지.
+1. 가상 네트워크 게이트웨이가 생성된 후에는 가상 네트워크 게이트웨이 페이지의 **설정** 섹션으로 이동합니다. **설정** 섹션에서 **지점 및 사이트 간 구성**을 클릭하여 **지점 및 사이트 간 구성** 페이지를 엽니다.
 
   ![지점 및 사이트 간 페이지](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/gatewayblade.png)
-2. Hello에 **지점-에-사이트-구성** 페이지 hello 개인 IP 주소 범위 추가 toouse 원하는 다음 hello 자동으로 채워진 범위를 삭제할 수 있습니다. 클릭 **저장** toovalidate hello 설정을 저장 합니다.
+2. **지점 및 사이트 간 구성** 페이지에서 자동으로 채워진 범위를 삭제한 다음 사용하려는 개인 IP 주소 범위를 추가할 수 있습니다. **저장**을 클릭하여 설정을 확인하고 저장합니다.
 
   ![클라이언트 주소 풀](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/ipaddresspool.png)
 
-## <a name="uploadfile"></a>7. Hello 루트 인증서 공용 인증서 데이터를 업로드 합니다.
+## <a name="uploadfile"></a>7. 루트 인증서 공용 인증서 데이터 업로드
 
-Hello 게이트웨이 만든 후 hello 루트 인증서 tooAzure hello에 대 한 공개 키 정보를 업로드 합니다. Hello 공용 인증서 데이터를 업로드 한 후 Azure 사용할 수 tooauthenticate 클라이언트 hello 신뢰할 수 있는 루트 인증서에서 생성 된 클라이언트 인증서를 설치 합니다. 신뢰할 수 있는 루트 인증서 접속 tooa 총 20 업로드할 수 있습니다.
+게이트웨이를 만든 후에 루트 인증서의 공개 키 정보를 Azure로 업로드합니다. 공용 인증서 데이터가 업로드되면 Azure는 이 데이터를 사용하여 신뢰할 수 있는 루트 인증서에서 생성된 클라이언트 인증서를 설치한 클라이언트를 인증합니다. 신뢰할 수 있는 루트 인증서를 최대 20개까지 추가로 업로드할 수 있습니다.
 
-1. Hello에 인증서를 추가 **지점-사이트 구성** hello에서 페이지 **루트 인증서** 섹션.  
-2. E-64로 인코딩된 X.509 (.cer) 파일 처럼 hello 루트 인증서를 내보낸 있는지 확인 합니다. 텍스트 편집기로 hello 인증서를 열 수 있도록이 형식 tooexport hello 인증서를 필요 합니다.
-3. Hello 인증서를 메모장과 같은 텍스트 편집기로 엽니다. Hello 인증서 데이터를 복사할 때 캐리지 리턴 또는 줄 바꿈 없이 한 연속 줄으로 hello 텍스트를 복사 해야 합니다. Toomodify hello 텍스트 편집기 too'Show 기호/표시 모든 문자 toosee hello 캐리지 리턴 및 줄에서 보기를 할 수 있습니다. 다음 섹션을 한 연속 줄으로만 hello를 복사 합니다.
+1. **루트 인증서** 섹션의 **지점 및 사이트 간 구성** 페이지에 인증서가 추가됩니다.  
+2. 루트 인증서를 Base-64 인코딩된 X.509(.cer) 파일로 내보내야 합니다. 이 형식으로 내보내야 텍스트 편집기에서 인증서를 열 수 있습니다.
+3. 메모장과 같은 텍스트 편집기에서 인증서를 엽니다. 인증서 데이터를 복사하는 경우 캐리지 리턴 또는 줄 바꿈 없이 하나의 연속 줄로 텍스트를 복사합니다. 캐리지 리턴 및 줄 바꿈을 보려면 '기호 표시/모든 문자 표시'에 대한 텍스트 편집기의 보기를 수정해야 할 수도 있습니다. 하나의 연속 줄로만 다음 섹션을 복사합니다.
 
   ![인증서 데이터](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/copycert.png)
-4. Hello에 hello 인증서 데이터를 붙여 **공용 인증서 데이터** 필드입니다. **이름** hello 인증서를 클릭 하 고 **저장**합니다. Too20 신뢰할 수 있는 루트 인증서를 추가할 수 있습니다.
+4. 인증서 데이터를 **공용 인증서 데이터** 필드에 붙여 넣습니다. 인증서의 **이름을 지정**한 다음 **저장**을 클릭합니다. 최대 20개의 신뢰할 수 있는 루트 인증서를 추가할 수 있습니다.
 
   ![인증서 업로드](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/rootcertupload.png)
 
-## <a name="clientconfig"></a>8. 생성 하 고 hello VPN 클라이언트 구성 패키지를 설치 합니다.
+## <a name="installclientcert"></a>8. 내보낸 클라이언트 인증서 설치
 
-hello 설정을 사용 하 여 hello 기본 VPN 클라이언트를 구성 하는 클라이언트 구성 패키지와 파일은 필요한 tooconnect toohello 가상 네트워크 tooconnect tooa VNet 지점-사이트 VPN을 사용 하 여 각 클라이언트를 설치 해야 합니다. hello 네이티브 Windows VPN 클라이언트를 구성 하는 hello VPN 클라이언트 구성 패키지, 다른 또는 새로운 VPN 클라이언트를 설치 하지 않습니다.
+클라이언트 인증서를 생성하는 데 사용한 것 외의 클라이언트 컴퓨터에서 P2S 연결을 만들려는 경우 클라이언트 인증서를 설치해야 합니다. 클라이언트 인증서를 설치하는 경우 클라이언트 인증서를 내보낼 때 만든 암호가 필요합니다.
 
-클라이언트 hello에 대 한 hello 아키텍처를 일치 하는 hello 버전으로 각 클라이언트 컴퓨터에서 동일한 VPN 클라이언트 구성 패키지 hello를 사용할 수 있습니다. 지원 되는 클라이언트 운영 체제의 hello 목록 참조 hello [지점 및 사이트 연결 FAQ](#faq) hello이이 문서의 뒷부분에 있습니다.
+전체 인증서 체인(즉, 기본값)과 함께.pfx로 클라이언트 인증서를 내보냈는지 확인합니다. 그렇지 않은 경우, 루트 인증서 정보가 클라이언트 컴퓨터에 존재하지 않으며 클라이언트를 제대로 인증할 수 없습니다. 
 
-### <a name="step-1---generate-and-download-hello-client-configuration-package"></a>1 단계-생성 하 고 hello 클라이언트 구성 패키지를 다운로드 합니다.
+설치 단계는 [클라이언트 인증서 설치](point-to-site-how-to-vpn-client-install-azure-cert.md)를 참조하세요.
 
-1. Hello에 **지점-사이트 구성** 페이지 **다운로드 VPN 클라이언트** tooopen hello **다운로드 VPN 클라이언트** 페이지. 패키지 toogenerate hello에 대 일 분 정도 걸립니다.
+## <a name="clientconfig"></a>9. VPN 클라이언트 구성 패키지 생성 및 설치
 
-  ![VPN 클라이언트 다운로드 1](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/downloadvpnclient1.png)
-2. 클라이언트에 대 한 hello 올바른 패키지를 선택한 다음 클릭 **다운로드**합니다. Hello 구성 패키지 파일을 저장 합니다. Toohello 가상 네트워크를 연결 하는 각 클라이언트 컴퓨터에서 hello VPN 클라이언트 구성 패키지를 설치 합니다.
+VPN 클라이언트 구성 파일에는 P2S 연결을 통해 VNet에 연결하도록 장치를 구성하는 설정이 포함되어 있습니다. VPN 클라이언트 구성 파일을 생성하고 설치하는 지침은 [네이티브 Azure 인증서 인증 P2S 구성에 VPN 클라이언트 구성 파일 만들기 및 설치](point-to-site-vpn-client-configuration-azure-cert.md)를 참조하세요.
 
-  ![VPN 클라이언트 다운로드 2](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/vpnclient.png)
+## <a name="connect"></a>10. Azure에 연결
 
-### <a name="step-2---install-hello-client-configuration-package"></a>2 단계-hello 클라이언트 구성 패키지 설치
+### <a name="to-connect-from-a-windows-vpn-client"></a>Windows VPN 클라이언트에서 연결
 
-1. Hello 구성 파일을 복사 toohello 컴퓨터 로컬로 tooconnect tooyour 가상 네트워크 되도록 합니다. 
-2. Hello.exe 파일 tooinstall hello 패키지 hello 클라이언트 컴퓨터에서 두 번 클릭 합니다. Hello 구성 패키지에 만들어지므로, 서명 되지 않은 및 경고가 표시 될 수 있습니다. Windows SmartScreen 팝업을 발생 하면 클릭 **자세히** hello 왼쪽), (on 다음 **그래도 실행** tooinstall hello 패키지 합니다.
-3. Hello 패키지 hello 클라이언트 컴퓨터에 설치 합니다. Windows SmartScreen 팝업을 발생 하면 클릭 **자세히** hello 왼쪽), (on 다음 **그래도 실행** tooinstall hello 패키지 합니다.
-4. Hello 클라이언트 컴퓨터에서 이동 너무**네트워크 설정** 클릭 **VPN**합니다. hello VPN 연결에 연결 하는 hello 가상 네트워크의 hello 이름을 보여 줍니다.
+1. VNet에 연결하려면 클라이언트 컴퓨터에서 VPN 연결로 이동하고 만든 VPN 연결을 찾습니다. 가상 네트워크와 같은 이름이 지정됩니다. **Connect**를 클릭합니다. 인증서 사용을 안내하는 팝업 메시지가 나타날 수 있습니다. **계속**을 클릭하여 상승된 권한을 사용합니다.
 
-## <a name="installclientcert"></a>9. 내보낸 클라이언트 인증서 설치
+2. **연결** 상태 페이지에서 **연결**을 클릭하여 연결을 시작합니다. **인증서 선택** 화면에서 표시되는 클라이언트 인증서가 연결하는 데 사용할 인증서인지 확인합니다. 그렇지 않은 경우 드롭다운 화살표를 사용하여 올바른 인증서를 선택한 다음 **확인**을 클릭합니다.
 
-Hello 아닌 클라이언트 컴퓨터에서 toogenerate hello 클라이언트 인증서를 사용 하는 P2S toocreate 연결 tooinstall 클라이언트 인증서를 해야 합니다. 클라이언트 인증서를 설치할 때 클라이언트 인증서 hello을 내보낼 때 만든 hello 암호가 필요 합니다. 일반적으로의 hello 인증서를 두 번 클릭 하 고 설치 합니다.
-
-Hello 클라이언트 인증서 hello 전체 인증서 체인 (즉, hello 기본값)와 함께.pfx로 내보낸 있는지 확인 합니다. 그렇지 않으면 hello 루트 인증서 정보를 hello 클라이언트 컴퓨터에 존재 하지 않는 및 hello 클라이언트 수 tooauthenticate를 제대로 수 없습니다. 자세한 내용은 [내보낸 클라이언트 인증서 설치](vpn-gateway-certificates-point-to-site.md#install)를 참조하세요.
-
-## <a name="connect"></a>10. TooAzure 연결
-
-1. hello 클라이언트 컴퓨터에서 tooconnect tooyour VNet tooVPN 연결 이동한 만든 hello VPN 연결을 찾습니다. 가상 네트워크 이름이 hello를 라고 합니다. **Connect**를 클릭합니다. 팝업 메시지 toousing hello 인증서 참조 나타날 수 있습니다. 클릭 **계속** toouse 상승 된 권한을 합니다.
-
-2. Hello에 **연결** 상태 페이지 클릭 **연결** toostart hello 연결 합니다. 표시 되 면 한 **인증서 선택** 화면에서 클라이언트 인증서 표시 된 hello toouse tooconnect 원하는 hello 하나 인지 확인 합니다. 없는 경우 hello 드롭 다운 화살표 tooselect hello 올바른 인증서를 사용 하 고 클릭 **확인**합니다.
-
-  ![VPN 클라이언트가 tooAzure 연결](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/clientconnect.png)
+  ![VPN 클라이언트에서 Azure에 연결](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/clientconnect.png)
 3. 연결이 설정되었습니다.
 
   ![설정된 연결](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/connected.png)
 
-#### <a name="troubleshooting-p2s-connections"></a>P2S 연결 문제 해결
+#### <a name="troubleshoot-windows-p2s-connections"></a>Windows P2S 연결 문제 해결
 
 [!INCLUDE [verifies client certificates](../../includes/vpn-gateway-certificates-verify-client-cert-include.md)]
 
-## <a name="verify"></a>11. 연결 확인
+### <a name="to-connect-from-a-mac-vpn-client"></a>Mac VPN 클라이언트에서 연결하려면
 
-1. VPN 연결을 활성 상태 인지 tooverify 관리자 명령 프롬프트를 열고 실행 *ipconfig/all*합니다.
-2. Hello 결과 확인 합니다. 받은 hello IP 주소가 구성에 지정 된 hello 지점-사이트 VPN 클라이언트 주소 풀 내의 hello 주소 중 하나 인지 확인 합니다. hello 결과 비슷한 toothis 예제.
+네트워크 대화 상자에서 사용하려는 클라이언트 프로필을 찾고 **연결**을 클릭합니다.
+
+  ![Mac 연결](./media/vpn-gateway-howto-point-to-site-rm-ps/applyconnect.png)
+
+## <a name="verify"></a>연결을 확인하려면
+
+이러한 지침은 Windows 클라이언트에 적용됩니다.
+
+1. VPN 연결이 활성인지를 확인하려면, 관리자 권한 명령 프롬프트를 열고 *ipconfig/all*을 실행합니다.
+2. 결과를 확인합니다. 받은 IP 주소가 구성에 지정한 지점 및 사이트 VPN 클라이언트 주소 풀 내의 주소 중 하나인지 확인합니다. 결과는 다음 예제와 비슷합니다.
 
   ```
   PPP adapter VNet1:
@@ -188,45 +191,47 @@ Hello 클라이언트 인증서 hello 전체 인증서 체인 (즉, hello 기본
       NetBIOS over Tcpip..............: Enabled
   ```
 
-## <a name="connectVM"></a>Tooa 가상 컴퓨터에 연결
+## <a name="connectVM"></a>가상 컴퓨터에 연결하려면
 
-[!INCLUDE [Connect tooa VM](../../includes/vpn-gateway-connect-vm-p2s-include.md)]
+이러한 지침은 Windows 클라이언트에 적용됩니다.
 
-## <a name="add"></a>신뢰할 수 있는 루트 인증서 추가 또는 제거
+[!INCLUDE [Connect to a VM](../../includes/vpn-gateway-connect-vm-p2s-include.md)]
 
-Azure에서 신뢰할 수 있는 루트 인증서를 추가 및 제거할 수 있습니다. 루트 인증서를 제거 하면 해당 루트에서 생성 된 인증서가 클라이언트 수 tooauthenticate 됩니다 하 고 따라서 수 tooconnect 되지 않습니다. 클라이언트 tooauthenticate 원하는 연결 하는 경우 tooinstall 루트 인증서를 신뢰할 수 있는 (업로드) tooAzure에서 새 클라이언트 인증서를 생성 해야 합니다.
+## <a name="add"></a>신뢰할 수 있는 루트 인증서를 추가 또는 제거하려면
 
-### <a name="tooadd-a-trusted-root-certificate"></a>tooadd 신뢰할 수 있는 루트 인증서
+Azure에서 신뢰할 수 있는 루트 인증서를 추가 및 제거할 수 있습니다. 루트 인증서를 제거하면 해당 루트에서 생성된 인증서가 있는 클라이언트를 인증하지 못하게 됩니다. 따라서 연결할 수도 없습니다. 클라이언트를 인증하고 연결하려는 경우 Azure에 (업로드된)신뢰할 수 있는 루트 인증서에서 생성된 새 클라이언트 인증서를 설치해야 합니다.
 
-Too20 신뢰할 수 있는 루트 인증서.cer 파일 tooAzure를 추가할 수 있습니다. Hello 섹션을 참조 하십시오 [신뢰할 수 있는 루트 인증서 업로드](#uploadfile) 이 문서의 내용입니다.
+### <a name="to-add-a-trusted-root-certificate"></a>신뢰할 수 있는 루트 인증서를 추가하려면
 
-### <a name="tooremove-a-trusted-root-certificate"></a>tooremove 신뢰할 수 있는 루트 인증서
+Azure에 최대 20개의 신뢰할 수 있는 루트 인증서 .cer 파일을 추가할 수 있습니다. 자세한 내용은 이 문서에서 [신뢰할 수 있는 루트 인증서를 업로드](#uploadfile) 섹션을 참조하세요.
 
-1. 신뢰할 수 있는 루트 인증서 tooremove 이동 toohello **지점-사이트 구성** 가상 네트워크 게이트웨이에 대 한 페이지입니다.
-2. Hello에 **루트 인증서** 섹션 hello 페이지의 tooremove hello 인증서를 찾습니다.
-3. Hello 줄임표 다음 toohello 인증서를 클릭 하 고 '제거'를 클릭 합니다.
+### <a name="to-remove-a-trusted-root-certificate"></a>신뢰할 수 있는 루트 인증서를 제거하려면
 
-## <a name="revokeclient"></a>클라이언트 인증서 해지
+1. 신뢰할 수 있는 루트 인증서를 제거하려면 가상 네트워크 게이트웨이에 대한 **지점 및 사이트 간 구성** 페이지로 이동합니다.
+2. 페이지의 **루트 인증서** 섹션에서 제거할 인증서를 찾습니다.
+3. 인증서 옆의 줄임표를 클릭한 다음 '제거'를 클릭합니다.
 
-클라이언트 인증서를 해지할 수 있습니다. hello 인증서 해지 목록을 통해 tooselectively 개별 클라이언트 인증서를 기반으로 하는 지점 및 사이트 연결을 거부 합니다. 이것은 신뢰할 수 있는 루트 인증서를 제거하는 것과 다릅니다. Azure에서 신뢰할 수 있는 루트 인증서.cer를 제거 하면 모든 클라이언트 인증서를 서명 생성/된 hello 해지 된 루트 인증서에 의해 hello 액세스 권한을 취소 합니다. 클라이언트 인증서를 해지 hello 루트 인증서를 대신 허용 hello 인증에 사용 하는 hello 루트 인증서 toocontinue toobe에서 생성 된 다른 인증서입니다.
+## <a name="revokeclient"></a>클라이언트 인증서를 해지하려면
 
-hello 일반적으로 개별 사용자에 대 한 세분화 된 액세스 제어에 대 한 해지 된 클라이언트 인증서를 사용 하는 동안 팀 또는 조직 수준에서 toouse hello 루트 인증서 toomanage 액세스가 됩니다.
+클라이언트 인증서를 해지할 수 있습니다. 인증서 해지 목록에서 개별 클라이언트 인증서를 기반으로 하는 지점 및 사이트 간 연결을 선택적으로 거부할 수 있습니다. 이것은 신뢰할 수 있는 루트 인증서를 제거하는 것과 다릅니다. Azure에서 신뢰할 수 있는 루트 인증서 .cer를 제거하면, 해지된 루트 인증서로 생성/서명된 모든 클라이언트 인증서에 대한 액세스 권한도 해지됩니다. 루트 인증서가 아닌 클라이언트 인증서를 해지하면 루트 인증서에서 생성된 다른 인증서를 인증에 계속 사용할 수 있습니다.
 
-### <a name="toorevoke-a-client-certificate"></a>toorevoke 클라이언트 인증서
+해지된 클라이언트 인증서를 사용하는 동안 개별 사용자의 세분화된 액세스 제어를 위해 일반적으로 루트 인증서를 사용하여 팀 또는 조직 수준에서 액세스를 관리합니다.
 
-Hello 지문 toohello 해지 목록에 추가 하 여 클라이언트 인증서를 해지할 수 있습니다.
+### <a name="revoke-a-client-certificate"></a>클라이언트 인증서 해지
 
-1. Hello 클라이언트 인증서 지문을 검색 합니다. 자세한 내용은 참조 [어떻게 tooretrieve hello 인증서의 지문을](https://msdn.microsoft.com/library/ms734695.aspx)합니다.
-2. Hello 정보 tooa 텍스트 편집기를 복사 하 고 모든 공백을 제거 하는 연속 문자열.
-3. 가상 네트워크 게이트웨이 toohello 이동 **지점-에-사이트-구성** 페이지. 이 hello 너무 사용 되는 동일한 페이지[신뢰할 수 있는 루트 인증서 업로드](#uploadfile)합니다.
-4. Hello에 **해지 된 인증서** 섹션, hello 인증서 (없어도 toobe hello 인증서 CN)에 사용할 이름을 입력 합니다.
-5. 복사 및 붙여넣기 hello 지문 문자열 toohello **지문** 필드입니다.
-6. hello 지문을 확인 하 고 toohello 해지 목록에 자동으로 추가 됩니다. 해당 hello hello 화면에 메시지가 표시 목록을 업데이트 하는 중입니다. 
-7. 업데이트 완료 되 면 hello 인증서 사용된 tooconnect를 더 이상 수 없습니다. Tooconnect이이 인증서를 사용 하 여 시도 하는 클라이언트 hello 인증서를 더 이상 사용할 수 없다는 메시지를 수신 합니다.
+해지 목록에 지문을 추가하여 클라이언트 인증서를 해지할 수 있습니다.
+
+1. 클라이언트 인증서 지문을 검색합니다. 자세한 내용은 [인증서의 지문을 검색하는 방법](https://msdn.microsoft.com/library/ms734695.aspx)을 참조하세요.
+2. 텍스트 편집기에 정보를 복사하고 연속 문자열이 되도록 공백을 모두 제거합니다.
+3. 가상 네트워크 게이트웨이 **지점 및 사이트 간 구성** 페이지로 이동합니다. [신뢰할 수 있는 루트 인증서를 업로드](#uploadfile)하는 데 사용한 것과 동일한 페이지입니다.
+4. **해지된 인증서** 섹션에서 인증서에 대한 이름(인증서 CN이 아니어도 됨)을 입력합니다.
+5. 지문 문자열을 **지문** 필드에 복사하여 붙여 넣습니다.
+6. 지문의 유효성이 검사되고 해당 지문이 해지 목록에 자동으로 추가됩니다. 목록이 업데이트되고 있음을 알리는 메시지가 화면에 표시됩니다. 
+7. 업데이트가 완료된 후에는 인증서를 더 이상 연결에 사용할 수 없습니다. 이 인증서를 사용하여 연결하려는 클라이언트에서 인증서가 더 이상 유효하지 않다고 하는 메시지를 받습니다.
 
 ## <a name="faq"></a>지점 및 사이트 간 FAQ
 
-[!INCLUDE [Point-to-Site FAQ](../../includes/vpn-gateway-point-to-site-faq-include.md)]
+[!INCLUDE [Point-to-Site FAQ](../../includes/vpn-gateway-faq-p2s-azurecert-include.md)]
 
 ## <a name="next-steps"></a>다음 단계
-연결이 완료 되 면 가상 컴퓨터 tooyour 가상 네트워크를 추가할 수 있습니다. 자세한 내용은 [Virtual Machines](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)를 참조하세요. 네트워킹 및 가상 컴퓨터에 대해 자세히 toounderstand 참조 [Azure와 Linux VM 네트워크 개요](../virtual-machines/linux/azure-vm-network-overview.md)합니다.
+연결이 완료되면 가상 네트워크에 가상 컴퓨터를 추가할 수 있습니다. 자세한 내용은 [Virtual Machines](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)를 참조하세요. 네트워킹 및 가상 컴퓨터에 대한 자세한 내용은 [Azure 및 Linux VM 네트워크 개요](../virtual-machines/linux/azure-vm-network-overview.md)를 참조하세요.

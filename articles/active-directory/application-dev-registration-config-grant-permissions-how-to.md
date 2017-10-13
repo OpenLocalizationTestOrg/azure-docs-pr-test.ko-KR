@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toogrant 권한 tooa 개발 된 응용 프로그램 | Microsoft Docs"
-description: "Azure AD 포털 또는 URL 매개 변수 방법 hello toogrant 권한은 tooyour 개발 된 응용 프로그램 사용 하 여"
+title: "사용자 지정 개발 응용 프로그램에 권한을 부여하는 방법 | Microsoft Docs"
+description: "Azure AD 포털 또는 URL 매개 변수를 사용하여 사용자 지정 개발 응용 프로그램에 대한 권한을 부여하는 방법"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,33 +13,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: e43a105fff60fbf912bdf4f60260f86ee289328d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 336b945929f80e1a566f7cf71b40fd799a98c12d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toogrant-permissions-tooa-custom-developed-application"></a>어떻게 toogrant 권한을 tooa 개발 된 응용 프로그램
+# <a name="how-to-grant-permissions-to-a-custom-developed-application"></a>사용자 지정 개발 응용 프로그램에 권한을 부여하는 방법
 
-앱에서 미리 toogrant 동의 원하는 하거나 tooan 앱 동의한 하지는 동안 오류가 발생 실행 중인 경우 아래에 다음이 단계를 시도 하십시오.
+앱에 대해 사전에 동의하려 하거나 앱에 대해 동의하지 않은 오류가 발생한 경우 아래 단계를 수행해 보세요.
 
-## <a name="how-tooperform-admin-consent-for-your-application"></a>어떻게 응용 프로그램에 대 한 관리 동의가 tooperform
+## <a name="how-to-perform-admin-consent-for-your-application"></a>응용 프로그램에 대해 관리자 동의를 수행하는 방법
 
-이 hello 조직의 모든 사용자에 대 한 동의 toohello 응용 프로그램에 부여 됩니다.
+조직의 모든 사용자에 대해 응용 프로그램에 동의하는 효과가 있습니다.
 
-1. Toohello 이동 **앱 등록** 블레이드로는 **전역 관리자**을 선택한 후 hello 앱.
+1. **전역 관리자**로서 **앱 등록** 블레이드로 이동하고 앱을 선택합니다.
 
-2. 선택 **필요한 권한**, 마지막으로 hello **사용 권한 부여** hello hello 블레이드 위쪽에 단추입니다.
+2. **필요한 권한**을 선택하고 마지막으로 블레이드 맨 위에 있는 **권한 부여** 단추를 누릅니다.
 
-또는 너무 요청을 만들 수*login.microsoftonline.com* 와 응용 프로그램 구성에 추가 하 고 *프롬프트 & = admin\_동의*합니다. 관리자 자격 증명을 사용 하 여 서명 후 hello 앱 승인 된 모든 사용자에 대 한 합니다.
+또는 앱 구성과 함께 *login.microsoftonline.com*으로 요청을 구성하고 *&prompt=admin\_consent*에 추가할 수 있습니다. 관리자 자격 증명으로 로그인한 후 앱에서 모든 사용자에 대한 동의를 부여했습니다.
 
-## <a name="how-tooforce-user-consent-for-your-application"></a>어떻게 응용 프로그램에 대 한 사용자 동의 tooforce
+## <a name="how-to-force-user-consent-for-your-application"></a>응용 프로그램에 대해 사용자 동의를 강제로 적용하는 방법
 
-* 인증 요청에 추가 *프롬프트 & 동의 =* tooconsent 최종 사용자가 인증 될 때마다 해야 합니다.
+* 최종 사용자가 인증할 때마다 동의해야 하는 *&prompt=consent*를 인증 요청에 추가합니다.
 
 ## <a name="next-steps"></a>다음 단계
 
-[승인 및 앱 통합 tooAzureAD](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications)
+[동의 및 AzureAD와 앱 통합](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications)
 
 [AzureAD v2.0 수렴형 앱에 대한 동의 및 권한 부여](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-scopes)<br>
 

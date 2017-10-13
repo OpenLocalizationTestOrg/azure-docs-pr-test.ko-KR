@@ -1,9 +1,9 @@
 ---
-title: "Azure 자동화에서 aaaCertificate 자산 | Microsoft Docs"
-description: "인증서는 runbook 또는 Azure 및 타사 리소스에 대해 DSC 구성 tooauthenticate 액세스할 수 있도록 Azure 자동화에 안전 하 게 저장할 수 있습니다.  이 문서에서는 인증서의 hello 세부 정보를 설명 방법과 텍스트와 그래픽 제작에 이러한 toowork 합니다."
+title: "Azure 자동화의 인증서 자산 | Microsoft Docs"
+description: "인증서를 Azure Automation에 안전하게 저장하게 저장할 수 있으며, 그러면 Runbook 또는 DSC 구성이 인증서에 액세스하여 Azure 및 타사 리소스에 인증할 수 있습니다.  이 문서에서는 인증서에 대해 자세히 알아보고 텍스트 작성과 그래픽 작성 모두에서 인증서를 사용하는 방법을 설명합니다."
 services: automation
 documentationcenter: 
-author: mgoedtel
+author: eslesar
 manager: stevenka
 editor: tysonn
 ms.assetid: ac9c22ae-501f-42b9-9543-ac841cf2cc36
@@ -12,53 +12,65 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/19/2016
+ms.date: 09/14/2017
 ms.author: magoedte;bwren
-ms.openlocfilehash: 2c25bee937890438ea9022669be2c24c77a110b4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e434292485ef9da1a8e23da25ac731d9bf0177ce
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="certificate-assets-in-azure-automation"></a>Azure 자동화의 인증서 자산
 
-인증서에에서 저장할 수 안전 하 게 Azure 자동화 runbook 또는 hello를 사용 하 여 DSC 구성을 액세스할 수 있도록 **Get AzureRmAutomationRmCertificate** Azure 리소스 관리자 리소스에 대 한 작업입니다. 이 toocreate runbook 및 인증에 인증서를 사용 하는 DSC 구성을 사용 하면 또는 tooAzure 또는 타사 리소스를 추가 합니다.
+인증서를 Azure Automation에 안전하게 저장하게 저장할 수 있으며, 그러면 Runbook 또는 DSC 구성이 Azure Resource Manager 리소스에 대한 **Get-AzureRmAutomationCertificate** 활동을 사용하여 인증서에 액세스할 수 있습니다. 그러면 인증을 위해 인증서를 사용하는 Runbook 및 DSC 구성을 만들거나 Azure 또는 타사 리소스에 추가할 수 있습니다.
 
 > [!NOTE] 
-> Azure 자동화의 안전한 자산에는 자격 증명, 인증서, 연결, 암호화된 변수 등이 있습니다. 이러한 자산 암호화 및 hello 각 자동화 계정에 대해 생성 되는 고유 키를 사용 하 여 Azure 자동화에에서 저장 됩니다. 이 키는 마스터 인증서로 암호화되어 Azure 자동화에 저장됩니다. 보안 자산을 저장 하기 전에 hello 자동화 계정에 대 한 hello 키 hello 마스터 인증서를 사용 하 여 암호가 해독 됩니다와 tooencrypt hello 자산을 사용 합니다.
+> Azure 자동화의 안전한 자산에는 자격 증명, 인증서, 연결, 암호화된 변수 등이 있습니다. 이러한 자산은 각 자동화 계정에 대해 생성되는 고유 키를 사용하여 암호화되고 Azure 자동화에 저장됩니다. 이 키는 마스터 인증서로 암호화되어 Azure 자동화에 저장됩니다. 자동화 계정에 대한 키는 보안 자산을 저장하기 전에 마스터 인증서를 사용하여 암호가 해독된 후 자산을 암호화하는 데 사용됩니다.
 > 
 
 ## <a name="windows-powershell-cmdlets"></a>Windows PowerShell cmdlet
 
-다음 표에 hello의 hello cmdlet 사용 되는 toocreate 됩니다 하 고 Windows PowerShell을 사용 하 여 자동화 인증서 자산을 관리 합니다. Hello의 일부분으로 제공 [Azure PowerShell 모듈](../powershell-install-configure.md) 자동화 runbook 및 DSC 구성에 사용 하기 위해 사용할 수 있습니다.
+다음 표의 cmdlet은 Windows PowerShell을 사용하여 자동화 인증서 자산을 만들고 관리하는 데 사용됩니다. 자동화 runbook과 DSC 구성에 사용할 수 있는 [Azure PowerShell 모듈](../powershell-install-configure.md) 의 일부로 전송됩니다.
 
 |Cmdlet|설명|
 |:---|:---|
-|[Get AzureRmAutomationCertificate](https://msdn.microsoft.com/library/mt603765.aspx)|Runbook 또는 DSC 구성에서 인증서 toouse에 대 한 정보를 검색합니다. Get-automationcertificate 작업에서 hello 인증서 자체 에서만 검색할 수 있습니다.|
-|[New-AzureRmAutomationCertificate](https://msdn.microsoft.com/library/mt603604.aspx)|Azure Automation으로 새 인증서를 만듭니다.|
-[Remove-AzureRmAutomationCertificate](https://msdn.microsoft.com/library/mt603529.aspx)|Azure 자동화에서 인증서를 제거합니다.|Azure Automation으로 새 인증서를 만듭니다.
-|[Set-AzureRmAutomationCertificate](https://msdn.microsoft.com/library/mt603760.aspx)|업로드 hello 인증서 파일 및.pfx에 대 한 hello 암호 설정 포함 하 여 기존 인증서에 대 한 hello 속성을 설정 합니다.|
-|[Add-AzureCertificate](https://msdn.microsoft.com/library/azure/dn495214.aspx)|Hello에 대 한 서비스 인증서 업로드 클라우드 서비스를 지정 합니다.|
+|[Get AzureRmAutomationCertificate](https://docs.microsoft.com/powershell/module/azurerm.automation/get-azurermautomationcertificate?view=azurermps-4.3.1)|Runbook 또는 DSC 구성에 사용할 인증서 정보를 검색합니다. Get-AutomationCertificate 활동에서는 인증서 자체만 검색할 수 있습니다.|
+|[New-AzureRmAutomationCertificate](https://docs.microsoft.com/powershell/module/azurerm.automation/new-azurermautomationcertificate?view=azurermps-4.3.1)|Azure Automation으로 새 인증서를 만듭니다.|
+[Remove-AzureRmAutomationCertificate](https://docs.microsoft.com/powershell/module/azurerm.automation/remove-azurermautomationcertificate?view=azurermps-4.3.1)|Azure 자동화에서 인증서를 제거합니다.|Azure Automation으로 새 인증서를 만듭니다.
+|[Set-AzureRmAutomationCertificate](https://docs.microsoft.com/powershell/module/azurerm.automation/set-azurermautomationcertificate?view=azurermps-4.3.1)|인증서 파일 업로드 및 .pfx 암호 설정을 포함하여 기존 인증서에 대한 속성을 설정합니다.|
+|[Add-AzureCertificate](https://msdn.microsoft.com/library/azure/dn495214.aspx)|지정된 클라우드 서비스에 대한 서비스 인증서를 업로드합니다.|
+
+
+## <a name="python2-functions"></a>Python2 함수
+
+다음 테이블의 함수는 Python2 Runbook의 인증서에 액세스하는 데 사용됩니다.
+
+| 함수 | 설명 |
+|:---|:---|
+| automationassets.get_automation_certificate | 인증서 자산에 대한 정보를 검색합니다. |
+
+> [!NOTE]
+> 자산 함수에 액세스하려면 Python Runbook을 시작할 때 **automationassets** 모듈을 가져와야 합니다.
 
 
 ## <a name="creating-a-new-certificate"></a>새 인증서 만들기
 
-새 인증서를 만들 때 자동화를.cer 또는.pfx 파일 tooAzure 업로드 합니다. Hello 인증서를 내보낼 수 있도록 표시 하는 경우 다음를 전송할 수 있습니다 hello Azure 자동화 인증서 저장소입니다. 내보낼 수 없는 경우 다음만 사용할 수 있습니다 hello runbook 또는 DSC 구성 내에서 서명에 합니다.
+새 인증서를 만들 때 .cer 또는 .pfx 파일을 Azure 자동화에 업로드합니다. 인증서를 내보내기 가능한 것으로 표시한 경우 Azure 자동화 인증서 저장소 외부로 전송할 수 있습니다. 내보낼 수 없는 경우, runbook 또는 DSC 구성내 에서 사용할 수 있는 것만 서명합니다.
 
 
-### <a name="toocreate-a-new-certificate-with-hello-azure-portal"></a>Azure 포털 hello로 새 인증서를 toocreate
+### <a name="to-create-a-new-certificate-with-the-azure-portal"></a>Azure 포털을 사용하여 새 인증서를 만들려면
 
-1. 자동화 계정에서 클릭 hello **자산** 타일 tooopen hello **자산** 블레이드입니다.
-1. Hello 클릭 **인증서** 타일 tooopen hello **인증서** 블레이드입니다.
-1. 클릭 **인증서 추가** hello hello 블레이드 위쪽에 있습니다.
-2. Hello에 hello 인증서에 대 한 이름을 입력 **이름** 상자입니다.
-2. 클릭 **파일 선택** 아래 **인증서 파일 업로드** toobrowse.cer 또는.pfx 파일에 대 한 합니다.  .Pfx 파일을 선택 하는 경우 암호 및 여부 허용 하도록 내보낸 toobe를 지정 합니다.
-1. 클릭 **만들기** toosave hello 새 인증서 자산입니다.
+1. Automation 계정에서 **자산** 타일을 클릭하여 **자산** 블레이드를 엽니다.
+1. **인증서** 타일을 클릭하여 **인증서** 블레이드를 엽니다.
+1. 블레이드의 위쪽에서 **인증서 추가** 를 클릭합니다.
+2. **이름** 상자에 인증서 이름을 입력합니다.
+2. **인증서 파일 업로드** 아래에서 **파일 선택**을 클릭하여 .cer 또는 .pfx 파일을 찾습니다.  .pfx 파일을 선택한 경우 암호 및 내보내기 허용 여부를 지정합니다.
+1. **만들기** 를 클릭하여 새 인증서 자산을 저장합니다.
 
 
-### <a name="toocreate-a-new-certificate-with-windows-powershell"></a>Windows PowerShell과 함께 새 인증서를 toocreate
+### <a name="to-create-a-new-certificate-with-windows-powershell"></a>Windows PowerShell을 사용하여 새 인증서를 만들려면
 
-hello 다음 예제에서는 어떻게 toocreate 새 자동화 인증서 하 고 내보낼 수 있도록 표시 합니다. 이 예제에서는 기존 .pfx 파일을 가져옵니다.
+다음 예제에서는 새 Automation 인증서를 만들고 내보내기 가능한 것으로 표시하는 방법을 보여 줍니다. 이 예제에서는 기존 .pfx 파일을 가져옵니다.
 
     $certName = 'MyCertificate'
     $certPath = '.\MyCert.pfx'
@@ -69,11 +81,11 @@ hello 다음 예제에서는 어떻게 toocreate 새 자동화 인증서 하 고
 
 ## <a name="using-a-certificate"></a>인증서 사용
 
-Hello를 사용 해야 **Get-automationcertificate** 활동 toouse 인증서입니다. Hello를 사용할 수 없습니다 [Get AzureRmAutomationCertificate](https://msdn.microsoft.com/library/mt603765.aspx) cmdlet hello 인증서 자산 있지만 hello 인증서가 아닌 자체에 대 한 정보를 반환 하기 때문입니다.
+**Get-AutomationCertificate** 활동만 사용하여 인증서를 사용합니다. [Get-AzureRmAutomationCertificate](https://msdn.microsoft.com/library/mt603765.aspx) cmdlet은 인증서 자산에 대한 정보를 반환하지만 인증서 자체는 반환하지 않으므로 사용할 수 없습니다.
 
 ### <a name="textual-runbook-sample"></a>텍스트 Runbook 샘플
 
-다음 샘플 코드는 hello 인증서 tooa tooadd 클라우드 runbook에서 서비스 하는 방법을 보여 줍니다. 이 샘플에서는 hello 암호는 암호화 된 자동화 변수에서 검색 됩니다.
+다음 샘플 코드에서는 Runbook에서 클라우드 서비스에 인증서를 추가하는 방법을 보여 줍니다. 이 샘플에서는 암호화된 자동화 변수에서 암호를 검색합니다.
 
     $serviceName = 'MyCloudService'
     $cert = Get-AutomationCertificate -Name 'MyCertificate'
@@ -83,15 +95,23 @@ Hello를 사용 해야 **Get-automationcertificate** 활동 toouse 인증서입�
 
 ### <a name="graphical-runbook-sample"></a>그래픽 Runbook 샘플
 
-추가한는 **Get-automationcertificate** hello 인증서 hello 그래픽 편집기 및 선택의 hello 라이브러리 창에서 마우스 오른쪽 단추로 클릭 하 여 그래픽 runbook tooa **toocanvas 추가**합니다.
+그래픽 편집기의 라이브러리 창에서 인증서를 마우스 오른쪽 단추로 클릭하고 **캔버스에 추가**를 선택하여 **Get-AutomationCertificate**를 그래픽 Runbook에 추가합니다.
 
-![인증서 toohello 캔버스 추가](media/automation-certificates/automation-certificate-add-to-canvas.png)
+![캔버스에 인증서 추가](media/automation-certificates/automation-certificate-add-to-canvas.png)
 
-hello 다음 이미지의 예가 나와 그래픽 runbook에서 인증서를 사용 합니다.  이 hello 텍스트 runbook에서 인증서 tooa 클라우드 서비스를 추가 하는 데 위에 표시 된 동일한 예입니다.
+다음 그림에서는 그래픽 Runbook에서 인증서를 사용하는 예제를 보여 줍니다.  이 예제는 텍스트 Runbook에서 클라우드 서비스에 인증서를 추가하는 위의 예제와 동일합니다.
 
 ![그래픽 작성 예제 ](media/automation-certificates/graphical-runbook-add-certificate.png)
 
+### <a name="python2-sample"></a>Python2 샘플
+다음 샘플은 Python2 Runbook의 인증서에 액세스하는 방법을 보여 줍니다.
+
+    # get a reference to the Azure Automation certificate
+    cert = automationassets.get_automation_certificate("AzureRunAsCertificate")
+    
+    # returns the binary cert content  
+    print cert 
 
 ## <a name="next-steps"></a>다음 단계
 
-- 활동의 링크 toocontrol hello 논리적 흐름 runbook 작업에 대 한 자세한 toolearn 설계 tooperform를 참조 [그래픽 제작에 대 한 링크](automation-graphical-authoring-intro.md#links-and-workflow)합니다. 
+- Runbook이 수행하도록 설계된 활동의 논리적 흐름을 제어하도록 링크로 작업하는 방법에 대한 자세한 정보는 [그래픽 작성의 링크](automation-graphical-authoring-intro.md#links-and-workflow)를 참조하세요. 

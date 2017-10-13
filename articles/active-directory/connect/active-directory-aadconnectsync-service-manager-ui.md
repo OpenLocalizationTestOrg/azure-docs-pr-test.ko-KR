@@ -15,24 +15,24 @@ ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: d33f02822097aa7f83042606ba46fd533e85ac23
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 05dd28bf850a84ff4644c46a45bd941b7c6e7d01
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="introduction-toohello-azure-ad-connect-synchronization-service-manager-ui"></a>소개 toohello Azure AD Connect 동기화 서비스 관리자 UI
+# <a name="introduction-to-the-azure-ad-connect-synchronization-service-manager-ui"></a>Azure AD Connect Synchronization Service Manager UI 소개
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/ssmui.png)
 
-hello **동기화 서비스 관리자** UI는 hello 동기화 엔진 및 toosee hello 운영 측면 hello 서비스의 다양 한 고급 사용 되는 tooconfigure 합니다.
+**Synchronization Service Manager** UI는 동기화 엔진의 고급 측면을 구성하고 서비스의 작동 측면을 확인하는 데 사용됩니다.
 
-Hello 시작 **동기화 서비스 관리자** hello에서 UI 시작 메뉴. 라고 하는 **동기화 서비스** hello에서 확인할 수 있습니다 및 **Azure AD Connect** 그룹입니다.  
+시작 메뉴에서 **Synchronization Service Manager** UI를 시작합니다. 이를 **동기화 서비스**라고 하고 **Azure AD Connect** 그룹에서 찾을 수 있습니다.  
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/startmenu.png)
 
-이 항목 toolearn hello hello UI의에서 서로 다른 탭에 대 한 자세한의 hello 위쪽 hello 링크를 클릭 합니다.
+UI에서 다른 탭에 대한 자세한 내용을 보려면 이 항목의 위쪽에 있는 링크를 클릭합니다.
 
 ## <a name="next-steps"></a>다음 단계
-Hello에 대 한 자세한 [Azure AD Connect 동기화](active-directory-aadconnectsync-whatis.md) 구성 합니다.
+[Azure AD Connect 동기화](active-directory-aadconnectsync-whatis.md) 구성에 대해 자세히 알아봅니다.
 
 [Azure Active Directory와 온-프레미스 ID 통합](active-directory-aadconnect.md)에 대해 자세히 알아봅니다.

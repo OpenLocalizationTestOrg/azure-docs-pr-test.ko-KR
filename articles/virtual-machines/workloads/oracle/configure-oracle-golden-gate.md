@@ -1,5 +1,5 @@
 ---
-title: "Azure Linux VM에서 Oracle 골든 게이트 aaaImplement | Microsoft Docs"
+title: "Azure Linux VM에서 Oracle Golden Gate 구현 | Microsoft Docs"
 description: "Oracle Golden Gate를 Azure 환경에서 빠르게 시작하고 실행합니다."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: rclaus
-ms.openlocfilehash: 320cafd5d23ee472f0af9f92577bc6f432f65778
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a05711357d345267647c02e42336fd37c09e1bff
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="implement-oracle-golden-gate-on-an-azure-linux-vm"></a>Azure Linux VM에서 Oracle Golden Gate 구현 
 
-hello Azure CLI 사용된 toocreate 이며 hello 명령줄에서 또는 스크립트에서 Azure 리소스를 관리 합니다. 이 가이드를 세부 정보 hello Azure 마켓플레이스 갤러리 이미지에서 Oracle 12c toouse hello Azure CLI toodeploy 데이터베이스 하는 방법입니다. 
+명령줄 또는 스크립트에서 Azure 리소스를 만들고 관리하는 데 Azure CLI가 사용됩니다. 이 가이드에서는 Azure CLI를 사용하여 Azure Marketplace 갤러리 이미지에서 Oracle 12c 데이터베이스를 배포하는 방법을 자세히 설명합니다. 
 
-이 문서에서는 단계별 toocreate를 설치 하 고 Azure VM에서 Oracle 골든 게이트를 구성 하는 방법입니다.
+이 문서에서는 Azure VM에서 Oracle Golden Gate를 만들고, 설치 및 구성하는 방법을 단계별로 보여 줍니다.
 
-시작 하기 전에 해야 Azure CLI 설치가 완료 된 후 해당 hello 합니다. 자세한 내용은 [Azure CLI 설치 가이드](https://docs.microsoft.com/cli/azure/install-azure-cli)를 참조하세요.
+시작하기 전에 Azure CLI가 설치되었는지 확인합니다. 자세한 내용은 [Azure CLI 설치 가이드](https://docs.microsoft.com/cli/azure/install-azure-cli)를 참조하세요.
 
-## <a name="prepare-hello-environment"></a>Hello 환경 준비
+## <a name="prepare-the-environment"></a>환경 준비
 
-hello에 toocreate 2 Azure Vm을 필요한 tooperform hello Oracle 골든 게이트 설치 동일한 가용성 집합입니다. toocreate hello Vm을 사용 하 여 hello 마켓플레이스 이미지는 **Oracle: Oracle-데이터베이스-Ee:12.1.0.2:latest**합니다.
+Oracle Golden Gate 설치를 수행하려면 동일한 가용성 집합에서 두 개의 Azure VM을 만들어야 합니다. VM을 만드는 데 사용하는 Marketplace 이미지는 **Oracle:Oracle-Database-Ee:12.1.0.2:latest**입니다.
 
-또한 toobe 편집기 vi Unix에 잘 알고 있어야 하 고 x11 (X Windows)에 대 한 기본적인 이해가 있어야 합니다.
+Unix 편집기 vi를 잘 알고 있고 x11(X Windows)을 기본적으로 이해해야 합니다.
 
-hello 다음은 hello 환경 구성 요약입니다.
+다음은 환경 구성에 대한 요약입니다.
 > 
 > |  | **기본 사이트** | **복제 사이트** |
 > | --- | --- | --- |
@@ -48,9 +48,9 @@ hello 다음은 hello 환경 구성 요약입니다.
 > | **Golden Gate 프로세스** |EXTORA |REPORA|
 
 
-### <a name="sign-in-tooazure"></a>TooAzure에 로그인 
+### <a name="sign-in-to-azure"></a>Azure에 로그인 
 
-Tooyour hello로 Azure 구독에에서 로그인 [az 로그인](/cli/azure/#login) 명령입니다. 그런 다음 지시 hello 화면에 나타나는 클릭 합니다.
+[az login](/cli/azure/#login) 명령을 사용하여 Azure 구독에 로그인합니다. 그런 다음 화면에 나타나는 지침에 따릅니다.
 
 ```azurecli
 az login
@@ -58,9 +58,9 @@ az login
 
 ### <a name="create-a-resource-group"></a>리소스 그룹 만들기
 
-Hello로 리소스 그룹 만들기 [az 그룹 만들기](/cli/azure/group#create) 명령입니다. Azure 리소스 그룹은 Azure 리소스가 배포되며 관리될 수 있는 논리적 컨테이너입니다. 
+[az group create](/cli/azure/group#create) 명령을 사용하여 리소스 그룹을 만듭니다. Azure 리소스 그룹은 Azure 리소스가 배포되며 관리될 수 있는 논리적 컨테이너입니다. 
 
-hello 다음 예제에서는 명명 된 리소스 그룹 `myResourceGroup` hello에 `westus` 위치 합니다.
+다음 예제는 `westus` 위치에 `myResourceGroup`이라는 리소스 그룹을 만듭니다.
 
 ```azurecli
 az group create --name myResourceGroup --location westus
@@ -68,7 +68,7 @@ az group create --name myResourceGroup --location westus
 
 ### <a name="create-an-availability-set"></a>가용성 집합 만들기
 
-단계 다음에 나오는 hello 선택 사항 이지만 권장 됩니다. 자세한 내용은 [Windows VM에 대한 Azure 가용성 집합 지침](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines)을 참조하세요.
+다음 단계는 선택 사항이지만 권장됩니다. 자세한 내용은 [Windows VM에 대한 Azure 가용성 집합 지침](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines)을 참조하세요.
 
 ```azurecli
 az vm availability-set create \
@@ -80,9 +80,9 @@ az vm availability-set create \
 
 ### <a name="create-a-virtual-machine"></a>가상 컴퓨터 만들기
 
-Hello로 VM을 만들 [az vm 만들기](/cli/azure/vm#create) 명령입니다. 
+[az vm create](/cli/azure/vm#create) 명령을 사용하여 VM을 만듭니다. 
 
-hello 다음 예제에서는 라는 두 개의 Vm `myVM1` 및 `myVM2`합니다. 기본 키 위치에 SSH 키가 없는 경우 이 키를 만듭니다. toouse 특정 키의 집합, hello를 사용 하 여 `--ssh-key-value` 옵션입니다.
+다음 예제에서는 `myVM1` 및 `myVM2`라고 하는 VM 두 개를 만듭니다. 기본 키 위치에 SSH 키가 없는 경우 이 키를 만듭니다. 특정 키 집합을 사용하려면 `--ssh-key-value` 옵션을 사용합니다.
 
 #### <a name="create-myvm1-primary"></a>myVM1(기본) 만들기:
 ```azurecli
@@ -95,7 +95,7 @@ az vm create \
      --generate-ssh-keys \
 ```
 
-VM을 만든 hello, 후 hello Azure CLI 다음 예제와 비슷한 toohello를 정보를 표시 합니다. (Hello를 메모해 `publicIpAddress`합니다. 이 주소는 사용 되는 tooaccess hello VM입니다.)
+VM을 만든 후 Azure CLI는 다음 예제와 비슷한 정보를 표시합니다. `publicIpAddress`를 기록해 둡니다. 이 주소는 VM에 액세스하는 데 사용됩니다.
 
 ```azurecli
 {
@@ -121,13 +121,13 @@ az vm create \
      --generate-ssh-keys \
 ```
 
-Hello를 메모해 `publicIpAddress` 만들어진 후에 합니다.
+VM을 만든 후 `publicIpAddress`도 기록해 둡니다.
 
-### <a name="open-hello-tcp-port-for-connectivity"></a>연결에 대 한 hello TCP 포트 열기
+### <a name="open-the-tcp-port-for-connectivity"></a>연결에 대한 TCP 포트 열기
 
-hello 다음 단계는 데 사용할 수 있는 tooaccess hello Oracle 데이터베이스 원격으로 tooconfigure 외부 끝점입니다. hello 다음 명령을 실행 tooconfigure hello 외부 끝점입니다.
+다음 단계에서는 Oracle 데이터베이스에 원격으로 액세스할 수 있는 외부 끝점을 구성합니다. 외부 끝점을 구성하려면 다음 명령을 실행합니다.
 
-#### <a name="open-hello-port-for-myvm1"></a>MyVM1 hello 포트 열기:
+#### <a name="open-the-port-for-myvm1"></a>myVM1에 대한 포트 열기:
 
 ```azurecli
 az network nsg rule create --resource-group myResourceGroup\
@@ -137,7 +137,7 @@ az network nsg rule create --resource-group myResourceGroup\
     --destination-address-prefix '*' --destination-port-range 1521 --access allow
 ```
 
-hello 결과 응답 다음 비슷한 toohello 같아야 합니다.
+결과는 다음 응답과 유사하게 나타납니다.
 
 ```bash
 {
@@ -158,7 +158,7 @@ hello 결과 응답 다음 비슷한 toohello 같아야 합니다.
 }
 ```
 
-#### <a name="open-hello-port-for-myvm2"></a>MyVM2 hello 포트 열기:
+#### <a name="open-the-port-for-myvm2"></a>myVM2에 대한 포트 열기:
 
 ```azurecli
 az network nsg rule create --resource-group myResourceGroup\
@@ -168,25 +168,25 @@ az network nsg rule create --resource-group myResourceGroup\
     --destination-address-prefix '*' --destination-port-range 1521 --access allow
 ```
 
-### <a name="connect-toohello-virtual-machine"></a>Toohello 가상 컴퓨터에 연결
+### <a name="connect-to-the-virtual-machine"></a>가상 컴퓨터에 연결
 
-사용 하 여 hello 다음 명령은 toocreate hello 가상 컴퓨터와의 SSH 세션입니다. Hello로 hello IP 주소를 교체 `publicIpAddress` 의 가상 컴퓨터.
+다음 명령을 사용하여 가상 컴퓨터와의 SSH 세션을 만듭니다. 해당 IP 주소를 가상 컴퓨터의 `publicIpAddress`로 바꿉니다.
 
 ```bash 
 ssh <publicIpAddress>
 ```
 
-### <a name="create-hello-database-on-myvm1-primary"></a>Hello 데이터베이스를 만드는 위치 myVM1 (기본)
+### <a name="create-the-database-on-myvm1-primary"></a>myVM1(기본)에서 데이터베이스 만들기
 
-Oracle 소프트웨어 hello 있으므로 hello 다음 단계는 tooinstall hello 데이터베이스 hello 마켓플레이스 이미지에 이미 설치 되어 있습니다. 
+Oracle 소프트웨어는 Marketplace 이미지에 이미 설치되어 있으므로 다음 단계에서 데이터베이스를 설치합니다. 
 
-Hello 'oracle' superuser로 hello 소프트웨어를 실행 합니다.
+'oracle' 슈퍼 사용자로 소프트웨어 실행:
 
 ```bash
 sudo su - oracle
 ```
 
-hello 데이터베이스 만드는 위치:
+데이터베이스를 만듭니다.
 
 ```bash
 $ dbca -silent \
@@ -207,7 +207,7 @@ $ dbca -silent \
    -storageType FS \
    -ignorePreReqs
 ```
-출력에는 다음 응답 비슷한 toohello 같아야 합니다.
+출력은 다음 응답과 유사하게 나타납니다.
 
 ```bash
 Copying database files
@@ -236,10 +236,10 @@ Completing Database Creation
 Creating Pluggable Databases
 78% complete
 100% complete
-Look at hello log file "/u01/app/oracle/cfgtoollogs/dbca/cdb1/cdb1.log" for more details.
+Look at the log file "/u01/app/oracle/cfgtoollogs/dbca/cdb1/cdb1.log" for more details.
 ```
 
-Hello ORACLE_SID 및 ORACLE_HOME 변수를 설정 합니다.
+ORACLE_SID 및 ORACLE_HOME 변수를 설정합니다.
 
 ```bash
 $ ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
@@ -247,7 +247,7 @@ $ ORACLE_SID=gg1; export ORACLE_SID
 $ LD_LIBRARY_PATH=ORACLE_HOME/lib; export LD_LIBRARY_PATH
 ```
 
-필요에 따라는 이후 로그인에 대 한 이러한 설정을 저장할 수 있도록 ORACLE_HOME 및 ORACLE_SID toohello.bashrc 파일을 추가할 수 있습니다.
+필요에 따라 .bashrc 파일에 ORACLE_HOME 및 ORACLE_SID를 추가하여 후속 로그인을 위해 이러한 설정을 저장할 수 있습니다.
 
 ```bash
 # add oracle home
@@ -264,12 +264,12 @@ $ sudo su - oracle
 $ lsnrctl start
 ```
 
-### <a name="create-hello-database-on-myvm2-replicate"></a>MyVM2에 hello 데이터베이스 만들기 (복제)
+### <a name="create-the-database-on-myvm2-replicate"></a>myVM2(복제)에서 데이터베이스 만들기
 
 ```bash
 sudo su - oracle
 ```
-hello 데이터베이스 만드는 위치:
+데이터베이스를 만듭니다.
 
 ```bash
 $ dbca -silent \
@@ -290,7 +290,7 @@ $ dbca -silent \
    -storageType FS \
    -ignorePreReqs
 ```
-Hello ORACLE_SID 및 ORACLE_HOME 변수를 설정 합니다.
+ORACLE_SID 및 ORACLE_HOME 변수를 설정합니다.
 
 ```bash
 $ ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
@@ -298,7 +298,7 @@ $ ORACLE_SID=cdb1; export ORACLE_SID
 $ LD_LIBRARY_PATH=ORACLE_HOME/lib; export LD_LIBRARY_PATH
 ```
 
-필요에 따라는 이후 로그인에 대 한 이러한 설정을 저장할 수 있도록 추가 된 ORACLE_HOME 및 ORACLE_SID toohello.bashrc 파일을 수 있습니다.
+필요에 따라 .bashrc 파일에 ORACLE_HOME 및 ORACLE_SID를 추가하여 후속 로그인을 위해 이러한 설정을 저장할 수 있습니다.
 
 ```bash
 # add oracle home
@@ -316,7 +316,7 @@ $ lsnrctl start
 ```
 
 ## <a name="configure-golden-gate"></a>Golden Gate 구성 
-이 섹션의 hello 단계를 수행 하는 tooconfigure 골든 게이트입니다.
+Golden Gate를 구성하려면 이 섹션의 단계를 따릅니다.
 
 ### <a name="enable-archive-log-mode-on-myvm1-primary"></a>myVM1(기본)에서 보관 로그 모드 사용
 
@@ -346,24 +346,24 @@ SQL> EXIT;
 ```
 
 ### <a name="download-golden-gate-software"></a>Golden Gate 소프트웨어 다운로드
-toodownload hello Oracle 골든 게이트 소프트웨어, 단계를 수행 하는 전체 hello 준비 및:
+Oracle Golden Gate 소프트웨어를 다운로드 및 준비하려면 다음 단계를 완료합니다.
 
-1. Hello 다운로드 **fbo_ggs_Linux_x64_shiphome.zip** hello에서 파일 [Oracle 골든 게이트 다운로드 페이지](http://www.oracle.com/technetwork/middleware/goldengate/downloads/index.html)합니다. Hello에서 제목 다운로드 **Oracle Linux x86-64에 대 한 Oracle GoldenGate 12.x.x.x**,.zip 파일 toodownload 집합이 있어야 합니다.
+1. [Oracle Golden Gate 다운로드 페이지](http://www.oracle.com/technetwork/middleware/goldengate/downloads/index.html)에서 **fbo_ggs_Linux_x64_shiphome.zip** 파일을 다운로드합니다. 다운로드 제목 **Oracle GoldenGate 12.x.x.x for Oracle Linux x86-64** 아래에 다운로드할 .zip 파일 집합이 있습니다.
 
-2. Hello.zip tooyour 클라이언트 컴퓨터 파일을 다운로드 한 후 복사 프로토콜 보안 (SCP) toocopy hello 파일 tooyour VM을 사용 합니다.
+2. .zip 파일을 클라이언트 컴퓨터로 다운로드한 후 SCP(Secure Copy Protocol)를 사용하여 파일을 VM으로 복사합니다.
 
   ```bash
   $ scp fbo_ggs_Linux_x64_shiphome.zip <publicIpAddress>:<folder>
   ```
 
-3. Hello.zip 파일 toohello 이동 **/opt** 폴더입니다. 그런 다음 hello 파일의 hello 소유자를 다음과 같이 변경.
+3. .zip 파일을 **/opt** 폴더로 이동합니다. 그다음에 다음과 같이 파일의 소유자를 변경합니다.
 
   ```bash
   $ sudo su -
   # mv <folder>/*.zip /opt
   ```
 
-4. Hello 파일을 (설치 hello Linux의 압축을 푸는 유틸리티 설치 되어 있지 않은 경우)의 압축을 풉니다.
+4. 파일의 압축을 풉니다. (Linux 압축 풀기 유틸리티가 설치되어 있지 않은 경우 이를 설치합니다.)
 
   ```bash
   # yum install unzip
@@ -377,24 +377,24 @@ toodownload hello Oracle 골든 게이트 소프트웨어, 단계를 수행 하�
   # chown -R oracle:oinstall /opt/fbo_ggs_Linux_x64_shiphome
   ```
 
-### <a name="prepare-hello-client-and-vm-toorun-x11-for-windows-clients-only"></a>클라이언트 hello와 준비 VM toorun x11 (Windows 클라이언트에만 해당)
+### <a name="prepare-the-client-and-vm-to-run-x11-for-windows-clients-only"></a>x11을 실행하는 클라이언트 및 VM을 준비합니다(Windows 클라이언트에만 해당).
 선택적 단계입니다. Linux 클라이언트를 사용하거나 x11을 이미 설치한 경우 이 단계를 건너뛸 수 있습니다.
 
-1. PuTTY 및 Xming tooyour Windows 컴퓨터를 다운로드 합니다.
+1. Windows 컴퓨터에 PuTTY 및 Xming을 다운로드합니다.
 
   * [PuTTY 다운로드](http://www.putty.org/)
   * [Xming 다운로드](https://xming.en.softonic.com/)
 
-2.  PuTTY를 설치한 후에 PuTTY 폴더 (예를 들어 C:\Program Files\PuTTY) hello, puttygen.exe (PuTTY 키 생성기)를 실행 합니다.
+2.  PuTTY를 PuTTY 폴더(예: C:\Program Files\PuTTY)에 설치한 후 puttygen.exe(PuTTY 키 생성기)를 실행합니다.
 
 3.  PuTTY 키 생성기에서,
 
-  - 키를 선택 hello toogenerate **생성** 단추입니다.
-  - Hello 키의 hello 내용을 복사 (**Ctrl + C**).
-  - 선택 hello **개인 키 저장** 단추입니다.
-  - 다음을 선택 하 고, 나타나는 hello 경고를 무시 **확인**합니다.
+  - 키를 생성하려면 **생성** 단추를 선택합니다.
+  - 키의 콘텐츠를 복사합니다(**Ctrl + C**).
+  - **개인 키 저장** 단추를 선택합니다.
+  - 표시되는 경고를 무시하고 **확인**을 선택합니다.
 
-    ![Hello PuTTY 키 생성기 페이지의 스크린샷](./media/oracle-golden-gate/puttykeygen.png)
+    ![PuTTY 키 생성기 페이지의 스크린샷](./media/oracle-golden-gate/puttykeygen.png)
 
 4.  VM에서 다음 명령을 실행합니다.
 
@@ -404,61 +404,61 @@ toodownload hello Oracle 골든 게이트 소프트웨어, 단계를 수행 하�
   $ cd .ssh
   ```
 
-5. **authorized_keys**라는 파일을 만듭니다. 이 파일의 hello 키의 내용을 hello를 붙여 넣고 hello 파일을 저장 합니다.
+5. **authorized_keys**라는 파일을 만듭니다. 키의 콘텐츠를 이 파일에 붙여넣은 다음 파일을 저장합니다.
 
   > [!NOTE]
-  > hello 키 hello 문자열을 포함 해야 `ssh-rsa`합니다. 또한 hello 키의 내용을 hello 텍스트 한 줄 이어야 합니다.
+  > 키에는 문자열 `ssh-rsa`가 포함되어야 합니다. 또한 키의 콘텐츠는 한 줄 텍스트여야 합니다.
   >  
 
-6. PuTTY를 시작합니다. Hello에 **범주** 창 선택 **연결** > **SSH** > **Auth**합니다. Hello에 **인증에 대 한 개인 키 파일** 상자 이전에 생성 toohello 키를 검색 합니다.
+6. PuTTY를 시작합니다. **범주** 창에서 **연결** > **SSH** > **인증**을 선택합니다. **인증에 대한 개인 키 파일** 상자에서 이전에 생성한 키를 찾아봅니다.
 
-  ![Hello 개인 키 설정 페이지의 스크린샷](./media/oracle-golden-gate/setprivatekey.png)
+  ![개인 키 설정 페이지의 스크린샷](./media/oracle-golden-gate/setprivatekey.png)
 
-7. Hello에 **범주** 창 선택 **연결** > **SSH** > **X11**합니다. 다음 hello 선택 **사용 X11 전달** 상자입니다.
+7. **범주** 창에서 **연결** > **SSH** > **X11**을 선택합니다. 그다음에 **X11 전달을 사용하도록 설정** 상자를 선택합니다.
 
-  ![Hello X11 설정 페이지의 스크린샷](./media/oracle-golden-gate/enablex11.png)
+  ![X11 사용 페이지의 스크린샷](./media/oracle-golden-gate/enablex11.png)
 
-8. Hello에 **범주** 창 너무 이동**세션**합니다. Hello 호스트 정보를 입력 한 다음 선택 **열려**합니다.
+8. **카테고리** 창에서 **세션**으로 이동합니다. 호스트 정보를 입력한 다음 **열기**를 선택합니다.
 
-  ![Hello 세션 페이지의 스크린샷](./media/oracle-golden-gate/puttysession.png)
+  ![세션 페이지의 스크린샷](./media/oracle-golden-gate/puttysession.png)
 
 ### <a name="install-golden-gate-software"></a>Golden Gate 소프트웨어 설치
 
-tooinstall Oracle 골든 게이트 단계를 수행 하는 전체 hello:
+Oracle Golden Gate를 설치하려면 다음 단계를 완료합니다.
 
-1. oracle로 로그인합니다. (암호를 입력 하지 않고에 수 toosign 수 있어야 합니다.) Hello 설치를 시작 하기 전에 Xming 실행 되 고 있는지 확인 합니다.
+1. oracle로 로그인합니다. (로그인할 때 암호 입력 화면이 나타나지 않아야 합니다.) 설치를 시작하기 전에 Xming이 실행되고 있는지 확인합니다.
  
   ```bash
   $ cd /opt/fbo_ggs_Linux_x64_shiphome/Disk1
   $ ./runInstaller
   ```
-2. 'Oracle GoldenGate for Oracle Database 12c'를 선택합니다. 그런 다음 선택 **다음** toocontinue 합니다.
+2. 'Oracle GoldenGate for Oracle Database 12c'를 선택합니다. 그리고 **다음**을 선택하여 계속합니다.
 
-  ![Hello 설치 관리자 선택 설치 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_01.png)
+  ![설치 관리자 설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_01.png)
 
-3. Hello 소프트웨어 위치를 변경 합니다. 다음 hello 선택 **관리자 시작** 상자 하 고 hello 데이터베이스 위치를 입력 합니다. 선택 **다음** toocontinue 합니다.
+3. 소프트웨어 위치를 변경합니다. 그다음에 **관리자 시작** 상자를 선택하고 데이터베이스 위치를 입력합니다. **다음**을 선택하여 계속합니다.
 
-  ![Hello 설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_02.png)
+  ![설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_02.png)
 
-4. Hello 인벤토리 디렉터리를 변경 하 고 다음 선택 **다음** toocontinue 합니다.
+4. 인벤토리 디렉터리를 변경하고 **다음**을 선택하여 계속합니다.
 
-  ![Hello 설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_03.png)
+  ![설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_03.png)
 
-5. Hello에 **요약** 화면에서 **설치** toocontinue 합니다.
+5. **요약** 화면에서 **설치**를 선택하여 계속합니다.
 
-  ![Hello 설치 관리자 선택 설치 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_04.png)
+  ![설치 관리자 설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_04.png)
 
-6. '루트'로 입력 정보 요청된 toorun 스크립트 수도 있습니다. 그렇다면 별도 세션을 열고, ssh toohello VM을 sudo tooroot 고 hello 스크립트를 실행 합니다. **확인**을 선택하여 계속합니다.
+6. 스크립트를 'root'로 실행할지 묻는 메시지가 표시될 수 있습니다. 메시지가 표시되면 별도의 세션, ssh를 VM으로, sudo를 root로 열고 스크립트를 실행합니다. **확인**을 선택하여 계속합니다.
 
-  ![Hello 설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_05.png)
+  ![설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_05.png)
 
-7. Hello 설치가 완료 되 면 선택 **닫기** toocomplete hello 프로세스입니다.
+7. 설치가 완료되면 **닫기**를 선택하여 프로세스를 완료합니다.
 
-  ![Hello 설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_06.png)
+  ![설치 선택 페이지의 스크린샷](./media/oracle-golden-gate/golden_gate_install_06.png)
 
 ### <a name="set-up-service-on-myvm1-primary"></a>myVM1(기본)에서 서비스 설정
 
-1. 만들거나 hello tnsnames.ora 파일을 업데이트 합니다.
+1. tnsnames.ora 파일 만들거나 업데이트합니다.
 
   ```bash
   $ cd $ORACLE_HOME/network/admin
@@ -491,29 +491,29 @@ tooinstall Oracle 골든 게이트 단계를 수행 하는 전체 hello:
     )
   ```
 
-2. Hello 골든 게이트 소유자 및 사용자 계정을 만듭니다.
+2. Golden Gate 소유자 및 사용자 계정을 만듭니다.
 
   > [!NOTE]
-  > hello 소유자 계정에는 C# # 접두사가 있어야 합니다.
+  > 소유자 계정에는 C## 접두사가 있어야 합니다.
   >
 
     ```bash
     $ sqlplus / as sysdba
     SQL> CREATE USER C##GGADMIN identified by ggadmin;
     SQL> EXEC dbms_goldengate_auth.grant_admin_privilege('C##GGADMIN',container=>'ALL');
-    SQL> GRANT DBA tooC##GGADMIN container=all;
+    SQL> GRANT DBA to C##GGADMIN container=all;
     SQL> connect C##GGADMIN/ggadmin
     SQL> ALTER SESSION SET CONTAINER=PDB1;
     SQL> EXIT;
     ```
 
-3. Hello 골든 게이트 테스트 사용자 계정을 만듭니다.
+3. Golden Gate 테스트 사용자 계정을 만듭니다.
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ sqlplus system/OraPasswd1@pdb1
   SQL> CREATE USER test identified by test DEFAULT TABLESPACE USERS TEMPORARY TABLESPACE TEMP;
-  SQL> GRANT connect, resource, dba tootest;
+  SQL> GRANT connect, resource, dba TO test;
   SQL> ALTER USER test QUOTA 100M on USERS;
   SQL> connect test/test@pdb1
   SQL> @demo_ora_create
@@ -521,9 +521,9 @@ tooinstall Oracle 골든 게이트 단계를 수행 하는 전체 hello:
   SQL> EXIT;
   ```
 
-4. Hello 매개 변수 파일의 압축 해제를 구성 합니다.
+4. extract 매개 변수 파일을 구성합니다.
 
- Hello 골든 게이트 명령줄 인터페이스 (ggsci)를 시작 합니다.
+ Golden Gate 명령줄 인터페이스(ggsci)를 시작합니다.
 
   ```bash
   $ sudo su - oracle
@@ -537,7 +537,7 @@ tooinstall Oracle 골든 게이트 단계를 수행 하는 전체 hello:
 
   GGSCI> EDIT PARAMS EXTORA
   ```
-5. Hello (vi 명령 사용)에서 다음 toohello 추출 매개 변수 파일을 추가 합니다. Esc 키, ':wq!'를 눌러 toosave 파일입니다. 
+5. EXTRACT 매개 변수 파일에 다음을 추가합니다(vi 명령 사용). Esc 키, ':wq!'를 눌러 파일을 저장합니다. 
 
   ```bash
   EXTRACT EXTORA
@@ -578,7 +578,7 @@ tooinstall Oracle 골든 게이트 단계를 수행 하는 전체 hello:
 
   GGSCI>  START EXTRACT EXTORA
 
-  Sending START request tooMANAGER ...
+  Sending START request to MANAGER ...
   EXTRACT EXTORA starting
 
   GGSCI > info all
@@ -588,7 +588,7 @@ tooinstall Oracle 골든 게이트 단계를 수행 하는 전체 hello:
   MANAGER     RUNNING
   EXTRACT     RUNNING     EXTORA      00:00:11      00:00:04
   ```
-이 단계에서는 SCN 나중 다른 단원에서 사용 되는 시작 하는 hello를 찾을 수 있습니다.
+이 단계에서는 나중에 다른 섹션에서 사용되는 시작 SCN을 찾습니다.
 
   ```bash
   $ sqlplus / as sysdba
@@ -620,7 +620,7 @@ tooinstall Oracle 골든 게이트 단계를 수행 하는 전체 hello:
 ### <a name="set-up-service-on-myvm2-replicate"></a>myVM2(복제)에서 서비스 설정
 
 
-1. 만들거나 hello tnsnames.ora 파일을 업데이트 합니다.
+1. tnsnames.ora 파일 만들거나 업데이트합니다.
 
   ```bash
   $ cd $ORACLE_HOME/network/admin
@@ -659,7 +659,7 @@ tooinstall Oracle 골든 게이트 단계를 수행 하는 전체 hello:
   $ sqlplus / as sysdba
   SQL> alter session set container = pdb1;
   SQL> create user repuser identified by rep_pass container=current;
-  SQL> grant dba toorepuser;
+  SQL> grant dba to repuser;
   SQL> exec dbms_goldengate_auth.grant_admin_privilege('REPUSER',container=>'PDB1');
   SQL> connect repuser/rep_pass@pdb1 
   SQL> EXIT;
@@ -671,14 +671,14 @@ tooinstall Oracle 골든 게이트 단계를 수행 하는 전체 hello:
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ sqlplus system/OraPasswd1@pdb1
   SQL> CREATE USER test identified by test DEFAULT TABLESPACE USERS TEMPORARY TABLESPACE TEMP;
-  SQL> GRANT connect, resource, dba tootest;
+  SQL> GRANT connect, resource, dba TO test;
   SQL> ALTER USER test QUOTA 100M on USERS;
   SQL> connect test/test@pdb1
   SQL> @demo_ora_create
   SQL> EXIT;
   ```
 
-4. REPLICAT 매개 변수 파일 tooreplicate 변경 내용: 
+4. 변경 내용을 복제하기 위한 REPLICAT 매개 변수 파일: 
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
@@ -718,22 +718,22 @@ tooinstall Oracle 골든 게이트 단계를 수행 하는 전체 hello:
   GGSCI> ADD REPLICAT INITREP, SPECIALRUN
   ```
 
-### <a name="set-up-hello-replication-myvm1-and-myvm2"></a>(MyVM1 및 myVM2) hello 복제 설정
+### <a name="set-up-the-replication-myvm1-and-myvm2"></a>복제 설정(myVM1 및 myVM2)
 
-#### <a name="1-set-up-hello-replication-on-myvm2-replicate"></a>1. MyVM2에 hello 복제 설정 (복제)
+#### <a name="1-set-up-the-replication-on-myvm2-replicate"></a>1. myVM2(복제)에서 복제 설정
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ ./ggsci
   GGSCI> EDIT PARAMS MGR
   ```
-Hello 다음과 같이 hello 파일을 업데이트 합니다.
+다음을 사용하여 파일을 업데이트합니다.
 
   ```bash
   PORT 7809
   ACCESSRULE, PROG *, IPADDR *, ALLOW
   ```
-그런 다음 hello 관리자 서비스를 다시 시작 합니다.
+관리자 서비스를 다시 시작합니다.
 
   ```bash
   GGSCI> STOP MGR
@@ -741,9 +741,9 @@ Hello 다음과 같이 hello 파일을 업데이트 합니다.
   GGSCI> EXIT
   ```
 
-#### <a name="2-set-up-hello-replication-on-myvm1-primary"></a>2. (기본) myVM1에 hello 복제를 설정
+#### <a name="2-set-up-the-replication-on-myvm1-primary"></a>2. myVM1(기본)에서 복제 설정
 
-Hello 초기 로드 시작 오류를 확인 하십시오.
+초기 로드를 시작하고 오류를 확인합니다.
 
 ```bash
 $ cd /u01/app/oracle/product/12.1.0/oggcore_1
@@ -751,53 +751,53 @@ $ ./ggsci
 GGSCI> START EXTRACT INITEXT
 GGSCI> VIEW REPORT INITEXT
 ```
-#### <a name="3-set-up-hello-replication-on-myvm2-replicate"></a>3. MyVM2에 hello 복제 설정 (복제)
+#### <a name="3-set-up-the-replication-on-myvm2-replicate"></a>3. myVM2(복제)에서 복제 설정
 
-하기 전에 얻은 hello hello 번호로 SCN 수를 변경 합니다.
+이전에 얻은 번호로 SCN 번호를 변경합니다.
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ ./ggsci
   START REPLICAT REPORA, AFTERCSN 1857887
   ```
-hello 복제를 시작 하 고 새 레코드 tooTEST 테이블을 삽입 하 여 테스트할 수 있습니다.
+복제가 시작되면 새 레코드를 TEST 테이블에 삽입하여 테스트할 수 있습니다.
 
 
 ### <a name="view-job-status-and-troubleshooting"></a>작업 상태 보기 및 문제 해결
 
 #### <a name="view-reports"></a>보고서 보기
-tooview는 hello 다음 명령을 실행 myVM1을 보고 합니다.
+myVM1에서 보고서를 보려면 다음 명령을 실행합니다.
 
   ```bash
   GGSCI> VIEW REPORT EXTORA 
   ```
  
-tooview는 hello 다음 명령을 실행 myVM2을 보고 합니다.
+myVM2에서 보고서를 보려면 다음 명령을 실행합니다.
 
   ```bash
   GGSCI> VIEW REPORT REPORA
   ```
 
 #### <a name="view-status-and-history"></a>상태 및 기록 보기
-tooview 상태 및 hello 다음 명령을 실행 myVM1에 기록 합니다.
+myVM1에서 상태 및 기록을 보려면 다음 명령을 실행합니다.
 
   ```bash
   GGSCI> dblogin userid c##ggadmin, password ggadmin 
   GGSCI> INFO EXTRACT EXTORA, DETAIL
   ```
 
-tooview 상태 및 hello 다음 명령을 실행 myVM2에 기록 합니다.
+myVM2에서 상태 및 기록을 보려면 다음 명령을 실행합니다.
 
   ```bash
   GGSCI> dblogin userid repuser@pdb1 password rep_pass 
   GGSCI> INFO REP REPORA, DETAIL
   ```
-Hello 설치 및 Oracle linux에서 골든 게이트의 구성을 완료합니다.
+이렇게 하면 Oracle linux에서 Golden Gate의 설치 및 구성이 완료됩니다.
 
 
-## <a name="delete-hello-virtual-machine"></a>Hello 가상 컴퓨터 삭제
+## <a name="delete-the-virtual-machine"></a>가상 컴퓨터 삭제
 
-더 이상 필요 hello 다음 명령을 사용 하는 tooremove hello 리소스 그룹, VM 및 관련 된 모든 리소스 될 수 없습니다.
+더 이상 필요하지 않은 경우 다음 명령을 사용하여 리소스 그룹, VM 및 모든 관련된 리소스를 제거할 수 있습니다.
 
 ```azurecli
 az group delete --name myResourceGroup

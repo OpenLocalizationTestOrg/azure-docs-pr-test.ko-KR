@@ -1,5 +1,5 @@
 ---
-title: "aaaMonitoring 사용량 및 Windows 데스크톱 앱에 대 한 성능"
+title: "Windows 데스크톱 앱의 사용량 및 성능 모니터링"
 description: "HockeyApp 및 Application Insights를 사용하여 Windows 데스크톱 앱의 사용량 및 성능을 분석합니다."
 services: application-insights
 documentationcenter: windows
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/26/2016
 ms.author: bwren
-ms.openlocfilehash: 73806885a6f0ed3896c0e43308c90ba087007887
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9d7e2a390adf10cbf5d88dd0084ce09136987309
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="monitoring-usage-and-performance-in-windows-desktop-apps"></a>Windows 데스크톱 앱에서 사용량 및 성능 모니터링
 
@@ -25,27 +25,27 @@ ms.lasthandoff: 10/06/2017
 [Azure Application Insights](app-insights-overview.md) 및 [HockeyApp](https://hockeyapp.net)를 사용하면 배포된 응용 프로그램의 사용량 및 성능을 모니터링할 수 있습니다.
 
 > [!IMPORTANT]
-> 권장 [HockeyApp](https://hockeyapp.net) toodistribute 및 모니터에서 사용 하는 데스크톱 및 장치 앱. HockeyApp를 사용하면 사용량 및 충돌 보고서를 모니터링할 수 있을 뿐만 아니라 배포, 라이브 테스트 및 사용자 의견을 관리할 수 있습니다. 또한 [분석으로 원격 분석을 내보내고 쿼리](app-insights-hockeyapp-bridge-app.md)할 수 있습니다.
+> 데스크톱 및 장치 앱을 배포하고 모니터링하는 데 [HockeyApp](https://hockeyapp.net) 을 권장합니다. HockeyApp를 사용하면 사용량 및 충돌 보고서를 모니터링할 수 있을 뿐만 아니라 배포, 라이브 테스트 및 사용자 의견을 관리할 수 있습니다. 또한 [분석으로 원격 분석을 내보내고 쿼리](app-insights-hockeyapp-bridge-app.md)할 수 있습니다.
 > 
-> 도 있지만 원격 분석은 데스크톱 응용 프로그램에서 tooApplication Insights 보낼 수 있습니다,이 주로 실험적 및 디버깅 목적으로 유용 합니다.
+> 데스크톱 응용 프로그램에서 Application Insights에 원격 분석을 보낼 수 있지만 주로 디버깅 및 실험 목적에 유용합니다.
 > 
 > 
 
-## <a name="toosend-telemetry-tooapplication-insights-from-a-windows-application"></a>Windows 응용 프로그램에서 원격 분석 tooApplication toosend Insights
-1. Hello에 [Azure 포털](https://portal.azure.com), [Application Insights 리소스 만들기](app-insights-create-new-resource.md)합니다. 응용 프로그램 유형으로 ASP.NET 앱을 선택합니다.
-2. Hello 계측 키의 복사본을 수행 합니다. Hello 키 hello Essentials 드롭 다운 방금 만든 hello 새 리소스를 찾을 합니다. 
-3. Visual Studio에서 응용 프로그램 프로젝트의 hello NuGet 패키지를 편집 하 고 Microsoft.ApplicationInsights.WindowsServer를 추가 합니다. (또는 원한다 면 hello 표준 원격 분석 컬렉션 모듈 없이 완전 API hello Microsoft.ApplicationInsights를 선택 합니다.)
-4. 사용자 코드에서 hello 계측 키를 설정 합니다.
+## <a name="to-send-telemetry-to-application-insights-from-a-windows-application"></a>Windows 응용 프로그램에서 Application Insights에 원격 분석을 전송하려면
+1. [Azure Portal](https://portal.azure.com)에서 [Application Insights 리소스를 만듭니다](app-insights-create-new-resource.md). 응용 프로그램 유형으로 ASP.NET 앱을 선택합니다.
+2. 계측 키를 복사합니다. 방금 만든 새 리소스의 필수 드롭다운에서 키를 찾습니다. 
+3. Visual Studio에서 앱 프로젝트의 NuGet 패키지를 편집하고 Microsoft.ApplicationInsights.WindowsServer를 추가합니다. (또는 표준 원격 분석 수집 모듈 없이 API를 사용하려면 Microsoft.ApplicationInsights를 선택합니다.)
+4. 코드에서 계측 키를 설정합니다.
    
     `TelemetryConfiguration.Active.InstrumentationKey = "` *키* `";` 
    
-    또는 ApplicationInsights.config (설치한 hello 표준 원격 분석 패키지 중 하나) 하는 경우:
+    또는 ApplicationInsights.config에서(표준 원격 분석 패키지 중 하나를 설치한 경우).
    
     `<InstrumentationKey>`*키*`</InstrumentationKey>` 
    
-    ApplicationInsights.config를 사용 하는 경우 솔루션 탐색기에서 해당 속성을 너무 설정 되어 있는지 확인**빌드 작업 콘텐츠를 복사 tooOutput 디렉터리 = = 복사**합니다.
-5. [Hello API를 사용 하 여](app-insights-api-custom-events-metrics.md) toosend 원격 분석 합니다.
-6. 응용 프로그램을 실행 하 고 hello Azure 포털에서에서 만든 hello 리소스의 hello 원격 분석을 참조 하십시오.
+    ApplicationInsights.config를 사용하는 경우 솔루션 탐색기에서 해당 속성이 **빌드 작업 = 콘텐츠, 출력 디렉터리로 복사 = 복사**로 설정되도록 합니다.
+5. [API를 사용](app-insights-api-custom-events-metrics.md) 하여 원격 분석을 전송합니다.
+6. 앱을 실행하고 Azure 포털에서 만든 리소스의 원격 분석을 참조하세요.
 
 ## <a name="telemetry"></a>예제 코드
 ```C#
@@ -56,7 +56,7 @@ ms.lasthandoff: 10/06/2017
         ...
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Alternative toosetting ikey in config file:
+            // Alternative to setting ikey in config file:
             tc.InstrumentationKey = "key copied from portal";
 
             // Set session data:

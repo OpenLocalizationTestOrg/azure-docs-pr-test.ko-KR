@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure SQL 데이터 웨어하우스 질문과 대답 | Microsoft Docs"
+title: "Azure SQL Data Warehouse에 대한 질문과 대답 | Microsoft Docs"
 description: "이 문서에는 고객 및 개발자를 위한 Azure SQL Data Warehouse 관련 질문과 대답이 나와 있습니다."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: overview
 ms.date: 3/1/2017
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 09fd3f65d9507b09fcb8f477742c7d020add2755
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4c00710ecc0c91f8407eca81b78176075fcbd6ad
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="sql-data-warehouse-frequently-asked-questions"></a>SQL Data Warehouse에 대한 질문과 대답
 
@@ -31,7 +31,7 @@ A. SQL DW는 TDE 및 감사와 같이 데이터를 보호하기 위한 몇 가�
 
 Q. SQL DW와 호환되는 법적 또는 비즈니스 표준은 어디에서 확인할 수 있나요?
 
-A. Hello 방문 [Microsoft 준수] SOC 및 ISO와 같은 제품에 의해 다양 한 규정 준수 기능에 대 한 페이지입니다. 먼저 규정 준수 제목으로 선택한 다음 확장 Azure의 hello 페이지 toosee hello 범위 내 Microsoft 클라우드 서비스 섹션 hello 오른쪽에 있는 Azure 서비스를 서비스는 규격입니다.
+A. SOC 및 ISO와 같은 제품에 대한 다양한 규정 준수 제안에 대해서는 [Microsoft 규정 준수] 페이지를 방문하세요. 먼저 규정 준수 제목으로 선택하고, 페이지 오른쪽의 Microsoft 범위 내 클라우드 서비스 섹션에서 Azure를 확장하여 Azure 서비스와 호환되는 서비스를 확인합니다.
 
 Q. PowerBI를 연결할 수 있나요?
 
@@ -43,7 +43,7 @@ A. 현재 [용량 제한] 페이지를 참조하세요.
 
 Q. 크기 조정/일시 중지/계속 작업이 너무 오래 걸리는 이유는 무엇인가요?
 
-A. 다양 한 요인 계산 관리 작업에 대 한 hello 시간에 영향을 줄 수 있습니다. 장기 실행 작업의 일반적인 경우는 트랜잭션 롤백입니다. 크기 조정 또는 일시 중지 작업이 시작되면 들어오는 모든 세션이 차단되고 쿼리가 해제됩니다. 안정 된 상태가 주문 tooleave hello 시스템에서 작업을 시작할 수 있습니다 되기 전에 트랜잭션은 롤백할 수 해야 합니다. 더 많은 hello 수 및 트랜잭션 hello 로그 크기를 더 큰 hello, hello 시스템 tooa 안정적인 상태를 복원할 hello 긴 hello 작업이 중단 됩니다.
+A. 다양한 요인이 계산 관리 작업 시간에 영향을 줄 수 있습니다. 장기 실행 작업의 일반적인 경우는 트랜잭션 롤백입니다. 크기 조정 또는 일시 중지 작업이 시작되면 들어오는 모든 세션이 차단되고 쿼리가 해제됩니다. 시스템을 안정된 상태로 유지하기 위해서는 작업을 시작하기 전에 트랜잭션을 롤백해야 합니다. 트랜잭션의 수가 많고 로그 크기가 클수록 시스템을 안정된 상태로 복원하기 위해 작업이 더 오래 중지됩니다.
 
 ## <a name="user-support"></a>사용자 지원
 
@@ -73,7 +73,7 @@ A. SQL Data Warehouse는 많은 기능을 지원하지만 일부 지원되지 �
 
 Q. Visual Studio에서 데이터베이스 프로젝트가 지원되나요?
 
-A. 현재 Visual Studio에서는 SQL Data Warehouse용 데이터베이스 프로젝트가 지원되지 않습니다. Toocast 원하는 경우 투표 tooget이 기능을 통해 사용자 의견을 방문 [데이터베이스 프로젝트 기능 요청]합니다.
+A. 현재 Visual Studio에서는 SQL Data Warehouse용 데이터베이스 프로젝트가 지원되지 않습니다. 이 기능 제공 요청에 참여하려면 사용자 의견 [데이터베이스 프로젝트 기능 요청]을 방문하세요.
 
 Q. SQL Data Warehouse는 REST API를 지원하나요?
 
@@ -84,23 +84,23 @@ A. 예. SQL Database와 함께 사용할 수 있는 REST 기능 대부분을 SQL
 
 Q. 어떤 클라이언트 드라이버가 지원되나요?
 
-A. Hello에 DW에 대 한 드라이버 지원이 있습니다 [연결 문자열] 페이지
+A. DW에 대한 드라이버 지원은 [연결 문자열] 페이지에서 찾을 수 있습니다.
 
 Q: SQL Data Warehouse를 사용하는 PolyBase는 어떤 파일 형식을 지원하나요?
 
 A: Orc, RC, Parquet 및 일반 구분 텍스트
 
-Q: 수 toofrom SQL DW PolyBase를 사용 하 여 연결 해야 합니까? 
+Q: PolyBase를 사용하여 SQL DW에서 어디로 연결할 수 있나요? 
 
 A: [Azure Data Lake Store] 및 [Azure Storage Blob]
 
-Q: 연결 하는 저장소 Blob 또는 ADLS tooAzure 때 가능한 계산 푸시 다운을 인가요? 
+Q: Azure Storage Blob 또는 ADLS에 연결할 때 계산 푸시다운이 가능한가요? 
 
-A: 아니요, SQL DW PolyBase는만 hello 저장소 구성 요소 상호 작용합니다. 
+A: 아니요. SQL DW PolyBase는 저장소 구성 요소와만 상호 작용합니다. 
 
-Q: tooHDI를 연결할 수 있습니까?
+Q: HDI에 연결할 수 있나요?
 
-A: HDI ADLS 또는 WASB hello HDFS 계층 기호로 사용할 수 있습니다. 둘 중 하나를 HDFS 계층으로 사용하는 경우 해당 데이터를 SQL DW에 로드할 수 있습니다. 그러나 푸시 다운 계산 toohello HDI 인스턴스를 생성할 수 없습니다. 
+A: HDI는 HDFS 계층으로 ADLS 또는 WASB를 사용할 수 있습니다. 둘 중 하나를 HDFS 계층으로 사용하는 경우 해당 데이터를 SQL DW에 로드할 수 있습니다. 그러나 HDI 인스턴스로의 푸시다운 계산을 생성할 수 없습니다. 
 
 ## <a name="next-steps"></a>다음 단계
 SQL Data Warehouse 전반에 대한 자세한 내용은 [개요] 페이지를 참조하세요.
@@ -112,7 +112,7 @@ SQL Data Warehouse 전반에 대한 자세한 내용은 [개요] 페이지를 �
 [스택 오버플로]: http://stackoverflow.com/questions/tagged/azure-sqldw
 [지원 티켓]: ./sql-data-warehouse-get-started-create-support-ticket.md
 [보안]: ./sql-data-warehouse-overview-manage-security.md
-[Microsoft 준수]: https://www.microsoft.com/en-us/trustcenter/compliance/complianceofferings
+[Microsoft 규정 준수]: https://www.microsoft.com/en-us/trustcenter/compliance/complianceofferings
 [용량 제한]: ./sql-data-warehouse-service-capacity-limits.md
 [데이터 형식]: ./sql-data-warehouse-tables-data-types.md
 [지원되지 않는 테이블 기능]: ./sql-data-warehouse-tables-overview.md#unsupported-table-features

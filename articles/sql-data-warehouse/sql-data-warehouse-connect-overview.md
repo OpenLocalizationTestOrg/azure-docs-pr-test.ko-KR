@@ -1,6 +1,6 @@
 ---
-title: "SQL 데이터 웨어하우스 aaaConnect tooAzure | Microsoft Docs"
-description: "SQL 데이터 웨어하우스를 tooAzure 프로그램에 대 한 문자열 toofind hello 서버 이름 및 연결"
+title: "Azure SQL Data Warehouse에 연결 | Microsoft Azure"
+description: "Azure SQL Data Warehouse의 서버 이름 및 연결 문자열을 찾는 방법"
 services: sql-data-warehouse
 documentationcenter: NA
 author: antvgski
@@ -15,30 +15,30 @@ ms.workload: data-services
 ms.custom: connect
 ms.date: 10/31/2016
 ms.author: anvang;barbkess
-ms.openlocfilehash: f15e098026afb7c5efbbbfaf62b681e8cd7936bc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 72c2b404e66611da421eca0dc30aa71e18c6d120
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="connect-tooazure-sql-data-warehouse"></a>SQL 데이터 웨어하우스 tooAzure 연결
-이 문서에는 처음으로 hello에 대 한 연결 된 tooSQL 데이터 웨어하우스를 얻을 수 있습니다.
+# <a name="connect-to-azure-sql-data-warehouse"></a>Azure SQL 데이터 웨어하우스에 연결
+이 문서를 사용하면 처음으로 SQL Data Warehouse에 연결할 수 있습니다.
 
 ## <a name="find-your-server-name"></a>서버 이름 찾기
-데이터 웨어하우스 알고 있으면 첫 번째 단계 tooconnecting tooSQL hello 어떻게 toofind 서버 이름입니다.  예를 들어, 다음 예제는 hello에 서버 이름을 hello sample.database.windows.net입니다. toofind hello 정규화 된 서버 이름:
+SQL Data Warehouse에 연결하는 첫 번째 단계로 서버 이름을 찾는 방법을 알아야 합니다.  예를 들어, 다음 예제에서 서버 이름은 sample.database.windows.net입니다. 정규화된 서버 이름을 찾으려면:
 
-1. Toohello 이동 [Azure 포털][Azure portal]합니다.
+1. [Azure Portal][Azure portal]로 이동합니다.
 2. **SQL Database** 
-3. tooconnect hello 데이터베이스를 클릭 합니다.
-4. Hello 전체 서버 이름을 찾습니다.
+3. 연결하려는 데이터베이스를 클릭합니다.
+4. 전체 서버 이름을 찾습니다.
    
     ![전체 서버 이름][1]
 
 ## <a name="supported-drivers-and-connection-strings"></a>지원되는 드라이버 및 연결 문자열
-Azure SQL Data Warehouse는 [ADO.NET][ADO.NET], [ODBC][ODBC], [PHP][PHP] 및 [JDBC][JDBC]를 지원합니다. Hello 중 하나를 클릭 앞에 드라이버 toofind hello에 대 한 최신 정보 및 설명서입니다. tooautomatically hello Azure에서에서 사용 하는 hello 드라이버에 대 한 연결 문자열 hello를 생성 합니다. 포털을 클릭할 때 hello **데이터베이스 연결 문자열 표시** hello 예에서는 앞에서 합니다.  또한 각 드라이버에 대한 연결 문자열의 모양에 대한 몇 가지 예는 다음과 같습니다.
+Azure SQL Data Warehouse는 [ADO.NET][ADO.NET], [ODBC][ODBC], [PHP][PHP] 및 [JDBC][JDBC]를 지원합니다. 최신 버전 및 설명서를 찾으려면 이전 드라이버 중 하나를 클릭합니다. Azure Portal에서 사용 중인 드라이버에 대한 연결 문자열을 자동으로 생성하려면 앞의 예제에서 **데이터베이스 연결 문자열 표시** 를 클릭할 수 있습니다.  또한 각 드라이버에 대한 연결 문자열의 모양에 대한 몇 가지 예는 다음과 같습니다.
 
 > [!NOTE]
-> Hello 연결 제한 시간 too300 초 tooallow 연결 toosurvive 짧은 기간 동안 사용할 수 없게 설정 하는 것이 좋습니다.
+> 사용 불가능한 짧은 시간 동안 연결이 효력을 유지하려면 연결 제한 시간을 300초로 설정하는 것이 좋습니다.
 > 
 > 
 
@@ -54,7 +54,7 @@ Driver={SQL Server Native Client 11.0};Server=tcp:{your_server}.database.windows
 
 ### <a name="php-connection-string-example"></a>PHP 연결 문자열 예제
 ```PHP
-Server: {your_server}.database.windows.net,1433 \r\nSQL Database: {your_database}\r\nUser Name: {your_user_name}\r\n\r\nPHP Data Objects(PDO) Sample Code:\r\n\r\ntry {\r\n   $conn = new PDO ( \"sqlsrv:server = tcp:{your_server}.database.windows.net,1433; Database = {your_database}\", \"{your_user_name}\", \"{your_password_here}\");\r\n    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );\r\n}\r\ncatch ( PDOException $e ) {\r\n   print( \"Error connecting tooSQL Server.\" );\r\n   die(print_r($e));\r\n}\r\n\rSQL Server Extension Sample Code:\r\n\r\n$connectionInfo = array(\"UID\" => \"{your_user_name}\", \"pwd\" => \"{your_password_here}\", \"Database\" => \"{your_database}\", \"LoginTimeout\" => 30, \"Encrypt\" => 1, \"TrustServerCertificate\" => 0);\r\n$serverName = \"tcp:{your_server}.database.windows.net,1433\";\r\n$conn = sqlsrv_connect($serverName, $connectionInfo);
+Server: {your_server}.database.windows.net,1433 \r\nSQL Database: {your_database}\r\nUser Name: {your_user_name}\r\n\r\nPHP Data Objects(PDO) Sample Code:\r\n\r\ntry {\r\n   $conn = new PDO ( \"sqlsrv:server = tcp:{your_server}.database.windows.net,1433; Database = {your_database}\", \"{your_user_name}\", \"{your_password_here}\");\r\n    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );\r\n}\r\ncatch ( PDOException $e ) {\r\n   print( \"Error connecting to SQL Server.\" );\r\n   die(print_r($e));\r\n}\r\n\rSQL Server Extension Sample Code:\r\n\r\n$connectionInfo = array(\"UID\" => \"{your_user_name}\", \"pwd\" => \"{your_password_here}\", \"Database\" => \"{your_database}\", \"LoginTimeout\" => 30, \"Encrypt\" => 1, \"TrustServerCertificate\" => 0);\r\n$serverName = \"tcp:{your_server}.database.windows.net,1433\";\r\n$conn = sqlsrv_connect($serverName, $connectionInfo);
 ```
 
 ### <a name="jdbc-connection-string-example"></a>JDBC 연결 문자열 예제
@@ -73,11 +73,11 @@ SQL Data Warehouse는 연결 및 개체 생성 중에 몇 가지 설정을 표�
 | [DATEFIRST][DATEFIRST] |7 |
 
 ## <a name="next-steps"></a>다음 단계
-tooconnect 및 Visual Studio와 함께 쿼리 참조 [Visual Studio와 함께 쿼리][Query with Visual Studio]합니다. 인증 옵션에 대해 자세히 toolearn 참조 [인증 tooAzure SQL 데이터 웨어하우스][Authentication tooAzure SQL Data Warehouse]합니다.
+Visual Studio를 사용하여 연결하고 쿼리하려면 [Visual Studio를 사용하여 쿼리][Query with Visual Studio]를 참조하세요. 인증 옵션에 대한 자세한 내용은 [Azure SQL Data Warehouse에 인증][Authentication to Azure SQL Data Warehouse]을 참조하세요.
 
 <!--Articles-->
 [Query with Visual Studio]: ./sql-data-warehouse-query-visual-studio.md
-[Authentication tooAzure SQL Data Warehouse]: ./sql-data-warehouse-authentication.md
+[Authentication to Azure SQL Data Warehouse]: ./sql-data-warehouse-authentication.md
 
 <!--MSDN references-->
 [ADO.NET]: https://msdn.microsoft.com/library/e80y5yhx(v=vs.110).aspx

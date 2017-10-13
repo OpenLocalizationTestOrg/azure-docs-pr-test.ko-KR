@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure 보안 모범 사례 및 패턴 | Microsoft Docs"
-description: "hello 문서에서는 Azure 보안에 대 한 유용한 정보 및 패턴 및 큐 레이트 목록이 서로 다른 Azure 리소스에 대 한 보안 모범 사례에 대 한 소개 합니다."
+title: "Azure 보안 모범 사례 및 패턴 | Microsoft Docs"
+description: "이 문서는 Azure 보안 모범 사례 및 패턴에 관한 소개와 다른 Azure 리소스에 대한 보안 모범 사례의 엄선된 목록을 제공합니다."
 services: azure-security
 documentationcenter: na
 author: TomShinder
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/06/2017
 ms.author: terrylan
-ms.openlocfilehash: eaaa9457faa1d5906275eb1fd8988d4d4aad101a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1cc0d2d1e9a62ff8531f963413ff573713d508ad
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-security-best-practices-and-patterns"></a>Azure 보안 모범 사례 및 패턴
-현재 Azure 보안 모범 사례 및 패턴 문서 다음 hello를 했습니다. 이 사이트 있는지 toovisit 확인 toosee tooour 목록이 패턴과 Azure 보안에 대 한 유용한 정보를 정기적으로 업데이트:  
+현재 다음과 같은 Azure 보안 모범 사례 및 패턴 문서가 있습니다. Azure 보안 모범 사례 및 패턴과 관련하여 늘어가는 목록이 업데이트되는 것을 보려면 이 사이트를 정기적으로 방문하도록 합니다.  
 
 * [Azure 네트워크 보안 모범 사례](azure-security-network-security-best-practices.md)
 * [Azure 데이터 보안 및 암호화 모범 사례](azure-security-data-encryption-best-practices.md)
@@ -32,18 +32,18 @@ ms.lasthandoff: 10/06/2017
 * [Azure에서 보안 하이브리드 네트워크 아키텍처 구현](../guidance/guidance-iaas-ra-secure-vnet-hybrid.md)
 * [Azure PaaS 모범 사례] (https://docs.microsoft.com/en-us/azure/security/security-paas-deployments)
 
-Azure는 솔루션을 빌드할 수 있도록 안전한 플랫폼을 제공합니다. 또한 서비스 및 기술 toomake 솔루션에 제공 Azure 더 안전 합니다. 여러 옵션 사용 가능한 tooyou을 hello 때문에 어떤 Microsoft 권장 모범 사례 및 보안 향상을 위한 패턴에 관심을 탁음가 여러분 중 많은 합니다.
+Azure는 솔루션을 빌드할 수 있도록 안전한 플랫폼을 제공합니다. Azure의 솔루션을 보다 안전하게 만들기 위한 서비스와 기술도 제공합니다. 사용할 수 있는 옵션이 많기 때문에 많은 분들이 Microsoft가 보안 개선의 모범 사례 및 패턴으로 추천하는 내용에 관해 관심을 표명했습니다.
 
-관심을 이해 하 고 수행할 수 있는 작업, 해당 Azure 배포의 tooimprove hello 보안 hello 오른쪽 기능에 설명 하는 문서 컬렉션을 만들었습니다.
+여러분의 관심을 이해하여, 이를 위해 적절한 상황에서 Azure 배포의 보안을 개선하기 위해 여러분이 할 수 있는 일을 설명하는 문서 컬렉션을 만들었습니다.
 
-이러한 모범 사례 및 패턴 문서에, 특정 항목에 대한 모범 사례 및 유용한 패턴 컬렉션이 설명되어 있습니다. 이러한 모범 사례 및 패턴은 이러한 기술 우리의 경험에서 파생 된 하 고 고객의 hello 경험 형식 직접 키를 누릅니다.
+이러한 모범 사례 및 패턴 문서에, 특정 항목에 대한 모범 사례 및 유용한 패턴 컬렉션이 설명되어 있습니다. 이러한 모범 사례 및 패턴은 이런 기술에 대한 우리 경험과 여러분 같은 고객의 경험에서 얻은 것입니다.
 
-각 모범 사례에 대 한 tooexplain을 줄이려고 합니다.
+각 모범 사례에 대해 다음 사항을 설명하겠습니다.
 
-* 어떤 hello 것이 좋습니다.
-* 이유는 tooenable 최선의 방법을
-* Tooenable hello에 대 한 모범 사례를 실패 한 경우 hello 결과 버릴
-* 가능한 대안 toohello 모범 사례
-* Tooenable hello에 대 한 최상의 정보를 어떻게 알 수 있습니다.
+* 각 모범 사례
+* 해당 모범 사례를 사용해야 하는 이유
+* 해당 모범 사례를 사용하지 않을 경우에 발생할 수 있는 결과
+* 해당 모범 사례를 대체할 수 있는 대안
+* 해당 모범 사례를 사용하는 방법을 알아보는 방법
 
-의견에 귀 tooincluding Azure 보안 아키텍처 및 모범 사례에 더 많은 문서가 많이 있습니다. 싶다는 의사를 우리는 항목이 있는 경우 tooinclude, hello이이 페이지 맨 아래에 hello 토론 영역에서 선택 해 주십시오.
+Azure 보안 아키텍처 및 모범 사례에 대한 많은 문서를 갖추려고 합니다. 추가할 항목이 있으시면 이 페이지의 아래쪽에 있는 토론 영역에서 알려주세요.

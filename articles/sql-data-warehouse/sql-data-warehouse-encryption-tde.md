@@ -1,5 +1,5 @@
 ---
-title: "SQL 데이터 웨어하우스 (포털)의 데이터 암호화 aaaTransparent | Microsoft Docs"
+title: "SQL Data Warehouse의 투명한 데이터 암호화(포털) | Microsoft Docs"
 description: "SQL Data Warehouse의 TDE(투명한 데이터 암호화)"
 services: sql-data-warehouse
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.topic: article
 ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
-ms.openlocfilehash: 8233886ecf170844104e0d1459e2a829cafa9b8d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b1db3bdfdfb54bda325c9b971cfcb4dd5efa333a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="get-started-with-transparent-data-encryption-tde-in-sql-data-warehouse"></a>SQL 데이터 웨어하우스에서 투명한 데이터 암호화(TDE) 시작
 > [!div class="op_single_selector"]
@@ -31,30 +31,30 @@ ms.lasthandoff: 10/06/2017
 > 
 
 ## <a name="required-permssions"></a>필요한 권한
-투명 한 데이터 암호화 (TDE) tooenable 관리자나 hello dbmanager 역할의 멤버 여야 합니다.
+TDE(투명한 데이터 암호화)를 사용하려면 관리자 또는 dbmanager 역할의 멤버여야 합니다.
 
 ## <a name="enabling-encryption"></a>암호화 설정
-tooenable SQL 데이터 웨어하우스에 대 한 TDE는 아래의 hello 단계를 수행 합니다.
+SQL 데이터 웨어하우스에 대한 TDE를 사용하려면 다음 단계를 따르세요.
 
-1. Hello에 열기 hello 데이터베이스 [Azure 포털](https://portal.azure.com)
-2. 데이터베이스 블레이드에서 hello hello 클릭 **설정을** 단추
-3. 선택 hello **투명 한 데이터 암호화** 옵션![][1]
-4. 선택 hello **에** 설정![][2]
+1. [Azure 포털](https://portal.azure.com)
+2. 데이터베이스 블레이드에서 **설정** 단추 클릭
+3. **투명한 데이터 암호화** 옵션 선택 ![][1]
+4. **켜기** 설정 선택 ![][2]
 5. **저장** 선택 
    ![][3]  
 
 ## <a name="disabling-encryption"></a>암호화 비활성화
-toodisable SQL 데이터 웨어하우스에 대 한 TDE는 아래의 hello 단계를 수행 합니다.
+SQL 데이터 웨어하우스에 대한 TDE를 비활성화하려면 다음 단계를 따르세요.
 
-1. Hello에 열기 hello 데이터베이스 [Azure 포털](https://portal.azure.com)
-2. 데이터베이스 블레이드에서 hello hello 클릭 **설정을** 단추
-3. 선택 hello **투명 한 데이터 암호화** 옵션![][1]
-4. 선택 hello **오프** 설정![][4]
+1. [Azure 포털](https://portal.azure.com)
+2. 데이터베이스 블레이드에서 **설정** 단추 클릭
+3. **투명한 데이터 암호화** 옵션 선택 ![][1]
+4. **끄기** 설정 선택 ![][4]
 5. **저장** 선택 
    ![][5]  
 
 ## <a name="encryption-dmvs"></a>암호화 DMV
-다음 Dmv는 hello로 암호화를 확인할 수 있습니다.
+다음 DMV로 암호화를 확인할 수 있습니다.
 
 * [sys.databases]
 * [sys.dm_pdw_nodes_database_encryption_keys]

@@ -1,6 +1,6 @@
 ---
-title: "rest aaaManaging 미디어 서비스 엔터티 | Microsoft Docs"
-description: "Toomanage 미디어 서비스 하는 방법에 대해 알아봅니다 REST api 엔터티."
+title: "REST를 사용하여 Media Services 엔터티 관리 | Microsoft Docs"
+description: "REST API를 사용하여 미디어 서비스 엔터티를 관리하는 방법을 알아봅니다."
 author: juliako
 manager: cfowler
 editor: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: bcdc5288e422ebc4e6f682a97da4e925ce237a79
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a336907b605da962f835b8057ac6071f480cd85e
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="managing-media-services-entities-with-rest"></a>REST를 사용하여 Media Services 엔터티 관리 
 > [!div class="op_single_selector"]
@@ -27,28 +27,28 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Microsoft Azure 미디어 서비스는 OData v3에 빌드된 REST 기반 서비스입니다. 추가할 수 있습니다 쿼리, 업데이트 및 삭제 엔터티 매우 hello 동일한 방식으로 다른 모든 OData 서비스에서 할 수 있습니다. 예외는 해당하는 경우 호출됩니다. OData에 대한 자세한 내용은 [개방형 데이터 프로토콜 설명서](http://www.odata.org/documentation/)를 참조하세요.
+Microsoft Azure 미디어 서비스는 OData v3에 빌드된 REST 기반 서비스입니다. 다른 OData 서비스에서와 거의 같은 방법으로 엔터티를 추가, 쿼리, 업데이트 및 삭제할 수 있습니다. 예외는 해당하는 경우 호출됩니다. OData에 대한 자세한 내용은 [개방형 데이터 프로토콜 설명서](http://www.odata.org/documentation/)를 참조하세요.
 
-이 항목에서는 rest toomanage Azure 미디어 서비스 엔터티.
+이 항목에서는 REST를 사용하여 Azure Media Services 엔터티를 관리하는 방법을 보여 줍니다.
 
 >[!NOTE]
-> 2017 년 4 월 1부터 90 일 보다 오래 된 계정에서 모든 작업 기록은 자동으로 함께 삭제 됩니다, 관련된 작업 레코드를 레코드의 총 수 hello hello 최대 할당량 미만인 경우에 합니다. 예를 들어, 2017년 4월 1일에는 계정에 있는 2016년 12월 31일 이전의 모든 작업 레코드가 자동으로 삭제됩니다. Tooarchive hello 작업/태스크 정보가 필요 하면이 항목에서 설명 하는 hello 코드를 사용할 수 있습니다.
+> 2017년 4월 1일부터 레코드의 총 수가 최고 할당량 미만인 경우에도 사용자 계정에 있는 90일이 지난 작업 레코드는 연결된 태스크 레코드와 함께 자동으로 삭제됩니다. 예를 들어, 2017년 4월 1일에는 계정에 있는 2016년 12월 31일 이전의 모든 작업 레코드가 자동으로 삭제됩니다. 작업/태스크 정보를 보관해야 하는 경우에는 이 항목에 설명된 코드를 사용할 수 있습니다.
 
 ## <a name="considerations"></a>고려 사항  
 
 미디어 서비스에서 엔터티에 액세스할 때는 HTTP 요청에서 구체적인 헤더 필드와 값을 설정해야 합니다. 자세한 내용은 [미디어 서비스 REST API 개발 설정](media-services-rest-how-to-use.md)을 참조하세요.
 
-## <a name="connect-toomedia-services"></a>TooMedia 서비스 연결
+## <a name="connect-to-media-services"></a>미디어 서비스에 연결
 
-AMS API를 참조 하는 tooconnect toohello 방법에 대 한 내용은 [Azure AD 인증 액세스 hello Azure 미디어 서비스 API](media-services-use-aad-auth-to-access-ams-api.md)합니다. 
+AMS API에 연결하는 방법에 대한 자세한 내용은 [Azure AD 인증을 사용하여 Azure Media Services API 액세스](media-services-use-aad-auth-to-access-ams-api.md)를 참조하세요. 
 
 >[!NOTE]
->Toohttps://media.windows.net을 성공적으로 연결한 후 다른 Media Services URI를 지정 하는 301 리디렉션을 받게 됩니다. 후속 호출 toohello 해야 새 URI입니다.
+>https://media.windows.net에 연결하면 다른 미디어 서비스 URI를 지정하는 301 리디렉션을 받게 됩니다. 사용자는 새 URI에 대한 후속 호출을 해야 합니다.
 
 ## <a name="adding-entities"></a>엔터티 추가
-미디어 서비스의 모든 엔터티 tooan 같은 엔터티 집합 자산에는 POST HTTP 요청을 통해 추가 됩니다.
+미디어 서비스의 모든 엔터티는 POST HTTP 요청을 통해 Assets와 같은 엔터티 집합에 추가됩니다.
 
-hello 방법을 예제와 다음 toocreate AccessPolicy 합니다.
+다음 예제에서는 AccessPolicy를 만드는 방법을 보여 줍니다.
 
     POST https://media.windows.net/API/AccessPolicies HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -65,7 +65,7 @@ hello 방법을 예제와 다음 toocreate AccessPolicy 합니다.
 
 ## <a name="querying-entities"></a>엔터티 쿼리
 엔터티 쿼리 및 나열은 간단하고 GET HTTP 요청과 선택적 OData 작업만 관련됩니다.
-hello 다음 예제에서는 모든 MediaProcessor 엔터티 목록을
+다음 예제에서는 모든 MediaProcessor 엔터티 목록을 검색합니다.
 
     GET https://media.windows.net/API/MediaProcessors HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -76,7 +76,7 @@ hello 다음 예제에서는 모든 MediaProcessor 엔터티 목록을
     Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=youraccountname&urn%3aSubscriptionId=2f84471d-b1ae-4e75-aa09-010f0fc0cf5b&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1337078831&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=suFkxhvPWxQVMjOYelOJfYEWkyTWJCBc02pF0N7NghI%3d
     Host: media.windows.net
 
-또한 특정 엔터티 또는 예제 따르는 hello에서와 같은 특정 엔터티와 관련 된 모든 엔터티 집합을 검색할 수 있습니다.
+다음 예제와 같이 특정 엔터티 또는 특정 엔터티와 연결된 모든 엔터티 집합을 검색할 수도 있습니다.
 
     GET https://media.windows.net/API/JobTemplates('nb:jtid:UUID:e81192f5-576f-b247-b781-70a790c20e7c') HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -96,7 +96,7 @@ hello 다음 예제에서는 모든 MediaProcessor 엔터티 목록을
     Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=youraccountname&urn%3aSubscriptionId=2f84471d-b1ae-4e75-aa09-010f0fc0cf5b&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1336907474&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=OpuY0CeTylqFFcFaP4pKUVGesT4PGx4CP55zDf2zXnc%3d
     Host: media.windows.net
 
-hello 다음 예제에서는 반환 된 모든 작업의 State 속성만 hello 합니다.
+다음 예제에서는 모든 작업의 State 속성만 반환합니다.
 
     GET https://media.windows.net/API/Jobs?$select=State HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -107,7 +107,7 @@ hello 다음 예제에서는 반환 된 모든 작업의 State 속성만 hello �
     Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=youraccountname&urn%3aSubscriptionId=2f84471d-b1ae-4e75-aa09-010f0fc0cf5b&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1337078831&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=suFkxhvPWxQVMjOYelOJfYEWkyTWJCBc02pF0N7NghI%3d
     Host: media.windows.net
 
-hello 다음 예제에서는 반환 hello 이름이 "SampleTemplate" 인 Jobtemplate을 모두
+다음 예제에서는 이름이 "SampleTemplate"인 모든 JobTemplate를 반환합니다.
 
     GET https://media.windows.net/API/JobTemplates?$filter=startswith(Name,%20'SampleTemplate') HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -119,14 +119,14 @@ hello 다음 예제에서는 반환 hello 이름이 "SampleTemplate" 인 Jobtemp
     Host: media.windows.net
 
 > [!NOTE]
-> hello $expand 작업 뿐만 아니라 LINQ 고려 사항 (WCF Data Services)에 설명 된 지원 되지 않는 LINQ 메서드 hello 미디어 서비스에서 지원 되지 않습니다.
+> $expand 작업은 LINQ 고려 사항(WCF 데이터 서비스)에 설명된 지원되지 않는 LINQ 메서드 및 미디어 서비스에서 지원되지 않습니다.
 > 
 > 
 
 ## <a name="enumerating-through-large-collections-of-entities"></a>대용량 엔터티 컬렉션 열거
-엔터티를 쿼리할 때 공용 REST v2 쿼리 결과 too1000 결과 제한 하기 때문에 한 번에 반환 된 1000 엔터티 제한이 있습니다. 사용 하 여 **건너뛸** 및 **top** hello 큰 엔터티 컬렉션을 통해 tooenumerate 합니다. 
+엔터티를 쿼리할 때 한 번에 반환되는 엔터티 수는 최대 1000개입니다. 공용 REST v2에서는 쿼리 결과를 1000개로 제한하기 때문입니다. **skip** 및 **top**을 사용하여 대용량 엔터티 컬렉션을 열거합니다. 
 
-hello 방법을 예제와 다음 toouse **건너뛸** 및 **top** tooskip hello 먼저 2000 작업 및 get 작업이 다음 1000 개 hello 합니다.  
+다음 예제에서는 **skip** 및 **top**을 사용하여 처음 2000개의 작업을 건너뛰고 다음 1000개의 작업을 가져오는 방법을 보여 줍니다.  
 
     GET https://media.windows.net/api/Jobs()?$skip=2000&$top=1000 HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -138,9 +138,9 @@ hello 방법을 예제와 다음 toouse **건너뛸** 및 **top** tooskip hello 
     Host: media.windows.net
 
 ## <a name="updating-entities"></a>엔터티 업데이트
-Hello 엔터티 형식 및 hello 상태에 있는지에 따라 패치를 통해 해당 엔터티에 대 한 속성, PUT 또는 MERGE HTTP 요청을 업데이트할 수 있습니다. 이 작업에 대한 자세한 내용은 [PATCH/PUT/MERGE](https://msdn.microsoft.com/library/dd541276.aspx)를 참조하세요.
+엔터티 형식 및 엔터티 상태에 따라 PATCH, PUT 또는 MERGE HTTP 요청을 통해 해당 엔터티의 속성을 업데이트할 수 있습니다. 이 작업에 대한 자세한 내용은 [PATCH/PUT/MERGE](https://msdn.microsoft.com/library/dd541276.aspx)를 참조하세요.
 
-다음 코드 예제는 hello tooupdate는 Asset 엔터티에서 이름 속성을 hello 하는 방법을 보여 줍니다.
+다음 코드 예제에서는 Asset 엔터티의 Name 속성을 업데이트하는 방법을 보여 줍니다.
 
     MERGE https://media.windows.net/API/Assets('nb:cid:UUID:80782407-3f87-4e60-a43e-5e4454232f60') HTTP/1.1
     Content-Type: application/json;odata=verbose
@@ -156,9 +156,9 @@ Hello 엔터티 형식 및 hello 상태에 있는지에 따라 패치를 통해 
     {"Name" : "NewName" }
 
 ## <a name="deleting-entities"></a>엔터티 삭제
-DELETE HTTP 요청을 사용하여 미디어 서비스에서 엔터티를 삭제할 수 있습니다. Hello 엔터티에 따라 엔터티를 삭제 하는 hello 순서 중요할 수 있습니다. 예를 들어 자산과 같은 엔터티 필요로 하는 (또는 삭제) hello 자산을 삭제 하기 전에 해당 특정 자산을 참조 하는 모든 로케이터가 있습니다.
+DELETE HTTP 요청을 사용하여 미디어 서비스에서 엔터티를 삭제할 수 있습니다. 엔터티에 따라 엔터티 삭제 순서가 중요할 수 있습니다. 예를 들어 자산과 같은 엔터티는 자산을 삭제하기 전에 해당 특정 자산을 참조하는 모든 로케이터를 해지(또는 삭제)해야 합니다.
 
-hello 방법을 예제와 다음 toodelete blob 저장소로 사용 되는 tooupload 파일을 검색 합니다.
+다음 예제에서는 파일을 Blob 저장소로 업로드하는 데 사용된 로케이터를 삭제하는 방법을 보여 줍니다.
 
     DELETE https://media.windows.net/API/Locators('nb:lid:UUID:76dcc8e8-4230-463d-97b0-ce25c41b5c8d') HTTP/1.1
     Content-Type: application/json;odata=verbose

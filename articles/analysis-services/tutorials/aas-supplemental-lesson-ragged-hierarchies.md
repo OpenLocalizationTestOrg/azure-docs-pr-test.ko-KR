@@ -1,29 +1,46 @@
 ---
-제목: aaa "Azure Analysis Services tutorial 추가 단원: 비정형 계층 | Microsoft Docs "설명: toofix hello Azure Analysis Services 자습서의 계층 구조를 정렬 하는 방법에 대해 설명 합니다.
-서비스: 분석 서비스 documentationcenter: ' 작성자: minewiskan 관리자: erikre 편집기: ' 태그: '
-
-ms.assetid: ms.service: 분석 서비스 ms.devlang: NA ms.topic: get 시작 문서 ms.tgt_pltfrm: NA ms.workload: na ms.date: 05/26/2017 ms.author: owend
+title: "Azure Analysis Services 자습서 추가 단원: 불규칙한 계층 구조 | Microsoft Docs"
+description: "Azure Analysis Services 자습서에서 불규칙한 계층 구조를 수정하는 방법을 설명합니다."
+services: analysis-services
+documentationcenter: 
+author: Minewiskan
+manager: erikre
+editor: 
+tags: 
+ms.assetid: 
+ms.service: analysis-services
+ms.devlang: NA
+ms.topic: get-started-article
+ms.tgt_pltfrm: NA
+ms.workload: na
+ms.date: 05/26/2017
+ms.author: owend
+ms.openlocfilehash: d34b2123153406640cf03bc9f57efa557af4cfaa
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="supplemental-lesson---ragged-hierarchies"></a>추가 단원 - 불규칙한 계층 구조
 
 [!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
 
-이 추가 단원에서는 다양한 수준에서 빈 값(멤버)을 포함하는 계층 구조를 피벗할 때 발생하는 일반적인 문제를 해결합니다. 예를 들어, 고위 관리자가 부하 직원으로 부서별 관리자와 비관리자를 포함하는 조직을 들 수 있습니다. 또는 워싱턴 D.C., 바티칸 시티처럼 일부 도시는 상위 시/도가 없는 국가-지역-도시로 구성된 지리적 계층 구조가 있습니다. 계층에 구성원이 비어 있는 경우 종종 toodifferent, 상속 또는 비정형 수준입니다.
+이 추가 단원에서는 다양한 수준에서 빈 값(멤버)을 포함하는 계층 구조를 피벗할 때 발생하는 일반적인 문제를 해결합니다. 예를 들어, 고위 관리자가 부하 직원으로 부서별 관리자와 비관리자를 포함하는 조직을 들 수 있습니다. 또는 워싱턴 D.C., 바티칸 시티처럼 일부 도시는 상위 시/도가 없는 국가-지역-도시로 구성된 지리적 계층 구조가 있습니다. 계층 구조에 빈 멤버가 있는 경우 보통 서로 다르거나 불규칙한 수준으로 내려갑니다.
 
 ![aas-lesson-detail-ragged-hierarchies-table](../tutorials/media/aas-lesson-detail-ragged-hierarchies-table.png)
 
-Hello 1400 호환성 수준에서 테이블 형식 모델은 추가 **멤버 숨기기** 계층에 대 한 속성입니다. hello **기본** 설정에서는 빈 멤버가 모든 수준에서 한다고 가정 합니다. hello **빈 멤버를 숨기도록** 설정을 추가할 때 hello 계층에서 빈 멤버를 제외 시킵니다. tooa 피벗 테이블 또는 보고서입니다.  
+1400 호환성 수준의 테이블 형식 모델에는 계층 구조에 대한 추가 **멤버 숨기기** 속성이 있습니다. **기본** 설정에서는 어떤 수준에도 빈 멤버가 없다고 가정합니다. **빈 멤버 숨기기** 설정은 피벗 테이블 또는 보고서에 계층 구조가 추가된 경우 계층 구조에서 빈 멤버를 제외합니다.  
   
-이 단원에서는 시간 toocomplete 예상: **20 분**  
+이 단원을 완료하기 위한 예상 시간: **20분**  
   
 ## <a name="prerequisites"></a>필수 조건  
-이 추가 단원 항목은 테이블 형식 모델링 자습서에 포함됩니다. 이 추가 단원 hello 작업을 수행 하기 전에 완료 해야 이전 단원을 모두 완료 된 Adventure Works Internet Sales 샘플 모델 프로젝트 수도 있고 합니다. 
+이 추가 단원 항목은 테이블 형식 모델링 자습서에 포함됩니다. 이 추가 단원의 작업을 수행하기 전에 이전의 모든 단원을 완료하거나 완료된 Adventure Works Internet Sales 샘플 모델 프로젝트가 있어야 합니다. 
 
-Hello AW Internet Sales 프로젝트 hello 자습서의 일부로 만든 모델에 아직 없는 경우 데이터 나 비정형된 계층이 합니다. toocomplete이 추가 단원에서는 먼저 있는 toocreate 몇 가지 추가 테이블을 추가 하 여 문제를 hello, 관계, 계산된 열, 측정값 및 새로운 조직 계층을 만듭니다. 이 부분에는 약 15분 정도 걸립니다. Toosolve를 가져온 후, 단 몇 분 후에 해당 합니다.  
+자습서의 일부로 AW Internet Sales 프로젝트를 만들었으면 모델에는 아직 데이터 또는 불규칙한 계층 구조가 포함되지 않습니다. 이 추가 단원을 완료하려면 먼저 몇 가지 테이블을 더 추가하고, 관계, 계산된 열, 측정값 및 새 조직 계층 구조를 만들어서 문제를 만들어야 합니다. 이 부분에는 약 15분 정도 걸립니다. 그런 다음 몇 분 안에 문제를 해결합니다.  
 
 ## <a name="add-tables-and-objects"></a>테이블 및 개체 추가
   
-### <a name="tooadd-new-tables-tooyour-model"></a>tooadd 새 테이블 tooyour 모델
+### <a name="to-add-new-tables-to-your-model"></a>모델에 새 테이블을 추가하려면
   
 1.  테이블 형식 모델 탐색기에서 **데이터 원본**을 확장한 후 연결을 마우스 오른쪽 단추로 클릭한 다음 > **새 테이블 가져오기**를 클릭합니다.
   
@@ -31,7 +48,7 @@ Hello AW Internet Sales 프로젝트 hello 자습서의 일부로 만든 모델�
 
 3.  쿼리 편집기에서 **가져오기**를 클릭합니다.
 
-4.  Hello 다음 만들기 [관계](../tutorials/aas-lesson-4-create-relationships.md):
+4.  다음 [관계](../tutorials/aas-lesson-4-create-relationships.md)를 만듭니다.
 
     | 표 1           | 열       | 필터 방향   | 표 2     | 열      | Active |
     |-------------------|--------------|--------------------|-------------|-------------|--------|
@@ -39,9 +56,9 @@ Hello AW Internet Sales 프로젝트 hello 자습서의 일부로 만든 모델�
     | FactResellerSales | DueDate      | 기본값            | DimDate     | Date        | 아니요     |
     | FactResellerSales | ShipDateKey  | 기본값            | DimDate     | Date        | 아니요     |
     | FactResellerSales | ProductKey   | 기본값            | DimProduct  | ProductKey  | 예    |
-    | FactResellerSales | EmployeeKey  | tooBoth 테이블 | DimEmployee | EmployeeKey | 예    |
+    | FactResellerSales | EmployeeKey  | 두 테이블로 | DimEmployee | EmployeeKey | 예    |
 
-5. Hello에 **DimEmployee** 테이블에서 만들 hello 다음 [계산 된 열](../tutorials/aas-lesson-5-create-calculated-columns.md): 
+5. **DimEmployee** 테이블에서 다음 [계산된 열](../tutorials/aas-lesson-5-create-calculated-columns.md)을 만듭니다. 
 
     **Path** 
     ```
@@ -78,23 +95,23 @@ Hello AW Internet Sales 프로젝트 hello 자습서의 일부로 만든 모델�
     =LOOKUPVALUE(DimEmployee[FullName],DimEmployee[EmployeeKey],PATHITEM([Path],1,5)) 
     ```
 
-6.  Hello에 **DimEmployee** 테이블을 만들기는 [계층](../tutorials/aas-lesson-9-create-hierarchies.md) 라는 **조직**합니다. 다음 순서 대로 열 hello 추가: **Level1**, **Level2**, **Level3**, **Level4**, **Level5**합니다.
+6.  **DimEmployee** 테이블에서 **Organization**이라는 이름의 [계층 구조](../tutorials/aas-lesson-9-create-hierarchies.md)를 만듭니다. 다음 열을 순서대로 추가합니다. **Level1**, **Level2**, **Level3**, **Level4**, **Level5**
 
-7.  Hello에 **FactResellerSales** 테이블에서 만들 hello 다음 [측정값](../tutorials/aas-lesson-6-create-measures.md):
+7.  **FactResellerSales** 테이블에서 다음 [측정값](../tutorials/aas-lesson-6-create-measures.md)을 만듭니다.
 
     ```
     ResellerTotalSales:=SUM([SalesAmount])
     ```
 
-8.  사용 하 여 [Excel에서 분석](../tutorials/aas-lesson-12-analyze-in-excel.md) tooopen Excel 피벗 테이블을 자동으로 만듭니다.
+8.  [Excel에서 분석](../tutorials/aas-lesson-12-analyze-in-excel.md)을 사용하여 Excel을 열고 피벗 테이블을 자동으로 만듭니다.
 
-9.  **피벗 테이블 필드**, hello 추가 **조직** hello 계층 **DimEmployee** 너무 테이블**행**, 및 hello **ResellerTotalSales** hello에서 측정값 **FactResellerSales** 너무 테이블**값**합니다.
+9.  **피벗 테이블 필드**에서 **DimEmployee** 테이블의 **Organization** 계층 구조를 **Rows**에 추가하고 **FactResellerSales** 테이블의 **ResellerTotalSales** 측정값을 **Values**에 추가합니다.
 
     ![aas-lesson-detail-ragged-hierarchies-pivottable](../tutorials/media/aas-lesson-detail-ragged-hierarchies-pivottable.png)
 
-    Hello 피벗 테이블에서에서 볼 수 있습니다, hello 계층 구조는 비정형 않은 행을 표시 합니다. 빈 멤버가 표시된 많은 행이 있습니다.
+    피벗 테이블에서 볼 수 있는 것처럼 계층 구조에 불규칙한 행이 표시됩니다. 빈 멤버가 표시된 많은 행이 있습니다.
 
-## <a name="toofix-hello-ragged-hierarchy-by-setting-hello-hide-members-property"></a>hello 숨기기 멤버 속성을 설정 하 여 toofix hello 비정형 계층
+## <a name="to-fix-the-ragged-hierarchy-by-setting-the-hide-members-property"></a>멤버 숨기기 속성을 설정하여 불규칙한 계층 구조를 수정하려면
 
 1.  **테이블 형식 모델 탐색기**에서 **테이블** > **DimEmployee** > **계층 구조** > **조직**을 확장합니다.
 
@@ -102,7 +119,7 @@ Hello AW Internet Sales 프로젝트 hello 자습서의 일부로 만든 모델�
 
     ![aas-lesson-detail-ragged-hierarchies-hidemembers](../tutorials/media/aas-lesson-detail-ragged-hierarchies-hidemembers.png)
 
-3.  Excel에서 다시 hello를 피벗 테이블을 새로 고칩니다. 
+3.  다시 Excel에서 피벗 테이블을 새로 고칩니다. 
 
     ![aas-lesson-detail-ragged-hierarchies-pivottable-refresh](../tutorials/media/aas-lesson-detail-ragged-hierarchies-pivottable-refresh.png)
 

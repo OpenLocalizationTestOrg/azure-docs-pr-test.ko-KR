@@ -1,6 +1,6 @@
 ---
-title: "Azure 논리 앱 aaaValidate XML-| Microsoft Docs"
-description: "엔터프라이즈 통합 팩 hello를 사용 하 여 Azure 논리 앱 및 B2B 시나리오에 대 한 스키마와 XML 유효성 검사"
+title: "XML 유효성 검사 - Azure Logic Apps | Microsoft Docs"
+description: "엔터프라이즈 통합 팩을 사용하여 Azure Logic Apps 및 B2B 시나리오에 대한 스키마로 XML 유효성 검사"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: msftman
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2016
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 81f662d0ddf908657b54de8af0a75fff55782ef7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8558efffa354cc4bb93820c837077ee997924c95
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="validate-xml-for-enterprise-integration"></a>엔터프라이즈 통합에 대한 XML 유효성 검사
 
-종종 B2B 시나리오에서 hello 파트너 규약에서 hello 메시지를 교환 하는 유효한 데이터 처리를 시작할 수 있는지 확인 해야 합니다. Hello 엔터프라이즈 통합 팩의에서 커넥터 hello 사용 hello XML 유효성 검사를 사용 하 여 미리 정의 된 스키마에 대 한 문서를 확인할 수 있습니다.
+종종 B2B 시나리오에서 규약을 맺은 파트너는 데이터 처리를 시작하기 위해 먼저 교환하는 메시지가 유효한지 확인해야 합니다. 엔터프라이즈 통합 팩의 XML 유효성 검사 커넥터를 사용하여 미리 정의된 스키마에 대해 문서의 유효성을 검사할 수 있습니다.
 
-## <a name="validate-a-document-with-hello-xml-validation-connector"></a>Hello XML 유효성 검사 커넥터와 함께 문서 유효성 검사
+## <a name="validate-a-document-with-the-xml-validation-connector"></a>XML 유효성 검사 커넥터로 문서 유효성 검사
 
-1. 논리 앱 만들기 및 [hello 앱 toohello 통합 계정 연결](../logic-apps/logic-apps-enterprise-integration-accounts.md "toolink 통합 계정 tooa 논리 앱에 알아봅니다") hello 스키마 toouse XML 데이터 유효성 검사에 사용할 수 있는 합니다.
+1. 논리 앱을 만들고 XML 데이터의 유효성을 검사하는 데 사용할 스키마를 포함하는 [통합 계정에 앱을 연결](../logic-apps/logic-apps-enterprise-integration-accounts.md "논리 앱에 통합 계정을 연결하는 방법 알아보기")합니다.
 
-2. 추가 **요청-때 HTTP 요청을 받으면** 트리거 tooyour 논리 앱.
+2. **요청 - HTTP 요청을 받은 경우** 트리거를 논리 앱에 추가합니다.
 
     ![](./media/logic-apps-enterprise-integration-xml/xml-1.png)
 
-3. tooadd hello **XML 유효성 검사** 동작을 선택 **동작 추가**합니다.
+3. **XML 유효성 검사** 작업을 추가하려면 **작업 추가**를 선택합니다.
 
-4. 원하는 하나 작업 toohello hello 모든 toofilter 입력 *xml* hello 검색 상자에 있습니다. **XML 유효성 검사**를 선택합니다.
+4. 사용하려는 논리 앱으로 모든 작업을 필터링하려면 검색 상자에 *xml*을 입력합니다. **XML 유효성 검사**를 선택합니다.
 
     ![](./media/logic-apps-enterprise-integration-xml/xml-2.png)
 
-5. toospecify hello toovalidate, 원하는 XML 콘텐츠 선택 **콘텐츠**합니다.
+5. 유효성을 검사할 XML 콘텐츠를 지정하려면 **콘텐츠**를 선택합니다.
 
     ![](./media/logic-apps-enterprise-integration-xml/xml-1-5.png)
 
-6. Hello toovalidate 원하는 내용으로 hello body 태그를 선택 합니다.
+6. 본문 태그를 유효성을 검사하려는 콘텐츠로 선택합니다.
 
     ![](./media/logic-apps-enterprise-integration-xml/xml-3.png)
 
-7. toouse hello 이전 유효성 검사에 대 한 원하는 toospecify hello 스키마 *콘텐츠* 입력, 선택 **스키마 이름**합니다.
+7. 이전 *콘텐츠*의 유효성을 검사하는 데 사용할 스키마를 지정하려면 **스키마 이름**을 선택합니다.
 
     ![](./media/logic-apps-enterprise-integration-xml/xml-4.png)
 
@@ -54,10 +54,10 @@ ms.lasthandoff: 10/06/2017
 
     ![](./media/logic-apps-enterprise-integration-xml/xml-5.png)
 
-이제 유효성 검사 커넥터 설정이 끝났습니다. 실제 응용 프로그램에서 SalesForce와 같은 기간 업무 (LOB) 응용 프로그램에서 유효성을 검사 하는 hello 데이터 toostore 할 수 있습니다. toosend는 유효성이 검사 된 출력 tooSalesforce hello, 작업을 추가 합니다.
+이제 유효성 검사 커넥터 설정이 끝났습니다. 실제 응용 프로그램에서는 유효성을 검사한 데이터를 SalesForce와 같은 LOB(기간 업무) 앱에 저장하려고 할 수도 있습니다. 유효성을 검사한 출력을 Salesforce에 보내려면 작업을 추가합니다.
 
-tootest 유효성 검사 동작을 요청 toohello HTTP 끝점을 확인 합니다.
+유효성 검사 작업을 테스트하려면 HTTP 끝점에 대해 요청을 수행합니다.
 
 ## <a name="next-steps"></a>다음 단계
-[엔터프라이즈 통합 팩 hello에 대 한 자세한](../logic-apps/logic-apps-enterprise-integration-overview.md "엔터프라이즈 통합 팩에 대 한 자세한 정보")   
+[엔터프라이즈 통합 팩에 대해 자세히 알아보기](../logic-apps/logic-apps-enterprise-integration-overview.md "엔터프라이즈 통합 팩에 대해 알아보기")   
 

@@ -1,5 +1,5 @@
 ---
-title: "aaaTable TDS 리디렉션, 감사 및 Azure SQL 데이터베이스에 대 한 IP 끝점 | Microsoft Docs"
+title: "Azure SQL Database의 테이블 감사, TDS 리디렉션 및 IP 끝점 | Microsoft Docs"
 description: "Azure SQL Database에서 테이블 감사를 구현할 때 감사, TDS 리디렉션 및 IP 끝점 변경 내용에 대해 알아봅니다."
 services: sql-database
 documentationcenter: 
@@ -15,42 +15,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2017
 ms.author: giladm
-ms.openlocfilehash: 966c23f92fab6fa459a515ad841bb2d5f75436aa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d4a7e6658ec65a70bd7e07859e2a69acee58b7b5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="sql-database----downlevel-clients-support-and-ip-endpoint-changes-for-table-auditing"></a>SQL Database - 하위 클라이언트 지원 및 테이블 감사에 대한 IP 끝점 변경
 
 > [!IMPORTANT]
-> 이 문서에만 tooTable 감사에는 적용 **이제 사용 되지 않는**합니다.<br>
-> Hello 새를 사용 하십시오 [Blob 감사](sql-database-auditing.md) 메서드를는 **없는** 하위 수준 클라이언트 연결 문자열 수정 해야 합니다. Blob 감사에 대한 추가 정보는 [SQL 데이터베이스 감사 시작](sql-database-auditing.md)에서 찾을 수 있습니다.
+> 이 문서는 **이제는 사용되지 않는** 테이블 감사에만 적용됩니다.<br>
+> 하위 클라이언트 연결 문자열을 수정할 필요가 **없는** 새 [Blob 감사](sql-database-auditing.md) 메서드를 사용하세요. Blob 감사에 대한 추가 정보는 [SQL 데이터베이스 감사 시작](sql-database-auditing.md)에서 찾을 수 있습니다.
 
-[데이터베이스 감사](sql-database-auditing.md)는 TDS 리디렉션을 지원하는 SQL 클라이언트와 함께 자동으로 작동합니다. Note hello Blob 감사 메서드를 사용 하는 경우 해당 리디렉션 적용 되지 않습니다.
+[데이터베이스 감사](sql-database-auditing.md)는 TDS 리디렉션을 지원하는 SQL 클라이언트와 함께 자동으로 작동합니다. BLOB 감사 메서드를 사용하는 경우에는 해당 리디렉션이 적용되지 않습니다.
 
 ## <a id="subheading-1"></a>하위 클라이언트 지원
-TDS 7.4를 구현하는 모든 클라이언트는 리디렉션도 지원해야 합니다. 예외 toothis 리디렉션 구현 되지 않은 Node.JS 용 hello 리디렉션 기능을 완벽 하 게 지원 되지 않으며 Tedious에 JDBC 4.0를 포함 합니다.
+TDS 7.4를 구현하는 모든 클라이언트는 리디렉션도 지원해야 합니다. 이에 대한 예외에는 리디렉션 기능이 완전히 지원되지 않는 JDBC 4.0 및 리디렉션이 구현되지 않은 Node.JS용 Tedious가 포함됩니다.
 
-"하위 클라이언트"에 대 한 즉, TDS 버전 7.3 지원 하 고 아래-hello 연결 문자열에 FQDN 서버 hello 수정 해야 합니다.
+TDS 버전 7.3 이하를 지원하는 "하위 클라이언트"의 경우, 연결 문자열에서 서버 FQDN을 수정해야 합니다.
 
-Hello 연결 문자열에서 원래 서버 FQDN: <*서버 이름*>. database.windows.net
+연결 문자열에서 원래 서버 FQDN: <*서버 이름*>.database.windows.net
 
-Hello 연결 문자열에 수정 된 서버 FQDN: <*서버 이름*>.database. **보안**. windows.net
+연결 문자열에서 수정된 서버 FQDN: <*서버 이름*>.database.**secure**.windows.net
 
 "하위 클라이언트"의 일부 목록에는 다음이 포함됩니다.
 
 * .NET 4.0 이하
 * ODBC 10.0 이하
-* JDBC (JDBC TDS 7.4, TDS 리디렉션 기능을 완전히 지원 되지 않는 hello는 지원) 하는 중
+* JDBC(JDBC는 TDS 7.4를 지원하지만 TDS 리디렉션 기능은 완전히 지원되지 않음)
 * Tedious(Node.JS용)
 
-**설명:** hello 서버 FDQN 수정 위에 (임시 완화) 각 데이터베이스에는 구성에 대 한 요구가 단계 없이 SQL 서버 수준 감사 정책 적용에 대 한도 유용할 수 있습니다.
+**주석:** 위의 서버 FDQN 수정은 각 데이터베이스에서 구성 단계에 대한 요구 없이 SQL 서버 수준 감사 정책의 적용에도 유용할 수 있습니다.
 
 ## <a id="subheading-2"></a>감사를 사용하도록 설정할 때 IP 끝점 변경
-테이블에서 감사를 설정 하면 데이터베이스의 hello IP 끝점 변경 됩니다 note 하십시오. 엄격한 방화벽 설정이 있으면 해당 방화벽 설정을 적절하게 업데이트하세요.
+테이블 감사를 사용하도록 설정하면 데이터베이스의 IP 끝점이 변경됩니다. 엄격한 방화벽 설정이 있으면 해당 방화벽 설정을 적절하게 업데이트하세요.
 
-새 데이터베이스 IP 끝점 hello hello 데이터베이스 지역에 따라 달라 집니다.
+새 데이터베이스 IP 끝점은 데이터베이스 지역에 따라 달라집니다.
 
 | 데이터베이스 지역 | 가능한 IP 끝점 |
 | --- | --- |

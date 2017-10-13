@@ -1,6 +1,6 @@
 ---
-title: "Azure 앱 서비스 모바일 앱에서 iOS 앱 aaaCreate | Microsoft Docs"
-description: "Objective C 또는 Swift iOS 개발을 위해 Azure 모바일 앱 백 엔드를 사용 하 여 시작 자습서 tooget이를 수행 합니다."
+title: "Azure App Service Mobile Apps에서 iOS 앱 만들기 | Microsoft Docs"
+description: "이 자습서에 따라 Objective-C 또는 Swift로 iOS용 Azure 모바일 앱 백 엔드 사용을 시작합니다."
 services: app-service\mobile
 documentationcenter: ios
 author: ggailey777
@@ -14,27 +14,27 @@ ms.devlang: objective-c
 ms.topic: hero-article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 869fa971f7b5ab4a7119bbfa92808185d2ecdf8a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 36936ae66c458fcbedeec95cfa2f573a40c8af53
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-an-ios-app"></a>iOS 앱 만들기
 [!INCLUDE [app-service-mobile-selector-get-started](../../includes/app-service-mobile-selector-get-started.md)]
 
 ## <a name="overview"></a>개요
-이 자습서에서는 어떻게 tooadd [Azure 모바일 앱](app-service-mobile-value-prop.md), 클라우드 백 엔드 서비스, tooan iOS 앱. 우선 새 모바일 백 엔드를 만듭니다. 그런 다음 단순에서는 *할 일 목록* Azure에서 iOS 앱 toostore 데이터입니다.
+이 자습서는 [Azure 모바일 앱](app-service-mobile-value-prop.md), 클라우드 백 엔드 서비스를 iOS 앱에 추가하는 방법을 보여줍니다. 우선 새 모바일 백 엔드를 만듭니다. 그런 다음 간단한 *할 일 목록* iOS 앱을 사용하여 Azure에 데이터를 저장합니다.
 
-toocomplete이이 자습서에서는 Mac 필요 하 고 [Azure 계정](https://azure.microsoft.com/pricing/free-trial/)
+이 자습서를 완료하려면 Mac과 [Azure 계정](https://azure.microsoft.com/pricing/free-trial/)
 
 ## <a name="step-i-create-a-new-azure-mobile-app-backend"></a>단계 I: 새 Azure 모바일 앱 백 엔드 만들기
 [!INCLUDE [app-service-mobile-dotnet-backend-create-new-service](../../includes/app-service-mobile-dotnet-backend-create-new-service.md)]
 
-## <a name="step-ii-configure-hello-backend-project"></a>단계 II: hello 백 엔드 프로젝트 구성
+## <a name="step-ii-configure-the-backend-project"></a>단계 II: 백 엔드 프로젝트 구성
 [!INCLUDE [app-service-mobile-configure-new-backend.md](../../includes/app-service-mobile-configure-new-backend.md)]
 
-## <a name="step-iii-download-and-run-hello-ios-app"></a>III 단계: 다운로드 및 hello iOS 앱 실행
+## <a name="step-iii-download-and-run-the-ios-app"></a>단계 III: iOS 앱 다운로드 및 실행
 [!INCLUDE [app-service-mobile-ios-run-app](../../includes/app-service-mobile-ios-run-app.md)]
 
 <!-- URLs -->

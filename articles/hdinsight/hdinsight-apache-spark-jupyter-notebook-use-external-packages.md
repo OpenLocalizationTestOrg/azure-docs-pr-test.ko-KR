@@ -1,6 +1,6 @@
 ---
-title: "Azure HDInsight의 Spark에 Jupyter와 사용자 지정 Maven 패키지 aaaUse | Microsoft Docs"
-description: "HDInsight Spark와 함께 사용할 수 있는 tooconfigure Jupyter 노트북 toouse 사용자 지정 Maven 패키지를 클러스터 하는 방법에 대해 단계별로 설명 합니다."
+title: "Azure HDInsight의 Spark에서 Jupyter와 함께 사용자 지정 Maven 패키지 사용 | Microsoft Docs"
+description: "HDInsight Spark 클러스터에서 사용할 수 있는 Jupyter 노트북을 사용자 지정 Maven 패키지를 사용하도록 구성하는 방법에 대한 단계별 지침입니다."
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -14,13 +14,13 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 09/22/2017
 ms.author: nitinme
-ms.openlocfilehash: ba8ac13716bc94ab082a18fe02d4a40b2f1e09e4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: dfcab23d19d74dfff92b7e9b696a4e5c39ee8d90
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="use-external-packages-with-jupyter-notebooks-in-apache-spark-clusters-on-hdinsight"></a>HDInsight의 Apache Spark 클러스터에서 Jupyter Notebook과 함께 외부 패키지 사용
 > [!div class="op_single_selector"]
@@ -29,25 +29,25 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-자세한 방법을 tooconfigure HDInsight toouse 외부에 Apache Spark 클러스터에서 Jupyter 노트북 커뮤니티 제공 **maven** 하지 않은 패키지를 hello 클러스터에 기본적으로 포함 합니다. 
+클러스터에 기본적으로 포함되지 않는 외부의 커뮤니티 제공 **maven** 패키지를 사용하도록 HDInsight의 Apache Spark 클러스터에 있는 Jupyter Notebook을 구성하는 방법을 알아봅니다. 
 
-Hello를 검색할 수 있습니다 [Maven 리포지토리](http://search.maven.org/) 사용할 수 있는 패키지의 전체 목록은 hello에 대 한 합니다. 다른 소스에서 사용 가능한 패키지 목록을 가져올 수도 있습니다. 예를 들어 커뮤니티 제공 패키지의 전체 목록은 [Spark 패키지](http://spark-packages.org/)에서 사용할 수 있습니다.
+사용할 수 있는 패키지의 전체 목록은 [Maven 리포지토리](http://search.maven.org/) 를 검색할 수 있습니다. 다른 소스에서 사용 가능한 패키지 목록을 가져올 수도 있습니다. 예를 들어 커뮤니티 제공 패키지의 전체 목록은 [Spark 패키지](http://spark-packages.org/)에서 사용할 수 있습니다.
 
-이 문서에서는 살펴보겠습니다 어떻게 toouse hello [spark csv](http://search.maven.org/#artifactdetails%7Ccom.databricks%7Cspark-csv_2.10%7C1.4.0%7Cjar) hello Jupyter 노트북을 사용 하 여 패키지 합니다.
+이 문서에서는 Jupyter 노트북에서 [spark-csv](http://search.maven.org/#artifactdetails%7Ccom.databricks%7Cspark-csv_2.10%7C1.4.0%7Cjar) 패키지를 사용하는 방법을 알아봅니다.
 
 
 
 ## <a name="prerequisites"></a>필수 조건
-Hello 다음이 필요 합니다.
+다음이 있어야 합니다.
 
 * HDInsight의 Apache Spark 클러스터입니다. 자세한 내용은 [Azure HDInsight에서 Apache Spark 클러스터 만들기](hdinsight-apache-spark-jupyter-spark-sql.md)를 참조하세요.
 
 ## <a name="use-external-packages-with-jupyter-notebooks"></a>Jupyter 노트북에서 외부 패키지 사용
-1. Hello에서 [Azure 포털](https://portal.azure.com/), (toohello 시작 보드 고정) 하는 경우 hello 시작 보드에서 Spark 클러스터에 대 한 hello 타일을 클릭 합니다. 아래 tooyour 클러스터를 탐색할 수도 **모두 찾아보기** > **HDInsight 클러스터**합니다.   
-2. Hello Spark 클러스터 블레이드에서 클릭 **빠른 링크**, 한 다음 hello **클러스터 대시보드** 블레이드에서 클릭 **Jupyter 노트북**합니다. 메시지가 표시 되 면 hello 클러스터에 대 한 hello 관리자 자격 증명을 입력 합니다.
+1. [Azure 포털](https://portal.azure.com/)의 시작 보드에서 Spark 클러스터에 대한 타일을 클릭합니다(시작 보드에 고정한 경우). **모두 찾아보기** > **HDInsight 클러스터**에서 클러스터로 이동할 수도 있습니다.   
+2. Spark 클러스터 블레이드에서 **빠른 연결**을 클릭한 다음 **클러스터 대시보드** 블레이드에서 **Jupyter Notebook**을 클릭합니다. 메시지가 표시되면 클러스터에 대한 관리자 자격 증명을 입력합니다.
 
     > [!NOTE]
-    > 또한 열어 hello URL을 브라우저에서 다음을 통해 클러스터에 대 한 hello Jupyter 노트북에 도달할 수 있습니다. 대체 **CLUSTERNAME** 클러스터의 hello 이름의:
+    > 또한 브라우저에서 다음 URL을 열어 클러스터에 대한 Jupyter Notebook에 접근할 수 있습니다. **CLUSTERNAME** 을 클러스터의 이름으로 바꿉니다.
     > 
     > `https://CLUSTERNAME.azurehdinsight.net/jupyter`
     > 
@@ -58,40 +58,47 @@ Hello 다음이 필요 합니다.
    
     ![새 Jupyter 노트북 만들기](./media/hdinsight-apache-spark-jupyter-notebook-use-external-packages/hdinsight-spark-create-notebook.png "새 Jupyter 노트북 만들기")
 
-4. 새 전자 필기장 만들어지고 Untitled.pynb hello 이름으로 열립니다. Hello 전자 필기장 이름 hello 위쪽에를 클릭 하 고 식별 이름을 입력 하세요.
+4. 새 노트북이 만들어지고 Untitled.pynb 이름으로 열립니다. 맨 위에서 노트북 이름을 클릭하고 식별하기 쉬운 이름을 입력합니다.
    
-    ![Hello 전자 필기장에 대 한 이름을 제공](./media/hdinsight-apache-spark-jupyter-notebook-use-external-packages/hdinsight-spark-name-notebook.png "hello 전자 필기장에 대 한 이름을 제공 합니다.")
+    ![노트북 이름 제공](./media/hdinsight-apache-spark-jupyter-notebook-use-external-packages/hdinsight-spark-name-notebook.png "노트북 이름 제공")
 
-5. Hello를 사용 하 여 `%%configure` 매직 tooconfigure hello 노트북 toouse 외부 패키지 합니다. 외부 패키지를 사용 하는 노트북에서 hello 호출 되었는지 확인 `%%configure` hello 첫 번째 코드 셀에서 매직 합니다. 이렇게 하면 해당 hello 커널 hello 세션이 시작 되기 전에 구성 된 toouse hello 패키지입니다.
+5. `%%configure` Magic을 사용하여 외부 패키지를 사용하도록 Notebook을 구성합니다. 외부 패키지를 사용하는 Notebook에서 `%%configure` Magic을 호출해야 합니다. 이렇게 하면 커널은 세션이 시작되기 전에 패키지를 사용하도록 구성됩니다.
 
     >[!IMPORTANT] 
-    >Hello hello 첫 번째 셀에 tooconfigure hello 커널 기억나지 않는 경우 사용할 수 있습니다 `%%configure` hello로 `-f` 매개 변수를 있었으나에 hello 세션 다시 시작 되 고 모든 진행률 손실 됩니다.
+    >첫 번째 셀에서 커널을 구성하는 것을 잊은 경우 `%%configure`과 `-f` 매개 변수를 사용할 수 있지만 세션이 다시 시작되고 모든 진행률이 손실됩니다.
 
     | HDInsight 버전 | 명령 |
     |-------------------|---------|
     |HDInsight 3.3 및 HDInsight 3.4용 | `%%configure` <br>`{ "packages":["com.databricks:spark-csv_2.10:1.4.0"] }`|
-    | HDInsight 3.5용 | `%%configure`<br>`{ "conf": {"spark.jars.packages": "com.databricks:spark-csv_2.10:1.4.0" }}`|
+    | HDInsight 3.5 및 HDInsight 3.6용 | `%%configure`<br>`{ "conf": {"spark.jars.packages": "com.databricks:spark-csv_2.10:1.4.0" }}`|
 
-6. 위의 코드 조각 hello Maven 중앙 리포지토리에 hello 외부 패키지에 대 한 hello maven 좌표는 필요합니다. 이 코드 조각 `com.databricks:spark-csv_2.10:1.4.0` hello maven 좌표에 대 한 **spark csv** 패키지 합니다. 패키지에 대 한 hello 좌표를 구성 하는 방법을 다음과 같습니다.
+6. 위의 코드 조각에는 Maven Center Repository의 외부 패키지에 대한 Maven 좌표가 필요합니다. 이 코드 조각에서 `com.databricks:spark-csv_2.10:1.4.0` 는 **spark-csv** 패키지에 대한 Maven 좌표입니다. 패키지의 좌표를 생성하는 방법은 다음과 같습니다.
    
-    a. Maven 리포지토리 hello hello 패키지를 찾습니다. 이 자습서에서는 [spark-csv](http://search.maven.org/#artifactdetails%7Ccom.databricks%7Cspark-csv_2.10%7C1.4.0%7Cjar)를 사용합니다.
+    a. Maven Repository에서 패키지를 찾습니다. 이 자습서에서는 [spark-csv](http://search.maven.org/#artifactdetails%7Ccom.databricks%7Cspark-csv_2.10%7C1.4.0%7Cjar)를 사용합니다.
    
-    b. 에 대 한 hello 값을 수집 hello 리포지토리에서 **GroupId**, **의 ArtifactId**, 및 **버전**합니다. Hello 값을 수집 하 여 클러스터와 일치 하는지 확인 합니다. 이 경우 Scala 2.10 및 Spark 1.4.0 패키지를 사용 하는 것 이지만 클러스터의 hello 적절 한 Scala 또는 Spark 버전에 대 한 tooselect 서로 다른 버전을 할 수 있습니다. 확인할 수 있습니다 hello Scala 버전 클러스터에서 실행 하 여 `scala.util.Properties.versionString` hello Spark Jupyter 커널 또는 Spark 제출 합니다. 확인할 수 있습니다 hello Spark 버전 클러스터에서 실행 하 여 `sc.version` Jupyter 노트북에서 합니다.
+    b. 해당 리포지토리에서 **GroupId**, **ArtifactId** 및 **Version** 값을 수집합니다. 수집하는 값이 클러스터와 일치하는지 확인합니다. 이 경우에는 Scala 2.10 및 Spark 1.4.0 패키지를 사용하고 있지만 클러스터의 해당 Scala 또는 Spark 버전에 대해 다른 버전을 선택해야 할 수 있습니다. Spark Jupyter 커널에서 또는 Spark 제출 시 `scala.util.Properties.versionString`을 실행하여 클러스터에서 Scala 버전을 찾을 수 있습니다. Jupyter Notebook에서 `sc.version`을 실행하여 클러스터에서 Spark 버전을 찾을 수 있습니다.
    
     ![Jupyter Notebook에서 외부 패키지 사용](./media/hdinsight-apache-spark-jupyter-notebook-use-external-packages/use-external-packages-with-jupyter.png "Jupyter Notebook에서 외부 패키지 사용")
    
-    c. 콜론으로 구분 하는 hello 3 값 연결 (**:**).
+    c. 콜론(**:**)으로 구분된 세 개의 값을 연결합니다.
    
         com.databricks:spark-csv_2.10:1.4.0
 
-7. Hello를 사용 하 여 hello 코드 셀 실행 `%%configure` 매직 합니다. 이렇게 하면 hello 기본 리비 세션 toouse hello 패키지 사용자가 제공한 구성 됩니다. Hello 전자 필기장의 후속 셀 hello에에서 아래와 같이 hello 패키지를 지금 사용할 수 있습니다.
+7. `%%configure` Magic을 사용하여 코드 셀을 실행합니다. 이렇게 하면 제공된 패키지를 사용하도록 기본 Livy 세션이 구성됩니다. 이제 아래와 같이 노트북의 다음 셀에서 패키지를 사용할 수 있습니다.
    
         val df = sqlContext.read.format("com.databricks.spark.csv").
         option("header", "true").
         option("inferSchema", "true").
         load("wasb:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
 
-8. Hello 조각을 실행할 수 있습니다, tooview, 아래 그림과 같이 hello hello 데이터 프레임에서 데이터 단계에서 만든 hello 이전 합니다.
+    HDInsight 3.6의 경우 다음 코드 조각을 사용해야 합니다.
+
+        val df = spark.read.format("com.databricks.spark.csv").
+        option("header", "true").
+        option("inferSchema", "true").
+        load("wasb:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
+
+8. 아래와 같이 코드 조각을 실행하여 이전 단계에서 만든 데이터 프레임의 데이터를 볼 수 있습니다.
    
         df.show()
    
@@ -103,7 +110,7 @@ Hello 다음이 필요 합니다.
 ### <a name="scenarios"></a>시나리오
 * [BI와 Spark: BI 도구와 함께 HDInsight에서 Spark를 사용하여 대화형 데이터 분석 수행](hdinsight-apache-spark-use-bi-tools.md)
 * [기계 학습과 Spark: HVAC 데이터를 사용하여 건물 온도를 분석하는 데 HDInsight의 Spark 사용](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [Spark와 기계 학습: HDInsight toopredict 음식 검사 결과에 사용 하 여 Spark](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [기계 학습과 Spark: 음식 검사 결과를 예측하는 데 HDInsight의 Spark 사용](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark 스트리밍: HDInsight에서 Spark를 사용하여 실시간 스트리밍 응용 프로그램 빌드](hdinsight-apache-spark-eventhub-streaming.md)
 * [HDInsight의 Spark를 사용하여 웹 사이트 로그 분석](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 
@@ -114,13 +121,13 @@ Hello 다음이 필요 합니다.
 ### <a name="tools-and-extensions"></a>도구 및 확장
 
 * [HDInsight Linux의 Apache Spark 클러스터에서 Jupyter 노트북과 함께 외부 python 패키지 사용](hdinsight-apache-spark-python-package-installation.md)
-* [IntelliJ 아이디어 toocreate에 대 한 HDInsight 도구 플러그 인을 사용 하 고 스파크 Scala 응용 프로그램 제출](hdinsight-apache-spark-intellij-tool-plugin.md)
-* [IntelliJ 아이디어 toodebug Spark 응용 프로그램에 대 한 HDInsight 도구 플러그 인을 원격으로 사용](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [IntelliJ IDEA용 HDInsight 도구 플러그 인을 사용하여 Spark Scala 응용 프로그램 만들기 및 제출](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [IntelliJ IDEA용 HDInsight 도구 플러그 인을 사용하여 Spark 응용 프로그램을 원격으로 디버그](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [HDInsight에서 Spark 클러스터와 함께 Zeppelin Notebook 사용](hdinsight-apache-spark-zeppelin-notebook.md)
 * [HDInsight의 Spark 클러스터에서 Jupyter Notebook에 사용할 수 있는 커널](hdinsight-apache-spark-jupyter-notebook-kernels.md)
-* [Jupyter 사용자 컴퓨터에 설치 하 고 tooan HDInsight Spark 클러스터를 연결 합니다.](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [컴퓨터에 Jupyter를 설치하고 HDInsight Spark 클러스터에 연결](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
 ### <a name="manage-resources"></a>리소스 관리
-* [Azure HDInsight의 Apache Spark 클러스터 hello에 대 한 리소스를 관리 합니다.](hdinsight-apache-spark-resource-manager.md)
+* [Azure HDInsight에서 Apache Spark 클러스터에 대한 리소스 관리](hdinsight-apache-spark-resource-manager.md)
 * [HDInsight의 Apache Spark 클러스터에서 실행되는 작업 추적 및 디버그](hdinsight-apache-spark-job-debugging.md)
 

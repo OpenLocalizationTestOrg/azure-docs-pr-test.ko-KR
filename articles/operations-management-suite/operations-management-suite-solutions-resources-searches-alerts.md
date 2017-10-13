@@ -1,6 +1,6 @@
 ---
-title: "aaaSaved 검색 및 OMS 솔루션에서 경고 | Microsoft Docs"
-description: "OMS의 솔루션 hello 솔루션에 의해 수집 된 로그 분석 tooanalyze 데이터에 저장 된 검색을 일반적으로 포함 됩니다.  경고 toonotify hello 사용자 정의 되었거나 자동으로 응답 tooa 중요 한 문제에서 작업을 수행 합니다.  이 문서에서는 어떻게 toodefine 로그 분석 검색 및 경고는 ARM 서식 파일에 저장 관리 솔루션에 포함 될 수 있도록 설명 합니다."
+title: "OMS 솔루션에 저장된 검색 및 경고 | Microsoft Docs"
+description: "OMS의 솔루션은 일반적으로 솔루션에서 수집한 데이터를 분석하기 위해 Log Analytics에 저장된 검색을 포함하게 됩니다.  또한 중요한 문제에 대한 응답으로 사용자에게 알리거나 자동으로 조치를 취하기 위한 경고를 정의합니다.  이 문서에서는 관리 솔루션에 포함되도록 ARM 템플릿에서 Log Analytics 저장된 검색 및 경고를 정의하는 방법을 설명합니다."
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,39 +14,39 @@ ms.workload: infrastructure-services
 ms.date: 05/24/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 93d7c5bbf061473833ca6c0a8e4d8e10d923f3ed
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 21c42a747a08c5386c65d10190baf0054a7adef8
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="adding-log-analytics-saved-searches-and-alerts-toooms-management-solution-preview"></a>로그 분석 추가 저장 된 검색 및 알림 tooOMS 관리 솔루션 (미리 보기)
+# <a name="adding-log-analytics-saved-searches-and-alerts-to-oms-management-solution-preview"></a>OMS 관리 솔루션(미리 보기)에 Log Analytics에서 저장한 검색 및 경고 추가
 
 > [!NOTE]
-> 현재 Preview로 제공되는 OMS의 사용자 지정 솔루션 만들기에 대한 예비 설명서입니다. 아래에 설명 된 모든 스키마 주체 toochange입니다.   
+> 현재 Preview로 제공되는 OMS의 사용자 지정 솔루션 만들기에 대한 예비 설명서입니다. 아래 설명된 스키마는 변경될 수 있습니다.   
 
 
-[OMS의 관리 솔루션](operations-management-suite-solutions.md) 는 일반적으로 포함 [저장 된 검색](../log-analytics/log-analytics-log-searches.md) hello 솔루션에 의해 수집 된 로그 분석 tooanalyze 데이터에서입니다.  정의할 수도 있습니다 [경고](../log-analytics/log-analytics-alerts.md) toonotify 사용자 hello 또는 자동으로 응답 tooa 중요 한 문제에서 작업을 수행 합니다.  이 문서에서는 toodefine 로그 분석 검색 및 경고를 저장 하는 방법을 설명는 [리소스 관리 템플릿](../resource-manager-template-walkthrough.md) 에 포함 될 수 있으므로 [관리 솔루션](operations-management-suite-solutions-creating.md)합니다.
+[OMS의 관리 솔루션](operations-management-suite-solutions.md)은 일반적으로 솔루션에서 수집한 데이터를 분석하기 위해 Log Analytics에 [저장된 검색](../log-analytics/log-analytics-log-searches.md)을 포함하게 됩니다.  또한 중요한 문제에 대한 응답으로 사용자에게 알리거나 자동으로 조치를 취하기 위한 [경고](../log-analytics/log-analytics-alerts.md)를 정의합니다.  이 문서에서는 [관리 솔루션](operations-management-suite-solutions-creating.md)에 포함되도록 [리소스 관리 템플릿](../resource-manager-template-walkthrough.md)에서 Log Analytics 저장된 검색 및 경고를 정의하는 방법을 설명합니다.
 
 > [!NOTE]
-> hello 샘플이이 문서에서 사용 하 여 매개 변수 및 필수 또는 일반적인 toomanagement 솔루션 중 하나에 설명 된 있는 변수 [Operations Management Suite (OMS)에서 관리 솔루션 만들기](operations-management-suite-solutions-creating.md)  
+> 이 문서의 샘플에는 관리 솔루션에 필요하거나 공통적이며 [OMS(Operations Management Suite)의 관리 솔루션 만들기](operations-management-suite-solutions-creating.md)에서 설명한 매개 변수와 변수가 사용됩니다.  
 
 ## <a name="prerequisites"></a>필수 조건
-이 문서에서는 하 이미 방법을 잘 알고 너무 가정[관리 솔루션을 만들어](operations-management-suite-solutions-creating.md) 와의 hello 구조는 [ARM 템플릿을](../resource-group-authoring-templates.md) 및 솔루션 파일입니다.
+이 문서에서는 여러분이 [관리 솔루션을 만드는 방법](operations-management-suite-solutions-creating.md)과 [ARM 템플릿](../resource-group-authoring-templates.md) 및 솔루션 파일의 구조를 잘 알고 있다고 가정합니다.
 
 
 ## <a name="log-analytics-workspace"></a>Log Analytics 작업 영역
-Log Analytics의 모든 리소스는 [작업 영역](../log-analytics/log-analytics-manage-access.md)에 포함됩니다.  에 설명 된 대로 [OMS 작업 영역 및 자동화 계정](operations-management-suite-solutions.md#oms-workspace-and-automation-account) hello 작업 영역 hello 관리 솔루션에 포함 되어 있지 않지만 hello 솔루션을 설치 하기 전에 존재 해야 합니다.  사용할 수 없으면 hello 솔루션 설치 실패 합니다.
+Log Analytics의 모든 리소스는 [작업 영역](../log-analytics/log-analytics-manage-access.md)에 포함됩니다.  [OMS 작업 영역 및 Automation 계정](operations-management-suite-solutions.md#oms-workspace-and-automation-account)에서 설명한 대로 작업 영역은 관리 솔루션에 포함되지 않지만, 솔루션이 설치되기 전에 존재해야 합니다.  계정을 사용할 수 없으면 솔루션 설치에 실패합니다.
 
-hello 이름이 hello 작업 영역의 각 로그 분석 리소스의 hello 이름입니다.  Hello 사용 하 여 hello 솔루션에서 이렇게 **작업 영역** hello 다음 savedsearch 리소스의 예제에서와 같이 매개 변수입니다.
+작업 영역 이름은 각 Log Analytics 리소스의 이름을 사용합니다.  이 작업은 다음 저장된 검색 리소스 예제와 같이 **workspace** 매개 변수가 포함된 솔루션에서 이루어집니다.
 
     "name": "[concat(parameters('workspaceName'), '/', variables('SavedSearchId'))]"
 
 
 ## <a name="saved-searches"></a>저장된 검색
-포함 [저장 된 검색](../log-analytics/log-analytics-log-searches.md) 솔루션 tooallow 사용자 tooquery 데이터 솔루션에서 수집 합니다.  저장 된 검색 아래에 표시 될 **즐겨찾기** hello OMS 포털에서 및 **저장 된 검색** hello Azure 포털의에서.  각 경고에도 저장된 검색이 필요합니다.   
+솔루션에서 수집한 데이터를 사용자가 쿼리할 수 있도록 솔루션에 [저장된 검색](../log-analytics/log-analytics-log-searches.md)을 포함합니다.  저장된 검색은 OMS 포털의 **즐겨찾기**와 Azure Portal의 **저장된 검색**에 표시됩니다.  각 경고에도 저장된 검색이 필요합니다.   
 
-[로그 분석에 저장 된 검색](../log-analytics/log-analytics-log-searches.md) 리소스 유형의 `Microsoft.OperationalInsights/workspaces/savedSearches` 있고 hello 구조를 수행 합니다.  여기에 일반적인 변수 및 매개 변수 복사 하 고이 코드 조각은 솔루션 파일에 붙여 하 고 hello 매개 변수 이름을 변경할 수 있도록 합니다. 
+[Log Analytics 및 저장된 검색](../log-analytics/log-analytics-log-searches.md) 리소스는 `Microsoft.OperationalInsights/workspaces/savedSearches` 형식을 가지며 구조는 다음과 같습니다.  여기에는 일반 변수 및 매개 변수가 포함되어 있으므로 이 코드 조각을 복사하여 솔루션 파일에 붙여넣고 매개 변수 이름을 변경할 수 있습니다. 
 
     {
         "name": "[concat(parameters('workspaceName'), '/', variables('SavedSearch').Name)]",
@@ -65,33 +65,33 @@ hello 이름이 hello 작업 영역의 각 로그 분석 리소스의 hello 이�
 
 
 
-각각의 저장된 된 검색의 hello 속성 hello 다음 표에 설명 되어 있습니다. 
+저장된 검색의 각 속성은 다음 테이블에 설명되어 있습니다. 
 
 | 속성 | 설명 |
 |:--- |:--- |
-| 카테고리 | hello 저장 된 검색에 대 한 hello 범주입니다.  모든 저장 된 검색에 동일한 솔루션은 종종를 공유 하는 hello 단일 범주 hello 콘솔에서 함께 그룹화 되어 있도록 합니다. |
-| displayname | Hello에 대 한 이름 toodisplay hello 포털에서 검색을 저장 합니다. |
-| 쿼리 | Toorun를 쿼리 합니다. |
+| 카테고리 | 저장된 검색의 범주입니다.  같은 솔루션에 있는 저장된 검색은 종종 단일 범주를 공유하므로 콘솔에서 함께 그룹화됩니다. |
+| displayname | 포털에서 저장된 검색에 표시할 이름입니다. |
+| 쿼리 | 실행할 쿼리입니다. |
 
 > [!NOTE]
-> JSON으로 해석할 수 없는 문자를 포함 하는 경우 hello 쿼리에서 toouse 이스케이프 문자를 할 수 있습니다.  예를 들어, 쿼리 되었으면 **유형: AzureActivity OperationName:"Microsoft.Compute/virtualMachines/write"**, hello 솔루션 파일에 쓸지 **유형: AzureActivity OperationName:\" Microsoft.Compute/virtualMachines/write\"**합니다.
+> JSON으로 해석될 수 있는 문자를 포함하고 있는 경우 쿼리에 이스케이프 문자를 사용해야 합니다.  예를 들어 쿼리가 **Type:AzureActivity OperationName:"Microsoft.Compute/virtualMachines/write"**이면 솔루션 파일에 **Type:AzureActivity OperationName:\"Microsoft.Compute/virtualMachines/write\"**라고 써야 합니다.
 
 ## <a name="alerts"></a>경고
-[Log Analytics 경고](../log-analytics/log-analytics-alerts.md)는 일정한 간격으로 저장된 검색을 실행하는 경고 규칙에 의해 만들어집니다.  지정 된 조건과 일치 하는 hello hello 쿼리 결과 경고 레코드 만들어지고 하나 이상의 동작이 실행 됩니다.  
+[Log Analytics 경고](../log-analytics/log-analytics-alerts.md)는 일정한 간격으로 저장된 검색을 실행하는 경고 규칙에 의해 만들어집니다.  쿼리 결과가 지정된 기준과 일치하면 경고 레코드가 생성되고 하나 이상의 작업이 실행됩니다.  
 
-경고 규칙 관리 솔루션에서은 다음 세 가지 서로 다른 리소스 hello 구성 됩니다.
+관리 솔루션의 경고 규칙은 다음 세 가지 리소스로 구성됩니다.
 
-- **저장된 검색.**  실행 되는 hello 로그 검색을 정의 합니다.  여러 경고 규칙이 하나의 저장된 검색을 공유할 수 있습니다.
-- **일정.**  얼마나 자주 hello 로그 검색 해야 할 정의 합니다.  각 경고 규칙은 일정을 하나만 갖습니다.
-- **경고 작업.**  각 경고 규칙의 형식 가진 하나의 작업 리소스 갖습니다 **경고** hello 경고 경고 레코드 생성 되 고 경고의 심각도 hello 시기에 대 한 hello 조건 등의 hello 세부 정보를 정의 하는 합니다.  hello 동작 리소스에서 필요에 따라 메일 및 runbook 응답을 정의 합니다.
-- **웹후크 작업(선택 사항).**  Hello 경고 규칙은 여 webhook을 사용할지를 호출 하는 경우 프로그램의 추가적인 동작이 리소스 형식의 필요 **Webhook**합니다.    
+- **저장된 검색.**  실행될 로그 검색을 정의합니다.  여러 경고 규칙이 하나의 저장된 검색을 공유할 수 있습니다.
+- **일정.**  로그 검색이 실행될 빈도를 정의합니다.  각 경고 규칙은 일정을 하나만 갖습니다.
+- **경고 작업.**  각 경고 규칙은 경고 레코드가 생성되는 시기, 경고 심각도 등의 경고 세부 정보를 정의하는 **경고** 형식의 작업 리소스 하나를 갖게 됩니다.  작업 리소스는 메일 및 runbook 응답을 선택적으로 정의합니다.
+- **웹후크 작업(선택 사항).**  경고 규칙이 웹후크를 호출하면 **웹후크** 형식의 추가 작업 리소스가 필요합니다.    
 
-저장된 검색 리소스는 위에 설명되어 있습니다.  hello 다른 리소스 다음과 같습니다.
+저장된 검색 리소스는 위에 설명되어 있습니다.  다른 리소스는 아래에 설명되어 있습니다.
 
 
 ### <a name="schedule-resource"></a>일정 리소스
 
-저장된 검색은 하나 이상의 일정을 가질 수 있으며 각 일정은 별도의 경고 규칙을 나타냅니다. hello 일정 정의 얼마나 자주 hello 검색 실행 되 고 있는 hello를 통해 데이터를 검색 하는 시간 간격을 hello 합니다.  일정 리소스 유형의 `Microsoft.OperationalInsights/workspaces/savedSearches/schedules/` 있고 hello 구조를 수행 합니다. 여기에 일반적인 변수 및 매개 변수 복사 하 고이 코드 조각은 솔루션 파일에 붙여 하 고 hello 매개 변수 이름을 변경할 수 있도록 합니다. 
+저장된 검색은 하나 이상의 일정을 가질 수 있으며 각 일정은 별도의 경고 규칙을 나타냅니다. 일정은 검색이 실행되는 빈도 및 데이터가 검색되는 시간 간격을 정의합니다.  일정 리소스는 `Microsoft.OperationalInsights/workspaces/savedSearches/schedules/` 형식을 가지며 구조는 다음과 같습니다. 여기에는 일반 변수 및 매개 변수가 포함되어 있으므로 이 코드 조각을 복사하여 솔루션 파일에 붙여넣고 매개 변수 이름을 변경할 수 있습니다. 
 
 
     {
@@ -111,27 +111,27 @@ hello 이름이 hello 작업 영역의 각 로그 분석 리소스의 hello 이�
 
 
 
-다음 표에 hello 일정 리소스에 대 한 hello 속성 설명 합니다.
+일정 리소스의 속성은 다음 테이블에 설명되어 있습니다.
 
 | 요소 이름 | 필수 | 설명 |
 |:--|:--|:--|
-| 사용       | 예 | Hello 경고가 생성 될 때 사용 되는지 여부를 지정 합니다. |
-| interval      | 예 | Hello 쿼리를 실행 빈도 (분)에서입니다. |
-| queryTimeSpan | 예 | 시간 (분)는 tooevaluate 결과 길이입니다. |
+| 사용       | 예 | 경고를 만들 때 사용 여부를 지정합니다. |
+| interval      | 예 | 쿼리가 실행되는 빈도(분)입니다. |
+| queryTimeSpan | 예 | 결과를 평가하는 시간의 길이(분)입니다. |
 
-hello 일정 리소스 hello hello 일정 전에 만들어질 수 있도록 저장 된 검색에 의존 해야 합니다.
+일정 전에 저장된 검색이 생성되도록 일정 리소스는 저장된 검색에 따라 결정됩니다.
 
 
 ### <a name="actions"></a>작업
-Hello로 지정 된 작업 리소스의 두 가지 **형식** 속성입니다.  일정에 따라 하나 필요로 **경고** hello 경고 규칙 및 경고를 만들 때 수행 되는 작업의 hello 세부 정보를 정의 하는 작업입니다.  포함 될 수도 있습니다는 **Webhook** hello 경고에서 여 webhook을 사용할지를 호출 해야 하는 경우 작업 합니다.  
+**Type** 속성에서 지정하는 두 가지 형식의 작업 리소스가 있습니다.  일정에는 경고 규칙 세부 정보 그리고 경고가 생성될 때 수행할 작업을 정의하는 **경고** 작업 하나가 필요합니다.  또한 경고에서 웹후크를 호출해야 하는 경우 **웹후크** 작업을 포함해야 할 수도 있습니다.  
 
 작업 리소스의 형식은 `Microsoft.OperationalInsights/workspaces/savedSearches/schedules/actions`입니다.  
 
 #### <a name="alert-actions"></a>경고 작업
 
-모든 일정은 하나의 **경고** 작업을 갖게 됩니다.  이 hello 경고 및 알림 및 업데이트 관리 작업을 필요에 따라 hello 세부 정보를 정의 합니다.  알림을 보내는 전자 메일 tooone 또는 더 많은 주소입니다.  업데이트 관리 tooattempt tooremediate hello 검색 문제 Azure 자동화에서에서 runbook을 시작합니다.
+모든 일정은 하나의 **경고** 작업을 갖게 됩니다.  이 경고 작업은 경고의 세부 정보를 정의하고 필요에 따라 알림 및 재구성 작업을 정의합니다.  알림은 하나 이상의 주소에 전자 메일을 보냅니다.  재구성은 Azure Automation에서 runbook을 시작하여 검색된 문제 해결을 시도합니다.
 
-경고 작업은 hello 구조를 수행 합니다.  여기에 일반적인 변수 및 매개 변수 복사 하 고이 코드 조각은 솔루션 파일에 붙여 하 고 hello 매개 변수 이름을 변경할 수 있도록 합니다. 
+경고 작업의 구조는 다음과 같습니다.  여기에는 일반 변수 및 매개 변수가 포함되어 있으므로 이 코드 조각을 복사하여 솔루션 파일에 붙여넣고 매개 변수 이름을 변경할 수 있습니다. 
 
 
 
@@ -170,23 +170,23 @@ Hello로 지정 된 작업 리소스의 두 가지 **형식** 속성입니다.  
         }
     }
 
-다음 표에서 hello 경고 작업 리소스에 대 한 hello 속성 설명 합니다.
+경고 작업 리소스의 속성은 다음 테이블에 설명되어 있습니다.
 
 | 요소 이름 | 필수 | 설명 |
 |:--|:--|:--|
-| 유형 | 예 | Hello 작업 형식입니다.  경고 작업의 **경고**가 됩니다. |
-| 이름 | 예 | Hello 경고에 대 한 표시 이름입니다.  Hello 경고 규칙에 대 한 hello 콘솔에 표시 되는 hello 이름입니다. |
-| 설명 | 아니요 | Hello 경고의 선택적 설명입니다. |
-| 심각도 | 예 | 다음 값에는 hello에서 hello 경고 레코드의 심각도:<br><br> **중요**<br>**Warning**<br>**정보 제공** |
+| 유형 | 예 | 작업의 유형입니다.  경고 작업의 **경고**가 됩니다. |
+| 이름 | 예 | 경고에 대한 표시 이름입니다.  경고 규칙에 대한 콘솔에 표시되는 이름입니다. |
+| 설명 | 아니요 | 경고에 대한 선택적 설명입니다. |
+| 심각도 | 예 | 다음 값의 경고 레코드의 심각도입니다.<br><br> **중요**<br>**Warning**<br>**정보 제공** |
 
 
 ##### <a name="threshold"></a>임계값
-이 섹션은 필수입니다.  Hello 경고 임계값에 대 한 hello 속성을 정의합니다.
+이 섹션은 필수입니다.  경고 임계값의 속성을 정의합니다.
 
 | 요소 이름 | 필수 | 설명 |
 |:--|:--|:--|
-| 연산자 | 예 | 다음 값에는 hello에서 hello 비교 연산자:<br><br>**gt = 보다 큼<br>lt = 보다 작음** |
-| 값 | 예 | hello toocompare hello 결과 값입니다. |
+| 연산자 | 예 | 다음 값의 비교 연산자입니다.<br><br>**gt = 보다 큼<br>lt = 보다 작음** |
+| 값 | 예 | 결과를 비교하는 값입니다. |
 
 
 ##### <a name="metricstrigger"></a>MetricsTrigger
@@ -197,41 +197,41 @@ Hello로 지정 된 작업 리소스의 두 가지 **형식** 속성입니다.  
 
 | 요소 이름 | 필수 | 설명 |
 |:--|:--|:--|
-| TriggerCondition | 예 | Hello 임계값 위반이 나 다음 값에는 hello에서 연속 된 위반의 총 용인지 여부를 지정 합니다.<br><br>**총<br>연속** |
-| 연산자 | 예 | 다음 값에는 hello에서 hello 비교 연산자:<br><br>**gt = 보다 큼<br>lt = 보다 작음** |
-| 값 | 예 | Hello hello 기준 시간 수가 met tootrigger hello 경고 이어야 합니다. |
+| TriggerCondition | 예 | 임계값이 총 위반 수인지 아니면 연속 위반인지 다음 값을 사용하여 지정합니다.<br><br>**총<br>연속** |
+| 연산자 | 예 | 다음 값의 비교 연산자입니다.<br><br>**gt = 보다 큼<br>lt = 보다 작음** |
+| 값 | 예 | 경고를 트리거하기 위해 조건을 충족해야 하는 시간입니다. |
 
 ##### <a name="throttling"></a>제한
-이 섹션은 선택 사항입니다.  잠시 후 경고가 만들어지고에 대 한 규칙이 동일한 hello에서 toosuppress 경고를 발생 시킬 경우에이 섹션을 포함 합니다.
+이 섹션은 선택 사항입니다.  경고가 생성된 후 일정 시간 동안 같은 규칙의 경고를 표시하지 않으려면 이 섹션을 포함해야 합니다.
 
 | 요소 이름 | 필수 | 설명 |
 |:--|:--|:--|
-| DurationInMinutes | 제한 요소가 포함된 경우 필수입니다. | 동일한 경고 규칙을 만들면 hello에서 후 분 toosuppress 경고 수입니다. |
+| DurationInMinutes | 제한 요소가 포함된 경우 필수입니다. | 같은 경고 규칙에서 경고가 생성되면 이 시간 동안 경고를 표시하지 않습니다. |
 
 ##### <a name="emailnotification"></a>EmailNotification
- 이 섹션은 경고 toosend 메일 tooone 또는 더 많은 수신자 hello 하려면 선택적 포함 합니다.
+ 이 섹션은 선택 사항입니다. 한 명 이상의 수신자에게 메일을 보내 경고하려면 이 섹션을 포함해야 합니다.
 
 | 요소 이름 | 필수 | 설명 |
 |:--|:--|:--|
-| 받는 사람 | 예 | 전자 메일의 쉼표로 구분 된 목록 hello 다음 예제에서에서와 같은 경고를 만들 때 toosend 알림을 해결 합니다.<br><br>**[ "recipient1@contoso.com", "recipient2@contoso.com" ]** |
-| 제목 | 예 | Hello 메일의 제목 줄입니다. |
+| 받는 사람 | 예 | 다음 예제와 같이 경고가 생성되면 알림을 보낼 쉼표로 구분된 전자 메일 주소 목록입니다.<br><br>**[ "recipient1@contoso.com", "recipient2@contoso.com" ]** |
+| 제목 | 예 | 메일의 제목 줄입니다. |
 | 첨부 파일 | 아니요 | 첨부 파일은 현재 지원되지 않습니다.  이 요소를 포함하는 경우 **없음**이어야 합니다. |
 
 
 ##### <a name="remediation"></a>재구성
-이 섹션은 선택 사항 응답 toohello 경고의 runbook toostart 하려는 경우이 포함 합니다. |
+이 섹션은 선택 사항입니다. 경고에 대한 응답으로 runbook을 시작하려면 이 섹션을 포함해야 합니다. |
 
 | 요소 이름 | 필수 | 설명 |
 |:--|:--|:--|
-| RunbookName | 예 | Hello runbook toostart의 이름입니다. |
-| WebhookUri | 예 | Hello runbook에 대 한 hello webhook의 Uri입니다. |
-| Expiry | 아니요 | Hello 수정 된 날짜와 시간에 만료 됩니다. |
+| RunbookName | 예 | 시작할 runbook의 이름입니다. |
+| WebhookUri | 예 | runbook의 웹후크 Uri입니다. |
+| Expiry | 아니요 | 재구성이 만료되는 날짜 및 시간입니다. |
 
 #### <a name="webhook-actions"></a>웹후크 작업
 
-Webhook 작업 URL을 호출 하 여 선택적으로 전송 되는 페이로드 toobe 제공 하는 프로세스를 시작 합니다. Azure 자동화 runbook 이외의 프로세스를 호출할 수 있는 webhook에 대 한 보관 점을 제외 하 고 서로 유사한 tooRemediation 동작입니다. 또한 hello 페이로드 배달 toobe toohello 원격 프로세스를 제공 하는 중 추가 옵션을 제공 합니다.
+웹후크 작업은 URL을 호출하고 선택적으로 보낼 페이로드를 제공하는 것으로 프로세스를 시작합니다. 이들은 웹후크에 대해 Azure 자동화 Runbook 이외의 프로세스를 호출할 수 있다는 것을 제외하고 수정 작업과 유사합니다. 또한 원격 프로세스에 전달할 페이로드를 제공하는 추가 옵션을 제공합니다.
 
-결제 경고가 됩니다 여 webhook을 사용할지를 호출 하는 경우의 형식과 동작 리소스는 필요 **Webhook** 더하기 toohello에 **경고** 작업 리소스입니다.  
+경고에서 웹후크를 호출하는 경우 **경고** 작업 리소스 외에도 **웹후크** 형식의 작업 리소스가 필요합니다.  
 
     {
       "name": "name": "[concat(parameters('workspaceName'), '/', variables('SavedSearch').Name, '/', variables('Schedule').Name, '/', variables('Webhook').Name)]",
@@ -249,28 +249,28 @@ Webhook 작업 URL을 호출 하 여 선택적으로 전송 되는 페이로드 
       }
     }
 
-다음 표에서 hello Webhook 작업 리소스에 대 한 hello 속성 설명 합니다.
+웹후크 작업 리소스의 속성은 다음 표에 설명되어 있습니다.
 
 | 요소 이름 | 필수 | 설명 |
 |:--|:--|:--|
-| type | 예 | Hello 작업 형식입니다.  웹후크 작업의 **웹후크**가 됩니다. |
-| name | 예 | Hello 동작에 대 한 표시 이름입니다.  Hello 콘솔에 표시 되지 않습니다. |
-| wehookUri | 예 | Hello webhook에 대 한 Uri입니다. |
-| customPayload | 아니요 | 사용자 지정 페이로드 toobe toohello webhook을 전송 합니다. hello 형식 어떤 hello webhook 예상에 따라 달라 집니다. |
+| type | 예 | 작업의 유형입니다.  웹후크 작업의 **웹후크**가 됩니다. |
+| name | 예 | 작업의 표시 이름입니다.  콘솔에 표시되지 않습니다. |
+| wehookUri | 예 | 웹후크의 Uri입니다. |
+| customPayload | 아니요 | 웹후크에 보낼 사용자 지정 페이로드입니다. 형식은 예상하는 웹후크에 따라 달라집니다. |
 
 
 
 
 ## <a name="sample"></a>샘플
 
-다음은 hello 다음 리소스를 포함 하는 포함 하는 솔루션의 샘플입니다.
+다음은 다음 리소스를 포함하는 솔루션의 샘플입니다.
 
 - 저장된 검색
 - 일정
 - 경고 작업
 - 웹후크 작업
 
-샘플 사용 하 여 hello [표준 솔루션 매개 변수](operations-management-suite-solutions-solution-file.md#parameters) 와 솔루션에 일반적으로 사용 되는 변수 hello 리소스 정의에서 toohardcoding 값을 반대로 합니다.
+이 샘플에서는 리소스 정의의 값을 하드 코딩하는 대신 솔루션에 일반적으로 사용되는 [표준 솔루션 매개 변수](operations-management-suite-solutions-solution-file.md#parameters) 변수를 사용합니다.
 
     {
         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -309,7 +309,7 @@ Webhook 작업 URL을 호출 하 여 선택적으로 전송 되는 페이로드 
           "recipients": {
             "type": "string",
             "metadata": {
-              "Description": "List of recipients for hello email alert separated by semicolon"
+              "Description": "List of recipients for the email alert separated by semicolon"
             }
           }
         },
@@ -477,7 +477,7 @@ Webhook 작업 URL을 호출 하 여 선택적으로 전송 되는 페이로드 
     }
 
 
-다음 매개 변수 파일 hello이이 솔루션에 대 한 샘플 값을 제공 합니다.
+다음 매개 변수 파일은 이 솔루션에 대한 샘플 값을 제공합니다.
 
     {
         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
@@ -506,6 +506,6 @@ Webhook 작업 URL을 호출 하 여 선택적으로 전송 되는 페이로드 
 
 
 ## <a name="next-steps"></a>다음 단계
-* [뷰 추가](operations-management-suite-solutions-resources-views.md) tooyour 관리 솔루션입니다.
-* [자동화 runbook 및 기타 리소스를 추가](operations-management-suite-solutions-resources-automation.md) tooyour 관리 솔루션입니다.
+* 관리 솔루션에 대한 [보기를 추가](operations-management-suite-solutions-resources-views.md)합니다.
+* 관리 솔루션에 [Automation runbook 및 기타 리소스를 추가](operations-management-suite-solutions-resources-automation.md)합니다.
 

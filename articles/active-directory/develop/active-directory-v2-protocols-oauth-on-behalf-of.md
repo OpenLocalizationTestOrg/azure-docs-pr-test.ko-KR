@@ -1,6 +1,6 @@
 ---
-title: "AD aaaAzure v2.0 oauth 2.0에 대신-흐름 | Microsoft Docs"
-description: "이 문서에서는 어떻게 oauth 2.0에 대신-흐름 hello toouse HTTP 메시지 tooimplement tooservice 인증 사용 하 여 서비스를 설명 합니다."
+title: "Azure AD v2.0 OAuth2.0 On-Behalf-Of 흐름 | Microsoft Docs"
+description: "이 문서는 OAuth 2.0 On-Behalf-Of 흐름을 사용하여 서비스 간 인증을 구현하기 위해 HTTP 메시지를 사용하는 방법을 설명합니다."
 services: active-directory
 documentationcenter: 
 author: navyasric
@@ -15,61 +15,61 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: 6063869d07c2544000094db8deea7dce19f14f67
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 356083fbaabfcd2ec7581adf319fa22b810df0d3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # Azure Active Directory v2.0 및 OAuth 2.0 On-Behalf-Of 흐름
-OAuth 2.0 On-Behalf-Of 흐름 hello hello 사용 사례는 응용 프로그램 서비스/web API를 호출 하는 위치는 차례로 toocall 다른 서비스/web API를 사용 됩니다. hello 개념은 toopropagate hello 위임 된 사용자 id 및 hello 요청 체인을 통해 사용 권한입니다. Hello 중간 계층 서비스 인증 toomake 요청 toohello 다운스트림 서비스에 대 한 hello 사용자를 대신 하 여 Azure Active Directory (Azure AD)에서 액세스 토큰 toosecure가 필요합니다.
+OAuth 2.0 On-Behalf-Of 흐름은 응용 프로그램이 서비스/웹 API를 호출하고 차례로 다른 서비스/웹 API를 호출해야 하는 사용 사례를 제공합니다. 요청 체인을 통해 위임된 사용자 ID 및 사용 권한을 전파하는 개념입니다. 중간 계층 서비스가 다운스트림 서비스에 대해 인증된 요청을 수행하도록 하려면 사용자를 대신하여 Azure AD(Azure Active Directory)에서 액세스 토큰을 보호해야 합니다.
 
 > [!NOTE]
-> hello v2.0 끝점은 모든 Azure Active Directory 시나리오 및 기능을 지원 하지 않습니다. 에 대해 알아보세요 hello v2.0 끝점을 사용 해야 하는지를 toodetermine [v2.0 제한](active-directory-v2-limitations.md)합니다.
+> v2.0 끝점에서는 일부 Azure Active Directory 시나리오 및 기능만 지원합니다. v2.0 끝점을 사용해야 하는지 확인하려면 [v2.0 제한 사항](active-directory-v2-limitations.md)을 참조하세요.
 >
 >
 
 ## 프로토콜 다이어그램
-Hello를 사용 하 여 응용 프로그램에서 해당 hello 사용자가 인증 되었음을 가정 [OAuth 2.0 인증 코드 부여 흐름](active-directory-v2-protocols-oauth-code.md)합니다. 이 시점에서 hello 응용 프로그램에 hello 사용자 클레임 및 동의 tooaccess hello 중간 계층 웹 API (API A)와 액세스 토큰이 (토큰 A). 이제 API A toomake 인증 된 요청 toohello 다운스트림 웹 API (API B) 필요합니다.
+사용자가 [OAuth 2.0 권한 부여 코드 부여 흐름](active-directory-v2-protocols-oauth-code.md)을 사용하여 응용 프로그램에 대해 인증되었다고 가정합니다. 이 시점에서 응용 프로그램은 사용자의 클레임이 있는 액세스 토큰(토큰 A)을 포함하고 중간 계층 웹 API(API A)에 액세스하는 데 동의합니다. 이제 API A는 다운스트림 웹 API(API B)에 대해 인증된 요청을 해야 합니다.
 
-수행 하는 hello 단계 hello에-를 대신 하 여-의 흐름을 구성 하 고 사용 하 여 hello hello 다이어그램을 다음 설명 합니다.
+다음 단계는 On-Behalf-Of 흐름을 구성하며 다음 다이어그램을 통해 쉽게 이해할 수 있습니다.
 
 ![OAuth2.0 On-Behalf-Of 흐름](media/active-directory-protocols-oauth-on-behalf-of/active-directory-protocols-oauth-on-behalf-of-flow.png)
 
 
-1. hello 클라이언트 응용 프로그램은 요청 tooAPI hello 토큰 1. 함께 A
-2. API A toohello Azure AD 토큰 발급 끝점을 인증 하 고 토큰 tooaccess 2. API 요청
-3. hello Azure AD 토큰 발급 끝점 토큰 a API A의 자격 증명의 유효성을 검사 하 고 문제 API B (토큰 B)에 대 한 액세스 토큰을 hello 합니다.
-4. hello 토큰 B hello 요청 tooAPI B. hello 인증 헤더에 설정 된
-5. 2. API에서 리소스를 보호 하는 hello의 데이터가 반환 됩니다.
+1. 클라이언트 응용 프로그램은 토큰 A와 함께 API A에 요청합니다.
+2. API A는 Azure AD 토큰 발급 끝점을 인증하고 API B에 액세스하기 위해 토큰을 요청합니다.
+3. Azure AD 토큰 발급 끝점은 토큰 A와 함께 API A의 자격 증명의 유효성을 검사하고 API B(토큰 B)에 대한 액세스 토큰을 발급합니다.
+4. 토큰 B는 API B에 대한 요청의 권한 부여 헤더에 설정됩니다.
+5. 보안 리소스의 데이터가 API B에 의해 반환됩니다.
 
 > [!NOTE]
-> 이 시나리오에서는 hello 중간 계층 서비스에는 없는 사용자 상호 작용 tooobtain hello 사용자의 동의 tooaccess hello 다운스트림 API 있습니다. 따라서 다운스트림 API에서 제공 되는 옵션 toogrant 액세스 toohello hello 인증 하는 동안 hello 동의 단계의 일부로 선행 합니다.
+> 이 시나리오에서는 중간 계층 서비스에서 다운스트림 API에 액세스하기 위해 사용자 동의를 얻기 위한 사용자 상호 작용이 없습니다. 따라서 다운스트림 API에 대한 액세스를 부여할 수 있는 옵션이 인증 과정에서 동의 단계 중 일부로 미리 제공됩니다.
 >
 
-## 서비스 tooservice 액세스 토큰 요청
-toorequest 액세스 토큰, 매개 변수 뒤 hello로 HTTP POST toohello 테 넌 트 별 Azure AD v2.0 끝점을 확인 합니다.
+## 서비스 간 액세스 토큰 요청
+액세스 토큰을 요청하려면 다음 매개 변수로 테넌트별 Azure AD v2.0 끝점에 HTTP POST를 만듭니다.
 
 ```
 https://login.microsoftonline.com/<tenant>/oauth2/v2.0/token
 ```
 
-Hello 클라이언트 응용 프로그램의 toobe 공유 암호 또는 인증서에 의해 보안 선택 여부에 따라 두 가지 경우가 있습니다.
+클라이언트 응용 프로그램이 공유 암호 또는 인증서 중에서 어떤 방식으로 보호되도록 선택되는지에 따라 두 가지 사례가 있습니다.
 
 ### 첫 번째 사례: 공유 암호를 사용한 액세스 토큰 요청
-공유 암호를 사용할 경우 서비스 간 액세스 토큰 요청 매개 변수 뒤 hello를 포함 되어 있습니다.
+공유 암호를 사용할 경우 서비스 간 액세스 토큰 요청에는 다음 매개 변수가 있습니다.
 
 | 매개 변수 |  | 설명 |
 | --- | --- | --- |
-| grant_type |필수 | hello 유형의 hello 토큰 요청 합니다. JWT를 사용 하 여 요청에 대 한 hello 길어야 **urn: ietf:params:oauth:grant-형식: jwt-전달자**합니다. |
-| client_id |필수 | hello 응용 프로그램 ID는 hello [응용 프로그램 등록 포털](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) tooyour 응용 프로그램을 할당 합니다. |
-| client_secret |필수 | hello 응용 프로그램 등록 포털에서에서 응용 프로그램에 대해 생성 하는 hello 응용 프로그램 암호입니다. |
-| 어설션 |필수 | hello 요청에 사용 되는 hello 토큰의 hello 값입니다. |
-| scope |필수 | 공백으로 hello 토큰 요청에 대 한 범위 목록입니다. 자세한 내용은 [범위](active-directory-v2-scopes.md)를 참조하세요.|
-| requested_token_use |필수 | Hello 요청 처리 방법을 지정 합니다. 대신 하 여-흐름 hello hello 값 이어야 합니다 **on_behalf_of**합니다. |
+| grant_type |필수 | 토큰 요청의 형식입니다. JWT를 사용하는 요청의 경우 값은 **urn:ietf:params:oauth:grant-type:jwt-bearer**이어야 합니다. |
+| client_id |필수 | [응용 프로그램 등록 포털](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)에서 앱에 할당한 응용 프로그램 ID입니다. |
+| client_secret |필수 | 응용 프로그램 등록 포털에서 앱에 대해 생성한 응용 프로그램 비밀입니다. |
+| 어설션 |필수 | 요청에 사용된 토큰 값입니다. |
+| scope |필수 | 토큰 요청에 대해 공백으로 구분된 범위 목록입니다. 자세한 내용은 [범위](active-directory-v2-scopes.md)를 참조하세요.|
+| requested_token_use |필수 | 요청 처리 방법을 지정합니다. On-Behalf-Of 흐름에서 이 값은 **on_behalf_of**여야 합니다. |
 
 #### 예제
-다음 HTTP POST hello와 액세스 토큰을 요청 `user.read` hello https://graph.microsoft.com 웹 API에 대 한 범위입니다.
+다음 HTTP POST는 https://graph.microsoft.com 웹 API용 `user.read` 범위로 액세스 토큰을 요청합니다.
 
 ```
 //line breaks for legibility only
@@ -87,22 +87,22 @@ grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer
 ```
 
 ### 두 번째 사례: 인증서를 사용한 액세스 토큰 요청
-인증서와 서비스 간 액세스 토큰 요청 매개 변수 뒤 hello를 포함 되어 있습니다.
+인증서를 사용한 서비스 간 액세스 토큰 요청에는 다음 매개 변수가 있습니다.
 
 | 매개 변수 |  | 설명 |
 | --- | --- | --- |
-| grant_type |필수 | hello 유형의 hello 토큰 요청 합니다. JWT를 사용 하 여 요청에 대 한 hello 길어야 **urn: ietf:params:oauth:grant-형식: jwt-전달자**합니다. |
-| client_id |필수 | hello 응용 프로그램 ID는 hello [응용 프로그램 등록 포털](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) tooyour 응용 프로그램을 할당 합니다. |
-| client_assertion_type |필수 |hello 값 이어야 합니다.`urn:ietf:params:oauth:client-assertion-type:jwt-bearer` |
-| client_assertion |필수 | 어설션을 (JSON 웹 토큰) toocreate 필요 하 고 hello로 로그인 하면 인증서 응용 프로그램에 대 한 자격 증명으로 등록 됩니다.  에 대 한 읽기 [인증서 자격 증명](active-directory-certificate-credentials.md) toolearn 어떻게 tooregister hello 어설션의 사용자 인증서와 hello 형식입니다.|
-| 어설션 |필수 | hello 요청에 사용 되는 hello 토큰의 hello 값입니다. |
-| requested_token_use |필수 | Hello 요청 처리 방법을 지정 합니다. 대신 하 여-흐름 hello hello 값 이어야 합니다 **on_behalf_of**합니다. |
-| scope |필수 | 공백으로 hello 토큰 요청에 대 한 범위 목록입니다. 자세한 내용은 [범위](active-directory-v2-scopes.md)를 참조하세요.|
+| grant_type |필수 | 토큰 요청의 형식입니다. JWT를 사용하는 요청의 경우 값은 **urn:ietf:params:oauth:grant-type:jwt-bearer**이어야 합니다. |
+| client_id |필수 | [응용 프로그램 등록 포털](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)에서 앱에 할당한 응용 프로그램 ID입니다. |
+| client_assertion_type |필수 |값은 `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`이어야 합니다. |
+| client_assertion |필수 | 응용 프로그램의 자격 증명으로 등록한 인증서를 사용하여 만들고 서명해야 하는 어설션(JSON Web Token)입니다.  인증서 등록 방법 및 어설션 형식에 대한 자세한 내용은 [인증서 자격 증명](active-directory-certificate-credentials.md)을 참조하세요.|
+| 어설션 |필수 | 요청에 사용된 토큰 값입니다. |
+| requested_token_use |필수 | 요청 처리 방법을 지정합니다. On-Behalf-Of 흐름에서 이 값은 **on_behalf_of**여야 합니다. |
+| scope |필수 | 토큰 요청에 대해 공백으로 구분된 범위 목록입니다. 자세한 내용은 [범위](active-directory-v2-scopes.md)를 참조하세요.|
 
-Hello 매개 변수는 거의 hello hello 요청의 hello 경우 처럼 동일한 공유 암호 하 여 제외 하 고 hello client_secret 매개 변수는 두 매개 변수로 대체: client_assertion_type 및 client_assertion 합니다.
+client_secret 매개 변수가 두 개의 매개 변수 client_assertion_type 및 client_assertion으로 바뀐다는 것을 제외하고 공유 비밀에 따른 요청 사례와 매개 변수는 거의 동일합니다.
 
-#### 예제
-다음 HTTP POST hello와 액세스 토큰을 요청 `user.read` 인증서를 사용 하 여 hello https://graph.microsoft.com 웹 API에 대 한 범위입니다.
+#### 예
+다음 HTTP POST는 인증서를 사용하여 https://graph.microsoft.com 웹 API용 `user.read` 범위로 액세스 토큰을 요청합니다.
 
 ```
 // line breaks for legibility only
@@ -120,19 +120,19 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
 &scope=https://graph.microsoft.com/user.read
 ```
 
-## 서비스 tooservice 액세스 토큰 응답
-성공 응답은 다음 매개 변수는 hello로 JSON OAuth 2.0 응답입니다.
+## 서비스 간 액세스 토큰 응답
+성공 응답은 다음 매개 변수가 있는 JSON OAuth 2.0 응답입니다.
 
-| 매개 변수 | 설명 |
+| 매개 변수를 포함해야 합니다. | 설명 |
 | --- | --- |
-| token_type |Hello 토큰 형식 값을 나타냅니다. Azure AD에서는 형식만 hello **전달자**합니다. 전달자 토큰에 대 한 자세한 내용은 참조 hello [OAuth 2.0 Authorization Framework: Bearer Token Usage (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt)합니다. |
-| scope |hello 토큰에 부여 된 액세스 hello 범위입니다. |
-| expires_in |시간 hello 액세스 토큰의 hello 길이 (초)에서 유효합니다. |
-| access_token |hello 요청 된 액세스 토큰입니다. 서비스를 호출 하는 hello이 토큰 tooauthenticate toohello 수신 서비스를 사용할 수 있습니다. |
-| refresh_token |hello hello 요청 된 액세스 토큰에 대 한 새로 고침 토큰입니다. 서비스를 호출 하는 hello hello 현재 액세스 토큰이 만료 되 면이 토큰 toorequest 다른 액세스 토큰을 사용할 수입니다. |
+| token_type |토큰 유형 값을 나타냅니다. Azure AD는 **전달자**유형만 지원합니다. 전달자 토큰에 대한 자세한 내용은 [OAuth 2.0 권한 부여 프레임워크: 전달자 토큰 사용(RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt)을 참조하세요. |
+| scope |토큰에 부여된 액세스 범위입니다. |
+| expires_in |액세스 토큰이 유효한 기간(초)입니다. |
+| access_token |요청된 액세스 토큰입니다. 호출 서비스는 이 토큰을 사용하여 수신 서비스에 인증할 수 있습니다. |
+| refresh_token |요청된 액세스 토큰에 대한 새로 고침 토큰입니다. 호출 서비스는 이 토큰을 사용하여 현재 액세스 토큰이 만료된 후 다른 액세스 토큰을 요청할 수 있습니다. |
 
 ### 성공 응답 예제
-hello 다음 예제에서는 hello https://graph.microsoft.com 웹 API에 대 한 액세스 토큰에 대 한 성공 응답 tooa 요청
+다음 예제는 https://graph.microsoft.com 웹 API에 액세스 토큰 요청에 대한 성공 응답을 보여 줍니다.
 
 ```
 {
@@ -146,12 +146,12 @@ hello 다음 예제에서는 hello https://graph.microsoft.com 웹 API에 대 �
 ```
 
 ### 오류 응답 예제
-오류 응답 경우에서 반환 되 Azure AD 토큰 끝점 hello 다운스트림 API에 대 한 액세스 토큰 tooacquire 하려고 할 때 hello 다운스트림 API에 multi-factor authentication에 설정할 수와 같은 조건부 액세스 정책. hello 중간 계층 서비스는 hello 클라이언트 응용 프로그램 hello 사용자 상호 작용 toosatisfy hello 조건부 액세스 정책에 제공할 수 있도록이 오류 toohello 클라이언트 응용 프로그램을 드러나게 됩니다.
+다운스트림 API에 설정된 Multi-Factor Authentication과 같은 조건부 액세스 정책이 있는 경우, 다운스트림 API에 대한 액세스 토큰을 얻으려고 할 때 Azure AD 토큰 끝점에서 오류 응답이 반환됩니다. 중간 계층 서비스는 이 오류를 클라이언트 응용 프로그램에 전달하여 클라이언트 응용 프로그램이 조건부 액세스 정책을 충족시키기 위해 사용자 상호 작용을 제공할 수 있도록 해야 합니다.
 
 ```
 {
     "error":"interaction_required",
-    "error_description":"AADSTS50079: Due tooa configuration change made by your administrator, or because you moved tooa new location, you must enroll in multi-factor authentication tooaccess 'bf8d80f9-9098-4972-b203-500f535113b1'.\r\nTrace ID: b72a68c3-0926-4b8e-bc35-3150069c2800\r\nCorrelation ID: 73d656cf-54b1-4eb2-b429-26d8165a52d7\r\nTimestamp: 2017-05-01 22:43:20Z",
+    "error_description":"AADSTS50079: Due to a configuration change made by your administrator, or because you moved to a new location, you must enroll in multi-factor authentication to access 'bf8d80f9-9098-4972-b203-500f535113b1'.\r\nTrace ID: b72a68c3-0926-4b8e-bc35-3150069c2800\r\nCorrelation ID: 73d656cf-54b1-4eb2-b429-26d8165a52d7\r\nTimestamp: 2017-05-01 22:43:20Z",
     "error_codes":[50079],
     "timestamp":"2017-05-01 22:43:20Z",
     "trace_id":"b72a68c3-0926-4b8e-bc35-3150069c2800",
@@ -160,8 +160,8 @@ hello 다음 예제에서는 hello https://graph.microsoft.com 웹 API에 대 �
 }
 ```
 
-## 리소스를 보호 하는 hello 액세스 토큰 tooaccess hello를 사용 하 여
-Hello에 hello 토큰을 설정 하 여 hello 중간 계층 서비스 수를 사용 하 여 hello 인증 토큰 획득 한 위에 toomake 요청 toohello 다운스트림 웹 API를 `Authorization` 헤더입니다.
+## 보안 리소스에 액세스하는 데 액세스 토큰 사용
+이제 중간 계층 서비스는 위에서 획득한 토큰을 사용하고 `Authorization` 헤더에서 토큰을 설정하여 다운스트림 웹 API에 대해 인증된 요청을 할 수 있습니다.
 
 ### 예제
 ```
@@ -171,6 +171,6 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJub25jZSI6IkFRQUJBQUFBQUFCbmZpRy1tQTZOVG
 ```
 
 ## 다음 단계
-Hello OAuth 2.0 프로토콜 및 클라이언트 자격 증명을 사용 하 여 다른 방식으로 tooperform 서비스 tooservice 인증에 대해 자세히 알아보기
+OAuth 2.0 프로토콜 및 클라이언트 자격 증명을 사용하여 서비스 간 인증을 수행하는 다른 방법에 대해 자세히 알아보세요.
 * [Azure AD v2.0에서 OAuth 2.0 클라이언트 자격 증명 부여](active-directory-v2-protocols-oauth-client-creds.md)
 * [Azure AD v2.0의 OAuth 2.0](active-directory-v2-protocols-oauth-code.md)

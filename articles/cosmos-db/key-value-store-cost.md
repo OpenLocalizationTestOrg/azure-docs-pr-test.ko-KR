@@ -1,6 +1,6 @@
 ---
-title: "키 값 저장소 – 비용 개요로 Cosmos DB aaaAzure | Microsoft Docs"
-description: "키 값 저장소로 Azure Cosmos DB를 사용 하 여 hello 낮은 비용에 알아봅니다."
+title: "키 값 저장소로서의 Azure Cosmos DB – 비용 개요 | Microsoft Docs"
+description: "Azure Cosmos DB를 키 값 저장소로 사용할 경우의 비용 절감 효과에 대해 알아봅니다."
 keywords: "키 값 저장소"
 services: cosmos-db
 author: mimig1
@@ -16,25 +16,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/28/2017
 ms.author: mimig
-ms.openlocfilehash: de7207760a8e1fca0e30f951109748835dabf4a3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 33eef1b51a5ee00b0fa67096030ed9ce92cf768e
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-cosmos-db-as-a-key-value-store--cost-overview"></a>키 값 저장소로서의 Azure Cosmos DB – 비용 개요
 
-Azure Cosmos DB는 대규모의 고가용성 응용 프로그램을 쉽게 빌드하기 위한 전역으로 분산된 다중 모델 데이터베이스 서비스입니다. 기본적으로 Azure Cosmos DB 효율적으로 수집 하는 모든 hello 데이터를 자동으로 인덱싱됩니다. 이를 통해 모든 종류의 데이터에 대해 빠르고 일관된 [SQL](documentdb-sql-query.md)(및 [JavaScript](programming.md)) 쿼리가 가능해집니다. 
+Azure Cosmos DB는 대규모의 고가용성 응용 프로그램을 쉽게 빌드하기 위한 전역으로 분산된 다중 모델 데이터베이스 서비스입니다. 기본적으로 Azure Cosmos DB는 수집하는 모든 데이터를 자동으로 효율적으로 인덱싱합니다. 이를 통해 모든 종류의 데이터에 대해 빠르고 일관된 [SQL](documentdb-sql-query.md)(및 [JavaScript](programming.md)) 쿼리가 가능해집니다. 
 
-이 문서는 간단한 쓰기를 위해 Azure Cosmos DB의 hello 비용에 설명 하 고 키/값 저장소로 사용 될 때 읽기 작업 합니다. 쓰기 작업에는 문서의 삽입, 바꾸기, 삭제 및 upsert가 포함됩니다. 99.99% 가용성을 보장 하는 것 외에도 Azure Cosmos DB 제공 보장 < 읽기에 대 한 대기 시간이 10ms 및 < (인덱싱된) hello에 대 한 대기 시간이 15 밀리초 hello 99 번째 백분위 수에 각각 기록 합니다. 
+이 문서는 키/값 저장소로 사용될 경우 간단한 쓰기 및 읽기 작업의 Azure Cosmos DB 비용에 대해 설명합니다. 쓰기 작업에는 문서의 삽입, 바꾸기, 삭제 및 upsert가 포함됩니다. Azure Cosmos DB는 99.99%의 높은 가용성을 보장하는 것 외에, 99번째 백분위수로 읽기에 대해 10ms 미만의 대기 시간, (인덱싱된) 쓰기에 대해 15ms 미만의 대기 시간을 각각 보장합니다. 
 
 ## <a name="why-we-use-request-units-rus"></a>RU(요청 단위)를 사용하는 이유
 
-Azure DB Cosmos 성능 hello 양을 기반 프로 비전 된 [요청 단위](request-units.md) (RU) hello 파티션에 대 한 합니다. 두 번째 세분성에 있고 RUs/sec 및 RUs/min 구입한 hello를 프로 비전 ([toobe 시간별 청구 hello와 혼동된 하지](https://azure.microsoft.com/pricing/details/cosmos-db/)). RUs는 hello 프로 비전 hello 응용 프로그램에 필요한 처리량을 간소화 하는 통화로 고려 되어야 합니다. 고객을 구별 toothink 읽기 및 쓰기 용량 단위 필요는 없습니다. RUs의 hello 단일 동시성 모델 읽기와 쓰기 간의 tooshare hello를 프로 비전 된 용량 효율성을 만듭니다. 이 프로 비전 된 용량이 모델 hello 서비스 tooprovide를 예측 가능 하 고 일관 된 처리량, 짧은 대기 시간 및 고가용성을 보장할 수 있습니다. 마지막으로, RU toomodel 처리량 사용 하는 각 프로 비전 된 RU에도 정의 된 리소스 (메모리, 코어). 초당 RU는 IOPS만이 아닙니다.
+Azure Cosmos DB 성능은 파티션에 대해 프로비전된 RU([요청 단위](request-units.md)) 크기를 기준으로 합니다. 프로비전은 초 단위이며 초당 RU 및 분당 RU 단위로 구입합니다([시간별 청구와 혼동하지 말 것](https://azure.microsoft.com/pricing/details/cosmos-db/)). RU는 응용 프로그램의 필수 처리량 프로비전을 간소화하는 통화로 간주되어야 합니다. 고객은 읽기 및 쓰기 용량 단위 간을 구분해서 생각할 필요가 없습니다. 단일 통화 모델의 RU를 사용하면 읽기 및 쓰기 간에 프로비전된 용량을 효율적으로 공유할 수 있습니다. 이러한 프로비전된 용량 모델을 사용하면 서비스는 짧은 대기 시간 및 높은 가용성이 보장되는 예측 가능하고 일관된 처리량을 제공할 수 있습니다. 마지막으로 RU를 사용하여 처리량을 모델링하지만 프로비전된 각 RU에는 정의된 양의 리소스(메모리, 코어)가 있습니다. 초당 RU는 IOPS만이 아닙니다.
 
-전 세계적으로 분산된 데이터베이스 시스템으로 Cosmos DB 추가 toohigh 가용성의 대기 시간, 처리량 및 일관성에 SLA를 제공 하는 Azure 서비스만을 hello 됩니다. 프로 비전 하는 hello 처리량은 적용 된 tooeach Cosmos DB 데이터베이스 계정에 연결 된 hello 지역입니다. 읽기에 대 한 Cosmos DB 제공 잘 정의 된 여러 [일관성 수준](consistency-levels.md) 에서 toochoose에 대 한 합니다. 
+전역적으로 분산된 데이터베이스 시스템인 Cosmos DB는 고가용성 외에 대기 시간, 처리량 및 일관성에 대한 SLA를 제공하는 유일한 Azure 서비스입니다. 프로비전하는 처리량은 Cosmos DB 데이터베이스 계정에 연결된 각 하위 지역에 적용됩니다. 읽기의 경우 Cosmos DB는 선택 가능한 여러 개의 잘 정의된 [일관성 수준](consistency-levels.md)을 제공합니다. 
 
-hello 다음 표에 나와 hello RUs 필요한 tooperform 읽기 수 및 1KB에서 100KBs의 문서 크기에 따라 트랜잭션을 기록 합니다.
+다음 표에는 1KB 및 100KB 문서 크기에 따라 읽기 및 쓰기 트랜잭션을 수행하는 데 필요한 RU 수가 나와 있습니다.
 
 |항목 크기|1 읽기|1 쓰기|
 |-------------|------|-------|
@@ -43,7 +43,7 @@ hello 다음 표에 나와 hello RUs 필요한 tooperform 읽기 수 및 1KB에�
 
 ## <a name="cost-of-reads-and-writes"></a>읽기 및 쓰기의 비용
 
-1, 000 RU/sec를 프로 비전 하면 too3.6m RU/시간 금액이 고 $0.08 hello 시간 (미국 hello와 유럽에서 일)에 대 한 비용이 듭니다. 1KB 크기 문서에서는 프로비전된 처리량을 사용해서 3.6m 읽기 또는 0.72m 쓰기(초당 3.6m RU/5)를 사용할 수 있음을 의미합니다. 정규화 된 toomillion 읽기 및 쓰기, hello 비용 $0.022 /m 읽기 수 ($0.08 3.6 /) 및 $0.111/m 쓰기 ($0.08 0.72 /). hello 당 비용 백만 hello 테이블 아래에 나와 있는 것 처럼 최소화 됩니다.
+초당 1,000RU를 프로비전하는 시간당 3.6m RU에 해당하며 시간당 $0.08가 됩니다(미국 및 유럽). 1KB 크기 문서에서는 프로비전된 처리량을 사용해서 3.6m 읽기 또는 0.72m 쓰기(초당 3.6m RU/5)를 사용할 수 있음을 의미합니다. 1백만 읽기 및 쓰기로 정규화할 경우 비용은 m 읽기당 $0.022($0.08/3.6) 및 m 쓰기당 $0.111($0.08/0.72)에 해당합니다. 백만당 비용은 아래 표에 나와 있는 것처럼 최소화됩니다.
 
 |항목 크기|1m 읽기|1m 쓰기|
 |-------------|-------|--------|
@@ -51,9 +51,9 @@ hello 다음 표에 나와 hello RUs 필요한 tooperform 읽기 수 및 1KB에�
 |100KB|$0.222|$1.111|
 
 
-대부분의 hello 기본 blob 또는 백만 읽기 트랜잭션 및 $5 백만 쓰기 트랜잭션당 당 개체 저장소 서비스 요금이 $0.40 합니다. 최적으로 사용 하는 경우 Cosmos DB too98 %1KB 트랜잭션 위해 이러한 다른 솔루션 보다 더 적게 듭니다 될 수 있습니다.
+대부분의 기본 Blob 또는 개체 저장소 서비스는 백만 읽기 트랜잭션당 $0.40, 백만 쓰기 트랜잭션당 $5가 부과됩니다. 최적으로 사용하는 경우 Cosmos DB는 이러한 다른 솔루션보다 최대 98% 더 저렴할 수 있습니다(1KB 트랜잭션에 대해).
 
 ## <a name="next-steps"></a>다음 단계
 
-Azure Cosmos DB 리소스 프로비저닝 최적화에 대한 새 문서를 계속 확인하세요. 에 가능한 toouse 느껴집니다 그 동안 hello 우리의 [RU 계산기](https://www.documentdb.com/capacityplanner)합니다.
+Azure Cosmos DB 리소스 프로비저닝 최적화에 대한 새 문서를 계속 확인하세요. 당분간은 [RU 계산기](https://www.documentdb.com/capacityplanner)를 무료로 사용하세요.
 

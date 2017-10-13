@@ -1,5 +1,5 @@
 ---
-title: "응용 프로그램 Insights 원격 분석 데이터 모델-aaaAzure 예외 원격 분석 | Microsoft Docs"
+title: "Azure Application Insights 원격 분석 데이터 모델 - 예외 원격 분석 | Microsoft 문서"
 description: "예외 원격 분석을 위한 Azure Application Insights 데이터 모델"
 services: application-insights
 documentationcenter: .net
@@ -12,19 +12,19 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: bwren
-ms.openlocfilehash: 4c2b7d1ac3816d5623db9a35819a48a68a13a9cd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6b220b0cb6719bac606f599d657d08ab847c7590
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="exception-telemetry-application-insights-data-model"></a>예외 원격 분석: Application Insights 데이터 모델
 
-[Application Insights](app-insights-overview.md), Exception 인스턴스의 hello 모니터링 응용 프로그램의 실행 중에 발생 한 처리 또는 처리 되지 않은 예외를 나타냅니다.
+[Application Insights](app-insights-overview.md)에서 예외 인스턴스는 모니터링되는 응용 프로그램을 실행하는 동안 발생하여 처리되거나 처리되지 않은 예외를 나타냅니다.
 
 ## <a name="problem-id"></a>문제 ID
 
-Hello 예외가 throw 된 코드에서의 식별자입니다. 예외 그룹화에 사용됩니다. 일반적으로 예외 형식 및 함수 호출 스택 hello에서의 조합입니다.
+코드에서 throw된 예외의 식별자입니다. 예외 그룹화에 사용됩니다. 일반적으로 예외 형식 및 호출 스택 기반 함수의 조합입니다.
 
 최대 길이: 1024자
 
@@ -34,7 +34,7 @@ Hello 예외가 throw 된 코드에서의 식별자입니다. 예외 그룹화�
 
 ## <a name="exception-details"></a>예외 세부 정보
 
-(toobe 확장)
+(확장 예정임)
 
 ## <a name="custom-properties"></a>사용자 지정 속성
 
@@ -47,5 +47,5 @@ Hello 예외가 throw 된 코드에서의 식별자입니다. 예외 그룹화�
 ## <a name="next-steps"></a>다음 단계
 
 - Application Insights 형식 및 데이터 모델에 대한 자세한 내용은 [데이터 모델](application-insights-data-model.md)을 참조하세요.
-- 너무 방법에 대해 알아봅니다[Application Insights를 사용한 웹 응용 프로그램의 예외를 진단](app-insights-asp-net-exceptions.md)합니다.
+- [Application Insights를 사용하여 웹앱에서 예외를 진단](app-insights-asp-net-exceptions.md)하는 방법을 알아봅니다.
 - Application Insights에서 지원되는 [플랫폼](app-insights-platforms.md)을 확인합니다.

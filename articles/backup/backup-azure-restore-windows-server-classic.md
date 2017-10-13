@@ -1,6 +1,6 @@
 ---
-title: "aaaRestore 데이터 tooa Windows Server 또는 Windows 클라이언트에서 사용 하 여 Azure 클래식 배포 모델을 hello | Microsoft Docs"
-description: "자세한 방법을 toorestore Windows 서버 또는 Windows 클라이언트에서."
+title: "클래식 배포 모델을 사용하여 Azure에서 Windows 서버 또는 Windows 클라이언트로 데이터 복원 | Microsoft Docs"
+description: "Windows 서버 또는 Windows 클라이언트에서 복원하는 방법을 알아보세요."
 services: backup
 documentationcenter: 
 author: saurabhsensharma
@@ -14,227 +14,227 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/11/2017
 ms.author: saurse;trinadhk;markgal;
-ms.openlocfilehash: 4d1458d5233c4f55004ecfa95cbf7b3b18a03dde
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 300b2b17b44e21ed446fd63d572a2461e2fc1343
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="restore-files-tooa-windows-server-or-windows-client-machine-using-hello-classic-deployment-model"></a>파일 tooa Windows server 또는 hello 클래식 배포 모델을 사용 하 여 Windows 클라이언트 컴퓨터를 복원 합니다.
+# <a name="restore-files-to-a-windows-server-or-windows-client-machine-using-the-classic-deployment-model"></a>클래식 배포 모델을 사용하여 Windows 서버 또는 Windows 클라이언트 컴퓨터로 파일 복원
 > [!div class="op_single_selector"]
 > * [클래식 포털](backup-azure-restore-windows-server-classic.md)
 > * [Azure 포털](backup-azure-restore-windows-server.md)
 >
 >
 
-이 문서에서는 toorecover 데이터 백업에서 자격 증명 모음 및 tooa 서버나 컴퓨터로 복원 방법을 설명 합니다. 2017 년 3 월 부터는 hello 클래식 포털에서 백업 자격 증명 모음을 더 이상 만들 수 없습니다.
+이 문서에서는 백업 자격 증명 모음에서 데이터를 복구하고 서버 또는 컴퓨터로 복원하는 방법에 대해 설명합니다. 2017년 3월부터는 클래식 포털에서 더 이상 백업 자격 증명 모음을 만들 수 없습니다.
 
 > [!IMPORTANT]
-> 이제 사용자 백업 자격 증명 모음 tooRecovery 서비스 자격 증명 모음을 업그레이드할 수 있습니다. 자세한 내용은 hello 문서 참조 [복구 서비스 자격 증명 모음에 백업 자격 증명 모음 tooa 업그레이드](backup-azure-upgrade-backup-to-recovery-services.md)합니다. Microsoft는 것이 권장 tooupgrade 백업 tooRecovery 서비스 자격 증명 모음 자격 증명 모음입니다.<br/> **2017 년 10 월 15**, 수 toouse PowerShell toocreate 백업 자격 증명 모음은 더 이상 됩니다. <br/> **2017년 11월 1일 시작**:
->- 나머지 모든 백업 자격 증명 모음을 자동으로 업그레이드 된 tooRecovery 서비스 자격 증명 모음 됩니다.
->- 하면 hello 클래식 포털에서 수 tooaccess 백업 데이터 수 없습니다. 대신, 복구 서비스 자격 증명 모음에 hello Azure 포털 tooaccess 백업 데이터를 사용 합니다.
+> 이제 Backup 자격 증명 모음을 Recovery Services 자격 증명 모음으로 업그레이드할 수 있습니다. 자세한 내용은 [Recovery Services 자격 증명 모음으로 Backup 자격 증명 모음 업그레이드](backup-azure-upgrade-backup-to-recovery-services.md) 문서를 참조하세요. Backup 자격 증명 모음을 Recovery Services 자격 증명 모음으로 업그레이드하는 것이 좋습니다.<br/> **2017년 10월 15일**부터는 PowerShell을 사용하여 Backup 자격 증명 모음을 만들 수 없습니다. <br/> **2017년 11월 1일 시작**:
+>- 나머지 모든 Backup 자격 증명 모음은 자동으로 Recovery Services 자격 증명 모음으로 업그레이드됩니다.
+>- 클래식 포털에서는 백업 데이터에 액세스할 수 없습니다. 대신 Azure Portal을 사용하여 Recovery Services 자격 증명 모음에서 백업 데이터에 액세스할 수 있습니다.
 >
 
-hello Microsoft Azure 복구 서비스 (MARS) 에이전트에서 hello 데이터 복구 마법사를 사용 하면 toorestore 데이터입니다. 데이터를 복원하면 다음이 가능해집니다.
+데이터를 복원하려면 MARS(Microsoft Azure Recovery Services) 에이전트에서 데이터 복구 마법사를 사용합니다. 데이터를 복원하면 다음이 가능해집니다.
 
-* 동일 컴퓨터에서 hello 백업을 복원 데이터 toohello 수행 되었습니다.
-* 데이터 tooan 대체 컴퓨터를 복원 합니다.
+* 백업을 수행한 동일한 컴퓨터에 데이터를 복원합니다.
+* 다른 컴퓨터에 데이터를 복원합니다.
 
-2017 년 1 월 Microsoft는 미리 보기 업데이트 toohello MARS 에이전트를 릴리스 했습니다. 버그 수정 프로그램과 함께이 업데이트를 통해 toomount 수 있는 인스턴트 복원 쓰기 가능한 복구 지점 스냅숏을 복구 볼륨으로 합니다. 그런 다음 hello 복구 볼륨 및 복사 파일 tooa 로컬 컴퓨터 파일을 복원 함으로써 선택적으로 탐색할 수 있습니다.
+2017년 1월 Microsoft는 MARS 에이전트에 대한 미리 보기 업데이트를 릴리스했습니다. 버그 수정과 함께 이번 업데이트는 쓰기 가능한 복구 지점 스냅숏을 복구 볼륨으로 탑재할 수 있도록 해주는 즉시 복원을 사용할 수 있습니다. 그런 다음 복구 볼륨을 탐색하고 파일을 로컬 컴퓨터에 복사하여 파일을 선택적으로 복원할 수 있습니다.
 
 > [!NOTE]
-> hello [2017 년 1 월 Azure Backup 업데이트](https://support.microsoft.com/en-us/help/3216528?preview) 는 toouse toorestore 데이터 인스턴트 복원 하려는 경우에 필요 합니다. 또한 로캘에서 hello 지원 문서에 나열 된 자격 증명 모음에 hello 백업 데이터를 보호 합니다. Hello 참조 [2017 년 1 월 Azure Backup 업데이트](https://support.microsoft.com/en-us/help/3216528?preview) hello 최신 목록은 로캘 지 원하는 즉시 복원 합니다. 즉시 복원은 현재 **일부** 로캘에서만 사용할 수 있습니다.
+> 즉시 복원을 사용하여 데이터를 복원하려면 [2017년 1월 Azure Backup 업데이트](https://support.microsoft.com/en-us/help/3216528?preview)가 필요합니다. 또한 백업 데이터는 지원 문서에 나열된 로캘의 자격 증명 모음에서 보호되어야 합니다. 즉시 복원을 지원하는 최신 로캘 목록은 [2017년 1월 Azure Backup 업데이트](https://support.microsoft.com/en-us/help/3216528?preview)를 참조하세요. 즉시 복원은 현재 **일부** 로캘에서만 사용할 수 있습니다.
 >
 
-클래식 포털 hello 인스턴트 복원 hello Azure 포털에서에서 복구 서비스 자격 증명 모음에서 사용 하 고 백업 자격 증명 모음은 제공 됩니다. Toouse 인스턴트 복원 하려는 경우 hello MARS 업데이트를 다운로드 하 고 인스턴트 복원 언급 하는 hello 절차를 따르십시오.
+즉시 복원은 Azure Portal의 Recovery Services 자격 증명 모음에서 그리고 클래식 포털의 Backup 자격 증명 모음에서 사용할 수 있습니다. 즉시 복원을 사용하려면 MARS 업데이트를 다운로드하고 즉시 복원을 언급하는 절차를 따르세요.
 
 
-## <a name="use-instant-restore-toorecover-data-toohello-same-machine"></a>Toorecover 데이터 toohello 인스턴트 Restore를 사용 하 여 동일한 컴퓨터
+## <a name="use-instant-restore-to-recover-data-to-the-same-machine"></a>즉시 복원을 사용하여 데이터를 동일한 컴퓨터로 복구합니다.
 
-파일 및 희망 toorestore 실수로 삭제 한 경우이 단계를 같은 컴퓨터 (어떤 hello에서 백업을 수행할 때) 다음 hello toohello hello 데이터를 복구 하는 데 도움이 됩니다.
+파일을 실수로 삭제했는데 (백업이 수행된) 동일한 컴퓨터에서 복원하려는 경우 다음 단계를 사용하면 데이터를 복구할 수 있습니다.
 
-1. 열기 hello **Microsoft Azure 백업** 에 snap 합니다. Hello 컴퓨터 또는 서버 hello 스냅인에 설치 된 알 수 없는 경우 검색 **Microsoft Azure 백업**합니다.
+1. **Microsoft Azure 백업** 스냅인을 엽니다. 스냅인이 설치된 위치를 모르는 경우 컴퓨터 또는 서버에서 **Microsoft Azure Backup**을 검색합니다.
 
-    hello를 데스크톱 응용 프로그램 hello 검색 결과에 표시 됩니다.
+    데스크톱 앱이 검색 결과에 나타나야 합니다.
 
-2. 클릭 **데이터 복구** toostart hello 마법사.
+2. 마법사를 시작하려면 **데이터 복구**를 클릭합니다.
 
     ![데이터 복구](./media/backup-azure-restore-windows-server/recover.png)
 
-3. Hello에 **시작** 창, toorestore hello 데이터 toohello 동일한 서버 또는 컴퓨터 선택 **이 서버 (`<server name>`)** 클릭 **다음**합니다.
+3. **시작** 창에서 동일한 서버 또는 컴퓨터로 데이터를 복원하려면 **이 서버(`<server name>`)**를 선택하고 **다음**을 클릭합니다.
 
-    ![이 서버 옵션 toorestore hello 데이터 toohello 선택 동일한 컴퓨터](./media/backup-azure-restore-windows-server/samemachine_gettingstarted_instantrestore.png)
+    ![같은 컴퓨터에 데이터를 복원하려면 이 서버 옵션을 선택합니다.](./media/backup-azure-restore-windows-server/samemachine_gettingstarted_instantrestore.png)
 
-4. Hello에 **복구 모드 선택** 창 선택 **개별 파일과 폴더** 클릭 하 고 **다음**합니다.
+4. **복구 모드 선택** 창에서 **개별 파일 및 폴더**를 선택하고 **다음**을 클릭합니다.
 
     ![파일 찾아보기](./media/backup-azure-restore-windows-server/samemachine_selectrecoverymode_instantrestore.png)
 
-5. Hello에 **볼륨 및 날짜 선택** 창, hello 파일 및/또는 toorestore 폴더를 포함 하는 select hello 볼륨입니다.
+5. **볼륨 및 날짜 선택** 창에서 복원할 파일 및/또는 폴더가 들어있는 볼륨을 선택합니다.
 
-    Hello 달력에서 복구 지점을 선택 합니다. 어떤 복구 시점에서라도 복원할 수 있습니다. 날짜 **굵게** 복구 지점이 하나 이상 hello 가용성을 나타냅니다. 여러 복구 지점을 사용할 수 있는 경우 날짜를 선택 하면 hello에서 hello 특정 복구 지점 선택 **시간** 드롭 다운 메뉴.
+    달력에서 복구 지점을 선택합니다. 어떤 복구 시점에서라도 복원할 수 있습니다. **굵게** 표시된 날짜는 하나 이상의 복구 지점을 사용 가능함을 나타냅니다. 날짜를 선택하고 여러 복구 지점을 사용할 수 있는 경우 **시간** 드롭다운 메뉴에서 특정 복구 지점을 선택합니다.
 
     ![볼륨 및 날짜](./media/backup-azure-restore-windows-server/samemachine_selectvolumedate_instantrestore.png)
 
-6. 복구 지점 toorestore hello를 선택 하면 클릭 **탑재**합니다.
+6. 복원할 복구 지점을 선택했으면 **탑재**를 클릭합니다.
 
-    Azure 백업 탑재 hello 로컬 복구 지점으로 사용 하 여 복구 볼륨입니다.
+    Azure Backup은 로컬 복구 지점을 마운트하고 이를 복구 볼륨으로 사용합니다.
 
-7. Hello에 **찾아보기 및 파일 복구** 창에서 클릭 **찾아보기** 원하는 tooopen Windows 탐색기 및 찾기 hello 파일 및 폴더.
+7. **파일 찾아보기 및 복구** 창에서 **찾아보기**를 클릭하여 Windows 탐색기를 열고 원하는 파일 및 폴더를 찾습니다.
 
     ![복구 옵션](./media/backup-azure-restore-windows-server/samemachine_browserecover_instantrestore.png)
 
 
-8. Windows 탐색기, hello 파일 복사 및/또는 폴더에서 toorestore 원하고 tooany 위치 toohello 로컬 서버 또는 컴퓨터에 붙여 넣습니다. 있습니다 수 또는 hello 복구 볼륨에서 직접 hello 파일 스트림 열고 hello 올바른 버전은 복구를 확인 합니다.
+8. Windows 탐색기에서 복원할 파일 및/또는 폴더를 복사하여 서버 또는 컴퓨터의 로컬 위치에 붙여 넣습니다. 복구 볼륨에서 직접 파일을 열거나 스트리밍하여 올바른 버전이 복구되었는지 확인할 수 있습니다.
 
-    ![복사 및 붙여넣기 toolocal 위치 탑재 된 볼륨에서에서 파일 및 폴더](./media/backup-azure-restore-windows-server/samemachine_copy_instantrestore.png)
+    ![탑재된 볼륨의 파일 및 폴더를 복사하여 로컬 위치에 붙여 넣기](./media/backup-azure-restore-windows-server/samemachine_copy_instantrestore.png)
 
-9. 끝나면 hello 파일 및/또는 폴더 hello에 복원 중인 **찾아보기 및 복구 파일** 창에서 클릭 **탑재 해제**합니다. 클릭 **예** tooconfirm toounmount hello 볼륨 되도록 합니다.
+9. 파일 및/또는 폴더 복원이 완료되면 **찾아보기 및 복구 파일** 창에서 **마운트 해제**를 클릭합니다. 그런 다음 **예**를 클릭하여 볼륨 마운트 해제를 확인합니다.
 
-    ![Hello 볼륨을 분리 하 고 확인](./media/backup-azure-restore-windows-server/samemachine_unmount_instantrestore.png)
+    ![볼륨을 마운트 해제하고 확인](./media/backup-azure-restore-windows-server/samemachine_unmount_instantrestore.png)
 
     > [!Important]
-    > 탑재 해제를 클릭 하지 않으면 경우 탑재 된 경우 hello 시간에서 6 시간 동안 hello 복구 볼륨 탑재 된 상태로 유지 됩니다. Hello 볼륨이 탑재 하는 동안 백업 작업이 실행 됩니다. Hello 볼륨 탑재 되는 경우 hello 시간 동안 모든 예약 된 백업 작업 toorun hello 복구 볼륨 탑재 된 후 실행 됩니다.
+    > 마운트 해제를 클릭하지 않으면 복구 볼륨이 마운트된 후 6시간 동안 마운트된 상태로 유지됩니다. 볼륨이 마운트되는 동안 백업 작업은 실행되지 않습니다. 볼륨이 마운트된 시간 동안 실행되도록 스케줄된 모든 백업 작업은 복구 볼륨이 마운트 해제된 후에 실행됩니다.
     >
 
 
-## <a name="recover-data-toohello-same-machine"></a>복구할 데이터 toohello 동일한 컴퓨터
-파일 및 희망 toorestore 실수로 삭제 한 경우이 단계를 같은 컴퓨터 (어떤 hello에서 백업을 수행할 때) 다음 hello toohello hello 데이터를 복구 하는 데 도움이 됩니다.
+## <a name="recover-data-to-the-same-machine"></a>동일한 컴퓨터로 데이터 복구
+파일을 실수로 삭제했는데 (백업이 수행된) 동일한 컴퓨터에서 복원하려는 경우 다음 단계를 사용하면 데이터를 복구할 수 있습니다.
 
-1. 열기 hello **Microsoft Azure 백업** 에 snap 합니다.
-2. 클릭 **데이터 복구** tooinitiate hello 워크플로 합니다.
+1. **Microsoft Azure 백업** 스냅인을 엽니다.
+2. **데이터 복구** 를 클릭하여 워크플로를 시작합니다.
 
     ![데이터 복구](./media/backup-azure-restore-windows-server-classic/recover.png)
-3. 선택 hello  **이 서버 (*yourmachinename*) * * 옵션 toorestore hello 백업 된 파일 hello에 동일한 컴퓨터.
+3. 동일한 컴퓨터에 백업된 파일을 복원하려면 **이 서버(*yourmachinename*)** 옵션을 선택합니다.
 
     ![동일한 컴퓨터](./media/backup-azure-restore-windows-server-classic/samemachine.png)
-4. 너무 선택**파일 찾아보기** 또는 **파일 검색**합니다.
+4. **파일 찾아보기** 또는 **파일 검색**을 선택합니다.
 
-    하나 이상의 파일 경로가 있는 알려져 toorestore 하려는 경우 hello 기본 옵션을 둡니다. Hello 폴더 구조에 대 한 확실 하지 않은 하지만 파일에 대 한 toosearch 하려는 경우 선택 hello **파일 검색** 옵션입니다. 이 섹션의 hello 용도로 hello 기본 옵션으로 진행 됩니다.
+    경로가 알려져 있는 하나 이상의 파일을 복원하려는 경우 기본 옵션을 그대로 둡니다. 폴더 구조를 잘 모르지만 파일을 검색하려는 경우 **파일 검색** 옵션을 선택합니다. 이 섹션에서는 기본 옵션을 사용하여 진행합니다.
 
     ![파일 찾아보기](./media/backup-azure-restore-windows-server-classic/browseandsearch.png)
-5. Toorestore hello 파일 원하는 hello 볼륨을 선택 합니다.
+5. 다음 화면에서는 파일을 복원하려는 볼륨을 선택합니다.
 
-    어떤 지점이라도 복원할 수 있습니다. 에 표시 되는 날짜 **굵게** hello 달력 컨트롤에서의 복원 지점 hello 가용성을 나타냅니다. 날짜를 선택 및 사항에 따라 백업 일정 (백업 작업의 성공 hello)를 선택할 수 있습니다는 지점 hello에서 시간에 **시간** 드롭 다운 합니다.
+    어떤 지점이라도 복원할 수 있습니다. 달력 컨트롤에 **굵게** 표시되는 날짜는 복원 지점이 사용 가능함을 나타냅니다. 날짜가 선택되면 백업 일정(및 백업 작업의 성공 여부)에 따라 **시간** 드롭다운에서 특정 시점을 선택할 수 있습니다.
 
     ![볼륨 및 날짜](./media/backup-azure-restore-windows-server-classic/volanddate.png)
-6. Hello 항목 toorecover를 선택 합니다. 원하는 toorestore 폴더/파일 여러 개 선택 할 수 있습니다.
+6. 복구할 항목을 선택합니다. 복원하려는 폴더/파일을 다중 선택할 수 있습니다.
 
     ![파일 선택](./media/backup-azure-restore-windows-server-classic/selectfiles.png)
-7. Hello 복구 매개 변수를 지정 합니다.
+7. 복구 매개 변수를 지정 합니다.
 
     ![복구 옵션](./media/backup-azure-restore-windows-server-classic/recoveroptions.png)
 
-   * (에 hello 파일/폴더를 덮어쓰게 될) toohello 원래 위치 또는 hello tooanother 위치를 복원 하는 옵션을 동일한 컴퓨터.
-   * 경우 hello 파일/폴더 toorestore hello 대상 위치에 있는 원하는 사본을 만들 수 있습니다 (두 가지 버전의 hello 같은 파일) hello 대상 위치에 hello 파일 덮어쓰거나 hello 대상에 존재 하는 hello 파일의 hello 복구를 건너뜁니다.
-   * Hello Acl에 복구 되는지 hello 파일을 복원 하는 hello 기본 옵션을 그대로 두는 것이 좋습니다.
-8. 이러한 입력을 제공하면 **다음**을 클릭합니다. hello 파일 toothis 컴퓨터 복원 되 면 hello 복구 워크플로 시작 합니다.
+   * 원래 위치로 복원(파일/폴더가 덮어써짐) 또는 동일한 컴퓨터의 다른 위치로 복원하는 옵션이 있습니다.
+   * 복원하려는 파일/폴더가 대상 위치에 있는 경우 복사본 만들기(동일한 파일의 두 버전) 또는 대상 위치의 파일 덮어쓰기 또는 대상에 있는 파일의 복구 건너뛸 수 있습니다.
+   * 복구할 파일의 ACL을 복원하는 기본 옵션을 그대로 두는 것이 가장 좋습니다.
+8. 이러한 입력을 제공하면 **다음**을 클릭합니다. 이 컴퓨터에 파일을 복원하는 복구 워크플로를 시작합니다.
 
-## <a name="recover-tooan-alternate-machine"></a>Tooan 대체 컴퓨터 복구
-전체 서버를 잃어버린 경우 Azure 백업 tooa 서로 다른 컴퓨터에서 데이터를 복구할 수 있습니다. 단계를 수행 하는 hello hello 워크플로를 보여 줍니다.  
+## <a name="recover-to-an-alternate-machine"></a>다른 컴퓨터로 복구
+전체 서버가 손실된 경우에도 Azure 백업에서 데이터를 다른 컴퓨터에 복구할 수 있습니다. 다음 단계는 워크플로를 보여줍니다.  
 
-다음이 단계에 사용 된 hello 용어에는 다음이 포함 됩니다.
+다음 단계에서 사용되는 용어는 다음과 같습니다.
 
-* *원본 컴퓨터* – hello 원래 컴퓨터 hello 백업에서 백업 하 고 있는 현재 사용할 수 없는 합니다.
-* *대상 컴퓨터* – hello 컴퓨터 toowhich hello 데이터 복구 되 고 있습니다.
-* *샘플 자격 증명 모음* – hello 백업 자격 증명 모음 toowhich hello *원본 컴퓨터* 및 *대상 컴퓨터* 등록 됩니다. <br/>
+* *원본 컴퓨터* – 처음에 백업이 수행되었고 현재는 사용할 수 없는 컴퓨터입니다.
+* *대상 컴퓨터* – 데이터가 복구되는 컴퓨터입니다.
+* *샘플 자격 증명 모음* – *원본 컴퓨터* 및 *대상 컴퓨터*가 등록된 백업 자격 증명 모음입니다. <br/>
 
 > [!NOTE]
-> 컴퓨터에서 만든 백업은 이전 버전의 hello 운영 체제를 실행 중인 컴퓨터에 복원할 수 없습니다. 예를 들어 백업이 Windows 7 컴퓨터에서 수행된 경우 Windows 8 이상의 컴퓨터에서 복원할 수 있습니다. 그러나 hello 반대로 true을 유지 하지 않습니다.
+> 이전 버전의 운영 체제를 실행 중인 컴퓨터에는 컴퓨터에서 수행된 백업을 복원할 수 없습니다. 예를 들어 백업이 Windows 7 컴퓨터에서 수행된 경우 Windows 8 이상의 컴퓨터에서 복원할 수 있습니다. 그러나 그 반대의 경우는 그렇지 않습니다.
 >
 >
 
-1. 열기 hello **Microsoft Azure 백업** hello에 snap *대상 컴퓨터*합니다.
-2. 해당 hello 확인 *대상 컴퓨터* 및 hello *원본 컴퓨터* 등록된 toohello는 동일한 백업 자격 증명 모음입니다.
-3. 클릭 **데이터 복구** tooinitiate hello 워크플로 합니다.
+1. **대상 컴퓨터** 에서 *Microsoft Azure 백업*스냅인을 엽니다.
+2. *대상 컴퓨터* 및 *원본 컴퓨터*가 동일한 백업 자격 증명 모음에 등록됐는지 확인합니다.
+3. **데이터 복구** 를 클릭하여 워크플로를 시작합니다.
 
     ![데이터 복구](./media/backup-azure-restore-windows-server-classic/recover.png)
 4. **다른 서버**
 
     ![다른 서버](./media/backup-azure-restore-windows-server-classic/anotherserver.png)
-5. Hello toohello 해당 하는 자격 증명 모음 자격 증명 파일을 제공 *샘플 자격 증명 모음*합니다. Hello 자격 증명 모음 자격 증명 파일이 잘못 되었거나 (만료 된) 경우 hello에서 새 자격 증명 모음 자격 증명 파일을 다운로드 *샘플 자격 증명 모음* hello Azure 클래식 포털의에서. Hello 자격 증명 모음 자격 증명 파일 제공 되 면 hello 자격 증명 모음 자격 증명 파일에 대 한 백업 자격 증명 hello 표시 됩니다.
-6. 선택 hello *원본 컴퓨터* hello 목록이 표시 된 컴퓨터에서 합니다.
+5. *샘플 자격 증명 모음*에 해당하는 자격 증명 모음 파일을 제공합니다. 자격 증명 모음 파일이 잘못되었거나 만료된 경우 Azure 클래식 포털의 *샘플 자격 증명 모음* 에서 새 자격 증명 모음 파일을 다운로드합니다. 자격 증명 모음 파일이 제공되면 자격 증명 모음 파일에 대한 백업 자격 증명 모음이 표시됩니다.
+6. 표시된 컴퓨터 목록에서 *원본 컴퓨터* 를 선택합니다.
 
     ![컴퓨터 목록](./media/backup-azure-restore-windows-server-classic/machinelist.png)
-7. 어느 hello 선택 **파일 검색** 또는 **파일 찾아보기** 옵션입니다. 이 섹션의 hello 용도로 hello를 사용 합니다 **파일 검색** 옵션입니다.
+7. **파일 검색** 또는 **파일 찾아보기** 옵션을 선택합니다. 이 섹션에서는 **파일 검색** 옵션을 사용합니다.
 
-    ![검색](./media/backup-azure-restore-windows-server-classic/search.png)
-8. Hello 다음 화면에서 hello 볼륨 및 날짜를 선택 합니다. 검색 하려는 toorestore hello 폴더/파일 이름에 대 한 합니다.
+    ![이를 통해 검색](./media/backup-azure-restore-windows-server-classic/search.png)
+8. 다음 화면에서는 날짜와 볼륨을 선택합니다. 복원하려는 폴더/파일 이름을 검색합니다.
 
     ![검색 항목](./media/backup-azure-restore-windows-server-classic/searchitems.png)
-9. Hello 위치 hello 파일이 toobe 복원 해야 하는 위치를 선택 합니다.
+9. 파일을 복원해야 하는 위치를 선택합니다.
 
     ![복원 위치](./media/backup-azure-restore-windows-server-classic/restorelocation.png)
-10. 중에 제공 된 hello 암호화 암호를 제공 *원본 컴퓨터의* 등록 너무*샘플 자격 증명 모음*합니다.
+10. *원본 컴퓨터*를 *샘플 자격 증명 모음*으로 등록할 때 제공한 암호화의 암호를 제공합니다.
 
     ![암호화](./media/backup-azure-restore-windows-server-classic/encryption.png)
-11. Hello 입력 제공 되 면 클릭 **복구**이며 트리거 hello hello 제공 된 파일 toohello 대상을 백업 복원 합니다.
+11. 입력을 제공하면 제공된 대상에 백업된 파일을 복원하는 작업을 트리거하는 **복구**를 클릭합니다.
 
-## <a name="use-instant-restore-toorestore-data-tooan-alternate-machine"></a>인스턴트 복원 toorestore 데이터 tooan 대체 컴퓨터 사용
-전체 서버를 잃어버린 경우 Azure 백업 tooa 서로 다른 컴퓨터에서 데이터를 복구할 수 있습니다. 단계를 수행 하는 hello hello 워크플로를 보여 줍니다.
+## <a name="use-instant-restore-to-restore-data-to-an-alternate-machine"></a>즉시 복원을 사용하여 데이터를 대체 컴퓨터에 복원
+전체 서버가 손실된 경우에도 Azure 백업에서 데이터를 다른 컴퓨터에 복구할 수 있습니다. 다음 단계는 워크플로를 보여줍니다.
 
-다음이 단계에 사용 된 hello 용어에는 다음이 포함 됩니다.
+다음 단계에서 사용되는 용어는 다음과 같습니다.
 
-* *원본 컴퓨터* – hello 원래 컴퓨터 hello 백업에서 백업 하 고 있는 현재 사용할 수 없는 합니다.
-* *대상 컴퓨터* – hello 컴퓨터 toowhich hello 데이터 복구 되 고 있습니다.
-* *샘플 자격 증명 모음* – hello 복구 서비스 자격 증명 모음 toowhich hello *원본 컴퓨터* 및 *대상 컴퓨터* 등록 됩니다. <br/>
+* *원본 컴퓨터* – 처음에 백업이 수행되었고 현재는 사용할 수 없는 컴퓨터입니다.
+* *대상 컴퓨터* – 데이터가 복구되는 컴퓨터입니다.
+* *샘플 자격 증명 모음* – *원본 컴퓨터* 및 *대상 컴퓨터*가 등록된 복구 서비스 자격 증명 모음입니다. <br/>
 
 > [!NOTE]
-> 백업을 이전 버전의 hello 운영 체제를 실행 하는 복원 된 tooa 대상 컴퓨터 일 수 없습니다. 예를 들어, Windows 7 컴퓨터에서 가져온 백업은 Windows 8 이상의 컴퓨터에서 복원할 수 있습니다. Windows 8 컴퓨터에서 수행한 백업 복원된 tooa Windows 7 컴퓨터 일 수 없습니다.
+> 이전 버전의 운영 체제를 실행하는 대상 시스템으로 백업을 복원할 수 없습니다. 예를 들어, Windows 7 컴퓨터에서 가져온 백업은 Windows 8 이상의 컴퓨터에서 복원할 수 있습니다. Windows 8 컴퓨터에서 가져온 백업은 Windows 7 컴퓨터로 복원할 수 없습니다.
 >
 >
 
-1. 열기 hello **Microsoft Azure 백업** hello에 snap *대상 컴퓨터*합니다.
+1. **대상 컴퓨터** 에서 *Microsoft Azure 백업*스냅인을 엽니다.
 
-2. Hello 확인 *대상 컴퓨터* 및 hello *원본 컴퓨터* 동일한 복구 서비스 자격 증명 모음에 등록 된 toohello 됩니다.
+2. *대상 컴퓨터* 및 *원본 컴퓨터*가 동일한 Recovery Services 자격 증명 모음에 등록됐는지 확인합니다.
 
-3. 클릭 **데이터 복구** tooopen hello **데이터 복구 마법사**합니다.
+3. **데이터 복구**를 클릭하여 **데이터 복구 마법사**를 엽니다.
 
     ![데이터 복구](./media/backup-azure-restore-windows-server/recover.png)
 
-4. Hello에 **시작** 창 선택 **다른 서버**
+4. **시작** 창에서 **다른 서버**를 선택합니다.
 
     ![다른 서버](./media/backup-azure-restore-windows-server/alternatemachine_gettingstarted_instantrestore.png)
 
-5. Hello toohello 해당 하는 자격 증명 모음 자격 증명 파일을 제공 *샘플 자격 증명 모음*를 클릭 하 고 **다음**합니다.
+5. *샘플 자격 증명 모음*에 해당하는 자격 증명 모음 파일을 제공하고 **다음**을 클릭합니다.
 
-    Hello 자격 증명 모음 자격 증명 파일을 잘못 된 (또는 만료 된) 경우 hello에서 새 자격 증명 모음 자격 증명 파일을 다운로드 *샘플 자격 증명 모음* hello Azure 포털의에서. 올바른 자격 증명 모음 자격 증명을 제공한 경우 백업 자격 증명 모음에 해당 하는 hello hello 이름이 표시 됩니다.
+    자격 증명 모음 파일이 유효하지 않거나 만료된 경우 Azure Portal의 *샘플 자격 증명 모음* 에서 새 자격 증명 모음 파일을 다운로드합니다. 유효한 자격 증명 모음을 제공하면 해당 백업 자격 증명 모음의 이름이 나타납니다.
 
-6. Hello에 **백업 서버 선택** 창, 선택 hello *원본 컴퓨터* hello 목록이 표시 된 컴퓨터에서 및 hello 암호를 제공 합니다. 그런 후 **Next**를 클릭합니다.
+6. **백업 서버 선택** 창에서 표시된 컴퓨터 목록에서 *원본 컴퓨터*를 선택하고 암호를 제공합니다. 그런 후 **다음**을 클릭합니다.
 
     ![컴퓨터 목록](./media/backup-azure-restore-windows-server/alternatemachine_selectmachine_instantrestore.png)
 
-7. Hello에 **복구 모드 선택** 창, 선택 **개별 파일과 폴더** 클릭 **다음**합니다.
+7. **복구 모드 선택** 창에서 **개별 파일 및 폴더**를 선택하고 **다음**을 클릭합니다.
 
-    ![검색](./media/backup-azure-restore-windows-server/alternatemachine_selectrecoverymode_instantrestore.png)
+    ![Search](./media/backup-azure-restore-windows-server/alternatemachine_selectrecoverymode_instantrestore.png)
 
-8. Hello에 **볼륨 및 날짜 선택** 창, hello 파일 및/또는 toorestore 폴더를 포함 하는 select hello 볼륨입니다.
+8. **볼륨 및 날짜 선택** 창에서 복원할 파일 및/또는 폴더가 들어있는 볼륨을 선택합니다.
 
-    Hello 달력에서 복구 지점을 선택 합니다. 어떤 복구 시점에서라도 복원할 수 있습니다. 날짜 **굵게** 복구 지점이 하나 이상 hello 가용성을 나타냅니다. 여러 복구 지점을 사용할 수 있는 경우 날짜를 선택 하면 hello에서 hello 특정 복구 지점 선택 **시간** 드롭 다운 메뉴.
+    달력에서 복구 지점을 선택합니다. 어떤 복구 시점에서라도 복원할 수 있습니다. **굵게** 표시된 날짜는 하나 이상의 복구 지점을 사용 가능함을 나타냅니다. 날짜를 선택하고 여러 복구 지점을 사용할 수 있는 경우 **시간** 드롭다운 메뉴에서 특정 복구 지점을 선택합니다.
 
     ![검색 항목](./media/backup-azure-restore-windows-server/alternatemachine_selectvolumedate_instantrestore.png)
 
-9. 클릭 **탑재** toolocally 탑재 hello 복구 지점에서 복구 볼륨으로 프로그램 *대상 컴퓨터*합니다.
+9. 복구 지점을 *대상 컴퓨터*에 복구 볼륨으로 로컬로 마운트하려면 **탑재**를 클릭합니다.
 
-10. Hello에 **찾아보기 및 파일 복구** 창에서 클릭 **찾아보기** 원하는 tooopen Windows 탐색기 및 찾기 hello 파일 및 폴더.
+10. **파일 찾아보기 및 복구** 창에서 **찾아보기**를 클릭하여 Windows 탐색기를 열고 원하는 파일 및 폴더를 찾습니다.
 
     ![암호화](./media/backup-azure-restore-windows-server/alternatemachine_browserecover_instantrestore.png)
 
-11. Windows 탐색기에서 hello 복구 볼륨에서 hello 파일 및/또는 폴더를 복사 하 고 tooyour 붙여넣을 *대상 컴퓨터* 위치 합니다. 있습니다 수 또는 hello 복구 볼륨에서 직접 hello 파일 스트림 열고 hello 올바른 버전은 복구를 확인 합니다.
+11. Windows 탐색기에서 복구 볼륨의 파일 및/또는 폴더를 복사하여 *대상 컴퓨터* 위치에 붙여 넣습니다. 복구 볼륨에서 직접 파일을 열거나 스트리밍하여 올바른 버전이 복구되었는지 확인할 수 있습니다.
 
     ![암호화](./media/backup-azure-restore-windows-server/alternatemachine_copy_instantrestore.png)
 
-12. 끝나면 hello 파일 및/또는 폴더 hello에 복원 중인 **찾아보기 및 복구 파일** 창에서 클릭 **탑재 해제**합니다. 클릭 **예** tooconfirm toounmount hello 볼륨 되도록 합니다.
+12. 파일 및/또는 폴더 복원이 완료되면 **찾아보기 및 복구 파일** 창에서 **마운트 해제**를 클릭합니다. 그런 다음 **예**를 클릭하여 볼륨 마운트 해제를 확인합니다.
 
     ![암호화](./media/backup-azure-restore-windows-server/alternatemachine_unmount_instantrestore.png)
 
     > [!Important]
-    > 탑재 해제를 클릭 하지 않으면 경우 탑재 된 경우 hello 시간에서 6 시간 동안 hello 복구 볼륨 탑재 된 상태로 유지 됩니다. Hello 볼륨이 탑재 하는 동안 백업 작업이 실행 됩니다. Hello 볼륨 탑재 되는 경우 hello 시간 동안 모든 예약 된 백업 작업 toorun hello 복구 볼륨 탑재 된 후 실행 됩니다.
+    > 마운트 해제를 클릭하지 않으면 복구 볼륨이 마운트된 후 6시간 동안 마운트된 상태로 유지됩니다. 볼륨이 마운트되는 동안 백업 작업은 실행되지 않습니다. 볼륨이 마운트된 시간 동안 실행되도록 스케줄된 모든 백업 작업은 복구 볼륨이 마운트 해제된 후에 실행됩니다.
     >
 
 
 ## <a name="next-steps"></a>다음 단계
 * [Azure 백업 - FAQ](backup-azure-backup-faq.md)
-* Hello 방문 [Azure 백업 포럼](http://go.microsoft.com/fwlink/p/?LinkId=290933)합니다.
+* [Azure 백업 포럼](http://go.microsoft.com/fwlink/p/?LinkId=290933)을 방문하세요.
 
 ## <a name="learn-more"></a>자세한 정보
 * [Azure 백업 개요](http://go.microsoft.com/fwlink/p/?LinkId=222425)

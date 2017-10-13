@@ -1,18 +1,18 @@
 트리거를 추가해 보겠습니다.
 
-1. 입력 *sftp* hello 논리 앱 디자이너에 hello 검색 상자에 다음 hello 선택 **SFTP-파일 추가 또는 수정 되 면** 트리거   
+1. Logic Apps 디자이너의 검색 상자에 *sftp*를 입력한 후 **SFTP - 파일을 추가하거나 수정할 때** 트리거를 선택합니다.   
    ![SFTP 트리거 이미지 1](./media/connectors-create-api-sftp/trigger-1.png)  
-2. hello **파일 추가 또는 수정할 때** 제어 열립니다  
+2. **파일을 추가하거나 수정할 때** 컨트롤이 열립니다.  
    ![SFTP 트리거 이미지 2](./media/connectors-create-api-sftp/trigger-2.png)  
-3. 선택 hello **...**  hello hello 컨트롤의 오른쪽에 있습니다. Hello 폴더 선택 컨트롤을 열립니다.  
+3. 컨트롤의 오른쪽에 있는 **...**를 선택합니다. 이렇게 하면 폴더 선택 컨트롤이 열립니다.  
    ![SFTP 트리거 이미지 3](./media/connectors-create-api-sftp/action-1.png)  
-4. 선택 hello **SFTP** 새롭거나 수정 된 파일에 대 한 폴더 toomonitor hello에 따라 tooselect hello 루트 폴더입니다. 공지 hello 루트 폴더는 hello에 이제 표시 **폴더** 제어 합니다.  
+4. **SFTP** 를 선택하여 새롭거나 수정된 파일을 모니터링할 폴더로 루트 폴더를 선택합니다. 이제 루트 폴더는 **폴더** 컨트롤에 표시됩니다.  
    ![SFTP 트리거 이미지 4](./media/connectors-create-api-sftp/action-2.png)   
 
-이 시점에서 시작 하는 됩니다 hello 실행 하는 다른 트리거 및 작업 hello 워크플로에서 파일 수정 되거나 hello 특정 SFTP 폴더에서 만들 때 트리거 논리 앱 구성 되었습니다. 
+이제, 논리 앱은 파일이 특정 SFTP 폴더에서 수정되거나 만들어질 때 워크플로의 다른 트리거 및 동작의 실행을 시작하는 트리거로 구성되었습니다. 
 
 > [!NOTE]
-> 기능 논리 앱 toobe는, 하나 이상의 트리거와 작업을 하나 포함 해야 합니다. Hello 다음 섹션 tooadd 동작의에서 hello 단계를 수행 합니다.  
+> 논리 앱이 작동하려면 하나 이상의 트리거와 동작이 있어야 합니다. 다음 섹션의 단계에 따라 동작을 추가합니다.  
 > 
 > 
 

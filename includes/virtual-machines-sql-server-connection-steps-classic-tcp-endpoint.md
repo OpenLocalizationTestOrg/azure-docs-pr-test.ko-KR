@@ -1,19 +1,19 @@
-### <a name="create-a-tcp-endpoint-for-hello-virtual-machine"></a>Hello 가상 컴퓨터에 대 한 TCP 끝점 만들기
-Hello에서 순서 tooaccess SQL Server에서에서 인터넷을 hello 가상 컴퓨터는 끝점 toolisten 들어오는 TCP 통신에 있어야 합니다. 이 Azure 구성 단계에서는 들어오는 TCP 포트 트래픽을 tooa TCP 포트를 액세스할 수 있는 toohello 가상 컴퓨터가 안내 합니다.
+### <a name="create-a-tcp-endpoint-for-the-virtual-machine"></a>가상 컴퓨터용 TCP 끝점 만들기
+인터넷에서 SQL 서버에 연결하려면, 가상 컴퓨터에 들어오는 TCP 통신을 수신하는 끝점이 있어야 합니다. 이 Azure 구성 단계에서는 들어오는 TCP 포트 트래픽을 가상 컴퓨터에 액세스 가능한 TCP 포트로 보냅니다.
 
 > [!NOTE]
-> Hello 내에서 연결 하는 경우 동일한 클라우드 서비스 또는 가상 네트워크, 않아도 toocreate 공개적으로 액세스할 수 있는 끝점입니다. 이 경우 toohello 다음 단계를 계속할 수 있습니다. 자세한 내용은 [연결 시나리오](../articles/virtual-machines/windows/sqlclassic/virtual-machines-windows-classic-sql-connect.md#connection-scenarios)를 참조하세요.
+> 동일한 클라우드 서버 또는 가상 네트워크 내에서 연결하는 경우, 공개적으로 엑세스 할 수 있는 끝점을 만들 필요가 없습니다. 이 경우, 다음 단계를 계속 할 수 있습니다. 자세한 내용은 [연결 시나리오](../articles/virtual-machines/windows/sqlclassic/virtual-machines-windows-classic-sql-connect.md#connection-scenarios)를 참조하세요.
 > 
 > 
 
-1. Hello Azure 포털에서 선택 **가상 컴퓨터 (클래식)**합니다.
+1. Azure 포털에서 **가상 컴퓨터(클래식)**를 선택합니다.
 2. 그런 후 SQL Server 가상 컴퓨터를 선택합니다.
-3. 선택 **끝점**, hello를 클릭 한 다음 **추가** hello hello 끝점 블레이드 위쪽에 단추입니다.
+3. **끝점**을 선택하고 끝점 블레이드 맨 위에 있는 **추가** 단추를 클릭합니다.
    
     ![포털의 끝점 만들기 단계](./media/virtual-machines-sql-server-connection-steps/portal-endpoint-creation.png)
-4. Hello에 **끝점 추가** 블레이드에서 제공는 **이름** SQLEndpoint 등입니다.
-5. 선택 **TCP** hello에 대 한 **프로토콜**합니다.
+4. **끝점 추가** 블레이드에서 **이름**(예: SQLEndpoint)을 지정합니다.
+5. **프로토콜**로 **TCP**를 선택합니다.
 6. **공용 포트**에 대해 포트 번호(예: **57500**)를 지정합니다.
-7. 에 대 한 **개인 포트**, 너무 기본값으로 사용 하는 SQL Server의 수신 대기 포트 지정**1433**합니다.
-8. 클릭 **확인** toocreate hello 끝점입니다.
+7. **개인 포트**에 대해 기본값이 **1433**인 SQL Server의 수신 대기 포트를 지정합니다.
+8. **확인** 을 클릭하여 끝점을 만듭니다.
 

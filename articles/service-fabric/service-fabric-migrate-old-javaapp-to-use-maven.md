@@ -1,6 +1,6 @@
 ---
-title: "Java SDK tooMaven-aaaMigrate 업데이트 이전 Azure 서비스 패브릭 Java 응용 프로그램 toouse Maven | Microsoft Docs"
-description: "Hello 이전 Java 응용 프로그램 toouse hello 서비스 패브릭 Java SDK 사용 Maven에서 toofetch 서비스 패브릭 Java 종속 요소를 업데이트 합니다. 이 설치를 완료 한 후 이전 Java 응용 프로그램 수 toobuild 것입니다."
+title: "Java SDK에서 Maven로 마이그레이션 - 이전 Azure Service Fabric Java 응용 프로그램을 업데이트하여 Maven 사용 | Microsoft Docs"
+description: "Service Fabric Java SDK를 사용하기 위해 사용되는 이전 Java 응용 프로그램을 업데이트하여 Maven에서 Service Fabric Java 종속성을 페치합니다. 이 설정을 완료한 후에 이전 Java 응용 프로그램을 빌드할 수 있습니다."
 services: service-fabric
 documentationcenter: java
 author: sayantancs
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/23/2017
 ms.author: saysa
-ms.openlocfilehash: 11b979facd7b3865141a6d3a035a6021dd06ca0c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2123c5f26d77045bd22af56a844fdbf222930e7b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="update-your-previous-java-service-fabric-application-toofetch-java-libraries-from-maven"></a>Maven에서 있는 이전 Java 서비스 패브릭 응용 프로그램 toofetch의 Java 라이브러리 업데이트
-서비스 패브릭 Java 바이너리 hello 서비스 패브릭 Java SDK tooMaven 호스팅에서 최근에 전환 했습니다. 에서는 이제 **mavencentral** toofetch hello 최신 서비스 패브릭 Java 종속성. Toobe 앞서 만든 기존 Java 응용 프로그램을 업데이트 하는이 빠른 시작 사용 하면 템플릿이나 Eclipse toobe 기반 Maven 빌드에서 hello와 호환 Yeoman 중 하나를 사용 하 여 서비스 패브릭 Java SDK와 함께 사용 합니다.
+# <a name="update-your-previous-java-service-fabric-application-to-fetch-java-libraries-from-maven"></a>이전 Java Service Fabric 응용 프로그램을 업데이트하여 Maven에서 Java 라이브러리 페치
+최근에 Service Fabric Java 이진 파일을 Service Fabric Java SDK에서 Maven 호스트로 이동했습니다. 이제 **mavencentral**을 사용하여 최신 Service Fabric Java 종속성을 페치할 수 있습니다. 이 빠른 시작을 통해 Yeoman 템플릿이나 Eclipse 중 하나를 사용하여 Maven 기반 빌드와 호환하도록 Service Fabric Java SDK에서 사용하기 위해 이전에 만들어진 기존 Java 응용 프로그램을 업데이트할 수 있습니다.
 
 ## <a name="prerequisites"></a>필수 조건
-1. Toouninstall 먼저 기존 Java SDK hello 합니다.
+1. 먼저 기존 Java SDK를 제거해야 합니다.
 
   ```bash
   sudo dpkg -r servicefabricsdkjava
   ```
-2. 서비스 패브릭 CLI 다음 최신 설치 hello hello 언급 한 단계 [여기](service-fabric-cli.md)합니다.
+2. [여기](service-fabric-cli.md)에서 언급한 단계에 따라 최신 Service Fabric CLI를 설치합니다.
 
-3. toobuild 및 hello 서비스 패브릭 Java 응용 프로그램에서 작업 tooensure JDK 1.8 있고 Gradle 설치 해야 합니다. 설치 하지 않은 경우 실행할 수 있습니다 (openjdk 8 jdk) JDK 1.8 및 Gradle-tooinstall 다음 hello
+3. Service Fabric Java 응용 프로그램을 빌드하고 사용하려면 JDK 1.8 및 Gradle이 설치되어 있는지 확인해야 합니다. 설치하지 않은 경우 다음을 실행하여 JDK 1.8(openjdk-8-jdk) 및 Gradle을 설치할 수 있습니다.
 
  ```bash
  sudo apt-get install openjdk-8-jdk-headless
  sudo apt-get install gradle
  ```
-4. 응용 프로그램 toouse의 업데이트 hello 설치/제거 스크립트 hello 언급 된 hello 단계 새 서비스 패브릭 CLI [여기](service-fabric-application-lifecycle-sfctl.md)합니다. 시작 tooour 참조할 수 있습니다 [예제](https://github.com/Azure-Samples/service-fabric-java-getting-started) 참조에 대 한 합니다.
+4. 응용 프로그램의 스크립트를 설치/제거하도록 업데이트하여 [여기](service-fabric-application-lifecycle-sfctl.md)에서 언급한 단계를 수행하는 새 Service Fabric CLI를 사용합니다. 시작한 [예제](https://github.com/Azure-Samples/service-fabric-java-getting-started)를 참조할 수 있습니다.
 
 >[!TIP]
-> 서비스 패브릭 Java SDK hello를 제거한 후 Yeoman 작동 하지 않습니다. 언급 된 hello 필수 구성 요소에 따라 [여기](service-fabric-create-your-first-linux-application-with-java.md) toohave 서비스 패브릭 Yeoman Java 템플릿 생성기를 작동 하 고 있습니다.
+> Service Fabric Java SDK를 제거한 후에 Yeoman이 작동하지 않습니다. [여기](service-fabric-create-your-first-linux-application-with-java.md)에서 언급한 필수 구성 요소에 따라 Service Fabric Yeoman Java 템플릿 생성기를 작동시킵니다.
 
 ## <a name="service-fabric-java-libraries-on-maven"></a>Maven의 Service Fabric Java 라이브러리
-Service Fabric Java 라이브러리는 Maven에서 호스팅되었습니다. Hello에 hello 종속성을 추가할 수 있습니다 ``pom.xml`` 또는 ``build.gradle`` 에서 프로젝트 toouse 서비스 패브릭 Java 라이브러리가 **mavenCentral**합니다.
+Service Fabric Java 라이브러리는 Maven에서 호스팅되었습니다. 프로젝트의 ``pom.xml`` 또는 ``build.gradle``에서 종속성을 추가하고 **mavenCentral**에서 Service Fabric Java 라이브러리를 사용할 수 있습니다.
 
 ### <a name="actors"></a>행위자
 
@@ -90,7 +90,7 @@ Service Fabric Java 라이브러리는 Maven에서 호스팅되었습니다. Hel
 ### <a name="others"></a>기타
 #### <a name="transport"></a>전송
 
-Service Fabric Java 응용 프로그램에 대한 전송 계층 지원입니다. 않아도 hello 전송 계층에서 프로그래밍 하는 경우가 아니면 tooexplicitly이 종속성 tooyour Reliable Actor 또는 서비스 응용 프로그램을 추가 합니다.
+Service Fabric Java 응용 프로그램에 대한 전송 계층 지원입니다. 전송 계층에서 프로그래밍하지 않으면 Reliable Actor 또는 Service 응용 프로그램에 이 종속성을 명시적으로 추가할 필요가 없습니다.
 
   ```XML
   <dependency>
@@ -111,7 +111,7 @@ Service Fabric Java 응용 프로그램에 대한 전송 계층 지원입니다.
 
 #### <a name="fabric-support"></a>패브릭 지원
 
-서비스 패브릭 런타임을 toonative 발언 서비스 패브릭에서 시스템 수준 지원 합니다. 않아도 tooexplicitly이 종속성 tooyour Reliable Actor 또는 서비스 응용 프로그램을 추가 합니다. Maven에서 자동으로 페치 가져옵니다이 포함 하는 경우 hello 위의 다른 종속성.
+Service Fabric에 대한 시스템 수준 지원이며 네이티브 Service Fabric 런타임에 지시합니다. Reliable Actor 또는 Service 응용 프로그램에 이 종속성을 명시적으로 추가할 필요가 없습니다. 그러면 위의 다른 종속성을 포함하는 경우 자동으로에서 Maven에서 가져옵니다.
 
   ```XML
   <dependency>
@@ -133,7 +133,7 @@ Service Fabric Java 응용 프로그램에 대한 전송 계층 지원입니다.
 
 ## <a name="migrating-service-fabric-stateless-service"></a>Service Fabric 상태 비저장 서비스 마이그레이션
 
-기존 서비스 패브릭 상태 비저장 Java 서비스 Maven에서 인출 되는 서비스 패브릭 종속성을 사용 하 여를 해야 tooupdate hello toobe 수 toobuild ``build.gradle`` hello 서비스 내에 파일입니다. 이전에 것 처럼 toobe 다음과 같이 사용-
+Maven에서 페치되는 Service Fabric 종속성을 사용하여 기존 Service Fabric 상태 비저장 Java 서비스를 빌드하려면 서비스 내에서 ``build.gradle`` 파일을 업데이트해야 합니다. 이전에는 다음과 같이 사용했습니다.
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -166,7 +166,7 @@ task copyDeps <<{
     }
 }
 ```
-Maven에서에서 toofetch hello 종속성 hello 이제 **업데이트** ``build.gradle`` 것이 hello 해당 부분은 다음과 같습니다.
+이제 Maven에서 종속성을 페치하기 위해 **업데이트** ``build.gradle``에는 다음과 같은 내용에 해당하는 부분이 있습니다.
 ```
 repositories {
         mavenCentral()
@@ -219,20 +219,20 @@ task copyDeps <<{
     }
 }
 ```
-일반적으로 tooget hello 스크립트를 구축 하는 방법에 대 한 전반적인 관념 다음과 같은 상태 비저장 Java 서비스 패브릭 서비스, 시작 예제에서 tooany 샘플을 참조할 수 있습니다. 여기에 hello [의 build.gradle](https://github.com/Azure-Samples/service-fabric-java-getting-started/blob/master/Services/EchoServer/EchoServer1.0/EchoServerService/build.gradle) hello EchoServer 샘플에 대 한 합니다.
+일반적으로 Service Fabric 상태 비저장 Java 서비스에서 빌드 스크립트의 모양에 대한 전반적인 관념을 가져오려면 시작 예제의 샘플을 참조하면 됩니다. EchoServer 샘플의 [build.gradle](https://github.com/Azure-Samples/service-fabric-java-getting-started/blob/master/Services/EchoServer/EchoServer1.0/EchoServerService/build.gradle)을 다음과 같습니다.
 
 ## <a name="migrating-service-fabric-actor-service"></a>Service Fabric 행위자 서비스 마이그레이션
 
-기존 서비스 패브릭 행위자 Java 응용 프로그램 서비스 패브릭 종속성 Maven에서 반입를 사용 하 여 해야 tooupdate hello toobe 수 toobuild ``build.gradle`` hello 인터페이스 패키지 안쪽과 hello 서비스 패키지에서 파일입니다. TestClient 패키지를 사용 하는 경우 해야 tooupdate 뿐입니다. 따라서 프로그램 작업자에 대해 ``Myactor``, hello 다음 hello 장소 tooupdate-해야 하는 것이
+Maven에서 페치되는 Service Fabric 종속성을 사용하여 기존 Service Fabric 행위자 Java 응용 프로그램을 빌드하려면 인터페이스 패키지 및 서비스 패키지 내에서 ``build.gradle`` 파일을 업데이트해야 합니다. TestClient 패키지를 사용하는 경우에도 해당 항목을 업데이트해야 합니다. 따라서 ``Myactor`` 작업자의 경우 업데이트해야 하는 위치는 다음과 같습니다.
 ```
 ./Myactor/build.gradle
 ./MyactorInterface/build.gradle
 ./MyactorTestClient/build.gradle
 ```
 
-#### <a name="updating-build-script-for-hello-interface-project"></a>Hello 인터페이스 프로젝트에 대 한 빌드 스크립트를 업데이트합니다.
+#### <a name="updating-build-script-for-the-interface-project"></a>인터페이스 프로젝트의 빌드 스크립트 업데이트
 
-이전에 것 처럼 toobe 다음과 같이 사용-
+이전에는 다음과 같이 사용했습니다.
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -240,7 +240,7 @@ dependencies {
 .
 .
 ```
-Maven에서에서 toofetch hello 종속성 hello 이제 **업데이트** ``build.gradle`` 것이 hello 해당 부분은 다음과 같습니다.
+이제 Maven에서 종속성을 페치하기 위해 **업데이트** ``build.gradle``에는 다음과 같은 내용에 해당하는 부분이 있습니다.
 ```
 repositories {
     mavenCentral()
@@ -271,9 +271,9 @@ compileJava.dependsOn(explodeDeps)
 .
 ```
 
-#### <a name="updating-build-script-for-hello-actor-project"></a>Hello 행위자 프로젝트에 대 한 빌드 스크립트를 업데이트합니다.
+#### <a name="updating-build-script-for-the-actor-project"></a>작업자 프로젝트의 빌드 스크립트 업데이트
 
-이전에 것 처럼 toobe 다음과 같이 사용-
+이전에는 다음과 같이 사용했습니다.
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -312,7 +312,7 @@ task copyDeps<< {
     }
 }
 ```
-Maven에서에서 toofetch hello 종속성 hello 이제 **업데이트** ``build.gradle`` 것이 hello 해당 부분은 다음과 같습니다.
+이제 Maven에서 종속성을 페치하기 위해 **업데이트** ``build.gradle``에는 다음과 같은 내용에 해당하는 부분이 있습니다.
 ```
 repositories {
     mavenCentral()
@@ -370,9 +370,9 @@ task copyDeps<< {
 }
 ```
 
-#### <a name="updating-build-script-for-hello-test-client-project"></a>Hello 테스트 클라이언트 프로젝트에 대 한 빌드 스크립트를 업데이트합니다.
+#### <a name="updating-build-script-for-the-test-client-project"></a>테스트 클라이언트 프로젝트의 빌드 스크립트 업데이트
 
-여기에서 변경 hello 행위자 프로젝트 즉, 이전 섹션에서 설명 하는 유사한 toohello 변경 됩니다. 이전에 사용 되는 스크립트 toobe 다음과 같습니다. 같은 Gradle hello
+여기에서 변경 내용은 이전 섹션에서 설명한 변경 내용, 즉, 작업자 프로젝트와 유사합니다. 이전에 Gradle 스크립트는 다음과 같이 사용되었습니다.
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -412,7 +412,7 @@ task copyDeps<< {
         }
 }
 ```
-Maven에서에서 toofetch hello 종속성 hello 이제 **업데이트** ``build.gradle`` 것이 hello 해당 부분은 다음과 같습니다.
+이제 Maven에서 종속성을 페치하기 위해 **업데이트** ``build.gradle``에는 다음과 같은 내용에 해당하는 부분이 있습니다.
 ```
 repositories {
     mavenCentral()
@@ -476,4 +476,4 @@ task copyDeps<< {
 
 * [Yeoman을 사용하여 Linux에서 첫 번째 Service Fabric Java 응용 프로그램 만들기 및 배포](service-fabric-create-your-first-linux-application-with-java.md)
 * [Eclipse용 Service Fabric 플러그 인을 사용하여 Linux에서 첫 번째 Service Fabric Java 응용 프로그램 만들기 및 배포](service-fabric-get-started-eclipse.md)
-* [서비스 패브릭 CLI hello를 사용 하 여 서비스 패브릭 클러스터와 상호 작용](service-fabric-cli.md)
+* [Service Fabric CLI를 사용하여 Service Fabric 클러스터와 상호 작용](service-fabric-cli.md)
