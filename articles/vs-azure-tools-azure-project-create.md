@@ -1,0 +1,59 @@
+---
+title: "Visual Studio에서 Azure 클라우드 서비스 프로젝트 만들기 | Microsoft Docs"
+description: "Visual Studio에서 Azure 클라우드 서비스 프로젝트를 만드는 방법을 알아봅니다."
+services: visual-studio-online
+documentationcenter: na
+author: kraigb
+manager: ghogen
+editor: 
+ms.assetid: ec580df7-3dcc-45a9-a1d9-8c110678dfb5
+ms.service: multiple
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 03/21/2017
+ms.author: kraigb
+ms.openlocfilehash: 1f6ded87b551f660853ea4eb0548f3d942e28fa8
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 08/29/2017
+---
+# <a name="creating-an-azure-cloud-service-project-with-visual-studio"></a><span data-ttu-id="80446-103">Visual Studio에서 Azure 클라우드 서비스 프로젝트 만들기</span><span class="sxs-lookup"><span data-stu-id="80446-103">Creating an Azure cloud service project with Visual Studio</span></span>
+<span data-ttu-id="80446-104">Azure Tools for Visual Studio는 Azure에 대한 클라우드 서비스를 만들 수 있는 프로젝트 템플릿을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="80446-104">The Azure Tools for Visual Studio provides a project template that lets you create an Azure cloud service.</span></span> <span data-ttu-id="80446-105">프로젝트를 만든 후 Visual Studio에서 클라우드 서비스를 구성 및 디버그하고 Azure에 배포할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="80446-105">Once the project has been created, Visual Studio enables you to configure, debug, and deploy the cloud service to Azure.</span></span>
+
+## <a name="steps-to-create-an-azure-cloud-service-project-in-visual-studio"></a><span data-ttu-id="80446-106">Visual Studio에서 Azure 클라우드 서비스 프로젝트를 만드는 단계</span><span class="sxs-lookup"><span data-stu-id="80446-106">Steps to create an Azure cloud service project in Visual Studio</span></span>
+<span data-ttu-id="80446-107">이 섹션에서는 하나 이상의 웹 역할을 사용하여 Visual Studio에서 Azure 클라우드 서비스 프로젝트를 만드는 과정을 안내합니다.</span><span class="sxs-lookup"><span data-stu-id="80446-107">This section walks you through creating an Azure cloud service project in Visual Studio with one or more web roles.</span></span>  
+
+1. <span data-ttu-id="80446-108">관리자 권한으로 Visual Studio를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="80446-108">Start Visual Studio as an administrator.</span></span>
+
+1. <span data-ttu-id="80446-109">주 메뉴에서 **파일** > **새로 만들기** > **프로젝트**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="80446-109">On the main menu, select **File** > **New** > **Project**.</span></span>
+
+1. <span data-ttu-id="80446-110">Visual C# 또는 Visual Basic 프로젝트 템플릿 노드에서 **클라우드**를 선택한 다음 템플릿 목록에서 **Azure 클라우드 서비스**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="80446-110">Select **Cloud** from the Visual C# or Visual Basic project template nodes, and select **Azure Cloud Service** from the list of templates.</span></span>
+
+    ![새 Azure 클라우드 서비스](./media/vs-azure-tools-azure-project-create/new-project-wizard-for-cloud-service.png)
+
+1. <span data-ttu-id="80446-112">프로젝트 개발에 사용하려는 .NET Framework의 버전을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="80446-112">Specify which version of the .NET Framework you want to use to develop your project.</span></span>
+
+1. <span data-ttu-id="80446-113">프로젝트에 대한 이름과 위치 및 솔루션에 대한 이름을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="80446-113">Enter a name and location for your project and a name for the solution.</span></span> 
+
+1. <span data-ttu-id="80446-114">**확인**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="80446-114">Select **OK**.</span></span>
+
+1. <span data-ttu-id="80446-115">**새 Microsoft Azure 클라우드 서비스** 대화 상자에서 추가하려는 역할을 선택하고 오른쪽 화살표 단추를 선택하여 솔루션에 역할을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="80446-115">In the **New Microsoft Azure Cloud Service** dialog, select the roles that you want to add, and choose the right arrow button to add them to your solution.</span></span>
+
+    ![새 Azure 클라우드 서비스 역할 선택](./media/vs-azure-tools-azure-project-create/new-cloud-service.png)
+
+1. <span data-ttu-id="80446-117">추가한 역할의 이름을 바꾸려면 **새 Microsoft Azure 클라우드 서비스** 대화 상자에서 역할 위에 마우스를 놓고 상황에 맞는 메뉴에서 **이름 바꾸기**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="80446-117">To rename a role that you've added, hover on the role in the **New Microsoft Azure Cloud Service** dialog, and, from the context menu, select **Rename**.</span></span> <span data-ttu-id="80446-118">역할을 추가한 후 솔루션 내에서(**솔루션 탐색기**에서) 역할의 이름을 바꿀 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="80446-118">You can also rename a role within your solution (in the **Solution Explorer**) after it has been added.</span></span>
+
+    ![Azure 클라우드 서비스 역할 이름 바꾸기](./media/vs-azure-tools-azure-project-create/new-cloud-service-rename.png)
+
+<span data-ttu-id="80446-120">Visual Studio Azure 프로젝트에는 솔루션의 역할 프로젝트에 대한 연결이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="80446-120">The Visual Studio Azure project has associations to the role projects in the solution.</span></span> <span data-ttu-id="80446-121">또한 *서비스 정의 파일* 및 *서비스 구성 파일*도 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="80446-121">The project also includes the *service definition file* and *service configuration file*:</span></span>
+
+- <span data-ttu-id="80446-122">**서비스 정의 파일** - 필요한 역할, 끝점 및 가상 컴퓨터 크기를 포함하여 응용 프로그램에 대한 런타임 설정을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="80446-122">**Service definition file** - Defines the runtime settings for your application, including what roles are required, endpoints, and virtual machine size.</span></span> 
+- <span data-ttu-id="80446-123">**서비스 구성 파일** - 얼마나 많은 역할의 인스턴스가 실행되는지와 역할에 대해 정의된 설정의 값을 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="80446-123">**Service configuration file** - Configures how many instances of a role are run and the values of the settings defined for a role.</span></span> 
+
+<span data-ttu-id="80446-124">이러한 파일에 대한 자세한 내용은 [Visual Studio에서 Azure 클라우드 서비스에 대한 역할 구성](vs-azure-tools-configure-roles-for-cloud-service.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="80446-124">For more information about these files, see [Configure the Roles for an Azure cloud service with Visual Studio](vs-azure-tools-configure-roles-for-cloud-service.md).</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="80446-125">다음 단계</span><span class="sxs-lookup"><span data-stu-id="80446-125">Next steps</span></span>
+- [<span data-ttu-id="80446-126">Visual Studio에서 Azure 클라우드 서비스 프로젝트의 역할 관리</span><span class="sxs-lookup"><span data-stu-id="80446-126">Managing roles in Azure cloud service projects with Visual Studio</span></span>](./vs-azure-tools-cloud-service-project-managing-roles.md)

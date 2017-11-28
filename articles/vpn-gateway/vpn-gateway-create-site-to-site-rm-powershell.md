@@ -1,0 +1,252 @@
+---
+title: "온-프레미스 네트워크 tooan Azure 가상 네트워크 연결: 사이트 간 VPN: PowerShell | Microsoft Docs"
+description: "온-프레미스에서 IPsec 연결을 통해 Azure 가상 네트워크 tooan 네트워크 단계 toocreate hello 공용 인터넷 합니다. 이 단계는 PowerShell을 사용하여 크로스-프레미스 사이트 간 VPN Gateway 연결을 만드는 데 도움이 됩니다."
+services: vpn-gateway
+documentationcenter: na
+author: cherylmc
+manager: timlt
+editor: 
+tags: azure-resource-manager
+ms.assetid: fcc2fda5-4493-4c15-9436-84d35adbda8e
+ms.service: vpn-gateway
+ms.devlang: na
+ms.topic: hero-article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 08/09/2017
+ms.author: cherylmc
+ms.openlocfilehash: cb8db1dab3a5488816a7f7e8e63908a4c02f55db
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 10/06/2017
+---
+# <a name="create-a-vnet-with-a-site-to-site-vpn-connection-using-powershell"></a><span data-ttu-id="aa3f3-104">PowerShell을 사용하여 사이트 간 VPN 연결로 VNet 만들기</span><span class="sxs-lookup"><span data-stu-id="aa3f3-104">Create a VNet with a Site-to-Site VPN connection using PowerShell</span></span>
+
+<span data-ttu-id="aa3f3-105">이 문서 toouse 온-프레미스에서 PowerShell toocreate 사이트-사이트 VPN 게이트웨이 연결 toohello VNet 네트워크 하는 방법을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-105">This article shows you how toouse PowerShell toocreate a Site-to-Site VPN gateway connection from your on-premises network toohello VNet.</span></span> <span data-ttu-id="aa3f3-106">이 문서의 단계 hello toohello 리소스 관리자 배포 모델을 적용합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-106">hello steps in this article apply toohello Resource Manager deployment model.</span></span> <span data-ttu-id="aa3f3-107">또한 서로 다른 배포 도구 또는 배포 모델을 사용 하 여 hello 다음 목록에서에서 다른 옵션을 선택 하 여이 구성을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-107">You can also create this configuration using a different deployment tool or deployment model by selecting a different option from hello following list:</span></span>
+
+> [!div class="op_single_selector"]
+> * [<span data-ttu-id="aa3f3-108">Azure 포털</span><span class="sxs-lookup"><span data-stu-id="aa3f3-108">Azure portal</span></span>](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
+> * [<span data-ttu-id="aa3f3-109">PowerShell</span><span class="sxs-lookup"><span data-stu-id="aa3f3-109">PowerShell</span></span>](vpn-gateway-create-site-to-site-rm-powershell.md)
+> * [<span data-ttu-id="aa3f3-110">CLI</span><span class="sxs-lookup"><span data-stu-id="aa3f3-110">CLI</span></span>](vpn-gateway-howto-site-to-site-resource-manager-cli.md)
+> * [<span data-ttu-id="aa3f3-111">Azure Portal(클래식)</span><span class="sxs-lookup"><span data-stu-id="aa3f3-111">Azure portal (classic)</span></span>](vpn-gateway-howto-site-to-site-classic-portal.md)
+> * [<span data-ttu-id="aa3f3-112">클래식 포털(클래식)</span><span class="sxs-lookup"><span data-stu-id="aa3f3-112">Classic portal (classic)</span></span>](vpn-gateway-site-to-site-create.md)
+> 
+>
+
+
+<span data-ttu-id="aa3f3-113">사이트 간 VPN 게이트웨이 연결에 사용 되는 tooconnect는 온-프레미스 IPsec/IKE (IKEv1 또는 IKEv2) VPN 터널을 통해 Azure 가상 네트워크 tooan 네트워크입니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-113">A Site-to-Site VPN gateway connection is used tooconnect your on-premises network tooan Azure virtual network over an IPsec/IKE (IKEv1 or IKEv2) VPN tunnel.</span></span> <span data-ttu-id="aa3f3-114">이러한 종류의 연결에는 VPN 장치에 있는 온-프레미스 외부와 접한 공용 IP 주소 할당 tooit가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-114">This type of connection requires a VPN device located on-premises that has an externally facing public IP address assigned tooit.</span></span> <span data-ttu-id="aa3f3-115">VPN Gateway에 대한 자세한 내용은 [VPN Gateway 정보](vpn-gateway-about-vpngateways.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-115">For more information about VPN gateways, see [About VPN gateway](vpn-gateway-about-vpngateways.md).</span></span>
+
+![사이트 간 VPN Gateway 크로스-프레미스 연결 다이어그램](./media/vpn-gateway-create-site-to-site-rm-powershell/site-to-site-diagram.png)
+
+## <span data-ttu-id="aa3f3-117"><a name="before"></a>시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="aa3f3-117"><a name="before"></a>Before you begin</span></span>
+
+<span data-ttu-id="aa3f3-118">Hello 조건을 구성을 시작 하기 전에 다음을 충족 하는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-118">Verify that you have met hello following criteria before beginning your configuration:</span></span>
+
+* <span data-ttu-id="aa3f3-119">호환 되는 VPN 장치 및 수 tooconfigure 장애가 있는 사용자를 완료 했는지 확인 것입니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-119">Make sure you have a compatible VPN device and someone who is able tooconfigure it.</span></span> <span data-ttu-id="aa3f3-120">호환되는 VPN 장치 및 장치 구성에 대한 자세한 내용은 [VPN 장치 정보](vpn-gateway-about-vpn-devices.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-120">For more information about compatible VPN devices and device configuration, see [About VPN Devices](vpn-gateway-about-vpn-devices.md).</span></span>
+* <span data-ttu-id="aa3f3-121">VPN 장치에 대한 외부 연결 공용 IPv4 주소가 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-121">Verify that you have an externally facing public IPv4 address for your VPN device.</span></span> <span data-ttu-id="aa3f3-122">이 IP 주소는 NAT 뒤에 배치할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-122">This IP address cannot be located behind a NAT.</span></span>
+* <span data-ttu-id="aa3f3-123">온-프레미스 네트워크 구성을 잘 모르는 hello IP 주소 범위에 있는 경우 해당 세부 정보를 제공할 수 있는 사용자와 toocoordinate를 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-123">If you are unfamiliar with hello IP address ranges located in your on-premises network configuration, you need toocoordinate with someone who can provide those details for you.</span></span> <span data-ttu-id="aa3f3-124">이 구성을 만들 때 Azure tooyour 온-프레미스 위치를 라우팅하는 hello IP 주소 범위 접두사를 지정 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-124">When you create this configuration, you must specify hello IP address range prefixes that Azure will route tooyour on-premises location.</span></span> <span data-ttu-id="aa3f3-125">온-프레미스 네트워크의 hello 서브넷 중 랩 tooconnect를 원하는 hello 가상 네트워크 서브넷을 통해 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-125">None of hello subnets of your on-premises network can over lap with hello virtual network subnets that you want tooconnect to.</span></span>
+* <span data-ttu-id="aa3f3-126">Hello hello Azure 리소스 관리자 PowerShell cmdlet의 최신 버전을 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-126">Install hello latest version of hello Azure Resource Manager PowerShell cmdlets.</span></span> <span data-ttu-id="aa3f3-127">PowerShell cmdlet은 자주 업데이트 되 고는 일반적으로 tooupdate 프로그램 PowerShell cmdlet tooget hello 최신 기능 기능 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-127">PowerShell cmdlets are updated frequently and you will typically need tooupdate your PowerShell cmdlets tooget hello latest feature functionality.</span></span> <span data-ttu-id="aa3f3-128">PowerShell cmdlet을 업데이트 하지 않으면 지정 된 hello 값 실패할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-128">If you don't update your PowerShell cmdlets, hello values specified may fail.</span></span> <span data-ttu-id="aa3f3-129">참조 [어떻게 tooinstall Azure PowerShell을 구성 하 고](/powershell/azure/overview) 다운로드 하 고 PowerShell cmdlet을 설치 하는 방법에 대 한 자세한 내용은 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-129">See [How tooinstall and configure Azure PowerShell](/powershell/azure/overview) for more information about downloading and installing PowerShell cmdlets.</span></span>
+
+### <span data-ttu-id="aa3f3-130"><a name="example"></a>예제 값</span><span class="sxs-lookup"><span data-stu-id="aa3f3-130"><a name="example"></a>Example values</span></span>
+
+<span data-ttu-id="aa3f3-131">이 문서의 hello 예제는 다음 값에는 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-131">hello examples in this article use hello following values.</span></span> <span data-ttu-id="aa3f3-132">이러한 값 toocreate 테스트 환경을 사용 하거나 toothem 참조 toobetter hello이이 문서의 예제에서는 이해 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-132">You can use these values toocreate a test environment, or refer toothem toobetter understand hello examples in this article.</span></span>
+
+```
+#Example values
+
+VnetName                = TestVNet1
+ResourceGroup           = TestRG1
+Location                = East US 
+AddressSpace            = 10.11.0.0/16 
+SubnetName              = Subnet1 
+Subnet                  = 10.11.1.0/28 
+GatewaySubnet           = 10.11.0.0/27
+LocalNetworkGatewayName = Site2
+LNG Public IP           = <VPN device IP address> 
+Local Address Prefixes  = 10.0.0.0/24, 20.0.0.0/24
+Gateway Name            = VNet1GW
+PublicIP                = VNet1GWIP
+Gateway IP Config       = gwipconfig1 
+VPNType                 = RouteBased 
+GatewayType             = Vpn 
+ConnectionName          = VNet1toSite2
+
+```
+
+
+## <span data-ttu-id="aa3f3-133"><a name="Login"></a>1. Tooyour 구독 연결</span><span class="sxs-lookup"><span data-stu-id="aa3f3-133"><a name="Login"></a>1. Connect tooyour subscription</span></span>
+
+[!INCLUDE [PowerShell login](../../includes/vpn-gateway-ps-login-include.md)]
+
+## <span data-ttu-id="aa3f3-134"><a name="VNet"></a>2. 가상 네트워크 및 게이트웨이 서브넷 만들기</span><span class="sxs-lookup"><span data-stu-id="aa3f3-134"><a name="VNet"></a>2. Create a virtual network and a gateway subnet</span></span>
+
+<span data-ttu-id="aa3f3-135">가상 네트워크가 아직 없는 경우 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-135">If you don't already have a virtual network, create one.</span></span> <span data-ttu-id="aa3f3-136">가상 네트워크를 만들 때 지정한 hello 주소 공간 온-프레미스 네트워크에가지고 있는 hello 주소 공간 중 하나라도 겹치지 않는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-136">When creating a virtual network, make sure that hello address spaces you specify don't overlap any of hello address spaces that you have on your on-premises network.</span></span>
+
+[!INCLUDE [About gateway subnets](../../includes/vpn-gateway-about-gwsubnet-include.md)]
+
+[!INCLUDE [No NSG warning](../../includes/vpn-gateway-no-nsg-include.md)]
+
+### <span data-ttu-id="aa3f3-137"><a name="vnet"></a>toocreate 가상 네트워크 및 게이트웨이 서브넷</span><span class="sxs-lookup"><span data-stu-id="aa3f3-137"><a name="vnet"></a>toocreate a virtual network and a gateway subnet</span></span>
+
+<span data-ttu-id="aa3f3-138">이 예제에서는 가상 네트워크 및 게이트웨이 서브넷을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-138">This example creates a virtual network and a gateway subnet.</span></span> <span data-ttu-id="aa3f3-139">Tooadd 게이트웨이 서브넷을 참조 해야 하는 가상 네트워크를 이미 있는 경우 [tooadd 게이트웨이 서브넷 tooa 가상 네트워크를 이미 만든](#gatewaysubnet)합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-139">If you already have a virtual network that you need tooadd a gateway subnet to, see [tooadd a gateway subnet tooa virtual network you have already created](#gatewaysubnet).</span></span>
+
+<span data-ttu-id="aa3f3-140">리소스 그룹 만들기:</span><span class="sxs-lookup"><span data-stu-id="aa3f3-140">Create a resource group:</span></span>
+
+```powershell
+New-AzureRmResourceGroup -Name TestRG1 -Location 'East US'
+```
+
+<span data-ttu-id="aa3f3-141">가상 네트워크를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-141">Create your virtual network.</span></span>
+
+1. <span data-ttu-id="aa3f3-142">Hello 변수를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-142">Set hello variables.</span></span>
+
+  ```powershell
+  $subnet1 = New-AzureRmVirtualNetworkSubnetConfig -Name 'GatewaySubnet' -AddressPrefix 10.11.0.0/27
+  $subnet2 = New-AzureRmVirtualNetworkSubnetConfig -Name 'Subnet1' -AddressPrefix 10.11.1.0/28
+  ```
+2. <span data-ttu-id="aa3f3-143">Hello VNet을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-143">Create hello VNet.</span></span>
+
+  ```powershell
+  New-AzureRmVirtualNetwork -Name TestVNet1 -ResourceGroupName TestRG1 `
+  -Location 'East US' -AddressPrefix 10.11.0.0/16 -Subnet $subnet1, $subnet2
+  ```
+
+### <span data-ttu-id="aa3f3-144"><a name="gatewaysubnet"></a>이미 만든 tooadd 게이트웨이 서브넷 tooa 가상 네트워크</span><span class="sxs-lookup"><span data-stu-id="aa3f3-144"><a name="gatewaysubnet"></a>tooadd a gateway subnet tooa virtual network you have already created</span></span>
+
+1. <span data-ttu-id="aa3f3-145">Hello 변수를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-145">Set hello variables.</span></span>
+
+  ```powershell
+  $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName TestRG1 -Name TestVet1
+  ```
+2. <span data-ttu-id="aa3f3-146">Hello 게이트웨이 서브넷을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-146">Create hello gateway subnet.</span></span>
+
+  ```powershell
+  Add-AzureRmVirtualNetworkSubnetConfig -Name 'GatewaySubnet' -AddressPrefix 10.11.0.0/27 -VirtualNetwork $vnet
+  ```
+3. <span data-ttu-id="aa3f3-147">Hello 구성을 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-147">Set hello configuration.</span></span>
+
+  ```powershell
+  Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
+  ```
+
+## <span data-ttu-id="aa3f3-148">3. <a name="localnet"></a>Hello 로컬 네트워크 게이트웨이 만들기</span><span class="sxs-lookup"><span data-stu-id="aa3f3-148">3. <a name="localnet"></a>Create hello local network gateway</span></span>
+
+<span data-ttu-id="aa3f3-149">일반적으로 hello 로컬 네트워크 게이트웨이 tooyour 온-프레미스 위치를 나타냅니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-149">hello local network gateway typically refers tooyour on-premises location.</span></span> <span data-ttu-id="aa3f3-150">Hello 사이트 기준인 Azure 수 tooit를 참조 하십시오. 그런 다음 hello IP 주소를 지정 된 이름을 지정 hello 온-프레미스 VPN 장치 toowhich의 연결을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-150">You give hello site a name by which Azure can refer tooit, then specify hello IP address of hello on-premises VPN device toowhich you will create a connection.</span></span> <span data-ttu-id="aa3f3-151">또한 hello VPN 게이트웨이 toohello VPN 장치를 통해 라우팅되는 hello IP 주소 접두사를 지정 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-151">You also specify hello IP address prefixes that will be routed through hello VPN gateway toohello VPN device.</span></span> <span data-ttu-id="aa3f3-152">지정 하는 hello 주소 접두사는 온-프레미스 네트워크에 있는 hello 접두사입니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-152">hello address prefixes you specify are hello prefixes located on your on-premises network.</span></span> <span data-ttu-id="aa3f3-153">온-프레미스 네트워크 변경 되 면 hello 접두사를 쉽게 업데이트할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-153">If your on-premises network changes, you can easily update hello prefixes.</span></span>
+
+<span data-ttu-id="aa3f3-154">다음 값에는 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-154">Use hello following values:</span></span>
+
+* <span data-ttu-id="aa3f3-155">hello *GatewayIPAddress* 온-프레미스 VPN 장치의 hello IP 주소입니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-155">hello *GatewayIPAddress* is hello IP address of your on-premises VPN device.</span></span> <span data-ttu-id="aa3f3-156">VPN 장치는 NAT 뒤에 배치할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-156">Your VPN device cannot be located behind a NAT.</span></span>
+* <span data-ttu-id="aa3f3-157">hello *AddressPrefix* 은 온-프레미스 주소 공간입니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-157">hello *AddressPrefix* is your on-premises address space.</span></span>
+
+<span data-ttu-id="aa3f3-158">tooadd 단일 주소 접두사와 로컬 네트워크 게이트웨이:</span><span class="sxs-lookup"><span data-stu-id="aa3f3-158">tooadd a local network gateway with a single address prefix:</span></span>
+
+  ```powershell
+  New-AzureRmLocalNetworkGateway -Name Site2 -ResourceGroupName TestRG1 `
+  -Location 'East US' -GatewayIpAddress '23.99.221.164' -AddressPrefix '10.0.0.0/24'
+  ```
+
+<span data-ttu-id="aa3f3-159">여러 개의 주소 접두사와 로컬 네트워크 게이트웨이 tooadd:</span><span class="sxs-lookup"><span data-stu-id="aa3f3-159">tooadd a local network gateway with multiple address prefixes:</span></span>
+
+  ```powershell
+  New-AzureRmLocalNetworkGateway -Name Site2 -ResourceGroupName TestRG1 `
+  -Location 'East US' -GatewayIpAddress '23.99.221.164' -AddressPrefix @('10.0.0.0/24','20.0.0.0/24')
+  ```
+
+<span data-ttu-id="aa3f3-160">로컬 네트워크 게이트웨이에 대 한 IP 주소 접두사 toomodify:</span><span class="sxs-lookup"><span data-stu-id="aa3f3-160">toomodify IP address prefixes for your local network gateway:</span></span><br>
+<span data-ttu-id="aa3f3-161">경우에 따라 로컬 네트워크 게이트웨이 접두사를 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-161">Sometimes your local network gateway prefixes change.</span></span> <span data-ttu-id="aa3f3-162">hello 단계를 수행한 toomodify 사용자의 IP 주소 접두사는 VPN 게이트웨이 연결을 만들었는지 여부에 따라 달라 집니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-162">hello steps you take toomodify your IP address prefixes depend on whether you have created a VPN gateway connection.</span></span> <span data-ttu-id="aa3f3-163">Hello 참조 [로컬 네트워크 게이트웨이에 대 한 수정 IP 주소 접두사](#modify) 이 문서의 섹션.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-163">See hello [Modify IP address prefixes for a local network gateway](#modify) section of this article.</span></span>
+
+## <span data-ttu-id="aa3f3-164"><a name="PublicIP"></a>4. 공용 IP 주소 요청</span><span class="sxs-lookup"><span data-stu-id="aa3f3-164"><a name="PublicIP"></a>4. Request a Public IP address</span></span>
+
+<span data-ttu-id="aa3f3-165">VPN Gateway에는 공용 IP 주소가 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-165">A VPN gateway must have a Public IP address.</span></span> <span data-ttu-id="aa3f3-166">먼저 hello IP 주소 리소스를 요청 하 고 가상 네트워크 게이트웨이 만들 때 tooit를 참조 하십시오.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-166">You first request hello IP address resource, and then refer tooit when creating your virtual network gateway.</span></span> <span data-ttu-id="aa3f3-167">hello IP 주소를 사용 hello VPN 게이트웨이 만들 때 toohello 리소스를 동적으로 할당 됩니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-167">hello IP address is dynamically assigned toohello resource when hello VPN gateway is created.</span></span> <span data-ttu-id="aa3f3-168">현재 VPN Gateway는 *동적* 공용 IP 주소 할당만 지원합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-168">VPN Gateway currently only supports *Dynamic* Public IP address allocation.</span></span> <span data-ttu-id="aa3f3-169">고정 공용 IP 주소 할당을 요청할 수 없습니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-169">You cannot request a Static Public IP address assignment.</span></span> <span data-ttu-id="aa3f3-170">그러나 hello IP 주소가 변경 tooyour VPN 게이트웨이에 할당 된 이후에이 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-170">However, this does not mean that hello IP address changes after it has been assigned tooyour VPN gateway.</span></span> <span data-ttu-id="aa3f3-171">hello 유일한 시간 hello 공용 IP 주소 변경 내용을 게이트웨이 hello 때 삭제 되어 다시 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-171">hello only time hello Public IP address changes is when hello gateway is deleted and re-created.</span></span> <span data-ttu-id="aa3f3-172">VPN Gateway의 크기 조정, 다시 설정 또는 기타 내부 유지 관리/업그레이드 시에는 변경되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-172">It doesn't change across resizing, resetting, or other internal maintenance/upgrades of your VPN gateway.</span></span>
+
+<span data-ttu-id="aa3f3-173">Tooyour 가상 네트워크 VPN 게이트웨이 할당할 수 있는 공용 IP 주소를 요청 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-173">Request a Public IP address that will be assigned tooyour virtual network VPN gateway.</span></span>
+
+```powershell
+$gwpip= New-AzureRmPublicIpAddress -Name gwpip -ResourceGroupName TestRG1 -Location 'East US' -AllocationMethod Dynamic
+```
+
+## <span data-ttu-id="aa3f3-174"><a name="GatewayIPConfig"></a>5. Hello 게이트웨이 IP 주소 지정 구성을 만들기</span><span class="sxs-lookup"><span data-stu-id="aa3f3-174"><a name="GatewayIPConfig"></a>5. Create hello gateway IP addressing configuration</span></span>
+
+<span data-ttu-id="aa3f3-175">hello 게이트웨이 구성 hello 서브넷과 공용 IP 주소 toouse hello 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-175">hello gateway configuration defines hello subnet and hello public IP address toouse.</span></span> <span data-ttu-id="aa3f3-176">다음 예제에서는 toocreate hello 게이트웨이 구성을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-176">Use hello following example toocreate your gateway configuration:</span></span>
+
+```powershell
+$vnet = Get-AzureRmVirtualNetwork -Name TestVNet1 -ResourceGroupName TestRG1
+$subnet = Get-AzureRmVirtualNetworkSubnetConfig -Name 'GatewaySubnet' -VirtualNetwork $vnet
+$gwipconfig = New-AzureRmVirtualNetworkGatewayIpConfig -Name gwipconfig1 -SubnetId $subnet.Id -PublicIpAddressId $gwpip.Id
+```
+
+## <span data-ttu-id="aa3f3-177"><a name="CreateGateway"></a>6. Hello VPN 게이트웨이 만들기</span><span class="sxs-lookup"><span data-stu-id="aa3f3-177"><a name="CreateGateway"></a>6. Create hello VPN gateway</span></span>
+
+<span data-ttu-id="aa3f3-178">Hello 가상 네트워크 VPN 게이트웨이 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-178">Create hello virtual network VPN gateway.</span></span> <span data-ttu-id="aa3f3-179">VPN 게이트웨이 만들기 too45 분 또는 toocomplete 자세한 정도 걸릴 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-179">Creating a VPN gateway can take up too45 minutes or more toocomplete.</span></span>
+
+<span data-ttu-id="aa3f3-180">다음 값에는 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-180">Use hello following values:</span></span>
+
+* <span data-ttu-id="aa3f3-181">hello *-GatewayType* 사이트-사이트에 대 한 구성은 *Vpn*합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-181">hello *-GatewayType* for a Site-to-Site configuration is *Vpn*.</span></span> <span data-ttu-id="aa3f3-182">hello 게이트웨이 형식은 항상 구현 하는 특정 toohello 구성입니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-182">hello gateway type is always specific toohello configuration that you are implementing.</span></span> <span data-ttu-id="aa3f3-183">예를 들어 다른 게이트웨이 구성인 GatewayType ExpressRoute가 필요할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-183">For example, other gateway configurations may require -GatewayType ExpressRoute.</span></span>
+* <span data-ttu-id="aa3f3-184">hello *-VpnType* 수 *RouteBased* (일부 설명서에서는 동적 게이트웨이 tooas 함) 또는 *PolicyBased* (tooas 일부 설명서에서는 정적 게이트웨이 참조 합니다. ).</span><span class="sxs-lookup"><span data-stu-id="aa3f3-184">hello *-VpnType* can be *RouteBased* (referred tooas a Dynamic Gateway in some documentation), or *PolicyBased* (referred tooas a Static Gateway in some documentation).</span></span> <span data-ttu-id="aa3f3-185">VPN Gateway 형식에 대한 자세한 내용은 [VPN Gateway 정보](vpn-gateway-about-vpngateways.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-185">For more information about VPN gateway types, see [About VPN Gateway](vpn-gateway-about-vpngateways.md).</span></span>
+* <span data-ttu-id="aa3f3-186">Hello toouse 게이트웨이 SKU를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-186">Select hello Gateway SKU that you want toouse.</span></span> <span data-ttu-id="aa3f3-187">특정 SKU에 대한 구성 제한이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-187">There are configuration limitations for certain SKUs.</span></span> <span data-ttu-id="aa3f3-188">자세한 내용은 [게이트웨이 SKU](vpn-gateway-about-vpn-gateway-settings.md#gwsku)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-188">For more information, see [Gateway SKUs](vpn-gateway-about-vpn-gateway-settings.md#gwsku).</span></span> <span data-ttu-id="aa3f3-189">Hello에 대 한 hello VPN 게이트웨이 만들 때 오류가 발생 하는 경우-GatewaySku, hello 최신 버전의 hello PowerShell cmdlet 설치 했는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-189">If you get an error when creating hello VPN gateway regarding hello -GatewaySku, verify that you have installed hello latest version of hello PowerShell cmdlets.</span></span>
+
+```powershell
+New-AzureRmVirtualNetworkGateway -Name VNet1GW -ResourceGroupName TestRG1 `
+-Location 'East US' -IpConfigurations $gwipconfig -GatewayType Vpn `
+-VpnType RouteBased -GatewaySku VpnGw1
+```
+
+## <span data-ttu-id="aa3f3-190"><a name="ConfigureVPNDevice"></a>7. VPN 장치 구성</span><span class="sxs-lookup"><span data-stu-id="aa3f3-190"><a name="ConfigureVPNDevice"></a>7. Configure your VPN device</span></span>
+
+<span data-ttu-id="aa3f3-191">사이트 간 연결 tooan 온-프레미스 네트워크는 VPN 장치가 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-191">Site-to-Site connections tooan on-premises network require a VPN device.</span></span> <span data-ttu-id="aa3f3-192">이 단계에서는 VPN 장치를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-192">In this step, you configure your VPN device.</span></span> <span data-ttu-id="aa3f3-193">VPN 장치를 구성할 때 hello 다음이 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-193">When configuring your VPN device, you need hello following:</span></span>
+
+- <span data-ttu-id="aa3f3-194">공유 키 -</span><span class="sxs-lookup"><span data-stu-id="aa3f3-194">A shared key.</span></span> <span data-ttu-id="aa3f3-195">동일한 공유 hello은이 사이트 간 VPN 연결을 만들 때 지정한 키입니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-195">This is hello same shared key that you specify when creating your Site-to-Site VPN connection.</span></span> <span data-ttu-id="aa3f3-196">이 예제에서는 기본적인 공유 키를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-196">In our examples, we use a basic shared key.</span></span> <span data-ttu-id="aa3f3-197">더 복잡 한 키 toouse를 생성 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-197">We recommend that you generate a more complex key toouse.</span></span>
+- <span data-ttu-id="aa3f3-198">가상 네트워크 게이트웨이의 공용 IP 주소 번호입니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-198">hello Public IP address of your virtual network gateway.</span></span> <span data-ttu-id="aa3f3-199">Hello Azure 포털, PowerShell 또는 CLI를 사용 하 여 hello 공용 IP 주소를 볼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-199">You can view hello public IP address by using hello Azure portal, PowerShell, or CLI.</span></span> <span data-ttu-id="aa3f3-200">toofind hello PowerShell을 사용 하 여 hello 다음 예제를 사용 하 여 가상 네트워크 게이트웨이의 공용 IP 주소:</span><span class="sxs-lookup"><span data-stu-id="aa3f3-200">toofind hello Public IP address of your virtual network gateway using PowerShell, use hello following example:</span></span>
+
+  ```powershell
+  Get-AzureRmPublicIpAddress -Name GW1PublicIP -ResourceGroupName TestRG1
+  ```
+
+[!INCLUDE [Configure VPN device](../../includes/vpn-gateway-configure-vpn-device-rm-include.md)]
+
+
+## <span data-ttu-id="aa3f3-201"><a name="CreateConnection"></a>8. Hello VPN 연결 만들기</span><span class="sxs-lookup"><span data-stu-id="aa3f3-201"><a name="CreateConnection"></a>8. Create hello VPN connection</span></span>
+
+<span data-ttu-id="aa3f3-202">다음으로 가상 네트워크 게이트웨이 및 VPN 장치 사이의 사이트 간 VPN 연결을 hello를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-202">Next, create hello Site-to-Site VPN connection between your virtual network gateway and your VPN device.</span></span> <span data-ttu-id="aa3f3-203">자신의 있는지 tooreplace hello 값 수입니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-203">Be sure tooreplace hello values with your own.</span></span> <span data-ttu-id="aa3f3-204">hello 공유 키에는 VPN 장치 구성에 사용한 hello 값과 일치 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-204">hello shared key must match hello value you used for your VPN device configuration.</span></span> <span data-ttu-id="aa3f3-205">해당 hello 확인 '-ConnectionType'에서 사이트에 대 한 *IPsec*합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-205">Notice that hello '-ConnectionType' for Site-to-Site is *IPsec*.</span></span>
+
+1. <span data-ttu-id="aa3f3-206">Hello 변수를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-206">Set hello variables.</span></span>
+  ```powershell
+  $gateway1 = Get-AzureRmVirtualNetworkGateway -Name VNet1GW -ResourceGroupName TestRG1
+  $local = Get-AzureRmLocalNetworkGateway -Name Site2 -ResourceGroupName TestRG1
+  ```
+
+2. <span data-ttu-id="aa3f3-207">Hello 연결을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-207">Create hello connection.</span></span>
+  ```powershell
+  New-AzureRmVirtualNetworkGatewayConnection -Name VNet1toSite2 -ResourceGroupName TestRG1 `
+  -Location 'East US' -VirtualNetworkGateway1 $gateway1 -LocalNetworkGateway2 $local `
+  -ConnectionType IPsec -RoutingWeight 10 -SharedKey 'abc123'
+  ```
+
+<span data-ttu-id="aa3f3-208">잠시 후, hello 연결이 설정 됩니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-208">After a short while, hello connection will be established.</span></span>
+
+## <span data-ttu-id="aa3f3-209"><a name="toverify"></a>9. Hello VPN 연결 확인</span><span class="sxs-lookup"><span data-stu-id="aa3f3-209"><a name="toverify"></a>9. Verify hello VPN connection</span></span>
+
+<span data-ttu-id="aa3f3-210">VPN 연결 되는 몇 가지 방법으로 tooverify 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-210">There are a few different ways tooverify your VPN connection.</span></span>
+
+[!INCLUDE [Verify connection](../../includes/vpn-gateway-verify-connection-ps-rm-include.md)]
+
+## <span data-ttu-id="aa3f3-211"><a name="connectVM"></a>tooconnect tooa 가상 컴퓨터</span><span class="sxs-lookup"><span data-stu-id="aa3f3-211"><a name="connectVM"></a>tooconnect tooa virtual machine</span></span>
+
+[!INCLUDE [Connect tooa VM](../../includes/vpn-gateway-connect-vm-s2s-include.md)]
+
+
+## <span data-ttu-id="aa3f3-212"><a name="modify"></a>로컬 네트워크 게이트웨이에 대한 IP 주소 접두사 수정</span><span class="sxs-lookup"><span data-stu-id="aa3f3-212"><a name="modify"></a>Modify IP address prefixes for a local network gateway</span></span>
+
+<span data-ttu-id="aa3f3-213">Hello IP 주소 접두사 라우팅된 tooyour 온-프레미스 위치를 변경 하는 경우에 hello 로컬 네트워크 게이트웨이 수정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-213">If hello IP address prefixes that you want routed tooyour on-premises location change, you can modify hello local network gateway.</span></span> <span data-ttu-id="aa3f3-214">두 가지 지침이 제공됩니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-214">Two sets of instructions are provided.</span></span> <span data-ttu-id="aa3f3-215">선택한 hello 지침 게이트웨이 연결을 이미 작성 여부에 따라 달라 집니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-215">hello instructions you choose depend on whether you have already created your gateway connection.</span></span>
+
+[!INCLUDE [Modify prefixes](../../includes/vpn-gateway-modify-ip-prefix-rm-include.md)]
+
+## <span data-ttu-id="aa3f3-216"><a name="modifygwipaddress"></a>로컬 네트워크 게이트웨이에 대 한 hello 게이트웨이 IP 주소를 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-216"><a name="modifygwipaddress"></a>Modify hello gateway IP address for a local network gateway</span></span>
+
+[!INCLUDE [Modify gateway IP address](../../includes/vpn-gateway-modify-lng-gateway-ip-rm-include.md)]
+
+## <a name="next-steps"></a><span data-ttu-id="aa3f3-217">다음 단계</span><span class="sxs-lookup"><span data-stu-id="aa3f3-217">Next steps</span></span>
+
+*  <span data-ttu-id="aa3f3-218">연결이 완료 되 면 가상 컴퓨터 tooyour 가상 네트워크를 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-218">Once your connection is complete, you can add virtual machines tooyour virtual networks.</span></span> <span data-ttu-id="aa3f3-219">자세한 내용은 [Virtual Machines](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-219">For more information, see [Virtual Machines](https://docs.microsoft.com/azure/#pivot=services&panel=Compute).</span></span>
+* <span data-ttu-id="aa3f3-220">BGP에 대 한 정보를 참조 hello [BGP 개요](vpn-gateway-bgp-overview.md) 및 [어떻게 tooconfigure BGP](vpn-gateway-bgp-resource-manager-ps.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="aa3f3-220">For information about BGP, see hello [BGP Overview](vpn-gateway-bgp-overview.md) and [How tooconfigure BGP](vpn-gateway-bgp-resource-manager-ps.md).</span></span>

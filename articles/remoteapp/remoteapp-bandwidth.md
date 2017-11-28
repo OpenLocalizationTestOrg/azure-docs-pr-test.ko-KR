@@ -1,0 +1,46 @@
+---
+title: "Azure RemoteApp 네트워크 대역폭 사용량 예측 | Microsoft Docs"
+description: "Azure RemoteApp 컬렉션 및 앱에 대한 네트워크 대역폭 요구 사항을 알아봅니다."
+services: remoteapp
+documentationcenter: 
+author: msmbaldwin
+manager: mbaldwin
+ms.assetid: 3127f4c7-f532-46c3-ba9b-649f647abec1
+ms.service: remoteapp
+ms.workload: compute
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 04/26/2017
+ms.author: mbaldwin
+ms.openlocfilehash: 16b4ba974742d004ea02e3f83e522b9c43f2ef40
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="estimate-azure-remoteapp-network-bandwidth-usage"></a><span data-ttu-id="55fba-103">Azure RemoteApp 네트워크 대역폭 사용량 예측</span><span class="sxs-lookup"><span data-stu-id="55fba-103">Estimate Azure RemoteApp network bandwidth usage</span></span>
+> [!IMPORTANT]
+> <span data-ttu-id="55fba-104">Azure RemoteApp은 2017년 8월 31일에 중단되었습니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-104">Azure RemoteApp is being discontinued on August 31, 2017.</span></span> <span data-ttu-id="55fba-105">자세한 내용은 [알림](https://go.microsoft.com/fwlink/?linkid=821148) 을 읽어보세요.</span><span class="sxs-lookup"><span data-stu-id="55fba-105">Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.</span></span>
+> 
+> 
+
+<span data-ttu-id="55fba-106">Azure RemoteApp은 RDP(원격 데스크톱 프로토콜)를 사용하여 Azure 클라우드에서 실행 중인 응용 프로그램과 사용자 간에 통신합니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-106">Azure RemoteApp uses the Remote Desktop Protocol (RDP) to communicate between applications running in the Azure cloud and your users.</span></span> <span data-ttu-id="55fba-107">이 문서에서는 네트워크 사용량을 계산하고 잠재적으로 Azure RemoteApp 사용자당 네트워크 대역폭 사용량을 평가하는 데 사용할 수 있는 몇 가지 기본 지침을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-107">This article provides some basic guidelines you can use to estimate that network usage and potentially evaluate network bandwidth usage per Azure RemoteApp user.</span></span>
+
+<span data-ttu-id="55fba-108">사용자당 대역폭 사용량 예측은 매우 복잡하며, 멀티태스킹 시나리오에서 여러 응용 프로그램을 실행해야 합니다. 이 경우 응용 프로그램은 네트워크 대역폭 수요에 따라 서로의 성능에 영향을 줄 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-108">Estimating bandwidth usage per user is very complex and requires running multiple applications simultaneously in multitasking scenarios where applications might impact each other's performance based on their demand for network bandwidth.</span></span> <span data-ttu-id="55fba-109">원격 데스크톱 클라이언트 유형(예: Mac 클라이언트와 HTML5 클라이언트)도 다양한 네트워크 결과를 초래할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-109">Even the type of Remote Desktop client (such as Mac client versus HTML5 client) can lead to different bandwidth results.</span></span> <span data-ttu-id="55fba-110">이러한 복잡성을 연습하도록 도와주기 위해 사용 시나리오를 여러 개의 일반적인 범주로 나누어 실제 시나리오를 복제해 보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-110">To help you work through these complications, we'll break the usage scenarios into several of the common categories to replicate real-world scenarios.</span></span> <span data-ttu-id="55fba-111">물론 실제 시나리오는 여러 범주가 혼합되어 있으며, 사용자에 따라 다릅니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-111">(Where the real-world scenario is, of course, a mix of categories and differs by user.)</span></span>
+
+<span data-ttu-id="55fba-112">계속하기 전에, RDP는 대기 시간이 120밀리초 미만이고 대역폭이 5MB를 초과하는 대부분의 사용 시나리오에 뛰어난 경험을 제공하는 데 적절합니다. 이는 사용 가능한 네트워크 대역폭 및 예상되는 응용 프로그램 대역폭 수요를 사용하여 동적으로 조정되는 RDP의 기능을 기반으로 합니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-112">Before we go further - note that we assume RDP provides a good to excellent experience for most usage scenarios on networks with latency below 120 ms and bandwidth over 5 MBs - this is based on RDP's ability to dynamically adjust by using the available network bandwidth and the estimated application bandwidth needs.</span></span> <span data-ttu-id="55fba-113">이 문서에서는 이러한 "대부분의 사용 시나리오"를 넘어 시나리오가 해제되고 사용자 환경이 저하되기 시작하는 경계를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-113">This article goes beyond those "most usage scenarios" to look at the edge, where scenarios begin to unwind and user experience begins to degrade.</span></span>
+
+<span data-ttu-id="55fba-114">고려할 요소, 기준선 권장 사항, 예측에 포함되지 않은 항목 등의 자세한 내용은 다음 문서를 확인하세요.</span><span class="sxs-lookup"><span data-stu-id="55fba-114">Now check out the following articles for the details, including factors to consider, baseline recommendations, and what we did not include in our estimates.</span></span>
+
+* [<span data-ttu-id="55fba-115">네트워크 대역폭과 환경 품질을 함께 작동하는 방식은 무엇인가요?</span><span class="sxs-lookup"><span data-stu-id="55fba-115">How do network bandwidth and quality of experience work together?</span></span>](remoteapp-bandwidthexperience.md)
+* [<span data-ttu-id="55fba-116">몇 가지 일반적 시나리오로 네트워크 대역폭 사용량 테스트</span><span class="sxs-lookup"><span data-stu-id="55fba-116">Testing your network bandwidth usage with some common scenarios</span></span>](remoteapp-bandwidthtests.md)
+* [<span data-ttu-id="55fba-117">테스트할 시간 또는 능력이 없는 경우의 빠른 지침</span><span class="sxs-lookup"><span data-stu-id="55fba-117">Quick guidelines if you don't have the time or ability to test</span></span>](remoteapp-bandwidthguidelines.md)
+
+## <a name="what-are-we-not-including"></a><span data-ttu-id="55fba-118">포함하지 않은 항목</span><span class="sxs-lookup"><span data-stu-id="55fba-118">What are we not including?</span></span>
+<span data-ttu-id="55fba-119">제안된 테스트와 전반적인(그리고 일반적인) 권장 사항을 고려할 때 여기에 포함되지 않은 몇 가지 요소가 있다는 점을 알아야 합니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-119">When you review the proposed tests and our overall (and admittedly generic) recommendations, be aware that there are several factors that we did not consider.</span></span> <span data-ttu-id="55fba-120">예를 들어 업로드 대역폭과 다운로드 대역폭의 비대칭 특성으로 인한 사용자 환경의 복잡성입니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-120">For example, the user experience complications provided by the asymmetric nature of upload vs. download bandwidth.</span></span> <span data-ttu-id="55fba-121">대부분의 Wi-Fi 네트워크의 비대칭 특성은 성능과 사용자 환경 인식에 추가적으로 영향을 줍니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-121">The asymmetric nature of most Wi-Fi networks will additionally impact the performance and the user experience perception.</span></span> <span data-ttu-id="55fba-122">대화형 시나리오의 경우 다운스트림 트래픽이 업스트림보다 우선 순위가 낮을 수 있으므로 손실되는 비디오 및 오디오 프레임 수가 증가할 수 있습니다. 따라서 스트리밍 환경에 대한 사용자 인식이 영향을 받을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-122">For interactive scenarios the downstream traffic may be prioritized lower than the upstream, which may increase the number of lost video or audio frames and therefore impact the user perception of the streaming experience.</span></span> <span data-ttu-id="55fba-123">직접 실험을 통해 특정 사용 사례 및 네트워크에 적합한지 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-123">You can run your own experiments to see what is good for your specific use case and network.</span></span>
+
+<span data-ttu-id="55fba-124">장치 리디렉션에 대해 다루지만 저장소, 프린터, 스캐너, 웹 카메라 및 기타 USB 장치와 같은 연결된 장치로 인한 네트워크 트래픽의 대역폭 영향은 고려하지 않았습니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-124">Although we discuss device redirection, we did not take into consideration the bandwidth impact of the network traffic caused by attached devices, like storage, printers, scanners, web cameras, and other USB devices.</span></span> <span data-ttu-id="55fba-125">이러한 장치는 일반적으로 대역폭 수요를 일시적으로 급증시키며 작업이 완료되면 효과가 사라집니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-125">The effect of those devices usually spikes the bandwidth needs temporarily and goes away when the task is complete.</span></span> <span data-ttu-id="55fba-126">그러나 자주 수행되는 경우 대역폭 수요가 상당히 증가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-126">But if done frequently, that bandwidth demand could be quite noticeable.</span></span>
+
+<span data-ttu-id="55fba-127">동일한 네트워크에서 하나의 사용자가 다른 사용자에게 미칠 수 있는 영향도 고려하지 않았습니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-127">We also do not discuss how one user can impact other users within the same network.</span></span> <span data-ttu-id="55fba-128">예를 들어 하나의 사용자가 100MB/s 네트워크에서 4K 비디오를 사용하는 경우 같은 네트워크의 다른 사용자가 이와 동일한 작업을 수행하는 데 상당한 영향을 받을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-128">For example, one user consuming 4K video on a 100 MB/s network might significantly impact other users on that same network trying to do the same task.</span></span> <span data-ttu-id="55fba-129">시스템 성능에 대한 일반적이거나 포괄적인 접근 방식을 제공하기 위해 동시 사용의 영향을 확인하는 것이 점점 어려워지고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-129">Unfortunately it gets progressively harder to determine the impact of concurrent usage to give a common or all-encompassing recommendation about how the system performs at aggregate.</span></span> <span data-ttu-id="55fba-130">현재로서는 기본 프로토콜 기술이 사용 가능한 네트워크 대역폭 사용을 최적화하지만 이 기술에는 제한 사항이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="55fba-130">All we can say is that the underlying protocol technology will make the best use of the available network bandwidth, but it does have its limitations.</span></span>
+

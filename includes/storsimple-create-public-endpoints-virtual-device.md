@@ -1,0 +1,14 @@
+#### <a name="to-create-public-endpoints-on-the-virtual-device"></a><span data-ttu-id="629d9-101">가상 장치에 공용 끝점을 만들려면</span><span class="sxs-lookup"><span data-stu-id="629d9-101">To create public endpoints on the virtual device</span></span>
+
+1. <span data-ttu-id="629d9-102">Azure 클래식 포털에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="629d9-102">Sign in to the Azure classic portal.</span></span>
+2. <span data-ttu-id="629d9-103">**가상 컴퓨터**를 클릭한 다음 가상 장치로 사용 중인 가상 컴퓨터를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="629d9-103">Click **Virtual Machines**, and then select the virtual machine that is being used as your virtual device.</span></span>
+3. <span data-ttu-id="629d9-104">**끝점**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="629d9-104">Click **Endpoints**.</span></span> <span data-ttu-id="629d9-105">**끝점** 페이지에는 가상 컴퓨터에 대한 모든 끝점이 나열됩니다.</span><span class="sxs-lookup"><span data-stu-id="629d9-105">The **Endpoints** page lists all endpoints for the virtual machine.</span></span>
+4. <span data-ttu-id="629d9-106">**추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="629d9-106">Click **Add**.</span></span> <span data-ttu-id="629d9-107">**Add Endpoint** 대화 상자가 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="629d9-107">The **Add Endpoint** dialog box appears.</span></span> <span data-ttu-id="629d9-108">화살표를 클릭하여 계속합니다.</span><span class="sxs-lookup"><span data-stu-id="629d9-108">Click the arrow to continue.</span></span>
+5. <span data-ttu-id="629d9-109">**이름**의 경우, 끝점에 대해 **WinRMHttps**를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="629d9-109">For the **Name**, type the following name for the endpoint: **WinRMHttps**.</span></span>
+6. <span data-ttu-id="629d9-110">**프로토콜**의 경우 **TCP**를 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="629d9-110">For the **Protocol**, specify **TCP**.</span></span>
+7. <span data-ttu-id="629d9-111">**공용 포트**의 경우, 연결에 사용할 포트 번호를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="629d9-111">For the **Public Port**, type the port numbers that you want to use for the connection.</span></span>
+8. <span data-ttu-id="629d9-112">**개인 포트**로 **5986**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="629d9-112">For the **Private Port**, type **5986**.</span></span>
+9. <span data-ttu-id="629d9-113">확인 표시를 클릭하여 끝점을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="629d9-113">Click the check mark to create the endpoint.</span></span>
+
+<span data-ttu-id="629d9-114">끝점이 생성되면, 세부 정보를 보고 공용 가상 IP(VIP) 주소를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="629d9-114">After the endpoint is created, you can view its details to determine the Public Virtual IP (VIP) address.</span></span> <span data-ttu-id="629d9-115">이 주소를 기록합니다.</span><span class="sxs-lookup"><span data-stu-id="629d9-115">Record this address.</span></span>
+

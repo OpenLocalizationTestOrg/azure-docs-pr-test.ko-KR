@@ -1,0 +1,54 @@
+---
+title: "Azure CLI 샘플 | Microsoft Docs"
+description: "Azure CLI 샘플"
+services: virtual-machines-linux
+documentationcenter: virtual-machines
+author: neilpeterson
+manager: timlt
+editor: tysonn
+tags: azure-service-management
+ms.assetid: 
+ms.service: virtual-machines-linux
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: vm-linux
+ms.workload: infrastructure
+ms.date: 03/08/2017
+ms.author: nepeters
+ms.custom: mvc
+ms.openlocfilehash: 43fe6d30bb08c6f79151705437cb184cbf154898
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 08/29/2017
+---
+# <a name="azure-cli-samples-for-linux-virtual-machines"></a><span data-ttu-id="eed92-103">Linux 가상 컴퓨터에 대한 Azure CLI 샘플</span><span class="sxs-lookup"><span data-stu-id="eed92-103">Azure CLI Samples for Linux virtual machines</span></span>
+
+<span data-ttu-id="eed92-104">다음 테이블은 Azure CLI를 사용하여 빌드된 bash 셸에 대한 링크를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-104">The following table includes links to bash scripts built using the Azure CLI.</span></span>
+
+| | |
+|---|---|
+|<span data-ttu-id="eed92-105">**가상 컴퓨터 만들기**</span><span class="sxs-lookup"><span data-stu-id="eed92-105">**Create virtual machines**</span></span>||
+| [<span data-ttu-id="eed92-106">가상 컴퓨터 만들기</span><span class="sxs-lookup"><span data-stu-id="eed92-106">Create a virtual machine</span></span>](./../scripts/virtual-machines-linux-cli-sample-create-vm-quick-create.md?toc=%2fcli%2fazure%2ftoc.json) | <span data-ttu-id="eed92-107">최소한의 구성으로 Linux 가상 컴퓨터를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-107">Creates a Linux virtual machine with minimal configuration.</span></span> |
+| [<span data-ttu-id="eed92-108">완벽히 구성된 가상 컴퓨터 만들기</span><span class="sxs-lookup"><span data-stu-id="eed92-108">Create a fully configured virtual machine</span></span>](./../scripts/virtual-machines-linux-cli-sample-create-vm.md?toc=%2fcli%2fazure%2ftoc.json) | <span data-ttu-id="eed92-109">리소스 그룹, 가상 컴퓨터 및 모든 관련된 리소스를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-109">Creates a resource group, virtual machine, and all related resources.</span></span>|
+| [<span data-ttu-id="eed92-110">고가용성 가상 컴퓨터 만들기</span><span class="sxs-lookup"><span data-stu-id="eed92-110">Create highly available virtual machines</span></span>](./../scripts/virtual-machines-linux-cli-sample-nlb.md?toc=%2fcli%2fazure%2ftoc.json) | <span data-ttu-id="eed92-111">고가용성의 부하가 분산된 구성으로 여러 가상 컴퓨터를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-111">Creates several virtual machines in a highly available and load balanced configuration.</span></span> |
+| [<span data-ttu-id="eed92-112">Docker가 활성화된 VM 만들기</span><span class="sxs-lookup"><span data-stu-id="eed92-112">Create a VM with Docker enabled</span></span>](./../scripts/virtual-machines-linux-cli-sample-create-docker-host.md?toc=%2fcli%2fazure%2ftoc.json) | <span data-ttu-id="eed92-113">가상 컴퓨터를 만들고 이 VM을 Docker 호스트로 구성하고 NGINX 컨테이너를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-113">Creates a virtual machine, configures this VM as a Docker host, and runs an NGINX container.</span></span> |
+| [<span data-ttu-id="eed92-114">VM 만들기 및 구성 스크립트 실행</span><span class="sxs-lookup"><span data-stu-id="eed92-114">Create a VM and run configuration script</span></span>](./../scripts/virtual-machines-linux-cli-sample-create-vm-nginx.md?toc=%2fcli%2fazure%2ftoc.json) | <span data-ttu-id="eed92-115">가상 컴퓨터를 만들고 Azure 사용자 지정 스크립트 확장을 사용하여 NGINX를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-115">Creates a virtual machine and uses the Azure Custom Script extension to install NGINX.</span></span> |
+| [<span data-ttu-id="eed92-116">WordPress가 설치된 VM 만들기</span><span class="sxs-lookup"><span data-stu-id="eed92-116">Create a VM with WordPress installed</span></span>](./../scripts/virtual-machines-linux-cli-sample-create-vm-wordpress.md?toc=%2fcli%2fazure%2ftoc.json) | <span data-ttu-id="eed92-117">가상 컴퓨터를 만들고 Azure 사용자 지정 스크립트 확장을 사용하여 WordPress를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-117">Creates a virtual machine and uses the Azure Custom Script extension to install WordPress.</span></span> |
+| [<span data-ttu-id="eed92-118">관리되는 OS 디스크에서 VM 만들기</span><span class="sxs-lookup"><span data-stu-id="eed92-118">Create a VM from a managed OS disk</span></span>](./../scripts/virtual-machines-linux-cli-sample-create-vm-from-managed-os-disks.md?toc=%2fcli%2fmodule%2ftoc.json) | <span data-ttu-id="eed92-119">기존 관리되는 디스크를 OS 디스크로 연결하여 가상 컴퓨터를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-119">Creates a virtual machine by attaching an existing Managed Disk as OS disk.</span></span> |
+| [<span data-ttu-id="eed92-120">스냅숏에서 VM 만들기</span><span class="sxs-lookup"><span data-stu-id="eed92-120">Create a VM from a snapshot</span></span>](./../scripts/virtual-machines-linux-cli-sample-create-vm-from-snapshot.md?toc=%2fcli%2fmodule%2ftoc.json) | <span data-ttu-id="eed92-121">먼저 스냅숏에서 관리되는 디스크를 만들고 새 관리되는 디스크를 OS 디스크로 연결하여 스냅숏에서 가상 컴퓨터를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-121">Creates a virtual machine from a snapshot by first creating a managed disk from snapshot and then attaching the new managed disk as OS disk.</span></span> |
+|<span data-ttu-id="eed92-122">**저장소 관리**</span><span class="sxs-lookup"><span data-stu-id="eed92-122">**Manage storage**</span></span>||
+| [<span data-ttu-id="eed92-123">VHD에서 관리 디스크 만들기</span><span class="sxs-lookup"><span data-stu-id="eed92-123">Create managed disk from a VHD</span></span>](../scripts/virtual-machines-linux-cli-sample-create-managed-disk-from-vhd.md?toc=%2fcli%2fmodule%2ftoc.json) | <span data-ttu-id="eed92-124">특수화된 VHD의 관리 디스크를 OS 디스크로 만들거나 데이터 VHD의 관리 디스크를 데이터 디스크로 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-124">Creates a managed disk from a specialized VHD as a OS disk or from a data VHD as data disk.</span></span>  |
+| [<span data-ttu-id="eed92-125">스냅숏에서 관리 디스크 만들기</span><span class="sxs-lookup"><span data-stu-id="eed92-125">Create a managed disk from a snapshot</span></span>](../scripts/virtual-machines-linux-cli-sample-create-managed-disk-from-snapshot.md?toc=%2fcli%2fmodule%2ftoc.json) | <span data-ttu-id="eed92-126">스냅숏에서 관리 디스크를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-126">Creates a managed disk from a snapshot.</span></span> |
+| [<span data-ttu-id="eed92-127">동일하거나 다른 구독으로 관리 디스크 복사</span><span class="sxs-lookup"><span data-stu-id="eed92-127">Copy managed disk to same or different subscription</span></span>](../scripts/virtual-machines-linux-cli-sample-copy-managed-disks-to-same-or-different-subscription.md?toc=%2fcli%2fmodule%2ftoc.json) | <span data-ttu-id="eed92-128">부모 관리 디스크와 같은 지역에 있지만 동일하거나 다른 구독으로 관리 디스크를 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-128">Copies managed disk to same or different subscription but in the same region as the parent managed disk.</span></span> 
+| [<span data-ttu-id="eed92-129">저장소 계정에 VHD로 스냅샷 내보내기</span><span class="sxs-lookup"><span data-stu-id="eed92-129">Export a snapshot as VHD to a storage account</span></span>](../scripts/virtual-machines-linux-cli-sample-copy-snapshot-to-storage-account.md?toc=%2fcli%2fmodule%2ftoc.json) | <span data-ttu-id="eed92-130">다른 지역의 저장소 계정에 관리 스냅숏을 VHD로 내보냅니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-130">Exports a managed snapshot as VHD to a storage account in different region.</span></span> |
+| [<span data-ttu-id="eed92-131">동일하거나 다른 구독으로 스냅숏 복사</span><span class="sxs-lookup"><span data-stu-id="eed92-131">Copy snapshot to same or different subscription</span></span>](../scripts/virtual-machines-linux-cli-sample-copy-snapshot-to-same-or-different-subscription.md?toc=%2fcli%2fmodule%2ftoc.json) | <span data-ttu-id="eed92-132">부모 스냅숏과 같은 지역에 있지만 동일하거나 다른 구독으로 스냅숏을 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-132">Copies snapshot to same or different subscription but in the same region as the parent snapshot.</span></span> |
+|<span data-ttu-id="eed92-133">**네트워크 가상 컴퓨터**</span><span class="sxs-lookup"><span data-stu-id="eed92-133">**Network virtual machines**</span></span>||
+| [<span data-ttu-id="eed92-134">가상 컴퓨터 간의 네트워크 트래픽 보안</span><span class="sxs-lookup"><span data-stu-id="eed92-134">Secure network traffic between virtual machines</span></span>](./../scripts/virtual-machines-linux-cli-sample-create-vm-nsg.md?toc=%2fcli%2fazure%2ftoc.json) | <span data-ttu-id="eed92-135">두 개의 가상 컴퓨터, 모든 관련된 리소스 및 내부 및 외부 NSG(네트워크 보안 그룹)를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-135">Creates two virtual machines, all related resources, and an internal and external network security groups (NSG).</span></span> |
+|<span data-ttu-id="eed92-136">**가상 컴퓨터 보호**</span><span class="sxs-lookup"><span data-stu-id="eed92-136">**Secure virtual machines**</span></span>||
+| [<span data-ttu-id="eed92-137">VM 및 데이터 디스크 암호화</span><span class="sxs-lookup"><span data-stu-id="eed92-137">Encrypt a VM and data disks</span></span>](./../scripts/virtual-machines-linux-cli-sample-encrypt-vm.md?toc=%2fcli%2fazure%2ftoc.json) | <span data-ttu-id="eed92-138">Azure Key Vault, 암호화 키 및 서비스 주체를 만든 다음 VM을 암호화합니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-138">Creates an Azure Key Vault, encryption key, and service principal, then encrypts a VM.</span></span> |
+|<span data-ttu-id="eed92-139">**가상 컴퓨터 모니터링**</span><span class="sxs-lookup"><span data-stu-id="eed92-139">**Monitor virtual machines**</span></span>||
+| [<span data-ttu-id="eed92-140">Operations Management Suite를 사용하여 VM 모니터링</span><span class="sxs-lookup"><span data-stu-id="eed92-140">Monitor a VM with Operations Management Suite</span></span>](./../scripts/virtual-machines-linux-cli-sample-create-vm-oms.md?toc=%2fcli%2fazure%2ftoc.json) | <span data-ttu-id="eed92-141">가상 컴퓨터를 만들고 Operations Management Suite 에이전트를 설치하고 OMS 작업 영역에서 VM을 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-141">Creates a virtual machine, installs the Operations Management Suite agent, and enrolls the VM in an OMS Workspace.</span></span>  |
+|<span data-ttu-id="eed92-142">**가상 컴퓨터 문제 해결**</span><span class="sxs-lookup"><span data-stu-id="eed92-142">**Troubleshoot virtual machines**</span></span>||
+| [<span data-ttu-id="eed92-143">VM 운영 체제 디스크 문제 해결</span><span class="sxs-lookup"><span data-stu-id="eed92-143">Troubleshoot a VMs operating system disk</span></span>](./../scripts/virtual-machines-linux-cli-sample-mount-os-disk.md?toc=%2fcli%2fazure%2ftoc.json) | <span data-ttu-id="eed92-144">두 번째 VM의 데이터 디스크처럼 첫 번째 VM에서 운영 체제 디스크를 탑재합니다.</span><span class="sxs-lookup"><span data-stu-id="eed92-144">Mounts the operating system disk from one VM as a data disk on a second VM.</span></span> |
+| | |

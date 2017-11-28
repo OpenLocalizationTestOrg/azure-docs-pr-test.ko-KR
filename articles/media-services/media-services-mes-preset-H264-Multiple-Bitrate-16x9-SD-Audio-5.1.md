@@ -1,0 +1,234 @@
+---
+title: "aaaH264 다중 비트 전송률 16x9 SD Audio 5.1 | Microsoft Docs"
+description: "hello에 대 한 개요를 제공 하는 hello 항목 * * H264 다중 비트 전송률 16x9 SD 오디오 5.1* * 태스크 사전 설정입니다."
+author: Juliako
+manager: cfowler
+editor: 
+services: media-services
+documentationcenter: 
+ms.assetid: 35007ed3-8b01-44ec-9d1e-1714c7e697e9
+ms.service: media-services
+ms.workload: media
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/20/2017
+ms.author: juliako
+ms.openlocfilehash: d3bdd02caacda3fec38484e108f94da70431f120
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 10/06/2017
+---
+# <a name="h264-multiple-bitrate-16x9-sd-audio-51"></a><span data-ttu-id="6343c-103">H264 다중 비트 전송률 16x9 SD Audio 5.1</span><span class="sxs-lookup"><span data-stu-id="6343c-103">H264 Multiple Bitrate 16x9 SD Audio 5.1</span></span>
+<span data-ttu-id="6343c-104">`Media Encoder Standard`는 인코딩 작업을 만들 때 사용할 수 있는 인코딩 미리 설정을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="6343c-104">`Media Encoder Standard` defines a set of encoding presets you can use when creating encoding jobs.</span></span> <span data-ttu-id="6343c-105">사용할 수 있습니다는 `preset name` 어떤 형식으로 원하는 tooencode toospecify 미디어 파일입니다.</span><span class="sxs-lookup"><span data-stu-id="6343c-105">You can either use a `preset name` toospecify into which format you would like tooencode your media file.</span></span> <span data-ttu-id="6343c-106">또는 자신만의 JSON 또는 XML 기반 미리 설정(UTF-8 또는 UTF-16 인코딩을 사용하여)을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6343c-106">Or, you can create your own JSON or XML-based presets (using UTF-8 or UTF-16 encoding.</span></span> <span data-ttu-id="6343c-107">그런 다음 hello 미리 설정 된 toohello 사용자 지정 인코더를 전달 합니다.</span><span class="sxs-lookup"><span data-stu-id="6343c-107">You would then pass hello custom preset toohello encoder.</span></span> <span data-ttu-id="6343c-108">사전 설정 이름을이에서 지 원하는 모든 hello 목록이 hello에 대 한 `Media Encoder Standard` 인코더 참조 [미디어 인코더 표준의 태스크 사전 설정](media-services-mes-presets-overview.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="6343c-108">For hello list of all hello preset names supported by this `Media Encoder Standard` encoder, see [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md).</span></span>  
+  
+ <span data-ttu-id="6343c-109">이 항목에서는 hello `H264 Multiple Bitrate 16x9 SD Audio 5.1` XML 및 JSON 형식으로 미리 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="6343c-109">This topic shows hello `H264 Multiple Bitrate 16x9 SD Audio 5.1` preset in XML and JSON format.</span></span>  
+  
+ <span data-ttu-id="6343c-110">이 사전 설정 1900 kbps too400 kbps 및 AAC 5.1 오디오에서 까지의 5 GOP 정렬 MP4 파일 집합을 생성 합니다.</span><span class="sxs-lookup"><span data-stu-id="6343c-110">This preset produces a set of 5 GOP-aligned MP4 files, ranging from 1900 kbps too400 kbps, and AAC 5.1 audio.</span></span> <span data-ttu-id="6343c-111">프로필에 대 한 자세한 정보에 대 한 비트 전송률, 샘플링 속도 등에이 사전 설정, XML 또는 JSON 아래에 정의 된 hello를 검사 합니다.</span><span class="sxs-lookup"><span data-stu-id="6343c-111">For detailed information about profile, bitrate, sampling rate, etc. of this preset, examine hello XML or JSON defined below.</span></span> <span data-ttu-id="6343c-112">각 요소의 의미 및 hello 유효한 값의 각 요소에 대 한 설명을 참조 hello [미디어 인코더 표준 스키마](media-services-mes-schema.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="6343c-112">For explanations of what each element means, and hello valid values for each element, see hello [Media Encoder Standard schema](media-services-mes-schema.md).</span></span>  
+  
+> [!NOTE]
+>  <span data-ttu-id="6343c-113">Hello를 수정할 때 `Width` 및 `Height` 값, 계층에서 해당 hello 가로 세로 비율 일관성이 유지 되는지 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="6343c-113">When modifying hello `Width` and `Height` values across layers, make sure that hello aspect ratio remains consistent.</span></span> <span data-ttu-id="6343c-114">예: 1920x1080, 1280x720, 1080x576, 640x360.</span><span class="sxs-lookup"><span data-stu-id="6343c-114">For example: 1920x1080, 1280x720, 1080x576, 640x360.</span></span> <span data-ttu-id="6343c-115">가로 세로 비율을 혼합하여 사용하지 말아야 합니다. 예: 1280x720, 720x480, 640x360.</span><span class="sxs-lookup"><span data-stu-id="6343c-115">You should not use a mixture of aspect ratios, such as: 1280x720, 720x480, 640x360.</span></span>  
+  
+ <span data-ttu-id="6343c-116">XML</span><span class="sxs-lookup"><span data-stu-id="6343c-116">XML</span></span>  
+  
+```  
+<?xml version="1.0" encoding="utf-16"?>  
+<Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">  
+  <Encoding>  
+    <H264Video>  
+      <KeyFrameInterval>00:00:02</KeyFrameInterval>  
+      <H264Layers>  
+        <H264Layer>  
+          <Bitrate>1900</Bitrate>  
+          <Width>848</Width>  
+          <Height>480</Height>  
+          <FrameRate>0/1</FrameRate>  
+          <Profile>Auto</Profile>  
+          <Level>auto</Level>  
+          <BFrames>3</BFrames>  
+          <ReferenceFrames>3</ReferenceFrames>  
+          <Slices>0</Slices>  
+          <AdaptiveBFrame>true</AdaptiveBFrame>  
+          <EntropyMode>Cabac</EntropyMode>  
+          <BufferWindow>00:00:05</BufferWindow>  
+          <MaxBitrate>1900</MaxBitrate>  
+        </H264Layer>  
+        <H264Layer>  
+          <Bitrate>1300</Bitrate>  
+          <Width>848</Width>  
+          <Height>480</Height>  
+          <FrameRate>0/1</FrameRate>  
+          <Profile>Auto</Profile>  
+          <Level>auto</Level>  
+          <BFrames>3</BFrames>  
+          <ReferenceFrames>3</ReferenceFrames>  
+          <Slices>0</Slices>  
+          <AdaptiveBFrame>true</AdaptiveBFrame>  
+          <EntropyMode>Cabac</EntropyMode>  
+          <BufferWindow>00:00:05</BufferWindow>  
+          <MaxBitrate>1300</MaxBitrate>  
+        </H264Layer>  
+        <H264Layer>  
+          <Bitrate>900</Bitrate>  
+          <Width>640</Width>  
+          <Height>360</Height>  
+          <FrameRate>0/1</FrameRate>  
+          <Profile>Auto</Profile>  
+          <Level>auto</Level>  
+          <BFrames>3</BFrames>  
+          <ReferenceFrames>3</ReferenceFrames>  
+          <Slices>0</Slices>  
+          <AdaptiveBFrame>true</AdaptiveBFrame>  
+          <EntropyMode>Cabac</EntropyMode>  
+          <BufferWindow>00:00:05</BufferWindow>  
+          <MaxBitrate>900</MaxBitrate>  
+        </H264Layer>  
+        <H264Layer>  
+          <Bitrate>650</Bitrate>  
+          <Width>640</Width>  
+          <Height>360</Height>  
+          <FrameRate>0/1</FrameRate>  
+          <Profile>Auto</Profile>  
+          <Level>auto</Level>  
+          <BFrames>3</BFrames>  
+          <ReferenceFrames>3</ReferenceFrames>  
+          <Slices>0</Slices>  
+          <AdaptiveBFrame>true</AdaptiveBFrame>  
+          <EntropyMode>Cabac</EntropyMode>  
+          <BufferWindow>00:00:05</BufferWindow>  
+          <MaxBitrate>650</MaxBitrate>  
+        </H264Layer>  
+        <H264Layer>  
+          <Bitrate>400</Bitrate>  
+          <Width>432</Width>  
+          <Height>240</Height>  
+          <FrameRate>0/1</FrameRate>  
+          <Profile>Auto</Profile>  
+          <Level>auto</Level>  
+          <BFrames>3</BFrames>  
+          <ReferenceFrames>3</ReferenceFrames>  
+          <Slices>0</Slices>  
+          <AdaptiveBFrame>true</AdaptiveBFrame>  
+          <EntropyMode>Cabac</EntropyMode>  
+          <BufferWindow>00:00:05</BufferWindow>  
+          <MaxBitrate>400</MaxBitrate>  
+        </H264Layer>  
+      </H264Layers>  
+      <Chapters />  
+    </H264Video>  
+    <AACAudio>  
+      <Profile>AACLC</Profile>  
+      <Channels>6</Channels>  
+      <SamplingRate>48000</SamplingRate>  
+      <Bitrate>384</Bitrate>  
+    </AACAudio>  
+  </Encoding>  
+  <Outputs>  
+    <Output FileName="{Basename}_{Width}x{Height}_{VideoBitrate}.mp4">  
+      <MP4Format />  
+    </Output>  
+  </Outputs>  
+</Preset>  
+```  
+  
+ <span data-ttu-id="6343c-117">JSON</span><span class="sxs-lookup"><span data-stu-id="6343c-117">JSON</span></span>  
+  
+```  
+{  
+  "Version": 1.0,  
+  "Codecs": [  
+    {  
+      "KeyFrameInterval": "00:00:02",  
+      "H264Layers": [  
+        {  
+          "Profile": "Auto",  
+          "Level": "auto",  
+          "Bitrate": 1900,  
+          "MaxBitrate": 1900,  
+          "BufferWindow": "00:00:05",  
+          "Width": 848,  
+          "Height": 480,  
+          "BFrames": 3,  
+          "ReferenceFrames": 3,  
+          "AdaptiveBFrame": true,  
+          "Type": "H264Layer",  
+          "FrameRate": "0/1"  
+        },  
+        {  
+          "Profile": "Auto",  
+          "Level": "auto",  
+          "Bitrate": 1300,  
+          "MaxBitrate": 1300,  
+          "BufferWindow": "00:00:05",  
+          "Width": 848,  
+          "Height": 480,  
+          "BFrames": 3,  
+          "ReferenceFrames": 3,  
+          "AdaptiveBFrame": true,  
+          "Type": "H264Layer",  
+          "FrameRate": "0/1"  
+        },  
+        {  
+          "Profile": "Auto",  
+          "Level": "auto",  
+          "Bitrate": 900,  
+          "MaxBitrate": 900,  
+          "BufferWindow": "00:00:05",  
+          "Width": 640,  
+          "Height": 360,  
+          "BFrames": 3,  
+          "ReferenceFrames": 3,  
+          "AdaptiveBFrame": true,  
+          "Type": "H264Layer",  
+          "FrameRate": "0/1"  
+        },  
+        {  
+          "Profile": "Auto",  
+          "Level": "auto",  
+          "Bitrate": 650,  
+          "MaxBitrate": 650,  
+          "BufferWindow": "00:00:05",  
+          "Width": 640,  
+          "Height": 360,  
+          "BFrames": 3,  
+          "ReferenceFrames": 3,  
+          "AdaptiveBFrame": true,  
+          "Type": "H264Layer",  
+          "FrameRate": "0/1"  
+        },  
+        {  
+          "Profile": "Auto",  
+          "Level": "auto",  
+          "Bitrate": 400,  
+          "MaxBitrate": 400,  
+          "BufferWindow": "00:00:05",  
+          "Width": 432,  
+          "Height": 240,  
+          "BFrames": 3,  
+          "ReferenceFrames": 3,  
+          "AdaptiveBFrame": true,  
+          "Type": "H264Layer",  
+          "FrameRate": "0/1"  
+        }  
+      ],  
+      "Type": "H264Video"  
+    },  
+    {  
+      "Profile": "AACLC",  
+      "Channels": 6,  
+      "SamplingRate": 48000,  
+      "Bitrate": 384,  
+      "Type": "AACAudio"  
+    }  
+  ],  
+  "Outputs": [  
+    {  
+      "FileName": "{Basename}_{Width}x{Height}_{VideoBitrate}.mp4",  
+      "Format": {  
+        "Type": "MP4Format"  
+      }  
+    }  
+  ]  
+}  
+```

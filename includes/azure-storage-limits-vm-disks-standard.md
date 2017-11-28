@@ -1,0 +1,8 @@
+<span data-ttu-id="0c55b-101">**표준 관리되지 않는 가상 컴퓨터 디스크: 디스크 한도당**</span><span class="sxs-lookup"><span data-stu-id="0c55b-101">**Standard unmanaged virtual machine disks: per disk limits**</span></span>
+
+| <span data-ttu-id="0c55b-102">VM 계층</span><span class="sxs-lookup"><span data-stu-id="0c55b-102">VM Tier</span></span> | <span data-ttu-id="0c55b-103">기본 계층 VM</span><span class="sxs-lookup"><span data-stu-id="0c55b-103">Basic Tier VM</span></span> | <span data-ttu-id="0c55b-104">표준 계층 VM</span><span class="sxs-lookup"><span data-stu-id="0c55b-104">Standard Tier VM</span></span> |
+| --- | --- | --- |
+| <span data-ttu-id="0c55b-105">디스크 크기</span><span class="sxs-lookup"><span data-stu-id="0c55b-105">Disk size</span></span> |<span data-ttu-id="0c55b-106">4,095GB</span><span class="sxs-lookup"><span data-stu-id="0c55b-106">4095 GB</span></span> |<span data-ttu-id="0c55b-107">4,095GB</span><span class="sxs-lookup"><span data-stu-id="0c55b-107">4095 GB</span></span> |
+| <span data-ttu-id="0c55b-108">영구 디스크당 최대 8KB IOPS</span><span class="sxs-lookup"><span data-stu-id="0c55b-108">Max 8 KB IOPS per persistent disk</span></span> |<span data-ttu-id="0c55b-109">300</span><span class="sxs-lookup"><span data-stu-id="0c55b-109">300</span></span> |<span data-ttu-id="0c55b-110">500</span><span class="sxs-lookup"><span data-stu-id="0c55b-110">500</span></span> |
+| <span data-ttu-id="0c55b-111">최대 IOPS를 수행하는 최대 디스크 수</span><span class="sxs-lookup"><span data-stu-id="0c55b-111">Max number of disks performing max IOPS</span></span> |<span data-ttu-id="0c55b-112">66</span><span class="sxs-lookup"><span data-stu-id="0c55b-112">66</span></span> |<span data-ttu-id="0c55b-113">40</span><span class="sxs-lookup"><span data-stu-id="0c55b-113">40</span></span> |
+

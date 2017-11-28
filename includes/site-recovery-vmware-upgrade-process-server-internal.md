@@ -1,0 +1,4 @@
+1. <span data-ttu-id="54d96-101">관리자 권한으로 프로세스 서버에 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="54d96-101">Login to the process server as an Administrator.</span></span>
+2. <span data-ttu-id="54d96-102">최신 버전의 [통합 설치 프로그램](http://aka.ms/unifiedinstaller)을 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="54d96-102">Download the latest version of the [Unified Setup](http://aka.ms/unifiedinstaller).</span></span>
+3. <span data-ttu-id="54d96-103">업데이트 프로세스를 시작하려면 설치 관리자를 두 번 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="54d96-103">Double-click the installer to launch the update process.</span></span>
+4. <span data-ttu-id="54d96-104">설치 관리자가 설치된 다양한 구성 요소를 검색하고 최신 버전으로 업그레이드합니다.</span><span class="sxs-lookup"><span data-stu-id="54d96-104">The installer will detect the various components that are installed and upgrade them to the latest version.</span></span>

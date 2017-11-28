@@ -1,0 +1,293 @@
+---
+title: "데이터 팩터리를 사용 하 여 Amazon Redshift aaaMove 데이터로 | Microsoft Docs"
+description: "방법에 대 한 자세한 내용은 Azure 데이터 팩터리를 사용 하 여 Amazon Redshift에서 toomove 데이터입니다."
+services: data-factory
+documentationcenter: 
+author: linda33wj
+manager: jhubbard
+editor: monicar
+ms.assetid: 01d15078-58dc-455c-9d9d-98fbdf4ea51e
+ms.service: data-factory
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/27/2017
+ms.author: jingwang
+ms.openlocfilehash: 2a097320734ebdd57282d250f7fdba35741777f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 10/06/2017
+---
+# <a name="move-data-from-amazon-redshift-using-azure-data-factory"></a><span data-ttu-id="a78d3-103">Azure 데이터 팩터리를 사용하여 Amazon Redshift에서 데이터 이동</span><span class="sxs-lookup"><span data-stu-id="a78d3-103">Move data From Amazon Redshift using Azure Data Factory</span></span>
+<span data-ttu-id="a78d3-104">이 문서에서는 toouse Amazon Redshift에서 Azure Data Factory toomove 데이터에서 복사 작업을 hello 하는 방법을 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-104">This article explains how toouse hello Copy Activity in Azure Data Factory toomove data from Amazon Redshift.</span></span> <span data-ttu-id="a78d3-105">hello을 기반으로 하는 hello 문서 [데이터 이동 작업](data-factory-data-movement-activities.md) hello 복사 작업으로 데이터 이동에 대 한 일반적인 개요를 제공 하는 문서입니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-105">hello article builds on hello [Data Movement Activities](data-factory-data-movement-activities.md) article, which presents a general overview of data movement with hello copy activity.</span></span> 
+
+<span data-ttu-id="a78d3-106">Amazon Redshift 지원 tooany 싱크 데이터 저장소에서 데이터를 복사할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-106">You can copy data from Amazon Redshift tooany supported sink data store.</span></span> <span data-ttu-id="a78d3-107">목록이 hello 복사 작업에서 싱크를 지 원하는 데이터 저장소에 대 한 참조 [데이터 저장소를 지원](data-factory-data-movement-activities.md#supported-data-stores-and-formats)합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-107">For a list of data stores supported as sinks by hello copy activity, see [supported data stores](data-factory-data-movement-activities.md#supported-data-stores-and-formats).</span></span> <span data-ttu-id="a78d3-108">데이터 팩터리의 현재 이동 데이터를 다른 데이터 저장소 tooAmazon Redshift에서에서 데이터를 이동 하지 않습니다에서 Amazon Redshift tooother 데이터 저장소를 지원 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-108">Data factory currently supports moving data from Amazon Redshift tooother data stores, but not for moving data from other data stores tooAmazon Redshift.</span></span>
+
+## <a name="prerequisites"></a><span data-ttu-id="a78d3-109">필수 조건</span><span class="sxs-lookup"><span data-stu-id="a78d3-109">Prerequisites</span></span>
+* <span data-ttu-id="a78d3-110">데이터 tooan 온-프레미스 데이터 저장소를 이동 하는 경우 설치 [데이터 관리 게이트웨이](data-factory-data-management-gateway.md) 온-프레미스 컴퓨터에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-110">If you are moving data tooan on-premises data store, install [Data Management Gateway](data-factory-data-management-gateway.md) on an on-premises machine.</span></span> <span data-ttu-id="a78d3-111">그런 다음 Grant 데이터 관리 게이트웨이 (hello 컴퓨터의 사용 하 여 IP 주소) hello 액세스 tooAmazon Redshift 클러스터입니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-111">Then, Grant Data Management Gateway (use IP address of hello machine) hello access tooAmazon Redshift cluster.</span></span> <span data-ttu-id="a78d3-112">참조 [Authorize 액세스 toohello 클러스터](http://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html) 지침에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-112">See [Authorize access toohello cluster](http://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html) for instructions.</span></span>
+* <span data-ttu-id="a78d3-113">참조 데이터 tooan Azure 데이터 저장소를 이동 하는 경우 [Azure 데이터 센터 IP 범위](https://www.microsoft.com/download/details.aspx?id=41653) hello 계산 IP 주소와 hello Azure 데이터 센터에서 사용 하는 SQL 범위에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-113">If you are moving data tooan Azure data store, see [Azure Data Center IP Ranges](https://www.microsoft.com/download/details.aspx?id=41653) for hello Compute IP address and SQL ranges used by hello Azure data centers.</span></span>
+
+## <a name="getting-started"></a><span data-ttu-id="a78d3-114">시작</span><span class="sxs-lookup"><span data-stu-id="a78d3-114">Getting started</span></span>
+<span data-ttu-id="a78d3-115">다른 도구/API를 사용하여 Amazon Redshift 원본의 데이터를 이동하는 복사 작업으로 파이프라인을 만들 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-115">You can create a pipeline with a copy activity that moves data from an Amazon Redshift source by using different tools/APIs.</span></span>
+
+<span data-ttu-id="a78d3-116">hello 가장 쉬운 방법은 toocreate 파이프라인은 toouse hello **복사 마법사**합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-116">hello easiest way toocreate a pipeline is toouse hello **Copy Wizard**.</span></span> <span data-ttu-id="a78d3-117">참조 [자습서: 복사 마법사를 사용 하 여 파이프라인을 만들고](data-factory-copy-data-wizard-tutorial.md) 간략 한 설명이 hello 복사 데이터 마법사를 사용 하 여 파이프라인을 만드는 방법에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-117">See [Tutorial: Create a pipeline using Copy Wizard](data-factory-copy-data-wizard-tutorial.md) for a quick walkthrough on creating a pipeline using hello Copy data wizard.</span></span>
+
+<span data-ttu-id="a78d3-118">다음 도구 toocreate 파이프라인 hello을 사용할 수 있습니다: **Azure 포털**, **Visual Studio**, **Azure PowerShell**, **Azure 리소스 관리자 템플릿** , **.NET API**, 및 **REST API**합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-118">You can also use hello following tools toocreate a pipeline: **Azure portal**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager template**, **.NET API**, and **REST API**.</span></span> <span data-ttu-id="a78d3-119">참조 [복사 활동 자습서](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) 단계별 지침 toocreate 복사 작업으로 파이프라인에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-119">See [Copy activity tutorial](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) for step-by-step instructions toocreate a pipeline with a copy activity.</span></span> 
+
+<span data-ttu-id="a78d3-120">Hello 도구 또는 Api를 사용 하는지 여부를 hello tooa 싱크 데이터 저장소를 저장 하는 원본 데이터에서 데이터를 이동 하는 파이프라인 단계 toocreate 다음을 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-120">Whether you use hello tools or APIs, you perform hello following steps toocreate a pipeline that moves data from a source data store tooa sink data store:</span></span> 
+
+1. <span data-ttu-id="a78d3-121">만들 **연결 된 서비스** toolink 입력 및 출력 데이터 저장소 tooyour 데이터 팩터리입니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-121">Create **linked services** toolink input and output data stores tooyour data factory.</span></span>
+2. <span data-ttu-id="a78d3-122">만들 **데이터 집합** 입력 및 출력 toorepresent hello에 대 한 데이터 복사 작업을 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-122">Create **datasets** toorepresent input and output data for hello copy operation.</span></span> 
+3. <span data-ttu-id="a78d3-123">입력으로 데이터 집합을, 출력으로 데이터 집합을 사용하는 복사 작업을 통해 **파이프라인**을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-123">Create a **pipeline** with a copy activity that takes a dataset as an input and a dataset as an output.</span></span> 
+
+<span data-ttu-id="a78d3-124">Hello 마법사를 사용 하 여 이러한 데이터 팩터리 엔터티 (연결 된 서비스, 데이터 집합 및 hello 파이프라인)에 대 한 JSON 정의를 자동으로 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-124">When you use hello wizard, JSON definitions for these Data Factory entities (linked services, datasets, and hello pipeline) are automatically created for you.</span></span> <span data-ttu-id="a78d3-125">도구/Api (제외.NET API)를 사용 하면 hello JSON 형식을 사용 하 여이 Data Factory 엔터티를 정의 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-125">When you use tools/APIs (except .NET API), you define these Data Factory entities by using hello JSON format.</span></span>  <span data-ttu-id="a78d3-126">Data Factory 된 엔터티를 Amazon Redshift 데이터 저장소에서 사용 되는 toocopy 데이터에 대 한 JSON 정의 된 샘플을 보려면 [JSON의 예: Amazon Redshift tooAzure Blob에서에서 데이터를 복사](#json-example-copy-data-from-amazon-redshift-to-azure-blob) 이 문서의 섹션.</span><span class="sxs-lookup"><span data-stu-id="a78d3-126">For a sample with JSON definitions for Data Factory entities that are used toocopy data from an Amazon Redshift data store, see [JSON example: Copy data from Amazon Redshift tooAzure Blob](#json-example-copy-data-from-amazon-redshift-to-azure-blob) section of this article.</span></span> 
+
+<span data-ttu-id="a78d3-127">사용 되는 toodefine Data Factory 엔터티에 특정 tooAmazon Redshift는 JSON 속성에 대 한 세부 정보를 제공 하는 다음 섹션 hello:</span><span class="sxs-lookup"><span data-stu-id="a78d3-127">hello following sections provide details about JSON properties that are used toodefine Data Factory entities specific tooAmazon Redshift:</span></span> 
+
+## <a name="linked-service-properties"></a><span data-ttu-id="a78d3-128">연결된 서비스 속성</span><span class="sxs-lookup"><span data-stu-id="a78d3-128">Linked service properties</span></span>
+<span data-ttu-id="a78d3-129">다음 표에서 hello JSON 요소 특정 tooAmazon Redshift 연결 된 서비스에 대 한 설명을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-129">hello following table provides description for JSON elements specific tooAmazon Redshift linked service.</span></span>
+
+| <span data-ttu-id="a78d3-130">속성</span><span class="sxs-lookup"><span data-stu-id="a78d3-130">Property</span></span> | <span data-ttu-id="a78d3-131">설명</span><span class="sxs-lookup"><span data-stu-id="a78d3-131">Description</span></span> | <span data-ttu-id="a78d3-132">필수</span><span class="sxs-lookup"><span data-stu-id="a78d3-132">Required</span></span> |
+| --- | --- | --- |
+| <span data-ttu-id="a78d3-133">type</span><span class="sxs-lookup"><span data-stu-id="a78d3-133">type</span></span> |<span data-ttu-id="a78d3-134">hello type 속성 설정 해야 합니다: **AmazonRedshift**합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-134">hello type property must be set to: **AmazonRedshift**.</span></span> |<span data-ttu-id="a78d3-135">예</span><span class="sxs-lookup"><span data-stu-id="a78d3-135">Yes</span></span> |
+| <span data-ttu-id="a78d3-136">server</span><span class="sxs-lookup"><span data-stu-id="a78d3-136">server</span></span> |<span data-ttu-id="a78d3-137">Hello Amazon Redshift 서버의 IP 주소 또는 호스트 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-137">IP address or host name of hello Amazon Redshift server.</span></span> |<span data-ttu-id="a78d3-138">예</span><span class="sxs-lookup"><span data-stu-id="a78d3-138">Yes</span></span> |
+| <span data-ttu-id="a78d3-139">포트</span><span class="sxs-lookup"><span data-stu-id="a78d3-139">port</span></span> |<span data-ttu-id="a78d3-140">Amazon Redshift 서버 hello hello TCP 포트 수가 hello toolisten를 사용 하 여 클라이언트 연결에 대 한 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-140">hello number of hello TCP port that hello Amazon Redshift server uses toolisten for client connections.</span></span> |<span data-ttu-id="a78d3-141">기본값이 없음: 5439</span><span class="sxs-lookup"><span data-stu-id="a78d3-141">No, default value: 5439</span></span> |
+| <span data-ttu-id="a78d3-142">database</span><span class="sxs-lookup"><span data-stu-id="a78d3-142">database</span></span> |<span data-ttu-id="a78d3-143">Hello Amazon Redshift 데이터베이스의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-143">Name of hello Amazon Redshift database.</span></span> |<span data-ttu-id="a78d3-144">예</span><span class="sxs-lookup"><span data-stu-id="a78d3-144">Yes</span></span> |
+| <span data-ttu-id="a78d3-145">username</span><span class="sxs-lookup"><span data-stu-id="a78d3-145">username</span></span> |<span data-ttu-id="a78d3-146">Access toohello 데이터베이스를 갖고 있는 사용자의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-146">Name of user who has access toohello database.</span></span> |<span data-ttu-id="a78d3-147">예</span><span class="sxs-lookup"><span data-stu-id="a78d3-147">Yes</span></span> |
+| <span data-ttu-id="a78d3-148">암호</span><span class="sxs-lookup"><span data-stu-id="a78d3-148">password</span></span> |<span data-ttu-id="a78d3-149">Hello 사용자 계정의 암호입니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-149">Password for hello user account.</span></span> |<span data-ttu-id="a78d3-150">예</span><span class="sxs-lookup"><span data-stu-id="a78d3-150">Yes</span></span> |
+
+## <a name="dataset-properties"></a><span data-ttu-id="a78d3-151">데이터 집합 속성</span><span class="sxs-lookup"><span data-stu-id="a78d3-151">Dataset properties</span></span>
+<span data-ttu-id="a78d3-152">섹션 및 데이터 집합 정의에 사용 가능한 속성의 전체 목록을 보려면 hello [데이터 집합을 만드는](data-factory-create-datasets.md) 문서.</span><span class="sxs-lookup"><span data-stu-id="a78d3-152">For a full list of sections & properties available for defining datasets, see hello [Creating datasets](data-factory-create-datasets.md) article.</span></span> <span data-ttu-id="a78d3-153">구조, 가용성 및 정책과 같은 섹션이 모든 데이터 집합 형식에 대해 유사합니다(Azure SQL, Azure blob, Azure 테이블 등).</span><span class="sxs-lookup"><span data-stu-id="a78d3-153">Sections such as structure, availability, and policy are similar for all dataset types (Azure SQL, Azure blob, Azure table, etc.).</span></span>
+
+<span data-ttu-id="a78d3-154">hello **typeProperties** 섹션은 데이터 집합의 각 형식 마다 다릅니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-154">hello **typeProperties** section is different for each type of dataset.</span></span> <span data-ttu-id="a78d3-155">Hello 데이터 저장소에 hello 데이터의 hello 위치에 대 한 정보를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-155">It provides information about hello location of hello data in hello data store.</span></span> <span data-ttu-id="a78d3-156">형식의 데이터 집합에 대 한 hello typeProperties 섹션 **RelationalTable** hello 다음과 같은 속성에 (Amazon Redshift 데이터 집합 포함)</span><span class="sxs-lookup"><span data-stu-id="a78d3-156">hello typeProperties section for dataset of type **RelationalTable** (which includes Amazon Redshift dataset) has hello following properties</span></span>
+
+| <span data-ttu-id="a78d3-157">속성</span><span class="sxs-lookup"><span data-stu-id="a78d3-157">Property</span></span> | <span data-ttu-id="a78d3-158">설명</span><span class="sxs-lookup"><span data-stu-id="a78d3-158">Description</span></span> | <span data-ttu-id="a78d3-159">필수</span><span class="sxs-lookup"><span data-stu-id="a78d3-159">Required</span></span> |
+| --- | --- | --- |
+| <span data-ttu-id="a78d3-160">tableName</span><span class="sxs-lookup"><span data-stu-id="a78d3-160">tableName</span></span> |<span data-ttu-id="a78d3-161">연결 된 서비스는 hello Amazon Redshift 데이터베이스에 대 한 hello 테이블의 이름은 참조 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-161">Name of hello table in hello Amazon Redshift database that linked service refers to.</span></span> |<span data-ttu-id="a78d3-162">아니요(**RelationalSource**의 **쿼리**가 지정된 경우)</span><span class="sxs-lookup"><span data-stu-id="a78d3-162">No (if **query** of **RelationalSource** is specified)</span></span> |
+
+## <a name="copy-activity-properties"></a><span data-ttu-id="a78d3-163">복사 작업 속성</span><span class="sxs-lookup"><span data-stu-id="a78d3-163">Copy activity properties</span></span>
+<span data-ttu-id="a78d3-164">섹션 및 활동 정의에 사용 가능한 속성의 전체 목록을 참조 hello [파이프라인 만들기](data-factory-create-pipelines.md) 문서.</span><span class="sxs-lookup"><span data-stu-id="a78d3-164">For a full list of sections & properties available for defining activities, see hello [Creating Pipelines](data-factory-create-pipelines.md) article.</span></span> <span data-ttu-id="a78d3-165">이름, 설명, 입력/출력 테이블, 정책 등의 속성은 모든 형식의 활동에 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-165">Properties such as name, description, input and output tables, and policies are available for all types of activities.</span></span>
+
+<span data-ttu-id="a78d3-166">반면 hello에 사용할 수 있는 속성 **typeProperties** hello 활동의 섹션에 각 활동 유형에 따라 다릅니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-166">Whereas, properties available in hello **typeProperties** section of hello activity vary with each activity type.</span></span> <span data-ttu-id="a78d3-167">복사 작업은 원본 및 싱크의 hello 형식에 따라 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-167">For Copy activity, they vary depending on hello types of sources and sinks.</span></span>
+
+<span data-ttu-id="a78d3-168">복사 작업의 원본 유형의 경우 **RelationalSource** (Amazon Redshift 포함), 다음과 같은 속성 hello typeProperties 섹션에서 사용할 수 있는:</span><span class="sxs-lookup"><span data-stu-id="a78d3-168">When source of copy activity is of type **RelationalSource** (which includes Amazon Redshift), hello following properties are available in typeProperties section:</span></span>
+
+| <span data-ttu-id="a78d3-169">속성</span><span class="sxs-lookup"><span data-stu-id="a78d3-169">Property</span></span> | <span data-ttu-id="a78d3-170">설명</span><span class="sxs-lookup"><span data-stu-id="a78d3-170">Description</span></span> | <span data-ttu-id="a78d3-171">허용되는 값</span><span class="sxs-lookup"><span data-stu-id="a78d3-171">Allowed values</span></span> | <span data-ttu-id="a78d3-172">필수</span><span class="sxs-lookup"><span data-stu-id="a78d3-172">Required</span></span> |
+| --- | --- | --- | --- |
+| <span data-ttu-id="a78d3-173">쿼리</span><span class="sxs-lookup"><span data-stu-id="a78d3-173">query</span></span> |<span data-ttu-id="a78d3-174">사용자 지정 쿼리 tooread 데이터 hello를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-174">Use hello custom query tooread data.</span></span> |<span data-ttu-id="a78d3-175">SQL 쿼리 문자열.</span><span class="sxs-lookup"><span data-stu-id="a78d3-175">SQL query string.</span></span> <span data-ttu-id="a78d3-176">예: select * from MyTable.</span><span class="sxs-lookup"><span data-stu-id="a78d3-176">For example: select * from MyTable.</span></span> |<span data-ttu-id="a78d3-177">아니요(**데이터 집합**의 **tableName**이 지정된 경우)</span><span class="sxs-lookup"><span data-stu-id="a78d3-177">No (if **tableName** of **dataset** is specified)</span></span> |
+
+## <a name="json-example-copy-data-from-amazon-redshift-tooazure-blob"></a><span data-ttu-id="a78d3-178">JSON의 예: Amazon Redshift tooAzure Blob에서에서 데이터 복사</span><span class="sxs-lookup"><span data-stu-id="a78d3-178">JSON example: Copy data from Amazon Redshift tooAzure Blob</span></span>
+<span data-ttu-id="a78d3-179">이 샘플에서는 toocopy 데이터로 Amazon Redshift 데이터베이스 tooan Azure Blob 저장소를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-179">This sample shows how toocopy data from an Amazon Redshift database tooan Azure Blob Storage.</span></span> <span data-ttu-id="a78d3-180">그러나 데이터를 복사할 수 있습니다 **직접** 명시 된 hello 싱크 tooany [여기](data-factory-data-movement-activities.md#supported-data-stores-and-formats) Azure Data Factory에서 복사 작업 hello를 사용 하 여 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-180">However, data can be copied **directly** tooany of hello sinks stated [here](data-factory-data-movement-activities.md#supported-data-stores-and-formats) using hello Copy Activity in Azure Data Factory.</span></span>  
+
+<span data-ttu-id="a78d3-181">hello 샘플 hello 데이터 팩터리 엔터티 뒤에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-181">hello sample has hello following data factory entities:</span></span>
+
+* <span data-ttu-id="a78d3-182">[AmazonRedshift](#linked-service-properties)형식의 연결된 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-182">A linked service of type [AmazonRedshift](#linked-service-properties).</span></span>
+* <span data-ttu-id="a78d3-183">[AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties)형식의 연결된 서비스</span><span class="sxs-lookup"><span data-stu-id="a78d3-183">A linked service of type [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).</span></span>
+* <span data-ttu-id="a78d3-184">[RelationalTable](#dataset-properties) 형식의 입력 [데이터 집합](data-factory-create-datasets.md)</span><span class="sxs-lookup"><span data-stu-id="a78d3-184">An input [dataset](data-factory-create-datasets.md) of type [RelationalTable](#dataset-properties).</span></span>
+* <span data-ttu-id="a78d3-185">[AzureBlob](data-factory-azure-blob-connector.md#dataset-properties) 형식의 출력 [데이터 집합](data-factory-create-datasets.md)</span><span class="sxs-lookup"><span data-stu-id="a78d3-185">An output [dataset](data-factory-create-datasets.md) of type [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).</span></span>
+* <span data-ttu-id="a78d3-186">[RelationalSource](#copy-activity-properties) 및 [BlobSink](data-factory-azure-blob-connector.md##copy-activity-properties)를 사용하는 복사 작업의 [파이프라인](data-factory-create-pipelines.md)</span><span class="sxs-lookup"><span data-stu-id="a78d3-186">A [pipeline](data-factory-create-pipelines.md) with Copy Activity that uses [RelationalSource](#copy-activity-properties) and [BlobSink](data-factory-azure-blob-connector.md##copy-activity-properties).</span></span>
+
+<span data-ttu-id="a78d3-187">hello 샘플 데이터 복사 Amazon Redshift tooa blob에 쿼리 결과에서 1 시간 마다 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-187">hello sample copies data from a query result in Amazon Redshift tooa blob every hour.</span></span> <span data-ttu-id="a78d3-188">이 예제에 사용 되는 hello JSON 속성 hello 샘플 다음 섹션에 설명 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-188">hello JSON properties used in these samples are described in sections following hello samples.</span></span>
+
+<span data-ttu-id="a78d3-189">**Amazon Redshift 연결된 서비스:**</span><span class="sxs-lookup"><span data-stu-id="a78d3-189">**Amazon Redshift linked service:**</span></span>
+
+```json
+{
+    "name": "AmazonRedshiftLinkedService",
+    "properties":
+    {
+        "type": "AmazonRedshift",
+        "typeProperties":
+        {
+            "server": "< hello IP address or host name of hello Amazon Redshift server >",
+            "port": <hello number of hello TCP port that hello Amazon Redshift server uses toolisten for client connections.>,
+            "database": "<hello database name of hello Amazon Redshift database>",
+            "username": "<username>",
+            "password": "<password>"
+        }
+    }
+}
+```
+
+<span data-ttu-id="a78d3-190">**Azure 저장소 연결된 서비스:**</span><span class="sxs-lookup"><span data-stu-id="a78d3-190">**Azure Storage linked service:**</span></span>
+
+```json
+{
+  "name": "AzureStorageLinkedService",
+  "properties": {
+    "type": "AzureStorage",
+    "typeProperties": {
+      "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
+    }
+  }
+}
+```
+<span data-ttu-id="a78d3-191">**Amazon Redshift 입력 데이터 집합:**</span><span class="sxs-lookup"><span data-stu-id="a78d3-191">**Amazon Redshift input dataset:**</span></span>
+
+<span data-ttu-id="a78d3-192">설정 `"external": true` 알리고 hello 데이터 팩터리 서비스 hello 데이터 집합의 데이터 팩터리 외부 toohello hello data factory에는 활동에 의해 생성 되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-192">Setting `"external": true` informs hello Data Factory service that hello dataset is external toohello data factory and is not produced by an activity in hello data factory.</span></span> <span data-ttu-id="a78d3-193">이 속성 tootrue 하지 hello 파이프라인의 활동에 의해 생성 되는 입력된 데이터 집합에 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-193">Set this property tootrue on an input dataset that is not produced by an activity in hello pipeline.</span></span>
+
+```json
+{
+    "name": "AmazonRedshiftInputDataset",
+    "properties": {
+        "type": "RelationalTable",
+        "linkedServiceName": "AmazonRedshiftLinkedService",
+        "typeProperties": {
+            "tableName": "<Table name>"
+        },
+        "availability": {
+            "frequency": "Hour",
+            "interval": 1
+        },
+        "external": true
+    }
+}
+```
+
+<span data-ttu-id="a78d3-194">**Azure Blob 출력 데이터 집합:**</span><span class="sxs-lookup"><span data-stu-id="a78d3-194">**Azure Blob output dataset:**</span></span>
+
+<span data-ttu-id="a78d3-195">데이터가 새 blob tooa 1 시간 마다 기록 됩니다 (빈도: 시, 간격: 1).</span><span class="sxs-lookup"><span data-stu-id="a78d3-195">Data is written tooa new blob every hour (frequency: hour, interval: 1).</span></span> <span data-ttu-id="a78d3-196">hello blob에 대 한 hello 폴더 경로 처리 중인 hello 조각의 hello 시작 시간에 따라 동적으로 평가 됩니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-196">hello folder path for hello blob is dynamically evaluated based on hello start time of hello slice that is being processed.</span></span> <span data-ttu-id="a78d3-197">hello 폴더 경로 hello 시작 시간의 연도, 월, 일 및 시간 부분을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-197">hello folder path uses year, month, day, and hours parts of hello start time.</span></span>
+
+```json
+{
+    "name": "AzureBlobOutputDataSet",
+    "properties": {
+        "type": "AzureBlob",
+        "linkedServiceName": "AzureStorageLinkedService",
+        "typeProperties": {
+            "folderPath": "mycontainer/fromamazonredshift/yearno={Year}/monthno={Month}/dayno={Day}/hourno={Hour}",
+            "format": {
+                "type": "TextFormat",
+                "rowDelimiter": "\n",
+                "columnDelimiter": "\t"
+            },
+            "partitionedBy": [
+                {
+                    "name": "Year",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "yyyy"
+                    }
+                },
+                {
+                    "name": "Month",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "MM"
+                    }
+                },
+                {
+                    "name": "Day",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "dd"
+                    }
+                },
+                {
+                    "name": "Hour",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "HH"
+                    }
+                }
+            ]
+        },
+        "availability": {
+            "frequency": "Hour",
+            "interval": 1
+        }
+    }
+}
+```
+
+<span data-ttu-id="a78d3-198">**Azure Redshift 원본(RelationalSource) 및 Blob 싱크를 사용하는 파이프라인의 복사 작업:**</span><span class="sxs-lookup"><span data-stu-id="a78d3-198">**Copy activity in a pipeline with Azure Redshift source (RelationalSource) and Blob sink:**</span></span>
+
+<span data-ttu-id="a78d3-199">hello 파이프라인에 포함 된 구성된 toouse 않은 복사 작업 입력 및 출력 데이터 집합을 hello 및 예약 된 toorun 1 시간입니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-199">hello pipeline contains a Copy Activity that is configured toouse hello input and output datasets and is scheduled toorun every hour.</span></span> <span data-ttu-id="a78d3-200">Hello 파이프라인 JSON 정의에서 hello **소스** 형식이 너무 설정**RelationalSource** 및 **싱크** 형식이 너무 설정**BlobSink**합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-200">In hello pipeline JSON definition, hello **source** type is set too**RelationalSource** and **sink** type is set too**BlobSink**.</span></span> <span data-ttu-id="a78d3-201">hello에 대 한 지정 된 hello SQL 쿼리 **쿼리** 속성 시간 toocopy 지난 hello에 hello 데이터를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-201">hello SQL query specified for hello **query** property selects hello data in hello past hour toocopy.</span></span>
+
+```json
+{
+    "name": "CopyAmazonRedshiftToBlob",
+    "properties": {
+        "description": "pipeline for copy activity",
+        "activities": [
+            {
+                "type": "Copy",
+                "typeProperties": {
+                    "source": {
+                        "type": "RelationalSource",
+                        "query": "$$Text.Format('select * from MyTable where timestamp >= \\'{0:yyyy-MM-ddTHH:mm:ss}\\' AND timestamp < \\'{1:yyyy-MM-ddTHH:mm:ss}\\'', WindowStart, WindowEnd)"
+                    },
+                    "sink": {
+                        "type": "BlobSink",
+                        "writeBatchSize": 0,
+                        "writeBatchTimeout": "00:00:00"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "AmazonRedshiftInputDataset"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "AzureBlobOutputDataSet"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Hour",
+                    "interval": 1
+                },
+                "name": "AmazonRedshiftToBlob"
+            }
+        ],
+        "start": "2014-06-01T18:00:00Z",
+        "end": "2014-06-01T19:00:00Z"
+    }
+}
+```
+### <a name="type-mapping-for-amazon-redshift"></a><span data-ttu-id="a78d3-202">Amazon Redshift에 대한 형식 매핑</span><span class="sxs-lookup"><span data-stu-id="a78d3-202">Type mapping for Amazon Redshift</span></span>
+<span data-ttu-id="a78d3-203">Hello에 설명 된 대로 [데이터 이동 작업](data-factory-data-movement-activities.md) 문서, 복사 작업 소스 형식 toosink 형식에서 자동 형식 변환 2 단계 방식을 따릅니다 hello로 수행:</span><span class="sxs-lookup"><span data-stu-id="a78d3-203">As mentioned in hello [data movement activities](data-factory-data-movement-activities.md) article, Copy activity performs automatic type conversions from source types toosink types with hello following two-step approach:</span></span>
+
+1. <span data-ttu-id="a78d3-204">네이티브 소스 형식 too.NET 형식에서 변환</span><span class="sxs-lookup"><span data-stu-id="a78d3-204">Convert from native source types too.NET type</span></span>
+2. <span data-ttu-id="a78d3-205">.NET 형식 toonative 싱크 형식에서 변환</span><span class="sxs-lookup"><span data-stu-id="a78d3-205">Convert from .NET type toonative sink type</span></span>
+
+<span data-ttu-id="a78d3-206">데이터 tooAmazon Redshift를 이동할 때 다음 매핑을 hello Amazon Redshift 형식 too.NET 형식에서 사용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-206">When moving data tooAmazon Redshift, hello following mappings are used from Amazon Redshift types too.NET types.</span></span>
+
+| <span data-ttu-id="a78d3-207">Amazon Redshift 형식</span><span class="sxs-lookup"><span data-stu-id="a78d3-207">Amazon Redshift Type</span></span> | <span data-ttu-id="a78d3-208">.NET 기반 형식</span><span class="sxs-lookup"><span data-stu-id="a78d3-208">.NET Based Type</span></span> |
+| --- | --- |
+| <span data-ttu-id="a78d3-209">SmallInt</span><span class="sxs-lookup"><span data-stu-id="a78d3-209">SMALLINT</span></span> |<span data-ttu-id="a78d3-210">Int16</span><span class="sxs-lookup"><span data-stu-id="a78d3-210">Int16</span></span> |
+| <span data-ttu-id="a78d3-211">INTEGER</span><span class="sxs-lookup"><span data-stu-id="a78d3-211">INTEGER</span></span> |<span data-ttu-id="a78d3-212">Int32</span><span class="sxs-lookup"><span data-stu-id="a78d3-212">Int32</span></span> |
+| <span data-ttu-id="a78d3-213">BIGINT</span><span class="sxs-lookup"><span data-stu-id="a78d3-213">BIGINT</span></span> |<span data-ttu-id="a78d3-214">Int64</span><span class="sxs-lookup"><span data-stu-id="a78d3-214">Int64</span></span> |
+| <span data-ttu-id="a78d3-215">DECIMAL</span><span class="sxs-lookup"><span data-stu-id="a78d3-215">DECIMAL</span></span> |<span data-ttu-id="a78d3-216">DECIMAL</span><span class="sxs-lookup"><span data-stu-id="a78d3-216">Decimal</span></span> |
+| <span data-ttu-id="a78d3-217">Real</span><span class="sxs-lookup"><span data-stu-id="a78d3-217">REAL</span></span> |<span data-ttu-id="a78d3-218">단일</span><span class="sxs-lookup"><span data-stu-id="a78d3-218">Single</span></span> |
+| <span data-ttu-id="a78d3-219">double precision</span><span class="sxs-lookup"><span data-stu-id="a78d3-219">DOUBLE PRECISION</span></span> |<span data-ttu-id="a78d3-220">Double</span><span class="sxs-lookup"><span data-stu-id="a78d3-220">Double</span></span> |
+| <span data-ttu-id="a78d3-221">BOOLEAN</span><span class="sxs-lookup"><span data-stu-id="a78d3-221">BOOLEAN</span></span> |<span data-ttu-id="a78d3-222">문자열</span><span class="sxs-lookup"><span data-stu-id="a78d3-222">String</span></span> |
+| <span data-ttu-id="a78d3-223">CHAR</span><span class="sxs-lookup"><span data-stu-id="a78d3-223">CHAR</span></span> |<span data-ttu-id="a78d3-224">문자열</span><span class="sxs-lookup"><span data-stu-id="a78d3-224">String</span></span> |
+| <span data-ttu-id="a78d3-225">VARCHAR</span><span class="sxs-lookup"><span data-stu-id="a78d3-225">VARCHAR</span></span> |<span data-ttu-id="a78d3-226">문자열</span><span class="sxs-lookup"><span data-stu-id="a78d3-226">String</span></span> |
+| <span data-ttu-id="a78d3-227">DATE</span><span class="sxs-lookup"><span data-stu-id="a78d3-227">DATE</span></span> |<span data-ttu-id="a78d3-228">DateTime</span><span class="sxs-lookup"><span data-stu-id="a78d3-228">DateTime</span></span> |
+| <span data-ttu-id="a78d3-229">TIMESTAMP</span><span class="sxs-lookup"><span data-stu-id="a78d3-229">TIMESTAMP</span></span> |<span data-ttu-id="a78d3-230">DateTime</span><span class="sxs-lookup"><span data-stu-id="a78d3-230">DateTime</span></span> |
+| <span data-ttu-id="a78d3-231">TEXT</span><span class="sxs-lookup"><span data-stu-id="a78d3-231">TEXT</span></span> |<span data-ttu-id="a78d3-232">문자열</span><span class="sxs-lookup"><span data-stu-id="a78d3-232">String</span></span> |
+
+## <a name="map-source-toosink-columns"></a><span data-ttu-id="a78d3-233">원본 toosink 열 매핑</span><span class="sxs-lookup"><span data-stu-id="a78d3-233">Map source toosink columns</span></span>
+<span data-ttu-id="a78d3-234">원본 데이터 집합 toocolumns 싱크 데이터 집합에서의 열을 매핑하는 방법에 대 한 toolearn 참조 [Azure Data Factory에서 데이터 집합 열에 매핑](data-factory-map-columns.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-234">toolearn about mapping columns in source dataset toocolumns in sink dataset, see [Mapping dataset columns in Azure Data Factory](data-factory-map-columns.md).</span></span>
+
+## <a name="repeatable-read-from-relational-sources"></a><span data-ttu-id="a78d3-235">관계형 원본에서 반복 가능한 읽기</span><span class="sxs-lookup"><span data-stu-id="a78d3-235">Repeatable read from relational sources</span></span>
+<span data-ttu-id="a78d3-236">관계형 데이터 저장소에서 데이터를 복사할 때 유의 tooavoid에서 반복성을 유지 의도 하지 않은 결과입니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-236">When copying data from relational data stores, keep repeatability in mind tooavoid unintended outcomes.</span></span> <span data-ttu-id="a78d3-237">Azure Data Factory에서는 조각을 수동으로 다시 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-237">In Azure Data Factory, you can rerun a slice manually.</span></span> <span data-ttu-id="a78d3-238">또한 오류가 발생하면 조각을 다시 실행하도록 데이터 집합에 대한 재시도 정책을 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-238">You can also configure retry policy for a dataset so that a slice is rerun when a failure occurs.</span></span> <span data-ttu-id="a78d3-239">Toomake 동일한 데이터를 hello 있는지 어떻게에 관계 없이 읽기 필요한 어느 쪽에 분할 영역을 다시 실행 하는 경우 조각에 여러 번 실행 됩니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-239">When a slice is rerun in either way, you need toomake sure that hello same data is read no matter how many times a slice is run.</span></span> <span data-ttu-id="a78d3-240">[관계형 원본에서 반복 가능한 읽기](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a78d3-240">See [Repeatable read from relational sources](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources)</span></span>
+
+## <a name="performance-and-tuning"></a><span data-ttu-id="a78d3-241">성능 및 튜닝</span><span class="sxs-lookup"><span data-stu-id="a78d3-241">Performance and Tuning</span></span>
+<span data-ttu-id="a78d3-242">참조 [복사 활동 성능 및 조정 가이드](data-factory-copy-activity-performance.md) toolearn 키에 대 한 Azure 데이터 팩터리 및 다양 한 방법으로 toooptimize에서 데이터 이동 (복사 작업)의 성능에 영향을 해당 놓은 것입니다.</span><span class="sxs-lookup"><span data-stu-id="a78d3-242">See [Copy Activity Performance & Tuning Guide](data-factory-copy-activity-performance.md) toolearn about key factors that impact performance of data movement (Copy Activity) in Azure Data Factory and various ways toooptimize it.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="a78d3-243">다음 단계</span><span class="sxs-lookup"><span data-stu-id="a78d3-243">Next Steps</span></span>
+<span data-ttu-id="a78d3-244">Hello 다음 문서를 참조 하십시오.</span><span class="sxs-lookup"><span data-stu-id="a78d3-244">See hello following articles:</span></span>
+
+* <span data-ttu-id="a78d3-245">[복사 작업 자습서](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) .</span><span class="sxs-lookup"><span data-stu-id="a78d3-245">[Copy Activity tutorial](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) for step-by-step instructions for creating a pipeline with a Copy Activity.</span></span>

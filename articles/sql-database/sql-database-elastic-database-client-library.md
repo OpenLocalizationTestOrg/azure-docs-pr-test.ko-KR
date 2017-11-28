@@ -1,0 +1,75 @@
+---
+title: "확장성 있는 클라우드 데이터베이스 빌드 | Microsoft Docs"
+description: "탄력적 데이터베이스 클라이언트 라이브러리와 함께 확장성 있는 .NET 데이터베이스 앱 빌드"
+services: sql-database
+documentationcenter: 
+manager: jhubbard
+author: ddove
+editor: 
+ms.assetid: 1f11c52d-13c1-4994-b9b1-5b1ae2f9255f
+ms.service: sql-database
+ms.custom: scale out apps
+ms.workload: sql-database
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/06/2016
+ms.author: ddove
+ms.openlocfilehash: 0128b333f04847ab646dcb0759fcef5f7e86ffd9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="building-scalable-cloud-databases"></a><span data-ttu-id="a1532-103">확장성 있는 클라우드 데이터베이스 빌드</span><span class="sxs-lookup"><span data-stu-id="a1532-103">Building scalable cloud databases</span></span>
+<span data-ttu-id="a1532-104">Azure SQL 데이터베이스의 확장성 있는 도구 및 기능을 사용하여 데이터베이스 규모 확장을 쉽게 달성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-104">Scaling out databases can be easily accomplished using scalable tools and features for Azure SQL Database.</span></span> <span data-ttu-id="a1532-105">특히, **탄력적 데이터베이스 클라이언트 라이브러리** 를 사용하여 규모 확장된 데이터베이스를 만들고 관리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-105">In particular, you can use the **Elastic Database client library** to create and manage scaled-out databases.</span></span> <span data-ttu-id="a1532-106">이 기능을 통해 수백 또는 수천 개의 Azure SQL 데이터베이스를 사용하여 분할된 응용 프로그램을 쉽게 개발할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-106">This feature lets you easily develop sharded applications using hundreds—or even thousands—of Azure SQL databases.</span></span> <span data-ttu-id="a1532-107">[탄력적 작업](sql-database-elastic-jobs-powershell.md) 을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-107">[Elastic jobs](sql-database-elastic-jobs-powershell.md) can then be used to help ease management of these databases.</span></span>
+
+<span data-ttu-id="a1532-108">라이브러리를 설치하려면 [Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-108">To install the library, go to [Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/).</span></span> 
+
+## <a name="documentation"></a><span data-ttu-id="a1532-109">설명서</span><span class="sxs-lookup"><span data-stu-id="a1532-109">Documentation</span></span>
+1. [<span data-ttu-id="a1532-110">탄력적 데이터베이스 도구 시작하기</span><span class="sxs-lookup"><span data-stu-id="a1532-110">Get started with Elastic Database tools</span></span>](sql-database-elastic-scale-get-started.md)
+2. [<span data-ttu-id="a1532-111">탄력적 데이터베이스 기능</span><span class="sxs-lookup"><span data-stu-id="a1532-111">Elastic Database features</span></span>](sql-database-elastic-scale-introduction.md)
+3. [<span data-ttu-id="a1532-112">분할된 데이터베이스 맵 관리</span><span class="sxs-lookup"><span data-stu-id="a1532-112">Shard map management</span></span>](sql-database-elastic-scale-shard-map-management.md)
+4. [<span data-ttu-id="a1532-113">확장하기 위해 기존 데이터베이스 마이그레이션</span><span class="sxs-lookup"><span data-stu-id="a1532-113">Migrate existing databases to scale-out</span></span>](sql-database-elastic-convert-to-use-elastic-tools.md)
+5. [<span data-ttu-id="a1532-114">데이터 종속 라우팅</span><span class="sxs-lookup"><span data-stu-id="a1532-114">Data dependent routing</span></span>](sql-database-elastic-scale-data-dependent-routing.md)
+6. [<span data-ttu-id="a1532-115">다중 분할된 쿼리</span><span class="sxs-lookup"><span data-stu-id="a1532-115">Multi-shard queries</span></span>](sql-database-elastic-scale-multishard-querying.md)
+7. [<span data-ttu-id="a1532-116">탄력적 데이터베이스 도구를 사용하여 분할된 데이터베이스 추가하기</span><span class="sxs-lookup"><span data-stu-id="a1532-116">Adding a shard using Elastic Database tools</span></span>](sql-database-elastic-scale-add-a-shard.md)
+8. [<span data-ttu-id="a1532-117">탄력적 데이터베이스 도구 및 행 수준 보안을 제공하는 다중 테넌트 응용 프로그램</span><span class="sxs-lookup"><span data-stu-id="a1532-117">Multi-tenant applications with elastic database tools and row-level security</span></span>](sql-database-elastic-tools-multi-tenant-row-level-security.md)
+9. [<span data-ttu-id="a1532-118">클라이언트 라이브러리 앱 업그레이드</span><span class="sxs-lookup"><span data-stu-id="a1532-118">Upgrade client library apps</span></span>](sql-database-elastic-scale-upgrade-client-library.md) 
+10. [<span data-ttu-id="a1532-119">탄력적 쿼리 개요</span><span class="sxs-lookup"><span data-stu-id="a1532-119">Elastic queries overview</span></span>](sql-database-elastic-query-overview.md)
+11. [<span data-ttu-id="a1532-120">탄력적 데이터베이스 도구 용어집</span><span class="sxs-lookup"><span data-stu-id="a1532-120">Elastic database tools glossary</span></span>](sql-database-elastic-scale-glossary.md)
+12. [<span data-ttu-id="a1532-121">엔터티 프레임 작업과 함께 탄력적 데이터베이스 클라이언트 라이브러리</span><span class="sxs-lookup"><span data-stu-id="a1532-121">Elastic Database client library with Entity Framework</span></span>](sql-database-elastic-scale-use-entity-framework-applications-visual-studio.md)
+13. [<span data-ttu-id="a1532-122">탄력적 데이터베이스 클라이언트 라이브러리 및 Dapper</span><span class="sxs-lookup"><span data-stu-id="a1532-122">Elastic database client library with Dapper</span></span>](sql-database-elastic-scale-working-with-dapper.md)
+14. [<span data-ttu-id="a1532-123">분할-병합 도구</span><span class="sxs-lookup"><span data-stu-id="a1532-123">Split-merge tool</span></span>](sql-database-elastic-scale-overview-split-and-merge.md)
+15. [<span data-ttu-id="a1532-124">분할된 맵 관리자에 대한 성능 카운터</span><span class="sxs-lookup"><span data-stu-id="a1532-124">Performance counters for shard map manager</span></span>](sql-database-elastic-database-client-library.md) 
+16. [<span data-ttu-id="a1532-125">탄력적 데이터베이스 도구 FAQ</span><span class="sxs-lookup"><span data-stu-id="a1532-125">FAQ for Elastic database tools</span></span>](sql-database-elastic-scale-faq.md)
+
+## <a name="client-capabilities"></a><span data-ttu-id="a1532-126">클라이언트 기능</span><span class="sxs-lookup"><span data-stu-id="a1532-126">Client capabilities</span></span>
+<span data-ttu-id="a1532-127">*분할* 을 사용한 응용 프로그램 규모 확장은 개발자뿐 아니라 관리자에게도 과제를 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-127">Scaling out applications using *sharding* presents challenges for both the developer as well as the administrator.</span></span> <span data-ttu-id="a1532-128">클라이언트 라이브러리는 개발자와 관리자가 규모 확장된 데이터베이스를 관리할 수 있는 도구를 제공하여 관리 작업을 간소화합니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-128">The client library simplifies the management tasks by providing tools that let both developers and administrators manage scaled-out databases.</span></span> <span data-ttu-id="a1532-129">일반적인 예로 "분할된 데이터베이스"라는 관리할 수많은 데이터베이스가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-129">In a typical example, there are many databases, known as "shards," to manage.</span></span> <span data-ttu-id="a1532-130">고객은 동일한 데이터베이스에 함께 배치되며 고객당 하나의 데이터베이스가 있습니다(단일 테넌트 체계).</span><span class="sxs-lookup"><span data-stu-id="a1532-130">Customers are co-located in the same database, and there is one database per customer (a single-tenant scheme).</span></span> <span data-ttu-id="a1532-131">클라이언트 라이브러리에는 다음과 같은 기능이 포함됩니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-131">The client library includes these features:</span></span>
+
+- <span data-ttu-id="a1532-132">**분할된 데이터베이스 맵 관리**: "분할된 데이터베이스 맵 관리자"라는 특수 데이터베이스가 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-132">**Shard Map Management**: A special database called the "shard map manager" is created.</span></span> <span data-ttu-id="a1532-133">분할된 데이터베이스 맵 관리는 분할된 데이터베이스에 대한 메타데이터를 관리하는 응용 프로그램의 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-133">Shard map management is the ability for an application to manage metadata about its shards.</span></span> <span data-ttu-id="a1532-134">개발자는 이 기능을 사용하여 데이터베이스를 분할된 데이터베이스처럼 등록하고, 개별 분할 키 또는 키 값 범위의 데이터베이스들 매핑을 설명하고, 숫자와 데이터베이스 조합이 용량 변경 내용을 반영하여 수정될 때 이 메타데이터를 유지 관리합니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-134">Developers can use this functionality to register databases as shards, describe mappings of individual sharding keys or key ranges to those databases, and maintain this metadata as the number and composition of databases evolves to reflect capacity changes.</span></span> <span data-ttu-id="a1532-135">탄력적 데이터베이스 클라이언트 라이브러리가 없으면 분할을 구현하는 경우 관리 코드를 작성하는데 많은 시간을 투자해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-135">Without the elastic database client library, you would need to spend a lot of time writing the management code when implementing sharding.</span></span> <span data-ttu-id="a1532-136">자세한 내용은 [분할된 데이터베이스 맵 관리](sql-database-elastic-scale-shard-map-management.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a1532-136">For details, see [Shard map management](sql-database-elastic-scale-shard-map-management.md).</span></span>
+
+- <span data-ttu-id="a1532-137">**데이터 종속 라우팅**: 응용 프로그램에 들어오는 요청이 있다고 가정하겠습니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-137">**Data dependent routing**: Imagine a request coming into the application.</span></span> <span data-ttu-id="a1532-138">요청의 분할 키 값에 따라 응용 프로그램은 키 값을 기준으로 올바른 데이터베이스를 결정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-138">Based on the sharding key value of the request, the application needs to determine the correct database based on the key value.</span></span> <span data-ttu-id="a1532-139">그런 다음 요청을 처리하는 데이터베이스에 대한 연결을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-139">It then opens a connection to the database to process the request.</span></span> <span data-ttu-id="a1532-140">데이터 종속 라우팅은 응용 프로그램의 분할된 데이터베이스 맵에 대한 간편한 단일 호출을 사용하여 연결을 열 수 있는 기능을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-140">Data dependent routing provides the ability to open connections with a single easy call into the shard map of the application.</span></span> <span data-ttu-id="a1532-141">데이터 종속 라우팅은 지금은 탄력적 데이터베이스 클라이언트 라이브러리의 기능에서 담당하는 인프라 코드의 다른 영역이었습니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-141">Data dependent routing was another area of infrastructure code that is now covered by functionality in the elastic database client library.</span></span> <span data-ttu-id="a1532-142">자세한 내용은 [데이터 종속 라우팅](sql-database-elastic-scale-data-dependent-routing.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a1532-142">For details, see [Data dependent routing](sql-database-elastic-scale-data-dependent-routing.md).</span></span>
+- <span data-ttu-id="a1532-143">**MSQ(다중 분할된 데이터베이스 쿼리)**: 분할된 다중 데이터베이스 쿼리 요청은 한 요청이 여러(또는 모든) 분할된 데이터베이스와 관련된 경우 작동합니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-143">**Multi-shard queries (MSQ)**: Multi-shard querying works when a request involves several (or all) shards.</span></span> <span data-ttu-id="a1532-144">다중 분할된 데이터베이스 쿼리는 모든 분할된 데이터베이스 또는 분할된 데이터베이스 집합에서 동일한 T-SQL 코드를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-144">A multi-shard query executes the same T-SQL code on all shards or a set of shards.</span></span> <span data-ttu-id="a1532-145">참여하는 분할된 데이터베이스의 결과는 UNION ALL 의미 체계를 사용하는 전반적인 결과 집합으로 병합됩니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-145">The results from the participating shards are merged into an overall result set using UNION ALL semantics.</span></span> <span data-ttu-id="a1532-146">이 기능은 클라이언트 라이브러리를 통해 표시되며 연결 관리, 스레드 관리, 오류 처리, 중간 결과 처리 등의 여러 작업을 처리합니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-146">The functionality as exposed through the client library handles many tasks, including: connection management, thread management, fault handling and intermediate results processing.</span></span> <span data-ttu-id="a1532-147">MSQ는 수백 개까지 분할된 데이터베이스를 쿼리할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-147">MSQ can query up to hundreds of shards.</span></span> <span data-ttu-id="a1532-148">자세한 내용은 [다중 분할된 데이터베이스 쿼리](sql-database-elastic-scale-multishard-querying.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a1532-148">For details, see [Multi-shard querying](sql-database-elastic-scale-multishard-querying.md).</span></span>
+
+<span data-ttu-id="a1532-149">일반적으로, 고객의 탄력적 데이터베이스 도구 사용은 고유한 의미 체계를 가진 분할된 데이터베이스 간 작업과 반대로 분할된 데이터베이스 로컬 작업을 제출할 때 전체 T-SQL 기능을 가져올 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-149">In general, customers using elastic database tools can expect to get full T-SQL functionality when submitting shard-local operations as opposed to cross-shard operations that have their own semantics.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="a1532-150">다음 단계</span><span class="sxs-lookup"><span data-stu-id="a1532-150">Next steps</span></span>
+<span data-ttu-id="a1532-151">클라이언트 함수를 보여 주는 [샘플 앱](sql-database-elastic-scale-get-started.md) 을 시도하세요.</span><span class="sxs-lookup"><span data-stu-id="a1532-151">Try the [sample app](sql-database-elastic-scale-get-started.md) which demonstrates the client functions.</span></span> 
+
+<span data-ttu-id="a1532-152">라이브러리를 설치하려면 [탄력적 데이터베이스 클라이언트 라이브러리](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)로 이동하세요.</span><span class="sxs-lookup"><span data-stu-id="a1532-152">To install the library, go to [Elastic Database Client Library](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/).</span></span>
+
+<span data-ttu-id="a1532-153">분할-병합 도구 사용에 대한 지침은 [분할-병합 도구 개요](sql-database-elastic-scale-overview-split-and-merge.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="a1532-153">For instructions on using the split-merge tool, see the [split-merge tool overview](sql-database-elastic-scale-overview-split-and-merge.md).</span></span>
+
+[<span data-ttu-id="a1532-154">탄력적 데이터베이스 클라이언트 라이브러리는 이제 소스가 공개되었습니다!</span><span class="sxs-lookup"><span data-stu-id="a1532-154">Elastic database client library is now open sourced!</span></span>](https://azure.microsoft.com/blog/elastic-database-client-library-is-now-open-sourced/)
+
+<span data-ttu-id="a1532-155">[탄력적 쿼리](sql-database-elastic-query-overview.md)를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-155">Use [Elastic queries](sql-database-elastic-query-overview.md).</span></span>
+
+<span data-ttu-id="a1532-156">라이브러리는 [GitHub](https://github.com/Azure/elastic-db-tools)에서 공개 소스 소프트웨어로 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="a1532-156">The library is available as open source software on [GitHub](https://github.com/Azure/elastic-db-tools).</span></span> 
+
+[!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
+
+<!--Anchors-->
+<!--Image references-->
+[1]:./media/sql-database-elastic-database-client-library/glossary.png
+

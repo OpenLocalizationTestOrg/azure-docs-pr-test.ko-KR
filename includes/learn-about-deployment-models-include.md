@@ -1,0 +1,2 @@
+> [!IMPORTANT]
+> <span data-ttu-id="81b37-101">Azure 리소스로 작업하기 전에 배포 모델 [리소스 관리자 및 클래식 모드](../articles/azure-resource-manager/resource-manager-deployment-model.md)를 잘 알고 있어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="81b37-101">Before you work with Azure resources, get familiar with the deployment models: [Resource Manager, and classic](../articles/azure-resource-manager/resource-manager-deployment-model.md).</span></span>

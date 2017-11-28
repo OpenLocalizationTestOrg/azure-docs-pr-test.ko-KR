@@ -1,0 +1,610 @@
+---
+title: "aaaUse PowerShell tooCreate VM으로는 기본 모드 보고서 서버 | Microsoft Docs"
+description: "이 항목에 설명 하 고 SQL Server Reporting Services 기본 모드 보고서 서버는 Azure 가상 컴퓨터에서의 hello 배포 및 구성을 안내 합니다. "
+services: virtual-machines-windows
+documentationcenter: na
+author: guyinacube
+manager: erikre
+editor: monicar
+tags: azure-service-management
+ms.assetid: 553af55b-d02e-4e32-904c-682bfa20fa0f
+ms.service: virtual-machines-sql
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: vm-windows-sql-server
+ms.workload: iaas-sql-server
+ms.date: 01/11/2017
+ms.author: asaxton
+ms.openlocfilehash: e7791199c87dff106132f1535da12de40a8dbc9c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 10/06/2017
+---
+# <a name="use-powershell-toocreate-an-azure-vm-with-a-native-mode-report-server"></a><span data-ttu-id="1bc4b-103">PowerShell tooCreate는 Azure VM으로는 기본 모드 보고서 서버를 사용 하 여</span><span class="sxs-lookup"><span data-stu-id="1bc4b-103">Use PowerShell tooCreate an Azure VM With a Native Mode Report Server</span></span>
+> [!IMPORTANT] 
+> <span data-ttu-id="1bc4b-104">Azure에는 리소스를 만들고 작업하기 위한 [리소스 관리자 및 클래식](../../../azure-resource-manager/resource-manager-deployment-model.md)라는 두 가지 배포 모델이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-104">Azure has two different deployment models for creating and working with resources: [Resource Manager and Classic](../../../azure-resource-manager/resource-manager-deployment-model.md).</span></span> <span data-ttu-id="1bc4b-105">이 문서에서는 hello 클래식 배포 모델을 사용 하 여 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-105">This article covers using hello Classic deployment model.</span></span> <span data-ttu-id="1bc4b-106">대부분의 새로운 배포 hello 리소스 관리자 모델을 사용 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-106">Microsoft recommends that most new deployments use hello Resource Manager model.</span></span>
+
+<span data-ttu-id="1bc4b-107">이 항목에 설명 하 고 SQL Server Reporting Services 기본 모드 보고서 서버는 Azure 가상 컴퓨터에서의 hello 배포 및 구성을 안내 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-107">This topic describes and walks you through hello deployment and configuration of a SQL Server Reporting Services native mode report server in an Azure Virtual Machine.</span></span> <span data-ttu-id="1bc4b-108">hello 단계에서이 문서는 수동 단계 toocreate hello 가상 컴퓨터와 Windows PowerShell 스크립트를 사용 tooconfigure Reporting Services hello VM에서.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-108">hello steps in this document use a combination of manual steps toocreate hello virtual machine and a Windows PowerShell script tooconfigure Reporting Services on hello VM.</span></span> <span data-ttu-id="1bc4b-109">hello 구성 스크립트는 HTTP 또는 HTTPs에 대 한 방화벽 포트 열기를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-109">hello configuration script includes opening a firewall port for HTTP or HTTPs.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="1bc4b-110">필요 하지 않은 경우 **HTTPS** hello 보고서 서버의 **2 단계를 건너뛰고**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-110">If you do not require **HTTPS** on hello report server, **skip step 2**.</span></span>
+> 
+> <span data-ttu-id="1bc4b-111">1 단계에서 hello VM을 만든 후 toohello 섹션 스크립트 tooconfigure hello 보고서 서버 사용 및 HTTP를 이동 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-111">After creating hello VM in step 1, go toohello section Use script tooconfigure hello report server and HTTP.</span></span> <span data-ttu-id="1bc4b-112">Hello 스크립트를 실행 한 후 hello 보고서 서버가 준비 toouse 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-112">After you run hello script, hello report server is ready toouse.</span></span>
+
+## <a name="prerequisites-and-assumptions"></a><span data-ttu-id="1bc4b-113">필수 조건 및 가정</span><span class="sxs-lookup"><span data-stu-id="1bc4b-113">Prerequisites and Assumptions</span></span>
+* <span data-ttu-id="1bc4b-114">**Azure 구독**: hello Azure 구독에서 사용할 수 있는 코어 수를 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-114">**Azure Subscription**: Verify hello number of cores available in your Azure Subscription.</span></span> <span data-ttu-id="1bc4b-115">V M 크기를 권장 하는 hello를 만들면 **A3**, 필요한 **4** 사용 가능한 코어입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-115">If you create hello recommended VM size of **A3**, you need **4** available cores.</span></span> <span data-ttu-id="1bc4b-116">**A2**의 VM 크기를 사용하는 경우 **2**개의 사용 가능한 코어가 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-116">If you use a VM size of **A2**, you need **2** available cores.</span></span>
+  
+  * <span data-ttu-id="1bc4b-117">hello Azure 클래식 포털에서에서 구독을 tooverify hello 코어 제한을 hello 상단 메뉴에서 왼쪽된 창의 hello 한 다음 클릭 사용 설정을 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-117">tooverify hello core limit of your subscription, in hello Azure classic portal, click SETTINGS in hello left pane and then Click USAGE in hello top menu.</span></span>
+  * <span data-ttu-id="1bc4b-118">tooincrease hello 코어 할당량, 연락처 [Azure 지원](https://azure.microsoft.com/support/options/)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-118">tooincrease hello core quota, contact [Azure Support](https://azure.microsoft.com/support/options/).</span></span> <span data-ttu-id="1bc4b-119">VM 크기 정보는 [Azure에 대한 가상 컴퓨터 크기](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-119">For VM size information, see [Virtual Machine Sizes for Azure](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>
+* <span data-ttu-id="1bc4b-120">**Windows PowerShell 스크립팅**: hello 항목의 Windows PowerShell 기본 작업 지식이 있다고 가정 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-120">**Windows PowerShell Scripting**: hello topic assumes that you have a basic working knowledge of Windows PowerShell.</span></span> <span data-ttu-id="1bc4b-121">Windows PowerShell을 사용 하는 방법에 대 한 자세한 내용은 hello 다음을 참조 하십시오.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-121">For more information about using Windows PowerShell, see hello following:</span></span>
+  
+  * [<span data-ttu-id="1bc4b-122">Windows Server에서 Windows PowerShell 시작</span><span class="sxs-lookup"><span data-stu-id="1bc4b-122">Starting Windows PowerShell on Windows Server</span></span>](https://technet.microsoft.com/library/hh847814.aspx)
+  * [<span data-ttu-id="1bc4b-123">Windows PowerShell 시작</span><span class="sxs-lookup"><span data-stu-id="1bc4b-123">Getting Started with Windows PowerShell</span></span>](https://technet.microsoft.com/library/hh857337.aspx)
+
+## <a name="step-1-provision-an-azure-virtual-machine"></a><span data-ttu-id="1bc4b-124">1단계: Azure 가상 컴퓨터 프로비전</span><span class="sxs-lookup"><span data-stu-id="1bc4b-124">Step 1: Provision an Azure Virtual Machine</span></span>
+1. <span data-ttu-id="1bc4b-125">Azure 클래식 포털 toohello를 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-125">Browse toohello Azure classic portal.</span></span>
+2. <span data-ttu-id="1bc4b-126">클릭 **가상 컴퓨터** hello 왼쪽된 창에서.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-126">Click **Virtual Machines** in hello left pane.</span></span>
+   
+    ![Microsoft Azure 가상 컴퓨터](./media/virtual-machines-windows-classic-ps-sql-report/IC660124.gif)
+3. <span data-ttu-id="1bc4b-128">**새로 만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-128">Click **New**.</span></span>
+   
+    ![새 단추](./media/virtual-machines-windows-classic-ps-sql-report/IC692019.gif)
+4. <span data-ttu-id="1bc4b-130">**갤러리에서**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-130">Click **From Gallery**.</span></span>
+   
+    ![갤러리의 새 VM](./media/virtual-machines-windows-classic-ps-sql-report/IC692020.gif)
+5. <span data-ttu-id="1bc4b-132">클릭 **SQL Server 2014 RTM Standard – Windows Server 2012 R2** hello 화살표 toocontinue 클릭 하 고 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-132">Click **SQL Server 2014 RTM Standard – Windows Server 2012 R2** and then click hello arrow toocontinue.</span></span>
+   
+    ![다음](./media/virtual-machines-windows-classic-ps-sql-report/IC692021.gif)
+   
+    <span data-ttu-id="1bc4b-134">Hello Reporting Services 데이터 기반 구독 기능이 필요 하면 선택 **SQL Server 2014 RTM Enterprise – Windows Server 2012 R2**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-134">If you need hello Reporting Services data driven subscriptions feature, choose **SQL Server 2014 RTM Enterprise – Windows Server 2012 R2**.</span></span> <span data-ttu-id="1bc4b-135">SQL Server 버전 및 기능 지원에 대 한 자세한 내용은 참조 하십시오. [hello SQL Server 2012 버전에서 지 원하는 기능](https://msdn.microsoft.com/library/cc645993.aspx#Reporting)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-135">For more information on SQL Server editions and feature support, see [Features Supported by hello Editions of SQL Server 2012](https://msdn.microsoft.com/library/cc645993.aspx#Reporting).</span></span>
+6. <span data-ttu-id="1bc4b-136">Hello에 **가상 컴퓨터 구성** 페이지에서 다음 필드는 hello를 편집 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-136">On hello **Virtual machine configuration** page, edit hello following fields:</span></span>
+   
+   * <span data-ttu-id="1bc4b-137">둘 이상 있는 경우 **버전 릴리스 날짜**, 선택 hello 가장 최신 버전입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-137">If there is more than one **VERSION RELEASE DATE**, select hello most recent version.</span></span>
+   * <span data-ttu-id="1bc4b-138">**가상 컴퓨터 이름**: hello 컴퓨터 이름으로도 사용 됩니다 hello 다음 구성 페이지에서 hello 기본 클라우드 서비스 DNS 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-138">**Virtual Machine Name**: hello machine name is also used on hello next configuration page as hello default Cloud Service DNS name.</span></span> <span data-ttu-id="1bc4b-139">hello DNS 이름은 Azure 서비스 hello 고유 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-139">hello DNS name must be unique across hello Azure service.</span></span> <span data-ttu-id="1bc4b-140">VM에 사용 되는 hello를 설명 하는 컴퓨터 이름으로 hello VM을 구성 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-140">Consider configuring hello VM with a computer name that describes what hello VM is used for.</span></span> <span data-ttu-id="1bc4b-141">예를 들어 ssrsnativecloud입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-141">For example ssrsnativecloud.</span></span>
+   * <span data-ttu-id="1bc4b-142">**계층**: 표준</span><span class="sxs-lookup"><span data-stu-id="1bc4b-142">**Tier**: Standard</span></span>
+   * <span data-ttu-id="1bc4b-143">**크기: A3** hello SQL Server 작업에 대 한 VM 크기가 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-143">**Size:A3** is hello recommended VM size for SQL Server workloads.</span></span> <span data-ttu-id="1bc4b-144">VM이 보고서 서버로 사용 되어, hello 보고서 서버의 작업이 크지 않은 한 VM 크기가 a 2의 충분 한 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-144">If a VM is only used as a report server, a VM size of A2 is sufficient unless hello report server experiences a large workload.</span></span> <span data-ttu-id="1bc4b-145">VM 가격 책정 정보는 [가상 컴퓨터 가격 책정](https://azure.microsoft.com/pricing/details/virtual-machines/)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-145">For VM pricing information, see [Virtual Machines Pricing](https://azure.microsoft.com/pricing/details/virtual-machines/).</span></span>
+   * <span data-ttu-id="1bc4b-146">**새 사용자 이름**: hello 이름을 제공 하는 hello VM에서 관리자 권한으로 생성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-146">**New User Name**: hello name you provide is created as an administrator on hello VM.</span></span>
+   * <span data-ttu-id="1bc4b-147">**새 암호** 및 **확인**.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-147">**New Password** and **confirm**.</span></span> <span data-ttu-id="1bc4b-148">이 암호 hello 새 관리자 계정을 사용 하 고 강력한 암호를 사용 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-148">This password is used for hello new administrator account and it is recommended you use a strong password.</span></span>
+   * <span data-ttu-id="1bc4b-149">**다음**을 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-149">Click **Next**.</span></span> <span data-ttu-id="1bc4b-150">![next](./media/virtual-machines-windows-classic-ps-sql-report/IC692021.gif)</span><span class="sxs-lookup"><span data-stu-id="1bc4b-150">![next](./media/virtual-machines-windows-classic-ps-sql-report/IC692021.gif)</span></span>
+7. <span data-ttu-id="1bc4b-151">Hello 다음 페이지에서 다음 필드는 hello를 편집 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-151">On hello next page, edit hello following fields:</span></span>
+   
+   * <span data-ttu-id="1bc4b-152">**클라우드 서비스**: **새 클라우드 서비스 만들기**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-152">**Cloud Service**: select **Create a new Cloud Service**.</span></span>
+   * <span data-ttu-id="1bc4b-153">**클라우드 서비스 DNS 이름**: hello hello VM hello와 연결 된 클라우드 서비스의 공용 DNS 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-153">**Cloud Service DNS Name**: This is hello public DNS name of hello Cloud Service that is associated with hello VM.</span></span> <span data-ttu-id="1bc4b-154">기본 이름은 hello hello VM 이름에 입력 하는 hello 이름이입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-154">hello default name is hello name you typed in for hello VM name.</span></span> <span data-ttu-id="1bc4b-155">Hello 항목의 이후 단계에서 신뢰할 수 있는 SSL 인증서를 만들고 hello DNS 이름이 hello의 hello 값에 사용 되는 다음 "**에 발급**" hello 인증서의 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-155">If in later steps of hello topic, you create a trusted SSL certificate and then hello DNS name is used for hello value of hello “**Issued to**” of hello certificate.</span></span>
+   * <span data-ttu-id="1bc4b-156">**지역/선호도 그룹/가상 네트워크**: hello 지역 가장 가까운 tooyour 최종 사용자를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-156">**Region/Affinity Group/Virtual Network**: Choose hello region closest tooyour end users.</span></span>
+   * <span data-ttu-id="1bc4b-157">**저장소 계정**: 자동으로 생성된 저장소 계정을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-157">**Storage Account**: Use an automatically generated storage account.</span></span>
+   * <span data-ttu-id="1bc4b-158">**가용성 집합**: 없습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-158">**Availability Set**: None.</span></span>
+   * <span data-ttu-id="1bc4b-159">**끝점** 유지 hello **원격 데스크톱** 및 **PowerShell** 끝점 다음 환경에 따라 HTTP 또는 HTTPS 끝점을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-159">**ENDPOINTS** Keep hello **Remote Desktop** and **PowerShell** endpoints and then add either an HTTP or HTTPS endpoint, depending on your environment.</span></span>
+     
+     * <span data-ttu-id="1bc4b-160">**HTTP**: 기본 공용 및 개인 포트는 hello **80**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-160">**HTTP**: hello default public and private ports are **80**.</span></span> <span data-ttu-id="1bc4b-161">80 이외의 개인 포트를 사용 하는 경우 수정 하는 참고 **$HTTPport = 80** hello http 스크립트에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-161">Note that if you use a private port other than 80, modify **$HTTPport = 80** in hello http script.</span></span>
+     * <span data-ttu-id="1bc4b-162">**HTTPS**: 기본 공용 및 개인 포트는 hello **443**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-162">**HTTPS**: hello default public and private ports are **443**.</span></span> <span data-ttu-id="1bc4b-163">보안 모범 사례는 toochange hello 개인 포트 하 고 방화벽 및 hello 보고서 서버 toouse hello 개인 포트를 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-163">A security best practice is toochange hello private port and configure your firewall and hello report server toouse hello private port.</span></span> <span data-ttu-id="1bc4b-164">끝점에 대 한 자세한 내용은 참조 하십시오. [어떻게 tooSet 가상 컴퓨터와 통신](../classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-164">For more information on endpoints, see [How tooSet Up Communication with a Virtual Machine](../classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).</span></span> <span data-ttu-id="1bc4b-165">443 이외의 포트를 사용 하는 경우 hello 매개 변수를 변경 하는 참고 **$HTTPsport = 443** hello HTTPS 스크립트에서에서 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-165">Note that if you use a port other than 443, change hello parameter **$HTTPsport = 443** in hello HTTPS script.</span></span>
+   * <span data-ttu-id="1bc4b-166">다음을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-166">Click next .</span></span> ![다음](./media/virtual-machines-windows-classic-ps-sql-report/IC692021.gif)
+8. <span data-ttu-id="1bc4b-168">Hello 마법사의 마지막 페이지 hello hello 기본값을 그대로 두고 **hello VM 에이전트 설치** 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-168">On hello last page of hello wizard, keep hello default **Install hello VM agent** selected.</span></span> <span data-ttu-id="1bc4b-169">hello이 항목의 단계를 이용 하지 않는 hello VM 에이전트가 있지만이 VM tookeep 하려는 경우 hello VM 에이전트 및 확장 하면 tooenhance 그 CM 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-169">hello steps in this topic do not utilize hello VM agent but if you plan tookeep this VM, hello VM agent and extensions will allow you tooenhance he CM.</span></span>  <span data-ttu-id="1bc4b-170">Hello VM 에이전트에 대 한 자세한 내용은 참조 하십시오. [VM 에이전트 및 확장-1 부](https://azure.microsoft.com/blog/2014/04/11/vm-agent-and-extensions-part-1/)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-170">For more information on hello VM agent, see [VM Agent and Extensions – Part 1](https://azure.microsoft.com/blog/2014/04/11/vm-agent-and-extensions-part-1/).</span></span> <span data-ttu-id="1bc4b-171">실행 하는 hello 기본 설치 된 확장 ad 중 하나는 hello VM 데스크톱에서 표시 하는 hello "BGINFO" 확장, 시스템 정보 같은 내부 ip 주소 및 사용 가능한 드라이브 공간입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-171">One of hello default extensions installed ad running is hello “BGINFO” extension that displays on hello VM desktop, system information such as internal IP and free drive space.</span></span>
+9. <span data-ttu-id="1bc4b-172">완료를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-172">Click complete .</span></span> ![Ok](./media/virtual-machines-windows-classic-ps-sql-report/IC660122.gif)
+10. <span data-ttu-id="1bc4b-174">hello **상태** 의 VM으로 표시 하는 hello **시작 (프로 비전)** hello 프로 비전 프로세스 및으로 표시 하는 동안 **실행** 때 hello VM 프로 비전 되 고 준비 toouse 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-174">hello **Status** of hello VM displays as **Starting (Provisioning)** during hello provision process and then displays as **Running** when hello VM is provisioned and ready toouse.</span></span>
+
+## <a name="step-2-create-a-server-certificate"></a><span data-ttu-id="1bc4b-175">2단계: 서버 인증서 만들기</span><span class="sxs-lookup"><span data-stu-id="1bc4b-175">Step 2: Create a Server Certificate</span></span>
+> [!NOTE]
+> <span data-ttu-id="1bc4b-176">수 hello 보고서 서버에 HTTPS를 요구 하지 않는 **2 단계를 건너뛰고** toohello 섹션 이동 **스크립트 tooconfigure hello 보고서 서버 및 HTTP를 사용 하 여**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-176">If you do not require HTTPS on hello report server, you can **skip step 2** and go toohello section **Use script tooconfigure hello report server and HTTP**.</span></span> <span data-ttu-id="1bc4b-177">사용 하 여 hello HTTP 스크립트 tooquickly hello 보고서 서버 및 서버를 준비 toouse 수 hello 보고서를 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-177">Use hello HTTP script tooquickly configure hello report server and hello report server will be ready toouse.</span></span>
+
+<span data-ttu-id="1bc4b-178">순서 toouse hello VM에서 HTTPS, SSL 인증서를 신뢰할 수 있는 해야합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-178">In order toouse HTTPS on hello VM, you need a trusted SSL certificate.</span></span> <span data-ttu-id="1bc4b-179">시나리오에 따라 hello 다음 두 가지 방법 중 하나를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-179">Depending on your scenario, you can use one of hello following two methods:</span></span>
+
+* <span data-ttu-id="1bc4b-180">CA(인증 기관)에서 발급하고 Microsoft에서 신뢰하는 유효한 SSL 인증서.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-180">A valid SSL certificate issued by a Certification Authority (CA) and trusted by Microsoft.</span></span> <span data-ttu-id="1bc4b-181">hello CA 루트 인증서는 필수 toobe hello Microsoft 루트 인증서 프로그램을 통해 배포 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-181">hello CA root certificates are required toobe distributed via hello Microsoft Root Certificate Program.</span></span> <span data-ttu-id="1bc4b-182">이 프로그램에 대 한 자세한 내용은 참조 [Windows 및 Windows Phone 8 SSL 루트 인증서 프로그램 (회원 Ca)](http://social.technet.microsoft.com/wiki/contents/articles/14215.windows-and-windows-phone-8-ssl-root-certificate-program-member-cas.aspx) 및 [Microsoft 루트 인증서 프로그램 소개 toohello](http://social.technet.microsoft.com/wiki/contents/articles/3281.introduction-to-the-microsoft-root-certificate-program.aspx)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-182">For more information about this program, see [Windows and Windows Phone 8 SSL Root Certificate Program (Member CAs)](http://social.technet.microsoft.com/wiki/contents/articles/14215.windows-and-windows-phone-8-ssl-root-certificate-program-member-cas.aspx) and [Introduction toohello Microsoft Root Certificate Program](http://social.technet.microsoft.com/wiki/contents/articles/3281.introduction-to-the-microsoft-root-certificate-program.aspx).</span></span>
+* <span data-ttu-id="1bc4b-183">자체 서명된 인증서.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-183">A self-signed certificate.</span></span> <span data-ttu-id="1bc4b-184">자체 서명된 인증서는 프로덕션 환경에 권장되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-184">Self-signed certificates are not recommended for production environments.</span></span>
+
+### <a name="toouse-a-certificate-created-by-a-trusted-certificate-authority-ca"></a><span data-ttu-id="1bc4b-185">toouse 신뢰할 수 있는 인증 기관 (CA)에서 발급 한 인증서</span><span class="sxs-lookup"><span data-stu-id="1bc4b-185">toouse a certificate created by a trusted Certificate Authority (CA)</span></span>
+1. <span data-ttu-id="1bc4b-186">**인증 기관에서 hello 웹 사이트에 대 한 서버 인증서를 요청**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-186">**Request a server certificate for hello website from a certification authority**.</span></span> 
+   
+    <span data-ttu-id="1bc4b-187">요청을 보내는 tooa 인증 기관 또는 toogenerate 온라인 인증 기관에 대 한 인증서 요청 파일 (Certreq.txt) 중 하나가 toogenerate hello 웹 서버 인증서 마법사를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-187">You can use hello Web Server Certificate Wizard either toogenerate a certificate request file (Certreq.txt) that you send tooa certification authority, or toogenerate a request for an online certification authority.</span></span> <span data-ttu-id="1bc4b-188">예를 들어 Windows Server 2012의 Microsoft 인증서 서비스입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-188">For example, Microsoft Certificate Services in Windows Server 2012.</span></span> <span data-ttu-id="1bc4b-189">서버 인증서에서 제공 되는 식별 보증의 hello 수준에 따라 일 tooseveral 수개월 동안 인증 기관 tooapprove hello에 대 한 요청 되며 인증서 파일을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-189">Depending on hello level of identification assurance offered by your server certificate, it is several days tooseveral months for hello certification authority tooapprove your request and send you a certificate file.</span></span> 
+   
+    <span data-ttu-id="1bc4b-190">서버 인증서를 요청 하는 방법에 대 한 자세한 내용은 hello 다음을 참조 하십시오.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-190">For more information about requesting a server certificates, see hello following:</span></span> 
+   
+   * <span data-ttu-id="1bc4b-191">[Certreq](https://technet.microsoft.com/library/cc725793.aspx), [Certreq](https://technet.microsoft.com/library/cc725793.aspx) 사용.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-191">Use [Certreq](https://technet.microsoft.com/library/cc725793.aspx), [Certreq](https://technet.microsoft.com/library/cc725793.aspx).</span></span>
+   * <span data-ttu-id="1bc4b-192">보안 도구 tooAdminister Windows Server 2012</span><span class="sxs-lookup"><span data-stu-id="1bc4b-192">Security Tools tooAdminister Windows Server 2012.</span></span>
+     
+     [<span data-ttu-id="1bc4b-193">보안 도구 tooAdminister Windows Server 2012</span><span class="sxs-lookup"><span data-stu-id="1bc4b-193">Security Tools tooAdminister Windows Server 2012</span></span>](https://technet.microsoft.com/library/jj730960.aspx)
+     
+     > [!NOTE]
+     > <span data-ttu-id="1bc4b-194">hello **에 발급** 필드 hello의 SSL 인증서 해야 수 hello 동일 hello로 신뢰할 수 있는 **클라우드 서비스 DNS 이름** 에서 사용한 새 VM hello 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-194">hello **issued to** field of hello trusted SSL certificate should be hello same as hello **Cloud Service DNS NAME** you used for hello new VM.</span></span>
+
+2. <span data-ttu-id="1bc4b-195">**웹 서버 hello에 hello 서버 인증서 설치**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-195">**Install hello server certificate on hello Web server**.</span></span> <span data-ttu-id="1bc4b-196">이 경우 hello 웹 서버는 hello VM 호스트에는 보고서 서버 hello 및 Reporting Services를 구성 하는 경우 이후 단계에서 hello 웹 사이트가 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-196">hello Web server in this case is hello VM that hosts hello report server and hello website is created in later steps when you configure Reporting Services.</span></span> <span data-ttu-id="1bc4b-197">Hello 인증서 MMC 스냅인을 사용 하 여 hello 웹 서버에 hello 서버 인증서를 설치 하는 방법에 대 한 자세한 내용은 참조 [서버 인증서를 설치](https://technet.microsoft.com/library/cc740068)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-197">For more information about installing hello server certificate on hello Web server by using hello Certificate MMC snap-in, see [Install a Server Certificate](https://technet.microsoft.com/library/cc740068).</span></span>
+   
+    <span data-ttu-id="1bc4b-198">이 항목에서는 tooconfigure hello 보고서 서버에 포함 된 toouse hello 스크립트 hello hello 인증서의 값 **지문** hello 스크립트의 매개 변수로 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-198">If you want toouse hello script included with this topic, tooconfigure hello report server, hello value of hello certificates **Thumbprint** is required as a parameter of hello script.</span></span> <span data-ttu-id="1bc4b-199">Tooobtain hello 인증서의 지문을 hello 하는 방법에 대 한 자세한 내용은 hello 다음 섹션을 참조 하십시오.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-199">See hello next section for details on how tooobtain hello thumbprint of hello certificate.</span></span>
+3. <span data-ttu-id="1bc4b-200">Hello 서버 인증서 toohello 보고서 서버를 할당 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-200">Assign hello server certificate toohello report server.</span></span> <span data-ttu-id="1bc4b-201">hello 할당 hello 보고서 서버를 구성할 때 hello 다음 섹션에서 완료 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-201">hello assignment is completed in hello next section when you configure hello report server.</span></span>
+
+### <a name="toouse-hello-virtual-machines-self-signed-certificate"></a><span data-ttu-id="1bc4b-202">toouse hello 가상 컴퓨터 자체 서명 된 인증서</span><span class="sxs-lookup"><span data-stu-id="1bc4b-202">toouse hello Virtual Machines Self-signed Certificate</span></span>
+<span data-ttu-id="1bc4b-203">자체 서명 된 인증서는 hello VM 프로 비전 된 경우 hello VM에서 작성 되었습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-203">A self-signed certificate was created on hello VM when hello VM was provisioned.</span></span> <span data-ttu-id="1bc4b-204">hello 인증서 이름은 VM DNS 이름과 hello 이름이 hello에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-204">hello certificate has hello same name as hello VM DNS name.</span></span> <span data-ttu-id="1bc4b-205">순서 tooavoid 인증서 오류에 필요할 때 해당 hello 인증서가 VM 자체에 hello 뿐만 아니라 hello 사이트의 모든 사용자가 신뢰할 수 있는 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-205">In order tooavoid certificate errors, it is required that hello certificate is trusted on hello VM itself, and also by all users of hello site.</span></span>
+
+1. <span data-ttu-id="1bc4b-206">hello 로컬 VM에서 hello 인증서 tootrust hello 루트 CA 인증서 toohello hello 추가 **신뢰할 수 있는 루트 인증 기관**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-206">tootrust hello root CA of hello certificate on hello Local VM, add hello certificate toohello **Trusted Root Certification Authorities**.</span></span> <span data-ttu-id="1bc4b-207">hello 다음은 필요한 hello 단계에 대 한 요약입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-207">hello following is a summary of hello steps required.</span></span> <span data-ttu-id="1bc4b-208">Tootrust CA hello 하는 방법에 대 한 자세한 내용은 참조 하십시오. [서버 인증서를 설치](https://technet.microsoft.com/library/cc740068)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-208">For detailed steps on how tootrust hello CA, see [Install a Server Certificate](https://technet.microsoft.com/library/cc740068).</span></span>
+   
+   1. <span data-ttu-id="1bc4b-209">Hello Azure 클래식 포털에서에서 VM hello를 선택 하 고 연결을 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-209">From hello Azure classic portal, select hello VM and click connect.</span></span> <span data-ttu-id="1bc4b-210">브라우저 구성에 따라.rdp 파일 toohello VM을 연결 하기 위한 증명된 toosave 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-210">Depending on your browser configuration, you may be prompted toosave an .rdp file for connecting toohello VM.</span></span>
+      
+       ![tooazure 가상 컴퓨터에 연결](./media/virtual-machines-windows-classic-ps-sql-report/IC650112.gif) <span data-ttu-id="1bc4b-212">Hello 사용자 VM 이름, 사용자 이름 및 hello VM을 만들 때 구성한 암호를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-212">Use hello user VM name, user name and password you configured when you created hello VM.</span></span> 
+      
+       <span data-ttu-id="1bc4b-213">예를 들어 다음 이미지는 hello, hello VM 이름은 **ssrsnativecloud** hello 사용자 이름이 고 **testuser**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-213">For example, in hello following image, hello VM name is **ssrsnativecloud** and hello user name is **testuser**.</span></span>
+      
+       ![로그인에 VM 이름 포함](./media/virtual-machines-windows-classic-ps-sql-report/IC764111.png)
+   2. <span data-ttu-id="1bc4b-215">Mmc.exe를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-215">Run mmc.exe.</span></span> <span data-ttu-id="1bc4b-216">자세한 내용은 참조 [하는 방법: MMC 스냅인 hello로 인증서 보기](https://msdn.microsoft.com/library/ms788967.aspx)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-216">For more information, see [How to: View Certificates with hello MMC Snap-in](https://msdn.microsoft.com/library/ms788967.aspx).</span></span>
+   3. <span data-ttu-id="1bc4b-217">Hello 콘솔 응용 프로그램에서 **파일** 메뉴 추가 hello **인증서** 스냅인을 선택 **컴퓨터 계정** 메시지가 표시 되 고 클릭 **다음**.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-217">In hello console application **File** menu, add hello **Certificates** snap-in, select **Computer Account** when prompted, and then click **Next**.</span></span>
+   4. <span data-ttu-id="1bc4b-218">선택 **로컬 컴퓨터** toomanage 클릭 하 고 **마침**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-218">Select **Local Computer** toomanage and then click **Finish**.</span></span>
+   5. <span data-ttu-id="1bc4b-219">클릭 **확인** hello를 차례로 확장 하 고 **인증서-개인** 노드와 클릭 **인증서**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-219">Click **Ok** and then expand hello **Certificates -Personal** nodes and then click **Certificates**.</span></span> <span data-ttu-id="1bc4b-220">hello 인증서 hello VM의 이름과 같은 hello DNS 이름을 지정 하 고 끝나는 **cloudapp.net**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-220">hello certificate is named after hello DNS name of hello VM and ends with **cloudapp.net**.</span></span> <span data-ttu-id="1bc4b-221">Hello 인증서 이름을 마우스 오른쪽 단추로 클릭 하 고 클릭 **복사**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-221">Right-click hello certificate name and click **Copy**.</span></span>
+   6. <span data-ttu-id="1bc4b-222">Hello 확장 **신뢰할 수 있는 루트 인증 기관** 노드 마우스 오른쪽 단추로 **인증서** 클릭 하 고 **붙여넣기**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-222">Expand hello **Trusted Root Certification Authorities** node and then right-click **Certificates** and then click **Paste**.</span></span>
+   7. <span data-ttu-id="1bc4b-223">double toovalidate hello 인증서 아래에서 이름을 클릭 **신뢰할 수 있는 루트 인증 기관** 오류가 없는 고 인증서가 표시 있는지 확인 하십시오.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-223">toovalidate, double click on hello certificate name under **Trusted Root Certification Authorities** and verify that there are no errors and you see your certificate.</span></span> <span data-ttu-id="1bc4b-224">Toouse hello HTTPS 스크립트 tooconfigure hello 보고서 서버에서이 항목에 포함 된 hello 인증서의 값을 hello **지문** hello 스크립트의 매개 변수로 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-224">If you want toouse hello HTTPS script included with this topic, tooconfigure hello report server, hello value of hello certificates **Thumbprint** is required as a parameter of hello script.</span></span> <span data-ttu-id="1bc4b-225">**tooget hello 지문 값**, hello 다음을 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-225">**tooget hello thumbprint value**, complete hello following.</span></span> <span data-ttu-id="1bc4b-226">섹션에는 PowerShell 샘플 tooretrieve hello 지문도는 [스크립트 tooconfigure hello 보고서 서버와 HTTPS를 사용 하 여](#use-script-to-configure-the-report-server-and-HTTPS)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-226">There is also a PowerShell sample tooretrieve hello thumbprint in section [Use script tooconfigure hello report server and HTTPS](#use-script-to-configure-the-report-server-and-HTTPS).</span></span>
+      
+      1. <span data-ttu-id="1bc4b-227">예를 들어 ssrsnativecloud.cloudapp.net hello 인증서의 hello 이름을 두 번 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-227">Double-click hello name of hello certificate, for example ssrsnativecloud.cloudapp.net.</span></span>
+      2. <span data-ttu-id="1bc4b-228">Hello 클릭 **세부 정보** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-228">Click hello **Details** tab.</span></span>
+      3. <span data-ttu-id="1bc4b-229">왼쪽 창에서 **지문**.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-229">Click **Thumbprint**.</span></span> <span data-ttu-id="1bc4b-230">hello 지문 안녕하세요 값 a6 예를 들어 hello 세부 정보 필드에 표시 됩니다 08 3c df f9 0b f7 e3 7 c 25 ed a4 ed 7e ac 91 9c 2c fb 2f.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-230">hello value of hello thumbprint is displayed in hello details field, for example ‎a6 08 3c df f9 0b f7 e3 7c 25 ed a4 ed 7e ac 91 9c 2c fb 2f.</span></span>
+      4. <span data-ttu-id="1bc4b-231">Hello 지문을 복사 나중에 대 한 hello 값을 저장 하거나 지금 hello 스크립트를 편집 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-231">Copy hello thumbprint and save hello value for later or edit hello script now.</span></span>
+      5. <span data-ttu-id="1bc4b-232">(*) Hello 스크립트를 실행 하기 전에 hello 값 쌍 사이의 hello 공백을 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-232">(*) Before you run hello script, remove hello spaces in between hello pairs of values.</span></span> <span data-ttu-id="1bc4b-233">예를 들어 위 hello 지 문은 a6083cdff90bf7e37c25eda4ed7eac919c2cfb2f는 이제 것입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-233">For example hello thumbprint noted before would now be ‎a6083cdff90bf7e37c25eda4ed7eac919c2cfb2f.</span></span>
+      6. <span data-ttu-id="1bc4b-234">Hello 서버 인증서 toohello 보고서 서버를 할당 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-234">Assign hello server certificate toohello report server.</span></span> <span data-ttu-id="1bc4b-235">hello 할당 hello 보고서 서버를 구성할 때 hello 다음 섹션에서 완료 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-235">hello assignment is completed in hello next section when you configure hello report server.</span></span>
+
+<span data-ttu-id="1bc4b-236">자체 서명 된 SSL 인증서를 사용 하는 경우 hello hello 인증서 이름이 이미 hello VM의 hello 호스트 이름과 일치 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-236">If you are using a self-signed SSL certificate, hello name on hello certificate already matches hello hostname of hello VM.</span></span> <span data-ttu-id="1bc4b-237">따라서 hello hello 컴퓨터의 DNS는 이미 전역으로 등록 및 모든 클라이언트에서 액세스할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-237">Therefore, hello DNS of hello machine is already registered globally and can be accessed from any client.</span></span>
+
+## <a name="step-3-configure-hello-report-server"></a><span data-ttu-id="1bc4b-238">3 단계: hello 보고서 서버 구성</span><span class="sxs-lookup"><span data-stu-id="1bc4b-238">Step 3: Configure hello Report Server</span></span>
+<span data-ttu-id="1bc4b-239">이 섹션에서는 Reporting Services 기본 모드 보고서 서버로 hello VM을 구성 하는 과정을 안내 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-239">This section walks you through configuring hello VM as a Reporting Services native mode report server.</span></span> <span data-ttu-id="1bc4b-240">Hello 메서드 tooconfigure hello 보고서 서버를 다음 중 하나를 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-240">You can use one of hello following methods tooconfigure hello report server:</span></span>
+
+* <span data-ttu-id="1bc4b-241">Hello 스크립트 tooconfigure hello 보고서 서버를 사용 하 여</span><span class="sxs-lookup"><span data-stu-id="1bc4b-241">Use hello script tooconfigure hello report server</span></span>
+* <span data-ttu-id="1bc4b-242">구성 관리자를 사용 하 여 tooConfigure hello 보고서 서버입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-242">Use Configuration Manager tooConfigure hello Report Server.</span></span>
+
+<span data-ttu-id="1bc4b-243">자세한 단계는 hello 섹션을 참조 [연결 toohello 가상 컴퓨터와 시작 hello Reporting Services 구성 관리자](virtual-machines-windows-classic-ps-sql-bi.md#connect-to-the-virtual-machine-and-start-the-reporting-services-configuration-manager)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-243">For more detailed steps, see hello section [Connect toohello Virtual Machine and Start hello Reporting Services Configuration Manager](virtual-machines-windows-classic-ps-sql-bi.md#connect-to-the-virtual-machine-and-start-the-reporting-services-configuration-manager).</span></span>
+
+<span data-ttu-id="1bc4b-244">**인증 참고:** Windows 인증 hello 권장 되는 인증 방법 이며 hello 기본 Reporting Services 인증입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-244">**Authentication Note:** Windows authentication is hello recommended authentication method and it is hello default Reporting Services authentication.</span></span> <span data-ttu-id="1bc4b-245">Hello VM에 구성 되어 있는 사용자만 Reporting Services에 액세스할 수 및 tooReporting 서비스 역할을 할당 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-245">Only users that are configured on hello VM can access Reporting Services and assigned tooReporting Services roles.</span></span>
+
+### <a name="use-script-tooconfigure-hello-report-server-and-http"></a><span data-ttu-id="1bc4b-246">스크립트 tooconfigure hello 보고서 서버와 HTTP 사용</span><span class="sxs-lookup"><span data-stu-id="1bc4b-246">Use script tooconfigure hello report server and HTTP</span></span>
+<span data-ttu-id="1bc4b-247">toouse hello Windows PowerShell 스크립트 tooconfigure hello 보고서 서버에서 전체 hello 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-247">toouse hello Windows PowerShell script tooconfigure hello report server, complete hello following steps.</span></span> <span data-ttu-id="1bc4b-248">hello 구성에는 HTTP, HTTPS가 아닌 포함 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-248">hello configuration includes HTTP, not HTTPS:</span></span>
+
+1. <span data-ttu-id="1bc4b-249">Hello Azure 클래식 포털에서에서 VM hello를 선택 하 고 연결을 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-249">From hello Azure classic portal, select hello VM and click connect.</span></span> <span data-ttu-id="1bc4b-250">브라우저 구성에 따라.rdp 파일 toohello VM을 연결 하기 위한 증명된 toosave 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-250">Depending on your browser configuration, you may be prompted toosave an .rdp file for connecting toohello VM.</span></span>
+   
+    ![tooazure 가상 컴퓨터에 연결](./media/virtual-machines-windows-classic-ps-sql-report/IC650112.gif) <span data-ttu-id="1bc4b-252">Hello 사용자 VM 이름, 사용자 이름 및 hello VM을 만들 때 구성한 암호를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-252">Use hello user VM name, user name and password you configured when you created hello VM.</span></span> 
+   
+    <span data-ttu-id="1bc4b-253">예를 들어 다음 이미지는 hello, hello VM 이름은 **ssrsnativecloud** hello 사용자 이름이 고 **testuser**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-253">For example, in hello following image, hello VM name is **ssrsnativecloud** and hello user name is **testuser**.</span></span>
+   
+    ![로그인에 VM 이름 포함](./media/virtual-machines-windows-classic-ps-sql-report/IC764111.png)
+2. <span data-ttu-id="1bc4b-255">Hello VM에서 엽니다 **Windows PowerShell ISE** 관리자 권한으로 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-255">On hello VM, open **Windows PowerShell ISE** with administrative privileges.</span></span> <span data-ttu-id="1bc4b-256">hello PowerShell ISE는 Windows server 2012에 기본적으로 설치 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-256">hello PowerShell ISE is installed by default on Windows server 2012.</span></span> <span data-ttu-id="1bc4b-257">Hello 스크립트 hello ISE에 붙여 넣습니다 하, hello 스크립트를 수정 하 고 hello 스크립트를 실행 수 있도록 하려면 표준 Windows PowerShell 창 대신 ISE hello를 사용 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-257">It is recommended you use hello ISE instead of a standard Windows PowerShell window so that you can paste hello script into hello ISE, modify hello script, and then run hello script.</span></span>
+3. <span data-ttu-id="1bc4b-258">Windows PowerShell ISE에서 클릭 hello **보기** 메뉴를 차례로 클릭 **스크립트 창 표시**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-258">In Windows PowerShell ISE, click hello **View** menu and then click **Show Script Pane**.</span></span>
+4. <span data-ttu-id="1bc4b-259">다음 스크립트를 hello 복사한 hello 스크립트 hello Windows PowerShell ISE 스크립트 창에 붙여 넣습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-259">Copy hello following script, and paste hello script into hello Windows PowerShell ISE script pane.</span></span>
+   
+        ## This script configures a Native mode report server without HTTPS
+        $ErrorActionPreference = "Stop"
+   
+        $server = $env:COMPUTERNAME
+        $HTTPport = 80 # change hello value if you used a different port for hello private HTTP endpoint when hello VM was created.
+   
+        ## Set PowerShell execution policy toobe able toorun scripts
+        Set-ExecutionPolicy RemoteSigned -Force
+   
+        ## Utility method for verifying an operation's result
+        function CheckResult
+        {
+            param($wmi_result, $actionname)
+            if ($wmi_result.HRESULT -ne 0) {
+                write-error "$actionname failed. Error from WMI: $($wmi_result.Error)"
+            }
+        }
+   
+        $starttime=Get-Date
+        write-host -foregroundcolor DarkGray $starttime StartTime
+   
+        ## ReportServer Database name - this can be changed if needed
+        $dbName='ReportServer'
+   
+        ## Register for MSReportServer_ConfigurationSetting
+        ## Change hello version portion of hello path too"v11" toouse hello script for SQL Server 2012
+        $RSObject = Get-WmiObject -class "MSReportServer_ConfigurationSetting" -namespace "root\Microsoft\SqlServer\ReportServer\RS_MSSQLSERVER\v12\Admin"
+   
+        ## Report Server Configuration Steps
+   
+        ## Setting hello web service URL ##
+        write-host -foregroundcolor green "Setting hello web service URL"
+        write-host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        $time=Get-Date
+        write-host -foregroundcolor DarkGray $time
+   
+        ## SetVirtualDirectory for ReportServer site
+            write-host 'Calling SetVirtualDirectory'
+            $r = $RSObject.SetVirtualDirectory('ReportServerWebService','ReportServer',1033)
+            CheckResult $r "SetVirtualDirectory for ReportServer"
+   
+        ## ReserveURL for ReportServerWebService - port $HTTPport (for local usage)
+            write-host "Calling ReserveURL port $HTTPport"
+            $r = $RSObject.ReserveURL('ReportServerWebService',"http://+:$HTTPport",1033)
+            CheckResult $r "ReserveURL for ReportServer port $HTTPport" 
+   
+        ## Setting hello Database ##
+        write-host -foregroundcolor green "Setting hello Database"
+        write-host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        $time=Get-Date
+        write-host -foregroundcolor DarkGray $time
+   
+        ## GenerateDatabaseScript - for creating hello database
+            write-host "Calling GenerateDatabaseCreationScript for database $dbName"
+            $r = $RSObject.GenerateDatabaseCreationScript($dbName,1033,$false)
+            CheckResult $r "GenerateDatabaseCreationScript"
+            $script = $r.Script
+   
+        ## Execute sql script toocreate hello database
+            write-host 'Executing Database Creation Script'
+            $savedcvd = Get-Location
+            Import-Module SQLPS              ## this automatically changes toosqlserver provider
+            Invoke-SqlCmd -Query $script
+            Set-Location $savedcvd
+   
+        ## GenerateGrantRightsScript 
+            $DBUser = "NT Service\ReportServer"
+            write-host "Calling GenerateDatabaseRightsScript with user $DBUser"
+            $r = $RSObject.GenerateDatabaseRightsScript($DBUser,$dbName,$false,$true)
+            CheckResult $r "GenerateDatabaseRightsScript"
+            $script = $r.Script
+   
+        ## Execute grant rights script
+            write-host 'Executing Database Rights Script'
+            $savedcvd = Get-Location
+            cd sqlserver:\
+            Invoke-SqlCmd -Query $script
+            Set-Location $savedcvd
+   
+        ## SetDBConnection - uses Windows Service (type 2), username is ignored
+            write-host "Calling SetDatabaseConnection server $server, DB $dbName"
+            $r = $RSObject.SetDatabaseConnection($server,$dbName,2,'','')
+            CheckResult $r "SetDatabaseConnection"  
+   
+        ## Setting hello Report Manager URL ##
+   
+        write-host -foregroundcolor green "Setting hello Report Manager URL"
+        write-host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        $time=Get-Date
+        write-host -foregroundcolor DarkGray $time
+   
+        ## SetVirtualDirectory for Reports (Report Manager) site
+            write-host 'Calling SetVirtualDirectory'
+            $r = $RSObject.SetVirtualDirectory('ReportManager','Reports',1033)
+            CheckResult $r "SetVirtualDirectory"
+   
+        ## ReserveURL for ReportManager  - port $HTTPport
+            write-host "Calling ReserveURL for ReportManager, port $HTTPport"
+            $r = $RSObject.ReserveURL('ReportManager',"http://+:$HTTPport",1033)
+            CheckResult $r "ReserveURL for ReportManager port $HTTPport"
+   
+        write-host -foregroundcolor green "Open Firewall port for $HTTPport"
+        write-host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        $time=Get-Date
+        write-host -foregroundcolor DarkGray $time
+   
+        ## Open Firewall port for $HTTPport
+            New-NetFirewallRule -DisplayName “Report Server (TCP on port $HTTPport)” -Direction Inbound –Protocol TCP –LocalPort $HTTPport
+            write-host "Added rule Report Server (TCP on port $HTTPport) in Windows Firewall"
+   
+        write-host 'Operations completed, Report Server is ready'
+        write-host -foregroundcolor DarkGray $starttime StartTime
+        $time=Get-Date
+        write-host -foregroundcolor DarkGray $time
+5. <span data-ttu-id="1bc4b-260">80 이외의 HTTP 포트를 사용 하 여 hello VM을 만든 경우 수정 hello 매개 변수 $HTTPport = 80입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-260">If you created hello VM with an HTTP port other than 80, modify hello parameter $HTTPport = 80.</span></span>
+6. <span data-ttu-id="1bc4b-261">hello 스크립트는 현재 Reporting Services에 대해 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-261">hello script is currently configured for  Reporting Services.</span></span> <span data-ttu-id="1bc4b-262">Reporting Services에 대해 toorun hello 스크립트를 원하는 경우 hello 경로 toohello 네임 스페이스의 hello 버전 부분을 너무 수정할 "v11" hello Get-wmiobject 문의 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-262">If you want toorun hello script for  Reporting Services, modify hello version portion of hello path toohello namespace too“v11”, on hello Get-WmiObject statement.</span></span>
+7. <span data-ttu-id="1bc4b-263">Hello 스크립트를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-263">Run hello script.</span></span>
+
+<span data-ttu-id="1bc4b-264">**유효성 검사**: hello 기본 보고서 서버 기능이 작동 하는지 tooverify 참조 hello [확인 hello 구성](#verify-the-configuration) 이 항목의 뒷부분에 나오는 섹션.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-264">**Validation**: tooverify that hello basic report server functionality is working, see hello [Verify hello configuration](#verify-the-configuration) section later in this topic.</span></span>
+
+### <a name="use-script-tooconfigure-hello-report-server-and-https"></a><span data-ttu-id="1bc4b-265">스크립트 tooconfigure hello 보고서 서버 및 HTTPS를 사용 하 여</span><span class="sxs-lookup"><span data-stu-id="1bc4b-265">Use script tooconfigure hello report server and HTTPS</span></span>
+<span data-ttu-id="1bc4b-266">toouse Windows PowerShell tooconfigure hello 보고서 서버에서 전체 hello 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-266">toouse Windows PowerShell tooconfigure hello report server, complete hello following steps.</span></span> <span data-ttu-id="1bc4b-267">hello 구성은 HTTP가 아닌 HTTPS를 포함합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-267">hello configuration includes HTTPS, not HTTP.</span></span>
+
+1. <span data-ttu-id="1bc4b-268">Hello Azure 클래식 포털에서에서 VM hello를 선택 하 고 연결을 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-268">From hello Azure classic portal, select hello VM and click connect.</span></span> <span data-ttu-id="1bc4b-269">브라우저 구성에 따라.rdp 파일 toohello VM을 연결 하기 위한 증명된 toosave 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-269">Depending on your browser configuration, you may be prompted toosave an .rdp file for connecting toohello VM.</span></span>
+   
+    ![tooazure 가상 컴퓨터에 연결](./media/virtual-machines-windows-classic-ps-sql-report/IC650112.gif) <span data-ttu-id="1bc4b-271">Hello 사용자 VM 이름, 사용자 이름 및 hello VM을 만들 때 구성한 암호를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-271">Use hello user VM name, user name and password you configured when you created hello VM.</span></span> 
+   
+    <span data-ttu-id="1bc4b-272">예를 들어 다음 이미지는 hello, hello VM 이름은 **ssrsnativecloud** hello 사용자 이름이 고 **testuser**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-272">For example, in hello following image, hello VM name is **ssrsnativecloud** and hello user name is **testuser**.</span></span>
+   
+    ![로그인에 VM 이름 포함](./media/virtual-machines-windows-classic-ps-sql-report/IC764111.png)
+2. <span data-ttu-id="1bc4b-274">Hello VM에서 엽니다 **Windows PowerShell ISE** 관리자 권한으로 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-274">On hello VM, open **Windows PowerShell ISE** with administrative privileges.</span></span> <span data-ttu-id="1bc4b-275">hello PowerShell ISE는 Windows server 2012에 기본적으로 설치 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-275">hello PowerShell ISE is installed by default on Windows server 2012.</span></span> <span data-ttu-id="1bc4b-276">Hello 스크립트 hello ISE에 붙여 넣습니다 하, hello 스크립트를 수정 하 고 hello 스크립트를 실행 수 있도록 하려면 표준 Windows PowerShell 창 대신 ISE hello를 사용 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-276">It is recommended you use hello ISE instead of a standard Windows PowerShell window so that you can paste hello script into hello ISE, modify hello script, and then run hello script.</span></span>
+3. <span data-ttu-id="1bc4b-277">tooenable hello 다음 Windows PowerShell 명령을 실행 하는 스크립트 실행:</span><span class="sxs-lookup"><span data-stu-id="1bc4b-277">tooenable running scripts, run hello following Windows PowerShell command:</span></span>
+   
+        Set-ExecutionPolicy RemoteSigned
+   
+    <span data-ttu-id="1bc4b-278">Hello tooverify hello 정책에 따라 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-278">You can then run hello following tooverify hello policy:</span></span>
+   
+        Get-ExecutionPolicy
+4. <span data-ttu-id="1bc4b-279">**Windows PowerShell ISE**, hello 클릭 **보기** 메뉴를 차례로 클릭 **스크립트 창 표시**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-279">In **Windows PowerShell ISE**, click hello **View** menu and then click **Show Script Pane**.</span></span>
+5. <span data-ttu-id="1bc4b-280">다음 스크립트를 hello Windows PowerShell ISE 스크립트 창에 붙여 hello를 복사 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-280">Copy hello following script and paste it into hello Windows PowerShell ISE script pane.</span></span>
+   
+        ## This script configures hello report server, including HTTPS
+        $ErrorActionPreference = "Stop"
+        $httpsport=443 # modify if you used a different port number when hello HTTPS endpoint was created.
+   
+        # You can run hello following command tooget (.cloudapp.net certificates) so you can copy hello thumbprint / certificate hash
+        #dir cert:\LocalMachine -rec | Select-Object * | where {$_.issuer -like "*cloudapp*" -and $_.pspath -like "*root*"} | select dnsnamelist, thumbprint, issuer
+        #
+        # hello certifacte hash is a REQUIRED parameter
+        $certificatehash="" 
+        # hello certificate hash should not contain spaces
+   
+        if ($certificatehash.Length -lt 1) 
+        {
+            write-error "certificatehash is a required parameter"
+        } 
+        # Certificates should be all lower case
+        $certificatehash=$certificatehash.ToLower()
+        $server = $env:COMPUTERNAME
+        # If hello certificate is not a wildcard certificate, comment out hello following line, and enable hello full $DNSNAme reference.
+        $DNSName="+"
+        #$DNSName="$server.cloudapp.net"
+        $DNSNameAndPort = $DNSName + ":$httpsport"
+   
+        ## Utility method for verifying an operation's result
+        function CheckResult
+        {
+            param($wmi_result, $actionname)
+            if ($wmi_result.HRESULT -ne 0) {
+                write-error "$actionname failed. Error from WMI: $($wmi_result.Error)"
+            }
+        }
+   
+        $starttime=Get-Date
+        write-host -foregroundcolor DarkGray $starttime StartTime
+   
+        ## ReportServer Database name - this can be changed if needed
+        $dbName='ReportServer'
+   
+        write-host "hello script will use $DNSNameAndPort as hello DNS name and port" 
+   
+        ## Register for MSReportServer_ConfigurationSetting
+        ## Change hello version portion of hello path too"v11" toouse hello script for SQL Server 2012
+        $RSObject = Get-WmiObject -class "MSReportServer_ConfigurationSetting" -namespace "root\Microsoft\SqlServer\ReportServer\RS_MSSQLSERVER\v12\Admin"
+   
+        ## Reporting Services Report Server Configuration Steps
+   
+        ## 1. Setting hello web service URL ##
+        write-host -foregroundcolor green "Setting hello web service URL"
+        write-host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        $time=Get-Date
+        write-host -foregroundcolor DarkGray $time
+   
+        ## SetVirtualDirectory for ReportServer site
+            write-host 'Calling SetVirtualDirectory'
+            $r = $RSObject.SetVirtualDirectory('ReportServerWebService','ReportServer',1033)
+            CheckResult $r "SetVirtualDirectory for ReportServer"
+   
+        ## ReserveURL for ReportServerWebService - port 80 (for local usage)
+            write-host 'Calling ReserveURL port 80'
+            $r = $RSObject.ReserveURL('ReportServerWebService','http://+:80',1033)
+            CheckResult $r "ReserveURL for ReportServer port 80" 
+   
+        ## ReserveURL for ReportServerWebService - port $httpsport
+            write-host "Calling ReserveURL port $httpsport, for URL: https://$DNSNameAndPort"
+            $r = $RSObject.ReserveURL('ReportServerWebService',"https://$DNSNameAndPort",1033)
+            CheckResult $r "ReserveURL for ReportServer port $httpsport" 
+   
+        ## CreateSSLCertificateBinding for ReportServerWebService port $httpsport
+            write-host "Calling CreateSSLCertificateBinding port $httpsport, with certificate hash: $certificatehash"
+            $r = $RSObject.CreateSSLCertificateBinding('ReportServerWebService',$certificatehash,'0.0.0.0',$httpsport,1033)
+            CheckResult $r "CreateSSLCertificateBinding for ReportServer port $httpsport" 
+   
+        ## 2. Setting hello Database ##
+        write-host -foregroundcolor green "Setting hello Database"
+        write-host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        $time=Get-Date
+        write-host -foregroundcolor DarkGray $time
+   
+        ## GenerateDatabaseScript - for creating hello database
+            write-host "Calling GenerateDatabaseCreationScript for database $dbName"
+            $r = $RSObject.GenerateDatabaseCreationScript($dbName,1033,$false)
+            CheckResult $r "GenerateDatabaseCreationScript"
+            $script = $r.Script
+   
+        ## Execute sql script toocreate hello database
+            write-host 'Executing Database Creation Script'
+            $savedcvd = Get-Location
+            Import-Module SQLPS                    ## this automatically changes toosqlserver provider
+            Invoke-SqlCmd -Query $script
+            Set-Location $savedcvd
+   
+        ## GenerateGrantRightsScript 
+            $DBUser = "NT Service\ReportServer"
+            write-host "Calling GenerateDatabaseRightsScript with user $DBUser"
+            $r = $RSObject.GenerateDatabaseRightsScript($DBUser,$dbName,$false,$true)
+            CheckResult $r "GenerateDatabaseRightsScript"
+            $script = $r.Script
+   
+        ## Execute grant rights script
+            write-host 'Executing Database Rights Script'
+            $savedcvd = Get-Location
+            cd sqlserver:\
+            Invoke-SqlCmd -Query $script
+            Set-Location $savedcvd
+   
+        ## SetDBConnection - uses Windows Service (type 2), username is ignored
+            write-host "Calling SetDatabaseConnection server $server, DB $dbName"
+            $r = $RSObject.SetDatabaseConnection($server,$dbName,2,'','')
+            CheckResult $r "SetDatabaseConnection"  
+   
+        ## 3. Setting hello Report Manager URL ##
+   
+        write-host -foregroundcolor green "Setting hello Report Manager URL"
+        write-host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        $time=Get-Date
+        write-host -foregroundcolor DarkGray $time
+   
+        ## SetVirtualDirectory for Reports (Report Manager) site
+            write-host 'Calling SetVirtualDirectory'
+            $r = $RSObject.SetVirtualDirectory('ReportManager','Reports',1033)
+            CheckResult $r "SetVirtualDirectory"
+   
+        ## ReserveURL for ReportManager  - port 80
+            write-host 'Calling ReserveURL for ReportManager, port 80'
+            $r = $RSObject.ReserveURL('ReportManager','http://+:80',1033)
+            CheckResult $r "ReserveURL for ReportManager port 80"
+   
+        ## ReserveURL for ReportManager - port $httpsport
+            write-host "Calling ReserveURL port $httpsport, for URL: https://$DNSNameAndPort"
+            $r = $RSObject.ReserveURL('ReportManager',"https://$DNSNameAndPort",1033)
+            CheckResult $r "ReserveURL for ReportManager port $httpsport" 
+   
+        ## CreateSSLCertificateBinding for ReportManager port $httpsport
+            write-host "Calling CreateSSLCertificateBinding port $httpsport with certificate hash: $certificatehash"
+            $r = $RSObject.CreateSSLCertificateBinding('ReportManager',$certificatehash,'0.0.0.0',$httpsport,1033)
+            CheckResult $r "CreateSSLCertificateBinding for ReportManager port $httpsport" 
+   
+        write-host -foregroundcolor green "Open Firewall port for $httpsport"
+        write-host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        $time=Get-Date
+        write-host -foregroundcolor DarkGray $time
+   
+        ## Open Firewall port for $httpsport
+            New-NetFirewallRule -DisplayName “Report Server (TCP on port $httpsport)” -Direction Inbound –Protocol TCP –LocalPort $httpsport
+            write-host "Added rule Report Server (TCP on port $httpsport) in Windows Firewall"
+   
+        write-host 'Operations completed, Report Server is ready'
+        write-host -foregroundcolor DarkGray $starttime StartTime
+        $time=Get-Date
+        write-host -foregroundcolor DarkGray $time
+6. <span data-ttu-id="1bc4b-281">Hello 수정 **$certificatehash** hello 스크립트의 매개 변수:</span><span class="sxs-lookup"><span data-stu-id="1bc4b-281">Modify hello **$certificatehash** parameter in hello script:</span></span>
+   
+   * <span data-ttu-id="1bc4b-282">이는 **필수** 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-282">This is a **required** parameter.</span></span> <span data-ttu-id="1bc4b-283">Hello 이전 단계에서 hello 인증서 값을 저장 하지 않은 경우 hello hello 인증서 지 문에서 메서드 toocopy hello 인증서 해시 값을 다음 중 하나를 사용 합니다.:</span><span class="sxs-lookup"><span data-stu-id="1bc4b-283">If you did not save hello certificate value from hello previous steps, use one of hello following methods toocopy hello certificate hash value from hello certificates thumbprint.:</span></span>
+     
+       <span data-ttu-id="1bc4b-284">Hello VM에서 Windows PowerShell ISE를 열고 hello 다음 명령을 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-284">On hello VM, open Windows PowerShell ISE and run hello following command:</span></span>
+     
+           dir cert:\LocalMachine -rec | Select-Object * | where {$_.issuer -like "*cloudapp*" -and $_.pspath -like "*root*"} | select dnsnamelist, thumbprint, issuer
+     
+       <span data-ttu-id="1bc4b-285">hello 출력은 유사한 toohello 다음 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-285">hello output will look similar toohello following.</span></span> <span data-ttu-id="1bc4b-286">예를 들어 구성 된 인증서 hello 스크립트에서 빈 줄을 반환 하는 경우 VM hello가 없습니다 hello 섹션을 참조 하십시오. [toouse hello 가상 컴퓨터 자체 서명 된 인증서](#to-use-the-virtual-machines-self-signed-certificate)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-286">If hello script returns a blank line, hello VM does not have a certificate configured for example, see hello section [toouse hello Virtual Machines Self-signed Certificate](#to-use-the-virtual-machines-self-signed-certificate).</span></span>
+     
+     <span data-ttu-id="1bc4b-287">또는</span><span class="sxs-lookup"><span data-stu-id="1bc4b-287">OR</span></span>
+   * <span data-ttu-id="1bc4b-288">Hello mmc.exe VM에서 실행 되 고 다음 hello 추가 **인증서** 스냅인.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-288">On hello VM Run mmc.exe and then add hello **Certificates** snap-in.</span></span>
+   * <span data-ttu-id="1bc4b-289">Hello에서 **신뢰할 수 있는 루트 인증 기관** 노드 인증서 이름을 두 번 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-289">Under hello **Trusted Root Certificate Authorities** node double-click your certificate name.</span></span> <span data-ttu-id="1bc4b-290">Hello hello VM의 자체 서명 된 인증서를 사용 하는 경우 hello 인증서 hello VM의 이름과 같은 hello DNS 이름을 지정 하 고 끝나야 **cloudapp.net**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-290">If you are using hello self-signed certificate of hello VM, hello certificate is named after hello DNS name of hello VM and ends with **cloudapp.net**.</span></span>
+   * <span data-ttu-id="1bc4b-291">Hello 클릭 **세부 정보** 탭 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-291">Click hello **Details** tab.</span></span>
+   * <span data-ttu-id="1bc4b-292">왼쪽 창에서 **지문**.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-292">Click **Thumbprint**.</span></span> <span data-ttu-id="1bc4b-293">예를 들어 af 11 60 b6 4b 28 8 d 89 0a hello 세부 정보 필드에 표시 hello 값 hello 손도장을 82 12 ff 6b a9 c3 66 4f 31 90 48</span><span class="sxs-lookup"><span data-stu-id="1bc4b-293">hello value of hello thumbprint is displayed in hello details field, for example af 11 60 b6 4b 28 8d 89 0a 82 12 ff 6b a9 c3 66 4f 31 90 48</span></span>
+   * <span data-ttu-id="1bc4b-294">**Hello 스크립트를 실행 하기 전에**, hello 값 쌍 사이의 hello 공백을 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-294">**Before you run hello script**, remove hello spaces in between hello pairs of values.</span></span> <span data-ttu-id="1bc4b-295">예를 들어 af1160b64b288d890a8212ff6ba9c3664f319048입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-295">For example af1160b64b288d890a8212ff6ba9c3664f319048</span></span>
+7. <span data-ttu-id="1bc4b-296">Hello 수정 **$httpsport** 매개 변수:</span><span class="sxs-lookup"><span data-stu-id="1bc4b-296">Modify hello **$httpsport** parameter:</span></span> 
+   
+   * <span data-ttu-id="1bc4b-297">포트 443을 사용 하는 hello HTTPS 끝점에 대 한 경우 다음 불필요 tooupdate hello 스크립트에서이 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-297">If you used port 443 for hello HTTPS endpoint, then you do not need tooupdate this parameter in hello script.</span></span> <span data-ttu-id="1bc4b-298">그렇지 않으면 hello VM에서 hello HTTPS 개인 끝점을 구성할 때 선택한 hello 포트 값을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-298">Otherwise use hello port value you selected when you configured hello HTTPS private endpoint on hello VM.</span></span>
+8. <span data-ttu-id="1bc4b-299">Hello 수정 **$DNSName** 매개 변수:</span><span class="sxs-lookup"><span data-stu-id="1bc4b-299">Modify hello **$DNSName** parameter:</span></span> 
+   
+   * <span data-ttu-id="1bc4b-300">hello 스크립트 $DNSName 와일드 카드 인증서에 대해 구성 된 = "+".</span><span class="sxs-lookup"><span data-stu-id="1bc4b-300">hello script is configured for a wild card certificate $DNSName="+".</span></span> <span data-ttu-id="1bc4b-301">와일드 카드 인증서 바인딩에 대 한 원하는 tooconfigure 하지 않으면 $DNSName 주석 = "+"및 줄, hello 전체 $DNSNAme 참조, # # $DNSName="$server.cloudapp.net 다음 hello를 사용 하도록 설정" 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-301">If you do no want tooconfigure for a wildcard certificate binding, comment out $DNSName="+" and enable hello following line, hello full $DNSNAme reference, ##$DNSName="$server.cloudapp.net".</span></span>
+     
+       <span data-ttu-id="1bc4b-302">Reporting Services에 대 한 toouse hello 가상 컴퓨터의 DNS 이름을 하지 않을 경우 hello $DNSName 값을 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-302">Change hello $DNSName value if you do not want toouse hello virtual machine’s DNS name for Reporting Services.</span></span> <span data-ttu-id="1bc4b-303">Hello 매개 변수를 사용 하는 경우 hello 인증서가이 이름을 사용 해야 하 고 DNS 서버에 전체적으로 hello 이름이 등록 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-303">If you use hello parameter, hello certificate must also use this name and you register hello name globally on a DNS server.</span></span>
+9. <span data-ttu-id="1bc4b-304">hello 스크립트는 현재 Reporting Services에 대해 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-304">hello script is currently configured for  Reporting Services.</span></span> <span data-ttu-id="1bc4b-305">Reporting Services에 대해 toorun hello 스크립트를 원하는 경우 hello 경로 toohello 네임 스페이스의 hello 버전 부분을 너무 수정할 "v11" hello Get-wmiobject 문의 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-305">If you want toorun hello script for  Reporting Services, modify hello version portion of hello path toohello namespace too“v11”, on hello Get-WmiObject statement.</span></span>
+10. <span data-ttu-id="1bc4b-306">Hello 스크립트를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-306">Run hello script.</span></span>
+
+<span data-ttu-id="1bc4b-307">**유효성 검사**: hello 기본 보고서 서버 기능이 작동 하는지 tooverify 참조 hello [확인 hello 구성](#verify-the-connection) 이 항목의 뒷부분에 나오는 섹션.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-307">**Validation**: tooverify that hello basic report server functionality is working, see hello [Verify hello configuration](#verify-the-connection) section later in this topic.</span></span> <span data-ttu-id="1bc4b-308">tooverify hello 인증서 바인딩을 관리자 권한으로 명령 프롬프트를 열고 하 고 다음 명령을 hello를 실행 하십시오.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-308">tooverify hello certificate binding open a command prompt with administrative privileges, and then run hello following command:</span></span>
+
+    netsh http show sslcert
+
+<span data-ttu-id="1bc4b-309">hello 결과 hello 다음을 포함 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-309">hello result will include hello following:</span></span>
+
+    IP:port                      : 0.0.0.0:443
+
+    Certificate Hash             : f98adf786994c1e4a153f53fe20f94210267d0e7
+
+### <a name="use-configuration-manager-tooconfigure-hello-report-server"></a><span data-ttu-id="1bc4b-310">구성 관리자를 사용 하 여 tooConfigure hello 보고서 서버</span><span class="sxs-lookup"><span data-stu-id="1bc4b-310">Use Configuration Manager tooConfigure hello Report Server</span></span>
+<span data-ttu-id="1bc4b-311">Toorun hello PowerShell 스크립트 tooconfigure hello 보고서 서버 하지 않을 경우이 서버에 있는 섹션 toouse hello Reporting Services 기본 모드 구성 관리자 tooconfigure hello 보고서 hello 단계를 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-311">If you do not want toorun hello PowerShell script tooconfigure hello report server, follow hello steps in this section toouse hello Reporting Services native mode configuration manager tooconfigure hello report server.</span></span>
+
+1. <span data-ttu-id="1bc4b-312">Hello Azure 클래식 포털에서에서 VM hello를 선택 하 고 연결을 클릭 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-312">From hello Azure classic portal, select hello VM and click connect.</span></span> <span data-ttu-id="1bc4b-313">Hello 사용자 이름 및 hello VM을 만들 때 구성한 암호를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-313">Use hello user name and password you configured when you created hello VM.</span></span>
+   
+    ![tooazure 가상 컴퓨터에 연결](./media/virtual-machines-windows-classic-ps-sql-report/IC650112.gif)
+2. <span data-ttu-id="1bc4b-315">Windows update를 실행 하 고 업데이트 toohello VM을 설치 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-315">Run Windows update and install updates toohello VM.</span></span> <span data-ttu-id="1bc4b-316">Hello VM의 다시 시작이 필요한 경우 hello VM을 다시 시작 하 고 hello Azure 클래식 포털에서에서 VM toohello 다시 연결 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-316">If a restart of hello VM is required, restart hello VM and reconnect toohello VM from hello Azure classic portal.</span></span>
+3. <span data-ttu-id="1bc4b-317">Hello VM에 hello 시작 메뉴에서 입력 **Reporting Services** 엽니다 **Reporting Services 구성 관리자**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-317">From hello Start menu on hello VM, type **Reporting Services** and open **Reporting Services Configuration Manager**.</span></span>
+4. <span data-ttu-id="1bc4b-318">Hello에 대 한 기본값을 유지 **서버 이름** 및 **보고서 서버 인스턴스**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-318">Leave hello default values for **Server Name** and **Report Server Instance**.</span></span> <span data-ttu-id="1bc4b-319">**Connect**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-319">Click **Connect**.</span></span>
+5. <span data-ttu-id="1bc4b-320">Hello 왼쪽된 창에서 클릭 **웹 서비스 URL**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-320">In hello left pane, click **Web Service URL**.</span></span>
+6. <span data-ttu-id="1bc4b-321">기본적으로 RS는 IP가 “모두 할당됨"으로 HTTP 포트 80에 대해 구성됩니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-321">By default, RS is configured for HTTP port 80 with IP “All Assigned”.</span></span> <span data-ttu-id="1bc4b-322">tooadd HTTPS:</span><span class="sxs-lookup"><span data-stu-id="1bc4b-322">tooadd HTTPS:</span></span>
+   
+   1. <span data-ttu-id="1bc4b-323">**SSL 인증서**: 선택 hello 인증서 toouse, 예를 들어 [VM name]. cloudapp.net에 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-323">In **SSL Certificate**: select hello certificate you want toouse, for example [VM name].cloudapp.net.</span></span> <span data-ttu-id="1bc4b-324">Hello 섹션을 참조 하는 경우 인증서가 목록 **2 단계: 서버 인증서 만들기** 어떻게 tooinstall와 신뢰 hello hello VM에 인증서에 대 한 내용은 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-324">If no certificates are listed, see hello section **Step 2: Create a Server Certificate** for information on how tooinstall and trust hello certificate on hello VM.</span></span>
+   2. <span data-ttu-id="1bc4b-325">**SSL 포트**에서: 443을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-325">Under **SSL Port**: choose 443.</span></span> <span data-ttu-id="1bc4b-326">다른 개인 포트로 VM hello hello HTTPS 개인 끝점을 구성한 경우 여기 해당 값을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-326">If you configured hello HTTPS private endpoint in hello VM with a different private port, use that value here.</span></span>
+   3. <span data-ttu-id="1bc4b-327">클릭 **적용** hello 작업 toocomplete 될 때까지 기다립니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-327">Click **Apply** and wait for hello operation toocomplete.</span></span>
+7. <span data-ttu-id="1bc4b-328">Hello 왼쪽된 창에서 클릭 **데이터베이스**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-328">In hello left pane, click **Database**.</span></span>
+   
+   1. <span data-ttu-id="1bc4b-329">**데이터베이스 변경**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-329">Click **Change Databas**e.</span></span>
+   2. <span data-ttu-id="1bc4b-330">**새 보고서 서버 데이터베이스 만들기**를 클릭한 후 **다음**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-330">Click **Create a new report server database** and then click **Next**.</span></span>
+   3. <span data-ttu-id="1bc4b-331">Hello 기본값을 사용 **서버 이름**: hello VM으로 이름을 지정 하 고 기본값을 hello **인증 유형** 으로 **현재 사용자** – **통합보안**.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-331">Leave hello default **Server Name**: as hello VM name and leave hello default **Authentication Type** as **Current User** – **Integrated Security**.</span></span> <span data-ttu-id="1bc4b-332">**다음**을 누릅니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-332">Click **Next**.</span></span>
+   4. <span data-ttu-id="1bc4b-333">Hello 기본 둡니다 **데이터베이스 이름** 으로 **ReportServer** 클릭 **다음**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-333">Leave hello default **Database Name** as **ReportServer** and click **Next**.</span></span>
+   5. <span data-ttu-id="1bc4b-334">Hello 기본 둡니다 **인증 유형** 으로 **서비스 자격 증명** 클릭 **다음**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-334">Leave hello default **Authentication Type** as **Service Credentials** and click **Next**.</span></span>
+   6. <span data-ttu-id="1bc4b-335">클릭 **다음** hello에 **요약** 페이지.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-335">Click **Next** on hello **Summary** page.</span></span>
+   7. <span data-ttu-id="1bc4b-336">Hello 구성이 완료 되 면 클릭 **마침**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-336">When hello configuration is complete, click **Finish**.</span></span>
+8. <span data-ttu-id="1bc4b-337">Hello 왼쪽된 창에서 클릭 **보고서 관리자 URL**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-337">In hello left pane, click **Report Manager URL**.</span></span> <span data-ttu-id="1bc4b-338">Hello 기본 둡니다 **가상 디렉터리** 으로 **보고서** 클릭 **적용**합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-338">Leave hello default **Virtual Directory** as **Reports** and click **Apply**.</span></span>
+9. <span data-ttu-id="1bc4b-339">클릭 **종료** tooclose hello Reporting Services 구성 관리자.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-339">Click **Exit** tooclose hello Reporting Services Configuration Manager.</span></span>
+
+## <a name="step-4-open-windows-firewall-port"></a><span data-ttu-id="1bc4b-340">4단계: Windows 방화벽 포트 열기</span><span class="sxs-lookup"><span data-stu-id="1bc4b-340">Step 4: Open Windows Firewall Port</span></span>
+> [!NOTE]
+> <span data-ttu-id="1bc4b-341">Hello 스크립트 tooconfigure hello 보고서 서버 중 하나를 사용 하는 경우에이 섹션을 건너뛸 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-341">If you used one of hello scripts tooconfigure hello report server, you can skip this section.</span></span> <span data-ttu-id="1bc4b-342">hello 스크립트 단계 tooopen hello 방화벽 포트를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-342">hello script included a step tooopen hello firewall port.</span></span> <span data-ttu-id="1bc4b-343">hello 기본 포트 80에 HTTP 및 HTTPS에 포트 443 했습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-343">hello default was port 80 for HTTP and port 443 for HTTPS.</span></span>
+> 
+> 
+
+<span data-ttu-id="1bc4b-344">tooconnect 원격으로 tooReport 관리자 또는 hello 보고서 서버 hello 가상 컴퓨터, TCP 끝점 hello VM에 필요 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-344">tooconnect remotely tooReport Manager or hello Report Server on hello virtual machine, a TCP Endpoint is required on hello VM.</span></span> <span data-ttu-id="1bc4b-345">이 동일한 hello VM의 방화벽에서 포트 필요한 tooopen hello입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-345">It is required tooopen hello same port in hello VM’s firewall.</span></span> <span data-ttu-id="1bc4b-346">hello VM 프로 비전 된 경우 hello 끝점을 만들었습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-346">hello endpoint was created when hello VM was provisioned.</span></span>
+
+<span data-ttu-id="1bc4b-347">이 섹션에서는 tooopen 방화벽 포트를 hello 하는 방법에 기본 정보를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-347">This section provides basic information on how tooopen hello firewall port.</span></span> <span data-ttu-id="1bc4b-348">자세한 내용은 [보고서 서버 액세스를 위한 방화벽 구성](https://technet.microsoft.com/library/bb934283.aspx)</span><span class="sxs-lookup"><span data-stu-id="1bc4b-348">For more information, see [Configure a Firewall for Report Server Access](https://technet.microsoft.com/library/bb934283.aspx)</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="1bc4b-349">Hello 스크립트 tooconfigure hello 보고서 서버를 사용 하는 경우에이 섹션을 건너뛸 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-349">If you used hello script tooconfigure hello report server, you can skip this section.</span></span> <span data-ttu-id="1bc4b-350">hello 스크립트 단계 tooopen hello 방화벽 포트를 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-350">hello script included a step tooopen hello firewall port.</span></span>
+> 
+> 
+
+<span data-ttu-id="1bc4b-351">Https의 경우 443 이외의 개인 포트를 구성한 경우 다음 스크립트를 적절 하 게 hello를 수정 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-351">If you configured a private port for HTTPS other than 443, modify hello following script appropriately.</span></span> <span data-ttu-id="1bc4b-352">tooopen 포트 **443** hello Windows 방화벽에 hello 다음을 수행 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-352">tooopen port **443** on hello Windows Firewall, complete hello following:</span></span>
+
+1. <span data-ttu-id="1bc4b-353">관리자 권한으로 Windows PowerShell 창을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-353">Open a Windows PowerShell window with administrative privileges.</span></span>
+2. <span data-ttu-id="1bc4b-354">를 hello VM에서 hello HTTPS 끝점을 구성할 때 443 이외의 포트를 사용 하는 경우 다음 명령을 hello에 hello 포트를 업데이트 하 고 hello 명령을 실행 하십시오.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-354">If you used a port other than 443 when you configured hello HTTPS endpoint on hello VM, update hello port in hello following command and then run hello command:</span></span>
+   
+        New-NetFirewallRule -DisplayName “Report Server (TCP on port 443)” -Direction Inbound –Protocol TCP –LocalPort 443
+3. <span data-ttu-id="1bc4b-355">Hello 명령이 완료 되 면 **확인** hello 명령 프롬프트에 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-355">When hello command completes, **Ok** is displayed in hello command prompt.</span></span>
+
+<span data-ttu-id="1bc4b-356">tooverify hello 포트를 열면 Windows PowerShell 창을 열고 다음 명령이 실행된 hello:</span><span class="sxs-lookup"><span data-stu-id="1bc4b-356">tooverify that hello port is opened, open a Windows PowerShell window and run hello following command:</span></span>
+
+    get-netfirewallrule | where {$_.displayname -like "*report*"} | select displayname,enabled,action
+
+## <a name="verify-hello-configuration"></a><span data-ttu-id="1bc4b-357">Hello 구성 확인</span><span class="sxs-lookup"><span data-stu-id="1bc4b-357">Verify hello configuration</span></span>
+<span data-ttu-id="1bc4b-358">hello 기본 보고서 서버 기능이 이제 작동을 tooverify 관리자 권한을 가진 브라우저를 열고 한 다음 찾아보기 toohello 다음 보고 서버 보고서 관리자 URL:</span><span class="sxs-lookup"><span data-stu-id="1bc4b-358">tooverify that hello basic report server functionality is now working, open your browser with administrative privileges and then browse toohello following report server ad report manager URLS:</span></span>
+
+* <span data-ttu-id="1bc4b-359">VM hello toohello 보고서 서버 URL을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-359">On hello VM, browse toohello report server URL:</span></span>
+  
+        http://localhost/reportserver
+* <span data-ttu-id="1bc4b-360">VM hello toohello 보고서 관리자 URL을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-360">On hello VM, browse toohello report manger URL:</span></span>
+  
+        http://localhost/Reports
+* <span data-ttu-id="1bc4b-361">로컬 컴퓨터에서 toohello 찾아보기 **원격** hello VM에서 보고서 관리자입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-361">From your local computer, browse toohello **remote** report Manager on hello VM.</span></span> <span data-ttu-id="1bc4b-362">다음 예제를 적절 하 게 hello에서 hello DNS 이름을 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-362">Update hello DNS name in hello following example as appropriate.</span></span> <span data-ttu-id="1bc4b-363">암호에 대 한 메시지가 표시 되 면 hello VM 준비 되었을 때 만든 hello 관리자 자격 증명을 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-363">When prompted for a password, use hello administrator credentials you created when hello VM was provisioned.</span></span> <span data-ttu-id="1bc4b-364">hello 사용자 이름은 [Domain] hello\[사용자 이름] 여기서 hello은 hello VM 컴퓨터 이름, 예를 들어 ssrsnativecloud\testuser 형식입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-364">hello user name is in hello [Domain]\[user name] format, where hello domain is hello VM computer name, for example ssrsnativecloud\testuser.</span></span> <span data-ttu-id="1bc4b-365">HTTP를 사용 하지 않는 경우**S**, hello 제거 **s** hello url에서입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-365">If you are not using HTTP**S**, remove hello **s** in hello URL.</span></span> <span data-ttu-id="1bc4b-366">VM에서 추가 사용자를 만드는 방법에 hello 내용은 다음 섹션을 참조 하십시오.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-366">See hello next section for information on creating additional users on VM.</span></span>
+  
+        https://ssrsnativecloud.cloudapp.net/Reports
+* <span data-ttu-id="1bc4b-367">로컬 컴퓨터에서 toohello 원격 보고서 서버 URL을 찾습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-367">From your local computer, browse toohello remote report server URL.</span></span> <span data-ttu-id="1bc4b-368">다음 예제를 적절 하 게 hello에서 hello DNS 이름을 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-368">Update hello DNS name in hello following example as appropriate.</span></span> <span data-ttu-id="1bc4b-369">HTTPS를 사용 하지 않는 경우 hello s hello URL에서 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-369">If you are not using HTTPS, remove hello s in hello URL.</span></span>
+  
+        https://ssrsnativecloud.cloudapp.net/ReportServer
+
+## <a name="create-users-and-assign-roles"></a><span data-ttu-id="1bc4b-370">사용자 만들기 및 역할 할당</span><span class="sxs-lookup"><span data-stu-id="1bc4b-370">Create Users and Assign Roles</span></span>
+<span data-ttu-id="1bc4b-371">구성 하 고 hello 확인 보고서 서버는 일반적인 관리 작업 toocreate 여러 사용자에 게는 고 사용자 tooReporting 서비스 역할을 할당 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-371">After configuring and verifying hello report server, a common administrative task is toocreate one or more users and assign users tooReporting Services roles.</span></span> <span data-ttu-id="1bc4b-372">자세한 내용은 hello 다음을 참조 하십시오.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-372">For more information, see hello following:</span></span>
+
+* [<span data-ttu-id="1bc4b-373">로컬 사용자 계정 만들기</span><span class="sxs-lookup"><span data-stu-id="1bc4b-373">Create a local user account</span></span>](https://technet.microsoft.com/library/cc770642.aspx)
+* <span data-ttu-id="1bc4b-374">[보고서 서버 (보고서 관리자) 사용자 액세스 권한 부여 tooa](https://msdn.microsoft.com/library/ms156034.aspx))</span><span class="sxs-lookup"><span data-stu-id="1bc4b-374">[Grant User Access tooa Report Server (Report Manager)](https://msdn.microsoft.com/library/ms156034.aspx))</span></span>
+* [<span data-ttu-id="1bc4b-375">역할 할당 만들기 및 관리</span><span class="sxs-lookup"><span data-stu-id="1bc4b-375">Create and Manage Role Assignments</span></span>](https://msdn.microsoft.com/library/ms155843.aspx)
+
+## <a name="toocreate-and-publish-reports-toohello-azure-virtual-machine"></a><span data-ttu-id="1bc4b-376">tooCreate 및 보고서 게시 toohello Azure 가상 컴퓨터</span><span class="sxs-lookup"><span data-stu-id="1bc4b-376">tooCreate and Publish Reports toohello Azure Virtual Machine</span></span>
+<span data-ttu-id="1bc4b-377">hello 다음 표에 요약 되어 hello 옵션 사용 가능한 toopublish hello Microsoft Azure 가상 컴퓨터에서 호스트 되는 온-프레미스 컴퓨터 toohello 보고서 서버에서 기존 보고서의 일부:</span><span class="sxs-lookup"><span data-stu-id="1bc4b-377">hello following table summarizes some of hello options available toopublish existing reports from an on-premises computer toohello report server hosted on hello Microsoft Azure Virtual Machine:</span></span>
+
+* <span data-ttu-id="1bc4b-378">**RS.exe 스크립트**:에서 사용 하 여 RS.exe 스크립트 toocopy 보고서 항목 및 기존 보고서 서버는 Microsoft Azure 가상 컴퓨터를 tooyour 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-378">**RS.exe script**: Use RS.exe script toocopy report items from and existing report server tooyour Microsoft Azure Virtual Machine.</span></span> <span data-ttu-id="1bc4b-379">자세한 내용은 hello "기본 모드 tooNative 모드-Microsoft Azure 가상 컴퓨터" 섹션의 참조 [샘플 Reporting Services rs.exe 스크립트 tooMigrate 보고서 서버 간 콘텐츠](https://msdn.microsoft.com/library/dn531017.aspx)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-379">For more information, see hello section “Native mode tooNative Mode – Microsoft Azure Virtual Machine” in [Sample Reporting Services rs.exe Script tooMigrate Content between Report Servers](https://msdn.microsoft.com/library/dn531017.aspx).</span></span>
+* <span data-ttu-id="1bc4b-380">**보고서 작성기**: hello 가상 컴퓨터 포함 hello 클릭-Microsoft SQL Server 보고서 작성기의 버전에 한 번입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-380">**Report Builder**: hello virtual machine includes hello click-once version of Microsoft SQL Server Report Builder.</span></span> <span data-ttu-id="1bc4b-381">toostart 보고서 작성기 hello hello 가상 컴퓨터에 처음으로:</span><span class="sxs-lookup"><span data-stu-id="1bc4b-381">toostart Report builder hello first time on hello virtual machine:</span></span>
+  
+  1. <span data-ttu-id="1bc4b-382">관리자 권한으로 브라우저를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-382">Start your browser with administrative privileges.</span></span>
+  2. <span data-ttu-id="1bc4b-383">Tooreport 관리자 hello 가상 컴퓨터를 찾아 클릭 **보고서 작성기** hello 리본 메뉴의 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-383">Browse tooreport manager on hello virtual machine and click **Report Builder**  in hello ribbon.</span></span>
+     
+     <span data-ttu-id="1bc4b-384">자세한 내용은 [보고서 작성기 설치, 제거 및 지원](https://technet.microsoft.com/library/dd207038.aspx)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-384">For more information, see [Installing, Uninstalling, and Supporting Report Builder](https://technet.microsoft.com/library/dd207038.aspx).</span></span>
+* <span data-ttu-id="1bc4b-385">**SQL Server Data Tools: VM**: SQL Server 2012를 사용 하 여 hello VM을 만든 경우 SQL Server Data Tools hello 가상 컴퓨터에 설치 하 고 사용 하는 toocreate 수 **보고서 서버 프로젝트** 및 가상 hello에 대 한 보고서 컴퓨터입니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-385">**SQL Server Data Tools: VM**:  If you created hello VM with SQL Server 2012, then SQL Server Data Tools is installed on hello virtual machine and can be used toocreate **Report Server Projects** and reports on hello virtual machine.</span></span> <span data-ttu-id="1bc4b-386">SQL Server Data Tools는 hello hello 가상 컴퓨터에서 toohello 보고서 서버 보고서를 게시할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-386">SQL Server Data Tools can publish hello reports toohello report server on hello virtual machine.</span></span>
+  
+    <span data-ttu-id="1bc4b-387">SQL server 2014 사용 하 여 hello VM을 만든 경우에 SQL Server 데이터 도구-visual Studio 용 BI를 설치할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-387">If you created hello VM with SQL server 2014, you can install SQL Server Data Tools- BI for visual Studio.</span></span> <span data-ttu-id="1bc4b-388">자세한 내용은 hello 다음을 참조 하십시오.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-388">For more information, see hello following:</span></span>
+  
+  * [<span data-ttu-id="1bc4b-389">Microsoft SQL Server Data Tools - Visual Studio 2013용 비즈니스 인텔리전스</span><span class="sxs-lookup"><span data-stu-id="1bc4b-389">Microsoft SQL Server Data Tools - Business Intelligence for Visual Studio 2013</span></span>](https://www.microsoft.com/download/details.aspx?id=42313)
+  * [<span data-ttu-id="1bc4b-390">Microsoft SQL Server Data Tools - Visual Studio 2012용 비즈니스 인텔리전스</span><span class="sxs-lookup"><span data-stu-id="1bc4b-390">Microsoft SQL Server Data Tools - Business Intelligence for Visual Studio 2012</span></span>](https://www.microsoft.com/download/details.aspx?id=36843)
+  * [<span data-ttu-id="1bc4b-391">SSDT-BI(SQL Server Data Tools 및 SQL Server Business Intelligence)</span><span class="sxs-lookup"><span data-stu-id="1bc4b-391">SQL Server Data Tools and SQL Server Business Intelligence (SSDT-BI)</span></span>](http://curah.microsoft.com/30004/sql-server-data-tools-ssdt-and-sql-server-business-intelligence)
+* <span data-ttu-id="1bc4b-392">**SQL Server Data Tools: 원격**: 로컬 컴퓨터에서 SQL Server Data Tools로 Reporting Services 보고서가 포함된 Reporting Services 프로젝트를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-392">**SQL Server Data Tools: Remote**:  On your local computer, create a Reporting Services project in SQL Server Data Tools that contains Reporting Services reports.</span></span> <span data-ttu-id="1bc4b-393">Hello 프로젝트 tooconnect toohello 웹 서비스 URL을 구성 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-393">Configure hello project tooconnect toohello web service URL.</span></span>
+  
+    ![SSRS 프로젝트의 SSDT 프로젝트 속성](./media/virtual-machines-windows-classic-ps-sql-report/IC650114.gif)
+* <span data-ttu-id="1bc4b-395">**스크립트를 사용 하 여**: 스크립트 toocopy 보고서 서버 콘텐츠를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-395">**Use script**: Use script toocopy report server content.</span></span> <span data-ttu-id="1bc4b-396">자세한 내용은 참조 [샘플 Reporting Services rs.exe 스크립트 tooMigrate 보고서 서버 간 콘텐츠](https://msdn.microsoft.com/library/dn531017.aspx)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-396">For more information, see [Sample Reporting Services rs.exe Script tooMigrate Content between Report Servers](https://msdn.microsoft.com/library/dn531017.aspx).</span></span>
+
+## <a name="minimize-cost-if-you-are-not-using-hello-vm"></a><span data-ttu-id="1bc4b-397">VM hello를 사용 하지 않는 경우의 비용 최소화</span><span class="sxs-lookup"><span data-stu-id="1bc4b-397">Minimize cost if you are not using hello VM</span></span>
+> [!NOTE]
+> <span data-ttu-id="1bc4b-398">hello Azure 클래식 포털에서에서 VM hello toominimize 요금에 대 한 Azure 가상 컴퓨터 사용에 없는 경우 종료 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-398">toominimize charges for your Azure Virtual Machines when not in use, shut down hello VM from hello Azure classic portal.</span></span> <span data-ttu-id="1bc4b-399">Hello VM 아래로 VM tooshut 내 hello Windows 전원 옵션을 사용 하는 경우 계속 요금이 청구 되므로 hello hello VM에 대 한 amount 동일 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-399">If you use hello Windows power options inside a VM tooshut down hello VM, you are still charged hello same amount for hello VM.</span></span> <span data-ttu-id="1bc4b-400">tooreduce 요금이 tooshut hello Azure 클래식 포털에서에서 VM hello 다운 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-400">tooreduce charges, you need tooshut down hello VM in hello Azure classic portal.</span></span> <span data-ttu-id="1bc4b-401">VM hello를 더 이상 필요 하면 toodelete hello VM을 기억 하 고 연결 된.vhd 파일 tooavoid 저장소 비용은 hello 합니다. 자세한 내용은에 hello FAQ 섹션을 참조 하십시오. [가상 컴퓨터 가격 정보](https://azure.microsoft.com/pricing/details/virtual-machines/)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-401">If you no longer need hello VM, remember toodelete hello VM and hello associated .vhd files tooavoid storage charges.For more information, see hello FAQ section at [Virtual Machines Pricing Details](https://azure.microsoft.com/pricing/details/virtual-machines/).</span></span>
+
+## <a name="more-information"></a><span data-ttu-id="1bc4b-402">추가 정보</span><span class="sxs-lookup"><span data-stu-id="1bc4b-402">More Information</span></span>
+### <a name="resources"></a><span data-ttu-id="1bc4b-403">리소스</span><span class="sxs-lookup"><span data-stu-id="1bc4b-403">Resources</span></span>
+* <span data-ttu-id="1bc4b-404">비슷한 내용을 tooa 단일 서버 배포와 관련 된 SQL Server Business Intelligence 및 SharePoint 2013의 참조 [Windows PowerShell을 사용 하 여 tooCreate는 Azure VM SQL Server BI 및 SharePoint 2013](https://msdn.microsoft.com/library/azure/dn385843.aspx)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-404">For similar content related tooa single server deployment of SQL Server Business Intelligence and SharePoint 2013, see [Use Windows PowerShell tooCreate an Azure VM With SQL Server BI and SharePoint 2013](https://msdn.microsoft.com/library/azure/dn385843.aspx).</span></span>
+* <span data-ttu-id="1bc4b-405">SQL Server Business Intelligence 및 SharePoint 2013의 다중 서버 배포 참조에 대 한 유사 콘텐츠 관련된 tooa [SQL Server Business Intelligence 배포 Azure 가상 컴퓨터의](https://msdn.microsoft.com/library/dn321998.aspx)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-405">For similar content related tooa multi-server deployment of SQL Server Business Intelligence and SharePoint 2013, see [Deploy SQL Server Business Intelligence in Azure Virtual Machines](https://msdn.microsoft.com/library/dn321998.aspx).</span></span>
+* <span data-ttu-id="1bc4b-406">일반 정보에 대 한 Azure 가상 컴퓨터의 SQL Server Business Intelligence의 관련된 toodeployments 참조 [Azure 가상 컴퓨터의 SQL Server Business Intelligence](virtual-machines-windows-classic-ps-sql-bi.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-406">For General information related toodeployments of SQL Server Business Intelligence in Azure Virtual Machines, see [SQL Server Business Intelligence in Azure Virtual Machines](virtual-machines-windows-classic-ps-sql-bi.md).</span></span>
+* <span data-ttu-id="1bc4b-407">Azure 컴퓨팅 요금의 비용 hello에 대 한 자세한 내용은 참조의 가상 컴퓨터 탭 hello [Azure 가격 계산기](https://azure.microsoft.com/pricing/calculator/?scenario=virtual-machines)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-407">For more information about hello cost of Azure compute charges, see hello Virtual Machines tab of [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/?scenario=virtual-machines).</span></span>
+
+### <a name="community-content"></a><span data-ttu-id="1bc4b-408">커뮤니티 콘텐츠</span><span class="sxs-lookup"><span data-stu-id="1bc4b-408">Community Content</span></span>
+* <span data-ttu-id="1bc4b-409">참조에 대 한 단계별 지침은 어떻게 toocreate Reporting Services 기본 모드 보고서 서버 스크립트를 사용 하지 않고, [호스팅 SQL 보고 서비스에서 Azure 가상 컴퓨터](http://adititechnologiesblog.blogspot.in/2012/07/hosting-sql-reporting-service-on-azure.html)합니다.</span><span class="sxs-lookup"><span data-stu-id="1bc4b-409">For step by step instructions on how toocreate a Reporting Services Native mode report server without using script, see [Hosting SQL Reporting Service on Azure Virtual Machine](http://adititechnologiesblog.blogspot.in/2012/07/hosting-sql-reporting-service-on-azure.html).</span></span>
+
+### <a name="links-tooother-resources-for-sql-server-in-azure-vms"></a><span data-ttu-id="1bc4b-410">Azure Vm에서 SQL Server에 대 한 링크 tooother 리소스</span><span class="sxs-lookup"><span data-stu-id="1bc4b-410">Links tooother resources for SQL Server in Azure VMs</span></span>
+[<span data-ttu-id="1bc4b-411">Azure 가상 컴퓨터의 SQL Server 개요</span><span class="sxs-lookup"><span data-stu-id="1bc4b-411">SQL Server on Azure Virtual Machines Overview</span></span>](../sql/virtual-machines-windows-sql-server-iaas-overview.md)
+

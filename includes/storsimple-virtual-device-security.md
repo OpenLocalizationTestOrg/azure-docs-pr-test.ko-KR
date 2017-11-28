@@ -1,0 +1,8 @@
+<!--v-sharos 10/13/2105 virtual device security-->
+
+<span data-ttu-id="8912d-101">StorSimple 가상 장치를 사용하는 경우 다음 보안 고려 사항을 염두에 두세요.</span><span class="sxs-lookup"><span data-stu-id="8912d-101">Keep the following security considerations in mind when you use the StorSimple virtual device:</span></span>
+
+* <span data-ttu-id="8912d-102">가상 장치는 Microsoft Azure 구독을 통해 보안이 설정됩니다.</span><span class="sxs-lookup"><span data-stu-id="8912d-102">The virtual device is secured through your Microsoft Azure subscription.</span></span> <span data-ttu-id="8912d-103">가상 장치를 사용하고 Azure 구독이 손상되는 경우, 가상 장치에 저장된 데이터도 노출되기 쉬움을 의미합니다.</span><span class="sxs-lookup"><span data-stu-id="8912d-103">This means that if you are using the virtual device and your Azure subscription is compromised, the data stored on your virtual device is also susceptible.</span></span>
+* <span data-ttu-id="8912d-104">Azure StorSimple에 저장된 데이터를 암호화하는 데 사용되는 인증서의 공개 키는 Azure 클래식 포털에서 안전하게 사용할 수 있으며 개인 키는 StorSimple 장치에 유지됩니다.</span><span class="sxs-lookup"><span data-stu-id="8912d-104">The public key of the certificate used to encrypt data stored in Azure StorSimple is securely made available to the Azure classic portal, and the private key is retained with the StorSimple device.</span></span> <span data-ttu-id="8912d-105">StorSimple 가상 장치에서 공개 및 개인 키는 모두 Azure에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="8912d-105">On the StorSimple virtual device, both the public and private keys are stored in Azure.</span></span>
+* <span data-ttu-id="8912d-106">가상 장치는 Microsoft Azure 데이터 센터에서 호스팅됩니다.</span><span class="sxs-lookup"><span data-stu-id="8912d-106">The virtual device is hosted in the Microsoft Azure datacenter.</span></span>
+

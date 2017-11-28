@@ -1,0 +1,8 @@
+1. <span data-ttu-id="ed095-101">Visual Studio **솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭하고 상황에 맞는 메뉴에서 **추가 > Docker 지원**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="ed095-101">In the Visual Studio **Solution Explorer**, right-click the project and select **Add > Docker Support** from the context menu.</span></span>
+   
+    ![Docker 지원 상황에 맞는 메뉴 추가](media/vs-azure-tools-docker-add-docker-support/docker-support-context-menu.png)
+2. <span data-ttu-id="ed095-103">ASP.NET 코어 웹 프로젝트에 Docker 지원을 추가하면 Docker-Compose 파일, 배포 Windows PowerShell 스크립트 및 Docker 속성 파일을 비롯하여 프로젝트에 추가되는 Docker와 관련된 여러 파일이 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="ed095-103">Adding Docker support to an ASP.NET Core web project results in the addition of several Docker-related files being added to the project, including Docker-Compose files, deployment Windows PowerShell scripts, and Docker property files.</span></span> 
+   
+    ![프로젝트에 추가된 Docker 파일](media/vs-azure-tools-docker-add-docker-support/docker-files-added.png)
+
+

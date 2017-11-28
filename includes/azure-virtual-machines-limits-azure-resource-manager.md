@@ -1,0 +1,7 @@
+| <span data-ttu-id="8526d-101">리소스</span><span class="sxs-lookup"><span data-stu-id="8526d-101">Resource</span></span> | <span data-ttu-id="8526d-102">기본 제한</span><span class="sxs-lookup"><span data-stu-id="8526d-102">Default Limit</span></span> |
+| --- | --- |
+| <span data-ttu-id="8526d-103">가용성 집합당 가상 컴퓨터</span><span class="sxs-lookup"><span data-stu-id="8526d-103">Virtual machines per availability set</span></span> | <span data-ttu-id="8526d-104">200</span><span class="sxs-lookup"><span data-stu-id="8526d-104">200</span></span> |
+| <span data-ttu-id="8526d-105">구독당 인증서</span><span class="sxs-lookup"><span data-stu-id="8526d-105">Certificates per subscription</span></span> |<span data-ttu-id="8526d-106">무제한<sup>1</sup></span><span class="sxs-lookup"><span data-stu-id="8526d-106">Unlimited<sup>1</sup></span></span> |
+
+<span data-ttu-id="8526d-107"><sup>1</sup>Azure 리소스 관리자를 사용하면 인증서는 Azure 키 자격 증명 모음에 저장됩니다.</span><span class="sxs-lookup"><span data-stu-id="8526d-107"><sup>1</sup>With Azure Resource Manager, certificates are stored in the Azure Key Vault.</span></span> <span data-ttu-id="8526d-108">인증서의 수는 구독에 대해 제한이 없지만 배포당 1MB의 인증서 제한이 있습니다.(단일 VM 또는 가용성 집합으로 구성)</span><span class="sxs-lookup"><span data-stu-id="8526d-108">Although the number of certificates is unlimited for a subscription, there is still a 1 MB limit of certificates per deployment (which consists of either a single VM or an availability set).</span></span>
+

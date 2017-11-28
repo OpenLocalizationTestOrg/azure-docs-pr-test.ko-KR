@@ -1,0 +1,27 @@
+<!--author=SharS last changed: 9/15/15-->
+
+#### <a name="to-create-a-custom-backup-policy"></a><span data-ttu-id="02a7a-101">사용자 지정 백업 정책을 만들려면</span><span class="sxs-lookup"><span data-stu-id="02a7a-101">To create a custom backup policy</span></span>
+1. <span data-ttu-id="02a7a-102">**장치** 페이지에서 **백업 정책**을 클릭하고 **추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-102">On the **Devices** page, click **Backup Policies** and then click **Add**.</span></span>
+2. <span data-ttu-id="02a7a-103">**백업 정책 추가** 대화 상자의 **백업 정책 정의**에서:</span><span class="sxs-lookup"><span data-stu-id="02a7a-103">In the **Add a backup policy** dialog box, under **Define your backup policy**:</span></span>
+   
+   1. <span data-ttu-id="02a7a-104">백업 정책 이름을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-104">Specify a backup policy name.</span></span>
+   2. <span data-ttu-id="02a7a-105">이 정책에 추가할 볼륨을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-105">Select the volumes to be added to this policy.</span></span> <span data-ttu-id="02a7a-106">드롭다운 목록에서 선택하여 여러 볼륨을 추가하도록 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-106">You can choose to add multiple volumes by selecting them from the drop-down list.</span></span>
+   3. <span data-ttu-id="02a7a-107">확인 아이콘</span><span class="sxs-lookup"><span data-stu-id="02a7a-107">Click the check icon</span></span> ![확인 아이콘](./media/storsimple-add-backup-policy/HCS_CheckIcon-include.png)<span data-ttu-id="02a7a-109">를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-109">.</span></span>
+      
+      <span data-ttu-id="02a7a-110">정책이 성공적으로 만들어진 후 알림이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-110">You will be notified after the policy is created successfully.</span></span> <span data-ttu-id="02a7a-111">백업 정책 페이지도 새로 만든 정책을 표시하도록 업데이트됩니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-111">The backup policies page will also be updated to show the newly created policy.</span></span>
+3. <span data-ttu-id="02a7a-112">방금 만든 정책에 대한 세부 정보로 드릴다운할 정책 이름(첫 번째 열)을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-112">Click the policy name (first column) to drill down into details of the policy you just created.</span></span>
+4. <span data-ttu-id="02a7a-113">**일정 관리**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-113">Click **manage schedules**.</span></span>
+5. <span data-ttu-id="02a7a-114">**일정 관리** 대화 상자:</span><span class="sxs-lookup"><span data-stu-id="02a7a-114">In the **Manage Schedules** dialog box:</span></span>
+   
+   1. <span data-ttu-id="02a7a-115">**새로 만들기** 를 선택하여 다른 일정을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-115">Select **Create new** to add another schedule.</span></span>
+   2. <span data-ttu-id="02a7a-116">드롭다운 목록에서 백업 유형을 **로컬** 또는 **클라우드** 스냅숏으로 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-116">From the drop-down list, choose the backup type as **local** or **cloud** snapshot.</span></span>
+   3. <span data-ttu-id="02a7a-117">백업 빈도를 분, 시간, 일 또는 주 단위로 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-117">Specify the backup frequency in minutes, hours, days, or weeks.</span></span>
+   4. <span data-ttu-id="02a7a-118">보존 시간을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-118">Select a retention.</span></span> <span data-ttu-id="02a7a-119">보존 선택 항목은 백업 빈도에 따라 달라집니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-119">The retention choices depend on the backup frequency.</span></span>
+   5. <span data-ttu-id="02a7a-120">정책의 시작 시간과 날짜를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-120">Select the starting time and date for the policy.</span></span>
+   6. <span data-ttu-id="02a7a-121">확인란을 선택하여 정책을 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-121">Select the check box to enable the policy.</span></span>
+6. <span data-ttu-id="02a7a-122">확인 아이콘</span><span class="sxs-lookup"><span data-stu-id="02a7a-122">Click the check icon</span></span> ![확인 아이콘](./media/storsimple-add-backup-policy/HCS_CheckIcon-include.png) <span data-ttu-id="02a7a-124">을 클릭하여 마칩니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-124">to finish.</span></span>
+7. <span data-ttu-id="02a7a-125">정책 세부 정보를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-125">You will return to the policy details.</span></span> <span data-ttu-id="02a7a-126">**저장** 을 클릭하여 이 정책을 만든 변경 내용을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-126">Click **Save** to save the changes you made to this policy.</span></span> <span data-ttu-id="02a7a-127">정책이 저장되면 알림이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-127">You will be notified when the policy has been saved.</span></span>
+8. <span data-ttu-id="02a7a-128">**백업 정책** 페이지로 이동됩니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-128">Navigate back to the **Backup Policies** page.</span></span> <span data-ttu-id="02a7a-129">백업 정책의 테이블 형식 목록이 수정된 정책을 표시하도록 업데이트됩니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-129">The tabular listing of the backup policies will be updated to display the modified policy.</span></span>
+   
+    ![사용자 지정 백업 정책](./media/storsimple-create-custom-backup-policy/HCS_CustomBackupPolicyM-include.png)<span data-ttu-id="02a7a-131">를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="02a7a-131">.</span></span>
+

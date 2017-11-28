@@ -1,0 +1,20 @@
+
+## <a name="start-your-powershell-session"></a><span data-ttu-id="2fa1f-101">PowerShell 세션 시작</span><span class="sxs-lookup"><span data-stu-id="2fa1f-101">Start your PowerShell session</span></span>
+<span data-ttu-id="2fa1f-102">먼저 최신 Azure PowerShell을 설치하고 실행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="2fa1f-102">First, you should have the latest Azure PowerShell installed and running.</span></span> <span data-ttu-id="2fa1f-103">자세한 내용은 [Azure PowerShell을 설치 및 구성하는 방법](/powershell/azureps-cmdlets-docs)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="2fa1f-103">For detailed information, see [How to install and configure Azure PowerShell](/powershell/azureps-cmdlets-docs).</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="2fa1f-104">SQL Database의 여러 새로운 기능은 [Azure Resource Manager 배포 모델](../articles/azure-resource-manager/resource-group-overview.md)을 사용할 때 지원되므로 예제는 Resource Manager에 [Azure SQL Database PowerShell cmdlet](https://msdn.microsoft.com/library/azure/mt574084\(v=azure.300\).aspx)을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="2fa1f-104">Many new features of SQL Database are only supported when you are using the [Azure Resource Manager deployment model](../articles/azure-resource-manager/resource-group-overview.md), so examples use the [Azure SQL Database PowerShell cmdlets](https://msdn.microsoft.com/library/azure/mt574084\(v=azure.300\).aspx) for Resource Manager.</span></span> <span data-ttu-id="2fa1f-105">이전 버전과 호환성을 위해 서비스 관리(클래식) 배포 모델 [Azure SQL Database 서비스 관리 cmdlet](https://msdn.microsoft.com/library/azure/dn546723\(v=azure.300\).aspx)이 지원되지만 Resource Manager cmdlet을 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="2fa1f-105">The service management (classic) deployment model [Azure SQL Database Service Management cmdlets](https://msdn.microsoft.com/library/azure/dn546723\(v=azure.300\).aspx) are supported for backward compatibility, but we recommend you use the Resource Manager cmdlets.</span></span>
+> 
+> 
+
+<span data-ttu-id="2fa1f-106">[**Add-AzureRmAccount**](https://msdn.microsoft.com/library/azure/mt619267\(v=azure.300\).aspx) cmdlet을 실행하면 자격 증명을 입력할 수 있는 로그인 화면이 나타납니다.</span><span class="sxs-lookup"><span data-stu-id="2fa1f-106">Run the [**Add-AzureRmAccount**](https://msdn.microsoft.com/library/azure/mt619267\(v=azure.300\).aspx) cmdlet, and you will be presented with a sign-in screen to enter your credentials.</span></span> <span data-ttu-id="2fa1f-107">Azure 포털에 로그인하는 데 사용하는 동일한 자격 증명을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="2fa1f-107">Use the same credentials that you use to sign in to the Azure portal.</span></span>
+
+```PowerShell
+Add-AzureRmAccount
+```
+
+<span data-ttu-id="2fa1f-108">여러 구독이 있는 경우 [**Set-AzureRmContext**](https://msdn.microsoft.com/library/azure/mt619263\(v=azure.300\).aspx) cmdlet을 사용하여 PowerShell 세션이 사용해야 하는 구독을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="2fa1f-108">If you have multiple subscriptions, use the [**Set-AzureRmContext**](https://msdn.microsoft.com/library/azure/mt619263\(v=azure.300\).aspx) cmdlet to select which subscription your PowerShell session should use.</span></span> <span data-ttu-id="2fa1f-109">현재 PowerShell 세션이 사용 중인 구독을 보려면 [**Get-AzureRmContext**](https://msdn.microsoft.com/library/azure/mt619265\(v=azure.300\).aspx)를 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="2fa1f-109">To see what subscription the current PowerShell session is using, run [**Get-AzureRmContext**](https://msdn.microsoft.com/library/azure/mt619265\(v=azure.300\).aspx).</span></span> <span data-ttu-id="2fa1f-110">모든 구독을 보려면 [**Get-AzureRmSubscription**](https://msdn.microsoft.com/library/azure/mt619284\(v=azure.300\).aspx)을 실행합니다.</span><span class="sxs-lookup"><span data-stu-id="2fa1f-110">To see all your subscriptions, run [**Get-AzureRmSubscription**](https://msdn.microsoft.com/library/azure/mt619284\(v=azure.300\).aspx).</span></span>
+
+```PowerShell
+Set-AzureRmContext -SubscriptionId '4cac86b0-1e56-bbbb-aaaa-000000000000'
+```

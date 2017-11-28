@@ -1,0 +1,247 @@
+---
+title: "aaaHow toouse hello WebJobs SDK로 Azure blob 저장소"
+description: "Toouse Azure blob 저장소 hello WebJobs SDK로 하는 방법에 대해 알아봅니다. 새 Blob이 컨테이너에 표시된 경우 프로세스를 트리거하고 'poison blobs'을 처리합니다."
+services: app-service\web, storage
+documentationcenter: .net
+author: ggailey777
+manager: erikre
+editor: 
+ms.assetid: bf32f919-f7bc-4aaa-916e-461c02f2e26c
+ms.service: app-service-web
+ms.workload: web
+ms.tgt_pltfrm: na
+ms.devlang: dotnet
+ms.topic: article
+ms.date: 06/01/2016
+ms.author: glenga
+ms.openlocfilehash: b34ea8cffee7c0475641886150dee521130a3132
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 10/06/2017
+---
+# <a name="how-toouse-azure-blob-storage-with-hello-webjobs-sdk"></a><span data-ttu-id="66b7a-104">Toouse Azure blob 저장소 hello WebJobs SDK로 하는 방법</span><span class="sxs-lookup"><span data-stu-id="66b7a-104">How toouse Azure blob storage with hello WebJobs SDK</span></span>
+## <a name="overview"></a><span data-ttu-id="66b7a-105">개요</span><span class="sxs-lookup"><span data-stu-id="66b7a-105">Overview</span></span>
+<span data-ttu-id="66b7a-106">이 가이드에서는 C# 코드 샘플 표시 하는 방법을 tootrigger Azure blob를 만들거나 업데이트할 때 사용 하는 프로세스입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-106">This guide provides C# code samples that show how tootrigger a process when an Azure blob is created or updated.</span></span> <span data-ttu-id="66b7a-107">hello 코드 사용 샘플 [WebJobs SDK](websites-dotnet-webjobs-sdk.md) 버전 1.x 합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-107">hello code samples use [WebJobs SDK](websites-dotnet-webjobs-sdk.md) version 1.x.</span></span>
+
+<span data-ttu-id="66b7a-108">Toocreate blob 하는 방법을 보여 주는 코드 샘플을 참조 하십시오. [toouse Azure WebJobs SDK hello 사용 하 여 저장소를 대기 하는 방법을](websites-dotnet-webjobs-sdk-storage-queues-how-to.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-108">For code samples that show how toocreate blobs, see [How toouse Azure queue storage with hello WebJobs SDK](websites-dotnet-webjobs-sdk-storage-queues-how-to.md).</span></span> 
+
+<span data-ttu-id="66b7a-109">hello 가이드 알고 있다고 가정 [toocreate 연결이 포함 된 Visual Studio에서 WebJob 프로젝트의 해당 지점 tooyour 저장소 계정 문자열 어떻게](websites-dotnet-webjobs-sdk-get-started.md) 또는 너무[여러 저장소 계정을](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs)합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-109">hello guide assumes you know [how toocreate a WebJob project in Visual Studio with connection strings that point tooyour storage account](websites-dotnet-webjobs-sdk-get-started.md) or too[multiple storage accounts](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs).</span></span>
+
+## <span data-ttu-id="66b7a-110"><a id="trigger"></a>어떻게 tootrigger blob를 만들거나 업데이트할 때 함수</span><span class="sxs-lookup"><span data-stu-id="66b7a-110"><a id="trigger"></a> How tootrigger a function when a blob is created or updated</span></span>
+<span data-ttu-id="66b7a-111">이 섹션에서는 어떻게 toouse hello `BlobTrigger` 특성입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-111">This section shows how toouse hello `BlobTrigger` attribute.</span></span> 
+
+> [!NOTE]
+> <span data-ttu-id="66b7a-112">hello WebJobs SDK 새롭거나 변경 된 blob에 대 한 로그 파일 toowatch 검색 합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-112">hello WebJobs SDK scans log files toowatch for new or changed blobs.</span></span> <span data-ttu-id="66b7a-113">이 프로세스는 실시간; 함수 수 트리거되지 몇 분까지 또는 그 이상 hello blob가 생성 한 후 합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-113">This process is not real-time; a function might not get triggered until several minutes or longer after hello blob is created.</span></span> <span data-ttu-id="66b7a-114">또한 [저장소 로그를 만들기 위해 “최선”](https://msdn.microsoft.com/library/azure/hh343262.aspx) 을 다하고 있지만 모든 이벤트를 캡처하는 것을 보장하지는 않습니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-114">In addition, [storage logs are created on a "best efforts"](https://msdn.microsoft.com/library/azure/hh343262.aspx) basis; there is no guarantee that all events will be captured.</span></span> <span data-ttu-id="66b7a-115">경우에 따라 로그가 누락될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-115">Under some conditions, logs might be missed.</span></span> <span data-ttu-id="66b7a-116">권장 되는 메서드는 hello blob를 만들고 hello를 사용 하는 경우 큐 메시지 toocreate hello blob 트리거의 hello 속도 안정성이 제한 응용 프로그램에 대 한 허용 되지 않는 경우 [QueueTrigger](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#trigger) 특성 대신 hello `BlobTrigger` hello blob을 처리 하는 hello 함수에는 특성입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-116">If hello speed and reliability limitations of blob triggers are not acceptable for your application, hello recommended method is toocreate a queue message when you create hello blob, and use hello [QueueTrigger](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#trigger) attribute instead of hello `BlobTrigger` attribute on hello function that processes hello blob.</span></span>
+> 
+> 
+
+### <a name="single-placeholder-for-blob-name-with-extension"></a><span data-ttu-id="66b7a-117">확장명을 포함하는 Blob 이름에 대한 단일 자리 표시자</span><span class="sxs-lookup"><span data-stu-id="66b7a-117">Single placeholder for blob name with extension</span></span>
+<span data-ttu-id="66b7a-118">hello 다음 코드 샘플 표시 되는 텍스트 blob에에서 복사 hello *입력* 컨테이너 toohello *출력* 컨테이너:</span><span class="sxs-lookup"><span data-stu-id="66b7a-118">hello following code sample copies text blobs that appear in hello *input* container toohello *output* container:</span></span>
+
+        public static void CopyBlob([BlobTrigger("input/{name}")] TextReader input,
+            [Blob("output/{name}")] out string output)
+        {
+            output = input.ReadToEnd();
+        }
+
+<span data-ttu-id="66b7a-119">hello 특성 생성자 hello 컨테이너 이름 및 hello blob 이름에 대 한 자리 표시자를 지정 하는 문자열 매개 변수를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-119">hello attribute constructor takes a string parameter that specifies hello container name and a placeholder for hello blob name.</span></span> <span data-ttu-id="66b7a-120">이 예제에서는 라는 blob *Blob1.txt* hello에 만들어집니다 *입력* 컨테이너 hello 함수 만듭니다 라는 blob *Blob1.txt* hello에 *출력*  컨테이너입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-120">In this example, if a blob named *Blob1.txt* is created in hello *input* container, hello function creates a blob named *Blob1.txt* in hello *output* container.</span></span> 
+
+<span data-ttu-id="66b7a-121">아래의 코드 예제는 hello와 같이 hello blob 이름 자리 표시자와 이름 패턴을 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-121">You can specify a name pattern with hello blob name placeholder, as shown in hello following code sample:</span></span>
+
+        public static void CopyBlob([BlobTrigger("input/original-{name}")] TextReader input,
+            [Blob("output/copy-{name}")] out string output)
+        {
+            output = input.ReadToEnd();
+        }
+
+<span data-ttu-id="66b7a-122">이 코드는 이름이 "original-"로 시작하는 Blob만 복사합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-122">This code copies only blobs that have names beginning with "original-".</span></span> <span data-ttu-id="66b7a-123">예를 들어 *원래 Blob1.txt* hello에 *입력* 컨테이너 너무 복사*복사 Blob1.txt* hello에 *출력* 컨테이너입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-123">For example, *original-Blob1.txt* in hello *input* container is copied too*copy-Blob1.txt* in hello *output* container.</span></span>
+
+<span data-ttu-id="66b7a-124">중괄호 hello 이름에 포함 된 blob 이름에 대 한 toospecify 이름 패턴을 필요한 경우 중괄호 hello를 두 번입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-124">If you need toospecify a name pattern for blob names that have curly braces in hello name, double hello curly braces.</span></span> <span data-ttu-id="66b7a-125">예를 들어, toofind blob을 hello *이미지* 다음과 같은 이름을 가진 컨테이너:</span><span class="sxs-lookup"><span data-stu-id="66b7a-125">For example, if you want toofind blobs in hello *images* container that have names like this:</span></span>
+
+        {20140101}-soundfile.mp3
+
+<span data-ttu-id="66b7a-126">패턴에 다음을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-126">use this for your pattern:</span></span>
+
+        images/{{20140101}}-{name}
+
+<span data-ttu-id="66b7a-127">Hello 예에서 hello *이름* 자리 표시자 값이 없을 *soundfile.mp3*합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-127">In hello example, hello *name* placeholder value would be *soundfile.mp3*.</span></span> 
+
+### <a name="separate-blob-name-and-extension-placeholders"></a><span data-ttu-id="66b7a-128">Blob 이름과 확장명에 대한 별도의 자리 표시자</span><span class="sxs-lookup"><span data-stu-id="66b7a-128">Separate blob name and extension placeholders</span></span>
+<span data-ttu-id="66b7a-129">hello 다음 코드 샘플 변경 hello 파일 확장명 hello에 표시 되는 blob를 복사 하는 대로 *입력* 컨테이너 toohello *출력* 컨테이너입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-129">hello following code sample changes hello file extension as it copies blobs that appear in hello *input* container toohello *output* container.</span></span> <span data-ttu-id="66b7a-130">hello 코드 기록 hello의 hello 확장 *입력* hello의 hello 확장명을 설정 하 고 blob *출력* 너무 blob*.txt*합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-130">hello code logs hello extension of hello *input* blob and sets hello extension of hello *output* blob too*.txt*.</span></span>
+
+        public static void CopyBlobToTxtFile([BlobTrigger("input/{name}.{ext}")] TextReader input,
+            [Blob("output/{name}.txt")] out string output,
+            string name,
+            string ext,
+            TextWriter logger)
+        {
+            logger.WriteLine("Blob name:" + name);
+            logger.WriteLine("Blob extension:" + ext);
+            output = input.ReadToEnd();
+        }
+
+## <span data-ttu-id="66b7a-131"><a id="types"></a>Tooblobs를 바인딩할 수 형식</span><span class="sxs-lookup"><span data-stu-id="66b7a-131"><a id="types"></a> Types that you can bind tooblobs</span></span>
+<span data-ttu-id="66b7a-132">Hello를 사용할 수 있습니다 `BlobTrigger` 특성 유형만 hello에:</span><span class="sxs-lookup"><span data-stu-id="66b7a-132">You can use hello `BlobTrigger` attribute on hello following types:</span></span>
+
+* `string`
+* `TextReader`
+* `Stream`
+* `ICloudBlob`
+* `CloudBlockBlob`
+* `CloudPageBlob`
+* `CloudBlobContainer`
+* `CloudBlobDirectory`
+* `IEnumerable<CloudBlockBlob>`
+* `IEnumerable<CloudPageBlob>`
+* <span data-ttu-id="66b7a-133">[ICloudBlobStreamBinder](#icbsb)</span><span class="sxs-lookup"><span data-stu-id="66b7a-133">Other types deserialized by [ICloudBlobStreamBinder](#icbsb)</span></span> 
+
+<span data-ttu-id="66b7a-134">원하는 경우 toowork hello Azure 저장소 계정 사용 하 여 직접 추가할 수도 있습니다는 `CloudStorageAccount` toohello 메서드 서명 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-134">If you want toowork directly with hello Azure storage account, you can also add a `CloudStorageAccount` parameter toohello method signature.</span></span>
+
+<span data-ttu-id="66b7a-135">예제를 보려면 hello [바인딩 코드 GitHub.com에 hello sdk-webjobs-azure 저장소의 blob](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/BlobBindingEndToEndTests.cs)합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-135">For examples, see hello [blob binding code in hello azure-webjobs-sdk repository on GitHub.com](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/BlobBindingEndToEndTests.cs).</span></span>
+
+## <span data-ttu-id="66b7a-136"><a id="string"></a>바인딩 toostring 여 텍스트 blob 콘텐츠 가져오기</span><span class="sxs-lookup"><span data-stu-id="66b7a-136"><a id="string"></a> Getting text blob content by binding toostring</span></span>
+<span data-ttu-id="66b7a-137">텍스트 blob 예상 되는 경우 `BlobTrigger` 적용된 tooa 수 `string` 매개 변수입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-137">If text blobs are expected, `BlobTrigger` can be applied tooa `string` parameter.</span></span> <span data-ttu-id="66b7a-138">hello 다음 코드 샘플 바인딩합니다 텍스트 blob tooa `string` 라는 매개 변수 `logMessage`합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-138">hello following code sample binds a text blob tooa `string` parameter named `logMessage`.</span></span> <span data-ttu-id="66b7a-139">hello 함수는 해당 매개 변수 toowrite hello 내용의 hello blob toohello WebJobs SDK 대시보드를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-139">hello function uses that parameter toowrite hello contents of hello blob toohello WebJobs SDK dashboard.</span></span> 
+
+        public static void WriteLog([BlobTrigger("input/{name}")] string logMessage,
+            string name, 
+            TextWriter logger)
+        {
+             logger.WriteLine("Blob name: {0}", name);
+             logger.WriteLine("Content:");
+             logger.WriteLine(logMessage);
+        }
+
+## <span data-ttu-id="66b7a-140"><a id="icbsb"></a> ICloudBlobStreamBinder를 사용하여 serialize된 Blob 콘텐츠 가져오기</span><span class="sxs-lookup"><span data-stu-id="66b7a-140"><a id="icbsb"></a> Getting serialized blob content by using ICloudBlobStreamBinder</span></span>
+<span data-ttu-id="66b7a-141">hello 다음 코드 예제에서는 구현 하는 클래스 `ICloudBlobStreamBinder` tooenable hello `BlobTrigger` toobind blob toohello 특성 `WebImage` 유형입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-141">hello following code sample uses a class that implements `ICloudBlobStreamBinder` tooenable hello `BlobTrigger` attribute toobind a blob toohello `WebImage` type.</span></span>
+
+        public static void WaterMark(
+            [BlobTrigger("images3/{name}")] WebImage input,
+            [Blob("images3-watermarked/{name}")] out WebImage output)
+        {
+            output = input.AddTextWatermark("WebJobs SDK", 
+                horizontalAlign: "Center", verticalAlign: "Middle",
+                fontSize: 48, opacity: 50);
+        }
+        public static void Resize(
+            [BlobTrigger("images3-watermarked/{name}")] WebImage input,
+            [Blob("images3-resized/{name}")] out WebImage output)
+        {
+            var width = 180;
+            var height = Convert.ToInt32(input.Height * 180 / input.Width);
+            output = input.Resize(width, height);
+        }
+
+<span data-ttu-id="66b7a-142">hello `WebImage` 바인딩 코드에서 제공 되는 `WebImageBinder` 에서 파생 된 클래스 `ICloudBlobStreamBinder`합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-142">hello `WebImage` binding code is provided in a `WebImageBinder` class that derives from `ICloudBlobStreamBinder`.</span></span>
+
+        public class WebImageBinder : ICloudBlobStreamBinder<WebImage>
+        {
+            public Task<WebImage> ReadFromStreamAsync(Stream input, 
+                System.Threading.CancellationToken cancellationToken)
+            {
+                return Task.FromResult<WebImage>(new WebImage(input));
+            }
+            public Task WriteToStreamAsync(WebImage value, Stream output,
+                System.Threading.CancellationToken cancellationToken)
+            {
+                var bytes = value.GetBytes();
+                return output.WriteAsync(bytes, 0, bytes.Length, cancellationToken);
+            }
+        }
+
+## <a name="getting-hello-blob-path-for-hello-triggering-blob"></a><span data-ttu-id="66b7a-143">Blob을 트리거하는 hello에 대 한 hello blob 경로 가져오는</span><span class="sxs-lookup"><span data-stu-id="66b7a-143">Getting hello blob path for hello triggering blob</span></span>
+<span data-ttu-id="66b7a-144">tooget hello 컨테이너 이름 및 hello 함수를 트리거 했습니다. hello blob의 blob 이름이 포함 된 `blobTrigger` hello 함수 시그니처의 매개 변수는 문자열입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-144">tooget hello container name and blob name of hello blob that has triggered hello function, include a `blobTrigger` string parameter in hello function signature.</span></span>
+
+        public static void WriteLog([BlobTrigger("input/{name}")] string logMessage,
+            string name,
+            string blobTrigger,
+            TextWriter logger)
+        {
+             logger.WriteLine("Full blob path: {0}", blobTrigger);
+             logger.WriteLine("Content:");
+             logger.WriteLine(logMessage);
+        }
+
+
+## <span data-ttu-id="66b7a-145"><a id="poison"></a>Toohandle 포이즌 blob 하는 방법</span><span class="sxs-lookup"><span data-stu-id="66b7a-145"><a id="poison"></a> How toohandle poison blobs</span></span>
+<span data-ttu-id="66b7a-146">경우는 `BlobTrigger` 함수 실패 hello SDK 호출 다시 경우 일시적인 오류가 발생 한 여 hello 오류가 발생 했습니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-146">When a `BlobTrigger` function fails, hello SDK calls it again, in case hello failure was caused by a transient error.</span></span> <span data-ttu-id="66b7a-147">Hello 오류 hello blob의 hello 내용에 의해 발생 하는 경우 tooprocess hello blob를 열려고 할 때마다 hello 함수가 실패 합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-147">If hello failure is caused by hello content of hello blob, hello function fails every time it tries tooprocess hello blob.</span></span> <span data-ttu-id="66b7a-148">기본적으로 hello SDK는 지정된 된 blob에 대 한 too5 시간 함수를 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-148">By default, hello SDK calls a function up too5 times for a given blob.</span></span> <span data-ttu-id="66b7a-149">SDK hello 라는 tooa 큐 메시지 추가 hello 다섯 번째 시도 실패 하면 *webjobs-blobtrigger-포이즌*합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-149">If hello fifth try fails, hello SDK adds a message tooa queue named *webjobs-blobtrigger-poison*.</span></span>
+
+<span data-ttu-id="66b7a-150">hello 최대 재시도 횟수는 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-150">hello maximum number of retries is configurable.</span></span> <span data-ttu-id="66b7a-151">동일한 hello [MaxDequeueCount](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#configqueue) 설정은 포이즌 blob 처리 및 포이즌 큐의 메시지 처리에 사용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-151">hello same [MaxDequeueCount](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#configqueue) setting is used for poison blob handling and poison queue message handling.</span></span> 
+
+<span data-ttu-id="66b7a-152">포이즌 blob에 대 한 hello 큐 메시지는 hello 다음과 같은 속성을 포함 하는 JSON 개체:</span><span class="sxs-lookup"><span data-stu-id="66b7a-152">hello queue message for poison blobs is a JSON object that contains hello following properties:</span></span>
+
+* <span data-ttu-id="66b7a-153">FunctionId (hello 형태로 표시 *{WebJob 이름}*합니다. 함수입니다. *{함수 이름}*예를 들면: WebJob1.Functions.CopyBlob)</span><span class="sxs-lookup"><span data-stu-id="66b7a-153">FunctionId (in hello format *{WebJob name}*.Functions.*{Function name}*, for example: WebJob1.Functions.CopyBlob)</span></span>
+* <span data-ttu-id="66b7a-154">BlobType("BlockBlob" 또는 "PageBlob")</span><span class="sxs-lookup"><span data-stu-id="66b7a-154">BlobType ("BlockBlob" or "PageBlob")</span></span>
+* <span data-ttu-id="66b7a-155">ContainerName</span><span class="sxs-lookup"><span data-stu-id="66b7a-155">ContainerName</span></span>
+* <span data-ttu-id="66b7a-156">BlobName</span><span class="sxs-lookup"><span data-stu-id="66b7a-156">BlobName</span></span>
+* <span data-ttu-id="66b7a-157">ETag(Blob 버전 식별자, 예: "0x8D1DC6E70A277EF")</span><span class="sxs-lookup"><span data-stu-id="66b7a-157">ETag (a blob version identifier, for example: "0x8D1DC6E70A277EF")</span></span>
+
+<span data-ttu-id="66b7a-158">Hello 다음 코드 샘플에서는 hello `CopyBlob` 함수에 호출 될 때마다 toofail 발생 한 코드는 합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-158">In hello following code sample, hello `CopyBlob` function has code that causes it toofail every time it's called.</span></span> <span data-ttu-id="66b7a-159">Hello SDK hello 최대 재시도 횟수에 대 한 호출 하 고 hello blob 포이즌 큐에 메시지를 만들 hello 해당 메시지를 처리 후 `LogPoisonBlob` 함수입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-159">After hello SDK calls it for hello maximum number of retries, a message is created on hello poison blob queue, and that message is processed by hello `LogPoisonBlob` function.</span></span> 
+
+        public static void CopyBlob([BlobTrigger("input/{name}")] TextReader input,
+            [Blob("textblobs/output-{name}")] out string output)
+        {
+            throw new Exception("Exception for testing poison blob handling");
+            output = input.ReadToEnd();
+        }
+
+        public static void LogPoisonBlob(
+        [QueueTrigger("webjobs-blobtrigger-poison")] PoisonBlobMessage message,
+            TextWriter logger)
+        {
+            logger.WriteLine("FunctionId: {0}", message.FunctionId);
+            logger.WriteLine("BlobType: {0}", message.BlobType);
+            logger.WriteLine("ContainerName: {0}", message.ContainerName);
+            logger.WriteLine("BlobName: {0}", message.BlobName);
+            logger.WriteLine("ETag: {0}", message.ETag);
+        }
+
+<span data-ttu-id="66b7a-160">hello SDK hello JSON 메시지를 자동으로 역직렬화합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-160">hello SDK automatically deserializes hello JSON message.</span></span> <span data-ttu-id="66b7a-161">여기에 hello `PoisonBlobMessage` 클래스:</span><span class="sxs-lookup"><span data-stu-id="66b7a-161">Here is hello `PoisonBlobMessage` class:</span></span> 
+
+        public class PoisonBlobMessage
+        {
+            public string FunctionId { get; set; }
+            public string BlobType { get; set; }
+            public string ContainerName { get; set; }
+            public string BlobName { get; set; }
+            public string ETag { get; set; }
+        }
+
+### <span data-ttu-id="66b7a-162"><a id="polling"></a> Blob 폴링 알고리즘</span><span class="sxs-lookup"><span data-stu-id="66b7a-162"><a id="polling"></a> Blob polling algorithm</span></span>
+<span data-ttu-id="66b7a-163">로 지정 된 모든 컨테이너를 검색 하는 hello WebJobs SDK `BlobTrigger` 응용 프로그램 시작 시 특성입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-163">hello WebJobs SDK scans all containers specified by `BlobTrigger` attributes at application start.</span></span> <span data-ttu-id="66b7a-164">대용량 저장소 계정의 경우 이러한 검사에 약간의 시간이 걸릴 수 있으므로 새 Blob를 찾고 `BlobTrigger` 함수를 실행하기까지 조금 기다려야 할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-164">In a large storage account this scan can take some time, so it might be a while before new blobs are found and `BlobTrigger` functions are executed.</span></span>
+
+<span data-ttu-id="66b7a-165">응용 프로그램 시작 후 toodetect 새롭거나 변경 된 blob, SDK hello blob 저장소에서 주기적으로 읽어서 hello를 기록 합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-165">toodetect new or changed blobs after application start, hello SDK periodically reads from hello blob storage logs.</span></span> <span data-ttu-id="66b7a-166">hello 로그 blob는 버퍼링 되 고만 10 분 마다 기록 물리적으로 있거나, 하므로 지연 시간이 상당한 blob를 만들거나 hello에 해당 하기 전에 업데이트 후 `BlobTrigger` 함수를 실행 합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-166">hello blob logs are buffered and only get physically written every 10 minutes or so, so there may be significant delay after a blob is created or updated before hello corresponding `BlobTrigger` function executes.</span></span> 
+
+<span data-ttu-id="66b7a-167">Hello를 사용 하 여 만든 blob에 대 한 예외가 `Blob` 특성입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-167">There is an exception for blobs that you create by using hello `Blob` attribute.</span></span> <span data-ttu-id="66b7a-168">새 blob hello 즉시 전달 hello WebJobs SDK를 새 blob을 만들면 tooany 일치 `BlobTrigger` 함수입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-168">When hello WebJobs SDK creates a new blob, it passes hello new blob immediately tooany matching `BlobTrigger` functions.</span></span> <span data-ttu-id="66b7a-169">따라서 blob 입 / 출력 체인이 있는 경우 SDK hello 수 효과적으로 처리 합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-169">Therefore if you have a chain of blob inputs and outputs, hello SDK can process them efficiently.</span></span> <span data-ttu-id="66b7a-170">그러나 다른 방법으로 만들거나 업데이트한 Blob에 대해 Blob 처리 함수를 실행하는 데 소요되는 지연 시간을 줄이려면 `BlobTrigger`보다 `QueueTrigger`를 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-170">But if you want low latency running your blob processing functions for blobs that are created or updated by other means, we recommend using `QueueTrigger` rather than `BlobTrigger`.</span></span>
+
+### <span data-ttu-id="66b7a-171"><a id="receipts"></a> Blob 수신 확인</span><span class="sxs-lookup"><span data-stu-id="66b7a-171"><a id="receipts"></a> Blob receipts</span></span>
+<span data-ttu-id="66b7a-172">WebJobs SDK hello 하면 없는 `BlobTrigger` 함수 호출 두 번 이상 hello에 대 한 동일한 새로운 또는 blob를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-172">hello WebJobs SDK makes sure that no `BlobTrigger` function gets called more than once for hello same new or updated blob.</span></span> <span data-ttu-id="66b7a-173">유지 관리 하 여이 작업을 수행 *수령액 blob* 순서 toodetermine 특정된 blob 버전 처리 된 경우에 합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-173">It does this by maintaining *blob receipts* in order toodetermine if a given blob version has been processed.</span></span>
+
+<span data-ttu-id="66b7a-174">라는 컨테이너에 저장 된 blob 수령액 *azure webjobs 호스트* hello AzureWebJobsStorage 연결 문자열에서 지정한 hello Azure 저장소 계정에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-174">Blob receipts are stored in a container named *azure-webjobs-hosts* in hello Azure storage account specified by hello AzureWebJobsStorage connection string.</span></span> <span data-ttu-id="66b7a-175">Blob 수신 확인에는 다음 정보는 hello에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-175">A blob receipt has hello following  information:</span></span>
+
+* <span data-ttu-id="66b7a-176">hello blob에 대 한 호출 된 함수 hello ("*{WebJob 이름}*합니다. 함수입니다. *{함수 이름}*", 예:"WebJob1.Functions.CopyBlob")</span><span class="sxs-lookup"><span data-stu-id="66b7a-176">hello function that was called for hello blob ("*{WebJob name}*.Functions.*{Function name}*", for example: "WebJob1.Functions.CopyBlob")</span></span>
+* <span data-ttu-id="66b7a-177">hello 컨테이너 이름</span><span class="sxs-lookup"><span data-stu-id="66b7a-177">hello container name</span></span>
+* <span data-ttu-id="66b7a-178">hello blob 유형 ("BlockBlob" 또는 "PageBlob")</span><span class="sxs-lookup"><span data-stu-id="66b7a-178">hello blob type ("BlockBlob" or "PageBlob")</span></span>
+* <span data-ttu-id="66b7a-179">hello blob 이름</span><span class="sxs-lookup"><span data-stu-id="66b7a-179">hello blob name</span></span>
+* <span data-ttu-id="66b7a-180">hello ETag (예: blob 버전 식별자: "0x8D1DC6E70A277EF")</span><span class="sxs-lookup"><span data-stu-id="66b7a-180">hello ETag (a blob version identifier, for example: "0x8D1DC6E70A277EF")</span></span>
+
+<span data-ttu-id="66b7a-181">해당 blob에 대 한 hello blob 확인 hello에서 수동으로 삭제할 수는 blob의 tooforce 다시 처리 하려면 *azure webjobs 호스트* 컨테이너입니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-181">If you want tooforce reprocessing of a blob, you can manually delete hello blob receipt for that blob from hello *azure-webjobs-hosts* container.</span></span>
+
+## <span data-ttu-id="66b7a-182"><a id="queues"></a>Hello 큐 문서에서 다루는 관련된 항목</span><span class="sxs-lookup"><span data-stu-id="66b7a-182"><a id="queues"></a>Related topics covered by hello queues article</span></span>
+<span data-ttu-id="66b7a-183">어떻게 toohandle blob 처리도 트리거된 큐 메시지 또는 WebJobs에 대 한 SDK 시나리오에 대 한 정보를 처리 하는 특정 tooblob 참조 [toouse Azure WebJobs SDK hello 사용 하 여 저장소를 대기 하는 방법을](websites-dotnet-webjobs-sdk-storage-queues-how-to.md)합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-183">For information about how toohandle blob processing triggered by a queue message, or for WebJobs SDK scenarios not specific tooblob processing, see [How toouse Azure queue storage with hello WebJobs SDK](websites-dotnet-webjobs-sdk-storage-queues-how-to.md).</span></span> 
+
+<span data-ttu-id="66b7a-184">Hello 다음 포함 하는 해당 문서에서 다루는 관련된 항목:</span><span class="sxs-lookup"><span data-stu-id="66b7a-184">Related topics covered in that article include hello following:</span></span>
+
+* <span data-ttu-id="66b7a-185">비동기 함수</span><span class="sxs-lookup"><span data-stu-id="66b7a-185">Async functions</span></span>
+* <span data-ttu-id="66b7a-186">여러 인스턴스</span><span class="sxs-lookup"><span data-stu-id="66b7a-186">Multiple instances</span></span>
+* <span data-ttu-id="66b7a-187">정상 종료</span><span class="sxs-lookup"><span data-stu-id="66b7a-187">Graceful shutdown</span></span>
+* <span data-ttu-id="66b7a-188">WebJobs SDK 특성 hello 함수 본문에서 사용 하 여</span><span class="sxs-lookup"><span data-stu-id="66b7a-188">Use WebJobs SDK attributes in hello body of a function</span></span>
+* <span data-ttu-id="66b7a-189">코드에서 hello SDK 연결 문자열을 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-189">Set hello SDK connection strings in code.</span></span>
+* <span data-ttu-id="66b7a-190">코드에서 WebJobs SDK 생성자 매개 변수 값 설정</span><span class="sxs-lookup"><span data-stu-id="66b7a-190">Set values for WebJobs SDK constructor parameters in code</span></span>
+* <span data-ttu-id="66b7a-191">포이즌 Blob 처리를 위한 `MaxDequeueCount` 구성</span><span class="sxs-lookup"><span data-stu-id="66b7a-191">Configure `MaxDequeueCount` for poison blob handling.</span></span>
+* <span data-ttu-id="66b7a-192">수동으로 함수 트리거</span><span class="sxs-lookup"><span data-stu-id="66b7a-192">Trigger a function manually</span></span>
+* <span data-ttu-id="66b7a-193">로그 작성</span><span class="sxs-lookup"><span data-stu-id="66b7a-193">Write logs</span></span>
+
+## <span data-ttu-id="66b7a-194"><a id="nextsteps"></a> 다음 단계</span><span class="sxs-lookup"><span data-stu-id="66b7a-194"><a id="nextsteps"></a> Next steps</span></span>
+<span data-ttu-id="66b7a-195">이 가이드 Azure 사용에 대 한 일반적인 시나리오 toohandle blob 하는 방법을 보여 주는 코드 샘플을 제공 했습니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-195">This guide has provided code samples that show how toohandle common scenarios for working with Azure blobs.</span></span> <span data-ttu-id="66b7a-196">Azure WebJobs toouse 및 hello WebJobs SDK를 참조 하는 방법에 대 한 자세한 내용은 [Azure WebJobs 리소스 권장](http://go.microsoft.com/fwlink/?linkid=390226)합니다.</span><span class="sxs-lookup"><span data-stu-id="66b7a-196">For more information about how toouse Azure WebJobs and hello WebJobs SDK, see [Azure WebJobs Recommended Resources](http://go.microsoft.com/fwlink/?linkid=390226).</span></span>
+

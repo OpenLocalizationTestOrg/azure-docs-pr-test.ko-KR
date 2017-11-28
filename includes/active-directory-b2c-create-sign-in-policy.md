@@ -1,0 +1,23 @@
+<span data-ttu-id="0d14b-101">응용 프로그램에 로그인을 사용하려면 로그인 정책을 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-101">To enable sign-in on your application, you will need to create a sign-in policy.</span></span> <span data-ttu-id="0d14b-102">이 정책은 로그인하는 동안 소비자가 경험한 환경 및 응용 프로그램이 성공적인 로그인을 수신하는 토큰의 콘텐츠를 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-102">This policy describes the experiences that consumers will go through during sign-in and the contents of tokens that the application will receive on successful sign-ins.</span></span>
+
+<span data-ttu-id="0d14b-103">[!INCLUDE [active-directory-b2c-portal-navigate-b2c-service](active-directory-b2c-portal-navigate-b2c-service.md)]**로그인 정책**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-103">[!INCLUDE [active-directory-b2c-portal-navigate-b2c-service](active-directory-b2c-portal-navigate-b2c-service.md)] Click **Sign-in policies**.</span></span>
+
+<span data-ttu-id="0d14b-104">블레이드의 위쪽에서 **+추가**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-104">Click **+Add** at the top of the blade.</span></span>
+
+<span data-ttu-id="0d14b-105">**이름**은 응용 프로그램에서 사용하는 로그인 정책 이름을 결정합니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-105">The **Name** determines the sign-in policy name used by your application.</span></span> <span data-ttu-id="0d14b-106">예를 들어 **SiIn**을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-106">For example, enter **SiIn**.</span></span>
+
+<span data-ttu-id="0d14b-107">**ID 공급자**를 클릭하고 **로컬 계정 로그인**을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-107">Click **Identity providers** and select **Local Account SignIn**.</span></span> <span data-ttu-id="0d14b-108">또한 필요에 따라 이미 구성되어 있는 소셜 ID 공급자를 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-108">Optionally, you can also select social identity providers, if already configured.</span></span> <span data-ttu-id="0d14b-109">**확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-109">Click **OK**.</span></span>
+
+<span data-ttu-id="0d14b-110">**응용 프로그램 클레임**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-110">Click **Application claims**.</span></span> <span data-ttu-id="0d14b-111">여기서 성공적인 로그인 환경 이후에 응용 프로그램으로 다시 전송된 토큰에서 반환하려는 클레임을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-111">Here you choose claims that you want returned in the tokens sent back to your application after a successful sign-in experience.</span></span> <span data-ttu-id="0d14b-112">예를 들어 **표시 이름**, **ID 공급자**, **우편 번호** 및 **사용자의 개체 ID**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-112">For example, select **Display Name**, **Identity Provider**, **Postal Code**  and **User's Object ID**.</span></span> <span data-ttu-id="0d14b-113">**확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-113">Click **OK**.</span></span>
+
+<span data-ttu-id="0d14b-114">**만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-114">Click **Create**.</span></span> <span data-ttu-id="0d14b-115">방금 만든 정책은 **로그인 정책** 블레이드에서 **B2C_1_SiIn**(**B2C\_1\_** 조각이 자동으로 추가됨)으로 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-115">Note that the policy just created appears as **B2C_1_SiIn** (the **B2C\_1\_** fragment is automatically added) in the **Sign-in policies** blade.</span></span>
+
+<span data-ttu-id="0d14b-116">**B2C_1_SiIn**을 클릭하여 해당 정책을 엽니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-116">Open the policy by clicking **B2C_1_SiIn**.</span></span>
+
+<span data-ttu-id="0d14b-117">**응용 프로그램** 드롭다운에서 **Contoso B2C 앱**을 선택하고, **회신 URL/리디렉션 URI** 드롭다운에서 `https://localhost:44321/`을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-117">Select **Contoso B2C app** in the **Applications** drop-down and `https://localhost:44321/` in the **Reply URL / Redirect URI** drop-down.</span></span>
+
+<span data-ttu-id="0d14b-118">**지금 실행**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-118">Click **Run now**.</span></span> <span data-ttu-id="0d14b-119">새 브라우저 탭이 열리고 응용 프로그램에 로그인한 사용자 환경을 실행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-119">A new browser tab opens, and you can run through the consumer experience of signing into your application.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="0d14b-120">정책 만들기 및 업데이트가 적용되려면 최대 1분이 걸립니다.</span><span class="sxs-lookup"><span data-stu-id="0d14b-120">It takes up to a minute for policy creation and updates to take effect.</span></span>
+>

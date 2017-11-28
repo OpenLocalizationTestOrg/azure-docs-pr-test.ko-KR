@@ -1,0 +1,89 @@
+---
+title: "ExpressRoute: Portal: Azure용 VNet에 가상 네트워크 게이트웨이 추가 | Microsoft Docs"
+description: "이 문서에서는 ExpressRoute에 대해 이미 만들어진 Resource Manager VNet에 가상 네트워크 게이트웨이를 추가하는 과정을 안내합니다."
+documentationcenter: na
+services: expressroute
+author: cherylmc
+manager: timlt
+editor: 
+tags: azure-resource-manager
+ms.assetid: 
+ms.service: expressroute
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 04/17/2017
+ms.author: cherylmc
+ms.openlocfilehash: 2bd0cf8be87937044ad515a2c6f253b1711bb2bf
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: ko-KR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="configure-a-virtual-network-gateway-for-expressroute-using-the-azure-portal"></a><span data-ttu-id="7f940-103">Azure Portal을 사용하여 ExpressRoute에 대한 가상 네트워크 게이트웨이 구성</span><span class="sxs-lookup"><span data-stu-id="7f940-103">Configure a virtual network gateway for ExpressRoute using the Azure portal</span></span>
+> [!div class="op_single_selector"]
+> * [<span data-ttu-id="7f940-104">Resource Manager - Azure Portal</span><span class="sxs-lookup"><span data-stu-id="7f940-104">Resource Manager - Azure portal</span></span>](expressroute-howto-add-gateway-portal-resource-manager.md)
+> * [<span data-ttu-id="7f940-105">Resource Manager - PowerShell</span><span class="sxs-lookup"><span data-stu-id="7f940-105">Resource Manager - PowerShell</span></span>](expressroute-howto-add-gateway-resource-manager.md)
+> * [<span data-ttu-id="7f940-106">클래식 - PowerShell</span><span class="sxs-lookup"><span data-stu-id="7f940-106">Classic - PowerShell</span></span>](expressroute-howto-add-gateway-classic.md)
+> * [<span data-ttu-id="7f940-107">비디오 - Azure Portal</span><span class="sxs-lookup"><span data-stu-id="7f940-107">Video - Azure portal</span></span>](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-vpn-gateway-for-your-virtual-network)
+> 
+> 
+
+<span data-ttu-id="7f940-108">이 문서에서는 기존 VNet에 대한 가상 네트워크 게이트웨이를 추가하는 단계를 안내합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-108">This article walks you through the steps to add a virtual network gateway for a pre-existing VNet.</span></span> <span data-ttu-id="7f940-109">이 문서에서는 기존 VNet에 대한 가상 네트워크(VNet) 게이트웨이를 추가, 제거하고 크기를 조정하는 단계를 안내합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-109">This article walks you through the steps to add, resize, and remove a virtual network (VNet) gateway for a pre-existing VNet.</span></span> <span data-ttu-id="7f940-110">이 구성에서 수행하는 단계는 Resource Manager 배포 모델을 사용하여 만든 VNet(ExpressRoute 구성에서 사용됨)에만 해당합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-110">The steps for this configuration are specifically for VNets that were created using the Resource Manager deployment model that will be used in an ExpressRoute configuration.</span></span> <span data-ttu-id="7f940-111">가상 네트워크 게이트웨이 및 ExpressRoute의 게이트웨이 구성 설정에 대한 자세한 내용은 [ExpressRoute에 대한 가상 네트워크 게이트웨이 정보](expressroute-about-virtual-network-gateways.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="7f940-111">For more information about virtual network gateways and gateway configuration settings for ExpressRoute, see [About virtual network gateways for ExpressRoute](expressroute-about-virtual-network-gateways.md).</span></span> 
+
+
+## <a name="before-beginning"></a><span data-ttu-id="7f940-112">시작하기 전에</span><span class="sxs-lookup"><span data-stu-id="7f940-112">Before beginning</span></span>
+
+<span data-ttu-id="7f940-113">이 작업의 단계는 다음 구성 참조 목록의 값을 기반으로 VNet을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-113">The steps for this task use a VNet based on the values in the following configuration reference list.</span></span> <span data-ttu-id="7f940-114">예제 단계에서 이 목록을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-114">We use this list in our example steps.</span></span> <span data-ttu-id="7f940-115">목록을 복사하여 참조로 사용하고 값을 사용자 값으로 바꿀 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-115">You can copy the list to use as a reference, replacing the values with your own.</span></span>
+
+<span data-ttu-id="7f940-116">**구성 참조 목록**</span><span class="sxs-lookup"><span data-stu-id="7f940-116">**Configuration reference list**</span></span>
+
+* <span data-ttu-id="7f940-117">가상 네트워크 이름 = "TestVNet"</span><span class="sxs-lookup"><span data-stu-id="7f940-117">Virtual Network Name = "TestVNet"</span></span>
+* <span data-ttu-id="7f940-118">가상 네트워크 주소 공간: 192.168.0.0/16</span><span class="sxs-lookup"><span data-stu-id="7f940-118">Virtual Network address space = 192.168.0.0/16</span></span>
+* <span data-ttu-id="7f940-119">서브넷 이름= “FrontEnd”</span><span class="sxs-lookup"><span data-stu-id="7f940-119">Subnet Name = "FrontEnd"</span></span> 
+    * <span data-ttu-id="7f940-120">서브넷 주소 공간 = “192.168.1.0/24”</span><span class="sxs-lookup"><span data-stu-id="7f940-120">Subnet address space = "192.168.1.0/24"</span></span>
+* <span data-ttu-id="7f940-121">리소스 그룹: "TestRG"</span><span class="sxs-lookup"><span data-stu-id="7f940-121">Resource Group = "TestRG"</span></span>
+* <span data-ttu-id="7f940-122">위치 = “미국 동부”</span><span class="sxs-lookup"><span data-stu-id="7f940-122">Location = "East US"</span></span>
+* <span data-ttu-id="7f940-123">게이트웨이 서브넷 이름: "GatewaySubnet" 게이트웨이 서브넷의 이름을 항상 *GatewaySubnet*으로 지정해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-123">Gateway Subnet name: "GatewaySubnet" You must always name a gateway subnet *GatewaySubnet*.</span></span>
+    * <span data-ttu-id="7f940-124">게이트웨이 서브넷 주소 공간 = "192.168.200.0/26"</span><span class="sxs-lookup"><span data-stu-id="7f940-124">Gateway Subnet address space = "192.168.200.0/26"</span></span>
+* <span data-ttu-id="7f940-125">게이트웨이 이름 = “ERGW”</span><span class="sxs-lookup"><span data-stu-id="7f940-125">Gateway Name = "ERGW"</span></span>
+* <span data-ttu-id="7f940-126">게이트웨이 IP 이름 = "MyERGWVIP"</span><span class="sxs-lookup"><span data-stu-id="7f940-126">Gateway IP Name = "MyERGWVIP"</span></span>
+* <span data-ttu-id="7f940-127">게이트웨이 유형 = “ExpressRoute” Express 경로 구성에 이 유형이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-127">Gateway type = "ExpressRoute" This type is required for an ExpressRoute configuration.</span></span>
+* <span data-ttu-id="7f940-128">게이트웨이 공용 IP 이름 = “MyERGWVIP”</span><span class="sxs-lookup"><span data-stu-id="7f940-128">Gateway Public IP Name = "MyERGWVIP"</span></span>
+
+<span data-ttu-id="7f940-129">구성을 시작하기 전에 이러한 단계의 [비디오](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-vpn-gateway-for-your-virtual-network)를 시청하십시오.</span><span class="sxs-lookup"><span data-stu-id="7f940-129">You can view a [Video](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-vpn-gateway-for-your-virtual-network) of these steps before beginning your configuration.</span></span>
+
+## <a name="create-the-gateway-subnet"></a><span data-ttu-id="7f940-130">게이트웨이 서브넷 만들기</span><span class="sxs-lookup"><span data-stu-id="7f940-130">Create the gateway subnet</span></span>
+
+1. <span data-ttu-id="7f940-131">[포털](http://portal.azure.com)에서 가상 네트워크 게이트웨이를 만들려는 Resource Manager 가상 네트워크로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-131">In the [portal](http://portal.azure.com), navigate to the Resource Manager virtual network for which you want to create a virtual network gateway.</span></span>
+2. <span data-ttu-id="7f940-132">VNet 블레이드의 **설정** 섹션에서 **서브넷**을 클릭하여 서브넷 블레이드를 확장합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-132">In the **Settings** section of your VNet blade, click **Subnets** to expand the Subnets blade.</span></span>
+3. <span data-ttu-id="7f940-133">**서브넷** 블레이드에서 **+ 게이트웨이 서브넷**을 클릭하여 **서브넷 추가** 블레이드를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-133">On the **Subnets** blade, click **+Gateway subnet** to open the **Add subnet** blade.</span></span> 
+   
+    <span data-ttu-id="7f940-134">![게이트웨이 서브넷 추가](./media/expressroute-howto-add-gateway-portal-resource-manager/addgwsubnet.png "게이트웨이 서브넷 추가")</span><span class="sxs-lookup"><span data-stu-id="7f940-134">![Add the gateway subnet](./media/expressroute-howto-add-gateway-portal-resource-manager/addgwsubnet.png "Add the gateway subnet")</span></span>
+
+
+4. <span data-ttu-id="7f940-135">서브넷의 **이름**에 'GatewaySubnet' 값이 자동으로 채워집니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-135">The **Name** for your subnet is automatically filled in with the value 'GatewaySubnet'.</span></span> <span data-ttu-id="7f940-136">Azure가 서브넷을 게이트웨이 서브넷으로 인식하기 위해 이 값이 필요합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-136">This value is required in order for Azure to recognize the subnet as the gateway subnet.</span></span> <span data-ttu-id="7f940-137">자동으로 채워진 **주소 범위** 값을 구성 요구 사항과 일치하도록 조정합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-137">Adjust the auto-filled **Address range** values to match your configuration requirements.</span></span> <span data-ttu-id="7f940-138">/27 이상의 게이트웨이 서브넷을 만드는 것이 좋습니다(/26, /25, 등).</span><span class="sxs-lookup"><span data-stu-id="7f940-138">We recommend creating a gateway subnet with a /27 or larger (/26, /25, etc.).</span></span> <span data-ttu-id="7f940-139">그런 다음 **확인**을 클릭하여 값을 저장하고 게이트웨이 서브넷을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-139">Then, click **OK** to save the values and create the gateway subnet.</span></span>
+
+    <span data-ttu-id="7f940-140">![서브넷 추가](./media/expressroute-howto-add-gateway-portal-resource-manager/addsubnetgw.png "서브넷 추가")</span><span class="sxs-lookup"><span data-stu-id="7f940-140">![Adding the subnet](./media/expressroute-howto-add-gateway-portal-resource-manager/addsubnetgw.png "Adding the subnet")</span></span>
+
+## <a name="create-the-virtual-network-gateway"></a><span data-ttu-id="7f940-141">가상 네트워크 게이트웨이 만들기</span><span class="sxs-lookup"><span data-stu-id="7f940-141">Create the virtual network gateway</span></span>
+
+1. <span data-ttu-id="7f940-142">포털의 왼쪽에서 **+**를 클릭하고 검색에서 '가상 네트워크 게이트웨이'를 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-142">In the portal, on the left side, click **+** and type 'Virtual Network Gateway' in search.</span></span> <span data-ttu-id="7f940-143">검색 결과에서 **가상 네트워크 게이트웨이**를 찾아서 항목을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-143">Locate **Virtual network gateway** in the search return and click the entry.</span></span> <span data-ttu-id="7f940-144">**가상 네트워크 게이트웨이** 블레이드의 아래쪽에서 **만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-144">On the **Virtual network gateway** blade, click **Create** at the bottom of the blade.</span></span> <span data-ttu-id="7f940-145">그러면 **가상 네트워크 게이트웨이 만들기** 블레이드가 열립니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-145">This opens the **Create virtual network gateway** blade.</span></span>
+2. <span data-ttu-id="7f940-146">**가상 네트워크 게이트웨이 만들기** 블레이드에서 가상 네트워크 게이트웨이의 값을 채웁니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-146">On the **Create virtual network gateway** blade, fill in the values for your virtual network gateway.</span></span>
+
+    <span data-ttu-id="7f940-147">![가상 네트워크 게이트웨이 만들기 블레이드의 필드](./media/expressroute-howto-add-gateway-portal-resource-manager/gw.png "가상 네트워크 게이트웨이 만들기 블레이드의 필드")</span><span class="sxs-lookup"><span data-stu-id="7f940-147">![Create virtual network gateway blade fields](./media/expressroute-howto-add-gateway-portal-resource-manager/gw.png "Create virtual network gateway blade fields")</span></span>
+3. <span data-ttu-id="7f940-148">**이름**: 게이트웨이 이름을 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-148">**Name**: Name your gateway.</span></span> <span data-ttu-id="7f940-149">이는 게이트웨이 서브넷 이름 지정과 동일하지는 않습니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-149">This is not the same as naming a gateway subnet.</span></span> <span data-ttu-id="7f940-150">만드는 게이트웨이 개체의 이름입니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-150">It's the name of the gateway object you are creating.</span></span>
+4. <span data-ttu-id="7f940-151">**게이트웨이 유형**: **ExpressRoute**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-151">**Gateway type**: Select **ExpressRoute**.</span></span>
+5. <span data-ttu-id="7f940-152">**SKU**: 드롭다운에서 게이트웨이 SKU를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-152">**SKU**: Select the gateway SKU from the dropdown.</span></span>
+6. <span data-ttu-id="7f940-153">**위치**: 가상 네트워크가 있는 위치를 가리키도록 **위치** 필드를 조정합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-153">**Location**: Adjust the **Location** field to point to the location where your virtual network is located.</span></span> <span data-ttu-id="7f940-154">위치에서 가상 네트워크가 있는 지역을 가리키고 있지 않으면 가상 네트워크가 [가상 네트워크 선택] 드롭다운에 나타나지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-154">If the location is not pointing to the region where your virtual network resides, the virtual network doesn't appear in the 'Choose a virtual network' dropdown.</span></span>
+7. <span data-ttu-id="7f940-155">이 게이트웨이를 추가할 가상 네트워크를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-155">Choose the virtual network to which you want to add this gateway.</span></span> <span data-ttu-id="7f940-156">**가상 네트워크**를 클릭하여 **가상 네트워크 선택** 블레이드를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-156">Click **Virtual network** to open the **Choose a virtual network** blade.</span></span> <span data-ttu-id="7f940-157">VNet을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-157">Select the VNet.</span></span> <span data-ttu-id="7f940-158">VNet이 보이지 않으면 **위치** 필드가 가상 네트워크가 있는 지역을 가리키고 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-158">If you don't see your VNet, make sure the **Location** field is pointing to the region in which your virtual network is located.</span></span>
+9. <span data-ttu-id="7f940-159">공용 IP 주소를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-159">Choose a public IP address.</span></span> <span data-ttu-id="7f940-160">**공용 IP 주소**를 클릭하여 **공용 IP 주소 선택** 블레이드를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-160">Click **Public IP address** to open the **Choose public IP address** blade.</span></span> <span data-ttu-id="7f940-161">**+새로 만들기**를 클릭하여 **공용 IP 주소 만들기** 블레이드를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-161">Click **+Create New** to open the **Create public IP address blade**.</span></span> <span data-ttu-id="7f940-162">공용 IP 주소의 이름을 입력합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-162">Input a name for your public IP address.</span></span> <span data-ttu-id="7f940-163">이 블레이드는 공용 IP 주소를 동적으로 할당할 공용 IP 주소 개체를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-163">This blade creates a public IP address object to which a public IP address will be dynamically assigned.</span></span> <span data-ttu-id="7f940-164">**확인**을 클릭하여 이 블레이드에 변경 내용을 저장합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-164">Click **OK** to save your changes to this blade.</span></span>
+10. <span data-ttu-id="7f940-165">**구독**: 올바른 구독을 선택하는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-165">**Subscription**: Verify that the correct subscription is selected.</span></span>
+11. <span data-ttu-id="7f940-166">**리소스 그룹**: 이 설정은 선택한 Virtual Network에 의해 결정됩니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-166">**Resource group**: This setting is determined by the Virtual Network that you select.</span></span>
+12. <span data-ttu-id="7f940-167">앞의 설정을 지정한 후에는 **위치**를 조정하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-167">Don't adjust the **Location** after you've specified the previous settings.</span></span>
+13. <span data-ttu-id="7f940-168">설정을 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-168">Verify the settings.</span></span> <span data-ttu-id="7f940-169">게이트웨이를 대시보드에 표시하려면 블레이드 아래쪽에서 **대시보드에 고정**을 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-169">If you want your gateway to appear on the dashboard, you can select **Pin to dashboard** at the bottom of the blade.</span></span>
+14. <span data-ttu-id="7f940-170">**만들기** 를 클릭하여 게이트웨이 만들기를 시작합니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-170">Click **Create** to begin creating the gateway.</span></span> <span data-ttu-id="7f940-171">설정이 검증되었으며 게이트웨이가 배포됩니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-171">The settings are validated and the gateway deploys.</span></span> <span data-ttu-id="7f940-172">가상 네트워크 게이트웨이 만들기는 완료되는 데 최대 45분까지 소요됩니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-172">Creating virtual network gateway can take up to 45 minutes to complete.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="7f940-173">다음 단계</span><span class="sxs-lookup"><span data-stu-id="7f940-173">Next steps</span></span>
+<span data-ttu-id="7f940-174">VNet 게이트웨이를 만든 후 VNet을 Express 경로 회로에 연결할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="7f940-174">After you have created the VNet gateway, you can link your VNet to an ExpressRoute circuit.</span></span> <span data-ttu-id="7f940-175">[가상 네트워크를 Express 경로 회로에 연결](expressroute-howto-linkvnet-portal-resource-manager.md)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="7f940-175">See [Link a Virtual Network to an ExpressRoute circuit](expressroute-howto-linkvnet-portal-resource-manager.md).</span></span>

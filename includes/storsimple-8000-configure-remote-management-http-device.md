@@ -1,0 +1,21 @@
+
+#### <a name="to-configure-remote-management-on-cloud-appliance"></a><span data-ttu-id="b5264-101">클라우드 어플라이언스에서 원격 관리를 구성하려면</span><span class="sxs-lookup"><span data-stu-id="b5264-101">To configure remote management on cloud appliance</span></span>
+
+1. <span data-ttu-id="b5264-102">StorSimple 장치 관리자 서비스에서 **장치**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b5264-102">In your StorSimple Device Manager service, click **Devices**.</span></span> <span data-ttu-id="b5264-103">서비스에 연결된 장치 목록에서 클라우드 어플라이언스를 선택하여 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b5264-103">Select and click your cloud appliance from the list of devices connected to the service.</span></span>
+    <span data-ttu-id="b5264-104">![StorSimple 클라우드 어플라이언스 선택](./media/storsimple-8000-configure-remote-management-http-device/sca-remote-manage1.png)</span><span class="sxs-lookup"><span data-stu-id="b5264-104">![StorSimple select cloud appliance](./media/storsimple-8000-configure-remote-management-http-device/sca-remote-manage1.png)</span></span>
+
+2. <span data-ttu-id="b5264-105">**설정 > 보안**으로 이동하여 **보안 설정** 블레이드를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="b5264-105">Go to **Settings > Security** to open the **Security settings** blade.</span></span>
+
+     ![StorSimple 보안 설정](./media/storsimple-8000-configure-remote-management-http-device/sca-remote-manage2.png)
+
+3. <span data-ttu-id="b5264-107">**원격 관리** 섹션으로 이동합니다.</span><span class="sxs-lookup"><span data-stu-id="b5264-107">Go to the **Remote Management** section.</span></span> <span data-ttu-id="b5264-108">**원격 관리** 상자를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b5264-108">Click **Remote management** box.</span></span>
+     <span data-ttu-id="b5264-109">![StorSimple 원격 관리](./media/storsimple-8000-configure-remote-management-http-device/sca-remote-manage3.png)</span><span class="sxs-lookup"><span data-stu-id="b5264-109">![StorSimple remote manangement](./media/storsimple-8000-configure-remote-management-http-device/sca-remote-manage3.png)</span></span>
+
+4. <span data-ttu-id="b5264-110">**원격 관리** 블레이드에서:</span><span class="sxs-lookup"><span data-stu-id="b5264-110">In the **Remote management** blade:</span></span>
+
+    1. <span data-ttu-id="b5264-111">**원격 관리를 사용**이 활성화되어 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="b5264-111">Ensure **Enable remote administration** is enabled.</span></span>
+    2. <span data-ttu-id="b5264-112">기본값은 HTTPS를 통해 연결합니다.</span><span class="sxs-lookup"><span data-stu-id="b5264-112">The default is to connect over HTTPS.</span></span> <span data-ttu-id="b5264-113">HTTP를 사용하여 연결하도록 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b5264-113">You can choose to connect using HTTP.</span></span> <span data-ttu-id="b5264-114">HTTP를 통한 연결은 신뢰할 수 있는 네트워크에서만 허용됩니다.</span><span class="sxs-lookup"><span data-stu-id="b5264-114">Connecting over HTTP is acceptable only on trusted networks.</span></span> <span data-ttu-id="b5264-115">HTTP가 활성화되어 있는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="b5264-115">Ensure that HTTP is enabled.</span></span>
+    3. <span data-ttu-id="b5264-116">블레이드 맨 위에 있는 명령 모음에서 **... 자세히**를 클릭한 후 **인증서 다운로드**를 클릭하여 원격 관리 인증서를 다운로드합니다.</span><span class="sxs-lookup"><span data-stu-id="b5264-116">From the command bar at the top of blade, click **... More** and then click **Download certificate** to download a remote management certificate.</span></span> <span data-ttu-id="b5264-117">이 파일을 저장하는 위치를 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b5264-117">You can specify a location in which to save this file.</span></span> <span data-ttu-id="b5264-118">이 인증서는 클라우드 어플라이언스에 연결하는 데 사용할 클라이언트 또는 호스트 컴퓨터에 설치됩니다.</span><span class="sxs-lookup"><span data-stu-id="b5264-118">This certificate should be installed on the client or host machine that you use to connect to the cloud appliance.</span></span>
+
+        ![원격 관리 블레이드](./media/storsimple-8000-configure-remote-management-http-device/sca-remote-manage4.png)
+5. <span data-ttu-id="b5264-120">**저장**을 클릭하고 메시지가 표시되면 변경 내용을 확인 합니다.</span><span class="sxs-lookup"><span data-stu-id="b5264-120">Click **Save** and when prompted, confirm the changes.</span></span>

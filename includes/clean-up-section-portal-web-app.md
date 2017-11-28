@@ -1,0 +1,7 @@
+## <a name="clean-up-resources"></a><span data-ttu-id="c8746-101">리소스 정리</span><span class="sxs-lookup"><span data-stu-id="c8746-101">Clean up resources</span></span>
+
+<span data-ttu-id="c8746-102">이전 단계에서 Azure 리소스를 리소스 그룹에 만들었습니다.</span><span class="sxs-lookup"><span data-stu-id="c8746-102">In the preceding steps, you created Azure resources in a resource group.</span></span> <span data-ttu-id="c8746-103">이러한 리소스가 나중에 필요하지 않을 경우에는 리소스 그룹을 삭제하여 해당 리소스를 삭제할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c8746-103">If you don't expect to need these resources in the future, you can delete them by deleting the resource group.</span></span>
+ 
+1. <span data-ttu-id="c8746-104">Azure Portal의 웹앱 **개요** 페이지에서 **리소스 그룹** 아래에 있는 **myResourceGroup** 링크를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c8746-104">From your web app's **Overview** page in the Azure portal, select the **myResourceGroup** link under **Resource group**.</span></span>
+2. <span data-ttu-id="c8746-105">리소스 그룹 페이지에서 나열된 리소스가 삭제하려는 리소스인지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="c8746-105">On the resource group page, make sure that the listed resources are the ones you want to delete.</span></span>
+3. <span data-ttu-id="c8746-106">**삭제**를 선택하고, 텍스트 상자에서 **myResourceGroup**을 입력한 다음, **삭제**를 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="c8746-106">Select **Delete**, type **myResourceGroup** in the text box, and then select **Delete**.</span></span>

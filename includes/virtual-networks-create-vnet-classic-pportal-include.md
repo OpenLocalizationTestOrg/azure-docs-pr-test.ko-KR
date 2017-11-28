@@ -1,0 +1,28 @@
+## <a name="how-to-create-a-classic-vnet-in-the-azure-portal"></a><span data-ttu-id="b15f4-101">Azure 포털에서 클래식 VNet을 만드는 방법</span><span class="sxs-lookup"><span data-stu-id="b15f4-101">How to create a classic VNet in the Azure portal</span></span>
+<span data-ttu-id="b15f4-102">위의 시나리오에 따라 클래식 VNet을 만들려면 다음 단계를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="b15f4-102">To create a classic VNet based on the scenario above, follow the steps below.</span></span>
+
+1. <span data-ttu-id="b15f4-103">브라우저에서 http://portal.azure.com으로 이동하고, 필요한 경우 Azure 계정으로 로그인합니다.</span><span class="sxs-lookup"><span data-stu-id="b15f4-103">From a browser, navigate to http://portal.azure.com and, if necessary, sign in with your Azure account.</span></span>
+2. <span data-ttu-id="b15f4-104">아래 그림과 같이 **새로 만들기** > **네트워킹** > **Virtual Network**를 클릭하고 **배포 모델 선택** 목록에 **클래식**이 이미 표시되는지 확인한 후 **만들기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b15f4-104">Click **NEW** > **Networking** > **Virtual network**, notice that the **Select a deployment model** list already shows **Classic**, and then click **Create**, as seen in the figure below.</span></span>
+   
+    ![Azure 포털에서 VNet 만들기](./media/virtual-networks-create-vnet-classic-pportal-include/vnet-create-pportal-figure1.gif)
+3. <span data-ttu-id="b15f4-106">**Virtual Network** 블레이드에서 VNet의 **이름**을 입력하고 **주소 공간**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b15f4-106">On the **Virtual network** blade, type the **Name** of the VNet, and then click **Address space**.</span></span> <span data-ttu-id="b15f4-107">VNet 및 첫 번째 서브넷에 대한 주소 공간 설정을 구성하고 **확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b15f4-107">Configure your address space settings for the VNet and its first subnet, then click **OK**.</span></span> <span data-ttu-id="b15f4-108">아래 그림에서는 이 시나리오에 대한 CIDR 블록 설정을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="b15f4-108">The figure below shows the CIDR block settings for our scenario.</span></span>
+   
+    ![주소 공간 블레이드](./media/virtual-networks-create-vnet-classic-pportal-include/vnet-create-pportal-figure2.png)
+4. <span data-ttu-id="b15f4-110">**리소스 그룹**을 클릭하고 VNet을 추가할 리소스 그룹을 클릭하거나 **새 리소스 그룹 만들기**를 클릭하여 새 리소스 그룹에 VNet을 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="b15f4-110">Click **Resource Group** and select a resource group to add the VNet to, or click **Create new resource group** to add the VNet to a new resource group.</span></span> <span data-ttu-id="b15f4-111">아래 그림은 **TestRG**라는 새 리소스 그룹에 대한 리소스 그룹 설정을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="b15f4-111">The figure below shows the resource group settings for a new resource group called **TestRG**.</span></span> <span data-ttu-id="b15f4-112">리소스 그룹에 대한 자세한 내용은 [Azure 리소스 관리자 개요](../articles/azure-resource-manager/resource-group-overview.md#resource-groups)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="b15f4-112">For more information about resource groups, visit [Azure Resource Manager Overview](../articles/azure-resource-manager/resource-group-overview.md#resource-groups).</span></span>
+   
+    ![리소스 그룹 만들기 블레이드](./media/virtual-networks-create-vnet-classic-pportal-include/vnet-create-pportal-figure3.png)
+5. <span data-ttu-id="b15f4-114">필요한 경우 VNet에 맞게 **구독** 및 **위치** 설정을 변경합니다.</span><span class="sxs-lookup"><span data-stu-id="b15f4-114">If necessary, change the **Subscription** and **Location** settings for your VNet.</span></span> 
+6. <span data-ttu-id="b15f4-115">VNet을 **시작 보드**에 타일로 표시하지 않으려면 **시작 보드에 고정**을 사용하지 않도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="b15f4-115">If you do not want to see the VNet as a tile in the **Startboard**, disable **Pin to Startboard**.</span></span> 
+7. <span data-ttu-id="b15f4-116">**만들기**를 클릭하고 아래 그림과 같이 **가상 네트워크를 만드는 중** 타일이 표시되는지 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="b15f4-116">Click **Create** and notice the tile named **Creating Virtual network** as shown in the figure below.</span></span>
+   
+    ![포털에서 VNet 만들기](./media/virtual-networks-create-vnet-classic-pportal-include/vnet-create-pportal-figure4.png)
+8. <span data-ttu-id="b15f4-118">VNet이 만들어질 때까지 기다렸다가 아래 타일이 표시되면 클릭하여 서브넷을 더 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="b15f4-118">Wait for the VNet to be created, and when you see the tile below, click it to add more subnets.</span></span>
+   
+    ![포털에서 VNet 만들기](./media/virtual-networks-create-vnet-classic-pportal-include/vnet-create-pportal-figure5.png)
+9. <span data-ttu-id="b15f4-120">아래와 같이 VNet에 대한 **구성** 이 표시되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b15f4-120">You should see the **Configuration** for your VNet as shown below.</span></span> 
+   
+    ![포털에서 VNet 만들기](./media/virtual-networks-create-vnet-classic-pportal-include/vnet-create-pportal-figure6.png)
+10. <span data-ttu-id="b15f4-122">**서브넷** > **추가**를 클릭하고 서브넷의 **이름**을 입력하고 **주소 범위(CIDR 블록)**를 지정한 후 **확인**을 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="b15f4-122">Click **Subnets** > **Add**, then type a **Name** and specify an **Address range (CIDR block)** for your subnet, and then click **OK**.</span></span> <span data-ttu-id="b15f4-123">아래 그림에서는 현재 시나리오에 대한 설정을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="b15f4-123">The figure below shows the settings for our current scenario.</span></span>
+    
+    ![Azure 포털에서 VNet 만들기](./media/virtual-networks-create-vnet-classic-pportal-include/vnet-create-pportal-figure7.gif)
+
