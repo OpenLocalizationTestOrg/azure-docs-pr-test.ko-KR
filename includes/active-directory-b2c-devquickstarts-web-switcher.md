@@ -1,8 +1,9 @@
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="513f2-101">.NET</span><span class="sxs-lookup"><span data-stu-id="513f2-101">.NET</span></span>](../articles/active-directory-b2c/active-directory-b2c-devquickstarts-graph-dotnet.md)
-> * [<span data-ttu-id="513f2-102">Python</span><span class="sxs-lookup"><span data-stu-id="513f2-102">Python</span></span>](active-directory-b2c-devquickstarts-graph-python.md)
-> * [<span data-ttu-id="513f2-103">NodeJS</span><span class="sxs-lookup"><span data-stu-id="513f2-103">NodeJS</span></span>](active-directory-b2c-devquickstarts-graph-nodeJS.md)
-> * [<span data-ttu-id="513f2-104">Java</span><span class="sxs-lookup"><span data-stu-id="513f2-104">Java</span></span>](active-directory-b2c-devquickstarts-graph-java.md)
-> * [<span data-ttu-id="513f2-105">Ruby</span><span class="sxs-lookup"><span data-stu-id="513f2-105">Ruby</span></span>](active-directory-b2c-devquickstarts-graph-ruby.md)
+> * [<span data-ttu-id="ffb4b-101">.NET</span><span class="sxs-lookup"><span data-stu-id="ffb4b-101">.NET</span></span>](../articles/active-directory-b2c/active-directory-b2c-devquickstarts-graph-dotnet.md)
+> * [<span data-ttu-id="ffb4b-102">Python</span><span class="sxs-lookup"><span data-stu-id="ffb4b-102">Python</span></span>](active-directory-b2c-devquickstarts-graph-python.md)
+> * [<span data-ttu-id="ffb4b-103">NodeJS</span><span class="sxs-lookup"><span data-stu-id="ffb4b-103">NodeJS</span></span>](active-directory-b2c-devquickstarts-graph-nodeJS.md)
+> * [<span data-ttu-id="ffb4b-104">Java</span><span class="sxs-lookup"><span data-stu-id="ffb4b-104">Java</span></span>](active-directory-b2c-devquickstarts-graph-java.md)
+> * [<span data-ttu-id="ffb4b-105">Ruby</span><span class="sxs-lookup"><span data-stu-id="ffb4b-105">Ruby</span></span>](active-directory-b2c-devquickstarts-graph-ruby.md)
 > 
 > 
+<span data-ttu-id="ffb4b-106">테스트 2 테스트</span><span class="sxs-lookup"><span data-stu-id="ffb4b-106">Testing Testing 2</span></span>
