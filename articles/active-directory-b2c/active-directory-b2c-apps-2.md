@@ -14,13 +14,14 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 12/06/2016
 ms.author: dastrock
-ms.openlocfilehash: 51001feb17ae99d3bd391a9f980d514e07f97099
-ms.sourcegitcommit: dfd6f46af588d4cd9b7a11a026dd66612ce37a4e
+ms.openlocfilehash: 6dd3864fb8f08e92231e04c5b1ed546760ec3526
+ms.sourcegitcommit: 70b1af4ad0b53009cb30aadc54e9609134aa0d72
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 12/11/2017
 ---
 # <a name="azure-active-directory-b2c-types-of-applications"></a>Azure Active Directory B2C: 응용 프로그램 유형
+회선 prehandoff에서 파일을 변경 합니다.
 Azure AD(Azure Active Directory) B2C는 다양한 최신 앱 아키텍처의 인증을 지원합니다. 모두 업계 표준 프로토콜인 [OAuth 2.0](active-directory-b2c-reference-protocols.md) 또는 [OpenID Connect](active-directory-b2c-reference-protocols.md)를 기반으로 합니다. 이 문서에서는 선호하는 언어 또는 플랫폼에 독립적으로 빌드할 수 있는 앱 유형에 대해 간략하게 설명합니다. 또한 [응용 프로그램 빌드를 시작](active-directory-b2c-overview.md#get-started)하기 전에 대략적인 시나리오에 대한 이해를 돕습니다
 
 ## <a name="the-basics"></a>기본 사항
