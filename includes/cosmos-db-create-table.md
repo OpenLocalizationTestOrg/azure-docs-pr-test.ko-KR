@@ -1,14 +1,21 @@
-이제 데이터 탐색기 toocreate 테이블을 사용 하 여 추가 하는 데이터 tooyour 데이터베이스입니다. 
+이제 Azure Portal에서 [데이터 탐색기] 도구를 사용하여 데이터베이스와 테이블을 만들 수 있습니다. 
 
-1. Hello hello 탐색 메뉴에서 Azure 포털에서에서 클릭 **데이터 탐색기 (미리 보기)**합니다. 
-2. Hello 데이터 탐색기 블레이드의 클릭 **새 테이블**, 다음 정보는 hello를 사용 하 여 hello 페이지를 채웁니다.
+1. **데이터 탐색기** > **새 테이블**을 차례로 클릭합니다. 
+    
+    **테이블 추가** 영역이 맨 오른쪽에 표시됩니다. 이 영역을 보기 위해 오른쪽으로 스크롤해야 할 수도 있습니다.
 
-    ![Hello Azure 포털에서에서 데이터 탐색기](./media/cosmos-db-create-table/azure-cosmosdb-data-explorer.png)
+    ![Azure Portal의 데이터 탐색기](./media/cosmos-db-create-table/azure-cosmosdb-data-explorer.png)
+
+2. **테이블 추가** 페이지에서 새 테이블에 대한 설정을 입력합니다.
 
     설정|제안 값|설명
     ---|---|---
-    테이블 ID|sample-table|새 테이블에 대 한 hello ID입니다. 테이블 이름에는 hello 요구 사항 데이터베이스 id로 문자 동일 합니다. 데이터베이스 이름은 1~255자 사이여야 하며 `/ \ # ?` 또는 후행 공백을 포함할 수 없습니다.
-    Storage 용량| 10 GB|Hello 기본값을 그대로 둡니다. 이 hello 데이터베이스의 저장 용량 hello입니다.
-    처리량|400RU|Hello 기본값을 그대로 둡니다. Hello 확장할 수 있습니다 [처리량](../articles/cosmos-db/request-units.md) tooreduce 대기 시간 하려는 경우 이후입니다.
+    테이블 ID|sample-table|새 테이블에 대한 ID입니다. 테이블 이름은 데이터베이스 ID와 동일한 문자 요구 사항을 갖습니다. 데이터베이스 이름은 1~255자 사이여야 하며 `/ \ # ?` 또는 후행 공백을 포함할 수 없습니다.
+    저장소 용량| 고정(10GB)|값을 **고정(10GB)**으로 변경합니다. 이 값은 데이터베이스의 저장소 용량입니다.
+    처리량|400RU|처리량을 400RU/s(초당 요청 단위)로 변경합니다. 대기 시간을 줄이면 나중에 처리량을 늘릴 수 있습니다.
 
-3. Hello 양식에 입력, 클릭 **확인**합니다.
+    **확인**을 클릭합니다.
+
+    [데이터 탐색기]에서 새 데이터베이스와 테이블이 표시됩니다.
+
+    ![Azure Portal 데이터 탐색기, 새 데이터베이스 및 컬렉션 표시](./media/cosmos-db-create-table/azure-cosmos-db-new-table.png)

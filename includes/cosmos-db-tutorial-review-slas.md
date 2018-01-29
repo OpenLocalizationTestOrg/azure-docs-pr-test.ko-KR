@@ -1,7 +1,11 @@
-앱 실행 되 고, 했으므로 tooensure 비즈니스 연속성 및 조사식 사용자 액세스 tooensure 고가용성을 해도 됩니다. Hello Azure 포털 tooreview hello 가용성, 대기 시간, 처리량 및 컬렉션의 일관성을 사용할 수 있습니다. 
+계정에 있는 리소스의 처리량, 저장소, 가용성, 대기 시간 및 일관성은 Azure Portal에서 모니터링됩니다. 이러한 메트릭을 빠르게 살펴보겠습니다. 
 
-Hello와 관련 된 각 그래프 [Azure Cosmos DB 서비스 수준 계약 (Sla)](https://azure.microsoft.com/support/legal/sla/documentdb/) 제공 표시 hello 할당량을 선 필요한 toomeet hello SLA 및에서는 실제 사용 현황 데이터베이스 성능에 대 한 일반 뷰를 제공 합니다. 저장소 사용량 및 분당 요청 수와 같은 추가 메트릭은 hello 포털에도 포함 됩니다.
+1. 탐색 메뉴에서 **메트릭**을 클릭합니다.
 
-* Azure 포털 hello에 hello에 왼쪽 창에서 아래에서 **모니터링**, 클릭 **메트릭**합니다.
+   ![Azure Portal의 메트릭](./media/cosmos-db-tutorial-review-slas/metrics.png)
 
-   ![샘플 데이터를 사용한 Todo 앱](./media/cosmos-db-tutorial-review-slas/azure-cosmosdb-portal-metrics-slas.png)
+2. Azure Cosmos DB에서 제공한 메트릭을 인식하도록 각 탭을 클릭합니다. 
+
+    [Azure Cosmos DB SLA(서비스 수준 계약)](https://azure.microsoft.com/support/legal/sla/cosmos-db/)와 연결된 각 차트에서는 SLA가 손상되었는지를 표시하는 줄을 제공합니다. Azure Cosmos DB를 통해 메트릭의 이 도구 모음을 사용하여 투명하게 SLA를 모니터링할 수 있습니다. 
+
+   ![Azure Cosmos DB 메트릭 도구 모음](./media/cosmos-db-tutorial-review-slas/metrics-suite.png)

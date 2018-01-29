@@ -1,13 +1,13 @@
 
-1. Hello Windows 스토어 프로젝트를 마우스 오른쪽 단추로 클릭 하 여, **시작 프로젝트로 설정**, hello F5 키 toorun hello Windows 스토어 응용 프로그램 키를 누릅니다.
+1. Windows 스토어 프로젝트를 마우스 오른쪽 단추로 클릭하고 **시작 프로젝트로 설정**을 클릭한 다음 F5 키를 눌러 Windows 스토어 앱을 실행합니다.
    
-    Hello 앱이 시작 된 후에 푸시 알림에 대 한 hello 장치가 등록 되었습니다.
-2. Hello Windows 스토어 앱을 중지 하 고 Windows Phone 스토어 앱의 hello hello 이전 단계를 반복 합니다.
+    앱이 시작되면 장치가 푸시 알림에 대해 등록됩니다.
+2. Windows 스토어 앱을 중지하고 Windows Phone 스토어 앱에 대해 이전 단계를 반복합니다.
    
-    이 시점에서 두 장치는 등록 된 tooreceive 푸시 알림입니다.
-3. Hello Windows 스토어 응용 프로그램을 다시 실행 하 고 텍스트를 입력 **Insert a TodoItem**, 클릭 하 고 **저장**합니다.
+    이제 두 장치가 모두 푸시 알림을 받도록 등록되었습니다.
+3. Windows 스토어 앱을 다시 실행하고 **TodoItem 삽입**에 텍스트를 입력한 후에 **저장**을 클릭합니다.
    
-       Note that after hello insert completes, both hello Windows Store and hello Windows Phone apps receive a push notification from WNS. hello notification is displayed on Windows Phone even when hello app isn't running.
+       Note that after the insert completes, both the Windows Store and the Windows Phone apps receive a push notification from WNS. The notification is displayed on Windows Phone even when the app isn't running.
    
-       ![](./media/app-service-mobile-windows-universal-test-push/mobile-quickstart-push5-wp8.png)
+![](./media/app-service-mobile-windows-universal-test-push/mobile-quickstart-push5-wp8.png)
 

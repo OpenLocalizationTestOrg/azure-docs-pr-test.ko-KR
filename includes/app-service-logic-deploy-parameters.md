@@ -1,13 +1,10 @@
-Azure 리소스 관리자와 정의한 매개 변수 값에 대 한 원하는 toospecify hello 서식 파일을 배포할 때. hello 템플릿은 모든 hello 매개 변수 값이 포함 된 매개 변수 라는 섹션을 포함 합니다.
-에 배포 하는 hello 환경에 따라 또는 배포 하는 hello 프로젝트에 따라 달라 집니다는 해당 값에 대 한 매개 변수를 정의 해야 합니다. 항상 유지 되는 값 동일 hello에 대 한 매개 변수를 정의 하지 않습니다. 각 매개 변수 값은 리소스를 배포 하는 hello 템플릿 toodefine hello에 사용 됩니다. 
+Azure Resource Manager를 사용하여 템플릿을 배포할 때 사용할 값에 대한 매개 변수를 정의할 수 있습니다. 템플릿은 모든 매개 변수 값이 포함된 `parameters` 섹션을 포함합니다. 각 매개 변수 값은 배포하려는 리소스를 정의하는 템플릿에서 사용됩니다.
 
-매개 변수를 정의할 때 사용 하 여 hello **allowedValues** 필드 toospecify 값이 사용자는 배포 중에 제공할 수 있습니다. 사용 하 여 hello **defaultValue** 필드 tooassign 값 toohello 매개 변수를 배포 하는 동안 제공 된 값이 없는 경우.
+> [!NOTE]
+> 항상 동일하게 유지되는 값으로 매개 변수를 정의하지 마십시오. 배포하는 프로젝트 또는 배포하는 환경에 따라 달라지는 값에 대해서만 매개 변수를 정의합니다.
 
-Hello 서식 파일의 각 매개 변수에 설명 합니다.
+매개 변수를 정의하는 경우:
 
-### <a name="logicappname"></a>logicAppName
-hello 논리 앱 toocreate의 hello 이름입니다.
+* 배포 중에 사용자가 제공할 수 있는 허용된 값을 지정하려면 **allowedValues** 필드를 사용합니다.
 
-    "logicAppName": {
-        "type": "string"
-    }
+* 배포 중에 값이 제공되지 않을 경우 매개 변수에 기본값을 할당하려면 **defaultValue** 필드를 사용합니다. 

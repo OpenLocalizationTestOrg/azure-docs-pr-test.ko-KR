@@ -1,13 +1,13 @@
 
-1. 로그인에 나열 된 hello 단계를 사용 하 여 Azure 구독을 tooyour [hello Azure CLI 1.0에서에서 tooAzure 연결](../articles/xplat-cli-connect.md)합니다.
+1. [Azure CLI 1.0에서 Azure에 연결](/cli/azure/authenticate-azure-cli)에 나열된 단계를 사용하여 Azure 구독에 로그인합니다.
 
-2. 다음과 같이 hello 클래식 배포 모드에 있는 있는지 확인 합니다.
+2. 다음과 같이 클래식 배포 모드에 있는지 확인합니다.
 
     ```azurecli
     azure config mode asm
     ```
 
-3. 확인 hello Linux 이미지 tooload hello 제공 되는 이미지에서 다음과 같이 되도록 합니다.
+3. 다음과 같이 사용 가능한 이미지에서 로드하려는 Linux 이미지를 찾습니다.
 
    ```azurecli   
     azure vm image list | grep "Linux"
@@ -15,7 +15,7 @@
    
     Windows 명령 프롬프트 창에서 grep 대신 **find** 를 사용합니다.
    
-4. 사용 하 여 `azure vm create` toocreate hello 이전 목록에서 hello Linux 이미지를 사용 하 여 VM입니다. 이 단계에서는 클라우드 서비스 및 저장소 계정을 만듭니다. 이 VM tooan 기존 클라우드 서비스와 연결할 수도 수는 `-c` 옵션입니다. Hello로 toohello Linux 가상 컴퓨터에서 SSH 끝점 toolog 만들기 `-e` 옵션입니다. hello 다음 예제에서는 V `myVM` hello를 사용 하 여 `Ubuntu-14_04_4-LTS` hello에 이미지 `West US` 위치, 사용자 이름을 추가 하 고 `ops`:
+4. `azure vm create`을 사용하여 이전 목록의 Linux 이미지로 새 VM을 만듭니다. 이 단계에서는 클라우드 서비스 및 저장소 계정을 만듭니다. 이 VM을 `-c` 옵션을 사용한 기존 클라우드 서비스에서도 연결할 수 있습니다. `-e` 옵션을 사용한 Linux 가상 컴퓨터에 로그인할 수 있는 SSH 끝점을 만듭니다. 다음 예제에서는 `Ubuntu-14_04_4-LTS` 이미지를 사용하여 `West US` 위치에 `myVM`이라는 VM을 만들고 사용자 이름 `ops`를 추가합니다.
    
     ```azurecli
     azure vm create myVM \
@@ -23,7 +23,7 @@
         -g ops -p P@ssw0rd! -z "Small" -e -l "West US"
     ```
 
-    hello 비슷한 toohello 다음은 예제 출력:
+    다음 예제와 유사하게 출력됩니다.
 
     ```azurecli
     info:    Executing command vm create
@@ -37,20 +37,20 @@
     ```
    
    > [!NOTE]
-   > Linux 가상 컴퓨터에 대 한 hello 제공 해야 `-e` 옵션 `vm create`합니다. Hello 가상 컴퓨터를 만든 후 가능한 tooenable SSH 않습니다. 에 대 한 자세한 내용은 SSH, 읽을 [어떻게 tooUse와 Azure에서 Linux에 SSH](../articles/virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)합니다.
+   > Linux 가상 컴퓨터의 경우 `vm create``-e` 옵션을 제공해야 합니다. 가상 컴퓨터를 만든 이후에는 SSH를 사용하도록 설정할 수 없습니다. SSH에 대한 자세한 내용은 [Azure에서 Linux와 함께 SSH를 사용하는 방법](../articles/virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)을 참조하세요.
 
-5. Hello를 사용 하 여 hello VM의 hello 특성을 확인할 수 있습니다 `azure vm show` 명령입니다. hello 다음 예에서는 나열 hello 라는 VM에 대 한 정보 `myVM`:
+5. `azure vm show` 명령을 사용하여 VM의 특성을 확인할 수 있습니다. 다음 예제에서는 `myVM`이라는 VM에 대한 정보를 나열합니다.
 
     ```azurecli   
     azure vm show myVM
     ```
 
-6. Hello로 VM을 시작 `azure vm start` 명령은 다음과 같습니다.
+6. 다음과 같이 `azure vm start` 명령을 사용하여 VM을 시작합니다.
 
     ```azurecli
     azure vm start myVM
     ```
 
 ## <a name="next-steps"></a>다음 단계
-이러한 모든 Azure CLI 1.0 가상 컴퓨터 명령에 대 한 세부 정보를 참조 하세요 hello [hello 클래식 배포 API 사용 하 여 hello Azure CLI 1.0](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)합니다.
+모든 Azure CLI 1.0 가상 컴퓨터 명령에 대한 자세한 설명은 [클래식 배포 API에서 Azure CLI 1.0 사용](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)을 참조하세요.
 

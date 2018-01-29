@@ -1,17 +1,17 @@
-## <a name="add-function-apps-tooyour-portal-favorites"></a>기능 앱 tooyour 포털 즐겨찾기를 추가 합니다. 
+## <a name="favorite-functions-in-the-portal"></a>포털의 즐겨 찾는 함수 
 
-그렇게 이미 하지 않은 경우 hello Azure 포털에에서 기능 앱 tooyour 즐겨찾기를 추가 합니다. 이렇게 하면 보다 쉽게 toofind 기능 앱. 이렇게 이미 있을 경우 toohello 다음 섹션을 건너뜁니다. 
+아직 수행하지 않은 경우 Azure Portal에서 즐겨찾기에 함수 앱을 추가합니다. 이렇게 하면 함수 앱을 보다 쉽게 찾을 수 있습니다. 이미 이 작업을 수행한 경우 다음 섹션으로 건너뜁니다. 
 
-1. Toohello 로그인 [Azure 포털](https://portal.azure.com/)합니다.
+1. [Azure Portal](https://portal.azure.com/)에 로그인합니다.
 
-2. 모든 서비스, 입력 hello 아래 왼쪽된 tooexpand hello 화살표를 클릭 합니다. `Functions` hello에 **필터** 필드, 고 클릭 hello 별 다음 너무**기능 앱**합니다.  
+2. 맨 아래 왼쪽에서 화살표를 클릭하여 모든 서비스를 확장하고 **필터** 필드에 `Functions`를 입력한 후 **Function Apps** 옆의 별 모양을 클릭합니다.  
  
-    ![Hello Azure 포털의에서 기능 앱 만들기](./media/functions-portal-favorite-function-apps/functions-favorite-function-apps.png)
+    ![Azure Portal에서 함수 앱 만들기](./media/functions-portal-favorite-function-apps/functions-favorite-function-apps.png)
 
-    그러면 hello 함수 아이콘 toohello 메뉴 hello 포털의 왼쪽 hello에 추가 됩니다.
+    그러면 Functions 아이콘이 포털 왼쪽 메뉴에 추가됩니다.
 
-3. Hello 메뉴 닫기 다음 toohello 아래쪽 toosee hello 함수 아이콘 아래로 스크롤하십시오. 이 아이콘 toosee 모든 함수 앱의 목록을 클릭 합니다. 이 응용 프로그램에서 함수로 함수 앱 toowork 프로그램을 클릭 합니다. 
+3. 메뉴를 닫은 후 맨 아래로 스크롤하면 Functions 아이콘이 표시됩니다. 이 아이콘을 클릭하면 모든 함수 앱 목록이 표시됩니다. 이 앱에서 함수로 작업하려면 함수 앱을 클릭합니다. 
  
-    ![](./media/functions-portal-favorite-function-apps/functions-function-apps-hub.png)
+    ![즐겨찾기의 함수 앱](./media/functions-portal-favorite-function-apps/functions-function-apps-hub.png)
  
      

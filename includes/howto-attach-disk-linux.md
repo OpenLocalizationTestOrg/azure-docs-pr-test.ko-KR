@@ -4,20 +4,20 @@
 <a id="attachempty"></a>
 
 ## <a name="attach-an-empty-disk"></a>빈 디스크 연결
-1. Azure CLI 1.0을 열려면 및 [tooyour Azure 구독 연결](../articles/xplat-cli-connect.md)합니다. Azure 서비스 관리 모드(`azure config mode asm`)에 있는지 확인합니다.
-2. 입력 `azure vm disk attach-new` toocreate hello 다음 예제와 같이 새 디스크를 연결 합니다. 대체 *myVM* Linux 가상 컴퓨터의 hello 이름의 hello 디스크의 hello 크기 GB로 지정 하 고 *100GB* 이 예에서:
+1. Azure CLI 1.0을 열고 [Azure 구독에 연결](/cli/azure/authenticate-azure-cli)합니다. Azure 서비스 관리 모드(`azure config mode asm`)에 있는지 확인합니다.
+2. `azure vm disk attach-new`을 입력하여 다음 예와 같이 새 디스크를 만들고 연결합니다. *myVM*을 Linux 가상 컴퓨터의 이름으로 바꾸고 디스크의 크기(GB)를 지정합니다. 이 예제에는 *100GB*입니다.
 
     ```azurecli
     azure vm disk attach-new myVM 100
     ```
 
-3. hello 출력에 표시 되며 hello 데이터 디스크를 만들고 연결 된 후 `azure vm disk list <virtual-machine-name>` hello 다음 예제와 같이:
+3. 데이터 디스크를 만들고 연결한 후 `azure vm disk list <virtual-machine-name>` 출력에 다음 예와 같이 나열됩니다.
    
     ```azurecli
     azure vm disk list TestVM
     ```
 
-    hello 비슷한 toohello 다음은 예제 출력:
+    다음 예제와 유사하게 출력됩니다.
 
     ```bash
     info:    Executing command vm disk list
@@ -37,14 +37,14 @@
 ## <a name="attach-an-existing-disk"></a>기존 디스크 연결
 기존 디스크를 연결하려면 저장소 계정에 사용 가능한 .vhd가 있어야 합니다.
 
-1. Azure CLI 1.0을 열려면 및 [tooyour Azure 구독 연결](../articles/xplat-cli-connect.md)합니다. Azure 서비스 관리 모드(`azure config mode asm`)에 있는지 확인합니다.
-2. Hello tooattach가 이미 원하는 VHD 업로드 tooyour Azure 구독을 확인 합니다.
+1. Azure CLI 1.0을 열고 [Azure 구독에 연결](/cli/azure/authenticate-azure-cli)합니다. Azure 서비스 관리 모드(`azure config mode asm`)에 있는지 확인합니다.
+2. 연결하려는 VHD가 Azure 구독에 이미 업로드되었는지 확인합니다.
    
     ```azurecli
     azure vm disk list
     ```
 
-    hello 비슷한 toohello 다음은 예제 출력:
+    다음 예제와 유사하게 출력됩니다.
 
     ```azurecli
      info:    Executing command vm disk list
@@ -58,13 +58,13 @@
      info:    vm disk list command OK
     ```
 
-3. Hello 디스크를 찾지 못한 경우 원하는 toouse, 사용 하 여 로컬 VHD tooyour 구독을 업로드할 수 있습니다 `azure vm disk create` 또는 `azure vm disk upload`합니다. 예로 `disk create` hello 다음 예제와 같이 됩니다.
+3. 사용하려는 디스크를 찾지 못한 경우 `azure vm disk create` 또는 `azure vm disk upload`를 사용하여 구독에 로컬 VHD를 업로드할 수 있습니다. `disk create` 의 예는 다음 예와 같습니다.
    
     ```azurecli
     azure vm disk create myVhd .\TempDisk\test.VHD -l "East US" -o Linux
     ```
 
-    hello 비슷한 toohello 다음은 예제 출력:
+    다음 예제와 유사하게 출력됩니다.
 
     ```azurecli
     info:    Executing command vm disk create
@@ -78,23 +78,23 @@
     info:    vm disk create command OK
     ```
    
-   사용할 수 있습니다 `azure vm disk upload` tooupload VHD tooa 특정 저장소 계정입니다. Azure 가상 컴퓨터 데이터 디스크 toomanage 명령을 hello에 대 한 자세한 읽기 [여기](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)합니다.
+   `azure vm disk upload` 명령을 사용하여 특정 저장소 계정에 VHD를 업로드할 수도 있습니다. Azure 가상 컴퓨터의 데이터 디스크를 관리하는 명령에 대한 자세한 내용은 [여기](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)를 참조하세요.
 
-4. 연결한 이제 hello 원하는 VHD tooyour 가상 컴퓨터:
+4. 이제 원하는 VHD를 가상 컴퓨터에 연결합니다.
    
     ```azurecli
     azure vm disk attach myVM myVhd
     ```
    
-   있는지 tooreplace 확인 *myVM* 가상 컴퓨터의 hello 이름의 및 *myVHD* 원하는 VHD와 합니다.
+   *myVM*을 가상 컴퓨터의 이름으로 바꾸고 *myVHD*를 원하는 VHD로 바꿔야 합니다.
 
-5. Hello 디스크가 연결 된 toohello 가상 컴퓨터를 확인할 수 있습니다 `azure vm disk list <virtual-machine-name>`:
+5. 다음과 같이 `azure vm disk list <virtual-machine-name>`명령을 사용하여 디스크가 가상 컴퓨터에 연결되어 있는지 확인할 수 있습니다.
    
     ```azurecli
     azure vm disk list myVM
     ```
 
-    hello 비슷한 toohello 다음은 예제 출력:
+    다음 예제와 유사하게 출력됩니다.
 
     ```azurecli
      info:    Executing command vm disk list
@@ -111,7 +111,7 @@
     ```
 
 > [!NOTE]
-> 데이터 디스크를 추가한 후 toolog toohello 가상 컴퓨터에 필요 하 고 hello 가상 컴퓨터 저장소에 대 한 hello 디스크를 사용할 수 있도록 hello 디스크를 초기화 합니다 (다음 hello toodo hello 디스크를 초기화 하는 방법에 자세한 내용은 단계 참조).
+> 데이터 디스크를 추가한 후 가상 컴퓨터가 디스크를 저장소에 사용할 수 있도록 가상 컴퓨터에 로그온한 다음 디스크를 초기화해야 합니다(디스크를 초기화하는 실행하는 방법에 대한 자세한 내용은 다음 단계를 참조하세요).
 > 
 > 
 

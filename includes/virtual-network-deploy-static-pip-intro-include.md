@@ -1,4 +1,4 @@
-Azure에서 가상 컴퓨터 (Vm)를 만들 있고 toohello 노출할 공용 IP 주소를 사용 하 여 공용 인터넷 합니다. 기본적으로 공용 Ip는 동적 이며 hello 연결 된 주소 toothem hello VM 삭제 될 때 변경 될 수 있습니다. VM hello tooguarantee 항상 사용 하 여 hello 동일한 공용 IP 주소, toocreate 고정 공용 IP를 해야 합니다. 
+Azure에서 VM(가상 머신)을 만들고 공용 IP 주소를 사용하여 공용 인터넷에 공개할 수 있습니다. 기본적으로 공용 IP는 동적이며 이와 연결된 주소는 VM이 삭제되거나 중지/할당 취소될 때 변경될 수 있습니다. VM이 항상 동일한 공용 IP 주소를 사용하도록 하려면 고정 공용 IP를 만들어야 합니다. 
 
-Vm에서 고정 공용 Ip를 구현할 수 있습니다, 전에 고정 공용 Ip 및 사용 방법을 사용할 수 있습니다 때 필요한 toounderstand입니다. 읽기 hello [IP 주소 지정 개요](../articles/virtual-network/virtual-network-ip-addresses-overview-arm.md) toolearn Azure의 IP 주소 지정 하는 방법에 대 한 자세한 합니다.
+VM에서 고정 공용 IP를 구현하려면 먼저 고정 공용 IP의 사용 가능 시점 및 사용 방법을 파악해야 합니다. Azure의 IP 주소 지정에 대한 자세한 내용은 [IP 주소 지정 개요](../articles/virtual-network/virtual-network-ip-addresses-overview-arm.md) 를 참조하세요.
 

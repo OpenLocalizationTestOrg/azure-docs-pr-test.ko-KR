@@ -1,31 +1,27 @@
-1. 새 창에서 toohello에 로그인 [Azure 포털](https://portal.azure.com/)합니다.
-2. Hello 왼쪽된 창에서 클릭 **새로**, 클릭 **데이터베이스**, 그 다음 **Azure Cosmos DB**, 클릭 **만들기**합니다.
+1. 새 브라우저 창에서 [Azure Portal](https://portal.azure.com/)에 로그인합니다.
+
+2. **새로 만들기** > **데이터베이스** > **Azure Cosmos DB**를 클릭합니다.
    
-   ![Azure Portal 데이터베이스 창](./media/cosmos-db-create-dbaccount-graph/create-nosql-db-databases-json-tutorial-1.png)
+   ![Azure Portal "데이터베이스" 창](./media/cosmos-db-create-dbaccount-graph/create-nosql-db-databases-json-tutorial-1.png)
 
-3. Hello에 **새 계정** 블레이드에서이 Azure Cosmos DB 계정에 대해 원하는 hello 구성을 지정 합니다. 
-
-    Azure Cosmos DB를 사용하면 Gremlin(그래프), MongoDB, SQL(DocumentDB) 및 테이블(키-값)의 4가지 프로그래밍 모델 중 하나를 선택할 수 있으며, 지금은 별도의 계정이 필요합니다.
-       
-    Hello Graph API에 대 한 프로그램에서는이 빠른 시작 문서의 되므로 **Gremlin (그래프)** hello 양식을 작성할 때. 카탈로그 앱의 문서 데이터, 키/값(테이블) 데이터 또는 MongoDB 앱에서 마이그레이션한 데이터가 있는 경우, Azure Cosmos DB에서는 모든 중요 업무용 응용 프로그램에 대해 전 세계 분산형 고가용성 데이터베이스 서비스 플랫폼을 제공할 수 있습니다.
-
-    Hello에 hello 필드에 내용을 입력 **새 계정** hello 정보를 사용 하 여 hello에 블레이드 스크린 샷을 가이드로 다음 값 hello 스크린 샷의 hello 값 보다 다 수 있습니다.
- 
-    ![hello Azure Cosmos DB에 대 한 새 계정 블레이드](./media/cosmos-db-create-dbaccount-graph/create-nosql-db-databases-json-tutorial-2.png)
+3. **새 계정** 페이지에서 새 Azure Cosmos DB 계정에 대한 설정을 입력합니다. 
 
     설정|제안 값|설명
     ---|---|---
-    ID|*고유 값*|이 Azure Cosmos DB 계정을 식별하는 고유한 이름입니다. 때문에 *documents.azure.com* 가 추가 된 toohello ID를 제공 하는 toocreate URI를 사용 하 여 식별할 수 있지만 고유 id입니다. hello ID는 소문자, 숫자 및 hello 하이픈 (-) 문자를 포함 해야 하며 3 too50 문자로 포함 되어야 합니다.
-    API|Gremlin(그래프)|Hello에 대 한 프로그램 우리 [Graph API](../articles/cosmos-db/graph-introduction.md) 이 문서의 뒷부분에 나오는 합니다.|
-    구독|*사용자의 구독*|hello이 Azure Cosmos DB 계정의 toouse 되도록 Azure 구독. 
-    리소스 그룹|*hello 동일한 ID 값*|hello 새 리소스 그룹 이름을 사용자 계정에 대 한 합니다. 간단한 설명을 위해 hello 이름과 같은 이름을 사용자 id입니다.로 사용할 수 있습니다. 
-    위치|*hello 지역 가장 가까운 tooyour 사용자*|지리적 위치에 있는 toohost Azure Cosmos DB 계정을 hello 합니다. Hello 위치를 가장 가까운 tooyour 사용자 선택 toogive toohello 데이터의 가장 빠른 액세스를 hello에 있습니다.
+    ID|*고유한 이름 입력*|이 Azure Cosmos DB 계정을 식별하는 고유한 이름을 입력합니다. URI를 만들기 위해 제공하는 ID에 *documents.azure.com*이 추가되므로 식별할 수 있는 고유한 ID를 사용합니다.<br><br>ID는 소문자, 숫자 및 하이픈(-) 문자만 포함할 수 있으며, 3-50자를 포함해야 합니다.
+    API|Gremlin(그래프)|API는 만들 계정의 형식을 결정합니다. Azure Cosmos DB는 응용 프로그램의 요구 사항을 충족하기 위해 SQL(문서 데이터베이스), Gremlin(그래프 데이터베이스), MongoDB(문서 데이터베이스), Azure Table 및 Cassandra라는 다섯 가지 API를 제공합니다. 현재 각각에는 별도의 계정이 필요합니다. <br><br>이 빠른 시작에서 Gremlin 구문을 사용하여 쿼리할 수 있는 그래프를 만들기 때문에 **Gremlin(그래프)**을 선택합니다.<br><br>[Graph API에 대한 자세한 정보](../articles/cosmos-db/graph-introduction.md)
+    구독|*사용자의 구독*|이 Azure Cosmos DB 계정에 사용할 Azure 구독을 선택합니다. 
+    리소스 그룹|*ID에서 위에 제공된 동일한 고유한 이름 입력*|계정의 새 리소스 그룹 이름을 입력합니다. 간단히 하기 위해 ID와 동일한 이름을 사용할 수 있습니다. 
+    위치|*사용자와 가장 가까운 지역 선택*|Azure Cosmos DB 계정을 호스트할 지리적 위치를 선택합니다. 데이터에 가장 빨리 액세스할 수 있도록 사용자와 가장 가까운 위치를 사용합니다.
+    지리적 중복 사용| 비워 둠 | 그러면 두 번째(쌍을 이루는) 지역에서 복제된 버전의 데이터베이스를 만듭니다. 이 항목을 비워둡니다.  
+    대시보드에 고정 | 여기서 | 쉬운 액세스를 위해 새 데이터베이스 계정이 포털 대시보드에 추가되도록 이 상자를 선택합니다.
 
-4. 클릭 **만들기** toocreate hello 계정.
-5. Hello 맨 위의 도구 모음에서 클릭 hello **알림** 아이콘 ![hello 알림 아이콘](./media/cosmos-db-create-dbaccount-graph/notification-icon.png) toomonitor hello 배포 프로세스입니다.
+    그런 다음 **Create**를 클릭합니다.
 
-    ![hello Azure 포털 알림 창](./media/cosmos-db-create-dbaccount-graph/notification.png)
+    ![Azure Cosmos DB에 대한 새 계정 블레이드](./media/cosmos-db-create-dbaccount-graph/create-nosql-db-databases-json-tutorial-2.png)
 
-6.  Hello 알림 창 hello 배포 성공, 닫기 hello 알림 창을 나타내며 hello open hello 새 계정을 때 **모든 리소스** hello 대시보드 타일입니다. 
+4. 계정 생성에는 몇 분 정도가 소요됩니다. 계정을 만드는 동안 Portal 오른쪽에는 **Azure Cosmos DB 배포 중**이 표시되며 타일을 보기 위해 대시보드에서 오른쪽으로 스크롤해야 할 수도 있습니다. 화면 위쪽에 진행률 표시줄이 표시되기도 합니다. 두 영역에서 진행 상태를 볼 수 있습니다.
 
-    ![DocumentDB 계정에 모든 리소스 타일 hello](./media/cosmos-db-create-dbaccount-graph/azure-documentdb-all-resources.png)
+    ![Azure Portal 알림 창](./media/cosmos-db-create-dbaccount-graph/deploying-cosmos-db.png)
+
+    계정이 만들어지면 **축하합니다. Azure Cosmos DB 계정을 만들었습니다.** 페이지가 표시됩니다. 
