@@ -1,32 +1,32 @@
 <!--author=SharS last changed: 02/04/2016-->
 
-#### <a name="toocreate-a-volume"></a>toocreate 볼륨
-1. Hello 장치에서 **빠른 시작** 페이지 **볼륨 추가**합니다. Hello 추가 볼륨 마법사를 시작합니다.
-2. Hello 볼륨 마법사를 아래에서 추가 **기본 설정**, 다음 hello지 않습니다.
+#### <a name="to-create-a-volume"></a>볼륨을 만들려면
+1. 장치 **빠른 시작** 페이지에서 **볼륨 추가**를 클릭합니다. 추가 볼륨 마법사가 시작됩니다.
+2. 볼륨 추가 마법사의 **기본 설정**에서 다음을 수행합니다.
    
    1. 볼륨의 **이름** 을 지정합니다.
-   2. Hello 지정 **프로 비전 된 용량** GB 또는 TB에서 볼륨에 대 한 합니다. 볼륨 용량은 hello 물리적 장치에 대 한 1GB ~ 64TB 사이 여야 합니다.
-   3. Hello 드롭 다운 목록에서 선택 hello **사용 유형을** 볼륨에 대 한 합니다. 
-   4. 이 볼륨 않는 아카이브 데이터를 사용 하는 경우 선택 hello **자주 액세스 하지 않는 아카이브 데이터에이 볼륨 사용** 확인란 합니다. 기타 모든 경우에는 **계층화된 볼륨**을 선택합니다. (계층화된 볼륨이 이전에는 기본 볼륨이었습니다.)
+   2. 볼륨의 **프로비전된 용량** 을 GB 또는 TB로 지정합니다. 볼륨 용량은 실제 장치에 대해 1GB 및 64TB 사이여야 합니다.
+   3. 드롭다운 목록에서 볼륨의 **사용 유형** 을 선택합니다. 
+   4. 보관 데이터에 대해 이 볼륨을 사용하는 경우 **자주 액세스하지 않는 보관 데이터에 대해 이 볼륨 사용** 확인란을 선택합니다. 기타 모든 경우에는 **계층화된 볼륨**을 선택합니다. (계층화된 볼륨이 이전에는 기본 볼륨이었습니다.)
       
         ![볼륨 추가](./media/storsimple-create-volume/ScreenshotUpdate1VolumeFlow.png)
       
-      1. Hello 화살표 아이콘을 클릭 합니다. ![화살표 아이콘](./media/storsimple-create-volume/HCS_ArrowIcon-include.png) toogo toohello 다음 페이지입니다.
-3. Hello에 **추가 설정을** 대화 상자, 새로운 액세스 제어 레코드 (ACR) 추가:
+      1. 화살표 아이콘 ![화살표 아이콘](./media/storsimple-create-volume/HCS_ArrowIcon-include.png) 을 클릭하여 다음 페이지로 이동합니다.
+3. **추가 설정** 대화 상자에서 새 ACR(액세스 제어 레코드)을 추가합니다.
    
    1. ACR의 **이름** 을 지정합니다.
-   2. 아래 **iSCSI 초기자 이름**, 제공 hello iSCSI 정규화 된 이름 (IQN) Windows 호스트의 합니다. IQN hello를 설정 하지 않은 경우 너무 이동[Get hello Windows Server 호스트의 IQN](#get-the-iqn-of-a-windows-server-host)합니다.
-   3. Hello를 선택 하 여 기본 백업을 사용 하도록 설정한 것이 좋습니다 **이 볼륨에 대 한 기본 백업 사용** 확인란 합니다. hello 기본 백업에서 22 시 30 매일 (장치 시간) 실행 하 고이 볼륨의 클라우드 스냅숏을 만드는 하는 정책을 만듭니다.
+   2. **iSCSI 초기자 이름**에서 Windows 호스트의 IQN(정규화된 iSCSI 이름)을 제공합니다. IQN이 없는 경우 [Windows Server 호스트의 IQN 가져오기](#get-the-iqn-of-a-windows-server-host)로 이동합니다.
+   3. **이 볼륨에 대해 기본 백업 사용** 확인란을 선택하여 기본 백업을 사용하는 것이 좋습니다. 기본 백업은 매일 22:30(장치 시간)에 실행되며 이 볼륨의 클라우드 스냅숏을 만드는 정책을 만듭니다.
       
       > [!NOTE]
-      > 여기에 hello 백업을 사용 하는지, 되돌릴 수 없습니다. 이 설정은 tooedit hello 볼륨 toomodify 필요 합니다.
+      > 여기서 백업이 활성화된 후에는 되돌릴 수 없습니다. 이 설정을 수정하려면 볼륨을 편집해야 합니다.
       > 
       > 
       
         ![볼륨 추가](./media/storsimple-create-volume/AddVolume2-include.png)
-4. Hello 확인 아이콘을 클릭 합니다. ![확인 아이콘](./media/storsimple-create-volume/HCS_CheckIcon-include.png)에서도 확인할 수 있습니다. 지정 된 hello로 볼륨을 만들 수는 설정입니다.
+4. 확인 아이콘 ![확인 아이콘](./media/storsimple-create-volume/HCS_CheckIcon-include.png)를 클릭합니다. 지정한 설정으로 볼륨이 만들어집니다.
 
 ![동영상 사용 가능](./media/storsimple-create-volume/Video_icon.png) **동영상 사용 가능**
 
-toowatch 보여 주는 비디오에서 toocreate StorSimple 볼륨을 클릭 하는 방법을 [여기](https://azure.microsoft.com/documentation/videos/create-a-storsimple-volume/)합니다.
+StorSimple 볼륨을 만드는 방법을 보여 주는 동영상을 시청하려면 [여기](https://azure.microsoft.com/documentation/videos/create-a-storsimple-volume/)를 클릭하세요.
 

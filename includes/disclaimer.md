@@ -1,2 +1,2 @@
-toouse이이 기능 및 다른 새 Azure 기능에 등록 hello [무료 미리 보기](https://account.windowsazure.com/PreviewFeatures)합니다.
+이 기능과 기타 새로운 Azure 기능을 사용하려면 [무료 미리 보기](https://account.windowsazure.com/PreviewFeatures)를 등록합니다.
 

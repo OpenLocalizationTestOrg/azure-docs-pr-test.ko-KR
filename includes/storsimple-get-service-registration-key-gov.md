@@ -1,19 +1,19 @@
 <!--author=SharS last changed: 9/17/15-->
 
 
-#### <a name="tooget-hello-storsimple-service-registration-key"></a>tooget hello StorSimple 서비스 등록 키
-1. Hello에 **StorSimple Manager 서비스** 페이지 hello 만든 서비스를 클릭 합니다. 그러면 toohello **빠른 시작** 페이지. (Hello 빠른 시작 아이콘을 클릭할 수 있는 ![StorSimple 빠른 시작 아이콘 ](./media/storsimple-get-service-registration-key-gov/HCS_QuickStartIcon-include.png) tooaccess hello **빠른 시작** 언제 든 지 페이지입니다.)
+#### <a name="to-get-the-storsimple-service-registration-key"></a>StorSimple 서비스 등록 키를 가져오려면
+1. **StorSimple 관리자 서비스** 페이지에서 작성한 서비스를 클릭합니다. 그러면 **빠른 시작** 페이지로 이동합니다. 언제든지 빠른 시작 아이콘 ![StorSimple 빠른 시작 아이콘](./media/storsimple-get-service-registration-key-gov/HCS_QuickStartIcon-include.png) 을 클릭하여 **빠른 시작** 페이지에 액세스할 수 있습니다.
    
      ![StorSimple 빠른 시작 페이지](./media/storsimple-get-service-registration-key-gov/HCS_ServiceQuickStart-gov-include.png)
-2. **서비스 등록 키 가져오기**를 클릭합니다. 클릭할 수도 있습니다 **등록 키** hello hello 페이지 맨 아래에 있습니다. Hello 키를 검색 하는 동안 몇 분 동안 toowait을 갖습니다. hello **서비스 등록 키** 대화 상자가 나타납니다.
+2. **서비스 등록 키 가져오기**를 클릭합니다. 페이지 아래쪽에서 **등록 키** 를 클릭할 수도 있습니다. 키를 검색하는 동안 몇 분 정도 기다려야 합니다. **서비스 등록 키** 대화 상자가 나타납니다.
    
      ![서비스 등록 키 대화 상자](./media/storsimple-get-service-registration-key-gov/HCS_ServiceRegistrationKey-gov-include.png)
-3. Hello 서비스 등록 키를 찾습니다.
-4. Hello 복사 아이콘을 클릭 합니다. ![StorSimple 복사 아이콘](./media/storsimple-get-service-registration-key-gov/HCS_CopyIcon-include.png) toocopy 키 hello 나중에 사용할 저장 합니다.
-5. Hello 확인 아이콘을 클릭 ![StorSimple 확인 아이콘](./media/storsimple-get-service-registration-key-gov/HCS_CheckIcon-include.png) tooclose이 대화 상자와 반환 toohello **빠른 시작** 페이지.
+3. 서비스 등록 키를 찾습니다.
+4. 복사 아이콘  ![StorSimple 복사 아이콘](./media/storsimple-get-service-registration-key-gov/HCS_CopyIcon-include.png) 을 클릭하여 키를 복사한 다음 나중에 사용할 수 있도록 저장합니다.
+5. 확인 아이콘 ![StorSimple 확인 아이콘](./media/storsimple-get-service-registration-key-gov/HCS_CheckIcon-include.png) 을 클릭하여 이 대화 상자를 닫고 **빠른 시작** 페이지로 이동합니다.
 
 > [!NOTE]
-> hello 서비스 등록 키를 사용 하는 tooregister 모든 hello tooregister StorSimple Manager 서비스에 필요한 장치입니다.
+> 서비스 등록 키는 StorSimple 관리자 서비스에 등록해야 하는 모든 장치를 등록하는 데 사용됩니다.
 > 
 > 
 
