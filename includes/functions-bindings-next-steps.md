@@ -1,2 +1,0 @@
-<span data-ttu-id="96b6f-101">Azure Functions에 대한 다른 바인딩 및 트리거에 대한 자세한 내용은 [Azure Functions 트리거 및 바인딩 개발자 참조](../articles/azure-functions/functions-triggers-bindings.md)를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="96b6f-101">For information about other bindings and triggers for Azure Functions, see [Azure Functions triggers and bindings developer reference](../articles/azure-functions/functions-triggers-bindings.md).</span></span>
-

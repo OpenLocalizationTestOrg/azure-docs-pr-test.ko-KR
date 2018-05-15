@@ -1,7 +1,0 @@
-> [!div class="op_single_selector"]
-> * [<span data-ttu-id="26b88-101">시뮬레이션된 원격 분석을 사용하는 C</span><span class="sxs-lookup"><span data-stu-id="26b88-101">C with simulated telemetry</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-c-get-started-simulator.md)
-> * [<span data-ttu-id="26b88-102">실제 센서를 사용하는 C</span><span class="sxs-lookup"><span data-stu-id="26b88-102">C with real sensor</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-c-get-started-basic.md)
-> * [<span data-ttu-id="26b88-103">C 구현 펌웨어 업데이트</span><span class="sxs-lookup"><span data-stu-id="26b88-103">C implement firmware update</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-c-get-started-advanced.md)
-> * [<span data-ttu-id="26b88-104">시뮬레이션된 원격 분석을 사용하는 Node.js</span><span class="sxs-lookup"><span data-stu-id="26b88-104">Node.js with simulated telemetry</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-node-get-started-simulator.md)
-> * [<span data-ttu-id="26b88-105">실제 센서를 사용하는 Node.js</span><span class="sxs-lookup"><span data-stu-id="26b88-105">Node.js with real sensor</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-node-get-started-basic.md)
-> * [<span data-ttu-id="26b88-106">Node.js 구현 펌웨어 업데이트</span><span class="sxs-lookup"><span data-stu-id="26b88-106">Node.js implement firmware update</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-node-get-started-advanced.md)
